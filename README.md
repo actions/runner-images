@@ -6,6 +6,13 @@ Please use the issue templates to submit requests and bug reports related to the
 If you need help with how to set up your workflow file or use a specific tool, 
 check out the [GitHub Actions Community Forum](https://github.community/t5/GitHub-Actions/bd-p/actions).
 
+## OS's offered
+We currently offer Linux, macOS, and Windows virtual environments:
+
+- **Linux**. We offer Ubuntu 16.04 and Ubuntu 18.04. We do not plan to offer other Linux distributions. If you want to build using other distributions with the hosted virtual environments, we suggest you use Docker. Alternatively, you can host your own VMs and make use of self-hosted runners which will be available when GitHub Actions becomes generally available on November 13, 2019. 
+- **macOS**. We offer macOS 10.14. We will update to macOS 10.15 before GitHub Actions becomes generally available on November 13, 2019.
+- **Windows**. We offer Windows Server 2016 and Windows Server 2019.
+
 ## Guidelines for what's installed
 We follow these rough guidelines when deciding what to pre-install:
 
