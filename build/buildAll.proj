@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<Project 
+	ToolsVersion="4.0" 
+	xmlns="http://schemas.microsoft.com/developer/msbuild/2003" 
+	DefaultTarget="FullBuild">
+	
+	<PropertyGroup>
+		<SRC_ROOT>..</SRC_ROOT>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AllConfigurations Include="Debug"/>
+		<AllConfigurations Include="Release"/>
+	</ItemGroup>
+	
+	<ItemGroup>
+	    <SolutionToBuild Include="$(SRC_ROOT)\Actions_msbuild2010\Actions_msbuild2010.sln"/>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<FullBuildDependsOn>
+			$(FullBuildDependsOn);
+			BeforeBuild;
+			CoreBuild;
+			AfterBuild;
+			Install;
+		</FullBuildDependsOn>
+	</PropertyGroup>
+	
+	<Target 
+		Name="FullBuild"
+		DependsOnTargets="$(FullBuildDependsOn)">
+	</Target>
+
+	<Target Name="BeforeBuild">	
+
+	</Target>
+
+	<Target Name="CoreBuild">	
+		<MSBuild 
+			Projects="@(SolutionToBuild)" 
+			Properties="Configuration=%(AllConfigurations.Identity)" />
+	</Target>
+
+	<Target Name="AfterBuild">	
+
+	</Target>
+	
+	<Target Name="Install">	
+
+	</Target>	
+	
+	<Target Name="Clean">
+		<MSBuild 
+			Projects="@(SolutionToBuild)" 
+			Targets="Clean"
+			Properties="Configuration=%(AllConfigurations.Identity)" />
+	</Target>
+ </Project>

@@ -1,0 +1,6 @@
+# git ignore file
+Debug/
+Release/
+*.sdf
+*.suo
+*.opensdf
