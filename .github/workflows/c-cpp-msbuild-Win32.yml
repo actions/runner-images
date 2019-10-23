@@ -1,0 +1,32 @@
+name: Main workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-2016        
+    steps:
+     - uses: actions/checkout@master
+       
+     - name: Install vcexpress2010
+       run: choco install vcexpress2010
+
+     - name:  Setup Environment
+       run:   |
+             echo ::add-path::C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE             
+             echo ::add-path::C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\BIN
+             echo ::add-path::C:\Windows\Microsoft.NET\Framework\v4.0.30319
+             echo ::set-env name=LIB::C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\LIB;%LIB%
+             echo ::set-env name=LIB::C:\Program Files (x86)\Microsoft SDKs\Windows\v6.0A\Lib;%LIB%
+             echo ::set-env name=LIB::C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Lib;%LIB%
+             echo ::set-env name=INCLUDE::C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include;%INCLUDE%
+          
+     - name:  Start VCTools
+       run: call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86
+            
+     - name: Core Build
+       working-directory: build        
+       run: msbuild BuildAll.proj /p:Platform="Win32"
+       
+
+
