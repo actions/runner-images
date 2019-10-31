@@ -11,7 +11,7 @@ We currently offer Linux, macOS, and Windows virtual environments:
 
 - **Linux**. We offer Ubuntu 16.04 and Ubuntu 18.04. We do not plan to offer other Linux distributions. If you want to build using other distributions with the hosted virtual environments, we suggest you use Docker. Alternatively, you can host your own VMs and make use of self-hosted runners which will be available when GitHub Actions becomes generally available on November 13, 2019. 
 - **macOS**. We offer macOS 10.14. We will update to macOS 10.15 before GitHub Actions becomes generally available on November 13, 2019.
-- **Windows**. We offer Windows Server 2016 and Windows Server 2019. However, we plan to offer only Windows Server 2019 starting on November 7, 2019.
+- **Windows**. We offer Windows Server 2016 and Windows Server 2019. However, we plan to offer only Windows Server 2019 starting on November 7, 2019. We plan to add Visual Studio 2017 to the Windows Server 2019 virtual environment, but do not yet have a firm ETA.
 
 ## Guidelines for what's installed
 We follow these rough guidelines when deciding what to pre-install:
