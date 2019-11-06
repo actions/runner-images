@@ -17,7 +17,7 @@ assignees: ''
   - URL for tool's homepage: <!--- URL -->
 
 **Virtual environments affected**
-- [ ] macOS 10.14
+- [ ] macOS 10.15
 - [ ] Ubuntu 16.04 LTS
 - [ ] Ubuntu 18.04 LTS
 - [ ] Windows Server 2016 R2

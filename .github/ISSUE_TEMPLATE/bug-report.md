@@ -11,7 +11,7 @@ assignees: ''
 A clear and concise description of what the bug is, and why you consider it to be a bug.
 
 **Virtual environments affected**
-- [ ] macOS 10.14
+- [ ] macOS 10.15
 - [ ] Ubuntu 16.04 LTS
 - [ ] Ubuntu 18.04 LTS
 - [ ] Windows Server 2016 R2
