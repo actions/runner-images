@@ -1,3 +1,7 @@
+[![](https://mmshostedimagedeploymentstatus.azurewebsites.net/api/status?imageName=Ubuntu18&badge=1)](https://mmshostedimagedeploymentstatus.azurewebsites.net/api/status?imageName=Ubuntu18&redirect=1)
+[![](https://mmshostedimagedeploymentstatus.azurewebsites.net/api/status?imageName=Ubuntu16&badge=1)](https://mmshostedimagedeploymentstatus.azurewebsites.net/api/status?imageName=Ubuntu16&redirect=1)
+[![](https://mmshostedimagedeploymentstatus.azurewebsites.net/api/status?imageName=windows-2019-vs2019&badge=1)](https://mmshostedimagedeploymentstatus.azurewebsites.net/api/status?imageName=windows-2019-vs2019&redirect=1)
+
 # GitHub Actions Virtual Environments
 This repository will contain the code that we use to create the GitHub Actions [virtual environments](https://help.github.com/en/articles/software-in-virtual-environments-for-github-actions).
 We're not quite ready to share the code and accept contributions yet. However, we want to gather your software requests and bug reports.
