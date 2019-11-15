@@ -6,6 +6,13 @@ Please use the issue templates to submit requests and bug reports related to the
 If you need help with how to set up your workflow file or use a specific tool, 
 check out the [GitHub Actions Community Forum](https://github.community/t5/GitHub-Actions/bd-p/actions).
 
+## OS's offered
+We currently offer Linux, macOS, and Windows virtual environments:
+
+- **Linux**. We offer Ubuntu 16.04 and Ubuntu 18.04. We do not plan to offer other Linux distributions. If you want to build using other distributions with the hosted virtual environments, we suggest you use Docker. Alternatively, you can host your own VMs and make use of self-hosted runners. 
+- **macOS**. We offer macOS Catalina 10.15.
+- **Windows**. We offer Windows Server 2016 and Windows Server 2019. However, we plan to offer only Windows Server 2019 starting on November 7, 2019. We plan to add Visual Studio 2017 to the Windows Server 2019 virtual environment, but do not yet have a firm ETA.
+
 ## Guidelines for what's installed
 We follow these rough guidelines when deciding what to pre-install:
 
