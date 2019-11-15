@@ -1,0 +1,1 @@
+Common scripts for all Windows images.
