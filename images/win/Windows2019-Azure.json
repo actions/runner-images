@@ -93,7 +93,7 @@
                 "ImageVersion={{user `image_version`}}"
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Vs2019/Initialize-VM.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Initialize-VM.ps1"
             ]
         },
         {
@@ -147,13 +147,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Vs2019/Update-DockerImages.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Update-DockerImages.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Vs2019/Install-WDK.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-WDK.ps1"
             ]
         },
         {
@@ -163,7 +163,7 @@
                 3010
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Vs2019/Install-VS2019.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-VS2019.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
@@ -171,7 +171,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Vs2019/Install-Wix.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-Wix.ps1"
             ]
         },
         {
@@ -197,7 +197,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Vs2019/Validate-Wix.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-Wix.ps1"
             ]
         },
         {
@@ -209,7 +209,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Vs2019/Validate-WDK.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-WDK.ps1"
             ]
         },
         {
@@ -245,7 +245,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Vs2019/Install-Python.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-Python.ps1"
             ]
         },
         {
@@ -767,7 +767,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Vs2019/Run-Antivirus.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Run-Antivirus.ps1"
             ]
         },
         {
