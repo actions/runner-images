@@ -8,6 +8,10 @@ check out the [GitHub Actions Community Forum](https://github.community/t5/GitHu
 ## OS's offered
 We currently offer Linux, macOS, and Windows virtual environments:
 
+[![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=Ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=Ubuntu18&redirect=1)
+[![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=Ubuntu16&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=Ubuntu16&redirect=1)
+[![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019-vs2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019-vs2019&redirect=1)
+
 - **Linux**. We offer Ubuntu 16.04 and Ubuntu 18.04. We do not plan to offer other Linux distributions. If you want to build using other distributions with the hosted virtual environments, we suggest you use Docker. Alternatively, you can host your own VMs and make use of self-hosted runners. 
 - **macOS**. We offer macOS Catalina 10.15.
 - **Windows**. We offer Windows Server 2019.
