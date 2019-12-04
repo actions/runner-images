@@ -12,10 +12,12 @@ source $HELPER_SCRIPTS/apt.sh
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 apt-add-repository "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-6.0 main"
 apt-get update
-apt-get install -y clang-6.0 lldb-6.0 lld-6.0
+apt-get install -y clang-6.0 clang-tidy-6.0 clang-tools-6.0 lldb-6.0 lld-6.0 libfindbin-libs-perl
 
 update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-6.0 100
 update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 100
+update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-6.0 100
+update-alternatives --install /usr/bin/scan-build scan-build /usr/bin/scan-build-6.0 100
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
