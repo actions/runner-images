@@ -7,7 +7,7 @@
 $SoftwareName = "Windows Driver Kit"
 
 $Description = @"
-_Version:_ 10.0.17763.0<br/>
+_Version:_ 10.0.18362.0<br/>
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
