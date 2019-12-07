@@ -3,13 +3,13 @@
 ##  Desc:  Install the Windows Driver Kit
 ################################################################################
 
-# Version: 10.0.17763.0
+# Version: 10.0.18362.0
 # Update Validate-WDK.ps1 if the version changes!
 # There doesn't seem to be any way to check the version programmatically
 
 # Requires Windows SDK with the same version number as the WDK
-$winSdkUrl = "https://go.microsoft.com/fwlink/p/?LinkID=2023014"
-$wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2026156"
+$winSdkUrl = "https://go.microsoft.com/fwlink/p/?linkid=2083338"
+$wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2085767"
 
 # `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
 $sdkExitCode = Install-EXE -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet")
@@ -31,10 +31,9 @@ if ($wdkExitCode -ne 0)
 
 # Need to install the VSIX to get the build targets when running VSBuild
 # Write-Host "Installing WDK.vsix"
-<# ISSUE - VSIX installer failing on VS2019
  $process = Start-Process `
     -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" `
-    -ArgumentList ("/quiet", '"C:\Program Files (x86)\Windows Kits\10\Vsix\WDK.vsix"') `
+    -ArgumentList ("/quiet", '"C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"') `
     -Wait `
     -PassThru
 
@@ -50,4 +49,3 @@ else
 }
 
 exit $exitCode
-#>
