@@ -1,18 +1,18 @@
 ################################################################################
 ##  File:  Install-Python.ps1
 ##  Team:  CI-X
-##  Desc:  Configure python on path with 3.7.* version from the tools cache
+##  Desc:  Configure python on path with 3.6.* version from the tools cache
 ##         Must run after tools cache is setup
 ################################################################################
 
 Import-Module -Name ImageHelpers -Force
 
-$python37path = $Env:AGENT_TOOLSDIRECTORY + '/Python/3.7*/x64'
-$pythonDir = Get-Item -Path $python37path
+$python36path = $Env:AGENT_TOOLSDIRECTORY + '/Python/3.6*/x64'
+$pythonDir = Get-Item -Path $python36path
 
 if($pythonDir -is [array])
 {
-    Write-Host "More than one python 3.7.* installations found"
+    Write-Host "More than one python 3.6.* installations found"
     Write-Host $pythonDir
     exit 1
 }

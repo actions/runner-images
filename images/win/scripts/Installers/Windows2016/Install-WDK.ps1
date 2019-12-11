@@ -31,15 +31,14 @@ if ($wdkExitCode -ne 0)
 }
 
 # Need to install the VSIX to get the build targets when running VSBuild
-# Write-Host "Installing WDK.vsix"
-<# ISSUE - VSIX installer failing on VS2019
- $process = Start-Process `
-    -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" `
+Write-Host "Installing WDK.vsix"
+$process = Start-Process `
+    -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe" `
     -ArgumentList ("/quiet", '"C:\Program Files (x86)\Windows Kits\10\Vsix\WDK.vsix"') `
     -Wait `
     -PassThru
 
- $exitCode = $process.ExitCode
+$exitCode = $process.ExitCode
 
 if ($exitCode -eq 0 -or $exitCode -eq 1001) # 1001 means the extension is already installed
 {
@@ -51,4 +50,3 @@ else
 }
 
 exit $exitCode
-#>

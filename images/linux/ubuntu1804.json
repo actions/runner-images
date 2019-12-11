@@ -1,6 +1,6 @@
 {
     "variables": {
-        "commit_id": "{{env `COMMIT_ID`}}",
+        "commit_url": "{{env `COMMIT_URL`}}",
         "client_id": "{{env `ARM_CLIENT_ID`}}",
         "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
         "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
@@ -54,7 +54,7 @@
             "inline": [
                 "mkdir {{user `image_folder`}}",
                 "chmod 777 {{user `image_folder`}}",
-                "echo {{user `commit_id`}} > {{user `commit_file`}}",
+                "echo {{user `commit_url`}} > {{user `commit_file`}}",
                 "chmod +r {{user `commit_file`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"

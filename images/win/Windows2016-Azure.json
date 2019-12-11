@@ -20,13 +20,12 @@
         "commit_file": "C:\\image\\commit.txt",
         "metadata_file": "C:\\image\\metadata.txt",
         "helper_script_folder": "C:\\Program Files\\WindowsPowerShell\\Modules\\",
-        "commit_id": "LATEST",
+        "commit_url": "LATEST",
         "install_user": "installer",
         "install_password": null,
         "capture_name_prefix": "packer",
         "image_version": "dev"
     },
-    "sensitive-variables": ["install_password", "ssh_password", "client_secret"],
     "builders": [
         {
             "name": "vhd",
@@ -36,7 +35,7 @@
             "subscription_id": "{{user `subscription_id`}}",
             "object_id": "{{user `object_id`}}",
             "tenant_id": "{{user `tenant_id`}}",
-            "os_disk_size_gb": "128",
+            "os_disk_size_gb": "256",
             "location": "{{user `location`}}",
             "vm_size": "{{user `vm_size`}}",
             "resource_group_name": "{{user `resource_group`}}",
@@ -51,7 +50,7 @@
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
-            "image_sku": "2019-Datacenter",
+            "image_sku": "2016-Datacenter",
             "communicator": "winrm",
             "winrm_use_ssl": "true",
             "winrm_insecure": "true",
@@ -63,7 +62,7 @@
             "type": "powershell",
             "inline":[
                 "New-Item -Path {{user `image_folder`}} -ItemType Directory -Force",
-                "Write-Output {{user `commit_id`}} > {{user `commit_file`}}",
+                "Write-Output {{user `commit_url`}} > {{user `commit_file` }}",
                 "Write-Host (Get-Content -Path {{user `commit_file`}})"
             ]
         },
@@ -93,12 +92,12 @@
                 "ImageVersion={{user `image_version`}}"
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Initialize-VM.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2016/Initialize-VM.ps1"
             ]
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
@@ -108,7 +107,7 @@
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
@@ -130,7 +129,7 @@
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
@@ -147,14 +146,12 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Update-DockerImages.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2016/Update-DockerImages.ps1"
             ]
         },
         {
             "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-WDK.ps1"
-            ]
+            "inline": ["choco install vcredist140 -y"]
         },
         {
             "type": "powershell",
@@ -163,15 +160,36 @@
                 3010
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-VS2019.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2016/Install-VS2017.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
         },
         {
+            "type": "windows-restart",
+            "restart_timeout": "30m"
+        },
+        {
+            "type": "powershell",
+            "valid_exit_codes": [
+                0,
+                3010
+            ],
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Windows2016/Install-SSDT.ps1"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}",
+            "pause_before": "120s"
+        },
+        {
+            "type": "windows-restart",
+            "restart_timeout": "30m"
+        },
+        {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-Wix.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2016/Install-Wix.ps1"
             ]
         },
         {
@@ -187,17 +205,29 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Windows2016/Install-WDK.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-ServiceFabricSDK.ps1"
             ]
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-Wix.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2016/Validate-SSDT.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Windows2016/Validate-Wix.ps1"
             ]
         },
         {
@@ -209,7 +239,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-WDK.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2016/Validate-WDK.ps1"
             ]
         },
         {
@@ -245,7 +275,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-Python.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2016/Install-Python.ps1"
             ]
         },
         {
@@ -257,14 +287,14 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "GO_VERSIONS=1.10.8,1.11.12,1.12.7,1.13",
+                "GO_VERSIONS=1.9.7,1.10.8,1.11.12,1.12.7,1.13",
                 "GO_DEFAULT=1.12.7"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Go.ps1"
             ]
         },
-         {
+        {
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-PHP.ps1"
@@ -504,7 +534,7 @@
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
@@ -551,7 +581,7 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "GO_VERSIONS=1.10.8,1.11.12,1.12.7,1.13",
+                "GO_VERSIONS=1.9.7,1.10.8,1.11.12,1.12.7,1.13",
                 "GO_DEFAULT=1.12.7"
             ],
             "scripts":[
@@ -589,13 +619,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Svn.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Sbt.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Sbt.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Svn.ps1"
             ]
         },
         {
@@ -650,6 +680,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-MysqlCli.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-SQLPowerShellTools.ps1"
             ]
         },
         {
@@ -751,7 +787,7 @@
         {
             "type": "file",
             "source": "C:\\InstalledSoftware.md",
-            "destination": "{{ template_dir }}/Windows2019-Readme.md",
+            "destination": "{{ template_dir }}/Windows2016-Readme.md",
             "direction": "download"
         },
         {
@@ -762,12 +798,12 @@
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Run-Antivirus.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2016/Run-Antivirus.ps1"
             ]
         },
         {
