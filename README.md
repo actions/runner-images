@@ -14,7 +14,7 @@ We currently offer Linux, macOS, and Windows virtual environments:
 
 - **Linux**. We offer Ubuntu 16.04 and Ubuntu 18.04. We do not plan to offer other Linux distributions. If you want to build using other distributions with the hosted virtual environments, we suggest you use Docker. Alternatively, you can host your own VMs and make use of self-hosted runners. 
 - **macOS**. We offer macOS Catalina 10.15.
-- **Windows**. We offer Windows Server 2019.
+- **Windows**. We offer Windows Server 2016 and Windows Server 2019.
 
 ## Guidelines for what's installed
 We follow these rough guidelines when deciding what to pre-install:

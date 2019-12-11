@@ -6,15 +6,15 @@ The following software is installed on machines in the Azure Pipelines **macOS-1
 
 ## Operating System
 
-- OS X 10.13.6 (17G8037) **High Sierra**
+- OS X 10.13.6 (17G9016) **High Sierra**
 
 ## Installed Software
 
 ### Language and Runtime
 
 - Java 1.7: OpenJDK Runtime Environment (Zulu 7.34.0.5-CA-macosx) (build 1.7.0_242-b7)
-- Java 1.8: OpenJDK Runtime Environment (Zulu 8.42.0.21-CA-macosx) (build 1.8.0_232-b18) (default)
-- Java 11: OpenJDK Runtime Environment Zulu11.35+13-CA (build 11.0.5+10-LTS)
+- Java 1.8: OpenJDK Runtime Environment (Zulu 8.42.0.23-CA-macosx) (build 1.8.0_232-b18) (default)
+- Java 11: OpenJDK Runtime Environment Zulu11.35+15-CA (build 11.0.5+10-LTS)
 - Java 12: OpenJDK Runtime Environment Zulu12.3+11-CA (build 12.0.2+3)
 - Java 13: OpenJDK Runtime Environment Zulu13.28+11-CA (build 13.0.1+10-MTS)
 - Node.js 6.17.0
@@ -23,59 +23,58 @@ The following software is installed on machines in the Azure Pipelines **macOS-1
 	v6.17.1
 	v8.16.2
 	v10.17.0
-	v12.13.0
+	v12.13.1
+	v13.2.0
 - PowerShell 6.2.3
 - Python 2.7.17
-- Python 3.7.4
+- Python 3.7.5
 - Ruby 2.6.5p114
 - .NET Core SDK 1.0.1, 1.0.4, 1.1.4, 1.1.5, 1.1.7, 1.1.8, 1.1.9, 1.1.10, 1.1.11, 1.1.12, 1.1.13, 2.0.0, 2.0.3, 2.1.100, 2.1.101, 2.1.102, 2.1.103, 2.1.104, 2.1.105, 2.1.503, 2.1.504, 2.1.505, 2.1.2, 2.1.200, 2.1.201, 2.1.300, 2.1.301, 2.1.4, 2.1.400, 2.1.401 2.1.402 2.1.502, 2.1.504, 2.2.101, 2.2.102, 2.2.103, 2.2.104, 2.2.105
-- Go 1.13.3
+- Go 1.13.4
 
 ### Package Management
 
 - Bundler 2.0.2
 - Carthage 0.34.0
 - CocoaPods 1.8.4
-- Homebrew 2.1.15
+- Homebrew 2.2.0
 - NPM 3.10.10
-- Yarn 1.19.1
+- Yarn 1.19.2
 - NuGet 4.7.0.5148
 - pip 19.3.1(python 2.7)
-- pip 19.2.3(python 3.7)
+- pip 19.3.1(python 3.7)
 - Miniconda 4.7.12
 
 ### Project Management
 
-- Apache Maven 3.6.2
-- Gradle 5.6.3
+- Apache Maven 3.6.3
+- Gradle 6.0.1
 
 ### Utilities
 
-- curl 7.66.0 (x86_64-apple-darwin17.7.0) libcurl/7.66.0 SecureTransport zlib/1.2.11
-- Git 2.23.0
+- curl 7.67.0 (x86_64-apple-darwin17.7.0) libcurl/7.67.0 SecureTransport zlib/1.2.11
+- Git 2.24.0
 - Git LFS 2.8.0
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.12.2
-- GNU parallel 20190822
+- GNU parallel 20191122
 
 ### Tools
 
-- fastlane 2.134.0
+- fastlane 2.137.0
 - App Center CLI 1.2.2
-- Azure-CLI 2.0.75
+- Azure-CLI 2.0.77
 
 ### Pre-cached tools
-- Python (available through the [setup-python](https://github.com/actions/setup-python/blob/master/README.md) task)
+- Python (available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task)
   - 2.7.16
-  - 3.4.10
   - 3.5.7
   - 3.6.9
   - 3.7.5
   - 3.8.0
   - pypy2
   - pypy3
-- Ruby (available through the [setup-ruby](https://github.com/actions/setup-ruby/blob/master/README.md) task)
-  - 2.3.8
+- Ruby (available through the [Use Ruby Version](https://go.microsoft.com/fwlink/?linkid=2005989) task)
   - 2.4.6
   - 2.5.5
   - 2.6.3
@@ -101,7 +100,7 @@ The following software is installed on machines in the Azure Pipelines **macOS-1
 - Nomad CLI IPA 0.14.3
 - xcpretty 0.3.0
 - xctool 0.3.5
-- xcversion 2.6.1
+- xcversion 2.6.2
 
 ### Installed SDKs
 | SDK                       | SDK name    | Xcode Version |
@@ -224,7 +223,7 @@ xcversion simulators --install='iOS 8.4'
 
 | Package name          | Description                                 |
 |-----------------------|---------------------------------------------|
-| platform-tools        | Android SDK Platform-tools, revision 29.0.4 |
+| platform-tools        | Android SDK Platform-tools, revision 29.0.5 |
 
 ### Android SDK Platforms
 
@@ -313,7 +312,7 @@ xcversion simulators --install='iOS 8.4'
 
 ### Visual Studio for Mac
 
-- 8.3.4.8
+- 8.3.10.2
 
 ### Mono
 
@@ -333,6 +332,7 @@ xcversion simulators --install='iOS 8.4'
 
 ### Xamarin.iOS SDK
 
+- 13.6.0.12
 - 13.4.0.2
 - 13.2.0.47
 - 12.14.0.114
@@ -354,6 +354,7 @@ xcversion simulators --install='iOS 8.4'
 
 ### Xamarin.Android SDK
 
+- 10.0.6.2
 - 10.0.3.0
 - 9.4.1.0
 - 9.3.0-23
@@ -372,6 +373,7 @@ xcversion simulators --install='iOS 8.4'
 
 ### Xamarin.Mac SDK
 
+- 6.6.0.12
 - 6.4.0.2
 - 6.2.0.47
 - 5.16.1.24

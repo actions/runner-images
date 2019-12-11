@@ -47,11 +47,11 @@ else {
     Write-Host "Windows Update key does not exist"
 }
 
-# Install .NET Framework 3.5 (required by Chocolatey)
+# Install Windows .NET Features
 Install-WindowsFeature -Name NET-Framework-Features -IncludeAllSubFeature
-# Explicitly install all 4.7 sub features to include ASP.Net.
-# As of  1/16/2019, WinServer 19 lists .Net 4.7 as NET-Framework-45-Features
 Install-WindowsFeature -Name NET-Framework-45-Features -IncludeAllSubFeature
+Install-WindowsFeature -Name BITS -IncludeAllSubFeature
+Install-WindowsFeature -Name DSC-Service
 
 Write-Host "Disable UAC"
 Disable-UserAccessControl
@@ -63,7 +63,7 @@ Write-Host "Disable IE ESC"
 Disable-InternetExplorerESC
 
 Write-Host "Setting local execution policy"
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine  -ErrorAction Continue | Out-Null
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope MachinePolicy  -ErrorAction Continue | Out-Null
 Get-ExecutionPolicy -List
 
 Write-Host "Enable long path behavior"
@@ -101,6 +101,7 @@ choco feature enable -n allowGlobalConfirmation
 # Install webpi
 choco install webpicmd -y
 
+
 # Expand disk size of OS drive
 
 New-Item -Path d:\ -Name cmds.txt -ItemType File -Force
@@ -119,9 +120,9 @@ wmic logicaldisk get size,freespace,caption
 # Adding description of the software to Markdown
 
 $Content = @"
-# Hosted Windows 2019
+# Hosted Windows2016 image
 
-The following software is installed on machines in the  **Hosted Windows 2019** (v$env:ImageVersion) pool.
+The following software is installed on machines in the **Hosted Windows2016** (v$env:ImageVersion) pool.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 

@@ -1,9 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
 enum ImageType {
-    Windows2019 = 0
-    Ubuntu1604 = 1
-    Ubuntu1804 = 2
+    Windows2016 = 0
+    Windows2019 = 1
+    Ubuntu1604 = 2
+    Ubuntu1804 = 3
 }
 
 Function Get-PackerTemplatePath {
@@ -17,7 +18,10 @@ Function Get-PackerTemplatePath {
     $relativePath = "N/A"
 
     switch ($ImageType) {
-        ([ImageType]::WindowsLatest) {
+        ([ImageType]::Windows2016) {
+            $relativePath = "\images\win\Windows2016-Azure.json"
+        }
+        ([ImageType]::Windows2019) {
             $relativePath = "\images\win\Windows2019-Azure.json"
         }
         ([ImageType]::Ubuntu1604) {
@@ -49,7 +53,7 @@ Function GenerateResourcesAndImage {
             The root path of the image generation repository source.
 
         .PARAMETER ImageType
-            The type of the image being generated. Valid options are: {"WindowsLatest", "Ubuntu1604", "Ubuntu1804"}.
+            The type of the image being generated. Valid options are: {"Windows2016", "Windows2019", "Ubuntu1604", "Ubuntu1804"}.
 
         .PARAMETER AzureLocation
             The location of the resources being created in Azure. For example "East US".

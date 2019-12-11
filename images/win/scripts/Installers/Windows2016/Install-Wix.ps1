@@ -11,7 +11,6 @@ function Install-VsixExtension
         [String]$Name
     )
 
-    $ReleaseInPath = 'Enterprise'
     $exitCode = -1
 
     try
@@ -24,7 +23,7 @@ function Install-VsixExtension
         $ArgumentList = ('/quiet', $FilePath)
 
         Write-Host "Starting Install $Name..."
-        $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\$ReleaseInPath\Common7\IDE\VSIXInstaller.exe" -ArgumentList $ArgumentList -Wait -PassThru
+        $process = Start-Process -FilePath 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VSIXInstaller.exe' -ArgumentList $ArgumentList -Wait -PassThru
         $exitCode = $process.ExitCode
 
         if ($exitCode -eq 0 -or $exitCode -eq 3010)
@@ -49,6 +48,7 @@ function Install-VsixExtension
 
 choco install wixtoolset -y --force
 
-#Installing VS extension 'Wix Toolset Visual Studio 2019 Extension'
-$exitCode = Install-VsixExtension -Url 'https://wixtoolset.gallerycdn.vsassets.io/extensions/wixtoolset/wixtoolsetvisualstudio2019extension/1.0.0.4/1563296438961/Votive2019.vsix' -Name 'Votive2019.vsix'
-#return $exitCode
+#Installing VS extension 'Wix Toolset Visual Studio 2017 Extension'
+$exitCode = Install-VsixExtension -Url 'https://robmensching.gallerycdn.vsassets.io/extensions/robmensching/wixtoolsetvisualstudio2017extension/0.9.21.62588/1494013210879/250616/4/Votive2017.vsix' -Name 'Votive2017.vsix'
+
+return $exitCode
