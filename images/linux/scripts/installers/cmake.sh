@@ -12,7 +12,7 @@ echo "Checking to see if the installer script has already been run"
 if command -v cmake; then
     echo "Example variable already set to $EXAMPLE_VAR"
 else
-	curl -sL https://cmake.org/files/v3.12/cmake-3.12.4-Linux-x86_64.sh -o cmakeinstall.sh \
+	curl -sL https://cmake.org/files/v3.15/cmake-3.15.5-Linux-x86_64.sh -o cmakeinstall.sh \
 	&& chmod +x cmakeinstall.sh \
 	&& ./cmakeinstall.sh --prefix=/usr/local --exclude-subdir \
 	&& rm cmakeinstall.sh
