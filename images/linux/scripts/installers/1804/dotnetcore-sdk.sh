@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
-LATEST_DOTNET_PACKAGE=dotnet-sdk-3.0
+LATEST_DOTNET_PACKAGE=dotnet-sdk-3.1
 
 LSB_RELEASE=$(lsb_release -rs)
 
@@ -45,7 +45,7 @@ else
 fi
 
 # Get list of all released SDKs from channels which are not end-of-life or preview
-release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.2/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.0/releases.json")
+release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.2/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.0/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json")
 sdks=()
 for release_url in ${release_urls[@]}; do
     echo "${release_url}"
