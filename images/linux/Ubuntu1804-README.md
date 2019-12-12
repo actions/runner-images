@@ -116,7 +116,7 @@ compiled using version 3.0.0.0 of the Cabal library )
 - Azul Zulu OpenJDK (12) (openjdk version "12.0.2" 2019-07-16)
 - Ant (Apache Ant(TM) version 1.10.5 compiled on March 28 2019)
 - Gradle 5.6.2
-- Maven (Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f))
+- Maven (Apache Maven 3.6.1 (d66c9c0b3152b2e69ee9bac180bb8fcc8e6af555; 2019-04-04T19:00:29Z))
 - kubectl (Client Version: v1.16.0)
 - helm (Client: v2.14.3+g0e7f3b6)
 - Leiningen (Leiningen 2.9.1 on Java 1.8.0_222 OpenJDK 64-Bit Server VM)
