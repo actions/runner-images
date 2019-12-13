@@ -231,7 +231,6 @@ the
 - Az Module (1.6.0)
 - Az Module (2.3.2)
 - Az Module (2.6.0)
-- Az Module (3.1.0)
 - Cached container images
   - node:10 (Digest: sha256:be69034700545030c110f67ae22e0584ddd59eeb2af81e4bd7f16f3ba5fa93a6)
   - node:12 (Digest: sha256:88ee7d2a5e18d359b4b5750ecb50a9b238ab467397c306aeb9955f4f11be44ce)
