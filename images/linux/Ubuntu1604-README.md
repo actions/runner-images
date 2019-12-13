@@ -33,7 +33,7 @@ The following software is installed on machines in the Hosted Ubuntu 1604 (20191
 - build-essential
 - Clang 6.0 (clang version 6.0.1-svn334776-1~exp1~20190309042730.123 (branches/release_60))
 - CMake (cmake version 3.12.4)
-- Docker Compose (docker-compose version 1.22.0, build f46880fe)
+- Docker Compose (docker-compose version 1.25.0, build 4038169)
 - Docker (Docker version 3.0.8, build 2355349d)
 - Docker (Docker version 3.0.8, build 2355349d)
 - .NET Core SDK:
