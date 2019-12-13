@@ -162,7 +162,7 @@ $extractLocation = "C:\Modules"
 $azurePsUri = @(
     "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/AzurePSModules.M157.20190808.27979.zip",
     "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/AzureRmPSModules.M157.20190808.27379.zip",
-    "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/AzPSModules.M158.20190903.19326.zip"
+    "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/AzPSModules.M163.20191211.17769.zip"
 )
 
 $azureRMModulePath = "C:\Modules\azurerm_2.1.0"
