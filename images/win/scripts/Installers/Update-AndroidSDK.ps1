@@ -35,24 +35,11 @@ Expand-Archive -Path .\android-sdk-licenses.zip -DestinationPath 'C:\Program Fil
 # keep newer versions in descending order
 
 $sdk_root = "C:\Program Files (x86)\Android\android-sdk"
+$ndk_root = "C:\Program Files (x86)\Android\android-sdk\ndk-bundle"
 
-# The NDK is installed by Visual Studio at this location:
-$ndk_root = "C:\Microsoft\AndroidNDK64\"
-
-if(Test-Path $ndk_root){
-
-    $androidNDKs = Get-ChildItem -Path $ndk_root | Sort-Object -Property Name -Descending | Select-Object -First 1
-    $latestAndroidNDK = $androidNDKs.FullName;
-
-    setx ANDROID_HOME $sdk_root /M
-    setx ANDROID_NDK_HOME $latestAndroidNDK /M
-    setx ANDROID_NDK_PATH $latestAndroidNDK /M
-}
-else {
-    Write-Host "NDK is not installed at path $ndk_root"
-    exit 1
-}
-
+setx ANDROID_HOME $sdk_root /M
+setx ANDROID_NDK_HOME $ndk_root /M
+setx ANDROID_NDK_PATH $ndk_root /M
 
 Push-Location -Path $sdk.FullName
 
@@ -109,7 +96,9 @@ Push-Location -Path $sdk.FullName
     "add-ons;addon-google_apis-google-22" `
     "add-ons;addon-google_apis-google-21" `
     "cmake;3.6.4111459" `
-    "patcher;v4"
+    "patcher;v4" `
+    "ndk-bundle"
+
 
 Pop-Location
 
