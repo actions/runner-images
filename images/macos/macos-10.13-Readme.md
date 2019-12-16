@@ -24,7 +24,7 @@ The following software is installed on machines in the Azure Pipelines **macOS-1
 	v8.16.2
 	v10.17.0
 	v12.13.1
-	v13.2.0
+	v13.3.0
 - PowerShell 6.2.3
 - Python 2.7.17
 - Python 3.7.5
@@ -243,7 +243,7 @@ xcversion simulators --install='iOS 8.4'
 | android-26            | Android SDK Platform 26, Revision 2       |
 | android-27            | Android SDK Platform 27, Revision 3       |
 | android-28            | Android SDK Platform 28, Revision 6       |
-| android-29            | Android SDK Platform 29, Revision 3       |
+| android-29            | Android SDK Platform 29, Revision 4       |
 
 ### Android SDK Build-tools
 
@@ -288,7 +288,7 @@ xcversion simulators --install='iOS 8.4'
 | lldb                  | 3.1.4508709                               |
 | ndk-bundle            | 18.1.5063045                              |
 | ProGuard              | 5.3.3                                     |
-| Android Emulator      | 29.2.1                                    |
+| Android Emulator      | 29.2.11                                   |
 
 ### Google APIs
 
