@@ -27,7 +27,7 @@ for setup in $setups; do
 	cd $original_directory;
 done;
 
-DocumentInstalledItem "Python (available through the [setup-python](https://github.com/actions/setup-python/blob/master/README.md) action)"
+DocumentInstalledItem "Python (available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task)"
 pythons=$(ls $AGENT_TOOLSDIRECTORY/Python)
 for python in $pythons; do
 	DocumentInstalledItemIndent "Python $python"
@@ -39,7 +39,7 @@ for pypy in $pypys; do
 	DocumentInstalledItemIndent "PyPy $pypy"
 done;
 
-DocumentInstalledItem "Ruby (available through the [setup-ruby](https://github.com/actions/setup-ruby/blob/master/README.md) action)"
+DocumentInstalledItem "Ruby (available through the [Use Ruby Version](https://go.microsoft.com/fwlink/?linkid=2005989) task)"
 rubys=$(ls $AGENT_TOOLSDIRECTORY/Ruby)
 for ruby in $rubys; do
 	DocumentInstalledItemIndent "Ruby $ruby"
