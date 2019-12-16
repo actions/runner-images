@@ -21,7 +21,7 @@ update-alternatives --install /usr/bin/scan-build scan-build /usr/bin/scan-build
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in clang clang++ clang-6.0 clang++-6.0; do
+for cmd in clang clang++ clang-tidy scan-build clang-6.0 clang++-6.0 clang-tidy-6.0 scan-build-6.0; do
     if ! command -v $cmd; then
         echo "$cmd was not installed"
         exit 1
