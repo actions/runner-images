@@ -22,6 +22,7 @@
         "capture_name_prefix": "packer",
         "image_version": "dev"
     },
+    "sensitive-variables": ["client_secret"],
     "builders": [
         {
             "type": "azure-arm",
