@@ -27,7 +27,7 @@ for setup in $setups; do
 	cd $original_directory;
 done;
 
-DocumentInstalledItem "Python (available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task)"
+DocumentInstalledItem "Python:"
 pythons=$(ls $AGENT_TOOLSDIRECTORY/Python)
 for python in $pythons; do
 	DocumentInstalledItemIndent "Python $python"
@@ -37,7 +37,6 @@ done;
 pypys=$(ls $AGENT_TOOLSDIRECTORY/PyPy)
 for pypy in $pypys; do
 	DocumentInstalledItemIndent "PyPy $pypy"
-
 	# Add symlinks for pypy2 and pypy3 to usr/local/bin, there should only be 2 versions of PyPy in the tools cache that is downloaded
 	if [ ${pypy:0:1} -eq "3" ] ; then
 		# add pypy 3.X to PATH
@@ -48,7 +47,7 @@ for pypy in $pypys; do
 	fi
 done;
 
-DocumentInstalledItem "Ruby (available through the [Use Ruby Version](https://go.microsoft.com/fwlink/?linkid=2005989) task)"
+DocumentInstalledItem "Ruby:"
 rubys=$(ls $AGENT_TOOLSDIRECTORY/Ruby)
 for ruby in $rubys; do
 	DocumentInstalledItemIndent "Ruby $ruby"
