@@ -37,8 +37,8 @@ echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 curl -sL https://www.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
 unzip -d /usr/share maven.zip
 rm maven.zip
-ln -s /usr/share/apache-maven-3.6.2/bin/mvn /usr/bin/mvn
-echo "M2_HOME=/usr/share/apache-maven-3.6.2" | tee -a /etc/environment
+ln -s /usr/share/apache-maven-3.6.3/bin/mvn /usr/bin/mvn
+echo "M2_HOME=/usr/share/apache-maven-3.6.3" | tee -a /etc/environment
 
 # Install Gradle
 # This script downloads the latest HTML list of releases at https://gradle.org/releases/.
