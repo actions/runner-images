@@ -17,9 +17,7 @@ function ToolcacheTest {
         [Parameter(Mandatory = $True)]
         [string]$SoftwareName,
         [Parameter(Mandatory = $True)]
-        [string[]]$ExecTests,
-        [Parameter(Mandatory = $True)]
-        [string]$Note
+        [string[]]$ExecTests
     )
     if (Test-Path "$env:AGENT_TOOLSDIRECTORY\$SoftwareName")
     {
@@ -53,7 +51,6 @@ function ToolcacheTest {
                 }
             }
 
-            $description += $Note
             Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $description
         }
         else
@@ -70,25 +67,13 @@ function ToolcacheTest {
 }
 
 # Python test
-$PythonNote += @"
-<br/>
-> Note: These versions of Python are available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task.
-"@
 $PythonTests = @("python.exe", "Scripts\pip.exe")
-ToolcacheTest -SoftwareName "Python" -ExecTests $PythonTests -Note $PythonNote
+ToolcacheTest -SoftwareName "Python" -ExecTests $PythonTests
 
 # PyPy test
-$PyPyNote += @"
-<br/>
-> Note: These versions of PyPy are available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task.
-"@
 $PyPyTests = @("python.exe", "bin\pip.exe")
-ToolcacheTest -SoftwareName "PyPy" -ExecTests $PyPyTests -Note $PyPyNote
+ToolcacheTest -SoftwareName "PyPy" -ExecTests $PyPyTests
 
 # Ruby test
-$RubyNote += @"
-<br/>
-> Note: These versions of Ruby are available through the [Use Ruby Version](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/tool/use-ruby-version) task.
-"@
 $RubyTests = @("bin\ruby.exe")
-ToolcacheTest -SoftwareName "Ruby" -ExecTests $RubyTests -Note $RubyNote
+ToolcacheTest -SoftwareName "Ruby" -ExecTests $RubyTests
