@@ -37,6 +37,15 @@ done;
 pypys=$(ls $AGENT_TOOLSDIRECTORY/PyPy)
 for pypy in $pypys; do
 	DocumentInstalledItemIndent "PyPy $pypy"
+
+	# Add symlinks for pypy2 and pypy3 to usr/local/bin, there should only be 2 versions of PyPy in the tools cache that is downloaded
+	if [ ${pypy:0:1} -eq "3" ] ; then
+		# add pypy 3.X to PATH
+		ln -s $AGENT_TOOLSDIRECTORY/PyPy/$pypy/x64/bin/pypy3 /usr/local/bin/pypy3
+	else
+		# add pypy 2.X to PATH
+		ln -s $AGENT_TOOLSDIRECTORY/PyPy/$pypy/x64/bin/pypy /usr/local/bin/pypy
+	fi
 done;
 
 DocumentInstalledItem "Ruby (available through the [Use Ruby Version](https://go.microsoft.com/fwlink/?linkid=2005989) task)"
