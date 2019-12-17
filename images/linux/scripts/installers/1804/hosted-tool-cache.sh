@@ -27,13 +27,13 @@ for setup in $setups; do
 	cd $original_directory;
 done;
 
-DocumentInstalledItem "Python (available through the [setup-python](https://github.com/actions/setup-python/blob/master/README.md) task)"
+DocumentInstalledItem "Python:"
 pythons=$(ls $AGENT_TOOLSDIRECTORY/Python)
 for python in $pythons; do
 	DocumentInstalledItemIndent "Python $python"
 done;
 
-DocumentInstalledItem "Ruby (available through the [setup-ruby](https://github.com/actions/setup-ruby/blob/master/README.md) task)"
+DocumentInstalledItem "Ruby:"
 rubys=$(ls $AGENT_TOOLSDIRECTORY/Ruby)
 for ruby in $rubys; do
 	DocumentInstalledItemIndent "Ruby $ruby"

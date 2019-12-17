@@ -1,13 +1,13 @@
 ################################################################################
-##  File:  Install-NET48.ps1
-##  Desc:  Install .NET 4.8
+##  File:  Install-NET472.ps1
+##  Desc:  Install .NET 4.7.2
 ################################################################################
 
 Import-Module -Name ImageHelpers -Force
 
-# .NET 4.8 Dev pack
-$InstallerURI = "https://download.visualstudio.microsoft.com/download/pr/7afca223-55d2-470a-8edc-6a1739ae3252/c8c829444416e811be84c5765ede6148/NDP48-DevPack-ENU.exe"
-$InstallerName = "NDP48-DevPack-ENU.exe"
+# .NET 4.7.2 Dev pack
+$InstallerURI = "https://download.microsoft.com/download/3/B/F/3BFB9C35-405D-45DF-BDAF-0EB57D047888/NDP472-DevPack-ENU.exe"
+$InstallerName = "NDP472-DevPack-ENU.exe"
 $ArgumentList = ('Setup', '/passive', '/norestart' )
 
 Install-EXE -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList

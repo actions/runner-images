@@ -1,6 +1,5 @@
 ################################################################################
 ##  File:  Initialize-VM.ps1
-##  Team:  CI-Platform
 ##  Desc:  VM initialization script, machine level configuration
 ################################################################################
 
@@ -120,9 +119,9 @@ wmic logicaldisk get size,freespace,caption
 # Adding description of the software to Markdown
 
 $Content = @"
-# Hosted Windows2016 image
+# Azure Pipelines Hosted VS2017 image
 
-The following software is installed on machines in the **Hosted Windows2016** (v$env:ImageVersion) pool.
+The following software is installed on machines in the Azure Pipelines **Hosted VS2017** (v$env:ImageVersion) pool.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 

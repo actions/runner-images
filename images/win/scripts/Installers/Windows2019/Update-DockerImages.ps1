@@ -1,6 +1,5 @@
 ################################################################################
 ##  File:  Update-DockerImages.ps1
-##  Team:  ReleaseManagement
 ##  Desc:  Pull some standard docker images.
 ##         Must be run after docker is installed.
 ################################################################################

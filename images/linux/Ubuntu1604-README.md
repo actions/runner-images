@@ -245,13 +245,13 @@ the
   - alpine:3.7 (Digest: sha256:8421d9a84432575381bfabd248f1eb56f3aa21d9d7cd2511583c68c9b7511d10)
   - alpine:3.8 (Digest: sha256:04696b491e0cc3c58a75bace8941c14c924b9f313b03ce5029ebbc040ed9dcd9)
   - mcr.microsoft.com/azure-pipelines/node8-typescript:latest (Digest: sha256:e52e60b9f71183969830a3664279b5d8c799b4b0ec2c25a0686f7c02f6a9669a)
-- Python (available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task)
+- Python:
   - Python 2.7.16
   - Python 3.5.7
   - Python 3.6.9
   - Python 3.7.5
   - Python 3.8.0
-- Ruby (available through the [Use Ruby Version](https://go.microsoft.com/fwlink/?linkid=2005989) task)
+- Ruby:
   - Ruby 2.4.6
   - Ruby 2.5.5
   - Ruby 2.6.3
