@@ -45,10 +45,14 @@ chown root:root /usr/bin/chromedriver
 chmod +x /usr/bin/chromedriver
 
 # Run tests to determine that the chromedriver installed as expected
+echo "Testing to make sure that script performed as expected, and basic scenarios work"
 if ! command -v chromedriver; then
     echo "chromedriver was not installed"
     exit 1
 fi
+
+echo "Lastly, documenting what we added to the metadata file"
+DocumentInstalledItem "Chromedriver ($(chromedriver --version))"
 
 # Download selenium standalone server (hardcoded version 3.141.59)
 echo "Downloading selenium-server-standalone v3.141.59..."
