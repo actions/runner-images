@@ -102,7 +102,6 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.VC.MFC.ARM.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.MFC.ARM64 ' + `
               '--add Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre ' + `
-              '--add Microsoft.VisualStudio.Component.VC.Redist.MSM ' + `
               '--add Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre ' + `
