@@ -1,5 +1,6 @@
 ################################################################################
 ##  File:  Run-Antivirus.ps1
+##  Team:  CI-Platform
 ##  Desc:  Run a full antivirus scan.
 ##         Run right after cleanup before we sysprep
 ################################################################################

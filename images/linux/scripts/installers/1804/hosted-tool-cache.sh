@@ -27,13 +27,13 @@ for setup in $setups; do
 	cd $original_directory;
 done;
 
-DocumentInstalledItem "Python (available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task)"
+DocumentInstalledItem "Python (available through the [setup-python](https://github.com/actions/setup-python/blob/master/README.md) task)"
 pythons=$(ls $AGENT_TOOLSDIRECTORY/Python)
 for python in $pythons; do
 	DocumentInstalledItemIndent "Python $python"
 done;
 
-DocumentInstalledItem "Ruby (available through the [Use Ruby Version](https://go.microsoft.com/fwlink/?linkid=2005989) task)"
+DocumentInstalledItem "Ruby (available through the [setup-ruby](https://github.com/actions/setup-ruby/blob/master/README.md) task)"
 rubys=$(ls $AGENT_TOOLSDIRECTORY/Ruby)
 for ruby in $rubys; do
 	DocumentInstalledItemIndent "Ruby $ruby"

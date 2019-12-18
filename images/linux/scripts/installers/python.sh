@@ -30,23 +30,23 @@ $AGENT_TOOLSDIRECTORY/PyPy/2.7.13/x64/bin/pypy -m ensurepip
 $AGENT_TOOLSDIRECTORY/PyPy/2.7.13/x64/bin/pypy -m pip install --ignore-installed pip
 
 # Install PyPy 3.5 to $AGENT_TOOLSDIRECTORY
-wget -q -P /tmp https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v7.2.0-linux64.tar.bz2
-tar -x -C /tmp -f /tmp/pypy3.6-v7.2.0-linux64.tar.bz2
-rm /tmp/pypy3.6-v7.2.0-linux64.tar.bz2
-mkdir -p $AGENT_TOOLSDIRECTORY/PyPy/3.6.9
-mv /tmp/pypy3.6-v7.2.0-linux64 $AGENT_TOOLSDIRECTORY/PyPy/3.6.9/x64
-touch $AGENT_TOOLSDIRECTORY/PyPy/3.6.9/x64.complete
+wget -q -P /tmp https://bitbucket.org/pypy/pypy/downloads/pypy3.5-v7.0.0-linux64.tar.bz2
+tar -x -C /tmp -f /tmp/pypy3.5-v7.0.0-linux64.tar.bz2
+rm /tmp/pypy3.5-v7.0.0-linux64.tar.bz2
+mkdir -p $AGENT_TOOLSDIRECTORY/PyPy/3.5.3
+mv /tmp/pypy3.5-v7.0.0-linux64 $AGENT_TOOLSDIRECTORY/PyPy/3.5.3/x64
+touch $AGENT_TOOLSDIRECTORY/PyPy/3.5.3/x64.complete
 
 # add pypy3 to PATH by default
-ln -s $AGENT_TOOLSDIRECTORY/PyPy/3.6.9/x64/bin/pypy3 /usr/local/bin/pypy3
+ln -s $AGENT_TOOLSDIRECTORY/PyPy/3.5.3/x64/bin/pypy3 /usr/local/bin/pypy3
 # pypy3 will be the python in PATH when its tools cache directory is prepended to PATH
 # PEP 394-style symlinking; don't bother with minor version
-ln -s $AGENT_TOOLSDIRECTORY/PyPy/3.6.9/x64/bin/pypy3 $AGENT_TOOLSDIRECTORY/PyPy/3.6.9/x64/bin/python3
-ln -s $AGENT_TOOLSDIRECTORY/PyPy/3.6.9/x64/bin/python3 $AGENT_TOOLSDIRECTORY/PyPy/3.6.9/x64/bin/python
+ln -s $AGENT_TOOLSDIRECTORY/PyPy/3.5.3/x64/bin/pypy3 $AGENT_TOOLSDIRECTORY/PyPy/3.5.3/x64/bin/python3
+ln -s $AGENT_TOOLSDIRECTORY/PyPy/3.5.3/x64/bin/python3 $AGENT_TOOLSDIRECTORY/PyPy/3.5.3/x64/bin/python
 
 # Install latest Pip for PyPy3
-$AGENT_TOOLSDIRECTORY/PyPy/3.6.9/x64/bin/pypy3 -m ensurepip
-$AGENT_TOOLSDIRECTORY/PyPy/3.6.9/x64/bin/pypy3 -m pip install --ignore-installed pip
+$AGENT_TOOLSDIRECTORY/PyPy/3.5.3/x64/bin/pypy3 -m ensurepip
+$AGENT_TOOLSDIRECTORY/PyPy/3.5.3/x64/bin/pypy3 -m pip install --ignore-installed pip
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
