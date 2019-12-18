@@ -343,14 +343,17 @@ _Version:_ azure-devops                      0.13.0
 ## Python
 
 _Version:_ 2.7.16 (x64)<br/>_Version:_ 2.7.16 (x86)<br/>_Version:_ 3.4.4 (x64)<br/>_Version:_ 3.4.4 (x86)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.4 (x64)<br/>_Version:_ 3.7.4 (x86)<br/><br/>
+> Note: These versions of Python are available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task.
 
 ## PyPy
 
 _Version:_ 2.7.13 (x86)<br/>_Version:_ 3.5.3 (x86)<br/><br/>
+> Note: These versions of PyPy are available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task.
 
 ## Ruby
 
 _Version:_ 2.4.6 (x64)<br/>_Version:_ 2.5.5 (x64)<br/>_Version:_ 2.6.3 (x64)<br/><br/>
+> Note: These versions of Ruby are available through the [Use Ruby Version](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/tool/use-ruby-version) task.
 
 ## Python (64 bit)
 
