@@ -30,10 +30,7 @@ CHROME_VERSION=$(google-chrome --version | grep -Eo "([0-9]+\.?){4}" | cut -d ".
 echo "Current Google Chrome version: $CHROME_VERSION"
 
 # Determine latest release of chromedriver
-LATEST_RELEASE_FILENAME="LATEST_RELEASE_$CHROME_VERSION"
-wget "https://chromedriver.storage.googleapis.com/$LATEST_RELEASE_FILENAME"
-LATEST_CHROMEDRIVER_VERSION=$(cat $LATEST_RELEASE_FILENAME)
-rm $LATEST_RELEASE_FILENAME
+LATEST_CHROMEDRIVER_VERSION=$(curl "https://chromedriver.storage.googleapis.com/LATEST_RELEASE")
 
 # Download and unpack latest release of chromedriver
 echo "Downloading chromedriver v$LATEST_CHROMEDRIVER_VERSION..."
@@ -55,5 +52,8 @@ echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Chromedriver ($(chromedriver --version))"
 
 # Download selenium standalone server (hardcoded version 3.141.59)
-echo "Downloading selenium-server-standalone v3.141.59..."
-wget https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar
+SELENIUM_VERSION=3.141.59
+echo "Downloading selenium-server-standalone v$SELENIUM_VERSION..."
+wget https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-$SELENIUM_VERSION.jar
+mv selenium-server-standalone-$SELENIUM_VERSION.jar /usr/share/java/selenium-server-standalone.jar
+echo "CLASSPATH=/usr/share/java/selenium-server-standalone.jar:." | tee -a /etc/environment
