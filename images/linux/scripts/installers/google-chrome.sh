@@ -58,6 +58,14 @@ SELENIUM_VERSION_MAJOR_MINOR=$(echo $SELENIUM_VERSION | cut -d '.' -f 1,2)
 
 # Download selenium standalone server (hardcoded version 3.141.59)
 echo "Downloading selenium-server-standalone v$SELENIUM_VERSION..."
-wget https://selenium-release.storage.googleapis.com/$SELENIUM_VERSION_MAJOR_MINOR/selenium-server-standalone-$SELENIUM_VERSION.jar
+SELENIUM_JAR_NAME=selenium-server-standalone-$SELENIUM_VERSION.jar
+wget https://selenium-release.storage.googleapis.com/$SELENIUM_VERSION_MAJOR_MINOR/$SELENIUM_JAR_NAME
+
+echo "Testing to make sure that script performed as expected, and basic scenarios work"
+if [ ! -f "$SELENIUM_JAR_NAME" ]; then
+    echo "Selenium server was not installed"
+    exit 1
+fi
+
 mv selenium-server-standalone-$SELENIUM_VERSION.jar /usr/share/java/selenium-server-standalone.jar
 echo "CLASSPATH=/usr/share/java/selenium-server-standalone.jar:." | tee -a /etc/environment
