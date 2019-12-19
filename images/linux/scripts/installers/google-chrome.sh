@@ -51,9 +51,13 @@ fi
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Chromedriver ($(chromedriver --version))"
 
+# Determine latest selenium standalone server version
+SELENIUM_LATEST_VERSION_URL=https://api.github.com/repos/SeleniumHQ/selenium/releases/latest
+SELENIUM_VERSION=$(curl $SELENIUM_LATEST_VERSION_URL | jq '.name' | tr -d '"' | cut -d ' ' -f 2)
+SELENIUM_VERSION_MAJOR_MINOR=$(echo $SELENIUM_VERSION | cut -d '.' -f 1,2)
+
 # Download selenium standalone server (hardcoded version 3.141.59)
-SELENIUM_VERSION=3.141.59
 echo "Downloading selenium-server-standalone v$SELENIUM_VERSION..."
-wget https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-$SELENIUM_VERSION.jar
+wget https://selenium-release.storage.googleapis.com/$SELENIUM_VERSION_MAJOR_MINOR/selenium-server-standalone-$SELENIUM_VERSION.jar
 mv selenium-server-standalone-$SELENIUM_VERSION.jar /usr/share/java/selenium-server-standalone.jar
 echo "CLASSPATH=/usr/share/java/selenium-server-standalone.jar:." | tee -a /etc/environment
