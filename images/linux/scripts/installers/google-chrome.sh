@@ -58,7 +58,7 @@ SELENIUM_LATEST_VERSION_URL=https://api.github.com/repos/SeleniumHQ/selenium/rel
 SELENIUM_VERSION=$(curl $SELENIUM_LATEST_VERSION_URL | jq '.name' | tr -d '"' | cut -d ' ' -f 2)
 SELENIUM_VERSION_MAJOR_MINOR=$(echo $SELENIUM_VERSION | cut -d '.' -f 1,2)
 
-# Download selenium standalone server (hardcoded version 3.141.59)
+# Download selenium standalone server
 echo "Downloading selenium-server-standalone v$SELENIUM_VERSION..."
 SELENIUM_JAR_NAME=selenium-server-standalone-$SELENIUM_VERSION.jar
 wget https://selenium-release.storage.googleapis.com/$SELENIUM_VERSION_MAJOR_MINOR/$SELENIUM_JAR_NAME
