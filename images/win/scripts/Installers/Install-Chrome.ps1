@@ -74,31 +74,12 @@ function New-ItemWithErrHandling {
     }
 }
 
-$TempPath = $env:TEMP;
+Import-Module -Name ImageHelpers -Force;
+
 $ChromeInstallerFile = "chrome_installer.exe";
 $ChromeInstallerUri = "https://dl.google.com/chrome/install/375.126/chrome_installer.exe";
-$IntallationError = $false;
+Install-Exe -Url $ChromeInstallerUri -Name $ChromeInstallerFile -ArgumentList ("/silent", "/install")
 
-try {
-    Write-Debug "Getting the Chrome installer: [$TempPath\$ChromeInstallerFile]";
-    Invoke-WebRequest -Uri $ChromeInstallerUri -OutFile "$TempPath\$ChromeInstallerFile";
-    
-    Write-Debug "Run the Chrome installer."
-    Start-Process -FilePath "$TempPath\$ChromeInstallerFile" -ArgumentList "/silent /install" -Wait;
-    Write-Debug "Chrome installation complette";
-}
-catch {
-    Write-Error "[!] Failed to install Google Chrome: [$($_.Exception.Message)]";
-    $IntallationError = $true;
-}
-finally{
-    Write-Debug "Removing the Chrome installer file."
-    Remove-Item "$TempPath\$ChromeInstallerFile" -Force;
-}
-
-if($IntallationError) {
-    exit;
-}
 Write-Debug "Adding the firewall rule for Google update blocking";
 New-NetFirewallRule -DisplayName "BlockGoogleUpdate" -Direction Outbound -Action Block -Program "C:\Program Files (x86)\Google\Update\GoogleUpdate.exe";
 
@@ -131,6 +112,6 @@ $regGoogleUpdateParameters | ForEach-Object {
     New-ItemWithErrHandling -Arguments $Arguments
 }
 
-$Arguments = @{ Path = $regGoogleUpdateChrome; Name = "AutoUpdateCheckPeriodMinutes"; Value = 00000000; Force = $true };
+$Arguments = @{ Path = $regGoogleUpdateChrome; Name = "DefaultBrowserSettingEnabled"; Value = 00000000; Force = $true };
 New-ItemWithErrHandling -Arguments $Arguments;
 
