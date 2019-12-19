@@ -37,7 +37,7 @@ echo "Downloading chromedriver v$LATEST_CHROMEDRIVER_VERSION..."
 wget "https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
 unzip chromedriver_linux64.zip
 rm chromedriver_linux64.zip
-mv chromedriver /usr/bin/chromedriver
+mv "chromedriver" "/usr/bin/chromedriver"
 chown root:root /usr/bin/chromedriver
 chmod +x /usr/bin/chromedriver
 
@@ -67,5 +67,5 @@ if [ ! -f "$SELENIUM_JAR_NAME" ]; then
     exit 1
 fi
 
-mv selenium-server-standalone-$SELENIUM_VERSION.jar /usr/share/java/selenium-server-standalone.jar
-echo "CLASSPATH=/usr/share/java/selenium-server-standalone.jar:." | tee -a /etc/environment
+mv "selenium-server-standalone-$SELENIUM_VERSION.jar" "/usr/share/java/selenium-server-standalone.jar"
+echo "CLASSPATH=/usr/share/java/selenium-server-standalone.jar:.:$CLASSPATH" | tee -a /etc/environment
