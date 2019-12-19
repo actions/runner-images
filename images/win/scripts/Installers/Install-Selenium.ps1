@@ -5,8 +5,15 @@
 
 # Acquire latest Selenium release number from GitHub API
 $latestReleaseUrl = "https://api.github.com/repos/SeleniumHQ/selenium/releases/latest"
-$latestReleaseInfo = Invoke-RestMethod -Uri $latestReleaseUrl
+try {
+    $latestReleaseInfo = Invoke-RestMethod -Uri $latestReleaseUrl
+} catch {
+    Write-Error $_
+    exit 1
+}
+Write-Debug $latestReleaseInfo
 $seleniumVersionString = $latestReleaseInfo.name.Split(" ")[1]
+Write-Debug $seleniumVersionString
 $seleniumVersion = [version]::Parse($seleniumVersionString)
 
 # Download Selenium
@@ -15,8 +22,14 @@ Write-Host "Downloading selenium-server-standalone v$seleniumVersion..."
 $seleniumReleaseUrl = "https://selenium-release.storage.googleapis.com/$($seleniumVersion.ToString(2))/selenium-server-standalone-$($seleniumVersion.ToString(3)).jar"
 New-Item -ItemType directory -Path "C:\selenium\"
 $seleniumBinPath = "C:\selenium\selenium-server-standalone.jar"
-Invoke-WebRequest -UseBasicParsing -Uri $seleniumReleaseUrl -OutFile $seleniumBinPath
+try {
+    Invoke-WebRequest -UseBasicParsing -Uri $seleniumReleaseUrl -OutFile $seleniumBinPath
+} catch {
+    Write-Error $_
+    exit 1
+}
 
-setx "CLASSPATH" "$($seleniumBinPath):$($env:CLASSPATH)" /M
+Write-Host "Add selenium to CLASSPATH..."
+setx "CLASSPATH" "$($seleniumBinPath);$($env:CLASSPATH)" /M
 
 exit 0
