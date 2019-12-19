@@ -69,3 +69,6 @@ fi
 
 mv "selenium-server-standalone-$SELENIUM_VERSION.jar" "/usr/share/java/selenium-server-standalone.jar"
 echo "CLASSPATH=/usr/share/java/selenium-server-standalone.jar:.:$CLASSPATH" | tee -a /etc/environment
+
+echo "Lastly, documenting what we added to the metadata file"
+DocumentInstalledItem "Selenium server standalone"
