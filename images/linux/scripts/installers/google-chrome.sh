@@ -30,6 +30,7 @@ CHROME_VERSION=$(google-chrome --version | grep -Eo "([0-9]+\.?){4}" | cut -d ".
 echo "Current Google Chrome version: $CHROME_VERSION"
 
 # Determine latest release of chromedriver
+# Compatibility of Google Chrome and Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/downloads/version-selection
 LATEST_CHROMEDRIVER_VERSION=$(curl "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
 
 # Download and unpack latest release of chromedriver
