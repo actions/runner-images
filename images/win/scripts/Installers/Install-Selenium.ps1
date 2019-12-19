@@ -13,6 +13,7 @@ $seleniumVersion = [version]::Parse($seleniumVersionString)
 Write-Host "Downloading selenium-server-standalone v$seleniumVersion..."
 
 $seleniumReleaseUrl = "https://selenium-release.storage.googleapis.com/$($seleniumVersion.ToString(2))/selenium-server-standalone-$($seleniumVersion.ToString(3)).jar"
+New-Item -ItemType directory -Path "C:\selenium\"
 $seleniumBinPath = "C:\selenium\selenium-server-standalone.jar"
 Invoke-WebRequest -UseBasicParsing -Uri $seleniumReleaseUrl -OutFile $seleniumBinPath
 
