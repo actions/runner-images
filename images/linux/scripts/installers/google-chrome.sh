@@ -37,9 +37,11 @@ echo "Downloading chromedriver v$LATEST_CHROMEDRIVER_VERSION..."
 wget "https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
 unzip chromedriver_linux64.zip
 rm chromedriver_linux64.zip
-mv "chromedriver" "/usr/bin/chromedriver"
-chown root:root /usr/bin/chromedriver
-chmod +x /usr/bin/chromedriver
+
+CHROMEDRIVER_BIN="/usr/bin/chromedriver"
+mv "chromedriver" $CHROMEDRIVER_BIN
+chown root:root $CHROMEDRIVER_BIN
+chmod +x $CHROMEDRIVER_BIN
 
 # Run tests to determine that the chromedriver installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
