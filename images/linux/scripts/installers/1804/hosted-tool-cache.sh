@@ -33,6 +33,20 @@ for python in $pythons; do
 	DocumentInstalledItemIndent "Python $python"
 done;
 
+# PyPy is also configured using the setup-python action
+pypys=$(ls $AGENT_TOOLSDIRECTORY/PyPy)
+for pypy in $pypys; do
+	DocumentInstalledItemIndent "PyPy $pypy"
+	# Add symlinks for pypy2 and pypy3 to usr/local/bin, there should only be 2 versions of PyPy in the tools cache that is downloaded
+	if [ ${pypy:0:1} -eq "3" ] ; then
+		# add pypy 3.X to PATH
+		ln -s $AGENT_TOOLSDIRECTORY/PyPy/$pypy/x64/bin/pypy3 /usr/local/bin/pypy3
+	else
+		# add pypy 2.X to PATH
+		ln -s $AGENT_TOOLSDIRECTORY/PyPy/$pypy/x64/bin/pypy /usr/local/bin/pypy
+	fi
+done;
+
 DocumentInstalledItem "Ruby:"
 rubys=$(ls $AGENT_TOOLSDIRECTORY/Ruby)
 for ruby in $rubys; do
