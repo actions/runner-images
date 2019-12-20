@@ -8,29 +8,24 @@ function Stop-SvcWithErrHandling
         [Parameter(Mandatory, ValueFromPipeLine = $true)] [string] $ServiceName
     )
 
-    Begin { 
-        Write-Debug "Function [Stop-SvcWithErrHnadlig] is started"; 
-    }
     Process {
         $Service = Get-Service $ServiceName -ErrorAction SilentlyContinue
-        if(-not $Service) {
-            Write-Warning "[!] Service [$ServiceName] is not found";
+        if (-not $Service) {
+            Write-Error "[!] Service [$ServiceName] is not found";
+            exit 1;
         }
         else {
-            Write-Debug "Try to stop service [$ServiceName]";
+            Write-Host "Try to stop service [$ServiceName]";
             try {
                 Stop-Service -Name $ServiceName -Force;
                 $Service.WaitForStatus("Stopped", "00:01:00");
-                Write-Debug "Service [$ServiceName] has been stoppet successfuly";
+                Write-Host "Service [$ServiceName] has been stopped successfuly";
             }
             catch {
                 Write-Error "[!] Failed to stop service [$ServiceName] with error:"
                 $_ | Out-String | Write-Error;
             }
         }
-    }
-    End {
-        Write-Debug "Function [Stop-SvcWithErrHnadlig] is stopped";
     }
 }
 
@@ -40,12 +35,10 @@ function Set-SvcWithErrHandling
         [Parameter(Mandatory, ValueFromPipeLine = $true)] [string] $ServiceName,
         [Parameter(Mandatory)] [hashtable] $Arguments
     )
-    Begin { 
-        Write-Debug "Function [Set-SvcWithErrHnadlig] is started"; 
-    }
+
     Process {
         $Service = Get-Service $ServiceName -ErrorAction SilentlyContinue
-        if(-not $Service) {
+        if (-not $Service) {
             Write-Warning "[!] Service [$ServiceName] is not found";
         }
         try {
@@ -56,62 +49,42 @@ function Set-SvcWithErrHandling
             $_ | Out-String | Write-Error;
         }
     }
-    End {
-        Write-Debug "Function [Stop-SvcWithErrHnadlig] is stopped";
-    }
-}
-
-function New-ItemWithErrHandling {
-    param (
-        [Parameter(Mandatory)] [hashtable] $Arguments
-    )
-    Write-Debug "Creation of [$($Arguments.Name)] item";
-    try {
-        New-ItemProperty @Arguments;
-    }
-    catch {
-        Write-Warning "[!] Failed to create [$($Arguments.Name)] registry parameter";
-    }
 }
 
 Import-Module -Name ImageHelpers -Force;
 
 $ChromeInstallerFile = "chrome_installer.exe";
-$ChromeInstallerUri = "https://dl.google.com/chrome/install/375.126/chrome_installer.exe";
+$ChromeInstallerUri = "https://dl.google.com/chrome/install/375.126/${ChromeInstallerFile}";
 Install-Exe -Url $ChromeInstallerUri -Name $ChromeInstallerFile -ArgumentList ("/silent", "/install")
 
-Write-Debug "Adding the firewall rule for Google update blocking";
+Write-Host "Adding the firewall rule for Google update blocking";
 New-NetFirewallRule -DisplayName "BlockGoogleUpdate" -Direction Outbound -Action Block -Program "C:\Program Files (x86)\Google\Update\GoogleUpdate.exe";
 
-('gupdate','gupdatem') | Stop-SvcWithErrHandling;
-('gupdate','gupdatem') | Set-SvcWithErrHandling -Arguments @{StartupType = "Disabled"};
+$GoogleSvcs = ('gupdate','gupdatem');
+$GoogleSvcs | Stop-SvcWithErrHandling;
+$GoogleSvcs | Set-SvcWithErrHandling -Arguments @{StartupType = "Disabled"};
 
 $regGoogleUpdatePath = "HKLM:\SOFTWARE\Policies\Google\Update";
 $regGoogleUpdateChrome = "HKLM:\SOFTWARE\Policies\Google\Chrome";
 ($regGoogleUpdatePath, $regGoogleUpdateChrome) | ForEach-Object {  
-    Write-Debug "Creation of [$_] registry key";
-    try {
-        New-Item -Path $_ -Force;
-    }
-    catch {
-        Write-Warning "[!] Failed to create [$_] registry key";
-    } 
+    New-Item -Path $_ -Force;
 }
 
-$regGoogleUpdateParameters = @(
+$regGoogleParameters = @(
     @{ Name = "AutoUpdateCheckPeriodMinutes"; Value = 00000000},
     @{ Name = "UpdateDefault"; Value = 00000000 },
-    @{ Name = "DisableAutoUpdateChecksCheckboxValuet"; Value = 00000000 },
-    @{ Name = "Update{8A69D345-D564-463C-AFF1-A69D9E530F96}"; Value = 00000000 }
+    @{ Name = "DisableAutoUpdateChecksCheckboxValue"; Value = 00000001 },
+    @{ Name = "Update{8A69D345-D564-463C-AFF1-A69D9E530F96}"; Value = 00000000 },
+    @{ Path = $regGoogleUpdateChrome; Name = "DefaultBrowserSettingEnabled"; Value = 00000000 }
 )
 
-$regGoogleUpdateParameters | ForEach-Object {
+$regGoogleParameters | ForEach-Object {
     $Arguments = $_;
-    $Arguments.Add("Path", $regGoogleUpdatePath);
+    if (-not ($Arguments.Path)) {
+        $Arguments.Add("Path", $regGoogleUpdatePath);
+    }
     $Arguments.Add("Force", $true);
-    New-ItemWithErrHandling -Arguments $Arguments
+    New-ItemProperty @Arguments;
 }
 
-$Arguments = @{ Path = $regGoogleUpdateChrome; Name = "DefaultBrowserSettingEnabled"; Value = 00000000; Force = $true };
-New-ItemWithErrHandling -Arguments $Arguments;
 
