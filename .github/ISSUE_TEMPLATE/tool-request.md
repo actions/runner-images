@@ -16,8 +16,9 @@ assignees: ''
   - Brief description of tool: <!--- Description -->
   - URL for tool's homepage: <!--- URL -->
 
-**Area for Triage**: See https://github.com/actions/virtual-environments/tree/master/triage-rules.yml for areas
-**Question, Bug, or Feature?**:
+**Area for Triage**: <!-- See https://github.com/actions/virtual-environments/tree/master/triage-rules.yml for areas -->
+
+**Question, Bug, or Feature?**: <!-- Choose "Question", "Bug", or "Feature" -->
 
 **Virtual environments affected**
 - [ ] macOS 10.15
