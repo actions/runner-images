@@ -31,5 +31,6 @@ try {
 
 Write-Host "Add selenium to CLASSPATH..."
 setx "CLASSPATH" "$($seleniumBinPath);$($env:CLASSPATH)" /M
+Write-Host "CLASSPATH: $($seleniumBinPath);$($env:CLASSPATH)"
 
 exit 0
