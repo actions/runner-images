@@ -115,9 +115,6 @@ apt-get install -y --no-install-recommends xorriso
 echo "Install zsync"
 apt-get install -y --no-install-recommends zsync
 
-echo "Install curl"
-apt-get install -y --no-install-recommends curl
-
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 for cmd in curl file ftp jq netcat ssh rsync shellcheck sudo telnet time unzip wget zip; do
