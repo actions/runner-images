@@ -81,3 +81,82 @@ function Install-EXE
         return -1
     }
 }
+
+function Stop-SvcWithErrHandling
+<# 
+.DESCRIPTION 
+Function for stopping the Windows Service with error handling
+
+.AUTHOR
+Andrey Mishechkin v-andmis@microsoft.com
+
+.PARAMETER -ServiceName
+The name of stopping service
+
+.PARAMETER -StopOnError
+Switch for stopping the script and exit from PowerShell if one service is absent
+#>
+{
+    param (
+        [Parameter(Mandatory, ValueFromPipeLine = $true)] [string] $ServiceName, 
+        [Parameter()] [switch] $StopOnError
+    )
+
+    Process {
+        $Service = Get-Service $ServiceName -ErrorAction SilentlyContinue
+        if (-not $Service) {
+            Write-Warning "[!] Service [$ServiceName] is not found";
+            if($StopOnError) {
+                exit 1;
+            }
+        }
+        else {
+            Write-Host "Try to stop service [$ServiceName]";
+            try {
+                Stop-Service -Name $ServiceName -Force;
+                $Service.WaitForStatus("Stopped", "00:01:00");
+                Write-Host "Service [$ServiceName] has been stopped successfuly";
+            }
+            catch {
+                Write-Error "[!] Failed to stop service [$ServiceName] with error:"
+                $_ | Out-String | Write-Error;
+            }
+        }
+    }
+}
+
+function Set-SvcWithErrHandling
+<# 
+.DESCRIPTION 
+Function for setting the Windows Service parameter with error handling
+
+.AUTHOR
+Andrey Mishechkin v-andmis@microsoft.com
+
+.PARAMETER -ServiceName
+The name of stopping service
+
+.PARAMETER -Arguments
+Hashtable for service arguments
+#>
+{
+    
+    param (
+        [Parameter(Mandatory, ValueFromPipeLine = $true)] [string] $ServiceName,
+        [Parameter(Mandatory)] [hashtable] $Arguments
+    )
+
+    Process {
+        $Service = Get-Service $ServiceName -ErrorAction SilentlyContinue
+        if (-not $Service) {
+            Write-Warning "[!] Service [$ServiceName] is not found";
+        }
+        try {
+           Set-Service $ServiceName @Arguments;
+        }
+        catch {
+            Write-Error "[!] Failed to set service [$ServiceName] arguments with error:"
+            $_ | Out-String | Write-Error;
+        }
+    }
+}
