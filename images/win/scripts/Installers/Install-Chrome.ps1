@@ -3,7 +3,7 @@
 ##  Desc:  Install Google Chrome
 ################################################################################
 
-Import-Module -Name "D:\GitHub\Akvelon\Forks\virtual-environments\images\win\scripts\ImageHelpers\ImageHelpers.psm1" -Force;
+Import-Module -Name ImageHelpers -Force;
 
 $ChromeInstallerFile = "chrome_installer.exe";
 $ChromeInstallerUri = "https://dl.google.com/chrome/install/375.126/${ChromeInstallerFile}";
