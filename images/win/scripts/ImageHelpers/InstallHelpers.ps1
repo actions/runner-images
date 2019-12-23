@@ -106,7 +106,7 @@ Switch for stopping the script and exit from PowerShell if one service is absent
         $Service = Get-Service $ServiceName -ErrorAction SilentlyContinue
         if (-not $Service) {
             Write-Warning "[!] Service [$ServiceName] is not found";
-            if($StopOnError) {
+            if ($StopOnError) {
                 exit 1;
             }
         }
