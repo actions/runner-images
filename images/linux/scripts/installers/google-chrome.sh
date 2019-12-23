@@ -26,7 +26,8 @@ fi
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Google Chrome ($(google-chrome --version))"
 
-CHROME_VERSION=$(google-chrome --version | grep -Eo "([0-9]+\.?){4}" | cut -d "." -f 1,2,3)
+CHROME_VERSION=$(google-chrome --product-version)
+CHROME_VERSION=${CHROME_VERSION%.*}
 
 # Determine latest release of chromedriver
 # Compatibility of Google Chrome and Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/downloads/version-selection
