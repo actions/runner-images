@@ -25,6 +25,7 @@ apt-fast install -y --no-install-recommends \
     locales \
     netcat \
     openssh-client \
+    parallel \
     rsync \
     shellcheck \
     sudo \
@@ -54,7 +55,7 @@ apt-fast install -y --no-install-recommends \
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in curl file ftp jq netcat ssh rsync shellcheck sudo telnet time unzip wget zip; do
+for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet time unzip wget zip; do
     if ! command -v $cmd; then
         echo "$cmd was not installed"
         exit 1
@@ -77,6 +78,7 @@ DocumentInstalledItemIndent "libunwind8"
 DocumentInstalledItemIndent "locales"
 DocumentInstalledItemIndent "netcat"
 DocumentInstalledItemIndent "openssh-client"
+DocumentInstalledItemIndent "parallel"
 DocumentInstalledItemIndent "rsync"
 DocumentInstalledItemIndent "shellcheck"
 DocumentInstalledItemIndent "sudo"
