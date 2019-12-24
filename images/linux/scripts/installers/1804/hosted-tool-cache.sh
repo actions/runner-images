@@ -31,7 +31,7 @@ DocumentInstalledItem "Python:"
 pythons=$(ls $AGENT_TOOLSDIRECTORY/Python)
 for python in $pythons; do
 	DocumentInstalledItemIndent "Python $python"
-	# Add symlinks for python2 and python3 so that Python can be used without setup-python
+	# Add symlinks for python, python2 and python3 so that Python can be used out of the box without setup-python
 	if [ ${python:0:3} -eq "2.7" ] ; then
 		# add python 2.7 for python and python2
 		ln -s $AGENT_TOOLSDIRECTORY/Python/$python/x64/bin/python /usr/local/bin/python
