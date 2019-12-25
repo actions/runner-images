@@ -50,5 +50,10 @@ setx IEWebDriver "C:\SeleniumWebDrivers\IEDriver" /M;
 setx GeckoWebDriver "C:\SeleniumWebDrivers\GeckoDriver" /M;
 setx ChromeWebDriver "C:\SeleniumWebDrivers\ChromeDriver" /M;
 
+$regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\';
+$PathValue = Get-ItemPropertyValue -Path $reg -Name 'Path';
+$PathValue += ";C:\SeleniumWebDrivers\ChromeDriver";
+Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $PathValue;
+
 exit 0;
 
