@@ -32,11 +32,11 @@ pythons=$(ls $AGENT_TOOLSDIRECTORY/Python)
 for python in $pythons; do
 	DocumentInstalledItemIndent "Python $python"
 	# Add symlinks for python, python2 and python3 so that Python can be used out of the box without setup-python
-	if [ ${python:0:3} -eq "2.7" ] ; then
+	if [ ${python:0:3} == "2.7" ] ; then
 		# add python 2.7 for python and python2
 		ln -s $AGENT_TOOLSDIRECTORY/Python/$python/x64/bin/python /usr/local/bin/python
 		ln -s $AGENT_TOOLSDIRECTORY/Python/$python/x64/bin/python /usr/local/bin/python2
-	elif [ ${python:0:3} -eq "3.6" ] ; then
+	elif [ ${python:0:3} == "3.6" ] ; then
 		# add python 3.6 for python3 which is the default for 1804
 		ln -s $AGENT_TOOLSDIRECTORY/Python/$python/x64/bin/python /usr/local/bin/python3
 	fi
@@ -47,7 +47,7 @@ pypys=$(ls $AGENT_TOOLSDIRECTORY/PyPy)
 for pypy in $pypys; do
 	DocumentInstalledItemIndent "PyPy $pypy"
 	# Add symlinks for pypy2 and pypy3 to usr/local/bin, there should only be 2 versions of PyPy in the tools cache that is downloaded
-	if [ ${pypy:0:1} -eq "3" ] ; then
+	if [ ${pypy:0:1} == "3" ] ; then
 		# add pypy 3.X to PATH
 		ln -s $AGENT_TOOLSDIRECTORY/PyPy/$pypy/x64/bin/pypy3 /usr/local/bin/pypy3
 	else
