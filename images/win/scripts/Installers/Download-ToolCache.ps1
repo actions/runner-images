@@ -20,19 +20,6 @@ Function Install-NpmPackage {
     npm install $Name --registry=$NpmRegistry
 }
 
-Function InstallTool {
-    [CmdletBinding()]
-    param(
-        [System.IO.FileInfo]$ExecutablePath
-    )
-
-    Set-Location -Path $ExecutablePath.DirectoryName -PassThru | Write-Host
-    if (Test-Path 'tool.zip') {
-        Expand-Archive 'tool.zip' -DestinationPath '.'
-    }
-    cmd.exe /c 'install_to_tools_cache.bat'
-}
-
 # HostedToolCache Path
 $Dest = "C:/"
 $Path = "hostedtoolcache/windows"
