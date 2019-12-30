@@ -16,6 +16,7 @@
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
         "vm_size": "Standard_DS4_v2",
 
+        "root_folder": "C:",
         "image_folder": "C:\\image",
         "commit_file": "C:\\image\\commit.txt",
         "metadata_file": "C:\\image\\metadata.txt",
@@ -24,7 +25,8 @@
         "install_user": "installer",
         "install_password": null,
         "capture_name_prefix": "packer",
-        "image_version": "dev"
+        "image_version": "dev",
+        "toolcache_registry": "https://buildcanary.pkgs.visualstudio.com/PipelineCanary/_packaging/hostedtoolcache/npm/registry/"
     },
     "sensitive-variables": ["install_password", "ssh_password", "client_secret"],
     "builders": [
@@ -239,6 +241,27 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-7zip.ps1"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolcache.json",
+            "destination": "{{user `root_folder`}}/toolcache.json"
+        },
+        {
+            "type": "powershell",
+            "environment_vars":[
+                "TOOLCACHE_REGISTRY={{ user `toolcache_registry` }}",
+                "ROOT_FOLDER={{user `root_folder`}}"
+            ],
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Download-ToolCache.ps1"
             ]
         },
@@ -335,12 +358,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
             ]
         },
@@ -418,12 +435,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-AzureCosmosDbEmulator.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-7zip.ps1"
             ]
         },
         {
@@ -532,6 +543,9 @@
         },
         {
             "type": "powershell",
+            "environment_vars":[
+                "ROOT_FOLDER={{user `root_folder`}}"
+            ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-ToolCache.ps1"
             ]
