@@ -9,7 +9,7 @@
 # Fail out if any tests fail
 set -e
 
-# defune array of key aliases
+# define array of key aliases
 key_alias_array=()
 bash --version
 # define dicionary for key_alias and its values
