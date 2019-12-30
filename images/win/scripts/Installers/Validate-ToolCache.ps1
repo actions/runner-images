@@ -37,14 +37,14 @@ function ToolcacheTest {
     if (Test-Path "$env:AGENT_TOOLSDIRECTORY\$SoftwareName")
     {
         $description = ""
-        [array]$instaledVersions = GetChildFolders -Path "$env:AGENT_TOOLSDIRECTORY\$SoftwareName"
-        if ($instaledVersions.count -gt 0){
+        [array]$installedVersions = GetChildFolders -Path "$env:AGENT_TOOLSDIRECTORY\$SoftwareName"
+        if ($installedVersions.count -gt 0){
             $softwarePackages = $packages | Where-Object { $_.ToolName -eq $SoftwareName }
             foreach($softwarePackage in $softwarePackages)
             {
                 foreach ($version in $softwarePackage.Versions)
                 {
-                    $foundVersion = $instaledVersions | where { $_.StartsWith($version) }
+                    $foundVersion = $installedVersions | where { $_.StartsWith($version) }
 
                     if ($foundVersion -ne $null){
 
