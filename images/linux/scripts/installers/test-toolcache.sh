@@ -12,7 +12,7 @@ set -e
 # define array of key aliases
 key_alias_array=()
 bash --version
-# define dicionary for key_alias and its values
+# define dictionary for key_alias and its values
 declare -A toolcache_key_value
 PACKAGE_LIST=($(jq -r 'keys | .[]' "$INSTALLER_SCRIPT_FOLDER/toolcache.json"))
 for PACKAGE_NAME in ${PACKAGE_LIST[@]}; do
