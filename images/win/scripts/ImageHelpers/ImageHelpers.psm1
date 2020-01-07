@@ -16,4 +16,6 @@ Export-ModuleMember -Function @(
     'Install-EXE'
     'Add-ContentToMarkdown'
     'Add-SoftwareDetailsToMarkdown'
+    'Stop-SvcWithErrHandling'
+    'Set-SvcWithErrHandling'
 )
