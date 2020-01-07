@@ -2,7 +2,7 @@
 ##  File:  Install-SeleniumWebDrivers.ps1
 ##  Desc:  Install Selenium Web Drivers
 ################################################################################
-$DestinationPath = "C:\";
+$DestinationPath = "$($env:SystemDrive)\";
 $DriversZipFile = "SeleniumWebDrivers.zip"
 Write-Host "Destination path: [$DestinationPath]";
 Write-Host "Selenium drivers download and install...";
