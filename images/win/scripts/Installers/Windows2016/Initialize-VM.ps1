@@ -119,9 +119,9 @@ wmic logicaldisk get size,freespace,caption
 # Adding description of the software to Markdown
 
 $Content = @"
-# Azure Pipelines Hosted VS2017 image
+# Windows Server 2016
 
-The following software is installed on machines in the Azure Pipelines **Hosted VS2017** (v$env:ImageVersion) pool.
+The following software is installed on machines with the $env:ImageVersion update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 

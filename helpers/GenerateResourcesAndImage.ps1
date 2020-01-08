@@ -62,7 +62,7 @@ Function GenerateResourcesAndImage {
             Delete the resource group if it exists without user confirmation.
 
         .EXAMPLE
-            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\azure-pipelines-image-generation" -ImageType Ubuntu1604 -AzureLocation "East US"
+            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1604 -AzureLocation "East US"
     #>
     param (
         [Parameter(Mandatory = $True)]
