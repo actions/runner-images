@@ -1,5 +1,5 @@
-# Hosted Ubuntu 1804 Image (Ubuntu 18.04.3 LTS)
-The following software is installed on machines in the Hosted Ubuntu 1804 (v20191202.1) pool
+# Ubuntu 18.04.3 LTS
+The following software is installed on machines with the 20191202.1 update.
 ***
 - 7-Zip 16.02
 - Ansible (ansible 2.9.1)

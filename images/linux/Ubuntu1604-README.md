@@ -1,5 +1,5 @@
-# Hosted Ubuntu 1604 Image (Ubuntu 16.04.6 LTS)
-The following software is installed on machines in the Hosted Ubuntu 1604 (20191202.1) pool
+# Ubuntu 16.04.6 LTS
+The following software is installed on machines with the 20191202.1 update.
 ***
 - 7-Zip 9.20
 - Ansible (ansible 2.9.1)
