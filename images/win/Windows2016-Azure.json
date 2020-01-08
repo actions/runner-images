@@ -26,6 +26,7 @@
         "capture_name_prefix": "packer",
         "image_version": "dev"
     },
+    "sensitive-variables": ["install_password", "ssh_password", "client_secret"],
     "builders": [
         {
             "name": "vhd",
