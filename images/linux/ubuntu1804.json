@@ -203,8 +203,8 @@
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "BOOST_VERSIONS=1.69.0",
-                "BOOST_DEFAULT=1.69.0"
+                "BOOST_VERSIONS=1.69.0,1.72.0",
+                "BOOST_DEFAULT=1.72.0"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },

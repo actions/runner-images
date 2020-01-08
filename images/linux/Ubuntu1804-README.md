@@ -252,4 +252,4 @@ the
 - pip3 (pip 9.0.1 from /usr/lib/python3/dist-packages (python 3.6))
 - PyPy2 ([PyPy 7.1.0 with GCC 6.2.0 20160901])
 - PyPy3 ([PyPy 7.2.0 with GCC 6.2.0 20160901])
-- Boost C++ Libraries 1.69.0
+- Boost C++ Libraries 1.69.0, 1.72.0
