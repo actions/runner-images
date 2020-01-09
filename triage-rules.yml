@@ -115,7 +115,7 @@ rules:
 - valueFor: '**Area for Triage**'
   contains: 'Ruby'
   addLabels: ['Area: Ruby']
-  assign: ['madhurig']
+  assign: ['zachariahcox']
 
 # Area: Rust
 - valueFor: '**Area for Triage**'
