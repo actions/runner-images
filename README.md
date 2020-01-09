@@ -2,7 +2,7 @@
 This repository contains the code that we use to create the GitHub Actions [virtual environments](https://help.github.com/en/articles/software-in-virtual-environments-for-github-actions).
 Please use the issue templates to submit requests and bug reports related to the installed software.
 
-If you need help with how to set up your workflow file or use a specific tool, 
+If you need help with how to set up your workflow file or use a specific tool,
 check out the [GitHub Actions Community Forum](https://github.community/t5/GitHub-Actions/bd-p/actions).
 
 ## OS's offered
@@ -10,9 +10,10 @@ We currently offer Linux, macOS, and Windows virtual environments:
 
 [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=Ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=Ubuntu18&redirect=1)
 [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=Ubuntu16&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=Ubuntu16&redirect=1)
-[![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019-vs2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019-vs2019&redirect=1)
+[![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
+[![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 
-- **Linux**. We offer Ubuntu 16.04 and Ubuntu 18.04. We do not plan to offer other Linux distributions. If you want to build using other distributions with the hosted virtual environments, we suggest you use Docker. Alternatively, you can host your own VMs and make use of self-hosted runners. 
+- **Linux**. We offer Ubuntu 16.04 and Ubuntu 18.04. We do not plan to offer other Linux distributions. If you want to build using other distributions with the hosted virtual environments, we suggest you use Docker. Alternatively, you can host your own VMs and make use of self-hosted runners.
 - **macOS**. We offer macOS Catalina 10.15.
 - **Windows**. We offer Windows Server 2016 and Windows Server 2019.
 
