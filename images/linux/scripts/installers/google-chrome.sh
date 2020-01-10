@@ -61,7 +61,7 @@ SELENIUM_VERSION_MAJOR_MINOR=$(echo $SELENIUM_VERSION | cut -d '.' -f 1,2)
 
 # Download selenium standalone server
 echo "Downloading selenium-server-standalone v$SELENIUM_VERSION..."
-SELENIUM_JAR_NAME=selenium-server-standalone-$SELENIUM_VERSION.jar
+SELENIUM_JAR_NAME="selenium-server-standalone-$SELENIUM_VERSION.jar"
 wget https://selenium-release.storage.googleapis.com/$SELENIUM_VERSION_MAJOR_MINOR/$SELENIUM_JAR_NAME
 
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -70,8 +70,9 @@ if [ ! -f "$SELENIUM_JAR_NAME" ]; then
     exit 1
 fi
 
-mv "selenium-server-standalone-$SELENIUM_VERSION.jar" "/usr/share/java/selenium-server-standalone.jar"
-echo "CLASSPATH=/usr/share/java/selenium-server-standalone.jar:.:$CLASSPATH" | tee -a /etc/environment
+SELENIUM_JAR_PATH="/usr/share/java/selenium-server-standalone.jar"
+mv $SELENIUM_JAR_NAME $SELENIUM_JAR_PATH
+echo "SELENIUM_JAR_PATH=$SELENIUM_JAR_PATH" | tee -a /etc/environment
 
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Selenium server standalone"
