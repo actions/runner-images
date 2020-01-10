@@ -75,4 +75,4 @@ mv $SELENIUM_JAR_NAME $SELENIUM_JAR_PATH
 echo "SELENIUM_JAR_PATH=$SELENIUM_JAR_PATH" | tee -a /etc/environment
 
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Selenium server standalone"
+DocumentInstalledItem "Selenium server standalone (available via SELENIUM_JAR_PATH environment variable)"
