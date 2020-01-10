@@ -1,0 +1,21 @@
+# Number of days of inactivity before an issue becomes stale
+daysUntilStale: 90
+
+# Number of days of inactivity before a stale issue is closed
+daysUntilClose: 21
+
+# Issues with these labels will never be considered stale
+exemptLabels:
+  
+# Label to use when marking an issue as stale
+staleLabel: stale
+
+# Comment to post when marking an issue as stale. Set to `false` to disable
+markComment: >
+  Thank you for your suggestion. Because this issue has not had activity in the past 90 days,
+  we will be automatically closing this issue in 21 days. Often, we open issues for potential features
+  and gauge interest by likes and comments. Other times, issues become obsolete and are no longer applicable.
+  If you wish to keep this issue open, please respond before it is closed. We'll gladly take another look!
+  
+# Comment to post when closing a stale issue. Set to `false` to disable
+closeComment: false
