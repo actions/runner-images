@@ -8,8 +8,7 @@
 
 Test_Hostedtoolcache_Tool() {
    TOOL_NAME=$1
-   TOOL_BIN_PATH=$2
-   TOOL_COMMAND=$3
+   TOOL_EXEC_TEST=$2
 
    if [ -d "$AGENT_TOOLSDIRECTORY/$TOOL_NAME" ]; then
       cd $AGENT_TOOLSDIRECTORY/$TOOL_NAME
@@ -30,8 +29,7 @@ Test_Hostedtoolcache_Tool() {
 
             echo "Test $AGENT_TOOLSDIRECTORY/$TOOL_NAME/$version_dir:"
 
-            version_bin_path=$(find . -regex "$version_dir/$TOOL_BIN_PATH" -print -quit)
-            actual_version=$(eval $AGENT_TOOLSDIRECTORY/$TOOL_NAME/$version_bin_path $TOOL_COMMAND)
+            actual_version=$(eval $AGENT_TOOLSDIRECTORY/$TOOL_NAME/$version_dir/$TOOL_EXEC_TEST)
 
             if [ "$actual_version" = "$tool_version" ]; then
                   echo "Passed!"
@@ -71,6 +69,6 @@ done;
 
 AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
 
-Test_Hostedtoolcache_Tool "Python" "x64/python" "-c 'import sys;print(sys.version)'| head -1 | egrep -o '[0-9]+\.[0-9]+'"
-Test_Hostedtoolcache_Tool "Ruby" "x64/bin/ruby" "-e 'puts RUBY_VERSION' | egrep -o '[0-9]+\.[0-9]+'"
-Test_Hostedtoolcache_Tool "PyPy" "x64/bin/pypy[0-9]*" "-c 'import sys;print(sys.version)'| head -1 | egrep -o '[0-9]+\.[0-9]+' | cut -d '.' -f 1"
+Test_Hostedtoolcache_Tool "Python" "x64/python -c 'import sys;print(sys.version)'| head -1 | egrep -o '[0-9]+\.[0-9]+'"
+Test_Hostedtoolcache_Tool "Ruby" "x64/bin/ruby -e 'puts RUBY_VERSION' | egrep -o '[0-9]+\.[0-9]+'"
+Test_Hostedtoolcache_Tool "PyPy" "x64/bin/python -c 'import sys;print(sys.version)'| head -1 | egrep -o '[0-9]+\.[0-9]+' | cut -d '.' -f 1"
