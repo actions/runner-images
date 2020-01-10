@@ -29,8 +29,7 @@ try {
     exit 1
 }
 
-Write-Host "Add selenium to CLASSPATH..."
-setx "CLASSPATH" "$($seleniumBinPath);$($env:CLASSPATH)" /M
-Write-Host "CLASSPATH: $($seleniumBinPath);$($env:CLASSPATH)"
+Write-Host "Add selenium jar to the environment variables..."
+setx "SELENIUM_JAR_PATH" "$($seleniumBinPath)" /M
 
 exit 0
