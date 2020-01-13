@@ -1,0 +1,17 @@
+{
+    "toolcache-python-windows-x64": [
+        "2.7", "3.5", "3.6", "3.7", "3.8"
+    ],
+    "toolcache-python-windows-x86": [
+        "2.7", "3.5", "3.6", "3.7", "3.8"
+    ],
+    "toolcache-ruby-windows-x64": [
+        "2.4", "2.5", "2.6", "2.7"
+    ],
+    "toolcache-pypy-windows-x86": [
+        "2", "3"
+    ],
+    "toolcache-boost-windows-x64": [
+        "1.69"
+    ]
+}

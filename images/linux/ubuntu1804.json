@@ -20,7 +20,8 @@
         "helper_script_folder": "/imagegeneration/helpers",
         "vm_size": "Standard_DS2_v2",
         "capture_name_prefix": "packer",
-        "image_version": "dev"
+        "image_version": "dev",
+        "toolcache_registry": "https://buildcanary.pkgs.visualstudio.com/PipelineCanary/_packaging/hostedtoolcache/npm/registry/"
     },
     "sensitive-variables": ["client_secret"],
     "builders": [
@@ -172,18 +173,25 @@
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
+            "type": "file",
+            "source": "{{template_dir}}/toolcache-1804.json",
+            "destination": "{{user `installer_script_folder`}}/toolcache.json"
+        },
+        {
             "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/installers/1804/android.sh",
                 "{{template_dir}}/scripts/installers/1804/azpowershell.sh",
                 "{{template_dir}}/scripts/helpers/containercache.sh",
-                "{{template_dir}}/scripts/installers/1804/hosted-tool-cache.sh",
+                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
                 "{{template_dir}}/scripts/installers/python.sh",
                 "{{template_dir}}/scripts/installers/test-toolcache.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "TOOLCACHE_REGISTRY={{user `toolcache_registry`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
