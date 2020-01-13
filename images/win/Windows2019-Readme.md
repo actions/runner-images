@@ -440,7 +440,7 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-77.0.3865.90
+79.0.3945.88
 
 ## Mozilla Firefox
 
@@ -453,7 +453,7 @@ _version:_
 #### Chrome Driver
 
 _version:_
-77.0.3865.40
+79.0.3945.3600
 
 _Environment:_
 * ChromeWebDriver: location of chromedriver.exe
