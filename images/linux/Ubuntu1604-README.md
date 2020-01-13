@@ -31,7 +31,7 @@ The following software is installed on machines with the 20191202.1 update.
   - tzdata
 - AWS CLI (aws-cli/1.16.293 Python/2.7.12 Linux/4.15.0-1063-azure botocore/1.13.29)
 - build-essential
-- Clang 6.0 (clang version 6.0.1-svn334776-1~exp1~20190309042730.123 (branches/release_60))
+- Clang 6.0 (clang version 6.0.1-svn334776-1\~exp1\~20190309042730.123 (branches/release_60))
 - CMake (cmake version 3.12.4)
 - Docker Compose (docker-compose version 1.22.0, build f46880fe)
 - Docker (Docker version 3.0.8, build 2355349d)
