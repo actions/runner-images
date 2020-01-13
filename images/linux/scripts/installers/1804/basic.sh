@@ -10,9 +10,6 @@ source $HELPER_SCRIPTS/apt.sh
 
 set -e
 
-echo "Install curl"
-apt-get install -y --no-install-recommends curl
-
 echo "Install dnsutils"
 apt-get install -y --no-install-recommends dnsutils
 
@@ -114,6 +111,9 @@ apt-get install -y --no-install-recommends xorriso
 
 echo "Install zsync"
 apt-get install -y --no-install-recommends zsync
+
+echo "Install curl"
+apt-get install -y --no-install-recommends curl
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
