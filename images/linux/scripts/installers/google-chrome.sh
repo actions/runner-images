@@ -41,9 +41,9 @@ rm chromedriver_linux64.zip
 
 CHROMEDRIVER_BIN="/usr/bin/chromedriver"
 mv "chromedriver" $CHROMEDRIVER_BIN
-echo "ChromeWebDriver=$CHROMEDRIVER_BIN" | tee -a /etc/environment
 chown root:root $CHROMEDRIVER_BIN
 chmod +x $CHROMEDRIVER_BIN
+echo "ChromeWebDriver=$CHROMEDRIVER_BIN" | tee -a /etc/environment
 
 # Run tests to determine that the chromedriver installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
