@@ -443,7 +443,7 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-77.0.3865.90
+79.0.3945.88
 
 ## Mozilla Firefox
 
