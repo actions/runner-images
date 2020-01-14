@@ -53,7 +53,7 @@ if ! command -v chromedriver; then
 fi
 
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Chromedriver ($(chromedriver --version))"
+DocumentInstalledItem "Chromedriver ($(chromedriver --version)); Chrome Driver is available via CHROMEWEBDRIVER environment variable"
 
 # Determine latest selenium standalone server version
 SELENIUM_LATEST_VERSION_URL=https://api.github.com/repos/SeleniumHQ/selenium/releases/latest
