@@ -41,6 +41,7 @@ rm chromedriver_linux64.zip
 
 CHROMEDRIVER_BIN="/usr/bin/chromedriver"
 mv "chromedriver" $CHROMEDRIVER_BIN
+echo "ChromeWebDriver=$CHROMEDRIVER_BIN" | tee -a /etc/environment
 chown root:root $CHROMEDRIVER_BIN
 chmod +x $CHROMEDRIVER_BIN
 
