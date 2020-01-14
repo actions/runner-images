@@ -476,7 +476,7 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-77.0.3865.90
+78.0.3904.108
 
 ## Mozilla Firefox
 
