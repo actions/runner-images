@@ -43,6 +43,7 @@ CHROMEDRIVER_BIN="/usr/bin/chromedriver"
 mv "chromedriver" $CHROMEDRIVER_BIN
 chown root:root $CHROMEDRIVER_BIN
 chmod +x $CHROMEDRIVER_BIN
+echo "CHROMEWEBDRIVER=$CHROMEDRIVER_BIN" | tee -a /etc/environment
 
 # Run tests to determine that the chromedriver installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -52,7 +53,7 @@ if ! command -v chromedriver; then
 fi
 
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Chromedriver ($(chromedriver --version))"
+DocumentInstalledItem "Chromedriver ($(chromedriver --version)); Chrome Driver is available via CHROMEWEBDRIVER environment variable"
 
 # Determine latest selenium standalone server version
 SELENIUM_LATEST_VERSION_URL=https://api.github.com/repos/SeleniumHQ/selenium/releases/latest
