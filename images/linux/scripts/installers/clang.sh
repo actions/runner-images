@@ -28,4 +28,4 @@ done
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Clang 6.0 ($(clang-6.0 --version | head -n 1))"
+DocumentInstalledItem "Clang 6.0 ($(clang-6.0 --version | head -n 1 | sed 's/~/\\~/g'))"
