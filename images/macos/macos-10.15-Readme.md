@@ -65,20 +65,20 @@ date: Week 3
 - ChromeDriver 79.0.3945.36
 
 ### Toolcache
-#### Ruby (available through the [Use Ruby Version](https://go.microsoft.com/fwlink/?linkid=2005989) task)
+#### Ruby
 - 2.4.9
 - 2.5.7
 - 2.6.5
 - 2.7.0
 
-#### Python (available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task)
+#### Python
 - 2.7.17
 - 3.5.9
 - 3.6.10
 - 3.7.6
 - 3.8.1
 
-#### PyPy (available through the [Use Python Version](https://go.microsoft.com/fwlink/?linkid=871498) task)
+#### PyPy
 - 2.7.13
 - 3.6.9
 
