@@ -5,7 +5,7 @@ date: Week 3
 ---
 
 #### ⚠️ We are going to change default Xcode to 11.3.1 in two weeks.
-
+#### Xcode 11.2.1 set by default
 ## Operating System
 
 - OS X 10.15.2 (19C57) **Catalina**
