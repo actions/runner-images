@@ -61,6 +61,9 @@ apt-get install -y --no-install-recommends time
 echo "Install unzip"
 apt-get install -y --no-install-recommends unzip
 
+echo "Install upx"
+apt-get install -y --no-install-recommends upx
+
 echo "Install wget"
 apt-get install -y --no-install-recommends wget
 
@@ -146,6 +149,7 @@ DocumentInstalledItemIndent "sudo"
 DocumentInstalledItemIndent "telnet"
 DocumentInstalledItemIndent "time"
 DocumentInstalledItemIndent "unzip"
+DocumentInstalledItemIndent "upx"
 DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
 DocumentInstalledItemIndent "tzdata"
