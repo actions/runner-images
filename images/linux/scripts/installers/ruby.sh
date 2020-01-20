@@ -9,3 +9,5 @@ source $HELPER_SCRIPTS/document.sh
 
 # Install Ruby requirements
 apt-get install -y libz-dev openssl libssl-dev
+sudo apt-get install ruby-full
+sudo gem update --system
