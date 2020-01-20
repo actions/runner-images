@@ -1,6 +1,6 @@
-# Azure Pipelines Hosted Windows 2019 with VS2019 image
+# Windows Server 2019
 
-The following software is installed on machines in the Azure Pipelines **Hosted Windows 2019 with VS2019** (v20200102.1) pool.
+The following software is installed on machines with the 20200116.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -30,15 +30,15 @@ _Version:_ 6.2.3<br/>
 ## Docker images
 
 The following container images have been cached:
-* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019 (Digest: sha256:51ff8af52fc31c5abc82d707afaef7b9e3820106fcee28301cd0c02ebfb11fc6)
-* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 (Digest: sha256:578d07650a3dfe8db5b988f26aa0c23180a248bcb7f5e1ab1d7ba7713b73ad43)
-* mcr.microsoft.com/windows/servercore:ltsc2019 (Digest: sha256:4fd18320df2be163bd7a526e2b2131f9e89069fcc1a8c17e6c188e0e58e66bbd)
-* mcr.microsoft.com/windows/nanoserver:1809 (Digest: sha256:0711f47c5bbfbe16448287a2f1fdd6cfcfd6674f2044c1fe4e4a20ef79245dfe)
+* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019 (Digest: sha256:fb04ac71d809a06bd695d7647cff47a1c5ceb2e2b11c1ed7dd32283158522e36)
+* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 (Digest: sha256:85433707a809232402827a359c80d0aa08226e7833aa2914be2113e694d2b6ae)
+* mcr.microsoft.com/windows/servercore:ltsc2019 (Digest: sha256:cc6d6da31014dceab4daee8b5a8da4707233f4ef42eaf071e45cee044ac738f4)
+* mcr.microsoft.com/windows/nanoserver:1809 (Digest: sha256:26b82db3e866b52c2dd8a56706ccbc4084a6fa4eb9e62f1da4e04a4532248ca0)
 * microsoft/aspnetcore-build:1.0-2.0 (Digest: sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c)
 
 ## Visual Studio 2019 Enterprise
 
-_Version:_ VisualStudio/16.4.2+29613.14<br/>
+_Version:_ VisualStudio/16.4.3+29709.97<br/>
 _Location:_ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
 
 The following workloads and components are installed with Visual Studio 2019:
@@ -309,7 +309,7 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.0.78
+_Version:_ 2.0.80
 _Environment:_
 * PATH: contains location of az.cmd
 
@@ -319,7 +319,11 @@ _Version:_ azure-devops                      0.16.0
 
 ## Python
 
-_Version:_ 2.7.16 (x64)<br/>_Version:_ 2.7.16 (x86)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.5 (x64)<br/>_Version:_ 3.7.5 (x86)<br/>_Version:_ 3.8.0 (x64)<br/>_Version:_ 3.8.0 (x86)<br/>
+_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.1 (x64)<br/>
+
+## Python
+
+_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.1 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.1 (x86)<br/>
 
 ## PyPy
 
@@ -327,27 +331,27 @@ _Version:_ 2.7.13 (x86)<br/>_Version:_ 3.6.9 (x86)<br/>
 
 ## Ruby
 
-_Version:_ 2.4.6 (x64)<br/>_Version:_ 2.5.5 (x64)<br/>_Version:_ 2.6.3 (x64)<br/>
+_Version:_ 2.4.9 (x64)<br/>_Version:_ 2.5.7 (x64)<br/>_Version:_ 2.6.5 (x64)<br/>_Version:_ 2.7.0 (x64)<br/>
 
 ## Python (64 bit)
 
-#### Python 3.7.5
+#### Python 3.7.6
 _Environment:_
 * PATH: contains location of python.exe
 
-#### Python 2.7.16
+#### Python 2.7.17
 
 _Location:_ C:/hostedtoolcache/windows/Python/2.7*/x64
 
 ## Git
 
-_Version:_ 2.24.1<br/>
+_Version:_ 2.25.0<br/>
 _Environment:_
 * PATH: contains location of git.exe
 
 ## Git Large File Storage (LFS)
 
-_Version:_ 2.9.1<br/>
+_Version:_ 2.9.2<br/>
 _Environment:_
 * PATH: contains location of git-lfs.exe
 * GIT_LFS_PATH: location of git-lfs.exe
@@ -396,10 +400,10 @@ _Environment:_
 
 ## Ruby (x64)
 
-#### 2.5.5p157
+#### 2.5.7p206
 _Environment:_
-* Location: C:\hostedtoolcache\windows\Ruby\2.5.5\x64\bin
-* PATH: contains the location of ruby.exe version 2.5.5p157
+* Location: C:\hostedtoolcache\windows\Ruby\2.5.7\x64\bin
+* PATH: contains the location of ruby.exe version 2.5.7p206
 
 ## Rust (64-bit)
 
@@ -421,12 +425,12 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-79.0.3945.88
+79.0.3945.130
 
 ## Mozilla Firefox
 
 _version:_
-71.0
+72.0.1
 
 ## Selenium Web Drivers
 
@@ -458,7 +462,7 @@ _Environment:_
 
 ## Node.js
 
-_Version:_ 12.14.0<br/>
+_Version:_ 12.14.1<br/>
 _Architecture:_ x64<br/>
 _Environment:_
 * PATH: contains location of node.exe<br/>
@@ -528,7 +532,9 @@ _Environment:_
 * PATH: contains location of dotnet.exe
 
 _SDK:_
+* 3.1.101 C:\Program Files\dotnet\sdk\3.1.101
 * 3.1.100 C:\Program Files\dotnet\sdk\3.1.100
+* 3.0.102 C:\Program Files\dotnet\sdk\3.0.102
 * 3.0.101 C:\Program Files\dotnet\sdk\3.0.101
 * 3.0.100 C:\Program Files\dotnet\sdk\3.0.100
 * 2.2.402 C:\Program Files\dotnet\sdk\2.2.402
@@ -552,16 +558,19 @@ _SDK:_
 * 2.2.102 C:\Program Files\dotnet\sdk\2.2.102
 * 2.2.101 C:\Program Files\dotnet\sdk\2.2.101
 * 2.2.100 C:\Program Files\dotnet\sdk\2.2.100
+* 2.1.803 C:\Program Files\dotnet\sdk\2.1.803
 * 2.1.802 C:\Program Files\dotnet\sdk\2.1.802
 * 2.1.801 C:\Program Files\dotnet\sdk\2.1.801
 * 2.1.701 C:\Program Files\dotnet\sdk\2.1.701
 * 2.1.700 C:\Program Files\dotnet\sdk\2.1.700
+* 2.1.608 C:\Program Files\dotnet\sdk\2.1.608
 * 2.1.607 C:\Program Files\dotnet\sdk\2.1.607
 * 2.1.606 C:\Program Files\dotnet\sdk\2.1.606
 * 2.1.605 C:\Program Files\dotnet\sdk\2.1.605
 * 2.1.604 C:\Program Files\dotnet\sdk\2.1.604
 * 2.1.603 C:\Program Files\dotnet\sdk\2.1.603
 * 2.1.602 C:\Program Files\dotnet\sdk\2.1.602
+* 2.1.511 C:\Program Files\dotnet\sdk\2.1.511
 * 2.1.510 C:\Program Files\dotnet\sdk\2.1.510
 * 2.1.509 C:\Program Files\dotnet\sdk\2.1.509
 * 2.1.508 C:\Program Files\dotnet\sdk\2.1.508
@@ -580,7 +589,9 @@ _SDK:_
 * 2.1.300 C:\Program Files\dotnet\sdk\2.1.300
 
 _Runtime:_
+* 3.1.1 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.1
 * 3.1.0 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.0
+* 3.0.2 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.2
 * 3.0.1 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.1
 * 3.0.0 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0
 * 2.2.8 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.8
@@ -600,6 +611,7 @@ _Runtime:_
 * 2.1.4 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.4
 * 2.1.3 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.3
 * 2.1.2 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.2
+* 2.1.15 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.15
 * 2.1.14 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.14
 * 2.1.13 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.13
 * 2.1.12 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.12
@@ -630,7 +642,7 @@ _Environment:_
 
 ## TypeScript
 
-_Version:_ Version 3.7.4<br/>
+_Version:_ Version 3.7.5<br/>
 
 ## Miniconda
 
@@ -669,11 +681,11 @@ _Version:_ 5.1.3.0<br/>
 
 ## OpenSSL
 
-_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>
+_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>
 
 ## Cloud Foundry CLI
 
-_Version:_ 6.48.0<br/>
+_Version:_ 6.49.0<br/>
 
 ## Vcpkg
 
@@ -684,7 +696,7 @@ _Environment:_
 
 ## Kubectl
 
-_Version:_ Client Version: v1.17.0<br/>
+_Version:_ Client Version: v1.17.1<br/>
 _Environment:_
 * PATH: contains location of kubectl.exe
 
