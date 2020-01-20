@@ -1,6 +1,6 @@
-# Azure Pipelines Hosted Windows 2019 with VS2019 image
+# Windows Server 2019
 
-The following software is installed on machines in the Azure Pipelines **Hosted Windows 2019 with VS2019** (v20200102.1) pool.
+The following software is installed on machines with the 20200113.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -309,7 +309,7 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.0.78
+_Version:_ 2.0.80
 _Environment:_
 * PATH: contains location of az.cmd
 
@@ -319,7 +319,11 @@ _Version:_ azure-devops                      0.16.0
 
 ## Python
 
-_Version:_ 2.7.16 (x64)<br/>_Version:_ 2.7.16 (x86)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.5 (x64)<br/>_Version:_ 3.7.5 (x86)<br/>_Version:_ 3.8.0 (x64)<br/>_Version:_ 3.8.0 (x86)<br/>
+_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.1 (x64)<br/>
+
+## Python
+
+_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.1 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.1 (x86)<br/>
 
 ## PyPy
 
@@ -327,15 +331,15 @@ _Version:_ 2.7.13 (x86)<br/>_Version:_ 3.6.9 (x86)<br/>
 
 ## Ruby
 
-_Version:_ 2.4.6 (x64)<br/>_Version:_ 2.5.5 (x64)<br/>_Version:_ 2.6.3 (x64)<br/>
+_Version:_ 2.4.9 (x64)<br/>_Version:_ 2.5.7 (x64)<br/>_Version:_ 2.6.5 (x64)<br/>_Version:_ 2.7.0 (x64)<br/>
 
 ## Python (64 bit)
 
-#### Python 3.7.5
+#### Python 3.7.6
 _Environment:_
 * PATH: contains location of python.exe
 
-#### Python 2.7.16
+#### Python 2.7.17
 
 _Location:_ C:/hostedtoolcache/windows/Python/2.7*/x64
 
@@ -396,10 +400,10 @@ _Environment:_
 
 ## Ruby (x64)
 
-#### 2.5.5p157
+#### 2.5.7p206
 _Environment:_
-* Location: C:\hostedtoolcache\windows\Ruby\2.5.5\x64\bin
-* PATH: contains the location of ruby.exe version 2.5.5p157
+* Location: C:\hostedtoolcache\windows\Ruby\2.5.7\x64\bin
+* PATH: contains the location of ruby.exe version 2.5.7p206
 
 ## Rust (64-bit)
 
@@ -421,12 +425,12 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-79.0.3945.88
+79.0.3945.117
 
 ## Mozilla Firefox
 
 _version:_
-71.0
+72.0.1
 
 ## Selenium Web Drivers
 
@@ -458,7 +462,7 @@ _Environment:_
 
 ## Node.js
 
-_Version:_ 12.14.0<br/>
+_Version:_ 12.14.1<br/>
 _Architecture:_ x64<br/>
 _Environment:_
 * PATH: contains location of node.exe<br/>
@@ -669,11 +673,11 @@ _Version:_ 5.1.3.0<br/>
 
 ## OpenSSL
 
-_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>
+_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>
 
 ## Cloud Foundry CLI
 
-_Version:_ 6.48.0<br/>
+_Version:_ 6.49.0<br/>
 
 ## Vcpkg
 
