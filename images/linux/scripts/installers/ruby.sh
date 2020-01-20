@@ -7,7 +7,8 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 
-# Install Ruby requirements
-apt-get install -y libz-dev openssl libssl-dev
 sudo apt-get install ruby-full
 sudo gem update --system
+
+# Install Ruby requirements
+apt-get install -y libz-dev openssl libssl-dev
