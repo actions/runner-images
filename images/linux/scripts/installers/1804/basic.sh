@@ -10,9 +10,6 @@ source $HELPER_SCRIPTS/apt.sh
 
 set -e
 
-echo "Install curl"
-apt-get install -y --no-install-recommends curl
-
 echo "Install dnsutils"
 apt-get install -y --no-install-recommends dnsutils
 

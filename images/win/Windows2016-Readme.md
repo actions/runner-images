@@ -1,6 +1,6 @@
-# Hosted Windows2016 image
+# Windows Server 2016
 
-The following software is installed on machines in the Azure Pipelines **Hosted Windows2016** (v20191009.1) pool.
+The following software is installed on machines with the 20191009.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -518,8 +518,6 @@ _Environment:_
 * Grunt grunt-cli v1.3.2<br/>
 * Bower 1.8.8<br/>
 * Yarn 1.19.1<br/>
-
-> Note: You can install and use another version of Node.js on Microsoft-hosted agent pools using the [Node tool installer](https://docs.microsoft.com/vsts/pipelines/tasks/tool/node-js) task.
 
 ## npm
 

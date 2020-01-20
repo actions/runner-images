@@ -1,0 +1,14 @@
+{
+    "toolcache-python-ubuntu-1604-x64": [
+        "2.7", "3.5", "3.6", "3.7", "3.8"
+    ],
+    "toolcache-ruby-ubuntu-1604-x64": [
+        "2.4", "2.5", "2.6", "2.7"
+    ],
+    "toolcache-pypy-ubuntu-1604-x64": [
+        "2", "3"
+    ],
+    "toolcache-boost-ubuntu-1604-x64": [
+        "1.69"
+    ]
+}
