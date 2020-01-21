@@ -12,3 +12,6 @@ sudo gem update --system
 
 # Install Ruby requirements
 apt-get install -y libz-dev openssl libssl-dev
+
+DocumentInstalledItem "ruby ($(ruby --version 2>&1 | cut -d ' ' -f 2))"
+DocumentInstalledItem "gem ($(gem -v 2>&1 | tail -n 1))"
