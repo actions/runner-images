@@ -5,6 +5,7 @@
 
 Import-Module -Name ImageHelpers -Force
 
-$exitcode = Install-MSI -MsiUrl "https://download.microsoft.com/download/f/1/9/f19eaee6-0728-4a0b-9755-9808acc8af0b/EN/x64/DacFramework.msi" -MsiName "DacFramework.msi"
+# DacFx version 18.4.1
+$exitcode = Install-MSI -MsiUrl "https://download.microsoft.com/download/0/9/6/096a3fac-40ec-4dee-ae9d-6fc0fb3cfa81/x64/DacFramework.msi" -MsiName "DacFramework.msi"
 
 exit $exitcode
