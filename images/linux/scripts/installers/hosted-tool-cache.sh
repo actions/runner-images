@@ -16,6 +16,11 @@ echo "AGENT_TOOLSDIRECTORY=$AGENT_TOOLSDIRECTORY" | tee -a /etc/environment
 
 chmod -R 777 $AGENT_TOOLSDIRECTORY
 
+echo "Configure npm to use github package registry for '@actions' scope"
+npm config set @actions:registry "https://${TOOLCACHE_REGISTRY"
+# GitHub Package Registry doesn't support downloading public packages without auth so we have to authorize
+echo "Configure auth for github package registry"
+echo "//${TOOLCACHE_REGISTRY}/:_authToken=${GITHUB_FEED_TOKEN}" > ".npmrc"
 echo "Installing npm-toolcache..."
 TOOLSET_PATH="$INSTALLER_SCRIPT_FOLDER/toolcache.json"
 

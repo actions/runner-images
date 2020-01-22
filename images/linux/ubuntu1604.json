@@ -21,7 +21,8 @@
         "vm_size": "Standard_DS2_v2",
         "capture_name_prefix": "packer",
         "image_version": "dev",
-        "toolcache_registry": "https://buildcanary.pkgs.visualstudio.com/PipelineCanary/_packaging/hostedtoolcache/npm/registry/"
+        "toolcache_registry": "npm.pkg.github.com",
+        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
     },
     "sensitive-variables": ["client_secret"],
     "builders": [
@@ -188,7 +189,8 @@
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "TOOLCACHE_REGISTRY={{user `toolcache_registry`}}",
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
