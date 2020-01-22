@@ -18,6 +18,10 @@ chmod -R 777 $AGENT_TOOLSDIRECTORY
 
 echo "Configure npm to use github package registry for '@actions' scope"
 npm config set @actions:registry "https://${TOOLCACHE_REGISTRY"
+
+# Execute in /tmp folder to avoid node_modules creation in $HOME
+pushd /tmp
+
 # GitHub Package Registry doesn't support downloading public packages without auth so we have to authorize
 echo "Configure auth for github package registry"
 echo "//${TOOLCACHE_REGISTRY}/:_authToken=${GITHUB_FEED_TOKEN}" > ".npmrc"
@@ -31,8 +35,17 @@ for PACKAGE_NAME in ${PACKAGE_LIST[@]}; do
     for PACKAGE_VERSION in ${PACKAGE_VERSIONS[@]}; do
         echo "Install ${PACKAGE_NAME}@${PACKAGE_VERSION}"
         npm install ${PACKAGE_NAME}@${PACKAGE_VERSION} --registry=${TOOLCACHE_REGISTRY}
+
+        exit_code=$?
+        if [ $exit_code -ne 0 ]; then
+            echo "${PACKAGE_NAME}@${PACKAGE_VERSION} installation failure;  Error:${exit_code}"
+
+            exit 1
+        fi
     done;
 done;
+
+popd
 
 DocumentInstalledItem "Python:"
 pythons=$(ls $AGENT_TOOLSDIRECTORY/Python)
