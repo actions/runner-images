@@ -24,6 +24,7 @@ apt-get install -y \
     ghc-8.6.4 \
     ghc-8.6.5 \
     ghc-8.8.1 \
+    ghc-8.8.2 \
     cabal-install-2.0 \
     cabal-install-2.2 \
     cabal-install-2.4 \
