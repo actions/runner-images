@@ -10,6 +10,8 @@ source $HELPER_SCRIPTS/document.sh
 # Fail out if any setups fail
 set -e
 
+TOOLCACHE_REGISTRY="npm.pkg.github.com"
+
 AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
 mkdir $AGENT_TOOLSDIRECTORY
 echo "AGENT_TOOLSDIRECTORY=$AGENT_TOOLSDIRECTORY" | tee -a /etc/environment
@@ -23,7 +25,6 @@ pushd /tmp
 
 # GitHub Package Registry doesn't support downloading public packages without auth so we have to authorize
 echo "Configure auth for github package registry"
-TOOLCACHE_REGISTRY="npm.pkg.github.com"
 echo "//${TOOLCACHE_REGISTRY}/:_authToken=${GITHUB_FEED_TOKEN}" > ".npmrc"
 echo "Installing npm-toolcache..."
 TOOLSET_PATH="$INSTALLER_SCRIPT_FOLDER/toolcache.json"
