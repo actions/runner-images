@@ -8,16 +8,31 @@ Function Install-NpmPackage {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
-        [System.String]
-        $Name,
-        [Parameter(Mandatory=$true)]
-        [System.String]
-        $NpmRegistry
+        [System.String] $Name
     )
 
-    Write-Host "Installing npm '$Name' package from '$NpmRegistry'"
+    Write-Host "Installing npm $Name"
 
-    npm install $Name --registry=$NpmRegistry
+    Push-Location -Path $env:TEMP
+
+    npm install $Name
+
+    $exit_code = $LASTEXITCODE
+    if($exit_code -ne 0) {
+        Write-Host "$Name installation failure;  Error:${exit_code}"
+
+        exit 1
+    }
+
+    Pop-Location
+}
+
+Function NPMFeed-Auth {
+    [String] $AccessToken
+
+    $feedPrefix = "npm.pkg.github.com"
+    $npmrcContent = "//${feedPrefix}/:_authToken=${AccessToken}"
+    $npmrcContent | Out-File -FilePath "$($env:TEMP)/.npmrc" -Encoding utf8
 }
 
 # HostedToolCache Path
@@ -33,21 +48,14 @@ setx AGENT_TOOLSDIRECTORY $ToolsDirectory /M
 $ToolVersionsFileContent = Get-Content -Path "$env:ROOT_FOLDER/toolcache.json" -Raw
 $ToolVersions = ConvertFrom-Json -InputObject $ToolVersionsFileContent
 
+NPMFeed-Auth -AccessToken $env:GITHUB_FEED_TOKEN
+
 $ToolVersions.PSObject.Properties | ForEach-Object {
     $PackageName = $_.Name
     $PackageVersions = $_.Value
     $NpmPackages = $PackageVersions | ForEach-Object { "$PackageName@$_" }
     foreach($NpmPackage in $NpmPackages) {
-        Write-Host "Install ${PackageName}@${PackageVersions}"
-
-        Install-NpmPackage -Name $NpmPackage -NpmRegistry $env:TOOLCACHE_REGISTRY
-
-        $exit_code = $LASTEXITCODE
-        if($exit_code -ne 0) {
-            Write-Host "${PackageName}@${PackageVersions} installation failure;  Error:${exit_code}"
-
-            exit 1
-        }
+        Install-NpmPackage -Name $NpmPackage
     }
 }
 
