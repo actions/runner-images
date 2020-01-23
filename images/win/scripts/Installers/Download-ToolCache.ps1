@@ -38,7 +38,16 @@ $ToolVersions.PSObject.Properties | ForEach-Object {
     $PackageVersions = $_.Value
     $NpmPackages = $PackageVersions | ForEach-Object { "$PackageName@$_" }
     foreach($NpmPackage in $NpmPackages) {
+        Write-Host "Install ${PackageName}@${PackageVersions}"
+
         Install-NpmPackage -Name $NpmPackage -NpmRegistry $env:TOOLCACHE_REGISTRY
+
+        $exit_code = $LASTEXITCODE
+        if($exit_code -ne 0) {
+            Write-Host "${PackageName}@${PackageVersions} installation failure;  Error:${exit_code}"
+
+            exit 1
+        }
     }
 }
 
