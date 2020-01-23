@@ -1,10 +1,10 @@
-# Hosted Ubuntu 1604 Image (Ubuntu 16.04.6 LTS)
-The following software is installed on machines in the Hosted Ubuntu 1604 (20200102.1) pool
+# Ubuntu 16.04.6 LTS
+The following software is installed on machines with the 20200113.1 update.
 ***
 - 7-Zip 9.20
 - Ansible (ansible 2.9.2)
 - AzCopy (azcopy 7.3.0-netcore)
-- Azure CLI (azure-cli                         2.0.78)
+- Azure CLI (azure-cli                         2.0.80)
 - Azure CLI (azure-devops                      0.16.0)
 - Basic CLI:
   - curl
@@ -29,7 +29,7 @@ The following software is installed on machines in the Hosted Ubuntu 1604 (20200
   - wget
   - zip
   - tzdata
-- AWS CLI (aws-cli/1.16.310 Python/2.7.12 Linux/4.15.0-1064-azure botocore/1.13.46)
+- AWS CLI (aws-cli/1.17.1 Python/2.7.12 Linux/4.15.0-1066-azure botocore/1.14.1)
 - build-essential
 - Clang 6.0 (clang version 6.0.1-svn334776-1~exp1~20190309042730.123 (branches/release_60))
 - CMake (cmake version 3.12.4)
@@ -85,7 +85,7 @@ The following software is installed on machines in the Hosted Ubuntu 1604 (20200
   - 2.1.301
   - 2.1.300
 - Erlang (Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 10.6.1)
-- Firefox (Mozilla Firefox 71.0)
+- Firefox (Mozilla Firefox 72.0.1)
 - GNU C++ 7.4.0
 - Git (2.24.1)
 - Git Large File Storage (LFS) (2.9.2)
@@ -94,10 +94,10 @@ The following software is installed on machines in the Hosted Ubuntu 1604 (20200
 - Go 1.11 (go version go1.11.12 linux/amd64)
 - Go 1.12 (go version go1.12.7 linux/amd64)
 - Go 1.13 (go version go1.13 linux/amd64)
-- Google Chrome (Google Chrome 79.0.3945.88 )
+- Google Chrome (Google Chrome 79.0.3945.117 )
 - Chromedriver (ChromeDriver 79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}))
-- Selenium server standalone
-- Google Cloud SDK (274.0.1)
+- Selenium server standalone (available via SELENIUM_JAR_PATH environment variable)
+- Google Cloud SDK (275.0.0)
 - Haskell Cabal (cabal-install version 2.0.0.1
 compiled using version 2.0.1.1 of the Cabal library )
 - Haskell Cabal (cabal-install version 2.2.0.0
@@ -116,7 +116,7 @@ compiled using version 3.0.1.0 of the Cabal library )
 - GHC (The Glorious Glasgow Haskell Compilation System, version 8.8.1)
 - Haskell Stack (Version 2.1.3, Git revision 636e3a759d51127df2b62f90772def126cdf6d1f (7735 commits) x86_64 hpack-0.31.2)
 - Heroku (heroku/7.35.1 linux-x64 node-v12.13.0)
-- HHVM (HipHop VM 4.38.0 (rel))
+- HHVM (HipHop VM 4.40.0 (rel))
 - ImageMagick
 - Azul Zulu OpenJDK (7) (openjdk version "1.7.0_242")
 - Azul Zulu OpenJDK (8) (openjdk version "1.8.0_232")
@@ -135,7 +135,7 @@ compiled using version 3.0.1.0 of the Cabal library )
 - MySQL (mysql  Ver 14.14 Distrib 5.7.28, for Linux (x86_64) using  EditLine wrapper)
 - MySQL Server (user:root password:root)
 - MS SQL Server Client Tools
-- Node.js (v12.14.0)
+- Node.js (v12.14.1)
 - Grunt (grunt-cli v1.2.0)
 - Gulp (CLI version: 2.2.0
 Local version: Unknown)
@@ -153,7 +153,7 @@ Local version: Unknown)
 - PHP 7.3 (PHP 7.3.13-1+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Dec 18 2019 14:48:32) ( NTS ))
 - PHP 7.4 (PHP 7.4.1 (cli) (built: Dec 18 2019 14:44:04) ( NTS ))
 - Composer  (Composer version 1.9.1 2019-11-01 17:20:17)
-- PHPUnit (PHPUnit 7.5.18 by Sebastian Bergmann and contributors.)
+- PHPUnit (PHPUnit 7.5.20 by Sebastian Bergmann and contributors.)
 - Pollinate
 - Powershell (PowerShell 6.2.3)
 - rustup (1.21.1)
@@ -165,13 +165,13 @@ Local version: Unknown)
 - bindgen (execute
 the
 0.52.0)
-- cbindgen (0.12.1)
+- cbindgen (0.12.2)
 - sbt (1.3.6)
 - Sphinx Open Source Search Server
 - Subversion (svn, version 1.9.3 (r1718519))
-- Terraform (Terraform v0.12.18)
+- Terraform (Terraform v0.12.19)
 - Vcpkg 2019.09.12-unknownhash
-- Zeit Now CLI (16.7.0)
+- Zeit Now CLI (16.7.3)
 - Google Repository 58
 - Google Play services 49
 - Google APIs 24
@@ -237,13 +237,13 @@ the
 - Az Module (2.8.0)
 - Az Module (3.1.0)
 - Cached container images
+  - node:12-alpine (Digest: sha256:cf63399ae3f4a1424a7776dac98ba088966a727089d7915915ed90db87da141b)
+  - node:12 (Digest: sha256:0a68eb463c4ab4db0833c786cc484ea2edfd50e73e606380e30b806aeb9eee5a)
   - node:10 (Digest: sha256:49f77fd32e8e796f85581a8d2321c2a9f1b084e1f8b9baa02cb28bce49563ad5)
-  - node:12 (Digest: sha256:f490ebb9c7d5dcf1a8a1e4d3b3a65e133be44d26abb66815ca1612ef69410c51)
   - buildpack-deps:stretch (Digest: sha256:d095aae2ecefdc786823e02b2cb0abc62b432202a49abd716c12cce37aee702b)
   - debian:9 (Digest: sha256:85c4668abb4f26e913152ba8fd04fca5f1c2345d3e2653855e6bb0acf461ed50)
   - debian:8 (Digest: sha256:8fc7649643ca1acd3940706613ea7b170762cfce6e7955a6afb387aa40e9f9ea)
   - node:10-alpine (Digest: sha256:8d664f80270a63e0734d38420e97e9f9764a0e9184383640973bded21bfa1382)
-  - node:12-alpine (Digest: sha256:452cad05f6fd2a6fe03da8b9230c9c4ad356d205e00c1a9c29020c14ac5679f8)
   - alpine:3.10 (Digest: sha256:c19173c5ada610a5989151111163d28a67368362762534d8a8121ce95cf2bd5a)
   - jekyll/builder:latest (Digest: sha256:875de39aa06300c749e26a79f39cdfa31404e4f2dbd2953cd4ebb0442bffda9e)
   - alpine:3.9 (Digest: sha256:7746df395af22f04212cd25a92c1d6dbc5a06a0ca9579a229ef43008d4d1302a)
@@ -251,17 +251,19 @@ the
   - alpine:3.8 (Digest: sha256:04696b491e0cc3c58a75bace8941c14c924b9f313b03ce5029ebbc040ed9dcd9)
   - mcr.microsoft.com/azure-pipelines/node8-typescript:latest (Digest: sha256:e52e60b9f71183969830a3664279b5d8c799b4b0ec2c25a0686f7c02f6a9669a)
 - Python:
-  - Python 2.7.16
-  - Python 3.5.7
-  - Python 3.6.9
-  - Python 3.7.5
-  - Python 3.8.0
+  - Python 2.7.17
+  - Python 3.5.9
+  - Python 3.6.10
+  - Python 3.7.6
+  - Python 3.8.1
+- Ruby:
+  - Ruby 2.4.9
+  - Ruby 2.5.7
+  - Ruby 2.6.5
+  - Ruby 2.7.0
+- PyPy:
   - PyPy 2.7.13
   - PyPy 3.6.9
-- Ruby:
-  - Ruby 2.4.6
-  - Ruby 2.5.5
-  - Ruby 2.6.3
 - Python (Python 2.7.12)
 - pip (pip 8.1.1 from /usr/lib/python2.7/dist-packages (python 2.7))
 - Python3 (Python 3.5.2)
