@@ -30,9 +30,13 @@ Function Install-NpmPackage {
 Function NPMFeed-Auth {
     [String] $AccessToken
 
+    Write-Host
     $feedPrefix = "npm.pkg.github.com"
     $npmrcContent = "//${feedPrefix}/:_authToken=${AccessToken}"
     $npmrcContent | Out-File -FilePath "$($env:TEMP)/.npmrc" -Encoding utf8
+
+    Write-Host "Configure npm to use github package registry for '@actions' scope"
+    npm config set @actions:registry "https://${feedPrefix}"
 }
 
 # HostedToolCache Path

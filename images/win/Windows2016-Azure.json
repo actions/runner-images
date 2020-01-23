@@ -283,7 +283,7 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolcache.json",
+            "source": "{{template_dir}}/toolcache-2016.json",
             "destination": "{{user `root_folder`}}/toolcache.json"
         },
         {
@@ -477,7 +477,7 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "BOOST_VERSIONS=1.69.0",
+                "BOOST_VERSIONS=1.69.0,1.72.0",
                 "BOOST_DEFAULT=1.69.0"
             ],
             "scripts":[

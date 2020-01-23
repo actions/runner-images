@@ -11,7 +11,7 @@
     "toolcache-pypy-windows-x86": [
         "2", "3"
     ],
-    "toolcache-boost-windows-x64": [
-        "1.69"
+    "toolcache-boost-windows-msvc-14.2-x32-x64": [
+        "1.72"
     ]
 }
