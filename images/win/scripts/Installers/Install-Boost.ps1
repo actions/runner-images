@@ -4,7 +4,7 @@
 ##  Desc:  Install boost using tool cache
 ################################################################################
 
-$BoostDirectory = Join-Path -Path $env:ProgramFiles -ChildPath "Boost"
+$BoostDirectory = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Boost"
 $BoostVersions = $env:BOOST_VERSIONS.split(',')
 $BoostDefault = $env:BOOST_DEFAULT
 
