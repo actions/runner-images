@@ -54,7 +54,7 @@ $tmplMarkRoot = @"
 
 $SoftwareName = 'Boost'
 $Description = New-Object System.Text.StringBuilder
-$BoostRootDirectory = Join-Path -Path "C:\hostedtoolcache\windows" -ChildPath "Boost"
+$BoostRootDirectory = Join-Path -Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "Boost"
 $BoostVersionsToInstall = $env:BOOST_VERSIONS.split(",")
 
 foreach($Boost in $BoostVersionsToInstall)
