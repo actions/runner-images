@@ -28,8 +28,12 @@ Function Install-NpmPackage {
 }
 
 Function NPMFeed-Auth {
-    [String] $AccessToken
-    [String] $FeedPrefix
+    param (
+        [Parameter(Mandatory=$true)]
+        [String] $AccessToken,
+        [Parameter(Mandatory=$true)]
+        [String] $FeedPrefix
+    )
 
     Write-Host "Configure npm to use github package registry for '@actions' scope"
     npm config set @actions:registry "https://${FeedPrefix}"
