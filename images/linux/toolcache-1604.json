@@ -9,6 +9,6 @@
         "2", "3"
     ],
     "@actions/toolcache-boost-ubuntu-1604-x64": [
-        "1.69"
+        "1.69", "1.72"
     ]
 }
