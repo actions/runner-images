@@ -21,7 +21,7 @@
         "vm_size": "Standard_DS2_v2",
         "capture_name_prefix": "packer",
         "image_version": "dev",
-        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
+        "github_feed_token": null
     },
     "sensitive-variables": ["client_secret", "github_feed_token"],
     "builders": [
