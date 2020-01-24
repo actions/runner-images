@@ -8,18 +8,21 @@ Function Install-NpmPackage {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
-        [System.String] $Name
+        [System.String] $PackageName,
+        [Parameter(Mandatory=$true)]
+        [System.Uri] $FeedPrefix
     )
-
-    Write-Host "Installing npm $Name"
 
     Push-Location -Path $env:TEMP
 
-    npm install $Name
+    $FeedUri = $FeedPrefix.AbsoluteUri
+
+    Write-Host "Installing npm $PackageName from ${FeedUri}"
+    npm install $PackageName --registry "${FeedUri}"
 
     $exitCode = $LASTEXITCODE
     if($exitCode -ne 0) {
-        Write-Host "$Name installation failure;  Error:${exitCode}"
+        Write-Host "$PackageName installation failure;  Error: ${exitCode}"
 
         exit 1
     }
@@ -28,20 +31,22 @@ Function Install-NpmPackage {
 }
 
 Function NPMFeed-Auth {
-    param (
+    param(
         [Parameter(Mandatory=$true)]
-        [String] $AccessToken,
+        [System.String] $AccessToken,
         [Parameter(Mandatory=$true)]
-        [String] $FeedPrefix
+        [System.Uri] $FeedPrefix
     )
 
-    Write-Host "Configure npm to use github package registry for '@actions' scope"
-    npm config set @actions:registry "https://${FeedPrefix}"
+    $FeedHost = $FeedPrefix.Host
 
     Write-Host "Configure auth for github package registry"
-    $npmrcContent = "//${FeedPrefix}/:_authToken=${AccessToken}"
+    $npmrcContent = "//${FeedHost}/:_authToken=${AccessToken}"
     $npmrcContent | Out-File -FilePath "$($env:TEMP)/.npmrc" -Encoding utf8
 }
+
+$FeedPrefix = "https://npm.pkg.github.com"
+$AccessToken = $env:GITHUB_FEED_TOKEN
 
 # HostedToolCache Path
 $Dest = "C:/"
@@ -56,14 +61,14 @@ setx AGENT_TOOLSDIRECTORY $ToolsDirectory /M
 $ToolVersionsFileContent = Get-Content -Path "$env:ROOT_FOLDER/toolcache.json" -Raw
 $ToolVersions = ConvertFrom-Json -InputObject $ToolVersionsFileContent
 
-NPMFeed-Auth -AccessToken $env:GITHUB_FEED_TOKEN -FeedPrefix "npm.pkg.github.com"
+NPMFeed-Auth -AccessToken $AccessToken -FeedPrefix $FeedPrefix
 
 $ToolVersions.PSObject.Properties | ForEach-Object {
     $PackageName = $_.Name
     $PackageVersions = $_.Value
     $NpmPackages = $PackageVersions | ForEach-Object { "$PackageName@$_" }
     foreach($NpmPackage in $NpmPackages) {
-        Install-NpmPackage -Name $NpmPackage
+        Install-NpmPackage -PackageName $NpmPackage -FeedPrefix $FeedPrefix
     }
 }
 
