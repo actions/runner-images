@@ -5,7 +5,7 @@ on:
     types: [created, edited]
 
 jobs:
-  my-job:
+  build:
     name: Test pull request review comment
     runs-on: ubuntu-latest
 
