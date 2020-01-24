@@ -114,7 +114,7 @@ function ToolcacheTest {
             $requiredArchitecture = $tool.Architecture
             if (-Not ($installedArchitecture -Contains $requiredArchitecture))
             {
-                Write-Host "$softwarePath\$foundVersion does not include required architecture"
+                Write-Host "$softwarePath\$foundVersion does not include the $requiredArchitecture architecture"
                 exit 1
             }
 
