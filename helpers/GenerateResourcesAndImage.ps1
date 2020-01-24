@@ -86,10 +86,10 @@ Function GenerateResourcesAndImage {
         [Switch] $Force
     )
 
-    if (([string]::IsNullOrEmpty($version)))
+    if (([string]::IsNullOrEmpty($GithubFeedToken)))
     {
-        Write-Error "You have to specify valid GitHub PAT to dowload tool packages from GitHub Package Registry"
-        exit 0
+        Write-Error "You have to specify valid GitHub PAT to download tool packages from GitHub Package Registry"
+        exit 1
     }
 
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
