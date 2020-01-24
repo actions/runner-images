@@ -28,7 +28,7 @@
         "image_version": "dev",
         "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
     },
-    "sensitive-variables": ["install_password", "ssh_password", "client_secret","github_feed_token"],
+    "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
         {
             "name": "vhd",

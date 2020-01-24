@@ -12,6 +12,6 @@
         "2", "3"
     ],
     "@actions/toolcache-boost-windows-msvc-14.2-x32-x64": [
-        "1.72"
+        "1.69", "1.72"
     ]
 }

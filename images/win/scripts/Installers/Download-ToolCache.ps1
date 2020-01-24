@@ -17,9 +17,9 @@ Function Install-NpmPackage {
 
     npm install $Name
 
-    $exit_code = $LASTEXITCODE
-    if($exit_code -ne 0) {
-        Write-Host "$Name installation failure;  Error:${exit_code}"
+    $exitCode = $LASTEXITCODE
+    if($exitCode -ne 0) {
+        Write-Host "$Name installation failure;  Error:${exitCode}"
 
         exit 1
     }

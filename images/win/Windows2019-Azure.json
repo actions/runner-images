@@ -446,7 +446,7 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "BOOST_VERSIONS=1.72.0",
+                "BOOST_VERSIONS=1.69.0,1.72.0",
                 "BOOST_DEFAULT=1.72.0"
             ],
             "scripts":[
