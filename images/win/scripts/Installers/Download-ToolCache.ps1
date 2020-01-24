@@ -29,14 +29,14 @@ Function Install-NpmPackage {
 
 Function NPMFeed-Auth {
     [String] $AccessToken
-
-    Write-Host
-    $feedPrefix = "npm.pkg.github.com"
-    $npmrcContent = "//${feedPrefix}/:_authToken=${AccessToken}"
-    $npmrcContent | Out-File -FilePath "$($env:TEMP)/.npmrc" -Encoding utf8
+    [String] $FeedPrefix
 
     Write-Host "Configure npm to use github package registry for '@actions' scope"
-    npm config set @actions:registry "https://${feedPrefix}"
+    npm config set @actions:registry "https://${FeedPrefix}"
+
+    Write-Host "Configure auth for github package registry"
+    $npmrcContent = "//${FeedPrefix}/:_authToken=${AccessToken}"
+    $npmrcContent | Out-File -FilePath "$($env:TEMP)/.npmrc" -Encoding utf8
 }
 
 # HostedToolCache Path
@@ -52,7 +52,7 @@ setx AGENT_TOOLSDIRECTORY $ToolsDirectory /M
 $ToolVersionsFileContent = Get-Content -Path "$env:ROOT_FOLDER/toolcache.json" -Raw
 $ToolVersions = ConvertFrom-Json -InputObject $ToolVersionsFileContent
 
-NPMFeed-Auth -AccessToken $env:GITHUB_FEED_TOKEN
+NPMFeed-Auth -AccessToken $env:GITHUB_FEED_TOKEN -FeedPrefix "npm.pkg.github.com"
 
 $ToolVersions.PSObject.Properties | ForEach-Object {
     $PackageName = $_.Name
