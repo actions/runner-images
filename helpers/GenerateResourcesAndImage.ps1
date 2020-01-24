@@ -80,7 +80,7 @@ Function GenerateResourcesAndImage {
         [string] $AzureLocation,
         [Parameter(Mandatory = $False)]
         [int] $SecondsToWaitForServicePrincipalSetup = 30,
-        [Parameter(Mandatory = $True)]
+        [Parameter(Mandatory = $False)]
         [string] $GithubFeedToken,
         [Parameter(Mandatory = $False)]
         [Switch] $Force
@@ -88,7 +88,7 @@ Function GenerateResourcesAndImage {
 
     if (([string]::IsNullOrEmpty($GithubFeedToken)))
     {
-        Write-Error "You have to specify valid GitHub PAT to download tool packages from GitHub Package Registry"
+        Write-Error "'-GithubFeedToken' parameter is not specified. You have to specify valid GitHub PAT to download tool packages from GitHub Package Registry"
         exit 1
     }
 
