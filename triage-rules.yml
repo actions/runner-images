@@ -67,7 +67,7 @@ rules:
 - valueFor: '**Area for Triage**'
   contains: 'Git'
   addLabels: ['Area: Git']
-  assign: ['alepauly','kaylangan']
+  assign: ['alepauly','thejoebourneidentity']
 
 # Area: Go
 - valueFor: '**Area for Triage**'
@@ -103,7 +103,7 @@ rules:
 - valueFor: '**Area for Triage**'
   contains: 'PHP'
   addLabels: ['Area: PHP']
-  assign: ['alepauly', 'kaylangan']
+  assign: ['alepauly', 'thejoebourneidentity']
 
 # Area: Python
 - valueFor: '**Area for Triage**'
