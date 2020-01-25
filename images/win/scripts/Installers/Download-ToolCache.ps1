@@ -58,7 +58,7 @@ $env:AGENT_TOOLSDIRECTORY = $ToolsDirectory
 setx AGENT_TOOLSDIRECTORY $ToolsDirectory /M
 
 # Install HostedToolCache tools via NPM
-$ToolVersionsFileContent = Get-Content -Path "$env:ROOT_FOLDER/toolcache.json" -Raw
+$ToolVersionsFileContent = Get-Content -Path "$env:TOOLCACHE_CONFIG" -Raw
 $ToolVersions = ConvertFrom-Json -InputObject $ToolVersionsFileContent
 
 NPMFeed-Auth -AccessToken $AccessToken -FeedPrefix $FeedPrefix

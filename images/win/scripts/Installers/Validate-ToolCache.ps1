@@ -13,8 +13,7 @@ function GetChildFolders {
 }
 
 function Get-ToolcachePackages {
-    $toolcachePath = Join-Path $env:ROOT_FOLDER "toolcache.json"
-    return Get-Content -Raw $toolcachePath | ConvertFrom-Json
+    return Get-Content $env:TOOLCACHE_CONFIG -Raw | ConvertFrom-Json
 }
 
 $toolcachePackages = (Get-ToolcachePackages).PSObject.Properties | ForEach-Object {
