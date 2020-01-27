@@ -1,4 +1,5 @@
 name: Build Image
+on: [push, pull_request]
 
 jobs:
   build:
@@ -8,6 +9,9 @@ jobs:
 
       - name: Hello world
         run: echo check work machine
+
+      - name: Exit
+        run: exit 1
 
       - name: Build VM
         working-directory: ./Images.CI/build
