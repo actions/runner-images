@@ -1,0 +1,16 @@
+name: Windows2016
+on:
+  pull_request:
+    paths: "images/win/**"
+    types: [labeled]
+
+jobs:
+  build:
+    name: windows2016 job
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'test-windows2016'
+
+    steps:
+      - name: Build windows2016
+        run: |
+          echo "Long build for windows2016" 

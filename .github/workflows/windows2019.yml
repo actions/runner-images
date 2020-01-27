@@ -1,0 +1,16 @@
+name: Windows2019
+on:
+  pull_request:
+    paths: "images/win/**"
+    types: [labeled]
+
+jobs:
+  build:
+    name: windows2019 job
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'test-windows2019'
+
+    steps:
+      - name: Build windows2019
+        run: |
+          echo "Long build for windows2019"
