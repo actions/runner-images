@@ -17,4 +17,8 @@ $latestRubyBinPath2_5 = Get-ChildItem -Path $toolcacheRubyPath | Sort-Object {[S
 
 Add-MachinePathItem $latestRubyBinPath2_5
 $env:Path = Get-MachinePath
+
+# Update ruby gem to latest version
+gem update --system
+
 exit 0
