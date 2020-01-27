@@ -61,6 +61,9 @@ Function GenerateResourcesAndImage {
         .PARAMETER Force
             Delete the resource group if it exists without user confirmation.
 
+        .PARAMETER GithubFeedToken
+            GitHub PAT to download tool packages from GitHub Package Registry
+
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1604 -AzureLocation "East US"
     #>
@@ -78,8 +81,16 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [int] $SecondsToWaitForServicePrincipalSetup = 30,
         [Parameter(Mandatory = $False)]
+        [string] $GithubFeedToken,
+        [Parameter(Mandatory = $False)]
         [Switch] $Force
     )
+
+    if (([string]::IsNullOrEmpty($GithubFeedToken)))
+    {
+        Write-Error "'-GithubFeedToken' parameter is not specified. You have to specify valid GitHub PAT to download tool packages from GitHub Package Registry"
+        exit 1
+    }
 
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
@@ -155,5 +166,16 @@ Function GenerateResourcesAndImage {
     $tenantId = $sub.TenantId
     # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
 
-    packer.exe build -on-error=ask -var "client_id=$($spClientId)" -var "client_secret=$($ServicePrincipalClientSecret)" -var "subscription_id=$($SubscriptionId)" -var "tenant_id=$($tenantId)" -var "object_id=$($spObjectId)" -var "location=$($AzureLocation)" -var "resource_group=$($ResourceGroupName)" -var "storage_account=$($storageAccountName)" -var "install_password=$($InstallPassword)" $builderScriptPath
+    packer.exe build -on-error=ask `
+        -var "client_id=$($spClientId)" `
+        -var "client_secret=$($ServicePrincipalClientSecret)" `
+        -var "subscription_id=$($SubscriptionId)" `
+        -var "tenant_id=$($tenantId)" `
+        -var "object_id=$($spObjectId)" `
+        -var "location=$($AzureLocation)" `
+        -var "resource_group=$($ResourceGroupName)" `
+        -var "storage_account=$($storageAccountName)" `
+        -var "install_password=$($InstallPassword)" `
+        -var "github_feed_token=$($GithubFeedToken)" `
+        $builderScriptPath
 }
