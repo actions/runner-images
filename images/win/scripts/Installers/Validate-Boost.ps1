@@ -57,12 +57,12 @@ $Description = New-Object System.Text.StringBuilder
 $BoostRootDirectory = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Boost"
 $BoostVersionsToInstall = $env:BOOST_VERSIONS.split(",")
 
-foreach($Boost in $BoostVersionsToInstall)
+foreach($BoostVersion in $BoostVersionsToInstall)
 {
-    Validate-BoostVersion -BoostRootPath $BoostRootDirectory -BoostRelease $Boost
-    $BoostVersionTag = "BOOST_ROOT_{0}" -f $Boost.Replace('.', '_')
+    Validate-BoostVersion -BoostRootPath $BoostRootDirectory -BoostRelease $BoostVersion
+    $BoostVersionTag = "BOOST_ROOT_{0}" -f $BoostVersion.Replace('.', '_')
 
-    if($boost -eq $env:BOOST_DEFAULT)
+    if($BoostVersion -eq $env:BOOST_DEFAULT)
     {
         $null = $Description.AppendLine(($tmplMarkRoot -f $BoostVersion, $BoostVersionTag))
     }
