@@ -1,7 +1,7 @@
 name: Ubuntu1804
 on:
   pull_request:
-    paths: "images/win/**"
+    paths: "images/linux/**"
     types: [labeled]
 
 jobs:

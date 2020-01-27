@@ -1,12 +1,12 @@
 name: Ubuntu1604
 on:
   pull_request:
-    paths: "images/win/**"
+    paths: "images/linux/**"
     types: [labeled]
 
 jobs:
   build:
-    name: ubuntu1804 job
+    name: ubuntu1604 job
     runs-on: ubuntu-latest
     if: github.event.label.name == 'test-ubuntu1604'
 
