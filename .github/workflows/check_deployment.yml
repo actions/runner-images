@@ -1,0 +1,28 @@
+name: Build Image
+
+jobs:
+  build:
+    name: "BuildImage"
+    runs-on: self-hosted
+    steps:
+      - name: Build VM
+        working-directory: ./Images.CI/build
+        run: build-image.ps1 -CaptureNamePrefix $CaptureNamePrefix -ClientId $ClientId -ClientSecret $ClientSecret -InstallPassword $InstallPassword -Image $Image -ResourceGroup $ResourceGroup -StorageAccount $StorageAccount -SubscriptionId $Subscription -TenantId $Tenant -Location $Location -VirtualNetworkName $VNetName -VirtualNetworkRG $VNetRG -SourcesPath $SourcesPath -VirtualNetworkSubnet $VNetSubnet  -GitHubFeedToken $GitHubFeedToken
+        env:
+          Branch: ${{ BRANCH_NAME }}
+          CaptureNamePrefix: ${{ Build.BuildId }}
+          ClientId: ${{ CLIENT_ID }}
+          ClientSecret: ${{ CLIENT_SECRET }}
+          GitHubFeedToken: ${{ GITHUB_FEED_TOKEN }}
+          Target.SourcesPath: "$(Build.SourcesDirectory)/azure-pipelines-image-generation"
+          InstallPassword: ${{ PASSWORD }}
+          Image: ${{ IMAGE_TYPE }}
+          Location: ${{ AZURE_LOCATION }}
+          ResourceGroup: ${{ AZURE_RESOURCE_GROUP }}
+          RepoUri: ${{ IMAGE_GEN_REPO_URI }}
+          StorageAccount: ${{ AZURE_STORAGE_ACCOUNT }}
+          Subscription: ${{ AZURE_SUBSCRIPTION }}
+          Tenant: ${{ AZURE_TENANT }}
+          VNetName: ${{ BUILD_AGENT_VNET_NAME }}
+          VNetRG: ${{ BUILD_AGENT_VNET_RESOURCE_GROUP }}
+          VNetSubnet: ${{ BUILD_AGENT_SUBNET_NAME }}
