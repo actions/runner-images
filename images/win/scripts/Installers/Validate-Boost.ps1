@@ -13,10 +13,10 @@ function Validate-BoostVersion
 
     $ReleasePath = Join-Path -Path $BoostRootPath -ChildPath $BoostRelease
 
-    if ((Test-Path "$ReleasePath\b2.exe") -and (Test-Path "$ReleasePath\bjam.exe"))
+    if (Test-Path "$ReleasePath\b2.exe")
     {
         Write-Host "Boost.Build $BoostRelease is successfully installed"
-        Write-Host "Boost.Jam $BoostRelease is successfully installed"
+
         return
     }
 
@@ -25,7 +25,7 @@ function Validate-BoostVersion
 }
 
 # Verify that Boost is on the path
-if ((Get-Command -Name 'b2') -and (Get-Command -Name 'bjam'))
+if (Get-Command -Name 'b2')
 {
     Write-Host "Boost is on the path"
 }
