@@ -1,0 +1,14 @@
+
+name: Hello world
+on:
+  pull_request_review_comment:
+    types: [created, edited]
+
+jobs:
+  build:
+    name: Test pull request review comment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hello world
+        run: echo Hello Maxim, you are the best team lead in the universe
