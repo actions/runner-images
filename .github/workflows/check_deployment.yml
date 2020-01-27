@@ -5,16 +5,19 @@ jobs:
     name: "BuildImage"
     runs-on: self-hosted
     steps:
+
+      - name: Hello world
+        run: echo check work machine
+
       - name: Build VM
         working-directory: ./Images.CI/build
-        run: build-image.ps1 -CaptureNamePrefix $CaptureNamePrefix -ClientId $ClientId -ClientSecret $ClientSecret -InstallPassword $InstallPassword -Image $Image -ResourceGroup $ResourceGroup -StorageAccount $StorageAccount -SubscriptionId $Subscription -TenantId $Tenant -Location $Location -VirtualNetworkName $VNetName -VirtualNetworkRG $VNetRG -SourcesPath $SourcesPath -VirtualNetworkSubnet $VNetSubnet  -GitHubFeedToken $GitHubFeedToken
+        run: build-image.ps1 -CaptureNamePrefix $CaptureNamePrefix -ClientId $ClientId -ClientSecret $ClientSecret -InstallPassword $InstallPassword -Image $Image -ResourceGroup $ResourceGroup -StorageAccount $StorageAccount -SubscriptionId $Subscription -TenantId $Tenant -Location $Location -VirtualNetworkName $VNetName -VirtualNetworkRG $VNetRG -VirtualNetworkSubnet $VNetSubnet  -GitHubFeedToken $GitHubFeedToken
         env:
           Branch: ${{ BRANCH_NAME }}
           CaptureNamePrefix: ${{ Build.BuildId }}
           ClientId: ${{ CLIENT_ID }}
           ClientSecret: ${{ CLIENT_SECRET }}
           GitHubFeedToken: ${{ GITHUB_FEED_TOKEN }}
-          Target.SourcesPath: "$(Build.SourcesDirectory)/azure-pipelines-image-generation"
           InstallPassword: ${{ PASSWORD }}
           Image: ${{ IMAGE_TYPE }}
           Location: ${{ AZURE_LOCATION }}
