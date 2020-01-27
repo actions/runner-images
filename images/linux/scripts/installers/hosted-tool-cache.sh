@@ -26,6 +26,7 @@ pushd $INSTALLER_SCRIPT_FOLDER
 # GitHub Package Registry doesn't support downloading public packages without auth so we have to authorize
 echo "Configure auth for github package registry"
 echo "//${TOOLCACHE_REGISTRY}/:_authToken=${GITHUB_FEED_TOKEN}" > ".npmrc"
+
 echo "Installing npm-toolcache..."
 TOOLSET_PATH="$INSTALLER_SCRIPT_FOLDER/toolcache.json"
 
