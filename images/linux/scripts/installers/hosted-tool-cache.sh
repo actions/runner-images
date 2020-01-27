@@ -20,11 +20,8 @@ chmod -R 777 $AGENT_TOOLSDIRECTORY
 echo "Configure npm to use github package registry for '@actions' scope"
 npm config set @actions:registry "https://${TOOLCACHE_REGISTRY}"
 
-# Execute in opt/hostedtoolcache/tmp folder to avoid node_modules creation in $HOME
-TEMP_TOOLCACHE_DIR=$AGENT_TOOLSDIRECTORY/tmp
-mkdir $TEMP_TOOLCACHE_DIR
-chmod -R 777 $TEMP_TOOLCACHE_DIR
-pushd $TEMP_TOOLCACHE_DIR
+# Execute in /imagegeneration/installers folder to avoid node_modules creation in $HOME
+pushd $INSTALLER_SCRIPT_FOLDER
 
 # GitHub Package Registry doesn't support downloading public packages without auth so we have to authorize
 echo "Configure auth for github package registry"
@@ -50,9 +47,6 @@ for PACKAGE_NAME in ${PACKAGE_LIST[@]}; do
 done;
 
 popd
-
-# Remove temp folder
-rm -rf $TEMP_TOOLCACHE_DIR
 
 DocumentInstalledItem "Python:"
 pythons=$(ls $AGENT_TOOLSDIRECTORY/Python)
