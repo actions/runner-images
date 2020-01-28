@@ -77,7 +77,8 @@
                 "systemctl disable apt-daily-upgrade.service",
                 "echo '* soft nofile 50000 \n* hard nofile 50000' >> /etc/security/limits.conf",
                 "echo 'session required pam_limits.so' >> /etc/pam.d/common-session",
-                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session-noninteractive"
+                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session-noninteractive",
+                "echo 'DefaultLimitNOFILE=50000' >> /etc/systemd/system.conf"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
