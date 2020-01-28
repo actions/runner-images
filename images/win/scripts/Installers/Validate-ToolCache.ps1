@@ -82,7 +82,6 @@ function ToolcacheTest {
         [string[]]$ExecTests
     )
 
-    $markdownDescription = ""
     $softwarePath = "$env:AGENT_TOOLSDIRECTORY\$SoftwareName"
 
     if (-Not (Test-Path $softwarePath))
@@ -98,6 +97,7 @@ function ToolcacheTest {
         exit 1
     }
 
+    $markdownDescription = ""
     $tools = GetToolsByName -SoftwareName $SoftwareName
     foreach($tool in $tools)
     {
@@ -123,8 +123,8 @@ function ToolcacheTest {
 
             $markdownDescription = UpdateMarkdownDescription -Description $markdownDescription -SoftwareVersion $foundVersion -SoftwareArchitecture $requiredArchitecture
         }
-        Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $markdownDescription
     }
+    Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $markdownDescription
 }
 
 # Python test
