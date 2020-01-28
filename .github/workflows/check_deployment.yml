@@ -10,5 +10,8 @@ jobs:
       - name: Hello world
         run: echo check work machine
 
+      - name: Environment variables
+        run: printenv
+
       - name: Exit
         run: exit 1
