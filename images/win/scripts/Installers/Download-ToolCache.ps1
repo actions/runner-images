@@ -20,9 +20,8 @@ Function Install-NpmPackage {
     Write-Host "Installing npm $PackageName from ${FeedUri}"
     npm install $PackageName --registry "${FeedUri}"
 
-    $exitCode = $LASTEXITCODE
-    if($exitCode -ne 0) {
-        Write-Host "$PackageName installation failure;  Error: ${exitCode}"
+    if($LASTEXITCODE) {
+        Write-Host "$PackageName installation failure;  Error: ${LASTEXITCODE}"
 
         exit 1
     }
