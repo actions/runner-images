@@ -4,7 +4,7 @@ on: [push, pull_request]
 jobs:
   build:
     name: "BuildImage"
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
 
       - name: Hello world
