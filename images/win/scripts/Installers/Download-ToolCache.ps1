@@ -30,7 +30,7 @@ Function Install-NpmPackage {
     Pop-Location
 }
 
-Function NPMFeed-Auth {
+Function NPMFeed-AuthSetup {
     param(
         [Parameter(Mandatory=$true)]
         [System.String] $AccessToken,
@@ -61,7 +61,7 @@ setx AGENT_TOOLSDIRECTORY $ToolsDirectory /M
 $ToolVersionsFileContent = Get-Content -Path "$env:ROOT_FOLDER/toolcache.json" -Raw
 $ToolVersions = ConvertFrom-Json -InputObject $ToolVersionsFileContent
 
-NPMFeed-Auth -AccessToken $AccessToken -FeedPrefix $FeedPrefix
+NPMFeed-AuthSetup -AccessToken $AccessToken -FeedPrefix $FeedPrefix
 
 $ToolVersions.PSObject.Properties | ForEach-Object {
     $PackageName = $_.Name
