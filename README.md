@@ -5,6 +5,8 @@ Please use the issue templates to submit requests and bug reports related to the
 If you need help with how to set up your workflow file or use a specific tool,
 check out the [GitHub Actions Community Forum](https://github.community/t5/GitHub-Actions/bd-p/actions).
 
+If you need help with how to build VM machine from source code, check out the [documentation](./help/CreateImageAndAzureResources.md).
+
 ## OS's offered
 We currently offer Linux, macOS, and Windows virtual environments:
 
