@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Set build number
         run: |
-          $UniqueBuildNumber = date +%s
+          $UniqueBuildNumber = Get-Date -UFormat %s
           echo ::set-env name=UniqueBuildNumber::$UniqueBuildNumber
 
       - name: Build VM
