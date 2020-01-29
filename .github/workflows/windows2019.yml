@@ -14,6 +14,13 @@ jobs:
         run: |
           $UniqueBuildNumber = Get-Date -UFormat %s
           echo ::set-env name=UniqueBuildNumber::$UniqueBuildNumber
+          
+      - name: LS
+        run: ls
+       
+      - name: LS
+        working-directory: ./Images.CI
+        run: ls
 
       - name: Build VM
         working-directory: ./Images.CI
