@@ -17,7 +17,7 @@ jobs:
 
       - name: Build VM
         run: |
-            ./Images.CI/build-image.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
+            powershell ./Images.CI/build-image.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
                             -ClientId ${{ secrets.CLIENT_ID }} `
                             -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                             -Image Windows2019-Azure `
