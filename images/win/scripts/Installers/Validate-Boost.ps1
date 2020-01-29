@@ -13,10 +13,10 @@ function Validate-BoostVersion
 
     $ReleasePath = Join-Path -Path $BoostRootPath -ChildPath $BoostRelease
 
-    if ((Test-Path "$ReleasePath\b2.exe") -and (Test-Path "$ReleasePath\bjam.exe"))
+    if (Test-Path "$ReleasePath\b2.exe")
     {
         Write-Host "Boost.Build $BoostRelease is successfully installed"
-        Write-Host "Boost.Jam $BoostRelease is successfully installed"
+
         return
     }
 
@@ -25,7 +25,7 @@ function Validate-BoostVersion
 }
 
 # Verify that Boost is on the path
-if ((Get-Command -Name 'b2') -and (Get-Command -Name 'bjam'))
+if (Get-Command -Name 'b2')
 {
     Write-Host "Boost is on the path"
 }
@@ -54,15 +54,15 @@ $tmplMarkRoot = @"
 
 $SoftwareName = 'Boost'
 $Description = New-Object System.Text.StringBuilder
-$BoostRootDirectory = Join-Path -Path $env:ProgramFiles -ChildPath "Boost"
+$BoostRootDirectory = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Boost"
 $BoostVersionsToInstall = $env:BOOST_VERSIONS.split(",")
 
-foreach($Boost in $BoostVersionsToInstall)
+foreach($BoostVersion in $BoostVersionsToInstall)
 {
-    Validate-BoostVersion -BoostRootPath $BoostRootDirectory -BoostRelease $Boost
-    $BoostVersionTag = "BOOST_ROOT_{0}" -f $Boost.Replace('.', '_')
+    Validate-BoostVersion -BoostRootPath $BoostRootDirectory -BoostRelease $BoostVersion
+    $BoostVersionTag = "BOOST_ROOT_{0}" -f $BoostVersion.Replace('.', '_')
 
-    if($boost -eq $env:BOOST_DEFAULT)
+    if($BoostVersion -eq $env:BOOST_DEFAULT)
     {
         $null = $Description.AppendLine(($tmplMarkRoot -f $BoostVersion, $BoostVersionTag))
     }

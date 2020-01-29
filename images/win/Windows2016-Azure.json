@@ -26,9 +26,9 @@
         "install_password": null,
         "capture_name_prefix": "packer",
         "image_version": "dev",
-        "toolcache_registry": "https://buildcanary.pkgs.visualstudio.com/PipelineCanary/_packaging/hostedtoolcache/npm/registry/"
+        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
     },
-    "sensitive-variables": ["install_password", "ssh_password", "client_secret"],
+    "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
         {
             "name": "vhd",
@@ -283,13 +283,13 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolcache.json",
+            "source": "{{template_dir}}/toolcache-2016.json",
             "destination": "{{user `root_folder`}}/toolcache.json"
         },
         {
             "type": "powershell",
             "environment_vars":[
-                "TOOLCACHE_REGISTRY={{ user `toolcache_registry` }}",
+                "GITHUB_FEED_TOKEN={{ user `github_feed_token` }}",
                 "ROOT_FOLDER={{user `root_folder`}}"
             ],
             "scripts":[
@@ -477,7 +477,7 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "BOOST_VERSIONS=1.69.0",
+                "BOOST_VERSIONS=1.69.0,1.72.0",
                 "BOOST_DEFAULT=1.69.0"
             ],
             "scripts":[
@@ -612,7 +612,7 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "BOOST_VERSIONS=1.69.0",
+                "BOOST_VERSIONS=1.69.0,1.72.0",
                 "BOOST_DEFAULT=1.69.0"
             ],
             "scripts":[
