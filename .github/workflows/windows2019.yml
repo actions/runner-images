@@ -17,7 +17,6 @@ jobs:
 
       - name: Build VM
         working-directory: ./Images.CI
-        shell: pwsh
         run: |
             build-image.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
                             -ClientId ${{ secrets.CLIENT_ID }} `
@@ -35,7 +34,6 @@ jobs:
 
       - name: Clean up VM
         working-directory: ./Images.CI
-        shell: pwsh
         run: cleanup.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
                          -ClientId ${{ secrets.CLIENT_ID }} `
                          -ClientSecret ${{ secrets.CLIENT_SECRET }} `
