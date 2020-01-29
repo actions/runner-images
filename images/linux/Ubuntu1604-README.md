@@ -1,11 +1,11 @@
 # Ubuntu 16.04.6 LTS
-The following software is installed on machines with the 20200113.1 update.
+The following software is installed on machines with the 20200119.1 update.
 ***
 - 7-Zip 9.20
-- Ansible (ansible 2.9.2)
+- Ansible (ansible 2.9.3)
 - AzCopy (azcopy 7.3.0-netcore)
 - Azure CLI (azure-cli                         2.0.80)
-- Azure CLI (azure-devops                      0.16.0)
+- Azure CLI (azure-devops                      0.17.0)
 - Basic CLI:
   - curl
   - dnsutils
@@ -29,10 +29,10 @@ The following software is installed on machines with the 20200113.1 update.
   - wget
   - zip
   - tzdata
-- AWS CLI (aws-cli/1.17.1 Python/2.7.12 Linux/4.15.0-1066-azure botocore/1.14.1)
+- AWS CLI (aws-cli/1.17.5 Python/2.7.12 Linux/4.15.0-1066-azure botocore/1.14.5)
 - build-essential
-- Clang 6.0 (clang version 6.0.1-svn334776-1~exp1~20190309042730.123 (branches/release_60))
-- CMake (cmake version 3.12.4)
+- Clang 6.0 (clang version 6.0.1-svn334776-1\~exp1\~20190309042730.123 (branches/release_60))
+- CMake (cmake version 3.16.2)
 - Docker Compose (docker-compose version 1.22.0, build f46880fe)
 - Docker (Docker version 3.0.8, build 2355349d)
 - Docker (Docker version 3.0.8, build 2355349d)
@@ -58,16 +58,19 @@ The following software is installed on machines with the 20200113.1 update.
   - 2.2.102
   - 2.2.101
   - 2.2.100
+  - 2.1.803
   - 2.1.802
   - 2.1.801
   - 2.1.701
   - 2.1.700
+  - 2.1.608
   - 2.1.607
   - 2.1.606
   - 2.1.605
   - 2.1.604
   - 2.1.603
   - 2.1.602
+  - 2.1.511
   - 2.1.510
   - 2.1.509
   - 2.1.508
@@ -84,20 +87,20 @@ The following software is installed on machines with the 20200113.1 update.
   - 2.1.302
   - 2.1.301
   - 2.1.300
-- Erlang (Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 10.6.1)
+- Erlang (Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 10.6.2)
 - Firefox (Mozilla Firefox 72.0.1)
 - GNU C++ 7.4.0
-- Git (2.24.1)
+- Git (2.25.0)
 - Git Large File Storage (LFS) (2.9.2)
 - Go 1.9 (go version go1.9.7 linux/amd64)
 - Go 1.10 (go version go1.10.8 linux/amd64)
 - Go 1.11 (go version go1.11.12 linux/amd64)
 - Go 1.12 (go version go1.12.7 linux/amd64)
 - Go 1.13 (go version go1.13 linux/amd64)
-- Google Chrome (Google Chrome 79.0.3945.117 )
-- Chromedriver (ChromeDriver 79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}))
+- Google Chrome (Google Chrome 79.0.3945.130 )
+- Chromedriver (ChromeDriver 79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614})); Chrome Driver is available via CHROMEWEBDRIVER environment variable
 - Selenium server standalone (available via SELENIUM_JAR_PATH environment variable)
-- Google Cloud SDK (275.0.0)
+- Google Cloud SDK (276.0.0)
 - Haskell Cabal (cabal-install version 2.0.0.1
 compiled using version 2.0.1.1 of the Cabal library )
 - Haskell Cabal (cabal-install version 2.2.0.0
@@ -118,20 +121,20 @@ compiled using version 3.0.1.0 of the Cabal library )
 - Heroku (heroku/7.35.1 linux-x64 node-v12.13.0)
 - HHVM (HipHop VM 4.40.0 (rel))
 - ImageMagick
-- Azul Zulu OpenJDK (7) (openjdk version "1.7.0_242")
-- Azul Zulu OpenJDK (8) (openjdk version "1.8.0_232")
-- Azul Zulu OpenJDK (11) (openjdk version "11.0.5" 2019-10-15 LTS)
+- Azul Zulu OpenJDK (7) (openjdk version "1.7.0_252")
+- Azul Zulu OpenJDK (8) (openjdk version "1.8.0_242")
+- Azul Zulu OpenJDK (11) (openjdk version "11.0.6" 2020-01-14 LTS)
 - Azul Zulu OpenJDK (12) (openjdk version "12.0.2" 2019-07-16)
 - Ant (Apache Ant(TM) version 1.9.6 compiled on July 20 2018)
-- Gradle 6.0.1
+- Gradle 6.1
 - Maven (Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f))
 - Kind (v0.5.1)
-- kubectl (Client Version: v1.17.0)
+- kubectl (Client Version: v1.17.1)
 - helm (Client: v2.16.1+gbbdfe5e)
-- Leiningen (Leiningen 2.9.1 on Java 1.8.0_232 OpenJDK 64-Bit Server VM)
+- Leiningen (Leiningen 2.9.1 on Java 1.8.0_242 OpenJDK 64-Bit Server VM)
 - Mercurial (Mercurial Distributed SCM (version 4.4.1))
 - Miniconda (conda 4.7.12)
-- Mono (Mono JIT compiler version 6.6.0.161 (tarball Tue Dec 10 10:36:47 UTC 2019))
+- Mono (Mono JIT compiler version 6.8.0.96 (tarball Wed Jan 15 10:09:29 UTC 2020))
 - MySQL (mysql  Ver 14.14 Distrib 5.7.28, for Linux (x86_64) using  EditLine wrapper)
 - MySQL Server (user:root password:root)
 - MS SQL Server Client Tools
@@ -141,7 +144,7 @@ compiled using version 3.0.1.0 of the Cabal library )
 Local version: Unknown)
 - n (6.1.3)
 - Parcel (1.12.4)
-- TypeScript (Version 3.7.4)
+- TypeScript (Version 3.7.5)
 - Webpack (4.41.5)
 - Webpack CLI (3.3.10)
 - Yarn (1.21.1)
@@ -152,7 +155,7 @@ Local version: Unknown)
 - PHP 7.2 (PHP 7.2.26-1+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Dec 18 2019 14:57:40) ( NTS ))
 - PHP 7.3 (PHP 7.3.13-1+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Dec 18 2019 14:48:32) ( NTS ))
 - PHP 7.4 (PHP 7.4.1 (cli) (built: Dec 18 2019 14:44:04) ( NTS ))
-- Composer  (Composer version 1.9.1 2019-11-01 17:20:17)
+- Composer  (Composer version 1.9.2 2020-01-14 16:30:31)
 - PHPUnit (PHPUnit 7.5.20 by Sebastian Bergmann and contributors.)
 - Pollinate
 - Powershell (PowerShell 6.2.3)
@@ -166,11 +169,11 @@ Local version: Unknown)
 the
 0.52.0)
 - cbindgen (0.12.2)
-- sbt (1.3.6)
+- sbt (1.3.7)
 - Sphinx Open Source Search Server
 - Subversion (svn, version 1.9.3 (r1718519))
 - Terraform (Terraform v0.12.19)
-- Vcpkg 2019.09.12-unknownhash
+- Vcpkg 2020.01.17-unknownhash
 - Zeit Now CLI (16.7.3)
 - Google Repository 58
 - Google Play services 49
@@ -227,7 +230,7 @@ the
 - Android SDK Build-Tools 20.0.0
 - Android SDK Build-Tools 19.1.0
 - Android SDK Build-Tools 17.0.0
-- Android NDK 20.1.5948944
+- Android NDK 21.0.6113669
 - Android ConstraintLayout 1.0.2
 - Android ConstraintLayout 1.0.1
 - Az Module (1.0.0)
@@ -237,13 +240,13 @@ the
 - Az Module (2.8.0)
 - Az Module (3.1.0)
 - Cached container images
-  - node:12-alpine (Digest: sha256:cf63399ae3f4a1424a7776dac98ba088966a727089d7915915ed90db87da141b)
+  - node:10-alpine (Digest: sha256:b56110ff6dfb7ecd11f0b90d2f64fee4d8d68f6b58857ba11109bb51df4e7b6a)
+  - node:12-alpine (Digest: sha256:1dd4309479f031295f3dfb61cf3afc3efeb1a991b012e105d1a95efc038b72f6)
+  - node:10 (Digest: sha256:bdc6d102e926b70690ce0cc0b077d450b1b231524a69b874912a9b337c719e6e)
   - node:12 (Digest: sha256:0a68eb463c4ab4db0833c786cc484ea2edfd50e73e606380e30b806aeb9eee5a)
-  - node:10 (Digest: sha256:49f77fd32e8e796f85581a8d2321c2a9f1b084e1f8b9baa02cb28bce49563ad5)
   - buildpack-deps:stretch (Digest: sha256:d095aae2ecefdc786823e02b2cb0abc62b432202a49abd716c12cce37aee702b)
   - debian:9 (Digest: sha256:85c4668abb4f26e913152ba8fd04fca5f1c2345d3e2653855e6bb0acf461ed50)
   - debian:8 (Digest: sha256:8fc7649643ca1acd3940706613ea7b170762cfce6e7955a6afb387aa40e9f9ea)
-  - node:10-alpine (Digest: sha256:8d664f80270a63e0734d38420e97e9f9764a0e9184383640973bded21bfa1382)
   - alpine:3.10 (Digest: sha256:c19173c5ada610a5989151111163d28a67368362762534d8a8121ce95cf2bd5a)
   - jekyll/builder:latest (Digest: sha256:875de39aa06300c749e26a79f39cdfa31404e4f2dbd2953cd4ebb0442bffda9e)
   - alpine:3.9 (Digest: sha256:7746df395af22f04212cd25a92c1d6dbc5a06a0ca9579a229ef43008d4d1302a)
