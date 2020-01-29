@@ -10,14 +10,17 @@ jobs:
     if: github.event.label.name == 'test-windows2019'
 
     steps:
+      - uses: actions/checkout@v2
+    
       - name: Set build number
         run: |
           $UniqueBuildNumber = Get-Date -UFormat %s
           echo ::set-env name=UniqueBuildNumber::$UniqueBuildNumber
 
       - name: Build VM
+        working-directory: ./Images.CI
         run: |
-            powershell ./Images.CI/build-image.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
+          ./build-image.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
                             -ClientId ${{ secrets.CLIENT_ID }} `
                             -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                             -Image Windows2019-Azure `
