@@ -10,17 +10,16 @@ jobs:
     if: github.event.label.name == 'test-windows2016'
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Set build number
-        shell: pwsh
         run: |
-          $UniqueBuildNumber = date +%s
-          echo ::set-env name=UniqueBuildNumber::$UniqueBuildNumber
+          $UniqueBuildNumber = Get-Date -UFormat %s
+          echo "::set-env name=UniqueBuildNumber::$UniqueBuildNumber"
 
       - name: Build VM
-        working-directory: ./Images.CI
-        shell: pwsh
         run: |
-            build-image.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
+          ./Images.CI/build-image.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
                             -ClientId ${{ secrets.CLIENT_ID }} `
                             -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                             -Image Windows2016-Azure `
@@ -35,9 +34,9 @@ jobs:
                             -GitHubFeedToken ${{ secrets.GITHUB_TOKEN }}
 
       - name: Clean up VM
-        working-directory: ./Images.CI
-        shell: pwsh
-        run: cleanup.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
+        if: always()
+        run: |
+          ./Images.CI/cleanup.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
                          -ClientId ${{ secrets.CLIENT_ID }} `
                          -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                          -Image Windows2016-Azure `

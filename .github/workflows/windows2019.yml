@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-    
+
       - name: Set build number
         run: |
           $UniqueBuildNumber = Get-Date -UFormat %s
@@ -35,9 +35,8 @@ jobs:
 
       - name: Clean up VM
         if: always()
-        working-directory: ./Images.CI
         run: |
-          ./cleanup.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
+          ./Images.CI/cleanup.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
                          -ClientId ${{ secrets.CLIENT_ID }} `
                          -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                          -Image Windows2019-Azure `
