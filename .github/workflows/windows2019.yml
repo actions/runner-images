@@ -18,7 +18,7 @@ jobs:
       - name: Build VM
         working-directory: ./Images.CI
         run: |
-            build-image.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
+            ./build-image.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
                             -ClientId ${{ secrets.CLIENT_ID }} `
                             -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                             -Image Windows2019-Azure `
@@ -34,7 +34,8 @@ jobs:
 
       - name: Clean up VM
         working-directory: ./Images.CI
-        run: cleanup.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
+        run: |
+          ./cleanup.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
                          -ClientId ${{ secrets.CLIENT_ID }} `
                          -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                          -Image Windows2019-Azure `
