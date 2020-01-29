@@ -1,5 +1,7 @@
 name: Windows2019
 on:
+  # schedule:
+  #   - cron:  '0 0 * * *'
   pull_request:
     types: [labeled]
 
@@ -33,7 +35,7 @@ jobs:
                             -VirtualNetworkSubnet ${{ secrets.BUILD_AGENT_SUBNET_NAME }} `
                             -GitHubFeedToken ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Clean up VM
+      - name: Clean up resources
         if: always()
         run: |
           ./Images.CI/cleanup.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
