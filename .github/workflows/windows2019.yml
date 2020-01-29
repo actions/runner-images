@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Set build number
-        shell: pwsh
         run: |
           $UniqueBuildNumber = date +%s
-          echo ::set-env name=UniqueBuildNumber::$UniqueBuildNumber
+          echo ::set-env name=UniqueBuildNumber::$UniqueBuildNumber        
+        shell: pwsh
 
       - name: Build VM
         working-directory: ./Images.CI
