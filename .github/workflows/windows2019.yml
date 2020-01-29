@@ -13,8 +13,7 @@ jobs:
       - name: Set build number
         run: |
           $UniqueBuildNumber = date +%s
-          echo ::set-env name=UniqueBuildNumber::$UniqueBuildNumber        
-        shell: pwsh
+          echo ::set-env name=UniqueBuildNumber::$UniqueBuildNumber
 
       - name: Build VM
         working-directory: ./Images.CI
