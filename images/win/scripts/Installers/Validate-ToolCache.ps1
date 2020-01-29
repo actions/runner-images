@@ -63,15 +63,14 @@ function RunTestsByPath {
     }
 }
 
-function UpdateMarkdownDescription {
+function GetMarkdownDescription {
     param (
-        [string]$Description,
         [Parameter(Mandatory = $True)]
         [string]$SoftwareVersion,
         [Parameter(Mandatory = $True)]
         [string]$SoftwareArchitecture
     )
-    return $Description += "_Version:_ $SoftwareVersion ($SoftwareArchitecture)<br/>"
+    return "_Version:_ $SoftwareVersion ($SoftwareArchitecture)<br/>"
 }
 
 function ToolcacheTest {
@@ -121,7 +120,7 @@ function ToolcacheTest {
             $path = "$softwarePath\$foundVersion\$requiredArchitecture"
             RunTestsByPath -ExecTests $ExecTests -Path $path -SoftwareName $SoftwareName -SoftwareVersion $foundVersion -SoftwareArchitecture $requiredArchitecture
 
-            $markdownDescription = UpdateMarkdownDescription -Description $markdownDescription -SoftwareVersion $foundVersion -SoftwareArchitecture $requiredArchitecture
+            $markdownDescription += GetMarkdownDescription -SoftwareVersion $foundVersion -SoftwareArchitecture $requiredArchitecture
         }
     }
     Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $markdownDescription
