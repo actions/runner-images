@@ -1,11 +1,10 @@
 ---
 title: GitHub Hosted Github Mojave 10.15 VM Image Updates
 description: Software used on build machines
-date: Week 4
+date: Week 5
 ---
 
-#### ⚠️ We are going to change the default Xcode to 11.3.1 next week.
-#### Xcode 11.2.1 set by default
+#### Xcode 11.3.1 set by default
 ## Operating System
 
 - OS X 10.15.2 (19C57) **Catalina**
@@ -13,13 +12,13 @@ date: Week 4
 ## Installed Software
 ### Language and Runtime
 - Java 1.7: (Zulu 7.36.0.5-CA-macosx) (build 1.7.0_252-b10)
-- Java 1.8: (Zulu 8.44.0.9-CA-macosx) (build 1.8.0_242-b20) (default)
+- Java 1.8: (Zulu 8.44.0.11-CA-macosx) (build 1.8.0_242-b20) (default)
 - Java 11: Zulu11.37+17-CA (build 11.0.6+10-LTS)
 - Java 12: Zulu12.3+11-CA (build 12.0.2+3)
 - Java 13: Zulu13.29+9-CA (build 13.0.2+6-MTS)
 - Node.js v12.14.1
 - NVM 0.33.11
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.18.1 v12.14.1 v13.6.0
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.18.1 v12.14.1 v13.7.0
 - PowerShell 6.2.3
 - Python 2.7.17
 - Python 3.7.6
@@ -49,10 +48,10 @@ date: Week 4
 ### Utilities
 - Curl 7.68.0
 - Git: 2.25.0
-- Git LFS: 2.9.2
+- Git LFS: 2.10.0
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.13.0
-- GNU parallel 20191222
+- GNU parallel 20200122
 - OpenSSL 1.0.2t  10 Sep 2019
 - jq 1.6
 - gpg (GnuPG) 2.2.19
@@ -64,7 +63,7 @@ date: Week 4
 - Azure CLI 2.0.80
 
 ### Browsers
-- Google Chrome 79.0.3945.130
+- Google Chrome 79.0.3945.130 
 - ChromeDriver 79.0.3945.36
 
 ### Toolcache
@@ -82,12 +81,12 @@ date: Week 4
 - 3.8.1
 
 #### PyPy
-- 2.7.13
+- 2.7.17
 - 3.6.9
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.4.1.4
+- 8.4.2.59
 
 #### Mono
 - 6.6.0.155
@@ -233,5 +232,4 @@ date: Week 4
 | Google Play services                            | 49                                              |
 | Google Repository                               | 58                                              |
 | Intel x86 Emulator Accelerator (HAXM installer) | 7.5.1                                           |
-
 
