@@ -1,16 +1,45 @@
 name: Windows2019
 on:
   pull_request:
-    paths: "images/win/**"
     types: [labeled]
 
 jobs:
   build:
-    name: windows2019 job
-    runs-on: ubuntu-latest
+    name: Windows 2019
+    runs-on: self-hosted
     if: github.event.label.name == 'test-windows2019'
 
     steps:
-      - name: Build windows2019
+      - name: Set build number
+        shell: pwsh
         run: |
-          echo "Long build for windows2019"
+          $UniqueBuildNumber = date +%s
+          echo ::set-env name=UniqueBuildNumber::$UniqueBuildNumber
+
+      - name: Build VM
+        working-directory: ./Images.CI
+        shell: pwsh
+        run: |
+            build-image.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
+                            -ClientId ${{ secrets.CLIENT_ID }} `
+                            -ClientSecret ${{ secrets.CLIENT_SECRET }} `
+                            -Image Windows2019-Azure `
+                            -ResourceGroup ${{ secrets.AZURE_RESOURCE_GROUP }} `
+                            -StorageAccount ${{ secrets.AZURE_STORAGE_ACCOUNT }} `
+                            -SubscriptionId ${{ secrets.AZURE_SUBSCRIPTION }} `
+                            -TenantId ${{ secrets.AZURE_TENANT }} `
+                            -Location ${{ secrets.AZURE_LOCATION }} `
+                            -VirtualNetworkName ${{ secrets.BUILD_AGENT_VNET_NAME }} `
+                            -VirtualNetworkRG ${{ secrets.BUILD_AGENT_VNET_RESOURCE_GROUP }} `
+                            -VirtualNetworkSubnet ${{ secrets.BUILD_AGENT_SUBNET_NAME }} `
+                            -GitHubFeedToken ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Clean up VM
+        working-directory: ./Images.CI
+        shell: pwsh
+        run: cleanup.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
+                         -ClientId ${{ secrets.CLIENT_ID }} `
+                         -ClientSecret ${{ secrets.CLIENT_SECRET }} `
+                         -Image Windows2019-Azure `
+                         -SubscriptionId ${{ secrets.AZURE_SUBSCRIPTION }} `
+                         -TenantId ${{ secrets.AZURE_TENANT }}

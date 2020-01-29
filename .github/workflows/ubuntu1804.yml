@@ -1,16 +1,45 @@
 name: Ubuntu1804
 on:
   pull_request:
-    paths: "images/linux/**"
     types: [labeled]
 
 jobs:
   build:
-    name: ubuntu1804 job
-    runs-on: ubuntu-latest
+    name: Ubuntu 1804
+    runs-on: self-hosted
     if: github.event.label.name == 'test-ubuntu1804'
 
     steps:
-      - name: Build ubuntu1804
+      - name: Set build number
+        shell: pwsh
         run: |
-          echo "Long build for ubuntu1804"
+          $UniqueBuildNumber = date +%s
+          echo ::set-env name=UniqueBuildNumber::$UniqueBuildNumber
+
+      - name: Build VM
+        working-directory: ./Images.CI
+        shell: pwsh
+        run: |
+            build-image.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
+                            -ClientId ${{ secrets.CLIENT_ID }} `
+                            -ClientSecret ${{ secrets.CLIENT_SECRET }} `
+                            -Image ubuntu1804 `
+                            -ResourceGroup ${{ secrets.AZURE_RESOURCE_GROUP }} `
+                            -StorageAccount ${{ secrets.AZURE_STORAGE_ACCOUNT }} `
+                            -SubscriptionId ${{ secrets.AZURE_SUBSCRIPTION }} `
+                            -TenantId ${{ secrets.AZURE_TENANT }} `
+                            -Location ${{ secrets.AZURE_LOCATION }} `
+                            -VirtualNetworkName ${{ secrets.BUILD_AGENT_VNET_NAME }} `
+                            -VirtualNetworkRG ${{ secrets.BUILD_AGENT_VNET_RESOURCE_GROUP }} `
+                            -VirtualNetworkSubnet ${{ secrets.BUILD_AGENT_SUBNET_NAME }} `
+                            -GitHubFeedToken ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Clean up VM
+        working-directory: ./Images.CI
+        shell: pwsh
+        run: cleanup.ps1 -ResourcesNamePrefix $UniqueBuildNumber `
+                         -ClientId ${{ secrets.CLIENT_ID }} `
+                         -ClientSecret ${{ secrets.CLIENT_SECRET }} `
+                         -Image ubuntu1804 `
+                         -SubscriptionId ${{ secrets.AZURE_SUBSCRIPTION }} `
+                         -TenantId ${{ secrets.AZURE_TENANT }}
