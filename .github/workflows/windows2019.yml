@@ -18,9 +18,8 @@ jobs:
           echo "::set-env name=UniqueBuildNumber::$UniqueBuildNumber"
 
       - name: Build VM
-        working-directory: ./Images.CI
         run: |
-          ./build-image.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
+          ./Images.CI/build-image.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
                             -ClientId ${{ secrets.CLIENT_ID }} `
                             -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                             -Image Windows2019-Azure `
