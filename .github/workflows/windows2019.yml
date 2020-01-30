@@ -1,5 +1,7 @@
 name: Windows2019
 on:
+  # schedule:
+  #   - cron:  '0 0 * * *'
   pull_request:
     types: [labeled]
 
@@ -11,7 +13,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-    
+
       - name: Set build number
         run: |
           $UniqueBuildNumber = Get-Date -UFormat %s
@@ -19,7 +21,7 @@ jobs:
 
       - name: Build VM
         run: |
-          ./Images.CI/build-image.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
+          ./images.CI/build-image.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
                             -ClientId ${{ secrets.CLIENT_ID }} `
                             -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                             -Image Windows2019-Azure `
@@ -33,11 +35,10 @@ jobs:
                             -VirtualNetworkSubnet ${{ secrets.BUILD_AGENT_SUBNET_NAME }} `
                             -GitHubFeedToken ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Clean up VM
+      - name: Clean up resources
         if: always()
-        working-directory: ./Images.CI
         run: |
-          ./cleanup.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
+          ./images.CI/cleanup.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
                          -ClientId ${{ secrets.CLIENT_ID }} `
                          -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                          -Image Windows2019-Azure `
