@@ -7,8 +7,6 @@
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
 LATEST_DOTNET_PACKAGE=dotnet-sdk-3.0
 
 LSB_RELEASE=$(lsb_release -rs)
