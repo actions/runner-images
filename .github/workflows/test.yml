@@ -12,3 +12,6 @@ jobs:
     steps:
     - name: Test
       run: $env:Path.Split(";")
+      
+    - name: Test2
+      run: az version
