@@ -71,13 +71,13 @@ Write-Host "Setting the environment variables"
 
 setx IEWebDriver "C:\SeleniumWebDrivers\IEDriver" /M;
 setx GeckoWebDriver "C:\SeleniumWebDrivers\GeckoDriver" /M;
-setx ChromeWebDriver "C:\SeleniumWebDrivers\ChromeDriver" /M;
-setx EdgeWebDriver "C:\SeleniumWebDrivers\EdgeDriver" /M;
+setx ChromeWebDriver "$ChromeDriverPath" /M;
+setx EdgeWebDriver "$EdgeDriverPath" /M;
 
 $regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\';
 $PathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path';
-$PathValue += ";C:\SeleniumWebDrivers\ChromeDriver\";
-$PathValue += ";C:\SeleniumWebDrivers\EdgeDriver\";
+$PathValue += ";$ChromeDriverPath\";
+$PathValue += ";$EdgeDriverPath\";
 Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $PathValue;
 
 exit 0;
