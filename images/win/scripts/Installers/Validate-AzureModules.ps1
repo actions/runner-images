@@ -49,7 +49,7 @@ $SoftwareName = "Azure/AzureRM Powershell modules"
 $Description = @"
 #### $($DefaultModule.Version)
 
-This version is installed and is available via `Get-Module -ListAvailable`
+This version is installed and is available via ``Get-Module -ListAvailable``
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
