@@ -3,15 +3,15 @@
 ##  Desc:  Validate Microsoft Edge installation.
 ################################################################################
 
-if(Test-Path "HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\msedge.exe")
+$RegistryKey = "HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\msedge.exe"
+if (Test-Path $RegistryKey)
 {
-	(Get-Item (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\msedge.exe').'(Default)').VersionInfo
-
 	$SoftwareName = "Microsoft Edge"
-	$FileVersion = (Get-Item (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\msedge.exe').'(Default)').VersionInfo.FileVersion
+	$VersionInfo = (Get-Item (Get-ItemProperty $RegistryKey).'(Default)').VersionInfo
+	$VersionInfo
 	$Description = @"
 _version:_
-$FileVersion
+$($VersionInfo.FileVersion)
 "@
 
 	Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
