@@ -7,7 +7,7 @@
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
-LATEST_DOTNET_PACKAGE=dotnet-sdk-3.0
+LATEST_DOTNET_PACKAGES=("dotnet-sdk-3.0" "dotnet-sdk-3.1")
 
 LSB_RELEASE=$(lsb_release -rs)
 
@@ -30,21 +30,23 @@ mksamples()
 
 set -e
 
-echo "Determing if .NET Core ($LATEST_DOTNET_PACKAGE) is installed"
-if ! IsInstalled $LATEST_DOTNET_PACKAGE; then
-    echo "Could not find .NET Core ($LATEST_DOTNET_PACKAGE), installing..."
-    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-    mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-    sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'
-    apt-get install apt-transport-https
-    apt-get update
-    apt-get install $LATEST_DOTNET_PACKAGE -y
-else
-    echo ".NET Core ($LATEST_DOTNET_PACKAGE) is already installed"
-fi
+for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
+    echo "Determing if .NET Core ($latest_package) is installed"
+    if ! IsInstalled $latest_package; then
+        echo "Could not find .NET Core ($latest_package), installing..."
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+        sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'
+        apt-get install apt-transport-https
+        apt-get update
+        apt-get install $latest_package -y
+    else
+        echo ".NET Core ($latest_package) is already installed"
+    fi
+done
 
 # Get list of all released SDKs from channels which are not end-of-life or preview
-release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.2/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.0/releases.json")
+release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.2/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.0/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json")
 sdks=()
 for release_url in ${release_urls[@]}; do
     echo "${release_url}"
