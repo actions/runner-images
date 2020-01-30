@@ -23,7 +23,7 @@ jobs:
         run: |
           ./images.CI/build-image.ps1 -ResourcesNamePrefix $env:UniqueBuildNumber `
                             -ClientId ${{ secrets.CLIENT_ID }} `
-                            -ClientSecret ${{ secrets.CLIENT_SECRET }}`
+                            -ClientSecret ${{ secrets.CLIENT_SECRET }} `
                             -Image ubuntu1604 `
                             -ResourceGroup ${{ secrets.AZURE_RESOURCE_GROUP }} `
                             -StorageAccount ${{ secrets.AZURE_STORAGE_ACCOUNT }} `
