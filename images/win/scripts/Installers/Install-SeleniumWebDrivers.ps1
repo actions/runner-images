@@ -21,7 +21,9 @@ $ChromeDriverPath = "$DestinationPath\SeleniumWebDrivers\ChromeDriver";
 Write-Host "Chrome driver path: [$ChromeDriverPath]";
 Remove-Item -Path "$ChromeDriverPath\*" -Force;
 
-$ChromePath = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe').'(default)';
+# Reinstall Chrome Web Driver
+$RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
+$ChromePath = (Get-ItemProperty "$RegistryPath\chrome.exe").'(default)';
 [version]$ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion;
 Write-Host "Chrome version: [$ChromeVersion]";
 
@@ -44,16 +46,39 @@ Write-Host "Chrome driver install....";
 Expand-Archive -Path "$ChromeDriverPath\chromedriver_win32.zip" -DestinationPath $ChromeDriverPath -Force;
 Remove-Item -Path "$ChromeDriverPath\chromedriver_win32.zip" -Force;
 
-Write-Host "Setting the environment variables";
+# Install Microsoft Edge Web Driver
+Write-Host "Microsoft Edge driver download...."
+$EdgeDriverPath = "$DestinationPath\SeleniumWebDrivers\EdgeDriver"
+if (-not (Test-Path -Path $EdgeDriverPath)) {
+    New-Item -Path $EdgeDriverPath -ItemType "directory"
+}
+
+$EdgePath = (Get-ItemProperty "$RegistryPath\msedge.exe").'(default)'
+[version]$EdgeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($EdgePath).ProductVersion
+$EdgeDriverVersionUrl = "https://msedgedriver.azureedge.net/LATEST_RELEASE_$($EdgeVersion.Major)"
+$EdgeDriverVersionFile = "$EdgeDriverPath\versioninfo.txt"
+Invoke-WebRequest -Uri $EdgeDriverVersionUrl -OutFile $EdgeDriverVersionFile
+
+$EdgeDriverLatestVersion = Get-Content -Path $EdgeDriverVersionFile
+$EdgeDriverDownloadUrl="https://msedgedriver.azureedge.net/${EdgeDriverLatestVersion}/edgedriver_win64.zip"
+$DestFile = "$EdgeDriverPath\edgedriver_win64.zip"
+Invoke-WebRequest -Uri $EdgeDriverDownloadUrl -OutFile $DestFile
+
+Write-Host "Microsoft Edge driver install...."
+Expand-Archive -Path $DestFile -DestinationPath $EdgeDriverPath -Force
+Remove-Item -Path $DestFile -Force
+
+Write-Host "Setting the environment variables"
 
 setx IEWebDriver "C:\SeleniumWebDrivers\IEDriver" /M;
 setx GeckoWebDriver "C:\SeleniumWebDrivers\GeckoDriver" /M;
-setx ChromeWebDriver "C:\SeleniumWebDrivers\ChromeDriver" /M;
+setx ChromeWebDriver "$ChromeDriverPath" /M;
+setx EdgeWebDriver "$EdgeDriverPath" /M;
 
 $regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\';
 $PathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path';
-$PathValue += ";C:\SeleniumWebDrivers\ChromeDriver\";
+$PathValue += ";$ChromeDriverPath\";
+$PathValue += ";$EdgeDriverPath\";
 Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $PathValue;
 
 exit 0;
-

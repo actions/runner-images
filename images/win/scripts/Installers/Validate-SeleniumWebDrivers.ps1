@@ -6,24 +6,36 @@
 $IEDriverPath = $env:IEWebDriver
 $GeckoDriverPath = $env:GeckoWebDriver
 $ChromeDriverPath = $env:ChromeWebDriver
+$EdgeDriverPath = $env:EdgeWebDriver
 
-if(($IEDriverPath -like "C:\SeleniumWebDrivers\IEDriver") -and ($GeckoDriverPath -like "C:\SeleniumWebDrivers\GeckoDriver") -and ($ChromeDriverPath -like "C:\SeleniumWebDrivers\ChromeDriver"))
-{	
-	
+if (
+	($IEDriverPath -like "C:\SeleniumWebDrivers\IEDriver") -and
+	($GeckoDriverPath -like "C:\SeleniumWebDrivers\GeckoDriver") -and
+	($ChromeDriverPath -like "C:\SeleniumWebDrivers\ChromeDriver") -and
+	($EdgeDriverPath -like "C:\SeleniumWebDrivers\EdgeDriver")
+)
+{
+
 	Write-Host "IEDriver installed at "
-	(Get-Item "C:\SeleniumWebDrivers\IEDriver\IEDriverServer.exe").VersionInfo
-	
-	
+	(Get-Item "$IEDriverPath\IEDriverServer.exe").VersionInfo
+
+
 	Write-Host "Gecko Driver installed at "
-	(Get-Item "C:\SeleniumWebDrivers\GeckoDriver\geckodriver.exe").VersionInfo
-	
-	
+	(Get-Item "$GeckoDriverPath\geckodriver.exe").VersionInfo
+
+
 	Write-Host "Chrome Driver installed at "
-	(Get-Item "C:\SeleniumWebDrivers\ChromeDriver\chromedriver.exe").VersionInfo
-	
-	$chromedriverversion = Get-Content -Path "C:\SeleniumWebDrivers\ChromeDriver\versioninfo.txt"
-	$geckodriverversion = Get-Content -Path "C:\SeleniumWebDrivers\GeckoDriver\versioninfo.txt"
-	$iedriverversion = Get-Content -Path "C:\SeleniumWebDrivers\IEDriver\versioninfo.txt"
+	(Get-Item "$ChromeDriverPath\chromedriver.exe").VersionInfo
+
+
+	Write-Host "Edge Driver installed at "
+	(Get-Item "$EdgeDriverPath\msedgedriver.exe").VersionInfo
+
+	$versionFileName = "versioninfo.txt";
+	$chromedriverversion = Get-Content -Path "$IEDriverPath\$versionFileName"
+	$geckodriverversion = Get-Content -Path "$GeckoDriverPath\$versionFileName"
+	$iedriverversion = Get-Content -Path "$ChromeDriverPath\$versionFileName"
+	$edgedriverversion = Get-Content -Path "$EdgeDriverPath\$versionFileName"
 
 	# Adding description of the software to Markdown
 	$SoftwareName = "Selenium Web Drivers"
@@ -54,10 +66,18 @@ $iedriverversion
 _Environment:_
 * IEWebDriver: location of IEDriverServer.exe
 
+#### Microsoft Edge Driver
+
+_version:_
+$edgedriverversion
+
+_Environment:_
+* EdgeWebDriver: location of msedgedriver.exe
+
 "@
 
 	Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-	
+
 	exit 0
 }
 else
