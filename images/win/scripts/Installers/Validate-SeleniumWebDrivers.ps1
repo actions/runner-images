@@ -17,24 +17,25 @@ if (
 {
 
 	Write-Host "IEDriver installed at "
-	(Get-Item "C:\SeleniumWebDrivers\IEDriver\IEDriverServer.exe").VersionInfo
+	(Get-Item "$IEDriverPath\IEDriverServer.exe").VersionInfo
 
 
 	Write-Host "Gecko Driver installed at "
-	(Get-Item "C:\SeleniumWebDrivers\GeckoDriver\geckodriver.exe").VersionInfo
+	(Get-Item "$GeckoDriverPath\geckodriver.exe").VersionInfo
 
 
 	Write-Host "Chrome Driver installed at "
-	(Get-Item "C:\SeleniumWebDrivers\ChromeDriver\chromedriver.exe").VersionInfo
+	(Get-Item "$ChromeDriverPath\chromedriver.exe").VersionInfo
 
 
 	Write-Host "Edge Driver installed at "
-	(Get-Item "C:\SeleniumWebDrivers\EdgeDriver\msedgedriver.exe").VersionInfo
+	(Get-Item "$EdgeDriverPath\msedgedriver.exe").VersionInfo
 
-	$chromedriverversion = Get-Content -Path "C:\SeleniumWebDrivers\ChromeDriver\versioninfo.txt"
-	$geckodriverversion = Get-Content -Path "C:\SeleniumWebDrivers\GeckoDriver\versioninfo.txt"
-	$iedriverversion = Get-Content -Path "C:\SeleniumWebDrivers\IEDriver\versioninfo.txt"
-	$edgedriverversion = Get-Content -Path "C:\SeleniumWebDrivers\EdgeDriver\versioninfo.txt"
+	$versionFileName = "versioninfo.txt";
+	$chromedriverversion = Get-Content -Path "$IEDriverPath\$versionFileName"
+	$geckodriverversion = Get-Content -Path "$GeckoDriverPath\$versionFileName"
+	$iedriverversion = Get-Content -Path "$ChromeDriverPath\$versionFileName"
+	$edgedriverversion = Get-Content -Path "$EdgeDriverPath\$versionFileName"
 
 	# Adding description of the software to Markdown
 	$SoftwareName = "Selenium Web Drivers"

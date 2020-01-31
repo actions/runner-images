@@ -22,7 +22,8 @@ Write-Host "Chrome driver path: [$ChromeDriverPath]";
 Remove-Item -Path "$ChromeDriverPath\*" -Force;
 
 # Reinstall Chrome Web Driver
-$ChromePath = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe').'(default)';
+$RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
+$ChromePath = (Get-ItemProperty "$RegistryPath\chrome.exe").'(default)';
 [version]$ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion;
 Write-Host "Chrome version: [$ChromeVersion]";
 
@@ -52,7 +53,7 @@ if (-not (Test-Path -Path $EdgeDriverPath)) {
     New-Item -Path $EdgeDriverPath -ItemType "directory"
 }
 
-$EdgePath = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\msedge.exe').'(default)'
+$EdgePath = (Get-ItemProperty "$RegistryPath\msedge.exe").'(default)'
 [version]$EdgeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($EdgePath).ProductVersion
 $EdgeDriverVersionUrl = "https://msedgedriver.azureedge.net/LATEST_RELEASE_$($EdgeVersion.Major)"
 $EdgeDriverVersionFile = "$EdgeDriverPath\versioninfo.txt"
