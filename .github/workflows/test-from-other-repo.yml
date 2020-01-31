@@ -1,0 +1,15 @@
+name: Test build from other repo
+on: repository_dispatch
+
+jobs:
+  build:
+    name: Windows 2016
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: 'akv-platform/virtual-environments-ci-test'
+          ref: 'master'
+
+      - run: ./test.ps1
