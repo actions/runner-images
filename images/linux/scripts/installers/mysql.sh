@@ -13,7 +13,7 @@ export ACCEPT_EULA=Y
 apt-get install mysql-client -y
 
 # InstallMySQL database development files
-apt-get install libmysqlclient-dev
+apt-get install libmysqlclient-dev -y
 
 # Install MySQL Server
 MYSQL_ROOT_PASSWORD=root
