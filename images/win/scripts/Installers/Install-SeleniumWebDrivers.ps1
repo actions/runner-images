@@ -17,7 +17,7 @@ catch {
 Expand-Archive -Path $DriversZipFile -DestinationPath $DestinationPath -Force;
 Remove-Item $DriversZipFile;
 
-$ChromeDriverPath = "$DestinationPath\SeleniumWebDrivers\ChromeDriver";
+$ChromeDriverPath = "${DestinationPath}SeleniumWebDrivers\ChromeDriver";
 Write-Host "Chrome driver path: [$ChromeDriverPath]";
 Remove-Item -Path "$ChromeDriverPath\*" -Force;
 
@@ -48,7 +48,7 @@ Remove-Item -Path "$ChromeDriverPath\chromedriver_win32.zip" -Force;
 
 # Install Microsoft Edge Web Driver
 Write-Host "Microsoft Edge driver download...."
-$EdgeDriverPath = "$DestinationPath\SeleniumWebDrivers\EdgeDriver"
+$EdgeDriverPath = "${DestinationPath}SeleniumWebDrivers\EdgeDriver"
 if (-not (Test-Path -Path $EdgeDriverPath)) {
     New-Item -Path $EdgeDriverPath -ItemType "directory"
 }
