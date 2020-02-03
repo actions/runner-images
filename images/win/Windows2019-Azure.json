@@ -16,6 +16,7 @@
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
         "vm_size": "Standard_DS4_v2",
 
+        "root_folder": "C:",
         "image_folder": "C:\\image",
         "commit_file": "C:\\image\\commit.txt",
         "metadata_file": "C:\\image\\metadata.txt",
@@ -24,9 +25,10 @@
         "install_user": "installer",
         "install_password": null,
         "capture_name_prefix": "packer",
-        "image_version": "dev"
+        "image_version": "dev",
+        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
     },
-    "sensitive-variables": ["install_password", "ssh_password", "client_secret"],
+    "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
         {
             "name": "vhd",
@@ -36,7 +38,7 @@
             "subscription_id": "{{user `subscription_id`}}",
             "object_id": "{{user `object_id`}}",
             "tenant_id": "{{user `tenant_id`}}",
-            "os_disk_size_gb": "128",
+            "os_disk_size_gb": "256",
             "location": "{{user `location`}}",
             "vm_size": "{{user `vm_size`}}",
             "resource_group_name": "{{user `resource_group`}}",
@@ -239,6 +241,27 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-7zip.ps1"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolcache-2019.json",
+            "destination": "{{user `root_folder`}}/toolcache.json"
+        },
+        {
+            "type": "powershell",
+            "environment_vars":[
+                "GITHUB_FEED_TOKEN={{ user `github_feed_token` }}",
+                "ROOT_FOLDER={{user `root_folder`}}"
+            ],
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Download-ToolCache.ps1"
             ]
         },
@@ -303,7 +326,19 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Edge.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Firefox.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Selenium.ps1"
             ]
         },
         {
@@ -330,12 +365,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-WinAppDriver.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1"
             ]
         },
         {
@@ -422,15 +451,9 @@
         },
         {
             "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-7zip.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "environment_vars": [
-                "BOOST_VERSIONS=1.69.0",
-                "BOOST_DEFAULT=1.69.0"
+                "BOOST_VERSIONS=1.69.0,1.72.0",
+                "BOOST_DEFAULT=1.72.0"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Boost.ps1"
@@ -532,6 +555,9 @@
         },
         {
             "type": "powershell",
+            "environment_vars":[
+                "ROOT_FOLDER={{user `root_folder`}}"
+            ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-ToolCache.ps1"
             ]
@@ -561,8 +587,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "BOOST_VERSIONS=1.69.0",
-                "BOOST_DEFAULT=1.69.0"
+                "BOOST_VERSIONS=1.69.0,1.72.0",
+                "BOOST_DEFAULT=1.72.0"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Boost.ps1"
@@ -602,6 +628,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Chrome.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Edge.ps1"
             ]
         },
         {

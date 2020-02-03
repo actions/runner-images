@@ -25,7 +25,7 @@ rules:
 - valueFor: '**Area for Triage**'
   contains: 'Apple'
   addLabels: ['Area: Apple']
-  assign: ['AlenaSviridenko']
+  assign: ['sergey-akhalkov']
 
 # Area: Artifacts
 - valueFor: '**Area for Triage**'
@@ -67,7 +67,7 @@ rules:
 - valueFor: '**Area for Triage**'
   contains: 'Git'
   addLabels: ['Area: Git']
-  assign: ['alepauly','kaylangan']
+  assign: ['alepauly','thejoebourneidentity']
 
 # Area: Go
 - valueFor: '**Area for Triage**'
@@ -103,7 +103,7 @@ rules:
 - valueFor: '**Area for Triage**'
   contains: 'PHP'
   addLabels: ['Area: PHP']
-  assign: ['alepauly', 'kaylangan']
+  assign: ['alepauly', 'thejoebourneidentity']
 
 # Area: Python
 - valueFor: '**Area for Triage**'
@@ -115,13 +115,13 @@ rules:
 - valueFor: '**Area for Triage**'
   contains: 'Ruby'
   addLabels: ['Area: Ruby']
-  assign: ['madhurig']
+  assign: ['zachariahcox']
 
 # Area: Rust
 - valueFor: '**Area for Triage**'
   contains: 'Rust'
   addLabels: ['Area: Rust']
-  assign: ['AlenaSviridenko']
+  assign: ['sergey-akhalkov']
 
 # Area: Scala
 - valueFor: '**Area for Triage**'
@@ -157,7 +157,7 @@ rules:
 - valueFor: '**Area for Triage**'
   contains: 'Xamarin'
   addLabels: ['Area: Xamarin']
-  assign: ['AlenaSviridenko']
+  assign: ['sergey-akhalkov']
 
 # Types
 - valueFor: '**Question, Bug, or Feature?**'

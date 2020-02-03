@@ -40,6 +40,7 @@ else
 $rubyExeOnPath = (Get-Command -Name 'ruby').Path
 $rubyBinOnPath = Split-Path -Path $rubyExeOnPath
 $rubyVersionOnPath = Get-RubyVersion -rubyRootPath $rubyBinOnPath
+$gemVersion = & gem -v
 
 # Add details of available versions in Markdown
 $SoftwareName = "Ruby (x64)"
@@ -48,6 +49,7 @@ $Description = @"
 _Environment:_
 * Location: $rubyBinOnPath
 * PATH: contains the location of ruby.exe version $rubyVersionOnPath
+* Gem Version: $gemVersion
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

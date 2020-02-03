@@ -32,6 +32,7 @@ apt-fast install -y --no-install-recommends \
     telnet \
     time \
     unzip \
+    upx \
     wget \
     zip \
     tzdata
@@ -55,7 +56,7 @@ apt-fast install -y --no-install-recommends \
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet time unzip wget zip; do
+for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet time unzip upx wget zip; do
     if ! command -v $cmd; then
         echo "$cmd was not installed"
         exit 1
@@ -85,6 +86,7 @@ DocumentInstalledItemIndent "sudo"
 DocumentInstalledItemIndent "telnet"
 DocumentInstalledItemIndent "time"
 DocumentInstalledItemIndent "unzip"
+DocumentInstalledItemIndent "upx"
 DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
 DocumentInstalledItemIndent "tzdata"
