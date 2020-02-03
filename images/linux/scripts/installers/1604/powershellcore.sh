@@ -9,6 +9,12 @@ source $HELPER_SCRIPTS/document.sh
 
 LSB_RELEASE=$(lsb_release -rs)
 
+#Restore repository
+dpkg -i packages-microsoft-prod.deb
+apt-get update
+
+# Install Microsoft GPG public key
+curl -L https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 # Install Powershell
 apt-get install -y powershell
 
