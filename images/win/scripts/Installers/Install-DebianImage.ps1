@@ -5,13 +5,13 @@
 
 Import-Module -Name ImageHelpers
 
-debianTempDir = "C:\Temp\debian"
+$debianTempDir = "$env:AGENT_TEMPDIRECTORY\debian"
 
 if (-not (Test-Path $debianPath)) {
-    New-Item -Path debianTempDir -ItemType Directory
+    New-Item -Path $debianTempDir -ItemType Directory
 }
 
-Push-Location debianTempDir
+Push-Location $debianTempDir
 
 $debianZipName = "debian.zip"
 Invoke-WebRequest -Uri "https://aka.ms/wsl-debian-gnulinux" -OutFile $debianZipName
@@ -26,4 +26,4 @@ debian run apt update
 debian run DEBIAN_FRONTEND=noninteractive apt upgrade -y
 
 Pop-Location
-Remove-Item debianTempDir -Recurse -Force
+Remove-Item $debianTempDir -Recurse -Force
