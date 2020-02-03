@@ -13,4 +13,4 @@ apt-get install libpq-dev
 echo "Install Postgresql Client"
 apt-get install postgresql-client
 
-DocumentInstalledItem "($(psql -V 2>&1 | cut -d ' ' -f 1,2,3))"
+DocumentInstalledItem "$(psql -V 2>&1 | cut -d ' ' -f 1,2,3)"
