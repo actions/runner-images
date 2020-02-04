@@ -230,7 +230,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-DebianImage.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-UbuntuImage.ps1"
             ]
         },
         {
