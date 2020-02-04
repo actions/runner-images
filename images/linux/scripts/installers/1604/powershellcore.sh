@@ -8,9 +8,9 @@
 source $HELPER_SCRIPTS/document.sh
 
 LSB_RELEASE=$(lsb_release -rs)
-echo "Installing the libicu60 library"
-wget http://security.ubuntu.com/ubuntu/pool/main/i/icu/libicu60_60.2-3ubuntu3_amd64.deb
-dpkg -i libicu60_60.2-3ubuntu3_amd64.deb
+#echo "Installing the libicu60 library"
+#wget http://security.ubuntu.com/ubuntu/pool/main/i/icu/libicu60_60.2-3ubuntu3_amd64.deb
+#dpkg -i libicu60_60.2-3ubuntu3_amd64.deb
 
 echo "Installing the PowerShell Core"
 apt-get install -y powershell

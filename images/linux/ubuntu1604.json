@@ -116,6 +116,7 @@
         {
             "type": "shell",
             "scripts": [
+                "{{template_dir}}/scripts/installers/1604/powershellcore.sh",
                 "{{template_dir}}/scripts/installers/7-zip.sh",
                 "{{template_dir}}/scripts/installers/ansible.sh",
                 "{{template_dir}}/scripts/installers/azcopy.sh",
@@ -153,7 +154,6 @@
                 "{{template_dir}}/scripts/installers/phantomjs.sh",
                 "{{template_dir}}/scripts/installers/1604/php.sh",
                 "{{template_dir}}/scripts/installers/pollinate.sh",
-                "{{template_dir}}/scripts/installers/1604/powershellcore.sh",
                 "{{template_dir}}/scripts/installers/ruby.sh",
                 "{{template_dir}}/scripts/installers/rust.sh",
                 "{{template_dir}}/scripts/installers/sbt.sh",
