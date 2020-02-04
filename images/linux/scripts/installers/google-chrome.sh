@@ -46,9 +46,9 @@ if [ ! -d $CHROME_DRIVER ]; then
 fi
 
 CHROMEDRIVER_BIN="$CHROME_DRIVER/chromedriver"
-mv "chromedriver" $CHROME_DRIVER
-chown root:root $CHROME_DRIVER
-chmod +x $CHROME_DRIVER
+mv "chromedriver" $CHROMEDRIVER_BIN
+chown root:root $CHROMEDRIVER_BIN
+chmod +x $CHROMEDRIVER_BIN
 ln -s "$CHROMEDRIVER_BIN" /usr/bin/
 echo "CHROMEWEBDRIVER=$CHROME_DRIVER" | tee -a /etc/environment
 
