@@ -12,6 +12,9 @@ export ACCEPT_EULA=Y
 # Install MySQL Client
 apt-get install mysql-client -y
 
+# InstallMySQL database development files
+apt-get install libmysqlclient-dev -y
+
 # Install MySQL Server
 MYSQL_ROOT_PASSWORD=root
 echo "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD" | debconf-set-selections

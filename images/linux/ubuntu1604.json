@@ -77,9 +77,10 @@
                 "systemctl disable apt-daily.timer",
                 "systemctl disable apt-daily-upgrade.timer",
                 "systemctl disable apt-daily-upgrade.service",
-                "echo '* soft nofile 50000 \n* hard nofile 50000' >> /etc/security/limits.conf",
+                "echo '* soft nofile 65536 \n* hard nofile 65536' >> /etc/security/limits.conf",
                 "echo 'session required pam_limits.so' >> /etc/pam.d/common-session",
-                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session-noninteractive"
+                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session-noninteractive",
+                "echo 'DefaultLimitNOFILE=65536' >> /etc/systemd/system.conf"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
@@ -153,6 +154,7 @@
                 "{{template_dir}}/scripts/installers/phantomjs.sh",
                 "{{template_dir}}/scripts/installers/1604/php.sh",
                 "{{template_dir}}/scripts/installers/pollinate.sh",
+                "{{template_dir}}/scripts/installers/postgresql.sh",
                 "{{template_dir}}/scripts/installers/1604/powershellcore.sh",
                 "{{template_dir}}/scripts/installers/ruby.sh",
                 "{{template_dir}}/scripts/installers/rust.sh",
