@@ -26,6 +26,7 @@ function InstallFortran {
 }
 
 # Install GNU Fortran compiler
+add-apt-repository ppa:ubuntu-toolchain-r/test -y
 apt-get update -y
 
 versions=(

@@ -26,6 +26,7 @@ function InstallGcc {
 }
 
 # Install GNU C++ compiler
+add-apt-repository ppa:ubuntu-toolchain-r/test -y
 apt-get update -y
 
 versions=(
