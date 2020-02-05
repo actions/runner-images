@@ -1,6 +1,6 @@
 # Windows Server 2019
 
-The following software is installed on machines with the 20200116.1 update.
+The following software is installed on machines with the 20200203.0 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -19,13 +19,13 @@ _Environment:_
 
 ## Docker-compose
 
-_Version:_ 1.25.0<br/>
+_Version:_ 1.25.3<br/>
 _Environment:_
 * PATH: contains location of docker-compose.exe
 
 ## Powershell Core
 
-_Version:_ 6.2.3<br/>
+_Version:_ 6.2.4<br/>
 
 ## Docker images
 
@@ -38,7 +38,7 @@ The following container images have been cached:
 
 ## Visual Studio 2019 Enterprise
 
-_Version:_ VisualStudio/16.4.3+29709.97<br/>
+_Version:_ VisualStudio/16.4.4+29728.190<br/>
 _Location:_ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
 
 The following workloads and components are installed with Visual Studio 2019:
@@ -94,6 +94,7 @@ The following workloads and components are installed with Visual Studio 2019:
 * Microsoft.VisualStudio.Component.Windows10SDK.17134
 * Microsoft.VisualStudio.Component.Windows10SDK.17763
 * Microsoft.VisualStudio.Component.Windows10SDK.18362
+* Microsoft.VisualStudio.Component.WinXP
 * Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices
 * Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools
 * Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang
@@ -133,8 +134,8 @@ _Version:_ 10.0.18362.0<br/>
 
 ## Azure Service Fabric
 
-_SDK Version:_ 4.0.457.9590<br/>
-_Runtime Version:_ 7.0.457.9590
+_SDK Version:_ 4.0.464.9590<br/>
+_Runtime Version:_ 7.0.464.9590
 
 ## WinAppDriver
 
@@ -302,6 +303,32 @@ _Location:_ C:\Program Files (x86)\Android\android-sdk\platforms\android-21
 _Location:_ C:\Program Files (x86)\Android\android-sdk\platforms\android-19
 
 
+## Azure/AzureRM Powershell modules
+
+#### 2.1.0
+
+This version is installed and is available via `Get-Module -ListAvailable`
+#### 3.8.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_3.8.0\AzureRM\3.8.0\AzureRM.psd1
+
+#### 4.2.1
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_4.2.1\AzureRM\4.2.1\AzureRM.psd1
+
+#### 5.1.1
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_5.1.1\AzureRM\5.1.1\AzureRM.psd1
+
+#### 6.7.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_6.7.0\AzureRM\6.7.0\AzureRM.psd1
+
+
 ## TLS12
 
 _Version:_ 1.2<br/>
@@ -315,11 +342,7 @@ _Environment:_
 
 ## Azure DevOps Cli extension
 
-_Version:_ azure-devops                      0.16.0
-
-## Python
-
-_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.1 (x64)<br/>
+_Version:_ azure-devops                      0.17.0
 
 ## Python
 
@@ -383,20 +406,25 @@ _Environment:_
 
 ## Boost
 
-#### 
+#### 1.69.0
 
-* PATH: contains the location of Boost version 
-* BOOST_ROOT: root directory of the Boost version  installation
-* BOOST_ROOT_1_69_0: root directory of the Boost version  installation
+_Environment:_
+* BOOST_ROOT_1_69_0: root directory of the Boost version 1.69.0 installation
+
+#### 1.72.0
+
+* PATH: contains the location of Boost version 1.72.0
+* BOOST_ROOT: root directory of the Boost version 1.72.0 installation
+* BOOST_ROOT_1_72_0: root directory of the Boost version 1.72.0 installation
 
 
 ## PHP (x64)
 
-#### 7.4.1
+#### 7.4.2
 
 _Environment:_
-* PATH: contains the location of php.exe version 7.4.1
-* PHPROOT: root directory of the PHP 7.4.1 installation
+* PATH: contains the location of php.exe version 7.4.2
+* PHPROOT: root directory of the PHP 7.4.2 installation
 
 ## Ruby (x64)
 
@@ -404,10 +432,11 @@ _Environment:_
 _Environment:_
 * Location: C:\hostedtoolcache\windows\Ruby\2.5.7\x64\bin
 * PATH: contains the location of ruby.exe version 2.5.7p206
+* Gem Version: 3.1.2
 
 ## Rust (64-bit)
 
-#### 1.40.0
+#### 1.41.0
 _Location:_ C:\Rust\.cargo\bin
 _Environment:_
 * PATH: contains the location of rustc.exe
@@ -427,6 +456,11 @@ _Environment:_
 _version:_
 79.0.3945.130
 
+## Microsoft Edge
+
+_version:_
+79.0.309.71
+
 ## Mozilla Firefox
 
 _version:_
@@ -438,7 +472,7 @@ _version:_
 #### Chrome Driver
 
 _version:_
-79.0.3945.36
+3.8.0.0
 
 _Environment:_
 * ChromeWebDriver: location of chromedriver.exe
@@ -454,10 +488,18 @@ _Environment:_
 #### IE Driver
 
 _version:_
-3.8.0.0
+79.0.3945.36
 
 _Environment:_
 * IEWebDriver: location of IEDriverServer.exe
+
+#### Microsoft Edge Driver
+
+_version:_
+79.0.309.71
+
+_Environment:_
+* EdgeWebDriver: location of msedgedriver.exe
 
 
 ## Node.js
@@ -652,7 +694,7 @@ _Environment:_
 
 ## Azure CosmosDb Emulator
 
-_Version:_ 2.7.2.0<br/>
+_Version:_ 2.9.0.0<br/>
 _Location:_ C:\Program Files\Azure Cosmos DB Emulator\
 
 ## 7zip
@@ -689,7 +731,7 @@ _Version:_ 6.49.0<br/>
 
 ## Vcpkg
 
-_Version:_ 2019.09.12-nohash<br/>
+_Version:_ 2020.01.18-nohash<br/>
 _Environment:_
 * PATH: contains location of the vcpkg directory
 * VCPKG_INSTALLATION_ROOT: root directory of the vcpkg installation
@@ -702,6 +744,6 @@ _Environment:_
 
 ## Kind
 
-_Version:_ v0.5.1<br/>
+_Version:_ kind v0.7.0 go1.13.6 windows/amd64<br/>
 _Environment:_
 * PATH: contains location of kind.exe
