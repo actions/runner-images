@@ -44,7 +44,6 @@ CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
 
 mkdir -p $CHROMEDRIVER_DIR
 mv "chromedriver" $CHROMEDRIVER_BIN
-chown root:root $CHROMEDRIVER_BIN
 chmod +x $CHROMEDRIVER_BIN
 ln -s "$CHROMEDRIVER_BIN" /usr/bin/
 echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment
