@@ -26,6 +26,16 @@ else
     exit 1
 }
 
+if(Get-Command -Name 'lerna')
+{
+    Write-Host "lerna $(lerna --version) on path"
+}
+else
+{
+    Write-Host "lerna is not on path"
+    exit 1
+}
+
 
 
 if( $(node --version) -match  'v(?<version>.*)' )
