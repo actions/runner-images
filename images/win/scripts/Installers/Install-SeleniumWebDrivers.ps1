@@ -10,7 +10,7 @@ try {
     Invoke-WebRequest -UseBasicParsing -Uri "https://seleniumwebdrivers.blob.core.windows.net/seleniumwebdrivers/${DriversZipFile}" -OutFile $DriversZipFile;
 }
 catch {
-    Write-Error "[!] Failed to download $DriverZipFile";
+    Write-Error "[!] Failed to download $DriversZipFile";
     exit 1;
 }
 
