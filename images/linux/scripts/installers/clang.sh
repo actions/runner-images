@@ -43,7 +43,6 @@ apt-get update -y
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
 
-# Install Clang 8 and 9
 versions=(
     "6.0"
     "8"
