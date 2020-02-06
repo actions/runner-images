@@ -8,31 +8,17 @@
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/apt.sh
 
-function InstallClang6_0 {
-    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
-    apt-add-repository "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-6.0 main"
-    apt-get update
-    apt-get install -y clang-6.0 lldb-6.0 lld-6.0
-
-    # Run tests to determine that the software installed as expected
-    echo "Testing to make sure that script performed as expected, and basic scenarios work"
-    for cmd in clang-6.0 clang++-6.0; do
-        if ! command -v $cmd; then
-            echo "$cmd was not installed"
-            exit 1
-        fi
-    done
-
-    # Document what was added to the image
-    echo "Lastly, documenting what we added to the metadata file"
-    DocumentInstalledItem "Clang 6.0 ($(clang-6.0 --version | head -n 1 | cut -d ' ' -f 3 | cut -d '-' -f 1))"
-}
-
 function InstallClang {
     version=$1
 
     echo "Installing clang-$version..."
-    ./llvm.sh $version
+    # Clang 6.0 is not supported by automatic installation script (`llvm.sh`)
+    # Thus we have to install it explicitly
+    if [[ $version == 6* ]]; then
+        apt-get install -y "clang-$version" "lldb-$version" "lld-$version"
+    else
+        ./llvm.sh $version
+    fi
 
     # Run tests to determine that the software installed as expected
     echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -49,11 +35,9 @@ function InstallClang {
 }
 
 # Install Clang compiler
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+apt-add-repository "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-6.0 main"
 apt-get update -y
-
-# Clang 6.0 is not supported by automatic installation script (`llvm.sh`)
-# Thus we have to install it explicitly
-InstallClang6_0
 
 # Download script for automatic installation
 wget https://apt.llvm.org/llvm.sh
@@ -61,6 +45,7 @@ chmod +x llvm.sh
 
 # Install Clang 8 and 9
 versions=(
+    "6.0"
     "8"
     "9"
 )

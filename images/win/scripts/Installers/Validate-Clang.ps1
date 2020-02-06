@@ -34,7 +34,7 @@ else
 # InstalledDir: C:\Program Files\LLVM\bin
 
 $SoftwareName = "Clang"
-$(clang --version).Split([System.Environment]::NewLine)[0] -match "\d\.\d\.\d"
+$(clang --version).Split([System.Environment]::NewLine)[0] -match "\d+\.\d+\.\d+"
 $Version = $matches[0]
 
 $Description = @"
