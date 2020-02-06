@@ -34,11 +34,6 @@ for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
     echo "Determing if .NET Core ($latest_package) is installed"
     if ! IsInstalled $latest_package; then
         echo "Could not find .NET Core ($latest_package), installing..."
-        #curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-        #mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-        #sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'
-        #apt-get install apt-transport-https
-        #apt-get update
         apt-get install $latest_package -y
     else
         echo ".NET Core ($latest_package) is already installed"
