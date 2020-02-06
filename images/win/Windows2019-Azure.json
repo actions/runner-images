@@ -26,9 +26,9 @@
         "install_password": null,
         "capture_name_prefix": "packer",
         "image_version": "dev",
-        "toolcache_registry": "https://buildcanary.pkgs.visualstudio.com/PipelineCanary/_packaging/hostedtoolcache/npm/registry/"
+        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
     },
-    "sensitive-variables": ["install_password", "ssh_password", "client_secret"],
+    "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
         {
             "name": "vhd",
@@ -252,13 +252,13 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolcache.json",
+            "source": "{{template_dir}}/toolcache-2019.json",
             "destination": "{{user `root_folder`}}/toolcache.json"
         },
         {
             "type": "powershell",
             "environment_vars":[
-                "TOOLCACHE_REGISTRY={{ user `toolcache_registry` }}",
+                "GITHUB_FEED_TOKEN={{ user `github_feed_token` }}",
                 "ROOT_FOLDER={{user `root_folder`}}"
             ],
             "scripts":[
@@ -326,6 +326,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Edge.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Firefox.ps1"
             ]
         },
@@ -348,6 +354,12 @@
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-VSWhere.ps1"
+            ]
         },
         {
             "type": "powershell",
@@ -446,8 +458,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "BOOST_VERSIONS=1.69.0",
-                "BOOST_DEFAULT=1.69.0"
+                "BOOST_VERSIONS=1.69.0,1.72.0",
+                "BOOST_DEFAULT=1.72.0"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Boost.ps1"
@@ -581,8 +593,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "BOOST_VERSIONS=1.69.0",
-                "BOOST_DEFAULT=1.69.0"
+                "BOOST_VERSIONS=1.69.0,1.72.0",
+                "BOOST_DEFAULT=1.72.0"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Boost.ps1"
@@ -622,6 +634,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Chrome.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Edge.ps1"
             ]
         },
         {
@@ -760,6 +778,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Vcpkg.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-VSWhere.ps1"
             ]
         },
         {

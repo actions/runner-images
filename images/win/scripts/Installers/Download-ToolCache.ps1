@@ -8,17 +8,44 @@ Function Install-NpmPackage {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
-        [System.String]
-        $Name,
+        [System.String] $PackageName,
         [Parameter(Mandatory=$true)]
-        [System.String]
-        $NpmRegistry
+        [System.Uri] $FeedPrefix
     )
 
-    Write-Host "Installing npm '$Name' package from '$NpmRegistry'"
+    Push-Location -Path $env:TEMP
 
-    npm install $Name --registry=$NpmRegistry
+    $FeedUri = $FeedPrefix.AbsoluteUri
+
+    Write-Host "Installing npm $PackageName from ${FeedUri}"
+    npm install $PackageName --registry "${FeedUri}"
+
+    if($LASTEXITCODE) {
+        Write-Host "$PackageName installation failure;  Error: ${LASTEXITCODE}"
+
+        exit 1
+    }
+
+    Pop-Location
 }
+
+Function NPMFeed-AuthSetup {
+    param(
+        [Parameter(Mandatory=$true)]
+        [System.String] $AccessToken,
+        [Parameter(Mandatory=$true)]
+        [System.Uri] $FeedPrefix
+    )
+
+    $FeedHost = $FeedPrefix.Host
+
+    Write-Host "Configure auth for github package registry"
+    $npmrcContent = "//${FeedHost}/:_authToken=${AccessToken}"
+    $npmrcContent | Out-File -FilePath "$($env:TEMP)/.npmrc" -Encoding utf8
+}
+
+$FeedPrefix = "https://npm.pkg.github.com"
+$AccessToken = $env:GITHUB_FEED_TOKEN
 
 # HostedToolCache Path
 $Dest = "C:/"
@@ -33,12 +60,14 @@ setx AGENT_TOOLSDIRECTORY $ToolsDirectory /M
 $ToolVersionsFileContent = Get-Content -Path "$env:ROOT_FOLDER/toolcache.json" -Raw
 $ToolVersions = ConvertFrom-Json -InputObject $ToolVersionsFileContent
 
+NPMFeed-AuthSetup -AccessToken $AccessToken -FeedPrefix $FeedPrefix
+
 $ToolVersions.PSObject.Properties | ForEach-Object {
     $PackageName = $_.Name
     $PackageVersions = $_.Value
     $NpmPackages = $PackageVersions | ForEach-Object { "$PackageName@$_" }
     foreach($NpmPackage in $NpmPackages) {
-        Install-NpmPackage -Name $NpmPackage -NpmRegistry $env:TOOLCACHE_REGISTRY
+        Install-NpmPackage -PackageName $NpmPackage -FeedPrefix $FeedPrefix
     }
 }
 

@@ -9,7 +9,7 @@ source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/apt.sh
 
 # Install KIND
-KIND_VERSION="v0.5.1"
+KIND_VERSION="v0.7.0"
 
 curl -L -o /usr/local/bin/kind "https://github.com/kubernetes-sigs/kind/releases/download/${KIND_VERSION}/kind-linux-amd64"
 chmod +x /usr/local/bin/kind

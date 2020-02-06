@@ -21,9 +21,9 @@
         "vm_size": "Standard_DS2_v2",
         "capture_name_prefix": "packer",
         "image_version": "dev",
-        "toolcache_registry": "https://buildcanary.pkgs.visualstudio.com/PipelineCanary/_packaging/hostedtoolcache/npm/registry/"
+        "github_feed_token": null
     },
-    "sensitive-variables": ["client_secret"],
+    "sensitive-variables": ["client_secret", "github_feed_token"],
     "builders": [
         {
             "type": "azure-arm",
@@ -80,9 +80,10 @@
                 "systemctl disable apt-daily.timer",
                 "systemctl disable apt-daily-upgrade.timer",
                 "systemctl disable apt-daily-upgrade.service",
-                "echo '* soft nofile 50000 \n* hard nofile 50000' >> /etc/security/limits.conf",
+                "echo '* soft nofile 65536 \n* hard nofile 65536' >> /etc/security/limits.conf",
                 "echo 'session required pam_limits.so' >> /etc/pam.d/common-session",
-                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session-noninteractive"
+                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session-noninteractive",
+                "echo 'DefaultLimitNOFILE=65536' >> /etc/systemd/system.conf"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
@@ -155,6 +156,7 @@
                 "{{template_dir}}/scripts/installers/phantomjs.sh",
                 "{{template_dir}}/scripts/installers/1804/php.sh",
                 "{{template_dir}}/scripts/installers/pollinate.sh",
+                "{{template_dir}}/scripts/installers/postgresql.sh",
                 "{{template_dir}}/scripts/installers/1804/powershellcore.sh",
                 "{{template_dir}}/scripts/installers/ruby.sh",
                 "{{template_dir}}/scripts/installers/rust.sh",
@@ -163,7 +165,8 @@
                 "{{template_dir}}/scripts/installers/subversion.sh",
                 "{{template_dir}}/scripts/installers/terraform.sh",
                 "{{template_dir}}/scripts/installers/vcpkg.sh",
-                "{{template_dir}}/scripts/installers/zeit-now.sh"
+                "{{template_dir}}/scripts/installers/zeit-now.sh",
+                "{{template_dir}}/scripts/installers/dpkg-config.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
@@ -190,8 +193,8 @@
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "TOOLCACHE_REGISTRY={{user `toolcache_registry`}}",
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
