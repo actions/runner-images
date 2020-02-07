@@ -4,63 +4,49 @@
 ################################################################################
 
 Import-Module -Name ImageHelpers -Force
-# https://github.com/mozilla/geckodriver/releases/latest - geckodriver for firefox
 $temp_install_dir = 'C:\Windows\Installer'
 New-Item -Path $temp_install_dir -ItemType Directory -Force
 
-$firefoxJson = Invoke-WebRequest  "https://product-details.mozilla.org/1.0/firefox_versions.json" | ConvertFrom-Json
+$versionsJson = Invoke-WebRequest  "https://product-details.mozilla.org/1.0/firefox_versions.json" | ConvertFrom-Json
+$latestVersion = $($versionsJson.LATEST_FIREFOX_VERSION)
+Write-Host "Firefox latest version: $latestVersion"
 
-Write-Host "Firefox json"
-Write-Host $firefoxJson
+# url for latest version of firefox
+$urlLatestVersion = "https://download.mozilla.org/?product=firefox-latest&os=win64&lang=en-US"
+Install-EXE -Url $urlLatestVersion -Name "Firefox Setup $latestVersion" -ArgumentList ("/silent", "/install")
 
-$latestVersion = $($firefoxJson.LATEST_FIREFOX_VERSION)
-Write-Host "Firefox latest version $latestVersion"
-
-Install-EXE -Url "https://seleniumwebdrivers.blob.core.windows.net/knownfirefoxversion/FirefoxSetup.exe" -Name "Firefox Setup $latestVersion" -ArgumentList "-ms"
-
-$path = '{0}\Program Files\Mozilla Firefox\' -f $env:SystemDrive;
-New-Item -path $path -Name 'mozilla.cfg' -Value '//
+# Disable autoupdate
+$firefoxDirectoryPath = '{0}\Program Files\Mozilla Firefox\' -f $env:SystemDrive;
+New-Item -path $firefoxDirectoryPath -Name 'mozilla.cfg' -Value '//
 pref("browser.shell.checkDefaultBrowser", false);
 pref("app.update.enabled", false);' -ItemType file -force
 
-$path = '{0}\Program Files\Mozilla Firefox\defaults\pref\' -f $env:SystemDrive;
-New-Item -path $path -Name 'local-settings.js' -Value 'pref("general.config.obscure_value", 0);
+$firefoxPreferencesFolder = Join-Path $firefoxDirectoryPath "defaults\pref"
+New-Item -path $firefoxPreferencesFolder -Name 'local-settings.js' -Value 'pref("general.config.obscure_value", 0);
 pref("general.config.filename", "mozilla.cfg");' -ItemType file -force
 
-# section for installing selenium web driver
-Write-Host "Install selenium"
-
-gci env:* | sort-object name
-
+Write-Host "Install Firefox WebDriver"
 $DestinationPath = "$($env:SystemDrive)\";
 
 $geckodriverJson = Invoke-RestMethod "https://api.github.com/repos/mozilla/geckodriver/releases/latest"
-  $geckodriverJson.assets | ForEach-Object -Process {
-      if ($_.name -Match "win64")
-      {
-          $name = $_.name
-          $adress = $_.browser_download_url
-      }
-      }
+$geckodriverWindowsAsset = $geckodriverJson.assets | Where-Object { $_.name -Match "win64" } | Select-Object -First 1
+
+Write-Host "Geckodriver version: $($geckodriverJson.tag_name)"
 
 
-Write-Host "Name of firefox zip file $name"
-Write-Host "Install url $adress"
-
-$DriversZipFile = $name
-Write-Host "Destination path: [$DestinationPath]";
+$DriversZipFile = $geckodriverWindowsAsset.name
 Write-Host "Selenium drivers download and install...";
 
-$FireFoxDriverPath = "${DestinationPath}SeleniumWebDrivers\GeckoDriver";
+$FirefoxDriverPath = "${DestinationPath}SeleniumWebDrivers\GeckoDriver";
 
-# Install Fire Fox Web Driver
+# Install Firefox Web Driver
 Write-Host "FireFox driver download...."
 if (-not (Test-Path -Path $FireFoxDriverPath)) {
     New-Item -Path $FireFoxDriverPath -ItemType "directory"
 }
 
 $DestFile = "$FireFoxDriverPath\$name"
-$EdgeDriverDownloadUrl = $adress
+$EdgeDriverDownloadUrl = $geckodriverWindowsAsset.browser_download_url
 try{
     Invoke-WebRequest -Uri $EdgeDriverDownloadUrl -OutFile $DestFile
 } catch {
