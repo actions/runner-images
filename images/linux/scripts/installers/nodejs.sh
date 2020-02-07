@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/document.sh
 
 # Install LTS Node.js and related build tools
-curl -sL https://git.io/n-install | bash -s -- -ny -
+curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-install | bash -s -- -ny -
 ~/n/bin/n lts
 npm install -g grunt gulp n parcel-bundler typescript
 npm install -g --save-dev webpack webpack-cli
