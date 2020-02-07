@@ -31,11 +31,15 @@ wget "$URL" -O geckodriver.tar.gz
 tar -xzf geckodriver.tar.gz
 rm geckodriver.tar.gz
 
-GECKODRIVER_BIN="/usr/bin/geckodriver"
+GECKODRIVER_DIR="/usr/local/share/gecko_driver"
+GECKODRIVER_BIN="$GECKODRIVER_DIR/geckodriver"
+
+mkdir -p $GECKODRIVER_DIR
 mv "geckodriver" $GECKODRIVER_BIN
-chown root:root $GECKODRIVER_BIN
+
 chmod +x $GECKODRIVER_BIN
-echo "GECKOWEBDRIVER=$GECKODRIVER_BIN" | tee -a /etc/environment
+ln -s "$GECKODRIVER_BIN" /usr/bin/
+echo "GECKOWEBDRIVER=$GECKODRIVER_DIR" | tee -a /etc/environment
 
 # Run tests to determine that the geckodriver installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
