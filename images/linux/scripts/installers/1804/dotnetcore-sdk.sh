@@ -30,6 +30,9 @@ mksamples()
 
 set -e
 
+# Disable telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
 for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
     echo "Determing if .NET Core ($latest_package) is installed"
     if ! IsInstalled $latest_package; then
