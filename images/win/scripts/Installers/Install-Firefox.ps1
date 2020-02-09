@@ -13,7 +13,7 @@ Write-Host "Firefox latest version: $latestVersion"
 
 # url for latest version of firefox
 $urlLatestVersion = "https://download.mozilla.org/?product=firefox-latest&os=win64&lang=en-US"
-Install-EXE -Url $urlLatestVersion -Name "Firefox Setup $latestVersion" -ArgumentList ("/silent", "/install")
+Install-EXE -Url $urlLatestVersion -Name "Firefox Setup $latestVersion.exe" -ArgumentList "ms"
 
 # Disable autoupdate
 $firefoxDirectoryPath = '{0}\Program Files\Mozilla Firefox\' -f $env:SystemDrive;
