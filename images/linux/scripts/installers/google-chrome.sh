@@ -39,11 +39,14 @@ wget "https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/c
 unzip chromedriver_linux64.zip
 rm chromedriver_linux64.zip
 
-CHROMEDRIVER_BIN="/usr/bin/chromedriver"
+CHROMEDRIVER_DIR="/usr/local/share/chrome_driver"
+CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
+
+mkdir -p $CHROMEDRIVER_DIR
 mv "chromedriver" $CHROMEDRIVER_BIN
-chown root:root $CHROMEDRIVER_BIN
 chmod +x $CHROMEDRIVER_BIN
-echo "CHROMEWEBDRIVER=$CHROMEDRIVER_BIN" | tee -a /etc/environment
+ln -s "$CHROMEDRIVER_BIN" /usr/bin/
+echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment
 
 # Run tests to determine that the chromedriver installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"

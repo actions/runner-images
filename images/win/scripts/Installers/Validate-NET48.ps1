@@ -22,6 +22,7 @@ $SoftwareName = ".NET 4.8"
 
 $Description = @"
 _Version:_ $version
+_Path:_ ${Env:ProgramFiles(x86)}\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

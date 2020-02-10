@@ -126,6 +126,7 @@ _Environment:_
 ## .NET 4.8
 
 _Version:_ 4.8.03761
+_Path:_ C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
 
 ## Windows Driver Kit
 

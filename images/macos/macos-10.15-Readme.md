@@ -1,34 +1,34 @@
 ---
 title: GitHub Hosted Github Mojave 10.15 VM Image Updates
 description: Software used on build machines
-date: Week 4
+date: Week 6
 ---
 
-#### ⚠️ We are going to change the default Xcode to 11.3.1 next week.
-#### Xcode 11.2.1 set by default
+#### Xcode 11.3.1 set by default
 ## Operating System
 
-- OS X 10.15.2 (19C57) **Catalina**
+- OS X 10.15.3 (19D76) **Catalina**
 
 ## Installed Software
 ### Language and Runtime
 - Java 1.7: (Zulu 7.36.0.5-CA-macosx) (build 1.7.0_252-b10)
-- Java 1.8: (Zulu 8.44.0.9-CA-macosx) (build 1.8.0_242-b20) (default)
+- Java 1.8: (Zulu 8.44.0.11-CA-macosx) (build 1.8.0_242-b20) (default)
 - Java 11: Zulu11.37+17-CA (build 11.0.6+10-LTS)
 - Java 12: Zulu12.3+11-CA (build 12.0.2+3)
 - Java 13: Zulu13.29+9-CA (build 13.0.2+6-MTS)
+- Rust 1.41.0
 - Node.js v12.14.1
 - NVM 0.33.11
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.18.1 v12.14.1 v13.6.0
-- PowerShell 6.2.3
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.18.1 v12.14.1 v13.7.0
+- PowerShell 6.2.4
 - Python 2.7.17
 - Python 3.7.6
 - Ruby 2.6.5p114
-- Rust 1.40.0
 - .NET SDK 2.0.0 3.0.100 3.0.101 3.0.102 3.1.100 3.1.101
-- Go 1.13.6
+- Go 1.13.7
 
 ### Package Management
+- Rustup 1.21.1
 - Bundler version 2.1.4
 - Carthage 0.34.0
 - CocoaPods 1.8.4
@@ -38,34 +38,35 @@ date: Week 4
 - NuGet 5.3.1.6268
 - Pip 19.3.1 (python 2.7)
 - Pip 19.3.1 (python 3.7)
-- Rustup 1.21.1
 - Miniconda 4.7.12
 - RubyGems 3.1.2
 
 ### Project Management
 - Apache Maven 3.6.3
-- Gradle 6.1
+- Gradle 6.1.1
 
 ### Utilities
 - Curl 7.68.0
 - Git: 2.25.0
-- Git LFS: 2.9.2
+- Git LFS: 2.10.0
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.13.0
-- GNU parallel 20191222
+- GNU parallel 20200122
 - OpenSSL 1.0.2t  10 Sep 2019
 - jq 1.6
 - gpg (GnuPG) 2.2.19
 
 ### Tools
-- Fastlane 2.140.0
-- Cmake 3.16.2
+- Fastlane 2.141.0
+- Cmake 3.16.3
 - App Center CLI 2.3.3
 - Azure CLI 2.0.80
 
 ### Browsers
 - Google Chrome 79.0.3945.130
 - ChromeDriver 79.0.3945.36
+- Microsoft Edge 79.0.309.71
+- MSEdgeDriver 79.0.309.71
 
 ### Toolcache
 #### Ruby
@@ -82,12 +83,12 @@ date: Week 4
 - 3.8.1
 
 #### PyPy
-- 2.7.13
+- 2.7.17
 - 3.6.9
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.4.1.4
+- 8.4.3.12
 
 #### Mono
 - 6.6.0.155
@@ -115,7 +116,7 @@ date: Week 4
 ### Xcode
 | Version                        | Build                          | Path                           |
 | ------------------------------ | ------------------------------ | ------------------------------ |
-| 11.3.1                         | 11C505                         | /Applications/Xcode_11.3.1.app |
+| 11.3.1 (default)               | 11C505                         | /Applications/Xcode_11.3.1.app |
 | 11.3                           | 11C29                          | /Applications/Xcode_11.3.app   |
 | 11.2.1                         | 11B500                         | /Applications/Xcode_11.2.1.app |
 | 11.2                           | 11B52                          | /Applications/Xcode_11.2.app   |
@@ -209,6 +210,7 @@ date: Week 4
 | build-tools-29.0.0                       | Android SDK Build-Tools, Revision 29.0.0 |
 | build-tools-29.0.1                       | Android SDK Build-Tools, Revision 29.0.1 |
 | build-tools-29.0.2                       | Android SDK Build-Tools, Revision 29.0.2 |
+| build-tools-29.0.3                       | Android SDK Build-Tools, Revision 29.0.3 |
 
 #### Android Utils
 | Package Name     | Version          |
