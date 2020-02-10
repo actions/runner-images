@@ -63,8 +63,4 @@ Remove-Item -Path $DestFile -Force
 Write-Host "Setting the environment variables"
 Add-MachinePathItem -PathItem $FireFoxDriverPath
 
-$regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\'
-$PathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path'
-$PathValue += ";$FireFoxDriverPath"
-Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $PathValue
 exit 0
