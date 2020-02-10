@@ -276,6 +276,9 @@ php composer-setup.php
 sudo mv composer.phar /usr/bin/composer
 php -r "unlink('composer-setup.php');"
 
+# Add composer bin folder to path
+echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> /etc/skel/.bashrc
+
 # Install phpunit (for PHP)
 wget -q -O phpunit https://phar.phpunit.de/phpunit-7.phar
 chmod +x phpunit
