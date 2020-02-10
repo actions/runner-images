@@ -1,13 +1,13 @@
 #!/bin/bash
 ################################################################################
-##  File:  gcc.sh
-##  Desc:  Installs GNU C++
+##  File:  gfortran.sh
+##  Desc:  Installs GNU Fortran
 ################################################################################
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 
-function InstallGcc {
+function InstallFortran {
     version=$1
 
     echo "Installing $version..."
@@ -22,20 +22,19 @@ function InstallGcc {
 
     # Document what was added to the image
     echo "Documenting $version..."
-    DocumentInstalledItem "GNU C++ $($version --version | head -n 1 | cut -d ' ' -f 4)"
+    DocumentInstalledItem "GNU Fortran $($version --version | head -n 1 | cut -d ' ' -f 5)"
 }
 
-# Install GNU C++ compiler
+# Install GNU Fortran compiler
 add-apt-repository ppa:ubuntu-toolchain-r/test -y
 apt-get update -y
 
 versions=(
-    "g++-7"
-    "g++-8"
-    "g++-9"
+    "gfortran-8"
+    "gfortran-9"
 )
 
 for version in ${versions[*]}
 do
-    InstallGcc $version
+    InstallFortran $version
 done
