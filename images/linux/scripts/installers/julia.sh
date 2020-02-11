@@ -23,7 +23,7 @@ function GetLatestJuliaRelease () {
 
 function InstallJulia () {
     # Extract Major and Minor version from full version string
-    juliaMajorAndMinorVersion="$(sed 's/\.*[0-9]//3' <<< $1)"
+    juliaMajorAndMinorVersion="$(sed 's/\.[^.]*$//' <<< $1)"
 
     curl -sL "https://julialang-s3.julialang.org/bin/linux/x64/$juliaMajorAndMinorVersion/julia-$1-linux-x86_64.tar.gz" -o "julia-$1-linux-x86_64.tar.gz"
     mkdir -p "/usr/local/julia$juliaMajorAndMinorVersion"
