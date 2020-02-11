@@ -10,7 +10,7 @@ $temp_install_dir = 'C:\Windows\Installer'
 New-Item -Path $temp_install_dir -ItemType Directory -Force
 
 $versionsJson = Invoke-WebRequest  "https://product-details.mozilla.org/1.0/firefox_versions.json" | ConvertFrom-Json
-$latestVersion = $($versionsJson.LATEST_FIREFOX_VERSION)
+$latestVersion = $versionsJson.LATEST_FIREFOX_VERSION
 Write-Host "Firefox latest version: $latestVersion"
 
 # url for latest version of firefox
@@ -18,7 +18,7 @@ $urlLatestVersion = "https://download.mozilla.org/?product=firefox-${latestVersi
 Install-EXE -Url $urlLatestVersion -Name "Firefox Setup $latestVersion.exe" -ArgumentList ("/silent", "/install")
 
 # Disable autoupdate
-$firefoxDirectoryPath = Join-Path $env:SystemDrive "Program Files\Mozilla Firefox"
+$firefoxDirectoryPath = Join-Path $env:ProgramFiles "Mozilla Firefox"
 New-Item -path $firefoxDirectoryPath -Name 'mozilla.cfg' -Value '//
 pref("browser.shell.checkDefaultBrowser", false);
 pref("app.update.enabled", false);' -ItemType file -force
@@ -46,7 +46,7 @@ if (-not (Test-Path -Path $FireFoxDriverPath)) {
     New-Item -Path $FireFoxDriverPath -ItemType "directory"
 }
 
-$DestFile = "$FireFoxDriverPath\$DriversZipFile"
+$DestFile = Join-Path $FireFoxDriverPath $DriversZipFile
 $EdgeDriverDownloadUrl = $geckodriverWindowsAsset.browser_download_url
 try{
     Invoke-WebRequest -Uri $EdgeDriverDownloadUrl -OutFile $DestFile
