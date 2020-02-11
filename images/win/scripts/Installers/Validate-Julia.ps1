@@ -14,36 +14,12 @@ else
     exit 1
 }
 
-# Add details of available versions in Markdown
-$tmplMark = @"
-#### {0}
-
-_Environment:_
-* {1}: root directory of the Julia {0} installation
-
-"@
-
-$tmplMarkRoot = @"
-#### {0}
-
-_Environment:_
-* PATH: contains the location of julia.exe version {0}
-* {1}: root directory of the Julia {0} installation
-"@
-
+# Add description of the software to Markdown
 $SoftwareName = "Julia (x64)"
-$Description = New-Object System.Text.StringBuilder
-$juliaVersionsToInstall = $env:JULIA_VERSIONS.split(",")
+$juliaVersion = $(julia --version) -match "\d+\.\d+\.\d+"
 
-foreach($julia in $juliaVersionsToInstall) {
-    $juliaVersion = Get-JuliaVersion
-    if ($juliaVersion -eq $julia) {
-        if($julia -eq $env:JULIA_DEFAULT) {
-            $null = $Description.AppendLine(($tmplMarkRoot -f $juliaVersion))
-        } else {
-            $null = $Description.AppendLine(($tmplMark -f $juliaVersion))
-        }
-    }
-}
+$Description = @"
+_Version:_ $juliaVersion<br/>
+"@
 
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description.ToString()
+Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
