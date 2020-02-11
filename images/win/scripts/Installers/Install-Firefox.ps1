@@ -46,12 +46,12 @@ if (-not (Test-Path -Path $FireFoxDriverPath)) {
     New-Item -Path $FireFoxDriverPath -ItemType "directory"
 }
 
-$DestFile = "$FireFoxDriverPath\$name"
+$DestFile = "$FireFoxDriverPath\$DriversZipFile"
 $EdgeDriverDownloadUrl = $geckodriverWindowsAsset.browser_download_url
 try{
     Invoke-WebRequest -Uri $EdgeDriverDownloadUrl -OutFile $DestFile
 } catch {
-    Write-Error "[!] Failed to download $name"
+    Write-Error "[!] Failed to download $DriversZipFile"
     exit 1
 }
 
