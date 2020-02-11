@@ -9,7 +9,7 @@ Import-Module -Name PathHelpers -Force
 $temp_install_dir = 'C:\Windows\Installer'
 New-Item -Path $temp_install_dir -ItemType Directory -Force
 
-$versionsJson = Invoke-WebRequest  "https://product-details.mozilla.org/1.0/firefox_versions.json" | ConvertFrom-Json
+$versionsJson = Invoke-RestMethod  "https://product-details.mozilla.org/1.0/firefox_versions.json"
 $latestVersion = $versionsJson.LATEST_FIREFOX_VERSION
 Write-Host "Firefox latest version: $latestVersion"
 
