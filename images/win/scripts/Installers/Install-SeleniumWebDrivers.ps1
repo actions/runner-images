@@ -20,11 +20,21 @@ Remove-Item $DriversZipFile;
 
 $SeleniumWebDriverPath = Join-Path $DestinationPath "SeleniumWebDrivers"
 $IEDriverPathTemp = Join-Path $TempSeleniumDir 'IEDriver'
+
+if (-not (Test-Path -Path $SeleniumWebDriverPath)) {
+    New-Item -Path $SeleniumWebDriverPath -ItemType "directory"
+}
+
 Move-Item -Path "$IEDriverPathTemp" -Destination $SeleniumWebDriverPath
 
 
 # Reinstall Chrome Web Driver
 $ChromeDriverPath = "${DestinationPath}SeleniumWebDrivers\ChromeDriver";
+
+if (-not (Test-Path -Path $ChromeDriverPath)) {
+    New-Item -Path $ChromeDriverPath -ItemType "directory"
+}
+
 $RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
 $ChromePath = (Get-ItemProperty "$RegistryPath\chrome.exe").'(default)';
 [version]$ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion;
