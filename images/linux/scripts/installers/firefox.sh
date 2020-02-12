@@ -25,7 +25,7 @@ HOME=/root
 DocumentInstalledItem "Firefox ($(firefox --version))"
 
 # Download and unpack latest release of geckodriver
-URL=https:`curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest|grep 'browser_download_url.*linux64.tar.gz'|sed -e 's/^.*"https://'|sed -e 's/"//g'`
+URL=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest|grep 'browser_download_url.*linux64.tar.gz'|sed -E 's/^.*(https:.+)".*/\1/g')
 echo "Downloading geckodriver $URL..."
 wget "$URL" -O geckodriver.tar.gz
 tar -xzf geckodriver.tar.gz
