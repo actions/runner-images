@@ -1,6 +1,6 @@
 # Windows Server 2016
 
-The following software is installed on machines with the 20200120.1 update.
+The following software is installed on machines with the 20200211.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -19,26 +19,26 @@ _Environment:_
 
 ## Docker-compose
 
-_Version:_ 1.25.1<br/>
+_Version:_ 1.25.3<br/>
 _Environment:_
 * PATH: contains location of docker-compose.exe
 
 ## Powershell Core
 
-_Version:_ 6.2.3<br/>
+_Version:_ 6.2.4<br/>
 
 ## Docker images
 
 The following container images have been cached:
+* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:10ea07b6576daae149fe5ec7d0dddc8da673f77d171e2143addeae0b5577a12e)
 * mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:a1bd1a6dc00f2734b5071b9295f715f36a653e4b2d259c1a4a4d9e8cd6f3ade8)
 * mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:7e81f462be36ba1362062306426c65547e6d63b2eab0b5583808581081393a79)
-* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:42be24b8810c861cc1b3fe75c5e99f75061cb45fdbae1de46d151c18cc8e6a9a)
 * microsoft/aspnetcore-build:1.0-2.0 (Digest: sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c)
 * mcr.microsoft.com/windows/nanoserver:10.0.14393.953 (Digest: sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268)
 
 ## Visual Studio 2017 Enterprise
 
-_Version:_ VisualStudio/15.9.19+28307.1000<br/>
+_Version:_ VisualStudio/15.9.20+28307.1033<br/>
 _Location:_ C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise
 
 The following workloads including required and recommended components are installed with Visual Studio 2017:
@@ -130,7 +130,7 @@ In addition the following optional components are installed:
 
 ## SQL Server Data Tools for VS 2017
 
-_Version:_ 15.1.61906.3130<br/>
+_Version:_ 15.1.62002.1090<br/>
 
 The following components are installed:
 
@@ -149,6 +149,7 @@ _Environment:_
 ## .NET 4.8
 
 _Version:_ 4.8.03761
+_Path:_ C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
 
 ## Windows Driver Kit
 
@@ -156,8 +157,8 @@ _Version:_ 10.0.17763.0<br/>
 
 ## Azure Service Fabric
 
-_SDK Version:_ 4.0.457.9590<br/>
-_Runtime Version:_ 7.0.457.9590
+_SDK Version:_ 4.0.466.9590<br/>
+_Runtime Version:_ 7.0.466.9590
 
 ## WinAppDriver
 
@@ -325,6 +326,32 @@ _Location:_ C:\Program Files (x86)\Android\android-sdk\platforms\android-21
 _Location:_ C:\Program Files (x86)\Android\android-sdk\platforms\android-19
 
 
+## Azure/AzureRM Powershell modules
+
+#### 2.1.0
+
+This version is installed and is available via `Get-Module -ListAvailable`
+#### 3.8.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_3.8.0\AzureRM\3.8.0\AzureRM.psd1
+
+#### 4.2.1
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_4.2.1\AzureRM\4.2.1\AzureRM.psd1
+
+#### 5.1.1
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_5.1.1\AzureRM\5.1.1\AzureRM.psd1
+
+#### 6.7.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_6.7.0\AzureRM\6.7.0\AzureRM.psd1
+
+
 ## TLS12
 
 _Version:_ 1.2<br/>
@@ -332,17 +359,13 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.0.80
+_Version:_ 2.0.81
 _Environment:_
 * PATH: contains location of az.cmd
 
 ## Azure DevOps Cli extension
 
 _Version:_ azure-devops                      0.17.0
-
-## Python
-
-_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.1 (x64)<br/>
 
 ## Python
 
@@ -411,20 +434,25 @@ _Environment:_
 
 ## Boost
 
-#### 
+#### 1.69.0
 
-* PATH: contains the location of Boost version 
-* BOOST_ROOT: root directory of the Boost version  installation
-* BOOST_ROOT_1_69_0: root directory of the Boost version  installation
+* PATH: contains the location of Boost version 1.69.0
+* BOOST_ROOT: root directory of the Boost version 1.69.0 installation
+* BOOST_ROOT_1_69_0: root directory of the Boost version 1.69.0 installation
+#### 1.72.0
+
+_Environment:_
+* BOOST_ROOT_1_72_0: root directory of the Boost version 1.72.0 installation
+
 
 
 ## PHP (x64)
 
-#### 7.4.1
+#### 7.4.2
 
 _Environment:_
-* PATH: contains the location of php.exe version 7.4.1
-* PHPROOT: root directory of the PHP 7.4.1 installation
+* PATH: contains the location of php.exe version 7.4.2
+* PHPROOT: root directory of the PHP 7.4.2 installation
 
 ## Ruby (x64)
 
@@ -432,10 +460,11 @@ _Environment:_
 _Environment:_
 * Location: C:\hostedtoolcache\windows\Ruby\2.5.7\x64\bin
 * PATH: contains the location of ruby.exe version 2.5.7p206
+* Gem Version: 3.1.2
 
 ## Rust (64-bit)
 
-#### 1.40.0
+#### 1.41.0
 _Location:_ C:\Rust\.cargo\bin
 _Environment:_
 * PATH: contains the location of rustc.exe
@@ -453,7 +482,12 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-79.0.3945.130
+80.0.3987.100
+
+## Microsoft Edge
+
+_version:_
+80.0.361.50
 
 ## Mozilla Firefox
 
@@ -466,7 +500,7 @@ _version:_
 #### Chrome Driver
 
 _version:_
-79.0.3945.36
+3.8.0.0
 
 _Environment:_
 * ChromeWebDriver: location of chromedriver.exe
@@ -482,21 +516,29 @@ _Environment:_
 #### IE Driver
 
 _version:_
-3.8.0.0
+80.0.3987.16
 
 _Environment:_
 * IEWebDriver: location of IEDriverServer.exe
 
+#### Microsoft Edge Driver
+
+_version:_
+79.0.309.71
+
+_Environment:_
+* EdgeWebDriver: location of msedgedriver.exe
+
 
 ## Node.js
 
-_Version:_ 12.14.1<br/>
+_Version:_ 12.15.0<br/>
 _Architecture:_ x64<br/>
 _Environment:_
 * PATH: contains location of node.exe<br/>
 * Gulp CLI version: 2.2.0 Local version: Unknown<br/>
 * Grunt grunt-cli v1.3.2<br/>
-* Yarn 1.21.1<br/>
+* Yarn 1.22.0<br/>
 
 
 ## npm
@@ -517,9 +559,9 @@ _Environment:_
 
 _Location:_ C:\Program Files\Java\zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64
 
-#### 1.7.0_232
+#### 11.0.4
 
-_Location:_ 
+_Location:_ C:\Program Files\Java\zulu-11-azure-jdk_11.33.15-11.0.4-win_x64
 
 ## Ant
 
@@ -685,7 +727,7 @@ _Environment:_
 
 ## Azure CosmosDb Emulator
 
-_Version:_ 2.7.2.0<br/>
+_Version:_ 2.9.1.0<br/>
 _Location:_ C:\Program Files\Azure Cosmos DB Emulator\
 
 ## 7zip
@@ -722,7 +764,7 @@ _Version:_ 6.49.0<br/>
 
 ## Vcpkg
 
-_Version:_ 2020.01.17-nohash<br/>
+_Version:_ 2020.02.04-nohash<br/>
 _Environment:_
 * PATH: contains location of the vcpkg directory
 * VCPKG_INSTALLATION_ROOT: root directory of the vcpkg installation
@@ -735,6 +777,6 @@ _Environment:_
 
 ## Kind
 
-_Version:_ v0.5.1<br/>
+_Version:_ kind v0.7.0 go1.13.6 windows/amd64<br/>
 _Environment:_
 * PATH: contains location of kind.exe
