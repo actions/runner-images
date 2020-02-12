@@ -256,6 +256,3 @@ date: Week 7
 | Intel x86 Emulator Accelerator (HAXM installer) | 7.5.1                                           |
 
 
-
-
-
