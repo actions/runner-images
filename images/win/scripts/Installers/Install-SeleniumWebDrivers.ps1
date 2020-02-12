@@ -14,12 +14,19 @@ catch {
     exit 1;
 }
 
-Expand-Archive -Path $DriversZipFile -DestinationPath $DestinationPath -Force;
-Remove-Item $DriversZipFile;
+Expand-Archive -Path $DriversZipFile -DestinationPath $env:TEMP -Force;
 
+$SeleniumWebDriverPath = Join-Path $DestinationPath "SeleniumWebDrivers"
+Remove-Item $DriversZipFile;
 $ChromeDriverPath = "${DestinationPath}SeleniumWebDrivers\ChromeDriver";
-Write-Host "Chrome driver path: [$ChromeDriverPath]";
-Remove-Item -Path "$ChromeDriverPath\*" -Force;
+$EdgeDriverPathTemp = Join-Path $Env:TEMP 'EdgeDriver'
+$IEDriverPathTemp = Join-Path $Env:TEMP 'IEDriver'
+$ChromeDriverPathTemp = Join-Path $Env:TEMP 'ChromeDriver'
+Remove-Item -Path "$ChromeDriverPathTemp\*" -Force;
+Move-Item -Path "$EdgeDriverPathTemp" -Destination $SeleniumWebDriverPath
+Move-Item -Path "$IEDriverPathTemp" -Destination $SeleniumWebDriverPath
+Move-Item -Path "$ChromeDriverPathTemp" -Destination $SeleniumWebDriverPath
+
 
 # Reinstall Chrome Web Driver
 $RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
@@ -71,7 +78,6 @@ Remove-Item -Path $DestFile -Force
 Write-Host "Setting the environment variables"
 
 setx IEWebDriver "C:\SeleniumWebDrivers\IEDriver" /M;
-setx GeckoWebDriver "C:\SeleniumWebDrivers\GeckoDriver" /M;
 setx ChromeWebDriver "$ChromeDriverPath" /M;
 setx EdgeWebDriver "$EdgeDriverPath" /M;
 

@@ -4,7 +4,6 @@
 ################################################################################
 
 Import-Module -Name ImageHelpers -Force
-Import-Module -Name PathHelpers -Force
 
 $temp_install_dir = 'C:\Windows\Installer'
 New-Item -Path $temp_install_dir -ItemType Directory -Force
@@ -47,9 +46,9 @@ if (-not (Test-Path -Path $FireFoxDriverPath)) {
 }
 
 $DestFile = Join-Path $FireFoxDriverPath $DriversZipFile
-$EdgeDriverDownloadUrl = $geckodriverWindowsAsset.browser_download_url
+$FireFoxDriverDownloadUrl = $geckodriverWindowsAsset.browser_download_url
 try{
-    Invoke-WebRequest -Uri $EdgeDriverDownloadUrl -OutFile $DestFile
+    Invoke-WebRequest -Uri $FireFoxDriverDownloadUrl -OutFile $DestFile
 } catch {
     Write-Error "[!] Failed to download $DriversZipFile"
     exit 1
