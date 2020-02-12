@@ -16,7 +16,7 @@ else
 
 # Add description of the software to Markdown
 $SoftwareName = "Julia (x64)"
-$juliaVersion = $(julia --version) -match "\d+\.\d+\.\d+"
+$juliaVersion = $(julia --version).split() -match "\d+\.\d+\.\d+"
 
 $Description = @"
 _Version:_ $juliaVersion<br/>
