@@ -3,4 +3,4 @@
 ##  Desc:  Install Julia
 ################################################################################
 
-choco install julia -y
+choco install julia -y --ia "/D=C:\Julia"
