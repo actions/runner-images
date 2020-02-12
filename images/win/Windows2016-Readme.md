@@ -1,6 +1,6 @@
 # Windows Server 2016
 
-The following software is installed on machines with the 20200120.1 update.
+The following software is installed on machines with the 20200130.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -19,13 +19,14 @@ _Environment:_
 
 ## Docker-compose
 
-_Version:_ 1.25.1<br/>
+_Version:_ 1.25.3<br/>
 _Environment:_
 * PATH: contains location of docker-compose.exe
 
 ## Powershell Core
 
-_Version:_ 6.2.3<br/>
+_Version:_ 6.2.4
+<br/>
 
 ## Docker images
 
@@ -342,10 +343,6 @@ _Version:_ azure-devops                      0.17.0
 
 ## Python
 
-_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.1 (x64)<br/>
-
-## Python
-
 _Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.1 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.1 (x86)<br/>
 
 ## PyPy
@@ -411,20 +408,25 @@ _Environment:_
 
 ## Boost
 
-#### 
+#### 1.69.0
 
-* PATH: contains the location of Boost version 
-* BOOST_ROOT: root directory of the Boost version  installation
-* BOOST_ROOT_1_69_0: root directory of the Boost version  installation
+* PATH: contains the location of Boost version 1.69.0
+* BOOST_ROOT: root directory of the Boost version 1.69.0 installation
+* BOOST_ROOT_1_69_0: root directory of the Boost version 1.69.0 installation
+#### 1.72.0
+
+_Environment:_
+* BOOST_ROOT_1_72_0: root directory of the Boost version 1.72.0 installation
+
 
 
 ## PHP (x64)
 
-#### 7.4.1
+#### 7.4.2
 
 _Environment:_
-* PATH: contains the location of php.exe version 7.4.1
-* PHPROOT: root directory of the PHP 7.4.1 installation
+* PATH: contains the location of php.exe version 7.4.2
+* PHPROOT: root directory of the PHP 7.4.2 installation
 
 ## Ruby (x64)
 
@@ -432,6 +434,7 @@ _Environment:_
 _Environment:_
 * Location: C:\hostedtoolcache\windows\Ruby\2.5.7\x64\bin
 * PATH: contains the location of ruby.exe version 2.5.7p206
+* Gem Version: 3.1.2
 
 ## Rust (64-bit)
 
@@ -517,9 +520,9 @@ _Environment:_
 
 _Location:_ C:\Program Files\Java\zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64
 
-#### 1.7.0_232
+#### 11.0.4
 
-_Location:_ 
+_Location:_ C:\Program Files\Java\zulu-11-azure-jdk_11.33.15-11.0.4-win_x64
 
 ## Ant
 
@@ -685,7 +688,7 @@ _Environment:_
 
 ## Azure CosmosDb Emulator
 
-_Version:_ 2.7.2.0<br/>
+_Version:_ 2.9.0.0<br/>
 _Location:_ C:\Program Files\Azure Cosmos DB Emulator\
 
 ## 7zip
@@ -735,6 +738,6 @@ _Environment:_
 
 ## Kind
 
-_Version:_ v0.5.1<br/>
+_Version:_ kind v0.7.0 go1.13.6 windows/amd64<br/>
 _Environment:_
 * PATH: contains location of kind.exe
