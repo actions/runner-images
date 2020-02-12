@@ -14,21 +14,17 @@ catch {
     exit 1;
 }
 
-Expand-Archive -Path $DriversZipFile -DestinationPath $env:TEMP -Force;
+$TempSeleniumDir = Join-Path $Env:TEMP "SeleniumWebDrivers"
+Expand-Archive -Path $DriversZipFile -DestinationPath $Env:TEMP -Force;
+Remove-Item $DriversZipFile;
 
 $SeleniumWebDriverPath = Join-Path $DestinationPath "SeleniumWebDrivers"
-Remove-Item $DriversZipFile;
-$ChromeDriverPath = "${DestinationPath}SeleniumWebDrivers\ChromeDriver";
-$EdgeDriverPathTemp = Join-Path $Env:TEMP 'EdgeDriver'
-$IEDriverPathTemp = Join-Path $Env:TEMP 'IEDriver'
-$ChromeDriverPathTemp = Join-Path $Env:TEMP 'ChromeDriver'
-Remove-Item -Path "$ChromeDriverPathTemp\*" -Force;
-Move-Item -Path "$EdgeDriverPathTemp" -Destination $SeleniumWebDriverPath
+$IEDriverPathTemp = Join-Path $TempSeleniumDir 'IEDriver'
 Move-Item -Path "$IEDriverPathTemp" -Destination $SeleniumWebDriverPath
-Move-Item -Path "$ChromeDriverPathTemp" -Destination $SeleniumWebDriverPath
 
 
 # Reinstall Chrome Web Driver
+$ChromeDriverPath = "${DestinationPath}SeleniumWebDrivers\ChromeDriver";
 $RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
 $ChromePath = (Get-ItemProperty "$RegistryPath\chrome.exe").'(default)';
 [version]$ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion;
