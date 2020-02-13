@@ -125,7 +125,7 @@ date: Week 7
 ### Xcode
 | Version                           | Build                             | Path                              |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| 11.4                              | 11N111s                           | /Applications/Xcode_11.4_beta.app |
+| 11.4 (beta)                       | 11N111s                           | /Applications/Xcode_11.4_beta.app |
 | 11.3.1 (default)                  | 11C505                            | /Applications/Xcode_11.3.1.app    |
 | 11.3                              | 11C29                             | /Applications/Xcode_11.3.app      |
 | 11.2.1                            | 11B500                            | /Applications/Xcode_11.2.1.app    |
