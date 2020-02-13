@@ -61,5 +61,6 @@ Remove-Item -Path $DestFile -Force
 
 Write-Host "Setting the environment variables"
 Add-MachinePathItem -PathItem $FireFoxDriverPath
+setx GeckoWebDriver "$FirefoxDriverPath" /M;
 
 exit 0

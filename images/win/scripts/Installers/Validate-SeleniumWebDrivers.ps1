@@ -4,9 +4,13 @@
 ################################################################################
 
 $IEDriverPath = $env:IEWebDriver
+Write-Host "IEDriverPath $IEDriverPath"
 $GeckoDriverPath = $env:GeckoWebDriver
+Write-Host "GeckoDriverPath $GeckoDriverPath"
 $ChromeDriverPath = $env:ChromeWebDriver
+Write-Host "ChromeDriverPath $ChromeDriverPath"
 $EdgeDriverPath = $env:EdgeWebDriver
+Write-Host "EdgeDriverPath $EdgeDriverPath"
 
 if (
 	($IEDriverPath -like "C:\SeleniumWebDrivers\IEDriver") -and
