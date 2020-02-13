@@ -272,3 +272,4 @@ the
 - Python3 (Python 3.5.2)
 - pip3 (pip 8.1.1 from /usr/lib/python3/dist-packages (python 3.5))
 - Boost C++ Libraries 1.69.0
+- Wireguard
