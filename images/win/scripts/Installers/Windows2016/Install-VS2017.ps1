@@ -69,6 +69,8 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
                 '--add Microsoft.Net.Component.4.7.1.SDK ' + `
                 '--add Microsoft.Net.Component.4.7.1.TargetingPack ' + `
                 '--add Microsoft.Net.ComponentGroup.4.7.1.DeveloperTools ' + `
+                '--add Microsoft.Net.Component.4.7.2.SDK ' + `
+                '--add Microsoft.Net.Component.4.7.2.TargetingPack ' + `
                 '--add Microsoft.Net.ComponentGroup.4.7.2.DeveloperTools ' + `
                 '--add Microsoft.Net.Core.Component.SDK.1x ' + `
                 '--add Microsoft.NetCore.1x.ComponentGroup.Web ' + `
