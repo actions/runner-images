@@ -47,6 +47,7 @@ apt-fast install -y --no-install-recommends \
     dbus \
     xvfb \
     libgtk-3-0 \
+    tk \
     fakeroot \
     dpkg \
     rpm \
