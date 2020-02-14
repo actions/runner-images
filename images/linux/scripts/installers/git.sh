@@ -19,12 +19,12 @@ apt-get install -y --no-install-recommends git-lfs
 
 # Run tests to determine that the software installed as expected
 echo "Testing git installation"
-if ! command -v git; then
+if ! command -v git >/dev/null; then
     echo "git was not installed"
     exit 1
 fi
 echo "Testing git-lfs installation"
-if ! command -v git-lfs; then
+if ! command -v git-lfs >/dev/null; then
     echo "git-lfs was not installed"
     exit 1
 fi

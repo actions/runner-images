@@ -20,7 +20,7 @@ ln -sf $VCPKG_INSTALLATION_ROOT/vcpkg /usr/local/bin
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v vcpkg; then
+if ! command -v vcpkg >/dev/null; then
     echo "vcpkg was not installed"
     exit 1
 fi

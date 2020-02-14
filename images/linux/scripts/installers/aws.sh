@@ -16,7 +16,7 @@ rm -rf awscli-bundle
 
 # Validate the installation
 echo "Validate the installation"
-if ! command -v aws; then
+if ! command -v aws >/dev/null; then
     echo "aws was not installed"
     exit 1
 fi

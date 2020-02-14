@@ -19,7 +19,7 @@ ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v phantomjs; then
+if ! command -v phantomjs >/dev/null; then
     echo "phantomjs was not installed"
     exit 1
 fi

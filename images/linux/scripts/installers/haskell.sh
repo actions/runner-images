@@ -44,13 +44,13 @@ for version in 8.0.2 8.2.2 8.4.4 8.6.2 8.6.3 8.6.4 8.6.5 8.8.1 8.8.2; do
 done
 # Check all cabal versions
 for version in 2.0 2.2 2.4 3.0; do
-    if ! command -v /opt/cabal/$version/bin/cabal; then
+    if ! command -v /opt/cabal/$version/bin/cabal >/dev/null; then
         echo "cabal $version was not installed"
         exit 1
     fi
 done
 # Check stack
-if ! command -v stack; then
+if ! command -v stack >/dev/null; then
     exit 1
 fi
 

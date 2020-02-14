@@ -23,7 +23,7 @@ echo "LEIN_HOME=$LEIN_HOME" | tee -a /etc/environment
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v lein; then
+if ! command -v lein >/dev/null; then
     echo "lein was not installed"
     exit 1
 else

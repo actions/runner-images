@@ -15,7 +15,7 @@ apt-get install -y --no-install-recommends ansible
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v ansible; then
+if ! command -v ansible >/dev/null; then
     echo "Ansible was not installed or found on PATH"
     exit 1
 fi

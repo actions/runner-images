@@ -17,7 +17,7 @@ echo "CHROME_BIN=/usr/bin/google-chrome" | tee -a /etc/environment
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v google-chrome; then
+if ! command -v google-chrome >/dev/null; then
     echo "google-chrome was not installed"
     exit 1
 fi
@@ -50,7 +50,7 @@ echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment
 
 # Run tests to determine that the chromedriver installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v chromedriver; then
+if ! command -v chromedriver >/dev/null; then
     echo "chromedriver was not installed"
     exit 1
 fi

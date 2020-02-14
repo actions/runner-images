@@ -19,7 +19,7 @@ apt-get install -y --no-install-recommends apt-transport-https mono-complete
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v mono; then
+if ! command -v mono >/dev/null; then
     echo "mono was not installed"
     exit 1
 fi

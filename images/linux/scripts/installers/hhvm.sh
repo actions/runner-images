@@ -28,7 +28,7 @@ if ! IsInstalled ${hhvm_package}; then
     exit 1
 fi
 
-if ! command -v hhvm; then
+if ! command -v hhvm >/dev/null; then
     exit 1
 fi
 

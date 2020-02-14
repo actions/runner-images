@@ -16,7 +16,7 @@ rm -f "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v terraform; then
+if ! command -v terraform >/dev/null; then
     echo "Terraform was not installed or found on PATH"
     exit 1
 fi

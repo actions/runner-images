@@ -26,7 +26,7 @@ fi
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v docker; then
+if ! command -v docker >/dev/null; then
     echo "docker was not installed"
     exit 1
 else

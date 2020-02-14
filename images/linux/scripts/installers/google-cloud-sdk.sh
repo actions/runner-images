@@ -15,7 +15,7 @@ sudo apt-get install -y google-cloud-sdk
 
 # Validate the installation
 echo "Validate the installation"
-if ! command -v gcloud; then
+if ! command -v gcloud >/dev/null; then
     echo "gcloud was not installed"
     exit 1
 fi

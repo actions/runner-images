@@ -12,7 +12,7 @@ npm i -g now
 
 # Validate the installation
 echo "Validate the installation"
-if ! command -v now; then
+if ! command -v now >/dev/null; then
     echo "Zeit Now CLI was not installed"
     exit 1
 fi
