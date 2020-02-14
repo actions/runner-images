@@ -26,6 +26,7 @@ The following software is installed on machines with the 20200119.1 update.
   - telnet
   - time
   - unzip
+  - valgrind
   - wget
   - zip
   - tzdata
