@@ -26,6 +26,7 @@
         "install_password": null,
         "capture_name_prefix": "packer",
         "image_version": "dev",
+        "image_os": "win16",
         "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
     },
     "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
@@ -115,7 +116,8 @@
         {
             "type": "powershell",
             "inline": [
-              "setx ImageVersion {{user `image_version` }} /m"
+              "setx ImageVersion {{user `image_version` }} /m",
+              "setx ImageOS {{user `image_os` }} /m"
             ]
         },
         {
