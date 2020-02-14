@@ -2,8 +2,12 @@ jobs:
 - job:
   pool: ci-agent-pool
   steps:
-  - script: |
-      ./images.CI/build-image.ps1 -ResourcesNamePrefix $(Build.BuildNumber) `
+  - task: PowerShell@2
+    displayName: 'Build VM'
+    inputs:
+      targetType: filePath
+      filePath: ./images.CI/build-image.ps1
+      arguments: -ResourcesNamePrefix $(Build.BuildNumber) `
                         -ClientId $(CLIENT_ID) `
                         -ClientSecret $(CLIENT_SECRET) `
                         -Image ${{ parameters.image_type }} `
@@ -16,14 +20,16 @@ jobs:
                         -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
                         -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME) `
                         -GitHubFeedToken $(GITHUB_TOKEN)
-    displayName: Build VM
 
-  - script: |
-      ./images.CI/cleanup.ps1 -ResourcesNamePrefix $(Build.BuildNumber) `
+  - task: PowerShell@2
+    displayName: 'Clean up resources'
+    condition: always()
+    inputs:
+      targetType: filePath
+      filePath: ./images.CI/cleanup.ps1
+      arguments: -ResourcesNamePrefix $(Build.BuildNumber) `
                      -ClientId $(CLIENT_ID) `
                      -ClientSecret $(CLIENT_SECRET) `
                      -Image ${{ parameters.image_type }} `
                      -SubscriptionId $(AZURE_SUBSCRIPTION) `
                      -TenantId $(AZURE_TENANT)
-    displayName: Clean up resources
-    condition: always()
