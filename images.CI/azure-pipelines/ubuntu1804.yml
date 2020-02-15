@@ -6,9 +6,6 @@
 #     - master
 #   always: true
 
-variables:
-- group: "Image Generation Variables"
-
 trigger: none
 pr:
   autoCancel: true

@@ -1,6 +1,10 @@
 jobs:
 - job:
   pool: ci-agent-pool
+  timeoutInMinutes: 600
+  variables:
+  - group: Image Generation Variables
+
   steps:
   - task: PowerShell@2
     displayName: 'Build VM'
