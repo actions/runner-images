@@ -15,7 +15,7 @@ param(
 )
 
 $TemplatePath = (Get-ChildItem -Path "images" -Include "$Image.json" -Recurse -Depth 2).FullName
-if ($TemplatePath -eq $null)
+if (-not $TemplatePath)
 {
     Write-Error "'-Image' parameter is not valid. You have to specify correct image type."
     exit 1
