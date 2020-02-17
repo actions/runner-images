@@ -19,10 +19,6 @@ $TemplatePath = (Get-ChildItem -Path "images" -Include "$Image.json" -Recurse -D
 $TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 
-Write-Host "TemplatePath = $TemplatePath"
-Write-Host "ResourcesNamePrefix = $ResourcesNamePrefix"
-Write-Host "TempResourceGroupName = $TempResourceGroupName"
-
 Write-Host "Build $Image VM"
 packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
                 -var "client_id=$ClientId" `
