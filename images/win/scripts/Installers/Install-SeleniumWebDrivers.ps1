@@ -10,18 +10,31 @@ try {
     Invoke-WebRequest -UseBasicParsing -Uri "https://seleniumwebdrivers.blob.core.windows.net/seleniumwebdrivers/${DriversZipFile}" -OutFile $DriversZipFile;
 }
 catch {
-    Write-Error "[!] Failed to download $DriverZipFile";
+    Write-Error "[!] Failed to download $DriversZipFile";
     exit 1;
 }
 
-Expand-Archive -Path $DriversZipFile -DestinationPath $DestinationPath -Force;
+$TempSeleniumDir = Join-Path $Env:TEMP "SeleniumWebDrivers"
+Expand-Archive -Path $DriversZipFile -DestinationPath $Env:TEMP -Force;
 Remove-Item $DriversZipFile;
 
-$ChromeDriverPath = "${DestinationPath}SeleniumWebDrivers\ChromeDriver";
-Write-Host "Chrome driver path: [$ChromeDriverPath]";
-Remove-Item -Path "$ChromeDriverPath\*" -Force;
+$SeleniumWebDriverPath = Join-Path $DestinationPath "SeleniumWebDrivers"
+$IEDriverPathTemp = Join-Path $TempSeleniumDir 'IEDriver'
+
+if (-not (Test-Path -Path $SeleniumWebDriverPath)) {
+    New-Item -Path $SeleniumWebDriverPath -ItemType "directory"
+}
+
+Move-Item -Path "$IEDriverPathTemp" -Destination $SeleniumWebDriverPath
+
 
 # Reinstall Chrome Web Driver
+$ChromeDriverPath = "${DestinationPath}SeleniumWebDrivers\ChromeDriver";
+
+if (-not (Test-Path -Path $ChromeDriverPath)) {
+    New-Item -Path $ChromeDriverPath -ItemType "directory"
+}
+
 $RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
 $ChromePath = (Get-ItemProperty "$RegistryPath\chrome.exe").'(default)';
 [version]$ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion;
@@ -71,7 +84,6 @@ Remove-Item -Path $DestFile -Force
 Write-Host "Setting the environment variables"
 
 setx IEWebDriver "C:\SeleniumWebDrivers\IEDriver" /M;
-setx GeckoWebDriver "C:\SeleniumWebDrivers\GeckoDriver" /M;
 setx ChromeWebDriver "$ChromeDriverPath" /M;
 setx EdgeWebDriver "$EdgeDriverPath" /M;
 
