@@ -1,5 +1,4 @@
 param(
-    [ValidateSet('Windows2019-Azure','Windows2016-Azure','ubuntu1604','ubuntu1804')]
     [String] [Parameter (Mandatory=$true)] $Image,
     [String] [Parameter (Mandatory=$true)] $ResourcesNamePrefix,
     [String] [Parameter (Mandatory=$true)] $ClientId,

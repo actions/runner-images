@@ -1,5 +1,4 @@
 param(
-    [ValidateSet('Windows2019-Azure','Windows2016-Azure','ubuntu1604','ubuntu1804')]
     [String] [Parameter (Mandatory=$true)] $Image,
     [String] [Parameter (Mandatory=$true)] $ClientId,
     [String] [Parameter (Mandatory=$true)] $ClientSecret,
@@ -16,8 +15,16 @@ param(
 )
 
 $TemplatePath = (Get-ChildItem -Path "images" -Include "$Image.json" -Recurse -Depth 2).FullName
+if ($TemplatePath -eq $null)
+{
+    Write-Error "'-Image' parameter is not valid. You have to specify correct image type."
+    exit 1
+}
+
 $TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
+
+packer validate -syntax-only $TemplatePath
 
 Write-Host "Build $Image VM"
 packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
