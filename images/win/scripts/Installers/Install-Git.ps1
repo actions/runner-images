@@ -12,6 +12,7 @@ choco install git -y --package-parameters="/GitAndUnixToolsOnPath /WindowsTermin
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
 
+Add-MachinePathItem "C:\Program Files\Git\usr\bin"
 Add-MachinePathItem "C:\Program Files\Git\bin"
 
 exit 0
