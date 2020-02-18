@@ -30,7 +30,7 @@ function Get-WDKVersion
 {
     $WDKVersion = (Get-WmiObject Win32_Product -Filter "Name = 'Windows Driver Kit'").version
 
-    if (!$WDK)
+    if (!$WDKVersion)
     {
         Write-Host "WDK was not found"
         exit 1
