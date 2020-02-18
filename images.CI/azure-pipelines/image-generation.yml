@@ -6,6 +6,13 @@ jobs:
   - group: Image Generation Variables
 
   steps:
+  - pwsh: |
+      Remove-Item -path './*' -Recurse -Force
+      Write-Host "Download $(BRANCH_NAME) branch from $(IMAGE_GEN_REPO_URI)"
+      git clone $(IMAGE_GEN_REPO_URI) . -b $(BRANCH_NAME) --single-branch --depth 1
+    displayName: 'Download custom repository'
+    condition: and(ne(variables['BRANCH_NAME'], ''), ne(variables['IMAGE_GEN_REPO_URI'], ''))
+
   - task: PowerShell@2
     displayName: 'Build VM'
     inputs:
