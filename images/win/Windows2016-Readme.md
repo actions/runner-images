@@ -1,6 +1,6 @@
 # Windows Server 2016
 
-The following software is installed on machines with the 20200130.1 update.
+The following software is installed on machines with the 20200217.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -19,14 +19,13 @@ _Environment:_
 
 ## Docker-compose
 
-_Version:_ 1.25.3<br/>
+_Version:_ 1.25.4<br/>
 _Environment:_
 * PATH: contains location of docker-compose.exe
 
 ## Powershell Core
 
-_Version:_ 6.2.4
-<br/>
+_Version:_ 6.2.4<br/>
 
 ## Docker images
 
@@ -39,7 +38,7 @@ The following container images have been cached:
 
 ## Visual Studio 2017 Enterprise
 
-_Version:_ VisualStudio/15.9.19+28307.1000<br/>
+_Version:_ VisualStudio/15.9.20+28307.1033<br/>
 _Location:_ C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise
 
 The following workloads including required and recommended components are installed with Visual Studio 2017:
@@ -131,7 +130,7 @@ In addition the following optional components are installed:
 
 ## SQL Server Data Tools for VS 2017
 
-_Version:_ 15.1.61906.3130<br/>
+_Version:_ 15.1.62002.1090<br/>
 
 The following components are installed:
 
@@ -150,6 +149,7 @@ _Environment:_
 ## .NET 4.8
 
 _Version:_ 4.8.03761
+_Path:_ C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
 
 ## Windows Driver Kit
 
@@ -157,8 +157,8 @@ _Version:_ 10.0.17763.0<br/>
 
 ## Azure Service Fabric
 
-_SDK Version:_ 4.0.457.9590<br/>
-_Runtime Version:_ 7.0.457.9590
+_SDK Version:_ 4.0.466.9590<br/>
+_Runtime Version:_ 7.0.466.9590
 
 ## WinAppDriver
 
@@ -326,6 +326,32 @@ _Location:_ C:\Program Files (x86)\Android\android-sdk\platforms\android-21
 _Location:_ C:\Program Files (x86)\Android\android-sdk\platforms\android-19
 
 
+## Azure/AzureRM Powershell modules
+
+#### 2.1.0
+
+This version is installed and is available via `Get-Module -ListAvailable`
+#### 3.8.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_3.8.0\AzureRM\3.8.0\AzureRM.psd1
+
+#### 4.2.1
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_4.2.1\AzureRM\4.2.1\AzureRM.psd1
+
+#### 5.1.1
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_5.1.1\AzureRM\5.1.1\AzureRM.psd1
+
+#### 6.7.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_6.7.0\AzureRM\6.7.0\AzureRM.psd1
+
+
 ## TLS12
 
 _Version:_ 1.2<br/>
@@ -333,7 +359,7 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.0.80
+_Version:_ 2.0.81
 _Environment:_
 * PATH: contains location of az.cmd
 
@@ -438,7 +464,7 @@ _Environment:_
 
 ## Rust (64-bit)
 
-#### 1.40.0
+#### 1.41.0
 _Location:_ C:\Rust\.cargo\bin
 _Environment:_
 * PATH: contains the location of rustc.exe
@@ -456,7 +482,12 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-79.0.3945.130
+80.0.3987.106
+
+## Microsoft Edge
+
+_version:_
+80.0.361.54
 
 ## Mozilla Firefox
 
@@ -469,7 +500,7 @@ _version:_
 #### Chrome Driver
 
 _version:_
-79.0.3945.36
+3.8.0.0
 
 _Environment:_
 * ChromeWebDriver: location of chromedriver.exe
@@ -485,21 +516,29 @@ _Environment:_
 #### IE Driver
 
 _version:_
-3.8.0.0
+80.0.3987.106
 
 _Environment:_
 * IEWebDriver: location of IEDriverServer.exe
 
+#### Microsoft Edge Driver
+
+_version:_
+79.0.309.71
+
+_Environment:_
+* EdgeWebDriver: location of msedgedriver.exe
+
 
 ## Node.js
 
-_Version:_ 12.14.1<br/>
+_Version:_ 12.16.0<br/>
 _Architecture:_ x64<br/>
 _Environment:_
 * PATH: contains location of node.exe<br/>
 * Gulp CLI version: 2.2.0 Local version: Unknown<br/>
 * Grunt grunt-cli v1.3.2<br/>
-* Yarn 1.21.1<br/>
+* Yarn 1.22.0<br/>
 
 
 ## npm
@@ -688,7 +727,7 @@ _Environment:_
 
 ## Azure CosmosDb Emulator
 
-_Version:_ 2.9.0.0<br/>
+_Version:_ 2.9.1.0<br/>
 _Location:_ C:\Program Files\Azure Cosmos DB Emulator\
 
 ## 7zip
@@ -725,7 +764,7 @@ _Version:_ 6.49.0<br/>
 
 ## Vcpkg
 
-_Version:_ 2020.01.17-nohash<br/>
+_Version:_ 2020.02.04-nohash<br/>
 _Environment:_
 * PATH: contains location of the vcpkg directory
 * VCPKG_INSTALLATION_ROOT: root directory of the vcpkg installation
