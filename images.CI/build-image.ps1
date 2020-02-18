@@ -26,13 +26,15 @@ $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 
 packer validate -syntax-only $TemplatePath
 
-$SensitiveData = @('OSType',
-                    'StorageAccountLocation',
-                    'OSDiskUri',
-                    'OSDiskUriReadOnlySas',
-                    'TemplateUri',
-                    'TemplateUriReadOnlySas',
-                    ':  ->')
+$SensitiveData = @(
+    'OSType',
+    'StorageAccountLocation',
+    'OSDiskUri',
+    'OSDiskUriReadOnlySas',
+    'TemplateUri',
+    'TemplateUriReadOnlySas',
+    ':  ->'
+)
 
 Write-Host "Build $Image VM"
 packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
