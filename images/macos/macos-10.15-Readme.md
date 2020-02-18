@@ -1,8 +1,5 @@
----
-title: GitHub Hosted Github Mojave 10.15 VM Image Updates
-description: Software used on build machines
-date: Week 7
----
+# macOS Catalina 10.15.3 (19D76)
+The following software is installed on machines with the 20200208.1 update.
 
 #### Xcode 11.3.1 set by default
 ## Operating System
