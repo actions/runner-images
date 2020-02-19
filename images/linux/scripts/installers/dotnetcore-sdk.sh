@@ -3,8 +3,6 @@
 ##  File:  dotnetcore-sdk.sh
 ##  Desc:  Installs .NET Core SDK
 ################################################################################
-
-HELPER_SCRIPTS=/repos/virtual-environments/images/linux/scripts/helpers
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
