@@ -26,6 +26,16 @@ $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 
 packer validate -syntax-only $TemplatePath
 
+$SensitiveData = @(
+    'OSType',
+    'StorageAccountLocation',
+    'OSDiskUri',
+    'OSDiskUriReadOnlySas',
+    'TemplateUri',
+    'TemplateUriReadOnlySas',
+    ':  ->'
+)
+
 Write-Host "Build $Image VM"
 packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
                 -var "client_id=$ClientId" `
@@ -41,4 +51,10 @@ packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
                 -var "virtual_network_name=$VirtualNetworkName" `
                 -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
                 -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
-                $TemplatePath
+                $TemplatePath `
+        | Where-Object {
+            #Filter sensitive data from Packer logs
+            $currentString = $_
+            $sensitiveString = $SensitiveData | Where-Object { $currentString -match $_ }
+            $sensitiveString -eq $null
+        }
