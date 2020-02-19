@@ -7,6 +7,16 @@ jobs:
 
   steps:
   - task: PowerShell@2
+    displayName: 'Download custom repository'
+    condition: and(ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''), ne(variables['CUSTOM_REPOSITORY_URL'], ''))
+    inputs:
+      targetType: 'inline'
+      script: |
+        Remove-Item -path './*' -Recurse -Force
+        Write-Host "Download $(CUSTOM_REPOSITORY_BRANCH) branch from $(CUSTOM_REPOSITORY_URL)"
+        git clone $(CUSTOM_REPOSITORY_URL) . -b $(CUSTOM_REPOSITORY_BRANCH) --single-branch --depth 1
+
+  - task: PowerShell@2
     displayName: 'Build VM'
     inputs:
       targetType: filePath
