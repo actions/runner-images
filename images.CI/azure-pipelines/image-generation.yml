@@ -8,10 +8,10 @@ jobs:
   steps:
   - powershell: |
       Remove-Item -path './*' -Recurse -Force
-      Write-Host "Download $(BRANCH_NAME) branch from $(IMAGE_GEN_REPO_URI)"
-      git clone $(IMAGE_GEN_REPO_URI) . -b $(BRANCH_NAME) --single-branch --depth 1
+      Write-Host "Download $(CUSTOM_REPOSITORY_BRANCH) branch from $(CUSTOM_REPOSITORY_URL)"
+      git clone $(CUSTOM_REPOSITORY_URL) . -b $(CUSTOM_REPOSITORY_BRANCH) --single-branch --depth 1
     displayName: 'Download custom repository'
-    condition: and(ne(variables['BRANCH_NAME'], ''), ne(variables['IMAGE_GEN_REPO_URI'], ''))
+    condition: and(ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''), ne(variables['CUSTOM_REPOSITORY_URL'], ''))
 
   - task: PowerShell@2
     displayName: 'Build VM'
