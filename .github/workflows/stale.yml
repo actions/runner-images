@@ -13,7 +13,7 @@ jobs:
     - uses: actions/stale@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'This issue has not had any activity in 30 days, if you still require assistance please remove the `no-issue-activity` label'
+        stale-issue-message: 'This issue has not had any activity for 45 days and will be closed in 45 days if there continues to be no activity.'
         stale-issue-label: 'no-issue-activity'
-        days-before-stale: 30
-        days-before-close: 14
+        days-before-stale: 45
+        days-before-close: 45
