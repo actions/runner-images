@@ -83,8 +83,8 @@ function Install-EXE
 }
 
 function Stop-SvcWithErrHandling
-<# 
-.DESCRIPTION 
+<#
+.DESCRIPTION
 Function for stopping the Windows Service with error handling
 
 .AUTHOR
@@ -98,7 +98,7 @@ Switch for stopping the script and exit from PowerShell if one service is absent
 #>
 {
     param (
-        [Parameter(Mandatory, ValueFromPipeLine = $true)] [string] $ServiceName, 
+        [Parameter(Mandatory, ValueFromPipeLine = $true)] [string] $ServiceName,
         [Parameter()] [switch] $StopOnError
     )
 
@@ -126,8 +126,8 @@ Switch for stopping the script and exit from PowerShell if one service is absent
 }
 
 function Set-SvcWithErrHandling
-<# 
-.DESCRIPTION 
+<#
+.DESCRIPTION
 Function for setting the Windows Service parameter with error handling
 
 .AUTHOR
@@ -140,7 +140,7 @@ The name of stopping service
 Hashtable for service arguments
 #>
 {
-    
+
     param (
         [Parameter(Mandatory, ValueFromPipeLine = $true)] [string] $ServiceName,
         [Parameter(Mandatory)] [hashtable] $Arguments
@@ -159,4 +159,32 @@ Hashtable for service arguments
             $_ | Out-String | Write-Error;
         }
     }
+}
+
+function Get-VS19ExtensionVersion
+{
+    param (
+        [string] [Parameter(Mandatory=$true)] $packageName
+    )
+
+    $vsProgramData = Get-Item -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
+    $instanceFolders = Get-ChildItem -Path $vsProgramData.FullName
+
+    if($instanceFolders -is [array])
+    {
+        Write-Host "More than one instance installed"
+        exit 1
+    }
+
+    $stateContent = Get-Content -Path ($instanceFolders.FullName + '\state.packages.json')
+    $state = $stateContent | ConvertFrom-Json
+    $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
+
+    if (!$packageVersion)
+    {
+        Write-Host "installed package $packageName for Visual Studio 2019 was not found"
+        exit 1
+    }
+
+    return $packageVersion
 }
