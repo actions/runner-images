@@ -4,6 +4,7 @@
 ##  Desc:  Installs .NET Core SDK
 ################################################################################
 
+HELPER_SCRIPTS=/repos/virtual-environments/images/linux/scripts/helpers
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
@@ -29,6 +30,9 @@ mksamples()
 }
 
 set -e
+
+# Disable telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
     echo "Determing if .NET Core ($latest_package) is installed"
