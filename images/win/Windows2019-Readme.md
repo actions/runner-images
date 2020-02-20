@@ -1,6 +1,6 @@
 # Windows Server 2019
 
-The following software is installed on machines with the 20200203.0 update.
+The following software is installed on machines with the 20200212.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -30,15 +30,15 @@ _Version:_ 6.2.4<br/>
 ## Docker images
 
 The following container images have been cached:
+* mcr.microsoft.com/windows/servercore:ltsc2019 (Digest: sha256:7437a0cac8abeb7b540ef249e6c9b5da6e3e218579b187e8a5d4528919497eba)
+* mcr.microsoft.com/windows/nanoserver:1809 (Digest: sha256:05c753fb084d83f9742727a301f19bcbb2912b9a58f3ca659ba4c9d3e9b9fec2)
 * mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019 (Digest: sha256:fb04ac71d809a06bd695d7647cff47a1c5ceb2e2b11c1ed7dd32283158522e36)
 * mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 (Digest: sha256:85433707a809232402827a359c80d0aa08226e7833aa2914be2113e694d2b6ae)
-* mcr.microsoft.com/windows/servercore:ltsc2019 (Digest: sha256:cc6d6da31014dceab4daee8b5a8da4707233f4ef42eaf071e45cee044ac738f4)
-* mcr.microsoft.com/windows/nanoserver:1809 (Digest: sha256:26b82db3e866b52c2dd8a56706ccbc4084a6fa4eb9e62f1da4e04a4532248ca0)
 * microsoft/aspnetcore-build:1.0-2.0 (Digest: sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c)
 
 ## Visual Studio 2019 Enterprise
 
-_Version:_ VisualStudio/16.4.4+29728.190<br/>
+_Version:_ VisualStudio/16.4.5+29806.167<br/>
 _Location:_ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
 
 The following workloads and components are installed with Visual Studio 2019:
@@ -135,8 +135,8 @@ _Version:_ 10.0.18362.0<br/>
 
 ## Azure Service Fabric
 
-_SDK Version:_ 4.0.464.9590<br/>
-_Runtime Version:_ 7.0.464.9590
+_SDK Version:_ 4.0.466.9590<br/>
+_Runtime Version:_ 7.0.466.9590
 
 ## WinAppDriver
 
@@ -337,7 +337,7 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.0.80
+_Version:_ 2.0.81
 _Environment:_
 * PATH: contains location of az.cmd
 
@@ -455,12 +455,12 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-79.0.3945.130
+80.0.3987.100
 
 ## Microsoft Edge
 
 _version:_
-79.0.309.71
+80.0.361.50
 
 ## Mozilla Firefox
 
@@ -489,7 +489,7 @@ _Environment:_
 #### IE Driver
 
 _version:_
-79.0.3945.36
+80.0.3987.16
 
 _Environment:_
 * IEWebDriver: location of IEDriverServer.exe
@@ -505,13 +505,13 @@ _Environment:_
 
 ## Node.js
 
-_Version:_ 12.14.1<br/>
+_Version:_ 12.16.0<br/>
 _Architecture:_ x64<br/>
 _Environment:_
 * PATH: contains location of node.exe<br/>
 * Gulp CLI version: 2.2.0 Local version: Unknown<br/>
 * Grunt grunt-cli v1.3.2<br/>
-* Yarn 1.21.1<br/>
+* Yarn 1.22.0<br/>
 
 
 ## npm
@@ -695,7 +695,7 @@ _Environment:_
 
 ## Azure CosmosDb Emulator
 
-_Version:_ 2.9.0.0<br/>
+_Version:_ 2.9.1.0<br/>
 _Location:_ C:\Program Files\Azure Cosmos DB Emulator\
 
 ## 7zip
@@ -732,10 +732,15 @@ _Version:_ 6.49.0<br/>
 
 ## Vcpkg
 
-_Version:_ 2020.01.18-nohash<br/>
+_Version:_ 2020.02.04-nohash<br/>
 _Environment:_
 * PATH: contains location of the vcpkg directory
 * VCPKG_INSTALLATION_ROOT: root directory of the vcpkg installation
+
+## VSWhere
+
+_Version_: Visual Studio Locator version 2.8.4+ff0de50053 [query version 2.3.2200.14893] Copyright (C) Microsoft Corporation. All rights reserved.  instanceId: c902162b installDate: 2/12/2020 11:02:21 PM installationName: VisualStudio/16.4.5+29806.167 installationPath: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise installationVersion: 16.4.29806.167 productId: Microsoft.VisualStudio.Product.Enterprise productPath: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\devenv.exe state: 4294967295 isComplete: 1 isLaunchable: 1 isPrerelease: 0 isRebootRequired: 0 displayName: Visual Studio Enterprise 2019 description: Scalable, end-to-end solution for teams of any size channelId: VisualStudio.16.Release channelUri: https://aka.ms/vs/16/release/channel enginePath: C:\Program Files (x86)\Microsoft Visual Studio\Installer\resources\app\ServiceHub\Services\Microsoft.VisualStudio.Setup.Service releaseNotes: https://go.microsoft.com/fwlink/?LinkId=660893#16.4.5 thirdPartyNotices: https://go.microsoft.com/fwlink/?LinkId=660909 updateDate: 2020-02-12T23:02:21.9476668Z catalog_buildBranch: d16.4 catalog_buildVersion: 16.4.29806.167 catalog_id: VisualStudio/16.4.5+29806.167 catalog_localBuild: build-lab catalog_manifestName: VisualStudio catalog_manifestType: installer catalog_productDisplayVersion: 16.4.5 catalog_productLine: Dev16 catalog_productLineVersion: 2019 catalog_productMilestone: RTW catalog_productMilestoneIsPreRelease: False catalog_productName: Visual Studio catalog_productPatchVersion: 5 catalog_productPreReleaseMilestoneSuffix: 1.0 catalog_productSemanticVersion: 16.4.5+29806.167 catalog_requiredEngineVersion: 2.4.1111.43337 properties_campaignId:  properties_channelManifestId: VisualStudio.16.Release/16.4.5+29806.167 properties_nickname:  properties_setupEngineFilePath: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installershell.exe<br/>
+* PATH: contains location of vswhere.exe
 
 ## Kubectl
 
