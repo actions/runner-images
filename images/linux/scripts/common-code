@@ -1,0 +1,32 @@
+#!/bin/sh
+# Created by Jacob Hrbek <kreyren@rixotstudio.cz> under GPL-3 License (https://www.gnu.org/licenses/gpl-3.0.en.html) in 2020
+
+# Assertion wrapper
+## This is a wrapper to terminate the program with a message and specified exit code, use `die 1 "hello"` to exit the program with message "FATAL: Hello" and exit code of "1"
+die() {
+	printf 'FATAL: %s\n' "$2"
+	# NOTICE: Do not double-quote since we expect spaces
+	# shellcheck disable=SC2154 # Sourced outside of this file
+	[ -b "$masterUnset" ] && unset $masterUnset
+	exit "$1"
+}
+
+# Wrapper used to inform the end-user about runtime
+einfo() {
+	printf 'INFO: %s\n' "$1"
+}
+
+# Wrapper used to inform about non-fatal errors
+eerorr() {
+	printf 'ERROR: %s\n' "$1"
+}
+
+# Check for lsb_release
+[ ! -x lsb_release ] && die 1 "Command 'lsb_release' is not executable on this system which is required to identify target system to configure package repositories"
+
+# Strip unwanted string from lsb_release
+release="$(lsb_release)"
+	release="${release##Distributor ID: }"
+
+# Used to make sure that library is sourced on runtime
+sorucecheck() { return 0 ;}

@@ -1,0 +1,23 @@
+name: Bash
+
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on:
+  pull_request:
+    types: [synchronize, opened, reopened, ready_for_review]
+    paths:
+    - '**.bash'
+
+jobs:
+  # Linting
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installing dependencies..
+        run: if ! apt list --installed 2>/dev/null | grep -q ".*shellcheck.*"; then apt install -y shellcheck; fi
+      - name: Linting..
+        run: |
+          cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '\.bash$'); do
+            printf 'linting bash file %s' "$file"
+            shellcheck --external-sources --shell=bash "$file"
+          done
