@@ -73,6 +73,9 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.Component.VC.Runtime.UCRTSDK ' + `
               '--add Microsoft.Net.ComponentGroup.4.6.2.DeveloperTools ' + `
               '--add Microsoft.Net.ComponentGroup.4.7.1.DeveloperTools ' + `
+              '--add Microsoft.Net.Component.4.7.2.SDK ' + `
+              '--add Microsoft.Net.Component.4.7.2.TargetingPack ' + `
+              '--add Microsoft.Net.ComponentGroup.4.7.2.DeveloperTools ' + `
               '--add Microsoft.Net.ComponentGroup.4.7.DeveloperTools ' + `
               '--add Microsoft.VisualStudio.Component.AspNet45 ' + `
               '--add Microsoft.VisualStudio.Component.Azure.Kubernetes.Tools ' + `
@@ -89,7 +92,7 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.TestTools.CodedUITest ' + `
               '--add Microsoft.VisualStudio.Component.TestTools.WebLoadTest ' + `
               '--add Microsoft.VisualStudio.Component.UWP.VC.ARM64 ' + `
-              '--add Microsoft.VisualStudio.Component.VC.140 ' + `             
+              '--add Microsoft.VisualStudio.Component.VC.140 ' + `
               '--add Microsoft.VisualStudio.Component.VC.ATL.ARM ' + `
               '--add Microsoft.VisualStudio.Component.VC.ATLMFC ' + `
               '--add Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre ' + `
