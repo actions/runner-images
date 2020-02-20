@@ -36,6 +36,18 @@ jobs:
                         -GitHubFeedToken $(GITHUB_TOKEN)
 
   - task: PowerShell@2
+    displayName: 'Create release for VM deployment'
+    inputs:
+      targetType: filePath
+      filePath: ./images.CI/create-release.ps1
+      arguments: -BuildId $(Build.BuildNumber) `
+                        -Organization $(RELEASE_TARGET_ORGANIZATION) `
+                        -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
+                        -Project $(RELEASE_TARGET_PROJECT) `
+                        -ImageName ${{ parameters.image_type }} `
+                        -AccessToken $(RELEASE_TARGET_TOKEN)
+
+  - task: PowerShell@2
     displayName: 'Clean up resources'
     condition: always()
     inputs:
