@@ -1,5 +1,5 @@
 # Ubuntu 16.04.6 LTS
-The following software is installed on machines with the 20200211.1 update.
+The following software is installed on machines with the 20200217.1 update.
 ***
 - 7-Zip 9.20
 - Ansible (ansible 2.9.4)
@@ -31,7 +31,7 @@ The following software is installed on machines with the 20200211.1 update.
   - wget
   - zip
   - tzdata
-- AWS CLI (aws-cli/1.17.15 Python/2.7.12 Linux/4.15.0-1067-azure botocore/1.14.15)
+- AWS CLI (aws-cli/1.18.0 Python/2.7.12 Linux/4.15.0-1069-azure botocore/1.15.0)
 - build-essential
 - Clang 6.0 (6.0.1)
 - Clang 8 (8.0.1)
@@ -98,6 +98,7 @@ The following software is installed on machines with the 20200211.1 update.
   - 2.1.300
 - Erlang (Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 10.6.4)
 - Firefox (Mozilla Firefox 72.0.2)
+- Geckodriver (); Gecko Driver is available via GECKOWEBDRIVER environment variable
 - GNU C++ 7.4.0
 - GNU C++ 8.3.0
 - GNU C++ 9.2.1
@@ -110,9 +111,8 @@ The following software is installed on machines with the 20200211.1 update.
 - Go 1.11 (go version go1.11.12 linux/amd64)
 - Go 1.12 (go version go1.12.7 linux/amd64)
 - Go 1.13 (go version go1.13 linux/amd64)
-- Google Chrome (Google Chrome 80.0.3987.100 )
-- Chromedriver (ChromeDriver 80.0.3987.16 (320f6526c1632ad4f205ebce69b99a062ed78647-refs/branch-heads/3987@{#185})); Chrome Driver is available via CHROMEWEBDRIVER environment variable
-- Selenium server standalone (available via SELENIUM_JAR_PATH environment variable)
+- Google Chrome (Google Chrome 80.0.3987.106 )
+- Chromedriver (ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882})); Chrome Driver is available via CHROMEWEBDRIVER environment variable
 - Google Cloud SDK (280.0.0)
 - Haskell Cabal (cabal-install version 2.0.0.1
 compiled using version 2.0.1.1 of the Cabal library )
@@ -140,11 +140,11 @@ compiled using version 3.0.1.0 of the Cabal library )
 - Azul Zulu OpenJDK (11) (openjdk version "11.0.6" 2020-01-14 LTS)
 - Azul Zulu OpenJDK (12) (openjdk version "12.0.2" 2019-07-16)
 - Ant (Apache Ant(TM) version 1.9.6 compiled on July 20 2018)
-- Gradle 6.1.1
+- Gradle 6.2
 - Maven (Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f))
 - Kind (kind v0.7.0 go1.13.6 linux/amd64)
 - kubectl (Client Version: v1.17.3)
-- helm (Client: v2.16.1+gbbdfe5e)
+- helm (Client: v2.16.3+g1ee0254)
 - Leiningen (Leiningen 2.9.1 on Java 1.8.0_242 OpenJDK 64-Bit Server VM)
 - Mercurial (Mercurial Distributed SCM (version 4.4.1))
 - Miniconda (conda 4.7.12)
@@ -187,6 +187,7 @@ the
 0.53.1)
 - cbindgen (0.13.1)
 - sbt (1.3.8)
+- Selenium server standalone (available via SELENIUM_JAR_PATH environment variable)
 - Sphinx Open Source Search Server
 - Subversion (svn, version 1.9.3 (r1718519))
 - Terraform (Terraform v0.12.20)
@@ -257,10 +258,10 @@ the
 - Az Module (2.8.0)
 - Az Module (3.1.0)
 - Cached container images
+  - node:12-alpine (Digest: sha256:0d6db03a05b5d8b417204258cfa34f36eac1c00a54946fb31891e89a642eb449)
+  - node:12 (Digest: sha256:454651174f54836571258a329788574cf6552bddfd1a7113e769bd9fc3776fe6)
   - node:10-alpine (Digest: sha256:6e6fdca8006b268936d285a4eadd0bac011b33184b4377c6f1cfc86c222fbb8d)
   - node:10 (Digest: sha256:e9d17a0920643d70677ba354398a0464e318fe5f488df8c28c0f895cda6ee2a3)
-  - node:12-alpine (Digest: sha256:e280e51eaa6e626e4df58a5c1f141e453807c30596179330992c55a0bf4114ca)
-  - node:12 (Digest: sha256:5dac29732723b38e1ae4f89391a0074ca19cd54c56fbb0c858dcbd20ef1f2335)
   - buildpack-deps:stretch (Digest: sha256:8bcd320ec29cf67052985f28891586fb853051f69ad0646fc7a49f47d6e3ee1a)
   - debian:9 (Digest: sha256:da5274336981301e2c5f2edb54eaa4dccee70c39506f96d39377b46ea75e804e)
   - debian:8 (Digest: sha256:0e7a709bdf94e15391e9658271197e28a8c993f4d6bb8ee49d370886a9893351)
