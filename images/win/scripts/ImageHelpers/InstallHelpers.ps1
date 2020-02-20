@@ -170,7 +170,7 @@ function Get-VS19ExtensionVersion
     $vsProgramData = Get-Item -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
     $instanceFolders = Get-ChildItem -Path $vsProgramData.FullName
 
-    if($instanceFolders -is [array])
+    if ($instanceFolders -is [array])
     {
         Write-Host "More than one instance installed"
         exit 1
