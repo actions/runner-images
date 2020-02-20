@@ -175,7 +175,7 @@ function Get-VS19ExtensionVersion
         exit 1
     }
 
-    $stateContent = Get-Content -Path (Join-Path $instanceFolders '\state.packages.json')
+    $stateContent = Get-Content -Path (Join-Path $instanceFolders.FullName '\state.packages.json')
     $state = $stateContent | ConvertFrom-Json
     $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
 
