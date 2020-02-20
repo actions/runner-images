@@ -167,8 +167,7 @@ function Get-VS19ExtensionVersion
         [string] [Parameter(Mandatory=$true)] $packageName
     )
 
-    $vsProgramData = Get-Item -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
-    $instanceFolders = Get-ChildItem -Path $vsProgramData.FullName
+    $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
 
     if ($instanceFolders -is [array])
     {
@@ -176,7 +175,7 @@ function Get-VS19ExtensionVersion
         exit 1
     }
 
-    $stateContent = Get-Content -Path ($instanceFolders.FullName + '\state.packages.json')
+    $stateContent = Get-Content -Path (Join-Path $instanceFolders '\state.packages.json')
     $state = $stateContent | ConvertFrom-Json
     $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
 
