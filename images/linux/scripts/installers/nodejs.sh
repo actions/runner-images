@@ -7,13 +7,9 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 
-# Install LTS Node.js and related build tools
-curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-install | bash -s -- -ny -
-~/n/bin/n lts
-npm install -g grunt gulp n parcel-bundler typescript
-npm install -g --save-dev webpack webpack-cli
-npm install -g npm
-rm -rf ~/n
+# Install LTS Node.js
+curl -sL https://deb.nodesource.com/setup_12.x | bash -
+apt-get install -y nodejs
 
 # Install Yarn repository and key
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -35,11 +31,4 @@ done
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Node.js ($(node --version))"
-DocumentInstalledItem "Grunt ($(grunt --version))"
-DocumentInstalledItem "Gulp ($(gulp --version))"
-DocumentInstalledItem "n ($(n --version))"
-DocumentInstalledItem "Parcel ($(parcel --version))"
-DocumentInstalledItem "TypeScript ($(tsc --version))"
-DocumentInstalledItem "Webpack ($(webpack --version))"
-DocumentInstalledItem "Webpack CLI ($(webpack-cli --version))"
 DocumentInstalledItem "Yarn ($(yarn --version))"

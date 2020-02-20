@@ -14,29 +14,15 @@ else
     exit 1
 }
 
-if((Get-Command -Name 'gulp') -and (Get-Command -Name 'grunt') -and (Get-Command -Name 'cordova') -and (Get-Command -Name 'yarn'))
+if(Get-Command -Name 'yarn')
 {
-    Write-Host "Gulp $(gulp -version) on path"
-    Write-Host "Grunt $(grunt -version) on path"
-    Write-Host "Yarn $(yarn -version) on path"
+    Write-Host "yarn $(yarn --version) on path"
 }
 else
 {
-    Write-Host "One of Gulp, Grunt, Cordova, or Yarn is not on the path."
+    Write-Host "yarn is not on path"
     exit 1
 }
-
-if(Get-Command -Name 'lerna')
-{
-    Write-Host "lerna $(lerna --version) on path"
-}
-else
-{
-    Write-Host "lerna is not on path"
-    exit 1
-}
-
-
 
 if( $(node --version) -match  'v(?<version>.*)' )
 {
@@ -48,8 +34,6 @@ $npmVersion = $(npm -version)
 
 # Adding description of the software to Markdown
 $SoftwareName = "Node.js"
-$GulpInfo = "Gulp $(gulp -version)"
-$GruntInfo = "Grunt $(grunt -version)"
 $YarnInfo = "Yarn $(yarn -version)"
 
 $Description = @"
@@ -57,8 +41,6 @@ _Version:_ $nodeVersion<br/>
 _Architecture:_ $nodeArch<br/>
 _Environment:_
 * PATH: contains location of node.exe<br/>
-* $GulpInfo<br/>
-* $GruntInfo<br/>
 * $YarnInfo<br/>
 
 "@
