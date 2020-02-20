@@ -1,5 +1,5 @@
 # macOS Catalina 10.15.3 (19D76)
-The following software is installed on machines with the 20200208.1 update.
+The following software is installed on machines with the 20200217.2 update.
 
 #### Xcode 11.3.1 set by default
 ## Operating System
@@ -19,15 +19,15 @@ The following software is installed on machines with the 20200208.1 update.
 - gcc-9 (Homebrew GCC 9.2.0_3) 9.2.0
 - GNU Fortran (Homebrew GCC 8.3.0_2) 8.3.0
 - GNU Fortran (Homebrew GCC 9.2.0_3) 9.2.0
-- Node.js v12.15.0
+- Node.js v12.16.0
 - NVM 0.33.11
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.19.0 v12.15.0 v13.8.0
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.19.0 v12.16.0 v13.8.0
 - PowerShell 6.2.4
 - Python 2.7.17
 - Python 3.7.6
-- Ruby 2.6.5p114
+- Ruby 2.7.0p0
 - .NET SDK 2.0.0 3.0.100 3.0.101 3.0.102 3.1.100 3.1.101
-- Go 1.13.7
+- Go 1.13.8
 - PHP 7.4.2
 
 ### Package Management
@@ -35,7 +35,7 @@ The following software is installed on machines with the 20200208.1 update.
 - Bundler version 2.1.4
 - Carthage 0.34.0
 - CocoaPods 1.8.4
-- Homebrew 2.2.5
+- Homebrew 2.2.6
 - NPM 6.13.4
 - Yarn 1.22.0
 - NuGet 5.3.1.6268
@@ -46,7 +46,7 @@ The following software is installed on machines with the 20200208.1 update.
 
 ### Project Management
 - Apache Maven 3.6.3
-- Gradle 6.1.1
+- Gradle 6.2
 
 ### Utilities
 - Curl 7.68.0
@@ -64,15 +64,17 @@ The following software is installed on machines with the 20200208.1 update.
 
 ### Tools
 - Fastlane 2.141.0
-- Cmake 3.16.3
+- Cmake 3.16.4
 - App Center CLI 2.3.3
 - Azure CLI 2.0.81
 
 ### Browsers
-- Google Chrome 80.0.3987.87 
-- ChromeDriver 80.0.3987.16
-- Microsoft Edge 80.0.361.48 
-- MSEdgeDriver 80.0.361.48
+- Google Chrome 80.0.3987.106
+- ChromeDriver 80.0.3987.106
+- Microsoft Edge 80.0.361.54
+- MSEdgeDriver 80.0.361.54
+- Mozilla Firefox 73.0
+- geckodriver 0.26.0
 
 ### Toolcache
 #### Ruby
@@ -94,7 +96,7 @@ The following software is installed on machines with the 20200208.1 update.
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.4.4.91
+- 8.4.5.19
 
 #### Mono
 - 6.6.0.155
