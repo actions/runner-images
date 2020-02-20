@@ -14,6 +14,8 @@ jobs:
       script: |
         Remove-Item -path './*' -Recurse -Force
         Write-Host "Download $(CUSTOM_REPOSITORY_BRANCH) branch from $(CUSTOM_REPOSITORY_URL)"
+        # git in powershell sometimes broke the AzDO pipelines with incorrect stdout interpretation
+        # we redirect the git output to stdout manually to avoid this issue.
         cmd /c "git clone $(CUSTOM_REPOSITORY_URL) . -b $(CUSTOM_REPOSITORY_BRANCH) --single-branch --depth 1 2>&1"
 
   - task: PowerShell@2
