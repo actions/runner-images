@@ -3,10 +3,6 @@
 ##  Desc:  Install the Windows Driver Kit
 ################################################################################
 
-# Version: 10.0.18362.0
-# Update Validate-WDK.ps1 if the version changes!
-# There doesn't seem to be any way to check the version programmatically
-
 # Requires Windows SDK with the same version number as the WDK
 $winSdkUrl = "https://go.microsoft.com/fwlink/p/?linkid=2083338"
 $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2085767"
@@ -31,11 +27,21 @@ if ($wdkExitCode -ne 0)
 
 # Need to install the VSIX to get the build targets when running VSBuild
 # Write-Host "Installing WDK.vsix"
- $process = Start-Process `
+try
+{
+     $process = Start-Process `
     -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" `
     -ArgumentList ("/quiet", '"C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"') `
     -Wait `
     -PassThru
+}
+catch
+{
+    Write-Host "There is an error during WDK.vsix installation"
+    $_
+    exit 1
+}
+
 
  $exitCode = $process.ExitCode
 
