@@ -39,6 +39,7 @@ catch
 {
     Write-Host "There is an error during WDK.vsix installation"
     $_
+    exit 1
 }
 
 
