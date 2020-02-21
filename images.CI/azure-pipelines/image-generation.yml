@@ -23,7 +23,7 @@ jobs:
     inputs:
       targetType: filePath
       filePath: ./images.CI/build-image.ps1
-      arguments: -ResourcesNamePrefix $(Build.BuildNumber) `
+      arguments: -ResourcesNamePrefix $(Build.BuildId) `
                         -ClientId $(CLIENT_ID) `
                         -ClientSecret $(CLIENT_SECRET) `
                         -Image ${{ parameters.image_type }} `
@@ -42,7 +42,7 @@ jobs:
     inputs:
       targetType: filePath
       filePath: ./images.CI/create-release.ps1
-      arguments: -BuildId $(Build.BuildNumber) `
+      arguments: -BuildId $(Build.BuildId) `
                         -Organization $(RELEASE_TARGET_ORGANIZATION) `
                         -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
                         -Project $(RELEASE_TARGET_PROJECT) `
@@ -55,7 +55,7 @@ jobs:
     inputs:
       targetType: filePath
       filePath: ./images.CI/cleanup.ps1
-      arguments: -ResourcesNamePrefix $(Build.BuildNumber) `
+      arguments: -ResourcesNamePrefix $(Build.BuildId) `
                      -ClientId $(CLIENT_ID) `
                      -ClientSecret $(CLIENT_SECRET) `
                      -Image ${{ parameters.image_type }} `
