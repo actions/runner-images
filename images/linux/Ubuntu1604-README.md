@@ -257,7 +257,6 @@ the
 - Az Module (2.6.0)
 - Az Module (2.8.0)
 - Az Module (3.1.0)
-- Az Module (3.5.0)
 - Cached container images
   - node:12-alpine (Digest: sha256:0d6db03a05b5d8b417204258cfa34f36eac1c00a54946fb31891e89a642eb449)
   - node:12 (Digest: sha256:454651174f54836571258a329788574cf6552bddfd1a7113e769bd9fc3776fe6)
