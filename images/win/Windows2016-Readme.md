@@ -1,6 +1,6 @@
 # Windows Server 2016
 
-The following software is installed on machines with the 20200211.1 update.
+The following software is installed on machines with the 20200217.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -19,7 +19,7 @@ _Environment:_
 
 ## Docker-compose
 
-_Version:_ 1.25.3<br/>
+_Version:_ 1.25.4<br/>
 _Environment:_
 * PATH: contains location of docker-compose.exe
 
@@ -30,9 +30,9 @@ _Version:_ 6.2.4<br/>
 ## Docker images
 
 The following container images have been cached:
-* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:10ea07b6576daae149fe5ec7d0dddc8da673f77d171e2143addeae0b5577a12e)
 * mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:a1bd1a6dc00f2734b5071b9295f715f36a653e4b2d259c1a4a4d9e8cd6f3ade8)
 * mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:7e81f462be36ba1362062306426c65547e6d63b2eab0b5583808581081393a79)
+* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:42be24b8810c861cc1b3fe75c5e99f75061cb45fdbae1de46d151c18cc8e6a9a)
 * microsoft/aspnetcore-build:1.0-2.0 (Digest: sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c)
 * mcr.microsoft.com/windows/nanoserver:10.0.14393.953 (Digest: sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268)
 
@@ -482,12 +482,12 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-80.0.3987.100
+80.0.3987.106
 
 ## Microsoft Edge
 
 _version:_
-80.0.361.50
+80.0.361.54
 
 ## Mozilla Firefox
 
@@ -516,7 +516,7 @@ _Environment:_
 #### IE Driver
 
 _version:_
-80.0.3987.16
+80.0.3987.106
 
 _Environment:_
 * IEWebDriver: location of IEDriverServer.exe
@@ -532,7 +532,7 @@ _Environment:_
 
 ## Node.js
 
-_Version:_ 12.15.0<br/>
+_Version:_ 12.16.0<br/>
 _Architecture:_ x64<br/>
 _Environment:_
 * PATH: contains location of node.exe<br/>
