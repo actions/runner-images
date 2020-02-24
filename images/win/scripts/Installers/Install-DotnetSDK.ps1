@@ -77,7 +77,9 @@ function InstallAllValidSdks()
                 # Remove duplicate entries & preview/rc version from download list
                 # Sort the sdks on version
                 $sdks = @($release.'sdk');
-                $sdks += $release.'sdks' | Where-Object { !$_.'version'.Contains('-') -and !$_.'version'.Equals($release.'sdk'.'version') }
+
+                # Remove version 3.1.102 from install list, .NET gave a heads-up that this might cause issues and they are working on a fix.
+                $sdks += $release.'sdks' | Where-Object { !$_.'version'.Equals('3.1.102') -and !$_.'version'.Contains('-') -and !$_.'version'.Equals($release.'sdk'.'version') }
                 $sdks = $sdks | Sort-Object { [Version] $_.'version' }
 
                 ForEach ($sdk in $sdks)
