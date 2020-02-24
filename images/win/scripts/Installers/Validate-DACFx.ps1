@@ -37,7 +37,7 @@ $SoftwareName = "SQL Server Data Tier Application Framework (x64)"
 
 $Description = @"
 _Version:_ $(Get-DacFxVersion)<br/>
-* SqlLocalDB is available at $localDbPath
+* SQL Server Express LocalDB is available at $localDbPath
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
