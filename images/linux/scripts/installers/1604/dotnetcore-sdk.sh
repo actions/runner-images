@@ -34,7 +34,12 @@ for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
     echo "Determing if .NET Core ($latest_package) is installed"
     if ! IsInstalled $latest_package; then
         echo "Could not find .NET Core ($latest_package), installing..."
-        apt-get install $latest_package -y
+        #temporary avoid 3.1.102 installation due to https://github.com/dotnet/aspnetcore/issues/19133
+        if [ $latest_package != "dotnet-sdk-3.1" ]; then
+            apt-get install $latest_package -y
+        else
+            apt-get install dotnet-sdk-3.1=3.1.101-1 -y
+        fi
     else
         echo ".NET Core ($latest_package) is already installed"
     fi

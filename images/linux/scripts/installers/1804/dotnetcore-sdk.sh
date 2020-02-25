@@ -42,7 +42,12 @@ for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
         sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'
         apt-get install apt-transport-https
         apt-get update
-        apt-get install $latest_package -y
+        #temporary avoid 3.1.102 installation due to https://github.com/dotnet/aspnetcore/issues/19133
+        if [ $latest_package != "dotnet-sdk-3.1" ]; then
+            apt-get install $latest_package -y
+        else
+            apt-get install dotnet-sdk-3.1=3.1.101-1 -y
+        fi
     else
         echo ".NET Core ($latest_package) is already installed"
     fi
