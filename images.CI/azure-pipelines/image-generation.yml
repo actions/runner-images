@@ -1,3 +1,9 @@
+# Currently, we use Azure DevOps for Images.CI as a temporary solution until GitHub Actions supports our requirements
+# Since we have to use self-hosted machines to run image builds, we need the following features to use GitHub Actions for Images CI:
+# - https://github.community/t5/GitHub-Actions/Make-secrets-available-to-builds-of-forks/m-p/30678#M508
+# - https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/td-p/31504
+# - https://github.community/t5/GitHub-Actions/Protecting-github-workflows/td-p/30290
+
 jobs:
 - job:
   pool: ci-agent-pool
@@ -8,7 +14,7 @@ jobs:
   steps:
   - task: PowerShell@2
     displayName: 'Download custom repository'
-    condition: and(ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''), ne(variables['CUSTOM_REPOSITORY_URL'], ''))
+    condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
     inputs:
       targetType: 'inline'
       script: |
