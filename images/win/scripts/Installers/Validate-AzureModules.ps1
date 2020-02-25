@@ -5,67 +5,99 @@
 
 Import-Module -Name ImageHelpers -Force
 
-$DefaultModule = Get-Module -Name AzureRM -ListAvailable | Select-Object -First 1
-
-$env:PSModulePath = $env:PSModulePath + ";C:\Modules"
-
-$azureModules = Get-Module -Name Azure -ListAvailable | Select-Object Name,Version,Path | Format-Table | Out-String
-
-Write-Host "The Azure Modules finally present are:"
-$azureModules
-
-if( ($azureModules -match "2.1.0") -and ($azureModules -match "3.8.0") -and ($azureModules -match "4.2.1") -and ($azureModules -match "5.1.1"))
-{
-    Write-Host "Required Azure modules are present"
-}
-else {
-    Write-Host "One or more required Azure modules are not present"
-    throw "One or more required Azure modules are not present."
-}
-
-
-$azureRMModules = Get-Module -Name AzureRM -ListAvailable | Select-Object Name,Version,Path | Format-Table | Out-String
-
-Write-Host "The AzureRM Modules finally present are:"
-$azureRMModules
-
-if( ($azureRMModules -match "2.1.0") -and ($azureRMModules -match "3.8.0") -and ($azureRMModules -match "4.2.1") -and ($azureRMModules -match "5.1.1"))
-{
-    Write-Host "Required AzureRM modules are present"
-
-}
-else {
-    Write-Host "One or more required AzureRM modules are not present"
-    throw "One or more required AzureRM modules are not present."
-}
-
-
-$azureModules = Get-Module -Name AzureRM -ListAvailable
-
-
 # Adding description of the software to Markdown
-$SoftwareName = "Azure/AzureRM Powershell modules"
+function Add-ModuleDescription
+{
+    param($DefaultModule, [String]$ModuleName)
 
-$Description = @"
+    # Adding description of the software to Markdown
+    $SoftwareName = "$ModuleName PowerShell module"
+
+    if ($DefaultModule)
+    {
+        $Description = @"
 #### $($DefaultModule.Version)
 
 This version is installed and is available via ``Get-Module -ListAvailable``
 "@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-
-foreach( $module in $azureModules)
-{
-    if($module.Version -ne $DefaultModule.Version)
+    }
+    else
     {
+        $Description = ""
+    }
 
-        $CurrentModule = @"
+    Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
+    if($ModuleName -eq 'Az')
+    {
+        $azureModules = Get-ChildItem C:\Modules\az_*\Az\*\*.psd1 | Select @{n="Version";e={[Version]$_.Directory.Name}},@{n="Path";e={$_.FullName}}
+    }
+    else
+    {
+        $azureModules = Get-Module -Name $ModuleName -ListAvailable | Sort-Object Version -Unique
+    }
+    foreach($module in $azureModules)
+    {
+        if($module.Version -ne $DefaultModule.Version)
+        {
+
+            $CurrentModule = @"
 #### $($module.Version)
 
 This version is saved but not installed
 _Location:_ $($module.Path)
-
 "@
-        Add-ContentToMarkdown -Content $CurrentModule
+            Add-ContentToMarkdown -Content $CurrentModule
+        }
     }
 }
+
+function Validate-AzureModule
+{
+    param([String]$ModuleName, [String[]]$ModuleVersions)
+
+    if ($ModuleName -eq 'Az')
+    {
+        $installedVersions = Get-ChildItem C:\Modules\az_*\Az\* -Name
+        $prop = @{n="Name";e={"Az"}},@{n="Version";e={[Version]$_.Directory.Name}},@{n="Path";e={$_.FullName}}
+        $azureModules = Get-ChildItem C:\Modules\az_*\Az\*\*.psd1 | Select $prop
+    }
+    else
+    {
+        $azureModules = Get-Module -Name $ModuleName -ListAvailable
+        $installedVersions = $azureModules | Foreach-Object {$_.Version.ToString()}
+    }
+
+    Write-Host "The $ModuleName module finally present are:"
+    $azureModules | Select-Object Name,Version,Path | Format-Table | Out-String
+
+    foreach($version in $ModuleVersions)
+    {
+        if ($installedVersions -notcontains $version)
+        {
+            Write-Host "Required '$ModuleName' module '$version' version is not present"
+            exit 1
+        }
+    }
+}
+
+# Get default modules version
+$defaultAzureRMModule = Get-Module -Name AzureRM -ListAvailable
+$defaultAzureModule = Get-Module -Name Azure -ListAvailable
+
+# Add modules to the PSModulePath
+$env:PSModulePath = $env:PSModulePath + ";C:\Modules"
+
+# Validate Azure modules and versions
+$azurermVersions = "2.1.0", "3.8.0", "4.2.1", "5.1.1", "6.7.0", "6.13.1"
+Validate-AzureModule -ModuleName AzureRM -ModuleVersions $azurermVersions
+
+$azureVersions = "2.1.0", "3.8.0", "4.2.1", "5.1.1", "5.3.0"
+Validate-AzureModule -ModuleName Azure -ModuleVersions $azureVersions
+
+$azVersions = "1.0.0", "1.6.0", "2.3.2", "2.6.0", "3.1.0", "3.5.0"
+Validate-AzureModule -ModuleName Az -ModuleVersions $azVersions
+
+# Adding description of the software to Markdown
+Add-ModuleDescription -DefaultModule $defaultAzureRMModule -ModuleName AzureRM
+Add-ModuleDescription -DefaultModule $defaultAzureModule -ModuleName Azure
+Add-ModuleDescription -ModuleName Az
