@@ -1,10 +1,10 @@
-# schedules:
-# - cron: "0 0 * * *"
-#   displayName: Daily
-#   branches:
-#     include:
-#     - master
-#   always: true
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily
+  branches:
+    include:
+    - master
+  always: true
 
 trigger: none
 pr:
