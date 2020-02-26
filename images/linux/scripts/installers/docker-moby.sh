@@ -40,4 +40,4 @@ fi
 ## Add version information to the metadata file
 echo "Documenting Docker version"
 docker_version=$(docker -v)
-DocumentInstalledItem "Docker ($docker_version)"
+DocumentInstalledItem "Docker-Moby ($docker_version)"

@@ -27,8 +27,3 @@ docker pull alpine:3.7
 docker pull alpine:3.8
 docker pull alpine:3.9
 docker pull alpine:3.10
-
-## Add version information to the metadata file
-echo "Documenting Docker version"
-DOCKER_VERSION=`docker -v`
-DocumentInstalledItem "Docker ($DOCKER_VERSION)"
