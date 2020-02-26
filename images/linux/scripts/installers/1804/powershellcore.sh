@@ -8,13 +8,15 @@
 source $HELPER_SCRIPTS/document.sh
 
 LSB_RELEASE=$(lsb_release -rs)
+
 sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'
+# libicu64, which comes with php-intl module, has powershell breaking issue https://github.com/PowerShell/PowerShell/issues/9746
+# Fix - install additional libicu65 where the issue is fixed
+echo "install libicu65"
+apt get install libicu65
 
 # Install Powershell
 apt-get install -y powershell
-
-# Temp fix based on: https://github.com/PowerShell/PowerShell/issues/9746
-sudo apt remove libicu64
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
