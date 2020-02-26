@@ -15,11 +15,7 @@ function Add-ModuleDescription
 
     if ($DefaultModule)
     {
-        $Description = @"
-#### $($DefaultModule.Version)
-
-This version is installed and is available via ``Get-Module -ListAvailable``
-"@
+        $Description = "#### $($DefaultModule.Version)`n`nThis version is installed and is available via ``Get-Module -ListAvailable``"
     }
     else
     {
@@ -42,12 +38,7 @@ This version is installed and is available via ``Get-Module -ListAvailable``
         if($module.Version -ne $DefaultModule.Version)
         {
 
-            $CurrentModule = @"
-#### $($module.Version)
-
-This version is saved but not installed
-_Location:_ $($module.Path)
-"@
+            $CurrentModule = "#### $($module.Version)`n`nThis version is saved but not installed`n_Location:_ $($module.Path)"
             Add-ContentToMarkdown -Content $CurrentModule
         }
     }
