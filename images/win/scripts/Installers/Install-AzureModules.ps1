@@ -64,5 +64,5 @@ foreach($psmoduleName in $psAzureModulesToInstall.Keys)
 }
 
 # Add AzureRM and Azure modules to the PSModulePath
-$finalModulePath = '{0};{1};{2}' -f "${installPSModulePath}\azurerm_6.13.1", "${installPSModulePath}\azure_5.3.0", $env:PSModulePath
+$finalModulePath = '{0};{1};{2}' -f "${installPSModulePath}\azurerm_2.1.0", "${installPSModulePath}\azure_2.1.0", $env:PSModulePath
 [Environment]::SetEnvironmentVariable("PSModulePath", $finalModulePath, "Machine")
