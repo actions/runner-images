@@ -29,12 +29,14 @@ This version is installed and is available via ``Get-Module -ListAvailable``
     Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
     if($ModuleName -eq 'Az')
     {
-        $azureModules = Get-ChildItem C:\Modules\az_*\Az\*\*.psd1 | Select @{n="Version";e={[Version]$_.Directory.Name}},@{n="Path";e={$_.FullName}}
+        $prop = @{n="Version";e={[Version]$_.Directory.Name}},@{n="Path";e={$_.FullName}}
+        $azureModules = Get-ChildItem C:\Modules\az_*\Az\*\Az.psd1 | Select-Object $prop
     }
     else
     {
         $azureModules = Get-Module -Name $ModuleName -ListAvailable | Sort-Object Version -Unique
     }
+
     foreach($module in $azureModules)
     {
         if($module.Version -ne $DefaultModule.Version)
@@ -57,15 +59,15 @@ function Validate-AzureModule
 
     if ($ModuleName -eq 'Az')
     {
-        $installedVersions = Get-ChildItem C:\Modules\az_*\Az\* -Name
         $prop = @{n="Name";e={"Az"}},@{n="Version";e={[Version]$_.Directory.Name}},@{n="Path";e={$_.FullName}}
-        $azureModules = Get-ChildItem C:\Modules\az_*\Az\*\*.psd1 | Select $prop
+        $azureModules = Get-ChildItem C:\Modules\az_*\Az\*\Az.psd1 | Select-object $prop
     }
     else
     {
         $azureModules = Get-Module -Name $ModuleName -ListAvailable
-        $installedVersions = $azureModules | Foreach-Object {$_.Version.ToString()}
     }
+
+    $installedVersions = $azureModules | Foreach-Object {$_.Version.ToString()}
 
     Write-Host "The $ModuleName module finally present are:"
     $azureModules | Select-Object Name,Version,Path | Format-Table | Out-String
