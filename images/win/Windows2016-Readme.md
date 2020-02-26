@@ -1,6 +1,6 @@
 # Windows Server 2016
 
-The following software is installed on machines with the 20200217.1 update.
+The following software is installed on machines with the 20200225.0 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -30,9 +30,9 @@ _Version:_ 6.2.4<br/>
 ## Docker images
 
 The following container images have been cached:
-* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:a1bd1a6dc00f2734b5071b9295f715f36a653e4b2d259c1a4a4d9e8cd6f3ade8)
-* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:7e81f462be36ba1362062306426c65547e6d63b2eab0b5583808581081393a79)
-* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:42be24b8810c861cc1b3fe75c5e99f75061cb45fdbae1de46d151c18cc8e6a9a)
+* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:2053602020c89ff2d6c0d4005372ebc6cebcf866fb5785e562d91389aa467943)
+* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:ca895ab76f1d3ab95f022cbca076e06b62daebafe61af34212bb3ed1fe982d78)
+* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:10e43e24be6eb5f3e19e705a88adb9794b569028f0e0d715d40f25e53e04c3fc)
 * microsoft/aspnetcore-build:1.0-2.0 (Digest: sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c)
 * mcr.microsoft.com/windows/nanoserver:10.0.14393.953 (Digest: sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268)
 
@@ -73,6 +73,8 @@ In addition the following optional components are installed:
 * Microsoft.Net.Component.4.7.1.SDK
 * Microsoft.Net.Component.4.7.1.TargetingPack
 * Microsoft.Net.ComponentGroup.4.7.1.DeveloperTools
+* Microsoft.Net.Component.4.7.2.SDK
+* Microsoft.Net.Component.4.7.2.TargetingPack
 * Microsoft.Net.ComponentGroup.4.7.2.DeveloperTools
 * Microsoft.Net.Core.Component.SDK.1x
 * Microsoft.NetCore.1x.ComponentGroup.Web
@@ -359,7 +361,7 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.0.81
+_Version:_ 2.1.0
 _Environment:_
 * PATH: contains location of az.cmd
 
@@ -448,11 +450,11 @@ _Environment:_
 
 ## PHP (x64)
 
-#### 7.4.2
+#### 7.4.3
 
 _Environment:_
-* PATH: contains the location of php.exe version 7.4.2
-* PHPROOT: root directory of the PHP 7.4.2 installation
+* PATH: contains the location of php.exe version 7.4.3
+* PHPROOT: root directory of the PHP 7.4.3 installation
 
 ## Ruby (x64)
 
@@ -482,17 +484,17 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-80.0.3987.106
+80.0.3987.122
 
 ## Microsoft Edge
 
 _version:_
-80.0.361.54
+80.0.361.62
 
 ## Mozilla Firefox
 
 _version:_
-72.0.1
+73.0.1
 
 ## Selenium Web Drivers
 
@@ -508,7 +510,7 @@ _Environment:_
 #### Gecko Driver
 
 _version:_
-0.24.0
+
 
 _Environment:_
 * GeckoWebDriver: location of geckodriver.exe
@@ -532,7 +534,7 @@ _Environment:_
 
 ## Node.js
 
-_Version:_ 12.16.0<br/>
+_Version:_ 12.16.1<br/>
 _Architecture:_ x64<br/>
 _Environment:_
 * PATH: contains location of node.exe<br/>
@@ -573,26 +575,27 @@ _Environment:_
 
 ## Maven
 
-_Version:_ 3.6.2<br/>
+_Version:_ 3.6.3<br/>
 _Environment:_
 * PATH: contains location of mvn.bat
 * M2_HOME: Maven installation root
 
 ## Gradle
 
-_Version:_ 6.0.1<br/>
+_Version:_ 6.2.1<br/>
 _Environment:_
 * PATH: contains location of gradle
 
 ## Cmake
 
-_Version:_ 3.16.2<br/>
+_Version:_ 3.16.4<br/>
 _Environment:_
 * PATH: contains location of cmake.exe
 
 ## SQL Server Data Tier Application Framework (x64)
 
 _Version:_ 15.0.4538.1<br/>
+* SQL Server Express LocalDB is available at C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe
 
 ## .NET Core
 
@@ -604,6 +607,7 @@ _Environment:_
 _SDK:_
 * 3.1.101 C:\Program Files\dotnet\sdk\3.1.101
 * 3.1.100 C:\Program Files\dotnet\sdk\3.1.100
+* 3.0.103 C:\Program Files\dotnet\sdk\3.0.103
 * 3.0.102 C:\Program Files\dotnet\sdk\3.0.102
 * 3.0.101 C:\Program Files\dotnet\sdk\3.0.101
 * 3.0.100 C:\Program Files\dotnet\sdk\3.0.100
@@ -628,11 +632,13 @@ _SDK:_
 * 2.2.102 C:\Program Files\dotnet\sdk\2.2.102
 * 2.2.101 C:\Program Files\dotnet\sdk\2.2.101
 * 2.2.100 C:\Program Files\dotnet\sdk\2.2.100
+* 2.1.804 C:\Program Files\dotnet\sdk\2.1.804
 * 2.1.803 C:\Program Files\dotnet\sdk\2.1.803
 * 2.1.802 C:\Program Files\dotnet\sdk\2.1.802
 * 2.1.801 C:\Program Files\dotnet\sdk\2.1.801
 * 2.1.701 C:\Program Files\dotnet\sdk\2.1.701
 * 2.1.700 C:\Program Files\dotnet\sdk\2.1.700
+* 2.1.609 C:\Program Files\dotnet\sdk\2.1.609
 * 2.1.608 C:\Program Files\dotnet\sdk\2.1.608
 * 2.1.607 C:\Program Files\dotnet\sdk\2.1.607
 * 2.1.606 C:\Program Files\dotnet\sdk\2.1.606
@@ -640,6 +646,7 @@ _SDK:_
 * 2.1.604 C:\Program Files\dotnet\sdk\2.1.604
 * 2.1.603 C:\Program Files\dotnet\sdk\2.1.603
 * 2.1.602 C:\Program Files\dotnet\sdk\2.1.602
+* 2.1.512 C:\Program Files\dotnet\sdk\2.1.512
 * 2.1.511 C:\Program Files\dotnet\sdk\2.1.511
 * 2.1.510 C:\Program Files\dotnet\sdk\2.1.510
 * 2.1.509 C:\Program Files\dotnet\sdk\2.1.509
@@ -663,6 +670,7 @@ _SDK:_
 _Runtime:_
 * 3.1.1 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.1
 * 3.1.0 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.0
+* 3.0.3 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.3
 * 3.0.2 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.2
 * 3.0.1 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.1
 * 3.0.0 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0
@@ -683,6 +691,7 @@ _Runtime:_
 * 2.1.4 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.4
 * 2.1.3 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.3
 * 2.1.2 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.2
+* 2.1.16 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.16
 * 2.1.15 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.15
 * 2.1.14 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.14
 * 2.1.13 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.13
@@ -717,7 +726,7 @@ _Environment:_
 
 ## TypeScript
 
-_Version:_ Version 3.7.5<br/>
+_Version:_ Version 3.8.2<br/>
 
 ## Miniconda
 
@@ -742,6 +751,10 @@ _Version:_ <br/>
 
 _Version:_ jq-1.6<br/>
 
+## zstd
+
+_Version:_ v1.4.0<br/>
+
 ## Inno Setup
 
 _Version:_ 6.0.3<br/>
@@ -756,7 +769,7 @@ _Version:_ 5.1.3.0<br/>
 
 ## OpenSSL
 
-_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>
+_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>
 
 ## Cloud Foundry CLI
 
