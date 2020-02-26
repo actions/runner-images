@@ -1,5 +1,5 @@
-# Currently, we use Azure DevOps for Images.CI as a temporary solution until GitHub Actions supports our requirements
-# Since we have to use self-hosted machines to run image builds, we need the following features to use GitHub Actions for Images CI:
+# Ideally we would use GitHub Actions for this, but since we use self-hosted machines to run image builds
+# we need the following features to use GitHub Actions for Images CI:
 # - https://github.community/t5/GitHub-Actions/Make-secrets-available-to-builds-of-forks/m-p/30678#M508
 # - https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/td-p/31504
 # - https://github.community/t5/GitHub-Actions/Protecting-github-workflows/td-p/30290
@@ -20,9 +20,12 @@ jobs:
       script: |
         Remove-Item -path './*' -Recurse -Force
         Write-Host "Download $(CUSTOM_REPOSITORY_BRANCH) branch from $(CUSTOM_REPOSITORY_URL)"
+        $env:GIT_REDIRECT_STDERR = '2>&1'
+        git clone $(CUSTOM_REPOSITORY_URL) . -b $(CUSTOM_REPOSITORY_BRANCH) --single-branch --depth 1
+        # git
         # git on self-hosted agent produces some output to stderr even during successful cloning
         # use cmd output redirect to overcome it
-        cmd /c "git clone $(CUSTOM_REPOSITORY_URL) . -b $(CUSTOM_REPOSITORY_BRANCH) --single-branch --depth 1 2>&1"
+        # cmd /c "git clone $(CUSTOM_REPOSITORY_URL) . -b $(CUSTOM_REPOSITORY_BRANCH) --single-branch --depth 1 2>&1"
 
   - task: PowerShell@2
     displayName: 'Build VM'
