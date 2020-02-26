@@ -8,7 +8,6 @@
 source $HELPER_SCRIPTS/document.sh
 
 # Install bazel
-apt-get update -y
 apt-get install -y bazel
 
 # Run tests to determine that the software installed as expected
