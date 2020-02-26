@@ -7,7 +7,6 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 
-LSB_RELEASE=$(lsb_release -rs)
 curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/microsoft-prod.list
 
 # Install Powershell
