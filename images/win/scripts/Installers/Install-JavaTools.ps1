@@ -62,7 +62,7 @@ setx JAVA_HOME_11_X64 $latestJava11Install /M
 # Install Java tools
 # Force chocolatey to ignore dependencies on Ant and Maven or else they will download the Oracle JDK
 choco install ant -y -i
-choco install maven -y -i --version=3.6.2
+choco install maven -y -i --version=3.6.3
 choco install gradle -y
 
 # Move maven variables to Machine. They may not be in the environment for this script so we need to read them from the registry.
