@@ -53,7 +53,7 @@ foreach($psmoduleName in $psAzureModulesToInstall.Keys)
         Write-Host " - $psmoduleVersion [$psmodulePath]"
         try
         {
-            Save-Module -Path $psmodulePath -Name $psmoduleName -RequiredVersion $psmoduleVersion -Force -err
+            Save-Module -Path $psmodulePath -Name $psmoduleName -RequiredVersion $psmoduleVersion -Force -ErrorAction Stop
         }
         catch
         {
