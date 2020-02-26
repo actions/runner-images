@@ -1,5 +1,5 @@
 # macOS Catalina 10.15.3 (19D76)
-The following software is installed on machines with the 20200217.2 update.
+The following software is installed on machines with the 20200224.1 update.
 
 #### Xcode 11.3.1 set by default
 ## Operating System
