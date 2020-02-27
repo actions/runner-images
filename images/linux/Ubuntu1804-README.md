@@ -39,7 +39,6 @@ The following software is installed on machines with the 20200217.1 update.
 - CMake (cmake version 3.16.2)
 - Docker Compose (docker-compose version 1.22.0, build f46880fe)
 - Docker (Docker version 3.0.10+azure, build 99c5edceb48d64c1aa5d09b8c9c499d431d98bb9)
-- Docker (Docker version 3.0.10+azure, build 99c5edceb48d64c1aa5d09b8c9c499d431d98bb9)
 - .NET Core SDK:
   - 3.1.101
   - 3.1.100
