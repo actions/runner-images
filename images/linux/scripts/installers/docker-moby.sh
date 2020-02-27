@@ -1,7 +1,7 @@
 #!/bin/bash
 ################################################################################
-##  File:  docker-ce.sh
-##  Desc:  Installs docker onto the image, but does not pre-pull any images
+##  File:  docker-moby.sh
+##  Desc:  Installs docker onto the image
 ################################################################################
 
 source $HELPER_SCRIPTS/apt.sh
