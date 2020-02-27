@@ -58,6 +58,9 @@ apt-get install -y --no-install-recommends telnet
 echo "Install time"
 apt-get install -y --no-install-recommends time
 
+echo "Install tzdata"
+apt-get install -y --no-install-recommends tzdata
+
 echo "Install unzip"
 apt-get install -y --no-install-recommends unzip
 
@@ -70,8 +73,8 @@ apt-get install -y --no-install-recommends wget
 echo "Install zip"
 apt-get install -y --no-install-recommends zip
 
-echo "Install tzdata"
-apt-get install -y --no-install-recommends tzdata
+echo "Install zstd"
+apt-get install -y --no-install-recommends zstd
 
 echo "Install libxkbfile"
 apt-get install -y --no-install-recommends libxkbfile-dev
@@ -155,8 +158,9 @@ DocumentInstalledItemIndent "shellcheck"
 DocumentInstalledItemIndent "sudo"
 DocumentInstalledItemIndent "telnet"
 DocumentInstalledItemIndent "time"
+DocumentInstalledItemIndent "tzdata"
 DocumentInstalledItemIndent "unzip"
 DocumentInstalledItemIndent "upx"
 DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
-DocumentInstalledItemIndent "tzdata"
+DocumentInstalledItemIndent "zstd"

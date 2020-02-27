@@ -3,7 +3,6 @@
 ##  File:  dotnetcore-sdk.sh
 ##  Desc:  Installs .NET Core SDK
 ################################################################################
-
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
@@ -30,11 +29,19 @@ mksamples()
 
 set -e
 
+# Disable telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
 for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
     echo "Determing if .NET Core ($latest_package) is installed"
     if ! IsInstalled $latest_package; then
         echo "Could not find .NET Core ($latest_package), installing..."
-        apt-get install $latest_package -y
+        #temporary avoid 3.1.102 installation due to https://github.com/dotnet/aspnetcore/issues/19133
+        if [ $latest_package != "dotnet-sdk-3.1" ]; then
+            apt-get install $latest_package -y
+        else
+            apt-get install dotnet-sdk-3.1=3.1.101-1 -y
+        fi
     else
         echo ".NET Core ($latest_package) is already installed"
     fi
@@ -50,7 +57,8 @@ for release_url in ${release_urls[@]}; do
     sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdks[]?' | jq '.version'))
 done
 
-sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
+#temporary avoid 3.1.102 installation due to https://github.com/dotnet/aspnetcore/issues/19133
+sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v 3.1.102 | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
 
 for sdk in $sortedSdks; do
     url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$sdk/dotnet-sdk-$sdk-linux-x64.tar.gz"

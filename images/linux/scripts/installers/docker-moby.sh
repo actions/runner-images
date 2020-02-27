@@ -15,10 +15,6 @@ if ! IsInstalled $docker_package; then
     echo "Docker ($docker_package) was not found. Installing..."
     apt-get remove -y moby-engine moby-cli
     apt-get update
-    apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-    curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/microsoft-prod.list
-    apt-get update
     apt-get install -y moby-engine moby-cli
 else
     echo "Docker ($docker_package) is already installed"

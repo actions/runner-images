@@ -15,6 +15,15 @@ else
     throw "DACFx is not installed!"
 }
 
+if(Get-Command -Name 'SqlLocalDB')
+{
+    $localDbPath = (Get-Command -Name 'SqlLocalDB').Source
+}
+else
+{
+    throw "SqlLocalDB is not installed!"
+}
+
 function Get-DacFxVersion
 {
     $regKey = "HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\Data-Tier Application Framework\CurrentVersion"
@@ -28,6 +37,7 @@ $SoftwareName = "SQL Server Data Tier Application Framework (x64)"
 
 $Description = @"
 _Version:_ $(Get-DacFxVersion)<br/>
+* SQL Server Express LocalDB is available at $localDbPath
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

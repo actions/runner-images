@@ -134,7 +134,7 @@
                 "{{template_dir}}/scripts/installers/docker-compose.sh",
                 "{{template_dir}}/scripts/installers/docker-moby.sh",
                 "{{template_dir}}/scripts/installers/docker.sh",
-                "{{template_dir}}/scripts/installers/1804/dotnetcore-sdk.sh",
+                "{{template_dir}}/scripts/installers/dotnetcore-sdk.sh",
                 "{{template_dir}}/scripts/installers/erlang.sh",
                 "{{template_dir}}/scripts/installers/firefox.sh",
                 "{{template_dir}}/scripts/installers/gcc.sh",
@@ -188,7 +188,7 @@
             "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/installers/1804/android.sh",
-                "{{template_dir}}/scripts/installers/1804/azpowershell.sh",
+                "{{template_dir}}/scripts/installers/azpowershell.sh",
                 "{{template_dir}}/scripts/helpers/containercache.sh",
                 "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
                 "{{template_dir}}/scripts/installers/python.sh",

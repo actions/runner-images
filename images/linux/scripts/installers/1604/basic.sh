@@ -31,11 +31,12 @@ apt-fast install -y --no-install-recommends \
     sudo \
     telnet \
     time \
+    tzdata \
     unzip \
     upx \
     wget \
     zip \
-    tzdata
+    zstd
 
 # Electron / VSCode / GitHub Desktop prereqs
 apt-fast install -y --no-install-recommends \
@@ -86,8 +87,9 @@ DocumentInstalledItemIndent "shellcheck"
 DocumentInstalledItemIndent "sudo"
 DocumentInstalledItemIndent "telnet"
 DocumentInstalledItemIndent "time"
+DocumentInstalledItemIndent "tzdata"
 DocumentInstalledItemIndent "unzip"
 DocumentInstalledItemIndent "upx"
 DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
-DocumentInstalledItemIndent "tzdata"
+DocumentInstalledItemIndent "zstd"
