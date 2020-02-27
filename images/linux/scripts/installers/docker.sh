@@ -12,8 +12,6 @@ DOCKER_PACKAGE=moby
 
 apt-get remove -y moby-engine mobi-cli
 apt-get update
-apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-apt-get update
 apt-get install -y moby-engine mobi-cli
 
 docker pull node:10
