@@ -14,7 +14,7 @@ export CARGO_HOME=/usr/share/rust/.cargo
 
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 
-# Add Cargo and Rust binaries to the machine path
+# Initialize environment variables
 source $CARGO_HOME/env
 
 # Install common tools
