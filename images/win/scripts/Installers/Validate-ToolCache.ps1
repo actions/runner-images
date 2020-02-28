@@ -123,7 +123,7 @@ function ToolcacheTest {
             $markdownDescription += GetMarkdownDescription -SoftwareVersion $foundVersion -SoftwareArchitecture $requiredArchitecture
         }
     }
-    Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $markdownDescription
+    Add-SoftwareDetailsToMarkdown -SoftwareName "$SoftwareName (Pre-Cached)" -DescriptionMarkdown $markdownDescription
 }
 
 # Python test

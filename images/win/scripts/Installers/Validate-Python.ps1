@@ -14,32 +14,22 @@ else
     exit 1
 }
 
-$Python3Version = $(& python -V 2>&1)
-
-if ($Python3Version -notlike "Python 3.*")
+$pythonBinVersion = $(& python -V 2>&1)
+if ($pythonBinVersion -notlike "Python 3.*")
 {
     Write-Error "Python 3 is not in the PATH"
 }
 
-
-$python2path = $Env:AGENT_TOOLSDIRECTORY + '/Python/2.7*/x64'
-$python2Dir = Get-Item -Path $python2path
-
-$env:Path = $python2Dir.FullName + ";" + $env:Path
-
-$Python2Version = & $env:comspec "/s /c python --version 2>&1"
+$pythonExeOnPath = (Get-Command -Name 'python').Path
+$pythonBinOnPath = Split-Path -Path $pythonExeOnPath
 
 # Adding description of the software to Markdown
-$SoftwareName = "Python (64 bit)"
-
+$SoftwareName = "Python (64 bit) (System default)"
 $Description = @"
-#### $Python3Version
+#### $pythonBinVersion
 _Environment:_
-* PATH: contains location of python.exe
-
-#### $Python2Version
-
-_Location:_ $Python2Path
+* Location: $pythonBinOnPath
+* PATH: contains the location of python.exe version $pythonBinVersion
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

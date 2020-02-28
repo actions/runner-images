@@ -54,17 +54,7 @@ Function Set-DefaultPythonVersion {
     $pythonPath = $Env:AGENT_TOOLSDIRECTORY + "/Python/${Version}*/${Arch}"
     $pythonDir = Get-Item -Path $pythonPath
 
-    if ($pythonDir -is [array]) {
-        Write-Host "More than one python ${Version} installations found: ${pythonDir}"
-        exit 1
-    }
-
-    $currentPath = Get-MachinePath
-    if ($currentPath | Select-String -SimpleMatch $pythonDir.FullName) {
-        Write-Host $pythonDir.FullName ' is already in PATH'
-        exit 1
-    }
-
+    Write-Host "Use Python ${Version} as system default"
     Add-MachinePathItem -PathItem $pythonDir.FullName
     Add-MachinePathItem -PathItem "$($pythonDir.FullName)\Scripts"
 }
@@ -76,20 +66,9 @@ Function Set-DefaultRubyVersion {
         [System.String] $Arch = "x64"
     )
     $rubyPath = $Env:AGENT_TOOLSDIRECTORY + "/Ruby/${Version}*/${Arch}/bin"
-
     $rubyDir = Get-Item -Path $rubyPath
 
-    if ($rubyDir -is [array]) {
-        Write-Host "More than one ruby ${Version} installations found: ${rubyDir}"
-        exit 1
-    }
-
-    $currentPath = Get-MachinePath
-    if ($currentPath | Select-String -SimpleMatch $rubyDir.FullName) {
-        Write-Host $rubyDir.FullName ' is already in PATH'
-        exit 1
-    }
-
+    Write-Host "Use Ruby ${Version} as system default"
     Add-MachinePathItem -PathItem $rubyDir.FullName
 
     # Update ruby gem to latest version
@@ -125,6 +104,5 @@ $ToolVersions.PSObject.Properties | ForEach-Object {
     }
 }
 
-Set-DefaultPythonVersion -Version "2.7"
 Set-DefaultPythonVersion -Version "3.7"
 Set-DefaultRubyVersion -Version "2.5"

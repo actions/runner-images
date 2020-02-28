@@ -43,7 +43,7 @@ $rubyVersionOnPath = Get-RubyVersion -rubyRootPath $rubyBinOnPath
 $gemVersion = & gem -v
 
 # Add details of available versions in Markdown
-$SoftwareName = "Ruby (x64)"
+$SoftwareName = "Ruby (x64) (System default)"
 $Description = @"
 #### $rubyVersionOnPath
 _Environment:_
