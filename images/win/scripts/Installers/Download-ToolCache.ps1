@@ -44,6 +44,60 @@ Function NPMFeed-AuthSetup {
     $npmrcContent | Out-File -FilePath "$($env:TEMP)/.npmrc" -Encoding utf8
 }
 
+Function Set-DefaultPythonVersion {
+    param(
+        [Parameter(Mandatory=$true)]
+        [System.Version] $Version,
+        [System.String] $Arch = "x64"
+    )
+
+    $pythonPath = $Env:AGENT_TOOLSDIRECTORY + "/Python/${Version}*/${Arch}"
+    $pythonDir = Get-Item -Path $pythonPath
+
+    if ($pythonDir -is [array]) {
+        Write-Host "More than one python ${Version} installations found: ${pythonDir}"
+        exit 1
+    }
+
+    $currentPath = Get-MachinePath
+    if ($currentPath | Select-String -SimpleMatch $pythonDir.FullName) {
+        Write-Host $pythonDir.FullName ' is already in PATH'
+        exit 1
+    }
+
+    Add-MachinePathItem -PathItem $pythonDir.FullName
+    Add-MachinePathItem -PathItem "$($pythonDir.FullName)\Scripts"
+}
+
+Function Set-DefaultRubyVersion {
+    param(
+        [Parameter(Mandatory=$true)]
+        [System.Version] $Version,
+        [System.String] $Arch = "x64"
+    )
+    $rubyPath = $Env:AGENT_TOOLSDIRECTORY + "/Ruby/${Version}*/${Arch}/bin"
+
+    $rubyDir = Get-Item -Path $rubyPath
+
+    if ($rubyDir -is [array]) {
+        Write-Host "More than one ruby ${Version} installations found: ${rubyDir}"
+        exit 1
+    }
+
+    $currentPath = Get-MachinePath
+    if ($currentPath | Select-String -SimpleMatch $rubyDir.FullName) {
+        Write-Host $rubyDir.FullName ' is already in PATH'
+        exit 1
+    }
+
+    Add-MachinePathItem -PathItem $rubyDir.FullName
+
+    # Update ruby gem to latest version
+    gem update --system
+}
+
+Import-Module -Name ImageHelpers -Force
+
 $FeedPrefix = "https://npm.pkg.github.com"
 $AccessToken = $env:GITHUB_FEED_TOKEN
 
@@ -70,3 +124,7 @@ $ToolVersions.PSObject.Properties | ForEach-Object {
         Install-NpmPackage -PackageName $NpmPackage -FeedPrefix $FeedPrefix
     }
 }
+
+Set-DefaultPythonVersion -Version "2.7"
+Set-DefaultPythonVersion -Version "3.7"
+Set-DefaultRubyVersion -Version "2.5"

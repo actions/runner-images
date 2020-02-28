@@ -4,7 +4,7 @@
 ##         Must run after tools cache is downloaded and validated
 ################################################################################
 
-if(Get-Command -Name 'python')
+if (Get-Command -Name 'python')
 {
     Write-Host "Python $(& python -V 2>&1) on path"
 }
