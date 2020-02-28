@@ -301,7 +301,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2016/Install-Python.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Python.ps1"
             ]
         },
         {
