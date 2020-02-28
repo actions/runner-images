@@ -134,7 +134,7 @@
                 "{{template_dir}}/scripts/installers/cmake.sh",
                 "{{template_dir}}/scripts/installers/docker-compose.sh",
                 "{{template_dir}}/scripts/installers/docker-moby.sh",
-                "{{template_dir}}/scripts/installers/docker.sh",
+                "{{template_dir}}/scripts/installers/docker-images.sh",
                 "{{template_dir}}/scripts/installers/dotnetcore-sdk.sh",
                 "{{template_dir}}/scripts/installers/erlang.sh",
                 "{{template_dir}}/scripts/installers/firefox.sh",
