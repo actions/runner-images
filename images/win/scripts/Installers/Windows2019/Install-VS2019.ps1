@@ -112,6 +112,12 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141 ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.x86.x64 ' + `
+              '--add Microsoft.VisualStudio.Component.VC.v141.ATL.ARM.Spectre ' + `
+              '--add Microsoft.VisualStudio.Component.VC.v141.ATL.ARM64.Spectre ' + `
+              '--add Microsoft.VisualStudio.Component.VC.v141.ATL.Spectre ' + `
+              '--add Microsoft.VisualStudio.Component.VC.v141.MFC.ARM.Spectre ' + `
+              '--add Microsoft.VisualStudio.Component.VC.v141.MFC.ARM64.Spectre ' + `
+              '--add Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.16299 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17134 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17763 ' + `
