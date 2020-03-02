@@ -186,7 +186,7 @@
             ],
             "environment_vars": [
                 "GO_VERSIONS=1.11,1.12,1.13",
-                "GO_DEFAULT=1.13",
+                "GO_DEFAULT=1.13"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
