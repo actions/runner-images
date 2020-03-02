@@ -37,11 +37,9 @@ function InstallGo () {
 curl -s 'https://api.github.com/repos/golang/go/git/refs/tags' >> $golangTags
 
 # Install Go versions
-goVersionsToInstall = $env:GO_VERSIONS
 
 IFS=',' # hyphen (-) is set as delimiter
-read -ra ADDR <<< "$goVersionsToInstall"
-for go in "${ADDR[@]}"; do
+for go in "${GO_VERSIONS[@]}"; do
     echo "Installing Go ${go}"
     if($go == $env:GO_DEFAULT) {
         InstallGo $go true
