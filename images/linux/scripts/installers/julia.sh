@@ -23,17 +23,18 @@ function GetLatestJuliaRelease () {
 
 function InstallJulia () {
     # Extract Major and Minor version from full version string
-    juliaMajorAndMinorVersion="$(sed 's/\.[^.]*$//' <<< $1)"
+    juliaMajorAndMinorVersion="$(cut -d. -f1,2 <<< $1)"
+    juliaInstallationPath="/usr/local/julia$1"
 
     curl -sL "https://julialang-s3.julialang.org/bin/linux/x64/$juliaMajorAndMinorVersion/julia-$1-linux-x86_64.tar.gz" -o "julia-$1-linux-x86_64.tar.gz"
-    mkdir -p "/usr/local/julia$juliaMajorAndMinorVersion"
-    tar -C "/usr/local/julia$juliaMajorAndMinorVersion" -xzf "julia-$1-linux-x86_64.tar.gz" --strip-components=1 julia
+    mkdir -p "$juliaInstallationPath"
+    tar -C "$juliaInstallationPath" -xzf "julia-$1-linux-x86_64.tar.gz" --strip-components=1
     rm "julia-$1-linux-x86_64.tar.gz"
 
     # If this version of Julia is to be the default version,
     # symlink it into the path
     if [ "$2" = true ]; then
-        ln -s "/usr/local/julia$juliaMajorAndMinorVersion/bin/julia" /usr/bin/julia
+        ln -s "$juliaInstallationPath/bin/julia" /usr/bin/julia
     fi
 
     # Run tests to determine that the software installed as expected
@@ -49,7 +50,7 @@ function InstallJulia () {
     fi
 
     # Verify output of julia --version
-    if [ ! "$(/usr/local/julia"$juliaMajorAndMinorVersion"/bin/julia --version)" = "julia version $1" ]; then
+    if [ ! "$($juliaInstallationPath/bin/julia --version)" = "julia version $1" ]; then
         echo "Julia was not installed correctly"
         exit 1
     fi
