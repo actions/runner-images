@@ -8,14 +8,16 @@ function Get-GoVersion
 {
     Param
     (
-        [String]$goRootPath
+        [String]$goVersion
     )
 
+    $goDirectory = Get-ChildItem -Path "C:\Go" | Where-Object { $_ -Match $goVersion } | Select-Object -First 1
+    $goRootPath = Join-Path "C:\Go" $goDirectory
     $env:Path = "$goRootPath\bin;" + $env:Path
     if( $(go version) -match 'go version go(?<version>.*) win.*' )
     {
-        $goVersion = $Matches.version
-        return $goVersion
+        $goFullVersion = $Matches.version
+        return $goFullVersion
     }
 
     Write-Host "Unable to determine Go version at " + $goRootPath
@@ -54,13 +56,10 @@ _Environment:_
 $SoftwareName = "Go (x64)"
 $Description = New-Object System.Text.StringBuilder
 $goVersionsToInstall = $env:GO_VERSIONS.split(",")
-$refsJson = Invoke-RestMethod "https://api.github.com/repos/golang/go/git/refs/tags"
 
 foreach($go in $goVersionsToInstall) {
-    $latestVersionObject = $refsJson | Where-Object { $_.ref -Match "refs/tags/go$go[./d]*" }  | Select-Object -Last 1
-    $latestVersion = $latestVersionObject.ref -replace "\D+\D+[./d]*"
-    $goVersion = Get-GoVersion -goRootPath "C:\Go${latestVersion}"
-    $goVersionTag = "GOROOT_{0}_{1}_X64" -f $latestVersion.split(".")
+    $goVersion = Get-GoVersion -goVersion $go
+    $goVersionTag = "GOROOT_{0}_{1}_X64" -f $go.split(".")
     if ($goVersion -eq $go) {
         if($go -eq $env:GO_DEFAULT) {
             $null = $Description.AppendLine(($tmplMarkRoot -f $goVersion, $goVersionTag))

@@ -6,15 +6,14 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
-
+golangTags="/tmp/golang_tags.json"
 # This function installs Go using the specified arguments:
 #   $1=MajorVersion (1.11)
-#   $2=MajorAndMinorVersion (1.11.1)
-#   $3=IsDefaultVersion (true or false)
+#   $2=IsDefaultVersion (true or false)
 function InstallGo () {
     pattern="refs/tags/go$1([.0-9]{0,3})$"
-
-    ref=$( echo ./tmp/output.json | jq --arg pattern "$pattern" '[.[] | select( .ref | test($pattern))] | .[-1] | .ref' )
+    conditionJq='[.[] | select( .ref | test($pattern))] | .[-1] | .ref'
+    ref=$(jq --arg pattern "$pattern" "$conditionJq" $golangTags)
     echo $ref
     version=$(echo "$ref" | cut -d '/' -f 3) # go1.12.17
     echo $version
@@ -34,10 +33,20 @@ function InstallGo () {
     fi
 }
 
-# load json file
-curl -s 'https://api.github.com/repos/golang/go/git/refs/tags' >> /tmp/output.json
+# load golang_tags.json file
+curl -s 'https://api.github.com/repos/golang/go/git/refs/tags' >> $golangTags
 
 # Install Go versions
-InstallGo 1.11 false
-InstallGo 1.12 false
-InstallGo 1.13 true
+goVersionsToInstall = $env:GO_VERSIONS
+
+IFS=',' # hyphen (-) is set as delimiter
+read -ra ADDR <<< "$goVersionsToInstall"
+for go in "${ADDR[@]}"; do
+    echo "Installing Go ${go}"
+    if($go == $env:GO_DEFAULT) {
+        InstallGo $go true
+    } else {
+        InstallGo $go false
+    }
+done
+IFS=' ' # reset to default value after usage
