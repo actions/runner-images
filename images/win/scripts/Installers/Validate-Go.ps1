@@ -54,10 +54,13 @@ _Environment:_
 $SoftwareName = "Go (x64)"
 $Description = New-Object System.Text.StringBuilder
 $goVersionsToInstall = $env:GO_VERSIONS.split(",")
+$refsJson = Invoke-RestMethod "https://api.github.com/repos/golang/go/git/refs/tags"
 
 foreach($go in $goVersionsToInstall) {
-    $goVersion = Get-GoVersion -goRootPath "C:\Go${go}"
-    $goVersionTag = "GOROOT_{0}_{1}_X64" -f $go.split(".")
+    $latestVersionObject = $refsJson | Where-Object { $_.ref -Match "refs/tags/go$go[./d]*" }  | Select-Object -Last 1
+    $latestVersion = $latestVersionObject.ref -replace "\D+\D+[./d]*"
+    $goVersion = Get-GoVersion -goRootPath "C:\Go${latestVersion}"
+    $goVersionTag = "GOROOT_{0}_{1}_X64" -f $latestVersion.split(".")
     if ($goVersion -eq $go) {
         if($go -eq $env:GO_DEFAULT) {
             $null = $Description.AppendLine(($tmplMarkRoot -f $goVersion, $goVersionTag))
