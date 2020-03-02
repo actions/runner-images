@@ -45,7 +45,7 @@ $gemVersion = & gem -v
 # Add details of available versions in Markdown
 $SoftwareName = "Ruby (x64) (System default)"
 $Description = @"
-#### $rubyVersionOnPath
+#### Ruby $rubyVersionOnPath
 _Environment:_
 * Location: $rubyBinOnPath
 * PATH: contains the location of ruby.exe version $rubyVersionOnPath
