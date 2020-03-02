@@ -41,7 +41,7 @@ curl -s 'https://api.github.com/repos/golang/go/git/refs/tags' >> $golangTags
 IFS=',' # hyphen (-) is set as delimiter
 for go in "${GO_VERSIONS[@]}"; do
     echo "Installing Go ${go}"
-    if($go == $env:GO_DEFAULT) {
+    if($go == $GO_DEFAULT) {
         InstallGo $go true
     } else {
         InstallGo $go false
