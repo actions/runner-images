@@ -13,11 +13,26 @@ else
     exit 1
 }
 
-# Adding description of the software to Markdown
-$SoftwareName = "bazel"
+if (Get-Command -Name 'bazelisk')
+{
+    Write-Host "bazelisk on path"
+}
+else
+{
+    Write-Host 'bazelisk is not on path'
+    exit 1
+}
 
-$Description = @"
+# Adding description of the software to Markdown
+$BazelName = "bazel"
+$BazeliskName = "bazelisk"
+
+$BazelDescription = @"
 _Version:_ $(bazel --version)<br/>
 "@
+$BazeliskDescription = @"
+_Version:_ $(bazelisk version)<br/>
+"@
 
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
+Add-SoftwareDetailsToMarkdown -SoftwareName $BazelName -DescriptionMarkdown $BazelDescription
+Add-SoftwareDetailsToMarkdown -SoftwareName $BazeliskName -DescriptionMarkdown $BazeliskDescription
