@@ -124,6 +124,7 @@
                 "{{template_dir}}/scripts/installers/azure-cli.sh",
                 "{{template_dir}}/scripts/installers/azure-devops-cli.sh",
                 "{{template_dir}}/scripts/installers/bazel.sh",
+                "{{template_dir}}/scripts/installers/bazelisk.sh",
                 "{{template_dir}}/scripts/installers/1604/basic.sh",
                 "{{template_dir}}/scripts/installers/aws.sh",
                 "{{template_dir}}/scripts/installers/build-essential.sh",
