@@ -1,6 +1,6 @@
 ################################################################################
 ##  File:  Validate-Bazel.ps1
-##  Desc:  Validate Bazel
+##  Desc:  Validate Bazel and Bazelisk (A user-friendly launcher for Bazel)
 ################################################################################
 
 if (Get-Command -Name 'bazel')
@@ -23,16 +23,20 @@ else
     exit 1
 }
 
-# Adding description of the software to Markdown
-$BazelName = "bazel"
-$BazeliskName = "bazelisk"
+# Adding description of Bazel to Markdown
+$SoftwareName = "bazel"
 
-$BazelDescription = @"
+$Description = @"
 _Version:_ $(bazel --version)<br/>
 "@
-$BazeliskDescription = @"
+
+Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
+
+# Adding description of Bazelisk to Markdown
+$SoftwareName = "bazelisk"
+
+$Description = @"
 _Version:_ $(bazelisk version)<br/>
 "@
 
-Add-SoftwareDetailsToMarkdown -SoftwareName $BazelName -DescriptionMarkdown $BazelDescription
-Add-SoftwareDetailsToMarkdown -SoftwareName $BazeliskName -DescriptionMarkdown $BazeliskDescription
+Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
