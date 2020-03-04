@@ -54,7 +54,7 @@ Function Set-DefaultPythonVersion {
     $pythonPath = $Env:AGENT_TOOLSDIRECTORY + "/Python/${Version}*/${Arch}"
     $pythonDir = Get-Item -Path $pythonPath
 
-    Write-Host "Use Python ${Version} as system default"
+    Write-Host "Use Python ${Version} as a system Python"
     Add-MachinePathItem -PathItem $pythonDir.FullName
     Add-MachinePathItem -PathItem "$($pythonDir.FullName)\Scripts"
 }
@@ -68,7 +68,7 @@ Function Set-DefaultRubyVersion {
     $rubyPath = $Env:AGENT_TOOLSDIRECTORY + "/Ruby/${Version}*/${Arch}/bin"
     $rubyDir = Get-Item -Path $rubyPath
 
-    Write-Host "Use Ruby ${Version} as system default"
+    Write-Host "Use Ruby ${Version} as a system Ruby"
     Add-MachinePathItem -PathItem $rubyDir.FullName
 
     # Update ruby gem to latest version
