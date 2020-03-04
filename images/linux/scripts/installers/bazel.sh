@@ -29,6 +29,8 @@ if ! command -v bazelisk; then
 fi
 
 # Document what was added to the image
+bazelisk_version = $(bazelisk version | grep "Bazelisk version:" | cut -d ":" -f 2)
+
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Bazel ($(bazel version))"
-DocumentInstalledItem "Bazelisk ($(bazelisk version))"
+DocumentInstalledItem "Bazel ($(bazel --version))"
+DocumentInstalledItem "Bazelisk ($bazelisk_version)"

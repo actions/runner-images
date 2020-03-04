@@ -33,10 +33,12 @@ _Version:_ $(bazel --version)<br/>
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
 
 # Adding description of Bazelisk to Markdown
+bazelisk_version = $(bazelisk version | grep "Bazelisk version:" | cut -d ":" -f 2)
+
 $SoftwareName = "bazelisk"
 
 $Description = @"
-_Version:_ $(bazelisk version)<br/>
+_Version:_ $bazelisk_version<br/>
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
