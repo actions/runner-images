@@ -15,10 +15,10 @@ else
 
 # Adding description of the software to Markdown
 $SoftwareName = "Packer"
-$PackerVersion = (packer version).Split("")
+$PackerVersion = packer --version
 
 $Description = @"
-_Version:_ $PackerVersion.Item(1)<br/>
+_Version:_ $PackerVersion<br/>
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
