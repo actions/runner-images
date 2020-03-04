@@ -64,7 +64,7 @@ function RunTestsByPath {
 }
 
 function Get-SystemDefaultPython {
-    Write-Host "Validate default system Python..."
+    Write-Host "Validate system Python..."
 
     if (Get-Command -Name 'python')
     {
@@ -90,7 +90,7 @@ function Get-SystemDefaultPython {
 }
 
 function Get-SystemDefaultRuby {
-    Write-Host "Validate default system Ruby..."
+    Write-Host "Validate system Ruby..."
 
     if (Get-Command -Name 'ruby')
     {
