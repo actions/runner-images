@@ -14,9 +14,9 @@ function InstallGo () {
     pattern="refs/tags/go$1([.0-9]{0,3})$"
     conditionJq='[.[] | select( .ref | test($pattern))] | .[-1] | .ref'
     ref=$(jq --arg pattern "$pattern" "$conditionJq" $golangTags)
-    echo $ref
-    version=$(echo "$ref" | cut -d '/' -f 3) # go1.12.17
-    echo $version
+    version=$(echo "$ref" | cut -d '/' -f 3)
+    version=$( echo "${version//\"}" ) # go1.12.17
+    echo "version is $version"
     curl -sL https://dl.google.com/go/$version.linux-amd64.tar.gz -o $version.linux-amd64.tar.gz
     mkdir -p /usr/local/go$1
     tar -C /usr/local/go$1 -xzf $version.linux-amd64.tar.gz --strip-components=1 go

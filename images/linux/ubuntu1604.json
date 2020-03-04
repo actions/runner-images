@@ -179,7 +179,7 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/scripts/installers/1604/go.sh"
+                "{{template_dir}}/scripts/installers/go.sh"
             ],
             "environment_vars": [
                 "GO_VERSIONS=1.9,1.10,1.11,1.12,1.13",
