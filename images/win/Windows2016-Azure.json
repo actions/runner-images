@@ -283,6 +283,12 @@
                 "{{ template_dir }}/scripts/Installers/Install-7zip.ps1"
             ]
         },
+          {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Packer.ps1"
+            ]
+        },
         {
             "type": "file",
             "source": "{{template_dir}}/toolcache-2016.json",
@@ -775,6 +781,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-7zip.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Packer.ps1"
             ]
         },
         {
