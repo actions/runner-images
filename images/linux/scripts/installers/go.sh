@@ -11,12 +11,8 @@ golangTags="/tmp/golang_tags.json"
 #   $1=MajorVersion (1.11)
 #   $2=IsDefaultVersion (true or false)
 function InstallGo () {
-    pattern="refs/tags/go$1([.0-9]{0,3})$"
-    conditionJq='[.[] | select( .ref | test($pattern))] | .[-1] | .ref'
-    ref=$(jq --arg pattern "$pattern" "$conditionJq" $golangTags)
-    version=$(echo "$ref" | cut -d '/' -f 3)
-    version=$( echo "${version//\"}" ) # go1.12.17
-    echo "version is $version"
+    version=$( getFullGoVersion $1 )
+    echo "Install Go $version"
     curl -sL https://dl.google.com/go/$version.linux-amd64.tar.gz -o $version.linux-amd64.tar.gz
     mkdir -p /usr/local/go$1
     tar -C /usr/local/go$1 -xzf $version.linux-amd64.tar.gz --strip-components=1 go
@@ -33,14 +29,21 @@ function InstallGo () {
     fi
 }
 
+function getFullGoVersion () {
+    local pattern="refs/tags/go$1([.0-9]{0,3})$"
+    local query='[.[] | select( .ref | test($pattern))] | .[-1] | .ref'
+    refValue=$(jq --arg pattern "$pattern" "$query" $golangTags)
+    version=$(echo "$refValue" | cut -d '/' -f 3)
+    version=$( echo "${version//\"}" ) # go1.12.17
+    echo $version
+}
+
 # load golang_tags.json file
 curl -s 'https://api.github.com/repos/golang/go/git/refs/tags' >> $golangTags
-
+echo "log go version"
+echo "GO_VERSIONS is $GO_VERSIONS"
 # Install Go versions
-
-IFS=',' # hyphen (-) is set as delimiter
-read -ra ADDR <<< $GO_VERSIONS
-for go in "${ADDR[@]}"; do
+for go in ${GO_VERSIONS}; do
     echo "Installing Go ${go}"
     if [[ $go == $GO_DEFAULT ]]; then
         InstallGo $go true
@@ -48,4 +51,3 @@ for go in "${ADDR[@]}"; do
         InstallGo $go false
     fi
 done
-IFS=' ' # reset to default value after usage
