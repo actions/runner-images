@@ -44,3 +44,7 @@ echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "MySQL ($(mysql --version))"
 DocumentInstalledItem "MySQL Server (user:root password:root)"
 DocumentInstalledItem "MS SQL Server Client Tools"
+
+# Disable mysql.service
+systemctl is-active --quiet service && systemctl stop mysql.service 
+systemctl disable mysql.service 
