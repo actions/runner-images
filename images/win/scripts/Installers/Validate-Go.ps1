@@ -8,18 +8,24 @@ function Get-GoVersion
 {
     Param
     (
-        [String]$goRootPath
+        [String]$goVersion
     )
+    $goDirectory = Get-ChildItem -Path C:\ -Force -Filter "Go$goVersion*" | Select-Object -First 1
+    $goPath = Join-Path "C:" $goDirectory
 
-    $env:Path = "$goRootPath\bin;" + $env:Path
-    if( $(go version) -match 'go version go(?<version>.*) win.*' )
+    $env:Path = "$goPath\bin;" + $env:Path
+    $version = $(go version)
+
+    Write-Host "version $version"
+
+    if( $version -match 'go version go(?<version>.*) win.*' -And $version -match $goVersion)
     {
-        $goVersion = $Matches.version
-        return $goVersion
+        $goFullVersion = $Matches.version
+        return $goFullVersion
     }
 
     Write-Host "Unable to determine Go version at " + $goRootPath
-    return ""
+    exit 1
 }
 
 # Verify that go.exe is on the path
@@ -56,7 +62,7 @@ $Description = New-Object System.Text.StringBuilder
 $goVersionsToInstall = $env:GO_VERSIONS.split(",")
 
 foreach($go in $goVersionsToInstall) {
-    $goVersion = Get-GoVersion -goRootPath "C:\Go${go}"
+    $goVersion = Get-GoVersion -goVersion $go
     $goVersionTag = "GOROOT_{0}_{1}_X64" -f $go.split(".")
     if ($goVersion -eq $go) {
         if($go -eq $env:GO_DEFAULT) {
