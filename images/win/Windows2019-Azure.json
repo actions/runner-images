@@ -282,6 +282,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Perl.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Git.ps1"
             ]
         },
@@ -500,12 +506,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Perl.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-GitVersion.ps1"
             ]
         },
@@ -592,6 +592,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Python.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Perl.ps1"
             ]
         },
         {
@@ -774,12 +780,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-InnoSetup.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Perl.ps1"
             ]
         },
         {
