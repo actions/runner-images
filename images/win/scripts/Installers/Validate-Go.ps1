@@ -10,15 +10,16 @@ function Get-GoVersion
     (
         [String]$goVersion
     )
-    $goDirectory = Get-ChildItem -Path C:\ -Force -Filter "Go$goVersion*" | Select-Object -First 1
-    $goPath = Join-Path "C:" $goDirectory
+    $goDirectory = Get-ChildItem -Path $env:SystemDrive -Force -Filter "Go$goVersion*" | Select-Object -First 1
+    $goPath = Join-Path $env:SystemDrive $goDirectory
 
     $env:Path = "$goPath\bin;" + $env:Path
     $version = $(go version)
 
-    Write-Host "version $version"
+    $semanticEquality = $version -match 'go version go(?<version>.*) win.*'
+    $matchVersion = $version -match $goVersion
 
-    if( $version -match 'go version go(?<version>.*) win.*' -And $version -match $goVersion)
+    if( $semanticEquality -And $matchVersion)
     {
         $goFullVersion = $Matches.version
         return $goFullVersion

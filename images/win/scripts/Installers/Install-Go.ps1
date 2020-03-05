@@ -16,20 +16,17 @@ function Install-GoVersion
     $latestVersionObject = $refsJson | Where-Object { $_.ref -Match "refs/tags/go$goVersion[./d]*" }  | Select-Object -Last 1
     $latestVersion = $latestVersionObject.ref -replace "\D+\D+[./d]*"
 
-    Write-Host $latestVersion
-
-    $goVersion = $latestVersion
     # Download the Go zip archive.
-    Write-Host "Downloading Go $goVersion..."
+    Write-Host "Downloading Go $latestVersion..."
     $ProgressPreference = 'SilentlyContinue'
-    Invoke-WebRequest -UseBasicParsing -Uri "https://dl.google.com/go/go$goVersion.windows-amd64.zip" -OutFile go$goVersion.windows-amd64.zip
+    Invoke-WebRequest -UseBasicParsing -Uri "https://dl.google.com/go/go$latestVersion.windows-amd64.zip" -OutFile go$latestVersion.windows-amd64.zip
 
     # Extract the zip archive.  It contains a single directory named "go".
-    Write-Host "Extracting Go $goVersion..."
-    Expand-Archive -Path go$goVersion.windows-amd64.zip -DestinationPath "C:\" -Force
+    Write-Host "Extracting Go $latestVersion..."
+    Expand-Archive -Path go$latestVersion.windows-amd64.zip -DestinationPath "C:\" -Force
 
     # Delete unnecessary files to conserve space
-    Write-Host "Cleaning directories of Go $goVersion..."
+    Write-Host "Cleaning directories of Go $latestVersion..."
     if (Test-Path "C:\go\doc")
     {
         Remove-Item -Recurse -Force "C:\go\doc"
@@ -40,17 +37,17 @@ function Install-GoVersion
     }
 
     # Rename the extracted "go" directory to include the Go version number (to support side-by-side versions of Go).
-    $newDirName = "Go$goVersion"
+    $newDirName = "Go$latestVersion"
     Rename-Item -path "C:\go" -newName $newDirName
 
     # Delete the Go zip archive.
-    Write-Host "Deleting downloaded archive of Go $goVersion..."
-    Remove-Item go$goVersion.windows-a`md64.zip
+    Write-Host "Deleting downloaded archive of Go $latestVersion..."
+    Remove-Item go$latestVersion.windows-a`md64.zip
 
     # Make this the default version of Go?
     if ($addToDefaultPath)
     {
-        Write-Host "Adding Go $goVersion to the path..."
+        Write-Host "Adding Go $latestVersion to the path..."
         # Add the Go binaries to the path.
         Add-MachinePathItem "C:\$newDirName\bin" | Out-Null
         # Set the GOROOT environment variable.
@@ -58,7 +55,7 @@ function Install-GoVersion
     }
 
     # Done
-    Write-Host "Done installing Go $goVersion."
+    Write-Host "Done installing Go $latestVersion."
     return "C:\$newDirName"
 }
 
