@@ -7,10 +7,14 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 
-# libicu64, which comes with php-intl module, has powershell breaking issue https://github.com/PowerShell/PowerShell/issues/9746
+LSB_RELEASE=$(lsb_release -rs)
+
+# libicu64, which comes with php-intl module, has powershell breaking issue on Ubuntu 16.04 https://github.com/PowerShell/PowerShell/issues/9746
 # Fix - install additional libicu65 where the issue is fixed
-echo "install libicu65"
-apt get install libicu65
+if [ $LSB_RELEASE == "16.04" ]; then
+    echo "install libicu65"
+    apt get install libicu65
+fi
 
 # Install Powershell
 apt-get install -y powershell
