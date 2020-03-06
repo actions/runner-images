@@ -10,6 +10,7 @@ function Get-GoVersion
     (
         [String]$goVersion
     )
+    Write-Host "Check if $goVersion is presented in the system"
     $goDirectory = Get-ChildItem -Path $env:SystemDrive -Filter "Go$goVersion*" | Select-Object -First 1
     $goPath = Join-Path $env:SystemDrive $goDirectory
 
@@ -22,11 +23,15 @@ function Get-GoVersion
     if($semanticEquality -And $matchVersion)
     {
         $goFullVersion = $Matches.version
+        Write-Host "$goFullVersion has been found"
+
         return $goFullVersion
     }
-
-    Write-Host "Unable to determine Go version at " + $goRootPath
-    exit 1
+    else
+    {
+        Write-Host "Unable to determine Go version at " + $goRootPath
+        exit 1
+    }
 }
 
 # Verify that go.exe is on the path
