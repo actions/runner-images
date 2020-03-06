@@ -23,8 +23,8 @@
         "image_version": "dev",
         "image_os": "ubuntu18",
         "github_feed_token": null,
-        "go_default": "1.13",
-        "go_versions": "1.11 1.12 1.13"
+        "go_default": "1.14",
+        "go_versions": "1.11 1.12 1.13 1.14"
     },
     "sensitive-variables": ["client_secret", "github_feed_token"],
     "builders": [
