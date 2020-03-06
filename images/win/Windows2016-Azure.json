@@ -27,7 +27,9 @@
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "win16",
-        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
+        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
+        "go_versions": "1.9, 1.10, 1.11, 1.12, 1.13",
+        "go_default": "1.13"
     },
     "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
@@ -313,8 +315,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "GO_VERSIONS=1.9,1.10,1.11,1.12,1.13",
-                "GO_DEFAULT=1.13"
+                "GO_VERSIONS={{user `go_versions`}}",
+                "GO_DEFAULT={{user `go_default`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Go.ps1"
@@ -622,8 +624,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "GO_VERSIONS=1.9,1.10,1.11,1.12,1.13",
-                "GO_DEFAULT=1.13"
+                "GO_VERSIONS={{user `go_versions`}}",
+                "GO_DEFAULT={{ user `go_default`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Go.ps1"

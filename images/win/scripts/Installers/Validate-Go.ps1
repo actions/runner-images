@@ -10,7 +10,7 @@ function Get-GoVersion
     (
         [String]$goVersion
     )
-    $goDirectory = Get-ChildItem -Path $env:SystemDrive -Force -Filter "Go$goVersion*" | Select-Object -First 1
+    $goDirectory = Get-ChildItem -Path $env:SystemDrive -Filter "Go$goVersion*" | Select-Object -First 1
     $goPath = Join-Path $env:SystemDrive $goDirectory
 
     $env:Path = "$goPath\bin;" + $env:Path
@@ -19,7 +19,7 @@ function Get-GoVersion
     $semanticEquality = $version -match 'go version go(?<version>.*) win.*'
     $matchVersion = $version -match $goVersion
 
-    if( $semanticEquality -And $matchVersion)
+    if($semanticEquality -And $matchVersion)
     {
         $goFullVersion = $Matches.version
         return $goFullVersion
@@ -60,7 +60,7 @@ _Environment:_
 
 $SoftwareName = "Go (x64)"
 $Description = New-Object System.Text.StringBuilder
-$goVersionsToInstall = $env:GO_VERSIONS.split(",")
+$goVersionsToInstall = $env:GO_VERSIONS.split(", ")
 
 foreach($go in $goVersionsToInstall) {
     $goVersion = Get-GoVersion -goVersion $go

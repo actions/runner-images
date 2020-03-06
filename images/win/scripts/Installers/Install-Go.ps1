@@ -4,6 +4,7 @@
 ################################################################################
 
 Import-Module -Name ImageHelpers -Force
+
 $refsJson = Invoke-RestMethod "https://api.github.com/repos/golang/go/git/refs/tags"
 function Install-GoVersion
 {
@@ -14,7 +15,7 @@ function Install-GoVersion
     )
 
     $latestVersionObject = $refsJson | Where-Object { $_.ref -Match "refs/tags/go$goVersion[./d]*" }  | Select-Object -Last 1
-    $latestVersion = $latestVersionObject.ref -replace "\D+\D+[./d]*"
+    $latestVersion = $latestVersionObject.ref.replace('refs/tags/go','')
 
     # Download the Go zip archive.
     Write-Host "Downloading Go $latestVersion..."
@@ -42,7 +43,7 @@ function Install-GoVersion
 
     # Delete the Go zip archive.
     Write-Host "Deleting downloaded archive of Go $latestVersion..."
-    Remove-Item go$latestVersion.windows-a`md64.zip
+    Remove-Item go$latestVersion.windows-amd64.zip
 
     # Make this the default version of Go?
     if ($addToDefaultPath)
@@ -60,7 +61,7 @@ function Install-GoVersion
 }
 
 # Install Go
-$goVersionsToInstall = $env:GO_VERSIONS.split(",")
+$goVersionsToInstall = $env:GO_VERSIONS.split(", ")
 
 foreach($go in $goVersionsToInstall) {
     Write-Host "Installing Go ${go}"
