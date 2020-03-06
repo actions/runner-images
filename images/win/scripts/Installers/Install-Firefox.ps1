@@ -25,3 +25,46 @@ pref("app.update.enabled", false);' -ItemType file -force
 $firefoxPreferencesFolder = Join-Path $firefoxDirectoryPath "defaults\pref"
 New-Item -path $firefoxPreferencesFolder -Name 'local-settings.js' -Value 'pref("general.config.obscure_value", 0);
 pref("general.config.filename", "mozilla.cfg");' -ItemType file -force
+
+# Install Firefox gecko Web Driver
+Write-Host "Install Firefox WebDriver"
+$DestinationPath = "$($env:SystemDrive)\";
+$SeleniumWebDriverPath = Join-Path $DestinationPath "SeleniumWebDrivers"
+
+$geckodriverJson = Invoke-RestMethod "https://api.github.com/repos/mozilla/geckodriver/releases/latest"
+$geckodriverWindowsAsset = $geckodriverJson.assets | Where-Object { $_.name -Match "win64" } | Select-Object -First 1
+
+$geckodriverVersion = $geckodriverJson.tag_name
+Write-Host "Geckodriver version: $geckodriverVersion"
+
+$DriversZipFile = $geckodriverWindowsAsset.name
+Write-Host "Selenium drivers download and install..."
+
+$FirefoxDriverPath = Join-Path $SeleniumWebDriverPath "GeckoDriver"
+$geckodriverVersion.Substring(1) | Out-File -FilePath "$FirefoxDriverPath\versioninfo.txt" -Force;
+
+# Install Firefox Web Driver
+Write-Host "FireFox driver download...."
+if (-not (Test-Path -Path $FireFoxDriverPath)) {
+    New-Item -Path $FireFoxDriverPath -ItemType "directory"
+}
+
+$DestFile = Join-Path $FireFoxDriverPath $DriversZipFile
+$FireFoxDriverDownloadUrl = $geckodriverWindowsAsset.browser_download_url
+try{
+    Invoke-WebRequest -Uri $FireFoxDriverDownloadUrl -OutFile $DestFile
+} catch {
+    Write-Error "[!] Failed to download $DriversZipFile"
+    exit 1
+}
+
+Write-Host "FireFox driver install...."
+Expand-Archive -Path $DestFile -DestinationPath $FireFoxDriverPath -Force
+Remove-Item -Path $DestFile -Force
+
+
+Write-Host "Setting the environment variables"
+Add-MachinePathItem -PathItem $FireFoxDriverPath
+setx GeckoWebDriver "$FirefoxDriverPath" /M;
+
+exit 0
