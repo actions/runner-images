@@ -93,8 +93,6 @@ $PathValue += ";$ChromeDriverPath\";
 $PathValue += ";$EdgeDriverPath\";
 Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $PathValue;
 
-exit 0;
-
 # Install Firefox gecko Web Driver
 Write-Host "Install Firefox WebDriver"
 
