@@ -19,6 +19,8 @@ apt-fast install -y --no-install-recommends \
     iproute2 \
     iputils-ping \
     jq \
+    libc++-dev \
+    libc++abi-dev \
     libcurl3 \
     libicu55 \
     libunwind8 \
@@ -75,6 +77,8 @@ DocumentInstalledItemIndent "ftp"
 DocumentInstalledItemIndent "iproute2"
 DocumentInstalledItemIndent "iputils-ping"
 DocumentInstalledItemIndent "jq"
+DocumentInstalledItemIndent "libc++-dev"
+DocumentInstalledItemIndent "libc++abi-dev"
 DocumentInstalledItemIndent "libcurl3"
 DocumentInstalledItemIndent "libicu55"
 DocumentInstalledItemIndent "libunwind8"
