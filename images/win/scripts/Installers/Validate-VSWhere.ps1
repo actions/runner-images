@@ -15,7 +15,7 @@ else
 
 # Adding description of the software to Markdown
 $SoftwareName = "VSWhere"
-$VswhereVersion = $(vswhere)
+$VswhereVersion = (Get-Command -Name vswhere).FileVersionInfo.ProductVersion
 
 $Description = @"
 _Version_: $VswhereVersion<br/>
