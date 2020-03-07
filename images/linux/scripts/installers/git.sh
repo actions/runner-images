@@ -35,3 +35,11 @@ echo "Lastly, document the installed versions"
 DocumentInstalledItem "Git ($(git --version 2>&1 | cut -d ' ' -f 3))"
 # git-lfs/2.6.1 (GitHub; linux amd64; go 1.11.1)
 DocumentInstalledItem "Git Large File Storage (LFS) ($(git-lfs --version 2>&1 | cut -d ' ' -f 1 | cut -d '/' -f 2))"
+
+#Install hub
+snap install hub --classic
+if command -v hub; then
+    echo "hub CLI was installed successfully"
+else
+    echo "[!] hub CLI was not installed"
+fi
