@@ -36,9 +36,9 @@ if (
 	(Get-Item "$EdgeDriverPath\msedgedriver.exe").VersionInfo
 
 	$versionFileName = "versioninfo.txt";
-	$chromedriverversion = Get-Content -Path "$IEDriverPath\$versionFileName"
+	$chromedriverversion = Get-Content -Path "$ChromeDriverPath\$versionFileName"
 	$geckodriverversion = Get-Content -Path "$GeckoDriverPath\$versionFileName"
-	$iedriverversion = Get-Content -Path "$ChromeDriverPath\$versionFileName"
+	$iedriverversion = Get-Content -Path "$IEDriverPath\$versionFileName"
 	$edgedriverversion = Get-Content -Path "$EdgeDriverPath\$versionFileName"
 
 	# Adding description of the software to Markdown
