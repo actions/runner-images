@@ -16,7 +16,7 @@ if ($caption -match "2019")
 if ($caption -match "2016")
 {
     $imageLabel = "windows-2016"
-    $softwareUrl = "${githubUrl}/win16/${imageVersion}/images/win/Windows2019-Readme.md"
+    $softwareUrl = "${githubUrl}/win16/${imageVersion}/images/win/Windows2016-Readme.md"
 }
 
 $json = @"
