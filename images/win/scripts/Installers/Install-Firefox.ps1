@@ -41,6 +41,11 @@ $DriversZipFile = $geckodriverWindowsAsset.name
 Write-Host "Selenium drivers download and install..."
 
 $FirefoxDriverPath = Join-Path $SeleniumWebDriverPath "GeckoDriver"
+
+if (-not (Test-Path -Path $FirefoxDriverPath)) {
+    New-Item -Path $FirefoxDriverPath -ItemType "directory"
+}
+
 $geckodriverVersion.Substring(1) | Out-File -FilePath "$FirefoxDriverPath\versioninfo.txt" -Force;
 
 # Install Firefox Web Driver
