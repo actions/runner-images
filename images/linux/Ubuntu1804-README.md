@@ -43,7 +43,7 @@ Build timestamp as int: 1582297007)
 - Clang 8 (8.0.1)
 - Clang 9 (9.0.0)
 - CMake (cmake version 3.16.2)
-- Docker Compose (docker-compose version 1.25.4, build 8d51620a)
+- Docker Compose (docker-compose version 1.22.0, build f46880fe)
 - Docker-Moby (Docker version 3.0.10+azure, build 99c5edceb48d64c1aa5d09b8c9c499d431d98bb9)
 - .NET Core SDK:
   - 3.1.101
