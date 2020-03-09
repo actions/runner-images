@@ -49,5 +49,5 @@ if ! command -v geckodriver; then
 fi
 
 echo "Lastly, documenting what we added to the metadata file"
-ver=`./geckodriver --version|head -1|awk '{print $2}'`
+ver=`geckodriver --version | head -1 |awk '{print $2}'`
 DocumentInstalledItem "Geckodriver (${ver}); Gecko Driver is available via GECKOWEBDRIVER environment variable"

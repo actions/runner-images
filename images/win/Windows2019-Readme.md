@@ -1,6 +1,6 @@
 # Windows Server 2019
 
-The following software is installed on machines with the 20200225.0 update.
+The following software is installed on machines with the 20200301.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -308,7 +308,7 @@ _Location:_ C:\Program Files (x86)\Android\android-sdk\platforms\android-21
 _Location:_ C:\Program Files (x86)\Android\android-sdk\platforms\android-19
 
 
-## Azure/AzureRM Powershell modules
+## AzureRM PowerShell module
 
 #### 2.1.0
 
@@ -317,22 +317,72 @@ This version is installed and is available via `Get-Module -ListAvailable`
 
 This version is saved but not installed
 _Location:_ C:\Modules\azurerm_3.8.0\AzureRM\3.8.0\AzureRM.psd1
-
 #### 4.2.1
 
 This version is saved but not installed
 _Location:_ C:\Modules\azurerm_4.2.1\AzureRM\4.2.1\AzureRM.psd1
-
 #### 5.1.1
 
 This version is saved but not installed
 _Location:_ C:\Modules\azurerm_5.1.1\AzureRM\5.1.1\AzureRM.psd1
-
 #### 6.7.0
 
 This version is saved but not installed
 _Location:_ C:\Modules\azurerm_6.7.0\AzureRM\6.7.0\AzureRM.psd1
+#### 6.13.1
 
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_6.13.1\AzureRM\6.13.1\AzureRM.psd1
+
+## Azure PowerShell module
+
+#### 2.1.0
+
+This version is installed and is available via `Get-Module -ListAvailable`
+#### 3.8.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\azure_3.8.0\Azure\3.8.0\Azure.psd1
+#### 4.2.1
+
+This version is saved but not installed
+_Location:_ C:\Modules\azure_4.2.1\Azure\4.2.1\Azure.psd1
+#### 5.1.1
+
+This version is saved but not installed
+_Location:_ C:\Modules\azure_5.1.1\Azure\5.1.1\Azure.psd1
+#### 5.3.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\azure_5.3.0\Azure\5.3.0\Azure.psd1
+
+## Az PowerShell module
+
+
+#### 1.0.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_1.0.0\Az\1.0.0\Az.psd1
+#### 1.6.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_1.6.0\Az\1.6.0\Az.psd1
+#### 2.3.2
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_2.3.2\Az\2.3.2\Az.psd1
+#### 2.6.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_2.6.0\Az\2.6.0\Az.psd1
+#### 3.1.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_3.1.0\Az\3.1.0\Az.psd1
+#### 3.5.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_3.5.0\Az\3.5.0\Az.psd1
 
 ## TLS12
 
@@ -351,7 +401,7 @@ _Version:_ azure-devops                      0.17.0
 
 ## Python
 
-_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.1 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.1 (x86)<br/>
+_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.2 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.2 (x86)<br/>
 
 ## PyPy
 
@@ -373,13 +423,13 @@ _Location:_ C:/hostedtoolcache/windows/Python/2.7*/x64
 
 ## Git
 
-_Version:_ 2.25.0<br/>
+_Version:_ 2.25.1<br/>
 _Environment:_
 * PATH: contains location of git.exe
 
 ## Git Large File Storage (LFS)
 
-_Version:_ 2.9.2<br/>
+_Version:_ 2.10.0<br/>
 _Environment:_
 * PATH: contains location of git-lfs.exe
 * GIT_LFS_PATH: location of git-lfs.exe
@@ -441,7 +491,7 @@ _Environment:_
 
 ## Rust (64-bit)
 
-#### 1.41.0
+#### 1.41.1
 _Location:_ C:\Rust\.cargo\bin
 _Environment:_
 * PATH: contains the location of rustc.exe
@@ -464,7 +514,7 @@ _version:_
 ## Microsoft Edge
 
 _version:_
-80.0.361.57
+80.0.361.62
 
 ## Mozilla Firefox
 
@@ -696,7 +746,7 @@ _Environment:_
 
 ## TypeScript
 
-_Version:_ Version 3.8.2<br/>
+_Version:_ Version 3.8.3<br/>
 
 ## Miniconda
 
@@ -706,7 +756,7 @@ _Environment:_
 
 ## Azure CosmosDb Emulator
 
-_Version:_ 2.9.1.0<br/>
+_Version:_ 2.9.2.0<br/>
 _Location:_ C:\Program Files\Azure Cosmos DB Emulator\
 
 ## 7zip
@@ -735,7 +785,7 @@ _Version:_ 5.1.3.0<br/>
 
 ## OpenSSL
 
-_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>
+_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>
 
 ## Cloud Foundry CLI
 
@@ -750,7 +800,7 @@ _Environment:_
 
 ## VSWhere
 
-_Version_: Visual Studio Locator version 2.8.4+ff0de50053 [query version 2.3.2200.14893] Copyright (C) Microsoft Corporation. All rights reserved.  instanceId: 3ca3779b installDate: 2/25/2020 4:54:08 PM installationName: VisualStudio/16.4.5+29806.167 installationPath: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise installationVersion: 16.4.29806.167 productId: Microsoft.VisualStudio.Product.Enterprise productPath: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\devenv.exe state: 4294967295 isComplete: 1 isLaunchable: 1 isPrerelease: 0 isRebootRequired: 0 displayName: Visual Studio Enterprise 2019 description: Scalable, end-to-end solution for teams of any size channelId: VisualStudio.16.Release channelUri: https://aka.ms/vs/16/release/channel enginePath: C:\Program Files (x86)\Microsoft Visual Studio\Installer\resources\app\ServiceHub\Services\Microsoft.VisualStudio.Setup.Service releaseNotes: https://go.microsoft.com/fwlink/?LinkId=660893#16.4.5 thirdPartyNotices: https://go.microsoft.com/fwlink/?LinkId=660909 updateDate: 2020-02-25T16:54:08.9471413Z catalog_buildBranch: d16.4 catalog_buildVersion: 16.4.29806.167 catalog_id: VisualStudio/16.4.5+29806.167 catalog_localBuild: build-lab catalog_manifestName: VisualStudio catalog_manifestType: installer catalog_productDisplayVersion: 16.4.5 catalog_productLine: Dev16 catalog_productLineVersion: 2019 catalog_productMilestone: RTW catalog_productMilestoneIsPreRelease: False catalog_productName: Visual Studio catalog_productPatchVersion: 5 catalog_productPreReleaseMilestoneSuffix: 1.0 catalog_productSemanticVersion: 16.4.5+29806.167 catalog_requiredEngineVersion: 2.4.1111.43337 properties_campaignId:  properties_channelManifestId: VisualStudio.16.Release/16.4.5+29806.167 properties_nickname:  properties_setupEngineFilePath: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installershell.exe<br/>
+_Version_: Visual Studio Locator version 2.8.4+ff0de50053 [query version 2.3.2200.14893] Copyright (C) Microsoft Corporation. All rights reserved.  instanceId: 34bc4745 installDate: 3/1/2020 6:49:00 AM installationName: VisualStudio/16.4.5+29806.167 installationPath: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise installationVersion: 16.4.29806.167 productId: Microsoft.VisualStudio.Product.Enterprise productPath: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\devenv.exe state: 4294967295 isComplete: 1 isLaunchable: 1 isPrerelease: 0 isRebootRequired: 0 displayName: Visual Studio Enterprise 2019 description: Scalable, end-to-end solution for teams of any size channelId: VisualStudio.16.Release channelUri: https://aka.ms/vs/16/release/channel enginePath: C:\Program Files (x86)\Microsoft Visual Studio\Installer\resources\app\ServiceHub\Services\Microsoft.VisualStudio.Setup.Service releaseNotes: https://go.microsoft.com/fwlink/?LinkId=660893#16.4.5 thirdPartyNotices: https://go.microsoft.com/fwlink/?LinkId=660909 updateDate: 2020-03-01T06:49:00.926083Z catalog_buildBranch: d16.4 catalog_buildVersion: 16.4.29806.167 catalog_id: VisualStudio/16.4.5+29806.167 catalog_localBuild: build-lab catalog_manifestName: VisualStudio catalog_manifestType: installer catalog_productDisplayVersion: 16.4.5 catalog_productLine: Dev16 catalog_productLineVersion: 2019 catalog_productMilestone: RTW catalog_productMilestoneIsPreRelease: False catalog_productName: Visual Studio catalog_productPatchVersion: 5 catalog_productPreReleaseMilestoneSuffix: 1.0 catalog_productSemanticVersion: 16.4.5+29806.167 catalog_requiredEngineVersion: 2.4.1111.43337 properties_campaignId:  properties_channelManifestId: VisualStudio.16.Release/16.4.5+29806.167 properties_nickname:  properties_setupEngineFilePath: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installershell.exe<br/>
 * PATH: contains location of vswhere.exe
 
 ## Kubectl
@@ -764,3 +814,7 @@ _Environment:_
 _Version:_ kind v0.7.0 go1.13.6 windows/amd64<br/>
 _Environment:_
 * PATH: contains location of kind.exe
+
+## bazel
+
+_Version:_ bazel 2.1.0<br/>

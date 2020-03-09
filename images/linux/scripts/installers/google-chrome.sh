@@ -56,4 +56,4 @@ if ! command -v chromedriver; then
 fi
 
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Chromedriver ($(chromedriver --version)); Chrome Driver is available via CHROMEWEBDRIVER environment variable"
+DocumentInstalledItem "$(chromedriver --version); Chrome Driver is available via CHROMEWEBDRIVER environment variable"
