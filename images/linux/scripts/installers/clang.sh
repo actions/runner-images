@@ -18,6 +18,7 @@ function InstallClang {
         apt-get install -y "clang-$version" "lldb-$version" "lld-$version"
     else
         ./llvm.sh $version
+        apt-get install -y "clang-format-$version"
     fi
 
     # Run tests to determine that the software installed as expected
@@ -59,3 +60,4 @@ rm llvm.sh
 # Make Clang 9 default
 update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-9 100
 update-alternatives --install /usr/bin/clang clang /usr/bin/clang-9 100
+update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-9 100
