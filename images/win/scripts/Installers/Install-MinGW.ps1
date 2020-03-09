@@ -5,7 +5,7 @@
 
 Import-Module -Name ImageHelpers -Force
 
-choco install -y mingw
+Install-Choco "mingw"
 
 # Make a copy of mingw32-make.exe to make.exe, which is a more discoverable name
 # and so the same command line can be used on Windows as on macOS and Linux
