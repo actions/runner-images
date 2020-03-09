@@ -38,7 +38,7 @@ The following software is installed on machines with the 20200225.0 update.
 - Clang 8 (8.0.1)
 - Clang 9 (9.0.1)
 - CMake (cmake version 3.16.2)
-- Docker Compose (docker-compose version 1.22.0, build f46880fe)
+- Docker Compose (docker-compose version 1.25.4, build 8d51620a)
 - Docker (Docker version 3.0.10+azure, build 99c5edceb48d64c1aa5d09b8c9c499d431d98bb9)
 - Docker (Docker version 3.0.10+azure, build 99c5edceb48d64c1aa5d09b8c9c499d431d98bb9)
 - .NET Core SDK:
