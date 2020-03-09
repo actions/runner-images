@@ -4,6 +4,7 @@ param()
 . $PSScriptRoot\PathHelpers.ps1
 . $PSScriptRoot\InstallHelpers.ps1
 . $PSScriptRoot\MarkdownHelpers.ps1
+. $PSScriptRoot\InstallChoco.ps1
 
 Export-ModuleMember -Function @(
     'Test-MachinePath'
@@ -26,4 +27,5 @@ Export-ModuleMember -Function @(
     'Get-WinVersion'
     'Test-IsWin19'
     'Test-IsWin16'
+    'Install-Choco'
 )
