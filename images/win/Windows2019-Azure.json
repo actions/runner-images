@@ -118,7 +118,8 @@
             "type": "powershell",
             "inline": [
               "setx ImageVersion {{user `image_version` }} /m",
-              "setx ImageOS {{user `image_os` }} /m"
+              "setx ImageOS {{user `image_os` }} /m",
+              "setx CI true /m"
             ]
         },
         {

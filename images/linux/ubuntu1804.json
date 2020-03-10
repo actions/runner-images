@@ -126,7 +126,8 @@
             "type": "shell",
             "inline": [
                 "echo ImageVersion={{user `image_version`}} | tee -a /etc/environment",
-                "echo ImageOS={{user `image_os`}} | tee -a /etc/environment"
+                "echo ImageOS={{user `image_os`}} | tee -a /etc/environment",
+                "echo CI=true | tee -a /etc/environment"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
