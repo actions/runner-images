@@ -21,3 +21,4 @@ _Version:_ $(bazel --version)<br/>
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
+Add-SoftwareDetailsToMarkdown -SoftwareName "Test Software" -DescriptionMarkdown "Test Software"
