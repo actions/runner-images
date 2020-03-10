@@ -191,7 +191,7 @@
                 "GO_VERSIONS={{user `go_versions`}}",
                 "GO_DEFAULT={{user `go_default`}}"
             ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "file",
