@@ -29,7 +29,7 @@ function Get-GoVersion
     }
     else
     {
-        Write-Host "Unable to determine Go version at " + $goRootPath
+        Write-Host "Unable to determine Go version at " + $goPath
         exit 1
     }
 }
@@ -65,7 +65,7 @@ _Environment:_
 
 $SoftwareName = "Go (x64)"
 $Description = New-Object System.Text.StringBuilder
-$goVersionsToInstall = $env:GO_VERSIONS.split(", ")
+$goVersionsToInstall = $env:GO_VERSIONS.split(", ") | where {$_.Trim() -ne ''}
 
 foreach($go in $goVersionsToInstall) {
     $goVersion = Get-GoVersion -goVersion $go

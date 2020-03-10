@@ -61,7 +61,7 @@ function Install-GoVersion
 }
 
 # Install Go
-$goVersionsToInstall = $env:GO_VERSIONS.split(", ")
+$goVersionsToInstall = $env:GO_VERSIONS.split(", ") | where {$_.Trim() -ne ''}
 
 foreach($go in $goVersionsToInstall) {
     Write-Host "Installing Go ${go}"
