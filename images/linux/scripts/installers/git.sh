@@ -40,6 +40,8 @@ DocumentInstalledItem "Git Large File Storage (LFS) ($(git-lfs --version 2>&1 | 
 snap install hub --classic
 if command -v hub; then
     echo "hub CLI was installed successfully"
+    DocumentInstalledItem "Hub CLI ($(hub --version | grep "hub version" | cut -d ' ' -f 3))"
 else
-    echo "[!] hub CLI was not installed"
+    echo "[!] Hub CLI was not installed"
+    exit 1
 fi
