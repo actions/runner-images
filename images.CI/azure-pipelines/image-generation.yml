@@ -60,7 +60,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        $docsPath = (Get-ChildItem -Path "images" -Include ${{ parameters.image_readme_name }} -Recurse -Depth 1 | Select-Object -First 1
+        $docsPath = Get-ChildItem -Path "images" -Include ${{ parameters.image_readme_name }} -Recurse -Depth 1 | Select-Object -First 1
         Get-Content -Path $docsPath
 
   - task: PowerShell@2
