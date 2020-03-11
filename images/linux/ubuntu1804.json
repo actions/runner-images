@@ -134,6 +134,14 @@
         },
         {
             "type": "shell",
+            "inline": [
+                "mkdir -p /etc/skel/.config/configstore",
+                "echo 'export XDG_CONFIG_HOME=$HOME/.config' | tee -a /etc/skel/.bashrc"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
             "scripts": [
                 "{{template_dir}}/scripts/installers/7-zip.sh",
                 "{{template_dir}}/scripts/installers/ansible.sh",
