@@ -1,11 +1,16 @@
 # Ubuntu 18.04.4 LTS
-The following software is installed on machines with the 20200225.0 update.
+The following software is installed on machines with the 20200301.1 update.
 ***
 - 7-Zip 16.02
 - Ansible (ansible 2.9.4)
 - AzCopy (azcopy 7.3.0-netcore)
 - Azure CLI (azure-cli                          2.1.0)
 - Azure CLI (azure-devops                      0.17.0)
+- Bazel (Build label: 2.1.1
+Build target: bazel-out/k8-opt/bin/src/main/java/com/google/devtools/build/lib/bazel/BazelServer_deploy.jar
+Build time: Fri Feb 21 14:56:47 2020 (1582297007)
+Build timestamp: 1582297007
+Build timestamp as int: 1582297007)
 - Basic CLI:
   - curl
   - dnsutils
@@ -32,15 +37,14 @@ The following software is installed on machines with the 20200225.0 update.
   - wget
   - zip
   - zstd
-- AWS CLI (aws-cli/1.18.6 Python/2.7.17 Linux/5.0.0-1032-azure botocore/1.15.6)
+- AWS CLI (aws-cli/1.18.11 Python/2.7.17 Linux/5.0.0-1032-azure botocore/1.15.11)
 - build-essential
 - Clang 6.0 (6.0.1)
 - Clang 8 (8.0.1)
 - Clang 9 (9.0.0)
 - CMake (cmake version 3.16.2)
 - Docker Compose (docker-compose version 1.22.0, build f46880fe)
-- Docker (Docker version 3.0.10+azure, build 99c5edceb48d64c1aa5d09b8c9c499d431d98bb9)
-- Docker (Docker version 3.0.10+azure, build 99c5edceb48d64c1aa5d09b8c9c499d431d98bb9)
+- Docker-Moby (Docker version 3.0.10+azure, build 99c5edceb48d64c1aa5d09b8c9c499d431d98bb9)
 - .NET Core SDK:
   - 3.1.101
   - 3.1.100
@@ -102,7 +106,7 @@ The following software is installed on machines with the 20200225.0 update.
   - 2.1.301
   - 2.1.300
 - Erlang (Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 10.6.4)
-- Firefox (Mozilla Firefox 73.0)
+- Firefox (Mozilla Firefox 73.0.1)
 - Geckodriver (); Gecko Driver is available via GECKOWEBDRIVER environment variable
 - GNU C++ 7.4.0
 - GNU C++ 8.3.0
@@ -148,7 +152,7 @@ compiled using version 3.0.2.0 of the Cabal library )
 - Kind (kind v0.7.0 go1.13.6 linux/amd64)
 - kubectl (Client Version: v1.17.3)
 - helm (Client: v2.16.3+g1ee0254)
-- Leiningen (Leiningen 2.9.1 on Java 1.8.0_242 OpenJDK 64-Bit Server VM)
+- Leiningen (Leiningen 2.9.2 on Java 1.8.0_242 OpenJDK 64-Bit Server VM)
 - Mercurial (Mercurial Distributed SCM (version 4.5.3))
 - Miniconda (conda 4.7.12)
 - Mono (Mono JIT compiler version 6.8.0.105 (tarball Tue Feb  4 21:20:20 UTC 2020))
@@ -161,10 +165,10 @@ compiled using version 3.0.2.0 of the Cabal library )
 Local version: Unknown)
 - n (6.3.1)
 - Parcel (1.12.4)
-- TypeScript (Version 3.8.2)
+- TypeScript (Version 3.8.3)
 - Webpack (4.41.6)
 - Webpack CLI (3.3.11)
-- Yarn (1.21.1)
+- Yarn (1.22.0)
 - PhantomJS (2.1.1)
 - PHP 7.1 (PHP 7.1.33-12+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:22:16) ( NTS ))
 - PHP 7.2 (PHP 7.2.28-3+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:23:25) ( NTS ))
@@ -178,11 +182,11 @@ Local version: Unknown)
 - ruby (2.5.1p57)
 - gem (3.1.2)
 - rustup (1.21.1)
-- rust (1.41.0)
+- rust (1.41.1)
 - cargo (1.41.0)
 - rustfmt (1.4.11-stable)
 - clippy (0.0.212)
-- rustdoc (1.41.0)
+- rustdoc (1.41.1)
 - bindgen (execute
 the
 0.53.1)
@@ -252,14 +256,15 @@ the
 - Az Module (2.6.0)
 - Az Module (2.8.0)
 - Az Module (3.1.0)
+- Az Module (3.5.0)
 - Cached container images
+  - node:10 (Digest: sha256:df200903ff34c07c1b9112b4fd9d1342c11eb7d99525f2b366c487f91dda8131)
+  - node:12 (Digest: sha256:facc1cbde6e5aa3255092b1a1417451953c80bd31ab5a4403f8bcd90b90a8407)
+  - buildpack-deps:stretch (Digest: sha256:dc901bbf4b34e4ca8771c0d0773e557221452f97bcf0c732de7ecda3782bdf97)
+  - debian:9 (Digest: sha256:ddb131307ad9c70ebf8c7962ba73c20101f68c7a511915aea3ad3b7ad47b9d20)
+  - debian:8 (Digest: sha256:2c9b2323299846c5298c12db373da310f8114f2941ae3f496e95270cc8ca5ebd)
   - node:10-alpine (Digest: sha256:e8d05985dd93c380a83da00d676b081dad9cce148cb4ecdf26ed684fcff1449c)
-  - node:10 (Digest: sha256:cfc462a03d170c09332f28cb358d796575bc0ac2e2b47d97e10810f6c4acdd2e)
   - node:12-alpine (Digest: sha256:bba77d0ca8820b43af898b3c50d4e8b68dc703ebbd958319af2f21f2d3c309f5)
-  - node:12 (Digest: sha256:c185973d2d8d60d2f99abe1285e1ad0887a42f313f3befa6ae8f2429304ee09c)
-  - buildpack-deps:stretch (Digest: sha256:8bcd320ec29cf67052985f28891586fb853051f69ad0646fc7a49f47d6e3ee1a)
-  - debian:9 (Digest: sha256:da5274336981301e2c5f2edb54eaa4dccee70c39506f96d39377b46ea75e804e)
-  - debian:8 (Digest: sha256:0e7a709bdf94e15391e9658271197e28a8c993f4d6bb8ee49d370886a9893351)
   - alpine:3.8 (Digest: sha256:2bb501e6173d9d006e56de5bce2720eb06396803300fe1687b58a7ff32bf4c14)
   - alpine:3.9 (Digest: sha256:115731bab0862031b44766733890091c17924f9b7781b79997f5f163be262178)
   - alpine:3.10 (Digest: sha256:7c3773f7bcc969f03f8f653910001d99a9d324b4b9caa008846ad2c3089f5a5f)
@@ -271,7 +276,7 @@ the
   - Python 3.5.9
   - Python 3.6.10
   - Python 3.7.6
-  - Python 3.8.1
+  - Python 3.8.2
 - Ruby:
   - Ruby 2.4.9
   - Ruby 2.5.7
