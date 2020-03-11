@@ -7,7 +7,7 @@
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
-version="1.22.0"
+version="1.25.4"
 
 # Install latest docker-compose from releases
 curl -L "https://github.com/docker/compose/releases/download/$version/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
