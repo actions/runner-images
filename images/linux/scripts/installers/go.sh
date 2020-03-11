@@ -44,7 +44,6 @@ function getFullGoVersion () {
 
 # load golang_tags.json file
 curl -s 'https://api.github.com/repos/golang/go/git/refs/tags' >> $golangTags
-echo "GO_VERSIONS is $GO_VERSIONS"
 # Install Go versions
 for go in ${GO_VERSIONS}; do
     echo "Installing Go ${go}"
