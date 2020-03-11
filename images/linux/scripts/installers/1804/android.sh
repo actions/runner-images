@@ -19,11 +19,11 @@ echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
 wget -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-unzip android-sdk.zip -d ${ANDROID_ROOT}
+unzip android-sdk.zip -d ${ANDROID_SDK_ROOT}
 rm -f android-sdk.zip
 
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
-echo "y" | ${ANDROID_ROOT}/tools/bin/sdkmanager --sdk_root=${ANDROID_SDK_ROOT} \
+echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --sdk_root=${ANDROID_SDK_ROOT} \
     "ndk-bundle" \
     "platform-tools" \
     "platforms;android-29" \
