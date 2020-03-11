@@ -65,7 +65,7 @@ _Environment:_
 
 $SoftwareName = "Go (x64)"
 $Description = New-Object System.Text.StringBuilder
-$goVersionsToInstall = $env:GO_VERSIONS.split(", ") | where {$_.Trim() -ne ''}
+$goVersionsToInstall = $env:GO_VERSIONS.split(", ", [System.StringSplitOptions]::RemoveEmptyEntries)
 
 foreach($go in $goVersionsToInstall) {
     $goVersion = Get-GoVersion -goVersion $go
