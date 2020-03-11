@@ -229,6 +229,7 @@ function Install-VsixExtension
     #Cleanup installation files
     Remove-Item -Force -Confirm:$false $FilePath
 }
+
 function Get-VS19ExtensionVersion
 {
     param (
