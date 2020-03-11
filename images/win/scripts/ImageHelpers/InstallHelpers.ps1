@@ -170,7 +170,6 @@ function Install-VsixExtension
     )
 
     $FilePath = "${env:Temp}\$Name"
-    $exitCode = -1
     $retries = 20
 
     while($retries -gt 0)
