@@ -1,6 +1,6 @@
 # Windows Server 2019
 
-The following software is installed on machines with the 20200212.1 update.
+The following software is installed on machines with the 20200301.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -19,7 +19,7 @@ _Environment:_
 
 ## Docker-compose
 
-_Version:_ 1.25.3<br/>
+_Version:_ 1.25.4<br/>
 _Environment:_
 * PATH: contains location of docker-compose.exe
 
@@ -30,10 +30,10 @@ _Version:_ 6.2.4<br/>
 ## Docker images
 
 The following container images have been cached:
-* mcr.microsoft.com/windows/servercore:ltsc2019 (Digest: sha256:7437a0cac8abeb7b540ef249e6c9b5da6e3e218579b187e8a5d4528919497eba)
-* mcr.microsoft.com/windows/nanoserver:1809 (Digest: sha256:05c753fb084d83f9742727a301f19bcbb2912b9a58f3ca659ba4c9d3e9b9fec2)
-* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019 (Digest: sha256:fb04ac71d809a06bd695d7647cff47a1c5ceb2e2b11c1ed7dd32283158522e36)
-* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 (Digest: sha256:85433707a809232402827a359c80d0aa08226e7833aa2914be2113e694d2b6ae)
+* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019 (Digest: sha256:746e54a4398bff0ad516d02fdb9eec5cba1a3b5ba0c15a82c051fc3dc753fe85)
+* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 (Digest: sha256:708a9492c51140a07a0bd160c508dd6d17f3b061af0a3f53de607d671ee7176a)
+* mcr.microsoft.com/windows/servercore:ltsc2019 (Digest: sha256:39ba615d7a739fcdd9fc95b97882672d5af7d0861dd16b51b238c822765d2b8d)
+* mcr.microsoft.com/windows/nanoserver:1809 (Digest: sha256:4201fb07c1ece2ef0bad7b518fd487d030cd49de98b81b3ed8b98e71432df463)
 * microsoft/aspnetcore-build:1.0-2.0 (Digest: sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c)
 
 ## Visual Studio 2019 Enterprise
@@ -54,6 +54,9 @@ The following workloads and components are installed with Visual Studio 2019:
 * Microsoft.Component.VC.Runtime.UCRTSDK
 * Microsoft.Net.ComponentGroup.4.6.2.DeveloperTools
 * Microsoft.Net.ComponentGroup.4.7.1.DeveloperTools
+* Microsoft.Net.Component.4.7.2.SDK
+* Microsoft.Net.Component.4.7.2.TargetingPack
+* Microsoft.Net.ComponentGroup.4.7.2.DeveloperTools
 * Microsoft.Net.ComponentGroup.4.7.DeveloperTools
 * Microsoft.VisualStudio.Component.AspNet45
 * Microsoft.VisualStudio.Component.Azure.Kubernetes.Tools
@@ -131,7 +134,8 @@ _Path:_ C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
 
 ## Windows Driver Kit
 
-_Version:_ 10.0.18362.0<br/>
+_WDK Version:_ 10.1.18362.1<br/>
+_WDK Visual Studio Extension Version:_ 10.0.18346.0<br/>
 
 ## Azure Service Fabric
 
@@ -304,7 +308,7 @@ _Location:_ C:\Program Files (x86)\Android\android-sdk\platforms\android-21
 _Location:_ C:\Program Files (x86)\Android\android-sdk\platforms\android-19
 
 
-## Azure/AzureRM Powershell modules
+## AzureRM PowerShell module
 
 #### 2.1.0
 
@@ -313,22 +317,72 @@ This version is installed and is available via `Get-Module -ListAvailable`
 
 This version is saved but not installed
 _Location:_ C:\Modules\azurerm_3.8.0\AzureRM\3.8.0\AzureRM.psd1
-
 #### 4.2.1
 
 This version is saved but not installed
 _Location:_ C:\Modules\azurerm_4.2.1\AzureRM\4.2.1\AzureRM.psd1
-
 #### 5.1.1
 
 This version is saved but not installed
 _Location:_ C:\Modules\azurerm_5.1.1\AzureRM\5.1.1\AzureRM.psd1
-
 #### 6.7.0
 
 This version is saved but not installed
 _Location:_ C:\Modules\azurerm_6.7.0\AzureRM\6.7.0\AzureRM.psd1
+#### 6.13.1
 
+This version is saved but not installed
+_Location:_ C:\Modules\azurerm_6.13.1\AzureRM\6.13.1\AzureRM.psd1
+
+## Azure PowerShell module
+
+#### 2.1.0
+
+This version is installed and is available via `Get-Module -ListAvailable`
+#### 3.8.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\azure_3.8.0\Azure\3.8.0\Azure.psd1
+#### 4.2.1
+
+This version is saved but not installed
+_Location:_ C:\Modules\azure_4.2.1\Azure\4.2.1\Azure.psd1
+#### 5.1.1
+
+This version is saved but not installed
+_Location:_ C:\Modules\azure_5.1.1\Azure\5.1.1\Azure.psd1
+#### 5.3.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\azure_5.3.0\Azure\5.3.0\Azure.psd1
+
+## Az PowerShell module
+
+
+#### 1.0.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_1.0.0\Az\1.0.0\Az.psd1
+#### 1.6.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_1.6.0\Az\1.6.0\Az.psd1
+#### 2.3.2
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_2.3.2\Az\2.3.2\Az.psd1
+#### 2.6.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_2.6.0\Az\2.6.0\Az.psd1
+#### 3.1.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_3.1.0\Az\3.1.0\Az.psd1
+#### 3.5.0
+
+This version is saved but not installed
+_Location:_ C:\Modules\az_3.5.0\Az\3.5.0\Az.psd1
 
 ## TLS12
 
@@ -337,7 +391,7 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.0.81
+_Version:_ 2.1.0
 _Environment:_
 * PATH: contains location of az.cmd
 
@@ -347,7 +401,7 @@ _Version:_ azure-devops                      0.17.0
 
 ## Python
 
-_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.1 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.1 (x86)<br/>
+_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.2 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.2 (x86)<br/>
 
 ## PyPy
 
@@ -369,13 +423,13 @@ _Location:_ C:/hostedtoolcache/windows/Python/2.7*/x64
 
 ## Git
 
-_Version:_ 2.25.0<br/>
+_Version:_ 2.25.1<br/>
 _Environment:_
 * PATH: contains location of git.exe
 
 ## Git Large File Storage (LFS)
 
-_Version:_ 2.9.2<br/>
+_Version:_ 2.10.0<br/>
 _Environment:_
 * PATH: contains location of git-lfs.exe
 * GIT_LFS_PATH: location of git-lfs.exe
@@ -421,11 +475,11 @@ _Environment:_
 
 ## PHP (x64)
 
-#### 7.4.2
+#### 7.4.3
 
 _Environment:_
-* PATH: contains the location of php.exe version 7.4.2
-* PHPROOT: root directory of the PHP 7.4.2 installation
+* PATH: contains the location of php.exe version 7.4.3
+* PHPROOT: root directory of the PHP 7.4.3 installation
 
 ## Ruby (x64)
 
@@ -437,7 +491,7 @@ _Environment:_
 
 ## Rust (64-bit)
 
-#### 1.41.0
+#### 1.41.1
 _Location:_ C:\Rust\.cargo\bin
 _Environment:_
 * PATH: contains the location of rustc.exe
@@ -455,17 +509,17 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-80.0.3987.100
+80.0.3987.122
 
 ## Microsoft Edge
 
 _version:_
-80.0.361.50
+80.0.361.62
 
 ## Mozilla Firefox
 
 _version:_
-72.0.1
+73.0.1
 
 ## Selenium Web Drivers
 
@@ -481,7 +535,7 @@ _Environment:_
 #### Gecko Driver
 
 _version:_
-0.24.0
+
 
 _Environment:_
 * GeckoWebDriver: location of geckodriver.exe
@@ -489,7 +543,7 @@ _Environment:_
 #### IE Driver
 
 _version:_
-80.0.3987.16
+80.0.3987.106
 
 _Environment:_
 * IEWebDriver: location of IEDriverServer.exe
@@ -505,7 +559,7 @@ _Environment:_
 
 ## Node.js
 
-_Version:_ 12.16.0<br/>
+_Version:_ 12.16.1<br/>
 _Architecture:_ x64<br/>
 _Environment:_
 * PATH: contains location of node.exe<br/>
@@ -546,26 +600,27 @@ _Environment:_
 
 ## Maven
 
-_Version:_ 3.6.2<br/>
+_Version:_ 3.6.3<br/>
 _Environment:_
 * PATH: contains location of mvn.bat
 * M2_HOME: Maven installation root
 
 ## Gradle
 
-_Version:_ 6.0.1<br/>
+_Version:_ 6.2.1<br/>
 _Environment:_
 * PATH: contains location of gradle
 
 ## Cmake
 
-_Version:_ 3.16.2<br/>
+_Version:_ 3.16.4<br/>
 _Environment:_
 * PATH: contains location of cmake.exe
 
 ## SQL Server Data Tier Application Framework (x64)
 
 _Version:_ 15.0.4538.1<br/>
+* SQL Server Express LocalDB is available at C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe
 
 ## .NET Core
 
@@ -577,6 +632,7 @@ _Environment:_
 _SDK:_
 * 3.1.101 C:\Program Files\dotnet\sdk\3.1.101
 * 3.1.100 C:\Program Files\dotnet\sdk\3.1.100
+* 3.0.103 C:\Program Files\dotnet\sdk\3.0.103
 * 3.0.102 C:\Program Files\dotnet\sdk\3.0.102
 * 3.0.101 C:\Program Files\dotnet\sdk\3.0.101
 * 3.0.100 C:\Program Files\dotnet\sdk\3.0.100
@@ -601,11 +657,13 @@ _SDK:_
 * 2.2.102 C:\Program Files\dotnet\sdk\2.2.102
 * 2.2.101 C:\Program Files\dotnet\sdk\2.2.101
 * 2.2.100 C:\Program Files\dotnet\sdk\2.2.100
+* 2.1.804 C:\Program Files\dotnet\sdk\2.1.804
 * 2.1.803 C:\Program Files\dotnet\sdk\2.1.803
 * 2.1.802 C:\Program Files\dotnet\sdk\2.1.802
 * 2.1.801 C:\Program Files\dotnet\sdk\2.1.801
 * 2.1.701 C:\Program Files\dotnet\sdk\2.1.701
 * 2.1.700 C:\Program Files\dotnet\sdk\2.1.700
+* 2.1.609 C:\Program Files\dotnet\sdk\2.1.609
 * 2.1.608 C:\Program Files\dotnet\sdk\2.1.608
 * 2.1.607 C:\Program Files\dotnet\sdk\2.1.607
 * 2.1.606 C:\Program Files\dotnet\sdk\2.1.606
@@ -613,6 +671,7 @@ _SDK:_
 * 2.1.604 C:\Program Files\dotnet\sdk\2.1.604
 * 2.1.603 C:\Program Files\dotnet\sdk\2.1.603
 * 2.1.602 C:\Program Files\dotnet\sdk\2.1.602
+* 2.1.512 C:\Program Files\dotnet\sdk\2.1.512
 * 2.1.511 C:\Program Files\dotnet\sdk\2.1.511
 * 2.1.510 C:\Program Files\dotnet\sdk\2.1.510
 * 2.1.509 C:\Program Files\dotnet\sdk\2.1.509
@@ -634,6 +693,7 @@ _SDK:_
 _Runtime:_
 * 3.1.1 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.1
 * 3.1.0 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.0
+* 3.0.3 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.3
 * 3.0.2 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.2
 * 3.0.1 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.1
 * 3.0.0 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.0.0
@@ -654,6 +714,7 @@ _Runtime:_
 * 2.1.4 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.4
 * 2.1.3 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.3
 * 2.1.2 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.2
+* 2.1.16 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.16
 * 2.1.15 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.15
 * 2.1.14 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.14
 * 2.1.13 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.13
@@ -685,7 +746,7 @@ _Environment:_
 
 ## TypeScript
 
-_Version:_ Version 3.7.5<br/>
+_Version:_ Version 3.8.3<br/>
 
 ## Miniconda
 
@@ -695,7 +756,7 @@ _Environment:_
 
 ## Azure CosmosDb Emulator
 
-_Version:_ 2.9.1.0<br/>
+_Version:_ 2.9.2.0<br/>
 _Location:_ C:\Program Files\Azure Cosmos DB Emulator\
 
 ## 7zip
@@ -739,7 +800,7 @@ _Environment:_
 
 ## VSWhere
 
-_Version_: Visual Studio Locator version 2.8.4+ff0de50053 [query version 2.3.2200.14893] Copyright (C) Microsoft Corporation. All rights reserved.  instanceId: c902162b installDate: 2/12/2020 11:02:21 PM installationName: VisualStudio/16.4.5+29806.167 installationPath: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise installationVersion: 16.4.29806.167 productId: Microsoft.VisualStudio.Product.Enterprise productPath: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\devenv.exe state: 4294967295 isComplete: 1 isLaunchable: 1 isPrerelease: 0 isRebootRequired: 0 displayName: Visual Studio Enterprise 2019 description: Scalable, end-to-end solution for teams of any size channelId: VisualStudio.16.Release channelUri: https://aka.ms/vs/16/release/channel enginePath: C:\Program Files (x86)\Microsoft Visual Studio\Installer\resources\app\ServiceHub\Services\Microsoft.VisualStudio.Setup.Service releaseNotes: https://go.microsoft.com/fwlink/?LinkId=660893#16.4.5 thirdPartyNotices: https://go.microsoft.com/fwlink/?LinkId=660909 updateDate: 2020-02-12T23:02:21.9476668Z catalog_buildBranch: d16.4 catalog_buildVersion: 16.4.29806.167 catalog_id: VisualStudio/16.4.5+29806.167 catalog_localBuild: build-lab catalog_manifestName: VisualStudio catalog_manifestType: installer catalog_productDisplayVersion: 16.4.5 catalog_productLine: Dev16 catalog_productLineVersion: 2019 catalog_productMilestone: RTW catalog_productMilestoneIsPreRelease: False catalog_productName: Visual Studio catalog_productPatchVersion: 5 catalog_productPreReleaseMilestoneSuffix: 1.0 catalog_productSemanticVersion: 16.4.5+29806.167 catalog_requiredEngineVersion: 2.4.1111.43337 properties_campaignId:  properties_channelManifestId: VisualStudio.16.Release/16.4.5+29806.167 properties_nickname:  properties_setupEngineFilePath: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installershell.exe<br/>
+_Version_: Visual Studio Locator version 2.8.4+ff0de50053 [query version 2.3.2200.14893] Copyright (C) Microsoft Corporation. All rights reserved.  instanceId: 34bc4745 installDate: 3/1/2020 6:49:00 AM installationName: VisualStudio/16.4.5+29806.167 installationPath: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise installationVersion: 16.4.29806.167 productId: Microsoft.VisualStudio.Product.Enterprise productPath: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\devenv.exe state: 4294967295 isComplete: 1 isLaunchable: 1 isPrerelease: 0 isRebootRequired: 0 displayName: Visual Studio Enterprise 2019 description: Scalable, end-to-end solution for teams of any size channelId: VisualStudio.16.Release channelUri: https://aka.ms/vs/16/release/channel enginePath: C:\Program Files (x86)\Microsoft Visual Studio\Installer\resources\app\ServiceHub\Services\Microsoft.VisualStudio.Setup.Service releaseNotes: https://go.microsoft.com/fwlink/?LinkId=660893#16.4.5 thirdPartyNotices: https://go.microsoft.com/fwlink/?LinkId=660909 updateDate: 2020-03-01T06:49:00.926083Z catalog_buildBranch: d16.4 catalog_buildVersion: 16.4.29806.167 catalog_id: VisualStudio/16.4.5+29806.167 catalog_localBuild: build-lab catalog_manifestName: VisualStudio catalog_manifestType: installer catalog_productDisplayVersion: 16.4.5 catalog_productLine: Dev16 catalog_productLineVersion: 2019 catalog_productMilestone: RTW catalog_productMilestoneIsPreRelease: False catalog_productName: Visual Studio catalog_productPatchVersion: 5 catalog_productPreReleaseMilestoneSuffix: 1.0 catalog_productSemanticVersion: 16.4.5+29806.167 catalog_requiredEngineVersion: 2.4.1111.43337 properties_campaignId:  properties_channelManifestId: VisualStudio.16.Release/16.4.5+29806.167 properties_nickname:  properties_setupEngineFilePath: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installershell.exe<br/>
 * PATH: contains location of vswhere.exe
 
 ## Kubectl
@@ -753,3 +814,7 @@ _Environment:_
 _Version:_ kind v0.7.0 go1.13.6 windows/amd64<br/>
 _Environment:_
 * PATH: contains location of kind.exe
+
+## bazel
+
+_Version:_ bazel 2.1.0<br/>

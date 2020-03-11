@@ -5,8 +5,8 @@
 
 Import-Module -Name ImageHelpers -Force
 
-#SSDT for Visual Studio 2017 (15.8.2)
-$InstallerURI = 'https://download.microsoft.com/download/D/F/8/DF8B51B9-8E9F-47F3-A27B-33EEDADD8966/SSDT-Setup-ENU.exe'
+#SSDT for Visual Studio 2017 (15.9.3)
+$InstallerURI = 'https://download.microsoft.com/download/5/2/D/52DEF429-5B17-470C-82D9-654116080B15/SSDT-Setup-ENU.exe'
 $InstallerName = 'SSDT-Setup-ENU.exe'
 $logFilePath = "$env:TEMP\ssdtlog.txt"
 $ArgumentList = ('/install', 'INSTALLALL', '/passive', '/norestart', "/log `"$logFilePath`"")

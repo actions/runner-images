@@ -66,7 +66,8 @@ function InstallAllValidSdks()
         Invoke-WebRequest -Uri $dotnetChannel.'releases.json' -UseBasicParsing -OutFile "releases-$channelVersion.json"
         $currentReleases = Get-Content -Path "releases-$channelVersion.json" | ConvertFrom-Json
         # filtering out the preview/rc releases
-        $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') } | Sort-Object { [Version] $_.'release-version' }
+        # Remove version 3.1.102 from install list, .NET gave a heads-up that this might cause issues and they are working on a fix. https://github.com/dotnet/aspnetcore/issues/19133
+        $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') -and !$_.'release-version'.Contains('3.1.2') } | Sort-Object { [Version] $_.'release-version' }
         ForEach ($release in $currentReleases)
         {
             if ($release.'sdks'.Count -gt 0)
@@ -78,8 +79,7 @@ function InstallAllValidSdks()
                 # Sort the sdks on version
                 $sdks = @($release.'sdk');
 
-                # Remove version 3.1.102 from install list, .NET gave a heads-up that this might cause issues and they are working on a fix.
-                $sdks += $release.'sdks' | Where-Object { !$_.'version'.Equals('3.1.102') -and !$_.'version'.Contains('-') -and !$_.'version'.Equals($release.'sdk'.'version') }
+                $sdks += $release.'sdks' | Where-Object { !$_.'version'.Contains('-') -and !$_.'version'.Equals($release.'sdk'.'version') }
                 $sdks = $sdks | Sort-Object { [Version] $_.'version' }
 
                 ForEach ($sdk in $sdks)
