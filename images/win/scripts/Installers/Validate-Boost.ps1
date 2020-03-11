@@ -37,7 +37,7 @@ else
 
 # Adding description of the software to Markdown
 $tmplMark = @"
-#### {0}
+#### {0} [{2}]
 
 _Environment:_
 * {1}: root directory of the Boost version {0} installation
@@ -45,8 +45,9 @@ _Environment:_
 "@
 
 $tmplMarkRoot = @"
-#### {0}
+#### {0} [{2}]
 
+_Environment:_
 * PATH: contains the location of Boost version {0}
 * BOOST_ROOT: root directory of the Boost version {0} installation
 * {1}: root directory of the Boost version {0} installation
@@ -62,14 +63,38 @@ foreach($BoostVersion in $BoostVersionsToInstall)
     Validate-BoostVersion -BoostRootPath $BoostRootDirectory -BoostRelease $BoostVersion
     $BoostVersionTag = "BOOST_ROOT_{0}" -f $BoostVersion.Replace('.', '_')
 
-    if($BoostVersion -eq $env:BOOST_DEFAULT)
+    if ([Version]$BoostVersion -ge "1.70.0")
     {
-        $null = $Description.AppendLine(($tmplMarkRoot -f $BoostVersion, $BoostVersionTag))
+        $BoostToolsetName = "msvc-14.2"
     }
     else
     {
-        $null = $Description.AppendLine(($tmplMark -f $BoostVersion, $BoostVersionTag))
+        $BoostToolsetName = "msvc-14.1"
+    }
+
+    if($BoostVersion -eq $env:BOOST_DEFAULT)
+    {
+        $null = $Description.AppendLine(($tmplMarkRoot -f $BoostVersion, $BoostVersionTag, $BoostToolsetName))
+    }
+    else
+    {
+        $null = $Description.AppendLine(($tmplMark -f $BoostVersion, $BoostVersionTag, $BoostToolsetName))
     }
 }
 
+$CMakeFindBoostInfo = @"
+
+#### _Notes:_
+Link: https://cmake.org/cmake/help/latest/module/FindBoost.html
+
+If Boost was built using the ``boost-cmake`` project or from ``Boost 1.70.0`` on it provides a package
+configuration file for use with find\_package's config mode. This module looks for the package
+configuration file called BoostConfig.cmake or boost-config.cmake and stores the result in CACHE entry "Boost_DIR".
+If found, the package configuration file is loaded and this module returns with no further action.
+See documentation of the Boost CMake package configuration for details on what it provides.
+
+Set ``Boost_NO_BOOST_CMAKE to ON``, to disable the search for boost-cmake.
+"@
+
+$null = $Description.AppendLine($CMakeFindBoostInfo)
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description.ToString()
