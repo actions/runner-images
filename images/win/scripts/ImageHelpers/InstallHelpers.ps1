@@ -170,11 +170,10 @@ function Install-VsixExtension
     )
 
     $FilePath = "${env:Temp}\$Name"
-    $ReleaseInPath = 'Enterprise'
     $exitCode = -1
     $retries = 20
 
-    while($true)
+    while($retries -gt 0)
     {
         try
         {
@@ -186,17 +185,18 @@ function Install-VsixExtension
         {
             Write-Host "There is an error during $Name downloading"
             $_
-            if ($retries -gt 0)
+
+            $retries--
+
+            if ($retries -eq 0)
             {
-                $retries--
-                Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
-                Start-Sleep -Seconds 30
-            }
-            else {
                 Write-Host "File can't be downloaded"
                 $_
                 exit 1
             }
+
+            Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
+            Start-Sleep -Seconds 30
         }
     }
 
@@ -205,7 +205,7 @@ function Install-VsixExtension
     Write-Host "Starting Install $Name..."
     try
     {
-        $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\$ReleaseInPath\Common7\IDE\VSIXInstaller.exe" -ArgumentList $ArgumentList -Wait -PassThru
+        $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" -ArgumentList $ArgumentList -Wait -PassThru
     }
     catch
     {
