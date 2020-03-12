@@ -7,7 +7,7 @@ if((Get-Command -Name 'git') -and (Get-Command -Name 'bash') -and (Get-Command -
 {
     Write-Host "$(git version) on path"
     Write-Host "$(git-lfs version) on path"
-    Write-Host "$(hub version | Select-String "hub version") on path"
+    Write-Host "$(hub version | Select-String 'hub version') on path"
 }
 else
 {
@@ -30,35 +30,27 @@ if($(hub version | Select-String "hub version") -match 'hub version (?<version>.
     $hubVersion = $Matches.version
 }
 
-# Adding description of the software to Markdown
-$GitSoftware = @(
-    [pscustomobject]@{
-        SoftwareName = "Git";
-        Description = @"
+#Adding description of the software to Markdown
+$GitDescription = @"
 _Version:_ $gitVersion<br/>
 _Environment:_
 * PATH: contains location of git.exe
 "@
-    },
-    [pscustomobject]@{
-        SoftwareName = "Git Large File Storage (LFS)";
-        Description = @"
+Add-SoftwareDetailsToMarkdown -SoftwareName "Git" -DescriptionMarkdown $GitDescription
+
+# Adding description of the software to Markdown
+$GitLfsDescription = @"
 _Version:_ $gitLfsVersion<br/>
 _Environment:_
 * PATH: contains location of git-lfs.exe
 * GIT_LFS_PATH: location of git-lfs.exe
 "@
-    },
-    [pscustomobject]@{
-        SoftwareName = "Hub CLI";
-        Description = @"
+Add-SoftwareDetailsToMarkdown -SoftwareName "Git Large File Storage (LFS)" -DescriptionMarkdown $GitLfsDescription
+
+#Adding description of the software to Markdown
+$HubCliDescription = @"
 _Version:_ $hubVersion<br/>
 _Environment:_
 * PATH: contains location of hub.exe
 "@
-    }
-)
-
-$GitSoftware | ForEach-Object {
-    Add-SoftwareDetailsToMarkdown -SoftwareName $_.SoftwareName -DescriptionMarkdown $_.Description
-}
+Add-SoftwareDetailsToMarkdown -SoftwareName "Hub CLI" -DescriptionMarkdown $HubCliDescription
