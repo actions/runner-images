@@ -18,5 +18,6 @@ Export-ModuleMember -Function @(
     'Add-SoftwareDetailsToMarkdown'
     'Stop-SvcWithErrHandling'
     'Set-SvcWithErrHandling'
+    'Install-VsixExtension'
     'Get-VS19ExtensionVersion'
 )
