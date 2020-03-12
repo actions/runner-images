@@ -7,10 +7,7 @@ if((Get-Command -Name 'git') -and (Get-Command -Name 'bash') -and (Get-Command -
 {
     Write-Host "$(git version) on path"
     Write-Host "$(git-lfs version) on path"
-
-    $strHubVersion = $(hub version)[1]
-    Write-Host "${strHubVersion} on path"
-    $hubVersion = ($strHubVersion -split " ")[2]
+    Write-Host "$(hub version | Select-String "hub version") on path"
 }
 else
 {
@@ -26,6 +23,11 @@ if( $(git version) -match  'git version (?<version>.*).win.*' )
 if( $(git-lfs version) -match  'git-lfs\/(?<version>.*) \(Git.*' )
 {
    $gitLfsVersion = $Matches.version
+}
+
+if($(hub version | Select-String "hub version") -match 'hub version (?<version>.*)')
+{
+    $hubVersion = $Matches.version
 }
 
 # Adding description of the software to Markdown
