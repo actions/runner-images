@@ -55,7 +55,6 @@ _Environment:_
 _Version:_ $hubVersion<br/>
 _Environment:_
 * PATH: contains location of hub.exe
-* GIT_LFS_PATH: location of hub.exe
 "@
     }
 )
