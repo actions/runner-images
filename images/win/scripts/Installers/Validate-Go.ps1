@@ -18,8 +18,8 @@ function Get-GoVersion
     $env:Path = "$goPath\bin;" + $env:Path
     $version = $(go version)
 
-    $semanticEquality = $version -match 'go version go(?<version>.*) win.*'
     $matchVersion = $version -match $goVersion
+    $semanticEquality = $version -match 'go version go(?<version>.*) win.*'
 
     if($semanticEquality -And $matchVersion)
     {
