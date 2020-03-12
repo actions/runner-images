@@ -439,6 +439,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-SQLExpress.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-SQLPowerShellTools.ps1"
             ]
         },
@@ -573,6 +579,12 @@
         {
             "type": "windows-restart",
             "restart_timeout": "10m"
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-SQLExpress.ps1"
+            ]
         },
         {
             "type": "powershell",
