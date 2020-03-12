@@ -31,7 +31,6 @@ _Version:_ $(bazel --version)<br/>
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-Add-SoftwareDetailsToMarkdown -SoftwareName "Test Software" -DescriptionMarkdown "Test Software"
 
 # Adding description of Bazelisk to Markdown
 $bazelisk_version = ((bazelisk version | Select-String "Bazelisk version:") -Split(" v"))[2]
