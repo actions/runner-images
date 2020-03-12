@@ -1,25 +1,24 @@
 ################################################################################
-##  File:  Validate-Mercurial.ps1
-##  Desc:  Validate Mercurial
+##  File:  Validate-Packer.ps1
+##  Desc:  Validate Packer
 ################################################################################
 
-if (Get-Command -Name 'hg')
+if (Get-Command -Name 'packer')
 {
-    Write-Host "Mercurial on path"
+    Write-Host "Packer is on path"
 }
 else
 {
-    Write-Host 'Mercurial is not on path'
+    Write-Host 'Packer is not on path'
     exit 1
 }
 
 # Adding description of the software to Markdown
-$SoftwareName = "Mercurial"
-$(hg --version).Split([System.Environment]::NewLine)[0] -match "\d+\.\d+"
-$MercurialVersion = $matches[0]
+$SoftwareName = "Packer"
+$PackerVersion = packer --version
 
 $Description = @"
-_Version:_ $MercurialVersion<br/>
+_Version:_ $PackerVersion<br/>
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

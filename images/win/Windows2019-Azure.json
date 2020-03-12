@@ -19,6 +19,7 @@
         "root_folder": "C:",
         "image_folder": "C:\\image",
         "commit_file": "C:\\image\\commit.txt",
+        "imagedata_file": "C:\\imagedata.json",
         "metadata_file": "C:\\image\\metadata.txt",
         "helper_script_folder": "C:\\Program Files\\WindowsPowerShell\\Modules\\",
         "commit_id": "LATEST",
@@ -27,7 +28,9 @@
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "win19",
-        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
+        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
+        "go_versions": "1.9, 1.10, 1.11, 1.12, 1.13, 1.14",
+        "go_default": "1.14"
     },
     "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
@@ -122,6 +125,16 @@
         },
         {
             "type": "powershell",
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGEDATA_FILE={{user `imagedata_file`}}"
+            ],
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1"
             ]
@@ -174,6 +187,12 @@
         },
         {
             "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-AnalysisExtenstion.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
             "valid_exit_codes": [
                 0,
                 3010
@@ -202,6 +221,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Windows2019/Validate-Wix.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-AnalysisExtenstion.ps1"
             ]
         },
         {
@@ -253,6 +278,12 @@
             ]
         },
         {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Packer.ps1"
+            ]
+        },
+        {
             "type": "file",
             "source": "{{template_dir}}/toolcache-2019.json",
             "destination": "{{user `root_folder`}}/toolcache.json"
@@ -270,14 +301,20 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Perl.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Git.ps1"
             ]
         },
         {
             "type": "powershell",
             "environment_vars": [
-                "GO_VERSIONS=1.10.8,1.11.12,1.12.7,1.13",
-                "GO_DEFAULT=1.12.7"
+                "GO_VERSIONS={{user `go_versions`}}",
+                "GO_DEFAULT={{user `go_default`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Go.ps1"
@@ -293,6 +330,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Rust.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Julia.ps1"
             ]
         },
         {
@@ -334,7 +377,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-SeleniumWebDrivers.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1"
             ]
         },
         {
@@ -470,13 +513,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-InnoSetup.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Zstd.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Perl.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-InnoSetup.ps1"
             ]
         },
         {
@@ -567,14 +610,20 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Perl.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Git.ps1"
             ]
         },
         {
             "type": "powershell",
             "environment_vars": [
-                "GO_VERSIONS=1.10.8,1.11.12,1.12.7,1.13",
-                "GO_DEFAULT=1.12.7"
+                "GO_VERSIONS={{user `go_versions`}}",
+                "GO_DEFAULT={{user `go_default`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Go.ps1"
@@ -600,6 +649,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Rust.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Julia.ps1"
             ]
         },
         {
@@ -710,6 +765,12 @@
                 "{{ template_dir }}/scripts/Installers/Validate-7zip.ps1"
             ]
         },
+         {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Packer.ps1"
+            ]
+        },
         {
             "type": "powershell",
             "scripts":[
@@ -725,13 +786,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-InnoSetup.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Zstd.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Perl.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-InnoSetup.ps1"
             ]
         },
         {

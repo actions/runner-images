@@ -19,7 +19,7 @@ apt-get update
 apt-get install -y kubectl
 
 # Install Helm
-curl -L https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"

@@ -1,7 +1,7 @@
 #!/bin/bash
 ################################################################################
-##  File:  docker-ce.sh
-##  Desc:  Installs docker onto the image, but does not pre-pull any images
+##  File:  docker-moby.sh
+##  Desc:  Installs docker onto the image
 ################################################################################
 
 source $HELPER_SCRIPTS/apt.sh
@@ -33,7 +33,19 @@ else
     set +e
 fi
 
+docker pull node:10
+docker pull node:12
+docker pull buildpack-deps:stretch
+docker pull node:10-alpine
+docker pull node:12-alpine
+docker pull debian:8
+docker pull debian:9
+docker pull alpine:3.7
+docker pull alpine:3.8
+docker pull alpine:3.9
+docker pull alpine:3.10
+
 ## Add version information to the metadata file
 echo "Documenting Docker version"
 docker_version=$(docker -v)
-DocumentInstalledItem "Docker ($docker_version)"
+DocumentInstalledItem "Docker-Moby ($docker_version)"

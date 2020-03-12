@@ -15,7 +15,7 @@ else
 
 # Adding description of the software to Markdown
 $SoftwareName = "zstd"
-$zstdVersion = $(zstd --version).Split(' ')[6].Split(',')[0]
+$zstdVersion = $(zstd --version).Split(' ')[6].Split(',')[0].Substring(1)
 
 $Description = @"
 _Version:_ $zstdVersion<br/>
