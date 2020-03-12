@@ -126,18 +126,12 @@
         },
         {
             "type": "shell",
-            "inline": [
-                "echo ImageVersion={{user `image_version`}} | tee -a /etc/environment",
-                "echo ImageOS={{user `image_os`}} | tee -a /etc/environment"
+            "scripts": [
+                "{{template_dir}}/scripts/installers/envvariables.sh"
             ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "inline": [
-                "# This directory is supposed to be created in $HOME and owned by user(https://github.com/actions/virtual-environments/issues/491)",
-                "mkdir -p /etc/skel/.config/configstore",
-                "echo 'export XDG_CONFIG_HOME=$HOME/.config' | tee -a /etc/skel/.bashrc"
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGE_OS={{user `image_os`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
