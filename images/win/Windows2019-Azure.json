@@ -194,7 +194,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-SSDT.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-SSDTExtensions.ps1"
             ]
         },
         {
@@ -232,7 +232,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-SSDT.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-SSDTExtensions.ps1"
             ]
         },
         {
