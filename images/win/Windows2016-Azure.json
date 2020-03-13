@@ -326,6 +326,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-OpenSSL.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Perl.ps1"
             ]
         },
@@ -550,12 +556,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-OpenSSL.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-NSIS.ps1"
             ]
         },
@@ -618,6 +618,12 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-ToolCache.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-OpenSSL.ps1"
             ]
         },
         {
@@ -818,12 +824,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-GitVersion.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-OpenSSL.ps1"
             ]
         },
         {
