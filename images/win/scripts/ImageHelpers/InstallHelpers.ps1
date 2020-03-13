@@ -167,13 +167,15 @@ function Install-VsixExtension
     (
         [string] $Url,
         [string] $Name,
-        [string] $FilePath = "${env:Temp}\$Name",
+        [string] $FilePath,
         [int] $retries = 20,
         [switch] $InstallOnly
     )
 
     if (!$InstallOnly)
     {
+        $FilePath = "${env:Temp}\$Name"
+
         while($retries -gt 0)
         {
             try
@@ -236,8 +238,11 @@ function Install-VsixExtension
         exit 1
     }
 
-    #Cleanup installation files
-    Remove-Item -Force -Confirm:$false $FilePath
+    #Cleanup downloaded installation files
+    if (!$InstallOnly)
+    {
+        Remove-Item -Force -Confirm:$false $FilePath
+    }
 }
 
 function Get-VS19ExtensionVersion

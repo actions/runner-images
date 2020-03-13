@@ -4,6 +4,9 @@
 ################################################################################
 
 # Requires Windows SDK with the same version number as the WDK
+
+Import-Module -Name ImageHelpers -Force
+
 $winSdkUrl = "https://go.microsoft.com/fwlink/p/?linkid=2083338"
 $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2085767"
 
@@ -26,32 +29,4 @@ if ($wdkExitCode -ne 0)
 }
 
 # Need to install the VSIX to get the build targets when running VSBuild
-# Write-Host "Installing WDK.vsix"
-try
-{
-     $process = Start-Process `
-    -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" `
-    -ArgumentList ("/quiet", '"C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"') `
-    -Wait `
-    -PassThru
-}
-catch
-{
-    Write-Host "There is an error during WDK.vsix installation"
-    $_
-    exit 1
-}
-
-
- $exitCode = $process.ExitCode
-
-if ($exitCode -eq 0 -or $exitCode -eq 1001) # 1001 means the extension is already installed
-{
-    Write-Host "WDK.vsix installed successfully"
-}
-else
-{
-    Write-Host "Unsuccessful exit code returned by the installation process: $exitCode."
-}
-
-exit $exitCode
+Install-VsixExtension -FilePath "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix" -Name "WDK.vsix" -InstallOnly
