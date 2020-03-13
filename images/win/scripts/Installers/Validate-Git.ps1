@@ -2,55 +2,61 @@
 ##  File:  Validate-Git.ps1
 ##  Desc:  Validate Git for Windows
 ################################################################################
-
-if((Get-Command -Name 'git') -and (Get-Command -Name 'bash') -and (Get-Command -Name 'awk') -and (Get-Command -Name 'git-lfs') -and (Get-Command -Name 'hub'))
-{
-    Write-Host "$(git version) on path"
-    Write-Host "$(git-lfs version) on path"
-    Write-Host "$(hub version | Select-String 'hub version') on path"
+function Test-CommandName {
+    param(
+        [parameter(Mandatory)][string] $CommandName
+    )
+    Write-Host "Checking the [$CommandName]"
+    if(-not (Get-Command $CommandName -ErrorAction "Continue")) {
+        Write-Host "[!] $CommandName is not found"
+        exit 1
+    }
 }
-else
-{
-    Write-Host "git or git-lfs or hub are not on path."
-    exit 1
+function Test-Command  {
+    param(
+        [parameter(Mandatory)][string] $CommandName,
+        [parameter(Mandatory)][string] $CommandDescription,
+        [parameter(Mandatory)][string] $VersionCmd,
+        [parameter(Mandatory)][string] $regexVersion,
+        [parameter(Mandatory)][string] $DescriptionMarkdown
+    )
+    Test-CommandName -CommandName $CommandName
+
+    $strVersion = Invoke-Expression $VersionCmd
+    Write-Host "$strVersion on path"
+    if($strVersion -match $regexVersion) {
+        $Version = $Matches.version
+    }
+    else {
+        Write-Host "[!] $CommandName version detection failed"
+        exit 1
+    }
+    # Adding description of the software to Markdown
+    $DescriptionMarkdown = $DescriptionMarkdown -f $Version
+    Add-SoftwareDetailsToMarkdown -SoftwareName $CommandDescription -DescriptionMarkdown $DescriptionMarkdown
 }
 
-if( $(git version) -match  'git version (?<version>.*).win.*' )
-{
-   $gitVersion = $Matches.version
-}
+Test-CommandName -CommandName 'bash'
+Test-CommandName -CommandName 'awk'
 
-if( $(git-lfs version) -match  'git-lfs\/(?<version>.*) \(Git.*' )
-{
-   $gitLfsVersion = $Matches.version
-}
-
-if($(hub version | Select-String "hub version") -match 'hub version (?<version>.*)')
-{
-    $hubVersion = $Matches.version
-}
-
-#Adding description of the software to Markdown
 $GitDescription = @"
-_Version:_ $gitVersion<br/>
+_Version:_ {0}<br/>
 _Environment:_
 * PATH: contains location of git.exe
 "@
-Add-SoftwareDetailsToMarkdown -SoftwareName "Git" -DescriptionMarkdown $GitDescription
+Test-Command -CommandName 'git' -CommandDescription 'Git' -VersionCmd "git version" -regexVersion 'git version (?<version>.*).win.*' -DescriptionMarkdown $GitDescription
 
-# Adding description of the software to Markdown
 $GitLfsDescription = @"
-_Version:_ $gitLfsVersion<br/>
+_Version:_ {0}<br/>
 _Environment:_
 * PATH: contains location of git-lfs.exe
 * GIT_LFS_PATH: location of git-lfs.exe
 "@
-Add-SoftwareDetailsToMarkdown -SoftwareName "Git Large File Storage (LFS)" -DescriptionMarkdown $GitLfsDescription
+Test-Command -CommandName 'git-lfs' -CommandDescription 'Git Large File Storage (LFS)' -VersionCmd "git-lfs version" -regexVersion 'git-lfs\/(?<version>.*) \(Git.*' -DescriptionMarkdown $GitLfsDescription
 
-#Adding description of the software to Markdown
 $HubCliDescription = @"
-_Version:_ $hubVersion<br/>
+_Version:_ {0}<br/>
 _Environment:_
 * PATH: contains location of hub.exe
 "@
-Add-SoftwareDetailsToMarkdown -SoftwareName "Hub CLI" -DescriptionMarkdown $HubCliDescription
+Test-Command -CommandName 'hub' -CommandDescription 'Hub CLI' -VersionCmd "hub version | Select-String 'hub version'" -regexVersion 'hub version (?<version>.*)' -DescriptionMarkdown $HubCliDescription
