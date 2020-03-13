@@ -29,4 +29,4 @@ if ($wdkExitCode -ne 0)
 }
 
 # Need to install the VSIX to get the build targets when running VSBuild
-Install-VsixExtension -FilePath "'C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix'" -Name "WDK.vsix" -InstallOnly
+Install-VsixExtension -FilePath '"C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"' -Name "WDK.vsix" -InstallOnly
