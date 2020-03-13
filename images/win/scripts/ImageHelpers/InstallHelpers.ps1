@@ -204,7 +204,15 @@ function Install-VsixExtension
     Write-Host "Starting Install $Name..."
     try
     {
-        $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" -ArgumentList $ArgumentList -Wait -PassThru
+        #There are 2 types of packages at the moment - exe and vsix
+        if ($Name -match "vsix")
+        {
+            $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" -ArgumentList $ArgumentList -Wait -PassThru
+        }
+        else
+        {
+            $process = Start-Process -FilePath ${env:Temp}\$Name /Q -Wait -PassThru
+        }
     }
     catch
     {
