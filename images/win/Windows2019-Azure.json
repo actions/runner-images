@@ -142,7 +142,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-MSYS2.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Msys2.ps1"
             ]
         },
         {
