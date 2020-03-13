@@ -124,7 +124,7 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/scripts/installers/envvariables.sh"
+                "{{template_dir}}/scripts/installers/configure-environment.sh"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
