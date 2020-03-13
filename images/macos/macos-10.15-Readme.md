@@ -1,5 +1,5 @@
 # macOS Catalina 10.15.3 (19D76)
-The following software is installed on machines with the 20200224.1 update.
+The following software is installed on machines with the 20200307.2 update.
 
 #### Xcode 11.3.1 set by default
 ## Operating System
@@ -21,40 +21,42 @@ The following software is installed on machines with the 20200224.1 update.
 - GNU Fortran (Homebrew GCC 9.2.0_3) 9.2.0
 - Node.js v12.16.1
 - NVM 0.33.11
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.19.0 v12.16.1 v13.9.0
-- PowerShell 6.2.4
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.19.0 v12.16.1 v13.10.1
+- PowerShell 7.0.0
 - Python 2.7.17
 - Python 3.7.6
 - Ruby 2.6.5p114
 - .NET SDK 2.0.0 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101
 - Go 1.14
 - PHP 7.4.3
+- julia 1.3.1
 
 ### Package Management
 - Rustup 1.21.1
+- Vcpkg 2020.02.04
 - Bundler version 2.1.4
 - Carthage 0.34.0
 - CocoaPods 1.9.0
-- Homebrew 2.2.6
+- Homebrew 2.2.9
 - NPM 6.13.4
-- Yarn 1.22.0
+- Yarn 1.22.1
 - NuGet 5.4.0.6315
 - Pip 19.3.1 (python 2.7)
 - Pip 19.3.1 (python 3.7)
 - Miniconda 4.7.12
 - RubyGems 3.1.2
-- Vcpkg 2020.02.04
 
 ### Project Management
 - Apache Maven 3.6.3
-- Gradle 6.2.1
+- Gradle 6.2.2
 
 ### Utilities
-- Curl 7.68.0
-- Git: 2.25.0
+- Curl 7.69.0
+- Git: 2.25.1
 - Git LFS: 2.10.0
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.13.0
+- Packer 1.5.4
 - GNU parallel 20200222
 - OpenSSL 1.0.2t  10 Sep 2019
 - jq 1.6
@@ -63,18 +65,20 @@ The following software is installed on machines with the 20200224.1 update.
 - aria2 1.35.0
 - azcopy 10.3.4
 - zstd 1.4.4
+- bazel 2.2.0
+- bazelisk v1.3.0
 
 ### Tools
-- Fastlane 2.142.0
-- Cmake 3.16.4
+- Fastlane 2.143.0
+- Cmake 3.16.5
 - App Center CLI 2.3.3
 - Azure CLI 2.1.0
 
 ### Browsers
-- Google Chrome 80.0.3987.122
+- Google Chrome 80.0.3987.132 
 - ChromeDriver 80.0.3987.106
-- Microsoft Edge 80.0.361.62
-- MSEdgeDriver 80.0.361.62
+- Microsoft Edge 80.0.361.66 
+- MSEdgeDriver 80.0.361.66
 - Mozilla Firefox 73.0.1
 - geckodriver 0.26.0
 
@@ -98,7 +102,7 @@ The following software is installed on machines with the 20200224.1 update.
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.4.7.17
+- 8.4.8.2
 
 #### Mono
 - 6.6.0.166
@@ -126,7 +130,7 @@ The following software is installed on machines with the 20200224.1 update.
 ### Xcode
 | Version          | Build   | Path                              |
 | ---------------- | ------- | --------------------------------- |
-| 11.4 (beta)      | 11N123k | /Applications/Xcode_11.4_beta.app |
+| 11.4 (beta)      | 11N132i | /Applications/Xcode_11.4_beta.app |
 | 11.3.1 (default) | 11C505  | /Applications/Xcode_11.3.1.app    |
 | 11.3             | 11C29   | /Applications/Xcode_11.3.app      |
 | 11.2.1           | 11B500  | /Applications/Xcode_11.2.1.app    |
@@ -185,9 +189,9 @@ The following software is installed on machines with the 20200224.1 update.
 
 ### Android
 #### Android SDK Tools
-| Package Name                       | Description                        |
-| ---------------------------------- | ---------------------------------- |
-| tools                              | Android SDK Tools, Revision 26.1.1 |
+| Package Name | Description                        |
+| ------------ | ---------------------------------- |
+| tools        | Android SDK Tools, Revision 26.1.1 |
 
 #### Android SDK Platform-Tools
 | Package Name   | Description                                 |
@@ -256,5 +260,4 @@ The following software is installed on machines with the 20200224.1 update.
 | Google Play services                            | 49      |
 | Google Repository                               | 58      |
 | Intel x86 Emulator Accelerator (HAXM installer) | 7.5.1   |
-
 
