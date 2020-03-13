@@ -204,7 +204,7 @@ function Install-VsixExtension
         }
     }
 
-    $ArgumentList = ('/quiet', $FilePath)
+    $ArgumentList = ('/quiet', "$FilePath")
 
     Write-Host "Starting Install $Name..."
     try
