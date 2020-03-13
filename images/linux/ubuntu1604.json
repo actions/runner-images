@@ -123,9 +123,12 @@
         },
         {
             "type": "shell",
-            "inline": [
-                "echo ImageVersion={{user `image_version`}} | tee -a /etc/environment",
-                "echo ImageOS={{user `image_os`}} | tee -a /etc/environment"
+            "scripts": [
+                "{{template_dir}}/scripts/installers/configure-environment.sh"
+            ],
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGE_OS={{user `image_os`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
