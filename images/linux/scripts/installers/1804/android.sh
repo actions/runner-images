@@ -23,7 +23,7 @@ unzip android-sdk.zip -d ${ANDROID_SDK_ROOT}
 rm -f android-sdk.zip
 
 # Check sdk manager installation
-${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list 1>/dev/null
+/usr/local/lib/android/tools/bin/sdkmanager --list 1>/dev/null
 if [ $? -eq 0 ]
 then
     echo "Android SDK manager was installed"
