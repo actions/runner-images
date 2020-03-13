@@ -22,8 +22,19 @@ wget -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux
 unzip android-sdk.zip -d ${ANDROID_SDK_ROOT}
 rm -f android-sdk.zip
 
+# Check sdk manager installation
+${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list 1>/dev/null
+if [ $? -eq 0 ]
+then
+    echo "Android SDK manager was installed"
+else
+    echo "Android SDK manager was not installed"
+    exit 1
+fi
+
+
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
-echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --sdk_root=${ANDROID_SDK_ROOT} \
+echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "ndk-bundle" \
     "platform-tools" \
     "platforms;android-29" \
