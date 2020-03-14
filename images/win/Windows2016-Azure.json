@@ -213,7 +213,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2016/Install-Wix.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Wix.ps1"
             ]
         },
         {
@@ -229,7 +229,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2016/Install-WDK.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-WDK.ps1"
             ]
         },
         {
@@ -251,7 +251,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2016/Validate-Wix.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Wix.ps1"
             ]
         },
         {
@@ -263,7 +263,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2016/Validate-WDK.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-WDK.ps1"
             ]
         },
         {

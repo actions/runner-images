@@ -19,5 +19,8 @@ Export-ModuleMember -Function @(
     'Stop-SvcWithErrHandling'
     'Set-SvcWithErrHandling'
     'Install-VsixExtension'
-    'Get-VS19ExtensionVersion'
+    'Get-VSExtensionVersion'
+    'Get-WinVersion'
+    'Test-IsWin19'
+    'Test-IsWin16'
 )

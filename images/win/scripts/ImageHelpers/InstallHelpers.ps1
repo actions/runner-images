@@ -166,8 +166,11 @@ function Install-VsixExtension
     Param
     (
         [string] $Url,
+        [Parameter(Mandatory = $true)]
         [string] $Name,
         [string] $FilePath,
+        [Parameter(Mandatory = $true)]
+        [string] $VSversion,
         [int] $retries = 20,
         [switch] $InstallOnly
     )
@@ -212,7 +215,7 @@ function Install-VsixExtension
         #There are 2 types of packages at the moment - exe and vsix
         if ($Name -match "vsix")
         {
-            $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" -ArgumentList $ArgumentList -Wait -PassThru
+            $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\$VSversion\Enterprise\Common7\IDE\VSIXInstaller.exe" -ArgumentList $ArgumentList -Wait -PassThru
         }
         else
         {
@@ -245,7 +248,7 @@ function Install-VsixExtension
     }
 }
 
-function Get-VS19ExtensionVersion
+function Get-VSExtensionVersion
 {
     param (
         [string] [Parameter(Mandatory=$true)] $packageName
@@ -270,4 +273,19 @@ function Get-VS19ExtensionVersion
     }
 
     return $packageVersion
+}
+
+function Get-WinVersion
+{
+    (Get-WmiObject -class Win32_OperatingSystem).Caption
+}
+
+function Test-IsWin19
+{
+    (Get-WinVersion) -match "2019"
+}
+
+function Test-IsWin16
+{
+    (Get-WinVersion) -match "2016"
 }
