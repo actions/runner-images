@@ -42,4 +42,4 @@ if ($wdkExitCode -ne 0)
 }
 
 # Need to install the VSIX to get the build targets when running VSBuild
-Install-VsixExtension -FilePath `'$FilePath`' -Name "WDK.vsix" -VSversion $VSver -InstallOnly
+Install-VsixExtension -FilePath $FilePath -Name "WDK.vsix" -VSversion $VSver -InstallOnly
