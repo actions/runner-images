@@ -9,7 +9,7 @@ source $HELPER_SCRIPTS/document.sh
 
 TOOLSET_PATH="$INSTALLER_SCRIPT_FOLDER/toolcache.json"
 BOOST_LIB=/usr/local/share/boost
-BOOST_VERSIONS=$(cat toolset.json | jq -r 'to_entries[] | select(.key | match("boost")) | .value[] +".0"')
+BOOST_VERSIONS=$(cat $TOOLSET_PATH | jq -r 'to_entries[] | select(.key | match("boost")) | .value[] +".0"')
 
 # Install Boost
 for BOOST_VERSION in ${BOOST_VERSIONS}
