@@ -16,6 +16,9 @@ echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
 echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 
+# Create android sdk directory
+mkdir -p ${ANDROID_SDK_ROOT}
+
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
 wget -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
