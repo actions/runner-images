@@ -23,8 +23,9 @@ function Start-DownloadSQLExpress {
         [String]$InstallerUrl,
         [String]$InstallerPath
     )
-    Write-Host "Download web-installer"
+    Write-Host "Download SQL Express web-installer from: $InstallerUrl"
     (New-Object System.Net.WebClient).DownloadFile($InstallerUrl, $InstallerPath)
+    Write-Host "SQL Express has been successfully downladed from the link: $InstallerUrl"
 }
 
 $installerUrl = "https://go.microsoft.com/fwlink/?linkid=866658"
@@ -37,7 +38,7 @@ $installArgs = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS", "/Action=Install", "/INST
 #Download installer for SQL Express
 Start-DownloadSQLExpress -InstallerUrl $installerUrl -InstallerPath $installerPath
 #Download full SQL Express package
-Start-Task -InstallPath $installerPath  -Arguments $downloadArgs -SuccessMessage "Downloaded package from: $installerUrl . To path: $installerPath "
+Start-Task -InstallPath $installerPath  -Arguments $downloadArgs -SuccessMessage "Downloaded full package. To path: $installerPath "
 #Unpack SQL Express Installer
 Start-Task -InstallPath "$setupPath.exe"  -Arguments $unpackArgs -SuccessMessage "Unpacked package to directory: $setupPath"
 #Start SQL Express installer silently
