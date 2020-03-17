@@ -11,11 +11,11 @@ $env:orig_path = $env:PATH
 $env:git_path  = "C:\Program Files\Git"
 
 # get info from https://sourceforge.net/projects/msys2/files/Base/x86_64/
-$msy2_uri  = "https://netix.dl.sourceforge.net/project/msys2/Base/x86_64/msys2-base-x86_64-20190524.tar.xz"
+$msy2_uri  = "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20190524.tar.xz"
 $msy2_file = "C:\Windows\Temp\msys2.tar.xz"
 
 # Download the latest msys2 x86_64
-Write-Host "Starting msys2 download..."
+Write-Host "Starting download"
 (New-Object System.Net.WebClient).DownloadFile($msy2_uri, $msy2_file)
 Write-Host "Finished download"
 
@@ -26,22 +26,26 @@ $env:PATH = "$env:git_path\mingw64\bin;$env:orig_path"
 $tar      = "$env:git_path\usr\bin\tar.exe"
 
 # extract tar.xz to C:\
-Write-Host "Starting extraction..."
+Write-Host "Starting extraction"
 &$tar -Jxf $msy2_file_u -C /c/
 Remove-Item $msy2_file
 
-Write-Host "Finished extraction"
+Write-Host Finished extraction
 
 $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$env:orig_path"
 
-Write-Host "bash.exe -c pacman-key --init"
-bash.exe -c "pacman-key --init"
+$ErrorActionPreference = "Continue"
 
-Write-Host "bash.exe -c pacman-key --populate msys2"
-bash.exe -c "pacman-key --populate msys2"
+Write-Host "sh -c pacman-key --init"
+Invoke-Expression "bash -c `"pacman-key --init 2>&1`""
+
+
+Write-Host "sh.exe -c pacman-key --populate msys2"
+Invoke-Expression "sh -c `"pacman-key --populate msys2 2>&1`""
 
 Write-Host "pacman --noconfirm -Syyuu"
-pacman.exe -Syyuu --noconfirm
+pacman.exe -Syyuu --noconfirm 2>$null
+pacman.exe -Syuu --noconfirm 2>$null
 
 # install msys2 packages
 Write-Host "Install msys2 packages"
@@ -64,16 +68,15 @@ pacman.exe -S --noconfirm --needed --noprogressbar $tools.replace('___', $pre).s
 Write-Host "Clean packages"
 pacman.exe -Scc --noconfirm
 
-Write-Host
 Write-Host "Installed mingw64 packages"
 pacman.exe -Qs --noconfirm mingw-w64-x86_64-
 
-Write-Host
 Write-Host "Installed mingw32 packages"
 pacman.exe -Qs --noconfirm mingw-w64-i686-
 
-Write-Host
 Write-Host "Installed msys2 packages"
 pacman.exe -Qs --noconfirm
+
+Write-Host "MSYS2 installation completed"
 
 exit 0
