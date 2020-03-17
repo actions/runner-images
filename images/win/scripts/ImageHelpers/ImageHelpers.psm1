@@ -14,6 +14,8 @@ Export-ModuleMember -Function @(
     'Set-SystemVariable'
     'Install-MSI'
     'Install-EXE'
+    'Get-ToolcachePackages'
+    'Get-ToolsByName'
     'Add-ContentToMarkdown'
     'Add-SoftwareDetailsToMarkdown'
     'Stop-SvcWithErrHandling'

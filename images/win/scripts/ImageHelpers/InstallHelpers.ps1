@@ -275,6 +275,28 @@ function Get-VSExtensionVersion
     return $packageVersion
 }
 
+
+function Get-ToolcachePackages {
+    $toolcachePath = Join-Path $env:ROOT_FOLDER "toolcache.json"
+    Get-Content -Raw $toolcachePath | ConvertFrom-Json
+}
+
+function Get-ToolsByName {
+    param (
+        [Parameter(Mandatory = $True)]
+        [string]$SoftwareName
+    )
+
+    (Get-ToolcachePackages).PSObject.Properties | Where-Object { $_.Name -match $SoftwareName } | ForEach-Object {
+        $packageNameParts = $_.Name.Split("-")
+        [PSCustomObject] @{
+            ToolName = $packageNameParts[1]
+            Versions = $_.Value
+            Architecture = $packageNameParts[3,4] -join "-"
+        }
+    }
+}
+
 function Get-WinVersion
 {
     (Get-WmiObject -class Win32_OperatingSystem).Caption
@@ -289,3 +311,4 @@ function Test-IsWin16
 {
     (Get-WinVersion) -match "2016"
 }
+
