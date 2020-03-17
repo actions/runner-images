@@ -7,7 +7,7 @@ function Start-Task {
     $process = Start-Process -FilePath $InstallPath -ArgumentList $Arguments -Wait -PassThru
     $exitCode = $process.ExitCode
 # Exit code -2067529716 is added since SQL Unpack procedure returns it on success.
-    if ($exitCode -eq 0 -or -2067529716)
+    if ($exitCode -eq 0 -or $exitCode -eq -2067529716)
     {
       Write-Host -Object "$SuccessMessage : ExitCode: $exitCode"
     }
