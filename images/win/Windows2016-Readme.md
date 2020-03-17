@@ -1,6 +1,6 @@
 # Windows Server 2016
 
-The following software is installed on machines with the 20200308.0 update.
+The following software is installed on machines with the 20200316.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -30,15 +30,15 @@ _Version:_ 7.0.0<br/>
 ## Docker images
 
 The following container images have been cached:
-* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:2053602020c89ff2d6c0d4005372ebc6cebcf866fb5785e562d91389aa467943)
-* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:ca895ab76f1d3ab95f022cbca076e06b62daebafe61af34212bb3ed1fe982d78)
-* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:10e43e24be6eb5f3e19e705a88adb9794b569028f0e0d715d40f25e53e04c3fc)
+* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:e53049e13aa29b2df35642fa827c532ceaa78745e6ca72be2cbe74b1d75b5b99)
+* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:9d34bebe71fdebfd288b3e87a9b8372e47a9291782c09fbaeb657f8f78817779)
+* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:5bd97dbab1afe8d3200f5d5c974df3b0130e74e8a69fddcd427699c4c8cb5037)
 * microsoft/aspnetcore-build:1.0-2.0 (Digest: sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c)
 * mcr.microsoft.com/windows/nanoserver:10.0.14393.953 (Digest: sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268)
 
 ## Visual Studio 2017 Enterprise
 
-_Version:_ VisualStudio/15.9.20+28307.1033<br/>
+_Version:_ VisualStudio/15.9.21+28307.1064<br/>
 _Location:_ C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise
 
 The following workloads including required and recommended components are installed with Visual Studio 2017:
@@ -415,7 +415,7 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.1.0
+_Version:_ 2.2.0
 _Environment:_
 * PATH: contains location of az.cmd
 
@@ -425,7 +425,7 @@ _Version:_ azure-devops                      0.17.0
 
 ## Python
 
-_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.2 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.2 (x86)<br/>
+_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.2 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.2 (x86)<br/><br/>__System default version:__ Python 3.7.6<br/>_Environment:_<br/>* Location: C:\hostedtoolcache\windows\Python\3.7.6\x64<br/>* PATH: contains the location of Python 3.7.6<br/>
 
 ## PyPy
 
@@ -433,17 +433,11 @@ _Version:_ 2.7.13 (x86)<br/>_Version:_ 3.6.9 (x86)<br/>
 
 ## Ruby
 
-_Version:_ 2.4.9 (x64)<br/>_Version:_ 2.5.7 (x64)<br/>_Version:_ 2.6.5 (x64)<br/>_Version:_ 2.7.0 (x64)<br/>
+_Version:_ 2.4.9 (x64)<br/>_Version:_ 2.5.7 (x64)<br/>_Version:_ 2.6.5 (x64)<br/>_Version:_ 2.7.0 (x64)<br/><br/>__System default version:__ Ruby 2.5.7p206<br/>_Environment:_<br/>* Location: C:\hostedtoolcache\windows\Ruby\2.5.7\x64\bin<br/>* PATH: contains the location of Ruby 2.5.7p206<br/>* Gem Version: 2.7.6.2<br/>
 
-## Python (64 bit)
+## OpenSSL
 
-#### Python 3.6.8
-_Environment:_
-* PATH: contains location of python.exe
-
-#### Python 2.7.17
-
-_Location:_ C:/hostedtoolcache/windows/Python/2.7*/x64
+_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>
 
 ## Perl
 
@@ -464,32 +458,12 @@ _Environment:_
 
 ## Go (x64)
 
-#### 1.9.7
+#### 1.14
 
 _Environment:_
-* GOROOT_1_9_X64: root directory of the Go 1.9.7 installation
-
-#### 1.10.8
-
-_Environment:_
-* GOROOT_1_10_X64: root directory of the Go 1.10.8 installation
-
-#### 1.11.12
-
-_Environment:_
-* GOROOT_1_11_X64: root directory of the Go 1.11.12 installation
-
-#### 1.12.7
-
-_Environment:_
-* PATH: contains the location of go.exe version 1.12.7
-* GOROOT: root directory of the Go 1.12.7 installation
-* GOROOT_1_12_X64: root directory of the Go 1.12.7 installation
-#### 1.13
-
-_Environment:_
-* GOROOT_1_13_X64: root directory of the Go 1.13 installation
-
+* PATH: contains the location of go.exe version 1.14
+* GOROOT: root directory of the Go 1.14 installation
+* GOROOT_1_14_X64: root directory of the Go 1.14 installation
 
 
 ## Boost
@@ -514,17 +488,9 @@ _Environment:_
 * PATH: contains the location of php.exe version 7.4.3
 * PHPROOT: root directory of the PHP 7.4.3 installation
 
-## Ruby (x64)
-
-#### 2.5.7p206
-_Environment:_
-* Location: C:\hostedtoolcache\windows\Ruby\2.5.7\x64\bin
-* PATH: contains the location of ruby.exe version 2.5.7p206
-* Gem Version: 3.1.2
-
 ## Rust (64-bit)
 
-#### 1.41.1
+#### 1.42.0
 _Location:_ C:\Rust\.cargo\bin
 _Environment:_
 * PATH: contains the location of rustc.exe
@@ -556,7 +522,7 @@ _version:_
 ## Mozilla Firefox
 
 _version:_
-73.0.1
+74.0
 
 ## Selenium Web Drivers
 
@@ -602,7 +568,7 @@ _Environment:_
 * PATH: contains location of node.exe<br/>
 * Gulp CLI version: 2.2.0 Local version: Unknown<br/>
 * Grunt grunt-cli v1.3.2<br/>
-* Yarn 1.22.1<br/>
+* Yarn 1.22.4<br/>
 
 
 ## npm
@@ -823,15 +789,11 @@ _Version:_ 1.4.0<br/>
 
 ## Inno Setup
 
-_Version:_ 6.0.3<br/>
+_Version:_ 6.0.4<br/>
 
 ## GitVersion
 
-_Version:_ 5.2.0.0<br/>
-
-## OpenSSL
-
-_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>
+_Version:_ 5.2.3.0<br/>
 
 ## Cloud Foundry CLI
 
