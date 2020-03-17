@@ -1,14 +1,15 @@
 function Start-Task {
     param(
         [String]$InstallPath,
-        [String]$Arguments
+        [String]$Arguments,
+        [String]$SuccessMessage
     )
     $process = Start-Process -FilePath $InstallPath -ArgumentList $Arguments -Wait -PassThru
     $exitCode = $process.ExitCode
 # Exit code -2067529716 is added since SQL Unpack procedure returns it on success.
     if ($exitCode -eq 0 -or -2067529716)
     {
-      Write-Host -Object "Success. Exit code: $exitCode."
+      Write-Host -Object "$SuccessMessage : ExitCode: $exitCode"
     }
     else
     {
@@ -36,8 +37,8 @@ $installArgs = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS", "/Action=Install", "/INST
 #Download installer for SQL Express
 Start-DownloadSQLExpress -InstallerUrl $installerUrl -InstallerPath $installerPath
 #Download full SQL Express package
-Start-Task -InstallPath $installerPath  -Arguments $downloadArgs
+Start-Task -InstallPath $installerPath  -Arguments $downloadArgs -SuccessMessage "Downloaded package from: $installerUrl . To path: $installerPath "
 #Unpack SQL Express Installer
-Start-Task -InstallPath "$setupPath.exe"  -Arguments $unpackArgs
+Start-Task -InstallPath "$setupPath.exe"  -Arguments $unpackArgs -SuccessMessage "Unpacked package to directory: $setupPath"
 #Start SQL Express installer silently
-Start-Task -InstallPath "$setupPath/SETUP.exe"  -Arguments $installArgs
+Start-Task -InstallPath "$setupPath/SETUP.exe"  -Arguments $installArgs -SuccessMessage "SQL has been installed to directory: ${env:ProgramFiles}/Microsoft SQL Server"
