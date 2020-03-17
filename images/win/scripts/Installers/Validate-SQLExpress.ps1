@@ -25,6 +25,7 @@ function Test-SqlConnection {
         $sqlConnection = New-Object System.Data.SqlClient.SqlConnection $connectionString
         $sqlConnection.Open()
         Write-Host -Object "Connection to database: {0} in in was successful. Version of SQL Express is: {1}" -f $sqlConnection.Database,$sqlConnection.ServerVersion
+        return $sqlConnection.ServerVersion
     } catch {
         Write-Host -Object "Connection to SQL Express cannot be established."
         exit 1
@@ -34,4 +35,17 @@ function Test-SqlConnection {
     }
 }
 $instanceName = "$env:computername\SQL2019"
-Test-SqlConnection -ServerName $instanceName -IntegratedSecurity "false" -UserName "sa" -Password "P@ssword!!"
+$version = Test-SqlConnection -ServerName $instanceName -IntegratedSecurity "false" -UserName "sa" -Password "P@ssword!!"
+
+# Adding description of the software to Markdown
+$SoftwareName = "Git"
+
+$Description = @"
+_Version:_ $version<br/>
+_InstanceName:_ SQL2019<br/>
+_Username:_ sa<br/>
+_Password:_ P@ssword!!<br/>
+_Default Path:_ C:\Program Files (x86)\Microsoft SQL Server
+"@
+
+Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
