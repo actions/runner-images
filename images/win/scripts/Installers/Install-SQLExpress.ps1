@@ -25,10 +25,37 @@ function Start-Task {
 function Start-DownloadSQLExpress {
     param(
         [String]$InstallerUrl,
-        [String]$InstallerPath
+        [String]$InstallerPath,
+        [int] $retries = 10
     )
-    Write-Host "Download SQL Express web-installer from: $InstallerUrl"
-    (New-Object System.Net.WebClient).DownloadFile($InstallerUrl, $InstallerPath)
+    Write-Host "Downloading SQL Express web-installer from: $InstallerUrl"
+    # In case of any errors -try to download package several times
+    while($retries -gt 0)
+        {
+            try
+            {
+                Write-Host "Downloading SQL Express installer..."
+                (New-Object System.Net.WebClient).DownloadFile($InstallerUrl, $InstallerPath)
+                break
+            }
+            catch
+            {
+                Write-Host "There is an error during SQL Express downloading"
+                $_
+
+                $retries--
+
+                if ($retries -eq 0)
+                {
+                    Write-Host "File can't be downloaded"
+                    $_
+                    exit 1
+                }
+
+                Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
+                Start-Sleep -Seconds 30
+            }
+        }
     Write-Host "SQL Express has been successfully downladed from the link: $InstallerUrl"
 }
 
