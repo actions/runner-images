@@ -4,6 +4,8 @@
 ##  Desc:  Installs Android SDK
 ################################################################################
 
+set -e
+
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/apt.sh
@@ -16,14 +18,27 @@ echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
 echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 
+# Create android sdk directory
+mkdir -p ${ANDROID_SDK_ROOT}
+
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
 wget -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-unzip android-sdk.zip -d ${ANDROID_ROOT}
+unzip android-sdk.zip -d ${ANDROID_SDK_ROOT}
 rm -f android-sdk.zip
 
+# Check sdk manager installation
+/usr/local/lib/android/sdk/tools/bin/sdkmanager --list 1>/dev/null
+if [ $? -eq 0 ]
+then
+    echo "Android SDK manager was installed"
+else
+    echo "Android SDK manager was not installed"
+    exit 1
+fi
+
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
-echo "y" | ${ANDROID_ROOT}/tools/bin/sdkmanager --sdk_root=${ANDROID_SDK_ROOT} \
+echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "ndk-bundle" \
     "platform-tools" \
     "platforms;android-29" \
