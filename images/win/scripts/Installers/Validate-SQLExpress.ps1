@@ -1,3 +1,7 @@
+################################################################################
+##  File:  Validate-SQLExpress.ps1
+##  Desc:  Validate Microsoft SQL Express installation
+################################################################################
 function Test-SqlConnection {
     param(
         [Parameter(Mandatory)]
@@ -20,7 +24,7 @@ function Test-SqlConnection {
         Write-Host -Object "Trying to connect to SQL Express instance: $ServerName"
         $sqlConnection = New-Object System.Data.SqlClient.SqlConnection $connectionString
         $sqlConnection.Open()
-        Write-Host -Object "Connection to SQL Express was successful."
+        Write-Host -Object "Connection to database: {0} in in was successful. Version of SQL Express is: {1}" -f $sqlConnection.Database,$sqlConnection.ServerVersion
     } catch {
         Write-Host -Object "Connection to SQL Express cannot be established."
         exit 1
