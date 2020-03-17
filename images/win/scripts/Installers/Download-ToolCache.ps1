@@ -44,6 +44,39 @@ Function NPMFeed-AuthSetup {
     $npmrcContent | Out-File -FilePath "$($env:TEMP)/.npmrc" -Encoding utf8
 }
 
+Function Set-DefaultPythonVersion {
+    param(
+        [Parameter(Mandatory=$true)]
+        [System.Version] $Version,
+        [System.String] $Arch = "x64"
+    )
+
+    $pythonPath = $Env:AGENT_TOOLSDIRECTORY + "/Python/${Version}*/${Arch}"
+    $pythonDir = Get-Item -Path $pythonPath
+
+    Write-Host "Use Python ${Version} as a system Python"
+    Add-MachinePathItem -PathItem $pythonDir.FullName
+    Add-MachinePathItem -PathItem "$($pythonDir.FullName)\Scripts"
+}
+
+Function Set-DefaultRubyVersion {
+    param(
+        [Parameter(Mandatory=$true)]
+        [System.Version] $Version,
+        [System.String] $Arch = "x64"
+    )
+    $rubyPath = $Env:AGENT_TOOLSDIRECTORY + "/Ruby/${Version}*/${Arch}/bin"
+    $rubyDir = Get-Item -Path $rubyPath
+
+    Write-Host "Use Ruby ${Version} as a system Ruby"
+    Add-MachinePathItem -PathItem $rubyDir.FullName
+
+    # Update ruby gem to latest version
+    gem update --system
+}
+
+Import-Module -Name ImageHelpers -Force
+
 $FeedPrefix = "https://npm.pkg.github.com"
 $AccessToken = $env:GITHUB_FEED_TOKEN
 
@@ -71,7 +104,5 @@ $ToolVersions.PSObject.Properties | ForEach-Object {
     }
 }
 
-#junction point from the previous Python2 directory to the toolcache Python2
-Write-Host "Create symlink to Python2"
-$python2Dir = (Get-Item -Path ($ToolsDirectory + '/Python/2.7*/x64')).FullName
-cmd.exe /c mklink /d "C:\Python27amd64" "$python2Dir"
+Set-DefaultPythonVersion -Version "3.7"
+Set-DefaultRubyVersion -Version "2.5"
