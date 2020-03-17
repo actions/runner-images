@@ -11,7 +11,7 @@ catch {
     Write-Host "Some error was found"
 }
 
-$run_scan_antivitrus = $env:run_scan_antivitrus
+$run_scan_antivirus = $env:run_scan_antivitrus
 if($run_scan_antivitrus -eq $true) {
     Write-Host "Make sure windefend is going to start"
     Start-Service windefend -ErrorAction Continue
