@@ -1,11 +1,6 @@
 ################################################################################
 ##  File:  Install-SQLExpress.ps1
 ##  Desc:  Install SQL Express for Windows
-##  SQL Version: Microsoft SQL Express 2019 ( 15.00.2000 )
-##  InstanceName: SQL2019
-##  Username - sa
-##  Password - P@ssword!!
-##  Default path - C:\Program Files (x86)\Microsoft SQL Server
 ################################################################################
 function Start-Task {
     param(
