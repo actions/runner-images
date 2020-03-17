@@ -1,54 +1,43 @@
-#Download web-installer
-Set-Item .\MaxMemoryPerShellMB 4096
+function Start-Task {
+    param(
+        [String]$InstallPath,
+        [String]$Arguments
+    )
+    $process = Start-Process -FilePath $InstallPath -ArgumentList $Arguments -Wait -PassThru
+    $exitCode = $process.ExitCode
+# Exit code -2067529716 is added since SQL Unpack procedure returns it on success.
+    if ($exitCode -eq 0 -or -2067529716)
+    {
+      Write-Host -Object "Success. Exit code: $exitCode."
+    }
+    else
+    {
+      Write-Host -Object "Non zero exit code returned by the installation process : $exitCode."
+      exit $exitCode
+    }
+}
+
+function Start-DownloadSQLExpress {
+    param(
+        [String]$InstallerUrl,
+        [String]$InstallerPath
+    )
+    Write-Host "Download web-installer"
+    (New-Object System.Net.WebClient).DownloadFile($InstallerUrl, $InstallerPath)
+}
+
 $installerUrl = "https://go.microsoft.com/fwlink/?linkid=866658"
-$installerName = "SQL2019-SSEI-Expr.exe"
-$installerPath = "${env:Temp}\$installerName"
-Write-Host "Download web-installer"
-(New-Object System.Net.WebClient).DownloadFile($installerUrl, $installerPath)
-#use web-installer to download setup package
+$installerPath = "${env:Temp}\SQL2019-SSEI-Expr.exe"
 $downloadPath = "C:\SQLEXPRESS2019"
 $setupPath = Join-Path $downloadPath "SQLEXPR_x64_ENU"
 $downloadArgs = ("/MEDIAPATH=$downloadPath", "/MEDIATYPE=Core","/Action=Download", "/QUIET")
-$installArgs = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS")
-$args = ("/c", "$setupPath/SETUP.exe", "/Q", "/IACCEPTSQLSERVERLICENSETERMS", "/Action=Install", "/INSTANCEID=SQL2019", "/INSTANCENAME=SQL2019", "/SECURITYMODE=SQL", "/SAPWD=P@ssword!!", "/TCPENABLED=1")
-Write-Host "Downloading SQL Express setup package"
-$process = Start-Process -FilePath $installerPath -ArgumentList $downloadArgs -Wait -PassThru
-$exitCode = $process.ExitCode
-if ($exitCode -eq 0)
-{
-    Write-Host -Object 'Downloaded successfully'
-    Write-Host $exitCode
-}
-  else
-{
-    Write-Host -Object "Non zero exit code returned by the installation process : $exitCode."
-    exit $exitCode
-}
-#Unpack and run setup-package
-Set-Location -Path $downloadPath
-Write-Host "Unpack SQL Express setup package"
-$process = Start-Process -FilePath "$setupPath.exe" -ArgumentList $installArgs -Wait -PassThru
-$exitCode = $process.ExitCode
-if ($exitCode -eq 0)
-{
-    Write-Host -Object 'Unpacked successfully'
-    Write-Host $exitCode
-}
-  else
-{
-    Write-Host -Object "Non zero exit code returned by the installation process : $exitCode."
-    Write-Host $exitCode
-}
-Write-Host "Run SQL Express setup package"
-$process = Start-Process -FilePath cmd.exe -ArgumentList $args -Wait -PassThru
-$exitCode = $process.ExitCode
-if ($exitCode -eq 0)
-{
-    Write-Host -Object 'Installed successfully'
-    Write-Host $exitCode
-}
-  else
-{
-    Write-Host -Object "Non zero exit code returned by the installation process : $exitCode."
-    exit $exitCode
-}
+$unpackArgs = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS")
+$installArgs = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS", "/Action=Install", "/INSTANCEID=SQL2019", "/INSTANCENAME=SQL2019", "/SECURITYMODE=SQL", "/SAPWD=P@ssword!!", "/TCPENABLED=1")
+#Download installer for SQL Express
+Start-DownloadSQLExpress -InstallerUrl $installerUrl -InstallerPath $installerPath
+#Download full SQL Express package
+Start-Task -InstallPath $installerPath  -Arguments $downloadArgs
+#Unpack SQL Express Installer
+Start-Task -InstallPath "$setupPath.exe"  -Arguments $unpackArgs
+#Start SQL Express installer silently
+Start-Task -InstallPath "$setupPath/SETUP.exe"  -Arguments $installArgs
