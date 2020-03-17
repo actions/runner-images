@@ -5,39 +5,13 @@
 
 Import-Module -Name ImageHelpers -Force
 
-function Get-SSDTExtensionPackage {
-    $vsProgramData = Get-Item -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
-    $instanceFolders = Get-ChildItem -Path $vsProgramData.FullName
-
-    if($instanceFolders -is [array])
-    {
-        Write-Host "More than one instance installed"
-        exit 1
-    }
-
-    $stateContent = Get-Content -Path ($instanceFolders.FullName + '\state.packages.json')
-    $state = $stateContent | ConvertFrom-Json
-    $SsdtPackage = $state.packages | where { $_.id -eq "SSDT" }
-    return $SsdtPackage
-}
-
-
-$SsdtPackage   = Get-SSDTExtensionPackage
-
-if($SsdtPackage){
-    Write-Host "SSDT version" $SsdtPackage.version "installed"
-}
-else {
-    Write-Host "SSDT is not installed"
-    exit 1
-}
-
+$SSDTPackageVersion = Get-VSExtensionVersion -packageName "SSDT"
 
 # Adding description of the software to Markdown
 $SoftwareName = "SQL Server Data Tools for VS 2017"
 
 $Description = @"
-_Version:_ $($SsdtPackage.version)<br/>
+_Version:_ $SSDTPackageVersion<br/>
 
 The following components are installed:
 

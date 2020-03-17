@@ -1,16 +1,11 @@
 # Ubuntu 16.04.6 LTS
-The following software is installed on machines with the 20200301.1 update.
+The following software is installed on machines with the 20200308.0 update.
 ***
 - 7-Zip 9.20
-- Ansible (ansible 2.9.4)
+- Ansible (ansible 2.9.6)
 - AzCopy (azcopy 7.3.0-netcore)
 - Azure CLI (azure-cli                          2.1.0)
 - Azure CLI (azure-devops                      0.17.0)
-- Bazel (Build label: 2.1.1
-Build target: bazel-out/k8-opt/bin/src/main/java/com/google/devtools/build/lib/bazel/BazelServer_deploy.jar
-Build time: Fri Feb 21 14:56:47 2020 (1582297007)
-Build timestamp: 1582297007
-Build timestamp as int: 1582297007)
 - Basic CLI:
   - curl
   - dnsutils
@@ -37,7 +32,7 @@ Build timestamp as int: 1582297007)
   - wget
   - zip
   - zstd
-- AWS CLI (aws-cli/1.18.11 Python/2.7.12 Linux/4.15.0-1071-azure botocore/1.15.11)
+- AWS CLI (aws-cli/1.18.16 Python/2.7.12 Linux/4.15.0-1071-azure botocore/1.15.16)
 - build-essential
 - Clang 6.0 (6.0.1)
 - Clang 8 (8.0.1)
@@ -107,7 +102,7 @@ Build timestamp as int: 1582297007)
   - 2.1.300
 - Erlang (Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 10.6.4)
 - Firefox (Mozilla Firefox 73.0.1)
-- Geckodriver (); Gecko Driver is available via GECKOWEBDRIVER environment variable
+- Geckodriver (0.26.0); Gecko Driver is available via GECKOWEBDRIVER environment variable
 - GNU C++ 7.4.0
 - GNU C++ 8.3.0
 - GNU C++ 9.2.1
@@ -120,9 +115,9 @@ Build timestamp as int: 1582297007)
 - Go 1.11 (go version go1.11.12 linux/amd64)
 - Go 1.12 (go version go1.12.7 linux/amd64)
 - Go 1.13 (go version go1.13 linux/amd64)
-- Google Chrome (Google Chrome 80.0.3987.122 )
-- Chromedriver (ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882})); Chrome Driver is available via CHROMEWEBDRIVER environment variable
-- Google Cloud SDK (282.0.0)
+- Google Chrome (Google Chrome 80.0.3987.132 )
+- ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882}); Chrome Driver is available via CHROMEWEBDRIVER environment variable
+- Google Cloud SDK (283.0.0)
 - Haskell Cabal (cabal-install version 2.0.0.1
 compiled using version 2.0.1.1 of the Cabal library )
 - Haskell Cabal (cabal-install version 2.2.0.0
@@ -140,21 +135,22 @@ compiled using version 3.0.2.0 of the Cabal library )
 - GHC (The Glorious Glasgow Haskell Compilation System, version 8.6.5)
 - GHC (The Glorious Glasgow Haskell Compilation System, version 8.8.1)
 - GHC (The Glorious Glasgow Haskell Compilation System, version 8.8.2)
+- GHC (The Glorious Glasgow Haskell Compilation System, version 8.8.3)
 - Haskell Stack (Version 2.1.3, Git revision 636e3a759d51127df2b62f90772def126cdf6d1f (7735 commits) x86_64 hpack-0.31.2)
-- Heroku (heroku/7.38.2 linux-x64 node-v12.13.0)
-- HHVM (HipHop VM 4.46.0 (rel))
+- Heroku (heroku/7.39.0 linux-x64 node-v12.13.0)
+- HHVM (HipHop VM 4.47.0 (rel))
 - ImageMagick
 - Azul Zulu OpenJDK (7) (openjdk version "1.7.0_252")
 - Azul Zulu OpenJDK (8) (openjdk version "1.8.0_242")
 - Azul Zulu OpenJDK (11) (openjdk version "11.0.6" 2020-01-14 LTS)
 - Azul Zulu OpenJDK (12) (openjdk version "12.0.2" 2019-07-16)
 - Ant (Apache Ant(TM) version 1.9.6 compiled on July 20 2018)
-- Gradle 6.2.1
+- Gradle 6.2.2
 - Maven (Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f))
 - Kind (kind v0.7.0 go1.13.6 linux/amd64)
 - kubectl (Client Version: v1.17.3)
-- helm (Client: v2.16.3+g1ee0254)
-- Leiningen (Leiningen 2.9.2 on Java 1.8.0_242 OpenJDK 64-Bit Server VM)
+- helm (v3.1.1+gafe7058)
+- Leiningen (Leiningen 2.9.1 on Java 1.8.0_242 OpenJDK 64-Bit Server VM)
 - Mercurial (Mercurial Distributed SCM (version 4.4.1))
 - Miniconda (conda 4.7.12)
 - Mono (Mono JIT compiler version 6.8.0.105 (tarball Tue Feb  4 21:20:35 UTC 2020))
@@ -168,9 +164,11 @@ Local version: Unknown)
 - n (6.3.1)
 - Parcel (1.12.4)
 - TypeScript (Version 3.8.3)
-- Webpack (4.41.6)
+- Webpack (4.42.0)
 - Webpack CLI (3.3.11)
-- Yarn (1.22.0)
+- Yarn (1.22.1)
+- Bazel (bazel 2.2.0)
+- Bazelisk (1.3.0)
 - PhantomJS (2.1.1)
 - PHP 5.6 (PHP 5.6.40-24+ubuntu16.04.1+deb.sury.org+1 (cli) )
 - PHP 7.0 (PHP 7.0.33-23+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:20:42) ( NTS ))
@@ -182,7 +180,7 @@ Local version: Unknown)
 - PHPUnit (PHPUnit 7.5.20 by Sebastian Bergmann and contributors.)
 - Pollinate
 - psql (PostgreSQL) 9.5.19
-- Powershell (PowerShell 6.2.4)
+- Powershell (PowerShell 7.0.0)
 - ruby (2.3.1p112)
 - gem (3.1.2)
 - rustup (1.21.1)
@@ -195,11 +193,13 @@ Local version: Unknown)
 the
 0.53.1)
 - cbindgen (0.13.1)
+- Julia (julia version 1.3.1)
 - sbt (1.3.8)
 - Selenium server standalone (available via SELENIUM_JAR_PATH environment variable)
 - Sphinx Open Source Search Server
 - Subversion (svn, version 1.9.3 (r1718519))
-- Terraform (Terraform v0.12.21)
+- Terraform (Terraform v0.12.23)
+- Packer (1.5.4)
 - Vcpkg 2020.02.04-unknownhash
 - Zeit Now CLI (17.0.4)
 - Google Repository 58
@@ -227,6 +227,7 @@ the
 - Android SDK Platform 15
 - Android SDK Platform 10
 - Android SDK Patch Applier v4
+- Android SDK Build-Tools 29.0.3
 - Android SDK Build-Tools 29.0.2
 - Android SDK Build-Tools 29.0.0
 - Android SDK Build-Tools 28.0.3

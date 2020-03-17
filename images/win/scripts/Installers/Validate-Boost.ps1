@@ -3,6 +3,8 @@
 ##  Desc:  Validate Boost
 ################################################################################
 
+Import-Module -Name ImageHelpers
+
 function Validate-BoostVersion
 {
     Param
@@ -49,36 +51,31 @@ $tmplMarkRoot = @"
 
 _Environment:_
 * PATH: contains the location of Boost version {0}
-* BOOST_ROOT: root directory of the Boost version {0} installation
 * {1}: root directory of the Boost version {0} installation
 "@
 
-$SoftwareName = 'Boost'
 $Description = New-Object System.Text.StringBuilder
-$BoostRootDirectory = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Boost"
-$BoostVersionsToInstall = $env:BOOST_VERSIONS.split(",")
+$SoftwareName = 'Boost'
+$BoostRootDirectory = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath $SoftwareName
+$BoostTools = Get-ToolsByName -SoftwareName $SoftwareName
 
-foreach($BoostVersion in $BoostVersionsToInstall)
+foreach ($BoostTool in $BoostTools)
 {
-    Validate-BoostVersion -BoostRootPath $BoostRootDirectory -BoostRelease $BoostVersion
-    $BoostVersionTag = "BOOST_ROOT_{0}" -f $BoostVersion.Replace('.', '_')
+    $BoostToolsetName = $BoostTool.Architecture
+    $BoostVersionsToInstall = $BoostTool.Versions | Foreach-Object {"{0}.0" -f $_}
+    foreach($BoostVersion in $BoostVersionsToInstall)
+    {
+        Validate-BoostVersion -BoostRootPath $BoostRootDirectory -BoostRelease $BoostVersion
+        $BoostVersionTag = "BOOST_ROOT_{0}" -f $BoostVersion.Replace('.', '_')
 
-    if ([Version]$BoostVersion -ge "1.70.0")
-    {
-        $BoostToolsetName = "msvc-14.2"
-    }
-    else
-    {
-        $BoostToolsetName = "msvc-14.1"
-    }
-
-    if($BoostVersion -eq $env:BOOST_DEFAULT)
-    {
-        $null = $Description.AppendLine(($tmplMarkRoot -f $BoostVersion, $BoostVersionTag, $BoostToolsetName))
-    }
-    else
-    {
-        $null = $Description.AppendLine(($tmplMark -f $BoostVersion, $BoostVersionTag, $BoostToolsetName))
+        if($BoostVersion -eq $env:BOOST_DEFAULT)
+        {
+            $null = $Description.AppendLine(($tmplMarkRoot -f $BoostVersion, $BoostVersionTag, $BoostToolsetName))
+        }
+        else
+        {
+            $null = $Description.AppendLine(($tmplMark -f $BoostVersion, $BoostVersionTag, $BoostToolsetName))
+        }
     }
 }
 

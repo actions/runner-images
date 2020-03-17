@@ -8,18 +8,31 @@ function Get-GoVersion
 {
     Param
     (
-        [String]$goRootPath
+        [String]$goVersion
     )
+    Write-Host "Check if $goVersion is presented in the system"
+    $DestinationPath = "$($env:SystemDrive)\"
+    $goDirectory = Get-ChildItem -Path $DestinationPath -Filter "Go$goVersion*" | Select-Object -First 1
+    $goPath = Join-Path $env:SystemDrive $goDirectory
 
-    $env:Path = "$goRootPath\bin;" + $env:Path
-    if( $(go version) -match 'go version go(?<version>.*) win.*' )
+    $env:Path = "$goPath\bin;" + $env:Path
+    $version = $(go version)
+
+    $matchVersion = $version -match $goVersion
+    $semanticEquality = $version -match 'go version go(?<version>.*) win.*'
+
+    if($semanticEquality -And $matchVersion)
     {
-        $goVersion = $Matches.version
-        return $goVersion
-    }
+        $goFullVersion = $Matches.version
+        Write-Host "$goFullVersion has been found"
 
-    Write-Host "Unable to determine Go version at " + $goRootPath
-    return ""
+        return $goFullVersion
+    }
+    else
+    {
+        Write-Host "Unable to determine Go version at " + $goPath
+        exit 1
+    }
 }
 
 # Verify that go.exe is on the path
@@ -53,10 +66,10 @@ _Environment:_
 
 $SoftwareName = "Go (x64)"
 $Description = New-Object System.Text.StringBuilder
-$goVersionsToInstall = $env:GO_VERSIONS.split(",")
+$goVersionsToInstall = $env:GO_VERSIONS.split(", ", [System.StringSplitOptions]::RemoveEmptyEntries)
 
 foreach($go in $goVersionsToInstall) {
-    $goVersion = Get-GoVersion -goRootPath "C:\Go${go}"
+    $goVersion = Get-GoVersion -goVersion $go
     $goVersionTag = "GOROOT_{0}_{1}_X64" -f $go.split(".")
     if ($goVersion -eq $go) {
         if($go -eq $env:GO_DEFAULT) {
