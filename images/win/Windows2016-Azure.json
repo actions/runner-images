@@ -876,8 +876,8 @@
         },
         {
             "type": "powershell",
-            "environment_vars": [
-                "RUN_SCAN_ANTIVIRUS={{user `run_scan_antivirus`}}"
+            "environment_vars":[
+                "RUN_SCAN_ANTIVIRUS={{user `run_scan_antivirus`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Run-Antivirus.ps1"
