@@ -25,12 +25,13 @@ if($run_scan_antivirus -eq $true) {
     Set-MpPreference -ScanAvgCPULoadFactor 100
     # Full Scan
     Start-Process -FilePath "C:\Program Files\Windows Defender\MpCmdRun.exe" -ArgumentList ("-Scan","-ScanType", 2) -Wait
-    Write-Host "Set antivirus parmeters"
 }
 else{
     Write-Host "Scanning procces has not been started"
-    Set-MpPreference -ScanAvgCPULoadFactor 5 -ExclusionPath "D:\", "C:\"
 }
+
+Write-Host "Set antivirus parmeters"
+Set-MpPreference -ScanAvgCPULoadFactor 5 -ExclusionPath "D:\", "C:\"
 
 
 
