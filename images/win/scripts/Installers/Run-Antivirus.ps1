@@ -9,10 +9,11 @@ try{
 }
 catch {
     Write-Host "Some error was found"
+    Write-Host $_
 }
 
-$run_scan_antivirus = $env:run_scan_antivitrus
-if($run_scan_antivitrus -eq $true) {
+$run_scan_antivirus = $env:run_scan_antivirus
+if($run_scan_antivirus -eq $true) {
     Write-Host "Make sure windefend is going to start"
     Start-Service windefend -ErrorAction Continue
     Write-Host "Waiting for windefend to report as running"
@@ -23,14 +24,12 @@ if($run_scan_antivitrus -eq $true) {
     # Tell Defender to use 100% of the CPU during the scan
     Set-MpPreference -ScanAvgCPULoadFactor 100
     # Full Scan
-    start-procces -FilePath "C:\Program Files\Windows Defender\MpCmdRun.exe" -ArgumentList -Scan -ScanType 2 -Wait
+    Start-Process -FilePath "C:\Program Files\Windows Defender\MpCmdRun.exe" -ArgumentList ("-Scan","-ScanType", 2) -Wait
     Write-Host "Set antivirus parmeters"
-
 }
 else{
     Write-Host "Scanning procces has not been started"
-    Set-MpPreference -ScanAvgCPULoadFactor 5 `
-             -ExclusionPath "D:\", "C:\"
+    Set-MpPreference -ScanAvgCPULoadFactor 5 -ExclusionPath "D:\", "C:\"
 }
 
 
