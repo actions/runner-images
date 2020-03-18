@@ -2,25 +2,64 @@
 ##  File:  Install-SQLExpress.ps1
 ##  Desc:  Install SQL Express for Windows
 ################################################################################
-function Start-Task {
+
+function Download-FullSQLPackage {
+    param(
+        [String]$InstallerPath,
+        [String]$Arguments = ("/MEDIAPATH=$downloadPath", "/MEDIATYPE=Core","/Action=Download", "/QUIET")
+    )
+    $process = Start-Process -FilePath $InstallerPath -ArgumentList $Arguments -Wait -PassThru
+    $exitCode = $process.ExitCode
+# Exit code -2067529716 is added since SQL Unpack procedure returns it on success.
+    if ($exitCode -eq 0)
+    {
+      Write-Host -Object "Full SQL Express package has been successfully downloaded to $InstallerPath : ExitCode: $exitCode"
+    }
+    else
+    {
+      Write-Host -Object "Full package downloading process was unsuccessful. Exit code: $exitCode."
+      exit $exitCode
+    }
+}
+
+function Unpack-SQLInstaller {
     param(
         [String]$InstallPath,
-        [String]$Arguments,
-        [String]$SuccessMessage
+        [String]$Arguments = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS")
     )
     $process = Start-Process -FilePath $InstallPath -ArgumentList $Arguments -Wait -PassThru
     $exitCode = $process.ExitCode
 # Exit code -2067529716 is added since SQL Unpack procedure returns it on success.
     if ($exitCode -eq 0 -or $exitCode -eq -2067529716)
     {
-      Write-Host -Object "$SuccessMessage : ExitCode: $exitCode"
+      Write-Host -Object "SQL installer unpacking has been completed."
     }
     else
     {
-      Write-Host -Object "Non zero exit code returned by the installation process : $exitCode."
+      Write-Host -Object "SQL installer unpacking was interrupted : $exitCode."
       exit $exitCode
     }
 }
+
+function Start-Installer {
+    param(
+        [String]$InstallPath,
+        [String]$Arguments = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS", "/Action=Install", "/INSTANCEID=SQL2019", "/INSTANCENAME=SQL2019", "/SECURITYMODE=SQL", "/SAPWD=P@ssword!!", "/TCPENABLED=1")
+    )
+    $process = Start-Process -FilePath $InstallPath -ArgumentList $Arguments -Wait -PassThru
+    $exitCode = $process.ExitCode
+# Exit code -2067529716 is added since SQL Unpack procedure returns it on success.
+    if ($exitCode -eq 0)
+    {
+      Write-Host -Object "SQL Express has been successfully installed: ExitCode: $exitCode"
+    }
+    else
+    {
+      Write-Host -Object "Installation procedure was not correctly completed. Exit code: $exitCode."
+      exit $exitCode
+    }
+}
+
 
 function Start-DownloadSQLExpress {
     param(
@@ -58,19 +97,18 @@ function Start-DownloadSQLExpress {
         }
     Write-Host "SQL Express has been successfully downladed from the link: $InstallerUrl"
 }
-
+#default variables for functions.
 $installerUrl = "https://go.microsoft.com/fwlink/?linkid=866658"
 $installerPath = "${env:Temp}\SQL2019-SSEI-Expr.exe"
 $downloadPath = "C:\SQLEXPRESS2019"
 $setupPath = Join-Path $downloadPath "SQLEXPR_x64_ENU"
-$downloadArgs = ("/MEDIAPATH=$downloadPath", "/MEDIATYPE=Core","/Action=Download", "/QUIET")
-$unpackArgs = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS")
-$installArgs = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS", "/Action=Install", "/INSTANCEID=SQL2019", "/INSTANCENAME=SQL2019", "/SECURITYMODE=SQL", "/SAPWD=P@ssword!!", "/TCPENABLED=1")
+#Set default location for proper script execution
+Set-Location -Path $downloadPath
 #Download installer for SQL Express
 Start-DownloadSQLExpress -InstallerUrl $installerUrl -InstallerPath $installerPath
 #Download full SQL Express package
-Start-Task -InstallPath $installerPath  -Arguments $downloadArgs -SuccessMessage "Downloaded full package. To path: $installerPath "
+Download-FullSQLPackage -InstallerPath $installerPath
 #Unpack SQL Express Installer
-Start-Task -InstallPath "$setupPath.exe"  -Arguments $unpackArgs -SuccessMessage "Unpacked package to directory: $setupPath"
+Unpack-SQLInstaller -InstallPath "$setupPath.exe"
 #Start SQL Express installer silently
-Start-Task -InstallPath "$setupPath/SETUP.exe"  -Arguments $installArgs -SuccessMessage "SQL has been installed to directory: ${env:ProgramFiles}/Microsoft SQL Server"
+Start-Installer -InstallPath "$setupPath/SETUP.exe"
