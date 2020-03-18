@@ -51,8 +51,6 @@ if (Get-Command -Name 'helm')
     Write-Host "helm on path"
     Write-Host "Full version:"
     helm version
-    Write-Host "Short version:"
-    helm version --short
 }
 else
 {
