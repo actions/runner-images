@@ -12,8 +12,7 @@ catch {
     Write-Host $_
 }
 
-$run_scan_antivirus = $env:run_scan_antivirus
-if($run_scan_antivirus -eq $true) {
+if($env:$run_scan_antivirus -eq $true) {
     Write-Host "Make sure windefend is going to start"
     Start-Service windefend -ErrorAction Continue
     Write-Host "Waiting for windefend to report as running"
@@ -27,7 +26,7 @@ if($run_scan_antivirus -eq $true) {
     Start-Process -FilePath "C:\Program Files\Windows Defender\MpCmdRun.exe" -ArgumentList ("-Scan","-ScanType", 2) -Wait
 }
 else{
-    Write-Host "Scanning procces has not been started"
+    Write-Host "Scanning process has been skipped"
 }
 
 Write-Host "Set antivirus parmeters"
