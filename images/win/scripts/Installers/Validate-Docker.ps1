@@ -49,8 +49,6 @@ Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $
 if (Get-Command -Name 'helm')
 {
     Write-Host "helm on path"
-    Write-Host "Full version:"
-    helm version
 }
 else
 {
