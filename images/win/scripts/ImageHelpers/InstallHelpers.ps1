@@ -171,7 +171,7 @@ function Start-DownloadWithRetry
         [string] $Name,
         [int] $retries = 20
         )
-    $FilePath = Join-Path $DownloadPath "\" $Name
+    $FilePath = Join-Path $DownloadPath $Name
     #Default retry logic for the package.
     while($retries -gt 0)
         {
