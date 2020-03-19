@@ -38,11 +38,11 @@ else
 
 Adding description of the software to Markdown
 
-`gcc --version` gives output like:
-gcc.exe (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 5.3.0
-Copyright (C) 2015 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# `gcc --version` gives output like:
+# gcc.exe (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 5.3.0
+# Copyright (C) 2015 Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.  There is NO
+# warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 $SoftwareName = "MinGW"
 $(gcc --version).Split([System.Environment]::NewLine)[0] -match "\d\.\d\.\d$"

@@ -15,7 +15,7 @@ $msy2_uri  = "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20190524.ta
 $msy2_file = "C:\Windows\Temp\msys2.tar.xz"
 
 # Download the latest msys2 x86_64
-Write-Host "Starting download"
+Write-Host "Starting msys2 download"
 (New-Object System.Net.WebClient).DownloadFile($msy2_uri, $msy2_file)
 Write-Host "Finished download"
 
@@ -26,22 +26,20 @@ $env:PATH = "$env:git_path\mingw64\bin;$env:orig_path"
 $tar      = "$env:git_path\usr\bin\tar.exe"
 
 # extract tar.xz to C:\
-Write-Host "Starting extraction"
+Write-Host "Starting msys2 extraction"
 &$tar -Jxf $msy2_file_u -C /c/
 Remove-Item $msy2_file
-
-Write-Host Finished extraction
+Write-Host "Finished extraction"
 
 $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$env:orig_path"
 
 $ErrorActionPreference = "Continue"
 
-Write-Host "sh -c pacman-key --init"
+Write-Host "bash -c pacman-key --init"
 Invoke-Expression "bash -c `"pacman-key --init 2>&1`""
 
-
-Write-Host "sh.exe -c pacman-key --populate msys2"
-Invoke-Expression "sh -c `"pacman-key --populate msys2 2>&1`""
+Write-Host "bash -c pacman-key --populate msys2"
+Invoke-Expression "bash -c `"pacman-key --populate msys2 2>&1`""
 
 Write-Host "pacman --noconfirm -Syyuu"
 pacman.exe -Syyuu --noconfirm 2>$null
