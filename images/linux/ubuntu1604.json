@@ -168,6 +168,7 @@
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
+                "{{template_dir}}/scripts/installers/mvn.sh",
                 "{{template_dir}}/scripts/installers/bazel.sh",
                 "{{template_dir}}/scripts/installers/phantomjs.sh",
                 "{{template_dir}}/scripts/installers/1604/php.sh",
