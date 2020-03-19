@@ -22,7 +22,6 @@ function Test-SqlConnection {
     $ErrorActionPreference = 'Stop'
     try {
         $connectionString = 'Server={0};Integrated Security={1};User ID={2};Password={3}' -f $ServerName,$IntegratedSecurity,$UserName,$Password
-        Write-Host $connectionString
         $sqlConnection = New-Object System.Data.SqlClient.SqlConnection $connectionString
         $sqlConnection.Open()
         Write-Host -Object "Connection to SQL Express was successful."
