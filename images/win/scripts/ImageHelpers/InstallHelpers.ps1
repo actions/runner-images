@@ -161,7 +161,6 @@ Hashtable for service arguments
     }
 }
 
-<<<<<<< HEAD
 function Start-DownloadWithRetry
 {
     param (
@@ -202,8 +201,6 @@ function Start-DownloadWithRetry
 }
 
 
-=======
->>>>>>> upstream/master
 function Install-VsixExtension
 {
     Param
@@ -354,7 +351,3 @@ function Test-IsWin16
 {
     (Get-WinVersion) -match "2016"
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/master
