@@ -9,6 +9,7 @@ function Download-FullSQLPackage {
         [String]$InstallerPath,
         [String]$Arguments = ("/MEDIAPATH=${env:Temp}", "/MEDIATYPE=Core","/Action=Download", "/QUIET")
     )
+    Write-Host "Downloading full package to $InstallerPath..."
     $process = Start-Process -FilePath $InstallerPath -ArgumentList $Arguments -Wait -PassThru
     $exitCode = $process.ExitCode
     if ($exitCode -eq 0)
@@ -27,6 +28,7 @@ function Unpack-SQLInstaller {
         [String]$InstallPath,
         [String]$Arguments = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS")
     )
+    Write-Host "Start unpacking procedure to $InstallPath..."
     $process = Start-Process -FilePath $InstallPath -ArgumentList $Arguments -Wait -PassThru
     $exitCode = $process.ExitCode
 # Exit code -2067529716 is added since SQL Unpack procedure returns it on success.
@@ -46,6 +48,7 @@ function Start-Installer {
         [String]$InstallPath,
         [String]$Arguments = ("/Q", "/IACCEPTSQLSERVERLICENSETERMS", "/Action=Install", "/INSTANCEID=SQL2019", "/INSTANCENAME=SQL2019", "/SECURITYMODE=SQL", "/SAPWD=P@ssword!!", "/TCPENABLED=1")
     )
+    Write-Host "Installating SQL Express..."
     $process = Start-Process -FilePath $InstallPath -ArgumentList $Arguments -Wait -PassThru
     $exitCode = $process.ExitCode
     if ($exitCode -eq 0)
