@@ -1,6 +1,6 @@
 ################################################################################
-##  File:  Validate-MSYS2.ps1
-##  Desc:  Validate MSYS2
+##  File:  Validate-Msys2.ps1
+##  Desc:  Validate Msys2
 ################################################################################
 
 if (Get-Command -Name 'gcc')
@@ -36,7 +36,7 @@ else
     exit 1
 }
 
-Adding description of the software to Markdown
+# Adding description of the software to Markdown
 
 # `gcc --version` gives output like:
 # gcc.exe (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 5.3.0

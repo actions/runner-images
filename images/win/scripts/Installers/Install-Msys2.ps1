@@ -1,6 +1,6 @@
 ################################################################################
-##  File:  Install-MSYS2.ps1
-##  Desc:  Install MSYS2 and 64-bit gcc, cmake, & llvm (32-bit commented out)
+##  File:  Install-Msys2.ps1
+##  Desc:  Install Msys2 and 64-bit gcc, cmake, & llvm (32-bit commented out)
 ################################################################################
 
 # References
