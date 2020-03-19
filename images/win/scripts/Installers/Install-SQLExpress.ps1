@@ -11,7 +11,6 @@ function Download-FullSQLPackage {
     )
     $process = Start-Process -FilePath $InstallerPath -ArgumentList $Arguments -Wait -PassThru
     $exitCode = $process.ExitCode
-# Exit code -2067529716 is added since SQL Unpack procedure returns it on success.
     if ($exitCode -eq 0)
     {
       Write-Host -Object "Full SQL Express package has been successfully downloaded to $InstallerPath : ExitCode: $exitCode"
@@ -49,7 +48,6 @@ function Start-Installer {
     )
     $process = Start-Process -FilePath $InstallPath -ArgumentList $Arguments -Wait -PassThru
     $exitCode = $process.ExitCode
-# Exit code -2067529716 is added since SQL Unpack procedure returns it on success.
     if ($exitCode -eq 0)
     {
       Write-Host -Object "SQL Express has been successfully installed: ExitCode: $exitCode"
@@ -60,18 +58,13 @@ function Start-Installer {
       exit $exitCode
     }
 }
-
-#default variables for functions.
 $installerUrl = "https://go.microsoft.com/fwlink/?linkid=866658"
 $downloadPath = "${env:Temp}"
 $setupPath = Join-Path $downloadPath "SQLEXPR_x64_ENU"
-#Set default location for proper script execution
+#Set default location for installation process
 Set-Location -Path $downloadPath
-#Download installer for SQL Express
+#Download installer for SQL Express and return path to it
 $installerPath = Start-DownloadWithRetry -Url "https://go.microsoft.com/fwlink/?linkid=866658" -Name SQL2019-SSEI-Expr.exe
-#Download full SQL Express package
 Download-FullSQLPackage -InstallerPath $installerPath
-#Unpack SQL Express Installer
 Unpack-SQLInstaller -InstallPath "$setupPath.exe"
-#Start SQL Express installer silently
 Start-Installer -InstallPath "$setupPath/SETUP.exe"
