@@ -6,8 +6,8 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 echo "source $NVM_DIR/nvm.sh --install" >> "$HOME/.bash_profile"
 source $HOME/.bash_profile
 
-if ! command -v $mvn; then
-    echo "$mvn was not installed"
+if ! command -v nvm; then
+    echo "nvm was not installed"
     exit 1
 fi
 
