@@ -101,7 +101,8 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Windows2016/Initialize-VM.ps1"
-            ]
+            ],
+            "execution_policy": "unrestricted"
         },
         {
             "type": "powershell",
