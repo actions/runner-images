@@ -30,7 +30,8 @@
         "image_os": "win19",
         "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
         "go_versions": "1.9, 1.10, 1.11, 1.12, 1.13, 1.14",
-        "go_default": "1.14"
+        "go_default": "1.14",
+        "boost_default": "1.72.0"
     },
     "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
@@ -100,6 +101,12 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Windows2019/Initialize-VM.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1"
             ]
         },
         {
@@ -182,13 +189,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-Wix.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Wix.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-AnalysisExtenstion.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-SSDTExtensions.ps1"
             ]
         },
         {
@@ -204,7 +211,7 @@
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-WDK.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-WDK.ps1"
             ]
         },
         {
@@ -220,13 +227,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-Wix.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Wix.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-AnalysisExtenstion.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-SSDTExtensions.ps1"
             ]
         },
         {
@@ -238,19 +245,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-WDK.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-WDK.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-ServiceFabricSDK.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1"
             ]
         },
         {
@@ -296,6 +297,12 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Download-ToolCache.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-OpenSSL.ps1"
             ]
         },
         {
@@ -499,8 +506,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "BOOST_VERSIONS=1.69.0,1.72.0",
-                "BOOST_DEFAULT=1.72.0"
+                "ROOT_FOLDER={{user `root_folder`}}",
+                "BOOST_DEFAULT={{user `boost_default`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Boost.ps1"
@@ -534,12 +541,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-GitVersion.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-OpenSSL.ps1"
             ]
         },
         {
@@ -618,6 +619,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-OpenSSL.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Perl.ps1"
             ]
         },
@@ -640,8 +647,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "BOOST_VERSIONS=1.69.0,1.72.0",
-                "BOOST_DEFAULT=1.72.0"
+                "ROOT_FOLDER={{user `root_folder`}}",
+                "BOOST_DEFAULT={{user `boost_default`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Boost.ps1"
@@ -813,12 +820,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-GitVersion.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-OpenSSL.ps1"
             ]
         },
         {
