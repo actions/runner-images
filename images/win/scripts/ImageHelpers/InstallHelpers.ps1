@@ -161,15 +161,17 @@ Hashtable for service arguments
     }
 }
 
-
 function Start-DownloadWithRetry
 {
     param (
-    [Parameter(Mandatory)]
-    [string] $Url,
-    [string] $FullFilePath = "${env:Temp}\Default.exe",
-    [int] $retries = 20
-    )
+        [Parameter(Mandatory)]
+        [string] $Url,
+        [string] $DownloadPath = "${env:Temp}",
+        [Parameter(Mandatory)]
+        [string] $Name,
+        [int] $retries = 20
+        )
+    $FilePath = Join-Path $DownloadPath "\" $Name
     #Default retry logic for the package.
     while($retries -gt 0)
         {
@@ -183,7 +185,6 @@ function Start-DownloadWithRetry
             {
                 Write-Host "There is an error during package downloading"
                 $_
-
                 $retries--
 
                 if ($retries -eq 0)
@@ -192,12 +193,11 @@ function Start-DownloadWithRetry
                     $_
                     exit 1
                 }
-
                 Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
                 Start-Sleep -Seconds 30
             }
         }
-   return $FullFilePath
+   return $FilePath
 }
 
 
