@@ -61,9 +61,7 @@ function Start-Installer {
 $installerUrl = "https://go.microsoft.com/fwlink/?linkid=866658"
 $downloadPath = "${env:Temp}"
 $setupPath = Join-Path $downloadPath "SQLEXPR_x64_ENU"
-#Set default location for installation process
 Set-Location -Path $downloadPath
-#Download installer for SQL Express and return path to it
 $installerPath = Start-DownloadWithRetry -Url "https://go.microsoft.com/fwlink/?linkid=866658" -Name SQL2019-SSEI-Expr.exe
 Download-FullSQLPackage -InstallerPath $installerPath
 Unpack-SQLInstaller -InstallPath "$setupPath.exe"

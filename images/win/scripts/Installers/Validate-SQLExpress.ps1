@@ -27,9 +27,11 @@ function Test-SqlConnection {
         $sqlConnection.Open()
         Write-Host -Object "Connection to database: {0} was successful. Version of SQL Express is: {1}" -f $sqlConnection.Database,$sqlConnection.ServerVersion
         return $sqlConnection.ServerVersion
+
     } catch {
         Write-Host -Object "Connection to SQL Express cannot be established."
         exit 1
+
     } finally {
         ## Close the connection when we're done
         $sqlConnection.Close()
