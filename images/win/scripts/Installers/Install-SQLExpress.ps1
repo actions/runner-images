@@ -7,8 +7,7 @@ Import-Module -Name ImageHelpers -Force;
 function Download-FullSQLPackage {
     param(
         [String]$InstallerPath,
-        [String]$DestinationPath,
-        [String]$Arguments = ("/MEDIAPATH=$DestinationPath", "/MEDIATYPE=Core","/Action=Download", "/QUIET")
+        [String]$Arguments = ("/MEDIAPATH=${env:Temp}", "/MEDIATYPE=Core","/Action=Download", "/QUIET")
     )
     $process = Start-Process -FilePath $InstallerPath -ArgumentList $Arguments -Wait -PassThru
     $exitCode = $process.ExitCode
@@ -64,14 +63,14 @@ function Start-Installer {
 
 #default variables for functions.
 $installerUrl = "https://go.microsoft.com/fwlink/?linkid=866658"
-$downloadPath = "C:\SQLEXPRESS2019"
+$downloadPath = "${env:Temp}"
 $setupPath = Join-Path $downloadPath "SQLEXPR_x64_ENU"
 #Set default location for proper script execution
 Set-Location -Path $downloadPath
 #Download installer for SQL Express
 $installerPath = Start-DownloadWithRetry -Url "https://go.microsoft.com/fwlink/?linkid=866658" -Name SQL2019-SSEI-Expr.exe
 #Download full SQL Express package
-Download-FullSQLPackage -InstallerPath $installerPath -DestinationPath $downloadPath
+Download-FullSQLPackage -InstallerPath $installerPath
 #Unpack SQL Express Installer
 Unpack-SQLInstaller -InstallPath "$setupPath.exe"
 #Start SQL Express installer silently
