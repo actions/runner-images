@@ -4,7 +4,7 @@
 ##         Run right after cleanup before we sysprep
 ################################################################################
 
-try{
+try {
     Update-MpSignature
 }
 catch {
@@ -12,7 +12,7 @@ catch {
     Write-Host $_
 }
 
-if($env:run_scan_antivirus -eq $true) {
+if ($env:run_scan_antivirus -eq $true) {
     Write-Host "Make sure windefend is going to start"
     Start-Service windefend -ErrorAction Continue
     Write-Host "Waiting for windefend to report as running"
@@ -25,7 +25,7 @@ if($env:run_scan_antivirus -eq $true) {
     # Full Scan
     Start-Process -FilePath "C:\Program Files\Windows Defender\MpCmdRun.exe" -ArgumentList ("-Scan","-ScanType", 2) -Wait
 }
-else{
+else {
     Write-Host "Scanning process has been skipped"
 }
 
