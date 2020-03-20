@@ -31,9 +31,8 @@ Write-Host "Starting msys2 extraction"
 Remove-Item $msys2File
 Write-Host "Finished extraction"
 
+# Add msys2 bin tools folders to PATH
 $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
-
-$ErrorActionPreference = "Continue"
 
 Write-Host "bash -c pacman-key --init"
 Invoke-Expression "bash -c `"pacman-key --init`""
