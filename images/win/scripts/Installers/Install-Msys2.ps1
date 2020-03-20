@@ -21,9 +21,7 @@ Write-Host "Finished download"
 
 $msys2FileU = "/$msys2File".replace(':', '')
 
-# git has tar.exe in usr/bin, but xz.exe is in mingw64/bin
-$env:PATH = "$gitPath\mingw64\bin;$origPath"
-$tar      = "$gitPath\usr\bin\tar.exe"
+$tar = "$gitPath\usr\bin\tar.exe"
 
 # extract tar.xz to C:\
 Write-Host "Starting msys2 extraction"
@@ -34,10 +32,10 @@ Write-Host "Finished extraction"
 # Add msys2 bin tools folders to PATH
 $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
 
-Write-Host "bash -c pacman-key --init"
+Write-Host "bash pacman-key --init"
 bash.exe "pacman-key --init 2>&1"
 
-Write-Host "bash -c pacman-key --populate msys2"
+Write-Host "bash pacman-key --populate msys2"
 bash.exe "pacman-key --populate msys2 2>&1"
 
 Write-Host "pacman --noconfirm -Syyuu"
