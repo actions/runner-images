@@ -18,4 +18,4 @@ if ! command -v nvm; then
     exit 1
 fi
 
-DocumentInstalledItem "nvm ($(nvm --version))"
+#DocumentInstalledItem "nvm ($(nvm --version))"
