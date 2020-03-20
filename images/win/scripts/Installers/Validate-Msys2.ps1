@@ -45,7 +45,7 @@ else
 # warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 $SoftwareName = "MinGW"
-$(gcc --version).Split([System.Environment]::NewLine)[0] -match "\d\.\d\.\d$"
+$(gcc --version).Split([System.Environment]::NewLine)[0] -match "\d+\.\d+\.\d+$"
 $minGwVersion = $matches[0]
 
 $Description = @"
