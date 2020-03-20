@@ -67,5 +67,5 @@ $setupPath = Join-Path $downloadPath "SQLEXPR_x64_ENU"
 Set-Location -Path $downloadPath
 $installerPath = Start-DownloadWithRetry -Url "https://go.microsoft.com/fwlink/?linkid=866658" -Name "SQL2019-SSEI-Expr.exe"
 Download-FullSQLPackage -InstallerPath $installerPath
-Unpack-SQLInstaller -InstallPath (Join-Path $setupPath ".exe")
-Start-Installer -InstallPath (Join-Path $setupPath "SETUP.exe")
+Unpack-SQLInstaller -InstallPath "$setupPath.exe"
+Start-Installer -InstallerPath "$setupPath\SETUP.exe"
