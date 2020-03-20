@@ -7,31 +7,31 @@
 # https://github.com/msys2/MINGW-packages/blob/master/azure-pipelines.yml
 # https://packages.msys2.org/group/
 
-$env:orig_path = $env:PATH
-$env:git_path  = "C:\Program Files\Git"
+$env:origPath = $env:PATH
+$env:gitPath  = "C:\Program Files\Git"
 
 # get info from https://sourceforge.net/projects/msys2/files/Base/x86_64/
-$msy2_uri  = "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20190524.tar.xz"
-$msy2_file = "C:\Windows\Temp\msys2.tar.xz"
+$msys2Uri  = "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20190524.tar.xz"
+$msys2File = "C:\Windows\Temp\msys2.tar.xz"
 
 # Download the latest msys2 x86_64
 Write-Host "Starting msys2 download"
-(New-Object System.Net.WebClient).DownloadFile($msy2_uri, $msy2_file)
+(New-Object System.Net.WebClient).DownloadFile($msys2Uri, $msys2File)
 Write-Host "Finished download"
 
-$msy2_file_u = "/$msy2_file".replace(':', '')
+$msys2FileU = "/$msys2File".replace(':', '')
 
 # git has tar.exe in usr/bin, but xz.exe is in mingw64/bin
-$env:PATH = "$env:git_path\mingw64\bin;$env:orig_path"
-$tar      = "$env:git_path\usr\bin\tar.exe"
+$env:PATH = "$env:gitPath\mingw64\bin;$env:origPath"
+$tar      = "$env:gitPath\usr\bin\tar.exe"
 
 # extract tar.xz to C:\
 Write-Host "Starting msys2 extraction"
-&$tar -Jxf $msy2_file_u -C /c/
-Remove-Item $msy2_file
+&$tar -Jxf $msys2FileU -C /c/
+Remove-Item $msys2File
 Write-Host "Finished extraction"
 
-$env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$env:orig_path"
+$env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$env:origPath"
 
 $ErrorActionPreference = "Continue"
 
