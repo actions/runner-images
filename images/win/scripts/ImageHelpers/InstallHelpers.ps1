@@ -217,34 +217,7 @@ function Install-VsixExtension
 
     if (!$InstallOnly)
     {
-        $FilePath = "${env:Temp}\$Name"
-
-        while($retries -gt 0)
-        {
-            try
-            {
-                Write-Host "Downloading $Name..."
-                (New-Object System.Net.WebClient).DownloadFile($Url, $FilePath)
-                break
-            }
-            catch
-            {
-                Write-Host "There is an error during $Name downloading"
-                $_
-
-                $retries--
-
-                if ($retries -eq 0)
-                {
-                    Write-Host "File can't be downloaded"
-                    $_
-                    exit 1
-                }
-
-                Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
-                Start-Sleep -Seconds 30
-            }
-        }
+        $FilePath = Start-DownloadWithRetry -Url $Url -Name $Name
     }
 
     $ArgumentList = ('/quiet', "`"$FilePath`"")
