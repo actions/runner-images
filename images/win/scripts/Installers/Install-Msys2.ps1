@@ -7,12 +7,12 @@
 # https://github.com/msys2/MINGW-packages/blob/master/azure-pipelines.yml
 # https://packages.msys2.org/group/
 
-$env:origPath = $env:PATH
-$env:gitPath  = "C:\Program Files\Git"
+$origPath = $env:PATH
+$gitPath  = "C:\Program Files\Git"
 
 # get info from https://sourceforge.net/projects/msys2/files/Base/x86_64/
 $msys2Uri  = "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20190524.tar.xz"
-$msys2File = "C:\Windows\Temp\msys2.tar.xz"
+$msys2File = "$env:TEMP\msys2.tar.xz"
 
 # Download the latest msys2 x86_64
 Write-Host "Starting msys2 download"
@@ -22,8 +22,8 @@ Write-Host "Finished download"
 $msys2FileU = "/$msys2File".replace(':', '')
 
 # git has tar.exe in usr/bin, but xz.exe is in mingw64/bin
-$env:PATH = "$env:gitPath\mingw64\bin;$env:origPath"
-$tar      = "$env:gitPath\usr\bin\tar.exe"
+$env:PATH = "$gitPath\mingw64\bin;$origPath"
+$tar      = "$gitPath\usr\bin\tar.exe"
 
 # extract tar.xz to C:\
 Write-Host "Starting msys2 extraction"
@@ -31,21 +31,20 @@ Write-Host "Starting msys2 extraction"
 Remove-Item $msys2File
 Write-Host "Finished extraction"
 
-$env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$env:origPath"
+$env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
 
 $ErrorActionPreference = "Continue"
 
 Write-Host "bash -c pacman-key --init"
-Invoke-Expression "bash -c `"pacman-key --init 2>&1`""
+Invoke-Expression "bash -c `"pacman-key --init`""
 
 Write-Host "bash -c pacman-key --populate msys2"
-Invoke-Expression "bash -c `"pacman-key --populate msys2 2>&1`""
+Invoke-Expression "bash -c `"pacman-key --populate msys2`""
 
 Write-Host "pacman --noconfirm -Syyuu"
-pacman.exe -Syyuu --noconfirm 2>$null
-pacman.exe -Syuu --noconfirm 2>$null
+pacman.exe -Syyuu --noconfirm
+pacman.exe -Syuu --noconfirm
 
-# install msys2 packages
 Write-Host "Install msys2 packages"
 pacman.exe -S --noconfirm --needed --noprogressbar base-devel compression
 
