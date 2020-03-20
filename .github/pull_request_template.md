@@ -1,11 +1,6 @@
----
-name: Add new tool
-about: Add a new tool or update the existing one
-title: Update/Add [tool name]
-labels: ''
-assignees: ''
+**Description**
 
----
+Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
 
 **Tool information**
 - Tool name: <!--- Name -->
