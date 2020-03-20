@@ -17,5 +17,6 @@ if ! command -v nvm; then
     echo "nvm was not installed"
     exit 1
 fi
-
+echo "nvm versio is"
+nvm --version
 #DocumentInstalledItem "nvm ($(nvm --version))"
