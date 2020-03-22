@@ -68,4 +68,5 @@ Set-Location -Path $downloadPath
 $installerPath = Start-DownloadWithRetry -Url "https://go.microsoft.com/fwlink/?linkid=866658" -Name "SQL2019-SSEI-Expr.exe"
 Download-FullSQLPackage -InstallerPath $installerPath
 Unpack-SQLInstaller -InstallPath "$setupPath.exe"
-Start-Installer -InstallerPath "$setupPath\SETUP.exe"
+$resultPath = Join-Path $setupPath "SETUP.exe"
+Start-Installer -InstallerPath $resultPath
