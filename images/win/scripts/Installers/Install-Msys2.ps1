@@ -33,10 +33,10 @@ Write-Host "Finished extraction"
 $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
 
 Write-Host "bash pacman-key --init"
-bash.exe "pacman-key --init 2>&1"
+bash.exe -c "pacman-key --init 2>&1"
 
 Write-Host "bash pacman-key --populate msys2"
-bash.exe "pacman-key --populate msys2 2>&1"
+bash.exe -c "pacman-key --populate msys2 2>&1"
 
 Write-Host "pacman --noconfirm -Syyuu"
 pacman.exe -Syyuu --noconfirm
