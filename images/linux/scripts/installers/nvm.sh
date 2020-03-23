@@ -12,7 +12,8 @@ mkdir -m 777 $NVM_DIR
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 ls $NVM_DIR
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "/etc/profile"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+echo $NVM_DIR | tee -a /etc/environment
 
 if ! command -v nvm; then
     echo "nvm was not installed"
