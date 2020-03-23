@@ -4,15 +4,15 @@
 ##         Run right after cleanup before we sysprep
 ################################################################################
 
-try {
-    Update-MpSignature
-}
-catch {
-    Write-Host "Some error was found"
-    Write-Host $_
-}
-
 if ($env:run_scan_antivirus -eq $true) {
+    try {
+        Update-MpSignature
+    }
+    catch {
+        Write-Host "Some error was found"
+        Write-Host $_
+    }
+
     Write-Host "Make sure windefend is going to start"
     Start-Service windefend -ErrorAction Continue
     Write-Host "Waiting for windefend to report as running"
@@ -28,6 +28,3 @@ if ($env:run_scan_antivirus -eq $true) {
 else {
     Write-Host "Scanning process has been skipped"
 }
-
-Write-Host "Set antivirus parameters"
-Set-MpPreference -ScanAvgCPULoadFactor 5 -ExclusionPath "D:\", "C:\"
