@@ -7,7 +7,7 @@ Import-Module -Name ImageHelpers -Force;
 function Download-FullSQLPackage {
     param(
         [String]$InstallerPath,
-        [String]$Arguments = ("/MEDIAPATH=${env:Temp}", "/MEDIATYPE=Core","/Action=Download", "/QUIET")
+        [String]$Arguments = ("/MEDIAPATH=C:\SQLInstall", "/MEDIATYPE=Core","/Action=Download", "/QUIET")
     )
     Write-Host "Downloading full package to $InstallerPath..."
     $process = Start-Process -FilePath $InstallerPath -ArgumentList $Arguments -Wait -PassThru
@@ -63,7 +63,7 @@ function Start-Installer {
 }
 #Main function
 $installerUrl = "https://go.microsoft.com/fwlink/?linkid=866658"
-$downloadPath = "${env:Temp}"
+$downloadPath = "C:\SQLInstall"
 $setupPath = Join-Path $downloadPath "SQLEXPR_x64_ENU"
 Set-Location -Path $downloadPath
 $installerPath = Start-DownloadWithRetry -Url "https://go.microsoft.com/fwlink/?linkid=866658" -Name "SQL2019-SSEI-Expr.exe"
