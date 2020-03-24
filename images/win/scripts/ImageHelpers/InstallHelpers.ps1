@@ -166,9 +166,9 @@ function Start-DownloadWithRetry
     param (
         [Parameter(Mandatory)]
         [string] $Url,
-        [string] $DownloadPath = "${env:Temp}",
         [Parameter(Mandatory)]
         [string] $Name,
+        [string] $DownloadPath = "${env:Temp}",
         [int] $retries = 20
         )
     $FilePath = Join-Path $DownloadPath $Name
