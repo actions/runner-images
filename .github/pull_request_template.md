@@ -9,4 +9,4 @@ Please include a summary of the change and which issue is fixed. Also include re
 - [ ] Related issue / work item is attached
 - [ ] Tests are written (if applicable)
 - [ ] Documentation is updated (if applicable)
-- [ ] Changes are tested and related VM images are succefully generated
+- [ ] Changes are tested and related VM images are successfully generated
