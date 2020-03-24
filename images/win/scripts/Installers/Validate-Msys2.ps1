@@ -12,6 +12,11 @@ $installedTools = @(
     "make"
 )
 
+$installedMinGWTools = @(
+    "gcc",
+    "cmake"
+)
+
 Write-Host "Check installed tools in msys2/usr/bin directory"
 $installedTools | ForEach-Object {
     $toolName = $_
@@ -24,22 +29,16 @@ $installedTools | ForEach-Object {
     }
 }
 
-Write-Host "Check gcc in msys2/mingw64/bin directory"
-try {
-    Invoke-Expression "$msys2mingwDir\gcc --version"
-} catch {
-    Write-Host "gcc was not installed in MSYS2 bin directory"
-    Write-Error $_
-    exit 1
-}
-
-Write-Host "Check cmake in msys2/mingw64/bin directory"
-try {
-    Invoke-Expression "$msys2mingwDir\cmake --version"
-} catch {
-    Write-Host "cmake was not installed in MSYS2 bin directory"
-    Write-Error $_
-    exit 1
+Write-Host "Check installed tools in msys2/mingw/bin directory"
+$installedMinGWTools | ForEach-Object {
+    $toolName = $_
+    try {
+        Invoke-Expression "$msys2mingwDir\$_ --version"
+    } catch {
+        Write-Error "$toolName was not installed in MSYS2 mingw bin directory"
+        Write-Error $_
+        exit 1
+    }
 }
 
 # Adding description of the software to Markdown
@@ -61,17 +60,14 @@ $pacmanVersion = Get-ToolVersion -ToolPath "$msys2BinDir/pacman" -VersionLineNum
 $bashVersion = Get-ToolVersion -ToolPath "$msys2BinDir/bash" -VersionLineNumber 0
 $gccVersion = Get-ToolVersion -ToolPath "$msys2mingwDir/gcc" -VersionLineNumber 0
 $tarVersion = Get-ToolVersion -ToolPath "$msys2BinDir/tar" -VersionLineNumber 0
-$makeVersion = Get-ToolVersion -ToolPath "$msys2BinDir/make" -VersionLineNumber 0
-$cmakeVersion = Get-ToolVersion -ToolPath "$msys2mingwDir/cmake" -VersionLineNumber 0
 
 $Description = @"
 _Tool versions_
-_Pacman:_ $pacmanVersion<br/>
-_Bash:_ $bashVersion<br/>
+_pacman:_ $pacmanVersion<br/>
+_bash:_ $bashVersion<br/>
 _gcc:_ $gccVersion<br/>
 _tar:_ $tarVersion<br/>
-_make:_ $makeVersion<br/>
-_cmake:_ $cmakeVersion<br/>
+MSYS2 location: C:\msys64
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
