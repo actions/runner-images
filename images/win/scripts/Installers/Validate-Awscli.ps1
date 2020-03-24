@@ -3,7 +3,7 @@
 ##  Desc:  Validate awscli
 ################################################################################
 
-$command = Get-Command -Name 'awscli'
+$command = Get-Command -Name 'aws'
 
 if ($command)
 {
@@ -17,10 +17,11 @@ else
 
 # Adding description of the software to Markdown
 $SoftwareName = "Aws CLI"
-$version = $command.Version.ToString()
+
+$AwsVersion = (aws --version).Split(" ")[0].Replace("/"," ")
 
 $Description = @"
-_Version:_ $version<br/>
+_Version:_ $AwsVersion<br/>
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
