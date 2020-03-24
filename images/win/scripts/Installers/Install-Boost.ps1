@@ -4,9 +4,11 @@
 ##  Desc:  Install boost using tool cache
 ################################################################################
 
-$BoostDirectory = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Boost"
-$BoostVersions = $env:BOOST_VERSIONS.split(',')
-$BoostDefault = $env:BOOST_DEFAULT
+Import-Module -Name ImageHelpers
+
+$SoftwareName = "Boost"
+$BoostDirectory = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath $SoftwareName
+$BoostVersions = (Get-ToolsByName -SoftwareName $SoftwareName).Versions | Foreach-Object {"{0}.0" -f $_}
 
 foreach($BoostVersion in $BoostVersions)
 {
@@ -14,13 +16,4 @@ foreach($BoostVersion in $BoostVersions)
 
     $EnvBoostPath = "BOOST_ROOT_{0}" -f ($BoostVersion.Replace('.', '_'))
     setx $EnvBoostPath $BoostInstallationDir /M | Out-Null
-
-    if ($BoostVersion -eq $BoostDefault)
-    {
-        Write-Host "Adding Boost $BoostVersion to the path..."
-        # Add the Boost binaries to the path
-        Add-MachinePathItem $BoostInstallationDir | Out-Null
-        # Set the BOOSTROOT environment variable
-        setx BOOST_ROOT $BoostInstallationDir /M | Out-Null
-    }
 }

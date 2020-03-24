@@ -44,3 +44,25 @@ _Environment:_
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
+
+# Validate helm
+if (Get-Command -Name 'helm')
+{
+    Write-Host "helm on path"
+}
+else
+{
+    Write-Host 'helm is not on path'
+    exit 1
+}
+
+$version = $(helm version --short)
+$SoftwareName = "Helm"
+
+$Description = @"
+_Version:_ $version<br/>
+_Environment:_
+* PATH: contains location of helm
+"@
+
+Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

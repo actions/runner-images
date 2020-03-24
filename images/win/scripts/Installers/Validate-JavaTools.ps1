@@ -56,7 +56,7 @@ if( $( $(gradle -version) | Out-String) -match  'Gradle (?<version>.*)' )
 $SoftwareName = "Java Development Kit"
 
 $Description = @"
-#### $javaVersion
+#### $javaVersion (default)
 
 _Environment:_
 * JAVA_HOME: location of JDK
