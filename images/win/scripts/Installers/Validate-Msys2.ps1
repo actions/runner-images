@@ -59,10 +59,10 @@ function Get-ToolVersion {
 $SoftwareName = "MSYS2"
 $pacmanVersion = Get-ToolVersion -ToolPath "$msys2BinDir/pacman" -VersionLineNumber 1
 $bashVersion = Get-ToolVersion -ToolPath "$msys2BinDir/bash" -VersionLineNumber 0
-$gccVersion = Get-ToolVersion -ToolPath "$msys2mingwDir/gcc" -LineNumber 0
-$tarVersion = Get-ToolVersion -ToolPath "$msys2BinDir/tar" -LineNumber 0
-$makeVersion = Get-ToolVersion -ToolPath "$msys2BinDir/make" -LineNumber 0
-$cmakeVersion = Get-ToolVersion -ToolPath "$msys2mingwDir/cmake" -LineNumber 0
+$gccVersion = Get-ToolVersion -ToolPath "$msys2mingwDir/gcc" -VersionLineNumber 0
+$tarVersion = Get-ToolVersion -ToolPath "$msys2BinDir/tar" -VersionLineNumber 0
+$makeVersion = Get-ToolVersion -ToolPath "$msys2BinDir/make" -VersionLineNumber 0
+$cmakeVersion = Get-ToolVersion -ToolPath "$msys2mingwDir/cmake" -VersionLineNumber 0
 
 $Description = @"
 _Tool versions_
