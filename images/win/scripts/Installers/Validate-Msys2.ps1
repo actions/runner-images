@@ -35,12 +35,33 @@ try {
 
 # Adding description of the software to Markdown
 
-# $SoftwareName = "MSYS2"
-# $(pacman.exe --version).Split([System.Environment]::NewLine)[1] -match "v\d+\.\d+\.\d+"
-# $pacmanVersion = $matches[0]
+function Get-ToolVersion {
+    param(
+        [string] $ToolPath,
+        [int] $VersionLineNumber
+    )
 
-# $Description = @"
-# _Pacman version:_ $pacmanVersion<br/>
-# "@
+    $toolRawVersion = Invoke-Expression "$ToolPath --version"
+    $toolRawVersion.Split([System.Environment]::NewLine)[$VersionLineNumber] -match "\d+\.\d+(\.\d+)?"
+    $toolVersion = $matches[0]
+    return $toolVersion
+}
 
-# Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
+$SoftwareName = "MSYS2"
+$pacmanVersion = Get-ToolVersion -ToolPath "$msys2BinDir/pacman" -VersionLineNumber 1
+$bashVersion = Get-ToolVersion -ToolPath "$msys2BinDir/bash" -VersionLineNumber 0
+$gccVersion = Get-ToolVersion -ToolPath "$msys2mingwDir/gcc" -LineNumber 0
+$tarVersion = Get-ToolVersion -ToolPath "$msys2BinDir/tar" -LineNumber 0
+$makeVersion = Get-ToolVersion -ToolPath "$msys2BinDir/make" -LineNumber 0
+$cmakeVersion = Get-ToolVersion -ToolPath "$msys2mingwDir/cmake" -LineNumber 0
+
+$Description = @"
+_Pacman version:_ $pacmanVersion<br/>
+_Bash:_ $bashVersion<br/>
+_gcc:_ $gccVersion<br/>
+_tar:_ $tarVersion<br/>
+_make:_ $makeVersion<br/>
+_cmake:_ $cmakeVersion<br/>
+"@
+
+Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
