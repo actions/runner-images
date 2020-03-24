@@ -23,8 +23,6 @@ apt-fast install -y --no-install-recommends \
     libc++abi-dev \
     libcurl3 \
     libicu55 \
-    libpython2.7 \
-    libpython2.7-dev \
     libunwind8 \
     locales \
     netcat \
@@ -83,8 +81,6 @@ DocumentInstalledItemIndent "libc++-dev"
 DocumentInstalledItemIndent "libc++abi-dev"
 DocumentInstalledItemIndent "libcurl3"
 DocumentInstalledItemIndent "libicu55"
-DocumentInstalledItemIndent "libpython2.7"
-DocumentInstalledItemIndent "libpython2.7-dev"
 DocumentInstalledItemIndent "libunwind8"
 DocumentInstalledItemIndent "locales"
 DocumentInstalledItemIndent "netcat"

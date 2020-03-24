@@ -31,12 +31,6 @@ apt-get install -y --no-install-recommends jq
 echo "Install libcurl3"
 apt-get install -y --no-install-recommends libcurl3
 
-echo "Install libpython2.7"
-apt-get install -y --no-install-recommends libpython2.7
-
-echo "Install libpython2.7-dev"
-apt-get install -y --no-install-recommends libpython2.7-dev
-
 echo "Install libunwind8"
 apt-get install -y --no-install-recommends libunwind8
 
@@ -154,8 +148,6 @@ DocumentInstalledItemIndent "iputils-ping"
 DocumentInstalledItemIndent "jq"
 DocumentInstalledItemIndent "libcurl3"
 DocumentInstalledItemIndent "libicu55"
-DocumentInstalledItemIndent "libpython2.7"
-DocumentInstalledItemIndent "libpython2.7-dev"
 DocumentInstalledItemIndent "libunwind8"
 DocumentInstalledItemIndent "locales"
 DocumentInstalledItemIndent "netcat"
