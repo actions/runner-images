@@ -18,22 +18,10 @@ function Validate-BoostVersion
     if (Test-Path "$ReleasePath\b2.exe")
     {
         Write-Host "Boost.Build $BoostRelease is successfully installed"
-
         return
     }
 
     Write-Host "$BoostRelease not found"
-    exit 1
-}
-
-# Verify that Boost is on the path
-if (Get-Command -Name 'b2')
-{
-    Write-Host "Boost is on the path"
-}
-else
-{
-    Write-Host "Boost is not on the path"
     exit 1
 }
 
@@ -44,14 +32,6 @@ $tmplMark = @"
 _Environment:_
 * {1}: root directory of the Boost version {0} installation
 
-"@
-
-$tmplMarkRoot = @"
-#### {0} [{2}]
-
-_Environment:_
-* PATH: contains the location of Boost version {0}
-* {1}: root directory of the Boost version {0} installation
 "@
 
 $Description = New-Object System.Text.StringBuilder
@@ -68,14 +48,7 @@ foreach ($BoostTool in $BoostTools)
         Validate-BoostVersion -BoostRootPath $BoostRootDirectory -BoostRelease $BoostVersion
         $BoostVersionTag = "BOOST_ROOT_{0}" -f $BoostVersion.Replace('.', '_')
 
-        if($BoostVersion -eq $env:BOOST_DEFAULT)
-        {
-            $null = $Description.AppendLine(($tmplMarkRoot -f $BoostVersion, $BoostVersionTag, $BoostToolsetName))
-        }
-        else
-        {
-            $null = $Description.AppendLine(($tmplMark -f $BoostVersion, $BoostVersionTag, $BoostToolsetName))
-        }
+        $null = $Description.AppendLine(($tmplMark -f $BoostVersion, $BoostVersionTag, $BoostToolsetName))
     }
 }
 
