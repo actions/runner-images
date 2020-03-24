@@ -33,6 +33,15 @@ try {
     exit 1
 }
 
+Write-Host "Check cmake in msys2/mingw64/bin directory"
+try {
+    Invoke-Expression "$msys2mingwDir\cmake --version"
+} catch {
+    Write-Host "cmake was not installed in MSYS2 bin directory"
+    Write-Error $_
+    exit 1
+}
+
 # Adding description of the software to Markdown
 
 function Get-ToolVersion {
