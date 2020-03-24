@@ -144,6 +144,7 @@
                 "{{template_dir}}/scripts/installers/aws.sh",
                 "{{template_dir}}/scripts/installers/build-essential.sh",
                 "{{template_dir}}/scripts/installers/clang.sh",
+                "{{template_dir}}/scripts/installers/swift.sh",
                 "{{template_dir}}/scripts/installers/cmake.sh",
                 "{{template_dir}}/scripts/installers/docker-compose.sh",
                 "{{template_dir}}/scripts/installers/docker-moby.sh",

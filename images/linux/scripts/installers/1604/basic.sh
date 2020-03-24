@@ -23,6 +23,8 @@ apt-fast install -y --no-install-recommends \
     libc++abi-dev \
     libcurl3 \
     libicu55 \
+    libpython2.7 \
+    libpython2.7-dev \
     libunwind8 \
     locales \
     netcat \
