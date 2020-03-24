@@ -61,6 +61,7 @@ function Start-Installer {
       exit $exitCode
     }
 }
+#Main function
 $installerUrl = "https://go.microsoft.com/fwlink/?linkid=866658"
 $downloadPath = "${env:Temp}"
 $setupPath = Join-Path $downloadPath "SQLEXPR_x64_ENU"
