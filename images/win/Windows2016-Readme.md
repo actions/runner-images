@@ -1,6 +1,6 @@
 # Windows Server 2016
 
-The following software is installed on machines with the 20200316.1 update.
+The following software is installed on machines with the 20200323.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -23,6 +23,12 @@ _Version:_ 1.25.4<br/>
 _Environment:_
 * PATH: contains location of docker-compose.exe
 
+## Helm
+
+_Version:_ v3.1.2+gd878d4d<br/>
+_Environment:_
+* PATH: contains location of helm
+
 ## Powershell Core
 
 _Version:_ 7.0.0<br/>
@@ -30,8 +36,8 @@ _Version:_ 7.0.0<br/>
 ## Docker images
 
 The following container images have been cached:
-* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:e53049e13aa29b2df35642fa827c532ceaa78745e6ca72be2cbe74b1d75b5b99)
-* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:9d34bebe71fdebfd288b3e87a9b8372e47a9291782c09fbaeb657f8f78817779)
+* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:7bf99ba791cce2c51091ac0c6922ff98e5a448c1046ba046fab3760070173e0d)
+* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:000d639c6c287bf0e69b27c008f2d411a9e161093dd1855667a8e6189f9adac8)
 * mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:5bd97dbab1afe8d3200f5d5c974df3b0130e74e8a69fddcd427699c4c8cb5037)
 * microsoft/aspnetcore-build:1.0-2.0 (Digest: sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c)
 * mcr.microsoft.com/windows/nanoserver:10.0.14393.953 (Digest: sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268)
@@ -155,7 +161,8 @@ _Path:_ C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
 
 ## Windows Driver Kit
 
-_Version:_ 10.0.17763.0<br/>
+_WDK Version:_ 10.1.17763.1<br/>
+_WDK Visual Studio Extension Version:_ 10.0.17740.0<br/>
 
 ## Azure Service Fabric
 
@@ -437,11 +444,11 @@ _Version:_ 2.4.9 (x64)<br/>_Version:_ 2.5.7 (x64)<br/>_Version:_ 2.6.5 (x64)<br/
 
 ## OpenSSL
 
-_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>
+_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>
 
 ## Perl
 
-_Version:_ v5.30.1<br/>
+_Version:_ v5.30.2<br/>
 
 ## Git
 
@@ -456,28 +463,39 @@ _Environment:_
 * PATH: contains location of git-lfs.exe
 * GIT_LFS_PATH: location of git-lfs.exe
 
+## Hub CLI
+
+_Version:_ 2.14.2<br/>
+_Environment:_
+* PATH: contains location of hub.exe
+
 ## Go (x64)
 
-#### 1.14
-
-_Environment:_
-* PATH: contains the location of go.exe version 1.14
-* GOROOT: root directory of the Go 1.14 installation
-* GOROOT_1_14_X64: root directory of the Go 1.14 installation
 
 
 ## Boost
 
-#### 1.69.0
+#### 1.69.0 [msvc-14.1]
 
+_Environment:_
 * PATH: contains the location of Boost version 1.69.0
-* BOOST_ROOT: root directory of the Boost version 1.69.0 installation
 * BOOST_ROOT_1_69_0: root directory of the Boost version 1.69.0 installation
-#### 1.72.0
+#### 1.72.0 [msvc-14.1]
 
 _Environment:_
 * BOOST_ROOT_1_72_0: root directory of the Boost version 1.72.0 installation
 
+
+#### _Notes:_
+Link: https://cmake.org/cmake/help/latest/module/FindBoost.html
+
+If Boost was built using the `boost-cmake` project or from `Boost 1.70.0` on it provides a package
+configuration file for use with find\_package's config mode. This module looks for the package
+configuration file called BoostConfig.cmake or boost-config.cmake and stores the result in CACHE entry "Boost_DIR".
+If found, the package configuration file is loaded and this module returns with no further action.
+See documentation of the Boost CMake package configuration for details on what it provides.
+
+Set `Boost_NO_BOOST_CMAKE to ON`, to disable the search for boost-cmake.
 
 
 ## PHP (x64)
@@ -512,12 +530,12 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-80.0.3987.132
+80.0.3987.149
 
 ## Microsoft Edge
 
 _version:_
-80.0.361.66
+80.0.361.69
 
 ## Mozilla Firefox
 
@@ -554,7 +572,7 @@ _Environment:_
 #### Microsoft Edge Driver
 
 _version:_
-80.0.361.66
+80.0.361.69
 
 _Environment:_
 * EdgeWebDriver: location of msedgedriver.exe
@@ -579,7 +597,7 @@ _Environment:_
 
 ## bazel
 
-_Version:_ bazel 2.1.0<br/>
+_Version:_ bazel 2.2.0<br/>
 
 ## bazelisk
 
@@ -587,7 +605,7 @@ _Version:_ 1.3.0<br/>
 
 ## Java Development Kit
 
-#### 1.8.0_222
+#### 1.8.0_222 (default)
 
 _Environment:_
 * JAVA_HOME: location of JDK
@@ -624,7 +642,7 @@ _Environment:_
 
 ## Cmake
 
-_Version:_ 3.16.5<br/>
+_Version:_ 3.17.0<br/>
 _Environment:_
 * PATH: contains location of cmake.exe
 
@@ -744,7 +762,7 @@ _Version:_ 1.0
 
 ## SQLServer PS
 
-_Version:_ 21.1.18218
+_Version:_ 21.1.18221
 
 ## MinGW
 
@@ -793,7 +811,7 @@ _Version:_ 6.0.4<br/>
 
 ## GitVersion
 
-_Version:_ 5.2.3.0<br/>
+_Version:_ 5.2.4.0<br/>
 
 ## Cloud Foundry CLI
 
