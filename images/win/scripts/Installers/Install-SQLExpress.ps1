@@ -70,4 +70,6 @@ $installerPath = Start-DownloadWithRetry -Url "https://go.microsoft.com/fwlink/?
 Download-FullSQLPackage -InstallerPath $installerPath
 Unpack-SQLInstaller -InstallPath "$setupPath.exe"
 $resultPath = Join-Path $setupPath "SETUP.exe"
+Write-Host $resultPath
+ls
 Start-Installer -InstallerPath $resultPath
