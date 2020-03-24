@@ -15,6 +15,7 @@
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
         "vm_size": "Standard_DS4_v2",
+        "run_scan_antivirus": "false",
 
         "root_folder": "C:",
         "image_folder": "C:\\image",
@@ -869,8 +870,17 @@
         },
         {
             "type": "powershell",
+            "environment_vars":[
+                "RUN_SCAN_ANTIVIRUS={{user `run_scan_antivirus`}}"
+            ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Run-Antivirus.ps1"
+                "{{ template_dir }}/scripts/Installers/Run-Antivirus.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1"
             ]
         },
         {
