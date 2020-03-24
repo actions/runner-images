@@ -56,7 +56,8 @@ $makeVersion = Get-ToolVersion -ToolPath "$msys2BinDir/make" -LineNumber 0
 $cmakeVersion = Get-ToolVersion -ToolPath "$msys2mingwDir/cmake" -LineNumber 0
 
 $Description = @"
-_Pacman version:_ $pacmanVersion<br/>
+_Tool versions_
+_Pacman:_ $pacmanVersion<br/>
 _Bash:_ $bashVersion<br/>
 _gcc:_ $gccVersion<br/>
 _tar:_ $tarVersion<br/>
