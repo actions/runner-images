@@ -1,7 +1,11 @@
 ################################################################################
-##  File:  Validate-awscli.ps1
-##  Desc:  Validate awscli
+##  File:  Install-awscli.ps1
+##  Desc:  Install awscli
 ################################################################################
+
+choco install awscli -y
+
+refreshenv
 
 $command = Get-Command -Name 'aws'
 
@@ -16,12 +20,12 @@ else
 }
 
 # Adding description of the software to Markdown
-$SoftwareName = "Aws CLI"
+$SoftwareName = "AWS CLI"
 
-$AwsVersion = (aws --version).Split(" ")[0].Replace("/"," ")
+$version = (aws --version).Split(" ")[0].Replace("/"," ")
 
 $Description = @"
-_Version:_ $AwsVersion<br/>
+_Version:_ $version<br/>
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
