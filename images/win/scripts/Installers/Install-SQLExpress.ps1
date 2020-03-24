@@ -73,6 +73,5 @@ Download-FullSQLPackage -InstallerPath $installerPath -DownloadPath $downloadPat
 Unpack-SQLInstaller -InstallPath "$setupPath.exe"
 $resultPath = Join-Path $setupPath "SETUP.exe"
 Write-Host $resultPath
-ls
-type SQLEXPR_x64_ENU_decompression_log.txt
 Start-Installer -InstallerPath $resultPath
+Remove-Item $downloadPath -Recurse
