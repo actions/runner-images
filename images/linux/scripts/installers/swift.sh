@@ -12,8 +12,8 @@ wget -P /tmp https://swift.org/builds/swift-$swift_version-release/ubuntu${image
 tar xzf /tmp/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
 mv swift-$swift_version-RELEASE-ubuntu$image_label /usr/share/swift
 
-SWIFT_BIN="/usr/share/swift/usr/bin/swift"
 SWIFT_PATH="/usr/share/swift/usr/bin"
+SWIFT_BIN="$SWIFT_PATH/swift"
 ln -s "$SWIFT_BIN" /usr/local/bin/swift
 echo "SWIFT_PATH=$SWIFT_PATH" | tee -a /etc/environment
 
