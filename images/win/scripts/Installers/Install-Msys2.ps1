@@ -8,7 +8,7 @@
 # https://packages.msys2.org/group/
 
 $origPath = $env:PATH
-$gitPath  = "C:\Program Files\Git"
+$gitPath  = "$env:ProgramFiles\Git"
 
 # get info from https://sourceforge.net/projects/msys2/files/Base/x86_64/
 $msys2Uri  = "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20190524.tar.xz"
