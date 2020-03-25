@@ -639,8 +639,7 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "ROOT_FOLDER={{user `root_folder`}}",
-                "BOOST_DEFAULT={{user `boost_default`}}"
+                "ROOT_FOLDER={{user `root_folder`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Boost.ps1"
