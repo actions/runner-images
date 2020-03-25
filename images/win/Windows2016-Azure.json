@@ -238,7 +238,8 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-ServiceFabricSDK.ps1"
-            ]
+            ],
+            "execution_policy": "remotesigned"
         },
         {
             "type": "windows-restart",
