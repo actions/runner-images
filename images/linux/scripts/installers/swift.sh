@@ -4,6 +4,9 @@
 ##  Desc:  Installs Swift
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/document.sh
+
 # Install # Install
 image_label="$(lsb_release -rs)"
 swift_version="5.1.5"
