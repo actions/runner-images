@@ -9,17 +9,14 @@ source $HELPER_SCRIPTS/document.sh
 
 export ACCEPT_EULA=Y
 
-# Install MySQL Client
-apt-get install mysql-client -y
-
-# InstallMySQL database development files
-apt-get install libmysqlclient-dev -y
-
 # Install MySQL Server
 MYSQL_ROOT_PASSWORD=root
 echo "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
-
+debconf-set-selections <<< 'mysql-apt-config mysql-apt-config/select-server select mysql-8.0'
+wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.14-1_all.deb
+dpkg -i mysql-apt-config_0.8.14-1_all.deb
+apt update
 apt-get install -y mysql-server
 
 # Install MS SQL Server client tools (https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-2017)
@@ -46,5 +43,5 @@ DocumentInstalledItem "MySQL Server (user:root password:root)"
 DocumentInstalledItem "MS SQL Server Client Tools"
 
 # Disable mysql.service
-systemctl is-active --quiet mysql.service && systemctl stop mysql.service 
-systemctl disable mysql.service 
+systemctl is-active --quiet mysql.service && systemctl stop mysql.service
+systemctl disable mysql.service
