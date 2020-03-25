@@ -50,7 +50,7 @@ function Get-ToolVersion {
     )
 
     $toolRawVersion = Invoke-Expression "$ToolPath --version"
-    $toolRawVersion.Split([System.Environment]::NewLine)[$VersionLineNumber] -match "\d+\.\d+(\.\d+)?"
+    $toolRawVersion.Split([System.Environment]::NewLine)[$VersionLineNumber] -match "\d+\.\d+(\.\d+)?" | Out-Null
     $toolVersion = $matches[0]
     return $toolVersion
 }
