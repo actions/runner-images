@@ -14,7 +14,7 @@ MYSQL_ROOT_PASSWORD=root
 echo "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
 debconf-set-selections <<< 'mysql-apt-config mysql-apt-config/select-server select mysql-8.0'
-package_version=$(curl https://dev.mysql.com/downloads/repo/apt/ 2> /dev/null | grep ".deb" | awk -F"[()]" '{print $2}' | cut -d "<" -f1 | grep "\.deb")
+package_version=$(curl https://dev.mysql.com/downloads/repo/apt/ 2> /dev/null | grep ".deb" | awk -F"[()]" '{print $2}' | grep "\.deb")
 wget https://dev.mysql.com/get/$package_version
 dpkg -i $package_version
 apt update
