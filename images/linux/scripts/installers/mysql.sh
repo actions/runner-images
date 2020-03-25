@@ -14,10 +14,13 @@ MYSQL_ROOT_PASSWORD=root
 echo "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
 debconf-set-selections <<< 'mysql-apt-config mysql-apt-config/select-server select mysql-8.0'
-wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.14-1_all.deb
-dpkg -i mysql-apt-config_0.8.14-1_all.deb
+wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+dpkg -i mysql-apt-config_0.8.15-1_all.deb
 apt update
 apt-get install -y mysql-server
+
+#Install MySQL Dev tools
+apt install libmysqlclient-dev -y
 
 # Install MS SQL Server client tools (https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-2017)
 apt-get install -y mssql-tools unixodbc-dev
