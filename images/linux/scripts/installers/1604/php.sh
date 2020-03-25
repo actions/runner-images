@@ -15,7 +15,7 @@ apt-add-repository ppa:ondrej/php -y
 
 # Install php5.6
 apt-get update
-sudo apt-fast install -y --no-install-recommends \
+apt-fast install -y --no-install-recommends \
     php5.6 \
     php5.6-bcmath \
     php5.6-bz2 \
@@ -53,10 +53,10 @@ sudo apt-fast install -y --no-install-recommends \
     php5.6-xmlrpc \
     php5.6-xsl \
     php5.6-zip
-sudo apt-get remove --purge -yq php5.6-dev
+apt-get remove --purge -yq php5.6-dev
 
 # Install php7.0
-sudo apt-fast install -y --no-install-recommends \
+apt-fast install -y --no-install-recommends \
     php7.0 \
     php7.0-bcmath \
     php7.0-bz2 \
@@ -94,10 +94,10 @@ sudo apt-fast install -y --no-install-recommends \
     php7.0-xmlrpc \
     php7.0-xsl \
     php7.0-zip
-sudo apt-get remove --purge -yq php7.0-dev
+apt-get remove --purge -yq php7.0-dev
 
 # Install php7.1
-sudo apt-fast install -y --no-install-recommends \
+apt-fast install -y --no-install-recommends \
     php7.1 \
     php7.1-bcmath \
     php7.1-bz2 \
@@ -135,10 +135,10 @@ sudo apt-fast install -y --no-install-recommends \
     php7.1-xmlrpc \
     php7.1-xsl \
     php7.1-zip
-sudo apt-get remove --purge -yq php7.1-dev
+apt-get remove --purge -yq php7.1-dev
 
 # Install php7.2
-sudo apt-fast install -y --no-install-recommends \
+apt-fast install -y --no-install-recommends \
     php7.2 \
     php7.2-bcmath \
     php7.2-bz2 \
@@ -177,7 +177,7 @@ sudo apt-fast install -y --no-install-recommends \
     php7.2-zip
 
 # Install php7.3
-sudo apt-fast install -y --no-install-recommends \
+apt-fast install -y --no-install-recommends \
     php7.3 \
     php7.3-bcmath \
     php7.3-bz2 \
@@ -216,7 +216,7 @@ sudo apt-fast install -y --no-install-recommends \
     php7.3-zip
 
 # Install php7.4
-sudo apt-fast install -y --no-install-recommends \
+apt-fast install -y --no-install-recommends \
     php7.4 \
     php7.4-bcmath \
     php7.4-bz2 \
@@ -253,7 +253,7 @@ sudo apt-fast install -y --no-install-recommends \
     php7.4-xsl \
     php7.4-zip
 
-sudo apt-fast install -y --no-install-recommends \
+apt-fast install -y --no-install-recommends \
     php-amqp \
     php-apcu \
     php-igbinary \
@@ -265,9 +265,9 @@ sudo apt-fast install -y --no-install-recommends \
     php-yaml \
     php-zmq
 
-sudo apt-get remove --purge -yq php7.2-dev
+apt-get remove --purge -yq php7.2-dev
 
-sudo apt-fast install -y --no-install-recommends snmp
+apt-fast install -y --no-install-recommends snmp
 
 # Install composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
