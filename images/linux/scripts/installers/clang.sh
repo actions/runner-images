@@ -12,13 +12,11 @@ function InstallClang {
     version=$1
 
     echo "Installing clang-$version..."
-    # Clang 6.0 is not supported by automatic installation script (`llvm.sh`)
-    # Thus we have to install it explicitly
-    if [[ $version == 6* ]]; then
-        apt-get install -y "clang-$version" "lldb-$version" "lld-$version"
-    else
+    if [[ $version =~ 9 ]]; then
         ./llvm.sh $version
         apt-get install -y "clang-format-$version"
+    else
+        apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version"
     fi
 
     # Run tests to determine that the software installed as expected
@@ -34,11 +32,6 @@ function InstallClang {
     echo "Documenting clang-$version..."
     DocumentInstalledItem "Clang $version ($(clang-$version --version | head -n 1 | cut -d ' ' -f 3 | cut -d '-' -f 1))"
 }
-
-# Install Clang compiler
-wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
-apt-add-repository "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-6.0 main"
-apt-get update -y
 
 # Download script for automatic installation
 wget https://apt.llvm.org/llvm.sh
