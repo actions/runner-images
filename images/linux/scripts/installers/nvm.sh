@@ -14,6 +14,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 # should recursively obtain subdirectories with full permissions
 chmod -R 777 $NVM_DIR
 echo "NVM_DIR=$NVM_DIR" | tee -a /etc/environment
+echo "export NVM_DIR=$NVM_DIR" | tee -a /etc/skel/.bashrc
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> /etc/skel/.bashrc
 source /etc/skel/.bashrc
 
