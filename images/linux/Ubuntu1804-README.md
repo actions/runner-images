@@ -189,7 +189,7 @@ Local version: Unknown)
 - Selenium server standalone (available via SELENIUM_JAR_PATH environment variable)
 - Sphinx Open Source Search Server
 - Subversion (svn, version 1.9.7 (r1800392))
-- Terraform (Terraform v0.12.23)
+- Terraform (Terraform v0.12.24)
 - Packer (1.5.4)
 - Vcpkg 2020.02.04-unknownhash
 - Zeit Now CLI (17.0.4)
