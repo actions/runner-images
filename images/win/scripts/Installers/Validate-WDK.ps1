@@ -19,7 +19,7 @@ function Get-WDKVersion
 }
 
 $WDKVersion = Get-WDKVersion
-$WDKPackageVersion = Get-VS19ExtensionVersion -packageName "Microsoft.Windows.DriverKit"
+$WDKPackageVersion = Get-VSExtensionVersion -packageName "Microsoft.Windows.DriverKit"
 
 # Adding description of the software to Markdown
 $SoftwareName = "Windows Driver Kit"

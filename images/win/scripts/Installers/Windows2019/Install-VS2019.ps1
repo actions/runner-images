@@ -121,6 +121,7 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.ARM.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.ARM64.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre ' + `
+              '--add Microsoft.VisualStudio.Component.Windows10SDK.14393 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.16299 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17134 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17763 ' + `

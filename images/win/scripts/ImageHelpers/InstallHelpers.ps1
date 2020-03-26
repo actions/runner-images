@@ -165,46 +165,62 @@ function Install-VsixExtension
 {
     Param
     (
-        [String]$Url,
-        [String]$Name
+        [string] $Url,
+        [Parameter(Mandatory = $true)]
+        [string] $Name,
+        [string] $FilePath,
+        [Parameter(Mandatory = $true)]
+        [string] $VSversion,
+        [int] $retries = 20,
+        [switch] $InstallOnly
     )
 
-    $FilePath = "${env:Temp}\$Name"
-    $retries = 20
-
-    while($retries -gt 0)
+    if (!$InstallOnly)
     {
-        try
-        {
-            Write-Host "Downloading $Name..."
-            (New-Object System.Net.WebClient).DownloadFile($Url, $FilePath)
-            break
-        }
-        catch
-        {
-            Write-Host "There is an error during $Name downloading"
-            $_
+        $FilePath = "${env:Temp}\$Name"
 
-            $retries--
-
-            if ($retries -eq 0)
+        while($retries -gt 0)
+        {
+            try
             {
-                Write-Host "File can't be downloaded"
-                $_
-                exit 1
+                Write-Host "Downloading $Name..."
+                (New-Object System.Net.WebClient).DownloadFile($Url, $FilePath)
+                break
             }
+            catch
+            {
+                Write-Host "There is an error during $Name downloading"
+                $_
 
-            Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
-            Start-Sleep -Seconds 30
+                $retries--
+
+                if ($retries -eq 0)
+                {
+                    Write-Host "File can't be downloaded"
+                    $_
+                    exit 1
+                }
+
+                Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
+                Start-Sleep -Seconds 30
+            }
         }
     }
 
-    $ArgumentList = ('/quiet', $FilePath)
+    $ArgumentList = ('/quiet', "`"$FilePath`"")
 
     Write-Host "Starting Install $Name..."
     try
     {
-        $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\VSIXInstaller.exe" -ArgumentList $ArgumentList -Wait -PassThru
+        #There are 2 types of packages at the moment - exe and vsix
+        if ($Name -match "vsix")
+        {
+            $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\$VSversion\Enterprise\Common7\IDE\VSIXInstaller.exe" -ArgumentList $ArgumentList -Wait -PassThru
+        }
+        else
+        {
+            $process = Start-Process -FilePath ${env:Temp}\$Name /Q -Wait -PassThru
+        }
     }
     catch
     {
@@ -225,11 +241,14 @@ function Install-VsixExtension
         exit 1
     }
 
-    #Cleanup installation files
-    Remove-Item -Force -Confirm:$false $FilePath
+    #Cleanup downloaded installation files
+    if (!$InstallOnly)
+    {
+        Remove-Item -Force -Confirm:$false $FilePath
+    }
 }
 
-function Get-VS19ExtensionVersion
+function Get-VSExtensionVersion
 {
     param (
         [string] [Parameter(Mandatory=$true)] $packageName
@@ -255,3 +274,41 @@ function Get-VS19ExtensionVersion
 
     return $packageVersion
 }
+
+
+function Get-ToolcachePackages {
+    $toolcachePath = Join-Path $env:ROOT_FOLDER "toolcache.json"
+    Get-Content -Raw $toolcachePath | ConvertFrom-Json
+}
+
+function Get-ToolsByName {
+    param (
+        [Parameter(Mandatory = $True)]
+        [string]$SoftwareName
+    )
+
+    (Get-ToolcachePackages).PSObject.Properties | Where-Object { $_.Name -match $SoftwareName } | ForEach-Object {
+        $packageNameParts = $_.Name.Split("-")
+        [PSCustomObject] @{
+            ToolName = $packageNameParts[1]
+            Versions = $_.Value
+            Architecture = $packageNameParts[3,4] -join "-"
+        }
+    }
+}
+
+function Get-WinVersion
+{
+    (Get-WmiObject -class Win32_OperatingSystem).Caption
+}
+
+function Test-IsWin19
+{
+    (Get-WinVersion) -match "2019"
+}
+
+function Test-IsWin16
+{
+    (Get-WinVersion) -match "2016"
+}
+
