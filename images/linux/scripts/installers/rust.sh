@@ -12,16 +12,14 @@ set -e
 export RUSTUP_HOME=/usr/share/rust/.rustup
 export CARGO_HOME=/usr/share/rust/.cargo
 
-curl https://sh.rustup.rs -sSf | sh -s -- -y
+curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain=stable --profile=minimal
 
 # Initialize environment variables
 source $CARGO_HOME/env
 
 # Install common tools
-rustup component add rustfmt
-rustup component add clippy
-cargo install bindgen
-cargo install cbindgen
+rustup component add rustfmt clippy
+cargo install bindgen cbindgen
 
 echo "Test installation of the Rust toochain"
 
