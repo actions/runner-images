@@ -8,4 +8,6 @@
 $temp_install_dir = 'C:\Windows\Installer'
 New-Item -Path $temp_install_dir -ItemType Directory -Force
 
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+
 WebpiCmd.exe /Install /Products:MicrosoftAzure-ServiceFabric-CoreSDK /AcceptEula /XML:https://webpifeed.blob.core.windows.net/webpifeed/5.1/WebProductList.xml
