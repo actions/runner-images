@@ -9,9 +9,7 @@ source $HELPER_SCRIPTS/document.sh
 
 # Install
 image_label="$(lsb_release -rs)"
-
-curl https://swift.org/download/ > /tmp/tmp_file
-swift_version=$(cat /tmp/tmp_file | grep -m1 "id=\"swift-" | cut -d'>' -f2 | cut -d'<' -f1 | cut -d' ' -f2)
+swift_version=$(curl https://swift.org/download/ | grep -m1 "id=\"swift-" | cut -d'>' -f2 | cut -d'<' -f1 | cut -d' ' -f2)
 
 wget -P /tmp https://swift.org/builds/swift-$swift_version-release/ubuntu${image_label//./}/swift-$swift_version-RELEASE/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
 tar xzf /tmp/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
