@@ -7,9 +7,11 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 
-# Install # Install
+# Install
 image_label="$(lsb_release -rs)"
-swift_version="5.2"
+
+curl https://swift.org/download/ > /tmp/tmp_file
+swift_version=$(cat /tmp/tmp_file | grep -m1 "id=\"swift-" | cut -d'>' -f2 | cut -d'<' -f1 | cut -d' ' -f2)
 
 wget -P /tmp https://swift.org/builds/swift-$swift_version-release/ubuntu${image_label//./}/swift-$swift_version-RELEASE/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
 tar xzf /tmp/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
