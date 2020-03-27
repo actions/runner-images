@@ -10,17 +10,8 @@ function Start-PostgreSQL {
     $pgbin=Join-path $PostgresPath "bin"
     $pgdata=Join-path $PostgresPath "data"
     $startPostgres=Join-path $pgbin "pg_ctl.exe"
-    $process = Start-Process -FilePath $startPostgres -ArgumentList ("-D", "$pgdata", "start")
-    $exitCode = $process.ExitCode
-    if ($exitCode -eq 0)
-    {
-      Write-Host -Object "PostgreSQL has been successfully started."
-    }
-    else
-    {
-      Write-Host -Object "PostgreSQL cannot be started. Exitcode: $exitCode"
-      exit $exitCode
-    }
+    Start-Process -FilePath $startPostgres -ArgumentList ("-D", "$pgdata", "start")
+    Write-Host "PostgreSQL has been successfully started."
 }
 
 function Ready-PostgreSQL {
