@@ -9,7 +9,7 @@ source $HELPER_SCRIPTS/document.sh
 
 # Install # Install
 image_label="$(lsb_release -rs)"
-swift_version="5.1.5"
+swift_version="5.2"
 
 wget -P /tmp https://swift.org/builds/swift-$swift_version-release/ubuntu${image_label//./}/swift-$swift_version-RELEASE/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
 tar xzf /tmp/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
