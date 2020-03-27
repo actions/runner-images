@@ -14,7 +14,7 @@ $env:CARGO_HOME="C:\Rust\.cargo"
 Invoke-WebRequest -UseBasicParsing -Uri "https://win.rustup.rs/x86_64" -OutFile rustup-init.exe
 
 # Install Rust by running rustup-init.exe (disabling the confirmation prompt with -y)
-.\rustup-init.exe -y
+.\rustup-init.exe -y --default-toolchain=stable --profile=minimal
 
 # Delete rustup-init.exe when it's no longer needed
 Remove-Item -Path .\rustup-init.exe
@@ -24,10 +24,8 @@ Add-MachinePathItem "$env:CARGO_HOME\bin"
 $env:Path = Get-MachinePath
 
 # Install common tools
-rustup component add rustfmt
-rustup component add clippy
-cargo install bindgen
-cargo install cbindgen
+rustup component add rustfmt clippy
+cargo install bindgen cbindgen
 
 # Run script at startup for all users
 $cmdRustSymScript = @"
