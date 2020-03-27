@@ -5,7 +5,7 @@
 
 choco install awscli -y
 
-refreshenv
+$env:PATH =$env:PATH + ";$Env:Programfiles\Amazon\AWSCLIV2"
 
 $command = Get-Command -Name 'aws'
 
