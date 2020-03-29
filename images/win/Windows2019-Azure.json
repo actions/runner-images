@@ -111,6 +111,12 @@
             ]
         },
         {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-RootCA.ps1"
+            ]
+        },
+        {
             "type": "windows-restart",
             "restart_timeout": "10m"
         },
