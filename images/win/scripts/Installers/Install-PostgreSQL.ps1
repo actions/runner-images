@@ -10,7 +10,7 @@ function Start-PostgreSQL {
     $pgbin=Join-path $PostgresPath "bin"
     $pgdata=Join-path $PostgresPath "data"
     $startPostgres=Join-path $pgbin "pg_ctl.exe"
-    Start-Process -FilePath $startPostgres -ArgumentList ("-D", "$pgdata", "start")
+    Start-Process -FilePath $startPostgres -ArgumentList ("-D", "$pgdata", "stop")
     Write-Host "PostgreSQL has been successfully started."
 }
 
@@ -45,9 +45,8 @@ function Get-PostgreSQLVersion {
 
 $psqlDir=Install-PostgreSQL
 $psqlVersion=Get-PostgreSQLVersion -PostgresPath $psqlDir
-Start-PostgreSQL -PostgresPath $psqlDir
 Validate-PostgreSQL -PostgresPath $psqlDir
-
+Stop-PostgreSQL -PostgresPath $psqlDir
 
 # Adding description of the software to Markdown
 $SoftwareName = "PostgreSQL"
