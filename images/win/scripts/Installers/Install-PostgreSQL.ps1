@@ -14,7 +14,7 @@ function Start-PostgreSQL {
     Write-Host "PostgreSQL has been successfully started."
 }
 
-function Ready-PostgreSQL {
+function Validate-PostgreSQL {
     param(
         [String]$PostgresPath
     )
@@ -33,7 +33,7 @@ function Ready-PostgreSQL {
         }
 }
 
-function Version-PostgreSQL {
+function Get-PostgreSQLVersion {
     param(
         [String]$PostgresPath
     )
@@ -44,9 +44,9 @@ function Version-PostgreSQL {
 }
 
 $psqlDir=Install-PostgreSQL
-$psqlVersion=Version-PostgreSQL -PostgresPath $psqlDir
+$psqlVersion=Get-PostgreSQLVersion -PostgresPath $psqlDir
 Start-PostgreSQL -PostgresPath $psqlDir
-Ready-PostgreSQL -PostgresPath $psqlDir
+Validate-PostgreSQL -PostgresPath $psqlDir
 
 
 # Adding description of the software to Markdown
