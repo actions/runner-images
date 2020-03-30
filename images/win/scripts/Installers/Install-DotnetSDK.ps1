@@ -100,10 +100,10 @@ function RunPostInstallationSteps()
 {
     Add-MachinePathItem "C:\Program Files\dotnet"
     # Run script at startup for all users
-    $cmdDotNetPath = @"
+    $cmdDotNetPath = @'
 @echo off
-SETX PATH "%USERPROFILE%\.dotnet\tools;%PATH%"
-"@
+powershell -executionpolicy bypass -noprofile -command "[System.Environment]::SetEnvironmentVariable('PATH',"""$env:USERPROFILE\.dotnet\tools;$env:PATH""", 'USER')"
+'@
 
     $cmdPath = "C:\Program Files\dotnet\userpath.bat"
     $cmdDotNetPath | Out-File -Encoding ascii -FilePath $cmdPath
