@@ -26,3 +26,7 @@ apt-get install libpq-dev
 pg_isready
 
 DocumentInstalledItem "$(psql -V 2>&1 | cut -d ' ' -f 1,2,3)"
+
+# Disable postgresql.service
+systemctl is-active --quiet postgresql.service && systemctl stop postgresql.service
+systemctl disable postgresql.service
