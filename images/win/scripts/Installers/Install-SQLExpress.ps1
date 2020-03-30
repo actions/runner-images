@@ -67,7 +67,7 @@ $installerUrl = "https://go.microsoft.com/fwlink/?linkid=866658"
 $downloadPath = "C:\SQLInstall"
 $setupPath = Join-Path $downloadPath "SQLEXPR_x64_ENU"
 #Create directory for temporary files
-md $downloadPath
+New-Item -Path $downloadPath -ItemType Directory
 Set-Location -Path $downloadPath
 $installerPath = Start-DownloadWithRetry -Url $installerUrl -DownloadPath $downloadPath -Name "SQL2019-SSEI-Expr.exe"
 Download-FullSQLPackage -InstallerPath $installerPath -DownloadPath $downloadPath
