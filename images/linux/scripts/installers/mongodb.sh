@@ -5,7 +5,7 @@
 ################################################################################
 
 # Source the helpers
-source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/document.sh
 
 #  Install Mongo DB
