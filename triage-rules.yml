@@ -157,10 +157,3 @@ nomatches:
   addLabels: ['Area: Packages']
 - contains: 'Docker'
   addLabels: ['Area: Deployment/Release']
-
-# always runs after rules.  look for missing or invalid sets of tags
-tags:
-- noneIn: ['bug', 'enhancement', 'question']
-  addLabels: ['needs triage']
-- noneMatch: '\s*Area:\s*([^]*)'
-  addLabels: ['needs triage']
