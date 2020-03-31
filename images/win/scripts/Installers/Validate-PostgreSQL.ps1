@@ -22,8 +22,6 @@ function Validate-PostgreSQL {
 
 $paths=(Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
 $pgservice=(Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").Name
-$pgbin=$paths.split('"')[1].replace("\pg_ctl.exe", "")
-$env:Path +=";$pgbin"
 $pgroot=$paths.split('"')[1].replace("\bin\pg_ctl.exe", "")
 $psqlVersion=pg_config --version | Out-String
 Validate-PostgreSQL
