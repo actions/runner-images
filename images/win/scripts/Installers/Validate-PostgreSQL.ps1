@@ -9,15 +9,15 @@ function Stop-PostgreSQL {
 function Validate-PostgreSQL {
     $pgready = Start-Process -FilePath pg_isready -Wait -PassThru
     $exitCode = $pgready.ExitCode
-        if ($exitCode -eq 0)
-        {
-          Write-Host -Object "PostgreSQL has been successfully installed."
-        }
-        else
-        {
-          Write-Host -Object "PostgreSQL is not ready. Exitcode: $exitCode"
-          exit $exitCode
-        }
+    if ($exitCode -eq 0)
+    {
+        Write-Host -Object "PostgreSQL has been successfully installed."
+    }
+    else
+    {
+        Write-Host -Object "PostgreSQL is not ready. Exitcode: $exitCode"
+        exit $exitCode
+    }
 }
 
 $paths=(Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
