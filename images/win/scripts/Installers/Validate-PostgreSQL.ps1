@@ -1,11 +1,3 @@
-function Stop-PostgreSQL {
-    param(
-        [String]$PostgresPath
-    )
-    $pgdata=Join-Path $PostgresPath "data"
-    Start-Process -FilePath pg_ctl -ArgumentList ("-D", "$pgdata", "stop")
-    Write-Host "PostgreSQL has been successfully started."
-}
 function Validate-PostgreSQL {
     $pgready = Start-Process -FilePath pg_isready -Wait -PassThru
     $exitCode = $pgready.ExitCode
@@ -36,5 +28,5 @@ _Default Path:_ $pgroot
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
 
 #Stop and disable PostgreSQL service
-Stop-PostgreSQL -PostgresPath $pgroot
+Stop-Service -Name $pgservice
 Set-Service $pgservice -StartupType Disabled
