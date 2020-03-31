@@ -2,7 +2,7 @@ function Stop-PostgreSQL {
     param(
         [String]$PostgresPath
     )
-    $pgdata=Join-path $PostgresPath "data"
+    $pgdata=Join-Path $PostgresPath "data"
     Start-Process -FilePath pg_ctl -ArgumentList ("-D", "$pgdata", "stop")
     Write-Host "PostgreSQL has been successfully started."
 }
