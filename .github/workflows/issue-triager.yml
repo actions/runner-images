@@ -26,7 +26,7 @@ jobs:
         script: |
           github.issues.addLabels({
             issue_number: context.issue.number,
-            owner: context.owner,
-            repo: context.repo,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
             labels: ['needs triage']
           })
