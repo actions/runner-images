@@ -13,28 +13,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-      
+
     - uses: damccorm/tag-ur-it@master
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: "./triage-rules.yml"
 
-    - if: failure()
+    - if: always()
       uses: actions/github-script@0.4.0
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
           github.issues.addLabels({
-            issue_number: context.issue,
-            owner: context.owner,
-            repo: context.repo,
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
             labels: ['needs triage']
           })
-
-    - name: Set Node.js 10.x
-      uses: actions/setup-node@master
-      with:
-        version: 10.x
-
-    # Need to explicitly install @octokit/rest separately or else it will mess with our typings.
-    - run: npm install && npm install @octokit/rest
