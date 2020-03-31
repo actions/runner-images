@@ -26,7 +26,7 @@ $pgbin=$paths.split('"')[1].replace("\pg_ctl.exe", "")
 $env:Path +=";$pgbin"
 $pgroot=$paths.split('"')[1].replace("\bin\pg_ctl.exe", "")
 $psqlVersion=pg_config --version | Out-String
-Validate-PostgreSQL -PostgresPath $pgroot
+Validate-PostgreSQL
 
 # Adding description of the software to Markdown
 $SoftwareName = "PostgreSQL"
