@@ -448,6 +448,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-AWS.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-DACFx.ps1"
             ]
         },
@@ -461,6 +467,14 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-MysqlCli.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "elevated_user": "SYSTEM",
+            "elevated_password": "",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-SQLExpress.ps1"
             ]
         },
         {
@@ -489,14 +503,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "elevated_user": "SYSTEM",
-            "elevated_password": "",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Msys2.ps1"
             ]
         },
         {
@@ -622,12 +628,6 @@
         },
         {
             "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Msys2.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "environment_vars":[
                 "ROOT_FOLDER={{user `root_folder`}}"
             ],
@@ -736,6 +736,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Bazel.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-SQLExpress.ps1"
             ]
         },
         {

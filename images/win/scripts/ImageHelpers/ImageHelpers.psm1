@@ -20,6 +20,7 @@ Export-ModuleMember -Function @(
     'Add-SoftwareDetailsToMarkdown'
     'Stop-SvcWithErrHandling'
     'Set-SvcWithErrHandling'
+    'Start-DownloadWithRetry'
     'Install-VsixExtension'
     'Get-VSExtensionVersion'
     'Get-WinVersion'
