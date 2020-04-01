@@ -76,7 +76,7 @@ The following software is installed on machines with the 20200321.1 update.
 
 ### Tools
 - Fastlane 2.143.0
-- Cmake 3.16.5
+- CMake 3.16.5
 - App Center CLI 2.3.4
 - Azure CLI 2.2.0
 

@@ -31,7 +31,8 @@ _Environment:_
 
 ## Powershell Core
 
-_Version:_ 7.0.0<br/>
+_Version:_ 7.0.0
+<br/>
 
 ## Docker images
 
@@ -640,7 +641,7 @@ _Version:_ 6.2.2<br/>
 _Environment:_
 * PATH: contains location of gradle
 
-## Cmake
+## CMake
 
 _Version:_ 3.17.0<br/>
 _Environment:_
