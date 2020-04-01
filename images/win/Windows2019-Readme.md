@@ -1,6 +1,6 @@
 # Windows Server 2019
 
-The following software is installed on machines with the 20200319.1 update.
+The following software is installed on machines with the 20200331.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -44,7 +44,7 @@ The following container images have been cached:
 
 ## Visual Studio 2019 Enterprise
 
-_Version:_ VisualStudio/16.5.0+29911.84<br/>
+_Version:_ VisualStudio/16.5.1+29920.165<br/>
 _Location:_ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
 
 The following workloads and components are installed with Visual Studio 2019:
@@ -108,6 +108,7 @@ The following workloads and components are installed with Visual Studio 2019:
 * Microsoft.VisualStudio.Component.VC.v141.MFC.ARM.Spectre
 * Microsoft.VisualStudio.Component.VC.v141.MFC.ARM64.Spectre
 * Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre
+* Microsoft.VisualStudio.Component.Windows10SDK.14393
 * Microsoft.VisualStudio.Component.Windows10SDK.16299
 * Microsoft.VisualStudio.Component.Windows10SDK.17134
 * Microsoft.VisualStudio.Component.Windows10SDK.17763
@@ -166,6 +167,10 @@ _Runtime Version:_ 7.0.470.9590
 ## WinAppDriver
 
 _Version:_ 1.1.1809.18001<br/>
+
+## AWS CLI
+
+_Version:_ aws-cli 2.0.6<br/>
 
 ## Android SDK Build Tools
 
@@ -416,7 +421,7 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.2.0
+_Version:_ 2.3.0
 _Environment:_
 * PATH: contains location of az.cmd
 
@@ -438,7 +443,7 @@ _Version:_ 2.4.9 (x64)<br/>_Version:_ 2.5.7 (x64)<br/>_Version:_ 2.6.5 (x64)<br/
 
 ## OpenSSL
 
-_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>
+_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1e at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1e at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>
 
 ## Perl
 
@@ -446,7 +451,7 @@ _Version:_ v5.30.2<br/>
 
 ## Git
 
-_Version:_ 2.25.1<br/>
+_Version:_ 2.26.0<br/>
 _Environment:_
 * PATH: contains location of git.exe
 
@@ -465,12 +470,6 @@ _Environment:_
 
 ## Go (x64)
 
-#### 1.14
-
-_Environment:_
-* PATH: contains the location of go.exe version 1.14
-* GOROOT: root directory of the Go 1.14 installation
-* GOROOT_1_14_X64: root directory of the Go 1.14 installation
 
 
 ## Boost
@@ -483,8 +482,8 @@ _Environment:_
 #### 1.72.0 [msvc-14.2]
 
 _Environment:_
-* PATH: contains the location of Boost version 1.72.0
 * BOOST_ROOT_1_72_0: root directory of the Boost version 1.72.0 installation
+
 
 #### _Notes:_
 Link: https://cmake.org/cmake/help/latest/module/FindBoost.html
@@ -497,6 +496,14 @@ See documentation of the Boost CMake package configuration for details on what i
 
 Set `Boost_NO_BOOST_CMAKE to ON`, to disable the search for boost-cmake.
 
+
+## Composer
+
+#### Composer version 1.10.1 2020-03-13 20:34:27
+
+_Environment:_
+* PATH: contains the location of composer.exe version Composer version 1.10.1 2020-03-13 20:34:27
+* PHPROOT: root directory of the Composer Composer version 1.10.1 2020-03-13 20:34:27 installation
 
 ## PHP (x64)
 
@@ -535,7 +542,7 @@ _version:_
 ## Microsoft Edge
 
 _version:_
-80.0.361.66
+80.0.361.69
 
 ## Mozilla Firefox
 
@@ -572,7 +579,7 @@ _Environment:_
 #### Microsoft Edge Driver
 
 _version:_
-80.0.361.66
+80.0.361.103
 
 _Environment:_
 * EdgeWebDriver: location of msedgedriver.exe
@@ -628,13 +635,13 @@ _Environment:_
 
 ## Gradle
 
-_Version:_ 6.2.2<br/>
+_Version:_ 6.3<br/>
 _Environment:_
 * PATH: contains location of gradle
 
 ## Cmake
 
-_Version:_ 3.16.5<br/>
+_Version:_ 3.17.0<br/>
 _Environment:_
 * PATH: contains location of cmake.exe
 
@@ -651,7 +658,9 @@ _Environment:_
 * PATH: contains location of dotnet.exe
 
 _SDK:_
+* 3.1.201 C:\Program Files\dotnet\sdk\3.1.201
 * 3.1.200 C:\Program Files\dotnet\sdk\3.1.200
+* 3.1.103 C:\Program Files\dotnet\sdk\3.1.103
 * 3.1.101 C:\Program Files\dotnet\sdk\3.1.101
 * 3.1.100 C:\Program Files\dotnet\sdk\3.1.100
 * 2.2.402 C:\Program Files\dotnet\sdk\2.2.402
@@ -675,12 +684,14 @@ _SDK:_
 * 2.2.102 C:\Program Files\dotnet\sdk\2.2.102
 * 2.2.101 C:\Program Files\dotnet\sdk\2.2.101
 * 2.2.100 C:\Program Files\dotnet\sdk\2.2.100
+* 2.1.805 C:\Program Files\dotnet\sdk\2.1.805
 * 2.1.804 C:\Program Files\dotnet\sdk\2.1.804
 * 2.1.803 C:\Program Files\dotnet\sdk\2.1.803
 * 2.1.802 C:\Program Files\dotnet\sdk\2.1.802
 * 2.1.801 C:\Program Files\dotnet\sdk\2.1.801
 * 2.1.701 C:\Program Files\dotnet\sdk\2.1.701
 * 2.1.700 C:\Program Files\dotnet\sdk\2.1.700
+* 2.1.610 C:\Program Files\dotnet\sdk\2.1.610
 * 2.1.609 C:\Program Files\dotnet\sdk\2.1.609
 * 2.1.608 C:\Program Files\dotnet\sdk\2.1.608
 * 2.1.607 C:\Program Files\dotnet\sdk\2.1.607
@@ -689,6 +700,7 @@ _SDK:_
 * 2.1.604 C:\Program Files\dotnet\sdk\2.1.604
 * 2.1.603 C:\Program Files\dotnet\sdk\2.1.603
 * 2.1.602 C:\Program Files\dotnet\sdk\2.1.602
+* 2.1.513 C:\Program Files\dotnet\sdk\2.1.513
 * 2.1.512 C:\Program Files\dotnet\sdk\2.1.512
 * 2.1.511 C:\Program Files\dotnet\sdk\2.1.511
 * 2.1.510 C:\Program Files\dotnet\sdk\2.1.510
@@ -709,6 +721,7 @@ _SDK:_
 * 2.1.300 C:\Program Files\dotnet\sdk\2.1.300
 
 _Runtime:_
+* 3.1.3 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.3
 * 3.1.2 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.2
 * 3.1.1 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.1
 * 3.1.0 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.0
@@ -729,6 +742,7 @@ _Runtime:_
 * 2.1.4 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.4
 * 2.1.3 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.3
 * 2.1.2 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.2
+* 2.1.17 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.17
 * 2.1.16 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.16
 * 2.1.15 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.15
 * 2.1.14 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.14
@@ -745,13 +759,21 @@ _Version:_ 5.7.21.0<br/>
 _Environment:_
 * PATH: contains location of mysql.exe
 
+## Git
+
+_Version:_ 15.00.2000<br/>
+_InstanceName:_ SQL2019<br/>
+_Username:_ sa<br/>
+_Password:_ P@ssword!!<br/>
+_Default Path:_ C:\Program Files (x86)\Microsoft SQL Server
+
 ## SQLPS
 
-_Version:_ 1.0
+_Version:_ 15.0 1.0
 
 ## SQLServer PS
 
-_Version:_ 21.1.18218
+_Version:_ 21.1.18221
 
 ## MinGW
 
@@ -780,7 +802,7 @@ _Version:_ 19.00<br/>
 
 ## Packer
 
-_Version:_ 1.5.4<br/>
+_Version:_ 1.5.5<br/>
 
 ## Mercurial
 
@@ -802,6 +824,10 @@ _Version:_ 6.0.4<br/>
 
 _Version:_ 5.2.4.0<br/>
 
+## Nullsoft Install System (NSIS)
+
+_Version:_ 3.5<br/>
+
 ## Cloud Foundry CLI
 
 _Version:_ 6.50.0<br/>
@@ -820,7 +846,7 @@ _Version_: 2.8.4+ff0de50053 - shim 0.8.1<br/>
 
 ## Kubectl
 
-_Version:_ Client Version: v1.17.1<br/>
+_Version:_ Client Version: v1.18.0<br/>
 _Environment:_
 * PATH: contains location of kubectl.exe
 
