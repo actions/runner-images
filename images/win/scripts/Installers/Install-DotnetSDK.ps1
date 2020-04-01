@@ -100,16 +100,10 @@ function RunPostInstallationSteps()
 {
     Add-MachinePathItem "C:\Program Files\dotnet"
     # Run script at startup for all users
-    $cmdDotNetPath = @"
-@echo off
-SETX PATH "%USERPROFILE%\.dotnet\tools;%PATH%"
-"@
-
-    $cmdPath = "C:\Program Files\dotnet\userpath.bat"
-    $cmdDotNetPath | Out-File -Encoding ascii -FilePath $cmdPath
+    $cmdDotNet = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -Command "[System.Environment]::SetEnvironmentVariable(''PATH'',"""$env:USERPROFILE\.dotnet\tools;$env:PATH""", ''USER'')"'
 
     # Update Run key to run a script at logon
-    Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "DOTNETUSERPATH" -Value $cmdPath
+    Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "DOTNETUSERPATH" -Value $cmdDotNet
 }
 
 InstallAllValidSdks
