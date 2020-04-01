@@ -8,11 +8,8 @@
 source $HELPER_SCRIPTS/document.sh
 
 export NVM_DIR="/etc/skel/.nvm"
-# should create directory with full permissions.
-mkdir -m 777 $NVM_DIR
+mkdir $NVM_DIR
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-# should recursively obtain subdirectories with full permissions
-chmod -R 777 $NVM_DIR
 echo 'export NVM_DIR=$HOME/.nvm' | tee -a /etc/skel/.bash_profile
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' | tee -a /etc/skel/.bash_profile
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
