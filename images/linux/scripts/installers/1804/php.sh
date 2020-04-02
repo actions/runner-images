@@ -5,6 +5,7 @@
 ################################################################################
 
 # Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/document.sh
 
 LSB_RELEASE=$(lsb_release -rs)
@@ -192,6 +193,9 @@ php -r "if (hash_file('sha384', 'composer-setup.php') === file_get_contents('htt
 php composer-setup.php
 sudo mv composer.phar /usr/bin/composer
 php -r "unlink('composer-setup.php');"
+
+# Update /etc/environment
+addEtcEnvironmentPathElement /home/runner/.config/composer/vendor/bin
 
 # Add composer bin folder to path
 echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> /etc/skel/.bashrc

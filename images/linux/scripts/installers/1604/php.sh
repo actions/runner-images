@@ -5,6 +5,7 @@
 ################################################################################
 
 # Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/document.sh
 
 LSB_RELEASE=$(lsb_release -rs)
@@ -276,6 +277,9 @@ php composer-setup.php
 sudo mv composer.phar /usr/bin/composer
 php -r "unlink('composer-setup.php');"
 
+# Update /etc/environment
+addEtcEnvironmentPathElement /home/runner/.config/composer/vendor/bin
+
 # Add composer bin folder to path
 echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> /etc/skel/.bashrc
 
@@ -292,6 +296,7 @@ for cmd in php php5.6 php7.0 php7.1 php7.2 php7.3 php7.4 composer phpunit; do
         exit 1
     fi
 done
+
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
