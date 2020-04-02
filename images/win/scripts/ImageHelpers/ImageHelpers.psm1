@@ -15,6 +15,7 @@ Export-ModuleMember -Function @(
     'Install-MSI'
     'Install-EXE'
     'Get-ToolcachePackages'
+    'Get-ToolsetContent'
     'Get-ToolsByName'
     'Add-ContentToMarkdown'
     'Add-SoftwareDetailsToMarkdown'
