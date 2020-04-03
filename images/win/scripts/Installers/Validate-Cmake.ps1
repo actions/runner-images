@@ -5,11 +5,11 @@
 
 if(Get-Command -Name 'cmake')
 {
-    Write-Host "Cmake $(cmake -version) on path"
+    Write-Host "CMake $(cmake -version) on path"
 }
 else
 {
-    Write-Host 'cmake not on path'
+    Write-Host 'CMake not on path'
     exit 1
 }
 
@@ -20,7 +20,7 @@ if( $( $(cmake -version) | Out-String) -match  'cmake version (?<version>.*).*' 
 }
 
 # Adding description of the software to Markdown
-$SoftwareName = "Cmake"
+$SoftwareName = "CMake"
 
 $Description = @"
 _Version:_ $cmakeVersion<br/>
