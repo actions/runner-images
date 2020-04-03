@@ -40,10 +40,20 @@ function setEtcEnvironmentVariable {
     fi
 }
 
-function addEtcEnvironmentPathElement {
-    element="$1"
-    etc_path=$(getEtcEnvironmentVariable PATH)
-    setEtcEnvironmentVariable PATH "${element}:${etc_path}"
+function prependEtcEnvironmentVariable {
+    variable_name="$1"
+    element="$2"
+    # TODO: handle the case if the variable does not exist
+    existing_value=$(getEtcEnvironmentVariable "${variable_name}")
+    setEtcEnvironmentVariable "${variable_name}" "${element}:${existing_value}"
+}
+
+function appendEtcEnvironmentVariable {
+    variable_name="$1"
+    element="$2"
+    # TODO: handle the case if the variable does not exist
+    existing_value=$(getEtcEnvironmentVariable "${variable_name}")
+    setEtcEnvironmentVariable "${variable_name}" "${existing_value}:${element}"
 }
 
 function addEtcEnvironmentPathElement {
