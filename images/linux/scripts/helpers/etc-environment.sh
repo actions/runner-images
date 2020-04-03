@@ -56,10 +56,9 @@ function appendEtcEnvironmentVariable {
     setEtcEnvironmentVariable "${variable_name}" "${existing_value}:${element}"
 }
 
-function addEtcEnvironmentPathElement {
+function prependEtcEnvironmentPath {
     element="$1"
-    etc_path=$(getEtcEnvironmentVariable PATH)
-    setEtcEnvironmentVariable PATH "${element}:${etc_path}"
+    prependEtcEnvironmentVariable PATH "${element}"
 }
 
 # Process /etc/environment as if it were shell script with `export VAR=...` expressions

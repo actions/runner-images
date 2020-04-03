@@ -33,7 +33,7 @@ for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen; do
 done
 
 # Update /etc/environemnt
-addEtcEnvironmentPathElement "${CARGO_HOME}/bin"
+prependEtcEnvironmentPath "${CARGO_HOME}/bin"
 
 # Rust Symlinks are added to a default profile /etc/skel
 pushd /etc/skel
