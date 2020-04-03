@@ -169,35 +169,36 @@ function Start-DownloadWithRetry
         [Parameter(Mandatory)]
         [string] $Name,
         [string] $DownloadPath = "${env:Temp}",
-        [int] $retries = 20
-        )
-    $FilePath = Join-Path $DownloadPath $Name
-    #Default retry logic for the package.
-    while($retries -gt 0)
-        {
-            try
-            {
-                Write-Host "Downloading package from: $Url to path $FilePath ."
-                (New-Object System.Net.WebClient).DownloadFile($Url, $FilePath)
-                break
-            }
-            catch
-            {
-                Write-Host "There is an error during package downloading"
-                $_
-                $retries--
+        [int] $Retries = 20
+    )
 
-                if ($retries -eq 0)
-                {
-                    Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
-                    $_
-                    exit 1
-                }
-                Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
-                Start-Sleep -Seconds 30
-            }
+    $FilePath = Join-Path -Path $DownloadPath -ChildPath $Name
+    #Default retry logic for the package.
+    while ($retries -gt 0)
+    {
+        try
+        {
+            Write-Host "Downloading package from: $Url to path $FilePath ."
+            (New-Object System.Net.WebClient).DownloadFile($Url, $FilePath)
+            break
         }
-   return $FilePath
+        catch
+        {
+            Write-Host "There is an error during package downloading:`n $_"
+            $retries--
+
+            if ($retries -eq 0)
+            {
+                Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
+                exit 1
+            }
+
+            Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
+            Start-Sleep -Seconds 30
+        }
+    }
+
+    return $FilePath
 }
 
 
