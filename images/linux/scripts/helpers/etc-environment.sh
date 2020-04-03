@@ -8,20 +8,20 @@
 #     values containg slashes (i.e. directory path)
 #     The values containing '%' will break the functions
 
-function getEtcEnvironmentVar {
+function getEtcEnvironmentVariable {
     variable_name="$1"
     # remove `variable_name=` and possible quotes from the line
     grep "^${variable_name}=" /etc/environment |sed -E "s%^${variable_name}=\"?([^\"]+)\"?.*$%\1%"
 }
 
-function addEtcEnvironmentVar {
+function addEtcEnvironmentVariable {
     variable_name="$1"
     variable_value="$2"
 
     echo "$variable_name=\"$variable_value\"" | sudo tee -a /etc/environment
 }
 
-function replaceEtcEnvironmentVar {
+function replaceEtcEnvironmentVariable {
     variable_name="$1"
     variable_value="$2"
 
@@ -29,21 +29,27 @@ function replaceEtcEnvironmentVar {
     sudo sed -ie "s%^${variable_name}=.*$%${variable_name}=\"${variable_value}\"%" /etc/environment
 }
 
-function setEtcEnvironmentVar {
+function setEtcEnvironmentVariable {
     variable_name="$1"
     variable_value="$2"
 
     if grep "$variable_name" /etc/environment > /dev/null; then
-        replaceEtcEnvironmentVar $variable_name $variable_value
+        replaceEtcEnvironmentVariable $variable_name $variable_value
     else
-        addEtcEnvironmentVar $variable_name $variable_value
+        addEtcEnvironmentVariable $variable_name $variable_value
     fi
 }
 
 function addEtcEnvironmentPathElement {
     element="$1"
-    etc_path=$(getEtcEnvironmentVar PATH)
-    setEtcEnvironmentVar PATH "${element}:${etc_path}"
+    etc_path=$(getEtcEnvironmentVariable PATH)
+    setEtcEnvironmentVariable PATH "${element}:${etc_path}"
+}
+
+function addEtcEnvironmentPathElement {
+    element="$1"
+    etc_path=$(getEtcEnvironmentVariable PATH)
+    setEtcEnvironmentVariable PATH "${element}:${etc_path}"
 }
 
 # Process /etc/environment as if it were shell script with `export VAR=...` expressions
@@ -59,7 +65,7 @@ function  reloadEtcEnvironment {
     # add `export ` to every variable of /etc/environemnt except PATH and eval the result shell script
     eval $(grep -v '^PATH=' /etc/environment | sed -e 's%^%export %')
     # handle PATH specially
-    etc_path=$(getEtcEnvironmentVar PATH)
+    etc_path=$(getEtcEnvironmentVariable PATH)
     export PATH="$PATH:$etc_path"
 }
 

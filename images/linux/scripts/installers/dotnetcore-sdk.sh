@@ -96,6 +96,6 @@ done
 
 # NuGetFallbackFolder at /usr/share/dotnet/sdk/NuGetFallbackFolder is warmed up by smoke test
 # Additional FTE will just copy to ~/.dotnet/NuGet which provides no benefit on a fungible machine
-setEtcEnvironmentVar DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1
+setEtcEnvironmentVariable DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1
 addEtcEnvironmentPathElement /home/runner/.dotnet/tools
 echo 'export PATH="$PATH:$HOME/.dotnet/tools"' | tee -a /etc/skel/.bashrc
