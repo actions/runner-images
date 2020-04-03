@@ -4,7 +4,7 @@ param()
 . $PSScriptRoot\PathHelpers.ps1
 . $PSScriptRoot\InstallHelpers.ps1
 . $PSScriptRoot\MarkdownHelpers.ps1
-. $PSScriptRoot\InstallChoco.ps1
+. $PSScriptRoot\ChocoHelpers.ps1
 
 Export-ModuleMember -Function @(
     'Test-MachinePath'
