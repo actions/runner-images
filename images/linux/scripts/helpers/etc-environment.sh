@@ -9,34 +9,34 @@
 #     The values containing '%' will break the functions
 
 function getEtcEnvironmentVar {
-    var_name="$1"
-    # remove `var_name=` and possible quotes from the line
-    grep "^${var_name}=" /etc/environment |sed -E "s%^${var_name}=\"?([^\"]+)\"?.*$%\1%"
+    variable_name="$1"
+    # remove `variable_name=` and possible quotes from the line
+    grep "^${variable_name}=" /etc/environment |sed -E "s%^${variable_name}=\"?([^\"]+)\"?.*$%\1%"
 }
 
 function addEtcEnvironmentVar {
-    var_name="$1"
-    var_value="$2"
+    variable_name="$1"
+    variable_value="$2"
 
-    echo "$var_name=\"$var_value\"" | sudo tee -a /etc/environment
+    echo "$variable_name=\"$variable_value\"" | sudo tee -a /etc/environment
 }
 
 function replaceEtcEnvironmentVar {
-    var_name="$1"
-    var_value="$2"
+    variable_name="$1"
+    variable_value="$2"
 
-    # modify /etc/environemnt in place by replacing a string that begins with var_name
-    sudo sed -ie "s%^${var_name}=.*$%${var_name}=\"${var_value}\"%" /etc/environment
+    # modify /etc/environemnt in place by replacing a string that begins with variable_name
+    sudo sed -ie "s%^${variable_name}=.*$%${variable_name}=\"${variable_value}\"%" /etc/environment
 }
 
 function setEtcEnvironmentVar {
-    var_name="$1"
-    var_value="$2"
+    variable_name="$1"
+    variable_value="$2"
 
-    if grep "$var_name" /etc/environment > /dev/null; then
-        replaceEtcEnvironmentVar $var_name $var_value
+    if grep "$variable_name" /etc/environment > /dev/null; then
+        replaceEtcEnvironmentVar $variable_name $variable_value
     else
-        addEtcEnvironmentVar $var_name $var_value
+        addEtcEnvironmentVar $variable_name $variable_value
     fi
 }
 
