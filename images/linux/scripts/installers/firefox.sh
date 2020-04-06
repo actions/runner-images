@@ -19,7 +19,8 @@ fi
 
 # Home directory is cleaned up before creation, we need create in skell to copy directories.
 echo "Move .mozilla directory to skel"
-mv .mozilla /etc/skel/.mozilla
+mv $HOME/.mozilla /etc/skel/.mozilla
+# Locale on firefox differs from other browsers, en_GB instead of en_US
 profile_dir=$(find /etc/skel/.mozilla/firefox -name "*.deafult-release" -type d)
 echo 'user_pref("intl.accept_languages","en_US");' >> "$profile_dir/user.js"
 echo 'user_pref("intl.locale.requested","en_US");' >> "$profile_dir/user.js"
