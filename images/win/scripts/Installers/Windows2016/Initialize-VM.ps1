@@ -30,6 +30,9 @@ function Disable-UserAccessControl {
     Write-Host "User Access Control (UAC) has been disabled."
 }
 
+# Set TLS1.2
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
+
 Import-Module -Name ImageHelpers -Force
 
 Write-Host "Setup PowerShellGet"
@@ -98,7 +101,6 @@ else {
 }
 
 # Run the installer
-[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Turn off confirmation
