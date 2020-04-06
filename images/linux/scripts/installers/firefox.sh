@@ -17,6 +17,13 @@ if ! command -v firefox; then
     exit 1
 fi
 
+# Home directory is cleaned up before creation, we need create in skell to copy directories.
+echo "Move .mozilla directory to skel"
+mv .mozilla /etc/skel/.mozilla
+profile_dir=$(find /etc/skel/.mozilla/firefox -name "*.deafult-release" -type d)
+echo 'user_pref("intl.accept_languages","en_US");' >> "$profile_dir/user.js"
+echo 'user_pref("intl.locale.requested","en_US");' >> "$profile_dir/user.js"
+
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 # Resolves: Running Firefox as root in a regular user's session is not supported.
