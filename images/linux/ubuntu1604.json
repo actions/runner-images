@@ -134,7 +134,6 @@
         },
         {
             "type": "shell",
-            "expect_disconnect": true,
             "scripts": [
                 "{{template_dir}}/scripts/installers/homebrew.sh"
             ],
@@ -142,6 +141,14 @@
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "expect_disconnect": true,
+            "scripts": [
+                "{{template_dir}}/scripts/base/reboot.sh"
             ],
             "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
         },

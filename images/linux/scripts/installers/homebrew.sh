@@ -34,7 +34,3 @@ fi
 # Document the installed version
 echo "Document the installed version"
 DocumentInstalledItem "Homebrew on Linux ($(brew -v 2>&1))"
-
-# Reboot VM in order to validate brew can be run after it
-echo "Reboot VM"
-sudo reboot
