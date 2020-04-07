@@ -192,7 +192,8 @@
                 "{{template_dir}}/scripts/installers/zeit-now.sh",
                 "{{template_dir}}/scripts/installers/updatepath.sh",
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
-                "{{template_dir}}/scripts/installers/mongodb.sh"
+                "{{template_dir}}/scripts/installers/mongodb.sh",
+                "{{template_dir}}/scripts/installers/rndgenerator.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
