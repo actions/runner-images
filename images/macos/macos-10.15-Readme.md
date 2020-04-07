@@ -15,7 +15,7 @@ The following software is installed on machines with the 20200328.1 update.
 - Java 13: Zulu13.29+9-CA (build 13.0.2+6-MTS)
 - Java 14: Zulu14.27+1-CA (build 14+36)
 - Rust 1.42.0
-- Clang/LLVM 9.0.1
+- Clang/LLVM 10.0.0
 - gcc-8 (Homebrew GCC 8.4.0) 8.4.0
 - gcc-9 (Homebrew GCC 9.3.0) 9.3.0
 - GNU Fortran (Homebrew GCC 8.4.0) 8.4.0
@@ -26,7 +26,7 @@ The following software is installed on machines with the 20200328.1 update.
 - PowerShell 7.0.0
 - Python 2.7.17
 - Python 3.7.7
-- Ruby 2.6.5p114
+- Ruby 2.6.6p146
 - .NET SDK 2.0.0 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201
 - Go 1.14.1
 - PHP 7.4.4
@@ -77,16 +77,16 @@ The following software is installed on machines with the 20200328.1 update.
 ### Tools
 - Fastlane 2.144.0
 - Cmake 3.17.0
-- App Center CLI 2.3.5
-- Azure CLI 2.2.0
-- AWS CLI 2.0.5
+- App Center CLI 2.4.0
+- Azure CLI 2.3.1
+- AWS CLI 2.0.6
 
 ### Browsers
-- Google Chrome 80.0.3987.149
+- Google Chrome 80.0.3987.163 
 - ChromeDriver 80.0.3987.106
-- Microsoft Edge 80.0.361.69
-- MSEdgeDriver 80.0.361.69
-- Mozilla Firefox 74.0
+- Microsoft Edge 80.0.361.109 
+- MSEdgeDriver 80.0.361.109
+- Mozilla Firefox 74.0.1
 - geckodriver 0.26.0
 
 ### Toolcache
@@ -109,7 +109,7 @@ The following software is installed on machines with the 20200328.1 update.
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.5.0.3183
+- 8.5.1.42
 
 #### Mono
 - 6.8.0.123
@@ -117,18 +117,22 @@ The following software is installed on machines with the 20200328.1 update.
 - 6.4.0.208
 
 #### Xamarin.iOS
+- 13.16.0.11
 - 13.14.1.39
 - 13.10.0.21
 - 13.8.3.0
 - 13.6.0.12
 - 13.4.0.2
+- 13.2.0.47
 
 #### Xamarin.Mac
+- 6.16.0.11
 - 6.14.1.39
 - 6.10.0.21
 - 6.8.3.0
 - 6.6.0.12
 - 6.4.0.2
+- 6.2.0.47
 
 #### Xamarin.Android
 - 10.2.0
@@ -154,7 +158,7 @@ The following software is installed on machines with the 20200328.1 update.
 - Nomad CLI IPA ipa 0.14.3
 - xcpretty 0.3.0
 - xctool 0.3.7
-- xcversion 2.6.3
+- xcversion 2.6.4
 
 #### Installed SDKs
 | SDK                     | SDK Name             | Xcode Version                                |
@@ -271,4 +275,3 @@ The following software is installed on machines with the 20200328.1 update.
 | Google Play services                            | 49      |
 | Google Repository                               | 58      |
 | Intel x86 Emulator Accelerator (HAXM installer) | 7.5.1   |
-
