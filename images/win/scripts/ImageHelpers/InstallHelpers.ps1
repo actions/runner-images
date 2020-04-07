@@ -161,6 +161,47 @@ Hashtable for service arguments
     }
 }
 
+function Start-DownloadWithRetry
+{
+    param (
+        [Parameter(Mandatory)]
+        [string] $Url,
+        [Parameter(Mandatory)]
+        [string] $Name,
+        [string] $DownloadPath = "${env:Temp}",
+        [int] $Retries = 20
+    )
+
+    $FilePath = Join-Path -Path $DownloadPath -ChildPath $Name
+    #Default retry logic for the package.
+    while ($retries -gt 0)
+    {
+        try
+        {
+            Write-Host "Downloading package from: $Url to path $FilePath ."
+            (New-Object System.Net.WebClient).DownloadFile($Url, $FilePath)
+            break
+        }
+        catch
+        {
+            Write-Host "There is an error during package downloading:`n $_"
+            $retries--
+
+            if ($retries -eq 0)
+            {
+                Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
+                exit 1
+            }
+
+            Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
+            Start-Sleep -Seconds 30
+        }
+    }
+
+    return $FilePath
+}
+
+
 function Install-VsixExtension
 {
     Param
@@ -177,34 +218,7 @@ function Install-VsixExtension
 
     if (!$InstallOnly)
     {
-        $FilePath = "${env:Temp}\$Name"
-
-        while($retries -gt 0)
-        {
-            try
-            {
-                Write-Host "Downloading $Name..."
-                (New-Object System.Net.WebClient).DownloadFile($Url, $FilePath)
-                break
-            }
-            catch
-            {
-                Write-Host "There is an error during $Name downloading"
-                $_
-
-                $retries--
-
-                if ($retries -eq 0)
-                {
-                    Write-Host "File can't be downloaded"
-                    $_
-                    exit 1
-                }
-
-                Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
-                Start-Sleep -Seconds 30
-            }
-        }
+        $FilePath = Start-DownloadWithRetry -Url $Url -Name $Name
     }
 
     $ArgumentList = ('/quiet', "`"$FilePath`"")
@@ -311,4 +325,3 @@ function Test-IsWin16
 {
     (Get-WinVersion) -match "2016"
 }
-

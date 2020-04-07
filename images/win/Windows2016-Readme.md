@@ -1,6 +1,6 @@
 # Windows Server 2016
 
-The following software is installed on machines with the 20200308.0 update.
+The following software is installed on machines with the 20200323.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -23,6 +23,12 @@ _Version:_ 1.25.4<br/>
 _Environment:_
 * PATH: contains location of docker-compose.exe
 
+## Helm
+
+_Version:_ v3.1.2+gd878d4d<br/>
+_Environment:_
+* PATH: contains location of helm
+
 ## Powershell Core
 
 _Version:_ 7.0.0<br/>
@@ -30,15 +36,15 @@ _Version:_ 7.0.0<br/>
 ## Docker images
 
 The following container images have been cached:
-* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:2053602020c89ff2d6c0d4005372ebc6cebcf866fb5785e562d91389aa467943)
-* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:ca895ab76f1d3ab95f022cbca076e06b62daebafe61af34212bb3ed1fe982d78)
-* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:10e43e24be6eb5f3e19e705a88adb9794b569028f0e0d715d40f25e53e04c3fc)
+* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:7bf99ba791cce2c51091ac0c6922ff98e5a448c1046ba046fab3760070173e0d)
+* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:000d639c6c287bf0e69b27c008f2d411a9e161093dd1855667a8e6189f9adac8)
+* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:5bd97dbab1afe8d3200f5d5c974df3b0130e74e8a69fddcd427699c4c8cb5037)
 * microsoft/aspnetcore-build:1.0-2.0 (Digest: sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c)
 * mcr.microsoft.com/windows/nanoserver:10.0.14393.953 (Digest: sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268)
 
 ## Visual Studio 2017 Enterprise
 
-_Version:_ VisualStudio/15.9.20+28307.1033<br/>
+_Version:_ VisualStudio/15.9.21+28307.1064<br/>
 _Location:_ C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise
 
 The following workloads including required and recommended components are installed with Visual Studio 2017:
@@ -155,7 +161,8 @@ _Path:_ C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
 
 ## Windows Driver Kit
 
-_Version:_ 10.0.17763.0<br/>
+_WDK Version:_ 10.1.17763.1<br/>
+_WDK Visual Studio Extension Version:_ 10.0.17740.0<br/>
 
 ## Azure Service Fabric
 
@@ -415,7 +422,7 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.1.0
+_Version:_ 2.2.0
 _Environment:_
 * PATH: contains location of az.cmd
 
@@ -425,7 +432,7 @@ _Version:_ azure-devops                      0.17.0
 
 ## Python
 
-_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.2 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.2 (x86)<br/>
+_Version:_ 2.7.17 (x64)<br/>_Version:_ 3.5.4 (x64)<br/>_Version:_ 3.6.8 (x64)<br/>_Version:_ 3.7.6 (x64)<br/>_Version:_ 3.8.2 (x64)<br/>_Version:_ 2.7.17 (x86)<br/>_Version:_ 3.5.4 (x86)<br/>_Version:_ 3.6.8 (x86)<br/>_Version:_ 3.7.6 (x86)<br/>_Version:_ 3.8.2 (x86)<br/><br/>__System default version:__ Python 3.7.6<br/>_Environment:_<br/>* Location: C:\hostedtoolcache\windows\Python\3.7.6\x64<br/>* PATH: contains the location of Python 3.7.6<br/>
 
 ## PyPy
 
@@ -433,21 +440,15 @@ _Version:_ 2.7.13 (x86)<br/>_Version:_ 3.6.9 (x86)<br/>
 
 ## Ruby
 
-_Version:_ 2.4.9 (x64)<br/>_Version:_ 2.5.7 (x64)<br/>_Version:_ 2.6.5 (x64)<br/>_Version:_ 2.7.0 (x64)<br/>
+_Version:_ 2.4.9 (x64)<br/>_Version:_ 2.5.7 (x64)<br/>_Version:_ 2.6.5 (x64)<br/>_Version:_ 2.7.0 (x64)<br/><br/>__System default version:__ Ruby 2.5.7p206<br/>_Environment:_<br/>* Location: C:\hostedtoolcache\windows\Ruby\2.5.7\x64\bin<br/>* PATH: contains the location of Ruby 2.5.7p206<br/>* Gem Version: 2.7.6.2<br/>
 
-## Python (64 bit)
+## OpenSSL
 
-#### Python 3.6.8
-_Environment:_
-* PATH: contains location of python.exe
-
-#### Python 2.7.17
-
-_Location:_ C:/hostedtoolcache/windows/Python/2.7*/x64
+_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>
 
 ## Perl
 
-_Version:_ v5.30.1<br/>
+_Version:_ v5.30.2<br/>
 
 ## Git
 
@@ -462,48 +463,39 @@ _Environment:_
 * PATH: contains location of git-lfs.exe
 * GIT_LFS_PATH: location of git-lfs.exe
 
+## Hub CLI
+
+_Version:_ 2.14.2<br/>
+_Environment:_
+* PATH: contains location of hub.exe
+
 ## Go (x64)
-
-#### 1.9.7
-
-_Environment:_
-* GOROOT_1_9_X64: root directory of the Go 1.9.7 installation
-
-#### 1.10.8
-
-_Environment:_
-* GOROOT_1_10_X64: root directory of the Go 1.10.8 installation
-
-#### 1.11.12
-
-_Environment:_
-* GOROOT_1_11_X64: root directory of the Go 1.11.12 installation
-
-#### 1.12.7
-
-_Environment:_
-* PATH: contains the location of go.exe version 1.12.7
-* GOROOT: root directory of the Go 1.12.7 installation
-* GOROOT_1_12_X64: root directory of the Go 1.12.7 installation
-#### 1.13
-
-_Environment:_
-* GOROOT_1_13_X64: root directory of the Go 1.13 installation
 
 
 
 ## Boost
 
-#### 1.69.0
+#### 1.69.0 [msvc-14.1]
 
+_Environment:_
 * PATH: contains the location of Boost version 1.69.0
-* BOOST_ROOT: root directory of the Boost version 1.69.0 installation
 * BOOST_ROOT_1_69_0: root directory of the Boost version 1.69.0 installation
-#### 1.72.0
+#### 1.72.0 [msvc-14.1]
 
 _Environment:_
 * BOOST_ROOT_1_72_0: root directory of the Boost version 1.72.0 installation
 
+
+#### _Notes:_
+Link: https://cmake.org/cmake/help/latest/module/FindBoost.html
+
+If Boost was built using the `boost-cmake` project or from `Boost 1.70.0` on it provides a package
+configuration file for use with find\_package's config mode. This module looks for the package
+configuration file called BoostConfig.cmake or boost-config.cmake and stores the result in CACHE entry "Boost_DIR".
+If found, the package configuration file is loaded and this module returns with no further action.
+See documentation of the Boost CMake package configuration for details on what it provides.
+
+Set `Boost_NO_BOOST_CMAKE to ON`, to disable the search for boost-cmake.
 
 
 ## PHP (x64)
@@ -514,17 +506,9 @@ _Environment:_
 * PATH: contains the location of php.exe version 7.4.3
 * PHPROOT: root directory of the PHP 7.4.3 installation
 
-## Ruby (x64)
-
-#### 2.5.7p206
-_Environment:_
-* Location: C:\hostedtoolcache\windows\Ruby\2.5.7\x64\bin
-* PATH: contains the location of ruby.exe version 2.5.7p206
-* Gem Version: 3.1.2
-
 ## Rust (64-bit)
 
-#### 1.41.1
+#### 1.42.0
 _Location:_ C:\Rust\.cargo\bin
 _Environment:_
 * PATH: contains the location of rustc.exe
@@ -546,17 +530,17 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-80.0.3987.132
+80.0.3987.149
 
 ## Microsoft Edge
 
 _version:_
-80.0.361.66
+80.0.361.69
 
 ## Mozilla Firefox
 
 _version:_
-73.0.1
+74.0
 
 ## Selenium Web Drivers
 
@@ -588,7 +572,7 @@ _Environment:_
 #### Microsoft Edge Driver
 
 _version:_
-80.0.361.66
+80.0.361.69
 
 _Environment:_
 * EdgeWebDriver: location of msedgedriver.exe
@@ -602,7 +586,7 @@ _Environment:_
 * PATH: contains location of node.exe<br/>
 * Gulp CLI version: 2.2.0 Local version: Unknown<br/>
 * Grunt grunt-cli v1.3.2<br/>
-* Yarn 1.22.1<br/>
+* Yarn 1.22.4<br/>
 
 
 ## npm
@@ -613,7 +597,7 @@ _Environment:_
 
 ## bazel
 
-_Version:_ bazel 2.1.0<br/>
+_Version:_ bazel 2.2.0<br/>
 
 ## bazelisk
 
@@ -621,7 +605,7 @@ _Version:_ 1.3.0<br/>
 
 ## Java Development Kit
 
-#### 1.8.0_222
+#### 1.8.0_222 (default)
 
 _Environment:_
 * JAVA_HOME: location of JDK
@@ -658,7 +642,7 @@ _Environment:_
 
 ## Cmake
 
-_Version:_ 3.16.5<br/>
+_Version:_ 3.17.0<br/>
 _Environment:_
 * PATH: contains location of cmake.exe
 
@@ -778,7 +762,7 @@ _Version:_ 1.0
 
 ## SQLServer PS
 
-_Version:_ 21.1.18218
+_Version:_ 21.1.18221
 
 ## MinGW
 
@@ -823,15 +807,11 @@ _Version:_ 1.4.0<br/>
 
 ## Inno Setup
 
-_Version:_ 6.0.3<br/>
+_Version:_ 6.0.4<br/>
 
 ## GitVersion
 
-_Version:_ 5.2.0.0<br/>
-
-## OpenSSL
-
-_Version:_ 1.1.1c at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>
+_Version:_ 5.2.4.0<br/>
 
 ## Cloud Foundry CLI
 

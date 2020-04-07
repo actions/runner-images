@@ -68,10 +68,11 @@ done
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Azul Zulu OpenJDK (7) ($(/usr/lib/jvm/zulu-7-azure-amd64/bin/java -showversion |& head -n 1))"
-DocumentInstalledItem "Azul Zulu OpenJDK (8) ($(/usr/lib/jvm/zulu-8-azure-amd64/bin/java -showversion |& head -n 1))"
-DocumentInstalledItem "Azul Zulu OpenJDK (11) ($(/usr/lib/jvm/zulu-11-azure-amd64/bin/java -showversion |& head -n 1))"
-DocumentInstalledItem "Azul Zulu OpenJDK (12) ($(/usr/lib/jvm/zulu-12-azure-amd64/bin/java -showversion |& head -n 1))"
+DocumentInstalledItem "Azul Zulu OpenJDK:"
+DocumentInstalledItemIndent "7 ($(/usr/lib/jvm/zulu-7-azure-amd64/bin/java -showversion |& head -n 1))"
+DocumentInstalledItemIndent "8 ($(/usr/lib/jvm/zulu-8-azure-amd64/bin/java -showversion |& head -n 1)) (default)"
+DocumentInstalledItemIndent "11 ($(/usr/lib/jvm/zulu-11-azure-amd64/bin/java -showversion |& head -n 1))"
+DocumentInstalledItemIndent "12 ($(/usr/lib/jvm/zulu-12-azure-amd64/bin/java -showversion |& head -n 1))"
 DocumentInstalledItem "Ant ($(ant -version))"
 DocumentInstalledItem "Gradle ${gradleVersion}"
 DocumentInstalledItem "Maven ($(mvn -version | head -n 1))"

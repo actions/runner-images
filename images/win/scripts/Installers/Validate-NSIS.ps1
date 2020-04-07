@@ -28,5 +28,4 @@ $Description = @"
 _Version:_ $Version<br/>
 "@
 
-#Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-Write-Host $description
+Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

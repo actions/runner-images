@@ -1,10 +1,10 @@
 # Ubuntu 16.04.6 LTS
-The following software is installed on machines with the 20200308.0 update.
+The following software is installed on machines with the 20200330.1 update.
 ***
 - 7-Zip 9.20
 - Ansible (ansible 2.9.6)
 - AzCopy (azcopy 7.3.0-netcore)
-- Azure CLI (azure-cli                          2.1.0)
+- Azure CLI (azure-cli                          2.2.0)
 - Azure CLI (azure-devops                      0.17.0)
 - Basic CLI:
   - curl
@@ -14,6 +14,8 @@ The following software is installed on machines with the 20200308.0 update.
   - iproute2
   - iputils-ping
   - jq
+  - libc++-dev
+  - libc++abi-dev
   - libcurl3
   - libicu55
   - libunwind8
@@ -32,15 +34,20 @@ The following software is installed on machines with the 20200308.0 update.
   - wget
   - zip
   - zstd
-- AWS CLI (aws-cli/1.18.16 Python/2.7.12 Linux/4.15.0-1071-azure botocore/1.15.16)
+- AWS CLI (aws-cli/1.18.31 Python/2.7.12 Linux/4.15.0-1071-azure botocore/1.15.31)
 - build-essential
-- Clang 6.0 (6.0.1)
-- Clang 8 (8.0.1)
+- Clang 6.0 (6.0.0)
+- Clang 8 (8.0.0)
 - Clang 9 (9.0.1)
+- Swift version 5.2 (swift-5.2-RELEASE)
+Target: x86_64-unknown-linux-gnu
 - CMake (cmake version 3.16.2)
-- Docker Compose (docker-compose version 1.22.0, build f46880fe)
-- Docker-Moby (Docker version 3.0.10+azure, build 99c5edceb48d64c1aa5d09b8c9c499d431d98bb9)
+- Docker Compose (docker-compose version 1.25.4, build 8d51620a)
+- Docker-Moby (Docker version 3.0.11+azure, build eb310fca49568dccd87c6136f774ef6fff2a1b51)
 - .NET Core SDK:
+  - 3.1.201
+  - 3.1.200
+  - 3.1.103
   - 3.1.101
   - 3.1.100
   - 3.0.103
@@ -68,12 +75,14 @@ The following software is installed on machines with the 20200308.0 update.
   - 2.2.102
   - 2.2.101
   - 2.2.100
+  - 2.1.805
   - 2.1.804
   - 2.1.803
   - 2.1.802
   - 2.1.801
   - 2.1.701
   - 2.1.700
+  - 2.1.610
   - 2.1.609
   - 2.1.608
   - 2.1.607
@@ -82,6 +91,7 @@ The following software is installed on machines with the 20200308.0 update.
   - 2.1.604
   - 2.1.603
   - 2.1.602
+  - 2.1.513
   - 2.1.512
   - 2.1.511
   - 2.1.510
@@ -100,24 +110,20 @@ The following software is installed on machines with the 20200308.0 update.
   - 2.1.302
   - 2.1.301
   - 2.1.300
-- Erlang (Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 10.6.4)
-- Firefox (Mozilla Firefox 73.0.1)
+- Erlang (Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 10.7)
+- Firefox (Mozilla Firefox 74.0)
 - Geckodriver (0.26.0); Gecko Driver is available via GECKOWEBDRIVER environment variable
 - GNU C++ 7.4.0
 - GNU C++ 8.3.0
 - GNU C++ 9.2.1
 - GNU Fortran 8.3.0
 - GNU Fortran 9.2.1
-- Git (2.25.1)
+- Git (2.26.0)
 - Git Large File Storage (LFS) (2.10.0)
-- Go 1.9 (go version go1.9.7 linux/amd64)
-- Go 1.10 (go version go1.10.8 linux/amd64)
-- Go 1.11 (go version go1.11.12 linux/amd64)
-- Go 1.12 (go version go1.12.7 linux/amd64)
-- Go 1.13 (go version go1.13 linux/amd64)
-- Google Chrome (Google Chrome 80.0.3987.132 )
+- Hub CLI (2.14.2)
+- Google Chrome (Google Chrome 80.0.3987.149 )
 - ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882}); Chrome Driver is available via CHROMEWEBDRIVER environment variable
-- Google Cloud SDK (283.0.0)
+- Google Cloud SDK (286.0.0)
 - Haskell Cabal (cabal-install version 2.0.0.1
 compiled using version 2.0.1.1 of the Cabal library )
 - Haskell Cabal (cabal-install version 2.2.0.0
@@ -137,22 +143,23 @@ compiled using version 3.0.2.0 of the Cabal library )
 - GHC (The Glorious Glasgow Haskell Compilation System, version 8.8.2)
 - GHC (The Glorious Glasgow Haskell Compilation System, version 8.8.3)
 - Haskell Stack (Version 2.1.3, Git revision 636e3a759d51127df2b62f90772def126cdf6d1f (7735 commits) x86_64 hpack-0.31.2)
-- Heroku (heroku/7.39.0 linux-x64 node-v12.13.0)
-- HHVM (HipHop VM 4.47.0 (rel))
+- Heroku (heroku/7.39.1 linux-x64 node-v12.13.0)
+- HHVM (HipHop VM 4.50.0 (rel))
 - ImageMagick
-- Azul Zulu OpenJDK (7) (openjdk version "1.7.0_252")
-- Azul Zulu OpenJDK (8) (openjdk version "1.8.0_242")
-- Azul Zulu OpenJDK (11) (openjdk version "11.0.6" 2020-01-14 LTS)
-- Azul Zulu OpenJDK (12) (openjdk version "12.0.2" 2019-07-16)
+- Azul Zulu OpenJDK:
+  - 7 (openjdk version "1.7.0_252")
+  - 8 (openjdk version "1.8.0_242") (default)
+  - 11 (openjdk version "11.0.6" 2020-01-14 LTS)
+  - 12 (openjdk version "12.0.2" 2019-07-16)
 - Ant (Apache Ant(TM) version 1.9.6 compiled on July 20 2018)
-- Gradle 6.2.2
+- Gradle 6.3
 - Maven (Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f))
 - Kind (kind v0.7.0 go1.13.6 linux/amd64)
-- kubectl (Client Version: v1.17.3)
-- helm (v3.1.1+gafe7058)
-- Leiningen (Leiningen 2.9.1 on Java 1.8.0_242 OpenJDK 64-Bit Server VM)
+- kubectl (error: Missing or incomplete configuration info.  Please point to an existing, complete config file:)
+- helm (v3.1.2+gd878d4d)
+- Leiningen (Leiningen 2.9.3 on Java 1.8.0_242 OpenJDK 64-Bit Server VM)
 - Mercurial (Mercurial Distributed SCM (version 4.4.1))
-- Miniconda (conda 4.7.12)
+- Miniconda (conda 4.8.2)
 - Mono (Mono JIT compiler version 6.8.0.105 (tarball Tue Feb  4 21:20:35 UTC 2020))
 - MySQL (mysql  Ver 14.14 Distrib 5.7.29, for Linux (x86_64) using  EditLine wrapper)
 - MySQL Server (user:root password:root)
@@ -161,54 +168,57 @@ compiled using version 3.0.2.0 of the Cabal library )
 - Grunt (grunt-cli v1.2.0)
 - Gulp (CLI version: 2.2.0
 Local version: Unknown)
-- n (6.3.1)
+- n (6.4.0)
 - Parcel (1.12.4)
 - TypeScript (Version 3.8.3)
-- Webpack (4.42.0)
+- Webpack (4.42.1)
 - Webpack CLI (3.3.11)
-- Yarn (1.22.1)
+- Yarn (1.22.4)
 - Bazel (bazel 2.2.0)
 - Bazelisk (1.3.0)
 - PhantomJS (2.1.1)
-- PHP 5.6 (PHP 5.6.40-24+ubuntu16.04.1+deb.sury.org+1 (cli) )
-- PHP 7.0 (PHP 7.0.33-23+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:20:42) ( NTS ))
-- PHP 7.1 (PHP 7.1.33-12+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:21:57) ( NTS ))
-- PHP 7.2 (PHP 7.2.28-3+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:23:01) ( NTS ))
-- PHP 7.3 (PHP 7.3.15-3+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:23:10) ( NTS ))
-- PHP 7.4 (PHP 7.4.3 (cli) (built: Feb 23 2020 07:24:02) ( NTS ))
-- Composer  (Composer version 1.9.3 2020-02-04 12:58:49)
+- PHP 5.6 (PHP 5.6.40-26+ubuntu16.04.1+deb.sury.org+1 (cli) )
+- PHP 7.0 (PHP 7.0.33-26+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Mar 20 2020 15:00:31) ( NTS ))
+- PHP 7.1 (PHP 7.1.33-14+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Mar 20 2020 13:57:17) ( NTS ))
+- PHP 7.2 (PHP 7.2.29-1+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Mar 20 2020 13:54:16) ( NTS ))
+- PHP 7.3 (PHP 7.3.16-1+ubuntu16.04.1+deb.sury.org+1 (cli) (built: Mar 20 2020 13:51:21) ( NTS ))
+- PHP 7.4 (PHP 7.4.4 (cli) (built: Mar 20 2020 13:47:17) ( NTS ))
+- Composer  (Composer version 1.10.1 2020-03-13 20:34:27)
 - PHPUnit (PHPUnit 7.5.20 by Sebastian Bergmann and contributors.)
 - Pollinate
-- psql (PostgreSQL) 9.5.19
+- psql (PostgreSQL) 9.5.21
 - Powershell (PowerShell 7.0.0)
 - ruby (2.3.1p112)
 - gem (3.1.2)
 - rustup (1.21.1)
-- rust (1.41.1)
-- cargo (1.41.0)
+- rust (1.42.0)
+- cargo (1.42.0)
 - rustfmt (1.4.11-stable)
 - clippy (0.0.212)
-- rustdoc (1.41.1)
-- bindgen (execute
-the
-0.53.1)
-- cbindgen (0.13.1)
-- Julia (julia version 1.3.1)
+- rustdoc (1.42.0)
+- bindgen (0.53.2)
+- cbindgen (0.13.2)
+- Julia (julia version 1.4.0)
 - sbt (1.3.8)
 - Selenium server standalone (available via SELENIUM_JAR_PATH environment variable)
 - Sphinx Open Source Search Server
 - Subversion (svn, version 1.9.3 (r1718519))
-- Terraform (Terraform v0.12.23)
-- Packer (1.5.4)
+- Terraform (Terraform v0.12.24)
+- Packer (1.5.5)
 - Vcpkg 2020.02.04-unknownhash
-- Zeit Now CLI (17.0.4)
+- Zeit Now CLI (17.1.1)
+- Go 1.11 (go version go1.11.13 linux/amd64)
+- Go 1.12 (go version go1.12.17 linux/amd64)
+- Go 1.13 (go version go1.13.9 linux/amd64)
+- Go 1.14 (go version go1.14.1 linux/amd64)
 - Google Repository 58
 - Google Play services 49
 - Google APIs 24
 - Google APIs 23
 - Google APIs 22
 - Google APIs 21
-- CMake 3.6.4111459
+- CMake 3.10.2.4988404
+3.6.4111459
 - Android Support Repository 47.0.0
 - Android Solver for ConstraintLayout 1.0.2
 - Android Solver for ConstraintLayout 1.0.1
@@ -269,13 +279,13 @@ the
 - Az Module (3.1.0)
 - Az Module (3.5.0)
 - Cached container images
+  - node:10-alpine (Digest: sha256:9a88e3bc3f845b74d2fd8adcbc64608736a8be4a3e9dc7aa34fa743e3677a552)
+  - node:12-alpine (Digest: sha256:6b5b783c9cfe229af0bd5b0b677dd32005bb22d58465f3d0fe7fbd1c60ce068c)
   - node:10 (Digest: sha256:df200903ff34c07c1b9112b4fd9d1342c11eb7d99525f2b366c487f91dda8131)
   - node:12 (Digest: sha256:facc1cbde6e5aa3255092b1a1417451953c80bd31ab5a4403f8bcd90b90a8407)
   - buildpack-deps:stretch (Digest: sha256:dc901bbf4b34e4ca8771c0d0773e557221452f97bcf0c732de7ecda3782bdf97)
   - debian:9 (Digest: sha256:ddb131307ad9c70ebf8c7962ba73c20101f68c7a511915aea3ad3b7ad47b9d20)
   - debian:8 (Digest: sha256:2c9b2323299846c5298c12db373da310f8114f2941ae3f496e95270cc8ca5ebd)
-  - node:10-alpine (Digest: sha256:e8d05985dd93c380a83da00d676b081dad9cce148cb4ecdf26ed684fcff1449c)
-  - node:12-alpine (Digest: sha256:bba77d0ca8820b43af898b3c50d4e8b68dc703ebbd958319af2f21f2d3c309f5)
   - alpine:3.8 (Digest: sha256:2bb501e6173d9d006e56de5bce2720eb06396803300fe1687b58a7ff32bf4c14)
   - alpine:3.9 (Digest: sha256:115731bab0862031b44766733890091c17924f9b7781b79997f5f163be262178)
   - alpine:3.10 (Digest: sha256:7c3773f7bcc969f03f8f653910001d99a9d324b4b9caa008846ad2c3089f5a5f)
@@ -301,3 +311,4 @@ the
 - Python3 (Python 3.5.2)
 - pip3 (pip 8.1.1 from /usr/lib/python3/dist-packages (python 3.5))
 - Boost C++ Libraries 1.69.0
+- Boost C++ Libraries 1.72.0
