@@ -19,11 +19,13 @@ fi
 
 # Home directory is cleaned up before creation, we need create in skell to copy directories.
 echo "Move .mozilla directory to skel"
-mv $HOME/.mozilla /etc/skel/.mozilla
+xvfb-run firefox -CreateProfile default
 # Locale on firefox differs from other browsers, en_GB instead of en_US
-profile_dir=$(find /etc/skel/.mozilla/firefox -name "*.deafult-release" -type d)
+profile_dir=$(find .mozilla/firefox -name "*.default" -type d)
+echo "profile_dir is $profile_dir"
 echo 'user_pref("intl.accept_languages","en_US");' >> "$profile_dir/user.js"
 echo 'user_pref("intl.locale.requested","en_US");' >> "$profile_dir/user.js"
+mv $HOME/.mozilla /etc/skel/.mozilla
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
