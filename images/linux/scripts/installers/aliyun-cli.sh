@@ -8,8 +8,8 @@
 source $HELPER_SCRIPTS/document.sh
 
 # Install Alibaba Cloud CLI
-URL=$(curl -s https://github.com/aliyun/aliyun-cli | grep -m1 ">Linux<" | cut -d "\"" -f 2)
-wget -P /tmp "$URL"
+URL=$(curl -s https://github.com/aliyun/aliyun-cli/releases | grep -m1 "/aliyun/aliyun-cli/releases/download/" | cut -d "\"" -f 2)
+wget -P /tmp "https://github.com/$URL"
 tar xzvf /tmp/aliyun-cli-linux-*-amd64.tgz
 mv aliyun /usr/local/bin
 
