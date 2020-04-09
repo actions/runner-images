@@ -4,6 +4,7 @@
 ##  Desc:  Install toolset
 ################################################################################
 
+$ErrorActionPreference = "Stop"
 Function Install-Asset {
     param(
         [Parameter(Mandatory = $true)]
@@ -11,19 +12,17 @@ Function Install-Asset {
     )
 
     $releaseAssetName = [System.IO.Path]::GetFileNameWithoutExtension($ReleaseAsset.filename)
-    $assetFolderPath = Join-Path $env:AGENT_TEMPDIRECTORY $releaseAssetName
-    $assetArchivePath = Start-DownloadWithRetry -Url $ReleaseAsset.download_url -Name $ReleaseAsset.filename -DownloadPath $env:AGENT_TEMPDIRECTORY
+    $assetFolderPath = Join-Path $env:INSTALLER_SCRIPT_FOLDER $releaseAssetName
+    wget $ReleaseAsset.download_url -nv --retry-connrefused --tries=10
 
     Write-Host "Expand $($ReleaseAsset.filename) archive to the $assetFolderPath folder..."
-    unzip $assetArchivePath -d $assetFolderPath
+    unzip $ReleaseAsset.filename -d $assetFolderPath
 
     Write-Host "Invoke installation script..."
     Push-Location -Path $assetFolderPath
     Invoke-Expression ./setup.ps1
     Pop-Location
 }
-
-Import-Module -Name ImageHelpers -Force
 
 # Get toolset content
 $toolsetJson = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
@@ -37,7 +36,7 @@ foreach ($tool in $tools) {
     foreach ($toolVersion in $tool.versions) {
         $asset = $assets | Where-Object version -like $toolVersion `
         | Select-Object -ExpandProperty files `
-        | Where-Object { ($_.platform -eq $tool.platform) -and ($_.platform_version -eq $tool.platform_version) -and ($_.arch -eq $tool.arch) } `
+        | Where-Object { ($_.platform -eq $tool.platform) -and ($_.platform_version -eq $tool.platform_version)} `
         | Select-Object -First 1
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
