@@ -17,6 +17,10 @@ if ! command -v firefox; then
     exit 1
 fi
 
+# add to gloabl system preferences for firefox locale en_US, because other browsers have en_US local.
+# Default firefox local is en_GB
+echo 'pref("intl.locale.requested","en_US");' >> "/usr/lib/firefox/browser/defaults/preferences/syspref.js"
+
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 # Resolves: Running Firefox as root in a regular user's session is not supported.
@@ -25,8 +29,8 @@ HOME=/root
 DocumentInstalledItem "Firefox ($(firefox --version))"
 
 # Download and unpack latest release of geckodriver
-URL=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest|grep 'browser_download_url.*linux64.tar.gz'|sed -E 's/^.*(https:.+)".*/\1/g')
-echo "Downloading geckodriver $URL..."
+URL=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | jq -r '.assets[].browser_download_url | select(contains("linux64.tar.gz"))')
+echo "Downloading geckodriver $URL"
 wget "$URL" -O geckodriver.tar.gz
 tar -xzf geckodriver.tar.gz
 rm geckodriver.tar.gz

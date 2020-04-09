@@ -171,6 +171,7 @@
                 "{{template_dir}}/scripts/installers/miniconda.sh",
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
+                "{{template_dir}}/scripts/installers/nvm.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
                 "{{template_dir}}/scripts/installers/bazel.sh",
                 "{{template_dir}}/scripts/installers/phantomjs.sh",
@@ -190,7 +191,9 @@
                 "{{template_dir}}/scripts/installers/vcpkg.sh",
                 "{{template_dir}}/scripts/installers/zeit-now.sh",
                 "{{template_dir}}/scripts/installers/updatepath.sh",
-                "{{template_dir}}/scripts/installers/dpkg-config.sh"
+                "{{template_dir}}/scripts/installers/dpkg-config.sh",
+                "{{template_dir}}/scripts/installers/mongodb.sh",
+                "{{template_dir}}/scripts/installers/rndgenerator.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
