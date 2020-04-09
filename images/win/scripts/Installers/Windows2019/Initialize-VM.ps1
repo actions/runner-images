@@ -104,6 +104,10 @@ Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey
 # Turn off confirmation
 choco feature enable -n allowGlobalConfirmation
 
+# https://github.com/chocolatey/choco/issues/89
+# Remove some of the command aliases, like `cpack` #89
+Remove-Item -Path $env:ChocolateyInstall\bin\cpack.exe -Force
+
 # Install webpi
 choco install webpicmd -y
 

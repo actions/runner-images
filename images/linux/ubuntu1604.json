@@ -143,6 +143,7 @@
                 "{{template_dir}}/scripts/installers/1604/basic.sh",
                 "{{template_dir}}/scripts/installers/aws.sh",
                 "{{template_dir}}/scripts/installers/build-essential.sh",
+                "{{template_dir}}/scripts/installers/nvm.sh",
                 "{{template_dir}}/scripts/installers/clang.sh",
                 "{{template_dir}}/scripts/installers/swift.sh",
                 "{{template_dir}}/scripts/installers/cmake.sh",
@@ -187,7 +188,9 @@
                 "{{template_dir}}/scripts/installers/vcpkg.sh",
                 "{{template_dir}}/scripts/installers/zeit-now.sh",
                 "{{template_dir}}/scripts/installers/updatepath.sh",
-                "{{template_dir}}/scripts/installers/dpkg-config.sh"
+                "{{template_dir}}/scripts/installers/dpkg-config.sh",
+                "{{template_dir}}/scripts/installers/mongodb.sh",
+                "{{template_dir}}/scripts/installers/rndgenerator.sh"
 
             ],
             "environment_vars": [
