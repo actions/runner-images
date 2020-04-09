@@ -21,7 +21,7 @@ Function Install-Asset {
 
     Write-Host "Invoke installation script..."
     Push-Location -Path $assetFolderPath
-    Invoke-Expression "bash ./setup.sh"
+    Invoke-Expression "bash -c './setup.sh'"
     Pop-Location
 }
 
