@@ -26,7 +26,7 @@ Function Install-Asset {
 Import-Module -Name ImageHelpers -Force
 
 # Get toolset content
-$toolsetJson = Get-Content -Path $env:TOOLSET_JSON_PATH -Raw
+$toolsetJson = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
 $tools = ConvertFrom-Json -InputObject $toolsetJson | Select-Object -ExpandProperty toolcache
 
 foreach ($tool in $tools) {

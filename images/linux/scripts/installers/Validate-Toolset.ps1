@@ -8,7 +8,7 @@ function Get-ToolsByName {
         [Parameter(Mandatory)] [string]$SoftwareName
     )
 
-    $tools = Get-Content -Raw $env:TOOLSET_JSON_PATH | ConvertFrom-Json
+    $tools = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw | ConvertFrom-Json
     return $tools.PSObject.Properties.Value | Where-Object { $_.name -eq $SoftwareName }
 }
 
