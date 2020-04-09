@@ -250,7 +250,7 @@
             "environment_vars": [
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
-            "execute_command": "sudo pwsh -f '{{ .Path }}'"
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
         },
         {
             "type": "shell",
