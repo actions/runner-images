@@ -40,7 +40,7 @@ $instanceName = "$env:computername\$sqlInstance"
 $version = Test-SqlConnection -ServerName $instanceName -IntegratedSecurity "false" -UserName $sqlUser -Password $sqlPassword
 
 # Adding description of the software to Markdown
-$SoftwareName = "Git"
+$SoftwareName = "Microsoft SQL Express"
 $Description = @"
 _Version:_ $version<br/>
 _InstanceName:_ $sqlInstance<br/>
