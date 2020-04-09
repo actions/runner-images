@@ -6,9 +6,10 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/apt.sh
 
 # Install Alibaba Cloud CLI
-URL=$(curl -s https://api.github.com/repos/aliyun/aliyun-cli/releases/latest | jq -r '.assets[].browser_download_url | select(contains("linux-3.0.37-amd64.tgz"))')
+URL=$(curl -s https://api.github.com/repos/aliyun/aliyun-cli/releases/latest | jq -r '.assets[].browser_download_url | select(contains("aliyun-cli-linux"))')
 wget -P /tmp $URL
 tar xzvf /tmp/aliyun-cli-linux-*-amd64.tgz
 mv aliyun /usr/local/bin
