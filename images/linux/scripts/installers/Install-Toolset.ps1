@@ -5,6 +5,7 @@
 ################################################################################
 
 $ErrorActionPreference = "Stop"
+
 Function Install-Asset {
     param(
         [Parameter(Mandatory = $true)]
