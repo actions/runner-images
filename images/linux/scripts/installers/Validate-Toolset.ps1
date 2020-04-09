@@ -32,7 +32,7 @@ $tools = ConvertFrom-Json -InputObject $toolsetJson | Select-Object -ExpandPrope
 
 foreach($tool in $tools) {
 
-    Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItem `"$($tool.name):`"`""
+    Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItem '$($tool.name):'`""
 
     $toolPath = Join-Path $env:AGENT_TOOLSDIRECTORY $tool.name
     # Get executables for current tool
@@ -51,6 +51,6 @@ foreach($tool in $tools) {
         Write-Host "Run validation test for $($tool.name)($($tool.arch)) $foundVersion executables..."
         Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionPath
 
-        Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItemIndent `"$($tool.name) $version`"`""
+        Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItemIndent '$($tool.name) $version'`""
     }
 }
