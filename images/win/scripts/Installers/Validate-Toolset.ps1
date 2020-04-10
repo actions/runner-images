@@ -76,16 +76,26 @@ foreach($tool in $tools) {
 
     foreach ($version in $tool.versions) {
         # Check if version folder exists
-        $foundVersionPath = Join-Path $toolPath $version | Join-Path -ChildPath $tool.arch | Get-Item
-        if ($foundVersionPath -eq $null) {
-            Write-Host "Expected $($tool.name) $version ($($tool.arch)) folder is not installed!"
+        $foundVersionPath = Join-Path $toolPath $version
+        if (-not (Test-Path $foundVersionPath)) {
+            Write-Host "Expected $($tool.name) $version folder is not found!"
             exit 1
         }
 
-        $foundVersion = $($foundVersionPath.parent.fullname.Split("\")[-1])
+        # Take latest installed version in case if toolset version contains wildcards
+        $foundVersion = Get-Item $foundVersionPath
+                        | Sort-Object -Property {[version]$_.name} -Descending
+                        | Select-Object -First 1
+
+        # Check for required architecture folder
+        $foundVersionArchPath = Join-Path $foundVersionPath $tool.arch
+        if (-not (Test-Path $foundVersionArchPath)) {
+            Write-Host "Expected $($tool.name)($($tool.arch)) $foundVersion folder is not found!"
+            exit 1
+        }
 
         Write-Host "Run validation test for $($tool.name)($($tool.arch)) $foundVersion executables..."
-        Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionPath
+        Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionArchPath
 
         # Add to tool version to markdown
         $markdownDescription += "_Version:_ $foundVersion<br/>"
