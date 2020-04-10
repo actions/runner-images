@@ -14,8 +14,8 @@ Function Install-Asset {
     $assetFolderPath = Join-Path $env:TEMP $releaseAssetName
     $assetArchivePath = Start-DownloadWithRetry -Url $ReleaseAsset.download_url -Name $ReleaseAsset.filename
 
-    Write-Host "Expand $($ReleaseAsset.filename) archive to the $assetFolderPath folder..."
-    7z.exe x $assetArchivePath -o"$assetFolderPath" -y
+    Write-Host "Extract $($ReleaseAsset.filename) content..."
+    7z.exe x $assetArchivePath -o"$assetFolderPath" -y | Out-Null
 
     Write-Host "Invoke installation script..."
     Push-Location -Path $assetFolderPath
