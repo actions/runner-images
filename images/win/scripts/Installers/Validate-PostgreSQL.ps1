@@ -12,10 +12,10 @@ function Validate-PostgreSQL {
     }
 }
 
-$paths=(Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
-$pgservice=(Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").Name
-$pgroot=$paths.split('"')[1].replace("\bin\pg_ctl.exe", "")
-$psqlVersion=pg_config --version | Out-String
+$paths = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
+$pgservice = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").Name
+$pgroot = $paths.split('"')[1].replace("\bin\pg_ctl.exe", "")
+$psqlVersion = pg_config --version | Out-String
 Validate-PostgreSQL
 
 # Adding description of the software to Markdown
