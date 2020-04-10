@@ -102,7 +102,7 @@ foreach($tool in $tools) {
     }
 
     # Create markdown description for system default tool
-    if ($tool.default -ne "") {
+    if (-not ([string]::IsNullOrEmpty($tool.default))) {
         Write-Host "Validate system default $($tool.name)($($tool.arch)) $($tool.default)..."
         $markdownDescription += Validate-SystemDefaultTool -ToolName $tool.name -ExpectedVersion $tool.default
     }
