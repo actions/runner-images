@@ -83,14 +83,14 @@ foreach($tool in $tools) {
         }
 
         # Take latest installed version in case if toolset version contains wildcards
-        $foundVersionPath = Get-Item $expectedVersionPath
+        $foundVersion = Get-Item $expectedVersionPath
                         | Sort-Object -Property {[version]$_.name} -Descending
                         | Select-Object -First 1
 
         # Check for required architecture folder
-        $foundVersionArchPath = Join-Path $foundVersionPath $tool.arch
+        $foundVersionArchPath = Join-Path $foundVersion $tool.arch
         if (-not (Test-Path $foundVersionArchPath)) {
-            Write-Host "Expected $($tool.name)($($tool.arch)) $($foundVersion.name) folder is not found!"
+            Write-Host "Expected $($tool.name)($($tool.arch)) $($foundVersion.name) architecture folder is not found!"
             exit 1
         }
 
