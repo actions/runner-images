@@ -4,8 +4,6 @@
 ##  Desc:  Install toolset
 ################################################################################
 
-$ErrorActionPreference = "Stop"
-
 Function Install-Asset {
     param(
         [Parameter(Mandatory = $true)]
@@ -16,14 +14,16 @@ Function Install-Asset {
     $assetFolderPath = Join-Path $env:INSTALLER_SCRIPT_FOLDER $releaseAssetName
     wget $ReleaseAsset.download_url -nv --retry-connrefused --tries=10
 
-    Write-Host "Expand $($ReleaseAsset.filename) archive to the $assetFolderPath folder..."
-    unzip $ReleaseAsset.filename -d $assetFolderPath
+    Write-Host "Extract $($ReleaseAsset.filename) content..."
+    unzip $ReleaseAsset.filename -d $assetFolderPath | Out-Null
 
     Write-Host "Invoke installation script..."
     Push-Location -Path $assetFolderPath
     Invoke-Expression "bash ./setup.sh"
     Pop-Location
 }
+
+$ErrorActionPreference = "Stop"
 
 # Get toolset content
 $toolsetJson = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw

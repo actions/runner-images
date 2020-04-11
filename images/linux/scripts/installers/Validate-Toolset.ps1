@@ -23,34 +23,40 @@ function Run-ExecutableTests {
     }
 }
 
+$ErrorActionPreference = "Stop"
+
 # Define executables for cached tools
-$toolsExecutables = @{ "Python" = @("python", "bin/pip") }
+$toolsExecutables = @{ Python = @("python", "bin/pip") }
 
 # Get toolset content
 $toolsetJson = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
 $tools = ConvertFrom-Json -InputObject $toolsetJson | Select-Object -ExpandProperty toolcache
 
 foreach($tool in $tools) {
-
     Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItem '$($tool.name):'`""
 
     $toolPath = Join-Path $env:AGENT_TOOLSDIRECTORY $tool.name
     # Get executables for current tool
-    $toolExecs = $toolsExecutables | Select-Object -ExpandProperty $tool.name
+    $toolExecs = $toolsExecutables[$tool.name]
 
     foreach ($version in $tool.versions) {
         # Check if version folder exists
-        $foundVersionPath = Join-Path $toolPath $version | Join-Path -ChildPath $tool.arch | Get-Item
-        if ($foundVersionPath -eq $null) {
-            Write-Host "Expected $($tool.name) $version ($($tool.arch)) folder is not installed!"
+        $expectedVersionPath = Join-Path $toolPath $version
+        if (-not (Test-Path $expectedVersionPath)) {
+            Write-Host "Expected $($tool.name) $version folder is not found!"
             exit 1
         }
 
-        $foundVersion = $($foundVersionPath.parent.fullname.Split("/")[-1])
+        # Take latest installed version in case if toolset version contains wildcards
+        $foundVersion = Get-Item $expectedVersionPath `
+                        | Sort-Object -Property {[version]$_.name} -Descending `
+                        | Select-Object -First 1
+        $foundVersionPath = Join-Path $foundVersion $tool.arch
 
-        Write-Host "Run validation test for $($tool.name)($($tool.arch)) $foundVersion executables..."
+        Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
         Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionPath
 
-        Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItemIndent '$($tool.name) $version'`""
+        # Add tool version to documentation
+        Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItemIndent '$($tool.name) $($foundVersion.name)'`""
     }
 }
