@@ -40,6 +40,7 @@ fi
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "ndk-bundle" \
+    "ndk;20.0.5594570" \
     "platform-tools" \
     "platforms;android-29" \
     "platforms;android-28" \
