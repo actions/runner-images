@@ -46,9 +46,13 @@ function Install-Binary
 
         $exitCode = $process.ExitCode
         if ($exitCode -eq 0 -or $exitCode -eq 3010)
-            { Write-Host "Installation successful" }
+        {
+            Write-Host "Installation successful"
+        }
         else
-            { Write-Host "Non zero exit code returned by the installation process: $exitCode" }
+        {
+            Write-Host "Non zero exit code returned by the installation process: $exitCode"
+        }
     }
     catch
     {
@@ -88,7 +92,9 @@ function Stop-SvcWithErrHandling
         {
             Write-Warning "[!] Service [$ServiceName] is not found";
             if ($StopOnError)
-            { exit 1 }
+            {
+                exit 1
+            }
 
         }
         else
@@ -136,7 +142,9 @@ function Set-SvcWithErrHandling
     {
         $service = Get-Service $ServiceName -ErrorAction SilentlyContinue
         if (-not $service)
-            { Write-Warning "[!] Service [$ServiceName] is not found" }
+            {
+                Write-Warning "[!] Service [$ServiceName] is not found"
+            }
 
         try
         {
@@ -205,8 +213,10 @@ function Install-VsixExtension
         [switch] $InstallOnly
     )
 
-    if (!$InstallOnly)
-        { $FilePath = Start-DownloadWithRetry -Url $Url -Name $Name }
+    if (-not $InstallOnly)
+        {
+            $FilePath = Start-DownloadWithRetry -Url $Url -Name $Name
+        }
 
     $argumentList = ('/quiet', "`"$FilePath`"")
 
@@ -243,8 +253,10 @@ function Install-VsixExtension
     }
 
     #Cleanup downloaded installation files
-    if (!$InstallOnly)
-        { Remove-Item -Force -Confirm:$false $FilePath }
+    if (-not $InstallOnly)
+        {
+            Remove-Item -Force -Confirm:$false $FilePath
+        }
 }
 
 function Get-VSExtensionVersion
@@ -265,7 +277,7 @@ function Get-VSExtensionVersion
     $state = $stateContent | ConvertFrom-Json
     $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
 
-    if (!$packageVersion)
+    if (-not $packageVersion)
     {
         Write-Host "installed package $packageName for Visual Studio 2019 was not found"
         exit 1
