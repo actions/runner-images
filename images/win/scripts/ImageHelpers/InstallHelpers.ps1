@@ -1,124 +1,107 @@
-function Install-MSI
+function Install-Binary
 {
-    Param
-    (
-        [String]$MsiUrl,
-        [String]$MsiName,
-        [int]$retries = 5
+    <#
+    .SYNOPSIS
+        A helper function to install executables.
+
+    .DESCRIPTION
+        Download and install .exe or .msi binaries from specified URL.
+
+    .PARAMETER Url
+        The URL from which the binary will be downloaded. Required parameter.
+
+    .PARAMETER Name
+        The Name with which binary will be downloaded. Required parameter.
+
+    .PARAMETER ArgumentList
+        The list of arguments that will be passed to the installer. Required for .exe binaries.
+
+    .EXAMPLE
+        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet")
+    #>
+
+    Param (
+        [Parameter(Mandatory)]
+        [String] $Url,
+        [Parameter(Mandatory)]
+        [String] $Name,
+        [String[]] $ArgumentList
     )
 
-    $exitCode = -1
+    Write-Host "Downloading $Name..."
+    $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+
+    # MSI binaries should be installed via msiexec.exe
+    $fileExtension = ([System.IO.Path]::GetExtension($Name)).Replace(".", "")
+    if ($fileExtension -eq "msi")
+    {
+        $ArgumentList = ('/i', $filePath, '/QN', '/norestart')
+        $FilePath = "msiexec.exe"
+    }
 
     try
     {
-        Write-Host "Downloading $MsiName..."
-        $FilePath = "${env:Temp}\$MsiName"
-
-        Invoke-WebRequest -Uri $MsiUrl -OutFile $FilePath
-
-        $Arguments = ('/i', $FilePath, '/QN', '/norestart' )
-
-        Write-Host "Starting Install $MsiName..."
-        $process = Start-Process -FilePath msiexec.exe -ArgumentList $Arguments -Wait -PassThru
-        $exitCode = $process.ExitCode
-
-        if ($exitCode -eq 0 -or $exitCode -eq 3010)
-        {
-            Write-Host -Object 'Installation successful'
-            return $exitCode
-        }
-        else
-        {
-            Write-Host -Object "Non zero exit code returned by the installation process : $exitCode."
-            exit $exitCode
-        }
-    }
-    catch
-    {
-        Write-Host -Object "Failed to install the MSI $MsiName"
-        Write-Host -Object $_.Exception.Message
-        exit -1
-    }
-}
-
-
-function Install-EXE
-{
-    Param
-    (
-        [String]$Url,
-        [String]$Name,
-        [String[]]$ArgumentList
-    )
-
-    $exitCode = -1
-
-    try
-    {
-        Write-Host "Downloading $Name..."
-        $FilePath = "${env:Temp}\$Name"
-
-        Invoke-WebRequest -Uri $Url -OutFile $FilePath
-
         Write-Host "Starting Install $Name..."
-        $process = Start-Process -FilePath $FilePath -ArgumentList $ArgumentList -Wait -PassThru
-        $exitCode = $process.ExitCode
+        $process = Start-Process -FilePath $filePath -ArgumentList $ArgumentList -Wait -PassThru
 
+        $exitCode = $process.ExitCode
         if ($exitCode -eq 0 -or $exitCode -eq 3010)
-        {
-            Write-Host -Object 'Installation successful'
-            return $exitCode
-        }
+            { Write-Host "Installation successful" }
         else
-        {
-            Write-Host -Object "Non zero exit code returned by the installation process : $exitCode."
-            return $exitCode
-        }
+            { Write-Host "Non zero exit code returned by the installation process: $exitCode" }
     }
     catch
     {
-        Write-Host -Object "Failed to install the Executable $Name"
+        Write-Host -Object "Failed to install the $fileExtension $Name"
         Write-Host -Object $_.Exception.Message
-        return -1
+        $exitCode = -1
     }
+
+    return $exitCode
 }
 
 function Stop-SvcWithErrHandling
-<#
-.DESCRIPTION
-Function for stopping the Windows Service with error handling
-
-.AUTHOR
-Andrey Mishechkin v-andmis@microsoft.com
-
-.PARAMETER -ServiceName
-The name of stopping service
-
-.PARAMETER -StopOnError
-Switch for stopping the script and exit from PowerShell if one service is absent
-#>
 {
+    <#
+    .DESCRIPTION
+        Function for stopping the Windows Service with error handling
+
+    .AUTHOR
+        Andrey Mishechkin v-andmis@microsoft.com
+
+    .PARAMETER ServiceName
+        The name of stopping service
+
+    .PARAMETER StopOnError
+        Switch for stopping the script and exit from PowerShell if one service is absent
+    #>
     param (
-        [Parameter(Mandatory, ValueFromPipeLine = $true)] [string] $ServiceName,
-        [Parameter()] [switch] $StopOnError
+        [Parameter(Mandatory, ValueFromPipeLine = $true)]
+        [string] $ServiceName,
+        [switch] $StopOnError
     )
 
-    Process {
+    Process
+    {
         $Service = Get-Service $ServiceName -ErrorAction SilentlyContinue
-        if (-not $Service) {
+        if (-not $Service)
+        {
             Write-Warning "[!] Service [$ServiceName] is not found";
-            if ($StopOnError) {
-                exit 1;
-            }
+            if ($StopOnError)
+            { exit 1 }
+
         }
-        else {
+        else
+        {
             Write-Host "Try to stop service [$ServiceName]";
-            try {
+            try
+            {
                 Stop-Service -Name $ServiceName -Force;
                 $Service.WaitForStatus("Stopped", "00:01:00");
                 Write-Host "Service [$ServiceName] has been stopped successfuly";
             }
-            catch {
+            catch
+            {
                 Write-Error "[!] Failed to stop service [$ServiceName] with error:"
                 $_ | Out-String | Write-Error;
             }
@@ -127,35 +110,40 @@ Switch for stopping the script and exit from PowerShell if one service is absent
 }
 
 function Set-SvcWithErrHandling
-<#
-.DESCRIPTION
-Function for setting the Windows Service parameter with error handling
-
-.AUTHOR
-Andrey Mishechkin v-andmis@microsoft.com
-
-.PARAMETER -ServiceName
-The name of stopping service
-
-.PARAMETER -Arguments
-Hashtable for service arguments
-#>
 {
+    <#
+    .DESCRIPTION
+        Function for setting the Windows Service parameter with error handling
+
+    .AUTHOR
+        Andrey Mishechkin v-andmis@microsoft.com
+
+    .PARAMETER ServiceName
+        The name of stopping service
+
+    .PARAMETER Arguments
+        Hashtable for service arguments
+    #>
 
     param (
-        [Parameter(Mandatory, ValueFromPipeLine = $true)] [string] $ServiceName,
-        [Parameter(Mandatory)] [hashtable] $Arguments
+        [Parameter(Mandatory, ValueFromPipeLine = $true)]
+        [string] $ServiceName,
+        [Parameter(Mandatory)]
+        [hashtable] $Arguments
     )
 
-    Process {
+    Process
+    {
         $Service = Get-Service $ServiceName -ErrorAction SilentlyContinue
-        if (-not $Service) {
-            Write-Warning "[!] Service [$ServiceName] is not found";
-        }
-        try {
+        if (-not $Service)
+            { Write-Warning "[!] Service [$ServiceName] is not found" }
+
+        try
+        {
            Set-Service $ServiceName @Arguments;
         }
-        catch {
+        catch
+        {
             Write-Error "[!] Failed to set service [$ServiceName] arguments with error:"
             $_ | Out-String | Write-Error;
         }
@@ -174,6 +162,7 @@ function Start-DownloadWithRetry
     )
 
     $FilePath = Join-Path -Path $DownloadPath -ChildPath $Name
+
     #Default retry logic for the package.
     while ($retries -gt 0)
     {
@@ -202,7 +191,6 @@ function Start-DownloadWithRetry
     return $FilePath
 }
 
-
 function Install-VsixExtension
 {
     Param
@@ -218,9 +206,7 @@ function Install-VsixExtension
     )
 
     if (!$InstallOnly)
-    {
-        $FilePath = Start-DownloadWithRetry -Url $Url -Name $Name
-    }
+        { $FilePath = Start-DownloadWithRetry -Url $Url -Name $Name }
 
     $ArgumentList = ('/quiet', "`"$FilePath`"")
 
@@ -258,15 +244,14 @@ function Install-VsixExtension
 
     #Cleanup downloaded installation files
     if (!$InstallOnly)
-    {
-        Remove-Item -Force -Confirm:$false $FilePath
-    }
+        { Remove-Item -Force -Confirm:$false $FilePath }
 }
 
 function Get-VSExtensionVersion
 {
     param (
-        [string] [Parameter(Mandatory=$true)] $packageName
+        [Parameter(Mandatory=$true)]
+        [string] $packageName
     )
 
     $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
@@ -289,7 +274,6 @@ function Get-VSExtensionVersion
 
     return $packageVersion
 }
-
 
 function Get-ToolcachePackages {
     $toolcachePath = Join-Path $env:ROOT_FOLDER "toolcache.json"

@@ -12,5 +12,5 @@ $url = "https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Windows-x86_64.exe
 $name = $Url.Split('/')[-1]
 $destination = "C:\Miniconda"
 
-Install-EXE -Url $url -Name $name -ArgumentList "/S /AddToPath=0 /RegisterPython=0 /D=$destination"
+Install-Binary -Url $url -Name $name -ArgumentList "/S /AddToPath=0 /RegisterPython=0 /D=$destination"
 Set-SystemVariable -SystemVariable "CONDA" -Value $destination

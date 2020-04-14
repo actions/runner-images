@@ -10,4 +10,4 @@ $InstallerURI = "https://download.visualstudio.microsoft.com/download/pr/014120d
 $InstallerName = "NDP48-DevPack-ENU.exe"
 $ArgumentList = ('Setup', '/passive', '/norestart' )
 
-Install-EXE -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
+Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList

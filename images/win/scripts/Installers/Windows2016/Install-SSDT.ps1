@@ -12,7 +12,7 @@ $InstallerName = 'SSDT-Setup-ENU.exe'
 $logFilePath = "$env:TEMP\ssdtlog.txt"
 $ArgumentList = ('/install', 'INSTALLALL', '/passive', '/norestart', "/log `"$logFilePath`"")
 
-$exitCode = Install-EXE -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
+$exitCode = Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
 
 if($exitCode -ne 0 -and $exitCode -ne 3010)
 {

@@ -24,7 +24,7 @@ else
 
 
 # `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
-$sdkExitCode = Install-EXE -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet")
+$sdkExitCode = Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet")
 
 if ($sdkExitCode -ne 0)
 {
@@ -33,7 +33,7 @@ if ($sdkExitCode -ne 0)
 }
 
 # `wdksetup.exe /features + /quiet` installs all features without showing the GUI
-$wdkExitCode = Install-EXE -Url $wdkUrl -Name "wdksetup.exe" -ArgumentList ("/features", "+", "/quiet")
+$wdkExitCode = Install-Binary -Url $wdkUrl -Name "wdksetup.exe" -ArgumentList ("/features", "+", "/quiet")
 
 if ($wdkExitCode -ne 0)
 {

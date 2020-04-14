@@ -5,4 +5,4 @@
 
 Import-Module -Name ImageHelpers -Force
 
-Install-MSI -MsiUrl "https://aka.ms/cosmosdb-emulator" -MsiName "AzureCosmosDBEmulator.msi"
+Install-Binary -Url "https://aka.ms/cosmosdb-emulator" -Name "AzureCosmosDBEmulator.msi"

@@ -4,5 +4,6 @@
 ####################################################################################
 
 Import-Module -Name ImageHelpers -Force
+
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Install-MSI -MsiUrl "https://github.com/Microsoft/WinAppDriver/releases/download/v1.1/WindowsApplicationDriver.msi" -MsiName "WindowsApplicationDriver.msi"
+Install-Binary -Url "https://github.com/Microsoft/WinAppDriver/releases/download/v1.1/WindowsApplicationDriver.msi" -Name "WindowsApplicationDriver.msi"

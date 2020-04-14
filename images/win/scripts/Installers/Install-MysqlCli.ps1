@@ -13,7 +13,7 @@ $InstallerURI = 'https://download.microsoft.com/download/0/5/6/056dcda9-d667-4e2
 $InstallerName = 'vcredist_x64.exe'
 $ArgumentList = ('/install', '/quiet', '/norestart' )
 
-$exitCode = Install-EXE -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
+$exitCode = Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
 if ($exitCode -eq 0 -or $exitCode -eq 3010)
 {
     # MySQL disabled TLS 1.0 support on or about Jul-14-2018.  Need to make sure TLS 1.2 is enabled.

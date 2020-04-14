@@ -10,4 +10,4 @@ $InstallerURI = "https://download.microsoft.com/download/3/B/F/3BFB9C35-405D-45D
 $InstallerName = "NDP472-DevPack-ENU.exe"
 $ArgumentList = ('Setup', '/passive', '/norestart' )
 
-Install-EXE -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
+Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList

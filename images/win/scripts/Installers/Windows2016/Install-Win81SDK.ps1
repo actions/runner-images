@@ -9,6 +9,4 @@ $InstallerURI = 'http://download.microsoft.com/download/B/0/C/B0C80BA3-8AD6-4958
 $InstallerName = 'sdksetup.exe'
 $ArgumentList = ('/quiet', '/norestart')
 
-$exitCode = Install-EXE -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
-
-exit $exitCode
+Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
