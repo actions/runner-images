@@ -8,42 +8,57 @@
 #     values containg slashes (i.e. directory path)
 #     The values containing '%' will break the functions
 
-function getEtcEnvironmentVar {
-    var_name="$1"
-    # remove `var_name=` and possible quotes from the line
-    grep "^${var_name}=" /etc/environment |sed -E "s%^${var_name}=\"?([^\"]+)\"?.*$%\1%"
+function getEtcEnvironmentVariable {
+    variable_name="$1"
+    # remove `variable_name=` and possible quotes from the line
+    grep "^${variable_name}=" /etc/environment |sed -E "s%^${variable_name}=\"?([^\"]+)\"?.*$%\1%"
 }
 
-function addEtcEnvironmentVar {
-    var_name="$1"
-    var_value="$2"
+function addEtcEnvironmentVariable {
+    variable_name="$1"
+    variable_value="$2"
 
-    echo "$var_name=\"$var_value\"" | sudo tee -a /etc/environment
+    echo "$variable_name=\"$variable_value\"" | sudo tee -a /etc/environment
 }
 
-function replaceEtcEnvironmentVar {
-    var_name="$1"
-    var_value="$2"
+function replaceEtcEnvironmentVariable {
+    variable_name="$1"
+    variable_value="$2"
 
-    # modify /etc/environemnt in place by replacing a string that begins with var_name
-    sudo sed -ie "s%^${var_name}=.*$%${var_name}=\"${var_value}\"%" /etc/environment
+    # modify /etc/environemnt in place by replacing a string that begins with variable_name
+    sudo sed -ie "s%^${variable_name}=.*$%${variable_name}=\"${variable_value}\"%" /etc/environment
 }
 
-function setEtcEnvironmentVar {
-    var_name="$1"
-    var_value="$2"
+function setEtcEnvironmentVariable {
+    variable_name="$1"
+    variable_value="$2"
 
-    if grep "$var_name" /etc/environment > /dev/null; then
-        replaceEtcEnvironmentVar $var_name $var_value
+    if grep "$variable_name" /etc/environment > /dev/null; then
+        replaceEtcEnvironmentVariable $variable_name $variable_value
     else
-        addEtcEnvironmentVar $var_name $var_value
+        addEtcEnvironmentVariable $variable_name $variable_value
     fi
 }
 
-function addEtcEnvironmentPathElement {
+function prependEtcEnvironmentVariable {
+    variable_name="$1"
+    element="$2"
+    # TODO: handle the case if the variable does not exist
+    existing_value=$(getEtcEnvironmentVariable "${variable_name}")
+    setEtcEnvironmentVariable "${variable_name}" "${element}:${existing_value}"
+}
+
+function appendEtcEnvironmentVariable {
+    variable_name="$1"
+    element="$2"
+    # TODO: handle the case if the variable does not exist
+    existing_value=$(getEtcEnvironmentVariable "${variable_name}")
+    setEtcEnvironmentVariable "${variable_name}" "${existing_value}:${element}"
+}
+
+function prependEtcEnvironmentPath {
     element="$1"
-    etc_path=$(getEtcEnvironmentVar PATH)
-    setEtcEnvironmentVar PATH "${element}:${etc_path}"
+    prependEtcEnvironmentVariable PATH "${element}"
 }
 
 # Process /etc/environment as if it were shell script with `export VAR=...` expressions
@@ -59,7 +74,7 @@ function  reloadEtcEnvironment {
     # add `export ` to every variable of /etc/environemnt except PATH and eval the result shell script
     eval $(grep -v '^PATH=' /etc/environment | sed -e 's%^%export %')
     # handle PATH specially
-    etc_path=$(getEtcEnvironmentVar PATH)
+    etc_path=$(getEtcEnvironmentVariable PATH)
     export PATH="$PATH:$etc_path"
 }
 
