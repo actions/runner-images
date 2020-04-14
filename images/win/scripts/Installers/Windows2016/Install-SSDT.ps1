@@ -7,12 +7,12 @@ Import-Module -Name ImageHelpers -Force
 
 #SSDT for Visual Studio 2017
 #The link down below points to the latest version of SSDT for Visual Studio 2017
-$InstallerURI = 'https://go.microsoft.com/fwlink/?linkid=2124518'
-$InstallerName = 'SSDT-Setup-ENU.exe'
+$InstallerName = "SSDT-Setup-ENU.exe"
+$InstallerUrl = "https://go.microsoft.com/fwlink/?linkid=2124518"
 $logFilePath = "$env:TEMP\ssdtlog.txt"
-$ArgumentList = ('/install', 'INSTALLALL', '/passive', '/norestart', "/log `"$logFilePath`"")
+$ArgumentList = ("/install", "INSTALLALL", "/passive", "/norestart", "/log `"$logFilePath`"")
 
-$exitCode = Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
+$exitCode = Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList
 
 if($exitCode -ne 0 -and $exitCode -ne 3010)
 {

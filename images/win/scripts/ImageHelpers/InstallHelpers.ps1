@@ -36,7 +36,7 @@ function Install-Binary
     if ($fileExtension -eq "msi")
     {
         $ArgumentList = ('/i', $filePath, '/QN', '/norestart')
-        $FilePath = "msiexec.exe"
+        $filePath = "msiexec.exe"
     }
 
     try
@@ -83,8 +83,8 @@ function Stop-SvcWithErrHandling
 
     Process
     {
-        $Service = Get-Service $ServiceName -ErrorAction SilentlyContinue
-        if (-not $Service)
+        $service = Get-Service $ServiceName -ErrorAction SilentlyContinue
+        if (-not $service)
         {
             Write-Warning "[!] Service [$ServiceName] is not found";
             if ($StopOnError)
@@ -97,7 +97,7 @@ function Stop-SvcWithErrHandling
             try
             {
                 Stop-Service -Name $ServiceName -Force;
-                $Service.WaitForStatus("Stopped", "00:01:00");
+                $service.WaitForStatus("Stopped", "00:01:00");
                 Write-Host "Service [$ServiceName] has been stopped successfuly";
             }
             catch
@@ -134,13 +134,13 @@ function Set-SvcWithErrHandling
 
     Process
     {
-        $Service = Get-Service $ServiceName -ErrorAction SilentlyContinue
-        if (-not $Service)
+        $service = Get-Service $ServiceName -ErrorAction SilentlyContinue
+        if (-not $service)
             { Write-Warning "[!] Service [$ServiceName] is not found" }
 
         try
         {
-           Set-Service $ServiceName @Arguments;
+           Set-Service $serviceName @Arguments;
         }
         catch
         {
@@ -161,34 +161,34 @@ function Start-DownloadWithRetry
         [int] $Retries = 20
     )
 
-    $FilePath = Join-Path -Path $DownloadPath -ChildPath $Name
+    $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
 
     #Default retry logic for the package.
-    while ($retries -gt 0)
+    while ($Retries -gt 0)
     {
         try
         {
-            Write-Host "Downloading package from: $Url to path $FilePath ."
-            (New-Object System.Net.WebClient).DownloadFile($Url, $FilePath)
+            Write-Host "Downloading package from: $Url to path $filePath ."
+            (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
             break
         }
         catch
         {
             Write-Host "There is an error during package downloading:`n $_"
-            $retries--
+            $Retries--
 
-            if ($retries -eq 0)
+            if ($Retries -eq 0)
             {
                 Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
                 exit 1
             }
 
-            Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
+            Write-Host "Waiting 30 seconds before retrying. Retries left: $Retries"
             Start-Sleep -Seconds 30
         }
     }
 
-    return $FilePath
+    return $filePath
 }
 
 function Install-VsixExtension
@@ -208,7 +208,7 @@ function Install-VsixExtension
     if (!$InstallOnly)
         { $FilePath = Start-DownloadWithRetry -Url $Url -Name $Name }
 
-    $ArgumentList = ('/quiet', "`"$FilePath`"")
+    $argumentList = ('/quiet', "`"$FilePath`"")
 
     Write-Host "Starting Install $Name..."
     try
@@ -216,7 +216,7 @@ function Install-VsixExtension
         #There are 2 types of packages at the moment - exe and vsix
         if ($Name -match "vsix")
         {
-            $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\$VSversion\Enterprise\Common7\IDE\VSIXInstaller.exe" -ArgumentList $ArgumentList -Wait -PassThru
+            $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\$VSversion\Enterprise\Common7\IDE\VSIXInstaller.exe" -ArgumentList $argumentList -Wait -PassThru
         }
         else
         {
@@ -255,7 +255,6 @@ function Get-VSExtensionVersion
     )
 
     $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
-
     if ($instanceFolders -is [array])
     {
         Write-Host "More than one instance installed"

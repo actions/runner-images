@@ -6,8 +6,8 @@
 Import-Module -Name ImageHelpers -Force;
 
 $ChromeInstallerFile = "chrome_installer.exe";
-$ChromeInstallerUri = "https://dl.google.com/chrome/install/375.126/${ChromeInstallerFile}";
-Install-Binary -Url $ChromeInstallerUri -Name $ChromeInstallerFile -ArgumentList ("/silent", "/install")
+$ChromeInstallerUrl = "https://dl.google.com/chrome/install/375.126/${ChromeInstallerFile}";
+Install-Binary -Url $ChromeInstallerUrl -Name $ChromeInstallerFile -ArgumentList ("/silent", "/install")
 
 Write-Host "Adding the firewall rule for Google update blocking";
 New-NetFirewallRule -DisplayName "BlockGoogleUpdate" -Direction Outbound -Action Block -Program "C:\Program Files (x86)\Google\Update\GoogleUpdate.exe";

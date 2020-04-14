@@ -5,4 +5,7 @@
 
 Import-Module -Name ImageHelpers -Force
 
-Install-Binary -Url "https://aka.ms/cosmosdb-emulator" -Name "AzureCosmosDBEmulator.msi"
+$InstallerName = "AzureCosmosDBEmulator.msi"
+$InstallerUrl = "https://aka.ms/cosmosdb-emulator"
+
+Install-Binary -Url $InstallerUrl -Name $InstallerName
