@@ -14,8 +14,8 @@ function getSimpleValue([string] $url, [string] $filename ) {
 }
 
 # Install the latest version of Git for Windows
-$gitTag = getSimpleValue("https://gitforwindows.org/latest-tag.txt", "gitlatesttag.txt");
-$gitVersion = getSimpleValue("https://gitforwindows.org/latest-version.txt", "gitlatestversion.txt");
+$gitTag = getSimpleValue -url "https://gitforwindows.org/latest-tag.txt" -filename "gitlatesttag.txt"
+$gitVersion = getSimpleValue -url "https://gitforwindows.org/latest-version.txt" -filename "gitlatestversion.txt";
 
 $installerFile = "Git-$gitVersion-64-bit.exe";
 $downloadUrl = "https://github.com/git-for-windows/git/releases/download/$gitTag/$installerFile";
