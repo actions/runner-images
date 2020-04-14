@@ -3,7 +3,8 @@ function Install-MSI
     Param
     (
         [String]$MsiUrl,
-        [String]$MsiName
+        [String]$MsiName,
+        [int]$retries = 5
     )
 
     $exitCode = -1
