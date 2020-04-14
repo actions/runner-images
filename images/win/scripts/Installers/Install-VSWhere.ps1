@@ -3,4 +3,4 @@
 ##  Desc:  Install latest stable version of VSWhere
 ################################################################################
 
-choco install vswhere -y
+Install-Choco -PackageName vswhere

@@ -3,7 +3,7 @@
 ##  Desc:  Install latest stable version of Microsoft Edge browser
 ################################################################################
 
-choco install microsoft-edge -y
+Install-Choco -PackageName microsoft-edge
 
 # Install Microsoft Edge Web Driver
 Write-Host "Install Edge WebDriver"

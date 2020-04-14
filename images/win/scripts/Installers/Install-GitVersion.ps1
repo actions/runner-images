@@ -3,4 +3,4 @@
 ##  Desc:  Install GitVersion
 ################################################################################
 
-choco install gitversion.portable -y
+Install-Choco -PackageName gitversion.portable

@@ -3,4 +3,4 @@
 ##  Desc:  Install OpenSSL
 ################################################################################
 
-choco install openssl.light -y
+Install-Choco -PackageName openssl.light

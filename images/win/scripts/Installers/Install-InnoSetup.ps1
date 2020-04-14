@@ -3,4 +3,4 @@
 ##  Desc:  Install Inno Setup
 ################################################################################
 
-choco install innosetup -y
+Install-Choco -PackageName innosetup

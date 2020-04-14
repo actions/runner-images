@@ -3,7 +3,7 @@
 ##  Desc:  Install Azure CLI
 ################################################################################
 
-Install-Choco "azure-cli"
+Install-Choco -PackageName azure-cli
 
 $AzureCliExtensionPath = Join-Path $Env:CommonProgramFiles 'AzureCliExtensionDirectory'
 New-Item -ItemType "directory" -Path $AzureCliExtensionPath

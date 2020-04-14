@@ -3,4 +3,4 @@
 ##  Desc:  Install jq
 ################################################################################
 
-choco install jq -y
+Install-Choco -PackageName jq

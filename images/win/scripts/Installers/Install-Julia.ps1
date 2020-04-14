@@ -3,4 +3,4 @@
 ##  Desc:  Install Julia
 ################################################################################
 
-choco install julia -y --ia "/D=C:\Julia"
+Install-Choco -PackageName julia -ArgumentList "--ia","/DIR=C:\Julia"
