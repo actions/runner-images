@@ -5,9 +5,33 @@
 
 Import-Module -Name ImageHelpers
 
-# Install the latest version of Git which is bundled with Git LFS.
-# See https://chocolatey.org/packages/git
-choco install git -y --package-parameters="/GitAndUnixToolsOnPath /WindowsTerminal /NoShellIntegration"
+function getSimpleValue([string] $url, [string] $filename ) {
+    $fullpath = "${env:Temp}\$filename"
+    Invoke-WebRequest -Uri $url -OutFile $fullpath
+    $value = Get-Content $fullpath -Raw
+
+    return $value
+}
+
+# Install the latest version of Git for Windows
+$gitTag = getSimpleValue("https://gitforwindows.org/latest-tag.txt", "gitlatesttag.txt");
+$gitVersion = getSimpleValue("https://gitforwindows.org/latest-version.txt", "gitlatestversion.txt");
+
+$installerFile = "Git-$gitVersion-64-bit.exe";
+$downloadUrl = "https://github.com/git-for-windows/git/releases/download/$gitTag/$installerFile";
+Install-Exe -Url $downloadUrl `
+            -Name $installerFile `
+            -ArgumentList (
+                "/VERYSILENT", `
+                "/NORESTART", `
+                "/NOCANCEL", `
+                "/SP-", `
+                "/CLOSEAPPLICATIONS", `
+                "/RESTARTAPPLICATIONS", `
+                "/o:PathOption=CmdTools", `
+                "/o:BashTerminalOption=ConHost", `
+                "/COMPONENTS=gitlfs")
+
 choco install hub
 
 # Disable GCM machine-wide
