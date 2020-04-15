@@ -14,7 +14,7 @@
         "virtual_network_resource_group_name": "{{env `VNET_RESOURCE_GROUP`}}",
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
-        "vm_size": "Standard_DS4_v2",
+        "vm_size": "Standard_D4_v2",
         "run_scan_antivirus": "false",
 
         "root_folder": "C:",
@@ -219,7 +219,8 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-ServiceFabricSDK.ps1"
-            ]
+            ],
+            "execution_policy": "remotesigned"
         },
         {
             "type": "windows-restart",
@@ -452,14 +453,6 @@
         },
         {
             "type": "powershell",
-            "elevated_user": "SYSTEM",
-            "elevated_password": "",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-SQLExpress.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-SQLPowerShellTools.ps1"
             ]
@@ -589,6 +582,18 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Bazel.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-RootCA.ps1"
             ]
         },
         {
@@ -764,12 +769,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-SQLExpress.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-SQLPowerShellTools.ps1"
             ]
         },
@@ -879,6 +878,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Bazel.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-AliyunCli.ps1"
             ]
         },
         {
