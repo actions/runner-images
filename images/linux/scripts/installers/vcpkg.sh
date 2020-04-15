@@ -14,6 +14,7 @@ echo "VCPKG_INSTALLATION_ROOT=${VCPKG_INSTALLATION_ROOT}" | tee -a /etc/environm
 # Install vcpkg
 git clone https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
 # Workaround to avoid issues caused by this PR https://github.com/microsoft/vcpkg/pull/10834
+cd $VCPKG_INSTALLATION_ROOT
 git checkout 1e19af09e53e5f306ed89c2033817a21e5ee0bcf
 
 $VCPKG_INSTALLATION_ROOT/bootstrap-vcpkg.sh
