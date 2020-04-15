@@ -5,9 +5,8 @@
 ################################################################################
 
 # Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/document.sh
-
-set -e
 
 export RUSTUP_HOME=/usr/share/rust/.rustup
 export CARGO_HOME=/usr/share/rust/.cargo
@@ -32,6 +31,9 @@ for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen; do
         exit 1
     fi
 done
+
+# Update /etc/environemnt
+prependEtcEnvironmentPath "${CARGO_HOME}/bin"
 
 # Rust Symlinks are added to a default profile /etc/skel
 pushd /etc/skel

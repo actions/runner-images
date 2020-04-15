@@ -1,6 +1,8 @@
+#!/bin/bash
 ################################################################################
-##  File:  Install-Julia.ps1
-##  Desc:  Install Julia
+##  File:  reboot.sh
+##  Desc:  Reboot VM
 ################################################################################
 
-choco install julia -y --ia "/DIR=C:\Julia"
+echo "Reboot VM"
+sudo reboot
