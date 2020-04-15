@@ -32,7 +32,7 @@ Install-Exe -Url $downloadUrl `
                 "/o:BashTerminalOption=ConHost", `
                 "/COMPONENTS=gitlfs")
 
-choco install hub
+Install-Choco -PackageName hub
 
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
