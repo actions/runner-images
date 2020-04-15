@@ -56,7 +56,7 @@ function Install-Binary
     }
     catch
     {
-        Write-Host "Failed to install the $fileExtension $Name; $($_.Exception.Message)"
+        Write-Host "Failed to install the $fileExtension ${Name}: $($_.Exception.Message)"
         exit 1
     }
 
@@ -86,7 +86,7 @@ function Stop-SvcWithErrHandling
         $service = Get-Service $ServiceName -ErrorAction SilentlyContinue
         if (-not $service)
         {
-            Write-Warning "[!] Service [$ServiceName] is not found";
+            Write-Warning "[!] Service [$ServiceName] is not found"
             if ($StopOnError)
             {
                 exit 1
@@ -95,17 +95,17 @@ function Stop-SvcWithErrHandling
         }
         else
         {
-            Write-Host "Try to stop service [$ServiceName]";
+            Write-Host "Try to stop service [$ServiceName]"
             try
             {
-                Stop-Service -Name $ServiceName -Force;
-                $service.WaitForStatus("Stopped", "00:01:00");
-                Write-Host "Service [$ServiceName] has been stopped successfuly";
+                Stop-Service -Name $ServiceName -Force
+                $service.WaitForStatus("Stopped", "00:01:00")
+                Write-Host "Service [$ServiceName] has been stopped successfuly"
             }
             catch
             {
                 Write-Error "[!] Failed to stop service [$ServiceName] with error:"
-                $_ | Out-String | Write-Error;
+                $_ | Out-String | Write-Error
             }
         }
     }
@@ -141,12 +141,12 @@ function Set-SvcWithErrHandling
 
         try
         {
-           Set-Service $serviceName @Arguments;
+           Set-Service $serviceName @Arguments
         }
         catch
         {
             Write-Error "[!] Failed to set service [$ServiceName] arguments with error:"
-            $_ | Out-String | Write-Error;
+            $_ | Out-String | Write-Error
         }
     }
 }
