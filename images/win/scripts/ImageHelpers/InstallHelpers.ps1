@@ -56,9 +56,8 @@ function Install-Binary
     }
     catch
     {
-        Write-Host -Object "Failed to install the $fileExtension $Name"
-        Write-Host -Object $_.Exception.Message
-        $exitCode = -1
+        Write-Host "Failed to install the $fileExtension $Name; $($_.Exception.Message)"
+        exit 1
     }
 
     return $exitCode
