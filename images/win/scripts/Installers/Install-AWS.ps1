@@ -3,7 +3,7 @@
 ##  Desc:  Install awscli
 ################################################################################
 
-Install-Choco -PackageName awscli
+Choco-Install -PackageName awscli
 
 $env:PATH =$env:PATH + ";$Env:Programfiles\Amazon\AWSCLIV2"
 

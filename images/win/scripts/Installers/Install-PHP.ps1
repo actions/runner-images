@@ -8,10 +8,10 @@ Import-Module -Name ImageHelpers
 
 # Install latest PHP in chocolatey
 $installDir = "c:\tools\php"
-Install-Choco -PackageName php -ArgumentList "--force", "--params", "/InstallDir:$installDir"
+Choco-Install -PackageName php -ArgumentList "--force", "--params", "/InstallDir:$installDir"
 
 # Install latest Composer in chocolatey
-Install-Choco -PackageName composer -ArgumentList "--ia", "/DEV=$installDir /PHP=$installDir"
+Choco-Install -PackageName composer -ArgumentList "--ia", "/DEV=$installDir /PHP=$installDir"
 
 # update path to extensions and enable curl and mbstring extensions, and enable php openssl extensions.
 ((Get-Content -path $installDir\php.ini -Raw) -replace ';extension=curl','extension=curl' -replace ';extension=mbstring','extension=mbstring' -replace ';extension_dir = "ext"','extension_dir = "ext"' -replace 'extension=";php_openssl.dll"','extension_dir = "php_openssl.dll"') | Set-Content -Path $installDir\php.ini

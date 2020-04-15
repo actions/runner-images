@@ -3,4 +3,4 @@
 ##  Desc:  Install zstd
 ################################################################################
 
-Install-Choco -PackageName zstandard
+Choco-Install -PackageName zstandard

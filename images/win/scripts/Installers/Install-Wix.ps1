@@ -5,7 +5,7 @@
 
 Import-Module -Name ImageHelpers -Force
 
-Install-Choco -PackageName wixtoolset -ArgumentList "--force"
+Choco-Install -PackageName wixtoolset -ArgumentList "--force"
 
 if(Test-IsWin19)
 {

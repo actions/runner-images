@@ -3,4 +3,4 @@
 ##  Desc:  Install Alibaba Cloud CLI
 ################################################################################
 
-Install-Choco -PackageName aliyun-cli
+Choco-Install -PackageName aliyun-cli

@@ -1,10 +1,10 @@
-function Install-Choco {
+function Choco-Install {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
         [string] $PackageName,
         [string[]] $ArgumentList,
-        [int] $RetryCount = 20
+        [int] $RetryCount = 5
     )
 
     process {

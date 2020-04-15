@@ -3,4 +3,4 @@
 ##  Desc:  Install KubernetesCli
 ################################################################################
 
-Install-Choco -PackageName kubernetes-cli
+Choco-Install -PackageName kubernetes-cli
