@@ -70,9 +70,6 @@ function Stop-SvcWithErrHandling
     .DESCRIPTION
         Function for stopping the Windows Service with error handling
 
-    .AUTHOR
-        Andrey Mishechkin v-andmis@microsoft.com
-
     .PARAMETER ServiceName
         The name of stopping service
 
@@ -120,9 +117,6 @@ function Set-SvcWithErrHandling
     <#
     .DESCRIPTION
         Function for setting the Windows Service parameter with error handling
-
-    .AUTHOR
-        Andrey Mishechkin v-andmis@microsoft.com
 
     .PARAMETER ServiceName
         The name of stopping service
