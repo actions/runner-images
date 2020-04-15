@@ -563,6 +563,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-KubernetesCli.ps1"
             ]
         },
@@ -842,6 +848,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Vcpkg.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-PostgreSQL.ps1"
             ]
         },
         {
