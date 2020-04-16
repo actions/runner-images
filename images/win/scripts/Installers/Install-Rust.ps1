@@ -11,13 +11,10 @@ $env:CARGO_HOME="C:\Rust\.cargo"
 
 # Download the latest rustup-init.exe for Windows x64
 # See https://rustup.rs/#
-Invoke-WebRequest -UseBasicParsing -Uri "https://win.rustup.rs/x86_64" -OutFile rustup-init.exe
+$rustupPath = Start-DownloadWithRetry -Url "https://win.rustup.rs/x86_64" -Name "rustup-init.exe"
 
 # Install Rust by running rustup-init.exe (disabling the confirmation prompt with -y)
-.\rustup-init.exe -y --default-toolchain=stable --profile=minimal
-
-# Delete rustup-init.exe when it's no longer needed
-Remove-Item -Path .\rustup-init.exe
+& $rustupPath -y --default-toolchain=stable --profile=minimal
 
 # Add Rust binaries to the path
 Add-MachinePathItem "$env:CARGO_HOME\bin"
