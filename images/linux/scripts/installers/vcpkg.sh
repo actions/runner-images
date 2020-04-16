@@ -25,7 +25,7 @@ $VCPKG_INSTALLATION_ROOT/vcpkg integrate install
 chmod 0777 -R $VCPKG_INSTALLATION_ROOT
 ln -sf $VCPKG_INSTALLATION_ROOT/vcpkg /usr/local/bin
 
-# set back g++ 5.4 as default
+# Set back g++ 5.4 as default
 if isUbuntu16; then
     ln -sf g++-5 /usr/bin/g++
 fi
