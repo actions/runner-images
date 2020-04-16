@@ -52,6 +52,7 @@ function Install-Binary
         else
         {
             Write-Host "Non zero exit code returned by the installation process: $exitCode"
+            exit $exitCode
         }
     }
     catch
