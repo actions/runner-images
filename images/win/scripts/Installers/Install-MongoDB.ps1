@@ -6,4 +6,3 @@
 choco install mongodb
 
 Add-MachinePathItem "$($env:SystemDrive)\Program Files\MongoDB\Server\4.2\bin"
-$env:Path = Get-MachinePath
