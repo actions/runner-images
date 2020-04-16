@@ -17,7 +17,7 @@ git clone --depth=1 https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
 
 # vcpkg requires g++ version 7+, yet Ubuntu 16 default is 5.4. Set version 7 as default temporarily
 if isUbuntu16; then
-    sudo ln -sf g++-7 /usr/bin/g++
+    ln -sf g++-7 /usr/bin/g++
 fi
 
 $VCPKG_INSTALLATION_ROOT/bootstrap-vcpkg.sh
@@ -27,7 +27,7 @@ ln -sf $VCPKG_INSTALLATION_ROOT/vcpkg /usr/local/bin
 
 # set back g++ 5.4 as default
 if isUbuntu16; then
-    sudo ln -sf g++-5 /usr/bin/g++
+    ln -sf g++-5 /usr/bin/g++
 fi
 
 # Run tests to determine that the software installed as expected
