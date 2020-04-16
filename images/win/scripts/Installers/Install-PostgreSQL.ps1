@@ -2,8 +2,14 @@ $ErrorActionPreference = "Stop"
 
 Import-Module -Name ImageHelpers
 
+$PGUSER="postgres"
+$PGPASSWORD="root"
+[Environment]::SetEnvironmentVariable
+     ($PGPASSWORD, $env:PGPASSWORD, [System.EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable
+     ($PGUSER, $env:PGUSER, [System.EnvironmentVariableTarget]::Machine)
 #Install latest PostgreSQL
-choco install postgresql
+choco install postgresql /Password $PGPASSWORD
 
 #Get Path to pg_ctl.exe
 $paths = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName

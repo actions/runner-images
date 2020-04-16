@@ -1,3 +1,4 @@
+$PGUSER="postgres"
 function Validate-PostgreSQL {
     $pgready = Start-Process -FilePath pg_isready -Wait -PassThru
     $exitCode = $pgready.ExitCode
@@ -22,7 +23,9 @@ Validate-PostgreSQL
 $SoftwareName = "PostgreSQL"
 $Description = @"
 _Version:_ $psqlVersion<br/>
-_Default Path:_ $pgroot
+_Default Path:_ $pgroot<br/>
+_User:_ $env:PGUSER<br/>
+_Password:_ $env:PGPASSWORD
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
