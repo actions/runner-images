@@ -40,6 +40,7 @@ fi
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "ndk-bundle" \
+    "ndk;20.0.5594570" \
     "platform-tools" \
     "platforms;android-29" \
     "platforms;android-28" \
@@ -149,3 +150,4 @@ DocumentInstalledItem "Android SDK Build-Tools 20.0.0"
 DocumentInstalledItem "Android SDK Build-Tools 19.1.0"
 DocumentInstalledItem "Android SDK Build-Tools 17.0.0"
 DocumentInstalledItem "Android NDK $(cat ${ANDROID_SDK_ROOT}/ndk-bundle/source.properties 2>&1 | grep Pkg.Revision | cut -d ' ' -f 3)"
+DocumentInstalledItem "Android NDK 20.0.5594570"

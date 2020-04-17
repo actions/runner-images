@@ -177,10 +177,6 @@
         },
         {
             "type": "powershell",
-            "inline": ["choco install vcredist140 -y"]
-        },
-        {
-            "type": "powershell",
             "valid_exit_codes": [
                 0,
                 3010
