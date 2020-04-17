@@ -16,5 +16,4 @@ curl -L https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-
 apt-get update
