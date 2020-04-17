@@ -109,7 +109,7 @@ choco feature enable -n allowGlobalConfirmation
 Remove-Item -Path $env:ChocolateyInstall\bin\cpack.exe -Force
 
 # Install webpi
-choco install webpicmd -y
+Choco-Install -PackageName webpicmd
 
 # Expand disk size of OS drive
 
