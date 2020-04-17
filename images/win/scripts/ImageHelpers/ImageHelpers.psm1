@@ -27,5 +27,5 @@ Export-ModuleMember -Function @(
     'Get-WinVersion'
     'Test-IsWin19'
     'Test-IsWin16'
-    'Install-Choco'
+    'Choco-Install'
 )
