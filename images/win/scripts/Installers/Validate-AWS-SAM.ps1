@@ -7,11 +7,11 @@ $command = Get-Command -Name 'sam'
 
 if ($command)
 {
-    Write-Host "aws sam cli on path"
+    Write-Host "AWS SAM CLI on path"
 }
 else
 {
-    Write-Host 'aws sam cli is not on path'
+    Write-Host 'AWS SAM CLI is not on path'
     exit 1
 }
 
