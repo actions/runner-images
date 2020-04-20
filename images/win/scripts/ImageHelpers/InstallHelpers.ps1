@@ -60,8 +60,6 @@ function Install-Binary
         Write-Host "Failed to install the $fileExtension ${Name}: $($_.Exception.Message)"
         exit 1
     }
-
-    return $exitCode
 }
 
 function Stop-SvcWithErrHandling
