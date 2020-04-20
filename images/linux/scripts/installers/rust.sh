@@ -33,12 +33,6 @@ for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen; do
     fi
 done
 
-# Rust Symlinks are added to a default profile /etc/skel
-pushd /etc/skel
-ln -sf $RUSTUP_HOME .rustup
-ln -sf $CARGO_HOME .cargo
-popd
-
 # Document what was added to the image
 echo "Lastly, document what was added to the metadata file"
 DocumentInstalledItem "rustup ($(rustup --version 2>&1 | cut -d ' ' -f 2))"
