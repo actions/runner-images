@@ -2,7 +2,7 @@
     "toolcache": [
         {
             "name": "Python",
-            "url" : "https://raw.githubusercontent.com/akv-platform/toolcache-python-generation/master/versions-manifest.json",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
             "arch": "x64",
             "platform" : "win32",
             "versions": [
@@ -16,7 +16,7 @@
         },
         {
             "name": "Python",
-            "url" : "https://raw.githubusercontent.com/akv-platform/toolcache-python-generation/master/versions-manifest.json",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
             "arch": "x86",
             "platform" : "win32",
             "versions": [
