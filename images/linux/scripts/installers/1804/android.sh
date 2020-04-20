@@ -28,7 +28,7 @@ unzip android-sdk.zip -d ${ANDROID_SDK_ROOT}
 rm -f android-sdk.zip
 
 # Add required permissions
-chmod -R 755 ${ANDROID_SDK_ROOT}
+sudo chmod -R 755 ${ANDROID_SDK_ROOT}
 
 # Check sdk manager installation
 /usr/local/lib/android/sdk/tools/bin/sdkmanager --list 1>/dev/null
