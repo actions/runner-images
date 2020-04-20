@@ -12,13 +12,8 @@ $InstallerUrl = "https://go.microsoft.com/fwlink/?linkid=2124518"
 $logFilePath = "$env:TEMP\ssdtlog.txt"
 $ArgumentList = ("/install", "INSTALLALL", "/passive", "/norestart", "/log `"$logFilePath`"")
 
-$exitCode = Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList
+Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList
 
-if($exitCode -ne 0 -and $exitCode -ne 3010)
-{
-    Write-Host "******** SSDT SETUP LOG START ********"
-    Write-Host $(Get-Content $logFilePath | Out-String)
-    Write-Host "******** SSDT SETUP LOG END ********"
-}
-
-exit $exitCode
+Write-Host "******** SSDT SETUP LOG START ********"
+Write-Host $(Get-Content $logFilePath | Out-String)
+Write-Host "******** SSDT SETUP LOG END ********"
