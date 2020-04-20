@@ -1,6 +1,8 @@
+#!/bin/bash
 ################################################################################
-##  File:  Install-InnoSetup.ps1
-##  Desc:  Install Inno Setup
+##  File:  reboot.sh
+##  Desc:  Reboot VM
 ################################################################################
 
-Choco-Install -PackageName innosetup
+echo "Reboot VM"
+sudo reboot

@@ -3,4 +3,4 @@
 ##  Desc:  Install Perl
 ################################################################################
 
-choco install strawberryperl -y
+Choco-Install -PackageName strawberryperl
