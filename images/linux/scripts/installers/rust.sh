@@ -9,8 +9,8 @@ source $HELPER_SCRIPTS/document.sh
 
 set -e
 
-export RUSTUP_HOME=/usr/share/rust/.rustup
-export CARGO_HOME=/usr/share/rust/.cargo
+export RUSTUP_HOME=/etc/skel/rust/.rustup
+export CARGO_HOME=/etc/skel/rust/.cargo
 
 curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain=stable --profile=minimal
 
