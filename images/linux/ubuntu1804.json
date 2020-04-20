@@ -213,6 +213,7 @@
                 "{{template_dir}}/scripts/installers/powershellcore.sh",
                 "{{template_dir}}/scripts/installers/ruby.sh",
                 "{{template_dir}}/scripts/installers/rust.sh",
+                "{{template_dir}}/scripts/installers/open-cobol.sh",
                 "{{template_dir}}/scripts/installers/julia.sh",
                 "{{template_dir}}/scripts/installers/sbt.sh",
                 "{{template_dir}}/scripts/installers/selenium.sh",
