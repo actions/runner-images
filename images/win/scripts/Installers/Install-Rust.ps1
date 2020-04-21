@@ -44,7 +44,7 @@ if exist $env:RUSTUP_HOME (
 )
 "@
 
-$cmdPath = "C:\Rust\rustsym.bat"
+$cmdPath = "C:\users\default\Rust\rustsym.bat"
 $cmdRustSymScript | Out-File -Encoding ascii -FilePath $cmdPath
 
 # Update Run key to run a script at logon
