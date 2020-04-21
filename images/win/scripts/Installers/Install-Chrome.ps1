@@ -5,14 +5,9 @@
 
 Import-Module -Name ImageHelpers -Force
 
-<<<<<<< HEAD
 # Download and install latest Chrome browser
 $ChromeInstallerFile = "chrome_installer.exe"
 $ChromeInstallerUrl = "https://dl.google.com/chrome/install/375.126/${ChromeInstallerFile}"
-=======
-$ChromeInstallerFile = "chrome_installer.exe";
-$ChromeInstallerUrl = "https://dl.google.com/chrome/install/375.126/${ChromeInstallerFile}";
->>>>>>> master
 Install-Binary -Url $ChromeInstallerUrl -Name $ChromeInstallerFile -ArgumentList ("/silent", "/install")
 
 # Prepare firewall rules
