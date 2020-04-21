@@ -26,6 +26,9 @@ echo "Testing to make sure that script performed as expected, and basic scenario
 if ! command -v docker; then
     echo "docker was not installed"
     exit 1
+else if ! command -v docker buildx build then
+    echo "moby-buildx was not installed"
+    #exit 1
 else
     # Docker daemon takes time to come up after installing
     sleep 10
@@ -51,3 +54,7 @@ docker pull ubuntu:14.04
 echo "Documenting Docker version"
 docker_version=$(docker -v)
 DocumentInstalledItem "Docker-Moby ($docker_version)"
+
+echo "Documenting moby-buildx version"
+moby_buildx_version=$(docker buildx -v)
+DocumentInstalledItem "Moby-Buildx ($moby_buildx_version)"
