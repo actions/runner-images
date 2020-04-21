@@ -5,10 +5,8 @@
 
 Import-Module -Name ImageHelpers -Force
 
-$InstallerURI = 'http://download.microsoft.com/download/B/0/C/B0C80BA3-8AD6-4958-810B-6882485230B5/standalonesdk/sdksetup.exe'
-$InstallerName = 'sdksetup.exe'
-$ArgumentList = ('/quiet', '/norestart')
+$InstallerName = "sdksetup.exe"
+$InstallerUrl = "http://download.microsoft.com/download/B/0/C/B0C80BA3-8AD6-4958-810B-6882485230B5/standalonesdk/${InstallerName}"
+$ArgumentList = ("/quiet", "/norestart")
 
-$exitCode = Install-EXE -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
-
-exit $exitCode
+Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList

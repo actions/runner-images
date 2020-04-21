@@ -71,8 +71,10 @@ Function Set-DefaultRubyVersion {
     Write-Host "Use Ruby ${Version} as a system Ruby"
     Add-MachinePathItem -PathItem $rubyDir.FullName
 
+    $env:Path = Get-MachinePath
+
     # Update ruby gem to latest version
-    gem update --system
+    Invoke-Expression "gem update --system"
 }
 
 Import-Module -Name ImageHelpers -Force
