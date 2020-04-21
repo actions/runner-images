@@ -23,6 +23,7 @@ fi
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
+echo "checking the docker-moby and moby-buildx"
 if ! command -v docker; then
     echo "docker was not installed"
     exit 1
@@ -30,6 +31,7 @@ elif ! command -v docker buildx build; then
     echo "moby-buildx was not installed"
     #exit 1
 else
+    echo "Docker-moby and moby-buildx checking the successfull"
     # Docker daemon takes time to come up after installing
     sleep 10
     set -e
