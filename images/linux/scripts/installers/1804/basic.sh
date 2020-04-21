@@ -97,6 +97,9 @@ apt-get install -y --no-install-recommends dbus
 echo "Install xvfb"
 apt-get install -y --no-install-recommends xvfb
 
+echo "Install libgbm-dev"
+apt-get install -y --no-install-recommends libgbm-dev
+
 echo "Install libgtk"
 apt-get install -y --no-install-recommends libgtk-3-0
 
@@ -147,6 +150,7 @@ DocumentInstalledItemIndent "iproute2"
 DocumentInstalledItemIndent "iputils-ping"
 DocumentInstalledItemIndent "jq"
 DocumentInstalledItemIndent "libcurl3"
+DocumentInstalledItemIndent "libgbm-dev"
 DocumentInstalledItemIndent "libicu55"
 DocumentInstalledItemIndent "libunwind8"
 DocumentInstalledItemIndent "locales"
