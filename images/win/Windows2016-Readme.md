@@ -478,7 +478,6 @@ _Environment:_
 #### 1.69.0 [msvc-14.1]
 
 _Environment:_
-* PATH: contains the location of Boost version 1.69.0
 * BOOST_ROOT_1_69_0: root directory of the Boost version 1.69.0 installation
 #### 1.72.0 [msvc-14.1]
 
