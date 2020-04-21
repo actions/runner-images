@@ -28,10 +28,10 @@ if ! command -v docker; then
     echo "docker was not installed"
     exit 1
 elif ! command -v docker buildx build; then
-    echo "moby-buildx was not installed"
+    echo "Docker-buildx was not installed"
     #exit 1
 else
-    echo "Docker-moby and moby-buildx checking the successfull"
+    echo "Docker-moby and Docker-buildx checking the successfull"
     # Docker daemon takes time to come up after installing
     sleep 10
     set -e
@@ -57,6 +57,6 @@ echo "Documenting Docker version"
 docker_version=$(docker -v)
 DocumentInstalledItem "Docker-Moby ($docker_version)"
 
-echo "Documenting moby-buildx version"
-moby_buildx_version=$(docker buildx -v)
-DocumentInstalledItem "Moby-Buildx ($moby_buildx_version)"
+echo "Documenting Docker-buildx version"
+docker_buildx_version=$(docker buildx -v)
+DocumentInstalledItem "Docker-Buildx ($docker_buildx_version)"
