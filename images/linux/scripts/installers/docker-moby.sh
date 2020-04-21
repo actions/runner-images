@@ -26,7 +26,7 @@ echo "Testing to make sure that script performed as expected, and basic scenario
 if ! command -v docker; then
     echo "docker was not installed"
     exit 1
-else if ! command -v docker buildx build then
+elif ! command -v docker buildx build; then
     echo "moby-buildx was not installed"
     #exit 1
 else
