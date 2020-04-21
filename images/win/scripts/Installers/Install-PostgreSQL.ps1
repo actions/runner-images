@@ -11,7 +11,7 @@ Set-SystemVariable -SystemVariable PGUSER -Value $postgresusr
 Set-SystemVariable -SystemVariable PGPASSWORD -Value $postgrespwd
 #Install latest PostgreSQL
 
-choco install postgresql /Password $postgrespwd
+choco install postgresql --params '/Password:$postgrespwd'
 
 #Get Path to pg_ctl.exe
 $paths = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
