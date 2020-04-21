@@ -19,10 +19,20 @@ Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentLi
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
 # Get the latest mysql command line tools .
+<<<<<<< HEAD
 $mysqlArchPath = Start-DownloadWithRetry -Url $MysqlVersionUrl -Name "mysql.zip"
 
 # Expand the zip
 Expand-Archive -Path $mysqlArchPath -DestinationPath "C:\" -Force
+=======
+Invoke-WebRequest -UseBasicParsing -Uri $uri -OutFile mysql.zip
+
+# Expand the zip
+Expand-Archive -Path mysql.zip -DestinationPath "C:\" -Force
+
+# Deleting zip folder
+Remove-Item -Recurse -Force mysql.zip
+>>>>>>> master
 
 # Adding mysql in system environment path
 Add-MachinePathItem $mysqlPath

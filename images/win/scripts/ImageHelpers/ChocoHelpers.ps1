@@ -1,33 +1,32 @@
-function Install-Choco {
+function Choco-Install {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
-        [string]$install,
-        [int]$retries = 5
+        [string] $PackageName,
+        [string[]] $ArgumentList,
+        [int] $RetryCount = 5
     )
 
-    begin { }
     process {
-        $condition = $false
-        $count = 0
-        do {
-            Write-Output "running: powershell choco install $install -y"
-            powershell choco install $install -y
+        $count = 1
+        while($true)
+        {
+            Write-Host "Running [#$count]: choco install $packageName -y $argumentList"
+            choco install $packageName -y @argumentList
 
-            $installed = powershell choco list -lo $install --all
-            $match = (($installed -match "^$install.*").Length -ne 0)
-            if ($match) {
-                Write-Output "package installed: $install"
-                $condition = $true
+            $pkg = choco list --localonly $packageName --exact --all --limitoutput
+            if ($pkg) {
+                Write-Host "Package installed: $pkg"
+                break
             }
             else {
                 $count++
-                if ($count -eq $retries) {
-                    Write-Error "Could not install $install after $count attempts"
+                if ($count -ge $retryCount) {
+                    Write-Host "Could not install $packageName after $count attempts"
                     exit 1
                 }
+                Start-Sleep -Seconds 30
             }
-        } while ($condition -eq $false)
+        }
     }
-    end { }
 }
