@@ -1,0 +1,13 @@
+#!/bin/bash
+################################################################################
+##  File:  validate-disk-space.sh
+##  Desc:  Validate free disk space
+################################################################################
+
+availableSpace=$(df / | sed 1d | awk '{ print $4 "\t" }')
+minimumFreeSpaceGB=$(( 15*1024*1024 ))
+
+if [ $availableSpace -le $minimumFreeSpaceGB ]; then
+    echo "Not enough disk space on the image"
+    exit 1
+fi

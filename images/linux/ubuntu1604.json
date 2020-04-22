@@ -312,6 +312,12 @@
                 "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/Validate-DiskSpace.sh"
+            ]
         }
     ]
 }
