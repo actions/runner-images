@@ -335,7 +335,7 @@
         {
             "type": "shell",
             "scripts":[
-                "{{template_dir}}/scripts/installers/Validate-DiskSpace.sh"
+                "{{template_dir}}/scripts/installers/validate-disk-space.sh"
             ]
         }
     ]
