@@ -1,28 +1,24 @@
 ################################################################################
-##  File:  Install-awscli.ps1
-##  Desc:  Install awscli
+##  File:  Validate-AWS-SAM.ps1
+##  Desc:  Validate aws sam cli
 ################################################################################
 
-Choco-Install -PackageName awscli
-
-$env:PATH =$env:PATH + ";$Env:Programfiles\Amazon\AWSCLIV2"
-
-$command = Get-Command -Name 'aws'
+$command = Get-Command -Name 'sam'
 
 if ($command)
 {
-    Write-Host "awscli on path"
+    Write-Host "AWS SAM CLI on path"
 }
 else
 {
-    Write-Host 'awscli is not on path'
+    Write-Host 'AWS SAM CLI is not on path'
     exit 1
 }
 
 # Adding description of the software to Markdown
-$SoftwareName = "AWS CLI"
+$SoftwareName = "AWS SAM CLI"
 
-$version = (aws --version).Split(" ")[0].Replace("/"," ")
+$version = (sam --version).Split(" ")[3]
 
 $Description = @"
 _Version:_ $version<br/>

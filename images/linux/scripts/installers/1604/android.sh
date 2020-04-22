@@ -37,6 +37,8 @@ else
     exit 1
 fi
 
+# Add required permissions
+chmod -R a+X ${ANDROID_SDK_ROOT}
 
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \

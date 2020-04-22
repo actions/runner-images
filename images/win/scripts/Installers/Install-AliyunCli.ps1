@@ -1,6 +1,6 @@
 ################################################################################
-##  File:  Install-VSWhere.ps1
-##  Desc:  Install latest stable version of VSWhere
+##  File:  Install-AliyunCli.ps1
+##  Desc:  Install Alibaba Cloud CLI
 ################################################################################
 
-Choco-Install -PackageName vswhere
+Choco-Install -PackageName aliyun-cli
