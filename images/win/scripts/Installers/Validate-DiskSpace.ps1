@@ -3,8 +3,8 @@
 ##  Desc:  Validate free disk space
 ################################################################################
 
-$availableFreeSpace = ([IO.DriveInfo]::GetDrives() | Where-Object {$_.Name -eq 'C:\'}).AvailableFreeSpace / 1024 / 1024 / 1024
-$minimumFreeSpaceGB = 15
+$availableFreeSpace = (Get-PSDrive -Name C).Free
+$minimumFreeSpaceGB = 15GB
 
 if ($availableFreeSpace -le $minimumFreeSpaceGB)
 {

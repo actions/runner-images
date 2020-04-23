@@ -5,7 +5,7 @@
 ################################################################################
 
 availableSpace=$(df / | sed 1d | awk '{ print $4 "\t" }')
-minimumFreeSpaceGB=$(( 15*1024*1024 ))
+minimumFreeSpaceGB=$(( 23*1024*1024 ))
 
 if [ $availableSpace -le $minimumFreeSpaceGB ]; then
     echo "Not enough disk space on the image"
