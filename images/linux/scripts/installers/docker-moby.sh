@@ -24,11 +24,10 @@ fi
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 echo "Checking the docker-moby and moby-buildx"
-DOCKER_BUILDX=/usr/libexec/docker/cli-plugins/docker-buildx
 if ! command -v docker; then
     echo "docker was not installed"
     exit 1
-elif ! [ -x "$DOCKER_BUILDX" ]; then
+elif ! [[ $(docker buildx) ]]; then
     echo "Docker-Buildx was not installed"
     exit 1
 else
@@ -59,6 +58,5 @@ docker_version=$(docker -v)
 DocumentInstalledItem "Docker-Moby ($docker_version)"
 
 echo "Documenting Docker-buildx version"
-DOCKER_BUILDX_VERSION=$(apt-cache policy moby-buildx | grep Installed)
-DOCKER_BUILDX_VERSION=$(echo ${DOCKER_BUILDX_VERSION//Installed:})
+DOCKER_BUILDX_VERSION=$(docker buildx version | cut -d ' ' -f2)
 DocumentInstalledItem "Docker-Buildx ($DOCKER_BUILDX_VERSION)"
