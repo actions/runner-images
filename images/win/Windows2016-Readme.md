@@ -1,6 +1,6 @@
 # Windows Server 2016
 
-The following software is installed on machines with the 20200323.1 update.
+The following software is installed on machines with the 20200416.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -36,15 +36,15 @@ _Version:_ 7.0.0<br/>
 ## Docker images
 
 The following container images have been cached:
-* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:7bf99ba791cce2c51091ac0c6922ff98e5a448c1046ba046fab3760070173e0d)
-* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:000d639c6c287bf0e69b27c008f2d411a9e161093dd1855667a8e6189f9adac8)
-* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:5bd97dbab1afe8d3200f5d5c974df3b0130e74e8a69fddcd427699c4c8cb5037)
+* mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016 (Digest: sha256:4610dbc0e9f033247b336ebf62b2c690dc9e93de5c937b4660aad52847123086)
+* mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 (Digest: sha256:888f36a9fa4ccd409967426f1a731ab6112a8acc36459268471fccd0e67e5326)
+* mcr.microsoft.com/windows/servercore:ltsc2016 (Digest: sha256:f4c4f31c7ee654e73bd130b89e6ad5a659f5ede52fd9eb653c9db4aa12f6e0ea)
 * microsoft/aspnetcore-build:1.0-2.0 (Digest: sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c)
 * mcr.microsoft.com/windows/nanoserver:10.0.14393.953 (Digest: sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268)
 
 ## Visual Studio 2017 Enterprise
 
-_Version:_ VisualStudio/15.9.21+28307.1064<br/>
+_Version:_ VisualStudio/15.9.22+28307.1093<br/>
 _Location:_ C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise
 
 The following workloads including required and recommended components are installed with Visual Studio 2017:
@@ -135,6 +135,8 @@ In addition the following optional components are installed:
 * Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre
 * Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre
 * Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre
+* Microsoft.VisualStudio.Workload.Office
+* Microsoft.VisualStudio.Workload.OfficeBuildTools
 
 ## SQL Server Data Tools for VS 2017
 
@@ -172,6 +174,10 @@ _Runtime Version:_ 7.0.470.9590
 ## WinAppDriver
 
 _Version:_ 1.1.1809.18001<br/>
+
+## AWS CLI
+
+_Version:_ aws-cli 2.0.7<br/>
 
 ## Android SDK Build Tools
 
@@ -422,13 +428,13 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.2.0
+_Version:_ 2.3.1
 _Environment:_
 * PATH: contains location of az.cmd
 
 ## Azure DevOps Cli extension
 
-_Version:_ azure-devops                      0.17.0
+_Version:_ azure-devops                      0.18.0
 
 ## Python
 
@@ -440,11 +446,11 @@ _Version:_ 2.7.13 (x86)<br/>_Version:_ 3.6.9 (x86)<br/>
 
 ## Ruby
 
-_Version:_ 2.4.9 (x64)<br/>_Version:_ 2.5.7 (x64)<br/>_Version:_ 2.6.5 (x64)<br/>_Version:_ 2.7.0 (x64)<br/><br/>__System default version:__ Ruby 2.5.7p206<br/>_Environment:_<br/>* Location: C:\hostedtoolcache\windows\Ruby\2.5.7\x64\bin<br/>* PATH: contains the location of Ruby 2.5.7p206<br/>* Gem Version: 2.7.6.2<br/>
+_Version:_ 2.4.10 (x64)<br/>_Version:_ 2.5.8 (x64)<br/>_Version:_ 2.6.6 (x64)<br/>_Version:_ 2.7.1 (x64)<br/><br/>__System default version:__ Ruby 2.5.8p224<br/>_Environment:_<br/>* Location: C:\hostedtoolcache\windows\Ruby\2.5.8\x64\bin<br/>* PATH: contains the location of Ruby 2.5.8p224<br/>* Gem Version: 2.7.6.2<br/>
 
 ## OpenSSL
 
-_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>
+_Version:_ 1.1.1 at C:\Program Files\OpenSSL\bin\openssl.exe<br/>_Version:_ 1.1.1d at C:\Strawberry\c\bin\openssl.exe<br/>_Version:_ 1.1.1f at C:\Program Files\Git\mingw64\bin\openssl.exe<br/>_Version:_ 1.1.1f at C:\Program Files\Git\usr\bin\openssl.exe<br/>_Version:_ 1.0.2j at C:\Program Files (x86)\Subversion\bin\openssl.exe<br/>
 
 ## Perl
 
@@ -452,7 +458,7 @@ _Version:_ v5.30.2<br/>
 
 ## Git
 
-_Version:_ 2.25.1<br/>
+_Version:_ 2.26.1<br/>
 _Environment:_
 * PATH: contains location of git.exe
 
@@ -478,8 +484,8 @@ _Environment:_
 #### 1.69.0 [msvc-14.1]
 
 _Environment:_
-* PATH: contains the location of Boost version 1.69.0
 * BOOST_ROOT_1_69_0: root directory of the Boost version 1.69.0 installation
+
 #### 1.72.0 [msvc-14.1]
 
 _Environment:_
@@ -498,13 +504,21 @@ See documentation of the Boost CMake package configuration for details on what i
 Set `Boost_NO_BOOST_CMAKE to ON`, to disable the search for boost-cmake.
 
 
-## PHP (x64)
+## Composer
 
-#### 7.4.3
+#### Composer version 1.10.5 2020-04-10 11:44:22
 
 _Environment:_
-* PATH: contains the location of php.exe version 7.4.3
-* PHPROOT: root directory of the PHP 7.4.3 installation
+* PATH: contains the location of composer.exe version Composer version 1.10.5 2020-04-10 11:44:22
+* PHPROOT: root directory of the Composer Composer version 1.10.5 2020-04-10 11:44:22 installation
+
+## PHP (x64)
+
+#### 7.4.5
+
+_Environment:_
+* PATH: contains the location of php.exe version 7.4.5
+* PHPROOT: root directory of the PHP 7.4.5 installation
 
 ## Rust (64-bit)
 
@@ -515,7 +529,7 @@ _Environment:_
 
 ## Julia (x64)
 
-_Version:_ 1.3.1<br/>
+_Version:_ 1.4.0<br/>
 
 ## sbt
 
@@ -530,17 +544,17 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-80.0.3987.149
+81.0.4044.113
 
 ## Microsoft Edge
 
 _version:_
-80.0.361.69
+81.0.416.53
 
 ## Mozilla Firefox
 
 _version:_
-74.0
+75.0
 
 ## Selenium Web Drivers
 
@@ -548,7 +562,7 @@ _version:_
 #### Chrome Driver
 
 _version:_
-80.0.3987.106
+81.0.4044.69
 
 _Environment:_
 * ChromeWebDriver: location of chromedriver.exe
@@ -572,7 +586,7 @@ _Environment:_
 #### Microsoft Edge Driver
 
 _version:_
-80.0.361.69
+81.0.416.53
 
 _Environment:_
 * EdgeWebDriver: location of msedgedriver.exe
@@ -580,7 +594,7 @@ _Environment:_
 
 ## Node.js
 
-_Version:_ 12.16.1<br/>
+_Version:_ 12.16.2<br/>
 _Architecture:_ x64<br/>
 _Environment:_
 * PATH: contains location of node.exe<br/>
@@ -591,17 +605,21 @@ _Environment:_
 
 ## npm
 
-_Version:_ 6.13.4<br/>
+_Version:_ 6.14.4<br/>
 _Environment:_
 * PATH: contains location of npm.cmd
 
 ## bazel
 
-_Version:_ bazel 2.2.0<br/>
+_Version:_ bazel 3.0.0<br/>
 
 ## bazelisk
 
 _Version:_ 1.3.0<br/>
+
+## Alibaba Cloud CLI
+
+_Version:_ 3.0.26<br/>
 
 ## Java Development Kit
 
@@ -636,13 +654,13 @@ _Environment:_
 
 ## Gradle
 
-_Version:_ 6.2.2<br/>
+_Version:_ 6.3<br/>
 _Environment:_
 * PATH: contains location of gradle
 
-## Cmake
+## CMake
 
-_Version:_ 3.17.0<br/>
+_Version:_ 3.17.1<br/>
 _Environment:_
 * PATH: contains location of cmake.exe
 
@@ -659,6 +677,8 @@ _Environment:_
 * PATH: contains location of dotnet.exe
 
 _SDK:_
+* 3.1.201 C:\Program Files\dotnet\sdk\3.1.201
+* 3.1.103 C:\Program Files\dotnet\sdk\3.1.103
 * 3.1.101 C:\Program Files\dotnet\sdk\3.1.101
 * 3.1.100 C:\Program Files\dotnet\sdk\3.1.100
 * 2.2.402 C:\Program Files\dotnet\sdk\2.2.402
@@ -682,12 +702,14 @@ _SDK:_
 * 2.2.102 C:\Program Files\dotnet\sdk\2.2.102
 * 2.2.101 C:\Program Files\dotnet\sdk\2.2.101
 * 2.2.100 C:\Program Files\dotnet\sdk\2.2.100
+* 2.1.805 C:\Program Files\dotnet\sdk\2.1.805
 * 2.1.804 C:\Program Files\dotnet\sdk\2.1.804
 * 2.1.803 C:\Program Files\dotnet\sdk\2.1.803
 * 2.1.802 C:\Program Files\dotnet\sdk\2.1.802
 * 2.1.801 C:\Program Files\dotnet\sdk\2.1.801
 * 2.1.701 C:\Program Files\dotnet\sdk\2.1.701
 * 2.1.700 C:\Program Files\dotnet\sdk\2.1.700
+* 2.1.610 C:\Program Files\dotnet\sdk\2.1.610
 * 2.1.609 C:\Program Files\dotnet\sdk\2.1.609
 * 2.1.608 C:\Program Files\dotnet\sdk\2.1.608
 * 2.1.607 C:\Program Files\dotnet\sdk\2.1.607
@@ -696,6 +718,7 @@ _SDK:_
 * 2.1.604 C:\Program Files\dotnet\sdk\2.1.604
 * 2.1.603 C:\Program Files\dotnet\sdk\2.1.603
 * 2.1.602 C:\Program Files\dotnet\sdk\2.1.602
+* 2.1.513 C:\Program Files\dotnet\sdk\2.1.513
 * 2.1.512 C:\Program Files\dotnet\sdk\2.1.512
 * 2.1.511 C:\Program Files\dotnet\sdk\2.1.511
 * 2.1.510 C:\Program Files\dotnet\sdk\2.1.510
@@ -718,6 +741,7 @@ _SDK:_
 * 1.1.14 C:\Program Files\dotnet\sdk\1.1.14
 
 _Runtime:_
+* 3.1.3 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.3
 * 3.1.1 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.1
 * 3.1.0 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.0
 * 2.2.8 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.8
@@ -737,6 +761,7 @@ _Runtime:_
 * 2.1.4 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.4
 * 2.1.3 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.3
 * 2.1.2 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.2
+* 2.1.17 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.17
 * 2.1.16 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.16
 * 2.1.15 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.15
 * 2.1.14 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.14
@@ -791,7 +816,7 @@ _Version:_ 19.00<br/>
 
 ## Packer
 
-_Version:_ 1.5.4<br/>
+_Version:_ 1.5.5<br/>
 
 ## Mercurial
 
@@ -813,9 +838,13 @@ _Version:_ 6.0.4<br/>
 
 _Version:_ 5.2.4.0<br/>
 
+## Nullsoft Install System (NSIS)
+
+_Version:_ 3.5<br/>
+
 ## Cloud Foundry CLI
 
-_Version:_ 6.50.0<br/>
+_Version:_ 6.51.0<br/>
 
 ## Vcpkg
 
@@ -826,7 +855,7 @@ _Environment:_
 
 ## Kubectl
 
-_Version:_ Client Version: v1.17.1<br/>
+_Version:_ Client Version: v1.18.1<br/>
 _Environment:_
 * PATH: contains location of kubectl.exe
 
