@@ -14,7 +14,7 @@ Write-Host "Firefox latest version: $latestVersion"
 
 # url for latest version of firefox
 $urlLatestVersion = "https://download.mozilla.org/?product=firefox-${latestVersion}&os=win64&lang=en-US"
-Install-EXE -Url $urlLatestVersion -Name "Firefox Setup $latestVersion.exe" -ArgumentList ("/silent", "/install")
+Install-Binary -Url $urlLatestVersion -Name "Firefox Setup $latestVersion.exe" -ArgumentList ("/silent", "/install")
 
 # Disable autoupdate
 $firefoxDirectoryPath = Join-Path $env:ProgramFiles "Mozilla Firefox"
