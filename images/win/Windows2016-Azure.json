@@ -888,7 +888,7 @@
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
             ]
-        }
+        },
         {
             "type": "file",
             "source": "C:\\InstalledSoftware.md",
