@@ -10,12 +10,13 @@ Function Install-Asset {
         [object] $ReleaseAsset
     )
 
-    $releaseAssetName = [System.IO.Path]::GetFileNameWithoutExtension($ReleaseAsset.filename)
-    $assetFolderPath = Join-Path $env:INSTALLER_SCRIPT_FOLDER $releaseAssetName
+    Write-Host "Download $($ReleaseAsset.filename)"
     wget $ReleaseAsset.download_url -nv --retry-connrefused --tries=10
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
-    unzip $ReleaseAsset.filename -d $assetFolderPath | Out-Null
+    $assetFolderPath = Join-Path $env:INSTALLER_SCRIPT_FOLDER $($ReleaseAsset.filename)
+    New-Item -ItemType Directory -Path $assetFolderPath
+    tar -xzf $ReleaseAsset.filename -C $assetFolderPath
 
     Write-Host "Invoke installation script..."
     Push-Location -Path $assetFolderPath
