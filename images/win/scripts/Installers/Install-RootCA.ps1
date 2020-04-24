@@ -107,7 +107,7 @@ function Disable-RootAutoUpdate {
 # Property to remove
 $CERT_NOT_BEFORE_FILETIME_PROP_ID = 126
 
-# Add extende cert type
+# Add extended cert type
 Add-ExtendedCertType
 
 # Get certificates without property CERT_NOT_BEFORE_FILETIME_PROP_ID
