@@ -31,7 +31,7 @@ assignees: ''
 - [ ] Windows Server 2019
 
 **Can this tool be installed during the build?**
-<!--- If so, please provide a description of how and approximately how much time it takes.  -->
+<!--- If so, please provide a description with required steps.  -->
 
 **Tool installation time in runtime**
 <!--- How long does it take to install the tool?  -->
