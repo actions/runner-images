@@ -44,7 +44,8 @@ echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "MySQL ($(mysql --version))"
 DocumentInstalledItem "MySQL Server (user:root password:root)"
 DocumentInstalledItem "MS SQL Server Client Tools"
+DocumentInstalledItem "MySQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'"
 
 # Disable mysql.service
-systemctl is-active --quiet mysql.service && systemctl stop mysql.service 
-systemctl disable mysql.service 
+systemctl is-active --quiet mysql.service && systemctl stop mysql.service
+systemctl disable mysql.service
