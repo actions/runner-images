@@ -1,6 +1,6 @@
 # Windows Server 2019
 
-The following software is installed on machines with the 20200416.1 update.
+The following software is installed on machines with the 20200426.1 update.
 
 Components marked with **\*** have been upgraded since the previous version of the image.
 
@@ -25,7 +25,7 @@ _Environment:_
 
 ## Helm
 
-_Version:_ v3.1.2+gd878d4d<br/>
+_Version:_ v3.2.0+ge11b7ce<br/>
 _Environment:_
 * PATH: contains location of helm
 
@@ -145,8 +145,8 @@ _Environment:_
 
 ## Microsoft SSDT Visual Studio 2019 Extensions
 
-_Microsoft Analysis Services Projects Version:_ 2.9.7<br/>
-_SQL Server Integration Services Projects Version:_ 3.5<br/>
+_Microsoft Analysis Services Projects Version:_ 2.9.8<br/>
+_SQL Server Integration Services Projects Version:_ 3.6<br/>
 _Microsoft Reporting Services Projects Version:_ 2.6.5<br/>
 
 ## .NET 4.8
@@ -161,8 +161,8 @@ _WDK Visual Studio Extension Version:_ 10.0.18346.0<br/>
 
 ## Azure Service Fabric
 
-_SDK Version:_ 4.0.470.9590<br/>
-_Runtime Version:_ 7.0.470.9590
+_SDK Version:_ 4.1.409.9590<br/>
+_Runtime Version:_ 7.1.409.9590
 
 ## WinAppDriver
 
@@ -170,7 +170,7 @@ _Version:_ 1.1.1809.18001<br/>
 
 ## AWS CLI
 
-_Version:_ aws-cli 2.0.7<br/>
+_Version:_ aws-cli 2.0.9<br/>
 
 ## Android SDK Build Tools
 
@@ -421,9 +421,13 @@ _Description:_ .NET has been configured to use TLS 1.2 by default
 
 ## Azure CLI
 
-_Version:_ 2.3.1
+_Version:_ 2.4.0
 _Environment:_
 * PATH: contains location of az.cmd
+
+## AWS SAM CLI
+
+_Version:_ 0.47.0<br/>
 
 ## Azure DevOps Cli extension
 
@@ -439,7 +443,7 @@ _Version:_ 2.7.13 (x86)<br/>_Version:_ 3.6.9 (x86)<br/>
 
 ## Ruby
 
-_Version:_ 2.4.10 (x64)<br/>_Version:_ 2.5.8 (x64)<br/>_Version:_ 2.6.6 (x64)<br/>_Version:_ 2.7.1 (x64)<br/><br/>__System default version:__ Ruby 2.5.8p224<br/>_Environment:_<br/>* Location: C:\hostedtoolcache\windows\Ruby\2.5.8\x64\bin<br/>* PATH: contains the location of Ruby 2.5.8p224<br/>* Gem Version: 2.7.6.2<br/>
+_Version:_ 2.4.10 (x64)<br/>_Version:_ 2.5.8 (x64)<br/>_Version:_ 2.6.6 (x64)<br/>_Version:_ 2.7.1 (x64)<br/><br/>__System default version:__ Ruby 2.5.8p224<br/>_Environment:_<br/>* Location: C:\hostedtoolcache\windows\Ruby\2.5.8\x64\bin<br/>* PATH: contains the location of Ruby 2.5.8p224<br/>* Gem Version: 3.1.2<br/>
 
 ## OpenSSL
 
@@ -451,7 +455,7 @@ _Version:_ v5.30.2<br/>
 
 ## Git
 
-_Version:_ 2.26.1<br/>
+_Version:_ 2.26.2<br/>
 _Environment:_
 * PATH: contains location of git.exe
 
@@ -515,14 +519,14 @@ _Environment:_
 
 ## Rust (64-bit)
 
-#### 1.42.0
+#### 1.43.0
 _Location:_ C:\Rust\.cargo\bin
 _Environment:_
 * PATH: contains the location of rustc.exe
 
 ## Julia (x64)
 
-_Version:_ 1.4.0<br/>
+_Version:_ 1.4.1<br/>
 
 ## Subversion
 
@@ -537,12 +541,12 @@ _Environment:_
 ## Google Chrome
 
 _version:_
-81.0.4044.113
+81.0.4044.122
 
 ## Microsoft Edge
 
 _version:_
-81.0.416.53
+81.0.416.64
 
 ## Mozilla Firefox
 
@@ -579,7 +583,7 @@ _Environment:_
 #### Microsoft Edge Driver
 
 _version:_
-81.0.416.53
+81.0.416.64
 
 _Environment:_
 * EdgeWebDriver: location of msedgedriver.exe
@@ -659,7 +663,9 @@ _Environment:_
 
 _SDK:_
 * 3.1.201 C:\Program Files\dotnet\sdk\3.1.201
+* 3.1.200 C:\Program Files\dotnet\sdk\3.1.200
 * 3.1.103 C:\Program Files\dotnet\sdk\3.1.103
+* 3.1.102 C:\Program Files\dotnet\sdk\3.1.102
 * 3.1.101 C:\Program Files\dotnet\sdk\3.1.101
 * 3.1.100 C:\Program Files\dotnet\sdk\3.1.100
 * 2.2.402 C:\Program Files\dotnet\sdk\2.2.402
@@ -721,6 +727,7 @@ _SDK:_
 
 _Runtime:_
 * 3.1.3 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.3
+* 3.1.2 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.2
 * 3.1.1 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.1
 * 3.1.0 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.0
 * 2.2.8 C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.8
@@ -836,7 +843,7 @@ _Version_: 2.8.4+ff0de50053 - shim 0.8.1<br/>
 
 ## Kubectl
 
-_Version:_ Client Version: v1.18.1<br/>
+_Version:_ Client Version: v1.18.2<br/>
 _Environment:_
 * PATH: contains location of kubectl.exe
 
@@ -848,11 +855,11 @@ _Environment:_
 
 ## bazel
 
-_Version:_ bazel 3.0.0<br/>
+_Version:_ bazel 3.1.0<br/>
 
 ## bazelisk
 
-_Version:_ 1.3.0<br/>
+_Version:_ 1.4.0<br/>
 
 ## Alibaba Cloud CLI
 
