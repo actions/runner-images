@@ -49,6 +49,7 @@ apt-fast install -y --no-install-recommends \
     libgconf-2-4 \
     dbus \
     xvfb \
+    libgbm-dev \
     libgtk-3-0 \
     tk \
     fakeroot \
@@ -80,6 +81,7 @@ DocumentInstalledItemIndent "jq"
 DocumentInstalledItemIndent "libc++-dev"
 DocumentInstalledItemIndent "libc++abi-dev"
 DocumentInstalledItemIndent "libcurl3"
+DocumentInstalledItemIndent "libgbm-dev"
 DocumentInstalledItemIndent "libicu55"
 DocumentInstalledItemIndent "libunwind8"
 DocumentInstalledItemIndent "locales"

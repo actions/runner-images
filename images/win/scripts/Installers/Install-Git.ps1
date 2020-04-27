@@ -19,20 +19,20 @@ $gitVersion = getSimpleValue -url "https://gitforwindows.org/latest-version.txt"
 
 $installerFile = "Git-$gitVersion-64-bit.exe";
 $downloadUrl = "https://github.com/git-for-windows/git/releases/download/$gitTag/$installerFile";
-Install-Exe -Url $downloadUrl `
-            -Name $installerFile `
-            -ArgumentList (
-                "/VERYSILENT", `
-                "/NORESTART", `
-                "/NOCANCEL", `
-                "/SP-", `
-                "/CLOSEAPPLICATIONS", `
-                "/RESTARTAPPLICATIONS", `
-                "/o:PathOption=CmdTools", `
-                "/o:BashTerminalOption=ConHost", `
-                "/COMPONENTS=gitlfs")
+Install-Binary  -Url $downloadUrl `
+                -Name $installerFile `
+                -ArgumentList (
+                    "/VERYSILENT", `
+                    "/NORESTART", `
+                    "/NOCANCEL", `
+                    "/SP-", `
+                    "/CLOSEAPPLICATIONS", `
+                    "/RESTARTAPPLICATIONS", `
+                    "/o:PathOption=CmdTools", `
+                    "/o:BashTerminalOption=ConHost", `
+                    "/COMPONENTS=gitlfs")
 
-choco install hub
+Choco-Install -PackageName hub
 
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)

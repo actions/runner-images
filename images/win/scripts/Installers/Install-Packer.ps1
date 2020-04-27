@@ -3,4 +3,4 @@
 ##  Desc:  Install Packer
 ################################################################################
 
-choco install packer -y
+Choco-Install -PackageName packer
