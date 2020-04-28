@@ -69,7 +69,7 @@ echo "JMETER_HOME=/usr/share/apache-jmeter-5.2.1" | tee -a /etc/environment
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in gradle java javac mvn ant; do
+for cmd in gradle java javac mvn jmeter ant; do
     if ! command -v $cmd; then
         echo "$cmd was not installed or found on path"
         exit 1
@@ -83,6 +83,7 @@ DocumentInstalledItemIndent "7 ($(/usr/lib/jvm/zulu-7-azure-amd64/bin/java -show
 DocumentInstalledItemIndent "8 ($(/usr/lib/jvm/zulu-8-azure-amd64/bin/java -showversion |& head -n 1)) (default)"
 DocumentInstalledItemIndent "11 ($(/usr/lib/jvm/zulu-11-azure-amd64/bin/java -showversion |& head -n 1))"
 DocumentInstalledItemIndent "12 ($(/usr/lib/jvm/zulu-12-azure-amd64/bin/java -showversion |& head -n 1))"
-DocumentInstalledItem "Ant ($(ant -version))"
+DocumentInstalledItem "Apache Ant ($(ant -version))"
 DocumentInstalledItem "Gradle ${gradleVersion}"
-DocumentInstalledItem "Maven ($(mvn -version | head -n 1))"
+DocumentInstalledItem "Apache Maven ($(mvn -version | head -n 1))"
+DocumentInstalledItem "Apache JMeter (5.2.1)"
