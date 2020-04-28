@@ -52,4 +52,4 @@ foreach ($tool in $tools) {
     }
 }
 
-chown -R packer:packer /opt/hostedtoolcache/Python
+chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python
