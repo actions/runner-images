@@ -12,12 +12,7 @@ function InstallClang {
     version=$1
 
     echo "Installing clang-$version..."
-    if [[ $version =~ 9 ]]; then
-        ./llvm.sh $version
-        apt-get install -y "clang-format-$version"
-    else
-        apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version"
-    fi
+    apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version"
 
     # Run tests to determine that the software installed as expected
     echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -33,10 +28,6 @@ function InstallClang {
     DocumentInstalledItem "Clang $version ($(clang-$version --version | head -n 1 | cut -d ' ' -f 3 | cut -d '-' -f 1))"
 }
 
-# Download script for automatic installation
-wget https://apt.llvm.org/llvm.sh
-chmod +x llvm.sh
-
 versions=(
     "6.0"
     "8"
@@ -47,8 +38,6 @@ for version in ${versions[*]}
 do
     InstallClang $version
 done
-
-rm llvm.sh
 
 # Make Clang 9 default
 update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-9 100
