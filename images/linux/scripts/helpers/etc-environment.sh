@@ -61,6 +61,11 @@ function prependEtcEnvironmentPath {
     prependEtcEnvironmentVariable PATH "${element}"
 }
 
+function appendEtcEnvironmentPath {
+    element="$1"
+    appendEtcEnvironmentVariable PATH "${element}"
+}
+
 # Process /etc/environment as if it were shell script with `export VAR=...` expressions
 #    The PATH variable is handled specially in order to do not override the existing PATH
 #    variable. The value of PATH variable read from /etc/environment is added to the end
