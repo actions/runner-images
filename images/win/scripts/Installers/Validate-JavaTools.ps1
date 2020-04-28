@@ -37,7 +37,7 @@ if( $( $(& $env:comspec "/s /c java -version 2>&1") | Out-String) -match  '^(?<v
 }
 
 
-if( $(ant -version) -match  'Apache Ant\(TM\) version (?<version>.*) compiled.*' )
+if( $(ant -version) -match  'Apache Ant (?<version>.*) \(.*' )
 {
    $antVersion = $Matches.version
 }
@@ -50,6 +50,11 @@ if( $( $(mvn -version) | Out-String) -match  'Apache Maven (?<version>.*) \(.*' 
 if( $( $(gradle -version) | Out-String) -match  'Gradle (?<version>.*)' )
 {
    $gradleVersion = $Matches.version.Trim()
+}
+
+if( $(jmeter -version) -match  'Apache JMeter (?<version>.*) \(.*' )
+{
+   $jmeterVersion = $Matches.version
 }
 
 # Adding description of the software to Markdown
@@ -75,7 +80,7 @@ Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $
 
 
 # Adding description of the software to Markdown
-$SoftwareName = "Ant"
+$SoftwareName = "Apache Ant"
 
 $Description = @"
 _Version:_ $antVersion<br/>
@@ -89,13 +94,25 @@ Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $
 
 
 # Adding description of the software to Markdown
-$SoftwareName = "Maven"
+$SoftwareName = "Apache Maven"
 
 $Description = @"
 _Version:_ $mvnVersion<br/>
 _Environment:_
 * PATH: contains location of mvn.bat
 * M2_HOME: Maven installation root
+"@
+
+Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
+
+# Adding description of the software to Markdown
+$SoftwareName = "Apache JMeter"
+
+$Description = @"
+_Version:_ $jmeterVersion<br/>
+_Environment:_
+* PATH: contains location of jmeter.bat
+* JMETER_HOME: JMeter installation root
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
