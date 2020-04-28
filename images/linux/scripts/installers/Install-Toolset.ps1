@@ -51,5 +51,3 @@ foreach ($tool in $tools) {
         }
     }
 }
-
-chown -R packer:packer /opt/hostedtoolcache/Python
