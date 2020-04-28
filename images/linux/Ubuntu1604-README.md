@@ -155,9 +155,10 @@ compiled using version 3.2.0.0 of the Cabal library )
   - 8 (openjdk version "1.8.0_242") (default)
   - 11 (openjdk version "11.0.6" 2020-01-14 LTS)
   - 12 (openjdk version "12.0.2" 2019-07-16)
-- Ant (Apache Ant(TM) version 1.9.6 compiled on July 20 2018)
+- Apache Ant 1.9.14
 - Gradle 6.3
-- Maven (Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f))
+- Apache Maven 3.6.3
+- Apache JMeter 5.2.1
 - Kind (kind v0.7.0 go1.13.6 linux/amd64)
 - kubectl (error: Missing or incomplete configuration info.  Please point to an existing, complete config file:)
 - helm (v3.1.2+gd878d4d)
