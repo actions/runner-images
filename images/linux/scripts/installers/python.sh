@@ -12,7 +12,7 @@ apt-get install -y --no-install-recommends python3 python3-dev python3-pip
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in python pip python3 pip3; do
+for cmd in python python3 pip3; do
     if ! command -v $cmd; then
         echo "$cmd was not installed or not found on PATH"
         exit 1
