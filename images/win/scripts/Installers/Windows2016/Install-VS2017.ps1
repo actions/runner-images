@@ -99,7 +99,7 @@ $catalogContent = Get-Content -Path ($instanceFolders.FullName + '\catalog.json'
 $catalog = $catalogContent | ConvertFrom-Json
 $version = $catalog.info.id
 $VSInstallRoot = "C:\Program Files (x86)\Microsoft Visual Studio\2017\$ReleaseInPath"
-Write-Host "Visual Studio version" $version "installed"
+Write-Host "Visual Studio version ${version} installed"
 
 # Initialize Visual Studio Experimental Instance for integration testing
 & "$VSInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit | Wait-Process
