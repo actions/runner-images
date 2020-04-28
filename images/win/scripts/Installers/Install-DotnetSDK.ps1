@@ -52,7 +52,9 @@ function InstallSDKVersion (
 
 function InstallAllValidSdks()
 {
-    $releasesIndexPath = Start-DownloadWithRetry -Url 'https://raw.githubusercontent.com/dotnet/core/master/release-notes/releases-index.json' -Name 'releases-index.json'
+    $releaseIndexName = "releases-index.json"
+    $releaseIndexUrl = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/${releaseIndexName}"
+    $releasesIndexPath = Start-DownloadWithRetry -Url $releaseIndexUrl -Name $releaseIndexName
     $dotnetChannels = Get-Content -Path $releasesIndexPath | ConvertFrom-Json
 
     # Consider all channels except preview/eol channels.

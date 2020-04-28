@@ -102,7 +102,7 @@ $BootstrapperName = "vs_${ReleaseInPath}.exe"
 $BootstrapperUrl = "https://aka.ms/vs/16/release/${BootstrapperName}"
 
 # Install VS
-Install-VS -WorkLoads $WorkLoads -BootstrapperName $BootstrapperName -BootstrapperUrl $BootstrapperUrl
+Install-VS -BootstrapperName $BootstrapperName -BootstrapperUrl $BootstrapperUrl -WorkLoads $WorkLoads
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
