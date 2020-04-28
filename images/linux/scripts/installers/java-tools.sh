@@ -29,11 +29,11 @@ echo "JAVA_HOME=/usr/lib/jvm/zulu-${DEFAULT_JDK_VERSION}-azure-amd64" | tee -a /
 echo "JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8" | tee -a /etc/environment
 
 # Install Ant
-curl -sL https://downloads.apache.org/ant/binaries/apache-ant-1.9.14-bin.zip -o ant.zip
+curl -sL https://downloads.apache.org/ant/binaries/apache-ant-1.10.7-bin.zip -o ant.zip
 unzip -d /usr/share ant.zip
 rm ant.zip
-ln -s /usr/share/apache-ant-1.9.14/bin/ant /usr/bin/ant
-echo "ANT_HOME=/usr/share/apache-ant-1.9.14" | tee -a /etc/environment
+ln -s /usr/share/apache-ant-1.10.7/bin/ant /usr/bin/ant
+echo "ANT_HOME=/usr/share/apache-ant-1.10.7" | tee -a /etc/environment
 
 # Install Maven
 curl -sL https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
