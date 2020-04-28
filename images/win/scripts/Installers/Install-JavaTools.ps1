@@ -60,10 +60,11 @@ setx JAVA_HOME_8_X64 $latestJava8Install /M
 setx JAVA_HOME_11_X64 $latestJava11Install /M
 
 # Install Java tools
-# Force chocolatey to ignore dependencies on Ant and Maven or else they will download the Oracle JDK
+# Force chocolatey to ignore dependencies on Ant, Maven and JMeter or else they will download the Oracle JDK
 Choco-Install -PackageName ant -ArgumentList "-i"
 Choco-Install -PackageName maven -ArgumentList "-i", "--version=3.6.3"
 Choco-Install -PackageName gradle
+Choco-Install -PackageName jmeter -ArgumentList "-i"
 
 # Move maven variables to Machine. They may not be in the environment for this script so we need to read them from the registry.
 $userSid = (Get-WmiObject win32_useraccount -Filter "name = '$env:USERNAME' AND domain = '$env:USERDOMAIN'").SID
