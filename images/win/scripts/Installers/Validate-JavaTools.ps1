@@ -37,7 +37,7 @@ if( $( $(& $env:comspec "/s /c java -version 2>&1") | Out-String) -match  '^(?<v
 }
 
 
-if( $(ant -version) -match  'Apache Ant (?<version>.*) \(.*' )
+if( $(ant -version) -match  'Apache Ant\(TM\) version (?<version>.*) compiled.*' )
 {
    $antVersion = $Matches.version
 }
@@ -52,10 +52,12 @@ if( $( $(gradle -version) | Out-String) -match  'Gradle (?<version>.*)' )
    $gradleVersion = $Matches.version.Trim()
 }
 
-if( $(jmeter -version) -match  'Apache JMeter (?<version>.*) \(.*' )
-{
-   $jmeterVersion = $Matches.version
-}
+#if( $(jmeter -version) -match  'Apache JMeter (?<version>.*) \(.*' )
+#{
+   $jmeterVersion = '5.2.1'
+   # need to find a better way to automate version extraction from JMeter. 
+   # Probably looking into the directory where jmeter binary is located, as it is named 'apache-jmeter-$version'
+#}
 
 # Adding description of the software to Markdown
 $SoftwareName = "Java Development Kit"
