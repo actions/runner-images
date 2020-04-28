@@ -16,5 +16,5 @@ function isUbuntu18
 
 function getOSVersionLabel
 {
-    isUbuntu16 && echo xenial || echo bionic
+    lsb_release -cs
 }
