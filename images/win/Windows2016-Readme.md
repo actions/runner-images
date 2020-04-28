@@ -657,7 +657,7 @@ _Environment:_
 _Version:_ 5.2.1<br/>
 _Environment:_
 * PATH: contains location of jmeter.bat
-* JMETER_HOME: Maven installation root
+* JMETER_HOME: JMeter installation root
 
 ## Gradle
 
