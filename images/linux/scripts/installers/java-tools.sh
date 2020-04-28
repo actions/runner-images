@@ -29,11 +29,14 @@ echo "JAVA_HOME=/usr/lib/jvm/zulu-${DEFAULT_JDK_VERSION}-azure-amd64" | tee -a /
 echo "JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8" | tee -a /etc/environment
 
 # Install Ant
-apt-fast install -y --no-install-recommends ant ant-optional
-echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
+curl -sL https://downloads.apache.org/ant/binaries/apache-ant-1.9.14-bin.zip -o ant.zip
+unzip -d /usr/share ant.zip
+rm ant.zip
+ln -s /usr/share/apache-ant-1.9.14/bin/ant /usr/bin/ant
+echo "ANT_HOME=/usr/share/apache-ant-1.9.14" | tee -a /etc/environment
 
 # Install Maven
-curl -sL https://www-eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
+curl -sL https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
 unzip -d /usr/share maven.zip
 rm maven.zip
 ln -s /usr/share/apache-maven-3.6.3/bin/mvn /usr/bin/mvn
@@ -56,6 +59,13 @@ unzip -d /usr/share gradleLatest.zip
 rm gradleLatest.zip
 ln -s /usr/share/gradle-"${gradleVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=/usr/share/gradle" | tee -a /etc/environment
+
+# Install JMeter
+curl -sL https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.2.1.zip -o jmeter.zip
+unzip -d /usr/share jmeter.zip
+rm jmeter.zip
+ln -s /usr/share/apache-jmeter-5.2.1/bin/jmeter /usr/bin/jmeter
+echo "JMETER_HOME=/usr/share/apache-jmeter-5.2.1" | tee -a /etc/environment
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
