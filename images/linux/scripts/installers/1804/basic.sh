@@ -28,8 +28,8 @@ apt-get install -y --no-install-recommends iputils-ping
 echo "Install jq"
 apt-get install -y --no-install-recommends jq
 
-echo "Install libcurl4"
-apt-get install -y --no-install-recommends libcurl4
+echo "Install libcurl3"
+apt-get install -y --no-install-recommends libcurl3
 
 echo "Install libunwind8"
 apt-get install -y --no-install-recommends libunwind8
