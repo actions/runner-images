@@ -259,7 +259,6 @@
         {
             "type": "shell",
             "scripts":[
-                "{{template_dir}}/scripts/installers/2004/android.sh",
                 "{{template_dir}}/scripts/installers/python.sh"
             ],
             "environment_vars": [
