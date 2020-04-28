@@ -155,7 +155,7 @@ compiled using version 3.2.0.0 of the Cabal library )
   - 8 (openjdk version "1.8.0_242") (default)
   - 11 (openjdk version "11.0.6" 2020-01-14 LTS)
   - 12 (openjdk version "12.0.2" 2019-07-16)
-- Apache Ant 1.9.14
+- Apache Ant 1.10.7
 - Gradle 6.3
 - Apache Maven 3.6.3
 - Apache JMeter 5.2.1
