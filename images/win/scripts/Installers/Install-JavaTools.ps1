@@ -3,29 +3,23 @@
 ##  Desc:  Install various JDKs and java tools
 ################################################################################
 
+Import-Module -Name ImageHelpers -Force
+
 # Download the Azul Systems Zulu JDKs
 # See https://www.azul.com/downloads/azure-only/zulu/
-$azulJDK7Uri = 'https://repos.azul.com/azure-only/zulu/packages/zulu-7/7u232/zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64.zip'
-$azulJDK8Uri = 'https://repos.azul.com/azure-only/zulu/packages/zulu-8/8u222/zulu-8-azure-jdk_8.40.0.25-8.0.222-win_x64.zip'
-$azulJDK11Uri = 'https://repos.azul.com/azure-only/zulu/packages/zulu-11/11.0.4/zulu-11-azure-jdk_11.33.15-11.0.4-win_x64.zip'
+$azulJDKURLs = @(
+    'https://repos.azul.com/azure-only/zulu/packages/zulu-7/7u232/zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64.zip',
+    'https://repos.azul.com/azure-only/zulu/packages/zulu-8/8u222/zulu-8-azure-jdk_8.40.0.25-8.0.222-win_x64.zip',
+    'https://repos.azul.com/azure-only/zulu/packages/zulu-11/11.0.4/zulu-11-azure-jdk_11.33.15-11.0.4-win_x64.zip'
+)
 
-cd $env:TEMP
-
-Invoke-WebRequest -UseBasicParsing -Uri $azulJDK7Uri -OutFile azulJDK7.zip
-Invoke-WebRequest -UseBasicParsing -Uri $azulJDK8Uri -OutFile azulJDK8.zip
-Invoke-WebRequest -UseBasicParsing -Uri $azulJDK11Uri -OutFile azulJDK11.zip
-
-# Expand the zips
-Expand-Archive -Path azulJDK7.zip -DestinationPath "C:\Program Files\Java\" -Force
-Expand-Archive -Path azulJDK8.zip -DestinationPath "C:\Program Files\Java\" -Force
-Expand-Archive -Path azulJDK11.zip -DestinationPath "C:\Program Files\Java\" -Force
-
-# Deleting zip folders
-Remove-Item -Recurse -Force azulJDK7.zip
-Remove-Item -Recurse -Force azulJDK8.zip
-Remove-Item -Recurse -Force azulJDK11.zip
-
-Import-Module -Name ImageHelpers -Force
+$azulJDKURLs | ForEach-Object {
+    Start-DownloadWithRetry -Url $_ -Name $_.Split("/")[-1] |
+    ForEach-Object {
+        Expand-Archive -Path $_ -DestinationPath "C:\Program Files\Java\"
+        Remove-Item -Recurse -Force $_
+    }
+}
 
 $currentPath = Get-MachinePath
 
@@ -85,14 +79,8 @@ setx MAVEN_OPTS $maven_opts /M
 $uri = 'https://ayera.dl.sourceforge.net/project/cobertura/cobertura/2.1.1/cobertura-2.1.1-bin.zip'
 $coberturaPath = "C:\cobertura-2.1.1"
 
-cd $env:TEMP
-
-Invoke-WebRequest -UseBasicParsing -Uri $uri -OutFile cobertura.zip
-
-# Expand the zip
-Expand-Archive -Path cobertura.zip -DestinationPath "C:\" -Force
-
-# Deleting zip folder
-Remove-Item -Recurse -Force cobertura.zip
+Start-DownloadWithRetry -Url $uri -Name "cobertura" |
+Expand-Archive -Path {$_} -DestinationPath "C:\" |
+Remove-Item -Recurse -Force -Path {$_}
 
 setx COBERTURA_HOME $coberturaPath /M
