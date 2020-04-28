@@ -54,7 +54,7 @@ $java11Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jd
 $latestJava11Install = $java11Installs.FullName;
 
 $java11Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*13*' | Sort-Object -Property Name -Descending | Select-Object -First 1
-$latestJava11Install = $java11Installs.FullName;
+$latestJava13Install = $java13Installs.FullName;
 
 $newPath = [string]::Join(';', $newPathSegments)
 $newPath = $latestJava8Install + '\bin;' + $newPath
@@ -65,7 +65,7 @@ setx JAVA_HOME $latestJava8Install /M
 setx JAVA_HOME_7_X64 $latestJava7Install /M
 setx JAVA_HOME_8_X64 $latestJava8Install /M
 setx JAVA_HOME_11_X64 $latestJava11Install /M
-setx JAVA_HOME_13_X64 $latestJava11Install /M
+setx JAVA_HOME_13_X64 $latestJava13Install /M
 
 # Install Java tools
 # Force chocolatey to ignore dependencies on Ant and Maven or else they will download the Oracle JDK
