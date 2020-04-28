@@ -25,7 +25,7 @@ In general, these are the guidelines we consider when deciding what to pre-insta
 - Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life.
 - If a tool can be installed during the build, we will evaluate how much time is saved
  and how much space is used by having the tool pre-installed.
-- If tool license is not MIT, Apach or GNU, the tool cannot be installed on image.
+- If tool license is not MIT, Apache or GNU, the tool cannot be installed on image.
 - Big tools can be pre-installed after our evaluation of the image space usage.
 - If a tool requires the support of more than one version, we will consider the cost of this maintenance, how often new versions bring dangerous updates.
 - Please, before creating a PR with tool installation, wait for confirmation that this tool can be installed on image.
