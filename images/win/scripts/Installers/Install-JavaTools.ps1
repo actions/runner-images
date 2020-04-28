@@ -53,7 +53,7 @@ $latestJava8Install = $java8Installs.FullName;
 $java11Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*11*' | Sort-Object -Property Name -Descending | Select-Object -First 1
 $latestJava11Install = $java11Installs.FullName;
 
-$java11Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*13*' | Sort-Object -Property Name -Descending | Select-Object -First 1
+$java13Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*13*' | Sort-Object -Property Name -Descending | Select-Object -First 1
 $latestJava13Install = $java13Installs.FullName;
 
 $newPath = [string]::Join(';', $newPathSegments)
