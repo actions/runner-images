@@ -10,6 +10,9 @@ source $HELPER_SCRIPTS/apt.sh
 
 set -e
 
+echo "Install python2"
+apt-get install -y --no-install-recommends python-is-python2
+
 echo "Install dnsutils"
 apt-get install -y --no-install-recommends dnsutils
 
