@@ -3,6 +3,8 @@
 ##  Desc:  Install various JDKs and java tools
 ################################################################################
 
+$ErrorActionPreference = 'Stop'
+
 Import-Module -Name ImageHelpers -Force
 
 # Download the Azul Systems Zulu JDKs
