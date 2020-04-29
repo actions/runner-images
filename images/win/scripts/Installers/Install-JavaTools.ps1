@@ -79,7 +79,7 @@ setx MAVEN_OPTS $maven_opts /M
 $uri = 'https://ayera.dl.sourceforge.net/project/cobertura/cobertura/2.1.1/cobertura-2.1.1-bin.zip'
 $coberturaPath = "C:\cobertura-2.1.1"
 
-Start-DownloadWithRetry -Url $uri -Name "cobertura" |
+Start-DownloadWithRetry -Url $uri -Name "cobertura.zip" |
 Expand-Archive -Path {$_} -DestinationPath "C:\" |
 Remove-Item -Recurse -Force -Path {$_}
 
