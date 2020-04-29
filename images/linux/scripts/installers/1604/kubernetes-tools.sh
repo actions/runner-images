@@ -9,10 +9,10 @@ source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/apt.sh
 
 ## Install kubectl
-apt-get install -y apt-transport-https
+apt-get install -y apt-transport-https gnupg2
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 touch /etc/apt/sources.list.d/kubernetes.list
-echo "deb http://apt.kubernetes.io/ kubernetes-$(lsb_release -cs) main" | tee -a /etc/apt/sources.list.d/kubernetes.list
+echo "deb https://apt.kubernetes.io/ kubernetes-$(lsb_release -cs) main" | tee -a /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt-get install -y kubectl
 
@@ -36,5 +36,5 @@ helm init --client-only
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "kubectl ($(kubectl version --short |& head -n 1))"
+DocumentInstalledItem "kubectl ($(kubectl version --client --short |& head -n 1))"
 DocumentInstalledItem "helm ($(helm version --short |& head -n 1))"
