@@ -26,7 +26,7 @@ function replaceEtcEnvironmentVariable {
     variable_value="$2"
 
     # modify /etc/environemnt in place by replacing a string that begins with variable_name
-    sudo sed -ie "s%^${variable_name}=.*$%${variable_name}=\"${variable_value}\"%" /etc/environment
+    sudo sed -i -e "s%^${variable_name}=.*$%${variable_name}=\"${variable_value}\"%" /etc/environment
 }
 
 function setEtcEnvironmentVariable {
