@@ -58,7 +58,6 @@ apt-fast install -y --no-install-recommends \
     xz-utils \
     xorriso \
     zsync \
-    apt-transport-https \
     gnupg2
 
 # Run tests to determine that the software installed as expected
@@ -101,5 +100,4 @@ DocumentInstalledItemIndent "upx"
 DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
 DocumentInstalledItemIndent "zstd"
-DocumentInstalledItemIndent "apt-transport-https"
 DocumentInstalledItemIndent "gnupg2"
