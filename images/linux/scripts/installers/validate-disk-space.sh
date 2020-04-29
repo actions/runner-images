@@ -4,7 +4,7 @@
 ##  Desc:  Validate free disk space
 ################################################################################
 
-availableSpaceMB=$(( $(df / | sed 1d | awk '{ print $4 "\t" }')/1024 ))
+availableSpaceMB=$(df / -hm | sed 1d | awk '{ print $4}')
 minimumFreeSpaceMB=$(( 18*1024 ))
 
 echo "Available disk space: $availableSpaceMB MB"
