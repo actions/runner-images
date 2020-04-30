@@ -1,10 +1,8 @@
-# macOS Catalina 10.15.4 (19E266)
-The following software is installed on machines with the 20200328.1 update.
-
-#### Xcode 11.3.1 set by default
-## Operating System
-
-- OS X 10.15.4 (19E287) **Catalina**
+# OS X info
+- System Version: macOS 10.15.4 (19E287)
+- Kernel Version: Darwin 19.4.0
+- System Integrity Protection: Enabled
+- Image Version: 20200425.1
 
 # Installed Software
 ## Language and Runtime
@@ -14,7 +12,7 @@ The following software is installed on machines with the 20200328.1 update.
 - Java 12: Zulu12.3+11-CA (build 12.0.2+3)
 - Java 13: Zulu13.31+11-CA (build 13.0.3+3-MTS)
 - Java 14: Zulu14.28+21-CA (build 14.0.1+8)
-- Rust 1.42.0
+- Rust 1.43.0
 - Clang/LLVM 10.0.0
 - gcc-8 (Homebrew GCC 8.4.0_1) 8.4.0
 - gcc-9 (Homebrew GCC 9.3.0_1) 9.3.0
@@ -22,7 +20,7 @@ The following software is installed on machines with the 20200328.1 update.
 - GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0
 - Node.js v12.16.2
 - NVM 0.33.11
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.20.0 v12.16.2 v13.13.0
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.20.1 v12.16.2 v13.13.0
 - PowerShell 7.0.0
 - Python 2.7.17
 - Python 3.7.7
@@ -53,43 +51,43 @@ The following software is installed on machines with the 20200328.1 update.
 
 ## Utilities
 - Curl 7.69.1
-- Git: 2.26.1
+- Git: 2.26.2
 - Git LFS: 2.10.0
 - Hub CLI: 2.14.2
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.13.0
 - Packer 1.5.5
-- GNU parallel 20200322
+- GNU parallel 20200422
 - OpenSSL 1.0.2t  10 Sep 2019
 - jq 1.6
 - gpg (GnuPG) 2.2.20
 - psql (PostgreSQL) 12.2
 - PostgreSQL 12.2
 - aria2 1.35.0
-- azcopy 10.4.0
+- azcopy 10.4.1
 - zstd 1.4.4
-- bazel 3.0.0
+- bazel 3.1.0
 - bazelisk v1.4.0
-- helm v3.1.2+gd878d4d
+- helm v3.2.0+ge11b7ce
 - virtualbox 6.1.6r137129
 - Vagrant 2.2.7
 
 ## Tools
-- Fastlane 2.145.0
+- Fastlane 2.146.1
 - Cmake 3.17.1
-- App Center CLI 2.4.1
-- Azure CLI 2.3.1
-- AWS CLI 2.0.8
+- App Center CLI 2.5.0
+- Azure CLI 2.4.0
+- AWS CLI 2.0.9
 - AWS SAM CLI 0.47.0
-- Aliyun CLI 3.0.37
+- Aliyun CLI 3.0.39
 
 ## Browsers
 - Safari 13.1 (15609.1.20.111.8)
 - SafariDriver 13.1 (15609.1.20.111.8)
-- Google Chrome 81.0.4044.113
+- Google Chrome 81.0.4044.122
 - ChromeDriver 81.0.4044.69
-- Microsoft Edge 81.0.416.53
-- MSEdgeDriver 81.0.416.58
+- Microsoft Edge 81.0.416.64
+- MSEdgeDriver 81.0.416.64
 - Mozilla Firefox 75.0
 - geckodriver 0.26.0
 
@@ -113,7 +111,7 @@ The following software is installed on machines with the 20200328.1 update.
 
 ## Xamarin
 ### Visual Studio for Mac
-- 8.5.3.16
+- 8.5.4.12
 
 ### Mono
 - 6.8.0.123
@@ -149,14 +147,15 @@ The following software is installed on machines with the 20200328.1 update.
 ## Xcode
 | Version          | Build   | Path                           |
 | ---------------- | ------- | ------------------------------ |
-| 11.4.1           | 11E503a | /Applications/Xcode_11.4.1.app |
+| 11.4.1 (default) | 11E503a | /Applications/Xcode_11.4.1.app |
 | 11.4             | 11E146  | /Applications/Xcode_11.4.app   |
-| 11.3.1 (default) | 11C505  | /Applications/Xcode_11.3.1.app |
+| 11.3.1           | 11C505  | /Applications/Xcode_11.3.1.app |
 | 11.3             | 11C29   | /Applications/Xcode_11.3.app   |
 | 11.2.1           | 11B500  | /Applications/Xcode_11.2.1.app |
 | 11.2             | 11B52   | /Applications/Xcode_11.2.app   |
 | 11.1             | 11A1027 | /Applications/Xcode_11.1.app   |
 | 11.0             | 11A420a | /Applications/Xcode_11.app     |
+| 10.3             | 10G8    | /Applications/Xcode_10.3.app   |
 
 ### Xcode Support Tools
 - Nomad CLI 3.1.2
@@ -168,44 +167,54 @@ The following software is installed on machines with the 20200328.1 update.
 ### Installed SDKs
 | SDK                     | SDK Name             | Xcode Version                                        |
 | ----------------------- | -------------------- | ---------------------------------------------------- |
+| macOS 10.14             | macosx10.14          | 10.3                                                 |
 | macOS 10.15             | macosx10.15          | 11.0, 11.1, 11.2, 11.2.1, 11.3, 11.3.1, 11.4, 11.4.1 |
+| iOS 12.4                | iphoneos12.4         | 10.3                                                 |
 | iOS 13.0                | iphoneos13.0         | 11.0                                                 |
 | iOS 13.1                | iphoneos13.1         | 11.1                                                 |
 | iOS 13.2                | iphoneos13.2         | 11.2, 11.2.1, 11.3, 11.3.1                           |
 | iOS 13.4                | iphoneos13.4         | 11.4, 11.4.1                                         |
+| Simulator - iOS 12.4    | iphonesimulator12.4  | 10.3                                                 |
 | Simulator - iOS 13.0    | iphonesimulator13.0  | 11.0                                                 |
 | Simulator - iOS 13.1    | iphonesimulator13.1  | 11.1                                                 |
 | Simulator - iOS 13.2    | iphonesimulator13.2  | 11.2, 11.2.1, 11.3, 11.3.1                           |
 | Simulator - iOS 13.4    | iphonesimulator13.4  | 11.4, 11.4.1                                         |
+| tvOS 12.4               | appletvos12.4        | 10.3                                                 |
 | tvOS 13.0               | appletvos13.0        | 11.0, 11.1                                           |
 | tvOS 13.2               | appletvos13.2        | 11.2, 11.2.1, 11.3, 11.3.1                           |
 | tvOS 13.4               | appletvos13.4        | 11.4, 11.4.1                                         |
+| Simulator - tvOS 12.4   | appletvsimulator12.4 | 10.3                                                 |
 | Simulator - tvOS 13.0   | appletvsimulator13.0 | 11.0, 11.1                                           |
 | Simulator - tvOS 13.2   | appletvsimulator13.2 | 11.2, 11.2.1, 11.3, 11.3.1                           |
 | Simulator - tvOS 13.4   | appletvsimulator13.4 | 11.4, 11.4.1                                         |
+| watchOS 5.3             | watchos5.3           | 10.3                                                 |
 | watchOS 6.0             | watchos6.0           | 11.0, 11.1                                           |
 | watchOS 6.1             | watchos6.1           | 11.2, 11.2.1, 11.3, 11.3.1                           |
 | watchOS 6.2             | watchos6.2           | 11.4, 11.4.1                                         |
+| Simulator - watchOS 5.3 | watchsimulator5.3    | 10.3                                                 |
 | Simulator - watchOS 6.0 | watchsimulator6.0    | 11.0, 11.1                                           |
 | Simulator - watchOS 6.1 | watchsimulator6.1    | 11.2, 11.2.1, 11.3, 11.3.1                           |
 | Simulator - watchOS 6.2 | watchsimulator6.2    | 11.4, 11.4.1                                         |
 | DriverKit 19.0          | driverkit.macosx19.0 | 11.0, 11.1, 11.2, 11.2.1, 11.3, 11.3.1, 11.4, 11.4.1 |
 
 ### Installed Simulators
-| OS          | Xcode Version                    | Simulators                                                                                                                                                                                                                                                              |
-| ----------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS 13.0    | 11.0                             | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                         |
-| iOS 13.1    | 11.1                             | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                         |
-| iOS 13.2    | 11.2<br>11.2.1                   | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                         |
-| iOS 13.3    | 11.3<br>11.3.1                   | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                |
-| iOS 13.4    | 11.4<br>11.4.1                   | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)<br>iPhone SE (2nd generation) |
-| tvOS 13.0   | 11.0<br>11.1                     | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                       |
-| tvOS 13.2   | 11.2<br>11.2.1                   | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                       |
-| tvOS 13.3   | 11.3<br>11.3.1                   | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                       |
-| tvOS 13.4   | 11.4<br>11.4.1                   | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                       |
-| watchOS 6.0 | 11.0<br>11.1                     | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm                                                                                                                                                |
-| watchOS 6.1 | 11.2<br>11.2.1<br>11.3<br>11.3.1 | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm                                                                                                                                                |
-| watchOS 6.2 | 11.4<br>11.4.1                   | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm                                                                                                                                                |
+| OS          | Xcode Version                    | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iOS 12.4    | 10.3                             | iPhone 5s<br>iPhone 6 Plus<br>iPhone 6<br>iPhone 6s<br>iPhone 6s Plus<br>iPhone SE<br>iPhone 7<br>iPhone 7 Plus<br>iPhone 8<br>iPhone 8 Plus<br>iPhone X<br>iPhone Xs<br>iPhone Xs Max<br>iPhone Xʀ<br>iPad Air<br>iPad Air 2<br>iPad Pro (9.7-inch)<br>iPad Pro (12.9-inch)<br>iPad (5th generation)<br>iPad Pro (12.9-inch) (2nd generation)<br>iPad Pro (10.5-inch)<br>iPad (6th generation)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation) |
+| iOS 13.0    | 11.0                             | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                                                                                             |
+| iOS 13.1    | 11.1                             | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                                                                                             |
+| iOS 13.2    | 11.2<br>11.2.1                   | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                                                                                             |
+| iOS 13.3    | 11.3<br>11.3.1                   | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                                                                                             |
+| iOS 13.4    | 11.4<br>11.4.1                   | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)<br>iPhone SE (2nd generation)                                                                                                                                                                                                                     |
+| tvOS 12.4   | 10.3                             | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| tvOS 13.0   | 11.0<br>11.1                     | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| tvOS 13.2   | 11.2<br>11.2.1                   | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| tvOS 13.3   | 11.3<br>11.3.1                   | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| tvOS 13.4   | 11.4<br>11.4.1                   | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| watchOS 5.3 | 10.3                             | Apple Watch Series 2 - 38mm<br>Apple Watch Series 2 - 42mm<br>Apple Watch Series 3 - 38mm<br>Apple Watch Series 3 - 42mm<br>Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm                                                                                                                                                                                                                                                                                                      |
+| watchOS 6.0 | 11.0<br>11.1                     | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm                                                                                                                                                                                                                                                                                                                                                                    |
+| watchOS 6.1 | 11.2<br>11.2.1<br>11.3<br>11.3.1 | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm                                                                                                                                                                                                                                                                                                                                                                    |
+| watchOS 6.2 | 11.4<br>11.4.1                   | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm                                                                                                                                                                                                                                                                                                                                                                    |
 
 ## Android
 ### Android SDK Tools
@@ -216,7 +225,7 @@ The following software is installed on machines with the 20200328.1 update.
 ### Android SDK Platform-Tools
 | Package Name   | Description                                 |
 | -------------- | ------------------------------------------- |
-| platform-tools | Android SDK Platform-Tools, Revision 29.0.6 |
+| platform-tools | Android SDK Platform-Tools, Revision 30.0.0 |
 
 ### Android SDK Platforms
 | Package Name | Description                         |
@@ -262,7 +271,7 @@ The following software is installed on machines with the 20200328.1 update.
 | ---------------- | ------------ |
 | cmake            | 3.6.4111459  |
 | lldb             | 3.1.4508709  |
-| ndk-bundle       | 21.0.6113669 |
+| ndk-bundle       | 21.1.6352462 |
 | Android Emulator | 30.0.5       |
 
 ### Android Google APIs
@@ -280,3 +289,5 @@ The following software is installed on machines with the 20200328.1 update.
 | Google Play services                            | 49      |
 | Google Repository                               | 58      |
 | Intel x86 Emulator Accelerator (HAXM installer) | 7.5.1   |
+
+
