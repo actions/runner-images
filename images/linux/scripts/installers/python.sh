@@ -15,7 +15,7 @@ python2 get-pip.py
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in python python3 pip3; do
+for cmd in python pip python3 pip3; do
     if ! command -v $cmd; then
         echo "$cmd was not installed or not found on PATH"
         exit 1
@@ -25,5 +25,6 @@ done
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Python ($(python --version 2>&1))"
+DocumentInstalledItem "pip ($(pip --version))"
 DocumentInstalledItem "Python3 ($(python3 --version))"
 DocumentInstalledItem "pip3 ($(pip3 --version))"
