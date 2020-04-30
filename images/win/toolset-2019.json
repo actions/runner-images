@@ -1,0 +1,31 @@
+{
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "2.7.*",
+                "3.5.*",
+                "3.6.*",
+                "3.7.*",
+                "3.8.*"
+            ],
+            "default": "3.7.*"
+        },
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
+            "arch": "x86",
+            "platform" : "win32",
+            "versions": [
+                "2.7.*",
+                "3.5.*",
+                "3.6.*",
+                "3.7.*",
+                "3.8.*"
+            ]
+        }
+    ]
+}
