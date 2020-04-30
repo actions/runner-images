@@ -6,11 +6,8 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
-source $HELPER_SCRIPTS/apt.sh
 
-# Install Ansible PPA and latest Ansible
-#add-apt-repository ppa:ansible/ansible
-#apt-get update
+# Install latest Ansible
 apt-get install -y --no-install-recommends ansible
 
 # Run tests to determine that the software installed as expected
