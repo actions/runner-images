@@ -9,8 +9,6 @@ source $HELPER_SCRIPTS/document.sh
 
 DEFAULT_JDK_VERSION=8
 
-set -e
-
 # Install the Azul Systems Zulu JDKs
 # See https://www.azul.com/downloads/azure-only/zulu/
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
