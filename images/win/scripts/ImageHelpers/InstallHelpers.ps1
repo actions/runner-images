@@ -78,6 +78,7 @@ Function Install-VisualStudio
     .PARAMETER WorkLoads
         The string that contain workloads that will be passed to the installer.
     #>
+
     Param
     (
         [Parameter(Mandatory)]
@@ -85,9 +86,8 @@ Function Install-VisualStudio
         [String] $WorkLoads
     )
 
-    $BootstrapperName = [IO.Path]::GetFileName($BootstrapperUrl)
-
     Write-Host "Downloading Bootstrapper ..."
+    $BootstrapperName = [IO.Path]::GetFileName($BootstrapperUrl)
     $bootstrapperFilePath = Start-DownloadWithRetry -Url $BootstrapperUrl -Name $BootstrapperName
 
     try
