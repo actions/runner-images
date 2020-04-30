@@ -198,6 +198,7 @@
                 "{{template_dir}}/scripts/installers/google-cloud-sdk.sh",
                 "{{template_dir}}/scripts/installers/hhvm.sh",
                 "{{template_dir}}/scripts/installers/image-magick.sh",
+                "{{template_dir}}/scripts/installers/java-tools.sh",
                 "{{template_dir}}/scripts/installers/kind.sh",
                 "{{template_dir}}/scripts/installers/2004/kubernetes-tools.sh",
                 "{{template_dir}}/scripts/installers/2004/mercurial.sh",
