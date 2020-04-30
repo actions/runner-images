@@ -14,7 +14,7 @@ $azulJDKURLs = @(
 )
 
 $azulJDKURLs | ForEach-Object {
-    $archivePath = Start-DownloadWithRetry -Url $_ -Name $_.Split("/")[-1]
+    $archivePath = Start-DownloadWithRetry -Url $_ -Name $([IO.Path]::GetFileName($_))
     Expand-Archive -Path $archivePath -DestinationPath "C:\Program Files\Java\"
 }
 
