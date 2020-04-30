@@ -96,13 +96,11 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Workload.Universal ' + `
               '--add Microsoft.VisualStudio.Workload.VisualStudioExtension'
 
-
 $ReleaseInPath = "Enterprise"
-$BootstrapperName = "vs_${ReleaseInPath}.exe"
-$BootstrapperUrl = "https://aka.ms/vs/16/release/${BootstrapperName}"
+$BootstrapperUrl = "https://aka.ms/vs/16/release/vs_${ReleaseInPath}.exe"
 
 # Install VS
-Install-VisualStudio -BootstrapperName $BootstrapperName -BootstrapperUrl $BootstrapperUrl -WorkLoads $WorkLoads
+Install-VisualStudio -BootstrapperUrl $BootstrapperUrl -WorkLoads $WorkLoads
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
