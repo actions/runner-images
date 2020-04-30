@@ -3,8 +3,6 @@
 ##  Desc:  Install various JDKs and java tools
 ################################################################################
 
-$ErrorActionPreference = 'Stop'
-
 Import-Module -Name ImageHelpers -Force
 
 # Download the Azul Systems Zulu JDKs
@@ -16,11 +14,8 @@ $azulJDKURLs = @(
 )
 
 $azulJDKURLs | ForEach-Object {
-    Start-DownloadWithRetry -Url $_ -Name $_.Split("/")[-1] |
-    ForEach-Object {
-        Expand-Archive -Path $_ -DestinationPath "C:\Program Files\Java\"
-        Remove-Item -Recurse -Force $_
-    }
+    $archivePath = Start-DownloadWithRetry -Url $_ -Name $_.Split("/")[-1]
+    Expand-Archive -Path $archivePath -DestinationPath "C:\Program Files\Java\"
 }
 
 $currentPath = Get-MachinePath
@@ -81,8 +76,7 @@ setx MAVEN_OPTS $maven_opts /M
 $uri = 'https://ayera.dl.sourceforge.net/project/cobertura/cobertura/2.1.1/cobertura-2.1.1-bin.zip'
 $coberturaPath = "C:\cobertura-2.1.1"
 
-Start-DownloadWithRetry -Url $uri -Name "cobertura.zip" |
-Expand-Archive -Path {$_} -DestinationPath "C:\" |
-Remove-Item -Recurse -Force -Path {$_}
+$archivePath = Start-DownloadWithRetry -Url $uri -Name "cobertura.zip"
+Expand-Archive -Path $archivePath -DestinationPath "C:\"
 
 setx COBERTURA_HOME $coberturaPath /M
