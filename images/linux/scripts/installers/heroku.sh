@@ -6,10 +6,9 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
-source $HELPER_SCRIPTS/apt.sh
 
 # Install Heroku CLI
-curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+snap install --classic heroku
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
