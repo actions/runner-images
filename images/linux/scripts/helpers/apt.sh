@@ -18,6 +18,6 @@ echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
 # Use apt-fast for parallel downloads
 apt-get install aria2
-#add-apt-repository -y ppa:apt-fast/stable
+add-apt-repository -y ppa:apt-fast/stable
 apt-get update
 apt-get -y install apt-fast
