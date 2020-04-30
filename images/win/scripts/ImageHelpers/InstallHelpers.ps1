@@ -63,7 +63,7 @@ function Install-Binary
     }
 }
 
-Function Install-VS
+Function Install-VisualStudio
 {
     <#
     .SYNOPSIS

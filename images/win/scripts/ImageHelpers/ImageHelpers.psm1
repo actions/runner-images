@@ -14,7 +14,7 @@ Export-ModuleMember -Function @(
     'Get-SystemVariable'
     'Set-SystemVariable'
     'Install-Binary'
-    'Install-VS'
+    'Install-VisualStudio'
     'Get-ToolcachePackages'
     'Get-ToolsByName'
     'Add-ContentToMarkdown'

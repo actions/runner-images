@@ -82,7 +82,7 @@ $BootstrapperName = "vs_${ReleaseInPath}.exe"
 $BootstrapperUrl = "https://aka.ms/vs/15/release/${BootstrapperName}"
 
 # Install VS
-Install-VS -BootstrapperName $BootstrapperName -BootstrapperUrl $BootstrapperUrl -WorkLoads $WorkLoads
+Install-VisualStudio -BootstrapperName $BootstrapperName -BootstrapperUrl $BootstrapperUrl -WorkLoads $WorkLoads
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
