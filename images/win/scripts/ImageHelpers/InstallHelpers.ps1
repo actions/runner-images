@@ -283,6 +283,11 @@ function Get-ToolcachePackages {
     Get-Content -Raw $toolcachePath | ConvertFrom-Json
 }
 
+function Get-ToolsetContent {
+    $toolsetJson = Get-Content -Path $env:TOOLSET_JSON_PATH -Raw
+    ConvertFrom-Json -InputObject $toolsetJson
+}
+
 function Get-ToolsByName {
     param (
         [Parameter(Mandatory = $True)]

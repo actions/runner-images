@@ -44,21 +44,6 @@ Function NPMFeed-AuthSetup {
     $npmrcContent | Out-File -FilePath "$($env:TEMP)/.npmrc" -Encoding utf8
 }
 
-Function Set-DefaultPythonVersion {
-    param(
-        [Parameter(Mandatory=$true)]
-        [System.Version] $Version,
-        [System.String] $Arch = "x64"
-    )
-
-    $pythonPath = $Env:AGENT_TOOLSDIRECTORY + "/Python/${Version}*/${Arch}"
-    $pythonDir = Get-Item -Path $pythonPath
-
-    Write-Host "Use Python ${Version} as a system Python"
-    Add-MachinePathItem -PathItem $pythonDir.FullName
-    Add-MachinePathItem -PathItem "$($pythonDir.FullName)\Scripts"
-}
-
 Function Set-DefaultRubyVersion {
     param(
         [Parameter(Mandatory=$true)]
@@ -106,5 +91,4 @@ $ToolVersions.PSObject.Properties | ForEach-Object {
     }
 }
 
-Set-DefaultPythonVersion -Version "3.7"
 Set-DefaultRubyVersion -Version "2.5"
