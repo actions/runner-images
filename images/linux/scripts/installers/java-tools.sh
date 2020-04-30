@@ -7,6 +7,8 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 
+set -e
+
 DEFAULT_JDK_VERSION=8
 
 # Install the Azul Systems Zulu JDKs
