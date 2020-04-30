@@ -884,6 +884,12 @@
             ]
         },
         {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
+            ]
+        },
+        {
             "type": "file",
             "source": "C:\\InstalledSoftware.md",
             "destination": "{{ template_dir }}/Windows2016-Readme.md",
