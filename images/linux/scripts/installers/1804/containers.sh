@@ -18,7 +18,9 @@ echo -e "[registries.search]\nregistries = ['docker.io', 'quay.io']" | tee /etc/
 
 ## Add version information to the metadata file
 echo "Documenting container tools version"
-PODMAN_VERSION='podman --version'
-BUILDAH_VERSION='buildah --version'
-SKOPEO_VERSION='skopeo --version'
-DocumentInstalledItem "Podman ($PODMAN_VERSION)\nBuildah ($BUILDAH_VERSION)\nSkopeo ($SKOPEO_VERSION)"
+PODMAN_VERSION="$(podman --version | cut -d " " -f 3)"
+BUILDAH_VERSION="$(buildah --version | cut -d " " -f 3)"
+SKOPEO_VERSION="$(skopeo --version | cut -d " " -f 3)"
+DocumentInstalledItem "Podman ($PODMAN_VERSION)"
+DocumentInstalledItem "Buildah ($BUILDAH_VERSION)"
+DocumentInstalledItem "Skopeo ($SKOPEO_VERSION)"
