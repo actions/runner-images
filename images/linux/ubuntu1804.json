@@ -299,7 +299,8 @@
         {
             "type": "shell",
             "scripts":[
-                "{{template_dir}}/scripts/installers/Install-Toolset.ps1"
+                "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
+                "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
