@@ -18,7 +18,6 @@
             "name": "Node",
             "url" : "https://raw.githubusercontent.com/actions/node-versions/master/versions-manifest.json",
             "platform" : "linux",
-            "platform_version": "18.04",
             "arch": "x64",
             "versions": [
                 "6.*",
