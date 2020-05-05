@@ -25,6 +25,11 @@ In general, these are the guidelines we consider when deciding what to pre-insta
 - Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life.
 - If a tool can be installed during the build, we will evaluate how much time is saved
  and how much space is used by having the tool pre-installed.
+- MIT, Apache, and GNU licenses are ok, anything else we'll have to check with lawyers.
+- If a tool takes much space we will evaluate space usage and provide a decision if this tool can be pre-installed.
+- If a tool requires the support of more than one version, we will consider the cost of this maintenance, how often new versions bring dangerous updates.
+
+**Note:** For new tools, please, create an issue and get an approval from us to add this tool to the image before creating the pull request.
 
 ## Updates to virtual environments
 *Cadence*
