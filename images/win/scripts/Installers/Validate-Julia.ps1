@@ -4,7 +4,7 @@
 ################################################################################
 
 # Verify that julia.exe is on the path
-if(Get-Command -Name 'julia')
+if((Get-Command -Name 'julia') -and (Test-Path -Path 'C:\Julia'))
 {
     Write-Host "$(julia --version) is on the path."
 }

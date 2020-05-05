@@ -3,4 +3,4 @@
 ##  Desc:  Install Cmake
 ################################################################################
 
-choco install cmake.install -y --installargs 'ADD_CMAKE_TO_PATH=""System""'
+Choco-Install -PackageName cmake.install -ArgumentList "--installargs",'ADD_CMAKE_TO_PATH=""System""'

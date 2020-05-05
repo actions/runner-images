@@ -138,17 +138,59 @@
         {
             "type": "shell",
             "scripts": [
+                "{{template_dir}}/scripts/installers/complete-snap-setup.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/homebrew.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "expect_disconnect": true,
+            "scripts": [
+                "{{template_dir}}/scripts/base/reboot.sh"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "pause_before": "30s",
+            "timeout": "10m",
+            "start_retry_timeout": "10s",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/homebrew-validate.sh"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
                 "{{template_dir}}/scripts/installers/7-zip.sh",
                 "{{template_dir}}/scripts/installers/ansible.sh",
                 "{{template_dir}}/scripts/installers/azcopy.sh",
                 "{{template_dir}}/scripts/installers/azure-cli.sh",
                 "{{template_dir}}/scripts/installers/azure-devops-cli.sh",
                 "{{template_dir}}/scripts/installers/1804/basic.sh",
+                "{{template_dir}}/scripts/installers/aliyun-cli.sh",
                 "{{template_dir}}/scripts/installers/aws.sh",
                 "{{template_dir}}/scripts/installers/build-essential.sh",
                 "{{template_dir}}/scripts/installers/clang.sh",
                 "{{template_dir}}/scripts/installers/swift.sh",
                 "{{template_dir}}/scripts/installers/cmake.sh",
+                "{{template_dir}}/scripts/installers/1804/containers.sh",
                 "{{template_dir}}/scripts/installers/docker-compose.sh",
                 "{{template_dir}}/scripts/installers/docker-moby.sh",
                 "{{template_dir}}/scripts/installers/dotnetcore-sdk.sh",
@@ -190,9 +232,9 @@
                 "{{template_dir}}/scripts/installers/packer.sh",
                 "{{template_dir}}/scripts/installers/vcpkg.sh",
                 "{{template_dir}}/scripts/installers/zeit-now.sh",
-                "{{template_dir}}/scripts/installers/updatepath.sh",
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
-                "{{template_dir}}/scripts/installers/mongodb.sh"
+                "{{template_dir}}/scripts/installers/mongodb.sh",
+                "{{template_dir}}/scripts/installers/rndgenerator.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
@@ -200,6 +242,18 @@
                 "DEBIAN_FRONTEND=noninteractive"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/aws-sam-cli.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",
@@ -218,6 +272,11 @@
             "type": "file",
             "source": "{{template_dir}}/toolcache-1804.json",
             "destination": "{{user `installer_script_folder`}}/toolcache.json"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolset-1804.json",
+            "destination": "{{user `installer_script_folder`}}/toolset.json"
         },
         {
             "type": "shell",
@@ -240,6 +299,19 @@
         {
             "type": "shell",
             "scripts":[
+                "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
+                "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
                 "{{template_dir}}/scripts/installers/boost.sh"
             ],
             "environment_vars": [
@@ -248,6 +320,19 @@
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/cleanup.sh"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/validate-disk-space.sh"
+            ]
         },
         {
             "type": "file",

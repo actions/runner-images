@@ -97,6 +97,9 @@ apt-get install -y --no-install-recommends dbus
 echo "Install xvfb"
 apt-get install -y --no-install-recommends xvfb
 
+echo "Install libgbm-dev"
+apt-get install -y --no-install-recommends libgbm-dev
+
 echo "Install libgtk"
 apt-get install -y --no-install-recommends libgtk-3-0
 
@@ -136,6 +139,10 @@ for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet tim
     fi
 done
 
+# Workaround for systemd-resolve, since sometimes stub resolver does not work properly. Details: https://github.com/actions/virtual-environments/issues/798
+echo "Create resolv.conf link."
+ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Basic CLI:"
@@ -147,6 +154,7 @@ DocumentInstalledItemIndent "iproute2"
 DocumentInstalledItemIndent "iputils-ping"
 DocumentInstalledItemIndent "jq"
 DocumentInstalledItemIndent "libcurl3"
+DocumentInstalledItemIndent "libgbm-dev"
 DocumentInstalledItemIndent "libicu55"
 DocumentInstalledItemIndent "libunwind8"
 DocumentInstalledItemIndent "locales"
