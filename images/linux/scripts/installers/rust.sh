@@ -5,6 +5,7 @@
 ################################################################################
 
 # Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/document.sh
 
 set -e
@@ -32,6 +33,9 @@ for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen; do
         exit 1
     fi
 done
+
+# Update /etc/environemnt
+prependEtcEnvironmentPath "${CARGO_HOME}/bin"
 
 # Document what was added to the image
 echo "Lastly, document what was added to the metadata file"

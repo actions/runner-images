@@ -26,8 +26,8 @@ $Version = $Matches[0]
 $SoftwareName = "Rust (64-bit)"
 $Description = @"
 #### $Version
-_Location:_ $RustPath
 _Environment:_
+* _Location:_ $RustPath
 * PATH: contains the location of rustc.exe
 "@
 
