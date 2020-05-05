@@ -8,7 +8,7 @@ Import-Module -Name ImageHelpers -Force
 # Acquire latest Selenium release number from GitHub API
 $latestReleaseUrl = "https://api.github.com/repos/SeleniumHQ/selenium/releases/latest"
 try {
-    $latestReleaseInfo = Invoke-RestMethod -Uri $latestReleaseUrl
+    $latestReleaseInfo = Invoke-RestMethod -Uri $latestReleaseUrl -MaximumRetryCount 10 -RetryIntervalSec 10
 } catch {
     Write-Error $_
     exit 1
@@ -32,5 +32,3 @@ Start-DownloadWithRetry -Url $seleniumReleaseUrl -Name $seleniumFileName -Downlo
 Write-Host "Add selenium jar to the environment variables..."
 $seleniumBinPath = Join-Path $seleniumDirectory $seleniumFileName
 setx "SELENIUM_JAR_PATH" "$($seleniumBinPath)" /M
-
-exit 0
