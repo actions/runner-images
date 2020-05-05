@@ -49,12 +49,6 @@ done;
 
 popd
 
-DocumentInstalledItem "Python:"
-pythons=$(ls $AGENT_TOOLSDIRECTORY/Python)
-for python in $pythons; do
-	DocumentInstalledItemIndent "Python $python"
-done;
-
 DocumentInstalledItem "Ruby:"
 rubys=$(ls $AGENT_TOOLSDIRECTORY/Ruby)
 for ruby in $rubys; do

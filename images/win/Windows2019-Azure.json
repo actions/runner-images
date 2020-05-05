@@ -18,6 +18,7 @@
         "run_scan_antivirus": "false",
 
         "root_folder": "C:",
+        "toolset_json_path": "{{env `TEMP`}}\\toolset.json",
         "image_folder": "C:\\image",
         "commit_file": "C:\\image\\commit.txt",
         "imagedata_file": "C:\\imagedata.json",
@@ -292,6 +293,11 @@
             "destination": "{{user `root_folder`}}/toolcache.json"
         },
         {
+            "type": "file",
+            "source": "{{template_dir}}/toolset-2019.json",
+            "destination": "{{user `toolset_json_path`}}"
+        },
+        {
             "type": "powershell",
             "environment_vars":[
                 "GITHUB_FEED_TOKEN={{ user `github_feed_token` }}",
@@ -299,6 +305,15 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Download-ToolCache.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1"
             ]
         },
         {
@@ -436,6 +451,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-AWS-SAM.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-DACFx.ps1"
             ]
         },
@@ -449,14 +470,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-MysqlCli.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "elevated_user": "SYSTEM",
-            "elevated_password": "",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-SQLExpress.ps1"
             ]
         },
         {
@@ -589,6 +602,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-RootCA.ps1"
             ]
         },
@@ -617,6 +636,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-AWS-SAM.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-AzureDevOpsCli.ps1"
             ]
         },
@@ -627,6 +652,15 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-ToolCache.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Toolset.ps1"
             ]
         },
         {
@@ -759,12 +793,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-SQLExpress.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-SQLPowerShellTools.ps1"
             ]
         },
@@ -874,6 +902,18 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Bazel.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-AliyunCli.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
             ]
         },
         {

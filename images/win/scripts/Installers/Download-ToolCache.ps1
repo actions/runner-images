@@ -44,21 +44,6 @@ Function NPMFeed-AuthSetup {
     $npmrcContent | Out-File -FilePath "$($env:TEMP)/.npmrc" -Encoding utf8
 }
 
-Function Set-DefaultPythonVersion {
-    param(
-        [Parameter(Mandatory=$true)]
-        [System.Version] $Version,
-        [System.String] $Arch = "x64"
-    )
-
-    $pythonPath = $Env:AGENT_TOOLSDIRECTORY + "/Python/${Version}*/${Arch}"
-    $pythonDir = Get-Item -Path $pythonPath
-
-    Write-Host "Use Python ${Version} as a system Python"
-    Add-MachinePathItem -PathItem $pythonDir.FullName
-    Add-MachinePathItem -PathItem "$($pythonDir.FullName)\Scripts"
-}
-
 Function Set-DefaultRubyVersion {
     param(
         [Parameter(Mandatory=$true)]
@@ -71,8 +56,10 @@ Function Set-DefaultRubyVersion {
     Write-Host "Use Ruby ${Version} as a system Ruby"
     Add-MachinePathItem -PathItem $rubyDir.FullName
 
+    $env:Path = Get-MachinePath
+
     # Update ruby gem to latest version
-    gem update --system
+    Invoke-Expression "gem update --system"
 }
 
 Import-Module -Name ImageHelpers -Force
@@ -104,5 +91,4 @@ $ToolVersions.PSObject.Properties | ForEach-Object {
     }
 }
 
-Set-DefaultPythonVersion -Version "3.7"
 Set-DefaultRubyVersion -Version "2.5"
