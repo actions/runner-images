@@ -34,9 +34,6 @@ for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen; do
     fi
 done
 
-# Update /etc/environemnt
-prependEtcEnvironmentPath "${CARGO_HOME}/bin"
-
 # Document what was added to the image
 echo "Lastly, document what was added to the metadata file"
 DocumentInstalledItem "rustup ($(rustup --version 2>&1 | cut -d ' ' -f 2))"
