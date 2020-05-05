@@ -200,6 +200,9 @@ prependEtcEnvironmentPath /home/runner/.config/composer/vendor/bin
 # Add composer bin folder to path
 echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> /etc/skel/.bashrc
 
+#Create composer folder for user to preserve folder permissions
+mkdir -p /etc/skel/.composer
+
 # Install phpunit (for PHP)
 wget -q -O phpunit https://phar.phpunit.de/phpunit-7.phar
 chmod +x phpunit
