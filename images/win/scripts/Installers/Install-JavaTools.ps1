@@ -13,8 +13,9 @@ $azulJDKURLs = @(
     'https://repos.azul.com/azure-only/zulu/packages/zulu-11/11.0.4/zulu-11-azure-jdk_11.33.15-11.0.4-win_x64.zip'
 )
 
-$azulJDKURLs | ForEach-Object {
-    $archivePath = Start-DownloadWithRetry -Url $_ -Name $([IO.Path]::GetFileName($_))
+foreach ($azulJDKURL in $azulJDKURLs)
+{
+    $archivePath = Start-DownloadWithRetry -Url $azulJDKURL -Name $([IO.Path]::GetFileName($azulJDKURL))
     Expand-Archive -Path $archivePath -DestinationPath "C:\Program Files\Java\"
 }
 
@@ -25,7 +26,7 @@ $newPathSegments = @()
 
 foreach ($pathSegment in $pathSegments)
 {
-    if($pathSegment -notlike '*java*')
+    if ($pathSegment -notlike '*java*')
     {
         $newPathSegments += $pathSegment
     }
