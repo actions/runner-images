@@ -30,14 +30,6 @@ function Disable-UserAccessControl {
     Write-Host "User Access Control (UAC) has been disabled."
 }
 
-function Disable-JITDebugger {
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug" -Name Debugger -Value "-" -Type String -Force
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\.NETFramework" -Name DbgManagedDebugger -Value "-" -Type String -Force
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name DontShowUI -Value 1 -Type DWORD -Force
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name ForceQueue -Value 1 -Type DWORD -Force
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\Consent" -Name DefaultConsent -Value 1 -Type DWORD -Force
-}
-
 Import-Module -Name ImageHelpers -Force
 
 Write-Host "Setup PowerShellGet"
@@ -82,9 +74,6 @@ Disable-InternetExplorerWelcomeScreen
 
 Write-Host "Disable IE ESC"
 Disable-InternetExplorerESC
-
-Write-Host "Disable Just-In-Time Debbuger"
-Disable-JITDebugger
 
 Write-Host "Setting local execution policy"
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine  -ErrorAction Continue | Out-Null
