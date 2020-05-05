@@ -80,7 +80,7 @@ Validate-AzureModule -ModuleName AzureRM -ModuleVersions $azurermVersions
 $azureVersions = "2.1.0", "3.8.0", "4.2.1", "5.1.1", "5.3.0"
 Validate-AzureModule -ModuleName Azure -ModuleVersions $azureVersions
 
-$azVersions = "1.0.0", "1.6.0", "2.3.2", "2.6.0", "3.1.0", "3.5.0"
+$azVersions = "1.0.0", "1.6.0", "2.3.2", "2.6.0", "3.1.0", "3.5.0", "3.8.0"
 Validate-AzureModule -ModuleName Az -ModuleVersions $azVersions
 
 # Get default modules version
