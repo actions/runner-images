@@ -208,6 +208,7 @@
                 "{{template_dir}}/scripts/installers/leiningen.sh",
                 "{{template_dir}}/scripts/installers/1604/mercurial.sh",
                 "{{template_dir}}/scripts/installers/miniconda.sh",
+                "{{template_dir}}/scripts/installers/minikube.sh",
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
