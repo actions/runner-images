@@ -8,7 +8,7 @@ Import-Module -Name ImageHelpers -Force
 # Acquire latest Selenium release number from GitHub API
 $latestReleaseUrl = "https://api.github.com/repos/SeleniumHQ/selenium/releases/latest"
 try {
-    $latestReleaseInfo = Invoke-RestMethod -Uri $latestReleaseUrl -MaximumRetryCount 10 -RetryIntervalSec 10
+    $latestReleaseInfo = Invoke-RestMethod -Uri $latestReleaseUrl
 } catch {
     Write-Error $_
     exit 1
