@@ -18,3 +18,7 @@ Invoke-WebRequest -UseBasicParsing -Uri "https://win.rustup.rs/x86_64" -OutFile 
 
 # Delete rustup-init.exe when it's no longer needed
 Remove-Item -Path .\rustup-init.exe
+
+# Install common tools
+rustup component add rustfmt clippy
+cargo install bindgen cbindgen
