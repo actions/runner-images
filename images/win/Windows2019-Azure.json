@@ -817,12 +817,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Minikube.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-AzureCosmosDbEmulator.ps1"
             ]
         },
