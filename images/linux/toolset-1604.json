@@ -13,6 +13,21 @@
                 "3.7.*",
                 "3.8.*"
             ]
+        },
+        {
+            "name": "Node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/master/versions-manifest.json",
+            "platform" : "linux",
+            "platform_version": "16.04",
+            "arch": "x64",
+            "versions": [
+                "6.*",
+                "8.*",
+                "10.*",
+                "12.*",
+                "13.*",
+                "14.*"
+            ]
         }
     ]
 }
