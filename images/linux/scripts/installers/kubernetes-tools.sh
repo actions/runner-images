@@ -32,9 +32,6 @@ if ! command -v helm; then
     exit 1
 fi
 
-echo "Initializing helm"
-helm init --client-only
-
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "kubectl ($(kubectl version --client --short |& head -n 1))"
