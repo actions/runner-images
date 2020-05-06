@@ -73,4 +73,4 @@ foreach ($tool in $tools) {
 }
 
 # Install default python version
-Set-DefaultPythonVersion -Toolset $tools | Where-Object {$_.name -eq "Python"}
+Set-DefaultPythonVersion -Toolset $tools
