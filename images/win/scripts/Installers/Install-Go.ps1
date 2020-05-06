@@ -29,36 +29,37 @@ function Install-GoVersion
 
     # Extract the zip archive.  It contains a single directory named "go".
     Write-Host "Extracting Go $latestVersion..."
-    Expand-Archive -Path $goArchPath -DestinationPath "C:\" -Force
+    $toolDirectory = Join-Path $env:AGENT_TOOLSDIRECTORY "Go\$latestVersion"
+    7z.exe x $goArchPath -o"$toolDirectory" -y | Out-Null
+
+    # Rename the extracted "go" directory to "x64" for full path "C:\hostedtoolcache\windows\Go\1.14.2\x64\..."
+    Rename-Item -path "$toolDirectory\go" -newName "x64"
+    $fullArchPath = "$toolDirectory\x64"
 
     # Delete unnecessary files to conserve space
     Write-Host "Cleaning directories of Go $latestVersion..."
-    if (Test-Path "C:\go\doc")
+    if (Test-Path "$fullArchPath\doc")
     {
-        Remove-Item -Recurse -Force "C:\go\doc"
+        Remove-Item -Recurse -Force "$fullArchPath\doc"
     }
-    if (Test-Path "C:\go\blog")
+    if (Test-Path "$fullArchPath\blog")
     {
-        Remove-Item -Recurse -Force "C:\go\blog"
+        Remove-Item -Recurse -Force "$fullArchPath\blog"
     }
-
-    # Rename the extracted "go" directory to include the Go version number (to support side-by-side versions of Go).
-    $newDirName = "Go$latestVersion"
-    Rename-Item -path "C:\go" -newName $newDirName
 
     # Make this the default version of Go?
     if ($addToDefaultPath)
     {
         Write-Host "Adding Go $latestVersion to the path..."
         # Add the Go binaries to the path.
-        Add-MachinePathItem "C:\$newDirName\bin" | Out-Null
+        Add-MachinePathItem "$fullArchPath\bin" | Out-Null
         # Set the GOROOT environment variable.
-        setx GOROOT "C:\$newDirName" /M | Out-Null
+        setx GOROOT "$fullArchPath" /M | Out-Null
     }
 
     # Done
     Write-Host "Done installing Go $latestVersion."
-    return "C:\$newDirName"
+    return $fullArchPath
 }
 
 # Install Go
