@@ -15,7 +15,7 @@
             ]
         },
         {
-            "name": "Node",
+            "name": "node",
             "url" : "https://raw.githubusercontent.com/actions/node-versions/master/versions-manifest.json",
             "platform" : "linux",
             "arch": "x64",
