@@ -325,6 +325,12 @@
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/validate-disk-space.sh"
+            ]
+        },
+        {
             "type": "file",
             "source": "{{user `metadata_file`}}",
             "destination": "{{template_dir}}/Ubuntu1604-README.md",
