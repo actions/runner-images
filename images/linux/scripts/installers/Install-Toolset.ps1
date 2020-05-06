@@ -53,4 +53,4 @@ foreach ($tool in $tools) {
 }
 
 chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python
-chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Node
+chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node
