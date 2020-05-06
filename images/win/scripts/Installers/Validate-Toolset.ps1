@@ -62,7 +62,7 @@ $ErrorActionPreference = "Stop"
 Import-Module -Name ImageHelpers -Force
 
 # Define executables for cached tools
-$toolsExecutables = @{ Python = @("python.exe", "Scripts\pip.exe"); Node = @("node", "bin/node.exe") }
+$toolsExecutables = @{ Python = @("python.exe", "Scripts\pip.exe"); node = @("node.exe") }
 
 # Get toolcache content from toolset
 $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache

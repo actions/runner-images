@@ -28,7 +28,7 @@
             ]
         },
         {
-            "name": "Node",
+            "name": "node",
             "url" : "https://raw.githubusercontent.com/actions/node-versions/master/versions-manifest.json",
             "arch": "x64",
             "platform" : "win32",
