@@ -63,8 +63,7 @@ Choco-Install -PackageName maven -ArgumentList "-i", "--version=3.6.3"
 Choco-Install -PackageName gradle
 
 # Move maven variables to Machine. They may not be in the environment for this script so we need to read them from the registry.
-$userSid = (Get-WmiObject win32_useraccount -Filter "name = '$env:USERNAME' AND domain = '$env:USERDOMAIN'").SID
-$userEnvironmentKey = 'Registry::HKEY_USERS\' + $userSid + '\Environment'
+$userEnvironmentKey = 'Registry::HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment'
 
 $m2_home = (Get-ItemProperty -Path $userEnvironmentKey -Name M2_HOME).M2_HOME
 $m2 = $m2_home + '\bin'
