@@ -108,6 +108,7 @@ The following workloads and components are installed with Visual Studio 2019:
 * Microsoft.VisualStudio.Component.VC.v141.MFC.ARM.Spectre
 * Microsoft.VisualStudio.Component.VC.v141.MFC.ARM64.Spectre
 * Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre
+* Microsoft.VisualStudio.Component.Windows81SDK
 * Microsoft.VisualStudio.Component.Windows10SDK.14393
 * Microsoft.VisualStudio.Component.Windows10SDK.16299
 * Microsoft.VisualStudio.Component.Windows10SDK.17134
