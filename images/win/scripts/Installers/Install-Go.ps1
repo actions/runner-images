@@ -6,12 +6,13 @@
 Import-Module -Name ImageHelpers -Force
 
 $refsJson = Invoke-RestMethod "https://api.github.com/repos/golang/go/git/refs/tags"
+
 function Install-GoVersion
 {
     Param
     (
-        [String]$goVersion,
-        [Switch]$addToDefaultPath
+        [String] $goVersion,
+        [Switch] $addToDefaultPath
     )
 
     $latestVersionObject = $refsJson | Where-Object { $_.ref -Match "refs/tags/go$goVersion[./d]*" }  | Select-Object -Last 1
@@ -20,11 +21,15 @@ function Install-GoVersion
     # Download the Go zip archive.
     Write-Host "Downloading Go $latestVersion..."
     $ProgressPreference = 'SilentlyContinue'
-    Invoke-WebRequest -UseBasicParsing -Uri "https://dl.google.com/go/go$latestVersion.windows-amd64.zip" -OutFile go$latestVersion.windows-amd64.zip
+
+    $goArchName = "go${latestVersion}.windows-amd64.zip"
+    $goArchUrl = "https://dl.google.com/go/${goArchName}"
+
+    $goArchPath = Start-DownloadWithRetry -Url $goArchUrl -Name $goArchName
 
     # Extract the zip archive.  It contains a single directory named "go".
     Write-Host "Extracting Go $latestVersion..."
-    Expand-Archive -Path go$latestVersion.windows-amd64.zip -DestinationPath "C:\" -Force
+    Expand-Archive -Path $goArchPath -DestinationPath "C:\" -Force
 
     # Delete unnecessary files to conserve space
     Write-Host "Cleaning directories of Go $latestVersion..."
@@ -40,10 +45,6 @@ function Install-GoVersion
     # Rename the extracted "go" directory to include the Go version number (to support side-by-side versions of Go).
     $newDirName = "Go$latestVersion"
     Rename-Item -path "C:\go" -newName $newDirName
-
-    # Delete the Go zip archive.
-    Write-Host "Deleting downloaded archive of Go $latestVersion..."
-    Remove-Item go$latestVersion.windows-amd64.zip
 
     # Make this the default version of Go?
     if ($addToDefaultPath)
@@ -63,13 +64,18 @@ function Install-GoVersion
 # Install Go
 $goVersionsToInstall = $env:GO_VERSIONS.split(", ", [System.StringSplitOptions]::RemoveEmptyEntries)
 
-foreach($go in $goVersionsToInstall) {
+foreach ($go in $goVersionsToInstall)
+{
     Write-Host "Installing Go ${go}"
-    if($go -eq $env:GO_DEFAULT) {
+    if ($go -eq $env:GO_DEFAULT)
+    {
         $installDirectory = Install-GoVersion -goVersion $go -addToDefaultPath
-    } else {
+    }
+    else
+    {
         $installDirectory = Install-GoVersion -goVersion $go
     }
+
     $envName = "GOROOT_{0}_{1}_X64" -f $go.split(".")
     setx $envName "$installDirectory" /M
 }

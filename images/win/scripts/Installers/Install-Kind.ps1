@@ -6,25 +6,24 @@
 $stableKindTag = "v0.7.0"
 $tagToUse = $stableKindTag;
 $destFilePath = "C:\ProgramData\kind"
-$outFilePath = "C:\ProgramData\kind\kind.exe"
 
 try
 {
-    $getkindUri =  "https://github.com/kubernetes-sigs/kind/releases/download/$tagToUse/kind-windows-amd64"
+    $kindUrl =  "https://github.com/kubernetes-sigs/kind/releases/download/$tagToUse/kind-windows-amd64"
+
     Write-Host "Downloading kind.exe..."
     New-Item -Path $destFilePath -ItemType Directory -Force
 
-    Invoke-WebRequest -Uri $getkindUri -OutFile $outFilePath
+    $kindInstallerPath = Start-DownloadWithRetry -Url $kindUrl -Name "kind.exe" -DownloadPath $destFilePath
 
     Write-Host "Starting Install kind.exe..."
-    $process = Start-Process -FilePath $outFilePath -Wait -PassThru
+    $process = Start-Process -FilePath $kindInstallerPath -Wait -PassThru
     $exitCode = $process.ExitCode
 
     if ($exitCode -eq 0 -or $exitCode -eq 3010)
     {
         Write-Host -Object 'Installation successful'
         Add-MachinePathItem $destFilePath
-        exit $exitCode
     }
     else
     {

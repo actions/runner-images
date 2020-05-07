@@ -10,7 +10,7 @@ source $HELPER_SCRIPTS/document.sh
 # Test to see if the software in question is already installed, if not install it
 echo "Checking to see if the installer script has already been run"
 if command -v cmake; then
-    echo "Example variable already set to $EXAMPLE_VAR"
+    echo "cmake is already installed"
 else
 	curl -sL https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.sh -o cmakeinstall.sh \
 	&& chmod +x cmakeinstall.sh \

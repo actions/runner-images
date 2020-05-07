@@ -949,6 +949,12 @@
         },
         {
             "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
             "inline": [
                 "if( Test-Path $Env:SystemRoot\\System32\\Sysprep\\unattend.xml ){ rm $Env:SystemRoot\\System32\\Sysprep\\unattend.xml -Force}",
                 "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
