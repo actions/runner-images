@@ -204,7 +204,7 @@
                 "{{template_dir}}/scripts/installers/image-magick.sh",
                 "{{template_dir}}/scripts/installers/java-tools.sh",
                 "{{template_dir}}/scripts/installers/kind.sh",
-                "{{template_dir}}/scripts/installers/1604/kubernetes-tools.sh",
+                "{{template_dir}}/scripts/installers/kubernetes-tools.sh",
                 "{{template_dir}}/scripts/installers/leiningen.sh",
                 "{{template_dir}}/scripts/installers/1604/mercurial.sh",
                 "{{template_dir}}/scripts/installers/miniconda.sh",
