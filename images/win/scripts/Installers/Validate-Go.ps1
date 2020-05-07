@@ -11,7 +11,7 @@ function Get-GoVersion
         [String]$goVersion
     )
     Write-Host "Check if $goVersion is presented in the system"
-    $destinationPath = "$($env:AGENT_TOOLSDIRECTORY)\Go"
+    $destinationPath = "$($env:AGENT_TOOLSDIRECTORY)\go"
     $goDirectory = Get-ChildItem -Path $destinationPath -Filter "$goVersion*" | Select-Object -First 1
     $goPath = Join-Path $destinationPath "$goDirectory\x64"
 

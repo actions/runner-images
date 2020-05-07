@@ -29,7 +29,7 @@ function Install-GoVersion
 
     # Extract the zip archive.  It contains a single directory named "go".
     Write-Host "Extracting Go $latestVersion..."
-    $toolDirectory = Join-Path $env:AGENT_TOOLSDIRECTORY "Go\$latestVersion"
+    $toolDirectory = Join-Path $env:AGENT_TOOLSDIRECTORY "go\$latestVersion"
     7z.exe x $goArchPath -o"$toolDirectory" -y | Out-Null
 
     # Rename the extracted "go" directory to "x64" for full path "C:\hostedtoolcache\windows\Go\1.14.2\x64\..."
