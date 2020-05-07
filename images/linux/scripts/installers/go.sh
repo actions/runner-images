@@ -13,8 +13,8 @@ golangTags="/tmp/golang_tags.json"
 #   $2=IsDefaultVersion (true or false)
 function InstallGo () {
     version=$( getFullGoVersion $1 )
-    downloadVersion=$version.linux-amd64.tar.gz
-    goFolder="$AGENT_TOOLSDIRECTORY/go/$version/x64"
+    downloadVersion="go$version.linux-amd64.tar.gz"
+    goFolder="$AGENT_TOOLSDIRECTORY/Go/$version/x64"
 
     echo "Install Go $version"
     curl -sL https://dl.google.com/go/${downloadVersion} -o ${downloadVersion}
@@ -37,8 +37,8 @@ function getFullGoVersion () {
     local pattern="refs/tags/go$1([.0-9]{0,3})$"
     local query='[.[] | select( .ref | test($pattern))] | .[-1] | .ref'
     refValue=$(jq --arg pattern "$pattern" "$query" $golangTags)
-    version=$(echo "$refValue" | cut -d '/' -f 3)
-    version=$(echo "${version//\"}") # go1.12.17
+    version=$(echo "$refValue" | cut -d '/' -f 3 | awk -F 'go' '{print $2}')
+    version=$(echo "${version//\"}") # 1.12.17
     echo $version
 }
 
