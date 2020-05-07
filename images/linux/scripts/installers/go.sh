@@ -14,7 +14,7 @@ golangTags="/tmp/golang_tags.json"
 function InstallGo () {
     version=$( getFullGoVersion $1 )
     downloadVersion=$version.linux-amd64.tar.gz
-    goFolder="$AGENT_TOOLSDIRECTORY/go/$1/x64"
+    goFolder="$AGENT_TOOLSDIRECTORY/go/$version/x64"
 
     echo "Install Go $version"
     curl -sL https://dl.google.com/go/${downloadVersion} -o ${downloadVersion}
@@ -22,7 +22,7 @@ function InstallGo () {
     tar -C $goFolder -xzf $downloadVersion --strip-components=1 go
     rm $downloadVersion
     echo "GOROOT_${1//./_}_X64=$goFolder" | tee -a /etc/environment
-    DocumentInstalledItem "Go $1 ($($goFolder/bin/go version))"
+    DocumentInstalledItem "Go $version ($($goFolder/bin/go version))"
 
     # If this version of Go is to be the default version,
     # symlink it into the path and point GOROOT to it.
