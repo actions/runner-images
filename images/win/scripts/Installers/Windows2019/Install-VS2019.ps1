@@ -33,6 +33,7 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.EntityFramework ' + `
               '--add Microsoft.VisualStudio.Component.FSharp.Desktop ' + `
               '--add Microsoft.VisualStudio.Component.LinqToSql ' + `
+              '--add Microsoft.VisualStudio.Component.SQL.SSDT ' + `
               '--add Microsoft.VisualStudio.Component.PortableLibrary ' + `
               '--add Microsoft.VisualStudio.Component.TeamOffice ' + `
               '--add Microsoft.VisualStudio.Component.TestTools.CodedUITest ' + `
