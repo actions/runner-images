@@ -64,7 +64,7 @@ Import-Module -Name ImageHelpers -Force
 # Define executables for cached tools
 $toolsExecutables = @{
     Python = @("python.exe", "Scripts\pip.exe");
-    node = @("node.exe")
+    node = @("node.exe", "npm")
 }
 
 # Get toolcache content from toolset
