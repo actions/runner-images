@@ -273,18 +273,28 @@
                 "{{template_dir}}/scripts/helpers/containercache.sh",
                 "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
                 "{{template_dir}}/scripts/installers/python.sh",
-                "{{template_dir}}/scripts/installers/go.sh",
                 "{{template_dir}}/scripts/installers/test-toolcache.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
-                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}",
+                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/go.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "GO_VERSIONS={{user `go_versions`}}",
                 "GO_DEFAULT={{user `go_default`}}"
             ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "shell",

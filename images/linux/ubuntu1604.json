@@ -252,19 +252,6 @@
             "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
-            "type": "shell",
-            "scripts": [
-                "{{template_dir}}/scripts/installers/go.sh"
-            ],
-            "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "GO_VERSIONS={{user `go_versions`}}",
-                "GO_DEFAULT={{user `go_default`}}"
-            ],
-            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}"
-        },
-        {
             "type": "file",
             "source": "{{template_dir}}/toolcache-1604.json",
             "destination": "{{user `installer_script_folder`}}/toolcache.json"
@@ -291,6 +278,19 @@
                 "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/go.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "GO_VERSIONS={{user `go_versions`}}",
+                "GO_DEFAULT={{user `go_default`}}"
+            ],
+            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "shell",
