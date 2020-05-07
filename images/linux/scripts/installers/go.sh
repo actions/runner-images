@@ -14,7 +14,7 @@ golangTags="/tmp/golang_tags.json"
 function InstallGo () {
     version=$( getFullGoVersion $1 )
     downloadVersion="go$version.linux-amd64.tar.gz"
-    goFolder="$AGENT_TOOLSDIRECTORY/Go/$version/x64"
+    goFolder="$AGENT_TOOLSDIRECTORY/go/$version/x64"
 
     echo "Install Go $version"
     curl -sL https://dl.google.com/go/${downloadVersion} -o ${downloadVersion}
