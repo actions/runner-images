@@ -24,6 +24,9 @@ function InstallGo () {
     echo "GOROOT_${1//./_}_X64=$goFolder" | tee -a /etc/environment
     DocumentInstalledItem "Go $version ($($goFolder/bin/go version))"
 
+    # Create symlink in old location /usr/local/go<version> to new location
+    ln -s $goFolder /usr/local/go$version
+
     # If this version of Go is to be the default version,
     # symlink it into the path and point GOROOT to it.
     if [ $2 = true ]
