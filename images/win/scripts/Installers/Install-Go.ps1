@@ -47,6 +47,9 @@ function Install-GoVersion
         Remove-Item -Recurse -Force "$fullArchPath\blog"
     }
 
+    # Create symlink in old location
+    New-Item -Path "C:\go$latestVersion" -ItemType SymbolicLink -Value $fullArchPath
+
     # Make this the default version of Go?
     if ($addToDefaultPath)
     {
