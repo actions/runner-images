@@ -26,6 +26,18 @@
                 "3.7.*",
                 "3.8.*"
             ]
+        },
+        {
+            "name": "node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/master/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "8.*",
+                "10.*",
+                "12.*",
+                "14.*"
+            ]
         }
     ]
 }
