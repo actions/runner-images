@@ -363,6 +363,12 @@
         },
         {
             "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
             "environment_vars": [
                 "GO_VERSIONS={{user `go_versions`}}",
                 "GO_DEFAULT={{user `go_default`}}"
@@ -682,6 +688,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Git.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-GitHub-CLI.ps1"
             ]
         },
         {
