@@ -37,9 +37,6 @@ if ! command -v helm; then
     exit 1
 fi
 
-echo "Initializing helm"
-helm init --client-only
-
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that minikube was installed"
 if ! command -v minikube; then
