@@ -26,7 +26,10 @@ function Run-ExecutableTests {
 $ErrorActionPreference = "Stop"
 
 # Define executables for cached tools
-$toolsExecutables = @{ Python = @("python", "bin/pip") }
+$toolsExecutables = @{
+    Python = @("python", "bin/pip");
+    node = @("bin/node", "bin/npm")
+}
 
 # Get toolset content
 $toolsetJson = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
