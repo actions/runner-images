@@ -396,7 +396,7 @@ function Extract-7Zip {
         [string]$DestinationPath
     )
 
-    Write-Host "Expand archive '$PATH' to '$DestinationPath' folder"
+    Write-Host "Expand archive '$PATH' to '$DestinationPath' directory"
     7z.exe x "$Path" -o"$DestinationPath" -y | Out-Null
 
     if ($LastExitCode -eq 0)
