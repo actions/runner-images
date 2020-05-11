@@ -17,7 +17,7 @@ New-Item -Path $CloudFoundryCliPath -ItemType Directory -Force
 
 # Extract the zip archive
 Write-Host "Extracting cf cli..."
-Extract-SevenZip -Path $CloudFoundryArchPath -DestinationPath $CloudFoundryCliPath
+Extract-7Zip -Path $CloudFoundryArchPath -DestinationPath $CloudFoundryCliPath
 
 # Add cf to path
 Add-MachinePathItem $CloudFoundryCliPath

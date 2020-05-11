@@ -29,5 +29,5 @@ Export-ModuleMember -Function @(
     'Test-IsWin19'
     'Test-IsWin16'
     'Choco-Install'
-    'Extract-SevenZip'
+    'Extract-7Zip'
 )

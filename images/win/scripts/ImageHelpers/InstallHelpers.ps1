@@ -387,7 +387,7 @@ function Test-IsWin16
     (Get-WinVersion) -match "2016"
 }
 
-function Extract-SevenZip {
+function Extract-7Zip {
     param
     (
         [Parameter(Mandatory=$true)]
@@ -395,5 +395,15 @@ function Extract-SevenZip {
         [Parameter(Mandatory=$true)]
         [string]$DestinationPath
     )
-    7z.exe x "$Path" -o"$DestinationPath" -y | Out-Null
+
+    try{
+        Write-Host "Expand archive '$PATH' to '$DestinationPath' folder"
+        7z.exe x "$Path" -o"$DestinationPath" -y | Out-Null
+    }
+    catch
+    {
+        Write-Host "There is an error during expanding '$Path' to '$DestinationPath' folder"
+        $_
+        exit 1
+    }
 }

@@ -45,7 +45,7 @@ $GeckoDriverDownloadUrl = $GeckoDriverWindowsAsset.browser_download_url
 $GeckoDriverArchPath = Start-DownloadWithRetry -Url $GeckoDriverDownloadUrl -Name $GeckoDriverArchName
 
 Write-Host "Expand Gecko WebDriver archive..."
-Extract-SevenZip -Path $GeckoDriverArchPath -DestinationPath $GeckoDriverPath
+Extract-7Zip -Path $GeckoDriverArchPath -DestinationPath $GeckoDriverPath
 
 Write-Host "Setting the environment variables..."
 Add-MachinePathItem -PathItem $GeckoDriverPath

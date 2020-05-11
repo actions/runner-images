@@ -29,7 +29,7 @@ function Install-GoVersion
 
     # Extract the zip archive.  It contains a single directory named "go".
     Write-Host "Extracting Go $latestVersion..."
-    Extract-SevenZip -Path $goArchPath -DestinationPath "C:\"
+    Extract-7Zip -Path $goArchPath -DestinationPath "C:\"
 
     # Delete unnecessary files to conserve space
     Write-Host "Cleaning directories of Go $latestVersion..."

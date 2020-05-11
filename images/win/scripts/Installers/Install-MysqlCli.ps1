@@ -22,7 +22,7 @@ Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentLi
 $mysqlArchPath = Start-DownloadWithRetry -Url $MysqlVersionUrl -Name "mysql.zip"
 
 # Expand the zip
-Extract-SevenZip -Path $mysqlArchPath -DestinationPath "C:\"
+Extract-7Zip -Path $mysqlArchPath -DestinationPath "C:\"
 
 # Adding mysql in system environment path
 Add-MachinePathItem $mysqlPath

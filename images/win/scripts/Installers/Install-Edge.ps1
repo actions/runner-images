@@ -29,7 +29,7 @@ $EdgeDriverDownloadUrl="https://msedgedriver.azureedge.net/${EdgeDriverLatestVer
 $EdgeDriverArchPath = Start-DownloadWithRetry -Url $EdgeDriverDownloadUrl -Name $EdgeDriverArchName
 
 Write-Host "Expand Microsoft Edge WebDriver archive..."
-Extract-SevenZip -Path $EdgeDriverArchPath -DestinationPath $EdgeDriverPath
+Extract-7Zip -Path $EdgeDriverArchPath -DestinationPath $EdgeDriverPath
 
 Write-Host "Setting the environment variables..."
 setx EdgeWebDriver "$EdgeDriverPath" /M

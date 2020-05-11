@@ -66,7 +66,7 @@ $ChromeDriverZipDownloadUrl = "https://chromedriver.storage.googleapis.com/${Chr
 $ChromeDriverArchPath = Start-DownloadWithRetry -Url $ChromeDriverZipDownloadUrl -Name $ChromeDriverArchName
 
 Write-Host "Expand Chrome WebDriver archive..."
-Extract-SevenZip -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPath
+Extract-7Zip -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPath
 
 Write-Host "Setting the environment variables..."
 setx ChromeWebDriver "$ChromeDriverPath" /M
