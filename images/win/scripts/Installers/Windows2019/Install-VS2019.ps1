@@ -151,8 +151,9 @@ Add-ContentToMarkdown -Content $($WorkLoads.Split('--') | % { if( ($_.Split(" ")
 
 # Adding additional SDKs to markdown
 $SDKDescription = @"
-Additional Windows 10 SDKs
--- Windows 10 SDK version 10.0.14393.795
+
+Additional Windows 10 SDKs:
+* Windows 10 SDK version 10.0.14393.795
 "@
 
 Add-ContentToMarkdown -Content $SDKDescription
