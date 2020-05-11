@@ -7,9 +7,11 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/github-api.sh
 
 # Install GitHub CLI
-wget https://github.com/cli/cli/releases/download/v0.7.0/gh_0.7.0_linux_amd64.deb
+url=$(getLatestReleaseURI cli/cli .deb)
+wget $url
 sudo apt install ./gh_*_linux_amd64.deb
 rm gh_*_linux_amd64.deb
 
