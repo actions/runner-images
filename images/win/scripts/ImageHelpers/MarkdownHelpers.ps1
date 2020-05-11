@@ -1,5 +1,5 @@
 function Add-ContentToMarkdown {
-    [CmdletBinding()]
+    
     param(
         $Content = ""
     )

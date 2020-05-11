@@ -40,7 +40,7 @@ apt-fast install -y --no-install-recommends \
     zip \
     zstd
 
-# Electron / VSCode / GitHub Desktop prereqs
+# Electron / VSCode / GitHub Desktop / kubectl prereqs
 apt-fast install -y --no-install-recommends \
     libxkbfile-dev \
     pkg-config \
@@ -49,6 +49,7 @@ apt-fast install -y --no-install-recommends \
     libgconf-2-4 \
     dbus \
     xvfb \
+    libgbm-dev \
     libgtk-3-0 \
     tk \
     fakeroot \
@@ -56,7 +57,8 @@ apt-fast install -y --no-install-recommends \
     rpm \
     xz-utils \
     xorriso \
-    zsync
+    zsync \
+    gnupg2
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -80,6 +82,7 @@ DocumentInstalledItemIndent "jq"
 DocumentInstalledItemIndent "libc++-dev"
 DocumentInstalledItemIndent "libc++abi-dev"
 DocumentInstalledItemIndent "libcurl3"
+DocumentInstalledItemIndent "libgbm-dev"
 DocumentInstalledItemIndent "libicu55"
 DocumentInstalledItemIndent "libunwind8"
 DocumentInstalledItemIndent "locales"
@@ -97,3 +100,4 @@ DocumentInstalledItemIndent "upx"
 DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
 DocumentInstalledItemIndent "zstd"
+DocumentInstalledItemIndent "gnupg2"

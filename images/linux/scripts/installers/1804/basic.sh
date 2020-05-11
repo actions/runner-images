@@ -97,6 +97,9 @@ apt-get install -y --no-install-recommends dbus
 echo "Install xvfb"
 apt-get install -y --no-install-recommends xvfb
 
+echo "Install libgbm-dev"
+apt-get install -y --no-install-recommends libgbm-dev
+
 echo "Install libgtk"
 apt-get install -y --no-install-recommends libgtk-3-0
 
@@ -127,6 +130,9 @@ apt-get install -y --no-install-recommends curl
 echo "Install parallel"
 apt-get install -y --no-install-recommends parallel
 
+echo "Install gnupg2"
+apt-get install -y --no-install-recommends gnupg2
+
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet time unzip wget zip; do
@@ -147,6 +153,7 @@ DocumentInstalledItemIndent "iproute2"
 DocumentInstalledItemIndent "iputils-ping"
 DocumentInstalledItemIndent "jq"
 DocumentInstalledItemIndent "libcurl3"
+DocumentInstalledItemIndent "libgbm-dev"
 DocumentInstalledItemIndent "libicu55"
 DocumentInstalledItemIndent "libunwind8"
 DocumentInstalledItemIndent "locales"
@@ -164,3 +171,4 @@ DocumentInstalledItemIndent "upx"
 DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
 DocumentInstalledItemIndent "zstd"
+DocumentInstalledItemIndent "gnupg2"

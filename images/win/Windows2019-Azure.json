@@ -14,10 +14,11 @@
         "virtual_network_resource_group_name": "{{env `VNET_RESOURCE_GROUP`}}",
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
-        "vm_size": "Standard_DS4_v2",
+        "vm_size": "Standard_D4_v2",
         "run_scan_antivirus": "false",
 
         "root_folder": "C:",
+        "toolset_json_path": "{{env `TEMP`}}\\toolset.json",
         "image_folder": "C:\\image",
         "commit_file": "C:\\image\\commit.txt",
         "imagedata_file": "C:\\imagedata.json",
@@ -219,7 +220,8 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-ServiceFabricSDK.ps1"
-            ]
+            ],
+            "execution_policy": "remotesigned"
         },
         {
             "type": "windows-restart",
@@ -291,6 +293,11 @@
             "destination": "{{user `root_folder`}}/toolcache.json"
         },
         {
+            "type": "file",
+            "source": "{{template_dir}}/toolset-2019.json",
+            "destination": "{{user `toolset_json_path`}}"
+        },
+        {
             "type": "powershell",
             "environment_vars":[
                 "GITHUB_FEED_TOKEN={{ user `github_feed_token` }}",
@@ -298,6 +305,15 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Download-ToolCache.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1"
             ]
         },
         {
@@ -424,6 +440,18 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Cmake.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-AWS.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-AWS-SAM.ps1"
             ]
         },
         {
@@ -580,6 +608,18 @@
             ]
         },
         {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-RootCA.ps1"
+            ]
+        },
+        {
             "type": "windows-restart",
             "restart_timeout": "10m"
         },
@@ -604,6 +644,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-AWS-SAM.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-AzureDevOpsCli.ps1"
             ]
         },
@@ -620,6 +666,15 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-ToolCache.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Toolset.ps1"
             ]
         },
         {
@@ -864,6 +919,18 @@
             ]
         },
         {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-AliyunCli.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
+            ]
+        },
+        {
             "type": "file",
             "source": "C:\\InstalledSoftware.md",
             "destination": "{{ template_dir }}/Windows2019-Readme.md",
@@ -892,6 +959,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
             ]
         },
         {
