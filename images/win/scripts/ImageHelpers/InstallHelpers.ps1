@@ -396,14 +396,16 @@ function Extract-7Zip {
         [string]$DestinationPath
     )
 
-    try{
-        Write-Host "Expand archive '$PATH' to '$DestinationPath' folder"
-        7z.exe x "$Path" -o"$DestinationPath" -y | Out-Null
-    }
-    catch
+    Write-Host "Expand archive '$PATH' to '$DestinationPath' folder"
+    7z.exe x "$Path" -o"$DestinationPath" -y | Out-Null
+
+    if ($LastExitCode -eq 0)
     {
-        Write-Host "There is an error during expanding '$Path' to '$DestinationPath' folder"
-        $_
+        Write-Host "Archive '$PATH' has been successfully expanded to the '$DestinationPath' folder"
+    }
+    else
+    {
+        Write-Host "There is an error during expanding '$Path' to '$DestinationPath' directory"
         exit 1
     }
 }
