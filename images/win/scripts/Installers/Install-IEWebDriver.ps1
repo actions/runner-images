@@ -15,7 +15,7 @@ catch {
 }
 
 $TempSeleniumDir = Join-Path $Env:TEMP "SeleniumWebDrivers"
-Expand-Archive -Path $DriversZipFile -DestinationPath $Env:TEMP -Force;
+Extract-SevenZip -Path $DriversZipFile -DestinationPath $Env:TEMP;
 Remove-Item $DriversZipFile;
 
 $SeleniumWebDriverPath = Join-Path $DestinationPath "SeleniumWebDrivers"

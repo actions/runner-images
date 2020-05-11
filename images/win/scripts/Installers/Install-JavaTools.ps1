@@ -82,6 +82,6 @@ $uri = 'https://ayera.dl.sourceforge.net/project/cobertura/cobertura/2.1.1/cober
 $coberturaPath = "C:\cobertura-2.1.1"
 
 $archivePath = Start-DownloadWithRetry -Url $uri -Name "cobertura.zip"
-Expand-Archive -Path $archivePath -DestinationPath "C:\"
+Extract-SevenZip -Path $archivePath -DestinationPath "C:\"
 
 setx COBERTURA_HOME $coberturaPath /M

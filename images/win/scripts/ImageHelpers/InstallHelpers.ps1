@@ -386,3 +386,14 @@ function Test-IsWin16
 {
     (Get-WinVersion) -match "2016"
 }
+
+function Extract-SevenZip {
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$Path,
+        [Parameter(Mandatory=$true)]
+        [string]$DestinationPath
+    )
+    7z.exe x "$Path" -o"$DestinationPath" -y | Out-Null
+}
