@@ -401,7 +401,7 @@ function Extract-7Zip {
 
     if ($LastExitCode -eq 0)
     {
-        Write-Host "Archive '$PATH' has been successfully expanded to the '$DestinationPath' folder"
+        Write-Host "Archive '$PATH' has been successfully expanded to the '$DestinationPath' directory"
     }
     else
     {
