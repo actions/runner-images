@@ -56,7 +56,7 @@ $CMakeFindBoostInfo = @"
 
 #### _Notes:_
 
-> ``BOOST_PATH`` was deprecated on images but it is required by CMake. Please make sure you set this variable
+> ``BOOST_ROOT`` is not set on images but it is required by CMake. Please make sure you set this variable
 > value to either ``BOOST_ROOT_1_69_0`` or ``BOOST_ROOT_1_72_0`` depending on the Boost version you are using.
 
 Link: https://cmake.org/cmake/help/latest/module/FindBoost.html
