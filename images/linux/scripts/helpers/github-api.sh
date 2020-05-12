@@ -5,7 +5,7 @@
 ################################################################################
 
 function getLatestReleaseURI {
-     if [[ $# -eq 0 || "x$1" = "x-h" || "x$1" = "x--help" ]];then
+     if [[ $# -eq 0 ]];then
         echo "usage: " >&2
         echo "       $0 organisation/repo format" >&2
         echo "       $0 organisation repo format" >&2
