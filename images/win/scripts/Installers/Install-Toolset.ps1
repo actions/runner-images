@@ -48,7 +48,7 @@ $ErrorActionPreference = "Stop"
 Import-Module -Name ImageHelpers -Force
 
 # Get toolcache content from toolset
-$tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache
+$tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Object url
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool

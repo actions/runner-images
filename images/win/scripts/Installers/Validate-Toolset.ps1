@@ -63,8 +63,9 @@ Import-Module -Name ImageHelpers -Force
 
 # Define executables for cached tools
 $toolsExecutables = @{
-    Python = @("python.exe", "Scripts\pip.exe");
+    Python = @("python.exe", "Scripts\pip.exe")
     node = @("node.exe", "npm")
+    PyPy = @("python.exe")
 }
 
 # Get toolcache content from toolset
@@ -78,6 +79,11 @@ foreach($tool in $tools) {
     $toolExecs = $toolsExecutables[$tool.name]
 
     foreach ($version in $tool.versions) {
+        # Add wildcard if missing
+        if (-not $version.Contains('*')) {
+            $version += '.*'
+        }
+
         # Check if version folder exists
         $expectedVersionPath = Join-Path $toolPath $version
         if (-not (Test-Path $expectedVersionPath)) {
