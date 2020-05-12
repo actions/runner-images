@@ -7,10 +7,9 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
-source $HELPER_SCRIPTS/github-api.sh
 
 # Install GitHub CLI
-url=$(getLatestReleaseURI cli/cli .deb)
+url=$(curl -s https://api.github.com/repos/cli/cli/releases/latest | jq -r '.assets[].browser_download_url|select(contains("linux") and contains("amd64") and contains(".deb"))')
 wget $url
 apt install ./gh_*_linux_amd64.deb
 rm gh_*_linux_amd64.deb
@@ -24,4 +23,4 @@ fi
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "GitHub CLI $(gh --version|head -1|sed -E 's/gh version ([0-9.]+).*/\1/')"
+DocumentInstalledItem "GitHub CLI $(gh --version|awk 'FNR==1 {print $3}')"
