@@ -12,7 +12,7 @@ source $HELPER_SCRIPTS/github-api.sh
 # Install GitHub CLI
 url=$(getLatestReleaseURI cli/cli .deb)
 wget $url
-sudo apt install ./gh_*_linux_amd64.deb
+apt install ./gh_*_linux_amd64.deb
 rm gh_*_linux_amd64.deb
 
 # Run tests to determine that the software installed as expected
