@@ -34,5 +34,5 @@ fi
 azcopy7Version=$(azcopy --version | awk '{print $2}' | cut -d '-' -f 1)
 azcopy10Version=$(azcopy10 --version | awk '{print $3}')
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "AzCopy7(available by azcopy alias) $azcopy7Version"
-DocumentInstalledItem "AzCopy10(available by azcopy10 alias) $azcopy10Version"
+DocumentInstalledItem "AzCopy7 (available by azcopy alias) $azcopy7Version"
+DocumentInstalledItem "AzCopy10 (available by azcopy10 alias) $azcopy10Version"
