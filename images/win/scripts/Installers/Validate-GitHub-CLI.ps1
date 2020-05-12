@@ -18,7 +18,7 @@ else
 # Adding description of the software to Markdown
 $SoftwareName = "GitHub CLI"
 
-$version = (gh --version) -replace 'gh version (\d+\.\d.\d).*', '$1'
+$version = (gh --version).Split()[2]
 
 $Description = @"
 _Version:_ $version<br/>
