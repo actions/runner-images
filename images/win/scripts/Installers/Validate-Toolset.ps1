@@ -65,7 +65,7 @@ Import-Module -Name ImageHelpers -Force
 $toolsExecutables = @{
     Python = @("python.exe", "Scripts\pip.exe")
     node = @("node.exe", "npm")
-    PyPy = @("python.exe")
+    PyPy = @("python.exe", "Scripts\pip.exe")
 }
 
 # Get toolcache content from toolset
