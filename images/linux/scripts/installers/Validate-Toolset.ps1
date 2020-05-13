@@ -29,7 +29,7 @@ $ErrorActionPreference = "Stop"
 $toolsExecutables = @{
     Python = @("python", "bin/pip")
     node = @("bin/node", "bin/npm")
-    PyPy = @("bin/python.exe", "bin/pip.exe")
+    PyPy = @("bin/python", "bin/pip")
 }
 
 # Get toolset content
