@@ -266,6 +266,7 @@
             "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/installers/1804/android.sh",
+                "{{template_dir}}/scripts/installers/azpowershell.sh",
                 "{{template_dir}}/scripts/installers/python.sh"
             ],
             "environment_vars": [
