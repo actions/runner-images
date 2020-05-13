@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/document.sh
 
 # Install Powershell
-apt-get install -y powershell
+snap install powershell --classic --channel=edge/useedge
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
