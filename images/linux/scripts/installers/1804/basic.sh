@@ -133,6 +133,9 @@ apt-get install -y --no-install-recommends parallel
 echo "Install gnupg2"
 apt-get install -y --no-install-recommends gnupg2
 
+echo "Install zlib"
+apt-get install -y --no-install-recommends lib32z1
+
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet time unzip wget zip; do
@@ -172,3 +175,4 @@ DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
 DocumentInstalledItemIndent "zstd"
 DocumentInstalledItemIndent "gnupg2"
+DocumentInstalledItemIndent "zlib"

@@ -38,7 +38,8 @@ apt-fast install -y --no-install-recommends \
     upx \
     wget \
     zip \
-    zstd
+    zstd \
+    lib32z1
 
 # Electron / VSCode / GitHub Desktop / kubectl prereqs
 apt-fast install -y --no-install-recommends \
@@ -101,3 +102,4 @@ DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
 DocumentInstalledItemIndent "zstd"
 DocumentInstalledItemIndent "gnupg2"
+DocumentInstalledItemIndent "zlib"
