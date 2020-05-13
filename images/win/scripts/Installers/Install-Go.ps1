@@ -15,7 +15,7 @@ function Install-GoVersion
         [Switch] $addToDefaultPath
     )
 
-    $latestVersionObject = $refsJson | Where-Object { $_.ref -Match "refs/tags/go$goVersion[./d]*" }  | Select-Object -Last 1
+    $latestVersionObject = $refsJson | Where-Object { $_.ref -Match "refs/tags/go$goVersion[./d]*" } | Select-Object -Last 1
     $latestVersion = $latestVersionObject.ref.replace('refs/tags/go','')
 
     # Download the Go zip archive.
@@ -30,7 +30,7 @@ function Install-GoVersion
     # Extract the zip archive.  It contains a single directory named "go".
     Write-Host "Extracting Go $latestVersion..."
     $toolDirectory = Join-Path $env:AGENT_TOOLSDIRECTORY "go\$latestVersion"
-    7z.exe x $goArchPath -o"$toolDirectory" -y | Out-Null
+    Extract-7Zip -Path $goArchPath -DestinationPath $toolDirectory
 
     # Rename the extracted "go" directory to "x64" for full path "C:\hostedtoolcache\windows\Go\1.14.2\x64\..."
     Rename-Item -path "$toolDirectory\go" -newName "x64"
