@@ -70,10 +70,6 @@ function InstallPyPy
 
     echo "Remove '$PACKAGE_TAR_TEMP_PATH'"
     rm -f $PACKAGE_TAR_TEMP_PATH
-
-    # Update PyPy version documentation
-    PYPY_VERSION=$(./python -c "import sys;print(sys.version.split('\n')[1])")
-    DocumentInstalledItemIndent "PyPy ${PYTHON_FULL_VERSION} ${PYPY_VERSION}"
 }
 
 function getPyPyVersions
@@ -81,9 +77,6 @@ function getPyPyVersions
     uri="https://api.bitbucket.org/2.0/repositories/pypy/pypy/downloads?pagelen=100"
     curl -s -N $uri | jq -r ".values[].links.self.href|select(contains(\"linux64\"))"
 }
-
-# Add header PyPy
-DocumentInstalledItem "PyPy:"
 
 # Installation PyPy
 pypyVersions=$(getPyPyVersions)
