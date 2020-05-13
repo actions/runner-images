@@ -5,8 +5,8 @@
 
 # Get last 3 latest versions of GHC
 $ChocoVersionsOutput = & choco search ghc --allversions --limit-output
-$RawVersionsList = $ChocoVersionsOutput | Where-Object { $_.StartsWith("ghc|") } | ForEach-Object { $_.TrimStart("ghc|") }
-$VersionsList = $RawVersionsList | ForEach-Object { [Version]::Parse($_) } | Sort-Object -Descending
+$VersionsList = $ChocoVersionsOutput | Where-Object { $_.StartsWith("ghc|") } | ForEach-Object { $_.TrimStart("ghc|") } `
+| ForEach-Object { [Version]::Parse($_) } | Sort-Object -Descending
 
 $MajorMinorVersionsToInstall = $VersionsList | ForEach-Object { [System.Version]::Parse($_.ToString(2)) } | Get-Unique | Sort-Object -Descending | Select-Object -First 3
 
