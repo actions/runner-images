@@ -15,25 +15,18 @@ else
 }
 
 $SoftwareName = "ghc"
-[String] $GhcVersion =(ghc --version).TrimStart("The Glorious Glasgow Haskell Compilation System, version")
-$GhcVersionList =Get-ChildItem -Path (Join-Path $env:ChocolateyInstall “lib”) | Where { $_.Name -match "ghc.*" } | Select-Object -ExpandProperty Name | ForEach-Object {$_.TrimStart("ghc.")}
-$GhcVersions = ""
+[String] $DefaultGhcVersion = & ghc --version
+$ChocoPackagesPath = Join-Path $env:ChocolateyInstall "lib"
+$GhcVersionList = Get-ChildItem -Path $ChocoPackagesPath -Filter "ghc.*" | ForEach-Object { $_.Name.TrimStart("ghc.") }
 
-ForEach($version in $GhcVersionList)
-{
-    if ($version -match $GhcVersion)
-    {
-        $GhcVersions += "ghc version $($version) - (default) `n"
-    }
-    else
-    {
-        $GhcVersions += "ghc version $($version)`n"
-    }
+$GhcVersionsDescription = $GhcVersionList | ForEach-Object {
+    $DefaultPostfix = if ($DefaultGhcVersion -match $_) { " (default)" } else { "" }
+    "ghc $($_) $DefaultPostfix `n"
 }
 
 $Description = @"
 _Version:_
-$GhcVersions<br/>
+$GhcVersionsDescription<br/>
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

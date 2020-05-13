@@ -515,13 +515,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Stack.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Haskell.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Haskell.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Stack.ps1"
             ]
         },
         {
@@ -823,13 +823,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Stack.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Haskell.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Haskell.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Stack.ps1"
             ]
         },
         {
