@@ -48,7 +48,8 @@ $ErrorActionPreference = "Stop"
 Import-Module -Name ImageHelpers -Force
 
 # Get toolcache content from toolset
-$tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Object url
+$ToolsToInstall = @("Python", "Node")
+$tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where {$ToolsToInstall -contains $_.Name}
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool

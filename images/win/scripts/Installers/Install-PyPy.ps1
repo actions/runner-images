@@ -4,15 +4,6 @@
 ##  Desc:  Install PyPy
 ################################################################################
 
-function Get-PyPyUri
-{
-    param(
-        [String]$PackageName
-    )
-
-    "https://bitbucket.org/pypy/pypy/downloads/{0}" -f $packageName
-}
-
 function Get-PyPyVersions
 {
     $uri = "https://api.bitbucket.org/2.0/repositories/pypy/pypy/downloads?pagelen=100"
@@ -53,7 +44,7 @@ function Install-PyPy
 
         if (-not (Test-Path $pypyToolcachePath)) {
             Write-Host "Create PyPy toolcache folder"
-            $null = New-Item -ItemType Directory -Path $env:AGENT_TOOLSDIRECTORY -Name "PyPy"
+            $null = New-Item -ItemType Directory -Path $pypyToolcachePath
         }
 
         Write-Host "Create PyPy '${pypyVersion}' folder in '${pypyToolcachePath}'"
@@ -102,7 +93,7 @@ foreach($pypyTool in $pypyTools)
         $filter = '{0}{1}-*-{2}.zip' -f $pypyTool.name, $pypyVersion, $pypyTool.platform
         $latestMajorPyPyVersion = $pypyVersions | Where-Object {
             $_.name -like $filter -and $_.name.Split('-')[1].Substring(1) -as [System.Version]
-        } | Sort-Object {Get-Date $_.created_on}  | Select-Object -Last 1
+        } | Sort-Object {[System.Version]$_.name.Split('-')[1].Substring(1)}  | Select-Object -Last 1
 
         if ($latestMajorPyPyVersion)
         {
@@ -110,10 +101,9 @@ foreach($pypyTool in $pypyTools)
             $packageDate = $latestMajorPyPyVersion.created_on
 
             Write-Host "Found PyPy '$packageName' package created on '$packageDate'"
-            $url = Get-PyPyUri -PackageName $packageName
-            $arch = $pypyTool.arch
+            $url = $latestMajorPyPyVersion.links.self.href
             $tempPyPyPackagePath = Start-DownloadWithRetry -Url $url -Name  $packageName
-            Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $arch
+            Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $pypyTool.arch
         }
         else
         {

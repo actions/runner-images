@@ -106,8 +106,14 @@ foreach($tool in $tools) {
         Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
         Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionArchPath
 
+        $foundVersionName = $foundVersion.name
+        if ($tool.name -eq 'PyPy')
+        {
+            $pypyVersion = & "$foundVersionArchPath\python.exe" -c "import sys;print(sys.version.split('\n')[1])"
+            $foundVersionName = "{0} {1}" -f $foundVersionName, $pypyVersion
+        }
         # Add to tool version to markdown
-        $markdownDescription += "_Version:_ $($foundVersion.name)<br/>"
+        $markdownDescription += "_Version:_ $foundVersionName<br/>"
     }
 
     # Create markdown description for system default tool
