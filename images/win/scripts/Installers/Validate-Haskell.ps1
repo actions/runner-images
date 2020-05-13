@@ -4,7 +4,7 @@
 ################################################################################
 
 # GHC validation
-if((Get-Command -Name 'ghc'))
+if ((Get-Command -Name 'ghc'))
 {
     Write-Host "ghc is on the path"
 }
@@ -21,10 +21,12 @@ $GhcVersions = ""
 
 ForEach($version in $GhcVersionList)
 {
-    if ($version -match $GhcVersion) {
+    if ($version -match $GhcVersion)
+    {
         $GhcVersions += "ghc version $($version) - (default) `n"
     }
-    else {
+    else
+    {
         $GhcVersions += "ghc version $($version)`n"
     }
 }
@@ -38,7 +40,7 @@ Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $
 
 
 # Cabal validation
-if((Get-Command -Name 'cabal'))
+if ((Get-Command -Name 'cabal'))
 {
     Write-Host "cabal is on the path"
 }
