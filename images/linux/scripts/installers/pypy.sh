@@ -54,7 +54,7 @@ function InstallPyPy
     echo "Move PyPy '$PACKAGE_TEMP_FOLDER' binaries to '$PYPY_TOOLCACHE_VERSION_ARCH_PATH' folder"
     mv $PACKAGE_TEMP_FOLDER $PYPY_TOOLCACHE_VERSION_ARCH_PATH
 
-    echo "Create additional symlinks (Required for UsePythonVersion VSTS task)"
+    echo "Create additional symlinks (Required for UsePythonVersion Azure DevOps task)"
     cd $PYPY_TOOLCACHE_VERSION_ARCH_PATH/bin
     ln -s $PYPY_MAJOR $PYTHON_MAJOR
     ln -s $PYTHON_MAJOR python
