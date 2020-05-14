@@ -20,12 +20,10 @@ if isUbuntu20 ; then
         ghc-8.6.5 \
         ghc-8.8.3 \
         ghc-8.10.1 \
-        cabal-install-2.4 \
-        cabal-install-3.0 \
         cabal-install-3.2
 
     ghcVersions="8.6.5 8.8.3 8.10.1"
-    cabalVersions="2.4 3.0 3.2"
+    cabalVersions="3.2"
 fi
 
 if isUbuntu16 || isUbuntu18 ; then

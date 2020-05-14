@@ -61,18 +61,6 @@ echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "build-tools;27.0.2" \
     "build-tools;27.0.1" \
     "build-tools;27.0.0" \
-    "build-tools;26.0.3" \
-    "build-tools;26.0.2" \
-    "build-tools;26.0.1" \
-    "build-tools;26.0.0" \
-    "build-tools;25.0.3" \
-    "build-tools;25.0.2" \
-    "build-tools;25.0.1" \
-    "build-tools;25.0.0" \
-    "build-tools;24.0.3" \
-    "build-tools;24.0.2" \
-    "build-tools;24.0.1" \
-    "build-tools;24.0.0" \
     "extras;android;m2repository" \
     "extras;google;m2repository" \
     "extras;google;google_play_services" \
@@ -80,7 +68,6 @@ echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "add-ons;addon-google_apis-google-23" \
     "add-ons;addon-google_apis-google-22" \
     "add-ons;addon-google_apis-google-21" \
-    "cmake;3.6.4111459" \
     "cmake;3.10.2.4988404" \
     "patcher;v4"
 
@@ -113,16 +100,4 @@ DocumentInstalledItem "Android SDK Build-Tools 27.0.3"
 DocumentInstalledItem "Android SDK Build-Tools 27.0.2"
 DocumentInstalledItem "Android SDK Build-Tools 27.0.1"
 DocumentInstalledItem "Android SDK Build-Tools 27.0.0"
-DocumentInstalledItem "Android SDK Build-Tools 26.0.3"
-DocumentInstalledItem "Android SDK Build-Tools 26.0.2"
-DocumentInstalledItem "Android SDK Build-Tools 26.0.1"
-DocumentInstalledItem "Android SDK Build-Tools 26.0.0"
-DocumentInstalledItem "Android SDK Build-Tools 25.0.3"
-DocumentInstalledItem "Android SDK Build-Tools 25.0.2"
-DocumentInstalledItem "Android SDK Build-Tools 25.0.1"
-DocumentInstalledItem "Android SDK Build-Tools 25.0.0"
-DocumentInstalledItem "Android SDK Build-Tools 24.0.3"
-DocumentInstalledItem "Android SDK Build-Tools 24.0.2"
-DocumentInstalledItem "Android SDK Build-Tools 24.0.1"
-DocumentInstalledItem "Android SDK Build-Tools 24.0.0"
 DocumentInstalledItem "Android NDK $(cat ${ANDROID_SDK_ROOT}/ndk-bundle/source.properties 2>&1 | grep Pkg.Revision | cut -d ' ' -f 3)"
