@@ -8,10 +8,8 @@
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
 
-imageLabel=$(getOSVersionLabel)
-
 # ppa:ansible/ansible doesn't contain packages for Ubuntu20.04
-if [ $imageLabel != "focal" ]; then
+if isUbuntu16 || isUbuntu18 ; then
     add-apt-repository ppa:ansible/ansible
     apt-get update
 fi
