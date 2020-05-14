@@ -14,8 +14,7 @@ apt-get install git -y
 git --version
 
 # Install git-lfs
-# This should be run for Ubuntu 16 only
-#curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 apt-get install -y --no-install-recommends git-lfs
 
 # Run tests to determine that the software installed as expected
