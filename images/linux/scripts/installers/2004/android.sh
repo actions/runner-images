@@ -50,11 +50,6 @@ echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "platforms;android-26" \
     "platforms;android-25" \
     "platforms;android-24" \
-    "platforms;android-23" \
-    "platforms;android-22" \
-    "platforms;android-21" \
-    "platforms;android-19" \
-    "platforms;android-17" \
     "build-tools;29.0.3" \
     "build-tools;29.0.2" \
     "build-tools;29.0.0" \
@@ -78,14 +73,6 @@ echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "build-tools;24.0.2" \
     "build-tools;24.0.1" \
     "build-tools;24.0.0" \
-    "build-tools;23.0.3" \
-    "build-tools;23.0.2" \
-    "build-tools;23.0.1" \
-    "build-tools;22.0.1" \
-    "build-tools;21.1.2" \
-    "build-tools;20.0.0" \
-    "build-tools;19.1.0" \
-    "build-tools;17.0.0" \
     "extras;android;m2repository" \
     "extras;google;m2repository" \
     "extras;google;google_play_services" \
@@ -114,11 +101,6 @@ DocumentInstalledItem "Android SDK Platform 27"
 DocumentInstalledItem "Android SDK Platform 26"
 DocumentInstalledItem "Android SDK Platform 25"
 DocumentInstalledItem "Android SDK Platform 24"
-DocumentInstalledItem "Android SDK Platform 23"
-DocumentInstalledItem "Android SDK Platform 22"
-DocumentInstalledItem "Android SDK Platform 21"
-DocumentInstalledItem "Android SDK Platform 19"
-DocumentInstalledItem "Android SDK Platform 17"
 DocumentInstalledItem "Android SDK Patch Applier v4"
 DocumentInstalledItem "Android SDK Build-Tools 29.0.3"
 DocumentInstalledItem "Android SDK Build-Tools 29.0.2"
@@ -143,12 +125,4 @@ DocumentInstalledItem "Android SDK Build-Tools 24.0.3"
 DocumentInstalledItem "Android SDK Build-Tools 24.0.2"
 DocumentInstalledItem "Android SDK Build-Tools 24.0.1"
 DocumentInstalledItem "Android SDK Build-Tools 24.0.0"
-DocumentInstalledItem "Android SDK Build-Tools 23.0.3"
-DocumentInstalledItem "Android SDK Build-Tools 23.0.2"
-DocumentInstalledItem "Android SDK Build-Tools 23.0.1"
-DocumentInstalledItem "Android SDK Build-Tools 22.0.1"
-DocumentInstalledItem "Android SDK Build-Tools 21.1.2"
-DocumentInstalledItem "Android SDK Build-Tools 20.0.0"
-DocumentInstalledItem "Android SDK Build-Tools 19.1.0"
-DocumentInstalledItem "Android SDK Build-Tools 17.0.0"
 DocumentInstalledItem "Android NDK $(cat ${ANDROID_SDK_ROOT}/ndk-bundle/source.properties 2>&1 | grep Pkg.Revision | cut -d ' ' -f 3)"
