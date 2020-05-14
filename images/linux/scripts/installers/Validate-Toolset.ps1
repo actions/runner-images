@@ -68,7 +68,7 @@ foreach($tool in $tools) {
         $foundVersionName = $foundVersion.name
         if ($tool.name -eq 'PyPy')
         {
-            $pypyVersion = & "$foundVersionPath/bin/python.exe" -c "import sys;print(sys.version.split('\n')[1])"
+            $pypyVersion = & "$foundVersionPath/bin/python" -c "import sys;print(sys.version.split('\n')[1])"
             $foundVersionName = "{0} {1}" -f $foundVersionName, $pypyVersion
         }
 
