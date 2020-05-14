@@ -47,9 +47,6 @@ echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "platforms;android-29" \
     "platforms;android-28" \
     "platforms;android-27" \
-    "platforms;android-26" \
-    "platforms;android-25" \
-    "platforms;android-24" \
     "build-tools;29.0.3" \
     "build-tools;29.0.2" \
     "build-tools;29.0.0" \
@@ -85,9 +82,6 @@ DocumentInstalledItem "Android SDK Platform-Tools $(cat ${ANDROID_SDK_ROOT}/plat
 DocumentInstalledItem "Android SDK Platform 29"
 DocumentInstalledItem "Android SDK Platform 28"
 DocumentInstalledItem "Android SDK Platform 27"
-DocumentInstalledItem "Android SDK Platform 26"
-DocumentInstalledItem "Android SDK Platform 25"
-DocumentInstalledItem "Android SDK Platform 24"
 DocumentInstalledItem "Android SDK Patch Applier v4"
 DocumentInstalledItem "Android SDK Build-Tools 29.0.3"
 DocumentInstalledItem "Android SDK Build-Tools 29.0.2"
