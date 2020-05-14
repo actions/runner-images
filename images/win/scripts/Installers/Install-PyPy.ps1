@@ -44,17 +44,14 @@ function Install-PyPy
 
         if (-not (Test-Path $pypyToolcachePath)) {
             Write-Host "Create PyPy toolcache folder"
-            $null = New-Item -ItemType Directory -Path $pypyToolcachePath
+            New-Item -ItemType Directory -Path $pypyToolcachePath | Out-Null
         }
 
-        Write-Host "Create PyPy '${pypyVersion}' folder in '${pypyToolcachePath}'"
-        $null = New-Item -ItemType Directory -Path $pypyArchPath -Force
+        Write-Host "Create PyPy '${pypyVersion}' folder in '${pypyVersionPath}'"
+        New-Item -ItemType Directory -Path $pypyVersionPath -Force | Out-Null
 
-        Write-Host "Move PyPy files to '${pypyArchPath}'"
-        Move-Item -Path $tempFolder\* -Destination $pypyArchPath | Out-Null
-
-        Write-Host "Clear temporary folder"
-        Remove-Item -Path $tempFolder -Force -Recurse | Out-Null
+        Write-Host "Move PyPy '${pypyVersion}' files to '${pypyArchPath}'"
+        Move-Item -Path $tempFolder -Destination $pypyArchPath | Out-Null
 
         Write-Host "Install PyPy '${pypyVersion}' in '${pypyArchPath}'"
         cmd.exe /c "cd /d $pypyArchPath && mklink python.exe $pypyName && python.exe -m ensurepip && python.exe -m pip install --upgrade pip"
@@ -64,6 +61,15 @@ function Install-PyPy
             Throw "Error happened during PyPy installation"
             exit 1
         }
+
+        # https://github.com/actions/setup-python/blob/master/src/find-python.ts
+        # https://github.com/microsoft/azure-pipelines-tasks/blob/master/Tasks/UsePythonVersionV0/usepythonversion.ts
+        #  // For PyPy, Windows uses 'bin', not 'Scripts'.
+        # const _binDir = path.join(installDir, 'bin');
+        # PyPy v7.3.1 or higher creates only Scripts folder therefore to preserve back compatibility with UsePythonVersionV0 task
+        # We should create a Scripts -> bin symlink
+        Write-Host "Symbolic link created for '$pypyArchPath\Scripts' <<===>> '$pypyArchPath\bin'"
+        New-Item -Path "$pypyArchPath\bin" -ItemType SymbolicLink -Value "$pypyArchPath\Scripts" | Out-Null
 
         Write-Host "Create complete file"
         New-Item -ItemType File -Path $pypyVersionPath -Name "$architecture.complete" | Out-Null
