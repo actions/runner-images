@@ -7,7 +7,15 @@ source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
-LATEST_DOTNET_PACKAGES=("dotnet-sdk-3.1")
+if  isUbuntu20 ; then
+    LATEST_DOTNET_PACKAGES=("dotnet-sdk-3.1")
+    release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json")
+fi
+
+if isUbuntu16 || isUbuntu18 ; then
+    LATEST_DOTNET_PACKAGES=("dotnet-sdk-3.0" "dotnet-sdk-3.1")
+    release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.2/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.0/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json")
+fi
 
 LSB_RELEASE=$(lsb_release -rs)
 
@@ -44,7 +52,6 @@ for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
 done
 
 # Get list of all released SDKs from channels which are not end-of-life or preview
-release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json")
 sdks=()
 for release_url in ${release_urls[@]}; do
     echo "${release_url}"
