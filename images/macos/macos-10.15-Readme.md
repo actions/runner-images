@@ -1,26 +1,26 @@
-# OS X info
+# macOS info
 - System Version: macOS 10.15.4 (19E287)
 - Kernel Version: Darwin 19.4.0
 - System Integrity Protection: Enabled
-- Image Version: 20200430.1
+- Image Version: 20200507.1
 
-# Installed Software
-## Language and Runtime
+## Installed Software
+### Language and Runtime
 - Java 1.7: (Zulu 7.38.0.11-CA-macosx) (build 1.7.0_262-b10)
 - Java 1.8: (Zulu 8.46.0.19-CA-macosx) (build 1.8.0_252-b14) (default)
 - Java 11: Zulu11.39+15-CA (build 11.0.7+10-LTS)
 - Java 12: Zulu12.3+11-CA (build 12.0.2+3)
 - Java 13: Zulu13.31+11-CA (build 13.0.3+3-MTS)
 - Java 14: Zulu14.28+21-CA (build 14.0.1+8)
-- Rust 1.43.0
+- Rust 1.43.1
 - Clang/LLVM 10.0.0
 - gcc-8 (Homebrew GCC 8.4.0_1) 8.4.0
 - gcc-9 (Homebrew GCC 9.3.0_1) 9.3.0
 - GNU Fortran (Homebrew GCC 8.4.0_1) 8.4.0
 - GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0
 - Node.js v12.16.3
-- NVM 0.33.11
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.20.1 v12.16.3 v13.14.0
+- NVM 0.35.3
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.20.1 v12.16.3 v13.14.0 v14.2.0
 - PowerShell 7.0.0
 - Python 2.7.17
 - Python 3.7.7
@@ -30,33 +30,33 @@
 - PHP 7.4.5
 - julia 1.4.1
 
-## Package Management
+### Package Management
 - Rustup 1.21.1
 - Vcpkg 2020.02.04
 - Bundler version 2.1.4
 - Carthage 0.34.0
 - CocoaPods 1.9.1
-- Homebrew 2.2.14
+- Homebrew 2.2.15
 - NPM 6.14.4
 - Yarn 1.22.4
 - NuGet 5.5.0.6382
 - Pip 19.3.1 (python 2.7)
 - Pip 20.0.2 (python 3.7)
 - Miniconda 4.8.2
-- RubyGems 3.1.2
+- RubyGems 3.1.3
 
-## Project Management
+### Project Management
 - Apache Maven 3.6.3
-- Gradle 6.3
+- Gradle 6.4
 
-## Utilities
+### Utilities
 - Curl 7.70.0
 - Git: 2.26.2
 - Git LFS: 2.10.0
 - Hub CLI: 2.14.2
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.13.0
-- Packer 1.5.5
+- Packer 1.5.6
 - GNU parallel 20200422
 - OpenSSL 1.0.2t  10 Sep 2019
 - jq 1.6
@@ -64,61 +64,61 @@
 - psql (PostgreSQL) 12.2
 - PostgreSQL 12.2
 - aria2 1.35.0
-- azcopy 10.4.1
+- azcopy 10.4.3
 - zstd 1.4.4
 - bazel 3.1.0
 - bazelisk v1.4.0
 - helm v3.2.0+ge11b7ce
 - virtualbox 6.1.6r137129
-- Vagrant 2.2.7
+- Vagrant 2.2.8
 
-## Tools
+### Tools
 - Fastlane 2.146.1
 - Cmake 3.17.2
-- App Center CLI 2.5.0
+- App Center CLI 2.5.1
 - Azure CLI 2.5.1
 - AWS CLI 2.0.10
 - AWS SAM CLI 0.48.0
 - Aliyun CLI 3.0.39
 
-## Browsers
+### Browsers
 - Safari 13.1 (15609.1.20.111.8)
 - SafariDriver 13.1 (15609.1.20.111.8)
-- Google Chrome 81.0.4044.129 
-- ChromeDriver 81.0.4044.69
-- Microsoft Edge 81.0.416.68 
+- Google Chrome 81.0.4044.138
+- ChromeDriver 81.0.4044.138
+- Microsoft Edge 81.0.416.68
 - MSEdgeDriver 81.0.416.68
-- Mozilla Firefox 75.0
+- Mozilla Firefox 76.0
 - geckodriver 0.26.0
 
-## Toolcache
-### Ruby
+### Toolcache
+#### Ruby
 - 2.4.10
 - 2.5.8
 - 2.6.6
 - 2.7.1
 
-### Python
+#### Python
 - 2.7.18
 - 3.5.9
 - 3.6.10
 - 3.7.7
 - 3.8.2
 
-### PyPy
+#### PyPy
 - 2.7.17
 - 3.6.9
 
-## Xamarin
-### Visual Studio for Mac
-- 8.5.4.12
+### Xamarin
+#### Visual Studio for Mac
+- 8.5.5.7
 
-### Mono
+#### Mono
 - 6.8.0.123
 - 6.6.0.166
 - 6.4.0.208
 
-### Xamarin.iOS
+#### Xamarin.iOS
 - 13.16.0.13
 - 13.14.1.39
 - 13.10.0.21
@@ -127,7 +127,7 @@
 - 13.4.0.2
 - 13.2.0.47
 
-### Xamarin.Mac
+#### Xamarin.Mac
 - 6.16.0.13
 - 6.14.1.39
 - 6.10.0.21
@@ -136,18 +136,18 @@
 - 6.4.0.2
 - 6.2.0.47
 
-### Xamarin.Android
+#### Xamarin.Android
 - 10.2.0
 - 10.1.3
 - 10.0.6
 
-### Unit Test Framework
+#### Unit Test Framework
 - NUnit 3.6.1
 
-## Xcode
+### Xcode
 | Version          | Build   | Path                              |
 | ---------------- | ------- | --------------------------------- |
-| 11.5 (beta)      | 11N605c | /Applications/Xcode_11.5_beta.app |
+| 11.5 (beta)      | 11N605f | /Applications/Xcode_11.5_beta.app |
 | 11.4.1 (default) | 11E503a | /Applications/Xcode_11.4.1.app    |
 | 11.4             | 11E146  | /Applications/Xcode_11.4.app      |
 | 11.3.1           | 11C505  | /Applications/Xcode_11.3.1.app    |
@@ -158,14 +158,14 @@
 | 11.0             | 11A420a | /Applications/Xcode_11.app        |
 | 10.3             | 10G8    | /Applications/Xcode_10.3.app      |
 
-### Xcode Support Tools
-- Nomad CLI 3.1.2
+#### Xcode Support Tools
+- Nomad CLI 3.1.3
 - Nomad CLI IPA ipa 0.14.3
 - xcpretty 0.3.0
 - xctool 0.3.7
 - xcversion 2.6.4
 
-### Installed SDKs
+#### Installed SDKs
 | SDK                     | SDK Name             | Xcode Version                                              |
 | ----------------------- | -------------------- | ---------------------------------------------------------- |
 | macOS 10.14             | macosx10.14          | 10.3                                                       |
@@ -200,7 +200,7 @@
 | Simulator - watchOS 6.2 | watchsimulator6.2    | 11.4, 11.4.1, 11.5                                         |
 | DriverKit 19.0          | driverkit.macosx19.0 | 11.0, 11.1, 11.2, 11.2.1, 11.3, 11.3.1, 11.4, 11.4.1, 11.5 |
 
-### Installed Simulators
+#### Installed Simulators
 | OS          | Xcode Version                    | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ----------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iOS 12.4    | 10.3                             | iPhone 5s<br>iPhone 6 Plus<br>iPhone 6<br>iPhone 6s<br>iPhone 6s Plus<br>iPhone SE<br>iPhone 7<br>iPhone 7 Plus<br>iPhone 8<br>iPhone 8 Plus<br>iPhone X<br>iPhone Xs<br>iPhone Xs Max<br>iPhone Xʀ<br>iPad Air<br>iPad Air 2<br>iPad Pro (9.7-inch)<br>iPad Pro (12.9-inch)<br>iPad (5th generation)<br>iPad Pro (12.9-inch) (2nd generation)<br>iPad Pro (10.5-inch)<br>iPad (6th generation)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation) |
@@ -220,18 +220,18 @@
 | watchOS 6.1 | 11.2<br>11.2.1<br>11.3<br>11.3.1 | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm                                                                                                                                                                                                                                                                                                                                                                    |
 | watchOS 6.2 | 11.4<br>11.4.1<br>11.5           | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm                                                                                                                                                                                                                                                                                                                                                                    |
 
-## Android
-### Android SDK Tools
+### Android
+#### Android SDK Tools
 | Package Name | Description                        |
 | ------------ | ---------------------------------- |
 | tools        | Android SDK Tools, Revision 26.1.1 |
 
-### Android SDK Platform-Tools
+#### Android SDK Platform-Tools
 | Package Name   | Description                                 |
 | -------------- | ------------------------------------------- |
-| platform-tools | Android SDK Platform-Tools, Revision 30.0.0 |
+| platform-tools | Android SDK Platform-Tools, Revision 30.0.1 |
 
-### Android SDK Platforms
+#### Android SDK Platforms
 | Package Name | Description                         |
 | ------------ | ----------------------------------- |
 | android-24   | Android SDK Platform 24, Revision 2 |
@@ -241,7 +241,7 @@
 | android-28   | Android SDK Platform 28, Revision 6 |
 | android-29   | Android SDK Platform 29, Revision 4 |
 
-### Android SDK Build-Tools
+#### Android SDK Build-Tools
 | Package Name           | Description                                  |
 | ---------------------- | -------------------------------------------- |
 | build-tools-24.0.0     | Android SDK Build-Tools, Revision 24.0.0     |
@@ -268,17 +268,16 @@
 | build-tools-29.0.1     | Android SDK Build-Tools, Revision 29.0.1     |
 | build-tools-29.0.2     | Android SDK Build-Tools, Revision 29.0.2     |
 | build-tools-29.0.3     | Android SDK Build-Tools, Revision 29.0.3     |
-| build-tools-30.0.0-rc1 | Android SDK Build-Tools, Revision 30.0.0 rc1 |
+| build-tools-30.0.0-rc4 | Android SDK Build-Tools, Revision 30.0.0 rc4 |
 
-### Android Utils
+#### Android Utils
 | Package Name     | Version      |
 | ---------------- | ------------ |
 | cmake            | 3.6.4111459  |
-| lldb             | 3.1.4508709  |
 | ndk-bundle       | 21.1.6352462 |
 | Android Emulator | 30.0.5       |
 
-### Android Google APIs
+#### Android Google APIs
 | Package Name                | Description             |
 | --------------------------- | ----------------------- |
 | addon-google_apis-google-21 | Google APIs, Revision 1 |
@@ -286,7 +285,7 @@
 | addon-google_apis-google-23 | Google APIs, Revision 1 |
 | addon-google_apis-google-24 | Google APIs, Revision 1 |
 
-### Extra Packages
+#### Extra Packages
 | Package Name                                    | Version |
 | ----------------------------------------------- | ------- |
 | Android Support Repository                      | 47.0.0  |
