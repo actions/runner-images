@@ -37,7 +37,8 @@ ForEach ($version in $GhcVersionList) {
     {
         Write-Host "ghc $version is valid"
     }
-    else {
+    else
+    {
         Write-Host "ghc $version is not valid"
         exit 1
     }
@@ -46,7 +47,7 @@ ForEach ($version in $GhcVersionList) {
 
 $GhcVersionsDescription = $GhcVersionList | ForEach-Object {
     $DefaultPostfix = if ($DefaultGhcVersion -match $_) { " (default)" } else { "" }
-    "ghc $($_) $DefaultPostfix `n"
+    "ghc $_ $DefaultPostfix `n"
 }
 
 $Description = @"
@@ -58,7 +59,7 @@ Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $
 
 
 # Cabal validation
-if ((Get-Command -Name 'cabal'))
+if (Get-Command -Name 'cabal')
 {
     Write-Host "cabal is on the path"
 }
