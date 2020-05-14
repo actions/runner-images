@@ -8,7 +8,13 @@
 source $HELPER_SCRIPTS/document.sh
 
 # Install Powershell
-snap install powershell --classic --channel=edge/useedge
+if isUbuntu20 ; then
+    snap install powershell --classic --channel=edge/useedge
+fi
+
+if isUbuntu16 || isUbuntu18 ; then
+    apt-get install -y powershell
+fi
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"

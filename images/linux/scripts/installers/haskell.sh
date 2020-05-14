@@ -15,7 +15,7 @@ add-apt-repository -y ppa:hvr/ghc
 apt-get update
 
 # Install various versions of ghc and cabal
-if  isUbuntu20 ; then
+if isUbuntu20 ; then
     apt-get install -y \
         ghc-8.6.5 \
         ghc-8.8.3 \

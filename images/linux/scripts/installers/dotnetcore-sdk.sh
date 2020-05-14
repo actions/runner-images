@@ -7,7 +7,7 @@ source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
-if  isUbuntu20 ; then
+if isUbuntu20 ; then
     LATEST_DOTNET_PACKAGES=("dotnet-sdk-3.1")
     release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json")
 fi
