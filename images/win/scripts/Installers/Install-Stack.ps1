@@ -10,7 +10,7 @@ $DownloadUrl = $StackReleasesJson.assets | Where-Object { $_.name.EndsWith($Down
 
 Write-Host "Download stack archive"
 $DestinationPath = Join-Path $Env:AGENT_TOOLSDIRECTORY "stack\x64"
-$StackArchivePath = Start-DownloadWithRetry -Uri $DownloadUrl
+$StackArchivePath = Start-DownloadWithRetry -Url $DownloadUrl
 
 Write-Host "Expand stack archive"
 Extract-7Zip -Path $StackArchivePath -DestinationPath $DestinationPath

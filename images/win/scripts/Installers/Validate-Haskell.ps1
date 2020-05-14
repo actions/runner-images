@@ -4,7 +4,7 @@
 ################################################################################
 
 # GHC validation
-if ((Get-Command -Name 'ghc'))
+if (Get-Command -Name 'ghc')
 {
     Write-Host "ghc is on the path"
 }
@@ -17,7 +17,32 @@ else
 $SoftwareName = "ghc"
 [String] $DefaultGhcVersion = & ghc --version
 $ChocoPackagesPath = Join-Path $env:ChocolateyInstall "lib"
-$GhcVersionList = Get-ChildItem -Path $ChocoPackagesPath -Filter "ghc.*" | ForEach-Object { $_.Name.TrimStart("ghc.") }
+[Array] $GhcVersionList = Get-ChildItem -Path $ChocoPackagesPath -Filter "ghc.*" | ForEach-Object { $_.Name.TrimStart("ghc.") }
+
+# Validation that accurate 3 versions of GHC are installed
+if ($GhcVersionList.Count -eq 3)
+{
+    Write-Host "Versions of GHC are accurate"
+}
+else
+{
+    Write-Host "Versions of GHC not accurate"
+    exit 1
+}
+
+# Validation each of GHC version
+ForEach ($version in $GhcVersionList) {
+    $BinGhcPath = Join-Path $env:ChocolateyInstall "lib\ghc.$version\tools\ghc-$version\bin\ghc.exe"
+    if ((& $BinGhcPath --version) -match $version)
+    {
+        Write-Host "ghc $version is valid"
+    }
+    else {
+        Write-Host "ghc $version is not valid"
+        exit 1
+    }
+}
+
 
 $GhcVersionsDescription = $GhcVersionList | ForEach-Object {
     $DefaultPostfix = if ($DefaultGhcVersion -match $_) { " (default)" } else { "" }

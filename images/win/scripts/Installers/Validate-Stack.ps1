@@ -3,7 +3,7 @@
 ##  Desc:  Validate Stack for Windows
 ################################################################################
 
-if((Get-Command -Name 'stack'))
+if (Get-Command -Name 'stack')
 {
     Write-Host "stack is on the path"
 }
@@ -13,7 +13,7 @@ else
     exit 1
 }
 
-$StackVersion = $(stack --version --quiet)
+$StackVersion = stack --version --quiet
 
 # Adding description of the software to Markdown
 $SoftwareName = "Stack"
