@@ -8,6 +8,26 @@
 source $HELPER_SCRIPTS/document.sh
 
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+if isUbuntu20 ; then
+    sudo pwsh -Command 'Save-Module -Name Az -LiteralPath /usr/share/az_3.8.0 -RequiredVersion 3.8.0 -Force'
+
+    # Run tests to determine that the software installed as expected
+    echo "Testing to make sure that script performed as expected, and basic scenarios work"
+    if ! pwsh -Command '$actualPSModulePath = $env:PSModulePath ; $env:PSModulePath = "/usr/share/az_3.8.0:" + $env:PSModulePath;
+        if (!(get-module -listavailable -name Az.accounts)) {
+            Write-Host "Az Module was not installed"; $env:PSModulePath = $actualPSModulePath; exit 1
+        }
+        $env:PSModulePath = $actualPSModulePath'; then
+        exit 1
+    fi
+
+    # Document what was added to the image
+    echo "Lastly, documenting what we added to the metadata file"
+    DocumentInstalledItem "Az Module (3.8.0)"
+    exit 0
+fi
+
+# Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 sudo pwsh -Command 'Save-Module -Name Az -LiteralPath /usr/share/az_1.0.0 -RequiredVersion 1.0.0 -Force'
 sudo pwsh -Command 'Save-Module -Name Az -LiteralPath /usr/share/az_1.6.0 -RequiredVersion 1.6.0 -Force'
 sudo pwsh -Command 'Save-Module -Name Az -LiteralPath /usr/share/az_2.3.2 -RequiredVersion 2.3.2 -Force'
