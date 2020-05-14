@@ -4,4 +4,4 @@
 ##         https://aws.amazon.com/serverless/sam/
 ################################################################################
 
-Install-MSI -MsiUrl "https://github.com/awslabs/aws-sam-cli/releases/latest/download/AWS_SAM_CLI_64_PY3.msi" -MsiName "AWS_SAM_CLI_64_PY3.msi"
+Install-Binary -Url "https://github.com/awslabs/aws-sam-cli/releases/latest/download/AWS_SAM_CLI_64_PY3.msi" -Name "AWS_SAM_CLI_64_PY3.msi"

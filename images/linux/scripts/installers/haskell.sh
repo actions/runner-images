@@ -33,8 +33,8 @@ apt-get install -y \
     cabal-install-3.0 \
     cabal-install-3.2
 
-# Install haskell stack, pinned to v2.1.3
-curl -sSL https://raw.githubusercontent.com/commercialhaskell/stack/v2.1.3/etc/scripts/get-stack.sh | sh
+# Install the latest stable release of haskell stack
+curl -sSL https://get.haskellstack.org/ | sh
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"

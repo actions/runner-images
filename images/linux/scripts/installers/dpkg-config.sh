@@ -17,3 +17,9 @@ Dpkg::Options {
   "--force-confold";
 }
 EOF
+
+# hide information about packages that are no longer required
+cat <<EOF >> /etc/apt/apt.conf.d/10apt-autoremove
+APT::Get::AutomaticRemove "0";
+APT::Get::HideAutoRemove "1";
+EOF

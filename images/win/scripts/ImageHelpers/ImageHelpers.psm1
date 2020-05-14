@@ -14,7 +14,9 @@ Export-ModuleMember -Function @(
     'Get-SystemVariable'
     'Set-SystemVariable'
     'Install-Binary'
+    'Install-VisualStudio'
     'Get-ToolcachePackages'
+    'Get-ToolsetContent'
     'Get-ToolsByName'
     'Add-ContentToMarkdown'
     'Add-SoftwareDetailsToMarkdown'
@@ -27,4 +29,5 @@ Export-ModuleMember -Function @(
     'Test-IsWin19'
     'Test-IsWin16'
     'Choco-Install'
+    'Extract-7Zip'
 )

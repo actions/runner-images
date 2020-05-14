@@ -6,70 +6,80 @@
 Import-Module -Name ImageHelpers -Force
 
 $refsJson = Invoke-RestMethod "https://api.github.com/repos/golang/go/git/refs/tags"
+
 function Install-GoVersion
 {
     Param
     (
-        [String]$goVersion,
-        [Switch]$addToDefaultPath
+        [String] $goVersion,
+        [Switch] $addToDefaultPath
     )
 
-    $latestVersionObject = $refsJson | Where-Object { $_.ref -Match "refs/tags/go$goVersion[./d]*" }  | Select-Object -Last 1
+    $latestVersionObject = $refsJson | Where-Object { $_.ref -Match "refs/tags/go$goVersion[./d]*" } | Select-Object -Last 1
     $latestVersion = $latestVersionObject.ref.replace('refs/tags/go','')
 
     # Download the Go zip archive.
     Write-Host "Downloading Go $latestVersion..."
     $ProgressPreference = 'SilentlyContinue'
-    Invoke-WebRequest -UseBasicParsing -Uri "https://dl.google.com/go/go$latestVersion.windows-amd64.zip" -OutFile go$latestVersion.windows-amd64.zip
+
+    $goArchName = "go${latestVersion}.windows-amd64.zip"
+    $goArchUrl = "https://dl.google.com/go/${goArchName}"
+
+    $goArchPath = Start-DownloadWithRetry -Url $goArchUrl -Name $goArchName
 
     # Extract the zip archive.  It contains a single directory named "go".
     Write-Host "Extracting Go $latestVersion..."
-    Expand-Archive -Path go$latestVersion.windows-amd64.zip -DestinationPath "C:\" -Force
+    $toolDirectory = Join-Path $env:AGENT_TOOLSDIRECTORY "go\$latestVersion"
+    Extract-7Zip -Path $goArchPath -DestinationPath $toolDirectory
+
+    # Rename the extracted "go" directory to "x64" for full path "C:\hostedtoolcache\windows\Go\1.14.2\x64\..."
+    Rename-Item -path "$toolDirectory\go" -newName "x64"
+    $fullArchPath = "$toolDirectory\x64"
 
     # Delete unnecessary files to conserve space
     Write-Host "Cleaning directories of Go $latestVersion..."
-    if (Test-Path "C:\go\doc")
+    if (Test-Path "$fullArchPath\doc")
     {
-        Remove-Item -Recurse -Force "C:\go\doc"
+        Remove-Item -Recurse -Force "$fullArchPath\doc"
     }
-    if (Test-Path "C:\go\blog")
+    if (Test-Path "$fullArchPath\blog")
     {
-        Remove-Item -Recurse -Force "C:\go\blog"
+        Remove-Item -Recurse -Force "$fullArchPath\blog"
     }
 
-    # Rename the extracted "go" directory to include the Go version number (to support side-by-side versions of Go).
-    $newDirName = "Go$latestVersion"
-    Rename-Item -path "C:\go" -newName $newDirName
-
-    # Delete the Go zip archive.
-    Write-Host "Deleting downloaded archive of Go $latestVersion..."
-    Remove-Item go$latestVersion.windows-amd64.zip
+    # Create symlink in old location
+    New-Item -Path "C:\go$latestVersion" -ItemType SymbolicLink -Value $fullArchPath
 
     # Make this the default version of Go?
     if ($addToDefaultPath)
     {
         Write-Host "Adding Go $latestVersion to the path..."
         # Add the Go binaries to the path.
-        Add-MachinePathItem "C:\$newDirName\bin" | Out-Null
+        Add-MachinePathItem "$fullArchPath\bin" | Out-Null
         # Set the GOROOT environment variable.
-        setx GOROOT "C:\$newDirName" /M | Out-Null
+        setx GOROOT "$fullArchPath" /M | Out-Null
     }
 
     # Done
     Write-Host "Done installing Go $latestVersion."
-    return "C:\$newDirName"
+    return $fullArchPath
 }
 
 # Install Go
 $goVersionsToInstall = $env:GO_VERSIONS.split(", ", [System.StringSplitOptions]::RemoveEmptyEntries)
 
-foreach($go in $goVersionsToInstall) {
+foreach ($go in $goVersionsToInstall)
+{
     Write-Host "Installing Go ${go}"
-    if($go -eq $env:GO_DEFAULT) {
+    if ($go -eq $env:GO_DEFAULT)
+    {
         $installDirectory = Install-GoVersion -goVersion $go -addToDefaultPath
-    } else {
+    }
+    else
+    {
         $installDirectory = Install-GoVersion -goVersion $go
     }
+
     $envName = "GOROOT_{0}_{1}_X64" -f $go.split(".")
     setx $envName "$installDirectory" /M
 }

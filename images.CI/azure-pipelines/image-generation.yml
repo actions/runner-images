@@ -8,6 +8,7 @@ jobs:
 - job:
   pool: ci-agent-pool
   timeoutInMinutes: 600
+  cancelTimeoutInMinutes: 30
   variables:
   - group: Image Generation Variables
 

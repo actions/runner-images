@@ -55,6 +55,10 @@ foreach ($BoostTool in $BoostTools)
 $CMakeFindBoostInfo = @"
 
 #### _Notes:_
+
+> ``BOOST_ROOT`` is not set on images but it is required by CMake. Please make sure you set this variable
+> value to either ``BOOST_ROOT_1_69_0`` or ``BOOST_ROOT_1_72_0`` depending on the Boost version you are using.
+
 Link: https://cmake.org/cmake/help/latest/module/FindBoost.html
 
 If Boost was built using the ``boost-cmake`` project or from ``Boost 1.70.0`` on it provides a package
