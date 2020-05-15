@@ -133,7 +133,7 @@ apt-get install -y --no-install-recommends parallel
 echo "Install gnupg2"
 apt-get install -y --no-install-recommends gnupg2
 
-echo "Install zlib"
+echo "Install lib32z1"
 apt-get install -y --no-install-recommends lib32z1
 
 # Run tests to determine that the software installed as expected
