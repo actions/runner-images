@@ -41,7 +41,6 @@ function Set-JavaPath {
         Write-Host "Set JAVA_HOME environmental variable as $javaPath"
         setx JAVA_HOME $javaPath /M
     }
-
 }
 
 # Download the Azul Systems Zulu JDKs
