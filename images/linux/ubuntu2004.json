@@ -25,7 +25,7 @@
         "image_os": "ubuntu20",
         "github_feed_token": null,
         "go_default": "1.14",
-        "go_versions": "1.12 1.13 1.14"
+        "go_versions": "1.14"
     },
     "sensitive-variables": ["client_secret", "github_feed_token"],
     "builders": [
