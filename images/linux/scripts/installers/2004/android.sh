@@ -61,10 +61,6 @@ echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "extras;android;m2repository" \
     "extras;google;m2repository" \
     "extras;google;google_play_services" \
-    "add-ons;addon-google_apis-google-24" \
-    "add-ons;addon-google_apis-google-23" \
-    "add-ons;addon-google_apis-google-22" \
-    "add-ons;addon-google_apis-google-21" \
     "cmake;3.10.2.4988404" \
     "patcher;v4"
 
