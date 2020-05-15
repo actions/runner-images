@@ -32,7 +32,8 @@ _Environment:_
 
 ## Powershell Core
 
-_Version:_ 7.0.0<br/>
+_Version:_ 7.0.0
+<br/>
 
 ## Docker images
 
@@ -136,6 +137,9 @@ The following workloads and components are installed with Visual Studio 2019:
 * Microsoft.VisualStudio.Workload.Python
 * Microsoft.VisualStudio.Workload.Universal
 * Microsoft.VisualStudio.Workload.VisualStudioExtension
+* Component.MDD.Linux
+* Component.Linux.CMake
+* Component.MDD.Linux.GCC.arm
 
 ## WIX Tools
 
