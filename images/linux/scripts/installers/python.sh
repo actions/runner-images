@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/os.sh
 
 # Install Python, Python 3, pip, pip3
 if isUbuntu20 ; then
