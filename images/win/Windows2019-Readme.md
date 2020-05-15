@@ -137,9 +137,6 @@ The following workloads and components are installed with Visual Studio 2019:
 * Microsoft.VisualStudio.Workload.Python
 * Microsoft.VisualStudio.Workload.Universal
 * Microsoft.VisualStudio.Workload.VisualStudioExtension
-* Component.MDD.Linux
-* Component.Linux.CMake
-* Component.MDD.Linux.GCC.arm
 
 ## WIX Tools
 
