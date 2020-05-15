@@ -17,7 +17,7 @@ $azulJDKURLs = @(
 foreach ($azulJDKURL in $azulJDKURLs)
 {
     $archivePath = Start-DownloadWithRetry -Url $azulJDKURL -Name $([IO.Path]::GetFileName($azulJDKURL))
-    Expand-Archive -Path $archivePath -DestinationPath "C:\Program Files\Java\"
+    Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
 }
 
 $currentPath = Get-MachinePath
@@ -33,16 +33,16 @@ foreach ($pathSegment in $pathSegments)
     }
 }
 
-$java7Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*7*' | Sort-Object -Property Name -Descending | Select-Object -First 1
+$java7Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk_7*' | Sort-Object -Property Name -Descending | Select-Object -First 1
 $latestJava7Install = $java7Installs.FullName;
 
-$java8Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*8*' | Sort-Object -Property Name -Descending | Select-Object -First 1
+$java8Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk_8*' | Sort-Object -Property Name -Descending | Select-Object -First 1
 $latestJava8Install = $java8Installs.FullName;
 
-$java11Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*11*' | Sort-Object -Property Name -Descending | Select-Object -First 1
+$java11Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk_11*' | Sort-Object -Property Name -Descending | Select-Object -First 1
 $latestJava11Install = $java11Installs.FullName;
 
-$java13Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*13*' | Sort-Object -Property Name -Descending | Select-Object -First 1
+$java13Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk_13*' | Sort-Object -Property Name -Descending | Select-Object -First 1
 $latestJava13Install = $java13Installs.FullName;
 
 $newPath = [string]::Join(';', $newPathSegments)
