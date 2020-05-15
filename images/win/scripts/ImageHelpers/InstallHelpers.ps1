@@ -221,11 +221,14 @@ function Start-DownloadWithRetry
     (
         [Parameter(Mandatory)]
         [string] $Url,
-        [Parameter(Mandatory)]
         [string] $Name,
         [string] $DownloadPath = "${env:Temp}",
         [int] $Retries = 20
     )
+
+    if ([String]::IsNullOrEmpty($Name)) {
+        $Name = [IO.Path]::GetFileName($Url)
+    }
 
     $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
 
