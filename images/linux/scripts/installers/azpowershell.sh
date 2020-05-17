@@ -15,6 +15,7 @@ sudo pwsh -Command 'Save-Module -Name Az -LiteralPath /usr/share/az_2.6.0 -Requi
 sudo pwsh -Command 'Save-Module -Name Az -LiteralPath /usr/share/az_2.8.0 -RequiredVersion 2.8.0 -Force'
 sudo pwsh -Command 'Save-Module -Name Az -LiteralPath /usr/share/az_3.1.0 -RequiredVersion 3.1.0 -Force'
 sudo pwsh -Command 'Save-Module -Name Az -LiteralPath /usr/share/az_3.5.0 -RequiredVersion 3.5.0 -Force'
+sudo pwsh -Command 'Save-Module -Name Az -LiteralPath /usr/share/az_3.8.0 -RequiredVersion 3.8.0 -Force'
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -52,6 +53,11 @@ if ! pwsh -Command '$actualPSModulePath = $env:PSModulePath ; $env:PSModulePath 
     if (!(get-module -listavailable -name Az.accounts)) {
         Write-Host "Az Module was not installed"; $env:PSModulePath = $actualPSModulePath; exit 1
     }
+    $env:PSModulePath = $actualPSModulePath
+    $actualPSModulePath = $env:PSModulePath ; $env:PSModulePath = "/usr/share/az_3.8.0:" + $env:PSModulePath;
+    if (!(get-module -listavailable -name Az.accounts)) {
+        Write-Host "Az Module was not installed"; $env:PSModulePath = $actualPSModulePath; exit 1
+    }
     $env:PSModulePath = $actualPSModulePath'; then
     exit 1
 fi
@@ -65,3 +71,4 @@ DocumentInstalledItem "Az Module (2.6.0)"
 DocumentInstalledItem "Az Module (2.8.0)"
 DocumentInstalledItem "Az Module (3.1.0)"
 DocumentInstalledItem "Az Module (3.5.0)"
+DocumentInstalledItem "Az Module (3.8.0)"
