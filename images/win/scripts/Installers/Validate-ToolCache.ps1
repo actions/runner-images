@@ -177,10 +177,6 @@ function ToolcacheTest {
     Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $markdownDescription
 }
 
-# PyPy test
-$PyPyTests = @("python.exe", "bin\pip.exe")
-ToolcacheTest -SoftwareName "PyPy" -ExecTests $PyPyTests
-
 # Ruby test
 $RubyTests = @("bin\ruby.exe")
 ToolcacheTest -SoftwareName "Ruby" -ExecTests $RubyTests
