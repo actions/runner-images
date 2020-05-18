@@ -532,7 +532,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-MinGW.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Mingw64.ps1"
             ]
         },
         {
@@ -840,7 +840,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-MinGW.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Mingw64.ps1"
             ]
         },
         {
