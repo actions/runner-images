@@ -5,7 +5,7 @@
 ################################################################################
 
 availableSpaceMB=$(df / -hm | sed 1d | awk '{ print $4}')
-minimumFreeSpaceMB=18000
+minimumFreeSpaceMB=17800
 
 echo "Available disk space: $availableSpaceMB MB"
 if [ $availableSpaceMB -le $minimumFreeSpaceMB ]; then

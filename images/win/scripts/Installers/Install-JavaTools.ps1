@@ -5,6 +5,44 @@
 
 Import-Module -Name ImageHelpers -Force
 
+function Set-JavaPath {
+    param (
+        [string] $Version,
+        [switch] $Default
+    )
+
+    $filter = "*azure-jdk_${version}.*"
+    $javaPath = (Get-ChildItem -Path 'C:\Program Files\Java' -Filter $filter | Sort-Object -Property Name -Descending | Select-Object -First 1).FullName
+
+    Write-Host "Set JAVA_HOME_${Version}_X64 environmental variable as $javaPath"
+    setx JAVA_HOME_${Version}_X64 $javaPath /M
+
+    if ($Default)
+    {
+        $currentPath = Get-MachinePath
+
+        $pathSegments = $currentPath.Split(';')
+        $newPathSegments = @()
+
+        foreach ($pathSegment in $pathSegments)
+        {
+            if ($pathSegment -notlike '*java*')
+            {
+                $newPathSegments += $pathSegment
+            }
+        }
+
+        $newPath = [string]::Join(';', $newPathSegments)
+        $newPath = $javaPath + '\bin;' + $newPath
+
+        Write-Host "Add $javaPath\bin to PATH"
+        Set-MachinePath -NewPath $newPath
+
+        Write-Host "Set JAVA_HOME environmental variable as $javaPath"
+        setx JAVA_HOME $javaPath /M
+    }
+}
+
 # Download the Azul Systems Zulu JDKs
 # See https://www.azul.com/downloads/azure-only/zulu/
 $azulJDKURLs = @(
@@ -17,44 +55,14 @@ $azulJDKURLs = @(
 foreach ($azulJDKURL in $azulJDKURLs)
 {
     $archivePath = Start-DownloadWithRetry -Url $azulJDKURL -Name $([IO.Path]::GetFileName($azulJDKURL))
-    Expand-Archive -Path $archivePath -DestinationPath "C:\Program Files\Java\"
+    Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
 }
 
-$currentPath = Get-MachinePath
-
-$pathSegments = $currentPath.Split(';')
-$newPathSegments = @()
-
-foreach ($pathSegment in $pathSegments)
-{
-    if ($pathSegment -notlike '*java*')
-    {
-        $newPathSegments += $pathSegment
-    }
-}
-
-$java7Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*7*' | Sort-Object -Property Name -Descending | Select-Object -First 1
-$latestJava7Install = $java7Installs.FullName;
-
-$java8Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*8*' | Sort-Object -Property Name -Descending | Select-Object -First 1
-$latestJava8Install = $java8Installs.FullName;
-
-$java11Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*11*' | Sort-Object -Property Name -Descending | Select-Object -First 1
-$latestJava11Install = $java11Installs.FullName;
-
-$java13Installs = Get-ChildItem -Path 'C:\Program Files\Java' -Filter '*azure-jdk*13*' | Sort-Object -Property Name -Descending | Select-Object -First 1
-$latestJava13Install = $java13Installs.FullName;
-
-$newPath = [string]::Join(';', $newPathSegments)
-$newPath = $latestJava8Install + '\bin;' + $newPath
-
-Set-MachinePath -NewPath $newPath
-
-setx JAVA_HOME $latestJava8Install /M
-setx JAVA_HOME_7_X64 $latestJava7Install /M
-setx JAVA_HOME_8_X64 $latestJava8Install /M
-setx JAVA_HOME_11_X64 $latestJava11Install /M
-setx JAVA_HOME_13_X64 $latestJava13Install /M
+# Set PATH and env variables
+Set-JavaPath -Version 7
+Set-JavaPath -Version 8 -Default
+Set-JavaPath -Version 11
+Set-JavaPath -Version 13
 
 # Install Java tools
 # Force chocolatey to ignore dependencies on Ant and Maven or else they will download the Oracle JDK
@@ -82,6 +90,6 @@ $uri = 'https://ayera.dl.sourceforge.net/project/cobertura/cobertura/2.1.1/cober
 $coberturaPath = "C:\cobertura-2.1.1"
 
 $archivePath = Start-DownloadWithRetry -Url $uri -Name "cobertura.zip"
-Expand-Archive -Path $archivePath -DestinationPath "C:\"
+Extract-7Zip -Path $archivePath -DestinationPath "C:\"
 
 setx COBERTURA_HOME $coberturaPath /M
