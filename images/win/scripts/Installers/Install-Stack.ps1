@@ -10,13 +10,13 @@ $DownloadFilePattern = "windows-x86_64.zip"
 $DownloadUrl = $StackReleasesJson.assets | Where-Object { $_.name.EndsWith($DownloadFilePattern) } | Select-Object -ExpandProperty "browser_download_url" -First 1
 
 Write-Host "Download stack archive"
-$ToolcachePath = Join-Path $Env:AGENT_TOOLSDIRECTORY "stack\$Version"
-$DestinationPath = Join-Path $ToolcachePath "x64"
+$StackToolcachePath = Join-Path $Env:AGENT_TOOLSDIRECTORY "stack\$Version"
+$DestinationPath = Join-Path $StackToolcachePath "x64"
 $StackArchivePath = Start-DownloadWithRetry -Url $DownloadUrl
 
 Write-Host "Expand stack archive"
 Extract-7Zip -Path $StackArchivePath -DestinationPath $DestinationPath
 
-New-Item -Name "x64.complete" -Path $ToolcachePath
+New-Item -Name "x64.complete" -Path $StackToolcachePath
 
 Add-MachinePathItem -PathItem $DestinationPath
