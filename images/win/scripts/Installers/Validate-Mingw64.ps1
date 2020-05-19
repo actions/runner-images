@@ -1,6 +1,6 @@
 ################################################################################
-##  File:  Validate-MinGW.ps1
-##  Desc:  Validate MinGW
+##  File:  Validate-Mingw64.ps1
+##  Desc:  Validate Mingw64
 ################################################################################
 
 if (Get-Command -Name 'gcc')
@@ -39,19 +39,19 @@ else
 # Adding description of the software to Markdown
 
 # `gcc --version` gives output like:
-# gcc.exe (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 5.3.0
+# gcc.exe (x86_64-posix-seh-rev0, Built by Mingw-w64 project) 5.3.0
 # Copyright (C) 2015 Free Software Foundation, Inc.
 # This is free software; see the source for copying conditions.  There is NO
 # warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-$SoftwareName = "MinGW"
+$SoftwareName = "Mingw-w64"
 $(gcc --version).Split([System.Environment]::NewLine)[0] -match "\d\.\d\.\d$"
-$minGwVersion = $matches[0]
+$mingw64Version = $matches[0]
 
 $Description = @"
-_Version:_ $minGwVersion<br/>
+_Version:_ $mingw64Version<br/>
 _Environment:_
-* PATH: contains location of the MinGW 'bin' directory
+* PATH: contains location of the Mingw-w64 'bin' directory
 "@
 
 Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
