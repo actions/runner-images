@@ -3,13 +3,15 @@
 ##  Team:  CI-Build
 ##  Desc:  Install PyPy
 ################################################################################
-
 function Get-PyPyVersions
 {
-    $uri = "https://api.bitbucket.org/2.0/repositories/pypy/pypy/downloads?pagelen=100"
+    $uri = "https://downloads.python.org/pypy/"
     try
     {
-        (Invoke-RestMethod -Uri $uri).Values
+        $hrefs = (Invoke-WebRequest -Uri $uri).Links.href
+        $hrefs | Where-Object {$_ -match '^pypy'} | Select-Object @{n = "Name"; e = {$_}}, @{n = "href"; e = {
+            [string]::Join('', ($uri, $_))
+        }}
     }
     catch
     {
@@ -17,7 +19,6 @@ function Get-PyPyVersions
         exit 1
     }
 }
-
 function Install-PyPy
 {
     param(
@@ -97,17 +98,14 @@ foreach($pypyTool in $pypyTools)
     {
         # Query latest PyPy version
         $filter = '{0}{1}-*-{2}.zip' -f $pypyTool.name, $pypyVersion, $pypyTool.platform
-        $latestMajorPyPyVersion = $pypyVersions | Where-Object {
-            $_.name -like $filter -and $_.name.Split('-')[1].Substring(1) -as [System.Version]
-        } | Sort-Object {[System.Version]$_.name.Split('-')[1].Substring(1)}  | Select-Object -Last 1
+        $latestMajorPyPyVersion = $pypyVersions | Where-Object {$_.name -like $filter} | Select-Object -First 1
 
         if ($latestMajorPyPyVersion)
         {
             $packageName = $latestMajorPyPyVersion.name
-            $packageDate = $latestMajorPyPyVersion.created_on
 
-            Write-Host "Found PyPy '$packageName' package created on '$packageDate'"
-            $url = $latestMajorPyPyVersion.links.self.href
+            Write-Host "Found PyPy '$packageName' package"
+            $url = $latestMajorPyPyVersion.href
             $tempPyPyPackagePath = Start-DownloadWithRetry -Url $url -Name  $packageName
             Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $pypyTool.arch
         }
