@@ -9,7 +9,7 @@ minimumFreeSpaceMB=17800
 
 echo "Available disk space: $availableSpaceMB MB"
 
-if [ $RUN_VALIDATION = "false" ]; then
+if [ $RUN_VALIDATION != "true" ]; then
     echo "Skipping validation disk space..."
     exit 0
 fi
