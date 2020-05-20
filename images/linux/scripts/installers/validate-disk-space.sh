@@ -4,6 +4,11 @@
 ##  Desc:  Validate free disk space
 ################################################################################
 
+if [[ $RUN_VALIDATION = "false" ]]; then
+    echo "Skipping validation disk space..."
+    exit 0
+fi
+
 availableSpaceMB=$(df / -hm | sed 1d | awk '{ print $4}')
 minimumFreeSpaceMB=17800
 
