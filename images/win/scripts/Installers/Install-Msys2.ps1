@@ -38,6 +38,13 @@ bash.exe -c "pacman-key --init 2>&1"
 Write-Host "bash pacman-key --populate msys2"
 bash.exe -c "pacman-key --populate msys2 2>&1"
 
+Write-Host "pacman --noconfirm -Sy pacman"
+pacman --noconfirm -Sy pacman
+pacman --noconfirm -Su
+
+# Force stop gpg-agent to continue installation
+Get-Process gpg-agent -ErrorAction SilentlyContinue | Stop-Process -Force
+
 Write-Host "pacman --noconfirm -Syyuu"
 pacman.exe -Syyuu --noconfirm
 pacman.exe -Syuu --noconfirm

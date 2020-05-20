@@ -63,8 +63,9 @@ Import-Module -Name ImageHelpers -Force
 
 # Define executables for cached tools
 $toolsExecutables = @{
-    Python = @("python.exe", "Scripts\pip.exe");
+    Python = @("python.exe", "Scripts\pip.exe")
     node = @("node.exe", "npm")
+    PyPy = @("python.exe", "Scripts\pip.exe")
 }
 
 # Get toolcache content from toolset
@@ -78,6 +79,11 @@ foreach($tool in $tools) {
     $toolExecs = $toolsExecutables[$tool.name]
 
     foreach ($version in $tool.versions) {
+        # Add wildcard if missing
+        if (-not $version.Contains('*')) {
+            $version += '.*'
+        }
+
         # Check if version folder exists
         $expectedVersionPath = Join-Path $toolPath $version
         if (-not (Test-Path $expectedVersionPath)) {
@@ -100,8 +106,14 @@ foreach($tool in $tools) {
         Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
         Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionArchPath
 
+        $foundVersionName = $foundVersion.name
+        if ($tool.name -eq 'PyPy')
+        {
+            $pypyVersion = & "$foundVersionArchPath\python.exe" -c "import sys;print(sys.version.split('\n')[1])"
+            $foundVersionName = "{0} {1}" -f $foundVersionName, $pypyVersion
+        }
         # Add to tool version to markdown
-        $markdownDescription += "_Version:_ $($foundVersion.name)<br/>"
+        $markdownDescription += "_Version:_ $foundVersionName<br/>"
     }
 
     # Create markdown description for system default tool
