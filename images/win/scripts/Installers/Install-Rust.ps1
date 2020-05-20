@@ -44,5 +44,10 @@ if exist $env:RUSTUP_HOME (
 $cmdPath = "C:\Rust\rustsym.bat"
 $cmdRustSymScript | Out-File -Encoding ascii -FilePath $cmdPath
 
+# Cleanup Cargo crates cache
+$cargoRegistryPath = Join-Path $env:CARGO_HOME "registry"
+Remove-Item "$cargoRegistryPath/index/*" -Recurse -Force
+Remove-Item "$cargoRegistryPath/src/*" -Recurse -Force
+
 # Update Run key to run a script at logon
 Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "RUSTSYM" -Value $cmdPath
