@@ -32,6 +32,10 @@ for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen; do
     fi
 done
 
+# Cleanup Cargo cache
+rm -rf "${CARGO_HOME}/registry/index/*"
+rm -rf "${CARGO_HOME}/registry/src/*"
+
 # Update /etc/environemnt
 prependEtcEnvironmentPath "${CARGO_HOME}/bin"
 
