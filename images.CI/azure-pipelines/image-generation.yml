@@ -43,8 +43,6 @@ jobs:
                         -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
                         -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME) `
                         -GitHubFeedToken $(GITHUB_TOKEN)
-    env:
-      RUN_VALIDATION: $(RUN_VALIDATION_FLAG)
 
   - task: PowerShell@2
     displayName: 'Create release for VM deployment'
