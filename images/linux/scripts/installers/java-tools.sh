@@ -86,4 +86,4 @@ DocumentInstalledItemIndent "12 ($(/usr/lib/jvm/zulu-12-azure-amd64/bin/java -sh
 DocumentInstalledItem "Apache Ant ($(ant -version))"
 DocumentInstalledItem "Gradle ${gradleVersion}"
 DocumentInstalledItem "Apache Maven ($(mvn -version | head -n 1))"
-DocumentInstalledItem "Apache JMeter (5.2.1)"
+DocumentInstalledItem "Apache JMeter ($(jmeter --version | grep -o "[0-9]\.[0-9]\.[0-9]"))"
