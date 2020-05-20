@@ -32,8 +32,7 @@ _Environment:_
 
 ## Powershell Core
 
-_Version:_ 7.0.0
-<br/>
+_Version:_ 7.0.0<br/>
 
 ## Docker images
 
@@ -173,8 +172,6 @@ _Version:_ 1.1.1809.18001<br/>
 ## AWS CLI
 
 _Version:_ aws-cli 2.0.10<br/>
-
-## Android SDK Build Tools
 
 ## Android SDK Build Tools
 
@@ -634,7 +631,7 @@ _Location:_ C:\Program Files\Java\zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64
 
 _Location:_ C:\Program Files\Java\zulu-11-azure-jdk_11.33.15-11.0.4-win_x64
 
-## Apache Ant
+## Ant
 
 _Version:_ 1.10.5<br/>
 _Environment:_
@@ -642,18 +639,12 @@ _Environment:_
 * ANT_HOME: location of ant.cmd
 * COBERTURA_HOME: location of cobertura-2.1.1.jar
 
-## Apache Maven
+## Maven
 
 _Version:_ 3.6.3<br/>
 _Environment:_
 * PATH: contains location of mvn.bat
 * M2_HOME: Maven installation root
-
-## Apache JMeter
-_Version:_ 5.2.1<br/>
-_Environment:_
-* PATH: contains location of jmeter.bat
-* JMETER_HOME: JMeter installation root
 
 ## Gradle
 

@@ -32,8 +32,7 @@ _Environment:_
 
 ## Powershell Core
 
-_Version:_ 7.0.0
-<br/>
+_Version:_ 7.0.0<br/>
 
 ## Docker images
 
@@ -180,8 +179,6 @@ _Version:_ 1.1.1809.18001<br/>
 ## AWS CLI
 
 _Version:_ aws-cli 2.0.10<br/>
-
-## Android SDK Build Tools
 
 ## Android SDK Build Tools
 
@@ -665,18 +662,12 @@ _Environment:_
 * ANT_HOME: location of ant.cmd
 * COBERTURA_HOME: location of cobertura-2.1.1.jar
 
-## Apache Maven
+## Maven
 
 _Version:_ 3.6.3<br/>
 _Environment:_
 * PATH: contains location of mvn.bat
 * M2_HOME: Maven installation root
-
-## Apache JMeter
-_Version:_ 5.2.1<br/>
-_Environment:_
-* PATH: contains location of jmeter.bat
-* JMETER_HOME: JMeter installation root
 
 ## Gradle
 
