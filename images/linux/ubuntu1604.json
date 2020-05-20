@@ -204,7 +204,7 @@
                 "{{template_dir}}/scripts/installers/image-magick.sh",
                 "{{template_dir}}/scripts/installers/java-tools.sh",
                 "{{template_dir}}/scripts/installers/kind.sh",
-                "{{template_dir}}/scripts/installers/1604/kubernetes-tools.sh",
+                "{{template_dir}}/scripts/installers/kubernetes-tools.sh",
                 "{{template_dir}}/scripts/installers/leiningen.sh",
                 "{{template_dir}}/scripts/installers/1604/mercurial.sh",
                 "{{template_dir}}/scripts/installers/miniconda.sh",
@@ -252,6 +252,35 @@
             "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
+            "type": "file",
+            "source": "{{template_dir}}/toolcache-1604.json",
+            "destination": "{{user `installer_script_folder`}}/toolcache.json"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolset-1604.json",
+            "destination": "{{user `installer_script_folder`}}/toolset.json"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/1604/android.sh",
+                "{{template_dir}}/scripts/installers/azpowershell.sh",
+                "{{template_dir}}/scripts/helpers/containercache.sh",
+                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
+                "{{template_dir}}/scripts/installers/pypy.sh",
+                "{{template_dir}}/scripts/installers/python.sh",
+                "{{template_dir}}/scripts/installers/test-toolcache.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
             "type": "shell",
             "scripts": [
                 "{{template_dir}}/scripts/installers/go.sh"
@@ -265,27 +294,17 @@
             "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}"
         },
         {
-            "type": "file",
-            "source": "{{template_dir}}/toolcache-1604.json",
-            "destination": "{{user `installer_script_folder`}}/toolcache.json"
-        },
-        {
             "type": "shell",
             "scripts":[
-                "{{template_dir}}/scripts/installers/1604/android.sh",
-                "{{template_dir}}/scripts/installers/azpowershell.sh",
-                "{{template_dir}}/scripts/helpers/containercache.sh",
-                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
-                "{{template_dir}}/scripts/installers/python.sh",
-                "{{template_dir}}/scripts/installers/test-toolcache.sh"
+                "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
+                "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
-                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
         },
         {
             "type": "shell",
@@ -320,6 +339,12 @@
                 "chmod 755 {{user `image_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/validate-disk-space.sh"
+            ]
         },
         {
             "type": "file",

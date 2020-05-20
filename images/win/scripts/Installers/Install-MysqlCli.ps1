@@ -3,10 +3,10 @@
 ##  Desc:  Install Mysql CLI
 ################################################################################
 
-
 ## Downloading mysql jar
-$uri = 'https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.21-winx64.zip'
-$mysqlPath = 'C:\mysql-5.7.21-winx64\bin'
+$MysqlVersionName = "mysql-5.7.21-winx64"
+$MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-5.7/${MysqlVersionName}.zip"
+$MysqlPath = "C:\$MysqlVersionName\bin"
 
 # Installing visual c++ redistibutable package.
 $InstallerName = "vcredist_x64.exe"
@@ -19,13 +19,10 @@ Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentLi
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
 # Get the latest mysql command line tools .
-Invoke-WebRequest -UseBasicParsing -Uri $uri -OutFile mysql.zip
+$mysqlArchPath = Start-DownloadWithRetry -Url $MysqlVersionUrl -Name "mysql.zip"
 
 # Expand the zip
-Expand-Archive -Path mysql.zip -DestinationPath "C:\" -Force
-
-# Deleting zip folder
-Remove-Item -Recurse -Force mysql.zip
+Extract-7Zip -Path $mysqlArchPath -DestinationPath "C:\"
 
 # Adding mysql in system environment path
 Add-MachinePathItem $mysqlPath

@@ -38,9 +38,10 @@ apt-fast install -y --no-install-recommends \
     upx \
     wget \
     zip \
-    zstd
+    zstd \
+    lib32z1
 
-# Electron / VSCode / GitHub Desktop prereqs
+# Electron / VSCode / GitHub Desktop / kubectl prereqs
 apt-fast install -y --no-install-recommends \
     libxkbfile-dev \
     pkg-config \
@@ -57,7 +58,8 @@ apt-fast install -y --no-install-recommends \
     rpm \
     xz-utils \
     xorriso \
-    zsync
+    zsync \
+    gnupg2
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -99,3 +101,5 @@ DocumentInstalledItemIndent "upx"
 DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
 DocumentInstalledItemIndent "zstd"
+DocumentInstalledItemIndent "gnupg2"
+DocumentInstalledItemIndent "lib32z1"

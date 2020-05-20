@@ -39,6 +39,7 @@ $psAzureModulesToInstall = @{
         "2.6.0"
         "3.1.0"
         "3.5.0"
+        "3.8.0"
     )
 }
 
