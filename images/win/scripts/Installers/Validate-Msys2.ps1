@@ -62,6 +62,8 @@ $gccVersion = Get-ToolVersion -ToolPath "$msys2mingwDir/gcc" -VersionLineNumber 
 $tarVersion = Get-ToolVersion -ToolPath "$msys2BinDir/tar" -VersionLineNumber 0
 
 $Description = @"
+> _Note:_ MSYS2 is pre-installed on image but not added to PATH.
+
 _Tool versions_
 _pacman:_ $pacmanVersion<br/>
 _bash:_ $bashVersion<br/>

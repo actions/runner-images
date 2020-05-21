@@ -457,6 +457,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-VSWhere.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-WinAppDriver.ps1"
             ]
         },
@@ -952,6 +958,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Vcpkg.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-VSWhere.ps1"
             ]
         },
         {

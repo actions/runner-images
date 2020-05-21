@@ -94,7 +94,9 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Workload.Python ' + `
               '--remove Component.CPython3.x64 ' + `
               '--add Microsoft.VisualStudio.Workload.Universal ' + `
-              '--add Microsoft.VisualStudio.Workload.VisualStudioExtension'
+              '--add Microsoft.VisualStudio.Workload.VisualStudioExtension ' + `
+              '--add Component.MDD.Linux ' + `
+              '--add Component.MDD.Linux.GCC.arm'
 
 $ReleaseInPath = "Enterprise"
 $BootstrapperUrl = "https://aka.ms/vs/16/release/vs_${ReleaseInPath}.exe"
