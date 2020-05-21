@@ -24,6 +24,7 @@
         "image_version": "dev",
         "image_os": "ubuntu16",
         "github_feed_token": null,
+        "run_validation_diskspace": "false",
         "go_default": "1.14",
         "go_versions": "1.11 1.12 1.13 1.14"
     },
@@ -344,6 +345,9 @@
             "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/installers/validate-disk-space.sh"
+            ],
+            "environment_vars": [
+                "RUN_VALIDATION={{user `run_validation_diskspace`}}"
             ]
         },
         {
