@@ -74,8 +74,8 @@ function InstallPyPy
 
 function getPyPyVersions
 {
-    uri="https://api.bitbucket.org/2.0/repositories/pypy/pypy/downloads?pagelen=100"
-    curl -s -N $uri | jq -r ".values[].links.self.href|select(contains(\"linux64\"))"
+    uri="https://downloads.python.org/pypy/"
+    wget -q -O - $uri | gunzip -c | grep 'linux64' | awk -v uri="$uri" -F'>|<' '{print uri$5}'
 }
 
 # Installation PyPy
@@ -84,7 +84,7 @@ toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 toolsetVersions=$(cat $toolsetJson | jq -r '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
 
 for toolsetVersion in $toolsetVersions; do
-    latestMajorPyPyVersion=$(echo "${pypyVersions}" | grep -E "pypy${toolsetVersion}-v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+-" | head -1)
+    latestMajorPyPyVersion=$(echo "${pypyVersions}" | grep -E "pypy${toolsetVersion}-v[0-9]+\.[0-9]+\.[0-9]+-" | head -1)
 
     if [[ -z "$latestMajorPyPyVersion" ]]; then
         echo "Failed to get PyPy version '$toolsetVersion'"

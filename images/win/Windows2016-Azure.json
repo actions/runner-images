@@ -372,6 +372,12 @@
         },
         {
             "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
             "environment_vars": [
                 "GO_VERSIONS={{user `go_versions`}}",
                 "GO_DEFAULT={{user `go_default`}}"
@@ -447,6 +453,12 @@
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-VSWhere.ps1"
+            ]
         },
         {
             "type": "powershell",
@@ -541,7 +553,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-MinGW.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Mingw64.ps1"
             ]
         },
         {
@@ -721,6 +733,12 @@
         },
         {
             "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-GitHub-CLI.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
             "environment_vars": [
                 "GO_VERSIONS={{user `go_versions`}}",
                 "GO_DEFAULT={{ user `go_default`}}"
@@ -849,7 +867,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-MinGW.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Mingw64.ps1"
             ]
         },
         {
@@ -940,6 +958,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Vcpkg.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-VSWhere.ps1"
             ]
         },
         {
