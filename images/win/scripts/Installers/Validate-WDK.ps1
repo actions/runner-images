@@ -7,7 +7,7 @@ Import-Module -Name ImageHelpers -Force
 
 function Get-WDKVersion
 {
-    $WDKVersion = (Get-WmiObject Win32_Product -Filter "Name = 'Windows Driver Kit'").version
+    $WDKVersion = (Get-CimInstance -ClassName Win32_Product -Filter "Name = 'Windows Driver Kit'").Version
 
     if (!$WDKVersion)
     {
