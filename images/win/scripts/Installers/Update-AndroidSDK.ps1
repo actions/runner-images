@@ -102,12 +102,9 @@ Push-Location -Path $sdk.FullName
 
     if(Test-Path $ndk_root){
     
-        $androidNDKs = Get-ChildItem -Path $ndk_root | Sort-Object -Property Name -Descending | Select-Object -First 1
-        $latestAndroidNDK = $androidNDKs.FullName;
-    
         setx ANDROID_HOME $sdk_root /M
-        setx ANDROID_NDK_HOME $latestAndroidNDK /M
-        setx ANDROID_NDK_PATH $latestAndroidNDK /M
+        setx ANDROID_NDK_HOME $ndk_root /M
+        setx ANDROID_NDK_PATH $ndk_root /M
     }
     else {
         Write-Host "NDK is not installed at path $ndk_root"
