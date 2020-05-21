@@ -15,5 +15,10 @@ ForEach ($version in $VersionsList)
     Choco-Install -PackageName ghc -ArgumentList "--version", $version, "-m"
 }
 
+# Add default version of GHC to path, because choco formula updates path on user level
+$DefaultGhcVersion = $VersionsList | Select-Object -Last 1
+$DefaultGhcPath = Join-Path $env:ChocolateyInstall "lib\ghc.$DefaultGhcVersion\tools\ghc-$DefaultGhcVersion\bin"
+Add-MachinePathItem -PathItem $DefaultGhcPath
+
 Write-Host "Installing cabal..."
 Choco-Install -PackageName cabal
