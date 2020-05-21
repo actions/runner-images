@@ -36,9 +36,6 @@ Expand-Archive -Path .\android-sdk-licenses.zip -DestinationPath 'C:\Program Fil
 
 $sdk_root = "C:\Program Files (x86)\Android\android-sdk"
 
-# NDK version to be installed.
-$ndk_version = '21.1.6352462'
-
 Push-Location -Path $sdk.FullName
 
 & '.\tools\bin\sdkmanager.bat' --sdk_root=$sdk_root `
@@ -98,10 +95,10 @@ Push-Location -Path $sdk.FullName
     "cmake;3.6.4111459" `
     "cmake;3.10.2.4988404" `
     "patcher;v4" `
-    "ndk;$ndk_version"
+    "ndk-bundle"
 
     # Android NDK root path.
-    $ndk_root = "C:\Program Files (x86)\Android\android-sdk\ndk\$ndk_version"
+    $ndk_root = "C:\Program Files (x86)\Android\android-sdk\ndk-bundle"
 
     if(Test-Path $ndk_root){
     
