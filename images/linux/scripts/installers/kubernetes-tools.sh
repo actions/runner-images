@@ -44,10 +44,6 @@ if ! command -v minikube; then
     exit 1
 fi
 
-# Cache Kubernetes images (images, tarballs) into .minikube folder.
-echo "Caching Kubernetes images"
-minikube start --driver=docker --download-only
-
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "kubectl ($(kubectl version --client --short |& head -n 1))"
