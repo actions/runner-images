@@ -8,7 +8,7 @@ set -e
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
-source $HELPER_SCRIPTS/apt.sh
+source $HELPER_SCRIPTS/os.sh
 
 # Set env variable for SDK Root (https://developer.android.com/studio/command-line/variables)
 ANDROID_ROOT=/usr/local/lib/android
@@ -29,6 +29,11 @@ rm -f android-sdk.zip
 
 # Add required permissions
 chmod -R a+X ${ANDROID_SDK_ROOT}
+
+if isUbuntu20 ; then
+    # Sdk manager doesn't work with Java > 8, set version 8 explicitly
+    sed -i "2i export JAVA_HOME=${JAVA_HOME_8_X64}" /usr/local/lib/android/sdk/tools/bin/sdkmanager
+fi
 
 # Check sdk manager installation
 /usr/local/lib/android/sdk/tools/bin/sdkmanager --list 1>/dev/null
