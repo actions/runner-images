@@ -24,6 +24,7 @@
         "image_version": "dev",
         "image_os": "ubuntu20",
         "github_feed_token": null,
+        "run_validation_diskspace": "false",
         "go_default": "1.14",
         "go_versions": "1.14"
     },
@@ -290,6 +291,15 @@
             "source": "{{user `metadata_file`}}",
             "destination": "{{template_dir}}/Ubuntu2004-README.md",
             "direction": "download"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/validate-disk-space.sh"
+            ],
+            "environment_vars": [
+                "RUN_VALIDATION={{user `run_validation_diskspace`}}"
+            ]
         },
         {
             "type": "shell",
