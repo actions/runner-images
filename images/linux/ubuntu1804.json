@@ -24,6 +24,7 @@
         "image_version": "dev",
         "image_os": "ubuntu18",
         "github_feed_token": null,
+        "run_validation_diskspace": "false",
         "go_default": "1.14",
         "go_versions": "1.11 1.12 1.13 1.14"
     },
@@ -272,6 +273,7 @@
                 "{{template_dir}}/scripts/installers/azpowershell.sh",
                 "{{template_dir}}/scripts/helpers/containercache.sh",
                 "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
+                "{{template_dir}}/scripts/installers/pypy.sh",
                 "{{template_dir}}/scripts/installers/python.sh",
                 "{{template_dir}}/scripts/installers/test-toolcache.sh"
             ],
@@ -347,6 +349,9 @@
             "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/installers/validate-disk-space.sh"
+            ],
+            "environment_vars": [
+                "RUN_VALIDATION={{user `run_validation_diskspace`}}"
             ]
         },
         {
