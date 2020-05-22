@@ -16,39 +16,23 @@ apt-get update
 
 # Install various versions of ghc and cabal
 if isUbuntu20 ; then
-    apt-get install -y \
-        ghc-8.6.5 \
-        ghc-8.8.3 \
-        ghc-8.10.1 \
-        cabal-install-3.2
-
     ghcVersions="8.6.5 8.8.3 8.10.1"
     cabalVersions="3.2"
 fi
 
 if isUbuntu16 || isUbuntu18 ; then
     # Install various versions of ghc and cabal
-    apt-get install -y \
-        ghc-8.0.2 \
-        ghc-8.2.2 \
-        ghc-8.4.4 \
-        ghc-8.6.2 \
-        ghc-8.6.3 \
-        ghc-8.6.4 \
-        ghc-8.6.5 \
-        ghc-8.8.1 \
-        ghc-8.8.2 \
-        ghc-8.8.3 \
-        ghc-8.10.1 \
-        cabal-install-2.0 \
-        cabal-install-2.2 \
-        cabal-install-2.4 \
-        cabal-install-3.0 \
-        cabal-install-3.2
-
     ghcVersions="8.0.2 8.2.2 8.4.4 8.6.2 8.6.3 8.6.4 8.6.5 8.8.1 8.8.2 8.8.3 8.10.1"
     cabalVersions="2.0 2.2 2.4 3.0 3.2"
 fi
+
+for version in $ghcVersions; do
+    apt-get install -y ghc-$version
+done
+
+for version in $cabalVersions; do
+    apt-get install -y cabal-install-$version
+done
 
 # Install the latest stable release of haskell stack
 curl -sSL https://get.haskellstack.org/ | sh
