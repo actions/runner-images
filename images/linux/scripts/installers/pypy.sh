@@ -7,9 +7,6 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 
-# Fail out if any setups fail
-set -e
-
 # This function installs PyPy using the specified arguments:
 #   $1=PACKAGE_URL
 function InstallPyPy
@@ -75,13 +72,30 @@ function InstallPyPy
 function getPyPyVersions
 {
     uri="https://downloads.python.org/pypy/"
-    wget -q -O - $uri | gunzip -c | grep 'linux64' | awk -v uri="$uri" -F'>|<' '{print uri$5}'
+    i=20
+
+    while [ $i -gt 0 ]; do
+        ((i--))
+        result="$(wget -q -4 -O - $uri | gunzip -c | grep 'linux64' | awk -v uri="$uri" -F'>|<' '{print uri$5}')"
+        if [ -z "$result" ]; then
+            sleep 30
+        else
+            echo "$result"
+            return
+        fi
+    done
+
+    echo "There are no more attempts to retrive PyPy version"
+    exit 1
 }
 
 # Installation PyPy
 pypyVersions=$(getPyPyVersions)
 toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 toolsetVersions=$(cat $toolsetJson | jq -r '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
+
+# Fail out if any setups fail
+set -e
 
 for toolsetVersion in $toolsetVersions; do
     latestMajorPyPyVersion=$(echo "${pypyVersions}" | grep -E "pypy${toolsetVersion}-v[0-9]+\.[0-9]+\.[0-9]+-" | head -1)
