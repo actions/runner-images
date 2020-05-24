@@ -26,7 +26,11 @@ function Run-ExecutableTests {
 $ErrorActionPreference = "Stop"
 
 # Define executables for cached tools
-$toolsExecutables = @{ Python = @("python", "bin/pip") }
+$toolsExecutables = @{
+    Python = @("python", "bin/pip")
+    node = @("bin/node", "bin/npm")
+    PyPy = @("bin/python", "bin/pip")
+}
 
 # Get toolset content
 $toolsetJson = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
@@ -40,6 +44,11 @@ foreach($tool in $tools) {
     $toolExecs = $toolsExecutables[$tool.name]
 
     foreach ($version in $tool.versions) {
+        # Add wildcard if missing
+        if (-not $version.Contains('*')) {
+            $version += '.*'
+        }
+
         # Check if version folder exists
         $expectedVersionPath = Join-Path $toolPath $version
         if (-not (Test-Path $expectedVersionPath)) {
@@ -56,7 +65,14 @@ foreach($tool in $tools) {
         Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
         Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionPath
 
+        $foundVersionName = $foundVersion.name
+        if ($tool.name -eq 'PyPy')
+        {
+            $pypyVersion = & "$foundVersionPath/bin/python" -c "import sys;print(sys.version.split('\n')[1])"
+            $foundVersionName = "{0} {1}" -f $foundVersionName, $pypyVersion
+        }
+
         # Add tool version to documentation
-        Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItemIndent '$($tool.name) $($foundVersion.name)'`""
+        Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItemIndent '$($tool.name) $foundVersionName'`""
     }
 }

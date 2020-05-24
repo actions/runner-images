@@ -28,6 +28,15 @@
             ]
         },
         {
+            "name": "PyPy",
+            "arch": "x86",
+            "platform" : "win32",
+            "versions": [
+                "2.7",
+                "3.6"
+            ]
+        },
+        {
             "name": "node",
             "url" : "https://raw.githubusercontent.com/actions/node-versions/master/versions-manifest.json",
             "arch": "x64",

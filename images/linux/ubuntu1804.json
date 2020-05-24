@@ -24,6 +24,7 @@
         "image_version": "dev",
         "image_os": "ubuntu18",
         "github_feed_token": null,
+        "run_validation_diskspace": "false",
         "go_default": "1.14",
         "go_versions": "1.11 1.12 1.13 1.14"
     },
@@ -256,19 +257,6 @@
             "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
-            "type": "shell",
-            "scripts": [
-                "{{template_dir}}/scripts/installers/go.sh"
-            ],
-            "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "GO_VERSIONS={{user `go_versions`}}",
-                "GO_DEFAULT={{user `go_default`}}"
-            ],
-            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}"
-        },
-        {
             "type": "file",
             "source": "{{template_dir}}/toolcache-1804.json",
             "destination": "{{user `installer_script_folder`}}/toolcache.json"
@@ -285,6 +273,7 @@
                 "{{template_dir}}/scripts/installers/azpowershell.sh",
                 "{{template_dir}}/scripts/helpers/containercache.sh",
                 "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
+                "{{template_dir}}/scripts/installers/pypy.sh",
                 "{{template_dir}}/scripts/installers/python.sh",
                 "{{template_dir}}/scripts/installers/test-toolcache.sh"
             ],
@@ -295,6 +284,19 @@
                 "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/go.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "GO_VERSIONS={{user `go_versions`}}",
+                "GO_DEFAULT={{user `go_default`}}"
+            ],
+            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "shell",
@@ -329,12 +331,6 @@
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
-            "type": "shell",
-            "scripts":[
-                "{{template_dir}}/scripts/installers/validate-disk-space.sh"
-            ]
-        },
-        {
             "type": "file",
             "source": "{{user `metadata_file`}}",
             "destination": "{{template_dir}}/Ubuntu1804-README.md",
@@ -348,6 +344,15 @@
                 "chmod 755 {{user `image_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/validate-disk-space.sh"
+            ],
+            "environment_vars": [
+                "RUN_VALIDATION={{user `run_validation_diskspace`}}"
+            ]
         },
         {
             "type": "file",

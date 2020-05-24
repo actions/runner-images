@@ -11,7 +11,7 @@ az login --service-principal --username $ClientId --password $ClientSecret --ten
 
 $TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
 
-$groupExist = az group exists --name $TempResourceGroupName --subscription $SubscriptionId | Out-Null
+$groupExist = az group exists --name $TempResourceGroupName --subscription $SubscriptionId
 if ($groupExist -eq "true") {
     Write-Host "Found a match, deleting temporary files"
     az group delete --name $TempResourceGroupName --subscription $SubscriptionId --yes | Out-Null

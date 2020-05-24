@@ -33,6 +33,7 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.EntityFramework ' + `
               '--add Microsoft.VisualStudio.Component.FSharp.Desktop ' + `
               '--add Microsoft.VisualStudio.Component.LinqToSql ' + `
+              '--add Microsoft.VisualStudio.Component.SQL.SSDT ' + `
               '--add Microsoft.VisualStudio.Component.PortableLibrary ' + `
               '--add Microsoft.VisualStudio.Component.TeamOffice ' + `
               '--add Microsoft.VisualStudio.Component.TestTools.CodedUITest ' + `
@@ -67,7 +68,6 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.ARM.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.ARM64.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre ' + `
-              '--add Microsoft.VisualStudio.Component.Windows10SDK.14393 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.16299 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17134 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17763 ' + `
@@ -94,7 +94,9 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Workload.Python ' + `
               '--remove Component.CPython3.x64 ' + `
               '--add Microsoft.VisualStudio.Workload.Universal ' + `
-              '--add Microsoft.VisualStudio.Workload.VisualStudioExtension'
+              '--add Microsoft.VisualStudio.Workload.VisualStudioExtension ' + `
+              '--add Component.MDD.Linux ' + `
+              '--add Component.MDD.Linux.GCC.arm'
 
 $ReleaseInPath = "Enterprise"
 $BootstrapperUrl = "https://aka.ms/vs/16/release/vs_${ReleaseInPath}.exe"
@@ -126,6 +128,12 @@ Write-Host "Visual Studio version ${version} installed"
 $newContent = '{"Extensions":[{"Key":"1e906ff5-9da8-4091-a299-5c253c55fdc9","Value":{"ShouldAutoUpdate":false}},{"Key":"Microsoft.VisualStudio.Web.AzureFunctions","Value":{"ShouldAutoUpdate":false}}],"ShouldAutoUpdate":false,"ShouldCheckForUpdates":false}'
 Set-Content -Path "$VSInstallRoot\Common7\IDE\Extensions\MachineState.json" -Value $newContent
 
+# Install Windows 10 SDK version 10.0.14393.795
+$sdkUrl = "https://go.microsoft.com/fwlink/p/?LinkId=838916"
+$sdkFileName = "sdksetup14393.exe"
+$argumentList = ("/q", "/norestart", "/ceip off", "/features OptionId.WindowsSoftwareDevelopmentKit")
+
+Install-Binary -Url $sdkUrl -Name $sdkFileName -ArgumentList $argumentList
 
 # Adding description of the software to Markdown
 
@@ -142,3 +150,12 @@ Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $
 
 # Adding explicitly added Workloads details to markdown by parsing $Workloads
 Add-ContentToMarkdown -Content $($WorkLoads.Split('--') | % { if( ($_.Split(" "))[0] -like "add") { "* " +($_.Split(" "))[1] }  } )
+
+# Adding additional SDKs to markdown
+$SDKDescription = @"
+
+Additional Windows 10 SDKs:
+* Windows 10 SDK version 10.0.14393.795
+"@
+
+Add-ContentToMarkdown -Content $SDKDescription
