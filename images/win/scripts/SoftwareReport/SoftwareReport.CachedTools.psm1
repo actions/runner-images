@@ -57,7 +57,7 @@ function Get-NodeMarkdown
     $Name = "Node"
     $ToolInstances = Get-CachedToolInstances -Name $Name
     $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{Version = "left"; Architecture = "left"})
-    
+
     return Build-MarkdownElement -Head $Name -Content $Content
 }
 
@@ -66,7 +66,7 @@ function Get-PythonMarkdown
     $Name = "Python"
     $ToolInstances = Get-CachedToolInstances -Name $Name -VersionCommand "--version"
     $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{Version = "left"; Architecture = "left"})
-    
+
     return Build-MarkdownElement -Head $Name -Content $Content
 }
 
@@ -75,7 +75,7 @@ function Get-RubyMarkdown
     $Name = "Ruby"
     $ToolInstances = Get-CachedToolInstances -Name $Name -VersionCommand "--version"
     $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{Version = "left"; Architecture = "left"})
-    
+
     return Build-MarkdownElement -Head $Name -Content $Content
 }
 
@@ -87,19 +87,19 @@ function Get-PyPyMarkdown
     {
         $Instance."PyPy Version" = @()
         $Instance."Python Version" = $Instance.Version
-        foreach ($Arch in $Instance.Architecture)
+        foreach ($Arch in $Instance.Architecture_Array)
         {
             $pythonExePath = Join-Path $Instance.Path $Arch | Join-Path -ChildPath "python.exe"
             $Instance."PyPy Version" += (& $pythonExePath -c "import sys;print(sys.version.split('\n')[1])").Trim("[]")
         }
     }
-    
+
     $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
         "Python Version" = "left";
         Architecture = "left";
         "PyPy Version" = "left"
     })
-    
+
     return Build-MarkdownElement -Head $Name -Content $Content
 }
 

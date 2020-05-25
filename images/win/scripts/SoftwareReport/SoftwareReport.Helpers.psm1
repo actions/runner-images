@@ -3,17 +3,17 @@ function Build-MarkdownElement
     <#
     .SYNOPSIS
     Build markdown element for cached tool.
-    
+
     .DESCRIPTION
     Build markdown element that contains name of tool, set of versions and additional notes.
-    
+
     .PARAMETER Head
-    Header of cached tool markdown element 
-    
+    Header of cached tool markdown element
+
     .PARAMETER Content
     Array of lines that contains required information about installed tool instances.
     #>
-    
+
     param
     (
         [String] $Head,
@@ -31,21 +31,21 @@ function Get-CachedToolInstances
     <#
     .SYNOPSIS
     Returns hastable of installed cached tools.
-    
+
     .DESCRIPTION
     Return hastable that contains versions and architectures for selected cached tool.
-    
+
     .PARAMETER Name
     Name of cached tool.
-    
+
     .PARAMETER VersionCommand
     Optional parameter. Command to return version of system default tool.
-    
+
     .EXAMPLE
     Get-CachedToolInstances -Name "Python" -VersionCommand "--version"
-    
+
     #>
-    
+
     param
     (
         [String] $Name,
@@ -54,7 +54,7 @@ function Get-CachedToolInstances
 
     $toolInstances = @()
     $toolPath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath $Name
-    
+
     # Get all installed versions from TOOLSDIRECTORY folder
     $versions = Get-ChildItem $toolPath | Sort-Object { [System.Version]$_.Name }
     foreach ($version in $versions)
@@ -74,10 +74,10 @@ function Get-CachedToolInstances
         }
 
         # Get all architectures for current version
-        [array]$instanceInfo.Architecture = Get-ChildItem $version.FullName -Name -Directory | Where-Object { $_ -match "^x[0-9]{2}$" }
-        [string]$instanceInfo.Architecture = $instanceInfo.Architecture -Join ", "
+        [array]$instanceInfo.Architecture_Array = Get-ChildItem $version.FullName -Name -Directory | Where-Object { $_ -match "^x[0-9]{2}$" }
+        [string]$instanceInfo.Architecture = $instanceInfo.Architecture_Array -Join ", "
 
-        # Add (default) postfix to version name, in case if current version is in environment path 
+        # Add (default) postfix to version name, in case if current version is in environment path
         if (-not ([string]::IsNullOrEmpty($VersionCommand)))
         {
             $defaultVersion = $(& ($Name.ToLower()) $VersionCommand 2>&1)
