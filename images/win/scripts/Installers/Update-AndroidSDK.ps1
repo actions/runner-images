@@ -100,19 +100,16 @@ Push-Location -Path $sdk.FullName
     # Android NDK root path.
     $ndk_root = "C:\Program Files (x86)\Android\android-sdk\ndk-bundle"
 
-    if(Test-Path $ndk_root){
-    
+    if (Test-Path $ndk_root){    
         setx ANDROID_HOME $sdk_root /M
         setx ANDROID_NDK_HOME $ndk_root /M
         setx ANDROID_NDK_PATH $ndk_root /M
-    }
-    else {
+    } else {
         Write-Host "NDK is not installed at path $ndk_root"
         exit 1
     }
 
 Pop-Location
-
 
 # Adding description of the software to Markdown
 $Header = @"
