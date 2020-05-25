@@ -1,7 +1,5 @@
 function Get-OSName {
-    $systemInfo = Get-CimInstance -ClassName Win32_OperatingSystem
-    $OSName = $systemInfo.Caption
-    return $OSName
+    return (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
 
 function Get-OSVersion {
@@ -158,13 +156,13 @@ function Get-DotnetSdks {
 }
 
 function Get-DotnetRuntimes {
-    $runtimesRawList = dotnet --list-runtimes 
+    $runtimesRawList = dotnet --list-runtimes
     $runtimesRawList | Group-Object {$_.Split()[0]} | ForEach-Object {
         $runtimeName = $_.Name
         $runtimeVersions = ($_.Group | Foreach-Object {$_.split()[1]}) -join ' '
         $runtimePath = $_.Group[0].Split(' ', 3)[2] -replace '\[|]'
         [PSCustomObject]@{
-            "Runtime" = $runtimeName 
+            "Runtime" = $runtimeName
             "Versions" = $runtimeVersions
             "Path" = $runtimePath
         }
@@ -191,7 +189,7 @@ function Get-PowerShellAzureModules {
         'azurerm' = 'AzureRM'
         'azure' = 'Azure'
     }
-    
+
     # Get default module version
     $defaults = @{
         'azurerm' = (Get-Module -Name AzureRM -ListAvailable).Version
