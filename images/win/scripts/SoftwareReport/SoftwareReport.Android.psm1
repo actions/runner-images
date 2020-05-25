@@ -10,7 +10,7 @@ function Split-TableRowByColumns {
     param(
         [string] $Row
     )
-    return $Row.Split("|") | ForEach-Object { $_.trim() }
+    return $Row.Split("|").Trim()
 }
 
 function Create-AndroidTableObject {
@@ -47,7 +47,7 @@ function Build-AndroidSDKToolsTable {
         [Parameter(Mandatory)]
         [object] $packageInfo
     )
-    
+
     return $packageInfo | ForEach-Object {
         $packageInfoParts = Split-TableRowByColumns $_
         $packageName = $packageInfoParts[0]
