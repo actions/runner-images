@@ -76,7 +76,7 @@ function getPyPyVersions
 
     while [ $i -gt 0 ]; do
         ((i--))
-        result="$(wget -q -4 -O - $uri | gunzip -c | grep 'linux64' | awk -v uri="$uri" -F'>|<' '{print uri$5}')"
+        result="$(curl -4 -s --compressed $uri | grep 'linux64' | awk -v uri="$uri" -F'>|<' '{print uri$5}')"
         if [ -z "$result" ]; then
             sleep 30
         else
