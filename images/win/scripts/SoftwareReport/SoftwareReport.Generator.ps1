@@ -12,7 +12,6 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNa
 $markdown = ""
 
 $OSName = Get-OSName
-$isWindows2019 = $OSName -match "2019"
 $markdown += New-MDHeader "$OSName" -Level 1
 
 $OSVersion = Get-OSVersion
@@ -82,7 +81,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-SVNVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
-    ($isWindows2019 ? (Get-VSWhereVersion) : "")
+    (Get-VSWhereVersion)
 ) | Where-Object { $_ })
 
 $markdown += New-MDHeader "CLI Tools" -Level 3

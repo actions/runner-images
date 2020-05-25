@@ -981,9 +981,9 @@
             ]
         },
         {
-            "type": "windows-shell",
+            "type": "powershell",
             "inline": [
-                "pwsh {{user `helper_script_folder`}}\\SoftwareReport.Generator.ps1"
+                "pwsh -File '{{user `helper_script_folder`}}SoftwareReport\\SoftwareReport.Generator.ps1'"
             ]
         },
         {
