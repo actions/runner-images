@@ -52,7 +52,7 @@ function Build-AndroidSDKToolsTable {
         $packageInfoParts = Split-AndroidSDKOutputRow $_
         $packageName = $packageInfoParts[0]
         $packageDescription = $packageInfoParts[2] + ", Revision " + $packageInfoParts[1]
-        return Create-AndroidTableObject -PackageName $packageName -Description $packageDescription
+        Create-AndroidTableObject -PackageName $packageName -Description $packageDescription
     }
 }
 
