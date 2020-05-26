@@ -5,8 +5,9 @@ Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.CachedTools.psm1") -DisableNameChecking
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VStudio.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 
 $markdown = ""
@@ -122,14 +123,14 @@ $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += (Build-CachedToolsMarkdown)
 $markdown += New-MDNewLine
 
-$vs = Get-VSVersion
+$vs = Get-VisualStudioVersion
 $markdown += New-MDHeader "$($vs.Name)" -Level 3
 $markdown += $vs | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Workloads, components and extensions:" -Level 4
 $markdown += New-MDNewLine
-$markdown += ((Get-VSComponents) + (Get-VSExtenions)) | New-MDTable
+$markdown += ((Get-VisualStudioComponents) + (Get-VisualStudioExtenions)) | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader ".NET Core SDK" -Level 3

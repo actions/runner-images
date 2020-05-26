@@ -1,12 +1,12 @@
-function Get-VSPackages
+function Get-VisualStudioPackages
 {
     $packagePath = "$env:ProgramData\Microsoft\VisualStudio\Packages\_Instances\*\state.packages.json"
     $instanceFolders = Get-ChildItem -Path $packagePath
     (Get-Content -Path $instanceFolders | ConvertFrom-Json).packages
 }
 
-function Get-VSVersion {
-    $vsVersion = vswhere -format json | ConvertFrom-Json 
+function Get-VisualStudioVersion {
+    $vsVersion = vswhere -format json | ConvertFrom-Json
     [PSCustomObject]@{
         Name = $vsVersion.displayName
         Version = $vsVersion.installationVersion
@@ -14,8 +14,8 @@ function Get-VSVersion {
     }
 }
 
-function Get-VSComponents {
-    $vsPackages = Get-VSPackages | Where-Object type -in 'Component', 'Workload'
+function Get-VisualStudioComponents {
+    $vsPackages = Get-VisualStudioPackages | Where-Object type -in 'Component', 'Workload'
     $vsPackages  | Sort-Object Id, Version | Select-Object @{n = 'Package'; e = {$_.Id}}, Version |
     Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
 }
@@ -32,11 +32,11 @@ function Get-WDKVersion {
     ($installedApplications | Where-Object { $_.DisplayName -eq 'Windows Driver Kit' } | Select-Object -First 1).DisplayVersion
 }
 
-function Get-VSExtenions {
+function Get-VisualStudioExtenions {
     # Wix
-    $vs = (Get-VSVersion).Name.Split()[-1]
-    $wixPackageVersion = (Get-VSPackages | Where-Object {$_.id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
-    $wixExtensionVersion = Get-WixVersion 
+    $vs = (Get-VisualStudioVersion).Name.Split()[-1]
+    $wixPackageVersion = (Get-VisualStudioPackages | Where-Object {$_.id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
+    $wixExtensionVersion = Get-WixVersion
 
     # WDK
     $wdkPackageVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'

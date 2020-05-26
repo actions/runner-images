@@ -39,11 +39,11 @@ function Get-RustVersion {
 }
 
 function Get-PythonVersion {
-    return $(python --version)
+    return & python --version
 }
 
 function Get-PowershellCoreVersion {
-    return $(pwsh --version)
+    return & pwsh --version
 }
 
 function Get-RubyVersion {

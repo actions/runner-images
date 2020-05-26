@@ -83,7 +83,7 @@
         {
             "type": "file",
             "source": "{{ template_dir }}/scripts/SoftwareReport",
-            "destination": "{{user `helper_script_folder`}}"
+            "destination": "{{user `image_folder`}}"
         },
         {
             "type": "windows-shell",
@@ -992,7 +992,7 @@
         {
             "type": "powershell",
             "inline": [
-                "pwsh -File '{{user `helper_script_folder`}}SoftwareReport\\SoftwareReport.Generator.ps1'"
+                "pwsh -File '{{user `image_folder`}}SoftwareReport\\SoftwareReport.Generator.ps1'"
             ]
         },
         {

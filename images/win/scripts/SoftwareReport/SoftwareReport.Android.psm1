@@ -6,7 +6,7 @@ function Get-AndroidComponentLocation {
     return "Location $path"
 }
 
-function Split-TableRowByColumns {
+function Split-AndroidSDKOutputRow {
     param(
         [string] $Row
     )
@@ -49,7 +49,7 @@ function Build-AndroidSDKToolsTable {
     )
 
     return $packageInfo | ForEach-Object {
-        $packageInfoParts = Split-TableRowByColumns $_
+        $packageInfoParts = Split-AndroidSDKOutputRow $_
         $packageName = $packageInfoParts[0]
         $packageDescription = $packageInfoParts[2] + ", Revision " + $packageInfoParts[1]
         return Create-AndroidTableObject -PackageName $packageName -Description $packageDescription
@@ -63,7 +63,7 @@ function Build-AndroidSDKPlatformTable {
     )
 
     return $packageInfo | ForEach-Object {
-        $packageInfoParts = Split-TableRowByColumns $_
+        $packageInfoParts = Split-AndroidSDKOutputRow $_
         $packageName = $packageInfoParts[0].split(";")[1]
         $packageDescription = $packageInfoParts[2] + ", Revision " + $packageInfoParts[1]
         return Create-AndroidTableObject -PackageName $packageName -Description $packageDescription
@@ -77,7 +77,7 @@ function Build-AndroidSDKBuildToolsTable {
     )
 
     return $packageInfo | ForEach-Object {
-        $packageInfoParts = Split-TableRowByColumns $_
+        $packageInfoParts = Split-AndroidSDKOutputRow $_
         $packageName = $packageInfoParts[0].replace(";", "-")
         $packageDescription = "Android SDK Build-Tools, Revision " + $packageInfoParts[1]
         return Create-AndroidTableObject -PackageName $packageName -Description $packageDescription
@@ -99,7 +99,7 @@ function Build-AndroidExtraPackagesTable {
     return $extraPackages | ForEach-Object {
         $packageId = $_
         $packageInfo = $installedPackages | Where-Object { $_ -Like "*${packageId}*" } | Select-Object -First 1
-        $packageInfoParts = Split-TableRowByColumns $packageInfo
+        $packageInfoParts = Split-AndroidSDKOutputRow $packageInfo
         return [PSCustomObject] @{
             "Package Name" = $packageInfoParts[2]
             "Version" = $packageInfoParts[1]
