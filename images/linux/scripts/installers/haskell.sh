@@ -13,7 +13,7 @@ apt-get install -y software-properties-common
 add-apt-repository -y ppa:hvr/ghc
 apt-get update
 
-# Get 3 latest Haskell version and latest Cabal version
+# Get 3 latest Haskell versions and latest Cabal version
 ghcVersions=$(apt-cache search "^ghc-" | grep -Po '(\d*\.){2}\d*' | awk 'BEGIN {FS=OFS=SUBSEP="."}{if (arr[$1,$2] < $3) arr[$1,$2] = $3} END {for (i in arr) print i,arr[i]}' | sort --version-sort | tail -3)
 cabalVersion=$(apt-cache search cabal-install-[0-9] | grep -Po '\d*\.\d*' | sort --unique --version-sort | tail -1)
 
@@ -36,7 +36,7 @@ for version in $ghcVersions; do
     fi
 done
 
-# Check cabal version
+# Check cabal
 if ! command -v /opt/cabal/$cabalVersion/bin/cabal; then
     echo "cabal $cabalVersion was not installed"
     exit 1
