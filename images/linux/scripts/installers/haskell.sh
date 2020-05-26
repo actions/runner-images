@@ -38,8 +38,8 @@ for version in $ghcVersions; do
 done
 
 # Check cabal version
-if ! command -v /opt/cabal/$version/bin/cabal; then
-    echo "cabal $version was not installed"
+if ! command -v /opt/cabal/$cabalVersion/bin/cabal; then
+    echo "cabal $cabalVersion was not installed"
     exit 1
 fi
 
