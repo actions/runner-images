@@ -14,17 +14,15 @@ apt-get install -y software-properties-common
 add-apt-repository -y ppa:hvr/ghc
 apt-get update
 
-# Get 3 latest Haskell version and latest Cabal version
-ghcVersions=$(apt-cache search "^ghc-" | grep -Po '(\d*\.){2}\d*' | sort --unique --version-sort | tail -3)
+# Get 3 latest minor Haskell version and latest exact Cabal version
+ghcVersions=$(apt-cache search "^ghc-" | grep -Po '\d{1,}\.\d{1,}' | sort --unique --version-sort | tail -3)
 cabalVersion=$(apt-cache search cabal-install-[0-9] | grep -Po '\d*\.\d*' | sort --unique --version-sort | tail -1)
 
 for version in $ghcVersions; do
     apt-get install -y ghc-$version
 done
 
-for version in $cabalVersions; do
-    apt-get install -y cabal-install-$version
-done
+apt-get install -y cabal-install-$cabalVersion
 
 # Install the latest stable release of haskell stack
 curl -sSL https://get.haskellstack.org/ | sh
@@ -33,18 +31,18 @@ curl -sSL https://get.haskellstack.org/ | sh
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 # Check all ghc versions
 for version in $ghcVersions; do
-    if ! command -v /opt/ghc/$version/bin/ghc; then
+    if ! command -v /opt/ghc/${version}.*/bin/ghc; then
         echo "ghc $version was not installed"
         exit 1
     fi
 done
-# Check all cabal versions
-for version in $cabalVersions; do
-    if ! command -v /opt/cabal/$version/bin/cabal; then
-        echo "cabal $version was not installed"
-        exit 1
-    fi
-done
+
+# Check cabal version
+if ! command -v /opt/cabal/$version/bin/cabal; then
+    echo "cabal $version was not installed"
+    exit 1
+fi
+
 # Check stack
 if ! command -v stack; then
     exit 1
@@ -52,10 +50,8 @@ fi
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-for version in $cabalVersions; do
-    DocumentInstalledItem "Haskell Cabal ($(/opt/cabal/$version/bin/cabal --version))"
-done
+DocumentInstalledItem "Haskell Cabal ($(/opt/cabal/$cabalVersion/bin/cabal --version))"
 for version in $ghcVersions; do
-    DocumentInstalledItem "GHC ($(/opt/ghc/$version/bin/ghc --version))"
+    DocumentInstalledItem "GHC ($(/opt/ghc/${version}.*/bin/ghc --version))"
 done
 DocumentInstalledItem "Haskell Stack ($(stack --version))"
