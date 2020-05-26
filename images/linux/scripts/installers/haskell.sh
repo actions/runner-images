@@ -14,9 +14,9 @@ apt-get install -y software-properties-common
 add-apt-repository -y ppa:hvr/ghc
 apt-get update
 
-# Install various versions of ghc and cabal
-ghcVersions="8.6.5 8.8.3 8.10.1"
-cabalVersions="3.2"
+# Get 3 latest Haskell version and latest Cabal version
+ghcVersions=$(apt-cache search "^ghc-" | grep -Po '(\d*\.){2}\d*' | sort --unique --version-sort | tail -3)
+cabalVersion=$(apt-cache search cabal-install-[0-9] | grep -Po '\d*\.\d*' | sort --unique --version-sort | tail -1)
 
 for version in $ghcVersions; do
     apt-get install -y ghc-$version
