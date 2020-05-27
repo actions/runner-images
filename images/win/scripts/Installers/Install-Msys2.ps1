@@ -18,7 +18,7 @@ $msys2Uri = ((Invoke-RestMethod $msys2_release).assets | Where-Object {
 $msys2File = "$env:TEMP\msys2.tar.xz"
 
 # Download the latest msys2 x86_64
-Write-Host "Starting msys2 download"
+Write-Host "Starting msys2 download using $($msys2Uri.split('/')[-1])"
 (New-Object System.Net.WebClient).DownloadFile($msys2Uri, $msys2File)
 Write-Host "Finished download"
 
@@ -45,9 +45,9 @@ bash.exe -c "pacman-key --init 2>&1"
 Write-Host "bash pacman-key --populate msys2"
 bash.exe -c "pacman-key --populate msys2 2>&1"
 
-Write-Host "pacman --noconfirm -Sy pacman"
-pacman --noconfirm -Sy pacman
-pacman --noconfirm -Su
+Write-Host "pacman -Sy --noconfirm --needed pacman"
+pacman -Sy --noconfirm --needed pacman
+pacman -Su --noconfirm
 
 # Force stop gpg-agent to continue installation
 Get-Process gpg-agent -ErrorAction SilentlyContinue | Stop-Process -Force
@@ -58,6 +58,9 @@ pacman.exe -Syuu --noconfirm
 
 Write-Host "Install msys2 packages"
 pacman.exe -S --noconfirm --needed --noprogressbar base-devel compression
+
+Write-Host "Remove p7zip/7z package due to conflicts"
+pacman.exe -R --noconfirm --noprogressbar p7zip
 
 # mingw package list
 $tools = "___clang ___cmake ___llvm  ___toolchain ___ragel"
