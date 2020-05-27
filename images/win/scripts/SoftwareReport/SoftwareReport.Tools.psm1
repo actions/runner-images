@@ -181,3 +181,9 @@ function Get-7zipVersion {
     $version = $Matches.Version
     return "7zip $version"
 }
+
+function Get-StackVersion {
+    ((stack --version --quiet) | Out-String) -match "Version (?<version>\d+\.\d+\.\d+)," | Out-Null
+    $stackVersion = $Matches.Version
+    return "Stack $stackVersion"
+}

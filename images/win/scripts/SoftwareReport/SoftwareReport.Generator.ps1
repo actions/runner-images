@@ -80,6 +80,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SQLPSVersion),
     (Get-SQLServerPSVersion),
     (Get-SVNVersion),
+    (Get-StackVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
     (Get-VSWhereVersion),
