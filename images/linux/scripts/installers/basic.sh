@@ -159,13 +159,6 @@ for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet tim
     fi
 done
 
-# Workaround for systemd-resolve, since sometimes stub resolver does not work properly. Details: https://github.com/actions/virtual-environments/issues/798
-echo "Create resolv.conf link."
-if [[ -f /run/systemd/resolve/resolv.conf ]]; then
-    echo "Create resolv.conf link."
-    ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-fi
-
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Basic CLI:"
