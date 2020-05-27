@@ -16,6 +16,5 @@ apt-get install git-ftp -y
 git-ftp --version
 
 echo "Document the installed version"
-# git-ftp version 1.3.1
 DocumentInstalledItem "Git-ftp ($(git-ftp --version | cut -d ' ' -f 3))"
 
