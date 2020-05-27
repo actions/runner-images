@@ -20,6 +20,12 @@ fi
 echo "Creating the symlink now to vercel"
 ln -s /usr/local/bin/vercel /usr/local/bin/now
 
+echo "Validate the link"
+if ! command -v now; then
+    echo "Now link to Zeit Vercel CLI was not created"
+    exit 1
+fi
+
 # Document the installed version
 echo "Document the installed version"
 DocumentInstalledItem "Zeit Vercel CLI ($(vercel --version))"
