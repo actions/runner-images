@@ -25,8 +25,8 @@ done
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 for version in ${versions[@]}; do
     modulePath="/usr/share/az_$version"
-    pwsh -Command
-        "\$env:PSModulePath = '${modulePath}:' + \$env:PSModulePath;
+    pwsh -Command "
+        \$env:PSModulePath = '${modulePath}:' + \$env:PSModulePath;
         if ( -not (Get-Module -ListAvailable -Name Az.Accounts)) {
             Write-Host 'Az Module was not installed'
             exit 1
