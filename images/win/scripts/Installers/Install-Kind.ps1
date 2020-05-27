@@ -3,7 +3,7 @@
 ##  Desc:  Install Kind
 ################################################################################
 
-$stableKindTag = "v0.7.0"
+$stableKindTag = "v0.8.1"
 $tagToUse = $stableKindTag;
 $destFilePath = "C:\ProgramData\kind"
 
