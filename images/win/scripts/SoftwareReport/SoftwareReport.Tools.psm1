@@ -175,3 +175,9 @@ function Get-HubVersion {
     $hubVersion = $Matches.Version
     return "Hub CLI $hubVersion"
 }
+
+function Get-7zipVersion {
+    (7z | Out-String) -match "7-Zip (?<version>\d+\.\d+\.?\d*)" | Out-Null
+    $version = $Matches.Version
+    return "7zip $version"
+}

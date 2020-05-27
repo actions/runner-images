@@ -58,7 +58,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
 )
 
 $markdown += New-MDHeader "Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
@@ -82,8 +82,9 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-SVNVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
-    (Get-VSWhereVersion)
-) | Where-Object { $_ })
+    (Get-VSWhereVersion),
+    (Get-7zipVersion)
+)
 
 $markdown += New-MDHeader "CLI Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
