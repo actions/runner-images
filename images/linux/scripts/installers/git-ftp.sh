@@ -12,9 +12,5 @@ set -e
 echo "Install git-ftp"
 apt-get install git-ftp -y
 
-# Check installation
-git-ftp --version
-
 echo "Document the installed version"
 DocumentInstalledItem "Git-ftp ($(git-ftp --version | cut -d ' ' -f 3))"
-
