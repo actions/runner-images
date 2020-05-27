@@ -71,7 +71,7 @@ function Get-KindVersion {
 function Get-MinGWVersion {
     (gcc --version | Select-String -Pattern "MinGW-W64 project") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $mingwVersion = $Matches.Version
-    return "MinGW $mingwVersion"
+    return "MinGW-w64 $mingwVersion"
 }
 
 function Get-MySQLVersion {
