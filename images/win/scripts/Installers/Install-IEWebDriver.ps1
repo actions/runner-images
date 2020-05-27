@@ -3,12 +3,10 @@
 ##  Desc:  Install Selenium Web Drivers
 ################################################################################
 
-# https://www.selenium.dev/downloads/
-# 32 bit Windows IE (recommended)
 try {
     $latestReleaseUrl = "https://selenium-release.storage.googleapis.com/"
     $latestReleaseInfo = Invoke-RestMethod -Uri $latestReleaseUrl
-    $latestIEVersion = $latestReleaseInfo.ListBucketResult.Contents | Where-Object Key -match "IEDriverServer_Win32" | Sort-Object LastModified | Select-Object -ExpandProperty Key -Last 1
+    $latestIEVersion = $latestReleaseInfo.ListBucketResult.Contents | Where-Object Key -match "IEDriverServer_x64" | Sort-Object LastModified | Select-Object -ExpandProperty Key -Last 1
     $ieDriverUrl = -join ($latestReleaseUrl, $latestIEVersion)
 } catch {
     Write-Error "[!] Failed to get IEDriver version [$latestReleaseUrl]: $_"
@@ -32,6 +30,9 @@ if (-not (Test-Path -Path $ieDriverPath)) {
 
 Extract-7Zip -Path $driverZipFile -DestinationPath $ieDriverPath
 Remove-Item $driverZipFile
+
+Write-Host "Get the IEDriver version..."
+(Get-Item "$ieDriverPath\IEDriverServer.exe").VersionInfo.FileVersion | Out-File -FilePath "$ieDriverPath\versioninfo.txt"
 
 Write-Host "Setting the IEWebDriver environment variables"
 setx IEWebDriver $ieDriverPath /M
