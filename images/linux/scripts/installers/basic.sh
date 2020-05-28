@@ -7,8 +7,14 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/apt.sh
+source $HELPER_SCRIPTS/os.sh
 
 set -e
+
+if isUbuntu20 ; then
+    echo "Install python2"
+    apt-get install -y --no-install-recommends python-is-python2
+fi
 
 echo "Install dnsutils"
 apt-get install -y --no-install-recommends dnsutils
@@ -28,8 +34,16 @@ apt-get install -y --no-install-recommends iputils-ping
 echo "Install jq"
 apt-get install -y --no-install-recommends jq
 
-echo "Install libcurl3"
-apt-get install -y --no-install-recommends libcurl3
+echo "Install libcurl"
+if isUbuntu18 ; then
+   libcurelVer="libcurl3"
+fi
+
+if isUbuntu20 ; then
+    libcurelVer="libcurl4"
+fi
+
+apt-get install -y --no-install-recommends $libcurelVer
 
 echo "Install libunwind8"
 apt-get install -y --no-install-recommends libunwind8
@@ -145,13 +159,6 @@ for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet tim
     fi
 done
 
-# Workaround for systemd-resolve, since sometimes stub resolver does not work properly. Details: https://github.com/actions/virtual-environments/issues/798
-echo "Create resolv.conf link."
-if [[ -f /run/systemd/resolve/resolv.conf ]]; then
-    echo "Create resolv.conf link."
-    ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-fi
-
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Basic CLI:"
@@ -162,7 +169,7 @@ DocumentInstalledItemIndent "ftp"
 DocumentInstalledItemIndent "iproute2"
 DocumentInstalledItemIndent "iputils-ping"
 DocumentInstalledItemIndent "jq"
-DocumentInstalledItemIndent "libcurl3"
+DocumentInstalledItemIndent "$libcurelVer"
 DocumentInstalledItemIndent "libgbm-dev"
 DocumentInstalledItemIndent "libicu55"
 DocumentInstalledItemIndent "libunwind8"
