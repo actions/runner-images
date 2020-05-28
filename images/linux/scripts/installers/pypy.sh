@@ -71,8 +71,8 @@ function InstallPyPy
 
 # Installation PyPy
 uri="https://downloads.python.org/pypy/"
-download_with_retries $uri "." "pypyUrls.html"
-pypyVersions="$(cat pypyUrls.html | grep 'linux64' | awk -v uri="$uri" -F'>|<' '{print uri$5}')"
+download_with_retries $uri "/tmp" "pypyUrls.html"
+pypyVersions="$(cat /tmp/pypyUrls.html | grep 'linux64' | awk -v uri="$uri" -F'>|<' '{print uri$5}')"
 
 toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 toolsetVersions=$(cat $toolsetJson | jq -r '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
