@@ -10,7 +10,7 @@ source $HELPER_SCRIPTS/os.sh
 
 # List of version
 if isUbuntu20 ; then
-    versions=(pwsh -Command '(Find-Module -Name Az).Version')
+    versions=$(pwsh -Command '(Find-Module -Name Az).Version')
 else
     versions=(1.0.0 1.6.0 2.3.2 2.6.0 2.8.0 3.1.0 3.5.0 3.8.0)
 fi
