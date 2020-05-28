@@ -16,8 +16,6 @@ download_with_retries() {
                 --tries=30 \
                 --wait 30 \
                 --retry-connrefused \
-                --retry-on-host-error \
-                --retry-on-http-error=429,500,503 \
                 --no-verbose
     if [ $? != 0 ]; then
         echo "Could not download $URL; Exiting build!"
