@@ -8,7 +8,9 @@
 source $HELPER_SCRIPTS/document.sh
 
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+#curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+# Temporary hardcode 2.5.1 installation until version 2.7.0 with the fix for the issue is not released https://github.com/actions/virtual-environments/issues/948
+apt-get install -y azure-cli 2.5.1
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
