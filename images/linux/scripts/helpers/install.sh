@@ -11,15 +11,20 @@ download_with_retries() {
     local URL="$1"
     local DEST="${2:-.}"
     local NAME="${3:-${URL##*/}}"
+
     echo "Downloading $URL..."
-    wget $URL   --output-document="$DEST/$NAME" \
-                --tries=30 \
-                --wait 30 \
-                --retry-connrefused \
-                --no-verbose
-    if [ $? != 0 ]; then
-        echo "Could not download $URL; Exiting build!"
-        exit 1
-    fi
-    return 0
+    i=20
+    while [ $i -gt 0 ]; do
+        ((i--))
+        wget $URL   --output-document="$DEST/$NAME" \
+                    --no-verbose
+        if [ $? != 0 ]; then
+            sleep 30
+        else
+            return 0
+        fi
+    done
+
+    echo "Could not download $URL"
+    return 1
 }
