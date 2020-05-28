@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
 
-# List of version
+# List of versions
 if isUbuntu20 ; then
     versions=$(pwsh -Command '(Find-Module -Name Az).Version')
 else
