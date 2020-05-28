@@ -217,16 +217,6 @@
         },
         {
             "type": "powershell",
-            "valid_exit_codes": [
-                0,
-                3010
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-NET48.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-WDK.ps1"
             ]
