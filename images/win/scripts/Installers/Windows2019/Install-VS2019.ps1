@@ -18,11 +18,14 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.Component.PythonTools.Web ' + `
               '--add Microsoft.Component.VC.Runtime.UCRTSDK ' + `
               '--add Microsoft.Net.ComponentGroup.4.6.2.DeveloperTools ' + `
+              '--add Microsoft.Net.ComponentGroup.4.7.DeveloperTools ' + `
               '--add Microsoft.Net.ComponentGroup.4.7.1.DeveloperTools ' + `
               '--add Microsoft.Net.Component.4.7.2.SDK ' + `
               '--add Microsoft.Net.Component.4.7.2.TargetingPack ' + `
               '--add Microsoft.Net.ComponentGroup.4.7.2.DeveloperTools ' + `
-              '--add Microsoft.Net.ComponentGroup.4.7.DeveloperTools ' + `
+              '--add Microsoft.Net.Component.4.8.SDK ' + `
+              '--add Microsoft.Net.Component.4.8.TargetingPack ' + `
+              '--add Microsoft.Net.ComponentGroup.4.8.DeveloperTools ' + `
               '--add Microsoft.VisualStudio.Component.AspNet45 ' + `
               '--add Microsoft.VisualStudio.Component.Azure.Kubernetes.Tools ' + `
               '--add Microsoft.VisualStudio.Component.Azure.MobileAppsSdk ' + `
