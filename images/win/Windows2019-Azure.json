@@ -983,7 +983,7 @@
         {
             "type": "powershell",
             "inline": [
-                "pwsh -File '{{user `image_folder`}}SoftwareReport\\SoftwareReport.Generator.ps1'"
+                "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ]
         },
         {
