@@ -182,6 +182,18 @@ function Get-7zipVersion {
     return "7zip $version"
 }
 
+function Get-GHCVersion {
+    ((ghc --version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $ghcVersion = $Matches.Version
+    return "ghc $ghcVersion"
+}
+
+function Get-CabalVersion {
+    ((cabal --version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+\.\d+)" | Out-Null
+    $cabalVersion = $Matches.Version
+    return "Cabal $cabalVersion"
+}
+
 function Get-StackVersion {
     ((stack --version --quiet) | Out-String) -match "Version (?<version>\d+\.\d+\.\d+)," | Out-Null
     $stackVersion = $Matches.Version

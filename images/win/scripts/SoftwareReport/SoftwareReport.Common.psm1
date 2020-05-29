@@ -231,21 +231,3 @@ function Get-PacmanVersion {
     $pacmanVersion = $matches[0]
     return "- Pacman $pacmanVersion"
 }
-
-function Get-GHCVersions {
-    [String] $DefaultGhcVersion = & ghc --version
-    $ChocoPackagesPath = Join-Path $env:ChocolateyInstall "lib"
-    [Array] $GhcVersionList = Get-ChildItem -Path $ChocoPackagesPath -Filter "ghc.*" | ForEach-Object { $_.Name.TrimStart("ghc.") }
-    return $GhcVersionList | Sort-Object { [System.Version]$_ } | ForEach-Object {
-        if ($DefaultGhcVersion -match $_) {
-            $_ += " (default)"
-        }
-        "ghc ${_}"
-    }
-}
-
-function Get-CabalVersion {
-    ((cabal --version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+\.\d+)" | Out-Null
-    $cabalVersion = $Matches.Version
-    return "Cabal $cabalVersion"
-}
