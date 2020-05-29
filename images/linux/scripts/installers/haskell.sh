@@ -13,13 +13,19 @@ apt-get install -y software-properties-common
 add-apt-repository -y ppa:hvr/ghc
 apt-get update
 
-# Get 3 latest Haskell versions and latest Cabal version
-ghcVersions=$(apt-cache search "^ghc-" | grep -Po '(\d*\.){2}\d*' | awk 'BEGIN {FS=OFS=SUBSEP="."}{if (arr[$1,$2] < $3) arr[$1,$2] = $3} END {for (i in arr) print i,arr[i]}' | sort --version-sort | tail -3)
-cabalVersion=$(apt-cache search cabal-install-[0-9] | grep -Po '\d*\.\d*' | sort --unique --version-sort | tail -1)
+# Get 3 latest Haskell Major.Minor versions
+allGhcVersions=$(apt-cache search "^ghc-" | grep -Po '(\d*\.){2}\d*' | sort --unique --version-sort)
+ghcMajorMinorVersions=$(echo "$allGhcVersions" | cut -d "." -f 1,2 | sort --unique --version-sort | tail -3)
 
-for version in $ghcVersions; do
-    apt-get install -y ghc-$version
+for version in $ghcMajorMinorVersions; do
+    # Get latest patch version for given Major.Minor one (ex. 8.6.5 for 8.6) and install it
+    exactVersion=$(echo "$allGhcVersions" | grep $version | sort --unique --version-sort | tail -1)
+    apt-get install -y ghc-$exactVersion
+    ghcInstalledVersions+=("$exactVersion")
 done
+
+# Get latest cabal version
+cabalVersion=$(apt-cache search cabal-install-[0-9] | grep -Po '\d*\.\d*' | sort --unique --version-sort | tail -1)
 
 apt-get install -y cabal-install-$cabalVersion
 
@@ -50,7 +56,7 @@ fi
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Haskell Cabal ($(/opt/cabal/$cabalVersion/bin/cabal --version))"
-for version in $ghcVersions; do
+for version in ${ghcInstalledVersions[@]}; do
     DocumentInstalledItem "GHC ($(/opt/ghc/$version/bin/ghc --version))"
 done
 DocumentInstalledItem "Haskell Stack ($(stack --version))"
