@@ -377,7 +377,7 @@ function Get-ToolsByName {
 
 function Get-WinVersion
 {
-    (Get-WmiObject -class Win32_OperatingSystem).Caption
+    (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
 
 function Test-IsWin19

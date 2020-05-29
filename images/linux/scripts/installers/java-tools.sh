@@ -6,8 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
-
-DEFAULT_JDK_VERSION=8
+source $HELPER_SCRIPTS/os.sh
 
 set -e
 
@@ -16,12 +15,24 @@ set -e
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
 apt-add-repository "deb http://repos.azul.com/azure-only/zulu/apt stable main"
 apt-get -q update
-apt-get -y install zulu-7-azure-jdk=\*
+
+if isUbuntu16 || isUbuntu18 ; then
+    apt-get -y install zulu-7-azure-jdk=\*
+    echo "JAVA_HOME_7_X64=/usr/lib/jvm/zulu-7-azure-amd64" | tee -a /etc/environment
+    DEFAULT_JDK_VERSION=8
+    defaultLabel8="(default)"
+fi
+
+if isUbuntu20 ; then
+    DEFAULT_JDK_VERSION=11
+    defaultLabel11="(default)"
+fi
+
 apt-get -y install zulu-8-azure-jdk=\*
 apt-get -y install zulu-11-azure-jdk=\*
 apt-get -y install zulu-12-azure-jdk=\*
 update-java-alternatives -s /usr/lib/jvm/zulu-8-azure-amd64
-echo "JAVA_HOME_7_X64=/usr/lib/jvm/zulu-7-azure-amd64" | tee -a /etc/environment
+
 echo "JAVA_HOME_8_X64=/usr/lib/jvm/zulu-8-azure-amd64" | tee -a /etc/environment
 echo "JAVA_HOME_11_X64=/usr/lib/jvm/zulu-11-azure-amd64" | tee -a /etc/environment
 echo "JAVA_HOME_12_X64=/usr/lib/jvm/zulu-12-azure-amd64" | tee -a /etc/environment
@@ -69,9 +80,11 @@ done
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Azul Zulu OpenJDK:"
+if isUbuntu16 || isUbuntu18 ; then
 DocumentInstalledItemIndent "7 ($(/usr/lib/jvm/zulu-7-azure-amd64/bin/java -showversion |& head -n 1))"
-DocumentInstalledItemIndent "8 ($(/usr/lib/jvm/zulu-8-azure-amd64/bin/java -showversion |& head -n 1)) (default)"
-DocumentInstalledItemIndent "11 ($(/usr/lib/jvm/zulu-11-azure-amd64/bin/java -showversion |& head -n 1))"
+fi
+DocumentInstalledItemIndent "8 ($(/usr/lib/jvm/zulu-8-azure-amd64/bin/java -showversion |& head -n 1)) $defaultLabel8"
+DocumentInstalledItemIndent "11 ($(/usr/lib/jvm/zulu-11-azure-amd64/bin/java -showversion |& head -n 1)) $defaultLabel11"
 DocumentInstalledItemIndent "12 ($(/usr/lib/jvm/zulu-12-azure-amd64/bin/java -showversion |& head -n 1))"
 DocumentInstalledItem "Ant ($(ant -version))"
 DocumentInstalledItem "Gradle ${gradleVersion}"

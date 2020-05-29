@@ -4,3 +4,4 @@
 ################################################################################
 
 Choco-Install -PackageName kubernetes-cli
+Choco-Install -PackageName minikube

@@ -102,7 +102,7 @@
         {
             "type": "shell",
             "scripts":[
-                "{{template_dir}}/scripts/installers/1604/preparemetadata.sh"
+                "{{template_dir}}/scripts/installers/preparemetadata.sh"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
@@ -197,6 +197,7 @@
                 "{{template_dir}}/scripts/installers/gcc.sh",
                 "{{template_dir}}/scripts/installers/gfortran.sh",
                 "{{template_dir}}/scripts/installers/git.sh",
+                "{{template_dir}}/scripts/installers/github-cli.sh",
                 "{{template_dir}}/scripts/installers/google-chrome.sh",
                 "{{template_dir}}/scripts/installers/google-cloud-sdk.sh",
                 "{{template_dir}}/scripts/installers/haskell.sh",
@@ -207,14 +208,14 @@
                 "{{template_dir}}/scripts/installers/kind.sh",
                 "{{template_dir}}/scripts/installers/kubernetes-tools.sh",
                 "{{template_dir}}/scripts/installers/leiningen.sh",
-                "{{template_dir}}/scripts/installers/1604/mercurial.sh",
+                "{{template_dir}}/scripts/installers/mercurial.sh",
                 "{{template_dir}}/scripts/installers/miniconda.sh",
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
                 "{{template_dir}}/scripts/installers/bazel.sh",
                 "{{template_dir}}/scripts/installers/phantomjs.sh",
-                "{{template_dir}}/scripts/installers/1604/php.sh",
+                "{{template_dir}}/scripts/installers/php.sh",
                 "{{template_dir}}/scripts/installers/pollinate.sh",
                 "{{template_dir}}/scripts/installers/postgresql.sh",
                 "{{template_dir}}/scripts/installers/powershellcore.sh",
@@ -228,7 +229,7 @@
                 "{{template_dir}}/scripts/installers/terraform.sh",
                 "{{template_dir}}/scripts/installers/packer.sh",
                 "{{template_dir}}/scripts/installers/vcpkg.sh",
-                "{{template_dir}}/scripts/installers/zeit-now.sh",
+                "{{template_dir}}/scripts/installers/zeit-vercel.sh",
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
                 "{{template_dir}}/scripts/installers/mongodb.sh",
                 "{{template_dir}}/scripts/installers/rndgenerator.sh"
