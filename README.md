@@ -40,8 +40,9 @@ we pin the tool to specific version(s).
 
 *Following Along / Change Notifications*
 
-* **High Impact Changes** (ex. breaking changes, new or deprecated environments) will be posted to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).
-* **Regular Weekly Rhythm** can be followed by watching [Releases](https://github.com/actions/virtual-environments/releases) to see when we generate candidate environments or deploy new ones. You can also track upcoming changes on the [virtual environment project](https://github.com/actions/virtual-environments/projects/1) to see which issues are under development.
+* **High Impact Changes** (ex. breaking changes, new or deprecated environments) will be posted to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).  
+Minor breaking changes will be pinned in this repository and marked with `Announcement` tag.
+* **Regular Weekly Rhythm** can be followed by watching [Releases](https://github.com/actions/virtual-environments/releases) to see when we generate candidate environments or deploy new ones. You can also track upcoming changes by `in development` and `awaiting-deployment` tags.
 
 [ubuntu-18.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
 [ubuntu-16.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1604-README.md
