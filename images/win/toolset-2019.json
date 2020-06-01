@@ -51,8 +51,9 @@
         {
             "name": "Boost",
             "url" : "https://raw.githubusercontent.com/akv-platform/boost-hostedtoolcache/master/versions-manifest.json",
-            "arch": "x64",
+            "arch": "x86_64",
             "platform" : "win32",
+            "toolset": "msvc14.2",
             "versions": [
                 "1.69.0",
                 "1.71.0"
