@@ -3,7 +3,8 @@
 ##  Desc:  Install Azure CLI
 ################################################################################
 
-Choco-Install -PackageName azure-cli
+# Temporary hardcode 2.5.1 installation until version 2.7.0 with the fix for the issue is not released https://github.com/actions/virtual-environments/issues/948
+Choco-Install -PackageName azure-cli -ArgumentList "--version=2.5.1"
 
 $AzureCliExtensionPath = Join-Path $Env:CommonProgramFiles 'AzureCliExtensionDirectory'
 New-Item -ItemType "directory" -Path $AzureCliExtensionPath
