@@ -4,61 +4,7 @@
 ################################################################################
 $ErrorActionPreference = "Stop"
 
-Function InstallVS
-{
-  Param
-  (
-    [String]$WorkLoads,
-    [String]$Sku,
-    [String] $VSBootstrapperURL
-  )
-
-  $exitCode = -1
-
-  try
-  {
-    Write-Host "Enable short name support on Windows needed for Xamarin Android AOT, defaults appear to have been changed in Azure VMs"
-    $shortNameEnableProcess = Start-Process -FilePath fsutil.exe -ArgumentList ('8dot3name', 'set', '0') -Wait -PassThru
-    $shortNameEnableExitCode = $shortNameEnableProcess.ExitCode
-
-    if ($shortNameEnableExitCode -ne 0)
-    {
-      Write-Host -Object 'Enabling short name support on Windows failed. This needs to be enabled prior to VS 2017 install for Xamarin Andriod AOT to work.'
-      exit $shortNameEnableExitCode
-    }
-
-    Write-Host "Downloading Bootstrapper ..."
-    Invoke-WebRequest -Uri $VSBootstrapperURL -OutFile "${env:Temp}\vs_$Sku.exe"
-
-    $FilePath = "${env:Temp}\vs_$Sku.exe"
-    $Arguments = ('/c', $FilePath, $WorkLoads, '--quiet', '--norestart', '--wait', '--nocache' )
-
-    Write-Host "Starting Install ..."
-    $process = Start-Process -FilePath cmd.exe -ArgumentList $Arguments -Wait -PassThru
-    $exitCode = $process.ExitCode
-
-    if ($exitCode -eq 0 -or $exitCode -eq 3010)
-    {
-      Write-Host -Object 'Installation successful'
-      return $exitCode
-    }
-    else
-    {
-      Write-Host -Object "Non zero exit code returned by the installation process : $exitCode."
-
-      # this wont work because of log size limitation in extension manager
-      # Get-Content $customLogFilePath | Write-Host
-
-      exit $exitCode
-    }
-  }
-  catch
-  {
-    Write-Host -Object "Failed to install Visual Studio. Check the logs for details in $customLogFilePath"
-    Write-Host -Object $_.Exception.Message
-    exit -1
-  }
-}
+Import-Module -Name ImageHelpers -Force
 
 $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Component.Dotfuscator ' + `
@@ -87,6 +33,7 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.EntityFramework ' + `
               '--add Microsoft.VisualStudio.Component.FSharp.Desktop ' + `
               '--add Microsoft.VisualStudio.Component.LinqToSql ' + `
+              '--add Microsoft.VisualStudio.Component.SQL.SSDT ' + `
               '--add Microsoft.VisualStudio.Component.PortableLibrary ' + `
               '--add Microsoft.VisualStudio.Component.TeamOffice ' + `
               '--add Microsoft.VisualStudio.Component.TestTools.CodedUITest ' + `
@@ -121,11 +68,11 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.ARM.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.ARM64.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre ' + `
-              '--add Microsoft.VisualStudio.Component.Windows10SDK.14393 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.16299 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17134 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17763 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.18362 ' + `
+              '--add Microsoft.VisualStudio.Component.Windows10SDK.19041 ' + `
               '--add Microsoft.VisualStudio.Component.WinXP ' + `
               '--add Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices ' + `
               '--add Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools ' + `
@@ -148,24 +95,22 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Workload.Python ' + `
               '--remove Component.CPython3.x64 ' + `
               '--add Microsoft.VisualStudio.Workload.Universal ' + `
-              '--add Microsoft.VisualStudio.Workload.VisualStudioExtension'
+              '--add Microsoft.VisualStudio.Workload.VisualStudioExtension ' + `
+              '--add Component.MDD.Linux ' + `
+              '--add Component.MDD.Linux.GCC.arm'
 
-
-$ReleaseInPath = 'Enterprise'
-$Sku = 'Enterprise'
-$VSBootstrapperURL = 'https://aka.ms/vs/16/release/vs_Enterprise.exe'
-
-$ErrorActionPreference = 'Stop'
+$ReleaseInPath = "Enterprise"
+$BootstrapperUrl = "https://aka.ms/vs/16/release/vs_${ReleaseInPath}.exe"
 
 # Install VS
-$exitCode = InstallVS -WorkLoads $WorkLoads -Sku $Sku -VSBootstrapperURL $VSBootstrapperURL
+Install-VisualStudio -BootstrapperUrl $BootstrapperUrl -WorkLoads $WorkLoads
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
 $vsProgramData = Get-Item -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
 $instanceFolders = Get-ChildItem -Path $vsProgramData.FullName
 
-if($instanceFolders -is [array])
+if ($instanceFolders -is [array])
 {
     Write-Host "More than one instance installed"
     exit 1
@@ -174,15 +119,22 @@ if($instanceFolders -is [array])
 $catalogContent = Get-Content -Path ($instanceFolders.FullName + '\catalog.json')
 $catalog = $catalogContent | ConvertFrom-Json
 $version = $catalog.info.id
-Write-Host "Visual Studio version" $version "installed"
+$VSInstallRoot = "C:\Program Files (x86)\Microsoft Visual Studio\2019\$ReleaseInPath"
+Write-Host "Visual Studio version ${version} installed"
 
 # Initialize Visual Studio Experimental Instance
-&"C:\Program Files (x86)\Microsoft Visual Studio\2019\$ReleaseInPath\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit
+& "$VSInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit
 
 # Updating content of MachineState.json file to disable autoupdate of VSIX extensions
 $newContent = '{"Extensions":[{"Key":"1e906ff5-9da8-4091-a299-5c253c55fdc9","Value":{"ShouldAutoUpdate":false}},{"Key":"Microsoft.VisualStudio.Web.AzureFunctions","Value":{"ShouldAutoUpdate":false}}],"ShouldAutoUpdate":false,"ShouldCheckForUpdates":false}'
-Set-Content -Path "C:\Program Files (x86)\Microsoft Visual Studio\2019\$ReleaseInPath\Common7\IDE\Extensions\MachineState.json" -Value $newContent
+Set-Content -Path "$VSInstallRoot\Common7\IDE\Extensions\MachineState.json" -Value $newContent
 
+# Install Windows 10 SDK version 10.0.14393.795
+$sdkUrl = "https://go.microsoft.com/fwlink/p/?LinkId=838916"
+$sdkFileName = "sdksetup14393.exe"
+$argumentList = ("/q", "/norestart", "/ceip off", "/features OptionId.WindowsSoftwareDevelopmentKit")
+
+Install-Binary -Url $sdkUrl -Name $sdkFileName -ArgumentList $argumentList
 
 # Adding description of the software to Markdown
 
@@ -190,7 +142,7 @@ $SoftwareName = "Visual Studio 2019 Enterprise"
 
 $Description = @"
 _Version:_ $version<br/>
-_Location:_ C:\Program Files (x86)\Microsoft Visual Studio\2019\$ReleaseInPath
+_Location:_ $VSInstallRoot
 
 The following workloads and components are installed with Visual Studio 2019:
 "@
@@ -200,5 +152,11 @@ Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $
 # Adding explicitly added Workloads details to markdown by parsing $Workloads
 Add-ContentToMarkdown -Content $($WorkLoads.Split('--') | % { if( ($_.Split(" "))[0] -like "add") { "* " +($_.Split(" "))[1] }  } )
 
+# Adding additional SDKs to markdown
+$SDKDescription = @"
 
-exit $exitCode
+Additional Windows 10 SDKs:
+* Windows 10 SDK version 10.0.14393.795
+"@
+
+Add-ContentToMarkdown -Content $SDKDescription

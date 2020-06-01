@@ -20,7 +20,8 @@ function Install-Binary
         Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet")
     #>
 
-    Param (
+    Param
+    (
         [Parameter(Mandatory)]
         [String] $Url,
         [Parameter(Mandatory)]
@@ -62,6 +63,68 @@ function Install-Binary
     }
 }
 
+Function Install-VisualStudio
+{
+    <#
+    .SYNOPSIS
+        A helper function to install Visual Studio.
+
+    .DESCRIPTION
+        Prepare system environment, and install Visual Studio bootstrapper with selected workloads.
+
+    .PARAMETER BootstrapperUrl
+        The URL from which the bootstrapper will be downloaded. Required parameter.
+
+    .PARAMETER WorkLoads
+        The string that contain workloads that will be passed to the installer.
+    #>
+
+    Param
+    (
+        [Parameter(Mandatory)]
+        [String] $BootstrapperUrl,
+        [String] $WorkLoads
+    )
+
+    Write-Host "Downloading Bootstrapper ..."
+    $BootstrapperName = [IO.Path]::GetFileName($BootstrapperUrl)
+    $bootstrapperFilePath = Start-DownloadWithRetry -Url $BootstrapperUrl -Name $BootstrapperName
+
+    try
+    {
+        Write-Host "Enable short name support on Windows needed for Xamarin Android AOT, defaults appear to have been changed in Azure VMs"
+        $shortNameEnableProcess = Start-Process -FilePath fsutil.exe -ArgumentList ('8dot3name', 'set', '0') -Wait -PassThru
+
+        $shortNameEnableExitCode = $shortNameEnableProcess.ExitCode
+        if ($shortNameEnableExitCode -ne 0)
+        {
+            Write-Host "Enabling short name support on Windows failed. This needs to be enabled prior to VS 2017 install for Xamarin Andriod AOT to work."
+            exit $shortNameEnableExitCode
+        }
+
+        Write-Host "Starting Install ..."
+        $bootstrapperArgumentList = ('/c', $bootstrapperFilePath, $WorkLoads, '--quiet', '--norestart', '--wait', '--nocache' )
+        $process = Start-Process -FilePath cmd.exe -ArgumentList $bootstrapperArgumentList -Wait -PassThru
+
+        $exitCode = $process.ExitCode
+        if ($exitCode -eq 0 -or $exitCode -eq 3010)
+        {
+            Write-Host "Installation successful"
+            return $exitCode
+        }
+        else
+        {
+            Write-Host "Non zero exit code returned by the installation process : $exitCode"
+            exit $exitCode
+        }
+    }
+    catch
+    {
+        Write-Host "Failed to install Visual Studio; $($_.Exception.Message)"
+        exit -1
+    }
+}
+
 function Stop-SvcWithErrHandling
 {
     <#
@@ -74,7 +137,8 @@ function Stop-SvcWithErrHandling
     .PARAMETER StopOnError
         Switch for stopping the script and exit from PowerShell if one service is absent
     #>
-    param (
+    param
+    (
         [Parameter(Mandatory, ValueFromPipeLine = $true)]
         [string] $ServiceName,
         [switch] $StopOnError
@@ -123,7 +187,8 @@ function Set-SvcWithErrHandling
         Hashtable for service arguments
     #>
 
-    param (
+    param
+    (
         [Parameter(Mandatory, ValueFromPipeLine = $true)]
         [string] $ServiceName,
         [Parameter(Mandatory)]
@@ -152,14 +217,18 @@ function Set-SvcWithErrHandling
 
 function Start-DownloadWithRetry
 {
-    param (
+    param
+    (
         [Parameter(Mandatory)]
         [string] $Url,
-        [Parameter(Mandatory)]
         [string] $Name,
         [string] $DownloadPath = "${env:Temp}",
         [int] $Retries = 20
     )
+
+    if ([String]::IsNullOrEmpty($Name)) {
+        $Name = [IO.Path]::GetFileName($Url)
+    }
 
     $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
 
@@ -253,7 +322,8 @@ function Install-VsixExtension
 
 function Get-VSExtensionVersion
 {
-    param (
+    Param
+    (
         [Parameter(Mandatory=$true)]
         [string] $packageName
     )
@@ -283,8 +353,14 @@ function Get-ToolcachePackages {
     Get-Content -Raw $toolcachePath | ConvertFrom-Json
 }
 
+function Get-ToolsetContent {
+    $toolsetJson = Get-Content -Path $env:TOOLSET_JSON_PATH -Raw
+    ConvertFrom-Json -InputObject $toolsetJson
+}
+
 function Get-ToolsByName {
-    param (
+    Param
+    (
         [Parameter(Mandatory = $True)]
         [string]$SoftwareName
     )
@@ -301,7 +377,7 @@ function Get-ToolsByName {
 
 function Get-WinVersion
 {
-    (Get-WmiObject -class Win32_OperatingSystem).Caption
+    (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
 
 function Test-IsWin19
@@ -312,4 +388,23 @@ function Test-IsWin19
 function Test-IsWin16
 {
     (Get-WinVersion) -match "2016"
+}
+
+function Extract-7Zip {
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$Path,
+        [Parameter(Mandatory=$true)]
+        [string]$DestinationPath
+    )
+
+    Write-Host "Expand archive '$PATH' to '$DestinationPath' directory"
+    7z.exe x "$Path" -o"$DestinationPath" -y | Out-Null
+
+    if ($LASTEXITCODE -ne 0)
+    {
+        Write-Host "There is an error during expanding '$Path' to '$DestinationPath' directory"
+        exit 1
+    }
 }

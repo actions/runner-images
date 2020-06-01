@@ -7,8 +7,14 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/apt.sh
+source $HELPER_SCRIPTS/os.sh
 
 set -e
+
+if isUbuntu20 ; then
+    echo "Install python2"
+    apt-get install -y --no-install-recommends python-is-python2
+fi
 
 echo "Install dnsutils"
 apt-get install -y --no-install-recommends dnsutils
@@ -28,8 +34,16 @@ apt-get install -y --no-install-recommends iputils-ping
 echo "Install jq"
 apt-get install -y --no-install-recommends jq
 
-echo "Install libcurl3"
-apt-get install -y --no-install-recommends libcurl3
+echo "Install libcurl"
+if isUbuntu18 ; then
+   libcurelVer="libcurl3"
+fi
+
+if isUbuntu20 ; then
+    libcurelVer="libcurl4"
+fi
+
+apt-get install -y --no-install-recommends $libcurelVer
 
 echo "Install libunwind8"
 apt-get install -y --no-install-recommends libunwind8
@@ -130,6 +144,12 @@ apt-get install -y --no-install-recommends curl
 echo "Install parallel"
 apt-get install -y --no-install-recommends parallel
 
+echo "Install gnupg2"
+apt-get install -y --no-install-recommends gnupg2
+
+echo "Install lib32z1"
+apt-get install -y --no-install-recommends lib32z1
+
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet time unzip wget zip; do
@@ -149,7 +169,7 @@ DocumentInstalledItemIndent "ftp"
 DocumentInstalledItemIndent "iproute2"
 DocumentInstalledItemIndent "iputils-ping"
 DocumentInstalledItemIndent "jq"
-DocumentInstalledItemIndent "libcurl3"
+DocumentInstalledItemIndent "$libcurelVer"
 DocumentInstalledItemIndent "libgbm-dev"
 DocumentInstalledItemIndent "libicu55"
 DocumentInstalledItemIndent "libunwind8"
@@ -168,3 +188,5 @@ DocumentInstalledItemIndent "upx"
 DocumentInstalledItemIndent "wget"
 DocumentInstalledItemIndent "zip"
 DocumentInstalledItemIndent "zstd"
+DocumentInstalledItemIndent "gnupg2"
+DocumentInstalledItemIndent "lib32z1"

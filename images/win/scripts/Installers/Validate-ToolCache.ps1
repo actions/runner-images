@@ -63,32 +63,6 @@ function RunTestsByPath {
     }
 }
 
-function Get-SystemDefaultPython {
-    Write-Host "Validate system Python..."
-
-    if (Get-Command -Name 'python')
-    {
-        Write-Host "Python $(& python -V 2>&1) on path"
-    }
-    else
-    {
-        Write-Host "Python is not on path"
-        exit 1
-    }
-
-    $pythonBinVersion = $(& python -V 2>&1)
-    if ($pythonBinVersion -notlike "Python 3.*")
-    {
-        Write-Error "Python 3 is not in the PATH"
-        exit 1
-    }
-
-    $pythonBinOnPath = Split-Path -Path (Get-Command -Name 'python').Path
-    $description = GetDefaultToolDescription -SoftwareVersion $pythonBinVersion -SoftwareLocation $pythonBinOnPath
-
-    return $description
-}
-
 function Get-SystemDefaultRuby {
     Write-Host "Validate system Ruby..."
 
@@ -196,23 +170,12 @@ function ToolcacheTest {
         }
     }
 
-    if ($SoftwareName -contains "Python") {
-        $markdownDescription += Get-SystemDefaultPython
-    }
     if ($SoftwareName -contains "Ruby") {
         $markdownDescription += Get-SystemDefaultRuby
     }
 
     Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $markdownDescription
 }
-
-# Python test
-$PythonTests = @("python.exe", "Scripts\pip.exe")
-ToolcacheTest -SoftwareName "Python" -ExecTests $PythonTests
-
-# PyPy test
-$PyPyTests = @("python.exe", "bin\pip.exe")
-ToolcacheTest -SoftwareName "PyPy" -ExecTests $PyPyTests
 
 # Ruby test
 $RubyTests = @("bin\ruby.exe")

@@ -1,0 +1,39 @@
+{
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
+            "platform" : "linux",
+            "platform_version": "16.04",
+            "arch": "x64",
+            "versions": [
+                "2.7.*",
+                "3.5.*",
+                "3.6.*",
+                "3.7.*",
+                "3.8.*"
+            ]
+        },
+        {
+            "name": "PyPy",
+            "arch": "x64",
+            "platform" : "linux",
+            "versions": [
+                "2.7",
+                "3.6"
+            ]
+        },
+        {
+            "name": "node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/master/versions-manifest.json",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": [
+                "8.*",
+                "10.*",
+                "12.*",
+                "14.*"
+            ]
+        }
+    ]
+}
