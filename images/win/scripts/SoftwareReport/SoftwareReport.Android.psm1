@@ -93,7 +93,8 @@ function Build-AndroidExtraPackagesTable {
     $extraPackages = @(
         "Android Support Repository",
         "Google Play services",
-        "Google Repository"
+        "Google Repository",
+        "ndk-bundle"
     )
 
     return $extraPackages | ForEach-Object {
