@@ -60,7 +60,7 @@ foreach ($tool in $tools) {
         $asset = $assets | Where-Object version -like $toolVersion `
                          | Sort-Object -Property {[version]$_.version} -Descending `
                          | Select-Object -ExpandProperty files `
-                         | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) } `
+                         | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) -and ($_.toolset -eq $tool.toolset) } `
                          | Select-Object -First 1
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
