@@ -313,6 +313,12 @@
                 "{{ template_dir }}/scripts/Installers/Install-7zip.ps1"
             ]
         },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1"
+            ]
+        },
           {
             "type": "powershell",
             "scripts":[
@@ -517,6 +523,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-MysqlCli.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-PostgreSQL.ps1"
             ]
         },
         {
