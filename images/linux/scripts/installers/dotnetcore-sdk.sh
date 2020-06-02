@@ -60,8 +60,7 @@ for release_url in ${release_urls[@]}; do
     sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdks[]?' | jq '.version'))
 done
 
-#temporary avoid 3.1.102 installation due to https://github.com/dotnet/aspnetcore/issues/19133
-sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v 3.1.102 | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
+sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
 
 for sdk in $sortedSdks; do
     url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$sdk/dotnet-sdk-$sdk-linux-x64.tar.gz"
