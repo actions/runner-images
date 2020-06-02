@@ -34,7 +34,6 @@ function Validate-SystemDefaultTool {
     # Check if tool on path
     if (Get-Command -Name $binName) {
         $versionOnPath = $(& $binName --version 2>&1) | Select-String -Pattern ".*(\d+\.\d+\.\d+)"
-        $versionBinPath = Split-Path -Path (Get-Command -Name $binName).Path
 
         # Check if version is correct
         if ($versionOnPath.matches.Groups[1].Value -notlike $ExpectedVersion) {
@@ -47,19 +46,9 @@ function Validate-SystemDefaultTool {
         Write-Host "$ToolName is not on path"
         exit 1
     }
-
-    # Add default version description to markdown
-    $description = "<br/>__System default version:__ $versionOnPath<br/>"
-    $description += "_Environment:_<br/>"
-    $description += "* Location: $versionBinPath<br/>"
-    $description += "* PATH: contains the location of $versionOnPath<br/>"
-
-    return $description
 }
 
 $ErrorActionPreference = "Stop"
-
-Import-Module -Name ImageHelpers -Force
 
 # Define executables for cached tools
 $toolsExecutables = @{
@@ -72,8 +61,6 @@ $toolsExecutables = @{
 $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache
 
 foreach($tool in $tools) {
-    $markdownDescription = ""
-
     $toolPath = Join-Path $env:AGENT_TOOLSDIRECTORY $tool.name
     # Get executables for current tool
     $toolExecs = $toolsExecutables[$tool.name]
@@ -105,22 +92,10 @@ foreach($tool in $tools) {
 
         Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
         Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionArchPath
-
-        $foundVersionName = $foundVersion.name
-        if ($tool.name -eq 'PyPy')
-        {
-            $pypyVersion = & "$foundVersionArchPath\python.exe" -c "import sys;print(sys.version.split('\n')[1])"
-            $foundVersionName = "{0} {1}" -f $foundVersionName, $pypyVersion
-        }
-        # Add to tool version to markdown
-        $markdownDescription += "_Version:_ $foundVersionName<br/>"
     }
 
-    # Create markdown description for system default tool
     if (-not ([string]::IsNullOrEmpty($tool.default))) {
         Write-Host "Validate system default $($tool.name)($($tool.arch)) $($tool.default)..."
-        $markdownDescription += Validate-SystemDefaultTool -ToolName $tool.name -ExpectedVersion $tool.default
+        Validate-SystemDefaultTool -ToolName $tool.name -ExpectedVersion $tool.default
     }
-
-    Add-SoftwareDetailsToMarkdown -SoftwareName "$($tool.name) ($($tool.arch))" -DescriptionMarkdown $markdownDescription
 }

@@ -5,7 +5,7 @@
 
 if (Get-Command -Name 'perl')
 {
-    Write-Host "perl on path"
+    Write-Host 'perl on path'
 }
 else
 {
@@ -13,11 +13,3 @@ else
     exit 1
 }
 
-# Adding description of the software to Markdown
-$SoftwareName = "Perl"
-
-$Description = @"
-_Version:_ $(perl -e 'print $^V')<br/>
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
