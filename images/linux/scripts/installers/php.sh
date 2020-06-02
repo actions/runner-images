@@ -7,6 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/os.sh
 
 set -e
 
@@ -131,7 +132,7 @@ echo "Lastly, documenting what we added to the metadata file"
 
 for version in $php_versions; do
     DocumentInstalledItem "PHP $version ($(php$version --version | head -n 1))"
-done;
+done
 
 DocumentInstalledItem "Composer  ($(composer --version))"
 DocumentInstalledItem "PHPUnit ($(phpunit --version))"
