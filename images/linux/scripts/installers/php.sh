@@ -51,20 +51,20 @@ for version in $php_versions; do
         php$version-ldap \
         php$version-mbstring \
         php$version-mysql \
-        php$version-odbc \
-        php$version-opcache \
+        php$version-odbc \
+        php$version-opcache \
         php$version-pgsql \
-        php$version-phpdbg \
-        php$version-pspell \
-        php$version-readline \
-        php$version-snmp \
-        php$version-soap \
+        php$version-phpdbg \
+        php$version-pspell \
+        php$version-readline \
+        php$version-snmp \
+        php$version-soap \
         php$version-sqlite3 \
-        php$version-sybase \
-        php$version-tidy \
-        php$version-xml \
-        php$version-xmlrpc \
-        php$version-xsl \
+        php$version-sybase \
+        php$version-tidy \
+        php$version-xml \
+        php$version-xmlrpc \
+        php$version-xsl \
         php$version-zip
 
     if [[ $version == "5.6" || $version == "7.0" || $version == "7.1" ]]; then
