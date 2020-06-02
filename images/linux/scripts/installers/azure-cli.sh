@@ -10,12 +10,6 @@ source $HELPER_SCRIPTS/os.sh
 
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-# Temporary downgrade to 2.5.1 installation until version 2.7.0 with the fix for the issue is not released https://github.com/actions/virtual-environments/issues/948
-# There is no 2.5.1 version for Ubuntu20
-if isUbuntu16 || isUbuntu18 ; then
-    label=$(getOSVersionLabel)
-    apt-get install -y --allow-downgrades azure-cli=2.5.1-1~$label
-fi
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
