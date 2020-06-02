@@ -6,6 +6,7 @@ For general questions about using the virtual environments or writing your Actio
 ## Available Environments
 | Environment | YAML Label | Included Software | Latest Release & Rollout Progress |
 | --------------------|---------------------|--------------------|---------------------|
+| Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | *Coming soon* |
 | Ubuntu 18.04 | `ubuntu-latest` or `ubuntu-18.04` | [ubuntu-18.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
 | Ubuntu 16.04 | `ubuntu-16.04` | [ubuntu-16.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu16&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu16&redirect=1) |
 | macOS 10.15 | `macos-latest` or `macos-10.15` | [macOS-10.15] | *Coming soon* |
@@ -43,6 +44,7 @@ we pin the tool to specific version(s).
 * **High Impact Changes** (ex. breaking changes, new or deprecated environments) will be posted to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).
 * **Regular Weekly Rhythm** can be followed by watching [Releases](https://github.com/actions/virtual-environments/releases) to see when we generate candidate environments or deploy new ones. You can also track upcoming changes on the [virtual environment project](https://github.com/actions/virtual-environments/projects/1) to see which issues are under development.
 
+[ubuntu-20.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu2004-README.md
 [ubuntu-18.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
 [ubuntu-16.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1604-README.md
 [Windows-2019]: https://github.com/actions/virtual-environments/blob/master/images/win/Windows2019-Readme.md
