@@ -16,6 +16,7 @@ Function Install-Asset {
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
     7z.exe x $assetArchivePath -o"$assetFolderPath" -y | Out-Null
+    Get-ChildItem $assetFolderPath
 
     Write-Host "Invoke installation script..."
     Push-Location -Path $assetFolderPath
