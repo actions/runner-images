@@ -12,6 +12,10 @@ For general questions about using the virtual environments or writing your Actio
 | macOS 10.15 | `macos-latest` or `macos-10.15` | [macOS-10.15] | *Coming soon* |
 | Windows Server 2019 | `windows-latest` or `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 | Windows Server 2016 | `windows-2016` | [windows-2016] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
+```
+The Ubuntu 20.04 virtual environment is currently provided as a preview only.
+The "ubuntu-latest" YAML workflow label still uses the Ubuntu 18.04 virtual environment.
+```
 
 ***Looking for other Linux distributions?*** We do not plan to offer other Linux distributions. We recommend using Docker if you'd like to build using other distributions with the hosted virtual environments. Alternatively, you can leverage [self-hosted runners] and fully customize your environment to your needs.
 
