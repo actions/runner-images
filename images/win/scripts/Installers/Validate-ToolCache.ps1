@@ -83,40 +83,6 @@ function Get-SystemDefaultRuby {
         exit 1
 
     }
-
-    $rubyVersionOnPath = "Ruby $($Matches.version)"
-    $description = GetDefaultToolDescription -SoftwareVersion $rubyVersionOnPath -SoftwareLocation $rubyBinOnPath
-
-    $gemVersion = & gem -v
-    $description += "* Gem Version: $gemVersion<br/>"
-
-    return $description
-}
-
-function GetDefaultToolDescription {
-    param (
-        [Parameter(Mandatory = $True)]
-        [string]$SoftwareVersion,
-        [Parameter(Mandatory = $True)]
-        [string]$SoftwareLocation
-    )
-
-    $description = "<br/>__System default version:__ $SoftwareVersion<br/>"
-    $description += "_Environment:_<br/>"
-    $description += "* Location: $SoftwareLocation<br/>"
-    $description += "* PATH: contains the location of $SoftwareVersion<br/>"
-
-    return $description
-}
-
-function GetMarkdownDescription {
-    param (
-        [Parameter(Mandatory = $True)]
-        [string]$SoftwareVersion,
-        [Parameter(Mandatory = $True)]
-        [string]$SoftwareArchitecture
-    )
-    return "_Version:_ $SoftwareVersion ($SoftwareArchitecture)<br/>"
 }
 
 function ToolcacheTest {
@@ -142,7 +108,6 @@ function ToolcacheTest {
         exit 1
     }
 
-    $markdownDescription = ""
     $tools = GetToolsByName -SoftwareName $SoftwareName
     foreach($tool in $tools)
     {
@@ -165,16 +130,12 @@ function ToolcacheTest {
 
             $path = "$softwarePath\$foundVersion\$requiredArchitecture"
             RunTestsByPath -ExecTests $ExecTests -Path $path -SoftwareName $SoftwareName -SoftwareVersion $foundVersion -SoftwareArchitecture $requiredArchitecture
-
-            $markdownDescription += GetMarkdownDescription -SoftwareVersion $foundVersion -SoftwareArchitecture $requiredArchitecture
         }
     }
 
     if ($SoftwareName -contains "Ruby") {
-        $markdownDescription += Get-SystemDefaultRuby
+        Get-SystemDefaultRuby
     }
-
-    Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $markdownDescription
 }
 
 # Ruby test

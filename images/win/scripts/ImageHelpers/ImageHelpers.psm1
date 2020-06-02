@@ -3,7 +3,6 @@ param()
 
 . $PSScriptRoot\PathHelpers.ps1
 . $PSScriptRoot\InstallHelpers.ps1
-. $PSScriptRoot\MarkdownHelpers.ps1
 . $PSScriptRoot\ChocoHelpers.ps1
 
 Export-ModuleMember -Function @(
@@ -18,8 +17,6 @@ Export-ModuleMember -Function @(
     'Get-ToolcachePackages'
     'Get-ToolsetContent'
     'Get-ToolsByName'
-    'Add-ContentToMarkdown'
-    'Add-SoftwareDetailsToMarkdown'
     'Stop-SvcWithErrHandling'
     'Set-SvcWithErrHandling'
     'Start-DownloadWithRetry'
