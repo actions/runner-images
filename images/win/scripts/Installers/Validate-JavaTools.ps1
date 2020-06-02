@@ -40,7 +40,6 @@ Function Validate-JavaVersion {
       Write-Host "Java $javaVersion found"
       # Reset Path to the default one in case we need to check the default Java later
       $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-      return $javaVersion
    }
    else
    {
@@ -63,87 +62,7 @@ else
 }
 
 Write-Host "Checking installed Java versions"
-
-$java7Version = Validate-JavaVersion -Version "1.7"
-$java8Version = Validate-JavaVersion -Version "1.8" -Default
-$java11Version = Validate-JavaVersion -Version "11"
-$java13Version = Validate-JavaVersion -Version "13"
-
-if( $(ant -version) -match  'Apache Ant\(TM\) version (?<version>.*) compiled.*' )
-{
-   $antVersion = $Matches.version
-}
-
-if( $( $(mvn -version) | Out-String) -match  'Apache Maven (?<version>.*) \(.*' )
-{
-   $mvnVersion = $Matches.version
-}
-
-if( $( $(gradle -version) | Out-String) -match  'Gradle (?<version>.*)' )
-{
-   $gradleVersion = $Matches.version.Trim()
-}
-
-# Adding description of the software to Markdown
-$SoftwareName = "Java Development Kit"
-
-$Description = @"
-#### $java8Version (default)
-
-_Environment:_
-* JAVA_HOME: location of JDK
-* PATH: contains bin folder of JDK
-
-#### $java7Version
-
-_Location:_ $env:JAVA_HOME_7_X64
-
-#### $java11Version
-
-_Location:_ $env:JAVA_HOME_11_X64
-
-#### $java13Version
-
-_Location:_ $env:JAVA_HOME_13_X64
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-
-
-# Adding description of the software to Markdown
-$SoftwareName = "Ant"
-
-$Description = @"
-_Version:_ $antVersion<br/>
-_Environment:_
-* PATH: contains location of ant.cmd
-* ANT_HOME: location of ant.cmd
-* COBERTURA_HOME: location of cobertura-2.1.1.jar
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-
-
-# Adding description of the software to Markdown
-$SoftwareName = "Maven"
-
-$Description = @"
-_Version:_ $mvnVersion<br/>
-_Environment:_
-* PATH: contains location of mvn.bat
-* M2_HOME: Maven installation root
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-
-
-# Adding description of the software to Markdown
-$SoftwareName = "Gradle"
-
-$Description = @"
-_Version:_ $gradleVersion<br/>
-_Environment:_
-* PATH: contains location of gradle
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
+Validate-JavaVersion -Version "1.7"
+Validate-JavaVersion -Version "1.8" -Default
+Validate-JavaVersion -Version "11"
+Validate-JavaVersion -Version "13"

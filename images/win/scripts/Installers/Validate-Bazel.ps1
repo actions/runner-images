@@ -5,7 +5,7 @@
 
 if (Get-Command -Name 'bazel')
 {
-    Write-Host "bazel on path"
+    Write-Host 'bazel on path'
 }
 else
 {
@@ -15,7 +15,7 @@ else
 
 if (Get-Command -Name 'bazelisk')
 {
-    Write-Host "bazelisk on path"
+    Write-Host 'bazelisk on path'
 }
 else
 {
@@ -23,22 +23,4 @@ else
     exit 1
 }
 
-# Adding description of Bazel to Markdown
-$SoftwareName = "bazel"
 
-$Description = @"
-_Version:_ $(bazel --version)<br/>
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-
-# Adding description of Bazelisk to Markdown
-$bazelisk_version = ((bazelisk version | Select-String "Bazelisk version:") -Split(" v"))[2]
-
-$SoftwareName = "bazelisk"
-
-$Description = @"
-_Version:_ $bazelisk_version<br/>
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

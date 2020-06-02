@@ -14,8 +14,6 @@ else
     exit 1
 }
 
-$SoftwareName = "ghc"
-[String] $DefaultGhcVersion = & ghc --version
 $ChocoPackagesPath = Join-Path $env:ChocolateyInstall "lib"
 [Array] $GhcVersionList = Get-ChildItem -Path $ChocoPackagesPath -Filter "ghc.*" | ForEach-Object { $_.Name.TrimStart("ghc.") }
 
@@ -31,7 +29,8 @@ else
 }
 
 # Validation each of GHC version
-ForEach ($version in $GhcVersionList) {
+foreach ($version in $GhcVersionList) 
+{
     $BinGhcPath = Join-Path $env:ChocolateyInstall "lib\ghc.$version\tools\ghc-$version\bin\ghc.exe"
     if ((& $BinGhcPath --version) -match $version)
     {
@@ -44,20 +43,6 @@ ForEach ($version in $GhcVersionList) {
     }
 }
 
-
-$GhcVersionsDescription = $GhcVersionList | ForEach-Object {
-    $DefaultPostfix = if ($DefaultGhcVersion -match $_) { " (default)" } else { "" }
-    "ghc $_ $DefaultPostfix `n"
-}
-
-$Description = @"
-_Version:_
-$GhcVersionsDescription<br/>
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-
-
 # Cabal validation
 if (Get-Command -Name 'cabal')
 {
@@ -68,11 +53,3 @@ else
     Write-Host "cabal is not on path."
     exit 1
 }
-
-$SoftwareName = "cabal"
-
-$Description = @"
-_Version:_ $(cabal --version)<br/>
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
