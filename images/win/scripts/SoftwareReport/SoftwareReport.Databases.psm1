@@ -1,8 +1,8 @@
 function Get-PostgreSQLMarkdown
 {
     $name = "PostgreSQL"
-    $pgService = Get-Service -Name postgresql*
-    $pgPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
+    $pgService = Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'"
+    $pgPath = $pgService.PathName
     $pgRoot = $pgPath.split('"')[1].replace("\bin\pg_ctl.exe", "")
     $pgVersion = (pg_config --version).split()[1].Trim()
     $content = [PSCustomObject]@{
@@ -11,8 +11,8 @@ function Get-PostgreSQLMarkdown
         Password = $env:PGPASSWORD
         Path = $pgRoot
         ServiceName = $pgService.Name
-        ServiceStatus = $pgService.Status
-        ServiceStartType = $pgService.StartType
+        ServiceStatus = $pgService.State
+        ServiceStartType = $pgService.StartMode
     } | New-MDTable
 
     Build-MarkdownElement -Head $name -Content $content
