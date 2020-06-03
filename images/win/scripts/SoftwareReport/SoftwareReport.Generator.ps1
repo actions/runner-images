@@ -2,13 +2,14 @@
 Install-Module MarkdownPS -Force -Scope AllUsers
 
 Import-Module MarkdownPS
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNameChecking
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.CachedTools.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Databases.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -DisableNameChecking
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 
 $markdown = ""
 
@@ -125,6 +126,10 @@ $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += (Build-CachedToolsMarkdown)
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Databases" -Level 3
+$markdown += Build-DatabasesMarkdown
 $markdown += New-MDNewLine
 
 $vs = Get-VisualStudioVersion
