@@ -32,7 +32,8 @@ _Environment:_
 
 ## Powershell Core
 
-_Version:_ 7.0.1<br/>
+_Version:_ 7.0.1
+<br/>
 
 ## Docker images
 
@@ -874,6 +875,8 @@ _Version:_ 1.4.0<br/>
 ## Inno Setup
 
 _Version:_ 6.0.4<br/>
+_Environment:_
+* PATH: contains location of `iscc.exe`
 
 ## GitVersion
 
