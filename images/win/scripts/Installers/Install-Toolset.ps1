@@ -13,18 +13,14 @@ Function Install-Asset {
     $releaseAssetName = [System.IO.Path]::GetFileNameWithoutExtension($ReleaseAsset.filename)
     $assetFolderPath = Join-Path $env:TEMP $releaseAssetName
     $assetArchivePath = Start-DownloadWithRetry -Url $ReleaseAsset.download_url -Name $ReleaseAsset.filename
-    $assetTarPath = $assetArchivePath.TrimEnd(".gz")
-    $archiveExtension = Get-ChildItem $assetArchivePath | Select-Object -ExpandProperty Extension
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
-    if ( $archiveExtension -eq ".gz" )
-    {
-        7z.exe x $assetArchivePath -o"$assetTarPath" -y | Out-Null
-        7z.exe x $assetTarPath -o"$assetFolderPath" -y | Out-Null
-    }
-    else
-    {
-        7z.exe x $assetArchivePath -o"$assetFolderPath" -y | Out-Null
+    if ($assetArchivePath.EndsWith(".tar.gz")) {
+        $assetTarPath = $assetArchivePath.TrimEnd(".gz")
+        Extract-7Zip -Path $assetArchivePath -DestinationPath $assetTarPath
+        Extract-7Zip -Path $assetTarPath -DestinationPath $assetFolderPath
+    } else {
+        Extract-7Zip -Path $assetArchivePath -DestinationPath $assetFolderPath
     }
 
     Write-Host "Invoke installation script..."
