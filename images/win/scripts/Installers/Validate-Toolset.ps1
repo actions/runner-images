@@ -55,6 +55,7 @@ $toolsExecutables = @{
     Python = @("python.exe", "Scripts\pip.exe")
     node = @("node.exe", "npm")
     PyPy = @("python.exe", "Scripts\pip.exe")
+    Boost = @("b2.exe", "Boost")
 }
 
 # Get toolcache content from toolset
