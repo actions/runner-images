@@ -257,25 +257,12 @@
             "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
-            "type": "file",
-            "source": "{{template_dir}}/toolcache-2004.json",
-            "destination": "{{user `installer_script_folder`}}/toolcache.json"
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolset-2004.json",
-            "destination": "{{user `installer_script_folder`}}/toolset.json"
-        },
-        {
             "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/installers/2004/android.sh",
                 "{{template_dir}}/scripts/installers/azpowershell.sh",
                 "{{template_dir}}/scripts/helpers/containercache.sh",
-                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
-                "{{template_dir}}/scripts/installers/pypy.sh",
-                "{{template_dir}}/scripts/installers/python.sh",
-                "{{template_dir}}/scripts/installers/test-toolcache.sh"
+                "{{template_dir}}/scripts/installers/python.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
