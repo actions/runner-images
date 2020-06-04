@@ -55,7 +55,6 @@ $toolsExecutables = @{
     Python = @("python.exe", "Scripts\pip.exe")
     node = @("node.exe", "npm")
     PyPy = @("python.exe", "Scripts\pip.exe")
-    Boost = @("b2.exe", "Boost")
 }
 
 # Get toolcache content from toolset
@@ -68,8 +67,8 @@ foreach($tool in $tools) {
 
     foreach ($version in $tool.versions) {
         # Add wildcard if missing
-        if (-not $version.Contains('*')) {
-            $version += '.*'
+        if (([Version]$version).Build -eq -1) {
+            $version += ".*"
         }
 
         # Check if version folder exists
@@ -91,8 +90,10 @@ foreach($tool in $tools) {
             exit 1
         }
 
-        Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
-        Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionArchPath
+        if ($toolExecs) {
+            Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
+            Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionArchPath
+        }
     }
 
     if (-not ([string]::IsNullOrEmpty($tool.default))) {
