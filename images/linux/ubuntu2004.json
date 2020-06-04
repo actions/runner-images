@@ -132,8 +132,7 @@
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
-                "IMAGE_OS={{user `image_os`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+                "IMAGE_OS={{user `image_os`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
