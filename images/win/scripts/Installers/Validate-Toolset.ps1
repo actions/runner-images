@@ -67,10 +67,8 @@ foreach($tool in $tools) {
 
     foreach ($version in $tool.versions) {
         # Add wildcard if missing
-        if (-not $version.EndsWith('.*')) {
-            if (([Version]$version).Build -eq -1) {
-                $version += ".*"
-            }
+        if ($version.Split(".").Length -lt 3) {
+            $version += ".*"
         }
 
         # Check if version folder exists
