@@ -15,7 +15,8 @@ function Get-PHPVersion
     if($($(php --version)| Out-String) -match 'PHP (?<version>.*) (.*cli).*')
     {
         $phpVersion = $Matches.version
-        return $phpVersion
+        Write-Host "PHP version at $phpRootPath is $phpVersion"
+        exit 0
     }
 
     Write-Host "Unable to determine PHP version at " + $phpRootPath
@@ -44,32 +45,5 @@ else
     exit 1
 }
 
-# Get the composer version.
-$composerVersion = $(composer --version)
-
-# Add composer version details in Markdown
-$SoftwareName = "Composer"
-$Description = @"
-#### $composerVersion
-
-_Environment:_
-* PATH: contains the location of composer.exe version $composerVersion
-* PHPROOT: root directory of the Composer $composerVersion installation
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-
 # Get available versions of PHP
-$phpVersionOnPath = Get-PHPVersion -phpRootPath "C:\tools\php72"
-
-# Add details of available versions in Markdown
-$SoftwareName = "PHP (x64)"
-$Description = @"
-#### $phpVersionOnPath
-
-_Environment:_
-* PATH: contains the location of php.exe version $phpVersionOnPath
-* PHPROOT: root directory of the PHP $phpVersionOnPath installation
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
+Get-PHPVersion -phpRootPath "C:\tools\php72"

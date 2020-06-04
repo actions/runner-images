@@ -35,23 +35,3 @@ else
     Write-Host "make is not on PATH"
     exit 1
 }
-
-# Adding description of the software to Markdown
-
-# `gcc --version` gives output like:
-# gcc.exe (x86_64-posix-seh-rev0, Built by Mingw-w64 project) 5.3.0
-# Copyright (C) 2015 Free Software Foundation, Inc.
-# This is free software; see the source for copying conditions.  There is NO
-# warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-$SoftwareName = "Mingw-w64"
-$(gcc --version).Split([System.Environment]::NewLine)[0] -match "\d\.\d\.\d$"
-$mingw64Version = $matches[0]
-
-$Description = @"
-_Version:_ $mingw64Version<br/>
-_Environment:_
-* PATH: contains location of the Mingw-w64 'bin' directory
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

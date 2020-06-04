@@ -1,11 +1,13 @@
 ################################################################################
 ##  File:  Install-Msys2.ps1
-##  Desc:  Install Msys2 and 64-bit gcc, cmake, & llvm (32-bit commented out)
+##  Desc:  Install Msys2 and 64 & 32 bit gcc, cmake, & llvm
 ################################################################################
 
 # References
 # https://github.com/msys2/MINGW-packages/blob/master/azure-pipelines.yml
 # https://packages.msys2.org/group/
+
+$dash = "-" * 40
 
 $origPath = $env:PATH
 $gitPath  = "$env:ProgramFiles\Git"
@@ -15,11 +17,9 @@ $msys2_release = "https://api.github.com/repos/msys2/msys2-installer/releases/la
 $msys2Uri = ((Invoke-RestMethod $msys2_release).assets | Where-Object {
   $_.name -match "x86_64" -and $_.name.EndsWith("tar.xz") }).browser_download_url
 
-$msys2File = "$env:TEMP\msys2.tar.xz"
-
-# Download the latest msys2 x86_64
+# Download the latest msys2 x86_64, filename includes release date
 Write-Host "Starting msys2 download using $($msys2Uri.split('/')[-1])"
-(New-Object System.Net.WebClient).DownloadFile($msys2Uri, $msys2File)
+$msys2File = Start-DownloadWithRetry -Url $msys2Uri
 Write-Host "Finished download"
 
 # nix style path for tar
@@ -31,7 +31,7 @@ $env:PATH = "$gitPath\usr\bin;$gitPath\mingw64\bin;$origPath"
 $tar = "$gitPath\usr\bin\tar.exe"
 
 # extract tar.xz to C:\
-Write-Host "Starting msys2 extraction from $msys2FileU"
+Write-Host "Starting msys2 extraction"
 &$tar -xJf $msys2FileU -C /c/
 Remove-Item $msys2File
 Write-Host "Finished extraction"
@@ -39,55 +39,52 @@ Write-Host "Finished extraction"
 # Add msys2 bin tools folders to PATH temporary
 $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
 
-Write-Host "bash pacman-key --init"
+Write-Host "`n$dash bash pacman-key --init"
 bash.exe -c "pacman-key --init 2>&1"
 
 Write-Host "bash pacman-key --populate msys2"
 bash.exe -c "pacman-key --populate msys2 2>&1"
 
-Write-Host "pacman -Sy --noconfirm --needed pacman"
-pacman -Sy --noconfirm --needed pacman
-pacman -Su --noconfirm
-
-# Force stop gpg-agent to continue installation
-Get-Process gpg-agent -ErrorAction SilentlyContinue | Stop-Process -Force
-
-Write-Host "pacman --noconfirm -Syyuu"
+Write-Host "`n$dash pacman --noconfirm -Syyuu"
 pacman.exe -Syyuu --noconfirm
-pacman.exe -Syuu --noconfirm
+taskkill /f /fi "MODULES eq msys-2.0.dll"
+Write-Host "`n$dash pacman --noconfirm -Syuu (2nd pass)"
+pacman.exe -Syuu  --noconfirm
+taskkill /f /fi "MODULES eq msys-2.0.dll"
 
-Write-Host "Install msys2 packages"
+Write-Host "`n$dash Install msys2 packages"
 pacman.exe -S --noconfirm --needed --noprogressbar base-devel compression
+taskkill /f /fi "MODULES eq msys-2.0.dll"
 
-Write-Host "Remove p7zip/7z package due to conflicts"
+Write-Host "`n$dash Remove p7zip/7z package due to conflicts"
 pacman.exe -R --noconfirm --noprogressbar p7zip
 
 # mingw package list
 $tools = "___clang ___cmake ___llvm  ___toolchain ___ragel"
 
 # install mingw64 packages
-Write-Host "Install mingw64 packages"
+Write-Host "`n$dash Install mingw64 packages"
 $pre = "mingw-w64-x86_64-"
 pacman.exe -S --noconfirm --needed --noprogressbar $tools.replace('___', $pre).split(' ')
 
 # install mingw32 packages
-Write-Host "Install mingw32 packages"
+Write-Host "`n$dash Install mingw32 packages"
 $pre = "mingw-w64-i686-"
 pacman.exe -S --noconfirm --needed --noprogressbar $tools.replace('___', $pre).split(' ')
 
 # clean all packages to decrease image size
-Write-Host "Clean packages"
+Write-Host "`n$dash Clean packages"
 pacman.exe -Scc --noconfirm
 
-Write-Host "Installed mingw64 packages"
-pacman.exe -Qs --noconfirm mingw-w64-x86_64-
+Write-Host "`n$dash Installed mingw64 packages"
+pacman.exe -Q | grep ^mingw-w64-x86_64-
 
-Write-Host "Installed mingw32 packages"
-pacman.exe -Qs --noconfirm mingw-w64-i686-
+Write-Host "`n$dash Installed mingw32 packages"
+pacman.exe -Q | grep ^mingw-w64-i686-
 
-Write-Host "Installed msys2 packages"
-pacman.exe -Qs --noconfirm
+Write-Host "`n$dash Installed msys2 packages"
+pacman.exe -Q | grep -v ^mingw-w64-
 
-Write-Host "MSYS2 installation completed"
+Write-Host "`nMSYS2 installation completed"
 
 exit 0

@@ -81,6 +81,11 @@
             "destination": "{{user `helper_script_folder`}}"
         },
         {
+            "type": "file",
+            "source": "{{ template_dir }}/scripts/SoftwareReport",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
             "type": "windows-shell",
             "inline": [
                 "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y" ,
@@ -292,6 +297,12 @@
                 "{{ template_dir }}/scripts/Installers/Install-7zip.ps1"
             ]
         },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1"
+            ]
+        },
           {
             "type": "powershell",
             "scripts":[
@@ -501,6 +512,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-PostgreSQL.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-SQLPowerShellTools.ps1"
             ]
         },
@@ -637,6 +654,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Kind.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1"
             ]
         },
         {
@@ -965,7 +988,19 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-MongoDB.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ]
         },
         {
