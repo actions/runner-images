@@ -93,6 +93,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader "CLI Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzureCLIVersion),
+    (Get-AzCopyVersion),
     (Get-AzureDevopsExtVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMVersion),

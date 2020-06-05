@@ -1,0 +1,1 @@
+Choco-Install -PackageName azcopy10

@@ -141,6 +141,10 @@ function Get-AzureCLIVersion {
     return "Azure CLI $azureCLIVersion"
 }
 
+function Get-AzCopyVersion {
+    return ($(azcopy --version) -replace "version ")
+}
+
 function Get-AzureDevopsExtVersion {
     $azureDevExtVersion = (az version | ConvertFrom-Json | Foreach{ $_."extensions" })."azure-devops"
     return "Azure DevOps CLI extension $azureDevExtVersion"
