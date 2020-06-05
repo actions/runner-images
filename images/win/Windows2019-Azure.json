@@ -81,6 +81,11 @@
             "destination": "{{user `helper_script_folder`}}"
         },
         {
+            "type": "file",
+            "source": "{{ template_dir }}/scripts/SoftwareReport",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
             "type": "windows-shell",
             "inline": [
                 "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y" ,
@@ -619,6 +624,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-KubernetesCli.ps1"
             ]
         },
@@ -644,6 +655,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-RootCA.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1"
             ]
         },
         {
@@ -942,6 +959,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-PostgreSQL.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-VSWhere.ps1"
             ]
         },
@@ -960,6 +983,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-MongoDB.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Bazel.ps1"
             ]
         },
@@ -973,6 +1002,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ]
         },
         {

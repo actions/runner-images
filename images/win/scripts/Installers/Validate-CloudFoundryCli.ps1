@@ -5,7 +5,7 @@
 
 if (Get-Command -Name 'cf')
 {
-    Write-Host "cf on path"
+    Write-Host 'cf on path'
 }
 else
 {
@@ -13,16 +13,3 @@ else
     exit 1
 }
 
-# Adding description of the software to Markdown
-$SoftwareName = "Cloud Foundry CLI"
-
-if( $(cf version) -match  '\d+\.\d+\.\d+' )
-{
-   $version = $Matches[0]
-}
-
-$Description = @"
-_Version:_ $version<br/>
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

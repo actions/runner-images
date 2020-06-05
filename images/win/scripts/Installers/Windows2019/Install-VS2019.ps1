@@ -72,6 +72,7 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17134 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17763 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.18362 ' + `
+              '--add Microsoft.VisualStudio.Component.Windows10SDK.19041 ' + `
               '--add Microsoft.VisualStudio.Component.WinXP ' + `
               '--add Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices ' + `
               '--add Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools ' + `
@@ -134,28 +135,3 @@ $sdkFileName = "sdksetup14393.exe"
 $argumentList = ("/q", "/norestart", "/ceip off", "/features OptionId.WindowsSoftwareDevelopmentKit")
 
 Install-Binary -Url $sdkUrl -Name $sdkFileName -ArgumentList $argumentList
-
-# Adding description of the software to Markdown
-
-$SoftwareName = "Visual Studio 2019 Enterprise"
-
-$Description = @"
-_Version:_ $version<br/>
-_Location:_ $VSInstallRoot
-
-The following workloads and components are installed with Visual Studio 2019:
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-
-# Adding explicitly added Workloads details to markdown by parsing $Workloads
-Add-ContentToMarkdown -Content $($WorkLoads.Split('--') | % { if( ($_.Split(" "))[0] -like "add") { "* " +($_.Split(" "))[1] }  } )
-
-# Adding additional SDKs to markdown
-$SDKDescription = @"
-
-Additional Windows 10 SDKs:
-* Windows 10 SDK version 10.0.14393.795
-"@
-
-Add-ContentToMarkdown -Content $SDKDescription

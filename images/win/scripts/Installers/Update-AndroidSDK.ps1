@@ -100,7 +100,7 @@ Push-Location -Path $sdk.FullName
     # Android NDK root path.
     $ndk_root = "C:\Program Files (x86)\Android\android-sdk\ndk-bundle"
 
-    if (Test-Path $ndk_root){    
+    if (Test-Path $ndk_root){
         setx ANDROID_HOME $sdk_root /M
         setx ANDROID_NDK_HOME $ndk_root /M
         setx ANDROID_NDK_PATH $ndk_root /M
@@ -111,43 +111,3 @@ Push-Location -Path $sdk.FullName
 
 Pop-Location
 
-# Adding description of the software to Markdown
-$Header = @"
-
-## Android SDK Build Tools
-
-"@
-
-Add-ContentToMarkdown -Content $Header
-
-$BuildTools =(Get-ChildItem "C:\Program Files (x86)\Android\android-sdk\build-tools\") `
-           | Where { $_.Name -match "[0-9].*" } `
-           | Sort-Object -Descending `
-           | % { "#### $($_.Name)`n`n_Location:_ $($_.FullName)`n" }
-
-Add-ContentToMarkdown -Content $BuildTools
-
-
-# Adding description of the software to Markdown
-$Header = @"
-
-## Android SDK Platforms
-
-"@
-
-Add-ContentToMarkdown -Content $Header
-
-$SdkList =(Get-ChildItem "C:\Program Files (x86)\Android\android-sdk\platforms\") | Sort-Object -Descending | %{ $_.FullName }
-
-foreach($sdk in $SdkList)
-{
-    $sdkProps = ConvertFrom-StringData (Get-Content "$sdk\source.properties" -Raw)
-
-    $content = @"
-#### $($sdkProps.'Platform.Version') (API $($sdkProps.'AndroidVersion.ApiLevel'))
-
-_Location:_ $sdk
-
-"@
-    Add-ContentToMarkdown -Content $content
-}

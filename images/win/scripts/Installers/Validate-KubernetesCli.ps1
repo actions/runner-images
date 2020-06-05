@@ -3,8 +3,7 @@
 ##  Desc:  Validate KubernetesCli.
 ################################################################################
 
-
-if((Get-Command -Name 'kubectl'))
+if (Get-Command -Name 'kubectl')
 {
     Write-Host "kubectl $(kubectl version --client=true --short=true) in path"
 }
@@ -14,15 +13,13 @@ else
     exit 1
 }
 
-# Adding description of the software to Markdown
-$SoftwareName = "Kubectl"
+if (Get-Command -Name 'minikube')
+{
+    Write-Host "minikube $(minikube version --short) in path"
+}
+else
+{
+    Write-Host "minikube is not in path"
+    exit 1
+}
 
-$version = $(kubectl version --client=true --short=true)
-
-$Description = @"
-_Version:_ $version<br/>
-_Environment:_
-* PATH: contains location of kubectl.exe
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
