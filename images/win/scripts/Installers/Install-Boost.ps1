@@ -8,7 +8,7 @@ Import-Module -Name ImageHelpers
 
 $SoftwareName = "Boost"
 $BoostDirectory = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath $SoftwareName
-$BoostVersions = (Get-ToolsByName -SoftwareName $SoftwareName).Versions | Foreach-Object {"{0}.0" -f $_}
+$BoostVersions = (Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Object { $_.Name -eq "Boost"}).Versions
 
 foreach($BoostVersion in $BoostVersions)
 {
