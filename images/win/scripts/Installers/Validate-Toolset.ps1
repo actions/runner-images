@@ -59,7 +59,7 @@ $toolsExecutables = @{
     Python = @("python.exe", "Scripts\pip.exe")
     node = @("node.exe", "npm")
     PyPy = @("python.exe", "Scripts\pip.exe")
-    go = @("bin/go")
+    go = @("bin\go.exe")
 }
 
 # Get toolcache content from toolset
