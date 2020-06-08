@@ -11,11 +11,15 @@ function Run-ExecutableTests {
     )
 
     foreach ($executable in $Executables) {
+        $versionCommand = "--version"
+        If ($executable -eq "bin/go") {
+            $versionCommand = "version"
+        }
         $executablePath = Join-Path $ToolPath $executable
 
         Write-Host "Check $executable..."
         if (Test-Path $executablePath) {
-            Write-Host "$executable is successfully installed: $(& $executablePath --version)"
+            Write-Host "$executable is successfully installed: $(& $executablePath $versionCommand)"
         } else {
             Write-Host "$executablePath is not installed!"
             exit 1
@@ -30,6 +34,7 @@ $toolsExecutables = @{
     Python = @("python", "bin/pip")
     node = @("bin/node", "bin/npm")
     PyPy = @("bin/python", "bin/pip")
+    go = @("bin/go")
 }
 
 # Get toolset content
