@@ -47,6 +47,18 @@
                 "12.*",
                 "14.*"
             ]
+        },
+        {
+            "name": "go",
+            "url" : "https://raw.githubusercontent.com/akv-platform/go-hostedtoolcache/update-versions-manifest-file/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "1.11.*",
+                "1.12.*",
+                "1.13.*",
+                "1.14.*"
+            ]
         }
     ]
 }
