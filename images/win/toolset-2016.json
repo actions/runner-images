@@ -50,7 +50,7 @@
         },
         {
             "name": "Boost",
-            "url" : "https://raw.githubusercontent.com/akv-platform/boost-hostedtoolcache/master/versions-manifest.json",
+            "url" : "https://raw.githubusercontent.com/actions/boost-versions/master/versions-manifest.json",
             "arch": "x86_64",
             "platform" : "win32",
             "toolset": "msvc14.1",
