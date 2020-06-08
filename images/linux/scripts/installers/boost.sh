@@ -8,8 +8,8 @@
 source $HELPER_SCRIPTS/document.sh
 
 TOOLSET_PATH="$INSTALLER_SCRIPT_FOLDER/toolcache.json"
-BOOST_LIB=/usr/local/share/boost
-BOOST_VERSIONS=$(cat $TOOLSET_PATH | jq -r 'to_entries[] | select(.key | match("boost")) | .value[] +".0"')
+BOOST_LIB="$AGENT_TOOLSDIRECTORY/boost"
+BOOST_VERSIONS=$(cat $TOOLSET_PATH | jq -r '.toolcache[] | select(.name | contains("Boost")) | .versions[]')
 
 # Install Boost
 for BOOST_VERSION in ${BOOST_VERSIONS}
