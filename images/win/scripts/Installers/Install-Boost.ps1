@@ -12,7 +12,7 @@ $BoostVersions = (Get-ToolsetContent | Select-Object -ExpandProperty toolcache |
 
 foreach($BoostVersion in $BoostVersions)
 {
-    $BoostInstallationDir = Join-Path -Path $BoostDirectory -ChildPath $BoostVersion
+    $BoostInstallationDir = Join-Path -Path $BoostDirectory -ChildPath "$BoostVersion\X86_64"
 
     $EnvBoostPath = "BOOST_ROOT_{0}" -f ($BoostVersion.Replace('.', '_'))
     setx $EnvBoostPath $BoostInstallationDir /M | Out-Null
