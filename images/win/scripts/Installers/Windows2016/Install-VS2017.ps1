@@ -65,6 +65,7 @@ $WorkLoads =    '--allWorkloads --includeRecommended ' + `
                 '--add Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Managed ' + `
                 '--add Microsoft.Component.Blend.SDK.WPF ' + `
                 '--add Microsoft.Component.VC.Runtime.UCRTSDK ' + `
+                '--add Microsoft.VisualStudio.Component.Sharepoint.BuildTools ' + `
                 '--add Microsoft.VisualStudio.Component.TeamOffice.BuildTools ' + `
                 '--add Microsoft.VisualStudio.Component.VC.ATL.Spectre ' + `
                 '--add Microsoft.VisualStudio.Component.VC.ATL.ARM.Spectre ' + `
@@ -75,6 +76,7 @@ $WorkLoads =    '--allWorkloads --includeRecommended ' + `
                 '--add Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre '+ `
                 '--add Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre ' + `
                 '--add Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre ' + `
+                '--add Microsoft.VisualStudio.Component.Workflow.BuildTools ' + `
                 '--add Microsoft.VisualStudio.Workload.Office ' + `
                 '--add Microsoft.VisualStudio.Workload.OfficeBuildTools '
 
