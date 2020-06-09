@@ -12,7 +12,7 @@ function Run-ExecutableTests {
 
     foreach ($executable in $Executables) {
         $versionCommand = "--version"
-        If ($executable -eq "bin/go") {
+        If ($executable -Match "go.exe") {
             $versionCommand = "version"
         }
         $executablePath = Join-Path $ToolPath $executable
