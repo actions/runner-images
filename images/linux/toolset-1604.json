@@ -36,8 +36,8 @@
             ]
         },
         {
-            "name": "Boost",
-            "url" : "https://raw.githubusercontent.com/akv-platform/boost-hostedtoolcache/master/versions-manifest.json",
+            "name": "boost",
+            "url" : "https://raw.githubusercontent.com/actions/boost-versions/master/versions-manifest.json",
             "platform" : "linux",
             "platform_version": "16.04",
             "arch": "x64",
