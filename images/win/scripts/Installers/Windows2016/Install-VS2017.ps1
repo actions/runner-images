@@ -65,6 +65,7 @@ $WorkLoads =    '--allWorkloads --includeRecommended ' + `
                 '--add Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Managed ' + `
                 '--add Microsoft.Component.Blend.SDK.WPF ' + `
                 '--add Microsoft.Component.VC.Runtime.UCRTSDK ' + `
+                '--add Microsoft.VisualStudio.Component.TeamOffice.BuildTools ' + `
                 '--add Microsoft.VisualStudio.Component.VC.ATL.Spectre ' + `
                 '--add Microsoft.VisualStudio.Component.VC.ATL.ARM.Spectre ' + `
                 '--add Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre ' + `

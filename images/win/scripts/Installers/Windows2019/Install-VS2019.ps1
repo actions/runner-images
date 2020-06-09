@@ -36,6 +36,7 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.SQL.SSDT ' + `
               '--add Microsoft.VisualStudio.Component.PortableLibrary ' + `
               '--add Microsoft.VisualStudio.Component.TeamOffice ' + `
+              '--add Microsoft.VisualStudio.Component.TeamOffice.BuildTools ' + `
               '--add Microsoft.VisualStudio.Component.TestTools.CodedUITest ' + `
               '--add Microsoft.VisualStudio.Component.TestTools.WebLoadTest ' + `
               '--add Microsoft.VisualStudio.Component.UWP.VC.ARM64 ' + `
