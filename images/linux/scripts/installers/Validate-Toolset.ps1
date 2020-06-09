@@ -30,7 +30,6 @@ $toolsExecutables = @{
     Python = @("python", "bin/pip")
     node = @("bin/node", "bin/npm")
     PyPy = @("bin/python", "bin/pip")
-    Boost = @("", "")
 }
 
 # Get toolset content
