@@ -24,9 +24,7 @@
         "image_version": "dev",
         "image_os": "ubuntu16",
         "github_feed_token": null,
-        "run_validation_diskspace": "false",
-        "go_default": "1.14",
-        "go_versions": "1.11 1.12 1.13 1.14"
+        "run_validation_diskspace": "false"
     },
     "sensitive-variables": ["client_secret", "github_feed_token"],
     "builders": [
@@ -284,22 +282,21 @@
         },
         {
             "type": "shell",
-            "scripts": [
-                "{{template_dir}}/scripts/installers/go.sh"
+            "scripts":[
+                "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
+                "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "GO_VERSIONS={{user `go_versions`}}",
-                "GO_DEFAULT={{user `go_default`}}"
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
-            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}"
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
         },
         {
             "type": "shell",
-            "scripts":[
-                "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
-                "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
+            "scripts": [
+                "{{template_dir}}/scripts/installers/go.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
