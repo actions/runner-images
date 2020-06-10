@@ -5,7 +5,7 @@
 
 if (Get-Command -Name 'jq')
 {
-    Write-Host "jq on path"
+    Write-Host 'jq on path'
 }
 else
 {
@@ -13,11 +13,3 @@ else
     exit 1
 }
 
-# Adding description of the software to Markdown
-$SoftwareName = "jq"
-
-$Description = @"
-_Version:_ $(jq --version)<br/>
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

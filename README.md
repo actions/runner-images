@@ -6,11 +6,16 @@ For general questions about using the virtual environments or writing your Actio
 ## Available Environments
 | Environment | YAML Label | Included Software | Latest Release & Rollout Progress |
 | --------------------|---------------------|--------------------|---------------------|
+| Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
 | Ubuntu 18.04 | `ubuntu-latest` or `ubuntu-18.04` | [ubuntu-18.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
 | Ubuntu 16.04 | `ubuntu-16.04` | [ubuntu-16.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu16&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu16&redirect=1) |
-| macOS 10.15 | `macos-latest` or `macos-10.15` | [macOS-10.15] | *Coming soon* |
+| macOS 10.15 | `macos-latest` or `macos-10.15` | [macOS-10.15] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=MacOS&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=MacOS&redirect=1)
 | Windows Server 2019 | `windows-latest` or `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 | Windows Server 2016 | `windows-2016` | [windows-2016] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
+```
+The Ubuntu 20.04 virtual environment is currently provided as a preview only.
+The "ubuntu-latest" YAML workflow label still uses the Ubuntu 18.04 virtual environment.
+```
 
 ***Looking for other Linux distributions?*** We do not plan to offer other Linux distributions. We recommend using Docker if you'd like to build using other distributions with the hosted virtual environments. Alternatively, you can leverage [self-hosted runners] and fully customize your environment to your needs.
 
@@ -44,6 +49,7 @@ we pin the tool to specific version(s).
 Low Impact changes will be pinned in this repository and marked with the [Announcement](https://github.com/actions/virtual-environments/labels/Announcement) label.
 * **Regular Weekly Rhythm** can be followed by watching [Releases](https://github.com/actions/virtual-environments/releases) to see when we generate candidate environments or deploy new ones. You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/virtual-environments/labels/awaiting-deployment) label.
 
+[ubuntu-20.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu2004-README.md
 [ubuntu-18.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
 [ubuntu-16.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1604-README.md
 [Windows-2019]: https://github.com/actions/virtual-environments/blob/master/images/win/Windows2019-Readme.md

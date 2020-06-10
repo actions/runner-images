@@ -6,8 +6,14 @@
 
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/os.sh
 
 docker_package=moby
+
+# There is no stable docker-moby for Ubuntu 20 at the moment
+if isUbuntu20 ; then
+    add-apt-repository "deb [arch=amd64,armhf,arm64] https://packages.microsoft.com/ubuntu/20.04/prod testing main"
+fi
 
 ## Check to see if docker is already installed
 echo "Determing if Docker ($docker_package) is installed"

@@ -4,7 +4,7 @@
 ################################################################################
 
 # Verify that julia.exe is on the path
-if((Get-Command -Name 'julia') -and (Test-Path -Path 'C:\Julia'))
+if ((Get-Command -Name 'julia') -and (Test-Path -Path 'C:\Julia'))
 {
     Write-Host "$(julia --version) is on the path."
 }
@@ -14,12 +14,3 @@ else
     exit 1
 }
 
-# Add description of the software to Markdown
-$SoftwareName = "Julia (x64)"
-$juliaVersion = $(julia --version).split() -match "\d+\.\d+\.\d+"
-
-$Description = @"
-_Version:_ $juliaVersion<br/>
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
