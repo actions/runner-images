@@ -34,17 +34,6 @@
                 "12.*",
                 "14.*"
             ]
-        },
-        {
-            "name": "boost",
-            "url" : "https://raw.githubusercontent.com/actions/boost-versions/master/versions-manifest.json",
-            "platform" : "linux",
-            "platform_version": "20.04",
-            "arch": "x64",
-            "versions": [
-                "1.69.0",
-                "1.71.0"
-            ]
         }
     ]
 }
