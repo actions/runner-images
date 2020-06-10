@@ -30,9 +30,7 @@
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "win19",
-        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
-        "go_versions": "1.9, 1.10, 1.11, 1.12, 1.13, 1.14",
-        "go_default": "1.14"
+        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
     },
     "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
@@ -338,6 +336,15 @@
         },
         {
             "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Go.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-OpenSSL.ps1"
             ]
@@ -358,16 +365,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "GO_VERSIONS={{user `go_versions`}}",
-                "GO_DEFAULT={{user `go_default`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Go.ps1"
             ]
         },
          {
@@ -755,16 +752,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-GitHub-CLI.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "GO_VERSIONS={{user `go_versions`}}",
-                "GO_DEFAULT={{user `go_default`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Go.ps1"
             ]
         },
         {

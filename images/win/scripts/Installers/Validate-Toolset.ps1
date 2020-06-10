@@ -37,7 +37,11 @@ function Validate-SystemDefaultTool {
 
     # Check if tool on path
     if (Get-Command -Name $binName) {
-        $versionOnPath = $(& $binName --version 2>&1) | Select-String -Pattern ".*(\d+\.\d+\.\d+)"
+        $versionCommand = "--version"
+        If ($binName -Match "go") {
+            $versionCommand = "version"
+        }
+        $versionOnPath = $(& $binName $versionCommand 2>&1) | Select-String -Pattern ".*(\d+\.\d+[\.\d+]+)"
 
         # Check if version is correct
         if ($versionOnPath.matches.Groups[1].Value -notlike $ExpectedVersion) {

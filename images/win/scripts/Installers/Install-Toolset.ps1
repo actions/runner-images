@@ -43,6 +43,27 @@ Function Set-DefaultPythonVersion {
     }
 }
 
+Function Set-DefaultGoVersion {
+    param(
+        [Parameter(Mandatory=$true)]
+        [object[]] $Toolset
+    )
+
+    $goToolset = $Toolset  | Where-Object { ($_.name -eq "go") -and ($_.default -ne "") } `
+                           | Select-Object default, arch -First 1
+
+    if ($goToolset.default -ne $null) {
+        $goPath = Join-Path $Env:AGENT_TOOLSDIRECTORY "/go/$($goToolset.default)/$($goToolset.arch)" -Resolve
+
+        Write-Host "Use Go $($goToolset.default) as a system Go"
+        Add-MachinePathItem -PathItem "$goPath\bin" | Out-Null
+        # Set the GOROOT environment variable.
+        setx GOROOT "$goPath" /M | Out-Null
+    } else {
+        Write-Host "Default Go version not found in toolset file!"
+    }
+}
+
 $ErrorActionPreference = "Stop"
 
 Import-Module -Name ImageHelpers -Force
@@ -75,3 +96,4 @@ foreach ($tool in $tools) {
 
 # Install default python version
 Set-DefaultPythonVersion -Toolset $tools
+Set-DefaultGoVersion -Toolset $tools
