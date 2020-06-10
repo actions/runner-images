@@ -62,8 +62,10 @@ foreach($tool in $tools) {
                         | Select-Object -First 1
         $foundVersionPath = Join-Path $foundVersion $tool.arch
 
-        Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
-        Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionPath
+        if ($toolExecs) {
+            Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
+            Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionArchPath
+        }
 
         $foundVersionName = $foundVersion.name
         if ($tool.name -eq 'PyPy')
