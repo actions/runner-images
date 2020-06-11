@@ -7,7 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 
-TOOLSET_PATH="$INSTALLER_SCRIPT_FOLDER/toolcache.json"
+TOOLSET_PATH="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 BOOST_LIB="$AGENT_TOOLSDIRECTORY/boost"
 BOOST_VERSIONS=$(cat $TOOLSET_PATH | jq -r '.toolcache[] | select(.name | contains("boost")) | .versions[]')
 BOOST_ARCH=$(cat $TOOLSET_PATH | jq -r '.toolcache[] | select(.name | contains("boost")) | .arch')
