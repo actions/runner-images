@@ -612,7 +612,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "ROOT_FOLDER={{user `root_folder`}}"
+                "ROOT_FOLDER={{user `root_folder`}}",
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Boost.ps1"
@@ -780,15 +781,6 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Go.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "ROOT_FOLDER={{user `root_folder`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Boost.ps1"
             ]
         },
         {

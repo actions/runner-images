@@ -67,8 +67,8 @@ foreach($tool in $tools) {
 
     foreach ($version in $tool.versions) {
         # Add wildcard if missing
-        if (-not $version.Contains('*')) {
-            $version += '.*'
+        if ($version.Split(".").Length -lt 3) {
+            $version += ".*"
         }
 
         # Check if version folder exists
@@ -90,8 +90,10 @@ foreach($tool in $tools) {
             exit 1
         }
 
-        Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
-        Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionArchPath
+        if ($toolExecs) {
+            Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
+            Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionArchPath
+        }
     }
 
     if (-not ([string]::IsNullOrEmpty($tool.default))) {
