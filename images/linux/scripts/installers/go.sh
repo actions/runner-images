@@ -14,7 +14,7 @@ toolsetVersions=$(cat $toolsetJson | jq -r '.toolcache[] | select(.name | contai
 defaultVersion=$(cat $toolsetJson | jq -r '.toolcache[] | select(.name | contains("go")) | .default')
 
 for toolsetVersion in $toolsetVersions; do
-    version="$(cut -d'.' -f1 -f2 <<< "$toolsVersion")"
+    version="$(cut -d'.' -f1,2 <<< "$toolsVersion")"
     goFolder="$AGENT_TOOLSDIRECTORY/go/$toolsetVersion/x64"
     echo "GOROOT_${version//d+/_}_X64=$goFolder" | tee -a /etc/environment
     DocumentInstalledItem "Go version ($($goFolder/bin/go version))"
