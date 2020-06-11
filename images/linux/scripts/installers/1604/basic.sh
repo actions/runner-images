@@ -39,7 +39,11 @@ apt-fast install -y --no-install-recommends \
     wget \
     zip \
     zstd \
-    lib32z1
+    lib32z1 \
+    m4 \
+    bison \
+    flex \
+    texinfo
 
 # Electron / VSCode / GitHub Desktop / kubectl prereqs
 apt-fast install -y --no-install-recommends \
@@ -103,3 +107,7 @@ DocumentInstalledItemIndent "zip"
 DocumentInstalledItemIndent "zstd"
 DocumentInstalledItemIndent "gnupg2"
 DocumentInstalledItemIndent "lib32z1"
+DocumentInstalledItemIndent "m4"
+DocumentInstalledItemIndent "bison"
+DocumentInstalledItemIndent "flex"
+DocumentInstalledItemIndent "texinfo"
