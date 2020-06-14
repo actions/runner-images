@@ -45,7 +45,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-NPMVersion),
     (Get-YarnVersion),
     (Get-PipVersion),
-    (Get-CondaVersion)
+    (Get-CondaVersion),
     (Get-RubyGemsVersion),
     (Get-HelmVersion),
     (Get-ComposerVersion)
