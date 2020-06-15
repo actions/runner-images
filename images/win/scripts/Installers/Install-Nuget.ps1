@@ -5,7 +5,6 @@
 
 Choco-Install -PackageName NuGet.CommandLine
 
-$env:Path = $env:Path + ";$env:ChocolateyInstall\bin"
 if (Get-Command -Name 'nuget.exe')
 {
     Write-Host 'nuget on path'
