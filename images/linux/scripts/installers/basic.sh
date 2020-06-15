@@ -12,25 +12,13 @@ source $HELPER_SCRIPTS/os.sh
 set -e
 
 common_packages="dnsutils
-                 file
-                 ftp
                  iproute2
                  iputils-ping
-                 jq
                  libunwind8
                  locales
-                 netcat
                  openssh-client
-                 rsync
-                 shellcheck
-                 sudo
-                 telnet
-                 time
                  tzdata
-                 unzip
                  upx
-                 wget
-                 zip
                  zstd
                  libxkbfile-dev
                  pkg-config
@@ -47,16 +35,30 @@ common_packages="dnsutils
                  xz-utils
                  xorriso
                  zsync
-                 curl
-                 parallel
                  gnupg2
-                 lib32z1
-                 m4
-                 bison
-                 flex
-                 texinfo"
+                 lib32z1"
 
-for package in $packages; do
+cmd_packages="curl
+              file
+              ftp
+              jq
+              netcat
+              ssh
+              parallel
+              rsync
+              shellcheck
+              sudo
+              telnet
+              time
+              unzip
+              zip
+              wget
+              m4
+              bison
+              flex
+              texinfo"
+
+for package in $common_packages $cmd_packages; do
     echo "Install $package"
     sudo apt-get install -y --no-install-recommends $package
 done
@@ -88,36 +90,9 @@ done
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Basic CLI:"
-DocumentInstalledItemIndent "curl"
-DocumentInstalledItemIndent "dnsutils"
-DocumentInstalledItemIndent "file"
-DocumentInstalledItemIndent "ftp"
-DocumentInstalledItemIndent "iproute2"
-DocumentInstalledItemIndent "iputils-ping"
-DocumentInstalledItemIndent "jq"
+DocumentInstalledItem "Basic packages:"
+for package in $common_packages $cmd_packages; do
+    DocumentInstalledItemIndent $package
+done
+
 DocumentInstalledItemIndent "$libcurelVer"
-DocumentInstalledItemIndent "libgbm-dev"
-DocumentInstalledItemIndent "libicu55"
-DocumentInstalledItemIndent "libunwind8"
-DocumentInstalledItemIndent "locales"
-DocumentInstalledItemIndent "netcat"
-DocumentInstalledItemIndent "openssh-client"
-DocumentInstalledItemIndent "parallel"
-DocumentInstalledItemIndent "rsync"
-DocumentInstalledItemIndent "shellcheck"
-DocumentInstalledItemIndent "sudo"
-DocumentInstalledItemIndent "telnet"
-DocumentInstalledItemIndent "time"
-DocumentInstalledItemIndent "tzdata"
-DocumentInstalledItemIndent "unzip"
-DocumentInstalledItemIndent "upx"
-DocumentInstalledItemIndent "wget"
-DocumentInstalledItemIndent "zip"
-DocumentInstalledItemIndent "zstd"
-DocumentInstalledItemIndent "gnupg2"
-DocumentInstalledItemIndent "lib32z1"
-DocumentInstalledItemIndent "m4"
-DocumentInstalledItemIndent "bison"
-DocumentInstalledItemIndent "flex"
-DocumentInstalledItemIndent "texinfo"
