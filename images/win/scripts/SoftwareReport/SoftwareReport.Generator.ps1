@@ -48,7 +48,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-CondaVersion)
     (Get-RubyGemsVersion),
     (Get-HelmVersion),
-    (Get-ComposerVersion)
+    (Get-ComposerVersion),
+    (Get-NugetVersion)
 )
 
 $markdown += New-MDHeader "Project Management" -Level 3
