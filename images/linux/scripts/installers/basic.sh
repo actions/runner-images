@@ -26,7 +26,8 @@ common_packages="dnsutils
                  libxss1
                  libgconf-2-4
                  dbus
-                 xvfblibgbm-dev
+                 xvfb
+                 libgbm-dev
                  libgtk-3-0
                  tk
                  fakeroot
@@ -36,7 +37,8 @@ common_packages="dnsutils
                  xorriso
                  zsync
                  gnupg2
-                 lib32z1"
+                 lib32z1
+                 texinfo"
 
 cmd_packages="curl
               file
@@ -55,8 +57,7 @@ cmd_packages="curl
               wget
               m4
               bison
-              flex
-              texinfo"
+              flex"
 
 for package in $common_packages $cmd_packages; do
     echo "Install $package"
