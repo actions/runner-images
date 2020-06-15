@@ -127,6 +127,10 @@ function Get-ComposerVersion {
     return "Composer $composerVersion"
 }
 
+function Get-NugetVersion {
+    (nuget help) -match "NuGet Version" -replace "Version: "
+}
+
 function Get-AntVersion {
     ($(ant -version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $antVersion = $Matches.Version
