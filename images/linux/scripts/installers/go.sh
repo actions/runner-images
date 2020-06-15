@@ -10,16 +10,20 @@ source $HELPER_SCRIPTS/document.sh
 set -e
 
 toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-toolsetVersions=$(cat $toolsetJson | jq -r '.toolcache[] | select(.name | contains("go")) | .versions[]')
+toolsetVersions=(`ls $AGENT_TOOLSDIRECTORY/go`)
 defaultVersion=$(cat $toolsetJson | jq -r '.toolcache[] | select(.name | contains("go")) | .default')
 
 for toolsetVersion in $toolsetVersions; do
-    version="$(cut -d'.' -f1,2 <<< "$toolsVersion")"
+    major="$(cut -d'.' -f1 <<< "$toolsVersion")"
+    minor="$(cut -d'.' -f2 <<< "$toolsVersion")"
     goFolder="$AGENT_TOOLSDIRECTORY/go/$toolsetVersion/x64"
-    echo "GOROOT_${version//d+/_}_X64=$goFolder" | tee -a /etc/environment
+
+    echo "GOROOT_${major}_${minor}_X64=$goFolder" | tee -a /etc/environment
+
+    if [[ "$toolsetVersion" =~ defaultVersion ]]; then
+        ln -s $goFolder/bin/* /usr/bin/
+        echo "GOROOT=$goFolder" | tee -a /etc/environment
+    fi
+
     DocumentInstalledItem "Go version ($($goFolder/bin/go version))"
 done
-
-defaultGoFolder="$AGENT_TOOLSDIRECTORY/go/$defaultVersion/x64"
-ln -s $defaultGoFolder/bin/* /usr/bin/
-echo "GOROOT=$defaultGoFolder" | tee -a /etc/environment
