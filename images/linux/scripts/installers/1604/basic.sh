@@ -10,64 +10,67 @@ source $HELPER_SCRIPTS/apt.sh
 
 set -e
 
-# Install basic command-line utilities
-apt-fast install -y --no-install-recommends \
-    curl \
-    dnsutils \
-    file \
-    ftp \
-    iproute2 \
-    iputils-ping \
-    jq \
-    libc++-dev \
-    libc++abi-dev \
-    libcurl3 \
-    libicu55 \
-    libunwind8 \
-    locales \
-    netcat \
-    openssh-client \
-    parallel \
-    rsync \
-    shellcheck \
-    sudo \
-    telnet \
-    time \
-    tzdata \
-    unzip \
-    upx \
-    wget \
-    zip \
-    zstd \
-    lib32z1 \
-    m4 \
-    bison \
-    flex \
-    texinfo
+common_packages="dnsutils
+                 iproute2
+                 iputils-ping
+                 libc++-dev
+                 libc++abi-dev
+                 libcurl3
+                 libicu55
+                 libunwind8
+                 locales
+                 openssh-client
+                 tzdata
+                 zstd
+                 lib32z1
+                 libxkbfile-dev
+                 pkg-config
+                 libsecret-1-dev
+                 libxss1
+                 libgconf-2-4
+                 dbus
+                 xvfb
+                 libgbm-dev
+                 libgtk-3-0
+                 tk
+                 fakeroot
+                 dpkg
+                 rpm
+                 xz-utils
+                 xorriso
+                 zsync
+                 gnupg2"
 
-# Electron / VSCode / GitHub Desktop / kubectl prereqs
-apt-fast install -y --no-install-recommends \
-    libxkbfile-dev \
-    pkg-config \
-    libsecret-1-dev \
-    libxss1 \
-    libgconf-2-4 \
-    dbus \
-    xvfb \
-    libgbm-dev \
-    libgtk-3-0 \
-    tk \
-    fakeroot \
-    dpkg \
-    rpm \
-    xz-utils \
-    xorriso \
-    zsync \
-    gnupg2
+cmd_packages="curl
+              file
+              ftp
+              jq
+              netcat
+              ssh
+              parallel
+              rsync
+              shellcheck
+              sudo
+              telnet
+              time
+              unzip
+              zip
+              wget
+              upx
+              m4
+              bison
+              flex
+              texinfo"
+
+# Install basic command-line utilities
+for package in $common_packages $cmd_packages; do
+    echo "Install $package"
+    apt-fast install -y --no-install-recommends $package
+done
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet time unzip upx wget zip m4 bison flex texinfo; do
+for cmd in $cmd_packages; do
     if ! command -v $cmd; then
         echo "$cmd was not installed"
         exit 1
@@ -76,38 +79,7 @@ done
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Basic CLI:"
-DocumentInstalledItemIndent "curl"
-DocumentInstalledItemIndent "dnsutils"
-DocumentInstalledItemIndent "file"
-DocumentInstalledItemIndent "ftp"
-DocumentInstalledItemIndent "iproute2"
-DocumentInstalledItemIndent "iputils-ping"
-DocumentInstalledItemIndent "jq"
-DocumentInstalledItemIndent "libc++-dev"
-DocumentInstalledItemIndent "libc++abi-dev"
-DocumentInstalledItemIndent "libcurl3"
-DocumentInstalledItemIndent "libgbm-dev"
-DocumentInstalledItemIndent "libicu55"
-DocumentInstalledItemIndent "libunwind8"
-DocumentInstalledItemIndent "locales"
-DocumentInstalledItemIndent "netcat"
-DocumentInstalledItemIndent "openssh-client"
-DocumentInstalledItemIndent "parallel"
-DocumentInstalledItemIndent "rsync"
-DocumentInstalledItemIndent "shellcheck"
-DocumentInstalledItemIndent "sudo"
-DocumentInstalledItemIndent "telnet"
-DocumentInstalledItemIndent "time"
-DocumentInstalledItemIndent "tzdata"
-DocumentInstalledItemIndent "unzip"
-DocumentInstalledItemIndent "upx"
-DocumentInstalledItemIndent "wget"
-DocumentInstalledItemIndent "zip"
-DocumentInstalledItemIndent "zstd"
-DocumentInstalledItemIndent "gnupg2"
-DocumentInstalledItemIndent "lib32z1"
-DocumentInstalledItemIndent "m4"
-DocumentInstalledItemIndent "bison"
-DocumentInstalledItemIndent "flex"
-DocumentInstalledItemIndent "texinfo"
+DocumentInstalledItem "Basic packages:"
+for package in $common_packages $cmd_packages; do
+    DocumentInstalledItemIndent $package
+done

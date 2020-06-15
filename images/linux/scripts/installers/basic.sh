@@ -60,7 +60,7 @@ cmd_packages="curl
 
 for package in $common_packages $cmd_packages; do
     echo "Install $package"
-    sudo apt-get install -y --no-install-recommends $package
+    apt-get install -y --no-install-recommends $package
 done
 
 if isUbuntu20 ; then
@@ -81,7 +81,7 @@ apt-get install -y --no-install-recommends $libcurelVer
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in curl file ftp jq netcat ssh parallel rsync shellcheck sudo telnet time unzip wget zip m4 bison flex texinfo; do
+for cmd in $cmd_packages; do
     if ! command -v $cmd; then
         echo "$cmd was not installed"
         exit 1
