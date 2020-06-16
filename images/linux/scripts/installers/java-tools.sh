@@ -95,7 +95,7 @@ done
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Azul Zulu OpenJDK:"
+DocumentInstalledItem "Adopt OpenJDK:"
 if isUbuntu16 || isUbuntu18 ; then
 DocumentInstalledItemIndent "7 ($(/usr/lib/jvm/zulu-7-azure-amd64/bin/java -showversion |& head -n 1))"
 fi
