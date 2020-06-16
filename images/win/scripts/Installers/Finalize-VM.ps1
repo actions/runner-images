@@ -1,6 +1,6 @@
 ################################################################################
 ##  File:  Finalize-VM.ps1
-##  Desc:  Clean up folders temp folders after installs to save space
+##  Desc:  Clean up temp folders after installs to save space
 ################################################################################
 
 Write-Host "Cleanup WinSxS"
