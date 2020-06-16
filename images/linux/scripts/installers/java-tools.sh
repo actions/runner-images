@@ -37,15 +37,8 @@ apt-get -y install adoptopenjdk-12-hotspot=\*
 apt-get -y install adoptopenjdk-13-hotspot=\*
 apt-get -y install adoptopenjdk-14-hotspot=\*
 
-# Set Default Java version to 8.
-if isUbuntu16 || isUbuntu18 ; then
-update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
-fi
-
-# Set Default Java version to 11.
-if isUbuntu20 ; then
-update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
-fi
+# Set Default Java version.
+update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
 
 echo "JAVA_HOME_8_X64=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64" | tee -a /etc/environment
 echo "JAVA_HOME_11_X64=/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64" | tee -a /etc/environment
