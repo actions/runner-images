@@ -10,10 +10,13 @@ source $HELPER_SCRIPTS/os.sh
 
 set -e
 
-# Install the Azul Systems Zulu JDKs
-# See https://www.azul.com/downloads/azure-only/zulu/
+# Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
 apt-add-repository "deb http://repos.azul.com/azure-only/zulu/apt stable main"
+# Install GPG Key for Adopt Open JDK. See https://adoptopenjdk.net/installation.html
+wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
+add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+
 apt-get -q update
 
 if isUbuntu16 || isUbuntu18 ; then
@@ -28,15 +31,17 @@ if isUbuntu20 ; then
     defaultLabel11="(default)"
 fi
 
-apt-get -y install zulu-8-azure-jdk=\*
-apt-get -y install zulu-11-azure-jdk=\*
-apt-get -y install zulu-12-azure-jdk=\*
-update-java-alternatives -s /usr/lib/jvm/zulu-8-azure-amd64
+apt-get -y install adoptopenjdk-8-hotspot=\*
+apt-get -y install adoptopenjdk-11-hotspot=\*
+apt-get -y install adoptopenjdk-12-hotspot=\*
+update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
 
-echo "JAVA_HOME_8_X64=/usr/lib/jvm/zulu-8-azure-amd64" | tee -a /etc/environment
-echo "JAVA_HOME_11_X64=/usr/lib/jvm/zulu-11-azure-amd64" | tee -a /etc/environment
-echo "JAVA_HOME_12_X64=/usr/lib/jvm/zulu-12-azure-amd64" | tee -a /etc/environment
-echo "JAVA_HOME=/usr/lib/jvm/zulu-${DEFAULT_JDK_VERSION}-azure-amd64" | tee -a /etc/environment
+echo "JAVA_HOME_8_X64=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64" | tee -a /etc/environment
+echo "JAVA_HOME_11_X64=/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64" | tee -a /etc/environment
+echo "JAVA_HOME_12_X64=/usr/lib/jvm/adoptopenjdk-12-hotspot-amd64" | tee -a /etc/environment
+echo "JAVA_HOME_13_X64=/usr/lib/jvm/adoptopenjdk-13-hotspot-amd64" | tee -a /etc/environment
+echo "JAVA_HOME_14_X64=/usr/lib/jvm/adoptopenjdk-14-hotspot-amd64" | tee -a /etc/environment
+echo "JAVA_HOME=/usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64" | tee -a /etc/environment
 echo "JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8" | tee -a /etc/environment
 
 # Install Ant
