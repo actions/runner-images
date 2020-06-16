@@ -28,7 +28,7 @@ $ErrorActionPreference = "Stop"
 
 # Get toolset content
 $toolsetJson = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
-$toolsToInstall = @("Python", "Node")
+$toolsToInstall = @("Python", "Node", "Boost")
 $tools = ConvertFrom-Json -InputObject $toolsetJson | Select-Object -ExpandProperty toolcache | Where {$ToolsToInstall -contains $_.Name}
 
 foreach ($tool in $tools) {
