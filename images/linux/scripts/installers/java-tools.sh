@@ -34,7 +34,18 @@ fi
 apt-get -y install adoptopenjdk-8-hotspot=\*
 apt-get -y install adoptopenjdk-11-hotspot=\*
 apt-get -y install adoptopenjdk-12-hotspot=\*
+apt-get -y install adoptopenjdk-13-hotspot=\*
+apt-get -y install adoptopenjdk-14-hotspot=\*
+
+# Set Default Java version to 8.
+if isUbuntu16 || isUbuntu18 ; then
 update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64
+fi
+
+# Set Default Java version to 11.
+if isUbuntu20 ; then
+update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64
+fi
 
 echo "JAVA_HOME_8_X64=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64" | tee -a /etc/environment
 echo "JAVA_HOME_11_X64=/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64" | tee -a /etc/environment
@@ -88,9 +99,11 @@ DocumentInstalledItem "Azul Zulu OpenJDK:"
 if isUbuntu16 || isUbuntu18 ; then
 DocumentInstalledItemIndent "7 ($(/usr/lib/jvm/zulu-7-azure-amd64/bin/java -showversion |& head -n 1))"
 fi
-DocumentInstalledItemIndent "8 ($(/usr/lib/jvm/zulu-8-azure-amd64/bin/java -showversion |& head -n 1)) $defaultLabel8"
-DocumentInstalledItemIndent "11 ($(/usr/lib/jvm/zulu-11-azure-amd64/bin/java -showversion |& head -n 1)) $defaultLabel11"
-DocumentInstalledItemIndent "12 ($(/usr/lib/jvm/zulu-12-azure-amd64/bin/java -showversion |& head -n 1))"
+DocumentInstalledItemIndent "8 ($(/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java -showversion |& head -n 1)) $defaultLabel8"
+DocumentInstalledItemIndent "11 ($(/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64/bin/java -showversion |& head -n 1)) $defaultLabel11"
+DocumentInstalledItemIndent "12 ($(/usr/lib/jvm/adoptopenjdk-12-hotspot-amd64/bin/java -showversion |& head -n 1))"
+DocumentInstalledItemIndent "13 ($(/usr/lib/jvm/adoptopenjdk-13-hotspot-amd64/bin/java -showversion |& head -n 1))"
+DocumentInstalledItemIndent "14 ($(/usr/lib/jvm/adoptopenjdk-14-hotspot-amd64/bin/java -showversion |& head -n 1))"
 DocumentInstalledItem "Ant ($(ant -version))"
 DocumentInstalledItem "Gradle ${gradleVersion}"
 DocumentInstalledItem "Maven ($(mvn -version | head -n 1))"
