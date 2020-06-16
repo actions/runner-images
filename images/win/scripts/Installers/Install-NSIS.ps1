@@ -3,7 +3,7 @@
 ##  Desc:  Install NSIS
 ################################################################################
 
-choco install nsis -y
+Choco-Install -PackageName nsis
 
 $NsisPath = "${env:ProgramFiles(x86)}\NSIS\"
 Add-MachinePathItem $NsisPath

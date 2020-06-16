@@ -30,6 +30,9 @@ function Disable-UserAccessControl {
     Write-Host "User Access Control (UAC) has been disabled."
 }
 
+# Set TLS1.2
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
+
 Import-Module -Name ImageHelpers -Force
 
 Write-Host "Setup PowerShellGet"
@@ -57,6 +60,15 @@ Install-WindowsFeature -Name NET-Framework-Features -IncludeAllSubFeature
 Install-WindowsFeature -Name NET-Framework-45-Features -IncludeAllSubFeature
 Install-WindowsFeature -Name BITS -IncludeAllSubFeature
 Install-WindowsFeature -Name DSC-Service
+
+# Install FS-iSCSITarget-Server
+$fsResult = Install-WindowsFeature -Name FS-iSCSITarget-Server -IncludeAllSubFeature -IncludeManagementTools
+if ( $fsResult.Success ) {
+    Write-Host "FS-iSCSITarget-Server has been successfully installed"
+} else {
+    Write-Host "Failed to install FS-iSCSITarget-Server"
+    exit 1
+}
 
 Write-Host "Disable UAC"
 Disable-UserAccessControl
@@ -98,56 +110,29 @@ else {
 }
 
 # Run the installer
-[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Turn off confirmation
 choco feature enable -n allowGlobalConfirmation
 
-# Install webpi
-choco install webpicmd -y
+# https://github.com/chocolatey/choco/issues/89
+# Remove some of the command aliases, like `cpack` #89
+Remove-Item -Path $env:ChocolateyInstall\bin\cpack.exe -Force
 
+# Install webpi
+Choco-Install -PackageName webpicmd
+
+# Install vcredist140
+Choco-Install -PackageName vcredist140
 
 # Expand disk size of OS drive
-
 New-Item -Path d:\ -Name cmds.txt -ItemType File -Force
-
 Add-Content -Path d:\cmds.txt "SELECT VOLUME=C`r`nEXTEND"
 
 $expandResult = (diskpart /s 'd:\cmds.txt')
-
 Write-Host $expandResult
 
 Write-Host "Disk sizes after expansion"
-
 wmic logicaldisk get size,freespace,caption
 
 
-# Adding description of the software to Markdown
-
-$Content = @"
-# Windows Server 2016
-
-The following software is installed on machines with the $env:ImageVersion update.
-
-Components marked with **\*** have been upgraded since the previous version of the image.
-
-"@
-
-Add-ContentToMarkdown -Content $Content
-
-
-$SoftwareName = "Chocolatey"
-
-if( $( $(choco version) | Out-String) -match  'Chocolatey v(?<version>.*).*' )
-{
-   $chocoVersion = $Matches.version.Trim()
-}
-
-$Description = @"
-_Version:_ $chocoVersion<br/>
-_Environment:_
-* PATH: contains location for choco.exe
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

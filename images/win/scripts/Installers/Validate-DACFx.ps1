@@ -5,9 +5,8 @@
 
 $env:PATH = $env:Path + ';C:\Program Files\Microsoft SQL Server\120\DAC\bin;C:\Program Files\Microsoft SQL Server\130\DAC\bin;C:\Program Files\Microsoft SQL Server\140\DAC\bin;C:\Program Files\Microsoft SQL Server\150\DAC\bin'
 
-if(Get-Command -Name 'SqlPackage')
+if (Get-Command -Name 'SqlPackage')
 {
-
     Write-Host "DACFx is installed at path" (Get-Command -Name 'SqlPackage').Source
 }
 else
@@ -15,29 +14,11 @@ else
     throw "DACFx is not installed!"
 }
 
-if(Get-Command -Name 'SqlLocalDB')
+if (Get-Command -Name 'SqlLocalDB')
 {
-    $localDbPath = (Get-Command -Name 'SqlLocalDB').Source
+    Write-Host "SQL Server Express LocalDB is available at " (Get-Command -Name SqlLocalDB).Source
 }
 else
 {
     throw "SqlLocalDB is not installed!"
 }
-
-function Get-DacFxVersion
-{
-    $regKey = "HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\Data-Tier Application Framework\CurrentVersion"
-    $Version = (Get-ItemProperty -Path $regKey).'(Default)'
-    return $Version
-}
-
-
-# Adding description of the software to Markdown
-$SoftwareName = "SQL Server Data Tier Application Framework (x64)"
-
-$Description = @"
-_Version:_ $(Get-DacFxVersion)<br/>
-* SQL Server Express LocalDB is available at $localDbPath
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

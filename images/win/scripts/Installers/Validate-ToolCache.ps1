@@ -63,32 +63,6 @@ function RunTestsByPath {
     }
 }
 
-function Get-SystemDefaultPython {
-    Write-Host "Validate system Python..."
-
-    if (Get-Command -Name 'python')
-    {
-        Write-Host "Python $(& python -V 2>&1) on path"
-    }
-    else
-    {
-        Write-Host "Python is not on path"
-        exit 1
-    }
-
-    $pythonBinVersion = $(& python -V 2>&1)
-    if ($pythonBinVersion -notlike "Python 3.*")
-    {
-        Write-Error "Python 3 is not in the PATH"
-        exit 1
-    }
-
-    $pythonBinOnPath = Split-Path -Path (Get-Command -Name 'python').Path
-    $description = GetDefaultToolDescription -SoftwareVersion $pythonBinVersion -SoftwareLocation $pythonBinOnPath
-
-    return $description
-}
-
 function Get-SystemDefaultRuby {
     Write-Host "Validate system Ruby..."
 
@@ -109,40 +83,6 @@ function Get-SystemDefaultRuby {
         exit 1
 
     }
-
-    $rubyVersionOnPath = "Ruby $($Matches.version)"
-    $description = GetDefaultToolDescription -SoftwareVersion $rubyVersionOnPath -SoftwareLocation $rubyBinOnPath
-
-    $gemVersion = & gem -v
-    $description += "* Gem Version: $gemVersion<br/>"
-
-    return $description
-}
-
-function GetDefaultToolDescription {
-    param (
-        [Parameter(Mandatory = $True)]
-        [string]$SoftwareVersion,
-        [Parameter(Mandatory = $True)]
-        [string]$SoftwareLocation
-    )
-
-    $description = "<br/>__System default version:__ $SoftwareVersion<br/>"
-    $description += "_Environment:_<br/>"
-    $description += "* Location: $SoftwareLocation<br/>"
-    $description += "* PATH: contains the location of $SoftwareVersion<br/>"
-
-    return $description
-}
-
-function GetMarkdownDescription {
-    param (
-        [Parameter(Mandatory = $True)]
-        [string]$SoftwareVersion,
-        [Parameter(Mandatory = $True)]
-        [string]$SoftwareArchitecture
-    )
-    return "_Version:_ $SoftwareVersion ($SoftwareArchitecture)<br/>"
 }
 
 function ToolcacheTest {
@@ -168,7 +108,6 @@ function ToolcacheTest {
         exit 1
     }
 
-    $markdownDescription = ""
     $tools = GetToolsByName -SoftwareName $SoftwareName
     foreach($tool in $tools)
     {
@@ -191,28 +130,13 @@ function ToolcacheTest {
 
             $path = "$softwarePath\$foundVersion\$requiredArchitecture"
             RunTestsByPath -ExecTests $ExecTests -Path $path -SoftwareName $SoftwareName -SoftwareVersion $foundVersion -SoftwareArchitecture $requiredArchitecture
-
-            $markdownDescription += GetMarkdownDescription -SoftwareVersion $foundVersion -SoftwareArchitecture $requiredArchitecture
         }
     }
 
-    if ($SoftwareName -contains "Python") {
-        $markdownDescription += Get-SystemDefaultPython
-    }
     if ($SoftwareName -contains "Ruby") {
-        $markdownDescription += Get-SystemDefaultRuby
+        Get-SystemDefaultRuby
     }
-
-    Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $markdownDescription
 }
-
-# Python test
-$PythonTests = @("python.exe", "Scripts\pip.exe")
-ToolcacheTest -SoftwareName "Python" -ExecTests $PythonTests
-
-# PyPy test
-$PyPyTests = @("python.exe", "bin\pip.exe")
-ToolcacheTest -SoftwareName "PyPy" -ExecTests $PyPyTests
 
 # Ruby test
 $RubyTests = @("bin\ruby.exe")

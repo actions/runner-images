@@ -69,6 +69,4 @@ done;
 
 AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
 
-Test_Hostedtoolcache_Tool "Python" "x64/python -c 'import sys;print(sys.version)'| head -1 | egrep -o '[0-9]+\.[0-9]+'"
 Test_Hostedtoolcache_Tool "Ruby" "x64/bin/ruby -e 'puts RUBY_VERSION' | egrep -o '[0-9]+\.[0-9]+'"
-Test_Hostedtoolcache_Tool "PyPy" "x64/bin/python -c 'import sys;print(sys.version)'| head -1 | egrep -o '[0-9]+\.[0-9]+' | cut -d '.' -f 1"

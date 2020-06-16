@@ -24,6 +24,7 @@
         "image_version": "dev",
         "image_os": "ubuntu16",
         "github_feed_token": null,
+        "run_validation_diskspace": "false",
         "go_default": "1.14",
         "go_versions": "1.11 1.12 1.13 1.14"
     },
@@ -101,7 +102,7 @@
         {
             "type": "shell",
             "scripts":[
-                "{{template_dir}}/scripts/installers/1604/preparemetadata.sh"
+                "{{template_dir}}/scripts/installers/preparemetadata.sh"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
@@ -135,15 +136,58 @@
         {
             "type": "shell",
             "scripts": [
+                "{{template_dir}}/scripts/installers/complete-snap-setup.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/homebrew.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "expect_disconnect": true,
+            "scripts": [
+                "{{template_dir}}/scripts/base/reboot.sh"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "pause_before": "30s",
+            "timeout": "10m",
+            "start_retry_timeout": "10s",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/homebrew-validate.sh"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
                 "{{template_dir}}/scripts/installers/7-zip.sh",
                 "{{template_dir}}/scripts/installers/ansible.sh",
                 "{{template_dir}}/scripts/installers/azcopy.sh",
                 "{{template_dir}}/scripts/installers/azure-cli.sh",
                 "{{template_dir}}/scripts/installers/azure-devops-cli.sh",
                 "{{template_dir}}/scripts/installers/1604/basic.sh",
+                "{{template_dir}}/scripts/installers/aliyun-cli.sh",
                 "{{template_dir}}/scripts/installers/aws.sh",
                 "{{template_dir}}/scripts/installers/build-essential.sh",
+                "{{template_dir}}/scripts/installers/nvm.sh",
                 "{{template_dir}}/scripts/installers/clang.sh",
+                "{{template_dir}}/scripts/installers/swift.sh",
                 "{{template_dir}}/scripts/installers/cmake.sh",
                 "{{template_dir}}/scripts/installers/docker-compose.sh",
                 "{{template_dir}}/scripts/installers/docker-moby.sh",
@@ -153,6 +197,7 @@
                 "{{template_dir}}/scripts/installers/gcc.sh",
                 "{{template_dir}}/scripts/installers/gfortran.sh",
                 "{{template_dir}}/scripts/installers/git.sh",
+                "{{template_dir}}/scripts/installers/github-cli.sh",
                 "{{template_dir}}/scripts/installers/google-chrome.sh",
                 "{{template_dir}}/scripts/installers/google-cloud-sdk.sh",
                 "{{template_dir}}/scripts/installers/haskell.sh",
@@ -161,16 +206,16 @@
                 "{{template_dir}}/scripts/installers/image-magick.sh",
                 "{{template_dir}}/scripts/installers/java-tools.sh",
                 "{{template_dir}}/scripts/installers/kind.sh",
-                "{{template_dir}}/scripts/installers/1604/kubernetes-tools.sh",
+                "{{template_dir}}/scripts/installers/kubernetes-tools.sh",
                 "{{template_dir}}/scripts/installers/leiningen.sh",
-                "{{template_dir}}/scripts/installers/1604/mercurial.sh",
+                "{{template_dir}}/scripts/installers/mercurial.sh",
                 "{{template_dir}}/scripts/installers/miniconda.sh",
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
                 "{{template_dir}}/scripts/installers/bazel.sh",
                 "{{template_dir}}/scripts/installers/phantomjs.sh",
-                "{{template_dir}}/scripts/installers/1604/php.sh",
+                "{{template_dir}}/scripts/installers/php.sh",
                 "{{template_dir}}/scripts/installers/pollinate.sh",
                 "{{template_dir}}/scripts/installers/postgresql.sh",
                 "{{template_dir}}/scripts/installers/powershellcore.sh",
@@ -184,15 +229,56 @@
                 "{{template_dir}}/scripts/installers/terraform.sh",
                 "{{template_dir}}/scripts/installers/packer.sh",
                 "{{template_dir}}/scripts/installers/vcpkg.sh",
-                "{{template_dir}}/scripts/installers/zeit-now.sh",
-                "{{template_dir}}/scripts/installers/updatepath.sh",
-                "{{template_dir}}/scripts/installers/dpkg-config.sh"
-
+                "{{template_dir}}/scripts/installers/vercel.sh",
+                "{{template_dir}}/scripts/installers/dpkg-config.sh",
+                "{{template_dir}}/scripts/installers/mongodb.sh",
+                "{{template_dir}}/scripts/installers/rndgenerator.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/aws-sam-cli.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolcache-1604.json",
+            "destination": "{{user `installer_script_folder`}}/toolcache.json"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolset-1604.json",
+            "destination": "{{user `installer_script_folder`}}/toolset.json"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/1604/android.sh",
+                "{{template_dir}}/scripts/installers/azpowershell.sh",
+                "{{template_dir}}/scripts/helpers/containercache.sh",
+                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
+                "{{template_dir}}/scripts/installers/pypy.sh",
+                "{{template_dir}}/scripts/installers/python.sh",
+                "{{template_dir}}/scripts/installers/test-toolcache.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
@@ -210,27 +296,17 @@
             "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}"
         },
         {
-            "type": "file",
-            "source": "{{template_dir}}/toolcache-1604.json",
-            "destination": "{{user `installer_script_folder`}}/toolcache.json"
-        },
-        {
             "type": "shell",
             "scripts":[
-                "{{template_dir}}/scripts/installers/1604/android.sh",
-                "{{template_dir}}/scripts/installers/azpowershell.sh",
-                "{{template_dir}}/scripts/helpers/containercache.sh",
-                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
-                "{{template_dir}}/scripts/installers/python.sh",
-                "{{template_dir}}/scripts/installers/test-toolcache.sh"
+                "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
+                "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
-                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
         },
         {
             "type": "shell",
@@ -241,6 +317,13 @@
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/cleanup.sh"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
@@ -258,6 +341,15 @@
                 "chmod 755 {{user `image_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/validate-disk-space.sh"
+            ],
+            "environment_vars": [
+                "RUN_VALIDATION={{user `run_validation_diskspace`}}"
+            ]
         },
         {
             "type": "file",

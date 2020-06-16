@@ -11,9 +11,9 @@ function Get-GoVersion
         [String]$goVersion
     )
     Write-Host "Check if $goVersion is presented in the system"
-    $DestinationPath = "$($env:SystemDrive)\"
-    $goDirectory = Get-ChildItem -Path $DestinationPath -Filter "Go$goVersion*" | Select-Object -First 1
-    $goPath = Join-Path $env:SystemDrive $goDirectory
+    $destinationPath = "$($env:AGENT_TOOLSDIRECTORY)\go"
+    $goDirectory = Get-ChildItem -Path $destinationPath -Filter "$goVersion*" | Select-Object -First 1
+    $goPath = Join-Path $destinationPath "$goDirectory\x64"
 
     $env:Path = "$goPath\bin;" + $env:Path
     $version = $(go version)
@@ -25,8 +25,6 @@ function Get-GoVersion
     {
         $goFullVersion = $Matches.version
         Write-Host "$goFullVersion has been found"
-
-        return $goFullVersion
     }
     else
     {
@@ -46,38 +44,7 @@ else
     exit 1
 }
 
-# Add details of available versions in Markdown
-$tmplMark = @"
-#### {0}
-
-_Environment:_
-* {1}: root directory of the Go {0} installation
-
-"@
-
-$tmplMarkRoot = @"
-#### {0}
-
-_Environment:_
-* PATH: contains the location of go.exe version {0}
-* GOROOT: root directory of the Go {0} installation
-* {1}: root directory of the Go {0} installation
-"@
-
-$SoftwareName = "Go (x64)"
-$Description = New-Object System.Text.StringBuilder
 $goVersionsToInstall = $env:GO_VERSIONS.split(", ", [System.StringSplitOptions]::RemoveEmptyEntries)
-
 foreach($go in $goVersionsToInstall) {
-    $goVersion = Get-GoVersion -goVersion $go
-    $goVersionTag = "GOROOT_{0}_{1}_X64" -f $go.split(".")
-    if ($goVersion -eq $go) {
-        if($go -eq $env:GO_DEFAULT) {
-            $null = $Description.AppendLine(($tmplMarkRoot -f $goVersion, $goVersionTag))
-        } else {
-            $null = $Description.AppendLine(($tmplMark -f $goVersion, $goVersionTag))
-        }
-    }
+    Get-GoVersion -goVersion $go
 }
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description.ToString()

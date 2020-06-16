@@ -3,4 +3,4 @@
 ##  Desc:  Install Subversion
 ################################################################################
 
-choco install svn -y
+Choco-Install -PackageName svn

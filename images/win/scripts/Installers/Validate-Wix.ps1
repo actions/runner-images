@@ -14,7 +14,7 @@ function Get-WixVersion {
 
 $WixToolSetVersion = Get-WixVersion
 
-if($WixToolSetVersion) {
+if ($WixToolSetVersion) {
     Write-Host "Wix Toolset version" $WixPackage.version "installed"
 }
 else {
@@ -22,25 +22,12 @@ else {
     exit 1
 }
 
-if(Test-IsWin19)
+if (Test-IsWin19)
 {
-    $WixPackageVersion = Get-VSExtensionVersion -packageName "WixToolset.VisualStudioExtension.Dev16"
-    $VSver = "2019"
+    $null = Get-VSExtensionVersion -packageName "WixToolset.VisualStudioExtension.Dev16"
 }
 else
 {
-    $WixPackageVersion = Get-VSExtensionVersion -packageName "WixToolset.VisualStudioExtension.Dev15"
-    $VSver = "2017"
+    $null = Get-VSExtensionVersion -packageName "WixToolset.VisualStudioExtension.Dev15"
 }
 
-# Adding description of the software to Markdown
-$SoftwareName = "WIX Tools"
-
-$Description = @"
-_Toolset Version:_ $WixToolSetVersion<br/>
-_WIX Toolset Studio $VSver Extension Version:_ $WixPackageVersion<br/>
-_Environment:_
-* WIX: Installation root of WIX
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

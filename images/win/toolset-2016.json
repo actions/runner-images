@@ -1,0 +1,63 @@
+{
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "2.7.*",
+                "3.5.*",
+                "3.6.*",
+                "3.7.*",
+                "3.8.*"
+            ],
+            "default": "3.7.*"
+        },
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
+            "arch": "x86",
+            "platform" : "win32",
+            "versions": [
+                "2.7.*",
+                "3.5.*",
+                "3.6.*",
+                "3.7.*",
+                "3.8.*"
+            ]
+        },
+        {
+            "name": "PyPy",
+            "arch": "x86",
+            "platform" : "win32",
+            "versions": [
+                "2.7",
+                "3.6"
+            ]
+        },
+        {
+            "name": "node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/master/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "8.*",
+                "10.*",
+                "12.*",
+                "14.*"
+            ]
+        },
+        {
+            "name": "Boost",
+            "url" : "https://raw.githubusercontent.com/actions/boost-versions/master/versions-manifest.json",
+            "arch": "x86_64",
+            "platform" : "win32",
+            "toolset": "msvc14.1",
+            "versions": [
+                "1.69.0",
+                "1.72.0"
+            ]
+        }
+    ]
+}

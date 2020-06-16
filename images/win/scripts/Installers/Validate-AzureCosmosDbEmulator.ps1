@@ -33,15 +33,6 @@ if (!(Test-Path $exeFilePath))
     Write-Host "$SoftwareName is not installed"
     exit 1
 }
-else
-{
-    $fileVersion = (Get-Item $exeFilePath).VersionInfo.FileVersion
-    Write-Host "$SoftwareName is successfully installed: $fileVersion"
 
-    $Description = @"
-_Version:_ $fileVersion<br/>
-_Location:_ $installDir
-"@
-
-    Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-}
+$fileVersion = (Get-Item $exeFilePath).VersionInfo.FileVersion
+Write-Host "$SoftwareName is successfully installed: $fileVersion"
