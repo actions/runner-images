@@ -59,11 +59,6 @@ cmd_packages="curl
               bison
               flex"
 
-for package in $common_packages $cmd_packages; do
-    echo "Install $package"
-    apt-get install -y --no-install-recommends $package
-done
-
 if isUbuntu20 ; then
     echo "Install python2"
     apt-get install -y --no-install-recommends python-is-python2
@@ -79,6 +74,12 @@ if isUbuntu20 ; then
 fi
 
 apt-get install -y --no-install-recommends $libcurelVer
+
+for package in $common_packages $cmd_packages; do
+    echo "Install $package"
+    apt-get install -y --no-install-recommends $package
+done
+
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
