@@ -42,6 +42,7 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.TestTools.WebLoadTest ' + `
               '--add Microsoft.VisualStudio.Component.UWP.VC.ARM64 ' + `
               '--add Microsoft.VisualStudio.Component.VC.140 ' + `
+              '--add Microsoft.VisualStudio.Component.VC.ATL ' + `
               '--add Microsoft.VisualStudio.Component.VC.ATL.ARM ' + `
               '--add Microsoft.VisualStudio.Component.VC.ATLMFC ' + `
               '--add Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre ' + `
