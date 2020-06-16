@@ -10,9 +10,6 @@ source $HELPER_SCRIPTS/os.sh
 
 set -e
 
-# Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
-apt-add-repository "deb http://repos.azul.com/azure-only/zulu/apt stable main"
 # Install GPG Key for Adopt Open JDK. See https://adoptopenjdk.net/installation.html
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
 add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
@@ -20,6 +17,9 @@ add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 apt-get -q update
 
 if isUbuntu16 || isUbuntu18 ; then
+    # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
+    apt-add-repository "deb http://repos.azul.com/azure-only/zulu/apt stable main"
     apt-get -y install zulu-7-azure-jdk=\*
     echo "JAVA_HOME_7_X64=/usr/lib/jvm/zulu-7-azure-amd64" | tee -a /etc/environment
     DEFAULT_JDK_VERSION=8
