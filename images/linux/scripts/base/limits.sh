@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e -u -o pipefail
 
 echo '* soft nofile 65536' >> /etc/security/limits.conf
 echo '* hard nofile 65536' >> /etc/security/limits.conf
