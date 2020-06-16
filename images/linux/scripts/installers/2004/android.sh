@@ -49,9 +49,11 @@ fi
 echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "ndk-bundle" \
     "platform-tools" \
+    "platforms;android-30" \
     "platforms;android-29" \
     "platforms;android-28" \
     "platforms;android-27" \
+    "build-tools;30.0.0" \
     "build-tools;29.0.3" \
     "build-tools;29.0.2" \
     "build-tools;29.0.0" \
@@ -76,10 +78,12 @@ DocumentInstalledItem "Google Play services $(cat ${ANDROID_SDK_ROOT}/extras/goo
 DocumentInstalledItem "CMake $(ls ${ANDROID_SDK_ROOT}/cmake 2>&1)"
 DocumentInstalledItem "Android Support Repository 47.0.0"
 DocumentInstalledItem "Android SDK Platform-Tools $(cat ${ANDROID_SDK_ROOT}/platform-tools/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
+DocumentInstalledItem "Android SDK Platform 30"
 DocumentInstalledItem "Android SDK Platform 29"
 DocumentInstalledItem "Android SDK Platform 28"
 DocumentInstalledItem "Android SDK Platform 27"
 DocumentInstalledItem "Android SDK Patch Applier v4"
+DocumentInstalledItem "Android SDK Build-Tools 30.0.0"
 DocumentInstalledItem "Android SDK Build-Tools 29.0.3"
 DocumentInstalledItem "Android SDK Build-Tools 29.0.2"
 DocumentInstalledItem "Android SDK Build-Tools 29.0.0"
