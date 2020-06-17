@@ -149,6 +149,12 @@ function Get-GradleVersion {
     return "Gradle $gradleVersion"
 }
 
+function Get-SbtVersion {
+    ($(sbt -version) | Out-String) -match "sbt script version: (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $sbtVersion = $Matches.Version
+    return "sbt $sbtVersion"
+}
+
 function Get-DotnetSdks {
     $sdksRawList = dotnet --list-sdks
     $sdkVersions = ($sdksRawList | Foreach-Object {$_.Split()[0]}) -join ' '
