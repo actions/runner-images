@@ -15,7 +15,13 @@ Function Install-Asset {
     $assetArchivePath = Start-DownloadWithRetry -Url $ReleaseAsset.download_url -Name $ReleaseAsset.filename
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
-    7z.exe x $assetArchivePath -o"$assetFolderPath" -y | Out-Null
+    if ($assetArchivePath.EndsWith(".tar.gz")) {
+        $assetTarPath = $assetArchivePath.TrimEnd(".tar.gz")
+        Extract-7Zip -Path $assetArchivePath -DestinationPath $assetTarPath
+        Extract-7Zip -Path $assetTarPath -DestinationPath $assetFolderPath
+    } else {
+        Extract-7Zip -Path $assetArchivePath -DestinationPath $assetFolderPath
+    }
 
     Write-Host "Invoke installation script..."
     Push-Location -Path $assetFolderPath
@@ -69,7 +75,8 @@ $ErrorActionPreference = "Stop"
 Import-Module -Name ImageHelpers -Force
 
 # Get toolcache content from toolset
-$ToolsToInstall = @("Python", "Node", "Go")
+$ToolsToInstall = @("Python", "Node", "Boost", "Go")
+
 $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where {$ToolsToInstall -contains $_.Name}
 
 foreach ($tool in $tools) {
@@ -81,7 +88,7 @@ foreach ($tool in $tools) {
         $asset = $assets | Where-Object version -like $toolVersion `
                          | Sort-Object -Property {[version]$_.version} -Descending `
                          | Select-Object -ExpandProperty files `
-                         | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) } `
+                         | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) -and ($_.toolset -eq $tool.toolset) } `
                          | Select-Object -First 1
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."

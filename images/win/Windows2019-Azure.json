@@ -194,6 +194,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Nuget.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Wix.ps1"
             ]
         },
@@ -570,7 +576,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "ROOT_FOLDER={{user `root_folder`}}"
+                "ROOT_FOLDER={{user `root_folder`}}",
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Boost.ps1"
