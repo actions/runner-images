@@ -778,15 +778,6 @@
         },
         {
             "type": "powershell",
-            "environment_vars": [
-                "ROOT_FOLDER={{user `root_folder`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Boost.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-PHP.ps1"
             ]
