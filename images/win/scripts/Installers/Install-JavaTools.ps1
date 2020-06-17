@@ -42,19 +42,22 @@ function Set-JavaPath {
         setx JAVA_HOME $javaPath /M
     }
 }
+# Install Java 7 from azul
+$azulJDK7URL = 'https://repos.azul.com/azure-only/zulu/packages/zulu-7/7u232/zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64.zip'
+$archivePath = Start-DownloadWithRetry -Url $azulJDK7URL -Name $([IO.Path]::GetFileName($azulJDK7URL))
+Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
 
-# Download the Azul Systems Zulu JDKs
-# See https://www.azul.com/downloads/azure-only/zulu/
-$azulJDKURLs = @(
-    'https://repos.azul.com/azure-only/zulu/packages/zulu-7/7u232/zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64.zip',
-    'https://repos.azul.com/azure-only/zulu/packages/zulu-8/8u222/zulu-8-azure-jdk_8.40.0.25-8.0.222-win_x64.zip',
-    'https://repos.azul.com/azure-only/zulu/packages/zulu-11/11.0.4/zulu-11-azure-jdk_11.33.15-11.0.4-win_x64.zip',
-    'https://repos.azul.com/azure-only/zulu/packages/zulu-13/13.0.3/zulu-13-azure-jdk_13.31.11-13.0.3-win_x64.zip'
-)
+# Download JDKs from AdoptOpenJDK
+$jdkVersions = @(8, 11, 13)
+foreach ($jdkVersion in $jdkVersions) {
+    $assets = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/$jdkVersion/hotspot"
+    $downloadUrl = ($assets | Where-Object {
+        $_.binary.os -eq "windows" `
+        -and $_.binary.architecture -eq "x64" `
+        -and $_.binary.image_type -eq "jdk"
+    }).binary.package.link
 
-foreach ($azulJDKURL in $azulJDKURLs)
-{
-    $archivePath = Start-DownloadWithRetry -Url $azulJDKURL -Name $([IO.Path]::GetFileName($azulJDKURL))
+    $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))
     Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
 }
 
