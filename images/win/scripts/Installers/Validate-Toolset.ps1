@@ -9,12 +9,8 @@ function Run-ExecutableTests {
         [Parameter(Mandatory)] [string[]] $Executables,
         [Parameter(Mandatory)] [string] $ToolPath
     )
-
-    foreach ($executable in $Executables) {
-        $versionCommand = "--version"
-        If ($executable -Match "go.exe") {
-            $versionCommand = "version"
-        }
+    $versionCommand = $Executables["command"]
+    foreach ($executable in $Executables["tools"]) {
         $executablePath = Join-Path $ToolPath $executable
 
         Write-Host "Check $executable..."
@@ -33,14 +29,11 @@ function Validate-SystemDefaultTool {
         [Parameter(Mandatory)] [string] $ExpectedVersion
     )
 
+    $versionCommand = $toolsExecutables[$ToolName]["command"]
     $binName = $ToolName.ToLower()
 
     # Check if tool on path
     if (Get-Command -Name $binName) {
-        $versionCommand = "--version"
-        If ($binName -Match "go") {
-            $versionCommand = "version"
-        }
         $versionOnPath = $(& $binName $versionCommand 2>&1) | Select-String -Pattern ".*(\d+\.\d+[\.\d+]+)"
 
         # Check if version is correct
@@ -60,10 +53,22 @@ $ErrorActionPreference = "Stop"
 
 # Define executables for cached tools
 $toolsExecutables = @{
-    Python = @("python.exe", "Scripts\pip.exe")
-    node = @("node.exe", "npm")
-    PyPy = @("python.exe", "Scripts\pip.exe")
-    go = @("bin\go.exe")
+    Python = @{
+        tools = @("python.exe", "Scripts\pip.exe")
+        command = "--version"
+    }
+    node = @{
+        tools = @("node.exe", "npm")
+        command = "--version"
+    }
+    PyPy = @{
+        tools = @("python.exe", "Scripts\pip.exe")
+        command = "--version"
+    }
+    go = @{
+        tools = @("bin\go.exe")
+        command = "version"
+    }
 }
 
 # Get toolcache content from toolset
