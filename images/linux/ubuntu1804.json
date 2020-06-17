@@ -78,18 +78,12 @@
         },
         {
             "type": "shell",
-            "inline": [
-                "apt-get update",
-                "apt-get dist-upgrade -y",
-                "systemctl disable apt-daily.service",
-                "systemctl disable apt-daily.timer",
-                "systemctl disable apt-daily-upgrade.timer",
-                "systemctl disable apt-daily-upgrade.service",
-                "echo '* soft nofile 65536 \n* hard nofile 65536' >> /etc/security/limits.conf",
-                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session",
-                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session-noninteractive",
-                "echo 'DefaultLimitNOFILE=65536' >> /etc/systemd/system.conf"
-            ],
+            "script": "{{template_dir}}/scripts/base/apt.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/scripts/base/limits.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
