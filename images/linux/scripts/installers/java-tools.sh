@@ -88,10 +88,11 @@ done
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Adopt OpenJDK:"
 if isUbuntu16 || isUbuntu18 ; then
+DocumentInstalledItem "Azul Zulu OpenJDK:"
 DocumentInstalledItemIndent "7 ($(/usr/lib/jvm/zulu-7-azure-amd64/bin/java -showversion |& head -n 1))"
 fi
+DocumentInstalledItem "Adopt OpenJDK:"
 DocumentInstalledItemIndent "8 ($(/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java -showversion |& head -n 1)) $defaultLabel8"
 DocumentInstalledItemIndent "11 ($(/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64/bin/java -showversion |& head -n 1)) $defaultLabel11"
 DocumentInstalledItemIndent "12 ($(/usr/lib/jvm/adoptopenjdk-12-hotspot-amd64/bin/java -showversion |& head -n 1))"
