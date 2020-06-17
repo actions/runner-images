@@ -3,9 +3,8 @@ function Get-OSName {
 }
 
 function Get-OSVersion {
-    $systemInfo = Get-CimInstance -ClassName Win32_OperatingSystem
-    $OSVersion = $systemInfo.Version
-    $OSBuild = $systemInfo.BuildNumber
+    $OSVersion = (Get-CimInstance -ClassName Win32_OperatingSystem).Version
+    $OSBuild = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion' UBR).UBR
     return "OS Version: $OSVersion Build $OSBuild"
 }
 
