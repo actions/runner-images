@@ -42,12 +42,12 @@ function Set-JavaPath {
         setx JAVA_HOME $javaPath /M
     }
 }
-# Install Java 7 from azul
+# Install Java 7 from Azul
 $azulJDK7URL = 'https://repos.azul.com/azure-only/zulu/packages/zulu-7/7u232/zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64.zip'
 $archivePath = Start-DownloadWithRetry -Url $azulJDK7URL -Name $([IO.Path]::GetFileName($azulJDK7URL))
 Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
 
-# Download JDKs from AdoptOpenJDK
+# Install JDKs from AdoptOpenJDK
 $jdkVersions = @(8, 11, 13)
 foreach ($jdkVersion in $jdkVersions) {
     $assets = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/$jdkVersion/hotspot"
