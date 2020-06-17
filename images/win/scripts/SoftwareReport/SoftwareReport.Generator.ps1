@@ -56,7 +56,8 @@ $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AntVersion),
     (Get-MavenVersion),
-    (Get-GradleVersion)
+    (Get-GradleVersion),
+    (Get-SbtVersion)
 )
 
 $markdown += New-MDHeader "Tools" -Level 3
