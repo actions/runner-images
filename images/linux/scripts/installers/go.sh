@@ -15,8 +15,8 @@ defaultVersion=$(jq -r '.toolcache[] | select(.name | contains("go")) | .default
 
 for toolsetVersion in ${toolsetVersions[@]}
 do
-    major="$(cut -d'.' -f1 <<< "$toolsVersion")"
-    minor="$(cut -d'.' -f2 <<< "$toolsVersion")"
+    major="$(cut -d'.' -f1 <<< "$toolsetVersion")"
+    minor="$(cut -d'.' -f2 <<< "$toolsetVersion")"
     goFolder="$AGENT_TOOLSDIRECTORY/go/$toolsetVersion/x64"
 
     echo "GOROOT_${major}_${minor}_X64=$goFolder" | tee -a /etc/environment
