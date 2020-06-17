@@ -25,6 +25,4 @@ do
         ln -s $goFolder/bin/* /usr/bin/
         echo "GOROOT=$goFolder" | tee -a /etc/environment
     fi
-
-    DocumentInstalledItem "Go version ($($goFolder/bin/go version))"
 done
