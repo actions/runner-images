@@ -11,9 +11,10 @@ set -e
 
 toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 toolsetVersions=(`ls $AGENT_TOOLSDIRECTORY/go`)
-defaultVersion=$(cat $toolsetJson | jq -r '.toolcache[] | select(.name | contains("go")) | .default')
+defaultVersion=$(jq -r '.toolcache[] | select(.name | contains("go")) | .default' $toolsetJson)
 
-for toolsetVersion in $toolsetVersions; do
+for toolsetVersion in ${toolsetVersions[@]}
+do
     major="$(cut -d'.' -f1 <<< "$toolsVersion")"
     minor="$(cut -d'.' -f2 <<< "$toolsVersion")"
     goFolder="$AGENT_TOOLSDIRECTORY/go/$toolsetVersion/x64"

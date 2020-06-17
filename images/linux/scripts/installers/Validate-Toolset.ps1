@@ -9,14 +9,10 @@ function Run-ExecutableTests {
         [Parameter(Mandatory)] [string[]] $Executables,
         [Parameter(Mandatory)] [string] $ToolPath
     )
+    $versionCommand = $Executables["command"]
 
-    foreach ($executable in $Executables) {
-        $versionCommand = "--version"
-        If ($executable -eq "bin/go") {
-            $versionCommand = "version"
-        }
+    foreach ($executable in $Executables["tools"]) {
         $executablePath = Join-Path $ToolPath $executable
-
         Write-Host "Check $executable..."
         if (Test-Path $executablePath) {
             Write-Host "$executable is successfully installed: $(& $executablePath $versionCommand)"
@@ -31,10 +27,22 @@ $ErrorActionPreference = "Stop"
 
 # Define executables for cached tools
 $toolsExecutables = @{
-    Python = @("python", "bin/pip")
-    node = @("bin/node", "bin/npm")
-    PyPy = @("bin/python", "bin/pip")
-    go = @("bin/go")
+    Python = @{
+        tools = @("python", "bin/pip")
+        command = "--version"
+    }
+    node = @{
+        tools = @("bin/node", "bin/npm")
+        command = "--version"
+    }
+    PyPy = @{
+        tools = @("bin/python", "bin/pip")
+        command = "--version"
+    }
+    go = @{
+        tools = @("bin/go")
+        command = "version"
+    }
 }
 
 # Get toolset content

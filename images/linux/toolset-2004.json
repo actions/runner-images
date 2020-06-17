@@ -42,7 +42,8 @@
             "platform" : "linux",
             "versions": [
                 "1.14.*"
-            ]
+            ],
+            "default": "1.14.*"
         }
     ]
 }
