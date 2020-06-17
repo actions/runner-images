@@ -34,8 +34,6 @@ fi
 apt-get -y install adoptopenjdk-8-hotspot=\*
 apt-get -y install adoptopenjdk-11-hotspot=\*
 apt-get -y install adoptopenjdk-12-hotspot=\*
-apt-get -y install adoptopenjdk-13-hotspot=\*
-apt-get -y install adoptopenjdk-14-hotspot=\*
 
 # Set Default Java version.
 update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
@@ -43,8 +41,6 @@ update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hot
 echo "JAVA_HOME_8_X64=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64" | tee -a /etc/environment
 echo "JAVA_HOME_11_X64=/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64" | tee -a /etc/environment
 echo "JAVA_HOME_12_X64=/usr/lib/jvm/adoptopenjdk-12-hotspot-amd64" | tee -a /etc/environment
-echo "JAVA_HOME_13_X64=/usr/lib/jvm/adoptopenjdk-13-hotspot-amd64" | tee -a /etc/environment
-echo "JAVA_HOME_14_X64=/usr/lib/jvm/adoptopenjdk-14-hotspot-amd64" | tee -a /etc/environment
 echo "JAVA_HOME=/usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64" | tee -a /etc/environment
 echo "JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8" | tee -a /etc/environment
 
@@ -96,8 +92,6 @@ DocumentInstalledItem "Adopt OpenJDK:"
 DocumentInstalledItemIndent "8 ($(/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java -showversion |& head -n 1)) $defaultLabel8"
 DocumentInstalledItemIndent "11 ($(/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64/bin/java -showversion |& head -n 1)) $defaultLabel11"
 DocumentInstalledItemIndent "12 ($(/usr/lib/jvm/adoptopenjdk-12-hotspot-amd64/bin/java -showversion |& head -n 1))"
-DocumentInstalledItemIndent "13 ($(/usr/lib/jvm/adoptopenjdk-13-hotspot-amd64/bin/java -showversion |& head -n 1))"
-DocumentInstalledItemIndent "14 ($(/usr/lib/jvm/adoptopenjdk-14-hotspot-amd64/bin/java -showversion |& head -n 1))"
 DocumentInstalledItem "Ant ($(ant -version))"
 DocumentInstalledItem "Gradle ${gradleVersion}"
 DocumentInstalledItem "Maven ($(mvn -version | head -n 1))"
