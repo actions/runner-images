@@ -150,9 +150,8 @@ function Get-GradleVersion {
 }
 
 function Get-SbtVersion {
-    ($(sbt -version) | Out-String) -match "sbt script version: (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $sbtVersion = $Matches.Version
-    return "sbt $sbtVersion"
+    $sbtVersion = (sbt -version) -match "sbt script version:" -replace "script version: "
+    return "$sbtVersion"
 }
 
 function Get-DotnetSdks {
