@@ -11,8 +11,7 @@ function Set-JavaPath {
         [switch] $Default
     )
 
-    $filter = "*azure-jdk_${version}.*"
-    $javaPath = (Get-ChildItem -Path 'C:\Program Files\Java' -Filter $filter | Sort-Object -Property Name -Descending | Select-Object -First 1).FullName
+    $javaPath = (Get-ChildItem -Path 'C:\Program Files\Java' | Where-Object { $_ -match "jdk-?$Version"}).FullName
 
     Write-Host "Set JAVA_HOME_${Version}_X64 environmental variable as $javaPath"
     setx JAVA_HOME_${Version}_X64 $javaPath /M
@@ -47,8 +46,14 @@ $azulJDK7URL = 'https://repos.azul.com/azure-only/zulu/packages/zulu-7/7u232/zul
 $archivePath = Start-DownloadWithRetry -Url $azulJDK7URL -Name $([IO.Path]::GetFileName($azulJDK7URL))
 Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
 
+$java7Path = (Get-ChildItem -Path 'C:\Program Files\Java' -Filter "*azure-jdk_7" | Select-Object -First 1).FullName
+
+Write-Host "Set JAVA_HOME_${Version}_X64 environmental variable as $java7Path"
+setx JAVA_HOME_7_X64 $java7Path /M
+
 # Install JDKs from AdoptOpenJDK
 $jdkVersions = @(8, 11, 13)
+$defaultVersion = 8
 foreach ($jdkVersion in $jdkVersions) {
     $assets = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/$jdkVersion/hotspot"
     $downloadUrl = ($assets | Where-Object {
@@ -59,13 +64,13 @@ foreach ($jdkVersion in $jdkVersions) {
 
     $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))
     Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
-}
 
-# Set PATH and env variables
-Set-JavaPath -Version 7
-Set-JavaPath -Version 8 -Default
-Set-JavaPath -Version 11
-Set-JavaPath -Version 13
+    if ($jdkVersion -eq $defaultVersion) {
+        Set-JavaPath -Version $jdkVersion -Default
+    } else {
+        Set-JavaPath -Version $jdkVersion
+    }
+}
 
 # Install Java tools
 # Force chocolatey to ignore dependencies on Ant and Maven or else they will download the Oracle JDK
