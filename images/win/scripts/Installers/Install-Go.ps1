@@ -12,16 +12,8 @@ foreach ($goTool in $goTools)
     $toolPath = Join-Path $env:AGENT_TOOLSDIRECTORY $goTool.name
     foreach($goVersion in $goTool.versions)
     {
-        if (-not $goVersion.Contains('*')) {
-            $goVersion += '.*'
-        }
-
         # Check if version folder exists
         $expectedVersionPath = Join-Path $toolPath $goVersion
-        if (-not (Test-Path $expectedVersionPath)) {
-            Write-Host "Expected $($goTool.name) $goVersion folder is not found!"
-            exit 1
-        }
 
         # Take latest installed version in case if toolset version contains wildcards
         $foundVersion = Get-Item $expectedVersionPath `
