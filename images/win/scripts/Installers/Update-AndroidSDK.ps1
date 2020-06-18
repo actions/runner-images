@@ -34,7 +34,7 @@ Expand-Archive -Path .\android-sdk-licenses.zip -DestinationPath 'C:\Program Fil
 # run the updates.
 # keep newer versions in descending order
 
-$sdk_root = "C:\Program Files (x86)\Android\android-sdk"
+$sdk_root = "C:\Progra~2\Android\android-sdk"
 
 Push-Location -Path $sdk.FullName
 
@@ -100,7 +100,7 @@ Push-Location -Path $sdk.FullName
     "ndk-bundle"
 
     # Android NDK root path.
-    $ndk_root = "C:\Program Files (x86)\Android\android-sdk\ndk-bundle"
+    $ndk_root = "$sdk_root\ndk-bundle"
 
     if (Test-Path $ndk_root){
         setx ANDROID_HOME $sdk_root /M
