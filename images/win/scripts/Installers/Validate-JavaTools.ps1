@@ -18,7 +18,7 @@ Function Validate-JavaVersion {
       $versionNumber = $version.Split(".") | Select-Object -Last 1
 
       $javaPath = [System.Environment]::GetEnvironmentVariable("JAVA_HOME_${versionNumber}_X64")
-      if (([string]::IsNullOrEmpty($javaPath)))
+      if ([string]::IsNullOrEmpty($javaPath))
       {
          Write-Host "Environment variable 'JAVA_HOME_${versionNumber}_X64' is null"
          exit 1
