@@ -4,8 +4,6 @@
 ##  Desc:  Installs go, configures GOROOT, and adds go to the path
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 # Fail out if any setups fail
 set -e
 
