@@ -50,7 +50,7 @@
         },
         {
             "name": "go",
-            "url" : "https://raw.githubusercontent.com/akv-platform/go-hostedtoolcache/update-versions-manifest-file/versions-manifest.json",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/master/versions-manifest.json",
             "arch": "x64",
             "platform" : "win32",
             "versions": [
