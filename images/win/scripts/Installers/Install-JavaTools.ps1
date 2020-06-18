@@ -11,7 +11,12 @@ function Set-JavaPath {
         [switch] $Default
     )
 
-    $javaPath = (Get-ChildItem -Path 'C:\Program Files\Java' | Where-Object { $_ -match "jdk-?$Version"}).FullName
+    if ($Version -eq 7) {
+        $matchedString = "*azure-jdk_7"
+    } else {
+        $matchedString = "jdk-?$Version"
+    }
+    $javaPath = (Get-ChildItem -Path 'C:\Program Files\Java' | Where-Object { $_ -match $matchedString}).FullName
 
     Write-Host "Set JAVA_HOME_${Version}_X64 environmental variable as $javaPath"
     setx JAVA_HOME_${Version}_X64 $javaPath /M
@@ -41,20 +46,18 @@ function Set-JavaPath {
         setx JAVA_HOME $javaPath /M
     }
 }
-# Install Java 7 from Azul
-$azulJDK7URL = 'https://repos.azul.com/azure-only/zulu/packages/zulu-7/7u232/zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64.zip'
-$archivePath = Start-DownloadWithRetry -Url $azulJDK7URL -Name $([IO.Path]::GetFileName($azulJDK7URL))
-Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
 
-$java7Path = (Get-ChildItem -Path 'C:\Program Files\Java' -Filter "*azure-jdk_7" | Select-Object -First 1).FullName
+function Install-Java7FromAzul {
+    $azulJDK7URL = 'https://repos.azul.com/azure-only/zulu/packages/zulu-7/7u232/zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64.zip'
+    $archivePath = Start-DownloadWithRetry -Url $azulJDK7URL -Name $([IO.Path]::GetFileName($azulJDK7URL))
+    Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
+}
 
-Write-Host "Set JAVA_HOME_${Version}_X64 environmental variable as $java7Path"
-setx JAVA_HOME_7_X64 $java7Path /M
+function Install-JavaFromAdoptOpenJDK {
+    param(
+        [string] $jdkVersion
+    )
 
-# Install JDKs from AdoptOpenJDK
-$jdkVersions = @(8, 11, 13)
-$defaultVersion = 8
-foreach ($jdkVersion in $jdkVersions) {
     $assets = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/$jdkVersion/hotspot"
     $downloadUrl = ($assets | Where-Object {
         $_.binary.os -eq "windows" `
@@ -64,6 +67,16 @@ foreach ($jdkVersion in $jdkVersions) {
 
     $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))
     Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
+}
+
+$jdkVersions = @(7, 8, 11, 13)
+$defaultVersion = 8
+foreach ($jdkVersion in $jdkVersions) {
+    if ($jdkVersion -eq 7) {
+        Install-Java7FromAzul
+    } else {
+        Install-JavaFromAdoptOpenJDK -jdkVersion $jdkVersion
+    }
 
     if ($jdkVersion -eq $defaultVersion) {
         Set-JavaPath -Version $jdkVersion -Default
