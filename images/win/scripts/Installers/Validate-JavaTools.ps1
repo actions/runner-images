@@ -17,8 +17,19 @@ Function Validate-JavaVersion {
       # Take 7 & 8 for versions 1.7 and 1.8
       $versionNumber = $version.Split(".") | Select-Object -Last 1
 
-      $javaBin = [System.Environment]::GetEnvironmentVariable("JAVA_HOME_${versionNumber}_X64") + "\bin;"
+      $javaPath = [System.Environment]::GetEnvironmentVariable("JAVA_HOME_${versionNumber}_X64")
+      if (([string]::IsNullOrEmpty($javaPath)))
+      {
+         Write-Host "Environment variable 'JAVA_HOME_${versionNumber}_X64' is null"
+         exit 1
+      }
+
+      $javaBin = "$javaPath\bin;"
       $env:Path = $javaBin + $env:Path
+   }
+   else
+   {
+      Validate-JavaVersion -Version $Version
    }
 
    $isJavaExists =  $($(& $env:comspec "/s /c java -version 2>&1") | Out-String) -match '^(?<vendor>.+) version "(?<version>.+)".*'
