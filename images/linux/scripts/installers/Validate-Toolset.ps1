@@ -45,8 +45,8 @@ foreach($tool in $tools) {
 
     foreach ($version in $tool.versions) {
         # Add wildcard if missing
-        if (-not $version.Contains('*')) {
-            $version += '.*'
+        if ($version.Split(".").Length -lt 3) {
+            $version += ".*"
         }
 
         # Check if version folder exists
@@ -62,9 +62,10 @@ foreach($tool in $tools) {
                         | Select-Object -First 1
         $foundVersionPath = Join-Path $foundVersion $tool.arch
 
-        Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
-        Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionPath
-
+        if ($toolExecs) {
+            Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
+            Run-ExecutableTests -Executables $toolExecs -ToolPath $foundVersionPath
+        }
         $foundVersionName = $foundVersion.name
         if ($tool.name -eq 'PyPy')
         {

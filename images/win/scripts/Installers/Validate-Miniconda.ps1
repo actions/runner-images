@@ -25,12 +25,3 @@ else
     exit 1
 }
 
-$softwareName = "Miniconda"
-$description = @"
-_Version:_ $(& "$env:CONDA\Scripts\conda.exe" --version)<br/>
-_Environment:_
-* CONDA: contains location of the root of the Miniconda installation
-"@
-
-# Adding description of the software to Markdown
-Add-SoftwareDetailsToMarkdown -SoftwareName $softwareName -DescriptionMarkdown $description

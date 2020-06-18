@@ -65,6 +65,8 @@ $WorkLoads =    '--allWorkloads --includeRecommended ' + `
                 '--add Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Managed ' + `
                 '--add Microsoft.Component.Blend.SDK.WPF ' + `
                 '--add Microsoft.Component.VC.Runtime.UCRTSDK ' + `
+                '--add Microsoft.VisualStudio.Component.Sharepoint.BuildTools ' + `
+                '--add Microsoft.VisualStudio.Component.TeamOffice.BuildTools ' + `
                 '--add Microsoft.VisualStudio.Component.VC.ATL.Spectre ' + `
                 '--add Microsoft.VisualStudio.Component.VC.ATL.ARM.Spectre ' + `
                 '--add Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre ' + `
@@ -74,6 +76,7 @@ $WorkLoads =    '--allWorkloads --includeRecommended ' + `
                 '--add Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre '+ `
                 '--add Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre ' + `
                 '--add Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre ' + `
+                '--add Microsoft.VisualStudio.Component.Workflow.BuildTools ' + `
                 '--add Microsoft.VisualStudio.Workload.Office ' + `
                 '--add Microsoft.VisualStudio.Workload.OfficeBuildTools '
 
@@ -106,41 +109,3 @@ Write-Host "Visual Studio version ${version} installed"
 # Updating content of MachineState.json file to disable autoupdate of VSIX extensions
 $newContent = '{"Extensions":[{"Key":"1e906ff5-9da8-4091-a299-5c253c55fdc9","Value":{"ShouldAutoUpdate":false}},{"Key":"Microsoft.VisualStudio.Web.AzureFunctions","Value":{"ShouldAutoUpdate":false}}],"ShouldAutoUpdate":false,"ShouldCheckForUpdates":false}'
 Set-Content -Path "$VSInstallRoot\Common7\IDE\Extensions\MachineState.json" -Value $newContent
-
-# Adding description of the software to Markdown
-
-$SoftwareName = "Visual Studio 2017 $ReleaseInPath"
-
-$Description = @"
-_Version:_ $version<br/>
-_Location:_ $VSInstallRoot
-
-The following workloads including required and recommended components are installed with Visual Studio 2017:
-
-* Universal Windows Platform development
-* .NET desktop development
-* Desktop development with C++
-* ASP.NET and web development
-* Azure development
-* Node.js development
-* Data storage and processing
-* Data science and analytical applications *
-* Game development with Unity *
-* Linux development with C++ *
-* Game development with C++ *
-* Mobile development with C++ *
-* Office/SharePoint development
-* Mobile development with .NET
-* .NET Core cross-platform development
-* Visual Studio extension development *
-* Python development *
-* Mobile development with JavaScript *
-
-In addition the following optional components are installed:
-
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description
-
-# Adding explicitly added Workloads details to markdown by parsing $Workloads
-Add-ContentToMarkdown -Content $($WorkLoads.Split('--') | % { if( ($_.Split(" "))[0] -like "add") { "* " +($_.Split(" "))[1] }  } )

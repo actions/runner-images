@@ -40,6 +40,7 @@ Push-Location -Path $sdk.FullName
 
 & '.\tools\bin\sdkmanager.bat' --sdk_root=$sdk_root `
     "platform-tools" `
+    "platforms;android-30" `
     "platforms;android-29" `
     "platforms;android-28" `
     "platforms;android-27" `
@@ -50,6 +51,7 @@ Push-Location -Path $sdk.FullName
     "platforms;android-22" `
     "platforms;android-21" `
     "platforms;android-19" `
+    "build-tools;30.0.0" `
     "build-tools;29.0.3" `
     "build-tools;29.0.2" `
     "build-tools;29.0.1" `
@@ -100,7 +102,7 @@ Push-Location -Path $sdk.FullName
     # Android NDK root path.
     $ndk_root = "C:\Program Files (x86)\Android\android-sdk\ndk-bundle"
 
-    if (Test-Path $ndk_root){    
+    if (Test-Path $ndk_root){
         setx ANDROID_HOME $sdk_root /M
         setx ANDROID_NDK_HOME $ndk_root /M
         setx ANDROID_NDK_PATH $ndk_root /M
@@ -111,43 +113,3 @@ Push-Location -Path $sdk.FullName
 
 Pop-Location
 
-# Adding description of the software to Markdown
-$Header = @"
-
-## Android SDK Build Tools
-
-"@
-
-Add-ContentToMarkdown -Content $Header
-
-$BuildTools =(Get-ChildItem "C:\Program Files (x86)\Android\android-sdk\build-tools\") `
-           | Where { $_.Name -match "[0-9].*" } `
-           | Sort-Object -Descending `
-           | % { "#### $($_.Name)`n`n_Location:_ $($_.FullName)`n" }
-
-Add-ContentToMarkdown -Content $BuildTools
-
-
-# Adding description of the software to Markdown
-$Header = @"
-
-## Android SDK Platforms
-
-"@
-
-Add-ContentToMarkdown -Content $Header
-
-$SdkList =(Get-ChildItem "C:\Program Files (x86)\Android\android-sdk\platforms\") | Sort-Object -Descending | %{ $_.FullName }
-
-foreach($sdk in $SdkList)
-{
-    $sdkProps = ConvertFrom-StringData (Get-Content "$sdk\source.properties" -Raw)
-
-    $content = @"
-#### $($sdkProps.'Platform.Version') (API $($sdkProps.'AndroidVersion.ApiLevel'))
-
-_Location:_ $sdk
-
-"@
-    Add-ContentToMarkdown -Content $content
-}

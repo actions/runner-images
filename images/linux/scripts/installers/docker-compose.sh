@@ -7,10 +7,10 @@
 source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
-version="1.25.4"
+URL=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.assets[].browser_download_url | select(contains("docker-compose-Linux-x86_64"))' | head -1)
 
 # Install latest docker-compose from releases
-curl -L "https://github.com/docker/compose/releases/download/$version/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+curl -L $URL -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 # Run tests to determine that the software installed as expected

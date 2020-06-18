@@ -15,6 +15,12 @@ Please note that this project is released with a [Contributor Code of Conduct][c
 1. [Fork][fork] and clone the repository
 1. Create a new branch: `git checkout -b my-branch-name`
 1. Make your changes, ensure that they include steps to install and validate post-install (e.g. [kind.sh](images/linux/scripts/installers/kind.sh)).
+
+      Adding tool for Windows images:
+    - add tool installation script `Install-ToolName.ps1` (`/images/win/scripts/Installers`)
+    - add tool validation script `Validate-ToolName.ps1` (the same directory)
+    - add changes to document tool name and version to the software report generator: `images/win/scripts/SoftwareReport/SoftwareReport.Generator.ps1` that is used to generate software README file, e.g. [Windows2019-Readme.md](images/win/Windows2019-Readme.md)
+
 1. Test your changes by [creating VHD and deploying a VM](help/CreateImageAndAzureResources.md).
 1. Push to your fork and [submit a pull request][pr]
 

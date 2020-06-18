@@ -47,6 +47,17 @@
                 "12.*",
                 "14.*"
             ]
+        },
+        {
+            "name": "Boost",
+            "url" : "https://raw.githubusercontent.com/actions/boost-versions/master/versions-manifest.json",
+            "arch": "x86_64",
+            "platform" : "win32",
+            "toolset": "msvc14.1",
+            "versions": [
+                "1.69.0",
+                "1.72.0"
+            ]
         }
     ]
 }
