@@ -14,9 +14,7 @@ foreach($goVersion in $goTool.versions)
     if ($goVersion.Split(".").Length -lt 3) {
         $goVersion += ".*"
     }
-    # Check if version folder exists
     $expectedVersionPath = Join-Path $toolPath $goVersion
-    # Take latest installed version in case if toolset version contains wildcards
     $foundVersion = Get-Item $expectedVersionPath `
                     | Sort-Object -Property {[version]$_.name} -Descending `
                     | Select-Object -First 1
