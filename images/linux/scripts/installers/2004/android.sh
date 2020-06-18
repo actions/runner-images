@@ -45,8 +45,7 @@ else
     exit 1
 fi
 
-# Install the following SDKs and build tools, passing in "y" to accept licenses.
-echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
+yes | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "ndk-bundle" \
     "platform-tools" \
     "platforms;android-30" \
@@ -69,7 +68,9 @@ echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "extras;google;m2repository" \
     "extras;google;google_play_services" \
     "cmake;3.10.2.4988404" \
-    "patcher;v4"
+    "patcher;v4" > /dev/null 2>&1
+
+yes | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --licenses
 
 # Document what was added to the image
 echo "Lastly, document what was added to the metadata file"
