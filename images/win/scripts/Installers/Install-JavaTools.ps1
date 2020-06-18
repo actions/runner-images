@@ -13,11 +13,16 @@ function Set-JavaPath {
     )
 
     if ($Version -eq 7) {
-        $matchedString = "*azure-jdk_7"
+        $matchedString = "azure-jdk_7"
     } else {
         $matchedString = "jdk-?$Version"
     }
     $javaPath = (Get-ChildItem -Path $JavaRootPath | Where-Object { $_ -match $matchedString}).FullName
+
+    if ([string]::IsNullOrEmpty($javaPath)) {
+        Write-Host "Not found path to Java $Version"
+        exit 1
+    }
 
     Write-Host "Set JAVA_HOME_${Version}_X64 environmental variable as $javaPath"
     setx JAVA_HOME_${Version}_X64 $javaPath /M
