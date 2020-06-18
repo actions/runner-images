@@ -8,6 +8,7 @@ Import-Module -Name ImageHelpers -Force
 function Set-JavaPath {
     param (
         [string] $Version,
+        [string] $JavaRootPath,
         [switch] $Default
     )
 
@@ -16,7 +17,7 @@ function Set-JavaPath {
     } else {
         $matchedString = "jdk-?$Version"
     }
-    $javaPath = (Get-ChildItem -Path 'C:\Program Files\Java' | Where-Object { $_ -match $matchedString}).FullName
+    $javaPath = (Get-ChildItem -Path $JavaRootPath | Where-Object { $_ -match $matchedString}).FullName
 
     Write-Host "Set JAVA_HOME_${Version}_X64 environmental variable as $javaPath"
     setx JAVA_HOME_${Version}_X64 $javaPath /M
@@ -48,17 +49,21 @@ function Set-JavaPath {
 }
 
 function Install-Java7FromAzul {
+    param(
+        [string] $DestinationPath
+    )
     $azulJDK7URL = 'https://repos.azul.com/azure-only/zulu/packages/zulu-7/7u232/zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64.zip'
     $archivePath = Start-DownloadWithRetry -Url $azulJDK7URL -Name $([IO.Path]::GetFileName($azulJDK7URL))
-    Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
+    Extract-7Zip -Path $archivePath -DestinationPath $DestinationPath
 }
 
 function Install-JavaFromAdoptOpenJDK {
     param(
-        [string] $jdkVersion
+        [string] $JDKVersion,
+        [string] $DestinationPath
     )
 
-    $assets = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/$jdkVersion/hotspot"
+    $assets = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/$JDKVersion/hotspot"
     $downloadUrl = ($assets | Where-Object {
         $_.binary.os -eq "windows" `
         -and $_.binary.architecture -eq "x64" `
@@ -66,22 +71,24 @@ function Install-JavaFromAdoptOpenJDK {
     }).binary.package.link
 
     $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))
-    Extract-7Zip -Path $archivePath -DestinationPath "C:\Program Files\Java\"
+    Extract-7Zip -Path $archivePath -DestinationPath $DestinationPath
 }
 
 $jdkVersions = @(7, 8, 11, 13)
 $defaultVersion = 8
+$javaRootPath = "C:\Program Files\Java\"
+
 foreach ($jdkVersion in $jdkVersions) {
     if ($jdkVersion -eq 7) {
-        Install-Java7FromAzul
+        Install-Java7FromAzul -DestinationPath $javaRootPath
     } else {
-        Install-JavaFromAdoptOpenJDK -jdkVersion $jdkVersion
+        Install-JavaFromAdoptOpenJDK -JDKVersion $jdkVersion -DestinationPath $javaRootPath
     }
 
     if ($jdkVersion -eq $defaultVersion) {
-        Set-JavaPath -Version $jdkVersion -Default
+        Set-JavaPath -Version $jdkVersion -JavaRootPath $javaRootPath -Default
     } else {
-        Set-JavaPath -Version $jdkVersion
+        Set-JavaPath -Version $jdkVersion -JavaRootPath $javaRootPath
     }
 }
 
