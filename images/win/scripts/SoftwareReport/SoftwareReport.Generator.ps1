@@ -155,7 +155,8 @@ $markdown += New-MDHeader ".NET Core Runtime" -Level 3
 Get-DotnetRuntimes | Foreach-Object {
     $path = $_.Path
     $versions = $_.Versions
-    $markdown += "``Location $path``"
+    $markdown += "``Type: Developer Pack``"
+    $markdown += "``Location: $path``"
     $markdown += New-MDNewLine
     $markdown += New-MDList -Lines $versions -Style Unordered
 }
