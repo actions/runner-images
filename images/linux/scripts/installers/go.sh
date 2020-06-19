@@ -19,7 +19,7 @@ do
 
     echo "GOROOT_${major}_${minor}_X64=$goFolder" | tee -a /etc/environment
 
-    if [[ "$toolsetVersion" =~ defaultVersion ]]; then
+    if [[ "$toolsetVersion" =~ $defaultVersion ]]; then
         ln -s $goFolder/bin/* /usr/bin/
         echo "GOROOT=$goFolder" | tee -a /etc/environment
     fi
