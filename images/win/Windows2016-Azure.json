@@ -370,16 +370,8 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars":[
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Go.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
+                "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1"
             ]
         },
         {
@@ -610,16 +602,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-AzureCosmosDbEmulator.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "ROOT_FOLDER={{user `root_folder`}}",
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Boost.ps1"
             ]
         },
         {
