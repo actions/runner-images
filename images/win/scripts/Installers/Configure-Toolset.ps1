@@ -35,6 +35,8 @@ function Set-ToolEnvironment
     setx $envName $installationDir /M | Out-Null
 }
 
+$ErrorActionPreference = "Stop"
+
 Import-Module -Name ImageHelpers -Force -DisableNameChecking
 
 $toolsToConfigure = @("Boost", "Go")
