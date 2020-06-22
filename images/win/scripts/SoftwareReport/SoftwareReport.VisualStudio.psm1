@@ -32,7 +32,7 @@ function Get-WDKVersion {
     ($installedApplications | Where-Object { $_.DisplayName -eq 'Windows Driver Kit' } | Select-Object -First 1).DisplayVersion
 }
 
-function Get-VisualStudioExtenions {
+function Get-VisualStudioExtensions {
     # Wix
     $vs = (Get-VisualStudioVersion).Name.Split()[-1]
     $wixPackageVersion = (Get-VisualStudioPackages | Where-Object {$_.id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
