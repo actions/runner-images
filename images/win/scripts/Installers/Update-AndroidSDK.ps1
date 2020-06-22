@@ -101,9 +101,9 @@ Push-Location -Path $sdk.FullName
     "ndk-bundle"
 
     # Android NDK root path.
-    $ndk_root = "$sdk_root\ndk-bundle"
+    $ndk_root = Join-Path $sdk_root "ndk-bundle"
     # Create symlink for backward compatibility
-    mklink /J "$env:ProgramFiles(x86)\Android\android-sdk" $sdk_root
+    mklink /J "${env:ProgramFiles(x86)}\Android\android-sdk" $sdk_root
 
     if (Test-Path $ndk_root){
         setx ANDROID_HOME $sdk_root /M
