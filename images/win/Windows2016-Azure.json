@@ -553,12 +553,6 @@
             ]
         },
         {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
-            ]
-        },
-        {
             "type": "windows-shell",
             "inline": ["wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"]
         },
@@ -1009,6 +1003,18 @@
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
             ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
+        },
+        {
+            "type": "windows-restart",
+            "restart_timeout": "10m"
         },
         {
             "type": "powershell",
