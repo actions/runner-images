@@ -20,6 +20,8 @@ if isUbuntu16 || isUbuntu18 ; then
     apt-add-repository "deb http://repos.azul.com/azure-only/zulu/apt stable main"
     apt-get update
     apt-get -y install zulu-7-azure-jdk=\*
+    # Open JDP Adopt does not exist for Ubuntu 20
+    apt-get -y install adoptopenjdk-12-hotspot=\*
     echo "JAVA_HOME_7_X64=/usr/lib/jvm/zulu-7-azure-amd64" | tee -a /etc/environment
     DEFAULT_JDK_VERSION=8
     defaultLabel8="(default)"
@@ -31,9 +33,9 @@ if isUbuntu20 ; then
     apt-get update
 fi
 
+# Install only LTS versions.
 apt-get -y install adoptopenjdk-8-hotspot=\*
 apt-get -y install adoptopenjdk-11-hotspot=\*
-apt-get -y install adoptopenjdk-12-hotspot=\*
 
 # Set Default Java version.
 update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
