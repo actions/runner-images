@@ -14,12 +14,11 @@ set -e
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
 add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 
-apt-get -q update
-
 if isUbuntu16 || isUbuntu18 ; then
     # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
     apt-add-repository "deb http://repos.azul.com/azure-only/zulu/apt stable main"
+    apt-get update
     apt-get -y install zulu-7-azure-jdk=\*
     echo "JAVA_HOME_7_X64=/usr/lib/jvm/zulu-7-azure-amd64" | tee -a /etc/environment
     DEFAULT_JDK_VERSION=8
@@ -29,6 +28,7 @@ fi
 if isUbuntu20 ; then
     DEFAULT_JDK_VERSION=11
     defaultLabel11="(default)"
+    apt-get update
 fi
 
 apt-get -y install adoptopenjdk-8-hotspot=\*
