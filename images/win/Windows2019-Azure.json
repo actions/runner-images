@@ -304,12 +304,12 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolcache-2019.json",
+            "source": "{{template_dir}}/config/toolcache-2019.json",
             "destination": "{{user `root_folder`}}/toolcache.json"
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolset-2019.json",
+            "source": "{{template_dir}}/config/toolset-2019.json",
             "destination": "{{user `toolset_json_path`}}"
         },
         {
