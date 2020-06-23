@@ -16,7 +16,7 @@ download_with_retries() {
     i=20
     while [ $i -gt 0 ]; do
         ((i--))
-        curl $URL -4 -s -o "$DEST/$NAME"
+        curl $URL -4 -s -compressed -o "$DEST/$NAME"
         if [ $? != 0 ]; then
             sleep 30
         else
