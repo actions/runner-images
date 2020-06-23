@@ -9,7 +9,7 @@ function Get-PostgreSQLMarkdown
         Version = $pgVersion
         UserName = $env:PGUSER
         Password = $env:PGPASSWORD
-        EnvironmentVariables = @{PGBIN=$env:PGROOT; PGDATA=$env:PGDATA; PGROOT=$env:PGBIN}
+        EnvironmentVariables = "PGBIN=$env:PGROOT; <br> PGDATA=$env:PGDATA; <br> PGROOT=$env:PGBIN"
         Path = $pgRoot
         ServiceName = $pgService.Name
         ServiceStatus = $pgService.State
