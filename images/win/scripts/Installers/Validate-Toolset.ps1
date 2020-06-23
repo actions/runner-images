@@ -9,13 +9,13 @@ function Run-ExecutableTests {
         [Parameter(Mandatory)] [string[]] $Executables,
         [Parameter(Mandatory)] [string] $ToolPath
     )
-
-    foreach ($executable in $Executables) {
+    $versionCommand = $Executables["command"]
+    foreach ($executable in $Executables["tools"]) {
         $executablePath = Join-Path $ToolPath $executable
 
         Write-Host "Check $executable..."
         if (Test-Path $executablePath) {
-            Write-Host "$executable is successfully installed: $(& $executablePath --version)"
+            Write-Host "$executable is successfully installed: $(& $executablePath $versionCommand)"
         } else {
             Write-Host "$executablePath is not installed!"
             exit 1
@@ -29,11 +29,12 @@ function Validate-SystemDefaultTool {
         [Parameter(Mandatory)] [string] $ExpectedVersion
     )
 
+    $versionCommand = $toolsExecutables[$ToolName]["command"]
     $binName = $ToolName.ToLower()
 
     # Check if tool on path
     if (Get-Command -Name $binName) {
-        $versionOnPath = $(& $binName --version 2>&1) | Select-String -Pattern ".*(\d+\.\d+\.\d+)"
+        $versionOnPath = $(& $binName $versionCommand 2>&1) | Select-String -Pattern ".*(\d+\.\d+[\.\d+]+)"
 
         # Check if version is correct
         if ($versionOnPath.matches.Groups[1].Value -notlike $ExpectedVersion) {
@@ -52,9 +53,22 @@ $ErrorActionPreference = "Stop"
 
 # Define executables for cached tools
 $toolsExecutables = @{
-    Python = @("python.exe", "Scripts\pip.exe")
-    node = @("node.exe", "npm")
-    PyPy = @("python.exe", "Scripts\pip.exe")
+    Python = @{
+        tools = @("python.exe", "Scripts\pip.exe")
+        command = "--version"
+    }
+    node = @{
+        tools = @("node.exe", "npm")
+        command = "--version"
+    }
+    PyPy = @{
+        tools = @("python.exe", "Scripts\pip.exe")
+        command = "--version"
+    }
+    go = @{
+        tools = @("bin\go.exe")
+        command = "version"
+    }
 }
 
 # Get toolcache content from toolset

@@ -16,8 +16,7 @@ download_with_retries() {
     i=20
     while [ $i -gt 0 ]; do
         ((i--))
-        wget $URL   --output-document="$DEST/$NAME" \
-                    --no-verbose
+        curl $URL -4 -s -compressed -o "$DEST/$NAME"
         if [ $? != 0 ]; then
             sleep 30
         else

@@ -49,6 +49,21 @@
             ]
         },
         {
+            "name": "go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/master/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "1.9.*",
+                "1.10.*",
+                "1.11.*",
+                "1.12.*",
+                "1.13.*",
+                "1.14.*"
+            ],
+            "default": "1.14.*"
+        },
+        {
             "name": "Boost",
             "url" : "https://raw.githubusercontent.com/actions/boost-versions/master/versions-manifest.json",
             "arch": "x86_64",

@@ -24,9 +24,7 @@
         "image_version": "dev",
         "image_os": "ubuntu18",
         "github_feed_token": null,
-        "run_validation_diskspace": "false",
-        "go_default": "1.14",
-        "go_versions": "1.11 1.12 1.13 1.14"
+        "run_validation_diskspace": "false"
     },
     "sensitive-variables": ["client_secret", "github_feed_token"],
     "builders": [
@@ -78,18 +76,12 @@
         },
         {
             "type": "shell",
-            "inline": [
-                "apt-get update",
-                "apt-get dist-upgrade -y",
-                "systemctl disable apt-daily.service",
-                "systemctl disable apt-daily.timer",
-                "systemctl disable apt-daily-upgrade.timer",
-                "systemctl disable apt-daily-upgrade.service",
-                "echo '* soft nofile 65536 \n* hard nofile 65536' >> /etc/security/limits.conf",
-                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session",
-                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session-noninteractive",
-                "echo 'DefaultLimitNOFILE=65536' >> /etc/systemd/system.conf"
-            ],
+            "script": "{{template_dir}}/scripts/base/apt.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/scripts/base/limits.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
@@ -233,7 +225,7 @@
                 "{{template_dir}}/scripts/installers/terraform.sh",
                 "{{template_dir}}/scripts/installers/packer.sh",
                 "{{template_dir}}/scripts/installers/vcpkg.sh",
-                "{{template_dir}}/scripts/installers/zeit-vercel.sh",
+                "{{template_dir}}/scripts/installers/vercel.sh",
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
                 "{{template_dir}}/scripts/installers/mongodb.sh",
                 "{{template_dir}}/scripts/installers/rndgenerator.sh"
@@ -288,19 +280,6 @@
         },
         {
             "type": "shell",
-            "scripts": [
-                "{{template_dir}}/scripts/installers/go.sh"
-            ],
-            "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "GO_VERSIONS={{user `go_versions`}}",
-                "GO_DEFAULT={{user `go_default`}}"
-            ],
-            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}"
-        },
-        {
-            "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
                 "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
@@ -311,6 +290,16 @@
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/go.sh"
+            ],
+            "environment_vars": [
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",

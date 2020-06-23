@@ -45,17 +45,19 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-NPMVersion),
     (Get-YarnVersion),
     (Get-PipVersion),
-    (Get-CondaVersion)
+    (Get-CondaVersion),
     (Get-RubyGemsVersion),
     (Get-HelmVersion),
-    (Get-ComposerVersion)
+    (Get-ComposerVersion),
+    (Get-NugetVersion)
 )
 
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AntVersion),
     (Get-MavenVersion),
-    (Get-GradleVersion)
+    (Get-GradleVersion),
+    (Get-SbtVersion)
 )
 
 $markdown += New-MDHeader "Tools" -Level 3
@@ -140,7 +142,7 @@ $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Workloads, components and extensions:" -Level 4
 $markdown += New-MDNewLine
-$markdown += ((Get-VisualStudioComponents) + (Get-VisualStudioExtenions)) | New-MDTable
+$markdown += ((Get-VisualStudioComponents) + (Get-VisualStudioExtensions)) | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader ".NET Core SDK" -Level 3
@@ -153,7 +155,8 @@ $markdown += New-MDHeader ".NET Core Runtime" -Level 3
 Get-DotnetRuntimes | Foreach-Object {
     $path = $_.Path
     $versions = $_.Versions
-    $markdown += "``Location $path``"
+    $markdown += "``Type: Developer Pack``"
+    $markdown += "``Location: $path``"
     $markdown += New-MDNewLine
     $markdown += New-MDList -Lines $versions -Style Unordered
 }
