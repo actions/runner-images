@@ -48,7 +48,7 @@ foreach ($tool in $tools)
     Write-Host "Configure $($tool.name)..."
     foreach ($toolVersion in $tool.versions)
     {
-        Write-Host "Set $($tool.Name) $toolVersion environment variable..."
+        Write-Host "Set $($tool.Name) $toolVersion environment..."
         Set-ToolEnvironment -ToolVersion $toolVersion -ToolArchitecture $tool.arch -ToolName $tool.name
     }
 }
