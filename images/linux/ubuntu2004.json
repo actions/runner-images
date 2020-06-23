@@ -204,6 +204,7 @@
                 "{{template_dir}}/scripts/installers/java-tools.sh",
                 "{{template_dir}}/scripts/installers/kind.sh",
                 "{{template_dir}}/scripts/installers/kubernetes-tools.sh",
+                "{{template_dir}}/scripts/installers/oc.sh",
                 "{{template_dir}}/scripts/installers/leiningen.sh",
                 "{{template_dir}}/scripts/installers/mercurial.sh",
                 "{{template_dir}}/scripts/installers/miniconda.sh",
