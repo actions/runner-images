@@ -7,7 +7,7 @@
 # Source the helpers
 source $HELPER_SCRIPTS/document.sh
 # Install the oc CLI
-curl "https://mirror.openshift.com/pub/openshift-v3/clients/3.11.232/linux/oc.tar.gz" > oc.tar.gz
+curl "https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.6/linux/" > oc.tar.gz
 tar xvzf oc.tar.gz
 rm oc.tar.gz
 mv oc /usr/local/bin

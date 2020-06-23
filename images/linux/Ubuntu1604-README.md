@@ -169,7 +169,7 @@ compiled using version 3.2.0.0 of the Cabal library )
 - kubectl (Client Version: v1.18.3)
 - helm (v3.2.3+g8f83204)
 - minikube version: v1.11.0
-- oc (Openshift CLI) version v3.11.232
+- oc (Openshift CLI) version v4.6
 - Leiningen (Leiningen 2.9.3 on Java 1.8.0_252 OpenJDK 64-Bit Server VM)
 - Mercurial (Mercurial Distributed SCM (version 4.4.1))
 - Miniconda (conda 4.8.2)
