@@ -42,7 +42,9 @@ update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hot
 
 echo "JAVA_HOME_8_X64=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64" | tee -a /etc/environment
 echo "JAVA_HOME_11_X64=/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64" | tee -a /etc/environment
+if isUbuntu16 || isUbuntu18 ; then
 echo "JAVA_HOME_12_X64=/usr/lib/jvm/adoptopenjdk-12-hotspot-amd64" | tee -a /etc/environment
+fi
 echo "JAVA_HOME=/usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64" | tee -a /etc/environment
 echo "JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8" | tee -a /etc/environment
 
