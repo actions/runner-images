@@ -15,7 +15,9 @@ if isUbuntu20 ; then
     ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
     rm awscliv2.zip
     rm -rf aws
-else
+fi
+
+if isUbuntu16 || isUbuntu18 ; then
     curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
     unzip awscli-bundle.zip
     ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
