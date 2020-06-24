@@ -93,6 +93,10 @@ apt-get remove --purge -yq php7.2-dev
 
 apt-fast install -y --no-install-recommends snmp
 
+if isUbuntu20 ; then
+    php_versions="7.4"
+fi
+
 # Install composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === file_get_contents('https://composer.github.io/installer.sig')) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
@@ -133,6 +137,12 @@ echo "Lastly, documenting what we added to the metadata file"
 for version in $php_versions; do
     DocumentInstalledItem "PHP $version ($(php$version --version | head -n 1))"
 done
+
+# ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
+if isUbuntu20 ; then
+  rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
+  apt-get update
+fi
 
 DocumentInstalledItem "Composer  ($(composer --version))"
 DocumentInstalledItem "PHPUnit ($(phpunit --version))"
