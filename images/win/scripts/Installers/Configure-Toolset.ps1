@@ -21,7 +21,7 @@ Function Set-DefaultVariables
 
     if ([string]::IsNullOrEmpty($EnvVars.rootVariableName))
     {
-        setx $toolEnvVars.defaultVariableName $ToolVersionPath /M | Out-Null
+        setx $toolEnvVars.rootVariableName $ToolVersionPath /M | Out-Null
     }
 }
 
@@ -53,9 +53,9 @@ $toolsToConfigure = @("Python", "Boost", "Go")
 $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache `
                             | Where-Object { $toolsToConfigure -contains $_.name }
 
+Write-Host "Configure toolset tools environment..."
 foreach ($tool in $tools)
 {
-    Write-Host "Configure $($tool.name)..."
     $toolEnvVars = $toolsEnvironmentVariables[$tool.name]
 
     if (-not ([string]::IsNullOrEmpty($toolEnvVars.variableTemplate)))
