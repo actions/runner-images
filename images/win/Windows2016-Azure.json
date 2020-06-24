@@ -337,12 +337,12 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/config/toolcache-2016.json",
+            "source": "{{template_dir}}/toolsets/toolcache-2016.json",
             "destination": "{{user `root_folder`}}/toolcache.json"
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/config/toolset-2016.json",
+            "source": "{{template_dir}}/toolsets/toolset-2016.json",
             "destination": "{{user `toolset_json_path`}}"
         },
         {
