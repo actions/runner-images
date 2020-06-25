@@ -8,7 +8,9 @@ Function Set-DefaultVariables
 {
     param
     (
-        [string[]] $EnvVars,
+        [Parameter(Mandatory=$true)]
+        [object] $EnvVars,
+        [Parameter(Mandatory=$true)]
         [string] $ToolVersionPath
     )
 
@@ -19,7 +21,7 @@ Function Set-DefaultVariables
         Add-MachinePathItem -PathItem $toolSystemPath | Out-Null
     }
 
-    if ([string]::IsNullOrEmpty($EnvVars.rootVariableName))
+    if (-not ([string]::IsNullOrEmpty($EnvVars.rootVariableName)))
     {
         setx $toolEnvVars.rootVariableName $ToolVersionPath /M | Out-Null
     }
