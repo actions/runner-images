@@ -21,4 +21,4 @@ fi
 
 # Document the installed version
 echo "Document the installed version"
-DocumentInstalledItem "oc CLI ($(oc --version 2>&1))"
+DocumentInstalledItem "oc CLI ($(oc version 2>&1))"
