@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Merge pull request
+
+on:
+  repository_dispatch:
+    types: [merge-pr]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Merge pull request for ${{ github.event.client_payload.ImageVersion }}
+      uses: juliangruber/merge-pull-request-action@v1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        number: ${{ github.event.client_payload.PullRequestNumber }}
+        method: squash

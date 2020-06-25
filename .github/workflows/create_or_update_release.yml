@@ -1,0 +1,24 @@
+name: Create or update release
+
+on:
+  repository_dispatch:
+    types: [create-github-release]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create release for ${{ github.event.client_payload.ImageVersion }}
+      uses: ncipollo/release-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ github.event.client_payload.Branch }}
+        commit: ${{ github.event.client_payload.Commit }}
+        name: ${{ github.event.client_payload.ReleaseName }}
+        body: ${{ github.event.client_payload.ReleaseDescription }}
+        prerelease: ${{ github.event.client_payload.Prerelease }}
+        allowUpdates: "true"

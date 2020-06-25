@@ -1,0 +1,21 @@
+name: Create pull request
+
+on:
+  repository_dispatch:
+    types: [create-pr]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create pull request for ${{ github.event.client_payload.ImageVersion }}
+      uses: repo-sync/pull-request@v2
+      with:
+        pr_title: ${{ github.event.client_payload.PullRequestTitle }}
+        pr_body: ${{ github.event.client_payload.PullRequestDescription }}
+        source_branch: ${{ github.event.client_payload.Branch }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
