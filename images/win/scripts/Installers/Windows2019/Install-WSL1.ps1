@@ -5,4 +5,4 @@
 
 Write-Host "Install Windows Subsystem for Linux"
 
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
