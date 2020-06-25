@@ -137,7 +137,7 @@ function Stop-SvcWithErrHandling
     .PARAMETER StopOnError
         Switch for stopping the script and exit from PowerShell if one service is absent
     #>
-    param
+    Param
     (
         [Parameter(Mandatory, ValueFromPipeLine = $true)]
         [string] $ServiceName,
@@ -187,7 +187,7 @@ function Set-SvcWithErrHandling
         Hashtable for service arguments
     #>
 
-    param
+    Param
     (
         [Parameter(Mandatory, ValueFromPipeLine = $true)]
         [string] $ServiceName,
@@ -217,7 +217,7 @@ function Set-SvcWithErrHandling
 
 function Start-DownloadWithRetry
 {
-    param
+    Param
     (
         [Parameter(Mandatory)]
         [string] $Url,
@@ -348,19 +348,35 @@ function Get-VSExtensionVersion
     return $packageVersion
 }
 
-function Get-ToolcachePackages {
+function Get-ToolcachePackages
+{
     $toolcachePath = Join-Path $env:ROOT_FOLDER "toolcache.json"
     Get-Content -Raw $toolcachePath | ConvertFrom-Json
 }
 
-function Get-ToolsetContent {
+function Get-ToolsetContent
+{
     $toolsetJson = Get-Content -Path $env:TOOLSET_JSON_PATH -Raw
     ConvertFrom-Json -InputObject $toolsetJson
 }
 
-Function Get-ToolsetToolFullPath
+function Get-ToolsetToolFullPath
 {
-    param
+    <#
+    .DESCRIPTION
+        Function that return full path to specified toolset tool.
+
+    .PARAMETER Name
+        The name of required tool.
+
+    .PARAMETER Version
+        The version of required tool.
+
+    .PARAMETER Arch
+        The architecture of required tool.
+    #>
+
+    Param
     (
         [Parameter(Mandatory=$true)]
         [string] $Name,
@@ -398,7 +414,8 @@ Function Get-ToolsetToolFullPath
     return $foundVersionArchPath
 }
 
-function Get-ToolsByName {
+function Get-ToolsByName
+{
     Param
     (
         [Parameter(Mandatory = $True)]
@@ -431,7 +448,7 @@ function Test-IsWin16
 }
 
 function Extract-7Zip {
-    param
+    Param
     (
         [Parameter(Mandatory=$true)]
         [string]$Path,
