@@ -52,33 +52,44 @@ $toolset = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw | 
 foreach ($tool in $toolset.toolcache)
 {
     $toolName = $tool.name
+    $toolArch = $tool.arch
     $toolEnvironment = $toolsEnvironment[$toolName]
 
-    if ($toolEnvironment)
+    if (-not $toolEnvironment)
     {
-        foreach ($version in $tool.versions)
-        {
-            Write-Host "Set $toolName $version environment variable..."
-            $toolPath = Get-ToolsetToolFullPath -ToolName $toolName -ToolVersion $version -ToolArchitecture $tool.arch
-            $envName = $toolEnvironment.variableTemplate -f $version.split(".")
+        continue
+    }
 
-            # Add environment variable name=value
-            Add-EnvironmentVariable -Name $envName -Value $toolPath
+    foreach ($toolVersion in $tool.versions)
+    {
+        Write-Host "Set $toolName $toolVersion environment variable..."
+        $toolPath = Get-ToolsetToolFullPath -ToolName $toolName -ToolVersion $toolVersion -ToolArchitecture $toolArch
+        $envName = $toolEnvironment.variableTemplate -f $toolVersion.split(".")
 
-            # Invoke command and add env variable for the default tool version
-            if ($version -eq $tool.default)
-            {
-                if ($toolEnvironment.defaultVariable)
-                {
-                    Add-EnvironmentVariable -Name $toolEnvironment.defaultVariable -Value $toolPath
-                }
+        # Add environment variable name=value
+        Add-EnvironmentVariable -Name $envName -Value $toolPath
+    }
 
-                if ($toolEnvironment.command)
-                {
-                    $command = $toolEnvironment.command -f $toolPath
-                    Invoke-Expression -Command $command
-                }
-            }
-        }
+    # Invoke command and add env variable for the default tool version
+    $toolDefVersion = $tool.default
+    if (-not $toolDefVersion)
+    {
+        continue
+    }
+
+    $envDefName = $toolEnvironment.defaultVariable
+    $toolPath = Get-ToolsetToolFullPath -ToolName $toolName -ToolVersion $toolDefVersion -ToolArchitecture $toolArch
+
+    if ($envDefName)
+    {
+        Write-Host "Set default $envDefName for $toolName $toolDefVersion environment variable..."
+        Add-EnvironmentVariable -Name $envDefName -Value $toolPath
+    }
+
+    if ($toolEnvironment.command)
+    {
+        $command = $toolEnvironment.command -f $toolPath
+        Write-Host "Invoke $command command for default $toolName $toolDefVersion..."
+        Invoke-Expression -Command $command
     }
 }
