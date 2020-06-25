@@ -362,9 +362,11 @@ Function Get-ToolsetToolFullPath
 {
     param
     (
+        [Parameter(Mandatory=$true)]
         [string] $Name,
+        [Parameter(Mandatory=$true)]
         [string] $Version,
-        [string] $Arch
+        [string] $Arch = "x64"
     )
 
     $ToolPath = Join-Path $env:AGENT_TOOLSDIRECTORY $Name
