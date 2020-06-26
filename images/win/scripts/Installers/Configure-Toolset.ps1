@@ -21,9 +21,9 @@ Function Set-DefaultVariables
         Add-MachinePathItem -PathItem $toolSystemPath | Out-Null
     }
 
-    if (-not ([string]::IsNullOrEmpty($EnvVars.rootVariableName)))
+    if (-not ([string]::IsNullOrEmpty($EnvVars.defaultVariable)))
     {
-        setx $toolEnvVars.rootVariableName $ToolVersionPath /M | Out-Null
+        setx $toolEnvVars.defaultVariable $ToolVersionPath /M | Out-Null
     }
 }
 
@@ -46,7 +46,7 @@ $toolsEnvironmentVariables = @{
         pathTemplates = @(
             "{0}\bin"
         )
-        rootVariableName = "GOROOT"
+        defaultVariable = "GOROOT"
         variableTemplate = "GOROOT_{0}_{1}_X64"
     }
 }
