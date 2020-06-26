@@ -13,9 +13,7 @@ set -e
 
 # Install PHP
 
-if isUbuntu20 ; then
-    php_versions="7.4"
-fi
+php_versions="7.4"
 
 for version in $php_versions; do
     echo "Installing PHP $version"
@@ -56,14 +54,6 @@ for version in $php_versions; do
         php$version-xsl \
         php$version-zip
 
-    if [[ $version == "5.6" || $version == "7.0" || $version == "7.1" ]]; then
-        apt-fast install -y --no-install-recommends php$version-mcrypt php$version-recode
-        apt-get remove --purge -yq php$version-dev
-    fi
-
-    if [[ $version == "7.2" || $version == "7.3" ]]; then
-        apt-fast install -y --no-install-recommends php$version-recode
-    fi
 done
 
 apt-fast install -y --no-install-recommends \
@@ -77,8 +67,6 @@ apt-fast install -y --no-install-recommends \
     php-xdebug \
     php-yaml \
     php-zmq
-
-apt-get remove --purge -yq php7.2-dev
 
 apt-fast install -y --no-install-recommends snmp
 
