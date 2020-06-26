@@ -10,24 +10,11 @@ source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
 
 set -e
-# since 20.04 php is installed from Ubuntu repository
-# see https://github.com/actions/virtual-environments/issues/1084
-if isUbuntu20 ; then
-    echo "This script must not be used for Ubuntu 20.04"
-    exit 1
-fi
-
-# add repository
-apt-add-repository ppa:ondrej/php -y
-apt-get update
 
 # Install PHP
-if isUbuntu16 ; then
-    php_versions="5.6 7.0 7.1 7.2 7.3 7.4"
-fi
 
-if isUbuntu18 ; then
-    php_versions="7.1 7.2 7.3 7.4"
+if isUbuntu20 ; then
+    php_versions="7.4"
 fi
 
 for version in $php_versions; do
