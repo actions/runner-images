@@ -203,3 +203,7 @@ function Get-StackVersion {
     $stackVersion = $Matches.Version
     return "Stack $stackVersion"
 }
+
+function Get-GoogleCloudSDKVersion {
+    (gcloud --version) -match "Google Cloud SDK"
+}

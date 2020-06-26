@@ -101,7 +101,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AWSSAMVersion),
     (Get-AlibabaCLIVersion),
     (Get-CloudFoundryVersion),
-    (Get-HubVersion)
+    (Get-HubVersion),
+    (Get-GoogleCloudSDKVersion)
 )
 
 $markdown += New-MDHeader "Browsers and webdrivers" -Level 3
