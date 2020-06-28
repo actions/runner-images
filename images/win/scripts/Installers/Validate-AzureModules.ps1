@@ -29,7 +29,7 @@ foreach ($module in $modules)
             Import-Module -Name $moduleName
             Get-Module -Name $moduleName
 
-        } -ArgumentList $modulePath, $module.name | Out-Null
+        } -ArgumentList $modulePath, $module.name
 
         $isError = $testJob | Wait-Job | Foreach-Object ChildJobs | Where-Object { $_.Error }
         if ($isError)
