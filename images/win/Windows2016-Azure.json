@@ -24,6 +24,7 @@
         "imagedata_file": "C:\\imagedata.json",
         "metadata_file": "C:\\image\\metadata.txt",
         "helper_script_folder": "C:\\Program Files\\WindowsPowerShell\\Modules\\",
+        "psmodules_root_folder": "C:\\Modules",
         "commit_url": "LATEST",
         "install_user": "installer",
         "install_password": null,
@@ -558,6 +559,10 @@
         },
         {
             "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
+            ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1"
             ]
@@ -694,6 +699,10 @@
         },
         {
             "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
+            ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-AzureModules.ps1"
             ]
