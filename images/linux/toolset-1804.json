@@ -62,7 +62,7 @@
     ],
     "azureModules": [
         {
-            "name": "Az",
+            "name": "az",
             "versions": [
                 "1.0.0",
                 "1.6.0",
