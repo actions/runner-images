@@ -10,7 +10,7 @@ Import-Module -Name ImageHelpers -Force
 Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
 
 # The correct Modules need to be saved in C:\Modules
-$installPSModulePath = 'C:\Modules'
+$installPSModulePath = $env:PSMODULES_ROOT_FOLDER
 if (-not (Test-Path -LiteralPath $installPSModulePath))
 {
     Write-Host "Creating ${installPSModulePath} folder to store PowerShell Azure modules"
