@@ -252,12 +252,12 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolcache-2004.json",
+            "source": "{{template_dir}}/toolsets/toolcache-2004.json",
             "destination": "{{user `installer_script_folder`}}/toolcache.json"
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolset-2004.json",
+            "source": "{{template_dir}}/toolsets/toolset-2004.json",
             "destination": "{{user `installer_script_folder`}}/toolset.json"
         },
         {
@@ -283,6 +283,7 @@
             "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
+                "{{template_dir}}/scripts/installers/Configure-Toolset.ps1",
                 "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
             ],
             "environment_vars": [
@@ -291,16 +292,6 @@
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "scripts": [
-                "{{template_dir}}/scripts/installers/go.sh"
-            ],
-            "environment_vars": [
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
-            ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",
