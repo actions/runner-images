@@ -9,7 +9,7 @@ Set-SystemVariable -SystemVariable PGUSER -Value $pgUser
 Set-SystemVariable -SystemVariable PGPASSWORD -Value $pgPwd
 
 #Install latest PostgreSQL
-Choco-Install -PackageName postgresql -ArgumentList "--params", "/Password:$pgPwd", "/NoPath", "--params-global", "--debug", "--verbose"
+Choco-Install -PackageName postgresql -ArgumentList "--params", "'/Password:$pgPwd /NoPath'", "--params-global", "--debug", "--verbose"
 
 #Get Path to pg_ctl.exe
 $pgPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
