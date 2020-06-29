@@ -27,6 +27,10 @@ else
     echo "Docker ($docker_package) is already installed"
 fi
 
+# Enable docker.service
+systemctl is-active --quiet docker.service || systemctl start docker.service
+systemctl is-enabled --quiet docker.service || systemctl enable docker.service
+
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 echo "Checking the docker-moby and moby-buildx"
