@@ -22,14 +22,16 @@ $modules = (Get-ToolsetContent).azureModules
 
 foreach ($module in $modules)
 {
-    Write-Host "Installing $($module.name) to the ${installPSModulePath} path:"
+    $moduleName = $module.name
+
+    Write-Host "Installing ${moduleName} to the ${installPSModulePath} path:"
     foreach ($version in $module.versions)
     {
-        $modulePath = Join-Path -Path $installPSModulePath -ChildPath "$($module.name)_${version}"
+        $modulePath = Join-Path -Path $installPSModulePath -ChildPath "${moduleName}_${version}"
         Write-Host " - $version [$modulePath]"
         try
         {
-            Save-Module -Path $modulePath -Name $module.name -RequiredVersion $version -Force -ErrorAction Stop
+            Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force -ErrorAction Stop
         }
         catch
         {

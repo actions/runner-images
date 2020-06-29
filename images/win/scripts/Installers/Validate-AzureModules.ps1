@@ -10,15 +10,16 @@ Import-Module -Name ImageHelpers -Force
 $modulesRootPath = $env:PSMODULES_ROOT_FOLDER
 
 # Get modules content from toolset
-$modules = Get-ToolsetContent | Select-Object -ExpandProperty azureModules
+$modules = (Get-ToolsetContent).azureModules
 
 foreach ($module in $modules)
 {
     foreach ($version in $module.versions)
     {
+        $moduleName = $module.name
         $modulePath = Join-Path -Path $modulesRootPath -ChildPath "$($module.name)_${version}"
 
-        Write-Host "Trying to import $($module.name)_${version}..."
+        Write-Host "Trying to import ${moduleName}_${version}..."
         $testJob = Start-Job -ScriptBlock {
             param (
                 $modulePath,
@@ -29,12 +30,12 @@ foreach ($module in $modules)
             Import-Module -Name $moduleName
             Get-Module -Name $moduleName
 
-        } -ArgumentList $modulePath, $module.name
+        } -ArgumentList $modulePath, $moduleName
 
         $isError = $testJob | Wait-Job | Foreach-Object ChildJobs | Where-Object { $_.Error }
         if ($isError)
         {
-            Write-Host "Required $($module.name) module $version version is not present"
+            Write-Host "Required ${moduleName} module ${version} version is not present"
 
             exit 1
         }
