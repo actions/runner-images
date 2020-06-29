@@ -3,12 +3,17 @@
 ##  Desc:  Validate Cmake
 ################################################################################
 
-if(Get-Command -Name 'cmake')
-{
-    Write-Host "CMake $(cmake -version) on path"
-}
-else
-{
-    Write-Host "CMake not on path"
-    exit 1
+Describe "cmake" {
+
+    It "cmake is on path." {
+        if(Get-Command -Name 'cmake')
+        {
+            Write-Host "CMake $(cmake -version) on path"
+        }
+        else
+        {
+            Write-Host "CMake not on path"
+            exit 1
+        }
+    }
 }
