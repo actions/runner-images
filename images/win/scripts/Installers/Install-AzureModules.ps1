@@ -18,7 +18,7 @@ if (-not (Test-Path -LiteralPath $installPSModulePath))
 }
 
 # Get modules content from toolset
-$modules = Get-ToolsetContent | Select-Object -ExpandProperty azureModules
+$modules = (Get-ToolsetContent).azureModules
 
 foreach ($module in $modules)
 {
