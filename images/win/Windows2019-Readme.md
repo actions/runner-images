@@ -1,13 +1,13 @@
 # Microsoft Windows Server 2019 Datacenter
-- OS Version: 10.0.17763 Build 17763
-- Image Version: 20200621.1
+- OS Version: 10.0.17763 Build 1282
+- Image Version: 20200628.0
 
 ## Installed Software
 ### Language and Runtime
 - Java 1.7.0_232 
-- Java 1.8.0_222 (default)
-- Java 11.0.4 
-- Java 13.0.3 
+- Java 1.8.0_252 (default)
+- Java 11.0.7 
+- Java 13.0.2 
 - Rust 1.44.1
 - Python 3.7.7
 - Ruby 2.5.8p224
@@ -27,7 +27,7 @@
 - Miniconda 4.6.14
 - RubyGems 3.1.4
 - Helm 3.2.4
-- Composer 1.10.7
+- Composer 1.10.8
 - NuGet 5.6.0.6591
 
 ### Project Management
@@ -47,7 +47,7 @@
 - Git LFS 2.11.0
 - InnoSetup 6.0.5
 - jq 1.6
-- Kubectl 1.18.2
+- Kubectl 1.18.5
 - Kind 0.8.1
 - Mingw-w64 8.1.0
 - MySQL 5.7.21.0
@@ -67,20 +67,21 @@
 - 7zip 19.00
 
 ### CLI Tools
-- Azure CLI 2.7.0
+- Azure CLI 2.8.0
 - azcopy 10.4.3
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.24
+- AWS CLI 2.0.26
 - AWS SAM CLI 0.53.0
 - Alibaba CLI 3.0.26
 - Cloud Foundry CLI 6.51.0
 - Hub CLI 2.14.2
+- Google Cloud SDK 298.0.0
 
 ### Browsers and webdrivers
-- Google Chrome 83.0.4103.106
+- Google Chrome 83.0.4103.116
 - Chrome Driver 83.0.4103.39
-- Microsoft Edge 83.0.478.54
-- Microsoft Edge Driver 83.0.478.54
+- Microsoft Edge 83.0.478.56
+- Microsoft Edge Driver 83.0.478.56
 - Mozilla Firefox 77.0.1
 - Gecko Driver 0.26.0
 - IE Driver 3.150.1.0
@@ -162,9 +163,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Databases
 #### PostgreSQL
-| Version | UserName | Password | Path                           | ServiceName       | ServiceStatus | ServiceStartType |
-| ------- | -------- | -------- | ------------------------------ | ----------------- | ------------- | ---------------- |
-| 12.3    | postgres | root     | C:\Program Files\PostgreSQL\12 | postgresql-x64-12 | Stopped       | Disabled         |
+| Version | UserName | Password | EnvironmentVariables                                                                                                                  | Path                           | ServiceName       | ServiceStatus | ServiceStartType |
+| ------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ----------------- | ------------- | ---------------- |
+| 11.3    | postgres | root     | PGBIN=C:\Program Files\PostgreSQL\12\bin; <br> PGDATA=C:\Program Files\PostgreSQL\12\data; <br> PGROOT=C:\Program Files\PostgreSQL\12 | C:\Program Files\PostgreSQL\12 | postgresql-x64-12 | Running       | Auto             |
 
 
 #### MongoDB
@@ -394,7 +395,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Universal                                 | 16.6.30020.46  |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 16.4.29409.204 |
 | SSDT Microsoft Analysis Services Projects                                 | 2.9.10         |
-| SSDT SQL Server Integration Services Projects                             | 3.7            |
+| SSDT SQL Server Integration Services Projects                             | 3.8            |
 | SSDT Microsoft Reporting Services Projects                                | 2.6.7          |
 | Windows Driver Kit                                                        | 1.0.0.4        |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.19041.1   |
@@ -406,19 +407,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301
 
 ### .NET Core Runtime
-`Location C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
+`Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
 - 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19
 
-`Location C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
+`Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
 - 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
 
-`Location C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
+`Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
 - 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
 
-`Location C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
+`Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
 - 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
 
 ### .NET Framework
+`Type: Developer Pack`
 `Location C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX <version> Tools`
 - 4.7.2 4.8
 
