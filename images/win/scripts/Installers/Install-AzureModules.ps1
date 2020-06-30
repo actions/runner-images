@@ -5,26 +5,26 @@
 
 $ErrorActionPreference = "Stop"
 
-Import-Module -Name ImageHelpers -Force
-
 Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
 
 # The correct Modules need to be saved in C:\Modules
 $installPSModulePath = $env:PSMODULES_ROOT_FOLDER
 if (-not (Test-Path -LiteralPath $installPSModulePath))
 {
-    Write-Host "Creating ${installPSModulePath} folder to store PowerShell Azure modules"
+    Write-Host "Creating ${installPSModulePath} folder to store PowerShell Azure modules..."
     $null = New-Item -Path $installPSModulePath -ItemType Directory
 }
 
 # Get modules content from toolset
 $modules = (Get-ToolsetContent).azureModules
 
+$psModuleMachinePath = ""
+
 foreach ($module in $modules)
 {
     $moduleName = $module.name
 
-    Write-Host "Installing ${moduleName} to the ${installPSModulePath} path:"
+    Write-Host "Installing ${moduleName} to the ${installPSModulePath} path..."
     foreach ($version in $module.versions)
     {
         $modulePath = Join-Path -Path $installPSModulePath -ChildPath "${moduleName}_${version}"
@@ -39,8 +39,17 @@ foreach ($module in $modules)
             exit 1
         }
     }
+
+    # Append default tool version to machine path
+    if ($null -ne $module.default)
+    {
+        $defaultVersion = $module.default
+
+        Write-Host "Use ${moduleName} ${defaultVersion} as default version..."
+        $psModuleMachinePath += "${installPSModulePath}\${moduleName}_${defaultVersion};"
+    }
 }
 
-# Add AzureRM and Azure modules to the PSModulePath
-$finalModulePath = '{0};{1};{2}' -f "${installPSModulePath}\azurerm_2.1.0", "${installPSModulePath}\azure_2.1.0", $env:PSModulePath
-[Environment]::SetEnvironmentVariable("PSModulePath", $finalModulePath, "Machine")
+# Add modules to the PSModulePath
+$psModuleMachinePath += $env:PSModulePath
+[Environment]::SetEnvironmentVariable("PSModulePath", $psModuleMachinePath, "Machine")

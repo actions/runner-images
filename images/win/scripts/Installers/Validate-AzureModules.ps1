@@ -5,8 +5,6 @@
 
 $ErrorActionPreference = "Stop"
 
-Import-Module -Name ImageHelpers -Force
-
 $modulesRootPath = $env:PSMODULES_ROOT_FOLDER
 
 # Get modules content from toolset
