@@ -30,7 +30,7 @@ $ErrorActionPreference = "Stop"
 $toolsetJson = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
 $toolsToInstall = @("Python", "Node", "Boost", "Go")
 
-$tools = ConvertFrom-Json -InputObject $toolsetJson | Select-Object -ExpandProperty toolcache | Where {$ToolsToInstall -contains $_.Name}
+$tools = ConvertFrom-Json -InputObject $toolsetJson | Select-Object -ExpandProperty toolcache | Where-Object {$ToolsToInstall -contains $_.Name}
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
@@ -44,10 +44,9 @@ foreach ($tool in $tools) {
         | Select-Object -First 1
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
-        if ($asset -ne $null) {
+        if ($null -ne $asset) {
             Install-Asset -ReleaseAsset $asset
-        }
-        else {
+        } else {
             Write-Host "Asset was not found in versions manifest"
             exit 1
         }

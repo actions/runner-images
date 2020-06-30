@@ -75,34 +75,11 @@ $toolsExecutables = @{
 $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache
 
 foreach($tool in $tools) {
-    $toolPath = Join-Path $env:AGENT_TOOLSDIRECTORY $tool.name
     # Get executables for current tool
     $toolExecs = $toolsExecutables[$tool.name]
 
     foreach ($version in $tool.versions) {
-        # Add wildcard if missing
-        if ($version.Split(".").Length -lt 3) {
-            $version += ".*"
-        }
-
-        # Check if version folder exists
-        $expectedVersionPath = Join-Path $toolPath $version
-        if (-not (Test-Path $expectedVersionPath)) {
-            Write-Host "Expected $($tool.name) $version folder is not found!"
-            exit 1
-        }
-
-        # Take latest installed version in case if toolset version contains wildcards
-        $foundVersion = Get-Item $expectedVersionPath `
-                        | Sort-Object -Property {[version]$_.name} -Descending `
-                        | Select-Object -First 1
-
-        # Check for required architecture folder
-        $foundVersionArchPath = Join-Path $foundVersion $tool.arch
-        if (-not (Test-Path $foundVersionArchPath)) {
-            Write-Host "Expected $($tool.name)($($tool.arch)) $($foundVersion.name) architecture folder is not found!"
-            exit 1
-        }
+        $foundVersionArchPath = Get-ToolsetToolFullPath -Name $tool.name -Version $version -Arch $tool.arch
 
         if ($toolExecs) {
             Write-Host "Run validation test for $($tool.name)($($tool.arch)) $($foundVersion.name) executables..."
