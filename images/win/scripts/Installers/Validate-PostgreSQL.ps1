@@ -1,4 +1,4 @@
-$pgReadyPath = Join-Path $PGBIN "pg_isready.exe"
+$pgReadyPath = Join-Path ${env:PGBIN} "pg_isready.exe"
 $pgReady = Start-Process -FilePath $pgReadyPath -Wait -PassThru
 $exitCode = $pgReady.ExitCode
 

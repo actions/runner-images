@@ -4,7 +4,8 @@ function Get-PostgreSQLMarkdown
     $pgService = Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'"
     $pgPath = $pgService.PathName
     $pgRoot = $pgPath.split('"')[1].replace("\bin\pg_ctl.exe", "")
-    $pgVersion = (pg_config --version).split()[1].Trim()
+    $env:Path += ";${env:PGBIN}"
+    $pgVersion = (postgres --version).split()[2].Trim()
     $content = [PSCustomObject]@{
         Version = $pgVersion
         UserName = $env:PGUSER
