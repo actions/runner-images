@@ -76,7 +76,6 @@ $WorkLoads =    '--allWorkloads --includeRecommended ' + `
                 '--add Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre '+ `
                 '--add Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre ' + `
                 '--add Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre ' + `
-                '--add Microsoft.VisualStudio.Component.VC.14.25.x86.x64 ' + `
                 '--add Microsoft.VisualStudio.Component.Workflow.BuildTools ' + `
                 '--add Microsoft.VisualStudio.Workload.Office ' + `
                 '--add Microsoft.VisualStudio.Workload.OfficeBuildTools '
