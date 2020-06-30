@@ -27,4 +27,8 @@ Export-ModuleMember -Function @(
     'Test-IsWin16'
     'Choco-Install'
     'Extract-7Zip'
+    'Get-CommandResult'
+    'Get-WhichTool'
+    'Get-EnvironmentVariable'
+    'Run-ToolTest'
 )
