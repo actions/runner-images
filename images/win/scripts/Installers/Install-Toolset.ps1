@@ -29,47 +29,6 @@ Function Install-Asset {
     Pop-Location
 }
 
-Function Set-DefaultPythonVersion {
-    param(
-        [Parameter(Mandatory=$true)]
-        [object[]] $Toolset
-    )
-
-    $python = $Toolset  | Where-Object { ($_.name -eq "Python") -and ($_.default -ne "") } `
-                        | Select-Object default, arch -First 1
-
-    if ($python.default -ne $null) {
-        $pythonPath = Join-Path $Env:AGENT_TOOLSDIRECTORY "/Python/$($python.default)/$($python.arch)" -Resolve
-
-        Write-Host "Use Python $($python.default) as a system Python"
-        Add-MachinePathItem -PathItem $pythonPath
-        Add-MachinePathItem -PathItem "$pythonPath\Scripts"
-    } else {
-        Write-Host "Default Python version not found in toolset file!"
-    }
-}
-
-Function Set-DefaultGoVersion {
-    param(
-        [Parameter(Mandatory=$true)]
-        [object[]] $Toolset
-    )
-
-    $goToolset = $Toolset  | Where-Object { ($_.name -eq "go") -and ($_.default -ne "") } `
-                           | Select-Object default, arch -First 1
-
-    if ($goToolset.default -ne $null) {
-        $goPath = Join-Path $Env:AGENT_TOOLSDIRECTORY "/go/$($goToolset.default)/$($goToolset.arch)" -Resolve
-
-        Write-Host "Use Go $($goToolset.default) as a system Go"
-        Add-MachinePathItem -PathItem "$goPath\bin" | Out-Null
-        # Set the GOROOT environment variable.
-        setx GOROOT "$goPath" /M | Out-Null
-    } else {
-        Write-Host "Default Go version not found in toolset file!"
-    }
-}
-
 $ErrorActionPreference = "Stop"
 
 Import-Module -Name ImageHelpers -Force
@@ -92,7 +51,7 @@ foreach ($tool in $tools) {
                          | Select-Object -First 1
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
-        if ($asset -ne $null) {
+        if ($null -ne $asset) {
             Install-Asset -ReleaseAsset $asset
         } else {
             Write-Host "Asset was not found in versions manifest"
@@ -100,7 +59,3 @@ foreach ($tool in $tools) {
         }
     }
 }
-
-# Install default python version
-Set-DefaultPythonVersion -Toolset $tools
-Set-DefaultGoVersion -Toolset $tools
