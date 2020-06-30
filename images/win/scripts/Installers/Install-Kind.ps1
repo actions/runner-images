@@ -38,3 +38,9 @@ catch
     Write-Host $_.Exception.Message
     exit 1
 }
+
+# Just for test multiple test in one file.
+$testName = "MongoDB"
+$testsDirectory = Join-Path (Split-Path -Parent $PSScriptRoot) "Tests"
+$testPath = Join-Path $testsDirectory "$testName.Tests.ps1"
+Invoke-Pester -Script $testPath -TestName "Kind" -EnableExit

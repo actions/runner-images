@@ -5,3 +5,9 @@ Describe "MongoDB" {
         }
     }
 }
+
+Describe "Kind" {
+    It "Kind" {
+        "kind version" | Should -ReturnZeroExitCode
+    }
+}
