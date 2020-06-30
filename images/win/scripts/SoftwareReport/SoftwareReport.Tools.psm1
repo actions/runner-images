@@ -164,7 +164,7 @@ function Get-AWSSAMVersion {
 
 function Get-AlibabaCLIVersion {
     $alicliVersion = $(aliyun version)
-    return "Alibaba CLI $alicliVersion"
+    return "Alibaba Cloud CLI $alicliVersion"
 }
 
 function Get-CloudFoundryVersion {
