@@ -30,7 +30,7 @@ function Run-PesterTests {
         [string] $TestName
     )
 
-    $testsDirectory = Join-Path "C:\image" "scripts\Tests"
+    $testsDirectory = Join-Path "C:\image" "Tests"
     $testPath = Join-Path $testsDirectory "${TestFile}.Tests.ps1"
 
     if (-not (Test-Path $testPath)) {
