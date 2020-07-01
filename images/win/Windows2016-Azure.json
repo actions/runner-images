@@ -1069,7 +1069,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Tests/RunAll.Tests.ps1"
+                "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
             ]
         },
         {
