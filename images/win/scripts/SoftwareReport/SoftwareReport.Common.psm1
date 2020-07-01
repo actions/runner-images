@@ -17,8 +17,8 @@ function Get-AvailableDiskSpace {
     {
         $availableDiskSpace = [math]::Round((Get-PSDrive -Name $driveLabel).Free / $sizeMultiplier)
         [PSCustomObject]@{
-            "Drive Label" = $driveLabel
-            "Available space ${sizeMultiplierLabel}" = $availableDiskSpace
+            "Drive Label" = "${driveLabel}:"
+            "Available space (${sizeMultiplierLabel})" = $availableDiskSpace
         }
     }
 }
