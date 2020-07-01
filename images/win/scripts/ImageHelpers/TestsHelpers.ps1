@@ -24,19 +24,20 @@ function Get-EnvironmentVariable($variable) {
 }
 
 # TO-DO: Better naming is required
-function Run-ToolTest {
+function Run-PesterTests {
     Param(
-        [Parameter(Mandatory)][string] $ToolName
+        [Parameter(Mandatory)][string] $TestFile,
+        [string] $TestName
     )
 
     $testsDirectory = Join-Path (Split-Path -Parent $PSScriptRoot) "Tests"
-    $testPath = Join-Path $testsDirectory "${ToolName}.Tests.ps1"
+    $testPath = Join-Path $testsDirectory "${TestFile}.Tests.ps1"
 
     if (-not (Test-Path $testPath)) {
         # TO-DO: Make sure that throw will fail packer build
-        throw "Unable to run tests for tool '$ToolName'. Unknown tool"
+        throw "Unable to find test file '$TestFile' on '$testPath'."
     }
-    Invoke-Pester -Script $testPath -EnableExit
+    Invoke-Pester -Script $testPath -TestName $TestName -EnableExit
 }
 
 function ShouldReturnZeroExitCode {
