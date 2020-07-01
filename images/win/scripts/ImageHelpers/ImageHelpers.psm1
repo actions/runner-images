@@ -4,6 +4,7 @@ param()
 . $PSScriptRoot\PathHelpers.ps1
 . $PSScriptRoot\InstallHelpers.ps1
 . $PSScriptRoot\ChocoHelpers.ps1
+. $PSScriptRoot\TestsHelpers.ps1
 
 Export-ModuleMember -Function @(
     'Test-MachinePath'
@@ -30,5 +31,5 @@ Export-ModuleMember -Function @(
     'Get-CommandResult'
     'Get-WhichTool'
     'Get-EnvironmentVariable'
-    'Run-ToolTest'
+    'Run-PesterTests'
 )
