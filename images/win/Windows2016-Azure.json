@@ -84,6 +84,11 @@
             "destination": "{{user `image_folder`}}"
         },
         {
+            "type": "file",
+            "source": "{{ template_dir }}/scripts/Tests",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
             "type": "windows-shell",
             "inline": [
                 "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y" ,
