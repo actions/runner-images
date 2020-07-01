@@ -127,39 +127,6 @@
         },
         {
             "type": "powershell",
-            "inline": [
-              "setx ImageVersion {{user `image_version` }} /m",
-              "setx ImageOS {{user `image_os` }} /m"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "IMAGE_VERSION={{user `image_version`}}",
-                "IMAGEDATA_FILE={{user `imagedata_file`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1"
-            ]
-        },
-        {
-            "type": "windows-restart",
-            "restart_timeout": "10m"
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-AzCopy.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Kind.ps1"
             ]
@@ -203,15 +170,6 @@
         {
             "type": "windows-restart",
             "restart_timeout": "10m"
-        },
-        {
-            "type": "powershell",
-            "environment_vars":[
-                "RUN_SCAN_ANTIVIRUS={{user `run_scan_antivirus`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Run-Antivirus.ps1"
-            ]
         },
         {
             "type": "powershell",
