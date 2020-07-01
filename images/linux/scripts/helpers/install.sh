@@ -11,12 +11,19 @@ download_with_retries() {
     local URL="$1"
     local DEST="${2:-.}"
     local NAME="${3:-${URL##*/}}"
+    local COMPRESSED="$4"
+
+    if [ $COMPRESSED == "compressed" ]; then
+        COMMAND="curl $URL -4 -s --compressed -o '$DEST/$NAME'"
+    else
+        COMMAND="curl $URL -4 -s -o '$DEST/$NAME'"
+    fi
 
     echo "Downloading $URL..."
     i=20
     while [ $i -gt 0 ]; do
         ((i--))
-        curl $URL -4 -s -compressed -o "$DEST/$NAME"
+        eval $COMMAND
         if [ $? != 0 ]; then
             sleep 30
         else
