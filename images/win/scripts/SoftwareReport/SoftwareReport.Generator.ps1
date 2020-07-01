@@ -22,6 +22,10 @@ $markdown += New-MDList -Style Unordered -Lines @(
     "Image Version: $env:ImageVersion"
 )
 
+$markdown += New-MDHeader "Available disk space" -Level 3
+$markdown += Get-AvailableDiskSpace | New-MDTable
+$markdown += New-MDNewLine
+
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 

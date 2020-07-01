@@ -8,6 +8,21 @@ function Get-OSVersion {
     return "OS Version: $OSVersion Build $OSBuild"
 }
 
+function Get-AvailableDiskSpace {
+    $drives = @("C", "D")
+    $sizeMultiplier = "1MB"
+    $sizeMultiplierLabel = $sizeMultiplier.substring($sizeMultiplier.Length - 2)
+
+    foreach ($driveLabel in $drives)
+    {
+        $availableDiskSpace = [math]::Round((Get-PSDrive -Name $driveLabel).Free / $sizeMultiplier)
+        [PSCustomObject]@{
+            "Drive Label" = $driveLabel
+            "Available space ${sizeMultiplierLabel}" = $availableDiskSpace
+        }
+    }
+}
+
 function Get-JavaVersionsList {
     param(
         [string] $DefaultVersion
