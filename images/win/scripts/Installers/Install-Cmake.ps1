@@ -7,10 +7,10 @@ Choco-Install -PackageName cmake.install -ArgumentList "--installargs",'ADD_CMAK
 
 # Restart current session
 Write-Host "debug 1"
-Invoke-Command { & powershell -Command 'Run-PesterTests -TestFile "Common" -TestName "Kind"' } -NoNewScope
+#Invoke-Command { & powershell -Command 'Run-PesterTests -TestFile "Common" -TestName "Kind"' } -NoNewScope
 Write-Host "debug 2"
-Invoke-Command { & powershell -Command 'Run-PesterTests -TestFile "Common" -TestName "Kind"' }
+#Invoke-Command { & powershell -Command 'Run-PesterTests -TestFile "Common" -TestName "Kind"' }
 Write-Host "debug 3"
 
 # Run Pester Test
-Run-PesterTests -TestFile "Cmake"
+#Run-PesterTests -TestFile "Cmake"
