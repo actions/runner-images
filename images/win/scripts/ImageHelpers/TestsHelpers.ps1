@@ -28,11 +28,11 @@ function Update-Environment {
     $variables.Keys | ForEach-Object {
         $key = $_
         $value = $variables[$key]
-        Write-Host "DEBUG:::: $key = $value"
+        #Write-Host "DEBUG:::: $key = $value"
         Set-Item -Path "env:$key" -Value $value
     }
     # We need to refresh PATH the latest one because it could include other variables "%M2_HOME%/bin"
-    $env:PATH = [Environment]::GetEnvironmentVariable("PATH", "Machine")
+    # $env:PATH = [Environment]::GetEnvironmentVariable("PATH", "Machine")
 }
 
 function Invoke-PesterTests {
@@ -64,16 +64,15 @@ function ShouldReturnZeroExitCode {
     )
 
     Write-Host "Run command '${ActualValue}'"
-    $output = Invoke-Expression -Command $ActualValue
+    [string[]]$output = Invoke-Expression -Command $ActualValue
     $actualExitCode = $LASTEXITCODE
-
-    Write-Host $output
 
     [bool]$succeeded = $actualExitCode -eq 0
     if ($Negate) { $succeeded = -not $succeeded }
 
     if (-not $succeeded)
     {
+        $output | ForEach-Object { Write-Host $_ }
         $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}"
     }
 
@@ -83,11 +82,11 @@ function ShouldReturnZeroExitCode {
     }
 }
 
-Write-Host "Before Add-AssertionOperator"
+#Write-Host "Before Add-AssertionOperator"
 If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
-    Write-Host "Invoke Add-AssertionOperator"
+    #Write-Host "Invoke Add-AssertionOperator"
     Add-AssertionOperator -Name ReturnZeroExitCode -Test $function:ShouldReturnZeroExitCode
 }
-Write-Host "After Add-AssertionOperator"
+#Write-Host "After Add-AssertionOperator"
 
 # TO-DO: Need to validate that ImageHelpers scripts are deleted from image at the end of image-generation
