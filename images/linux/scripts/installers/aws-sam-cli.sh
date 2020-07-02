@@ -23,10 +23,6 @@ python3 -m pip install setuptools
 python3 setup.py install
 sudo ln -sf ${Python3BinDir}/sam /usr/local/bin/sam
 
-# Cleanup downloaded files
-rm -rf $TarballPath
-rm -rf /tmp/awslabs-aws-sam-cli*
-
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 if ! sam --version; then
