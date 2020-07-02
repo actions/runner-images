@@ -51,7 +51,7 @@ function Invoke-PesterTests {
     Write-Host "DEBUG: Refresh environment before tests"
     Update-Environment
     Write-Host "DEBUG: Invoke Pester"
-    Invoke-Pester -Script $testPath -TestName $TestName # -EnableExit
+    Invoke-Pester -Script $testPath -TestName $TestName -EnableExit
 }
 
 function ShouldReturnZeroExitCode {
@@ -77,11 +77,6 @@ function ShouldReturnZeroExitCode {
         Succeeded      = $succeeded
         FailureMessage = $failureMessage
     }
-}
-
-function Validate-ZeroExitCode($command) {
-    $result = Get-CommandResult $command
-    $result.ExitCode
 }
 
 Add-AssertionOperator -Name ReturnZeroExitCode -Test  $function:ShouldReturnZeroExitCode

@@ -1,7 +1,7 @@
 Describe "MongoDB" {
     @("mongo", "mongod") | ForEach-Object {
         It "$_" {
-            Validate-ZeroExitCode "$($_) --version" | Should -Be 0
+            "$($_) --version" | Should -ReturnZeroExitCode
         }
     }
 }
@@ -14,6 +14,6 @@ Describe "Kind" {
 
 Describe "7-Zip" {
     It "7z" {
-        "7z --version" | Should -ReturnZeroExitCode
+        "7z" | Should -ReturnZeroExitCode
     }
 }
