@@ -31,6 +31,7 @@ function Update-Environment {
         Write-Host "DEBUG:::: $key = $value"
         Set-Item -Path "env:$key" -Value $value
     }
+    $env:PATH = [Environment]::GetEnvironmentVariable("PATH", "Machine")
 }
 
 function Invoke-PesterTests {
