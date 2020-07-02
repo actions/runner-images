@@ -13,20 +13,19 @@ TarballUrl=$(curl -s https://api.github.com/repos/awslabs/aws-sam-cli/releases/l
 TarballPath="/tmp/aws-sam-cli.tar.gz"
 wget $TarballUrl -O $TarballPath
 tar -xzvf $TarballPath -C /tmp
-SourcesDir=$(echo /tmp/awslabs-aws-sam-cli*)
+cd /tmp/awslabs-aws-sam-cli*
 
 # Use python 3.7 from toolcache to install aws sam, setuptools package required for the installation
 Python3Dir=$(echo ${AGENT_TOOLSDIRECTORY}/Python/3.7*/x64)
 Python3BinDir="${Python3Dir}/bin"
 export PATH="$Python3Dir:$Python3BinDir:$PATH"
 python3 -m pip install setuptools
-cd $SourcesDir
 python3 setup.py install
 sudo ln -sf ${Python3BinDir}/sam /usr/local/bin/sam
 
 # Cleanup downloaded files
 rm -rf $TarballPath
-rm -rf $SourcesDir
+rm -rf /tmp/awslabs-aws-sam-cli*
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
