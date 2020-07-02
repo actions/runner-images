@@ -17,7 +17,7 @@ SourcesDir=$(echo /tmp/awslabs-aws-sam-cli*)
 
 # Use python 3.7 from toolcache to install aws sam, setuptools package required for the installation
 Python3Dir=$(echo ${AGENT_TOOLSDIRECTORY}/Python/3.7*/x64)
-Python3BinDir=$(echo ${Python3Dir}/bin)
+Python3BinDir="${Python3Dir}/bin"
 export PATH="$Python3Dir:$Python3BinDir:$PATH"
 python3 -m pip install setuptools
 cd $SourcesDir
