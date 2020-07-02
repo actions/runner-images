@@ -31,6 +31,7 @@ function Update-Environment {
         Write-Host "DEBUG:::: $key = $value"
         Set-Item -Path "env:$key" -Value $value
     }
+    # We need to refresh PATH the latest one because it could include other variables "%M2_HOME%/bin"
     $env:PATH = [Environment]::GetEnvironmentVariable("PATH", "Machine")
 }
 
