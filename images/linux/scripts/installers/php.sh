@@ -93,10 +93,6 @@ apt-get remove --purge -yq php7.2-dev
 
 apt-fast install -y --no-install-recommends snmp
 
-if isUbuntu20 ; then
-    php_versions="7.4"
-fi
-
 # Install composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === file_get_contents('https://composer.github.io/installer.sig')) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
@@ -139,6 +135,7 @@ for version in $php_versions; do
 done
 
 # ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
+# see https://github.com/actions/virtual-environments/issues/1084
 if isUbuntu20 ; then
   rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
   apt-get update
@@ -146,3 +143,9 @@ fi
 
 DocumentInstalledItem "Composer  ($(composer --version))"
 DocumentInstalledItem "PHPUnit ($(phpunit --version))"
+
+if isUbuntu20 ; then
+  AddBlockquote "To use ppa:ondrej/php APT repository On Ubuntu 20.04 it is necessary to add it to the APT sources"
+apt-add-repository ppa:ondrej/php -y
+apt-get update
+fi
