@@ -8,7 +8,7 @@ Describe "MongoDB" {
 
 Describe "Kind" {
     It "Kind" {
-        "kind version" | Should -ReturnZeroExitCode
+        "kind versi" | Should -ReturnZeroExitCode
     }
 }
 
