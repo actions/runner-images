@@ -124,7 +124,3 @@ Write-Host $expandResult
 
 Write-Host "Disk sizes after expansion"
 wmic logicaldisk get size,freespace,caption
-
-# Install Pester at the end of Initialization step because it requires in all next steps
-Write-Host "Install PowerShell Module - Pester 4.10.1"
-Install-Module Pester -Force -Scope AllUsers -RequiredVersion 4.10.1
