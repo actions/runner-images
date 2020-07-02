@@ -2,7 +2,7 @@
 ################################################################################
 ##  File:  aws-sam-cli.sh
 ##  Desc:  Installs AWS SAM CLI
-##         Requires Pyton >=3.6, must be run after toolset installation
+##         Requires Pyton >=3.6, must be run as non-root user after toolset installation
 ################################################################################
 
 # Source the helpers for use with the script
@@ -15,7 +15,7 @@ wget $TarballUrl -O $TarballPath
 tar -xzvf $TarballPath -C /tmp
 SourcesDir=$(echo /tmp/awslabs-aws-sam-cli*)
 
-# Use python 3.7 from toolcache to install aws sam, setuptools module required for the installation
+# Use python 3.7 from toolcache to install aws sam, setuptools package required for the installation
 Python3Dir=$(echo ${AGENT_TOOLSDIRECTORY}/Python/3.7*/x64)
 Python3BinDir=$(echo ${Python3Dir}/bin)
 export PATH="$Python3Dir:$Python3BinDir:$PATH"
