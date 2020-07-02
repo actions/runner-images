@@ -127,8 +127,5 @@ Extract-7Zip -Path $archivePath -DestinationPath "C:\"
 
 setx COBERTURA_HOME $coberturaPath /M
 
-# Restart current session
-Invoke-Command { & "powershell.exe" } -NoNewScope
-
 # Run Pester Test
 Run-PesterTests -TestFile "Java"

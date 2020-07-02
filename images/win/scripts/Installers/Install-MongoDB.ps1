@@ -8,8 +8,5 @@ $mongoPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'mongodb'").PathN
 $mongoBin = Split-Path -Path $mongoPath.split('"')[1]
 Add-MachinePathItem "$mongoBin"
 
-# Restart current session
-Invoke-Command { & "powershell.exe" } -NoNewScope
-
 # Run Pester Test
 Run-PesterTests -TestFile "Common" -TestName "MongoDB"
