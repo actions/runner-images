@@ -23,6 +23,16 @@ function Get-EnvironmentVariable($variable) {
     return [System.Environment]::GetEnvironmentVariable($variable)
 }
 
+function Refresh-Environment {
+    $variables = [Environment]::GetEnvironmentVariables("Machine")
+    $variables.Keys | ForEach-Object {
+        $key = $_
+        $value = $variables[$key]
+        Write-Host "DEBUG:::: $key = $value"
+        Set-Item -Path "env:$key" -Value $value
+    }
+}
+
 # TO-DO: Better naming is required
 function Run-PesterTests {
     Param(
@@ -30,6 +40,7 @@ function Run-PesterTests {
         [string] $TestName
     )
 
+    Write-Host "DEBUG: Running tests"
     $testsDirectory = Join-Path "C:\image" "Tests"
     $testPath = Join-Path $testsDirectory "${TestFile}.Tests.ps1"
 
@@ -37,6 +48,10 @@ function Run-PesterTests {
         # TO-DO: Make sure that throw will fail packer build
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
+
+    Write-Host "DEBUG: Refresh environment before tests"
+    Refresh-Environment
+    Write-Host "DEBUG: Invoke Pester"
     Invoke-Pester -Script $testPath -TestName $TestName -EnableExit
 }
 
@@ -70,9 +85,6 @@ function Validate-ZeroExitCode($command) {
     $result.ExitCode
 }
 
-if (Get-Module Pester) {
-    Add-AssertionOperator -Name ReturnZeroExitCode -Test  $function:ShouldReturnZeroExitCode
-}
-
+Add-AssertionOperator -Name ReturnZeroExitCode -Test  $function:ShouldReturnZeroExitCode
 
 # TO-DO: Need to validate that ImageHelpers scripts are deleted from image at the end of image-generation

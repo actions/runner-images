@@ -13,4 +13,4 @@ Write-Host "debug 2"
 Write-Host "debug 3"
 
 # Run Pester Test
-#Run-PesterTests -TestFile "Cmake"
+Run-PesterTests -TestFile "Cmake"
