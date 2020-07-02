@@ -49,7 +49,7 @@ function Invoke-PesterTests {
     }
 
     Update-Environment
-    Invoke-Pester -Script $testPath -TestName $TestName
+    Invoke-Pester -Script $testPath -TestName $TestName -EnableExit
     Write-Host $?
     Write-Host $LASTEXITCODE
 }
