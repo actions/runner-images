@@ -83,4 +83,11 @@ function ShouldReturnZeroExitCode {
     }
 }
 
+Write-Host "Before Add-AssertionOperator"
+If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
+    Write-Host "Invoke Add-AssertionOperator"
+    Add-AssertionOperator -Name ReturnZeroExitCode -Test $function:ShouldReturnZeroExitCode
+}
+Write-Host "After Add-AssertionOperator"
+
 # TO-DO: Need to validate that ImageHelpers scripts are deleted from image at the end of image-generation
