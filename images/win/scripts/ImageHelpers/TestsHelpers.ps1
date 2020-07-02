@@ -64,8 +64,10 @@ function ShouldReturnZeroExitCode {
     )
 
     Write-Host "Run command '${ActualValue}'"
-    Invoke-Expression -Command $ActualValue | ForEach-Object { Write-Host $_ }
+    $output = Invoke-Expression -Command $ActualValue
     $actualExitCode = $LASTEXITCODE
+
+    Write-Host $output
 
     [bool]$succeeded = $actualExitCode -eq 0
     if ($Negate) { $succeeded = -not $succeeded }
