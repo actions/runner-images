@@ -23,7 +23,7 @@ function Get-EnvironmentVariable($variable) {
     return [System.Environment]::GetEnvironmentVariable($variable)
 }
 
-function Refresh-Environment {
+function Update-Environment {
     $variables = [Environment]::GetEnvironmentVariables("Machine")
     $variables.Keys | ForEach-Object {
         $key = $_
@@ -33,8 +33,7 @@ function Refresh-Environment {
     }
 }
 
-# TO-DO: Better naming is required
-function Run-PesterTests {
+function Invoke-PesterTests {
     Param(
         [Parameter(Mandatory)][string] $TestFile,
         [string] $TestName
@@ -50,7 +49,7 @@ function Run-PesterTests {
     }
 
     Write-Host "DEBUG: Refresh environment before tests"
-    Refresh-Environment
+    Update-Environment
     Write-Host "DEBUG: Invoke Pester"
     Invoke-Pester -Script $testPath -TestName $TestName # -EnableExit
 }

@@ -128,4 +128,4 @@ Extract-7Zip -Path $archivePath -DestinationPath "C:\"
 setx COBERTURA_HOME $coberturaPath /M
 
 # Run Pester Test
-Run-PesterTests -TestFile "Java"
+Invoke-PesterTests -TestFile "Java"

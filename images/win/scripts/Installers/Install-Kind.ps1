@@ -40,5 +40,4 @@ catch
     exit 1
 }
 
-# Run Pester Test
-Run-PesterTests -TestFile "Common" -TestName "Kind"
+Invoke-PesterTests -TestFile "Common" -TestName "Kind"

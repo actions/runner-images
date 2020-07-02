@@ -8,7 +8,12 @@ Describe "MongoDB" {
 
 Describe "Kind" {
     It "Kind" {
-        Write-Host $env:PATH
         "kind version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "7-Zip" {
+    It "7z" {
+        "7z --version" | Should -ReturnZeroExitCode
     }
 }
