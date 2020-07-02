@@ -139,14 +139,6 @@
         },
         {
             "type": "powershell",
-            "inline": [
-                "Write-Host 'Inline tests'",
-                "Run-PesterTests -TestFile 'Common' -TestName 'Kind'",
-                "Run-PesterTests -TestFile 'Cmake'"
-            ]
-        },
-        {
-            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
             ]

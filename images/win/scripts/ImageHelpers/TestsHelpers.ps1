@@ -52,7 +52,7 @@ function Run-PesterTests {
     Write-Host "DEBUG: Refresh environment before tests"
     Refresh-Environment
     Write-Host "DEBUG: Invoke Pester"
-    Invoke-Pester -Script $testPath -TestName $TestName -EnableExit
+    Invoke-Pester -Script $testPath -TestName $TestName # -EnableExit
 }
 
 function ShouldReturnZeroExitCode {

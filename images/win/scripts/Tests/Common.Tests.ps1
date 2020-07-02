@@ -8,6 +8,7 @@ Describe "MongoDB" {
 
 Describe "Kind" {
     It "Kind" {
-        Validate-ZeroExitCode "kind version" | Should -Be 0
+        Write-Host $env:PATH
+        "kind version" | Shoule -ShouldReturnZeroExitCode
     }
 }

@@ -1,5 +1,10 @@
 Describe "Cmake" {
+    It "cmake2" {
+        "cmake --version" | Shoule -ShouldReturnZeroExitCode
+    }
+
     It "cmake" {
-        Validate-ZeroExitCode "cmake --version" | Should -Be 0
+
+        Write-Host (Get-WhichTool "cmake")
     }
 }
