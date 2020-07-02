@@ -32,4 +32,5 @@ Export-ModuleMember -Function @(
     'Get-WhichTool'
     'Get-EnvironmentVariable'
     'Run-PesterTests'
+    'Validate-ZeroExitCode'
 )

@@ -1,5 +1,5 @@
 Describe "Cmake" {
     It "cmake" {
-        "cmake --version" | Should -ReturnZeroExitCode
+        Validate-ZeroExitCode "cmake --version" | Should -Be 0
     }
 }

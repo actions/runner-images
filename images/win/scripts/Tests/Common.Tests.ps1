@@ -1,13 +1,13 @@
 Describe "MongoDB" {
     @("mongo", "mongod") | ForEach-Object {
         It "$_" {
-            "$($_) --version" | Should -ReturnZeroExitCode
+            Validate-ZeroExitCode "$($_) --version" | Should -Be 0
         }
     }
 }
 
 Describe "Kind" {
     It "Kind" {
-        "kind version" | Should -ReturnZeroExitCode
+        Validate-ZeroExitCode "kind version" | Should -Be 0
     }
 }

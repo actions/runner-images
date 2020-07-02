@@ -65,6 +65,11 @@ function ShouldReturnZeroExitCode {
     }
 }
 
+function Validate-ZeroExitCode($command) {
+    $result = Get-CommandResult $command
+    $result.ExitCode
+}
+
 if (Get-Module Pester) {
     Add-AssertionOperator -Name ReturnZeroExitCode -Test  $function:ShouldReturnZeroExitCode
 }
