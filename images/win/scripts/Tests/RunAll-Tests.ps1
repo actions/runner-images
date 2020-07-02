@@ -1,1 +1,1 @@
-Run-PesterTests "*"
+Invoke-PesterTests "*"

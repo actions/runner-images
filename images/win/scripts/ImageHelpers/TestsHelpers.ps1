@@ -23,13 +23,25 @@ function Get-EnvironmentVariable($variable) {
     return [System.Environment]::GetEnvironmentVariable($variable)
 }
 
-# TO-DO: Better naming is required
-function Run-PesterTests {
+function Update-Environment {
+    $variables = [Environment]::GetEnvironmentVariables("Machine")
+    $variables.Keys | ForEach-Object {
+        $key = $_
+        $value = $variables[$key]
+        Write-Host "DEBUG:::: $key = $value"
+        Set-Item -Path "env:$key" -Value $value
+    }
+    # We need to refresh PATH the latest one because it could include other variables "%M2_HOME%/bin"
+    $env:PATH = [Environment]::GetEnvironmentVariable("PATH", "Machine")
+}
+
+function Invoke-PesterTests {
     Param(
         [Parameter(Mandatory)][string] $TestFile,
         [string] $TestName
     )
 
+    Write-Host "DEBUG: Running tests"
     $testsDirectory = Join-Path "C:\image" "Tests"
     $testPath = Join-Path $testsDirectory "${TestFile}.Tests.ps1"
 
@@ -37,6 +49,10 @@ function Run-PesterTests {
         # TO-DO: Make sure that throw will fail packer build
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
+
+    Write-Host "DEBUG: Refresh environment before tests"
+    Update-Environment
+    Write-Host "DEBUG: Invoke Pester"
     Invoke-Pester -Script $testPath -TestName $TestName -EnableExit
 }
 

@@ -40,8 +40,4 @@ catch
     exit 1
 }
 
-# Restart current session
-Invoke-Command { & "powershell.exe" } -NoNewScope
-
-# Run Pester Test
-Run-PesterTests -TestFile "Common" -TestName "Kind"
+Invoke-PesterTests -TestFile "Common" -TestName "Kind"

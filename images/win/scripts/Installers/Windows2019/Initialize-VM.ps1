@@ -38,9 +38,8 @@ Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module -Name PowerShellGet -Force
 Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
 
-
-Write-Host "Disable Antivirus"
-Set-MpPreference -DisableRealtimeMonitoring $true
+#Write-Host "Install PowerShell Module - Pester 4.10.1"
+#Install-Module Pester -Force -Scope AllUsers -RequiredVersion 4.10.1
 
 # Disable Windows Update
 $AutoUpdatePath = "HKLM:SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
@@ -58,13 +57,13 @@ Install-WindowsFeature -Name NET-Framework-Features -IncludeAllSubFeature
 # As of  1/16/2019, WinServer 19 lists .Net 4.7 as NET-Framework-45-Features
 Install-WindowsFeature -Name NET-Framework-45-Features -IncludeAllSubFeature
 # Install FS-iSCSITarget-Server
-$fsResult = Install-WindowsFeature -Name FS-iSCSITarget-Server -IncludeAllSubFeature -IncludeManagementTools
-if ( $fsResult.Success ) {
-    Write-Host "FS-iSCSITarget-Server has been successfully installed"
-} else {
-    Write-Host "Failed to install FS-iSCSITarget-Server"
-    exit 1
-}
+#$fsResult = Install-WindowsFeature -Name FS-iSCSITarget-Server -IncludeAllSubFeature -IncludeManagementTools
+#if ( $fsResult.Success ) {
+#    Write-Host "FS-iSCSITarget-Server has been successfully installed"
+#} else {
+#    Write-Host "Failed to install FS-iSCSITarget-Server"
+#    exit 1
+#}
 
 Write-Host "Disable UAC"
 Disable-UserAccessControl

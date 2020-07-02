@@ -31,5 +31,6 @@ Export-ModuleMember -Function @(
     'Get-CommandResult'
     'Get-WhichTool'
     'Get-EnvironmentVariable'
-    'Run-PesterTests'
+    'Invoke-PesterTests'
+    'Validate-ZeroExitCode'
 )

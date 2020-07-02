@@ -27,7 +27,7 @@ Describe "Java" {
             $javaVariableValue | Should -Not -BeNullOrEmpty
 
             $javaPath = Join-Path $javaVariableValue "bin\java"
-            "$javaPath version" | Should -ReturnZeroExitCode
+            "& '$javaPath' -version" | Should -ReturnZeroExitCode
         }
     }
 }
