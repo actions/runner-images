@@ -5,4 +5,4 @@
 
 Choco-Install -PackageName cmake.install -ArgumentList "--installargs",'ADD_CMAKE_TO_PATH=""System""'
 
-Invoke-PesterTests -TestFile "Cake"
+Invoke-PesterTests -TestFile "Cmake"
