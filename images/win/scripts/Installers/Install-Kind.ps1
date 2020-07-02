@@ -41,4 +41,4 @@ catch
 }
 
 # Run Pester Test
-Run-PesterTests -TestFile "Common" -TestName "Kind"
+#Run-PesterTests -TestFile "Common" -TestName "Kind"

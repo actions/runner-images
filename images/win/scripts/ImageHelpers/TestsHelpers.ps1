@@ -1,5 +1,3 @@
-Get-Module Pester
-
 function Get-CommandResult {
     Param (
         [Parameter(Mandatory)][string] $Command,
@@ -67,6 +65,9 @@ function ShouldReturnZeroExitCode {
     }
 }
 
-Add-AssertionOperator -Name ReturnZeroExitCode -Test  $function:ShouldReturnZeroExitCode
+if (Get-Module Pester) {
+    Add-AssertionOperator -Name ReturnZeroExitCode -Test  $function:ShouldReturnZeroExitCode
+}
+
 
 # TO-DO: Need to validate that ImageHelpers scripts are deleted from image at the end of image-generation
