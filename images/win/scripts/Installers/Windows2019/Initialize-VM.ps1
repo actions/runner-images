@@ -54,13 +54,13 @@ Install-WindowsFeature -Name NET-Framework-Features -IncludeAllSubFeature
 # As of  1/16/2019, WinServer 19 lists .Net 4.7 as NET-Framework-45-Features
 Install-WindowsFeature -Name NET-Framework-45-Features -IncludeAllSubFeature
 # Install FS-iSCSITarget-Server
-$fsResult = Install-WindowsFeature -Name FS-iSCSITarget-Server -IncludeAllSubFeature -IncludeManagementTools
-if ( $fsResult.Success ) {
-    Write-Host "FS-iSCSITarget-Server has been successfully installed"
-} else {
-    Write-Host "Failed to install FS-iSCSITarget-Server"
-    exit 1
-}
+#$fsResult = Install-WindowsFeature -Name FS-iSCSITarget-Server -IncludeAllSubFeature -IncludeManagementTools
+#if ( $fsResult.Success ) {
+#    Write-Host "FS-iSCSITarget-Server has been successfully installed"
+#} else {
+#    Write-Host "Failed to install FS-iSCSITarget-Server"
+#    exit 1
+#}
 
 Write-Host "Disable UAC"
 Disable-UserAccessControl
