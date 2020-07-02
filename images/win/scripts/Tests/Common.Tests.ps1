@@ -14,7 +14,13 @@ Describe "Kind" {
 
 Describe "7-Zip" {
     It "7z" {
-        throw "fake error"
+        #throw "fake error"
         "7z" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Fake_test" {
+    It "Fake" {
+        $true | Should -BeFalse
     }
 }

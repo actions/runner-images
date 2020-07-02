@@ -50,6 +50,8 @@ function Invoke-PesterTests {
 
     Update-Environment
     Invoke-Pester -Script $testPath -TestName $TestName
+    Write-Host $?
+    Write-Host $LASTEXITCODE
 }
 
 function ShouldReturnZeroExitCode {
