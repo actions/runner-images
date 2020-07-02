@@ -2,7 +2,7 @@
 ################################################################################
 ##  File:  aws-sam-cli.sh
 ##  Desc:  Installs AWS SAM CLI
-##         Requires Pyton >=3.6, must be run as non-root user after toolset installation
+##         Requires Python >=3.6, must be run as non-root user after toolset installation
 ################################################################################
 
 # Source the helpers for use with the script
