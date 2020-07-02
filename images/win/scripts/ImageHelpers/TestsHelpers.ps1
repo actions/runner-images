@@ -81,6 +81,9 @@ function ShouldReturnZeroExitCode {
     }
 }
 
-Add-AssertionOperator -Name ReturnZeroExitCode -Test  $function:ShouldReturnZeroExitCode
+if (Get-Command Add-AssertionOperator -ErrorAction SilentlyContinue) {
+    # this module is imported in all PS scripts and it should not fail if Pester is not installed yet
+    Add-AssertionOperator -Name ReturnZeroExitCode -Test  $function:ShouldReturnZeroExitCode
+}
 
 # TO-DO: Need to validate that ImageHelpers scripts are deleted from image at the end of image-generation
