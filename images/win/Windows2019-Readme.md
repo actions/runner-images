@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 17763
-- Image Version: 20200608.1
+- Image Version: 20200621.1
 
 ## Installed Software
 ### Language and Runtime
@@ -8,35 +8,37 @@
 - Java 1.8.0_222 (default)
 - Java 11.0.4 
 - Java 13.0.3 
-- Rust 1.44.0
+- Rust 1.44.1
 - Python 3.7.7
 - Ruby 2.5.8p224
 - Go 1.14.4
-- PHP 7.4.6
+- PHP 7.4.7
 - Julia 1.4.2
 - Perl 5.30.2
-- PowerShell 7.0.1
-- Node 12.18.0
+- PowerShell 7.0.2
+- Node 12.18.1
 
 ### Package Management
 - Chocolatey 0.10.15
 - Vcpkg 2020.02.04
-- NPM 6.14.4
+- NPM 6.14.5
 - Yarn 1.22.4
 - pip 20.1.1 (python 3.7)
 - Miniconda 4.6.14
 - RubyGems 3.1.4
-- Helm 3.2.2
+- Helm 3.2.4
 - Composer 1.10.7
+- NuGet 5.6.0.6591
 
 ### Project Management
 - Ant 1.10.5
 - Maven 3.6.3
 - Gradle 6.5
+- sbt 1.3.12
 
 ### Tools
-- Azure CosmosDb Emulator 2.11.0.0
-- Bazel 3.2.0
+- Azure CosmosDb Emulator 2.11.1.0
+- Bazel 3.3.0
 - Bazelisk 1.5.0
 - CMake 3.17.3
 - Docker 19.03.5
@@ -52,7 +54,7 @@
 - Mercurial 5.0
 - NSIS 3.5.0.20200106
 - OpenSSL 1.1.1
-- Packer 1.5.6
+- Packer 1.6.0
 - SQLPS 1.0
 - SQLServer PS 21.1.18221
 - Subversion (SVN) 1.8.17
@@ -66,18 +68,19 @@
 
 ### CLI Tools
 - Azure CLI 2.7.0
+- azcopy 10.4.3
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.19
-- AWS SAM CLI 0.52.0
+- AWS CLI 2.0.24
+- AWS SAM CLI 0.53.0
 - Alibaba CLI 3.0.26
 - Cloud Foundry CLI 6.51.0
 - Hub CLI 2.14.2
 
 ### Browsers and webdrivers
-- Google Chrome 83.0.4103.97
+- Google Chrome 83.0.4103.106
 - Chrome Driver 83.0.4103.39
-- Microsoft Edge 83.0.478.45
-- Microsoft Edge Driver 83.0.478.45
+- Microsoft Edge 83.0.478.54
+- Microsoft Edge Driver 83.0.478.54
 - Mozilla Firefox 77.0.1
 - Gecko Driver 0.26.0
 - IE Driver 3.150.1.0
@@ -126,7 +129,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 8.17.0  | x64          |
 | 10.21.0 | x64          |
-| 12.18.0 | x64          |
+| 12.18.1 | x64          |
 | 14.4.0  | x64          |
 
 
@@ -167,20 +170,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 4.2.7.0 | MongoDB     | Running       | Automatic        |
+| 4.2.8.0 | MongoDB     | Running       | Automatic        |
 
 
 
 ### Visual Studio Enterprise 2019
-| Name                          | Version       | Path                                                           |
-| ----------------------------- | ------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.6.30128.74 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Name                          | Version        | Path                                                           |
+| ----------------------------- | -------------- | -------------------------------------------------------------- |
+| Visual Studio Enterprise 2019 | 16.6.30204.135 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | version        |
 | ------------------------------------------------------------------------- | -------------- |
-| Component.Android.NDK.R16B                                                | 16.6.30128.16  |
+| Component.Android.NDK.R16B                                                | 16.6.30202.64  |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61  |
 | Component.Android.SDK28                                                   | 16.2.29003.222 |
 | Component.Ant                                                             | 1.9.3.8        |
@@ -230,10 +233,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.4.7.DeveloperTools                           | 16.3.29207.166 |
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 16.3.29207.166 |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 16.0.28516.191 |
-| Microsoft.Net.Core.Component.SDK.2.1                                      | 16.6.30107.105 |
+| Microsoft.Net.Core.Component.SDK.2.1                                      | 16.6.30202.64  |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 16.5.29721.120 |
-| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.6.30107.105 |
-| Microsoft.NetCore.Component.SDK                                           | 16.6.30107.105 |
+| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.6.30202.64  |
+| Microsoft.NetCore.Component.SDK                                           | 16.6.30202.64  |
 | Microsoft.NetCore.Component.Web                                           | 16.5.29721.120 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 16.5.29515.121 |
 | Microsoft.VisualStudio.Component.AspNet45                                 | 16.0.28315.86  |
@@ -333,9 +336,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.v141.ARM.Spectre                      | 16.5.29515.121 |
 | Microsoft.VisualStudio.Component.VC.v141.ARM64                            | 16.6.30013.169 |
 | Microsoft.VisualStudio.Component.VC.v141.ARM64.Spectre                    | 16.5.29515.121 |
+| Microsoft.VisualStudio.Component.VC.v141.ATL                              | 16.0.28625.61  |
 | Microsoft.VisualStudio.Component.VC.v141.ATL.ARM.Spectre                  | 16.5.29721.120 |
 | Microsoft.VisualStudio.Component.VC.v141.ATL.ARM64.Spectre                | 16.0.28625.61  |
 | Microsoft.VisualStudio.Component.VC.v141.ATL.Spectre                      | 16.0.28625.61  |
+| Microsoft.VisualStudio.Component.VC.v141.MFC                              | 16.0.28625.61  |
 | Microsoft.VisualStudio.Component.VC.v141.MFC.ARM.Spectre                  | 16.0.28625.61  |
 | Microsoft.VisualStudio.Component.VC.v141.MFC.ARM64.Spectre                | 16.0.28625.61  |
 | Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre                      | 16.0.28625.61  |
@@ -398,20 +403,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.2.100 2.2.101 2.2.102 2.2.103 2.2.104 2.2.105 2.2.106 2.2.107 2.2.108 2.2.109 2.2.110 2.2.202 2.2.203 2.2.204 2.2.205 2.2.206 2.2.207 2.2.300 2.2.301 2.2.401 2.2.402 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.200 3.1.201 3.1.202 3.1.300
+- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301
 
 ### .NET Core Runtime
 `Location C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.2.0 2.2.1 2.2.2 2.2.3 2.2.4 2.2.5 2.2.6 2.2.7 2.2.8
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19
 
 `Location C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.2.0 2.2.1 2.2.2 2.2.3 2.2.4 2.2.5 2.2.6 2.2.7 2.2.8 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
 
 `Location C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.2.0 2.2.1 2.2.2 2.2.3 2.2.4 2.2.5 2.2.6 2.2.7 2.2.8 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
 
 `Location C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4
+- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
 
 ### .NET Framework
 `Location C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX <version> Tools`
@@ -431,7 +436,7 @@ All other versions are saved but not installed.
 ### Android SDK Tools
 | Package Name   | Description                                 |
 | -------------- | ------------------------------------------- |
-| platform-tools | Android SDK Platform-Tools, Revision 30.0.2 |
+| platform-tools | Android SDK Platform-Tools, Revision 30.0.3 |
 | tools          | Android SDK Tools 26.1.1, Revision 26.1.1   |
 
 ### Android SDK Platforms
@@ -448,6 +453,7 @@ All other versions are saved but not installed.
 | android-27   | Android SDK Platform 27, Revision 3        |
 | android-28   | Android SDK Platform 28, rev 6, Revision 6 |
 | android-29   | Android SDK Platform 29, Revision 4        |
+| android-30   | Android SDK Platform 30, Revision 1        |
 
 ### Android SDK Build-Tools
 `Location C:\Program Files (x86)\Android\android-sdk\build-tools`
@@ -484,6 +490,7 @@ All other versions are saved but not installed.
 | build-tools-29.0.1 | Android SDK Build-Tools, Revision 29.0.1 |
 | build-tools-29.0.2 | Android SDK Build-Tools, Revision 29.0.2 |
 | build-tools-29.0.3 | Android SDK Build-Tools, Revision 29.0.3 |
+| build-tools-30.0.0 | Android SDK Build-Tools, Revision 30.0.0 |
 
 ### Android Extra Packages
 | Package Name               | Version      |
@@ -491,7 +498,7 @@ All other versions are saved but not installed.
 | Android Support Repository | 47.0.0       |
 | Google Play services       | 49           |
 | Google Repository          | 58           |
-| NDK                        | 21.2.6472646 |
+| NDK                        | 21.3.6528147 |
 
 ### Cached Docker images
 -  mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019

@@ -4,7 +4,7 @@
             "name": "Python",
             "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
             "platform" : "linux",
-            "platform_version": "16.04",
+            "platform_version": "18.04",
             "arch": "x64",
             "versions": [
                 "2.7.*",
@@ -52,11 +52,27 @@
             "name": "boost",
             "url" : "https://raw.githubusercontent.com/actions/boost-versions/master/versions-manifest.json",
             "platform" : "linux",
-            "platform_version": "16.04",
+            "platform_version": "18.04",
             "arch": "x64",
             "versions": [
                 "1.69.0",
                 "1.72.0"
+            ]
+        }
+    ],
+    "azureModules": [
+        {
+            "name": "az",
+            "versions": [
+                "1.0.0",
+                "1.6.0",
+                "2.3.2",
+                "2.6.0",
+                "2.8.0",
+                "3.1.0",
+                "3.5.0",
+                "3.8.0",
+                "4.3.0"
             ]
         }
     ]
