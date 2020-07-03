@@ -18,9 +18,3 @@ Describe "7-Zip" {
         "7z" | Should -ReturnZeroExitCode
     }
 }
-
-Describe "Fake_test" {
-    It "Fake" {
-        $true | Should -BeFalse
-    }
-}
