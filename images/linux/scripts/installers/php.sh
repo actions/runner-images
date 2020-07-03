@@ -139,13 +139,12 @@ done
 if isUbuntu20 ; then
   rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
   apt-get update
+  AddBlockquote "To use ppa:ondrej/php APT repository On Ubuntu 20.04 it is necessary to add it to the APT sources"
+  StartCode
+  WriteItem apt-add-repository ppa:ondrej/php -y
+  WriteItem apt-get update
+  EndCode
 fi
 
 DocumentInstalledItem "Composer  ($(composer --version))"
 DocumentInstalledItem "PHPUnit ($(phpunit --version))"
-
-if isUbuntu20 ; then
-  AddBlockquote "To use ppa:ondrej/php APT repository On Ubuntu 20.04 it is necessary to add it to the APT sources"
-apt-add-repository ppa:ondrej/php -y
-apt-get update
-fi
