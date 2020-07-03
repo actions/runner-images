@@ -14,7 +14,6 @@ Describe "Kind" {
 
 Describe "7-Zip" {
     It "7z" {
-        #throw "fake error"
         "7z" | Should -ReturnZeroExitCode
     }
 }
