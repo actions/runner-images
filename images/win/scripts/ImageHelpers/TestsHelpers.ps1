@@ -49,9 +49,10 @@ function Invoke-PesterTests {
     }
 
     Update-Environment
-    Invoke-Pester -Script $testPath -TestName $TestName -EnableExit
-    Write-Host $?
-    Write-Host $LASTEXITCODE
+    $results = Invoke-Pester -Script $testPath -TestName $TestName -PassThru
+    if (-not ($results -and $results.FailedCount -eq 0)) {
+        throw "Test run has finished with errors"
+    }
 }
 
 function ShouldReturnZeroExitCode {
