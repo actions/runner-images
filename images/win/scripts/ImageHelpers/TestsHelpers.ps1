@@ -49,7 +49,7 @@ function Invoke-PesterTests {
     }
 
     Update-Environment
-    $results = Invoke-Pester -Script $testPath -TestName $TestName -PassThru
+    $results = Invoke-Pester -Script $testPath -FullNameFilter $TestName -PassThru
     if (-not ($results -and $results.FailedCount -eq 0)) {
         #throw "Test run has finished with errors"
     }
