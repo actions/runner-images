@@ -7,10 +7,6 @@ Describe "MongoDB" {
 }
 
 Describe "Kind" {
-    It "kind2" {
-        throw "erre"
-        $true | Should -BeTrue
-    }
     It "Kind" {
         "kind version" | Should -ReturnZeroExitCode
     }
