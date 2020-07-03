@@ -115,10 +115,8 @@
         },
         {
             "type": "powershell",
-            "inline": [
-                "# Hardcode Pester installation in template for now; It should be run at the begin of image generation before any installation",
-                "# TO-DO: Move to some script.",
-                "Install-Module Pester -Force -Scope AllUsers -RequiredVersion 4.10.1"
+            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-Pester.ps1"
             ]
         },
         {

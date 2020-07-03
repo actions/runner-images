@@ -38,9 +38,6 @@ Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module -Name PowerShellGet -Force
 Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
 
-#Write-Host "Install PowerShell Module - Pester 4.10.1"
-#Install-Module Pester -Force -Scope AllUsers -RequiredVersion 4.10.1
-
 # Disable Windows Update
 $AutoUpdatePath = "HKLM:SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
 If (Test-Path -Path $AutoUpdatePath) {
@@ -127,4 +124,3 @@ Write-Host $expandResult
 
 Write-Host "Disk sizes after expansion"
 wmic logicaldisk get size,freespace,caption
-

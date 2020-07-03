@@ -28,7 +28,6 @@ function Update-Environment {
     $variables.Keys | ForEach-Object {
         $key = $_
         $value = $variables[$key]
-        Write-Host "DEBUG:::: $key = $value"
         Set-Item -Path "env:$key" -Value $value
     }
     # We need to refresh PATH the latest one because it could include other variables "%M2_HOME%/bin"
@@ -41,7 +40,6 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    Write-Host "DEBUG: Running tests"
     $testsDirectory = Join-Path "C:\image" "Tests"
     $testPath = Join-Path $testsDirectory "${TestFile}.Tests.ps1"
 
@@ -50,10 +48,11 @@ function Invoke-PesterTests {
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
 
-    Write-Host "DEBUG: Refresh environment before tests"
     Update-Environment
-    Write-Host "DEBUG: Invoke Pester"
-    Invoke-Pester -Script $testPath -TestName $TestName -EnableExit
+    $results = Invoke-Pester -Script $testPath -TestName $TestName -PassThru
+    if (-not ($results -and $results.FailedCount -eq 0)) {
+        throw "Test run has finished with errors"
+    }
 }
 
 function ShouldReturnZeroExitCode {
@@ -63,8 +62,7 @@ function ShouldReturnZeroExitCode {
         [switch]$Negate
     )
 
-    Write-Host "Run command '${ActualValue}'"
-    Invoke-Expression -Command $ActualValue | ForEach-Object { Write-Host $_ }
+    [string[]]$output = Invoke-Expression -Command $ActualValue
     $actualExitCode = $LASTEXITCODE
 
     [bool]$succeeded = $actualExitCode -eq 0
@@ -72,6 +70,9 @@ function ShouldReturnZeroExitCode {
 
     if (-not $succeeded)
     {
+        # log detailed output in case of fail
+        Write-Host "Run command '${ActualValue}'"
+        $output | ForEach-Object { Write-Host $_ }
         $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}"
     }
 
@@ -81,6 +82,8 @@ function ShouldReturnZeroExitCode {
     }
 }
 
-Add-AssertionOperator -Name ReturnZeroExitCode -Test  $function:ShouldReturnZeroExitCode
+If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
+    Add-AssertionOperator -Name ReturnZeroExitCode -Test $function:ShouldReturnZeroExitCode
+}
 
 # TO-DO: Need to validate that ImageHelpers scripts are deleted from image at the end of image-generation
