@@ -293,13 +293,6 @@
         },
         {
             "type": "shell",
-            "scripts": [
-                "{{template_dir}}/scripts/installers/aws-sm.sh"
-            ],
-            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/installers/cleanup.sh"
             ],
