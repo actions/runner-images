@@ -171,7 +171,7 @@
 ### Xcode
 | Version        | Build   | Path                              |
 | -------------- | ------- | --------------------------------- |
-| 12.0 (beta)    | 12A6159 | /Applications/Xcode_12_beta.app   |
+| 12.0 (beta)    | 12A6159 | /Applications/Xcode_12.app   |
 | 11.6 (beta)    | 11N700h | /Applications/Xcode_11.6_beta.app |
 | 11.5 (default) | 11E608c | /Applications/Xcode_11.5.app      |
 | 11.4.1         | 11E503a | /Applications/Xcode_11.4.1.app    |
