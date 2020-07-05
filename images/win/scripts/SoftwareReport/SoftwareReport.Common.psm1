@@ -9,17 +9,14 @@ function Get-OSVersion {
 }
 
 function Get-AvailableDiskSpace {
-    $drives = @("C", "D")
-    $sizeMultiplier = "1MB"
+    $rootDrive = "C"
+    $sizeMultiplier = "1GB"
     $sizeMultiplierLabel = $sizeMultiplier.substring($sizeMultiplier.Length - 2)
 
-    foreach ($driveLabel in $drives)
-    {
-        $availableDiskSpace = [math]::Round((Get-PSDrive -Name $driveLabel).Free / $sizeMultiplier)
-        [PSCustomObject]@{
-            "Drive Label" = "${driveLabel}:"
-            "Available space (${sizeMultiplierLabel})" = $availableDiskSpace
-        }
+    $availableDiskSpace = [math]::Round((Get-PSDrive -Name $rootDrive).Free / $sizeMultiplier)
+    [PSCustomObject]@{
+        "Drive Label" = "${rootDrive}:"
+        "Available space (${sizeMultiplierLabel})" = $availableDiskSpace
     }
 }
 

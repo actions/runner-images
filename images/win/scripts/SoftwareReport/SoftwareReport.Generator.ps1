@@ -24,6 +24,9 @@ $markdown += New-MDList -Style Unordered -Lines @(
 
 $markdown += New-MDHeader "Available disk space" -Level 3
 $markdown += Get-AvailableDiskSpace | New-MDTable
+$markdown += @'
+*Size of provided mounted SSD may vary, please check [documentation.](https://docs.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources)
+'@
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Installed Software" -Level 2
