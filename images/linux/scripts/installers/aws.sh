@@ -40,7 +40,6 @@ sessionPlugin=$(session-manager-plugin)
 if [[ $sessionPlugin == *"was installed successfully"* ]]
 then
     echo "$sessionPlugin"
-    exit 0
 else
     echo "$sessionPlugin"
     exit 1
