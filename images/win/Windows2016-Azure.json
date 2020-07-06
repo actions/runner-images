@@ -582,6 +582,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Newman.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Haskell.ps1"
             ]
         },
@@ -885,6 +891,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-TypeScript.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Newman.ps1"
             ]
         },
         {

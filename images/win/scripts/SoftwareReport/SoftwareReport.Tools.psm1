@@ -207,3 +207,7 @@ function Get-StackVersion {
 function Get-GoogleCloudSDKVersion {
     (gcloud --version) -match "Google Cloud SDK"
 }
+
+function Get-NewmanVersion {
+    return "Newman $(newman --version)"
+}
