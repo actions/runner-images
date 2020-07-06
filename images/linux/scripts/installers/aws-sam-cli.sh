@@ -16,7 +16,7 @@ tar -xzvf $TarballPath -C /tmp
 cd /tmp/awslabs-aws-sam-cli*
 
 # Use python 3.7 from toolcache to install aws sam, setuptools package required for the installation
-Python3Dir=$(echo ${AGENT_TOOLSDIRECTORY}/Python/3.7*/x64)
+Python3Dir=$(echo /opt/hostedtoolcache/Python/3.7*/x64)
 Python3BinDir="${Python3Dir}/bin"
 export PATH="$Python3Dir:$Python3BinDir:$PATH"
 python3 -m pip install setuptools
