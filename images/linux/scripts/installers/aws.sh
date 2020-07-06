@@ -45,4 +45,4 @@ fi
 # Document the installed version
 echo "Document the installed version"
 DocumentInstalledItem "AWS CLI ($(aws --version 2>&1))"
-DocumentInstalledItem "AWS CLI Session manager ($(session-manager-plugin --version 2>&1))"
+DocumentInstalledItem "AWS CLI Session manager plugin ($(session-manager-plugin --version 2>&1))"
