@@ -22,11 +22,7 @@ Install-Binary -Url $sessionManagerUrl -Name $sessionManagerName -ArgumentList (
 Add-MachinePathItem -PathItem "C:\Program Files\Amazon\SessionManagerPlugin\bin"
 
 $sessionMessage = session-manager-plugin
-
-if ($sessionMessage -Match "*plugin was installed successfully*") {
-    Write-Host "$sessionMessage"
-    exit 0
-} else {
-    Write-Host "$sessionMessage"
+Write-Host "$sessionMessage"
+if ($sessionMessage -notmatch "*plugin was installed successfully*") {
     exit 1
 }
