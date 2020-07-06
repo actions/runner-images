@@ -99,6 +99,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzureDevopsExtVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMVersion),
+    (Get-AWSSessionManagerVersion),
     (Get-AlibabaCLIVersion),
     (Get-CloudFoundryVersion),
     (Get-HubVersion),
