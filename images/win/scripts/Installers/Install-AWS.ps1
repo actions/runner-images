@@ -19,7 +19,7 @@ else
 $sessionManagerName = "SessionManagerPluginSetup.exe"
 $sessionManagerUrl = "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/windows/$sessionManagerName"
 Install-Binary -Url $sessionManagerUrl -Name $sessionManagerName -ArgumentList ("/silent", "/install")
-Add-MachinePathItem -PathItem "C:\Program Files\Amazon\SessionManagerPlugin\bin"
+$env:Path = $env:Path + ";$env:ProgramFiles\Amazon\SessionManagerPlugin\bin"
 
 $sessionMessage = session-manager-plugin
 Write-Host "$sessionMessage"
