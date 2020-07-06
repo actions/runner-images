@@ -36,12 +36,9 @@ curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64
 sudo dpkg -i session-manager-plugin.deb
 
 sessionPlugin=$(session-manager-plugin)
-
-if [[ $sessionPlugin == *"was installed successfully"* ]]
+echo "$sessionPlugin"
+if ! [[ $sessionPlugin == *"was installed successfully"* ]]
 then
-    echo "$sessionPlugin"
-else
-    echo "$sessionPlugin"
     exit 1
 fi
 
