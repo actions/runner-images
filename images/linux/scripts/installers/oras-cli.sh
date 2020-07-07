@@ -29,4 +29,4 @@ fi
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "ORAS $(oras version | awk 'NR==1{print $2})"
+DocumentInstalledItem "ORAS $(oras version | awk 'NR==1{print $2}')"
