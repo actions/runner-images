@@ -163,9 +163,8 @@ function Get-AWSSAMVersion {
 }
 
 function Get-AlibabaCLIVersion {
-    $(aliyun --version | Select-String "Alibaba Cloud Command Line Interface") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $alicliVersion = $Matches.Version
-    return "Alibaba CLI $alicliVersion"
+    $alicliVersion = $(aliyun version)
+    return "Alibaba Cloud CLI $alicliVersion"
 }
 
 function Get-CloudFoundryVersion {

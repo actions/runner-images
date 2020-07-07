@@ -22,6 +22,6 @@ if ! command -v aliyun ; then
 fi
 
 # Document what was added to the image
-aliyun_version="$(aliyun --version | grep "Alibaba Cloud Command Line Interface Version" | cut -d " " -f 7)"
+aliyun_version="$(aliyun version)"
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Alibaba Cloud CLI ($aliyun_version)"
