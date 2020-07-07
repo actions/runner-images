@@ -1,0 +1,79 @@
+{
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
+            "platform" : "linux",
+            "platform_version": "16.04",
+            "arch": "x64",
+            "versions": [
+                "2.7.*",
+                "3.5.*",
+                "3.6.*",
+                "3.7.*",
+                "3.8.*"
+            ]
+        },
+        {
+            "name": "PyPy",
+            "arch": "x64",
+            "platform" : "linux",
+            "versions": [
+                "2.7",
+                "3.6"
+            ]
+        },
+        {
+            "name": "node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/master/versions-manifest.json",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": [
+                "8.*",
+                "10.*",
+                "12.*",
+                "14.*"
+            ]
+        },
+        {
+            "name": "go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/master/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "linux",
+            "versions": [
+                "1.11.*",
+                "1.12.*",
+                "1.13.*",
+                "1.14.*"
+            ],
+            "default": "1.14.*"
+        },
+        {
+            "name": "boost",
+            "url" : "https://raw.githubusercontent.com/actions/boost-versions/master/versions-manifest.json",
+            "platform" : "linux",
+            "platform_version": "16.04",
+            "arch": "x64",
+            "versions": [
+                "1.69.0",
+                "1.72.0"
+            ]
+        }
+    ],
+    "azureModules": [
+        {
+            "name": "az",
+            "versions": [
+                "1.0.0",
+                "1.6.0",
+                "2.3.2",
+                "2.6.0",
+                "2.8.0",
+                "3.1.0",
+                "3.5.0",
+                "3.8.0",
+                "4.3.0"
+            ]
+        }
+    ]
+}

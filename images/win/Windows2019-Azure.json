@@ -24,15 +24,14 @@
         "imagedata_file": "C:\\imagedata.json",
         "metadata_file": "C:\\image\\metadata.txt",
         "helper_script_folder": "C:\\Program Files\\WindowsPowerShell\\Modules\\",
+        "psmodules_root_folder": "C:\\Modules",
         "commit_id": "LATEST",
         "install_user": "installer",
         "install_password": null,
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "win19",
-        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
-        "go_versions": "1.9, 1.10, 1.11, 1.12, 1.13, 1.14",
-        "go_default": "1.14"
+        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
     },
     "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
@@ -196,6 +195,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-Nuget.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Wix.ps1"
             ]
         },
@@ -277,6 +282,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-AzCopy.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1"
             ]
         },
@@ -294,12 +305,12 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolcache-2019.json",
+            "source": "{{template_dir}}/toolsets/toolcache-2019.json",
             "destination": "{{user `root_folder`}}/toolcache.json"
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolset-2019.json",
+            "source": "{{template_dir}}/toolsets/toolset-2019.json",
             "destination": "{{user `toolset_json_path`}}"
         },
         {
@@ -327,7 +338,8 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
+                "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1"
             ]
         },
         {
@@ -352,16 +364,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "GO_VERSIONS={{user `go_versions`}}",
-                "GO_DEFAULT={{user `go_default`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Go.ps1"
             ]
         },
          {
@@ -505,17 +507,15 @@
             ]
         },
         {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
-            ]
-        },
-        {
             "type": "windows-shell",
             "inline": ["wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"]
         },
         {
             "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
+            ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1"
             ]
@@ -562,15 +562,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-AzureCosmosDbEmulator.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "ROOT_FOLDER={{user `root_folder`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-Boost.ps1"
             ]
         },
         {
@@ -664,11 +655,21 @@
             ]
         },
         {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1"
+            ]
+        },
+        {
             "type": "windows-restart",
             "restart_timeout": "10m"
         },
         {
             "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
+            ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-AzureModules.ps1"
             ]
@@ -695,6 +696,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-AzureDevOpsCli.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-AzCopy.ps1"
             ]
         },
         {
@@ -743,25 +750,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-GitHub-CLI.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "GO_VERSIONS={{user `go_versions`}}",
-                "GO_DEFAULT={{user `go_default`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Go.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "ROOT_FOLDER={{user `root_folder`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Boost.ps1"
             ]
         },
         {
@@ -1001,8 +989,26 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-GoogleCloudSDK.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
             ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
+        },
+        {
+            "type": "windows-restart",
+            "restart_timeout": "10m"
         },
         {
             "type": "powershell",

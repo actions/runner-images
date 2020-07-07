@@ -30,6 +30,7 @@ Install-Binary  -Url $downloadUrl `
                     "/RESTARTAPPLICATIONS", `
                     "/o:PathOption=CmdTools", `
                     "/o:BashTerminalOption=ConHost", `
+                    "/o:EnableSymlinks=Enabled", `
                     "/COMPONENTS=gitlfs")
 
 Choco-Install -PackageName hub

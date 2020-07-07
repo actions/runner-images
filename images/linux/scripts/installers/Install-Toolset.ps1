@@ -28,8 +28,9 @@ $ErrorActionPreference = "Stop"
 
 # Get toolset content
 $toolsetJson = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
-$toolsToInstall = @("Python", "Node")
-$tools = ConvertFrom-Json -InputObject $toolsetJson | Select-Object -ExpandProperty toolcache | Where {$ToolsToInstall -contains $_.Name}
+$toolsToInstall = @("Python", "Node", "Boost", "Go")
+
+$tools = ConvertFrom-Json -InputObject $toolsetJson | Select-Object -ExpandProperty toolcache | Where-Object {$ToolsToInstall -contains $_.Name}
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
@@ -43,10 +44,9 @@ foreach ($tool in $tools) {
         | Select-Object -First 1
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
-        if ($asset -ne $null) {
+        if ($null -ne $asset) {
             Install-Asset -ReleaseAsset $asset
-        }
-        else {
+        } else {
             Write-Host "Asset was not found in versions manifest"
             exit 1
         }
@@ -55,3 +55,4 @@ foreach ($tool in $tools) {
 
 chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python
 chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node
+chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/go

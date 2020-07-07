@@ -141,6 +141,10 @@ function Get-AzureCLIVersion {
     return "Azure CLI $azureCLIVersion"
 }
 
+function Get-AzCopyVersion {
+    return ($(azcopy --version) -replace "version ")
+}
+
 function Get-AzureDevopsExtVersion {
     $azureDevExtVersion = (az version | ConvertFrom-Json | Foreach{ $_."extensions" })."azure-devops"
     return "Azure DevOps CLI extension $azureDevExtVersion"
@@ -198,4 +202,12 @@ function Get-StackVersion {
     ((stack --version --quiet) | Out-String) -match "Version (?<version>\d+\.\d+\.\d+)," | Out-Null
     $stackVersion = $Matches.Version
     return "Stack $stackVersion"
+}
+
+function Get-GoogleCloudSDKVersion {
+    (gcloud --version) -match "Google Cloud SDK"
+}
+
+function Get-NewmanVersion {
+    return "Newman $(newman --version)"
 }

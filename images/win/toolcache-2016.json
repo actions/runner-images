@@ -1,8 +1,0 @@
-{
-    "@actions/toolcache-ruby-windows-x64": [
-        "2.4", "2.5", "2.6", "2.7"
-    ],
-    "@actions/toolcache-boost-windows-msvc-14.1-x32-x64": [
-        "1.69", "1.72"
-    ]
-}
