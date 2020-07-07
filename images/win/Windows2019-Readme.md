@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1282
-- Image Version: 20200630.0
+- Image Version: 20200706.1
 
 ## Installed Software
 ### Language and Runtime
@@ -16,7 +16,7 @@
 - Julia 1.4.2
 - Perl 5.30.2
 - PowerShell 7.0.2
-- Node 12.18.1
+- Node 12.18.2
 
 ### Package Management
 - Chocolatey 0.10.15
@@ -70,7 +70,7 @@
 - Azure CLI 2.8.0
 - azcopy 10.4.3
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.26
+- AWS CLI 2.0.28
 - AWS SAM CLI 0.53.0
 - Alibaba CLI 3.0.26
 - Cloud Foundry CLI 6.51.0
@@ -80,9 +80,9 @@
 ### Browsers and webdrivers
 - Google Chrome 83.0.4103.116
 - Chrome Driver 83.0.4103.39
-- Microsoft Edge 83.0.478.56
+- Microsoft Edge 83.0.478.58
 - Microsoft Edge Driver 83.0.478.58
-- Mozilla Firefox 78.0
+- Mozilla Firefox 78.0.1
 - Gecko Driver 0.26.0
 - IE Driver 3.150.1.0
 
@@ -178,13 +178,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2019
 | Name                          | Version        | Path                                                           |
 | ----------------------------- | -------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.6.30204.135 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Visual Studio Enterprise 2019 | 16.6.30225.117 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | version        |
 | ------------------------------------------------------------------------- | -------------- |
-| Component.Android.NDK.R16B                                                | 16.6.30202.64  |
+| Component.Android.NDK.R16B                                                | 16.6.30225.117 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61  |
 | Component.Android.SDK28                                                   | 16.2.29003.222 |
 | Component.Ant                                                             | 1.9.3.8        |
@@ -426,11 +426,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.7.2 4.8
 
 ### Azure Powershell Modules
-| Module  | Version                                                         | Path                           |
-| ------- | --------------------------------------------------------------- | ------------------------------ |
-| Az      | 1.0.0<br>1.6.0<br>2.3.2<br>2.6.0<br>3.1.0<br>3.5.0<br>3.8.0     | C:\Modules\az_\<version\>      |
-| Azure   | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>5.3.0           | C:\Modules\azure_\<version\>   |
-| AzureRM | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>6.7.0<br>6.13.1 | C:\Modules\azurerm_\<version\> |
+| Module  | Version                                                              | Path                           |
+| ------- | -------------------------------------------------------------------- | ------------------------------ |
+| Az      | 1.0.0<br>1.6.0<br>2.3.2<br>2.6.0<br>3.1.0<br>3.5.0<br>3.8.0<br>4.3.0 | C:\Modules\az_\<version\>      |
+| Azure   | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>5.3.0                | C:\Modules\azure_\<version\>   |
+| AzureRM | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>6.7.0<br>6.13.1      | C:\Modules\azurerm_\<version\> |
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
