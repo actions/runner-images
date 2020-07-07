@@ -35,7 +35,9 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.LinqToSql ' + `
               '--add Microsoft.VisualStudio.Component.SQL.SSDT ' + `
               '--add Microsoft.VisualStudio.Component.PortableLibrary ' + `
+              '--add Microsoft.VisualStudio.Component.Sharepoint.BuildTools ' + `
               '--add Microsoft.VisualStudio.Component.TeamOffice ' + `
+              '--add Microsoft.VisualStudio.Component.TeamOffice.BuildTools ' + `
               '--add Microsoft.VisualStudio.Component.TestTools.CodedUITest ' + `
               '--add Microsoft.VisualStudio.Component.TestTools.WebLoadTest ' + `
               '--add Microsoft.VisualStudio.Component.UWP.VC.ARM64 ' + `
@@ -62,18 +64,22 @@ $WorkLoads = '--allWorkloads --includeRecommended ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.ARM.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.ARM64.Spectre ' + `
+              '--add Microsoft.VisualStudio.Component.VC.v141.ATL ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.ATL.ARM.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.ATL.ARM64.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.ATL.Spectre ' + `
+              '--add Microsoft.VisualStudio.Component.VC.v141.MFC ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.ARM.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.ARM64.Spectre ' + `
               '--add Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre ' + `
+              '--add Microsoft.VisualStudio.Component.VC.14.25.x86.x64 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.16299 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17134 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.17763 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.18362 ' + `
               '--add Microsoft.VisualStudio.Component.Windows10SDK.19041 ' + `
               '--add Microsoft.VisualStudio.Component.WinXP ' + `
+              '--add Microsoft.VisualStudio.Component.Workflow.BuildTools ' + `
               '--add Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices ' + `
               '--add Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools ' + `
               '--add Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang ' + `

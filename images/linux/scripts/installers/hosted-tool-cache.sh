@@ -12,11 +12,6 @@ set -e
 
 TOOLCACHE_REGISTRY="npm.pkg.github.com"
 
-AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
-mkdir $AGENT_TOOLSDIRECTORY
-echo "AGENT_TOOLSDIRECTORY=$AGENT_TOOLSDIRECTORY" | tee -a /etc/environment
-chmod -R 777 $AGENT_TOOLSDIRECTORY
-
 echo "Configure npm to use github package registry for '@actions' scope"
 npm config set @actions:registry "https://${TOOLCACHE_REGISTRY}"
 

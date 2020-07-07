@@ -35,3 +35,13 @@ else
     Write-Host "lerna is not on path"
     exit 1
 }
+
+if (Get-Command -Name 'newman')
+{
+    Write-Host "Newman $(newman --version) is on the path."
+}
+else
+{
+    Write-Host "Newman is not on the path."
+    exit 1
+}

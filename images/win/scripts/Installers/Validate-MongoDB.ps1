@@ -3,10 +3,9 @@
 ##  Desc:  Validate MongoDB
 ################################################################################
 
-$command = Get-Command -Name 'mongod'
-if($command)
+if (Get-Command -Name 'mongod')
 {
-    Write-Host "mongod is on path"
+    Write-Host 'mongod is on path'
 }
 else
 {
@@ -14,25 +13,12 @@ else
     exit 1
 }
 
-$command = Get-Command -Name 'mongo'
-if($command)
+if (Get-Command -Name 'mongo')
 {
-    Write-Host "mongo is on path"
+    Write-Host 'mongo is on path'
 }
 else
 {
     Write-Host 'mongo not on path'
     exit 1
 }
-
-# Adding description of the software to Markdown
-$SoftwareName = "MongoDB"
-$version = $command.Version.ToString();
-
-$Description = @"
-_Version:_ $version<br/>
-_Environment:_
-* PATH: contains location of mongo.exe and mongod.exe
-"@
-
-Add-SoftwareDetailsToMarkdown -SoftwareName $SoftwareName -DescriptionMarkdown $Description

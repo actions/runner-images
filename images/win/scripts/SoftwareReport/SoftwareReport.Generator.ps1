@@ -2,13 +2,14 @@
 Install-Module MarkdownPS -Force -Scope AllUsers
 
 Import-Module MarkdownPS
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNameChecking
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.CachedTools.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Databases.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -DisableNameChecking
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 
 $markdown = ""
 
@@ -44,17 +45,19 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-NPMVersion),
     (Get-YarnVersion),
     (Get-PipVersion),
-    (Get-CondaVersion)
+    (Get-CondaVersion),
     (Get-RubyGemsVersion),
     (Get-HelmVersion),
-    (Get-ComposerVersion)
+    (Get-ComposerVersion),
+    (Get-NugetVersion)
 )
 
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AntVersion),
     (Get-MavenVersion),
-    (Get-GradleVersion)
+    (Get-GradleVersion),
+    (Get-SbtVersion)
 )
 
 $markdown += New-MDHeader "Tools" -Level 3
@@ -75,6 +78,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-MySQLVersion),
     (Get-MercurialVersion),
     (Get-NSISVersion),
+    (Get-NewmanVersion),
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
     (Get-SQLPSVersion),
@@ -92,12 +96,14 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader "CLI Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzureCLIVersion),
+    (Get-AzCopyVersion),
     (Get-AzureDevopsExtVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMVersion),
     (Get-AlibabaCLIVersion),
     (Get-CloudFoundryVersion),
-    (Get-HubVersion)
+    (Get-HubVersion),
+    (Get-GoogleCloudSDKVersion)
 )
 
 $markdown += New-MDHeader "Browsers and webdrivers" -Level 3
@@ -127,6 +133,10 @@ $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += (Build-CachedToolsMarkdown)
 $markdown += New-MDNewLine
 
+$markdown += New-MDHeader "Databases" -Level 3
+$markdown += Build-DatabasesMarkdown
+$markdown += New-MDNewLine
+
 $vs = Get-VisualStudioVersion
 $markdown += New-MDHeader "$($vs.Name)" -Level 3
 $markdown += $vs | New-MDTable
@@ -134,7 +144,7 @@ $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Workloads, components and extensions:" -Level 4
 $markdown += New-MDNewLine
-$markdown += ((Get-VisualStudioComponents) + (Get-VisualStudioExtenions)) | New-MDTable
+$markdown += ((Get-VisualStudioComponents) + (Get-VisualStudioExtensions)) | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader ".NET Core SDK" -Level 3
@@ -147,13 +157,15 @@ $markdown += New-MDHeader ".NET Core Runtime" -Level 3
 Get-DotnetRuntimes | Foreach-Object {
     $path = $_.Path
     $versions = $_.Versions
-    $markdown += "``Location $path``"
+    $markdown += "``Location: $path``"
     $markdown += New-MDNewLine
     $markdown += New-MDList -Lines $versions -Style Unordered
 }
 
 $markdown += New-MDHeader ".NET Framework" -Level 3
 $frameworks = Get-DotnetFrameworkTools
+$markdown += "``Type: Developer Pack``"
+$markdown += New-MDNewLine
 $markdown += "``Location $($frameworks.Path)``"
 $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $frameworks.Versions -Style Unordered

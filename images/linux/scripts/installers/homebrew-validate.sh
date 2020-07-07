@@ -8,7 +8,7 @@
 echo "Validate the Homebrew can run after reboot"
 
 if ! command -v brew; then
-    echo "brew cat not run after reboot"
+    echo "brew executable not found after reboot"
     exit 1
 fi
 

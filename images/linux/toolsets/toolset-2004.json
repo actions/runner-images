@@ -4,7 +4,7 @@
             "name": "Python",
             "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
             "platform" : "linux",
-            "platform_version": "16.04",
+            "platform_version": "20.04",
             "arch": "x64",
             "versions": [
                 "2.7.*",
@@ -34,6 +34,16 @@
                 "12.*",
                 "14.*"
             ]
+        },
+        {
+            "name": "go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/master/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "linux",
+            "versions": [
+                "1.14.*"
+            ],
+            "default": "1.14.*"
         }
     ]
 }
