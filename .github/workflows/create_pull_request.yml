@@ -1,0 +1,27 @@
+name: Create Pull Request
+
+on:
+  repository_dispatch:
+    types: [create-pr]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create pull request for ${{ github.event.client_payload.ReleaseBranchName }}
+      uses: actions/github-script@v2
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.pulls.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: "${{ github.event.client_payload.PullRequestTitle }}",
+            head: "${{ github.event.client_payload.ReleaseBranchName }}",
+            base: "${{ github.event.client_payload.PullRequestBase }}",
+            body: `${{ github.event.client_payload.PullRequestBody }}`
+          });

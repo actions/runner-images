@@ -19,4 +19,7 @@ if ! command -v nvm; then
     exit 1
 fi
 
+# set system node.js as default one
+nvm alias default system
+
 DocumentInstalledItem "nvm ($(nvm --version))"

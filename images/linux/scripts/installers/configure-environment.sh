@@ -6,6 +6,14 @@ echo ImageOS=$IMAGE_OS | tee -a /etc/environment
 mkdir -p /etc/skel/.config/configstore
 echo 'export XDG_CONFIG_HOME=$HOME/.config' | tee -a /etc/skel/.bashrc
 
+# Change waagent entries to use /mnt for swapfile
+sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf
+sed -i 's/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
+sed -i 's/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=4096/g' /etc/waagent.conf
+
+# Add localhost alias to ::1 IPv6
+sed -i 's/::1 ip6-localhost ip6-loopback/::1     localhost ip6-localhost ip6-loopback/g' /etc/hosts
+
 # Prepare directory and env variable for toolcache
 AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
 mkdir $AGENT_TOOLSDIRECTORY

@@ -29,32 +29,13 @@ Function Install-Asset {
     Pop-Location
 }
 
-Function Set-DefaultPythonVersion {
-    param(
-        [Parameter(Mandatory=$true)]
-        [object[]] $Toolset
-    )
-
-    $python = $Toolset  | Where-Object { ($_.name -eq "Python") -and ($_.default -ne "") } `
-                        | Select-Object default, arch -First 1
-
-    if ($python.default -ne $null) {
-        $pythonPath = Join-Path $Env:AGENT_TOOLSDIRECTORY "/Python/$($python.default)/$($python.arch)" -Resolve
-
-        Write-Host "Use Python $($python.default) as a system Python"
-        Add-MachinePathItem -PathItem $pythonPath
-        Add-MachinePathItem -PathItem "$pythonPath\Scripts"
-    } else {
-        Write-Host "Default Python version not found in toolset file!"
-    }
-}
-
 $ErrorActionPreference = "Stop"
 
 Import-Module -Name ImageHelpers -Force
 
 # Get toolcache content from toolset
-$ToolsToInstall = @("Python", "Node", "Boost")
+$ToolsToInstall = @("Python", "Node", "Boost", "Go")
+
 $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where {$ToolsToInstall -contains $_.Name}
 
 foreach ($tool in $tools) {
@@ -70,7 +51,7 @@ foreach ($tool in $tools) {
                          | Select-Object -First 1
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
-        if ($asset -ne $null) {
+        if ($null -ne $asset) {
             Install-Asset -ReleaseAsset $asset
         } else {
             Write-Host "Asset was not found in versions manifest"
@@ -78,6 +59,3 @@ foreach ($tool in $tools) {
         }
     }
 }
-
-# Install default python version
-Set-DefaultPythonVersion -Toolset $tools
