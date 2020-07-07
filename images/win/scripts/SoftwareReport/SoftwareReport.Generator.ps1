@@ -38,6 +38,14 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-NodeVersion)
 )
 
+$markdown += New-MDHeader "Rust packages:" -Level 3
+$markdown += New-MDList -Style Unordered -Lines @(
+    (Get-BindgenVersion),
+    (Get-CbindgenVersion),
+    (Get-CargoauditVersion),
+    (Get-CargooutdatedVersion)
+)
+
 $markdown += New-MDHeader "Package Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-ChocoVersion),
