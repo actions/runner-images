@@ -9,15 +9,15 @@ source $HELPER_SCRIPTS/document.sh
 
 # Determine latest ORAS CLI version
 ORAS_CLI_LATEST_VERSION_URL=https://api.github.com/repos/deislabs/oras/releases/latest
-ORAS_CLI_VERSION=$(curl $ORAS_CLI_LATEST_VERSION_URL | jq '.name' | tr -d '"' | cut -d 'v' -f 2)
-ORAS_CLI_ARCHIVE="oras_${ORAS_CLI_VERSION}_linux_amd64.tar.gz"
+ORAS_CLI_DOWNLOAD_URL=$(curl -s $ORAS_CLI_LATEST_VERSION_URL | jq -r '.assets[].browser_download_url | select(contains("linux_amd64.tar.gz"))')
+ORAS_CLI_ARCHIVE=$(basename $ORAS_CLI_DOWNLOAD_URL)
 
 # Install ORAS CLI
-curl -LO https://github.com/deislabs/oras/releases/download/v${ORAS_CLI_VERSION}/${ORAS_CLI_ARCHIVE}
-mkdir -p oras-install/
+cd /tmp
+curl -LO $ORAS_CLI_DOWNLOAD_URL -o $ORAS_CLI_ARCHIVE
+mkdir -p oras-install
 tar -xzvf $ORAS_CLI_ARCHIVE -C oras-install/
 mv oras-install/oras /usr/local/bin/
-rm -rf $ORAS_CLI_ARCHIVE oras-install/
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -28,4 +28,4 @@ fi
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "ORAS $(oras version | head -1 | awk {'print $2'})"
+DocumentInstalledItem "ORAS $(oras version | awk 'NR==1{print $2})"
