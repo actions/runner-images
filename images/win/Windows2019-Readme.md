@@ -1,22 +1,22 @@
 # Microsoft Windows Server 2019 Datacenter
-- OS Version: 10.0.17763 Build 17763
-- Image Version: 20200621.1
+- OS Version: 10.0.17763 Build 1282
+- Image Version: 20200706.1
 
 ## Installed Software
 ### Language and Runtime
 - Java 1.7.0_232 
-- Java 1.8.0_222 (default)
-- Java 11.0.4 
-- Java 13.0.3 
+- Java 1.8.0_252 (default)
+- Java 11.0.7 
+- Java 13.0.2 
 - Rust 1.44.1
-- Python 3.7.7
+- Python 3.7.8
 - Ruby 2.5.8p224
 - Go 1.14.4
 - PHP 7.4.7
 - Julia 1.4.2
 - Perl 5.30.2
 - PowerShell 7.0.2
-- Node 12.18.1
+- Node 12.18.2
 
 ### Package Management
 - Chocolatey 0.10.15
@@ -27,18 +27,18 @@
 - Miniconda 4.6.14
 - RubyGems 3.1.4
 - Helm 3.2.4
-- Composer 1.10.7
+- Composer 1.10.8
 - NuGet 5.6.0.6591
 
 ### Project Management
 - Ant 1.10.5
 - Maven 3.6.3
 - Gradle 6.5
-- sbt 1.3.12
+- sbt 1.3.13
 
 ### Tools
 - Azure CosmosDb Emulator 2.11.1.0
-- Bazel 3.3.0
+- Bazel 3.3.1
 - Bazelisk 1.5.0
 - CMake 3.17.3
 - Docker 19.03.5
@@ -47,7 +47,7 @@
 - Git LFS 2.11.0
 - InnoSetup 6.0.5
 - jq 1.6
-- Kubectl 1.18.2
+- Kubectl 1.18.5
 - Kind 0.8.1
 - Mingw-w64 8.1.0
 - MySQL 5.7.21.0
@@ -67,21 +67,22 @@
 - 7zip 19.00
 
 ### CLI Tools
-- Azure CLI 2.7.0
+- Azure CLI 2.8.0
 - azcopy 10.4.3
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.24
+- AWS CLI 2.0.28
 - AWS SAM CLI 0.53.0
 - Alibaba CLI 3.0.26
 - Cloud Foundry CLI 6.51.0
 - Hub CLI 2.14.2
+- Google Cloud SDK 299.0.0
 
 ### Browsers and webdrivers
-- Google Chrome 83.0.4103.106
+- Google Chrome 83.0.4103.116
 - Chrome Driver 83.0.4103.39
-- Microsoft Edge 83.0.478.54
-- Microsoft Edge Driver 83.0.478.54
-- Mozilla Firefox 77.0.1
+- Microsoft Edge 83.0.478.58
+- Microsoft Edge Driver 83.0.478.58
+- Mozilla Firefox 78.0.1
 - Gecko Driver 0.26.0
 - IE Driver 3.150.1.0
 
@@ -139,7 +140,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.7.18  | x64, x86     |
 | 3.5.4   | x64, x86     |
 | 3.6.8   | x64, x86     |
-| 3.7.7 (Default) | x64, x86     |
+| 3.7.8 (Default) | x64, x86     |
 | 3.8.3   | x64, x86     |
 
 
@@ -162,9 +163,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Databases
 #### PostgreSQL
-| Version | UserName | Password | Path                           | ServiceName       | ServiceStatus | ServiceStartType |
-| ------- | -------- | -------- | ------------------------------ | ----------------- | ------------- | ---------------- |
-| 12.3    | postgres | root     | C:\Program Files\PostgreSQL\12 | postgresql-x64-12 | Stopped       | Disabled         |
+| Version | UserName | Password | EnvironmentVariables                                                                                                                  | Path                           | ServiceName       | ServiceStatus | ServiceStartType |
+| ------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ----------------- | ------------- | ---------------- |
+| 12.3    | postgres | root     | PGBIN=C:\Program Files\PostgreSQL\12\bin; <br> PGDATA=C:\Program Files\PostgreSQL\12\data; <br> PGROOT=C:\Program Files\PostgreSQL\12 | C:\Program Files\PostgreSQL\12 | postgresql-x64-12 | Stopped       | Disabled         |
 
 
 #### MongoDB
@@ -177,13 +178,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2019
 | Name                          | Version        | Path                                                           |
 | ----------------------------- | -------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.6.30204.135 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Visual Studio Enterprise 2019 | 16.6.30225.117 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | version        |
 | ------------------------------------------------------------------------- | -------------- |
-| Component.Android.NDK.R16B                                                | 16.6.30202.64  |
+| Component.Android.NDK.R16B                                                | 16.6.30225.117 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61  |
 | Component.Android.SDK28                                                   | 16.2.29003.222 |
 | Component.Ant                                                             | 1.9.3.8        |
@@ -302,6 +303,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.TypeScript.3.8                           | 16.0.29813.82  |
 | Microsoft.VisualStudio.Component.Unity                                    | 16.0.28315.86  |
 | Microsoft.VisualStudio.Component.UWP.VC.ARM64                             | 16.3.29207.166 |
+| Microsoft.VisualStudio.Component.VC.14.25.x86.x64                         | 16.6.30013.169 |
 | Microsoft.VisualStudio.Component.VC.140                                   | 16.0.28625.61  |
 | Microsoft.VisualStudio.Component.VC.ASAN                                  | 16.5.29515.121 |
 | Microsoft.VisualStudio.Component.VC.ATL                                   | 16.4.29313.120 |
@@ -394,7 +396,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Universal                                 | 16.6.30020.46  |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 16.4.29409.204 |
 | SSDT Microsoft Analysis Services Projects                                 | 2.9.10         |
-| SSDT SQL Server Integration Services Projects                             | 3.7            |
+| SSDT SQL Server Integration Services Projects                             | 3.8            |
 | SSDT Microsoft Reporting Services Projects                                | 2.6.7          |
 | Windows Driver Kit                                                        | 1.0.0.4        |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.19041.1   |
@@ -406,28 +408,29 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301
 
 ### .NET Core Runtime
-`Location C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
+`Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
 - 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19
 
-`Location C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
+`Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
 - 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
 
-`Location C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
+`Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
 - 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
 
-`Location C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
+`Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
 - 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
 
 ### .NET Framework
+`Type: Developer Pack`
 `Location C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX <version> Tools`
 - 4.7.2 4.8
 
 ### Azure Powershell Modules
-| Module  | Version                                                         | Path                           |
-| ------- | --------------------------------------------------------------- | ------------------------------ |
-| Az      | 1.0.0<br>1.6.0<br>2.3.2<br>2.6.0<br>3.1.0<br>3.5.0<br>3.8.0     | C:\Modules\az_\<version\>      |
-| Azure   | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>5.3.0           | C:\Modules\azure_\<version\>   |
-| AzureRM | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>6.7.0<br>6.13.1 | C:\Modules\azurerm_\<version\> |
+| Module  | Version                                                              | Path                           |
+| ------- | -------------------------------------------------------------------- | ------------------------------ |
+| Az      | 1.0.0<br>1.6.0<br>2.3.2<br>2.6.0<br>3.1.0<br>3.5.0<br>3.8.0<br>4.3.0 | C:\Modules\az_\<version\>      |
+| Azure   | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>5.3.0                | C:\Modules\azure_\<version\>   |
+| AzureRM | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>6.7.0<br>6.13.1      | C:\Modules\azurerm_\<version\> |
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
