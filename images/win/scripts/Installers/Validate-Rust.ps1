@@ -18,12 +18,12 @@ else
     exit 1
 }
 
-if (-Not (Get-Command -Name 'cargo audit')){
+if (-Not (Get-Command -Name 'cargo-audit')){
     Write-Host "cargo audit is not on the path"
     exit 1
 }
 
-if (-Not (Get-Command -Name 'cargo outdated')){
+if (-Not (Get-Command -Name 'cargo-outdated')){
     Write-Host "cargo outdated is not on the path"
     exit 1
 }
