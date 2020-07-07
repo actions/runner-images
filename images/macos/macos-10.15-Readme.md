@@ -2,7 +2,7 @@
 - System Version: macOS 10.15.5 (19F101)
 - Kernel Version: Darwin 19.5.0
 - System Integrity Protection: Enabled
-- Image Version: 20200625.2
+- Image Version: 20200702.1
 
 ## Installed Software
 ### Language and Runtime
@@ -18,9 +18,9 @@
 - gcc-9 (Homebrew GCC 9.3.0_1) 9.3.0
 - GNU Fortran (Homebrew GCC 8.4.0_1) 8.4.0
 - GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0
-- Node.js v12.18.1
+- Node.js v12.18.2
 - NVM 0.35.3
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.21.0 v12.18.1 v13.14.0 v14.4.0
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.21.0 v12.18.2 v13.14.0 v14.5.0
 - PowerShell 7.0.2
 - Python 2.7.17
 - Python 3.7.7
@@ -36,7 +36,7 @@
 - Bundler version 2.1.4
 - Carthage 0.35.0
 - CocoaPods 1.9.3
-- Homebrew 2.4.2
+- Homebrew 2.4.3
 - NPM 6.14.5
 - Yarn 1.22.4
 - NuGet 5.6.0.6489
@@ -47,10 +47,10 @@
 
 ### Project Management
 - Apache Maven 3.6.3
-- Gradle 6.5
+- Gradle 6.5.1
 
 ### Utilities
-- Curl 7.71.0
+- Curl 7.71.1
 - Git: 2.27.0
 - Git LFS: 2.11.0
 - GitHub CLI: 0.10.1
@@ -67,7 +67,7 @@
 - aria2 1.35.0
 - azcopy 10.4.3
 - zstd 1.4.5
-- bazel 3.3.0
+- bazel 3.3.1
 - bazelisk v1.5.0
 - helm v3.2.4+g0ad800e
 - virtualbox 6.1.10r138449
@@ -77,13 +77,13 @@
 - 7-Zip 16.02
 
 ### Tools
-- Fastlane 2.149.1
+- Fastlane 2.150.1
 - Cmake 3.17.3
-- App Center CLI 2.6.0
+- App Center CLI 2.6.1
 - Azure CLI 2.8.0
-- AWS CLI 2.0.25
+- AWS CLI 2.0.27
 - AWS SAM CLI 0.53.0
-- Aliyun CLI 3.0.48
+- Aliyun CLI 3.0.49
 - GHCup v0.1.5-p2
 - GHC 8.10.1
 - Cabal 3.2.0.0
@@ -94,9 +94,9 @@
 - SafariDriver 13.1.1 (15609.2.9.1.2)
 - Google Chrome 83.0.4103.116 
 - ChromeDriver 83.0.4103.39
-- Microsoft Edge 83.0.478.56 
-- MSEdgeDriver 83.0.478.56
-- Mozilla Firefox 77.0.1
+- Microsoft Edge 83.0.478.58 
+- MSEdgeDriver 83.0.478.58
+- Mozilla Firefox 78.0.1
 - geckodriver 0.26.0
 
 ### Cached Tools
@@ -109,8 +109,8 @@
 #### Python
 - 2.7.18
 - 3.5.9
-- 3.6.10
-- 3.7.7
+- 3.6.11
+- 3.7.8
 - 3.8.3
 
 #### PyPy
