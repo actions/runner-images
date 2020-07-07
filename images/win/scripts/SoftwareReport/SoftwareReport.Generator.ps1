@@ -78,6 +78,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-MySQLVersion),
     (Get-MercurialVersion),
     (Get-NSISVersion),
+    (Get-NewmanVersion),
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
     (Get-SQLPSVersion),
