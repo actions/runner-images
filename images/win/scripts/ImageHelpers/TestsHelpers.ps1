@@ -70,7 +70,7 @@ function Invoke-PesterTests {
     }
 }
 
-function ShouldReturnZeroExitCode {
+function Should-ReturnZeroExitCode {
     Param(
         [String]$ActualValue,
         [switch]$Negate,
@@ -97,5 +97,5 @@ function ShouldReturnZeroExitCode {
 }
 
 If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
-    Add-AssertionOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
+    Add-AssertionOperator -Name ReturnZeroExitCode -InternalName Should-ReturnZeroExitCode -Test ${function:Should-ReturnZeroExitCode}
 }
