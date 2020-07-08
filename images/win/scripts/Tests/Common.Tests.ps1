@@ -1,8 +1,9 @@
 Describe "MongoDB" {
-    @("mongo", "mongod") | ForEach-Object {
-        It "$_" {
-            "$($_) --version" | Should -ReturnZeroExitCode
-        }
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "mongo" }
+        @{ ToolName = "mongod" }
+    ) {
+        "$ToolName --version" | Should -ReturnZeroExitCode
     }
 }
 

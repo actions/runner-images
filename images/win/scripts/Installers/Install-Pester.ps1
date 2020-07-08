@@ -1,4 +1,2 @@
-Import-Module -Name ImageHelpers -Force
-
-# Upgrade Pester to 5
+# Upgrade Pester to latest version
 Install-Module Pester -Scope AllUsers -SkipPublisherCheck -Force

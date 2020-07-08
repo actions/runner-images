@@ -1,33 +1,36 @@
-$JAVA_VERSIONS = @(7, 8, 11, 13)
-
 Describe "Java" {
-    It "Java 8 is default" {
-        $java8Path = Get-EnvironmentVariable "JAVA_HOME_8_X64"
-        $javaHomePath = Get-EnvironmentVariable "JAVA_HOME"
-        $java8Path | Should -Not -BeNullOrEmpty
-        $javaHomePath | Should -Not -BeNullOrEmpty
-        $java8Path | Should -Be "$javaHomePath"
+    It "Java <DefaultJavaVersion> is default" -TestCases @(@{ DefaultJavaVersion = 8 }) {
+        $actualJavaPath = Get-EnvironmentVariable "JAVA_HOME"
+        $expectedJavaPath = Get-EnvironmentVariable "JAVA_HOME_${DefaultJavaVersion}_X64"
+
+        $actualJavaPath | Should -Not -BeNullOrEmpty
+        $expectedJavaPath | Should -Not -BeNullOrEmpty
+        $actualJavaPath | Should -Be $expectedJavaPath
     }
 
-    @("java", "mvn", "ant", "gradle") | ForEach-Object {
-        It "$($_) added to the PATH:" {
-            "$($_) -version" | Should -ReturnZeroExitCode
-        }
+    It "<ToolName>" -TestCases @(
+            @{ ToolName = "java" }
+            @{ ToolName = "mvn" }
+            @{ ToolName = "ant" }
+            @{ ToolName = "gradle" }
+    ) {
+            "$ToolName -version" | Should -ReturnZeroExitCode
     }
 
-    $JAVA_VERSIONS | ForEach-Object {
-        $version = $_
-        if ($version -In @(7, 8)) {
-            # old Java versions look like "1.7", "1.8"
-            $version = "1." + $version
-        }
+    It "Java <Version>" -TestCases @(
+        @{ Version = "1.7" }
+        @{ Version = "1.8" }
+        @{ Version = "11" }
+        @{ Version = "13" }
+    ) {
+        $versionNumber = $version.Split(".") | Select-Object -Last 1
 
-        It "Java $version" {
-            $javaVariableValue = Get-EnvironmentVariable "JAVA_HOME_${_}_X64"
-            $javaVariableValue | Should -Not -BeNullOrEmpty
+        $javaVariableValue = Get-EnvironmentVariable "JAVA_HOME_${versionNumber}_X64"
+        $javaVariableValue | Should -Not -BeNullOrEmpty
+        $javaPath = Join-Path $javaVariableValue "bin\java"
 
-            $javaPath = Join-Path $javaVariableValue "bin\java"
-            "& '$javaPath' -version" | Should -ReturnZeroExitCode
-        }
+        $result = Get-CommandResult "`"$javaPath`" -version"
+        $result.ExitCode | Should -Be 0
+        $result.Output[0] | Should -Match ([regex]::Escape("openjdk version `"${Version}."))
     }
 }
