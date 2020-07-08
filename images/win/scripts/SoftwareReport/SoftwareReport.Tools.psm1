@@ -146,7 +146,7 @@ function Get-AzCopyVersion {
 }
 
 function Get-AzureDevopsExtVersion {
-    $azureDevExtVersion = (az version | ConvertFrom-Json | Foreach{ $_."extensions" })."azure-devops"
+    $azureDevExtVersion = (az version | ConvertFrom-Json | ForEach-Object { $_."extensions" })."azure-devops"
     return "Azure DevOps CLI extension $azureDevExtVersion"
 }
 
@@ -160,6 +160,11 @@ function Get-AWSSAMVersion {
     $(sam --version) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $awssamVersion = $Matches.Version
     return "AWS SAM CLI $awssamVersion"
+}
+
+function Get-AWSSessionManagerVersion {
+    $awsSessionManagerVersion = $(session-manager-plugin --version)
+    return "AWS Session Manager CLI $awsSessionManagerVersion"
 }
 
 function Get-AlibabaCLIVersion {
