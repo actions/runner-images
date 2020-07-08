@@ -42,7 +42,7 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    $testPath = Join-Path "Tests" "${TestFile}.Tests.ps1"
+    $testPath = "image\Tests\${TestFile}.Tests.ps1"
     Write-Host $testPath
 
     if (-not (Test-Path $testPath)) {
