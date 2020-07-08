@@ -17,8 +17,7 @@ ORAS_CLI_ARCHIVE=$(basename $ORAS_CLI_DOWNLOAD_URL)
 cd /tmp
 download_with_retries $ORAS_CLI_DOWNLOAD_URL
 mkdir -p oras-install
-tar -xzvf $ORAS_CLI_ARCHIVE -C oras-install/
-mv oras-install/oras /usr/local/bin/
+tar -zxvf $ORAS_CLI_ARCHIVE -C /usr/local/bin oras
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -29,4 +28,4 @@ fi
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "ORAS $(oras version | awk 'NR==1{print $2}')"
+DocumentInstalledItem "ORAS CLI $(oras version | awk 'NR==1{print $2}')"
