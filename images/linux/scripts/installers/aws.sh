@@ -32,6 +32,17 @@ if ! command -v aws; then
     exit 1
 fi
 
+curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+sudo dpkg -i session-manager-plugin.deb
+
+sessionPlugin=$(session-manager-plugin)
+echo "$sessionPlugin"
+if ! [[ $sessionPlugin == *"was installed successfully"* ]]
+then
+    exit 1
+fi
+
 # Document the installed version
 echo "Document the installed version"
 DocumentInstalledItem "AWS CLI ($(aws --version 2>&1))"
+DocumentInstalledItem "AWS CLI Session manager plugin ($(session-manager-plugin --version 2>&1))"

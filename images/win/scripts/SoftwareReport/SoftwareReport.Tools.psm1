@@ -146,7 +146,7 @@ function Get-AzCopyVersion {
 }
 
 function Get-AzureDevopsExtVersion {
-    $azureDevExtVersion = (az version | ConvertFrom-Json | Foreach{ $_."extensions" })."azure-devops"
+    $azureDevExtVersion = (az version | ConvertFrom-Json | ForEach-Object { $_."extensions" })."azure-devops"
     return "Azure DevOps CLI extension $azureDevExtVersion"
 }
 
@@ -162,10 +162,14 @@ function Get-AWSSAMVersion {
     return "AWS SAM CLI $awssamVersion"
 }
 
+function Get-AWSSessionManagerVersion {
+    $awsSessionManagerVersion = $(session-manager-plugin --version)
+    return "AWS Session Manager CLI $awsSessionManagerVersion"
+}
+
 function Get-AlibabaCLIVersion {
-    $(aliyun --version | Select-String "Alibaba Cloud Command Line Interface") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $alicliVersion = $Matches.Version
-    return "Alibaba CLI $alicliVersion"
+    $alicliVersion = $(aliyun version)
+    return "Alibaba Cloud CLI $alicliVersion"
 }
 
 function Get-CloudFoundryVersion {
@@ -206,4 +210,8 @@ function Get-StackVersion {
 
 function Get-GoogleCloudSDKVersion {
     (gcloud --version) -match "Google Cloud SDK"
+}
+
+function Get-NewmanVersion {
+    return "Newman $(newman --version)"
 }
