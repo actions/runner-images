@@ -42,17 +42,18 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    #$testPath = Join-Path "Tests" "${TestFile}.Tests.ps1"
+    $testPath = Join-Path "Tests" "${TestFile}.Tests.ps1"
+    Write-Host $testPath
 
-    #if (-not (Test-Path $testPath)) {
-    #    # TO-DO: Make sure that throw will fail packer build
-    #    throw "Unable to find test file '$TestFile' on '$testPath'."
-    #}
+    if (-not (Test-Path $testPath)) {
+        # TO-DO: Make sure that throw will fail packer build
+        throw "Unable to find test file '$TestFile' on '$testPath'."
+    }
 
     Update-Environment
     $configuration = [PesterConfiguration] @{
         Run = @{
-            Path = Join-Path "Tests" "${TestFile}.Tests.ps1"
+            Path = $testPath
             Exit = $true
             PassThru = $true
         }
