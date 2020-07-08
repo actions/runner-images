@@ -55,7 +55,6 @@ function Invoke-PesterTests {
     $configuration = [PesterConfiguration] @{
         Run = @{
             Path = $testPath
-            Exit = $true
             PassThru = $true
         }
         Output = @{
@@ -67,7 +66,8 @@ function Invoke-PesterTests {
     }
 
     $results = Invoke-Pester -Configuration $configuration
-    if (-not ($results -and $results.FailedCount -eq 0)) {
+    if (-not ($results -and ($results.FailedCount -eq 0) -and ($results.PassedCount -gt 0))) {
+        $results
         throw "Test run has finished with errors"
     }
 }
