@@ -5,6 +5,7 @@
 ################################################################################
 
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 docker_package=moby
