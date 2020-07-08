@@ -4,7 +4,6 @@
 ##  Desc:  Installs docker onto the image
 ################################################################################
 
-source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
 
