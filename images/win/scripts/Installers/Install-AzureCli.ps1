@@ -9,4 +9,4 @@ $AzureCliExtensionPath = Join-Path $Env:CommonProgramFiles 'AzureCliExtensionDir
 New-Item -ItemType "directory" -Path $AzureCliExtensionPath
 
 [Environment]::SetEnvironmentVariable("AZURE_EXTENSION_DIR", $AzureCliExtensionPath, [System.EnvironmentVariableTarget]::Machine)
-$Env:AZURE_EXTENSION_DIR = $AzureCliExtensionPath
+
