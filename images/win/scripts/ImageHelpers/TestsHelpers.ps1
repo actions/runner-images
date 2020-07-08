@@ -42,7 +42,8 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    $testPath = "image\Tests\${TestFile}.Tests.ps1"
+    Write-Host (Get-Location)
+    $testPath = "C:\image\Tests\${TestFile}.Tests.ps1"
     Write-Host $testPath
 
     if (-not (Test-Path $testPath)) {
