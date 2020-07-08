@@ -16,7 +16,6 @@ ORAS_CLI_ARCHIVE=$(basename $ORAS_CLI_DOWNLOAD_URL)
 # Install ORAS CLI
 cd /tmp
 download_with_retries $ORAS_CLI_DOWNLOAD_URL
-mkdir -p oras-install
 tar -zxvf $ORAS_CLI_ARCHIVE -C /usr/local/bin oras
 
 # Run tests to determine that the software installed as expected
