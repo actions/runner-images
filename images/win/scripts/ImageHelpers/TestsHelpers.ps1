@@ -42,7 +42,8 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    $testPath = Join-Path $env:SystemDrive "image\Tests\${TestFile}.Tests.ps1"
+    Write-Host "Run pester tests"
+    $testPath = "C:\image\Tests\${TestFile}.Tests.ps1"
     Write-Host $testPath
 
     if (-not (Test-Path $testPath)) {
