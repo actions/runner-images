@@ -9,6 +9,7 @@ Describe "MongoDB" {
 
 Describe "Kind" {
     It "Kind" {
+        Get-ChildItem "/tmp/aawgawg"
         "kind version" | Should -ReturnZeroExitCode
     }
 }
@@ -16,11 +17,5 @@ Describe "Kind" {
 Describe "7-Zip" {
     It "7z" {
         "7z" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Final test" {
-    It "final check" {
-        $true | Should -Be $false
     }
 }
