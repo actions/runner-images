@@ -42,12 +42,9 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    Write-Host (Get-Location)
-    $testPath = "C:\image\Tests\${TestFile}.Tests.ps1"
-    Write-Host $testPath
+    $testPath = Join-Path $env:SystemDrive "image\Tests\${TestFile}.Tests.ps1"
 
     if (-not (Test-Path $testPath)) {
-        # TO-DO: Make sure that throw will fail packer build
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
 
