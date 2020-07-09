@@ -38,3 +38,5 @@ catch
     Write-Host $_.Exception.Message
     exit 1
 }
+
+Invoke-PesterTests -TestFile "Tools" -TestName "Kind"
