@@ -45,11 +45,11 @@ function Get-CbindgenVersion {
     return cbindgen --version
 }
 
-function Get-CargoauditVersion {
+function Get-CargoAuditVersion {
     return cargo audit --version
 }
 
-function Get-CargooutdatedVersion {
+function Get-CargoOutdatedVersion {
     return cargo outdated --version
 }
 
