@@ -38,7 +38,8 @@ common_packages="dnsutils
                  zsync
                  gnupg2
                  lib32z1
-                 texinfo"
+                 texinfo
+                 libsqlite3-dev"
 
 cmd_packages="curl
               file
@@ -57,7 +58,10 @@ cmd_packages="curl
               wget
               m4
               bison
-              flex"
+              flex
+              patchelf
+              bzip2
+              sqlite3"
 
 if isUbuntu20 ; then
     echo "Install python2"
