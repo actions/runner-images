@@ -19,16 +19,16 @@ Function Get-PackerTemplatePath {
 
     switch ($ImageType) {
         ([ImageType]::Windows2016) {
-            $relativePath = "\images\win\Windows2016-Azure.json"
+            $relativePath = "/images/win/Windows2016-Azure.json"
         }
         ([ImageType]::Windows2019) {
-            $relativePath = "\images\win\Windows2019-Azure.json"
+            $relativePath = "/images/win/Windows2019-Azure.json"
         }
         ([ImageType]::Ubuntu1604) {
-            $relativePath = "\images\linux\ubuntu1604.json"
+            $relativePath = "/images/linux/ubuntu1604.json"
         }
         ([ImageType]::Ubuntu1804) {
-            $relativePath = "\images\linux\ubuntu1804.json"
+            $relativePath = "/images/linux/ubuntu1804.json"
         }
     }
 
@@ -80,8 +80,12 @@ Function GenerateResourcesAndImage {
         [string] $AzureLocation,
         [Parameter(Mandatory = $False)]
         [int] $SecondsToWaitForServicePrincipalSetup = 30,
-        [Parameter(Mandatory = $False)]
+        [Parameter(Mandatory = $True)]
         [string] $GithubFeedToken,
+        [Parameter(Mandatory = $True)]
+        [string] $ServicePrincipalDisplayName,
+        [Parameter(Mandatory = $True)]
+        [string] $ServicePrincipalClientSecret,
         [Parameter(Mandatory = $False)]
         [Switch] $Force
     )
@@ -93,11 +97,23 @@ Function GenerateResourcesAndImage {
     }
 
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
-    $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
-    $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
+    Write-Verbose "Builder Script Path ==>$builderScriptPath<=="
 
-    Login-AzureRmAccount
-    Set-AzureRmContext -SubscriptionId $SubscriptionId
+    ## --------------------------------------------------------------------------------------------
+    ## Don't generate a new Service Principal Client Secret. Instead, use the existing secret from
+    ## the existing Service Principal that is passed in as the ServicePrincipalClientSecret
+    ## parameter
+    ## --------------------------------------------------------------------------------------------
+    # $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
+
+    $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
+    Write-Verbose "Install Password ==>$InstallPassword<=="
+
+    ## --------------------------------------------------------------------------------------------
+    ## Moved the login and setting the subscription context to RunScripts.ps1
+    ## --------------------------------------------------------------------------------------------
+    # Login-AzureRmAccount
+    # Set-AzureRmContext -SubscriptionId $SubscriptionId
 
     $alreadyExists = $true;
     try {
@@ -152,21 +168,34 @@ Function GenerateResourcesAndImage {
 
     New-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
 
-    $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
-    $sp = New-AzureRmADServicePrincipal -DisplayName $spDisplayName -Password (ConvertTo-SecureString $ServicePrincipalClientSecret -AsPlainText -Force)
+    ## --------------------------------------------------------------------------------------------
+    ## We're not going to create a new Service Principal. Instead, we'll use an existing one that
+    ## is passed in as the $ServicePrincipalDisplayName parameter
+    ## --------------------------------------------------------------------------------------------
+    # $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
+    # $sp = New-AzureRmADServicePrincipal -DisplayName $spDisplayName -Password (ConvertTo-SecureString $ServicePrincipalClientSecret -AsPlainText -Force)
 
-    $spAppId = $sp.ApplicationId
+    $sp = Get-AzureRmADServicePrincipal -DisplayName $ServicePrincipalDisplayName
+
+    ## --------------------------------------------------------------------------------------------
+    ## $spAppId is used for the Role Assignment command, which is commented out
+    ## --------------------------------------------------------------------------------------------
+    # $spAppId = $sp.ApplicationId
     $spClientId = $sp.ApplicationId
     $spObjectId = $sp.Id
     Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
 
-    New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
+    ## --------------------------------------------------------------------------------------------
+    ## The Service Principal being used is already a Contributor on the Subscription
+    ## --------------------------------------------------------------------------------------------
+    # New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
+
     Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
     $sub = Get-AzureRmSubscription -SubscriptionId $SubscriptionId
     $tenantId = $sub.TenantId
     # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
 
-    packer.exe build -on-error=ask `
+    packer build -on-error=ask `
         -var "client_id=$($spClientId)" `
         -var "client_secret=$($ServicePrincipalClientSecret)" `
         -var "subscription_id=$($SubscriptionId)" `
