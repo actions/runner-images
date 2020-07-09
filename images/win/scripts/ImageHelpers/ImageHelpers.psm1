@@ -30,7 +30,6 @@ Export-ModuleMember -Function @(
     'Choco-Install'
     'Extract-7Zip'
     'Get-CommandResult'
-    'Get-WhichTool'
     'Get-EnvironmentVariable'
     'Invoke-PesterTests'
 )
