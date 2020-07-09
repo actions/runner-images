@@ -44,9 +44,6 @@ function Invoke-PesterTests {
 
     Write-Host "Run pester tests"
     $testPath = "C:\image\Tests\${TestFile}.Tests.ps1"
-    $testPath2 = [IO.Path]::Combine($env:SystemDrive, "image", "Tests", "${TestFile}.Tests.ps1")
-    Write-Host "'$testPath'"
-    Write-Host "'$testPath2'"
 
     if (-not (Test-Path $testPath)) {
         throw "Unable to find test file '$TestFile' on '$testPath'."
@@ -57,7 +54,7 @@ function Invoke-PesterTests {
 
     $configuration = [PesterConfiguration] @{
         Run = @{
-            Path = $testPath2
+            Path = $testPath
             PassThru = $true
         }
         Output = @{
