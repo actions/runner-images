@@ -69,15 +69,15 @@ function Invoke-PesterTests {
     # Fail in case if no tests are run
     if (-not ($results -and ($results.FailedCount -eq 0) -and ($results.PassedCount -gt 0))) {
         $results
-        throw "Test run has finished with errors"
+        throw "Test run has failed"
     }
 }
 
 # Pester Assert to check exit code of command
 function ShouldReturnZeroExitCode {
     Param(
-        [String]$ActualValue,
-        [switch]$Negate,
+        [String] $ActualValue,
+        [switch] $Negate,
         [string] $Because
     )
 
@@ -85,8 +85,6 @@ function ShouldReturnZeroExitCode {
 
     [bool]$succeeded = $result.ExitCode -eq 0
     if ($Negate) { $succeeded = -not $succeeded }
-
-
 
     if (-not $succeeded)
     {
