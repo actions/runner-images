@@ -42,6 +42,8 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
+    Get-ChildItem Env:
+    Write-Host $env:SystemDrive
     $testPath = "C:\image\Tests\${TestFile}.Tests.ps1"
 
     if (-not (Test-Path $testPath)) {
