@@ -1,11 +1,13 @@
 function Get-CommandResult {
     Param (
-        [Parameter(Mandatory)][string] $Command,
-        [switch] $Multiline
+        [Parameter(Mandatory)][string] $Command
     )
+    # CMD trick to suppress and show error output because some commands write to stderr (for example, "python --version")
+    [string[]]$output = & $env:comspec /c "$Command 2>&1"
     $exitCode = $LASTEXITCODE
+
     return @{
-        Output = If ($Multiline -eq $true) { $stdout } else { [string]$stdout }
+        Output = $output
         ExitCode = $exitCode
     }
 }
@@ -40,50 +42,64 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    $testsDirectory = Join-Path "C:\image" "Tests"
-    $testPath = Join-Path $testsDirectory "${TestFile}.Tests.ps1"
+    Write-Host "Run pester tests"
+    $testPath = "C:\image\Tests\${TestFile}.Tests.ps1"
+    $testPath2 = Join-Path $env:SystemDrive "image\Tests\${TestFile}.Tests.ps1"
+    Write-Host "'$testPath'"
+    Write-Host "'$testPath2'"
 
     if (-not (Test-Path $testPath)) {
-        # TO-DO: Make sure that throw will fail packer build
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
 
     Update-Environment
-    $results = Invoke-Pester -Script $testPath -TestName $TestName -PassThru
-    if (-not ($results -and $results.FailedCount -eq 0)) {
+    $configuration = [PesterConfiguration] @{
+        Run = @{
+            Path = $testPath
+            PassThru = $true
+        }
+        Output = @{
+            Verbosity = "Detailed"
+        }
+    }
+    if ($TestName) {
+        $configuration.Filter.FullName = $TestName
+    }
+
+    $results = Invoke-Pester -Configuration $configuration
+    if (-not ($results -and ($results.FailedCount -eq 0) -and ($results.PassedCount -gt 0))) {
+        $results
         throw "Test run has finished with errors"
     }
 }
 
 function ShouldReturnZeroExitCode {
     Param(
-        [Parameter (Mandatory = $true)] [ValidateNotNullOrEmpty()]
         [String]$ActualValue,
-        [switch]$Negate
+        [switch]$Negate,
+        [string] $Because
     )
 
-    [string[]]$output = Invoke-Expression -Command $ActualValue
-    $actualExitCode = $LASTEXITCODE
+    $result = Get-CommandResult $ActualValue
 
-    [bool]$succeeded = $actualExitCode -eq 0
+    [bool]$succeeded = $result.ExitCode -eq 0
     if ($Negate) { $succeeded = -not $succeeded }
+
+
 
     if (-not $succeeded)
     {
-        # log detailed output in case of fail
-        Write-Host "Run command '${ActualValue}'"
-        $output | ForEach-Object { Write-Host $_ }
-        $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}"
+        $CommandResultIndent = " " * 4
+        $commandOutput = ($result.Output | ForEach-Object { "${CommandResultIndent}${_}" }) -join "`n"
+        $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}`n${commandOutput}"
     }
 
-    return New-Object PSObject -Property @{
+    return [PSCustomObject] @{
         Succeeded      = $succeeded
         FailureMessage = $failureMessage
     }
 }
 
 If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
-    Add-AssertionOperator -Name ReturnZeroExitCode -Test $function:ShouldReturnZeroExitCode
+    Add-AssertionOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
 }
-
-# TO-DO: Need to validate that ImageHelpers scripts are deleted from image at the end of image-generation

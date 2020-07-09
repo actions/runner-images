@@ -12,7 +12,6 @@ function Get-LatestRelease
 try
 {
     Write-Host "Starting Install kind.exe..."
-    Get-Location
     $destFilePath = "C:\ProgramData\kind"
     $null = New-Item -Path $destFilePath -ItemType Directory -Force
 
