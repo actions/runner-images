@@ -42,31 +42,29 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    Write-Host "Run pester tests"
     $testPath = "C:\image\Tests\${TestFile}.Tests.ps1"
-    $testPath2 = Join-Path $env:SystemDrive "image\Tests\${TestFile}.Tests.ps1"
-    Write-Host "'$testPath'"
-    Write-Host "'$testPath2'"
-
     if (-not (Test-Path $testPath)) {
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
 
-    Update-Environment
     $configuration = [PesterConfiguration] @{
-        Run = @{
-            Path = $testPath
-            PassThru = $true
-        }
-        Output = @{
-            Verbosity = "Detailed"
-        }
+        Run = @{ Path = $testPath; PassThru = $true }
+        Output = @{ Verbosity = "Detailed" }
     }
     if ($TestName) {
         $configuration.Filter.FullName = $TestName
     }
 
+    # Update environment variables without reboot
+    Update-Environment
+
+    # Switch ErrorActionPreference to Stop temporary to make sure that tests will on silent errors too
+    $backupErrorActionPreference = $ErrorActionPreference
+    $ErrorActionPreference = "Stop"
     $results = Invoke-Pester -Configuration $configuration
+    $ErrorActionPreference = $backupErrorActionPreference
+
+    # Fail in case if no tests are run
     if (-not ($results -and ($results.FailedCount -eq 0) -and ($results.PassedCount -gt 0))) {
         $results
         throw "Test run has finished with errors"
