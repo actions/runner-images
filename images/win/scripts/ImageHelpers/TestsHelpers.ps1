@@ -88,8 +88,8 @@ function ShouldReturnZeroExitCode {
 
     if (-not $succeeded)
     {
-        $CommandResultIndent = " " * 4
-        $commandOutput = ($result.Output | ForEach-Object { "${CommandResultIndent}${_}" }) -join "`n"
+        $сommandOutputIndent = " " * 4
+        $commandOutput = ($result.Output | ForEach-Object { "${сommandOutputIndent}${_}" }) -join "`n"
         $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}`n${commandOutput}"
     }
 

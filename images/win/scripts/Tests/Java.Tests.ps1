@@ -9,12 +9,12 @@ Describe "Java" {
     }
 
     It "<ToolName>" -TestCases @(
-            @{ ToolName = "java" }
-            @{ ToolName = "mvn" }
-            @{ ToolName = "ant" }
-            @{ ToolName = "gradle" }
+        @{ ToolName = "java" }
+        @{ ToolName = "mvn" }
+        @{ ToolName = "ant" }
+        @{ ToolName = "gradle" }
     ) {
-            "$ToolName -version" | Should -ReturnZeroExitCode
+        "$ToolName -version" | Should -ReturnZeroExitCode
     }
 
     It "Java <Version>" -TestCases @(
