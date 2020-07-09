@@ -27,12 +27,15 @@ Write-Host ""
 #----
 # Call the GenerateResourcesAndImage function
 #----
-GenerateResourcesAndImage
-    -SubscriptionId $env:SubscriptionId
-    -ResourceGroupName $env:ResourceGroupName
-    -ImageGenerationRepositoryRoot $env:ImageGenerationRepositoryRoot
-    -ImageType $env:ImageType
-    -AzureLocation $env:AzureLocation
-    -GithubFeedToken $env:GithubFeedToken
-    -ServicePrincipalDisplayName $env:ServicePrincipalDisplayName
-    -ServicePrincipalClientSecret $env:ServicePrincipalClientSecret
+$params = @{
+    'SubscriptionId' = $env:SubscriptionId;
+    'ResourceGroupName' = $env:ResourceGroupName;
+    'ImageGenerationRepositoryRoot' = $env:ImageGenerationRepositoryRoot;
+    'ImageType' = $env:ImageType;
+    'AzureLocation' = $env:AzureLocation;
+    'GithubFeedToken' = $env:GithubFeedToken;
+    'ServicePrincipalDisplayName' = $env:ServicePrincipalDisplayName;
+    'ServicePrincipalClientSecret' = $env:ServicePrincipalClientSecret;
+}
+
+GenerateResourcesAndImage @params
