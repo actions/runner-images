@@ -42,7 +42,7 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    $testPath = Join-Path $env:SystemDrive "image\Tests\${TestFile}.Tests.ps1"
+    $testPath = "C:\image\Tests\${TestFile}.Tests.ps1"
 
     if (-not (Test-Path $testPath)) {
         throw "Unable to find test file '$TestFile' on '$testPath'."
