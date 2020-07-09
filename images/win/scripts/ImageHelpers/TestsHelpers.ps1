@@ -52,10 +52,12 @@ function Invoke-PesterTests {
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
 
+    # Update environment variables without reboot
     Update-Environment
+
     $configuration = [PesterConfiguration] @{
         Run = @{
-            Path = $testPath2
+            Path = $testPath1
             PassThru = $true
         }
         Output = @{
@@ -66,6 +68,7 @@ function Invoke-PesterTests {
         $configuration.Filter.FullName = $TestName
     }
 
+    $ErrorActionPreference = "Stop"
     $results = Invoke-Pester -Configuration $configuration
     if (-not ($results -and ($results.FailedCount -eq 0) -and ($results.PassedCount -gt 0))) {
         $results
