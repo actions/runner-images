@@ -1,6 +1,6 @@
 Describe "Cmake" {
     It "cmake" {
-        throw "ERROR"
+        Get-ChildItem "/tmp/waaawgaw"
         "cmake --version" | Should -ReturnZeroExitCode
     }
 }
