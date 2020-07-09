@@ -17,7 +17,7 @@ fi
 
 ## Check to see if docker is already installed
 echo "Determing if Docker ($docker_package) is installed"
-if ! IsInstalled $docker_package; then
+if ! IsPackageInstalled $docker_package; then
     echo "Docker ($docker_package) was not found. Installing..."
     apt-get remove -y moby-engine moby-cli
     apt-get update

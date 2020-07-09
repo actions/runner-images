@@ -37,9 +37,9 @@ download_with_retries() {
 
 ## Use dpkg to figure out if a package has already been installed
 ## Example use:
-## if ! IsInstalled packageName; then
+## if ! IsPackageInstalled packageName; then
 ##     echo "packageName is not installed!"
 ## fi
-function IsInstalled {
+function IsPackageInstalled {
     dpkg -S $1 &> /dev/null
 }

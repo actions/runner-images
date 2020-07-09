@@ -44,7 +44,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
     echo "Determing if .NET Core ($latest_package) is installed"
-    if ! IsInstalled $latest_package; then
+    if ! IsPackageInstalled $latest_package; then
         echo "Could not find .NET Core ($latest_package), installing..."
         apt-get install $latest_package -y
     else
