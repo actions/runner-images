@@ -40,7 +40,8 @@ common_packages="dnsutils
                  xorriso
                  zsync
                  gnupg2
-                 texinfo"
+                 texinfo
+                 libsqlite3-dev"
 
 cmd_packages="curl
               file
@@ -60,7 +61,10 @@ cmd_packages="curl
               upx
               m4
               bison
-              flex"
+              flex
+              patchelf
+              bzip2
+              sqlite3"
 
 # Install basic command-line utilities
 for package in $common_packages $cmd_packages; do
