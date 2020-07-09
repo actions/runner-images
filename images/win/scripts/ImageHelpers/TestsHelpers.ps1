@@ -57,7 +57,7 @@ function Invoke-PesterTests {
 
     $configuration = [PesterConfiguration] @{
         Run = @{
-            Path = $testPath1
+            Path = $testPath2
             PassThru = $true
         }
         Output = @{
