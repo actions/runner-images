@@ -44,7 +44,7 @@ function Invoke-PesterTests {
 
     Write-Host "Run pester tests"
     $testPath = "C:\image\Tests\${TestFile}.Tests.ps1"
-    $testPath2 = [Path]::Combine($env:SystemDrive, "image", "Tests", "${TestFile}.Tests.ps1")
+    $testPath2 = [IO.Path]::Combine($env:SystemDrive, "image", "Tests", "${TestFile}.Tests.ps1")
     Write-Host "'$testPath'"
     Write-Host "'$testPath2'"
 
