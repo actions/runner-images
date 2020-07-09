@@ -18,3 +18,9 @@ Describe "7-Zip" {
         "7z" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Final test" {
+    It "final check" {
+        $true | Should -Be $false
+    }
+}

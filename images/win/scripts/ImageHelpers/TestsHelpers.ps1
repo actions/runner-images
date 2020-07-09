@@ -2,10 +2,10 @@ function Get-CommandResult {
     Param (
         [Parameter(Mandatory)][string] $Command
     )
-    # CMD trick to suppress and show error output because some commands write to stderr (for example, "java -version")
-    [string[]]$output = cmd /c "$Command 2>&1"
-
+    # CMD trick to suppress and show error output because some commands write to stderr (for example, "python --version")
+    [string[]]$output = & $env:comspec /c "$Command 2>&1"
     $exitCode = $LASTEXITCODE
+
     return @{
         Output = $output
         ExitCode = $exitCode
@@ -81,11 +81,36 @@ function ShouldReturnZeroExitCode {
     [bool]$succeeded = $result.ExitCode -eq 0
     if ($Negate) { $succeeded = -not $succeeded }
 
+
+
     if (-not $succeeded)
     {
-        # log detailed output in case of fail
-        $result.Output | ForEach-Object { Write-Host $_ }
-        $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}"
+        $CommandResultIndent = " " * 4
+        $commandOutput = ($result.Output | ForEach-Object { "${CommandResultIndent}${_}" }) -join "`n"
+        $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}`n${commandOutput}"
+    }
+
+    return [PSCustomObject] @{
+        Succeeded      = $succeeded
+        FailureMessage = $failureMessage
+    }
+}
+
+function ShouldBeInPATH {
+    Param(
+        [String]$ActualValue,
+        [switch]$Negate,
+        [string] $Because
+    )
+
+    $pathArray = $env:PATH -split ";"
+
+    [bool]$succeeded = $ActualValue -In $pathArray
+    if ($Negate) { $succeeded = -not $succeeded }
+
+    if (-not $succeeded)
+    {
+        $failureMessage = "Path '${ActualValue}' is not in PATH`nActual path: $($env:PATH)"
     }
 
     return [PSCustomObject] @{
@@ -96,4 +121,5 @@ function ShouldReturnZeroExitCode {
 
 If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
     Add-AssertionOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
+    Add-AssertionOperator -Name BeInPATH -InternalName ShouldBeInPATH -Test ${function:ShouldBeInPATH}
 }
