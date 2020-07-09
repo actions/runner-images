@@ -55,7 +55,7 @@ function Invoke-PesterTests {
     Update-Environment
     $configuration = [PesterConfiguration] @{
         Run = @{
-            Path = $testPath2
+            Path = $testPath
             PassThru = $true
         }
         Output = @{
