@@ -12,14 +12,6 @@ function Get-CommandResult {
     }
 }
 
-# Gets path to the tool, analogue of 'which tool'
-function Get-WhichTool {
-    Param (
-        [Parameter(Mandatory)][string] $Tool
-    )
-    return (Get-Command $Tool).Path
-}
-
 # Gets value of environment variable by the name
 function Get-EnvironmentVariable($variable) {
     return [System.Environment]::GetEnvironmentVariable($variable)
