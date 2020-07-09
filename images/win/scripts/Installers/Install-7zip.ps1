@@ -4,3 +4,5 @@
 ################################################################################
 
 Choco-Install -PackageName 7zip.install
+
+Invoke-PesterTests -TestFile "Tools" -TestName "7-Zip"
