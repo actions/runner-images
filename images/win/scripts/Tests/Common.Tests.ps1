@@ -9,7 +9,6 @@ Describe "MongoDB" {
 
 Describe "Kind" {
     It "Kind" {
-        Get-ChildItem "/tmp/aawgawg"
         "kind version" | Should -ReturnZeroExitCode
     }
 }

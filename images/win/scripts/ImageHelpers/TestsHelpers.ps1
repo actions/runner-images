@@ -42,9 +42,8 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    Get-ChildItem Env:
-    Write-Host $env:SystemDrive
-    $testPath = "C:\image\Tests\${TestFile}.Tests.ps1"
+    $testPath = Join-Path $env:SystemDrive "image\Tests\${TestFile}.Tests.ps1"
+    Write-Host $testPath
 
     if (-not (Test-Path $testPath)) {
         throw "Unable to find test file '$TestFile' on '$testPath'."
@@ -98,30 +97,6 @@ function ShouldReturnZeroExitCode {
     }
 }
 
-function ShouldBeInPATH {
-    Param(
-        [String]$ActualValue,
-        [switch]$Negate,
-        [string] $Because
-    )
-
-    $pathArray = $env:PATH -split ";"
-
-    [bool]$succeeded = $ActualValue -In $pathArray
-    if ($Negate) { $succeeded = -not $succeeded }
-
-    if (-not $succeeded)
-    {
-        $failureMessage = "Path '${ActualValue}' is not in PATH`nActual path: $($env:PATH)"
-    }
-
-    return [PSCustomObject] @{
-        Succeeded      = $succeeded
-        FailureMessage = $failureMessage
-    }
-}
-
 If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
     Add-AssertionOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
-    Add-AssertionOperator -Name BeInPATH -InternalName ShouldBeInPATH -Test ${function:ShouldBeInPATH}
 }
