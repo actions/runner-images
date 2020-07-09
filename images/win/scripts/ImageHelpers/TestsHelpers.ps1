@@ -65,8 +65,9 @@ function Invoke-PesterTests {
         $configuration.Filter.FullName = $TestName
     }
 
-    $ErrorActionPreference = "Stop"
-    $results = Invoke-Pester -Configuration $configuration
+    #$backupErrorActionPreference = $ErrorActionPreference
+    #$ErrorActionPreference = "Stop"
+    $results = Invoke-Pester -Configuration $configuration -ErrorAction "Stop"
     if (-not ($results -and ($results.FailedCount -eq 0) -and ($results.PassedCount -gt 0))) {
         $results
         throw "Test run has finished with errors"
