@@ -84,7 +84,6 @@ function ShouldReturnZeroExitCode {
     if (-not $succeeded)
     {
         # log detailed output in case of fail
-        Write-Host "Run command '${ActualValue}'"
         $result.Output | ForEach-Object { Write-Host $_ }
         $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}"
     }
