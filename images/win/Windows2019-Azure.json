@@ -85,6 +85,11 @@
             "destination": "{{user `image_folder`}}"
         },
         {
+            "type": "file",
+            "source": "{{ template_dir }}/scripts/Tests",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
             "type": "windows-shell",
             "inline": [
                 "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y" ,
@@ -108,6 +113,14 @@
                 "{{ template_dir }}/scripts/Installers/Windows2019/Initialize-VM.ps1"
             ],
             "execution_policy": "unrestricted"
+        },
+        {
+            "type": "powershell",
+            "elevated_user": "SYSTEM",
+            "elevated_password": "",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-WSL.ps1"
+            ]
         },
         {
             "type": "powershell",
@@ -241,6 +254,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Wix.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-WSL.ps1"
             ]
         },
         {
@@ -815,18 +834,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-JavaTools.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Cmake.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-DACFx.ps1"
             ]
         },
@@ -885,12 +892,6 @@
             ]
         },
         {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-7zip.ps1"
-            ]
-        },
-         {
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Packer.ps1"
@@ -965,18 +966,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Kind.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-MongoDB.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Bazel.ps1"
             ]
         },
@@ -1009,6 +998,12 @@
         {
             "type": "windows-restart",
             "restart_timeout": "10m"
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
+            ]
         },
         {
             "type": "powershell",

@@ -183,6 +183,7 @@
                 "{{template_dir}}/scripts/installers/nvm.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
                 "{{template_dir}}/scripts/installers/bazel.sh",
+                "{{template_dir}}/scripts/installers/oras-cli.sh",
                 "{{template_dir}}/scripts/installers/phantomjs.sh",
                 "{{template_dir}}/scripts/installers/php.sh",
                 "{{template_dir}}/scripts/installers/pollinate.sh",

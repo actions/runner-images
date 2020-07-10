@@ -1,14 +1,14 @@
 ################################################################################
-##  File:  Validate-Kind.ps1
-##  Desc:  Validate Kind.
+##  File:  Validate-WSL.ps1
+##  Desc:  Validate WSL CLI existst
 ################################################################################
 
-if (Get-Command -Name 'kind')
+if (Get-Command -Name 'wsl')
 {
-    Write-Host "kind $(kind version) in path"
+    Write-Host 'wsl is on path'
 }
 else
 {
-    Write-Host "kind is not in path"
+    Write-Host 'wsl not on path'
     exit 1
 }
