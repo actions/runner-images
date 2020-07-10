@@ -4,3 +4,5 @@
 ################################################################################
 
 Choco-Install -PackageName innosetup
+
+Invoke-PesterTests -TestFile "Tools" -TestName "InnoSetup"

@@ -4,3 +4,5 @@
 ################################################################################
 
 Choco-Install -PackageName gitversion.portable
+
+Invoke-PesterTests -TestFile "Git" -TestName "GitVersion"
