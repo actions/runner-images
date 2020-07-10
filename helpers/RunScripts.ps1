@@ -38,4 +38,4 @@ $params = @{
     'ServicePrincipalClientSecret' = $env:ServicePrincipalClientSecret;
 }
 
-GenerateResourcesAndImage @params
+GenerateResourcesAndImage @params -Verbose
