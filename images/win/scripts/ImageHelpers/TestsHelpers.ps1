@@ -1,5 +1,3 @@
-Import-Module -Name Pester
-
 function Get-CommandResult {
     Param (
         [Parameter(Mandatory)][string] $Command
