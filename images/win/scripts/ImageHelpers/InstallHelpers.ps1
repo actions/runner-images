@@ -360,6 +360,12 @@ function Get-ToolsetContent
     ConvertFrom-Json -InputObject $toolsetJson
 }
 
+function Get-ToolcacheToolDirectory {
+    Param ([string] $ToolName)
+    $toolcacheRootPath = $env:AGENT_TOOLSDIRECTORY.Replace("/", "\")
+    return Join-Path $toolcacheRootPath $Name
+}
+
 function Get-ToolsetToolFullPath
 {
     <#
@@ -385,33 +391,25 @@ function Get-ToolsetToolFullPath
         [string] $Arch = "x64"
     )
 
-    $ToolPath = Join-Path $env:AGENT_TOOLSDIRECTORY $Name
+    $toolPath = Get-ToolcacheToolDirectory -ToolName $Name
 
     # Add wildcard if missing
     if ($Version.Split(".").Length -lt 3) {
         $Version += ".*"
     }
 
-    # Check if version folder exists
-    $expectedVersionPath = Join-Path $ToolPath $Version
-    if (-not (Test-Path $expectedVersionPath)) {
-        Write-Host "Expected ${Name} ${Version} folder is not found!"
-        exit 1
-    }
+    $versionPath = Join-Path $toolPath $Version
 
     # Take latest installed version in case if toolset version contains wildcards
-    $foundVersion = Get-Item $expectedVersionPath `
+    $foundVersion = Get-Item $versionPath `
                     | Sort-Object -Property {[version]$_.name} -Descending `
                     | Select-Object -First 1
 
-    # Check for required architecture folder
-    $foundVersionArchPath = Join-Path $foundVersion $Arch
-    if (-not (Test-Path $foundVersionArchPath)) {
-        Write-Host "Expected ${Name}(${Arch}) $($foundVersion.name) architecture folder is not found!"
-        exit 1
+    if (-not $foundVersion) {
+        return $null
     }
 
-    return $foundVersionArchPath
+    return Join-Path $foundVersion $Arch
 }
 
 function Get-ToolsByName

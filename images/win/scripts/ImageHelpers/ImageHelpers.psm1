@@ -4,6 +4,7 @@ param()
 . $PSScriptRoot\PathHelpers.ps1
 . $PSScriptRoot\InstallHelpers.ps1
 . $PSScriptRoot\ChocoHelpers.ps1
+. $PSScriptRoot\PesterHelpers.ps1
 . $PSScriptRoot\TestsHelpers.ps1
 
 Export-ModuleMember -Function @(
@@ -30,6 +31,7 @@ Export-ModuleMember -Function @(
     'Choco-Install'
     'Extract-7Zip'
     'Get-CommandResult'
+    'Get-WhichTool'
     'Get-EnvironmentVariable'
     'Invoke-PesterTests'
 )
