@@ -112,6 +112,14 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-GoogleCloudSDKVersion)
 )
 
+$markdown += New-MDHeader "Rust packages:" -Level 3
+$markdown += New-MDList -Style Unordered -Lines @(
+    (Get-BindgenVersion),
+    (Get-CbindgenVersion),
+    (Get-CargoAuditVersion),
+    (Get-CargoOutdatedVersion)
+)
+
 $markdown += New-MDHeader "Browsers and webdrivers" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-BrowserVersion -Browser "chrome"),
