@@ -69,3 +69,33 @@ function Invoke-PesterTests {
         throw "Test run has failed"
     }
 }
+
+# Pester Assert to check exit code of command
+function ShouldReturnZeroExitCode {
+    Param(
+        [String] $ActualValue,
+        [switch] $Negate,
+        [string] $Because
+    )
+
+    $result = Get-CommandResult $ActualValue
+
+    [bool]$succeeded = $result.ExitCode -eq 0
+    if ($Negate) { $succeeded = -not $succeeded }
+
+    if (-not $succeeded)
+    {
+        $сommandOutputIndent = " " * 4
+        $commandOutput = ($result.Output | ForEach-Object { "${сommandOutputIndent}${_}" }) -join "`n"
+        $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}`n${commandOutput}"
+    }
+
+    return [PSCustomObject] @{
+        Succeeded      = $succeeded
+        FailureMessage = $failureMessage
+    }
+}
+
+If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
+    Add-AssertionOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
+}

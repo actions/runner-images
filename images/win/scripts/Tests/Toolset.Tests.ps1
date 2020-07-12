@@ -24,7 +24,7 @@ function Get-ToolExecutables {
     if ($toolsExecutables.ContainsKey($Name)) { $toolsExecutables[$Name] } else { @() }
 }
 
-function Validate-Binaries {
+function Test-Binaries {
     Param (
         [String] $Name,
         [String] $Version,
@@ -40,7 +40,7 @@ function Validate-Binaries {
     }
 }
 
-function Validate-DefaultVersion {
+function Test-DefaultVersion {
     Param (
         [String] $Name,
         [String] $ExpectedVersion,
@@ -57,7 +57,7 @@ function Validate-DefaultVersion {
     It "default version is located in tool-cache" -TestCases $testCase {
         $binaryFullPath = Get-WhichTool $Binary
         $toolcacheDirectory = Get-ToolcacheToolDirectory -ToolName $Name
-        $binaryFullPath | Should -StartsWith $toolcacheDirectory
+        $binaryFullPath | Should -Match $toolcacheDirectory
     }
 }
 
@@ -81,14 +81,14 @@ foreach ($tool in $tools) {
                 }
 
                 if ($toolExecs) {
-                    Validate-Binaries -Name $tool.name -Version $version -Arch $tool.arch -ToolExecs $toolExecs
+                    Test-Binaries -Name $tool.name -Version $version -Arch $tool.arch -ToolExecs $toolExecs
                 }
             }
         }
 
         if ($tool.default -and $toolExecs) {
             Context "Default" {
-                Validate-DefaultVersion -Name $tool.name -ExpectedVersion $tool.default -ToolExecs $toolExecs
+                Test-DefaultVersion -Name $tool.name -ExpectedVersion $tool.default -ToolExecs $toolExecs
             }
         }
     }
