@@ -121,5 +121,75 @@
                 "4.3.0"
             ]
         }
-    ]
+    ],
+    "android": {
+        "platform_list": [
+            "android-30",
+            "android-29",
+            "android-28",
+            "android-27",
+            "android-25",
+            "android-24",
+            "android-23",
+            "android-26",
+            "android-22",
+            "android-21",
+            "android-19"
+        ],
+        "build_tools": [
+            "30.0.0",
+            "29.0.3",
+            "29.0.2",
+            "29.0.1",
+            "29.0.0",
+            "28.0.3",
+            "28.0.2",
+            "28.0.1",
+            "28.0.0",
+            "27.0.3",
+            "27.0.2",
+            "27.0.1",
+            "27.0.0",
+            "26.0.3",
+            "26.0.2",
+            "26.0.1",
+            "26.0.0",
+            "25.0.3",
+            "25.0.2",
+            "25.0.1",
+            "25.0.0",
+            "24.0.3",
+            "24.0.2",
+            "24.0.1",
+            "24.0.0",
+            "23.0.3",
+            "23.0.2",
+            "23.0.1",
+            "22.0.1",
+            "21.1.2",
+            "20.0.0",
+            "19.1.0"
+        ],
+        "extra_list": [
+            "android;m2repository",
+            "google;m2repository",
+            "google;google_play_services",
+            "m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2",
+            "m2repository;com;android;support;constraint;constraint-layout-solver;1.0.1",
+            "m2repository;com;android;support;constraint;constraint-layout;1.0.2",
+            "m2repository;com;android;support;constraint;constraint-layout;1.0.1"
+        ],
+        "addon_list": [
+            "addon-google_apis-google-24",
+            "addon-google_apis-google-23",
+            "addon-google_apis-google-22",
+            "addon-google_apis-google-21"
+        ],
+        "additional_tools": [
+            "cmake;3.6.4111459",
+            "cmake;3.10.2.4988404",
+            "patcher;v4",
+            "ndk-bundle"
+        ]
+    }
 }
