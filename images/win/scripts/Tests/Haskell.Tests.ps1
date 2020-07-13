@@ -1,33 +1,30 @@
 Describe "Haskell" {
-    It "ghc" {
-        "ghc --version" | Should -ReturnZeroExitCode
-    }
-
-    It "cabal" {
-        "cabal --version" | Should -ReturnZeroExitCode
-    }
-
     $chocoPackagesPath = Join-Path $env:ChocolateyInstall "lib"
     [array]$ghcVersionList = Get-ChildItem -Path $chocoPackagesPath -Filter "ghc.*" | ForEach-Object { $_.Name.TrimStart("ghc.") }
     $ghcCount = $ghcVersionList.Count
+    $defaultGhcVersion = $ghcVersionList | Sort-Object {[Version]$_} | Select-Object -Last 1
+
+    $ghcTestCases = $ghcVersionList | ForEach-Object {
+        $ghcVersion = $_
+        @{
+            ghcVersion = $ghcVersion
+            binGhcPath = Join-Path $chocoPackagesPath "ghc.$ghcVersion\tools\ghc-$ghcVersion\bin\ghc.exe"
+        }
+    }
 
     It "Accurate 3 versions of GHC are installed" -TestCases @{ghcCount = $ghcCount} {
         $ghcCount | Should -BeExactly 3
     }
 
-    $ghcTestCases = $ghcVersionList | ForEach-Object {
-        @{
-            ghcVersion = $_
-        }
-    }
-
-    It "<ghcVersion> is installed" -TestCases $ghcTestCases {
-        $binGhcPath = Join-Path $env:ChocolateyInstall "lib\ghc.$ghcVersion\tools\ghc-$ghcVersion\bin\ghc.exe"
+    It "GHC <ghcVersion> is installed" -TestCases $ghcTestCases {
         & $binGhcPath --version | Should -Match $ghcVersion
     }
 
-    It "Default version of GHC should be the latest installed" -TestCases @{ghcVersionList = $ghcVersionList} {
-        $defaultGhcVersion = $ghcVersionList | Sort-Object {[Version]$_} |Select-Object -Last 1
+    It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases @{defaultGhcVersion = $defaultGhcVersion} {
         ghc --version | Should -Match $defaultGhcVersion
+    }
+
+    It "Cabal is installed" {
+        "cabal --version" | Should -ReturnZeroExitCode
     }
 }

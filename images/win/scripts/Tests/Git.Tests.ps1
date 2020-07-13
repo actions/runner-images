@@ -15,7 +15,7 @@ Describe "Git" {
         (Get-Command -Name $toolName).Source | Should -Match $source
     }
 
-    It "hub is installed" {
+    It "ToolName 'hub' is installed" {
         "hub --version" | Should -ReturnZeroExitCode
     }
 
