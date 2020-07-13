@@ -22,9 +22,9 @@ Describe "AWSSAM" {
     }
 }
 
-Describe "AWSSessionManagerPlugin" {
+Describe "AWSSessionManagerPlugin is installed" {
     It "AWSSessionManagerPlugin" {
-        "session-manager-plugin" | Should -Contain "*plugin was installed successfully*"
+        session-manager-plugin | Out-String | Should -Match "plugin was installed successfully"
     }
 }
 
