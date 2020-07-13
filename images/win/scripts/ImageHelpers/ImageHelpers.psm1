@@ -32,4 +32,5 @@ Export-ModuleMember -Function @(
     'Get-CommandResult'
     'Get-EnvironmentVariable'
     'Invoke-PesterTests'
+    'Install-AndroidSDKPackages'
 )
