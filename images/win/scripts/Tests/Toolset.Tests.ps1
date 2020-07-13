@@ -57,7 +57,7 @@ function Test-DefaultVersion {
     It "default version is located in tool-cache" -TestCases $testCase {
         $binaryFullPath = Get-WhichTool $Binary
         $toolcacheDirectory = Get-ToolcacheToolDirectory -ToolName $Name
-        $binaryFullPath | Should -Match $toolcacheDirectory
+        $binaryFullPath | Should -Match ([Regex]::Escape($toolcacheDirectory))
     }
 }
 
