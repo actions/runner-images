@@ -35,7 +35,7 @@ Expand-Archive -Path .\android-sdk-licenses.zip -DestinationPath 'C:\Program Fil
 # keep newer versions in descending order
 
 # Get android content from toolset
-$android = (Get-ToolsetContent).android
+$androidToolset = (Get-ToolsetContent).android
 
 $sdkRoot = "C:\Program Files (x86)\Android\android-sdk"
 $sdkManager = "$sdkRoot\tools\bin\sdkmanager.bat"
@@ -44,27 +44,27 @@ $sdkManager = "$sdkRoot\tools\bin\sdkmanager.bat"
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
-                          -AndroidPackages $android.platform_list `
+                          -AndroidPackages $androidToolset.platform_list `
                           -PrefixPackageName "platforms;"
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
-                          -AndroidPackages $android.build_tools `
+                          -AndroidPackages $androidToolset.build_tools `
                           -PrefixPackageName "build-tools;"
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
-                          -AndroidPackages $android.extra_list `
+                          -AndroidPackages $androidToolset.extra_list `
                           -PrefixPackageName "extras;"
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
-                          -AndroidPackages $android.addon_list `
+                          -AndroidPackages $androidToolset.addon_list `
                           -PrefixPackageName "add-ons;"
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
-                          -AndroidPackages $android.additional_tools
+                          -AndroidPackages $androidToolset.additional_tools
 
 # Android NDK root path.
 $ndkRoot = "C:\Program Files (x86)\Android\android-sdk\ndk-bundle"

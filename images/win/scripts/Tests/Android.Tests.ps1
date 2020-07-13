@@ -1,29 +1,29 @@
 Import-Module (Join-Path "..\SoftwareReport" "SoftwareReport.Android.psm1") -DisableNameChecking
 
 Describe "Android SDK" {
-    $android = (Get-ToolsetContent).android
+    $androidToolset = (Get-ToolsetContent).android
     $androidInstalledPackages = Get-AndroidInstalledPackages
 
     $platformTestCases = @()
-    $platformList = $android.platform_list
+    $platformList = $androidToolset.platform_list
     $platformList | ForEach-Object {
         $platformTestCases += @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
     }
 
     $buildToolsTestCases = @()
-    $buildToolsList = $android.build_tools
+    $buildToolsList = $androidToolset.build_tools
     $buildToolsList | ForEach-Object {
         $buildToolsTestCases += @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
     }
 
     $extraPackagesTestCases = @()
-    $extraPackagesList = $android.extra_list
+    $extraPackagesList = $androidToolset.extra_list
     $extraPackagesList | ForEach-Object {
         $extraPackagesTestCases += @{ extraPackage = $_; installedPackages = $androidInstalledPackages }
     }
 
     $addonsTestCases = @()
-    $addonsList = $android.addon_list
+    $addonsList = $androidToolset.addon_list
     $addonsList | ForEach-Object {
         $addonsTestCases += @{ addonPackage = $_; installedPackages = $androidInstalledPackages }
     }
