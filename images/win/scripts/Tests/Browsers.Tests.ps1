@@ -1,14 +1,8 @@
 Describe "Chrome" {
     Context "WebDriver" {
-        It "ChromeWebDriver environment variable exists" {
+        It "ChromeWebDriver environment variable and path exists" {
             $env:ChromeWebDriver | Should -Not -BeNullOrEmpty
-        }
-
-        It "ChromeWebDriver should be equal C:\SeleniumWebDrivers\ChromeDriver" {
             $env:ChromeWebDriver | Should -BeExactly "C:\SeleniumWebDrivers\ChromeDriver"
-        }
-
-        It "ChromeWebDriver path exists" {
             $env:ChromeWebDriver | Should -Exist
         }
 
@@ -55,15 +49,9 @@ Describe "Chrome" {
 
 Describe "Edge" {
     Context "WebDriver" {
-        It "EdgeWebDriver environment variable exists" {
+        It "EdgeWebDriver environment variable and path exists" {
             $env:EdgeWebDriver | Should -Not -BeNullOrEmpty
-        }
-
-        It "EdgeWebDriver should be equal C:\SeleniumWebDrivers\EdgeDriver" {
             $env:EdgeWebDriver | Should -BeExactly "C:\SeleniumWebDrivers\EdgeDriver"
-        }
-
-        It "EdgeWebDriver path exists" {
             $env:EdgeWebDriver | Should -Exist
         }
 
@@ -96,15 +84,9 @@ Describe "Edge" {
 
 Describe "Firefox" {
     Context "GeckoWebDriver" {
-        It "GeckoWebDriver environment variable exists" {
+        It "GeckoWebDriver environment variable and path exists" {
             $env:GeckoWebDriver | Should -Not -BeNullOrEmpty
-        }
-
-        It "GeckoWebDriver should be equal C:\SeleniumWebDrivers\GeckoDriver" {
             $env:GeckoWebDriver | Should -BeExactly "C:\SeleniumWebDrivers\GeckoDriver"
-        }
-
-        It "GeckoWebDriver path exists" {
             $env:GeckoWebDriver | Should -Exist
         }
 
@@ -137,15 +119,9 @@ Describe "Firefox" {
 
 Describe "Internet Explorer" {
     Context "IEWebDriver" {
-        It "IEWebDriver environment variable exists" {
+        It "IEWebDriver environment variable and path exists" {
             $env:IEWebDriver | Should -Not -BeNullOrEmpty
-        }
-
-        It "IEWebDriver should be equal C:\SeleniumWebDrivers\IEDriver" {
             $env:IEWebDriver | Should -BeExactly "C:\SeleniumWebDrivers\IEDriver"
-        }
-
-        It "IEWebDriver path exists" {
             $env:IEWebDriver | Should -Exist
         }
 

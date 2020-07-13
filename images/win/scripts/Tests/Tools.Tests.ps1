@@ -69,10 +69,6 @@ Describe "InnoSetup" {
 }
 
 Describe "GitHub-CLI" {
-    It "gh is located in ${env:ProgramFiles(x86)}\GitHub CLI" {
-        "${env:ProgramFiles(x86)}\GitHub CLI\gh.exe" | Should -Exist
-    }
-
     It "gh" {
         "gh --version" | Should -ReturnZeroExitCode
     }
