@@ -362,8 +362,8 @@ function Get-ToolsetContent
 
 function Get-ToolcacheToolDirectory {
     Param ([string] $ToolName)
-    $toolcacheRootPath = $env:AGENT_TOOLSDIRECTORY.Replace("/", "\")
-    return Join-Path $toolcacheRootPath $Name
+    $toolcacheRootPath = Resolve-Path $env:AGENT_TOOLSDIRECTORY
+    return Join-Path $toolcacheRootPath $ToolName
 }
 
 function Get-ToolsetToolFullPath
