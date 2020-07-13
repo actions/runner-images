@@ -18,7 +18,7 @@ Describe "Chrome" {
     Context "Browser" {
         $chromeRegPath = "HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe"
 
-        It "Chrome <chromeRegPath> registry path exists" -TestCases @{chromeRegPath = $chromeRegPath} {
+        It "Chrome '<chromeRegPath>' registry path exists" -TestCases @{chromeRegPath = $chromeRegPath} {
             $chromeRegPath | Should -Exist
         }
 
@@ -67,7 +67,7 @@ Describe "Edge" {
     Context "Browser" {
         $edgeRegPath = "HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\msedge.exe"
 
-        It "Edge <edgeRegPath> registry path exists" -TestCases @{edgeRegPath = $edgeRegPath} {
+        It "Edge '<edgeRegPath>' registry path exists" -TestCases @{edgeRegPath = $edgeRegPath} {
             $edgeRegPath | Should -Exist
         }
 
@@ -102,7 +102,7 @@ Describe "Firefox" {
     Context "Browser" {
         $firefoxRegPath = "HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\firefox.exe"
 
-        It "Firefox <firefoxRegPath> registry path exists" -TestCases @{firefoxRegPath = $firefoxRegPath} {
+        It "Firefox '<firefoxRegPath>' registry path exists" -TestCases @{firefoxRegPath = $firefoxRegPath} {
             $firefoxRegPath | Should -Exist
         }
 

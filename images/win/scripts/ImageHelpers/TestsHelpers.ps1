@@ -110,10 +110,10 @@ function ShouldMatchCommandOutput {
 
     if (-not $succeeded) {
         if ($Negate) {
-            $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to not match '$output',but it did match."
+            $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to not match '$output', but it did match."
         }
         else {
-            $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to match '$output',but it did not match."
+            $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to match '$output', but it did not match."
         }
     }
 
