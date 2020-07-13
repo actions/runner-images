@@ -44,6 +44,12 @@ Describe "Azure Cosmos DB Emulator" {
     }
 }
 
+Describe "Azure DevOps CLI" {
+    It "az devops" {
+        "az devops -h" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "CMake" {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
