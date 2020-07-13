@@ -42,25 +42,29 @@ $sdkManager = "$sdkRoot\tools\bin\sdkmanager.bat"
 
 & $sdkManager --sdk_root=$sdkRoot "platform-tools"
 
-foreach ($platform in $android.platform_list) {
-    & $sdkManager --sdk_root=$sdkRoot "platforms;$platform"
-}
+Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
+                          -AndroidSDKRootPath $sdkRoot `
+                          -AndroidPackages $android.platform_list `
+                          -PrefixPackageName "platforms;"
 
-foreach ($buildTool in $android.build_tools) {
-    & $sdkManager --sdk_root=$sdkRoot "build-tools;$buildTool"
-}
+Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
+                          -AndroidSDKRootPath $sdkRoot `
+                          -AndroidPackages $android.build_tools `
+                          -PrefixPackageName "build-tools;"
 
-foreach ($extraPackage in $android.extra_list) {
-    & $sdkManager --sdk_root=$sdkRoot "extras;$extraPackage"
-}
+Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
+                          -AndroidSDKRootPath $sdkRoot `
+                          -AndroidPackages $android.extra_list `
+                          -PrefixPackageName "extras;"
 
-foreach ($addon in $android.addon_list) {
-    & $sdkManager --sdk_root=$sdkRoot "add-ons;$addon"
-}
+Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
+                          -AndroidSDKRootPath $sdkRoot `
+                          -AndroidPackages $android.addon_list `
+                          -PrefixPackageName "add-ons;"
 
-foreach ($tool in $android.additional_tools) {
-    & $sdkManager --sdk_root=$sdkRoot $tool
-}
+Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
+                          -AndroidSDKRootPath $sdkRoot `
+                          -AndroidPackages $android.additional_tools
 
 # Android NDK root path.
 $ndkRoot = "C:\Program Files (x86)\Android\android-sdk\ndk-bundle"

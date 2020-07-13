@@ -465,3 +465,20 @@ function Extract-7Zip {
         exit 1
     }
 }
+
+function Install-AndroidSDKPackages {
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$AndroidSDKManagerPath,
+        [Parameter(Mandatory=$true)]
+        [string]$AndroidSDKRootPath,
+        [Parameter(Mandatory=$true)]
+        [string[]]$AndroidPackages,
+        [string] $PrefixPackageName
+    )
+
+    foreach ($package in $AndroidPackages) {
+        & $AndroidSDKManagerPath --sdk_root=$AndroidSDKRootPath "$PrefixPackageName$package"
+    }
+}
