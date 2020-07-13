@@ -27,12 +27,12 @@ Describe "Chrome" {
             $versionInfo | Should -Not -BeNullOrEmpty
         }
 
-        It "gupdate is stopped" {
+        It "gupdate service is stopped" {
             $svc = Get-Service -Name gupdate
             $svc.Status | Should -BeExactly Stopped
         }
 
-        It "gupdatem is stopped" {
+        It "gupdatem service is stopped" {
             $svc = Get-Service -Name gupdatem
             $svc.Status | Should -BeExactly Stopped
         }

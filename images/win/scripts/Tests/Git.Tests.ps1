@@ -15,16 +15,18 @@ Describe "Git" {
         (Get-Command -Name $toolName).Source | Should -Match $source
     }
 
-    It "hub is installed" {
-        "hub --version" | Should -ReturnZeroExitCode
-    }
-
     It "Git core.symlinks=true option is enabled" {
         git config core.symlinks | Should -BeExactly true
     }
 
     It "GCM_INTERACTIVE environment variable should be equal Never" {
         $env:GCM_INTERACTIVE | Should -BeExactly Never
+    }
+}
+
+Describe "Hub" {
+    It "hub is installed" {
+        "hub --version" | Should -ReturnZeroExitCode
     }
 }
 
