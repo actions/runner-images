@@ -16,4 +16,4 @@ if ($cpu.VirtualizationFirmwareEnabled -and $cpu.SecondLevelAddressTranslationEx
   Write-Host "Skipping installation of Hyper-V feature"
 }
 
-Invoke-PesterTests -TestFile "Tools" -TestName "ContainersFeature"
+Invoke-PesterTests -TestFile "WindowsFeatures" -TestName "ContainersFeature"
