@@ -30,21 +30,21 @@ Describe "Android SDK" {
 
     It "Platform version <platformVersion> is installed" -TestCases $platformTestCases {
         $regex = "platforms;$platformVersion"
-        [boolean]($installedPackages | Where-Object { $_ -match $regex }) | Should -Be $true
+        [boolean]($installedPackages | Where-Object { $_ -match $regex }) | Should -BeTrue
     }
 
     It "Platform build tools <buildToolsVersion> is installed" -TestCases $buildToolsTestCases {
         $regex = "build-tools;$buildToolsVersion"
-        [boolean]($installedPackages | Where-Object { $_ -match $regex }) | Should -Be $true
+        [boolean]($installedPackages | Where-Object { $_ -match $regex }) | Should -BeTrue
     }
 
     It "Extra package <extraPackage> is installed" -TestCases $extraPackagesTestCases {
         $regex = "extras;$extraPackage"
-        [boolean]($installedPackages | Where-Object { $_ -match $regex }) | Should -Be $true
+        [boolean]($installedPackages | Where-Object { $_ -match $regex }) | Should -BeTrue
     }
 
     It "Addon package <addonPackage> is installed" -TestCases $addonsTestCases {
         $regex = "add-ons;$addonPackage"
-        [boolean]($installedPackages | Where-Object { $_ -match $regex }) | Should -Be $true
+        [boolean]($installedPackages | Where-Object { $_ -match $regex }) | Should -BeTrue
     }
 }
