@@ -21,12 +21,12 @@ Describe "Haskell" {
         }
     }
 
-    It "Validation each of GHC version" -TestCases $ghcTestCases {
+    It "<ghcVersion> is installed" -TestCases $ghcTestCases {
         $binGhcPath = Join-Path $env:ChocolateyInstall "lib\ghc.$ghcVersion\tools\ghc-$ghcVersion\bin\ghc.exe"
         & $binGhcPath --version | Should -Match $ghcVersion
     }
 
-    It "Default version of GHC should be the latest installed" {
+    It "Default version of GHC should be the latest installed" -TestCases @{ghcVersionList = $ghcVersionList} {
         $defaultGhcVersion = $ghcVersionList | Sort-Object {[Version]$_} |Select-Object -Last 1
         ghc --version | Should -Match $defaultGhcVersion
     }
