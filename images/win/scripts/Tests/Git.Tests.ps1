@@ -7,15 +7,15 @@ Describe "Git" {
         }
     }
 
-    It "Toolname '<toolName>' is installed" -TestCases $gitTestCases {
+    It "<toolName> is installed" -TestCases $gitTestCases {
         "$toolName --version" | Should -ReturnZeroExitCode
     }
 
-    It "ToolName '<toolName>' is located in '<source>'" -TestCases $gitTestCases {
+    It "<toolName> is located in '<source>'" -TestCases $gitTestCases {
         (Get-Command -Name $toolName).Source | Should -Match $source
     }
 
-    It "ToolName 'hub' is installed" {
+    It "hub is installed" {
         "hub --version" | Should -ReturnZeroExitCode
     }
 
