@@ -11,20 +11,16 @@ Describe "AliyunCli" {
 }
 
 Describe "AWS" {
-    It "AWS" {
+    It "AWS CLI" {
         "aws --version" | Should -ReturnZeroExitCode
     }
-}
 
-Describe "AWSSAM" {
-    It "AWSSAM" {
-        "sam --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "AWSSessionManagerPlugin is installed" {
-    It "AWSSessionManagerPlugin" {
+    It "Session Manager Plugin for the AWS CLI" {
         session-manager-plugin | Out-String | Should -Match "plugin was installed successfully"
+    }
+
+    It "AWS SAM CLI" {
+        "sam --version" | Should -ReturnZeroExitCode
     }
 }
 
