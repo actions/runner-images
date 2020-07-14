@@ -1,6 +1,9 @@
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 3750
-- Image Version: 20200706.1
+- Image Version: 20200713.1
+
+## Enabled windows optional features
+- Windows Subsystem for Linux
 
 ## Installed Software
 ### Language and Runtime
@@ -20,7 +23,7 @@
 
 ### Package Management
 - Chocolatey 0.10.15
-- Vcpkg 2020.02.04
+- Vcpkg 2020.06.15
 - NPM 6.14.5
 - Yarn 1.22.4
 - pip 20.1.1 (python 3.7)
@@ -37,7 +40,7 @@
 - sbt 1.3.13
 
 ### Tools
-- Azure CosmosDb Emulator 2.11.1.0
+- Azure CosmosDb Emulator 2.11.2.0
 - Bazel 3.3.1
 - Bazelisk 1.5.0
 - CMake 3.17.3
@@ -53,10 +56,11 @@
 - MySQL 5.7.21.0
 - Mercurial 5.0
 - NSIS 3.5.0.20200106
+- Newman 5.1.1
 - OpenSSL 1.1.1
 - Packer 1.6.0
 - SQLPS 1.0
-- SQLServer PS 21.1.18221
+- SQLServer PS 21.1.18226
 - Subversion (SVN) 1.8.17
 - ghc 8.10.1
 - Cabal 3.2.0.0
@@ -68,21 +72,28 @@
 
 ### CLI Tools
 - Azure CLI 2.8.0
-- azcopy 10.4.3
+- azcopy 10.5.0
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.28
+- AWS CLI 2.0.30
 - AWS SAM CLI 0.53.0
-- Alibaba CLI 3.0.26
+- AWS Session Manager CLI 1.1.61.0
+- Alibaba Cloud CLI 3.0.26
 - Cloud Foundry CLI 6.51.0
 - Hub CLI 2.14.2
-- Google Cloud SDK 299.0.0
+- Google Cloud SDK 300.0.0
+
+### Rust packages:
+- bindgen 0.54.1
+- cbindgen 0.14.3
+- cargo-audit 0.12.0
+- cargo-outdated v0.9.10
 
 ### Browsers and webdrivers
 - Google Chrome 83.0.4103.116
 - Chrome Driver 83.0.4103.39
-- Microsoft Edge 83.0.478.58
-- Microsoft Edge Driver 83.0.478.58
-- Mozilla Firefox 78.0.1
+- Microsoft Edge 83.0.478.61
+- Microsoft Edge Driver 83.0.478.61
+- Mozilla Firefox 78.0.2
 - Gecko Driver 0.26.0
 - IE Driver 3.150.1.0
 
@@ -130,8 +141,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 8.17.0  | x64          |
 | 10.21.0 | x64          |
-| 12.18.1 | x64          |
-| 14.4.0  | x64          |
+| 12.18.2 | x64          |
+| 14.5.0  | x64          |
 
 
 #### Python
@@ -479,7 +490,7 @@ All other versions are saved but not installed.
 | android-27   | Android SDK Platform 27, Revision 3        |
 | android-28   | Android SDK Platform 28, Revision 6        |
 | android-29   | Android SDK Platform 29, Revision 4        |
-| android-30   | Android SDK Platform 30, Revision 1        |
+| android-30   | Android SDK Platform 30, Revision 2        |
 
 ### Android SDK Build-Tools
 `Location C:\Program Files (x86)\Android\android-sdk\build-tools`
