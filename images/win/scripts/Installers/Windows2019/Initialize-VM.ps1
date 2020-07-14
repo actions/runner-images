@@ -130,5 +130,3 @@ Write-Host $expandResult
 
 Write-Host "Disk sizes after expansion"
 wmic logicaldisk get size,freespace,caption
-
-Invoke-PesterTests -TestFile "WindowsFeatures" -TestName "WindowsNETFeatures"
