@@ -98,7 +98,6 @@ Describe "GoogleCouldSDK" {
     }
 }
 
-
 Describe "PowerShell Core" {
     It "pwsh" {
         "pwsh --version" | Should -ReturnZeroExitCode
