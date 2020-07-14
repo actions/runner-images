@@ -35,4 +35,4 @@ npm install -g lerna
 npm install -g node-sass
 npm install -g newman
 
-Invoke-PesterTests -TestFile "NodeLTS"
+Invoke-PesterTests -TestFile "Node"

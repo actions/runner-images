@@ -7,6 +7,7 @@ Describe "PHP" {
     }
 
     It "PHP Environment variables is set." {
-        Get-EnvironmentVariable "PHPROOT" | Should -Not -BeNullOrEmpty
+        ${env:PHPROOT} | Should -Not -BeNullOrEmpty
+        ${env:PHPROOT} | Should -Exist
     }
 }

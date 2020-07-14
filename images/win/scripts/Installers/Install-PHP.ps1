@@ -21,6 +21,3 @@ setx PHPROOT $installDir /M
 
 # Invoke Pester Tests
 Invoke-PesterTests -TestFile "PHP"
-
-# Done
-exit 0

@@ -6,7 +6,7 @@ Describe "MongoDB" {
         "$ToolName --version" | Should -ReturnZeroExitCode
     }
 }
-Describe "MySQL CLI" {
+Describe "MySQL" {
     It "Checking MySQL CLI" {
         "mysql -V" | Should -ReturnZeroExitCode
     } 

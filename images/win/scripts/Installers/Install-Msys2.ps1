@@ -88,4 +88,3 @@ pacman.exe -Q | grep -v ^mingw-w64-
 Write-Host "`nMSYS2 installation completed"
 
 Invoke-PesterTests -TestFile "MSYS2"
-exit 0
