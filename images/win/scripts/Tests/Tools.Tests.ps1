@@ -18,8 +18,6 @@ Describe "Kind" {
 
 Describe "DotnetTLS" {
     It "Tls 1.2 is enabled" {
-        $protocols = [Net.ServicePointManager]::SecurityProtocol
-        $protocolArr = $protocols -split ', '
-        $protocolArr.Contains('Tls12') | Should -BeTrue
+        [Net.ServicePointManager]::SecurityProtocol -band "Tls12" | Should -Be Tls12
     }
 }
