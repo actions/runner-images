@@ -4,3 +4,5 @@
 ################################################################################
 
 Choco-Install -PackageName jq
+
+Invoke-PesterTests -TestFile "Tools" -TestName "Jq"
