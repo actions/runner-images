@@ -5,8 +5,7 @@ $modules = (Get-ToolsetContent).azureModules
 
 foreach ($module in $modules)
 {
-    Describe "$($module.name)"
-    {
+    Describe "$($module.name)" {
         foreach ($version in $module.versions) {
             $moduleName = $module.name
             $modulePath = Join-Path -Path $modulesRootPath -ChildPath "$($module.name)_${version}"
