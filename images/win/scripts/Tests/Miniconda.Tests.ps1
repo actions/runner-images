@@ -7,8 +7,8 @@ Describe "Miniconda" {
         @{ PathTest = "python.exe" }
         @{ PathTest = "Scripts\conda.exe" }
     ) {
-        $condaPath = Join-Path ${env:CONDA} $PathTest | Should -Exist
-        $condaPath | Should -Exist
+        $condaPath = Join-Path ${env:CONDA} $PathTest
+        "$condaPath" | Should -Exist
         "$condaPath --version" | Should -ReturnZeroExitCode
     }
 }

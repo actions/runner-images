@@ -80,8 +80,7 @@ Describe "CloudFoundryCli" {
     }
 }
 
-Describe "GoogleCouldSDK"  
-  {
+Describe "GoogleCouldSDK"  {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
