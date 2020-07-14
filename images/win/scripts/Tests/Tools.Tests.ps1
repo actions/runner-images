@@ -94,7 +94,7 @@ Describe "GoogleCouldSDK"
 Describe "NET48" {
     It "Check NET48 is installed." {
         $netPath = (Get-DotnetFrameworkTools).Path.Split("<")[0]
-        "$netPath" + "4.8 Tools" | Should -Exist
+        ${netPath} + "4.8 Tools" | Should -Exist
     }
 }
 
