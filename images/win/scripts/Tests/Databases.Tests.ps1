@@ -9,8 +9,8 @@ Describe "MongoDB" {
 
 Describe "PostgreSQL" {
     $psqlTests = @(
-        @{envVar = "PGBIN"; pgPath = Get-EnvironmentVariable "PGBIN"}
         @{envVar = "PGROOT"; pgPath = Get-EnvironmentVariable "PGROOT"}
+        @{envVar = "PGBIN"; pgPath = Get-EnvironmentVariable "PGBIN"}
         @{envVar = "PGDATA"; pgPath = Get-EnvironmentVariable "PGDATA"}
     )
 
@@ -35,12 +35,19 @@ Describe "PostgreSQL" {
     }
 
     Context "Service" {
-        It "PostgreSQL service is stopped" {
-            (Get-Service -Name postgresql*).Status | Should -Be "Stopped"
+        $psqlService = Get-Service -Name postgresql*
+        $psqlServiceTests = @{
+            Name = $psqlService.Name
+            Status = $psqlService.Status
+            StartType = $psqlService.StartType
         }
 
-        It "PostgreSQL service is disabled" {
-            (Get-Service -Name postgresql*).StartType | Should -Be "Disabled"
+        It "<Name> service is stopped" -TestCases $psqlServiceTests {
+            $Status | Should -Be "Stopped"
+        }
+
+        It "<Name> service is disabled" -TestCases $psqlServiceTests {
+            $StartType | Should -Be "Disabled"
         }
     }
 }
