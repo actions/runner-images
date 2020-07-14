@@ -6,8 +6,8 @@
 Import-Module -Name ImageHelpers
 
 # Rust Env
-$env:RUSTUP_HOME="C:\Rust\.rustup"
-$env:CARGO_HOME="C:\Rust\.cargo"
+$env:RUSTUP_HOME = "C:\Rust\.rustup"
+$env:CARGO_HOME = "C:\Rust\.cargo"
 
 # Download the latest rustup-init.exe for Windows x64
 # See https://rustup.rs/#
@@ -49,3 +49,5 @@ Remove-Item "${env:CARGO_HOME}\registry\*" -Recurse -Force
 
 # Update Run key to run a script at logon
 Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "RUSTSYM" -Value $cmdPath
+
+Invoke-PesterTests -TestFile "Rust"
