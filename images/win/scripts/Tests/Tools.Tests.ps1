@@ -127,7 +127,3 @@ Describe "Perl" {
        "perl --version" | Should -ReturnZeroExitCode
     }
 }
-
-
-
-
