@@ -49,16 +49,12 @@ Describe "KubernetesCli" {
 }
 
 Describe "Mingw64" {
-    It "gcc" {
-        "gcc --version" | Should -ReturnZeroExitCode
-    }
-
-    It "g++" {
-        "g++ --version" | Should -ReturnZeroExitCode
-    }
-
-    It "make" {
-        "make --version" | Should -ReturnZeroExitCode
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "gcc" }
+        @{ ToolName = "g++" }
+        @{ ToolName = "make" }
+    ) {
+        "$ToolName --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -84,16 +80,54 @@ Describe "CloudFoundryCli" {
     }
 }
 
-Describe "GoogleCouldSDK" {
-    It "bq" {
-        "bq version" | Should -ReturnZeroExitCode
-    }
-
-    It "gcloud" {
-        "gcloud version" | Should -ReturnZeroExitCode
-    }
-
-    It "gsutil" {
-        "gsutil version" | Should -ReturnZeroExitCode
+Describe "GoogleCouldSDK"  
+  {
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "bq" }
+        @{ ToolName = "gcloud" }
+        @{ ToolName = "gsutil" }
+    ) {
+        "$ToolName version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "NET48" {
+    It "Check NET48 is installed." {
+        $netPath = (Get-DotnetFrameworkTools).Path.Split("<")[0]
+        "$netPath" + "4.8 Tools" | Should -Exist
+    }
+}
+
+Describe "NSIS" {
+    It "Checking NSIS in the path" {
+       "makensis /VERSION" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Nuget" {
+    It "Checking Nuget in the path" {
+       "nuget" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "OpenSSL" {
+    It "OpenSSL in the path" {
+       "openssl version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Packer" {
+    It "Checking Packer in the path" {
+       "packer --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Perl" {
+    It "Checking Perl in the path" {
+       "perl --version" | Should -ReturnZeroExitCode
+    }
+}
+
+
+
+
