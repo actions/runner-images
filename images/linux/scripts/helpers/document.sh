@@ -34,9 +34,9 @@ function AddBlockquote {
 }
 
 function StartCode {
-    WriteItem "``````"
+    WriteItem '```'
 }
 
 function EndCode {
-    WriteItem "``````"
+    WriteItem '```'
 }
