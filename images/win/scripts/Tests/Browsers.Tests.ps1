@@ -145,6 +145,6 @@ Describe "Selenium" {
     }
 
     It "SELENIUM_JAR_PATH environment variable exists" {
-        $env:SELENIUM_JAR_PATH | Should -BeExactly "C:\selenium\selenium-server-standalone.jar"
+        Get-EnvironmentVariable "SELENIUM_JAR_PATH" | Should -BeExactly "C:\selenium\selenium-server-standalone.jar"
     }
 }
