@@ -2,9 +2,6 @@
 - OS Version: 10.0.14393 Build 3750
 - Image Version: 20200713.1
 
-## Enabled windows optional features
-- Windows Subsystem for Linux
-
 ## Installed Software
 ### Language and Runtime
 - Java 1.7.0_232 
