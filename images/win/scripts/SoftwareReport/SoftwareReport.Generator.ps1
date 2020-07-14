@@ -22,7 +22,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     "Image Version: $env:ImageVersion"
 )
 
-if ($OSName -match "Microsoft Windows Server 2019 Datacenter")
+if (Test-IsWin19)
 {
     $markdown += New-MDHeader "Enabled windows optional features" -Level 2
     $markdown += New-MDList -Style Unordered -Lines @(
