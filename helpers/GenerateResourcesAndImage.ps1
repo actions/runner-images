@@ -83,7 +83,9 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [string] $GithubFeedToken,
         [Parameter(Mandatory = $False)]
-        [Switch] $Force
+        [Switch] $Force,
+        [Parameter(Mandatory = $True)]
+        [string] $VnetName
     )
 
     if (([string]::IsNullOrEmpty($GithubFeedToken)))
@@ -177,5 +179,7 @@ Function GenerateResourcesAndImage {
         -var "storage_account=$($storageAccountName)" `
         -var "install_password=$($InstallPassword)" `
         -var "github_feed_token=$($GithubFeedToken)" `
+        -var "private_virtual_network_with_public_ip=false" `
+        -var "virtual_network_name=$($VnetName)" `
         $builderScriptPath
 }
