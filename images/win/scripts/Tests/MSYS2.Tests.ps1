@@ -3,19 +3,19 @@ BeforeAll {
     $msys2mingwDir = "C:\msys64\mingw64\bin"
     }
 Describe "MSYS2" {
-    It "<ToolsInstalled>" -TestCases @(
-        @{ ToolsInstalled = "bash.exe" }
-        @{ ToolsInstalled = "tar.exe" }
-        @{ ToolsInstalled = "make.exe" }
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "bash.exe" }
+        @{ ToolName = "tar.exe" }
+        @{ ToolName = "make.exe" }
     ) {
-        Join-Path ${msys2BinDir} $ToolsInstalled | Should -Exist
+        Join-Path ${msys2BinDir} $ToolName | Should -Exist
     }
 
-    It "<ToolsInstalled>" -TestCases @(
-        @{ ToolsInstalled = "gcc.exe" }
-        @{ ToolsInstalled = "cmake.exe" }
-        @{ ToolsInstalled = "g++.exe" }
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "gcc.exe" }
+        @{ ToolName = "cmake.exe" }
+        @{ ToolName = "g++.exe" }
     ) {
-        Join-Path ${msys2mingwDir} $ToolsInstalled | Should -Exist
+        Join-Path ${msys2mingwDir} $ToolName| Should -Exist
     }
 }

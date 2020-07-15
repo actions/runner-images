@@ -7,7 +7,7 @@ Describe "MongoDB" {
     }
 }
 Describe "MySQL" {
-    It "Checking MySQL CLI" {
+    It "MySQL CLI" {
         "mysql -V" | Should -ReturnZeroExitCode
     } 
 }

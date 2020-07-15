@@ -93,38 +93,38 @@ Describe "GoogleCouldSDK"  {
 }
 
 Describe "NET48" {
-    It "Check NET48 is installed." {
+    It "NET48" {
         $netPath = (Get-DotnetFrameworkTools).Path.Split("<")[0]
         ${netPath} + "4.8 Tools" | Should -Exist
     }
 }
 
 Describe "NSIS" {
-    It "Checking NSIS in the path" {
+    It "NSIS" {
        "makensis /VERSION" | Should -ReturnZeroExitCode
     }
 }
 
 Describe "Nuget" {
-    It "Checking Nuget in the path" {
+    It "Nuget" {
        "nuget" | Should -ReturnZeroExitCode
     }
 }
 
 Describe "OpenSSL" {
-    It "OpenSSL in the path" {
+    It "OpenSSL" {
        "openssl version" | Should -ReturnZeroExitCode
     }
 }
 
 Describe "Packer" {
-    It "Checking Packer in the path" {
+    It "Packer" {
        "packer --version" | Should -ReturnZeroExitCode
     }
 }
 
 Describe "Perl" {
-    It "Checking Perl in the path" {
+    It "Perl" {
        "perl --version" | Should -ReturnZeroExitCode
     }
 }
