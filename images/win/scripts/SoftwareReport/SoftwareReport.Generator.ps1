@@ -22,10 +22,13 @@ $markdown += New-MDList -Style Unordered -Lines @(
     "Image Version: $env:ImageVersion"
 )
 
-$markdown += New-MDHeader "Enabled windows optional features" -Level 2
-$markdown += New-MDList -Style Unordered -Lines @(
-    "Windows Subsystem for Linux"
-)
+if (Test-IsWin19)
+{
+    $markdown += New-MDHeader "Enabled windows optional features" -Level 2
+    $markdown += New-MDList -Style Unordered -Lines @(
+        "Windows Subsystem for Linux"
+    )
+}
 
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3

@@ -2,7 +2,7 @@
 - System Version: macOS 10.15.5 (19F101)
 - Kernel Version: Darwin 19.5.0
 - System Integrity Protection: Enabled
-- Image Version: 20200702.1
+- Image Version: 20200707.3
 
 ## Installed Software
 ### Language and Runtime
@@ -15,15 +15,15 @@
 - Rust 1.44.1
 - Clang/LLVM 10.0.0
 - gcc-8 (Homebrew GCC 8.4.0_1) 8.4.0
-- gcc-9 (Homebrew GCC 9.3.0_1) 9.3.0
+- gcc-9 (Homebrew GCC 9.3.0) 9.3.0
 - GNU Fortran (Homebrew GCC 8.4.0_1) 8.4.0
-- GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0
+- GNU Fortran (Homebrew GCC 9.3.0) 9.3.0
 - Node.js v12.18.2
 - NVM 0.35.3
 - NVM - Cached node versions: v6.17.1 v8.17.0 v10.21.0 v12.18.2 v13.14.0 v14.5.0
 - PowerShell 7.0.2
 - Python 2.7.17
-- Python 3.7.7
+- Python 3.7.8
 - Ruby 2.6.6p146
 - .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301
 - Go 1.14.4
@@ -31,12 +31,12 @@
 - julia 1.4.2
 
 ### Package Management
-- Rustup 1.21.1
-- Vcpkg 2020.02.04
+- Rustup 1.22.0
+- Vcpkg 2020.06.15
 - Bundler version 2.1.4
 - Carthage 0.35.0
 - CocoaPods 1.9.3
-- Homebrew 2.4.3
+- Homebrew 2.4.4
 - NPM 6.14.5
 - Yarn 1.22.4
 - NuGet 5.6.0.6489
@@ -48,6 +48,7 @@
 ### Project Management
 - Apache Maven 3.6.3
 - Gradle 6.5.1
+- Apache Ant(TM) 1.10.8
 
 ### Utilities
 - Curl 7.71.1
@@ -77,13 +78,13 @@
 - 7-Zip 16.02
 
 ### Tools
-- Fastlane 2.150.1
+- Fastlane 2.151.1
 - Cmake 3.17.3
 - App Center CLI 2.6.1
 - Azure CLI 2.8.0
-- AWS CLI 2.0.27
+- AWS CLI 2.0.29
 - AWS SAM CLI 0.53.0
-- Aliyun CLI 3.0.49
+- Aliyun CLI 3.0.50
 - GHCup v0.1.5-p2
 - GHC 8.10.1
 - Cabal 3.2.0.0
@@ -95,7 +96,7 @@
 - Google Chrome 83.0.4103.116 
 - ChromeDriver 83.0.4103.39
 - Microsoft Edge 83.0.478.58 
-- MSEdgeDriver 83.0.478.58
+- MSEdgeDriver 83.0.478.61
 - Mozilla Firefox 78.0.1
 - geckodriver 0.26.0
 
@@ -120,8 +121,8 @@
 #### Node.js
 - 8.17.0
 - 10.21.0
-- 12.18.1
-- 14.4.0
+- 12.18.2
+- 14.5.0
 
 #### Go
 - 1.11.13
@@ -169,18 +170,18 @@
 - NUnit 3.6.1
 
 ### Xcode
-| Version        | Build   | Path                              |
-| -------------- | ------- | --------------------------------- |
-| 12.0 (beta)    | 12A6159 | /Applications/Xcode_12_beta.app   |
-| 11.6 (beta)    | 11N700h | /Applications/Xcode_11.6_beta.app |
-| 11.5 (default) | 11E608c | /Applications/Xcode_11.5.app      |
-| 11.4.1         | 11E503a | /Applications/Xcode_11.4.1.app    |
-| 11.4           | 11E146  | /Applications/Xcode_11.4.app      |
-| 11.3.1         | 11C505  | /Applications/Xcode_11.3.1.app    |
-| 11.2.1         | 11B500  | /Applications/Xcode_11.2.1.app    |
-| 11.1           | 11A1027 | /Applications/Xcode_11.1.app      |
-| 11.0           | 11A420a | /Applications/Xcode_11.app        |
-| 10.3           | 10G8    | /Applications/Xcode_10.3.app      |
+| Version        | Build    | Path                              |
+| -------------- | -------- | --------------------------------- |
+| 12.0 (beta)    | 12A6163b | /Applications/Xcode_12_beta.app   |
+| 11.6 (beta)    | 11N700h  | /Applications/Xcode_11.6_beta.app |
+| 11.5 (default) | 11E608c  | /Applications/Xcode_11.5.app      |
+| 11.4.1         | 11E503a  | /Applications/Xcode_11.4.1.app    |
+| 11.4           | 11E146   | /Applications/Xcode_11.4.app      |
+| 11.3.1         | 11C505   | /Applications/Xcode_11.3.1.app    |
+| 11.2.1         | 11B500   | /Applications/Xcode_11.2.1.app    |
+| 11.1           | 11A1027  | /Applications/Xcode_11.1.app      |
+| 11.0           | 11A420a  | /Applications/Xcode_11.app        |
+| 10.3           | 10G8     | /Applications/Xcode_10.3.app      |
 
 #### Xcode Support Tools
 - Nomad CLI 3.1.4
