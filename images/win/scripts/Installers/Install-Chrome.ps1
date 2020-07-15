@@ -75,3 +75,5 @@ $regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment
 $PathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path'
 $PathValue += ";$ChromeDriverPath\"
 Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $PathValue
+
+Invoke-PesterTests -TestFile "Browsers" -TestName "Chrome"

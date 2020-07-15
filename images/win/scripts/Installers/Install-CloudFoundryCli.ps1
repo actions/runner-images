@@ -21,3 +21,5 @@ Extract-7Zip -Path $CloudFoundryArchPath -DestinationPath $CloudFoundryCliPath
 
 # Add cf to path
 Add-MachinePathItem $CloudFoundryCliPath
+
+Invoke-PesterTests -TestFile "Tools" -TestName "CloudFoundryCli"

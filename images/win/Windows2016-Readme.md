@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 3750
-- Image Version: 20200628.0
+- Image Version: 20200706.1
 
 ## Installed Software
 ### Language and Runtime
@@ -9,14 +9,14 @@
 - Java 11.0.7 
 - Java 13.0.2 
 - Rust 1.44.1
-- Python 3.7.7
+- Python 3.7.8
 - Ruby 2.5.8p224
 - Go 1.14.4
 - PHP 7.4.7
 - Julia 1.4.2
 - Perl 5.30.2
 - PowerShell 7.0.2
-- Node 12.18.1
+- Node 12.18.2
 
 ### Package Management
 - Chocolatey 0.10.15
@@ -34,11 +34,11 @@
 - Ant 1.10.5
 - Maven 3.6.3
 - Gradle 6.5
-- sbt 1.3.12
+- sbt 1.3.13
 
 ### Tools
 - Azure CosmosDb Emulator 2.11.1.0
-- Bazel 3.3.0
+- Bazel 3.3.1
 - Bazelisk 1.5.0
 - CMake 3.17.3
 - Docker 19.03.5
@@ -70,19 +70,19 @@
 - Azure CLI 2.8.0
 - azcopy 10.4.3
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.26
+- AWS CLI 2.0.28
 - AWS SAM CLI 0.53.0
 - Alibaba CLI 3.0.26
 - Cloud Foundry CLI 6.51.0
 - Hub CLI 2.14.2
-- Google Cloud SDK 298.0.0
+- Google Cloud SDK 299.0.0
 
 ### Browsers and webdrivers
 - Google Chrome 83.0.4103.116
 - Chrome Driver 83.0.4103.39
-- Microsoft Edge 83.0.478.56
-- Microsoft Edge Driver 83.0.478.56
-- Mozilla Firefox 77.0.1
+- Microsoft Edge 83.0.478.58
+- Microsoft Edge Driver 83.0.478.58
+- Mozilla Firefox 78.0.1
 - Gecko Driver 0.26.0
 - IE Driver 3.150.1.0
 
@@ -140,7 +140,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.7.18  | x64, x86     |
 | 3.5.4   | x64, x86     |
 | 3.6.8   | x64, x86     |
-| 3.7.7 (Default) | x64, x86     |
+| 3.7.8 (Default) | x64, x86     |
 | 3.8.3   | x64, x86     |
 
 
@@ -165,7 +165,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### PostgreSQL
 | Version | UserName | Password | EnvironmentVariables                                                                                                                  | Path                           | ServiceName       | ServiceStatus | ServiceStartType |
 | ------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ----------------- | ------------- | ---------------- |
-| 12.3    | postgres | root     | PGBIN=C:\Program Files\PostgreSQL\12\bin; <br> PGDATA=C:\Program Files\PostgreSQL\12\data; <br> PGROOT=C:\Program Files\PostgreSQL\12 | C:\Program Files\PostgreSQL\12 | postgresql-x64-12 | Running       | Auto             |
+| 12.3    | postgres | root     | PGBIN=C:\Program Files\PostgreSQL\12\bin; <br> PGDATA=C:\Program Files\PostgreSQL\12\data; <br> PGROOT=C:\Program Files\PostgreSQL\12 | C:\Program Files\PostgreSQL\12 | postgresql-x64-12 | Stopped       | Disabled         |
 
 
 #### MongoDB
@@ -449,11 +449,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8
 
 ### Azure Powershell Modules
-| Module  | Version                                                         | Path                           |
-| ------- | --------------------------------------------------------------- | ------------------------------ |
-| Az      | 1.0.0<br>1.6.0<br>2.3.2<br>2.6.0<br>3.1.0<br>3.5.0<br>3.8.0     | C:\Modules\az_\<version\>      |
-| Azure   | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>5.3.0           | C:\Modules\azure_\<version\>   |
-| AzureRM | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>6.7.0<br>6.13.1 | C:\Modules\azurerm_\<version\> |
+| Module  | Version                                                              | Path                           |
+| ------- | -------------------------------------------------------------------- | ------------------------------ |
+| Az      | 1.0.0<br>1.6.0<br>2.3.2<br>2.6.0<br>3.1.0<br>3.5.0<br>3.8.0<br>4.3.0 | C:\Modules\az_\<version\>      |
+| Azure   | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>5.3.0                | C:\Modules\azure_\<version\>   |
+| AzureRM | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>6.7.0<br>6.13.1      | C:\Modules\azurerm_\<version\> |
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.

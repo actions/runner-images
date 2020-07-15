@@ -4,7 +4,6 @@
 ##  Desc:  Installs container tools: podman, buildah and skopeo onto the image
 ################################################################################
 
-source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
 source /etc/os-release
