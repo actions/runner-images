@@ -16,31 +16,11 @@ Describe "Android SDK" {
         $buildToolsTestCases += @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
     }
 
-    $extraPackagesTestCases = @()
-    $extraPackagesList = $androidToolset.extra_list
-    $extraPackagesList | ForEach-Object {
-        $extraPackagesTestCases += @{ extraPackage = $_; installedPackages = $androidInstalledPackages }
-    }
-
-    $addonsTestCases = @()
-    $addonsList = $androidToolset.addon_list
-    $addonsList | ForEach-Object {
-        $addonsTestCases += @{ addonPackage = $_; installedPackages = $androidInstalledPackages }
-    }
-
     It "Platform version <platformVersion> is installed" -TestCases $platformTestCases {
         "$installedPackages" | Should -Match "platforms;$platformVersion"
     }
 
     It "Platform build tools <buildToolsVersion> is installed" -TestCases $buildToolsTestCases {
         "$installedPackages" | Should -Match "build-tools;$buildToolsVersion"
-    }
-
-    It "Extra package <extraPackage> is installed" -TestCases $extraPackagesTestCases {
-        "$installedPackages" | Should -Match "extras;$extraPackage"
-    }
-
-    It "Addon package <addonPackage> is installed" -TestCases $addonsTestCases {
-        "$installedPackages" | Should -Match "add-ons;$addonPackage"
     }
 }
