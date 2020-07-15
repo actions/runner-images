@@ -20,7 +20,7 @@ Describe "WindowsFeatures" {
 
     if (Test-isWin19) {
         it "Check WSL is on path" {
-            (Get-Command -Name 'wsl') | Should -ReturnZeroExitCode
+            (Get-Command -Name 'wsl') | Should -BeTrue
         }
     }
 }
