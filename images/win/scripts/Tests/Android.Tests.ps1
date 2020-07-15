@@ -16,6 +16,18 @@ Describe "Android SDK" {
         $buildToolsTestCases += @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
     }
 
+    $extraPackagesTestCases = @()
+    $extraPackageList = $androidToolset.extra_list
+    $extraPackageList | ForEach-Object {
+        $extraPackagesTestCases += @{ extraPackage = $_; installedPackages = $androidInstalledPackages }
+    }
+
+    $addonsTestCases = @()
+    $addonsPackageList = $androidToolset.addon_list
+    $addonsPackageList | ForEach-Object {
+        $addonsTestCases += @{ addonPackage = $_; installedPackages = $androidInstalledPackages }
+    }
+
     $additionalToolsTestCases = @()
     $additionalToolsList = $androidToolset.additional_tools
     $additionalToolsList | ForEach-Object {
@@ -38,7 +50,7 @@ Describe "Android SDK" {
         "$installedPackages" | Should -Match "add-ons;$addonPackage"
     }
 
-    It "Addon package <additionalToolVersion> is installed" -TestCases $additionalToolsTestCases {
+    It "Additional tool <additionalToolVersion> is installed" -TestCases $additionalToolsTestCases {
         "$installedPackages" | Should -Match $additionalToolVersion
     }
 }
