@@ -53,3 +53,5 @@ foreach ($module in $modules)
 # Add modules to the PSModulePath
 $psModuleMachinePath += $env:PSModulePath
 [Environment]::SetEnvironmentVariable("PSModulePath", $psModuleMachinePath, "Machine")
+
+Invoke-PesterTests -TestFile "AzModules"
