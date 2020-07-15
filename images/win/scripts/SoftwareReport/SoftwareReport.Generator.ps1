@@ -35,7 +35,7 @@ $markdown += New-MDHeader "Language and Runtime" -Level 3
 
 $markdown += New-MDList -Lines (Get-JavaVersionsList -DefaultVersion "1.8.0") -Style Unordered -NoNewLine
 $markdown += New-MDList -Style Unordered -Lines @(
-    (Get-RustVersion),
+    "Rust $(Get-RustVersion)",
     (Get-PythonVersion),
     (Get-RubyVersion),
     (Get-GoVersion),
@@ -115,7 +115,9 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-GoogleCloudSDKVersion)
 )
 
-$markdown += New-MDHeader "Rust packages:" -Level 3
+$markdown += New-MDHeader "Rust" -Level 3
+$markdown += New-MDParagraph -Lines "Version: $(Get-RustVersion)"
+$markdown += New-MDHeader "Packages:" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-BindgenVersion),
     (Get-CbindgenVersion),
