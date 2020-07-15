@@ -30,3 +30,18 @@ Describe "ContainersFeature" {
         (Get-WindowsFeature -Name "Containers").InstallState | Should -Be "Installed"
     }
 }
+
+Describe "WindowsUpdates" {
+    it "Check Windows updates" {
+        (Get-WindowsUpdate).KB | Should -BeFalse
+    }
+}
+
+Describe "DiskSpace" {
+    it "The image has enough disk space"{
+        $availableSpaceMB =  [math]::Round((Get-PSDrive -Name C).Free / 1MB)
+        $minimumFreeSpaceMB = 18 * 1024
+
+        $availableSpaceMB | Should -BeGreaterThan $minimumFreeSpaceMB
+    }
+}
