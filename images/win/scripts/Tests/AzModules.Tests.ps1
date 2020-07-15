@@ -1,7 +1,7 @@
-$modulesRootPath = $env:PSMODULES_ROOT_FOLDER
-
 # Get modules content from toolset
 $modules = (Get-ToolsetContent).azureModules
+
+$modulesRootPath = $env:PSMODULES_ROOT_FOLDER
 
 foreach ($module in $modules)
 {

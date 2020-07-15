@@ -967,6 +967,11 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
+            ],
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}",
+                "ROOT_FOLDER={{user `root_folder`}}"
             ]
         },
         {
