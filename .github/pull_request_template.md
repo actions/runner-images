@@ -6,7 +6,7 @@ Please include a summary of the change and which issue is fixed. Also include re
 #### Related issue:
 
 **For new tools, please provide a link to the PR in the azure-pipelines-canary repo with Canary test for this new tool.**
-#### Link to Canary tests PR: 
+#### Canary tests PR: 
 
 ## Check list
 - [ ] Related issue / work item is attached
