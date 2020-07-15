@@ -34,3 +34,12 @@ download_with_retries() {
     echo "Could not download $URL"
     return 1
 }
+
+## Use dpkg to figure out if a package has already been installed
+## Example use:
+## if ! IsPackageInstalled packageName; then
+##     echo "packageName is not installed!"
+## fi
+function IsPackageInstalled {
+    dpkg -S $1 &> /dev/null
+}

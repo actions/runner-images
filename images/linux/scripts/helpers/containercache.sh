@@ -4,7 +4,6 @@
 ##  Desc:  Prepulls Docker images used in build tasks and templates
 ################################################################################
 
-source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/document.sh
 
 # Check prereqs
