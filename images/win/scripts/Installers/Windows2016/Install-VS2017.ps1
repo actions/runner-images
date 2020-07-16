@@ -28,8 +28,8 @@ if ($instanceFolders -is [array])
     exit 1
 }
 
-$expectedVisualStudioVersion = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty version
-$vsInstallRoot = Get-VisualStudioPath -Version $expectedVisualStudioVersion -Edition $releaseInPath
+$visualStudioVersion = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty version
+$vsInstallRoot = Get-VisualStudioPath -Version $visualStudioVersion -Edition $releaseInPath
 
 # Initialize Visual Studio Experimental Instance for integration testing
 & "$vsInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit | Wait-Process

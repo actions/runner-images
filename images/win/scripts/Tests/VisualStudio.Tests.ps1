@@ -7,8 +7,8 @@ Describe "Visual Studio" {
 
         It "Devenv.exe" {
             $visualStudioEdition = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty edition
-            $expectedVisualStudioVersion = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty version
-            $vsInstallRoot = Get-VisualStudioPath -Version $expectedVisualStudioVersion -Edition $visualStudioEdition
+            $visualStudioVersion = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty version
+            $vsInstallRoot = Get-VisualStudioPath -Version $visualStudioVersion -Edition $visualStudioEdition
             $devenvexePath = "${vsInstallRoot}\Common7\IDE\devenv.exe"
             $devenvexePath | Should -Exist
         }
