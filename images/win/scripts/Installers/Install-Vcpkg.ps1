@@ -20,4 +20,4 @@ Add-MachinePathItem $InstallDir
 $env:Path = Get-MachinePath
 setx VCPKG_INSTALLATION_ROOT $InstallDir /M
 
-Invoke-PesterTests -TestFile "Vcpkg.Tests"
+Invoke-PesterTests -TestFile "Tools" -TestName "Vcpkg"

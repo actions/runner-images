@@ -254,7 +254,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-WDK.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-ServiceFabricSDK.ps1"
             ]
         },
         {
