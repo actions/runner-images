@@ -50,9 +50,30 @@ Describe "Azure DevOps CLI" {
     }
 }
 
+Describe "Bazel"{
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "bazel" }
+        @{ ToolName = "bazelisk" }
+    ) {
+        "$ToolName --version"| Should -ReturnZeroExitCode
+    }
+}
+
 Describe "CMake" {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Docker"{
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "docker" }
+        @{ ToolName = "docker-compose" }
+    ) {
+        "$ToolName --version"| Should -ReturnZeroExitCode
+    }
+    It "Helm" {
+        "helm version --short" | Should -ReturnZeroExitCode
     }
 }
 
