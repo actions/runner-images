@@ -1,4 +1,6 @@
-$ErrorActionPreference = 'Stop'
+#!/usr/local/bin/pwsh
+
+$ErrorActionPreference = "Stop"
 
 enum ImageType {
     Windows2016 = 0
@@ -112,8 +114,8 @@ Function GenerateResourcesAndImage {
     }
 
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
-    $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
-    $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
+    $ServicePrincipalClientSecret = [Environment]::UserName + [System.GUID]::NewGuid().ToString().ToUpper();
+    $InstallPassword = [Environment]::UserName + [System.GUID]::NewGuid().ToString().ToUpper();
 
     Connect-AzAccount
     Set-AzContext -SubscriptionId $SubscriptionId
