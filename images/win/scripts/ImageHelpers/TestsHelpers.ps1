@@ -12,6 +12,11 @@ function Get-CommandResult {
     }
 }
 
+# Gets path to the tool, analogue of 'which tool'
+function Get-WhichTool($tool) {
+    return (Get-Command $tool).Path
+}
+
 # Gets value of environment variable by the name
 function Get-EnvironmentVariable($variable) {
     return [System.Environment]::GetEnvironmentVariable($variable)
@@ -80,9 +85,41 @@ function ShouldReturnZeroExitCode {
 
     if (-not $succeeded)
     {
-        $сommandOutputIndent = " " * 4
-        $commandOutput = ($result.Output | ForEach-Object { "${сommandOutputIndent}${_}" }) -join "`n"
+        $commandOutputIndent = " " * 4
+        $commandOutput = ($result.Output | ForEach-Object { "${commandOutputIndent}${_}" }) -join "`n"
         $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}`n${commandOutput}"
+    }
+
+    return [PSCustomObject] @{
+        Succeeded      = $succeeded
+        FailureMessage = $failureMessage
+    }
+}
+
+# Pester Assert to match output of command
+function ShouldMatchCommandOutput {
+    Param(
+        [String] $ActualValue,
+        [String] $RegularExpression,
+        [switch] $Negate
+    )
+
+    $output = (Get-CommandResult $ActualValue).Output | Out-String
+    [bool] $succeeded = $output -cmatch $RegularExpression
+
+    if ($Negate) {
+        $succeeded = -not $succeeded
+    }
+
+    $failureMessage = ''
+
+    if (-not $succeeded) {
+        if ($Negate) {
+            $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to not match '$output', but it did match."
+        }
+        else {
+            $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to match '$output', but it did not match."
+        }
     }
 
     return [PSCustomObject] @{
@@ -93,4 +130,5 @@ function ShouldReturnZeroExitCode {
 
 If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
     Add-AssertionOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
+    Add-AssertionOperator -Name MatchCommandOutput -InternalName ShouldMatchCommandOutput -Test ${function:ShouldMatchCommandOutput}
 }

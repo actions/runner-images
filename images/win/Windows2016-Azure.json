@@ -364,18 +364,11 @@
         {
             "type": "powershell",
             "environment_vars":[
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "ROOT_FOLDER={{user `root_folder`}}"
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars":[
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
-            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1"
             ]
@@ -700,12 +693,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-DotnetTLS.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-AzureCli.ps1"
             ]
         },
@@ -735,24 +722,6 @@
         },
         {
             "type": "powershell",
-            "environment_vars":[
-                "ROOT_FOLDER={{user `root_folder`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-ToolCache.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars":[
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Toolset.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-OpenSSL.ps1"
             ]
@@ -761,18 +730,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Perl.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Git.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-GitHub-CLI.ps1"
             ]
         },
         {
@@ -790,12 +747,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Julia.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Sbt.ps1"
             ]
         },
@@ -803,30 +754,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Svn.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Chrome.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Edge.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Firefox.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-SeleniumWebDrivers.ps1"
             ]
         },
         {
@@ -874,19 +801,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Mingw64.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-TypeScript.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Haskell.ps1"
             ]
         },
         {
@@ -916,43 +831,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Mercurial.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Jq.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Zstd.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-InnoSetup.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-GitVersion.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-NSIS.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-CloudFoundryCli.ps1"
             ]
         },
         {
@@ -965,18 +850,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-VSWhere.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-KubernetesCli.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-GoogleCloudSDK.ps1"
             ]
         },
         {
@@ -995,7 +868,7 @@
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
@@ -1004,6 +877,10 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
+            ],
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "ROOT_FOLDER={{user `root_folder`}}"
             ]
         },
         {

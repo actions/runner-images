@@ -45,7 +45,6 @@ foreach ($tool in $tools) {
     # Get github release asset for each version
     foreach ($toolVersion in $tool.versions) {
         $asset = $assets | Where-Object version -like $toolVersion `
-                         | Sort-Object -Property {[version]$_.version} -Descending `
                          | Select-Object -ExpandProperty files `
                          | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) -and ($_.toolset -eq $tool.toolset) } `
                          | Select-Object -First 1

@@ -37,6 +37,22 @@ function Get-RustVersion {
     return "Rust ${rustVersion}"
 }
 
+function Get-BindgenVersion {
+    return bindgen --version
+}
+
+function Get-CbindgenVersion {
+    return cbindgen --version
+}
+
+function Get-CargoAuditVersion {
+    return cargo audit --version
+}
+
+function Get-CargoOutdatedVersion {
+    return cargo outdated --version
+}
+
 function Get-PythonVersion {
     return & python --version
 }

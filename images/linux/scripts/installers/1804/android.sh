@@ -8,7 +8,6 @@ set -e
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
-source $HELPER_SCRIPTS/apt.sh
 
 # Set env variable for SDK Root (https://developer.android.com/studio/command-line/variables)
 ANDROID_ROOT=/usr/local/lib/android

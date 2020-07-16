@@ -22,10 +22,13 @@ $markdown += New-MDList -Style Unordered -Lines @(
     "Image Version: $env:ImageVersion"
 )
 
-$markdown += New-MDHeader "Enabled windows optional features" -Level 2
-$markdown += New-MDList -Style Unordered -Lines @(
-    "Windows Subsystem for Linux"
-)
+if (Test-IsWin19)
+{
+    $markdown += New-MDHeader "Enabled windows optional features" -Level 2
+    $markdown += New-MDList -Style Unordered -Lines @(
+        "Windows Subsystem for Linux"
+    )
+}
 
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
@@ -110,6 +113,14 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-CloudFoundryVersion),
     (Get-HubVersion),
     (Get-GoogleCloudSDKVersion)
+)
+
+$markdown += New-MDHeader "Rust packages:" -Level 3
+$markdown += New-MDList -Style Unordered -Lines @(
+    (Get-BindgenVersion),
+    (Get-CbindgenVersion),
+    (Get-CargoAuditVersion),
+    (Get-CargoOutdatedVersion)
 )
 
 $markdown += New-MDHeader "Browsers and webdrivers" -Level 3
