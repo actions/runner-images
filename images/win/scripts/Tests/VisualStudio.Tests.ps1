@@ -1,8 +1,7 @@
 Describe "Visual Studio" {
     Context "Basic" {
         It "Catalog.json" {
-            $catalogJsonPath = Get-VsCatalogJsonPath
-            $catalogJsonPath | Should -Exist
+            Get-VsCatalogJsonPath | Should -Exist
         }
 
         It "Devenv.exe" {

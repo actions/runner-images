@@ -5,13 +5,16 @@
 
 $ErrorActionPreference = "Stop"
 
-$requiredComponents = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty workloads
-$workLoads = @("--allWorkloads --includeRecommended")
-$workLoads +=  $requiredComponents | ForEach-Object { "--add $_" }
-$workLoads += "--remove Component.CPython3.x64"
+$toolset = Get-ToolsetContent
+$requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
+$workLoads = @(
+	"--allWorkloads --includeRecommended"
+	$requiredComponents
+	"--remove Component.CPython3.x64"
+)
 $workLoadsArgument = [String]::Join(" ", $workLoads)
 
-$releaseInPath = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty edition
+$releaseInPath = $toolset.visualStudio.edition
 $bootstrapperUrl = "https://aka.ms/vs/15/release/vs_${releaseInPath}.exe"
 
 # Install VS
@@ -28,7 +31,7 @@ if ($instanceFolders -is [array])
     exit 1
 }
 
-$visualStudioVersion = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty version
+$visualStudioVersion = $toolset.visualStudio.version
 $vsInstallRoot = Get-VisualStudioPath -Version $visualStudioVersion -Edition $releaseInPath
 
 # Initialize Visual Studio Experimental Instance for integration testing
