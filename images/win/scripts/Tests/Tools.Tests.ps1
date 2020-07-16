@@ -71,7 +71,7 @@ BeforeAll{
 }
 Describe "DACFx" {
     It "DACFx" {
-        (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Contains "Microsoft SQL Server Data-Tier Application Framework (x64)" | Should -Be $true
+        (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Contains "Microsoft SQL Server Data-Tier Application Framework (x64)" | Should -BeTrue
         "${sqlPackagePath}" | Should -Exist
         "${sqlLocalDBPath}" | Should -Exist
     }
