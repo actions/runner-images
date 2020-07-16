@@ -39,4 +39,4 @@ Write-Host "Visual Studio version ${version} installed"
 $newContent = '{"Extensions":[{"Key":"1e906ff5-9da8-4091-a299-5c253c55fdc9","Value":{"ShouldAutoUpdate":false}},{"Key":"Microsoft.VisualStudio.Web.AzureFunctions","Value":{"ShouldAutoUpdate":false}}],"ShouldAutoUpdate":false,"ShouldCheckForUpdates":false}'
 Set-Content -Path "$VSInstallRoot\Common7\IDE\Extensions\MachineState.json" -Value $newContent
 
-Invoke-PesterTests -TestFile "VisualStudio" -TestName "Visual Studio"
+Invoke-PesterTests -TestFile "VisualStudio"
