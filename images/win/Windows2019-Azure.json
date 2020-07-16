@@ -707,12 +707,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Msys2.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Rust.ps1"
             ]
         },
