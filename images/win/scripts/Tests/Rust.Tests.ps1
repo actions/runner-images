@@ -21,6 +21,7 @@ Describe "Rust" {
     }
 
     It "<ToolName> is installed to the '<binPath>' folder" -TestCases $rustTools {
+        "$ToolName --version" | Should -ReturnZeroExitCode
         $binPath | Should -Exist
     }
 }

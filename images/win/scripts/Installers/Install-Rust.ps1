@@ -50,4 +50,9 @@ Remove-Item "${env:CARGO_HOME}\registry\*" -Recurse -Force
 # Update Run key to run a script at logon
 Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "RUSTSYM" -Value $cmdPath
 
+# Create temporary symlinks to properly validate tools version
+Set-Location -Path $env:UserProfile
+$null = New-Item -Name ".rustup" -Value $env:RUSTUP_HOME -ItemType Junction
+$null = New-Item -Name ".cargo" -Value $env:CARGO_HOME -ItemType Junction
+
 Invoke-PesterTests -TestFile "Rust"
