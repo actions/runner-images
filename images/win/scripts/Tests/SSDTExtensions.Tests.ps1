@@ -9,10 +9,10 @@ Describe "SSDTExtensions" {
       $version = Get-VSExtensionVersion -packageName ${Global:id1}
       $version | Should -Not -BeNullOrEmpty
     }
-    It "Extensions id=${Global:id2}" {
-      $version = Get-VSExtensionVersion -packageName ${Global:id2}
-      $version | Should -Not -BeNullOrEmpty
-    }
+    #It "Extensions id=${Global:id2}" {
+    #  $version = Get-VSExtensionVersion -packageName ${Global:id2}
+    #  $version | Should -Not -BeNullOrEmpty
+    #}
     It "Extensions id=${Global:id3}" {
       $version = Get-VSExtensionVersion -packageName ${Global:id3}
       $version | Should -Not -BeNullOrEmpty
