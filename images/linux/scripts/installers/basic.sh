@@ -6,7 +6,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
-source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/os.sh
 
 set -e
@@ -38,7 +37,8 @@ common_packages="dnsutils
                  zsync
                  gnupg2
                  lib32z1
-                 texinfo"
+                 texinfo
+                 libsqlite3-dev"
 
 cmd_packages="curl
               file
@@ -57,7 +57,10 @@ cmd_packages="curl
               wget
               m4
               bison
-              flex"
+              flex
+              patchelf
+              bzip2
+              sqlite3"
 
 if isUbuntu20 ; then
     echo "Install python2"
@@ -65,7 +68,7 @@ if isUbuntu20 ; then
 fi
 
 echo "Install libcurl"
-if isUbuntu18 ; then
+if isUbuntu16 || isUbuntu18; then
    libcurelVer="libcurl3"
 fi
 
@@ -75,11 +78,18 @@ fi
 
 apt-get install -y --no-install-recommends $libcurelVer
 
+# install additional packages only for Ubuntu16.04
+if isUbuntu16; then
+    common_packages="$common_packages
+            libc++-dev
+            libc++abi-dev
+            libicu55"
+fi
+
 for package in $common_packages $cmd_packages; do
     echo "Install $package"
     apt-get install -y --no-install-recommends $package
 done
-
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"

@@ -1,15 +1,14 @@
 ################################################################################
-##  File:  Validate-InnoSetup.ps1
-##  Desc:  Validate Inno Setup
+##  File:  Validate-WSL.ps1
+##  Desc:  Validate WSL CLI existst
 ################################################################################
 
-if (Get-Command -Name 'iscc')
+if (Get-Command -Name 'wsl')
 {
-    Write-Host 'iscc is on PATH'
+    Write-Host 'wsl is on path'
 }
 else
 {
-    Write-Host 'iscc is not on PATH'
+    Write-Host 'wsl not on path'
     exit 1
 }
-

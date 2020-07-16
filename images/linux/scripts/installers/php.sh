@@ -141,8 +141,8 @@ if isUbuntu20 ; then
   apt-get update
   AddBlockquote "To use ppa:ondrej/php APT repository On Ubuntu 20.04 it is necessary to add it to the APT sources"
   StartCode
-  WriteItem apt-add-repository ppa:ondrej/php -y
-  WriteItem apt-get update
+  WriteItem "apt-add-repository ppa:ondrej/php -y"
+  WriteItem "apt-get update"
   EndCode
 fi
 

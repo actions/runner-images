@@ -19,13 +19,15 @@ source $CARGO_HOME/env
 # Install common tools
 rustup component add rustfmt clippy
 cargo install bindgen cbindgen
+cargo install cargo-audit
+cargo install cargo-outdated
 
 echo "Test installation of the Rust toochain"
 
 # Permissions
 chmod -R 777 $(dirname $RUSTUP_HOME)
 
-for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen; do
+for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen 'cargo audit' 'cargo outdated'; do
     if ! command -v $cmd --version; then
         echo "$cmd was not installed or is not found on the path"
         exit 1
@@ -33,7 +35,7 @@ for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen; do
 done
 
 # Cleanup Cargo cache
-rm -rf "${CARGO_HOME}/registry/*"
+rm -rf ${CARGO_HOME}/registry/*
 
 # Update /etc/environemnt
 prependEtcEnvironmentPath "${CARGO_HOME}/bin"
@@ -54,3 +56,5 @@ DocumentInstalledItem "clippy ($(cargo-clippy --version 2>&1 | cut -d ' ' -f 2))
 DocumentInstalledItem "rustdoc ($(rustdoc --version 2>&1 | cut -d ' ' -f 2))"
 DocumentInstalledItem "bindgen ($(bindgen --version 2>&1 | cut -d ' ' -f 2))"
 DocumentInstalledItem "cbindgen ($(cbindgen --version 2>&1 | cut -d ' ' -f 2))"
+DocumentInstalledItem "cargo audit ($(cargo audit --version 2>&1 | cut -d ' ' -f 2))"
+DocumentInstalledItem "cargo outdated ($(cargo outdated --version 2>&1 | cut -d ' ' -f 2))"

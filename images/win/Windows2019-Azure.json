@@ -85,6 +85,11 @@
             "destination": "{{user `image_folder`}}"
         },
         {
+            "type": "file",
+            "source": "{{ template_dir }}/scripts/Tests",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
             "type": "windows-shell",
             "inline": [
                 "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y" ,
@@ -108,6 +113,14 @@
                 "{{ template_dir }}/scripts/Installers/Windows2019/Initialize-VM.ps1"
             ],
             "execution_policy": "unrestricted"
+        },
+        {
+            "type": "powershell",
+            "elevated_user": "SYSTEM",
+            "elevated_password": "",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-WSL.ps1"
+            ]
         },
         {
             "type": "powershell",
@@ -241,6 +254,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Wix.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-WSL.ps1"
             ]
         },
         {
@@ -677,12 +696,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-DotnetTLS.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-AzureCli.ps1"
             ]
         },
@@ -743,18 +756,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Git.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-GitHub-CLI.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-PHP.ps1"
             ]
         },
@@ -762,12 +763,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Rust.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Julia.ps1"
             ]
         },
         {
@@ -785,43 +780,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Chrome.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Edge.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Firefox.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-SeleniumWebDrivers.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-NodeLts.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-JavaTools.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Cmake.ps1"
             ]
         },
         {
@@ -851,19 +810,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Mingw64.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-TypeScript.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Haskell.ps1"
             ]
         },
         {
@@ -887,25 +834,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-7zip.ps1"
-            ]
-        },
-         {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Packer.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Mercurial.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Jq.ps1"
             ]
         },
         {
@@ -917,25 +846,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-InnoSetup.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-GitVersion.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-NSIS.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-CloudFoundryCli.ps1"
             ]
         },
         {
@@ -959,24 +870,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-KubernetesCli.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Kind.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-MongoDB.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-Bazel.ps1"
             ]
         },
@@ -984,12 +877,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-AliyunCli.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-GoogleCloudSDK.ps1"
             ]
         },
         {
@@ -1008,7 +895,13 @@
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
+            ]
         },
         {
             "type": "powershell",
