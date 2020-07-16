@@ -6,14 +6,13 @@ Describe "SSDTExtensions" {
     $Global:id3 = "717ad572-c4b7-435c-c166-c2969777f718"
 
     It "Extensions id=${Global:id1}" {
-    # TODO: replace with variables
       $version = Get-VSExtensionVersion -packageName ${Global:id1}
       $version | Should -Not -BeNullOrEmpty
     }
-#    It "Extensions id=${Global:id2}" {
-#      $version = Get-VSExtensionVersion -packageName ${Global:id2}
-#      $version | Should -Not -BeNullOrEmpty
-#    }
+    It "Extensions id=${Global:id2}" {
+      $version = Get-VSExtensionVersion -packageName ${Global:id2}
+      $version | Should -Not -BeNullOrEmpty
+    }
     It "Extensions id=${Global:id3}" {
       $version = Get-VSExtensionVersion -packageName ${Global:id3}
       $version | Should -Not -BeNullOrEmpty
