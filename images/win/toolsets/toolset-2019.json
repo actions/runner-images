@@ -125,6 +125,7 @@
     "visualStudio": [
         {
             "version" : "2019",
+            "edition" : "Enterprise",
             "workloads": [
                 "Component.Dotfuscator",
                 "Component.Linux.CMake",

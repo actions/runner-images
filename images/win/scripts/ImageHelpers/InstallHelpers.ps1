@@ -474,11 +474,10 @@ function Get-VsCatalogJsonPath {
     return $catalogJsonPath
 }
 
-function Get-VisualStudioVersion {
-    $catalogJsonPath = Get-VsCatalogJsonPath
-    $catalogContent = Get-Content -Path $catalogJsonPath
-    $catalog = $catalogContent | ConvertFrom-Json
-    $version = $catalog.info.id
+function Get-VisualStudioPath {
+    $visualStudioEdition = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty edition
+    $expectedVisualStudioVersion = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty version
+    $visualStudioPath = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\${expectedVisualStudioVersion}\${visualStudioEdition}"
 
-    return $version
+    return $visualStudioPath
 }

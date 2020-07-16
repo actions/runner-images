@@ -2,19 +2,22 @@
 ##  File:  Install-VS2019.ps1
 ##  Desc:  Install Visual Studio 2019
 ################################################################################
+
 $ErrorActionPreference = "Stop"
 
 Import-Module -Name ImageHelpers -Force
 
-$WorkLoads = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | `
-    Select-Object -ExpandProperty workloads | ForEach-Object { "-add $_" }
-$WorkLoads += "--remove Component.CPython3.x64"
+$requiredComponents = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty workloads
+$workLoads = @("--allWorkloads --includeRecommended")
+$workLoads +=  $requiredComponents | ForEach-Object { "--add $_" }
+$workLoads += "--remove Component.CPython3.x64"
+$workLoadsArgument = [String]::Join(" ", $workLoads)
 
-$ReleaseInPath = "Enterprise"
-$BootstrapperUrl = "https://aka.ms/vs/16/release/vs_${ReleaseInPath}.exe"
+$releaseInPath = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty edition
+$bootstrapperUrl = "https://aka.ms/vs/15/release/vs_${releaseInPath}.exe"
 
 # Install VS
-Install-VisualStudio -BootstrapperUrl $BootstrapperUrl -WorkLoads $WorkLoads
+Install-VisualStudio -BootstrapperUrl $BootstrapperUrl -WorkLoads $workLoadsArgument
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
@@ -27,9 +30,7 @@ if ($instanceFolders -is [array])
     exit 1
 }
 
-$version = Get-VisualStudioVersion
-$VSInstallRoot = "C:\Program Files (x86)\Microsoft Visual Studio\2019\$ReleaseInPath"
-Write-Host "Visual Studio version ${version} installed"
+$VSInstallRoot = Get-VisualStudioPath
 
 # Initialize Visual Studio Experimental Instance
 & "$VSInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit

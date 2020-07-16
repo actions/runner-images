@@ -6,15 +6,14 @@ Describe "Visual Studio" {
         }
 
         It "Devenv.exe" {
-            $expectedVersion = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty version
-            $devenvexePath = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\${expectedVersion}\Enterprise\Common7\IDE\devenv.exe"
+            $devenvexePath = "$(Get-VisualStudioPath)\Common7\IDE\devenv.exe"
             $devenvexePath | Should -Exist
         }
     }
 
     Context "Visual Studio components" {
-        $visualStudioComponents = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty workloads
-        $testCases = $visualStudioComponents | ForEach-Object { @{ComponentName = $_} }
+        $expectedComponents = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty workloads
+        $testCases = $expectedComponents | ForEach-Object { @{ComponentName = $_} }
         BeforeAll {
             $installedComponents = Get-VisualStudioComponents
         }
