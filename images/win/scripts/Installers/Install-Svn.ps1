@@ -4,3 +4,5 @@
 ################################################################################
 
 Choco-Install -PackageName svn
+
+Invoke-PesterTests -TestFile "Svn.Tests"
