@@ -19,37 +19,26 @@ foreach ($module in $modules) {
         foreach ($version in $module.versions) {
             Context "$version" {
                 $modulePath = Join-Path -Path $modulesRootPath -ChildPath "$($module.name)_${version}"
-                $moduleInfo = @{ moduleName = $module.name; modulePath = $modulePath; moduleVersion = $version }
+                $moduleInfo = @{ moduleName = $module.name; modulePath = $modulePath; expectedVersion = $version }
                 It "Module exists" -TestCases $moduleInfo {
                     $testJob = Start-Job -ScriptBlock {
                         param (
                             $modulePath,
-                            $moduleName,
-                            $moduleVersion
+                            $moduleName
                         )
 
-                        # Disable warning messages to prevent additional output about unapproved verbs
+                        # Disable warning messages to prevent additional warnings about Az and Azurerm modules in the same session
                         $WarningPreference = "SilentlyContinue"
 
                         $env:PsModulePath = "$modulePath;$env:PsModulePath"
                         Import-Module -Name $moduleName
-                        # There is no module "az" in the az bundle and all submodules version can differ from az version, check the path for Az.Storage module instead
-                        if ($moduleName -eq "az")
-                        {
-                            $isTrue = (Get-Module -ListAvailable -Name Az.Storage).path -match $moduleVersion
-                        }
-                        else
-                        {
-                            $isTrue = (Get-Module -ListAvailable -Name $moduleName)[0].Version.ToString() -match $moduleVersion
-                        }
+                        (Get-Module -Name $moduleName).Version.ToString()
 
-                        $isTrue
+                    } -ArgumentList $modulePath, $moduleName
 
-                    } -ArgumentList $modulePath, $moduleName, $moduleVersion
-
-                    $isTrue = $testJob | Wait-Job | Receive-Job
+                    $moduleVersion = $testJob | Wait-Job | Receive-Job
                     Remove-Job $testJob
-                    $isTrue | Should -Be $true
+                    $moduleVersion | Should -Match $expectedVersion
                 }
             }
         }
