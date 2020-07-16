@@ -22,4 +22,4 @@ $extensionName = "Votive$VSver.vsix"
 #Installing VS extension 'Wix Toolset Visual Studio Extension'
 Install-VsixExtension -Url $extensionUrl -Name $extensionName -VSversion $VSver
 
-Invoke-PesterTests -TestFile "Wix.Tests"
+Invoke-PesterTests -TestFile "Wix"

@@ -21,4 +21,4 @@ New-Item -Name "x64.complete" -Path $StackToolcachePath
 
 Add-MachinePathItem -PathItem $DestinationPath
 
-Invoke-PesterTests -TestFile "Stack.Tests"
+Invoke-PesterTests -TestFile "Tools" -TestName "Stack"

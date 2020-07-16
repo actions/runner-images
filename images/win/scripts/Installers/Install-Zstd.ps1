@@ -5,4 +5,4 @@
 
 Choco-Install -PackageName zstandard
 
-Invoke-PesterTests -TestFile "Zstd.Tests"
+Invoke-PesterTests -TestFile "Tools" -TestName "Zstd"

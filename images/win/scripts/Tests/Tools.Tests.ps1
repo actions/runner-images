@@ -156,3 +156,45 @@ Describe "ServiceFabricSDK" {
         Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
     }
 }
+
+Describe "Svn" {
+    It "svn exists" {
+        "svn --version --quiet" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Stack" {
+    It "Stack exists" {
+        "stack --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Typescript" {
+    It "tsc exists" {
+        "tsc --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Vcpkg" {
+    It "vcpkg exists" {
+      "vcpkg version" | Should -ReturnZeroExitCode
+    }
+    It "env varibale VCPKG_INSTALLATION_ROOT is set" {
+      $env:VCPKG_INSTALLATION_ROOT | Should -Not -BeNullOrEmpty
+    }
+    It "VCPKG_INSTALLATION_ROOT directory exists" {
+        $env:VCPKG_INSTALLATION_ROOT | Should -Exist
+    }
+}
+
+Describe "VSWhere" {
+    It "vswhere exists" {
+        "vswhere" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Zstd" {
+    It "zstd exists" {
+        "zstd -V" | Should -ReturnZeroExitCode
+    }
+}

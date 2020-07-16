@@ -24,4 +24,4 @@ Install-Binary -Url $PowerShellToolsUrl -Name $PowerShellToolsName
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 Install-Module -Name SqlServer -AllowClobber
 
-Invoke-PesterTests -TestFile "SQLPowerShellTools"
+Invoke-PesterTests -TestFile "PowerShellModules" -TestName "SQLPowerShellTools"

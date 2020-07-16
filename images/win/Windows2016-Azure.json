@@ -266,6 +266,12 @@
         {
             "type": "powershell",
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-ServiceFabricSDK.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1"
             ]
         },

@@ -5,4 +5,4 @@
 
 npm install -g typescript
 
-Invoke-PesterTests -TestFile "Typescript.Tests"
+Invoke-PesterTests -TestFile "Tools" -TestName "Typescript"
