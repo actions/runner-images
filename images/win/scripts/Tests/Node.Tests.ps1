@@ -1,5 +1,5 @@
 Describe "Node.JS" {
-    Context "NPM modules"{
+    Context "Basic modules"{
         It "<ToolName> " -TestCases @(
             @{ ToolName = "node" }
             @{ ToolName = "npm" }
@@ -7,7 +7,7 @@ Describe "Node.JS" {
         "$ToolName --version" | Should -ReturnZeroExitCode
         }
     }
-    Context "Global modules" {
+    Context "Global NPM Packages" {
         It "<ToolName> " -TestCases @(
             @{ ToolName = "gulp" }
             @{ ToolName = "grunt" }

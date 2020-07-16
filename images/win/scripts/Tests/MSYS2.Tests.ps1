@@ -2,6 +2,7 @@ BeforeAll {
     $msys2BinDir = "C:\msys64\usr\bin"
     $msys2mingwDir = "C:\msys64\mingw64\bin"
 }
+
 Describe "MSYS2" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bash.exe" }
