@@ -42,12 +42,14 @@ Describe "Android SDK" {
         "$installedPackages" | Should -Match "build-tools;$buildToolsVersion"
     }
 
-    It "Extra package <extraPackage> is installed" -TestCases $extraPackagesTestCases {
-        "$installedPackages" | Should -Match "extras;$extraPackage"
-    }
+    if (Test-isWin19) {
+        It "Extra package <extraPackage> is installed" -TestCases $extraPackagesTestCases {
+            "$installedPackages" | Should -Match "extras;$extraPackage"
+        }
 
-    It "Addon package <addonPackage> is installed" -TestCases $addonsTestCases {
-        "$installedPackages" | Should -Match "add-ons;$addonPackage"
+        It "Addon package <addonPackage> is installed" -TestCases $addonsTestCases {
+            "$installedPackages" | Should -Match "add-ons;$addonPackage"
+        }
     }
 
     It "Additional tool <additionalToolVersion> is installed" -TestCases $additionalToolsTestCases {
