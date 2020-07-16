@@ -5,8 +5,6 @@
 
 $ErrorActionPreference = "Stop"
 
-Import-Module -Name ImageHelpers -Force
-
 $requiredComponents = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty workloads
 $workLoads = @("--allWorkloads --includeRecommended")
 $workLoads +=  $requiredComponents | ForEach-Object { "--add $_" }
@@ -30,7 +28,8 @@ if ($instanceFolders -is [array])
     exit 1
 }
 
-$vsInstallRoot = Get-VisualStudioPath
+$expectedVisualStudioVersion = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty version
+$vsInstallRoot = Get-VisualStudioPath -Version $expectedVisualStudioVersion -Edition $releaseInPath
 
 # Initialize Visual Studio Experimental Instance
 & "$vsInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit

@@ -467,17 +467,18 @@ function Extract-7Zip {
 }
 
 function Get-VsCatalogJsonPath {
-    $vsProgramData = Get-Item -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
-    $instanceFolders = Get-ChildItem -Path $vsProgramData.FullName
-    $catalogJsonPath = $instanceFolders.FullName + '\catalog.json'
-
-    return $catalogJsonPath
+    $instanceFolder = Get-Item "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\*" | Select-Object -First 1
+    return Join-Path $instanceFolder.FullName "catalog.json"
 }
 
 function Get-VisualStudioPath {
-    $visualStudioEdition = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty edition
-    $expectedVisualStudioVersion = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty version
-    $visualStudioPath = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\${expectedVisualStudioVersion}\${visualStudioEdition}"
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$Version,
+        [Parameter(Mandatory=$true)]
+        [string]$Edition
+    )
 
-    return $visualStudioPath
+    return "${env:ProgramFiles(x86)}\Microsoft Visual Studio\${Version}\${Edition}"
 }

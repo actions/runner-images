@@ -31,5 +31,7 @@ Export-ModuleMember -Function @(
     'Extract-7Zip'
     'Get-CommandResult'
     'Get-EnvironmentVariable'
-    'Invoke-PesterTests'
+    'Invoke-PesterTests',
+    'Get-VsCatalogJsonPath',
+    'Get-VisualStudioPath'
 )
