@@ -241,13 +241,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Wix.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-WSL.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-SSDTExtensions.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-NET48.ps1"
             ]
         },
         {
@@ -426,12 +426,6 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-WinAppDriver.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-WinAppDriver.ps1"
             ]
         },
         {
@@ -646,43 +640,79 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Svn.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Sbt.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-SQLPowerShellTools.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-NodeLts.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-TypeScript.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-DACFx.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Stack.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-DotnetSDK.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Zstd.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-MysqlCli.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Vcpkg.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-Miniconda.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-VSWhere.ps1"
+                "{{ template_dir }}/scripts/Installers/Validate-AzureCosmosDbEmulator.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Packer.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-NSIS.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-PostgreSQL.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-Bazel.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-AliyunCli.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
             ]
         },
         {
