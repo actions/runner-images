@@ -17,7 +17,7 @@ $releaseInPath = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio
 $bootstrapperUrl = "https://aka.ms/vs/15/release/vs_${releaseInPath}.exe"
 
 # Install VS
-Install-VisualStudio -BootstrapperUrl $BootstrapperUrl -WorkLoads $workLoadsArgument
+Install-VisualStudio -BootstrapperUrl $bootstrapperUrl -WorkLoads $workLoadsArgument
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
@@ -30,14 +30,14 @@ if ($instanceFolders -is [array])
     exit 1
 }
 
-$VSInstallRoot = Get-VisualStudioPath
+$vsInstallRoot = Get-VisualStudioPath
 
 # Initialize Visual Studio Experimental Instance
-& "$VSInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit
+& "$vsInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit
 
 # Updating content of MachineState.json file to disable autoupdate of VSIX extensions
 $newContent = '{"Extensions":[{"Key":"1e906ff5-9da8-4091-a299-5c253c55fdc9","Value":{"ShouldAutoUpdate":false}},{"Key":"Microsoft.VisualStudio.Web.AzureFunctions","Value":{"ShouldAutoUpdate":false}}],"ShouldAutoUpdate":false,"ShouldCheckForUpdates":false}'
-Set-Content -Path "$VSInstallRoot\Common7\IDE\Extensions\MachineState.json" -Value $newContent
+Set-Content -Path "$vsInstallRoot\Common7\IDE\Extensions\MachineState.json" -Value $newContent
 
 # Install Windows 10 SDK version 10.0.14393.795
 $sdkUrl = "https://go.microsoft.com/fwlink/p/?LinkId=838916"

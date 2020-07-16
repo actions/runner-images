@@ -30,13 +30,13 @@ if ($instanceFolders -is [array])
     exit 1
 }
 
-$VSInstallRoot = Get-VisualStudioPath
+$vsInstallRoot = Get-VisualStudioPath
 
 # Initialize Visual Studio Experimental Instance for integration testing
-& "$VSInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit | Wait-Process
+& "$vsInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit | Wait-Process
 
 # Updating content of MachineState.json file to disable autoupdate of VSIX extensions
 $newContent = '{"Extensions":[{"Key":"1e906ff5-9da8-4091-a299-5c253c55fdc9","Value":{"ShouldAutoUpdate":false}},{"Key":"Microsoft.VisualStudio.Web.AzureFunctions","Value":{"ShouldAutoUpdate":false}}],"ShouldAutoUpdate":false,"ShouldCheckForUpdates":false}'
-Set-Content -Path "$VSInstallRoot\Common7\IDE\Extensions\MachineState.json" -Value $newContent
+Set-Content -Path "$vsInstallRoot\Common7\IDE\Extensions\MachineState.json" -Value $newContent
 
 Invoke-PesterTests -TestFile "VisualStudio"
