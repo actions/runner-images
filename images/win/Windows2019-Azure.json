@@ -877,9 +877,6 @@
         },
         {
             "type": "powershell",
-            "environment_vars":[
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
             "scripts":[
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
             ],
