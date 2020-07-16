@@ -3,4 +3,4 @@
 ##  Desc:  Install Subversion
 ################################################################################
 
-Choco-Install -PackageName svn
+Choco-Install -PackageName tortoisesvn
