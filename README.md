@@ -49,10 +49,10 @@ we pin the tool to specific version(s).
 Low Impact changes will be pinned in this repository and marked with the [Announcement](https://github.com/actions/virtual-environments/labels/Announcement) label.
 * **Regular Weekly Rhythm** can be followed by watching [Releases](https://github.com/actions/virtual-environments/releases) to see when we generate candidate environments or deploy new ones. You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/virtual-environments/labels/awaiting-deployment) label.
 
-[ubuntu-20.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu2004-README.md
-[ubuntu-18.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
-[ubuntu-16.04]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1604-README.md
-[Windows-2019]: https://github.com/actions/virtual-environments/blob/master/images/win/Windows2019-Readme.md
-[windows-2016]: https://github.com/actions/virtual-environments/blob/master/images/win/Windows2016-Readme.md
-[macOS-10.15]: https://github.com/actions/virtual-environments/blob/master/images/macos/macos-10.15-Readme.md
+[ubuntu-20.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
+[ubuntu-18.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md
+[ubuntu-16.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1604-README.md
+[Windows-2019]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
+[windows-2016]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
+[macOS-10.15]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
