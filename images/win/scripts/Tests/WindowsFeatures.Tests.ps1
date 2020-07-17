@@ -31,12 +31,6 @@ Describe "ContainersFeature" {
     }
 }
 
-Describe "WindowsUpdates" {
-    it "Check Windows updates" {
-        (Get-WindowsUpdate).KB | Should -BeFalse
-    }
-}
-
 Describe "DiskSpace" {
     it "The image has enough disk space"{
         $availableSpaceMB =  [math]::Round((Get-PSDrive -Name C).Free / 1MB)
