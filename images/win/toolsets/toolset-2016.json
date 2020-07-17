@@ -191,7 +191,7 @@
                 "Microsoft.VisualStudio.Workload.OfficeBuildTools "
             ]
         }
-    ]
+    ],
     "android": {
         "platform_list": [
             "android-30", "android-29", "android-28", "android-27", "android-26", "android-25", "android-24", "android-23", "android-22", "android-21", "android-19"
