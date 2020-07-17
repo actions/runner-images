@@ -50,7 +50,7 @@ Describe "Azure DevOps CLI" {
     }
 }
 
-Describe "Bazel"{
+Describe "Bazel" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bazel" }
         @{ ToolName = "bazelisk" }
@@ -77,13 +77,14 @@ Describe "DACFx" {
     }
  }
 
-Describe "Docker"{
+Describe "Docker" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "docker" }
         @{ ToolName = "docker-compose" }
     ) {
         "$ToolName --version"| Should -ReturnZeroExitCode
     }
+
     It "Helm" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
