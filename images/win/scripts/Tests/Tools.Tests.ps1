@@ -46,6 +46,12 @@ Describe "Azure Cosmos DB Emulator" {
     }
 }
 
+Describe "AzureCli" {
+    It "AzureCli" {
+        "az --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Azure DevOps CLI" {
     It "az devops" {
         "az devops -h" | Should -ReturnZeroExitCode
