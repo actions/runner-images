@@ -480,6 +480,20 @@ function Get-VisualStudioPath {
 
     return "${env:ProgramFiles(x86)}\Microsoft Visual Studio\${Version}\${Edition}"
 }
+
+function Get-VisualStudioPackages
+{
+    $packagePath = "$env:ProgramData\Microsoft\VisualStudio\Packages\_Instances\*\state.packages.json"
+    $instanceFolders = Get-ChildItem -Path $packagePath
+    (Get-Content -Path $instanceFolders | ConvertFrom-Json).packages
+}
+
+function Get-VisualStudioComponents {
+    $vsPackages = Get-VisualStudioPackages | Where-Object type -in 'Component', 'Workload'
+    $vsPackages  | Sort-Object Id | Select-Object @{n = 'Package'; e = {$_.Id}} |
+    Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
+}
+
 function Install-AndroidSDKPackages {
     Param
     (
