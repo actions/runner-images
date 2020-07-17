@@ -35,4 +35,5 @@ Export-ModuleMember -Function @(
     'Invoke-PesterTests'
     'Get-VsCatalogJsonPath'
     'Get-VisualStudioPath'
+    'Install-AndroidSDKPackages'
 )

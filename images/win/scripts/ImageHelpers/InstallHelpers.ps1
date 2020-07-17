@@ -480,3 +480,19 @@ function Get-VisualStudioPath {
 
     return "${env:ProgramFiles(x86)}\Microsoft Visual Studio\${Version}\${Edition}"
 }
+function Install-AndroidSDKPackages {
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$AndroidSDKManagerPath,
+        [Parameter(Mandatory=$true)]
+        [string]$AndroidSDKRootPath,
+        [Parameter(Mandatory=$true)]
+        [string[]]$AndroidPackages,
+        [string] $PrefixPackageName
+    )
+
+    foreach ($package in $AndroidPackages) {
+        & $AndroidSDKManagerPath --sdk_root=$AndroidSDKRootPath "$PrefixPackageName$package"
+    }
+}
