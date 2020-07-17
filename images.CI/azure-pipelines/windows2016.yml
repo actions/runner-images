@@ -3,7 +3,7 @@ schedules:
   displayName: Daily
   branches:
     include:
-    - master
+    - main
   always: true
 
 trigger: none
@@ -11,7 +11,7 @@ pr:
   autoCancel: true
   branches:
     include:
-    - master
+    - main
 
 jobs:
 - template: image-generation.yml
