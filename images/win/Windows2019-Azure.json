@@ -90,6 +90,16 @@
             "destination": "{{user `image_folder`}}"
         },
         {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolcache-2019.json",
+            "destination": "{{user `root_folder`}}/toolcache.json"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolset-2019.json",
+            "destination": "{{user `toolset_json_path`}}"
+        },
+        {
             "type": "windows-shell",
             "inline": [
                 "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y" ,
@@ -324,16 +334,6 @@
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Packer.ps1"
             ]
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolcache-2019.json",
-            "destination": "{{user `root_folder`}}/toolcache.json"
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolset-2019.json",
-            "destination": "{{user `toolset_json_path`}}"
         },
         {
             "type": "powershell",
