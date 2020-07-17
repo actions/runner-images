@@ -1,3 +1,5 @@
+Import-Module (Join-Path $PSScriptRoot "..\SoftwareReport\SoftwareReport.Common.psm1") -DisableNameChecking
+
 Describe "7-Zip" {
     It "7z" {
         "7z" | Should -ReturnZeroExitCode
@@ -135,16 +137,12 @@ Describe "KubernetesCli" {
 }
 
 Describe "Mingw64" {
-    It "gcc" {
-        "gcc --version" | Should -ReturnZeroExitCode
-    }
-
-    It "g++" {
-        "g++ --version" | Should -ReturnZeroExitCode
-    }
-
-    It "make" {
-        "make --version" | Should -ReturnZeroExitCode
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "gcc" }
+        @{ ToolName = "g++" }
+        @{ ToolName = "make" }
+    ) {
+        "$ToolName --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -170,16 +168,49 @@ Describe "CloudFoundryCli" {
     }
 }
 
-Describe "GoogleCouldSDK" {
-    It "bq" {
-        "bq version" | Should -ReturnZeroExitCode
+Describe "GoogleCouldSDK"  {
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "bq" }
+        @{ ToolName = "gcloud" }
+        @{ ToolName = "gsutil" }
+    ) {
+        "$ToolName version" | Should -ReturnZeroExitCode
     }
+}
 
-    It "gcloud" {
-        "gcloud version" | Should -ReturnZeroExitCode
+Describe "NET48" {
+    It "NET48" {
+        $netPath = (Get-DotnetFrameworkTools).Path.Split("<")[0]
+        ${netPath} + "4.8 Tools" | Should -Exist
     }
+}
 
-    It "gsutil" {
-        "gsutil version" | Should -ReturnZeroExitCode
+Describe "NSIS" {
+    It "NSIS" {
+       "makensis /VERSION" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Nuget" {
+    It "Nuget" {
+       "nuget" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "OpenSSL" {
+    It "OpenSSL" {
+       "openssl version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Packer" {
+    It "Packer" {
+       "packer --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Perl" {
+    It "Perl" {
+       "perl --version" | Should -ReturnZeroExitCode
     }
 }
