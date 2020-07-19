@@ -4,12 +4,12 @@ $modules = (Get-ToolsetContent).azureModules
 $modulesRootPath = $env:PSMODULES_ROOT_FOLDER
 
 foreach ($module in $modules) {
-    Describe "$($module.name)" {
-
+    $moduleName = $module.name
+    Describe "$moduleName" {
         if ($module.default) {
             Context "default" {
-                $moduleInfo = @{ moduleName = $module.name; moduleDefault = $module.default }
-                It "$($module.name) version $($module.default) is default" -TestCases $moduleInfo {
+                $moduleInfo = @{ moduleName = $moduleName; moduleDefault = $module.default }
+                It "$moduleName version $($module.default) is default" -TestCases $moduleInfo {
                         $moduleVersion = (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
                         $moduleVersion | Should -Match $moduleDefault
                     }
@@ -18,8 +18,8 @@ foreach ($module in $modules) {
 
         foreach ($version in $module.versions) {
             Context "$version" {
-                $modulePath = Join-Path -Path $modulesRootPath -ChildPath "$($module.name)_${version}"
-                $moduleInfo = @{ moduleName = $module.name; modulePath = $modulePath; expectedVersion = $version }
+                $modulePath = Join-Path -Path $modulesRootPath -ChildPath "${moduleName}_${version}"
+                $moduleInfo = @{ moduleName = $moduleName; modulePath = $modulePath; expectedVersion = $version }
                 It "Module exists" -TestCases $moduleInfo {
                     $testJob = Start-Job -ScriptBlock {
                         param (
