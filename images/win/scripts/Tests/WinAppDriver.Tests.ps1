@@ -1,7 +1,6 @@
-
 Describe "WinAppDriver" {
     It "WinAppDriver directory exists" {
-      $wad = "Windows Application Driver" 
+      $wad = "Windows Application Driver"
       if (${env:ProgramFiles(x86)})
       {
         $wadPath = "${env:ProgramFiles(x86)}\$wad"
