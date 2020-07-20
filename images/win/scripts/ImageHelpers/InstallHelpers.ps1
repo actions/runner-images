@@ -103,7 +103,7 @@ Function Install-VisualStudio
         }
 
         Write-Host "Starting Install ..."
-        $bootstrapperArgumentList = ('/c', $bootstrapperFilePath, $WorkLoads, '--quiet', '--norestart', '--wait', '--nocache' )
+        $bootstrapperArgumentList = ('/c', $bootstrapperFilePath, $WorkLoads, '--passive', '--norestart', '--wait', '--nocache' )
         $process = Start-Process -FilePath cmd.exe -ArgumentList $bootstrapperArgumentList -Wait -PassThru
 
         $exitCode = $process.ExitCode
