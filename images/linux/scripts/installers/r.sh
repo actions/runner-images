@@ -1,9 +1,3 @@
-#!/bin/bash
-################################################################################
-##  File:  r.sh
-##  Desc:  Installs R
-################################################################################
-
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 sudo apt-get install -y r-base
