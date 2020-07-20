@@ -195,6 +195,10 @@ All other versions are saved but not installed.
 '@
 $markdown += New-MDNewLine
 
+$markdown += New-MDHeader "Powershell Modules" -Level 3
+$markdown += Get-PowerShellModules | New-MDTable
+$markdown += New-MDNewLine
+
 # Android section
 $androidInstalledPackages = Get-AndroidInstalledPackages
 
