@@ -201,7 +201,8 @@
                 "{{template_dir}}/scripts/installers/vcpkg.sh",
                 "{{template_dir}}/scripts/installers/vercel.sh",
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
-                "{{template_dir}}/scripts/installers/rndgenerator.sh"
+                "{{template_dir}}/scripts/installers/rndgenerator.sh",
+                "{{template_dir}}/scripts/installers/swig.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
