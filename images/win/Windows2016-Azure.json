@@ -701,12 +701,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
