@@ -170,12 +170,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-PowershellCore.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Windows2016/Update-DockerImages.ps1"
             ]
         },
