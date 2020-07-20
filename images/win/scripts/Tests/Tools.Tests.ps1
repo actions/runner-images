@@ -12,6 +12,12 @@ Describe "CMake" {
     }
 }
 
+Describe "R" {
+    It "Rscript" {
+        "Rscript --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Kind" {
     It "Kind" {
         "kind version" | Should -ReturnZeroExitCode
