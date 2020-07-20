@@ -352,18 +352,11 @@
         {
             "type": "powershell",
             "environment_vars":[
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "ROOT_FOLDER={{user `root_folder`}}"
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars":[
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
-            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1"
             ]
@@ -708,24 +701,6 @@
         },
         {
             "type": "powershell",
-            "environment_vars":[
-                "ROOT_FOLDER={{user `root_folder`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-ToolCache.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars":[
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Toolset.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Validate-OpenSSL.ps1"
             ]
@@ -866,6 +841,10 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
+            ],
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "ROOT_FOLDER={{user `root_folder`}}"
             ]
         },
         {
