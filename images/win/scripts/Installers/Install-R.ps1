@@ -8,4 +8,4 @@ Choco-Install rtools
 
 $rscriptPath = Resolve-Path "C:\Program Files\R\*\bin\x64"
 Add-MachinePathItem $rscriptPath
-Invoke-PesterTests -TestFile "Tools" -TestName "CMake"
+Invoke-PesterTests -TestFile "Tools" -TestName "R"
