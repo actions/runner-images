@@ -51,3 +51,10 @@ Describe "PostgreSQL" {
         }
     }
 }
+
+Describe "MySQL" {
+    It "MySQL CLI" {
+        "mysql -V" | Should -ReturnZeroExitCode
+    }
+}
+
