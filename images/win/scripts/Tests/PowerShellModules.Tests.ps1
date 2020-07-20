@@ -1,26 +1,16 @@
-# Get modules content from toolset
-$modules = (Get-ToolsetContent).azureModules
+Describe "AzureModules" {
+    $modules = (Get-ToolsetContent).azureModules
+    $modulesRootPath = $env:PSMODULES_ROOT_FOLDER
 
-$modulesRootPath = $env:PSMODULES_ROOT_FOLDER
+    foreach ($module in $modules) {
+        $moduleName = $module.name
 
-foreach ($module in $modules) {
-    $moduleName = $module.name
-    Describe "$moduleName" {
-        if ($module.default) {
-            Context "default" {
-                $moduleInfo = @{ moduleName = $moduleName; moduleDefault = $module.default }
-                It "$moduleName version $($module.default) is default" -TestCases $moduleInfo {
-                        $moduleVersion = (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
-                        $moduleVersion | Should -Match $moduleDefault
-                    }
-                }
-        }
+        Context "$moduleName" {
 
-        foreach ($version in $module.versions) {
-            Context "$version" {
+            foreach ($version in $module.versions) {
                 $modulePath = Join-Path -Path $modulesRootPath -ChildPath "${moduleName}_${version}"
                 $moduleInfo = @{ moduleName = $moduleName; modulePath = $modulePath; expectedVersion = $version }
-                It "Module exists" -TestCases $moduleInfo {
+                It "<expectedVersion> exists in modules directory" -TestCases $moduleInfo {
                     $testJob = Start-Job -ScriptBlock {
                         param (
                             $modulePath,
@@ -39,6 +29,14 @@ foreach ($module in $modules) {
                     $moduleVersion = $testJob | Wait-Job | Receive-Job
                     Remove-Job $testJob
                     $moduleVersion | Should -Match $expectedVersion
+                }
+            }
+
+            if ($module.default) {
+                $moduleInfo = @{ moduleName = $moduleName; moduleDefault = $module.default }
+                It "<moduleDefault> set as default" -TestCases $moduleInfo {
+                        $moduleVersion = (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
+                        $moduleVersion | Should -Match $moduleDefault
                 }
             }
         }
