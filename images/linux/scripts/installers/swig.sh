@@ -8,7 +8,6 @@
 source $HELPER_SCRIPTS/document.sh
 
 # Install Swig
-apt-get update -y
 sudo apt-get install -y swig
 
 # Run tests to determine that the software installed as expected
