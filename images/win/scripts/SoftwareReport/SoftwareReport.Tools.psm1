@@ -18,6 +18,12 @@ function Get-BazeliskVersion {
     return "Bazelisk $bazeliskVersion"
 }
 
+function Get-RVersion {
+    ($(Rscript --version) | Out-String) -match  "R scripting front-end version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $rVersion = $Matches.Version
+    return "R $rVersion"
+}
+
 function Get-CMakeVersion {
     ($(cmake -version) | Out-String) -match  "cmake version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $cmakeVersion = $Matches.Version

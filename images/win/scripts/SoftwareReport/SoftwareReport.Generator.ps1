@@ -74,6 +74,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-BazelVersion),
     (Get-BazeliskVersion),
     (Get-CMakeVersion),
+    (Get-RVersion),
     (Get-DockerVersion),
     (Get-DockerComposeVersion),
     (Get-GitVersion),
