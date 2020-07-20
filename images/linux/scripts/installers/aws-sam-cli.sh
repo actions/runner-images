@@ -18,7 +18,7 @@ cd /tmp/awslabs-aws-sam-cli*
 mkdir /opt/python-aws-sam-cli
 cp -r /opt/hostedtoolcache/Python/3.7* /opt/python-aws-sam-cli
 
-# Use python 3.7 from toolcache to install aws sam, setuptools package required for the installation
+# Use copy of python 3.7 from toolcache to install aws sam, setuptools package required for the installation
 Python3Dir=$(echo /opt/python-aws-sam-cli/Python/3.7*/x64)
 Python3BinDir="${Python3Dir}/bin"
 export PATH="$Python3Dir:$Python3BinDir:$PATH"
