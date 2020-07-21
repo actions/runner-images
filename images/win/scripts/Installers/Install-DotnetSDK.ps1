@@ -113,3 +113,5 @@ function RunPostInstallationSteps()
 
 InstallAllValidSdks
 RunPostInstallationSteps
+
+Invoke-PesterTests -TestFile "DotnetSDK"

@@ -6,9 +6,93 @@ Describe "7-Zip" {
     }
 }
 
+Describe "AliyunCli" {
+    It "AliyunCli" {
+        "aliyun version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "AWS" {
+    It "AWS CLI" {
+        "aws --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Session Manager Plugin for the AWS CLI" {
+        session-manager-plugin | Out-String | Should -Match "plugin was installed successfully"
+    }
+
+    It "AWS SAM CLI" {
+        "sam --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "AzCopy" {
+    It "AzCopy" {
+        "azcopy --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Azure Cosmos DB Emulator" {
+    $cosmosDbEmulatorRegKey = Get-ChildItem "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | Get-ItemProperty | Where-Object { $_.DisplayName -eq 'Azure Cosmos DB Emulator' }
+    $installDir = $cosmosDbEmulatorRegKey.InstallLocation
+
+    It "Azure Cosmos DB Emulator install location registry key exists" -TestCases @{installDir = $installDir} {
+        $installDir | Should -Not -BeNullOrEmpty
+    }
+
+    It "Azure Cosmos DB Emulator exe file exists" -TestCases @{installDir = $installDir} {
+        $exeFilePath = Join-Path $installDir 'CosmosDB.Emulator.exe'
+        $exeFilePath | Should -Exist
+    }
+}
+
+Describe "AzureCli" {
+    It "AzureCli" {
+        "az --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Azure DevOps CLI" {
+    It "az devops" {
+        "az devops -h" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Bazel" {
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "bazel" }
+        @{ ToolName = "bazelisk" }
+    ) {
+        "$ToolName --version"| Should -ReturnZeroExitCode
+    }
+}
+
 Describe "CMake" {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "DACFx" {
+    It "DACFx" {
+        (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Contains "Microsoft SQL Server Data-Tier Application Framework (x64)" | Should -BeTrue
+        $sqlPackagePath = 'C:\Program Files\Microsoft SQL Server\150\DAC\bin\SqlPackage.exe'
+        $sqlLocalDBPath = 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe'
+        "${sqlPackagePath}" | Should -Exist
+        "${sqlLocalDBPath}" | Should -Exist
+    }
+ }
+
+Describe "Docker" {
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "docker" }
+        @{ ToolName = "docker-compose" }
+    ) {
+        "$ToolName --version"| Should -ReturnZeroExitCode
+    }
+
+    It "Helm" {
+        "helm version --short" | Should -ReturnZeroExitCode
     }
 }
 
@@ -132,5 +216,27 @@ Describe "Packer" {
 Describe "Perl" {
     It "Perl" {
        "perl --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "PowerShell Core" {
+    It "pwsh" {
+        "pwsh --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Execute 2+2 command" {
+        pwsh -Command "2+2" | Should -BeExactly 4
+    }
+}
+
+Describe "Sbt" {
+    It "sbt" {
+        "sbt --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "ServiceFabricSDK" {
+    It "PowerShell Module" {
+        Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
     }
 }

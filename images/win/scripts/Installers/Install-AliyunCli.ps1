@@ -4,3 +4,5 @@
 ################################################################################
 
 Choco-Install -PackageName aliyun-cli
+
+Invoke-PesterTests -TestFile "Tools" -TestName "AliyunCli"
