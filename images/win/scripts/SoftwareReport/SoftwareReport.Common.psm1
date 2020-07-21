@@ -246,10 +246,10 @@ function Get-PowerShellAzureModules {
 function Get-PowerShellModules {
     $modules = (Get-ToolsetContent).powershellModules.name
 
-    $psModules = Get-Module -ListAvailable | Where-Object {$modules -contains $_.Name} | Sort-Object Name | Group-Object Name
+    $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
     $psModules | ForEach-Object {
         $moduleName = $_.Name
-        $moduleVersions = $_.group.Version -join '<br>'
+        $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
 
         [PSCustomObject]@{
             Module = $moduleName
