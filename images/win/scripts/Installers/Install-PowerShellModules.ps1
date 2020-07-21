@@ -1,8 +1,3 @@
-################################################################################
-##  File:  Install-PowerShellModules.ps1
-##  Desc:  Install PowerShell Modules.
-################################################################################
-
 $ErrorActionPreference = "Stop"
 
 # Set TLS1.2

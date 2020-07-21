@@ -17,7 +17,7 @@ Describe "PowerShell Modules" {
 
     if ($withVersionsModules) {
         It "<moduleName> with <expectedVersion> is installed" -TestCases $withVersionsModules {
-            (Get-Module -Name $moduleName -ListAvailable).Version -eq $expectedVersion | Should -BeTrue
+            (Get-Module -Name $moduleName -ListAvailable).Version -contains $expectedVersion | Should -BeTrue
         }
     }
 }
