@@ -118,7 +118,8 @@
             "type": "powershell",
             "environment_vars": [
                 "ImageVersion={{user `image_version`}}",
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-PowerShellModules.ps1",
