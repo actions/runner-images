@@ -18,3 +18,5 @@ Choco-Install -PackageName docker-compose
 
 Write-Host "Install Helm"
 Choco-Install -PackageName kubernetes-helm
+
+Invoke-PesterTests -TestFile "Tools" -TestName "Docker"
