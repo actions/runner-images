@@ -203,7 +203,7 @@
             "Microsoft.Component.Blend.SDK.WPF",
             "Microsoft.Component.VC.Runtime.UCRTSDK",
             "Microsoft.VisualStudio.Component.Sharepoint.Tools",
-            "Microsoft.VisualStudio.Component.TeamOffice.Tools",
+            "Microsoft.VisualStudio.Component.TeamOffice",
             "Microsoft.VisualStudio.Component.VC.ATL.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATL.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre",
