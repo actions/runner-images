@@ -1,8 +1,4 @@
 #!/bin/bash
-################################################################################
-##  File:  swig.sh
-##  Desc:  Installs Swig
-################################################################################
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
@@ -19,4 +15,4 @@ fi
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "$(swig -version | sed -n 2p)"
+DocumentInstalledItem "Swig $(swig -version | sed -n 2p | cut -d ' ' -f 3)"
