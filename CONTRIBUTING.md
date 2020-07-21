@@ -36,3 +36,29 @@ Here are a few things you can do that will increase the likelihood of your pull 
 - [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
 - [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
 - [GitHub Help](https://help.github.com)
+
+## Directory structure
+```
+virtual-environments
+├──.github
+├──.vscode
+├──docs
+├──help
+├──helpers
+├──images.CI
+|   ├──/azure-pipelines 
+|   └──INSTALLATION_SCRIPTS
+└──images
+    └──/OS_TYPE
+        ├──/toolsets 
+        ├──/scripts
+        |   └──...
+        └──templates
+```
+- `docs` - ?
+- `help` - contains project documentation.
+- `helpers` - contains scripts related to image deployment.
+- `images.CI` - contains scripts that used in image-generation CI definitions. `/azure-pipelines` folder contains YAML defintions for CI pipelines.
+- `scripts` - contains scripts with software installation logic.
+- `toolsets` - contains toolset and toolcache configuration files.
+- `templates` - contains packer templates that describe builders and scripts configuration.
