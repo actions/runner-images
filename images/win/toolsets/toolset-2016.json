@@ -162,7 +162,6 @@
             "Microsoft.Net.Core.Component.SDK.1x",
             "Microsoft.NetCore.1x.ComponentGroup.Web",
             "Microsoft.VisualStudio.Component.Azure.Storage.AzCopy",
-            "Microsoft.VisualStudio.Component.PowerShell.Tools",
             "Microsoft.VisualStudio.Component.VC.140",
             "Component.Dotfuscator",
             "Microsoft.VisualStudio.Component.VC.ATL",
@@ -203,8 +202,8 @@
             "Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Managed",
             "Microsoft.Component.Blend.SDK.WPF",
             "Microsoft.Component.VC.Runtime.UCRTSDK",
-            "Microsoft.VisualStudio.Component.Sharepoint.BuildTools",
-            "Microsoft.VisualStudio.Component.TeamOffice.BuildTools",
+            "Microsoft.VisualStudio.Component.Sharepoint.Tools",
+            "Microsoft.VisualStudio.Component.TeamOffice.Tools",
             "Microsoft.VisualStudio.Component.VC.ATL.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATL.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre",
@@ -214,9 +213,8 @@
             "Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.Workflow.BuildTools",
-            "Microsoft.VisualStudio.Workload.Office",
-            "Microsoft.VisualStudio.Workload.OfficeBuildTools "
+            "Microsoft.VisualStudio.Component.Workflow",
+            "Microsoft.VisualStudio.Workload.Office"
         ]
     }
 }
