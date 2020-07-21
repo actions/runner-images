@@ -115,8 +115,10 @@ $markdown += New-MDList -Style Unordered -Lines @(
 )
 
 $markdown += New-MDHeader "Rust" -Level 3
-$markdown += New-MDParagraph -Lines "Version: $(Get-RustVersion)"
-$markdown += New-MDHeader "Packages:" -Level 3
+$markdown += New-MDList -Style Unordered -Lines @(
+    "Rust $(Get-RustVersion)"
+)
+$markdown += New-MDHeader "Packages" -Level 4
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-BindgenVersion),
     (Get-CbindgenVersion),
