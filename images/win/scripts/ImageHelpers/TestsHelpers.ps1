@@ -48,7 +48,7 @@ function Invoke-PesterTests {
 
     $configuration = [PesterConfiguration] @{
         Run = @{ Path = $testPath; PassThru = $true }
-        Output = @{ Verbosity = "Detailed" }
+        Output = @{ Verbosity = "Diagnostic" }
     }
     if ($TestName) {
         $configuration.Filter.FullName = $TestName
