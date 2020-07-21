@@ -1,4 +1,4 @@
-Describe "PowerShell Modules" {
+Describe "PowerShellModules" {
     $modules = (Get-ToolsetContent).powershellModules
     $withoutVersionsModules = $modules | Where-Object {-not $_.versions} | ForEach-Object {
         @{moduleName = $_.name}

@@ -31,4 +31,4 @@ foreach($module in $modules)
 }
 
 Import-Module Pester
-Invoke-PesterTests -TestFile "PowerShellModules" -TestName "PowerShell Modules"
+Invoke-PesterTests -TestFile "PowerShellModules" -TestName "PowerShellModules"
