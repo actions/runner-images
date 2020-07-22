@@ -34,7 +34,7 @@ function Get-JavaVersionsList {
 
 function Get-RustVersion {
     $rustVersion = [regex]::matches($(rustc --version), "\d+\.\d+\.\d+").Value
-    return "Rust ${rustVersion}"
+    return $rustVersion
 }
 
 function Get-BindgenVersion {
