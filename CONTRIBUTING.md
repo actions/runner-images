@@ -40,25 +40,37 @@ Here are a few things you can do that will increase the likelihood of your pull 
 ## Directory structure
 ```
 virtual-environments
-├──.github
-├──.vscode
 ├──docs
 ├──help
 ├──helpers
 ├──images.CI
 |   ├──/azure-pipelines 
-|   └──INSTALLATION_SCRIPTS
+|   └──...
 └──images
-    └──/OS_TYPE
+    ├──/win
+    |   ├──/toolsets 
+    |   ├──/Installers
+    |   |   └──...
+    |   ├──/Tests
+    |   └──/templates
+    ├──/macos
+    └──/linux
         ├──/toolsets 
         ├──/scripts
         |   └──...
-        └──templates
+        └──/config
+
 ```
-- `docs` - ?
 - `help` - contains project documentation.
 - `helpers` - contains scripts related to image deployment.
 - `images.CI` - contains scripts that are used in image-generation CI definitions. `/azure-pipelines` folder contains YAML defintions for CI pipelines.
-- `scripts` - contains configuration files, software installation scripts and tests.
-- `toolsets` - contains toolset and toolcache configuration files.
-- `templates` - contains packer templates that describe builders and scripts configuration.
+`win` - contains provisioners for windows images:
+- `toolsets` - toolset and toolcache configuration files.
+- `Installers` - software installation scripts.
+- `Tests` - tests for installed software.
+- `templates` - packer templates for specified images.
+`macos` - will me open-sourced soon.
+`linux` - contains provisioners for linux images:
+- `scripts` - configuration files, software installation scripts and tests.
+- `Installers` - software installation scripts.
+- `config` - configuration files for internal MS provision.
