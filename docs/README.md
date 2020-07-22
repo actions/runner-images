@@ -38,7 +38,7 @@ Builder variables can be passed to packer via predefined environment variables, 
 - `tenant_id` - The Active Directory tenant identifier with which your `client_id` and `subscription_id` are associated. If not specified, `tenant_id` will be looked up using `subscription_id`.
 - `resource_group` - Resource group under which the final artifact will be stored.
 - `storage_account` - Storage account under which the final artifact will be stored.
-- `location` - Azure datacenter in which your VM will be build.
+- `location` - Azure datacenter in which your VM will be built.
 - `temp_resource_group_name` - Name assigned to the temporary resource group created during the build. If this value is not set, a random value will be assigned. This resource group is deleted at the end of the build.
 - `private_virtual_network_with_public_ip` - This value allows you to set a `virtual_network_name` and obtain a public IP. If this value is not set and `virtual_network_name` is defined Packer is only allowed to be executed from a host on the same subnet / virtual network.
 - `virtual_network_name` - Use a pre-existing virtual network for the VM. This option enables private communication with the VM, no public IP address is used or provisioned (unless you set `private_virtual_network_with_public_ip`).
