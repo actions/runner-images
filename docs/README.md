@@ -1,9 +1,7 @@
 ## General
-The main purpose of Virtual-environments repository is to provide easy way to generate re-usable virtual images of required OS types using Azure infrastructure.
-Virtual-environments is using on [packer](https://www.packer.io/) tool and contain scripts with software installation logic for required Windows/Ubuntu tools.
+This page contains information about prerequisites and image generation description.
 
 ### Build Agent requirements
-To proceed with image generation, you need to prepare build agent with following requirements:
 - `OS` - Windows/Linux
 - `packer` - Can be downloaded from https://www.packer.io/downloads
 - `PowerShell 5.0 or higher` or `PSCore` for linux distributes.
@@ -12,42 +10,40 @@ To proceed with image generation, you need to prepare build agent with following
 ### Azure subscription requirements
 #### How to generate service principal
 Packer will authorize in Azure infrastructure via Service Principal. If you want to prepare image-generation CI, or use packer manually, you need to create your SP with full read-write permissions for selected Azure subscription.
-[Check more details](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+Detailed instruction can be found [here](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
 
 ### Image generation process
-Virtual environment project using packer tool, and contain list of templates for several OS types, such as Windows 2016/2019, Ubuntu 16.04/18.04/20.04.
-Each image template contain set of scripts that will be executed on virtual machine.
-Packer process will initialize connection to Azure subscription via Azure Cli, and deploy required resources, such as temporary resource group, network interfaces and VM from "clean" image that specified in template.
-If deployment succeeded, build agent will connect with the deployed VM and begin to execute installation steps from selected template.
-Dependend of template connection may be estableshed from SSH or WinRM protocols, which mean following ports between build agent, and temporary VM must be opened for connection.
-If some of installation step from template fail, image generation will be aborted, and temporary VM will be terminated.
-In case if all installation steps are succeeded, temporary VM snapshot will be converted to VHD image and will be downloaded into selected Azure Storage Account, from which it may be deployed further.
+Project uses packer tool and contains a number of templates for several OS types: Windows 2016/2019, Ubuntu 16.04/18.04/20.04.
+Each image template contains set of scripts that will be executed on virtual machine.
+Packer process will initialize connection to Azure subscription via Azure CLI, and deploy required resources, such as temporary resource group, network interfaces and VM from the "clean" image that specified in template.
+If deployment succeeded, build agent will connect to the deployed VM and begin to execute installation steps from selected the template.
+Connection can be established via SSH or WinRM, depending on image type, so the ports between build agent and temporary VM have to be opened for connection.
+If any template step fails, image generation will be aborted and temporary VM will be terminated.
+If all steps are succeeded, a temporary VM snapshot will be converted to VHD and then uploaded to the specified Azure Storage Account. After that image can be deployed further from this account.
 
-### Azure DevOps selfhosted pool requirements
-To connect with temporary VM packer will use WinRM, or SSH connections on public IP interfaces.
+### Azure DevOps self-hosted pool requirements
+To connect to temporary VM packer will use WinRM, or SSH connections on public IP interfaces.
 If you use self-hosted pool located in some Azure subscription, please make sure that HTTPS/SSH ports are allowed for incoming/outgoing connections.
-In case in firewall restrictions forbid connections via public addresses, you may deploy private virtual network resources, and pass them as arguments to packer, so temporary virtual machines can use private connections inside vlan. 
+In case if firewall restrictions forbid connections via public addresses, you may deploy private virtual network resources, and pass them as arguments to packer, so temporary virtual machines can use private connections inside vlan. 
 
 ## Variables
-Each packer template include `variables` group that contains builder variables that used during image generation.
+Each packer template includes `variables` group that contains builder variables that are used in image generation.
 Builder variables can be passed to packer via predefined environment variables, or as direct arguments, in case if packer started manually.
 
-### Common
-
-### Required builder variables
-- `client_id` - The application ID of the AAD Service Principal. Requires client_secret.
-- `object_id` - The object ID for the AAD SP. Optional, will be derived from the oAuth token if left empty.
+### Builder variables
+- `client_id` - The application ID of the AAD Service Principal. Requires `client_secret`.
+- `object_id` - The object ID for the AAD SP. Will be derived from the oAuth token if empty.
 - `client_secret` - A password/secret registered for the AAD SP.
 - `subscription_id` - The subscription to use.
-- `tenant_id` - The Active Directory tenant identifier with which your client_id and subscription_id are associated. If not specified, tenant_id will be looked up using subscription_id.
+- `tenant_id` - The Active Directory tenant identifier with which your `client_id` and `subscription_id` are associated. If not specified, `tenant_id` will be looked up using `subscription_id`.
 - `resource_group` - Resource group under which the final artifact will be stored.
 - `storage_account` - Storage account under which the final artifact will be stored.
-- `location` - Azure datacenter in which your VM will build.
+- `location` - Azure datacenter in which your VM will be build.
 - `temp_resource_group_name` - Name assigned to the temporary resource group created during the build. If this value is not set, a random value will be assigned. This resource group is deleted at the end of the build.
-- `private_virtual_network_with_public_ip` - This value allows you to set a virtual_network_name and obtain a public IP. If this value is not set and virtual_network_name is defined Packer is only allowed to be executed from a host on the same subnet / virtual network.
-- `virtual_network_name` - Use a pre-existing virtual network for the VM. This option enables private communication with the VM, no public IP address is used or provisioned (unless you set private_virtual_network_with_public_ip).
-- `virtual_network_resource_group_name` - If virtual_network_name is set, this value may also be set. If virtual_network_name is set, and this value is not set the builder attempts to determine the resource group containing the virtual network. If the resource group cannot be found, or it cannot be disambiguated, this value should be set.
-- `virtual_network_subnet_name` - If virtual_network_name is set, this value may also be set. If virtual_network_name is set, and this value is not set the builder attempts to determine the subnet to use with the virtual network. If the subnet cannot be found, or it cannot be disambiguated, this value should be set.
+- `private_virtual_network_with_public_ip` - This value allows you to set a `virtual_network_name` and obtain a public IP. If this value is not set and `virtual_network_name` is defined Packer is only allowed to be executed from a host on the same subnet / virtual network.
+- `virtual_network_name` - Use a pre-existing virtual network for the VM. This option enables private communication with the VM, no public IP address is used or provisioned (unless you set `private_virtual_network_with_public_ip`).
+- `virtual_network_resource_group_name` - If `virtual_network_name` is set, this value may also be set. If `virtual_network_name` is set, and this value is not set the builder attempts to determine the resource group containing the virtual network. If the resource group cannot be found, or it cannot be disambiguated, this value should be set.
+- `virtual_network_subnet_name` - If `virtual_network_name is set`, this value may also be set. If `virtual_network_name` is set, and this value is not set the builder attempts to determine the subnet to use with the virtual network. If the subnet cannot be found, or it cannot be disambiguated, this value should be set.
 - `capture_name_prefix` - VHD prefix. The final artifacts will be named PREFIX-osDisk.UUID and PREFIX-vmTemplate.UUID.
 - `github_feed_token` - Github PAT. Required for NPM toolcache installation. Will be depricated soon.
 

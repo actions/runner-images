@@ -58,7 +58,7 @@ virtual-environments
 - `docs` - ?
 - `help` - contains project documentation.
 - `helpers` - contains scripts related to image deployment.
-- `images.CI` - contains scripts that used in image-generation CI definitions. `/azure-pipelines` folder contains YAML defintions for CI pipelines.
-- `scripts` - contains scripts with software installation logic.
+- `images.CI` - contains scripts that are used in image-generation CI definitions. `/azure-pipelines` folder contains YAML defintions for CI pipelines.
+- `scripts` - contains configuration files, software installation scripts and tests.
 - `toolsets` - contains toolset and toolcache configuration files.
 - `templates` - contains packer templates that describe builders and scripts configuration.
