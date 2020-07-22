@@ -188,6 +188,7 @@
                 "{{template_dir}}/scripts/installers/postgresql.sh",
                 "{{template_dir}}/scripts/installers/powershellcore.sh",
                 "{{template_dir}}/scripts/installers/ruby.sh",
+                "{{template_dir}}/scripts/installers/r.sh",
                 "{{template_dir}}/scripts/installers/rust.sh",
                 "{{template_dir}}/scripts/installers/julia.sh",
                 "{{template_dir}}/scripts/installers/sbt.sh",
@@ -200,7 +201,8 @@
                 "{{template_dir}}/scripts/installers/vercel.sh",
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
                 "{{template_dir}}/scripts/installers/mongodb.sh",
-                "{{template_dir}}/scripts/installers/rndgenerator.sh"
+                "{{template_dir}}/scripts/installers/rndgenerator.sh",
+                "{{template_dir}}/scripts/installers/swig.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
@@ -261,7 +263,7 @@
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}"
             ],
-            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",

@@ -192,6 +192,9 @@
                 0,
                 3010
             ],
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Windows2016/Install-VS2017.ps1"
             ],
