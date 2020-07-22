@@ -11,7 +11,7 @@ If all steps are succeeded, a temporary VM snapshot will be converted to VHD and
 - `OS` - Windows/Linux
 - `packer` - Can be downloaded from https://www.packer.io/downloads
 - `PowerShell 5.0 or higher` or `PSCore` for linux distributes.
-- `Azure CLI ` - https://docs.microsoft.com/ru-ru/cli/azure/install-azure-cli?view=azure-cli-latest
+- `Azure CLI ` - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest
 
 #### Azure DevOps self-hosted pool requirements
 To connect to temporary VM packer will use WinRM, or SSH connections on public IP interfaces.
