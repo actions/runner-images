@@ -114,7 +114,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-GoogleCloudSDKVersion)
 )
 
-$markdown += New-MDHeader "Rust" -Level 3
+$markdown += New-MDHeader "Rust Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     "Rust $(Get-RustVersion)"
 )
