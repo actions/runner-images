@@ -90,7 +90,8 @@
         {"name": "Pester"},
         {"name": "PowerShellGet"},
         {"name": "PSWindowsUpdate"},
-        {"name": "SqlServer"}
+        {"name": "SqlServer"},
+        {"name": "VSSetup"}
     ],
     "azureModules": [
         {

@@ -154,19 +154,10 @@ function Get-VsCatalogJsonPath {
 }
 
 function Get-VisualStudioPath {
-    Param
-    (
-        [Parameter(Mandatory=$true)]
-        [string]$Version,
-        [Parameter(Mandatory=$true)]
-        [string]$Edition
-    )
-
-    return "${env:ProgramFiles(x86)}\Microsoft Visual Studio\${Version}\${Edition}"
+    return (Get-VSSetupInstance | Select-VSSetupInstance -Product *).InstallationPath
 }
 
 function Get-VisualStudioComponents {
-    Install-Module VSSetup -Scope CurrentUser -Force
     $vsPackages = (Get-VSSetupInstance | Select-VSSetupInstance -Product *).Packages.Id
     $vsPackages  | Select-Object @{n = 'Package'; e = {$_}} |
     Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }

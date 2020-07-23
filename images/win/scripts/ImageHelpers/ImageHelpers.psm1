@@ -5,7 +5,7 @@ param()
 . $PSScriptRoot\InstallHelpers.ps1
 . $PSScriptRoot\ChocoHelpers.ps1
 . $PSScriptRoot\TestsHelpers.ps1
-. $PSScriptRoot\InstallVSHelpers.ps1
+. $PSScriptRoot\VisualStudioHelpers.ps1
 
 Export-ModuleMember -Function @(
     'Test-MachinePath'

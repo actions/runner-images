@@ -30,10 +30,8 @@ function Disable-UserAccessControl {
     Write-Host "User Access Control (UAC) has been disabled."
 }
 
-if (Test-IsWin16) {
-	# Set TLS1.2
-    [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
-}
+# Set TLS1.2
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
 Write-Host "Disable Antivirus"
 Set-MpPreference -DisableRealtimeMonitoring $true
@@ -77,12 +75,7 @@ Write-Host "Disable IE ESC"
 Disable-InternetExplorerESC
 
 Write-Host "Setting local execution policy"
-if (Test-IsWin16) {
-    Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope MachinePolicy  -ErrorAction Continue | Out-Null
-}
-if (Test-IsWin19) {
-    Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine  -ErrorAction Continue | Out-Null
-}
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine  -ErrorAction Continue | Out-Null
 Get-ExecutionPolicy -List
 
 Write-Host "Enable long path behavior"
@@ -112,9 +105,6 @@ else {
 }
 
 # Run the installer
-if (Test-IsWin19) {
-    [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
-}
 Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Turn off confirmation
