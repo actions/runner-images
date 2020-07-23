@@ -84,6 +84,14 @@
             ]
         }
     ],
+    "powershellModules": [
+        {"name": "DockerMsftProvider"},
+        {"name": "MarkdownPS"},
+        {"name": "Pester"},
+        {"name": "PowerShellGet"},
+        {"name": "PSWindowsUpdate"},
+        {"name": "SqlServer"}
+    ],
     "azureModules": [
         {
             "name": "azurerm",
