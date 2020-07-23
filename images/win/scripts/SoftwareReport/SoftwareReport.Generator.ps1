@@ -13,7 +13,7 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -Disa
 
 $markdown = ""
 
-$Announcements = Get-Content -Path $(Join-Path $PSScriptRoot "WindowsAnnouncements.md") -Raw
+$Announcements = Get-Content -Path $(Join-Path $PSScriptRoot "announcements.md") -Raw
 $markdown += $Announcements
 $markdown += New-MDNewLine
 

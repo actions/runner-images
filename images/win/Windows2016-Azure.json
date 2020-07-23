@@ -86,8 +86,8 @@
         },
         {
             "type": "file",
-            "source": "{{ template_dir }}/WindowsAnnouncements.md",
-            "destination": "{{user `image_folder`}}/SoftwareReport/WindowsAnnouncements.md"
+            "source": "{{ template_dir }}/announcements.md",
+            "destination": "{{user `image_folder`}}/SoftwareReport/announcements.md"
         },
         {
             "type": "file",

@@ -93,8 +93,8 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/UbuntuAnnouncements.md",
-            "destination": "{{user `helper_script_folder`}}/UbuntuAnnouncements.md"
+            "source": "{{template_dir}}/announcements.md",
+            "destination": "{{user `helper_script_folder`}}/announcements.md"
         },
         {
             "type": "file",
