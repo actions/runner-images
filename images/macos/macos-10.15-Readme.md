@@ -1,18 +1,18 @@
 # macOS info
-- System Version: macOS 10.15.5 (19F101)
-- Kernel Version: Darwin 19.5.0
+- System Version: macOS 10.15.6 (19G73)
+- Kernel Version: Darwin 19.6.0
 - System Integrity Protection: Enabled
-- Image Version: 20200707.3
+- Image Version: 20200716.2
 
 ## Installed Software
 ### Language and Runtime
 - Java 1.7: (Zulu 7.38.0.11-CA-macosx) (build 1.7.0_262-b10)
-- Java 1.8: (AdoptOpenJDK)(build 1.8.0_252-b09) (default)
-- Java 11: AdoptOpenJDK (build 11.0.7+10)
+- Java 1.8: (AdoptOpenJDK)(build 1.8.0_262-b10) (default)
+- Java 11: AdoptOpenJDK (build 11.0.8+10)
 - Java 12: AdoptOpenJDK (build 12.0.2+10)
 - Java 13: AdoptOpenJDK (build 13.0.2+8)
-- Java 14: AdoptOpenJDK (build 14.0.1+7)
-- Rust 1.44.1
+- Java 14: AdoptOpenJDK (build 14.0.2+12)
+- Rust 1.45.0
 - Clang/LLVM 10.0.0
 - gcc-8 (Homebrew GCC 8.4.0_1) 8.4.0
 - gcc-9 (Homebrew GCC 9.3.0) 9.3.0
@@ -23,25 +23,25 @@
 - NVM - Cached node versions: v6.17.1 v8.17.0 v10.21.0 v12.18.2 v13.14.0 v14.5.0
 - PowerShell 7.0.2
 - Python 2.7.17
-- Python 3.7.8
+- Python 3.8.4
 - Ruby 2.6.6p146
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301
-- Go 1.14.4
-- PHP 7.4.7
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302
+- Go 1.14.5
+- PHP 7.4.8
 - julia 1.4.2
 
 ### Package Management
-- Rustup 1.22.0
+- Rustup 1.22.1
 - Vcpkg 2020.06.15
 - Bundler version 2.1.4
 - Carthage 0.35.0
 - CocoaPods 1.9.3
-- Homebrew 2.4.4
+- Homebrew 2.4.7
 - NPM 6.14.5
 - Yarn 1.22.4
 - NuGet 5.6.0.6489
 - Pip 19.3.1 (python 2.7)
-- Pip 20.0.2 (python 3.7)
+- Pip 20.1.1 (python 3.8)
 - Miniconda 4.8.3
 - RubyGems 3.1.4
 
@@ -54,7 +54,7 @@
 - Curl 7.71.1
 - Git: 2.27.0
 - Git LFS: 2.11.0
-- GitHub CLI: 0.10.1
+- GitHub CLI: 0.11.0
 - Hub CLI: 2.14.2
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.14.0
@@ -62,13 +62,13 @@
 - GNU parallel 20200622
 - OpenSSL 1.0.2t  10 Sep 2019 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl/1.0.2t)`
 - jq 1.6
-- gpg (GnuPG) 2.2.20
+- gpg (GnuPG) 2.2.21
 - psql (PostgreSQL) 12.3
 - PostgreSQL 12.3
 - aria2 1.35.0
-- azcopy 10.4.3
+- azcopy 10.5.0
 - zstd 1.4.5
-- bazel 3.3.1
+- bazel 3.4.1
 - bazelisk v1.5.0
 - helm v3.2.4+g0ad800e
 - virtualbox 6.1.10r138449
@@ -76,28 +76,31 @@
 - mongod v4.2.8
 - Vagrant 2.2.9
 - 7-Zip 16.02
+- Newman 5.1.2
+
 
 ### Tools
-- Fastlane 2.151.1
+- Fastlane 2.152.0
 - Cmake 3.17.3
-- App Center CLI 2.6.1
-- Azure CLI 2.8.0
-- AWS CLI 2.0.29
+- App Center CLI 2.6.3
+- Azure CLI 2.9.1
+- AWS CLI 2.0.31
 - AWS SAM CLI 0.53.0
-- Aliyun CLI 3.0.50
-- GHCup v0.1.5-p2
+- AWS Session Manager CLI 1.1.61.0
+- Aliyun CLI 3.0.53
+- GHCup v0.1.6
 - GHC 8.10.1
 - Cabal 3.2.0.0
 - Stack 2.3.1
 
 ### Browsers
-- Safari 13.1.1 (15609.2.9.1.2)
-- SafariDriver 13.1.1 (15609.2.9.1.2)
-- Google Chrome 83.0.4103.116 
-- ChromeDriver 83.0.4103.39
-- Microsoft Edge 83.0.478.58 
-- MSEdgeDriver 83.0.478.61
-- Mozilla Firefox 78.0.1
+- Safari 13.1.2 (15609.3.5.1.3)
+- SafariDriver 13.1.2 (15609.3.5.1.3)
+- Google Chrome 84.0.4147.89 
+- ChromeDriver 84.0.4147.30
+- Microsoft Edge 83.0.478.64 
+- MSEdgeDriver 83.0.478.64
+- Mozilla Firefox 78.0.2
 - geckodriver 0.26.0
 
 ### Cached Tools
@@ -170,18 +173,18 @@
 - NUnit 3.6.1
 
 ### Xcode
-| Version        | Build    | Path                              |
-| -------------- | -------- | --------------------------------- |
-| 12.0 (beta)    | 12A6163b | /Applications/Xcode_12_beta.app   |
-| 11.6 (beta)    | 11N700h  | /Applications/Xcode_11.6_beta.app |
-| 11.5 (default) | 11E608c  | /Applications/Xcode_11.5.app      |
-| 11.4.1         | 11E503a  | /Applications/Xcode_11.4.1.app    |
-| 11.4           | 11E146   | /Applications/Xcode_11.4.app      |
-| 11.3.1         | 11C505   | /Applications/Xcode_11.3.1.app    |
-| 11.2.1         | 11B500   | /Applications/Xcode_11.2.1.app    |
-| 11.1           | 11A1027  | /Applications/Xcode_11.1.app      |
-| 11.0           | 11A420a  | /Applications/Xcode_11.app        |
-| 10.3           | 10G8     | /Applications/Xcode_10.3.app      |
+| Version        | Build    | Path                            |
+| -------------- | -------- | ------------------------------- |
+| 12.0 (beta)    | 12A6163b | /Applications/Xcode_12_beta.app |
+| 11.6 (default) | 11E708   | /Applications/Xcode_11.6.app    |
+| 11.5           | 11E608c  | /Applications/Xcode_11.5.app    |
+| 11.4.1         | 11E503a  | /Applications/Xcode_11.4.1.app  |
+| 11.4           | 11E146   | /Applications/Xcode_11.4.app    |
+| 11.3.1         | 11C505   | /Applications/Xcode_11.3.1.app  |
+| 11.2.1         | 11B500   | /Applications/Xcode_11.2.1.app  |
+| 11.1           | 11A1027  | /Applications/Xcode_11.1.app    |
+| 11.0           | 11A420a  | /Applications/Xcode_11.app      |
+| 10.3           | 10G8     | /Applications/Xcode_10.3.app    |
 
 #### Xcode Support Tools
 - Nomad CLI 3.1.4
@@ -243,7 +246,7 @@
 | iOS 13.1    | 11.1                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                                                                                             |
 | iOS 13.2    | 11.2.1                         | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                                                                                             |
 | iOS 13.3    | 11.3.1                         | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                                                                                             |
-| iOS 13.4    | 11.4<br>11.4.1                 | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                     |
+| iOS 13.4    | 11.4<br>11.4.1                 | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)<br>iPhone SE (2nd generation)                                                                                                                                                                                                                     |
 | iOS 13.5    | 11.5                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                     |
 | iOS 13.6    | 11.6                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                     |
 | iOS 14.0    | 12.0                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                     |
@@ -279,7 +282,7 @@
 | android-27   | Android SDK Platform 27, Revision 3 |
 | android-28   | Android SDK Platform 28, Revision 6 |
 | android-29   | Android SDK Platform 29, Revision 4 |
-| android-30   | Android SDK Platform 30, Revision 1 |
+| android-30   | Android SDK Platform 30, Revision 2 |
 
 #### Android SDK Build-Tools
 | Package Name       | Description                              |
@@ -309,6 +312,7 @@
 | build-tools-29.0.2 | Android SDK Build-Tools, Revision 29.0.2 |
 | build-tools-29.0.3 | Android SDK Build-Tools, Revision 29.0.3 |
 | build-tools-30.0.0 | Android SDK Build-Tools, Revision 30.0.0 |
+| build-tools-30.0.1 | Android SDK Build-Tools, Revision 30.0.1 |
 
 #### Android NDKs
 | Version      | Path                                       |
