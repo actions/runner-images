@@ -187,8 +187,8 @@ $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $frameworks.Versions -Style Unordered
 
 # PowerShell Tools
-$markdown += New-MDHeader "PowerShell Tools" -Level 3 -NoNewLine
-$markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered -NoNewLine
+$markdown += New-MDHeader "PowerShell Tools" -Level 3
+$markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
 
 $markdown += New-MDHeader "Azure Powershell Modules" -Level 4
 $markdown += Get-PowerShellAzureModules | New-MDTable
