@@ -133,17 +133,6 @@ rules:
   contains: 'Xamarin'
   addLabels: ['Area: Xamarin']
 
-# Types
-- valueFor: '**Question, Bug, or Feature?**'
-  contains: Feature
-  addLabels: ['enhancement']
-- valueFor: '**Question, Bug, or Feature?**'
-  contains: Bug
-  addLabels: ['bug']
-- valueFor: '**Question, Bug, or Feature?**'
-  contains: Question
-  addLabels: ['question']
-
 # runs if first set had no matches
 # add likely teams to look at based on text searches
 nomatches:
