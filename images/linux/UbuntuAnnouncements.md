@@ -1,3 +1,0 @@
-| Announcements |
-|-|
-| test announcement |
