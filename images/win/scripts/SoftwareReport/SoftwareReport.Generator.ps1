@@ -38,7 +38,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-PHPVersion),
     (Get-JuliaVersion),
     (Get-PerlVersion),
-    (Get-PowershellCoreVersion),
     (Get-NodeVersion)
 )
 
@@ -187,7 +186,11 @@ $markdown += "``Location $($frameworks.Path)``"
 $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $frameworks.Versions -Style Unordered
 
-$markdown += New-MDHeader "Azure Powershell Modules" -Level 3
+# PowerShell Tools
+$markdown += New-MDHeader "PowerShell Tools" -Level 3 -NoNewLine
+$markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered -NoNewLine
+
+$markdown += New-MDHeader "Azure Powershell Modules" -Level 4
 $markdown += Get-PowerShellAzureModules | New-MDTable
 $markdown += @'
 ```
@@ -198,7 +201,7 @@ All other versions are saved but not installed.
 '@
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "Powershell Modules" -Level 3
+$markdown += New-MDHeader "Powershell Modules" -Level 4
 $markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
 
