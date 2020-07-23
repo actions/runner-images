@@ -6,7 +6,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
-source $HELPER_SCRIPTS/apt.sh
 source $HELPER_SCRIPTS/os.sh
 
 if isUbuntu16 ; then

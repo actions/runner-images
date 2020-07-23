@@ -50,3 +50,5 @@ Extract-7Zip -Path $GeckoDriverArchPath -DestinationPath $GeckoDriverPath
 Write-Host "Setting the environment variables..."
 Add-MachinePathItem -PathItem $GeckoDriverPath
 setx GeckoWebDriver "$GeckoDriverPath" /M
+
+Invoke-PesterTests -TestFile "Browsers" -TestName "Firefox"

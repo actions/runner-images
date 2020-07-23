@@ -16,9 +16,10 @@ assignees: ''
 - If this is an add request:
   - Brief description of tool: <!--- Description -->
   - URL for tool's homepage: <!--- URL -->
+  - Provide a basic test case to validate the tool's functionality: <!-- Code sample -->
 
 **Area for Triage**:
-<!-- See https://github.com/actions/virtual-environments/tree/master/triage-rules.yml for areas -->
+<!-- See https://github.com/actions/virtual-environments/tree/main/triage-rules.yml for areas -->
 
 **Question, Bug, or Feature?**:
 <!-- Choose "Question", "Bug", or "Feature" -->

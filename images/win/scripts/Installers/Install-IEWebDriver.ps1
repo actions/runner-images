@@ -36,3 +36,5 @@ Write-Host "Get the IEDriver version..."
 
 Write-Host "Setting the IEWebDriver environment variables"
 setx IEWebDriver $ieDriverPath /M
+
+Invoke-PesterTests -TestFile "Browsers" -TestName "Internet Explorer"

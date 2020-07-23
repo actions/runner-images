@@ -137,7 +137,7 @@ function Stop-SvcWithErrHandling
     .PARAMETER StopOnError
         Switch for stopping the script and exit from PowerShell if one service is absent
     #>
-    param
+    Param
     (
         [Parameter(Mandatory, ValueFromPipeLine = $true)]
         [string] $ServiceName,
@@ -187,7 +187,7 @@ function Set-SvcWithErrHandling
         Hashtable for service arguments
     #>
 
-    param
+    Param
     (
         [Parameter(Mandatory, ValueFromPipeLine = $true)]
         [string] $ServiceName,
@@ -217,7 +217,7 @@ function Set-SvcWithErrHandling
 
 function Start-DownloadWithRetry
 {
-    param
+    Param
     (
         [Parameter(Mandatory)]
         [string] $Url,
@@ -348,17 +348,72 @@ function Get-VSExtensionVersion
     return $packageVersion
 }
 
-function Get-ToolcachePackages {
+function Get-ToolcachePackages
+{
     $toolcachePath = Join-Path $env:ROOT_FOLDER "toolcache.json"
     Get-Content -Raw $toolcachePath | ConvertFrom-Json
 }
 
-function Get-ToolsetContent {
+function Get-ToolsetContent
+{
     $toolsetJson = Get-Content -Path $env:TOOLSET_JSON_PATH -Raw
     ConvertFrom-Json -InputObject $toolsetJson
 }
 
-function Get-ToolsByName {
+function Get-ToolcacheToolDirectory {
+    Param ([string] $ToolName)
+    $toolcacheRootPath = Resolve-Path $env:AGENT_TOOLSDIRECTORY
+    return Join-Path $toolcacheRootPath $ToolName
+}
+
+function Get-ToolsetToolFullPath
+{
+    <#
+    .DESCRIPTION
+        Function that return full path to specified toolset tool.
+
+    .PARAMETER Name
+        The name of required tool.
+
+    .PARAMETER Version
+        The version of required tool.
+
+    .PARAMETER Arch
+        The architecture of required tool.
+    #>
+
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        [string] $Name,
+        [Parameter(Mandatory=$true)]
+        [string] $Version,
+        [string] $Arch = "x64"
+    )
+
+    $toolPath = Get-ToolcacheToolDirectory -ToolName $Name
+
+    # Add wildcard if missing
+    if ($Version.Split(".").Length -lt 3) {
+        $Version += ".*"
+    }
+
+    $versionPath = Join-Path $toolPath $Version
+
+    # Take latest installed version in case if toolset version contains wildcards
+    $foundVersion = Get-Item $versionPath `
+                    | Sort-Object -Property {[version]$_.name} -Descending `
+                    | Select-Object -First 1
+
+    if (-not $foundVersion) {
+        return $null
+    }
+
+    return Join-Path $foundVersion $Arch
+}
+
+function Get-ToolsByName
+{
     Param
     (
         [Parameter(Mandatory = $True)]
@@ -391,7 +446,7 @@ function Test-IsWin16
 }
 
 function Extract-7Zip {
-    param
+    Param
     (
         [Parameter(Mandatory=$true)]
         [string]$Path,
@@ -406,5 +461,52 @@ function Extract-7Zip {
     {
         Write-Host "There is an error during expanding '$Path' to '$DestinationPath' directory"
         exit 1
+    }
+}
+
+function Get-VsCatalogJsonPath {
+    $instanceFolder = Get-Item "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\*" | Select-Object -First 1
+    return Join-Path $instanceFolder.FullName "catalog.json"
+}
+
+function Get-VisualStudioPath {
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$Version,
+        [Parameter(Mandatory=$true)]
+        [string]$Edition
+    )
+
+    return "${env:ProgramFiles(x86)}\Microsoft Visual Studio\${Version}\${Edition}"
+}
+
+function Get-VisualStudioPackages
+{
+    $packagePath = "$env:ProgramData\Microsoft\VisualStudio\Packages\_Instances\*\state.packages.json"
+    $instanceFolders = Get-ChildItem -Path $packagePath
+    (Get-Content -Path $instanceFolders | ConvertFrom-Json).packages
+}
+
+function Get-VisualStudioComponents {
+    $vsPackages = Get-VisualStudioPackages | Where-Object type -in 'Component', 'Workload'
+    $vsPackages  | Sort-Object Id | Select-Object @{n = 'Package'; e = {$_.Id}} |
+    Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
+}
+
+function Install-AndroidSDKPackages {
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$AndroidSDKManagerPath,
+        [Parameter(Mandatory=$true)]
+        [string]$AndroidSDKRootPath,
+        [Parameter(Mandatory=$true)]
+        [string[]]$AndroidPackages,
+        [string] $PrefixPackageName
+    )
+
+    foreach ($package in $AndroidPackages) {
+        & $AndroidSDKManagerPath --sdk_root=$AndroidSDKRootPath "$PrefixPackageName$package"
     }
 }

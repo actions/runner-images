@@ -22,3 +22,5 @@ Add-MachinePathItem -PathItem $DefaultGhcPath
 
 Write-Host "Installing cabal..."
 Choco-Install -PackageName cabal
+
+Invoke-PesterTests -TestFile "Haskell"

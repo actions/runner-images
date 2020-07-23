@@ -30,6 +30,7 @@ Install-Binary  -Url $downloadUrl `
                     "/RESTARTAPPLICATIONS", `
                     "/o:PathOption=CmdTools", `
                     "/o:BashTerminalOption=ConHost", `
+                    "/o:EnableSymlinks=Enabled", `
                     "/COMPONENTS=gitlfs")
 
 Choco-Install -PackageName hub
@@ -39,4 +40,5 @@ Choco-Install -PackageName hub
 
 Add-MachinePathItem "C:\Program Files\Git\bin"
 
-exit 0
+Invoke-PesterTests -TestFile "Git" -TestName "Git"
+Invoke-PesterTests -TestFile "Git" -TestName "Hub"

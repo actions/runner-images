@@ -28,3 +28,15 @@ function DocumentInstalledItem {
 function DocumentInstalledItemIndent {
     WriteItem "  - $1"
 }
+
+function AddBlockquote {
+    WriteItem "> $1"
+}
+
+function StartCode {
+    WriteItem '```'
+}
+
+function EndCode {
+    WriteItem '```'
+}

@@ -33,3 +33,6 @@ npm install -g --save-dev webpack webpack-cli
 npm install -g yarn
 npm install -g lerna
 npm install -g node-sass
+npm install -g newman
+
+Invoke-PesterTests -TestFile "Node"

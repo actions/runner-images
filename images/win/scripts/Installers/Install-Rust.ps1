@@ -6,8 +6,8 @@
 Import-Module -Name ImageHelpers
 
 # Rust Env
-$env:RUSTUP_HOME="C:\Rust\.rustup"
-$env:CARGO_HOME="C:\Rust\.cargo"
+$env:RUSTUP_HOME = "C:\Rust\.rustup"
+$env:CARGO_HOME = "C:\Rust\.cargo"
 
 # Download the latest rustup-init.exe for Windows x64
 # See https://rustup.rs/#
@@ -22,7 +22,7 @@ $env:Path = Get-MachinePath
 
 # Install common tools
 rustup component add rustfmt clippy
-cargo install bindgen cbindgen
+cargo install bindgen cbindgen cargo-audit cargo-outdated
 
 # Run script at startup for all users
 $cmdRustSymScript = @"
@@ -49,3 +49,10 @@ Remove-Item "${env:CARGO_HOME}\registry\*" -Recurse -Force
 
 # Update Run key to run a script at logon
 Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "RUSTSYM" -Value $cmdPath
+
+# Create temporary symlinks to properly validate tools version
+Set-Location -Path $env:UserProfile
+$null = New-Item -Name ".rustup" -Value $env:RUSTUP_HOME -ItemType Junction
+$null = New-Item -Name ".cargo" -Value $env:CARGO_HOME -ItemType Junction
+
+Invoke-PesterTests -TestFile "Rust"

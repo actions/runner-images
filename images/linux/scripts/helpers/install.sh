@@ -11,12 +11,19 @@ download_with_retries() {
     local URL="$1"
     local DEST="${2:-.}"
     local NAME="${3:-${URL##*/}}"
+    local COMPRESSED="$4"
+
+    if [ $COMPRESSED == "compressed" ]; then
+        COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME'"
+    else
+        COMMAND="curl $URL -4 -sL -o '$DEST/$NAME'"
+    fi
 
     echo "Downloading $URL..."
     i=20
     while [ $i -gt 0 ]; do
         ((i--))
-        curl $URL -4 -s -compressed -o "$DEST/$NAME"
+        eval $COMMAND
         if [ $? != 0 ]; then
             sleep 30
         else
@@ -26,4 +33,13 @@ download_with_retries() {
 
     echo "Could not download $URL"
     return 1
+}
+
+## Use dpkg to figure out if a package has already been installed
+## Example use:
+## if ! IsPackageInstalled packageName; then
+##     echo "packageName is not installed!"
+## fi
+function IsPackageInstalled {
+    dpkg -S $1 &> /dev/null
 }
