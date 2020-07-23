@@ -30,8 +30,10 @@ function Disable-UserAccessControl {
     Write-Host "User Access Control (UAC) has been disabled."
 }
 
-# Set TLS1.2
-[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
+if (Test-IsWin16) {
+	# Set TLS1.2
+    [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
+}
 
 Import-Module -Name ImageHelpers -Force
 
@@ -57,11 +59,15 @@ else {
     Write-Host "Windows Update key does not exist"
 }
 
-# Install Windows .NET Features
+# Install .NET Framework 3.5 (required by Chocolatey)
+# Explicitly install all 4.7 sub features to include ASP.Net.
+# As of  1/16/2019, WinServer 19 lists .Net 4.7 as NET-Framework-45-Features
 Install-WindowsFeature -Name NET-Framework-Features -IncludeAllSubFeature
 Install-WindowsFeature -Name NET-Framework-45-Features -IncludeAllSubFeature
-Install-WindowsFeature -Name BITS -IncludeAllSubFeature
-Install-WindowsFeature -Name DSC-Service
+if (Test-IsWin16) {
+    Install-WindowsFeature -Name BITS -IncludeAllSubFeature
+    Install-WindowsFeature -Name DSC-Service
+}
 
 # Install FS-iSCSITarget-Server
 $fsResult = Install-WindowsFeature -Name FS-iSCSITarget-Server -IncludeAllSubFeature -IncludeManagementTools
@@ -82,7 +88,12 @@ Write-Host "Disable IE ESC"
 Disable-InternetExplorerESC
 
 Write-Host "Setting local execution policy"
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope MachinePolicy  -ErrorAction Continue | Out-Null
+if (Test-IsWin16) {
+    Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope MachinePolicy  -ErrorAction Continue | Out-Null
+}
+if (Test-IsWin19) {
+    Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine  -ErrorAction Continue | Out-Null
+}
 Get-ExecutionPolicy -List
 
 Write-Host "Enable long path behavior"
@@ -112,6 +123,9 @@ else {
 }
 
 # Run the installer
+if (Test-IsWin19) {
+    [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
+}
 Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Turn off confirmation
@@ -124,8 +138,10 @@ Remove-Item -Path $env:ChocolateyInstall\bin\cpack.exe -Force
 # Install webpi
 Choco-Install -PackageName webpicmd
 
-# Install vcredist140
-Choco-Install -PackageName vcredist140
+if (Test-IsWin16) {
+    # Install vcredist140
+    Choco-Install -PackageName vcredist140
+}
 
 # Expand disk size of OS drive
 New-Item -Path d:\ -Name cmds.txt -ItemType File -Force
@@ -136,5 +152,3 @@ Write-Host $expandResult
 
 Write-Host "Disk sizes after expansion"
 wmic logicaldisk get size,freespace,caption
-
-

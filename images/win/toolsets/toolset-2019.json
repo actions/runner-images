@@ -154,6 +154,7 @@
     },
     "visualStudio": {
         "version" : "2019",
+        "subversion" : "16",
         "edition" : "Enterprise",
         "workloads": [
             "Component.Dotfuscator",

@@ -16,9 +16,17 @@ function DockerPull {
     }
 }
 
-DockerPull mcr.microsoft.com/windows/servercore:ltsc2019
-DockerPull mcr.microsoft.com/windows/nanoserver:1809
-DockerPull microsoft/aspnetcore-build:1.0-2.0
-DockerPull mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019
-DockerPull mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019
+if (Test-IsWin16) {
+  $ltsc = "ltsc2016"
+  $nanoserver = "10.0.14393.953"
+}
+if (Test-IsWin19) {
+  $ltsc = "ltsc2019"
+  $nanoserver = "1809"
+}
 
+DockerPull mcr.microsoft.com/windows/servercore:${ltsc}
+DockerPull mcr.microsoft.com/windows/nanoserver:${nanoserver}
+DockerPull microsoft/aspnetcore-build:1.0-2.0
+DockerPull mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-${ltsc}
+DockerPull mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-${ltsc}
