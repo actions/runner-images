@@ -117,9 +117,12 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "ImageVersion={{user `image_version`}}"
+                "ImageVersion={{user `image_version`}}",
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
             "scripts":[
+                "{{ template_dir }}/scripts/Installers/Install-PowerShellModules.ps1",
                 "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1"
             ],
             "execution_policy": "unrestricted"
@@ -716,6 +719,9 @@
             "type": "powershell",
             "inline": [
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
+            ],
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ]
         },
         {

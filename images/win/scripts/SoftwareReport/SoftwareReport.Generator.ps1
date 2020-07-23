@@ -1,6 +1,3 @@
-# Install MarkdownPS module for software report generation
-Install-Module MarkdownPS -Force -Scope AllUsers
-
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
@@ -41,7 +38,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-PHPVersion),
     (Get-JuliaVersion),
     (Get-PerlVersion),
-    (Get-PowershellCoreVersion),
     (Get-NodeVersion)
 )
 
@@ -190,7 +186,11 @@ $markdown += "``Location $($frameworks.Path)``"
 $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $frameworks.Versions -Style Unordered
 
-$markdown += New-MDHeader "Azure Powershell Modules" -Level 3
+# PowerShell Tools
+$markdown += New-MDHeader "PowerShell Tools" -Level 3
+$markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
+
+$markdown += New-MDHeader "Azure Powershell Modules" -Level 4
 $markdown += Get-PowerShellAzureModules | New-MDTable
 $markdown += @'
 ```
@@ -199,6 +199,10 @@ and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
 ```
 '@
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Powershell Modules" -Level 4
+$markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
 
 # Android section

@@ -5,8 +5,6 @@
 
 $ErrorActionPreference = "Stop"
 
-Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
-
 # The correct Modules need to be saved in C:\Modules
 $installPSModulePath = $env:PSMODULES_ROOT_FOLDER
 if (-not (Test-Path -LiteralPath $installPSModulePath))

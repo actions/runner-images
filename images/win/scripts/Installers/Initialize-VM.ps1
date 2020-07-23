@@ -35,17 +35,6 @@ if (Test-IsWin16) {
     [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 }
 
-Import-Module -Name ImageHelpers -Force
-
-Write-Host "Setup PowerShellGet"
-# Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-Install-Module -Name PowerShellGet -Force
-Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
-
-Write-Host "Install the latest Pester version"
-Install-Module Pester -Scope AllUsers -SkipPublisherCheck -Force
-
 Write-Host "Disable Antivirus"
 Set-MpPreference -DisableRealtimeMonitoring $true
 
