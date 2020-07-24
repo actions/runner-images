@@ -81,7 +81,8 @@
         {"name": "Pester"},
         {"name": "PowerShellGet"},
         {"name": "PSWindowsUpdate"},
-        {"name": "SqlServer"}
+        {"name": "SqlServer"},
+        {"name": "VSSetup"}
     ],
     "azureModules": [
         {
@@ -153,6 +154,7 @@
     },
     "visualStudio": {
         "version" : "2017",
+        "subversion" : "15",
         "edition" : "Enterprise",
         "workloads": [
             "Microsoft.Net.Component.4.6.2.SDK",

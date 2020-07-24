@@ -90,7 +90,8 @@
         {"name": "Pester"},
         {"name": "PowerShellGet"},
         {"name": "PSWindowsUpdate"},
-        {"name": "SqlServer"}
+        {"name": "SqlServer"},
+        {"name": "VSSetup"}
     ],
     "azureModules": [
         {
@@ -162,6 +163,7 @@
     },
     "visualStudio": {
         "version" : "2019",
+        "subversion" : "16",
         "edition" : "Enterprise",
         "workloads": [
             "Component.Dotfuscator",

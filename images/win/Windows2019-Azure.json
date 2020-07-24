@@ -123,7 +123,7 @@
             ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-PowerShellModules.ps1",
-                "{{ template_dir }}/scripts/Installers/Windows2019/Initialize-VM.ps1"
+                "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1"
             ],
             "execution_policy": "unrestricted"
         },
@@ -191,7 +191,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Update-DockerImages.ps1"
+                "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1"
             ]
         },
         {
@@ -204,7 +204,7 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-VS2019.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-VS.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
