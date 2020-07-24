@@ -24,51 +24,58 @@ Detailed instruction can be found [here](https://docs.microsoft.com/en-us/azure/
 
 ### Prepare environment and image deployment
 #### How to prepare Windows build agent
-You can use local machine as build agent, or deploy virtual machine in [Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli) 
+You can use local machine as build agent, or deploy virtual machine in [Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli).
 
-Download `packer` from https://www.packer.io/downloads
-```
-$packerFolder = "C:\packer"
-Invoke-WebRequest -Uri https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_windows_amd64.zip -OutFile "$packerFolder/packer.zip" && Expand-Archive $packerFolder/packer.zip .
-```
-Or install it via Chocolately
+Download `packer` from https://www.packer.io/downloads, or install it via Chocolately.
 ```
 Choco-Install -PackageName packer
 ```
 
-Install Azure CLI - https://docs.microsoft.com/ru-ru/cli/azure/install-azure-cli-windows?view=azure-cli-latest&tabs=azure-cli
+Install Azure CLI - https://docs.microsoft.com/ru-ru/cli/azure/install-azure-cli-windows?view=azure-cli-latest&tabs=azure-cli.
 ```
 Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
 ```
 
-Download Virtual-Envionments repository
+Download Virtual-Envionments repository.
 ```
 git clone https://github.com/actions/virtual-environments.git
 ```
 
-Run `packer` with specified arguments
+Import [GenerateResourcesAndImage](https://github.com/actions/virtual-environments/blob/main/helpers/GenerateResourcesAndImage.ps1) script from `/helpers` folder, and run `GenerateResourcesAndImage` function in Powershell.
+
 ```
-packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
-                -var "client_id=$ClientId" `
-                -var "client_secret=$ClientSecret" `
-                -var "install_password=$InstallPassword" `
-                -var "github_feed_token=$GitHubFeedToken" `
-                -var "location=$Location" `
-                -var "resource_group=$ResourceGroup" `
-                -var "storage_account=$StorageAccount" `
-                -var "subscription_id=$SubscriptionId" `
-                -var "temp_resource_group_name=$TempResourceGroupName" `
-                -var "tenant_id=$TenantId" `
-                -var "virtual_network_name=$VirtualNetworkName" `
-                -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
-                -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
-                $TemplatePath `
+Import-Module C:\virtual-environments\helpers\GenerateResourcesAndImage.ps1
+
+GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1604 -AzureLocation "East US"
 ```
-Where $TemplatePath is path to required image json template.
+Where:
+- `SubscriptionId` - The Azure subscription Id where resources will be created.
+- `ResourceGroupName` - The Azure resource group name where the Azure resources will be created.
+- `ImageGenerationRepositoryRoot` - The root path of the image generation repository source.
+- `ImageType` - The type of the image being generated. Valid options are: {"Windows2016", "Windows2019", "Ubuntu1604", "Ubuntu1804"}.
+- `AzureLocation` - The location of the resources being created in Azure. For example "East US".
+
+Function will automatically create all required Azure resources and kick off a packer image generation for the selected image type.
+
+*Please, check synopsis of `GenerateResourcesAndImage` for details about non mandatory parameters.*
 
 #### Generated VM Deployment
-After successful image generation, you can deploy Virtual Machine based on generated VHD using following script - https://github.com/actions/virtual-environments/blob/main/helpers/CreateAzureVMFromPackerTemplate.ps1.
-It will deploy private VNet and Subnet resoruces in selected subscription, create and attend network interfaces and deploy VM in selected resource group. 
+After successful image generation, you can deploy Virtual Machine based on generated VHD using [CreateAzureVMFromPackerTemplate](https://github.com/actions/virtual-environments/blob/main/helpers/CreateAzureVMFromPackerTemplate.ps1) script.
+```
+Import-Module C:\virtual-environments\helpers\CreateAzureVMFromPackerTemplate.ps1
+
+CreateAzureVMFromPackerTemplate -SubscriptionId {YourSubscriptionId}  -ResourceGroupName {ResourceGroupName} -TemplateFile "C:\BuildVmImages\temporaryTemplate.json" -VirtualMachineName "testvm1" -AdminUsername "shady1" -AdminPassword "SomeSecurePassword1" -AzureLocation "eastus"
+```
+Where:
+- `SubscriptionId` - The Azure subscription Id where resources will be created.
+- `ResourceGroupName` - The Azure resource group name where the Azure virtual machine will be created.
+- `TemplatFilePath` - The path for the json template generated by packer during image generation locally.
+- `VirtualMachineName` - The name of the virtual machine to be generated.
+- `AdminUserName` - The administrator username for the virtual machine to be created.
+- `AdminPassword` - The administrator password for the virtual machine to be created.
+- `AzureLocation` - The location where the Azure virtual machine will be provisioned. Example: "eastus"
+
+Fuction will create an Azure VM from a template and generate network resources in Azure to make the VM accessible.
 
 ### Additional
 ### Variables
@@ -92,47 +99,16 @@ Builder variables can be passed to packer via predefined environment variables, 
 - `capture_name_prefix` - VHD prefix. The final artifacts will be named PREFIX-osDisk.UUID and PREFIX-vmTemplate.UUID.
 - `github_feed_token` - Github PAT. Required for NPM toolcache installation. Will be depricated soon.
 
-#### Common vairables
-- `vm_size` - Size of the VM used for building. This can be changed when you deploy a VM from your VHD. See pricing information. https://docs.microsoft.com/en-us/azure/search/search-sku-tier
+#### Additional vairables
+- `vm_size` - Size of the VM used for building. This can be changed when you deploy a VM from your VHD. See pricing information. https://docs.microsoft.com/en-us/azure/search/search-sku-tier.
 - `image_os` - Type of OS that will be deployed as a temporary VM.
 - `image_version` -  Specify a specific version of an OS to boot from.
-- `imagedata_file` - Path to json file that will contain image-version and readme path
-- `helper_script_folder` - Path, where helper modules will be deployed.
-- `image_folder` - Root path of current image scripts location.
-
-#### Linux only
-- `metadata_file` - Path to metadata file that required for documentation creation.
-- `installer_script_folder` - Root path of installation scripts.
-- `run_validation_diskspace` - Boolean flag. Enable or disable available disk space scan.
-
-#### Windows only
-- `run_scan_antivirus` - Boolean flag. Enable or disable antivirus scan during image generation.
-- `root_folder` - Path to installation root folder.
-- `toolset_json_path` - Path to toolset config.
-- `psmodules_root_folder` - Path to AZ modules.
-- `install_user` - User under which all installations will be performed.
-- `install_password` - Installation user password.
 
 **Detailed Azure builders documentation can be found [here](https://www.packer.io/docs/builders/azure).**
 
 ### Toolset
-To reduce image generation time, we store prebuilted versions of Python, Boost, Node and ruby in external sources, from which toolset-provision scripts download them during the build. If needed, unused versions or tools from toolset can be safely disabled, via removing from specified `toolset.json` config.
+Configuration for some installed software is located in `toolset.json` files. These files define the list of Ruby, Python, Go versions, the list of PowerShell modules and VS components that will be installed to image. They can be changed if these tools are not required to reduce image generation time or image size.
 
-Example of toolset configuration:
-```
-"name": "Python",
-"url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
-"platform" : "linux",
-"platform_version": "20.04",
-"arch": "x64",
-"versions": [
-    "2.7.*",
-    "3.5.*",
-    "3.6.*",
-    "3.7.*",
-    "3.8.*"
-]
-```
 Generated tool versions and details can be found in related projects:
 - [Python](https://github.com/actions/python-versions/)
 - [Go](https://github.com/actions/go-versions)
