@@ -9,3 +9,4 @@ Install-VsixExtension -Url 'https://marketplace.visualstudio.com/_apis/public/ga
 Install-VsixExtension -Url 'https://marketplace.visualstudio.com/_apis/public/gallery/publishers/SSIS/vsextensions/SqlServerIntegrationServicesProjects/3.4/vspackage' -Name 'Microsoft.DataTools.IntegrationServices.exe' -VSversion "2019"
 Install-VsixExtension -Url 'https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftReportProjectsforVisualStudio/2.6.3/vspackage' -Name 'Microsoft.DataTools.ReportingServices.vsix' -VSversion "2019"
 
+Invoke-PesterTests -TestFile "SSDTExtensions"
