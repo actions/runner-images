@@ -68,9 +68,3 @@ function Get-VsCatalogJsonPath {
 function Get-VisualStudioPath {
     return (Get-VSSetupInstance | Select-VSSetupInstance -Product *).InstallationPath
 }
-
-function Get-VisualStudioComponents {
-    $vsPackages = (Get-VSSetupInstance | Select-VSSetupInstance -Product *).Packages.Id
-    $vsPackages  | Select-Object @{n = 'Package'; e = {$_}} |
-    Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
-}
