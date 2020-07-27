@@ -1,8 +1,3 @@
-function Get-VisualStudioPackages
-{
-    (Get-VSSetupInstance | Select-VSSetupInstance -Product *).Packages
-}
-
 function Get-VisualStudioVersion {
     $vsVersion = vswhere -format json | ConvertFrom-Json
     [PSCustomObject]@{
@@ -10,11 +5,6 @@ function Get-VisualStudioVersion {
         Version = $vsVersion.installationVersion
         Path = $vsVersion.installationPath
     }
-}
-
-function Get-VisualStudioComponents {
-    Get-VisualStudioPackages | Sort-Object Id, Version | Select-Object @{n = 'Package'; e = {$_.Id}}, Version |
-    Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
 }
 
 function Get-WixVersion {
