@@ -455,7 +455,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-MysqlCli.ps1"
             ]
         },
-	{
+        {
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-SQLPowerShellTools.ps1"
