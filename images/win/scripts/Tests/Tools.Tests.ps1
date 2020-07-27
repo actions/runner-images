@@ -73,6 +73,12 @@ Describe "CMake" {
     }
 }
 
+Describe "R" {
+    It "Rscript" {
+        "Rscript --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "DACFx" {
     It "DACFx" {
         (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Contains "Microsoft SQL Server Data-Tier Application Framework (x64)" | Should -BeTrue
