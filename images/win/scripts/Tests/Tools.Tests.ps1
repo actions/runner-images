@@ -263,9 +263,11 @@ Describe "Vcpkg" {
     It "vcpkg" {
       "vcpkg version" | Should -ReturnZeroExitCode
     }
+
     It "env variable VCPKG_INSTALLATION_ROOT is set" {
       $env:VCPKG_INSTALLATION_ROOT | Should -Not -BeNullOrEmpty
     }
+
     It "VCPKG_INSTALLATION_ROOT directory" {
         $env:VCPKG_INSTALLATION_ROOT | Should -Exist
     }
