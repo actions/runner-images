@@ -74,6 +74,7 @@ function Get-VisualStudioPackages {
 }
 
 function Get-VisualStudioComponents {
-    Get-VisualStudioPackages | Sort-Object Id, Version | Select-Object @{n = 'Package'; e = {$_.Id}}, Version |
+    Get-VisualStudioPackages | Where-Object type -in 'Component', 'Workload' |
+    Sort-Object Id, Version | Select-Object @{n = 'Package'; e = {$_.Id}}, Version |
     Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
 }
