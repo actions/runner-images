@@ -5,6 +5,7 @@
 ################################################################################
 
 # Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/document.sh
 
 # Install Herbert V. Riedel's PPA for managing multiple version of ghc on ubuntu.
@@ -22,7 +23,7 @@ for version in $ghcMajorMinorVersions; do
     exactVersion=$(echo "$allGhcVersions" | grep $version | sort --unique --version-sort | tail -1)
     apt-get install -y ghc-$exactVersion
     ghcInstalledVersions+=("$exactVersion")
-    defaultGHCVersion=$version
+    defaultGHCVersion=$exactVersion
 done
 
 # Get latest cabal version
@@ -53,6 +54,9 @@ fi
 if ! command -v stack; then
     exit 1
 fi
+
+# Add the latest ghc to path
+prependEtcEnvironmentPath "/opt/ghc/$defaultGHCVersion/bin"
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
