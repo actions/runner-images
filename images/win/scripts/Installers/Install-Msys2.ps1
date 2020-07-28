@@ -60,7 +60,7 @@ Write-Host "`n$dash Remove p7zip/7z package due to conflicts"
 pacman.exe -R --noconfirm --noprogressbar p7zip
 
 # mingw package list
-$tools = "___clang ___cmake ___llvm  ___toolchain ___ragel"
+$tools = "___clang ___clang-tools-extra ___cmake ___llvm  ___toolchain ___ragel"
 
 # install mingw64 packages
 Write-Host "`n$dash Install mingw64 packages"
