@@ -23,7 +23,7 @@ Detailed instruction can be found [here](https://docs.microsoft.com/en-us/azure/
 
 ### Prepare environment and image deployment
 #### How to prepare Windows build agent
-You can use local machine as build agent, or deploy virtual machine in [Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli).
+Local machine or [Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli) can be used as a build agent.
 
 Download `packer` from https://www.packer.io/downloads, or install it via Chocolately.
 ```
@@ -54,12 +54,12 @@ Where:
 - `ImageType` - The type of the image being generated. Valid options are: "Windows2016", "Windows2019", "Ubuntu1604", "Ubuntu1804", "Ubuntu2004".
 - `AzureLocation` - The location of the resources being created in Azure. For example "East US".
 
-Function will automatically create all required Azure resources and kick off a packer image generation for the selected image type.
+The function automatically creates all required Azure resources and kicks off packer image generation for the selected image type.
 
-*Please, check synopsis of `GenerateResourcesAndImage` for details about non mandatory parameters.*
+*Please, check synopsis of `GenerateResourcesAndImage` for details about non-mandatory parameters.*
 
 #### Generated VM Deployment
-After successful image generation, you can deploy Virtual Machine based on generated VHD using [CreateAzureVMFromPackerTemplate](https://github.com/actions/virtual-environments/blob/main/helpers/CreateAzureVMFromPackerTemplate.ps1) script.
+After the successful image generation, Virtual Machine can be created from the generated VHD using [CreateAzureVMFromPackerTemplate](https://github.com/actions/virtual-environments/blob/main/helpers/CreateAzureVMFromPackerTemplate.ps1) script.
 ```
 Import-Module C:\virtual-environments\helpers\CreateAzureVMFromPackerTemplate.ps1
 
@@ -74,7 +74,7 @@ Where:
 - `AdminPassword` - The administrator password for the virtual machine to be created.
 - `AzureLocation` - The location where the Azure virtual machine will be provisioned. Example: "eastus"
 
-Fuction will create an Azure VM from a template and generate network resources in Azure to make the VM accessible.
+The function creates an Azure VM from a template and also generates network resources in Azure to make the VM accessible.
 
 ### Additional
 #### Builder variables
