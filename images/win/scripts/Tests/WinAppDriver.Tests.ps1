@@ -11,6 +11,7 @@ Describe "WinAppDriver" {
     }
     Test-Path -Path $wadPath | Should -BeTrue
   }
+
   It "Developer Mode is enabled" {
     $path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock";
     Get-ItemProperty -Path $path | Select-Object -ExpandProperty "AllowDevelopmentWithoutDevLicense" | Should -Be 1
