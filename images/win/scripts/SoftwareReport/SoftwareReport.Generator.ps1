@@ -151,7 +151,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Linters" -Level 3
-$markdown += Get-YAMLLintVersion | New-MDTable
+$markdown += New-MDList -Style Unordered -Lines @(
+    (Get-YAMLLintVersion)
+)
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Cached Tools" -Level 3

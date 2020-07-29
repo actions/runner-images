@@ -272,12 +272,5 @@ function Get-PacmanVersion {
 }
 
 function Get-YAMLLintVersion {
-    $yamlVersion = (yamllint --version).Split()[1]
-    $yamlPath = (Get-Command -Name yamllint).Path
-
-    [PSCustomObject]@{
-        Name = "yamllint"
-        Version = $yamlVersion
-        Path = $yamlPath
-    }
+    yamllint --version
 }
