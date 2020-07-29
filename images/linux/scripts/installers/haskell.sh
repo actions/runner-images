@@ -55,11 +55,12 @@ if ! command -v stack; then
     exit 1
 fi
 
-# Create symlink for ghc in /usr/bin
+# Create symlink for ghc and cabal in /usr/bin
 ln -s "/opt/ghc/$defaultGHCVersion/bin/ghc" "/usr/bin/ghc"
+ln -s "/opt/cabal/$cabalVersion/bin/cabal" "/usr/bin/cabal"
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Haskell Cabal ($(/opt/cabal/$cabalVersion/bin/cabal --version))"
+DocumentInstalledItem "Haskell Cabal ($(cabal --version))"
 DocumentInstalledItem "GHC ($(ghc --version))"
 DocumentInstalledItem "Haskell Stack ($(stack --version))"
