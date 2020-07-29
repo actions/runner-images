@@ -2,48 +2,56 @@
 - System Version: macOS 10.15.6 (19G73)
 - Kernel Version: Darwin 19.6.0
 - System Integrity Protection: Enabled
-- Image Version: 20200716.2
+- Image Version: 20200728.1
 
 ## Installed Software
 ### Language and Runtime
-- Java 1.7: (Zulu 7.38.0.11-CA-macosx) (build 1.7.0_262-b10)
+- Java 1.7: (Zulu 7.40.0.15-CA-macosx) (build 1.7.0_272-b10)
 - Java 1.8: (AdoptOpenJDK)(build 1.8.0_262-b10) (default)
 - Java 11: AdoptOpenJDK (build 11.0.8+10)
 - Java 12: AdoptOpenJDK (build 12.0.2+10)
 - Java 13: AdoptOpenJDK (build 13.0.2+8)
 - Java 14: AdoptOpenJDK (build 14.0.2+12)
-- Rust 1.45.0
 - Clang/LLVM 10.0.0
 - gcc-8 (Homebrew GCC 8.4.0_1) 8.4.0
 - gcc-9 (Homebrew GCC 9.3.0) 9.3.0
 - GNU Fortran (Homebrew GCC 8.4.0_1) 8.4.0
 - GNU Fortran (Homebrew GCC 9.3.0) 9.3.0
-- Node.js v12.18.2
+- Node.js v12.18.3
 - NVM 0.35.3
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.21.0 v12.18.2 v13.14.0 v14.5.0
-- PowerShell 7.0.2
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.22.0 v12.18.3 v13.14.0 v14.6.0
 - Python 2.7.17
-- Python 3.8.4
+- Python 3.8.5
 - Ruby 2.6.6p146
 - .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302
 - Go 1.14.5
 - PHP 7.4.8
 - julia 1.4.2
 
-### Package Management
+# Rust
+- Rust 1.45.0
 - Rustup 1.22.1
+
+### Packages:
+- Bindgen 0.54.1
+- Cbindgen 0.14.3
+- Cargo-outdated v0.9.11
+- Cargo-audit 0.12.0
+
+### Package Management
 - Vcpkg 2020.06.15
 - Bundler version 2.1.4
 - Carthage 0.35.0
 - CocoaPods 1.9.3
-- Homebrew 2.4.7
-- NPM 6.14.5
+- Homebrew 2.4.8
+- NPM 6.14.6
 - Yarn 1.22.4
 - NuGet 5.6.0.6489
 - Pip 19.3.1 (python 2.7)
 - Pip 20.1.1 (python 3.8)
 - Miniconda 4.8.3
 - RubyGems 3.1.4
+- Composer 1.10.9
 
 ### Project Management
 - Apache Maven 3.6.3
@@ -52,26 +60,26 @@
 
 ### Utilities
 - Curl 7.71.1
-- Git: 2.27.0
+- Git: 2.28.0
 - Git LFS: 2.11.0
 - GitHub CLI: 0.11.0
 - Hub CLI: 2.14.2
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.14.0
 - Packer 1.6.0
-- GNU parallel 20200622
+- GNU parallel 20200722
 - OpenSSL 1.0.2t  10 Sep 2019 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl/1.0.2t)`
 - jq 1.6
 - gpg (GnuPG) 2.2.21
 - psql (PostgreSQL) 12.3
 - PostgreSQL 12.3
 - aria2 1.35.0
-- azcopy 10.5.0
+- azcopy 10.5.1
 - zstd 1.4.5
 - bazel 3.4.1
 - bazelisk v1.5.0
 - helm v3.2.4+g0ad800e
-- virtualbox 6.1.10r138449
+- virtualbox 6.1.12r139181
 - mongo v4.2.8
 - mongod v4.2.8
 - Vagrant 2.2.9
@@ -80,26 +88,29 @@
 
 
 ### Tools
-- Fastlane 2.152.0
-- Cmake 3.17.3
+- Fastlane 2.153.1
+- Cmake 3.18.0
 - App Center CLI 2.6.3
 - Azure CLI 2.9.1
-- AWS CLI 2.0.31
-- AWS SAM CLI 0.53.0
+- AWS CLI 2.0.34
+- AWS SAM CLI 1.0.0
 - AWS Session Manager CLI 1.1.61.0
-- Aliyun CLI 3.0.53
-- GHCup v0.1.6
+- Aliyun CLI 3.0.54
+- GHCup v0.1.8
 - GHC 8.10.1
 - Cabal 3.2.0.0
 - Stack 2.3.1
 
+### Linters
+- SwiftLint 0.39.2
+
 ### Browsers
 - Safari 13.1.2 (15609.3.5.1.3)
 - SafariDriver 13.1.2 (15609.3.5.1.3)
-- Google Chrome 84.0.4147.89 
+- Google Chrome 84.0.4147.105 
 - ChromeDriver 84.0.4147.30
-- Microsoft Edge 83.0.478.64 
-- MSEdgeDriver 83.0.478.64
+- Microsoft Edge 84.0.522.44 
+- MSEdgeDriver 84.0.522.44
 - Mozilla Firefox 78.0.2
 - geckodriver 0.26.0
 
@@ -115,7 +126,7 @@
 - 3.5.9
 - 3.6.11
 - 3.7.8
-- 3.8.3
+- 3.8.5
 
 #### PyPy
 - 2.7.13 [PyPy 7.3.1]
@@ -123,19 +134,19 @@
 
 #### Node.js
 - 8.17.0
-- 10.21.0
-- 12.18.2
-- 14.5.0
+- 10.22.0
+- 12.18.3
+- 14.6.0
 
 #### Go
 - 1.11.13
 - 1.12.17
-- 1.13.12
-- 1.14.4
+- 1.13.14
+- 1.14.6
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.6.5.23
+- 8.6.7.2
 
 #### Mono
 - 6.10.0.104
@@ -154,7 +165,7 @@
 - 13.2.0.47
 
 #### Xamarin.Mac
-- 6.18.2.1
+- 6.18.3.2
 - 6.16.0.13
 - 6.14.1.39
 - 6.10.0.21
@@ -172,10 +183,20 @@
 #### Unit Test Framework
 - NUnit 3.6.1
 
+### PowerShell Tools
+- PowerShell 7.0.3
+
+#### PowerShell Modules
+| Module     | Version |
+| ---------- | ------- |
+| Az         | 4.4.0   |
+| MarkdownPS | 1.9     |
+| Pester     | 4.10.1  |
+
 ### Xcode
 | Version        | Build    | Path                            |
 | -------------- | -------- | ------------------------------- |
-| 12.0 (beta)    | 12A6163b | /Applications/Xcode_12_beta.app |
+| 12.0 (beta)    | 12A8169g | /Applications/Xcode_12_beta.app |
 | 11.6 (default) | 11E708   | /Applications/Xcode_11.6.app    |
 | 11.5           | 11E608c  | /Applications/Xcode_11.5.app    |
 | 11.4.1         | 11E503a  | /Applications/Xcode_11.4.1.app  |
@@ -198,7 +219,7 @@
 | ----------------------- | -------------------- | ---------------------------------------------------- |
 | macOS 10.14             | macosx10.14          | 10.3                                                 |
 | macOS 10.15             | macosx10.15          | 11.0, 11.1, 11.2.1, 11.3.1, 11.4, 11.4.1, 11.5, 11.6 |
-| macOS 10.16             | macosx10.16          | 12.0                                                 |
+| macOS 11.0              | macosx11.0           | 12.0                                                 |
 | iOS 12.4                | iphoneos12.4         | 10.3                                                 |
 | iOS 13.0                | iphoneos13.0         | 11.0                                                 |
 | iOS 13.1                | iphoneos13.1         | 11.1                                                 |
@@ -249,7 +270,7 @@
 | iOS 13.4    | 11.4<br>11.4.1                 | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)<br>iPhone SE (2nd generation)                                                                                                                                                                                                                     |
 | iOS 13.5    | 11.5                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                     |
 | iOS 13.6    | 11.6                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                     |
-| iOS 14.0    | 12.0                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                     |
+| iOS 14.0    | 12.0                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPod touch (7th generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                      |
 | tvOS 12.4   | 10.3                           | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | tvOS 13.0   | 11.0<br>11.1                   | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | tvOS 13.2   | 11.2.1                         | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
