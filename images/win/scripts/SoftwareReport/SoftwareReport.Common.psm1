@@ -34,7 +34,7 @@ function Get-JavaVersionsList {
 
 function Get-RustVersion {
     $rustVersion = [regex]::matches($(rustc --version), "\d+\.\d+\.\d+").Value
-    return "Rust ${rustVersion}"
+    return $rustVersion
 }
 
 function Get-BindgenVersion {
@@ -239,6 +239,21 @@ function Get-PowerShellAzureModules {
             Module = $moduleName
             Version = $moduleVersions
             Path = $modulePath
+        }
+    }
+}
+
+function Get-PowerShellModules {
+    $modules = (Get-ToolsetContent).powershellModules.name
+
+    $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
+    $psModules | ForEach-Object {
+        $moduleName = $_.Name
+        $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
+
+        [PSCustomObject]@{
+            Module = $moduleName
+            Version = $moduleVersions
         }
     }
 }
