@@ -98,7 +98,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-WinAppDriver),
     (Get-ZstdVersion),
     (Get-VSWhereVersion),
-    (Get-7zipVersion)
+    (Get-7zipVersion),
+    (Get-YAMLLintVersion)
 )
 
 $markdown += New-MDHeader "CLI Tools" -Level 3
@@ -148,12 +149,6 @@ Location: C:\msys64
 Note: MSYS2 is pre-installed on image but not added to PATH.
 ```
 '@
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Linters" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
-    (Get-YAMLLintVersion)
-)
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
