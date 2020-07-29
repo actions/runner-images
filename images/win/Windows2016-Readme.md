@@ -1,33 +1,33 @@
 # Microsoft Windows Server 2016 Datacenter
-- OS Version: 10.0.14393 Build 3750
-- Image Version: 20200706.1
+- OS Version: 10.0.14393 Build 3808
+- Image Version: 20200720.1
 
 ## Installed Software
 ### Language and Runtime
 - Java 1.7.0_232 
-- Java 1.8.0_252 (default)
-- Java 11.0.7 
+- Java 1.8.0_262 (default)
+- Java 11.0.8 
 - Java 13.0.2 
-- Rust 1.44.1
+- Rust 1.45.0
 - Python 3.7.8
 - Ruby 2.5.8p224
 - Go 1.14.4
 - PHP 7.4.7
 - Julia 1.4.2
 - Perl 5.30.2
-- PowerShell 7.0.2
+- PowerShell 7.0.3
 - Node 12.18.2
 
 ### Package Management
 - Chocolatey 0.10.15
-- Vcpkg 2020.02.04
+- Vcpkg 2020.06.15
 - NPM 6.14.5
 - Yarn 1.22.4
 - pip 20.1.1 (python 3.7)
 - Miniconda 4.6.14
 - RubyGems 3.1.4
 - Helm 3.2.4
-- Composer 1.10.8
+- Composer 1.10.9
 - NuGet 5.6.0.6591
 
 ### Project Management
@@ -37,26 +37,27 @@
 - sbt 1.3.13
 
 ### Tools
-- Azure CosmosDb Emulator 2.11.1.0
-- Bazel 3.3.1
+- Azure CosmosDb Emulator 2.11.2.0
+- Bazel 3.4.1
 - Bazelisk 1.5.0
-- CMake 3.17.3
+- CMake 3.18.0
 - Docker 19.03.5
 - Docker-compose 1.26.0
 - Git 2.27.0
 - Git LFS 2.11.0
 - InnoSetup 6.0.5
 - jq 1.6
-- Kubectl 1.18.5
+- Kubectl 1.18.6
 - Kind 0.8.1
 - Mingw-w64 8.1.0
 - MySQL 5.7.21.0
 - Mercurial 5.0
 - NSIS 3.5.0.20200106
+- Newman 5.1.2
 - OpenSSL 1.1.1
 - Packer 1.6.0
 - SQLPS 1.0
-- SQLServer PS 21.1.18221
+- SQLServer PS 21.1.18226
 - Subversion (SVN) 1.8.17
 - ghc 8.10.1
 - Cabal 3.2.0.0
@@ -67,27 +68,34 @@
 - 7zip 19.00
 
 ### CLI Tools
-- Azure CLI 2.8.0
-- azcopy 10.4.3
+- Azure CLI 2.9.1
+- azcopy 10.5.0
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.28
+- AWS CLI 2.0.31
 - AWS SAM CLI 0.53.0
-- Alibaba CLI 3.0.26
+- AWS Session Manager CLI 1.1.61.0
+- Alibaba Cloud CLI 3.0.26
 - Cloud Foundry CLI 6.51.0
 - Hub CLI 2.14.2
-- Google Cloud SDK 299.0.0
+- Google Cloud SDK 301.0.0
+
+### Rust packages:
+- bindgen 0.54.1
+- cbindgen 0.14.3
+- cargo-audit 0.12.0
+- cargo-outdated v0.9.11
 
 ### Browsers and webdrivers
-- Google Chrome 83.0.4103.116
-- Chrome Driver 83.0.4103.39
-- Microsoft Edge 83.0.478.58
-- Microsoft Edge Driver 83.0.478.58
-- Mozilla Firefox 78.0.1
+- Google Chrome 84.0.4147.89
+- Chrome Driver 84.0.4147.30
+- Microsoft Edge 84.0.522.40
+- Microsoft Edge Driver 84.0.522.40
+- Mozilla Firefox 78.0.2
 - Gecko Driver 0.26.0
 - IE Driver 3.150.1.0
 
 ### MSYS2
-- Pacman 5.2.1
+- Pacman 5.2.2
 ```
 Location: C:\msys64
 
@@ -130,8 +138,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 8.17.0  | x64          |
 | 10.21.0 | x64          |
-| 12.18.1 | x64          |
-| 14.4.0  | x64          |
+| 12.18.2 | x64          |
+| 14.5.0  | x64          |
 
 
 #### Python
@@ -141,7 +149,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.5.4   | x64, x86     |
 | 3.6.8   | x64, x86     |
 | 3.7.8 (Default) | x64, x86     |
-| 3.8.3   | x64, x86     |
+| 3.8.4   | x64, x86     |
 
 
 #### Ruby
@@ -178,7 +186,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2017 | 15.9.28307.1177 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
+| Visual Studio Enterprise 2017 | 15.9.28307.1216 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
 
 #### Workloads, components and extensions:
 
@@ -253,9 +261,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.4.7.DeveloperTools                           | 15.6.27406.0     |
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 15.8.27825.0     |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 15.6.27406.0     |
-| Microsoft.Net.Core.Component.SDK.1x                                       | 15.6.27406.0     |
+| Microsoft.Net.Core.Component.SDK.1x                                       | 15.9.28307.1209  |
 | Microsoft.Net.Core.Component.SDK.2.1                                      | 15.8.27924.0     |
-| Microsoft.NetCore.1x.ComponentGroup.Web                                   | 15.6.27406.0     |
+| Microsoft.NetCore.1x.ComponentGroup.Web                                   | 15.9.28307.1209  |
 | Microsoft.NetCore.ComponentGroup.DevelopmentTools.2.1                     | 15.8.27924.0     |
 | Microsoft.NetCore.ComponentGroup.Web.2.1                                  | 15.8.27924.0     |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 15.8.27825.0     |
@@ -428,20 +436,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301
+- 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 1.0.16 1.1.13 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
+- 1.0.16 1.1.13 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5
+- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -479,7 +487,7 @@ All other versions are saved but not installed.
 | android-27   | Android SDK Platform 27, Revision 3        |
 | android-28   | Android SDK Platform 28, Revision 6        |
 | android-29   | Android SDK Platform 29, Revision 4        |
-| android-30   | Android SDK Platform 30, Revision 1        |
+| android-30   | Android SDK Platform 30, Revision 2        |
 
 ### Android SDK Build-Tools
 `Location C:\Program Files (x86)\Android\android-sdk\build-tools`
