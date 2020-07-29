@@ -61,6 +61,7 @@ cmd_packages="curl
               patchelf
               bzip2
               sqlite3
+              brotli
               yamllint"
 
 if isUbuntu20 ; then
