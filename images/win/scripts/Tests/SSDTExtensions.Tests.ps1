@@ -9,10 +9,6 @@ Describe "SSDTExtensions" {
       )
 
       It "Extensions id=<id>" -TestCases $testExtenions {
-        param
-        (
-            [string] $id
-        )
         $version = Get-VSExtensionVersion -packageName "${id}"
         $version | Should -Not -BeNullOrEmpty
       }
