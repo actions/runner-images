@@ -246,3 +246,9 @@ Describe "ServiceFabricSDK" {
         Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
     }
 }
+
+Describe "yamllint"{
+    It "yamllint" {
+        "yamllint --version" | Should -ReturnZeroExitCode
+    }
+}
