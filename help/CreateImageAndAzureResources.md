@@ -85,7 +85,7 @@ The function creates an Azure VM from a template and also generates network reso
 
 ### Additional
 #### User variables
-Packer template includes `variables` section that contains user variables that are used in image generation. Each variable is defined as a key/value strings. User variables can be passed to packer via predefined environment variables, or as direct arguments, in case if packer started manually.
+The Packer template includes `variables` section containing user variables used in image generation. Each variable is defined as a key/value strings. User variables can be passed to packer via predefined environment variables, or as direct arguments, in case if packer started manually.
 
 - `client_id` - The application ID of the AAD Service Principal. Requires `client_secret`.
 - `object_id` - The object ID for the AAD SP. Will be derived from the oAuth token if empty.
@@ -104,7 +104,7 @@ Packer template includes `variables` section that contains user variables that a
 - `github_feed_token` - Github PAT. Required for NPM toolcache installation. Will be depricated soon.
 
 #### Builder variables
-`builders` section contains variables for the `azure-arm` builder that used in the project. Most of builder variables are inherited from the `user variables` section, however, following variables can be overrwriten to improve image-generation performance.
+The `builders` section contains variables for the `azure-arm` builder used in the project. Most of the builder variables are inherited from the `user variables` section, however, the variables can be overwritten to adjust image-generation performance.
 
 - `vm_size` - Size of the VM used for building. This can be changed when you deploy a VM from your VHD.
 - `image_os` - Type of OS that will be deployed as a temporary VM.
