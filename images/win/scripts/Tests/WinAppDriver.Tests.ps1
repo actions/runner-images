@@ -1,15 +1,6 @@
 Describe "WinAppDriver" {
   It "WinAppDriver directory exists" {
-    $wad = "Windows Application Driver"
-    if (${env:ProgramFiles(x86)})
-    {
-      $wadPath = "${env:ProgramFiles(x86)}\$wad"
-    }
-    else
-    {
-     $wadPath = "${env:ProgramFiles}\$wad"
-    }
-    Test-Path -Path $wadPath | Should -BeTrue
+    Test-Path -Path "${env:ProgramFiles(x86)}\Windows Application Driver" | Should -BeTrue
   }
 
   It "Developer Mode is enabled" {
