@@ -1,10 +1,10 @@
 Function CreateAzureVMFromPackerTemplate {
     <#
         .SYNOPSIS
-            Creates an Azure VM from a template. Also generates network resources in Azure to make the VM accessible.
+            A helper function to deploy a VM from generated image.
 
         .DESCRIPTION
-            Creates Azure resources and kicks off a packer image generation for the selected image type.
+             Creates an Azure VM from a template. Also generates network resources in Azure to make the VM accessible.
 
         .PARAMETER SubscriptionId
             The Azure subscription Id where resources will be created.
@@ -17,7 +17,7 @@ Function CreateAzureVMFromPackerTemplate {
 
         .PARAMETER VirtualMachineName
             The name of the virtual machine to be generated.
-        
+
         .PARAMETER AdminUserName
             The administrator username for the virtual machine to be created.
 
@@ -62,7 +62,7 @@ Function CreateAzureVMFromPackerTemplate {
     $networkId = ($nic | ConvertFrom-Json).NewNIC.id
 
     Write-Host "create public IP."
-    az network public-ip create -g $ResourceGroupName -n $publicIpName --subscription $subscriptionId --allocation-method Static --location $AzureLocation --sku Standard --version IPv4 
+    az network public-ip create -g $ResourceGroupName -n $publicIpName --subscription $subscriptionId --allocation-method Static --location $AzureLocation --sku Standard --version IPv4
 
     Write-Host "Adding the public IP to the NIC."
     az network nic ip-config update --name ipconfig1 --nic-name $nicName --resource-group $ResourceGroupName --subscription $subscriptionId --public-ip-address $publicIpName
