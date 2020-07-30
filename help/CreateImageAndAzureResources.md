@@ -1,4 +1,4 @@
-### General
+# Virtual-Environments
 The virtual-environment project uses packer tool and contains templates for the following platforms: Windows 2016/2019, Ubuntu 16.04/18.04/20.04. 
 Each image template consists of a set of scripts that are executed on the virtual machine. 
 The Packer process initializes a connection to Azure subscription via Azure CLI, and automatically creates the temporary Azure resources required to build the source VM(temporary resource group, network interfaces, and VM from the "clean" image specified in the template). 
@@ -6,18 +6,19 @@ If deployment succeeded, the build agent connects to the deployed VM and starts 
 In case if any template step fails, image generation will be aborted and temporary VM will be terminated.
 After successful image generation, a snapshot of the temporary VM will be converted to VHD image and then uploaded to the specified Azure Storage Account.
 
+## Prerequisites and Image-generation
 ### Build Agent requirements
 - `OS` - Windows/Linux
 - `packer` - Can be downloaded from https://www.packer.io/downloads
 - `PowerShell 5.0 or higher` or `PSCore` for linux distributes.
 - `Azure CLI ` - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest
 
-#### Azure DevOps self-hosted pool requirements
+### Azure DevOps self-hosted pool requirements
 To connect to a temporary VM packer use WinRM or SSH connections on public IP interfaces.
 If you use a build agent located in an Azure subscription, please make sure that HTTPS/SSH ports are allowed for incoming/outgoing connections.
 In case of firewall restrictions, prohibiting connections from public addresses, private virtual network resources can be deployed and passed as arguments to the packer. This approach allows virtual machines to use private connections inside VLAN.
 
-#### Service principal
+### Service principal
 Packer uses Service Principal to authorize in Azure infrastructure. To setup image-generation CI or use packer manually — SP with full read-write permissions for selected Azure subscription needed.
 Detailed instruction can be found [here](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
 
@@ -79,12 +80,12 @@ Where:
 - `AdminPassword` - The administrator password for the virtual machine to be created.
 - `AzureLocation` - The location where the Azure virtual machine will be provisioned. Example: "eastus"
 
-\* *ARM-template can be obtained from the Packer output. For now, it seems like there is an [Az CLI bug](https://github.com/Azure/azure-cli/issues/5899) with specifying the template through a URI, so download the template from URI, that will be provided at the bottom of image-generation log, and use the local path of the template file.*
+\* *ARM-template can be obtained from the Packer output. For now, it seems like there is an [Az CLI bug](https://github.com/Azure/azure-cli/issues/5899) with specifying the template through a URI, so download the template from URI, that will be printed at the bottom of image-generation log, and use the local path of the template file.*
 
-The function creates an Azure VM from a template and also generates network resources in Azure to make the VM accessible.
+The function creates an Azure VM from a template and generates network resources in Azure to make the VM accessible.
 
-### Additional
-#### User variables
+## Additional
+### User variables
 The Packer template includes `variables` section containing user variables used in image generation. Each variable is defined as a key/value strings. User variables can be passed to packer via predefined environment variables, or as direct arguments, in case if packer started manually.
 
 - `client_id` - The application ID of the AAD Service Principal. Requires `client_secret`.
@@ -103,7 +104,7 @@ The Packer template includes `variables` section containing user variables used 
 - `capture_name_prefix` - VHD prefix. The final artifacts will be named PREFIX-osDisk.UUID and PREFIX-vmTemplate.UUID.
 - `github_feed_token` - Github PAT. Required for NPM toolcache installation. Will be depricated soon.
 
-#### Builder variables
+### Builder variables
 The `builders` section contains variables for the `azure-arm` builder used in the project. Most of the builder variables are inherited from the `user variables` section, however, the variables can be overwritten to adjust image-generation performance.
 
 - `vm_size` - Size of the VM used for building. This can be changed when you deploy a VM from your VHD.
