@@ -20,7 +20,7 @@ In case of firewall restrictions, prohibiting connections from public addresses,
 
 ### Service principal
 Packer uses Service Principal to authorize in Azure infrastructure. To setup image-generation CI or use packer manually — SP with full read-write permissions for selected Azure subscription needed.
-Detailed instruction can be found [here](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+Detailed instruction can be found in [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
 
 ### Prepare environment and image deployment
 #### How to prepare Windows build agent
@@ -111,7 +111,7 @@ The `builders` section contains variables for the `azure-arm` builder used in th
 - `image_os` - Type of OS that will be deployed as a temporary VM.
 - `image_version` - Specify version of an OS to boot from.
 
-**Detailed Azure builders documentation can be found [here](https://www.packer.io/docs/builders/azure).**
+**Detailed Azure builders documentation can be found in [packer documentation](https://www.packer.io/docs/builders/azure).**
 
 ### Toolset
 Configuration for some installed software is located in `toolset.json` files. These files define the list of Ruby, Python, Go versions, the list of PowerShell modules and VS components that will be installed to image. They can be changed if these tools are not required to reduce image generation time or image size.
