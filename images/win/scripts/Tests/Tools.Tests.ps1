@@ -247,6 +247,12 @@ Describe "ServiceFabricSDK" {
     }
 }
 
+Describe "yamllint" {
+    It "yamllint" {
+        "yamllint --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Svn" {
     It "svn" {
         "svn --version --quiet" | Should -ReturnZeroExitCode

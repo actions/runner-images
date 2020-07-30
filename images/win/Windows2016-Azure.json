@@ -339,7 +339,8 @@
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
-                "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1"
+                "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-YAMLLint.ps1"
             ]
         },
         {

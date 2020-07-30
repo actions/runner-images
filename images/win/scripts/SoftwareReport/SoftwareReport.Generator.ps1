@@ -98,7 +98,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-WinAppDriver),
     (Get-ZstdVersion),
     (Get-VSWhereVersion),
-    (Get-7zipVersion)
+    (Get-7zipVersion),
+    (Get-YAMLLintVersion)
 )
 
 $markdown += New-MDHeader "CLI Tools" -Level 3
