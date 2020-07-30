@@ -14,7 +14,7 @@ Function Install-Asset {
     wget $ReleaseAsset.download_url -nv --retry-connrefused --tries=10
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
-    $assetFolderPath = Join-Path $env:INSTALLER_SCRIPT_FOLDER $($ReleaseAsset.filename)
+    $assetFolderPath = (Join-Path $env:INSTALLER_SCRIPT_FOLDER $($ReleaseAsset.filename)) + "_tmp"
     New-Item -ItemType Directory -Path $assetFolderPath
     tar -xzf $ReleaseAsset.filename -C $assetFolderPath
 
@@ -22,6 +22,7 @@ Function Install-Asset {
     Push-Location -Path $assetFolderPath
     Invoke-Expression "bash ./setup.sh"
     Pop-Location
+    rm -rf $assetFolderPath
 }
 
 $ErrorActionPreference = "Stop"
