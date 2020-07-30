@@ -4,7 +4,7 @@ Each image template consists of a set of scripts that are executed on the virtua
 The Packer process initializes a connection to Azure subscription via Azure CLI, and automatically creates the temporary Azure resources required to build the source VM(temporary resource group, network interfaces, and VM from the "clean" image specified in the template). 
 If deployment succeeded, the build agent connects to the deployed VM and starts to execute installation steps from the selected template.
 In case if any template step fails, image generation will be aborted and temporary VM will be terminated.
-After successfull image generation, snapshot of temporary VM will be converted to VHD image and then uploaded to the specified Azure Storage Account.
+After successful image generation, a snapshot of the temporary VM will be converted to VHD image and then uploaded to the specified Azure Storage Account.
 
 ### Build Agent requirements
 - `OS` - Windows/Linux
