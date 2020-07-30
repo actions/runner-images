@@ -3,8 +3,8 @@ $caption = $os.Caption
 $osName = $caption.Substring(0, $caption.LastIndexOf(" "))
 $osEdition = $caption.Substring($caption.LastIndexOf(" ")+1)
 $osVersion = $os.Version
-$imageVersion = $env:IMAGE_VERSION
-$imageDataFile = $env:IMAGEDATA_FILE
+$imageVersion = $env:ImageVersion
+$imageDataFile = $env:ImageDataFile
 $githubUrl="https://github.com/actions/virtual-environments/blob"
 
 if ($caption -match "2019")
