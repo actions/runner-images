@@ -20,12 +20,9 @@
         "root_folder": "C:",
         "toolset_json_path": "{{env `TEMP`}}\\toolset.json",
         "image_folder": "C:\\image",
-        "commit_file": "C:\\image\\commit.txt",
         "imagedata_file": "C:\\imagedata.json",
-        "metadata_file": "C:\\image\\metadata.txt",
         "helper_script_folder": "C:\\Program Files\\WindowsPowerShell\\Modules\\",
         "psmodules_root_folder": "C:\\Modules",
-        "commit_id": "LATEST",
         "install_user": "installer",
         "install_password": null,
         "capture_name_prefix": "packer",
@@ -69,9 +66,7 @@
         {
             "type": "powershell",
             "inline":[
-                "New-Item -Path {{user `image_folder`}} -ItemType Directory -Force",
-                "Write-Output {{user `commit_id`}} > {{user `commit_file`}}",
-                "Write-Host (Get-Content -Path {{user `commit_file`}})"
+                "New-Item -Path {{user `image_folder`}} -ItemType Directory -Force"
             ]
         },
         {

@@ -1,6 +1,5 @@
 {
     "variables": {
-        "commit_url": "{{env `COMMIT_URL`}}",
         "client_id": "{{env `ARM_CLIENT_ID`}}",
         "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
         "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
@@ -14,7 +13,6 @@
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
         "image_folder": "/imagegeneration",
-        "commit_file": "/imagegeneration/commit.txt",
         "imagedata_file": "/imagegeneration/imagedata.json",
         "metadata_file": "/imagegeneration/metadatafile",
         "installer_script_folder": "/imagegeneration/installers",
@@ -58,9 +56,7 @@
             "type": "shell",
             "inline": [
                 "mkdir {{user `image_folder`}}",
-                "chmod 777 {{user `image_folder`}}",
-                "echo {{user `commit_url`}} > {{user `commit_file`}}",
-                "chmod +r {{user `commit_file`}}"
+                "chmod 777 {{user `image_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
