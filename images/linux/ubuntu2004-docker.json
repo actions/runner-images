@@ -1,0 +1,303 @@
+{
+    "variables": {
+        "image_folder": "/imagegeneration",
+        "commit_file": "/imagegeneration/commit.txt",
+        "imagedata_file": "/imagegeneration/imagedata.json",
+        "metadata_file": "/imagegeneration/metadatafile",
+        "installer_script_folder": "/imagegeneration/installers",
+        "helper_script_folder": "/imagegeneration/helpers",
+        "github_feed_token": null,
+        "go_default": "1.14",
+        "go_versions": "1.14",
+        "mysql_root_password": "mysqlroot",
+        "homebrew_prefix": "/usr/local",
+        "container_repository": "packer-agent",
+        "container_tags": "latest"
+    },
+    "sensitive-variables": ["client_secret", "github_feed_token"],
+    "builders": [
+        {
+            "type": "docker",
+            "commit": true,
+            "image": "ubuntu:20.04",
+            "changes": [
+                "CMD /azp/start.sh"
+            ],
+            "pull": true
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "apt-get update -y",
+                "apt-get install -y curl gnupg lsb-release wget apt-utils sudo"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "mkdir {{user `image_folder`}}",
+                "chmod 777 {{user `image_folder`}}",
+                "echo {{user `commit_url`}} > {{user `commit_file`}}",
+                "chmod +r {{user `commit_file`}}"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/base/repos.sh"
+            ],
+            "environment_vars": [
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/scripts/base/apt.sh",
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/scripts/base/limits.sh",
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/helpers",
+            "destination": "{{user `helper_script_folder`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/announcements.md",
+            "destination": "{{user `helper_script_folder`}}/announcements.md"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/installers",
+            "destination": "{{user `installer_script_folder`}}"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/preparemetadata.sh"
+            ],
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/preimagedata.sh"
+            ],
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGEDATA_FILE={{user `imagedata_file`}}"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/configure-environment.sh"
+            ],
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGE_OS={{user `image_os`}}"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/complete-snap-setup.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/ruby.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/git.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "HOMEBREW_PREFIX={{user `homebrew_prefix`}}",
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/7-zip.sh",
+                "{{template_dir}}/scripts/installers/ansible.sh",
+                "{{template_dir}}/scripts/installers/azcopy.sh",
+                "{{template_dir}}/scripts/installers/azure-cli.sh",
+                "{{template_dir}}/scripts/installers/azure-devops-cli.sh",
+                "{{template_dir}}/scripts/installers/basic.sh",
+                "{{template_dir}}/scripts/installers/aws.sh",
+                "{{template_dir}}/scripts/installers/build-essential.sh",
+                "{{template_dir}}/scripts/installers/clang.sh",
+                "{{template_dir}}/scripts/installers/cmake.sh",
+                "{{template_dir}}/scripts/installers/containers.sh",
+                "{{template_dir}}/scripts/installers/docker-compose.sh",
+                "{{template_dir}}/scripts/installers/docker-moby-docker.sh",
+                "{{template_dir}}/scripts/installers/dotnetcore-sdk.sh",
+                "{{template_dir}}/scripts/installers/gcc.sh",
+                "{{template_dir}}/scripts/installers/image-magick.sh",
+                "{{template_dir}}/scripts/installers/java-tools.sh",
+                "{{template_dir}}/scripts/installers/kubernetes-tools.sh",
+                "{{template_dir}}/scripts/installers/miniconda.sh",
+                "{{template_dir}}/scripts/installers/mono.sh",
+                "{{template_dir}}/scripts/installers/nvm.sh",
+                "{{template_dir}}/scripts/installers/nodejs.sh",
+                "{{template_dir}}/scripts/installers/bazel.sh",
+                "{{template_dir}}/scripts/installers/phantomjs.sh",
+                "{{template_dir}}/scripts/installers/pollinate.sh",
+                "{{template_dir}}/scripts/installers/postgresql.sh",
+                "{{template_dir}}/scripts/installers/powershellcore.sh",
+                "{{template_dir}}/scripts/installers/sbt.sh",
+                "{{template_dir}}/scripts/installers/selenium.sh",
+                "{{template_dir}}/scripts/installers/sphinx.sh",
+                "{{template_dir}}/scripts/installers/subversion.sh",
+                "{{template_dir}}/scripts/installers/terraform.sh",
+                "{{template_dir}}/scripts/installers/packer.sh",
+                "{{template_dir}}/scripts/installers/vcpkg.sh",
+                "{{template_dir}}/scripts/installers/vercel.sh",
+                "{{template_dir}}/scripts/installers/dpkg-config.sh",
+                "{{template_dir}}/scripts/installers/rndgenerator.sh",
+                "{{template_dir}}/scripts/installers/swig.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolcache-2004.json",
+            "destination": "{{user `installer_script_folder`}}/toolcache.json"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolset-2004.json",
+            "destination": "{{user `installer_script_folder`}}/toolset.json"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/azpowershell.sh",
+                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
+                "{{template_dir}}/scripts/installers/pypy.sh",
+                "{{template_dir}}/scripts/installers/python.sh",
+                "{{template_dir}}/scripts/installers/test-toolcache.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
+                "{{template_dir}}/scripts/installers/Configure-Toolset.ps1",
+                "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/cleanup.sh"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "file",
+            "source": "{{user `metadata_file`}}",
+            "destination": "{{template_dir}}/Ubuntu2004-docker-README.md",
+            "direction": "download"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "rm -rf {{user `helper_script_folder`}}",
+                "rm -rf {{user `installer_script_folder`}}",
+                "chmod 755 {{user `image_folder`}}"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/config/ubuntu2004.conf",
+            "destination": "/tmp/"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "mkdir -p /azp",
+                "touch /var/run/docker.sock"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/helpers/container-start.sh",
+            "destination": "/azp/start.sh"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "mkdir -p /etc/vsts",
+                "cp /tmp/ubuntu2004.conf /etc/vsts/machine_instance.conf"
+            ],
+            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "docker-tag",
+            "repository": "{{ user `container_repository` }}",
+            "tags": "{{ user `container_tags` }}"
+        }
+    ]
+}

@@ -27,9 +27,14 @@ fi
 MYSQL_ROOT_PASSWORD=root
 echo "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
+echo "mysql-server-8.0 mysql-server/root_password password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
+echo "mysql-server-8.0 mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
+
 
 # Install MySQL Server
 apt-get install -y mysql-server
+
+mysql_secure_installation
 
 #Install MySQL Dev tools
 apt install libmysqlclient-dev -y

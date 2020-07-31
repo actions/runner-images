@@ -1,0 +1,35 @@
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily
+  branches:
+    include:
+    - main
+  always: true
+
+trigger: none
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - main
+
+jobs:
+- job: build_container
+  timeoutInMinutes: 600
+  cancelTimeoutInMinutes: 30
+  steps:
+    - bash: packer build -var github_feed_token="$(github_feed_token)" -var "container_repository=$(container_repository_base)/$(container_repository_name)" -var "container_tags=$(Build.SourceBranchName)" ubuntu2004-docker.json
+      workingDirectory: images/linux
+    - task: Docker@2
+      inputs:
+        command: login
+        containerRegistry: $(container_registry_connection)
+    - task: Docker@2
+      inputs:
+        command: push
+        repository: $(container_repository_name)
+        containerRegistry: $(container_registry_connection)
+        tags: |
+          $(Build.SourceBranchName)
+
+

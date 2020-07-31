@@ -65,7 +65,7 @@ foreach($tool in $tools) {
         # Check if version folder exists
         $expectedVersionPath = Join-Path $toolPath $version
         if (-not (Test-Path $expectedVersionPath)) {
-            Write-Host "Expected $($tool.name) $version folder is not found!"
+            Write-Host "Expected $($tool.name) $version folder is not found ($expectedVersionPath)!"
             exit 1
         }
 

@@ -7,6 +7,9 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/install.sh
+set -a
+source /etc/environment
+set +a
 
 # This function installs PyPy using the specified arguments:
 #   $1=PACKAGE_URL

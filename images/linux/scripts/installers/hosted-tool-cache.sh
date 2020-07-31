@@ -6,6 +6,9 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+set -a
+source /etc/environment
+set +a
 
 # Fail out if any setups fail
 set -e

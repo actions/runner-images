@@ -10,7 +10,18 @@ source $HELPER_SCRIPTS/os.sh
 
 # Install Powershell
 if isUbuntu20 ; then
-    snap install powershell --classic --channel=edge/useedge
+
+   wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+   dpkg -i packages-microsoft-prod.deb
+   apt-get update
+   apt-get install -y apt-transport-https && \
+    apt-get update && \
+    apt-get install -y dotnet-sdk-3.1 && \
+
+   source /etc/profile
+   dotnet tool install --tool-path /usr/bin powershell
+   source /etc/profile
+    # snap install powershell --classic --channel=edge/useedge
 fi
 
 if isUbuntu16 || isUbuntu18 ; then
