@@ -373,6 +373,11 @@ function Get-WinVersion
     (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
 
+function Get-WinVersionNo
+{
+    "$((Get-CimInstance Win32_OperatingSystem).Version).$((Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name UBR).UBR)"
+}
+
 function Test-IsWin19
 {
     (Get-WinVersion) -match "2019"

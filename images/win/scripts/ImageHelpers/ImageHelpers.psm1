@@ -26,6 +26,7 @@ Export-ModuleMember -Function @(
     'Install-VsixExtension'
     'Get-VSExtensionVersion'
     'Get-WinVersion'
+    'Get-WinVersionNo'
     'Test-IsWin19'
     'Test-IsWin16'
     'Choco-Install'

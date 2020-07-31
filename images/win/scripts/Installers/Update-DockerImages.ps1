@@ -5,12 +5,12 @@
 ################################################################################
 
 function DockerPull {
-    Param ([string]$image)
+    Param ([string]$image, [switch]$ignoreErrors)
 
     Write-Host Installing $image ...
     docker pull $image
 
-    if (!$?) {
+    if (!$? -and !$ignoreErrors) {
       Write-Host "Docker pull failed with a non-zero exit code"
       exit 1
     }
@@ -31,3 +31,5 @@ if (Test-IsWin19) {
 }
 
 DockerPull microsoft/aspnetcore-build:1.0-2.0
+
+DockerPull "mcr.microsoft.com/dynamicsnav:$(Get-WindowsVersionNumber)-generic" -ignoreErrors
