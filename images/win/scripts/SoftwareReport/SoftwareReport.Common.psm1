@@ -270,3 +270,7 @@ function Get-PacmanVersion {
     $pacmanVersion = $matches[0]
     return "- Pacman $pacmanVersion"
 }
+
+function Get-YAMLLintVersion {
+    yamllint --version
+}

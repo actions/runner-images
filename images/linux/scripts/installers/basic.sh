@@ -60,7 +60,8 @@ cmd_packages="curl
               flex
               patchelf
               bzip2
-              sqlite3"
+              sqlite3
+              yamllint"
 
 if isUbuntu20 ; then
     echo "Install python2"

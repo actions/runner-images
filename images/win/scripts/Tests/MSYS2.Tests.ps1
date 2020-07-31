@@ -16,6 +16,7 @@ Describe "MSYS2" {
         @{ ToolName = "gcc.exe" }
         @{ ToolName = "cmake.exe" }
         @{ ToolName = "g++.exe" }
+        @{ ToolName = "clang-tidy.exe" }
     ) {
         Join-Path $msys2mingwDir $ToolName | Should -Exist
     }
