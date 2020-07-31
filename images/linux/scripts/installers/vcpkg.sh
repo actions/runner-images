@@ -7,13 +7,21 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
 
 # Set env variable for vcpkg
 VCPKG_INSTALLATION_ROOT=/usr/local/share/vcpkg
 echo "VCPKG_INSTALLATION_ROOT=${VCPKG_INSTALLATION_ROOT}" | tee -a /etc/environment
 
-# Install vcpkg
-git clone --depth=1 https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
+# Download the latest vcpkg release
+TarballUrl=$(curl -s https://api.github.com/repos/Microsoft/vcpkg/releases/latest | jq -r '.tarball_url')
+TarballName="vcpkg.tar.gz"
+
+echo "Download from $TarballUrl to /tmp/$TarballName"
+download_with_retries $TarballUrl "/tmp" $TarballName
+
+echo "Expand $TarballName to $VCPKG_INSTALLATION_ROOT"
+tar -xzvf "/tmp/$TarballName" -C $VCPKG_INSTALLATION_ROOT
 
 # vcpkg requires g++ version 7+, yet Ubuntu 16 default is 5.4. Set version 7 as default temporarily
 if isUbuntu16; then
