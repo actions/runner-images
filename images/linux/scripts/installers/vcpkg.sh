@@ -21,7 +21,7 @@ echo "Download from $TarballUrl to /tmp/$TarballName"
 download_with_retries $TarballUrl "/tmp" $TarballName
 
 echo "Expand $TarballName to $VCPKG_INSTALLATION_ROOT"
-tar -xzvf "/tmp/$TarballName" -C $VCPKG_INSTALLATION_ROOT --strip-components=1
+tar -xzvf "/tmp/$TarballName" -C "/usr/local/share"
 
 # vcpkg requires g++ version 7+, yet Ubuntu 16 default is 5.4. Set version 7 as default temporarily
 if isUbuntu16; then
