@@ -134,23 +134,10 @@
         },
         {
             "type": "powershell",
-            "elevated_user": "SYSTEM",
-            "elevated_password": "",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-WSL.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Msys2.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-ContainersFeature.ps1"
             ]
-        },
-        {
-            "type": "windows-restart",
-            "restart_timeout": "10m"
         },
         {
             "type": "powershell",
@@ -159,6 +146,10 @@
               "setx ImageOS {{user `image_os` }} /m",
               "setx ImageDataFile {{user `imagedata_file` }} /m"
             ]
+        },
+        {
+            "type": "windows-restart",
+            "restart_timeout": "10m"
         },
         {
             "type": "powershell",
@@ -262,6 +253,15 @@
                 "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1"
                 
+            ]
+        },
+        {
+            "type": "powershell",
+            "elevated_user": "SYSTEM",
+            "elevated_password": "",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Windows2019/Install-WSL.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Msys2.ps1"
             ]
         },
         {
