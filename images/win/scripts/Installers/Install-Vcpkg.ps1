@@ -3,21 +3,23 @@
 ##  Desc:  Install vcpkg
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
+Write-Host "Download the latest vcpkg version..."
+$vcpkgDownloadUrl = (Invoke-RestMethod "https://api.github.com/repos/microsoft/vcpkg/releases/latest").tarball_url
+$installDir = 'C:\vcpkg'
+New-Item $installDir -type directory
+$tempPath = Join-Path -Path "${env:Temp}" -ChildPath "vcpkg.tar.gz"
+Invoke-WebRequest $vcpkgDownloadUrl -OutFile $tempPath
 
-$Uri = 'https://github.com/Microsoft/vcpkg.git'
-$InstallDir = 'C:\vcpkg'
-$VcpkgExecPath = 'vcpkg.exe'
-
-git clone --depth=1 $Uri $InstallDir -q
+Write-Host "Expand vcpkg archive"
+tar -xzvf $tempPath -C $installDir --strip-components=1
 
 # Build and integrate vcpkg
-Invoke-Expression "$InstallDir\bootstrap-vcpkg.bat"
-Invoke-Expression "$InstallDir\$VcpkgExecPath integrate install"
+Invoke-Expression "$installDir\bootstrap-vcpkg.bat"
+Invoke-Expression "$installDir\vcpkg.exe integrate install"
 
 # Add vcpkg to system environment
-Add-MachinePathItem $InstallDir
+Add-MachinePathItem $installDir
 $env:Path = Get-MachinePath
-setx VCPKG_INSTALLATION_ROOT $InstallDir /M
+setx VCPKG_INSTALLATION_ROOT $installDir /M
 
 Invoke-PesterTests -TestFile "Tools" -TestName "Vcpkg"
