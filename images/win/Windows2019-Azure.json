@@ -86,8 +86,23 @@
         },
         {
             "type": "file",
+            "source": "{{ template_dir }}/announcements.md",
+            "destination": "{{user `image_folder`}}/SoftwareReport/announcements.md"
+        },
+        {
+            "type": "file",
             "source": "{{ template_dir }}/scripts/Tests",
             "destination": "{{user `image_folder`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolcache-2019.json",
+            "destination": "{{user `root_folder`}}/toolcache.json"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolset-2019.json",
+            "destination": "{{user `toolset_json_path`}}"
         },
         {
             "type": "windows-shell",
@@ -107,10 +122,13 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "ImageVersion={{user `image_version`}}"
+                "ImageVersion={{user `image_version`}}",
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Initialize-VM.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-PowerShellModules.ps1",
+                "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1"
             ],
             "execution_policy": "unrestricted"
         },
@@ -178,19 +196,7 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Docker.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-PowershellCore.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Update-DockerImages.ps1"
+                "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1"
             ]
         },
         {
@@ -199,8 +205,11 @@
                 0,
                 3010
             ],
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-VS2019.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-VS.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
@@ -253,42 +262,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Wix.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-WSL.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Windows2019/Validate-SSDTExtensions.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-NET48.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-WDK.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-ServiceFabricSDK.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1"
             ]
         },
@@ -323,16 +296,6 @@
             ]
         },
         {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolcache-2019.json",
-            "destination": "{{user `root_folder`}}/toolcache.json"
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolset-2019.json",
-            "destination": "{{user `toolset_json_path`}}"
-        },
-        {
             "type": "powershell",
             "environment_vars":[
                 "GITHUB_FEED_TOKEN={{ user `github_feed_token` }}",
@@ -351,7 +314,8 @@
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
-                "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1"
+                "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-YAMLLint.ps1"
             ]
         },
         {
@@ -461,12 +425,6 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-WinAppDriver.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
             ]
         },
@@ -479,13 +437,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-AWS.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-R.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-AWS-SAM.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-AWS.ps1"
             ]
         },
         {
@@ -496,6 +454,9 @@
         },
         {
             "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Update-AndroidSDK.ps1"
             ]
@@ -678,190 +639,6 @@
         },
         {
             "type": "powershell",
-            "environment_vars":[
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
-                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
-            ],
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-AzureModules.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-AzureCli.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-AWS-SAM.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-AzureDevOpsCli.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-AzCopy.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Msys2.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-OpenSSL.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Perl.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-PHP.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Rust.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Svn.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Sbt.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-NodeLts.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-DACFx.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-DotnetSDK.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-MysqlCli.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-SQLPowerShellTools.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-TypeScript.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Stack.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Miniconda.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-AzureCosmosDbEmulator.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Packer.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Zstd.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-NSIS.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Vcpkg.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-PostgreSQL.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-VSWhere.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-Bazel.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-AliyunCli.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
-                "{{ template_dir }}/scripts/Installers/Validate-DiskSpace.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
             ],
@@ -879,6 +656,7 @@
             ],
             "environment_vars":[
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}",
                 "ROOT_FOLDER={{user `root_folder`}}"
             ]
         },
@@ -886,6 +664,9 @@
             "type": "powershell",
             "inline": [
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
+            ],
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ]
         },
         {
@@ -923,6 +704,12 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1"
             ]
         },
         {

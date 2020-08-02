@@ -2,7 +2,7 @@
     "toolcache": [
         {
             "name": "Python",
-            "url" : "https://raw.githubusercontent.com/actions/python-versions/master/versions-manifest.json",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
             "platform" : "linux",
             "platform_version": "18.04",
             "arch": "x64",
@@ -25,7 +25,7 @@
         },
         {
             "name": "node",
-            "url" : "https://raw.githubusercontent.com/actions/node-versions/master/versions-manifest.json",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
             "platform" : "linux",
             "arch": "x64",
             "versions": [
@@ -37,7 +37,7 @@
         },
         {
             "name": "go",
-            "url" : "https://raw.githubusercontent.com/actions/go-versions/master/versions-manifest.json",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
             "arch": "x64",
             "platform" : "linux",
             "versions": [
@@ -50,7 +50,7 @@
         },
         {
             "name": "boost",
-            "url" : "https://raw.githubusercontent.com/actions/boost-versions/master/versions-manifest.json",
+            "url" : "https://raw.githubusercontent.com/actions/boost-versions/main/versions-manifest.json",
             "platform" : "linux",
             "platform_version": "18.04",
             "arch": "x64",
@@ -72,7 +72,8 @@
                 "3.1.0",
                 "3.5.0",
                 "3.8.0",
-                "4.3.0"
+                "4.3.0",
+                "4.4.0"
             ]
         }
     ]

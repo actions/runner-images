@@ -57,6 +57,7 @@ echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
     "platforms;android-17" \
     "platforms;android-15" \
     "platforms;android-10" \
+    "build-tools;30.0.1" \
     "build-tools;30.0.0" \
     "build-tools;29.0.3" \
     "build-tools;29.0.2" \
@@ -132,6 +133,7 @@ DocumentInstalledItem "Android SDK Platform 17"
 DocumentInstalledItem "Android SDK Platform 15"
 DocumentInstalledItem "Android SDK Platform 10"
 DocumentInstalledItem "Android SDK Patch Applier v4"
+DocumentInstalledItem "Android SDK Build-Tools 30.0.1"
 DocumentInstalledItem "Android SDK Build-Tools 30.0.0"
 DocumentInstalledItem "Android SDK Build-Tools 29.0.3"
 DocumentInstalledItem "Android SDK Build-Tools 29.0.2"
