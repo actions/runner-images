@@ -274,3 +274,21 @@ function Get-PacmanVersion {
 function Get-YAMLLintVersion {
     yamllint --version
 }
+
+function Get-Announcements {
+    param (
+        [string] $AnnouncementString
+    )
+
+    $rawAnnouncements = $AnnouncementString.Split(";;")
+    $announcements = @()
+    foreach ($rawAnnouncement in $rawAnnouncements) {
+        $rawAnnouncement = $rawAnnouncement.split("===")
+        $title = $rawAnnouncement[0]
+        $url = $rawAnnouncement[1]
+        $announcements += [PSCustomObject]@{
+            Announcements = "[$title]($url)"
+        }
+    }
+    return $announcements
+}

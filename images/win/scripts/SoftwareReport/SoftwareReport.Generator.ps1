@@ -10,9 +10,10 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -Disa
 
 $markdown = ""
 
-$Announcements = Get-Content -Path $(Join-Path $PSScriptRoot "announcements.md") -Raw
-$markdown += $Announcements
-$markdown += New-MDNewLine
+if ($env:announcements) {
+    $markdown += (Get-Announcements $env:announcements) | New-MDTable
+    $markdown += New-MDNewLine
+}
 
 $OSName = Get-OSName
 $markdown += New-MDHeader "$OSName" -Level 1

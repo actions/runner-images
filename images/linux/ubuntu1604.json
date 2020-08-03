@@ -24,7 +24,8 @@
         "image_version": "dev",
         "image_os": "ubuntu16",
         "github_feed_token": null,
-        "run_validation_diskspace": "false"
+        "run_validation_diskspace": "false",
+        "announcements": "{{env `UBUNTU_ANNOUNCEMENTS`}}"
     },
     "sensitive-variables": ["client_secret", "github_feed_token"],
     "builders": [
@@ -88,11 +89,6 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/announcements.md",
-            "destination": "{{user `helper_script_folder`}}/announcements.md"
-        },
-        {
-            "type": "file",
             "source": "{{template_dir}}/scripts/installers",
             "destination": "{{user `installer_script_folder`}}"
         },
@@ -104,7 +100,8 @@
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
                 "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "ANNOUNCEMENTS={{user `announcements`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },

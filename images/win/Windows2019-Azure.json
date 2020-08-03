@@ -31,7 +31,8 @@
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "win19",
-        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
+        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
+        "announcements": "{{env `WINDOWS_ANNOUNCEMENTS`}}"
     },
     "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
@@ -83,11 +84,6 @@
             "type": "file",
             "source": "{{ template_dir }}/scripts/SoftwareReport",
             "destination": "{{user `image_folder`}}"
-        },
-        {
-            "type": "file",
-            "source": "{{ template_dir }}/announcements.md",
-            "destination": "{{user `image_folder`}}/SoftwareReport/announcements.md"
         },
         {
             "type": "file",
@@ -666,7 +662,8 @@
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ],
             "environment_vars":[
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+                "ANNOUNCEMENTS={{user `announcements`}}"
             ]
         },
         {
