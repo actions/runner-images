@@ -151,8 +151,7 @@
             "type": "powershell",
             "inline": [
               "setx ImageVersion {{user `image_version` }} /m",
-              "setx ImageOS {{user `image_os` }} /m",
-              "setx ImageFile {{user `imagedata_file`}} /m"
+              "setx ImageOS {{user `image_os` }} /m"
             ]
         },
         {
@@ -161,8 +160,17 @@
         },
         {
             "type": "powershell",
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGEDATA_FILE={{user `imagedata_file`}}"
+            ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1",
+                "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"
             ]
@@ -264,6 +272,10 @@
                 "{{ template_dir }}/scripts/Installers/Install-Selenium.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1"
             ]
+        },
+        {
+            "type": "windows-shell",
+            "inline": ["wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"]
         },
         {
             "type": "powershell",
