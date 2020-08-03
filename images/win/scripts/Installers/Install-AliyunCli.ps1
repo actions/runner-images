@@ -10,8 +10,11 @@ $url = 'https://api.github.com/repos/aliyun/aliyun-cli/releases/latest'
 $aliyunArchivePath = Start-DownloadWithRetry -Url $aliyunLatest -Name "aliyin-cli.zip"
 
 Write-Host "Expand aliyun-cli archive"
-# Expand aliyun.exe to System32 directory
-$DestinationPath = [System.Environment]::SystemDirectory
-Extract-7Zip -Path $aliyunArchivePath -DestinationPath $DestinationPath
+$aliyunPath = "C:\aliyun-cli"
+New-Item -Path $aliyunPath -ItemType Directory -Force
+Extract-7Zip -Path $aliyunArchivePath -DestinationPath $aliyunPath
+
+# Add aliyun-cli to path
+Add-MachinePathItem $aliyunPath
 
 Invoke-PesterTests -TestFile "Tools" -TestName "AliyunCli"
