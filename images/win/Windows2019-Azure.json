@@ -32,7 +32,7 @@
         "image_version": "dev",
         "image_os": "win19",
         "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
-        "announcements": "{{env `WINDOWS_ANNOUNCEMENTS`}}"
+        "announcements": "{{env `ANNOUNCEMENTS`}}"
     },
     "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [

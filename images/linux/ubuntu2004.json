@@ -27,7 +27,7 @@
         "run_validation_diskspace": "false",
         "go_default": "1.14",
         "go_versions": "1.14",
-        "announcements": "{{env `UBUNTU_ANNOUNCEMENTS`}}"
+        "announcements": "{{env `ANNOUNCEMENTS`}}"
     },
     "sensitive-variables": ["client_secret", "github_feed_token"],
     "builders": [
