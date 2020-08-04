@@ -133,4 +133,4 @@ Write-Host "Disk sizes after expansion"
 wmic logicaldisk get size,freespace,caption
 
 Write-Host "Remove default Azure Powershell"
-wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive
+wmic /node:$pc product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive
