@@ -1,5 +1,5 @@
 # Virtual-Environments
-The virtual-environment project uses packer tool and contains templates for the following platforms: Windows 2016/2019, Ubuntu 16.04/18.04/20.04. 
+The virtual-environments project uses [Packer](https://www.packer.io/) to generate disk images for the following platforms: Windows 2016/2019, Ubuntu 16.04/18.04/20.04. 
 Each image template consists of a set of scripts that are executed on the virtual machine. 
 The Packer process initializes a connection to Azure subscription via Azure CLI, and automatically creates the temporary Azure resources required to build the source VM(temporary resource group, network interfaces, and VM from the "clean" image specified in the template). 
 If deployment succeeded, the build agent connects to the deployed VM and starts to execute installation steps from the selected template.
