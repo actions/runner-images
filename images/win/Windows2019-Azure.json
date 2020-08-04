@@ -213,7 +213,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzCopy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-7zip.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Packer.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Packer.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
             ]
         },
         {
@@ -298,7 +299,6 @@
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-VSWhere.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WinAppDriver.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Cmake.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-R.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AWS.ps1",
