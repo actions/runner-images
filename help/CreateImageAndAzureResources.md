@@ -1,9 +1,9 @@
 # Virtual-Environments
 The virtual-environments project uses [Packer](https://www.packer.io/) to generate disk images for the following platforms: Windows 2016/2019, Ubuntu 16.04/18.04/20.04. 
-Each image template consists of a set of scripts that are executed on the virtual machine. 
+Each image is configured through a JSON template that Packer understands and which specifies where to build the image (Azure in this case), and what scripts to run to install software and prepare the disk.
 The Packer process initializes a connection to Azure subscription via Azure CLI, and automatically creates the temporary Azure resources required to build the source VM(temporary resource group, network interfaces, and VM from the "clean" image specified in the template). 
-If deployment succeeded, the build agent connects to the deployed VM and starts to execute installation steps from the selected template.
-In case if any template step fails, image generation will be aborted and temporary VM will be terminated.
+If the VM deployment succeeds, the build agent connects to the VM and starts to execute installation steps from the JSON template.
+If any step in the JSON template fails, image generation will be aborted and the temporary VM will be terminated. Packer will also attempt to cleanup all the temporary resources it created (unless otherwise told).
 After successful image generation, a snapshot of the temporary VM will be converted to VHD image and then uploaded to the specified Azure Storage Account.
 
 ## Prerequisites and Image-generation
