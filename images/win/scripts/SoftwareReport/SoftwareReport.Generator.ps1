@@ -11,7 +11,9 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -Disa
 $markdown = ""
 
 if ($env:ANNOUNCEMENTS) {
-    $markdown += (Get-Announcements $env:announcements) | New-MDTable
+    $markdown += $env:ANNOUNCEMENTS
+    $markdown += New-MDNewLine
+    $markdown += "***"
     $markdown += New-MDNewLine
 }
 
