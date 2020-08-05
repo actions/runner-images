@@ -110,8 +110,7 @@
                 "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y" ,
                 "net localgroup Administrators {{user `install_user`}} /add",
                 "winrm set winrm/config/service/auth @{Basic=\"true\"}",
-                "winrm get winrm/config/service/auth",
-                "wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"
+                "winrm get winrm/config/service/auth"
             ]
         },
         {
@@ -238,6 +237,10 @@
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Download-ToolCache.ps1"
             ]
+        },
+        {
+            "type": "windows-shell",
+            "inline": ["wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"]
         },
         {
             "type": "powershell",
