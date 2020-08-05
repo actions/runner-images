@@ -1,6 +1,6 @@
 
-Describe "AzureCli" {
-    It "AzureCli" {
+Describe "Azure CLI" {
+    It "Azure CLI" {
         "az --version" | Should -ReturnZeroExitCode
     }
 }
@@ -11,8 +11,8 @@ Describe "Azure DevOps CLI" {
     }
 }
 
-Describe "AliyunCli" {
-    It "AliyunCli" {
+Describe "Aliyun CLI" {
+    It "Aliyun CLI" {
         "aliyun version" | Should -ReturnZeroExitCode
     }
 }
@@ -33,13 +33,13 @@ Describe "AWS" {
 }
 
 
-Describe "GitHub-CLI" {
+Describe "GitHub CLI" {
     It "gh" {
         "gh --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "CloudFoundryCli" {
+Describe "CloudFoundry CLI" {
     It "cf is located in C:\cf-cli" {
         "C:\cf-cli\cf.exe" | Should -Exist
     }
