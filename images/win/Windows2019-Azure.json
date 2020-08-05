@@ -165,12 +165,7 @@
                 "IMAGEDATA_FILE={{user `imagedata_file`}}"
             ],
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts":[
+                "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"
             ]
