@@ -299,13 +299,13 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-7zip.ps1"
             ]
         },
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-7zip.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1"
             ]
         },
         {
