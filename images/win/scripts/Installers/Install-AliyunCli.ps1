@@ -5,4 +5,4 @@
 
 Choco-Install -PackageName aliyun-cli
 
-Invoke-PesterTests -TestFile "Tools" -TestName "AliyunCli"
+Invoke-PesterTests -TestFile "CLI.Tools" -TestName "AliyunCli"

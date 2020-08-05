@@ -5,4 +5,4 @@
 
 az extension add -n azure-devops
 
-Invoke-PesterTests -TestFile "Tools" -TestName "Azure DevOps CLI"
+Invoke-PesterTests -TestFile "CLI.Tools" -TestName "Azure DevOps CLI"
