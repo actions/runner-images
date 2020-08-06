@@ -221,3 +221,7 @@ function Get-GoogleCloudSDKVersion {
 function Get-NewmanVersion {
     return "Newman $(newman --version)"
 }
+
+function Get-GHVersion {
+    return "GitHub CLI $(gh --version)"
+}

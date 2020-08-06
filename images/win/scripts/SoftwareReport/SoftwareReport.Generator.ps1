@@ -70,6 +70,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader "Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzCosmosDBEmulatorVersion),
+    (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
     (Get-CMakeVersion),
@@ -78,6 +79,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-DockerComposeVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
+    (Get-GoogleCloudSDKVersion),
     (Get-InnoSetupVersion),
     (Get-JQVersion),
     (Get-KubectlVersion),
@@ -105,7 +107,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader "CLI Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzureCLIVersion),
-    (Get-AzCopyVersion),
     (Get-AzureDevopsExtVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMVersion),
@@ -113,7 +114,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AlibabaCLIVersion),
     (Get-CloudFoundryVersion),
     (Get-HubVersion),
-    (Get-GoogleCloudSDKVersion)
+    (Get-GHVersion)
 )
 
 $markdown += New-MDHeader "Rust Tools" -Level 3

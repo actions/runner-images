@@ -17,4 +17,4 @@ Extract-7Zip -Path $aliyunArchivePath -DestinationPath $aliyunPath
 # Add aliyun-cli to path
 Add-MachinePathItem $aliyunPath
 
-Invoke-PesterTests -TestFile "Tools" -TestName "AliyunCli"
+Invoke-PesterTests -TestFile "CLI.Tools" -TestName "Aliyun CLI"

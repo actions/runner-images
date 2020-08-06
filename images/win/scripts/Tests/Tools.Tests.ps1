@@ -6,26 +6,6 @@ Describe "7-Zip" {
     }
 }
 
-Describe "AliyunCli" {
-    It "AliyunCli" {
-        "aliyun version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "AWS" {
-    It "AWS CLI" {
-        "aws --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Session Manager Plugin for the AWS CLI" {
-        session-manager-plugin | Out-String | Should -Match "plugin was installed successfully"
-    }
-
-    It "AWS SAM CLI" {
-        "sam --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "AzCopy" {
     It "AzCopy" {
         "azcopy --version" | Should -ReturnZeroExitCode
@@ -43,18 +23,6 @@ Describe "Azure Cosmos DB Emulator" {
     It "Azure Cosmos DB Emulator exe file exists" -TestCases @{installDir = $installDir} {
         $exeFilePath = Join-Path $installDir 'CosmosDB.Emulator.exe'
         $exeFilePath | Should -Exist
-    }
-}
-
-Describe "AzureCli" {
-    It "AzureCli" {
-        "az --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Azure DevOps CLI" {
-    It "az devops" {
-        "az devops -h" | Should -ReturnZeroExitCode
     }
 }
 
@@ -159,22 +127,6 @@ Describe "Mingw64" {
 Describe "InnoSetup" {
     It "InnoSetup" {
         (Get-Command -Name iscc).CommandType | Should -BeExactly "Application"
-    }
-}
-
-Describe "GitHub-CLI" {
-    It "gh" {
-        "gh --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "CloudFoundryCli" {
-    It "cf is located in C:\cf-cli" {
-        "C:\cf-cli\cf.exe" | Should -Exist
-    }
-
-    It "cf" {
-        "cf --version" | Should -ReturnZeroExitCode
     }
 }
 
