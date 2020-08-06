@@ -38,7 +38,9 @@ common_packages="dnsutils
                  gnupg2
                  lib32z1
                  texinfo
-                 libsqlite3-dev"
+                 libsqlite3-dev
+                 libc++-dev
+                 libc++abi-dev"
 
 cmd_packages="curl
               file
@@ -83,8 +85,6 @@ apt-get install -y --no-install-recommends $libcurelVer
 # install additional packages only for Ubuntu16.04
 if isUbuntu16; then
     common_packages="$common_packages
-            libc++-dev
-            libc++abi-dev
             libicu55"
 fi
 
