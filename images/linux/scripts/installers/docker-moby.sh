@@ -52,6 +52,7 @@ fi
 docker pull node:10
 docker pull node:12
 docker pull buildpack-deps:stretch
+docker pull buildpack-deps:buster
 docker pull node:10-alpine
 docker pull node:12-alpine
 docker pull debian:8
