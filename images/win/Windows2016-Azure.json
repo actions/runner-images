@@ -125,7 +125,7 @@
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-PowerShellModules.ps1",
                 "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-WebPI.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1"
             ],
             "execution_policy": "unrestricted"
         },
