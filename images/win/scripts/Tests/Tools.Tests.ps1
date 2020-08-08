@@ -243,6 +243,12 @@ Describe "VSWhere" {
     }
 }
 
+Describe "WebPlatformInstaller" {
+    It "WebPlatformInstaller" {
+        "WebPICMD" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Zstd" {
     It "zstd" {
         "zstd -V" | Should -ReturnZeroExitCode
