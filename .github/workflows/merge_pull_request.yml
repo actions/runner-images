@@ -11,11 +11,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: Resolve possible conflicts ${{ github.event.client_payload.ReleaseBranchName }} with main
       run: |
         git checkout ${{ github.event.client_payload.ReleaseBranchName }}
         git merge --no-edit --strategy-option=ours main
+        git push origin ${{ github.event.client_payload.ReleaseBranchName }}
         git checkout main
 
     - name: Merge pull request for ${{ github.event.client_payload.ReleaseBranchName }}
