@@ -12,7 +12,7 @@ source $HELPER_SCRIPTS/os.sh
 if isUbuntu20 ; then
     snap install powershell --classic --channel=edge/useedge
     # add perm to allow creating user-specific non-essential runtime files and other file objects
-    chmod +R 777 /run/user
+    chmod -R 777 /run/user
 fi
 
 if isUbuntu16 || isUbuntu18 ; then
