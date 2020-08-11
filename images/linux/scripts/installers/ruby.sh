@@ -15,3 +15,5 @@ apt-get install -y libz-dev openssl libssl-dev
 
 DocumentInstalledItem "ruby ($(ruby --version 2>&1 | cut -d ' ' -f 2))"
 DocumentInstalledItem "gem ($(gem -v 2>&1 | tail -n 1))"
+DocumentInstalledItem "$(openssl version)"
+DocumentInstalledItem "Libssl $(dpkg -l libssl-dev | grep '^ii' | awk '{print $3}')"
