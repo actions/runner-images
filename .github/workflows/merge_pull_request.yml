@@ -16,8 +16,8 @@ jobs:
 
     - name: Resolve possible conflicts ${{ github.event.client_payload.ReleaseBranchName }} with main
       run: |
-        git config --global user.email "no-reply@microsoft.com"
-        git config --global user.name "Image generation service account."
+        git config --global user.email "no-reply@github.com"
+        git config --global user.name "Actions service account"
         git checkout ${{ github.event.client_payload.ReleaseBranchName }}
         git merge --no-edit --strategy-option=ours main
         git push origin ${{ github.event.client_payload.ReleaseBranchName }}
