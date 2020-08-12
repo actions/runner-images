@@ -17,8 +17,8 @@ jobs:
     - name: Clone release branch to create pull request
       run: |
         git checkout ${{ github.event.client_payload.ReleaseBranchName }}
-        git branch ${{ github.event.client_payload.ReleaseBranchName }}-pull-request
-        git push origin ${{ github.event.client_payload.ReleaseBranchName }}-pull-request
+        git branch ${{ github.event.client_payload.ReleaseBranchName }}-docs
+        git push origin ${{ github.event.client_payload.ReleaseBranchName }}-docs
 
     - name: Create pull request for ${{ github.event.client_payload.ReleaseBranchName }}
       uses: actions/github-script@v2
@@ -29,7 +29,7 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             title: "${{ github.event.client_payload.PullRequestTitle }}",
-            head: "${{ github.event.client_payload.ReleaseBranchName }}-pull-request",
+            head: "${{ github.event.client_payload.ReleaseBranchName }}-docs",
             base: "${{ github.event.client_payload.PullRequestBase }}",
             body: `${{ github.event.client_payload.PullRequestBody }}`
           });
