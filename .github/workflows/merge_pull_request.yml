@@ -18,9 +18,9 @@ jobs:
       run: |
         git config --global user.email "no-reply@github.com"
         git config --global user.name "Actions service account"
-        git checkout ${{ github.event.client_payload.ReleaseBranchName }}
+        git checkout ${{ github.event.client_payload.ReleaseBranchName }}-pull-request
         git merge --no-edit --strategy-option=ours main
-        git push origin ${{ github.event.client_payload.ReleaseBranchName }}
+        git push origin ${{ github.event.client_payload.ReleaseBranchName }}-pull-request
         git checkout main
 
     - name: Merge pull request for ${{ github.event.client_payload.ReleaseBranchName }}
