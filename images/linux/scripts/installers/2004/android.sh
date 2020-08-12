@@ -28,7 +28,7 @@ unzip android-sdk.zip -d ${ANDROID_SDK_ROOT}
 rm -f android-sdk.zip
 
 # Add required permissions
-chmod -R a+X ${ANDROID_SDK_ROOT}
+chmod -R a+rwx ${ANDROID_SDK_ROOT}
 
 if isUbuntu20 ; then
     # Sdk manager doesn't work with Java > 8, set version 8 explicitly
