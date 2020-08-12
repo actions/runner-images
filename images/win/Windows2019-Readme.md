@@ -85,7 +85,7 @@
 - Alibaba Cloud CLI 3.0.56
 - Cloud Foundry CLI 6.51.0
 - Hub CLI 2.14.2
-- GitHub CLI gh version 0.11.1 (2020-07-28) https://github.com/cli/cli/releases/tag/v0.11.1
+- GitHub CLI 0.11.1
 
 ### Rust Tools
 - Rust 1.45.2
