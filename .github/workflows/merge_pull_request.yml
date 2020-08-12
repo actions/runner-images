@@ -21,7 +21,7 @@ jobs:
         git checkout ${{ github.event.client_payload.ReleaseBranchName }}-pull-request
         git merge --no-edit --strategy-option=ours main
         git push origin ${{ github.event.client_payload.ReleaseBranchName }}-pull-request
-        git checkout main
+        sleep 30
 
     - name: Merge pull request for ${{ github.event.client_payload.ReleaseBranchName }}
       uses: actions/github-script@v2
