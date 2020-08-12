@@ -148,5 +148,3 @@ fi
 
 DocumentInstalledItem "Composer  ($(composer --version))"
 DocumentInstalledItem "PHPUnit ($(phpunit --version))"
-DocumentInstalledItem "$(openssl version)"
-DocumentInstalledItem "Libssl $(dpkg -l libssl-dev | grep '^ii' | awk '{print $3}')"

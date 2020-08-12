@@ -93,8 +93,7 @@ function Get-MercurialVersion {
 }
 
 function Get-NSISVersion {
-    $(choco list --local-only nsis | Out-String) -match "nsis (?<version>\d+\.\d+\.?\d*\.?\d*)" | Out-Null
-    $nsisVersion = $Matches.Version
+    $nsisVersion =  &"c:\Program Files (x86)\NSIS\makensis.exe" "/Version"
     return "NSIS $nsisVersion"
 }
 
