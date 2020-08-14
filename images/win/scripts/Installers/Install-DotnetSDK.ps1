@@ -7,6 +7,9 @@
 # ensure temp
 New-Item -Path C:\Temp -Force -ItemType Directory
 
+# Set environment variables
+Set-SystemVariable -SystemVariable DOTNET_MULTILEVEL_LOOKUP -Value "0"
+
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
 $templates = @(
