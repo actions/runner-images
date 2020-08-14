@@ -46,19 +46,33 @@ extras=$(cat $toolsetJson  | jq -r '.android.extra_list[]|"extras;" + .')
 addons=$(cat $toolsetJson  | jq -r '.android.addon_list[]|"add-ons;" + .')
 additional=$(cat $toolsetJson  | jq -r '.android.additional_tools[]')
 
+echo "platofrms = $platforms"
+echo "buildtools = $buildtools"
+echo "extras = $extras"
+echo "addons = $addons"
+echo "additional = $additional"
+
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager $platforms $buildtools $extras $google_api_list $addons $additional
 
 # Document what was added to the image
 
-google_api_versions_list=$(cat $addons|awk -F- '/addon-google_apis-google/  {print $5}')
-constraint_layout_versions_list=$(cat $extras|awk -F';' '/constraint-layout;/  {print $8}')
-constraint_layout_solver_versions_list=$(cat $extras|awk -F';' '/constraint-layout-solver;/  {print $8}')
-platform_versions_list=$(cat $platforms|awk -F- '{print $2}')
+google_api_versions_list=$(echo "$addons"|awk -F- '/addon-google_apis-google/  {print $5}')
+constraint_layout_versions_list=$(echo "$extras"|awk -F';' '/constraint-layout;/  {print $8}')
+constraint_layout_solver_versions_list=$(echo "$extras"|awk -F';' '/constraint-layout-solver;/  {print $8}')
+platform_versions_list=$(echo "$platforms"|awk -F- '{print $2}')
+buildtools_versions_list=$(echo "$buildtools"|awk -F';' '{print $2}')
+
+echo "google_api_versions_list=$google_api_versions_list"
+echo "constraint_layout_versions_list=$constraint_layout_versions_list"
+echo "constraint_layout_solver_versions_list=$constraint_layout_solver_versions_list"
+echo "platform_versions_list=$platform_versions_list"
+echo "buildtools_versions_list=$buildtools_versions_list"
 
 echo "Lastly, document what was added to the metadata file"
 DocumentInstalledItem "Google Repository $(cat ${ANDROID_SDK_ROOT}/extras/google/m2repository/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
 DocumentInstalledItem "Google Play services $(cat ${ANDROID_SDK_ROOT}/extras/google/google_play_services/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
+
 for version in $google_api_list; do
   DocumentInstalledItem "Google APIs $version"
 done
