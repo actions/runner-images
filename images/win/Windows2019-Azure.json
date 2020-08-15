@@ -9,7 +9,6 @@
         "storage_account": "{{env `ARM_STORAGE_ACCOUNT`}}",
         "temp_resource_group_name": "{{env `TEMP_RESOURCE_GROUP_NAME`}}",
         "location": "{{env `ARM_RESOURCE_LOCATION`}}",
-        "ssh_password": "{{env `SSH_PASSWORD`}}",
         "virtual_network_name": "{{env `VNET_NAME`}}",
         "virtual_network_resource_group_name": "{{env `VNET_RESOURCE_GROUP`}}",
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
@@ -30,7 +29,7 @@
         "image_os": "win19",
         "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
     },
-    "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
+    "sensitive-variables": ["install_password", "client_secret", "github_feed_token"],
     "builders": [
         {
             "name": "vhd",
