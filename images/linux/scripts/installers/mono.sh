@@ -15,7 +15,7 @@ LSB_CODENAME=$(lsb_release -cs)
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 echo "deb https://download.mono-project.com/repo/ubuntu stable-$LSB_CODENAME main" | tee /etc/apt/sources.list.d/mono-official-stable.list
 apt-get update
-apt-get install -y --no-install-recommends apt-transport-https mono-complete
+apt-get install -y --no-install-recommends apt-transport-https mono-complete nuget
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -23,7 +23,12 @@ if ! command -v mono; then
     echo "mono was not installed"
     exit 1
 fi
+if ! command -v nuget; then
+    echo "nuget was not installed"
+    exit 1
+fi
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
 DocumentInstalledItem "Mono ($(mono --version | head -n 1))"
+DocumentInstalledItem "NuGet ($(nuget | tail -n +1 | head -n 1))" # Pipe to tail before piping to head because NuGet prints an ugly error if you close its stream before it's done writing.
