@@ -45,9 +45,6 @@ else
     exit 1
 fi
 
-# Add required permissions
-chmod -R a+rwx ${ANDROID_SDK_ROOT}
-
 toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 platforms=$(cat $toolsetJson  | jq -r '.android.platform_list[]|"platforms;" + .')
 buildtools=$(cat $toolsetJson  | jq -r '.android.build_tools[]|"build-tools;" + .')
