@@ -18,9 +18,9 @@ jobs:
     condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
     inputs:
       targetType: 'filePath'
-      filePath: ./images.CI/download-customrepo.ps1
-      arguments: -CustomRepoUrl $(CUSTOM_REPOSITORY_URL) `
-                        -CustomRepoBranch $(CUSTOM_REPOSITORY_BRANCH)
+      filePath: ./images.CI/download-repo.ps1
+      arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
+                        -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
 
   - task: PowerShell@2
     displayName: 'Build VM'
