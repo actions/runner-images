@@ -8,11 +8,12 @@ set -e
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/os.sh
 
 # Set env variable for SDK Root (https://developer.android.com/studio/command-line/variables)
-    ANDROID_ROOT=/usr/local/lib/android
-    ANDROID_SDK_ROOT=${ANDROID_ROOT}/sdk
-    echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
+ANDROID_ROOT=/usr/local/lib/android
+ANDROID_SDK_ROOT=${ANDROID_ROOT}/sdk
+echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
 echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
@@ -25,6 +26,14 @@ mkdir -p ${ANDROID_SDK_ROOT}
 wget -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 unzip android-sdk.zip -d ${ANDROID_SDK_ROOT}
 rm -f android-sdk.zip
+
+# Add required permissions
+chmod -R a+rwx ${ANDROID_SDK_ROOT}
+
+if isUbuntu20 ; then
+    # Sdk manager doesn't work with Java > 8, set version 8 explicitly
+    sed -i "2i export JAVA_HOME=${JAVA_HOME_8_X64}" /usr/local/lib/android/sdk/tools/bin/sdkmanager
+fi
 
 # Check sdk manager installation
 /usr/local/lib/android/sdk/tools/bin/sdkmanager --list 1>/dev/null
@@ -46,12 +55,6 @@ extras=$(cat $toolsetJson  | jq -r '.android.extra_list[]|"extras;" + .')
 addons=$(cat $toolsetJson  | jq -r '.android.addon_list[]|"add-ons;" + .')
 additional=$(cat $toolsetJson  | jq -r '.android.additional_tools[]')
 
-echo "platofrms = $platforms"
-echo "buildtools = $buildtools"
-echo "extras = $extras"
-echo "addons = $addons"
-echo "additional = $additional"
-
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager $platforms $buildtools $extras $google_api_list $addons $additional
 
@@ -63,17 +66,11 @@ constraint_layout_solver_versions_list=$(echo "$extras"|awk -F';' '/constraint-l
 platform_versions_list=$(echo "$platforms"|awk -F- '{print $2}')
 buildtools_versions_list=$(echo "$buildtools"|awk -F';' '{print $2}')
 
-echo "google_api_versions_list=$google_api_versions_list"
-echo "constraint_layout_versions_list=$constraint_layout_versions_list"
-echo "constraint_layout_solver_versions_list=$constraint_layout_solver_versions_list"
-echo "platform_versions_list=$platform_versions_list"
-echo "buildtools_versions_list=$buildtools_versions_list"
-
 echo "Lastly, document what was added to the metadata file"
 DocumentInstalledItem "Google Repository $(cat ${ANDROID_SDK_ROOT}/extras/google/m2repository/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
 DocumentInstalledItem "Google Play services $(cat ${ANDROID_SDK_ROOT}/extras/google/google_play_services/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
 
-for version in $google_api_list; do
+for version in $google_api_versions_list; do
   DocumentInstalledItem "Google APIs $version"
 done
 
@@ -94,7 +91,7 @@ done
 
 DocumentInstalledItem "Android SDK Patch Applier v4"
 
-for version in $buildtools; do
+for version in $buildtools_versions_list; do
   DocumentInstalledItem "Android SDK Build-Tools $version"
 done
 
