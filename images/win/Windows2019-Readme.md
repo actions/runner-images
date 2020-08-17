@@ -1,6 +1,10 @@
+| Announcements |
+|:-:|
+| [Replace SVN (1.8.17) by TortoiseSVN (1.14.x) on Windows images](https://github.com/actions/virtual-environments/issues/1318) |
+
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1339
-- Image Version: 20200720.1
+- Image Version: 20200802.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux
@@ -8,25 +12,23 @@
 ## Installed Software
 ### Language and Runtime
 - Java 1.7.0_232 
-- Java 1.8.0_262 (default)
+- Java 1.8.0_265 (default)
 - Java 11.0.8 
 - Java 13.0.2 
-- Rust 1.45.0
 - Python 3.7.8
 - Ruby 2.5.8p224
-- Go 1.14.4
+- Go 1.14.6
 - PHP 7.4.7
 - Julia 1.4.2
 - Perl 5.30.2
-- PowerShell 7.0.3
-- Node 12.18.2
+- Node 12.18.3
 
 ### Package Management
 - Chocolatey 0.10.15
 - Vcpkg 2020.06.15
-- NPM 6.14.5
+- NPM 6.14.6
 - Yarn 1.22.4
-- pip 20.1.1 (python 3.7)
+- pip 20.2 (python 3.7)
 - Miniconda 4.6.14
 - RubyGems 3.1.4
 - Helm 3.2.4
@@ -43,10 +45,11 @@
 - Azure CosmosDb Emulator 2.11.2.0
 - Bazel 3.4.1
 - Bazelisk 1.5.0
-- CMake 3.18.0
-- Docker 19.03.5
-- Docker-compose 1.26.0
-- Git 2.27.0
+- CMake 3.18.1
+- R 4.0.2
+- Docker 19.03.11
+- Docker-compose 1.26.2
+- Git 2.28.0
 - Git LFS 2.11.0
 - InnoSetup 6.0.5
 - jq 1.6
@@ -69,32 +72,36 @@
 - zstd 1.4.0
 - VSWhere 2.8.4
 - 7zip 19.00
+- yamllint 1.24.2
 
 ### CLI Tools
 - Azure CLI 2.9.1
-- azcopy 10.5.0
+- azcopy 10.5.1
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.31
-- AWS SAM CLI 0.53.0
+- AWS CLI 2.0.36
+- AWS SAM CLI 1.0.0
 - AWS Session Manager CLI 1.1.61.0
 - Alibaba Cloud CLI 3.0.26
 - Cloud Foundry CLI 6.51.0
 - Hub CLI 2.14.2
-- Google Cloud SDK 301.0.0
+- Google Cloud SDK 303.0.0
 
-### Rust packages:
+### Rust Tools
+- Rust 1.45.1
+
+#### Packages
 - bindgen 0.54.1
 - cbindgen 0.14.3
 - cargo-audit 0.12.0
 - cargo-outdated v0.9.11
 
 ### Browsers and webdrivers
-- Google Chrome 84.0.4147.89
+- Google Chrome 84.0.4147.105
 - Chrome Driver 84.0.4147.30
-- Microsoft Edge 84.0.522.40
-- Microsoft Edge Driver 84.0.522.40
-- Mozilla Firefox 78.0.2
-- Gecko Driver 0.26.0
+- Microsoft Edge 84.0.522.52
+- Microsoft Edge Driver 84.0.522.52
+- Mozilla Firefox 79.0
+- Gecko Driver 0.27.0
 - IE Driver 3.150.1.0
 
 ### MSYS2
@@ -132,17 +139,17 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.10.8  | x64          | GOROOT_1_10_X64      |
 | 1.11.13 | x64          | GOROOT_1_11_X64      |
 | 1.12.17 | x64          | GOROOT_1_12_X64      |
-| 1.13.12 | x64          | GOROOT_1_13_X64      |
-| 1.14.4 (Default) | x64          | GOROOT_1_14_X64      |
+| 1.13.14 | x64          | GOROOT_1_13_X64      |
+| 1.14.6 (Default) | x64          | GOROOT_1_14_X64      |
 
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
 | 8.17.0  | x64          |
-| 10.21.0 | x64          |
-| 12.18.2 | x64          |
-| 14.5.0  | x64          |
+| 10.22.0 | x64          |
+| 12.18.3 | x64          |
+| 14.7.0  | x64          |
 
 
 #### Python
@@ -152,7 +159,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.5.4   | x64, x86     |
 | 3.6.8   | x64, x86     |
 | 3.7.8 (Default) | x64, x86     |
-| 3.8.4   | x64, x86     |
+| 3.8.5   | x64, x86     |
 
 
 #### Ruby
@@ -187,15 +194,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Visual Studio Enterprise 2019
-| Name                          | Version        | Path                                                           |
-| ----------------------------- | -------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.6.30309.148 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Name                          | Version       | Path                                                           |
+| ----------------------------- | ------------- | -------------------------------------------------------------- |
+| Visual Studio Enterprise 2019 | 16.6.30320.27 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
-| Package                                                                   | version        |
+| Package                                                                   | Version        |
 | ------------------------------------------------------------------------- | -------------- |
-| Component.Android.NDK.R16B                                                | 16.6.30309.148 |
+| Component.Android.NDK.R16B                                                | 16.6.30317.111 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61  |
 | Component.Android.SDK28                                                   | 16.2.29003.222 |
 | Component.Ant                                                             | 1.9.3.8        |
@@ -406,13 +413,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Python                                    | 16.0.28621.142 |
 | Microsoft.VisualStudio.Workload.Universal                                 | 16.6.30020.46  |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 16.4.29409.204 |
-| SSDT Microsoft Analysis Services Projects                                 | 2.9.10         |
+| SSDT Microsoft Analysis Services Projects                                 | 2.9.12         |
 | SSDT SQL Server Integration Services Projects                             | 3.8            |
 | SSDT Microsoft Reporting Services Projects                                | 2.6.7          |
-| Windows Driver Kit                                                        | 1.0.0.4        |
+| Windows Driver Kit                                                        | 3.11.4516      |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.19041.1   |
-| WIX Toolset                                                               | 1.0.0.4        |
-| WIX Toolset Studio 2019 Extension                                         | 3.11.4516      |
+| WIX Toolset                                                               | 3.11.4516      |
+| WIX Toolset Studio 2019 Extension                                         | 1.0.0.4        |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
@@ -436,21 +443,35 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 `Location C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX <version> Tools`
 - 4.7.2 4.8
 
-### Azure Powershell Modules
-| Module  | Version                                                              | Path                           |
-| ------- | -------------------------------------------------------------------- | ------------------------------ |
-| Az      | 1.0.0<br>1.6.0<br>2.3.2<br>2.6.0<br>3.1.0<br>3.5.0<br>3.8.0<br>4.3.0 | C:\Modules\az_\<version\>      |
-| Azure   | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>5.3.0                | C:\Modules\azure_\<version\>   |
-| AzureRM | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>6.7.0<br>6.13.1      | C:\Modules\azurerm_\<version\> |
+### PowerShell Tools
+- PowerShell 7.0.3
+
+#### Azure Powershell Modules
+| Module  | Version                                                                       | Path                           |
+| ------- | ----------------------------------------------------------------------------- | ------------------------------ |
+| Az      | 1.0.0<br>1.6.0<br>2.3.2<br>2.6.0<br>3.1.0<br>3.5.0<br>3.8.0<br>4.3.0<br>4.4.0 | C:\Modules\az_\<version\>      |
+| Azure   | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>5.3.0                         | C:\Modules\azure_\<version\>   |
+| AzureRM | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>6.7.0<br>6.13.1               | C:\Modules\azurerm_\<version\> |
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
 ```
+#### Powershell Modules
+| Module             | Version            |
+| ------------------ | ------------------ |
+| DockerMsftProvider | 1.0.0.8            |
+| MarkdownPS         | 1.9                |
+| Pester             | 3.4.0<br>5.0.2     |
+| PowerShellGet      | 1.0.0.1<br>2.2.4.1 |
+| PSWindowsUpdate    | 2.2.0.2            |
+| SqlServer          | 21.1.18226         |
+| VSSetup            | 2.2.16             |
+
 ### Android SDK Tools
 | Package Name   | Description                                 |
 | -------------- | ------------------------------------------- |
-| platform-tools | Android SDK Platform-Tools, Revision 30.0.3 |
+| platform-tools | Android SDK Platform-Tools, Revision 30.0.4 |
 | tools          | Android SDK Tools 26.1.1, Revision 26.1.1   |
 
 ### Android SDK Platforms

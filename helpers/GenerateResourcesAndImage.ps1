@@ -5,6 +5,7 @@ enum ImageType {
     Windows2019 = 1
     Ubuntu1604 = 2
     Ubuntu1804 = 3
+    Ubuntu2004 = 4
 }
 
 Function Get-PackerTemplatePath {
@@ -29,6 +30,9 @@ Function Get-PackerTemplatePath {
         }
         ([ImageType]::Ubuntu1804) {
             $relativePath = "\images\linux\ubuntu1804.json"
+        }
+        ([ImageType]::Ubuntu2004) {
+            $relativePath = "\images\linux\ubuntu2004.json"
         }
     }
 

@@ -9,9 +9,9 @@ source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/document.sh
 
 #  Install Mongo DB
-wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 version=$(getOSVersionLabel)
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $version/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $version/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 
@@ -24,4 +24,4 @@ fi
 
 # Document the installed version
 echo "Document the installed version"
-DocumentInstalledItem "MongoDB on Linux ($(mongod -v|grep -i version 2>&1))"
+DocumentInstalledItem "MongoDB on Linux $(mongod --version | awk 'NR==1{print $3}')"

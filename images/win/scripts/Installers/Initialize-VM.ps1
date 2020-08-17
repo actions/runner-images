@@ -114,9 +114,6 @@ choco feature enable -n allowGlobalConfirmation
 # Remove some of the command aliases, like `cpack` #89
 Remove-Item -Path $env:ChocolateyInstall\bin\cpack.exe -Force
 
-# Install webpi
-Choco-Install -PackageName webpicmd
-
 if (Test-IsWin16) {
     # Install vcredist140
     Choco-Install -PackageName vcredist140

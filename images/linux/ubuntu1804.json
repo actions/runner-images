@@ -22,7 +22,8 @@
         "image_version": "dev",
         "image_os": "ubuntu18",
         "github_feed_token": null,
-        "run_validation_diskspace": "false"
+        "run_validation_diskspace": "false",
+        "announcements": "{{env `ANNOUNCEMENTS`}}"
     },
     "sensitive-variables": ["client_secret", "github_feed_token"],
     "builders": [
@@ -87,11 +88,6 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/announcements.md",
-            "destination": "{{user `helper_script_folder`}}/announcements.md"
-        },
-        {
-            "type": "file",
             "source": "{{template_dir}}/scripts/installers",
             "destination": "{{user `installer_script_folder`}}"
         },
@@ -103,7 +99,8 @@
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
                 "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "ANNOUNCEMENTS={{user `announcements`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
@@ -203,7 +200,8 @@
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
                 "{{template_dir}}/scripts/installers/mongodb.sh",
                 "{{template_dir}}/scripts/installers/rndgenerator.sh",
-                "{{template_dir}}/scripts/installers/swig.sh"
+                "{{template_dir}}/scripts/installers/swig.sh",
+                "{{template_dir}}/scripts/installers/netlify.sh"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
