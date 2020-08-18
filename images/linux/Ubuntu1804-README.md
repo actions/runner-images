@@ -357,4 +357,3 @@ Local version: Unknown)
 - AWS SAM CLI, version 1.0.0
 - Homebrew on Linux (Homebrew 2.4.9
 Homebrew/linuxbrew-core (git revision 4c7841; last commit 2020-08-05))
-- Pulumi v2.8.2
