@@ -42,8 +42,8 @@ Describe "DiskSpace" {
 
 Describe "DynamicPorts" {
     It "Set dynamicport start=49152 num=16384" {
-        $tcpPorts = Get-NetTCPSetting | Where-Object {
-            ($_.DynamicPortRangeStartPort -and $_.DynamicPortRangeNumberOfPorts) -and ($_.DynamicPortRangeStartPort -ne 49152 -or $_.DynamicPortRangeNumberOfPorts -ne 16384)
+        $tcpPorts = Get-NetTCPSetting | Where-Object {$_.SettingName -ne "Automatic"} | Where-Object {
+            $_.DynamicPortRangeStartPort -ne 49152 -or $_.DynamicPortRangeNumberOfPorts -ne 16384
         }
 
         $udpPorts = Get-NetUDPSetting | Where-Object {
