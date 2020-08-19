@@ -119,6 +119,11 @@ if (Test-IsWin16) {
     Choco-Install -PackageName vcredist140
 }
 
+if (Test-IsWin19) {
+    # Install vcredist2010
+    Choco-Install -PackageName vcredist2010
+}
+
 # Expand disk size of OS drive
 New-Item -Path d:\ -Name cmds.txt -ItemType File -Force
 Add-Content -Path d:\cmds.txt "SELECT VOLUME=C`r`nEXTEND"
