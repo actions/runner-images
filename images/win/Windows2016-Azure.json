@@ -217,6 +217,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Packer.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Pulumi.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
             ]
         },
