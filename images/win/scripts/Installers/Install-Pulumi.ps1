@@ -3,6 +3,6 @@
 ##  Desc:  Install Pulumi
 ################################################################################
 
-Choco-Install -PackageName pulumi.install
+Choco-Install -PackageName pulumi
 
 Invoke-PesterTests -TestFile "Tools" -TestName "Pulumi"
