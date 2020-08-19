@@ -32,10 +32,25 @@ Describe "ContainersFeature" {
 }
 
 Describe "DiskSpace" {
-    it "The image has enough disk space"{
+    It "The image has enough disk space"{
         $availableSpaceMB =  [math]::Round((Get-PSDrive -Name C).Free / 1MB)
         $minimumFreeSpaceMB = 18 * 1024
 
         $availableSpaceMB | Should -BeGreaterThan $minimumFreeSpaceMB
+    }
+}
+
+Describe "DynamicPorts" {
+    It "Set dynamicport start=49152 num=16384" {
+        $tcpPorts = Get-NetTCPSetting | Where-Object {
+            ($_.DynamicPortRangeStartPort -and $_.DynamicPortRangeNumberOfPorts) -and ($_.DynamicPortRangeStartPort -ne 49152 -or $_.DynamicPortRangeNumberOfPorts -ne 16384)
+        }
+
+        $udpPorts = Get-NetUDPSetting | Where-Object {
+            $_.DynamicPortRangeStartPort -ne 49152 -or $_.DynamicPortRangeNumberOfPorts -ne 16384
+        }
+
+        $tcpPorts | Should -BeNullOrEmpty
+        $udpPorts | Should -BeNullOrEmpty
     }
 }
