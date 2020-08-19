@@ -28,7 +28,7 @@ Install-Binary  -Url $downloadUrl `
                     "/SP-", `
                     "/CLOSEAPPLICATIONS", `
                     "/RESTARTAPPLICATIONS", `
-                    "/o:PathOption=CmdTools", `
+                    "/o:PathOption=Cmd", `
                     "/o:BashTerminalOption=ConHost", `
                     "/o:EnableSymlinks=Enabled", `
                     "/COMPONENTS=gitlfs")
