@@ -45,56 +45,51 @@ else
     exit 1
 fi
 
+toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
+platforms=$(cat $toolsetJson  | jq -r '.android.platform_list[]|"platforms;" + .')
+buildtools=$(cat $toolsetJson  | jq -r '.android.build_tools[]|"build-tools;" + .')
+extras=$(cat $toolsetJson  | jq -r '.android.extra_list[]|"extras;" + .')
+addons=$(cat $toolsetJson  | jq -r '.android.addon_list[]|"add-ons;" + .')
+additional=$(cat $toolsetJson  | jq -r '.android.additional_tools[]')
+
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
-echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager \
-    "ndk-bundle" \
-    "platform-tools" \
-    "platforms;android-30" \
-    "platforms;android-29" \
-    "platforms;android-28" \
-    "platforms;android-27" \
-    "build-tools;30.0.1" \
-    "build-tools;30.0.0" \
-    "build-tools;29.0.3" \
-    "build-tools;29.0.2" \
-    "build-tools;29.0.0" \
-    "build-tools;28.0.3" \
-    "build-tools;28.0.2" \
-    "build-tools;28.0.1" \
-    "build-tools;28.0.0" \
-    "build-tools;27.0.3" \
-    "build-tools;27.0.2" \
-    "build-tools;27.0.1" \
-    "build-tools;27.0.0" \
-    "extras;android;m2repository" \
-    "extras;google;m2repository" \
-    "extras;google;google_play_services" \
-    "cmake;3.10.2.4988404" \
-    "patcher;v4"
+echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager $platforms $buildtools $extras $google_api_list $addons $additional
 
 # Document what was added to the image
+
+google_api_versions_list=$(echo "$addons"|awk -F- '/addon-google_apis-google/  {print $5}')
+constraint_layout_versions_list=$(echo "$extras"|awk -F';' '/constraint-layout;/  {print $8}')
+constraint_layout_solver_versions_list=$(echo "$extras"|awk -F';' '/constraint-layout-solver;/  {print $8}')
+platform_versions_list=$(echo "$platforms"|awk -F- '{print $2}')
+buildtools_versions_list=$(echo "$buildtools"|awk -F';' '{print $2}')
+
 echo "Lastly, document what was added to the metadata file"
 DocumentInstalledItem "Google Repository $(cat ${ANDROID_SDK_ROOT}/extras/google/m2repository/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
 DocumentInstalledItem "Google Play services $(cat ${ANDROID_SDK_ROOT}/extras/google/google_play_services/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
+
+for version in $google_api_versions_list; do
+  DocumentInstalledItem "Google APIs $version"
+done
+
 DocumentInstalledItem "CMake $(ls ${ANDROID_SDK_ROOT}/cmake 2>&1)"
-DocumentInstalledItem "Android Support Repository 47.0.0"
+
+for version in $constraint_layout_versions_list; do
+  DocumentInstalledItem "Android ConstraintLayout $version"
+done
+
+for version in $constraint_layout_solver_versions_list; do
+  DocumentInstalledItem "Android ConstraintLayout Solver $version"
+done
+
 DocumentInstalledItem "Android SDK Platform-Tools $(cat ${ANDROID_SDK_ROOT}/platform-tools/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
-DocumentInstalledItem "Android SDK Platform 30"
-DocumentInstalledItem "Android SDK Platform 29"
-DocumentInstalledItem "Android SDK Platform 28"
-DocumentInstalledItem "Android SDK Platform 27"
+for version in $platform_versions_list; do
+  DocumentInstalledItem "Android SDK Platform $version"
+done
+
 DocumentInstalledItem "Android SDK Patch Applier v4"
-DocumentInstalledItem "Android SDK Build-Tools 30.0.1"
-DocumentInstalledItem "Android SDK Build-Tools 30.0.0"
-DocumentInstalledItem "Android SDK Build-Tools 29.0.3"
-DocumentInstalledItem "Android SDK Build-Tools 29.0.2"
-DocumentInstalledItem "Android SDK Build-Tools 29.0.0"
-DocumentInstalledItem "Android SDK Build-Tools 28.0.3"
-DocumentInstalledItem "Android SDK Build-Tools 28.0.2"
-DocumentInstalledItem "Android SDK Build-Tools 28.0.1"
-DocumentInstalledItem "Android SDK Build-Tools 28.0.0"
-DocumentInstalledItem "Android SDK Build-Tools 27.0.3"
-DocumentInstalledItem "Android SDK Build-Tools 27.0.2"
-DocumentInstalledItem "Android SDK Build-Tools 27.0.1"
-DocumentInstalledItem "Android SDK Build-Tools 27.0.0"
+
+for version in $buildtools_versions_list; do
+  DocumentInstalledItem "Android SDK Build-Tools $version"
+done
+
 DocumentInstalledItem "Android NDK $(cat ${ANDROID_SDK_ROOT}/ndk-bundle/source.properties 2>&1 | grep Pkg.Revision | cut -d ' ' -f 3)"

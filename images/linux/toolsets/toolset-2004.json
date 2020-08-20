@@ -46,5 +46,26 @@
             ],
             "default": "1.14.*"
         }
-    ]
+    ],
+    "android": {
+        "platform_list": [
+            "android-30", "android-29", "android-28", "android-27"
+        ],
+        "build_tools": [
+            "30.0.1", "30.0.0", "29.0.3", "29.0.2", "29.0.1", "29.0.0", "28.0.3", "28.0.2", "28.0.1", "27.0.3", "27.0.2", "27.0.1", "27.0.0"
+        ],
+        "extra_list": [
+            "android;m2repository",
+            "google;m2repository",
+            "google;google_play_services"
+        ],
+        "addon_list": [
+        ],
+        "additional_tools": [
+            "cmake;3.10.2.4988404",
+            "patcher;v4",
+            "ndk-bundle",
+            "platform-tools"
+        ]
+    }
 }
