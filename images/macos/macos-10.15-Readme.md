@@ -3,7 +3,7 @@
 - System Version: macOS 10.15.6 (19G73)
 - Kernel Version: Darwin 19.6.0
 - System Integrity Protection: Enabled
-- Image Version: 20200802.1
+- Image Version: 20200806.4
 
 ## Installed Software
 ### Language and Runtime
@@ -28,7 +28,7 @@
 - R 4.0.2
 - Go 1.14.6
 - PHP 7.4.8
-- julia 1.4.2
+- julia 1.5.0
 
 ### Package Management
 - Vcpkg 2020.06.15
@@ -43,7 +43,7 @@
 - Pip 20.1.1 (python 3.8)
 - Miniconda 4.8.3
 - RubyGems 3.1.4
-- Composer 1.10.9
+- Composer 1.10.10
 
 ### Project Management
 - Apache Maven 3.6.3
@@ -80,18 +80,18 @@
 
 
 ### Tools
-- Fastlane 2.154.0
+- Fastlane 2.155.1
 - Cmake 3.18.1
-- App Center CLI 2.6.4
-- Azure CLI 2.9.1
-- AWS CLI 2.0.36
+- App Center CLI 2.6.5
+- Azure CLI 2.10.1
+- AWS CLI 2.0.37
 - AWS SAM CLI 1.0.0
 - AWS Session Manager CLI 1.1.61.0
-- Aliyun CLI 3.0.55
+- Aliyun CLI 3.0.56
 - GHCup v0.1.8
 - GHC 8.10.1
 - Cabal 3.2.0.0
-- Stack 2.3.1
+- Stack 2.3.3
 
 ### Linters
 - yamllint 1.24.2
@@ -102,7 +102,7 @@
 - SafariDriver 13.1.2 (15609.3.5.1.3)
 - Google Chrome 84.0.4147.105 
 - ChromeDriver 84.0.4147.30
-- Microsoft Edge 84.0.522.50 
+- Microsoft Edge 84.0.522.52 
 - MSEdgeDriver 84.0.522.52
 - Mozilla Firefox 79.0
 - geckodriver 0.27.0
@@ -134,11 +134,11 @@
 #### Go
 - 1.11.13
 - 1.12.17
-- 1.13.14
-- 1.14.6
+- 1.13.15
+- 1.14.7
 
 ### Rust Tools
-- Rust 1.45.1
+- Rust 1.45.2
 - Rustup 1.22.1
 
 #### Packages
@@ -153,7 +153,7 @@
 #### PowerShell Modules
 | Module     | Version |
 | ---------- | ------- |
-| Az         | 4.4.0   |
+| Az         | 4.5.0   |
 | MarkdownPS | 1.9     |
 | Pester     | 4.10.1  |
 
@@ -162,12 +162,14 @@
 - 8.6.8.2
 
 #### Mono
+- 6.12.0.89
 - 6.10.0.106
 - 6.8.0.123
 - 6.6.0.166
 - 6.4.0.208
 
 #### Xamarin.iOS
+- 13.20.2.2
 - 13.18.2.1
 - 13.16.0.13
 - 13.14.1.39
@@ -178,6 +180,7 @@
 - 13.2.0.47
 
 #### Xamarin.Mac
+- 6.20.2.2
 - 6.18.3.2
 - 6.16.0.13
 - 6.14.1.39
@@ -188,6 +191,7 @@
 - 6.2.0.47
 
 #### Xamarin.Android
+- 11.0.0
 - 10.3.1
 - 10.2.0
 - 10.1.3
@@ -199,7 +203,7 @@
 ### Xcode
 | Version        | Build    | Path                            |
 | -------------- | -------- | ------------------------------- |
-| 12.0 (beta)    | 12A8169g | /Applications/Xcode_12_beta.app |
+| 12.0 (beta)    | 12A8179i | /Applications/Xcode_12_beta.app |
 | 11.6 (default) | 11E708   | /Applications/Xcode_11.6.app    |
 | 11.5           | 11E608c  | /Applications/Xcode_11.5.app    |
 | 11.4.1         | 11E503a  | /Applications/Xcode_11.4.1.app  |
@@ -270,7 +274,7 @@
 | iOS 13.1    | 11.1                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                                                                                             |
 | iOS 13.2    | 11.2.1                         | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                                                                                             |
 | iOS 13.3    | 11.3.1                         | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad Pro (11-inch)<br>iPad Pro (12.9-inch) (3rd generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                                                                                             |
-| iOS 13.4    | 11.4<br>11.4.1                 | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                     |
+| iOS 13.4    | 11.4<br>11.4.1                 | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)<br>iPhone SE (2nd generation)                                                                                                                                                                                                                     |
 | iOS 13.5    | 11.5                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                     |
 | iOS 13.6    | 11.6                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                                                     |
 | iOS 14.0    | 12.0                           | iPhone 8<br>iPhone 8 Plus<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone SE (2nd generation)<br>iPod touch (7th generation)<br>iPad Pro (9.7-inch)<br>iPad (7th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Air (3rd generation)                                                                                                                                                                                      |
@@ -305,7 +309,7 @@
 | android-26   | Android SDK Platform 26, Revision 2 |
 | android-27   | Android SDK Platform 27, Revision 3 |
 | android-28   | Android SDK Platform 28, Revision 6 |
-| android-29   | Android SDK Platform 29, Revision 4 |
+| android-29   | Android SDK Platform 29, Revision 5 |
 | android-30   | Android SDK Platform 30, Revision 2 |
 
 #### Android SDK Build-Tools
