@@ -41,16 +41,19 @@ Describe "DiskSpace" {
 }
 
 Describe "DynamicPorts" {
-    It "Test dynamicport start=49152 num=16384" {
+    It "Test TCP dynamicport start=49152 num=16384" {
         $tcpPorts = Get-NetTCPSetting | Where-Object {$_.SettingName -ne "Automatic"} | Where-Object {
-            $_.DynamicPortRangeStartPort -eq 49152 -and $_.DynamicPortRangeNumberOfPorts -eq 16384
-        }
-
-        $udpPorts = Get-NetUDPSetting | Where-Object {
-            $_.DynamicPortRangeStartPort -eq 49152 -and $_.DynamicPortRangeNumberOfPorts -eq 16384
+            $_.DynamicPortRangeStartPort -ne 49152 -or $_.DynamicPortRangeNumberOfPorts -ne 16384
         }
 
         $tcpPorts | Should -BeNullOrEmpty
+    }
+
+    It "Test UDP dynamicport start=49152 num=16384" {
+        $udpPorts = Get-NetUDPSetting | Where-Object {
+            $_.DynamicPortRangeStartPort -ne 49152 -or $_.DynamicPortRangeNumberOfPorts -ne 16384
+        }
+
         $udpPorts | Should -BeNullOrEmpty
     }
 }
