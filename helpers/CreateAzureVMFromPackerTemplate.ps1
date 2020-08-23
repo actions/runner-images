@@ -1,7 +1,7 @@
 Function CreateAzureVMFromPackerTemplate {
     <#
         .SYNOPSIS
-            A helper function to deploy a VM from generated image.
+            A helper function to deploy a VM from a generated image.
 
         .DESCRIPTION
              Creates an Azure VM from a template. Also generates network resources in Azure to make the VM accessible.
