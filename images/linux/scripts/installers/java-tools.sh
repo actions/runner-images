@@ -40,7 +40,7 @@ apt-get -y install adoptopenjdk-11-hotspot=\*
 # Set Default Java version.
 update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
 if isUbuntu16; then
-    sudo update-alternatives --set javac /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64/bin/javac
+    sudo sed -i 's/(hl|jre|jdk|plugin|DUMMY) /(hl|jre|jdk|jdkhl|plugin|DUMMY) /g' /usr/sbin/update-java-alternatives
 fi
 
 echo "JAVA_HOME_8_X64=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64" | tee -a /etc/environment
