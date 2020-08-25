@@ -1,6 +1,6 @@
-| Announcements |
+| Announcements |azure
 |:-:|
-| [Replace SVN (1.8.17) by TortoiseSVN (1.14.x) on Windows images](https://github.com/actions/virtual-environments/issues/1318) |
+| [Acctivate lSVN (1.8.17) by TortoiseSVN (1.14.x) on Windows images](https://github.com/actions/virtual-environments/issues/1318) |
 
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1339
@@ -8,6 +8,11 @@
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux
+#989 https://
+pyvideo.org/pydata-new-yor
+k-city-2019/a-crash-course-in-applied-linear-algebra.html 
+…
+https://my.visualstudio.com/Benefits?wt.mc_id=o~msft~profile~devprogram_attach&workflowid=devprogram&mkt=en-us
 
 ## Installed Software
 ### Language and Runtime
