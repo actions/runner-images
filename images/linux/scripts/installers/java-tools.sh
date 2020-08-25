@@ -40,6 +40,8 @@ apt-get -y install adoptopenjdk-11-hotspot=\*
 # Set Default Java version.
 update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
 if isUbuntu16; then
+    # issue: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825987
+    # stackoverflow: https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
     sudo sed -i 's/(hl|jre|jdk|plugin|DUMMY) /(hl|jre|jdk|jdkhl|plugin|DUMMY) /g' /usr/sbin/update-java-alternatives
 fi
 
@@ -87,6 +89,15 @@ for cmd in gradle java javac mvn ant; do
         exit 1
     fi
 done
+
+javaVersion=`java -version 2>&1 | head -n 1 | cut -d\" -f 2`
+javacVersion=`javac -version | sed 's/javac //g'`
+if [[ "$javaVersion" == "$javacVersion" ]]; then
+    echo "Java and javac versions are the same"
+else
+    echo "Java and Javac are not the same"
+    exit 1
+fi
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
