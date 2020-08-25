@@ -91,11 +91,18 @@ for cmd in gradle java javac mvn ant; do
 done
 
 javaVersion=`java -version 2>&1 | head -n 1 | cut -d\" -f 2`
-javacVersion=`javac -version | sed 's/javac //g'`
-if [[ "$javaVersion" == "$javacVersion" ]]; then
-    echo "Java and javac versions are the same"
+if [[ "$javaVersion" =~ ([1]{0,1}.)?$DEFAULT_JDK_VERSION.* ]]; then
+    echo "Java is equal to defaul"
 else
-    echo "Java and Javac are not the same"
+    echo "Java is not equal to default"
+    exit 1
+fi
+
+javacVersion=`javac -version | sed 's/javac //g'`
+if [[ "$javacVersion" =~ ([1]{0,1}.)?$DEFAULT_JDK_VERSION.* ]]; then
+    echo "Javac is equal to default"
+else
+    echo "Javac is not equal to default"
     exit 1
 fi
 
