@@ -13,7 +13,7 @@ TarballUrl=$(curl -s https://api.github.com/repos/aws/aws-sam-cli/releases/lates
 TarballPath="/tmp/aws-sam-cli.tar.gz"
 wget $TarballUrl -O $TarballPath
 tar -xzvf $TarballPath -C /tmp
-cd /tmp/awslabs-aws-sam-cli*
+cd /tmp/aws-aws-sam-cli*
 
 mkdir /opt/python-aws-sam-cli
 cp -r /opt/hostedtoolcache/Python/3.7* /opt/python-aws-sam-cli
