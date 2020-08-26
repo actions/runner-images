@@ -38,12 +38,12 @@ apt-get -y install adoptopenjdk-8-hotspot=\*
 apt-get -y install adoptopenjdk-11-hotspot=\*
 
 # Set Default Java version.
-update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
 if isUbuntu16; then
     # issue: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825987
     # stackoverflow: https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
     sudo sed -i 's/(hl|jre|jdk|plugin|DUMMY) /(hl|jre|jdk|jdkhl|plugin|DUMMY) /g' /usr/sbin/update-java-alternatives
 fi
+update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
 
 echo "JAVA_HOME_8_X64=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64" | tee -a /etc/environment
 echo "JAVA_HOME_11_X64=/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64" | tee -a /etc/environment
@@ -98,7 +98,7 @@ else
     exit 1
 fi
 
-javacVersion=`javac -version | sed 's/javac //g'`
+javacVersion=`javac -version 2>&1 | sed 's/javac //g'`
 if [[ "$javacVersion" =~ ([1]{0,1}.)?$DEFAULT_JDK_VERSION.* ]]; then
     echo "Javac is equal to default"
 else
