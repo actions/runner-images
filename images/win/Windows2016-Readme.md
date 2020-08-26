@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 3866
-- Image Version: 20200811.0
+- Image Version: 20200820.1
 
 ## Installed Software
 ### Language and Runtime
@@ -12,7 +12,7 @@
 - Java 1.8.0_265 (default)
 - Java 11.0.8 
 - Java 13.0.2 
-- Python 3.7.8
+- Python 3.7.9
 - Ruby 2.5.8p224
 - Go 1.14.7
 - PHP 7.4.9
@@ -28,9 +28,9 @@
 - pip 20.2.2 (python 3.7)
 - Miniconda 4.6.14
 - RubyGems 3.1.4
-- Helm 3.2.4
+- Helm 3.3.0
 - Composer 1.10.10
-- NuGet 5.6.0.6591
+- NuGet 5.7.0.6726
 
 ### Project Management
 - Ant 1.10.5
@@ -39,20 +39,20 @@
 - sbt 1.3.13
 
 ### Tools
-- Azure CosmosDb Emulator 2.11.2.0
-- azcopy 10.5.1
+- Azure CosmosDb Emulator 2.11.3.0
+- azcopy 10.6.0
 - Bazel 3.4.1
-- Bazelisk 1.6.0
+- Bazelisk 1.6.1
 - CMake 3.18.1
 - R 4.0.2
 - Docker 19.03.11
 - Docker-compose 1.26.2
 - Git 2.28.0
 - Git LFS 2.11.0
-- Google Cloud SDK 305.0.0
+- Google Cloud SDK 306.0.0
 - InnoSetup 6.0.5
 - jq 1.6
-- Kubectl 1.18.6
+- Kubectl 1.18.8
 - Kind 0.8.1
 - Mingw-w64 8.1.0
 - MySQL 5.7.21.0
@@ -76,13 +76,13 @@
 ### CLI Tools
 - Azure CLI 2.10.1
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.38
-- AWS SAM CLI 1.0.0
+- AWS CLI 2.0.41
+- AWS SAM CLI 1.1.0
 - AWS Session Manager CLI 1.1.61.0
 - Alibaba Cloud CLI 3.0.56
 - Cloud Foundry CLI 6.51.0
 - Hub CLI 2.14.2
-- GitHub CLI 0.11.1
+- GitHub CLI gh version 0.11.1 (2020-07-28) https://github.com/cli/cli/releases/tag/v0.11.1
 
 ### Rust Tools
 - Rust 1.45.2
@@ -94,10 +94,10 @@
 - cargo-outdated v0.9.11
 
 ### Browsers and webdrivers
-- Google Chrome 84.0.4147.125
+- Google Chrome 84.0.4147.135
 - Chrome Driver 84.0.4147.30
-- Microsoft Edge 84.0.522.58
-- Microsoft Edge Driver 84.0.522.52
+- Microsoft Edge 84.0.522.61
+- Microsoft Edge Driver 84.0.522.61
 - Mozilla Firefox 79.0
 - Gecko Driver 0.27.0
 - IE Driver 3.150.1.0
@@ -139,6 +139,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.12.17 | x64          | GOROOT_1_12_X64      |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.7 (Default) | x64          | GOROOT_1_14_X64      |
+| 1.15.0  | x64          | GOROOT_1_15_X64      |
 
 
 #### Node
@@ -147,7 +148,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 8.17.0  | x64          |
 | 10.22.0 | x64          |
 | 12.18.3 | x64          |
-| 14.7.0  | x64          |
+| 14.8.0  | x64          |
 
 
 #### Python
@@ -156,7 +157,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.7.18  | x64, x86     |
 | 3.5.4   | x64, x86     |
 | 3.6.8   | x64, x86     |
-| 3.7.8 (Default) | x64, x86     |
+| 3.7.9 (Default) | x64, x86     |
 | 3.8.5   | x64, x86     |
 
 
@@ -182,7 +183,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-12                                                                                                                    |
-| Version              | 12.3                                                                                                                                 |
+| Version              | 12.4                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\12\bin <br> PGDATA=C:\Program Files\PostgreSQL\12\data <br> PGROOT=C:\Program Files\PostgreSQL\12  |
@@ -194,7 +195,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 4.2.8.0 | MongoDB     | Running       | Automatic        |
+| 4.4.0.0 | MongoDB     | Running       | Automatic        |
 
 
 
@@ -449,6 +450,25 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | WIX Toolset                                                               | 3.11.4516        |
 | WIX Toolset Studio 2017 Extension                                         | 0.9.21.62588     |
 
+#### Microsoft Visual C++:
+
+| Name                                         | Architecture | Version     |
+| -------------------------------------------- | ------------ | ----------- |
+| Microsoft Visual C++ 2010 Redistributable    | x64          | 10.0.30319  |
+| Microsoft Visual C++ 2010 Redistributable    | x86          | 10.0.40219  |
+| Microsoft Visual C++ 2012 Additional Runtime | x64          | 11.0.61030  |
+| Microsoft Visual C++ 2012 Minimum Runtime    | x64          | 11.0.61030  |
+| Microsoft Visual C++ 2013 Additional Runtime | x64          | 12.0.40660  |
+| Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
+| Microsoft Visual C++ 2013 Additional Runtime | x86          | 12.0.21005  |
+| Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
+| Microsoft Visual C++ 2017 Debug Runtime      | x64          | 14.16.27033 |
+| Microsoft Visual C++ 2017 Debug Runtime      | x86          | 14.16.27033 |
+| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.26.28720 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.26.28720 |
+| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.26.28720 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.26.28720 |
+
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
 - 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401
@@ -516,7 +536,7 @@ All other versions are saved but not installed.
 | android-27   | Android SDK Platform 27, Revision 3        |
 | android-28   | Android SDK Platform 28, Revision 6        |
 | android-29   | Android SDK Platform 29, Revision 5        |
-| android-30   | Android SDK Platform 30, Revision 2        |
+| android-30   | Android SDK Platform 30, Revision 3        |
 
 ### Android SDK Build-Tools
 `Location C:\Program Files (x86)\Android\android-sdk\build-tools`
