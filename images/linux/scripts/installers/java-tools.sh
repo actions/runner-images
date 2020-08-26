@@ -10,6 +10,15 @@ source $HELPER_SCRIPTS/os.sh
 
 set -e
 
+function javaTool {
+    if [[ "$2" =~ ([1]{0,1}.)?$DEFAULT_JDK_VERSION.* ]]; then
+        echo "$1 $2 is equal to default one $DEFAULT_JDK_VERSION"
+    else
+        echo "$1 $2 is not equal to default one $DEFAULT_JDK_VERSION"
+        exit 1
+    fi
+}
+
 # Install GPG Key for Adopt Open JDK. See https://adoptopenjdk.net/installation.html
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
 add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
@@ -41,7 +50,7 @@ apt-get -y install adoptopenjdk-11-hotspot=\*
 if isUbuntu16; then
     # issue: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825987
     # stackoverflow: https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
-    sudo sed -i 's/(hl|jre|jdk|plugin|DUMMY) /(hl|jre|jdk|jdkhl|plugin|DUMMY) /g' /usr/sbin/update-java-alternatives
+    sed -i 's/(hl|jre|jdk|plugin|DUMMY) /(hl|jre|jdk|jdkhl|plugin|DUMMY) /g' /usr/sbin/update-java-alternatives
 fi
 update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
 
@@ -90,21 +99,10 @@ for cmd in gradle java javac mvn ant; do
     fi
 done
 
-javaVersion=`java -version 2>&1 | head -n 1 | cut -d\" -f 2`
-if [[ "$javaVersion" =~ ([1]{0,1}.)?$DEFAULT_JDK_VERSION.* ]]; then
-    echo "Java is equal to defaul"
-else
-    echo "Java is not equal to default"
-    exit 1
-fi
-
-javacVersion=`javac -version 2>&1 | sed 's/javac //g'`
-if [[ "$javacVersion" =~ ([1]{0,1}.)?$DEFAULT_JDK_VERSION.* ]]; then
-    echo "Javac is equal to default"
-else
-    echo "Javac is not equal to default"
-    exit 1
-fi
+javaVersion=$(java -version |& head -n 1 | cut -d\" -f 2)
+javaTool "Java" $javaVersion
+javacVersion=$(javac -version |& cut -d" " -f2)
+javaTool "Javac" $javacVersion
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"
