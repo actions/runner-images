@@ -130,7 +130,7 @@ Describe "InnoSetup" {
     }
 }
 
-Describe "GoogleCouldSDK"  {
+Describe "GoogleCloudSDK"  {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
