@@ -107,6 +107,10 @@ function Get-PackerVersion {
     return "Packer $(packer --version)"
 }
 
+function Get-PulumiVersion {
+    return "Pulumi $(pulumi version)"
+}
+
 function Get-SQLPSVersion {
     $module = Get-Module -Name SQLPS -ListAvailable
     $version = $module.Version

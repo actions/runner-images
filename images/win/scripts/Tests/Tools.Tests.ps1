@@ -187,6 +187,12 @@ Describe "PowerShell Core" {
     }
 }
 
+Describe "Pulumi" {
+    It "pulumi" {
+       "pulumi version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Sbt" {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
