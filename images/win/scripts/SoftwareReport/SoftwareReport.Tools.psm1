@@ -222,7 +222,9 @@ function Get-NewmanVersion {
 }
 
 function Get-GHVersion {
-    return "GitHub CLI $(gh --version)"
+    ($(gh --version) | Select-String -Pattern "gh version") -match "gh version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $ghVersion = $Matches.Version
+    return "GitHub CLI $ghVersion"
 }
 
 function Get-VisualCPPComponents {
