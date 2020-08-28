@@ -255,6 +255,7 @@
             "Microsoft.VisualStudio.Workload.Python",
             "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
+            "Microsoft.VisualStudio.Workload.WebBuildTools",
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm"
         ]
