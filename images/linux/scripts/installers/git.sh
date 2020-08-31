@@ -3,9 +3,11 @@
 ##  File:  git.sh
 ##  Desc:  Installs Git
 ################################################################################
+set -e
 
 # Source the helpers for use with the script
 source "$HELPER_SCRIPTS"/document.sh
+source "$HELPER_SCRIPTS"/install.sh
 
 ## Install git
 add-apt-repository ppa:git-core/ppa -y
@@ -46,14 +48,12 @@ DocumentInstalledItem "Git Large File Storage (LFS) ($(git-lfs --version 2>&1 | 
 DocumentInstalledItem "Git-ftp ($(git-ftp --version | cut -d ' ' -f 3))"
 
 #Install hub
-TEMP_HUB=$(mktemp -d -t)
-pushd "$TEMP_HUB" || exit
-URL=$(curl -s https://api.github.com/repos/github/hub/releases/latest | jq -r '.assets[].browser_download_url | select(contains("hub-linux-amd64"))')
-wget -P "$TEMP_HUB" "$URL"
-tar xzvf "$TEMP_HUB"/hub-linux-amd64-*.tgz --strip-components 1
-mv bin/hub /usr/local/bin
-rm -rf "$TEMP_HUB"
-popd || exit
+tmp_hub="/tmp/hub"
+mkdir -p "$tmp_hub"
+url=$(curl -s https://api.github.com/repos/github/hub/releases/latest | jq -r '.assets[].browser_download_url | select(contains("hub-linux-amd64"))')
+download_with_retries "$url" "$tmp_hub"
+tar xzvf /tmp/hub-linux-amd64-*.tgz --strip-components 1 -C "$tmp_hub"
+mv "$tmp_hub"/bin/hub /usr/local/bin
 
 if command -v hub; then
     echo "hub CLI was installed successfully"
