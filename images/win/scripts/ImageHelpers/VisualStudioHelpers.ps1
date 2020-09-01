@@ -69,6 +69,7 @@ function Get-VisualStudioInstallation {
     Param
     (
         [Parameter(Mandatory)]
+        [ValidateSet('VS','BuildTools')]
         [String] $VSInstallType
     )
 
@@ -92,6 +93,7 @@ function Get-VisualStudioComponents {
     Param
     (
         [Parameter(Mandatory)]
+        [ValidateSet('VS','BuildTools')]
         [String] $VSInstallType
     )
     (Get-VisualStudioInstallation -VSInstallType $VSInstallType).Packages | Where-Object type -in 'Component', 'Workload' |
