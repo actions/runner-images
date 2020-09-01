@@ -267,8 +267,7 @@ function Get-VSExtensionVersion
     )
 
     $instanceFolders = "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\" + (Get-VisualStudioInstallation -VSInstallType "VS").InstanceId
-    $stateContent = Get-Content -Path (Join-Path $instanceFolders '\state.packages.json')
-    $state = $stateContent | ConvertFrom-Json
+    $state = Get-Content -Path (Join-Path $instanceFolders '\state.packages.json') | ConvertFrom-Json
     $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
 
     if (-not $packageVersion)
