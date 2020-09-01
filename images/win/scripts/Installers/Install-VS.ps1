@@ -29,7 +29,7 @@ $buildbootstrapperUrl = "https://aka.ms/vs/${subVersion}/release/vs_buildtools.e
 Install-VisualStudio -BootstrapperUrl $bootstrapperUrl -WorkLoads $workLoadsArgument
 Install-VisualStudio -BootstrapperUrl $buildbootstrapperUrl -WorkLoads $buildWorkLoadsArgument
 
-$vsInstallRoot = (Get-VisualStudioInstallation -VStype "VS").InstallationPath
+$vsInstallRoot = (Get-VisualStudioInstallation -VSInstallType "VS").InstallationPath
 
 # Initialize Visual Studio Experimental Instance
 & "$vsInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit

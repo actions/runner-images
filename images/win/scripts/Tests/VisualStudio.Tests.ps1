@@ -5,7 +5,7 @@ Describe "Visual Studio" {
         }
 
         It "Devenv.exe" {
-            $vsInstallRoot = (Get-VisualStudioInstallation -VStype "VS").InstallationPath
+            $vsInstallRoot = (Get-VisualStudioInstallation -VSInstallType "VS").InstallationPath
             $devenvexePath = "${vsInstallRoot}\Common7\IDE\devenv.exe"
             $devenvexePath | Should -Exist
         }
