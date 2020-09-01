@@ -266,14 +266,8 @@ function Get-VSExtensionVersion
         [string] $packageName
     )
 
-    $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
-    if ($instanceFolders -is [array])
-    {
-        Write-Host "More than one instance installed"
-        exit 1
-    }
-
-    $stateContent = Get-Content -Path (Join-Path $instanceFolders.FullName '\state.packages.json')
+    $instanceFolders = "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\" + (Get-VisualStudioInstallation -VSInstallType "VS").InstanceId
+    $stateContent = Get-Content -Path (Join-Path $instanceFolders '\state.packages.json')
     $state = $stateContent | ConvertFrom-Json
     $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
 

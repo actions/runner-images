@@ -226,6 +226,9 @@
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.Workload.Office"
+        ],
+        "build_workloads": [
+            "Microsoft.VisualStudio.Workload.WebBuildTools"
         ]
     }
 }

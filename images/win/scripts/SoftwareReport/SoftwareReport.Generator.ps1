@@ -171,7 +171,12 @@ $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Workloads, components and extensions:" -Level 4
 $markdown += New-MDNewLine
-$markdown += ((Get-VisualStudioComponents) + (Get-VisualStudioExtensions)) | New-MDTable
+$markdown += ((Get-VisualStudioComponents -VSInstallType "VS") + (Get-VisualStudioExtensions)) | New-MDTable
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Build Workloads and components:" -Level 4
+$markdown += New-MDNewLine
+$markdown += (Get-VisualStudioComponents -VSInstallType "BuildTools") | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Microsoft Visual C++:" -Level 4

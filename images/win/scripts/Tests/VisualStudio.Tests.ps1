@@ -5,7 +5,7 @@ Describe "Visual Studio" {
         }
 
         It "Devenv.exe" {
-            $vsInstallRoot = Get-VisualStudioPath
+            $vsInstallRoot = (Get-VisualStudioInstallation -VStype "VS").InstallationPath
             $devenvexePath = "${vsInstallRoot}\Common7\IDE\devenv.exe"
             $devenvexePath | Should -Exist
         }
@@ -15,7 +15,19 @@ Describe "Visual Studio" {
         $expectedComponents = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty workloads
         $testCases = $expectedComponents | ForEach-Object { @{ComponentName = $_} }
         BeforeAll {
-            $installedComponents = Get-VisualStudioComponents | Select-Object -ExpandProperty Package
+            $installedComponents = Get-VisualStudioComponents -VSInstallType "VS" | Select-Object -ExpandProperty Package
+        }
+
+        It "<ComponentName>" -TestCases $testCases {
+            $installedComponents | Should -Contain $ComponentName
+        }
+    }
+
+    Context "Visual Studio build components" {
+        $expectedComponents = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty build_workloads
+        $testCases = $expectedComponents | ForEach-Object { @{ComponentName = $_} }
+        BeforeAll {
+            $installedComponents = Get-VisualStudioComponents -VSInstallType "Build" | Select-Object -ExpandProperty Package
         }
 
         It "<ComponentName>" -TestCases $testCases {

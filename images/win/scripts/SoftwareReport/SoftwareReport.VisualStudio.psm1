@@ -23,7 +23,7 @@ function Get-VisualStudioExtensions {
     # Wix
     $vs = (Get-VisualStudioVersion).Name.Split()[-1]
     $wixPackageVersion = Get-WixVersion
-    $wixExtensionVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
+    $wixExtensionVersion = ((Get-VisualStudioInstallation -VSInstallType "VS").Packages  | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
 
     # WDK
     $wdkPackageVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'

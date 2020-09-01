@@ -61,20 +61,40 @@ Function Install-VisualStudio
 }
 
 function Get-VsCatalogJsonPath {
-    $instanceFolder = Get-Item "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\*" | Select-Object -First 1
-    return Join-Path $instanceFolder.FullName "catalog.json"
+    $instanceFolder = "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\" + (Get-VisualStudioInstallation -VSInstallType "VS").InstanceId
+    return Join-Path $instanceFolder "catalog.json"
 }
 
-function Get-VisualStudioPath {
-    return (Get-VSSetupInstance | Select-VSSetupInstance -Product *).InstallationPath
-}
+function Get-VisualStudioInstallation {
+    Param
+    (
+        [Parameter(Mandatory)]
+        [String] $VSInstallType
+    )
 
-function Get-VisualStudioPackages {
-    return (Get-VSSetupInstance | Select-VSSetupInstance -Product *).Packages
+    if ($VSInstallType -eq "VS")
+    {
+        $VSSelectionType = "*Enterprise*"
+    }
+    elseif ($VSInstallType -eq "BuildTools")
+    {
+        $VSSelectionType = "*Build*"
+    }
+    else
+    {
+        Write-Output "Visual Studio Installation type have to be 'VS' or 'BuildTools'"
+        exit 1
+    }
+    return Get-VSSetupInstance | Select-VSSetupInstance -Product * | Where-Object -Property DisplayName -like $VSSelectionType
 }
 
 function Get-VisualStudioComponents {
-    Get-VisualStudioPackages | Where-Object type -in 'Component', 'Workload' |
+    Param
+    (
+        [Parameter(Mandatory)]
+        [String] $VSInstallType
+    )
+    (Get-VisualStudioInstallation -VSInstallType $VSInstallType).Packages | Where-Object type -in 'Component', 'Workload' |
     Sort-Object Id, Version | Select-Object @{n = 'Package'; e = {$_.Id}}, Version |
     Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
 }
