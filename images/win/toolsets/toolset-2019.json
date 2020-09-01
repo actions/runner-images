@@ -258,7 +258,7 @@
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm"
         ],
-        "build_workloads": [
+        "buildtools_workloads": [
             "Microsoft.VisualStudio.Workload.WebBuildTools"
         ]
     }

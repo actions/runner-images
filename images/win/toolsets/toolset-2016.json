@@ -227,7 +227,7 @@
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.Workload.Office"
         ],
-        "build_workloads": [
+        "buildtools_workloads": [
             "Microsoft.VisualStudio.Workload.WebBuildTools"
         ]
     }

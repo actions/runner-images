@@ -61,30 +61,25 @@ Function Install-VisualStudio
 }
 
 function Get-VsCatalogJsonPath {
-    $instanceFolder = "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\" + (Get-VisualStudioInstallation -VSInstallType "VS").InstanceId
+    $instanceFolder = "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\" + (Get-VisualStudioProduct -ProductType "VisualStudio").InstanceId
     return Join-Path $instanceFolder "catalog.json"
 }
 
-function Get-VisualStudioInstallation {
+function Get-VisualStudioProduct {
     Param
     (
         [Parameter(Mandatory)]
-        [ValidateSet('VS','BuildTools')]
-        [String] $VSInstallType
+        [ValidateSet('VisualStudio','BuildTools')]
+        [String] $ProductType
     )
 
-    if ($VSInstallType -eq "VS")
+    if ($ProductType -eq "VisualStudio")
     {
         $VSSelectionType = "*Enterprise*"
     }
-    elseif ($VSInstallType -eq "BuildTools")
+    elseif ($ProductType -eq "BuildTools")
     {
         $VSSelectionType = "*Build*"
-    }
-    else
-    {
-        Write-Output "Visual Studio Installation type have to be 'VS' or 'BuildTools'"
-        exit 1
     }
     return Get-VSSetupInstance | Select-VSSetupInstance -Product * | Where-Object -Property DisplayName -like $VSSelectionType
 }
@@ -93,10 +88,30 @@ function Get-VisualStudioComponents {
     Param
     (
         [Parameter(Mandatory)]
-        [ValidateSet('VS','BuildTools')]
-        [String] $VSInstallType
+        [String] $ProductType
     )
-    (Get-VisualStudioInstallation -VSInstallType $VSInstallType).Packages | Where-Object type -in 'Component', 'Workload' |
+    (Get-VisualStudioProduct -ProductType $ProductType).Packages | Where-Object type -in 'Component', 'Workload' |
     Sort-Object Id, Version | Select-Object @{n = 'Package'; e = {$_.Id}}, Version |
     Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
+}
+
+function Get-VSExtensionVersion
+{
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        [string] $packageName
+    )
+
+    $instanceFolders = "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\" + (Get-VisualStudioProduct -ProductType "VisualStudio").InstanceId
+    $state = Get-Content -Path (Join-Path $instanceFolders '\state.packages.json') | ConvertFrom-Json
+    $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
+
+    if (-not $packageVersion)
+    {
+        Write-Host "installed package $packageName for Visual Studio 2019 was not found"
+        exit 1
+    }
+
+    return $packageVersion
 }

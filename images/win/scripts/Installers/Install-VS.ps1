@@ -7,18 +7,18 @@ $ErrorActionPreference = "Stop"
 
 $toolset = Get-ToolsetContent
 $requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
-$buildRequiredComponents = $toolset.visualStudio.build_workloads | ForEach-Object { "--add $_" }
+$buildToolsRequiredComponents = $toolset.visualStudio.buildtools_workloads | ForEach-Object { "--add $_" }
 $workLoads = @(
 	"--allWorkloads --includeRecommended"
 	$requiredComponents
 	"--remove Component.CPython3.x64"
 )
 $workLoadsArgument = [String]::Join(" ", $workLoads)
-$buildWorkLoads = @(
+$buildToolsWorkloads= @(
 	"--includeRecommended"
-	$buildRequiredComponents
+	$buildToolsRequiredComponents
 )
-$buildWorkLoadsArgument = [String]::Join(" ", $buildWorkLoads)
+$buildWorkLoadsArgument = [String]::Join(" ", $buildToolsWorkloads)
 
 $releaseInPath = $toolset.visualStudio.edition
 $subVersion = $toolset.visualStudio.subversion
@@ -29,7 +29,7 @@ $buildbootstrapperUrl = "https://aka.ms/vs/${subVersion}/release/vs_buildtools.e
 Install-VisualStudio -BootstrapperUrl $bootstrapperUrl -WorkLoads $workLoadsArgument
 Install-VisualStudio -BootstrapperUrl $buildbootstrapperUrl -WorkLoads $buildWorkLoadsArgument
 
-$vsInstallRoot = (Get-VisualStudioInstallation -VSInstallType "VS").InstallationPath
+$vsInstallRoot = (Get-VisualStudioProduct -ProductType "VisualStudio").InstallationPath
 
 # Initialize Visual Studio Experimental Instance
 & "$vsInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit
