@@ -27,7 +27,7 @@ Describe "Visual Studio" {
         $expectedComponents = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty buildtools_workloads
         $testCases = $expectedComponents | ForEach-Object { @{ComponentName = $_} }
         BeforeAll {
-            $installedComponents = Get-VisualStudioComponents -ProductType "Build" | Select-Object -ExpandProperty Package
+            $installedComponents = Get-VisualStudioComponents -ProductType "BuildTools" | Select-Object -ExpandProperty Package
         }
 
         It "<ComponentName>" -TestCases $testCases {
