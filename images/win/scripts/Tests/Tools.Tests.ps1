@@ -130,7 +130,7 @@ Describe "InnoSetup" {
     }
 }
 
-Describe "GoogleCouldSDK"  {
+Describe "GoogleCloudSDK"  {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
@@ -184,6 +184,12 @@ Describe "PowerShell Core" {
 
     It "Execute 2+2 command" {
         pwsh -Command "2+2" | Should -BeExactly 4
+    }
+}
+
+Describe "Pulumi" {
+    It "pulumi" {
+       "pulumi version" | Should -ReturnZeroExitCode
     }
 }
 
