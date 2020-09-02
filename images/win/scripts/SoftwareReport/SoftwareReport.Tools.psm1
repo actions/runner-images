@@ -107,6 +107,10 @@ function Get-PackerVersion {
     return "Packer $(packer --version)"
 }
 
+function Get-PulumiVersion {
+    return "Pulumi $(pulumi version)"
+}
+
 function Get-SQLPSVersion {
     $module = Get-Module -Name SQLPS -ListAvailable
     $version = $module.Version
@@ -222,7 +226,9 @@ function Get-NewmanVersion {
 }
 
 function Get-GHVersion {
-    return "GitHub CLI $(gh --version)"
+    ($(gh --version) | Select-String -Pattern "gh version") -match "gh version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $ghVersion = $Matches.Version
+    return "GitHub CLI $ghVersion"
 }
 
 function Get-VisualCPPComponents {
