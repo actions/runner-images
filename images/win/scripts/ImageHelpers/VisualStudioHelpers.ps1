@@ -60,9 +60,12 @@ Function Install-VisualStudio
     }
 }
 
+function Get-VisualStudioInstancePath {
+    return "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\" + (Get-VisualStudioProduct -ProductType "VisualStudio").InstanceId
+}
+
 function Get-VsCatalogJsonPath {
-    $instanceFolder = "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\" + (Get-VisualStudioProduct -ProductType "VisualStudio").InstanceId
-    return Join-Path $instanceFolder "catalog.json"
+    return Join-Path (Get-VisualStudioInstancePath) "catalog.json"
 }
 
 function Get-VisualStudioProduct {
@@ -81,7 +84,7 @@ function Get-VisualStudioProduct {
     {
         $VSSelectionType = "*Build*"
     }
-    return Get-VSSetupInstance | Select-VSSetupInstance -Product * | Where-Object -Property DisplayName -like $VSSelectionType
+    return Get-VSSetupInstance | Where-Object -Property DisplayName -like $VSSelectionType
 }
 
 function Get-VisualStudioComponents {
@@ -103,8 +106,7 @@ function Get-VSExtensionVersion
         [string] $packageName
     )
 
-    $instanceFolders = "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\" + (Get-VisualStudioProduct -ProductType "VisualStudio").InstanceId
-    $state = Get-Content -Path (Join-Path $instanceFolders '\state.packages.json') | ConvertFrom-Json
+    $state = Get-Content -Path (Join-Path (Get-VisualStudioInstancePath) '\state.packages.json') | ConvertFrom-Json
     $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
 
     if (-not $packageVersion)

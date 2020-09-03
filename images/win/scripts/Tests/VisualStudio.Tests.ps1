@@ -12,8 +12,7 @@ Describe "Visual Studio" {
     }
 
     Context "Visual Studio components" {
-        $expectedComponents = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty workloads
-        $testCases = $expectedComponents | ForEach-Object { @{ComponentName = $_} }
+        $testCases = (Get-ToolsetContent).visualStudio.workloads | ForEach-Object { @{ComponentName = $_} }
         BeforeAll {
             $installedComponents = Get-VisualStudioComponents -ProductType "VisualStudio" | Select-Object -ExpandProperty Package
         }
@@ -24,8 +23,7 @@ Describe "Visual Studio" {
     }
 
     Context "Visual Studio Build Tools components" {
-        $expectedComponents = Get-ToolsetContent | Select-Object -ExpandProperty visualStudio | Select-Object -ExpandProperty buildtools_workloads
-        $testCases = $expectedComponents | ForEach-Object { @{ComponentName = $_} }
+        $testCases = (Get-ToolsetContent).visualStudio.buildtools_workloads | ForEach-Object { @{ComponentName = $_} }
         BeforeAll {
             $installedComponents = Get-VisualStudioComponents -ProductType "BuildTools" | Select-Object -ExpandProperty Package
         }
