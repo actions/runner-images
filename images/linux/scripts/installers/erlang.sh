@@ -6,14 +6,15 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/install.sh
 
 source_list=/etc/apt/sources.list.d/eslerlang.list
 
 # Install Erlang
 echo "deb http://binaries.erlang-solutions.com/debian $(lsb_release -cs) contrib" > $source_list
 wget -O - http://binaries.erlang-solutions.com/debian/erlang_solutions.asc | apt-key add -
-apt-get update
-apt-get install -y --no-install-recommends esl-erlang
+wait_for_apt_lock "apt-get update"
+wait_for_apt_lock "apt-get install -y --no-install-recommends esl-erlang"
 
 # Install rebar3
 wget -q -O rebar3 https://s3.amazonaws.com/rebar3/rebar3

@@ -6,12 +6,13 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/install.sh
 
 function InstallFortran {
     version=$1
 
     echo "Installing $version..."
-    apt-get install $version -y
+    wait_for_apt_lock "apt-get install $version -y"
 
     # Run tests to determine that the software installed as expected
     echo "Testing to make sure that script performed as expected, and basic scenarios work"
@@ -26,8 +27,8 @@ function InstallFortran {
 }
 
 # Install GNU Fortran compiler
-add-apt-repository ppa:ubuntu-toolchain-r/test -y
-apt-get update -y
+wait_for_apt_lock "add-apt-repository ppa:ubuntu-toolchain-r/test -y"
+wait_for_apt_lock "apt-get update -y"
 
 versions=(
     "gfortran-8"

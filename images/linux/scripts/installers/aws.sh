@@ -33,7 +33,7 @@ if ! command -v aws; then
 fi
 
 curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
-sudo dpkg -i session-manager-plugin.deb
+wait_for_apt_lock "dpkg -i session-manager-plugin.deb"
 
 sessionPlugin=$(session-manager-plugin)
 echo "$sessionPlugin"

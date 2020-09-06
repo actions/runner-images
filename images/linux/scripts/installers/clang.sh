@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/install.sh
 
 function InstallClang {
     version=$1
@@ -13,9 +14,9 @@ function InstallClang {
     echo "Installing clang-$version..."
     if [[ $version =~ 9 ]]; then
         ./llvm.sh $version
-        apt-get install -y "clang-format-$version"
+        wait_for_apt_lock 'apt-get install -y "clang-format-$version"'
     else
-        apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version"
+        wait_for_apt_lock 'apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version"'
     fi
 
     # Run tests to determine that the software installed as expected

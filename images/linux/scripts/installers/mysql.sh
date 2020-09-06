@@ -6,11 +6,12 @@
 
 ## Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/install.sh
 
 export ACCEPT_EULA=Y
 
 if isUbuntu16 || isUbuntu18 ; then
-    apt-get install mysql-client -y
+    wait_for_apt_lock "apt-get install mysql-client -y"
 fi
 
 if isUbuntu20 ; then
@@ -19,8 +20,8 @@ if isUbuntu20 ; then
     debconf-set-selections <<< 'mysql-apt-config mysql-apt-config/select-server select mysql-8.0'
     package_version=$(curl https://dev.mysql.com/downloads/repo/apt/ 2> /dev/null | grep "\.deb" | awk -F "[()]" '{print $2}')
     wget https://dev.mysql.com/get/$package_version
-    dpkg -i $package_version
-    apt update
+    wait_for_apt_lock "dpkg -i $package_version"
+    wait_for_apt_lock "apt update"
 fi
 
 # Mysql setting up root password
@@ -29,14 +30,14 @@ echo "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD" | d
 echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
 
 # Install MySQL Server
-apt-get install -y mysql-server
+wait_for_apt_lock "apt-get install -y mysql-server"
 
 #Install MySQL Dev tools
-apt install libmysqlclient-dev -y
+wait_for_apt_lock "apt install libmysqlclient-dev -y"
 
 # Install MS SQL Server client tools (https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-2017)
-apt-get install -y mssql-tools unixodbc-dev
-apt-get -f install
+wait_for_apt_lock "apt-get install -y mssql-tools unixodbc-dev"
+wait_for_apt_lock "apt-get -f install"
 ln -s /opt/mssql-tools/bin/* /usr/local/bin/
 
 # Run tests to determine that the software installed as expected

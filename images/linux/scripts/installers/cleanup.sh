@@ -1,11 +1,11 @@
 #!/bin/bash
-
+source $HELPER_SCRIPTS/install.sh
 # before cleanup
 before=$(df / -Pm | awk 'NR==2{print $4}')
 
 # clears out the local repository of retrieved package files
 # It removes everything but the lock file from /var/cache/apt/archives/ and /var/cache/apt/archives/partial
-apt-get clean
+wait_for_apt_lock "apt-get clean"
 rm -rf /tmp/*
 
 # journalctl

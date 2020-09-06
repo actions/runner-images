@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/install.sh
 
 LSB_CODENAME=$(lsb_release -cs)
 
@@ -14,8 +15,8 @@ LSB_CODENAME=$(lsb_release -cs)
 
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 echo "deb https://download.mono-project.com/repo/ubuntu stable-$LSB_CODENAME main" | tee /etc/apt/sources.list.d/mono-official-stable.list
-apt-get update
-apt-get install -y --no-install-recommends apt-transport-https mono-complete nuget
+wait_for_apt_lock "apt-get update"
+wait_for_apt_lock "apt-get install -y --no-install-recommends apt-transport-https mono-complete nuget"
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"

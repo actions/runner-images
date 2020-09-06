@@ -35,6 +35,17 @@ download_with_retries() {
     return 1
 }
 
+function wait_for_apt_lock() {
+    while [ "" = "" ]; do
+        eval "$1" 2>/dev/null
+        if [ $? -eq 0 ]; then
+            break
+        fi
+        sleep 1
+        echo "Waiting for apt lock..."
+    done
+}
+
 ## Use dpkg to figure out if a package has already been installed
 ## Example use:
 ## if ! IsPackageInstalled packageName; then

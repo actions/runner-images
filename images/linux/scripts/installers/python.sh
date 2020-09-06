@@ -7,17 +7,18 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
 
 # Install Python, Python 3, pip, pip3
 if isUbuntu20 ; then
-    apt-get install -y --no-install-recommends python3 python3-dev python3-pip
+    wait_for_apt_lock "apt-get install -y --no-install-recommends python3 python3-dev python3-pip"
 
     curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
     python2 get-pip.py
 fi
 
 if isUbuntu16 || isUbuntu18 ; then
-    apt-get install -y --no-install-recommends python python-dev python-pip python3 python3-dev python3-pip
+    wait_for_apt_lock "apt-get install -y --no-install-recommends python python-dev python-pip python3 python3-dev python3-pip"
 fi
 
 # Run tests to determine that the software installed as expected

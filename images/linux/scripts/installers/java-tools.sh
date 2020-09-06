@@ -7,6 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
 
 set -e
 
@@ -27,10 +28,10 @@ if isUbuntu16 || isUbuntu18 ; then
     # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
     apt-add-repository "deb http://repos.azul.com/azure-only/zulu/apt stable main"
-    apt-get update
-    apt-get -y install zulu-7-azure-jdk=\*
+    wait_for_apt_lock "apt-get update"
+    wait_for_apt_lock "apt-get -y install zulu-7-azure-jdk=\*"
     # Open JDP Adopt does not exist for Ubuntu 20
-    apt-get -y install adoptopenjdk-12-hotspot=\*
+    wait_for_apt_lock "apt-get -y install adoptopenjdk-12-hotspot=\*"
     echo "JAVA_HOME_7_X64=/usr/lib/jvm/zulu-7-azure-amd64" | tee -a /etc/environment
     DEFAULT_JDK_VERSION=8
     defaultLabel8="(default)"
@@ -39,12 +40,12 @@ fi
 if isUbuntu20 ; then
     DEFAULT_JDK_VERSION=11
     defaultLabel11="(default)"
-    apt-get update
+    wait_for_apt_lock "apt-get update"
 fi
 
 # Install only LTS versions.
-apt-get -y install adoptopenjdk-8-hotspot=\*
-apt-get -y install adoptopenjdk-11-hotspot=\*
+wait_for_apt_lock "apt-get -y install adoptopenjdk-8-hotspot=\*"
+wait_for_apt_lock "apt-get -y install adoptopenjdk-11-hotspot=\*"
 
 # Set Default Java version.
 if isUbuntu16; then
@@ -62,7 +63,7 @@ fi
 echo "JAVA_HOME=/usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64" | tee -a /etc/environment
 
 # Install Ant
-apt-fast install -y --no-install-recommends ant ant-optional
+wait_for_apt_lock "apt-fast install -y --no-install-recommends ant ant-optional"
 echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven

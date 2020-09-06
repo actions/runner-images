@@ -7,6 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
 
 # Install Powershell
 if isUbuntu20 ; then
@@ -14,7 +15,7 @@ if isUbuntu20 ; then
 fi
 
 if isUbuntu16 || isUbuntu18 ; then
-    apt-get install -y powershell
+    wait_for_apt_lock "apt-get install -y powershell"
 fi
 
 # Run tests to determine that the software installed as expected

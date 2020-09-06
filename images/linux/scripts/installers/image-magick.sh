@@ -6,13 +6,14 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/install.sh
 
 # Install ImageMagick
-apt-get install -y --no-install-recommends --fix-missing \
+wait_for_apt_lock "apt-get install -y --no-install-recommends --fix-missing \
     imagemagick \
     libmagickcore-dev \
     libmagickwand-dev \
-    libmagic-dev
+    libmagic-dev"
 
 # Document what was added to the image
 echo "Lastly, documenting what we added to the metadata file"

@@ -6,12 +6,13 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/install.sh
 
 # Install bazel
 curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
 echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
-apt-get update -y
-apt-get install -y bazel
+wait_for_apt_lock "apt-get update -y"
+wait_for_apt_lock "apt-get install -y bazel"
 
 # Install bazelisk
 npm install -g @bazel/bazelisk

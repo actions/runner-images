@@ -14,7 +14,7 @@ PACKAGE=build-essential
 echo "Checking to see if the installer script has already been run"
 if ! IsPackageInstalled $PACKAGE; then
     echo "Installing $PACKAGE"
-    apt-get install -y --no-install-recommends $PACKAGE
+    wait_for_apt_lock "apt-get install -y --no-install-recommends $PACKAGE"
 else
     echo "$PACKAGE is already installed"
 fi

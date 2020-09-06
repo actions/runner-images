@@ -10,17 +10,17 @@ source "$HELPER_SCRIPTS"/document.sh
 source "$HELPER_SCRIPTS"/install.sh
 
 ## Install git
-add-apt-repository ppa:git-core/ppa -y
-apt-get update
-apt-get install git -y
+wait_for_apt_lock "add-apt-repository ppa:git-core/ppa -y"
+wait_for_apt_lock "apt-get update"
+wait_for_apt_lock "apt-get install git -y"
 git --version
 
 # Install git-lfs
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
-apt-get install -y --no-install-recommends git-lfs
+wait_for_apt_lock "apt-get install -y --no-install-recommends git-lfs"
 
 # Install git-ftp
-apt-get install git-ftp -y
+wait_for_apt_lock "apt-get install git-ftp -y"
 
 # Run tests to determine that the software installed as expected
 echo "Testing git installation"

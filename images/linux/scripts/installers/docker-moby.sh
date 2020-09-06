@@ -12,17 +12,17 @@ docker_package=moby
 
 # There is no stable docker-moby for Ubuntu 20 at the moment
 if isUbuntu20 ; then
-    add-apt-repository "deb [arch=amd64,armhf,arm64] https://packages.microsoft.com/ubuntu/20.04/prod testing main"
+    wait_for_apt_lock 'add-apt-repository "deb [arch=amd64,armhf,arm64] https://packages.microsoft.com/ubuntu/20.04/prod testing main"'
 fi
 
 ## Check to see if docker is already installed
 echo "Determing if Docker ($docker_package) is installed"
 if ! IsPackageInstalled $docker_package; then
     echo "Docker ($docker_package) was not found. Installing..."
-    apt-get remove -y moby-engine moby-cli
-    apt-get update
-    apt-get install -y moby-engine moby-cli
-    apt-get install --no-install-recommends -y moby-buildx
+    wait_for_apt_lock "apt-get remove -y moby-engine moby-cli"
+    wait_for_apt_lock "apt-get update"
+    wait_for_apt_lock "apt-get install -y moby-engine moby-cli"
+    wait_for_apt_lock "apt-get install --no-install-recommends -y moby-buildx"
 else
     echo "Docker ($docker_package) is already installed"
 fi

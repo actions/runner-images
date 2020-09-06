@@ -8,12 +8,13 @@
 source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
 
 set -e
 
 # add repository
 apt-add-repository ppa:ondrej/php -y
-apt-get update
+wait_for_apt_lock "apt-get update"
 
 # Install PHP
 if isUbuntu16 ; then
@@ -30,7 +31,7 @@ fi
 
 for version in $php_versions; do
     echo "Installing PHP $version"
-    apt-fast install -y --no-install-recommends \
+    wait_for_apt_lock "apt-fast install -y --no-install-recommends \
         php$version \
         php$version-bcmath \
         php$version-bz2 \
@@ -65,19 +66,19 @@ for version in $php_versions; do
         php$version-xml \
         php$version-xmlrpc \
         php$version-xsl \
-        php$version-zip
+        php$version-zip"
 
     if [[ $version == "5.6" || $version == "7.0" || $version == "7.1" ]]; then
-        apt-fast install -y --no-install-recommends php$version-mcrypt php$version-recode
-        apt-get remove --purge -yq php$version-dev
+        wait_for_apt_lock "apt-fast install -y --no-install-recommends php$version-mcrypt php$version-recode"
+        wait_for_apt_lock "apt-get remove --purge -yq php$version-dev"
     fi
 
     if [[ $version == "7.2" || $version == "7.3" ]]; then
-        apt-fast install -y --no-install-recommends php$version-recode
+        wait_for_apt_lock "apt-fast install -y --no-install-recommends php$version-recode"
     fi
 done
 
-apt-fast install -y --no-install-recommends \
+wait_for_apt_lock "apt-fast install -y --no-install-recommends \
     php-amqp \
     php-apcu \
     php-igbinary \
@@ -87,11 +88,11 @@ apt-fast install -y --no-install-recommends \
     php-redis \
     php-xdebug \
     php-yaml \
-    php-zmq
+    php-zmq"
 
-apt-get remove --purge -yq php7.2-dev
+wait_for_apt_lock "apt-get remove --purge -yq php7.2-dev"
 
-apt-fast install -y --no-install-recommends snmp
+wait_for_apt_lock "apt-fast install -y --no-install-recommends snmp"
 
 # Install composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -138,7 +139,7 @@ done
 # see https://github.com/actions/virtual-environments/issues/1084
 if isUbuntu20 ; then
   rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
-  apt-get update
+  wait_for_apt_lock "apt-get update"
   AddBlockquote "To use ppa:ondrej/php APT repository On Ubuntu 20.04 it is necessary to add it to the APT sources"
   StartCode
   WriteItem "apt-add-repository ppa:ondrej/php -y"

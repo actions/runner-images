@@ -7,6 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
 
 set -e
 
@@ -68,7 +69,7 @@ cmd_packages="curl
 
 if isUbuntu20 ; then
     echo "Install python2"
-    apt-get install -y --no-install-recommends python-is-python2
+    wait_for_apt_lock "apt-get install -y --no-install-recommends python-is-python2"
 fi
 
 echo "Install libcurl"
@@ -80,7 +81,7 @@ if isUbuntu20 ; then
     libcurelVer="libcurl4"
 fi
 
-apt-get install -y --no-install-recommends $libcurelVer
+wait_for_apt_lock "apt-get install -y --no-install-recommends $libcurelVer"
 
 # install additional packages only for Ubuntu16.04
 if isUbuntu16; then
@@ -90,7 +91,7 @@ fi
 
 for package in $common_packages $cmd_packages; do
     echo "Install $package"
-    apt-get install -y --no-install-recommends $package
+    wait_for_apt_lock "apt-get install -y --no-install-recommends $package"
 done
 
 # Run tests to determine that the software installed as expected

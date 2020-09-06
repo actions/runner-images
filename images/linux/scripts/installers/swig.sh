@@ -2,9 +2,10 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/install.sh
 
 # Install Swig
-sudo apt-get install -y swig
+wait_for_apt_lock "apt-get install -y swig"
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"

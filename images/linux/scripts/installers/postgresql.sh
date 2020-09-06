@@ -6,17 +6,18 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/install.sh
 
 #Preparing repo for PostgreSQL 12.
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
 
 echo "Install PostgreSQL"
-apt update
-apt install postgresql postgresql-client
+wait_for_apt_lock "apt update"
+wait_for_apt_lock "apt install postgresql postgresql-client"
 
 echo "Install libpq-dev"
-apt-get install libpq-dev
+wait_for_apt_lock "apt-get install libpq-dev"
 
 #Verify that PostgreSQL is ready for accept incoming connections.
 # exit codes:

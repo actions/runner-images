@@ -15,8 +15,8 @@ echo "Checking to see if the installer script has already been run"
 if ! IsPackageInstalled ${hhvm_package}; then
     apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xB4112585D386EB94
     add-apt-repository https://dl.hhvm.com/ubuntu
-    apt-get update
-    apt-get -qq install -y hhvm
+    wait_for_apt_lock "apt-get update"
+    wait_for_apt_lock "apt-get -qq install -y hhvm"
 else
     echo "${hhvm_package} already installed"
 fi
