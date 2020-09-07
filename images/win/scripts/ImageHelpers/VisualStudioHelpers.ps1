@@ -103,15 +103,15 @@ function Get-VSExtensionVersion
     Param
     (
         [Parameter(Mandatory=$true)]
-        [string] $packageName
+        [string] $PackageName
     )
 
     $state = Get-Content -Path (Join-Path (Get-VisualStudioInstancePath) '\state.packages.json') | ConvertFrom-Json
-    $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
+    $packageVersion = ($state.packages | Where-Object { $_.id -eq $PackageName }).version
 
     if (-not $packageVersion)
     {
-        Write-Host "installed package $packageName for Visual Studio 2019 was not found"
+        Write-Host "installed package $PackageName for Visual Studio 2019 was not found"
         exit 1
     }
 
