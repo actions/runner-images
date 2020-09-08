@@ -46,8 +46,8 @@ $toolsExecutables = @{
 }
 
 # Get toolset content
-$toolsetJson = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
-$tools = ConvertFrom-Json -InputObject $toolsetJson | Select-Object -ExpandProperty toolcache
+$toolset = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
+$tools = ConvertFrom-Json -InputObject $toolset | Select-Object -ExpandProperty toolcache
 
 foreach($tool in $tools) {
     Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItem '$($tool.name):'`""
