@@ -8,9 +8,9 @@ set -e
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 
-toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-common_packages=$(jq -r ".apt.common_packages[]" $toolsetJson)
-cmd_packages=$(jq -r ".apt.cmd_packages[]" $toolsetJson)
+toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
+common_packages=$(jq -r ".apt.common_packages[]" $toolset)
+cmd_packages=$(jq -r ".apt.cmd_packages[]" $toolset)
 for package in $common_packages $cmd_packages; do
     echo "Install $package"
     apt-get install -y --no-install-recommends $package
