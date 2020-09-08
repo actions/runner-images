@@ -1,7 +1,11 @@
-# macOS info
+| Announcements |
+|-|
+| [Xcode 11.7 will be set as a default one on September, 9](https://github.com/actions/virtual-environments/issues/1537) |
+***
+# macOS 10.15 info
 - System Version: macOS 10.15.6 (19G2021)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20200829.1
+- Image Version: 20200903.1
 
 ## Installed Software
 ### Language and Runtime
@@ -19,7 +23,7 @@
 - .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401
 - R 4.0.2
 - Go 1.15
-- PHP 7.4.9
+- PHP 7.4.10
 - julia 1.5.1
 
 ### Package Management
@@ -27,7 +31,7 @@
 - Bundler version 2.1.4
 - Carthage 0.35.0
 - CocoaPods 1.9.3
-- Homebrew 2.4.14
+- Homebrew 2.4.16
 - NPM 6.14.6
 - Yarn 1.22.5
 - NuGet 5.6.0.6489
@@ -45,7 +49,7 @@
 ### Utilities
 - Curl 7.72.0
 - Git: 2.28.0
-- Git LFS: 2.11.0
+- Git LFS: 2.12.0
 - GitHub CLI: 0.11.1
 - Hub CLI: 2.14.2
 - GNU Wget 1.20.3
@@ -54,30 +58,30 @@
 - GNU parallel 20200722
 - OpenSSL 1.0.2t  10 Sep 2019 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl/1.0.2t)`
 - jq 1.6
-- gpg (GnuPG) 2.2.21
+- gpg (GnuPG) 2.2.22
 - psql (PostgreSQL) 12.4
 - PostgreSQL 12.4
 - aria2 1.35.0
 - azcopy 10.6.0
 - zstd 1.4.5
-- bazel 3.4.1
+- bazel 3.5.0
 - bazelisk 1.6.1
-- helm v3.3.0+g8a4aeec
+- helm v3.3.1+g249e521
 - virtualbox 6.1.12r139181
 - mongo v4.4.0
 - mongod v4.4.0
 - Vagrant 2.2.10
 - 7-Zip 16.02
-- Newman 5.1.2
+- Newman 5.2.0
 
 
 ### Tools
-- Fastlane 2.157.2
+- Fastlane fastlane
 - Cmake 3.18.2
 - App Center CLI 2.6.7
 - Azure CLI 2.11.1
 - AWS CLI 2.0.44
-- AWS SAM CLI 1.1.0
+- AWS SAM CLI 1.2.0
 - AWS Session Manager CLI 1.1.61.0
 - Aliyun CLI 3.0.56
 - GHCup v0.1.10
@@ -94,9 +98,9 @@
 - SafariDriver 13.1.2 (15609.3.5.1.3)
 - Google Chrome 85.0.4183.83 
 - ChromeDriver 85.0.4183.87
-- Microsoft Edge 85.0.564.41 
-- MSEdgeDriver 85.0.564.41
-- Mozilla Firefox 80.0
+- Microsoft Edge 85.0.564.44 
+- MSEdgeDriver 85.0.564.44
+- Mozilla Firefox 80.0.1
 - geckodriver 0.27.0
 
 ### Java
@@ -136,8 +140,8 @@
 - 1.11.13
 - 1.12.17
 - 1.13.15
-- 1.14.7
-- 1.15.0
+- 1.14.8
+- 1.15.1
 
 ### Rust Tools
 - Rust 1.46.0
@@ -157,7 +161,7 @@
 | ---------- | ------- |
 | Az         | 4.6.1   |
 | MarkdownPS | 1.9     |
-| Pester     | 5.0.3   |
+| Pester     | 5.0.4   |
 
 ### Xamarin
 #### Visual Studio for Mac
@@ -203,19 +207,19 @@
 - NUnit 3.6.1
 
 ### Xcode
-| Version        | Build    | Path                              |
-| -------------- | -------- | --------------------------------- |
-| 12.0 (beta)    | 12A8189n | /Applications/Xcode_12_beta.app   |
-| 11.7 (beta)    | 11E801a  | /Applications/Xcode_11.7_beta.app |
-| 11.6 (default) | 11E708   | /Applications/Xcode_11.6.app      |
-| 11.5           | 11E608c  | /Applications/Xcode_11.5.app      |
-| 11.4.1         | 11E503a  | /Applications/Xcode_11.4.1.app    |
-| 11.4           | 11E146   | /Applications/Xcode_11.4.app      |
-| 11.3.1         | 11C505   | /Applications/Xcode_11.3.1.app    |
-| 11.2.1         | 11B500   | /Applications/Xcode_11.2.1.app    |
-| 11.1           | 11A1027  | /Applications/Xcode_11.1.app      |
-| 11.0           | 11A420a  | /Applications/Xcode_11.app        |
-| 10.3           | 10G8     | /Applications/Xcode_10.3.app      |
+| Version        | Build    | Path                            |
+| -------------- | -------- | ------------------------------- |
+| 12.0 (beta)    | 12A8189n | /Applications/Xcode_12_beta.app |
+| 11.7 (default) | 11E801a  | /Applications/Xcode_11.7.app    |
+| 11.6           | 11E708   | /Applications/Xcode_11.6.app    |
+| 11.5           | 11E608c  | /Applications/Xcode_11.5.app    |
+| 11.4.1         | 11E503a  | /Applications/Xcode_11.4.1.app  |
+| 11.4           | 11E146   | /Applications/Xcode_11.4.app    |
+| 11.3.1         | 11C505   | /Applications/Xcode_11.3.1.app  |
+| 11.2.1         | 11B500   | /Applications/Xcode_11.2.1.app  |
+| 11.1           | 11A1027  | /Applications/Xcode_11.1.app    |
+| 11.0           | 11A420a  | /Applications/Xcode_11.app      |
+| 10.3           | 10G8     | /Applications/Xcode_10.3.app    |
 
 #### Xcode Support Tools
 - Nomad CLI 3.1.4
