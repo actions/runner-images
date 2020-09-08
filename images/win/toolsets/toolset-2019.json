@@ -239,6 +239,7 @@
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
             "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
+            "Microsoft.VisualStudio.ComponentGroup.UWP.VC",
             "Microsoft.VisualStudio.Workload.Azure",
             "Microsoft.VisualStudio.Workload.Data",
             "Microsoft.VisualStudio.Workload.DataScience",
@@ -258,6 +259,9 @@
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm"
+        ],
+        "buildtools_workloads": [
+            "Microsoft.VisualStudio.Workload.WebBuildTools"
         ]
     }
 }

@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 3866
-- Image Version: 20200820.1
+- Image Version: 20200827.1
 
 ## Installed Software
 ### Language and Runtime
@@ -16,7 +16,7 @@
 - Ruby 2.5.8p224
 - Go 1.14.7
 - PHP 7.4.9
-- Julia 1.5.0
+- Julia 1.5.1
 - Perl 5.30.3
 - Node 12.18.3
 
@@ -39,17 +39,17 @@
 - sbt 1.3.13
 
 ### Tools
-- Azure CosmosDb Emulator 2.11.3.0
+- Azure CosmosDb Emulator 2.11.5.0
 - azcopy 10.6.0
 - Bazel 3.4.1
 - Bazelisk 1.6.1
-- CMake 3.18.1
+- CMake 3.18.2
 - R 4.0.2
 - Docker 19.03.11
 - Docker-compose 1.26.2
 - Git 2.28.0
 - Git LFS 2.11.0
-- Google Cloud SDK 306.0.0
+- Google Cloud SDK 307.0.0
 - InnoSetup 6.0.5
 - jq 1.6
 - Kubectl 1.18.8
@@ -74,13 +74,13 @@
 - yamllint 1.24.2
 
 ### CLI Tools
-- Azure CLI 2.10.1
+- Azure CLI 2.11.0
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.41
+- AWS CLI 2.0.43
 - AWS SAM CLI 1.1.0
 - AWS Session Manager CLI 1.1.61.0
 - Alibaba Cloud CLI 3.0.56
-- Cloud Foundry CLI 6.51.0
+- Cloud Foundry CLI 6.52.0
 - Hub CLI 2.14.2
 - GitHub CLI gh version 0.11.1 (2020-07-28) https://github.com/cli/cli/releases/tag/v0.11.1
 
@@ -88,17 +88,17 @@
 - Rust 1.45.2
 
 #### Packages
-- bindgen 0.54.1
-- cbindgen 0.14.3
+- bindgen 0.55.1
+- cbindgen 0.14.4
 - cargo-audit 0.12.0
 - cargo-outdated v0.9.11
 
 ### Browsers and webdrivers
-- Google Chrome 84.0.4147.135
-- Chrome Driver 84.0.4147.30
-- Microsoft Edge 84.0.522.61
-- Microsoft Edge Driver 84.0.522.61
-- Mozilla Firefox 79.0
+- Google Chrome 85.0.4183.83
+- Chrome Driver 85.0.4183.83
+- Microsoft Edge 84.0.522.63
+- Microsoft Edge Driver 84.0.522.63
+- Mozilla Firefox 80.0
 - Gecko Driver 0.27.0
 - IE Driver 3.150.1.0
 
@@ -574,6 +574,8 @@ All other versions are saved but not installed.
 | build-tools-29.0.2 | Android SDK Build-Tools, Revision 29.0.2 |
 | build-tools-29.0.3 | Android SDK Build-Tools, Revision 29.0.3 |
 | build-tools-30.0.0 | Android SDK Build-Tools, Revision 30.0.0 |
+| build-tools-30.0.1 | Android SDK Build-Tools, Revision 30.0.1 |
+| build-tools-30.0.2 | Android SDK Build-Tools, Revision 30.0.2 |
 
 ### Android Extra Packages
 | Package Name               | Version      |
