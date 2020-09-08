@@ -76,7 +76,7 @@
 
 
 ### Tools
-- Fastlane fastlane
+- Fastlane 2.157.2
 - Cmake 3.18.2
 - App Center CLI 2.6.7
 - Azure CLI 2.11.1
