@@ -41,6 +41,13 @@ Describe "CMake" {
     }
 }
 
+Describe "CodeQLBundle" {
+    It "CodeQLBundle" {
+        $CodeQLPath = Join-Path $Env:CODEQL_EXTRACTION_DIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
+        "$CodeQLPath version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "R" {
     It "Rscript" {
         "Rscript --version" | Should -ReturnZeroExitCode
