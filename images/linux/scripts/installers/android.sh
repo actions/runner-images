@@ -42,12 +42,12 @@ else
     exit 1
 fi
 
-toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-platforms=$(cat $toolsetJson  | jq -r '.android.platform_list[]|"platforms;" + .')
-buildtools=$(cat $toolsetJson  | jq -r '.android.build_tools[]|"build-tools;" + .')
-extras=$(cat $toolsetJson  | jq -r '.android.extra_list[]|"extras;" + .')
-addons=$(cat $toolsetJson  | jq -r '.android.addon_list[]|"add-ons;" + .')
-additional=$(cat $toolsetJson  | jq -r '.android.additional_tools[]')
+toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
+platforms=$(jq -r '.android.platform_list[]|"platforms;" + .' $toolset)
+buildtools=$(jq -r '.android.build_tools[]|"build-tools;" + .' $toolset)
+extras=$(jq -r '.android.extra_list[]|"extras;" + .' $toolset)
+addons=$(jq -r '.android.addon_list[]|"add-ons;" + .' $toolset)
+additional=$(jq -r '.android.additional_tools[]' $toolset)
 
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager $platforms $buildtools $extras $google_api_list $addons $additional
