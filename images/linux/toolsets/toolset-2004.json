@@ -129,5 +129,24 @@
             "yamllint",
             "zip"
         ]
+    },
+    "docker": {
+        "images": [
+            "alpine:3.7",
+            "alpine:3.8",
+            "alpine:3.9",
+            "alpine:3.10",
+            "buildpack-deps:stretch",
+            "buildpack-deps:buster",
+            "debian:8",
+            "debian:9",
+            "jekyll/builder",
+            "mcr.microsoft.com/azure-pipelines/node8-typescript",
+            "node:10",
+            "node:12",
+            "node:10-alpine",
+            "node:12-alpine",
+            "ubuntu:14.04"
+        ]
     }
 }

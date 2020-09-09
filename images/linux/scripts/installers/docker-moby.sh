@@ -3,19 +3,20 @@
 ##  File:  docker-moby.sh
 ##  Desc:  Installs docker onto the image
 ################################################################################
+set -e
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
-
-docker_package=moby
 
 # There is no stable docker-moby for Ubuntu 20 at the moment
 if isUbuntu20 ; then
     add-apt-repository "deb [arch=amd64,armhf,arm64] https://packages.microsoft.com/ubuntu/20.04/prod testing main"
 fi
 
-## Check to see if docker is already installed
+# Check to see if docker is already installed
+docker_package=moby
 echo "Determing if Docker ($docker_package) is installed"
 if ! IsPackageInstalled $docker_package; then
     echo "Docker ($docker_package) was not found. Installing..."
@@ -44,35 +45,17 @@ else
     echo "Docker-moby and Docker-buildx checking the successfull"
     # Docker daemon takes time to come up after installing
     sleep 10
-    set -e
     docker info
-    set +e
 fi
 
 # Pull images
-images=(
-    node:10
-    node:12
-    buildpack-deps:stretch
-    buildpack-deps:buster
-    node:10-alpine
-    node:12-alpine
-    debian:8
-    debian:9
-    alpine:3.7
-    alpine:3.8
-    alpine:3.9
-    alpine:3.10
-    ubuntu:14.04
-    docker.io/jekyll/builder
-    mcr.microsoft.com/azure-pipelines/node8-typescript
-)
-
-for image in "${images[@]}"; do
+toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
+images=$(jq -r '.docker.images[]' $toolset)
+for image in $images; do
     docker pull "$image"
 done
 
-## Add version information to the metadata file
+# Add version information to the metadata file
 echo "Documenting Docker version"
 docker_version=$(docker -v)
 DocumentInstalledItem "Docker-Moby ($docker_version)"
@@ -81,9 +64,8 @@ echo "Documenting Docker-buildx version"
 DOCKER_BUILDX_VERSION=$(docker buildx version | cut -d ' ' -f2)
 DocumentInstalledItem "Docker-Buildx ($DOCKER_BUILDX_VERSION)"
 
-## Add container information to the metadata file
+# Add container information to the metadata file
 DocumentInstalledItem "Cached container images"
-
 while read -r line; do
     DocumentInstalledItemIndent "$line"
 done <<< "$(docker images --digests --format '{{.Repository}}:{{.Tag}} (Digest: {{.Digest}})')"
