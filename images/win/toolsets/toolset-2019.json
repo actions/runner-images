@@ -259,6 +259,24 @@
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm"
+        ],
+        "vsix": [
+            {
+                "name": "Microsoft.DataTools.AnalysisServices.vsix",
+                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftAnalysisServicesModelingProjects/latest/vspackage"
+            },
+            {
+                "name": "Microsoft.DataTools.IntegrationServices.exe",
+                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/SSIS/vsextensions/SqlServerIntegrationServicesProjects/latest/vspackage"
+            },
+            {
+                "name": "Microsoft.DataTools.ReportingServices.vsix",
+                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftReportProjectsforVisualStudio/latest/vspackage"
+            },
+            {
+                "name": "Microsoft.VisualStudio.Installer.Projects.vsix",
+                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/VisualStudioClient/vsextensions/MicrosoftVisualStudio2017InstallerProjects/latest/vspackage"
+            }
         ]
     }
 }
