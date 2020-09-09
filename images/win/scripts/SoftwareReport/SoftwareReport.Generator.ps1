@@ -74,6 +74,7 @@ $markdown += New-MDHeader "Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-AzCopyVersion),
+    (Get-AZDSVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
     (Get-CMakeVersion),
