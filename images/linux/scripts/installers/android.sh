@@ -27,9 +27,6 @@ wget -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux
 unzip android-sdk.zip -d ${ANDROID_SDK_ROOT}
 rm -f android-sdk.zip
 
-# Add required permissions
-chmod -R a+rwx ${ANDROID_SDK_ROOT}
-
 if isUbuntu20 ; then
     # Sdk manager doesn't work with Java > 8, set version 8 explicitly
     sed -i "2i export JAVA_HOME=${JAVA_HOME_8_X64}" /usr/local/lib/android/sdk/tools/bin/sdkmanager
@@ -45,12 +42,12 @@ else
     exit 1
 fi
 
-toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-platforms=$(cat $toolsetJson  | jq -r '.android.platform_list[]|"platforms;" + .')
-buildtools=$(cat $toolsetJson  | jq -r '.android.build_tools[]|"build-tools;" + .')
-extras=$(cat $toolsetJson  | jq -r '.android.extra_list[]|"extras;" + .')
-addons=$(cat $toolsetJson  | jq -r '.android.addon_list[]|"add-ons;" + .')
-additional=$(cat $toolsetJson  | jq -r '.android.additional_tools[]')
+toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
+platforms=$(jq -r '.android.platform_list[]|"platforms;" + .' $toolset)
+buildtools=$(jq -r '.android.build_tools[]|"build-tools;" + .' $toolset)
+extras=$(jq -r '.android.extra_list[]|"extras;" + .' $toolset)
+addons=$(jq -r '.android.addon_list[]|"add-ons;" + .' $toolset)
+additional=$(jq -r '.android.additional_tools[]' $toolset)
 
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager $platforms $buildtools $extras $google_api_list $addons $additional
@@ -62,6 +59,9 @@ constraint_layout_versions_list=$(echo "$extras"|awk -F';' '/constraint-layout;/
 constraint_layout_solver_versions_list=$(echo "$extras"|awk -F';' '/constraint-layout-solver;/  {print $8}')
 platform_versions_list=$(echo "$platforms"|awk -F- '{print $2}')
 buildtools_versions_list=$(echo "$buildtools"|awk -F';' '{print $2}')
+
+# Add required permissions
+chmod -R a+rwx ${ANDROID_SDK_ROOT}
 
 echo "Lastly, document what was added to the metadata file"
 DocumentInstalledItem "Google Repository $(cat ${ANDROID_SDK_ROOT}/extras/google/m2repository/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"

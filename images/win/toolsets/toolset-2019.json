@@ -129,7 +129,8 @@
                 "3.5.0",
                 "3.8.0",
                 "4.3.0",
-                "4.4.0"
+                "4.4.0",
+                "4.6.0"
             ]
         }
     ],
@@ -238,6 +239,7 @@
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
             "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
+            "Microsoft.VisualStudio.ComponentGroup.UWP.VC",
             "Microsoft.VisualStudio.Workload.Azure",
             "Microsoft.VisualStudio.Workload.Data",
             "Microsoft.VisualStudio.Workload.DataScience",
