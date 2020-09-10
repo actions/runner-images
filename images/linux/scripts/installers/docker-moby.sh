@@ -49,19 +49,28 @@ else
     set +e
 fi
 
-docker pull node:10
-docker pull node:12
-docker pull buildpack-deps:stretch
-docker pull buildpack-deps:buster
-docker pull node:10-alpine
-docker pull node:12-alpine
-docker pull debian:8
-docker pull debian:9
-docker pull alpine:3.7
-docker pull alpine:3.8
-docker pull alpine:3.9
-docker pull alpine:3.10
-docker pull ubuntu:14.04
+# Pull images
+images=(
+    node:10
+    node:12
+    buildpack-deps:stretch
+    buildpack-deps:buster
+    node:10-alpine
+    node:12-alpine
+    debian:8
+    debian:9
+    alpine:3.7
+    alpine:3.8
+    alpine:3.9
+    alpine:3.10
+    ubuntu:14.04
+    docker.io/jekyll/builder
+    mcr.microsoft.com/azure-pipelines/node8-typescript
+)
+
+for image in "${images[@]}"; do
+    docker pull "$image"
+done
 
 ## Add version information to the metadata file
 echo "Documenting Docker version"
@@ -71,3 +80,10 @@ DocumentInstalledItem "Docker-Moby ($docker_version)"
 echo "Documenting Docker-buildx version"
 DOCKER_BUILDX_VERSION=$(docker buildx version | cut -d ' ' -f2)
 DocumentInstalledItem "Docker-Buildx ($DOCKER_BUILDX_VERSION)"
+
+## Add container information to the metadata file
+DocumentInstalledItem "Cached container images"
+
+while read -r line; do
+    DocumentInstalledItemIndent "$line"
+done <<< "$(docker images --digests --format '{{.Repository}}:{{.Tag}} (Digest: {{.Digest}})')"

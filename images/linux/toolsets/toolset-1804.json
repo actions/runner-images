@@ -104,5 +104,66 @@
                 "4.6.0"
             ]
         }
-    ]
+    ],
+    "apt": {
+        "common_packages": [
+            "dbus",
+            "dnsutils",
+            "dpkg",
+            "fakeroot",
+            "gnupg2",
+            "iproute2",
+            "iputils-ping",
+            "lib32z1",
+            "libc++abi-dev",
+            "libc++-dev",
+            "libcurl3",
+            "libgbm-dev",
+            "libgconf-2-4",
+            "libgtk-3-0",
+            "libsecret-1-dev",
+            "libsqlite3-dev",
+            "libunwind8",
+            "libxkbfile-dev",
+            "libxss1",
+            "locales",
+            "openssh-client",
+            "pkg-config",
+            "rpm",
+            "texinfo",
+            "tk",
+            "tzdata",
+            "upx",
+            "xorriso",
+            "xvfb",
+            "xz-utils",
+            "zstd",
+            "zsync"
+        ],
+        "cmd_packages": [
+            "bison",
+            "brotli",
+            "bzip2",
+            "curl",
+            "file",
+            "flex",
+            "ftp",
+            "jq",
+            "m4",
+            "netcat",
+            "parallel",
+            "patchelf",
+            "rsync",
+            "shellcheck",
+            "sqlite3",
+            "ssh",
+            "sudo",
+            "telnet",
+            "time",
+            "unzip",
+            "wget",
+            "yamllint",
+            "zip"
+        ]
+    }
 }

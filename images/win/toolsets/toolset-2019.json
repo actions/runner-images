@@ -259,6 +259,9 @@
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm"
+        ],
+        "buildtools_workloads": [
+            "Microsoft.VisualStudio.Workload.WebBuildTools"
         ]
     }
 }
