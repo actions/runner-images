@@ -12,11 +12,11 @@ Describe "Wix" {
     It "Wix Toolset version from system" {
       if (Test-IsWin19)
       {
-        $exVersion = Get-VSExtensionVersion -PackageName "WixToolset.VisualStudioExtension.Dev16"
+        $exVersion = Get-VSExtensionVersion -packageName "WixToolset.VisualStudioExtension.Dev16"
       }
       else
       {
-        $exVersion = Get-VSExtensionVersion -PackageName "WixToolset.VisualStudioExtension.Dev15"
+        $exVersion = Get-VSExtensionVersion -packageName "WixToolset.VisualStudioExtension.Dev15"
       }
       $exVersion | Should -Not -BeNullOrEmpty
     }

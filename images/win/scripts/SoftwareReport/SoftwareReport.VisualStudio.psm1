@@ -23,18 +23,18 @@ function Get-VisualStudioExtensions {
     # Wix
     $vs = (Get-VisualStudioVersion).Name.Split()[-1]
     $wixPackageVersion = Get-WixVersion
-    $wixExtensionVersion = ((Get-VisualStudioProduct -ProductType "VisualStudio").Packages  | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
+    $wixExtensionVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
 
     # WDK
-    $wdkPackageVersion = Get-VSExtensionVersion -PackageName 'Microsoft.Windows.DriverKit'
+    $wdkPackageVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
     $wdkExtensionVersion = Get-WDKVersion
 
     # SSDT
-    $analysisPackageVersion = Get-VSExtensionVersion -PackageName '04a86fc2-dbd5-4222-848e-911638e487fe'
-    $reportingPackageVersion = Get-VSExtensionVersion -PackageName '717ad572-c4b7-435c-c166-c2969777f718'
+    $analysisPackageVersion = Get-VSExtensionVersion -packageName '04a86fc2-dbd5-4222-848e-911638e487fe'
+    $reportingPackageVersion = Get-VSExtensionVersion -packageName '717ad572-c4b7-435c-c166-c2969777f718'
 
     $integrationPackageName = ($vs -match "2019") ? '851E7A09-7B2B-4F06-A15D-BABFCB26B970' : 'D1B09713-C12E-43CC-9EF4-6562298285AB'
-    $integrationPackageVersion = Get-VSExtensionVersion -PackageName $integrationPackageName
+    $integrationPackageVersion = Get-VSExtensionVersion -packageName $integrationPackageName
 
     $extensions = @(
         @{Package = 'SSDT Microsoft Analysis Services Projects'; Version = $analysisPackageVersion}

@@ -9,12 +9,12 @@ Describe "SSDTExtensions" {
       )
 
       It "Extensions id=<id>" -TestCases $testExtenions {
-        $version = Get-VSExtensionVersion -PackageName "${id}"
+        $version = Get-VSExtensionVersion -packageName "${id}"
         $version | Should -Not -BeNullOrEmpty
       }
     } else {
       It "Extension SSDT" {
-        $version = Get-VSExtensionVersion -PackageName "SSDT"
+        $version = Get-VSExtensionVersion -packageName "SSDT"
         $version | Should -Not -BeNullOrEmpty
       }
     }
