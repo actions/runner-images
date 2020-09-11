@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 $toolset = Get-ToolsetContent
 $requiredVsixs = $toolset.visualStudio.vsix
 if(-not $requiredVsixs) {
-    Write-Host "No requiered VSIX"
+    Write-Host "No requiered VSIX extensions"
     exit 0
 }
 
