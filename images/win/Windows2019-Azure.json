@@ -92,7 +92,7 @@
         {
             "type": "file",
             "source": "{{template_dir}}/toolsets/toolset-2019.json",
-            "destination": "{{user `tonolset_jso_path`}}"
+            "destination": "{{user `toolset_jso_path`}}"
         },
         {
             "type": "windows-shell",
