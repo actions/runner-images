@@ -12,13 +12,7 @@ if(-not $requiredVsixs) {
     exit 0
 }
 
-if (Test-IsWin19) {
-    $VsVersion = '2019'
-}
-else {
-    $VsVersion = '2017'
-}
-
+$VsVersion = $toolset.visualStudio.Version
 $requiredVsixs | ForEach-Object {
     Install-VsixExtension -url $_.url -name $_.name -VsVersion $VsVersion
 }
