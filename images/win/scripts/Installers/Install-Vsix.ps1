@@ -10,7 +10,7 @@ $toolset = Get-ToolsetContent
 $requiredVsixs = $toolset.visualStudio.vsix
 if(-not $requiredVsixs) {
     Write-Host "No requiered VSIX"
-    exit 1
+    exit 0
 }
 
 if (Test-IsWin19) {
