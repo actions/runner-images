@@ -3,7 +3,6 @@
 ##  Desc:  Install the Visual Studio Extensions from toolset.json
 ###################################################################################
 
-Import-Module -Name ImageHelpers -Force
 $ErrorActionPreference = "Stop"
 
 $toolset = Get-ToolsetContent
