@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 
 $toolset = Get-ToolsetContent
 $vsixPackagesList = $toolset.visualStudio.vsix
-if(-not $vsixPackagesList) {
+if (-not $vsixPackagesList) {
     Write-Host "No extensions to install"
     exit 0
 }
