@@ -229,6 +229,9 @@
             "Microsoft.VisualStudio.Workload.Office"
         ],
         "vsix": [
+        ],
+        "buildtools_workloads": [
+            "Microsoft.VisualStudio.Workload.WebBuildTools"
         ]
     }
 }

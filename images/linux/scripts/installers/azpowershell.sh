@@ -12,8 +12,8 @@ source $HELPER_SCRIPTS/os.sh
 if isUbuntu20 ; then
     versions=$(pwsh -Command '(Find-Module -Name Az).Version')
 else
-    toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-    versions=$(cat $toolsetJson | jq -r '.azureModules[] | select(.name | contains("az")) | .versions[]')
+    toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
+    versions=$(jq -r '.azureModules[] | select(.name | contains("az")) | .versions[]' $toolset)
 fi
 
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
