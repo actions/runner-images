@@ -6,14 +6,14 @@
 $ErrorActionPreference = "Stop"
 
 $toolset = Get-ToolsetContent
-$requiredVsixs = $toolset.visualStudio.vsix
-if(-not $requiredVsixs) {
-    Write-Host "No requiered VSIX extensions"
+$vsixPackagesList = $toolset.visualStudio.vsix
+if(-not $vsixPackagesList) {
+    Write-Host "No extensions to install"
     exit 0
 }
 
 $VsVersion = $toolset.visualStudio.Version
-$requiredVsixs | ForEach-Object {
+$vsixPackagesList | ForEach-Object {
     Install-VsixExtension -url $_.url -name $_.name -VsVersion $VsVersion
 }
 
