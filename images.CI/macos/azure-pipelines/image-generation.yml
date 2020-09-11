@@ -1,0 +1,84 @@
+jobs:
+- job: Image_generation
+  displayName: Image Generation (${{ parameters.image_label }})
+  timeoutInMinutes: 720
+  pool:
+    name: Mac-Cloud V2 Image Generation
+  variables:
+  - group: Mac-Cloud Image Generation
+  - group: Mac-Cloud Image Generation Key Vault
+
+  steps:
+  - checkout: self
+    clean: true
+    fetchDepth: 1
+
+  - task: PowerShell@2
+    displayName: 'Download custom repository'
+    condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/download-repo.ps1
+      arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
+                 -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
+
+  - task: DeleteFiles@1
+    displayName: Clean up self-hosted machine
+    inputs:
+      SourceFolder: 'image-generation/packer/provision/log/'
+      RemoveSourceFolder: true
+
+  - bash: |
+      export PACKER_LOG=0
+      packer build -on-error=abort \
+        -var="vcenter_server=$(vcenter_server_v2)" \
+        -var="vcenter_username=$(vcenter_username_v2)" \
+        -var="vcenter_password=$(vcenter_password_v2)" \
+        -var="vcenter_datacenter=$(vcenter_datacenter_v2)" \
+        -var="cluster_or_esxi_host=$(esxi_cluster_v2)" \
+        -var="esxi_datastore=${{ parameters.target_datastore }}" \
+        -var="output_folder=mms-output" \
+        -var="vm_username=$(vm_username)" \
+        -var="vm_password=$(vm_password)" \
+        -var="build_id=$(Build.BuildNumber)" \
+        -var="baseimage_name=${{ parameters.base_image_name }}" \
+        -var="azure_storage_sas=$(AZURE_STORAGE_SAS)" \
+        -var="azure_storage_account=$(AZURE_STORAGE_ACCOUNT)" \
+        -var="build_assets_url=$(appcenter_build_assets_url)" \
+        -var="github_feed_token=$(GITHUB_FEED_TOKEN)" \
+        -var="xcode_install_user=$(xcode-installation-user)" \
+        -var="xcode_install_password=$(xcode-installation-password)" \
+        -color=false \
+        ${{ parameters.template_path }}
+    workingDirectory: 'image-generation/packer'
+    displayName: Build image
+
+  - bash: |
+      echo "Copy image output files"
+      cp -R "image-generation/image-output/software-report/." "$(Build.ArtifactStagingDirectory)/"
+
+      echo "Copy test results"
+      cp -R "image-generation/image-output/tests/." "$(Common.TestResultsDirectory)/"
+      ls $(Common.TestResultsDirectory)
+
+      echo "Put VM name to 'VM_Done_Name' file"
+      echo "$(Build.BuildNumber)" > "$(Build.ArtifactStagingDirectory)/VM_Done_Name"
+    displayName: Prepare artifact
+
+  - bash: |
+      cat "$(Build.ArtifactStagingDirectory)/systeminfo.md"
+    displayName: Print software report
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      ArtifactName: 'Built_VM_Artifacts'
+    displayName: Publish Artifacts
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: '*.xml'
+      testResultsFormat: NUnit
+      searchFolder: '$(Common.TestResultsDirectory)'
+      failTaskOnFailedTests: true
+    displayName: Publish test results
+    condition: always()

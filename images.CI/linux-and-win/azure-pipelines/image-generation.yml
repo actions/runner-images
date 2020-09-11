@@ -20,7 +20,7 @@ jobs:
       targetType: 'filePath'
       filePath: ./images.CI/download-repo.ps1
       arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
-                        -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
+                 -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
 
   - task: PowerShell@2
     displayName: 'Build VM'
