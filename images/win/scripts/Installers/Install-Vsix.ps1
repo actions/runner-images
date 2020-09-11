@@ -6,15 +6,15 @@
 $ErrorActionPreference = "Stop"
 
 $toolset = Get-ToolsetContent
-$VsixPackagesList = $toolset.visualStudio.vsix
-if (-not $VsixPackagesList) {
+$vsixPackagesList = $toolset.visualStudio.vsix
+if (-not $vsixPackagesList) {
     Write-Host "No extensions to install"
     exit 0
 }
 
-$VsVersion = $toolset.visualStudio.Version
-$VsixPackagesList | ForEach-Object {
-    Install-VsixExtension -url $_.url -name $_.name -VsVersion $VsVersion
+$vsVersion = $toolset.visualStudio.Version
+$vsixPackagesList | ForEach-Object {
+    Install-VsixExtension -Url $_.url -Name $_.name -VSversion $vsVersion
 }
 
 Invoke-PesterTests -TestFile "Vsix"
