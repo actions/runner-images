@@ -263,19 +263,23 @@
         "vsix": [
             {
                 "name": "Microsoft.DataTools.AnalysisServices.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftAnalysisServicesModelingProjects/latest/vspackage"
+                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftAnalysisServicesModelingProjects/latest/vspackage",
+                "id": "04a86fc2-dbd5-4222-848e-911638e487fe"
             },
             {
                 "name": "Microsoft.DataTools.IntegrationServices.exe",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/SSIS/vsextensions/SqlServerIntegrationServicesProjects/latest/vspackage"
+                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/SSIS/vsextensions/SqlServerIntegrationServicesProjects/latest/vspackage",
+                "id": "851E7A09-7B2B-4F06-A15D-BABFCB26B970"
             },
             {
                 "name": "Microsoft.DataTools.ReportingServices.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftReportProjectsforVisualStudio/latest/vspackage"
+                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftReportProjectsforVisualStudio/latest/vspackage",
+                "id": "717ad572-c4b7-435c-c166-c2969777f718"
             },
             {
                 "name": "Microsoft.VisualStudio.Installer.Projects.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/VisualStudioClient/vsextensions/MicrosoftVisualStudio2017InstallerProjects/latest/vspackage"
+                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/VisualStudioClient/vsextensions/MicrosoftVisualStudio2017InstallerProjects/latest/vspackage",
+                "id": "VSInstallerProjects"
             }
         ]
     }

@@ -19,3 +19,5 @@ else {
 $requiredVsixs | ForEach-Object {
     Install-VsixExtension -url $_.url -name $_.name -VsVersion $VsVersion
 }
+
+Invoke-PesterTests -TestFile "Vsix"
