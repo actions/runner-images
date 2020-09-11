@@ -258,6 +258,34 @@ function Install-VsixExtension
         }
 }
 
+function Get-VSExtensionVersion
+{
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        [string] $packageName
+    )
+
+    $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
+    if ($instanceFolders -is [array])
+    {
+        Write-Host "More than one instance installed"
+        exit 1
+    }
+
+    $stateContent = Get-Content -Path (Join-Path $instanceFolders.FullName '\state.packages.json')
+    $state = $stateContent | ConvertFrom-Json
+    $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
+
+    if (-not $packageVersion)
+    {
+        Write-Host "installed package $packageName for Visual Studio 2019 was not found"
+        exit 1
+    }
+
+    return $packageVersion
+}
+
 function Get-ToolcachePackages
 {
     $toolcachePath = Join-Path $env:ROOT_FOLDER "toolcache.json"
