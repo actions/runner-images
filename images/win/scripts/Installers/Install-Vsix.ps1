@@ -8,6 +8,10 @@ $ErrorActionPreference = "Stop"
 
 $toolset = Get-ToolsetContent
 $requiredVsixs = $toolset.visualStudio.vsix
+if(-not $requiredVsixs) {
+    Write-Host "No requiered VSIX"
+    exit 1
+}
 
 if (Test-IsWin19) {
     $VsVersion = '2019'
