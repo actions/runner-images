@@ -5,7 +5,7 @@ Describe "Vsix" {
     $allPackages = (Get-VSSetupInstance | Select-VsSetupInstance -Product *).Packages
     $testCases = $requiredVsixs | ForEach-Object { @{ VsixId = $_.Id;  AllPackages = $allPackages }}
 
-    It "<VsixId>" -TestCases $testCases {
+    It "VSIX Extension <VsixId>" -TestCases $testCases {
         $objVsix = $AllPackages | Where-Object {$_.id -eq $VsixId } | Select-Object Id, Version
         $objVsix | Should -Not -BeNullOrEmpty
     }
