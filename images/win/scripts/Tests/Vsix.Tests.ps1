@@ -1,4 +1,4 @@
-Describe "VsixTests" {
+Describe "Vsix" {
     $toolset = Get-ToolsetContent
     $requiredVsixs = $toolset.visualStudio.vsix
 
