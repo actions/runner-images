@@ -25,7 +25,7 @@ jobs:
   - task: DeleteFiles@1
     displayName: Clean up self-hosted machine
     inputs:
-      SourceFolder: 'image-generation/packer/provision/log/'
+      SourceFolder: 'images/macos/provision/log/'
       RemoveSourceFolder: true
 
   - bash: |
@@ -50,7 +50,7 @@ jobs:
         -var="xcode_install_password=$(xcode-installation-password)" \
         -color=false \
         ${{ parameters.template_path }}
-    workingDirectory: 'image-generation/packer'
+    workingDirectory: 'images/macos'
     displayName: Build image
 
   - bash: |
