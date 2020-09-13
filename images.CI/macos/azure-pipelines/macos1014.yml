@@ -18,6 +18,5 @@ jobs:
   parameters:
     image_label: 'macOS Mojave'
     base_image_name: 'clean-macOS-10.14-380Gb_runner'
-    template_path: 'templates/macOS-10.14.json'
+    image_name: 'macOS-10.14'
     target_datastore: 'ds-image'
-    stable: false

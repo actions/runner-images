@@ -18,6 +18,5 @@ jobs:
   parameters:
     image_label: 'macOS Catalina'
     base_image_name: 'clean-macOS-10.15-380Gb-runner'
-    template_path: 'templates/macOS-10.15.json'
+    image_name: 'macOS-10.15'
     target_datastore: 'ds-image'
-    stable: false

@@ -18,6 +18,5 @@ jobs:
   parameters:
     image_label: 'macOS High Sierra'
     base_image_name: 'clean-macOS-10.13.6-380Gb-SIPoff_runner'
-    template_path: 'templates/macOS-10.13.json'
+    image_name: 'macOS-10.13'
     target_datastore: 'ds-image'
-    stable: false
