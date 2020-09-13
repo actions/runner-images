@@ -81,11 +81,3 @@ jobs:
       failTaskOnFailedTests: true
     displayName: Publish test results
     condition: always()
-
-  - task: Bash@3
-    inputs:
-      targetType: filePath
-      filePath: ./images.CI/macos/destroy_vm.sh
-      arguments: '"$(vcenter_server_v2)" "$(vcenter_username_v2)" "$(vcenter_password_v2)" "$(vcenter_datacenter_v2)/vm/mms-output/$(Build.BuildNumber)"'
-    condition: eq(variables['Agent.JobStatus'], 'Canceled')
-    displayName: Destroy VM (if build canceled only)
