@@ -28,29 +28,28 @@ jobs:
       SourceFolder: 'images/macos/provision/log/'
       RemoveSourceFolder: true
 
-  - task: PowerShell@2
+  - pwsh: |
+      ./images.CI/macos/build-image.ps1 -Image "${{ parameters.image_name }}" `
+                                        -VcenterServer "$(vcenter_server_v2)" `
+                                        -VcenterUsername "$(vcenter_username_v2)" `
+                                        -VcenterPassword "$(vcenter_password_v2)" `
+                                        -VcenterDatacenter "$(vcenter_datacenter_v2)" `
+                                        -EsxiCluster "$(esxi_cluster_v2)" `
+                                        -TargetDatastore "${{ parameters.target_datastore }}" `
+                                        -OutputFolder "mms-output" `
+                                        -VmUsername "$(vm_username)" `
+                                        -VmPassword "$(vm_password)" `
+                                        -BuildId "$(Build.BuildNumber)" `
+                                        -BaseImageName "${{ parameters.base_image_name }}" `
+                                        -AzureStorageSas "$(AZURE_STORAGE_SAS)" `
+                                        -AzureStorageAccount "$(AZURE_STORAGE_ACCOUNT)" `
+                                        -BuildAssetsUrl "$(appcenter_build_assets_url)" `
+                                        -GithubFeedToken "$(GITHUB_FEED_TOKEN)" `
+                                        -XcodeInstallationUser "$(xcode-installation-user)" `
+                                        -XcodeInstallationPassword "$(xcode-installation-password)"
     displayName: 'Build VM'
-    inputs:
-      targetType: filePath
-      filePath: ./images.CI/macos/build-image.ps1
-      arguments: -Image "${{ parameters.image_name }}" `
-                 -VcenterServer "$(vcenter_server_v2)" `
-                 -VcenterUsername "$(vcenter_username_v2)" `
-                 -VcenterPassword "$(vcenter_password_v2)" `
-                 -VcenterDatacenter "$(vcenter_datacenter_v2)" `
-                 -EsxiCluster "$(esxi_cluster_v2)" `
-                 -TargetDatastore "${{ parameters.target_datastore }}" `
-                 -OutputFolder "mms-output" `
-                 -VmUsername "$(vm_username)" `
-                 -VmPassword "$(vm_password)" `
-                 -BuildId "$(Build.BuildNumber)" `
-                 -BaseImageName "${{ parameters.base_image_name }}" `
-                 -AzureStorageSas "$(AZURE_STORAGE_SAS)" `
-                 -AzureStorageAccount "$(AZURE_STORAGE_ACCOUNT)" `
-                 -BuildAssetsUrl "$(appcenter_build_assets_url)" `
-                 -GithubFeedToken "$(GITHUB_FEED_TOKEN)" `
-                 -XcodeInstallationUser "$(xcode-installation-user)" `
-                 -XcodeInstallationPassword "$(xcode-installation-password)"
+    env:
+      PACKER_LOG: 0
     workingDirectory: 'images/macos'
 
   - bash: |
