@@ -19,7 +19,7 @@ param(
     [String] [Parameter (Mandatory=$true)] $XcodeInstallationPassword
 )
 
-$TemplatePath = (Get-ChildItem -Path "images" -Include "$Image.json" -Recurse -Depth 2).FullName
+$TemplatePath = (Get-ChildItem -Path "templates" -Include "$Image.json" -Recurse -Depth 2).FullName
 if (-not $TemplatePath)
 {
     Write-Error "'-Image' parameter is not valid. You have to specify correct image type."
