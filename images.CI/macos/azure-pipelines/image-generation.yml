@@ -28,25 +28,24 @@ jobs:
       SourceFolder: 'images/macos/provision/log/'
       RemoveSourceFolder: true
 
-  - pwsh: |
-      $(build.sourcesDirectory)/images.CI/macos/build-image.ps1 -Image "${{ parameters.image_name }}" `
-                                                                -VcenterServer "$(vcenter_server_v2)" `
-                                                                -VcenterUsername "$(vcenter_username_v2)" `
-                                                                -VcenterPassword "$(vcenter_password_v2)" `
-                                                                -VcenterDatacenter "$(vcenter_datacenter_v2)" `
-                                                                -EsxiCluster "$(esxi_cluster_v2)" `
-                                                                -TargetDatastore "${{ parameters.target_datastore }}" `
-                                                                -OutputFolder "mms-output" `
-                                                                -VmUsername "$(vm_username)" `
-                                                                -VmPassword "$(vm_password)" `
-                                                                -BuildId "$(Build.BuildNumber)" `
-                                                                -BaseImageName "${{ parameters.base_image_name }}" `
-                                                                -AzureStorageSas "$(AZURE_STORAGE_SAS)" `
-                                                                -AzureStorageAccount "$(AZURE_STORAGE_ACCOUNT)" `
-                                                                -BuildAssetsUrl "$(appcenter_build_assets_url)" `
-                                                                -GithubFeedToken "$(GITHUB_FEED_TOKEN)" `
-                                                                -XcodeInstallationUser "$(xcode-installation-user)" `
-                                                                -XcodeInstallationPassword "$(xcode-installation-password)"
+  - bash: |
+      packer build -on-error=abort \
+        -var="vcenter_server=$(vcenter_server_v2)" \
+        -var="vcenter_username=$(vcenter_username_v2)" \
+        -var="vcenter_password=$(vcenter_password_v2)" \
+        -var="vcenter_datacenter=$(vcenter_datacenter_v2)" \
+        -var="cluster_or_esxi_host=$(esxi_cluster_v2)" \
+        -var="esxi_datastore=${{ parameters.target_datastore }}" \
+        -var="output_folder=mms-output" \
+        -var="vm_username=$(vm_username)" \
+        -var="vm_password=$(vm_password)" \
+        -var="build_id=$(Build.BuildNumber)" \
+        -var="baseimage_name=${{ parameters.base_image_name }}" \
+        -var="github_feed_token=$(GITHUB_FEED_TOKEN)" \
+        -var="xcode_install_user=$(xcode-installation-user)" \
+        -var="xcode_install_password=$(xcode-installation-password)" \
+        -color=false \
+        ${{ parameters.template_path }}
     displayName: 'Build VM'
     env:
       PACKER_LOG: 0
@@ -54,10 +53,10 @@ jobs:
 
   - bash: |
       echo "Copy image output files"
-      cp -R "image-generation/image-output/software-report/." "$(Build.ArtifactStagingDirectory)/"
+      cp -R "images/image-output/software-report/." "$(Build.ArtifactStagingDirectory)/"
 
       echo "Copy test results"
-      cp -R "image-generation/image-output/tests/." "$(Common.TestResultsDirectory)/"
+      cp -R "images/image-output/tests/." "$(Common.TestResultsDirectory)/"
       ls $(Common.TestResultsDirectory)
 
       echo "Put VM name to 'VM_Done_Name' file"

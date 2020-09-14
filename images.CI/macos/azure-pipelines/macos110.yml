@@ -14,9 +14,9 @@ pr:
     - main
 
 jobs:
-- template: image-generation.yml
+- template: image-generation-job.yml
   parameters:
-    image_label: 'macOS Catalina'
-    base_image_name: 'clean-macOS-10.15-380Gb-runner'
-    template_path: 'templates/macOS-10.15.json'
+    image_label: 'macOS Big Sur'
+    base_image_name: 'clean-macOS-11.0-380Gb-runner'
+    template_path: 'templates/macOS-11.0.json'
     target_datastore: 'ds-image'
