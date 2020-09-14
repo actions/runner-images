@@ -76,7 +76,7 @@ function Get-SwiftVersion {
 }
 
 function Get-JuliaVersion {
-    $juliaVersion = $(julia --version) | Out-String | Take-OutputPart -Part 2
+    $juliaVersion = julia --version | Take-OutputPart -Part 2
     return "Julia $juliaVersion"
 }
 
