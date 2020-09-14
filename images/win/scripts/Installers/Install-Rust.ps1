@@ -22,7 +22,7 @@ $env:Path = Get-MachinePath
 
 # Install common tools
 rustup component add rustfmt clippy
-cargo install bindgen cbindgen cargo-audit cargo-outdated
+cargo install bindgen cbindgen cargo-audit cargo-outdated cargo-tarpaulin
 
 # Run script at startup for all users
 $cmdRustSymScript = @"

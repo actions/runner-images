@@ -53,6 +53,10 @@ function Get-CargoOutdatedVersion {
     return cargo outdated --version
 }
 
+function Get-CargoTarpaulinVersion {
+    return cargo tarpaulin --version
+}
+
 function Get-PythonVersion {
     return & python --version
 }

@@ -130,7 +130,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-BindgenVersion),
     (Get-CbindgenVersion),
     (Get-CargoAuditVersion),
-    (Get-CargoOutdatedVersion)
+    (Get-CargoOutdatedVersion),
+    (Get-CargoTarpaulinVersion)
 )
 
 $markdown += New-MDHeader "Browsers and webdrivers" -Level 3
