@@ -5,7 +5,7 @@ function Get-OSName {
 }
 
 function Get-CPPVersions {
-    $cppVersions = & apt list --installed | Where-Object { $_ -match "g\+\+-\d+"} | ForEach-Object {
+    $cppVersions = apt list --installed 2>&1 | Where-Object { $_ -match "g\+\+-\d+"} | ForEach-Object {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
     }
@@ -13,7 +13,7 @@ function Get-CPPVersions {
 }
 
 function Get-FortranVersions {
-    $fortranVersions = & apt list --installed | Where-Object { $_ -match "^gfortran-\d+"} | ForEach-Object {
+    $fortranVersions = apt list --installed 2>&1 | Where-Object { $_ -match "^gfortran-\d+"} | ForEach-Object {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
     }
@@ -22,7 +22,7 @@ function Get-FortranVersions {
 
 function Get-ClangVersions {
     $clangVersions = @()
-    $clangVersions = & apt list --installed | Where-Object { $_ -match "^clang-\d+"} | ForEach-Object {
+    $clangVersions = apt list --installed 2>&1 | Where-Object { $_ -match "^clang-\d+"} | ForEach-Object {
         $clangCommand = ($_ -Split "/")[0]
         Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "clang version" } | ForEach-Object {
             $_ -match "clang version (?<version>\d+\.\d+\.\d+)-" | Out-Null
@@ -40,7 +40,7 @@ function Get-ErlangVersion {
 }
 
 function Get-MonoVersion {
-    $monoVersion = $(mono --version) | Out-String | Take-OutputPart -Part 4
+    $monoVersion = mono --version | Out-String | Take-OutputPart -Part 4
     return "Mono $monoVersion"
 }
 
@@ -62,16 +62,16 @@ function Get-Python3Version {
 }
 
 function Get-PowershellVersion {
-    $(pwsh --version)
+    return $(pwsh --version)
 }
 
 function Get-RubyVersion {
-    $rubyVersion = $(ruby --version) | Out-String | Take-OutputPart -Part 1
+    $rubyVersion = ruby --version | Out-String | Take-OutputPart -Part 1
     return "Ruby $rubyVersion"
 }
 
 function Get-SwiftVersion {
-    $swiftVersion = $(swift --version) | Out-String | Take-OutputPart -Part 2
+    $swiftVersion = swift --version | Out-String | Take-OutputPart -Part 2
     return "Swift $swiftVersion"
 }
 
@@ -88,13 +88,13 @@ function Get-HomebrewVersion {
 }
 
 function Get-GemVersion {
-    $(gem --version) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    $(gem --version 2>&1) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $gemVersion = $Matches.version
     return "Gem $gemVersion"
 }
 
 function Get-MinicondaVersion {
-    $condaVersion = $(conda --version)
+    $condaVersion = conda --version
     return "Mini$condaVersion"
 }
 
@@ -105,12 +105,12 @@ function Get-HelmVersion {
 }
 
 function Get-NpmVersion {
-    $npmVersion = $(npm --version)
+    $npmVersion = npm --version
     return "Npm $npmVersion"
 }
 
 function Get-YarnVersion {
-    $yarnVersion = $(yarn --version)
+    $yarnVersion = yarn --version
     return "Yarn $yarnVersion"
 }
 
@@ -136,33 +136,33 @@ function Get-VcpkgVersion {
 }
 
 function Get-AntVersion {
-    $result = $(ant -version) | Out-String
+    $result = ant -version | Out-String
     $result -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $antVersion = $Matches.version
     return "Ant $antVersion"
 }
 
 function Get-GradleVersion {
-    $result = $(gradle -v) | Out-String
+    $result = gradle -v | Out-String
     $result -match "Gradle (?<version>\d+\.\d+\.\d+)" | Out-Null
     $gradleVersion = $Matches.version
     return "Gradle $gradleVersion"
 }
 function Get-MavenVersion {
-    $result = $(mvn -version) | Out-String
+    $result = mvn -version | Out-String
     $result -match "Apache Maven (?<version>\d+\.\d+\.\d+)" | Out-Null
     $mavenVersion = $Matches.version
     return "Maven $mavenVersion"
 }
 function Get-SbtVersion {
-    $result = $(sbt -version) | Out-String
+    $result = sbt -version 2>&1 | Out-String
     $result -match "sbt script version: (?<version>\d+\.\d+\.\d+)" | Out-Null
     $sbtVersion = $Matches.version
     return "Sbt $sbtVersion"
 }
 
 function Get-PHPVersions {
-    return $(apt list --installed) | Where-Object { $_ -match "^php\d+\.\d+/"} | ForEach-Object {
+    return $(apt list --installed 2>&1) | Where-Object { $_ -match "^php\d+\.\d+/"} | ForEach-Object {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
     }
