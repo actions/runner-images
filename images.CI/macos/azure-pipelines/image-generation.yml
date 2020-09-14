@@ -28,7 +28,12 @@ jobs:
       SourceFolder: 'images/macos/provision/log/'
       RemoveSourceFolder: true
 
-  - bash: |
+  - pwsh: |
+      $SensitiveData = @(
+          'IP address:',
+          'Using ssh communicator to connect:'
+      )
+
       packer build -on-error=abort \
         -var="vcenter_server=$(vcenter_server_v2)" \
         -var="vcenter_username=$(vcenter_username_v2)" \
@@ -45,7 +50,13 @@ jobs:
         -var="xcode_install_user=$(xcode-installation-user)" \
         -var="xcode_install_password=$(xcode-installation-password)" \
         -color=false \
-        ${{ parameters.template_path }}
+        ${{ parameters.template_path }} `
+        | Where-Object {
+            #Filter sensitive data from Packer logs
+            $currentString = $_
+            $sensitiveString = $SensitiveData | Where-Object { $currentString -match $_ }
+            $sensitiveString -eq $null
+        }
     displayName: 'Build VM'
     env:
       PACKER_LOG: 0
