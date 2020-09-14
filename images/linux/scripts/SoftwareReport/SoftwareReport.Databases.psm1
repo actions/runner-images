@@ -15,7 +15,7 @@ function Get-SqliteVersion {
 
 function Get-MySQLVersion {
     $mySQLVersion = mysqld --version | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "-"
-    return "MySQL ($mySQLVersion)"
+    return "MySQL $mySQLVersion"
 }
 
 function Build-MySQLSection {
