@@ -3,8 +3,6 @@ param (
     $OutputDirectory
 )
 
-# Install MarkdownPS module for software report generation
-Install-Module MarkdownPS -Force
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.CachedTools.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNameChecking
