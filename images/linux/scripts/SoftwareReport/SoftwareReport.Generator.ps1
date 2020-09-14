@@ -195,15 +195,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SqliteVersion)
 )
 
-$markdown += New-MDHeader "MySQL" -Level 4
-$markdown += New-MDList -Style Unordered -Lines @(
-    (Get-MySqlVersion),
-    "MySQL Server (user:root password:root)",
-    "MS SQL Server Client Tools"
-)
-$markdown += New-MDCode -Lines @(
-    "MySQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'"
-)
+$markdown += Build-MySQLSection
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection

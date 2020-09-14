@@ -13,7 +13,7 @@ function Get-CommandResult {
     }
 }
 
-function Take-Part {
+function Take-OutputPart {
     param (
         [Parameter(ValueFromPipeline)]
         [string] $toolOutput,

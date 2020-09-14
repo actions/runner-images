@@ -36,7 +36,7 @@ function Get-ToolcacheBoostVersions {
     return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
 }
 
-function Build-CachedToolsSection { 
+function Build-CachedToolsSection {
     $output = ""
 
     $output += New-MDHeader "Ruby" -Level 4
@@ -44,7 +44,7 @@ function Build-CachedToolsSection {
 
     $output += New-MDHeader "Python" -Level 4
     $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
-    
+
     $output += New-MDHeader "PyPy" -Level 4
     $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
 
@@ -59,7 +59,6 @@ function Build-CachedToolsSection {
         $output += New-MDHeader "Boost" -Level 4
         $output += New-MDList -Lines $boostVersions -Style Unordered
     }
-    
 
     return $output
 }

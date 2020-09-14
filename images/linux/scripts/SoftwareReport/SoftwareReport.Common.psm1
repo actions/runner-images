@@ -40,7 +40,7 @@ function Get-ErlangVersion {
 }
 
 function Get-MonoVersion {
-    $monoVersion = $(mono --version) | Out-String | Take-Part -Part 4
+    $monoVersion = $(mono --version) | Out-String | Take-OutputPart -Part 4
     return "Mono $monoVersion"
 }
 
@@ -51,13 +51,13 @@ function Get-NodeVersion {
 
 function Get-PythonVersion {
     $result = Get-CommandResult "python --version"
-    $version = $result.Output | Take-Part -Part 1
+    $version = $result.Output | Take-OutputPart -Part 1
     return "Python $version"
 }
 
 function Get-Python3Version {
     $result = Get-CommandResult "python3 --version"
-    $version = $result.Output | Take-Part -Part 1
+    $version = $result.Output | Take-OutputPart -Part 1
     return "Python3 $version"
 }
 
@@ -66,17 +66,17 @@ function Get-PowershellVersion {
 }
 
 function Get-RubyVersion {
-    $rubyVersion = $(ruby --version) | Out-String | Take-Part -Part 1
+    $rubyVersion = $(ruby --version) | Out-String | Take-OutputPart -Part 1
     return "Ruby $rubyVersion"
 }
 
 function Get-SwiftVersion {
-    $swiftVersion = $(swift --version) | Out-String | Take-Part -Part 2
+    $swiftVersion = $(swift --version) | Out-String | Take-OutputPart -Part 2
     return "Swift $swiftVersion"
 }
 
 function Get-JuliaVersion {
-    $juliaVersion = $(julia --version) | Out-String | Take-Part -Part 2
+    $juliaVersion = $(julia --version) | Out-String | Take-OutputPart -Part 2
     return "Julia $juliaVersion"
 }
 
@@ -195,7 +195,7 @@ function Build-PHPTable {
         [PSCustomObject] @{
             "Tool" = $_.Tool
             "Version" = $_.Version
-        } 
+        }
     }
 }
 
@@ -218,52 +218,52 @@ function Get-StackVersion {
 }
 
 function Get-RustVersion {
-    $rustVersion = $(rustc --version) | Take-Part -Part 1
+    $rustVersion = $(rustc --version) | Take-OutputPart -Part 1
     return "Rust $rustVersion"
 }
 
 function Get-BindgenVersion {
-    $bindgenVersion = $(bindgen --version) | Take-Part -Part 1
+    $bindgenVersion = $(bindgen --version) | Take-OutputPart -Part 1
     return "Bindgen $bindgenVersion"
 }
 
 function Get-CargoVersion {
-    $cargoVersion = $(cargo --version) | Take-Part -Part 1
+    $cargoVersion = $(cargo --version) | Take-OutputPart -Part 1
     return "Cargo $cargoVersion"
 }
 
 function Get-CargoAuditVersion {
-    $cargoAuditVersion = $(cargo audit --version) | Take-Part -Part 1
+    $cargoAuditVersion = $(cargo audit --version) | Take-OutputPart -Part 1
     return "Cargo audit $cargoAuditVersion"
 }
 
 function Get-CargoOutdatedVersion {
-    $cargoOutdatedVersion = $(cargo outdated --version) | Take-Part -Part 1 -Delimiter "v"
+    $cargoOutdatedVersion = $(cargo outdated --version) | Take-OutputPart -Part 1 -Delimiter "v"
     return "Cargo outdated $cargoOutdatedVersion"
 }
 
 function Get-CargoClippyVersion {
-    $cargoClippyVersion = $(cargo-clippy --version) | Take-Part -Part 1
+    $cargoClippyVersion = $(cargo-clippy --version) | Take-OutputPart -Part 1
     return "Cargo clippy $cargoClippyVersion"
 }
 
 function Get-CbindgenVersion {
-    $cbindgenVersion = $(cbindgen --version) | Take-Part -Part 1
+    $cbindgenVersion = $(cbindgen --version) | Take-OutputPart -Part 1
     return "Cbindgen $cbindgenVersion"
 }
 
 function Get-RustupVersion {
-    $rustupVersion = $(rustup --version) | Take-Part -Part 1
+    $rustupVersion = $(rustup --version) | Take-OutputPart -Part 1
     return "Rustup $rustupVersion"
 }
 
 function Get-RustdocVersion {
-    $rustdocVersion = $(rustdoc --version) | Take-Part -Part 1
+    $rustdocVersion = $(rustdoc --version) | Take-OutputPart -Part 1
     return "Rustdoc $rustdocVersion"
 }
 
 function Get-RustfmtVersion {
-    $rustfmtVersion = $(rustfmt --version) | Take-Part -Part 1 | Take-Part -Part 0 -Delimiter "-"
+    $rustfmtVersion = $(rustfmt --version) | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
     return "Rustfmt $rustfmtVersion"
 }
 
@@ -271,13 +271,13 @@ function Get-AzModuleVersions {
     $azModuleVersions = Get-ChildItem /usr/share | Where-Object { $_ -match "az_\d+" } | Foreach-Object {
         $_.Name.Split("_")[1]
     }
-    
+
     $azModuleVersions = $azModuleVersions -join " "
     return $azModuleVersions
 }
 
 function Get-DotNetCoreSdkVersions {
-    $unsortedDotNetCoreSdkVersion = dotnet --list-sdks list | ForEach-Object { $_ | Take-Part -Part 0 }
+    $unsortedDotNetCoreSdkVersion = dotnet --list-sdks list | ForEach-Object { $_ | Take-OutputPart -Part 0 }
     $dotNetCoreSdkVersion = $unsortedDotNetCoreSdkVersion -join " "
     return $dotNetCoreSdkVersion
 }
