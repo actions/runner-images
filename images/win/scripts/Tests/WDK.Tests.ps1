@@ -5,7 +5,7 @@ Describe "WDK" {
     }
 
     It "WDK version from system" {
-      $version = Get-VSExtensionVersion -PackageName "Microsoft.Windows.DriverKit"
+      $version = Get-VSExtensionVersion -packageName "Microsoft.Windows.DriverKit"
       $version | Should -Not -BeNullOrEmpty
     }
 }
