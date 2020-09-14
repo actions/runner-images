@@ -1,3 +1,4 @@
+name: macOS-11.0_$(date:yyyyMMdd)$(rev:.r)_unstable
 schedules:
 - cron: "0 0 * * *"
   displayName: Daily
@@ -14,7 +15,7 @@ pr:
     - main
 
 jobs:
-- template: image-generation-job.yml
+- template: image-generation.yml
   parameters:
     image_label: 'macOS Big Sur'
     base_image_name: 'clean-macOS-11.0-380Gb-runner'

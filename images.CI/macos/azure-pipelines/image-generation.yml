@@ -36,7 +36,7 @@ jobs:
         -var="vcenter_datacenter=$(vcenter_datacenter_v2)" \
         -var="cluster_or_esxi_host=$(esxi_cluster_v2)" \
         -var="esxi_datastore=${{ parameters.target_datastore }}" \
-        -var="output_folder=mms-output" \
+        -var="output_folder=$(output_folder)" \
         -var="vm_username=$(vm_username)" \
         -var="vm_password=$(vm_password)" \
         -var="build_id=$(Build.BuildNumber)" \
