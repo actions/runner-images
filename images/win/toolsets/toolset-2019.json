@@ -281,9 +281,6 @@
                 "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/VisualStudioClient/vsextensions/MicrosoftVisualStudio2017InstallerProjects/latest/vspackage",
                 "id": "VSInstallerProjects"
             }
-        ],
-        "buildtools_workloads": [
-            "Microsoft.VisualStudio.Workload.WebBuildTools"
         ]
     }
 }
