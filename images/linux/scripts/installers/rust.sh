@@ -21,13 +21,14 @@ rustup component add rustfmt clippy
 cargo install bindgen cbindgen
 cargo install cargo-audit
 cargo install cargo-outdated
+cargo install cargo-tarpaulin
 
 echo "Test installation of the Rust toochain"
 
 # Permissions
 chmod -R 777 $(dirname $RUSTUP_HOME)
 
-for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen 'cargo audit' 'cargo outdated'; do
+for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen 'cargo audit' 'cargo outdated' 'cargo-tarpaulin'; do
     if ! command -v $cmd --version; then
         echo "$cmd was not installed or is not found on the path"
         exit 1
@@ -58,3 +59,4 @@ DocumentInstalledItem "bindgen ($(bindgen --version 2>&1 | cut -d ' ' -f 2))"
 DocumentInstalledItem "cbindgen ($(cbindgen --version 2>&1 | cut -d ' ' -f 2))"
 DocumentInstalledItem "cargo audit ($(cargo audit --version 2>&1 | cut -d ' ' -f 2))"
 DocumentInstalledItem "cargo outdated ($(cargo outdated --version 2>&1 | cut -d ' ' -f 2))"
+DocumentInstalledItem "cargo tarpaulin ($(cargo tarpaulin --version 2>&1 | cut -d ' ' -f 2))"
