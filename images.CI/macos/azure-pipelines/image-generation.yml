@@ -34,22 +34,22 @@ jobs:
           'Using ssh communicator to connect:'
       )
 
-      packer build -on-error=abort \
-        -var="vcenter_server=$(vcenter_server_v2)" \
-        -var="vcenter_username=$(vcenter_username_v2)" \
-        -var="vcenter_password=$(vcenter_password_v2)" \
-        -var="vcenter_datacenter=$(vcenter_datacenter_v2)" \
-        -var="cluster_or_esxi_host=$(esxi_cluster_v2)" \
-        -var="esxi_datastore=${{ parameters.target_datastore }}" \
-        -var="output_folder=$(output_folder)" \
-        -var="vm_username=$(vm_username)" \
-        -var="vm_password=$(vm_password)" \
-        -var="build_id=$(Build.BuildNumber)" \
-        -var="baseimage_name=${{ parameters.base_image_name }}" \
-        -var="github_feed_token=$(GITHUB_FEED_TOKEN)" \
-        -var="xcode_install_user=$(xcode-installation-user)" \
-        -var="xcode_install_password=$(xcode-installation-password)" \
-        -color=false \
+      packer build -on-error=abort `
+        -var="vcenter_server=$(vcenter_server_v2)" `
+        -var="vcenter_username=$(vcenter_username_v2)" `
+        -var="vcenter_password=$(vcenter_password_v2)" `
+        -var="vcenter_datacenter=$(vcenter_datacenter_v2)" `
+        -var="cluster_or_esxi_host=$(esxi_cluster_v2)" `
+        -var="esxi_datastore=${{ parameters.target_datastore }}" `
+        -var="output_folder=$(output_folder)" `
+        -var="vm_username=$(vm_username)" `
+        -var="vm_password=$(vm_password)" `
+        -var="build_id=$(Build.BuildNumber)" `
+        -var="baseimage_name=${{ parameters.base_image_name }}" `
+        -var="github_feed_token=$(GITHUB_FEED_TOKEN)" `
+        -var="xcode_install_user=$(xcode-installation-user)" `
+        -var="xcode_install_password=$(xcode-installation-password)" `
+        -color=false `
         ${{ parameters.template_path }} `
         | Where-Object {
             #Filter sensitive data from Packer logs
