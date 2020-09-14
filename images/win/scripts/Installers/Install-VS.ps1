@@ -1,35 +1,38 @@
 ################################################################################
 ##  File:  Install-VS.ps1
-##  Desc:  Install Visual Studio and build tools
+##  Desc:  Install Visual Studio
 ################################################################################
 
 $ErrorActionPreference = "Stop"
 
 $toolset = Get-ToolsetContent
 $requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
-$buildToolsRequiredComponents = $toolset.visualStudio.buildtools_workloads | ForEach-Object { "--add $_" }
 $workLoads = @(
 	"--allWorkloads --includeRecommended"
 	$requiredComponents
 	"--remove Component.CPython3.x64"
 )
 $workLoadsArgument = [String]::Join(" ", $workLoads)
-$buildToolsWorkloads= @(
-	"--includeRecommended"
-	$buildToolsRequiredComponents
-)
-$buildWorkLoadsArgument = [String]::Join(" ", $buildToolsWorkloads)
 
 $releaseInPath = $toolset.visualStudio.edition
 $subVersion = $toolset.visualStudio.subversion
 $bootstrapperUrl = "https://aka.ms/vs/${subVersion}/release/vs_${releaseInPath}.exe"
-$buildbootstrapperUrl = "https://aka.ms/vs/${subVersion}/release/vs_buildtools.exe"
 
-# Install VS and VS Build tools
+# Install VS
 Install-VisualStudio -BootstrapperUrl $bootstrapperUrl -WorkLoads $workLoadsArgument
-Install-VisualStudio -BootstrapperUrl $buildbootstrapperUrl -WorkLoads $buildWorkLoadsArgument
 
-$vsInstallRoot = (Get-VisualStudioProduct -ProductType "VisualStudio").InstallationPath
+# Find the version of VS installed for this instance
+# Only supports a single instance
+$vsProgramData = Get-Item -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
+$instanceFolders = Get-ChildItem -Path $vsProgramData.FullName
+
+if ($instanceFolders -is [array])
+{
+    Write-Host "More than one instance installed"
+    exit 1
+}
+
+$vsInstallRoot = Get-VisualStudioPath
 
 # Initialize Visual Studio Experimental Instance
 & "$vsInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit
