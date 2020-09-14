@@ -26,7 +26,7 @@
 - NPM 6.14.6
 - Yarn 1.22.4
 - pip 20.2.2 (python 3.7)
-- Miniconda 4.8.3
+- Miniconda 4.6.14
 - RubyGems 3.1.4
 - Helm 3.3.0
 - Composer 1.10.10
