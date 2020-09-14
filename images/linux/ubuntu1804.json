@@ -297,11 +297,12 @@
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
-            "type": "powershell",
+            "type": "shell",
             "inline": [
-                "pwsh -File '{{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1' -OutputDirectory '{{user `image_folder`}}'"
+                "sudo pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}"
             ],
             "environment_vars":[
+                "IMAGE_VERSION={{user `image_version`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
                 "ANNOUNCEMENTS={{user `announcements`}}"
             ]

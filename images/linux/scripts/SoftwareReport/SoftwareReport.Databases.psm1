@@ -13,7 +13,7 @@ function Get-SqliteVersion {
     return "sqlite3 $sqliteVersion"
 }
 
-function Get-MySqlVersion {
+function Get-MySQLVersion {
     $mySqlVersion = (mysql --version).Split("/usr/bin/")[1]
     return "MySQL ($mySqlVersion)"
 }
@@ -23,7 +23,7 @@ function Build-MySQLSection {
 
     $output += New-MDHeader "MySQL" -Level 4
     $output += New-MDList -Style Unordered -Lines @(
-        (Get-MySqlVersion),
+        (Get-MySQLVersion ),
         "MySQL Server (user:root password:root)",
         "MS SQL Server Client Tools"
     )

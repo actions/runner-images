@@ -4,7 +4,7 @@ param (
 )
 
 # Install MarkdownPS module for software report generation
-Install-Module MarkdownPS -Force -Scope CurrentUser
+Install-Module MarkdownPS -Force
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.CachedTools.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNameChecking
@@ -28,7 +28,7 @@ $OSName = Get-OSName
 $markdown += New-MDHeader "$OSName" -Level 1
 
 $markdown += New-MDList -Style Unordered -Lines @(
-    "Image Version: $env:ImageVersion"
+    "Image Version: $env:IMAGE_VERSION"
 )
 
 $markdown += New-MDHeader "Installed Software" -Level 2
