@@ -44,30 +44,32 @@ function Build-AndroidTable {
     $packageInfo = Get-AndroidInstalledPackages
     return @(
         @{
+            "Package" = "Android SDK Platform-Tools"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Platform-Tools"
+        },
+        @{
             "Package" = "Android SDK Tools"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Tools"
         },
         @{
             "Package" = "Android SDK Platforms"
             "Version" = Get-AndroidPlatformVersions -PackageInfo $packageInfo
-            "Location" = Get-AndroidComponentLocation -ComponentName "platforms"
         },
         @{
             "Package" = "Android SDK Build-tools"
             "Version" = Get-AndroidBuildToolVersions -PackageInfo $packageInfo
-            "Location" = Get-AndroidComponentLocation -ComponentName "build-tools"
         },
         @{
-            "Package" = "Android SDK Platform-Tools"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Platform-Tools"
-        },
-        @{
-            "Package" = "Google APIs"
-            "Version" = Get-AndroidGoogleAPIsVersions -PackageInfo $packageInfo
+            "Package" = "NDK"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
         },
         @{
             "Package" = "Android Support Repository"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Support Repository"
+        },
+        @{
+            "Package" = "Google APIs"
+            "Version" = Get-AndroidGoogleAPIsVersions -PackageInfo $packageInfo
         },
         @{
             "Package" = "Google Play services"
@@ -84,16 +86,11 @@ function Build-AndroidTable {
         @{
             "Package" = "CMake"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "cmake"
-        },
-        @{
-            "Package" = "NDK"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
         }
     ) | Where-Object { $_.Version } | ForEach-Object {
         [PSCustomObject] @{
             "Package Name" = $_.Package
             "Version" = $_.Version
-            "Location" = $_.Location
         }
     }
 }
