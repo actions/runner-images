@@ -44,6 +44,11 @@ function Get-Cargoaudit {
     return "Cargo-audit $cargoAuditVersion"
 }
 
+function Get-Cargotarpaulin {
+    $cargoTarpaulinVersion = Run-Command "cargo tarpaulin --version" | Take-Part -Part 1
+    return "Cargo-tarpaulin $cargoTarpaulinVersion"
+}
+
 function Get-RustupVersion {
     $rustupVersion = Run-Command "rustup --version" | Take-Part -Part 1
     return "Rustup ${rustupVersion}"

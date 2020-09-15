@@ -293,6 +293,10 @@ Describe "Rust" -Skip:($os.IsHighSierra) {
         It "Cargo outdated" {
             "cargo outdated --version" | Should -ReturnZeroExitCode
         }
+
+        It "Cargo tarpaulin" {
+            "cargo tarpaulin --version" | Should -ReturnZeroExitCode
+        }
     }
 }
 
