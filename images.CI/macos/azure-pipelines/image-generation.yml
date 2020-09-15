@@ -10,12 +10,12 @@ jobs:
 
   steps:
   - pwsh: |
-      $validСontributor = ${$env:CONTRIBUTOR_ALLOWLIST}.Split(",") | Where-Object { $_ -eq $env:BUILD_SOURCEVERSIONAUTHOR } `
-                                                                   | Select-Object -First 1
+      $validСontributor = ${$env:CONTRIBUTOR_ALLOWLIST}.Split(",").Trim() | Where-Object { $_ -eq $env:BUILD_SOURCEVERSIONAUTHOR } `
+                                                                          | Select-Object -First 1
 
       if (-not $validСontributor) {
         Write-Host "Failed to start this build. $env:BUILD_SOURCEVERSIONAUTHOR is an unknown contributor"
-        Write-Host "Please add $env:BUILD_SOURCEVERSIONAUTHOR to the allowed list to run this build"
+        Write-Host "Please add $env:BUILD_SOURCEVERSIONAUTHOR to the allowed list to run builds"
         exit 1
       }
     displayName: Validate contributor permissions
