@@ -43,7 +43,9 @@ Describe "CMake" {
 
 Describe "CodeQLBundle" {
     It "CodeQLBundle" {
-        $CodeQLPath = Join-Path $Env:CODEQL_EXTRACTION_DIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
+        $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "*"
+        $CodeQLVersionPath = (Get-Item $CodeQLVersionsWildcard).FullPath
+        $CodeQLPath = Join-Path CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
         "$CodeQLPath version" | Should -ReturnZeroExitCode
     }
 }

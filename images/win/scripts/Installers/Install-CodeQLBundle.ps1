@@ -19,5 +19,4 @@ $UnGzipedCodeQLBundlePath = Join-Path $DownloadDirectoryPath "codeql-bundle.tar"
 Extract-7Zip -Path $UnGzipedCodeQLBundlePath -DestinationPath $ExtractionDirectory
 
 # Test that the tool has been extracted successfully.
-$Env:CODEQL_EXTRACTION_DIRECTORY = $ExtractionDirectory
 Invoke-PesterTests -TestFile "Tools" -TestName "CodeQLBundle"
