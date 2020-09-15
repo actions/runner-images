@@ -2,6 +2,7 @@ function Initialize-RustEnvironment {
     ln -sf "/usr/share/rust/.rustup" $HOME/.rustup
     ln -sf "/usr/share/rust/.cargo" $HOME/.cargo
 }
+
 function Get-RustVersion {
     Initialize-RustEnvironment
     $rustVersion = $(rustc --version) | Take-OutputPart -Part 1

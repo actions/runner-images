@@ -88,7 +88,8 @@ function Get-HomebrewVersion {
 }
 
 function Get-GemVersion {
-    $(gem --version 2>&1) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    $result = Get-CommandResult "gem --version"
+    $result.Output -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $gemVersion = $Matches.version
     return "Gem $gemVersion"
 }
