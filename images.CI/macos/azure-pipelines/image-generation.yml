@@ -9,6 +9,17 @@ jobs:
   - group: Mac-Cloud Image Generation Key Vault
 
   steps:
+  - pwsh: |
+      $validСontributor = ${$env:CONTRIBUTOR_ALLOWLIST}.Split(",") | Where-Object { $_ -eq $env:BUILD_SOURCEVERSIONAUTHOR } `
+                                                                   | Select-Object -First 1
+
+      if (-not $validСontributor) {
+        Write-Host "Failed to start this build. $env:BUILD_SOURCEVERSIONAUTHOR is an unknown contributor"
+        Write-Host "Please add $env:BUILD_SOURCEVERSIONAUTHOR to the allowed list to run this build"
+        exit 1
+      }
+    displayName: Validate contributor permissions
+
   - checkout: self
     clean: true
     fetchDepth: 1
