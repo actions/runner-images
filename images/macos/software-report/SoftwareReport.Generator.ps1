@@ -178,7 +178,7 @@ if ($os.IsHigherThanMojave) {
 $markdown += New-MDNewLine
 
 # Tools
-$fastlaneVersion = Run-Command "fastlane --version" | Select-String "fastlane [0-9]" | Take-Part -Part 1
+$fastlaneVersion = Run-Command "fastlane --version" | Select-String "^fastlane [0-9]" | Take-Part -Part 1
 $cmakeVersion = Run-Command "cmake --version" | Select-Object -First 1 | Take-Part -Part 2
 $appcenterCLIVersion = Run-Command "appcenter --version" | Take-Part -Part 2
 $azureCLIVersion = Run-Command "az -v" | Select-String "^azure-cli" | Take-Part -Part 1

@@ -1,6 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
 
-$toolsets = Get-ChildItem -Path $PSScriptRoot -Filter "toolset_*.json"
+$toolsets = Get-ChildItem -Path $PSScriptRoot -Filter "toolset-*.json"
 
 function Get-ShortVersion([System.Version] $Version) {
     return [System.Version]::Parse($Version).ToString(2)
