@@ -3,15 +3,16 @@ jobs:
   displayName: Image Generation (${{ parameters.image_label }})
   timeoutInMinutes: 720
   pool:
-    name: Mac-Cloud V2 Image Generation
+    name: Mac-Cloud Image Generation
   variables:
   - group: Mac-Cloud Image Generation
   - group: Mac-Cloud Image Generation Key Vault
 
   steps:
   - pwsh: |
-      $validСontributor = ${$env:CONTRIBUTOR_ALLOWLIST}.Split(",").Trim() | Where-Object { $_ -eq $env:BUILD_SOURCEVERSIONAUTHOR } `
-                                                                          | Select-Object -First 1
+      $allowedContributors = $env:CONTRIBUTOR_ALLOWLIST.Split(",").Trim()
+      $validСontributor = $allowedContributors | Where-Object { $_ -eq $env:BUILD_SOURCEVERSIONAUTHOR } `
+                                               | Select-Object -First 1
 
       if (-not $validСontributor) {
         Write-Host "Failed to start this build. $env:BUILD_SOURCEVERSIONAUTHOR is an unknown contributor"
