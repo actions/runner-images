@@ -51,7 +51,7 @@ Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at 
   - Use `DocumentInstalledItem "<add to docs>"` helper for building documentation.
 
 ### macOS
-macOS source lives in this repository and available for everyone. However, macOS image-generation CI doesn't support external contributions yet so we are not ready to accept pull-requests for now.
+macOS source lives in this repository and available for everyone. However, macOS image-generation CI doesn't support external contributions yet so we are not able to accept pull-requests for now.
 We are in the process of preparing macOS CI to accept contributions. Until then, we appreciate your patience and ask you continue to make tool requests by filing issues.
 
 ## Resources
