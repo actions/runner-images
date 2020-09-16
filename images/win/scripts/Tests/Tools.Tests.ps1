@@ -45,7 +45,7 @@ Describe "CodeQLBundle" {
     It "CodeQLBundle" {
         $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "*"
         $CodeQLVersionPath = (Get-Item $CodeQLVersionsWildcard).FullPath
-        $CodeQLPath = Join-Path CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
+        $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
         "$CodeQLPath version" | Should -ReturnZeroExitCode
     }
 }
