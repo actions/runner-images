@@ -6,7 +6,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
-source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
 
 set -e
@@ -127,13 +126,6 @@ for cmd in php $php_versions composer phpunit; do
     fi
 done
 
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-
-for version in $php_versions; do
-    DocumentInstalledItem "PHP $version ($(php$version --version | head -n 1))"
-done
-
 # ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
 # see https://github.com/actions/virtual-environments/issues/1084
 if isUbuntu20 ; then
@@ -145,6 +137,3 @@ if isUbuntu20 ; then
   WriteItem "apt-get update"
   EndCode
 fi
-
-DocumentInstalledItem "Composer  ($(composer --version))"
-DocumentInstalledItem "PHPUnit ($(phpunit --version))"

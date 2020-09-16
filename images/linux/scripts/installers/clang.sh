@@ -4,8 +4,6 @@
 ##  Desc:  Installs Clang compiler (versions: 6, 8 and 9)
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 
 function InstallClang {
     version=$1
@@ -26,10 +24,6 @@ function InstallClang {
             exit 1
         fi
     done
-
-    # Document what was added to the image
-    echo "Documenting clang-$version..."
-    DocumentInstalledItem "Clang $version ($(clang-$version --version | head -n 1 | cut -d ' ' -f 3 | cut -d '-' -f 1))"
 }
 
 # Download script for automatic installation

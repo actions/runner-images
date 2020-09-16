@@ -6,7 +6,6 @@
 set -e
 
 # Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
@@ -54,18 +53,3 @@ images=$(jq -r '.docker.images[]' $toolset)
 for image in $images; do
     docker pull "$image"
 done
-
-# Add version information to the metadata file
-echo "Documenting Docker version"
-docker_version=$(docker -v)
-DocumentInstalledItem "Docker-Moby ($docker_version)"
-
-echo "Documenting Docker-buildx version"
-DOCKER_BUILDX_VERSION=$(docker buildx version | cut -d ' ' -f2)
-DocumentInstalledItem "Docker-Buildx ($DOCKER_BUILDX_VERSION)"
-
-# Add container information to the metadata file
-DocumentInstalledItem "Cached container images"
-while read -r line; do
-    DocumentInstalledItemIndent "$line"
-done <<< "$(docker images --digests --format '{{.Repository}}:{{.Tag}} (Digest: {{.Digest}})')"
