@@ -9,21 +9,21 @@ jobs:
   - group: Mac-Cloud Image Generation Key Vault
 
   steps:
-  - pwsh: |
-      $allowedContributors = $env:CONTRIBUTOR_ALLOWLIST.Split(",").Trim()
-      $validСontributor = $allowedContributors | Where-Object { $_ -eq $env:BUILD_SOURCEVERSIONAUTHOR } `
-                                               | Select-Object -First 1
-
-      if (-not $validСontributor) {
-        Write-Host "Failed to start this build. $env:BUILD_SOURCEVERSIONAUTHOR is an unknown contributor"
-        Write-Host "Please add $env:BUILD_SOURCEVERSIONAUTHOR to the allowed list to run builds"
-        exit 1
-      }
-    displayName: Validate contributor permissions
-
   - checkout: self
     clean: true
     fetchDepth: 1
+
+  - task: PowerShell@2
+    displayName: 'Validate contributor permissions'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/pull/')
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/macos/validate-contributor.ps1
+      pwsh: true
+      arguments: -RepositoryName "$(Build.Repository.Name)" `
+                 -AccessToken "$(GITHUB_FEED_TOKEN)" `
+                 -SourceBranch "$(Build.SourceBranch)" `
+                 -ContributorAllowList "$(CONTRIBUTOR_ALLOWLIST)"
 
   - task: PowerShell@2
     displayName: 'Download custom repository'
