@@ -13,7 +13,7 @@ CARGO_HOME=$HOME/.cargo
 source $CARGO_HOME/env
 
 echo Install common tools...
-cargo install bindgen cbindgen cargo-audit cargo-outdated
+cargo install bindgen cbindgen cargo-audit cargo-outdated sccache
 
 echo Cleanup Cargo registry cached data...
 rm -rf $CARGO_HOME/registry/*
