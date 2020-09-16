@@ -87,6 +87,10 @@
             "platform-tools"
         ]
     },
+    "powershellModules": [
+        {"name": "MarkdownPS"},
+        {"name": "Pester"}
+    ],
     "azureModules": [
         {
             "name": "az",
