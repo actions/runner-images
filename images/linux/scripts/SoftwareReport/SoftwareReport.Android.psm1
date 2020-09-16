@@ -53,6 +53,10 @@ function Build-AndroidTable {
             "Version" = Get-AndroidGoogleAPIsVersions -PackageInfo $packageInfo
         },
         @{
+            "Package" = "NDK"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
+        },
+        @{
             "Package" = "Android Support Repository"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Support Repository"
         },
@@ -71,16 +75,12 @@ function Build-AndroidTable {
         @{
             "Package" = "CMake"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "cmake"
-        },
-        @{
-            "Package" = "NDK"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
         }
     ) | Where-Object { $_.Version } | ForEach-Object {
         [PSCustomObject] @{
             "Package Name" = $_.Package
             "Version" = $_.Version
-        } 
+        }
     }
 }
 
@@ -109,7 +109,7 @@ function Get-AndroidPlatformVersions {
         $packageInfoParts = Split-TableRowByColumns $_
         $revision = $packageInfoParts[1]
         $version = $packageInfoParts[0].split(";")[1]
-        return "$version, (rev $revision)"
+        return "$version (rev $revision)"
     }
     [array]::Reverse($versions)
     return ($versions -Join "<br>")
