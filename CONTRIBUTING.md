@@ -31,7 +31,7 @@ Here are a few things you can do that will increase the likelihood of your pull 
 ## How to add new tool
 ### General rules
 - For every new tool add validation scripts and update software report script to make sure that it is included to documentation
-- If the tool is available in other platforms (MacOS, Windows, Linux), make sure you include it in as many as possible.
+- If the tool is available in other platforms (macOS, Windows, Linux), make sure you include it in as many as possible.
 - If installing a few versions of the tool, consider putting the list of versions in the corresponding `toolset.json` file. It will help other customers to configure their builds flexibly. See [toolset-windows-2016.json](images/win/toolsets/toolset-2019.json) as example.
 - Use consistent naming across all files
 - Validation scripts should be simple and shouldn't change image content
@@ -51,8 +51,8 @@ Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at 
   - Use `DocumentInstalledItem "<add to docs>"` helper for building documentation.
 
 ### macOS
-macOS source lives in this repository and available for everyone. However, MacOS image-generation CI doesn't support external contributions yet so we are not ready to accept pull-requests for now.
-We are in the process of preparing MacOS CI to accept contributions. Until then, we appreciate your patience and ask you continue to make tool requests by filing issues.
+macOS source lives in this repository and available for everyone. However, macOS image-generation CI doesn't support external contributions yet so we are not ready to accept pull-requests for now.
+We are in the process of preparing macOS CI to accept contributions. Until then, we appreciate your patience and ask you continue to make tool requests by filing issues.
 
 ## Resources
 
