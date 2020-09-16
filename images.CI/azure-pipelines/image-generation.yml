@@ -17,13 +17,10 @@ jobs:
     displayName: 'Download custom repository'
     condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
     inputs:
-      targetType: 'inline'
-      script: |
-        Write-Host "Clean up default repository"
-        Remove-Item -path './*' -Recurse -Force
-        Write-Host "Download $(CUSTOM_REPOSITORY_BRANCH) branch from $(CUSTOM_REPOSITORY_URL)"
-        $env:GIT_REDIRECT_STDERR = '2>&1'
-        git clone $(CUSTOM_REPOSITORY_URL) . -b $(CUSTOM_REPOSITORY_BRANCH) --single-branch --depth 1
+      targetType: 'filePath'
+      filePath: ./images.CI/download-repo.ps1
+      arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
+                        -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
 
   - task: PowerShell@2
     displayName: 'Build VM'

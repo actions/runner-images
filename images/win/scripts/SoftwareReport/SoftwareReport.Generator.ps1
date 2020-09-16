@@ -94,6 +94,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-NewmanVersion),
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
+    (Get-PulumiVersion),
     (Get-SQLPSVersion),
     (Get-SQLServerPSVersion),
     (Get-SVNVersion),
@@ -171,6 +172,11 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Workloads, components and extensions:" -Level 4
 $markdown += New-MDNewLine
 $markdown += ((Get-VisualStudioComponents) + (Get-VisualStudioExtensions)) | New-MDTable
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Microsoft Visual C++:" -Level 4
+$markdown += New-MDNewLine
+$markdown += Get-VisualCPPComponents | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader ".NET Core SDK" -Level 3

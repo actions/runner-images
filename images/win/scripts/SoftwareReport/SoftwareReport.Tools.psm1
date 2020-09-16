@@ -107,6 +107,10 @@ function Get-PackerVersion {
     return "Packer $(packer --version)"
 }
 
+function Get-PulumiVersion {
+    return "Pulumi $(pulumi version)"
+}
+
 function Get-SQLPSVersion {
     $module = Get-Module -Name SQLPS -ListAvailable
     $version = $module.Version
@@ -222,5 +226,24 @@ function Get-NewmanVersion {
 }
 
 function Get-GHVersion {
-    return "GitHub CLI $(gh --version)"
+    ($(gh --version) | Select-String -Pattern "gh version") -match "gh version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $ghVersion = $Matches.Version
+    return "GitHub CLI $ghVersion"
+}
+
+function Get-VisualCPPComponents {
+    $vcpp = Get-CimInstance -ClassName Win32_Product -Filter "Name LIKE 'Microsoft Visual C++%'"
+    $vcpp | Sort-Object Name, Version | ForEach-Object {
+        $isMatch = $_.Name -match "^(?<Name>Microsoft Visual C\+\+ \d{4})\s+(?<Arch>\w{3})\s+(?<Ext>.+)\s+-"
+        if ($isMatch) {
+            $name = '{0} {1}' -f $matches["Name"], $matches["Ext"]
+            $arch = $matches["Arch"].ToLower()
+            $version = $_.Version
+            [PSCustomObject]@{
+                Name = $name
+                Architecture = $arch
+                Version = $version
+            }
+        }
+    }
 }

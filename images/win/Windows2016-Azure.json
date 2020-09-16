@@ -9,7 +9,6 @@
         "storage_account": "{{env `ARM_STORAGE_ACCOUNT`}}",
         "temp_resource_group_name": "{{env `TEMP_RESOURCE_GROUP_NAME`}}",
         "location": "{{env `ARM_RESOURCE_LOCATION`}}",
-        "ssh_password": "{{env `SSH_PASSWORD`}}",
         "virtual_network_name": "{{env `VNET_NAME`}}",
         "virtual_network_resource_group_name": "{{env `VNET_RESOURCE_GROUP`}}",
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
@@ -20,12 +19,9 @@
         "root_folder": "C:",
         "toolset_json_path": "{{env `TEMP`}}\\toolset.json",
         "image_folder": "C:\\image",
-        "commit_file": "C:\\image\\commit.txt",
         "imagedata_file": "C:\\imagedata.json",
-        "metadata_file": "C:\\image\\metadata.txt",
         "helper_script_folder": "C:\\Program Files\\WindowsPowerShell\\Modules\\",
         "psmodules_root_folder": "C:\\Modules",
-        "commit_url": "LATEST",
         "install_user": "installer",
         "install_password": null,
         "capture_name_prefix": "packer",
@@ -34,7 +30,7 @@
         "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
         "announcements": "{{env `ANNOUNCEMENTS`}}"
     },
-    "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
+    "sensitive-variables": ["install_password", "client_secret", "github_feed_token"],
     "builders": [
         {
             "name": "vhd",
@@ -70,9 +66,7 @@
         {
             "type": "powershell",
             "inline":[
-                "New-Item -Path {{user `image_folder`}} -ItemType Directory -Force",
-                "Write-Output {{user `commit_url`}} > {{user `commit_file` }}",
-                "Write-Host (Get-Content -Path {{user `commit_file`}})"
+                "New-Item -Path {{user `image_folder`}} -ItemType Directory -Force"
             ]
         },
         {
@@ -217,6 +211,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Packer.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Pulumi.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
             ]
         },
@@ -327,7 +322,8 @@
         {
             "type": "powershell",
             "scripts":[
-                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
+                "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
