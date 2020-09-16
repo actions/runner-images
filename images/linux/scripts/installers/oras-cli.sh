@@ -4,6 +4,7 @@
 ##  Desc:  Installs ORAS CLI
 ################################################################################
 
+source $HELPER_SCRIPTS/install.sh
 
 # Determine latest ORAS CLI version
 ORAS_CLI_LATEST_VERSION_URL=https://api.github.com/repos/deislabs/oras/releases/latest
