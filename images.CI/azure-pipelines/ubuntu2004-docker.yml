@@ -13,6 +13,9 @@ pr:
     include:
     - main
 
+${{ if variables['pool_name'] }}:
+  pool: $(pool_name)
+
 jobs:
 - job: build_container
   timeoutInMinutes: 600
@@ -31,5 +34,3 @@ jobs:
         containerRegistry: $(container_registry_connection)
         tags: |
           $(Build.SourceBranchName)
-
-
