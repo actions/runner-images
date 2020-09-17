@@ -62,7 +62,7 @@ function InstallAllValidSdks()
 
     # Consider all channels except preview/eol channels.
     # Sort the channels in ascending order
-    $dotnetChannels = $dotnetChannels.'releases-index' | Where-Object { (!$_."support-phase".Equals('preview') -and !$_."support-phase".Equals('eol')) } | Sort-Object { [Version] $_."channel-version" }
+    $dotnetChannels = $dotnetChannels.'releases-index' | Where-Object { (!$_."support-phase".Equals('preview') -and !$_."support-phase".Equals('eol') -and !$_."support-phase".Equals('rc')) } | Sort-Object { [Version] $_."channel-version" }
 
     # Download installation script.
     $installationName = "dotnet-install.ps1"

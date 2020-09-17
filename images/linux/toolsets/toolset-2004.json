@@ -68,6 +68,10 @@
             "platform-tools"
         ]
     },
+    "powershellModules": [
+        {"name": "MarkdownPS"},
+        {"name": "Pester"}
+    ],
     "apt": {
         "common_packages": [
             "dbus",
