@@ -18,5 +18,8 @@ echo "Downloading CodeQL bundle $codeql_bundle_version..."
 download_with_retries "https://github.com/github/codeql-action/releases/download/$codeql_bundle_name/codeql-bundle.tar.gz" "/tmp" "codeql-bundle.tar.gz"
 tar -xzf "/tmp/codeql-bundle.tar.gz" -C "$extraction_directory"
 
+# Touch a special file that indicates to the CodeQL Action that this bundle was baked-in to the hosted runner images.
+touch "$extraction_directory/pinned-version"
+
 # Test that the tool has been extracted successfully.
 "$AGENT_TOOLSDIRECTORY/CodeQL/$codeql_bundle_version/x64/codeql/codeql" version

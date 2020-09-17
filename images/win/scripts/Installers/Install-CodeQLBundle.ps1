@@ -18,5 +18,8 @@ Extract-7Zip -Path $CodeQLBundlePath -DestinationPath $DownloadDirectoryPath
 $UnGzipedCodeQLBundlePath = Join-Path $DownloadDirectoryPath "codeql-bundle.tar"
 Extract-7Zip -Path $UnGzipedCodeQLBundlePath -DestinationPath $ExtractionDirectory
 
+# Touch a special file that indicates to the CodeQL Action that this bundle was baked-in to the hosted runner images.
+New-Item -ItemType file (Join-Path $ExtractionDirectory -ChildPath "pinned-version")
+
 # Test that the tool has been extracted successfully.
 Invoke-PesterTests -TestFile "Tools" -TestName "CodeQLBundle"
