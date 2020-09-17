@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-  build:
+  Create_pull_request:
     runs-on: ubuntu-latest
 
     steps:

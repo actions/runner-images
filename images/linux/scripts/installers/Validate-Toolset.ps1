@@ -50,7 +50,6 @@ $toolset = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
 $tools = ConvertFrom-Json -InputObject $toolset | Select-Object -ExpandProperty toolcache
 
 foreach($tool in $tools) {
-    Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItem '$($tool.name):'`""
 
     $toolPath = Join-Path $env:AGENT_TOOLSDIRECTORY $tool.name
     # Get executables for current tool
@@ -85,8 +84,5 @@ foreach($tool in $tools) {
             $pypyVersion = & "$foundVersionPath/bin/python" -c "import sys;print(sys.version.split('\n')[1])"
             $foundVersionName = "{0} {1}" -f $foundVersionName, $pypyVersion
         }
-
-        # Add tool version to documentation
-        Invoke-Expression "bash -c `"source $env:HELPER_SCRIPTS/document.sh; DocumentInstalledItemIndent '$($tool.name) $foundVersionName'`""
     }
 }
