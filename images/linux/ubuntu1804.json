@@ -93,6 +93,11 @@
         },
         {
             "type": "file",
+            "source": "{{ template_dir }}/scripts/SoftwareReport",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
+            "type": "file",
             "source": "{{template_dir}}/toolsets/toolcache-1804.json",
             "destination": "{{user `installer_script_folder`}}/toolcache.json"
         },
@@ -292,8 +297,29 @@
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/Install-PowerShellModules.ps1"
+            ],
+            "environment_vars": [
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}"
+            ],
+            "environment_vars":[
+                "IMAGE_VERSION={{user `image_version`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "ANNOUNCEMENTS={{user `announcements`}}"
+            ]
+        },
+        {
             "type": "file",
-            "source": "{{user `metadata_file`}}",
+            "source": "{{user `image_folder`}}/Ubuntu-Readme.md",
             "destination": "{{template_dir}}/Ubuntu1804-README.md",
             "direction": "download"
         },
