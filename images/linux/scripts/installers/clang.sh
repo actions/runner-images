@@ -4,10 +4,6 @@
 ##  Desc:  Installs Clang compiler
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
-source $HELPER_SCRIPTS/os.sh
-
 function InstallClang {
     local version=$1
 
@@ -27,10 +23,6 @@ function InstallClang {
             exit 1
         fi
     done
-
-    # Document what was added to the image
-    echo "Documenting clang-$version..."
-    DocumentInstalledItem "Clang $version ($(clang-$version --version | head -n 1 | cut -d '-' -f 1 | awk '{print $NF}'))"
 }
 
 function SetDefaultClang {
