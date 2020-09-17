@@ -14,12 +14,7 @@ pr:
     - main
 
 pool:
-  ${{ if variables['pool_name'] }}:
-    name: $(pool_name)
-  ${{ if variables['pool_vmImage'] }}:
-    vmImage: $(pool_vmImage)
-  ${{ if variables['pool_demands'] }}:
-    demands: $(pool_demands)
+  name: $(pool_name)
 
 
 jobs:
