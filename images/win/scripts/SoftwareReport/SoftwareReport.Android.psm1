@@ -5,14 +5,6 @@ function Split-TableRowByColumns {
     return $Row.Split("|") | ForEach-Object { $_.trim() }
 }
 
-function Get-AndroidComponentLocation {
-    param(
-        [string] $ComponentName
-    )
-    $path = Join-Path $env:ANDROID_HOME $ComponentName
-    return "Location $path"
-}
-
 function Get-AndroidSDKRoot {
     param(
         [string] $ComponentName
