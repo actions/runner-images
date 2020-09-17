@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-  build:
+  Merge_pull_request:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,18 @@ jobs:
         git push origin ${{ github.event.client_payload.ReleaseBranchName }}-docs
         sleep 30
 
+    - name: Approve pull request by GitHub-Actions bot
+      uses: actions/github-script@v2
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.pulls.createReview({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: ${{ github.event.client_payload.PullRequestNumber }},
+            event: "APPROVE"
+          });
+
     - name: Merge pull request for ${{ github.event.client_payload.ReleaseBranchName }}
       uses: actions/github-script@v2
       with:
@@ -31,7 +43,8 @@ jobs:
           github.pulls.merge({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            pull_number: ${{ github.event.client_payload.PullRequestNumber }}
+            pull_number: ${{ github.event.client_payload.PullRequestNumber }},
+            merge_method: "squash"
           })
 
     - name: Delete docs branch ${{ github.event.client_payload.ReleaseBranchName }}-docs

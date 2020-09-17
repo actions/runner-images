@@ -4,8 +4,6 @@
 ##  Desc:  Installs Mono
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 
 LSB_CODENAME=$(lsb_release -cs)
 
@@ -27,8 +25,3 @@ if ! command -v nuget; then
     echo "nuget was not installed"
     exit 1
 fi
-
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Mono ($(mono --version | head -n 1))"
-DocumentInstalledItem "NuGet ($(nuget | tail -n +1 | head -n 1))" # Pipe to tail before piping to head because NuGet prints an ugly error if you close its stream before it's done writing.
