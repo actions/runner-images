@@ -5,8 +5,6 @@
 ##         Requires Python >=3.6, must be run as non-root user after toolset installation
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 
 # Download latest aws sam cli sources
 TarballUrl=$(curl -s https://api.github.com/repos/aws/aws-sam-cli/releases/latest | jq -r '.tarball_url')
@@ -31,7 +29,3 @@ if ! sam --version; then
     echo "AWS SAM CLI was not installed"
     exit 1
 fi
-
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "AWS $(sam --version)"

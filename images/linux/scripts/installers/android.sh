@@ -7,7 +7,6 @@
 set -e
 
 # Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
 
 # Set env variable for SDK Root (https://developer.android.com/studio/command-line/variables)
@@ -62,34 +61,3 @@ buildtools_versions_list=$(echo "$buildtools"|awk -F';' '{print $2}')
 
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}
-
-echo "Lastly, document what was added to the metadata file"
-DocumentInstalledItem "Google Repository $(cat ${ANDROID_SDK_ROOT}/extras/google/m2repository/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
-DocumentInstalledItem "Google Play services $(cat ${ANDROID_SDK_ROOT}/extras/google/google_play_services/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
-
-for version in $google_api_versions_list; do
-  DocumentInstalledItem "Google APIs $version"
-done
-
-DocumentInstalledItem "CMake $(ls ${ANDROID_SDK_ROOT}/cmake 2>&1)"
-
-for version in $constraint_layout_versions_list; do
-  DocumentInstalledItem "Android ConstraintLayout $version"
-done
-
-for version in $constraint_layout_solver_versions_list; do
-  DocumentInstalledItem "Android ConstraintLayout Solver $version"
-done
-
-DocumentInstalledItem "Android SDK Platform-Tools $(cat ${ANDROID_SDK_ROOT}/platform-tools/source.properties 2>&1 | grep Pkg.Revision | cut -d '=' -f 2)"
-for version in $platform_versions_list; do
-  DocumentInstalledItem "Android SDK Platform $version"
-done
-
-DocumentInstalledItem "Android SDK Patch Applier v4"
-
-for version in $buildtools_versions_list; do
-  DocumentInstalledItem "Android SDK Build-Tools $version"
-done
-
-DocumentInstalledItem "Android NDK $(cat ${ANDROID_SDK_ROOT}/ndk-bundle/source.properties 2>&1 | grep Pkg.Revision | cut -d ' ' -f 3)"

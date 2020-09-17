@@ -5,8 +5,6 @@
 ################################################################################
 
 set -e
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 common_packages=$(jq -r ".apt.common_packages[]" $toolset)
@@ -23,11 +21,4 @@ for cmd in $cmd_packages; do
         echo "$cmd was not installed"
         exit 1
     fi
-done
-
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Basic packages:"
-for package in $common_packages $cmd_packages; do
-    DocumentInstalledItemIndent $package
 done
