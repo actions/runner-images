@@ -13,8 +13,14 @@ pr:
     include:
     - main
 
-${{ if variables['pool_name'] }}:
-  pool: $(pool_name)
+pool:
+  ${{ if variables['pool_name'] }}:
+    name: $(pool_name)
+  ${{ if variables['pool_vmImage'] }}:
+    vmImage: $(pool_vmImage)
+  ${{ if variables['pool_demands'] }}:
+    demands: $(pool_demands)
+
 
 jobs:
 - job: build_container
