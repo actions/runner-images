@@ -112,7 +112,7 @@ function Get-AndroidPlatformVersions {
         $packageInfoParts = Split-TableRowByColumns $_
         $revision = $packageInfoParts[1]
         $version = $packageInfoParts[0].split(";")[1]
-        return "$version, (rev $revision)"
+        return "$version (rev $revision)"
     }
     [array]::Reverse($versions)
     return ($versions -Join "<br>")
