@@ -87,6 +87,10 @@
             "platform-tools"
         ]
     },
+    "powershellModules": [
+        {"name": "MarkdownPS"},
+        {"name": "Pester"}
+    ],
     "azureModules": [
         {
             "name": "az",
@@ -104,5 +108,85 @@
                 "4.6.0"
             ]
         }
-    ]
+    ],
+    "apt": {
+        "common_packages": [
+            "dbus",
+            "dnsutils",
+            "dpkg",
+            "fakeroot",
+            "gnupg2",
+            "iproute2",
+            "iputils-ping",
+            "lib32z1",
+            "libc++abi-dev",
+            "libc++-dev",
+            "libcurl3",
+            "libgbm-dev",
+            "libgconf-2-4",
+            "libgtk-3-0",
+            "libsecret-1-dev",
+            "libsqlite3-dev",
+            "libunwind8",
+            "libxkbfile-dev",
+            "libxss1",
+            "locales",
+            "openssh-client",
+            "pkg-config",
+            "rpm",
+            "texinfo",
+            "tk",
+            "tzdata",
+            "upx",
+            "xorriso",
+            "xvfb",
+            "xz-utils",
+            "zstd",
+            "zsync"
+        ],
+        "cmd_packages": [
+            "bison",
+            "brotli",
+            "bzip2",
+            "curl",
+            "file",
+            "flex",
+            "ftp",
+            "jq",
+            "m4",
+            "netcat",
+            "parallel",
+            "patchelf",
+            "rsync",
+            "shellcheck",
+            "sqlite3",
+            "ssh",
+            "sudo",
+            "telnet",
+            "time",
+            "unzip",
+            "wget",
+            "yamllint",
+            "zip"
+        ]
+    },
+    "docker": {
+        "images": [
+            "alpine:3.7",
+            "alpine:3.8",
+            "alpine:3.9",
+            "alpine:3.10",
+            "buildpack-deps:stretch",
+            "buildpack-deps:buster",
+            "debian:8",
+            "debian:9",
+            "jekyll/builder",
+            "mcr.microsoft.com/azure-pipelines/node8-typescript",
+            "node:10",
+            "node:12",
+            "node:10-alpine",
+            "node:12-alpine",
+            "ubuntu:14.04"
+        ]
+    }
 }

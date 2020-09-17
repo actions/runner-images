@@ -92,7 +92,23 @@
             "destination": "{{user `installer_script_folder`}}"
         },
         {
+            "type": "file",
+            "source": "{{ template_dir }}/scripts/SoftwareReport",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolcache-1804.json",
+            "destination": "{{user `installer_script_folder`}}/toolcache.json"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolset-1804.json",
+            "destination": "{{user `installer_script_folder`}}/toolset.json"
+        },
+        {
             "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
             "scripts":[
                 "{{template_dir}}/scripts/installers/preparemetadata.sh"
             ],
@@ -101,8 +117,7 @@
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "ANNOUNCEMENTS={{user `announcements`}}"
-            ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+            ]
         },
         {
             "type": "shell",
@@ -202,31 +217,9 @@
                 "{{template_dir}}/scripts/installers/mongodb.sh",
                 "{{template_dir}}/scripts/installers/rndgenerator.sh",
                 "{{template_dir}}/scripts/installers/swig.sh",
-                "{{template_dir}}/scripts/installers/netlify.sh"
-            ],
-            "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "DEBIAN_FRONTEND=noninteractive"
-            ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolcache-1804.json",
-            "destination": "{{user `installer_script_folder`}}/toolcache.json"
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolset-1804.json",
-            "destination": "{{user `installer_script_folder`}}/toolset.json"
-        },
-        {
-            "type": "shell",
-            "scripts":[
+                "{{template_dir}}/scripts/installers/netlify.sh",
                 "{{template_dir}}/scripts/installers/android.sh",
                 "{{template_dir}}/scripts/installers/azpowershell.sh",
-                "{{template_dir}}/scripts/helpers/containercache.sh",
                 "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
                 "{{template_dir}}/scripts/installers/pypy.sh",
                 "{{template_dir}}/scripts/installers/python.sh",
@@ -236,7 +229,8 @@
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
-                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
+                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}",
+                "DEBIAN_FRONTEND=noninteractive"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
@@ -303,8 +297,29 @@
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/Install-PowerShellModules.ps1"
+            ],
+            "environment_vars": [
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}"
+            ],
+            "environment_vars":[
+                "IMAGE_VERSION={{user `image_version`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "ANNOUNCEMENTS={{user `announcements`}}"
+            ]
+        },
+        {
             "type": "file",
-            "source": "{{user `metadata_file`}}",
+            "source": "{{user `image_folder`}}/Ubuntu-Readme.md",
             "destination": "{{template_dir}}/Ubuntu1804-README.md",
             "direction": "download"
         },
