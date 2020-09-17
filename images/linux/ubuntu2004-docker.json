@@ -199,6 +199,7 @@
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
                 "DEBIAN_FRONTEND=noninteractive"
             ],
             "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
