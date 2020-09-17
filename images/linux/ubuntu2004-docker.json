@@ -31,7 +31,7 @@
             "type": "shell",
             "inline": [
                 "apt-get update -y",
-                "apt-get install -y curl gnupg lsb-release wget apt-utils sudo"
+                "apt-get install -y curl gnupg lsb-release wget apt-utils sudo rsync"
             ],
             "environment_vars": [
                 "METADATA_FILE={{user `metadata_file`}}",
@@ -157,12 +157,12 @@
         {
             "type": "shell",
             "scripts": [
+                "{{template_dir}}/scripts/installers/basic.sh",
                 "{{template_dir}}/scripts/installers/7-zip.sh",
                 "{{template_dir}}/scripts/installers/ansible.sh",
                 "{{template_dir}}/scripts/installers/azcopy.sh",
                 "{{template_dir}}/scripts/installers/azure-cli.sh",
                 "{{template_dir}}/scripts/installers/azure-devops-cli.sh",
-                "{{template_dir}}/scripts/installers/basic.sh",
                 "{{template_dir}}/scripts/installers/aws.sh",
                 "{{template_dir}}/scripts/installers/build-essential.sh",
                 "{{template_dir}}/scripts/installers/clang.sh",
