@@ -11,7 +11,7 @@
         "go_versions": "1.14",
         "mysql_root_password": "mysqlroot",
         "homebrew_prefix": "/usr/local",
-        "container_repository": "packer-agent",
+        "container_repository": "azure-agent",
         "container_tags": "latest"
     },
     "sensitive-variables": ["client_secret", "github_feed_token"],
@@ -77,25 +77,31 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/announcements.md",
-            "destination": "{{user `helper_script_folder`}}/announcements.md"
-        },
-        {
-            "type": "file",
             "source": "{{template_dir}}/scripts/installers",
             "destination": "{{user `installer_script_folder`}}"
         },
         {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolcache-2004.json",
+            "destination": "{{user `installer_script_folder`}}/toolcache.json"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolset-2004.json",
+            "destination": "{{user `installer_script_folder`}}/toolset.json"
+        },
+        {
             "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; sh -c '{{ .Vars }} {{ .Path }}'",
             "scripts":[
                 "{{template_dir}}/scripts/installers/preparemetadata.sh"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
                 "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
-            ],
-            "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "ANNOUNCEMENTS={{user `announcements`}}"
+            ]
         },
         {
             "type": "shell",
@@ -203,16 +209,6 @@
                 "DEBIAN_FRONTEND=noninteractive"
             ],
             "execute_command": "sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolcache-2004.json",
-            "destination": "{{user `installer_script_folder`}}/toolcache.json"
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolset-2004.json",
-            "destination": "{{user `installer_script_folder`}}/toolset.json"
         },
         {
             "type": "shell",
