@@ -189,11 +189,14 @@
         },
         {
             "type": "powershell",
+            "environment_vars":[
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-Nuget.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Wix.ps1",
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-SSDTExtensions.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WDK.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Vsix.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzCopy.ps1",
