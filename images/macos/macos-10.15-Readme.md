@@ -1,7 +1,7 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.6 (19G2021)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20200913.1
+- Image Version: 20200916.1
 
 ## Installed Software
 ### Language and Runtime
@@ -12,7 +12,7 @@
 - GNU Fortran (Homebrew GCC 9.3.0) 9.3.0  — available by `gfortran-9` alias
 - Node.js v12.18.3
 - NVM 0.35.3
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.22.0 v12.18.3 v13.14.0 v14.10.1
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.22.1 v12.18.4 v13.14.0 v14.11.0
 - Python 2.7.17
 - Python 3.8.5
 - Ruby 2.6.6p146
@@ -27,7 +27,7 @@
 - Bundler version 2.1.4
 - Carthage 0.35.0
 - CocoaPods 1.9.3
-- Homebrew 2.5.0
+- Homebrew 2.5.1
 - NPM 6.14.6
 - Yarn 1.22.5
 - NuGet 5.6.0.6489
@@ -128,9 +128,9 @@
 
 #### Node.js
 - 8.17.0
-- 10.22.0
-- 12.18.3
-- 14.10.1
+- 10.22.1
+- 12.18.4
+- 14.11.0
 
 #### Go
 - 1.11.13
@@ -203,19 +203,20 @@
 - NUnit 3.6.1
 
 ### Xcode
-| Version        | Build    | Path                           |
-| -------------- | -------- | ------------------------------ |
-| 12.0           | 12A8189n | /Applications/Xcode_12.app     |
-| 11.7 (default) | 11E801a  | /Applications/Xcode_11.7.app   |
-| 11.6           | 11E708   | /Applications/Xcode_11.6.app   |
-| 11.5           | 11E608c  | /Applications/Xcode_11.5.app   |
-| 11.4.1         | 11E503a  | /Applications/Xcode_11.4.1.app |
-| 11.4           | 11E146   | /Applications/Xcode_11.4.app   |
-| 11.3.1         | 11C505   | /Applications/Xcode_11.3.1.app |
-| 11.2.1         | 11B500   | /Applications/Xcode_11.2.1.app |
-| 11.1           | 11A1027  | /Applications/Xcode_11.1.app   |
-| 11.0           | 11A420a  | /Applications/Xcode_11.app     |
-| 10.3           | 10G8     | /Applications/Xcode_10.3.app   |
+| Version        | Build    | Path                            |
+| -------------- | -------- | ------------------------------- |
+| 12.0           | 12A8189n | /Applications/Xcode_12_beta.app |
+| 12.0           | 12A7209  | /Applications/Xcode_12.app      |
+| 11.7 (default) | 11E801a  | /Applications/Xcode_11.7.app    |
+| 11.6           | 11E708   | /Applications/Xcode_11.6.app    |
+| 11.5           | 11E608c  | /Applications/Xcode_11.5.app    |
+| 11.4.1         | 11E503a  | /Applications/Xcode_11.4.1.app  |
+| 11.4           | 11E146   | /Applications/Xcode_11.4.app    |
+| 11.3.1         | 11C505   | /Applications/Xcode_11.3.1.app  |
+| 11.2.1         | 11B500   | /Applications/Xcode_11.2.1.app  |
+| 11.1           | 11A1027  | /Applications/Xcode_11.1.app    |
+| 11.0           | 11A420a  | /Applications/Xcode_11.app      |
+| 10.3           | 10G8     | /Applications/Xcode_10.3.app    |
 
 #### Xcode Support Tools
 - Nomad CLI 3.1.4
@@ -225,51 +226,51 @@
 - xcversion 2.6.6
 
 #### Installed SDKs
-| SDK                     | SDK Name             | Xcode Version                                              |
-| ----------------------- | -------------------- | ---------------------------------------------------------- |
-| macOS 10.14             | macosx10.14          | 10.3                                                       |
-| macOS 10.15             | macosx10.15          | 11.0, 11.1, 11.2.1, 11.3.1, 11.4, 11.4.1, 11.5, 11.6, 11.7 |
-| macOS 11.0              | macosx11.0           | 12.0                                                       |
-| iOS 12.4                | iphoneos12.4         | 10.3                                                       |
-| iOS 13.0                | iphoneos13.0         | 11.0                                                       |
-| iOS 13.1                | iphoneos13.1         | 11.1                                                       |
-| iOS 13.2                | iphoneos13.2         | 11.2.1, 11.3.1                                             |
-| iOS 13.4                | iphoneos13.4         | 11.4, 11.4.1                                               |
-| iOS 13.5                | iphoneos13.5         | 11.5                                                       |
-| iOS 13.6                | iphoneos13.6         | 11.6                                                       |
-| iOS 13.7                | iphoneos13.7         | 11.7                                                       |
-| iOS 14.0                | iphoneos14.0         | 12.0                                                       |
-| Simulator - iOS 12.4    | iphonesimulator12.4  | 10.3                                                       |
-| Simulator - iOS 13.0    | iphonesimulator13.0  | 11.0                                                       |
-| Simulator - iOS 13.1    | iphonesimulator13.1  | 11.1                                                       |
-| Simulator - iOS 13.2    | iphonesimulator13.2  | 11.2.1, 11.3.1                                             |
-| Simulator - iOS 13.4    | iphonesimulator13.4  | 11.4, 11.4.1                                               |
-| Simulator - iOS 13.5    | iphonesimulator13.5  | 11.5                                                       |
-| Simulator - iOS 13.6    | iphonesimulator13.6  | 11.6                                                       |
-| Simulator - iOS 13.7    | iphonesimulator13.7  | 11.7                                                       |
-| Simulator - iOS 14.0    | iphonesimulator14.0  | 12.0                                                       |
-| tvOS 12.4               | appletvos12.4        | 10.3                                                       |
-| tvOS 13.0               | appletvos13.0        | 11.0, 11.1                                                 |
-| tvOS 13.2               | appletvos13.2        | 11.2.1, 11.3.1                                             |
-| tvOS 13.4               | appletvos13.4        | 11.4, 11.4.1, 11.5, 11.6, 11.7                             |
-| tvOS 14.0               | appletvos14.0        | 12.0                                                       |
-| Simulator - tvOS 12.4   | appletvsimulator12.4 | 10.3                                                       |
-| Simulator - tvOS 13.0   | appletvsimulator13.0 | 11.0, 11.1                                                 |
-| Simulator - tvOS 13.2   | appletvsimulator13.2 | 11.2.1, 11.3.1                                             |
-| Simulator - tvOS 13.4   | appletvsimulator13.4 | 11.4, 11.4.1, 11.5, 11.6, 11.7                             |
-| Simulator - tvOS 14.0   | appletvsimulator14.0 | 12.0                                                       |
-| watchOS 5.3             | watchos5.3           | 10.3                                                       |
-| watchOS 6.0             | watchos6.0           | 11.0, 11.1                                                 |
-| watchOS 6.1             | watchos6.1           | 11.2.1, 11.3.1                                             |
-| watchOS 6.2             | watchos6.2           | 11.4, 11.4.1, 11.5, 11.6, 11.7                             |
-| watchOS 7.0             | watchos7.0           | 12.0                                                       |
-| Simulator - watchOS 5.3 | watchsimulator5.3    | 10.3                                                       |
-| Simulator - watchOS 6.0 | watchsimulator6.0    | 11.0, 11.1                                                 |
-| Simulator - watchOS 6.1 | watchsimulator6.1    | 11.2.1, 11.3.1                                             |
-| Simulator - watchOS 6.2 | watchsimulator6.2    | 11.4, 11.4.1, 11.5, 11.6, 11.7                             |
-| Simulator - watchOS 7.0 | watchsimulator7.0    | 12.0                                                       |
-| DriverKit 19.0          | driverkit.macosx19.0 | 11.0, 11.1, 11.2.1, 11.3.1, 11.4, 11.4.1, 11.5, 11.6, 11.7 |
-| DriverKit 20.0          | driverkit.macosx20.0 | 12.0                                                       |
+| SDK                     | SDK Name             | Xcode Version                                                    |
+| ----------------------- | -------------------- | ---------------------------------------------------------------- |
+| macOS 10.14             | macosx10.14          | 10.3                                                             |
+| macOS 10.15             | macosx10.15          | 11.0, 11.1, 11.2.1, 11.3.1, 11.4, 11.4.1, 11.5, 11.6, 11.7, 12.0 |
+| macOS 11.0              | macosx11.0           | 12.0                                                             |
+| iOS 12.4                | iphoneos12.4         | 10.3                                                             |
+| iOS 13.0                | iphoneos13.0         | 11.0                                                             |
+| iOS 13.1                | iphoneos13.1         | 11.1                                                             |
+| iOS 13.2                | iphoneos13.2         | 11.2.1, 11.3.1                                                   |
+| iOS 13.4                | iphoneos13.4         | 11.4, 11.4.1                                                     |
+| iOS 13.5                | iphoneos13.5         | 11.5                                                             |
+| iOS 13.6                | iphoneos13.6         | 11.6                                                             |
+| iOS 13.7                | iphoneos13.7         | 11.7                                                             |
+| iOS 14.0                | iphoneos14.0         | 12.0, 12.0                                                       |
+| Simulator - iOS 12.4    | iphonesimulator12.4  | 10.3                                                             |
+| Simulator - iOS 13.0    | iphonesimulator13.0  | 11.0                                                             |
+| Simulator - iOS 13.1    | iphonesimulator13.1  | 11.1                                                             |
+| Simulator - iOS 13.2    | iphonesimulator13.2  | 11.2.1, 11.3.1                                                   |
+| Simulator - iOS 13.4    | iphonesimulator13.4  | 11.4, 11.4.1                                                     |
+| Simulator - iOS 13.5    | iphonesimulator13.5  | 11.5                                                             |
+| Simulator - iOS 13.6    | iphonesimulator13.6  | 11.6                                                             |
+| Simulator - iOS 13.7    | iphonesimulator13.7  | 11.7                                                             |
+| Simulator - iOS 14.0    | iphonesimulator14.0  | 12.0, 12.0                                                       |
+| tvOS 12.4               | appletvos12.4        | 10.3                                                             |
+| tvOS 13.0               | appletvos13.0        | 11.0, 11.1                                                       |
+| tvOS 13.2               | appletvos13.2        | 11.2.1, 11.3.1                                                   |
+| tvOS 13.4               | appletvos13.4        | 11.4, 11.4.1, 11.5, 11.6, 11.7                                   |
+| tvOS 14.0               | appletvos14.0        | 12.0, 12.0                                                       |
+| Simulator - tvOS 12.4   | appletvsimulator12.4 | 10.3                                                             |
+| Simulator - tvOS 13.0   | appletvsimulator13.0 | 11.0, 11.1                                                       |
+| Simulator - tvOS 13.2   | appletvsimulator13.2 | 11.2.1, 11.3.1                                                   |
+| Simulator - tvOS 13.4   | appletvsimulator13.4 | 11.4, 11.4.1, 11.5, 11.6, 11.7                                   |
+| Simulator - tvOS 14.0   | appletvsimulator14.0 | 12.0, 12.0                                                       |
+| watchOS 5.3             | watchos5.3           | 10.3                                                             |
+| watchOS 6.0             | watchos6.0           | 11.0, 11.1                                                       |
+| watchOS 6.1             | watchos6.1           | 11.2.1, 11.3.1                                                   |
+| watchOS 6.2             | watchos6.2           | 11.4, 11.4.1, 11.5, 11.6, 11.7                                   |
+| watchOS 7.0             | watchos7.0           | 12.0, 12.0                                                       |
+| Simulator - watchOS 5.3 | watchsimulator5.3    | 10.3                                                             |
+| Simulator - watchOS 6.0 | watchsimulator6.0    | 11.0, 11.1                                                       |
+| Simulator - watchOS 6.1 | watchsimulator6.1    | 11.2.1, 11.3.1                                                   |
+| Simulator - watchOS 6.2 | watchsimulator6.2    | 11.4, 11.4.1, 11.5, 11.6, 11.7                                   |
+| Simulator - watchOS 7.0 | watchsimulator7.0    | 12.0, 12.0                                                       |
+| DriverKit 19.0          | driverkit.macosx19.0 | 11.0, 11.1, 11.2.1, 11.3.1, 11.4, 11.4.1, 11.5, 11.6, 11.7, 12.0 |
+| DriverKit 20.0          | driverkit.macosx20.0 | 12.0                                                             |
 
 #### Installed Simulators
 | OS          | Xcode Version                          | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
