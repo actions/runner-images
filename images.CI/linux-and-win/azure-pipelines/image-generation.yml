@@ -20,13 +20,13 @@ jobs:
       targetType: 'filePath'
       filePath: ./images.CI/download-repo.ps1
       arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
-                        -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
+                 -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
 
   - task: PowerShell@2
     displayName: 'Build VM'
     inputs:
       targetType: filePath
-      filePath: ./images.CI/build-image.ps1
+      filePath: ./images.CI/linux-and-win/build-image.ps1
       arguments: -ResourcesNamePrefix $(Build.BuildId) `
                         -ClientId $(CLIENT_ID) `
                         -ClientSecret $(CLIENT_SECRET) `
@@ -45,7 +45,7 @@ jobs:
     displayName: 'Create release for VM deployment'
     inputs:
       targetType: filePath
-      filePath: ./images.CI/create-release.ps1
+      filePath: ./images.CI/linux-and-win/create-release.ps1
       arguments: -BuildId $(Build.BuildId) `
                         -Organization $(RELEASE_TARGET_ORGANIZATION) `
                         -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
@@ -66,7 +66,7 @@ jobs:
     condition: always()
     inputs:
       targetType: filePath
-      filePath: ./images.CI/cleanup.ps1
+      filePath: ./images.CI/linux-and-win/cleanup.ps1
       arguments: -ResourcesNamePrefix $(Build.BuildId) `
                      -ClientId $(CLIENT_ID) `
                      -ClientSecret $(CLIENT_SECRET) `
