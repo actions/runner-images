@@ -26,7 +26,7 @@ jobs:
     - name: Approve pull request by GitHub-Actions bot
       uses: actions/github-script@v2
       with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
+        github-token: ${{secrets.PRAPPROVAL_SECRET}}
         script: |
           github.pulls.createReview({
             owner: context.repo.owner,
