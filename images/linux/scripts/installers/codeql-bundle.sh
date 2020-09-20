@@ -5,7 +5,6 @@
 ################################################################################
 
 source $HELPER_SCRIPTS/install.sh
-source $HELPER_SCRIPTS/document.sh
 
 # Retrieve the name of the CodeQL bundle preferred by the Action (in the format codeql-bundle-YYYYMMDD).
 codeql_bundle_name="$(curl -sSL https://raw.githubusercontent.com/github/codeql-action/main/src/defaults.json | jq -r .bundleVersion)"
@@ -24,7 +23,3 @@ touch "$extraction_directory/pinned-version"
 
 # Test that the tool has been extracted successfully.
 "$AGENT_TOOLSDIRECTORY/CodeQL/$codeql_bundle_version/x64/codeql/codeql" version
-
-# Document the version installed.
-version="$("$AGENT_TOOLSDIRECTORY/CodeQL/$codeql_bundle_version/x64/codeql/codeql" version --quiet)"
-DocumentInstalledItem "CodeQL Action Bundle ($version)"
