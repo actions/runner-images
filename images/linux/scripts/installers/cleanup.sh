@@ -1,5 +1,7 @@
 #!/bin/bash
+source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/install.sh
+
 # before cleanup
 before=$(df / -Pm | awk 'NR==2{print $4}')
 
