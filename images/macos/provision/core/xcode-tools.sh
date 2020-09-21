@@ -36,7 +36,12 @@ do
     extractXcodeXip $WORK_DIR "$VERSION_TO_INSTALL"
 
     # Remove "beta" postfix from version
-    XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
+    if [[ $XCODE_VERSION == "12_beta" ]] && is_Catalina ; then
+        # trick to install Xcode 12 GM and Xcode 12 beta 6 side by side
+        XCODE_VERSION="12_beta"
+    else
+        XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
+    fi
 
     echo "Checking if unpacked Xcode ${XCODE_VERSION} is valid"
     validateXcodeIntegrity "$WORK_DIR"
@@ -67,6 +72,13 @@ for XCODE_VERSION in "${XCODE_LIST[@]}"
 do
     if [[ $XCODE_VERSION == 8* || $XCODE_VERSION == 9* ]]; then
         continue
+    fi
+
+    if [[ $XCODE_VERSION == "12_beta" ]] && is_Catalina ; then
+        # trick to install Xcode 12 GM and Xcode 12 beta 6 side by side
+        XCODE_VERSION="12_beta"
+    else
+        XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
     fi
 
     echo "Running 'runFirstLaunch' for Xcode ${XCODE_VERSION}..."

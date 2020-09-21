@@ -11,7 +11,7 @@ getXcodeVersionToInstall() {
     local XCODE_VERSION="$1"
 
     if  [[ ! $XCODE_VERSION =~ "_beta" ]]; then
-        echo "$XCODE_VERSION"
+        echo "${XCODE_VERSION//_/ }"
     else
         local XCODE_BETA="${XCODE_VERSION/_/ }"
         echo "$(xcversion list | sort -r | grep -m 1 "$XCODE_BETA")"
@@ -59,7 +59,6 @@ extractXcodeXip() {
     local WORKING_DIR="$1"
     local XCODE_VERSION="$2"
     XCODE_XIP="${WORKING_DIR}/Xcode_${XCODE_VERSION// /_}.xip"
-    echo "XCODE_XIP = $XCODE_XIP"
 
     open -W $XCODE_XIP
 
@@ -75,7 +74,7 @@ extractXcodeXip() {
 
 createBetaSymlink() {
     local XCODE_VERSION=$1
-    if [[ $XCODE_VERSION =~ 1[01].* ]] || [[ $XCODE_VERSION == "12" ]] || [[ $XCODE_VERSION == "12_beta" ]]; then
+    if [[ $XCODE_VERSION =~ 1[01].* ]] || [[ $XCODE_VERSION == "12" ]]; then
         ln -sf "/Applications/Xcode_${XCODE_VERSION}.app" "/Applications/Xcode_${XCODE_VERSION}_beta.app"
     fi
 }

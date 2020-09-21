@@ -92,3 +92,16 @@ function Get-XcodePairsList {
     }
     return $result
 }
+
+function Test-XcodeStableVersion {
+    param([Parameter(Mandatory)][string]$Version)
+
+    if ($Version -match "beta") {
+        return $false
+    }
+    if ($Version -match "GM") {
+        return $false
+    }
+    
+    return $true
+}
