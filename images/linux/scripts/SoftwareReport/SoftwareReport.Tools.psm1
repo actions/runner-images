@@ -32,7 +32,7 @@ function Get-CodeQLBundleVersion {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
-    $CodeQLVersion = $($CodeQLPath version --quiet)
+    $CodeQLVersion = & $CodeQLPath version --quiet
     return "CodeQL Action Bundle $CodeQLVersion"
 }
 
