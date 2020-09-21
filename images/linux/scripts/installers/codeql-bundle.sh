@@ -21,5 +21,8 @@ tar -xzf "/tmp/codeql-bundle.tar.gz" -C "$extraction_directory"
 # Touch a special file that indicates to the CodeQL Action that this bundle was baked-in to the hosted runner images.
 touch "$extraction_directory/pinned-version"
 
+# Touch a file to indicate to the toolcache that setting up CodeQL is complete.
+touch "$extraction_directory.complete"
+
 # Test that the tool has been extracted successfully.
 "$AGENT_TOOLSDIRECTORY/CodeQL/$codeql_bundle_version/x64/codeql/codeql" version

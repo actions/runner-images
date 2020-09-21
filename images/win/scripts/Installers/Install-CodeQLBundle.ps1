@@ -21,5 +21,8 @@ Extract-7Zip -Path $UnGzipedCodeQLBundlePath -DestinationPath $ExtractionDirecto
 # Touch a special file that indicates to the CodeQL Action that this bundle was baked-in to the hosted runner images.
 New-Item -ItemType file (Join-Path $ExtractionDirectory -ChildPath "pinned-version")
 
+# Touch a file to indicate to the toolcache that setting up CodeQL is complete.
+New-Item -ItemType file "$ExtractionDirectory.complete"
+
 # Test that the tool has been extracted successfully.
 Invoke-PesterTests -TestFile "Tools" -TestName "CodeQLBundle"
