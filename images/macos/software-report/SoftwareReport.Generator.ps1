@@ -77,7 +77,6 @@ $homebrewVersion = Run-Command "brew --version" | Select-Object -First 1
 $npmVersion = Run-Command "npm --version"
 $yarnVersion = Run-Command "yarn --version"
 $nugetVersion = Run-Command "nuget help" | Select-Object -First 1 | Take-Part -Part 2
-$pipVersion = Get-PipVersion -Version 2
 $pip3Version = Get-PipVersion -Version 3
 $condaVersion = Invoke-Expression "conda --version"
 $rubyGemsVersion = Run-Command "gem --version"
@@ -88,7 +87,13 @@ if ($os.IsHigherThanMojave) {
     $vcpkgVersion = Get-VcpkgVersion
     $markdown += New-MDList -Lines $vcpkgVersion -Style Unordered -NoNewLine
 }
+if ($os.IsLessThanBigSur) {
+    $pipVersion = Get-PipVersion -Version 2
+    $markdown += New-MDList -Style Unordered -Lines @("Pip ${pipVersion}") -NoNewLine
+}
+
 $markdown += New-MDList -Style Unordered -Lines @(
+    "Pip ${pip3Version}",
     $bundlerVersion,
     "Carthage ${carthageVersion}",
     "CocoaPods ${cocoaPodsVersion}",
@@ -96,8 +101,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
     "NPM ${npmVersion}",
     "Yarn ${yarnVersion}",
     "NuGet ${nugetVersion}",
-    "Pip ${pipVersion}",
-    "Pip ${pip3Version}",
     "Mini${condaVersion}",
     "RubyGems ${rubyGemsVersion}",
     "Composer ${composerVersion}"
@@ -124,7 +127,6 @@ $gitLFSVersion = Run-Command "git-lfs version" | Take-Part -Part 0 | Take-Part -
 $hubVersion = Run-Command "hub version | grep 'hub version'" | Take-Part -Part 2
 $wgetVersion = Run-Command "wget --version" | Select-String "GNU Wget" | Take-Part -Part 2
 $svnVersion = Run-Command "svn --version --quiet"
-$parallelVersion = Run-Command "parallel --version" | Select-String "GNU parallel" | Select-Object -First 1
 $jqVersion = Run-Command "jq --version" | Take-Part -Part 1 -Delimiter "-"
 $opensslVersion = Get-Item /usr/local/opt/openssl | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
 $gpgVersion = Run-Command "gpg --version" | Select-String 'gpg (GnuPG)' -SimpleMatch
@@ -153,7 +155,6 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     "GNU Wget ${wgetVersion}",
     "Subversion (SVN) ${svnVersion}",
     "Packer $packerVersion",
-    $parallelVersion,
     $opensslVersion,
     "jq ${jqVersion}",
     $gpgVersion,
@@ -173,7 +174,11 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
 )
 if ($os.IsHigherThanMojave) {
     $newmanVersion = Run-Command "newman --version"
-    $markdown += New-MDList -Lines "Newman $newmanVersion" -Style Unordered
+    $markdown += New-MDList -Lines "Newman $newmanVersion" -Style Unordered -NoNewLine
+}
+if ($os.IsLessThanBigSur) {
+    $parallelVersion = Run-Command "parallel --version" | Select-String "GNU parallel" | Select-Object -First 1
+    $markdown += New-MDList -Lines $parallelVersion -Style Unordered
 }
 $markdown += New-MDNewLine
 
