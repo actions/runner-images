@@ -6,7 +6,6 @@
 set -e
 
 # Source the helpers for use with the script
-source "$HELPER_SCRIPTS"/document.sh
 source "$HELPER_SCRIPTS"/install.sh
 
 ## Install git
@@ -39,14 +38,6 @@ if ! command -v git-ftp; then
     exit 1
 fi
 
-# Document what was added to the image
-echo "Lastly, document the installed versions"
-# git version 2.20.1
-DocumentInstalledItem "Git ($(git --version 2>&1 | cut -d ' ' -f 3))"
-# git-lfs/2.6.1 (GitHub; linux amd64; go 1.11.1)
-DocumentInstalledItem "Git Large File Storage (LFS) ($(git-lfs --version 2>&1 | cut -d ' ' -f 1 | cut -d '/' -f 2))"
-DocumentInstalledItem "Git-ftp ($(git-ftp --version | cut -d ' ' -f 3))"
-
 #Install hub
 tmp_hub="/tmp/hub"
 mkdir -p "$tmp_hub"
@@ -57,7 +48,6 @@ mv "$tmp_hub"/bin/hub /usr/local/bin
 
 if command -v hub; then
     echo "hub CLI was installed successfully"
-    DocumentInstalledItem "Hub CLI ($(hub --version | grep "hub version" | cut -d ' ' -f 3))"
 else
     echo "[!] Hub CLI was not installed"
     exit 1

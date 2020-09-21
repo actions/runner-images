@@ -5,7 +5,6 @@
 ################################################################################
 
 # Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
 
 # List of versions
@@ -35,10 +34,4 @@ for version in ${versions[@]}; do
         echo "Az version $version is not installed"
         exit 1
     fi
-done
-
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-for version in ${versions[@]}; do
-    DocumentInstalledItem "Az Module ($version)"
 done

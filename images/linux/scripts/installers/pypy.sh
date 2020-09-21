@@ -4,8 +4,6 @@
 ##  Desc:  Installs PyPy
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/install.sh
 
 # This function installs PyPy using the specified arguments:

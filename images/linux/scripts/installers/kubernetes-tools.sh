@@ -4,8 +4,6 @@
 ##  Desc:  Installs kubectl, helm, kustomize
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 
 ## Install kubectl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
@@ -52,12 +50,3 @@ if ! command -v kustomize; then
     echo "kustomize was not installed"
     exit 1
 fi
-
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "kubectl ($(kubectl version --client --short |& head -n 1))"
-DocumentInstalledItem "helm ($(helm version --short |& head -n 1))"
-# minikube version output already has word minikube in it. example minikube version: v1.9.2
-DocumentInstalledItem "$(minikube version --short)"
-# kustomize version output has "{} in it". example {kustomize/v3.8.1  2020-07-16T00:58:46Z  }
-DocumentInstalledItem "kustomize ($(kustomize version --short))"

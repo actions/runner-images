@@ -14,7 +14,6 @@
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
         "image_folder": "/imagegeneration",
         "imagedata_file": "/imagegeneration/imagedata.json",
-        "metadata_file": "/imagegeneration/metadatafile",
         "installer_script_folder": "/imagegeneration/installers",
         "helper_script_folder": "/imagegeneration/helpers",
         "vm_size": "Standard_DS2_v2",
@@ -90,6 +89,11 @@
         },
         {
             "type": "file",
+            "source": "{{ template_dir }}/scripts/SoftwareReport",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
+            "type": "file",
             "source": "{{template_dir}}/toolsets/toolcache-1604.json",
             "destination": "{{user `installer_script_folder`}}/toolcache.json"
         },
@@ -97,19 +101,6 @@
             "type": "file",
             "source": "{{template_dir}}/toolsets/toolset-1604.json",
             "destination": "{{user `installer_script_folder`}}/toolset.json"
-        },
-        {
-            "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
-            "scripts":[
-                "{{template_dir}}/scripts/installers/preparemetadata.sh"
-            ],
-            "environment_vars": [
-                "IMAGE_VERSION={{user `image_version`}}",
-                "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "ANNOUNCEMENTS={{user `announcements`}}"
-            ]
         },
         {
             "type": "shell",
@@ -217,7 +208,6 @@
                 "{{template_dir}}/scripts/installers/test-toolcache.sh"
             ],
             "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
                 "GITHUB_FEED_TOKEN={{user `github_feed_token`}}",
@@ -233,7 +223,6 @@
                 "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
             ],
             "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
@@ -245,7 +234,6 @@
                 "{{template_dir}}/scripts/installers/aws-sam-cli.sh"
             ],
             "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
@@ -256,7 +244,6 @@
                 "{{template_dir}}/scripts/installers/homebrew.sh"
             ],
             "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "DEBIAN_FRONTEND=noninteractive"
             ],
@@ -288,8 +275,29 @@
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/Install-PowerShellModules.ps1"
+            ],
+            "environment_vars": [
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}"
+            ],
+            "environment_vars":[
+                "IMAGE_VERSION={{user `image_version`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "ANNOUNCEMENTS={{user `announcements`}}"
+            ]
+        },
+        {
             "type": "file",
-            "source": "{{user `metadata_file`}}",
+            "source": "{{user `image_folder`}}/Ubuntu-Readme.md",
             "destination": "{{template_dir}}/Ubuntu1604-README.md",
             "direction": "download"
         },

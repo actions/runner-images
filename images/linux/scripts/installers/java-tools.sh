@@ -4,8 +4,6 @@
 ##  Desc:  Installs Java and related tooling (Ant, Gradle, Maven)
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
 
 set -e
@@ -103,19 +101,3 @@ javaVersion=$(java -version |& head -n 1 | cut -d\" -f 2)
 javaTool "Java" $javaVersion
 javacVersion=$(javac -version |& cut -d" " -f2)
 javaTool "Javac" $javacVersion
-
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-if isUbuntu16 || isUbuntu18 ; then
-DocumentInstalledItem "Azul Zulu OpenJDK:"
-DocumentInstalledItemIndent "7 ($(/usr/lib/jvm/zulu-7-azure-amd64/bin/java -showversion |& head -n 1))"
-fi
-DocumentInstalledItem "Adopt OpenJDK:"
-DocumentInstalledItemIndent "8 ($(/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java -showversion |& head -n 1)) $defaultLabel8"
-DocumentInstalledItemIndent "11 ($(/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64/bin/java -showversion |& head -n 1)) $defaultLabel11"
-if isUbuntu16 || isUbuntu18 ; then
-DocumentInstalledItemIndent "12 ($(/usr/lib/jvm/adoptopenjdk-12-hotspot-amd64/bin/java -showversion |& head -n 1))"
-fi
-DocumentInstalledItem "Ant ($(ant -version))"
-DocumentInstalledItem "Gradle ${gradleVersion}"
-DocumentInstalledItem "Maven ($(mvn -version | head -n 1))"
