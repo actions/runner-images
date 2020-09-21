@@ -318,6 +318,13 @@
         },
         {
             "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/post-deployment.sh"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
             "inline": [
                 "rm -rf {{user `helper_script_folder`}}",
                 "rm -rf {{user `installer_script_folder`}}",
