@@ -185,9 +185,9 @@ $azureCLIVersion = Run-Command "az -v" | Select-String "^azure-cli" | Take-Part 
 $awsVersion = Run-Command "aws --version" | Take-Part -Part 0 | Take-Part -Delimiter "/" -Part 1
 $aliyunVersion = Run-Command "aliyun --version" | Select-String "Alibaba Cloud Command Line Interface Version " | Take-Part -Part 6
 $awsSamVersion = Run-Command "sam --version" | Take-Part -Part 3
-$awsSessionManagerVersion = Run-Command "session-manager-plugin --version" 
+$awsSessionManagerVersion = Run-Command "session-manager-plugin --version"
 $ghcUpVersion = Run-Command "ghcup --version" | Take-Part -Part 5
-$ghcVersion = Run-Command "ghc --version" | Take-Part -Part 7 
+$ghcVersion = Run-Command "ghc --version" | Take-Part -Part 7
 $cabalVersion = Run-Command "cabal --version" | Take-Part -Part 3
 $stackVersion = Run-Command "stack --version" | Take-Part -Part 1 | ForEach-Object {$_.replace(",","")}
 
@@ -300,45 +300,7 @@ if (-not $os.IsBigSur) {
 
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
-$androidInstalledPackages = Get-AndroidInstalledPackages
-
-$markdown += New-MDHeader "Android SDK Tools" -Level 4
-$androidSDKTools = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Tools" }
-$markdown += Build-AndroidSDKToolsTable $androidSDKTools | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android SDK Platform-Tools" -Level 4
-$androidSDKPlatformTools = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Platform-Tools" }
-$markdown += Build-AndroidSDKToolsTable $androidSDKPlatformTools | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android SDK Platforms" -Level 4
-$androidSDKPlatforms = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Platform " }
-$markdown += Build-AndroidSDKPlatformTable $androidSDKPlatforms | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android SDK Build-Tools" -Level 4
-$androidSDKBuildTools = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Build-Tools" }
-$markdown += Build-AndroidSDKBuildtoolsTable $androidSDKBuildTools | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android NDKs"  -Level 4
-$markdown += Build-AndroidNDKTable $androidInstalledPackages | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android Utils" -Level 4
-$markdown += Build-AndroidUtilsTable $androidInstalledPackages | New-MDTable
-$markdown += New-MDNewLine
-
-$androidGoogleAPIsTable = $androidInstalledPackages | Where-Object { $_ -Match "Google APIs" }
-if ($androidGoogleAPIsTable.Count -gt 0) {
-    $markdown += New-MDHeader "Android Google APIs" -Level 4
-    $markdown += Build-AndroidSDKPlatformTable $androidGoogleAPIsTable | New-MDTable
-    $markdown += New-MDNewLine
-}
-
-$markdown += New-MDHeader "Extra Packages" -Level 4
-$markdown += Build-AndroidExtraPackagesTable $androidInstalledPackages | New-MDTable
+$markdown += Build-AndroidTable | New-MDTable
 $markdown += New-MDNewLine
 
 #
