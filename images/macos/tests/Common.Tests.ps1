@@ -94,17 +94,19 @@ Describe "Common utilities" {
         "aliyun --version" | Should -ReturnZeroExitCode
     }
 
-    It "Mobile Center CLI" {
+    It "Mobile Center CLI" -Skip:($os.IsBigSur) {
         "mobile-center --version" | Should -ReturnZeroExitCode
     }
 
-    It "Nomad CLI" {
-        $result = Get-CommandResult "gem list"
-        $result.Output | Should -BeLike "*nomad-cli*"
-    }
-
-    It "Nomad CLI IPA" {
-        "ipa --version" | Should -ReturnZeroExitCode
+    Context "Nomad" -Skip:($os.IsBigSur) {
+        It "Nomad CLI" {
+            $result = Get-CommandResult "gem list"
+            $result.Output | Should -BeLike "*nomad-cli*"
+        }
+    
+        It "Nomad CLI IPA" {
+            "ipa --version" | Should -ReturnZeroExitCode
+        }
     }
 
     It "Conda" {
@@ -129,7 +131,7 @@ Describe "Common utilities" {
         "curl --version" | Should -ReturnZeroExitCode
     }
 
-    It "xctool" {
+    It "xctool" -Skip:($os.IsBigSur) {
         "xctool --version" | Should -ReturnZeroExitCode
     }
 
