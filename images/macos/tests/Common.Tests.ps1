@@ -103,7 +103,7 @@ Describe "Common utilities" {
             $result = Get-CommandResult "gem list"
             $result.Output | Should -BeLike "*nomad-cli*"
         }
-    
+
         It "Nomad CLI IPA" {
             "ipa --version" | Should -ReturnZeroExitCode
         }
@@ -163,7 +163,7 @@ Describe "Common utilities" {
     It "PostgreSQL-Client" {
         "psql --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "PostgreSQL-Server" {
         "pg_config --version" | Should -ReturnZeroExitCode
     }
@@ -180,11 +180,11 @@ Describe "Common utilities" {
         Get-WhichTool "php" | Should -Not -BeLike "/usr/bin/php*"
         "php --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "Composer" {
         "composer --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "R" -Skip:($os.IsBigSur) {
         "R --version" | Should -ReturnZeroExitCode
     }
@@ -200,7 +200,7 @@ Describe "Common utilities" {
     It "bazelisk" {
         "bazelisk version" | Should -ReturnZeroExitCode
     }
-    
+
     It "Julia" {
         "julia --version" | Should -ReturnZeroExitCode
     }
@@ -213,7 +213,7 @@ Describe "Common utilities" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
 
-    It "virtualbox" {
+    It "virtualbox" -Skip:($os.IsBigSur) {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 
@@ -254,7 +254,7 @@ Describe "Browsers" {
     It "Microsoft Edge Driver" {
         "msedgedriver --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "Firefox" {
         $firefoxLocation = "/Applications/Firefox.app/Contents/MacOS/firefox"
         $firefoxLocation | Should -Exist
@@ -306,7 +306,7 @@ Describe "Haskell" -Skip:($os.IsHighSierra) {
     It "GHC" {
         "ghc --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "Cabal" {
         "cabal --version" | Should -ReturnZeroExitCode
     }
@@ -329,7 +329,7 @@ Describe "Gcc" -Skip:($os.IsHighSierra) {
         param (
             [string] $GccVersion
         )
-        
+
         "gcc-$GccVersion --version" | Should -ReturnZeroExitCode
     }
 }

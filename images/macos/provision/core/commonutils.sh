@@ -40,12 +40,19 @@ for package in ${binst_common_utils[@]}; do
 done
 
 # brew cask install
-bcask_common_utils=(
-    julia
-    virtualbox
-    vagrant
-    r
-)
+if is_BigSur; then
+    bcask_common_utils=(
+        julia
+        vagrant
+    )
+else
+    bcask_common_utils=(
+        julia
+        virtualbox
+        vagrant
+        r
+    )
+fi
 
 for package in ${bcask_common_utils[@]}; do
     echo "Install $package"
