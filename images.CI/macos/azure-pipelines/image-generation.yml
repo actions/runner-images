@@ -13,6 +13,10 @@ jobs:
     clean: true
     fetchDepth: 1
 
+  - pwsh: |
+      Get-ChildItem Env:
+      exit 1
+
   - task: PowerShell@2
     displayName: 'Validate contributor permissions'
     condition: startsWith(variables['Build.SourceBranch'], 'refs/pull/')
