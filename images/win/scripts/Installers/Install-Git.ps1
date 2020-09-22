@@ -28,7 +28,7 @@ Install-Binary  -Url $downloadUrl `
                     "/SP-", `
                     "/CLOSEAPPLICATIONS", `
                     "/RESTARTAPPLICATIONS", `
-                    "/o:PathOption=CmdTools", `
+                    "/o:PathOption=Cmd", `
                     "/o:BashTerminalOption=ConHost", `
                     "/o:EnableSymlinks=Enabled", `
                     "/COMPONENTS=gitlfs")
@@ -37,8 +37,6 @@ Choco-Install -PackageName hub
 
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
-
-Add-MachinePathItem "C:\Program Files\Git\bin"
 
 Invoke-PesterTests -TestFile "Git" -TestName "Git"
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "Hub CLI"
