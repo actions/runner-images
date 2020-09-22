@@ -32,7 +32,6 @@ function Get-AndroidInstalledPackages {
 function Build-AndroidTable {
     Write-Host "Build-AndroidTable"
     $packageInfo = Get-AndroidInstalledPackages
-    Write-Host $packageInfo
     return @(
         @{
             "Package" = "Android SDK Tools"
@@ -76,7 +75,7 @@ function Build-AndroidTable {
         },
         @{
             "Package" = "NDK"
-            "Version" = Build-AndroidNDKTable -PackageInfo $packageInfo
+            "Version" = Get-AndroidNDKVersions -PackageInfo $packageInfo
         }
     ) | Where-Object { $_.Version } | ForEach-Object {
         [PSCustomObject] @{
@@ -148,27 +147,29 @@ function Get-AndroidGoogleAPIsVersions {
     return ($versions -Join "<br>")
 }
 
-function Build-AndroidNDKTable {
+function Get-AndroidNDKVersions {
     param (
         [Parameter(Mandatory)][AllowEmptyString()]
-        [string[]] $installedPackages
+        [string[]] $packageInfo
     )
+
+    $os = Get-OSVersion
+    $versions = @()
 
     if ($os.IsLessThanBigSur) {
         # Hardcode NDK 15 as a separate case since it is installed manually without sdk-manager (to none default location)
-        $versions = "15.2.4203891"
+        $versions += "15.2.4203891"
 
         $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
-        $versions += Get-ChildItem -Path $ndkFolderPath | ForEach-Object
+        Get-ChildItem -Path $ndkFolderPath | ForEach-Object {
+            $versions += $_.Name
+        }
     }
 
-    $ndkBundleInfo = $installedPackages | Where-Object { $_ -Match "ndk-bundle" } | Select-Object -First 1
-    $ndkBundleVersion = (Split-TableRowByColumns $ndkBundleInfo)[1]
-    $ndkInfo += $ndkBundleVersion
+    $versions += $packageInfo | Where-Object { $_ -Match "ndk-bundle" } | ForEach-Object {
+        $packageInfoParts = Split-TableRowByColumns $_
+        return $packageInfoParts[1]
+    }
 
-    # $ndkInfo | ForEach-Object {
-    #     $_.Path = $_.Path.Replace($env:HOME, '$HOME')
-    # }
-
-    return $ndkInfo
+    return ($versions -Join "<br>")
 }
