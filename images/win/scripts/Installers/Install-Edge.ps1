@@ -24,7 +24,14 @@ $EdgeDriverVersionFile = Start-DownloadWithRetry -Url $EdgeDriverVersionUrl -Nam
 Write-Host "Download Microsoft Edge WebDriver..."
 $EdgeDriverLatestVersion = Get-Content -Path $EdgeDriverVersionFile
 $EdgeDriverArchName = "edgedriver_win64.zip"
-$EdgeDriverDownloadUrl="https://msedgedriver.azureedge.net/${EdgeDriverLatestVersion}/${EdgeDriverArchName}"
+# A temporary workaround to install the previous driver version because 85.0.564.60 for win64 doesn't exist
+if ($EdgeDriverLatestVersion -eq "85.0.564.60")
+{
+    $EdgeDriverLatestVersion = "85.0.564.51"
+    Set-Content -Path $EdgeDriverVersionFile -Value $EdgeDriverLatestVersion
+}
+
+$EdgeDriverDownloadUrl = "https://msedgedriver.azureedge.net/${EdgeDriverLatestVersion}/${EdgeDriverArchName}"
 
 $EdgeDriverArchPath = Start-DownloadWithRetry -Url $EdgeDriverDownloadUrl -Name $EdgeDriverArchName
 
