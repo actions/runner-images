@@ -324,7 +324,9 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
-                "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1"
+                "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
+                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
+                "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
@@ -383,9 +385,7 @@
             "type": "powershell",
             "scripts":[
                 "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1",
-                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
-                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1",
-                "{{ template_dir }}/scripts/Installers/Post-Deployment.ps1"
+                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1"
             ]
         },
         {
