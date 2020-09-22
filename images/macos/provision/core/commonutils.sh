@@ -43,7 +43,6 @@ done
 if is_BigSur; then
     bcask_common_utils=(
         julia
-        vagrant
     )
 else
     bcask_common_utils=(

@@ -142,7 +142,6 @@ $bazelVersion = Run-Command "bazel --version" | Take-Part -Part 0 -Delimiter "-"
 $bazeliskVersion = Run-Command "bazelisk version" | Select-String "Bazelisk version:" | Take-Part -Part 1 -Delimiter ":"
 $packerVersion = Run-Command "packer --version"
 $helmVersion = Run-Command "helm version --short"
-$vagrant = Run-Command "vagrant -v"
 $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
 $mongod = Run-Command "mongod --version" | Select-String "db version " | Take-Part -Part 2
 $p7zip = Run-Command "7z i" | Select-String "7-Zip" | Take-Part -Part 0,2
@@ -168,10 +167,8 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     $bazelVersion,
     "bazelisk $($bazeliskVersion.Trim())",
     "helm $helmVersion",
-    "virtualbox $vbox",
     "mongo $mongo",
     "mongod $mongod",
-    "$vagrant",
     $p7zip
 )
 if ($os.IsHigherThanMojave) {
@@ -179,10 +176,12 @@ if ($os.IsHigherThanMojave) {
     $markdown += New-MDList -Lines "Newman $newmanVersion" -Style Unordered -NoNewLine
 }
 if ($os.IsLessThanBigSur) {
+    $vagrant = Run-Command "vagrant -v"
     $vbox = Run-Command "vboxmanage -v"
     $parallelVersion = Run-Command "parallel --version" | Select-String "GNU parallel" | Select-Object -First 1
     $markdown += New-MDList -Style Unordered -Lines @(
-        $vbox
+        "virtualbox $vbox",
+        $vagrant,
         $parallelVersion
     )
 }

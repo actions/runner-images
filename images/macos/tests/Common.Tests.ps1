@@ -217,7 +217,7 @@ Describe "Common utilities" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 
-    It "vagrant" {
+    It "vagrant" -Skip:($os.IsBigSur) {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
 
