@@ -3,9 +3,9 @@ source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
 
 VSMAC_VERSION=$(get_toolset_value '.xamarin.vsmac')
-if [ VSMAC_VERSION == 'latest' ]
-  then
+if [ VSMAC_VERSION == 'latest' ]; then
     VSMAC_VERSION=$(curl https://formulae.brew.sh/api/cask/visual-studio.json 2>/dev/null | jq .version)
+fi
 VSMAC_DOWNLOAD_URL=$(buildVSMacDownloadUrl $VSMAC_VERSION)
 
 TMPMOUNT=`/usr/bin/mktemp -d /tmp/visualstudio.XXXX`
