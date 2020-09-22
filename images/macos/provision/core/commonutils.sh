@@ -43,6 +43,7 @@ done
 bcask_common_utils=(
     julia
 )
+
 if is_Less_BigSur; then
     bcask_common_utils+=(
         virtualbox
