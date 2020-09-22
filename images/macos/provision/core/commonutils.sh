@@ -40,13 +40,11 @@ for package in ${binst_common_utils[@]}; do
 done
 
 # brew cask install
-if is_BigSur; then
-    bcask_common_utils=(
-        julia
-    )
-else
-    bcask_common_utils=(
-        julia
+bcask_common_utils=(
+    julia
+)
+if is_Less_BigSur; then
+    bcask_common_utils+=(
         virtualbox
         vagrant
         r
