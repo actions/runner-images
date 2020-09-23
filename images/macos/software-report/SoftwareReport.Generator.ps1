@@ -55,6 +55,10 @@ if ( -not $os.IsHighSierra) {
     $markdown += New-MDList -Style Unordered -NoNewLine -Lines $lines
 }
 
+if ($os.IsLessThanBigSur) {
+    $markdown += New-MDList -Style Unordered -Lines @(Get-RVersion) -NoNewLine
+}
+
 $markdown += New-MDList -Style Unordered -Lines @(
     "Node.js ${nodejsVersion}"
     "NVM ${nvmVersion}"
@@ -63,7 +67,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
     $python3Version,
     "Ruby ${rubyVersion}",
     (Get-DotnetVersionList),
-    (Get-RVersion),
     "Go ${goVersion}",
     "$phpVersion",
     "$juliaVersion"
@@ -139,8 +142,6 @@ $bazelVersion = Run-Command "bazel --version" | Take-Part -Part 0 -Delimiter "-"
 $bazeliskVersion = Run-Command "bazelisk version" | Select-String "Bazelisk version:" | Take-Part -Part 1 -Delimiter ":"
 $packerVersion = Run-Command "packer --version"
 $helmVersion = Run-Command "helm version --short"
-$vbox = Run-Command "vboxmanage -v"
-$vagrant = Run-Command "vagrant -v"
 $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
 $mongod = Run-Command "mongod --version" | Select-String "db version " | Take-Part -Part 2
 $p7zip = Run-Command "7z i" | Select-String "7-Zip" | Take-Part -Part 0,2
@@ -166,10 +167,8 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     $bazelVersion,
     "bazelisk $($bazeliskVersion.Trim())",
     "helm $helmVersion",
-    "virtualbox $vbox",
     "mongo $mongo",
     "mongod $mongod",
-    "$vagrant",
     $p7zip
 )
 if ($os.IsHigherThanMojave) {
@@ -177,8 +176,14 @@ if ($os.IsHigherThanMojave) {
     $markdown += New-MDList -Lines "Newman $newmanVersion" -Style Unordered -NoNewLine
 }
 if ($os.IsLessThanBigSur) {
+    $vagrant = Run-Command "vagrant -v"
+    $vbox = Run-Command "vboxmanage -v"
     $parallelVersion = Run-Command "parallel --version" | Select-String "GNU parallel" | Select-Object -First 1
-    $markdown += New-MDList -Lines $parallelVersion -Style Unordered
+    $markdown += New-MDList -Style Unordered -Lines @(
+        "virtualbox $vbox",
+        $vagrant,
+        $parallelVersion
+    )
 }
 $markdown += New-MDNewLine
 
@@ -190,9 +195,9 @@ $azureCLIVersion = Run-Command "az -v" | Select-String "^azure-cli" | Take-Part 
 $awsVersion = Run-Command "aws --version" | Take-Part -Part 0 | Take-Part -Delimiter "/" -Part 1
 $aliyunVersion = Run-Command "aliyun --version" | Select-String "Alibaba Cloud Command Line Interface Version " | Take-Part -Part 6
 $awsSamVersion = Run-Command "sam --version" | Take-Part -Part 3
-$awsSessionManagerVersion = Run-Command "session-manager-plugin --version" 
+$awsSessionManagerVersion = Run-Command "session-manager-plugin --version"
 $ghcUpVersion = Run-Command "ghcup --version" | Take-Part -Part 5
-$ghcVersion = Run-Command "ghc --version" | Take-Part -Part 7 
+$ghcVersion = Run-Command "ghc --version" | Take-Part -Part 7
 $cabalVersion = Run-Command "cabal --version" | Take-Part -Part 3
 $stackVersion = Run-Command "stack --version" | Take-Part -Part 1 | ForEach-Object {$_.replace(",","")}
 
