@@ -18,6 +18,12 @@ sudo chmod ugo+rwx /usr/local/opt/$USER/scripts
 sudo chown $USER:admin /usr/local/opt/$USER
 mv $HOME/image-generation/assets/* /usr/local/opt/$USER/scripts
 
+executableScripts=$(ls /usr/local/opt/$USER/scripts | grep "*\.sh")
+for script in $executableScripts
+do
+    chmod +x $script
+done
+
 # Clean up npm cache which collected during image-generation
 # we have to do that here because `npm install` is run in a few different places during image-generation
 npm cache clean --force
