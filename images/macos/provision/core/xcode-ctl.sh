@@ -9,7 +9,7 @@
 clt_placeholder="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
 touch $clt_placeholder
 clt_label=`/usr/sbin/softwareupdate -l |
-                      grep -B 1 -E 'Command Line Tools' |
+                      grep -B 1 -E 'Command Line Tools beta 5' |
                       awk -F'*' '/^ *\\*/ {print \$2}' |
                       sed -e 's/^ *Label: //' -e 's/^ *//' |
                       sort -V |

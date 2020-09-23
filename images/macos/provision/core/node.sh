@@ -39,7 +39,9 @@ fi
 echo Installing yarn...
 curl -o- -L https://yarnpkg.com/install.sh | bash
 
-for module in ${node_common_modules[@]}; do
-    echo "Install $module"
-    npm install -g $module
-done
+if is_Less_BigSur; then
+    for module in ${node_common_modules[@]}; do
+        echo "Install $module"
+        npm install -g $module
+    done
+fi
