@@ -310,45 +310,7 @@ if (-not $os.IsBigSur) {
 
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
-$androidInstalledPackages = Get-AndroidInstalledPackages
-
-$markdown += New-MDHeader "Android SDK Tools" -Level 4
-$androidSDKTools = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Tools" }
-$markdown += Build-AndroidSDKToolsTable $androidSDKTools | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android SDK Platform-Tools" -Level 4
-$androidSDKPlatformTools = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Platform-Tools" }
-$markdown += Build-AndroidSDKToolsTable $androidSDKPlatformTools | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android SDK Platforms" -Level 4
-$androidSDKPlatforms = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Platform " }
-$markdown += Build-AndroidSDKPlatformTable $androidSDKPlatforms | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android SDK Build-Tools" -Level 4
-$androidSDKBuildTools = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Build-Tools" }
-$markdown += Build-AndroidSDKBuildtoolsTable $androidSDKBuildTools | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android NDKs"  -Level 4
-$markdown += Build-AndroidNDKTable $androidInstalledPackages | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android Utils" -Level 4
-$markdown += Build-AndroidUtilsTable $androidInstalledPackages | New-MDTable
-$markdown += New-MDNewLine
-
-$androidGoogleAPIsTable = $androidInstalledPackages | Where-Object { $_ -Match "Google APIs" }
-if ($androidGoogleAPIsTable.Count -gt 0) {
-    $markdown += New-MDHeader "Android Google APIs" -Level 4
-    $markdown += Build-AndroidSDKPlatformTable $androidGoogleAPIsTable | New-MDTable
-    $markdown += New-MDNewLine
-}
-
-$markdown += New-MDHeader "Extra Packages" -Level 4
-$markdown += Build-AndroidExtraPackagesTable $androidInstalledPackages | New-MDTable
+$markdown += Build-AndroidTable | New-MDTable
 $markdown += New-MDNewLine
 
 #
