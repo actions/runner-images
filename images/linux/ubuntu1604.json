@@ -53,10 +53,22 @@
     ],
     "provisioners": [
         {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/base/apt-get-retry.sh",
+            "destination": "/usr/local/sbin/apt-get"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/base/apt-retry.sh",
+            "destination": "/usr/local/sbin/apt"
+        },
+        {
             "type": "shell",
             "inline": [
                 "mkdir {{user `image_folder`}}",
-                "chmod 777 {{user `image_folder`}}"
+                "chmod 777 {{user `image_folder`}}",
+                "chmod +x /usr/local/sbin/apt",
+                "chmod +x /usr/local/sbin/apt-get"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
