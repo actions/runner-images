@@ -12,15 +12,12 @@ $dash = "-" * 40
 # Downloading msys2
 $msys2Release = "https://api.github.com/repos/msys2/msys2-installer/releases/latest"
 $msys2Uri = ((Invoke-RestMethod $msys2Release).assets | Where-Object {
-  $_.name -match "x86_64" -and $_.name.EndsWith("tar.xz") }).browser_download_url
+  $_.name -match "x86_64" -and $_.name.EndsWith("sfx.exe") }).browser_download_url
 $msys2File = Start-DownloadWithRetry -Url $msys2Uri
 
-# extract tar.xz to C:\
+# extract sfx.exe to C:\
 Write-Host "Starting msys2 extraction"
-$tempPath = Join-Path $env:Temp msys
-Extract-7Zip -Path $msys2File -DestinationPath $tempPath
-$tarPath = Resolve-Path $tempPath\msys*.tar
-Extract-7Zip -Path $tarPath -DestinationPath C:\
+& $msys2File -y -oC:\
 Write-Host "Finished extraction"
 
 # Add msys2 bin tools folders to PATH temporary
@@ -82,8 +79,5 @@ $regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment
 $pathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path'
 $pathValue += ";C:\msys64\mingw64\bin;C:\msys64\usr\bin"
 Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $pathValue
-
-# Rename python
-Rename-Item "C:\msys64\usr\bin\python.exe" -NewName "_python.exe"
 
 Invoke-PesterTests -TestFile "MSYS2"
