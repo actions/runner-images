@@ -257,3 +257,8 @@ function Get-RVersion {
     $rVersion = R --version | Select-String "R version" | Take-OutputPart -Part -2
     return "R $rVersion"
 }
+
+function Get-SphinxVersion {
+    $sphinxVersion = searchd | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
+    return "Sphinx Open Source Search Server $rVersion"
+}
