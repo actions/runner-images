@@ -18,3 +18,9 @@ apt-get install jq
 add-apt-repository -y ppa:apt-fast/stable
 apt-get update
 apt-get install apt-fast
+
+# Install retry logic for apt and apt-get
+sudo mv apt-get-retry.sh /usr/local/sbin/apt-get
+sudo mv apt-retry.sh /usr/local/sbin/apt
+chmod +x /usr/local/sbin/apt
+chmod +x /usr/local/sbin/apt-get
