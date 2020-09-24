@@ -22,6 +22,13 @@
         "bundle-default": "latest",
         "bundles": [
             {
+                "symlink": "6_12_1",
+                "mono":"6.12",
+                "ios": "14.0",
+                "mac": "6.20",
+                "android": "11.0" 
+            },
+            {
                 "symlink": "6_12_0",
                 "mono":"6.12",
                 "ios": "13.20",
