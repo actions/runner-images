@@ -10,14 +10,16 @@ gem install xcode-install --force
 echo Installing CocoaPods...
 gem install cocoapods
 
-# fix nomad-cli installation
-if is_HighSierra; then
-  brew install libxml2
-  gem install nokogiri -v 1.6.8.1 -- --use-system-libraries --with-xml2-include=$(brew --prefix libxml2)/include/libxml2
-fi
+if is_Less_BigSur; then
+    # fix nomad-cli installation
+    if is_HighSierra; then
+        brew install libxml2
+        gem install nokogiri -v 1.6.8.1 -- --use-system-libraries --with-xml2-include=$(brew --prefix libxml2)/include/libxml2
+    fi
 
-echo Installing nomad-cli...
-gem install nomad-cli
+    echo Installing nomad-cli...
+    gem install nomad-cli
+fi
 
 echo Installing xcpretty...
 gem install xcpretty

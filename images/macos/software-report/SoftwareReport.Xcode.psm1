@@ -1,3 +1,7 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
+$os = Get-OSVersion
+
 function Get-XcodePaths {
     $xcodePaths = Get-ChildItemWithoutSymlinks "/Applications" -Filter "Xcode_*.app"
     return $xcodePaths | Select-Object -ExpandProperty Fullname
@@ -43,7 +47,7 @@ function Get-XcodeInfoList {
         $versionInfo.Path = $xcodeRootPath
         $versionInfo.IsDefault = ($xcodeRootPath -eq $defaultXcodeRootPath)
     
-        $xcodeInfo.Add($versionInfo.Version.ToString(), [PSCustomObject] @{
+        $xcodeInfo.Add($xcodeRootPath, [PSCustomObject] @{
             VersionInfo = $versionInfo
             SDKInfo = Get-XcodeSDKList
             SimulatorsInfo = Get-XcodeSimulatorsInfo
@@ -217,20 +221,27 @@ function Build-XcodeSimulatorsTable {
 }
 
 function Build-XcodeSupportToolsSection {
-    $nomadCLI = Run-Command "gem -v nomad-cli"
-    $nomadIPA = Run-Command "ipa -version"
     $xcpretty = Run-Command "xcpretty --version"
-    $xctool = Run-Command "xctool --version"
     $xcversion = Run-Command "xcversion --version" | Select-String "^[0-9]"
+
+    $toolList = @(
+        "xcpretty $xcpretty",
+        "xcversion $xcversion"
+    )
+
+    if ($os.IsLessThanBigSur) {
+        $nomadCLI = Run-Command "gem -v nomad-cli"
+        $nomadIPA = Run-Command "ipa -version"
+        $xctool = Run-Command "xctool --version"
+        $toolList += @(
+            "Nomad CLI $nomadCLI",
+            "Nomad CLI IPA $nomadIPA",
+            "xctool $xctool"
+        )
+    }
 
     $output = ""
     $output += New-MDHeader "Xcode Support Tools" -Level 4
-    $output += New-MDList -Style Unordered -Lines @(
-        "Nomad CLI $nomadCLI",
-        "Nomad CLI IPA $nomadIPA",
-        "xcpretty $xcpretty",
-        "xctool $xctool",
-        "xcversion $xcversion"
-    ) 
+    $output += New-MDList -Style Unordered -Lines $toolList
     return $output
 }
