@@ -247,3 +247,13 @@ function Get-ORASCliVersion {
 function Get-VerselCliversion {
     return "$(vercel --version 2>&1 | Select-Object -First 1)"
 }
+
+function Get-PulumiVersion {
+    $pulumiVersion = pulumi version | Take-OutputPart -Part 0 -Delimiter "v"
+    return "Pulumi $pulumiVersion"
+}
+
+function Get-RVersion {
+    $rVersion = R --version | Select-String "R version" | Take-OutputPart -Part -2
+    return "R $rVersion"
+}
