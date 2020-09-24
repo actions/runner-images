@@ -55,7 +55,25 @@
         {
             "type": "shell",
             "inline": [
+                "chmod -R 777 /usr/local/sbin"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/base/apt-get-retry.sh",
+            "destination": "/usr/local/sbin/apt-get"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/base/apt-retry.sh",
+            "destination": "/usr/local/sbin/apt"
+        },
+        {
+            "type": "shell",
+            "inline": [
                 "mkdir {{user `image_folder`}}",
+                "chmod -R 755 /usr/local/sbin",
                 "chmod 777 {{user `image_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
