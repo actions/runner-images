@@ -1,3 +1,6 @@
+#!/bin/sh
+source ~/utils/utils.sh
+
 echo "Installing Python Tooling"
 
 echo "Brew Installing Python 3"
