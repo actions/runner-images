@@ -7,6 +7,8 @@ jobs:
   variables:
   - group: Mac-Cloud Image Generation
   - group: Mac-Cloud Image Generation Key Vault
+  - name: VirtualMachineName
+    value: $(Build.BuildNumber).$(System.JobAttempt)
 
   steps:
   - checkout: self
@@ -56,7 +58,7 @@ jobs:
         -var="output_folder=$(output-folder)" `
         -var="vm_username=$(vm-username)" `
         -var="vm_password=$(vm-password)" `
-        -var="build_id=$(Build.BuildNumber)" `
+        -var="build_id=${{ variables.VirtualMachineName }}" `
         -var="baseimage_name=${{ parameters.base_image_name }}" `
         -var="github_feed_token=$(github-feed-token)" `
         -var="xcode_install_user=$(xcode-installation-user)" `
@@ -83,7 +85,7 @@ jobs:
       ls $(Common.TestResultsDirectory)
 
       echo "Put VM name to 'VM_Done_Name' file"
-      echo "$(Build.BuildNumber)" > "$(Build.ArtifactStagingDirectory)/VM_Done_Name"
+      echo "${{ variables.VirtualMachineName }}" > "$(Build.ArtifactStagingDirectory)/VM_Done_Name"
     displayName: Prepare artifact
 
   - bash: |

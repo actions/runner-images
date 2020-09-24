@@ -1,15 +1,14 @@
 #!/bin/sh
-
 set -e
 
 source ~/utils/utils.sh
+
+# TO-DO: Move the list of brew packages and casks to toolset
+
 # brew install
 binst_common_utils=(
     carthage
-    xctool
     cmake
-    bats
-    parallel
     subversion
     go
     gnupg
@@ -27,6 +26,14 @@ binst_common_utils=(
     aria2
 )
 
+if is_Less_BigSur; then
+    binst_common_utils+=(
+        xctool
+        bats
+        parallel
+    )
+fi
+
 for package in ${binst_common_utils[@]}; do
     echo "Install $package"
     brew install $package
@@ -35,10 +42,15 @@ done
 # brew cask install
 bcask_common_utils=(
     julia
-    virtualbox
-    vagrant
-    r
 )
+
+if is_Less_BigSur; then
+    bcask_common_utils+=(
+        virtualbox
+        vagrant
+        r
+    )
+fi
 
 for package in ${bcask_common_utils[@]}; do
     echo "Install $package"
