@@ -8,7 +8,7 @@ function Get-CPPVersions {
     $cppVersions = apt list --installed 2>&1 | Where-Object { $_ -match "g\+\+-\d+"} | ForEach-Object {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
-    }
+    } | Sort-Object {[Version]$_}
     return "GNU C++ " + ($cppVersions -Join ", ")
 }
 
@@ -16,7 +16,7 @@ function Get-FortranVersions {
     $fortranVersions = apt list --installed 2>&1 | Where-Object { $_ -match "^gfortran-\d+"} | ForEach-Object {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
-    }
+    } | Sort-Object {[Version]$_}
     return "GNU Fortran " + ($fortranVersions -Join ", ")
 }
 
@@ -28,7 +28,7 @@ function Get-ClangVersions {
             $_ -match "clang version (?<version>\d+\.\d+\.\d+)-" | Out-Null
             $Matches.version
         }
-    }
+    } | Sort-Object {[Version]$_}
     return "Clang " + ($clangVersions -Join ", ")
 }
 
