@@ -254,11 +254,11 @@ function Get-PulumiVersion {
 }
 
 function Get-RVersion {
-    $rVersion = R --version | Select-String "R version" | Take-OutputPart -Part -2
+    $rVersion = (Get-CommandResult "R --version | grep 'R version'").Output |  Take-OutputPart -Part 2
     return "R $rVersion"
 }
 
 function Get-SphinxVersion {
-    $sphinxVersion = searchd | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
-    return "Sphinx Open Source Search Server $rVersion"
+    $sphinxVersion = searchd -h | Select-Object -First 1 | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
+    return "Sphinx Open Source Search Server $sphinxVersion"
 }
