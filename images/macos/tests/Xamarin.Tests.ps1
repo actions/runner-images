@@ -191,7 +191,7 @@ Describe "Xamarin Bundles" {
         $XAMARIN_ANDROID_VERSIONS_PATH = "/Library/Frameworks/Xamarin.Android.framework/Versions"
     }
     
-    $XAMARIN_BUNDLES = Get-ToolsetValue "xamarin.bundles"
+    [array]$XAMARIN_BUNDLES = Get-ToolsetValue "xamarin.bundles"
     $XAMARIN_DEFAULT_BUNDLE = Get-ToolsetValue "xamarin.bundle-default"
     If ($XAMARIN_DEFAULT_BUNDLE -eq "latest") { $XAMARIN_DEFAULT_BUNDLE = $XAMARIN_BUNDLES[0].symlink }
     

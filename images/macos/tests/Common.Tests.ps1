@@ -12,6 +12,14 @@ Describe "Disk free space" {
     }
 }
 
+Describe "Certificate" {
+    It "Apple Worldwide Developer Relations Certification Authority[expired: 2030-02] is installed" {
+        $sha1Hash = "06EC06599F4ED0027CC58956B4D3AC1255114F35"
+        $certs = security find-certificate -a -c Worldwide -p -Z | Out-String
+        $certs | Should -Match $sha1Hash
+    }
+}
+
 Describe "Git" {
     It "git is installed" {
         "git --version" | Should -ReturnZeroExitCode
@@ -94,17 +102,19 @@ Describe "Common utilities" {
         "aliyun --version" | Should -ReturnZeroExitCode
     }
 
-    It "Mobile Center CLI" {
+    It "Mobile Center CLI" -Skip:($os.IsBigSur) {
         "mobile-center --version" | Should -ReturnZeroExitCode
     }
 
-    It "Nomad CLI" {
-        $result = Get-CommandResult "gem list"
-        $result.Output | Should -BeLike "*nomad-cli*"
-    }
+    Context "Nomad" -Skip:($os.IsBigSur) {
+        It "Nomad CLI" {
+            $result = Get-CommandResult "gem list"
+            $result.Output | Should -BeLike "*nomad-cli*"
+        }
 
-    It "Nomad CLI IPA" {
-        "ipa --version" | Should -ReturnZeroExitCode
+        It "Nomad CLI IPA" {
+            "ipa --version" | Should -ReturnZeroExitCode
+        }
     }
 
     It "Conda" {
@@ -129,7 +139,7 @@ Describe "Common utilities" {
         "curl --version" | Should -ReturnZeroExitCode
     }
 
-    It "xctool" {
+    It "xctool" -Skip:($os.IsBigSur) {
         "xctool --version" | Should -ReturnZeroExitCode
     }
 
@@ -161,7 +171,7 @@ Describe "Common utilities" {
     It "PostgreSQL-Client" {
         "psql --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "PostgreSQL-Server" {
         "pg_config --version" | Should -ReturnZeroExitCode
     }
@@ -178,11 +188,11 @@ Describe "Common utilities" {
         Get-WhichTool "php" | Should -Not -BeLike "/usr/bin/php*"
         "php --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "Composer" {
         "composer --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "R" -Skip:($os.IsBigSur) {
         "R --version" | Should -ReturnZeroExitCode
     }
@@ -198,7 +208,7 @@ Describe "Common utilities" {
     It "bazelisk" {
         "bazelisk version" | Should -ReturnZeroExitCode
     }
-    
+
     It "Julia" {
         "julia --version" | Should -ReturnZeroExitCode
     }
@@ -211,11 +221,11 @@ Describe "Common utilities" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
 
-    It "virtualbox" {
+    It "virtualbox" -Skip:($os.IsBigSur) {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 
-    It "vagrant" {
+    It "vagrant" -Skip:($os.IsBigSur) {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
 
@@ -252,7 +262,7 @@ Describe "Browsers" {
     It "Microsoft Edge Driver" {
         "msedgedriver --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "Firefox" {
         $firefoxLocation = "/Applications/Firefox.app/Contents/MacOS/firefox"
         $firefoxLocation | Should -Exist
@@ -304,7 +314,7 @@ Describe "Haskell" -Skip:($os.IsHighSierra) {
     It "GHC" {
         "ghc --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "Cabal" {
         "cabal --version" | Should -ReturnZeroExitCode
     }
@@ -327,7 +337,7 @@ Describe "Gcc" -Skip:($os.IsHighSierra) {
         param (
             [string] $GccVersion
         )
-        
+
         "gcc-$GccVersion --version" | Should -ReturnZeroExitCode
     }
 }

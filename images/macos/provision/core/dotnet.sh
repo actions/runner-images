@@ -19,7 +19,13 @@ chmod +x ./dotnet-install.sh
 ARGS_LIST=()
 echo "Parsing dotnet SDK (except rc and preview versions) from .json..."
 
-if is_Less_Catalina; then
+# TO-DO: move the list of versions to install to toolset
+if is_BigSur; then
+    DOTNET_CHANNELS=(
+    'https://raw.githubusercontent.com/dotnet/core/master/release-notes/2.1/releases.json'
+    'https://raw.githubusercontent.com/dotnet/core/master/release-notes/3.1/releases.json' 
+    )
+elif is_Less_Catalina; then
     DOTNET_CHANNELS=(
     'https://raw.githubusercontent.com/dotnet/core/master/release-notes/2.1/releases.json'
     )
