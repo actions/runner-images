@@ -16,7 +16,7 @@ function InstallClang {
         ./llvm.sh $version
         apt-get install -y "clang-format-$version"
     else
-        apt-get install -y "clang-$version" "lldb-$version" "lld-$version" apt-get install -y "clang-format-$version"
+        apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version"
     fi
 
     # Run tests to determine that the software installed as expected
