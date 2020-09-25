@@ -77,6 +77,7 @@ $toolsList = @(
     (Get-AzCopy10Version),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
+    (Get-CodeQLBundleVersion),
     (Get-CMakeVersion),
     (Get-CurlVersion),
     (Get-DockerMobyVersion),

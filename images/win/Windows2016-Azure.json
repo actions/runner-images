@@ -320,7 +320,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-KubernetesCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Kind.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1"
             ]
         },
         {
