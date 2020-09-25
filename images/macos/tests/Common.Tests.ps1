@@ -111,7 +111,7 @@ Describe "Common utilities" {
             $result = Get-CommandResult "gem list"
             $result.Output | Should -BeLike "*nomad-cli*"
         }
-    
+
         It "Nomad CLI IPA" {
             "ipa --version" | Should -ReturnZeroExitCode
         }
@@ -221,11 +221,11 @@ Describe "Common utilities" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
 
-    It "virtualbox" {
+    It "virtualbox" -Skip:($os.IsBigSur) {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 
-    It "vagrant" {
+    It "vagrant" -Skip:($os.IsBigSur) {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
 
