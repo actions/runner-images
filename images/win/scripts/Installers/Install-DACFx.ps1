@@ -6,7 +6,7 @@
 Import-Module -Name ImageHelpers -Force
 
 $InstallerName = "DacFramework.msi"
-$InstallerUrl = "https://go.microsoft.com/fwlink/?linkid=2134206"
+$InstallerUrl = "https://go.microsoft.com/fwlink/?linkid=2143544"
 
 Install-Binary -Url $InstallerUrl -Name $InstallerName
 
