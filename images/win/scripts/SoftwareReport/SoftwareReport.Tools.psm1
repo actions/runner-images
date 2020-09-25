@@ -247,3 +247,8 @@ function Get-VisualCPPComponents {
         }
     }
 }
+
+function Get-AZDSVersion {
+    $azdsVersion = $(azds --version) | Select-String "(\d+\.\d+\.\d+.\d+)"
+    return "Azure Dev Spaces CLI $azdsVersion"
+}

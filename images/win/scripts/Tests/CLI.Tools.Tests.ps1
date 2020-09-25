@@ -54,3 +54,9 @@ Describe "Hub CLI" {
         "hub --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Azure Dev Spaces CLI" {
+    It "Azure Dev Spaces CLI" {
+        "azds --version" | Should -ReturnZeroExitCode
+    }
+}
