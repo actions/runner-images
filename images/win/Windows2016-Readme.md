@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 3930
-- Image Version: 20200913.0
+- Image Version: 20200920.1
 
 ## Installed Software
 ### Language and Runtime
@@ -18,7 +18,7 @@
 - PHP 7.4.9
 - Julia 1.5.1
 - Perl 5.32.0
-- Node 12.18.3
+- Node 12.18.4
 
 ### Package Management
 - Chocolatey 0.10.15
@@ -28,7 +28,7 @@
 - pip 20.2.3 (python 3.7)
 - Miniconda 4.6.14
 - RubyGems 3.1.4
-- Helm 3.3.1
+- Helm 3.3.3
 - Composer 1.10.13
 - NuGet 5.7.0.6726
 
@@ -45,15 +45,15 @@
 - Bazelisk 1.6.1
 - CMake 3.18.2
 - R 4.0.2
-- Docker 19.03.11
-- Docker-compose 1.26.2
+- Docker 19.03.12
+- Docker-compose 1.27.2
 - Git 2.28.0
 - Git LFS 2.11.0
-- Google Cloud SDK 309.0.0
+- Google Cloud SDK 310.0.0
 - InnoSetup 6.0.5
 - jq 1.6
 - Kubectl 1.19.1
-- Kind 0.8.1
+- Kind 0.9.0
 - Mingw-w64 8.1.0
 - MySQL 5.7.21.0
 - Mercurial 5.0
@@ -61,7 +61,7 @@
 - Newman 5.2.0
 - OpenSSL 1.1.1
 - Packer 1.6.2
-- Pulumi v2.10.0
+- Pulumi v2.10.1
 - SQLPS 1.0
 - SQLServer PS 21.1.18226
 - Subversion (SVN) 1.14.0
@@ -77,20 +77,20 @@
 ### CLI Tools
 - Azure CLI 2.11.1
 - Azure DevOps CLI extension 0.18.0
-- AWS CLI 2.0.48
+- AWS CLI 2.0.50
 - AWS SAM CLI 1.2.0
 - AWS Session Manager CLI 1.1.61.0
-- Alibaba Cloud CLI 3.0.56
+- Alibaba Cloud CLI 3.0.59
 - Cloud Foundry CLI 6.52.0
 - Hub CLI 2.14.2
-- GitHub CLI 0.12.0
+- GitHub CLI 1.0.0
 
 ### Rust Tools
 - Rust 1.46.0
 
 #### Packages
 - bindgen 0.55.1
-- cbindgen 0.14.4
+- cbindgen 0.14.5
 - cargo-audit 0.12.0
 - cargo-outdated v0.9.11
 
@@ -147,9 +147,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 8.17.0  | x64          |
-| 10.22.0 | x64          |
-| 12.18.3 | x64          |
-| 14.10.1 | x64          |
+| 10.22.1 | x64          |
+| 12.18.4 | x64          |
+| 14.11.0 | x64          |
 
 
 #### Python
@@ -174,8 +174,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### PyPy
 | Python Version | Architecture | PyPy Version |
 | -------------- | ------------ | ------------ |
-| 2.7.13         | x86          | PyPy 7.3.2 with MSC v.1927 32 bit |
-| 3.6.9          | x86          | PyPy 7.3.2 with MSC v.1927 32 bit |
+| 2.7.13         | x86          | PyPy 7.3.1 with MSC v.1912 32 bit |
+| 3.6.9          | x86          | PyPy 7.3.1 with MSC v.1912 32 bit |
 
 
 
