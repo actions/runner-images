@@ -4,7 +4,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: [$default-branch]
     
 jobs:
   build:
@@ -22,4 +22,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSON: true
           VALIDATE_MD: true
-          DEFAULT_BRANCH: main
+          DEFAULT_BRANCH: ${{ github.base_ref }}
