@@ -84,6 +84,10 @@ Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name
 
 Write-Host "Install chocolatey"
 $chocoExePath = 'C:\ProgramData\Chocolatey\bin'
+$chocoTempPath = 'C:\Temp\Chocolatey'
+
+# Set choco temp directory to non-existent one
+choco config set cacheLocation $chocoTempPath
 
 if ($($env:Path).ToLower().Contains($($chocoExePath).ToLower())) {
     Write-Host "Chocolatey found in PATH, skipping install..."
