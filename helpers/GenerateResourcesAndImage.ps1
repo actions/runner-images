@@ -110,12 +110,12 @@ Function GenerateResourcesAndImage {
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
 
-    Login-AzureRmAccount
-    Set-AzureRmContext -SubscriptionId $SubscriptionId
+    Connect-AzAccount
+    Set-AzContext -SubscriptionId $SubscriptionId
 
     $alreadyExists = $true;
     try {
-        Get-AzureRmResourceGroup -Name $ResourceGroupName
+        Get-AzResourceGroup -Name $ResourceGroupName
         Write-Verbose "Resource group was found, will delete and recreate it."
     }
     catch {
@@ -126,8 +126,8 @@ Function GenerateResourcesAndImage {
     if ($alreadyExists) {
         if($Force -eq $true) {
             # Cleanup the resource group if it already exitsted before
-            Remove-AzureRmResourceGroup -Name $ResourceGroupName -Force
-            New-AzureRmResourceGroup -Name $ResourceGroupName -Location $AzureLocation
+            Remove-AzResourceGroup -Name $ResourceGroupName -Force
+            New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
         } else {
             $title = "Delete Resource Group"
             $message = "The resource group you specified already exists. Do you want to clean it up?"
@@ -146,13 +146,13 @@ Function GenerateResourcesAndImage {
 
             switch ($result)
             {
-                0 { Remove-AzureRmResourceGroup -Name $ResourceGroupName -Force; New-AzureRmResourceGroup -Name $ResourceGroupName -Location $AzureLocation }
+                0 { Remove-AzResourceGroup -Name $ResourceGroupName -Force; New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation }
                 1 { <# Do nothing #> }
                 2 { exit }
             }
         }
     } else {
-        New-AzureRmResourceGroup -Name $ResourceGroupName -Location $AzureLocation
+        New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
     }
 
     # This script should follow the recommended naming conventions for azure resources
@@ -164,19 +164,21 @@ Function GenerateResourcesAndImage {
     $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
     $storageAccountName += "001"
 
-    New-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
+    New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
 
     $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
-    $sp = New-AzureRmADServicePrincipal -DisplayName $spDisplayName -Password (ConvertTo-SecureString $ServicePrincipalClientSecret -AsPlainText -Force)
+    $credentialProperties = @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$ServicePrincipalClientSecret }
+    $credentials = New-Object -TypeName Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential -Property $credentialProperties
+    $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
 
     $spAppId = $sp.ApplicationId
     $spClientId = $sp.ApplicationId
     $spObjectId = $sp.Id
     Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
 
-    New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
+    New-AzRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
     Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-    $sub = Get-AzureRmSubscription -SubscriptionId $SubscriptionId
+    $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
     $tenantId = $sub.TenantId
     # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
 

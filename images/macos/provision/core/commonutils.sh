@@ -42,10 +42,15 @@ done
 # brew cask install
 bcask_common_utils=(
     julia
-    virtualbox
-    vagrant
-    r
 )
+
+if is_Less_BigSur; then
+    bcask_common_utils+=(
+        virtualbox
+        vagrant
+        r
+    )
+fi
 
 for package in ${bcask_common_utils[@]}; do
     echo "Install $package"

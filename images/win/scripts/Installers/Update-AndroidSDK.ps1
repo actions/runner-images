@@ -71,6 +71,7 @@ $ndkRoot = "C:\Program Files (x86)\Android\android-sdk\ndk-bundle"
 
 if (Test-Path $ndkRoot) {
     setx ANDROID_HOME $sdkRoot /M
+    setx ANDROID_SDK_ROOT $sdkRoot /M
     setx ANDROID_NDK_HOME $ndkRoot /M
     setx ANDROID_NDK_PATH $ndkRoot /M
 } else {

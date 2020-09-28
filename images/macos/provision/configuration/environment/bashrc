@@ -3,6 +3,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export ANDROID_HOME=${HOME}/Library/Android/sdk
+export ANDROID_SDK_ROOT=${HOME}/Library/Android/sdk
 export ANDROID_NDK_HOME=${ANDROID_HOME}/ndk-bundle
 
 export NUNIT_BASE_PATH=/Library/Developer/nunit
