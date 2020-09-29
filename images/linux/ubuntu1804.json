@@ -24,7 +24,10 @@
         "run_validation_diskspace": "false",
         "announcements": "{{env `ANNOUNCEMENTS`}}"
     },
-    "sensitive-variables": ["client_secret", "github_feed_token"],
+    "sensitive-variables": [
+        "client_secret",
+        "github_feed_token"
+    ],
     "builders": [
         {
             "type": "azure-arm",
@@ -32,7 +35,6 @@
             "client_secret": "{{user `client_secret`}}",
             "subscription_id": "{{user `subscription_id`}}",
             "tenant_id": "{{user `tenant_id`}}",
-
             "location": "{{user `location`}}",
             "vm_size": "{{user `vm_size`}}",
             "resource_group_name": "{{user `resource_group`}}",
@@ -80,7 +82,7 @@
         },
         {
             "type": "shell",
-            "scripts":[
+            "scripts": [
                 "{{template_dir}}/scripts/base/repos.sh"
             ],
             "environment_vars": [
@@ -130,7 +132,7 @@
         },
         {
             "type": "shell",
-            "scripts":[
+            "scripts": [
                 "{{template_dir}}/scripts/installers/preimagedata.sh"
             ],
             "environment_vars": [
@@ -175,6 +177,7 @@
                 "{{template_dir}}/scripts/installers/clang.sh",
                 "{{template_dir}}/scripts/installers/swift.sh",
                 "{{template_dir}}/scripts/installers/cmake.sh",
+                "{{template_dir}}/scripts/installers/codeql-bundle.sh",
                 "{{template_dir}}/scripts/installers/containers.sh",
                 "{{template_dir}}/scripts/installers/docker-compose.sh",
                 "{{template_dir}}/scripts/installers/docker-moby.sh",
@@ -244,7 +247,7 @@
         },
         {
             "type": "shell",
-            "scripts":[
+            "scripts": [
                 "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
                 "{{template_dir}}/scripts/installers/Configure-Toolset.ps1",
                 "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
@@ -296,14 +299,14 @@
         },
         {
             "type": "shell",
-            "scripts":[
+            "scripts": [
                 "{{template_dir}}/scripts/installers/cleanup.sh"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",
-            "scripts":[
+            "scripts": [
                 "{{template_dir}}/scripts/installers/Install-PowerShellModules.ps1"
             ],
             "environment_vars": [
@@ -316,7 +319,7 @@
             "inline": [
                 "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}"
             ],
-            "environment_vars":[
+            "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
                 "ANNOUNCEMENTS={{user `announcements`}}"
@@ -342,7 +345,7 @@
         },
         {
             "type": "shell",
-            "scripts":[
+            "scripts": [
                 "{{template_dir}}/scripts/installers/validate-disk-space.sh"
             ],
             "environment_vars": [
