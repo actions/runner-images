@@ -19,10 +19,3 @@ elif [[ "$USER" = "vsts" ]]; then
 else
     echo "the environment is incorrect"
 fi
-
-
-
-
-
-
-
