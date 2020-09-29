@@ -31,6 +31,11 @@ function Get-AndroidInstalledPackages {
     return $androidInstalledPackages
 }
 
+function Get-AndroidPackages {
+    $androidSDKManagerPath = Get-AndroidSDKManagerPath
+    $androidPackages = & $androidSDKManagerPath --list --verbose
+    return $androidPackages
+}
 
 function Build-AndroidTable {
     $packageInfo = Get-AndroidInstalledPackages

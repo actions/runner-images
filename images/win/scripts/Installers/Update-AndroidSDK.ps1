@@ -3,6 +3,7 @@
 ##  Desc:  Install and update Android SDK and tools
 ################################################################################
 
+$ErrorActionPreference = "Stop"
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
 $sdkArchPath = Start-DownloadWithRetry -Url "https://dl.google.com/android/repository/sdk-tools-windows-4333796.zip" -Name "android-sdk-tools.zip"
@@ -42,15 +43,26 @@ $sdkManager = "$sdkRoot\tools\bin\sdkmanager.bat"
 
 & $sdkManager --sdk_root=$sdkRoot "platform-tools"
 
-Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
-                          -AndroidSDKRootPath $sdkRoot `
-                          -AndroidPackages $androidToolset.platform_list `
-                          -PrefixPackageName "platforms;"
+# get packages info
+$androidPackages = & $sdkManager --list --verbose 2>&1
+
+# platforms
+[int]$platformMinVersion = $androidToolset.platform_min_version
+$platformList = $androidPackages | Where-Object { "$_".StartsWith("platforms;") } |
+    Where-Object { [int]$_.Split("-")[1] -ge $platformMinVersion } | Sort-Object { [int]$_.Split("-")[1] } -Unique
+
+# build-tools
+[version]$buildToolsMinVersion = $androidToolset.build_tools_min_version
+$buildToolsList = $androidPackages | Where-Object { "$_".StartsWith("build-tools;") } |
+    Where-Object { [version]$_.Split(";")[1] -ge $buildToolsMinVersion } | Sort-Object { [version]$_.Split(";")[1] } -Unique
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
-                          -AndroidPackages $androidToolset.build_tools `
-                          -PrefixPackageName "build-tools;"
+                          -AndroidPackages $platformList
+
+Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
+                          -AndroidSDKRootPath $sdkRoot `
+                          -AndroidPackages $buildToolsList
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
