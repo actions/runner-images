@@ -3,6 +3,8 @@ param (
     $OutputDirectory
 )
 
+$ErrorActionPreference = "Stop"
+
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
