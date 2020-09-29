@@ -1,8 +1,25 @@
 #!/bin/bash -e
 source ~/utils/utils.sh
 
-ANDROID_PLATFORM_LIST=($(get_toolset_value '.android."platform-list"[]'))
-ANDROID_BUILD_TOOLS=($(get_toolset_value '.android."build-tools"[]'))
+function install_android_packages {
+    minimumVersion=$( echo "$1" | sed 's/\.//g' )
+    shift
+    toolsArr=("$@")
+
+    for item in ${toolsArr[@]}
+    do
+        version=$(echo "${item##*[-;]}" | sed 's/\.//g')
+        echo "version is $version"
+        if (( $version >= $minimumVersion ))
+        then
+            echo "Start installing $item"
+            echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager $item
+        fi
+    done
+}
+
+ANDROID_PLATFORM=($(get_toolset_value '.android.platform_min_version'))
+ANDROID_BUILD_TOOL=($(get_toolset_value '.android.build_tools_min_version'))
 ANDROID_EXTRA_LIST=($(get_toolset_value '.android."extra-list"[]'))
 ANDROID_ADDON_LIST=($(get_toolset_value '.android."addon-list"[]'))
 
@@ -47,18 +64,13 @@ echo y | $SDKMANAGER "cmake;3.6.4111459"
 
 echo "Installing latest ndk..."
 echo y | $SDKMANAGER "ndk-bundle"
+platforms=$(${ANDROID_HOME}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android" | sed -E "s/[[:space:]]+//g" | sed -E "s/\|.*//g")
+platformsArr=(${platforms})
+install_android_packages $ANDROID_PLATFORM_LIST "${platformsArr[@]}"
 
-for platform_name in "${ANDROID_PLATFORM_LIST[@]}"
-do
-    echo "Installing platform $platform_name ..."
-    echo y | $SDKMANAGER "platforms;$platform_name"
-done
-
-for build_tools_version in "${ANDROID_BUILD_TOOLS[@]}"
-do
-    echo "Installing build tools $build_tools_version ..."
-    echo y | $SDKMANAGER "build-tools;$build_tools_version"
-done
+buildTools=$(${ANDROID_HOME}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "build-tools;" | sed -E "s/[[:space:]]+//g" | sed -E "s/\|.*//g")
+buildToolsArr=(${buildTools})
+install_android_packages $ANDROID_BUILD_TOOL "${buildToolsArr[@]}"
 
 for extra_name in "${ANDROID_EXTRA_LIST[@]}"
 do

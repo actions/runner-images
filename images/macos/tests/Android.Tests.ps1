@@ -5,6 +5,9 @@ $os = Get-OSVersion
 
 Describe "Android" {
     $androidNdkToolchains = @("mips64el-linux-android-4.9", "mipsel-linux-android-4.9")
+    $androidSdkManagerPackages = Get-AndroidPackages
+    [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
+    [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
 
     $androidPackages = @(
         "tools",
@@ -12,8 +15,12 @@ Describe "Android" {
         "tools/proguard",
         "ndk-bundle",
         "cmake",
-        (Get-ToolsetValue "android.platform-list" | ForEach-Object { "platforms/${_}" }),
-        (Get-ToolsetValue "android.build-tools" | ForEach-Object { "build-tools/${_}" }),
+        ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") } |
+        Where-Object { [int]$_.Split("-")[1] -ge $platformMinVersion } | Sort-Object { [int]$_.Split("-")[1] } -Unique |
+        ForEach-Object { "platforms/${_}" }),
+        ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") } |
+        Where-Object { [version]$_.Split(";")[1] -ge $buildToolsMinVersion } | Sort-Object { [version]$_.Split(";")[1] } -Unique |
+        ForEach-Object { "build-tools/${_}" }),
         (Get-ToolsetValue "android.extra-list" | ForEach-Object { "extras/${_}" }),
         (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" })
     ) | ForEach-Object { $_ }
@@ -26,7 +33,7 @@ Describe "Android" {
                 [Parameter(Mandatory=$true)]
                 [string]$PackageName
             )
-            
+
             # Convert 'm2repository;com;android;support;constraint;constraint-layout-solver;1.0.0-beta1' ->
             #         'm2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-beta1'
             $PackageName = $PackageName.Replace(";", "/")
@@ -62,14 +69,14 @@ Describe "Android" {
             $rawContent = Get-Content $ndkBundlePath -Raw
             $rawContent | Should -BeLikeExactly "*Revision = 21.*"
         }
-            
+
         It "Android NDK version r18b is installed" {
             $ndk18BundlePath = Join-Path $ANDROID_SDK_DIR "ndk" "18.1.5063045" "source.properties"
             $rawContent = Get-Content $ndk18BundlePath -Raw
             $rawContent | Should -BeLikeExactly "*Revision = 18.*"
         }
     }
-    
+
     It "HAXM is installed" {
         $haxmPath = Join-Path $ANDROID_SDK_DIR "extras" "intel" "Hardware_Accelerated_Execution_Manager" "silent_install.sh"
         "$haxmPath -v" | Should -ReturnZeroExitCode
