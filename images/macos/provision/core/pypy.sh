@@ -68,19 +68,17 @@ function InstallPyPy
 
 uri="https://downloads.python.org/pypy/"
 pypyVersions=$(curl -4 -s --compressed $uri | grep 'osx64' | awk -v uri="$uri" -F'>|<' '{print uri$5}')
-
 toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
+versionPattern="v[0-9]+\.[0-9]+\.[0-9]+-"
+
+# PyPy 7.3.2 for High Sierra is broken, use 7.3.1 instead https://foss.heptapod.net/pypy/pypy/-/issues/3311
+if is_HighSierra; then
+    versionPattern="v7.3.1-"
+    # PyPy 7.3.1 relies on system libffi.6.dylib, which is not existed in in libffi 3.3 release. As a workaround symlink can be created
+    ln -s libffi.7.dylib /usr/local/opt/libffi/lib/libffi.6.dylib
+fi
 
 for toolsetVersion in $toolsetVersions; do
-    versionPattern="v[0-9]+\.[0-9]+\.[0-9]+-"
-
-    # PyPy 7.3.2 for High Sierra is broken, use 7.3.1 instead https://foss.heptapod.net/pypy/pypy/-/issues/3311
-    if is_HighSierra; then
-        versionPattern="v7.3.1-"
-        # PyPy 7.3.1 relies on system libffi.6.dylib, which is not existed in in libffi 3.3 release. As a workaround symlink can be created
-        ln -s libffi.7.dylib /usr/local/opt/libffi/lib/libffi.6.dylib
-    fi
-
     latestMajorPyPyVersion=$(echo "${pypyVersions}" | grep -E "pypy${toolsetVersion}-${versionPattern}" | head -1)
     if [[ -z "$latestMajorPyPyVersion" ]]; then
         echo "Failed to get PyPy version '$toolsetVersion'"
