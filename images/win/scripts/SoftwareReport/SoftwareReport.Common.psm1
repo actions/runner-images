@@ -273,7 +273,8 @@ function Get-PacmanVersion {
 
 function Get-ShellTarget {
     $shells = Get-ChildItem C:\shells -File | Select-Object @{n="Name";e={
-        if ($_.Name -eq 'bash.exe') {"$($_.Name) (Default)"} else {$_.Name}}},@{n="Target";e={$_.Target[0]}} | Sort-Object Name
+        $name = $_.Name
+        if ($name -eq 'bash.exe') {"$name (Default)"} else {$name}}},@{n="Target";e={@($_.Target)[0]}} | Sort-Object Name
     $shells | New-MDTable -Columns ([ordered]@{Name = "left"; Target = "left";})
 }
 
