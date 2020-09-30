@@ -9,12 +9,12 @@ set -e
 source $HELPER_SCRIPTS/os.sh
 
 # Install Python, Python 3, pip, pip3
-if isUbuntu16 || isUbuntu18 ; then
+if isUbuntu16 || isUbuntu18; then
     apt-get install -y --no-install-recommends python python-dev python-pip python3 python3-dev python3-pip
 fi
 
-if isUbuntu20 ; then
-    apt-get install -y --no-install-recommends python3 python3-dev python3-pip python-is-python3
+if isUbuntu20; then
+    apt-get install -y --no-install-recommends python3 python3-dev python3-pip
     ln -s /usr/bin/pip3 /usr/bin/pip
 fi
 
