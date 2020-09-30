@@ -2,10 +2,14 @@
 
 # Configure memory cgroups for Hosted Ubuntu
 #
-# actions_runner is a group to control actions processes, ie provisioner and runner.
+# Azure Devops and Github Actions use different names for cgrops and jobs:
+# Github Actions use "actions_runner" and "actions_job"
+# Azure Devops use "azpl_agent" and "azpl_job"
+#
+# actions_runner/azpl_agent is a group to control actions processes, ie provisioner and runner (agent).
 # They have access to 100% of total memory resources so they will never be killed for exceeding cgroup limits
 #
-# actions_job controls job processes, which is anything downstream of the runner. They have access to 100% of resident memory,
+# actions_job/azpl_job controls job processes, which is anything downstream of the runner. They have access to 100% of resident memory,
 # and all but 3g of total memory + swap. This leaves a buffer for the agent and related processes.
 #
 # Swap must already be configured for cgroup config to accurately calculate memsw.limit_in_bytes as it is based on /proc/meminfo
