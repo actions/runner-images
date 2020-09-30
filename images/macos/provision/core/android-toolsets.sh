@@ -9,7 +9,6 @@ function install_android_packages {
     for item in ${toolsArr[@]}
     do
         version=$(echo "${item##*[-;]}" | sed 's/\.//g')
-        echo "version is $version"
         if (( $version >= $minimumVersion ))
         then
             echo "Start installing $item"
@@ -66,7 +65,7 @@ echo "Installing latest ndk..."
 echo y | $SDKMANAGER "ndk-bundle"
 platforms=$(${ANDROID_HOME}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android" | sed -E "s/[[:space:]]+//g" | sed -E "s/\|.*//g")
 platformsArr=(${platforms})
-install_android_packages $ANDROID_PLATFORM_LIST "${platformsArr[@]}"
+install_android_packages $ANDROID_PLATFORM "${platformsArr[@]}"
 
 buildTools=$(${ANDROID_HOME}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "build-tools;" | sed -E "s/[[:space:]]+//g" | sed -E "s/\|.*//g")
 buildToolsArr=(${buildTools})
