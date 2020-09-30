@@ -35,17 +35,23 @@ $sdkManager = "$sdkRoot\tools\bin\sdkmanager.bat"
 & $sdkManager --sdk_root=$sdkRoot "platform-tools"
 
 # get packages info
-$androidPackages = & $sdkManager --list --verbose
+$androidPackages = Get-AndroidPackages -AndroidSDKManagerPath $sdkManager
 
 # platforms
 [int]$platformMinVersion = $androidToolset.platform_min_version
-$platformList = $androidPackages.Trim() | Where-Object { "$_".StartsWith("platforms;") } | Foreach-Object { $_.Split()[0] } |
-    Where-Object { [int]$_.Split("-")[1] -ge $platformMinVersion } | Sort-Object { [int]$_.Split("-")[1] } -Unique
+$platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+                -PrefixPackageName "platforms;" `
+                -MinimumVersion $platformMinVersion `
+                -Delimeter "-" `
+                -Index 1
 
 # build-tools
 [version]$buildToolsMinVersion = $androidToolset.build_tools_min_version
-$buildToolsList = $androidPackages.Trim() | Where-Object { "$_".StartsWith("build-tools;") } | Foreach-Object { $_.Split()[0] } |
-    Where-Object { [version]$_.Split(";")[1] -ge $buildToolsMinVersion } | Sort-Object { [version]$_.Split(";")[1] } -Unique
+$buildToolsList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+                  -PrefixPackageName "build-tools;" `
+                  -MinimumVersion $buildToolsMinVersion `
+                  -Delimeter ";" `
+                  -Index 1
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `

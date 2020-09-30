@@ -2,21 +2,27 @@ Import-Module (Join-Path $PSScriptRoot "..\SoftwareReport\SoftwareReport.Android
 
 Describe "Android SDK" {
     $androidToolset = (Get-ToolsetContent).android
-    $androidPackages = Get-AndroidPackages
+    $androidPackages = Get-AndroidPackages -AndroidSDKManagerPath (Get-AndroidSDKManagerPath)
     $androidInstalledPackages = Get-AndroidInstalledPackages
 
     $platformTestCases = @()
     [int]$platformMinVersion = $androidToolset.platform_min_version
-    $platformList = $androidPackages | Where-Object { "$_".StartsWith("platforms;") } |
-        Where-Object { [int]$_.Split("-")[1] -ge $platformMinVersion } | Sort-Object { [int]$_.Split("-")[1] } -Unique
+    $platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+                    -PrefixPackageName "platforms;" `
+                    -MinimumVersion $platformMinVersion `
+                    -Delimeter "-" `
+                    -Index 1
     $platformList | ForEach-Object {
         $platformTestCases += @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
     }
 
     $buildToolsTestCases = @()
     [version]$buildToolsMinVersion = $androidToolset.build_tools_min_version
-    $buildToolsList = $androidPackages | Where-Object { "$_".StartsWith("build-tools;") } |
-        Where-Object { [version]$_.Split(";")[1] -ge $buildToolsMinVersion } | Sort-Object { [version]$_.Split(";")[1] } -Unique
+    $buildToolsList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+                    -PrefixPackageName "build-tools;" `
+                    -MinimumVersion $buildToolsMinVersion `
+                    -Delimeter ";" `
+                    -Index 1
     $buildToolsList | ForEach-Object {
         $buildToolsTestCases += @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
     }

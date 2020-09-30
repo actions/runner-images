@@ -37,6 +37,9 @@ Export-ModuleMember -Function @(
     'Get-VsCatalogJsonPath'
     'Get-VisualStudioPath'
     'Install-AndroidSDKPackages'
+    'Get-AndroidPackages'
+    'Get-AndroidPackagesByName'
+    'Get-AndroidPackagesByVersion'
     'Get-VisualStudioPackages'
     'Get-VisualStudioComponents'
 )
