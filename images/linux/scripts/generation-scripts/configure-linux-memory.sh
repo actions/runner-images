@@ -3,8 +3,8 @@
 # Configure memory cgroups for Hosted Ubuntu
 #
 # Azure Devops and Github Actions use different names for cgrops and jobs:
-# Github Actions use "actions_runner" and "actions_job"
-# Azure Devops use "azpl_agent" and "azpl_job"
+# Github Actions - "actions_runner" and "actions_job"
+# Azure Devops   - "azpl_agent"     and "azpl_job"
 #
 # actions_runner/azpl_agent is a group to control actions processes, ie provisioner and runner (agent).
 # They have access to 100% of total memory resources so they will never be killed for exceeding cgroup limits
