@@ -12,7 +12,6 @@
 
 set -eux
 
-ImageName=$1
 if [[ "$USER" = "runner" ]]; then
     echo "Github actions naming"
     cgroup_name="actions_runner"
@@ -25,47 +24,45 @@ else
     echo "the environment is incorrect"
 fi
 
-if [[ "$ImageName" = *Ubuntu* ]]; then
-    isMntSwap=$(cat /etc/waagent.conf | grep "ResourceDisk.EnableSwap=y" || true)
+isMntSwap=$(cat /etc/waagent.conf | grep "ResourceDisk.EnableSwap=y" || true)
 
-    if [ -z "$isMntSwap" ]; then
-        fallocate -l 4G /swapfile
-        chmod 600 /swapfile
-        mkswap /swapfile
-        swapon /swapfile
-        echo '/swapfile none swap sw 0 0' >> /etc/fstab
-    fi
-    # Future: These packages are required for this and the warmup_linux scripts to work
-    # but will be a NOP if already installed on the base image. Can be removed safely once
-    # the packages are guaranteed to be on the base image.
-    apt-get install -y libcgroup1 cgroup-tools
-
-    # Create /etc/cgconfig.conf
-    mem_total_in_bytes=$(( $(grep MemTotal /proc/meminfo | awk '{print $2}') * 1024 ))
-    mem_total_minus1g_in_bytes=$(( mem_total_in_bytes - (1024 * 1024 * 1024) ))
-    swap_total_in_bytes=$(( $(grep SwapTotal /proc/meminfo | awk '{print $2}') * 1024 ))
-    total_in_bytes=$(( mem_total_in_bytes + swap_total_in_bytes ))
-    total_minus2g_in_bytes=$(( total_in_bytes - (2 * 1024 * 1024 * 1024) ))
-    cgroup_properties="group ${cgroup_name} { memory { } }"
-    cgroup_job_properties="group ${cgroup_job_name} { memory { memory.limit_in_bytes = ${mem_total_minus1g_in_bytes}; memory.memsw.limit_in_bytes = ${total_minus2g_in_bytes}; } }"
-    echo "${cgroup_properties}" >> /etc/cgconfig.conf
-    echo "${cgroup_job_properties}" >> /etc/cgconfig.conf
-
-    # Create /etc/cgrules.conf
-    echo "root:provisioner memory ${cgroup_name}" >> /etc/cgrules.conf
-    echo "runner:Runner.Listener memory ${cgroup_name}" >> /etc/cgrules.conf
-    echo "runner:Runner.Worker memory ${cgroup_name}" >> /etc/cgrules.conf
-    echo "runner memory ${cgroup_name}" >> /etc/cgrules.conf
-
-    # Update Docker daemon conf
-    if [ ! -f /etc/docker/daemon.json ]; then
-        echo "{ "cgroup-parent": "/${cgroup_job_name}" }" > /etc/docker/daemon.json
-    else
-        jq ". + { "cgroup-parent": "/${cgroup_job_name}" }" /etc/docker/daemon.json > daemon_updated.json
-        mv daemon_updated.json /etc/docker/daemon.json
-    fi
-
-    # Enable swap accounting
-    echo 'GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"' > /etc/default/grub.d/40-runner.cfg
-    update-grub
+if [ -z "$isMntSwap" ]; then
+    fallocate -l 4G /swapfile
+    chmod 600 /swapfile
+    mkswap /swapfile
+    swapon /swapfile
+    echo '/swapfile none swap sw 0 0' >> /etc/fstab
 fi
+# Future: These packages are required for this and the warmup_linux scripts to work
+# but will be a NOP if already installed on the base image. Can be removed safely once
+# the packages are guaranteed to be on the base image.
+apt-get install -y libcgroup1 cgroup-tools
+
+# Calculate required memory options
+mem_total_in_bytes=$(( $(grep MemTotal /proc/meminfo | awk '{print $2}') * 1024 ))
+mem_total_minus1g_in_bytes=$(( mem_total_in_bytes - (1024 * 1024 * 1024) ))
+swap_total_in_bytes=$(( $(grep SwapTotal /proc/meminfo | awk '{print $2}') * 1024 ))
+total_in_bytes=$(( mem_total_in_bytes + swap_total_in_bytes ))
+total_minus2g_in_bytes=$(( total_in_bytes - (2 * 1024 * 1024 * 1024) ))
+
+# Create /etc/cgconfig.conf
+echo "group ${cgroup_name} { memory { } }" >> /etc/cgconfig.conf
+echo "group ${cgroup_job_name} { memory { memory.limit_in_bytes = ${mem_total_minus1g_in_bytes}; memory.memsw.limit_in_bytes = ${total_minus2g_in_bytes}; } }" >> /etc/cgconfig.conf
+
+# Create /etc/cgrules.conf
+echo "root:provisioner memory ${cgroup_name}" >> /etc/cgrules.conf
+echo "runner:Runner.Listener memory ${cgroup_name}" >> /etc/cgrules.conf
+echo "runner:Runner.Worker memory ${cgroup_name}" >> /etc/cgrules.conf
+echo "runner memory ${cgroup_name}" >> /etc/cgrules.conf
+
+# Update Docker daemon conf
+if [ ! -f /etc/docker/daemon.json ]; then
+    echo "{ "cgroup-parent": "/${cgroup_job_name}" }" > /etc/docker/daemon.json
+else
+    jq ". + { "cgroup-parent": "/${cgroup_job_name}" }" /etc/docker/daemon.json > daemon_updated.json
+    mv daemon_updated.json /etc/docker/daemon.json
+fi
+
+# Enable swap accounting
+echo 'GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"' > /etc/default/grub.d/40-runner.cfg
+update-grub
