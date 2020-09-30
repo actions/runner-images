@@ -44,7 +44,7 @@ $sdkManager = "$sdkRoot\tools\bin\sdkmanager.bat"
 & $sdkManager --sdk_root=$sdkRoot "platform-tools"
 
 # get packages info
-$androidPackages = & $sdkManager --list --verbose 2>&1
+$androidPackages = & $sdkManager --list --verbose
 
 # platforms
 [int]$platformMinVersion = $androidToolset.platform_min_version
