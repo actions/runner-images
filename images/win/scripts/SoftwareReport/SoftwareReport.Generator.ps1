@@ -74,7 +74,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
 
 $markdown += New-MDHeader "Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
-    (Get-AzCosmosDBEmulatorVersion),
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
@@ -91,14 +90,12 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-KubectlVersion),
     (Get-KindVersion),
     (Get-MinGWVersion),
-    (Get-MySQLVersion),
     (Get-MercurialVersion),
     (Get-NSISVersion),
     (Get-NewmanVersion),
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
     (Get-PulumiVersion),
-    (Get-SQLPSVersion),
     (Get-SQLServerPSVersion),
     (Get-SVNVersion),
     (Get-GHCVersion),
@@ -166,6 +163,13 @@ $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Databases" -Level 3
 $markdown += Build-DatabasesMarkdown
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Database tools" -Level 3
+$markdown += New-MDList -Style Unordered -Lines @(
+    (Get-AzCosmosDBEmulatorVersion),
+    (Get-MySQLVersion)
+)
 $markdown += New-MDNewLine
 
 $vs = Get-VisualStudioVersion
