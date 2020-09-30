@@ -447,12 +447,12 @@ function Get-AndroidPackagesByVersion {
         [Parameter(Mandatory=$true)]
         [string]$PrefixPackageName,
         [object]$MinimumVersion,
-        [char]$Delimeter,
+        [char]$Delimiter,
         [int]$Index = 0
     )
 
     $Type = $MinimumVersion.GetType()
     $packagesByName = Get-AndroidPackagesByName -AndroidPackages $AndroidPackages -PrefixPackageName $PrefixPackageName
-    $packagesByVersion = $packagesByName | Where-Object { ($_.Split($Delimeter)[$Index] -as $Type) -ge $MinimumVersion }
-    return $packagesByVersion | Sort-Object { $_.Split($Delimeter)[$Index] -as $Type} -Unique
+    $packagesByVersion = $packagesByName | Where-Object { ($_.Split($Delimiter)[$Index] -as $Type) -ge $MinimumVersion }
+    return $packagesByVersion | Sort-Object { $_.Split($Delimiter)[$Index] -as $Type} -Unique
 }

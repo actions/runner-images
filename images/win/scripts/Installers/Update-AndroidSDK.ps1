@@ -42,7 +42,7 @@ $androidPackages = Get-AndroidPackages -AndroidSDKManagerPath $sdkManager
 $platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
                 -PrefixPackageName "platforms;" `
                 -MinimumVersion $platformMinVersion `
-                -Delimeter "-" `
+                -Delimiter "-" `
                 -Index 1
 
 # build-tools
@@ -50,7 +50,7 @@ $platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
 $buildToolsList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
                   -PrefixPackageName "build-tools;" `
                   -MinimumVersion $buildToolsMinVersion `
-                  -Delimeter ";" `
+                  -Delimiter ";" `
                   -Index 1
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `

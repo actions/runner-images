@@ -10,7 +10,7 @@ Describe "Android SDK" {
     $platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
                     -PrefixPackageName "platforms;" `
                     -MinimumVersion $platformMinVersion `
-                    -Delimeter "-" `
+                    -Delimiter "-" `
                     -Index 1
     $platformList | ForEach-Object {
         $platformTestCases += @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
@@ -21,7 +21,7 @@ Describe "Android SDK" {
     $buildToolsList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
                     -PrefixPackageName "build-tools;" `
                     -MinimumVersion $buildToolsMinVersion `
-                    -Delimeter ";" `
+                    -Delimiter ";" `
                     -Index 1
     $buildToolsList | ForEach-Object {
         $buildToolsTestCases += @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
