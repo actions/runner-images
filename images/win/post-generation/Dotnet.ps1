@@ -4,6 +4,5 @@ $dotnetPath = "$env:USERPROFILE\.dotnet\tools"
 if (-not $latestPath.Contains($dotnetPath))
 {
     $latestPath = "$dotnetPath;$latestPath"
+    [System.Environment]::SetEnvironmentVariable('PATH', $latestPath, [System.EnvironmentVariableTarget]::Machine)
 }
-
-[System.Environment]::SetEnvironmentVariable('PATH', $latestPath, [System.EnvironmentVariableTarget]::Machine)
