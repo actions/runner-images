@@ -10,7 +10,7 @@ set -e
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
-function install_android_package_gte_then {
+function filter_components_by_version {
     minimumVersion=$1
     shift
     toolsArr=("$@")
@@ -20,8 +20,7 @@ function install_android_package_gte_then {
         version=$(echo "${item##*[-;]}")
         if verlte $minimumVersion $version
         then
-            echo "Start installing $item"
-            echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager $item
+            components+=($item)
         fi
     done
 }
@@ -66,13 +65,15 @@ addons=$(jq -r '.android.addon_list[]|"add-ons;" + .' $toolset)
 additional=$(jq -r '.android.additional_tools[]' $toolset)
 
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
-echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager $extras $google_api_list $addons $additional
+components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" )
 
-platforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1 | sed 's/platforms;android-//g'))
-buildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "build-tools;" | cut -d"|" -f 1 | sed 's/build-tools;//g'))
+availablePlatforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
+availableBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "build-tools;" | cut -d"|" -f 1))
 
-install_android_package_gte_then $minimumPlatformVersion "${platforms[@]}"
-install_android_package_gte_then $minimumBuildToolVersion "${buildTools[@]}"
+filter_components_by_version $minimumPlatformVersion "${availablePlatforms[@]}"
+filter_components_by_version $minimumBuildToolVersion "${availableBuildTools[@]}"
+
+echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager ${components[@]}
 
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}
