@@ -4,6 +4,8 @@
 ##  Desc:  Installs erlang
 ################################################################################
 
+set -e
+set -o pipefail
 
 source_list=/etc/apt/sources.list.d/eslerlang.list
 

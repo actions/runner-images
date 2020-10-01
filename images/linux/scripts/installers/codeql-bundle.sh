@@ -4,6 +4,9 @@
 ##  Desc:  Install the CodeQL CLI Bundle to the toolcache.
 ################################################################################
 
+set -e
+set -o pipefail
+
 source $HELPER_SCRIPTS/install.sh
 
 # Retrieve the name of the CodeQL bundle preferred by the Action (in the format codeql-bundle-YYYYMMDD).

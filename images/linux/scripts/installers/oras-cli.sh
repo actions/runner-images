@@ -4,6 +4,9 @@
 ##  Desc:  Installs ORAS CLI
 ################################################################################
 
+set -e
+set -o pipefail
+
 source $HELPER_SCRIPTS/install.sh
 
 # Determine latest ORAS CLI version

@@ -9,6 +9,7 @@ source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/os.sh
 
 set -e
+set -o pipefail
 
 # add repository
 apt-add-repository ppa:ondrej/php -y

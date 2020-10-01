@@ -4,6 +4,8 @@
 ##  Desc:  Installs Bazel and Bazelisk (A user-friendly launcher for Bazel)
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install bazel
 curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -

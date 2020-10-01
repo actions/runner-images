@@ -4,6 +4,8 @@
 ##  Desc:  Installs sbt
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install sbt
 # https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Linux.html

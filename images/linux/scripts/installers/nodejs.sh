@@ -4,6 +4,8 @@
 ##  Desc:  Installs Node.js LTS and related tooling (Gulp, Grunt)
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install LTS Node.js and related build tools
 curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-install | bash -s -- -ny -

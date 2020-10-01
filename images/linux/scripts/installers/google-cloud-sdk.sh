@@ -4,6 +4,8 @@
 ##  Desc:  Installs the Google Cloud SDK
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install the Google Cloud SDK
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list

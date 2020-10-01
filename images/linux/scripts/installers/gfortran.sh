@@ -4,6 +4,8 @@
 ##  Desc:  Installs GNU Fortran
 ################################################################################
 
+set -e
+set -o pipefail
 
 function InstallFortran {
     version=$1

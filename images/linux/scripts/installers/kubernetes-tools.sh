@@ -4,6 +4,8 @@
 ##  Desc:  Installs kubectl, helm, kustomize
 ################################################################################
 
+set -e
+set -o pipefail
 
 ## Install kubectl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -

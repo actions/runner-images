@@ -4,6 +4,9 @@
 ##  Desc:  Installs the Vercel CLI
 ################################################################################
 
+set -e
+set -o pipefail
+
 # Install the Vercel CLI
 npm i -g vercel
 

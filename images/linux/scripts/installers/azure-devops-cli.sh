@@ -4,6 +4,8 @@
 ##  Desc:  Installed Azure DevOps CLI (az devops)
 ################################################################################
 
+set -e
+set -o pipefail
 
 # AZURE_EXTENSION_DIR shell variable defines where modules are installed
 # https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview

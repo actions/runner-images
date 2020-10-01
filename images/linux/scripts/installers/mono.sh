@@ -4,6 +4,8 @@
 ##  Desc:  Installs Mono
 ################################################################################
 
+set -e
+set -o pipefail
 
 LSB_CODENAME=$(lsb_release -cs)
 

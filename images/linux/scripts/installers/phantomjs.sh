@@ -5,6 +5,7 @@
 ################################################################################
 
 set -e
+set -o pipefail
 
 # Install PhantomJS
 apt-get install -y chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev

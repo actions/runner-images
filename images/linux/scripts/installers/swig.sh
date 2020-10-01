@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+set -o pipefail
 
 # Install Swig
 sudo apt-get install -y swig

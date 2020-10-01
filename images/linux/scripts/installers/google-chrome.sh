@@ -4,6 +4,8 @@
 ##  Desc:  Installs google-chrome  and chromedriver
 ################################################################################
 
+set -e
+set -o pipefail
 
 LSB_RELEASE=$(lsb_release -rs)
 

@@ -4,6 +4,9 @@
 ##  Desc:  Test Python and Ruby versions in tools cache
 ################################################################################
 
+set -e
+set -o pipefail
+
 # Must be procecessed after tool cache setup(hosted-tool-cache.sh).
 
 Test_Hostedtoolcache_Tool() {

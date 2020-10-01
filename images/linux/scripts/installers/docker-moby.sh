@@ -3,7 +3,9 @@
 ##  File:  docker-moby.sh
 ##  Desc:  Installs docker onto the image
 ################################################################################
+
 set -e
+set -o pipefail
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh

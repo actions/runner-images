@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+set -o pipefail
+
 imagedata_file=$IMAGEDATA_FILE
 image_version=$IMAGE_VERSION
 os_name=$(lsb_release -ds | sed "s/ /\\\n/g")

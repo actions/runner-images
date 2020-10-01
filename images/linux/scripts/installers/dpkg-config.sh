@@ -7,6 +7,10 @@
 # automatic installs. If you are using this front-end, and require
 # non-default  answers  to questions, you will need to preseed the
 # debconf database
+
+set -e
+set -o pipefail
+
 echo 'DEBIAN_FRONTEND=noninteractive' | tee -a /etc/environment
 
 # dpkg can be instructed not to ask for confirmation

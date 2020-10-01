@@ -4,6 +4,9 @@
 ##  Desc:  Validate the Homebrew can run after reboot without extra configuring
 ################################################################################
 
+set -e
+set -o pipefail
+
 # Validate the installation
 echo "Validate the Homebrew can run after reboot"
 

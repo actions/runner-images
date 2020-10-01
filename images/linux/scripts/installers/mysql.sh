@@ -4,6 +4,8 @@
 ##  Desc:  Installs MySQL Client
 ################################################################################
 
+set -e
+set -o pipefail
 
 export ACCEPT_EULA=Y
 

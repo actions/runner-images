@@ -4,6 +4,8 @@
 ##  Desc:  Installs Heroku CLI
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install Heroku CLI
 curl https://cli-assets.heroku.com/install-ubuntu.sh | sh

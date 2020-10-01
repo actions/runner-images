@@ -4,6 +4,8 @@
 ##  Desc:  Installs build-essential package
 ################################################################################
 
+set -e
+set -o pipefail
 
 source $HELPER_SCRIPTS/install.sh
 

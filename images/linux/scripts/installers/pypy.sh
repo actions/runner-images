@@ -4,6 +4,9 @@
 ##  Desc:  Installs PyPy
 ################################################################################
 
+set -e
+set -o pipefail
+
 source $HELPER_SCRIPTS/install.sh
 
 # This function installs PyPy using the specified arguments:

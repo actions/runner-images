@@ -4,6 +4,8 @@
 ##  Desc:  Installs Ruby requirements
 ################################################################################
 
+set -e
+set -o pipefail
 
 sudo apt-get install ruby-full
 sudo gem update --system

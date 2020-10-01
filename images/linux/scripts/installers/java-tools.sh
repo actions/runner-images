@@ -7,6 +7,7 @@
 source $HELPER_SCRIPTS/os.sh
 
 set -e
+set -o pipefail
 
 function javaTool {
     if [[ "$2" =~ ([1]{0,1}.)?$DEFAULT_JDK_VERSION.* ]]; then

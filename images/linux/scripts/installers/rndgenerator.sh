@@ -4,6 +4,8 @@
 ##  Desc:  Install random number generator
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install haveged
 apt-get -y install haveged

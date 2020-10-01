@@ -7,6 +7,7 @@
 
 # Fail out if any setups fail
 set -e
+set -o pipefail
 
 TOOLCACHE_REGISTRY="npm.pkg.github.com"
 

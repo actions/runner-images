@@ -4,6 +4,8 @@
 ##  Desc:  Installs Nvm
 ################################################################################
 
+set -e
+set -o pipefail
 
 export NVM_DIR="/etc/skel/.nvm"
 mkdir $NVM_DIR

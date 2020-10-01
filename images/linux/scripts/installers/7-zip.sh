@@ -4,6 +4,8 @@
 ##  Desc:  Installs 7-zip
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install 7-Zip
 apt-get update -y

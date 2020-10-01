@@ -5,6 +5,9 @@
 ##         because /etc/profile.d is ignored by `--norc` shell launch option
 ################################################################################
 
+set -e
+set -o pipefail
+
 # Source the helpers
 source $HELPER_SCRIPTS/etc-environment.sh
 

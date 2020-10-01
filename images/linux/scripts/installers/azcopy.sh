@@ -4,6 +4,8 @@
 ##  Desc:  Installs AzCopy
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install AzCopy7
 wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinux64

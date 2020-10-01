@@ -4,6 +4,8 @@
 ##  Desc:  Installs Firefox
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install Firefox
 apt-get install -y firefox

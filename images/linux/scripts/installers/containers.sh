@@ -4,6 +4,8 @@
 ##  Desc:  Installs container tools: podman, buildah and skopeo onto the image
 ################################################################################
 
+set -e
+set -o pipefail
 
 source /etc/os-release
 sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x${NAME}_${VERSION_ID}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"

@@ -4,6 +4,8 @@
 ##  Desc:  Installs Subversion client
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install Subversion
 apt-get install -y --no-install-recommends subversion

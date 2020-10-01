@@ -5,6 +5,7 @@
 ################################################################################
 
 set -e
+set -o pipefail
 
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 common_packages=$(jq -r ".apt.common_packages[]" $toolset)

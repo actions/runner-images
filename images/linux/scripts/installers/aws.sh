@@ -4,6 +4,9 @@
 ##  Desc:  Installs the AWS CLI
 ################################################################################
 
+set -e
+set -o pipefail
+
 source $HELPER_SCRIPTS/os.sh
 
 # Install the AWS CLI v1 on Ubuntu16 and Ubuntu18, and AWS CLI v2 on Ubuntu20

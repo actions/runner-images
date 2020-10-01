@@ -4,6 +4,9 @@
 ##  Desc:  Installs Rust
 ################################################################################
 
+set -e
+set -o pipefail
+
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
 

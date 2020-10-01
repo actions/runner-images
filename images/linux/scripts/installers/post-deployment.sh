@@ -4,6 +4,9 @@
 ##  Desc: Post deployment actions
 ################################################################################
 
+set -e
+set -o pipefail
+
 # set chmod -R 777 /opt
 if [[ -d "/opt" ]]; then
     echo "chmod -R 777 /opt"

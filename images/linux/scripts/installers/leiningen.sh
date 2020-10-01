@@ -4,8 +4,8 @@
 ##  Desc:  Installs Leiningen
 ################################################################################
 
-
 set -e
+set -o pipefail
 
 LEIN_BIN=/usr/local/bin/lein
 curl -s https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > $LEIN_BIN

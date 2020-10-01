@@ -4,6 +4,8 @@
 ##  Desc:  Installs the Netlify CLI
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install the Netlify CLI
 npm i -g netlify-cli

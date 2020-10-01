@@ -4,6 +4,8 @@
 ##  Desc:  Installs Swift
 ################################################################################
 
+set -e
+set -o pipefail
 
 # Install
 image_label="$(lsb_release -rs)"

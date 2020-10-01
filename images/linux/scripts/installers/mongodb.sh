@@ -4,6 +4,9 @@
 ##  Desc:  Installs Mongo DB
 ################################################################################
 
+set -e
+set -o pipefail
+
 # Source the helpers
 source $HELPER_SCRIPTS/os.sh
 

@@ -5,6 +5,9 @@
 ##  Caveat: Brew MUST NOT be used to install any tool during the image build to avoid dependencies, which may come along with the tool
 ################################################################################
 
+set -e
+set -o pipefail
+
 # Source the helpers
 source $HELPER_SCRIPTS/etc-environment.sh
 
