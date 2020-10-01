@@ -26,11 +26,11 @@ export PIPX_HOME=/opt/pipx
 python3 -m pip install pipx
 python3 -m pipx ensurepath
 
-echo "PIPX_BIN_DIR=$PIPX_BIN_DIR" | tee -a /etc/environment
-echo "PIPX_HOME=$PIPX_HOME" | tee -a /etc/environment
+# echo "PIPX_BIN_DIR=$PIPX_BIN_DIR" | tee -a /etc/environment
+# echo "PIPX_HOME=$PIPX_HOME" | tee -a /etc/environment
 
 # Add pipx bin directory to path
-export PATH="$PATH:$PIPX_BIN_DIR"
+# export PATH="$PATH:$PIPX_BIN_DIR"
 echo 'export PATH="$PATH:/opt/pipx_bin"' >> /etc/skel/.bashrc
 
 # Run tests to determine that the software installed as expected

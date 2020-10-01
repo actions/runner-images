@@ -5,7 +5,7 @@
 ################################################################################
 
 # Add pipx_bin to path
-export PATH="$PATH:/opt/pipx_bin"
+python3 -m pipx ensurepath
 
 # Install yamlint
 pipx install yamllint
