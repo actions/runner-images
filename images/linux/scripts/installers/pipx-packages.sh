@@ -4,6 +4,9 @@
 ##  Desc:  Install tools via pipx
 ################################################################################
 
+# Add pipx_bin to path
+export PATH="$PATH:/opt/pipx_bin"
+
 # Install yamlint
 pipx install yamllint
 
