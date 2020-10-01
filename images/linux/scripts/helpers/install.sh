@@ -43,3 +43,8 @@ download_with_retries() {
 function IsPackageInstalled {
     dpkg -S $1 &> /dev/null
 }
+
+verlte() {
+    sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
+    [  "$1" = "$sortedVersion" ]
+}

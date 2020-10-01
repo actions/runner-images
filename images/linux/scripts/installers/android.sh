@@ -9,12 +9,7 @@ set -e
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
 
-verlte() {
-    sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
-    [  "$1" = "$sortedVersion" ]
-}
-
-function install_android_packages {
+function install_android_package_gte_then {
     minimumVersion=$1
     shift
     toolsArr=("$@")
@@ -72,13 +67,11 @@ additional=$(jq -r '.android.additional_tools[]' $toolset)
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager $extras $google_api_list $addons $additional
 
-platforms=$(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android" | sed -E "s/[[:space:]]+//g" | sed -E "s/\|.*//g")
-buildTools=$(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "build-tools;" | sed -E "s/[[:space:]]+//g" | sed -E "s/\|.*//g")
+platforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1 | sed 's/platforms;android-//g'))
+buildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "build-tools;" | cut -d"|" -f 1 | sed 's/build-tools;//g'))
 
-platformsArr=(${platforms})
-install_android_packages $minimumPlatformVersion "${platformsArr[@]}"
-buildToolsArr=(${buildTools})
-install_android_packages $minimumBuildToolVersion "${buildToolsArr[@]}"
+install_android_package_gte_then $minimumPlatformVersion "${platforms[@]}"
+install_android_package_gte_then $minimumBuildToolVersion "${buildTools[@]}"
 
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}
