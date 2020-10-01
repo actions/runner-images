@@ -8,6 +8,10 @@ Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
 
 $ErrorActionPreference = 'silentlycontinue'
 
+# Change temp path for choco to avoid initial installation delays
+$chocoTempPath = 'C:\Temp\Chocolatey'
+choco config set cacheLocation $chocoTempPath
+
 Write-Host "Clean up various directories"
 @(
     "C:\\Recovery",

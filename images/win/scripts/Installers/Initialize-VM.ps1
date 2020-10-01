@@ -84,7 +84,6 @@ Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name
 
 Write-Host "Install chocolatey"
 $chocoExePath = 'C:\ProgramData\Chocolatey\bin'
-$chocoTempPath = 'C:\Temp\Chocolatey'
 
 if ($($env:Path).ToLower().Contains($($chocoExePath).ToLower())) {
     Write-Host "Chocolatey found in PATH, skipping install..."
@@ -110,9 +109,6 @@ Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey
 
 # Turn off confirmation
 choco feature enable -n allowGlobalConfirmation
-
-# Set choco temp directory to non-existent one
-choco config set cacheLocation $chocoTempPath
 
 # https://github.com/chocolatey/choco/issues/89
 # Remove some of the command aliases, like `cpack` #89
