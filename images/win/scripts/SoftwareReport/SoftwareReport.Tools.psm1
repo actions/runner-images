@@ -119,6 +119,12 @@ function Get-PulumiVersion {
     return "Pulumi $(pulumi version)"
 }
 
+function Get-SQLPSVersion {
+    $module = Get-Module -Name SQLPS -ListAvailable
+    $version = $module.Version
+    return "SQLPS $version"
+}
+
 function Get-SQLServerPSVersion {
     $module = Get-Module -Name SQLServer -ListAvailable
     $version = $module.Version
