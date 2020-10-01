@@ -11,7 +11,7 @@ function Get-NativeVersionFormat {
     return $Version
 }
 
-Describe "Java" -Skip:($os.IsBigSur) {
+Describe "Java" {
     BeforeAll {
         function Validate-JavaVersion {
             param($JavaCommand, $ExpectedVersion)

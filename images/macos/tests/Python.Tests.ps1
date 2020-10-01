@@ -12,7 +12,7 @@ Describe "Python" {
         (Get-CommandResult "python --version").Output | Should -BeLike "Python 2.*"
     }
 
-    It "Python 2 is installed under /usr/local/bin" -Skip:($os.IsBigSur) {
+    It "Python 2 is installed under /usr/local/bin" {
         Get-WhichTool "python" | Should -BeLike "/usr/local/bin*"
     }
 
@@ -24,7 +24,7 @@ Describe "Python" {
         Get-WhichTool "python3" | Should -BeLike "/usr/local/bin*"
     }
 
-    It "Pip 2 is available" -Skip:($os.IsBigSur) {
+    It "Pip 2 is available" {
         "pip --version" | Should -ReturnZeroExitCode
     }
 
