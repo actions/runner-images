@@ -9,16 +9,20 @@ set -e
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
 
+verlte() {
+    sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
+    [  "$1" = "$sortedVersion" ]
+}
+
 function install_android_packages {
-    minimumVersion=$( echo "$1" | sed 's/\.//g' )
+    minimumVersion=$1
     shift
     toolsArr=("$@")
 
     for item in ${toolsArr[@]}
     do
-        version=$(echo "${item##*[-;]}" | sed 's/\.//g')
-        echo "version is $version"
-        if (( $version >= $minimumVersion ))
+        version=$(echo "${item##*[-;]}")
+        if verlte $minimumVersion $version
         then
             echo "Start installing $item"
             echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager $item
