@@ -119,6 +119,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AWSSessionManagerVersion),
     (Get-AlibabaCLIVersion),
     (Get-CloudFoundryVersion),
+    (Get-DacFxVersion),
     (Get-HubVersion),
     (Get-GHVersion)
 )
