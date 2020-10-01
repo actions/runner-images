@@ -96,6 +96,11 @@
         },
         {
             "type": "file",
+            "source": "{{ template_dir }}/post-generation",
+            "destination": "/opt/post-generation"
+        },
+        {
+            "type": "file",
             "source": "{{ template_dir }}/scripts/SoftwareReport",
             "destination": "{{user `image_folder`}}"
         },
