@@ -18,7 +18,7 @@ fi
 echo "yamllint is successfully installed"
 
 # Install aws sam cli
-pipx install aws-sam-cli --python /opt/hostedtoolcache/Python/3.7.9/x64/bin/python3.7
+pipx install aws-sam-cli --python /opt/hostedtoolcache/Python/3.7*/x64/bin/python3.7
 
 if ! command -v sam; then
         echo "aws sam cli was not installed"
