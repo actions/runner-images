@@ -96,7 +96,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
     (Get-PulumiVersion),
-    (Get-SQLServerPSVersion),
     (Get-SVNVersion),
     (Get-GHCVersion),
     (Get-CabalVersion),
