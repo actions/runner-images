@@ -58,6 +58,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
         (Get-YarnVersion),
         (Get-PipVersion),
         (Get-Pip3Version),
+        (Get-PipxVersion),
         (Get-VcpkgVersion)
 )
 
@@ -110,6 +111,7 @@ $toolsList = @(
     (Get-TerraformVersion),
     (Get-UnZipVersion),
     (Get-WgetVersion),
+    (Get-YamllintVersion),
     (Get-ZipVersion),
     (Get-ZstdVersion)
 )
