@@ -46,7 +46,10 @@ function Switch-Xcode {
 }
 
 function Test-XcodeStableRelease {
-    param([string] $XcodeRootPath)
+    param(
+        [Parameter(Mandatory)]
+        [string] $XcodeRootPath
+    )
 
     $licenseInfoPlistPath = Join-Path $XcodeRootPath "Contents" "Resources" "LicenseInfo.plist"
     $releaseType = & defaults read $licenseInfoPlistPath "licenseType"
