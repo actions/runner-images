@@ -4,19 +4,18 @@
 ##  Desc:  Installs Python 2/3
 ################################################################################
 
+set -e
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
 
 # Install Python, Python 3, pip, pip3
-if isUbuntu20 ; then
-    apt-get install -y --no-install-recommends python3 python3-dev python3-pip
-
-    curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
-    python2 get-pip.py
+if isUbuntu16 || isUbuntu18; then
+    apt-get install -y --no-install-recommends python python-dev python-pip python3 python3-dev python3-pip
 fi
 
-if isUbuntu16 || isUbuntu18 ; then
-    apt-get install -y --no-install-recommends python python-dev python-pip python3 python3-dev python3-pip
+if isUbuntu20; then
+    apt-get install -y --no-install-recommends python3 python3-dev python3-pip
+    ln -s /usr/bin/pip3 /usr/bin/pip
 fi
 
 # Run tests to determine that the software installed as expected

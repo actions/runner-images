@@ -2,16 +2,27 @@ Import-Module (Join-Path $PSScriptRoot "..\SoftwareReport\SoftwareReport.Android
 
 Describe "Android SDK" {
     $androidToolset = (Get-ToolsetContent).android
+    $androidPackages = Get-AndroidPackages -AndroidSDKManagerPath (Get-AndroidSDKManagerPath)
     $androidInstalledPackages = Get-AndroidInstalledPackages
 
     $platformTestCases = @()
-    $platformList = $androidToolset.platform_list
+    [int]$platformMinVersion = $androidToolset.platform_min_version
+    $platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+                    -PrefixPackageName "platforms;" `
+                    -MinimumVersion $platformMinVersion `
+                    -Delimiter "-" `
+                    -Index 1
     $platformList | ForEach-Object {
         $platformTestCases += @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
     }
 
     $buildToolsTestCases = @()
-    $buildToolsList = $androidToolset.build_tools
+    [version]$buildToolsMinVersion = $androidToolset.build_tools_min_version
+    $buildToolsList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+                    -PrefixPackageName "build-tools;" `
+                    -MinimumVersion $buildToolsMinVersion `
+                    -Delimiter ";" `
+                    -Index 1
     $buildToolsList | ForEach-Object {
         $buildToolsTestCases += @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
     }
@@ -35,14 +46,14 @@ Describe "Android SDK" {
     }
 
     It "Platform version <platformVersion> is installed" -TestCases $platformTestCases {
-        "$installedPackages" | Should -Match "platforms;$platformVersion"
+        "$installedPackages" | Should -Match "$platformVersion"
     }
 
     It "Platform build tools <buildToolsVersion> is installed" -TestCases $buildToolsTestCases {
-        "$installedPackages" | Should -Match "build-tools;$buildToolsVersion"
+        "$installedPackages" | Should -Match "$buildToolsVersion"
     }
 
-    if (Test-isWin19) {
+    if (Test-IsWin19) {
         It "Extra package <extraPackage> is installed" -TestCases $extraPackagesTestCases {
             "$installedPackages" | Should -Match "extras;$extraPackage"
         }
