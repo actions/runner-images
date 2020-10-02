@@ -68,7 +68,8 @@ additional=$(jq -r '.android.additional_tools[]' $toolset)
 components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" )
 
 availablePlatforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
-availableBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "build-tools;" | cut -d"|" -f 1))
+allBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
+availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
 
 filter_components_by_version $minimumPlatformVersion "${availablePlatforms[@]}"
 filter_components_by_version $minimumBuildToolVersion "${availableBuildTools[@]}"
