@@ -2,8 +2,6 @@
 ##  File:  Install-PHP.ps1
 ##  Desc:  Install PHP
 ################################################################################
-$ErrorActionPreference = "Stop"
-
 Import-Module -Name ImageHelpers
 
 # Install latest PHP in chocolatey
