@@ -5,7 +5,7 @@
 ################################################################################
 
 
-export PATH="$PATH:/opt/pipx_bin"
+# export PATH="$PATH:/opt/pipx_bin"
 
 # Install yamlint
 pipx install yamllint

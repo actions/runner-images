@@ -6,6 +6,7 @@
 
 set -e
 # Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/os.sh
 
 # Install Python, Python 3, pip, pip3
@@ -26,8 +27,12 @@ export PIPX_HOME=/opt/pipx
 python3 -m pip install pipx
 python3 -m pipx ensurepath
 
-echo "PIPX_BIN_DIR=$PIPX_BIN_DIR" | tee -a /etc/environment
-echo "PIPX_HOME=$PIPX_HOME" | tee -a /etc/environment
+# Update /etc/environment
+setEtcEnvironmentVariable "PIPX_BIN_DIR" $PIPX_BIN_DIR
+setEtcEnvironmentVariable "PIPX_HOME" $PIPX_HOME
+prependEtcEnvironmentPath /opt/pipx_bin
+# echo "PIPX_BIN_DIR=$PIPX_BIN_DIR" | tee -a /etc/environment
+# echo "PIPX_HOME=$PIPX_HOME" | tee -a /etc/environment
 
 # Add pipx bin directory to path
 # export PATH="$PATH:$PIPX_BIN_DIR"
