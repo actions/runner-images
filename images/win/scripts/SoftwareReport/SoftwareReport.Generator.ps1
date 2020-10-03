@@ -230,4 +230,8 @@ $markdown += New-MDHeader "Android" -Level 3
 $markdown += Build-AndroidTable | New-MDTable
 $markdown += New-MDNewLine
 
+# Docker images section
+$markdown += New-MDHeader "Cached Docker images" -Level 3
+$markdown += New-MDList -Style Unordered -Lines @(Get-CachedDockerImages)
+
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"
