@@ -272,5 +272,5 @@ function Get-SphinxVersion {
 }
 
 function Get-YamllintVersion {
-    return (yamllint --version | Out-String)
+    return "$(yamllint --version)"
 }
