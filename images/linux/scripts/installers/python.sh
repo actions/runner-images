@@ -33,9 +33,6 @@ if isUbuntu18 || isUbuntu20 ; then
     setEtcEnvironmentVariable "PIPX_HOME" $PIPX_HOME
     prependEtcEnvironmentPath /opt/pipx_bin
 
-    # Add pipx bin directory to path
-    echo 'export PATH="$PATH:/opt/pipx_bin"' >> /etc/skel/.bashrc
-
     # Test pipx
     if ! command -v pipx; then
         echo "pipx was not installed or not found on PATH"
