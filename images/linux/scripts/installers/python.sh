@@ -31,7 +31,7 @@ if isUbuntu18 || isUbuntu20 ; then
     # Update /etc/environment
     setEtcEnvironmentVariable "PIPX_BIN_DIR" $PIPX_BIN_DIR
     setEtcEnvironmentVariable "PIPX_HOME" $PIPX_HOME
-    prependEtcEnvironmentPath /opt/pipx_bin
+    prependEtcEnvironmentPath $PIPX_BIN_DIR
 
     # Test pipx
     if ! command -v pipx; then
