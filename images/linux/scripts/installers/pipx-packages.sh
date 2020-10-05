@@ -19,13 +19,11 @@ for package in $pipx_packages; do
         echo "Install $package into python $python_path"
         pipx install $package --python $python_path
     fi
-done
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in $pipx_packages; do
+    # Run tests to determine that the software installed as expected
+    cmd=$(jq ".pipx[] | select(.package == $package) .cmd" $toolset)
     if ! command -v $cmd; then
-        echo "$cmd was not installed"
+        echo "$package was not installed"
         exit 1
     fi
 done
