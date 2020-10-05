@@ -15,7 +15,6 @@
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
         "vm_size": "Standard_D4_v2",
         "run_scan_antivirus": "false",
-
         "root_folder": "C:",
         "toolset_json_path": "{{env `TEMP`}}\\toolset.json",
         "image_folder": "C:\\image",
@@ -30,7 +29,11 @@
         "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
         "announcements": "{{env `ANNOUNCEMENTS`}}"
     },
-    "sensitive-variables": ["install_password", "client_secret", "github_feed_token"],
+    "sensitive-variables": [
+        "install_password",
+        "client_secret",
+        "github_feed_token"
+    ],
     "builders": [
         {
             "name": "vhd",
@@ -65,7 +68,7 @@
     "provisioners": [
         {
             "type": "powershell",
-            "inline":[
+            "inline": [
                 "New-Item -Path {{user `image_folder`}} -ItemType Directory -Force"
             ]
         },
@@ -78,6 +81,11 @@
             "type": "file",
             "source": "{{ template_dir }}/scripts/SoftwareReport",
             "destination": "{{user `image_folder`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{ template_dir }}/post-generation",
+            "destination": "C:/post-generation"
         },
         {
             "type": "file",
@@ -97,7 +105,7 @@
         {
             "type": "windows-shell",
             "inline": [
-                "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y" ,
+                "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y",
                 "net localgroup Administrators {{user `install_user`}} /add",
                 "winrm set winrm/config/service/auth @{Basic=\"true\"}",
                 "winrm get winrm/config/service/auth"
@@ -116,7 +124,7 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-PowerShellModules.ps1",
                 "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1"
@@ -127,13 +135,13 @@
             "type": "powershell",
             "elevated_user": "SYSTEM",
             "elevated_password": "",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Windows2019/Install-WSL.ps1"
             ]
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-ContainersFeature.ps1"
             ]
@@ -141,8 +149,8 @@
         {
             "type": "powershell",
             "inline": [
-              "setx ImageVersion {{user `image_version` }} /m",
-              "setx ImageOS {{user `image_os` }} /m"
+                "setx ImageVersion {{user `image_version` }} /m",
+                "setx ImageOS {{user `image_os` }} /m"
             ]
         },
         {
@@ -155,7 +163,7 @@
                 "IMAGE_VERSION={{user `image_version`}}",
                 "IMAGEDATA_FILE={{user `imagedata_file`}}"
             ],
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"
@@ -167,7 +175,7 @@
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1"
             ]
         },
@@ -177,10 +185,11 @@
                 0,
                 3010
             ],
-            "environment_vars":[
+            "environment_vars": [
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
-            "scripts":[
+            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NET48.ps1"
             ],
@@ -189,10 +198,10 @@
         },
         {
             "type": "powershell",
-            "environment_vars":[
+            "environment_vars": [
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Nuget.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Wix.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WDK.ps1",
@@ -210,7 +219,7 @@
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-ServiceFabricSDK.ps1"
             ],
             "execution_policy": "remotesigned"
@@ -221,38 +230,39 @@
         },
         {
             "type": "powershell",
-            "environment_vars":[
+            "environment_vars": [
                 "GITHUB_FEED_TOKEN={{ user `github_feed_token` }}",
                 "ROOT_FOLDER={{user `root_folder`}}"
             ],
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Download-ToolCache.ps1"
             ]
         },
         {
             "type": "windows-shell",
-            "inline": ["wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"]
+            "inline": [
+                "wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"
+            ]
         },
         {
             "type": "powershell",
-            "environment_vars":[
+            "environment_vars": [
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "ROOT_FOLDER={{user `root_folder`}}",
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-YAMLLint.ps1",
                 "{{ template_dir }}/scripts/Installers/Update-AndroidSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1"
-
             ]
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-OpenSSL.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Perl.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Git.ps1",
@@ -271,7 +281,7 @@
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
@@ -281,13 +291,13 @@
             "type": "powershell",
             "elevated_user": "SYSTEM",
             "elevated_password": "",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Msys2.ps1"
             ]
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-VSWhere.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WinAppDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Cmake.ps1",
@@ -324,7 +334,7 @@
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1"
             ],
@@ -337,10 +347,10 @@
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
             ],
-            "environment_vars":[
+            "environment_vars": [
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}",
                 "ROOT_FOLDER={{user `root_folder`}}"
@@ -351,7 +361,7 @@
             "inline": [
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ],
-            "environment_vars":[
+            "environment_vars": [
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "ANNOUNCEMENTS={{user `announcements`}}"
             ]
@@ -364,7 +374,7 @@
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Finalize-VM.ps1"
             ]
         },
@@ -374,28 +384,28 @@
         },
         {
             "type": "powershell",
-            "environment_vars":[
+            "environment_vars": [
                 "RUN_SCAN_ANTIVIRUS={{user `run_scan_antivirus`}}"
             ],
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Run-Antivirus.ps1"
             ]
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1"
             ]
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
             ]
         },
         {
             "type": "powershell",
-            "scripts":[
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Run-NGen.ps1"
             ]
         },

@@ -3,14 +3,7 @@
 ##  Desc:  Install and update Android SDK and tools
 ################################################################################
 
-# Download the latest command line tools so that we can accept all of the licenses.
-# See https://developer.android.com/studio/#command-tools
-$sdkArchPath = Start-DownloadWithRetry -Url "https://dl.google.com/android/repository/sdk-tools-windows-4333796.zip" -Name "android-sdk-tools.zip"
-
-# Don't replace the one that VS installs as it seems to break things.
-Expand-Archive -Path $sdkArchPath -DestinationPath android-sdk -Force
-
-$sdk = Get-Item -Path .\android-sdk
+$ErrorActionPreference = "Stop"
 
 # Install the standard Android SDK licenses. In the past, there wasn't a better way to do this,
 # so we are base64-encoding a zip of the licenses directory from another installation.
@@ -30,7 +23,6 @@ $content = [System.Convert]::FromBase64String($base64Content)
 Set-Content -Path .\android-sdk-licenses.zip -Value $content -Encoding Byte
 Expand-Archive -Path .\android-sdk-licenses.zip -DestinationPath 'C:\Program Files (x86)\Android\android-sdk' -Force
 
-
 # run the updates.
 # keep newer versions in descending order
 
@@ -42,15 +34,32 @@ $sdkManager = "$sdkRoot\tools\bin\sdkmanager.bat"
 
 & $sdkManager --sdk_root=$sdkRoot "platform-tools"
 
-Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
-                          -AndroidSDKRootPath $sdkRoot `
-                          -AndroidPackages $androidToolset.platform_list `
-                          -PrefixPackageName "platforms;"
+# get packages info
+$androidPackages = Get-AndroidPackages -AndroidSDKManagerPath $sdkManager
+
+# platforms
+[int]$platformMinVersion = $androidToolset.platform_min_version
+$platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+                -PrefixPackageName "platforms;" `
+                -MinimumVersion $platformMinVersion `
+                -Delimiter "-" `
+                -Index 1
+
+# build-tools
+[version]$buildToolsMinVersion = $androidToolset.build_tools_min_version
+$buildToolsList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+                  -PrefixPackageName "build-tools;" `
+                  -MinimumVersion $buildToolsMinVersion `
+                  -Delimiter ";" `
+                  -Index 1
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
-                          -AndroidPackages $androidToolset.build_tools `
-                          -PrefixPackageName "build-tools;"
+                          -AndroidPackages $platformList
+
+Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
+                          -AndroidSDKRootPath $sdkRoot `
+                          -AndroidPackages $buildToolsList
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
@@ -71,6 +80,7 @@ $ndkRoot = "C:\Program Files (x86)\Android\android-sdk\ndk-bundle"
 
 if (Test-Path $ndkRoot) {
     setx ANDROID_HOME $sdkRoot /M
+    setx ANDROID_SDK_ROOT $sdkRoot /M
     setx ANDROID_NDK_HOME $ndkRoot /M
     setx ANDROID_NDK_PATH $ndkRoot /M
 } else {

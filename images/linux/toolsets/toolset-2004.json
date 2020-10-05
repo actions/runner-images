@@ -96,7 +96,7 @@
             "locales",
             "openssh-client",
             "pkg-config",
-            "python-is-python2",
+            "python-is-python3",
             "rpm",
             "texinfo",
             "tk",

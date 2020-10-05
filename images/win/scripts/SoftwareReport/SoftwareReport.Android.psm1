@@ -31,7 +31,6 @@ function Get-AndroidInstalledPackages {
     return $androidInstalledPackages
 }
 
-
 function Build-AndroidTable {
     $packageInfo = Get-AndroidInstalledPackages
     return @(

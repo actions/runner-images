@@ -16,18 +16,7 @@ function DockerPull {
     }
 }
 
-if (Test-IsWin16) {
-  DockerPull mcr.microsoft.com/windows/servercore:ltsc2016
-  DockerPull mcr.microsoft.com/windows/nanoserver:10.0.14393.953
-  DockerPull mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016
-  DockerPull mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016
+$dockerToolset = (Get-ToolsetContent).docker
+foreach($dockerImage in $dockerToolset.images) {
+  DockerPull $dockerImage
 }
-
-if (Test-IsWin19) {
-  DockerPull mcr.microsoft.com/windows/servercore:ltsc2019
-  DockerPull mcr.microsoft.com/windows/nanoserver:1809
-  DockerPull mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019
-  DockerPull mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019
-}
-
-DockerPull microsoft/aspnetcore-build:1.0-2.0
