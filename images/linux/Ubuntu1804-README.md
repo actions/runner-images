@@ -11,7 +11,7 @@
 - GNU C++ 7.5.0, 8.4.0, 9.3.0, 10.1.0
 - GNU Fortran 7.5.0, 8.4.0, 9.3.0
 - Clang 6.0.0, 8.0.0, 9.0.0
-- Erlang 11.1
+- Erlang 
 - Mono 6.12.0.90
 - Node 12.18.4
 - Python 2.7.17
@@ -226,5 +226,4 @@
 
 ### Installed apt packages
 - bison, brotli, bzip2, curl, dbus, dnsutils, dpkg, fakeroot, file, flex, ftp, gnupg2, iproute2, iputils-ping, jq, lib32z1, libc++-dev, libc++abi-dev, libcurl3, libgbm-dev, libgconf-2-4, libgtk-3-0, libsecret-1-dev, libsqlite3-dev, libunwind8, libxkbfile-dev, libxss1, locales, m4, netcat, openssh-client, parallel, patchelf, pkg-config, rpm, rsync, shellcheck, sqlite3, ssh, sudo, telnet, texinfo, time, tk, tzdata, unzip, upx, wget, xorriso, xvfb, xz-utils, yamllint, zip, zstd, zsync
-
 
