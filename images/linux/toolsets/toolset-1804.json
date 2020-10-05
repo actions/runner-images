@@ -190,7 +190,13 @@
         ]
     },
     "pipx": [
-        "yamllint",
-        "aws-sam-cli"
+        {
+            "package": "yamllint",
+            "python": "default"
+        },
+        {
+            "package": "aws-sam-cli",
+            "python": "/opt/hostedtoolcache/Python/3.7*/x64/bin/python3.7"
+        }
     ]
 }
