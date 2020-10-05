@@ -19,25 +19,33 @@ if isUbuntu20; then
     ln -s /usr/bin/pip3 /usr/bin/pip
 fi
 
-# Install pipx
-# Set pipx custom directory
-export PIPX_BIN_DIR=/opt/pipx_bin
-export PIPX_HOME=/opt/pipx
+if isUbuntu18 || isUbuntu20 ; then
+    # Install pipx
+    # Set pipx custom directory
+    export PIPX_BIN_DIR=/opt/pipx_bin
+    export PIPX_HOME=/opt/pipx
 
-python3 -m pip install pipx
-python3 -m pipx ensurepath
+    python3 -m pip install pipx
+    python3 -m pipx ensurepath
 
-# Update /etc/environment
-setEtcEnvironmentVariable "PIPX_BIN_DIR" $PIPX_BIN_DIR
-setEtcEnvironmentVariable "PIPX_HOME" $PIPX_HOME
-prependEtcEnvironmentPath /opt/pipx_bin
+    # Update /etc/environment
+    setEtcEnvironmentVariable "PIPX_BIN_DIR" $PIPX_BIN_DIR
+    setEtcEnvironmentVariable "PIPX_HOME" $PIPX_HOME
+    prependEtcEnvironmentPath /opt/pipx_bin
 
-# Add pipx bin directory to path
-echo 'export PATH="$PATH:/opt/pipx_bin"' >> /etc/skel/.bashrc
+    # Add pipx bin directory to path
+    echo 'export PATH="$PATH:/opt/pipx_bin"' >> /etc/skel/.bashrc
+
+    # Test pipx
+    if ! command -v pipx; then
+        echo "pipx was not installed or not found on PATH"
+        exit 1
+    fi
+fi
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in python pip python3 pip3 pipx; do
+for cmd in python pip python3 pip3; do
     if ! command -v $cmd; then
         echo "$cmd was not installed or not found on PATH"
         exit 1
