@@ -196,7 +196,6 @@
         },
         {
             "package": "aws-sam-cli",
-            "python": "3.7",
             "cmd": "sam"
         }
     ]
