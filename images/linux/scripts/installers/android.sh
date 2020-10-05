@@ -17,6 +17,7 @@ function filter_components_by_version {
 
     for item in ${toolsArr[@]}
     do
+        # take the last argument after spliting string by ';'' and '-''
         version=$(echo "${item##*[-;]}")
         if verlte $minimumVersion $version
         then
