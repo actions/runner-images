@@ -1,21 +1,23 @@
 #!/bin/bash -e
 source ~/utils/utils.sh
 
-function install_android_packages {
-    minimumVersion=$( echo "$1" | sed 's/\.//g' )
+function filter_components_by_version {
+    minimumVersion=$1
     shift
     toolsArr=("$@")
 
     for item in ${toolsArr[@]}
     do
-        version=$(echo "${item##*[-;]}" | sed 's/\.//g')
-        if (( $version >= $minimumVersion ))
+        # take the last argument after spliting string by ';'' and '-''
+        version=$(echo "${item##*[-;]}")
+        if verlte $minimumVersion $version
         then
-            echo "Start installing $item"
-            echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager $item
+            components+=($item)
         fi
     done
 }
+
+components=()
 
 ANDROID_PLATFORM=($(get_toolset_value '.android.platform_min_version'))
 ANDROID_BUILD_TOOL=($(get_toolset_value '.android.build_tools_min_version'))
@@ -63,13 +65,15 @@ echo y | $SDKMANAGER "cmake;3.6.4111459"
 
 echo "Installing latest ndk..."
 echo y | $SDKMANAGER "ndk-bundle"
-platforms=$(${ANDROID_HOME}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android" | sed -E "s/[[:space:]]+//g" | sed -E "s/\|.*//g")
-platformsArr=(${platforms})
-install_android_packages $ANDROID_PLATFORM "${platformsArr[@]}"
 
-buildTools=$(${ANDROID_HOME}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "build-tools;" | sed -E "s/[[:space:]]+//g" | sed -E "s/\|.*//g")
-buildToolsArr=(${buildTools})
-install_android_packages $ANDROID_BUILD_TOOL "${buildToolsArr[@]}"
+availablePlatforms=($(${ANDROID_HOME}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
+filter_components_by_version $ANDROID_PLATFORM "${availablePlatforms[@]}"
+
+allBuildTools=($(${ANDROID_HOME}/tools/bin/sdkmanager --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
+availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
+filter_components_by_version $ANDROID_BUILD_TOOL "${availableBuildTools[@]}"
+
+echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager ${components[@]}
 
 for extra_name in "${ANDROID_EXTRA_LIST[@]}"
 do
