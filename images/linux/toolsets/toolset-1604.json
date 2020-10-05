@@ -172,6 +172,7 @@
             "time",
             "unzip",
             "wget",
+            "yamllint",
             "zip"
         ]
     },
