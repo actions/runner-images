@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 i=0
 tput sc
