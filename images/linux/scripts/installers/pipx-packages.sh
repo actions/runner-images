@@ -7,22 +7,19 @@
 
 export PATH="$PATH:/opt/pipx_bin"
 
-# Install yamlint
-pipx install yamllint
+toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
+pipx_packages=$(jq -r ".pipx[]" $toolset)
 
-if ! command -v yamllint; then
-        echo "yamllint was not installed"
+for package in $pipx_packages; do
+    echo "Install $package"
+    pipx install $package
+done
+
+# Run tests to determine that the software installed as expected
+echo "Testing to make sure that script performed as expected, and basic scenarios work"
+for cmd in $pipx_packages; do
+    if ! command -v $cmd; then
+        echo "$cmd was not installed"
         exit 1
-fi
-
-echo "yamllint is successfully installed"
-
-# Install aws sam cli
-pipx install aws-sam-cli --python /opt/hostedtoolcache/Python/3.7*/x64/bin/python3.7
-
-if ! command -v sam; then
-        echo "aws sam cli was not installed"
-        exit 1
-fi
-
-echo "aws sam cli is successfully installed"
+    fi
+done

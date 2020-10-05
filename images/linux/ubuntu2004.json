@@ -242,6 +242,9 @@
             "scripts": [
                 "{{template_dir}}/scripts/installers/pipx-packages.sh"
             ],
+            "environment_vars": [
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {

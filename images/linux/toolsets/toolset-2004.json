@@ -151,5 +151,9 @@
             "node:12-alpine",
             "ubuntu:14.04"
         ]
-    }
+    },
+    "pipx": [
+        "yamllint",
+        "aws-sam-cli"
+    ]
 }
