@@ -2,7 +2,6 @@
 ##  File:  Install-PHP.ps1
 ##  Desc:  Install PHP
 ################################################################################
-Import-Module -Name ImageHelpers
 
 # Install latest PHP in chocolatey
 $installDir = "c:\tools\php"

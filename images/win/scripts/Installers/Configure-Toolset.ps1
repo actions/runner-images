@@ -27,8 +27,6 @@ Function Set-DefaultVariables
     }
 }
 
-Import-Module -Name ImageHelpers -Force -DisableNameChecking
-
 # Define executables for cached tools
 $toolsEnvironmentVariables = @{
     Python = @{
