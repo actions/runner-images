@@ -4,14 +4,14 @@
 | [Clang/LLVM 10 will be set as a default one and Clang/LLVM 6 will be deprecated  for Ubuntu 20.04 on September, 23](https://github.com/actions/virtual-environments/issues/1536) |
 ***
 # Ubuntu 16.04.7 LTS
-- Image Version: 20200920.1
+- Image Version: 20201004.1
 
 ## Installed Software
 ### Language and Runtime
 - GNU C++ 5.5.0, 7.5.0, 8.4.0, 9.3.0
 - GNU Fortran 5.5.0, 8.4.0, 9.3.0
 - Clang 6.0.0, 8.0.0, 9.0.1
-- Erlang 11.0.3
+- Erlang 
 - Mono 6.12.0.90
 - Node 12.18.4
 - Python 2.7.12
@@ -19,10 +19,10 @@
 - PowerShell 7.0.3
 - Ruby 2.3.1p112
 - Swift 5.3
-- Julia 1.5.1
+- Julia 1.5.2
 
 ### Package Management
-- Homebrew 2.5.1
+- Homebrew 2.5.2
 - Gem 3.1.4
 - Miniconda 4.8.3
 - Helm 
@@ -43,19 +43,20 @@
 - Ansible 2.9.13
 - AzCopy10 10.6.0 (available by `azcopy10` alias)
 - AzCopy7 7.3.0 (available by `azcopy` alias)
-- Bazel 3.5.0
+- Bazel 3.5.1
 - Bazelisk 1.6.1
 - CMake 3.17.0
+- CodeQL Action Bundle 2.2.5
 - curl 7.47.0
-- Docker Compose 1.27.3
+- Docker Compose 1.27.4
 - Docker-Buildx 0.4.2
-- Docker-Moby 19.03.12
+- Docker-Moby 19.03.13
 - Git 2.28.0
 - Git LFS 2.12.0
 - Git-ftp 1.0.2
-- Google Cloud SDK 310.0.0
+- Google Cloud SDK 312.0.0
 - Haveged 1.9.1
-- Heroku 7.43.0
+- Heroku 7.44.0
 - HHVM (HipHop VM) 4.56.1
 - jq 1.5
 - Kind 0.9.0
@@ -64,14 +65,17 @@
 - Leiningen 2.9.4
 - m4 1.4.17
 - Mercurial 4.4.1
-- Minikube 1.13.0
+- Minikube 1.13.1
 - Newman 5.2.0
 - nvm 0.35.3
-- Packer 1.6.2
+- Packer 1.6.4
 - PhantomJS 2.1.1
+- Pulumi 2.11.2
+- R 4.0.2
+- Sphinx Open Source Search Server 2.2.9
 - SVN 1.9.3
 - Swig 3.0.8
-- Terraform 0.13.3
+- Terraform 0.13.4
 - unzip 6.00
 - wget 1.17.1
 - zip 3.0
@@ -79,17 +83,17 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.59
-- AWS CLI 1.18.142
+- AWS CLI 1.18.152
 - AWS CLI Session manager plugin 1.1.61.0
-- AWS SAM CLI 1.2.0
-- Azure CLI (azure-cli) 2.11.1
+- AWS SAM CLI 1.4.0
+- Azure CLI (azure-cli) 2.12.1
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 
 - Hub CLI 2.14.2
-- Netlify CLI 2.63.2
+- Netlify CLI 2.64.1
 - oc CLI 4.5.0
 - ORAS CLI 0.8.1
-- Vercel CLI 20.1.0
+- Vercel CLI 20.1.1
 
 ### Java
 | Version             | Vendor       | Environment Variable |
@@ -119,26 +123,26 @@
 
 #### Packages
 - Bindgen 0.55.1
-- Cargo audit 0.12.0
+- Cargo audit 0.12.1
 - Cargo outdated 0.9.11
 - Cargo clippy 0.0.212
-- Cbindgen 0.14.5
+- Cbindgen 0.14.6
 - Rustfmt 1.4.18
 
 ### Browsers and Drivers
-- Google Chrome 85.0.4183.102
+- Google Chrome 85.0.4183.121
 - ChromeDriver 85.0.4183.87
-- Mozilla Firefox 80.0.1
+- Mozilla Firefox 81.0
 - Geckodriver 0.27.0
 
 ### .NET Core SDK
 - 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402
 
 ### Az Module
-- 1.0.0 1.6.0 2.3.2 2.6.0 2.8.0 3.1.0 3.5.0 3.8.0 4.3.0 4.4.0 4.6.0
+- 1.0.0 1.6.0 2.3.2 2.6.0 2.8.0 3.1.0 3.5.0 3.8.0 4.3.0 4.4.0 4.6.0 4.7.0
 
 ### Databases
-- Postgre SQL 12.4
+- Postgre SQL 13.0
 - MongoDB 4.4.1
 - sqlite3 3.11.0
 
@@ -162,17 +166,17 @@
 - 3.5.10
 - 3.6.12
 - 3.7.9
-- 3.8.5
+- 3.8.6
 
 #### PyPy
-- 2.7.13 [PyPy 7.3.1]
-- 3.6.9 [PyPy 7.3.1]
+- 2.7.13 [PyPy 7.3.2]
+- 3.6.9 [PyPy 7.3.2]
 
 #### Node.js
 - 8.17.0
 - 10.22.1
 - 12.18.4
-- 14.11.0
+- 14.13.0
 
 #### Go
 - 1.11.13
