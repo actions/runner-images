@@ -16,11 +16,11 @@ Describe "Android" {
         "tools/proguard",
         "ndk-bundle",
         "cmake",
-        ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") } |
+        (($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;', '' |
         Where-Object { [int]$_.Split("-")[1] -ge $platformMinVersion } | Sort-Object { [int]$_.Split("-")[1] } -Unique |
         ForEach-Object { "platforms/${_}" }),
-        ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") } |
-        Where-Object { [version]$_.Split(";")[1] -ge $buildToolsMinVersion } | Sort-Object { [version]$_.Split(";")[1] } -Unique |
+        (($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', '' |
+        Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object { [version]$_ } -Unique |
         ForEach-Object { "build-tools/${_}" }),
         (Get-ToolsetValue "android.extra-list" | ForEach-Object { "extras/${_}" }),
         (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" })
