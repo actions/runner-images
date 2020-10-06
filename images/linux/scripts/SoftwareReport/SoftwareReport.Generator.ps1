@@ -59,7 +59,6 @@ $packageManagementList = @(
         (Get-YarnVersion),
         (Get-PipVersion),
         (Get-Pip3Version),
-        (Get-PipxVersion),
         (Get-VcpkgVersion)
 )
 

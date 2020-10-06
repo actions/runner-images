@@ -11,7 +11,7 @@ toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 pipx_packages=$(jq -r ".pipx[] .package" $toolset)
 
 for package in $pipx_packages; do
-    python_version=$(jq -r ".pipx[] | select(.package == $package) .python" $toolset)
+    python_version=$(jq -r ".pipx[] | select(.package == \"$package\") .python" $toolset)
     if [ "$python_version" != "null" ]; then
         python_path="/opt/hostedtoolcache/Python/$python_version*/x64/bin/python$python_version"
         echo "Install $package into python $python_path"
@@ -22,7 +22,7 @@ for package in $pipx_packages; do
     fi
 
     # Run tests to determine that the software installed as expected
-    cmd=$(jq -r ".pipx[] | select(.package == $package) .cmd" $toolset)
+    cmd=$(jq -r ".pipx[] | select(.package == \"$package\") .cmd" $toolset)
     if ! command -v $cmd; then
         echo "$package was not installed"
         exit 1
