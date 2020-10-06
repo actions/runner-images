@@ -30,6 +30,9 @@ function Disable-UserAccessControl {
     Write-Host "User Access Control (UAC) has been disabled."
 }
 
+# Enable $ErrorActionPreference='Stop' for AllUsersAllHosts
+Add-Content -Path $profile.AllUsersAllHosts -Value '$ErrorActionPreference="Stop"'
+
 # Set TLS1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 

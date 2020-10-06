@@ -3,8 +3,6 @@
 ##  Desc:  Install Git for Windows
 ################################################################################
 
-Import-Module -Name ImageHelpers
-
 function getSimpleValue([string] $url, [string] $filename ) {
     $fullpath = "${env:Temp}\$filename"
     Invoke-WebRequest -Uri $url -OutFile $fullpath
