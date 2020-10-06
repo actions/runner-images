@@ -64,7 +64,7 @@ if ($vm)
     {
         try
         {
-            Stop-VM -VM $vm -Confirm:$false -ErrorAction Stop
+            $null = Stop-VM -VM $vm -Confirm:$false -ErrorAction Stop
             Write-Host "VM '$VMName' has been powered off"
         }
         catch
