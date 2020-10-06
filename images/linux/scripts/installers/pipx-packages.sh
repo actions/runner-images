@@ -8,7 +8,7 @@
 export PATH="$PATH:/opt/pipx_bin"
 
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-pipx_packages=$(jq ".pipx[] .package" $toolset)
+pipx_packages=$(jq -r ".pipx[] .package" $toolset)
 
 for package in $pipx_packages; do
     python_version=$(jq -r ".pipx[] | select(.package == $package) .python" $toolset)
