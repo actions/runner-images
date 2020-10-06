@@ -14,6 +14,9 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Java.psm1") -DisableNameC
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Rust.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
 
+# Restore file owner in user profile
+Restore-UserOwner
+
 $markdown = ""
 
 if ($env:ANNOUNCEMENTS) {

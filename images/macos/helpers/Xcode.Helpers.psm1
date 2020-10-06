@@ -45,6 +45,17 @@ function Switch-Xcode {
     Invoke-Expression "sudo xcode-select --switch ${XcodeRootPath}"
 }
 
+function Test-XcodeStableRelease {
+    param(
+        [Parameter(Mandatory)]
+        [string] $XcodeRootPath
+    )
+
+    $licenseInfoPlistPath = Join-Path $XcodeRootPath "Contents" "Resources" "LicenseInfo.plist"
+    $releaseType = & defaults read $licenseInfoPlistPath "licenseType"
+    return -not ($releaseType -match "beta")
+}
+
 function Get-XcodeSimulatorsInfo {
     param(
         [string] $Filter
@@ -102,6 +113,6 @@ function Test-XcodeStableVersion {
     if ($Version -match "GM") {
         return $false
     }
-    
+
     return $true
 }

@@ -1,5 +1,3 @@
-$ErrorActionPreference = "Stop"
-
 #Define user and password for PostgreSQL database
 $pgUser = "postgres"
 $pgPwd = "root"

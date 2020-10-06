@@ -125,12 +125,6 @@ function Get-SQLPSVersion {
     return "SQLPS $version"
 }
 
-function Get-SQLServerPSVersion {
-    $module = Get-Module -Name SQLServer -ListAvailable
-    $version = $module.Version
-    return "SQLServer PS $version"
-}
-
 function Get-SVNVersion {
     $svnVersion = $(svn --version --quiet)
     return "Subversion (SVN) $svnVersion"

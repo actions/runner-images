@@ -3,8 +3,6 @@
 ##  Desc:  Install vcpkg
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 $Uri = 'https://github.com/Microsoft/vcpkg.git'
 $InstallDir = 'C:\vcpkg'
 $VcpkgExecPath = 'vcpkg.exe'
