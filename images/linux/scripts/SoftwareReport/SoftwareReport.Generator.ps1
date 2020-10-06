@@ -49,7 +49,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
 )
 
 $markdown += New-MDHeader "Package Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+
+$packageManagementList = @(
         (Get-HomebrewVersion),
         (Get-GemVersion),
         (Get-MinicondaVersion),
@@ -61,6 +62,14 @@ $markdown += New-MDList -Style Unordered -Lines @(
         (Get-PipxVersion),
         (Get-VcpkgVersion)
 )
+
+if (-not (Test-IsUbuntu16)) {
+    $packageManagementList += @(
+        (Get-PipxVersion)
+    )
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
 
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
