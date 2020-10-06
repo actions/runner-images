@@ -2,6 +2,10 @@
 param(
     [Parameter(Mandatory)]
     [ValidateNotNullorEmpty()]
+    [string]$VMName,
+
+    [Parameter(Mandatory)]
+    [ValidateNotNullorEmpty()]
     [string]$VIServer,
 
     [Parameter(Mandatory)]
@@ -10,11 +14,7 @@ param(
 
     [Parameter(Mandatory)]
     [ValidateNotNullorEmpty()]
-    [string]$VIPassword,
-
-    [Parameter(Mandatory)]
-    [ValidateNotNullorEmpty()]
-    [string]$VMName
+    [string]$VIPassword
 )
 
 $ProgressPreference = "SilentlyContinue"
@@ -27,7 +27,7 @@ try
     $securePassword = ConvertTo-SecureString -String $VIPassword -AsPlainText -Force
     $cred = New-Object System.Management.Automation.PSCredential($VIUserName, $securePassword)
     $null = Connect-VIServer -Server $VIServer -Credential $cred -ErrorAction Stop
-    Write-Host "##[debug]Connecting to the server....."
+    Write-Host "Connection to the VIServer has been established"
 }
 catch
 {
@@ -35,7 +35,7 @@ catch
     exit 1
 }
 
-# remove VM
+# remove a vm
 $vm = Get-VM -Name $VMName -ErrorAction SilentlyContinue
 $vmState = $vm.PowerState
 
