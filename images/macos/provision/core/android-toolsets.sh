@@ -66,7 +66,7 @@ echo y | $SDKMANAGER "cmake;3.6.4111459"
 echo "Installing latest ndk..."
 echo y | $SDKMANAGER "ndk-bundle"
 
-availablePlatforms=($(${ANDROID_HOME}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
+availablePlatforms=($(${ANDROID_HOME}/tools/bin/sdkmanager --list | grep "platforms;android-" | cut -d"|" -f 1 | sort -u))
 filter_components_by_version $ANDROID_PLATFORM "${availablePlatforms[@]}"
 
 allBuildTools=($(${ANDROID_HOME}/tools/bin/sdkmanager --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
