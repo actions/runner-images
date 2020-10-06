@@ -35,6 +35,27 @@ catch
     exit 1
 }
 
+# check vm clone status
+$chainId = Get-VIEvent -Entity $VMName | Select-Object -ExpandProperty ChainId -Unique
+if ($chainId)
+{
+    $task = Get-Task -Status Running | Where-Object {$_.Name -eq 'CloneVM_Task' -and $_.ExtensionData.Info.EventChainId -eq $chainId}
+    if ($task)
+    {
+        try
+        {
+            Stop-Task -Task $task -Confirm:$false -ErrorAction Stop
+            Write-Host "The vm '$VMName' clone task has been cancelled"
+            exit 0
+        }
+        catch
+        {
+            Write-Host "##vso[task.LogIssue type=error;]ERROR: unable to cancel the task"
+            exit 1
+        }
+    }
+}
+
 # remove a vm
 $vm = Get-VM -Name $VMName -ErrorAction SilentlyContinue
 $vmState = $vm.PowerState
@@ -42,7 +63,7 @@ $vmState = $vm.PowerState
 if ($vm)
 {
     $vmState = $vm.PowerState
-    if ($vmState -ne 'PoweredOff')
+    if ($vmState -ne "PoweredOff")
     {
         try
         {
