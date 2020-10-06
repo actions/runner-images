@@ -1,19 +1,19 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)]
-    [ValidateNotNullorEmpty()]
+    [ValidateNotNullOrEmpty()]
     [string]$VMName,
 
     [Parameter(Mandatory)]
-    [ValidateNotNullorEmpty()]
+    [ValidateNotNullOrEmpty()]
     [string]$VIServer,
 
     [Parameter(Mandatory)]
-    [ValidateNotNullorEmpty()]
+    [ValidateNotNullOrEmpty()]
     [string]$VIUserName,
 
     [Parameter(Mandatory)]
-    [ValidateNotNullorEmpty()]
+    [ValidateNotNullOrEmpty()]
     [string]$VIPassword
 )
 
