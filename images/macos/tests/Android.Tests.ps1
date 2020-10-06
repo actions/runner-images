@@ -1,5 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
+Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1"
 
 $os = Get-OSVersion
 
