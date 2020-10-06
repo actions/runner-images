@@ -50,7 +50,6 @@ if ($chainId)
         catch
         {
             Write-Host "##vso[task.LogIssue type=error;]ERROR: unable to cancel the task"
-            exit 1
         }
     }
 }
