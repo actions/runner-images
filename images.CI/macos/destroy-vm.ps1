@@ -46,7 +46,6 @@ if ($chainId)
         {
             Stop-Task -Task $task -Confirm:$false -ErrorAction Stop
             Write-Host "The vm '$VMName' clone task has been cancelled"
-            exit 0
         }
         catch
         {
@@ -58,7 +57,6 @@ if ($chainId)
 
 # remove a vm
 $vm = Get-VM -Name $VMName -ErrorAction SilentlyContinue
-$vmState = $vm.PowerState
 
 if ($vm)
 {
