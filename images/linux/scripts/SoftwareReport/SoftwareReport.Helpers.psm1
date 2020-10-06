@@ -49,3 +49,7 @@ function New-MDNewLine {
     $newLineSymbol = [System.Environment]::NewLine
     return $newLineSymbol * $Count
 }
+
+function Restore-UserOwner {
+    sudo chown -R ${env:USER}: $env:HOME
+}

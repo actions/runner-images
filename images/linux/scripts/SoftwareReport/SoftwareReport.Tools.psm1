@@ -4,7 +4,7 @@ function Get-7zipVersion {
 }
 
 function Get-AnsibleVersion {
-    $ansibleVersion = sudo ansible --version | Select-Object -First 1 | Take-OutputPart -Part 1
+    $ansibleVersion = ansible --version | Select-Object -First 1 | Take-OutputPart -Part 1
     return "Ansible $ansibleVersion"
 }
 
@@ -19,12 +19,12 @@ function Get-AzCopy10Version {
 }
 
 function Get-BazelVersion {
-    $bazelVersion = sudo bazel --version | Select-String "bazel" | Take-OutputPart -Part 1
+    $bazelVersion = bazel --version | Select-String "bazel" | Take-OutputPart -Part 1
     return "Bazel $bazelVersion"
 }
 
 function Get-BazeliskVersion {
-    $bazeliskVersion = sudo bazelisk version 2>&1 | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
+    $bazeliskVersion = bazelisk version 2>&1 | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
     return "Bazelisk $bazeliskVersion"
 }
 
@@ -92,7 +92,7 @@ function Get-GitFTPVersion {
 }
 
 function Get-GoogleCloudSDKVersion {
-    return "$(sudo gcloud --version | Select-Object -First 1)"
+    return "$(gcloud --version | Select-Object -First 1)"
 }
 
 function Get-HavegedVersion {
@@ -101,7 +101,7 @@ function Get-HavegedVersion {
 }
 
 function Get-HerokuVersion {
-    $herokuVersion = sudo heroku version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $herokuVersion = heroku version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
     return "Heroku $herokuVersion"
 }
 
@@ -201,12 +201,12 @@ function Get-JqVersion {
 }
 
 function Get-AzureCliVersion {
-    $azcliVersion = sudo az -v | Select-String "azure-cli" | Take-OutputPart -Part -1
+    $azcliVersion = az -v | Select-String "azure-cli" | Take-OutputPart -Part -1
     return "Azure CLI (azure-cli) $azcliVersion"
 }
 
 function Get-AzureDevopsVersion {
-    $azdevopsVersion = sudo az -v | Select-String "azure-devops" | Take-OutputPart -Part -1
+    $azdevopsVersion = az -v | Select-String "azure-devops" | Take-OutputPart -Part -1
     return "Azure CLI (azure-devops) $azdevopsVersion"
 }
 
@@ -238,7 +238,7 @@ function Get-GitHubCliVersion {
 }
 
 function Get-NetlifyCliVersion {
-    $netlifyVersion = sudo netlify --version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $netlifyVersion = netlify --version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
     return "Netlify CLI $netlifyVersion"
 }
 
