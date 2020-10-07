@@ -17,7 +17,7 @@ do
 
     # Version 12.2_beta installed into 12.2 directory
     if [[ $XCODE_VERSION == "12.2_beta" ]] ; then
-        XCODE_VERSION="12.2"
+        XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
     fi
     # Select xcode version by default
     sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
