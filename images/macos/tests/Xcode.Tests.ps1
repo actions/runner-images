@@ -56,7 +56,7 @@ Describe "Xcode" {
     }
 
     Context "XCODE_DEVELOPER_DIR" {
-        $stableXcodeVersions = $XCODE_VERSIONS | Where-Object { Test-XcodeStableRelease -Version $_ }
+        $stableXcodeVersions = $testCases | Where-Object { Test-XcodeStableRelease -Version $_ }
         $majorXcodeVersions = $stableXcodeVersions | ForEach-Object { $_.Split(".")[0] } | Select-Object -Unique
         $testCases = $majorXcodeVersions | ForEach-Object {
             $majorXcodeVersion = $_
