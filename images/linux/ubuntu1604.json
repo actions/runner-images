@@ -296,7 +296,7 @@
             "type": "shell",
             "inline": [
                 "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}",
-                "pwsh -File {{user `image_folder`}}/tests/Run-Tests.ps1 -WorkingDirectory {{user `image_folder`}}/tests -OutputFile {{user `image_folder`}}/test-results.xml"
+                "pwsh -File {{user `image_folder`}}/tests/RunAll-Tests.ps1"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
