@@ -22,7 +22,6 @@ binst_common_utils=(
     github/gh/gh
     p7zip
     ant
-    yamllint
     aria2
 )
 

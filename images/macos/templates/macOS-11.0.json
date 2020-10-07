@@ -194,6 +194,13 @@
         },
         {
             "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
+            "scripts": [
+                "./provision/core/pipx-packages.sh"
+            ]
+        },
+        {
+            "type": "shell",
             "execute_command": "ruby {{ .Path }}",
             "scripts": [
                 "./provision/core/delete-duplicate-sims.rb"

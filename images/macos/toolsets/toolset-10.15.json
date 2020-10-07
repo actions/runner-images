@@ -26,28 +26,28 @@
                 "mono":"6.12",
                 "ios": "14.0",
                 "mac": "6.20",
-                "android": "11.0" 
+                "android": "11.0"
             },
             {
                 "symlink": "6_12_0",
                 "mono":"6.12",
                 "ios": "13.20",
                 "mac": "6.20",
-                "android": "11.0" 
+                "android": "11.0"
             },
             {
                 "symlink": "6_10_0",
                 "mono":"6.10",
                 "ios": "13.18",
                 "mac": "6.18",
-                "android": "10.3" 
+                "android": "10.3"
             },
             {
                 "symlink": "6_8_1",
                 "mono":"6.8",
                 "ios": "13.16",
                 "mac": "6.16",
-                "android": "10.2" 
+                "android": "10.2"
             },
             {
                 "symlink": "6_8_0",
@@ -165,6 +165,12 @@
                 "1.14.*",
                 "1.15.*"
             ]
+        }
+    ],
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint"
         }
     ]
 }

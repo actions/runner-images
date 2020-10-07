@@ -96,6 +96,10 @@ function Get-PipVersion {
     return "${versionPart1} ${versionPart2} ${versionPart3}"
 }
 
+function Get-PipxVersion {
+    return "Pipx $(pipx --version 2> $null)"
+}
+
 function Get-NVMNodeVersionList {
     $nvmPath = Join-Path $env:HOME ".nvm" "nvm.sh"
     $nvmInitCommand = ". ${nvmPath} > /dev/null 2>&1 || true"
