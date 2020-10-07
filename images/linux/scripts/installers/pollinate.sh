@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  pollinate.sh
 ##  Desc:  Installs Pollinate
 ################################################################################
-
 
 # Install Pollinate
 apt-get install -y --no-install-recommends pollinate

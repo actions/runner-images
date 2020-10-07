@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 
 # before cleanup
 before=$(df / -Pm | awk 'NR==2{print $4}')

@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  subversion.sh
 ##  Desc:  Installs Subversion client
 ################################################################################
-
 
 # Install Subversion
 apt-get install -y --no-install-recommends subversion

@@ -1,15 +1,20 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  swift.sh
 ##  Desc:  Installs Swift
 ################################################################################
 
-
 # Install
 image_label="$(lsb_release -rs)"
-swift_version=$(curl -s https://swift.org/download/ | grep -m1 "id=\"swift-" | awk -F"[ <]" '{print $4}')
+
+# curl would compline we do not read the stream till the very end (result code 23)
+# so let's turn off pipefail for a while
+set +o pipefail
+swift_version=$(curl -s -L https://swift.org/download|awk -F"[ <]" '/id="swift-/ {print $4; exit}')
+set -o pipefail
 
 wget -P /tmp https://swift.org/builds/swift-$swift_version-release/ubuntu${image_label//./}/swift-$swift_version-RELEASE/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
+
 tar xzf /tmp/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
 mv swift-$swift_version-RELEASE-ubuntu$image_label /usr/share/swift
 

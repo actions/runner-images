@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  powershellcore.sh
 ##  Desc:  Installs powershellcore

@@ -1,11 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  leiningen.sh
 ##  Desc:  Installs Leiningen
 ################################################################################
-
-
-set -e
 
 LEIN_BIN=/usr/local/bin/lein
 curl -s https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > $LEIN_BIN

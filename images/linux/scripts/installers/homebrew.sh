@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  homebrew.sh
 ##  Desc:  Installs the Homebrew on Linux

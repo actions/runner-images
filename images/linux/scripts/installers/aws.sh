@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  aws.sh
 ##  Desc:  Installs the AWS CLI

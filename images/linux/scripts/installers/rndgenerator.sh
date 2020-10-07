@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  rndgenerator.sh
 ##  Desc:  Install random number generator
 ################################################################################
-
 
 # Install haveged
 apt-get -y install haveged

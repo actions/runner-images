@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  image-magick.sh
 ##  Desc:  Installs ImageMagick
 ################################################################################
-
 
 # Install ImageMagick
 apt-get install -y --no-install-recommends --fix-missing \

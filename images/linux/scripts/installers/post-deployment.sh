@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File: post-deployment.sh
 ##  Desc: Post deployment actions

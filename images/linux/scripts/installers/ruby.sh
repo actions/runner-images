@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  ruby.sh
 ##  Desc:  Installs Ruby requirements
 ################################################################################
-
 
 sudo apt-get install ruby-full
 sudo gem update --system

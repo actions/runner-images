@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  git.sh
 ##  Desc:  Installs Git
 ################################################################################
-set -e
 
 # Source the helpers for use with the script
 source "$HELPER_SCRIPTS"/install.sh

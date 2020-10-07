@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  codeql-bundle.sh
 ##  Desc:  Install the CodeQL CLI Bundle to the toolcache.

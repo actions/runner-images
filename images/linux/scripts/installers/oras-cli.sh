@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  oras-cli.sh
 ##  Desc:  Installs ORAS CLI

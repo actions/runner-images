@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  firefox.sh
 ##  Desc:  Installs Firefox
 ################################################################################
-
 
 # Install Firefox
 apt-get install -y firefox

@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  erlang.sh
 ##  Desc:  Installs erlang
 ################################################################################
-
 
 source_list=/etc/apt/sources.list.d/eslerlang.list
 

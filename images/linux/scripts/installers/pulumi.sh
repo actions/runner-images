@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  pulumi.sh
 ##  Desc:  Installs Pulumi

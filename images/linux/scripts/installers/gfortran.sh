@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  gfortran.sh
 ##  Desc:  Installs GNU Fortran
 ################################################################################
-
 
 function InstallFortran {
     version=$1

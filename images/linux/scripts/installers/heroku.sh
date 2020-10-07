@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  heroku.sh
 ##  Desc:  Installs Heroku CLI
 ################################################################################
-
 
 # Install Heroku CLI
 curl https://cli-assets.heroku.com/install-ubuntu.sh | sh

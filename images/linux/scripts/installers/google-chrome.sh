@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  google-chrome.sh
 ##  Desc:  Installs google-chrome  and chromedriver
 ################################################################################
-
 
 LSB_RELEASE=$(lsb_release -rs)
 

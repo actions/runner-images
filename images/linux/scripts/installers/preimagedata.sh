@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 
 imagedata_file=$IMAGEDATA_FILE
 image_version=$IMAGE_VERSION

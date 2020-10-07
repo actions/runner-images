@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  vercel.sh
 ##  Desc:  Installs the Vercel CLI

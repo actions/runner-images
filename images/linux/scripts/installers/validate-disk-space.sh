@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  validate-disk-space.sh
 ##  Desc:  Validate free disk space
