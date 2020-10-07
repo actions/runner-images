@@ -1,3 +1,5 @@
+#!/bin/bash -e -o pipefail
+
 createXamarinProvisionatorSymlink() {
     local XCODE_VERSION="$1"
     local FULL_VERSION=$(echo "${XCODE_VERSION}.0.0" | cut -d'.' -f 1,2,3)

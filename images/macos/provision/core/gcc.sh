@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 
 echo "Installing GCC@8 using homebrew..."
 brew install gcc@8

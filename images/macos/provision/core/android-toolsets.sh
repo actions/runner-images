@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
 ANDROID_PLATFORM_LIST=($(get_toolset_value '.android."platform-list"[]'))

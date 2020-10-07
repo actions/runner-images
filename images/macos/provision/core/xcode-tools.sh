@@ -1,9 +1,7 @@
-#!/bin/sh
+#!/bin/bash -e -o pipefail
 
 # The script currently requires 2 external variables to be set: XCODE_INSTALL_USER
 # and XCODE_INSTALL_PASSWORD, in order to access the Apple Developer Center
-
-set -e
 
 source ~/utils/utils.sh
 source ~/utils/xcode-utils.sh
