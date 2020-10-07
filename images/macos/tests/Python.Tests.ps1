@@ -31,4 +31,8 @@ Describe "Python" {
     It "Pip 3 is available" {
         "pip3 --version" | Should -ReturnZeroExitCode
     }
+
+    It "Pipx is available" {
+        "pipx --version" | Should -ReturnZeroExitCode
+    }
 }

@@ -13,11 +13,10 @@ FORMULA_PATH=$(/usr/local/bin/brew extract python@2 local/python2 | grep "Homebr
 /usr/local/bin/brew install $FORMULA_PATH
 
 echo "Installing pipx"
-export PIPX_BIN_DIR=/opt/pipx_bin
-export PIPX_HOME=/opt/pipx
+export PIPX_BIN_DIR=/usr/local/opt/pipx_bin
+export PIPX_HOME=/usr/local/opt/pipx
 
 brew install pipx
-python3 -m pipx ensurepath
 
 echo "export PIPX_BIN_DIR=${PIPX_BIN_DIR}" >> "${HOME}/.bashrc"
 echo "export PIPX_HOME=${PIPX_HOME}" >> "${HOME}/.bashrc"
