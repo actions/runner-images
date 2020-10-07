@@ -198,5 +198,11 @@
                 "3.6"
             ]
         }
+    ],
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint"
+        }
     ]
 }
