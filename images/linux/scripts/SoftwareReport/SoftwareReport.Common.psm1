@@ -240,6 +240,10 @@ function Get-CachedDockerImages {
     return $images
 }
 
+function Get-CachedDockerImagesFullInfo {
+    return (docker images --digests --format "* {{.Repository}}:{{.Tag}} {{.Digest}} {{.CreatedSince}}").Split("*") | Where-Object { $_ }
+}
+
 function Get-AptPackages {
     $toolsetJson = Get-ToolsetContent
     $apt = $toolsetJson.apt

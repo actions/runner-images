@@ -262,6 +262,10 @@ function Get-CachedDockerImages {
     return (docker images --digests --format "* {{.Repository}}:{{.Tag}}").Split("*") | Where-Object { $_ }
 }
 
+function Get-CachedDockerImagesFullInfo {
+    return (docker images --digests --format "* {{.Repository}}:{{.Tag}} {{.Digest}} {{.CreatedSince}}").Split("*") | Where-Object { $_ }
+}
+
 function Get-PacmanVersion {
     $msys2BinDir = "C:\msys64\usr\bin"
     $pacmanPath = Join-Path $msys2BinDir "pacman.exe"
