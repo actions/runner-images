@@ -12,6 +12,10 @@ $ErrorActionPreference = 'silentlycontinue'
 $chocoTempPath = 'C:\Temp\Chocolatey'
 choco config set cacheLocation $chocoTempPath
 
+# Unofficial cleanup from choco community
+choco install choco-cleaner
+choco-cleaner
+
 Write-Host "Clean up various directories"
 @(
     "C:\\Recovery",
