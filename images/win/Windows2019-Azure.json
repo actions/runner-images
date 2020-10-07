@@ -175,12 +175,6 @@
         },
         {
             "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
             "valid_exit_codes": [
                 0,
                 3010
