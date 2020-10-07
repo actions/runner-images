@@ -24,7 +24,8 @@ function Get-BazelVersion {
 }
 
 function Get-BazeliskVersion {
-    $bazeliskVersion = bazelisk version 2>&1 | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
+    $result = Get-CommandResult "bazelisk version" -Multiline
+    $bazeliskVersion = $result.Output | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
     return "Bazelisk $bazeliskVersion"
 }
 
@@ -77,12 +78,14 @@ function Get-DockerBuildxVersion {
 }
 
 function Get-GitVersion {
-    $gitVersion = git --version 2>&1 | Take-OutputPart -Part 2
+    $result = Get-CommandResult "git --version"
+    $gitVersion = $result.Output | Take-OutputPart -Part 2
     return "Git $gitVersion"
 }
 
 function Get-GitLFSVersion {
-    $gitlfsversion = git-lfs --version 2>&1 | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $result = Get-CommandResult "git-lfs --version"
+    $gitlfsversion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
     return "Git LFS $gitlfsversion"
 }
 
@@ -215,12 +218,14 @@ function Get-AlibabaCloudCliVersion {
 }
 
 function Get-AWSCliVersion {
-    $awsVersion = aws --version 2>&1 | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $result = Get-CommandResult "aws --version"
+    $awsVersion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
     return "AWS CLI $awsVersion"
 }
 
 function Get-AWSCliSessionManagerPluginVersion {
-    return "AWS CLI Session manager plugin $(session-manager-plugin --version 2>&1)"
+    $result = (Get-CommandResult "session-manager-plugin --version").Output
+    return "AWS CLI Session manager plugin $result"
 }
 
 function Get-AWSSAMVersion {
@@ -253,7 +258,8 @@ function Get-ORASCliVersion {
 }
 
 function Get-VerselCliversion {
-    return "$(vercel --version 2>&1 | Select-Object -First 1)"
+    $result = Get-CommandResult "vercel --version" -Multiline
+    return $result.Output | Select-Object -First 1
 }
 
 function Get-PulumiVersion {
