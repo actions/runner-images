@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  snap-environment.sh
 ##  Desc:  Update /etc/environment to include /snap/bin in PATH
