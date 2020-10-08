@@ -46,10 +46,16 @@ function Switch-Xcode {
 }
 
 function Test-XcodeStableRelease {
-    param(
-        [Parameter(Mandatory)]
+    param (
+        [Parameter(ParameterSetName = 'Version')]
+        [string] $Version,
+        [Parameter(ParameterSetName = 'Path')]
         [string] $XcodeRootPath
     )
+
+    if ($PSCmdlet.ParameterSetName -eq "Version") {
+        $XcodeRootPath = Get-XcodeRootPath $Version
+    }
 
     $licenseInfoPlistPath = Join-Path $XcodeRootPath "Contents" "Resources" "LicenseInfo.plist"
     $releaseType = & defaults read $licenseInfoPlistPath "licenseType"
@@ -102,17 +108,4 @@ function Get-XcodePairsList {
         $result += "$watchName $phoneName"
     }
     return $result
-}
-
-function Test-XcodeStableVersion {
-    param([Parameter(Mandatory)][string]$Version)
-
-    if ($Version -match "beta") {
-        return $false
-    }
-    if ($Version -match "GM") {
-        return $false
-    }
-
-    return $true
 }
