@@ -39,7 +39,7 @@ Choco-Install -PackageName hub
 Add-MachinePathItem "C:\Program Files\Git\bin"
 
 if (Test-IsWin16) {
-    $env:Path = $env:Path + ";$env:ProgramFiles\Git\usr\bin\"
+    $env:Path += ";$env:ProgramFiles\Git\usr\bin\"
 }
 
 # Add well-known SSH host keys to ssh_known_hosts
