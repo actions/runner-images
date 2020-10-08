@@ -3,8 +3,6 @@
 ##  Desc:  Install the latest version of Miniconda and set $env:CONDA
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 $CondaDestination = "C:\Miniconda"
 
 # Lock to Miniconda 4.6 until we do the work to run `conda init` for the vsts user
