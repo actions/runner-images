@@ -3,8 +3,6 @@
 ##  Desc:  Install Visual Studio
 ################################################################################
 
-$ErrorActionPreference = "Stop"
-
 $toolset = Get-ToolsetContent
 $requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
 $workLoads = @(

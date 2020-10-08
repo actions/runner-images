@@ -3,8 +3,6 @@
 ##  Desc:  Install various JDKs and java tools
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 function Set-JavaPath {
     param (
         [string] $Version,

@@ -3,8 +3,6 @@
 ##  Desc:  Install Windows Application Driver (WinAppDriver)
 ####################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 $InstallerName = "WindowsApplicationDriver.msi"
 $InstallerUrl = "https://github.com/Microsoft/WinAppDriver/releases/download/v1.1/${InstallerName}"
 
