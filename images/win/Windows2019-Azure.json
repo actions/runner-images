@@ -249,7 +249,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-YAMLLint.ps1",
                 "{{ template_dir }}/scripts/Installers/Update-AndroidSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1"
             ]
@@ -324,6 +323,13 @@
                 "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-Pipx.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Pipx-Packages.ps1"
             ]
         },
         {

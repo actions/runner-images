@@ -274,3 +274,7 @@ function Get-PacmanVersion {
 function Get-YAMLLintVersion {
     yamllint --version
 }
+
+function Get-PipxVersion {
+    pipx --version
+}
