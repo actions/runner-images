@@ -32,9 +32,7 @@ function Get-ClangVersions {
 }
 
 function Get-ErlangVersion {
-    $result = Get-CommandResult "erl -version"
-    $result.Output -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $version = $Matches.version
+    $version = (erl -eval 'erlang:display(erlang:system_info(version)), halt().' -noshell).Trim('"')
     return "Erlang $version"
 }
 

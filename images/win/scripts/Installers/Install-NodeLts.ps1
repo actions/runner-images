@@ -4,8 +4,6 @@
 ##         Must run after python is configured
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 $PrefixPath = 'C:\npm\prefix'
 $CachePath = 'C:\npm\cache'
 

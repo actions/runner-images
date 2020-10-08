@@ -3,8 +3,6 @@
 ##  Desc:  Install WIX.
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 Choco-Install -PackageName wixtoolset -ArgumentList "--force"
 
 if(Test-IsWin19)

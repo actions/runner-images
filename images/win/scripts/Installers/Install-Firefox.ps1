@@ -3,8 +3,6 @@
 ##  Desc:  Install Mozilla Firefox
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 # Install and configure Firefox browser
 Write-Host "Install latest Firefox browser..."
 $VersionsManifest = Invoke-RestMethod "https://product-details.mozilla.org/1.0/firefox_versions.json"

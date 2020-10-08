@@ -3,8 +3,6 @@
 ##  Desc:  Install the Visual Studio Extensions from toolset.json
 ###################################################################################
 
-$ErrorActionPreference = "Stop"
-
 $toolset = Get-ToolsetContent
 $vsixPackagesList = $toolset.visualStudio.vsix
 if (-not $vsixPackagesList) {

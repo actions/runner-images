@@ -3,8 +3,6 @@
 ##  Desc:  Install SQL PowerShell tool
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 $BaseUrl = "https://download.microsoft.com/download/8/7/2/872BCECA-C849-4B40-8EBE-21D48CDF1456/ENU/x64"
 
 # install required MSIs
