@@ -6,8 +6,6 @@
 Write-Host "Cleanup WinSxS"
 Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
 
-$ErrorActionPreference = 'silentlycontinue'
-
 Write-Host "Clean up various directories"
 @(
     "C:\\Recovery",
@@ -30,4 +28,5 @@ Write-Host "Clean up various directories"
 $winInstallDir = "$env:windir\\Installer"
 New-Item -Path $winInstallDir -ItemType Directory -Force
 
-$ErrorActionPreference = 'Continue'
+# Remove AllUsersAllHosts profile
+Remove-Item $profile.AllUsersAllHosts -Force
