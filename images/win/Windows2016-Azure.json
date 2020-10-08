@@ -391,7 +391,8 @@
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1",
-                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
+                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
+                "{{ template_dir }}/scripts/Installers/Run-ChocoCleaner.ps1"
             ]
         },
         {

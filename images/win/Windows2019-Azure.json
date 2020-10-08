@@ -400,7 +400,8 @@
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1"
+                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1",
+                "{{ template_dir }}/scripts/Installers/Run-ChocoCleaner.ps1"
             ]
         },
         {
