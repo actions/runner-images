@@ -3,8 +3,6 @@
 ##  Desc:  Install Cloud Foundry CLI
 ################################################################################
 
-Import-Module -Name ImageHelpers
-
 # Download the latest cf cli exe
 $CloudFoundryCliName = "cf-cli.zip"
 $CloudFoundryCliUrl = "https://packages.cloudfoundry.org/stable?release=windows64-exe&source=github"

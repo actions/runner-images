@@ -3,8 +3,6 @@
 ##  Desc:  Install Selenium Server standalone
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 # Acquire latest Selenium release number from GitHub API
 $latestReleaseUrl = "https://api.github.com/repos/SeleniumHQ/selenium/releases/latest"
 try {
