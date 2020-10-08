@@ -6,7 +6,7 @@ function killService() {
     systemctl kill --kill-who=all $service
 
     # Wait until the status of the service is either exited or killed.
-    while ! (systemctl status "$service" | grep -q "Main.*code=\(exited\|killed\|inactive\)")
+    while ! (systemctl status "$service" | grep "inactive (dead)")
     do
         echo "Wait until status is changed"
         echo $(systemctl status "$service")
