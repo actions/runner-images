@@ -2,19 +2,21 @@
 
 function killService() {
     service=$1
-    sudo systemctl stop $service
-    sudo systemctl kill --kill-who=all $service
+    systemctl stop $service
+    systemctl kill --kill-who=all $service
 
     # Wait until the status of the service is either exited or killed.
-    while ! (sudo systemctl status "$service" | grep -q "Main.*code=\(exited\|killed\)")
+    while ! (systemctl status "$service" | grep -q "Main.*code=\(exited\|killed\)")
     do
+        echo "Wait until status is changed"
+        echo $(systemctl status "$service")
         sleep 10
     done
 }
 
 function disableTimers() {
-    sudo systemctl disable apt-daily.timer
-    sudo systemctl disable apt-daily-upgrade.timer
+    systemctl disable apt-daily.timer
+    systemctl disable apt-daily-upgrade.timer
 }
 
 function killServices() {
@@ -24,7 +26,9 @@ function killServices() {
 }
 
 function main() {
+    echo "Disabling timers..."
     disableTimers
+    echo "Killing timer services..."
     killServices
 }
 
