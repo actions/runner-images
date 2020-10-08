@@ -27,19 +27,19 @@ try
     $securePassword = ConvertTo-SecureString -String $VIPassword -AsPlainText -Force
     $cred = New-Object System.Management.Automation.PSCredential($VIUserName, $securePassword)
     $null = Connect-VIServer -Server $VIServer -Credential $cred -ErrorAction Stop
-    Write-Host "Connection to the VIServer has been established"
+    Write-Host "Connection to the vSphere server has been established"
 }
 catch
 {
-    Write-Host "##vso[task.LogIssue type=error;]VISphere connection error"
+    Write-Host "##vso[task.LogIssue type=error;]Failed to connect to the vSphere server"
     exit 1
 }
 
 # check vm clone status
-$chainId = Get-VIEvent -Entity $VMName | Select-Object -ExpandProperty ChainId -Unique
+$chainId = (Get-VIEvent -Entity $VMName).ChainId
 if ($chainId)
 {
-    $task = Get-Task -Status Running | Where-Object {$_.Name -eq 'CloneVM_Task' -and $_.ExtensionData.Info.EventChainId -eq $chainId}
+    $task = Get-Task -Status Running | Where-Object { ($_.Name -eq 'CloneVM_Task') -and ($_.ExtensionData.Info.EventChainId -in $chainId) }
     if ($task)
     {
         try
@@ -49,7 +49,7 @@ if ($chainId)
         }
         catch
         {
-            Write-Host "##vso[task.LogIssue type=error;]ERROR: unable to cancel the task"
+            Write-Host "##vso[task.LogIssue type=error;]Failed to cancel the task"
         }
     }
 }
@@ -65,22 +65,22 @@ if ($vm)
         try
         {
             $null = Stop-VM -VM $vm -Confirm:$false -ErrorAction Stop
-            Write-Host "VM '$VMName' has been powered off"
+            Write-Host "The vm '$VMName' has been powered off"
         }
         catch
         {
-            Write-Host "##vso[task.LogIssue type=error;]ERROR: unable to shutdown '$VMName'"
+            Write-Host "##vso[task.LogIssue type=error;]Failed to shutdown '$VMName'"
         }
     }
 
     try
     {
         Remove-VM -VM $vm -DeletePermanently -Confirm:$false -ErrorAction Stop
-        Write-Host "VM '$VMName' has been removed"
+        Write-Host "The vm '$VMName' has been removed"
     }
     catch
     {
-        Write-Host "##vso[task.LogIssue type=error;]ERROR: unable to remove '$VMName'"
+        Write-Host "##vso[task.LogIssue type=error;]Failed to remove '$VMName'"
     }
 }
 else
