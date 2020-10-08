@@ -6,7 +6,8 @@
 ###########################################################################
 source ~/utils/utils.sh
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh | bash
+VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$VERSION/install.sh | bash
 
 if [ $? -eq 0 ]; then
         . ~/.bashrc
@@ -23,13 +24,13 @@ if [ $? -eq 0 ]; then
         nvm alias node12 lts/erbium
         nvm alias node13 v13
         nvm alias node14 v14
-        
+
         if is_Catalina || is_BigSur; then
                 # set system node as default
                 nvm alias default system
         fi
 else
-        echo error 
+        echo error
 fi
 
 echo "Node version manager has been installed successfully"

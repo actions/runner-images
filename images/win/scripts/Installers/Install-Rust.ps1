@@ -3,8 +3,6 @@
 ##  Desc:  Install Rust for Windows
 ################################################################################
 
-Import-Module -Name ImageHelpers
-
 # Rust Env
 $env:RUSTUP_HOME = "C:\Rust\.rustup"
 $env:CARGO_HOME = "C:\Rust\.cargo"

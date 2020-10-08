@@ -3,8 +3,6 @@
 ##  Desc:  Install and update Android SDK and tools
 ################################################################################
 
-$ErrorActionPreference = "Stop"
-
 # Install the standard Android SDK licenses. In the past, there wasn't a better way to do this,
 # so we are base64-encoding a zip of the licenses directory from another installation.
 # To create this base64 string, create a zip file that contains nothing but a 'licenses' folder,

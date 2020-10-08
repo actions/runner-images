@@ -3,6 +3,8 @@ param (
     $OutputDirectory
 )
 
+$ErrorActionPreference = "Stop"
+
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
@@ -13,6 +15,9 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNa
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Java.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Rust.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
+
+# Restore file owner in user profile
+Restore-UserOwner
 
 $markdown = ""
 

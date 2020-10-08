@@ -4,9 +4,6 @@
 ################################################################################
 
 # Requires Windows SDK with the same version number as the WDK
-
-Import-Module -Name ImageHelpers -Force
-
 if (Test-IsWin19)
 {
     $winSdkUrl = "https://go.microsoft.com/fwlink/p/?linkid=2120843"

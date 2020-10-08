@@ -20,10 +20,10 @@ Function Get-PackerTemplatePath {
 
     switch ($ImageType) {
         ([ImageType]::Windows2016) {
-            $relativePath = "\images\win\Windows2016-Azure.json"
+            $relativePath = "\images\win\windows2016.json"
         }
         ([ImageType]::Windows2019) {
-            $relativePath = "\images\win\Windows2019-Azure.json"
+            $relativePath = "\images\win\windows2019.json"
         }
         ([ImageType]::Ubuntu1604) {
             $relativePath = "\images\linux\ubuntu1604.json"
