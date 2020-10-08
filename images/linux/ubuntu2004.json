@@ -67,13 +67,6 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/scripts/base/shutdown-apt-service.sh"
-            ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "scripts": [
                 "{{template_dir}}/scripts/base/repos.sh"
             ],
             "environment_vars": [
