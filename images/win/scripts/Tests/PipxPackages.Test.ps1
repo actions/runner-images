@@ -1,8 +1,7 @@
 Describe "PipxPackages" {
     $pipxToolset = (Get-ToolsetContent).pipx
-    foreach($tool in $pipxToolset) {
-        It "${tool.package}" {
-            "${tool.cmd}" | Should -ReturnZeroExitCode
-        }
+    $testCases = $pipxToolset | ForEach-Object { @{package = $_.package; cmd = $_.cmd} }
+    It "<package>" -TestCases $testCases {
+        "$cmd" | Should -ReturnZeroExitCode
     }
 }
