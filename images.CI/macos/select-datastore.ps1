@@ -11,25 +11,13 @@ param(
     [string]$VIPassword
 )
 
-$ProgressPreference = "SilentlyContinue"
-$WarningPreference = "SilentlyContinue"
+# Import helpers module
+Import-Module $PSScriptRoot\helpers.psm1 -DisableNameChecking
 
-# connection to a vCenter Server system
-try
-{
-    $null = Set-PowerCLIConfiguration -Scope Session -InvalidCertificateAction Ignore -ParticipateInCEIP $false -Confirm:$false -WebOperationTimeoutSeconds 600
-    $securePassword = ConvertTo-SecureString -String $VIPassword -AsPlainText -Force
-    $cred = New-Object System.Management.Automation.PSCredential($VIUserName, $securePassword)
-    $null = Connect-VIServer -Server $VIServer -Credential $cred -ErrorAction Stop
-    Write-Host "Connection to the vSphere server has been established"
-}
-catch
-{
-    Write-Host "##vso[task.LogIssue type=error;]Failed to connect to the vSphere server"
-    exit 1
-}
+# Connection to a vCenter Server system
+Connect-VCServer
 
-# get a target datastore for current deployment
+# Get a target datastore for current deployment
 # 1. Name starts with ds-local-Datastore
 # 2. FreespaceGB > 400 Gb
 # 3. VM count on a datastore < 2

@@ -116,6 +116,18 @@ jobs:
     condition: always()
 
   - task: PowerShell@2
+    displayName: 'Move vm to cold storage'
+    condition: succeededOrFailed()
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/macos/move-vm.ps1
+      arguments: -VMName "${{ variables.VirtualMachineName }}" `
+                 -TargetDataStore "${{ parameters.target_datastore }}" `
+                 -VIServer "$(vcenter-server-v2)" `
+                 -VIUserName "$(vcenter-username-v2)" `
+                 -VIPassword "$(vcenter-password-v2)"
+
+  - task: PowerShell@2
     displayName: 'Destroy VM (if build canceled only)'
     condition: eq(variables['Agent.JobStatus'], 'Canceled')
     inputs:
