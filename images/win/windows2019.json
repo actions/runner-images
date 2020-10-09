@@ -329,7 +329,7 @@
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Pipx.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Pipx-Packages.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-PipxPackages.ps1"
             ]
         },
         {
