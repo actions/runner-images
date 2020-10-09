@@ -525,3 +525,4 @@ All other versions are saved but not installed.
 -  microsoft/aspnetcore-build:1.0-2.0
 
 
+test
