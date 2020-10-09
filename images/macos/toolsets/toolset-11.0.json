@@ -2,7 +2,7 @@
     "xcode": {
         "default": "11.7",
         "versions": [
-            "12.2_beta", "12_beta", "11.7"
+            "12.2_beta", "11.7"
         ]
     },
     "xamarin": {
@@ -68,7 +68,8 @@
             "platform" : "darwin",
             "versions": [
                 "3.7.*",
-                "3.8.*"
+                "3.8.*",
+                "3.9.*"
             ]
         },
         {

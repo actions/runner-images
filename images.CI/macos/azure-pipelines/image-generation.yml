@@ -105,3 +105,14 @@ jobs:
       failTaskOnFailedTests: true
     displayName: Publish test results
     condition: always()
+
+  - task: PowerShell@2
+    displayName: 'Destroy VM (if build canceled only)'
+    condition: eq(variables['Agent.JobStatus'], 'Canceled')
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/macos/destroy-vm.ps1
+      arguments: -VMName "${{ variables.VirtualMachineName }}" `
+                 -VIServer "$(vcenter-server-v2)" `
+                 -VIUserName "$(vcenter-username-v2)" `
+                 -VIPassword "$(vcenter-password-v2)"

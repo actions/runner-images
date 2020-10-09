@@ -3,8 +3,6 @@
 ##  Desc:  Install Git for Windows
 ################################################################################
 
-Import-Module -Name ImageHelpers
-
 function getSimpleValue([string] $url, [string] $filename ) {
     $fullpath = "${env:Temp}\$filename"
     Invoke-WebRequest -Uri $url -OutFile $fullpath
@@ -40,8 +38,11 @@ Choco-Install -PackageName hub
 
 Add-MachinePathItem "C:\Program Files\Git\bin"
 
-# Add well-known SSH host keys to ssh_known_hosts
+if (Test-IsWin16) {
+    $env:Path += ";$env:ProgramFiles\Git\usr\bin\"
+}
 
+# Add well-known SSH host keys to ssh_known_hosts
 ssh-keyscan -t rsa github.com >> "C:\Program Files\Git\etc\ssh\ssh_known_hosts"
 ssh-keyscan -t rsa ssh.dev.azure.com >> "C:\Program Files\Git\etc\ssh\ssh_known_hosts"
 

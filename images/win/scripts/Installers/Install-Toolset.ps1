@@ -29,10 +29,6 @@ Function Install-Asset {
     Pop-Location
 }
 
-$ErrorActionPreference = "Stop"
-
-Import-Module -Name ImageHelpers -Force
-
 # Get toolcache content from toolset
 $ToolsToInstall = @("Python", "Node", "Boost", "Go")
 
