@@ -276,3 +276,7 @@ function Get-SphinxVersion {
     $sphinxVersion = searchd -h | Select-Object -First 1 | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
     return "Sphinx Open Source Search Server $sphinxVersion"
 }
+
+function Get-YamllintVersion {
+    return "$(yamllint --version)"
+}
