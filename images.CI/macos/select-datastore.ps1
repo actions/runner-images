@@ -44,6 +44,7 @@ $buildDatastore = $allDatastores | Where-Object { $_.FreeSpaceGB -ge $thresholdI
 
 if ($buildDatastore)
 {
+    Write-Host "Datastore selected successfully"
     Write-Host "##vso[task.setvariable variable=buildDatastore;issecret=true]$buildDatastore"
 }
 else
