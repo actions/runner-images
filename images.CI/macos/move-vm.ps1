@@ -29,7 +29,8 @@ Connect-VCServer
 
 try
 {
-    Get-VM $VMName | Move-VM -Datastore $TargetDataStore
+    Get-VM $VMName | Move-VM -Datastore $TargetDataStore -ErrorAction Stop
+    Write-Host "VM has been moved successfully to target datastore $TargetDataStore"
 }
 catch
 {
