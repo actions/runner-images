@@ -523,6 +523,3 @@ All other versions are saved but not installed.
 -  mcr.microsoft.com/windows/servercore:ltsc2019
 -  mcr.microsoft.com/windows/nanoserver:1809
 -  microsoft/aspnetcore-build:1.0-2.0
-
-
-test
