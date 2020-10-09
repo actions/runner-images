@@ -292,7 +292,7 @@
     "pipx": [
         {
             "package": "yamllint",
-            "cmd": "yamllint"
+            "cmd": "yamllint --version"
         }
     ]
 }
