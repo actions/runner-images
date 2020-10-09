@@ -1,6 +1,6 @@
 ####################################################################################
 ##  File:  Install-DACFx.ps1
-##  Desc:  Install SQL Server® Data-Tier Application Framework (DACFx) for Windows
+##  Desc:  Install SQL Server® Data-Tier Application Framework (DacFx) for Windows
 ####################################################################################
 
 $InstallerName = "DacFramework.msi"
