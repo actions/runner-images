@@ -2,7 +2,7 @@ source ~/utils/utils.sh
 
 export PATH="$PATH:/opt/pipx_bin"
 
-toolset=get_toolset_path
+toolset=$(get_toolset_path)
 pipx_packages=$(jq -r ".pipx[] .package" $toolset)
 
 for package in $pipx_packages; do
