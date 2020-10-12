@@ -3,9 +3,11 @@ param(
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
     [string]$VIServer,
+
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
     [string]$VIUserName,
+
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
     [string]$VIPassword
