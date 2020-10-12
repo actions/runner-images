@@ -248,5 +248,6 @@ function Get-AptPackages {
 }
 
 function Get-PipxVersion {
-    return "Pipx $(pipx --version 2> $null)"
+    $result = (Get-CommandResult "pipx --version").Output
+    return "Pipx $result"
 }
