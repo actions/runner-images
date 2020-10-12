@@ -23,4 +23,4 @@ then
     echo "ERROR: PATH contains quotes"
     echo "PATH = $PATH"
     exit 1
-else
+fi
