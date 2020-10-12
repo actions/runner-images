@@ -4,7 +4,7 @@
 ################################################################################
 
 # Get 3 latest versions of GHC
-[Version[]] $ChocoVersionsOutput = & choco search ghc --allversions --limit-output | Where-Object { $_.StartsWith("ghc|") } | ForEach-Object { $_.TrimStart("ghc|") }
+[Version[]] $ChocoVersionsOutput = & choco search ghc --allversions | Where-Object { $_.StartsWith("ghc ") -and $_ -match "Approved"} | ForEach-Object { [regex]::matches($_, "\d+(\.\d+){2,}").value }
 $MajorMinorGroups = $ChocoVersionsOutput | Sort-Object -Descending | Group-Object { $_.ToString(2) } | Select-Object -First 3
 $VersionsList = $MajorMinorGroups | ForEach-Object { $_.Group | Select-Object -First 1 } | Sort-Object
 
