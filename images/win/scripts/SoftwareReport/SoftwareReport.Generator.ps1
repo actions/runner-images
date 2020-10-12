@@ -165,6 +165,7 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Database tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzCosmosDBEmulatorVersion),
+    (Get-DacFxVersion),
     (Get-SQLPSVersion),
     (Get-MySQLVersion)
 )
