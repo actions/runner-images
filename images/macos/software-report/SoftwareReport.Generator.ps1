@@ -167,7 +167,7 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     "azcopy $azcopyVersion",
     "zstd $zstdVersion",
     $bazelVersion,
-    "bazelisk $($bazeliskVersion.Trim())",
+    $bazeliskVersion,
     "helm $helmVersion",
     "mongo $mongo",
     "mongod $mongod",
