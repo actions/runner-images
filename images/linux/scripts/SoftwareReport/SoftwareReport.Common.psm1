@@ -246,3 +246,8 @@ function Get-AptPackages {
     $pkgs = ($apt.common_packages + $apt.cmd_packages | Sort-Object) -join ", "
     return $pkgs
 }
+
+function Get-PipxVersion {
+    $result = (Get-CommandResult "pipx --version").Output
+    return "Pipx $result"
+}
