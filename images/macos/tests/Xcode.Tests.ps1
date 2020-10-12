@@ -40,7 +40,7 @@ Describe "Xcode" {
     It "Xcode <XcodeVersion> has correct beta symlink" -TestCases $testCases {
         param ( [string] $XcodeVersion )
 
-        $xcodesWithBetaSymlink = @("12", "12_beta", "9.3", "9.4")
+        $xcodesWithBetaSymlink = @("12", "9.3", "9.4")
         $shouldBetaSymlinkExists = $XcodeVersion.StartsWith("10") -or $XcodeVersion.StartsWith("11") -or ($XcodeVersion -in $xcodesWithBetaSymlink)
 
         $betaSymlinkPath = Get-XcodeRootPath -Version "${XcodeVersion}_beta"
@@ -56,7 +56,7 @@ Describe "Xcode" {
     }
 
     Context "XCODE_DEVELOPER_DIR" {
-        $stableXcodeVersions = $XCODE_VERSIONS | Where-Object { Test-XcodeStableVersion $_ }
+        $stableXcodeVersions = $XCODE_VERSIONS | ForEach-Object { $_.Split("_")[0] } | Where-Object { Test-XcodeStableRelease -Version $_ }
         $majorXcodeVersions = $stableXcodeVersions | ForEach-Object { $_.Split(".")[0] } | Select-Object -Unique
         $testCases = $majorXcodeVersions | ForEach-Object {
             $majorXcodeVersion = $_
@@ -76,7 +76,7 @@ Describe "Xcode" {
             $variableName = "XCODE_${MajorXcodeVersion}_DEVELOPER_DIR"
             $actualPath = Get-EnvironmentVariable $variableName
             $expectedPath = Join-Path (Get-XcodeRootPath -Version $ExpectedVersion) "Contents/Developer"
-            
+
             $actualPath | Should -Exist
             $actualPath | Should -Be $expectedPath
         }
@@ -84,15 +84,15 @@ Describe "Xcode" {
 }
 
 Describe "Xcode simulators" {
-    $XCODE_VERSIONS | Where-Object { Test-XcodeStableVersion $_ } | ForEach-Object {
+    $XCODE_VERSIONS | Where-Object { Test-XcodeStableRelease -Version $_ } | ForEach-Object {
         Switch-Xcode -Version $_
-        
+
         Context "$_" {
             It "No duplicates in devices" {
                 [array]$devicesList = @(Get-XcodeDevicesList | Where-Object { $_ })
                 Validate-ArrayWithoutDuplicates $devicesList -Because "Found duplicate device simulators"
             }
-        
+
             It "No duplicates in pairs" {
                 [array]$pairsList = @(Get-XcodePairsList | Where-Object { $_ })
                 Validate-ArrayWithoutDuplicates $pairsList -Because "Found duplicate pairs simulators"

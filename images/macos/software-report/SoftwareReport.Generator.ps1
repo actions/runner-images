@@ -4,6 +4,8 @@ param (
     $ImageName
 )
 
+$ErrorActionPreference = "Stop"
+
 Import-Module MarkdownPS
 Import-Module "$PSScriptRoot/SoftwareReport.Common.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Xcode.psm1" -DisableNameChecking
@@ -291,6 +293,8 @@ $markdown += New-MDList -Lines (Build-XamarinAndroidList) -Style Unordered
 $markdown += New-MDHeader "Unit Test Framework" -Level 4
 $markdown += New-MDList -Lines @(Get-NUnitVersion) -Style Unordered
 
+# First run doesn't provide full data about devices and runtimes
+Get-XcodeInfoList | Out-Null
 # Xcode section
 $xcodeInfo = Get-XcodeInfoList
 $markdown += New-MDHeader "Xcode" -Level 3
@@ -303,12 +307,9 @@ $markdown += New-MDHeader "Installed SDKs" -Level 4
 $markdown += Build-XcodeSDKTable $xcodeInfo | New-MDTable
 $markdown += New-MDNewLine
 
-# Disable simulators table on 11.0 beta for now since "simctl" tool doesn't work properly
-if (-not $os.IsBigSur) {
-    $markdown += New-MDHeader "Installed Simulators" -Level 4
-    $markdown += Build-XcodeSimulatorsTable $xcodeInfo | New-MDTable
-    $markdown += New-MDNewLine
-}
+$markdown += New-MDHeader "Installed Simulators" -Level 4
+$markdown += Build-XcodeSimulatorsTable $xcodeInfo | New-MDTable
+$markdown += New-MDNewLine
 
 # Android section
 $markdown += New-MDHeader "Android" -Level 3

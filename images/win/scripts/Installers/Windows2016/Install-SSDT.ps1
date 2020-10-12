@@ -3,8 +3,6 @@
 ##  Desc:  Install SQL Server Data Tools for Windows
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 #SSDT for Visual Studio 2017
 #The link down below points to the latest version of SSDT for Visual Studio 2017
 $InstallerName = "SSDT-Setup-ENU.exe"
