@@ -92,7 +92,7 @@
         {
             "type": "file",
             "source": "{{ template_dir }}/post-generation",
-            "destination": "{{user `installer_script_folder`}}"
+            "destination": "{{user `image_folder`}}"
         },
         {
             "type": "file",
