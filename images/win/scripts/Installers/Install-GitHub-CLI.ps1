@@ -4,11 +4,9 @@
 ################################################################################
 
 Write-Host "Get the latest gh version..."
-$GhReleasesJson = Invoke-RestMethod "https://api.github.com/repos/cli/cli/releases/latest"
-$WindowsMsiAssetNamePattern = "windows_amd64.msi"
-$WindowsMsiAsset = $GhReleasesJson.assets | Where-Object { $_.name.EndsWith($WindowsMsiAssetNamePattern) } | Select-Object -First 1
-$Name = $WindowsMsiAsset.name
-$DownloadUrl = $WindowsMsiAsset.browser_download_url
+
+$Name = "gh_windows_amd64.msi"
+$DownloadUrl = (Invoke-RestMethod -Uri "https://api.github.com/repos/cli/cli/releases/latest").assets.browser_download_url -match "windows_amd64.msi"
 
 Install-Binary -Url $DownloadUrl -Name $Name
 
