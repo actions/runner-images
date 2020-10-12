@@ -97,7 +97,8 @@ function Get-PipVersion {
 }
 
 function Get-PipxVersion {
-    return "Pipx $(pipx --version 2> $null)"
+    $pipxVersion = Run-Command "pipx --version" -SuppressStderr
+    return "Pipx $pipxVersion"
 }
 
 function Get-NVMNodeVersionList {
