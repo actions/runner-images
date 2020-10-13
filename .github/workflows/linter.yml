@@ -28,4 +28,4 @@ jobs:
 
       - name: Checking shebang lines in MacOS and Ubuntu releases.
         run: ./images.CI/shebang-linter.ps1
-          shell: powershell
+        shell: pwsh
