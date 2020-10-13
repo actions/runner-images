@@ -6,7 +6,8 @@
 Write-Host "Get the latest gh version..."
 
 $Name = "gh_windows_amd64.msi"
-$DownloadUrl = (Invoke-RestMethod -Uri "https://api.github.com/repos/cli/cli/releases/latest").assets.browser_download_url -match "windows_amd64.msi"
+$Assets = (Invoke-RestMethod -Uri "https://api.github.com/repos/cli/cli/releases/latest").assets
+$DownloadUrl = ($Assets.browser_download_url -match "windows_amd64.msi") | Select-Object -First 1
 
 Install-Binary -Url $DownloadUrl -Name $Name
 
