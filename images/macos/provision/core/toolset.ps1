@@ -38,7 +38,7 @@ $tools =  Get-ToolcacheFromToolset | Where-Object {$ToolsToInstall -contains $_.
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
-    $assets = Invoke-RestMethod $tool.url
+    $assets = Invoke-RestMethod $tool.url -MaximumRetryCount 10 -RetryIntervalSec 30
 
     # Get github release asset for each version
     foreach ($version in $tool.versions) {
