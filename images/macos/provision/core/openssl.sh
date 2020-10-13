@@ -2,9 +2,6 @@
 
 source ~/utils/utils.sh
 
-echo "Installing OpenSSL..."
-export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
-
 echo Installing OpenSSL...
 /usr/local/bin/brew install openssl
 
