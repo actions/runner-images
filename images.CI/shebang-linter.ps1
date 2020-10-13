@@ -1,5 +1,5 @@
 $ErrorActionPreference = "Stop"
-
+# Comment here
 function Validate-Scripts {
     Param (
         [Parameter(Mandatory=$true)]
