@@ -10,12 +10,12 @@ function Validate-Scripts {
     $ScriptWithoutShebangLine = @()
     Get-ChildItem $path -Recurse -File -Filter "*.sh" | ForEach-Object {
         $relativePath = Resolve-Path $_.FullName -Relative
-        $shebangLine = Get-Content -Path $.FullName | Select-Object -First 1
+        $shebangLine = Get-Content -Path $_.FullName | Select-Object -First 1
         if ($shebangLine -eq $ExpectedShebang) {
             Write-Host "[+] '$relativePath'"
         }
         else {
-            Write-Host "[-] 'relativePath'"
+            Write-Host "[-] '$relativePath'"
             $ScriptWithoutShebangLine += $relativePath
         }
     }
