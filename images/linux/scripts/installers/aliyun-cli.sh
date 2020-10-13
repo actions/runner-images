@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  aliyun-cli.sh
 ##  Desc:  Installs Alibaba Cloud CLI
 ################################################################################
-
 
 # Install Alibaba Cloud CLI
 URL=$(curl -s https://api.github.com/repos/aliyun/aliyun-cli/releases/latest | jq -r '.assets[].browser_download_url | select(contains("aliyun-cli-linux"))')

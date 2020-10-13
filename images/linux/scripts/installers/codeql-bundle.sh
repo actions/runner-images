@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  codeql-bundle.sh
 ##  Desc:  Install the CodeQL CLI Bundle to the toolcache.
