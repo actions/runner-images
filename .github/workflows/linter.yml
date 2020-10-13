@@ -5,6 +5,8 @@ name: Linter
 on:
   pull_request:
     branches: [ $default-branch ]
+  push:
+    branches: [ v-danurg/lint_shebang_ubuntu ]
     
 jobs:
   build:
