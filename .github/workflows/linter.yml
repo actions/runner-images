@@ -24,7 +24,7 @@ jobs:
           VALIDATE_MD: true
           DEFAULT_BRANCH: ${{ github.base_ref }}
 
-    - name: Checking shebang lines in MacOS and Ubuntu releases.
-      shell: powershell
-      run: |
-        ./images.CI/shebang-linter.ps1
+      - name: Checking shebang lines in MacOS and Ubuntu releases.
+        shell: powershell
+        run: |
+          ./images.CI/shebang-linter.ps1
