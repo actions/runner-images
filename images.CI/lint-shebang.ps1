@@ -1,8 +1,3 @@
-param(
-    [Parameter(Mandatory)] [string] $path,
-    [Parameter(Mandatory)] [string] $pattern
-)
-
 $ErrorActionPreference = "Stop"
 
 function Validate-Scripts {
@@ -10,29 +5,32 @@ function Validate-Scripts {
         [Parameter(Mandatory=$true)]
         [string[]]$Path,
         [Parameter(Mandatory=$true)]
-        [string]$Pattern
+        [string]$ExpectedShebang
     )
      $ScriptWithoutShebangLine = @()
-     Get-ChildItem $path | ForEach-Object {
-       if (Get-Content -Path $($_.FullName) | Select-Object -First 1 | Select-String -Pattern $Pattern -Quiet) {
-          Write-Host "Pattern '$Pattern' found in '$($_.FullName)'"
+     Get-ChildItem $path -Recurse -File -Filter "*.sh" | ForEach-Object {
+       $shebangLine = Get-Content -Path $($_.FullName) | Select-Object -First 1
+       if ($shebangLine -eq $ExpectedShebang) {
+            Write-Host "Pattern '$ExpectedShebang' found in '$($_.FullName)'"
        }
        else {
-          Write-Host "Pattern '$Pattern' not found in '$($_.FullName)'"
-          $ScriptWithoutShebangLine += $($_.FullName)
+            Write-Host "Pattern '$ExpectedShebang' not found in '$($_.FullName)'"
+            $ScriptWithoutShebangLine += $($_.FullName)
        }
     }
     return $ScriptWithoutShebangLine
 }
 
+$PathUbuntu = "./images/linux/scripts"
+$PathMacOS = "./images/macos/provision"
 $ScriptsWithBrokenShebang = @()
 # Check Ubuntu contains required shebang string
-$ScriptsWithBrokenShebang += Validate-Scripts -Path $path1 -Pattern "#!/bin/bash -e"
+$ScriptsWithBrokenShebang += Validate-Scripts -Path $PathUbuntu -Pattern "#!/bin/bash -e"
 # Check MacOS contains required shebang string
-$ScriptsWithBrokenShebang += Validate-Scripts -Path $path2 -Pattern "#!/bin/bash -e -o pipefail"
+$ScriptsWithBrokenShebang += Validate-Scripts -Path $PathMacOS -Pattern "#!/bin/bash -e -o pipefail"
 if ($ScriptsWithBrokenShebang.Length -gt 0) {
     $ScriptsWithBrokenShebang | ForEach-Object {
-    Write-Warning "The following script does not contain shebang: '$_'"
+        Write-Warning "The following script does not contain shebang: '$_'"
   }
-  exit 1
+    exit 1
 }
