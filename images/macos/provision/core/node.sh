@@ -1,10 +1,5 @@
 source ~/utils/utils.sh
 
-node_common_modules=(
-  node-gyp
-  mobile-center-cli
-)
-
 node_catalina_modules=(
   appcenter-cli
   newman
@@ -40,8 +35,6 @@ echo Installing yarn...
 curl -o- -L https://yarnpkg.com/install.sh | bash
 
 if is_Less_BigSur; then
-    for module in ${node_common_modules[@]}; do
-        echo "Install $module"
-        npm install -g $module
-    done
+  echo "Install node-gyp"
+  npm install -g node-gyp
 fi
