@@ -33,13 +33,7 @@ do
     echo "Extracting Xcode.app ($VERSION_TO_INSTALL) to ${WORK_DIR} ..."
     extractXcodeXip $WORK_DIR "$VERSION_TO_INSTALL"
 
-    # Remove "beta" postfix from version
-    if [[ $XCODE_VERSION == "12_beta" ]] && is_Catalina ; then
-        # trick to install Xcode 12 GM and Xcode 12 beta 6 side by side
-        XCODE_VERSION="12_beta"
-    else
-        XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
-    fi
+    XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
 
     echo "Checking if unpacked Xcode ${XCODE_VERSION} is valid"
     validateXcodeIntegrity "$WORK_DIR"
@@ -53,9 +47,7 @@ do
     # Creating a symlink for all Xcode 10* and Xcode 9.3, 9.4 to stay backwards compatible with consumers of the Xcode beta version
     createBetaSymlink $XCODE_VERSION
 
-    if [ ! $(echo $XCODE_VERSION | grep "beta") ]; then
-        createXamarinProvisionatorSymlink "$XCODE_VERSION"
-    fi
+    createXamarinProvisionatorSymlink "$XCODE_VERSION"
 
     find $WORK_DIR -mindepth 1 -delete
 done
@@ -72,12 +64,7 @@ do
         continue
     fi
 
-    if [[ $XCODE_VERSION == "12_beta" ]] && is_Catalina ; then
-        # trick to install Xcode 12 GM and Xcode 12 beta 6 side by side
-        XCODE_VERSION="12_beta"
-    else
-        XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
-    fi
+    XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
 
     echo "Running 'runFirstLaunch' for Xcode ${XCODE_VERSION}..."
     runFirstLaunch $XCODE_VERSION

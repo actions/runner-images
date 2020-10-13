@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  oc.sh
 ##  Desc:  Installs the OC CLI
 ################################################################################
-
 
 # Install the oc CLI
 curl "https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz" > oc.tar.gz

@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  bazel.sh
 ##  Desc:  Installs Bazel and Bazelisk (A user-friendly launcher for Bazel)
 ################################################################################
-
 
 # Install bazel
 curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -

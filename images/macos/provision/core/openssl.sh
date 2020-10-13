@@ -1,5 +1,7 @@
 #!/bin/bash -e -o pipefail
 
+source ~/utils/utils.sh
+
 echo "Installing OpenSSL..."
 export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 

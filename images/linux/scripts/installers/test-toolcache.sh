@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  test-toolcache.sh
 ##  Desc:  Test Python and Ruby versions in tools cache
@@ -50,9 +50,6 @@ Test_Hostedtoolcache_Tool() {
       exit 1
    fi
 }
-
-# Fail out if any tests fail
-set -e
 
 # define dictionary for key_alias and its values
 declare -A TOOLCACHE_KEY_VALUE
