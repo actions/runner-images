@@ -9,14 +9,13 @@ function Validate-Scripts {
     )
     $ScriptWithoutShebangLine = @()
     Get-ChildItem $path -Recurse -File -Filter "*.sh" | ForEach-Object {
-        $RelativePath = Join-Path $Path $($_.Name)
-        $shebangLine = Get-Content -Path $RelativePath | Select-Object -First 1
+        $shebangLine = Get-Content -Path $($_.FullName)| Select-Object -First 1
         if ($shebangLine -eq $ExpectedShebang) {
-            Write-Host "Pattern '$ExpectedShebang' found in '$RelativePath'"
+            Write-Host "Pattern '$ExpectedShebang' found in '$($_.FullName)'"
         }
         else {
-            Write-Host "Pattern '$ExpectedShebang' not found in '$RelativePath'"
-            $ScriptWithoutShebangLine += $RelativePath
+            Write-Host "Pattern '$ExpectedShebang' not found in '$($_.FullName)'"
+            $ScriptWithoutShebangLine += $($_.FullName)
         }
     }
     return $ScriptWithoutShebangLine
