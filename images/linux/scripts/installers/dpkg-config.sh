@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # This is the anti-frontend. It never interacts with you  at  all,
 # and  makes  the  default  answers  be used for all questions. It

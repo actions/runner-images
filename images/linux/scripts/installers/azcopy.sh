@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  azcopy.sh
 ##  Desc:  Installs AzCopy
 ################################################################################
-
 
 # Install AzCopy7
 wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinux64

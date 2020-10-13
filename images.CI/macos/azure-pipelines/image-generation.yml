@@ -42,6 +42,15 @@ jobs:
       SourceFolder: 'images/macos/provision/log/'
       RemoveSourceFolder: true
 
+  - task: PowerShell@2
+    displayName: 'Select datastore'
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/macos/select-datastore.ps1
+      arguments: -VIServer "$(vcenter-server-v2)" `
+                 -VIUserName "$(vcenter-username-v2)" `
+                 -VIPassword "$(vcenter-password-v2)"
+
   - pwsh: |
       $SensitiveData = @(
           'IP address:',
@@ -54,7 +63,7 @@ jobs:
         -var="vcenter_password=$(vcenter-password-v2)" `
         -var="vcenter_datacenter=$(vcenter-datacenter-v2)" `
         -var="cluster_or_esxi_host=$(esxi-cluster-v2)" `
-        -var="esxi_datastore=${{ parameters.target_datastore }}" `
+        -var="esxi_datastore=$(buildDatastore)" `
         -var="output_folder=$(output-folder)" `
         -var="vm_username=$(vm-username)" `
         -var="vm_password=$(vm-password)" `
@@ -105,3 +114,26 @@ jobs:
       failTaskOnFailedTests: true
     displayName: Publish test results
     condition: always()
+
+  - task: PowerShell@2
+    displayName: 'Move vm to cold storage'
+    condition: succeededOrFailed()
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/macos/move-vm.ps1
+      arguments: -VMName "${{ variables.VirtualMachineName }}" `
+                 -TargetDataStore "${{ parameters.target_datastore }}" `
+                 -VIServer "$(vcenter-server-v2)" `
+                 -VIUserName "$(vcenter-username-v2)" `
+                 -VIPassword "$(vcenter-password-v2)"
+
+  - task: PowerShell@2
+    displayName: 'Destroy VM (if build canceled only)'
+    condition: eq(variables['Agent.JobStatus'], 'Canceled')
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/macos/destroy-vm.ps1
+      arguments: -VMName "${{ variables.VirtualMachineName }}" `
+                 -VIServer "$(vcenter-server-v2)" `
+                 -VIUserName "$(vcenter-username-v2)" `
+                 -VIPassword "$(vcenter-password-v2)"

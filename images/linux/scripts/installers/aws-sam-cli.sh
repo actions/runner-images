@@ -1,10 +1,9 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  aws-sam-cli.sh
 ##  Desc:  Installs AWS SAM CLI
 ##         Requires Python >=3.6, must be run as non-root user after toolset installation
 ################################################################################
-
 
 # Download latest aws sam cli sources
 TarballUrl=$(curl -s https://api.github.com/repos/aws/aws-sam-cli/releases/latest | jq -r '.tarball_url')
