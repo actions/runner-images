@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  postgresql.sh
 ##  Desc:  Installs Postgresql
 ################################################################################
-
 
 #Preparing repo for PostgreSQL 12.
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -

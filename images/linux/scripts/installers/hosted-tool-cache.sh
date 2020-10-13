@@ -1,12 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  hosted-tool-cache.sh
 ##  Desc:  Downloads and installs hosted tools cache
 ################################################################################
-
-
-# Fail out if any setups fail
-set -e
 
 TOOLCACHE_REGISTRY="npm.pkg.github.com"
 
