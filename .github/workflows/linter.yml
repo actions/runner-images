@@ -1,10 +1,10 @@
 # CI Validation
 
-name: Linter
+name: CI
 
 on:
   pull_request:
-    branches: [$default-branch]
+    branches: [ $default-branch ]
     
 jobs:
   build:
