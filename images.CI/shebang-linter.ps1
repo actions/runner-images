@@ -24,8 +24,8 @@ function Validate-Scripts {
 $PathUbuntu = "./images/linux/scripts"
 $PathMacOS = "./images/macos/provision"
 $ScriptsWithBrokenShebang = @()
-$ScriptsWithBrokenShebang += Validate-Scripts -Path $PathUbuntu -Pattern "#!/bin/bash -e"
-$ScriptsWithBrokenShebang += Validate-Scripts -Path $PathMacOS -Pattern "#!/bin/bash -e -o pipefail"
+$ScriptsWithBrokenShebang += Validate-Scripts -Path $PathUbuntu -ExpectedShebang "#!/bin/bash -e"
+$ScriptsWithBrokenShebang += Validate-Scripts -Path $PathMacOS -ExpectedShebang "#!/bin/bash -e -o pipefail"
 if ($ScriptsWithBrokenShebang.Length -gt 0) {
     $ScriptsWithBrokenShebang | ForEach-Object {
         Write-Warning "The following script does not contain shebang: '$_'"
