@@ -1,6 +1,6 @@
 source ~/utils/utils.sh
 
-node_catalina_modules=(
+node_modules=(
   appcenter-cli
   newman
 )
@@ -25,7 +25,7 @@ else
   brew install node@12
   brew link node@12 --force
 
-  for module in ${node_catalina_modules[@]}; do
+  for module in ${node_modules[@]}; do
     echo "Install $module"
     npm install -g $module
   done
