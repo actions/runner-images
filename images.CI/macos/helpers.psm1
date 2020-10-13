@@ -1,3 +1,9 @@
+<#
+.SYNOPSIS
+
+Helper functions to use in images.CI scripts
+#>
+
 Function Connect-VCServer
 {
     try

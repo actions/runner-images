@@ -1,3 +1,24 @@
+<#
+.SYNOPSIS
+
+This script migrates given VM to another datastore
+
+.PARAMETER VMName
+VM name to migrate (Example "macOS-10.15_20201012.4")
+
+.PARAMETER TargetDataStore
+Target datastore (Example "ds-image")
+
+.PARAMETER VIServer
+vCenter address (Example "10.0.1.16")
+
+.PARAMETER VIUserName
+vCenter username (Example "Administrator")
+
+.PARAMETER VIPassword
+vCenter password (Example "12345678")
+#>
+
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)]

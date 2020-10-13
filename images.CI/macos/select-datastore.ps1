@@ -1,3 +1,23 @@
+<#
+.SYNOPSIS
+
+This script selects local datastore based on the following rules:
+
+- Name starts with ds-local-Datastore
+- Datastore FreespaceGB > 400 Gb
+- VM count on the datastore < 2
+
+.PARAMETER VIServer
+vCenter address (Example "10.0.1.16")
+
+.PARAMETER VIUserName
+vCenter username (Example "Administrator")
+
+.PARAMETER VIPassword
+vCenter password (Example "12345678")
+#>
+
+
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)]
