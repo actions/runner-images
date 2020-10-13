@@ -12,6 +12,8 @@ getXcodeVersionToInstall() {
 
     if  [[ ! $XCODE_VERSION =~ "_beta" ]]; then
         echo "${XCODE_VERSION//_/ }"
+    elif [[ $XCODE_VERSION == "12" ]]; then
+        echo "12.0.1"
     else
         local XCODE_BETA="${XCODE_VERSION/_/ }"
         echo "$(xcversion list | sort -r | grep -m 1 "$XCODE_BETA")"
