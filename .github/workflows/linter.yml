@@ -4,10 +4,8 @@ name: Linter
 
 on:
   pull_request:
-    branches: [ $default-branch ]
-  push:
-    branches: [ v-danurg/lint_shebang_ubuntu ]
-    
+    branches: [ main ]
+
 jobs:
   build:
     name: Lint JSON & MD files
