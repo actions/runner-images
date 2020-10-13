@@ -33,7 +33,7 @@ if ($chainId)
         try
         {
             Stop-Task -Task $task -Confirm:$false -ErrorAction Stop
-            Write-Host "The vm '$VMName' clone task has been cancelled"
+            Write-Host "The vm '$VMName' clone task has been canceled"
         }
         catch
         {

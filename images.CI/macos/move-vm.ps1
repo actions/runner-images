@@ -30,9 +30,9 @@ Connect-VCServer
 try
 {
     Get-VM $VMName | Move-VM -Datastore $TargetDataStore -ErrorAction Stop
-    Write-Host "VM has been moved successfully to target datastore $TargetDataStore"
+    Write-Host "VM has been moved successfully to target datastore '$TargetDataStore'"
 }
 catch
 {
-    Write-Host "##vso[task.LogIssue type=error;]Failed to move VM $VMName to target datastore $TargetDataStore"
+    Write-Host "##vso[task.LogIssue type=error;]Failed to move VM '$VMName' to target datastore $TargetDataStore"
 }
