@@ -19,6 +19,7 @@ function Validate-Scripts {
             $ScriptWithoutShebangLine += $relativePath
         }
     }
+}
 
 $PathUbuntu = "./images/linux/scripts"
 $PathMacOS = "./images/macos/provision"
