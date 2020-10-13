@@ -19,6 +19,7 @@ function Validate-Scripts {
             $ScriptWithoutShebangLine += $relativePath
         }
     }
+    return $ScriptWithoutShebangLine
 }
 
 $PathUbuntu = "./images/linux/scripts"
