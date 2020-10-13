@@ -34,5 +34,5 @@ try
 }
 catch
 {
-    Write-Host "##vso[task.LogIssue type=error;]Failed to move VM '$VMName' to target datastore $TargetDataStore"
+    Write-Host "##vso[task.LogIssue type=error;]Failed to move VM '$VMName' to target datastore '$TargetDataStore'"
 }
