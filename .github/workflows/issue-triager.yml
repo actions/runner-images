@@ -32,7 +32,7 @@ jobs:
 
           const isAnnouncement = issueLabels.data && issueLabels.data
             .map(label => label.name)
-            .includes('announcement');
+            .includes('Announcement');
 
           if (!isAnnouncement) {
             github.issues.addLabels({
