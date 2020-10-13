@@ -1,6 +1,6 @@
 # CI Validation
 
-name: CI
+name: Linter
 
 on:
   pull_request:
