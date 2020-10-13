@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  homebrew-validate.sh
 ##  Desc:  Validate the Homebrew can run after reboot without extra configuring

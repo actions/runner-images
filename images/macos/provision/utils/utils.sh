@@ -92,3 +92,8 @@ get_latest_xcode_from_toolset() {
 get_default_xcode_from_toolset() {
     echo $(get_toolset_value '.xcode.default')
 }
+
+verlte() {
+    sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
+    [  "$1" = "$sortedVersion" ]
+}
