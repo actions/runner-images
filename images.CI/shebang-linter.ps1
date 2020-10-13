@@ -11,10 +11,10 @@ function Validate-Scripts {
     Get-ChildItem $path -Recurse -File -Filter "*.sh" | ForEach-Object {
         $shebangLine = Get-Content -Path $($_.FullName)| Select-Object -First 1
         if ($shebangLine -eq $ExpectedShebang) {
-            Write-Host "Pattern '$ExpectedShebang' found in '$($_.FullName)'"
+            Write-Host "[+] '$($_.FullName)'"
         }
         else {
-            Write-Host "Pattern '$ExpectedShebang' not found in '$($_.FullName)'"
+            Write-Host "[-] '$($_.FullName)'"
             $ScriptWithoutShebangLine += $($_.FullName)
         }
     }
@@ -23,12 +23,20 @@ function Validate-Scripts {
 
 $PathUbuntu = "./images/linux/scripts"
 $PathMacOS = "./images/macos/provision"
+$PatternUbuntu = "#!/bin/bash -e"
+$PatternMacOS = "#!/bin/bash -e -o pipefail"
 $ScriptsWithBrokenShebang = @()
-$ScriptsWithBrokenShebang += Validate-Scripts -Path $PathUbuntu -ExpectedShebang "#!/bin/bash -e"
-$ScriptsWithBrokenShebang += Validate-Scripts -Path $PathMacOS -ExpectedShebang "#!/bin/bash -e -o pipefail"
+$ScriptsWithBrokenShebang += Validate-Scripts -Path $PathUbuntu -ExpectedShebang $PatternUbuntu
+$ScriptsWithBrokenShebang += Validate-Scripts -Path $PathMacOS -ExpectedShebang $PatternMacOS
 if ($ScriptsWithBrokenShebang.Length -gt 0) {
+    Write-Host "The following scripts have incorrect shebang:"
     $ScriptsWithBrokenShebang | ForEach-Object {
-        Write-Warning "The following script does not contain shebang: '$_'"
+        Write-Host "- '$_'"
     }
+    Write-Host "Expected shebang for scripts in 'images/linux' folder is '$PatternUbuntu'"
+    Write-Host "Expected shebang for scripts in 'images/macos' folder is '$PatternMacOS'"
     exit 1
+    else {
+        Write-Host "All scripts have correct shebang."
+    }
 }
