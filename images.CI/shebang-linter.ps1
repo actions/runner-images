@@ -31,10 +31,10 @@ $ScriptsWithBrokenShebang += Validate-Scripts -Path $PathMacOS -ExpectedShebang 
 if ($ScriptsWithBrokenShebang.Length -gt 0) {
     Write-Host "The following scripts have incorrect shebang:"
     $ScriptsWithBrokenShebang | ForEach-Object {
-        Write-Host "- '$_'"
+        Write-Host "##[error] - '$_'"
     }
-    Write-Host "Expected shebang for scripts in 'images/linux' folder is '$PatternUbuntu'"
-    Write-Host "Expected shebang for scripts in 'images/macos' folder is '$PatternMacOS'"
+    Write-Host "##[error] Expected shebang for scripts in 'images/linux' folder is '$PatternUbuntu'"
+    Write-Host "##[error] Expected shebang for scripts in 'images/macos' folder is '$PatternMacOS'"
     exit 1
     else {
         Write-Host "All scripts have correct shebang."
