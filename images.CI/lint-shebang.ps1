@@ -26,8 +26,10 @@ function Validate-Scripts {
 }
 
 $ScriptsWithBrokenShebang = @()
+# Check Ubuntu contains required shebang string
 $ScriptsWithBrokenShebang += Validate-Scripts -Path $path1 -Pattern "#!/bin/bash -e"
-$ScriptsWithBrokenShebang += Validate-Scripts -Path $path2 -Pattern "#!/bin/bash -e"
+# Check MacOS contains required shebang string
+$ScriptsWithBrokenShebang += Validate-Scripts -Path $path2 -Pattern "#!/bin/bash -e -o pipefail"
 if ($ScriptsWithBrokenShebang.Length -gt 0) {
     $ScriptsWithBrokenShebang | ForEach-Object {
     Write-Warning "The following script does not contain shebang: '$_'"
