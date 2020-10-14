@@ -67,7 +67,7 @@
 - azcopy 10.6.0
 - zstd 1.4.5
 - bazel 3.6.0
-- bazelisk development
+- bazelisk 1.7.1
 - helm v3.3.4+ga61ce56
 - mongo v4.4.0
 - mongod v4.4.0
