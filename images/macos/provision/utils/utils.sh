@@ -97,27 +97,3 @@ verlte() {
     sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
     [  "$1" = "$sortedVersion" ]
 }
-
-is_clt_installed() {
-    clt_path=`xcode-select -p 2>&1`
-    [[ -d "$clt_path" ]]
-}
-
-install_clt() {
-    echo "Searching online for the Command Line Tools"
-    # This temporary file prompts the 'softwareupdate' utility to list the Command Line Tools
-    clt_placeholder="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
-    sudo touch $clt_placeholder
-    clt_label_command="/usr/sbin/softwareupdate -l |
-                        grep -B 1 -E 'Command Line Tools' |
-                        awk -F'*' '/^ *\\*/ {print \$2}' |
-                        sed -e 's/^ *Label: //' -e 's/^ *//' |
-                        sort -V |
-                        tail -n1"
-    clt_label=$(eval $clt_label_command) || true
-    if [[ -n "$clt_label" ]]; then
-        echo "Installing $clt_label"
-        sudo "/usr/sbin/softwareupdate" "-i" "$clt_label"
-    fi
-    sudo "/bin/rm" "-f" "$clt_placeholder"
-}
