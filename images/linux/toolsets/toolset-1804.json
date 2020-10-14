@@ -11,7 +11,8 @@
                 "3.5.*",
                 "3.6.*",
                 "3.7.*",
-                "3.8.*"
+                "3.8.*",
+                "3.9.*"
             ]
         },
         {
@@ -163,7 +164,6 @@
             "time",
             "unzip",
             "wget",
-            "yamllint",
             "zip"
         ]
     },
@@ -185,5 +185,15 @@
             "node:12-alpine",
             "ubuntu:14.04"
         ]
-    }
+    },
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint"
+        },
+        {
+            "package": "aws-sam-cli",
+            "cmd": "sam"
+        }
+    ]
 }

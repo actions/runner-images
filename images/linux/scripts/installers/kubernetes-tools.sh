@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  kubernetes-tools.sh
 ##  Desc:  Installs kubectl, helm, kustomize
 ################################################################################
-
 
 ## Install kubectl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -

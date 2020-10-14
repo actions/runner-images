@@ -1,10 +1,9 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  example.sh
 ##  Desc:  This is an example script that can be copied to add a new software
 ##         installer to the image
 ################################################################################
-
 
 # Test to see if the software in question is already installed, if not install it
 echo "Checking to see if the installer script has already been run"

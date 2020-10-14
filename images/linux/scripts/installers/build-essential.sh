@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  build-essential.sh
 ##  Desc:  Installs build-essential package
 ################################################################################
-
 
 source $HELPER_SCRIPTS/install.sh
 
