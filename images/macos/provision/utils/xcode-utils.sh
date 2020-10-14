@@ -58,6 +58,7 @@ setXcodeDeveloperDirVariables() {
     for MAJOR_VERSION in "${major_versions[@]}"
     do
         LATEST_STABLE_VERSION=$(echo "${stable_xcode_versions[*]}" | grep "${MAJOR_VERSION}" | tail -n 1)
+        LATEST_STABLE_VERSION=$(echo $LATEST_STABLE_VERSION | cut -d"_" -f 1)
         echo "export XCODE_${MAJOR_VERSION}_DEVELOPER_DIR=/Applications/Xcode_${LATEST_STABLE_VERSION}.app/Contents/Developer" >> "$HOME/.bashrc"
     done
 }
