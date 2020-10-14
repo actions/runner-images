@@ -18,6 +18,10 @@ if is_Less_Catalina; then
   npm install -g npm@3
   npm config set prefix /usr/local
 
+  # This step is required to install App Center CLI
+  echo Installing Omelette...
+  npm install -g omelette@0.4.14
+
   echo Installing App Center CLI...
   npm install -g appcenter-cli@^1.0.0
 else
