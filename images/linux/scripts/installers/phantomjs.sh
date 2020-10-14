@@ -1,10 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  phantomjs.sh
 ##  Desc:  Installs PhantomJS
 ################################################################################
-
-set -e
 
 # Install PhantomJS
 apt-get install -y chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev

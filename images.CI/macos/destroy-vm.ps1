@@ -1,3 +1,21 @@
+<#
+.SYNOPSIS
+
+This script deletes vm from vCenter
+
+.PARAMETER VMName
+VM name to delete (Example "macOS-10.15_20201012.4")
+
+.PARAMETER VIServer
+vCenter address (Example "10.0.1.16")
+
+.PARAMETER VIUserName
+vCenter username (Example "Administrator")
+
+.PARAMETER VIPassword
+vCenter password (Example "12345678")
+#>
+
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)]
@@ -17,25 +35,13 @@ param(
     [string]$VIPassword
 )
 
-$ProgressPreference = "SilentlyContinue"
-$WarningPreference = "SilentlyContinue"
+# Import helpers module
+Import-Module $PSScriptRoot\helpers.psm1 -DisableNameChecking
 
-# connection to a vCenter Server system
-try
-{
-    $null = Set-PowerCLIConfiguration -Scope Session -InvalidCertificateAction Ignore -ParticipateInCEIP $false -Confirm:$false -WebOperationTimeoutSeconds 600
-    $securePassword = ConvertTo-SecureString -String $VIPassword -AsPlainText -Force
-    $cred = New-Object System.Management.Automation.PSCredential($VIUserName, $securePassword)
-    $null = Connect-VIServer -Server $VIServer -Credential $cred -ErrorAction Stop
-    Write-Host "Connection to the vSphere server has been established"
-}
-catch
-{
-    Write-Host "##vso[task.LogIssue type=error;]Failed to connect to the vSphere server"
-    exit 1
-}
+# Connection to a vCenter Server system
+Connect-VCServer
 
-# check vm clone status
+# Check vm clone status
 $chainId = (Get-VIEvent -Entity $VMName).ChainId
 if ($chainId)
 {
@@ -45,7 +51,7 @@ if ($chainId)
         try
         {
             Stop-Task -Task $task -Confirm:$false -ErrorAction Stop
-            Write-Host "The vm '$VMName' clone task has been cancelled"
+            Write-Host "The vm '$VMName' clone task has been canceled"
         }
         catch
         {
@@ -54,7 +60,7 @@ if ($chainId)
     }
 }
 
-# remove a vm
+# Remove a vm
 $vm = Get-VM -Name $VMName -ErrorAction SilentlyContinue
 
 if ($vm)
