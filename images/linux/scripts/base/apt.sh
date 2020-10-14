@@ -15,6 +15,9 @@ systemctl disable apt-daily-upgrade.service
 # This step should completely disable any automatic updates except manual
 sudo sed -i 's/APT::Periodic::Update-Package-Lists "1"/APT::Periodic::Update-Package-Lists "0"/' /etc/apt/apt.conf.d/20auto-upgrades
 
+# Enable retry logic for apt up to 1 times
+echo "APT::Acquire::Retries \"10\";" > /etc/apt/apt.conf.d/80-retries 
+
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
