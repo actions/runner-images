@@ -4,7 +4,7 @@
 ##  Desc:  Install toolset
 ################################################################################
 
-Import-Module "$PSScriptRoot/../../helpers/Common.Helpers.psm1"
+Import-Module "$PSScriptRoot/image-generation/helpers/Common.Helpers.psm1"
 
 Function Get-ToolcacheFromToolset {
     $toolsetPath = Join-Path $env:HOME "image-generation" "toolset.json"
