@@ -1,10 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  android.sh
 ##  Desc:  Installs Android SDK
 ################################################################################
-
-set -e
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
@@ -69,7 +67,7 @@ additional=$(jq -r '.android.additional_tools[]' $toolset)
 components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" )
 
 availablePlatforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
-allBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
+allBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
 
 filter_components_by_version $minimumPlatformVersion "${availablePlatforms[@]}"

@@ -249,5 +249,7 @@ function Get-AptPackages {
 
 function Get-PipxVersion {
     $result = (Get-CommandResult "pipx --version").Output
-    return "Pipx $result"
+    $result -match "(?<version>\d+\.\d+\.\d+\.?\d*)" | Out-Null
+    $pipxVersion = $Matches.Version
+    return "Pipx $pipxVersion"
 }
