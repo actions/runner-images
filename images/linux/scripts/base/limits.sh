@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 echo '* soft nofile 65536' >> /etc/security/limits.conf
 echo '* hard nofile 65536' >> /etc/security/limits.conf

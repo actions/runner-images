@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  clang.sh
 ##  Desc:  Installs Clang compiler
 ################################################################################
-set -e
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh

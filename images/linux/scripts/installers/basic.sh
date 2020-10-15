@@ -1,10 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  basic.sh
 ##  Desc:  Installs basic command line utilities and dev packages
 ################################################################################
-
-set -e
 
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 common_packages=$(jq -r ".apt.common_packages[]" $toolset)
