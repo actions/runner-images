@@ -102,10 +102,6 @@ Describe "Common utilities" {
         "aliyun --version" | Should -ReturnZeroExitCode
     }
 
-    It "Mobile Center CLI" -Skip:($os.IsBigSur) {
-        "mobile-center --version" | Should -ReturnZeroExitCode
-    }
-
     Context "Nomad" -Skip:($os.IsBigSur) {
         It "Nomad CLI" {
             $result = Get-CommandResult "gem list"

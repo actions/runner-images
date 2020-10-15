@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  vercel.sh
 ##  Desc:  Installs the Vercel CLI

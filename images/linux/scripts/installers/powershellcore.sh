@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  powershellcore.sh
 ##  Desc:  Installs powershellcore

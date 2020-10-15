@@ -1,12 +1,10 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  java-tools.sh
 ##  Desc:  Installs Java and related tooling (Ant, Gradle, Maven)
 ################################################################################
 
 source $HELPER_SCRIPTS/os.sh
-
-set -e
 
 function javaTool {
     if [[ "$2" =~ ([1]{0,1}.)?$DEFAULT_JDK_VERSION.* ]]; then

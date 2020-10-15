@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  homebrew.sh
 ##  Desc:  Installs Mongo DB

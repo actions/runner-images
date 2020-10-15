@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  dotnetcore-sdk.sh
 ##  Desc:  Installs .NET Core SDK
@@ -25,7 +25,6 @@ mksamples()
     sample=$2
     mkdir "$sdk"
     cd "$sdk" || exit
-    set -e
     dotnet help
     dotnet new globaljson --sdk-version "$sdk"
     dotnet new "$sample"
@@ -35,8 +34,6 @@ mksamples()
     cd .. || exit
     rm -rf "$sdk"
 }
-
-set -e
 
 # Disable telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1

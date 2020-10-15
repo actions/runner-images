@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  cmake.sh
 ##  Desc:  Installs CMake
 ################################################################################
-
 
 # Test to see if the software in question is already installed, if not install it
 echo "Checking to see if the installer script has already been run"
