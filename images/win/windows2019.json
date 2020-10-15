@@ -85,7 +85,7 @@
         {
             "type": "file",
             "source": "{{ template_dir }}/post-generation",
-            "destination": "C:/post-generation"
+            "destination": "C:/"
         },
         {
             "type": "file",
