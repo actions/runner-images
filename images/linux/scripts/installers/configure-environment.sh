@@ -1,3 +1,5 @@
+#!/bin/bash -e
+
 #Set ImageVersion and ImageOS env variables
 echo ImageVersion=$IMAGE_VERSION | tee -a /etc/environment
 echo ImageOS=$IMAGE_OS | tee -a /etc/environment
