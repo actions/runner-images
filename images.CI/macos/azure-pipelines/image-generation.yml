@@ -11,6 +11,10 @@ jobs:
     value: $(Build.BuildNumber).$(System.JobAttempt)
 
   steps:
+  - bash: |
+      echo "##vso[build.updatebuildnumber]${{ variables.VirtualMachineName }}"
+    displayName: Update BuildNumber
+
   - checkout: self
     clean: true
     fetchDepth: 1
