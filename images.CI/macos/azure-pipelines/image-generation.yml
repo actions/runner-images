@@ -12,7 +12,7 @@ jobs:
 
   steps:
   - bash: |
-      Write-Host "##vso[build.updatebuildnumber]${{ variables.VirtualMachineName }}"
+      echo "##vso[build.updatebuildnumber]${{ variables.VirtualMachineName }}"
     displayName: Update BuildNumber
 
   - checkout: self
