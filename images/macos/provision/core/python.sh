@@ -14,5 +14,7 @@ echo "Brew Installing Python 3"
 echo "Install pip for Python 2"
 # Set permissions to install pip modules in the main packages directory
 sudo chmod -R 777 /Library/Python/2.7
+# Create symlink for backwards compatibility
+ln -s /usr/bin/python /usr/local/bin/python
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
