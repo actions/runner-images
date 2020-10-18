@@ -9,7 +9,8 @@ Describe "Haskell" {
         $ghcVersion = $_
         $ghcShortVersion = ([version]$ghcVersion).ToString(3)
         @{
-            ghcVersion = $ghcShortVersion
+            ghcVersion = $ghcVersion
+            ghcShortVersion = $ghcShortVersion
             binGhcPath = Join-Path $chocoPackagesPath "ghc.$ghcVersion\tools\ghc-$ghcShortVersion\bin\ghc.exe"
         }
     }
@@ -19,11 +20,11 @@ Describe "Haskell" {
     }
 
     It "GHC <ghcVersion> is installed" -TestCases $ghcTestCases {
-        "$binGhcPath --version" | Should -MatchCommandOutput $ghcVersion
+        "$binGhcPath --version" | Should -MatchCommandOutput $ghcShortVersion
     }
 
-    It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases @{defaultGhcVersion = $defaultGhcShortVersion} {
-        "ghc --version" | Should -MatchCommandOutput $defaultGhcVersion
+    It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases @{defaultGhcShortVersion = $defaultGhcShortVersion} {
+        "ghc --version" | Should -MatchCommandOutput $defaultGhcShortVersion
     }
 
     It "Cabal is installed" {
