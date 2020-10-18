@@ -3,7 +3,10 @@ Describe "Haskell" {
     [array]$ghcVersionList = Get-ChildItem -Path $chocoPackagesPath -Filter "ghc.*" | ForEach-Object { $_.Name.TrimStart("ghc.") }
     $ghcCount = $ghcVersionList.Count
     $defaultGhcVersion = $ghcVersionList | Sort-Object {[Version]$_} | Select-Object -Last 1
-    $defaultGhcShortVersion = ([version]$defaultGhcVersion).ToString(3)
+    $ghcDefaultCases = @{
+        defaultGhcVersion = $defaultGhcVersion
+        defaultGhcShortVersion = ([version]$defaultGhcVersion).ToString(3)
+    }
 
     $ghcTestCases = $ghcVersionList | ForEach-Object {
         $ghcVersion = $_
@@ -23,7 +26,7 @@ Describe "Haskell" {
         "$binGhcPath --version" | Should -MatchCommandOutput $ghcShortVersion
     }
 
-    It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases @{defaultGhcShortVersion = $defaultGhcShortVersion} {
+    It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases @ghcDefaultCases {
         "ghc --version" | Should -MatchCommandOutput $defaultGhcShortVersion
     }
 
