@@ -68,7 +68,7 @@ extractXcodeXip() {
     local XCODE_VERSION="$2"
     XCODE_XIP="${WORKING_DIR}/Xcode_${XCODE_VERSION// /_}.xip"
 
-    open -W $XCODE_XIP
+    cd "${WORKING_DIR}" && xip -x "${XCODE_XIP}"
 
     if [[ -d "${WORKING_DIR}/Xcode-beta.app" ]]; then
         mv -f "${WORKING_DIR}/Xcode-beta.app" "${WORKING_DIR}/Xcode.app"
