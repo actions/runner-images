@@ -26,7 +26,7 @@ Describe "Haskell" {
         "$binGhcPath --version" | Should -MatchCommandOutput $ghcShortVersion
     }
 
-    It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases @ghcDefaultCases {
+    It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases $ghcDefaultCases {
         "ghc --version" | Should -MatchCommandOutput $defaultGhcShortVersion
     }
 
