@@ -8,7 +8,7 @@ jobs:
   - group: Mac-Cloud Image Generation
   - group: Mac-Cloud Image Generation Key Vault
   - name: VirtualMachineName
-    value: $(Build.BuildNumber).$(System.JobAttempt)
+    value: ${{ parameters.image_label }}_$(date:yyyyMMdd)$(rev:.r)_unstable.$(System.JobAttempt)
 
   steps:
   - bash: |
