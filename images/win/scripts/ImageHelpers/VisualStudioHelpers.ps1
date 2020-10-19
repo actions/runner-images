@@ -49,6 +49,13 @@ Function Install-VisualStudio
         }
         else
         {
+            $setupErrorLogPath = "$env:TEMP\dd_setup_*_errors.log"
+            if (Test-Path -Path $setupErrorLogPath)
+            {
+                $logErrors = Get-Content -Path $setupErrorLogPath -Raw
+                Write-Host "$logErrors"
+            }
+
             Write-Host "Non zero exit code returned by the installation process : $exitCode"
             exit $exitCode
         }
