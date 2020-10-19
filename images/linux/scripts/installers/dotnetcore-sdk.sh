@@ -11,12 +11,12 @@ source $HELPER_SCRIPTS/os.sh
 # Ubuntu 20 doesn't support EOL versions
 if isUbuntu20 ; then
     LATEST_DOTNET_PACKAGES=("dotnet-sdk-3.1")
-    release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json")
+    release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/5.0/releases.json")
 fi
 
 if isUbuntu16 || isUbuntu18 ; then
     LATEST_DOTNET_PACKAGES=("dotnet-sdk-3.0" "dotnet-sdk-3.1")
-    release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.0/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json")
+    release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.0/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/5.0/releases.json")
 fi
 
 mksamples()
@@ -49,15 +49,32 @@ for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
 done
 
 # Get list of all released SDKs from channels which are not end-of-life or preview
+latest_5_0_sdk=""
 sdks=()
 for release_url in ${release_urls[@]}; do
     echo "${release_url}"
     releases=$(curl "${release_url}")
     sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdk.version'))
     sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdks[]?' | jq '.version'))
+    if [ "$(echo "${releases}" | jq '."channel-version"')" = "\"5.0\"" ]; then
+        latest_5_0_sdk=$(echo "${releases}" | jq '.["latest-sdk"]')
+    fi
 done
 
 sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
+
+#if latest 5.0 sdk is not present in sortedSdks, then add it
+latest_5_0_sdk_found=false
+for sdk in $sortedSdks
+do
+    if [ "\"$sdk\"" == "$latest_5_0_sdk" ] ; then
+        latest_5_0_sdk_found=true
+    fi
+done
+
+if [ "$latest_5_0_sdk_found" = false ] ; then
+    sortedSdks+=" $(echo $latest_5_0_sdk | cut -d\" -f2)"
+fi
 
 for sdk in $sortedSdks; do
     url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$sdk/dotnet-sdk-$sdk-linux-x64.tar.gz"
