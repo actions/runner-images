@@ -10,7 +10,7 @@ jobs:
 
   steps:
   - pwsh: |
-      $cleanBuildNumber = "$(Build.BuildNumber)" -replace "(.+_unstable\.)(\d+)", '$1'
+      $cleanBuildNumber = "$(Build.BuildNumber)" -replace "(.+_unstable)(\.\d+)", '$1'
       $virtualMachineName = "${cleanBuildNumber}.$(System.JobAttempt)"
       echo "##vso[task.setvariable variable=VirtualMachineName;]$virtualMachineName"
       echo "##vso[build.updatebuildnumber]$virtualMachineName"
