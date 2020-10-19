@@ -64,16 +64,18 @@ done
 sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
 
 #if latest 5.0 sdk is not present in sortedSdks, then add it
-latest_5_0_sdk_found=false
-for sdk in $sortedSdks
-do
-    if [ "\"$sdk\"" == "$latest_5_0_sdk" ] ; then
-        latest_5_0_sdk_found=true
-    fi
-done
+if [ "$latest_5_0_sdk" != "" ] ; then
+    latest_5_0_sdk_found=false
+    for sdk in $sortedSdks
+    do
+        if [ "\"$sdk\"" == "$latest_5_0_sdk" ] ; then
+            latest_5_0_sdk_found=true
+        fi
+    done
 
-if [ "$latest_5_0_sdk_found" = false ] ; then
-    sortedSdks+=" $(echo $latest_5_0_sdk | cut -d\" -f2)"
+    if [ "$latest_5_0_sdk_found" = false ] ; then
+        sortedSdks+=" $(echo $latest_5_0_sdk | cut -d\" -f2)"
+    fi
 fi
 
 for sdk in $sortedSdks; do
