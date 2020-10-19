@@ -12,7 +12,7 @@ createXamarinProvisionatorSymlink() {
     fi
 }
 
-getXcodeVersionToInstall() {
+resolveLatestXcodeVersion() {
     local XCODE_VERSION="$1"
 
     if [[ $XCODE_VERSION == "12" ]]; then
@@ -82,7 +82,7 @@ extractXcodeXip() {
 
 createBetaSymlink() {
     local XCODE_VERSION=$1
-    if [[ $XCODE_VERSION =~ 1[01].* ]] || [[ $XCODE_VERSION == "12" ]]; then
+    if [[ $XCODE_VERSION =~ 1[01].* ]] || [[ $XCODE_VERSION == "12.0" ]]; then
         ln -sf "/Applications/Xcode_${XCODE_VERSION}.app" "/Applications/Xcode_${XCODE_VERSION}_beta.app"
     fi
 }

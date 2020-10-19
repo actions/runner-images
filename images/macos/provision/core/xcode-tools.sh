@@ -13,17 +13,20 @@ if [ -z $XCODE_INSTALL_USER ] || [ -z $XCODE_INSTALL_PASSWORD ]; then
     exit 1
 fi
 
-XCODE_LIST=($(get_xcode_list_from_toolset))
-LATEST_XCODE_VERSION=$(get_latest_xcode_from_toolset)
-DEFAULT_XCODE_VERSION=$(get_default_xcode_from_toolset)
+XCODE_COUNT=$(get_toolset_value '.xcode.versions | length')
+DEFAULT_XCODE_VERSION=$(get_toolset_value '.xcode.default')
 WORK_DIR="${HOME}/Library/Caches/XcodeInstall"
 
 # Update the list of available versions
 xcversion update
 
-for XCODE_VERSION in "${XCODE_LIST[@]}"
-do
-    VERSION_TO_INSTALL="$(getXcodeVersionToInstall "$XCODE_VERSION")"
+for ((XCODE_INDEX=0; XCODE_INDEX<XCODE_COUNT; XCODE_INDEX++)); do
+    LOCAL_VERSION=$(get_toolset_value ".xcode.versions[$XCODE_INDEX].localVersion")
+    XCODE_VERSION=$(get_toolset_value ".xcode.versions[$XCODE_INDEX].version")
+    SYMLINKS=($(get_toolset_value ".xcode.versions[$XCODE_INDEX].symlinks"))
+
+    echo "Installing Xcode '$XCVERSION_VERSION' to '$LOCAL_VERSION'"
+    VERSION_TO_INSTALL=$(resolveLatestXcodeVersion "$XCODE_VERSION")
     if [[ -z "$VERSION_TO_INSTALL" ]]; then
         echo "No versions were found matching $XCODE_VERSION"
         exit 1
@@ -35,20 +38,17 @@ do
     echo "Extracting Xcode.app ($VERSION_TO_INSTALL) to ${WORK_DIR} ..."
     extractXcodeXip $WORK_DIR "$VERSION_TO_INSTALL"
 
-    XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
-
     echo "Checking if unpacked Xcode ${XCODE_VERSION} is valid"
     validateXcodeIntegrity "$WORK_DIR"
 
-    # Move Xcode to /Applications
-    mv -f "${WORK_DIR}/Xcode.app" "/Applications/Xcode_${XCODE_VERSION}.app"
+    echo "Copying Xcode.app to /Applications/Xcode_${LOCAL_VERSION}.app"
+    mv -f "${WORK_DIR}/Xcode.app" "/Applications/Xcode_${LOCAL_VERSION}.app"
 
     echo "Accepting license for Xcode ${XCODE_VERSION}..."
-    approveLicense $XCODE_VERSION
+    approveLicense "$LOCAL_VERSION"
 
     # Creating a symlink for all Xcode 10* and Xcode 9.3, 9.4 to stay backwards compatible with consumers of the Xcode beta version
-    createBetaSymlink $XCODE_VERSION
-
+    createBetaSymlink "$LOCAL_VERSION"
     createXamarinProvisionatorSymlink "$XCODE_VERSION"
 
     find $WORK_DIR -mindepth 1 -delete
@@ -56,6 +56,8 @@ done
 
 echo "Configuring 'runFirstLaunch' for all Xcode versions"
 if is_Less_Catalina; then
+##TO-DO
+    LATEST_XCODE_VERSION=$(get_latest_xcode_from_toolset)
     echo "Install additional packages for Xcode ${LATEST_XCODE_VERSION}"
     installAdditionalPackages $LATEST_XCODE_VERSION
 fi
