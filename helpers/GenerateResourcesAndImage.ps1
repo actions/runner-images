@@ -54,16 +54,6 @@ Function Get-LatestCommit {
     }
 }
 
-Function Get-LatestCommit {
-    [CmdletBinding()]
-    param()
-
-    process {
-        Write-Host "Latest commit:"
-        git log --pretty=format:"Date: %cd; Commit: %H - %s; Author: %an <%ae>" -1
-    }
-}
-
 Function GenerateResourcesAndImage {
     <#
         .SYNOPSIS
