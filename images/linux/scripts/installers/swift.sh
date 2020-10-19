@@ -15,8 +15,9 @@ mv swift-$swift_version-RELEASE-ubuntu$image_label /usr/share/swift
 
 SWIFT_PATH="/usr/share/swift/usr/bin"
 SWIFT_BIN="$SWIFT_PATH/swift"
+SWIFTC_BIN="$SWIFT_PATH/swiftc"
 ln -s "$SWIFT_BIN" /usr/local/bin/swift
-ln -s "$SWIFT_BIN" /usr/local/bin/swiftc
+ln -s "$SWIFTC_BIN" /usr/local/bin/swiftc
 echo "SWIFT_PATH=$SWIFT_PATH" | tee -a /etc/environment
 
 # Run tests to determine that the software installed as expected
