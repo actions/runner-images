@@ -57,6 +57,11 @@ Function Install-VisualStudio
             }
 
             Write-Host "Non zero exit code returned by the installation process : $exitCode"
+            Get-ChildItem -Path $env:TEMP\* -Include 'dd_bootstrapper*.log', 'dd_client*.log', 'dd_setup*.log' -File |
+                ForEach-Object -Process {
+                    Write-Host -Object "Log file: $($_.Name)"
+                    Get-Content -Path $_.FullName | Write-Host
+                }
             exit $exitCode
         }
     }
