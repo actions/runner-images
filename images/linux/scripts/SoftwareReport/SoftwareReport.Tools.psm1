@@ -9,7 +9,9 @@ function Get-AnsibleVersion {
 }
 
 function Get-AptFastVersion {
-    $aptFastVersion = man apt-fast | tail -n 1 | awk '{print $2}'
+    $result = Get-CommandResult "apt list --installed" -Multiline
+    $result.Output | Where-Object { $_ -match "apt-fast.*now (?<version>\d+\.\d+\.\d+)-" } | Out-Null
+    $aptFastVersion = $Matches.version
     return "apt-fast $aptFastVersion"
 }
 
