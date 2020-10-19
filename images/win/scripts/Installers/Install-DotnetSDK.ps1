@@ -62,7 +62,7 @@ function InstallAllValidSdks()
 
     # Consider all channels except preview/eol channels.
     # Sort the channels in ascending order
-    $dotnetChannels = $dotnetChannels.'releases-index' | Where-Object { (!$_."support-phase".Equals('preview') -and !$_."support-phase".Equals('eol') -and !$_."support-phase".Equals('rc')) } | Sort-Object { [Version] $_."channel-version" }
+    $dotnetChannels = $dotnetChannels.'releases-index' | Where-Object { (!$_."support-phase".Equals('preview') -and !$_."support-phase".Equals('eol') -and !$_."support-phase".Equals('rc') -or $_."channel-version".Equals('5.0') ) } | Sort-Object { [Version] $_."channel-version" }
 
     # Download installation script.
     $installationName = "dotnet-install.ps1"
@@ -76,6 +76,7 @@ function InstallAllValidSdks()
         $currentReleases = Get-Content -Path $releasesJsonPath | ConvertFrom-Json
         # filtering out the preview/rc releases
         $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') } | Sort-Object { [Version] $_.'release-version' }
+        $sdks = @()
 
         ForEach ($release in $currentReleases)
         {
@@ -100,6 +101,10 @@ function InstallAllValidSdks()
                 $sdkVersion = $release.'sdk'.'version'
                 InstallSDKVersion -sdkVersion $sdkVersion
             }
+        }
+        if ($channelVersion -eq '5.0' -and !$sdks.Contains($dotnetChannel.'latest-sdk'))
+        {
+            InstallSDKVersion -sdkVersion $dotnetChannel.'latest-sdk'
         }
     }
 }
