@@ -131,4 +131,4 @@ if (Test-IsWin19) {
 $driveLetter = "C"
 $size = Get-PartitionSupportedSize -DriveLetter $driveLetter
 Resize-Partition -DriveLetter $driveLetter -Size $size.SizeMax
-Get-Partition | Select-Object DriveLetter, PartitionNumber, Size
+Get-Volume | Select-Object DriveLetter, SizeRemaining, Size | Sort-Object DriveLetter
