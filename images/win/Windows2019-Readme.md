@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| [[In Discussion] Git internal tools will be removed from PATH Windows images](https://github.com/actions/virtual-environments/issues/1525) |
+| [[In Discussion] Git internal tools will be removed from PATH Windows images and replaced with MSYS2 tools](https://github.com/actions/virtual-environments/issues/1525) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1457
-- Image Version: 20201004.1
+- Image Version: 20201011.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux
@@ -21,12 +21,12 @@
 - PHP 7.4.11
 - Julia 1.5.2
 - Perl 5.32.0
-- Node 12.18.4
+- Node 12.19.0
 
 ### Package Management
 - Chocolatey 0.10.15
 - Vcpkg 2020.06.15
-- NPM 6.14.6
+- NPM 6.14.8
 - Yarn 1.22.10
 - pip 20.2.3 (python 3.7)
 - Miniconda 4.6.14
@@ -39,35 +39,31 @@
 - Ant 1.10.9
 - Maven 3.6.3
 - Gradle 6.6
-- sbt 1.3.13
+- sbt 1.4.0
 
 ### Tools
-- Azure CosmosDb Emulator 2.11.5.0
 - azcopy 10.6.0
-- Bazel 3.5.1
-- Bazelisk 1.6.1
-- CMake 3.18.3
+- Bazel 3.6.0
+- Bazelisk 1.7.1
+- CMake 3.18.4
 - CodeQL Action Bundle 2.2.5
-- R 4.0.2
+- R 4.0.3
 - Docker 19.03.12
 - Docker-compose 1.27.2
 - Git 2.28.0
 - Git LFS 2.11.0
-- Google Cloud SDK 312.0.0
+- Google Cloud SDK 313.0.1
 - InnoSetup 6.0.5
 - jq 1.6
 - Kubectl 1.19.1
 - Kind 0.9.0
 - Mingw-w64 8.1.0
-- MySQL 5.7.21.0
 - Mercurial 5.0
 - NSIS v3.06.1
 - Newman 5.2.0
 - OpenSSL 1.1.1
 - Packer 1.6.3
 - Pulumi v2.11.2
-- SQLPS 1.0
-- SQLServer PS 21.1.18228
 - Subversion (SVN) 1.14.0
 - ghc 8.10.2
 - Cabal 3.2.0.0
@@ -82,28 +78,28 @@
 - Azure CLI 2.12.1
 - Azure DevOps CLI extension 0.18.0
 - Azure Dev Spaces CLI 1.0.20200921.3
-- AWS CLI 2.0.54
-- AWS SAM CLI 1.4.0
+- AWS CLI 2.0.56
+- AWS SAM CLI 1.6.2
 - AWS Session Manager CLI 1.1.61.0
-- Alibaba Cloud CLI 3.0.59
+- Alibaba Cloud CLI 3.0.60
 - Cloud Foundry CLI 6.53.0
 - Hub CLI 2.14.2
-- GitHub CLI 1.0.0
+- GitHub CLI 1.1.0
 
 ### Rust Tools
-- Rust 1.46.0
+- Rust 1.47.0
 
 #### Packages
 - bindgen 0.55.1
-- cbindgen 0.14.6
+- cbindgen 0.15.0
 - cargo-audit 0.12.1
 - cargo-outdated v0.9.11
 
 ### Browsers and webdrivers
-- Google Chrome 85.0.4183.121
-- Chrome Driver 85.0.4183.87
-- Microsoft Edge 85.0.564.68
-- Microsoft Edge Driver 85.0.564.68
+- Google Chrome 86.0.4240.75
+- Chrome Driver 86.0.4240.22
+- Microsoft Edge 86.0.622.38
+- Microsoft Edge Driver 86.0.622.38
 - Mozilla Firefox 81.0.1
 - Gecko Driver 0.27.0
 - IE Driver 3.150.1.0
@@ -153,8 +149,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 8.17.0  | x64          |
 | 10.22.1 | x64          |
-| 12.18.4 | x64          |
-| 14.13.0 | x64          |
+| 12.19.0 | x64          |
+| 14.13.1 | x64          |
 
 
 #### Python
@@ -203,6 +199,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ----------- | ------------- | ---------------- |
 | 4.4.1.0 | MongoDB     | Running       | Automatic        |
 
+
+
+### Database tools
+- Azure CosmosDb Emulator 2.11.6.0
+- SQLPS 1.0
+- MySQL 5.7.21.0
 
 
 ### Visual Studio Enterprise 2019
@@ -428,7 +430,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Python                                    | 16.0.28621.142 |
 | Microsoft.VisualStudio.Workload.Universal                                 | 16.7.30310.162 |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 16.4.29409.204 |
-| SSDT Microsoft Analysis Services Projects                                 | 2.9.13         |
+| SSDT Microsoft Analysis Services Projects                                 | 2.9.14         |
 | SSDT SQL Server Integration Services Projects                             | 3.10           |
 | SSDT Microsoft Reporting Services Projects                                | 2.6.7          |
 | Windows Driver Kit                                                        | 3.11.4516      |
@@ -523,3 +525,5 @@ All other versions are saved but not installed.
 -  mcr.microsoft.com/windows/servercore:ltsc2019
 -  mcr.microsoft.com/windows/nanoserver:1809
 -  microsoft/aspnetcore-build:1.0-2.0
+
+
