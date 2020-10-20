@@ -3,6 +3,9 @@
 ##  Desc:  Install Visual Studio
 ################################################################################
 
+Copy-Item -Path "$env:windir\System32\drivers\etc\hosts" -Destination "$env:temp\hosts_backup"
+"68.232.34.200 download.visualstudio.microsoft.com" > "$env:windir\System32\drivers\etc\hosts"
+
 $toolset = Get-ToolsetContent
 $requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
 $workLoads = @(
@@ -48,3 +51,4 @@ if (Test-IsWin19) {
 }
 
 Invoke-PesterTests -TestFile "VisualStudio"
+Move-Item -Path "$env:temp\hosts_backup" -Destination "$env:windir\System32\drivers\etc\hosts" -Force
