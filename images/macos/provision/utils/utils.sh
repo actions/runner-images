@@ -106,6 +106,7 @@ brew_cask_install_ignoring_sha256() {
     SHA=$(grep "sha256" "$CASK_DIR/$TOOL_NAME.rb" | awk '{print $2}')
     sed -i '' "s/$SHA/:no_check/" "$CASK_DIR/$TOOL_NAME.rb"
     brew cask install $TOOL_NAME
-    cd $CASK_DIR
-    git reset --hard
+    pushd $CASK_DIR
+    git checkout HEAD -- "$TOOL_NAME.rb"
+    popd
 }
