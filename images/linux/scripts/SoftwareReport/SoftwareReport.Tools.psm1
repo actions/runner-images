@@ -8,6 +8,11 @@ function Get-AnsibleVersion {
     return "Ansible $ansibleVersion"
 }
 
+function Get-AptFastVersion {
+    $aptFastVersion = (dpkg-query --showformat='${Version}' --show apt-fast).Split('-')[0]
+    return "apt-fast $aptFastVersion"
+}
+
 function Get-AzCopy7Version {
     $azcopy7Version = azcopy --version | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
     return "AzCopy7 $azcopy7Version (available by ``azcopy`` alias)"
