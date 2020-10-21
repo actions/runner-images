@@ -185,7 +185,8 @@
                 "./provision/core/firefox.sh",
                 "./provision/core/xcode-postbuild.sh",
                 "./provision/core/toolcache.sh",
-                "./provision/core/pypy.sh"
+                "./provision/core/pypy.sh",
+                "./provision/core/pipx-packages.sh"
             ],
             "environment_vars": [
                 "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
@@ -195,13 +196,6 @@
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
             "scripts": "./provision/core/toolset.ps1"
-        },
-        {
-            "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
-            "scripts": [
-                "./provision/core/pipx-packages.sh"
-            ]
         },
         {
             "type": "shell",

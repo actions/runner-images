@@ -181,13 +181,7 @@
                 "./provision/core/edge.sh",
                 "./provision/core/firefox.sh",
                 "./provision/core/toolcache-high-sierra.sh",
-                "./provision/core/pypy.sh"
-            ]
-        },
-        {
-            "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
-            "scripts": [
+                "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh"
             ]
         },
