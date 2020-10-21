@@ -24,7 +24,7 @@ function Get-EnvironmentVariable($variable) {
 }
 
 # Returns the object with information about current OS
-# It can be used for OS-specific tests 
+# It can be used for OS-specific tests
 function Get-OSVersion {
     $osVersion = [Environment]::OSVersion
     return [PSCustomObject]@{
@@ -36,7 +36,7 @@ function Get-OSVersion {
         IsBigSur = $osVersion.Version.Major -eq 20
         IsLessThanCatalina = $osVersion.Version.Major -lt 19
         IsLessThanBigSur = $osVersion.Version.Major -lt 20
-        IsHigherThanMojave = $osVersion.Version.Major -gt 18 
+        IsHigherThanMojave = $osVersion.Version.Major -gt 18
     }
 }
 
@@ -63,7 +63,7 @@ function Get-ToolsetValue {
     $jsonNode = Get-Content -Raw $toolsetPath | ConvertFrom-Json
 
     $pathParts = $KeyPath.Split(".")
-    # try to walk through all arguments consequentially to resolve specific json node 
+    # try to walk through all arguments consequentially to resolve specific json node
     $pathParts | ForEach-Object {
         $jsonNode = $jsonNode.$_
     }
@@ -73,4 +73,13 @@ function Get-ToolsetValue {
 function Get-ToolcachePackages {
     $toolcachePath = Join-Path $env:HOME "image-generation" "toolcache.json"
     return Get-Content -Raw $toolcachePath | ConvertFrom-Json
+}
+
+function Invoke-RestMethodWithRetry {
+    param (
+        [Parameter()]
+        [string]
+        $Url
+    )
+    Invoke-RestMethod $Url -MaximumRetryCount 10 -RetryIntervalSec 30
 }
