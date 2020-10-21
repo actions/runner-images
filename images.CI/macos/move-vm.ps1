@@ -52,7 +52,9 @@ $Vm = Get-VM $VMName
 
 if($env:AGENT_JOBSTATUS -eq 'Failed') {
     try {
-        Stop-Vm -Vm $Vm -Confirm:$false -ErrorAction Stop
+        if($Vm.PowerState -ne "PoweredOff") {
+            Stop-Vm -Vm $Vm -Confirm:$false -ErrorAction Stop
+        }
         Set-Vm -Vm $Vm -Name "${VMName}_failed" -Confirm:$false -ErrorAction Stop
         Write-Host "VM has been successfully powered off and renamed to [${VMName}_failed]"
     } catch {
