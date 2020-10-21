@@ -79,6 +79,11 @@
         },
         {
             "type": "shell",
+            "script": "{{template_dir}}/scripts/base/apt-mock.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
             "script": "{{template_dir}}/scripts/base/limits.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
