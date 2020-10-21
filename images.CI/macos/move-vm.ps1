@@ -48,12 +48,21 @@ Import-Module $PSScriptRoot\helpers.psm1 -DisableNameChecking
 # Connection to a vCenter Server system
 Connect-VCServer
 
-try
-{
-    Get-VM $VMName | Move-VM -Datastore $TargetDataStore -ErrorAction Stop
-    Write-Host "VM has been moved successfully to target datastore '$TargetDataStore'"
+$Vm = Get-VM $VMName
+
+if($env:AGENT_JOBSTATUS -eq 'Failed') {
+    try {
+        Stop-Vm -Vm $Vm -Confirm:$false -ErrorAction Stop
+        Set-Vm -Vm $Vm -Name "${VMName}_failed" -Confirm:$false -ErrorAction Stop
+        Write-Host "VM has been successfully powered off and renamed to [${VMName}_failed]"
+    } catch {
+        Write-Host "##vso[task.LogIssue type=error;]Failed to power off and rename VM '$VMName'"
+    }
 }
-catch
-{
+
+try {
+    Move-VM -Vm $Vm -Datastore $TargetDataStore -ErrorAction Stop
+    Write-Host "VM has been moved successfully to target datastore '$TargetDataStore'"
+} catch {
     Write-Host "##vso[task.LogIssue type=error;]Failed to move VM '$VMName' to target datastore '$TargetDataStore'"
 }
