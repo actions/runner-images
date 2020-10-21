@@ -87,6 +87,7 @@ $markdown += New-MDHeader "Tools" -Level 3
 $toolsList = @(
     (Get-7zipVersion),
     (Get-AnsibleVersion),
+    (Get-AptFastVersion),
     (Get-AzCopy7Version),
     (Get-AzCopy10Version),
     (Get-BazelVersion),
