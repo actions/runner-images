@@ -8,11 +8,6 @@ export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 echo Installing OpenSSL...
 /usr/local/bin/brew install openssl
 
-if is_BigSur; then
-    ln -sf $(brew --prefix openssl)/bin/openssl /usr/local/bin/openssl
-    exit 0
-fi
-
 # Install OpenSSL 1.0.2t
 # https://www.openssl.org/policies/releasestrat.html - Version 1.0.2 will be supported until 2019-12-31 (LTS)
 # To preserve backward compatibility with ruby-toolcache
