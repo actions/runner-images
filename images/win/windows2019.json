@@ -250,7 +250,9 @@
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Update-AndroidSDK.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Pipx.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-PipxPackages.ps1"
             ]
         },
         {
@@ -323,16 +325,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-Pipx.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-PipxPackages.ps1"
             ]
         },
         {
