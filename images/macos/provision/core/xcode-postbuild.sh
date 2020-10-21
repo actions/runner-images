@@ -15,8 +15,9 @@ do
     #add sleep to let CoreSimulatorService to exit
     sleep 3
 
-    # Version 12.2_beta installed into 12.2 directory
-    if [[ $XCODE_VERSION == "12.2_beta" ]] ; then
+    # Version 12.2_beta installed into 12.2 directory and 12.1_GM_seed in 12.1
+    pattern="[0-9]{1,2}.*_"
+    if [[ $XCODE_VERSION =~ $pattern ]] ; then
         XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
     fi
     # Select xcode version by default
