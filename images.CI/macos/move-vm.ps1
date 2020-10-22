@@ -23,7 +23,7 @@ vCenter password (Example "12345678")
 param(
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
-    [string]$VMName,
+    [string]$vMName,
 
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
@@ -48,23 +48,23 @@ Import-Module $PSScriptRoot\helpers.psm1 -DisableNameChecking
 # Connection to a vCenter Server system
 Connect-VCServer
 
-$Vm = Get-VM $VMName
+$vm = Get-VM $vMName
 
-if($env:AGENT_JOBSTATUS -eq 'Failed') {
+if ($env:AGENT_JOBSTATUS -eq 'Failed') {
     try {
-        if($Vm.PowerState -ne "PoweredOff") {
-            Stop-Vm -Vm $Vm -Confirm:$false -ErrorAction Stop
+        if($vm.PowerState -ne "PoweredOff") {
+            Stop-VM -VM $vm -Confirm:$false -ErrorAction Stop
         }
-        Set-Vm -Vm $Vm -Name "${VMName}_failed" -Confirm:$false -ErrorAction Stop
+        Set-VM -VM $vm -Name "${VMName}_failed" -Confirm:$false -ErrorAction Stop
         Write-Host "VM has been successfully powered off and renamed to [${VMName}_failed]"
     } catch {
-        Write-Host "##vso[task.LogIssue type=error;]Failed to power off and rename VM '$VMName'"
+        Write-Host "##vso[task.LogIssue type=error;]Failed to power off and rename VM '$vMName'"
     }
 }
 
 try {
-    Move-VM -Vm $Vm -Datastore $TargetDataStore -ErrorAction Stop
+    Move-VM -Vm $vm -Datastore $TargetDataStore -ErrorAction Stop
     Write-Host "VM has been moved successfully to target datastore '$TargetDataStore'"
 } catch {
-    Write-Host "##vso[task.LogIssue type=error;]Failed to move VM '$VMName' to target datastore '$TargetDataStore'"
+    Write-Host "##vso[task.LogIssue type=error;]Failed to move VM '$vMName' to target datastore '$TargetDataStore'"
 }
