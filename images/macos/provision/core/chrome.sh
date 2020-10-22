@@ -1,7 +1,7 @@
 source ~/utils/utils.sh
 
 echo "Installing Chrome..."
-brew_install_ignoring_sha256 "google-chrome"
+brew_cask_install_ignoring_sha256 "google-chrome"
 
 echo "Installing Chrome Driver"
 brew cask install chromedriver
