@@ -1,19 +1,24 @@
-#!/bin/sh -x
+#!/bin/bash
 
 prefix=/usr/local/bin
-mkdir -p $prefix
 
-for tool in apt apt-get apt-fast deb;do
+for tool in apt apt-get apt-fast;do
   real_tool=`which $tool`
   cat >$prefix/$tool <<EOT
 #!/bin/sh
-$real_tool "\$@"
-result=\$?
-if [ \$result -ne  0 ];then
-  ps axjf
-fi
+
+i=1
+while [ \$i -le 10 ];do
+  $real_tool "\$@"
+  result=\$?
+  if [ \$result -eq  0 ];then
+    break
+  else
+    sleep 5
+    echo "...retry \$i"
+    i=\$((i + 1))
+  fi
+done
 EOT
   chmod +x $prefix/$tool
-  ls -la $prefix/$tool
-  cat $prefix/$tool
 done
