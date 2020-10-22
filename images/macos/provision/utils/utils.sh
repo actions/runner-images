@@ -14,7 +14,7 @@ download_with_retries() {
                 --wait 30 \
                 --retry-connrefused \
                 --retry-on-host-error \
-                --retry-on-http-error=429,500,502,503 \
+                --retry-on-http-error=404,429,500,502,503 \
                 --no-verbose
 
     if [ $? != 0 ]; then
