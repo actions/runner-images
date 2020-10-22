@@ -23,7 +23,7 @@ vCenter password (Example "12345678")
 param(
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
-    [string]$vMName,
+    [string]$VMName,
 
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
