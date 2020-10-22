@@ -1,15 +1,14 @@
-createXamarinProvisionatorSymlink() {
+downloadXcode() {
     local XCODE_VERSION="$1"
-    local FULL_VERSION=$(echo "${XCODE_VERSION}.0.0" | cut -d'.' -f 1,2,3)
 
-    # temporary trick for 12.0.1
-    if [[ $XCODE_VERSION == "12" ]]; then
-        FULL_VERSION="12.0.1"
+    VERSION_TO_INSTALL=$(resolveLatestXcodeVersion "$XCODE_VERSION")
+    if [[ -z "$VERSION_TO_INSTALL" ]]; then
+        echo "No versions were found matching $XCODE_VERSION"
+        exit 1
     fi
 
-    if [ $FULL_VERSION != $XCODE_VERSION ]; then
-        ln -sf "/Applications/Xcode_${XCODE_VERSION}.app" "/Applications/Xcode_${FULL_VERSION}.app"
-    fi
+    echo "Downloading Xcode $VERSION_TO_INSTALL ..."
+    xcversion install "$VERSION_TO_INSTALL" --no-install
 }
 
 resolveLatestXcodeVersion() {
@@ -36,7 +35,7 @@ validateXcodeIntegrity() {
     spctl --assess --raw "${WORKING_DIR}/Xcode.app"
 }
 
-approveLicense() {
+approveXcodeLicense() {
     local XCODE_VERSION="$1"
     sudo "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer/usr/bin/xcodebuild" -license accept
 }
@@ -52,6 +51,24 @@ runFirstLaunch() {
     sudo "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer/usr/bin/xcodebuild" -runFirstLaunch
 }
 
+runFirstLaunchXcodeList() {
+    local XCODE_LIST=("$@")
+    if is_Less_Catalina; then
+        echo "Install additional packages for Xcode ${XCODE_LIST[0]}"
+        installAdditionalPackages ${XCODE_LIST[0]}
+    fi
+
+    for XCODE_VERSION in "${XCODE_LIST[@]}"
+    do
+        if [[ $XCODE_VERSION == 8* || $XCODE_VERSION == 9* ]]; then
+            continue
+        fi
+
+        echo "Running 'runFirstLaunch' for Xcode ${XCODE_VERSION}..."
+        runFirstLaunch $XCODE_VERSION
+    done
+}
+
 setXcodeDeveloperDirVariables() {
     stable_xcode_versions=$(get_xcode_list_from_toolset | tr " " "\n" | grep -v "beta")
     major_versions=($(echo ${stable_xcode_versions[@]} | tr " " "\n" | cut -d '.' -f 1 | uniq))
@@ -65,8 +82,7 @@ setXcodeDeveloperDirVariables() {
 
 extractXcodeXip() {
     local WORKING_DIR="$1"
-    local XCODE_VERSION="$2"
-    XCODE_XIP="${WORKING_DIR}/Xcode_${XCODE_VERSION// /_}.xip"
+    local XCODE_XIP=$(find "$WORKING_DIR" -name "Xcode_*.xip" | head -n1)
 
     open -W $XCODE_XIP
 
@@ -80,9 +96,21 @@ extractXcodeXip() {
     fi
 }
 
-createBetaSymlink() {
-    local XCODE_VERSION=$1
-    if [[ $XCODE_VERSION =~ 1[01].* ]] || [[ $XCODE_VERSION == "12.0" ]]; then
-        ln -sf "/Applications/Xcode_${XCODE_VERSION}.app" "/Applications/Xcode_${XCODE_VERSION}_beta.app"
+createXcodeSymlinks() {
+    local SOURCE_XCODE=$1 && shift
+    local SYMLINKS=($@)
+
+
+    for TARGET_XCODE in "${SYMLINKS[@]}"
+    do
+        echo "Creating symlink '/Applications/Xcode_${SOURCE_XCODE}.app' -> '/Applications/Xcode_${TARGET_XCODE}.app'"
+        ln -sf "/Applications/Xcode_${SOURCE_XCODE}.app" "/Applications/Xcode_${TARGET_XCODE}.app"
+    done
+
+    # TO-DO, symlink is not correct
+    local FULL_XCODE_VERSION=$(echo "${XCODE_VERSION}.0.0" | cut -d'.' -f 1,2,3)
+    if [ $FULL_XCODE_VERSION != $SOURCE_XCODE ]; then
+        echo "Creating symlink '/Applications/Xcode_${SOURCE_XCODE}.app' -> '/Applications/Xcode_${FULL_XCODE_VERSION}.app'"
+        ln -sf "/Applications/Xcode_${SOURCE_XCODE}.app" "/Applications/Xcode_${FULL_XCODE_VERSION}.app"
     fi
 }

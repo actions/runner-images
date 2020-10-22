@@ -13,6 +13,10 @@ Describe "Xcode" {
         (Get-CommandResult "xcodebuild -version").Output | Should -BeLike "Xcode $DEFAULT_XCODE*"
     }
 
+    It "Xcode.app points to default Xcode" {
+
+    }
+
     # Cut "_beta" postfix for test cases
     $testCases = $XCODE_VERSIONS | ForEach-Object { @{XcodeVersion = $_.Split("_")[0] } }
 
