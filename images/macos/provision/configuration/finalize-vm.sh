@@ -22,4 +22,10 @@ rm -rf ~/utils ~/image-generation
 # Erase all indexes and wait until the rebuilding process ends,
 # for now there is no way to get status of indexing process, it takes around 3 minutes to accomplish
 sudo mdutil -E /
-sleep 180
+
+sudo log stream | while true; do
+    if read -rt5 && [[ $REPLY =~ "executeQuery with success=0" ]]; then
+      echo "indexing completed"
+	  exit 0
+    fi
+done
