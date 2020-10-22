@@ -26,6 +26,6 @@ sudo mdutil -E /
 sudo log stream | while true; do
     if read -rt5 && [[ $REPLY =~ "executeQuery with success=0" ]]; then
       echo "indexing completed"
-	  exit 0
+      exit 0
     fi
 done
