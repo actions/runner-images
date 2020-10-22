@@ -14,13 +14,16 @@ download_with_retries() {
     fi
 
     echo "Downloading $URL..."
-    i=20
-    while [ $i -gt 0 ]; do
-        ((i--))
+    retries=20
+    interval=30
+    while [ $retries -gt 0 ]; do
+        ((retries--))
         eval $COMMAND
         if [ $? != 0 ]; then
-            sleep 30
+            echo "Unable to download $URL, next attempt in $interval sec, $retries attempts left"
+            sleep $interval
         else
+            echo "$URL was downloaded successfully to $DEST/$NAME"
             return 0
         fi
     done
