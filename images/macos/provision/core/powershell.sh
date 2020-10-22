@@ -9,6 +9,10 @@ brew cask install powershell
 # A dummy call of `az` to initialize ~/.azure directory before the modules are installed
 az -v
 
+# Update PowerShellGet to eliminate download errors
+pwsh -Command "Install-Module -Name PowerShellGet -Force"
+pwsh -Command "Update-Module -Name PowerShellGet -Force"
+
 # Install PowerShell modules
 psModules=$(get_toolset_value '.powershellModules[].name')
 for module in ${psModules[@]}; do
