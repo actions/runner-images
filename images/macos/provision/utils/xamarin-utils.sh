@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash -e -o pipefail
 
 # Xamarin can clean their SDKs while updating to newer versions,
 # so we should be able to detect it during image generation
 downloadAndInstallPKG() {
   local PKG_URL=$1
   local PKG_NAME=${PKG_URL##*/}
-  
+
   download_with_retries $PKG_URL
 
   echo "Installing $PKG_NAME..."
@@ -159,7 +159,7 @@ installNunitConsole() {
   local MONO_VERSION=$1
 
   cat <<EOF > ${TMPMOUNT}/${NUNIT3_CONSOLE_BIN}
-#!/bin/sh
+#!/bin/bash -e -o pipefail
 exec /Library/Frameworks/Mono.framework/Versions/${MONO_VERSION}/bin/mono --debug \$MONO_OPTIONS $NUNIT3_PATH/nunit3-console.exe "\$@"
 EOF
   sudo chmod +x ${TMPMOUNT}/${NUNIT3_CONSOLE_BIN}
@@ -180,7 +180,7 @@ downloadNUnitConsole() {
     echo "Installing NUnit 3..."
     sudo unzip nunit3.zip -d $NUNIT3_PATH
     NUNIT3_CONSOLE_BIN=nunit3-console
-    
+
     popd
 }
 

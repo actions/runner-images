@@ -1,3 +1,5 @@
+#!/bin/bash -e -o pipefail
+
 download_with_retries() {
 # Due to restrictions of bash functions, positional arguments are used here.
 # In case if you using latest argument NAME, you should also set value to all previous parameters.
