@@ -48,6 +48,15 @@ Import-Module $PSScriptRoot\helpers.psm1 -DisableNameChecking
 # Connection to a vCenter Server system
 Connect-VCServer
 
+# Clear previously assigned tag with VM Name
+try {
+    Remove-Tag $VMName -Confirm:$false
+} catch {
+    Write-Host "Tag with $VMName doesn't exist"
+}
+
+
+
 $vm = Get-VM $VMName
 
 if ($env:AGENT_JOBSTATUS -eq 'Failed') {
