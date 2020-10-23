@@ -4,8 +4,13 @@ function Get-7zipVersion {
 }
 
 function Get-AnsibleVersion {
-    $ansibleVersion = sudo ansible --version | Select-Object -First 1 | Take-OutputPart -Part 1
+    $ansibleVersion = ansible --version | Select-Object -First 1 | Take-OutputPart -Part 1
     return "Ansible $ansibleVersion"
+}
+
+function Get-AptFastVersion {
+    $aptFastVersion = (dpkg-query --showformat='${Version}' --show apt-fast).Split('-')[0]
+    return "apt-fast $aptFastVersion"
 }
 
 function Get-AzCopy7Version {
@@ -19,17 +24,18 @@ function Get-AzCopy10Version {
 }
 
 function Get-BazelVersion {
-    $bazelVersion = sudo bazel --version | Select-String "bazel" | Take-OutputPart -Part 1
+    $bazelVersion = bazel --version | Select-String "bazel" | Take-OutputPart -Part 1
     return "Bazel $bazelVersion"
 }
 
 function Get-BazeliskVersion {
-    $bazeliskVersion = sudo bazelisk version 2>&1 | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
+    $result = Get-CommandResult "bazelisk version" -Multiline
+    $bazeliskVersion = $result.Output | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
     return "Bazelisk $bazeliskVersion"
 }
 
 function Get-CodeQLBundleVersion {
-    $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "*"
+    $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
     $CodeQLVersion = & $CodeQLPath version --quiet
@@ -77,12 +83,14 @@ function Get-DockerBuildxVersion {
 }
 
 function Get-GitVersion {
-    $gitVersion = git --version 2>&1 | Take-OutputPart -Part 2
+    $result = Get-CommandResult "git --version"
+    $gitVersion = $result.Output | Take-OutputPart -Part 2
     return "Git $gitVersion"
 }
 
 function Get-GitLFSVersion {
-    $gitlfsversion = git-lfs --version 2>&1 | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $result = Get-CommandResult "git-lfs --version"
+    $gitlfsversion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
     return "Git LFS $gitlfsversion"
 }
 
@@ -92,7 +100,7 @@ function Get-GitFTPVersion {
 }
 
 function Get-GoogleCloudSDKVersion {
-    return "$(sudo gcloud --version | Select-Object -First 1)"
+    return "$(gcloud --version | Select-Object -First 1)"
 }
 
 function Get-HavegedVersion {
@@ -101,7 +109,7 @@ function Get-HavegedVersion {
 }
 
 function Get-HerokuVersion {
-    $herokuVersion = sudo heroku version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $herokuVersion = heroku version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
     return "Heroku $herokuVersion"
 }
 
@@ -201,12 +209,12 @@ function Get-JqVersion {
 }
 
 function Get-AzureCliVersion {
-    $azcliVersion = sudo az -v | Select-String "azure-cli" | Take-OutputPart -Part -1
+    $azcliVersion = az -v | Select-String "azure-cli" | Take-OutputPart -Part -1
     return "Azure CLI (azure-cli) $azcliVersion"
 }
 
 function Get-AzureDevopsVersion {
-    $azdevopsVersion = sudo az -v | Select-String "azure-devops" | Take-OutputPart -Part -1
+    $azdevopsVersion = az -v | Select-String "azure-devops" | Take-OutputPart -Part -1
     return "Azure CLI (azure-devops) $azdevopsVersion"
 }
 
@@ -215,12 +223,14 @@ function Get-AlibabaCloudCliVersion {
 }
 
 function Get-AWSCliVersion {
-    $awsVersion = aws --version 2>&1 | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $result = Get-CommandResult "aws --version"
+    $awsVersion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
     return "AWS CLI $awsVersion"
 }
 
 function Get-AWSCliSessionManagerPluginVersion {
-    return "AWS CLI Session manager plugin $(session-manager-plugin --version 2>&1)"
+    $result = (Get-CommandResult "session-manager-plugin --version").Output
+    return "AWS CLI Session manager plugin $result"
 }
 
 function Get-AWSSAMVersion {
@@ -238,7 +248,7 @@ function Get-GitHubCliVersion {
 }
 
 function Get-NetlifyCliVersion {
-    $netlifyVersion = sudo netlify --version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $netlifyVersion = netlify --version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
     return "Netlify CLI $netlifyVersion"
 }
 
@@ -253,7 +263,8 @@ function Get-ORASCliVersion {
 }
 
 function Get-VerselCliversion {
-    return "$(vercel --version 2>&1 | Select-Object -First 1)"
+    $result = Get-CommandResult "vercel --version" -Multiline
+    return $result.Output | Select-Object -First 1
 }
 
 function Get-PulumiVersion {
@@ -269,4 +280,8 @@ function Get-RVersion {
 function Get-SphinxVersion {
     $sphinxVersion = searchd -h | Select-Object -First 1 | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
     return "Sphinx Open Source Search Server $sphinxVersion"
+}
+
+function Get-YamllintVersion {
+    return "$(yamllint --version)"
 }

@@ -12,7 +12,7 @@ download_with_retries() {
                 --wait 30 \
                 --retry-connrefused \
                 --retry-on-host-error \
-                --retry-on-http-error=429,500,502,503 \
+                --retry-on-http-error=404,429,500,502,503 \
                 --no-verbose
 
     if [ $? != 0 ]; then
@@ -91,4 +91,9 @@ get_latest_xcode_from_toolset() {
 
 get_default_xcode_from_toolset() {
     echo $(get_toolset_value '.xcode.default')
+}
+
+verlte() {
+    sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
+    [  "$1" = "$sortedVersion" ]
 }

@@ -3,8 +3,6 @@
 ##  Desc:  Install Azure PowerShell modules
 ################################################################################
 
-$ErrorActionPreference = "Stop"
-
 # The correct Modules need to be saved in C:\Modules
 $installPSModulePath = $env:PSMODULES_ROOT_FOLDER
 if (-not (Test-Path -LiteralPath $installPSModulePath))

@@ -4,6 +4,8 @@ param (
     $ImageName
 )
 
+$ErrorActionPreference = "Stop"
+
 Import-Module MarkdownPS
 Import-Module "$PSScriptRoot/SoftwareReport.Common.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Xcode.psm1" -DisableNameChecking
@@ -139,7 +141,7 @@ $aria2Version = Run-Command "aria2c --version" | Select-Object -First 1 | Take-P
 $azcopyVersion = Run-Command "azcopy --version" | Take-Part -Part 2
 $zstdVersion = Run-Command "zstd --version" | Take-Part -Part 1 -Delimiter "v" | Take-Part -Part 0 -Delimiter ","
 $bazelVersion = Run-Command "bazel --version" | Take-Part -Part 0 -Delimiter "-"
-$bazeliskVersion = Run-Command "bazelisk version" | Select-String "Bazelisk version:" | Take-Part -Part 1 -Delimiter ":"
+$bazeliskVersion = Run-Command "brew list bazelisk --versions"
 $packerVersion = Run-Command "packer --version"
 $helmVersion = Run-Command "helm version --short"
 $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
@@ -165,7 +167,7 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     "azcopy $azcopyVersion",
     "zstd $zstdVersion",
     $bazelVersion,
-    "bazelisk $($bazeliskVersion.Trim())",
+    $bazeliskVersion,
     "helm $helmVersion",
     "mongo $mongo",
     "mongod $mongod",
@@ -289,6 +291,8 @@ $markdown += New-MDList -Lines (Build-XamarinAndroidList) -Style Unordered
 $markdown += New-MDHeader "Unit Test Framework" -Level 4
 $markdown += New-MDList -Lines @(Get-NUnitVersion) -Style Unordered
 
+# First run doesn't provide full data about devices and runtimes
+Get-XcodeInfoList | Out-Null
 # Xcode section
 $xcodeInfo = Get-XcodeInfoList
 $markdown += New-MDHeader "Xcode" -Level 3
@@ -301,12 +305,9 @@ $markdown += New-MDHeader "Installed SDKs" -Level 4
 $markdown += Build-XcodeSDKTable $xcodeInfo | New-MDTable
 $markdown += New-MDNewLine
 
-# Disable simulators table on 11.0 beta for now since "simctl" tool doesn't work properly
-if (-not $os.IsBigSur) {
-    $markdown += New-MDHeader "Installed Simulators" -Level 4
-    $markdown += Build-XcodeSimulatorsTable $xcodeInfo | New-MDTable
-    $markdown += New-MDNewLine
-}
+$markdown += New-MDHeader "Installed Simulators" -Level 4
+$markdown += Build-XcodeSimulatorsTable $xcodeInfo | New-MDTable
+$markdown += New-MDNewLine
 
 # Android section
 $markdown += New-MDHeader "Android" -Level 3

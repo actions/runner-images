@@ -1,5 +1,3 @@
-$ErrorActionPreference = "Stop"
-
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
@@ -74,7 +72,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
 
 $markdown += New-MDHeader "Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
-    (Get-AzCosmosDBEmulatorVersion),
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
@@ -91,15 +88,12 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-KubectlVersion),
     (Get-KindVersion),
     (Get-MinGWVersion),
-    (Get-MySQLVersion),
     (Get-MercurialVersion),
     (Get-NSISVersion),
     (Get-NewmanVersion),
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
     (Get-PulumiVersion),
-    (Get-SQLPSVersion),
-    (Get-SQLServerPSVersion),
     (Get-SVNVersion),
     (Get-GHCVersion),
     (Get-CabalVersion),
@@ -176,6 +170,15 @@ $markdown += New-MDHeader "Databases" -Level 3
 $markdown += Build-DatabasesMarkdown
 $markdown += New-MDNewLine
 
+$markdown += New-MDHeader "Database tools" -Level 3
+$markdown += New-MDList -Style Unordered -Lines @(
+    (Get-AzCosmosDBEmulatorVersion),
+    (Get-DacFxVersion),
+    (Get-SQLPSVersion),
+    (Get-MySQLVersion)
+)
+$markdown += New-MDNewLine
+
 $vs = Get-VisualStudioVersion
 $markdown += New-MDHeader "$($vs.Name)" -Level 3
 $markdown += $vs | New-MDTable
@@ -237,5 +240,9 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Android" -Level 3
 $markdown += Build-AndroidTable | New-MDTable
 $markdown += New-MDNewLine
+
+# Docker images section
+$markdown += New-MDHeader "Cached Docker images" -Level 3
+$markdown += New-MDList -Style Unordered -Lines @(Get-CachedDockerImages)
 
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"

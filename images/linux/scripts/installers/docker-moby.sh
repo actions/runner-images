@@ -1,18 +1,11 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  docker-moby.sh
 ##  Desc:  Installs docker onto the image
 ################################################################################
-set -e
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
-source $HELPER_SCRIPTS/os.sh
-
-# There is no stable docker-moby for Ubuntu 20 at the moment
-if isUbuntu20 ; then
-    add-apt-repository "deb [arch=amd64,armhf,arm64] https://packages.microsoft.com/ubuntu/20.04/prod testing main"
-fi
 
 # Check to see if docker is already installed
 docker_package=moby

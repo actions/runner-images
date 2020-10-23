@@ -3,6 +3,8 @@ param (
     $OutputDirectory
 )
 
+$ErrorActionPreference = "Stop"
+
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
@@ -13,6 +15,9 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNa
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Java.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Rust.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
+
+# Restore file owner in user profile
+Restore-UserOwner
 
 $markdown = ""
 
@@ -49,7 +54,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
 )
 
 $markdown += New-MDHeader "Package Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+
+$packageManagementList = @(
         (Get-HomebrewVersion),
         (Get-GemVersion),
         (Get-MinicondaVersion),
@@ -60,6 +66,14 @@ $markdown += New-MDList -Style Unordered -Lines @(
         (Get-Pip3Version),
         (Get-VcpkgVersion)
 )
+
+if (-not (Test-IsUbuntu16)) {
+    $packageManagementList += @(
+        (Get-PipxVersion)
+    )
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
 
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
@@ -73,6 +87,7 @@ $markdown += New-MDHeader "Tools" -Level 3
 $toolsList = @(
     (Get-7zipVersion),
     (Get-AnsibleVersion),
+    (Get-AptFastVersion),
     (Get-AzCopy7Version),
     (Get-AzCopy10Version),
     (Get-BazelVersion),
@@ -110,6 +125,7 @@ $toolsList = @(
     (Get-TerraformVersion),
     (Get-UnZipVersion),
     (Get-WgetVersion),
+    (Get-YamllintVersion),
     (Get-ZipVersion),
     (Get-ZstdVersion)
 )
