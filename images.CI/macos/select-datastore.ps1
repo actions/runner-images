@@ -73,6 +73,7 @@ function Select-DataStore {
 
     # Wait for 60 seconds to check if any other tags are assigned to the same datastore
     Start-Sleep -Seconds 60
+    # Take only first 2 tags, all the others will go to the next round
     $tagAssignments = (Get-TagAssignment -Entity $buildDatastore).Tag.Name | Select-Object -First 2
     $isAllow = $tagAssignments -contains $VMName
 
@@ -83,6 +84,9 @@ function Select-DataStore {
         return
     }
 
+    # Remove the tag if datastore wasn't selected
+    Remove-Tag $tag -Confirm:$false
+
     $retries--
     if ($retries -le 0)
     {
@@ -92,7 +96,6 @@ function Select-DataStore {
 
     Write-Host "Datastore select failed, $retries left"
     Select-DataStore -VMName $VMName -TagCategory $TagCategory -Retries $retries
-
 }
 
 # Connection to a vCenter Server system
