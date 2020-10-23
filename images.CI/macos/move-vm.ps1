@@ -55,8 +55,6 @@ try {
     Write-Host "Tag with $VMName doesn't exist"
 }
 
-
-
 $vm = Get-VM $VMName
 
 if ($env:AGENT_JOBSTATUS -eq 'Failed') {

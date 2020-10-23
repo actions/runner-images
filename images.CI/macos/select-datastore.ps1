@@ -80,7 +80,7 @@ function Select-DataStore {
     {
         Write-Host "Datastore selected successfully"
         Write-Host "##vso[task.setvariable variable=buildDatastore;issecret=true]$buildDatastore"
-        return $buildDatastore
+        return
     }
 
     $retries--
