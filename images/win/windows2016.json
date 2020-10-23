@@ -245,6 +245,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-Sbt.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-OpenSSL.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Perl.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-OpenSSH.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Git.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PHP.ps1",
