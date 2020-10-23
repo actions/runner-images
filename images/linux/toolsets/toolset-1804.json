@@ -86,6 +86,7 @@
     },
     "powershellModules": [
         {"name": "MarkdownPS"},
+        {"name": "PowerShellGet"},
         {"name": "Pester"}
     ],
     "azureModules": [
