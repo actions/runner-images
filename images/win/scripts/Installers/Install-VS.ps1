@@ -3,6 +3,10 @@
 ##  Desc:  Install Visual Studio
 ################################################################################
 
+# Temporary replace ip for download server to the one with the correct files and backup hosts file
+Copy-Item -Path "$env:windir\System32\drivers\etc\hosts" -Destination "C:\hosts_backup" -Verbose
+"68.232.34.200 download.visualstudio.microsoft.com" > "$env:windir\System32\drivers\etc\hosts"
+
 $toolset = Get-ToolsetContent
 $requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
 $workLoads = @(
@@ -48,3 +52,5 @@ if (Test-IsWin19) {
 }
 
 Invoke-PesterTests -TestFile "VisualStudio"
+# Restore hosts file after VS installation
+Move-Item -Path "C:\hosts_backup" -Destination "$env:windir\System32\drivers\etc\hosts" -Force -Verbose
