@@ -144,17 +144,17 @@ function Get-AntVersion {
 }
 
 function Get-GradleVersion {
-    $result = gradle -v | Out-String
-    $result -match "Gradle (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $gradleVersion = $Matches.version
+    $gradleVersion = (gradle -v) -match "^Gradle \d" | Take-OutputPart -Part 1
     return "Gradle $gradleVersion"
 }
+
 function Get-MavenVersion {
     $result = mvn -version | Out-String
     $result -match "Apache Maven (?<version>\d+\.\d+\.\d+)" | Out-Null
     $mavenVersion = $Matches.version
     return "Maven $mavenVersion"
 }
+
 function Get-SbtVersion {
     $result = Get-CommandResult "sbt -version"
     $result.Output -match "sbt script version: (?<version>\d+\.\d+\.\d+)" | Out-Null

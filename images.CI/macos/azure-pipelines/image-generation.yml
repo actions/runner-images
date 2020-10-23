@@ -7,12 +7,13 @@ jobs:
   variables:
   - group: Mac-Cloud Image Generation
   - group: Mac-Cloud Image Generation Key Vault
-  - name: VirtualMachineName
-    value: $(Build.BuildNumber).$(System.JobAttempt)
 
   steps:
-  - bash: |
-      echo "##vso[build.updatebuildnumber]${{ variables.VirtualMachineName }}"
+  - pwsh: |
+      $cleanBuildNumber = "$(Build.BuildNumber)" -replace "(.+_unstable)(\.\d+)", '$1'
+      $virtualMachineName = "${cleanBuildNumber}.$(System.JobAttempt)"
+      echo "##vso[task.setvariable variable=VirtualMachineName;]$virtualMachineName"
+      echo "##vso[build.updatebuildnumber]$virtualMachineName"
     displayName: Update BuildNumber
 
   - checkout: self
@@ -71,7 +72,7 @@ jobs:
         -var="output_folder=$(output-folder)" `
         -var="vm_username=$(vm-username)" `
         -var="vm_password=$(vm-password)" `
-        -var="build_id=${{ variables.VirtualMachineName }}" `
+        -var="build_id=$(VirtualMachineName)" `
         -var="baseimage_name=${{ parameters.base_image_name }}" `
         -var="github_feed_token=$(github-feed-token)" `
         -var="xcode_install_user=$(xcode-installation-user)" `
@@ -98,7 +99,7 @@ jobs:
       ls $(Common.TestResultsDirectory)
 
       echo "Put VM name to 'VM_Done_Name' file"
-      echo "${{ variables.VirtualMachineName }}" > "$(Build.ArtifactStagingDirectory)/VM_Done_Name"
+      echo "$(VirtualMachineName)" > "$(Build.ArtifactStagingDirectory)/VM_Done_Name"
     displayName: Prepare artifact
 
   - bash: |
@@ -125,7 +126,7 @@ jobs:
     inputs:
       targetType: 'filePath'
       filePath: ./images.CI/macos/move-vm.ps1
-      arguments: -VMName "${{ variables.VirtualMachineName }}" `
+      arguments: -VMName "$(VirtualMachineName)" `
                  -TargetDataStore "${{ parameters.target_datastore }}" `
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
@@ -137,7 +138,7 @@ jobs:
     inputs:
       targetType: 'filePath'
       filePath: ./images.CI/macos/destroy-vm.ps1
-      arguments: -VMName "${{ variables.VirtualMachineName }}" `
+      arguments: -VMName "$(VirtualMachineName)" `
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
                  -VIPassword "$(vcenter-password-v2)"
