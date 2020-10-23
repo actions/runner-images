@@ -24,7 +24,7 @@ rm -rf ~/utils ~/image-generation
 sudo mdutil -E /
 
 sudo log stream | while true; do
-    if read -rt5 && [[ $REPLY =~ "executeQuery with success=0" ]]; then
+    if read -rt5 && [[ $REPLY =~ "Unlinked journal" ]]; then
       echo "indexing completed"
       exit 0
     fi
