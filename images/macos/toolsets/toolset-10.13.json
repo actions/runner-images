@@ -180,6 +180,7 @@
         ]
     },
     "powershellModules": [
+        {"name": "PowerShellGet"},
         {"name": "Az"},
         {"name": "MarkdownPS"},
         {"name": "Pester"}
