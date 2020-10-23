@@ -13,7 +13,6 @@ brew link python@3.8
 
 echo "Brew Installing Python 2"
 # Create local tap with formula due to python2 formula depreciation
-brew tap-new local/python2
+brew tap-new --no-git local/python2
 FORMULA_PATH=$(brew extract python@2 local/python2 | grep "Homebrew/Library/Taps")
 brew install $FORMULA_PATH
-brew untap local/homebrew-python2
