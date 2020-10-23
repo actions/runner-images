@@ -8,10 +8,9 @@ brew install openssl
 # Install OpenSSL 1.0.2t
 # https://www.openssl.org/policies/releasestrat.html - Version 1.0.2 will be supported until 2019-12-31 (LTS)
 # To preserve backward compatibility with ruby-toolcache
-brew tap-new local/openssl
+brew tap-new --no-git local/openssl
 FORMULA_PATH=$(brew extract openssl local/openssl | grep "Homebrew/Library/Taps")
 brew install $FORMULA_PATH
-brew untap local/homebrew-openssl
 
 # Set OpenSSL 1.0.2t as default
 ln -sf /usr/local/Cellar/openssl@1.0.2t /usr/local/Cellar/openssl
