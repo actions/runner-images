@@ -1,11 +1,8 @@
+#!/bin/bash -e -o pipefail
+
 source ~/utils/utils.sh
 
-node_common_modules=(
-  node-gyp
-  mobile-center-cli
-)
-
-node_catalina_modules=(
+node_modules=(
   appcenter-cli
   newman
 )
@@ -21,7 +18,10 @@ if is_Less_Catalina; then
 
   echo Installing NPM 3.x.x...
   npm install -g npm@3
-  npm config set prefix /usr/local
+
+  # This step is required to install App Center CLI
+  echo Installing Omelette...
+  npm install -g omelette@0.4.14
 
   echo Installing App Center CLI...
   npm install -g appcenter-cli@^1.0.0
@@ -30,7 +30,7 @@ else
   brew install node@12
   brew link node@12 --force
 
-  for module in ${node_catalina_modules[@]}; do
+  for module in ${node_modules[@]}; do
     echo "Install $module"
     npm install -g $module
   done
@@ -40,8 +40,6 @@ echo Installing yarn...
 curl -o- -L https://yarnpkg.com/install.sh | bash
 
 if is_Less_BigSur; then
-    for module in ${node_common_modules[@]}; do
-        echo "Install $module"
-        npm install -g $module
-    done
+  echo "Install node-gyp"
+  npm install -g node-gyp
 fi
