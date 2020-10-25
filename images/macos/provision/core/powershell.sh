@@ -15,11 +15,11 @@ for module in ${psModules[@]}; do
     echo "Installing $module module"
     moduleVersions="$(get_toolset_value ".powershellModules[] | select(.name==\"$module\") | .versions[]?")"
     if [[ -z "$moduleVersions" ]];then
-        pwsh -command "& {Install-Module $module -Force -Scope AllUsers}"
+        pwsh -command "& {[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; Install-Module $module -Force -Scope AllUsers}"
     else
         for version in ${moduleVersions[@]}; do
             echo " - $version"
-            pwsh -command "& {Install-Module $module -RequiredVersion $version -Force -Scope AllUsers}"
+            pwsh -command "& {[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; Install-Module $module -RequiredVersion $version -Force -Scope AllUsers}"
         done
     fi
 done
