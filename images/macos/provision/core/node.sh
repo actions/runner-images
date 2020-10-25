@@ -1,3 +1,5 @@
+#!/bin/bash -e -o pipefail
+
 source ~/utils/utils.sh
 
 node_modules=(
@@ -16,7 +18,6 @@ if is_Less_Catalina; then
 
   echo Installing NPM 3.x.x...
   npm install -g npm@3
-  npm config set prefix /usr/local
 
   # This step is required to install App Center CLI
   echo Installing Omelette...
