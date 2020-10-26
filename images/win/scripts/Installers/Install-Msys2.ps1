@@ -57,6 +57,10 @@ Write-Host "`n$dash Install mingw32 packages"
 $pre = "mingw-w64-i686-"
 pacman.exe -S --noconfirm --needed --noprogressbar $tools32.replace('___', $pre).split(' ')
 
+# install openssh
+Write-Host "`n$dash Install openssh package"
+pacman.exe -S --noconfirm --needed --noprogressbar openssh
+
 # clean all packages to decrease image size
 Write-Host "`n$dash Clean packages"
 pacman.exe -Scc --noconfirm
@@ -79,5 +83,9 @@ $regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment
 $pathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path'
 $pathValue += ";C:\msys64\mingw64\bin;C:\msys64\usr\bin"
 Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $pathValue
+
+# Add well-known SSH host keys to ssh_known_hosts
+ssh-keyscan -t rsa github.com >> "C:\msys64\etc\ssh\ssh_known_hosts"
+ssh-keyscan -t rsa ssh.dev.azure.com >> "C:\msys64\etc\ssh\ssh_known_hosts"
 
 Invoke-PesterTests -TestFile "MSYS2"
