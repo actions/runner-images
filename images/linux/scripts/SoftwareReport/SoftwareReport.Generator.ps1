@@ -224,7 +224,7 @@ $markdown += Build-AndroidTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Cached Docker images" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(Get-CachedDockerImages)
+$markdown += New-MDList -Style Unordered -Lines @(Get-CachedDockerImagesFullInfo)
 
 $markdown += New-MDHeader "Installed apt packages" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(Get-AptPackages)
