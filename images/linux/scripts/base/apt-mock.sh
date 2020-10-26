@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 prefix=/usr/local/bin
 
