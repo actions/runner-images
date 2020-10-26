@@ -1,7 +1,6 @@
-#!/bin/sh
-
+#!/bin/bash -e -o pipefail
 ###########################################################################
-# The script downloads macos hosted tool cache for several Python versions 
+# The script downloads macos hosted tool cache for several Python versions
 # and installs them onto the system
 #
 ###########################################################################

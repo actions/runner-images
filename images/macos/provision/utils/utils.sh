@@ -1,3 +1,5 @@
+#!/bin/bash -e -o pipefail
+
 download_with_retries() {
 # Due to restrictions of bash functions, positional arguments are used here.
 # In case if you using latest argument NAME, you should also set value to all previous parameters.
@@ -5,22 +7,31 @@ download_with_retries() {
     local URL="$1"
     local DEST="${2:-.}"
     local NAME="${3:-${URL##*/}}"
+    local COMPRESSED="$4"
 
-    echo "Downloading $URL..."
-    wget $URL   --output-document="$DEST/$NAME" \
-                --tries=30 \
-                --wait 30 \
-                --retry-connrefused \
-                --retry-on-host-error \
-                --retry-on-http-error=429,500,502,503 \
-                --no-verbose
-
-    if [ $? != 0 ]; then
-        echo "Could not download $URL; Exiting build!"
-        exit 1
+    if [[ $COMPRESSED == "compressed" ]]; then
+        COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME'"
+    else
+        COMMAND="curl $URL -4 -sL -o '$DEST/$NAME'"
     fi
 
-    return 0
+    echo "Downloading $URL..."
+    retries=20
+    interval=30
+    while [ $retries -gt 0 ]; do
+        ((retries--))
+        eval $COMMAND
+        if [ $? != 0 ]; then
+            echo "Unable to download $URL, next attempt in $interval sec, $retries attempts left"
+            sleep $interval
+        else
+            echo "$URL was downloaded successfully to $DEST/$NAME"
+            return 0
+        fi
+    done
+
+    echo "Could not download $URL"
+    return 1
 }
 
 is_BigSur() {

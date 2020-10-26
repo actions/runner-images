@@ -1,4 +1,5 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/utils.sh
 
 is_clt_installed() {
     clt_path=`xcode-select -p 2>&1`
@@ -10,8 +11,15 @@ install_clt() {
     # This temporary file prompts the 'softwareupdate' utility to list the Command Line Tools
     clt_placeholder="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
     sudo touch $clt_placeholder
+    # The only working tools for Big Sur are 12.2
+    if is_Less_BigSur; then
+        cltPattern="Command Line Tools"
+    else
+        cltPattern="Command Line Tools.*Xcode-12.2"
+    fi
+
     clt_label_command="/usr/sbin/softwareupdate -l |
-                        grep -B 1 -E 'Command Line Tools' |
+                        grep -B 1 -E '${cltPattern}' |
                         awk -F'*' '/^ *\\*/ {print \$2}' |
                         sed -e 's/^ *Label: //' -e 's/^ *//' |
                         sort -V |

@@ -1,10 +1,10 @@
 | Announcements |
 |-|
+| [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
 | [Obsolete Android build-tools packages will be removed from Ubuntu images on October, 20](https://github.com/actions/virtual-environments/issues/1743) |
-| [Clang/LLVM 10 will be set as a default one and Clang/LLVM 6 will be deprecated  for Ubuntu 20.04 on September, 23](https://github.com/actions/virtual-environments/issues/1536) |
 ***
 # Ubuntu 20.04.1 LTS
-- Image Version: 20201012.1
+- Image Version: 20201015.1
 
 ## Installed Software
 ### Language and Runtime
@@ -24,7 +24,7 @@
 ### Package Management
 - Gem 3.1.2
 - Helm 3.3.4
-- Homebrew 2.5.5
+- Homebrew 2.5.6
 - Miniconda 4.8.3
 - Npm 6.14.8
 - Pip 20.0.2
@@ -35,7 +35,7 @@
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 6.6.1
+- Gradle 6.7
 - Maven 3.6.3
 - Sbt 1.4.0
 
@@ -45,10 +45,10 @@
 - AzCopy10 10.6.0 (available by `azcopy10` alias)
 - AzCopy7 7.3.0 (available by `azcopy` alias)
 - Bazel 3.6.0
-- Bazelisk 1.7.1
+- Bazelisk 1.7.2
 - Buildah 1.16.4
 - CMake 3.17.0
-- CodeQL Action Bundle 2.2.5
+- CodeQL Action Bundle 2.3.0
 - curl 7.68.0
 - Docker Compose 1.27.4
 - Docker-Buildx 0.4.2
@@ -56,24 +56,24 @@
 - Git 2.28.0
 - Git LFS 2.12.0
 - Git-ftp 1.6.0
-- Google Cloud SDK 313.0.1
+- Google Cloud SDK 314.0.0
 - Haveged 1.9.1
-- Heroku 7.45.0
-- HHVM (HipHop VM) 4.78.0
+- Heroku 7.46.0
+- HHVM (HipHop VM) 4.79.0
 - jq 1.6
 - Kind 0.9.0
-- Kubectl 1.19.2
+- Kubectl 1.19.3
 - Kustomize 3.8.5
 - Leiningen 2.9.4
 - m4 1.4.18
 - Mercurial 5.3.1
-- Minikube 1.13.1
+- Minikube 1.14.0
 - Newman 5.2.0
 - nvm 0.36.0
 - Packer 1.6.4
 - PhantomJS 2.1.1
 - Podman 2.1.1
-- Pulumi 2.11.2
+- Pulumi 2.12.0
 - R 4.0.3
 - Skopeo 1.2.0
 - Sphinx Open Source Search Server 2.2.11
@@ -91,7 +91,7 @@
 - AWS CLI 2.0.56
 - AWS CLI Session manager plugin 1.1.61.0
 - AWS SAM CLI 1.6.2
-- Azure CLI (azure-cli) 2.12.1
+- Azure CLI (azure-cli) 2.13.0
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.1.0
 - Hub CLI 2.14.2
@@ -110,7 +110,7 @@
 | Tool     | Version |
 | -------- | ------- |
 | PHP      | 7.4.11  |
-| Composer | 1.10.13 |
+| Composer | 1.10.15 |
 | PHPUnit  | 7.5.20  |
 
 ### Haskell
@@ -139,10 +139,10 @@
 - Geckodriver 0.27.0
 
 ### .NET Core SDK
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402
+- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403
 
 ### Az Module
-- 4.7.0
+- 4.8.0
 
 ### Databases
 - Postgre SQL 13.0
@@ -182,8 +182,8 @@
 - 14.13.1
 
 #### Go
-- 1.14.9
-- 1.15.2
+- 1.14.10
+- 1.15.3
 
 ### Android
 | Package Name               | Version                                                                                                           |
