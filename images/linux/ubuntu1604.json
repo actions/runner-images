@@ -301,7 +301,8 @@
                 "IMAGE_VERSION={{user `image_version`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
                 "ANNOUNCEMENTS={{user `announcements`}}"
-            ]
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "file",
