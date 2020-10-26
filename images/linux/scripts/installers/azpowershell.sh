@@ -17,8 +17,8 @@ fi
 
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 for version in ${versions[@]}; do
-    pwsh -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;
-    Save-Module -Name Az -LiteralPath /usr/share/az_$version -RequiredVersion $version -Force"
+    tlsCommand="[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12"
+    pwsh -Command "'${tlsCommand}'; Save-Module -Name Az -LiteralPath /usr/share/az_$version -RequiredVersion $version -Force"
 done
 
 # Run tests to determine that the software installed as expected
