@@ -359,6 +359,11 @@
                 "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/scripts/base/apt-mock-remove.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         }
     ]
 }
