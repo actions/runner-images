@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+# A temporary workaround for https://github.com/Azure/azure-linux-extensions/issues/1238
+
 prefix=/usr/local/bin
 
 for tool in apt apt-get apt-fast;do
