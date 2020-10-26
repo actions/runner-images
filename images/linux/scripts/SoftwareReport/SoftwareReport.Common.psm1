@@ -241,7 +241,7 @@ function Get-CachedDockerImages {
 }
 
 function Get-CachedDockerImagesFullInfo {
-    return (docker images --digests --format "* {{.Repository}}:{{.Tag}} {{.Digest}} {{.CreatedSince}}").Split("*") | Where-Object { $_ }
+    return (sudo docker images --digests --format "* {{.Repository}}:{{.Tag}} {{.Digest}} {{.CreatedSince}}").Split("*") | Where-Object { $_ }
 }
 
 function Get-AptPackages {
