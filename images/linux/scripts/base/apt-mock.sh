@@ -8,17 +8,18 @@ for tool in apt apt-get apt-fast;do
 #!/bin/sh
 
 i=1
-while [ \$i -le 10 ];do
-  $real_tool "\$@"
+while [ \$i -le 30 ];do
+  fuser /var/lib/dpkg/lock >/dev/null 2>&1
   result=\$?
   if [ \$result -eq  0 ];then
-    break
-  else
-    sleep 5
-    echo "...retry \$i"
+    sleep 1
+    echo "/var/lib/dpkg/locked... retry \$i"
     i=\$((i + 1))
+  else
+    break
   fi
 done
+$real_tool "\$@"
 EOT
   chmod +x $prefix/$tool
 done
