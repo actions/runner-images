@@ -16,27 +16,32 @@ Function Get-PackerTemplatePath {
         [ImageType] $ImageType
     )
 
-    $relativePath = "N/A"
-
     switch ($ImageType) {
         ([ImageType]::Windows2016) {
-            $relativePath = "\images\win\Windows2016-Azure.json"
+            $relativeTemplatePath = Join-Path "win" "windows2016.json"
         }
         ([ImageType]::Windows2019) {
-            $relativePath = "\images\win\Windows2019-Azure.json"
+            $relativeTemplatePath = Join-Path "win" "windows2019.json"
         }
         ([ImageType]::Ubuntu1604) {
-            $relativePath = "\images\linux\ubuntu1604.json"
+            $relativeTemplatePath = Join-Path "linux" "ubuntu1604.json"
         }
         ([ImageType]::Ubuntu1804) {
-            $relativePath = "\images\linux\ubuntu1804.json"
+            $relativeTemplatePath = Join-Path "linux" "ubuntu1804.json"
         }
         ([ImageType]::Ubuntu2004) {
-            $relativePath = "\images\linux\ubuntu2004.json"
+            $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
         }
+        default { throw "Unknown type of image" }
     }
 
-    return $RepositoryRoot + $relativePath;
+    $imageTemplatePath = [IO.Path]::Combine($RepositoryRoot, "images", $relativeTemplatePath)
+
+    if (-not (Test-Path $imageTemplatePath)) {
+        throw "Template for image '$ImageType' doesn't exist on path '$imageTemplatePath'"
+    }
+
+    return $imageTemplatePath;
 }
 
 Function Get-LatestCommit {
@@ -45,7 +50,7 @@ Function Get-LatestCommit {
 
     process {
         Write-Host "Latest commit:"
-        git log --pretty=format:"Date: %cd; Commit: %H - %s; Author: %an <%ae>" -1
+        git --no-pager log --pretty=format:"Date: %cd; Commit: %H - %s; Author: %an <%ae>" -1
     }
 }
 
@@ -87,11 +92,11 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $True)]
         [string] $ResourceGroupName,
         [Parameter(Mandatory = $True)]
-        [string] $ImageGenerationRepositoryRoot,
-        [Parameter(Mandatory = $True)]
         [ImageType] $ImageType,
         [Parameter(Mandatory = $True)]
         [string] $AzureLocation,
+        [Parameter(Mandatory = $False)]
+        [string] $ImageGenerationRepositoryRoot = $pwd,
         [Parameter(Mandatory = $False)]
         [int] $SecondsToWaitForServicePrincipalSetup = 30,
         [Parameter(Mandatory = $False)]
@@ -110,12 +115,12 @@ Function GenerateResourcesAndImage {
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
 
-    Login-AzureRmAccount
-    Set-AzureRmContext -SubscriptionId $SubscriptionId
+    Connect-AzAccount
+    Set-AzContext -SubscriptionId $SubscriptionId
 
     $alreadyExists = $true;
     try {
-        Get-AzureRmResourceGroup -Name $ResourceGroupName
+        Get-AzResourceGroup -Name $ResourceGroupName
         Write-Verbose "Resource group was found, will delete and recreate it."
     }
     catch {
@@ -126,8 +131,8 @@ Function GenerateResourcesAndImage {
     if ($alreadyExists) {
         if($Force -eq $true) {
             # Cleanup the resource group if it already exitsted before
-            Remove-AzureRmResourceGroup -Name $ResourceGroupName -Force
-            New-AzureRmResourceGroup -Name $ResourceGroupName -Location $AzureLocation
+            Remove-AzResourceGroup -Name $ResourceGroupName -Force
+            New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
         } else {
             $title = "Delete Resource Group"
             $message = "The resource group you specified already exists. Do you want to clean it up?"
@@ -146,13 +151,13 @@ Function GenerateResourcesAndImage {
 
             switch ($result)
             {
-                0 { Remove-AzureRmResourceGroup -Name $ResourceGroupName -Force; New-AzureRmResourceGroup -Name $ResourceGroupName -Location $AzureLocation }
+                0 { Remove-AzResourceGroup -Name $ResourceGroupName -Force; New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation }
                 1 { <# Do nothing #> }
                 2 { exit }
             }
         }
     } else {
-        New-AzureRmResourceGroup -Name $ResourceGroupName -Location $AzureLocation
+        New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
     }
 
     # This script should follow the recommended naming conventions for azure resources
@@ -164,25 +169,32 @@ Function GenerateResourcesAndImage {
     $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
     $storageAccountName += "001"
 
-    New-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
+    New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
 
     $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
-    $sp = New-AzureRmADServicePrincipal -DisplayName $spDisplayName -Password (ConvertTo-SecureString $ServicePrincipalClientSecret -AsPlainText -Force)
+    $credentialProperties = @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$ServicePrincipalClientSecret }
+    $credentials = New-Object -TypeName Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential -Property $credentialProperties
+    $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
 
     $spAppId = $sp.ApplicationId
     $spClientId = $sp.ApplicationId
     $spObjectId = $sp.Id
     Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
 
-    New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
+    New-AzRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
     Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-    $sub = Get-AzureRmSubscription -SubscriptionId $SubscriptionId
+    $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
     $tenantId = $sub.TenantId
     # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
 
     Get-LatestCommit -ErrorAction SilentlyContinue
 
-    packer.exe build -on-error=ask `
+    $packerBinary = Get-Command "packer"
+    if (-not ($packerBinary)) {
+        throw "'packer' binary is not found on PATH"
+    }
+
+    & $packerBinary build -on-error=ask `
         -var "client_id=$($spClientId)" `
         -var "client_secret=$($ServicePrincipalClientSecret)" `
         -var "subscription_id=$($SubscriptionId)" `

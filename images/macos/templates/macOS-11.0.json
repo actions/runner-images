@@ -134,7 +134,7 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "pause_before": "30s",
             "scripts": [
-                "./provision/core/xcode-ctl.sh",
+                "./provision/core/xcode-clt.sh",
                 "./provision/core/homebrew.sh",
                 "./provision/core/dotnet.sh",
                 "./provision/core/python.sh",

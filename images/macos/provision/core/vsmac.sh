@@ -1,8 +1,12 @@
-#!/bin/sh
+#!/bin/bash -e -o pipefail
+
 source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
 
 VSMAC_VERSION=$(get_toolset_value '.xamarin.vsmac')
+if [ $VSMAC_VERSION == "latest" ]; then
+    VSMAC_VERSION=$(curl https://formulae.brew.sh/api/cask/visual-studio.json 2>/dev/null | jq .version | tr -d \")
+fi
 VSMAC_DOWNLOAD_URL=$(buildVSMacDownloadUrl $VSMAC_VERSION)
 
 TMPMOUNT=`/usr/bin/mktemp -d /tmp/visualstudio.XXXX`
@@ -18,9 +22,6 @@ hdiutil attach "$TMPMOUNT_DOWNLOADS/$VISUAL_STUDIO_NAME" -mountpoint "$TMPMOUNT"
 echo "Moving Visual Studio to /Applications/..."
 pushd $TMPMOUNT
 tar cf - "./Visual Studio.app" | tar xf - -C /Applications/
-
-echo "Launching vstools..."
-/Applications/Visual\ Studio.app/Contents/MacOS/vstool
 
 popd
 sudo hdiutil detach "$TMPMOUNT"

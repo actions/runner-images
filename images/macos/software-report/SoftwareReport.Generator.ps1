@@ -4,6 +4,8 @@ param (
     $ImageName
 )
 
+$ErrorActionPreference = "Stop"
+
 Import-Module MarkdownPS
 Import-Module "$PSScriptRoot/SoftwareReport.Common.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Xcode.psm1" -DisableNameChecking
@@ -55,6 +57,10 @@ if ( -not $os.IsHighSierra) {
     $markdown += New-MDList -Style Unordered -NoNewLine -Lines $lines
 }
 
+if ($os.IsLessThanBigSur) {
+    $markdown += New-MDList -Style Unordered -Lines @(Get-RVersion) -NoNewLine
+}
+
 $markdown += New-MDList -Style Unordered -Lines @(
     "Node.js ${nodejsVersion}"
     "NVM ${nvmVersion}"
@@ -63,7 +69,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
     $python3Version,
     "Ruby ${rubyVersion}",
     (Get-DotnetVersionList),
-    (Get-RVersion),
     "Go ${goVersion}",
     "$phpVersion",
     "$juliaVersion"
@@ -136,11 +141,9 @@ $aria2Version = Run-Command "aria2c --version" | Select-Object -First 1 | Take-P
 $azcopyVersion = Run-Command "azcopy --version" | Take-Part -Part 2
 $zstdVersion = Run-Command "zstd --version" | Take-Part -Part 1 -Delimiter "v" | Take-Part -Part 0 -Delimiter ","
 $bazelVersion = Run-Command "bazel --version" | Take-Part -Part 0 -Delimiter "-"
-$bazeliskVersion = Run-Command "bazelisk version" | Select-String "Bazelisk version:" | Take-Part -Part 1 -Delimiter ":"
+$bazeliskVersion = Run-Command "brew list bazelisk --versions"
 $packerVersion = Run-Command "packer --version"
 $helmVersion = Run-Command "helm version --short"
-$vbox = Run-Command "vboxmanage -v"
-$vagrant = Run-Command "vagrant -v"
 $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
 $mongod = Run-Command "mongod --version" | Select-String "db version " | Take-Part -Part 2
 $p7zip = Run-Command "7z i" | Select-String "7-Zip" | Take-Part -Part 0,2
@@ -164,12 +167,10 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     "azcopy $azcopyVersion",
     "zstd $zstdVersion",
     $bazelVersion,
-    "bazelisk $($bazeliskVersion.Trim())",
+    $bazeliskVersion,
     "helm $helmVersion",
-    "virtualbox $vbox",
     "mongo $mongo",
     "mongod $mongod",
-    "$vagrant",
     $p7zip
 )
 if ($os.IsHigherThanMojave) {
@@ -177,8 +178,14 @@ if ($os.IsHigherThanMojave) {
     $markdown += New-MDList -Lines "Newman $newmanVersion" -Style Unordered -NoNewLine
 }
 if ($os.IsLessThanBigSur) {
+    $vagrant = Run-Command "vagrant -v"
+    $vbox = Run-Command "vboxmanage -v"
     $parallelVersion = Run-Command "parallel --version" | Select-String "GNU parallel" | Select-Object -First 1
-    $markdown += New-MDList -Lines $parallelVersion -Style Unordered
+    $markdown += New-MDList -Style Unordered -Lines @(
+        "virtualbox $vbox",
+        $vagrant,
+        $parallelVersion
+    )
 }
 $markdown += New-MDNewLine
 
@@ -190,9 +197,9 @@ $azureCLIVersion = Run-Command "az -v" | Select-String "^azure-cli" | Take-Part 
 $awsVersion = Run-Command "aws --version" | Take-Part -Part 0 | Take-Part -Delimiter "/" -Part 1
 $aliyunVersion = Run-Command "aliyun --version" | Select-String "Alibaba Cloud Command Line Interface Version " | Take-Part -Part 6
 $awsSamVersion = Run-Command "sam --version" | Take-Part -Part 3
-$awsSessionManagerVersion = Run-Command "session-manager-plugin --version" 
+$awsSessionManagerVersion = Run-Command "session-manager-plugin --version"
 $ghcUpVersion = Run-Command "ghcup --version" | Take-Part -Part 5
-$ghcVersion = Run-Command "ghc --version" | Take-Part -Part 7 
+$ghcVersion = Run-Command "ghc --version" | Take-Part -Part 7
 $cabalVersion = Run-Command "cabal --version" | Take-Part -Part 3
 $stackVersion = Run-Command "stack --version" | Take-Part -Part 1 | ForEach-Object {$_.replace(",","")}
 
@@ -284,6 +291,8 @@ $markdown += New-MDList -Lines (Build-XamarinAndroidList) -Style Unordered
 $markdown += New-MDHeader "Unit Test Framework" -Level 4
 $markdown += New-MDList -Lines @(Get-NUnitVersion) -Style Unordered
 
+# First run doesn't provide full data about devices and runtimes
+Get-XcodeInfoList | Out-Null
 # Xcode section
 $xcodeInfo = Get-XcodeInfoList
 $markdown += New-MDHeader "Xcode" -Level 3
@@ -296,54 +305,13 @@ $markdown += New-MDHeader "Installed SDKs" -Level 4
 $markdown += Build-XcodeSDKTable $xcodeInfo | New-MDTable
 $markdown += New-MDNewLine
 
-# Disable simulators table on 11.0 beta for now since "simctl" tool doesn't work properly
-if (-not $os.IsBigSur) {
-    $markdown += New-MDHeader "Installed Simulators" -Level 4
-    $markdown += Build-XcodeSimulatorsTable $xcodeInfo | New-MDTable
-    $markdown += New-MDNewLine
-}
+$markdown += New-MDHeader "Installed Simulators" -Level 4
+$markdown += Build-XcodeSimulatorsTable $xcodeInfo | New-MDTable
+$markdown += New-MDNewLine
 
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
-$androidInstalledPackages = Get-AndroidInstalledPackages
-
-$markdown += New-MDHeader "Android SDK Tools" -Level 4
-$androidSDKTools = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Tools" }
-$markdown += Build-AndroidSDKToolsTable $androidSDKTools | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android SDK Platform-Tools" -Level 4
-$androidSDKPlatformTools = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Platform-Tools" }
-$markdown += Build-AndroidSDKToolsTable $androidSDKPlatformTools | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android SDK Platforms" -Level 4
-$androidSDKPlatforms = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Platform " }
-$markdown += Build-AndroidSDKPlatformTable $androidSDKPlatforms | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android SDK Build-Tools" -Level 4
-$androidSDKBuildTools = $androidInstalledPackages | Where-Object { $_ -Match "Android SDK Build-Tools" }
-$markdown += Build-AndroidSDKBuildtoolsTable $androidSDKBuildTools | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android NDKs"  -Level 4
-$markdown += Build-AndroidNDKTable $androidInstalledPackages | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Android Utils" -Level 4
-$markdown += Build-AndroidUtilsTable $androidInstalledPackages | New-MDTable
-$markdown += New-MDNewLine
-
-$androidGoogleAPIsTable = $androidInstalledPackages | Where-Object { $_ -Match "Google APIs" }
-if ($androidGoogleAPIsTable.Count -gt 0) {
-    $markdown += New-MDHeader "Android Google APIs" -Level 4
-    $markdown += Build-AndroidSDKPlatformTable $androidGoogleAPIsTable | New-MDTable
-    $markdown += New-MDNewLine
-}
-
-$markdown += New-MDHeader "Extra Packages" -Level 4
-$markdown += Build-AndroidExtraPackagesTable $androidInstalledPackages | New-MDTable
+$markdown += Build-AndroidTable | New-MDTable
 $markdown += New-MDNewLine
 
 #

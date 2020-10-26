@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  julia.sh
 ##  Desc:  Installs Julia, and adds Julia to the path
 ################################################################################
-
 
 # This function fetches the latest Julia release from the GitHub API
 # Based on https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c

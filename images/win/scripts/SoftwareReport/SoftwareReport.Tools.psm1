@@ -30,6 +30,14 @@ function Get-CMakeVersion {
     return "CMake $cmakeVersion"
 }
 
+function Get-CodeQLBundleVersion {
+    $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "*"
+    $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
+    $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
+    $CodeQLVersion = & $CodeQLPath version --quiet
+    return "CodeQL Action Bundle $CodeQLVersion"
+}
+
 function Get-DockerVersion {
     $dockerVersion = $(docker version --format "{{.Server.Version}}")
     return "Docker $dockerVersion"
@@ -115,12 +123,6 @@ function Get-SQLPSVersion {
     $module = Get-Module -Name SQLPS -ListAvailable
     $version = $module.Version
     return "SQLPS $version"
-}
-
-function Get-SQLServerPSVersion {
-    $module = Get-Module -Name SQLServer -ListAvailable
-    $version = $module.Version
-    return "SQLServer PS $version"
 }
 
 function Get-SVNVersion {
@@ -246,4 +248,15 @@ function Get-VisualCPPComponents {
             }
         }
     }
+}
+
+function Get-AZDSVersion {
+    $azdsVersion = $(azds --version) | Select-String "(\d+\.\d+\.\d+.\d+)"
+    return "Azure Dev Spaces CLI $azdsVersion"
+}
+
+function Get-DacFxVersion {
+    cd "C:\Program Files\Microsoft SQL Server\150\DAC\bin\"
+    $dacfxversion = (./sqlpackage.exe /version)
+    return "DacFx $dacfxversion"
 }

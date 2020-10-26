@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  clang.sh
 ##  Desc:  Installs Clang compiler
 ################################################################################
-set -e
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
@@ -12,7 +11,7 @@ function InstallClang {
     local version=$1
 
     echo "Installing clang-$version..."
-    if [[ $version =~ (9|10) ]]; then
+    if [[ $version =~ 9 ]] && isUbuntu16; then
         ./llvm.sh $version
         apt-get install -y "clang-format-$version"
     else

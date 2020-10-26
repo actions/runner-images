@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 
 echo "Get the latest Stack version..."
 StackRelease=$(curl -s "https://api.github.com/repos/commercialhaskell/stack/releases/latest")

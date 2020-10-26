@@ -3,8 +3,6 @@
 ##  Desc:  Install Google Chrome
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 # Download and install latest Chrome browser
 $ChromeInstallerFile = "chrome_installer.exe"
 $ChromeInstallerUrl = "https://dl.google.com/chrome/install/375.126/${ChromeInstallerFile}"
