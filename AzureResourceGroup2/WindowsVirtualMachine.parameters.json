@@ -9,7 +9,7 @@
       "value": null
     },
     "adminPassword": {
-        "value": "Win_Admin123" // TODO: Fill in parameter value
+        "value": "Win_Admin123"
     }
   }
 }
