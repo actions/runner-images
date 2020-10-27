@@ -9,6 +9,7 @@ XAMARIN_MAC_VERSIONS=($(get_toolset_value '.xamarin."mac-versions" | reverse | .
 XAMARIN_ANDROID_VERSIONS=($(get_toolset_value '.xamarin."android-versions" | reverse | .[]'))
 LATEST_SDK_SYMLINK=$(get_toolset_value '.xamarin.bundles[0].symlink')
 CURRENT_SDK_SYMLINK=$(get_toolset_value '.xamarin."bundle-default"')
+DEFAULT_XCODE_VERSION=$(get_default_xcode_from_toolset)
 
 if [ "$CURRENT_SDK_SYMLINK" == "latest" ]; then
   CURRENT_SDK_SYMLINK=$LATEST_SDK_SYMLINK
@@ -82,3 +83,8 @@ popd
 
 echo "Clean up packages..."
 sudo rm -rf "$TMPMOUNT"
+
+# Fix Xamarin issue with Xcode symlink: https://github.com/xamarin/xamarin-macios/issues/9960
+PREFERENCES_XAMARIN_DIR="${HOME}/Library/Preferences/Xamarin"
+mkdir -p $PREFERENCES_XAMARIN_DIR
+/usr/libexec/PlistBuddy -c "add :AppleSdkRoot string /Applications/Xcode_${DEFAULT_XCODE_VERSION}.app" $PREFERENCES_XAMARIN_DIR/Settings.plist
