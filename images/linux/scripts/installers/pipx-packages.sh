@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  pipx-packages.sh
 ##  Desc:  Install tools via pipx

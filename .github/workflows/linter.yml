@@ -1,11 +1,11 @@
 # CI Validation
 
-name: CI
+name: Linter
 
 on:
   pull_request:
-    branches: [$default-branch]
-    
+    branches: [ main ]
+
 jobs:
   build:
     name: Lint JSON & MD files
@@ -23,3 +23,7 @@ jobs:
           VALIDATE_JSON: true
           VALIDATE_MD: true
           DEFAULT_BRANCH: ${{ github.base_ref }}
+
+      - name: Checking shebang lines in MacOS and Ubuntu releases.
+        run: ./images.CI/shebang-linter.ps1
+        shell: pwsh
