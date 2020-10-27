@@ -243,6 +243,7 @@ $markdown += New-MDNewLine
 
 # Docker images section
 $markdown += New-MDHeader "Cached Docker images" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(Get-CachedDockerImagesFullInfo)
+$markdown += Get-CachedDockerImagesTableData | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"
