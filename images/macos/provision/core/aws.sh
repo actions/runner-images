@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 
 echo Installing aws...
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"

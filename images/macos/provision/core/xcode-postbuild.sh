@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 
 source ~/utils/utils.sh
 XCODE_LIST=($(get_xcode_list_from_toolset))
 DEFAULT_XCODE_VERSION=$(get_default_xcode_from_toolset)
 
 # https://github.com/microsoft/appcenter/issues/847
-# Assets.xcassets : error : CoreData: error: (6922) I/O error for database 
+# Assets.xcassets : error : CoreData: error: (6922) I/O error for database
 # at $HOME/Library/Developer/Xcode/UserData/IB Support/Simulator Devices/{GUID}
 echo "Erase a device's contents and settings:"
 for XCODE_VERSION in "${XCODE_LIST[@]}"
@@ -15,6 +15,11 @@ do
     #add sleep to let CoreSimulatorService to exit
     sleep 3
 
+    # Version 12.2_beta installed into 12.2 directory and 12.1_GM_seed in 12.1
+    pattern="[0-9]{1,2}.*_"
+    if [[ $XCODE_VERSION =~ $pattern ]] ; then
+        XCODE_VERSION=$(echo $XCODE_VERSION | cut -d"_" -f 1)
+    fi
     # Select xcode version by default
     sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
 
