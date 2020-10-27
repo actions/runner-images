@@ -23,8 +23,8 @@ stages:
               resourceGroupName: 'DSC-AZ-OS-RG'
               location: 'Central US'
               templateLocation: 'Linked artifact'
-              csmFile: '$(Build.SourcesDirectory)/virtual-environments/AzureResourceGroup2/WindowsVirtualMachine.json'
-              csmParametersFile: '$(Build.SourcesDirectory)/virtual-environments/AzureResourceGroup2/WindowsVirtualMachine.parameters.json'
+              csmFile: '$(Build.SourcesDirectory)/AzureResourceGroup2/WindowsVirtualMachine.json'
+              csmParametersFile: '$(Build.SourcesDirectory)/AzureResourceGroup2/WindowsVirtualMachine.parameters.json'
               deploymentMode: 'Validation'
           - task: PowerShell@2
             inputs:
@@ -39,8 +39,8 @@ stages:
               Inline: |
                 $Parameters = @{
                   ResourcegroupName    = "DSC-AZ-OS-RG"
-                  Templatefile         = ".\virtual-environments/AzureResourceGroup2/WindowsVirtualMachine.json'
-                  TemplateParameterfile = ".\virtual-environments/AzureResourceGroup2/WindowsVirtualMachine.parameters.json'
+                  Templatefile         = ".\AzureResourceGroup2/WindowsVirtualMachine.json'
+                  TemplateParameterfile = ".\AzureResourceGroup2/WindowsVirtualMachine.parameters.json'
                   Mode                 = 'Incremental'
                 }
                 $Result = Get-AzResourceGroupDeploymentWhatIfResult @Parameters
@@ -51,7 +51,7 @@ stages:
             inputs:
               azureSubscription: 'Equinix IT Azure PROD(efb06beb-8511-4a2c-8688-41931170e5ad)'
               ScriptType: 'FilePath'
-              ScriptPath: '$(Build.SourcesDirectory)/virtual-environments/AzureResourceGroup2/CheckForDeletion.ps1'
+              ScriptPath: '$(Build.SourcesDirectory).AzureResourceGroup2/CheckForDeletion.ps1'
               ScriptArguments: '-ResourceGroup DSC-AZ-OS-RG'
               FailOnStandardError: true
               azurePowerShellVersion: 'LatestVersion'
