@@ -37,7 +37,7 @@ Choco-Install -PackageName hub
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
 
 if (Test-IsWin16) {
-    $env:Path += ";$env:ProgramFiles\OpenSSH-Win64"
+    $env:Path += ";$env:ProgramFiles\Git\usr\bin\"
 }
 
 # Add well-known SSH host keys to ssh_known_hosts
