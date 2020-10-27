@@ -17,9 +17,7 @@ fi
 cp $HOME/image-generation/output/software-report/systeminfo.txt $HOME/image-generation/output/software-report/systeminfo.md $HOME/
 
 # Put build vm assets scripts to proper directory
-sudo mkdir -p /usr/local/opt/$USER/scripts
-sudo chmod ugo+rwx /usr/local/opt/$USER/scripts
-sudo chown $USER:admin /usr/local/opt/$USER
+mkdir -p /usr/local/opt/$USER/scripts
 mv $HOME/image-generation/assets/* /usr/local/opt/$USER/scripts
 
 find /usr/local/opt/$USER/scripts -type f -name "*\.sh" -exec chmod +x {} \;
