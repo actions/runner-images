@@ -177,7 +177,7 @@ downloadNUnitConsole() {
     pushd $TMPMOUNT
 
     sudo mkdir -p $NUNIT3_PATH
-    sudo download_with_retries $NUNIT3_LOCATION "." "nunit3.zip"
+    download_with_retries $NUNIT3_LOCATION "." "nunit3.zip"
 
     echo "Installing NUnit 3..."
     sudo unzip nunit3.zip -d $NUNIT3_PATH
@@ -193,7 +193,7 @@ installNuget() {
   echo "Installing nuget $NUGET_VERSION for Mono $MONO_VERSION"
   cd ${MONO_VERSIONS_PATH}/${MONO_VERSION}/lib/mono/nuget
   sudo mv nuget.exe nuget_old.exe
-  sudo download_with_retries $NUGET_URL "." "nuget.exe"
+  download_with_retries $NUGET_URL "." "nuget.exe"
   sudo chmod a+x nuget.exe
 }
 
