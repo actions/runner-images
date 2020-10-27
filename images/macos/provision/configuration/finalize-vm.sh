@@ -20,5 +20,8 @@ cp $HOME/image-generation/output/software-report/systeminfo.txt $HOME/image-gene
 # we have to do that here because `npm install` is run in a few different places during image-generation
 npm cache clean --force
 
+# Clean yarn cache
+yarn cache clean
+
 # Clean up temporary directories
 rm -rf ~/utils ~/image-generation
