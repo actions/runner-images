@@ -7,7 +7,7 @@ installAzulJDK() {
     local TMP_FILE=/tmp/openjdk.dmg
     local TMP_MOUNT=`/usr/bin/mktemp -d /tmp/zulu.XXXX`
     # Download dmg
-    curl "${URL}" -o "${TMP_FILE}"
+    download_with_retries $URL "/tmp" "openjdk.dmg"
     # Attach dmg
     hdiutil attach "${TMP_FILE}" -mountpoint "${TMP_MOUNT}"
     # Install pkg

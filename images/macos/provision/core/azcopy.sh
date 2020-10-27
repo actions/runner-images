@@ -1,8 +1,10 @@
 #!/bin/bash -e -o pipefail
 
+source ~/utils/utils.sh
+
 AZCOPY_DOWNLOAD_URL="https://aka.ms/downloadazcopy-v10-mac"
 
-wget -O "$HOME/azcopy.zip" "$AZCOPY_DOWNLOAD_URL"
+download_with_retries $AZCOPY_DOWNLOAD_URL "." "azcopy.zip"
 unzip azcopy.zip -d azcopy
 AZCOPY_EXTRACTED=$(echo azcopy/azcopy*)
 cp "$AZCOPY_EXTRACTED/azcopy" "/usr/local/bin/azcopy"

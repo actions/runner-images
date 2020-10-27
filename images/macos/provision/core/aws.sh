@@ -1,7 +1,10 @@
 #!/bin/bash -e -o pipefail
 
+source ~/utils/utils.sh
+
 echo Installing aws...
-curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+AWSCLIURL="https://awscli.amazonaws.com/AWSCLIV2.pkg"
+download_with_retries $AWSCLIURL "."
 sudo installer -pkg AWSCLIV2.pkg -target /
 rm -rf AWSCLIV2.pkg
 
