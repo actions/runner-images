@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash -e -o pipefail
+
 source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
 
@@ -8,6 +9,7 @@ XAMARIN_MAC_VERSIONS=($(get_toolset_value '.xamarin."mac-versions" | reverse | .
 XAMARIN_ANDROID_VERSIONS=($(get_toolset_value '.xamarin."android-versions" | reverse | .[]'))
 LATEST_SDK_SYMLINK=$(get_toolset_value '.xamarin.bundles[0].symlink')
 CURRENT_SDK_SYMLINK=$(get_toolset_value '.xamarin."bundle-default"')
+DEFAULT_XCODE_VERSION=$(get_default_xcode_from_toolset)
 
 if [ "$CURRENT_SDK_SYMLINK" == "latest" ]; then
   CURRENT_SDK_SYMLINK=$LATEST_SDK_SYMLINK
@@ -63,8 +65,10 @@ createBundleLink $CURRENT_SDK_SYMLINK "Current"
 # Fix nuget in some mono versions because of known bugs
 #
 
-# Fix Mono issue with default nuget: https://github.com/mono/mono/issues/17637
-installNuget "6.4.0" "5.3.1"
+if is_Less_BigSur; then
+  # Fix Mono issue with default nuget: https://github.com/mono/mono/issues/17637
+  installNuget "6.4.0" "5.3.1"
+fi
 
 if is_Less_Catalina; then
   installNuget "4.8.1" "4.3.0"
@@ -79,3 +83,8 @@ popd
 
 echo "Clean up packages..."
 sudo rm -rf "$TMPMOUNT"
+
+# Fix Xamarin issue with Xcode symlink: https://github.com/xamarin/xamarin-macios/issues/9960
+PREFERENCES_XAMARIN_DIR="${HOME}/Library/Preferences/Xamarin"
+mkdir -p $PREFERENCES_XAMARIN_DIR
+/usr/libexec/PlistBuddy -c "add :AppleSdkRoot string /Applications/Xcode_${DEFAULT_XCODE_VERSION}.app" $PREFERENCES_XAMARIN_DIR/Settings.plist

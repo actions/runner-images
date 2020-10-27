@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 
 # Add script for changing hostname to run on startup to prevent duplicate hostnames across the environment. Hostname and Computername should contain .local in name to avoid name resolution issues
 tee -a /usr/local/bin/change_hostname.sh > /dev/null <<\EOF
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 
 name="Mac-$(python -c 'from time import time; print int(round(time() * 1000))')"
 scutil --set HostName "${name}.local"

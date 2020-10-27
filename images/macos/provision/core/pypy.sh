@@ -1,10 +1,9 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  pypy.sh
 ##  Desc:  Installs PyPy
 ################################################################################
 source ~/utils/utils.sh
-set -e
 
 function InstallPyPy
 {

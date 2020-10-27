@@ -12,9 +12,6 @@ source $HELPER_SCRIPTS/etc-environment.sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-# Make brew files and directories writable by any user
-sudo chmod -R o+w $HOMEBREW_PREFIX
-
 # Update /etc/environemnt
 ## Put HOMEBREW_* variables
 brew shellenv|grep 'export HOMEBREW'|sed -E 's/^export (.*);$/\1/' | sudo tee -a /etc/environment

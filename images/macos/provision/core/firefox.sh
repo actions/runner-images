@@ -1,3 +1,5 @@
+#!/bin/bash -e -o pipefail
+
 echo "Installing Firefox..."
 brew cask install firefox
 
