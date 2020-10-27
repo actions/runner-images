@@ -62,8 +62,6 @@ Function Set-DefaultRubyVersion {
     Invoke-Expression "gem update --system"
 }
 
-Import-Module -Name ImageHelpers -Force
-
 $FeedPrefix = "https://npm.pkg.github.com"
 $AccessToken = $env:GITHUB_FEED_TOKEN
 

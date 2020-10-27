@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  mercurial.sh
 ##  Desc:  Installs Mercurial

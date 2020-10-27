@@ -1,21 +1,16 @@
-#!/bin/sh
-echo "Installing OpenSSL..."
-export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
+#!/bin/bash -e -o pipefail
+
+source ~/utils/utils.sh
 
 echo Installing OpenSSL...
-/usr/local/bin/brew install openssl
-
-if is_BigSur; then
-    ln -sf $(brew --prefix openssl)/bin/openssl /usr/local/bin/openssl
-    exit 0
-fi
+brew install openssl
 
 # Install OpenSSL 1.0.2t
 # https://www.openssl.org/policies/releasestrat.html - Version 1.0.2 will be supported until 2019-12-31 (LTS)
 # To preserve backward compatibility with ruby-toolcache
-/usr/local/bin/brew tap-new local/openssl
-FORMULA_PATH=$(/usr/local/bin/brew extract openssl local/openssl | grep "Homebrew/Library/Taps")
-/usr/local/bin/brew install $FORMULA_PATH
+brew tap-new --no-git local/openssl
+FORMULA_PATH=$(brew extract openssl local/openssl | grep "Homebrew/Library/Taps")
+brew install $FORMULA_PATH
 
 # Set OpenSSL 1.0.2t as default
 ln -sf /usr/local/Cellar/openssl@1.0.2t /usr/local/Cellar/openssl

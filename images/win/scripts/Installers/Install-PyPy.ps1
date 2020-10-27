@@ -82,9 +82,6 @@ function Install-PyPy
     }
 }
 
-$ErrorActionPreference = "Stop"
-Import-Module -Name ImageHelpers -Force -DisableNameChecking
-
 # Get PyPy content from toolset
 $pypyTools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Object Name -eq "PyPy"
 

@@ -1,7 +1,9 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 
 echo Installing aws...
-brew install awscli
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+rm -rf AWSCLIV2.pkg
 
 echo Installing aws sam cli...
 brew tap aws/tap

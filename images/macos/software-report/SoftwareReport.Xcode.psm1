@@ -46,7 +46,8 @@ function Get-XcodeInfoList {
         $versionInfo = Get-XcodeVersionInfo
         $versionInfo.Path = $xcodeRootPath
         $versionInfo.IsDefault = ($xcodeRootPath -eq $defaultXcodeRootPath)
-    
+        $versionInfo.IsStable = Test-XcodeStableRelease -XcodeRootPath $xcodeRootPath
+
         $xcodeInfo.Add($xcodeRootPath, [PSCustomObject] @{
             VersionInfo = $versionInfo
             SDKInfo = Get-XcodeSDKList
@@ -91,6 +92,7 @@ function Build-XcodeTable {
     $xcodeList = $xcodeInfo.Values | ForEach-Object { $_.VersionInfo } | Sort-Object $sortRules
     return $xcodeList | ForEach-Object {
         $defaultPostfix = If ($_.IsDefault) { " (default)" } else { "" }
+        $betaPostfix = If ($_.IsStable) { "" } else { " (beta)" }
         return [PSCustomObject] @{
             "Version" = $_.Version.ToString() + $betaPostfix + $defaultPostfix
             "Build" = $_.Build

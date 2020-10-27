@@ -1,13 +1,28 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  android.sh
 ##  Desc:  Installs Android SDK
 ################################################################################
 
-set -e
-
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
+
+function filter_components_by_version {
+    minimumVersion=$1
+    shift
+    toolsArr=("$@")
+
+    for item in ${toolsArr[@]}
+    do
+        # take the last argument after spliting string by ';'' and '-''
+        version=$(echo "${item##*[-;]}")
+        if verlte $minimumVersion $version
+        then
+            components+=($item)
+        fi
+    done
+}
 
 # Set env variable for SDK Root (https://developer.android.com/studio/command-line/variables)
 ANDROID_ROOT=/usr/local/lib/android
@@ -42,22 +57,23 @@ else
 fi
 
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-platforms=$(jq -r '.android.platform_list[]|"platforms;" + .' $toolset)
-buildtools=$(jq -r '.android.build_tools[]|"build-tools;" + .' $toolset)
+minimumBuildToolVersion=$(jq -r '.android.build_tools_min_version' $toolset)
+minimumPlatformVersion=$(jq -r '.android.platform_min_version' $toolset)
 extras=$(jq -r '.android.extra_list[]|"extras;" + .' $toolset)
 addons=$(jq -r '.android.addon_list[]|"add-ons;" + .' $toolset)
 additional=$(jq -r '.android.additional_tools[]' $toolset)
 
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
-echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager $platforms $buildtools $extras $google_api_list $addons $additional
+components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" )
 
-# Document what was added to the image
+availablePlatforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
+allBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
+availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
 
-google_api_versions_list=$(echo "$addons"|awk -F- '/addon-google_apis-google/  {print $5}')
-constraint_layout_versions_list=$(echo "$extras"|awk -F';' '/constraint-layout;/  {print $8}')
-constraint_layout_solver_versions_list=$(echo "$extras"|awk -F';' '/constraint-layout-solver;/  {print $8}')
-platform_versions_list=$(echo "$platforms"|awk -F- '{print $2}')
-buildtools_versions_list=$(echo "$buildtools"|awk -F';' '{print $2}')
+filter_components_by_version $minimumPlatformVersion "${availablePlatforms[@]}"
+filter_components_by_version $minimumBuildToolVersion "${availableBuildTools[@]}"
+
+echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager ${components[@]}
 
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}

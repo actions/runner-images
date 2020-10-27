@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  azpowershell.sh
 ##  Desc:  Installed Azure PowerShell

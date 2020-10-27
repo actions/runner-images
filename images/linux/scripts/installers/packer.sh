@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  packer.sh
 ##  Desc:  Installs packer
 ################################################################################
-
 
 # Install Packer
 PACKER_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/packer | jq -r .current_version)

@@ -1,5 +1,4 @@
-#!/bin/sh
-set -e
+#!/bin/bash -e -o pipefail
 
 source ~/utils/utils.sh
 
@@ -19,7 +18,7 @@ binst_common_utils=(
     helm
     aliyun-cli
     bazelisk
-    github/gh/gh
+    gh
     p7zip
     ant
     yamllint

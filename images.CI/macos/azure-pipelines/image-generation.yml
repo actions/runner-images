@@ -7,10 +7,15 @@ jobs:
   variables:
   - group: Mac-Cloud Image Generation
   - group: Mac-Cloud Image Generation Key Vault
-  - name: VirtualMachineName
-    value: $(Build.BuildNumber).$(System.JobAttempt)
 
   steps:
+  - pwsh: |
+      $cleanBuildNumber = "$(Build.BuildNumber)" -replace "(.+_unstable)(\.\d+)", '$1'
+      $virtualMachineName = "${cleanBuildNumber}.$(System.JobAttempt)"
+      echo "##vso[task.setvariable variable=VirtualMachineName;]$virtualMachineName"
+      echo "##vso[build.updatebuildnumber]$virtualMachineName"
+    displayName: Update BuildNumber
+
   - checkout: self
     clean: true
     fetchDepth: 1
@@ -42,6 +47,16 @@ jobs:
       SourceFolder: 'images/macos/provision/log/'
       RemoveSourceFolder: true
 
+  - task: PowerShell@2
+    displayName: 'Select datastore'
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/macos/select-datastore.ps1
+      arguments: -VMName "$(VirtualMachineName)" `
+                 -VIServer "$(vcenter-server-v2)" `
+                 -VIUserName "$(vcenter-username-v2)" `
+                 -VIPassword "$(vcenter-password-v2)"
+
   - pwsh: |
       $SensitiveData = @(
           'IP address:',
@@ -54,11 +69,11 @@ jobs:
         -var="vcenter_password=$(vcenter-password-v2)" `
         -var="vcenter_datacenter=$(vcenter-datacenter-v2)" `
         -var="cluster_or_esxi_host=$(esxi-cluster-v2)" `
-        -var="esxi_datastore=${{ parameters.target_datastore }}" `
+        -var="esxi_datastore=$(buildDatastore)" `
         -var="output_folder=$(output-folder)" `
         -var="vm_username=$(vm-username)" `
         -var="vm_password=$(vm-password)" `
-        -var="build_id=${{ variables.VirtualMachineName }}" `
+        -var="build_id=$(VirtualMachineName)" `
         -var="baseimage_name=${{ parameters.base_image_name }}" `
         -var="github_feed_token=$(github-feed-token)" `
         -var="xcode_install_user=$(xcode-installation-user)" `
@@ -85,7 +100,7 @@ jobs:
       ls $(Common.TestResultsDirectory)
 
       echo "Put VM name to 'VM_Done_Name' file"
-      echo "${{ variables.VirtualMachineName }}" > "$(Build.ArtifactStagingDirectory)/VM_Done_Name"
+      echo "$(VirtualMachineName)" > "$(Build.ArtifactStagingDirectory)/VM_Done_Name"
     displayName: Prepare artifact
 
   - bash: |
@@ -105,3 +120,26 @@ jobs:
       failTaskOnFailedTests: true
     displayName: Publish test results
     condition: always()
+
+  - task: PowerShell@2
+    displayName: 'Move vm to cold storage and clear datastore tag'
+    condition: always()
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/macos/move-vm.ps1
+      arguments: -VMName "$(VirtualMachineName)" `
+                 -TargetDataStore "${{ parameters.target_datastore }}" `
+                 -VIServer "$(vcenter-server-v2)" `
+                 -VIUserName "$(vcenter-username-v2)" `
+                 -VIPassword "$(vcenter-password-v2)"
+
+  - task: PowerShell@2
+    displayName: 'Destroy VM (if build canceled only)'
+    condition: eq(variables['Agent.JobStatus'], 'Canceled')
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/macos/destroy-vm.ps1
+      arguments: -VMName "$(VirtualMachineName)" `
+                 -VIServer "$(vcenter-server-v2)" `
+                 -VIUserName "$(vcenter-username-v2)" `
+                 -VIPassword "$(vcenter-password-v2)"

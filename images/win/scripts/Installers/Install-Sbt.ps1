@@ -2,9 +2,6 @@
 ##  File:  Install-Sbt.ps1
 ##  Desc:  Install sbt for Windows
 ################################################################################
-$ErrorActionPreference = "Stop"
-
-Import-Module -Name ImageHelpers
 
 # Install the latest version of sbt.
 # See https://chocolatey.org/packages/sbt

@@ -1,12 +1,4 @@
-#!/bin/bash
-
-# Enable firewall. SSH and VNC opened. Can't did it at bootstrap step, so placed it here
-defaults write /Library/Preferences/com.apple.alf globalstate -int 1
-
-# Setting correct time zone
-echo "Configuring system time to GMT..."
-rm -f /etc/localtime
-ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+#!/bin/bash -e -o pipefail
 
 # https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari
 # Safari’s executable is located at /usr/bin/safaridriver
@@ -28,6 +20,3 @@ sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
 curl https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer --output $HOME/AppleWWDRCAG3.cer --silent
 sudo security add-trusted-cert -d -r unspecified -k /Library/Keychains/System.keychain $HOME/AppleWWDRCAG3.cer
 rm $HOME/AppleWWDRCAG3.cer
-
-# Disable spotlight indexing to prevent possible high CPU usage after startup
-sudo mdutil -ai off

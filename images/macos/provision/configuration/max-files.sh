@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -e
+#!/bin/bash -e -o pipefail
 
 Launch_Daemons="/Library/LaunchDaemons"
 

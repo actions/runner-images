@@ -1,3 +1,5 @@
+#!/bin/bash -e -o pipefail
+
 source ~/utils/utils.sh
 
 echo "Installing Microsoft Edge..."
@@ -39,7 +41,7 @@ AUTOUPDATE_START="$HOME/Library/Preferences/com.microsoft.autoupdate2.plist"
 while [ ! -f "$AUTOUPDATE_START" ]
 do
     echo "Wait for MS update automatic installation"
-    sleep 30    
+    sleep 30
 done
 
 echo "kill autoupdate process"

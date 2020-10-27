@@ -96,6 +96,11 @@
         },
         {
             "type": "file",
+            "source": "{{ template_dir }}/post-generation",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
+            "type": "file",
             "source": "{{ template_dir }}/scripts/SoftwareReport",
             "destination": "{{user `image_folder`}}"
         },
@@ -240,10 +245,10 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/scripts/installers/aws-sam-cli.sh"
+                "{{template_dir}}/scripts/installers/pipx-packages.sh"
             ],
             "environment_vars": [
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
