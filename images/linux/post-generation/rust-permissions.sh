@@ -4,12 +4,7 @@
 # https://github.com/actions/virtual-environments/issues/572
 
 rust_folder="/usr/share/rust"
-
-if [ "$GITHUB_ACTIONS" = "true" ]; then
-    rust_user="runner"
-else
-    rust_user="vsts"
-fi
+rust_user=$(cut -d: -f1 /etc/passwd | tail -1)
 
 if [ -d "$rust_folder" ]; then
     rust_folder_owner=$(ls -ld $rust_folder | awk '{print $3}')

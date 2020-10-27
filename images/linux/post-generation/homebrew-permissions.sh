@@ -4,12 +4,7 @@
 # https://github.com/actions/virtual-environments/issues/1568
 
 brew_folder="/home/linuxbrew/"
-
-if [ "$GITHUB_ACTIONS" = "true" ]; then
-    homebrew_user="runner"
-else
-    homebrew_user="vsts"
-fi
+homebrew_user=$(cut -d: -f1 /etc/passwd | tail -1)
 
 if [ -d "$brew_folder" ]; then
     brew_folder_owner=$(ls -ld $brew_folder | awk '{print $3}')
