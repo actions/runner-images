@@ -1,0 +1,57 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- "*"
+
+stages:
+  - stage: test
+    jobs:
+      - job: 'validateandtest'
+        pool:
+          vmimage: windows-latest
+        steps:
+          - task: AzureResourceManagerTemplateDeployment@3
+            displayName: "Validate Template"
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'Equinix IT Azure PROD(efb06beb-8511-4a2c-8688-41931170e5ad)'
+              subscriptionId: 'efb06beb-8511-4a2c-8688-41931170e5ad'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: 'DSC-AZ-OS-RG'
+              location: 'Central US'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(Build.SourcesDirectory)/virtual-environments/AzureResourceGroup2/WindowsVirtualMachine.json'
+              csmParametersFile: '$(Build.SourcesDirectory)/virtual-environments/AzureResourceGroup2/WindowsVirtualMachine.parameters.json'
+              deploymentMode: 'Validation'
+          - task: PowerShell@2
+            inputs:
+              targetType: 'inline'
+              script: |
+                Install-Module Az.Resources -RequiredVersion 1.12.1-preview -AllowPrerelease -Force -Scope CurrentUser
+          - task: AzurePowerShell@5
+            displayName: "Show deployed Resources"
+            inputs:
+              azureSubscription: 'Equinix IT Azure PROD(efb06beb-8511-4a2c-8688-41931170e5ad)'
+              ScriptType: 'InlineScript'
+              Inline: |
+                $Parameters = @{
+                  ResourcegroupName    = "DSC-AZ-OS-RG"
+                  Templatefile         = ".\virtual-environments/AzureResourceGroup2/WindowsVirtualMachine.json'
+                  TemplateParameterfile = ".\virtual-environments/AzureResourceGroup2/WindowsVirtualMachine.parameters.json'
+                  Mode                 = 'Incremental'
+                }
+                $Result = Get-AzResourceGroupDeploymentWhatIfResult @Parameters
+                $Result
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            displayName: "Check for deletion"
+            inputs:
+              azureSubscription: 'Equinix IT Azure PROD(efb06beb-8511-4a2c-8688-41931170e5ad)'
+              ScriptType: 'FilePath'
+              ScriptPath: '$(Build.SourcesDirectory)/virtual-environments/AzureResourceGroup2/CheckForDeletion.ps1'
+              ScriptArguments: '-ResourceGroup DSC-AZ-OS-RG'
+              FailOnStandardError: true
+              azurePowerShellVersion: 'LatestVersion'
