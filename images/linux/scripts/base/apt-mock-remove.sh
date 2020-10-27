@@ -1,7 +1,7 @@
-#!/bin/bash -e
-
+#!/bin/bash -e 
+set -x
 prefix=/usr/local/bin
 
 for tool in apt apt-get apt-fast;do
-  rm $prefix/$tool
+  sudo rm -f $prefix/$tool
 done
