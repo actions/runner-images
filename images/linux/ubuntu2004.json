@@ -295,6 +295,11 @@
         },
         {
             "type": "shell",
+            "script": "{{template_dir}}/scripts/base/apt-mock-remove.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
             "scripts": [
                 "{{template_dir}}/scripts/installers/Install-PowerShellModules.ps1"
             ],
@@ -360,11 +365,6 @@
                 "sleep 30",
                 "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
             ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "script": "{{template_dir}}/scripts/base/apt-mock-remove.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         }
     ]
