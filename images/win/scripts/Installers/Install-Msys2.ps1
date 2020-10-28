@@ -84,8 +84,15 @@ $pathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path'
 $pathValue += ";C:\msys64\mingw64\bin;C:\msys64\usr\bin"
 Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $pathValue
 
-# Add well-known SSH host keys to ssh_known_hosts
+# Add well-known SSH host keys to ssh_known_hosts to Msys2
 ssh-keyscan -t rsa github.com >> "C:\msys64\etc\ssh\ssh_known_hosts"
 ssh-keyscan -t rsa ssh.dev.azure.com >> "C:\msys64\etc\ssh\ssh_known_hosts"
+
+# Add well-known SSH host keys to ssh_known_hosts to Git
+if (Test-Path "C:\Program Files\Git\etc\ssh")
+{
+  ssh-keyscan -t rsa github.com >> "C:\Program Files\Git\etc\ssh\ssh_known_hosts"
+  ssh-keyscan -t rsa ssh.dev.azure.com >> "C:\Program Files\Git\etc\ssh\ssh_known_hosts"
+}
 
 Invoke-PesterTests -TestFile "MSYS2"

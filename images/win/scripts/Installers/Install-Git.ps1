@@ -36,13 +36,5 @@ Choco-Install -PackageName hub
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
 
-if (Test-IsWin16) {
-    $env:Path += ";$env:ProgramFiles\Git\usr\bin\"
-}
-
-# Add well-known SSH host keys to ssh_known_hosts
-ssh-keyscan -t rsa github.com >> "C:\Program Files\Git\etc\ssh\ssh_known_hosts"
-ssh-keyscan -t rsa ssh.dev.azure.com >> "C:\Program Files\Git\etc\ssh\ssh_known_hosts"
-
 Invoke-PesterTests -TestFile "Git" -TestName "Git"
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "Hub CLI"
