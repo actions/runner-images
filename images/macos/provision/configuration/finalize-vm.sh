@@ -26,10 +26,5 @@ rm -rf ~/utils ~/image-generation
 # Erase all indexes and wait until the rebuilding process ends,
 # for now there is no way to get status of indexing process, it takes around 3 minutes to accomplish
 sudo mdutil -E /
-
-sudo log stream | while true; do
-    if read -rt5 && [[ $REPLY =~ "Unlinked journal" ]]; then
-      echo "indexing completed"
-      exit 0
-    fi
-done
+sudo log stream | grep -q -E 'mds.*Released.*BackgroundTask'
+echo "Indexing completed"
