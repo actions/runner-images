@@ -14,7 +14,7 @@
 ## Installed Software
 ### Language and Runtime
 - Clang/LLVM 11.0.0
-- gcc-8 (Homebrew GCC 8.4.0_1) 8.4.0 - available by `gcc-8` alias
+- gcc-8 (Homebrew GCC 8.4.0_1) 8.4.0 - disponible por el alias `gcc-8`
 - gcc-9 (Homebrew GCC 9.3.0) 9.3.0 - available by `gcc-9` alias
 - GNU Fortran (Homebrew GCC 8.4.0_1) 8.4.0  - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0) 9.3.0  - available by `gfortran-9` alias
@@ -91,21 +91,21 @@
 - GHCup v0.1.11
 - GHC 8.10.2
 - Cabal 3.2.0.0
-- Stack 2.5.1
+
 
 ### Linters
 - yamllint 1.25.0
 - SwiftLint 0.40.3
 
 ### Browsers
-- Safari 14.0 (15610.1.28.1.9)
-- SafariDriver 14.0 (15610.1.28.1.9)
+- Safari 12
+- Safari
 - Google Chrome 86.0.4240.111 
 - ChromeDriver 86.0.4240.22
-- Microsoft Edge 86.0.622.51 
-- MSEdgeDriver 86.0.622.51
+- Microsoft Edge  
+- MSEdgeDriver
 - Mozilla Firefox 82.0
-- geckodriver 0.27.0
+- geckodriver 0
 
 ### Java
 | Version   | Vendor       | Environment Variable |
