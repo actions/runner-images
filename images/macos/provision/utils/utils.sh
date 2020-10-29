@@ -108,3 +108,16 @@ verlte() {
     sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
     [  "$1" = "$sortedVersion" ]
 }
+
+brew_cask_install_ignoring_sha256() {
+    local TOOL_NAME=$1
+
+    CASK_DIR="$(brew --repo homebrew/cask)/Casks"
+    chmod a+w "$CASK_DIR/$TOOL_NAME.rb"
+    SHA=$(grep "sha256" "$CASK_DIR/$TOOL_NAME.rb" | awk '{print $2}')
+    sed -i '' "s/$SHA/:no_check/" "$CASK_DIR/$TOOL_NAME.rb"
+    brew cask install $TOOL_NAME
+    pushd $CASK_DIR
+    git checkout HEAD -- "$TOOL_NAME.rb"
+    popd
+}

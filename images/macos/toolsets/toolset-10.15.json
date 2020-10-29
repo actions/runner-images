@@ -163,5 +163,11 @@
                 "1.15.*"
             ]
         }
+    ],
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint --version"
+        }
     ]
 }
