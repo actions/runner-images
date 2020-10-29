@@ -21,7 +21,6 @@ binst_common_utils=(
     gh
     p7zip
     ant
-    yamllint
     aria2
 )
 

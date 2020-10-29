@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [.NET 5.0 will become a default .NET version on November, 10](https://github.com/actions/virtual-environments/issues/1891) |
+| [[Ubuntu] [Windows] Boost 1.69.0 will be deprecated on November, 10](https://github.com/actions/virtual-environments/issues/1847) |
 | [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
-| [Obsolete Android build-tools packages will be removed from Ubuntu images on October, 20](https://github.com/actions/virtual-environments/issues/1743) |
 ***
 # Ubuntu 16.04.7 LTS
-- Image Version: 20201015.1
+- Image Version: 20201026.1
 
 ## Installed Software
 ### Language and Runtime
@@ -36,27 +37,28 @@
 - Ant 1.9.6
 - Gradle 6.7
 - Maven 3.6.3
-- Sbt 1.4.0
+- Sbt 1.4.1
 
 ### Tools
 - 7-Zip 9.20
 - Ansible 2.9.14
-- AzCopy10 10.6.0 (available by `azcopy10` alias)
+- apt-fast 1.9.10
+- AzCopy10 10.6.1 (available by `azcopy10` alias)
 - AzCopy7 7.3.0 (available by `azcopy` alias)
-- Bazel 3.6.0
-- Bazelisk 1.7.2
+- Bazel 3.7.0
+- Bazelisk 1.7.3
 - CMake 3.17.0
 - CodeQL Action Bundle 2.3.0
 - curl 7.47.0
 - Docker Compose 1.27.4
 - Docker-Buildx 0.4.2
 - Docker-Moby 19.03.13
-- Git 2.28.0
+- Git 2.29.0
 - Git LFS 2.12.0
 - Git-ftp 1.0.2
-- Google Cloud SDK 314.0.0
+- Google Cloud SDK 315.0.0
 - Haveged 1.9.1
-- Heroku 7.46.0
+- Heroku 7.46.2
 - HHVM (HipHop VM) 4.56.1
 - jq 1.5
 - Kind 0.9.0
@@ -65,17 +67,17 @@
 - Leiningen 2.9.4
 - m4 1.4.17
 - Mercurial 4.4.1
-- Minikube 1.14.0
+- Minikube 1.14.1
 - Newman 5.2.0
 - nvm 0.36.0
 - Packer 1.6.4
 - PhantomJS 2.1.1
-- Pulumi 2.12.0
+- Pulumi 2.12.1
 - R 4.0.3
 - Sphinx Open Source Search Server 2.2.9
 - SVN 1.9.3
 - Swig 3.0.8
-- Terraform 0.13.4
+- Terraform 0.13.5
 - unzip 6.00
 - wget 1.17.1
 - yamllint 1.2.1
@@ -84,14 +86,14 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.60
-- AWS CLI 1.18.158
+- AWS CLI 1.18.164
 - AWS CLI Session manager plugin 1.2.7.0
 - AWS SAM CLI 1.6.2
 - Azure CLI (azure-cli) 2.13.0
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.1.0
 - Hub CLI 2.14.2
-- Netlify CLI 2.65.6
+- Netlify CLI 2.65.7
 - oc CLI 4.5.0
 - ORAS CLI 0.8.1
 - Vercel CLI 20.1.2
@@ -99,16 +101,16 @@
 ### Java
 | Version             | Vendor       | Environment Variable |
 | ------------------- | ------------ | -------------------- |
-| 1.7.0_272           | Zulu         | JAVA_HOME_7_X64      |
-| 1.8.0_265 (default) | AdoptOpenJDK | JAVA_HOME_8_X64      |
-| 11.0.8              | AdoptOpenJDK | JAVA_HOME_11_X64     |
+| 1.7.0_282           | Zulu         | JAVA_HOME_7_X64      |
+| 1.8.0_272 (default) | AdoptOpenJDK | JAVA_HOME_8_X64      |
+| 11.0.9              | AdoptOpenJDK | JAVA_HOME_11_X64     |
 | 12.0.2              | AdoptOpenJDK | JAVA_HOME_12_X64     |
 
 ### PHP
 | Tool     | Version                                   |
 | -------- | ----------------------------------------- |
 | PHP      | 5.6.40 7.0.33 7.1.33 7.2.34 7.3.23 7.4.11 |
-| Composer | 1.10.15                                   |
+| Composer | 2.0.2                                     |
 | PHPUnit  | 7.5.20                                    |
 
 ### Haskell
@@ -131,7 +133,7 @@
 - Rustfmt 1.4.20
 
 ### Browsers and Drivers
-- Google Chrome 86.0.4240.75
+- Google Chrome 86.0.4240.111
 - ChromeDriver 86.0.4240.22
 - Mozilla Firefox 81.0.2
 - Geckodriver 0.27.0
@@ -160,7 +162,7 @@
 - 2.4.10
 - 2.5.8
 - 2.6.6
-- 2.7.1
+- 2.7.2
 
 #### Python
 - 2.7.18
@@ -178,7 +180,7 @@
 - 8.17.0
 - 10.22.1
 - 12.19.0
-- 14.13.1
+- 14.14.0
 
 #### Go
 - 1.11.13

@@ -17,10 +17,11 @@ A clear and concise description of what the bug is, and why you consider it to b
 <!-- Choose "Question", "Bug", or "Feature" -->
 
 **Virtual environments affected**  
+- [ ] Ubuntu 16.04
+- [ ] Ubuntu 18.04
+- [ ] Ubuntu 20.04
 - [ ] macOS 10.15
-- [ ] Ubuntu 16.04 LTS
-- [ ] Ubuntu 18.04 LTS
-- [ ] Ubuntu 20.04 LTS
+- [ ] macOS 11.0
 - [ ] Windows Server 2016 R2
 - [ ] Windows Server 2019
 
