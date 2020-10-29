@@ -3,7 +3,7 @@
 ##  Desc:  Install SQL PowerShell tool
 ################################################################################
 
-$BaseUrl = "https://download.microsoft.com/download/8/7/2/872BCECA-C849-4B40-8EBE-21D48CDF1456/ENU/x64"
+$BaseUrl = "https://download.microsoft.com/download/B/1/7/B1783FE9-717B-4F78-A39A-A2E27E3D679D/ENU/x64"
 
 # install required MSIs
 $SQLSysClrTypesName = "SQLSysClrTypes.msi"

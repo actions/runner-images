@@ -1,5 +1,4 @@
-#!/bin/sh
-set -e
+#!/bin/bash -e -o pipefail
 
 echo Installing PHP
 brew install php

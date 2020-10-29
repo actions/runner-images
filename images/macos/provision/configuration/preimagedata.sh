@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
+
 source ~/utils/utils.sh
 
 imagedata_file="$HOME/imagedata.json"

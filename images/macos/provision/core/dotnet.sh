@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e -o pipefail
 
 ###########################################################################
 # The main idea of this script is to automate dotnet installs
@@ -23,7 +23,7 @@ echo "Parsing dotnet SDK (except rc and preview versions) from .json..."
 if is_BigSur; then
     DOTNET_CHANNELS=(
     'https://raw.githubusercontent.com/dotnet/core/master/release-notes/2.1/releases.json'
-    'https://raw.githubusercontent.com/dotnet/core/master/release-notes/3.1/releases.json' 
+    'https://raw.githubusercontent.com/dotnet/core/master/release-notes/3.1/releases.json'
     )
 elif is_Less_Catalina; then
     DOTNET_CHANNELS=(
@@ -33,7 +33,7 @@ else
     DOTNET_CHANNELS=(
     'https://raw.githubusercontent.com/dotnet/core/master/release-notes/2.1/releases.json'
     'https://raw.githubusercontent.com/dotnet/core/master/release-notes/3.0/releases.json'
-    'https://raw.githubusercontent.com/dotnet/core/master/release-notes/3.1/releases.json' 
+    'https://raw.githubusercontent.com/dotnet/core/master/release-notes/3.1/releases.json'
     )
 fi
 
