@@ -271,6 +271,13 @@ function Get-PacmanVersion {
     return "- Pacman $pacmanVersion"
 }
 
+function Get-ShellTarget {
+    $shells = Get-ChildItem C:\shells -File | Select-Object @{n="Name";e={
+        $name = $_.Name
+        if ($name -eq 'bash.exe') {"$name (Default)"} else {$name}}},@{n="Target";e={@($_.Target)[0]}} | Sort-Object Name
+    $shells | New-MDTable -Columns ([ordered]@{Name = "left"; Target = "left";})
+}
+
 function Get-YAMLLintVersion {
     yamllint --version
 }

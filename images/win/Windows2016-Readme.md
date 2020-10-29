@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [[Ubuntu] [Windows] Boost 1.69.0 will be deprecated on November, 10](https://github.com/actions/virtual-environments/issues/1847) |
 | [[In Discussion] Git internal tools will be removed from PATH Windows images and replaced with MSYS2 tools](https://github.com/actions/virtual-environments/issues/1525) |
 ***
 # Microsoft Windows Server 2016 Datacenter
-- OS Version: 10.0.14393 Build 3930
-- Image Version: 20201012.1
+- OS Version: 10.0.14393 Build 3986
+- Image Version: 20201020.1
 
 ## Installed Software
 ### Language and Runtime
@@ -14,7 +15,7 @@
 - Java 13.0.2 
 - Python 3.7.9
 - Ruby 2.5.8p224
-- Go 1.14.9
+- Go 1.14.10
 - PHP 7.4.11
 - Julia 1.5.2
 - Perl 5.32.0
@@ -25,46 +26,46 @@
 - Vcpkg 2020.06.15
 - NPM 6.14.8
 - Yarn 1.22.10
-- pip 20.2.3 (python 3.7)
-- Miniconda 4.6.14
+- pip 20.2.4 (python 3.7)
+- Miniconda 4.8.3
 - RubyGems 3.1.4
 - Helm 3.3.4
-- Composer 1.10.13
+- Composer 1.10.15
 - NuGet 5.7.0.6726
 
 ### Project Management
 - Ant 1.10.9
 - Maven 3.6.3
-- Gradle 6.6
+- Gradle 6.7
 - sbt 1.4.0
 
 ### Tools
 - azcopy 10.6.0
-- Bazel 3.6.0
-- Bazelisk 1.7.1
+- Bazel 3.7.0
+- Bazelisk 1.7.3
 - CMake 3.18.4
-- CodeQL Action Bundle 2.2.5
+- CodeQL Action Bundle 2.3.0
 - R 4.0.3
 - Docker 19.03.12
-- Docker-compose 1.27.2
-- Git 2.28.0
-- Git LFS 2.11.0
-- Google Cloud SDK 313.0.1
+- Docker-compose 1.27.4
+- Git 2.29.0
+- Git LFS 2.12.0
+- Google Cloud SDK 315.0.0
 - InnoSetup 6.0.5
 - jq 1.6
-- Kubectl 1.19.1
+- Kubectl 1.19.3
 - Kind 0.9.0
 - Mingw-w64 8.1.0
 - Mercurial 5.0
 - NSIS v3.06.1
 - Newman 5.2.0
 - OpenSSL 1.1.1
-- Packer 1.6.3
-- Pulumi v2.11.2
+- Packer 1.6.4
+- Pulumi v2.12.0
 - Subversion (SVN) 1.14.0
 - ghc 8.10.2
 - Cabal 3.2.0.0
-- Stack 2.3.3
+- Stack 2.5.1
 - WinAppDriver 1.1.1809.18001
 - zstd 1.4.5
 - VSWhere 2.8.4
@@ -72,12 +73,12 @@
 - yamllint 1.25.0
 
 ### CLI Tools
-- Azure CLI 2.12.1
+- Azure CLI 2.13.0
 - Azure DevOps CLI extension 0.18.0
 - Azure Dev Spaces CLI 1.0.20200921.3
-- AWS CLI 2.0.56
+- AWS CLI 2.0.57
 - AWS SAM CLI 1.6.2
-- AWS Session Manager CLI 1.1.61.0
+- AWS Session Manager CLI 1.2.7.0
 - Alibaba Cloud CLI 3.0.60
 - Cloud Foundry CLI 6.53.0
 - Hub CLI 2.14.2
@@ -93,11 +94,11 @@
 - cargo-outdated v0.9.11
 
 ### Browsers and webdrivers
-- Google Chrome 86.0.4240.75
+- Google Chrome 86.0.4240.111
 - Chrome Driver 86.0.4240.22
-- Microsoft Edge 86.0.622.38
-- Microsoft Edge Driver 86.0.622.38
-- Mozilla Firefox 81.0.1
+- Microsoft Edge 86.0.622.48
+- Microsoft Edge Driver 86.0.622.48
+- Mozilla Firefox 82.0
 - Gecko Driver 0.27.0
 - IE Driver 3.150.1.0
 
@@ -137,8 +138,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.11.13 | x64          | GOROOT_1_11_X64      |
 | 1.12.17 | x64          | GOROOT_1_12_X64      |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
-| 1.14.9 (Default) | x64          | GOROOT_1_14_X64      |
-| 1.15.2  | x64          | GOROOT_1_15_X64      |
+| 1.14.10 (Default) | x64          | GOROOT_1_14_X64      |
+| 1.15.3  | x64          | GOROOT_1_15_X64      |
 
 
 #### Node
@@ -147,7 +148,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 8.17.0  | x64          |
 | 10.22.1 | x64          |
 | 12.19.0 | x64          |
-| 14.13.1 | x64          |
+| 14.14.0 | x64          |
 
 
 #### Python
@@ -158,6 +159,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.6   | x64, x86     |
+| 3.9.0   | x64, x86     |
 
 
 #### Ruby
@@ -200,6 +202,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.11.6.0
+- DacFx 15.0.4897.1
 - SQLPS 1.0
 - MySQL 5.7.21.0
 
@@ -207,7 +210,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2017 | 15.9.28307.1259 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
+| Visual Studio Enterprise 2017 | 15.9.28307.1274 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
 
 #### Workloads, components and extensions:
 
@@ -476,20 +479,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402
+- 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 1.0.16 1.1.13 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8
+- 1.0.16 1.1.13 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8
+- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -518,7 +521,7 @@ All other versions are saved but not installed.
 | Pester             | 3.4.0<br>5.0.4              |
 | PowerShellGet      | 1.0.0.1<br>2.2.4.1<br>2.2.5 |
 | PSWindowsUpdate    | 2.2.0.2                     |
-| SqlServer          | 21.1.18228                  |
+| SqlServer          | 21.1.18229                  |
 | VSSetup            | 2.2.16                      |
 
 ### Android
