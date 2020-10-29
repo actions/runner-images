@@ -83,6 +83,7 @@ $npmVersion = Run-Command "npm --version"
 $yarnVersion = Run-Command "yarn --version"
 $nugetVersion = Run-Command "nuget help" | Select-Object -First 1 | Take-Part -Part 2
 $pip3Version = Get-PipVersion -Version 3
+$pipxVersion = Get-PipxVersion
 $condaVersion = Invoke-Expression "conda --version"
 $rubyGemsVersion = Run-Command "gem --version"
 $composerVersion = Run-Command "composer --version" | Take-Part -Part 2
@@ -99,6 +100,7 @@ if ($os.IsLessThanBigSur) {
 
 $markdown += New-MDList -Style Unordered -Lines @(
     "Pip ${pip3Version}",
+    $pipxVersion,
     $bundlerVersion,
     "Carthage ${carthageVersion}",
     "CocoaPods ${cocoaPodsVersion}",
