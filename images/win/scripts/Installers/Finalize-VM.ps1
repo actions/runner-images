@@ -30,3 +30,7 @@ New-Item -Path $winInstallDir -ItemType Directory -Force
 
 # Remove AllUsersAllHosts profile
 Remove-Item $profile.AllUsersAllHosts -Force
+
+# Clean yarn and npm cache
+yarn cache clean
+npm cache clean --force
