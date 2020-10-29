@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 if [ -z "$1" ]; then
   echo "No Xamarin SDK specified."
   exit 0
