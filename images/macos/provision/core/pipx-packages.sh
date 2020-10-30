@@ -1,3 +1,4 @@
+#!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
 export PATH="$PATH:/opt/pipx_bin"
