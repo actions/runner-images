@@ -45,6 +45,11 @@
         },
         {
             "type": "file",
+            "source": "./provision/assets",
+            "destination": "~/image-generation/"
+        },
+        {
+            "type": "file",
             "source": "./tests",
             "destination": "~/image-generation/"
         },
