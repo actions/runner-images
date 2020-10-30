@@ -283,5 +283,6 @@ function Get-YAMLLintVersion {
 }
 
 function Get-PipxVersion {
-    pipx --version
+    $pipxVersion = pipx --version
+    return "Pipx $pipxVersion"
 }
