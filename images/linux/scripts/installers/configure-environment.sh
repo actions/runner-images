@@ -12,6 +12,8 @@ echo 'export XDG_CONFIG_HOME=$HOME/.config' | tee -a /etc/skel/.bashrc
 sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf
 sed -i 's/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
 sed -i 's/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=4096/g' /etc/waagent.conf
+# Use performance optimized mount options, docs: https://www.kernel.org/doc/Documentation/filesystems/ext4.txt
+sed -i 's/ResourceDisk.MountOptions=None/ResourceDisk.MountOptions=nodiscard,nobarrier,commit=999999,data=writeback/g' /etc/waagent.conf
 
 # Add localhost alias to ::1 IPv6
 sed -i 's/::1 ip6-localhost ip6-loopback/::1     localhost ip6-localhost ip6-loopback/g' /etc/hosts
