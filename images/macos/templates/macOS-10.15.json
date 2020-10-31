@@ -131,21 +131,17 @@
             "scripts": [
                 "./provision/core/xcode-clt.sh",
                 "./provision/core/homebrew.sh",
-                "./provision/core/dotnet.sh",
-                "./provision/core/python.sh",
                 "./provision/core/azcopy.sh",
                 "./provision/core/openssl.sh",
                 "./provision/core/ruby.sh",
                 "./provision/core/rubygem.sh",
-                "./provision/core/powershell.sh",
-                "./provision/core/git.sh",
-                "./provision/core/node.sh"
+                "./provision/core/powershell.sh"
             ]
         },
         {
             "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
-            "script": "./provision/core/xcode-tools.sh",
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
+            "script": "./provision/core/xcode.ps1",
             "environment_vars": [
                 "XCODE_INSTALL_USER={{user `xcode_install_user`}}",
                 "XCODE_INSTALL_PASSWORD={{user `xcode_install_password`}}"

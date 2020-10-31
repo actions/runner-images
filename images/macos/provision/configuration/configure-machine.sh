@@ -8,10 +8,14 @@ echo "Configuring system time to GMT..."
 rm -f /etc/localtime
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
+echo "Enabling safari driver..."
 # https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari
 # Safari’s executable is located at /usr/bin/safaridriver
 # Configure Safari to Enable WebDriver Support
 sudo safaridriver --enable
+
+echo "Enabling developer mode..."
+sudo /usr/sbin/DevToolsSecurity --enable
 
 # Turn off hibernation and get rid of the sleepimage
 sudo pmset hibernatemode 0

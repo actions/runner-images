@@ -2,18 +2,18 @@
     "xcode": {
         "default": "12",
         "versions": [
-            { "localVersion": "12.2", "version": "12.2_beta" },
-            { "localVersion": "12.1", "version": "12.1_GM_seed" },
-            { "localVersion": "12.0", "version": "12.0.1", "symlinks": ["12"] },
-            { "localVersion": "11.7", "version": "11.7", "symlinks": ["11.7_beta"] },
-            { "localVersion": "11.6", "version": "11.6", "symlinks": ["11.6_beta"] },
-            { "localVersion": "11.5", "version": "11.5", "symlinks": ["11.5_beta"] },
-            { "localVersion": "11.4", "version": "11.4.1", "symlinks": ["11.4_beta"] },
-            { "localVersion": "11.3", "version": "11.3.1", "symlinks": ["11.3", "11.3_beta"] },
-            { "localVersion": "11.2", "version": "11.2.1", "symlinks": ["11.2", "11.2_beta"] },
-            { "localVersion": "11.1", "version": "11.1", "symlinks": ["11.1_beta"] },
-            { "localVersion": "11.0", "version": "11", "symlinks": ["11"] },
-            { "localVersion": "10.3", "version": "10.3", "symlinks": ["10.3_beta"] }
+            { "link": "12.2", "version": "12.2 beta 3" },
+            { "link": "12.1", "version": "12.1.1 Release Candidate" },
+            { "link": "12", "version": "12.0.1" },
+            { "link": "11.7", "version": "11.7", "symlinks": ["11.7_beta"] },
+            { "link": "11.6", "version": "11.6", "symlinks": ["11.6_beta"] },
+            { "link": "11.5", "version": "11.5", "symlinks": ["11.5_beta"] },
+            { "link": "11.4.1", "version": "11.4.1", "symlinks": ["11.4", "11.4_beta"] },
+            { "link": "11.3.1", "version": "11.3.1", "symlinks": ["11.3", "11.3_beta"] },
+            { "link": "11.2.1", "version": "11.2.1", "symlinks": ["11.2", "11.2_beta"] },
+            { "link": "11.1", "version": "11.1", "symlinks": ["11.1_beta"] },
+            { "link": "11", "version": "11" },
+            { "link": "10.3", "version": "10.3", "symlinks": ["10.3_beta"] }
         ]
     },
     "xamarin": {
