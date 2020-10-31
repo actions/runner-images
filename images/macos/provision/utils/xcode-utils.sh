@@ -9,6 +9,11 @@ createXamarinProvisionatorSymlink() {
         FULL_VERSION="12.0.1"
     fi
 
+    # temporary trick for 12.1.1
+    if [[ $XCODE_VERSION == "12.1" ]]; then
+        FULL_VERSION="12.1.1"
+    fi
+
     if [ $FULL_VERSION != $XCODE_VERSION ]; then
         ln -sf "/Applications/Xcode_${XCODE_VERSION}.app" "/Applications/Xcode_${FULL_VERSION}.app"
     fi
@@ -19,6 +24,8 @@ getXcodeVersionToInstall() {
 
     if [[ $XCODE_VERSION == "12" ]]; then
         echo "12.0.1"
+    elif [[ ! $XCODE_VERSION == "12.1" ]]; then
+        echo "12.1.1 Release Candidate"
     elif [[ ! $XCODE_VERSION =~ "_beta" ]]; then
         echo "${XCODE_VERSION//_/ }"
     else
