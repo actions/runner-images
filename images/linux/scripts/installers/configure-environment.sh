@@ -25,3 +25,6 @@ chmod -R 777 $AGENT_TOOLSDIRECTORY
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
 # https://www.suse.com/support/kb/doc/?id=000016692
 echo 'vm.max_map_count=262144' | tee -a /etc/sysctl.conf
+
+# tune swappiness to 10, docs: https://www.kernel.org/doc/Documentation/sysctl/vm.txt
+echo 'vm.swappiness=10' | tee -a /etc/sysctl.conf
