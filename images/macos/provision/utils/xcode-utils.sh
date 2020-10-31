@@ -24,7 +24,7 @@ getXcodeVersionToInstall() {
 
     if [[ $XCODE_VERSION == "12" ]]; then
         echo "12.0.1"
-    elif [[ ! $XCODE_VERSION == "12.1" ]]; then
+    elif [[ $XCODE_VERSION == "12.1" ]]; then
         echo "12.1.1 Release Candidate"
     elif [[ ! $XCODE_VERSION =~ "_beta" ]]; then
         echo "${XCODE_VERSION//_/ }"
