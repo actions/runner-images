@@ -30,3 +30,8 @@ echo 'vm.max_map_count=262144' | tee -a /etc/sysctl.conf
 
 # tune swappiness to 10, docs: https://www.kernel.org/doc/Documentation/sysctl/vm.txt
 echo 'vm.swappiness=10' | tee -a /etc/sysctl.conf
+
+# grub settings
+mkdir -p /etc/default/grub.d
+# configure transparent hugepages (thp) to be used when opted in with "madvise" instead of enabling by default
+echo 'GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX transparent_hugepage=madvise"' >> /etc/default/grub.d/99-thp.cfg
