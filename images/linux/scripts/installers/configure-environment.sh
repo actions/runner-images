@@ -35,3 +35,7 @@ echo 'vm.swappiness=10' | tee -a /etc/sysctl.conf
 mkdir -p /etc/default/grub.d
 # configure transparent hugepages (thp) to be used when opted in with "madvise" instead of enabling by default
 echo 'GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX transparent_hugepage=madvise"' >> /etc/default/grub.d/99-thp.cfg
+
+# disable fstrim.timer & fstrim.service if services exist, there's no need to run discard/trim for the disk
+systemctl disable fstrim.timer || true
+systemctl disable fstrim.service || true
