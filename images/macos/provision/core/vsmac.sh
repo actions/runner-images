@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash -e -o pipefail
+
 source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
 
@@ -21,9 +22,6 @@ hdiutil attach "$TMPMOUNT_DOWNLOADS/$VISUAL_STUDIO_NAME" -mountpoint "$TMPMOUNT"
 echo "Moving Visual Studio to /Applications/..."
 pushd $TMPMOUNT
 tar cf - "./Visual Studio.app" | tar xf - -C /Applications/
-
-echo "Launching vstools..."
-/Applications/Visual\ Studio.app/Contents/MacOS/vstool
 
 popd
 sudo hdiutil detach "$TMPMOUNT"

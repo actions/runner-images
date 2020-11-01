@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e -o pipefail
 
 # Download hosted tool cache with npm
 NPM_FEED="npm.pkg.github.com"

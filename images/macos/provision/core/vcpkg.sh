@@ -1,6 +1,5 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 
-set -e
 source ~/utils/utils.sh
 
 # Set env variable for vcpkg

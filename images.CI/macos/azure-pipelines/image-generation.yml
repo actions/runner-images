@@ -52,7 +52,8 @@ jobs:
     inputs:
       targetType: 'filePath'
       filePath: ./images.CI/macos/select-datastore.ps1
-      arguments: -VIServer "$(vcenter-server-v2)" `
+      arguments: -VMName "$(VirtualMachineName)" `
+                 -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
                  -VIPassword "$(vcenter-password-v2)"
 
@@ -121,8 +122,8 @@ jobs:
     condition: always()
 
   - task: PowerShell@2
-    displayName: 'Move vm to cold storage'
-    condition: succeededOrFailed()
+    displayName: 'Move vm to cold storage and clear datastore tag'
+    condition: always()
     inputs:
       targetType: 'filePath'
       filePath: ./images.CI/macos/move-vm.ps1

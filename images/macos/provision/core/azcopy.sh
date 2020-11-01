@@ -1,5 +1,4 @@
-#!/bin/bash
-set -e
+#!/bin/bash -e -o pipefail
 
 AZCOPY_DOWNLOAD_URL="https://aka.ms/downloadazcopy-v10-mac"
 

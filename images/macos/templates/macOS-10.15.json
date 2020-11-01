@@ -45,6 +45,11 @@
         },
         {
             "type": "file",
+            "source": "./provision/assets",
+            "destination": "~/image-generation/"
+        },
+        {
+            "type": "file",
             "source": "./tests",
             "destination": "~/image-generation/"
         },
@@ -181,7 +186,8 @@
                 "./provision/core/firefox.sh",
                 "./provision/core/xcode-postbuild.sh",
                 "./provision/core/toolcache.sh",
-                "./provision/core/pypy.sh"
+                "./provision/core/pypy.sh",
+                "./provision/core/pipx-packages.sh"
             ],
             "environment_vars": [
                 "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
