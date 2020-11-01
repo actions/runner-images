@@ -1,7 +1,7 @@
 Describe "Shell" {
     $shellTestCases = @(
-        @{Name = "C:\shells\bash.exe"; Target = "C:\msys64\usr\bin\bash.exe"},
-        @{Name = "C:\shells\sh.exe"; Target = "C:\msys64\usr\bin\sh.exe"},
+        @{Name = "C:\shells\bash.exe"; Target = "C:\msys64\bin\bash.exe"},
+        @{Name = "C:\shells\sh.exe"; Target = "C:\msys64\bin\sh.exe"},
         @{Name = "C:\shells\gitbash.exe"; Target = "$env:ProgramFiles\Git\bin\bash.exe"},
         @{Name = "C:\shells\msysbash.exe"; Target = "C:\msys64\usr\bin\bash.exe"}
     )
