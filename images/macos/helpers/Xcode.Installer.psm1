@@ -5,17 +5,14 @@ function Install-XcodeVersion {
         [Parameter(Mandatory)]
         [string]$Version,
         [Parameter(Mandatory)]
-        [string]$LocalLink
+        [string]$LinkTo
     )
 
     $xcodeDownloadDirectory = "$env:HOME/Library/Caches/XcodeInstall"
-    $xcodeTargetPath = Get-XcodeRootPath -Version $LocalLink
-    Push-Location $xcodeDownloadDirectory
+    $xcodeTargetPath = Get-XcodeRootPath -Version $LinkTo
 
     Invoke-DownloadXcodeArchive -Version $Version
     Expand-XcodeXipArchive -DownloadDirectory $xcodeDownloadDirectory -TargetPath $xcodeTargetPath
-    Confirm-XcodeIntegrity -XcodeRootPath $xcodeTargetPath
-    Approve-XcodeLicense -XcodeRootPath $xcodeTargetPath
 
     Get-ChildItem $xcodeDownloadDirectory | Remove-Item -Force
 }
@@ -33,6 +30,7 @@ function Invoke-DownloadXcodeArchive {
 
     # TO-DO: Consider replacing of xcversion with own implementation
     Write-Host "Downloading Xcode $resolvedVersion"
+    # TO-DO: handle exit code
     xcversion install "$resolvedVersion" --no-install
 }
 
@@ -58,12 +56,13 @@ function Expand-XcodeXipArchive {
 
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
     Push-Location $DownloadDirectory
+    # TO-DO: handle exit code
     xip -x $xcodeXipPath
     Pop-Location
 
     if (Test-Path "$DownloadDirectory/Xcode-beta.app") {
         Write-Host "Renaming Xcode-beta.app to Xcode.app"
-        Rename-File -Path "$DownloadDirectory/Xcode-beta.app" -NewName "Xcode.app"
+        Rename-Item -Path "$DownloadDirectory/Xcode-beta.app" -NewName "Xcode.app"
     }
 
     if (-not (Test-Path "$DownloadDirectory/Xcode.app")) {
@@ -77,10 +76,12 @@ function Expand-XcodeXipArchive {
 function Confirm-XcodeIntegrity {
     param(
         [Parameter(Mandatory)]
-        [string]$XcodeRootPath
+        [string]$Version
     )
 
+    $XcodeRootPath = Get-XcodeRootPath -Version $Version
     if (Test-XcodeStableRelease -XcodeRootPath $XcodeRootPath) {
+        # TO-DO: handle exit code
         spctl --assess --raw $XcodeRootPath
     }
 }
@@ -88,10 +89,11 @@ function Confirm-XcodeIntegrity {
 function Approve-XcodeLicense {
     param(
         [Parameter(Mandatory)]
-        $XcodeRootPath
+        [string]$Version
     )
 
-    $xcodeBuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
+    $xcodeBuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
+    # TO-DO: handle exit code
     sudo $xcodeBuildPath -license accept
 }
 
@@ -103,8 +105,9 @@ function Install-XcodeAdditionalPackages {
 
     Write-Host "Installing additional packages for Xcode $Version..."
     $xcodeRootPath = Get-XcodeRootPath -Version $Version
-    $packages = Get-ChildItem -Path "$xcodeRootPath/Contents/Resources/Packages" -Filter "*.pkg" -Name -File
-    $packages | ForEach-Object { & sudo installer -pkg $_ -target / -allowUntrusted }
+    $packages = Get-ChildItem -Path "$xcodeRootPath/Contents/Resources/Packages" -Filter "*.pkg" -File
+    # TO-DO: handle exit code
+    $packages | ForEach-Object { & sudo installer -pkg $_.FullName -target / -allowUntrusted }
 }
 
 function Invoke-XcodeRunFirstLaunch {
@@ -119,6 +122,7 @@ function Invoke-XcodeRunFirstLaunch {
 
     Write-Host "Running 'runFirstLaunch' for Xcode $Version..."
     $xcodeRootPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
+    # TO-DO: handle exit code
     & sudo $xcodeRootPath -runFirstLaunch
 }
 
@@ -156,5 +160,26 @@ function Build-ProvisionatorSymlink {
 }
 
 function Set-XcodeDeveloperDirEnvironmentVariables {
-    # TO-DO
+    param(
+        [Parameter(Mandatory)]
+        [string[]]$XcodeList
+    )
+
+    $exactVersionsList = $XcodeList | Where-Object { Test-XcodeStableRelease -Version $_ } | ForEach-Object {
+        $xcodeRootPath = Get-XcodeRootPath -Version $_
+        $xcodeVersionInfo = Get-XcodeVersionInfo -XcodeRootPath $xcodeRootPath
+        return @{
+            RootPath = $xcodeRootPath
+            Version = [SemVer]::Parse($xcodeVersionInfo.Version)
+        }
+    } | Sort-Object -Property Version -Descending
+
+    $majorVersions = $exactVersionsList.Version.Major | Select-Object -Unique
+    $majorVersions | ForEach-Object {
+        $latestXcodeVersion = $exactVersionsList | Where-Object { $_.Version.Major -eq $_ } | Select-Object -First 1
+        $variableName = "XCODE_${_}_DEVELOPER_DIR"
+        $variableValue = "$($latestXcodeVersion.RootPath)/Contents/Developer"
+        Write-Host "Set ${variableName}=${variableValue}"
+        "export ${variableName}=${variableValue}" | Out-File "$env:HOME/.bashrc" -Append
+    }
 }

@@ -14,25 +14,29 @@ $os = Get-OSVersion
 $xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
 
-& xcversion update
-
 Write-Host "Installing Xcode versions..."
-foreach ($xcode in $xcodeVersions) {
-    Install-XcodeVersion -Version $xcode.version -LocalLink $xcode.localLink
-    Build-XcodeSymlinks -Version $xcode.localLink -Symlinks $xcode.symlinks
-    Build-ProvisionatorSymlink -Version $xcode.version
+$xcodeVersions | ForEach-Object {
+    Install-XcodeVersion -Version $_.version -LinkTo $_.link
+    Confirm-XcodeIntegrity -Version $_.link
+    Approve-XcodeLicense -Version $_.link
 }
 
 Write-Host "Configuring Xcode versions..."
 if ($os.IsLessThanCatalina) {
-    Install-XcodeAdditionalPackages -Version $xcodeVersions[0].localLink
+    Install-XcodeAdditionalPackages -Version $xcodeVersions[0].link
 }
-$xcodeVersions | ForEach-Object { Invoke-XcodeRunFirstLaunch -Version $_.localLink }
+$xcodeVersions | ForEach-Object { Invoke-XcodeRunFirstLaunch -Version $_.link }
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
+
+Write-Host "Configuring Xcode symlinks..."
+$xcodeVersions | ForEach-Object {
+    Build-XcodeSymlinks -Version $_.link -Symlinks $_.symlinks
+    Build-ProvisionatorSymlink -Version $_.link
+}
 
 Write-Host "Setting default Xcode to $defaultXcode"
 Switch-Xcode -Version $defaultXcode
 New-Item -Path "/Applications/Xcode.app" -ItemType SymbolicLink -Value (Get-XcodeRootPath -Version $defaultXcode)
 
 Write-Host "Setting environment variables 'XCODE_<VERSION>_DEVELOPER_DIR'"
-Set-XcodeDeveloperDirEnvironmentVariables
+Set-XcodeDeveloperDirEnvironmentVariables -XcodeList $xcodeVersions.link
