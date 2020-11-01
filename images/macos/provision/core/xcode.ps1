@@ -3,8 +3,8 @@
 
 $ErrorActionPreference = "Stop"
 
-Import-Module "$PSScriptRoot/../../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../../helpers/Xcode.Installer.psm1"
+Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
+Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
 
 if ([string]::IsNullOrEmpty($env:XCODE_INSTALL_USER) -or [string]::IsNullOrEmpty($env:XCODE_INSTALL_PASSWORD)) {
     throw "Required environment variables XCODE_INSTALL_USER and XCODE_INSTALL_PASSWORD are not set"
