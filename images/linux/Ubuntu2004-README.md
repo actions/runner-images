@@ -3,6 +3,7 @@
 | [.NET 5.0 will become a default .NET version on November, 10](https://github.com/actions/virtual-environments/issues/1891) |
 | [[Ubuntu] [Windows] Boost 1.69.0 will be deprecated on November, 10](https://github.com/actions/virtual-environments/issues/1847) |
 | [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
+| [Default Node.JS will be switched to 14.x on all platforms](https://github.com/actions/virtual-environments/issues/1953) |
 ***
 # Ubuntu 20.04.1 LTS
 - Image Version: 20201101.1
