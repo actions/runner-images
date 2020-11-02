@@ -149,6 +149,11 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "MSYS2" -Level 3
 $markdown += Get-PacmanVersion
 $markdown += New-MDNewLine
+
+$markdown += New-MDHeader "BizTalk Server" -Level 3
+$markdown += Get-BizTalkVersion
+$markdown += New-MDNewLine
+
 $markdown += New-MDHeader "Notes:" -Level 5
 $markdown += @'
 ```
