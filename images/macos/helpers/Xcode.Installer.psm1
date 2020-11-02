@@ -179,7 +179,7 @@ function Build-ProvisionatorSymlink {
     $targetVersion = [SemVer]::Parse($versionInfo.Version).ToString()
     $targetPath = Get-XcodeRootPath -Version $targetVersion
     if ($sourcePath -ne $targetPath) {
-        Write-Host "Creating provisionator symlink: '$targetPath' -> '$sourcePath'"
+        Write-Host "Creating symlink: '$targetPath' -> '$sourcePath'"
         New-Item -Path $targetPath -ItemType SymbolicLink -Value $sourcePath | Out-Null
     }
 }

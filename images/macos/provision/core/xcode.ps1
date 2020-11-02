@@ -38,7 +38,7 @@ $xcodeVersions | ForEach-Object {
 
 Write-Host "Setting default Xcode to $defaultXcode"
 Switch-Xcode -Version $defaultXcode
-New-Item -Path "/Applications/Xcode.app" -ItemType SymbolicLink -Value (Get-XcodeRootPath -Version $defaultXcode)
+New-Item -Path "/Applications/Xcode.app" -ItemType SymbolicLink -Value (Get-XcodeRootPath -Version $defaultXcode) | Out-Null
 
 Write-Host "Setting environment variables 'XCODE_<VERSION>_DEVELOPER_DIR'"
 Set-XcodeDeveloperDirEnvironmentVariables -XcodeList $xcodeVersions.link
