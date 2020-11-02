@@ -30,8 +30,7 @@ function Invoke-DownloadXcodeArchive {
 
     # TO-DO: Consider replacing of xcversion with own implementation
     Write-Host "Downloading Xcode $resolvedVersion"
-    # TO-DO: handle exit code
-    xcversion install "$resolvedVersion" --no-install
+    Invoke-ExpressionWithValidation "xcversion install '$resolvedVersion' --no-install"
 }
 
 function Resolve-ExactXcodeVersion {
@@ -40,8 +39,38 @@ function Resolve-ExactXcodeVersion {
         [string]$Version
     )
 
-    # TO-DO
-    return $Version
+    # if toolset string contains spaces, consider it as a full name of Xcode
+    if ($Version -match "\s") {
+        return $Version
+    }
+
+    $semverVersion = [SemVer]::Parse($Version)
+    $availableVersions = Get-AvailableXcodeVersions
+    $satisfiedVersions = $availableVersions | Where-Object { $semverVersion -eq $_.stableSemver }
+    return $satisfiedVersions | Select-Object -Last 1 -ExpandProperty rawVersion
+}
+
+function Get-AvailableXcodeVersions {
+    $rawVersionsList = & xcversion list | ForEach-Object { $_.Trim() } | Where-Object { $_ -match "^\d" }
+    $availableVersions = $rawVersionsList | ForEach-Object {
+        $parts = $_.Split(" ", 2)
+        $stableSemver = [SemVer]::Parse($parts[0])
+        if ($parts.Count -eq 1) {
+            $semver = $stableSemver
+        } else {
+            # Convert 'beta 3' -> 'beta.3', 'Release Candidate' -> 'releasecandidate', 'GM Seed 2' -> 'gmseed.2'
+            $normalizedLabel = $parts[1].toLower() -replace " (\d)", '.$1' -replace " ([a-z])", '$1'
+            $semver = [SemVer]::new($stableSemver.Major, $stableSemver.Minor, $stableSemver.Patch, $normalizedLabel)
+        }
+
+        return [PSCustomObject]@{
+            semver = $semver
+            rawVersion = $_
+            stableSemver = $stableSemver
+        }
+    }
+
+    return $availableVersions | Sort-Object -Property semver
 }
 
 function Expand-XcodeXipArchive {
@@ -56,8 +85,7 @@ function Expand-XcodeXipArchive {
 
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
     Push-Location $DownloadDirectory
-    # TO-DO: handle exit code
-    xip -x $xcodeXipPath
+    Invoke-ExpressionWithValidation "xip -x $xcodeXipPath"
     Pop-Location
 
     if (Test-Path "$DownloadDirectory/Xcode-beta.app") {
@@ -81,8 +109,7 @@ function Confirm-XcodeIntegrity {
 
     $XcodeRootPath = Get-XcodeRootPath -Version $Version
     if (Test-XcodeStableRelease -XcodeRootPath $XcodeRootPath) {
-        # TO-DO: handle exit code
-        spctl --assess --raw $XcodeRootPath
+        Invoke-ExpressionWithValidation "spctl --assess --raw $XcodeRootPath"
     }
 }
 
@@ -93,8 +120,7 @@ function Approve-XcodeLicense {
     )
 
     $xcodeBuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    # TO-DO: handle exit code
-    sudo $xcodeBuildPath -license accept
+    Invoke-ExpressionWithValidation "sudo $xcodeBuildPath -license accept"
 }
 
 function Install-XcodeAdditionalPackages {
@@ -106,8 +132,9 @@ function Install-XcodeAdditionalPackages {
     Write-Host "Installing additional packages for Xcode $Version..."
     $xcodeRootPath = Get-XcodeRootPath -Version $Version
     $packages = Get-ChildItem -Path "$xcodeRootPath/Contents/Resources/Packages" -Filter "*.pkg" -File
-    # TO-DO: handle exit code
-    $packages | ForEach-Object { & sudo installer -pkg $_.FullName -target / -allowUntrusted }
+    $packages | ForEach-Object {
+        Invoke-ExpressionWithValidation "sudo installer -pkg $($_.FullName) -target / -allowUntrusted"
+    }
 }
 
 function Invoke-XcodeRunFirstLaunch {
@@ -122,8 +149,7 @@ function Invoke-XcodeRunFirstLaunch {
 
     Write-Host "Running 'runFirstLaunch' for Xcode $Version..."
     $xcodeRootPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    # TO-DO: handle exit code
-    & sudo $xcodeRootPath -runFirstLaunch
+    Invoke-ExpressionWithValidation "sudo $xcodeRootPath -runFirstLaunch"
 }
 
 function Build-XcodeSymlinks {
@@ -134,7 +160,7 @@ function Build-XcodeSymlinks {
     )
 
     $sourcePath = Get-XcodeRootPath -Version $Version
-    $Symlinks | ForEach-Object {
+    $Symlinks | Where-Object { $_ } | ForEach-Object {
         $targetPath = Get-XcodeRootPath -Version $_
         Write-Host "Creating symlink: '$targetPath' -> '$sourcePath'"
         New-Item -Path $targetPath -ItemType SymbolicLink -Value $sourcePath
