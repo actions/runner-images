@@ -130,7 +130,6 @@ function Build-XcodeSymlinks {
     param(
         [Parameter(Mandatory)]
         [string]$Version,
-        [Parameter(Mandatory)]
         [string[]]$Symlinks
     )
 
