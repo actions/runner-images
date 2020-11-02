@@ -268,7 +268,7 @@ function Get-CachedDockerImagesTableData {
       [PSCustomObject] @{
              "Repository:Tag" = $parts[0]
               "Digest" = $parts[1]
-              "Created" = $parts[2]
+              "Created" = $parts[2].split(' ')[0]
          }
     }
 }
