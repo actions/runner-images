@@ -3,6 +3,8 @@
 | [.NET 5.0 will become a default .NET version on November, 10](https://github.com/actions/virtual-environments/issues/1891) |
 | [[Ubuntu] [Windows] Boost 1.69.0 will be deprecated on November, 10](https://github.com/actions/virtual-environments/issues/1847) |
 | [Switch Unix tools from Git internal tools to MSYS2 tools on Windows images](https://github.com/actions/virtual-environments/issues/1525) |
+| [Default Node.JS will be switched to 14.x on all platforms](https://github.com/actions/virtual-environments/issues/1953) |
+
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 3986
