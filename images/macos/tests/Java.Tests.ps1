@@ -38,17 +38,15 @@ Describe "Java" {
             }
 
             It "Version is valid" -TestCases $_ {
-                $javaRootPath = (Get-CommandResult "/usr/libexec/java_home -v${Version}").Output
+                $javaRootPath = "/Library/Java/JavaVirtualMachines/adoptopenjdk-${Title}.jdk//Contents/Home"
                 $javaBinPath = Join-Path $javaRootPath "/bin/java"
                 Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
             }
 
             It "<EnvVariable>" -TestCases $_ {
                 $envVariablePath = Get-EnvironmentVariable $EnvVariable
-                $commandResult = Get-CommandResult "/usr/libexec/java_home -v${Version}"
-                $commandResult.ExitCode | Should -Be 0
-                $commandResult.Output | Should -Not -BeNullOrEmpty
-                $commandResult.Output | Should -Be $envVariablePath
+                $javaBinPath = Join-Path $envVariablePath "/bin/java"
+                Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
             }
 
             if ($_.Title -eq "Default") {
