@@ -1,8 +1,8 @@
 #!/bin/bash -e -o pipefail
 
 source ~/utils/utils.sh
-XCODE_LIST=($(get_xcode_list_from_toolset))
-DEFAULT_XCODE_VERSION=$(get_default_xcode_from_toolset)
+XCODE_LIST=($(get_toolset_value '.xcode.versions | reverse | .[]'))
+DEFAULT_XCODE_VERSION=$(get_toolset_value '.xcode.default')
 
 # https://github.com/microsoft/appcenter/issues/847
 # Assets.xcassets : error : CoreData: error: (6922) I/O error for database

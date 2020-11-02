@@ -163,7 +163,7 @@ function Build-XcodeSymlinks {
     $Symlinks | Where-Object { $_ } | ForEach-Object {
         $targetPath = Get-XcodeRootPath -Version $_
         Write-Host "Creating symlink: '$targetPath' -> '$sourcePath'"
-        New-Item -Path $targetPath -ItemType SymbolicLink -Value $sourcePath
+        New-Item -Path $targetPath -ItemType SymbolicLink -Value $sourcePath | Out-Null
     }
 }
 
@@ -180,7 +180,7 @@ function Build-ProvisionatorSymlink {
     $targetPath = Get-XcodeRootPath -Version $targetVersion
     if ($sourcePath -ne $targetPath) {
         Write-Host "Creating provisionator symlink: '$targetPath' -> '$sourcePath'"
-        New-Item -Path $targetPath -ItemType SymbolicLink -Value $sourcePath
+        New-Item -Path $targetPath -ItemType SymbolicLink -Value $sourcePath | Out-Null
     }
 }
 
@@ -201,7 +201,8 @@ function Set-XcodeDeveloperDirEnvironmentVariables {
 
     $majorVersions = $exactVersionsList.Version.Major | Select-Object -Unique
     $majorVersions | ForEach-Object {
-        $latestXcodeVersion = $exactVersionsList | Where-Object { $_.Version.Major -eq $_ } | Select-Object -First 1
+        $majorVersion = $_
+        $latestXcodeVersion = $exactVersionsList | Where-Object { $_.Version.Major -eq $majorVersion } | Select-Object -First 1
         $variableName = "XCODE_${_}_DEVELOPER_DIR"
         $variableValue = "$($latestXcodeVersion.RootPath)/Contents/Developer"
         Write-Host "Set ${variableName}=${variableValue}"
