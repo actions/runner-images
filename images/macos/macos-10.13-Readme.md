@@ -1,42 +1,43 @@
 | Announcements |
 |-|
+| [[macOS] Default Python will be upgraded to 3.9](https://github.com/actions/virtual-environments/issues/1929) |
+| [.NET 5.0 will become a default .NET version on November, 10](https://github.com/actions/virtual-environments/issues/1891) |
 | [macOS 11.0 (Big Sur) is available as a preview 🚀](https://github.com/actions/virtual-environments/issues/1814) |
-| [[macOS] Default Ruby version will be changed to 2.7 on October, 26](https://github.com/actions/virtual-environments/issues/1775) |
-| [Default Xcode will be changed to Xcode 12.0 on October, 20](https://github.com/actions/virtual-environments/issues/1712) |
 | [Xcode 11.0, 11.1, 11.4.0 will be deprecated on November, 5](https://github.com/actions/virtual-environments/issues/1688) |
 ***
 # macOS 10.13 info
 - System Version: macOS 10.13.6 (17G14033)
 - Kernel Version: Darwin 17.7.0
-- Image Version: 20201015.3
+- Image Version: 20201101.1
 
 ## Installed Software
 ### Language and Runtime
 - R 4.0.3
 - Node.js v8.17.0
 - NVM 0.36.0
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.22.1 v12.19.0 v13.14.0 v14.14.0
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.0 v12.19.0 v13.14.0 v14.15.0
 - Python 2.7.17
 - Python 3.8.6
-- Ruby 2.6.6p146
+- Ruby 2.7.2p137
 - .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507
-- Go 1.15.2
-- PHP 7.4.11
+- Go 1.15.3
+- PHP 7.4.12
 - julia 1.5.2
 
 ### Package Management
 - Pip 19.3.1 (python 2.7)
-- Pip 20.2.3 (python 3.8)
+- Pip 20.2.4 (python 3.8)
+- Pipx 0.15.6.0
 - Bundler version 2.1.4
 - Carthage 0.36.0
-- CocoaPods 1.9.3
-- Homebrew 2.5.6
+- CocoaPods 1.10.0
+- Homebrew 2.5.8
 - NPM 3.10.10
 - Yarn 1.22.5
 - NuGet 4.7.0.5148
 - Miniconda 4.8.3
 - RubyGems 3.1.4
-- Composer 1.10.15
+- Composer 2.0.4
 
 ### Project Management
 - Apache Maven 3.6.3
@@ -45,59 +46,59 @@
 
 ### Utilities
 - Curl 7.73.0
-- Git: 2.28.0
+- Git: 2.29.2
 - Git LFS: 2.12.0
-- GitHub CLI: 1.1.0
+- GitHub CLI: 1.2.0
 - Hub CLI: 2.14.2
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.14.0
-- Packer 1.6.4
+- Packer 1.6.5
 - OpenSSL 1.0.2t  10 Sep 2019 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.0.2t/1.0.2t)`
 - jq 1.6
 - gpg (GnuPG) 2.2.23
 - psql (PostgreSQL) 13.0
 - PostgreSQL 13.0
 - aria2 1.35.0
-- azcopy 10.6.0
+- azcopy 10.6.1
 - zstd 1.4.5
-- bazel 3.6.0
-- bazelisk 1.7.2
-- helm v3.3.4+ga61ce56
+- bazel 3.7.0
+- bazelisk 1.7.4
+- helm v3.4.0+g7090a89
 - mongo v4.4.1
 - mongod v4.4.1
 - 7-Zip 16.02
-- virtualbox 6.1.14r140239
+- virtualbox 6.1.16r140961
 - Vagrant 2.2.10
-- GNU parallel 20200722
+- GNU parallel 20201022
 
 
 ### Tools
-- Fastlane 2.163.0
+- Fastlane 2.165.0
 - Cmake 3.18.4
 - App Center CLI 1.2.2
-- Azure CLI 2.13.0
-- AWS CLI 2.0.56
-- AWS SAM CLI 1.6.2
-- AWS Session Manager CLI 1.1.61.0
+- Azure CLI 2.14.0
+- AWS CLI 2.0.61
+- AWS SAM CLI 1.7.0
+- AWS Session Manager CLI 1.2.7.0
 - Aliyun CLI 3.0.60
 ### Linters
 - yamllint 1.25.0
 ### Browsers
 - Safari 13.1.2 (13609.3.5.1.5)
 - SafariDriver 13.1.2 (13609.3.5.1.5)
-- Google Chrome 86.0.4240.80 
+- Google Chrome 86.0.4240.111 
 - ChromeDriver 86.0.4240.22
-- Microsoft Edge 85.0.564.70 
-- MSEdgeDriver 85.0.564.70
-- Mozilla Firefox 81.0.2
+- Microsoft Edge 86.0.622.58 
+- MSEdgeDriver 86.0.622.58
+- Mozilla Firefox 82.0.2
 - geckodriver 0.27.0
 
 ### Java
 | Version   | Vendor       | Environment Variable |
 | --------- | ------------ | -------------------- |
-| 1.7.0_272 | Zulu         | JAVA_HOME_7_X64      |
-| 1.8.0_265 | AdoptOpenJDK | JAVA_HOME_8_X64      |
-| 11.0.8    | AdoptOpenJDK | JAVA_HOME_11_X64     |
+| 1.7.0_282 | Zulu         | JAVA_HOME_7_X64      |
+| 1.8.0_272 | AdoptOpenJDK | JAVA_HOME_8_X64      |
+| 11.0.9    | AdoptOpenJDK | JAVA_HOME_11_X64     |
 | 12.0.2    | AdoptOpenJDK | JAVA_HOME_12_X64     |
 | 13.0.2    | AdoptOpenJDK | JAVA_HOME_13_X64     |
 | 14.0.2    | AdoptOpenJDK | JAVA_HOME_14_X64     |
@@ -125,7 +126,7 @@
 #### PowerShell Modules
 | Module     | Version |
 | ---------- | ------- |
-| Az         | 4.8.0   |
+| Az         | 5.0.0   |
 | MarkdownPS | 1.9     |
 | Pester     | 5.0.4   |
 
@@ -222,7 +223,7 @@
 
 #### Xcode Support Tools
 - xcpretty 0.3.0
-- xcversion 2.6.6
+- xcversion 2.6.7
 - Nomad CLI 3.1.4
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
