@@ -31,3 +31,9 @@ yarn cache clean
 
 # Clean up temporary directories
 rm -rf ~/utils ~/image-generation
+
+# Erase all indexes and wait until the rebuilding process ends,
+# for now there is no way to get status of indexing process, it takes around 3 minutes to accomplish
+sudo mdutil -E /
+sudo log stream | grep -q -E 'mds.*Released.*BackgroundTask' || true
+echo "Indexing completed"

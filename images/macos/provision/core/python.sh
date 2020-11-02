@@ -10,7 +10,7 @@ brew install python@3.8
 brew install python@3.9
 brew unlink python@3.9
 brew unlink python@3.8
-brew link python@3.8
+brew link python@3.8 --force
 
 echo "Brew Installing Python 2"
 # Create local tap with formula due to python2 formula depreciation
