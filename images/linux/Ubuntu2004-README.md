@@ -5,7 +5,7 @@
 | [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
 ***
 # Ubuntu 20.04.1 LTS
-- Image Version: 20201026.1
+- Image Version: 20201101.1
 
 ## Installed Software
 ### Language and Runtime
@@ -14,7 +14,7 @@
 - Clang 8.0.1, 9.0.1, 10.0.0
 - Erlang 11.1
 - Mono 6.12.0.90
-- Node 12.19.0
+- Node 14.15.0
 - Python 3.8.5
 - Python3 3.8.5
 - PowerShell 7.0.3
@@ -24,8 +24,8 @@
 
 ### Package Management
 - Gem 3.1.2
-- Helm 3.3.4
-- Homebrew 2.5.6
+- Helm 3.4.0
+- Homebrew 2.5.8
 - Miniconda 4.8.3
 - Npm 6.14.8
 - Pip 20.0.2
@@ -50,29 +50,29 @@
 - Bazelisk 1.7.3
 - Buildah 1.16.4
 - CMake 3.17.0
-- CodeQL Action Bundle 2.3.0
+- CodeQL Action Bundle 2.3.1+202010222007
 - curl 7.68.0
 - Docker Compose 1.27.4
 - Docker-Buildx 0.4.2
 - Docker-Moby 19.03.13
-- Git 2.29.0
+- Git 2.29.2
 - Git LFS 2.12.0
 - Git-ftp 1.6.0
-- Google Cloud SDK 315.0.0
+- Google Cloud SDK 316.0.0
 - Haveged 1.9.1
-- Heroku 7.46.2
-- HHVM (HipHop VM) 4.80.0
+- Heroku 7.47.0
+- HHVM (HipHop VM) 4.81.0
 - jq 1.6
 - Kind 0.9.0
 - Kubectl 1.19.3
-- Kustomize 3.8.5
+- Kustomize 3.8.6
 - Leiningen 2.9.4
 - m4 1.4.18
 - Mercurial 5.3.1
-- Minikube 1.14.1
+- Minikube 1.14.2
 - Newman 5.2.0
 - nvm 0.36.0
-- Packer 1.6.4
+- Packer 1.6.5
 - PhantomJS 2.1.1
 - Podman 2.1.1
 - Pulumi 2.12.1
@@ -90,14 +90,14 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.60
-- AWS CLI 2.0.59
+- AWS CLI 2.0.61
 - AWS CLI Session manager plugin 1.2.7.0
-- AWS SAM CLI 1.6.2
-- Azure CLI (azure-cli) 2.13.0
+- AWS SAM CLI 1.7.0
+- Azure CLI (azure-cli) 2.14.0
 - Azure CLI (azure-devops) 0.18.0
-- GitHub CLI 1.1.0
+- GitHub CLI 1.2.0
 - Hub CLI 2.14.2
-- Netlify CLI 2.65.7
+- Netlify CLI 2.67.0
 - oc CLI 4.5.0
 - ORAS CLI 0.8.1
 - Vercel CLI 20.1.2
@@ -111,8 +111,8 @@
 ### PHP
 | Tool     | Version |
 | -------- | ------- |
-| PHP      | 7.4.11  |
-| Composer | 2.0.2   |
+| PHP      | 7.4.12  |
+| Composer | 2.0.4   |
 | PHPUnit  | 7.5.20  |
 
 ### Haskell
@@ -128,8 +128,8 @@
 
 #### Packages
 - Bindgen 0.55.1
-- Cargo audit 0.12.1
-- Cargo outdated 0.9.11
+- Cargo audit 0.13.1
+- Cargo outdated 0.9.13
 - Cargo clippy 0.0.212
 - Cbindgen 0.15.0
 - Rustfmt 1.4.20
@@ -144,7 +144,7 @@
 - 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403
 
 ### Az Module
-- 4.8.0
+- 5.0.0
 
 ### Databases
 - Postgre SQL 13.0
@@ -152,7 +152,7 @@
 - sqlite3 3.31.1
 
 #### MySQL
-- MySQL 8.0.21
+- MySQL 8.0.22
 - MySQL Server (user:root password:root)
 - MS SQL Server Client Tools
 
@@ -179,9 +179,9 @@
 
 #### Node.js
 - 8.17.0
-- 10.22.1
+- 10.23.0
 - 12.19.0
-- 14.14.0
+- 14.15.0
 
 #### Go
 - 1.14.10
