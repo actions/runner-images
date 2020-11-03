@@ -17,7 +17,7 @@ rm -rf $HELPER_SCRIPT_FOLDER
 rm -rf $INSTALLER_SCRIPT_FOLDER
 chmod 755 $IMAGE_FOLDER
 
-# Remove quotes from PATH
+# Remove quotes around PATH
 PATH=${PATH#"\""}
 PATH=${PATH%"\""}
 echo "PATH=$PATH" | sudo tee -a /etc/environment
