@@ -193,8 +193,11 @@ installNuget() {
   echo "Installing nuget $NUGET_VERSION for Mono $MONO_VERSION"
   cd ${MONO_VERSIONS_PATH}/${MONO_VERSION}/lib/mono/nuget
   sudo mv nuget.exe nuget_old.exe
+
+  pushd $TMPMOUNT
   download_with_retries $NUGET_URL "." "nuget.exe"
   sudo chmod a+x nuget.exe
+  popd
 }
 
 createUWPShim() {
