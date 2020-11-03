@@ -17,13 +17,11 @@ rm -rf $HELPER_SCRIPT_FOLDER
 rm -rf $INSTALLER_SCRIPT_FOLDER
 chmod 755 $IMAGE_FOLDER
 
-# Check PATH
-if [[ $PATH == \"*\" ]]
-then
-    echo "ERROR: PATH contains quotes"
-    echo "PATH = $PATH"
-    exit 1
-fi
+# Remove quotes from PATH
+PATH=${PATH#"\""}
+PATH=${PATH%"\""}
+echo "PATH=$PATH" | sudo tee -a /etc/environment
+echo "Updated PATH: $PATH
 
 # Clean yarn and npm cache
 yarn cache clean
