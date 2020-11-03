@@ -21,7 +21,7 @@ chmod 755 $IMAGE_FOLDER
 PATH=${PATH#"\""}
 PATH=${PATH%"\""}
 echo "PATH=$PATH" | sudo tee -a /etc/environment
-echo "Updated PATH: $PATH
+echo "Updated PATH: $PATH"
 
 # Clean yarn and npm cache
 yarn cache clean
