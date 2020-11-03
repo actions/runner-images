@@ -9,7 +9,8 @@ source $HELPER_SCRIPTS/os.sh
 
 # Install Powershell
 if isUbuntu20 ; then
-    snap install powershell --classic --channel=edge/useedge
+    dotnet tool install --tool-path /opt/microsoft/powershell/7 powershell
+    ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
 fi
 
 if isUbuntu16 || isUbuntu18 ; then
