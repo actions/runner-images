@@ -60,14 +60,8 @@ function Install-Msi
 $bizTalkBuildComponentUri = "https://aka.ms/BuildComponentSetup.EN"
 
 # Download
-try {
-    Write-Host "BizTalk Project Build Component download..."
-    $setupZipFile = Start-DownloadWithRetry -Url $bizTalkBuildComponentUri -Name "BuildComponentSetup.EN.zip"
-}
-catch {
-    Write-Error "[!] Failed to download $bizTalkBuildComponentUri"
-    exit 1
-}
+Write-Host "BizTalk Project Build Component download..."
+$setupZipFile = Start-DownloadWithRetry -Url $bizTalkBuildComponentUri -Name "BuildComponentSetup.EN.zip"
 
 # Unzip
 $setupPath = "C:\BizTalkBuildComponent"
