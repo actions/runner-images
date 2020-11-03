@@ -201,7 +201,12 @@
         ]
     },
     "powershellModules": [
-        {"name": "Az"},
+        {
+            "name": "Az",
+            "versions": [
+                "4.8.0"
+            ]
+        },
         {"name": "MarkdownPS"},
         {"name": "Pester"}
     ],
@@ -253,6 +258,12 @@
                 "1.14.*",
                 "1.15.*"
             ]
+        }
+    ],
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint --version"
         }
     ]
 }

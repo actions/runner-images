@@ -24,3 +24,7 @@ then
     echo "PATH = $PATH"
     exit 1
 fi
+
+# Clean yarn and npm cache
+yarn cache clean
+npm cache clean --force
