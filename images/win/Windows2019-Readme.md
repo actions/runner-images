@@ -1,11 +1,14 @@
 | Announcements |
 |-|
+| [Default Node.JS will be switched to 14.x on all platforms ](https://github.com/actions/virtual-environments/issues/1953) |
+| [[macOS] Default Python will be upgraded to 3.9](https://github.com/actions/virtual-environments/issues/1929) |
+| [.NET 5.0 will become a default .NET version on November, 10](https://github.com/actions/virtual-environments/issues/1891) |
 | [[Ubuntu] [Windows] Boost 1.69.0 will be deprecated on November, 10](https://github.com/actions/virtual-environments/issues/1847) |
-| [[In Discussion] Git internal tools will be removed from PATH Windows images and replaced with MSYS2 tools](https://github.com/actions/virtual-environments/issues/1525) |
+| [Switch Unix tools from Git internal tools to MSYS2 tools on Windows images](https://github.com/actions/virtual-environments/issues/1525) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1518
-- Image Version: 20201021.0
+- Image Version: 20201102.0
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux
@@ -13,8 +16,8 @@
 ## Installed Software
 ### Language and Runtime
 - Java 1.7.0_232 
-- Java 1.8.0_265 (default)
-- Java 11.0.8 
+- Java 1.8.0_272 (default)
+- Java 11.0.9 
 - Java 13.0.2 
 - Python 3.7.9
 - Ruby 2.5.8p224
@@ -22,7 +25,7 @@
 - PHP 7.4.11
 - Julia 1.5.2
 - Perl 5.32.0
-- Node 12.19.0
+- Node 14.15.0
 
 ### Package Management
 - Chocolatey 0.10.15
@@ -32,8 +35,8 @@
 - pip 20.2.4 (python 3.7)
 - Miniconda 4.8.3
 - RubyGems 3.1.4
-- Helm 3.3.4
-- Composer 1.10.15
+- Helm 3.4.0
+- Composer 2.0.4
 - NuGet 5.7.0.6726
 
 ### Project Management
@@ -43,17 +46,17 @@
 - sbt 1.4.1
 
 ### Tools
-- azcopy 10.6.0
+- azcopy 10.6.1
 - Bazel 3.7.0
 - Bazelisk 1.7.3
 - CMake 3.18.4
-- CodeQL Action Bundle 2.3.0
+- CodeQL Action Bundle 2.3.1+202010222007
 - R 4.0.3
 - Docker 19.03.12
 - Docker-compose 1.27.4
-- Git 2.29.0
+- Git 2.29.2
 - Git LFS 2.12.0
-- Google Cloud SDK 315.0.0
+- Google Cloud SDK 316.0.0
 - InnoSetup 6.0.5
 - jq 1.6
 - Kubectl 1.19.3
@@ -61,10 +64,10 @@
 - Mingw-w64 8.1.0
 - Mercurial 5.0
 - NSIS v3.06.1
-- Newman 5.2.0
+- Newman 5.2.1
 - OpenSSL 1.1.1
-- Packer 1.6.4
-- Pulumi v2.12.0
+- Packer 1.6.5
+- Pulumi v2.12.1
 - Subversion (SVN) 1.14.0
 - ghc 8.10.2
 - Cabal 3.2.0.0
@@ -76,16 +79,16 @@
 - yamllint 1.25.0
 
 ### CLI Tools
-- Azure CLI 2.13.0
+- Azure CLI 2.14.0
 - Azure DevOps CLI extension 0.18.0
-- Azure Dev Spaces CLI 1.0.20200921.3
-- AWS CLI 2.0.58
-- AWS SAM CLI 1.6.2
+- Azure Dev Spaces CLI 1.0.20201021.1
+- AWS CLI 2.0.61
+- AWS SAM CLI 1.7.0
 - AWS Session Manager CLI 1.2.7.0
 - Alibaba Cloud CLI 3.0.60
 - Cloud Foundry CLI 6.53.0
 - Hub CLI 2.14.2
-- GitHub CLI 1.1.0
+- GitHub CLI 1.2.0
 
 ### Rust Tools
 - Rust 1.47.0
@@ -93,24 +96,37 @@
 #### Packages
 - bindgen 0.55.1
 - cbindgen 0.15.0
-- cargo-audit 0.12.1
-- cargo-outdated v0.9.11
+- cargo-audit 0.13.1
+- cargo-outdated v0.9.13
 
 ### Browsers and webdrivers
-- Google Chrome 86.0.4240.111
+- Google Chrome 86.0.4240.183
 - Chrome Driver 86.0.4240.22
-- Microsoft Edge 86.0.622.48
-- Microsoft Edge Driver 86.0.622.48
-- Mozilla Firefox 82.0
+- Microsoft Edge 86.0.622.58
+- Microsoft Edge Driver 86.0.622.58
+- Mozilla Firefox 82.0.2
 - Gecko Driver 0.27.0
 - IE Driver 3.150.1.0
 
+### Shells
+| Name               | Target                            |
+| ------------------ | --------------------------------- |
+| bash.exe (Default) | C:\msys64\bin\bash.exe            |
+| gitbash.exe        | C:\Program Files\Git\bin\bash.exe |
+| msysbash.exe       | C:\msys64\usr\bin\bash.exe        |
+| sh.exe             | C:\msys64\bin\sh.exe              |
+| winbash.exe        | C:\windows\System32\bash.exe      |
+
 ### MSYS2
 - Pacman 5.2.2
+##### Notes:
 ```
 Location: C:\msys64
 
-Note: MSYS2 is pre-installed on image but not added to PATH.
+1. MSYS2 is pre-installed on image
+2. C:\msys64\mingw64\bin is added to PATH and has lower precedence than C:\Windows\System32
+3. C:\msys64\usr\bin is added to PATH and has lower precedence than C:\Windows\System32
+4. Default bash.exe shell is set to the C:\msys64\usr\bin\bash.exe
 ```
 ### Cached Tools
 #### Boost
@@ -149,9 +165,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 8.17.0  | x64          |
-| 10.22.1 | x64          |
+| 10.23.0 | x64          |
 | 12.19.0 | x64          |
-| 14.14.0 | x64          |
+| 14.15.0 | x64          |
 
 
 #### Python
@@ -171,7 +187,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.4.10  | x64          |
 | 2.5.8 (Default) | x64          |
 | 2.6.6   | x64          |
-| 2.7.1   | x64          |
+| 2.7.2   | x64          |
 
 
 #### PyPy
@@ -211,15 +227,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Visual Studio Enterprise 2019
-| Name                          | Version       | Path                                                           |
-| ----------------------------- | ------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.7.30611.23 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Name                          | Version        | Path                                                           |
+| ----------------------------- | -------------- | -------------------------------------------------------------- |
+| Visual Studio Enterprise 2019 | 16.7.30621.155 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | Version        |
 | ------------------------------------------------------------------------- | -------------- |
-| Component.Android.NDK.R16B                                                | 16.7.30611.6   |
+| Component.Android.NDK.R16B                                                | 16.7.30620.74  |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61  |
 | Component.Android.SDK28                                                   | 16.2.29003.222 |
 | Component.Ant                                                             | 1.9.3.8        |
