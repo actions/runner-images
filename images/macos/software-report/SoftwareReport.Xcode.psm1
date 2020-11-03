@@ -99,7 +99,7 @@ function Build-XcodeTable {
     }
 }
 
-function Get-XcodeDevicesList {
+function Build-XcodeDevicesList {
     param (
         [Parameter(Mandatory)][object] $XcodeInfo,
         [Parameter(Mandatory)][object] $Runtime
@@ -188,7 +188,7 @@ function Build-XcodeSimulatorsTable {
         $xcodeInfo.Values | ForEach-Object {
             $runtimeFound = $_.SimulatorsInfo.runtimes | Where-Object { $_.identifier -eq $runtime.identifier } | Select-Object -First 1
             if ($runtimeFound) {
-                $devicesToAdd = Get-XcodeDevicesList -XcodeInfo $_ -Runtime $runtimeFound
+                $devicesToAdd = Build-XcodeDevicesList -XcodeInfo $_ -Runtime $runtimeFound
                 $runtimeDevices += $devicesToAdd | Select-Object -ExpandProperty name
                 $xcodeList += $_.VersionInfo.Version
             }

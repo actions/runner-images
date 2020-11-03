@@ -8,45 +8,53 @@ $latestXcodeVersion = $xcodeVersions | Select-Object -First 1
 $os = Get-OSVersion
 
 Describe "Xcode" {
-    $defaultXcodeTestCase = @{ DefaultXcode = $defaultXcode }
-    It "Default Xcode is <DefaultXcode>" -TestCases $defaultXcodeTestCase {
-        "xcodebuild -version" | Should -ReturnZeroExitCode
-        (Get-CommandResult "xcodebuild -version").Output | Should -BeLike "Xcode ${DefaultXcode}.*"
-    }
-
-    It "Xcode.app points to default Xcode" -TestCases $defaultXcodeTestCase {
-        $xcodeApp = "/Applications/Xcode.app"
-        $expectedTarget = Get-XcodeRootPath -Version $DefaultXcode
-        $xcodeApp | Should -Exist
-        $expectedTarget | Should -Exist
-        (Get-Item $xcodeApp).Target | Should -Be $expectedTarget
-    }
-
     $testCases = $xcodeVersions | ForEach-Object { @{ XcodeVersion = $_.link; LatestXcodeVersion = $xcodeVersions[0].link; Symlinks = $_.symlinks } }
 
-    It "<XcodeVersion>" -TestCases $testCases {
-        $xcodebuildPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "xcodebuild"
-        "$xcodebuildPath -version" | Should -ReturnZeroExitCode
-    }
-
-    It "Xcode <XcodeVersion> tools are installed" -TestCases $testCases -Skip:($os.IsHighSierra) {
-        $TOOLS_NOT_INSTALLED_EXIT_CODE = 69
-        $xcodebuildPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "xcodebuild"
-        $result = Get-CommandResult "$xcodebuildPath -checkFirstLaunchStatus"
-
-        if ($XcodeVersion -ne $LatestXcodeVersion) {
-            $result.ExitCode | Should -Not -Be $TOOLS_NOT_INSTALLED_EXIT_CODE
-        } else {
-            $result.ExitCode | Should -BeIn (0, $TOOLS_NOT_INSTALLED_EXIT_CODE)
+    Context "Versions" {
+        It "<XcodeVersion>" -TestCases $testCases {
+            $xcodebuildPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "xcodebuild"
+            "$xcodebuildPath -version" | Should -ReturnZeroExitCode
         }
     }
 
-    It "Xcode <XcodeVersion> has correct beta symlink" -TestCases $testCases {
-        $sourcePath = Get-XcodeRootPath -Version $XcodeVersion
-        $Symlinks | ForEach-Object {
-            $targetPath = Get-XcodeRootPath -Version $_
-            $targetPath | Should -Exist
-            (Get-Item $targetPath).Target | Should -Be $sourcePath
+    Context "Default" {
+        $defaultXcodeTestCase = @{ DefaultXcode = $defaultXcode }
+        It "Default Xcode is <DefaultXcode>" -TestCases $defaultXcodeTestCase {
+            "xcodebuild -version" | Should -ReturnZeroExitCode
+            (Get-CommandResult "xcodebuild -version").Output | Should -BeLike "Xcode ${DefaultXcode}.*"
+        }
+
+        It "Xcode.app points to default Xcode" -TestCases $defaultXcodeTestCase {
+            $xcodeApp = "/Applications/Xcode.app"
+            $expectedTarget = Get-XcodeRootPath -Version $DefaultXcode
+            $xcodeApp | Should -Exist
+            $expectedTarget | Should -Exist
+            (Get-Item $xcodeApp).Target | Should -Be $expectedTarget
+        }
+    }
+
+    Context "Additional tools" {
+        It "Xcode <XcodeVersion> tools are installed" -TestCases $testCases -Skip:($os.IsHighSierra) {
+            $TOOLS_NOT_INSTALLED_EXIT_CODE = 69
+            $xcodebuildPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "xcodebuild"
+            $result = Get-CommandResult "$xcodebuildPath -checkFirstLaunchStatus"
+
+            if ($XcodeVersion -ne $LatestXcodeVersion) {
+                $result.ExitCode | Should -Not -Be $TOOLS_NOT_INSTALLED_EXIT_CODE
+            } else {
+                $result.ExitCode | Should -BeIn (0, $TOOLS_NOT_INSTALLED_EXIT_CODE)
+            }
+        }
+    }
+
+    Context "Symlinks" {
+        It "Xcode <XcodeVersion> has correct symlinks" -TestCases $testCases {
+            $sourcePath = Get-XcodeRootPath -Version $XcodeVersion
+            $Symlinks | Where-Object { $_ } | ForEach-Object {
+                $targetPath = Get-XcodeRootPath -Version $_
+                $targetPath | Should -Exist
+                (Get-Item $targetPath).Target | Should -Be $sourcePath
+            }
         }
     }
 
@@ -82,23 +90,24 @@ Describe "XCODE_DEVELOPER_DIR variables" {
 }
 
 Describe "Xcode simulators" {
-    $xcodeVersions | Where-Object { Test-XcodeStableRelease -Version $_ } | ForEach-Object {
-        Switch-Xcode -Version $_
-
+    $xcodeVersions.link | Where-Object { Test-XcodeStableRelease -Version $_ } | ForEach-Object {
         Context "$_" {
-            It "No duplicates in devices" {
+            $testCase = @{ XcodeVersion = $_ }
+            It "No duplicates in devices" -TestCases $testCase {
+                Switch-Xcode -Version $XcodeVersion
                 [array]$devicesList = @(Get-XcodeDevicesList | Where-Object { $_ })
                 Validate-ArrayWithoutDuplicates $devicesList -Because "Found duplicate device simulators"
             }
 
-            It "No duplicates in pairs" {
+            It "No duplicates in pairs" -TestCases $testCase {
+                Switch-Xcode -Version $XcodeVersion
                 [array]$pairsList = @(Get-XcodePairsList | Where-Object { $_ })
                 Validate-ArrayWithoutDuplicates $pairsList -Because "Found duplicate pairs simulators"
             }
         }
     }
 
-    AfterAll {
+    AfterEach {
         $defaultXcode = Get-ToolsetValue "xcode.default"
         Switch-Xcode -Version $defaultXcode
     }
