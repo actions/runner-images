@@ -4,7 +4,7 @@ param (
     $ImageName
 )
 
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Continue"
 
 Import-Module MarkdownPS
 Import-Module "$PSScriptRoot/SoftwareReport.Common.psm1" -DisableNameChecking

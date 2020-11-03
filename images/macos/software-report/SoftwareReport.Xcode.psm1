@@ -48,7 +48,7 @@ function Get-XcodeInfoList {
 
         $xcodeInfo.Add($xcodeRootPath, [PSCustomObject] @{
             VersionInfo = $versionInfo
-            SDKInfo = Get-XcodeSDKList
+            SDKInfo = Get-XcodeSDKList -XcodeRootPath $xcodeRootPath
             SimulatorsInfo = Get-XcodeSimulatorsInfo
         })
     }
