@@ -1,8 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
 
-#Java tests are disabled because Java is not working properly on macOS 11.0 yet.
-$os = Get-OSVersion
 function Get-NativeVersionFormat {
     param($Version)
     if ($Version -in "7", "8") {
@@ -37,10 +35,13 @@ Describe "Java" {
                 "/usr/libexec/java_home -v${Version}" | Should -ReturnZeroExitCode
             }
 
-            It "Version is valid" -TestCases $_ {
-                $javaRootPath = "/Library/Java/JavaVirtualMachines/adoptopenjdk-${Title}.jdk//Contents/Home"
-                $javaBinPath = Join-Path $javaRootPath "/bin/java"
-                Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
+            if ($_.Title -ne "Default") {
+                It "Version is valid" -TestCases $_ {
+                    $javaRootPath = "/Library/Java/JavaVirtualMachines/adoptopenjdk-${Title}.jdk/Contents/Home"
+                    if ($Title -eq "7") { $javaRootPath = "/Library/Java/JavaVirtualMachines/zulu-7.jdk/Contents/Home" }
+                    $javaBinPath = Join-Path $javaRootPath "/bin/java"
+                    Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
+                }
             }
 
             It "<EnvVariable>" -TestCases $_ {
