@@ -3,35 +3,17 @@
 ##  Desc:  Test BizTalk project build component installed.
 ################################################################################
 
-Describe "BizTalk Build" {
-    BeforeAll {
-        $testSlnUri = "https://aka.ms/DevOpsAgentBuildSmokeTest.zip"
-
-        # Download
-        try {
-            Write-Host "BizTalk Project Build Component test solution download..."
-            $testSlnZipFile = Start-DownloadWithRetry -Url $testSlnUri -Name "DevOpsAgentBuildSmokeTest.zip"
-        }
-        catch {
-            Write-Error "[!] Failed to download $testSlnUri"
-            exit 1
-        }
-
-        # Unzip
-        $testSlnPath = "C:\BizTalkBuildComponent\TestSln"
-        if (-not (Test-Path -Path $testSlnPath)) {
-            $null = New-Item -Path $testSlnPath -ItemType Directory -Force
-        }
-
-        Write-Host "Unzip $testSlnZipFile to $testSlnPath..."
-        Extract-7Zip -Path $testSlnZipFile -DestinationPath $testSlnPath
-        Remove-Item $testSlnZipFile
-        $testSlnPath = "$testSlnPath\btsplayer\BtsPlayer.sln"
-
-        $vsInstallRoot = Get-VisualStudioPath
-        $msbuildexePath = "${vsInstallRoot}\MSBuild\Current\Bin\MSBuild.exe"
+Describe "BizTalk Build Component Setup" {
+    It "BizTalk Registry Check" {
+            Test-Path "HKLM:\SOFTWARE\WOW6432Node\Microsoft\BizTalk Server\3.0" | Should -BeTrue
     }
-        It "Msbuild BizTalk Solution" {
-             "`"$msbuildexePath`" $testSlnPath" | Should -ReturnZeroExitCode
+
+    It "BizTalk Folder Check" {
+        "${env:ProgramFiles(x86)}\Microsoft BizTalk Server" | Should -Exist
+    }
+
+    It "BizTalk Build Targets files Check" {
+        "${env:ProgramFiles(x86)}\MSBuild\Microsoft\BizTalk\BizTalkC.targets" | Should -Exist
+        "${env:ProgramFiles(x86)}\MSBuild\Microsoft\BizTalk\BizTalkCommon.targets" | Should -Exist
     }
 }
