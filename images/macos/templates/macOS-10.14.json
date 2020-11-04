@@ -148,11 +148,8 @@
         },
         {
             "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
-            "scripts": [
-                "./provision/core/xcode-tools.sh",
-                "./provision/core/xcode-sims.sh"
-            ],
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
+            "script": "./provision/core/xcode.ps1",
             "environment_vars": [
                 "XCODE_INSTALL_USER={{user `xcode_install_user`}}",
                 "XCODE_INSTALL_PASSWORD={{user `xcode_install_password`}}"
@@ -189,6 +186,7 @@
                 "./provision/core/edge.sh",
                 "./provision/core/firefox.sh",
                 "./provision/core/miniconda.sh",
+                "./provision/core/xcode-sims.sh",
                 "./provision/core/xcode-postbuild.sh",
                 "./provision/core/toolcache.sh",
                 "./provision/core/pypy.sh",

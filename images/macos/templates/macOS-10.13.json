@@ -148,12 +148,8 @@
         },
         {
             "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
-            "scripts": [
-                "./provision/core/xcode-tools.sh",
-                "./provision/core/xcode-sims.sh",
-                "./provision/core/build-xcode-symlinks.sh"
-            ],
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
+            "script": "./provision/core/xcode.ps1",
             "environment_vars": [
                 "XCODE_INSTALL_USER={{user `xcode_install_user`}}",
                 "XCODE_INSTALL_PASSWORD={{user `xcode_install_password`}}"
@@ -187,7 +183,9 @@
                 "./provision/core/firefox.sh",
                 "./provision/core/toolcache-high-sierra.sh",
                 "./provision/core/pypy.sh",
-                "./provision/core/pipx-packages.sh"
+                "./provision/core/pipx-packages.sh",
+                "./provision/core/xcode-sims.sh",
+                "./provision/core/build-xcode-symlinks.sh"
             ]
         },
         {
