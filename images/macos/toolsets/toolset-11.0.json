@@ -2,7 +2,8 @@
     "xcode": {
         "default": "11.7",
         "versions": [
-            "12.2_beta", "11.7"
+            { "link": "12.2", "version": "12.2.0" },
+            { "link": "11.7", "version": "11.7.0", "symlinks": ["11.7_beta"] }
         ]
     },
     "xamarin": {
