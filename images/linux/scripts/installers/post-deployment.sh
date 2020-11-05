@@ -18,7 +18,7 @@ rm -rf $INSTALLER_SCRIPT_FOLDER
 chmod 755 $IMAGE_FOLDER
 
 # Remove quotes around PATH
-ENVPATH=$(grep 'PATH=' /etc/environment | tail -1 | sed -z 's/^.*PATH=*//')
+ENVPATH=$(grep 'PATH=' /etc/environment | head -n 1 | sed -z 's/^PATH=*//')
 ENVPATH=${ENVPATH#"\""}
 ENVPATH=${ENVPATH%"\""}
 echo "PATH=$ENVPATH" | sudo tee -a /etc/environment
