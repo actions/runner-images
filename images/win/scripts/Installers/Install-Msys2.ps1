@@ -95,10 +95,4 @@ if (Test-Path "C:\Program Files\Git\etc\ssh")
   ssh-keyscan -t rsa ssh.dev.azure.com >> "C:\Program Files\Git\etc\ssh\ssh_known_hosts"
 }
 
-# Copy bash wrapper from git
-$wrapperPath = "C:\msys64\bin"
-New-Item -Path $wrapperPath -ItemType Directory -Force | Out-Null
-Copy-Item -Path "$env:ProgramFiles\Git\bin\bash.exe" -Destination $wrapperPath
-Copy-Item -Path "$env:ProgramFiles\Git\bin\sh.exe" -Destination $wrapperPath
-
 Invoke-PesterTests -TestFile "MSYS2"
