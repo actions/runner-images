@@ -249,9 +249,10 @@
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-YAMLLint.ps1",
                 "{{ template_dir }}/scripts/Installers/Update-AndroidSDK.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Pipx.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-PipxPackages.ps1"
             ]
         },
         {
@@ -330,8 +331,7 @@
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
-                "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
-                "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1"
+                "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"

@@ -4,7 +4,7 @@ Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
 Describe "Node.JS" {
     BeforeAll {
         $os = Get-OSVersion
-        $expectedNodeVersion = if ($os.IsHigherThanMojave) { "v12.*" } else { "v8.*" }
+        $expectedNodeVersion = if ($os.IsHigherThanMojave) { "v14.*" } else { "v8.*" }
     }
 
     It "Node.JS is installed" {
@@ -29,7 +29,7 @@ Describe "NVM" {
         $nvmPath = Join-Path $env:HOME ".nvm" "nvm.sh"
         $nvmInitCommand = ". $nvmPath > /dev/null 2>&1 || true"
     }
-    
+
     It "Nvm is installed" {
         $nvmPath | Should -Exist
         "$nvmInitCommand && nvm --version" | Should -ReturnZeroExitCode
@@ -43,7 +43,7 @@ Describe "NVM" {
             param (
                 [string] $NvmVersion
             )
-            
+
             "$nvmInitCommand && nvm ls $($NvmVersion)" | Should -ReturnZeroExitCode
         }
     }
