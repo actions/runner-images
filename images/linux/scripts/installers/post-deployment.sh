@@ -24,10 +24,6 @@ ENVPATH=${ENVPATH%"\""}
 echo "PATH=$ENVPATH" | sudo tee -a /etc/environment
 echo "Updated /etc/environment: $(cat /etc/environment)"
 
-# Fix brew repository permissions to make it clean
-cd $(brew --prefix)/Homebrew
-git reset --hard
-
 # Clean yarn and npm cache
 yarn cache clean
 npm cache clean --force
