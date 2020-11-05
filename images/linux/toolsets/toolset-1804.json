@@ -193,17 +193,17 @@
             "cmd": "sam"
         }
     ],
-    "dotnetCoreSdk": {
-        "latest_dotnet_packages": [
+    "dotnet": {
+        "aptPackages": [
             "dotnet-sdk-3.0",
             "dotnet-sdk-3.1",
             "dotnet-sdk-5.0"
         ],
-        "release_urls": [
-            "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json",
-            "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.0/releases.json",
-            "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json",
-            "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/5.0/releases.json"
+        "versions": [
+            "2.1",
+            "3.0",
+            "3.1",
+            "5.0"
         ]
     }
 }
