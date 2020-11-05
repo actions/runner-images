@@ -19,7 +19,7 @@ chmod +x ./dotnet-install.sh
 ARGS_LIST=()
 echo "Parsing dotnet SDK (except rc and preview versions) from .json..."
 
-DOTNET_VERSIONS=$(get_toolset_value '.dotnet[].versions')
+DOTNET_VERSIONS=$(get_toolset_value '.dotnet.versions[]')
 
 for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
     RELEASE_URL="https://raw.githubusercontent.com/dotnet/core/master/release-notes/${DOTNET_VERSION}/releases.json"
