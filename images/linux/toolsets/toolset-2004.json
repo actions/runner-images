@@ -166,5 +166,16 @@
             "package": "aws-sam-cli",
             "cmd": "sam"
         }
-    ]
+    ],
+    "dotnetCoreSdk": {
+        "latest_dotnet_packages": [
+            "dotnet-sdk-3.1",
+            "dotnet-sdk-5.0"
+        ],
+        "release_urls": [
+            "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json",
+            "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json",
+            "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/5.0/releases.json"
+        ]
+    }
 }

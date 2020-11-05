@@ -9,15 +9,9 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 # Ubuntu 20 doesn't support EOL versions
-if isUbuntu20 ; then
-    LATEST_DOTNET_PACKAGES=("dotnet-sdk-3.1")
-    release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json")
-fi
-
-if isUbuntu16 || isUbuntu18 ; then
-    LATEST_DOTNET_PACKAGES=("dotnet-sdk-3.0" "dotnet-sdk-3.1")
-    release_urls=("https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/2.1/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.0/releases.json" "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/3.1/releases.json")
-fi
+toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
+LATEST_DOTNET_PACKAGES=$(jq -r '.dotnetCoreSdk.latest_dotnet_packages[]' $toolset)
+release_urls=$(jq -r '.dotnetCoreSdk.release_urls[]' $toolset)
 
 mksamples()
 {
