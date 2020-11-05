@@ -71,16 +71,6 @@
             "url" : "https://raw.githubusercontent.com/actions/boost-versions/main/versions-manifest.json",
             "arch": "x86_64",
             "platform" : "win32",
-            "toolset": "msvc14.1",
-            "versions": [
-                "1.69.0"
-            ]
-        },
-        {
-            "name": "Boost",
-            "url" : "https://raw.githubusercontent.com/actions/boost-versions/main/versions-manifest.json",
-            "arch": "x86_64",
-            "platform" : "win32",
             "toolset": "msvc14.2",
             "versions": [
                 "1.72.0"
@@ -290,5 +280,11 @@
             "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019",
             "microsoft/aspnetcore-build:1.0-2.0"
         ]
-    }
+    },
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint --version"
+        }
+    ]
 }
