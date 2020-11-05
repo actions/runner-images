@@ -237,5 +237,11 @@
             "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016",
             "microsoft/aspnetcore-build:1.0-2.0"
         ]
-    }
+    },
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint --version"
+        }
+    ]
 }

@@ -292,3 +292,8 @@ function Get-ShellTarget {
 function Get-YAMLLintVersion {
     yamllint --version
 }
+
+function Get-PipxVersion {
+    $pipxVersion = pipx --version
+    return "Pipx $pipxVersion"
+}
