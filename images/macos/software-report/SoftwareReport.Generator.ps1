@@ -84,6 +84,7 @@ $yarnVersion = Run-Command "yarn --version"
 $nugetVersion = Run-Command "nuget help" | Select-Object -First 1 | Take-Part -Part 2
 $pipVersion = Get-PipVersion -Version 2
 $pip3Version = Get-PipVersion -Version 3
+$pipxVersion = Get-PipxVersion
 $condaVersion = Invoke-Expression "conda --version"
 $rubyGemsVersion = Run-Command "gem --version"
 $composerVersion = Run-Command "composer --version" | Take-Part -Part 2
@@ -97,6 +98,7 @@ if ($os.IsHigherThanMojave) {
 $markdown += New-MDList -Style Unordered -Lines @(
     "Pip ${pipVersion}",
     "Pip ${pip3Version}",
+    $pipxVersion,
     $bundlerVersion,
     "Carthage ${carthageVersion}",
     "CocoaPods ${cocoaPodsVersion}",

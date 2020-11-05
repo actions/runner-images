@@ -45,6 +45,11 @@
         },
         {
             "type": "file",
+            "source": "./provision/assets",
+            "destination": "~/image-generation/"
+        },
+        {
+            "type": "file",
             "source": "./tests",
             "destination": "~/image-generation/"
         },
@@ -181,7 +186,8 @@
                 "./provision/core/edge.sh",
                 "./provision/core/firefox.sh",
                 "./provision/core/toolcache-high-sierra.sh",
-                "./provision/core/pypy.sh"
+                "./provision/core/pypy.sh",
+                "./provision/core/pipx-packages.sh"
             ]
         },
         {

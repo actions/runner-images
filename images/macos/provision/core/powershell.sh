@@ -34,3 +34,6 @@ sudo ln -s /usr/local/bin/pwsh /usr/local/bin/powershell
 
 # fix ~/.azure directory permissions
 sudo chown -R ${USER}: $HOME/.azure
+
+# fix permissions for Az.Account version 2.*
+sudo chown -R ${USER}: $HOME/.local/share/.IdentityService
