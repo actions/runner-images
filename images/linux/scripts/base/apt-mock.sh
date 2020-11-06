@@ -17,12 +17,13 @@ while [ \$i -le 30 ];do
   if [ \$result -eq  0 ];then
     break
   fi
-  grep -q 'It is held by process' \$err
+  grep -q 'Could not get lock' \$err
   held=\$?
   if [ \$held -ne  0 ];then
     break
   fi
-  sleep 1
+  cat \$err >&2
+  sleep 5
   echo "...retry \$i"
   i=\$((i + 1))
 done
