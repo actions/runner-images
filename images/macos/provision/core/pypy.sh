@@ -13,7 +13,7 @@ function InstallPyPy
     PACKAGE_TAR_NAME=$(echo $PACKAGE_URL | awk -F/ '{print $NF}')
     echo "Downloading tar archive '$PACKAGE_TAR_NAME' - '$PACKAGE_URL'"
     PACKAGE_TAR_TEMP_PATH="/tmp/$PACKAGE_TAR_NAME"
-    download_with_retries $PACKAGE_URL "/tmp" "PACKAGE_TAR_NAME"
+    download_with_retries $PACKAGE_URL "/tmp" "$PACKAGE_TAR_NAME"
 
     echo "Expand '$PACKAGE_TAR_NAME' to the /tmp folder"
     tar xf $PACKAGE_TAR_TEMP_PATH -C /tmp
