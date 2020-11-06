@@ -24,6 +24,7 @@ if is_BigSur; then
     DOTNET_CHANNELS=(
     'https://raw.githubusercontent.com/dotnet/core/master/release-notes/2.1/releases.json'
     'https://raw.githubusercontent.com/dotnet/core/master/release-notes/3.1/releases.json'
+    'https://raw.githubusercontent.com/dotnet/core/master/release-notes/5.0/releases.json'
     )
 elif is_Less_Catalina; then
     DOTNET_CHANNELS=(
@@ -34,6 +35,7 @@ else
     'https://raw.githubusercontent.com/dotnet/core/master/release-notes/2.1/releases.json'
     'https://raw.githubusercontent.com/dotnet/core/master/release-notes/3.0/releases.json'
     'https://raw.githubusercontent.com/dotnet/core/master/release-notes/3.1/releases.json'
+    'https://raw.githubusercontent.com/dotnet/core/master/release-notes/5.0/releases.json'
     )
 fi
 
