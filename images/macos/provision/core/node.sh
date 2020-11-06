@@ -27,8 +27,8 @@ if is_Less_Catalina; then
   npm install -g appcenter-cli@^1.0.0
 else
   # Install Node.JS 12 for macOS >= 10.15
-  brew install node@12
-  brew link node@12 --force
+  brew install node@14
+  brew link node@14 --force
 
   for module in ${node_modules[@]}; do
     echo "Install $module"

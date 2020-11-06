@@ -3,7 +3,8 @@
         "default": "12",
         "versions": [
             { "link": "12.2", "version": "12.2.0" },
-            { "link": "12.1", "version": "12.1.1" },
+            { "link": "12.1.1", "version": "12.1.1" },
+            { "link": "12.1", "version": "12.1.0" },
             { "link": "12", "version": "12.0.1" },
             { "link": "11.7", "version": "11.7.0", "symlinks": ["11.7_beta"] },
             { "link": "11.6", "version": "11.6.0", "symlinks": ["11.6_beta"] },
@@ -177,8 +178,6 @@
             "arch": "x64",
             "platform" : "darwin",
             "versions": [
-                "1.11.*",
-                "1.12.*",
                 "1.13.*",
                 "1.14.*",
                 "1.15.*"

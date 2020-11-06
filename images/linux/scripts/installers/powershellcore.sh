@@ -9,8 +9,7 @@ source $HELPER_SCRIPTS/os.sh
 
 # Install Powershell
 if isUbuntu20 ; then
-    dotnet tool install --tool-path /opt/microsoft/powershell/7 powershell
-    ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+    snap install powershell --classic --channel=edge/useedge
 fi
 
 if isUbuntu16 || isUbuntu18 ; then
