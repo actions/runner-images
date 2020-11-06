@@ -109,6 +109,7 @@ function Confirm-XcodeIntegrity {
 
     $XcodeRootPath = Get-XcodeRootPath -Version $Version
     if (Test-XcodeStableRelease -XcodeRootPath $XcodeRootPath) {
+        Write-Host "Validating Xcode integrity for '$XcodeRootPath'..."
         Invoke-ExpressionWithValidation "spctl --assess --raw $XcodeRootPath"
     }
 }
@@ -119,7 +120,9 @@ function Approve-XcodeLicense {
         [string]$Version
     )
 
-    $xcodeBuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
+    $XcodeRootPath = Get-XcodeRootPath -Version $Version
+    Write-Host "Approving Xcode license for '$XcodeRootPath'..."
+    $xcodeBuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
     Invoke-ExpressionWithValidation "sudo $xcodeBuildPath -license accept"
 }
 
