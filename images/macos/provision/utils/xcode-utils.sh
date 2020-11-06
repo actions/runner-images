@@ -55,7 +55,7 @@ runFirstLaunch() {
 }
 
 setXcodeDeveloperDirVariables() {
-    stable_xcode_versions=$(get_xcode_list_from_toolset | tr " " "\n" | grep -v "beta")
+    stable_xcode_versions=$(get_xcode_list_from_toolset | tr " " "\n" | grep -v "beta" | grep -v "Release_Candidate")
     major_versions=($(echo ${stable_xcode_versions[@]} | tr " " "\n" | cut -d '.' -f 1 | uniq))
     for MAJOR_VERSION in "${major_versions[@]}"
     do
