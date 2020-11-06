@@ -4,7 +4,7 @@
 # https://github.com/actions/virtual-environments/issues/1568
 
 # Reset brew repository directory to make the brew clean after chmoding /home
-cd $(brew --prefix)/Homebrew
+cd $(brew --repo)
 git reset --hard
 
 brew_folder="/home/linuxbrew/"
