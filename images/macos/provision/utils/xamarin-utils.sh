@@ -197,6 +197,7 @@ installNuget() {
   pushd $TMPMOUNT
   download_with_retries $NUGET_URL "." "nuget.exe"
   sudo chmod a+x nuget.exe
+  sudo nuget.exe ${MONO_VERSIONS_PATH}/${MONO_VERSION}/lib/mono/nuget
   popd
 }
 
