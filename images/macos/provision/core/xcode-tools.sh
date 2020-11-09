@@ -77,6 +77,7 @@ runFirstLaunch $DEFAULT_XCODE_VERSION
 if is_Catalina; then
     ln -sf /Applications/Xcode_11.2.1.app /Applications/Xcode_11.2.app
     ln -sf /Applications/Xcode_11.3.1.app /Applications/Xcode_11.3.app
+    ln -sf /Applications/Xcode_11.4.1.app /Applications/Xcode_11.4.app
 fi
 
 echo "Setting Xcode ${DEFAULT_XCODE_VERSION} as default"
