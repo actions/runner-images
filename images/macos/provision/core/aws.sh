@@ -4,9 +4,10 @@ source ~/utils/utils.sh
 
 echo Installing aws...
 AWSCLIURL="https://awscli.amazonaws.com/AWSCLIV2.pkg"
-download_with_retries $AWSCLIURL "."
+download_with_retries $AWSCLIURL "/tmp"
+pushd /tmp
 sudo installer -pkg AWSCLIV2.pkg -target /
-rm -rf AWSCLIV2.pkg
+popd
 
 echo Installing aws sam cli...
 brew tap aws/tap
