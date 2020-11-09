@@ -3,8 +3,8 @@
 source ~/utils/utils.sh
 
 echo Installing aws...
-AWSCLIURL="https://awscli.amazonaws.com/AWSCLIV2.pkg"
-download_with_retries $AWSCLIURL "/tmp"
+AWS_CLI_URL="https://awscli.amazonaws.com/AWSCLIV2.pkg"
+download_with_retries $AWS_CLI_URL "/tmp"
 pushd /tmp
 sudo installer -pkg AWSCLIV2.pkg -target /
 popd
