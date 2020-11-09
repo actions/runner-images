@@ -15,6 +15,7 @@ if ([string]::IsNullOrEmpty($env:XCODE_INSTALL_USER) -or [string]::IsNullOrEmpty
 $os = Get-OSVersion
 $xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
+[Array]::Reverse($xcodeVersions)
 
 Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object {
@@ -25,7 +26,8 @@ $xcodeVersions | ForEach-Object {
 
 Write-Host "Configuring Xcode versions..."
 if ($os.IsLessThanCatalina) {
-    Install-XcodeAdditionalPackages -Version $xcodeVersions[0].link
+    $latestXcodeVersion = $xcodeVersions | Select-Object -Last 1 -ExpandProperty link
+    Install-XcodeAdditionalPackages -Version $latestXcodeVersion
 }
 $xcodeVersions | ForEach-Object { Invoke-XcodeRunFirstLaunch -Version $_.link }
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
