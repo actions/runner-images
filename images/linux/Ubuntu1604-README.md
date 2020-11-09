@@ -1,11 +1,13 @@
 | Announcements |
 |-|
+| [Default Node.JS will be switched to 14.x on all platforms ](https://github.com/actions/virtual-environments/issues/1953) |
+| [[macOS] Default Python will be upgraded to 3.9](https://github.com/actions/virtual-environments/issues/1929) |
 | [.NET 5.0 will become a default .NET version on November, 10](https://github.com/actions/virtual-environments/issues/1891) |
 | [[Ubuntu] [Windows] Boost 1.69.0 will be deprecated on November, 10](https://github.com/actions/virtual-environments/issues/1847) |
 | [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
 ***
 # Ubuntu 16.04.7 LTS
-- Image Version: 20201026.1
+- Image Version: 20201102.0
 
 ## Installed Software
 ### Language and Runtime
@@ -14,7 +16,7 @@
 - Clang 6.0.0, 8.0.0, 9.0.1
 - Erlang 11.1
 - Mono 6.12.0.90
-- Node 12.19.0
+- Node 14.15.0
 - Python 2.7.12
 - Python3 3.5.2
 - PowerShell 7.0.3
@@ -24,8 +26,8 @@
 
 ### Package Management
 - Gem 3.1.4
-- Helm 3.3.4
-- Homebrew 2.5.6
+- Helm 3.4.0
+- Homebrew 2.5.8
 - Miniconda 4.8.3
 - Npm 6.14.8
 - Pip 8.1.1
@@ -48,7 +50,7 @@
 - Bazel 3.7.0
 - Bazelisk 1.7.3
 - CMake 3.17.0
-- CodeQL Action Bundle 2.3.0
+- CodeQL Action Bundle 2.3.1+202010222007
 - curl 7.47.0
 - Docker Compose 1.27.4
 - Docker-Buildx 0.4.2
@@ -56,21 +58,21 @@
 - Git 2.29.0
 - Git LFS 2.12.0
 - Git-ftp 1.0.2
-- Google Cloud SDK 315.0.0
+- Google Cloud SDK 316.0.0
 - Haveged 1.9.1
-- Heroku 7.46.2
+- Heroku 7.47.0
 - HHVM (HipHop VM) 4.56.1
 - jq 1.5
 - Kind 0.9.0
 - Kubectl 1.19.3
-- Kustomize 3.8.5
+- Kustomize 3.8.6
 - Leiningen 2.9.4
 - m4 1.4.17
 - Mercurial 4.4.1
-- Minikube 1.14.1
-- Newman 5.2.0
+- Minikube 1.14.2
+- Newman 5.2.1
 - nvm 0.36.0
-- Packer 1.6.4
+- Packer 1.6.5
 - PhantomJS 2.1.1
 - Pulumi 2.12.1
 - R 4.0.3
@@ -86,14 +88,14 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.60
-- AWS CLI 1.18.164
+- AWS CLI 1.18.169
 - AWS CLI Session manager plugin 1.2.7.0
-- AWS SAM CLI 1.6.2
-- Azure CLI (azure-cli) 2.13.0
+- AWS SAM CLI 1.7.0
+- Azure CLI (azure-cli) 2.14.0
 - Azure CLI (azure-devops) 0.18.0
-- GitHub CLI 1.1.0
+- GitHub CLI 1.2.0
 - Hub CLI 2.14.2
-- Netlify CLI 2.65.7
+- Netlify CLI 2.67.2
 - oc CLI 4.5.0
 - ORAS CLI 0.8.1
 - Vercel CLI 20.1.2
@@ -109,8 +111,8 @@
 ### PHP
 | Tool     | Version                                   |
 | -------- | ----------------------------------------- |
-| PHP      | 5.6.40 7.0.33 7.1.33 7.2.34 7.3.23 7.4.11 |
-| Composer | 2.0.2                                     |
+| PHP      | 5.6.40 7.0.33 7.1.33 7.2.34 7.3.24 7.4.12 |
+| Composer | 2.0.4                                     |
 | PHPUnit  | 7.5.20                                    |
 
 ### Haskell
@@ -126,16 +128,16 @@
 
 #### Packages
 - Bindgen 0.55.1
-- Cargo audit 0.12.1
-- Cargo outdated 0.9.11
+- Cargo audit 0.13.1
+- Cargo outdated 0.9.13
 - Cargo clippy 0.0.212
 - Cbindgen 0.15.0
 - Rustfmt 1.4.20
 
 ### Browsers and Drivers
-- Google Chrome 86.0.4240.111
+- Google Chrome 86.0.4240.183
 - ChromeDriver 86.0.4240.22
-- Mozilla Firefox 81.0.2
+- Mozilla Firefox 82.0
 - Geckodriver 0.27.0
 
 ### .NET Core SDK
@@ -150,7 +152,7 @@
 - sqlite3 3.11.0
 
 #### MySQL
-- MySQL 5.7.31
+- MySQL 5.7.32
 - MySQL Server (user:root password:root)
 - MS SQL Server Client Tools
 
@@ -178,9 +180,9 @@
 
 #### Node.js
 - 8.17.0
-- 10.22.1
+- 10.23.0
 - 12.19.0
-- 14.14.0
+- 14.15.0
 
 #### Go
 - 1.11.13

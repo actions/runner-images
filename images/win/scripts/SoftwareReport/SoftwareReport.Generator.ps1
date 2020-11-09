@@ -59,7 +59,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-RubyGemsVersion),
     (Get-HelmVersion),
     (Get-ComposerVersion),
-    (Get-NugetVersion)
+    (Get-NugetVersion),
+    (Get-PipxVersion)
 )
 
 $markdown += New-MDHeader "Project Management" -Level 3
@@ -142,22 +143,14 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SeleniumWebDriverVersion -Driver "iexplorer")
 )
 
-$markdown += New-MDHeader "Shells" -Level 3
-$markdown += Get-ShellTarget
-$markdown += New-MDNewLine
-
 $markdown += New-MDHeader "MSYS2" -Level 3
 $markdown += Get-PacmanVersion
 $markdown += New-MDNewLine
-$markdown += New-MDHeader "Notes:" -Level 5
 $markdown += @'
 ```
 Location: C:\msys64
 
-1. MSYS2 is pre-installed on image
-2. C:\msys64\mingw64\bin is added to PATH and has lower precedence than C:\Windows\System32
-3. C:\msys64\usr\bin is added to PATH and has lower precedence than C:\Windows\System32
-4. Default bash.exe shell is set to the C:\msys64\usr\bin\bash.exe
+Note: MSYS2 is pre-installed on image but not added to PATH.
 ```
 '@
 $markdown += New-MDNewLine
@@ -243,6 +236,7 @@ $markdown += New-MDNewLine
 
 # Docker images section
 $markdown += New-MDHeader "Cached Docker images" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(Get-CachedDockerImages)
+$markdown += Get-CachedDockerImagesTableData | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"
