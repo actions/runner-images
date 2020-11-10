@@ -146,7 +146,7 @@ function Invoke-XcodeRunFirstLaunch {
         [string]$Version
     )
 
-    if ($Version.StartsWith("8.") -or $Version.StartsWith("9.")) {
+    if ($Version.StartsWith("8") -or $Version.StartsWith("9")) {
         return
     }
 
