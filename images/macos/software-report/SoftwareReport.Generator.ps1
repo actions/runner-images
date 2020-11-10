@@ -82,6 +82,7 @@ $homebrewVersion = Run-Command "brew --version" | Select-Object -First 1
 $npmVersion = Run-Command "npm --version"
 $yarnVersion = Run-Command "yarn --version"
 $nugetVersion = Run-Command "nuget help" | Select-Object -First 1 | Take-Part -Part 2
+$pipVersion = Get-PipVersion -Version 2
 $pip3Version = Get-PipVersion -Version 3
 $pipxVersion = Get-PipxVersion
 $condaVersion = Invoke-Expression "conda --version"
@@ -93,12 +94,9 @@ if ($os.IsHigherThanMojave) {
     $vcpkgVersion = Get-VcpkgVersion
     $markdown += New-MDList -Lines $vcpkgVersion -Style Unordered -NoNewLine
 }
-if ($os.IsLessThanBigSur) {
-    $pipVersion = Get-PipVersion -Version 2
-    $markdown += New-MDList -Style Unordered -Lines @("Pip ${pipVersion}") -NoNewLine
-}
 
 $markdown += New-MDList -Style Unordered -Lines @(
+    "Pip ${pipVersion}",
     "Pip ${pip3Version}",
     $pipxVersion,
     $bundlerVersion,
