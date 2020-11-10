@@ -66,7 +66,6 @@ for version in $php_versions; do
 
     if [[ $version == "5.6" || $version == "7.0" || $version == "7.1" ]]; then
         apt-fast install -y --no-install-recommends php$version-mcrypt php$version-recode
-        apt-get remove --purge -yq php$version-dev
     fi
 
     if [[ $version == "7.2" || $version == "7.3" ]]; then
@@ -81,12 +80,11 @@ apt-fast install -y --no-install-recommends \
     php-memcache \
     php-memcached \
     php-mongodb \
+    php-pear \
     php-redis \
     php-xdebug \
     php-yaml \
     php-zmq
-
-apt-get remove --purge -yq php7.2-dev
 
 apt-fast install -y --no-install-recommends snmp
 
@@ -113,13 +111,19 @@ mv phpunit /usr/local/bin/phpunit
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in php $php_versions composer phpunit; do
-    if [[ $cmd =~ ^[0-9] ]]; then
-        cmd="php$cmd"
-    fi
-
+for cmd in composer pear pecl phpunit; do
     if ! command -v $cmd; then
         echo "$cmd was not installed"
+        exit 1
+    fi
+done
+
+for version in $php_versions; do
+    if ! command -v php$version; then
+        echo "php$version was not installed"
+        exit 1
+    elif ! command -v php-config$version || ! command -v phpize$version; then
+        echo "php$version-dev was not installed"
         exit 1
     fi
 done
