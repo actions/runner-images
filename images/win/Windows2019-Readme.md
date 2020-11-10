@@ -1,11 +1,14 @@
 | Announcements |
 |-|
+| [Default Node.JS will be switched to 14.x on all platforms ](https://github.com/actions/virtual-environments/issues/1953) |
+| [[macOS] Default Python will be upgraded to 3.9](https://github.com/actions/virtual-environments/issues/1929) |
+| [.NET 5.0 will become a default .NET version the week of November 16, 2020](https://github.com/actions/virtual-environments/issues/1891) |
 | [[Ubuntu] [Windows] Boost 1.69.0 will be deprecated on November, 10](https://github.com/actions/virtual-environments/issues/1847) |
-| [[In Discussion] Git internal tools will be removed from PATH Windows images and replaced with MSYS2 tools](https://github.com/actions/virtual-environments/issues/1525) |
+| [Switch Unix tools from Git internal tools to MSYS2 tools on Windows images](https://github.com/actions/virtual-environments/issues/1525) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1518
-- Image Version: 20201021.0
+- Image Version: 20201108.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux
@@ -13,16 +16,16 @@
 ## Installed Software
 ### Language and Runtime
 - Java 1.7.0_232 
-- Java 1.8.0_265 (default)
-- Java 11.0.8 
+- Java 1.8.0_272 (default)
+- Java 11.0.9 
 - Java 13.0.2 
 - Python 3.7.9
 - Ruby 2.5.8p224
-- Go 1.14.10
+- Go 1.14.11
 - PHP 7.4.11
 - Julia 1.5.2
 - Perl 5.32.0
-- Node 12.19.0
+- Node 14.15.0
 
 ### Package Management
 - Chocolatey 0.10.15
@@ -32,9 +35,10 @@
 - pip 20.2.4 (python 3.7)
 - Miniconda 4.8.3
 - RubyGems 3.1.4
-- Helm 3.3.4
-- Composer 1.10.15
+- Helm 3.4.0
+- Composer 2.0.6
 - NuGet 5.7.0.6726
+- Pipx 0.15.6.0
 
 ### Project Management
 - Ant 1.10.9
@@ -43,17 +47,17 @@
 - sbt 1.4.1
 
 ### Tools
-- azcopy 10.6.0
+- azcopy 10.7.0
 - Bazel 3.7.0
 - Bazelisk 1.7.3
 - CMake 3.18.4
-- CodeQL Action Bundle 2.3.0
+- CodeQL Action Bundle 2.3.1+202010222007
 - R 4.0.3
 - Docker 19.03.12
 - Docker-compose 1.27.4
-- Git 2.29.0
-- Git LFS 2.12.0
-- Google Cloud SDK 315.0.0
+- Git 2.29.2
+- Git LFS 2.12.1
+- Google Cloud SDK 317.0.0
 - InnoSetup 6.0.5
 - jq 1.6
 - Kubectl 1.19.3
@@ -61,31 +65,31 @@
 - Mingw-w64 8.1.0
 - Mercurial 5.0
 - NSIS v3.06.1
-- Newman 5.2.0
+- Newman 5.2.1
 - OpenSSL 1.1.1
-- Packer 1.6.4
-- Pulumi v2.12.0
+- Packer 1.6.5
+- Pulumi v2.13.2
 - Subversion (SVN) 1.14.0
 - ghc 8.10.2
 - Cabal 3.2.0.0
 - Stack 2.5.1
-- WinAppDriver 1.1.1809.18001
+- WinAppDriver 1.2.2009.02003
 - zstd 1.4.5
 - VSWhere 2.8.4
 - 7zip 19.00
 - yamllint 1.25.0
 
 ### CLI Tools
-- Azure CLI 2.13.0
+- Azure CLI 2.14.1
 - Azure DevOps CLI extension 0.18.0
-- Azure Dev Spaces CLI 1.0.20200921.3
-- AWS CLI 2.0.58
-- AWS SAM CLI 1.6.2
+- Azure Dev Spaces CLI 1.0.20201021.1
+- AWS CLI 2.0.62
+- AWS SAM CLI 1.8.0
 - AWS Session Manager CLI 1.2.7.0
 - Alibaba Cloud CLI 3.0.60
 - Cloud Foundry CLI 6.53.0
 - Hub CLI 2.14.2
-- GitHub CLI 1.1.0
+- GitHub CLI 1.2.0
 
 ### Rust Tools
 - Rust 1.47.0
@@ -93,16 +97,16 @@
 #### Packages
 - bindgen 0.55.1
 - cbindgen 0.15.0
-- cargo-audit 0.12.1
-- cargo-outdated v0.9.11
+- cargo-audit 0.13.1
+- cargo-outdated v0.9.13
 
 ### Browsers and webdrivers
-- Google Chrome 86.0.4240.111
+- Google Chrome 86.0.4240.183
 - Chrome Driver 86.0.4240.22
-- Microsoft Edge 86.0.622.48
-- Microsoft Edge Driver 86.0.622.48
-- Mozilla Firefox 82.0
-- Gecko Driver 0.27.0
+- Microsoft Edge 86.0.622.63
+- Microsoft Edge Driver 86.0.622.63
+- Mozilla Firefox 82.0.2
+- Gecko Driver 0.28.0
 - IE Driver 3.150.1.0
 
 ### MSYS2
@@ -116,7 +120,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Boost
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.69.0  | x64, x86     | BOOST_ROOT_1_69_0    |
 | 1.72.0  | x64, x86     | BOOST_ROOT_1_72_0    |
 ##### Notes:
 ```
@@ -141,17 +144,17 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.11.13 | x64          | GOROOT_1_11_X64      |
 | 1.12.17 | x64          | GOROOT_1_12_X64      |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
-| 1.14.10 (Default) | x64          | GOROOT_1_14_X64      |
-| 1.15.3  | x64          | GOROOT_1_15_X64      |
+| 1.14.11 (Default) | x64          | GOROOT_1_14_X64      |
+| 1.15.4  | x64          | GOROOT_1_15_X64      |
 
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
 | 8.17.0  | x64          |
-| 10.22.1 | x64          |
+| 10.23.0 | x64          |
 | 12.19.0 | x64          |
-| 14.14.0 | x64          |
+| 14.15.0 | x64          |
 
 
 #### Python
@@ -171,7 +174,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.4.10  | x64          |
 | 2.5.8 (Default) | x64          |
 | 2.6.6   | x64          |
-| 2.7.1   | x64          |
+| 2.7.2   | x64          |
 
 
 #### PyPy
@@ -204,22 +207,22 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.11.6.0
+- Azure CosmosDb Emulator 2.11.8.0
 - DacFx 15.0.4897.1
 - SQLPS 1.0
 - MySQL 5.7.21.0
 
 
 ### Visual Studio Enterprise 2019
-| Name                          | Version       | Path                                                           |
-| ----------------------------- | ------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.7.30611.23 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Name                          | Version        | Path                                                           |
+| ----------------------------- | -------------- | -------------------------------------------------------------- |
+| Visual Studio Enterprise 2019 | 16.7.30621.155 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | Version        |
 | ------------------------------------------------------------------------- | -------------- |
-| Component.Android.NDK.R16B                                                | 16.7.30611.6   |
+| Component.Android.NDK.R16B                                                | 16.7.30620.74  |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61  |
 | Component.Android.SDK28                                                   | 16.2.29003.222 |
 | Component.Ant                                                             | 1.9.3.8        |
@@ -510,7 +513,7 @@ All other versions are saved but not installed.
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                                        |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Android SDK Platform-Tools | 30.0.4                                                                                                                                                                                                                                                                         |
+| Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                                                                                         |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                         |
 | Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)           |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0 |
@@ -523,10 +526,12 @@ All other versions are saved but not installed.
 | CMake                      | 3.10.2<br>3.6.4111459                                                                                                                                                                                                                                                          |
 
 ### Cached Docker images
--  mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019
--  mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019
--  mcr.microsoft.com/windows/servercore:ltsc2019
--  mcr.microsoft.com/windows/nanoserver:1809
--  microsoft/aspnetcore-build:1.0-2.0
+| Repository:Tag                                                            | Digest                                                                   | Created    |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:22bf1681055a29388f25d88e412ba8e36687bb8f78104c476c0187d0a116dd55  | 2020-10-13 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:877b131e45b79daf366e3c6fb0e353c23a2d68b38d1a7288b895a17535816b73  | 2020-10-13 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:c09d8edfe68365f519b02827171aacc61ed3451f7863325cee4059b96f41c0ce  | 2020-10-01 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:e50bdbdbd0831ff5507be61074db1cdd595b6852bdc83a653a9e5466e1958394  | 2020-09-30 |
+| microsoft/aspnetcore-build:1.0-2.0                                        | sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c  | 2018-08-15 |
 
 
