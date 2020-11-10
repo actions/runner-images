@@ -67,6 +67,12 @@
         {
             "type": "shell",
             "scripts": [
+                "{{template_dir}}/scripts/base/apt-sources-list-arch.sh"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
                 "{{template_dir}}/scripts/base/repos.sh"
             ],
             "environment_vars": [
