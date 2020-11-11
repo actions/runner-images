@@ -1,8 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
 
-#Java tests are disabled because Java is not working properly on macOS 11.0 yet.
-$os = Get-OSVersion
 function Get-NativeVersionFormat {
     param($Version)
     if ($Version -in "7", "8") {
@@ -11,7 +9,7 @@ function Get-NativeVersionFormat {
     return $Version
 }
 
-Describe "Java" -Skip:($os.IsBigSur) {
+Describe "Java" {
     BeforeAll {
         function Validate-JavaVersion {
             param($JavaCommand, $ExpectedVersion)
@@ -37,18 +35,19 @@ Describe "Java" -Skip:($os.IsBigSur) {
                 "/usr/libexec/java_home -v${Version}" | Should -ReturnZeroExitCode
             }
 
-            It "Version is valid" -TestCases $_ {
-                $javaRootPath = (Get-CommandResult "/usr/libexec/java_home -v${Version}").Output
-                $javaBinPath = Join-Path $javaRootPath "/bin/java"
-                Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
+            if ($_.Title -ne "Default") {
+                It "Version is valid" -TestCases $_ {
+                    $javaRootPath = "/Library/Java/JavaVirtualMachines/adoptopenjdk-${Title}.jdk/Contents/Home"
+                    if ($Title -eq "7") { $javaRootPath = "/Library/Java/JavaVirtualMachines/zulu-7.jdk/Contents/Home" }
+                    $javaBinPath = Join-Path $javaRootPath "/bin/java"
+                    Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
+                }
             }
 
             It "<EnvVariable>" -TestCases $_ {
                 $envVariablePath = Get-EnvironmentVariable $EnvVariable
-                $commandResult = Get-CommandResult "/usr/libexec/java_home -v${Version}"
-                $commandResult.ExitCode | Should -Be 0
-                $commandResult.Output | Should -Not -BeNullOrEmpty
-                $commandResult.Output | Should -Be $envVariablePath
+                $javaBinPath = Join-Path $envVariablePath "/bin/java"
+                Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
             }
 
             if ($_.Title -eq "Default") {

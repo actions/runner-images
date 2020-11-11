@@ -56,7 +56,7 @@ Describe "Xcode" {
     }
 
     Context "XCODE_DEVELOPER_DIR" {
-        $stableXcodeVersions = $XCODE_VERSIONS | ForEach-Object { $_.Split("_")[0] } | Where-Object { Test-XcodeStableRelease -Version $_ }
+        $stableXcodeVersions = $XCODE_VERSIONS | Where-Object { $_ -notlike "*Release*Candidate*" } | ForEach-Object { $_.Split("_")[0] } | Where-Object { Test-XcodeStableRelease -Version $_ }
         $majorXcodeVersions = $stableXcodeVersions | ForEach-Object { $_.Split(".")[0] } | Select-Object -Unique
         $testCases = $majorXcodeVersions | ForEach-Object {
             $majorXcodeVersion = $_
@@ -84,7 +84,7 @@ Describe "Xcode" {
 }
 
 Describe "Xcode simulators" {
-    $XCODE_VERSIONS | Where-Object { Test-XcodeStableRelease -Version $_ } | ForEach-Object {
+    $XCODE_VERSIONS | Where-Object { $_ -notlike "*Release*Candidate*" } | ForEach-Object { $_.Split("_")[0] } | Where-Object { Test-XcodeStableRelease -Version $_ } | ForEach-Object {
         Switch-Xcode -Version $_
 
         Context "$_" {
