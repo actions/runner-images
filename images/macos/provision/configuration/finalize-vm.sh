@@ -30,7 +30,7 @@ npm cache clean --force
 yarn cache clean
 
 # Clean up temporary directories
-rm -rf ~/utils ~/image-generation
+sudo rm -rf ~/utils ~/image-generation /tmp/*
 
 # Erase all indexes and wait until the rebuilding process ends,
 # for now there is no way to get status of indexing process, it takes around 3 minutes to accomplish
