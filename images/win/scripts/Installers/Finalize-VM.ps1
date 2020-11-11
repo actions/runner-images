@@ -34,3 +34,7 @@ Remove-Item $profile.AllUsersAllHosts -Force
 # Clean yarn and npm cache
 yarn cache clean
 npm cache clean --force
+
+# allow msi to write to temp folder
+# see https://github.com/actions/virtual-environments/issues/1704
+icacls "C:\Windows\Temp" /q /c /t /grant Users:F /T

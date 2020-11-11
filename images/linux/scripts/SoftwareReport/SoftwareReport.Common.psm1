@@ -240,6 +240,17 @@ function Get-CachedDockerImages {
     return $images
 }
 
+function Get-CachedDockerImagesTableData {
+    return (sudo docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}").Split("*")     | Where-Object { $_ } |  ForEach-Object {
+      $parts=$_.Split("|")
+      [PSCustomObject] @{
+             "Repository:Tag" = $parts[0]
+              "Digest" = $parts[1]
+              "Created" = $parts[2].split(' ')[0]
+         }
+    }
+}
+
 function Get-AptPackages {
     $toolsetJson = Get-ToolsetContent
     $apt = $toolsetJson.apt

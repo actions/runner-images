@@ -2,7 +2,7 @@
     "xcode": {
         "default": "11.7",
         "versions": [
-            "12.2_beta", "11.7"
+            "12.2_Release_Candidate", "11.7"
         ]
     },
     "xamarin": {
@@ -59,7 +59,12 @@
         "addon-list": []
     },
     "powershellModules": [
-        {"name": "Az"},
+        {
+            "name": "Az",
+            "versions": [
+                "4.8.0"
+            ]
+        },
         {"name": "MarkdownPS"},
         {"name": "Pester"}
     ],

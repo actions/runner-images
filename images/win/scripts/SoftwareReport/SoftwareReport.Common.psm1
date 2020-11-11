@@ -262,6 +262,17 @@ function Get-CachedDockerImages {
     return (docker images --digests --format "* {{.Repository}}:{{.Tag}}").Split("*") | Where-Object { $_ }
 }
 
+function Get-CachedDockerImagesTableData {
+    return (docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}").Split("*")     | Where-Object { $_ } |  ForEach-Object {
+      $parts=$_.Split("|")
+      [PSCustomObject] @{
+             "Repository:Tag" = $parts[0]
+              "Digest" = $parts[1]
+              "Created" = $parts[2].split(' ')[0]
+         }
+    }
+}
+
 function Get-PacmanVersion {
     $msys2BinDir = "C:\msys64\usr\bin"
     $pacmanPath = Join-Path $msys2BinDir "pacman.exe"
@@ -271,13 +282,6 @@ function Get-PacmanVersion {
     return "- Pacman $pacmanVersion"
 }
 
-function Get-ShellTarget {
-    $shells = Get-ChildItem C:\shells -File | Select-Object @{n="Name";e={
-        $name = $_.Name
-        if ($name -eq 'bash.exe') {"$name (Default)"} else {$name}}},@{n="Target";e={@($_.Target)[0]}} | Sort-Object Name
-    $shells | New-MDTable -Columns ([ordered]@{Name = "left"; Target = "left";})
-}
-
 function Get-YAMLLintVersion {
     yamllint --version
 }
@@ -285,4 +289,9 @@ function Get-YAMLLintVersion {
 function Get-BizTalkVersion {
     $bizTalkReg = Get-ItemProperty "HKLM:\SOFTWARE\WOW6432Node\Microsoft\BizTalk Server\3.0"
     return "- $($bizTalkReg.ProductName) $($bizTalkReg.ProductVersion) "
+}
+
+function Get-PipxVersion {
+    $pipxVersion = pipx --version
+    return "Pipx $pipxVersion"
 }

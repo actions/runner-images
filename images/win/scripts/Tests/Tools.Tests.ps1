@@ -214,12 +214,6 @@ Describe "ServiceFabricSDK" {
     }
 }
 
-Describe "yamllint" {
-    It "yamllint" {
-        "yamllint --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Svn" {
     It "svn" {
         "svn --version --quiet" | Should -ReturnZeroExitCode
@@ -267,5 +261,11 @@ Describe "WebPlatformInstaller" {
 Describe "Zstd" {
     It "zstd" {
         "zstd -V" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Pipx" {
+    It "Pipx" {
+        "pipx --version" | Should -ReturnZeroExitCode
     }
 }
