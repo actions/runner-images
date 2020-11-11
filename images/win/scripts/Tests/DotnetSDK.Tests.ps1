@@ -1,6 +1,4 @@
-$releaseIndexUrl = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/releases-index.json"
-$dotnetChannels = (New-Object system.net.webclient).DownloadString($releaseIndexUrl) | ConvertFrom-Json
-$dotnetVersions = $dotnetChannels.'releases-index' | Where-Object { (!$_."support-phase".Equals('preview') -and !$_."support-phase".Equals('eol') -and !$_."support-phase".Equals('rc')) } | Select-Object -ExpandProperty "channel-version"
+$dotnetVersions = (Get-ToolsetContent).dotnet.versions
 
 Describe "Dotnet SDK" {
 
