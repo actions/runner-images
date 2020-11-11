@@ -4,16 +4,18 @@
 ################################################################################
 
 Describe "BizTalk Build Component Setup" {
-    It "BizTalk Registry Check" {
+    if (Test-isWin19){
+        It "BizTalk Registry Check" {
             Test-Path "HKLM:\SOFTWARE\WOW6432Node\Microsoft\BizTalk Server\3.0" | Should -BeTrue
-    }
+        }
 
-    It "BizTalk Folder Check" {
-        "${env:ProgramFiles(x86)}\Microsoft BizTalk Server" | Should -Exist
-    }
+        It "BizTalk Folder Check" {
+            "${env:ProgramFiles(x86)}\Microsoft BizTalk Server" | Should -Exist
+        }
 
-    It "BizTalk Build Targets files Check" {
-        "${env:ProgramFiles(x86)}\MSBuild\Microsoft\BizTalk\BizTalkC.targets" | Should -Exist
-        "${env:ProgramFiles(x86)}\MSBuild\Microsoft\BizTalk\BizTalkCommon.targets" | Should -Exist
+        It "BizTalk Build Targets files Check" {
+            "${env:ProgramFiles(x86)}\MSBuild\Microsoft\BizTalk\BizTalkC.targets" | Should -Exist
+            "${env:ProgramFiles(x86)}\MSBuild\Microsoft\BizTalk\BizTalkCommon.targets" | Should -Exist
+        }
     }
 }
