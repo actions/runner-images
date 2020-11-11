@@ -57,7 +57,7 @@ function Get-AvailableXcodeVersions {
         $semver = $stableSemver = [SemVer]::Parse($partStable)
         if ($partMajor) {
             # Convert 'beta 3' -> 'beta.3', 'Release Candidate' -> 'releasecandidate', 'GM Seed 2' -> 'gmseed.2'
-            $normalizedLabel = $parts[1].toLower() -replace " (\d)", '.$1' -replace " ([a-z])", '$1'
+            $normalizedLabel = $partMajor.toLower() -replace " (\d)", '.$1' -replace " ([a-z])", '$1'
             $semver = [SemVer]::new($stableSemver.Major, $stableSemver.Minor, $stableSemver.Patch, $normalizedLabel)
         }
 
