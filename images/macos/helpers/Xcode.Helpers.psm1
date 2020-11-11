@@ -42,7 +42,6 @@ function Get-XcodeVersionInfo {
     }
 }
 
-
 function Switch-Xcode {
     param (
         [Parameter(ParameterSetName = 'Version')]
