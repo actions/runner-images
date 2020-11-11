@@ -84,7 +84,7 @@ function Invoke-RestMethodWithRetry {
     Invoke-RestMethod $Url -MaximumRetryCount 10 -RetryIntervalSec 30
 }
 
-function Invoke-ExpressionWithValidation {
+function Invoke-ValidateCommand {
     param(
         [Parameter(Mandatory)]
         [string]$Command

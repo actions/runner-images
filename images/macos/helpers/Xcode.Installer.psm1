@@ -30,7 +30,7 @@ function Invoke-DownloadXcodeArchive {
 
     # TO-DO: Consider replacing of xcversion with own implementation
     Write-Host "Downloading Xcode $resolvedVersion"
-    Invoke-ExpressionWithValidation "xcversion install '$resolvedVersion' --no-install"
+    Invoke-ValidateCommand "xcversion install '$resolvedVersion' --no-install"
 }
 
 function Resolve-ExactXcodeVersion {
@@ -85,7 +85,7 @@ function Expand-XcodeXipArchive {
 
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
     Push-Location $DownloadDirectory
-    Invoke-ExpressionWithValidation "xip -x $xcodeXipPath"
+    Invoke-ValidateCommand "xip -x $xcodeXipPath"
     Pop-Location
 
     if (Test-Path "$DownloadDirectory/Xcode-beta.app") {
@@ -110,7 +110,7 @@ function Confirm-XcodeIntegrity {
     $XcodeRootPath = Get-XcodeRootPath -Version $Version
     if (Test-XcodeStableRelease -XcodeRootPath $XcodeRootPath) {
         Write-Host "Validating Xcode integrity for '$XcodeRootPath'..."
-        Invoke-ExpressionWithValidation "spctl --assess --raw $XcodeRootPath"
+        Invoke-ValidateCommand "spctl --assess --raw $XcodeRootPath"
     }
 }
 
@@ -123,7 +123,7 @@ function Approve-XcodeLicense {
     $XcodeRootPath = Get-XcodeRootPath -Version $Version
     Write-Host "Approving Xcode license for '$XcodeRootPath'..."
     $xcodeBuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
-    Invoke-ExpressionWithValidation "sudo $xcodeBuildPath -license accept"
+    Invoke-ValidateCommand "sudo $xcodeBuildPath -license accept"
 }
 
 function Install-XcodeAdditionalPackages {
@@ -136,7 +136,7 @@ function Install-XcodeAdditionalPackages {
     $xcodeRootPath = Get-XcodeRootPath -Version $Version
     $packages = Get-ChildItem -Path "$xcodeRootPath/Contents/Resources/Packages" -Filter "*.pkg" -File
     $packages | ForEach-Object {
-        Invoke-ExpressionWithValidation "sudo installer -pkg $($_.FullName) -target / -allowUntrusted"
+        Invoke-ValidateCommand "sudo installer -pkg $($_.FullName) -target / -allowUntrusted"
     }
 }
 
@@ -152,7 +152,7 @@ function Invoke-XcodeRunFirstLaunch {
 
     Write-Host "Running 'runFirstLaunch' for Xcode $Version..."
     $xcodeRootPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ExpressionWithValidation "sudo $xcodeRootPath -runFirstLaunch"
+    Invoke-ValidateCommand "sudo $xcodeRootPath -runFirstLaunch"
 }
 
 function Build-XcodeSymlinks {

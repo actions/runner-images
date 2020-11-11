@@ -1,8 +1,6 @@
 # The script currently requires 2 external variables to be set: XCODE_INSTALL_USER
 # and XCODE_INSTALL_PASSWORD, in order to access the Apple Developer Center
 
-Write-Host "Script begin"
-
 $ErrorActionPreference = "Stop"
 
 Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
