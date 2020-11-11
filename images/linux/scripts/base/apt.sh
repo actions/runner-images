@@ -17,6 +17,9 @@ echo "APT::Acquire::Retries \"10\";" > /etc/apt/apt.conf.d/80-retries
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
+# Uninstall unattended-upgrade
+apt-get remove unattended-upgrades
+
 # Install aria2 and jq
 apt-get install aria2
 apt-get install jq
