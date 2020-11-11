@@ -6,6 +6,8 @@ brew install gcc@8
 echo "Installing GCC@9 using homebrew..."
 brew install gcc@9
 
+# Known issue with brew that prevent installation of multiple formulas
+# https://github.com/Homebrew/brew/issues/9100
 echo "Applying workaround for the GCC"
 cellarPath=$(brew --cellar gcc@8)
 gccVersion=$(ls $cellarPath | head -n1)
