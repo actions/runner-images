@@ -18,7 +18,7 @@ function Get-MySQLVersion {
     return "MySQL $mySQLVersion"
 }
 
-function Get-sqlcmdVersion {
+function Get-SQLCmdVersion {
     $sqlcmdVersion = sqlcmd -? | Select-String -Pattern "Version" | Take-OutputPart -Part 1
     return "sqlcmd $sqlcmdVersion"
 }
@@ -43,7 +43,7 @@ function Build-MSSQLToolsSection {
 
     $output += New-MDHeader "MS SQL Server Client Tools" -Level 4
     $output += New-MDList -Style Unordered -Lines @(
-        (Get-sqlcmdVersion)
+        (Get-SQLCmdVersion)
     )
 
     return $output
