@@ -55,24 +55,19 @@ function InstallSDKVersion (
 
 function InstallAllValidSdks()
 {
-    $releaseIndexName = "releases-index.json"
-    $releaseIndexUrl = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/${releaseIndexName}"
-    $releasesIndexPath = Start-DownloadWithRetry -Url $releaseIndexUrl -Name $releaseIndexName
-    $dotnetChannels = Get-Content -Path $releasesIndexPath | ConvertFrom-Json
-
     # Consider all channels except preview/eol channels.
     # Sort the channels in ascending order
-    $dotnetChannels = $dotnetChannels.'releases-index' | Where-Object { (!$_."support-phase".Equals('preview') -and !$_."support-phase".Equals('eol') -and !$_."support-phase".Equals('rc')) } | Sort-Object { [Version] $_."channel-version" }
+    $dotnetVersions = (Get-ToolsetContent).dotnet.versions
 
     # Download installation script.
     $installationName = "dotnet-install.ps1"
     $installationUrl = "https://dot.net/v1/${installationName}"
     Start-DownloadWithRetry -Url $installationUrl -Name $installationName -DownloadPath ".\"
 
-    ForEach ($dotnetChannel in $dotnetChannels)
+    ForEach ($dotnetVersion in $dotnetVersions)
     {
-        $channelVersion = $dotnetChannel.'channel-version';
-        $releasesJsonPath = Start-DownloadWithRetry -Url $dotnetChannel.'releases.json' -Name "releases-$channelVersion.json"
+        $releaseJson = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${dotnetVersion}/releases.json"
+        $releasesJsonPath = Start-DownloadWithRetry -Url $releaseJson -Name "releases-${dotnetVersion}.json"
         $currentReleases = Get-Content -Path $releasesJsonPath | ConvertFrom-Json
         # filtering out the preview/rc releases
         $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') } | Sort-Object { [Version] $_.'release-version' }
