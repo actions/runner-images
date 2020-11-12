@@ -37,7 +37,7 @@ function Get-OSVersion {
         IsBigSur = $osVersionMajorMinor -eq "11.0"
         IsLessThanCatalina = [SemVer]$osVersion.Version -lt "10.15"
         IsLessThanBigSur = [SemVer]$osVersion.Version -lt "11.0"
-        IsHigherThanMojave = [SemVer]$osVersion.Version -gt "10.14"
+        IsHigherThanMojave = [SemVer]$osVersion.Version -ge "10.15"
     }
 }
 
