@@ -11,17 +11,22 @@ for tool in apt apt-get apt-fast;do
 
 i=1
 while [ \$i -le 30 ];do
-  fuser /var/lib/dpkg/lock >/dev/null 2>&1
+  err=\$(mktemp)
+  $real_tool "\$@" 2>\$err
   result=\$?
   if [ \$result -eq  0 ];then
-    sleep 1
-    echo "/var/lib/dpkg/locked... retry \$i"
-    i=\$((i + 1))
-  else
     break
   fi
+  grep -q 'Could not get lock' \$err
+  held=\$?
+  if [ \$held -ne  0 ];then
+    break
+  fi
+  cat \$err >&2
+  sleep 5
+  echo "...retry \$i"
+  i=\$((i + 1))
 done
-$real_tool "\$@"
 EOT
   chmod +x $prefix/$tool
 done
