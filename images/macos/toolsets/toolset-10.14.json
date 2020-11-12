@@ -265,5 +265,10 @@
             "package": "yamllint",
             "cmd": "yamllint --version"
         }
-    ]
+    ],
+    "dotnet": {
+        "versions": [
+            "2.1"
+        ]
+    }
 }
