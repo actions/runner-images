@@ -73,7 +73,6 @@ for tarball in *.tar.gz; do
     rm "$tarball") &
 done
 wait
-rm urls
 
 # Smoke test each SDK
 for sdk in $sortedSdks; do
