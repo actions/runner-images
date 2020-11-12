@@ -196,9 +196,8 @@
 - 1.15.3
 
 #### Boost
-| Version | Architecture | Environment Variable |
-| ------- | ------------ | -------------------- |
-| 1.72.0  | x64, x86     | BOOST_ROOT_1_72_0    |
+- 1.69.0
+- 1.72.0
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                                                                          |
