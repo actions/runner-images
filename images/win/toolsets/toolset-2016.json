@@ -1,6 +1,18 @@
 {
     "toolcache": [
         {
+            "name": "Ruby",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7"
+            ],
+            "default": "2.5"
+        },
+        {
             "name": "Python",
             "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
             "arch": "x64",
