@@ -33,7 +33,21 @@ function Get-ToolcacheBoostVersions {
     if (-not (Test-Path $toolcachePath)) {
         return @()
     }
-    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+
+    $ToolInstances = Get-CachedToolInstances -Name $Name
+    foreach ($Instance in $ToolInstances)
+    {
+        $VersionEnvVar = $Instance.Version.replace(".", "_")
+        $Instance."Environment Variable" = "BOOST_ROOT_${VersionEnvVar}"
+    }
+
+    $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
+        Version = "left";
+        Architecture = "left";
+        "Environment Variable" = "left"
+    })
+
+    return Build-MarkdownElement -Head $Name -Content $Content
 }
 
 function Build-CachedToolsSection {
