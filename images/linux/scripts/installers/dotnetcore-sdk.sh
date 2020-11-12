@@ -46,33 +46,33 @@ done
 sdks=()
 for version in ${versions[@]}; do
     release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
-    echo "${release_url}"
-    releases=$(curl "${release_url}")
+    download_with_retries "${release_url}" "." "${version}.json"
+    releases=$(cat "./${version}.json")
     sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdk.version'))
     sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdks[]?' | jq '.version'))
+    rm ./${version}.json
 done
 
 sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
 
+# Download additional SDKs in parallel
 for sdk in $sortedSdks; do
-    url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$sdk/dotnet-sdk-$sdk-linux-x64.tar.gz"
-    echo "$url" >> urls
-    echo "Adding $url to list to download later"
+    (url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$sdk/dotnet-sdk-$sdk-linux-x64.tar.gz"
+    download_with_retries $url) &
 done
+wait
 
-# Download additional SDKs
-echo "Downloading release tarballs..."
-cat urls | xargs -n 1 -P 16 wget -q
 for tarball in *.tar.gz; do
-    dest="./tmp-$(basename -s .tar.gz $tarball)"
+    (dest="./tmp-$(basename -s .tar.gz $tarball)"
     echo "Extracting $tarball to $dest"
     mkdir "$dest" && tar -C "$dest" -xzf "$tarball"
     rsync -qav "$dest/shared/" /usr/share/dotnet/shared/
     rsync -qav "$dest/host/" /usr/share/dotnet/host/
     rsync -qav "$dest/sdk/" /usr/share/dotnet/sdk/
     rm -rf "$dest"
-    rm "$tarball"
+    rm "$tarball") &
 done
+wait
 rm urls
 
 # Smoke test each SDK
