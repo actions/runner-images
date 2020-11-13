@@ -61,7 +61,7 @@ function Select-DataStore {
     $buildDatastore = $allDatastores | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } | Where-Object {
         $vmOnDatastore = @((Get-ChildItem -Path $_.DatastoreBrowserPath).Name -notmatch "^\.").Count
         $vmOnDatastore -lt $vmCount
-    } | Select-Object -ExpandProperty Name -First 1
+    } | Get-Random | Select-Object -ExpandProperty Name
 
     $tag = Get-Tag -Category $TagCategory -Name $VMName -ErrorAction Ignore
     if (-not $tag)
