@@ -193,7 +193,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
+		"_JAVA_OPTIONS=\"-Xmx512m -Xms256m\""
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Nuget.ps1",
