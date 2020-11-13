@@ -60,7 +60,7 @@ function Install-Ruby
 
         if (-not (Test-Path $rubyToolcachePath))
         {
-            Write-Host "Create Ruby toolcache folder"
+            Write-Host "Creating Ruby toolcache folder"
             New-Item -ItemType Directory -Path $rubyToolcachePath | Out-Null
         }
 
@@ -69,6 +69,9 @@ function Install-Ruby
 
         Write-Host "Moving Ruby '${rubyVersion}' files to '${rubyArchPath}'"
         Move-Item -Path $tempFolder -Destination $rubyArchPath | Out-Null
+
+        Write-Host "Removing Ruby '${rubyVersion}' documentation '${rubyArchPath}\share\doc' folder"
+        Remove-Item -Path "${rubyArchPath}\share\doc" -Force -Recurse -ErrorAction Ignore
 
         Write-Host "Installing Bundler"
         cmd.exe /c "$rubyArchPath\bin\gem.cmd install bundler -v ""~> 2"" --no-document"

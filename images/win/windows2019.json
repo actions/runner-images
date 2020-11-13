@@ -216,15 +216,6 @@
             "restart_timeout": "10m"
         },
         {
-            "type": "powershell",
-            "environment_vars": [
-                "ROOT_FOLDER={{user `root_folder`}}"
-            ],
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-Ruby.ps1"
-            ]
-        },
-        {
             "type": "windows-shell",
             "inline": [
                 "wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"
@@ -238,6 +229,7 @@
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-Ruby.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
