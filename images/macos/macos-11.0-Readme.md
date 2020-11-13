@@ -2,14 +2,14 @@
 |-|
 | [Default Node.JS will be switched to 14.x on all platforms ](https://github.com/actions/virtual-environments/issues/1953) |
 | [[macOS] Default Python will be upgraded to 3.9](https://github.com/actions/virtual-environments/issues/1929) |
-| [.NET 5.0 will become a default .NET version on November, 10](https://github.com/actions/virtual-environments/issues/1891) |
+| [.NET 5.0 will become a default .NET version the week of November 16, 2020](https://github.com/actions/virtual-environments/issues/1891) |
 | [macOS 11.0 (Big Sur) is available as a preview 🚀](https://github.com/actions/virtual-environments/issues/1814) |
 | [Xcode 11.0, 11.1, 11.4.0 will be deprecated on November, 5](https://github.com/actions/virtual-environments/issues/1688) |
 ***
 # macOS 11.0 info
 - System Version: macOS 11.0 (20A5395g)
 - Kernel Version: Darwin 20.1.0
-- Image Version: 20201102.1
+- Image Version: 20201107.1
 
 ## Installed Software
 ### Language and Runtime
@@ -18,8 +18,8 @@
 - gcc-9 (Homebrew GCC 9.3.0) 9.3.0 - available by `gcc-9` alias
 - GNU Fortran (Homebrew GCC 8.4.0_1) 8.4.0  - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0) 9.3.0  - available by `gfortran-9` alias
-- Node.js v12.19.0
-- NVM 0.36.0
+- Node.js v14.15.0
+- NVM 0.37.0
 - NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.0 v12.19.0 v13.14.0 v14.15.0
 - Python 2.7.17
 - Python 3.8.6
@@ -42,7 +42,7 @@
 - NuGet 5.6.0.6489
 - Miniconda 4.8.3
 - RubyGems 3.1.4
-- Composer 2.0.4
+- Composer 2.0.6
 
 ### Project Management
 - Apache Maven 3.6.3
@@ -52,7 +52,7 @@
 ### Utilities
 - Curl 7.73.0
 - Git: 2.29.2
-- Git LFS: 2.12.0
+- Git LFS: 2.12.1
 - GitHub CLI: 1.2.0
 - Hub CLI: 2.14.2
 - GNU Wget 1.20.3
@@ -64,7 +64,7 @@
 - psql (PostgreSQL) 13.0
 - PostgreSQL 13.0
 - aria2 1.35.0
-- azcopy 10.6.1
+- azcopy 10.7.0
 - zstd 1.4.5
 - bazel 3.7.0
 - bazelisk 1.7.4
@@ -75,12 +75,12 @@
 - Newman 5.2.1
 
 ### Tools
-- Fastlane 2.165.0
+- Fastlane 2.166.0
 - Cmake 3.18.4
 - App Center CLI 2.7.3
-- Azure CLI 2.14.0
-- AWS CLI 2.0.61
-- AWS SAM CLI 1.7.0
+- Azure CLI 2.14.1
+- AWS CLI 2.0.62
+- AWS SAM CLI 1.8.0
 - AWS Session Manager CLI 1.2.7.0
 - Aliyun CLI 3.0.60
 - GHCup v0.1.11
@@ -97,8 +97,8 @@
 - SafariDriver 14.0.1 (16610.2.8.1.1)
 - Google Chrome 86.0.4240.183 
 - ChromeDriver 86.0.4240.22
-- Microsoft Edge 86.0.622.58 
-- MSEdgeDriver 86.0.622.58
+- Microsoft Edge 86.0.622.63 
+- MSEdgeDriver 86.0.622.63
 - Mozilla Firefox 82.0.2
 - geckodriver 0.27.0
 
@@ -125,7 +125,7 @@
 - 14.15.0
 
 #### Go
-- 1.15.3
+- 1.15.4
 
 ### Rust Tools
 - Rust 1.47.0
@@ -171,7 +171,7 @@
 ### Xcode
 | Version        | Build    | Path                         |
 | -------------- | -------- | ---------------------------- |
-| 12.2 (beta)    | 12B5035g | /Applications/Xcode_12.2.app |
+| 12.2 (beta)    | 12B5044c | /Applications/Xcode_12.2.app |
 | 11.7 (default) | 11E801a  | /Applications/Xcode_11.7.app |
 
 #### Xcode Support Tools
@@ -214,7 +214,7 @@
 | Android SDK Tools          | 26.1.1                                                                                                            |
 | Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                              |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platform-Tools | 30.0.4                                                                                                            |
+| Android SDK Platform-Tools | 30.0.5                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                            |
 | Google Play services       | 49                                                                                                                |
 | Google Repository          | 58                                                                                                                |

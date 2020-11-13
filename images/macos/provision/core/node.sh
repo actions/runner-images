@@ -11,7 +11,7 @@ if is_Less_Catalina; then
   echo Installing the latest Node JS 8...
   TMP_FILE=/tmp/node-v8.17.0.pkg
   NODEURL=https://nodejs.org/dist/latest-v8.x/node-v8.17.0.pkg
-  curl "${NODEURL}" -o "${TMP_FILE}"
+  download_with_retries $NODEURL "/tmp"
   sudo installer -pkg "${TMP_FILE}" -target /
   rm -rf "${TMP_FILE}"
   sudo chown -R $USER "/usr/local/lib/node_modules"
