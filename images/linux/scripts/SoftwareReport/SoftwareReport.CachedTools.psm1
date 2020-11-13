@@ -34,17 +34,20 @@ function Get-ToolcacheBoostVersions {
         return @()
     }
 
-    $ToolInstances = Get-CachedToolInstances -Name $Name
-    foreach ($Instance in $ToolInstances)
-    {
-        $VersionEnvVar = $Instance.Version.replace(".", "_")
-        $Instance."Environment Variable" = "BOOST_ROOT_${VersionEnvVar}"
-    }
+    $boostVersions = Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+    $toolInstances = $boostVersions | ForEach-Object {
+        $VersionEnvVar = $_.replace(".", "_")
+        return @{
+            Version = $_
+            Architecture = "x64"
+            "Environment Variable" = "BOOST_ROOT_${VersionEnvVar}"
 
+        }
+    }
     $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
-        Version = "left";
-        Architecture = "left";
-        "Environment Variable" = "left"
+    Version = "left";
+    Architecture = "left";
+    "Environment Variable" = "left"
     })
 
     return Build-MarkdownElement -Head $Name -Content $Content
