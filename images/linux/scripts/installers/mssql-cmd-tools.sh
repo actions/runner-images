@@ -5,6 +5,7 @@
 ################################################################################
 
 
+apt-get update
 apt-get install -y mssql-tools unixodbc-dev
 apt-get -f install
 ln -s /opt/mssql-tools/bin/* /usr/local/bin/
