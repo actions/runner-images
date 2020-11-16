@@ -29,13 +29,13 @@ function Get-RubyVersions
     }
     catch
     {
-        Write-Host "Enable to send request to the '$uri'. Error: '$_'"
+        Write-Host "Unable to send request to the '$uri'. Error: '$_'"
         exit 1
     }
 }
 
 # Most of this logic is from
-# https://github.com/MSP-Greg/actions-ruby/blob/master/lib/main.js
+# https://github.com/ruby/setup-ruby/blob/master/windows.js
 function Install-Ruby
 {
     param(
@@ -73,15 +73,6 @@ function Install-Ruby
         Write-Host "Removing Ruby '${rubyVersion}' documentation '${rubyArchPath}\share\doc' folder"
         Remove-Item -Path "${rubyArchPath}\share\doc" -Force -Recurse -ErrorAction Ignore
 
-        Write-Host "Installing Bundler"
-        cmd.exe /c "$rubyArchPath\bin\gem.cmd install bundler -v ""~> 2"" --no-document"
-
-        if ($LASTEXITCODE -ne 0)
-        {
-            Throw "Error happened during Ruby installation"
-            exit 1
-        }
-
         Write-Host "Creating complete file"
         New-Item -ItemType File -Path $rubyVersionPath -Name "$Architecture.complete" | Out-Null
     }
@@ -105,10 +96,6 @@ function Set-DefaultRubyVersion
 
     Write-Host "Use Ruby ${Version} as a system Ruby"
     Add-MachinePathItem -PathItem $rubyDir | Out-Null
-    $env:Path = Get-MachinePath
-
-    # Update ruby gem to latest version
-    Invoke-Expression "gem update --system --no-document"
 }
 
 # Define AGENT_TOOLSDIRECTORY environment variable
