@@ -21,8 +21,7 @@
         "image_version": "dev",
         "image_os": "ubuntu18",
         "github_feed_token": null,
-        "run_validation_diskspace": "false",
-        "announcements": "{{env `ANNOUNCEMENTS`}}"
+        "run_validation_diskspace": "false"
     },
     "sensitive-variables": [
         "client_secret",
@@ -316,8 +315,7 @@
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
-                "ANNOUNCEMENTS={{user `announcements`}}"
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ]
         },
         {
