@@ -11,12 +11,7 @@ install_clt() {
     # This temporary file prompts the 'softwareupdate' utility to list the Command Line Tools
     clt_placeholder="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
     sudo touch $clt_placeholder
-    # The only working tools for Big Sur are 12.2
-    if is_Less_BigSur; then
-        cltPattern="Command Line Tools"
-    else
-        cltPattern="Command Line Tools.*Xcode-12.2"
-    fi
+    cltPattern="Command Line Tools"
 
     clt_label_command="/usr/sbin/softwareupdate -l |
                         grep -B 1 -E '${cltPattern}' |
