@@ -20,6 +20,9 @@ echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 # Uninstall unattended-upgrades
 apt-get remove unattended-upgrades
 
+#Update the cache
+apt-get update
+
 # Install aria2 and jq
 apt-get install aria2
 apt-get install jq
