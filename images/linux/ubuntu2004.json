@@ -121,11 +121,6 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolsets/toolcache-2004.json",
-            "destination": "{{user `installer_script_folder`}}/toolcache.json"
-        },
-        {
-            "type": "file",
             "source": "{{template_dir}}/toolsets/toolset-2004.json",
             "destination": "{{user `installer_script_folder`}}/toolset.json"
         },
@@ -232,10 +227,8 @@
                 "{{template_dir}}/scripts/installers/netlify.sh",
                 "{{template_dir}}/scripts/installers/android.sh",
                 "{{template_dir}}/scripts/installers/azpowershell.sh",
-                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
                 "{{template_dir}}/scripts/installers/pypy.sh",
-                "{{template_dir}}/scripts/installers/python.sh",
-                "{{template_dir}}/scripts/installers/test-toolcache.sh"
+                "{{template_dir}}/scripts/installers/python.sh"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
