@@ -215,6 +215,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
 )
 
 $markdown += Build-MySQLSection
+$markdown += Build-MSSQLToolsSection
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection
