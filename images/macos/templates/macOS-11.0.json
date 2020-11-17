@@ -89,11 +89,6 @@
             "destination": "~/image-generation/toolset.json"
         },
         {
-            "type": "file",
-            "source": "./toolsets/toolcache-11.0.json",
-            "destination": "~/image-generation/toolcache.json"
-        },
-        {
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
             "scripts": [
@@ -186,7 +181,6 @@
                 "./provision/core/chrome.sh",
                 "./provision/core/edge.sh",
                 "./provision/core/firefox.sh",
-                "./provision/core/toolcache.sh",
                 "./provision/core/pipx-packages.sh"
             ],
             "environment_vars": [
