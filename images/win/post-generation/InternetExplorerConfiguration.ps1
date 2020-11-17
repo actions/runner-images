@@ -8,7 +8,7 @@ $UserKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8
 Set-ItemProperty -Path $AdminKey -Name "IsInstalled" -Value 0 -Force
 Set-ItemProperty -Path $UserKey -Name "IsInstalled" -Value 0 -Force
 # restart Explorer process
-$ieProcess = Get-Process -Name Explorer -ErrorAction SilentlyContinue
+$ieProcess = Get-Process -Name Explorer -ErrorAction Ignore
 if ($ieProcess) {
     Stop-Process -Name Explorer -Force -ErrorAction Ignore
 }
