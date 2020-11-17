@@ -55,7 +55,7 @@
 - Git: 2.29.2
 - Git LFS: 2.12.1
 - GitHub CLI: 1.2.1
-- Hub CLI: refs/heads/master
+- Hub CLI: 2.14.2
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.14.0
 - Packer 1.6.5
