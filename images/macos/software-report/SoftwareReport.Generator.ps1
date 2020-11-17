@@ -34,14 +34,6 @@ $juliaVersion = Run-Command "julia --version" | Take-Part -Part 0,2
 
 $markdown = ""
 
-# Get announcements
-if ($env:ANNOUNCEMENTS) {
-    $markdown += $env:ANNOUNCEMENTS
-    $markdown += New-MDNewLine
-    $markdown += "***"
-    $markdown += New-MDNewLine
-}
-
 # OS info
 $markdown += Build-OSInfoSection
 $markdown += New-MDList -Style Unordered -Lines ("Image Version: {0}" -f $ImageName.Split('_')[1])
