@@ -26,8 +26,7 @@
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "win19",
-        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
-        "announcements": "{{env `ANNOUNCEMENTS`}}"
+        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}"
     },
     "sensitive-variables": [
         "install_password",
@@ -360,8 +359,7 @@
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ],
             "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
-                "ANNOUNCEMENTS={{user `announcements`}}"
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ]
         },
         {

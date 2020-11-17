@@ -21,13 +21,6 @@ Restore-UserOwner
 
 $markdown = ""
 
-if ($env:ANNOUNCEMENTS) {
-    $markdown += $env:ANNOUNCEMENTS
-    $markdown += New-MDNewLine
-    $markdown += "***"
-    $markdown += New-MDNewLine
-}
-
 $OSName = Get-OSName
 $markdown += New-MDHeader "$OSName" -Level 1
 
@@ -215,6 +208,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
 )
 
 $markdown += Build-MySQLSection
+$markdown += Build-MSSQLToolsSection
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection
