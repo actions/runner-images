@@ -20,13 +20,6 @@ echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 # Uninstall unattended-upgrades
 apt-get remove unattended-upgrades
 
-#Update the cache
-apt-get update
-
-# Install aria2 and jq
-apt-get install aria2
-apt-get install jq
-
 # Use apt-fast for parallel downloads
 add-apt-repository -y ppa:apt-fast/stable
 
@@ -38,4 +31,5 @@ echo 'APT sources limited to the actual architectures'
 cat /etc/apt/sources.list
 
 apt-get update
-apt-get install apt-fast
+# Install aria2 , jq and apt-fast
+apt-get install aria2 jq apt-fast
