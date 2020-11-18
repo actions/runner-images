@@ -31,11 +31,6 @@ apt-get install -y mysql-server
 #Install MySQL Dev tools
 apt install libmysqlclient-dev -y
 
-# Install MS SQL Server client tools (https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-2017)
-apt-get install -y mssql-tools unixodbc-dev
-apt-get -f install
-ln -s /opt/mssql-tools/bin/* /usr/local/bin/
-
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 if ! command -v mysql; then

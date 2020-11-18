@@ -14,8 +14,7 @@
         "github_feed_token": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
-        "image_os": "macos1015",
-        "announcements": "{{env `ANNOUNCEMENTS`}}"
+        "image_os": "macos1015"
     },
     "builders": [
         {
@@ -214,9 +213,6 @@
             "inline": [
                 "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName {{user `build_id`}}",
                 "pwsh -File \"$HOME/image-generation/tests/Run-Tests.ps1\" -WorkingDirectory \"$HOME/image-generation/tests\" -OutputFile \"$HOME/image-generation/output/tests/test-results.xml\""
-            ],
-            "environment_vars": [
-                "ANNOUNCEMENTS={{user `announcements`}}"
             ]
         },
         {

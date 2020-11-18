@@ -25,8 +25,7 @@
         "install_password": null,
         "capture_name_prefix": "packer",
         "image_version": "dev",
-        "image_os": "win16",
-        "announcements": "{{env `ANNOUNCEMENTS`}}"
+        "image_os": "win16"
     },
     "sensitive-variables": [
         "install_password",
@@ -277,6 +276,9 @@
         },
         {
             "type": "powershell",
+            "environment_vars": [
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-VSWhere.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WinAppDriver.ps1",
@@ -351,8 +353,7 @@
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ],
             "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
-                "ANNOUNCEMENTS={{user `announcements`}}"
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ]
         },
         {

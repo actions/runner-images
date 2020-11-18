@@ -42,6 +42,14 @@ jobs:
                         -GitHubFeedToken $(GITHUB_TOKEN)
 
   - task: PowerShell@2
+    displayName: 'Output Readme file content'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $docsPath = Get-ChildItem -Path "images" -Include ${{ parameters.image_readme_name }} -Recurse -Depth 1 | Select-Object -First 1
+        Get-Content -Path $docsPath
+
+  - task: PowerShell@2
     displayName: 'Create release for VM deployment'
     inputs:
       targetType: filePath
@@ -52,14 +60,6 @@ jobs:
                         -Project $(RELEASE_TARGET_PROJECT) `
                         -ImageName ${{ parameters.image_type }} `
                         -AccessToken $(RELEASE_TARGET_TOKEN)
-
-  - task: PowerShell@2
-    displayName: 'Output Readme file content'
-    inputs:
-      targetType: 'inline'
-      script: |
-        $docsPath = Get-ChildItem -Path "images" -Include ${{ parameters.image_readme_name }} -Recurse -Depth 1 | Select-Object -First 1
-        Get-Content -Path $docsPath
 
   - task: PowerShell@2
     displayName: 'Clean up resources'
