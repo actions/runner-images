@@ -61,7 +61,7 @@ extract_dotnet_sdk() {
     echo "Extracting $ARCHIVE_NAME to $dest"; \
     mkdir "$dest" && tar -C "$dest" -xzf "$ARCHIVE_NAME"; \
     rsync -qav "$dest/shared/" /usr/share/dotnet/shared/; \
-    rsync -qav "$dest/host/frx" /usr/share/dotnet/host/frx; \
+    rsync -qav "$dest/host/" /usr/share/dotnet/host/; \
     rsync -qav "$dest/sdk/" /usr/share/dotnet/sdk/; \
     rm -rf "$dest" "$ARCHIVE_NAME"
 }
