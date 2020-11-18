@@ -8,7 +8,6 @@ brew install ruby
 echo "Install Ruby..."
 PACKAGE_TAR_NAMES=$(curl -s "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
 TOOLSET_VERSIONS=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .versions[]')
-TOOLSET_PLATFORM=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .platform')
 RUBY_PATH="$AGENT_TOOLSDIRECTORY/Ruby"
 
 echo "Check if Ruby hostedtoolcache folder exists..."
@@ -17,7 +16,7 @@ if [ ! -d $RUBY_PATH ]; then
 fi
 
 for TOOLSET_VERSION in ${TOOLSET_VERSIONS[@]}; do
-    PACKAGE_TAR_NAME=$(echo "$PACKAGE_TAR_NAMES" | grep "^ruby-${TOOLSET_VERSION}-${TOOLSET_PLATFORM}.tar.gz$" | sort -V | tail -1)
+    PACKAGE_TAR_NAME=$(echo "$PACKAGE_TAR_NAMES" | grep "^ruby-${TOOLSET_VERSION}-macos-latest.tar.gz$" | sort -V | tail -1)
     RUBY_VERSION=$(echo "$PACKAGE_TAR_NAME" | cut -d'-' -f 2)
     RUBY_VERSION_PATH="$RUBY_PATH/$RUBY_VERSION"
 

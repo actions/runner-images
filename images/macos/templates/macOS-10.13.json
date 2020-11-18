@@ -11,7 +11,6 @@
         "output_folder": null,
         "vm_username": null,
         "vm_password": null,
-        "github_feed_token": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
         "image_os": "macos1013",
@@ -87,11 +86,6 @@
             "type": "file",
             "source": "./toolsets/toolset-10.13.json",
             "destination": "~/image-generation/toolset.json"
-        },
-        {
-            "type": "file",
-            "source": "./toolsets/toolcache-10.13.json",
-            "destination": "~/image-generation/toolcache.json"
         },
         {
             "type": "shell",
