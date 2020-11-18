@@ -13,7 +13,7 @@
 ### Language and Runtime
 - GNU C++ 7.5.0, 8.4.0, 9.3.0, 10.2.0
 - GNU Fortran 8.4.0, 9.3.0
-- Clang 8.0.1, 9.0.1, 10.0.0, 11.0.0
+- Clang 8.0.1, 9.0.1, 10.0.0
 - Erlang 11.1
 - Mono 6.12.0.90
 - Node 14.15.0
