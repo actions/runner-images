@@ -47,8 +47,8 @@ if isUbuntu16 || isUbuntu18; then
 fi
 
 if isUbuntu20 ; then
-    versions=( "8" "9" "10" )
-    default_clang_version="10"
+    versions=( "8" "9" "10" "11" )
+    default_clang_version="11"
 fi
 
 for version in ${versions[*]}; do
