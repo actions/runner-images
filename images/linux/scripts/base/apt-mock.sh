@@ -20,7 +20,11 @@ while [ \$i -le 30 ];do
   grep -q 'Could not get lock' \$err
   held=\$?
   if [ \$held -ne  0 ];then
-    break
+    grep -q 'Could not open file /var/lib/apt/lists' \$err
+    held=\$?
+    if [ \$held -ne  0 ];then
+      break
+    fi
   fi
   cat \$err >&2
   sleep 5
@@ -30,3 +34,4 @@ done
 EOT
   chmod +x $prefix/$tool
 done
+

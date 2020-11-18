@@ -65,6 +65,11 @@
         },
         {
             "type": "shell",
+            "script": "{{template_dir}}/scripts/base/apt-mock.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
             "scripts": [
                 "{{template_dir}}/scripts/base/repos.sh"
             ],
@@ -87,11 +92,6 @@
             "environment_vars": [
                 "DEBIAN_FRONTEND=noninteractive"
             ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "script": "{{template_dir}}/scripts/base/apt-mock.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
