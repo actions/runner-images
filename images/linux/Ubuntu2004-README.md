@@ -60,7 +60,6 @@
 - Git 2.29.2
 - Git LFS 2.12.1
 - Git-ftp 1.6.0
-- Google Cloud SDK 317.0.0
 - Haveged 1.9.1
 - Heroku 7.47.0
 - HHVM (HipHop VM) 4.82.0
@@ -98,6 +97,7 @@
 - Azure CLI (azure-cli) 2.14.1
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.2.0
+- Google Cloud SDK 317.0.0
 - Hub CLI 2.14.2
 - Netlify CLI 2.68.0
 - oc CLI 4.5.0
