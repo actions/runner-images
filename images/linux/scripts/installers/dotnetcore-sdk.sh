@@ -59,8 +59,8 @@ extract_dotnet_sdk() {
     set -e
     source="./tmp-$(basename -s .tar.gz $ARCHIVE_NAME)"; \
     dest="/usr/share/dotnet"; \
-    echo "Extracting $ARCHIVE_NAME to $dest"; \
-    mkdir "$dest" && tar -C "$dest" -xzf "$ARCHIVE_NAME"; \
+    echo "Extracting $ARCHIVE_NAME to $source"; \
+    mkdir "$source" && tar -C "$source" -xzf "$ARCHIVE_NAME"; \
     mv -f $source/shared/Microsoft.AspNetCore.App/* $dest/shared/Microsoft.AspNetCore.App/; \
     mv -f $source/shared/Microsoft.NETCore.App/* $dest/shared/Microsoft.NETCore.App/; \
     mv -f $source/host/fxr/* $dest/host/fxr/; \
