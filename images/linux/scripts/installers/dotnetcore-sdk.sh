@@ -57,13 +57,15 @@ sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep
 extract_dotnet_sdk() {
     local ARCHIVE_NAME="$1"
     set -e
-    dest="./tmp-$(basename -s .tar.gz $ARCHIVE_NAME)"; \
+    source="./tmp-$(basename -s .tar.gz $ARCHIVE_NAME)"; \
+    dest="/usr/share/dotnet"; \
     echo "Extracting $ARCHIVE_NAME to $dest"; \
     mkdir "$dest" && tar -C "$dest" -xzf "$ARCHIVE_NAME"; \
-    rsync -qav "$dest/shared/" /usr/share/dotnet/shared/; \
-    rsync -qav "$dest/host/" /usr/share/dotnet/host/; \
-    rsync -qav "$dest/sdk/" /usr/share/dotnet/sdk/; \
-    rm -rf "$dest" "$ARCHIVE_NAME"
+    mv -f $source/shared/Microsoft.AspNetCore.App/* $dest/shared/Microsoft.AspNetCore.App/; \
+    mv -f $source/shared/Microsoft.NETCore.App/* $dest/shared/Microsoft.NETCore.App/; \
+    mv -f $source/host/fxr/* $dest/host/fxr/; \
+    mv -f $source/sdk/* $dest/sdk/; \
+    rm -rf "$source" "$ARCHIVE_NAME"
 }
 
 # Download/install additional SDKs in parallel
