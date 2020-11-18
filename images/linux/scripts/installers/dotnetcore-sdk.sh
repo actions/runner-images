@@ -54,24 +54,27 @@ for version in ${versions[@]}; do
 done
 
 sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
+extract_dotnet_sdk() {
+    local ARCHIVE_NAME="$1"
+    set -e
+    dest="./tmp-$(basename -s .tar.gz $ARCHIVE_NAME)"; \
+    echo "Extracting $ARCHIVE_NAME to $dest"; \
+    mkdir "$dest" && tar -C "$dest" -xzf "$ARCHIVE_NAME"; \
+    rsync -qav "$dest/shared/" /usr/share/dotnet/shared/; \
+    rsync -qav "$dest/host/frx" /usr/share/dotnet/host/frx; \
+    rsync -qav "$dest/sdk/" /usr/share/dotnet/sdk/; \
+    rm -rf "$dest" "$ARCHIVE_NAME"
+}
 
 # Download/install additional SDKs in parallel
 export -f download_with_retries
+export -f extract_dotnet_sdk
 
 parallel --jobs 0 --halt soon,fail=1 \
     'url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/{}/dotnet-sdk-{}-linux-x64.tar.gz"; \
     download_with_retries $url' ::: "${sortedSdks[@]}"
 
-find . -name "*.tar.gz" | parallel --halt soon,fail=1 \
-    'set -e
-    dest="./tmp-$(basename -s .tar.gz {})"; \
-    echo "Extracting {} to $dest"; \
-    mkdir "$dest" && tar -C "$dest" -xzf "{}"; \
-    rsync -qav "$dest/shared/" /usr/share/dotnet/shared/; \
-    rsync -qav "$dest/host/" /usr/share/dotnet/host/; \
-    rsync -qav "$dest/sdk/" /usr/share/dotnet/sdk/; \
-    rm -rf "$dest"; \
-    rm "{}"'
+find . -name "*.tar.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
 
 # Smoke test each SDK
 for sdk in $sortedSdks; do
