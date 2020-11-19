@@ -5,7 +5,12 @@ source ~/utils/utils.sh
 echo Installing Ruby...
 brew install ruby
 
-echo "Install Ruby..."
+#if High Sierra - skip installation from toolset
+if is_HighSierra; then
+    exit 0
+fi
+
+echo "Install Ruby from toolset..."
 PACKAGE_TAR_NAMES=$(curl -s "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
 TOOLSET_VERSIONS=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .versions[]')
 RUBY_PATH="$AGENT_TOOLSDIRECTORY/Ruby"
