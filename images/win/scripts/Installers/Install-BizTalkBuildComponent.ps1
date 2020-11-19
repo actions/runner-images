@@ -80,4 +80,4 @@ Install-Msi -MsiPath "$setupPath\BuildComponentSetup.msi" -LogPath  "$setupPath\
 Remove-Item $setupPath -Recurse -Force
 
 # Test
-Invoke-PesterTests -TestFile "BizTalk" -TestName "BizTalk Build"
+Invoke-PesterTests -TestFile "BizTalk" -TestName "BizTalk Build Component Setup"
