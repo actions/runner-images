@@ -5,7 +5,8 @@ set -x
 
 prefix=/usr/local/bin
 
-for tool in apt apt-get apt-fast;do
+for tool in apt apt-get apt-fast apt-key;do
+  which $tool || continue
   real_tool=`which $tool`
   cat >$prefix/$tool <<EOT
 #!/bin/sh
