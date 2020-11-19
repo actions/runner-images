@@ -29,13 +29,14 @@ function Get-ToolcacheGoVersions {
 }
 
 function Get-ToolcacheBoostVersions {
+    $Name = "Boost"
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "boost"
     if (-not (Test-Path $toolcachePath)) {
         return @()
     }
 
-    $boostVersions = Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
-    $toolInstances = $boostVersions | ForEach-Object {
+    $BoostVersions = Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+    $ToolInstances = $BoostVersions | ForEach-Object {
         $VersionEnvVar = $_.replace(".", "_")
         return @{
             Version = $_
@@ -50,7 +51,10 @@ function Get-ToolcacheBoostVersions {
     "Environment Variable" = "left"
     })
 
-    return Build-MarkdownElement -Head $Name -Content $Content
+    $markdown = New-MDHeader $Name -Level 4
+    $markdown += New-MDParagraph -Lines $Content
+
+    return $markdown
 }
 
 function Build-CachedToolsSection {
