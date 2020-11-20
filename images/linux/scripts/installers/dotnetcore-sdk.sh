@@ -57,12 +57,12 @@ sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep
 extract_dotnet_sdk() {
     local ARCHIVE_NAME="$1"
     set -e
-    dest="./tmp-$(basename -s .tar.gz $ARCHIVE_NAME)"; \
-    echo "Extracting $ARCHIVE_NAME to $dest"; \
-    mkdir "$dest" && tar -C "$dest" -xzf "$ARCHIVE_NAME"; \
-    rsync -qav --remove-source-files "$dest/shared/" /usr/share/dotnet/shared/; \
-    rsync -qav --remove-source-files "$dest/host/" /usr/share/dotnet/host/; \
-    rsync -qav --remove-source-files "$dest/sdk/" /usr/share/dotnet/sdk/; \
+    dest="./tmp-$(basename -s .tar.gz $ARCHIVE_NAME)"
+    echo "Extracting $ARCHIVE_NAME to $dest"
+    mkdir "$dest" && tar -C "$dest" -xzf "$ARCHIVE_NAME"
+    rsync -qav --remove-source-files "$dest/shared/" /usr/share/dotnet/shared/
+    rsync -qav --remove-source-files "$dest/host/" /usr/share/dotnet/host/
+    rsync -qav --remove-source-files "$dest/sdk/" /usr/share/dotnet/sdk/
     rm -rf "$dest" "$ARCHIVE_NAME"
 }
 
