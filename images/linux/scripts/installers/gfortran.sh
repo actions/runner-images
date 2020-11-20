@@ -25,6 +25,7 @@ apt-get update -y
 versions=(
     "gfortran-8"
     "gfortran-9"
+    "gfortran-10"
 )
 
 for version in ${versions[*]}
