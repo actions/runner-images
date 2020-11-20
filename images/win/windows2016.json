@@ -25,14 +25,11 @@
         "install_password": null,
         "capture_name_prefix": "packer",
         "image_version": "dev",
-        "image_os": "win16",
-        "github_feed_token": "{{env `GITHUB_FEED_TOKEN`}}",
-        "announcements": "{{env `ANNOUNCEMENTS`}}"
+        "image_os": "win16"
     },
     "sensitive-variables": [
         "install_password",
-        "client_secret",
-        "github_feed_token"
+        "client_secret"
     ],
     "builders": [
         {
@@ -91,11 +88,6 @@
             "type": "file",
             "source": "{{ template_dir }}/scripts/Tests",
             "destination": "{{user `image_folder`}}"
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolcache-2016.json",
-            "destination": "{{user `root_folder`}}/toolcache.json"
         },
         {
             "type": "file",
@@ -226,12 +218,11 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "GITHUB_FEED_TOKEN={{ user `github_feed_token` }}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "ROOT_FOLDER={{user `root_folder`}}"
             ],
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Download-ToolCache.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Ruby.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
@@ -362,8 +353,7 @@
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ],
             "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
-                "ANNOUNCEMENTS={{user `announcements`}}"
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ]
         },
         {
