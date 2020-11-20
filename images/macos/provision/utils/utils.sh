@@ -92,18 +92,6 @@ get_toolset_value() {
     echo "$(jq -r "$query" $toolset_path)"
 }
 
-get_xcode_list_from_toolset() {
-    echo $(get_toolset_value '.xcode.versions | reverse | .[]')
-}
-
-get_latest_xcode_from_toolset() {
-    echo $(get_toolset_value '.xcode.versions[0]')
-}
-
-get_default_xcode_from_toolset() {
-    echo $(get_toolset_value '.xcode.default')
-}
-
 verlte() {
     sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
     [  "$1" = "$sortedVersion" ]

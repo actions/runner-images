@@ -11,4 +11,4 @@ $env:GIT_REDIRECT_STDERR = '2>&1'
 git clone $RepoUrl . -b $RepoBranch --single-branch --depth 1
 
 Write-Host "Latest commit:"
-git log --pretty=format:"Date: %cd; Commit: %H - %s; Author: %an <%ae>" -1
+git --no-pager log --pretty=format:"Date: %cd; Commit: %H - %s; Author: %an <%ae>" -1

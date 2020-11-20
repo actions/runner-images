@@ -2,7 +2,18 @@
     "xcode": {
         "default": "12",
         "versions": [
-            "12.3_beta", "12.2", "12.1.1_Release_Candidate", "12.1", "12", "11.7", "11.6", "11.5", "11.4.1", "11.3.1", "11.2.1", "10.3"
+            { "link": "12.3", "version": "12.3.0"},
+            { "link": "12.2", "version": "12.2.0" },
+            { "link": "12.1.1", "version": "12.1.1" },
+            { "link": "12.1", "version": "12.1.0" },
+            { "link": "12", "version": "12.0.1", "symlinks": ["12_beta"] },
+            { "link": "11.7", "version": "11.7.0", "symlinks": ["11.7_beta"] },
+            { "link": "11.6", "version": "11.6.0", "symlinks": ["11.6_beta"] },
+            { "link": "11.5", "version": "11.5.0", "symlinks": ["11.5_beta"] },
+            { "link": "11.4.1", "version": "11.4.1", "symlinks": ["11.4", "11.4.1_beta"] },
+            { "link": "11.3.1", "version": "11.3.1", "symlinks": ["11.3", "11.3.1_beta"] },
+            { "link": "11.2.1", "version": "11.2.1", "symlinks": ["11.2", "11.2.1_beta"] },
+            { "link": "10.3", "version": "10.3", "symlinks": ["10.3_beta"] }
         ]
     },
     "xamarin": {
