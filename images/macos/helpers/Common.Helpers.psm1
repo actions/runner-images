@@ -85,6 +85,19 @@ function Invoke-RestMethodWithRetry {
     Invoke-RestMethod $Url -MaximumRetryCount 10 -RetryIntervalSec 30
 }
 
+function Invoke-ValidateCommand {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Command
+    )
+
+    $output = Invoke-Expression -Command $Command
+    if ($LASTEXITCODE -ne 0) {
+        throw "Command '$Command' has finished with exit code $LASTEXITCODE"
+    }
+    return $output
+}
+
 function Start-DownloadWithRetry
 {
     Param

@@ -34,14 +34,6 @@ $juliaVersion = Run-Command "julia --version" | Take-Part -Part 0,2
 
 $markdown = ""
 
-# Get announcements
-if ($env:ANNOUNCEMENTS) {
-    $markdown += $env:ANNOUNCEMENTS
-    $markdown += New-MDNewLine
-    $markdown += "***"
-    $markdown += New-MDNewLine
-}
-
 # OS info
 $markdown += Build-OSInfoSection
 $markdown += New-MDList -Style Unordered -Lines ("Image Version: {0}" -f $ImageName.Split('_')[1])
@@ -129,7 +121,7 @@ $curlVersion = Run-Command "curl --version" | Select-Object -First 1 | Take-Part
 $gitVersion = Run-Command "git --version" | Take-Part -Part 2
 $ghVersion = Run-Command "gh --version" | Select-String "gh version" | Select-Object -First 1 | Take-Part -Part 2
 $gitLFSVersion = Run-Command "git-lfs version" | Take-Part -Part 0 | Take-Part -Part 1 -Delimiter "/"
-$hubVersion = Run-Command "hub version | grep 'hub version'" | Take-Part -Part 2
+$hubVersion = Run-Command "brew list --versions hub" | Take-Part -Part 1
 $wgetVersion = Run-Command "wget --version" | Select-String "GNU Wget" | Take-Part -Part 2
 $svnVersion = Run-Command "svn --version --quiet"
 $jqVersion = Run-Command "jq --version" | Take-Part -Part 1 -Delimiter "-"
