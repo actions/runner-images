@@ -286,12 +286,6 @@ function Get-VSExtensionVersion
     return $packageVersion
 }
 
-function Get-ToolcachePackages
-{
-    $toolcachePath = Join-Path $env:ROOT_FOLDER "toolcache.json"
-    Get-Content -Raw $toolcachePath | ConvertFrom-Json
-}
-
 function Get-ToolsetContent
 {
     $toolsetJson = Get-Content -Path $env:TOOLSET_JSON_PATH -Raw
@@ -348,24 +342,6 @@ function Get-ToolsetToolFullPath
     }
 
     return Join-Path $foundVersion $Arch
-}
-
-function Get-ToolsByName
-{
-    Param
-    (
-        [Parameter(Mandatory = $True)]
-        [string]$SoftwareName
-    )
-
-    (Get-ToolcachePackages).PSObject.Properties | Where-Object { $_.Name -match $SoftwareName } | ForEach-Object {
-        $packageNameParts = $_.Name.Split("-")
-        [PSCustomObject] @{
-            ToolName = $packageNameParts[1]
-            Versions = $_.Value
-            Architecture = $packageNameParts[3,4] -join "-"
-        }
-    }
 }
 
 function Get-WinVersion

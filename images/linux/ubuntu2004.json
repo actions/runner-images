@@ -23,8 +23,7 @@
         "github_feed_token": null,
         "run_validation_diskspace": "false",
         "go_default": "1.14",
-        "go_versions": "1.14",
-        "announcements": "{{env `ANNOUNCEMENTS`}}"
+        "go_versions": "1.14"
     },
     "sensitive-variables": [
         "client_secret",
@@ -203,6 +202,7 @@
                 "{{template_dir}}/scripts/installers/miniconda.sh",
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
+                "{{template_dir}}/scripts/installers/mssql-cmd-tools.sh",
                 "{{template_dir}}/scripts/installers/nvm.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
                 "{{template_dir}}/scripts/installers/bazel.sh",
@@ -326,8 +326,7 @@
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
-                "ANNOUNCEMENTS={{user `announcements`}}"
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ]
         },
         {
