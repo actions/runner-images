@@ -5,7 +5,6 @@
 prefix=/usr/local/bin
 
 for tool in apt apt-get apt-fast apt-key;do
-  which $tool || continue
   real_tool=`which $tool`
   cat >$prefix/$tool <<EOT
 #!/bin/sh
@@ -18,7 +17,7 @@ while [ \$i -le 30 ];do
   cat \$err >&2
 
   # no errors, continue
-  test \$result -eq  0 && break
+  test \$result -eq 0 && break
 
   retry=false
 
@@ -29,13 +28,7 @@ while [ \$i -le 30 ];do
     # apt update is not completed, needs retry
     retry=true
   elif grep -q 'IPC connect call failed' \$err;then
-    ## TODO:
-    ## the delay should help with gpg-agent not ready
-    ## if it is not then uncomment the folloing lines in order to
-    ## force restart gpg-agent
-    #  pkill -9 gpg-agent
-    #  sleep 1
-    #  source <(gpg-agent --daemon)
+    # the delay should help with gpg-agent not ready
     retry=true
   fi
 
