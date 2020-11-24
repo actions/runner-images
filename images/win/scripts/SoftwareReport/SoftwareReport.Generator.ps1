@@ -149,7 +149,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 '@
 $markdown += New-MDNewLine
 
-if(Test-IsWin19)
+if (Test-IsWin19)
 {
     $markdown += New-MDHeader "BizTalk Server" -Level 3
     $markdown += Get-BizTalkVersion
