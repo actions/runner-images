@@ -316,6 +316,12 @@
         {
             "type": "powershell",
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1"
             ],

@@ -281,6 +281,11 @@
                 "name": "Microsoft.VisualStudio.Installer.Projects.vsix",
                 "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/VisualStudioClient/vsextensions/MicrosoftVisualStudio2017InstallerProjects/latest/vspackage",
                 "id": "VSInstallerProjects"
+            },
+            {
+                "name": "BizTalkVsix.vsix",
+                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-biztalk/vsextensions/BizTalk/3.13.2.0/vspackage",
+                "id": "BizTalkProjectSystem.BD1D0FA0-E48A-4270-995F-F110DD9F7838"
             }
         ]
     },
