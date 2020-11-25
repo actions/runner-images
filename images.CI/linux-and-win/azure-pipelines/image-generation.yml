@@ -31,7 +31,6 @@ jobs:
         $ImageType = "${{ parameters.image_type }}"
         $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "win" }
         $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
-        Write-Host $TemplateDirectoryPath
         $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
         Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
@@ -41,7 +40,6 @@ jobs:
     inputs:
       targetType: filePath
       filePath: ./images.CI/linux-and-win/build-image.ps1
-      pwsh: true
       arguments: -ResourcesNamePrefix $(Build.BuildId) `
                         -ClientId $(CLIENT_ID) `
                         -ClientSecret $(CLIENT_SECRET) `
