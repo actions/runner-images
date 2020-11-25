@@ -62,8 +62,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        $docsPath = Get-ChildItem -Path "images" -Include ${{ parameters.image_readme_name }} -Recurse -Depth 1 | Select-Object -First 1
-        Get-Content -Path $docsPath
+        Get-Content -Path (Join-Path "$(TemplateDirectoryPath)" "${{ parameters.image_readme_name }}")
 
   - task: PowerShell@2
     displayName: 'Print provisioners duration'
