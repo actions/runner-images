@@ -1,6 +1,7 @@
 param(
-    [string]$PackerLogPath = "$env:HOME/Downloads/temp2/packer-mac.txt",
-    [string]$PrefixToPathTrim = "",
+    [Parameter(Mandatory=$true)]
+    [string]$PackerLogPath,
+    [string]$PrefixToPathTrim,
     [int]$PrintTopNLongest = 25
 )
 
@@ -111,7 +112,7 @@ $provisionersList | ForEach-Object {
 }
 Write-Host "Total provisioners time: $totalProvisionersTime"
 
-if ($PrintTopNLongest -and ($PrintTopNLongest -gt 0)) {
+if ($PrintTopNLongest -gt 0) {
     Write-Host "`n`nTop longest provisioners:"
     $provisionersList | ForEach-Object {
         if ($_.SubItems.Length -gt 0) { $_.SubItems } else { @{ Command = $_.ProvisionerType; Duration = $_.Duration } }
