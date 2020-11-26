@@ -12,7 +12,7 @@ $EndProvisionerRegex = "^${DateTimeRegex} ${TelemetryLineRegex} ending (.+)$"
 $ShellScriptSubItemRegex = "${DateTimeRegex} ui: ==> .+: Provisioning with \w+ script: (.+)"
 $DownloadUploadSubItemRegex = "${DateTimeRegex} ui: ==> .+: (Downloading .+|Uploading .+)"
 
-function New-ProvisionerItem {
+function Start-ProvisionerItem {
     param([string]$ProvisionerType, [string]$StartTime)
 
     return @{
@@ -22,7 +22,7 @@ function New-ProvisionerItem {
     }
 }
 
-function Complete-ProvisionerItem {
+function End-ProvisionerItem {
     param([object]$Provisioner, [string]$EndTime)
 
     $Provisioner.EndTime = [DateTime]::Parse($EndTime)
@@ -86,11 +86,11 @@ Get-Content $PackerLogPath | ForEach-Object {
     if ($_ -match $StartProvisionerRegex) {
         Assert-StartProvisioner -Provisioner $currentProvisioner -ProvisionerType $Matches[2]
 
-        $currentProvisioner = New-ProvisionerItem -ProvisionerType $Matches[2] -StartTime $Matches[1]
+        $currentProvisioner = Start-ProvisionerItem -ProvisionerType $Matches[2] -StartTime $Matches[1]
     } elseif (($_ -match $EndProvisionerRegex) -and $currentProvisioner) {
         Assert-EndProvisioner -Provisioner $currentProvisioner -ProvisionerType $Matches[2]
 
-        Complete-ProvisionerItem -Provisioner $currentProvisioner -EndTime $Matches[1]
+        End-ProvisionerItem -Provisioner $currentProvisioner -EndTime $Matches[1]
         Add-ProvisionerSubItem -Provisioner $currentProvisioner -Command $null -DateTime $Matches[1]
         $provisionersList += $currentProvisioner
         $currentProvisioner = $null
