@@ -133,7 +133,10 @@ function Get-VcpkgVersion {
     $result = Get-CommandResult "vcpkg version"
     $result.Output -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $vcpkgVersion = $Matches.version
-    return "Vcpkg $vcpkgVersion"
+    Push-Location -Path "/usr/local/share/vcpkg"
+    $commitId = git rev-parse master
+    Pop-Location
+    return "Vcpkg $vcpkgVersion (build from master [<$commitId>])"
 }
 
 function Get-AntVersion {
