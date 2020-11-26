@@ -9,7 +9,8 @@
 source $HELPER_SCRIPTS/etc-environment.sh
 
 # Install the Homebrew on Linux
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# Install script is broken for CI in this PR https://github.com/Homebrew/install/pull/341, temporary use install.sh from the previous commit
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/32bd2d42c6700f5497802b5989af4c23bfb5f2c9/install.sh)"
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # Update /etc/environemnt
