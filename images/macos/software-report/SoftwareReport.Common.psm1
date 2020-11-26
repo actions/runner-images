@@ -51,9 +51,7 @@ function Get-RustupVersion {
 
 function Get-VcpkgVersion {
     $vcpkgVersion = Run-Command "vcpkg version" | Select-Object -First 1 | Take-Part -Part 5 | Take-Part -Part 0 -Delimiter "-"
-    Push-Location -Path "/usr/local/share/vcpkg"
-    $commitId = git rev-parse master
-    Pop-Location
+    $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
     return "Vcpkg $vcpkgVersion (build from master [<$commitId>])"
 }
 
