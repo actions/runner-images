@@ -71,8 +71,11 @@ function Get-FortranVersion {
 }
 
 function Get-ClangLLVMVersion {
-    $clangLLVMVersion = Run-Command "$(brew --prefix llvm)/bin/clang --version" | Select-Object -First 1 | Take-Part -Part 2
-    "Clang/LLVM $clangLLVMVersion"
+    $locationsList = @('', '$(brew --prefix llvm)/bin/')
+    $locationsList | Foreach-Object {
+        $version = Run-Command "${_}clang --version" | Select-Object -First 1 | Take-Part -Part 1 -Delimiter "version"
+        "Clang/LLVM $version " + $(if(${_} -ne "") {"- available on ``${_}clang``"} else {"is default"})
+    }
 }
 
 function Get-NVMVersion {
