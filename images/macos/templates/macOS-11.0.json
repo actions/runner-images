@@ -11,7 +11,6 @@
         "output_folder": null,
         "vm_username": null,
         "vm_password": null,
-        "github_feed_token": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
         "image_os": "macos11"
@@ -86,11 +85,6 @@
             "type": "file",
             "source": "./toolsets/toolset-11.0.json",
             "destination": "~/image-generation/toolset.json"
-        },
-        {
-            "type": "file",
-            "source": "./toolsets/toolcache-11.0.json",
-            "destination": "~/image-generation/toolcache.json"
         },
         {
             "type": "shell",
@@ -185,11 +179,7 @@
                 "./provision/core/chrome.sh",
                 "./provision/core/edge.sh",
                 "./provision/core/firefox.sh",
-                "./provision/core/toolcache.sh",
                 "./provision/core/pipx-packages.sh"
-            ],
-            "environment_vars": [
-                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
             ]
         },
         {

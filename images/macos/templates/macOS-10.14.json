@@ -11,7 +11,6 @@
         "output_folder": null,
         "vm_username": null,
         "vm_password": null,
-        "github_feed_token": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
         "image_os": "macos1014"
@@ -86,11 +85,6 @@
             "type": "file",
             "source": "./toolsets/toolset-10.14.json",
             "destination": "~/image-generation/toolset.json"
-        },
-        {
-            "type": "file",
-            "source": "./toolsets/toolcache-10.14.json",
-            "destination": "~/image-generation/toolcache.json"
         },
         {
             "type": "shell",
@@ -187,12 +181,8 @@
                 "./provision/core/miniconda.sh",
                 "./provision/core/xcode-sims.sh",
                 "./provision/core/xcode-postbuild.sh",
-                "./provision/core/toolcache.sh",
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh"
-            ],
-            "environment_vars": [
-                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
             ]
         },
         {
