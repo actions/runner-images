@@ -1,5 +1,5 @@
 param(
-    [String] [Parameter (Mandatory=$true)] $Image,
+    [String] [Parameter (Mandatory=$true)] $TemplatePath,
     [String] [Parameter (Mandatory=$true)] $ClientId,
     [String] [Parameter (Mandatory=$true)] $ClientSecret,
     [String] [Parameter (Mandatory=$true)] $GitHubFeedToken,
@@ -14,8 +14,7 @@ param(
     [String] [Parameter (Mandatory=$true)] $VirtualNetworkSubnet
 )
 
-$TemplatePath = (Get-ChildItem -Path "images" -Include "$Image.json" -Recurse -Depth 2).FullName
-if (-not $TemplatePath)
+if (-not (Test-Path $TemplatePath))
 {
     Write-Error "'-Image' parameter is not valid. You have to specify correct image type."
     exit 1

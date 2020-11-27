@@ -35,7 +35,7 @@ JAVA_DEFAULT=$(get_toolset_value '.java.default')
 for JAVA_VERSION in "${JAVA_VERSIONS_LIST[@]}"
 do
     if [[ $JAVA_VERSION == "7" ]]; then
-        installAzulJDK "https://cdn.azul.com/zulu/bin/zulu7.42.0.13-ca-jdk7.0.282-macosx_x64.dmg"
+        installAzulJDK "https://cdn.azul.com/zulu/bin/zulu7.42.0.51-ca-jdk7.0.285-macosx_x64.dmg"
     else
         brew cask install "adoptopenjdk${JAVA_VERSION}"
     fi

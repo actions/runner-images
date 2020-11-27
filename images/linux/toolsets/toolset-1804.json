@@ -57,6 +57,17 @@
             "versions": [
                 "1.72.0"
             ]
+        },
+        {
+            "name": "Ruby",
+            "platform_version": "18.04",
+            "arch": "x64",
+            "versions": [
+                "2.4.*",
+                "2.5.*",
+                "2.6.*",
+                "2.7.*"
+            ]
         }
     ],
     "android": {
