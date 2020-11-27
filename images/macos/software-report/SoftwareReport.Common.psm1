@@ -71,10 +71,10 @@ function Get-FortranVersion {
 }
 
 function Get-ClangLLVMVersion {
-    $locationsList = @('', '$(brew --prefix llvm)/bin/')
+    $locationsList = @("$((Get-Command clang).Source)", '$(brew --prefix llvm)/bin/clang')
     $locationsList | Foreach-Object {
-        $version = Run-Command "${_}clang --version" | Select-Object -First 1 | Take-Part -Part 1 -Delimiter "version"
-        "Clang/LLVM $version " + $(if(${_} -ne "") {"- available on ``${_}clang``"} else {"is default"})
+        $version = Run-Command "${_} --version" | Select-Object -First 1 | Take-Part -Part 1 -Delimiter "version"
+        "Clang/LLVM $version " + $(if(${_} -Match "brew") {"- available on ``${_}``"} else {"is default"})
     }
 }
 
