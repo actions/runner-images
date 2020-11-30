@@ -1,10 +1,27 @@
 # Toolset JSON structure
 ## Xcode
-- `default` - version of Xcode to set as default  
-    **Example:** `"11.2.1"`  
+- `versions` - the array of objects that will present installed Xcode versions  
+    - `link` property points to the place where Xcode will be located on image. `/Applications/Xcode_<link>.app`    
+    - `version` points to Xcode version that will be downloaded and installed
+    - `symlinks` describes the list of aliases where symlinks will be created to
+- `default` - version of Xcode to set as default (should be metched with any `link` in `versions` property)
+    **Example:** `"11.2"`  
 
-- `versions` - the array of versions of Xcode to install  
-    **Example:** `[ "11.3", "11.2.1", "11.2", "11.1", "11" ]`  
+**Note:**
+- If `version` is specified with spaces, it is considered as exact Xcode name like `12.1.1 Release Candidate`.
+- If `version` doesn't contain spaces, the latest version will be resolved with the following priority:  
+    - stable version like `12.1`
+    - release candidate version like `12.1 Release Candidate N` (the latest N will be chosen)
+    - GM version like `12.1 GM Seed N` (the latest N will be chosen)
+    - beta version like `12.1 beta N` (the latest N will be chosen)
+
+**Example:**
+```
+"versions": [
+    { "link": "12.2", "version": "12.2.0" },
+    { "link": "11.7", "version": "11.7.0", "symlinks": ["11.7_beta"] }
+]
+```
 
 ## Xamarin
 - `vsmac` - version of Visual Studio For Mac to install.  

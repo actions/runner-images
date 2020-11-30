@@ -286,6 +286,11 @@ function Get-YAMLLintVersion {
     yamllint --version
 }
 
+function Get-BizTalkVersion {
+    $bizTalkReg = Get-ItemProperty "HKLM:\SOFTWARE\WOW6432Node\Microsoft\BizTalk Server\3.0"
+    return "- $($bizTalkReg.ProductName) $($bizTalkReg.ProductVersion) "
+}
+
 function Get-PipxVersion {
     $pipxVersion = pipx --version
     return "Pipx $pipxVersion"

@@ -20,13 +20,10 @@
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "ubuntu18",
-        "github_feed_token": null,
-        "run_validation_diskspace": "false",
-        "announcements": "{{env `ANNOUNCEMENTS`}}"
+        "run_validation_diskspace": "false"
     },
     "sensitive-variables": [
-        "client_secret",
-        "github_feed_token"
+        "client_secret"
     ],
     "builders": [
         {
@@ -64,6 +61,11 @@
         },
         {
             "type": "shell",
+            "script": "{{template_dir}}/scripts/base/apt-mock.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
             "scripts": [
                 "{{template_dir}}/scripts/base/repos.sh"
             ],
@@ -78,11 +80,6 @@
             "environment_vars": [
                 "DEBIAN_FRONTEND=noninteractive"
             ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "script": "{{template_dir}}/scripts/base/apt-mock.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
@@ -109,11 +106,6 @@
             "type": "file",
             "source": "{{ template_dir }}/scripts/SoftwareReport",
             "destination": "{{user `image_folder`}}"
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolcache-1804.json",
-            "destination": "{{user `installer_script_folder`}}/toolcache.json"
         },
         {
             "type": "file",
@@ -193,6 +185,7 @@
                 "{{template_dir}}/scripts/installers/miniconda.sh",
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
+                "{{template_dir}}/scripts/installers/mssql-cmd-tools.sh",
                 "{{template_dir}}/scripts/installers/nvm.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
                 "{{template_dir}}/scripts/installers/bazel.sh",
@@ -222,15 +215,12 @@
                 "{{template_dir}}/scripts/installers/netlify.sh",
                 "{{template_dir}}/scripts/installers/android.sh",
                 "{{template_dir}}/scripts/installers/azpowershell.sh",
-                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
                 "{{template_dir}}/scripts/installers/pypy.sh",
-                "{{template_dir}}/scripts/installers/python.sh",
-                "{{template_dir}}/scripts/installers/test-toolcache.sh"
+                "{{template_dir}}/scripts/installers/python.sh"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
-                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}",
                 "DEBIAN_FRONTEND=noninteractive"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
@@ -316,8 +306,7 @@
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
-                "ANNOUNCEMENTS={{user `announcements`}}"
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ]
         },
         {

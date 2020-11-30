@@ -4,8 +4,8 @@
 
 prefix=/usr/local/bin
 
-for tool in apt apt-get apt-fast;do
-  real_tool=`which $tool`
+for real_tool in /usr/bin/apt /usr/bin/apt-get /usr/bin/apt-fast /usr/bin/apt-key;do
+  tool=`basename $real_tool`
   cat >$prefix/$tool <<EOT
 #!/bin/sh
 
@@ -14,15 +14,29 @@ while [ \$i -le 30 ];do
   err=\$(mktemp)
   $real_tool "\$@" 2>\$err
   result=\$?
-  if [ \$result -eq  0 ];then
-    break
-  fi
-  grep -q 'Could not get lock' \$err
-  held=\$?
-  if [ \$held -ne  0 ];then
-    break
-  fi
   cat \$err >&2
+
+  # no errors, continue
+  test \$result -eq 0 && break
+
+  retry=false
+
+  if grep -q 'Could not get lock' \$err;then
+    # apt db locked needs retry
+    retry=true
+  elif grep -q 'Could not open file /var/lib/apt/lists' \$err;then
+    # apt update is not completed, needs retry
+    retry=true
+  elif grep -q 'IPC connect call failed' \$err;then
+    # the delay should help with gpg-agent not ready
+    retry=true
+  fi
+
+  rm \$err
+  if [ \$retry = false ]; then
+    break
+  fi
+
   sleep 5
   echo "...retry \$i"
   i=\$((i + 1))

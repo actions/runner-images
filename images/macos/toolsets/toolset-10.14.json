@@ -2,7 +2,18 @@
     "xcode": {
         "default": "11.3.1",
         "versions": [
-            "11.3.1", "11.3", "11.2.1", "11.2", "11.1", "11", "10.3", "10.2.1", "10.2", "10.1", "10", "9.4.1"
+            { "link": "11.3.1", "version": "11.3.1", "symlinks": ["11.3.1_beta"] },
+            { "link": "11.3", "version": "11.3.0", "symlinks": ["11.3_beta"] },
+            { "link": "11.2.1", "version": "11.2.1", "symlinks": ["11.2.1_beta"] },
+            { "link": "11.2", "version": "11.2.0", "symlinks": ["11.2_beta"] },
+            { "link": "11.1", "version": "11.1.0", "symlinks": ["11.1_beta"] },
+            { "link": "11", "version": "11.0.0", "symlinks": ["11_beta"] },
+            { "link": "10.3", "version": "10.3.0", "symlinks": ["10.3_beta"] },
+            { "link": "10.2.1", "version": "10.2.1", "symlinks": ["10.2.1_beta"] },
+            { "link": "10.2", "version": "10.2.0", "symlinks": ["10.2_beta"] },
+            { "link": "10.1", "version": "10.1.0", "symlinks": ["10.1_beta"] },
+            { "link": "10", "version": "10.0.0", "symlinks": ["10_beta"] },
+            { "link": "9.4.1", "version": "9.4.1" }
         ]
     },
     "xamarin": {
@@ -257,6 +268,16 @@
                 "1.13.*",
                 "1.14.*",
                 "1.15.*"
+            ]
+        },
+        {
+            "name": "Ruby",
+            "arch": "x64",
+            "versions": [
+                "2.4.*",
+                "2.5.*",
+                "2.6.*",
+                "2.7.*"
             ]
         }
     ],

@@ -2,7 +2,19 @@
     "xcode": {
         "default": "10.1",
         "versions": [
-            "10.1", "10", "9.4.1", "9.4", "9.3.1", "9.3", "9.2", "9.1", "9", "8.3.3", "8.2.1", "8.1", "8"
+            { "link": "10.1", "version": "10.1.0", "symlinks": ["10.1_beta"] },
+            { "link": "10", "version": "10.0.0", "symlinks": ["10_beta"] },
+            { "link": "9.4.1", "version": "9.4.1" },
+            { "link": "9.4", "version": "9.4.0", "symlinks": ["9.4_beta"] },
+            { "link": "9.3.1", "version": "9.3.1" },
+            { "link": "9.3", "version": "9.3.0", "symlinks": ["9.3_beta"] },
+            { "link": "9.2", "version": "9.2.0" },
+            { "link": "9.1", "version": "9.1.0" },
+            { "link": "9", "version": "9.0.0" },
+            { "link": "8.3.3", "version": "8.3.3" },
+            { "link": "8.2.1", "version": "8.2.1" },
+            { "link": "8.1", "version": "8.1.0" },
+            { "link": "8", "version": "8.0.0" }
         ]
     },
     "xamarin": {
@@ -197,6 +209,16 @@
             "versions": [
                 "2.7",
                 "3.6"
+            ]
+        },
+        {
+            "name": "Ruby",
+            "arch": "x64",
+            "versions": [
+                "2.4.*",
+                "2.5.*",
+                "2.6.*",
+                "2.7.*"
             ]
         }
     ],

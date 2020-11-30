@@ -3,6 +3,7 @@
 ##  File:  gfortran.sh
 ##  Desc:  Installs GNU Fortran
 ################################################################################
+source $HELPER_SCRIPTS/os.sh
 
 function InstallFortran {
     version=$1
@@ -26,6 +27,10 @@ versions=(
     "gfortran-8"
     "gfortran-9"
 )
+
+if ! isUbuntu16; then
+    versions+=("gfortran-10")
+fi
 
 for version in ${versions[*]}
 do

@@ -62,12 +62,6 @@ function Test-DefaultVersion {
 }
 
 $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache
-# convert old tool-cache to toolset format on-flight to re-use code
-(Get-ToolcachePackages).PSObject.Properties | ForEach-Object {
-    $packageNameParts = $_.Name.Split("-")
-    $tools += @{ name = $packageNameParts[1]; arch = $packageNameParts[3]; versions = $_.Value; default = "." }
-}
-
 foreach ($tool in $tools) {
     Describe "$($tool.name) [$($tool.arch)]" {
         $toolExecs = Get-ToolExecutables -Name $tool.name
