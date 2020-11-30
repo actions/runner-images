@@ -1,13 +1,12 @@
 | Announcements |
 |-|
 | [Default Node.JS will be switched to 14.x on all platforms ](https://github.com/actions/virtual-environments/issues/1953) |
-| [[macOS] Default Python will be upgraded to 3.9](https://github.com/actions/virtual-environments/issues/1929) |
-| [.NET 5.0 will become a default .NET version the week of November 16, 2020](https://github.com/actions/virtual-environments/issues/1891) |
+| [.NET 5.0 will become a default .NET version soon [date will be defined later]](https://github.com/actions/virtual-environments/issues/1891) |
 | [[Ubuntu] [Windows] Boost 1.69.0 will be deprecated on November, 10](https://github.com/actions/virtual-environments/issues/1847) |
 | [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
 ***
 # Ubuntu 18.04.5 LTS
-- Image Version: 20201108.1
+- Image Version: 20201115.1
 
 ## Installed Software
 ### Language and Runtime
@@ -19,21 +18,21 @@
 - Node 14.15.0
 - Python 2.7.17
 - Python3 3.6.9
-- PowerShell 7.0.3
+- PowerShell 7.1.0
 - Ruby 2.5.1p57
-- Swift 5.3
-- Julia 1.5.2
+- Swift 5.3.1
+- Julia 1.5.3
 
 ### Package Management
 - Gem 3.1.4
-- Helm 3.4.0
-- Homebrew 2.5.8
+- Helm 3.4.1
+- Homebrew 2.5.10
 - Miniconda 4.8.3
 - Npm 6.14.8
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 0.15.6.0
-- Vcpkg 2020.06.15
+- Vcpkg 2020.11.12
 - Yarn 1.22.5
 
 ### Project Management
@@ -52,7 +51,7 @@
 - Bazelisk 1.7.3
 - Buildah 1.17.0
 - CMake 3.17.0
-- CodeQL Action Bundle 2.3.1+202010222007
+- CodeQL Action Bundle 2.3.3
 - curl 7.58.0
 - Docker Compose 1.27.4
 - Docker-Buildx 0.4.2
@@ -60,18 +59,18 @@
 - Git 2.29.2
 - Git LFS 2.12.1
 - Git-ftp 1.3.1
-- Google Cloud SDK 317.0.0
+- Google Cloud SDK 318.0.0
 - Haveged 1.9.1
-- Heroku 7.47.0
-- HHVM (HipHop VM) 4.82.0
+- Heroku 7.47.2
+- HHVM (HipHop VM) 4.83.1
 - jq 1.5
 - Kind 0.9.0
-- Kubectl 1.19.3
-- Kustomize 3.8.6
+- Kubectl 1.19.4
+- Kustomize 3.8.7
 - Leiningen 2.9.4
 - m4 1.4.18
 - Mercurial 4.5.3
-- Minikube 1.14.2
+- Minikube 1.15.0
 - Newman 5.2.1
 - nvm 0.37.0
 - Packer 1.6.5
@@ -92,31 +91,31 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.60
-- AWS CLI 1.18.173
+- AWS CLI 1.18.178
 - AWS CLI Session manager plugin 1.2.7.0
-- AWS SAM CLI 1.8.0
-- Azure CLI (azure-cli) 2.14.1
+- AWS SAM CLI 1.10.0
+- Azure CLI (azure-cli) 2.14.2
 - Azure CLI (azure-devops) 0.18.0
-- GitHub CLI 1.2.0
+- GitHub CLI 1.2.1
 - Hub CLI 2.14.2
-- Netlify CLI 2.68.0
+- Netlify CLI 2.68.5
 - oc CLI 4.5.0
 - ORAS CLI 0.8.1
-- Vercel CLI 20.1.2
+- Vercel CLI 20.1.4
 
 ### Java
 | Version             | Vendor       | Environment Variable |
 | ------------------- | ------------ | -------------------- |
-| 1.7.0_282           | Zulu         | JAVA_HOME_7_X64      |
-| 1.8.0_272 (default) | AdoptOpenJDK | JAVA_HOME_8_X64      |
-| 11.0.9              | AdoptOpenJDK | JAVA_HOME_11_X64     |
+| 1.7.0_285           | Zulu         | JAVA_HOME_7_X64      |
+| 1.8.0_275 (default) | AdoptOpenJDK | JAVA_HOME_8_X64      |
+| 11.0.9.1            | AdoptOpenJDK | JAVA_HOME_11_X64     |
 | 12.0.2              | AdoptOpenJDK | JAVA_HOME_12_X64     |
 
 ### PHP
 | Tool     | Version                     |
 | -------- | --------------------------- |
 | PHP      | 7.1.33 7.2.34 7.3.24 7.4.12 |
-| Composer | 2.0.6                       |
+| Composer | 2.0.7                       |
 | PHPUnit  | 7.5.20                      |
 
 ### Haskell
@@ -139,19 +138,19 @@
 - Rustfmt 1.4.20
 
 ### Browsers and Drivers
-- Google Chrome 86.0.4240.183
+- Google Chrome 86.0.4240.198
 - ChromeDriver 86.0.4240.22
-- Mozilla Firefox 82.0.2
+- Mozilla Firefox 82.0.3
 - Geckodriver 0.28.0
 
 ### .NET Core SDK
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403
+- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404
 
 ### Az Module
 - 1.0.0 1.6.0 2.3.2 2.6.0 2.8.0 3.1.0 3.5.0 3.8.0 4.3.0 4.4.0 4.6.0 4.7.0
 
 ### Databases
-- Postgre SQL 13.0
+- Postgre SQL 13.1
 - MongoDB 4.4.1
 - sqlite3 3.22.0
 
@@ -190,8 +189,8 @@
 
 #### Go
 - 1.13.15
-- 1.14.11
-- 1.15.4
+- 1.14.12
+- 1.15.5
 
 #### Boost
 - 1.72.0
