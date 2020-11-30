@@ -6,6 +6,7 @@ source ~/utils/utils.sh
 
 # brew install
 binst_common_utils=(
+    aws-iam-authenticator
     carthage
     cmake
     subversion

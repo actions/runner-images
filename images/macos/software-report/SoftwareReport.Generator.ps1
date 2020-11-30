@@ -134,6 +134,7 @@ $azcopyVersion = Run-Command "azcopy --version" | Take-Part -Part 2
 $zstdVersion = Run-Command "zstd --version" | Take-Part -Part 1 -Delimiter "v" | Take-Part -Part 0 -Delimiter ","
 $bazelVersion = Run-Command "bazel --version" | Take-Part -Part 0 -Delimiter "-"
 $bazeliskVersion = Run-Command "brew list bazelisk --versions"
+$awsIamAuthenticatorVersion = Run-Command "aws-iam-authenticator --version"
 $packerVersion = Run-Command "packer --version"
 $helmVersion = Run-Command "helm version --short"
 $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
@@ -149,6 +150,7 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     "Hub CLI: ${hubVersion}",
     "GNU Wget ${wgetVersion}",
     "Subversion (SVN) ${svnVersion}",
+    "aws-iam-authenticator $awsIamAuthenticatorVersion",
     "Packer $packerVersion",
     $opensslVersion,
     "jq ${jqVersion}",

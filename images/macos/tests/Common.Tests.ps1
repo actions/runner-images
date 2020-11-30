@@ -209,6 +209,10 @@ Describe "Common utilities" {
         "julia --version" | Should -ReturnZeroExitCode
     }
 
+    It "aws-iam-authenticator" {
+        "aws-iam-authenticator --version" | Should -ReturnZeroExitCode
+    }
+
     It "Packer" {
         "packer --version" | Should -ReturnZeroExitCode
     }
