@@ -236,6 +236,10 @@ Describe "Common utilities" {
     It "Apache Ant" {
         "ant -version" | Should -ReturnZeroExitCode
     }
+
+    It "GNU Tar" {
+        "tar --version" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "Browsers" {

@@ -139,6 +139,7 @@ $helmVersion = Run-Command "helm version --short"
 $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
 $mongod = Run-Command "mongod --version" | Select-String "db version " | Take-Part -Part 2
 $p7zip = Run-Command "7z i" | Select-String "7-Zip" | Take-Part -Part 0,2
+$gnuTar = Run-Command "tar --version" | Select-String "tar (GNU tar)" | Take-Part -Part 3
 
 $markdown += New-MDHeader "Utilities" -Level 3
 $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
@@ -163,7 +164,8 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     "helm $helmVersion",
     "mongo $mongo",
     "mongod $mongod",
-    $p7zip
+    $p7zip,
+    "GNU Tar $gnuTar"
 )
 if ($os.IsHigherThanMojave) {
     $newmanVersion = Run-Command "newman --version"
