@@ -11,11 +11,9 @@
         "output_folder": null,
         "vm_username": null,
         "vm_password": null,
-        "github_feed_token": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
-        "image_os": "macos11",
-        "announcements": "{{env `ANNOUNCEMENTS`}}"
+        "image_os": "macos11"
     },
     "builders": [
         {
@@ -89,11 +87,6 @@
             "destination": "~/image-generation/toolset.json"
         },
         {
-            "type": "file",
-            "source": "./toolsets/toolcache-11.0.json",
-            "destination": "~/image-generation/toolcache.json"
-        },
-        {
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
             "scripts": [
@@ -149,8 +142,8 @@
         },
         {
             "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
-            "script": "./provision/core/xcode-tools.sh",
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
+            "script": "./provision/core/xcode.ps1",
             "environment_vars": [
                 "XCODE_INSTALL_USER={{user `xcode_install_user`}}",
                 "XCODE_INSTALL_PASSWORD={{user `xcode_install_password`}}"
@@ -186,11 +179,7 @@
                 "./provision/core/chrome.sh",
                 "./provision/core/edge.sh",
                 "./provision/core/firefox.sh",
-                "./provision/core/toolcache.sh",
                 "./provision/core/pipx-packages.sh"
-            ],
-            "environment_vars": [
-                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
             ]
         },
         {
@@ -210,9 +199,6 @@
             "inline": [
                 "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName {{user `build_id`}}",
                 "pwsh -File \"$HOME/image-generation/tests/Run-Tests.ps1\" -WorkingDirectory \"$HOME/image-generation/tests\" -OutputFile \"$HOME/image-generation/output/tests/test-results.xml\""
-            ],
-            "environment_vars": [
-                "ANNOUNCEMENTS={{user `announcements`}}"
             ]
         },
         {
