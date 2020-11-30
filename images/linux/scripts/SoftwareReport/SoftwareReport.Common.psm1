@@ -115,10 +115,6 @@ function Get-YarnVersion {
     return "Yarn $yarnVersion"
 }
 
-function Get-PowershellCoreVersion {
-    return & pwsh --version
-}
-
 function Get-PipVersion {
     $result = Get-CommandResult "pip --version"
     $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null

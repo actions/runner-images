@@ -214,7 +214,7 @@ $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection
 
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
-$markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
+$markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
 
 $markdown += New-MDHeader "PowerShell Modules" -Level 4
 $markdown += Get-PowerShellModules | New-MDTable
