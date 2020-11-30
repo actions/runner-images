@@ -269,6 +269,7 @@ function Get-VSExtensionVersion
     $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
     if ($instanceFolders -is [array])
     {
+        Write-Host ($instanceFolders | Get-ChildItem | Out-String)
         Write-Host "More than one instance installed"
         exit 1
     }
