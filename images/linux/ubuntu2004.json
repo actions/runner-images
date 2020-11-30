@@ -78,14 +78,6 @@
         },
         {
             "type": "shell",
-            "expect_disconnect": true,
-            "scripts": [
-                "{{template_dir}}/scripts/base/reboot.sh"
-            ],
-            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
             "script": "{{template_dir}}/scripts/base/apt.sh",
             "environment_vars": [
                 "DEBIAN_FRONTEND=noninteractive"
