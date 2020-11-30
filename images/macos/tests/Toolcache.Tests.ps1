@@ -5,15 +5,18 @@ $os = Get-OSVersion
 
 Describe "Toolcache" {
     $toolcacheDirectory = Join-Path $env:HOME "hostedtoolcache"
-    $packages = (Get-ToolcachePackages).PSObject.Properties | ForEach-Object {
-        $packageNameParts = $_.Name.Split("-")
-        return [PSCustomObject] @{
-            ToolName = $packageNameParts[1]
-            Arch = $packageNameParts[4]
-            Versions = $_.Value
+    [array]$packages = @()
+    if ($os.IsHighSierra) {
+        [array]$packages += (Get-ToolcachePackages).PSObject.Properties | ForEach-Object {
+            $packageNameParts = $_.Name.Split("-")
+            return [PSCustomObject] @{
+                ToolName = $packageNameParts[1]
+                Arch = $packageNameParts[4]
+                Versions = $_.Value
+            }
         }
     }
-    
+
     [array]$packages += Get-ToolsetValue -KeyPath "toolcache" | ForEach-Object {
         return [PSCustomObject] @{
             ToolName = ($_.name).ToLower()
@@ -67,9 +70,9 @@ Describe "Toolcache" {
 
     Context "Ruby" {
         $rubyDirectory = Join-Path $toolcacheDirectory "Ruby"
-        $rubyPackage = $packages | Where-Object { $_.ToolName -eq "ruby" } | Select-Object -First 1
+        $rubyPackage = $packages | Where-Object { $_.ToolName -eq "Ruby" } | Select-Object -First 1
         $testCase = @{ RubyDirectory = $rubyDirectory }
-        
+
         It "Toolcache directory exists" -TestCases $testCase {
             param ( [string] $RubyDirectory )
 
@@ -120,7 +123,7 @@ Describe "Toolcache" {
 
         It "Toolcache directory contains at least one version of PyPy" -TestCases $testCase {
             param ( [string] $PypyDirectory )
-                
+
             (Get-ChildItem -Path $PypyDirectory -Directory).Count | Should -BeGreaterThan 0
         }
 
@@ -155,10 +158,10 @@ Describe "Toolcache" {
         $nodeDirectory = Join-Path $toolcacheDirectory "node"
         $nodePackage = $packages | Where-Object { $_.ToolName -eq "node" } | Select-Object -First 1
         $testCase = @{ NodeDirectory = $nodeDirectory }
-        
+
         It "Toolcache directory exists" -TestCases $testCase {
             param ( [string] $NodeDirectory )
-            
+
             $NodeDirectory | Should -Exist
         }
 
@@ -176,7 +179,7 @@ Describe "Toolcache" {
                 $testCase = @{ NodeVersion = $_; NodeBinPath = $nodeBinPath; NpmBinPath = $npmBinPath }
 
                 It "Version Node" -TestCases $testCase {
-                    param ( 
+                    param (
                         [string] $NodeVersion,
                         [string] $NodeBinPath
                     )
@@ -205,7 +208,7 @@ Describe "Toolcache" {
         $goDirectory = Join-Path $toolcacheDirectory "go"
         $goPackage = $packages | Where-Object { $_.ToolName -eq "go" } | Select-Object -First 1
         $testCase = @{ GoDirectory = $goDirectory }
-        
+
         It "Toolcache directory exists" -TestCases $testCase {
             param ( [string] $GoDirectory )
 
@@ -223,7 +226,7 @@ Describe "Toolcache" {
                 $versionDirectory = Get-ChildItem -Path $goDirectory -Directory -Filter "$_*" | Select-Object -First 1
                 $goBinPath = Join-Path $versionDirectory.FullName $goPackage.Arch "bin" "go"
                 $testCase = @{ GoVersion = $_; GoBinPath = $goBinPath }
-                
+
                 It "Version Go" -TestCases $testCase {
                     param (
                         [string] $GoVersion,

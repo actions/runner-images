@@ -1,9 +1,13 @@
 #!/bin/bash -e -o pipefail
 
+echo "Enabling safari driver..."
 # https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari
 # Safari’s executable is located at /usr/bin/safaridriver
 # Configure Safari to Enable WebDriver Support
 sudo safaridriver --enable
+
+echo "Enabling developer mode..."
+sudo /usr/sbin/DevToolsSecurity --enable
 
 # Turn off hibernation and get rid of the sleepimage
 sudo pmset hibernatemode 0

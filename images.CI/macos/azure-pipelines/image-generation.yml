@@ -87,9 +87,10 @@ jobs:
             $sensitiveString -eq $null
         }
     displayName: 'Build VM'
-    env:
-      PACKER_LOG: 0
     workingDirectory: 'images/macos'
+    env:
+      PACKER_LOG: 1
+      PACKER_LOG_PATH: $(Agent.TempDirectory)/packer-log.txt
 
   - bash: |
       echo "Copy image output files"
@@ -111,6 +112,14 @@ jobs:
     inputs:
       ArtifactName: 'Built_VM_Artifacts'
     displayName: Publish Artifacts
+
+  - task: PowerShell@2
+    displayName: 'Print provisioners duration'
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/measure-provisioners-duration.ps1
+      arguments: -PackerLogPath "$(Agent.TempDirectory)/packer-log.txt" `
+                        -PrintTopNLongest 25
 
   - task: PublishTestResults@2
     inputs:

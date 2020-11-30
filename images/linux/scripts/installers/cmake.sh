@@ -9,7 +9,7 @@ echo "Checking to see if the installer script has already been run"
 if command -v cmake; then
     echo "cmake is already installed"
 else
-	curl -sL https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.sh -o cmakeinstall.sh \
+	curl -sL https://cmake.org/files/v3.19/cmake-3.19.1-Linux-x86_64.sh -o cmakeinstall.sh \
 	&& chmod +x cmakeinstall.sh \
 	&& ./cmakeinstall.sh --prefix=/usr/local --exclude-subdir \
 	&& rm cmakeinstall.sh

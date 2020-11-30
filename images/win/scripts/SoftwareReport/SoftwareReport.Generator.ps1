@@ -23,7 +23,7 @@ if (Test-IsWin19)
 {
     $markdown += New-MDHeader "Enabled windows optional features" -Level 2
     $markdown += New-MDList -Style Unordered -Lines @(
-        "Windows Subsystem for Linux"
+        "Windows Subsystem for Linux [WSLv1]"
     )
 }
 
@@ -139,6 +139,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader "MSYS2" -Level 3
 $markdown += Get-PacmanVersion
 $markdown += New-MDNewLine
+$markdown += New-MDHeader "Notes:" -Level 5
 $markdown += @'
 ```
 Location: C:\msys64
@@ -147,6 +148,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ```
 '@
 $markdown += New-MDNewLine
+
+if (Test-IsWin19)
+{
+    $markdown += New-MDHeader "BizTalk Server" -Level 3
+    $markdown += Get-BizTalkVersion
+    $markdown += New-MDNewLine
+}
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += (Build-CachedToolsMarkdown)
