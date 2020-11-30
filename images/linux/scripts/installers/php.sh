@@ -14,15 +14,15 @@ apt-get update
 
 # Install PHP
 if isUbuntu16 ; then
-    php_versions="5.6 7.0 7.1 7.2 7.3 7.4"
+    php_versions="5.6 7.0 7.1 7.2 7.3 7.4 8.0"
 fi
 
 if isUbuntu18 ; then
-    php_versions="7.1 7.2 7.3 7.4"
+    php_versions="7.1 7.2 7.3 7.4 8.0"
 fi
 
 if isUbuntu20 ; then
-    php_versions="7.4"
+    php_versions="7.4 8.0"
 fi
 
 for version in $php_versions; do
@@ -44,7 +44,6 @@ for version in $php_versions; do
         php$version-imap \
         php$version-interbase \
         php$version-intl \
-        php$version-json \
         php$version-ldap \
         php$version-mbstring \
         php$version-mysql \
@@ -60,7 +59,6 @@ for version in $php_versions; do
         php$version-sybase \
         php$version-tidy \
         php$version-xml \
-        php$version-xmlrpc \
         php$version-xsl \
         php$version-zip
 
@@ -70,6 +68,10 @@ for version in $php_versions; do
 
     if [[ $version == "7.2" || $version == "7.3" ]]; then
         apt-fast install -y --no-install-recommends php$version-recode
+    fi
+
+    if [[ $version != "8.0" ]]; then
+        apt-fast install -y --no-install-recommends php$version-xmlrpc php$version-json
     fi
 done
 
@@ -105,7 +107,7 @@ echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> /etc/skel/.bashr
 mkdir -p /etc/skel/.composer
 
 # Install phpunit (for PHP)
-wget -q -O phpunit https://phar.phpunit.de/phpunit-7.phar
+wget -q -O phpunit https://phar.phpunit.de/phpunit-8.phar
 chmod +x phpunit
 mv phpunit /usr/local/bin/phpunit
 
