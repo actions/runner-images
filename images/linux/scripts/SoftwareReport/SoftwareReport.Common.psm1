@@ -115,6 +115,10 @@ function Get-YarnVersion {
     return "Yarn $yarnVersion"
 }
 
+function Get-PowershellCoreVersion {
+    return & pwsh --version
+}
+
 function Get-PipVersion {
     $result = Get-CommandResult "pip --version"
     $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
@@ -226,6 +230,21 @@ function Get-AzModuleVersions {
 
     $azModuleVersions = $azModuleVersions -join " "
     return $azModuleVersions
+}
+
+function Get-PowerShellModules {
+    $modules = (Get-ToolsetContent).powershellModules.name
+
+    $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
+    $psModules | ForEach-Object {
+        $moduleName = $_.Name
+        $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
+
+        [PSCustomObject]@{
+            Module = $moduleName
+            Version = $moduleVersions
+        }
+    }
 }
 
 function Get-DotNetCoreSdkVersions {
