@@ -15,17 +15,11 @@ mkdir -p /etc/containers
 echo -e "[registries.search]\nregistries = ['docker.io', 'quay.io']" | tee /etc/containers/registries.conf
 
 # Check that tools are installed properly
-if ! podman --version; then
-    echo "Podman was not installed"
-    exit 1
-fi
-
-if ! buildah --version; then
-    echo "Buildah was not installed"
-    exit 1
-fi
-
-if ! skopeo --version; then
-    echo "Skopeo was not installed"
-    exit 1
-fi
+cmd_packages=(podman buildah skopeo)
+echo "Testing to make sure that script performed as expected, and basic scenarios work" 
+for cmd in ${cmd_packages[@]}; do 
+    if ! command -v $cmd; then 
+        echo "$cmd was not installed" 
+        exit 1 
+    fi 
+done
