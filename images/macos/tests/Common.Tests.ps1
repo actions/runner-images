@@ -238,7 +238,7 @@ Describe "Common utilities" {
     }
 
     It "GNU Tar" {
-        "tar --version" | Should -ReturnZeroExitCode
+        "gtar --version" | Should -ReturnZeroExitCode
     }
 }
 
