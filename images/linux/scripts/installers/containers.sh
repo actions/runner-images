@@ -15,6 +15,17 @@ mkdir -p /etc/containers
 echo -e "[registries.search]\nregistries = ['docker.io', 'quay.io']" | tee /etc/containers/registries.conf
 
 # Check that tools are installed properly
-podman --version
-buildah --version
-skopeo --version
+if ! podman --version; then
+    echo "Podman was not installed"
+    exit 1
+fi
+
+if ! buildah --version; then
+    echo "Buildah was not installed"
+    exit 1
+fi
+
+if ! skopeo --version; then
+    echo "Skopeo was not installed"
+    exit 1
+fi
