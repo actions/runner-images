@@ -8,7 +8,6 @@ rustup-init -y --no-modify-path --default-toolchain=stable --profile=minimal
 
 echo Initialize environment variables...
 CARGO_HOME=$HOME/.cargo
-source $CARGO_HOME/env
 
 echo Install common tools...
 rustup component add rustfmt clippy
