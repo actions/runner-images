@@ -269,6 +269,8 @@ function Get-VSExtensionVersion
     $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
     if ($instanceFolders -is [array])
     {
+        Write-Host ($instanceFolders | Out-String)
+        Write-Host ($instanceFolders | Get-ChildItem | Out-String)
         Write-Host "More than one instance installed"
         exit 1
     }
@@ -279,7 +281,7 @@ function Get-VSExtensionVersion
 
     if (-not $packageVersion)
     {
-        Write-Host "installed package $packageName for Visual Studio 2019 was not found"
+        Write-Host "Installed package $packageName for Visual Studio 2019 was not found"
         exit 1
     }
 
