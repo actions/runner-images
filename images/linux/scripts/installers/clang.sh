@@ -11,7 +11,7 @@ function InstallClang {
     local version=$1
 
     echo "Installing clang-$version..."
-    if [[ $version =~ 9 ]] && isUbuntu16; then
+    if [[ $version =~ 11 && isUbuntu20 ]] || [[ $version =~ 9 && isUbuntu16 ]]; then
         ./llvm.sh $version
         apt-get install -y "clang-format-$version"
     else
@@ -36,6 +36,7 @@ function SetDefaultClang {
     update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${version} 100
     update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-${version} 100
 }
+
 
 # Download script for automatic installation
 wget https://apt.llvm.org/llvm.sh
