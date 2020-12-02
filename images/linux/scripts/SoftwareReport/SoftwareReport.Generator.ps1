@@ -103,6 +103,7 @@ $toolsList = @(
     (Get-KubectlVersion),
     (Get-KustomizeVersion),
     (Get-LeiningenVersion),
+    (Get-MediainfoVersion),
     (Get-M4Version),
     (Get-HGVersion),
     (Get-MinikubeVersion),
