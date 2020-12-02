@@ -37,7 +37,6 @@ function SetDefaultClang {
     update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-${version} 100
 }
 
-
 # Download script for automatic installation
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
