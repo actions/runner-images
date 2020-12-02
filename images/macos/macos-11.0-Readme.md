@@ -130,7 +130,7 @@
 
 ### Rust Tools
 - Rust 1.48.0
-- Rustup The
+- Rustup 1.23.0
 
 #### Packages
 - Bindgen 0.56.0
