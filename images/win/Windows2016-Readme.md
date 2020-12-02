@@ -1,87 +1,90 @@
 | Announcements |
 |-|
-| [[In Discussion] Git internal tools will be removed from PATH Windows images and replaced with MSYS2 tools](https://github.com/actions/virtual-environments/issues/1525) |
+| [Default Node.JS will be switched to 14.x on all platforms ](https://github.com/actions/virtual-environments/issues/1953) |
+| [.NET 5.0 will become a default .NET version soon [date will be defined later]](https://github.com/actions/virtual-environments/issues/1891) |
+| [[Ubuntu] [Windows] Boost 1.69.0 will be deprecated on November, 10](https://github.com/actions/virtual-environments/issues/1847) |
 ***
 # Microsoft Windows Server 2016 Datacenter
-- OS Version: 10.0.14393 Build 3930
-- Image Version: 20201012.1
+- OS Version: 10.0.14393 Build 4046
+- Image Version: 20201116.1
 
 ## Installed Software
 ### Language and Runtime
 - Java 1.7.0_232 
-- Java 1.8.0_265 (default)
-- Java 11.0.8 
+- Java 1.8.0_275 (default)
+- Java 11.0.9 
 - Java 13.0.2 
 - Python 3.7.9
 - Ruby 2.5.8p224
-- Go 1.14.9
+- Go 1.14.12
 - PHP 7.4.11
 - Julia 1.5.2
 - Perl 5.32.0
-- Node 12.19.0
+- Node 14.15.0
 
 ### Package Management
 - Chocolatey 0.10.15
-- Vcpkg 2020.06.15
+- Vcpkg 2020.11.12
 - NPM 6.14.8
 - Yarn 1.22.10
-- pip 20.2.3 (python 3.7)
-- Miniconda 4.6.14
+- pip 20.2.4 (python 3.7)
+- Miniconda 4.8.3
 - RubyGems 3.1.4
-- Helm 3.3.4
-- Composer 1.10.13
-- NuGet 5.7.0.6726
+- Helm 3.4.1
+- Composer 2.0.7
+- NuGet 5.8.0.6930
+- Pipx 0.15.6.0
 
 ### Project Management
 - Ant 1.10.9
 - Maven 3.6.3
-- Gradle 6.6
-- sbt 1.4.0
+- Gradle 6.7
+- sbt 1.4.2
 
 ### Tools
-- azcopy 10.6.0
-- Bazel 3.6.0
-- Bazelisk 1.7.1
+- azcopy 10.7.0
+- Bazel 3.7.0
+- Bazelisk 1.7.3
 - CMake 3.18.4
-- CodeQL Action Bundle 2.2.5
+- CodeQL Action Bundle 2.3.3
 - R 4.0.3
 - Docker 19.03.12
-- Docker-compose 1.27.2
-- Git 2.28.0
-- Git LFS 2.11.0
-- Google Cloud SDK 313.0.1
+- Docker-compose 1.27.4
+- Git 2.29.2
+- Git LFS 2.12.1
+- Google Cloud SDK 318.0.0
 - InnoSetup 6.0.5
 - jq 1.6
-- Kubectl 1.19.1
+- Kubectl 1.19.3
 - Kind 0.9.0
 - Mingw-w64 8.1.0
 - Mercurial 5.0
 - NSIS v3.06.1
-- Newman 5.2.0
+- Newman 5.2.1
 - OpenSSL 1.1.1
-- Packer 1.6.3
-- Pulumi v2.11.2
+- Packer 1.6.5
+- Pulumi v2.13.2
 - Subversion (SVN) 1.14.0
 - ghc 8.10.2
 - Cabal 3.2.0.0
-- Stack 2.3.3
-- WinAppDriver 1.1.1809.18001
+- Stack 2.5.1
+- WinAppDriver 1.2.2009.02003
 - zstd 1.4.5
 - VSWhere 2.8.4
 - 7zip 19.00
 - yamllint 1.25.0
 
 ### CLI Tools
-- Azure CLI 2.12.1
+- Azure CLI 2.14.2
 - Azure DevOps CLI extension 0.18.0
-- Azure Dev Spaces CLI 1.0.20200921.3
-- AWS CLI 2.0.56
-- AWS SAM CLI 1.6.2
-- AWS Session Manager CLI 1.1.61.0
+- Azure Dev Spaces CLI 1.0.20201028.9
+- AWS CLI 2.1.0
+- AWS SAM CLI 1.10.0
+- AWS Session Manager CLI 1.2.7.0
 - Alibaba Cloud CLI 3.0.60
 - Cloud Foundry CLI 6.53.0
 - Hub CLI 2.14.2
-- GitHub CLI 1.1.0
+- GitHub CLI 1.2.1
 
 ### Rust Tools
 - Rust 1.47.0
@@ -89,16 +92,16 @@
 #### Packages
 - bindgen 0.55.1
 - cbindgen 0.15.0
-- cargo-audit 0.12.1
-- cargo-outdated v0.9.11
+- cargo-audit 0.13.1
+- cargo-outdated v0.9.13
 
 ### Browsers and webdrivers
-- Google Chrome 86.0.4240.75
+- Google Chrome 86.0.4240.198
 - Chrome Driver 86.0.4240.22
-- Microsoft Edge 86.0.622.38
-- Microsoft Edge Driver 86.0.622.38
-- Mozilla Firefox 81.0.1
-- Gecko Driver 0.27.0
+- Microsoft Edge 86.0.622.69
+- Microsoft Edge Driver 86.0.622.69
+- Mozilla Firefox 82.0.3
+- Gecko Driver 0.28.0
 - IE Driver 3.150.1.0
 
 ### MSYS2
@@ -112,7 +115,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Boost
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.69.0  | x64, x86     | BOOST_ROOT_1_69_0    |
 | 1.72.0  | x64, x86     | BOOST_ROOT_1_72_0    |
 ##### Notes:
 ```
@@ -137,17 +139,17 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.11.13 | x64          | GOROOT_1_11_X64      |
 | 1.12.17 | x64          | GOROOT_1_12_X64      |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
-| 1.14.9 (Default) | x64          | GOROOT_1_14_X64      |
-| 1.15.2  | x64          | GOROOT_1_15_X64      |
+| 1.14.12 (Default) | x64          | GOROOT_1_14_X64      |
+| 1.15.5  | x64          | GOROOT_1_15_X64      |
 
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
 | 8.17.0  | x64          |
-| 10.22.1 | x64          |
+| 10.23.0 | x64          |
 | 12.19.0 | x64          |
-| 14.13.1 | x64          |
+| 14.15.0 | x64          |
 
 
 #### Python
@@ -158,6 +160,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.6   | x64, x86     |
+| 3.9.0   | x64, x86     |
 
 
 #### Ruby
@@ -166,7 +169,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.4.10  | x64          |
 | 2.5.8 (Default) | x64          |
 | 2.6.6   | x64          |
-| 2.7.1   | x64          |
+| 2.7.2   | x64          |
 
 
 #### PyPy
@@ -182,7 +185,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-13                                                                                                                    |
-| Version              | 13.0                                                                                                                                 |
+| Version              | 13.1                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\13\bin <br> PGDATA=C:\Program Files\PostgreSQL\13\data <br> PGROOT=C:\Program Files\PostgreSQL\13  |
@@ -199,7 +202,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.11.6.0
+- Azure CosmosDb Emulator 2.11.8.0
+- DacFx 15.0.4897.1
 - SQLPS 1.0
 - MySQL 5.7.21.0
 
@@ -207,7 +211,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2017 | 15.9.28307.1259 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
+| Visual Studio Enterprise 2017 | 15.9.28307.1300 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
 
 #### Workloads, components and extensions:
 
@@ -469,27 +473,27 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2017 Debug Runtime      | x64          | 14.16.27033 |
 | Microsoft Visual C++ 2017 Debug Runtime      | x86          | 14.16.27033 |
-| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.27.29112 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.27.29112 |
-| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.27.29112 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.27.29112 |
+| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.28.29325 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.28.29325 |
+| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.28.29325 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.28.29325 |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402
+- 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 1.0.16 1.1.13 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8
+- 1.0.16 1.1.13 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8
+- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -497,7 +501,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8
 
 ### PowerShell Tools
-- PowerShell 7.0.3
+- PowerShell 7.1.0
 
 #### Azure Powershell Modules
 | Module  | Version                                                                                         | Path                           |
@@ -511,20 +515,20 @@ and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
 ```
 #### Powershell Modules
-| Module             | Version                     |
-| ------------------ | --------------------------- |
-| DockerMsftProvider | 1.0.0.8                     |
-| MarkdownPS         | 1.9                         |
-| Pester             | 3.4.0<br>5.0.4              |
-| PowerShellGet      | 1.0.0.1<br>2.2.4.1<br>2.2.5 |
-| PSWindowsUpdate    | 2.2.0.2                     |
-| SqlServer          | 21.1.18228                  |
-| VSSetup            | 2.2.16                      |
+| Module             | Version          |
+| ------------------ | ---------------- |
+| DockerMsftProvider | 1.0.0.8          |
+| MarkdownPS         | 1.9              |
+| Pester             | 3.4.0<br>5.0.4   |
+| PowerShellGet      | 1.0.0.1<br>2.2.5 |
+| PSWindowsUpdate    | 2.2.0.2          |
+| SqlServer          | 21.1.18229       |
+| VSSetup            | 2.2.16           |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                                        |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Android SDK Platform-Tools | 30.0.4                                                                                                                                                                                                                                                                         |
+| Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                                                                                         |
 | Android SDK Tools          | 25.2.5                                                                                                                                                                                                                                                                         |
 | Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)           |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0 |
@@ -537,10 +541,12 @@ All other versions are saved but not installed.
 | CMake                      | 3.10.2<br>3.6.4111459                                                                                                                                                                                                                                                          |
 
 ### Cached Docker images
--  mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016
--  mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016
--  mcr.microsoft.com/windows/servercore:ltsc2016
--  microsoft/aspnetcore-build:1.0-2.0
--  mcr.microsoft.com/windows/nanoserver:10.0.14393.953
+| Repository:Tag                                                            | Digest                                                                   | Created    |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:568f9deecdc69e13dbfda34ed581f4e2eb42dcfae5fdf7e7f7931608c8310833  | 2020-11-10 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:1ff6bf05b00b78cae3aa5225d0577402f91135e26b39f1f7c8e6ce9059b434a9  | 2020-11-10 |
+| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:14883370b6e3b9c932e53e1d4753921ac528c33e4b3450bb5948cb9d8a68298b  | 2020-10-28 |
+| microsoft/aspnetcore-build:1.0-2.0                                        | sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c  | 2018-08-15 |
+| mcr.microsoft.com/windows/nanoserver:10.0.14393.953                       | sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268  | 2017-03-08 |
 
 

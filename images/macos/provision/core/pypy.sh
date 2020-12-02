@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 ################################################################################
 ##  File:  pypy.sh
 ##  Desc:  Installs PyPy
 ################################################################################
+
 source ~/utils/utils.sh
-set -e
 
 function InstallPyPy
 {
@@ -13,7 +13,7 @@ function InstallPyPy
     PACKAGE_TAR_NAME=$(echo $PACKAGE_URL | awk -F/ '{print $NF}')
     echo "Downloading tar archive '$PACKAGE_TAR_NAME' - '$PACKAGE_URL'"
     PACKAGE_TAR_TEMP_PATH="/tmp/$PACKAGE_TAR_NAME"
-    wget -q -O $PACKAGE_TAR_TEMP_PATH $PACKAGE_URL
+    download_with_retries $PACKAGE_URL "/tmp" "$PACKAGE_TAR_NAME"
 
     echo "Expand '$PACKAGE_TAR_NAME' to the /tmp folder"
     tar xf $PACKAGE_TAR_TEMP_PATH -C /tmp

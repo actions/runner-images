@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
 BOOTSTRAP_PATH="$1"
 ProvisionerPackageUri="$2"
 ProvisionerScriptUri="$3"

@@ -6,9 +6,10 @@
 
 jobs:
 - job:
-  pool: ci-agent-pool
+  displayName: Image Generation (${{ parameters.image_type }})
   timeoutInMinutes: 600
   cancelTimeoutInMinutes: 30
+  pool: ci-agent-pool
   variables:
   - group: Image Generation Variables
 
@@ -21,6 +22,18 @@ jobs:
       filePath: ./images.CI/download-repo.ps1
       arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
                  -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
+    
+  - task: PowerShell@2
+    displayName: 'Set image template variables'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $ImageType = "${{ parameters.image_type }}"
+        $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "win" }
+        $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
+        $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
+        Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
+        Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
 
   - task: PowerShell@2
     displayName: 'Build VM'
@@ -30,7 +43,7 @@ jobs:
       arguments: -ResourcesNamePrefix $(Build.BuildId) `
                         -ClientId $(CLIENT_ID) `
                         -ClientSecret $(CLIENT_SECRET) `
-                        -Image ${{ parameters.image_type }} `
+                        -TemplatePath $(TemplatePath) `
                         -ResourceGroup $(AZURE_RESOURCE_GROUP) `
                         -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
                         -SubscriptionId $(AZURE_SUBSCRIPTION) `
@@ -40,6 +53,25 @@ jobs:
                         -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
                         -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME) `
                         -GitHubFeedToken $(GITHUB_TOKEN)
+    env:
+      PACKER_LOG: 1
+      PACKER_LOG_PATH: $(Build.ArtifactStagingDirectory)/packer-log.txt
+
+  - task: PowerShell@2
+    displayName: 'Output Readme file content'
+    inputs:
+      targetType: 'inline'
+      script: |
+        Get-Content -Path (Join-Path "$(TemplateDirectoryPath)" "${{ parameters.image_readme_name }}")
+
+  - task: PowerShell@2
+    displayName: 'Print provisioners duration'
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/measure-provisioners-duration.ps1
+      arguments: -PackerLogPath "$(Build.ArtifactStagingDirectory)/packer-log.txt" `
+                        -PrefixToPathTrim "$(TemplateDirectoryPath)" `
+                        -PrintTopNLongest 25
 
   - task: PowerShell@2
     displayName: 'Create release for VM deployment'
@@ -52,14 +84,6 @@ jobs:
                         -Project $(RELEASE_TARGET_PROJECT) `
                         -ImageName ${{ parameters.image_type }} `
                         -AccessToken $(RELEASE_TARGET_TOKEN)
-
-  - task: PowerShell@2
-    displayName: 'Output Readme file content'
-    inputs:
-      targetType: 'inline'
-      script: |
-        $docsPath = Get-ChildItem -Path "images" -Include ${{ parameters.image_readme_name }} -Recurse -Depth 1 | Select-Object -First 1
-        Get-Content -Path $docsPath
 
   - task: PowerShell@2
     displayName: 'Clean up resources'

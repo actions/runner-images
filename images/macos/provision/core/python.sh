@@ -1,15 +1,11 @@
-#!/bin/sh
+#!/bin/bash -e -o pipefail
+
 source ~/utils/utils.sh
 
 echo "Installing Python Tooling"
 
 echo "Brew Installing Python 3"
-# Workaround to have both 3.8 & 3.9(which required by some brew formulas) in the system, but only 3.8 is linked
-/usr/local/bin/brew install python@3.8
-/usr/local/bin/brew install python@3.9
-/usr/local/bin/brew unlink python@3.9
-/usr/local/bin/brew unlink python@3.8
-/usr/local/bin/brew link python@3.8
+brew install python@3.9
 
 echo "Install pip for Python 2"
 # Set permissions to install pip modules in the main packages directory
@@ -27,3 +23,13 @@ else
     ln -s /usr/bin/pip /usr/local/bin/pip
     sudo chmod 755 /usr/bin
 fi
+
+echo "Installing pipx"
+export PIPX_BIN_DIR=/usr/local/opt/pipx_bin
+export PIPX_HOME=/usr/local/opt/pipx
+
+brew install pipx
+
+echo "export PIPX_BIN_DIR=${PIPX_BIN_DIR}" >> "${HOME}/.bashrc"
+echo "export PIPX_HOME=${PIPX_HOME}" >> "${HOME}/.bashrc"
+echo 'export PATH="$PIPX_BIN_DIR:$PATH"' >> "${HOME}/.bashrc"

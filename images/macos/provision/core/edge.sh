@@ -1,11 +1,9 @@
+#!/bin/bash -e -o pipefail
+
 source ~/utils/utils.sh
 
 echo "Installing Microsoft Edge..."
-# Workaround to install version 85 since webdriver is broken for 86
-cd "$(brew --repo homebrew/homebrew-cask)"
-git checkout 81f9d08d2b9b7557c0178621078cf59d2c5db2bc
 brew cask install microsoft-edge
-git checkout master
 
 EDGE_INSTALLATION_PATH="/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
 EDGE_VERSION=$("$EDGE_INSTALLATION_PATH" --version | cut -d' ' -f 3)
@@ -15,7 +13,7 @@ echo "Version of Microsoft Edge: ${EDGE_VERSION}"
 
 echo "Installing Microsoft Edge WebDriver..."
 
-EDGE_DRIVER_VERSION_URL="https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDGE_VERSION_MAJOR}"
+EDGE_DRIVER_VERSION_URL="https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDGE_VERSION_MAJOR}_MACOS"
 EDGE_DRIVER_LATEST_VERSION=$(curl -s "$EDGE_DRIVER_VERSION_URL" | iconv -f utf-16 -t utf-8 | tr -d '\r')
 EDGE_DRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_DRIVER_LATEST_VERSION}/edgedriver_mac64.zip"
 

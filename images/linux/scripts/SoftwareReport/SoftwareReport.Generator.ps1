@@ -21,13 +21,6 @@ Restore-UserOwner
 
 $markdown = ""
 
-if ($env:ANNOUNCEMENTS) {
-    $markdown += $env:ANNOUNCEMENTS
-    $markdown += New-MDNewLine
-    $markdown += "***"
-    $markdown += New-MDNewLine
-}
-
 $OSName = Get-OSName
 $markdown += New-MDHeader "$OSName" -Level 1
 
@@ -101,7 +94,6 @@ $toolsList = @(
     (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GitFTPVersion),
-    (Get-GoogleCloudSDKVersion),
     (Get-HavegedVersion),
     (Get-HerokuVersion),
     (Get-HHVMVersion),
@@ -149,6 +141,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzureCliVersion),
     (Get-AzureDevopsVersion),
     (Get-GitHubCliVersion),
+    (Get-GoogleCloudSDKVersion),
     (Get-HubCliVersion),
     (Get-NetlifyCliVersion),
     (Get-OCCliVersion),
@@ -215,6 +208,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
 )
 
 $markdown += Build-MySQLSection
+$markdown += Build-MSSQLToolsSection
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection
@@ -224,7 +218,8 @@ $markdown += Build-AndroidTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Cached Docker images" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(Get-CachedDockerImages)
+$markdown += Get-CachedDockerImagesTableData | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Installed apt packages" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(Get-AptPackages)

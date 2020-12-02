@@ -1,11 +1,13 @@
-#!/bin/sh
+#!/bin/bash -e -o pipefail
+
+source ~/utils/utils.sh
 
 # Xamarin can clean their SDKs while updating to newer versions,
 # so we should be able to detect it during image generation
 downloadAndInstallPKG() {
   local PKG_URL=$1
   local PKG_NAME=${PKG_URL##*/}
-  
+
   download_with_retries $PKG_URL
 
   echo "Installing $PKG_NAME..."
@@ -159,7 +161,7 @@ installNunitConsole() {
   local MONO_VERSION=$1
 
   cat <<EOF > ${TMPMOUNT}/${NUNIT3_CONSOLE_BIN}
-#!/bin/sh
+#!/bin/bash -e -o pipefail
 exec /Library/Frameworks/Mono.framework/Versions/${MONO_VERSION}/bin/mono --debug \$MONO_OPTIONS $NUNIT3_PATH/nunit3-console.exe "\$@"
 EOF
   sudo chmod +x ${TMPMOUNT}/${NUNIT3_CONSOLE_BIN}
@@ -175,12 +177,12 @@ downloadNUnitConsole() {
     pushd $TMPMOUNT
 
     sudo mkdir -p $NUNIT3_PATH
-    sudo curl -L -o nunit3.zip $NUNIT3_LOCATION
+    download_with_retries $NUNIT3_LOCATION "." "nunit3.zip"
 
     echo "Installing NUnit 3..."
     sudo unzip nunit3.zip -d $NUNIT3_PATH
     NUNIT3_CONSOLE_BIN=nunit3-console
-    
+
     popd
 }
 
@@ -191,8 +193,12 @@ installNuget() {
   echo "Installing nuget $NUGET_VERSION for Mono $MONO_VERSION"
   cd ${MONO_VERSIONS_PATH}/${MONO_VERSION}/lib/mono/nuget
   sudo mv nuget.exe nuget_old.exe
-  sudo curl -L -o nuget.exe $NUGET_URL
+
+  pushd $TMPMOUNT
+  download_with_retries $NUGET_URL "." "nuget.exe"
   sudo chmod a+x nuget.exe
+  sudo mv nuget.exe ${MONO_VERSIONS_PATH}/${MONO_VERSION}/lib/mono/nuget
+  popd
 }
 
 createUWPShim() {

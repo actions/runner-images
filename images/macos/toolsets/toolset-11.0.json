@@ -1,26 +1,49 @@
 {
     "xcode": {
-        "default": "11.7",
+        "default": "12.2",
         "versions": [
-            "12.2_beta", "12.1_GM_seed", "11.7"
+            { "link": "12.3", "version": "12.3.0"},
+            { "link": "12.2", "version": "12.2.0" },
+            { "link": "11.7", "version": "11.7.0", "symlinks": ["11.7_beta"] }
         ]
     },
     "xamarin": {
         "vsmac": "latest",
         "mono-versions": [
-            "6.12.0.93"
+            "6.12.0.107"
         ],
         "ios-versions": [
-            "14.0.0.0", "13.20.2.2"
+            "14.6.0.15", "14.4.1.3", "14.2.0.12", "14.0.0.0", "13.20.2.2"
         ],
         "mac-versions": [
-            "6.20.2.2"
+            "7.0.0.15", "6.22.1.26", "6.20.2.2"
         ],
         "android-versions": [
-            "11.0.2.0"
+            "11.1.0.17", "11.0.2.0"
         ],
-        "bundle-default": "6_12_0",
+        "bundle-default": "6_12_4",
         "bundles": [
+            {
+                "symlink": "6_12_4",
+                "mono":"6.12",
+                "ios": "14.6",
+                "mac": "7.0",
+                "android": "11.1"
+            },
+            {
+                "symlink": "6_12_3",
+                "mono":"6.12",
+                "ios": "14.4",
+                "mac": "6.22",
+                "android": "11.1"
+            },
+            {
+                "symlink": "6_12_2",
+                "mono":"6.12",
+                "ios": "14.2",
+                "mac": "6.20",
+                "android": "11.0"
+            },
             {
                 "symlink": "6_12_1",
                 "mono":"6.12",
@@ -52,7 +75,12 @@
         "addon-list": []
     },
     "powershellModules": [
-        {"name": "Az"},
+        {
+            "name": "Az",
+            "versions": [
+                "4.8.0"
+            ]
+        },
         {"name": "MarkdownPS"},
         {"name": "Pester"}
     ],
@@ -87,6 +115,28 @@
             "versions": [
                 "1.15.*"
             ]
+        },
+        {
+            "name": "Ruby",
+            "arch": "x64",
+            "versions": [
+                "2.4.*",
+                "2.5.*",
+                "2.6.*",
+                "2.7.*"
+            ]
         }
-    ]
+    ],
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint --version"
+        }
+    ],
+    "dotnet": {
+        "versions": [
+            "2.1",
+            "3.1"
+        ]
+    }
 }

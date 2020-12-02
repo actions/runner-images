@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/bash -e -o pipefail
+
 source ~/utils/utils.sh
 
 imagedata_file="$HOME/imagedata.json"
@@ -8,10 +9,10 @@ os_version=$(sw_vers -productVersion)
 os_build=$(sw_vers -buildVersion)
 label_version=$(echo $os_version | cut -d. -f1,2)
 image_label="macos-${label_version}"
-software_url="https://github.com/actions/virtual-environments/blob/${image_label}/${image_version}/images/macos/${image_label}-Readme.md"
+release_label="macOS-${label_version}"
+software_url="https://github.com/actions/virtual-environments/blob/${release_label}/${image_version}/images/macos/${image_label}-Readme.md"
 
-if is_Catalina || is_BigSur; then
-  cat <<EOF > $imagedata_file
+cat <<EOF > $imagedata_file
     [
       {
         "group": "Operating System",
@@ -23,7 +24,6 @@ if is_Catalina || is_BigSur; then
       }
     ]
 EOF
-fi
 
 echo "export ImageVersion=$image_version" >> $HOME/.bashrc
 echo "export ImageOS=$IMAGE_OS" >> $HOME/.bashrc

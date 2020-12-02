@@ -27,16 +27,17 @@ function Get-EnvironmentVariable($variable) {
 # It can be used for OS-specific tests
 function Get-OSVersion {
     $osVersion = [Environment]::OSVersion
+    $osVersionMajorMinor = $osVersion.Version.ToString(2)
     return [PSCustomObject]@{
         Version = $osVersion.Version
         Platform = $osVersion.Platform
-        IsHighSierra = $osVersion.Version.Major -eq 17
-        IsMojave = $osVersion.Version.Major -eq 18
-        IsCatalina = $osVersion.Version.Major -eq 19
-        IsBigSur = $osVersion.Version.Major -eq 20
-        IsLessThanCatalina = $osVersion.Version.Major -lt 19
-        IsLessThanBigSur = $osVersion.Version.Major -lt 20
-        IsHigherThanMojave = $osVersion.Version.Major -gt 18
+        IsHighSierra = $osVersionMajorMinor -eq "10.13"
+        IsMojave = $osVersionMajorMinor -eq "10.14"
+        IsCatalina = $osVersionMajorMinor -eq "10.15"
+        IsBigSur = $osVersionMajorMinor -eq "11.0"
+        IsLessThanCatalina = [SemVer]$osVersion.Version -lt "10.15"
+        IsLessThanBigSur = [SemVer]$osVersion.Version -lt "11.0"
+        IsHigherThanMojave = [SemVer]$osVersion.Version -ge "10.15"
     }
 }
 
@@ -82,4 +83,62 @@ function Invoke-RestMethodWithRetry {
         $Url
     )
     Invoke-RestMethod $Url -MaximumRetryCount 10 -RetryIntervalSec 30
+}
+
+function Invoke-ValidateCommand {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Command
+    )
+
+    $output = Invoke-Expression -Command $Command
+    if ($LASTEXITCODE -ne 0) {
+        throw "Command '$Command' has finished with exit code $LASTEXITCODE"
+    }
+    return $output
+}
+
+function Start-DownloadWithRetry
+{
+    Param
+    (
+        [Parameter(Mandatory)]
+        [string] $Url,
+        [string] $Name,
+        [string] $DownloadPath = "${env:Temp}",
+        [int] $Retries = 20
+    )
+
+    if ([String]::IsNullOrEmpty($Name)) {
+        $Name = [IO.Path]::GetFileName($Url)
+    }
+
+    $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
+
+    #Default retry logic for the package.
+    while ($Retries -gt 0)
+    {
+        try
+        {
+            Write-Host "Downloading package from: $Url to path $filePath ."
+            (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
+            break
+        }
+        catch
+        {
+            Write-Host "There is an error during package downloading:`n $_"
+            $Retries--
+
+            if ($Retries -eq 0)
+            {
+                Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
+                exit 1
+            }
+
+            Write-Host "Waiting 30 seconds before retrying. Retries left: $Retries"
+            Start-Sleep -Seconds 30
+        }
+    }
+
+    return $filePath
 }

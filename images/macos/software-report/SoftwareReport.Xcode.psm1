@@ -1,4 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+Import-Module "$PSScriptRoot/../helpers/Xcode.Helpers.psm1"
 
 $os = Get-OSVersion
 
@@ -7,19 +8,16 @@ function Get-XcodePaths {
     return $xcodePaths | Select-Object -ExpandProperty Fullname
 }
 
-function Get-XcodeVersionInfo {
-    [string]$output = Invoke-Expression "xcodebuild -version"
-    $versionOutputParts = $output.Split(" ")
-    return @{
-        Version = [System.Version]::Parse($versionOutputParts[1])
-        Build = $versionOutputParts[4]
-    }
-}
-
 function Get-XcodeSDKList {
-    $versionInfo = Get-XcodeVersionInfo
+    param(
+        [Parameter(Mandatory)]
+        [string]$XcodeRootPath
+    )
+
+    $versionInfo = Get-XcodeVersionInfo -XcodeRootPath $XcodeRootPath
+    $xcodebuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
     if ($versionInfo.Version -le [System.Version]::Parse("9.4.1")) {
-        $output = Invoke-Expression "xcodebuild -showsdks"
+        $output = Invoke-Expression "$xcodebuildPath -showsdks"
         $sdkList = $output | Where-Object { $_ -Match "-sdk" }
 
         return $sdkList | ForEach-Object {
@@ -31,7 +29,7 @@ function Get-XcodeSDKList {
         }
     }
 
-    [string]$output = Invoke-Expression "xcodebuild -showsdks -json"
+    [string]$output = Invoke-Expression "$xcodebuildPath -showsdks -json"
     return $output | ConvertFrom-Json
 }
 
@@ -43,14 +41,14 @@ function Get-XcodeInfoList {
         $xcodeRootPath = $_
         Switch-Xcode -XcodeRootPath $xcodeRootPath
 
-        $versionInfo = Get-XcodeVersionInfo
+        $versionInfo = Get-XcodeVersionInfo -XcodeRootPath $xcodeRootPath
         $versionInfo.Path = $xcodeRootPath
         $versionInfo.IsDefault = ($xcodeRootPath -eq $defaultXcodeRootPath)
         $versionInfo.IsStable = Test-XcodeStableRelease -XcodeRootPath $xcodeRootPath
 
         $xcodeInfo.Add($xcodeRootPath, [PSCustomObject] @{
             VersionInfo = $versionInfo
-            SDKInfo = Get-XcodeSDKList
+            SDKInfo = Get-XcodeSDKList -XcodeRootPath $xcodeRootPath
             SimulatorsInfo = Get-XcodeSimulatorsInfo
         })
     }
@@ -101,7 +99,7 @@ function Build-XcodeTable {
     }
 }
 
-function Get-XcodeDevicesList {
+function Build-XcodeDevicesList {
     param (
         [Parameter(Mandatory)][object] $XcodeInfo,
         [Parameter(Mandatory)][object] $Runtime
@@ -190,7 +188,7 @@ function Build-XcodeSimulatorsTable {
         $xcodeInfo.Values | ForEach-Object {
             $runtimeFound = $_.SimulatorsInfo.runtimes | Where-Object { $_.identifier -eq $runtime.identifier } | Select-Object -First 1
             if ($runtimeFound) {
-                $devicesToAdd = Get-XcodeDevicesList -XcodeInfo $_ -Runtime $runtimeFound
+                $devicesToAdd = Build-XcodeDevicesList -XcodeInfo $_ -Runtime $runtimeFound
                 $runtimeDevices += $devicesToAdd | Select-Object -ExpandProperty name
                 $xcodeList += $_.VersionInfo.Version
             }

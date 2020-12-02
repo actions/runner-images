@@ -1,6 +1,4 @@
-#!/bin/sh
-
-set -e
+#!/bin/bash -e -o pipefail
 
 source ~/utils/utils.sh
 
@@ -9,7 +7,7 @@ installAzulJDK() {
     local TMP_FILE=/tmp/openjdk.dmg
     local TMP_MOUNT=`/usr/bin/mktemp -d /tmp/zulu.XXXX`
     # Download dmg
-    curl "${URL}" -o "${TMP_FILE}"
+    download_with_retries $URL "/tmp" "openjdk.dmg"
     # Attach dmg
     hdiutil attach "${TMP_FILE}" -mountpoint "${TMP_MOUNT}"
     # Install pkg
@@ -37,7 +35,7 @@ JAVA_DEFAULT=$(get_toolset_value '.java.default')
 for JAVA_VERSION in "${JAVA_VERSIONS_LIST[@]}"
 do
     if [[ $JAVA_VERSION == "7" ]]; then
-        installAzulJDK "https://cdn.azul.com/zulu/bin/zulu7.40.0.15-ca-jdk7.0.272-macosx_x64.dmg"
+        installAzulJDK "https://cdn.azul.com/zulu/bin/zulu7.42.0.51-ca-jdk7.0.285-macosx_x64.dmg"
     else
         brew cask install "adoptopenjdk${JAVA_VERSION}"
     fi

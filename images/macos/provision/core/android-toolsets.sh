@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
 function filter_components_by_version {

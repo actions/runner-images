@@ -17,10 +17,13 @@ rm -rf $HELPER_SCRIPT_FOLDER
 rm -rf $INSTALLER_SCRIPT_FOLDER
 chmod 755 $IMAGE_FOLDER
 
-# Check PATH
-if [[ $PATH == \"*\" ]]
-then
-    echo "ERROR: PATH contains quotes"
-    echo "PATH = $PATH"
-    exit 1
-fi
+# Remove quotes around PATH
+ENVPATH=$(grep 'PATH=' /etc/environment | head -n 1 | sed -z 's/^PATH=*//')
+ENVPATH=${ENVPATH#"\""}
+ENVPATH=${ENVPATH%"\""}
+echo "PATH=$ENVPATH" | sudo tee -a /etc/environment
+echo "Updated /etc/environment: $(cat /etc/environment)"
+
+# Clean yarn and npm cache
+yarn cache clean
+npm cache clean --force
