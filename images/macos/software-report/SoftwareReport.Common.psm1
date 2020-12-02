@@ -55,7 +55,7 @@ function Get-VcpkgVersion {
 }
 
 function Get-GccVersion {
-    $versionList = @("8", "9")
+    $versionList = @("8", "9", "10")
     $versionList | Foreach-Object {
         $version = Run-Command "gcc-${_} --version" | Select-Object -First 1
         "$version - available by ``gcc-${_}`` alias"
@@ -63,7 +63,7 @@ function Get-GccVersion {
 }
 
 function Get-FortranVersion {
-    $versionList = @("8", "9")
+    $versionList = @("8", "9", "10")
     $versionList | Foreach-Object {
         $version = Run-Command "gfortran-${_} --version" | Select-Object -First 1
         "$version  - available by ``gfortran-${_}`` alias"
