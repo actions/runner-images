@@ -103,8 +103,8 @@ function Get-ChocoVersion {
 function Get-VcpkgVersion {
     ($(vcpkg version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $vcpkgVersion = $Matches.Version
-    $сommitId = git -C "C:\vcpkg" rev-parse --short HEAD
-    return "Vcpkg $vcpkgVersion (build from master <$сommitId>)"
+    $commitId = git -C "C:\vcpkg" rev-parse --short HEAD
+    return "Vcpkg $vcpkgVersion (build from master <$commitId>)"
 }
 
 function Get-NPMVersion {
