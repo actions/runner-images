@@ -1,3 +1,10 @@
+| Announcements |
+|-|
+| [Default Node.JS will be switched to 14.x on all platforms ](https://github.com/actions/virtual-environments/issues/1953) |
+| [.NET 5.0 will become a default .NET version on December, 14](https://github.com/actions/virtual-environments/issues/1891) |
+| [Official Ruby binaries will be installed on images by default](https://github.com/actions/virtual-environments/issues/2193) |
+***
+
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1579
 - Image Version: 20201202.1
