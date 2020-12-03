@@ -40,7 +40,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
         (Get-NodeVersion),
         (Get-PythonVersion),
         (Get-Python3Version),
-        (Get-PowershellVersion),
         (Get-RubyVersion),
         (Get-SwiftVersion),
         (Get-JuliaVersion)
