@@ -3,6 +3,7 @@
 | [[Ubuntu] Default Clang will be set to Clang 11 on December, 14](https://github.com/actions/virtual-environments/issues/2130) |
 | [.NET 5.0 will become a default .NET version on December, 14](https://github.com/actions/virtual-environments/issues/1891) |
 | [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
+| [Official Ruby binaries will be installed on images by default](https://github.com/actions/virtual-environments/issues/2193) |
 ***
 # Ubuntu 18.04.5 LTS
 - Image Version: 20201129.1
