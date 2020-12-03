@@ -157,6 +157,11 @@ function Get-LeiningenVersion {
     return "$(lein -v | Take-OutputPart -Part 0,1)"
 }
 
+function Get-MediainfoVersion {
+    $mediainfoVersion = (mediainfo --version | Select-Object -Index 1 | Take-OutputPart -Part 2).Replace('v', '')
+    return "MediaInfo $mediainfoVersion"
+}
+
 function Get-NewmanVersion {
     return "Newman $(newman --version)"
 }

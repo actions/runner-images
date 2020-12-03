@@ -134,6 +134,7 @@
             "ftp",
             "jq",
             "m4",
+            "mediainfo",
             "netcat",
             "parallel",
             "patchelf",
