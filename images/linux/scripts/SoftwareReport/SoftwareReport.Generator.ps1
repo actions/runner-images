@@ -40,7 +40,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
         (Get-NodeVersion),
         (Get-PythonVersion),
         (Get-Python3Version),
-        (Get-PowershellVersion),
         (Get-RubyVersion),
         (Get-SwiftVersion),
         (Get-JuliaVersion)
@@ -212,6 +211,13 @@ $markdown += Build-MSSQLToolsSection
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection
+
+$markdown += New-MDHeader "PowerShell Tools" -Level 3
+$markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
+
+$markdown += New-MDHeader "PowerShell Modules" -Level 4
+$markdown += Get-PowerShellModules | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Android" -Level 3
 $markdown += Build-AndroidTable | New-MDTable
