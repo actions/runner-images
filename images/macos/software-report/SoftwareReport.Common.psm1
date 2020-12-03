@@ -45,7 +45,7 @@ function Get-Cargoaudit {
 }
 
 function Get-RustupVersion {
-    $rustupVersion = Run-Command "rustup --version" | Take-Part -Part 1
+    $rustupVersion = Run-Command "rustup --version" | Select-Object -First 1 | Take-Part -Part 1
     return "Rustup ${rustupVersion}"
 }
 
