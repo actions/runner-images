@@ -8,7 +8,8 @@
 install_packages=(podman buildah skopeo)
 source /etc/os-release
 sh -c "echo 'deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x${NAME}_${VERSION_ID}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
-wget -qO - https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/x${NAME}_${VERSION_ID}/Release.key | apt-key add -
+wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/x${NAME}_${VERSION_ID}/Release.key -O Release.key
+apt-key add Release.key
 apt-get update -qq
 apt-get -qq -y install ${install_packages[@]}
 mkdir -p /etc/containers
