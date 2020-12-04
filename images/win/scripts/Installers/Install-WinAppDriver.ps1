@@ -3,10 +3,9 @@
 ##  Desc:  Install Windows Application Driver (WinAppDriver)
 ####################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
+$LatestReleaseUrl = 'https://api.github.com/repos/microsoft/WinAppDriver/releases/latest'
+$InstallerUrl = (Invoke-RestMethod -Uri $LatestReleaseUrl).assets.browser_download_url
 $InstallerName = "WindowsApplicationDriver.msi"
-$InstallerUrl = "https://github.com/Microsoft/WinAppDriver/releases/download/v1.1/${InstallerName}"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Install-Binary -Url $InstallerUrl -Name $InstallerName

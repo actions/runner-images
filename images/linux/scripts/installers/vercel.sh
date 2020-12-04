@@ -1,11 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  vercel.sh
 ##  Desc:  Installs the Vercel CLI
 ################################################################################
-
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 
 # Install the Vercel CLI
 npm i -g vercel
@@ -25,7 +22,3 @@ if ! command -v now; then
     echo "[Now] symlink to Vercel CLI was not created"
     exit 1
 fi
-
-# Document the installed version
-echo "Document the installed version"
-DocumentInstalledItem "Vercel CLI ($(vercel --version))"

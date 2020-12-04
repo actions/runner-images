@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  haskell.sh
 ##  Desc:  Installs Haskell
@@ -6,7 +6,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
-source $HELPER_SCRIPTS/document.sh
 
 # Install Herbert V. Riedel's PPA for managing multiple version of ghc on ubuntu.
 # https://launchpad.net/~hvr/+archive/ubuntu/ghc
@@ -58,9 +57,3 @@ fi
 # Create symlink for ghc and cabal in /usr/bin
 ln -s "/opt/ghc/$defaultGHCVersion/bin/ghc" "/usr/bin/ghc"
 ln -s "/opt/cabal/$cabalVersion/bin/cabal" "/usr/bin/cabal"
-
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Haskell Cabal ($(cabal --version))"
-DocumentInstalledItem "GHC ($(ghc --version))"
-DocumentInstalledItem "Haskell Stack ($(stack --version))"

@@ -1,7 +1,4 @@
-#!/bin/bash
-
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
+#!/bin/bash -e
 
 # Install Swig
 sudo apt-get install -y swig
@@ -12,7 +9,3 @@ if ! command -v swig; then
     echo "Swig was not installed"
     exit 1
 fi
-
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Swig $(swig -version | sed -n 2p | cut -d ' ' -f 3)"

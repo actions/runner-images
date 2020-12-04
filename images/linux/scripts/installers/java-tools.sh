@@ -1,14 +1,19 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  java-tools.sh
 ##  Desc:  Installs Java and related tooling (Ant, Gradle, Maven)
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
 
-set -e
+function javaTool {
+    if [[ "$2" =~ ([1]{0,1}.)?$DEFAULT_JDK_VERSION.* ]]; then
+        echo "$1 $2 is equal to default one $DEFAULT_JDK_VERSION"
+    else
+        echo "$1 $2 is not equal to default one $DEFAULT_JDK_VERSION"
+        exit 1
+    fi
+}
 
 # Install GPG Key for Adopt Open JDK. See https://adoptopenjdk.net/installation.html
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
@@ -17,7 +22,7 @@ add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 if isUbuntu16 || isUbuntu18 ; then
     # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
-    apt-add-repository "deb http://repos.azul.com/azure-only/zulu/apt stable main"
+    apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
     apt-get update
     apt-get -y install zulu-7-azure-jdk=\*
     # Open JDP Adopt does not exist for Ubuntu 20
@@ -38,6 +43,11 @@ apt-get -y install adoptopenjdk-8-hotspot=\*
 apt-get -y install adoptopenjdk-11-hotspot=\*
 
 # Set Default Java version.
+if isUbuntu16; then
+    # issue: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825987
+    # stackoverflow: https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
+    sed -i 's/(hl|jre|jdk|plugin|DUMMY) /(hl|jre|jdk|jdkhl|plugin|DUMMY) /g' /usr/sbin/update-java-alternatives
+fi
 update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
 
 echo "JAVA_HOME_8_X64=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64" | tee -a /etc/environment
@@ -46,7 +56,6 @@ if isUbuntu16 || isUbuntu18 ; then
 echo "JAVA_HOME_12_X64=/usr/lib/jvm/adoptopenjdk-12-hotspot-amd64" | tee -a /etc/environment
 fi
 echo "JAVA_HOME=/usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64" | tee -a /etc/environment
-echo "JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8" | tee -a /etc/environment
 
 # Install Ant
 apt-fast install -y --no-install-recommends ant ant-optional
@@ -86,18 +95,7 @@ for cmd in gradle java javac mvn ant; do
     fi
 done
 
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-if isUbuntu16 || isUbuntu18 ; then
-DocumentInstalledItem "Azul Zulu OpenJDK:"
-DocumentInstalledItemIndent "7 ($(/usr/lib/jvm/zulu-7-azure-amd64/bin/java -showversion |& head -n 1))"
-fi
-DocumentInstalledItem "Adopt OpenJDK:"
-DocumentInstalledItemIndent "8 ($(/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java -showversion |& head -n 1)) $defaultLabel8"
-DocumentInstalledItemIndent "11 ($(/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64/bin/java -showversion |& head -n 1)) $defaultLabel11"
-if isUbuntu16 || isUbuntu18 ; then
-DocumentInstalledItemIndent "12 ($(/usr/lib/jvm/adoptopenjdk-12-hotspot-amd64/bin/java -showversion |& head -n 1))"
-fi
-DocumentInstalledItem "Ant ($(ant -version))"
-DocumentInstalledItem "Gradle ${gradleVersion}"
-DocumentInstalledItem "Maven ($(mvn -version | head -n 1))"
+javaVersion=$(java -version |& head -n 1 | cut -d\" -f 2)
+javaTool "Java" $javaVersion
+javacVersion=$(javac -version |& cut -d" " -f2)
+javaTool "Javac" $javacVersion

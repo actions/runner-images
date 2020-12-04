@@ -1,6 +1,5 @@
 {
     "variables": {
-        "commit_url": "{{env `COMMIT_URL`}}",
         "client_id": "{{env `ARM_CLIENT_ID`}}",
         "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
         "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
@@ -14,20 +13,18 @@
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
         "image_folder": "/imagegeneration",
-        "commit_file": "/imagegeneration/commit.txt",
         "imagedata_file": "/imagegeneration/imagedata.json",
-        "metadata_file": "/imagegeneration/metadatafile",
         "installer_script_folder": "/imagegeneration/installers",
         "helper_script_folder": "/imagegeneration/helpers",
         "vm_size": "Standard_DS2_v2",
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "ubuntu16",
-        "github_feed_token": null,
-        "run_validation_diskspace": "false",
-        "announcements": "{{env `ANNOUNCEMENTS`}}"
+        "run_validation_diskspace": "false"
     },
-    "sensitive-variables": ["client_secret", "github_feed_token"],
+    "sensitive-variables": [
+        "client_secret"
+    ],
     "builders": [
         {
             "type": "azure-arm",
@@ -35,7 +32,6 @@
             "client_secret": "{{user `client_secret`}}",
             "subscription_id": "{{user `subscription_id`}}",
             "tenant_id": "{{user `tenant_id`}}",
-
             "location": "{{user `location`}}",
             "vm_size": "{{user `vm_size`}}",
             "resource_group_name": "{{user `resource_group`}}",
@@ -59,15 +55,18 @@
             "type": "shell",
             "inline": [
                 "mkdir {{user `image_folder`}}",
-                "chmod 777 {{user `image_folder`}}",
-                "echo {{user `commit_url`}} > {{user `commit_file`}}",
-                "chmod +r {{user `commit_file`}}"
+                "chmod 777 {{user `image_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",
-            "scripts":[
+            "script": "{{template_dir}}/scripts/base/apt-mock.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
                 "{{template_dir}}/scripts/base/repos.sh"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
@@ -75,6 +74,9 @@
         {
             "type": "shell",
             "script": "{{template_dir}}/scripts/base/apt.sh",
+            "environment_vars": [
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
@@ -93,21 +95,23 @@
             "destination": "{{user `installer_script_folder`}}"
         },
         {
-            "type": "shell",
-            "scripts":[
-                "{{template_dir}}/scripts/installers/preparemetadata.sh"
-            ],
-            "environment_vars": [
-                "IMAGE_VERSION={{user `image_version`}}",
-                "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "ANNOUNCEMENTS={{user `announcements`}}"
-            ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+            "type": "file",
+            "source": "{{ template_dir }}/post-generation",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{ template_dir }}/scripts/SoftwareReport",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolset-1604.json",
+            "destination": "{{user `installer_script_folder`}}/toolset.json"
         },
         {
             "type": "shell",
-            "scripts":[
+            "scripts": [
                 "{{template_dir}}/scripts/installers/preimagedata.sh"
             ],
             "environment_vars": [
@@ -153,6 +157,7 @@
                 "{{template_dir}}/scripts/installers/clang.sh",
                 "{{template_dir}}/scripts/installers/swift.sh",
                 "{{template_dir}}/scripts/installers/cmake.sh",
+                "{{template_dir}}/scripts/installers/codeql-bundle.sh",
                 "{{template_dir}}/scripts/installers/docker-compose.sh",
                 "{{template_dir}}/scripts/installers/docker-moby.sh",
                 "{{template_dir}}/scripts/installers/dotnetcore-sdk.sh",
@@ -177,6 +182,7 @@
                 "{{template_dir}}/scripts/installers/miniconda.sh",
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
+                "{{template_dir}}/scripts/installers/mssql-cmd-tools.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
                 "{{template_dir}}/scripts/installers/bazel.sh",
                 "{{template_dir}}/scripts/installers/oras-cli.sh",
@@ -185,6 +191,7 @@
                 "{{template_dir}}/scripts/installers/pollinate.sh",
                 "{{template_dir}}/scripts/installers/postgresql.sh",
                 "{{template_dir}}/scripts/installers/powershellcore.sh",
+                "{{template_dir}}/scripts/installers/pulumi.sh",
                 "{{template_dir}}/scripts/installers/ruby.sh",
                 "{{template_dir}}/scripts/installers/r.sh",
                 "{{template_dir}}/scripts/installers/rust.sh",
@@ -201,53 +208,27 @@
                 "{{template_dir}}/scripts/installers/mongodb.sh",
                 "{{template_dir}}/scripts/installers/rndgenerator.sh",
                 "{{template_dir}}/scripts/installers/swig.sh",
-                "{{template_dir}}/scripts/installers/netlify.sh"
+                "{{template_dir}}/scripts/installers/netlify.sh",
+                "{{template_dir}}/scripts/installers/android.sh",
+                "{{template_dir}}/scripts/installers/azpowershell.sh",
+                "{{template_dir}}/scripts/installers/pypy.sh",
+                "{{template_dir}}/scripts/installers/python.sh"
             ],
             "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
                 "DEBIAN_FRONTEND=noninteractive"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolcache-1604.json",
-            "destination": "{{user `installer_script_folder`}}/toolcache.json"
-        },
-        {
-            "type": "file",
-            "source": "{{template_dir}}/toolsets/toolset-1604.json",
-            "destination": "{{user `installer_script_folder`}}/toolset.json"
-        },
-        {
             "type": "shell",
-            "scripts":[
-                "{{template_dir}}/scripts/installers/1604/android.sh",
-                "{{template_dir}}/scripts/installers/azpowershell.sh",
-                "{{template_dir}}/scripts/helpers/containercache.sh",
-                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
-                "{{template_dir}}/scripts/installers/pypy.sh",
-                "{{template_dir}}/scripts/installers/python.sh",
-                "{{template_dir}}/scripts/installers/test-toolcache.sh"
-            ],
-            "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
-                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
-            ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "scripts":[
+            "scripts": [
                 "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
                 "{{template_dir}}/scripts/installers/Configure-Toolset.ps1",
                 "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
             ],
             "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
@@ -259,7 +240,6 @@
                 "{{template_dir}}/scripts/installers/aws-sam-cli.sh"
             ],
             "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
@@ -270,7 +250,6 @@
                 "{{template_dir}}/scripts/installers/homebrew.sh"
             ],
             "environment_vars": [
-                "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "DEBIAN_FRONTEND=noninteractive"
             ],
@@ -296,29 +275,57 @@
         },
         {
             "type": "shell",
-            "scripts":[
+            "scripts": [
                 "{{template_dir}}/scripts/installers/cleanup.sh"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
+            "type": "shell",
+            "script": "{{template_dir}}/scripts/base/apt-mock-remove.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/Install-PowerShellModules.ps1"
+            ],
+            "environment_vars": [
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}"
+            ],
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ]
+        },
+        {
             "type": "file",
-            "source": "{{user `metadata_file`}}",
+            "source": "{{user `image_folder`}}/Ubuntu-Readme.md",
             "destination": "{{template_dir}}/Ubuntu1604-README.md",
             "direction": "download"
         },
         {
             "type": "shell",
-            "inline": [
-                "rm -rf {{user `helper_script_folder`}}",
-                "rm -rf {{user `installer_script_folder`}}",
-                "chmod 755 {{user `image_folder`}}"
+            "scripts":[
+                "{{template_dir}}/scripts/installers/post-deployment.sh"
+            ],
+            "environment_vars":[
+                "HELPER_SCRIPT_FOLDER={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "IMAGE_FOLDER={{user `image_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",
-            "scripts":[
+            "scripts": [
                 "{{template_dir}}/scripts/installers/validate-disk-space.sh"
             ],
             "environment_vars": [

@@ -269,6 +269,8 @@ function Get-VSExtensionVersion
     $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
     if ($instanceFolders -is [array])
     {
+        Write-Host ($instanceFolders | Out-String)
+        Write-Host ($instanceFolders | Get-ChildItem | Out-String)
         Write-Host "More than one instance installed"
         exit 1
     }
@@ -279,17 +281,11 @@ function Get-VSExtensionVersion
 
     if (-not $packageVersion)
     {
-        Write-Host "installed package $packageName for Visual Studio 2019 was not found"
+        Write-Host "Installed package $packageName for Visual Studio 2019 was not found"
         exit 1
     }
 
     return $packageVersion
-}
-
-function Get-ToolcachePackages
-{
-    $toolcachePath = Join-Path $env:ROOT_FOLDER "toolcache.json"
-    Get-Content -Raw $toolcachePath | ConvertFrom-Json
 }
 
 function Get-ToolsetContent
@@ -350,24 +346,6 @@ function Get-ToolsetToolFullPath
     return Join-Path $foundVersion $Arch
 }
 
-function Get-ToolsByName
-{
-    Param
-    (
-        [Parameter(Mandatory = $True)]
-        [string]$SoftwareName
-    )
-
-    (Get-ToolcachePackages).PSObject.Properties | Where-Object { $_.Name -match $SoftwareName } | ForEach-Object {
-        $packageNameParts = $_.Name.Split("-")
-        [PSCustomObject] @{
-            ToolName = $packageNameParts[1]
-            Versions = $_.Value
-            Architecture = $packageNameParts[3,4] -join "-"
-        }
-    }
-}
-
 function Get-WinVersion
 {
     (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
@@ -417,4 +395,42 @@ function Install-AndroidSDKPackages {
     foreach ($package in $AndroidPackages) {
         & $AndroidSDKManagerPath --sdk_root=$AndroidSDKRootPath "$PrefixPackageName$package"
     }
+}
+
+function Get-AndroidPackages {
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$AndroidSDKManagerPath
+    )
+
+    return (& $AndroidSDKManagerPath --list --verbose).Trim() | Foreach-Object { $_.Split()[0] } | Where-Object {$_}
+}
+
+function Get-AndroidPackagesByName {
+    Param (
+        [Parameter(Mandatory=$true)]
+        [string[]]$AndroidPackages,
+        [Parameter(Mandatory=$true)]
+        [string]$PrefixPackageName
+    )
+
+    return $AndroidPackages | Where-Object { "$_".StartsWith($PrefixPackageName) }
+}
+
+function Get-AndroidPackagesByVersion {
+    Param (
+        [Parameter(Mandatory=$true)]
+        [string[]]$AndroidPackages,
+        [Parameter(Mandatory=$true)]
+        [string]$PrefixPackageName,
+        [object]$MinimumVersion,
+        [char]$Delimiter,
+        [int]$Index = 0
+    )
+
+    $Type = $MinimumVersion.GetType()
+    $packagesByName = Get-AndroidPackagesByName -AndroidPackages $AndroidPackages -PrefixPackageName $PrefixPackageName
+    $packagesByVersion = $packagesByName | Where-Object { ($_.Split($Delimiter)[$Index] -as $Type) -ge $MinimumVersion }
+    return $packagesByVersion | Sort-Object { $_.Split($Delimiter)[$Index] -as $Type} -Unique
 }

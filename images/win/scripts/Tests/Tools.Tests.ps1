@@ -41,6 +41,15 @@ Describe "CMake" {
     }
 }
 
+Describe "CodeQLBundle" {
+    It "CodeQLBundle" {
+        $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "*"
+        $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
+        $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
+        "$CodeQLPath version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "R" {
     It "Rscript" {
         "Rscript --version" | Should -ReturnZeroExitCode
@@ -130,7 +139,7 @@ Describe "InnoSetup" {
     }
 }
 
-Describe "GoogleCouldSDK"  {
+Describe "GoogleCloudSDK"  {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
@@ -187,6 +196,12 @@ Describe "PowerShell Core" {
     }
 }
 
+Describe "Pulumi" {
+    It "pulumi" {
+       "pulumi version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Sbt" {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
@@ -196,12 +211,6 @@ Describe "Sbt" {
 Describe "ServiceFabricSDK" {
     It "PowerShell Module" {
         Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
-    }
-}
-
-Describe "yamllint" {
-    It "yamllint" {
-        "yamllint --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -252,5 +261,11 @@ Describe "WebPlatformInstaller" {
 Describe "Zstd" {
     It "zstd" {
         "zstd -V" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Pipx" {
+    It "Pipx" {
+        "pipx --version" | Should -ReturnZeroExitCode
     }
 }

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  php.sh
 ##  Desc:  Installs php
@@ -6,10 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
-source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
-
-set -e
 
 # add repository
 apt-add-repository ppa:ondrej/php -y
@@ -17,15 +14,15 @@ apt-get update
 
 # Install PHP
 if isUbuntu16 ; then
-    php_versions="5.6 7.0 7.1 7.2 7.3 7.4"
+    php_versions="5.6 7.0 7.1 7.2 7.3 7.4 8.0"
 fi
 
 if isUbuntu18 ; then
-    php_versions="7.1 7.2 7.3 7.4"
+    php_versions="7.1 7.2 7.3 7.4 8.0"
 fi
 
 if isUbuntu20 ; then
-    php_versions="7.4"
+    php_versions="7.4 8.0"
 fi
 
 for version in $php_versions; do
@@ -47,7 +44,6 @@ for version in $php_versions; do
         php$version-imap \
         php$version-interbase \
         php$version-intl \
-        php$version-json \
         php$version-ldap \
         php$version-mbstring \
         php$version-mysql \
@@ -63,17 +59,19 @@ for version in $php_versions; do
         php$version-sybase \
         php$version-tidy \
         php$version-xml \
-        php$version-xmlrpc \
         php$version-xsl \
         php$version-zip
 
     if [[ $version == "5.6" || $version == "7.0" || $version == "7.1" ]]; then
         apt-fast install -y --no-install-recommends php$version-mcrypt php$version-recode
-        apt-get remove --purge -yq php$version-dev
     fi
 
     if [[ $version == "7.2" || $version == "7.3" ]]; then
         apt-fast install -y --no-install-recommends php$version-recode
+    fi
+
+    if [[ $version != "8.0" ]]; then
+        apt-fast install -y --no-install-recommends php$version-xmlrpc php$version-json
     fi
 done
 
@@ -84,12 +82,11 @@ apt-fast install -y --no-install-recommends \
     php-memcache \
     php-memcached \
     php-mongodb \
+    php-pear \
     php-redis \
     php-xdebug \
     php-yaml \
     php-zmq
-
-apt-get remove --purge -yq php7.2-dev
 
 apt-fast install -y --no-install-recommends snmp
 
@@ -110,28 +107,27 @@ echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> /etc/skel/.bashr
 mkdir -p /etc/skel/.composer
 
 # Install phpunit (for PHP)
-wget -q -O phpunit https://phar.phpunit.de/phpunit-7.phar
+wget -q -O phpunit https://phar.phpunit.de/phpunit-8.phar
 chmod +x phpunit
 mv phpunit /usr/local/bin/phpunit
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in php $php_versions composer phpunit; do
-    if [[ $cmd =~ ^[0-9] ]]; then
-        cmd="php$cmd"
-    fi
-
+for cmd in composer pear pecl phpunit; do
     if ! command -v $cmd; then
         echo "$cmd was not installed"
         exit 1
     fi
 done
 
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-
 for version in $php_versions; do
-    DocumentInstalledItem "PHP $version ($(php$version --version | head -n 1))"
+    if ! command -v php$version; then
+        echo "php$version was not installed"
+        exit 1
+    elif ! command -v php-config$version || ! command -v phpize$version; then
+        echo "php$version-dev was not installed"
+        exit 1
+    fi
 done
 
 # ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
@@ -139,12 +135,4 @@ done
 if isUbuntu20 ; then
   rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
   apt-get update
-  AddBlockquote "To use ppa:ondrej/php APT repository On Ubuntu 20.04 it is necessary to add it to the APT sources"
-  StartCode
-  WriteItem "apt-add-repository ppa:ondrej/php -y"
-  WriteItem "apt-get update"
-  EndCode
 fi
-
-DocumentInstalledItem "Composer  ($(composer --version))"
-DocumentInstalledItem "PHPUnit ($(phpunit --version))"

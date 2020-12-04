@@ -1,11 +1,10 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  vcpkg.sh
 ##  Desc:  Installs vcpkg
 ################################################################################
 
 # Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
 source $HELPER_SCRIPTS/os.sh
 
 # Set env variable for vcpkg
@@ -36,7 +35,3 @@ if ! command -v vcpkg; then
     echo "vcpkg was not installed"
     exit 1
 fi
-
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-DocumentInstalledItem "Vcpkg $(vcpkg version | head -n 1 | cut -d ' ' -f 6)"

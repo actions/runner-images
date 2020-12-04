@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  homebrew.sh
 ##  Desc:  Installs Mongo DB
@@ -6,7 +6,6 @@
 
 # Source the helpers
 source $HELPER_SCRIPTS/os.sh
-source $HELPER_SCRIPTS/document.sh
 
 #  Install Mongo DB
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
@@ -21,7 +20,3 @@ if ! command -v mongod; then
     echo "mongodb was not installed"
     exit 1
 fi
-
-# Document the installed version
-echo "Document the installed version"
-DocumentInstalledItem "MongoDB on Linux $(mongod --version | awk 'NR==1{print $3}')"

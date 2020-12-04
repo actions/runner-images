@@ -82,9 +82,6 @@ function Install-PyPy
     }
 }
 
-$ErrorActionPreference = "Stop"
-Import-Module -Name ImageHelpers -Force -DisableNameChecking
-
 # Get PyPy content from toolset
 $pypyTools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Object Name -eq "PyPy"
 
@@ -97,8 +94,8 @@ foreach($pypyTool in $pypyTools)
     foreach($pypyVersion in $pypyTool.versions)
     {
         # Query latest PyPy version
-        $filter = '{0}{1}-*-{2}.zip' -f $pypyTool.name, $pypyVersion, $pypyTool.platform
-        $latestMajorPyPyVersion = $pypyVersions | Where-Object {$_.name -like $filter} | Select-Object -First 1
+        $filter = '{0}{1}-v\d+\.\d+\.\d+-{2}.zip' -f $pypyTool.name, $pypyVersion, $pypyTool.platform
+        $latestMajorPyPyVersion = $pypyVersions | Where-Object {$_.name -match $filter} | Select-Object -First 1
 
         if ($latestMajorPyPyVersion)
         {

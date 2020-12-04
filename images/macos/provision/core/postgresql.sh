@@ -1,0 +1,26 @@
+#!/bin/bash -e -o pipefail
+
+#Install latest version of postgresql
+brew install postgres
+
+#Service postgresql should be started before use.
+brew services start postgresql
+
+#Verify PostgreSQL is ready for accept incoming connections
+echo "Check PostgreSQL service is running"
+i=10
+COMMAND='pg_isready'
+while [ $i -gt 0 ]; do
+    echo "Check PostgreSQL service status"
+    eval $COMMAND && break
+    ((i--))
+    if [ $i == 0 ]; then
+        echo "PostgreSQL service not ready, all attempts exhausted"
+        exit 1
+    fi
+    echo "PostgreSQL service not ready, wait 10 more sec, attempts left: $i"
+    sleep 10
+done
+
+#Stop postgresql
+brew services stop postgresql

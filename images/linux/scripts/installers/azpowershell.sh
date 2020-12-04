@@ -1,24 +1,20 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  azpowershell.sh
 ##  Desc:  Installed Azure PowerShell
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
-source $HELPER_SCRIPTS/os.sh
-
 # List of versions
-if isUbuntu20 ; then
-    versions=$(pwsh -Command '(Find-Module -Name Az).Version')
-else
-    toolsetJson="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-    versions=$(cat $toolsetJson | jq -r '.azureModules[] | select(.name | contains("az")) | .versions[]')
-fi
+toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
+versions=$(jq -r '.azureModules[] | select(.name | contains("az")) | .versions[]' $toolset)
+
+# Try to install and update PowerShellGet before the actual installation
+pwsh -Command "Install-Module -Name PowerShellGet -Force"
+pwsh -Command "Update-Module -Name PowerShellGet -Force"
 
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 for version in ${versions[@]}; do
-    pwsh -Command "Save-Module -Name Az -LiteralPath /usr/share/az_$version -RequiredVersion $version -Force"
+    pwsh -Command "Save-Module -Name Az -LiteralPath /usr/share/az_$version -RequiredVersion $version -Force -Verbose"
 done
 
 # Run tests to determine that the software installed as expected
@@ -35,10 +31,4 @@ for version in ${versions[@]}; do
         echo "Az version $version is not installed"
         exit 1
     fi
-done
-
-# Document what was added to the image
-echo "Lastly, documenting what we added to the metadata file"
-for version in ${versions[@]}; do
-    DocumentInstalledItem "Az Module ($version)"
 done

@@ -2,7 +2,7 @@
 name: Tool request
 about: Request a new tool or update to a tool
 title: Update/Add [tool name]
-labels: t:Enhancement
+labels: feature request, needs triage
 assignees: ''
 
 ---
@@ -25,10 +25,11 @@ assignees: ''
 <!-- Choose "Question", "Bug", or "Feature" -->
 
 **Virtual environments affected**
+- [ ] Ubuntu 16.04
+- [ ] Ubuntu 18.04
+- [ ] Ubuntu 20.04
 - [ ] macOS 10.15
-- [ ] Ubuntu 16.04 LTS
-- [ ] Ubuntu 18.04 LTS
-- [ ] Ubuntu 20.04 LTS
+- [ ] macOS 11.0
 - [ ] Windows Server 2016 R2
 - [ ] Windows Server 2019
 

@@ -1,11 +1,9 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  gfortran.sh
 ##  Desc:  Installs GNU Fortran
 ################################################################################
-
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/document.sh
+source $HELPER_SCRIPTS/os.sh
 
 function InstallFortran {
     version=$1
@@ -19,10 +17,6 @@ function InstallFortran {
         echo "$version was not installed"
         exit 1
     fi
-
-    # Document what was added to the image
-    echo "Documenting $version..."
-    DocumentInstalledItem "GNU Fortran $($version --version | head -n 1 | cut -d ' ' -f 5)"
 }
 
 # Install GNU Fortran compiler
@@ -33,6 +27,10 @@ versions=(
     "gfortran-8"
     "gfortran-9"
 )
+
+if ! isUbuntu16; then
+    versions+=("gfortran-10")
+fi
 
 for version in ${versions[*]}
 do

@@ -11,7 +11,8 @@
                 "3.5.*",
                 "3.6.*",
                 "3.7.*",
-                "3.8.*"
+                "3.8.*",
+                "3.9.*"
             ]
         },
         {
@@ -41,10 +42,9 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.11.*",
-                "1.12.*",
                 "1.13.*",
-                "1.14.*"
+                "1.14.*",
+                "1.15.*"
             ],
             "default": "1.14.*"
         },
@@ -55,10 +55,46 @@
             "platform_version": "18.04",
             "arch": "x64",
             "versions": [
-                "1.69.0",
                 "1.72.0"
             ]
+        },
+        {
+            "name": "Ruby",
+            "platform_version": "18.04",
+            "arch": "x64",
+            "versions": [
+                "2.4.*",
+                "2.5.*",
+                "2.6.*",
+                "2.7.*"
+            ]
         }
+    ],
+    "android": {
+        "platform_min_version": "17",
+        "build_tools_min_version": "19.1.0",
+        "extra_list": [
+            "android;m2repository",
+            "google;m2repository",
+            "google;google_play_services"
+        ],
+        "addon_list": [
+            "addon-google_apis-google-24",
+            "addon-google_apis-google-23",
+            "addon-google_apis-google-22",
+            "addon-google_apis-google-21"
+        ],
+        "additional_tools": [
+            "cmake;3.6.4111459",
+            "cmake;3.10.2.4988404",
+            "patcher;v4",
+            "ndk-bundle",
+            "platform-tools"
+        ]
+    },
+    "powershellModules": [
+        {"name": "MarkdownPS"},
+        {"name": "Pester"}
     ],
     "azureModules": [
         {
@@ -73,8 +109,113 @@
                 "3.5.0",
                 "3.8.0",
                 "4.3.0",
-                "4.4.0"
+                "4.4.0",
+                "4.6.0",
+                "4.7.0"
             ]
         }
-    ]
+    ],
+    "apt": {
+        "common_packages": [
+            "dbus",
+            "dnsutils",
+            "dpkg",
+            "fakeroot",
+            "gnupg2",
+            "iproute2",
+            "iputils-ping",
+            "lib32z1",
+            "libc++abi-dev",
+            "libc++-dev",
+            "libcurl3",
+            "libgbm-dev",
+            "libgconf-2-4",
+            "libgtk-3-0",
+            "libsecret-1-dev",
+            "libsqlite3-dev",
+            "libunwind8",
+            "libxkbfile-dev",
+            "libxss1",
+            "locales",
+            "openssh-client",
+            "pkg-config",
+            "rpm",
+            "texinfo",
+            "tk",
+            "tzdata",
+            "upx",
+            "xorriso",
+            "xvfb",
+            "xz-utils",
+            "zstd",
+            "zsync"
+        ],
+        "cmd_packages": [
+            "bison",
+            "brotli",
+            "bzip2",
+            "curl",
+            "file",
+            "flex",
+            "ftp",
+            "jq",
+            "m4",
+            "mediainfo",
+            "netcat",
+            "parallel",
+            "patchelf",
+            "rsync",
+            "shellcheck",
+            "sqlite3",
+            "ssh",
+            "sudo",
+            "telnet",
+            "time",
+            "unzip",
+            "wget",
+            "zip"
+        ]
+    },
+    "docker": {
+        "images": [
+            "alpine:3.7",
+            "alpine:3.8",
+            "alpine:3.9",
+            "alpine:3.10",
+            "buildpack-deps:stretch",
+            "buildpack-deps:buster",
+            "debian:8",
+            "debian:9",
+            "jekyll/builder",
+            "mcr.microsoft.com/azure-pipelines/node8-typescript",
+            "node:10",
+            "node:12",
+            "node:10-alpine",
+            "node:12-alpine",
+            "ubuntu:14.04"
+        ]
+    },
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint"
+        },
+        {
+            "package": "aws-sam-cli",
+            "cmd": "sam"
+        }
+    ],
+    "dotnet": {
+        "aptPackages": [
+            "dotnet-sdk-3.0",
+            "dotnet-sdk-3.1",
+            "dotnet-sdk-5.0"
+        ],
+        "versions": [
+            "2.1",
+            "3.0",
+            "3.1",
+            "5.0"
+        ]
+    }
 }

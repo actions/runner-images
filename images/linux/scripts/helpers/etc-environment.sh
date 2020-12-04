@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  etc-environment.sh
 ##  Desc:  Helper functions for source and modify /etc/environment

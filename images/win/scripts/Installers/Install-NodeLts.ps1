@@ -4,8 +4,6 @@
 ##         Must run after python is configured
 ################################################################################
 
-Import-Module -Name ImageHelpers -Force
-
 $PrefixPath = 'C:\npm\prefix'
 $CachePath = 'C:\npm\cache'
 
@@ -17,11 +15,11 @@ Choco-Install -PackageName nodejs-lts -ArgumentList "--force"
 Add-MachinePathItem $PrefixPath
 $env:Path = Get-MachinePath
 
-setx NPM_CONFIG_PREFIX $PrefixPath /M
-$env:NPM_CONFIG_PREFIX = $PrefixPath
+setx npm_config_prefix $PrefixPath /M
+$env:npm_config_prefix = $PrefixPath
 
-setx NPM_CONFIG_CACHE $CachePath /M
-$env:NPM_CONFIG_CACHE = $CachePath
+setx npm_config_cache $CachePath /M
+$env:npm_config_cache = $CachePath
 
 npm config set registry http://registry.npmjs.org/
 

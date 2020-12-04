@@ -17,13 +17,14 @@ Describe "Chrome" {
 
     Context "Browser" {
         $chromeRegPath = "HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe"
+        $chromePath = (Get-ItemProperty $chromeRegPath).'(default)'
 
         It "Chrome '<chromeRegPath>' registry path exists" -TestCases @{chromeRegPath = $chromeRegPath} {
             $chromeRegPath | Should -Exist
         }
 
-        It "Chrome VersionInfo registry value exists" -TestCases @{chromeRegPath = $chromeRegPath} {
-            $versionInfo = (Get-Item (Get-ItemProperty $chromeRegPath).'(Default)').VersionInfo
+        It "Chrome VersionInfo registry value exists" -TestCases @{chromePath = $chromePath} {
+            $versionInfo = (Get-Item $chromePath).VersionInfo
             $versionInfo | Should -Not -BeNullOrEmpty
         }
 
@@ -41,8 +42,10 @@ Describe "Chrome" {
             Get-NetFirewallRule -DisplayName BlockGoogleUpdate | Should -Not -BeNullOrEmpty
         }
 
-        It "chrome.exe is installed" {
-            "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe" | Should -Exist
+        It "<chromePath> is installed" -TestCases @{chromePath = $chromePath} {
+            $chromeName = (Get-Item $chromePath).Name
+            $chromePath | Should -Exist
+            $chromeName | Should -BeExactly "chrome.exe"
         }
     }
 }
