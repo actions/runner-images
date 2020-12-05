@@ -8,9 +8,6 @@
             "arch": "x64",
             "versions": [
                 "2.7.*",
-                "3.5.*",
-                "3.6.*",
-                "3.7.*",
                 "3.8.*",
                 "3.9.*"
             ]
@@ -30,7 +27,6 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "8.*",
                 "10.*",
                 "12.*",
                 "14.*"
@@ -52,8 +48,6 @@
             "platform_version": "20.04",
             "arch": "x64",
             "versions": [
-                "2.5.*",
-                "2.6.*",
                 "2.7.*"
             ]
         }
@@ -152,21 +146,15 @@
     },
     "docker": {
         "images": [
-            "alpine:3.7",
             "alpine:3.8",
             "alpine:3.9",
             "alpine:3.10",
-            "buildpack-deps:stretch",
             "buildpack-deps:buster",
-            "debian:8",
             "debian:9",
-            "jekyll/builder",
-            "mcr.microsoft.com/azure-pipelines/node8-typescript",
             "node:10",
             "node:12",
             "node:10-alpine",
-            "node:12-alpine",
-            "ubuntu:14.04"
+            "node:12-alpine"
         ]
     },
     "pipx": [
