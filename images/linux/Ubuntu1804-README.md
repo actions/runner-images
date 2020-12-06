@@ -16,6 +16,7 @@
 - Erlang 11.1
 - Mono 6.12.0.90
 - Node 14.15.1
+- Perl 5.26.1
 - Python 2.7.17
 - Python3 3.6.9
 - PowerShell 7.1.0
