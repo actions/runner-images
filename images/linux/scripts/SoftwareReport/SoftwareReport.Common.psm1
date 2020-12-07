@@ -49,6 +49,12 @@ function Get-NodeVersion {
     return "Node $nodeVersion"
 }
 
+function Get-PerlVersion {
+    $result = Get-CommandResult "perl --version | perl -ne 'print /(\d\.\d+\.\d+)/'"
+    $version = $result.Output
+    return "Perl $version"
+}
+
 function Get-PythonVersion {
     $result = Get-CommandResult "python --version"
     $version = $result.Output | Take-OutputPart -Part 1
