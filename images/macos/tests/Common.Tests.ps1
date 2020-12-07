@@ -327,7 +327,7 @@ Describe "Clang/LLVM" -Skip:($os.IsHighSierra) {
 }
 
 Describe "Gcc" -Skip:($os.IsHighSierra) {
-    $testCases = @("8", "9") | ForEach-Object { @{GccVersion = $_} }
+    $testCases = @("8", "9", "10") | ForEach-Object { @{GccVersion = $_} }
 
     It "Gcc <GccVersion>" -TestCases $testCases {
         param (
@@ -339,7 +339,7 @@ Describe "Gcc" -Skip:($os.IsHighSierra) {
 }
 
 Describe "Gfortran" -Skip:($os.IsHighSierra) {
-    $testCases = @("8", "9") | ForEach-Object { @{GfortranVersion = $_} }
+    $testCases = @("8", "9", "10") | ForEach-Object { @{GfortranVersion = $_} }
 
     It "Gfortran <GfortranVersion>" -TestCases $testCases {
         param (
@@ -347,6 +347,10 @@ Describe "Gfortran" -Skip:($os.IsHighSierra) {
         )
 
         "gfortran-$GfortranVersion --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Gfortran is not found in the default path" {
+        "$(which gfortran)" | Should -BeNullOrEmpty
     }
 }
 

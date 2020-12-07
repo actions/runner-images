@@ -133,7 +133,8 @@ function Get-VcpkgVersion {
     $result = Get-CommandResult "vcpkg version"
     $result.Output -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $vcpkgVersion = $Matches.version
-    return "Vcpkg $vcpkgVersion"
+    $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
+    return "Vcpkg $vcpkgVersion (build from master <$commitId>)"
 }
 
 function Get-AntVersion {
@@ -226,6 +227,21 @@ function Get-AzModuleVersions {
 
     $azModuleVersions = $azModuleVersions -join " "
     return $azModuleVersions
+}
+
+function Get-PowerShellModules {
+    $modules = (Get-ToolsetContent).powershellModules.name
+
+    $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
+    $psModules | ForEach-Object {
+        $moduleName = $_.Name
+        $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
+
+        [PSCustomObject]@{
+            Module = $moduleName
+            Version = $moduleVersions
+        }
+    }
 }
 
 function Get-DotNetCoreSdkVersions {
