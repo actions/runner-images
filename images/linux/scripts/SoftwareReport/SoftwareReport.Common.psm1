@@ -50,8 +50,7 @@ function Get-NodeVersion {
 }
 
 function Get-PerlVersion {
-    $result = Get-CommandResult "perl --version | perl -ne 'print /(\d\.\d+\.\d+)/'"
-    $version = $result.Output
+    $version = $(perl -e 'print substr($^V,1)')
     return "Perl $version"
 }
 
