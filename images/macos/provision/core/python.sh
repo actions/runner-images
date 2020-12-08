@@ -7,11 +7,14 @@ echo "Installing Python Tooling"
 echo "Brew Installing Python 3"
 brew install python@3.9
 
-echo "Brew Installing Python 2"
-# Create local tap with formula due to python2 formula depreciation
-brew tap-new --no-git local/python2
-FORMULA_PATH=$(brew extract python@2 local/python2 | grep "Homebrew/Library/Taps")
-brew install $FORMULA_PATH
+echo "Install latest Python 2"
+Python2Url="https://www.python.org/ftp/python/2.7.18/python-2.7.18-macosx10.9.pkg"
+download_with_retries $Python2Url "/tmp" "python2.pkg"
+sudo installer -pkg /tmp/python2.pkg -target /
+pip install --upgrade pip
+
+echo "Install Python2 certificates"
+bash -c "/Applications/Python\ 2.7/Install\ Certificates.command"
 
 echo "Installing pipx"
 export PIPX_BIN_DIR=/usr/local/opt/pipx_bin
