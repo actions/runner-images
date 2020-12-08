@@ -51,6 +51,10 @@ function Build-AndroidTable {
             "Version" = Get-AndroidBuildToolVersions -PackageInfo $packageInfo
         },
         @{
+            "Package" = "Android emulator"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Emulator"
+        },
+        @{
             "Package" = "NDK"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
         },
@@ -147,3 +151,4 @@ function Get-AndroidGoogleAPIsVersions {
     }
     return ($versions -Join "<br>")
 }
+
