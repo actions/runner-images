@@ -161,7 +161,12 @@ Describe "Common utilities" {
             "openssl version" | Should -ReturnZeroExitCode
         }
 
-        It "OpenSSL version is 1.1" {
+        It "OpenSSL 1.1 path exists" {
+            $openSSLpath = "/usr/local/opt/openssl@1.1"
+            $openSSLpath | Should -Exist
+        }
+
+        It "Default OpenSSL version is 1.1" {
             "openssl version" | Should -Match "OpenSSL 1.1"
         }
     }
