@@ -26,8 +26,8 @@ for module in ${psModules[@]}; do
     fi
 done
 
-# Enables AzureRm prefix aliases for Az modules
-sudo pwsh -command "& {Import-Module Az; Enable-AzureRmAlias -Scope LocalMachine}"
+# A dummy call to initialize .IdentityService directory
+pwsh -command "& {Import-Module Az}"
 
 # powershell link was removed in powershell-6.0.0-beta9
 sudo ln -s /usr/local/bin/pwsh /usr/local/bin/powershell
