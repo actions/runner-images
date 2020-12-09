@@ -156,8 +156,14 @@ Describe "Common utilities" {
         "jq --version" | Should -ReturnZeroExitCode
     }
 
-    It "OpenSSL" {
-        "openssl version" | Should -ReturnZeroExitCode
+    Context "OpenSSL" {
+        It "OpenSSL is available" {
+            "openssl version" | Should -ReturnZeroExitCode
+        }
+
+        It "OpenSSL version is 1.1" {
+            "openssl version" | Should -Match "OpenSSL 1.1"
+        }
     }
 
     It "GnuPG" {
