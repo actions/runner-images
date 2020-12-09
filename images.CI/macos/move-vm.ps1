@@ -46,7 +46,7 @@ param(
 Import-Module $PSScriptRoot\helpers.psm1 -DisableNameChecking
 
 # Connection to a vCenter Server system
-Connect-VCServer
+Connect-VCServer -VIServer $VIServer -VIUserName $VIUserName -VIPassword $VIPassword
 
 # Clear previously assigned tag with VM Name
 try {
