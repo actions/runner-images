@@ -167,7 +167,8 @@ Describe "Common utilities" {
         }
 
         It "Default OpenSSL version is 1.1" {
-            "openssl version" | Should -Match "OpenSSL 1.1"
+            $commandResult = Get-CommandResult "openssl version"
+            $commandResult.Output | Should -Match "OpenSSL 1.1"
         }
     }
 
