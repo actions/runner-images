@@ -99,7 +99,7 @@ function Select-DataStore {
 }
 
 # Connection to a vCenter Server system
-Connect-VCServer
+Connect-VCServer -VIServer $VIServer -VIUserName $VIUserName -VIPassword $VIPassword
 
 # Get a target datastore for current deployment
 Select-DataStore -VMName $VMName -TagCategory $TagCategory
