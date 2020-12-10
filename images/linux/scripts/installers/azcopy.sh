@@ -19,4 +19,4 @@ mv /tmp/azcopy /usr/local/bin/azcopy10
 chmod +x /usr/local/bin/azcopy10
 
 # Run tests to determine that the software installed as expected
-invoke-pester-tests "Common.Tools" "azcopy"
+invoke_pester_tests "Common.Tools" "azcopy"

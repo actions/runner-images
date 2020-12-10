@@ -2,7 +2,7 @@
 
 source $HELPER_SCRIPTS/Tests.Helpers.psm1
 
-invoke-pester-tests() {
+invoke_pester_tests() {
     local TEST_FILE="$1"
     local TEST_NAME="$2"
 
