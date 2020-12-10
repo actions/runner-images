@@ -4,6 +4,8 @@
 ##  Desc:  Installs AzCopy
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-pester-tests.sh
+
 # Install AzCopy7
 wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinux64
 tar -xf azcopy.tar.gz
@@ -17,4 +19,4 @@ mv /tmp/azcopy /usr/local/bin/azcopy10
 chmod +x /usr/local/bin/azcopy10
 
 # Run tests to determine that the software installed as expected
-pwsh -Command "Invoke-PesterTests -TestFile 'Common.Tools' -TestName 'azcopy'"
+invoke-pester-tests "Common.Tools" "azcopy"

@@ -1,3 +1,5 @@
+source $HELPER_SCRIPTS/Tests.Helpers.psm1
+
 Describe "7-Zip" {
     It "7z" {
         "7z" | Should -ReturnZeroExitCode
