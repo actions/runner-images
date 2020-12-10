@@ -106,6 +106,11 @@
         },
         {
             "type": "file",
+            "source": "{{template_dir}}/scripts/tests",
+            "destination": "{{user `image_folder`}}"
+        },
+        {
+            "type": "file",
             "source": "{{ template_dir }}/scripts/SoftwareReport",
             "destination": "{{user `image_folder`}}"
         },
@@ -230,6 +235,16 @@
         {
             "type": "shell",
             "scripts": [
+                "{{template_dir}}/scripts/installers/Install-PowerShellModules.ps1"
+            ],
+            "environment_vars": [
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
                 "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
                 "{{template_dir}}/scripts/installers/Configure-Toolset.ps1",
                 "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
@@ -293,18 +308,9 @@
         },
         {
             "type": "shell",
-            "scripts": [
-                "{{template_dir}}/scripts/installers/Install-PowerShellModules.ps1"
-            ],
-            "environment_vars": [
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
-            ],
-            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
-        },
-        {
-            "type": "shell",
             "inline": [
-                "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}"
+                "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}",
+                "pwsh -File {{user `image_folder`}}/tests/Run-Tests.ps1 -OutputDirectory {{user `image_folder`}}"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
