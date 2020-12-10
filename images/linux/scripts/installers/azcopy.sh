@@ -4,7 +4,7 @@
 ##  Desc:  Installs AzCopy
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-pester-tests.sh
+source "$HELPER_SCRIPTS/invoke-tests.sh"
 
 # Install AzCopy7
 wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinux64

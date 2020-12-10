@@ -1,4 +1,4 @@
-source $HELPER_SCRIPTS/invoke-pester-tests.sh
+Import-Module "$HELPER_SCRIPTS/invoke-tests.sh"
 
 # Invokes command and validate that the exit code is 0
 function Validate-ZeroExitCode($command) {
