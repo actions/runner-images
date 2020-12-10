@@ -13,10 +13,11 @@ i=1
 while [ \$i -le 30 ];do
   err=\$(mktemp)
   $real_tool "\$@" 2>\$err
-
-  # no errors, break the loop and continue normal flow
-  test -f \$err || break
+  result=\$?
   cat \$err >&2
+
+  # no errors, continue
+  test \$result -eq 0 && break
 
   retry=false
 
@@ -28,9 +29,6 @@ while [ \$i -le 30 ];do
     retry=true
   elif grep -q 'IPC connect call failed' \$err;then
     # the delay should help with gpg-agent not ready
-    retry=true
-  elif grep -q 'Temporary failure in name resolution' \$err;then
-    # It looks like DNS is not updated with random generated hostname yet
     retry=true
   fi
 
