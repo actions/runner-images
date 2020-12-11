@@ -46,13 +46,17 @@ function Get-ToolcacheBoostVersions {
         }
     }
     $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
-    Version = "left";
-    Architecture = "left";
-    "Environment Variable" = "left"
+        Version = "left";
+        Architecture = "left";
+        "Environment Variable" = "left"
     })
 
-    $markdown = New-MDHeader $Name -Level 4
-    $markdown += New-MDParagraph -Lines $Content
+    $markdown = ""
+
+    if ($Content.Count -gt 0) {
+        $markdown += New-MDHeader $Name -Level 4
+        $markdown += New-MDParagraph -Lines $Content
+    }
 
     return $markdown
 }
@@ -75,11 +79,7 @@ function Build-CachedToolsSection {
     $output += New-MDHeader "Go" -Level 4
     $output += New-MDList -Lines (Get-ToolcacheGoVersions) -Style Unordered
 
-    $boostVersions = Get-ToolcacheBoostVersions
-    if ($boostVersions.Count -gt 0) {
-        $output += New-MDHeader "Boost" -Level 4
-        $output += New-MDList -Lines $boostVersions -Style Unordered
-    }
+    $output += Get-ToolcacheBoostVersions
 
     return $output
 }
