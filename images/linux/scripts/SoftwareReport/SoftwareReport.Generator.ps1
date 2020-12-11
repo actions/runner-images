@@ -32,6 +32,7 @@ $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
 $markdown += New-MDList -Style Unordered -Lines @(
+        (Get-BashVersion),
         (Get-CPPVersions),
         (Get-FortranVersions),
         (Get-ClangVersions),
