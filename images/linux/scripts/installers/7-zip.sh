@@ -4,7 +4,6 @@
 ##  Desc:  Installs 7-zip
 ################################################################################
 
-echo "test purposes"
 source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install 7-Zip

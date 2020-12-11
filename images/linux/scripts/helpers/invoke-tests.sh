@@ -1,8 +1,10 @@
 #!/bin/bash -e
 ################################################################################
 ##  File:  invoke-tests.sh
-##  Desc:  Helper functions for invoking tests
+##  Desc:  Helper function for invoking tests
 ################################################################################
+
+pwsh -Command "Import-Module (Join-Path $PSScriptRoot 'SoftwareReport.Helpers.psm1') -DisableNameChecking"
 
 invoke_pester_tests() {
     local TEST_FILE="$1"
