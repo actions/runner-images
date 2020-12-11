@@ -1,4 +1,4 @@
-Import-Module (Join-Path $PSScriptRoot "Tests.Helpers.psm1") -DisableNameChecking
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 Describe "7-Zip" {
     It "7z" {

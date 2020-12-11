@@ -1,5 +1,5 @@
 # Invokes command and validate that the exit code is 0
-Import-Module "$PSScriptRoot/../SoftwareReport/SoftwareReport.Helpers.psm1" -DisableNameChecking
+Import-Module "imagegeneration/SoftwareReport/SoftwareReport.Helpers.psm1" -DisableNameChecking
 
 function Validate-ZeroExitCode($command) {
     $result = Get-CommandResult $command
