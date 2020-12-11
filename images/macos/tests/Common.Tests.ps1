@@ -156,8 +156,20 @@ Describe "Common utilities" {
         "jq --version" | Should -ReturnZeroExitCode
     }
 
-    It "OpenSSL" {
-        "openssl version" | Should -ReturnZeroExitCode
+    Context "OpenSSL" {
+        It "OpenSSL is available" {
+            "openssl version" | Should -ReturnZeroExitCode
+        }
+
+        It "OpenSSL 1.1 path exists" {
+            $openSSLpath = "/usr/local/opt/openssl@1.1"
+            $openSSLpath | Should -Exist
+        }
+
+        It "Default OpenSSL version is 1.1" {
+            $commandResult = Get-CommandResult "openssl version"
+            $commandResult.Output | Should -Match "OpenSSL 1.1"
+        }
     }
 
     It "GnuPG" {
