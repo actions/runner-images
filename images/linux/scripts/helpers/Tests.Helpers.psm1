@@ -17,7 +17,7 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    $testPath = "$env:HELPER_SCRIPTS/tests/${TestFile}.Tests.ps1"
+    $testPath = "/imagegeneration/tests/${TestFile}.Tests.ps1"
     if (-not (Test-Path $testPath)) {
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
