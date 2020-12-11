@@ -44,7 +44,7 @@ Set-Location c:\
 git clone https://github.com/actions/virtual-environments.git
 ```
 
-Import [GenerateResourcesAndImage](helpers/GenerateResourcesAndImage.ps1) script from `/helpers` folder, and run `GenerateResourcesAndImage` function via Powershell.
+Import [GenerateResourcesAndImage](../helpers/GenerateResourcesAndImage.ps1) script from `/helpers` folder, and run `GenerateResourcesAndImage` function via Powershell.
 
 ```
 Set-Location C:\virtual-environments
@@ -65,7 +65,7 @@ The function automatically creates all required Azure resources and kicks off pa
 *Please, check synopsis of `GenerateResourcesAndImage` for details about non-mandatory parameters.*
 
 #### Generated VM Deployment
-After the successful image generation, Virtual Machine can be created from the generated VHD using [CreateAzureVMFromPackerTemplate](helpers/CreateAzureVMFromPackerTemplate.ps1) script.
+After the successful image generation, Virtual Machine can be created from the generated VHD using [CreateAzureVMFromPackerTemplate](../helpers/CreateAzureVMFromPackerTemplate.ps1) script.
 
 ```
 Set-Location C:\virtual-environments
