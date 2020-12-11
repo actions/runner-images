@@ -1,4 +1,6 @@
 # Invokes command and validate that the exit code is 0
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
+
 function Validate-ZeroExitCode($command) {
     $result = Get-CommandResult $command
     $result.ExitCode | Should -Be 0 -Because $result.Output
@@ -15,7 +17,7 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    $testPath = "imagegeneration/tests/${TestFile}.Tests.ps1"
+    $testPath = "$env:HELPER_SCRIPTS/tests/${TestFile}.Tests.ps1"
     if (-not (Test-Path $testPath)) {
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
@@ -40,7 +42,6 @@ function Invoke-PesterTests {
         throw "Test run has failed"
     }
 }
-
 
 function Validate-ArrayWithoutDuplicates {
     param (

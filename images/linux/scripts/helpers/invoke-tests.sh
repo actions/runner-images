@@ -1,6 +1,8 @@
 #!/bin/bash -e
-
-source $HELPER_SCRIPTS/Tests.Helpers.psm1
+################################################################################
+##  File:  invoke-tests.sh
+##  Desc:  Helper functions for invoking tests
+################################################################################
 
 invoke_pester_tests() {
     local TEST_FILE="$1"
