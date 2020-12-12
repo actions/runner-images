@@ -13,7 +13,7 @@
 
 ## Installed Software
 ### Language and Runtime
-- Clang/LLVM 11.0.0
+- Clang/LLVM 12.0.0
 - gcc-8 (Homebrew GCC 8.4.0_1) 8.4.0 - available by `gcc-8` alias
 - gcc-9 (Homebrew GCC 9.3.0) 9.3.0 - available by `gcc-9` alias
 - GNU Fortran (Homebrew GCC 8.4.0_1) 8.4.0  - available by `gfortran-8` alias
