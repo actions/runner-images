@@ -28,6 +28,8 @@ function filter_components_by_version {
 ANDROID_ROOT=/usr/local/lib/android
 ANDROID_SDK_ROOT=${ANDROID_ROOT}/sdk
 echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
+prependEtcEnvironmentPath "${ANDROID_SDK_ROOT}/tools"
+prependEtcEnvironmentPath "${ANDROID_SDK_ROOT}/tools/bin"
 
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
 echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment

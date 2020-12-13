@@ -28,6 +28,13 @@ Expand-Archive -Path .\android-sdk-licenses.zip -DestinationPath 'C:\Program Fil
 $androidToolset = (Get-ToolsetContent).android
 
 $sdkRoot = "C:\Program Files (x86)\Android\android-sdk"
+
+# Emulator on Windows does not work from $sdkRoot\tools
+Add-MachinePathItem "$sdkRoot\emulator"
+Add-MachinePathItem "$sdkRoot\tools"
+Add-MachinePathItem "$sdkRoot\tools\bin"
+Add-MachinePathItem "$sdkRoot\platform-tools"
+
 $sdkManager = "$sdkRoot\tools\bin\sdkmanager.bat"
 
 & $sdkManager --sdk_root=$sdkRoot "platform-tools"
