@@ -30,6 +30,7 @@ ANDROID_SDK_ROOT=${ANDROID_ROOT}/sdk
 echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 prependEtcEnvironmentPath "${ANDROID_SDK_ROOT}/tools"
 prependEtcEnvironmentPath "${ANDROID_SDK_ROOT}/tools/bin"
+prependEtcEnvironmentPath "${ANDROID_SDK_ROOT}/platform-tools"
 
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
 echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
