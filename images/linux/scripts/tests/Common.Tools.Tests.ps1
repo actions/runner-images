@@ -1,4 +1,4 @@
-Import-Module "$HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "/imagegeneration/helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 Describe "7-Zip" {
     It "7z" {

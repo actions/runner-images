@@ -1,3 +1,5 @@
+Import-Module "/imagegeneration/helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+
 function Initialize-RustEnvironment {
     ln -sf "/usr/share/rust/.rustup" $HOME/.rustup
     ln -sf "/usr/share/rust/.cargo" $HOME/.cargo

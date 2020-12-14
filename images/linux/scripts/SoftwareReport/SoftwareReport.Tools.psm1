@@ -1,3 +1,6 @@
+Import-Module "/imagegeneration/helpers/Common.Helpers.psm1" -DisableNameChecking
+Import-Module "/imagegeneration/helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+
 function Get-7zipVersion {
     $7zVersion = 7z i | Select-String "7-Zip" | Take-OutputPart -Part 2
     return "7-Zip $7zVersion"

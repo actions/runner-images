@@ -1,3 +1,5 @@
+Import-Module "/imagegeneration/helpers/Common.Helpers.psm1" -DisableNameChecking
+
 function Get-JavaFullVersion {
     param($JavaRootPath)
 
