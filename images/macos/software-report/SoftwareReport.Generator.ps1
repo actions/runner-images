@@ -54,6 +54,7 @@ if ($os.IsLessThanBigSur) {
 }
 
 $markdown += New-MDList -Style Unordered -Lines @(
+    (Get-BashVersion),
     "Node.js ${nodejsVersion}"
     "NVM ${nvmVersion}"
     "NVM - Cached node versions: ${nvmCachedVersions}"
