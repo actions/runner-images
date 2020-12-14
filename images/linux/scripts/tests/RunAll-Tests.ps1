@@ -1,3 +1,3 @@
-Import-Module '/imagegeneration/SoftwareReport/Tests.Helpers.psm1' -DisableNameChecking
+Import-Module "$HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
 
 Invoke-PesterTests "*"
