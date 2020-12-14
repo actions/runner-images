@@ -1,11 +1,5 @@
-| Announcements |
-|-|
-| [[Ubuntu] Default Clang will be set to Clang 11 on December, 14](https://github.com/actions/virtual-environments/issues/2130) |
-| [.NET 5.0 will become a default .NET version on December, 14](https://github.com/actions/virtual-environments/issues/1891) |
-| [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
-***
 # Ubuntu 18.04.5 LTS
-- Image Version: 20201129.1
+- Image Version: dev
 
 ## Installed Software
 ### Language and Runtime
@@ -13,7 +7,7 @@
 - GNU Fortran 7.5.0, 8.4.0, 9.3.0, 10.1.0
 - Clang 6.0.0, 8.0.0, 9.0.0
 - Erlang 11.1
-- Mono 6.12.0.90
+- Mono 5.12.0.301
 - Node 14.15.1
 - Python 2.7.17
 - Python3 3.6.9
@@ -23,9 +17,9 @@
 - Julia 1.5.3
 
 ### Package Management
-- Gem 3.1.4
-- Helm 3.4.1
-- Homebrew 2.5.12
+- Gem 2.7.6
+- Helm 3.4.2
+- Homebrew 2.6.1
 - Miniconda 4.9.2
 - Npm 6.14.9
 - Pip 9.0.1
@@ -44,28 +38,28 @@
 - 7-Zip 16.02
 - Ansible 2.9.15
 - apt-fast 1.9.10
-- AzCopy10 10.7.0 (available by `azcopy10` alias)
+- AzCopy10 10.8.0 (available by `azcopy10` alias)
 - AzCopy7 7.3.0 (available by `azcopy` alias)
 - Bazel 3.7.1
 - Bazelisk 1.7.3
 - Buildah 1.18.0
 - CMake 3.19.1
-- CodeQL Action Bundle 2.3.3
+- CodeQL Action Bundle 2.4.0
 - curl 7.58.0
 - Docker Compose 1.27.4
 - Docker-Buildx 0.4.2
-- Docker-Moby 19.03.13
+- Docker-Moby 19.03.14
 - Git 2.29.2
-- Git LFS 2.12.1
+- Git LFS 2.13.1
 - Git-ftp 1.3.1
 - Haveged 1.9.1
-- Heroku 7.47.3
-- HHVM (HipHop VM) 4.84.0
+- Heroku 7.47.5
+- HHVM (HipHop VM) 4.87.0
 - jq 1.5
 - Kind 0.9.0
-- Kubectl 1.19.4
-- Kustomize 3.8.7
-- Leiningen 2.9.4
+- Kubectl 1.20.0
+- Kustomize 3.8.8
+- Leiningen 2.9.5
 - m4 1.4.18
 - Mercurial 4.5.3
 - Minikube 1.15.1
@@ -73,14 +67,14 @@
 - nvm 0.37.2
 - Packer 1.6.5
 - PhantomJS 2.1.1
-- Podman 2.1.1
-- Pulumi 2.14.0
+- Podman 2.2.1
+- Pulumi 2.15.5
 - R 4.0.3
 - Skopeo 1.2.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.9.7
 - Swig 3.0.12
-- Terraform 0.13.5
+- Terraform 0.14.2
 - unzip 6.00
 - wget 1.19.4
 - yamllint 1.25.0
@@ -88,17 +82,17 @@
 - zstd 1.3.3
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.63
-- AWS CLI 1.18.185
+- Alibaba Cloud CLI 3.0.64
+- AWS CLI 1.18.195
 - AWS CLI Session manager plugin 1.2.30.0
-- AWS SAM CLI 1.12.0
-- Azure CLI (azure-cli) 2.15.1
+- AWS SAM CLI 1.13.2
+- Azure CLI (azure-cli) 2.16.0
 - Azure CLI (azure-devops) 0.18.0
-- GitHub CLI 1.3.0
-- Google Cloud SDK 319.0.0
+- GitHub CLI 1.3.1
+- Google Cloud SDK 320.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 2.69.0
-- oc CLI 4.5.0
+- Netlify CLI 2.69.6
+- oc CLI 4.6.6
 - ORAS CLI 0.8.1
 - Vercel CLI 21.0.1
 
@@ -114,7 +108,7 @@
 | Tool     | Version                     |
 | -------- | --------------------------- |
 | PHP      | 7.1.33 7.2.34 7.3.24 7.4.13 |
-| Composer | 2.0.7                       |
+| Composer | 2.0.8                       |
 | PHPUnit  | 7.5.20                      |
 
 ### Haskell
@@ -124,7 +118,7 @@
 
 ### Rust Tools
 - Rust 1.48.0
-- Rustup 1.23.0
+- Rustup 1.23.1
 - Rustdoc 1.48.0
 - Cargo 1.48.0
 
@@ -137,8 +131,8 @@
 - Rustfmt 1.4.24
 
 ### Browsers and Drivers
-- Google Chrome 87.0.4280.66
-- ChromeDriver 87.0.4280.20
+- Google Chrome 87.0.4280.88
+- ChromeDriver 87.0.4280.88
 - Mozilla Firefox 83.0
 - Geckodriver 0.28.0
 
@@ -176,7 +170,7 @@
 - 3.6.12
 - 3.7.9
 - 3.8.6
-- 3.9.0
+- 3.9.1
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.3]
@@ -190,8 +184,8 @@
 
 #### Go
 - 1.13.15
-- 1.14.12
-- 1.15.5
+- 1.14.13
+- 1.15.6
 
 #### Boost
 - 1.72.0
@@ -202,7 +196,7 @@
 | Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                                                                                                                           |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                           |
 | Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)<br>android-18 (rev 3)<br>android-17 (rev 3) |
-| Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0                                   |
+| Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0                            |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                         |
 | NDK                        | 21.3.6528147                                                                                                                                                                                                                                                                                                     |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                           |
@@ -214,13 +208,13 @@
 ### Cached Docker images
 | Repository:Tag                                            | Digest                                                                   | Created    |
 | --------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| node:12                                                   | sha256:6e2db75c0a1e19ed760996957aef507f5abe1260ec412e8901855ac4a17a7ada  | 2020-11-25 |
+| buildpack-deps:stretch                                    | sha256:dc5452b66ea471aec94c4866b3cb9113e24e45ea9bb1b2dd05effb58237334d4  | 2020-12-11 |
+| buildpack-deps:buster                                     | sha256:ed54ea7f2c21d321dc1570ea09e9d2cd1a02270b2adc0dd0dffd96bed2c0645d  | 2020-12-11 |
+| debian:9                                                  | sha256:49c93d2ea3d40a86c1f69793cfff65dd55fbf587401243ebba0e40b260ec9a0c  | 2020-12-11 |
+| debian:8                                                  | sha256:b6355f8f0cae1ad0f8f70f1fa276e3b86ed9d3081c44cfe436ef7133bf10ff19  | 2020-12-11 |
+| node:12                                                   | sha256:f6cbe98e1fac7fb5d10234ec01dd6eb22a716ba9e8243d1601047183ad309d9e  | 2020-11-25 |
 | node:12-alpine                                            | sha256:9f8d0fde57ef82d73d234d712edc211d1235469cb55426c0383b7eacf7d9199f  | 2020-11-25 |
-| node:10                                                   | sha256:14fa22a8989cd64ce811db9d47e3ed2910e0f2d95323240e23bc928201bbf313  | 2020-11-18 |
-| buildpack-deps:stretch                                    | sha256:c45c192a72b3155aca0c64fd0944e431a7c211bbc3383015a14cae3d3a389e79  | 2020-11-18 |
-| buildpack-deps:buster                                     | sha256:ad587f62e065044815955a4593500f79da89f5e5af95eb7798d1a4c869f50770  | 2020-11-18 |
-| debian:9                                                  | sha256:455a591bd690268d8f6f3dc6f2a84b9d0f3d1934828140d8ea2a5344a7c79063  | 2020-11-17 |
-| debian:8                                                  | sha256:0160d3bcc7266efe6a2a93dff33e3d54480bd2616a8ff5774c33fd8b482c8d75  | 2020-11-17 |
+| node:10                                                   | sha256:1d30528ca3c78d9656177368c4db37e1c7bffad1711cfaa9da5886d7922e3f5e  | 2020-11-18 |
 | node:10-alpine                                            | sha256:34d01a98b50563abff4a8e18269f35d4eb1f33e911a38dd14e4798e430af5cac  | 2020-10-28 |
 | ubuntu:14.04                                              | sha256:63fce984528cec8714c365919882f8fb64c8a3edf23fdfa0b218a2756125456f  | 2020-09-16 |
 | jekyll/builder:latest                                     | sha256:4bc6a3b6eddebef1652ef38ceb965fc9c1b06677f65f764e1e17b88dc2aa9934  | 2020-09-03 |
@@ -232,6 +226,5 @@
 
 ### Installed apt packages
 - bison, brotli, bzip2, curl, dbus, dnsutils, dpkg, fakeroot, file, flex, ftp, gnupg2, iproute2, iputils-ping, jq, lib32z1, libc++-dev, libc++abi-dev, libcurl3, libgbm-dev, libgconf-2-4, libgtk-3-0, libsecret-1-dev, libsqlite3-dev, libunwind8, libxkbfile-dev, libxss1, locales, m4, netcat, openssh-client, parallel, patchelf, pkg-config, rpm, rsync, shellcheck, sqlite3, ssh, sudo, telnet, texinfo, time, tk, tzdata, unzip, upx, wget, xorriso, xvfb, xz-utils, zip, zstd, zsync
-
 
 
