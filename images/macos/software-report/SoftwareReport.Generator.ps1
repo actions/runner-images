@@ -140,6 +140,7 @@ $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" |
 $mongod = Run-Command "mongod --version" | Select-String "db version " | Take-Part -Part 2
 $p7zip = Run-Command "7z i" | Select-String "7-Zip" | Take-Part -Part 0,2
 $gnuTar = Run-Command "gtar --version" | Select-String "tar" | Take-Part -Part 3
+$bsdtar = Run-Command "tar --version" | Take-Part -Part 1
 
 $markdown += New-MDHeader "Utilities" -Level 3
 $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
@@ -165,7 +166,8 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     "mongo $mongo",
     "mongod $mongod",
     $p7zip,
-    "GNU Tar $gnuTar"
+    "GNU Tar $gnuTar - available by 'gtar' alias",
+    "bsdtar $bsdtar - available by 'tar' alias"
 )
 if ($os.IsHigherThanMojave) {
     $newmanVersion = Run-Command "newman --version"
