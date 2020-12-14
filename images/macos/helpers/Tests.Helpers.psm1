@@ -97,6 +97,15 @@ function Invoke-PesterTests {
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
 
+    # Check that Pester module is imported
+    if (!(Get-Module "Pester")) {
+        Write-Host "Pester module is imported."
+    }
+    else {
+        Write-Host "Pester module is not imported."
+        Import-Module Pester
+    }
+    
     $configuration = [PesterConfiguration] @{
         Run = @{ Path = $testPath; PassThru = $true }
         Output = @{ Verbosity = "Detailed" }

@@ -35,5 +35,4 @@ sudo ln -s /usr/local/bin/pwsh /usr/local/bin/powershell
 # fix ~/.azure directory permissions
 sudo chown -R ${USER}: $HOME/.azure
 
-# Import Pester Module
-Import-Module Pester
+pwsh -c "Invoke-PesterTests -TestFile \"Powershell\""
