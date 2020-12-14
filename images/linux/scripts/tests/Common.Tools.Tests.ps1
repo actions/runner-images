@@ -6,7 +6,7 @@ Describe "7-Zip" {
     }
 }
 
-Describe "azcopy" {
+Describe "Azcopy" {
     It "azcopy" {
         "azcopy --version" | Should -ReturnZeroExitCode
     }
