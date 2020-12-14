@@ -166,8 +166,8 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     "mongo $mongo",
     "mongod $mongod",
     $p7zip,
-    "GNU Tar $gnuTar - available by 'gtar' alias",
-    "bsdtar $bsdtar - available by 'tar' alias"
+    "bsdtar $bsdtar - available by 'tar' alias",
+    "GNU Tar $gnuTar - available by 'gtar' alias"
 )
 if ($os.IsHigherThanMojave) {
     $newmanVersion = Run-Command "newman --version"
