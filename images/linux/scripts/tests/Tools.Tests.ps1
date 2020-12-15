@@ -7,10 +7,12 @@ Describe "7-Zip" {
 }
 
 Describe "AzCopy" {
-    It "<ToolName>" -TestCases @(
-        @{ ToolName = "azcopy" }
-        @{ ToolName = "azcopy10" }
-    ) {
-        "$ToolName --version"| Should -ReturnZeroExitCode
+    It "azcopy" {
+        $azcopyVersion = (Get-CommandResult "azcopy --version").Output
+        $azcopyVersion | Should -Contain "azcopy"
+    }
+
+    It "azcopy10" {
+        "azcopy10 --version" | Should -ReturnZeroExitCode
     }
 }
