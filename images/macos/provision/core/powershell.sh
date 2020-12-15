@@ -1,6 +1,7 @@
 #!/bin/bash -e -o pipefail
 
 source ~/utils/utils.sh
+source ~/utils/invoke-tests.sh
 
 echo Installing Azure CLI...
 brew install azure-cli
@@ -35,4 +36,4 @@ sudo ln -s /usr/local/bin/pwsh /usr/local/bin/powershell
 # fix ~/.azure directory permissions
 sudo chown -R ${USER}: $HOME/.azure
 
-pwsh -c "Invoke-PesterTests -TestFile \"Powershell\""
+invoke_tests "Powershell"

@@ -105,7 +105,7 @@ function Invoke-PesterTests {
         Write-Host "Pester module is not imported."
         Import-Module Pester
     }
-    
+
     $configuration = [PesterConfiguration] @{
         Run = @{ Path = $testPath; PassThru = $true }
         Output = @{ Verbosity = "Detailed" }
