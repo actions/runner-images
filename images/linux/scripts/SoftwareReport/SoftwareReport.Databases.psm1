@@ -1,4 +1,4 @@
-Import-Module "/imagegeneration/helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1"
 
 function Get-PostgreSqlVersion {
     $postgreSQLVersion = psql --version | Take-OutputPart -Part 2

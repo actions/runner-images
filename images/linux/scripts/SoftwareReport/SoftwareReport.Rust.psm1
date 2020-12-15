@@ -1,4 +1,4 @@
-Import-Module "/imagegeneration/helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1"
 
 function Initialize-RustEnvironment {
     ln -sf "/usr/share/rust/.rustup" $HOME/.rustup

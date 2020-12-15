@@ -4,7 +4,7 @@
 ##  Desc:  Helper function for invoking tests
 ################################################################################
 
-invoke_pester_tests() {
+invoke_tests() {
     local TEST_FILE="$1"
     local TEST_NAME="$2"
 
