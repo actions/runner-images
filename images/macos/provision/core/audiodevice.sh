@@ -12,3 +12,5 @@ brew install sox
 echo "set Soundflower (2ch) as input/output device"
 SwitchAudioSource -s "Soundflower (2ch)" -t input
 SwitchAudioSource -s "Soundflower (2ch)" -t output
+
+invoke_tests "Common" "Audio Device"

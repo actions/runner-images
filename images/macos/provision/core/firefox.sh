@@ -8,3 +8,5 @@ brew install geckodriver
 
 echo "Add GECKOWEBDRIVER to bashrc..."
 echo "export GECKOWEBDRIVER=$(brew --prefix geckodriver)/bin" >> "${HOME}/.bashrc"
+
+invoke_tests "Browsers" "Firefox"

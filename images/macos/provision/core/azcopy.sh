@@ -12,3 +12,5 @@ chmod +x "/usr/local/bin/azcopy"
 
 echo "Done, cleaning up"
 rm -rf azcopy*
+
+invoke_tests "Common" "Azcopy"
