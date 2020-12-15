@@ -1,6 +1,6 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
+source ~/utils/invoke-tests.sh
 
 echo "Installing Microsoft Edge..."
 brew cask install microsoft-edge

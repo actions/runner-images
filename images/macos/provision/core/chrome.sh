@@ -1,5 +1,6 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
+source ~/utils/invoke-tests.sh
 
 echo "Installing Chrome..."
 brew_cask_install_ignoring_sha256 "google-chrome"

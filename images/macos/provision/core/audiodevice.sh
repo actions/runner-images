@@ -1,4 +1,5 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/invoke-tests.sh
 
 echo "install soundflower"
 brew cask install soundflower

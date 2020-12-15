@@ -1,5 +1,6 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
+source ~/utils/invoke-tests.sh
 
 function filter_components_by_version {
     minimumVersion=$1
