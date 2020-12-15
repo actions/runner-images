@@ -1,3 +1,5 @@
+Import-Module "Common.Helpers.psm1"
+
 # Invokes command and validate that the exit code is 0
 function Validate-ZeroExitCode($command) {
     $result = Get-CommandResult $command
