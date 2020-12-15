@@ -9,7 +9,7 @@ Describe "7-Zip" {
 Describe "AzCopy" {
     It "azcopy" {
         $azcopyVersion = (Get-CommandResult "azcopy --version").Output
-        $azcopyVersion | Should -Contain "azcopy"
+        $azcopyVersion | Should -BeLike "*azcopy*"
     }
 
     It "azcopy10" {
