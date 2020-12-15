@@ -1,5 +1,3 @@
-Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
-
 function Get-ChromeVersion {
     $googleChromeVersion = google-chrome --version | Take-OutputPart -Part 2
     return "Google Chrome $googleChromeVersion"

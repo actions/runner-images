@@ -1,6 +1,3 @@
-Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
-Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameChecking
-
 function Get-OSName {
     lsb_release -ds
 }

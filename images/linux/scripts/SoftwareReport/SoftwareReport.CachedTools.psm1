@@ -1,5 +1,3 @@
-Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
-
 function Get-ToolcacheRubyVersions {
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Ruby"
     return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }

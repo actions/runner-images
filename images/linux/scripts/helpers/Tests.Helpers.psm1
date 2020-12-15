@@ -1,10 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameChecking
 
-function Validate-ZeroExitCode($command) {
-    $result = Get-CommandResult $command
-    $result.ExitCode | Should -Be 0 -Because $result.Output
-}
-
 # Validates that tool is installed and in PATH
 function Validate-ToolExist($tool) {
     Get-Command $tool -ErrorAction SilentlyContinue | Should -BeTrue
