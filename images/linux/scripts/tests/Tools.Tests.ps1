@@ -8,6 +8,7 @@ Describe "7-Zip" {
 
 Describe "azcopy" {
     It "azcopy" {
+        #(azcopy --version) command returns exit code 1 (see details: https://github.com/Azure/azure-storage-azcopy/releases)
         $azcopyVersion = (Get-CommandResult "azcopy --version").Output
         $azcopyVersion | Should -BeLike "*azcopy*"
     }
