@@ -101,10 +101,6 @@ function Invoke-PesterTests {
 
     # Check that Pester module is imported
     if (!(Get-Module "Pester")) {
-        Write-Host "Pester module is imported."
-    }
-    else {
-        Write-Host "Pester module is not imported."
         Import-Module Pester
     }
 
