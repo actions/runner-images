@@ -1,4 +1,3 @@
-
 #!/bin/bash -e -o pipefail
 
 invoke_tests() {
