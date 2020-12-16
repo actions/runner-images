@@ -1,13 +1,6 @@
-| Announcements |
-|-|
-| [Default Node.JS will be switched to 14.x on all platforms ](https://github.com/actions/virtual-environments/issues/1953) |
-| [.NET 5.0 will become a default .NET version on December, 14](https://github.com/actions/virtual-environments/issues/1891) |
-| [Official Ruby binaries will be installed on images by default](https://github.com/actions/virtual-environments/issues/2193) |
-***
-
 # Microsoft Windows Server 2019 Datacenter
-- OS Version: 10.0.17763 Build 1579
-- Image Version: 20201202.1
+- OS Version: 10.0.17763 Build 1637
+- Image Version: 20201210.0
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -20,7 +13,7 @@
 - Java 13.0.2 
 - Python 3.7.9
 - Ruby 2.5.8p224
-- Go 1.14.12
+- Go 1.14.13
 - PHP 7.4.13
 - Julia 1.5.3
 - Perl 5.32.0
@@ -28,14 +21,14 @@
 
 ### Package Management
 - Chocolatey 0.10.15
-- Vcpkg 2020.11.12
+- Vcpkg 2020.11.12 (build from master <c309037>)
 - NPM 6.14.8
 - Yarn 1.22.10
-- pip 20.3 (python 3.7)
+- pip 20.3.1 (python 3.7)
 - Miniconda 4.9.2
 - RubyGems 2.7.6.2
 - Helm 3.4.1
-- Composer 2.0.7
+- Composer 2.0.8
 - NuGet 5.8.0.6930
 - Pipx 0.15.6.0
 
@@ -56,10 +49,10 @@
 - Docker-compose 1.27.4
 - Git 2.29.2
 - Git LFS 2.12.1
-- Google Cloud SDK 319.0.0
+- Google Cloud SDK 320.0.0
 - InnoSetup 6.1.2
 - jq 1.6
-- Kubectl 1.19.3
+- Kubectl 1.20.0
 - Kind 0.9.0
 - Mingw-w64 8.1.0
 - Mercurial 5.0
@@ -67,7 +60,7 @@
 - Newman 5.2.1
 - OpenSSL 1.1.1
 - Packer 1.6.5
-- Pulumi v2.14.0
+- Pulumi v2.15.4
 - Subversion (SVN) 1.14.0
 - ghc 8.10.2
 - Cabal 3.2.0.0
@@ -79,16 +72,16 @@
 - yamllint 1.25.0
 
 ### CLI Tools
-- Azure CLI 2.15.1
+- Azure CLI 2.16.0
 - Azure DevOps CLI extension 0.18.0
 - Azure Dev Spaces CLI 1.0.20201028.9
-- AWS CLI 2.1.4
-- AWS SAM CLI 1.13.1
+- AWS CLI 2.1.8
+- AWS SAM CLI 1.13.2
 - AWS Session Manager CLI 1.2.30.0
 - Alibaba Cloud CLI 3.0.64
 - Cloud Foundry CLI 6.53.0
 - Hub CLI 2.14.2
-- GitHub CLI 1.3.0
+- GitHub CLI 1.3.1
 
 ### Rust Tools
 - Rust 1.48.0
@@ -100,10 +93,10 @@
 - cargo-outdated v0.9.13
 
 ### Browsers and webdrivers
-- Google Chrome 87.0.4280.66
-- Chrome Driver 87.0.4280.20
-- Microsoft Edge 87.0.664.52
-- Microsoft Edge Driver 87.0.664.47
+- Google Chrome 87.0.4280.88
+- Chrome Driver 87.0.4280.88
+- Microsoft Edge 87.0.664.57
+- Microsoft Edge Driver 87.0.664.57
 - Mozilla Firefox 83.0
 - Gecko Driver 0.28.0
 - IE Driver 3.150.1.0
@@ -146,8 +139,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.11.13 | x64          | GOROOT_1_11_X64      |
 | 1.12.17 | x64          | GOROOT_1_12_X64      |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
-| 1.14.12 (Default) | x64          | GOROOT_1_14_X64      |
-| 1.15.5  | x64          | GOROOT_1_15_X64      |
+| 1.14.13 (Default) | x64          | GOROOT_1_14_X64      |
+| 1.15.6  | x64          | GOROOT_1_15_X64      |
 
 
 #### Node
@@ -167,7 +160,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.6   | x64, x86     |
-| 3.9.0   | x64, x86     |
+| 3.9.1   | x64, x86     |
 
 
 #### Ruby
@@ -209,22 +202,22 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.11.8.0
+- Azure CosmosDb Emulator 2.11.9.0
 - DacFx 15.0.4897.1
 - SQLPS 1.0
 - MySQL 5.7.21.0
 
 
 ### Visual Studio Enterprise 2019
-| Name                          | Version        | Path                                                           |
-| ----------------------------- | -------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.8.30717.126 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Name                          | Version       | Path                                                           |
+| ----------------------------- | ------------- | -------------------------------------------------------------- |
+| Visual Studio Enterprise 2019 | 16.8.30804.86 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | Version        |
 | ------------------------------------------------------------------------- | -------------- |
-| Component.Android.NDK.R16B                                                | 16.8.30712.155 |
+| Component.Android.NDK.R16B                                                | 16.8.30804.86  |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61  |
 | Component.Android.SDK28                                                   | 16.2.29003.222 |
 | Component.Ant                                                             | 1.9.3.8        |
@@ -277,11 +270,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.4.7.DeveloperTools                           | 16.3.29207.166 |
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 16.3.29207.166 |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 16.0.28516.191 |
-| Microsoft.Net.Core.Component.SDK.2.1                                      | 16.8.30703.189 |
+| Microsoft.Net.Core.Component.SDK.2.1                                      | 16.8.30804.86  |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 16.8.30607.99  |
-| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.8.30703.189 |
-| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.8.30703.189 |
-| Microsoft.NetCore.Component.SDK                                           | 16.8.30703.189 |
+| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.8.30804.86  |
+| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.8.30804.86  |
+| Microsoft.NetCore.Component.SDK                                           | 16.8.30804.86  |
 | Microsoft.NetCore.Component.Web                                           | 16.5.29721.120 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 16.5.29515.121 |
 | Microsoft.VisualStudio.Component.AspNet45                                 | 16.0.28315.86  |
@@ -441,7 +434,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Python                                    | 16.0.28621.142 |
 | Microsoft.VisualStudio.Workload.Universal                                 | 16.8.30530.185 |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 16.4.29409.204 |
-| SSDT Microsoft Analysis Services Projects                                 | 2.9.14         |
+| SSDT Microsoft Analysis Services Projects                                 | 2.9.15         |
 | SSDT SQL Server Integration Services Projects                             | 3.10           |
 | SSDT Microsoft Reporting Services Projects                                | 2.6.7          |
 | Windows Driver Kit                                                        | 3.11.4516      |
@@ -470,20 +463,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 5.0.100
+- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 5.0.100 5.0.101
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
 - 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 5.0.0
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 5.0.0 5.0.1
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 5.0.0
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 5.0.0 5.0.1
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 5.0.0
+- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 5.0.0 5.0.1
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -516,27 +509,27 @@ All other versions are saved but not installed.
 | VSSetup            | 2.2.16           |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                                                                        |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                                                                                         |
-| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                         |
-| Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)           |
-| Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0 |
-| NDK                        | 21.3.6528147                                                                                                                                                                                                                                                                   |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                         |
-| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                       |
-| Google Play services       | 49                                                                                                                                                                                                                                                                             |
-| Google Repository          | 58                                                                                                                                                                                                                                                                             |
-| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                              |
-| CMake                      | 3.10.2<br>3.6.4111459                                                                                                                                                                                                                                                          |
+| Package Name               | Version                                                                                                                                                                                                                                                                               |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                                                                                                |
+| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                |
+| Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)                  |
+| Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0 |
+| NDK                        | 21.3.6528147                                                                                                                                                                                                                                                                          |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                |
+| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                              |
+| Google Play services       | 49                                                                                                                                                                                                                                                                                    |
+| Google Repository          | 58                                                                                                                                                                                                                                                                                    |
+| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                     |
+| CMake                      | 3.10.2<br>3.6.4111459                                                                                                                                                                                                                                                                 |
 
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:778b5bb7839f483f869b016fdb66400525093fbe0f75878a2950472e6c58573e  | 2020-11-10 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:bfc6c9dd77473be518e4c63171d6d06baf300d873756d2f3c10d21a4defb2978  | 2020-11-10 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:0da0b0e6cf9cf435c6470f23a97a0b9b80495f3712529abc748d80c5fb59209c  | 2020-11-03 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:a109b9910e8784221914ff5970c398c14c7a13b41ada10500f62806f5f522d53  | 2020-10-31 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:d46450a98b2dce8436946685fe84a738a61345a4f63f4321c72715daa9f93107  | 2020-12-08 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:c8d64712094972950fcb40422610a7efb75381ea476d489e0bcc6f675a55a2f8  | 2020-12-08 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:0030f755ca84ec601a080df3b47f281896d90ec7cf42bb95af04bd118511e9da  | 2020-12-04 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:5e8cbdb57a33156c9f37bec01b6add720532d1432ce4ade821920c4f7b8c6409  | 2020-12-03 |
 | microsoft/aspnetcore-build:1.0-2.0                                        | sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c  | 2018-08-15 |
 
 
