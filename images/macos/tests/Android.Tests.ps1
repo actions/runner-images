@@ -68,13 +68,13 @@ Describe "Android" {
         }
     }
 
-    Context "Legacy NDK versions" -Skip:($os.IsBigSur) {
-        It "Android NDK version is 21" {
-            $ndkBundlePath = Join-Path $ANDROID_SDK_DIR "ndk-bundle" "source.properties"
-            $rawContent = Get-Content $ndkBundlePath -Raw
-            $rawContent | Should -BeLikeExactly "*Revision = 21.*"
-        }
+    It "Android NDK version is 22" {
+        $ndkBundlePath = Join-Path $ANDROID_SDK_DIR "ndk-bundle" "source.properties"
+        $rawContent = Get-Content $ndkBundlePath -Raw
+        $rawContent | Should -BeLikeExactly "*Revision = 22.*"
+    }
 
+    Context "Legacy NDK versions" -Skip:($os.IsBigSur) {
         It "Android NDK version r18b is installed" {
             $ndk18BundlePath = Join-Path $ANDROID_SDK_DIR "ndk" "18.1.5063045" "source.properties"
             $rawContent = Get-Content $ndk18BundlePath -Raw
