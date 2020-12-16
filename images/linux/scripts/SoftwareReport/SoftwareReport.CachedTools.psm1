@@ -29,11 +29,36 @@ function Get-ToolcacheGoVersions {
 }
 
 function Get-ToolcacheBoostVersions {
+    $Name = "Boost"
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "boost"
     if (-not (Test-Path $toolcachePath)) {
         return @()
     }
-    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+
+    $BoostVersions = Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+    $ToolInstances = $BoostVersions | ForEach-Object {
+        $VersionEnvVar = $_.replace(".", "_")
+        return @{
+            Version = $_
+            Architecture = "x64"
+            "Environment Variable" = "BOOST_ROOT_${VersionEnvVar}"
+
+        }
+    }
+    $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
+        Version = "left";
+        Architecture = "left";
+        "Environment Variable" = "left"
+    })
+
+    $markdown = ""
+
+    if ($Content.Count -gt 0) {
+        $markdown += New-MDHeader $Name -Level 4
+        $markdown += New-MDParagraph -Lines $Content
+    }
+
+    return $markdown
 }
 
 function Build-CachedToolsSection {
@@ -54,11 +79,7 @@ function Build-CachedToolsSection {
     $output += New-MDHeader "Go" -Level 4
     $output += New-MDList -Lines (Get-ToolcacheGoVersions) -Style Unordered
 
-    $boostVersions = Get-ToolcacheBoostVersions
-    if ($boostVersions.Count -gt 0) {
-        $output += New-MDHeader "Boost" -Level 4
-        $output += New-MDList -Lines $boostVersions -Style Unordered
-    }
+    $output += Get-ToolcacheBoostVersions
 
     return $output
 }

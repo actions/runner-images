@@ -1,5 +1,10 @@
 Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
 
+function Get-BashVersion {
+    $version = bash -c 'echo ${BASH_VERSION}'
+    return "Bash $version"
+}
+
 function Get-DotnetVersionList {
     $sdkRawList = Run-Command "dotnet --list-sdks"
     $sdkVersionList = $sdkRawList | ForEach-Object { Take-Part $_ -Part 0 }

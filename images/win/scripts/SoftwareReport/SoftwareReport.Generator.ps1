@@ -32,6 +32,7 @@ $markdown += New-MDHeader "Language and Runtime" -Level 3
 
 $markdown += New-MDList -Lines (Get-JavaVersionsList -DefaultVersion "1.8.0") -Style Unordered -NoNewLine
 $markdown += New-MDList -Style Unordered -Lines @(
+    (Get-BashVersion),
     (Get-PythonVersion),
     (Get-RubyVersion),
     (Get-GoVersion),

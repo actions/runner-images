@@ -4,6 +4,11 @@ function Get-OSName {
     lsb_release -ds
 }
 
+function Get-BashVersion {
+    $version = bash -c 'echo ${BASH_VERSION}'
+    return "Bash $version"
+}
+
 function Get-CPPVersions {
     $result = Get-CommandResult "apt list --installed" -Multiline
     $cppVersions = $result.Output | Where-Object { $_ -match "g\+\+-\d+"} | ForEach-Object {
