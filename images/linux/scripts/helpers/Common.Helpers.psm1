@@ -13,6 +13,10 @@ function Get-CommandResult {
     }
 }
 
+function Get-OSName {
+    lsb_release -ds
+}
+
 function Test-IsUbuntu16 {
     return (lsb_release -rs) -eq "16.04"
 }

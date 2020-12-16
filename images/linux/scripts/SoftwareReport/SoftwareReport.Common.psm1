@@ -1,7 +1,3 @@
-function Get-OSName {
-    lsb_release -ds
-}
-
 function Get-BashVersion {
     $version = bash -c 'echo ${BASH_VERSION}'
     return "Bash $version"
