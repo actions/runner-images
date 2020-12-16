@@ -24,7 +24,7 @@ function Invoke-PesterTests {
         $configuration.Filter.FullName = $TestName
     }
 
-    # Switch ErrorActionPreference to Stop temporary to make sure that tests will on silent errors too
+    # Switch ErrorActionPreference to Stop temporary to make sure that tests will fail on silent errors too
     $backupErrorActionPreference = $ErrorActionPreference
     $ErrorActionPreference = "Stop"
     $results = Invoke-Pester -Configuration $configuration
@@ -41,7 +41,7 @@ function ShouldReturnZeroExitCode {
     Param(
         [String] $ActualValue,
         [switch] $Negate,
-        [string] $Because # This parameter is unused by we need it to match Pester asserts signature
+        [string] $Because # This parameter is unused but we need it to match Pester asserts signature
     )
 
     $result = Get-CommandResult $ActualValue
