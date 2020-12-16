@@ -248,6 +248,10 @@ Describe "Common utilities" {
     It "Apache Ant" {
         "ant -version" | Should -ReturnZeroExitCode
     }
+
+    It "GNU Tar" {
+        "gtar --version" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "Rust" -Skip:($os.IsHighSierra) {
