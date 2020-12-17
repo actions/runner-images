@@ -73,7 +73,7 @@ function Install-PyPy
         New-Item -Path "$pypyArchPath\bin" -ItemType SymbolicLink -Value "$pypyArchPath\Scripts" | Out-Null
 
         $pypyFullVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))"
-        Write-Host "Write $pypyFullVersion to PYPY_VERSION FILE"
+        Write-Host "Put '$pypyFullVersion' to PYPY_VERSION file"
         New-Item -Path "$pypyArchPath\PYPY_VERSION" -Value $pypyFullVersion
 
         Write-Host "Create complete file"
