@@ -1,50 +1,53 @@
 | Announcements |
 |-|
+| [Hosted macOS workflows will experience longer wait times the week of December 14th.](https://github.com/actions/virtual-environments/issues/2247) |
 | [[macOS] Backward compatibility of Az and AzureRM will be dropped on December, 14](https://github.com/actions/virtual-environments/issues/2090) |
 | [[macOS] Default OpenSSL will be switched to 1.1.1 and OpenSSL 1.0.2 will be removed on December, 14](https://github.com/actions/virtual-environments/issues/2089) |
-| [[macOS] Default Xcode will be set to Xcode 12.2 on November, 30.](https://github.com/actions/virtual-environments/issues/2056) |
 | [.NET 5.0 will become a default .NET version on December, 14](https://github.com/actions/virtual-environments/issues/1891) |
 | [macOS 11.0 (Big Sur) is available as a preview 🚀](https://github.com/actions/virtual-environments/issues/1814) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H15)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20201130.3
+- Image Version: 20201212.1
 
 ## Installed Software
 ### Language and Runtime
-- Clang/LLVM 11.0.0
+- Clang/LLVM 12.0.0 is default
+- Clang/LLVM 11.0.0 is available on `$(brew --prefix llvm)/bin/clang`
 - gcc-8 (Homebrew GCC 8.4.0_1) 8.4.0 - available by `gcc-8` alias
 - gcc-9 (Homebrew GCC 9.3.0) 9.3.0 - available by `gcc-9` alias
+- gcc-10 (Homebrew GCC 10.2.0) 10.2.0 - available by `gcc-10` alias
 - GNU Fortran (Homebrew GCC 8.4.0_1) 8.4.0  - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0) 9.3.0  - available by `gfortran-9` alias
+- GNU Fortran (Homebrew GCC 10.2.0) 10.2.0  - available by `gfortran-10` alias
 - R 4.0.3
 - Node.js v14.15.1
 - NVM 0.37.2
 - NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.0 v12.20.0 v13.14.0 v14.15.1
-- Python 2.7.17
-- Python 3.9.0
+- Python 2.7.18
+- Python 3.9.1
 - Ruby 2.7.2p137
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 5.0.100 5.0.101
 - Go 1.15.5
 - PHP 8.0.0
 - julia 1.5.3
 
 ### Package Management
-- Vcpkg 2020.11.12
-- Pip 19.3.1 (python 2.7)
-- Pip 20.2.4 (python 3.9)
+- Vcpkg 2020.11.12 (build from master <81b67c3>)
+- Pip 20.3.1 (python 2.7)
+- Pip 20.3.1 (python 3.9)
 - Pipx 0.15.6.0
-- Bundler version 2.1.4
+- Bundler version 2.2.0
 - Carthage 0.36.0
 - CocoaPods 1.10.0
-- Homebrew 2.5.12
+- Homebrew 2.6.1
 - NPM 6.14.8
 - Yarn 1.22.5
 - NuGet 5.6.0.6489
 - Miniconda 4.9.2
-- RubyGems 3.1.4
-- Composer 2.0.7
+- RubyGems 3.2.0
+- Composer 2.0.8
 
 ### Project Management
 - Apache Maven 3.6.3
@@ -52,25 +55,25 @@
 - Apache Ant(TM) 1.10.9
 
 ### Utilities
-- Curl 7.73.0
+- Curl 7.74.0
 - Git: 2.29.2
-- Git LFS: 2.12.1
-- GitHub CLI: 1.3.0
+- Git LFS: 2.13.1
+- GitHub CLI: 1.3.1
 - Hub CLI: 2.14.2
 - GNU Wget 1.20.3
 - Subversion (SVN) 1.14.0
 - Packer 1.6.5
-- OpenSSL 1.0.2t  10 Sep 2019 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.0.2t/1.0.2t)`
+- OpenSSL 1.1.1i  8 Dec 2020 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1i)`
 - jq 1.6
 - gpg (GnuPG) 2.2.25
 - psql (PostgreSQL) 13.1
 - PostgreSQL 13.1
 - aria2 1.35.0
-- azcopy 10.7.0
+- azcopy 10.8.0
 - zstd 1.4.5
 - bazel 3.7.1
 - bazelisk 1.7.4
-- helm v3.4.1+gc4e7485
+- helm v3.4.2+g23dd3af
 - mongo v4.4.1
 - mongod v4.4.1
 - 7-Zip 16.02
@@ -81,14 +84,15 @@
 
 
 ### Tools
-- Fastlane 2.168.0
+- Fastlane 2.170.0
 - Cmake 3.19.1
 - App Center CLI 2.7.3
-- Azure CLI 2.15.1
-- AWS CLI 2.1.4
-- AWS SAM CLI 1.12.0
+- Azure CLI 2.16.0
+- AWS CLI 2.1.10
+- AWS SAM CLI 1.13.2
 - AWS Session Manager CLI 1.2.30.0
-- Aliyun CLI 3.0.63
+- Aliyun CLI 3.0.64
+- Xcode Command Line Tools 12.2.0.0.1.1604628099
 - GHCup v0.1.12
 - GHC 8.10.2
 - Cabal 3.2.0.0
@@ -101,10 +105,10 @@
 ### Browsers
 - Safari 14.0 (15610.1.28.1.9)
 - SafariDriver 14.0 (15610.1.28.1.9)
-- Google Chrome 87.0.4280.67 
+- Google Chrome 87.0.4280.88 
 - ChromeDriver 87.0.4280.20
-- Microsoft Edge 87.0.664.47 
-- MSEdgeDriver 87.0.664.47
+- Microsoft Edge 87.0.664.60 
+- MSEdgeDriver 87.0.664.60
 - Mozilla Firefox 83.0
 - geckodriver 0.28.0
 
@@ -130,7 +134,7 @@
 - 3.6.12
 - 3.7.9
 - 3.8.6
-- 3.9.0
+- 3.9.1
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.3]
@@ -144,12 +148,12 @@
 
 #### Go
 - 1.13.15
-- 1.14.12
-- 1.15.5
+- 1.14.13
+- 1.15.6
 
 ### Rust Tools
 - Rust 1.48.0
-- Rustup 1.23.0
+- Rustup 1.23.1
 
 #### Packages
 - Bindgen 0.56.0
@@ -165,11 +169,11 @@
 | ---------- | ------- |
 | Az         | 4.8.0   |
 | MarkdownPS | 1.9     |
-| Pester     | 5.1.0   |
+| Pester     | 5.1.1   |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.8.2.41
+- 8.8.3.16
 
 #### Mono
 - 6.12.0.107
@@ -220,7 +224,7 @@
 ### Xcode
 | Version        | Build    | Path                           |
 | -------------- | -------- | ------------------------------ |
-| 12.3 (beta)    | 12C5020f | /Applications/Xcode_12.3.app   |
+| 12.3           | 12C33    | /Applications/Xcode_12.3.app   |
 | 12.2 (default) | 12B45b   | /Applications/Xcode_12.2.app   |
 | 12.1.1         | 12A7605b | /Applications/Xcode_12.1.1.app |
 | 12.1           | 12A7403  | /Applications/Xcode_12.1.app   |
@@ -236,7 +240,7 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.6.8
-- Nomad CLI 3.1.4
+- Nomad CLI 3.2.0
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
 
@@ -292,7 +296,8 @@
 | Simulator - watchOS 7.1 | watchsimulator7.1    | 12.1.1, 12.2                                                   |
 | Simulator - watchOS 7.2 | watchsimulator7.2    | 12.3                                                           |
 | DriverKit 19.0          | driverkit.macosx19.0 | 11.2.1, 11.3.1, 11.4.1, 11.5, 11.6, 11.7, 12.0.1, 12.1, 12.1.1 |
-| DriverKit 20.0          | driverkit.macosx20.0 | 12.2, 12.3                                                     |
+| DriverKit 20.0          | driverkit.macosx20.0 | 12.2                                                           |
+| DriverKit 20.2          | driverkit.macosx20.2 | 12.3                                                           |
 
 #### Installed Simulators
 | OS          | Xcode Version                  | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -323,19 +328,20 @@
 | watchOS 7.2 | 12.3                           | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm                                                                                                                                                                                                                                                                                                      |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                        |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android SDK Tools          | 26.1.1                                                                                                                                                                                                         |
-| Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                                         |
-| Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
-| Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                         |
-| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                       |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                         |
-| Google Play services       | 49                                                                                                                                                                                                             |
-| Google Repository          | 58                                                                                                                                                                                                             |
-| SDK Patch Applier v4       | 1                                                                                                                                                                                                              |
-| CMake                      | 3.6.4111459                                                                                                                                                                                                    |
-| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.3.6528147                                                                                                                                                                   |
+| Package Name               | Version                                                                                                                                                                                                               |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                |
+| Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                                                |
+| Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
+| Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                                |
+| Android emulator           | 30.2.6                                                                                                                                                                                                                |
+| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                              |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                |
+| Google Play services       | 49                                                                                                                                                                                                                    |
+| Google Repository          | 58                                                                                                                                                                                                                    |
+| SDK Patch Applier v4       | 1                                                                                                                                                                                                                     |
+| CMake                      | 3.6.4111459                                                                                                                                                                                                           |
+| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.3.6528147                                                                                                                                                                          |
 
 
 
