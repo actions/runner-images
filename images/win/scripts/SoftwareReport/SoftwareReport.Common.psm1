@@ -8,6 +8,11 @@ function Get-OSVersion {
     return "OS Version: $OSVersion Build $OSBuild"
 }
 
+function Get-BashVersion {
+    $version = bash -c 'echo ${BASH_VERSION}'
+    return "Bash $version"
+}
+
 function Get-JavaVersionsList {
     param(
         [string] $DefaultVersion
