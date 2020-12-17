@@ -1,9 +1,3 @@
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
-
-function Get-OSName {
-    lsb_release -ds
-}
-
 function Get-BashVersion {
     $version = bash -c 'echo ${BASH_VERSION}'
     return "Bash $version"

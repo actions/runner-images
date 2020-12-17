@@ -22,6 +22,7 @@ binst_common_utils=(
     p7zip
     ant
     aria2
+    gnu-tar
 )
 
 if is_Less_BigSur; then
