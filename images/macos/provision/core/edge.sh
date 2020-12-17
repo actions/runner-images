@@ -1,6 +1,6 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
+source ~/utils/invoke-tests.sh
 
 echo "Installing Microsoft Edge..."
 brew cask install microsoft-edge
@@ -58,3 +58,5 @@ sudo rm -rf "$HOME/Library/Caches/com.microsoft.autoupdate2"
 sudo rm -rf "/Library/Application Support/Microsoft/MAU2.0/"
 sudo rm -rf "/Library/LaunchAgents/com.microsoft.update.agent.plist"
 sudo rm -rf "/Library/PrivelegedHelperTools/com.microsoft.autoupdate.helper"
+
+invoke_tests "Browsers" "Edge"
