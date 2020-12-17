@@ -72,6 +72,10 @@ function Install-PyPy
         Write-Host "Symbolic link created for '$pypyArchPath\Scripts' <<===>> '$pypyArchPath\bin'"
         New-Item -Path "$pypyArchPath\bin" -ItemType SymbolicLink -Value "$pypyArchPath\Scripts" | Out-Null
 
+        $pypy_version = & $pypyApp -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))"
+        Write-Host "Write $pypy_version to PYPY_VERSION FILE"
+        New-Item -Path "$pypyArchPath\PYPY_VERSION" -Value $pypy_version
+
         Write-Host "Create complete file"
         New-Item -ItemType File -Path $pypyVersionPath -Name "$architecture.complete" | Out-Null
     }

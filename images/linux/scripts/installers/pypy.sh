@@ -52,6 +52,11 @@ function InstallPyPy
 
     echo "Create additional symlinks (Required for UsePythonVersion Azure DevOps task)"
     cd $PYPY_TOOLCACHE_VERSION_ARCH_PATH/bin
+
+    PYPY_FULL_VERSION=$(./$PYPY_MAJOR -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))")
+    echo "PYPY_FULL_VERSION is $PYPY_FULL_VERSION"
+    echo $PYPY_FULL_VERSION > "PYPY_VERSION"
+
     ln -s $PYPY_MAJOR $PYTHON_MAJOR
     ln -s $PYTHON_MAJOR python
 
