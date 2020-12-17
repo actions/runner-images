@@ -1,6 +1,7 @@
 #!/bin/bash -e -o pipefail
 
 source ~/utils/utils.sh
+source ~/utils/invoke-tests.sh
 
 installAzulJDK() {
     local URL=$1
@@ -49,3 +50,5 @@ brew install maven
 
 echo Installing Gradle ...
 brew install gradle
+
+invoke_tests "Java"

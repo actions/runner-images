@@ -233,8 +233,8 @@ Describe "Common utilities" {
             "mongod --version"| Should -ReturnZeroExitCode
         }
     }
-
-    Context "OpenSSL" {
+    
+    Describe "OpenSSL" {
         It "OpenSSL is available" {
             "openssl version" | Should -ReturnZeroExitCode
         }
