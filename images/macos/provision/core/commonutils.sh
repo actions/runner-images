@@ -2,10 +2,6 @@
 source ~/utils/utils.sh
 source ~/utils/invoke-tests.sh
 
-# Install jq for parsing toolset file
-echo "Install jq"
-brew install jq
-
 toolset=$(get_toolset_path)
 common_packages=$(jq -r ".brew.common_packages[]" $toolset)
 for package in $common_packages; do
@@ -23,4 +19,4 @@ done
 bazel
 
 # Invoke tests for all common tools
-invoke_tests "Common" "Brew common utilities"
+invoke_tests "Common" "Brew common utils"

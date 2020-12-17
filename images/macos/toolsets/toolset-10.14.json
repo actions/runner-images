@@ -225,8 +225,6 @@
         "common_packages": [
             "carthage",
             "cmake",
-            "curl",
-            "wget",
             "subversion",
             "go",
             "gnupg",

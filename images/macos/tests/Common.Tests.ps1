@@ -48,7 +48,7 @@ Describe "Audio device" -Skip:($os.IsHighSierra -or $os.IsBigSur) {
     }
 }
 
-Describe "Brew common utilities" {
+Describe "Brew common utils" {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
     }
@@ -117,18 +117,6 @@ Describe "Brew common utilities" {
         "aliyun --version" | Should -ReturnZeroExitCode
     }
 
-    It "jq" {
-        "jq --version" | Should -ReturnZeroExitCode
-    }
-
-    It "curl" {
-        "curl --version" | Should -ReturnZeroExitCode
-    }
-
-    It "wget" {
-        "wget --version" | Should -ReturnZeroExitCode
-    }
-
     It "Julia" {
         "julia --version" | Should -ReturnZeroExitCode
     }
@@ -147,6 +135,20 @@ Describe "Brew common utilities" {
 
     It "R" -Skip:($os.IsBigSur) {
         "R --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Core Utils" {
+    It "jq" {
+        "jq --version" | Should -ReturnZeroExitCode
+    }
+
+    It "curl" {
+        "curl --version" | Should -ReturnZeroExitCode
+    }
+
+    It "wget" {
+        "wget --version" | Should -ReturnZeroExitCode
     }
 }
 
