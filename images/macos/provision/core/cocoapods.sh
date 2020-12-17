@@ -1,9 +1,8 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/invoke-tests.sh
 
+# Setup the Cocoapods
 echo "Installing Cocoapods..."
-
-# Setup the Cocoapods master repo
-echo Setting up the Cocoapods master repository...
 pod setup
 
 # Create a symlink to /usr/local/bin since it was removed due to Homebrew change.
