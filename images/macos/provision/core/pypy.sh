@@ -11,8 +11,6 @@ function InstallPyPy
     PACKAGE_URL=$1
 
     PACKAGE_TAR_NAME=$(echo $PACKAGE_URL | awk -F/ '{print $NF}')
-    versionV=$(echo $PACKAGE_URL | cut -f2 -d"-")
-    version=${versionV/"v"/""}
     echo "Downloading tar archive '$PACKAGE_TAR_NAME' - '$PACKAGE_URL'"
     PACKAGE_TAR_TEMP_PATH="/tmp/$PACKAGE_TAR_NAME"
     download_with_retries $PACKAGE_URL "/tmp" "$PACKAGE_TAR_NAME"
@@ -33,11 +31,15 @@ function InstallPyPy
 
     PACKAGE_TEMP_FOLDER="/tmp/$PACKAGE_NAME"
     PYTHON_FULL_VERSION=$("$PACKAGE_TEMP_FOLDER/bin/$PYPY_MAJOR" -c "import sys;print('{}.{}.{}'.format(sys.version_info[0],sys.version_info[1],sys.version_info[2]))")
+    PYPY_FULL_VERSION=$("$PACKAGE_TEMP_FOLDER/bin/$PYPY_MAJOR" -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))")
+    echo "Put '$PYPY_FULL_VERSION' to PYPY_VERSION file"
+    echo $PYPY_FULL_VERSION > "$PACKAGE_TEMP_FOLDER/PYPY_VERSION"
 
     # PyPy folder structure
     PYPY_TOOLCACHE_PATH=$AGENT_TOOLSDIRECTORY/PyPy
     PYPY_TOOLCACHE_VERSION_PATH=$PYPY_TOOLCACHE_PATH/$PYTHON_FULL_VERSION
     PYPY_TOOLCACHE_VERSION_ARCH_PATH=$PYPY_TOOLCACHE_VERSION_PATH/x64
+
     echo "Check if PyPy hostedtoolcache folder exist..."
     if [ ! -d $PYPY_TOOLCACHE_PATH ]; then
         mkdir -p $PYPY_TOOLCACHE_PATH
