@@ -1,11 +1,5 @@
 Import-Module "$PSScriptRoot/Common.Helpers.psm1"
 
-# Invokes command and validate that the exit code is 0
-function Validate-ZeroExitCode($command) {
-    $result = Get-CommandResult $command
-    $result.ExitCode | Should -Be 0 -Because $result.Output
-}
-
 # Validates that tool is installed and in PATH
 function Validate-ToolExist($tool) {
     Get-Command $tool -ErrorAction SilentlyContinue | Should -BeTrue

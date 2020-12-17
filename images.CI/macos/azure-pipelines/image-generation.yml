@@ -121,15 +121,6 @@ jobs:
       arguments: -PackerLogPath "$(Agent.TempDirectory)/packer-log.txt" `
                         -PrintTopNLongest 25
 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: '*.xml'
-      testResultsFormat: NUnit
-      searchFolder: '$(Common.TestResultsDirectory)'
-      failTaskOnFailedTests: true
-    displayName: Publish test results
-    condition: always()
-
   - task: PowerShell@2
     displayName: 'Move vm to cold storage and clear datastore tag'
     condition: always()
