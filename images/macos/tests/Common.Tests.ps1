@@ -323,7 +323,7 @@ Describe "Haskell" -Skip:($os.IsHighSierra) {
 Describe "gcc" -Skip:($os.IsHighSierra) {
     $testCases = @("8", "9", "10") | ForEach-Object { @{Version = $_} }
 
-    It "Gcc <GccVersion>" -TestCases $testCases {
+    It "Gcc <Version>" -TestCases $testCases {
         param (
             [string] $Version
         )
@@ -331,7 +331,7 @@ Describe "gcc" -Skip:($os.IsHighSierra) {
         "gcc-$Version --version" | Should -ReturnZeroExitCode
     }
 
-    It "Gfortran <GfortranVersion>" -TestCases $testCases {
+    It "Gfortran <Version>" -TestCases $testCases {
         param (
             [string] $Version
         )
