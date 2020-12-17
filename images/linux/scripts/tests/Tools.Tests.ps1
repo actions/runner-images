@@ -58,7 +58,7 @@ Describe "Erlang" {
             [string] $ErlangCommand
         )
 
-        "$ErlangCommand -h" | Should -ReturnZeroExitCode
+        "$ErlangCommand -v" | Should -ReturnZeroExitCode
     }   
 }
 
