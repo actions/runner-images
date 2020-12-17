@@ -36,6 +36,10 @@ function Install-PyPy
     $pypyName = $pypyApp.Name
     $pythonVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(sys.version_info[0],sys.version_info[1],sys.version_info[2]))"
 
+    $pypyFullVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))"
+    Write-Host "Put '$pypyFullVersion' to PYPY_VERSION file"
+    New-Item -Path "$tempFolder\PYPY_VERSION" -Value $pypyFullVersion
+
     if ($pythonVersion)
     {
         Write-Host "Installing PyPy $pythonVersion"
@@ -71,10 +75,6 @@ function Install-PyPy
         # We should create a Scripts -> bin symlink
         Write-Host "Symbolic link created for '$pypyArchPath\Scripts' <<===>> '$pypyArchPath\bin'"
         New-Item -Path "$pypyArchPath\bin" -ItemType SymbolicLink -Value "$pypyArchPath\Scripts" | Out-Null
-
-        $pypyFullVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))"
-        Write-Host "Put '$pypyFullVersion' to PYPY_VERSION file"
-        New-Item -Path "$pypyArchPath\PYPY_VERSION" -Value $pypyFullVersion
 
         Write-Host "Create complete file"
         New-Item -ItemType File -Path $pypyVersionPath -Name "$architecture.complete" | Out-Null
