@@ -1,4 +1,5 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/invoke-tests.sh
 
 echo "Installing Homebrew..."
 HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh"
@@ -7,14 +8,7 @@ HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/
 echo "Disabling Homebrew analytics..."
 brew analytics off
 
-echo "Installing the latest curl..."
-brew install curl
-
-echo "Installing wget..."
-brew install wget
-
-echo "Installing jq..."
-brew install jq
-
 # init brew bundle feature
 brew tap Homebrew/bundle
+
+invoke_tests "Common" "Homebrew"

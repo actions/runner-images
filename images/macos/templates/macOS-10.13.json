@@ -128,6 +128,7 @@
             "scripts": [
                 "./provision/core/homebrew.sh",
                 "./provision/core/powershell.sh",
+                "./provision/core/commonutils.sh",
                 "./provision/core/xcode-clt.sh",
                 "./provision/core/dotnet.sh",
                 "./provision/core/python.sh",
@@ -158,7 +159,6 @@
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
-                "./provision/core/commonutils.sh",
                 "./provision/core/openjdk.sh",
                 "./provision/core/php.sh",
                 "./provision/core/aws.sh",

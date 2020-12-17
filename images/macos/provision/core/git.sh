@@ -1,4 +1,5 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/invoke-tests.sh
 
 echo Installing Git...
 brew install git
@@ -28,3 +29,5 @@ git config --global advice.implicitIdentity false
 git config --global advice.detachedHead false
 git config --global advice.amWorkDir false
 git config --global advice.rmHints false
+
+invoke_tests "Common" "Git"
