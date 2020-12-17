@@ -4,21 +4,19 @@
 ##  Desc:  Installs the Vercel CLI
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
+
 # Install the Vercel CLI
 npm i -g vercel
 
-# Validate the installation
-echo "Validate the installation"
-if ! command -v vercel; then
-    echo "Vercel CLI was not installed"
-    exit 1
-fi
+# Run tests to determine that the software installed as expected
+echo "Testing to make sure that script performed as expected, and basic scenarios work"
+invoke_tests "CLI.Tools" "Vercel CLI"
+
 
 echo "Creating the symlink for [now] command to vercel CLI"
 ln -s /usr/local/bin/vercel /usr/local/bin/now
 
-echo "Validate the link"
-if ! command -v now; then
-    echo "[Now] symlink to Vercel CLI was not created"
-    exit 1
-fi
+# Run tests to determine that the software installed as expected
+echo "Testing to make sure that script performed as expected, and basic scenarios work"
+invoke_tests "CLI.Tools" "Vercel CLI"

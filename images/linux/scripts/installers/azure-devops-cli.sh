@@ -4,6 +4,8 @@
 ##  Desc:  Installed Azure DevOps CLI (az devops)
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
+
 # AZURE_EXTENSION_DIR shell variable defines where modules are installed
 # https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview
 export AZURE_EXTENSION_DIR=/opt/az/azcliextensions
@@ -12,11 +14,6 @@ echo "AZURE_EXTENSION_DIR=$AZURE_EXTENSION_DIR" | tee -a /etc/environment
 # install azure devops Cli extension
 az extension add -n azure-devops
 
-# check to determine if extension was installed or not
-if [ $? -eq 0 ]
-then
-    echo "azure DevOps Cli extension was installed"
-else
-    echo "azure DevOps Cli extension was not installed"
-    exit 1
-fi
+# Run tests to determine that the software installed as expected
+echo "Testing to make sure that script performed as expected, and basic scenarios work"
+invoke_tests "CLI.Tools" "Azure DevOps CLI"

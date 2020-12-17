@@ -5,6 +5,7 @@
 ################################################################################
 
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install the AWS CLI v1 on Ubuntu16 and Ubuntu18, and AWS CLI v2 on Ubuntu20
 if isUbuntu20 ; then
@@ -23,19 +24,9 @@ if isUbuntu16 || isUbuntu18 ; then
     rm -rf awscli-bundle
 fi
 
-# Validate the installation
-echo "Validate the installation"
-if ! command -v aws; then
-    echo "aws was not installed"
-    exit 1
-fi
-
 curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
 sudo dpkg -i session-manager-plugin.deb
 
-sessionPlugin=$(session-manager-plugin)
-echo "$sessionPlugin"
-if ! [[ $sessionPlugin == *"was installed successfully"* ]]
-then
-    exit 1
-fi
+# Run tests to determine that the software installed as expected
+echo "Testing to make sure that script performed as expected, and basic scenarios work"
+invoke_tests "CLI.Tools" "AWS"
