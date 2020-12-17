@@ -128,8 +128,8 @@
             "pause_before": "30s",
             "scripts": [
                 "./provision/core/homebrew.sh",
-                "./provision/core/coreutils.sh",
                 "./provision/core/powershell.sh",
+                "./provision/core/coreutils.sh",
                 "./provision/core/xcode-clt.sh",
                 "./provision/core/dotnet.sh",
                 "./provision/core/python.sh",
