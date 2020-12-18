@@ -3,7 +3,7 @@ This repository contains the source used to create the [virtual environments](ht
 
 How to get in touch with us:
 - To file bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/virtual-environments/issues/new/choose)
-- If you want to share your thoughts about image configuration, installed software or bring some idea, please, create a new topic in a [discussions section](https://github.com/actions/virtual-environments/discussions) for a corresponding category  Prior to making a new discussion please make sure no similar topics were created earlier.
+- If you want to share your thoughts about image configuration, installed software or bring some idea, please, create a new topic in a [discussions section](https://github.com/actions/virtual-environments/discussions) for a corresponding category. Prior to making a new discussion please make sure no similar topics were created earlier.
 
 For general questions about using the virtual environments or writing your Actions workflow, please open requests in the [GitHub Actions Community Forum](https://github.community/c/github-actions/41).
 
