@@ -56,16 +56,5 @@ for package in ${bcask_common_utils[@]}; do
     brew cask install $package
 done
 
-# Brew supports swiftlint only for Catalina and above
-if is_Catalina || is_BigSur; then
-    brew install swiftlint
-fi
-
-if is_Mojave; then
-    swiftlintUrl=$(curl -s "https://api.github.com/repos/realm/SwiftLint/releases/latest" | jq -r '.assets[].browser_download_url | select(contains("SwiftLint.pkg"))')
-    download_with_retries $swiftlintUrl "/tmp" "SwiftLint.pkg"
-    sudo installer -pkg /tmp/SwiftLint.pkg -target /
-fi
-
 # Invoke bazel to download the latest bazel version via bazelisk
 bazel
