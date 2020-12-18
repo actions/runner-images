@@ -13,6 +13,5 @@ wget $url
 apt install ./gh_*_linux_amd64.deb
 rm gh_*_linux_amd64.deb
 
-# Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 invoke_tests "CLI.Tools" "GitHub CLI"

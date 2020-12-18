@@ -13,6 +13,5 @@ PACKAGE_TAR_NAME="oc.tar.gz"
 download_with_retries $DOWNLOAD_URL "/tmp" $PACKAGE_TAR_NAME
 tar xvzf "/tmp/$PACKAGE_TAR_NAME" -C "/usr/local/bin"
 
-# Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"
 invoke_tests "CLI.Tools" "OC CLI"
