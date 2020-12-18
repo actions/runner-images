@@ -10,7 +10,7 @@ for package in $common_packages; do
 done
 
 cask_common_packages=$(jq -r ".brew.cask_packages[]" $toolset)
-for package in $cask_common_packages; do
+for package in $cask_packages; do
     echo "Install $package"
     brew cask install $package
 done
