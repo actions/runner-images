@@ -126,9 +126,9 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "pause_before": "30s",
             "scripts": [
+                "./provision/core/xcode-clt.sh",
                 "./provision/core/homebrew.sh",
                 "./provision/core/powershell.sh",
-                "./provision/core/xcode-clt.sh",
                 "./provision/core/dotnet.sh",
                 "./provision/core/python.sh",
                 "./provision/core/azcopy.sh",
@@ -159,6 +159,7 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
                 "./provision/core/commonutils.sh",
+                "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
                 "./provision/core/php.sh",
                 "./provision/core/aws.sh",
