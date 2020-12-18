@@ -35,15 +35,8 @@ chmod +x llvm.sh
 
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 
-if isUbuntu16 || isUbuntu18; then
-    versions=$(jq -r '.Clang.versions[]' $toolset)
-    default_clang_version=$(jq -r '.Clang.default_version' $toolset)
-fi
-
-if isUbuntu20 ; then
-    versions=$(jq -r '.Clang.versions[]' $toolset)
-    default_clang_version=$(jq -r '.Clang.default_version' $toolset)
-fi
+versions=$(jq -r '.clang.versions[]' $toolset)
+default_clang_version=$(jq -r '.clang.default_version' $toolset)
 
 for version in ${versions[*]}; do
     InstallClang $version
@@ -52,5 +45,4 @@ done
 SetDefaultClang $default_clang_version
 rm llvm.sh
 
-# Run tests to determine that the software installed as expected
-invoke_tests "Tools" "Clang"
+invoke_tests "Tools" "clang"

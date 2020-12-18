@@ -21,12 +21,10 @@ apt-get update -y
 
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 
-versions=$(jq -r '.Gcc.versions[]' $toolset)
+versions=$(jq -r '.gcc.versions[]' $toolset)
 
 for version in ${versions[*]}; do
     InstallGcc $version
 done
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-invoke_tests "Tools" "Gcc"
+invoke_tests "Tools" "gcc"

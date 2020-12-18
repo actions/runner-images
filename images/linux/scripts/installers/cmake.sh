@@ -18,5 +18,4 @@ else
 	&& rm cmakeinstall.sh
 fi
 
-# Run tests to determine that the software installed as expected
 invoke_tests "Tools" "Cmake"

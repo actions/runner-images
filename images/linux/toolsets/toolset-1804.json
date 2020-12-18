@@ -218,7 +218,7 @@
             "5.0"
         ]
     },
-    "Clang": {
+    "clang": {
         "versions": [
             "6.0",
             "8",
@@ -226,7 +226,7 @@
         ],
         "default_version": "9"
     },
-    "Gcc": {
+    "gcc": {
         "versions": [
             "g++-7",
             "g++-8",

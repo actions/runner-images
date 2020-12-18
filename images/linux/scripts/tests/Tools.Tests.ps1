@@ -31,10 +31,10 @@ Describe "Bazel" {
     }
 }
 
-Describe "Clang" {
-    [array]$testCases = (Get-ToolsetContent).Clang.Versions | ForEach-Object { @{ClangVersion = $_} }
+Describe "clang" {
+    [array]$testCases = (Get-ToolsetContent).clang.Versions | ForEach-Object { @{ClangVersion = $_} }
 
-    It "Clang <ClangVersion>" -TestCases $testCases {
+    It "clang <ClangVersion>" -TestCases $testCases {
         param (
             [string] $ClangVersion
         )
@@ -44,16 +44,16 @@ Describe "Clang" {
     }   
 }
 
-Describe "CMake" {
+Describe "Cmake" {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Erlang" {
+Describe "erlang" {
     $testCases = @("erl", "erlc", "rebar3") | ForEach-Object { @{ErlangCommand = $_} }
 
-    It "Erlang <ErlangCommand>" -TestCases $testCases {
+    It "erlang <ErlangCommand>" -TestCases $testCases {
         param (
             [string] $ErlangCommand
         )
@@ -62,10 +62,10 @@ Describe "Erlang" {
     }   
 }
 
-Describe "Gcc" {
-    [array]$testCases = (Get-ToolsetContent).Gcc.Versions | ForEach-Object { @{GccVersion = $_} }
+Describe "gcc" {
+    [array]$testCases = (Get-ToolsetContent).gcc.Versions | ForEach-Object { @{GccVersion = $_} }
 
-    It "Gcc <GccVersion>" -TestCases $testCases {
+    It "gcc <GccVersion>" -TestCases $testCases {
         param (
             [string] $GccVersion
         )
