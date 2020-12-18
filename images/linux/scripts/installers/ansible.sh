@@ -17,5 +17,5 @@ fi
 # Install latest Ansible
 apt-get install -y --no-install-recommends ansible
 
-# Run tests to determine that the software installed as expected
+echo "Testing to make sure that script performed as expected, and basic scenarios work"
 invoke_tests "Tools" "Ansible"

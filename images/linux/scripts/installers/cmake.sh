@@ -18,4 +18,5 @@ else
 	&& rm cmakeinstall.sh
 fi
 
+echo "Testing to make sure that script performed as expected, and basic scenarios work"
 invoke_tests "Tools" "Cmake"
