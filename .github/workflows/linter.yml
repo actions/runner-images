@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Lint JSON & MD files
+    name: Lint Code Base
     runs-on: ubuntu-latest
 
     steps:
@@ -22,6 +22,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSON: true
           VALIDATE_MD: true
+          VALIDATE_POWERSHELL: true
           DEFAULT_BRANCH: ${{ github.base_ref }}
 
       - name: Checking shebang lines in MacOS and Ubuntu releases.
