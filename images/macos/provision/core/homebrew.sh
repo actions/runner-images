@@ -11,5 +11,11 @@ brew analytics off
 echo "Install jq"
 brew install jq
 
+echo "Install curl"
+brew install curl
+
+echo "Install wget"
+brew install wget
+
 # init brew bundle feature
 brew tap Homebrew/bundle

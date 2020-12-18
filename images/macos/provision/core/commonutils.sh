@@ -9,7 +9,7 @@ for package in $common_packages; do
     brew install $package
 done
 
-cask_common_packages=$(jq -r ".brew.cask_common_packages[]" $toolset)
+cask_common_packages=$(jq -r ".brew.cask_packages[]" $toolset)
 for package in $cask_common_packages; do
     echo "Install $package"
     brew cask install $package
@@ -19,4 +19,4 @@ done
 bazel
 
 # Invoke tests for all common tools
-invoke_tests "Common" "Brew common utils"
+invoke_tests "Common" "CommonUtils"

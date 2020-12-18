@@ -224,7 +224,7 @@
             "bats",
             "parallel"
         ],
-        "cask_common_packages": [
+        "cask_packages": [
             "julia",
             "virtualbox",
             "vagrant",

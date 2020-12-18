@@ -245,7 +245,7 @@
             "parallel",
             "swiftlint"
         ],
-        "cask_common_packages": [
+        "cask_packages": [
             "julia",
             "virtualbox",
             "vagrant",

@@ -105,7 +105,7 @@
             "gnu-tar",
             "swiftlint"
         ],
-        "cask_common_packages": [
+        "cask_packages": [
             "julia"
         ]
     },

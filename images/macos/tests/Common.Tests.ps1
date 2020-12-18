@@ -48,7 +48,7 @@ Describe "Audio device" -Skip:($os.IsHighSierra -or $os.IsBigSur) {
     }
 }
 
-Describe "Brew common utils" {
+Describe "CommonUtils" {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
     }
@@ -125,20 +125,6 @@ Describe "Brew common utils" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 
-    It "vagrant" -Skip:($os.IsBigSur) {
-        "vagrant --version" | Should -ReturnZeroExitCode
-    }
-
-    It "xctool" -Skip:($os.IsBigSur) {
-        "xctool --version" | Should -ReturnZeroExitCode
-    }
-
-    It "R" -Skip:($os.IsBigSur) {
-        "R --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Core Utils" {
     It "jq" {
         "jq --version" | Should -ReturnZeroExitCode
     }
@@ -149,6 +135,18 @@ Describe "Core Utils" {
 
     It "wget" {
         "wget --version" | Should -ReturnZeroExitCode
+    }
+
+    It "vagrant" -Skip:($os.IsBigSur) {
+        "vagrant --version" | Should -ReturnZeroExitCode
+    }
+
+    It "xctool" -Skip:($os.IsBigSur) {
+        "xctool --version" | Should -ReturnZeroExitCode
+    }
+
+    It "R" -Skip:($os.IsBigSur) {
+        "R --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -233,7 +231,7 @@ Describe "Common utilities" {
             "mongod --version"| Should -ReturnZeroExitCode
         }
     }
-    
+
     Describe "OpenSSL" {
         It "OpenSSL is available" {
             "openssl version" | Should -ReturnZeroExitCode
