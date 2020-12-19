@@ -16,7 +16,6 @@
 - Node 14.15.1
 - Perl 5.30.0
 - Python 3.8.5
-- Python3 3.8.5
 - Ruby 2.7.0p0
 - Swift 5.3.1
 - Julia 1.5.3
