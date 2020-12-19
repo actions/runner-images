@@ -9,5 +9,4 @@ source $HELPER_SCRIPTS/invoke-tests.sh
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
 invoke_tests "CLI.Tools" "Azure CLI"

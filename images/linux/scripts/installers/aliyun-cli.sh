@@ -12,5 +12,4 @@ wget -P /tmp $URL
 tar xzvf /tmp/aliyun-cli-linux-*-amd64.tgz
 mv aliyun /usr/local/bin
 
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
 invoke_tests "CLI.Tools" "Aliyun CLI"

@@ -17,5 +17,4 @@ cd /tmp
 download_with_retries $ORAS_CLI_DOWNLOAD_URL
 tar -zxvf $ORAS_CLI_ARCHIVE -C /usr/local/bin oras
 
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
 invoke_tests "CLI.Tools" "Oras CLI"
