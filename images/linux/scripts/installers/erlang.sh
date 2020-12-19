@@ -19,7 +19,6 @@ wget -q -O rebar3 https://s3.amazonaws.com/rebar3/rebar3
 chmod +x rebar3
 mv rebar3 /usr/local/bin/rebar3
 
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
 invoke_tests "Tools" "erlang"
 
 # Clean up source list
