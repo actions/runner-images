@@ -63,10 +63,10 @@ Describe "Oras CLI" {
 
 Describe "Vercel CLI" {
     It "Vercel CLI" {
-        "vercel version" | Should -ReturnZeroExitCode
+        "vercel --version" | Should -ReturnZeroExitCode
     }
 
     It "Validate the symlink link [now]" {
-        "now" | Should -ReturnZeroExitCode
+        "now --version" | Should -ReturnZeroExitCode
     }
 }
