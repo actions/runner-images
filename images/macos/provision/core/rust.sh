@@ -1,4 +1,5 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/invoke-tests.sh
 
 echo Installing Rustup...
 brew install rustup-init
@@ -15,3 +16,5 @@ cargo install bindgen cbindgen cargo-audit cargo-outdated
 
 echo Cleanup Cargo registry cached data...
 rm -rf $CARGO_HOME/registry/*
+
+invoke_tests "Rust"

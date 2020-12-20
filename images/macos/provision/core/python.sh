@@ -1,6 +1,6 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
+source ~/utils/invoke-tests.sh
 
 echo "Installing Python Tooling"
 
@@ -25,3 +25,5 @@ brew install pipx
 echo "export PIPX_BIN_DIR=${PIPX_BIN_DIR}" >> "${HOME}/.bashrc"
 echo "export PIPX_HOME=${PIPX_HOME}" >> "${HOME}/.bashrc"
 echo 'export PATH="$PIPX_BIN_DIR:$PATH"' >> "${HOME}/.bashrc"
+
+invoke_tests "Python"

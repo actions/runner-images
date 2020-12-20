@@ -1,5 +1,5 @@
 #!/bin/bash -e -o pipefail
-
+source ~/utils/invoke-tests.sh
 source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
 
@@ -26,3 +26,5 @@ tar cf - "./Visual Studio.app" | tar xf - -C /Applications/
 popd
 sudo hdiutil detach "$TMPMOUNT"
 sudo rm -rf "$TMPMOUNT"
+
+invoke_tests "Common" "VS4Mac"

@@ -298,7 +298,9 @@ Describe "Haskell" -Skip:($os.IsHighSierra) {
     It "Cabal" {
         "cabal --version" | Should -ReturnZeroExitCode
     }
+}
 
+Describe "Stack" {
     It "Stack" {
         "stack --version" | Should -ReturnZeroExitCode
     }
@@ -356,7 +358,7 @@ Describe "Newman" -Skip:($os.IsHighSierra -or $os.IsMojave) {
     }
 }
 
-Describe "Visual Studio For Mac" {
+Describe "VS4Mac" {
     It "VS4Mac is installed" {
         $vsPath = "/Applications/Visual Studio.app"
         $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"

@@ -1,5 +1,6 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
+source ~/utils/invoke-tests.sh
 
 export PATH="$PATH:/opt/pipx_bin"
 
@@ -17,3 +18,5 @@ for package in $pipx_packages; do
         pipx install $package
     fi
 done
+
+invoke_tests "PipxPackages"
