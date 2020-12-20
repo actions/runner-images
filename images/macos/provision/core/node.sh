@@ -44,4 +44,4 @@ if is_Less_BigSur; then
   npm install -g node-gyp
 fi
 
-invoke_tests "Node" "Node.JS"
+invoke_tests "Node" "Node.js"

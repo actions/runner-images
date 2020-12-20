@@ -12,4 +12,4 @@ echo "Installing GCC@10 using homebrew..."
 brew install gcc@10
 rm $(which gfortran)
 
-invoke_tests "Common" "gcc"
+invoke_tests "Common" "GCC"

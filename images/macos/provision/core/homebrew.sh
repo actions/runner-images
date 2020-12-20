@@ -8,13 +8,13 @@ echo "Disabling Homebrew analytics..."
 brew analytics off
 
 # jq is required for further installation scripts
-echo "Install jq"
+echo "Installing jq..."
 brew install jq
 
-echo "Install curl"
+echo "Installing curl..."
 brew install curl
 
-echo "Install wget"
+echo "Installing wget..."
 brew install wget
 
 # init brew bundle feature

@@ -150,8 +150,8 @@ Describe "CommonUtils" {
     }
 }
 
-Describe "Dotnet" {
-    It "DotNet" {
+Describe ".NET" {
+    It ".NET" {
         "dotnet --version" | Should -ReturnZeroExitCode
     }
 }
@@ -320,10 +320,10 @@ Describe "Haskell" -Skip:($os.IsHighSierra) {
     }
 }
 
-Describe "gcc" -Skip:($os.IsHighSierra) {
+Describe "GCC" -Skip:($os.IsHighSierra) {
     $testCases = @("8", "9", "10") | ForEach-Object { @{Version = $_} }
 
-    It "Gcc <Version>" -TestCases $testCases {
+    It "GCC <Version>" -TestCases $testCases {
         param (
             [string] $Version
         )
