@@ -30,4 +30,4 @@ chmod +x $GECKODRIVER_BIN
 ln -s "$GECKODRIVER_BIN" /usr/bin/
 echo "GECKOWEBDRIVER=$GECKODRIVER_DIR" | tee -a /etc/environment
 
-invoke_tests "Browsers" "Chrome"
+invoke_tests "Browsers" "Firefox"

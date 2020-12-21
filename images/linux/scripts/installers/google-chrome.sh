@@ -36,4 +36,4 @@ chmod +x $CHROMEDRIVER_BIN
 ln -s "$CHROMEDRIVER_BIN" /usr/bin/
 echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment
 
-invoke_tests "Browsers" "Firefox"
+invoke_tests "Browsers" "Chrome"
