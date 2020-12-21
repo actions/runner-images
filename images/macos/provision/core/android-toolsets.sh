@@ -73,6 +73,7 @@ filter_components_by_version $ANDROID_PLATFORM "${availablePlatforms[@]}"
 allBuildTools=($(${ANDROID_HOME}/tools/bin/sdkmanager --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
 filter_components_by_version $ANDROID_BUILD_TOOL "${availableBuildTools[@]}"
+components+=" cmdline-tools;latest"
 
 echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager ${components[@]}
 

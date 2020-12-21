@@ -51,6 +51,9 @@ $buildToolsList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages
                   -Delimiter ";" `
                   -Index 1
 
+# cmdline-tools
+$cmdlineToolsList = ,"cmdline-tools;latest"
+
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
                           -AndroidPackages $platformList
@@ -58,6 +61,10 @@ Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
                           -AndroidPackages $buildToolsList
+
+Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
+                          -AndroidSDKRootPath $sdkRoot `
+                          -AndroidPackages $cmdlineToolsList
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `

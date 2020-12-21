@@ -73,6 +73,8 @@ availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
 filter_components_by_version $minimumPlatformVersion "${availablePlatforms[@]}"
 filter_components_by_version $minimumBuildToolVersion "${availableBuildTools[@]}"
 
+components+=" cmdline-tools;latest"
+
 echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager ${components[@]}
 
 # Add required permissions

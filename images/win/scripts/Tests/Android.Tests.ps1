@@ -53,6 +53,14 @@ Describe "Android SDK" {
         "$installedPackages" | Should -Match "$buildToolsVersion"
     }
 
+    It "Latest command line tools are installed" {
+        $cmdlineTools = "apkanalyzer.bat", "avdmanager.bat", "lint.bat", "screenshot2.bat", "sdkmanager.bat"
+
+        $cmdlineTools | ForEach-Object {
+            "$sdkRoot\cmdline-tools\latest\bin\$_" | Should -Exist
+        }
+    }
+
     if (Test-IsWin19) {
         It "Extra package <extraPackage> is installed" -TestCases $extraPackagesTestCases {
             "$installedPackages" | Should -Match "extras;$extraPackage"

@@ -57,6 +57,17 @@ Describe "Android" {
         }
     }
 
+    Context "Android command line tools" {
+        It "Latest command line tools are installed" {
+            $cmdlineTools = "apkanalyzer", "avdmanager", "lint", "screenshot2", "sdkmanager"
+
+            $cmdlineTools | ForEach-Object {
+                $toolPath = Join-Path $ANDROID_SDK_DIR "cmdline-tools" "latest" "bin" $_
+                $toolPath | Should -Exist
+            }
+        }
+    }
+
     Context "NDK toolchains" -Skip:($os.IsBigSur) {
         $testCases = $androidNdkToolchains | ForEach-Object { @{AndroidNdkToolchain = $_} }
 
