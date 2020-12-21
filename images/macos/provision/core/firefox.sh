@@ -2,7 +2,7 @@
 source ~/utils/invoke-tests.sh
 
 echo "Installing Firefox..."
-brew cask install firefox
+brew install --cask firefox
 
 echo "Installing Geckodriver..."
 brew install geckodriver
