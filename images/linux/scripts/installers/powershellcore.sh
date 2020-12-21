@@ -4,9 +4,12 @@
 ##  Desc:  Installs powershellcore
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
-
 # Install Powershell
 apt-get install -y powershell
 
-invoke_tests "Tools" "PowerShell Core"
+# Run tests to determine that the software installed as expected
+echo "Testing to make sure that script performed as expected, and basic scenarios work"
+if ! command -v pwsh; then
+    echo "pwsh was not installed"
+    exit 1
+fi
