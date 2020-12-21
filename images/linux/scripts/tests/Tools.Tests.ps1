@@ -17,7 +17,7 @@ Describe "azcopy" {
 }
 
 Describe "Docker" {
-    It "Docker" {
+    It "docker" {
         "docker --version" | Should -ReturnZeroExitCode
     }
 
@@ -29,13 +29,13 @@ Describe "Docker" {
         $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 
         It "<ImageName>" -TestCases $testCases {
-            docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
+           sudo docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
         }
     }
 }
 
 Describe "Docker-compose" {
-    It "Docker-compose" {
+    It "docker-compose" {
         "docker-compose --version"| Should -ReturnZeroExitCode
     }
 }
