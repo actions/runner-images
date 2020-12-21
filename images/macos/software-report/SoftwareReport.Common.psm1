@@ -81,7 +81,7 @@ function Get-ClangLLVMVersion {
     $locationsList | Foreach-Object {
         (Run-Command "${_} --version" | Out-String) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
         $version = $Matches.version
-        "Clang/LLVM $version " + $(if(${_} -Match "brew") {"is available on ``${_}``"} else {"is default"})
+        "Clang/LLVM $version " + $(if(${_} -Match "brew") {"is available on ```'${_}`'``"} else {"is default"})
     }
 }
 
