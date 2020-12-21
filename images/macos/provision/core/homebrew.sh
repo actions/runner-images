@@ -1,4 +1,5 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/utils.sh
 
 echo "Installing Homebrew..."
 HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh"
@@ -7,8 +8,10 @@ HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/
 echo "Disabling Homebrew analytics..."
 brew analytics off
 
-echo "Installing the latest curl..."
+if ! is_HighSierra; then
+echo "Installing curl..."
 brew install curl
+fi
 
 echo "Installing wget..."
 brew install wget
