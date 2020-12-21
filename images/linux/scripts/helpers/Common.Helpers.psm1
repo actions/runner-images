@@ -49,3 +49,9 @@ function Get-ToolsetValue {
     }
     return $jsonNode
 }
+
+function Get-AndroidPackages {
+    $androidSDKManagerPath = "/usr/local/lib/android/sdk/tools/bin/sdkmanager"
+    $androidPackages = & $androidSDKManagerPath --list --verbose
+    return $androidPackages
+}

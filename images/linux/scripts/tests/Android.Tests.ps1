@@ -1,7 +1,3 @@
-Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameChecking
-Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1" -DisableNameChecking
-
-
 Describe "Android" {
     $androidSdkManagerPackages = Get-AndroidPackages
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"

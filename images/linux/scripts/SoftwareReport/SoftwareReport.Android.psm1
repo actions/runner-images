@@ -14,12 +14,6 @@ function Get-AndroidSDKManagerPath {
     return Join-Path $androidSDKDir "tools" "bin" "sdkmanager"
 }
 
-function Get-AndroidPackages {
-    $androidSDKManagerPath = Get-AndroidSDKManagerPath
-    $androidPackages = & $androidSDKManagerPath --list --verbose
-    return $androidPackages
-}
-
 function Get-AndroidInstalledPackages {
     $androidSDKManagerPath = Get-AndroidSDKManagerPath
     $androidSDKManagerList = Invoke-Expression "$androidSDKManagerPath --list --include_obsolete"
