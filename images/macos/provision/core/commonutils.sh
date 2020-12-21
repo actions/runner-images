@@ -3,16 +3,16 @@ source ~/utils/utils.sh
 source ~/utils/invoke-tests.sh
 
 toolset=$(get_toolset_path)
-common_packages=$(jq -r ".brew.common_packages[]" $toolset)
+common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
     echo "Installing $package..."
     brew install $package
 done
 
-cask_common_packages=$(jq -r ".brew.cask_packages[]" $toolset)
+cask_packages=$(get_toolset_value '.brew.cask_packages[]')
 for package in $cask_packages; do
     echo "Installing $package..."
-    brew cask install $package
+    brew install --cask $package
 done
 
 # Invoke bazel to download the latest bazel version via bazelisk
