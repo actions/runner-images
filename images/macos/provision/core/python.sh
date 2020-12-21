@@ -4,9 +4,6 @@ source ~/utils/utils.sh
 
 echo "Installing Python Tooling"
 
-echo "Brew Installing Python 3"
-brew install python@3.9
-
 echo "Install latest Python 2"
 Python2Url="https://www.python.org/ftp/python/2.7.18/python-2.7.18-macosx10.9.pkg"
 download_with_retries $Python2Url "/tmp" "python2.pkg"
@@ -15,6 +12,13 @@ pip install --upgrade pip
 
 echo "Install Python2 certificates"
 bash -c "/Applications/Python\ 2.7/Install\ Certificates.command"
+
+# Remove /usr/local/bin/2to3 symlink created by Python2 since it conflicts with symlink from Python3
+# https://github.com/actions/virtual-environments/issues/2322
+rm -rf /usr/local/bin/2to3
+
+echo "Brew Installing Python 3"
+brew install python@3.9
 
 echo "Installing pipx"
 export PIPX_BIN_DIR=/usr/local/opt/pipx_bin
