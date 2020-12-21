@@ -55,3 +55,15 @@ function Get-AndroidPackages {
     $androidPackages = & $androidSDKManagerPath --list --verbose
     return $androidPackages
 }
+
+function Get-EnvironmentVariable($variable) {
+    return [System.Environment]::GetEnvironmentVariable($variable)
+}
+
+function Update-Environment {
+    $variables = Get-Content "/etc/environment" | Select-String -NotMatch "^#"
+    $variables | ForEach-Object { 
+        $variable = $_[0].ToString().split("=")
+        [System.Environment]::SetEnvironmentVariable($variable[0], $variable[1])
+    }
+}

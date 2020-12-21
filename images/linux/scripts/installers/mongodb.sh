@@ -6,6 +6,7 @@
 
 # Source the helpers
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 #  Install Mongo DB
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
@@ -14,9 +15,4 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $version/mong
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 
-# Validate the installation
-echo "Validate the installation"
-if ! command -v mongod; then
-    echo "mongodb was not installed"
-    exit 1
-fi
+invoke_tests "Databases" "MongoDB"
