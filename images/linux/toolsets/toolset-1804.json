@@ -163,6 +163,7 @@
             "mediainfo",
             "netcat",
             "parallel",
+            "pass",
             "patchelf",
             "rsync",
             "shellcheck",
