@@ -4,6 +4,8 @@
 ##  Desc:  Installed Azure PowerShell
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
+
 # List of versions
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 versions=$(jq -r '.azureModules[] | select(.name | contains("az")) | .versions[]' $toolset)
@@ -32,3 +34,5 @@ for version in ${versions[@]}; do
         exit 1
     fi
 done
+
+invoke_tests "PowerShellModules" "AzureModules"

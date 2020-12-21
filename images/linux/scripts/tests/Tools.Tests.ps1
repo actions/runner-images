@@ -15,3 +15,38 @@ Describe "azcopy" {
         "azcopy10 --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Docker" {
+    It "Docker" {
+        "docker --version" | Should -ReturnZeroExitCode
+    }
+
+    It "docker buildx" {
+        "docker buildx" | Should -ReturnZeroExitCode
+    }
+
+    Context "docker images" {
+        $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
+
+        It "<ImageName>" -TestCases $testCases {
+            docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
+        }
+    }
+}
+
+Describe "Docker-compose" {
+    It "Docker-compose" {
+        "docker-compose --version"| Should -ReturnZeroExitCode
+    }
+}
+
+Describe "PowerShell Core" {
+    It "pwsh" {
+        "pwsh --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Execute 2+2 command" {
+        pwsh -Command "2+2" | Should -BeExactly 4
+    }
+}
+
