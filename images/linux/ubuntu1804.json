@@ -199,7 +199,6 @@
                 "{{template_dir}}/scripts/installers/hhvm.sh",
                 "{{template_dir}}/scripts/installers/image-magick.sh",
                 "{{template_dir}}/scripts/installers/java-tools.sh",
-                "{{template_dir}}/scripts/installers/kind.sh",
                 "{{template_dir}}/scripts/installers/kubernetes-tools.sh",
                 "{{template_dir}}/scripts/installers/oc.sh",
                 "{{template_dir}}/scripts/installers/leiningen.sh",
@@ -285,16 +284,6 @@
             "expect_disconnect": true,
             "scripts": [
                 "{{template_dir}}/scripts/base/reboot.sh"
-            ],
-            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "pause_before": "30s",
-            "timeout": "10m",
-            "start_retry_timeout": "10s",
-            "scripts": [
-                "{{template_dir}}/scripts/installers/homebrew-validate.sh"
             ],
             "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
         },
