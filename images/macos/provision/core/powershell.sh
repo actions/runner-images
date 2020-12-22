@@ -4,7 +4,11 @@ source ~/utils/utils.sh
 source ~/utils/invoke-tests.sh
 
 echo Installing Azure CLI...
-brew install azure-cli
+if is_HighSierra; then
+    brew install --build-from-source azure-cli
+else
+    brew install azure-cli
+fi
 
 echo Installing PowerShell...
 brew install --cask powershell
