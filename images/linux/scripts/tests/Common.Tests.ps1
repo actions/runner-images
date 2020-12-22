@@ -2,7 +2,6 @@ Describe "Haskell" {
 
     $GHCCommonPath = "/opt/ghc"
     $GHCVersions = Get-ChildItem -Path $GHCCommonPath | Where-Object { $_.Name -match "\d+\.\d+" }
-    Write-Host $GHCVersions
     
     $testCases = $GHCVersions | ForEach-Object { @{ GHCPath = "${_}/bin/ghc"} }
     
