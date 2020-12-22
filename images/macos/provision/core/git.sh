@@ -4,7 +4,12 @@ echo Installing Git...
 brew install git
 
 echo Installing Git LFS
-brew install git-lfs
+if is_HighSierra; then
+    brew install --build-from-source git-lfs
+else
+    brew install git-lfs
+fi
+
 # Update global git config
 git lfs install
 # Update system git config
