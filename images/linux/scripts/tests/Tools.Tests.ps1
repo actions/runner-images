@@ -58,8 +58,24 @@ Describe "Julia" {
     }
 }
 
-Describe "Kind" {
+Describe "Kubernetes tools" {
     It "kind" {
         "kind --version" | Should -ReturnZeroExitCode
+    }
+
+    It "kubectl" {
+        "kubectl version" | Should -ReturnZeroExitCode
+    }
+
+    It "helm" {
+        "helm version" | Should -ReturnZeroExitCode
+    }
+
+    It "minikube" {
+        "minikube version" | Should -ReturnZeroExitCode
+    }
+
+    It "kustomize" {
+        "kustomize version" | Should -ReturnZeroExitCode
     }
 }
