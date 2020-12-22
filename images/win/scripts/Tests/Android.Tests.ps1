@@ -55,7 +55,7 @@ Describe "Android SDK" {
 
     It "Latest command line tools are installed" {
         $cmdlineTools = "apkanalyzer.bat", "avdmanager.bat", "lint.bat", "screenshot2.bat", "sdkmanager.bat"
-
+        $sdkRoot=$Env:ANDROID_SDK_ROOT
         $cmdlineTools | ForEach-Object {
             "$sdkRoot\cmdline-tools\latest\bin\$_" | Should -Exist
         }
