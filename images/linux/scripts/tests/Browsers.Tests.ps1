@@ -1,6 +1,6 @@
 Describe "Firefox" {
     It "Firefox" {
-        "firefox --version" | Should -ReturnZeroExitCode
+        "/usr/lib/firefox/firefox --version" | Should -ReturnZeroExitCode
     }
 
     It "Geckodriver" {
@@ -10,7 +10,7 @@ Describe "Firefox" {
 
 Describe "Chrome" {
     It "Chrome" {
-        "google-chrome --version" | Should -ReturnZeroExitCode
+        "/usr/bin/google-chrome --version" | Should -ReturnZeroExitCode
     }
 
     It "Chrome Driver" {
