@@ -13,7 +13,7 @@
         "virtual_network_resource_group_name": "{{env `VNET_RESOURCE_GROUP`}}",
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
-        "vm_size": "Standard_DS4_v2",
+        "vm_size": "Standard_D8s_v4",
         "run_scan_antivirus": "false",
         "root_folder": "C:",
         "toolset_json_path": "{{env `TEMP`}}\\toolset.json",

@@ -112,6 +112,7 @@ $toolsList = @(
     (Get-NewmanVersion),
     (Get-NvmVersion),
     (Get-PackerVersion),
+    (Get-PassVersion),
     (Get-PhantomJSVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
