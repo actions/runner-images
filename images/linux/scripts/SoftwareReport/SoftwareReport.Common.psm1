@@ -284,3 +284,8 @@ function Get-PipxVersion {
     $pipxVersion = $Matches.Version
     return "Pipx $pipxVersion"
 }
+
+function Get-GraalVMVersion {
+    $version = java --version | Out-String | Select-Object -First 2 | Take-OutputPart -Part 7
+    return "GraalVM CE $version"
+}

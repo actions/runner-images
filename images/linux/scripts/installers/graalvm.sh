@@ -7,8 +7,16 @@ url=$(curl -s https://api.github.com/repos/graalvm/graalvm-ce-builds/releases/la
 curl -sL ${url} -o "$tmp_graalvm/graalvm-archive.tar.gz"
 sudo tar -xzf "$tmp_graalvm/graalvm-archive.tar.gz" -C /usr/local/bin
 
+#Install Native Image
+gu install native-image
+
 # Run tests to determine that the software installed as expected
 if [[ $(java --version) != *"GraalVM"* ]]; then
     echo "GraalVM was not installed"
+    exit 1
+fi
+
+if ! command -v native-image; then
+    echo "Native Image was not installed"
     exit 1
 fi

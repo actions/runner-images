@@ -96,6 +96,7 @@ $toolsList = @(
     (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GitFTPVersion),
+    (Get-GraalVMVersion),
     (Get-HavegedVersion),
     (Get-HerokuVersion),
     (Get-HHVMVersion),
