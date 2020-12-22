@@ -14,7 +14,7 @@ foreach ($module in $modules)
     {
         $modulePath = Join-Path -Path $installPSModulePath -ChildPath "${moduleName}_${version}"
         Write-Host " - $version [$modulePath]"
-        Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version
+        Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force
     }
 }
 
@@ -24,7 +24,7 @@ $azAccountsPath = "/usr/share/az_1.0.0/Az.Accounts"
 if (Test-Path $azAccountsPath)
 {
     Remove-Item -Path $azAccountsPath -Force -Recurse
-    Save-Module -Name Az.Accounts -Path "/usr/share/az_1.0.0" -RequiredVersion 1.0.0
+    Save-Module -Name Az.Accounts -Path "/usr/share/az_1.0.0" -RequiredVersion 1.0.0 -Force
 }
 
 Invoke-PesterTests -TestFile "PowerShellModules" -TestName "AzureModules"
