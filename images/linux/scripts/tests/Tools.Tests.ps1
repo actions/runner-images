@@ -33,3 +33,9 @@ Describe "Git" {
         "hub --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Heroku" {
+    It "heroku" {
+        "heroku --version" | Should -ReturnZeroExitCode
+    }
+}
