@@ -5,6 +5,9 @@ Import-Module "$env:HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
 # Specifies the installation policy
 Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
 
+# Try to update PowerShellGet before the actual installation
+Update-Module -Name PowerShellGet -Force
+
 # Install PowerShell modules
 $modules = (Get-ToolsetContent).powershellModules
 
