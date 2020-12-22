@@ -15,3 +15,21 @@ Describe "azcopy" {
         "azcopy10 --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Git" {
+    It "git" {
+        "git --version" | Should -ReturnZeroExitCode
+    }
+
+    It "git-lfs" {
+        "git-lfs --version" | Should -ReturnZeroExitCode
+    }
+
+    It "git-ftp" {
+        "git-ftp --version" | Should -ReturnZeroExitCode
+    }
+
+    It "hub-cli" {
+        "hub --version" | Should -ReturnZeroExitCode
+    }
+}
