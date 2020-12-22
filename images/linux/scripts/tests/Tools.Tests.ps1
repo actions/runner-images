@@ -39,3 +39,9 @@ Describe "Heroku" {
         "heroku --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "HHVM" {
+    It "hhvm" {
+        "hhvm --version" | Should -ReturnZeroExitCode
+    }
+}
