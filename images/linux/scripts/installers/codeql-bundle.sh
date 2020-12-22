@@ -5,6 +5,7 @@
 ################################################################################
 
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Retrieve the name of the CodeQL bundle preferred by the Action (in the format codeql-bundle-YYYYMMDD).
 codeql_bundle_name="$(curl -sSL https://raw.githubusercontent.com/github/codeql-action/main/src/defaults.json | jq -r .bundleVersion)"
@@ -24,5 +25,4 @@ touch "$extraction_directory/pinned-version"
 # Touch a file to indicate to the toolcache that setting up CodeQL is complete.
 touch "$extraction_directory.complete"
 
-# Test that the tool has been extracted successfully.
-"$AGENT_TOOLSDIRECTORY/CodeQL/$codeql_bundle_version/x64/codeql/codeql" version
+invoke_tests "Tools" "CodeQL"
