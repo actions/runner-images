@@ -6,7 +6,7 @@ echo "Installing Chrome..."
 brew_cask_install_ignoring_sha256 "google-chrome"
 
 echo "Installing Chrome Driver"
-brew cask install chromedriver
+brew install --cask chromedriver
 
 echo "Installing Selenium"
 brew install selenium-server-standalone
