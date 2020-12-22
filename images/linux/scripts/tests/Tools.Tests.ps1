@@ -45,3 +45,9 @@ Describe "HHVM" {
         "hhvm --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Homebrew" {
+    It "homebrew" {
+        "brew --version" | Should -ReturnZeroExitCode
+    }
+}
