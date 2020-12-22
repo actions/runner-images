@@ -51,3 +51,9 @@ Describe "Homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Julia" {
+    It "julia" {
+        "julia --version" | Should -ReturnZeroExitCode
+    }
+}
