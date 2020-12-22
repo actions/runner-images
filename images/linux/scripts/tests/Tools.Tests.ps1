@@ -57,3 +57,9 @@ Describe "Julia" {
         "julia --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Kind" {
+    It "kind" {
+        "kind --version" | Should -ReturnZeroExitCode
+    }
+}
