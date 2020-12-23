@@ -4,6 +4,8 @@
 ##  Desc:  Installs Leiningen
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
+
 LEIN_BIN=/usr/local/bin/lein
 curl -s https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > $LEIN_BIN
 chmod 0755 $LEIN_BIN
