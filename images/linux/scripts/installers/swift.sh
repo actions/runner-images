@@ -4,6 +4,8 @@
 ##  Desc:  Installs Swift
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
+
 # Install
 image_label="$(lsb_release -rs)"
 swift_version=$(curl -s -L -N https://swift.org/download|awk -F"[ <]" '/id="swift-/ {print $4; exit}')
@@ -31,3 +33,5 @@ if ! command -v swiftc; then
     echo "Swiftc is not linked to swift binary"
     exit 1
 fi
+
+invoke_tests "Common" "Swift"

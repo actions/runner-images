@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Set env variable for vcpkg
 VCPKG_INSTALLATION_ROOT=/usr/local/share/vcpkg
@@ -29,9 +30,4 @@ if isUbuntu16; then
     ln -sf g++-5 /usr/bin/g++
 fi
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v vcpkg; then
-    echo "vcpkg was not installed"
-    exit 1
-fi
+invoke_tests "Tools" "Vcpkg"
