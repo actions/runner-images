@@ -338,9 +338,9 @@ function Get-MongodVersion {
     return "mongod $mongod"
 }
 
-function Get-P7zipVersion {
-    $p7zip = Run-Command "7z i" | Select-String "7-Zip" | Take-Part -Part 0,2
-    return $p7zip
+function Get-7zipVersion {
+    $7zip = Run-Command "7z i" | Select-String "7-Zip" | Take-Part -Part 0,2
+    return $7zip
 }
 
 function Get-GnuTarVersion {
@@ -353,14 +353,14 @@ function Get-BsdtarVersion {
     return "bsdtar $bsdtar - available by 'tar' alias"
 }
 
-function Get-NemanVersion {
+function Get-NewmanVersion {
     $newmanVersion = Run-Command "newman --version"
     return "Newman $newmanVersion"
 }
 
-function Get-VboxVersion {
-    $vbox = Run-Command "vboxmanage -v"
-    return "virtualbox $vbox"
+function Get-VirtualBoxVersion {
+    $virtualBox = Run-Command "vboxmanage -v"
+    return "virtualbox $virtualBox"
 }
 
 function Get-VagrantVersion {
@@ -375,62 +375,62 @@ function Get-ParallelVersion {
 
 function Get-FastlaneVersion {
     $fastlaneVersion = Run-Command "fastlane --version" | Select-String "^fastlane [0-9]" | Take-Part -Part 1
-    return "Fastlane ${fastlaneVersion}"
+    return "Fastlane $fastlaneVersion"
 }
 
 function Get-CmakeVersion {
     $cmakeVersion = Run-Command "cmake --version" | Select-Object -First 1 | Take-Part -Part 2
-    return "Cmake ${cmakeVersion}"
+    return "Cmake $cmakeVersion"
 }
 
 function Get-AppCenterCLIVersion {
     $appcenterCLIVersion = Run-Command "appcenter --version" | Take-Part -Part 2
-    return "App Center CLI ${appcenterCLIVersion}"
+    return "App Center CLI $appcenterCLIVersion"
 }
 
 function Get-AzureCLIVersion {
     $azureCLIVersion = Run-Command "az -v" | Select-String "^azure-cli" | Take-Part -Part 1
-    return "Azure CLI ${azureCLIVersion}"
+    return "Azure CLI $azureCLIVersion"
 }
 
 function Get-AWSVersion {
     $awsVersion = Run-Command "aws --version" | Take-Part -Part 0 | Take-Part -Delimiter "/" -Part 1
-    return "AWS CLI ${awsVersion}"
+    return "AWS CLI $awsVersion"
 }
 
 function Get-AWSSAMVersion {
     $awsSamVersion = Run-Command "sam --version" | Take-Part -Part 3
-    return "AWS SAM CLI ${awsSamVersion}"
+    return "AWS SAM CLI $awsSamVersion"
 }
 
 function Get-AWSSessionManagerCLIVersion {
     $awsSessionManagerVersion = Run-Command "session-manager-plugin --version"
-    return "AWS Session Manager CLI ${awsSessionManagerVersion}"
+    return "AWS Session Manager CLI $awsSessionManagerVersion"
 }
 
 function Get-AliyunCLIVersion {
     $aliyunVersion = Run-Command "aliyun --version" | Select-String "Alibaba Cloud Command Line Interface Version " | Take-Part -Part 6
-    return "Aliyun CLI ${aliyunVersion}"
+    return "Aliyun CLI $aliyunVersion"
 }
 
 function Get-GHCupVersion {
     $ghcUpVersion = Run-Command "ghcup --version" | Take-Part -Part 5
-    return "GHCup ${ghcUpVersion}"
+    return "GHCup $ghcUpVersion"
 }
 
 function Get-GHCVersion {
     $ghcVersion = Run-Command "ghc --version" | Take-Part -Part 7
-    return "GHC ${ghcVersion}"
+    return "GHC $ghcVersion"
 }
 
 function Get-CabalVersion {
     $cabalVersion = Run-Command "cabal --version" | Take-Part -Part 3
-    return "Cabal ${cabalVersion}"
+    return "Cabal $cabalVersion"
 }
 
 function Get-StackVersion {
     $stackVersion = Run-Command "stack --version" | Take-Part -Part 1 | ForEach-Object {$_.replace(",","")}
-    return "Stack ${stackVersion}"
+    return "Stack $stackVersion"
 }
 
 function Get-YamllintVersion {
@@ -440,7 +440,7 @@ function Get-YamllintVersion {
 
 function Get-SwiftLintVersion {
     $swiftlintVersion = Run-Command "swiftlint version"
-    return "SwiftLint ${swiftlintVersion}"
+    return "SwiftLint $swiftlintVersion"
 }
 
 function Get-PowershellVersion {

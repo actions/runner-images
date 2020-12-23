@@ -111,16 +111,16 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     (Get-HelmVersion),
     (Get-MongoVersion),
     (Get-MongodVersion),
-    (Get-P7zipVersion),
+    (Get-7zipVersion),
     (Get-BsdtarVersion),
     (Get-GnuTarVersion)
 )
 if ($os.IsHigherThanMojave) {
-    $markdown += New-MDList -Lines (Get-NemanVersion) -Style Unordered -NoNewLine
+    $markdown += New-MDList -Lines (Get-NewmanVersion) -Style Unordered -NoNewLine
 }
 if ($os.IsLessThanBigSur) {
     $markdown += New-MDList -Style Unordered -Lines @(
-        (Get-VboxVersion),
+        (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
         (Get-ParallelVersion)
     )
