@@ -103,3 +103,9 @@ Describe "Netlify" {
         "netlify --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Packer" {
+    It "packer" {
+        "packer --version" | Should -ReturnZeroExitCode
+    }
+}
