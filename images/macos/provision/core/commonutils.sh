@@ -2,7 +2,6 @@
 source ~/utils/utils.sh
 source ~/utils/invoke-tests.sh
 
-toolset=$(get_toolset_path)
 common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
     echo "Installing $package..."
