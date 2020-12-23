@@ -28,3 +28,5 @@ done
 # Select xcode version by default
 echo "Setting Xcode ${DEFAULT_XCODE_VERSION} as default"
 sudo xcode-select -s "/Applications/Xcode_${DEFAULT_XCODE_VERSION}.app/Contents/Developer"
+
+invoke_tests "Xcode"

@@ -23,3 +23,5 @@ do
 done
 
 echo "Done installing simulator runtimes."
+
+invoke_tests "Xcode"
