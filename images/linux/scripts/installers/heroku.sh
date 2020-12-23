@@ -9,4 +9,4 @@ source $HELPER_SCRIPTS/invoke-tests.sh
 # Install Heroku CLI
 curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
-Invoke_tests "Tools" "Heroku"
+invoke_tests "Tools" "Heroku"
