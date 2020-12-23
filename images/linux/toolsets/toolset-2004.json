@@ -190,5 +190,28 @@
             "3.1",
             "5.0"
         ]
+    },
+    "clang": {
+        "versions": [
+            "8",
+            "9",
+            "10"
+        ],
+        "default_version": "10"
+    },
+    "gcc": {
+        "versions": [
+            "g++-7",
+            "g++-8",
+            "g++-9",
+            "g++-10"
+        ]
+    },
+    "gfortran": {
+        "versions": [
+            "gfortran-8",
+            "gfortran-9",
+            "gfortran-10"
+        ]
     }
 }
