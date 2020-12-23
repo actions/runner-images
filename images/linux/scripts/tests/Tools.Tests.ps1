@@ -127,3 +127,9 @@ Describe "Phantomjs" {
         "phantomjs --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Haveged" {
+    It "haveged" {
+        "systemctl status haveged  | grep 'active (running)'" | Should -ReturnZeroExitCode
+    }
+}
