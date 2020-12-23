@@ -91,3 +91,9 @@ Describe "Mercurial" {
         "hg --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Conda" {
+    It "conda" {
+        "conda --version" | Should -ReturnZeroExitCode
+    }
+}
