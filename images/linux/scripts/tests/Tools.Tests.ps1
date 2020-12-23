@@ -16,7 +16,6 @@ Describe "azcopy" {
     }
 }
 
-<<<<<<< HEAD
 Describe "Rust" {
     It "Rustup is installed" {
         "rustup --version" | Should -ReturnZeroExitCode
@@ -60,7 +59,6 @@ Describe "Rust" {
         }
     }
 }
-=======
 Describe "Docker" {
     It "docker" {
         "docker --version" | Should -ReturnZeroExitCode
@@ -164,4 +162,3 @@ Describe "gfortran" {
         "$GfortranVersion --version" | Should -ReturnZeroExitCode
     }
 }
->>>>>>> upstream/main
