@@ -2,7 +2,7 @@
 source ~/utils/invoke-tests.sh
 
 echo "install soundflower"
-brew cask install soundflower
+brew install --cask soundflower
 
 echo "install switchaudio-osx"
 brew install switchaudio-osx
