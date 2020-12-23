@@ -97,3 +97,9 @@ Describe "Conda" {
         "conda --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Netlify" {
+    It "netlify" {
+        "netlify --version" | Should -ReturnZeroExitCode
+    }
+}
