@@ -79,3 +79,9 @@ Describe "Kubernetes tools" {
         "kustomize version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Leiningen" {
+    It "leiningen" {
+        "lein --version" | Should -ReturnZeroExitCode
+    }
+}
