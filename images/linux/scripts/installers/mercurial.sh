@@ -4,6 +4,8 @@
 ##  Desc:  Installs Mercurial
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
+
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
 
@@ -16,8 +18,4 @@ fi
 
 apt-get install -y --no-install-recommends mercurial
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v hg; then
-    exit 1
-fi
+invoke_tests "Tools" "Mercurial"

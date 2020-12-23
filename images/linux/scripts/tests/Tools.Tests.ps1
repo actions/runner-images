@@ -85,3 +85,9 @@ Describe "Leiningen" {
         "lein --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Mercurial" {
+    It "mercurial" {
+        "hg --version" | Should -ReturnZeroExitCode
+    }
+}
