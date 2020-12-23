@@ -7,14 +7,15 @@ HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/
 echo "Disabling Homebrew analytics..."
 brew analytics off
 
-echo "Installing the latest curl..."
+# jq is required for further installation scripts
+echo "Installing jq..."
+brew install jq
+
+echo "Installing curl..."
 brew install curl
 
 echo "Installing wget..."
 brew install wget
-
-echo "Installing jq..."
-brew install jq
 
 # init brew bundle feature
 brew tap Homebrew/bundle
