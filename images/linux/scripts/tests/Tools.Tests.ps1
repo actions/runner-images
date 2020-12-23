@@ -121,3 +121,9 @@ Describe "Pulumi" {
         "pulumi version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Phantomjs" {
+    It "phantomjs" {
+        "phantomjs --version" | Should -ReturnZeroExitCode
+    }
+}
