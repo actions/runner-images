@@ -109,3 +109,9 @@ Describe "Packer" {
         "packer --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Pollinate" {
+    It "pollinate" {
+        "sudo pollinate -r && sleep 5 && sudo grep pollinate /var/log/syslog" | Should -ReturnZeroExitCode
+    }
+}
