@@ -15,7 +15,7 @@ function GetLatestJuliaRelease () {
     sed 's/v//' # remove v prefix
 }
 
-juliaVersion=GetLatestJuliaRelease
+juliaVersion="$(GetLatestJuliaRelease)"
 juliaMajorAndMinorVersion="$(cut -d. -f1,2 <<< $juliaVersion)"
 juliaInstallationPath="/usr/local/julia$juliaVersion"
 
