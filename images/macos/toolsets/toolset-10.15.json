@@ -172,8 +172,7 @@
             "gnu-tar",
             "xctool",
             "bats",
-            "parallel",
-            "swiftlint"
+            "parallel"
         ],
         "cask_packages": [
             "julia",

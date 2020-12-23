@@ -102,8 +102,7 @@
             "p7zip",
             "ant",
             "aria2",
-            "gnu-tar",
-            "swiftlint"
+            "gnu-tar"
         ],
         "cask_packages": [
             "julia"
