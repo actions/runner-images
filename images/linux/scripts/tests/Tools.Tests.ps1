@@ -134,7 +134,7 @@ Describe "Kubernetes tools" {
     }
 
     It "kubectl" {
-        "kubectl version" | Should -ReturnZeroExitCode
+        "kubectl version" | Should -MatchCommandOutput "Client Version: version.Info"
     }
 
     It "helm" {
