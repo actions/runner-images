@@ -1,5 +1,5 @@
 #!/bin/bash -e -o pipefail
-
+source ~/utils/invoke-tests.sh
 source ~/utils/utils.sh
 
 node_modules=(
@@ -43,3 +43,5 @@ if is_Less_BigSur; then
   echo "Install node-gyp"
   npm install -g node-gyp
 fi
+
+invoke_tests "Node" "Node.js"
