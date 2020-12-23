@@ -3,11 +3,14 @@ Describe "Haskell" {
     $GHCCommonPath = "/opt/ghc"
     $GHCVersions = Get-ChildItem -Path $GHCCommonPath | Where-Object { $_.Name -match "\d+\.\d+" }
     
-    $testCases = $GHCVersions | ForEach-Object { @{ GHCPath = "${_}/bin/ghc"} }
-    
-    It "Number of Installed GHC versions" {
-        "$($GHCVersions.Count)" | Should -Be 3
+    $testCase = @{ GHCVersions = $GHCVersions }
+
+    It "GHC directory contains three version of GHC" -TestCases $testCase {
+        param ([object] $GHCVersions)
+        $GHCVersions.Count | Should -Be 3
     }
+
+    $testCases = $GHCVersions | ForEach-Object { @{ GHCPath = "${_}/bin/ghc"} }
 
     It "GHC version <GHCPath>" -TestCases $testCases {
             param ([string] $GHCPath)
