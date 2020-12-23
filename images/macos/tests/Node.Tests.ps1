@@ -48,3 +48,9 @@ Describe "nvm" {
         }
     }
 }
+
+Describe "AppCenterCLI" {
+    It "App Center CLI" {
+        "appcenter --version" | Should -ReturnZeroExitCode
+    }
+}

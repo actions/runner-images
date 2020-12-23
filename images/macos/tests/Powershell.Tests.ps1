@@ -39,3 +39,9 @@ Describe "Powershell" {
         }
     }
 }
+
+Describe "AzureCLI"{
+    It "Azure CLI" {
+        "az -v" | Should -ReturnZeroExitCode
+    }
+}

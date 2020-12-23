@@ -1,3 +1,6 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
+
 Describe "xcpretty" {
     It "xcpretty" {
     "xcpretty --version" | Should -ReturnZeroExitCode

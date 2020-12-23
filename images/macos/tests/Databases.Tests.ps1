@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
+
 Describe "MongoDB" {
     It "mongodb" {
         "mongo --version" | Should -ReturnZeroExitCode

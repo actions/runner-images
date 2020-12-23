@@ -58,3 +58,10 @@ Describe "Java" {
         }
     }
 }
+
+Describe "Maven" {
+    It "Maven" {
+        "mvn --version" | Should -ReturnZeroExitCode
+    }
+}
+
