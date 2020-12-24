@@ -138,7 +138,7 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     (Get-AWSSAMVersion),
     (Get-AWSSessionManagerCLIVersion),
     (Get-AliyunCLIVersion),
-    (Get-XcodeVersion)
+    (Get-XcodeCommandLineToolsVersion)
 )
 
 if( -not $os.IsHighSierra) {
