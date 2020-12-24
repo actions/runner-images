@@ -7,7 +7,6 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 function filter_components_by_version {
     minimumVersion=$1
@@ -79,4 +78,4 @@ echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager ${components[@]}
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}
 
-invoke_tests "Android"
+invoke-tests.sh "Android"

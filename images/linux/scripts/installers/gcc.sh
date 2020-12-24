@@ -6,7 +6,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 function InstallGcc {
     version=$1
@@ -27,4 +26,4 @@ for version in ${versions[*]}; do
     InstallGcc $version
 done
 
-invoke_tests "Tools" "gcc"
+invoke-tests.sh "Tools" "gcc"

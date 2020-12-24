@@ -6,7 +6,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install Herbert V. Riedel's PPA for managing multiple version of ghc on ubuntu.
 # https://launchpad.net/~hvr/+archive/ubuntu/ghc
@@ -38,4 +37,4 @@ curl -sSL https://get.haskellstack.org/ | sh
 ln -s "/opt/ghc/$defaultGHCVersion/bin/ghc" "/usr/bin/ghc"
 ln -s "/opt/cabal/$cabalVersion/bin/cabal" "/usr/bin/cabal"
 
-invoke_tests "Common" "Haskell"
+invoke-tests.sh "Common" "Haskell"

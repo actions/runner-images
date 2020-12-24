@@ -6,7 +6,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 function InstallClang {
     local version=$1
@@ -45,4 +44,4 @@ done
 SetDefaultClang $default_clang_version
 rm llvm.sh
 
-invoke_tests "Tools" "clang"
+invoke-tests.sh "Tools" "clang"

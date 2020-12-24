@@ -4,7 +4,6 @@
 ##  Desc:  Installs Bazel and Bazelisk (A user-friendly launcher for Bazel)
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install bazel
 curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
@@ -15,4 +14,4 @@ apt-get install -y bazel
 # Install bazelisk
 npm install -g @bazel/bazelisk
 
-invoke_tests "Tools" "Bazel"
+invoke-tests.sh "Tools" "Bazel"

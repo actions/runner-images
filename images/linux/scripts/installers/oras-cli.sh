@@ -5,7 +5,6 @@
 ################################################################################
 
 source $HELPER_SCRIPTS/install.sh
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Determine latest ORAS CLI version
 ORAS_CLI_LATEST_VERSION_URL=https://api.github.com/repos/deislabs/oras/releases/latest
@@ -17,4 +16,4 @@ cd /tmp
 download_with_retries $ORAS_CLI_DOWNLOAD_URL
 tar -zxvf $ORAS_CLI_ARCHIVE -C /usr/local/bin oras
 
-invoke_tests "CLI.Tools" "Oras CLI"
+invoke-tests.sh "CLI.Tools" "Oras CLI"

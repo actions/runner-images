@@ -5,7 +5,6 @@
 ################################################################################
 
 source $HELPER_SCRIPTS/os.sh
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 function InstallFortran {
     version=$1
@@ -26,4 +25,4 @@ do
     InstallFortran $version
 done
 
-invoke_tests "Tools" "gfortran"
+invoke-tests.sh "Tools" "gfortran"

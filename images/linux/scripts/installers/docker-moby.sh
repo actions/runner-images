@@ -6,7 +6,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Check to see if docker is already installed
 docker_package=moby
@@ -36,4 +35,4 @@ for image in $images; do
     docker pull "$image"
 done
 
-invoke_tests "Tools" "Docker"
+invoke-tests.sh "Tools" "Docker"

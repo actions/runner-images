@@ -4,7 +4,6 @@
 ##  Desc:  Installs the Google Cloud SDK
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install the Google Cloud SDK
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
@@ -12,4 +11,4 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyr
 sudo apt-get update -y
 sudo apt-get install -y google-cloud-sdk
 
-invoke_tests "CLI.Tools" "Google Cloud SDK"
+invoke-tests.sh "CLI.Tools" "Google Cloud SDK"
