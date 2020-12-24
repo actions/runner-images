@@ -9,18 +9,14 @@ HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/
 echo "Disabling Homebrew analytics..."
 brew analytics off
 
+echo "Installing jq..."
+brew_install "jq"
+
 echo "Installing the latest curl..."
-if is_HighSierra; then
-    brew install --build-from-source curl
-else
-    brew install curl
-fi
+brew_install "curl"
 
 echo "Installing wget..."
-brew install wget
-
-echo "Installing jq..."
-brew install jq
+brew_install "wget"
 
 # init brew bundle feature
 brew tap Homebrew/bundle

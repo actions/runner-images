@@ -34,14 +34,8 @@ fi
 
 for package in ${binst_common_utils[@]}; do
     echo "Install $package"
-    brew install $package
+    brew_install "$package"
 done
-
-if is_HighSierra; then
-    brew install --build-from-source gnupg
-else
-    brew install gnupg
-fi
 
 # brew cask install
 bcask_common_utils=(

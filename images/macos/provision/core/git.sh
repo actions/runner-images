@@ -3,14 +3,10 @@
 source ~/utils/utils.sh
 
 echo Installing Git...
-brew install git
+brew_install "git"
 
 echo Installing Git LFS
-if is_HighSierra; then
-    brew install --build-from-source git-lfs
-else
-    brew install git-lfs
-fi
+brew_install "git-lfs"
 
 # Update global git config
 git lfs install
@@ -18,7 +14,7 @@ git lfs install
 sudo git lfs install --system
 
 echo Installing Hub
-brew install hub
+brew_install "hub"
 
 echo Disable all the Git help messages...
 git config --global advice.pushUpdateRejected false

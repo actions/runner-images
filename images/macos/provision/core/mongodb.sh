@@ -1,4 +1,5 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/utils.sh
 
 # MongoDB object-value database
 # installs last version of MongoDB Community Edition
@@ -7,4 +8,4 @@
 echo "Installing mongodb..."
 
 brew tap mongodb/brew
-brew install mongodb-community
+brew_install "mongodb-community"
