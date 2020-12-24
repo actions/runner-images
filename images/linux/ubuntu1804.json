@@ -276,7 +276,8 @@
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "DEBIAN_FRONTEND=noninteractive"
+                "DEBIAN_FRONTEND=noninteractive",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
             "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
         },
