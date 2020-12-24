@@ -205,22 +205,6 @@ Describe "Common utilities" {
         "xcpretty --version" | Should -ReturnZeroExitCode
     }
 
-    Describe "OpenSSL" {
-        It "OpenSSL is available" {
-            "openssl version" | Should -ReturnZeroExitCode
-        }
-
-        It "OpenSSL 1.1 path exists" {
-            $openSSLpath = "/usr/local/opt/openssl@1.1"
-            $openSSLpath | Should -Exist
-        }
-
-        It "Default OpenSSL version is 1.1" {
-            $commandResult = Get-CommandResult "openssl version"
-            $commandResult.Output | Should -Match "OpenSSL 1.1"
-        }
-    }
-
     It "PostgreSQL-Client" {
         "psql --version" | Should -ReturnZeroExitCode
     }
@@ -371,5 +355,21 @@ Describe "Mongo" {
     It "mongodb" {
         "mongo --version" | Should -ReturnZeroExitCode
         "mongod --version"| Should -ReturnZeroExitCode
+    }
+}
+
+Describe "OpenSSL" {
+    It "OpenSSL is available" {
+        "openssl version" | Should -ReturnZeroExitCode
+    }
+
+    It "OpenSSL 1.1 path exists" {
+        $openSSLpath = "/usr/local/opt/openssl@1.1"
+        $openSSLpath | Should -Exist
+    }
+
+    It "Default OpenSSL version is 1.1" {
+        $commandResult = Get-CommandResult "openssl version"
+        $commandResult.Output | Should -Match "OpenSSL 1.1"
     }
 }
