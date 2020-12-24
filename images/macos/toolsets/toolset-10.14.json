@@ -221,6 +221,36 @@
         {"name": "MarkdownPS"},
         {"name": "Pester"}
     ],
+    "brew": {
+        "common_packages": [
+            "carthage",
+            "cmake",
+            "subversion",
+            "go",
+            "gnupg",
+            "llvm",
+            "libpq",
+            "zstd",
+            "packer",
+            "helm",
+            "aliyun-cli",
+            "bazelisk",
+            "gh",
+            "p7zip",
+            "ant",
+            "aria2",
+            "gnu-tar",
+            "xctool",
+            "bats",
+            "parallel"
+        ],
+        "cask_packages": [
+            "julia",
+            "virtualbox",
+            "vagrant",
+            "r"
+        ]
+    },
     "toolcache": [
         {
             "name": "Python",

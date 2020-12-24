@@ -1,13 +1,14 @@
 $ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 
-function Get-ToolsetContent
-{
-    $toolset = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
-    Get-Content $toolset -Raw | ConvertFrom-Json
-}
+Import-Module "$env:HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
 
 # Specifies the installation policy
 Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
+
+# Try to update PowerShellGet before the actual installation
+Install-Module -Name PowerShellGet -Force
+Update-Module -Name PowerShellGet -Force
 
 # Install PowerShell modules
 $modules = (Get-ToolsetContent).powershellModules
@@ -29,3 +30,5 @@ foreach($module in $modules)
 
     Install-Module -Name $moduleName -Scope AllUsers -SkipPublisherCheck -Force
 }
+
+Invoke-PesterTests -TestFile "PowerShellModules" -TestName "PowerShellModules"

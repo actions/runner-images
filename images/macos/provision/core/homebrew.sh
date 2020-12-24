@@ -9,10 +9,11 @@ HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/
 echo "Disabling Homebrew analytics..."
 brew analytics off
 
+# jq is required for further installation scripts
 echo "Installing jq..."
 brew install jq
 
-echo "Installing the latest curl..."
+echo "Installing curl..."
 brew_install "curl"
 
 echo "Installing wget..."
