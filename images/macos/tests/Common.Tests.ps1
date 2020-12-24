@@ -186,19 +186,6 @@ Describe "Common utilities" {
         "az -v" | Should -ReturnZeroExitCode
     }
 
-    Describe "AWS" {
-        It "AWS CLI" {
-            "aws --version" | Should -ReturnZeroExitCode
-        }
-        It "AWS SAM CLI" {
-            "sam --version" | Should -ReturnZeroExitCode
-        }
-
-        It "AWS Session Manager CLI" {
-            "session-manager-plugin --version" | Should -ReturnZeroExitCode
-        }
-    }
-
     Context "Nomad" -Skip:($os.IsBigSur) {
         It "Nomad CLI" {
             $result = Get-CommandResult "gem list"
@@ -209,13 +196,6 @@ Describe "Common utilities" {
             "ipa --version" | Should -ReturnZeroExitCode
         }
     }
-    Describe "Miniconda" {
-        It "Conda" {
-            Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
-            $condaBinPath = Join-Path $env:CONDA "bin" "conda"
-            "$condaBinPath --version" | Should -ReturnZeroExitCode
-        }
-    }
 
     It "Fastlane" {
         "fastlane --version" | Should -ReturnZeroExitCode
@@ -223,13 +203,6 @@ Describe "Common utilities" {
 
     It "xcpretty" {
         "xcpretty --version" | Should -ReturnZeroExitCode
-    }
-
-    Describe "Mongo" {
-        It "mongodb" {
-            "mongo --version" | Should -ReturnZeroExitCode
-            "mongod --version"| Should -ReturnZeroExitCode
-        }
     }
 
     Describe "OpenSSL" {
@@ -254,10 +227,6 @@ Describe "Common utilities" {
 
     It "PostgreSQL-Server" {
         "pg_config --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Azcopy" {
-        "azcopy --version" | Should -ReturnZeroExitCode
     }
 
     It "PHP" {
@@ -368,5 +337,39 @@ Describe "Visual Studio For Mac" {
         $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
         $vsPath | Should -Exist
         $vstoolPath | Should -Exist
+    }
+}
+
+Describe "AzCopy" {
+    It "Azcopy" {
+        "azcopy --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "AWS" {
+    It "AWS CLI" {
+        "aws --version" | Should -ReturnZeroExitCode
+    }
+    It "AWS SAM CLI" {
+        "sam --version" | Should -ReturnZeroExitCode
+    }
+
+    It "AWS Session Manager CLI" {
+        "session-manager-plugin --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Miniconda" {
+    It "Conda" {
+        Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
+        $condaBinPath = Join-Path $env:CONDA "bin" "conda"
+        "$condaBinPath --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Mongo" {
+    It "mongodb" {
+        "mongo --version" | Should -ReturnZeroExitCode
+        "mongod --version"| Should -ReturnZeroExitCode
     }
 }
