@@ -10,7 +10,7 @@ echo "Disabling Homebrew analytics..."
 brew analytics off
 
 echo "Installing jq..."
-brew_install "jq"
+brew install jq
 
 echo "Installing the latest curl..."
 brew_install "curl"
