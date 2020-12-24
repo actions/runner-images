@@ -12,7 +12,7 @@ Describe "PHP" {
         "phpize$phpVersion --version" | Should -ReturnZeroExitCode
     }
 
-    It "PHP-Unit" {
+    It "PHPUnit" {
         "phpunit --version" | Should -ReturnZeroExitCode
     }
 
