@@ -26,6 +26,7 @@ createEnvironmentVariable() {
         JAVA_VERSION="1.${JAVA_VERSION}"
     fi
     local JAVA_PATH=$(/usr/libexec/java_home -v${JAVA_VERSION})
+    export ${VARIABLE_NAME}=${JAVA_PATH}
     echo "export ${VARIABLE_NAME}=${JAVA_PATH}" >> "${HOME}/.bashrc"
 }
 
