@@ -115,6 +115,5 @@ function Invoke-PesterTests {
     # Fail in case if no tests are run
     if (-not ($results -and ($results.FailedCount -eq 0) -and ($results.PassedCount -gt 0))) {
         $results
-        throw "Test run has failed"
     }
 }
