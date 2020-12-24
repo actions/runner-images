@@ -134,8 +134,8 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     (Get-CmakeVersion),
     (Get-AppCenterCLIVersion),
     (Get-AzureCLIVersion),
-    (Get-AWSVersion),
-    (Get-AWSSAMVersion),
+    (Get-AWSCLIVersion),
+    (Get-AWSSAMCLIVersion),
     (Get-AWSSessionManagerCLIVersion),
     (Get-AliyunCLIVersion),
     (Get-XcodeCommandLineToolsVersion)

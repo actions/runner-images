@@ -17,7 +17,7 @@ function Get-GoVersion {
         $goOutput = $goOutput.Substring(2)
     }
 
-    return $goOutput
+    return "Go $goOutput"
 }
 
 function Get-RVersion {
@@ -26,7 +26,7 @@ function Get-RVersion {
 }
 function Get-RustVersion {
     $rustVersion = Run-Command "rustc --version" | Take-Part -Part 1
-    return "${rustVersion}"
+    return "Rust $rustVersion"
 }
 
 function Get-Bindgen {
@@ -89,7 +89,7 @@ function Get-NVMVersion {
     $nvmPath = Join-Path $env:HOME ".nvm" "nvm.sh"
     $nvmInitCommand = ". ${nvmPath} > /dev/null 2>&1 || true"
     $nodejsVersion = Run-Command "${nvmInitCommand} && nvm --version"
-    return $nodejsVersion
+    return "NVM $nodejsVersion"
 }
 
 function Get-PipVersion {
@@ -204,7 +204,7 @@ function Get-NuGetVersion {
 
 function Get-CondaVersion {
     $condaVersion = Invoke-Expression "conda --version"
-    return "Mini $condaVersion"
+    return "Mini$condaVersion"
 }
 
 function Get-RubyGemsVersion {
@@ -393,12 +393,12 @@ function Get-AzureCLIVersion {
     return "Azure CLI $azureCLIVersion"
 }
 
-function Get-AWSVersion {
+function Get-AWSCLIVersion {
     $awsVersion = Run-Command "aws --version" | Take-Part -Part 0 | Take-Part -Delimiter "/" -Part 1
     return "AWS CLI $awsVersion"
 }
 
-function Get-AWSSAMVersion {
+function Get-AWSSAMCLIVersion {
     $awsSamVersion = Run-Command "sam --version" | Take-Part -Part 3
     return "AWS SAM CLI $awsSamVersion"
 }
