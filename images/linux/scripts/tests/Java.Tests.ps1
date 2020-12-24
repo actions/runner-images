@@ -3,18 +3,28 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameCheckin
 Describe "Java" {
 
     if (Test-IsUbuntu20) {
-        $DefaultJavaVersion = "11"
+        $defaultJavaVersion = "11"
+        $javaTestCases = @(
+            @{ Version = "1.8" }
+            @{ Version = "11" }
+        )
     }
 
     if ((Test-IsUbuntu16) -or (Test-IsUbuntu18)) {
-        $DefaultJavaVersion = "8"
+        $defaultJavaVersion = "8"
+        $javaTestCases = @(
+            @{ Version = "1.7" }
+            @{ Version = "1.8" }
+            @{ Version = "11" }
+            @{ Version = "12" }
+        )
     }
 
     Update-Environment
 
-    It "Java <DefaultJavaVersion> is default" -TestCases @{ DefaultJavaVersion = $DefaultJavaVersion } {
+    It "Java <DefaultJavaVersion> is default" -TestCases @{ defaultJavaVersion = $defaultJavaVersion } {
         $actualJavaPath = Get-EnvironmentVariable "JAVA_HOME"
-        $expectedJavaPath = Get-EnvironmentVariable "JAVA_HOME_${DefaultJavaVersion}_X64"
+        $expectedJavaPath = Get-EnvironmentVariable "JAVA_HOME_${defaultJavaVersion}_X64"
 
         $actualJavaPath | Should -Not -BeNullOrEmpty
         $expectedJavaPath | Should -Not -BeNullOrEmpty
@@ -31,12 +41,7 @@ Describe "Java" {
         "$ToolName -version" | Should -ReturnZeroExitCode
     }
 
-    It "Java <Version>" -TestCases @(
-        @{ Version = "1.7" }
-        @{ Version = "1.8" }
-        @{ Version = "11" }
-        @{ Version = "12" }
-    ) {
+    It "Java <Version>" -TestCases $javaTestCases {
         $versionNumber = $version.Split(".") | Select-Object -Last 1
 
         $javaVariableValue = Get-EnvironmentVariable "JAVA_HOME_${versionNumber}_X64"
