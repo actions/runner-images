@@ -20,9 +20,7 @@
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "ubuntu20",
-        "run_validation_diskspace": "false",
-        "go_default": "1.14",
-        "go_versions": "1.14"
+        "run_validation_diskspace": "false"
     },
     "sensitive-variables": [
         "client_secret"
