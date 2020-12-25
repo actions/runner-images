@@ -267,7 +267,9 @@ Describe "Haskell" -Skip:($os.IsHighSierra) {
     It "Cabal" {
         "cabal --version" | Should -ReturnZeroExitCode
     }
+}
 
+Describe "Stack" {
     It "Stack" {
         "stack --version" | Should -ReturnZeroExitCode
     }
