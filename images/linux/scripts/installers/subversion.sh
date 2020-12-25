@@ -9,4 +9,4 @@ source $HELPER_SCRIPTS/invoke-tests.sh
 # Install Subversion
 apt-get install -y --no-install-recommends subversion
 
-invoke_tests.sh "Tools" "SVN"
+invoke_tests "Tools" "SVN"
