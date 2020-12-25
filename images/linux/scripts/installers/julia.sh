@@ -4,6 +4,8 @@
 ##  Desc:  Installs Julia, and adds Julia to the path
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
+
 # This function fetches the latest Julia release from the GitHub API
 # Based on https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
 function GetLatestJuliaRelease () {
@@ -13,44 +15,15 @@ function GetLatestJuliaRelease () {
     sed 's/v//' # remove v prefix
 }
 
+juliaVersion="$(GetLatestJuliaRelease)"
+juliaMajorAndMinorVersion="$(cut -d. -f1,2 <<< $juliaVersion)"
+juliaInstallationPath="/usr/local/julia$juliaVersion"
 
-# This function installs Julia using the specified arguments:
-#   $1=MajorAndMinorVersion (1.3.1)
-#   $2=IsDefaultVersion (true or false)
+curl -sL "https://julialang-s3.julialang.org/bin/linux/x64/$juliaMajorAndMinorVersion/julia-$juliaVersion-linux-x86_64.tar.gz" -o "julia-$juliaVersion-linux-x86_64.tar.gz"
+mkdir -p "$juliaInstallationPath"
+tar -C "$juliaInstallationPath" -xzf "julia-$juliaVersion-linux-x86_64.tar.gz" --strip-components=1
+rm "julia-$juliaVersion-linux-x86_64.tar.gz"
 
-function InstallJulia () {
-    # Extract Major and Minor version from full version string
-    juliaMajorAndMinorVersion="$(cut -d. -f1,2 <<< $1)"
-    juliaInstallationPath="/usr/local/julia$1"
+ln -s "$juliaInstallationPath/bin/julia" /usr/bin/julia
 
-    curl -sL "https://julialang-s3.julialang.org/bin/linux/x64/$juliaMajorAndMinorVersion/julia-$1-linux-x86_64.tar.gz" -o "julia-$1-linux-x86_64.tar.gz"
-    mkdir -p "$juliaInstallationPath"
-    tar -C "$juliaInstallationPath" -xzf "julia-$1-linux-x86_64.tar.gz" --strip-components=1
-    rm "julia-$1-linux-x86_64.tar.gz"
-
-    # If this version of Julia is to be the default version,
-    # symlink it into the path
-    if [ "$2" = true ]; then
-        ln -s "$juliaInstallationPath/bin/julia" /usr/bin/julia
-    fi
-
-    # Run tests to determine that the software installed as expected
-    echo "Testing to make sure that script performed as expected, and basic scenarios work"
-
-    # If this version of Julia is to be the default version,
-    # check that it has been added to PATH
-    if [ "$2" = true ]; then
-        if ! command -v julia; then
-            echo "Julia was not installed or found on PATH"
-            exit 1
-        fi
-    fi
-
-    # Verify output of julia --version
-    if [ ! "$($juliaInstallationPath/bin/julia --version)" = "julia version $1" ]; then
-        echo "Julia was not installed correctly"
-        exit 1
-    fi
-}
-
-InstallJulia "$(GetLatestJuliaRelease)" true
+invoke_tests "Tools" "Julia"
