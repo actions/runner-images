@@ -3,8 +3,8 @@
 source ~/utils/utils.sh
 
 echo "Installing Homebrew..."
-HOMEbrew_smart_install_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh"
-/bin/bash -c "$(curl -fsSL ${HOMEbrew_smart_install_URL})"
+HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh"
+/bin/bash -c "$(curl -fsSL ${HOMEBREW_INSTALL_URL})"
 
 echo "Disabling Homebrew analytics..."
 brew analytics off
