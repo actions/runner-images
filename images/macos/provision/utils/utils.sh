@@ -135,7 +135,13 @@ should_build_from_source() {
     if $bottle_disabled; then
         echo "false"
     fi
-    
+
+    # The aws-sam-cli has the 'aws-sam-cli-*.sierra.bottle.tar.gz' bottle
+    # It can be installed on all macOS images by the simple 'brew install' command
+    if [[ "$tool_name" == "aws-sam-cli" ]]; then
+        echo "false"
+    fi
+
     local tool_bottle=$(echo "$tool_info" | jq ".[0].bottle.stable.files.$os_name")
     if [[ "$tool_bottle" == "null" ]]; then
         echo "true"
