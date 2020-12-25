@@ -180,6 +180,13 @@ Describe "Xamarin.Android" {
                 Join-Path $xamarinLibPath "xbuild-frameworks" | Should -Exist
             }   
         }
+    }
+        Context "Legacy NDK versions" -Skip:($os.IsBigSur) {
+            It "Android NDK version r18b is installed" {
+                $ndk18BundlePath = Join-Path $ANDROID_SDK_DIR "ndk" "18.1.5063045" "source.properties"
+                $rawContent = Get-Content $ndk18BundlePath -Raw
+                $rawContent | Should -BeLikeExactly "*Revision = 18.*"
+        }
     }       
 }
 
