@@ -213,5 +213,11 @@
             "gfortran-9",
             "gfortran-10"
         ]
+    },
+    "php": {
+        "versions": [
+            "7.4",
+            "8.0"
+        ]
     }
 }
