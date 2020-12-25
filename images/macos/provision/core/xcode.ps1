@@ -17,7 +17,14 @@ $defaultXcode = Get-ToolsetValue "xcode.default"
 
 Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object {
+    Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
+    Import-Module "~/image-generation/helpers/Xcode.Installer.psm1"
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
+}
+
+$xcodeVersions | ForEach-Object -ThrottleLimit 4 -Parallel {
+    Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
+    Import-Module "~/image-generation/helpers/Xcode.Installer.psm1"
     Confirm-XcodeIntegrity -Version $_.link
     Approve-XcodeLicense -Version $_.link
 }
@@ -27,11 +34,17 @@ if ($os.IsLessThanCatalina) {
     $latestXcodeVersion = $xcodeVersions | Select-Object -Last 1 -ExpandProperty link
     Install-XcodeAdditionalPackages -Version $latestXcodeVersion
 }
-$xcodeVersions | ForEach-Object { Invoke-XcodeRunFirstLaunch -Version $_.link }
+$xcodeVersions | ForEach-Object -ThrottleLimit 3 -Parallel { 
+    Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
+    Import-Module "~/image-generation/helpers/Xcode.Installer.psm1"
+    Invoke-XcodeRunFirstLaunch -Version $_.link 
+}
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
 Write-Host "Configuring Xcode symlinks..."
-$xcodeVersions | ForEach-Object {
+$xcodeVersions | ForEach-Object -ThrottleLimit 4 -Parallel {
+    Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
+    Import-Module "~/image-generation/helpers/Xcode.Installer.psm1"
     Build-XcodeSymlinks -Version $_.link -Symlinks $_.symlinks
     Build-ProvisionatorSymlink -Version $_.link
 }

@@ -1,4 +1,4 @@
-Import-Module "$PSScriptRoot/Xcode.Helpers.psm1"
+Import-Module "~/image-generation/helpers/Xcode.Helpers.psm1"
 
 function Install-XcodeVersion {
     param(
