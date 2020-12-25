@@ -96,7 +96,6 @@ $toolsList = @(
     (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GitFTPVersion),
-    (Get-GraalVMVersion),
     (Get-HavegedVersion),
     (Get-HerokuVersion),
     (Get-HHVMVersion),
@@ -155,6 +154,10 @@ $markdown += New-MDList -Style Unordered -Lines @(
 
 $markdown += New-MDHeader "Java" -Level 3
 $markdown += Get-JavaVersions | New-MDTable
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "GraalVM" -Level 3
+$markdown += Build-GraalVMTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "PHP" -Level 3
