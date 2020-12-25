@@ -294,8 +294,7 @@
         {
             "type": "shell",
             "pause_before": "60s",
-            "timeout": "10m",
-            "start_retry_timeout": "10s",
+            "start_retry_timeout": "10m",
             "scripts": [
                 "{{template_dir}}/scripts/installers/cleanup.sh"
             ],
