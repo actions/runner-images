@@ -2,7 +2,7 @@
 source ~/utils/utils.sh
 
 echo Installing Rustup...
-brew_install "rustup-init"
+brew_smart_install "rustup-init"
 
 echo Installing Rust language...
 rustup-init -y --no-modify-path --default-toolchain=stable --profile=minimal

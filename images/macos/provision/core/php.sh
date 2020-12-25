@@ -2,7 +2,7 @@
 source ~/utils/utils.sh
 
 echo Installing PHP
-brew_install "php"
+brew_smart_install "php"
 
 echo Installing composer
-brew_install "composer"
+brew_smart_install "composer"

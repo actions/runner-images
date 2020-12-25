@@ -9,6 +9,6 @@ source ~/utils/invoke-tests.sh
 echo "Installing mongodb..."
 
 brew tap mongodb/brew
-brew_install "mongodb-community"
+brew_smart_install "mongodb-community"
 
 invoke_tests "Common" "Mongo"

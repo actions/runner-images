@@ -4,10 +4,10 @@ source ~/utils/invoke-tests.sh
 source ~/utils/utils.sh
 
 echo Installing Git...
-brew_install "git"
+brew_smart_install "git"
 
 echo Installing Git LFS
-brew_install "git-lfs"
+brew_smart_install "git-lfs"
 
 # Update global git config
 git lfs install
@@ -15,7 +15,7 @@ git lfs install
 sudo git lfs install --system
 
 echo Installing Hub
-brew_install "hub"
+brew_smart_install "hub"
 
 echo Disable all the Git help messages...
 git config --global advice.pushUpdateRejected false
