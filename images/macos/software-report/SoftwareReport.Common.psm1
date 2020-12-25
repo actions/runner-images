@@ -139,7 +139,7 @@ function Get-PHPVersion {
 
 function Get-NodeVersion {
     $nodeVersion = Run-Command "node --version"
-    return "Node $nodeVersion"
+    return "Node.js $nodeVersion"
 }
 
 function Get-PythonVersion {
