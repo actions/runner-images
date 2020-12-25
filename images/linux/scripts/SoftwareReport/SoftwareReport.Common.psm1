@@ -286,6 +286,6 @@ function Get-PipxVersion {
 }
 
 function Get-GraalVMVersion {
-    $version = java --version | Out-String | Select-Object -First 2 | Take-OutputPart -Part 7
+    $version = $GRAALVM_BIN/java --version | Out-String | Select-Object -First 2 | Take-OutputPart -Part 7
     return "GraalVM CE $version"
 }

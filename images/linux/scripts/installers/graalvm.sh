@@ -4,19 +4,21 @@
 tmp_graalvm="/tmp/graalvm"
 mkdir -p "$tmp_graalvm"
 url=$(curl -s https://api.github.com/repos/graalvm/graalvm-ce-builds/releases/latest | jq -r '.assets[].browser_download_url | select(contains("graalvm-ce-java11-linux-amd64"))')
-curl -sL ${url} -o "$tmp_graalvm/graalvm-archive.tar.gz"
-sudo tar -xzf "$tmp_graalvm/graalvm-archive.tar.gz" -C /usr/local/bin
+download_with_retries "$url" "$tmp_graalvm/graalvm-archive.tar.gz"
+mkdir /usr/local/graalvm
+tar -xzf "$tmp_graalvm/graalvm-archive.tar.gz" -C /usr/local/graalvm
+setEtcEnvironmentVariable "GRAALVM_BIN" /usr/local/graalvm/graal*/bin
 
 #Install Native Image
-gu install native-image
+$GRAALVM_BIN/gu install native-image
 
 # Run tests to determine that the software installed as expected
-if [[ $(java --version) != *"GraalVM"* ]]; then
+if [[ $($GRAALVM_BIN/java --version) != *"GraalVM"* ]]; then
     echo "GraalVM was not installed"
     exit 1
 fi
 
-if ! command -v native-image; then
+if ! command -v $GRAALVM_BIN/native-image; then
     echo "Native Image was not installed"
     exit 1
 fi
