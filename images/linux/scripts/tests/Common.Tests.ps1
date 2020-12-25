@@ -1,8 +1,31 @@
-Describe "PipxPackages" {
-    $pipxToolset = Get-ToolsetValue "pipx"
-    $testCases = $pipxToolset | ForEach-Object { @{package = $_.package; cmd = $_.cmd} }
-    It "<package>" -TestCases $testCases {
-        "$cmd  --version" | Should -ReturnZeroExitCode
+Describe "PHP" {
+
+    [array]$testCases = (Get-ToolsetContent).php.versions | ForEach-Object { @{phpVersion = $_} }
+
+    It "php <phpVersion>" -TestCases $testCases {
+        param (
+            [string] $phpVersion
+        )
+
+        "php$phpVersion --version" | Should -ReturnZeroExitCode
+        "php-config$phpVersion --version" | Should -ReturnZeroExitCode
+        "phpize$phpVersion --version" | Should -ReturnZeroExitCode
+    }
+
+    It "PHPUnit" {
+        "phpunit --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Composer" {
+        "composer --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Pear" {
+        "pear" | Should -ReturnZeroExitCode
+    }
+
+    It "Pecl" {
+        "pecl" | Should -ReturnZeroExitCode
     }
 }
 
@@ -13,5 +36,13 @@ Describe "Swift" {
 
     It "swiftc" {
         "swiftc --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "PipxPackages" {
+    $pipxToolset = Get-ToolsetValue "pipx"
+    $testCases = $pipxToolset | ForEach-Object { @{package = $_.package; cmd = $_.cmd} }
+    It "<package>" -TestCases $testCases {
+        "$cmd  --version" | Should -ReturnZeroExitCode
     }
 }
