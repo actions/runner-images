@@ -27,7 +27,7 @@ The availability of images for GitHub Actions and Azure DevOps is different. See
 - [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources)  
 - [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#software)  
 
-***What image version is used in my build?*** Usually, image deployment takes 3-4 days and documentation in `main` branch is updated only when deployment is finished. To find out which image version and what software versions are used in specific build, see logs of `Set up job` (GitHub Actions) or `Initialize job` (Azure DevOps) steps.
+***What image version is used in my build?*** Usually, image deployment takes 3-4 days, and documentation in the `main` branch is only updated when deployment is finished. To find out which image version and what software versions are used in a specific build, see `Set up job` (GitHub Actions) or `Initialize job` (Azure DevOps) step log.
 
 ***Looking for other Linux distributions?*** We do not plan to offer other Linux distributions. We recommend using Docker if you'd like to build using other distributions with the hosted virtual environments. Alternatively, you can leverage [self-hosted runners] and fully customize your environment to your needs.
 
