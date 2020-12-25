@@ -158,10 +158,6 @@ Describe "Selenium" {
     It "Selenium Server 'selenium-server-standalone.jar' is installed" {
         "/usr/share/java/selenium-server-standalone.jar" | Should -Exist
     }
-
-    It "SELENIUM_JAR_PATH environment variable exists" {
-        Get-EnvironmentVariable "SELENIUM_JAR_PATH" | Should -BeExactly "/usr/share/java/selenium-server-standalone.jar"
-    }
 }
 
 Describe "SVN" {
