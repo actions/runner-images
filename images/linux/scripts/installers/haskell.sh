@@ -37,4 +37,4 @@ curl -sSL https://get.haskellstack.org/ | sh
 ln -s "/opt/ghc/$defaultGHCVersion/bin/ghc" "/usr/bin/ghc"
 ln -s "/opt/cabal/$cabalVersion/bin/cabal" "/usr/bin/cabal"
 
-invoke-tests.sh "Common" "Haskell"
+invoke_tests "Haskell"
