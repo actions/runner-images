@@ -4,8 +4,6 @@
 ##  Desc:  Install toolset
 ################################################################################
 
-Import-Module "$env:HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
-
 Function Install-Asset {
     param(
         [Parameter(Mandatory = $true)]
@@ -58,5 +56,3 @@ foreach ($tool in $tools) {
 chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python
 chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node
 chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/go
-
-Invoke-PesterTests -TestFile "Toolset" -TestName "Toolset"
