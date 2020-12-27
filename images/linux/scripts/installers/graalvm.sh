@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+source $HELPER_SCRIPTS/install.sh
+
 #Install GraalVM
 tmp_graalvm=/tmp/graalvm
 export JAVA_HOME_GRAALVM_11=/usr/local/graalvm/graalvm-ce-java11*
