@@ -93,7 +93,8 @@
             "cmake;3.10.2.4988404",
             "patcher;v4",
             "ndk-bundle",
-            "platform-tools"
+            "platform-tools",
+            "cmdline-tools;latest"
         ]
     },
     "powershellModules": [
