@@ -38,7 +38,7 @@ Describe "Toolset" {
                 $expectedVersionPath = Join-Path $env:AGENT_TOOLSDIRECTORY $toolName $version
 
                 It "$version version folder exists" -TestCases @{ ExpectedVersionPath = $expectedVersionPath} {
-                    $ExpectedVersionPath | Should -Exist        
+                    $ExpectedVersionPath | Should -Exist
                 }
 
                 $toolExecs = $toolsExecutables[$toolName]
@@ -52,16 +52,9 @@ Describe "Toolset" {
                         $executablePath = Join-Path $foundVersionPath $executable   
     
                         It "Validate $executable" -TestCases @{ExecutablePath = $executablePath} {
-                            $ExecutablePath | Should -Exist        
+                            $ExecutablePath | Should -Exist
                         }
                     }
-                }
-
-                $foundVersionName = $foundVersion.name
-                if ($tool.name -eq 'PyPy')
-                {
-                    $pypyVersion = & "$foundVersionPath/bin/python" -c "import sys;print(sys.version.split('\n')[1])"
-                    $foundVersionName = "{0} {1}" -f $foundVersionName, $pypyVersion
                 }
             }
         }
