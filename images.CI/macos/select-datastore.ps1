@@ -60,10 +60,10 @@ function Select-DataStore {
     $allDatastores = Get-Datastore -Name $templateDatastore | Where-Object { $_.State -eq "Available" }
     $buildDatastore = $allDatastores `
     | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } `
-    | Group-Object {
+    | Where-Object {
         $vmOnDatastore = @((Get-ChildItem -Path $_.DatastoreBrowserPath).Name -notmatch "^\.").Count
-        $vmOnDatastore } `
-    | Where-Object { $_.Name -lt $vmCount } `
+        $vmOnDatastore -lt $vmCount } `
+    | Group-Object -Property { $vmOnDatastore } `
     | Select-Object -First 1 -ExpandProperty Group `
     | Get-Random `
     | Select-Object -ExpandProperty Name
