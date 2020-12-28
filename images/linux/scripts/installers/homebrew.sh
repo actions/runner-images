@@ -7,6 +7,7 @@
 
 # Source the helpers
 source $HELPER_SCRIPTS/etc-environment.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install the Homebrew on Linux
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -23,7 +24,4 @@ prependEtcEnvironmentPath "$brew_path"
 echo "Validate the installation reloading /etc/environment"
 reloadEtcEnvironment
 
-if ! command -v brew; then
-    echo "brew was not installed"
-    exit 1
-fi
+invoke_tests "Tools" "Homebrew"
