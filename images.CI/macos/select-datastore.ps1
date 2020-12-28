@@ -54,7 +54,7 @@ function Select-DataStore {
 
     # 1. Name starts with ds-local-Datastore
     # 2. FreespaceGB > 400 Gb
-    # 3. Choose a datastore with the minimal VM count < then 2
+    # 3. Choose a datastore with the minimal VM count < 2
 
     Write-Host "Start Datastore selection process..."
     $allDatastores = Get-Datastore -Name $templateDatastore | Where-Object { $_.State -eq "Available" }
