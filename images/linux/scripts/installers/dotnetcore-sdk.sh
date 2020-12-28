@@ -19,7 +19,6 @@ mksamples()
     sample=$2
     mkdir "$sdk"
     cd "$sdk" || exit
-    dotnet help
     dotnet new globaljson --sdk-version "$sdk"
     dotnet new "$sample"
     dotnet restore
@@ -74,7 +73,9 @@ parallel --jobs 0 --halt soon,fail=1 \
     'url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/{}/dotnet-sdk-{}-linux-x64.tar.gz"; \
     download_with_retries $url' ::: "${sortedSdks[@]}"
 
-find . -name "*.tar.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
+parallel --jobs 0 --halt soon,fail=1 \
+    'name="./dotnet-sdk-{}-linux-x64.tar.gz"; \
+    extract_dotnet_sdk $name' ::: "${sortedSdks[@]}"
 
 # Smoke test each SDK
 for sdk in $sortedSdks; do
