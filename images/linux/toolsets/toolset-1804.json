@@ -130,6 +130,7 @@
             "libcurl3",
             "libgbm-dev",
             "libgconf-2-4",
+            "libgsl-dev",
             "libgtk-3-0",
             "libsecret-1-dev",
             "libsqlite3-dev",
