@@ -16,26 +16,19 @@ Function Get-PackerTemplatePath {
         [ImageType] $ImageType
     )
 
-    switch ($ImageType) {
-        ([ImageType]::Windows2016) {
-            $relativeTemplatePath = Join-Path "win" "windows2016.json"
-        }
-        ([ImageType]::Windows2019) {
-            $relativeTemplatePath = Join-Path "win" "windows2019.json"
-        }
-        ([ImageType]::Ubuntu1604) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu1604.json"
-        }
-        ([ImageType]::Ubuntu1804) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu1804.json"
-        }
-        ([ImageType]::Ubuntu2004) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
-        }
-        default { throw "Unknown type of image" }
+    $templateNames = @{
+        [ImageType]::Windows2016 = "windows2016.json";
+        [ImageType]::Windows2019 = "windows2019.json";
+        [ImageType]::Ubuntu1604 = "ubuntu1604.json"
+        [ImageType]::Ubuntu1804 = "ubuntu1804.json"
+        [ImageType]::Ubuntu2004 = "ubuntu2004.json"
+    }
+    $platformDirectoryName = if ($ImageType.ToString().StartsWith("ubuntu")) { "linux" } else { "win" }
+    if (-not ($ImageType -and $templateNames.ContainsKey($ImageType))) {
+        throw "Unknown type of image"
     }
 
-    $imageTemplatePath = [IO.Path]::Combine($RepositoryRoot, "images", $relativeTemplatePath)
+    $imageTemplatePath = [IO.Path]::Combine($RepositoryRoot, "images", $platformDirectoryName, "templates", $templateNames[$ImageType])
 
     if (-not (Test-Path $imageTemplatePath)) {
         throw "Template for image '$ImageType' doesn't exist on path '$imageTemplatePath'"
