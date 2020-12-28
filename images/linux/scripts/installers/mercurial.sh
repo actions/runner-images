@@ -4,7 +4,6 @@
 ##  Desc:  Installs Mercurial
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
@@ -18,4 +17,4 @@ fi
 
 apt-get install -y --no-install-recommends mercurial
 
-invoke_tests "Tools" "Mercurial"
+invoke-tests.sh "Tools" "Mercurial"

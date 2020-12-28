@@ -4,7 +4,6 @@
 ##  Desc:  Installs kubectl, helm, kustomize
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install KIND
 URL=$(curl -s https://api.github.com/repos/kubernetes-sigs/kind/releases/latest | jq -r '.assets[].browser_download_url | select(contains("kind-linux-amd64"))')
@@ -32,4 +31,4 @@ download_url="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master
 curl -s "$download_url" | bash
 mv kustomize /usr/local/bin
 
-invoke_tests "Tools" "Kubernetes tools"
+invoke-tests.sh "Tools" "Kubernetes tools"
