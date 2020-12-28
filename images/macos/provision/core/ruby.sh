@@ -3,7 +3,7 @@
 source ~/utils/utils.sh
 
 echo Installing Ruby...
-brew_smart_install "ruby"
+brew_smart_install "ruby@2.7.2"
 
 #if High Sierra - skip installation from toolset
 if is_HighSierra; then
