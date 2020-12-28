@@ -17,4 +17,4 @@ fi
 
 apt-get install -y --no-install-recommends mercurial
 
-invoke-tests.sh "Tools" "Mercurial"
+invoke_tests "Tools" "Mercurial"

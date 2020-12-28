@@ -8,4 +8,4 @@
 # Install Pollinate
 apt-get install -y --no-install-recommends pollinate
 
-invoke-tests.sh "Tools" "Pollinate"
+invoke_tests "Tools" "Pollinate"

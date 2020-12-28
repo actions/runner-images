@@ -78,4 +78,4 @@ echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager ${components[@]}
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}
 
-invoke-tests.sh "Android"
+invoke_tests.sh "Android"

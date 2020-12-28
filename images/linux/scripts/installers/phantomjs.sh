@@ -13,4 +13,4 @@ tar xvjf $PHANTOM_JS.tar.bz2
 mv $PHANTOM_JS /usr/local/share
 ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
 
-invoke-tests.sh "Tools" "Phantomjs"
+invoke_tests "Tools" "Phantomjs"

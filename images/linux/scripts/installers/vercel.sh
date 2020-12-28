@@ -11,4 +11,4 @@ npm i -g vercel
 echo "Creating the symlink for [now] command to vercel CLI"
 ln -s /usr/local/bin/vercel /usr/local/bin/now
 
-invoke-tests.sh "CLI.Tools" "Vercel CLI"
+invoke_tests "CLI.Tools" "Vercel CLI"

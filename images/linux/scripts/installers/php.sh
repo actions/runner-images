@@ -110,4 +110,4 @@ if isUbuntu20 ; then
   apt-get update
 fi
 
-invoke-tests.sh "Common" "PHP"
+invoke_tests "Common" "PHP"

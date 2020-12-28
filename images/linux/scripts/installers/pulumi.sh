@@ -13,4 +13,4 @@ TARBALL_URL="https://get.pulumi.com/releases/sdk/pulumi-v${VERSION}-linux-x64.ta
 download_with_retries ${TARBALL_URL} "/tmp" pulumi-v${VERSION}.tar.gz
 tar --strip=1 -xvf /tmp/pulumi-v${VERSION}.tar.gz -C /usr/local/bin
 
-invoke-tests.sh "Tools" "Pulumi"
+invoke_tests "Tools" "Pulumi"

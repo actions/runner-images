@@ -35,4 +35,4 @@ for image in $images; do
     docker pull "$image"
 done
 
-invoke-tests.sh "Tools" "Docker"
+invoke_tests "Tools" "Docker"

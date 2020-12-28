@@ -17,4 +17,4 @@ else
 	&& rm cmakeinstall.sh
 fi
 
-invoke-tests.sh "Tools" "Cmake"
+invoke_tests "Tools" "Cmake"

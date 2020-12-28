@@ -9,4 +9,4 @@
 apt-get update -y
 apt-get install -y p7zip p7zip-full p7zip-rar
 
-invoke-tests.sh "Tools" "7-Zip"
+invoke_tests "Tools" "7-Zip"

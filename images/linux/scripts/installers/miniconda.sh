@@ -16,4 +16,4 @@ echo "CONDA=$CONDA" | tee -a /etc/environment
 
 ln -s $CONDA/bin/conda /usr/bin/conda
 
-invoke-tests.sh "Tools" "Conda"
+invoke_tests "Tools" "Conda"

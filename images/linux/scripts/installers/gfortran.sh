@@ -25,4 +25,4 @@ do
     InstallFortran $version
 done
 
-invoke-tests.sh "Tools" "gfortran"
+invoke_tests "Tools" "gfortran"

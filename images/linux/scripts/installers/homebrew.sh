@@ -23,4 +23,4 @@ prependEtcEnvironmentPath "$brew_path"
 echo "Validate the installation reloading /etc/environment"
 reloadEtcEnvironment
 
-invoke-tests.sh "Tools" "Homebrew"
+invoke_tests "Tools" "Homebrew"

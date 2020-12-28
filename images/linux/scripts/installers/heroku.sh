@@ -8,4 +8,4 @@
 # Install Heroku CLI
 curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
-invoke-tests.sh "Tools" "Heroku"
+invoke_tests "Tools" "Heroku"

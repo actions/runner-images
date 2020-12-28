@@ -16,4 +16,4 @@ fi
 # Install latest Ansible
 apt-get install -y --no-install-recommends ansible
 
-invoke-tests.sh "Tools" "Ansible"
+invoke_tests "Tools" "Ansible"

@@ -10,4 +10,4 @@ add-apt-repository https://dl.hhvm.com/ubuntu
 apt-get update
 apt-get -qq install -y hhvm
 
-invoke-tests.sh "Tools" "HHVM"
+invoke_tests "Tools" "HHVM"

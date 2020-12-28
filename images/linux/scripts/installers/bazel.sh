@@ -14,4 +14,4 @@ apt-get install -y bazel
 # Install bazelisk
 npm install -g @bazel/bazelisk
 
-invoke-tests.sh "Tools" "Bazel"
+invoke_tests "Tools" "Bazel"

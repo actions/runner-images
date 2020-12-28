@@ -8,4 +8,4 @@
 # Install haveged
 apt-get -y install haveged
 
-invoke-tests.sh "Tools" "Haveged"
+invoke_tests "Tools" "Haveged"

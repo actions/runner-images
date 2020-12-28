@@ -11,4 +11,4 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyr
 sudo apt-get update -y
 sudo apt-get install -y google-cloud-sdk
 
-invoke-tests.sh "CLI.Tools" "Google Cloud SDK"
+invoke_tests "CLI.Tools" "Google Cloud SDK"

@@ -10,4 +10,4 @@ URL=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -
 curl -L $URL -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-invoke-tests.sh "Tools" "Docker-compose"
+invoke_tests "Tools" "Docker-compose"

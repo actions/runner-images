@@ -12,4 +12,4 @@ wget $url
 apt install ./gh_*_linux_amd64.deb
 rm gh_*_linux_amd64.deb
 
-invoke-tests.sh "CLI.Tools" "GitHub CLI"
+invoke_tests "CLI.Tools" "GitHub CLI"

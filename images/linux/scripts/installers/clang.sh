@@ -44,4 +44,4 @@ done
 SetDefaultClang $default_clang_version
 rm llvm.sh
 
-invoke-tests.sh "Tools" "clang"
+invoke_tests "Tools" "clang"

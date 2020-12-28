@@ -25,4 +25,4 @@ rm "julia-$juliaVersion-linux-x86_64.tar.gz"
 
 ln -s "$juliaInstallationPath/bin/julia" /usr/bin/julia
 
-invoke-tests.sh "Tools" "Julia"
+invoke_tests "Tools" "Julia"

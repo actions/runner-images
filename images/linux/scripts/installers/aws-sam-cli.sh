@@ -23,4 +23,4 @@ $Python3BinDir/python3 -m pip install setuptools
 $Python3BinDir/python3 setup.py install
 ln -sf ${Python3BinDir}/sam /usr/local/bin/sam
 
-invoke-tests.sh "CLI.Tools" "AWS SAM CLI"
+invoke_tests "CLI.Tools" "AWS SAM CLI"

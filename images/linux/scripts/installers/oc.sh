@@ -12,4 +12,4 @@ PACKAGE_TAR_NAME="oc.tar.gz"
 download_with_retries $DOWNLOAD_URL "/tmp" $PACKAGE_TAR_NAME
 tar xvzf "/tmp/$PACKAGE_TAR_NAME" -C "/usr/local/bin"
 
-invoke-tests.sh "CLI.Tools" "OC CLI"
+invoke_tests "CLI.Tools" "OC CLI"

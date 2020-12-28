@@ -8,4 +8,4 @@
 # Install the Netlify CLI
 npm i -g netlify-cli
 
-invoke-tests.sh "Tools" "Netlify"
+invoke_tests "Tools" "Netlify"
