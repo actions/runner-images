@@ -9,7 +9,7 @@ export GRAALVM_11_BIN=/usr/local/graalvm/graalvm-ce-java11*/bin
 
 mkdir -p $tmp_graalvm
 url=$(curl -s https://api.github.com/repos/graalvm/graalvm-ce-builds/releases/latest | jq -r '.assets[].browser_download_url | select(contains("graalvm-ce-java11-linux-amd64"))')
-download_with_retries "$url" "$tmp_graalvm/graalvm-archive.tar.gz"
+download_with_retries "$url" "$tmp_graalvm" "graalvm-archive.tar.gz"
 mkdir /usr/local/graalvm
 tar -xzf "$tmp_graalvm/graalvm-archive.tar.gz" -C /usr/local/graalvm
 rm $tmp_graalvm
