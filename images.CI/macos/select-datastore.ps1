@@ -58,10 +58,15 @@ function Select-DataStore {
 
     Write-Host "Start Datastore selection process..."
     $allDatastores = Get-Datastore -Name $templateDatastore | Where-Object { $_.State -eq "Available" }
-    $buildDatastore = $allDatastores | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } | Where-Object {
+    $buildDatastore = $allDatastores `
+    | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } `
+    | Group-Object {
         $vmOnDatastore = @((Get-ChildItem -Path $_.DatastoreBrowserPath).Name -notmatch "^\.").Count
-        $vmOnDatastore -lt $vmCount
-    } | Group-Object -Property { $vmOnDatastore } | Select-Object -First 1 -ExpandProperty Group | Get-Random |  Select-Object -ExpandProperty Name
+        $vmOnDatastore } `
+    | Where-Object { $_.Name -lt $vmCount } `
+    | Select-Object -First 1 -ExpandProperty Group `
+    | Get-Random `
+    | Select-Object -ExpandProperty Name
 
     $tag = Get-Tag -Category $TagCategory -Name $VMName -ErrorAction Ignore
     if (-not $tag)
