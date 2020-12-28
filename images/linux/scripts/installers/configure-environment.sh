@@ -27,5 +27,5 @@ chmod -R 777 $AGENT_TOOLSDIRECTORY
 echo 'vm.max_map_count=262144' | tee -a /etc/sysctl.conf
 
 # Create symlink for tests running
-chmod -x $HELPER_SCRIPTS/invoke-tests.sh
+chmod 777 $HELPER_SCRIPTS/invoke-tests.sh
 ln -s $HELPER_SCRIPTS/invoke-tests.sh /usr/local/bin/invoke_tests
