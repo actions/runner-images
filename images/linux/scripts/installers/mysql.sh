@@ -4,6 +4,8 @@
 ##  Desc:  Installs MySQL Client
 ################################################################################
 
+source $HELPER_SCRIPTS/os.sh
+
 export ACCEPT_EULA=Y
 
 if isUbuntu16 || isUbuntu18 ; then
