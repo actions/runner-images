@@ -22,7 +22,7 @@ $xcodeVersions | ForEach-Object {
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
 }
 
-$xcodeVersions | ForEach-Object -ThrottleLimit 4 -Parallel {
+$xcodeVersions | ForEach-Object -ThrottleLimit 6 -Parallel {
     Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
     Import-Module "~/image-generation/helpers/Xcode.Installer.psm1"
     Confirm-XcodeIntegrity -Version $_.link
@@ -34,9 +34,7 @@ if ($os.IsLessThanCatalina) {
     $latestXcodeVersion = $xcodeVersions | Select-Object -Last 1 -ExpandProperty link
     Install-XcodeAdditionalPackages -Version $latestXcodeVersion
 }
-$xcodeVersions | ForEach-Object -ThrottleLimit 3 -Parallel { 
-    Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
-    Import-Module "~/image-generation/helpers/Xcode.Installer.psm1"
+$xcodeVersions | ForEach-Object { 
     Invoke-XcodeRunFirstLaunch -Version $_.link 
 }
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
