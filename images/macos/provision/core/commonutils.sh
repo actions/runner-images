@@ -5,7 +5,7 @@ source ~/utils/invoke-tests.sh
 common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
     echo "Installing $package..."
-    brew install $package
+    brew_smart_install "$package"
 done
 
 cask_packages=$(get_toolset_value '.brew.cask_packages[]')

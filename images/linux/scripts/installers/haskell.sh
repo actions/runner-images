@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install Herbert V. Riedel's PPA for managing multiple version of ghc on ubuntu.
 # https://launchpad.net/~hvr/+archive/ubuntu/ghc
@@ -33,27 +34,8 @@ apt-get install -y cabal-install-$cabalVersion
 # Install the latest stable release of haskell stack
 curl -sSL https://get.haskellstack.org/ | sh
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-# Check all ghc versions
-for version in ${ghcInstalledVersions[@]}; do
-    if ! command -v /opt/ghc/$version/bin/ghc; then
-        echo "ghc $version was not installed"
-        exit 1
-    fi
-done
-
-# Check cabal
-if ! command -v /opt/cabal/$cabalVersion/bin/cabal; then
-    echo "cabal $cabalVersion was not installed"
-    exit 1
-fi
-
-# Check stack
-if ! command -v stack; then
-    exit 1
-fi
-
 # Create symlink for ghc and cabal in /usr/bin
 ln -s "/opt/ghc/$defaultGHCVersion/bin/ghc" "/usr/bin/ghc"
 ln -s "/opt/cabal/$cabalVersion/bin/cabal" "/usr/bin/cabal"
+
+invoke_tests "Haskell"

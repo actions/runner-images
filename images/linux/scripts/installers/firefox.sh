@@ -4,14 +4,10 @@
 ##  Desc:  Installs Firefox
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
+
 # Install Firefox
 apt-get install -y firefox
-
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v firefox; then
-    exit 1
-fi
 
 # add to gloabl system preferences for firefox locale en_US, because other browsers have en_US local.
 # Default firefox local is en_GB
@@ -34,9 +30,4 @@ chmod +x $GECKODRIVER_BIN
 ln -s "$GECKODRIVER_BIN" /usr/bin/
 echo "GECKOWEBDRIVER=$GECKODRIVER_DIR" | tee -a /etc/environment
 
-# Run tests to determine that the geckodriver installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v geckodriver; then
-    echo "geckodriver was not installed"
-    exit 1
-fi
+invoke_tests "Browsers" "Firefox"

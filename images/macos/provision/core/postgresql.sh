@@ -1,7 +1,8 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/utils.sh
 
 #Install latest version of postgresql
-brew install postgres
+brew_smart_install "postgres"
 
 #Service postgresql should be started before use.
 brew services start postgresql
