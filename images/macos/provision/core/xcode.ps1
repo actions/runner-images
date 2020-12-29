@@ -22,7 +22,7 @@ $xcodeVersions | ForEach-Object {
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
 }
 
-$xcodeVersions | ForEach-Object -ThrottleLimit 6 -Parallel {
+$xcodeVersions | ForEach-Object -ThrottleLimit 8 -Parallel {
     Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
     Import-Module "~/image-generation/helpers/Xcode.Installer.psm1"
     Confirm-XcodeIntegrity -Version $_.link
