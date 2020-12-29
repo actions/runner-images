@@ -12,7 +12,6 @@ url=$(curl -s https://api.github.com/repos/graalvm/graalvm-ce-builds/releases/la
 download_with_retries "$url" "$tmp_graalvm" "graalvm-archive.tar.gz"
 mkdir /usr/local/graalvm
 tar -xzf "$tmp_graalvm/graalvm-archive.tar.gz" -C /usr/local/graalvm
-rm $tmp_graalvm
 
 setEtcEnvironmentVariable "GRAALVM_11_BIN" $GRAALVM_11_BIN
 setEtcEnvironmentVariable "JAVA_HOME_GRAALVM_11" $JAVA_HOME_GRAALVM_11
