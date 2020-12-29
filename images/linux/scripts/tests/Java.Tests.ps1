@@ -20,8 +20,6 @@ Describe "Java" {
         )
     }
 
-    Update-Environment
-
     It "Java <DefaultJavaVersion> is default" -TestCases @{ defaultJavaVersion = $defaultJavaVersion } {
         $actualJavaPath = Get-EnvironmentVariable "JAVA_HOME"
         $expectedJavaPath = Get-EnvironmentVariable "JAVA_HOME_${defaultJavaVersion}_X64"

@@ -59,11 +59,3 @@ function Get-AndroidPackages {
 function Get-EnvironmentVariable($variable) {
     return [System.Environment]::GetEnvironmentVariable($variable)
 }
-
-function Update-Environment {
-    $variables = Get-Content "/etc/environment" | Select-String -NotMatch "^#"
-    $variables | ForEach-Object { 
-        $variable = $_[0].ToString().split("=", 2)
-        [System.Environment]::SetEnvironmentVariable($variable[0], $variable[1], 'Process')
-    }
-}
