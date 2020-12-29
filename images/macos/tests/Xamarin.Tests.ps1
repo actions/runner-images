@@ -7,8 +7,6 @@ $XAMARIN_IOS_VERSIONS = Get-ToolsetValue "xamarin.ios-versions"
 $XAMARIN_MAC_VERSIONS = Get-ToolsetValue "xamarin.mac-versions"
 $XAMARIN_ANDROID_VERSIONS = Get-ToolsetValue "xamarin.android-versions"
 
-$os = Get-OSVersion
-
 BeforeAll {
     $androidNdkToolchains = @("mips64el-linux-android-4.9", "mipsel-linux-android-4.9")
     $ANDROID_SDK_DIR = Join-Path $env:HOME "Library" "Android" "sdk"
@@ -186,27 +184,9 @@ Describe "Xamarin.Android" {
                 Join-Path $xamarinLibPath "xbuild-frameworks" | Should -Exist
             }   
         }
-    }
-
-        Context "NDK toolchains" -Skip:($os.IsBigSur) {
-            $testCases = $androidNdkToolchains | ForEach-Object { @{AndroidNdkToolchain = $_} }
-
-            It "<AndroidNdkToolchain>" -TestCases $testCases {
-                param ([string] $AndroidNdkToolchain)
-
-                $toolchainPath = Join-Path $ANDROID_SDK_DIR "ndk-bundle" "toolchains" $AndroidNdkToolchain
-                $toolchainPath | Should -Exist
-            }
-        }
-
-        Context "Legacy NDK versions" -Skip:($os.IsBigSur) {
-            It "Android NDK version r18b is installed" {
-                $ndk18BundlePath = Join-Path $ANDROID_SDK_DIR "ndk" "18.1.5063045" "source.properties"
-                $rawContent = Get-Content $ndk18BundlePath -Raw
-                $rawContent | Should -BeLikeExactly "*Revision = 18.*"
-        }
     }       
 }
+
 
 Describe "Xamarin Bundles" {
     BeforeAll {
