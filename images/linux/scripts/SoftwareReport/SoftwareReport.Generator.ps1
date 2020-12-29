@@ -157,9 +157,11 @@ $markdown += New-MDHeader "Java" -Level 3
 $markdown += Get-JavaVersions | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "GraalVM" -Level 3
-$markdown += Build-GraalVMTable | New-MDTable
-$markdown += New-MDNewLine
+if (Test-IsUbuntu20) {
+    $markdown += New-MDHeader "GraalVM" -Level 3
+    $markdown += Build-GraalVMTable | New-MDTable
+    $markdown += New-MDNewLine
+}
 
 $markdown += New-MDHeader "PHP" -Level 3
 $markdown += Build-PHPTable | New-MDTable

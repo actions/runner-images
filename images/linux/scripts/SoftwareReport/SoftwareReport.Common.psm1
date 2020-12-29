@@ -292,10 +292,10 @@ function Get-GraalVMVersion {
 
 function Build-GraalVMTable {
     $version = Get-GraalVMVersion
-    $envVariebles = "`GRAALVM_11_BIN=$env:GRAALVM_11_BIN` <br> `JAVA_HOME_GRAALVM_11=$env:JAVA_HOME_GRAALVM_11` "
+    $envVariables = "`GRAALVM_11_BIN=$env:GRAALVM_11_BIN` <br> `JAVA_HOME_GRAALVM_11=$env:JAVA_HOME_GRAALVM_11` "
 
     return [PSCustomObject] @{
         "Version" = $version
-        "Environment variables" = $envVariebles
+        "Environment variables" = $envVariables
     }
 }
