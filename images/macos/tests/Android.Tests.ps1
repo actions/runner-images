@@ -46,7 +46,6 @@ Describe "Android" {
         }
     }
 
-
     Context "Packages" {
         $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
 
