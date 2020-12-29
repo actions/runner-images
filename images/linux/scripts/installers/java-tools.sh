@@ -6,6 +6,7 @@
 
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/invoke-tests.sh
+source $HELPER_SCRIPTS/etc-environment.sh
 
 # Install GPG Key for Adopt Open JDK. See https://adoptopenjdk.net/installation.html
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
