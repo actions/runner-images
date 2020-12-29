@@ -4,6 +4,7 @@
 ##  Desc:  Install tools via pipx
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 export PATH="$PATH:/opt/pipx_bin"
 
@@ -21,10 +22,6 @@ for package in $pipx_packages; do
         pipx install $package
     fi
 
-    # Run tests to determine that the software installed as expected
-    cmd=$(jq -r ".pipx[] | select(.package == \"$package\") .cmd" $toolset)
-    if ! command -v $cmd; then
-        echo "$package was not installed"
-        exit 1
-    fi
 done
+
+invoke_tests "Common" "PipxPackages"

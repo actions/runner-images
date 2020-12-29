@@ -163,6 +163,70 @@ Describe "gfortran" {
     }
 }
 
+Describe "Mono" {
+    It "mono" {
+        "mono --version" | Should -ReturnZeroExitCode
+    }
+
+    It "nuget" {
+        "nuget" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "MSSQLCommandLineTools" {
+    It "sqlcmd" {
+        "sqlcmd -?" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "R" {
+    It "r" {
+        "R --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Sbt" {
+    It "sbt" {
+        "sbt --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Sphinx" {
+    It "sphinx" {
+        "searchd -h" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Selenium" {
+    It "Selenium Server 'selenium-server-standalone.jar' is installed" {
+        "/usr/share/java/selenium-server-standalone.jar" | Should -Exist
+    }
+}
+
+Describe "SVN" {
+    It "svn" {
+        "svn --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Swig" {
+    It "swig" {
+        "swig -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Terraform" {
+    It "terraform" {
+        "terraform --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Vcpkg" {
+    It "vcpkg" {
+        "vcpkg version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Git" {
     It "git" {
         "git --version" | Should -ReturnZeroExitCode
