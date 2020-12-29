@@ -4,10 +4,10 @@ source ~/utils/utils.sh
 source ~/utils/invoke-tests.sh
 
 echo Installing Azure CLI...
-brew install azure-cli
+brew_smart_install "azure-cli"
 
 echo Installing PowerShell...
-brew cask install powershell
+brew install --cask powershell
 
 # A dummy call of `az` to initialize ~/.azure directory before the modules are installed
 az -v

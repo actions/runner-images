@@ -3,7 +3,7 @@ source ~/utils/utils.sh
 source ~/utils/invoke-tests.sh
 
 echo "Installing Microsoft Edge..."
-brew cask install microsoft-edge
+brew install --cask microsoft-edge
 
 EDGE_INSTALLATION_PATH="/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
 EDGE_VERSION=$("$EDGE_INSTALLATION_PATH" --version | cut -d' ' -f 3)

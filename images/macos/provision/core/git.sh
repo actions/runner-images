@@ -1,17 +1,21 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/invoke-tests.sh
+
+source ~/utils/utils.sh
 
 echo Installing Git...
-brew install git
+brew_smart_install "git"
 
 echo Installing Git LFS
-brew install git-lfs
+brew_smart_install "git-lfs"
+
 # Update global git config
 git lfs install
 # Update system git config
 sudo git lfs install --system
 
 echo Installing Hub
-brew install hub
+brew_smart_install "hub"
 
 echo Disable all the Git help messages...
 git config --global advice.pushUpdateRejected false
@@ -28,3 +32,5 @@ git config --global advice.implicitIdentity false
 git config --global advice.detachedHead false
 git config --global advice.amWorkDir false
 git config --global advice.rmHints false
+
+invoke_tests "Common" "Git"

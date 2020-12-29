@@ -1,5 +1,5 @@
 #!/bin/bash -e -o pipefail
-
+source ~/utils/invoke-tests.sh
 source ~/utils/utils.sh
 
 node_modules=(
@@ -27,7 +27,7 @@ if is_Less_Catalina; then
   npm install -g appcenter-cli@^1.0.0
 else
   # Install Node.JS 12 for macOS >= 10.15
-  brew install node@14
+  brew_smart_install "node@14"
   brew link node@14 --force
 
   for module in ${node_modules[@]}; do
@@ -43,3 +43,5 @@ if is_Less_BigSur; then
   echo "Install node-gyp"
   npm install -g node-gyp
 fi
+
+invoke_tests "Node" "Node.js"

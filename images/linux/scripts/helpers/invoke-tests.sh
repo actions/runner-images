@@ -9,5 +9,5 @@ invoke_tests() {
     local TEST_NAME="$2"
 
     pwsh -Command "Import-Module '$HELPER_SCRIPTS/Tests.Helpers.psm1' -DisableNameChecking
-        Invoke-PesterTests -TestFile $TEST_FILE -TestName $TEST_NAME"
+        Invoke-PesterTests -TestFile \"$TEST_FILE\" -TestName \"$TEST_NAME\""
 }

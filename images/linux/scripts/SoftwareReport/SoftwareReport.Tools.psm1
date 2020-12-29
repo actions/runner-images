@@ -175,6 +175,11 @@ function Get-PackerVersion {
     return "Packer $(packer --version)"
 }
 
+function Get-PassVersion {
+    $passVersion = (pass version | Select-String "^=\s+v").Line.Replace('v','') | Take-OutputPart -Part 1
+    return "pass $passVersion"
+}
+
 function Get-PhantomJSVersion {
     return "PhantomJS $(phantomjs --version)"
 }

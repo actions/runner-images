@@ -1,6 +1,7 @@
 #!/bin/bash -e -o pipefail
 
 source ~/utils/utils.sh
+source ~/utils/invoke-tests.sh
 
 installAzulJDK() {
     local URL=$1
@@ -37,7 +38,7 @@ do
     if [[ $JAVA_VERSION == "7" ]]; then
         installAzulJDK "https://cdn.azul.com/zulu/bin/zulu7.42.0.51-ca-jdk7.0.285-macosx_x64.dmg"
     else
-        brew cask install "adoptopenjdk${JAVA_VERSION}"
+        brew install --cask "adoptopenjdk${JAVA_VERSION}"
     fi
     createEnvironmentVariable "JAVA_HOME_${JAVA_VERSION}_X64" $JAVA_VERSION
 done
@@ -45,7 +46,9 @@ done
 createEnvironmentVariable "JAVA_HOME" $JAVA_DEFAULT
 
 echo Installing Maven...
-brew install maven
+brew_smart_install "maven"
 
 echo Installing Gradle ...
-brew install gradle
+brew_smart_install "gradle"
+
+invoke_tests "Java"

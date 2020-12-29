@@ -5,6 +5,8 @@
 ##         Requires Python >=3.6, must be run as non-root user after toolset installation
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
+
 # Download latest aws sam cli sources
 TarballUrl=$(curl -s https://api.github.com/repos/aws/aws-sam-cli/releases/latest | jq -r '.tarball_url')
 TarballPath="/tmp/aws-sam-cli.tar.gz"
@@ -22,9 +24,4 @@ $Python3BinDir/python3 -m pip install setuptools
 $Python3BinDir/python3 setup.py install
 ln -sf ${Python3BinDir}/sam /usr/local/bin/sam
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! sam --version; then
-    echo "AWS SAM CLI was not installed"
-    exit 1
-fi
+invoke_tests "CLI.Tools" "AWS SAM CLI"
