@@ -344,13 +344,3 @@ Describe "Haveged" {
         "systemctl status haveged  | grep 'active (running)'" | Should -ReturnZeroExitCode
     }
 }
-
-Describe "CodeQL" {
-    It "CodeQL" {
-        $codeql_bundle_name = "$(curl -sSL https://raw.githubusercontent.com/github/codeql-action/main/src/defaults.json | jq -r .bundleVersion)"
-        $codeql_bundle_version = "0.0.0-" + ($codeql_bundle_name -split "-" | Select-Object -Last 1)
-        $binaryCheck="$env:AGENT_TOOLSDIRECTORY/CodeQL/$codeql_bundle_version/x64/codeql/codeql version"
-        $version = (Invoke-Expression $binaryCheck) -match "CodeQL command-line toolchain release" 
-        $version | Should -BeLike "*CodeQL command-line toolchain*"
-    }
-}
