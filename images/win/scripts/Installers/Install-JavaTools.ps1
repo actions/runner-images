@@ -77,8 +77,8 @@ function Install-JavaFromAdoptOpenJDK {
     Extract-7Zip -Path $archivePath -DestinationPath $DestinationPath
 }
 
-$jdkVersions = @(7, 8, 11, 13)
-$defaultVersion = 8
+$jdkVersions = (Get-ToolsetContent).java.versions
+$defaultVersion = (Get-ToolsetContent).java.default
 $javaRootPath = "C:\Program Files\Java\"
 
 foreach ($jdkVersion in $jdkVersions) {
