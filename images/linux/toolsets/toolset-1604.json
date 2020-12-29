@@ -74,7 +74,7 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "0.0.*"
+                "*"
             ]
         }
     ],
