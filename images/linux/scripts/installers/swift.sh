@@ -4,7 +4,6 @@
 ##  Desc:  Installs Swift
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install
 image_label="$(lsb_release -rs)"

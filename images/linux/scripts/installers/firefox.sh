@@ -4,8 +4,6 @@
 ##  Desc:  Installs Firefox
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
-
 # Install Firefox
 apt-get install -y firefox
 

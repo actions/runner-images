@@ -4,7 +4,6 @@
 ##  Desc:  Installs selenium server
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Determine latest selenium standalone server version
 SELENIUM_LATEST_VERSION_URL=https://api.github.com/repos/SeleniumHQ/selenium/releases/latest
