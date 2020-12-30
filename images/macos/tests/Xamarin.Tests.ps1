@@ -1,6 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
-Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1"
 
 $MONO_VERSIONS = Get-ToolsetValue "xamarin.mono-versions"
 $XAMARIN_IOS_VERSIONS = Get-ToolsetValue "xamarin.ios-versions"
@@ -8,9 +7,6 @@ $XAMARIN_MAC_VERSIONS = Get-ToolsetValue "xamarin.mac-versions"
 $XAMARIN_ANDROID_VERSIONS = Get-ToolsetValue "xamarin.android-versions"
 
 BeforeAll {
-    $androidNdkToolchains = @("mips64el-linux-android-4.9", "mipsel-linux-android-4.9")
-    $ANDROID_SDK_DIR = Join-Path $env:HOME "Library" "Android" "sdk"
-
     function Get-ShortSymlink {
         param (
             [string] $Version
@@ -186,7 +182,6 @@ Describe "Xamarin.Android" {
         }
     }       
 }
-
 
 Describe "Xamarin Bundles" {
     BeforeAll {
