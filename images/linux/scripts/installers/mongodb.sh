@@ -6,7 +6,6 @@
 
 # Source the helpers
 source $HELPER_SCRIPTS/os.sh
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 #  Install Mongo DB
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
