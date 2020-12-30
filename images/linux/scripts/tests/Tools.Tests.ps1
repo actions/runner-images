@@ -335,7 +335,7 @@ Describe "Haveged" {
     }
 }
 
-Describe "Containers" {
+Describe "Containers" -Skip:(Test-IsUbuntu16) {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {
