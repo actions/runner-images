@@ -4,7 +4,6 @@
 ##  Desc:  Installs google-chrome  and chromedriver
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 LSB_RELEASE=$(lsb_release -rs)
 

@@ -55,3 +55,7 @@ function Get-AndroidPackages {
     $androidPackages = & $androidSDKManagerPath --list --verbose
     return $androidPackages
 }
+
+function Get-EnvironmentVariable($variable) {
+    return [System.Environment]::GetEnvironmentVariable($variable)
+}
