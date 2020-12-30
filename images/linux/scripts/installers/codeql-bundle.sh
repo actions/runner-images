@@ -23,6 +23,3 @@ touch "$extraction_directory/pinned-version"
 
 # Touch a file to indicate to the toolcache that setting up CodeQL is complete.
 touch "$extraction_directory.complete"
-
-# Test that the tool has been extracted successfully.
-"$AGENT_TOOLSDIRECTORY/CodeQL/$codeql_bundle_version/x64/codeql/codeql" version

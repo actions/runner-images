@@ -57,6 +57,14 @@
                 "2.7.*",
                 "3.0.*"
             ]
+        },
+        {
+            "name": "CodeQL",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": [
+                "*"
+            ]
         }
     ],
     "android": {

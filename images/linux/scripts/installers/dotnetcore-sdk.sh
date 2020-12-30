@@ -94,3 +94,5 @@ setEtcEnvironmentVariable DOTNET_NOLOGO 1
 setEtcEnvironmentVariable DOTNET_MULTILEVEL_LOOKUP 0
 prependEtcEnvironmentPath /home/runner/.dotnet/tools
 echo 'export PATH="$PATH:$HOME/.dotnet/tools"' | tee -a /etc/skel/.bashrc
+
+invoke_tests "DotnetSDK"
