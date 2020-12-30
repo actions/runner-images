@@ -20,4 +20,4 @@ apt-get update
 # Install yarn
 apt-get install -y --no-install-recommends yarn
 
-invoke_tests "Tools" "NodeJS"
+invoke_tests "Tools" "Node.js"

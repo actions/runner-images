@@ -357,7 +357,7 @@ Describe "Containers" {
     }   
 }
 
-Describe "NodeJS" {
+Describe "Node.js" {
     $testCases = @("node", "grunt", "gulp", "webpack", "parcel", "yarn", "newman") | ForEach-Object { @{NodeCommand = $_} }
 
     It "<NodeCommand>" -TestCases $testCases {
@@ -371,7 +371,7 @@ Describe "NodeJS" {
 
 Describe "nvm" {
     It "nvm" {
-        "nvm --version" | Should -ReturnZeroExitCode
+        "source /etc/skel/.nvm/nvm.sh && nvm --version" | Should -ReturnZeroExitCode
     }
 }
 
