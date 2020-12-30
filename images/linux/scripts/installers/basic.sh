@@ -4,8 +4,6 @@
 ##  Desc:  Installs basic command line utilities and dev packages
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
-
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 common_packages=$(jq -r ".apt.common_packages[]" $toolset)
 cmd_packages=$(jq -r ".apt.cmd_packages[]" $toolset)

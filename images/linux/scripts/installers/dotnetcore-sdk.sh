@@ -7,7 +7,6 @@
 source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Ubuntu 20 doesn't support EOL versions
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
