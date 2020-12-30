@@ -286,7 +286,7 @@ function Get-PipxVersion {
 }
 
 function Get-GraalVMVersion {
-    $version = & "$env:GRAALVM_11_BIN\java" --version | Out-String | Select-Object -First 2 | Take-OutputPart -Part 7
+    $version = & "$env:GRAALVM_11_BIN\java" --version | Select-String -Pattern "GraalVM" | Take-OutputPart -Part 5
     return $version
 }
 
