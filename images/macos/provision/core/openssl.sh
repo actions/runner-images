@@ -1,6 +1,5 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
-source ~/utils/invoke-tests.sh
 
 echo "Install latest openssl"
 brew_smart_install "openssl"

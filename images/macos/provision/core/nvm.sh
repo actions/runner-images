@@ -4,7 +4,6 @@
 #
 ###########################################################################
 source ~/utils/utils.sh
-source ~/utils/invoke-tests.sh
 
 VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$VERSION/install.sh | bash

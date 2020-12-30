@@ -8,7 +8,6 @@
 ###########################################################################
 
 source ~/utils/utils.sh
-source ~/utils/invoke-tests.sh
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 

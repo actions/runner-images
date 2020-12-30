@@ -1,6 +1,5 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
-source ~/utils/invoke-tests.sh
 
 # MongoDB object-value database
 # installs last version of MongoDB Community Edition

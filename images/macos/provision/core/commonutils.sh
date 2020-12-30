@@ -1,6 +1,5 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
-source ~/utils/invoke-tests.sh
 
 common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
