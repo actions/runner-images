@@ -4,7 +4,6 @@
 ##  Desc:  Installs erlang
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 source_list=/etc/apt/sources.list.d/eslerlang.list
 

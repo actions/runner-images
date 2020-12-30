@@ -5,7 +5,6 @@
 ##         Must be run as non-root user after homebrew
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install GitHub CLI
 url=$(curl -s https://api.github.com/repos/cli/cli/releases/latest | jq -r '.assets[].browser_download_url|select(contains("linux") and contains("amd64") and contains(".deb"))')

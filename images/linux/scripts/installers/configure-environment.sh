@@ -25,3 +25,7 @@ chmod -R 777 $AGENT_TOOLSDIRECTORY
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
 # https://www.suse.com/support/kb/doc/?id=000016692
 echo 'vm.max_map_count=262144' | tee -a /etc/sysctl.conf
+
+# Create symlink for tests running
+chmod +x $HELPER_SCRIPTS/invoke-tests.sh
+ln -s $HELPER_SCRIPTS/invoke-tests.sh /usr/local/bin/invoke_tests
