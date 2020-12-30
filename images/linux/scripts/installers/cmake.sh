@@ -4,7 +4,6 @@
 ##  Desc:  Installs CMake
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Test to see if the software in question is already installed, if not install it
 echo "Checking to see if the installer script has already been run"

@@ -132,7 +132,8 @@
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
-                "IMAGE_OS={{user `image_os`}}"
+                "IMAGE_OS={{user `image_os`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
@@ -246,8 +247,7 @@
             "type": "shell",
             "scripts": [
                 "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
-                "{{template_dir}}/scripts/installers/Configure-Toolset.ps1",
-                "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
+                "{{template_dir}}/scripts/installers/Configure-Toolset.ps1"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
