@@ -39,7 +39,13 @@ param(
 
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
-    [string]$VIPassword
+    [string]$VIPassword,
+
+    [int32]$CpuCount,
+
+    [int32]$CoresPerSocketCount,
+
+    [int64]$Memory
 )
 
 # Import helpers module
@@ -56,6 +62,11 @@ try {
 }
 
 $vm = Get-VM $VMName
+
+if ($VMName -notmatch "10.13") {
+    Write-Host "Change cpu count $cpu, cores count to $cores, amount of RAM to $memoryMb"
+    $vm | Set-VM -NumCPU $CpuCount -CoresPerSocket $CoresPerSocketCount -MemoryMB $Memory -Confirm:$false
+}
 
 if ($env:AGENT_JOBSTATUS -eq 'Failed') {
     try {
