@@ -16,6 +16,9 @@ sudo rm -f /var/vm/sleepimage
 # Change screen resolution to the maximum supported for 4Mb video memory
 sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
 
+# Create direct link to invoke-tests file
+ln -s ~/utils/invoke-tests.sh /usr/local/bin/invoke_tests
+
 # https://developer.apple.com/support/expiration/
 # Enterprise iOS Distribution Certificates generated between February 7 and September 1st, 2020 will expire on February 7, 2023.
 # Rotate the certificate before expiration to ensure your apps are installed and signed with an active certificate.
