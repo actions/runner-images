@@ -4,7 +4,6 @@
 ##  Desc:  Installs the Vercel CLI
 ################################################################################
 
-
 # Install the Vercel CLI
 npm i -g vercel
 

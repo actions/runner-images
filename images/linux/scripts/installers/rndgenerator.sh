@@ -4,7 +4,6 @@
 ##  Desc:  Install random number generator
 ################################################################################
 
-
 # Install haveged
 apt-get -y install haveged
 

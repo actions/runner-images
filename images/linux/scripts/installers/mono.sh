@@ -4,7 +4,6 @@
 ##  Desc:  Installs Mono
 ################################################################################
 
-
 LSB_CODENAME=$(lsb_release -cs)
 
 # Test to see if the software in question is already installed, if not install it

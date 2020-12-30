@@ -344,3 +344,45 @@ Describe "Haveged" {
         "systemctl status haveged  | grep 'active (running)'" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Containers" {
+    $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
+
+    It "<ContainerCommand>" -TestCases $testCases {
+        param (
+            [string] $ContainerCommand
+        )
+
+        "$ContainerCommand -v" | Should -ReturnZeroExitCode
+    }   
+}
+
+Describe "NodeJS" {
+    $testCases = @("node", "grunt", "gulp", "webpack", "parcel", "yarn", "newman") | ForEach-Object { @{NodeCommand = $_} }
+
+    It "<NodeCommand>" -TestCases $testCases {
+        param (
+            [string] $NodeCommand
+        )
+
+        "$NodeCommand --version" | Should -ReturnZeroExitCode
+    }   
+}
+
+Describe "nvm" {
+    It "nvm" {
+        "nvm --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Python" {
+    $testCases = @("python", "pip", "python3", "pip3") | ForEach-Object { @{PythonCommand = $_} }
+
+    It "<PythonCommand>" -TestCases $testCases {
+        param (
+            [string] $PythonCommand
+        )
+
+        "$PythonCommand --version" | Should -ReturnZeroExitCode
+    }   
+}

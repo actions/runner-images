@@ -4,7 +4,6 @@
 ##  Desc:  Installs Alibaba Cloud CLI
 ################################################################################
 
-
 # Install Alibaba Cloud CLI
 URL=$(curl -s https://api.github.com/repos/aliyun/aliyun-cli/releases/latest | jq -r '.assets[].browser_download_url | select(contains("aliyun-cli-linux"))')
 wget -P /tmp $URL

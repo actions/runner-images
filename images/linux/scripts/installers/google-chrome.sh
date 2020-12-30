@@ -4,7 +4,6 @@
 ##  Desc:  Installs google-chrome  and chromedriver
 ################################################################################
 
-
 LSB_RELEASE=$(lsb_release -rs)
 
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -

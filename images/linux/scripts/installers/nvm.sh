@@ -12,10 +12,7 @@ echo 'export NVM_DIR=$HOME/.nvm' | tee -a /etc/skel/.bash_profile
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' | tee -a /etc/skel/.bash_profile
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-if ! command -v nvm; then
-    echo "nvm was not installed"
-    exit 1
-fi
+invoke_tests "Tools" "nvm"
 
 # set system node.js as default one
 nvm alias default system
