@@ -18,3 +18,5 @@ setEtcEnvironmentVariable "JAVA_HOME_GRAALVM_11" $JAVA_HOME_GRAALVM_11
 
 # Install Native Image
 $GRAALVM_11_BIN/gu install native-image
+
+invoke_tests "Tools" "GraalVM"
