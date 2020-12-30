@@ -4,7 +4,6 @@
 ##  Desc:  Installs packer
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install Packer
 PACKER_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/packer | jq -r .current_version)

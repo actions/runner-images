@@ -4,7 +4,6 @@
 ##  Desc:  Installs Mono
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 LSB_CODENAME=$(lsb_release -cs)
 

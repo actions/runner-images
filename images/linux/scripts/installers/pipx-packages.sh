@@ -4,7 +4,6 @@
 ##  Desc:  Install tools via pipx
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 export PATH="$PATH:/opt/pipx_bin"
 

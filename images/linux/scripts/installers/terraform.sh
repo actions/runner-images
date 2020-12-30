@@ -4,7 +4,6 @@
 ##  Desc:  Installs terraform
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install Terraform
 TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version)

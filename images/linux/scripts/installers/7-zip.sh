@@ -4,7 +4,6 @@
 ##  Desc:  Installs 7-zip
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install 7-Zip
 apt-get update -y
