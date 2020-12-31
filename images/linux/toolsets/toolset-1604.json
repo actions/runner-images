@@ -190,6 +190,7 @@
             "shellcheck",
             "sqlite3",
             "ssh",
+            "subversion",
             "sudo",
             "telnet",
             "time",

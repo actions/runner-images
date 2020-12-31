@@ -13,6 +13,12 @@ Describe "Apt" {
         {
             $toolName = "p7zip"
         }
+
+        if ($toolName -eq "subversion")
+        {
+            $toolName = "svn"
+        }
+        
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
     }
 }

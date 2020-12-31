@@ -187,12 +187,6 @@ Describe "Selenium" {
     }
 }
 
-Describe "SVN" {
-    It "svn" {
-        "svn --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Swig" {
     It "swig" {
         "swig -version" | Should -ReturnZeroExitCode

@@ -223,7 +223,6 @@
                 "{{template_dir}}/scripts/installers/sbt.sh",
                 "{{template_dir}}/scripts/installers/selenium.sh",
                 "{{template_dir}}/scripts/installers/sphinx.sh",
-                "{{template_dir}}/scripts/installers/subversion.sh",
                 "{{template_dir}}/scripts/installers/terraform.sh",
                 "{{template_dir}}/scripts/installers/packer.sh",
                 "{{template_dir}}/scripts/installers/vcpkg.sh",
