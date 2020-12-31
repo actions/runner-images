@@ -99,6 +99,7 @@
     ],
     "apt": {
         "common_packages": [
+            "build-essential",
             "dbus",
             "dnsutils",
             "dpkg",
