@@ -287,12 +287,6 @@ Describe "Packer" {
     }
 }
 
-Describe "Pollinate" {
-    It "pollinate" {
-        "sudo pollinate -r && sleep 5 && sudo grep pollinate /var/log/syslog" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Pulumi" {
     It "pulumi" {
         "pulumi version" | Should -ReturnZeroExitCode

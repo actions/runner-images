@@ -186,6 +186,7 @@
             "parallel",
             "pass",
             "patchelf",
+            "pollinate",
             "rsync",
             "shellcheck",
             "sphinxsearch",

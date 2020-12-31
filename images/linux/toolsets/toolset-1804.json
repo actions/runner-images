@@ -181,6 +181,7 @@
             "pass",
             "p7zip-full",
             "patchelf",
+            "pollinate",
             "rsync",
             "shellcheck",
             "sqlite3",
