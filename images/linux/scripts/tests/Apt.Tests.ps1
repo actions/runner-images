@@ -9,6 +9,10 @@ Describe "Apt" {
     }
 
     It "<toolName> is available" -TestCases $testCases {
+        if ($toolName -eq "p7zip-full")
+        {
+            $toolName = "p7zip"
+        }
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
     }
 }

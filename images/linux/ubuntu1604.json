@@ -169,7 +169,6 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/scripts/installers/7-zip.sh",
                 "{{template_dir}}/scripts/installers/ansible.sh",
                 "{{template_dir}}/scripts/installers/azcopy.sh",
                 "{{template_dir}}/scripts/installers/azure-cli.sh",
