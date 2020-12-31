@@ -50,7 +50,7 @@ function Build-AndroidTable {
         },
         @{
             "Package" = "Android Command Line Tools"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Command Line Tools"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Command-line Tools"
         },
         @{
             "Package" = "Android emulator"
