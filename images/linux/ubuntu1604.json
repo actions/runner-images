@@ -195,7 +195,6 @@
                 "{{template_dir}}/scripts/installers/haskell.sh",
                 "{{template_dir}}/scripts/installers/heroku.sh",
                 "{{template_dir}}/scripts/installers/hhvm.sh",
-                "{{template_dir}}/scripts/installers/image-magick.sh",
                 "{{template_dir}}/scripts/installers/java-tools.sh",
                 "{{template_dir}}/scripts/installers/kubernetes-tools.sh",
                 "{{template_dir}}/scripts/installers/oc.sh",
