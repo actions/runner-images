@@ -158,6 +158,7 @@
             "locales",
             "openssh-client",
             "p7zip-rar",
+            "p7zip",
             "pkg-config",
             "rpm",
             "texinfo",
