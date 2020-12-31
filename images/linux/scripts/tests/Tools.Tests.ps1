@@ -181,12 +181,6 @@ Describe "Selenium" {
     }
 }
 
-Describe "Swig" {
-    It "swig" {
-        "swig -version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Terraform" {
     It "terraform" {
         "terraform --version" | Should -ReturnZeroExitCode

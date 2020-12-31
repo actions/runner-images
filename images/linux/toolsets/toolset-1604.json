@@ -193,6 +193,7 @@
             "ssh",
             "subversion",
             "sudo",
+            "swig",
             "telnet",
             "time",
             "unzip",
