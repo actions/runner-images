@@ -157,6 +157,7 @@
             "patchelf",
             "rsync",
             "shellcheck",
+            "sphinxsearch",
             "sqlite3",
             "ssh",
             "subversion",

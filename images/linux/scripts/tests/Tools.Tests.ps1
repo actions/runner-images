@@ -175,12 +175,6 @@ Describe "Sbt" {
     }
 }
 
-Describe "Sphinx" {
-    It "sphinx" {
-        "searchd -h" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Selenium" {
     It "Selenium Server 'selenium-server-standalone.jar' is installed" {
         "/usr/share/java/selenium-server-standalone.jar" | Should -Exist

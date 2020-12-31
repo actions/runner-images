@@ -184,6 +184,7 @@
             "rsync",
             "shellcheck",
             "sqlite3",
+            "sphinxsearch",
             "ssh",
             "subversion",
             "sudo",

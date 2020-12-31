@@ -18,7 +18,12 @@ Describe "Apt" {
         {
             $toolName = "svn"
         }
-        
+
+        if ($toolName -eq "sphinxsearch")
+        {
+            $toolName = "searchd"
+        }
+
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
     }
 }
