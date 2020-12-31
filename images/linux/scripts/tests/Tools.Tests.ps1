@@ -299,12 +299,6 @@ Describe "Phantomjs" {
     }
 }
 
-Describe "Haveged" {
-    It "haveged" {
-        "systemctl status haveged  | grep 'active (running)'" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Containers" -Skip:(Test-IsUbuntu16) {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 

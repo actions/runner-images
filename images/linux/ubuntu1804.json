@@ -227,7 +227,6 @@
                 "{{template_dir}}/scripts/installers/vercel.sh",
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
                 "{{template_dir}}/scripts/installers/mongodb.sh",
-                "{{template_dir}}/scripts/installers/rndgenerator.sh",
                 "{{template_dir}}/scripts/installers/netlify.sh",
                 "{{template_dir}}/scripts/installers/android.sh",
                 "{{template_dir}}/scripts/installers/pypy.sh",

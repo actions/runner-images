@@ -173,6 +173,7 @@
             "file",
             "flex",
             "ftp",
+            "haveged",
             "jq",
             "m4",
             "mediainfo",
