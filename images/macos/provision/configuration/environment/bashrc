@@ -32,5 +32,3 @@ export HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=3650
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 export BOOTSTRAP_HASKELL_NONINTERACTIVE=1
-
-alias invoke_tests='invoke_tests.sh'

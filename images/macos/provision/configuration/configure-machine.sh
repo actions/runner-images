@@ -19,6 +19,7 @@ sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
 # Create direct link to invoke-tests file
 chmod +x $HOME/utils/invoke-tests.sh
 mv ~/utils/invoke-tests.sh ~/bin
+echo "alias invoke_tests='invoke_tests.sh'" >> ~/.bashrc
 
 # https://developer.apple.com/support/expiration/
 # Enterprise iOS Distribution Certificates generated between February 7 and September 1st, 2020 will expire on February 7, 2023.
