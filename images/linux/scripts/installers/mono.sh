@@ -14,13 +14,4 @@ echo "deb https://download.mono-project.com/repo/ubuntu stable-$LSB_CODENAME mai
 apt-get update
 apt-get install -y --no-install-recommends apt-transport-https mono-complete nuget
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v mono; then
-    echo "mono was not installed"
-    exit 1
-fi
-if ! command -v nuget; then
-    echo "nuget was not installed"
-    exit 1
-fi
+invoke_tests "Tools" "Mono"

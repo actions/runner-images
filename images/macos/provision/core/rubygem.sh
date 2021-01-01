@@ -14,7 +14,7 @@ gem install cocoapods
 if is_Less_BigSur; then
     # fix nomad-cli installation
     if is_HighSierra; then
-        brew install libxml2
+        brew_smart_install "libxml2"
         gem install nokogiri -v 1.6.8.1 -- --use-system-libraries --with-xml2-include=$(brew --prefix libxml2)/include/libxml2
     fi
 

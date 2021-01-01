@@ -54,14 +54,19 @@ function Select-DataStore {
 
     # 1. Name starts with ds-local-Datastore
     # 2. FreespaceGB > 400 Gb
-    # 3. VM count on a datastore < 2
+    # 3. Choose a datastore with the minimal VM count < 2
 
     Write-Host "Start Datastore selection process..."
     $allDatastores = Get-Datastore -Name $templateDatastore | Where-Object { $_.State -eq "Available" }
-    $buildDatastore = $allDatastores | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } | Where-Object {
+    $buildDatastore = $allDatastores `
+    | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } `
+    | Where-Object {
         $vmOnDatastore = @((Get-ChildItem -Path $_.DatastoreBrowserPath).Name -notmatch "^\.").Count
-        $vmOnDatastore -lt $vmCount
-    } | Get-Random | Select-Object -ExpandProperty Name
+        $vmOnDatastore -lt $vmCount } `
+    | Group-Object -Property { $vmOnDatastore } `
+    | Select-Object -First 1 -ExpandProperty Group `
+    | Get-Random `
+    | Select-Object -ExpandProperty Name
 
     $tag = Get-Tag -Category $TagCategory -Name $VMName -ErrorAction Ignore
     if (-not $tag)

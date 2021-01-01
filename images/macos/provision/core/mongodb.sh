@@ -1,4 +1,5 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/utils.sh
 source ~/utils/invoke-tests.sh
 
 # MongoDB object-value database
@@ -8,6 +9,6 @@ source ~/utils/invoke-tests.sh
 echo "Installing mongodb..."
 
 brew tap mongodb/brew
-brew install mongodb-community
+brew_smart_install "mongodb-community"
 
 invoke_tests "Common" "Mongo"

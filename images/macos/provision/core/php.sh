@@ -1,7 +1,8 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/utils.sh
 
 echo Installing PHP
-brew install php
+brew_smart_install "php"
 
 echo Installing composer
-brew install composer
+brew_smart_install "composer"

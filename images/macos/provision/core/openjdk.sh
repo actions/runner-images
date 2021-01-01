@@ -46,9 +46,9 @@ done
 createEnvironmentVariable "JAVA_HOME" $JAVA_DEFAULT
 
 echo Installing Maven...
-brew install maven
+brew_smart_install "maven"
 
 echo Installing Gradle ...
-brew install gradle
+brew_smart_install "gradle"
 
 invoke_tests "Java"

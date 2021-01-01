@@ -20,11 +20,4 @@ apt-get update
 # Install yarn
 apt-get install -y --no-install-recommends yarn
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in node grunt gulp webpack parcel yarn newman; do
-    if ! command -v $cmd; then
-        echo "$cmd was not installed"
-        exit 1
-    fi
-done
+invoke_tests "Tools" "Node.js"

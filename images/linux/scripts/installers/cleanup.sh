@@ -28,3 +28,6 @@ after=$(df / -Pm | awk 'NR==2{print $4}')
  echo "Before: $before MB"
  echo "After : $after MB"
  echo "Delta : $(($after-$before)) MB"
+
+# delete symlink for tests running
+rm -f /usr/local/bin/invoke_tests

@@ -23,7 +23,4 @@ prependEtcEnvironmentPath "$brew_path"
 echo "Validate the installation reloading /etc/environment"
 reloadEtcEnvironment
 
-if ! command -v brew; then
-    echo "brew was not installed"
-    exit 1
-fi
+invoke_tests "Tools" "Homebrew"
