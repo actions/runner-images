@@ -5,6 +5,7 @@
 ################################################################################
 
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 function InstallFortran {
     version=$1

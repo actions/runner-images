@@ -4,6 +4,7 @@
 ##  Desc:  Installs the Vercel CLI
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install the Vercel CLI
 npm i -g vercel

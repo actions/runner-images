@@ -14,4 +14,9 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $version/mong
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 
-invoke_tests "Databases" "MongoDB"
+# Validate the installation
+echo "Validate the installation"
+if ! command -v mongod; then
+    echo "mongodb was not installed"
+    exit 1
+fi

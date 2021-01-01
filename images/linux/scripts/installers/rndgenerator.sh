@@ -4,6 +4,7 @@
 ##  Desc:  Install random number generator
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install haveged
 apt-get -y install haveged

@@ -4,6 +4,7 @@
 ##  Desc:  Installs Docker Compose
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install latest docker-compose from releases
 URL=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.assets[].browser_download_url | select(contains("docker-compose-Linux-x86_64"))' | head -1)

@@ -5,6 +5,7 @@
 ################################################################################
 
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install the oc CLI
 DOWNLOAD_URL="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz"

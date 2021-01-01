@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install Herbert V. Riedel's PPA for managing multiple version of ghc on ubuntu.
 # https://launchpad.net/~hvr/+archive/ubuntu/ghc

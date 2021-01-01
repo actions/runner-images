@@ -132,9 +132,6 @@ jobs:
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
                  -VIPassword "$(vcenter-password-v2)"
-                 -CpuCount "$(cpu-count)" `
-                 -CoresPerSocketCount "$(cores-per-socket-count)" `
-                 -Memory "$(memory)"
 
   - task: PowerShell@2
     displayName: 'Destroy VM (if build canceled only)'

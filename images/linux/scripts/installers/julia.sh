@@ -4,6 +4,7 @@
 ##  Desc:  Installs Julia, and adds Julia to the path
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # This function fetches the latest Julia release from the GitHub API
 # Based on https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c

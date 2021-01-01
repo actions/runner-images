@@ -8,8 +8,7 @@
                 "2.4",
                 "2.5",
                 "2.6",
-                "2.7",
-                "3.0"
+                "2.7"
             ],
             "default": "2.5"
         },
@@ -162,8 +161,7 @@
             "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
             "patcher;v4",
-            "ndk-bundle",
-            "cmdline-tools;latest"
+            "ndk-bundle"
         ]
     },
     "visualStudio": {

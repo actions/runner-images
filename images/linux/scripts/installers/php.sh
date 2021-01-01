@@ -7,6 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # add repository
 apt-add-repository ppa:ondrej/php -y

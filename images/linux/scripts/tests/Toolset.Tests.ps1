@@ -22,10 +22,6 @@ Describe "Toolset" {
             tools = @("bin/ruby")
             command = "--version"
         }
-        CodeQL = @{
-            tools = @("codeql/codeql")
-            command = "version"
-        }
     }
 
     foreach($tool in $tools) {
@@ -47,7 +43,7 @@ Describe "Toolset" {
 
                 $toolExecs = $toolsExecutables[$toolName]
                 $foundVersion = Get-Item $expectedVersionPath `
-                    | Sort-Object -Property {[SemVer]$_.name} -Descending `
+                    | Sort-Object -Property {[version]$_.name} -Descending `
                     | Select-Object -First 1
                 $foundVersionPath = Join-Path $foundVersion $tool.arch
 

@@ -4,6 +4,7 @@
 ##  Desc:  Installs kubectl, helm, kustomize
 ################################################################################
 
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install KIND
 URL=$(curl -s https://api.github.com/repos/kubernetes-sigs/kind/releases/latest | jq -r '.assets[].browser_download_url | select(contains("kind-linux-amd64"))')

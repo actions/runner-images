@@ -73,7 +73,9 @@ parallel --jobs 0 --halt soon,fail=1 \
     'url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/{}/dotnet-sdk-{}-linux-x64.tar.gz"; \
     download_with_retries $url' ::: "${sortedSdks[@]}"
 
-find . -name "*.tar.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
+parallel --jobs 0 --halt soon,fail=1 \
+    'name="./dotnet-sdk-{}-linux-x64.tar.gz"; \
+    extract_dotnet_sdk $name' ::: "${sortedSdks[@]}"
 
 # Smoke test each SDK
 for sdk in $sortedSdks; do
@@ -92,5 +94,3 @@ setEtcEnvironmentVariable DOTNET_NOLOGO 1
 setEtcEnvironmentVariable DOTNET_MULTILEVEL_LOOKUP 0
 prependEtcEnvironmentPath /home/runner/.dotnet/tools
 echo 'export PATH="$PATH:$HOME/.dotnet/tools"' | tee -a /etc/skel/.bashrc
-
-invoke_tests "DotnetSDK"

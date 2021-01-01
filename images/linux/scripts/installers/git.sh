@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/invoke-tests.sh
 
 ## Install git
 add-apt-repository ppa:git-core/ppa -y
