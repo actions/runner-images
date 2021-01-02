@@ -262,10 +262,6 @@ Describe "Haskell" -Skip:($os.IsHighSierra) {
     It "Cabal" {
         "cabal --version" | Should -ReturnZeroExitCode
     }
-
-    It "Stack" {
-        "stack --version" | Should -ReturnZeroExitCode
-    }
 }
 
 Describe "GCC" -Skip:($os.IsHighSierra) {
@@ -368,5 +364,11 @@ Describe "OpenSSL" {
     It "Default OpenSSL version is 1.1" {
         $commandResult = Get-CommandResult "openssl version"
         $commandResult.Output | Should -Match "OpenSSL 1.1"
+    }
+}
+
+Describe "Stack" -Skip:($os.IsHighSierra) {
+    It "Stack" {
+        "stack --version" | Should -ReturnZeroExitCode
     }
 }

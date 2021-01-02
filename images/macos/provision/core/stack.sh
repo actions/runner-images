@@ -22,3 +22,5 @@ tar -xzf $StackArchive -C $DestinationPath --strip 1
 touch $StackToolcachePath/x64.complete
 
 echo "export PATH="\$PATH":$DestinationPath" >> "$HOME/.bashrc"
+
+invoke_tests "Common" "Stack"
