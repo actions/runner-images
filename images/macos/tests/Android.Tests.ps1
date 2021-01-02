@@ -61,17 +61,3 @@ Describe "Android" {
         "$haxmPath -v" | Should -ReturnZeroExitCode
     }
 }
-
-Describe "Gradle" {
-    It "Gradle is installed" {
-        "gradle --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Gradle is installed to /usr/local/bin" {
-        (Get-Command "gradle").Path | Should -BeExactly "/usr/local/bin/gradle"
-    }
-
-    It "Gradle is compatible with init.d plugins" {
-        "cd /tmp && gradle tasks" | Should -ReturnZeroExitCode
-    }
-}

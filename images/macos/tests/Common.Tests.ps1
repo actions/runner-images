@@ -174,31 +174,6 @@ Describe "Common utilities" {
         "bundler --version" | Should -ReturnZeroExitCode
     }
 
-    It "Maven" {
-        "mvn --version" | Should -ReturnZeroExitCode
-    }
-
-    It "App Center CLI" {
-        "appcenter --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Azure CLI" {
-        "az -v" | Should -ReturnZeroExitCode
-    }
-
-    Describe "AWS" {
-        It "AWS CLI" {
-            "aws --version" | Should -ReturnZeroExitCode
-        }
-        It "AWS SAM CLI" {
-            "sam --version" | Should -ReturnZeroExitCode
-        }
-
-        It "AWS Session Manager CLI" {
-            "session-manager-plugin --version" | Should -ReturnZeroExitCode
-        }
-    }
-
     Context "Nomad" -Skip:($os.IsBigSur) {
         It "Nomad CLI" {
             $result = Get-CommandResult "gem list"
@@ -207,13 +182,6 @@ Describe "Common utilities" {
 
         It "Nomad CLI IPA" {
             "ipa --version" | Should -ReturnZeroExitCode
-        }
-    }
-    Describe "Miniconda" {
-        It "Conda" {
-            Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
-            $condaBinPath = Join-Path $env:CONDA "bin" "conda"
-            "$condaBinPath --version" | Should -ReturnZeroExitCode
         }
     }
 
@@ -254,10 +222,6 @@ Describe "Common utilities" {
 
     It "PostgreSQL-Server" {
         "pg_config --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Azcopy" {
-        "azcopy --version" | Should -ReturnZeroExitCode
     }
 
     It "PHP" {
@@ -368,5 +332,38 @@ Describe "Visual Studio For Mac" {
         $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
         $vsPath | Should -Exist
         $vstoolPath | Should -Exist
+    }
+}
+
+Describe "AWS" {
+    It "AWS CLI" {
+        "aws --version" | Should -ReturnZeroExitCode
+    }
+    It "AWS SAM CLI" {
+        "sam --version" | Should -ReturnZeroExitCode
+    }
+
+    It "AWS Session Manager CLI" {
+        "session-manager-plugin --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Azcopy" {
+    It "Azcopy" {
+        "azcopy --version" | Should -ReturnZeroExitCode
+    }
+    It "App Center CLI" {
+        "appcenter --version" | Should -ReturnZeroExitCode
+    }
+    It "Azure CLI" {
+        "az -v" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Miniconda" {
+    It "Conda" {
+        Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
+        $condaBinPath = Join-Path $env:CONDA "bin" "conda"
+        "$condaBinPath --version" | Should -ReturnZeroExitCode
     }
 }
