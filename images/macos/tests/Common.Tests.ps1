@@ -352,9 +352,6 @@ Describe "Azcopy" {
     It "Azcopy" {
         "azcopy --version" | Should -ReturnZeroExitCode
     }
-    It "App Center CLI" {
-        "appcenter --version" | Should -ReturnZeroExitCode
-    }
     It "Azure CLI" {
         "az -v" | Should -ReturnZeroExitCode
     }
@@ -365,5 +362,11 @@ Describe "Miniconda" {
         Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
         $condaBinPath = Join-Path $env:CONDA "bin" "conda"
         "$condaBinPath --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "AppCenterCLI" {
+    It "App Center CLI" {
+        "appcenter --version" | Should -ReturnZeroExitCode
     }
 }
