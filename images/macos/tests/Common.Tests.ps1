@@ -193,13 +193,6 @@ Describe "Common utilities" {
         "xcpretty --version" | Should -ReturnZeroExitCode
     }
 
-    Describe "Mongo" {
-        It "mongodb" {
-            "mongo --version" | Should -ReturnZeroExitCode
-            "mongod --version"| Should -ReturnZeroExitCode
-        }
-    }
-
     It "PostgreSQL-Client" {
         "psql --version" | Should -ReturnZeroExitCode
     }
@@ -370,5 +363,12 @@ Describe "OpenSSL" {
 Describe "Stack" -Skip:($os.IsHighSierra) {
     It "Stack" {
         "stack --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Mongo" {
+    It "mongodb" {
+        "mongo --version" | Should -ReturnZeroExitCode
+        "mongod --version"| Should -ReturnZeroExitCode
     }
 }
