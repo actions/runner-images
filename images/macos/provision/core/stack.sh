@@ -1,5 +1,5 @@
 #!/bin/bash -e -o pipefail
-
+source ~/utils/invoke-tests.sh
 source ~/utils/utils.sh
 
 echo "Get the latest Stack version..."
