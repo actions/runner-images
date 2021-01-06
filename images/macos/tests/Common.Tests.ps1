@@ -322,10 +322,9 @@ Describe "AWS" {
 }
 
 Describe "AzСopy" {
-    It "Azcopy" {
+    It "AzCopy" {
         "azcopy --version" | Should -ReturnZeroExitCode
     }
-
 }
 
 Describe "AzureCLI" {
