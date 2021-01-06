@@ -57,6 +57,7 @@ Describe "Java" {
             }
         }
     }
+
     Context "Maven" {
         Describe "Maven" {
             It "Maven" {
@@ -64,6 +65,7 @@ Describe "Java" {
             }
         }
     }
+    
     Context "Gradle" {
         Describe "Gradle" {
             It "Gradle is installed" {
