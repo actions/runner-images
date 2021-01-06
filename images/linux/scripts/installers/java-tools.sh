@@ -15,6 +15,10 @@ function javaTool {
     fi
 }
 
+toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
+JAVA_VERSIONS_LIST=$(jq -r '.java.versions | .[]' $toolset)
+JAVA_DEFAULT=$(jq -r '.java.default' $toolset)
+
 # Install GPG Key for Adopt Open JDK. See https://adoptopenjdk.net/installation.html
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
 add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
@@ -24,11 +28,8 @@ if isUbuntu16 || isUbuntu18 ; then
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
     apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
     apt-get update
-    apt-get -y install zulu-7-azure-jdk=\*
     # Open JDP Adopt does not exist for Ubuntu 20
-    apt-get -y install adoptopenjdk-12-hotspot=\*
-    echo "JAVA_HOME_7_X64=/usr/lib/jvm/zulu-7-azure-amd64" | tee -a /etc/environment
-    DEFAULT_JDK_VERSION=8
+    DEFAULT_JDK_VERSION=$JAVA_DEFAULT
     defaultLabel8="(default)"
 fi
 
@@ -38,9 +39,16 @@ if isUbuntu20 ; then
     apt-get update
 fi
 
-# Install only LTS versions.
-apt-get -y install adoptopenjdk-8-hotspot=\*
-apt-get -y install adoptopenjdk-11-hotspot=\*
+for JAVA_VERSION in "${JAVA_VERSIONS_LIST[@]}"
+    do
+        if [[ $JAVA_VERSION == "7" ]]; then
+            apt-get -y install zulu-7-azure-jdk=\*
+            echo "JAVA_HOME_7_X64=/usr/lib/jvm/zulu-7-azure-amd64" | tee -a /etc/environment
+        else
+            apt-get -y install adoptopenjdk-$JAVA_VERSION-hotspot=\*
+            echo "JAVA_HOME_${JAVA_VERSION}_X64=/usr/lib/jvm/adoptopenjdk-${JAVA_VERSION}-hotspot-amd64" | tee -a /etc/environment
+        fi
+done
 
 # Set Default Java version.
 if isUbuntu16; then
@@ -50,11 +58,6 @@ if isUbuntu16; then
 fi
 update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
 
-echo "JAVA_HOME_8_X64=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64" | tee -a /etc/environment
-echo "JAVA_HOME_11_X64=/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64" | tee -a /etc/environment
-if isUbuntu16 || isUbuntu18 ; then
-echo "JAVA_HOME_12_X64=/usr/lib/jvm/adoptopenjdk-12-hotspot-amd64" | tee -a /etc/environment
-fi
 echo "JAVA_HOME=/usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64" | tee -a /etc/environment
 
 # Install Ant
