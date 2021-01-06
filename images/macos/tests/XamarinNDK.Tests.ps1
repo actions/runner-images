@@ -5,7 +5,7 @@ Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1"
 
 $os = Get-OSVersion
 
-Describe "NDK" {
+Describe "Xamarin NDK" {
     BeforeAll {
         $androidNdkToolchains = @("mips64el-linux-android-4.9", "mipsel-linux-android-4.9")
         $ANDROID_SDK_DIR = Join-Path $env:HOME "Library" "Android" "sdk"
