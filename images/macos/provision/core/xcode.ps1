@@ -17,8 +17,6 @@ $defaultXcode = Get-ToolsetValue "xcode.default"
 
 Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object {
-    Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
-    Import-Module "~/image-generation/helpers/Xcode.Installer.psm1"
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
 }
 
