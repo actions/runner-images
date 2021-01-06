@@ -83,16 +83,6 @@ Describe "Docker-compose" {
     }
 }
 
-Describe "PowerShell Core" {
-    It "pwsh" {
-        "pwsh --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Execute 2+2 command" {
-        pwsh -Command "2+2" | Should -BeExactly 4
-    }
-}
-
 Describe "Ansible" {
     It "Ansible" {
         "ansible --version" | Should -ReturnZeroExitCode
@@ -353,4 +343,46 @@ Describe "GraalVM" {
     It "native-image" {
         '& "$env:GRAALVM_11_BIN/native-image" --version' | Should -ReturnZeroExitCode
     }
+}
+
+Describe "Containers" -Skip:(Test-IsUbuntu16) {
+    $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
+
+    It "<ContainerCommand>" -TestCases $testCases {
+        param (
+            [string] $ContainerCommand
+        )
+
+        "$ContainerCommand -v" | Should -ReturnZeroExitCode
+    }   
+}
+
+Describe "Node.js" {
+    $testCases = @("node", "grunt", "gulp", "webpack", "parcel", "yarn", "newman") | ForEach-Object { @{NodeCommand = $_} }
+
+    It "<NodeCommand>" -TestCases $testCases {
+        param (
+            [string] $NodeCommand
+        )
+
+        "$NodeCommand --version" | Should -ReturnZeroExitCode
+    }   
+}
+
+Describe "nvm" {
+    It "nvm" {
+        "source /etc/skel/.nvm/nvm.sh && nvm --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Python" {
+    $testCases = @("python", "pip", "python3", "pip3") | ForEach-Object { @{PythonCommand = $_} }
+
+    It "<PythonCommand>" -TestCases $testCases {
+        param (
+            [string] $PythonCommand
+        )
+
+        "$PythonCommand --version" | Should -ReturnZeroExitCode
+    }   
 }

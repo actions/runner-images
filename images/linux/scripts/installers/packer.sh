@@ -4,7 +4,6 @@
 ##  Desc:  Installs packer
 ################################################################################
 
-
 # Install Packer
 PACKER_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/packer | jq -r .current_version)
 curl -LO "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip"

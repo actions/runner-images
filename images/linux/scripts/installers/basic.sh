@@ -12,11 +12,4 @@ for package in $common_packages $cmd_packages; do
     apt-get install -y --no-install-recommends $package
 done
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in $cmd_packages; do
-    if ! command -v $cmd; then
-        echo "$cmd was not installed"
-        exit 1
-    fi
-done
+invoke_tests "Apt"

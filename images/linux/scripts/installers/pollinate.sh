@@ -4,7 +4,6 @@
 ##  Desc:  Installs Pollinate
 ################################################################################
 
-
 # Install Pollinate
 apt-get install -y --no-install-recommends pollinate
 

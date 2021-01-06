@@ -27,7 +27,8 @@ Describe "Android" {
         $platforms,
         $buildTools,
         (Get-ToolsetValue "android.extra-list" | ForEach-Object { "extras/${_}" }),
-        (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" })
+        (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" }),
+        (Get-ToolsetValue "android.additional-tools")
     ) | ForEach-Object { $_ }
 
     BeforeAll {
