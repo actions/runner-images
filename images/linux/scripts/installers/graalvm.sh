@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/etc-environment.sh
 
 # Install GraalVM
 GRAALVM_ROOT=/usr/local/graalvm
