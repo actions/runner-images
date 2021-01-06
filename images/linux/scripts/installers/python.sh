@@ -29,8 +29,8 @@ if isUbuntu18 || isUbuntu20 ; then
     python3 -m pipx ensurepath
 
     # Update /etc/environment
-    setEtcEnvironmentVariable "PIPX_BIN_DIR" $PIPX_BIN_DIR
-    setEtcEnvironmentVariable "PIPX_HOME" $PIPX_HOME
+    echo "PIPX_BIN_DIR=$PIPX_BIN_DIR" | tee -a /etc/environment
+    echo "PIPX_HOME=$PIPX_HOME" | tee -a /etc/environment
     prependEtcEnvironmentPath $PIPX_BIN_DIR
 
     # Test pipx
