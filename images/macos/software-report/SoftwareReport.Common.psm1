@@ -24,9 +24,30 @@ function Get-RVersion {
     $rVersion = Run-Command "R --version | grep 'R version'" | Take-Part -Part 2
     return "R $rVersion"
 }
+
 function Get-RustVersion {
     $rustVersion = Run-Command "rustc --version" | Take-Part -Part 1
     return "Rust $rustVersion"
+}
+
+function Get-RustfmtVersion {
+    $version = Run-Command "rustfmt --version" | Take-Part -Part 1
+    return "Rustfmt $version"
+}
+
+function Get-RustdocVersion {
+    $version = Run-Command "rustdoc --version" | Take-Part -Part 1
+    return "Rustdoc $version"
+}
+
+function Get-CargoVersion {
+    $version = Run-Command "cargo --version" | Take-Part -Part 1
+    return "Cargo $version"
+}
+
+function Get-ClippyVersion {
+    $version = Run-Command "cargo clippy --version" | Take-Part -Part 1
+    return "Clippy $version"
 }
 
 function Get-Bindgen {
