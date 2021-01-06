@@ -321,7 +321,7 @@ Describe "AWS" {
     }
 }
 
-Describe "AzСopy" {
+Describe "AzCopy" {
     It "AzCopy" {
         "azcopy --version" | Should -ReturnZeroExitCode
     }
