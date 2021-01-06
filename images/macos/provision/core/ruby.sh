@@ -21,7 +21,7 @@ if [ ! -d $RUBY_PATH ]; then
 fi
 
 for TOOLSET_VERSION in ${TOOLSET_VERSIONS[@]}; do
-    PACKAGE_TAR_NAME=$(echo "$PACKAGE_TAR_NAMES" | grep "^ruby-${TOOLSET_VERSION}-macos-latest.tar.gz$" | sort -V | tail -1)
+    PACKAGE_TAR_NAME=$(echo "$PACKAGE_TAR_NAMES" | grep "^ruby-${TOOLSET_VERSION}-macos-latest.tar.gz$" | egrep -v "rc|preview" | sort -V | tail -1)
     RUBY_VERSION=$(echo "$PACKAGE_TAR_NAME" | cut -d'-' -f 2)
     RUBY_VERSION_PATH="$RUBY_PATH/$RUBY_VERSION"
 

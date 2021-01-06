@@ -4,7 +4,6 @@
 ##  Desc:  Installs Subversion client
 ################################################################################
 
-
 # Install Subversion
 apt-get install -y --no-install-recommends subversion
 

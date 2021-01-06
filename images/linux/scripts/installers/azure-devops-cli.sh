@@ -4,7 +4,6 @@
 ##  Desc:  Installed Azure DevOps CLI (az devops)
 ################################################################################
 
-
 # AZURE_EXTENSION_DIR shell variable defines where modules are installed
 # https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview
 export AZURE_EXTENSION_DIR=/opt/az/azcliextensions

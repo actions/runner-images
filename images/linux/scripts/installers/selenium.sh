@@ -4,7 +4,6 @@
 ##  Desc:  Installs selenium server
 ################################################################################
 
-
 # Determine latest selenium standalone server version
 SELENIUM_LATEST_VERSION_URL=https://api.github.com/repos/SeleniumHQ/selenium/releases/latest
 SELENIUM_VERSION=$(curl $SELENIUM_LATEST_VERSION_URL | jq '.name' | tr -d '"' | cut -d ' ' -f 2)

@@ -4,7 +4,6 @@
 ##  Desc:  Install tools via pipx
 ################################################################################
 
-
 export PATH="$PATH:/opt/pipx_bin"
 
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"

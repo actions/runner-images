@@ -5,15 +5,7 @@
 ################################################################################
 
 source $HELPER_SCRIPTS/os.sh
-
-function javaTool {
-    if [[ "$2" =~ ([1]{0,1}.)?$DEFAULT_JDK_VERSION.* ]]; then
-        echo "$1 $2 is equal to default one $DEFAULT_JDK_VERSION"
-    else
-        echo "$1 $2 is not equal to default one $DEFAULT_JDK_VERSION"
-        exit 1
-    fi
-}
+source $HELPER_SCRIPTS/etc-environment.sh
 
 toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 JAVA_VERSIONS_LIST=$(jq -r '.java.versions | .[]' $toolset)
@@ -89,16 +81,5 @@ rm gradleLatest.zip
 ln -s /usr/share/gradle-"${gradleVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=/usr/share/gradle" | tee -a /etc/environment
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in gradle java javac mvn ant; do
-    if ! command -v $cmd; then
-        echo "$cmd was not installed or found on path"
-        exit 1
-    fi
-done
-
-javaVersion=$(java -version |& head -n 1 | cut -d\" -f 2)
-javaTool "Java" $javaVersion
-javacVersion=$(javac -version |& cut -d" " -f2)
-javaTool "Javac" $javacVersion
+reloadEtcEnvironment
+invoke_tests "Java"

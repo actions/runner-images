@@ -4,7 +4,6 @@
 ##  Desc:  Installs the Netlify CLI
 ################################################################################
 
-
 # Install the Netlify CLI
 npm i -g netlify-cli
 
