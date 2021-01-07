@@ -15,9 +15,12 @@ Describe "Android" {
         $platforms,
         $buildTools,
         (Get-ToolsetValue "android.extra_list" | ForEach-Object { "extras/${_}" }),
-        (Get-ToolsetValue "android.addon_list" | ForEach-Object { "add-ons/${_}" }),
-        (Get-ToolsetValue "android.additional_tools" | ForEach-Object { "${_}" })
+        (Get-ToolsetValue "android.addon_list" | ForEach-Object { "add-ons/${_}" })
     ) | ForEach-Object { $_ }
+
+    if( -not $os.IsHighSierra) {
+        $androidPackages += Get-ToolsetValue "android.additional_tools" | ForEach-Object { "${_}" }
+    }
 
     BeforeAll {
         $ANDROID_SDK_DIR = "/usr/local/lib/android/sdk"
