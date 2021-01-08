@@ -337,11 +337,11 @@ Describe "Haveged" {
 
 Describe "GraalVM" {
     It "graalvm" {
-        '& "$env:GRAALVM_11_BIN/java" --version' | Should -ReturnZeroExitCode
+        '$env:GRAALVM_11_BIN/java -version' | Should -ReturnZeroExitCode
     }
 
     It "native-image" {
-        '& "$env:GRAALVM_11_BIN/native-image" --version' | Should -ReturnZeroExitCode
+        '$env:GRAALVM_11_BIN/native-image --version' | Should -ReturnZeroExitCode
     }
 }
 
