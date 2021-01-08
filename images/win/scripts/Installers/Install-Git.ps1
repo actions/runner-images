@@ -31,7 +31,7 @@ Install-Binary  -Url $downloadUrl `
                     "/o:EnableSymlinks=Enabled", `
                     "/COMPONENTS=gitlfs")
 
-# Install hub with --ignore-dependencies option to avoid to prevent the installation of the git package
+# Install hub with --ignore-dependencies option to prevent the installation of the git package
 Choco-Install -PackageName hub -ArgumentList "--ignore-dependencies"
 
 # Disable GCM machine-wide
