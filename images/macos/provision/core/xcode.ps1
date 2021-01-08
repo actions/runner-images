@@ -14,17 +14,18 @@ $os = Get-OSVersion
 $xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
 [Array]::Reverse($xcodeVersions)
+$threadCount = 8
 
 Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object {
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
 }
 
-$xcodeVersions | ForEach-Object -ThrottleLimit 8 -Parallel {
-    Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
-    Import-Module "~/image-generation/helpers/Xcode.Installer.psm1"
-    Confirm-XcodeIntegrity -Version $_.link
-    Approve-XcodeLicense -Version $_.link
+$ConfirmXcodeIntegrity = Get-Command Confirm-XcodeIntegrity
+$ApproveXcodeLicense = Get-Command Approve-XcodeLicense
+$xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
+    & $using:ConfirmXcodeIntegrity -Version $_.link
+    & $using:ApproveXcodeLicense -Version $_.link
 }
 
 Write-Host "Configuring Xcode versions..."
@@ -38,9 +39,7 @@ $xcodeVersions | ForEach-Object {
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
 Write-Host "Configuring Xcode symlinks..."
-$xcodeVersions | ForEach-Object -ThrottleLimit 4 -Parallel {
-    Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
-    Import-Module "~/image-generation/helpers/Xcode.Installer.psm1"
+$xcodeVersions | ForEach-Object {
     Build-XcodeSymlinks -Version $_.link -Symlinks $_.symlinks
     Build-ProvisionatorSymlink -Version $_.link
 }
