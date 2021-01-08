@@ -20,7 +20,7 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219B
 apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
 apt-get update
 
-for JAVA_VERSION in "${JAVA_VERSIONS_LIST[@]}" do
+for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
     if [[ $JAVA_VERSION == "7" ]]; then
         apt-get -y install zulu-7-azure-jdk=\*
         echo "JAVA_HOME_7_X64=/usr/lib/jvm/zulu-7-azure-amd64" | tee -a /etc/environment
