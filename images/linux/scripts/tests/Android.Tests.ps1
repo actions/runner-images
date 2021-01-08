@@ -18,9 +18,8 @@ Describe "Android" {
         (Get-ToolsetValue "android.addon_list" | ForEach-Object { "add-ons/${_}" })
     ) | ForEach-Object { $_ }
 
-    if( -not $os.IsHighSierra) {
-        $androidPackages += Get-ToolsetValue "android.additional_tools" | ForEach-Object { "${_}" }
-    }
+    # Remove possible null elements from array
+    $androidPackages = $androidPackages | Where-Object {$_}
 
     BeforeAll {
         $ANDROID_SDK_DIR = "/usr/local/lib/android/sdk"
