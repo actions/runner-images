@@ -2,8 +2,8 @@ Describe "Shell" {
     $IsWin16 = Test-IsWin16
 
     $shellTestCases = @(
-        @{Name = "C:\shells\msysbash.exe"; Target = "C:\msys64\bin\bash.exe"},
-        @{Name = "C:\shells\msyssh.exe"; Target = "C:\msys64\bin\sh.exe"},
+        @{Name = "C:\shells\msysbash.exe"; Target = "C:\msys64\usr\bin\bash.exe"},
+        @{Name = "C:\shells\msyssh.exe"; Target = "C:\msys64\usr\bin\sh.exe"},
         @{Name = "C:\shells\gitbash.exe"; Target = "$env:ProgramFiles\Git\bin\bash.exe"}
     )
 
