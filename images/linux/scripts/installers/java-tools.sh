@@ -15,9 +15,11 @@ DEFAULT_JDK_VERSION=$(jq -r '.java.default' $toolset)
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
 add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 
-# Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
-apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
+if isUbuntu16 || isUbuntu18 ; then
+    # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
+    apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
+fi
 apt-get update
 
 for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
