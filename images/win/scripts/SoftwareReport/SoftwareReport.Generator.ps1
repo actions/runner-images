@@ -118,17 +118,17 @@ $markdown += New-MDHeader "Rust Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     "Rust $(Get-RustVersion)",
     "Rustup $(Get-RustupVersion)",
-    "Cargo $(Get-CargoVersion)",
-    "Rustdoc $(Get-RustdocVersion)",
-    "Rustfmt $(Get-RustfmtVersion)",
-    "Clippy $(Get-ClippyVersion)"
+    "Cargo $(Get-RustCargoVersion)",
+    "Rustdoc $(Get-RustdocVersion)"
 )
 $markdown += New-MDHeader "Packages" -Level 4
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-BindgenVersion),
     (Get-CbindgenVersion),
     (Get-CargoAuditVersion),
-    (Get-CargoOutdatedVersion)
+    (Get-CargoOutdatedVersion),
+    "Rustfmt $(Get-RustfmtVersion)",
+    "Clippy $(Get-RustClippyVersion)"
 )
 
 $markdown += New-MDHeader "Browsers and webdrivers" -Level 3

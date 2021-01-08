@@ -47,7 +47,7 @@ function Get-RustupVersion {
      return $version
 }
 
-function Get-CargoVersion {
+function Get-RustCargoVersion {
      $version = [regex]::matches($(cargo --version), "\d+\.\d+\.\d+").Value
      return $version
 }
@@ -67,7 +67,7 @@ function Get-RustfmtVersion {
      return $version
 }
 
-function Get-ClippyVersion {
+function Get-RustClippyVersion {
      $version = [regex]::matches($(cargo clippy  --version), "\d+\.\d+\.\d+").Value
      return $version
 }
