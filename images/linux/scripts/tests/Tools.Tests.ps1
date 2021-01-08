@@ -335,13 +335,13 @@ Describe "Haveged" {
     }
 }
 
-Describe "GraalVM" {
+Describe "GraalVM" -Skip:(-not (Test-IsUbuntu20)) {
     It "graalvm" {
-        '$env:GRAALVM_11_BIN/java -version' | Should -ReturnZeroExitCode
+        '$GRAALVM_11_BIN/java -version' | Should -ReturnZeroExitCode
     }
 
     It "native-image" {
-        '$env:GRAALVM_11_BIN/native-image --version' | Should -ReturnZeroExitCode
+        '$GRAALVM_11_BIN/native-image --version' | Should -ReturnZeroExitCode
     }
 }
 
