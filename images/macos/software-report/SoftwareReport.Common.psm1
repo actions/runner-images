@@ -40,12 +40,12 @@ function Get-RustdocVersion {
     return "Rustdoc $version"
 }
 
-function Get-CargoVersion {
+function Get-RustCargoVersion {
     $version = Run-Command "cargo --version" | Take-Part -Part 1
     return "Cargo $version"
 }
 
-function Get-ClippyVersion {
+function Get-RustClippyVersion {
     $version = Run-Command "cargo clippy --version" | Take-Part -Part 1
     return "Clippy $version"
 }
