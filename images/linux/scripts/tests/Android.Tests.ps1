@@ -15,11 +15,9 @@ Describe "Android" {
         $platforms,
         $buildTools,
         (Get-ToolsetValue "android.extra_list" | ForEach-Object { "extras/${_}" }),
-        (Get-ToolsetValue "android.addon_list" | ForEach-Object { "add-ons/${_}" })
+        (Get-ToolsetValue "android.addon_list" | ForEach-Object { "add-ons/${_}" }),
+        (Get-ToolsetValue "android.additional_tools" | ForEach-Object { "${_}" })
     ) | ForEach-Object { $_ }
-
-    # Remove possible null elements from array
-    $androidPackages = $androidPackages | Where-Object {$_}
 
     BeforeAll {
         $ANDROID_SDK_DIR = "/usr/local/lib/android/sdk"
@@ -42,7 +40,7 @@ Describe "Android" {
 
 
     Context "Packages" {
-        $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
+        $testCases = $androidPackages | Where-Object { $_ } | ForEach-Object { @{ PackageName = $_ } }
 
         It "<PackageName>" -TestCases $testCases {
             param ([string] $PackageName)
