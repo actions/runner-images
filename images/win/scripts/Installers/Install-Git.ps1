@@ -31,7 +31,7 @@ Install-Binary  -Url $downloadUrl `
                     "/o:EnableSymlinks=Enabled", `
                     "/COMPONENTS=gitlfs")
 
-Choco-Install -PackageName hub
+Choco-Install -PackageName hub -ArgumentList "--ignore-dependencies"
 
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
