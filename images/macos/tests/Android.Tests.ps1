@@ -30,6 +30,9 @@ Describe "Android" {
         (Get-ToolsetValue "android.additional-tools")
     ) | ForEach-Object { $_ }
 
+    # Remove empty strings from array to avoid possible issues
+    $androidPackages = $androidPackages | Where-Object {$_}
+
     BeforeAll {
         $ANDROID_SDK_DIR = Join-Path $env:HOME "Library" "Android" "sdk"
 

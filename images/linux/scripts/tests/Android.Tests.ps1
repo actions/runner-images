@@ -40,7 +40,7 @@ Describe "Android" {
 
 
     Context "Packages" {
-        $testCases = $androidPackages | Where-Object { $_ } | ForEach-Object { @{ PackageName = $_ } }
+        $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
 
         It "<PackageName>" -TestCases $testCases {
             param ([string] $PackageName)
