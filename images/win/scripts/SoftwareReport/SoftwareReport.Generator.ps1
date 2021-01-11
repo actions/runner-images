@@ -30,88 +30,91 @@ if (Test-IsWin19)
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
+$markdown += New-MDList -Style Unordered -Lines @(
+    (Get-GoVersion)
+)
+
 $markdown += New-MDList -Lines (Get-JavaVersionsList -DefaultVersion "1.8.0") -Style Unordered -NoNewLine
 $markdown += New-MDList -Style Unordered -Lines @(
-    (Get-BashVersion),
-    (Get-PythonVersion),
-    (Get-RubyVersion),
-    (Get-GoVersion),
-    (Get-PHPVersion),
     (Get-JuliaVersion),
+    (Get-NodeVersion),
     (Get-PerlVersion),
-    (Get-NodeVersion)
+    (Get-PHPVersion),
+    (Get-PythonVersion),
+    (Get-BashVersion),
+    (Get-RubyVersion)   
 )
 
 $markdown += New-MDHeader "Package Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-ChocoVersion),
-    (Get-VcpkgVersion),
-    (Get-NPMVersion),
-    (Get-YarnVersion),
-    (Get-PipVersion),
-    (Get-CondaVersion),
-    (Get-RubyGemsVersion),
-    (Get-HelmVersion),
     (Get-ComposerVersion),
+    (Get-HelmVersion),
+    (Get-CondaVersion),
+    (Get-NPMVersion),
     (Get-NugetVersion),
-    (Get-PipxVersion)
+    (Get-PipxVersion),
+    (Get-PipVersion),
+    (Get-RubyGemsVersion),
+    (Get-VcpkgVersion),
+    (Get-YarnVersion)
 )
 
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AntVersion),
-    (Get-MavenVersion),
     (Get-GradleVersion),
+    (Get-MavenVersion),
     (Get-SbtVersion)
 )
 
 $markdown += New-MDHeader "Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
+    (Get-7zipVersion),
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
+    (Get-CabalVersion),
     (Get-CMakeVersion),
     (Get-CodeQLBundleVersion),
-    (Get-RVersion),
     (Get-DockerVersion),
     (Get-DockerComposeVersion),
+    (Get-GHCVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GoogleCloudSDKVersion),
     (Get-InnoSetupVersion),
     (Get-JQVersion),
-    (Get-KubectlVersion),
     (Get-KindVersion),
-    (Get-MinGWVersion),
+    (Get-KubectlVersion),
     (Get-MercurialVersion),
-    (Get-NSISVersion),
+    (Get-MinGWVersion),
     (Get-NewmanVersion),
+    (Get-NSISVersion),
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
     (Get-PulumiVersion),
-    (Get-SVNVersion),
-    (Get-GHCVersion),
-    (Get-CabalVersion),
+    (Get-RVersion),
     (Get-StackVersion),
+    (Get-SVNVersion),
+    (Get-VSWhereVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
-    (Get-VSWhereVersion),
-    (Get-7zipVersion),
     (Get-YAMLLintVersion)
 )
 
 $markdown += New-MDHeader "CLI Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
-    (Get-AzureCLIVersion),
-    (Get-AzureDevopsExtVersion),
-    (Get-AZDSVersion),
+    (Get-AlibabaCLIVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMVersion),
     (Get-AWSSessionManagerVersion),
-    (Get-AlibabaCLIVersion),
+    (Get-AzureCLIVersion),
+    (Get-AZDSVersion),
+    (Get-AzureDevopsExtVersion),
     (Get-CloudFoundryVersion),
-    (Get-HubVersion),
-    (Get-GHVersion)
+    (Get-GHVersion),
+    (Get-HubVersion)
 )
 
 $markdown += New-MDHeader "Rust Tools" -Level 3
@@ -121,9 +124,9 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader "Packages" -Level 4
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-BindgenVersion),
-    (Get-CbindgenVersion),
     (Get-CargoAuditVersion),
-    (Get-CargoOutdatedVersion)
+    (Get-CargoOutdatedVersion),
+    (Get-CbindgenVersion)
 )
 
 $markdown += New-MDHeader "Browsers and webdrivers" -Level 3
@@ -169,8 +172,8 @@ $markdown += New-MDHeader "Database tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
-    (Get-SQLPSVersion),
-    (Get-MySQLVersion)
+    (Get-MySQLVersion),
+    (Get-SQLPSVersion)
 )
 $markdown += New-MDNewLine
 
