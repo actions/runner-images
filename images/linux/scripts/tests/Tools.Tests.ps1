@@ -1,9 +1,3 @@
-Describe "7-Zip" {
-    It "7z" {
-        "7z" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "azcopy" {
     It "azcopy" {
         #(azcopy --version) command returns exit code 1 (see details: https://github.com/Azure/azure-storage-azcopy/releases)
@@ -181,27 +175,9 @@ Describe "Sbt" {
     }
 }
 
-Describe "Sphinx" {
-    It "sphinx" {
-        "searchd -h" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Selenium" {
     It "Selenium Server 'selenium-server-standalone.jar' is installed" {
         "/usr/share/java/selenium-server-standalone.jar" | Should -Exist
-    }
-}
-
-Describe "SVN" {
-    It "svn" {
-        "svn --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Swig" {
-    It "swig" {
-        "swig -version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -311,12 +287,6 @@ Describe "Packer" {
     }
 }
 
-Describe "Pollinate" {
-    It "pollinate" {
-        "sudo pollinate -r && sleep 5 && sudo grep pollinate /var/log/syslog" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Pulumi" {
     It "pulumi" {
         "pulumi version" | Should -ReturnZeroExitCode
@@ -326,12 +296,6 @@ Describe "Pulumi" {
 Describe "Phantomjs" {
     It "phantomjs" {
         "phantomjs --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Haveged" {
-    It "haveged" {
-        "systemctl status haveged  | grep 'active (running)'" | Should -ReturnZeroExitCode
     }
 }
 
