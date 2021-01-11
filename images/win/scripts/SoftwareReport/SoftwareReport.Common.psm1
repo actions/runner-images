@@ -280,7 +280,13 @@ function Get-CachedDockerImagesTableData {
 }
 
 function Get-ShellTarget {
-    $shells = Get-ChildItem C:\Shells -File | Select-Object Name, @{n="Target";e={@($_.Target)[0]}} | Sort-Object Name
+    $shells = Get-ChildItem C:\shells -File | Select-Object Name, @{n="Target";e={
+        if ($_.Name -eq "msys2bash.cmd") {
+            "C:\msys64\usr\bin\bash.exe"
+        } else {
+            ($_.Target)[0]
+        }
+    }} | Sort-Object Name
     $shells | New-MDTable -Columns ([ordered]@{Name = "left"; Target = "left";})
 }
 
