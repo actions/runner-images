@@ -1,3 +1,5 @@
+$os = Get-OSVersion
+
 Describe "Haskell" -Skip:($os.IsHighSierra) {
     Context "GHCup" {
         It "GHCup" {

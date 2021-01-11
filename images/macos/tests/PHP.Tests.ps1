@@ -1,7 +1,3 @@
-
-    
-Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-
 Describe "PHP" {
     Context "PHP" {
         It "PHP Path" {
