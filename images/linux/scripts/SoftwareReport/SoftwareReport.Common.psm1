@@ -286,13 +286,13 @@ function Get-PipxVersion {
 }
 
 function Get-GraalVMVersion {
-    $version = & "$env:GRAALVM_11_BIN\java" --version | Select-String -Pattern "GraalVM" | Take-OutputPart -Part 5,6
+    $version = & "$env:GRAALVM_11_ROOT\bin\java" --version | Select-String -Pattern "GraalVM" | Take-OutputPart -Part 5,6
     return $version
 }
 
 function Build-GraalVMTable {
     $version = Get-GraalVMVersion
-    $envVariables = "GRAALVM_11_BIN, JAVA_HOME_GRAALVM_11"
+    $envVariables = "GRAALVM_11_ROOT"
 
     return [PSCustomObject] @{
         "Version" = $version
