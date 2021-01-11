@@ -31,9 +31,3 @@ Describe "xcpretty" {
         "xcpretty --version" | Should -ReturnZeroExitCode
     }
 }
-
-Describe "CocoaPods" {
-    It "CocoaPods" {
-        "pod --version" | Should -ReturnZeroExitCode
-    }
-}

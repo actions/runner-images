@@ -305,3 +305,9 @@ Describe "Stack" -Skip:($os.IsHighSierra) {
         "stack --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "CocoaPods" {
+    It "CocoaPods" {
+        "pod --version" | Should -ReturnZeroExitCode
+    }
+}
