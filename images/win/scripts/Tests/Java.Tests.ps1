@@ -1,5 +1,5 @@
 Describe "Java" {
-    $jdkVersions = (Get-ToolsetContent).java.versions
+    [array]$jdkVersions = (Get-ToolsetContent).java.versions | ForEach-Object { @{Version = $_} }
     $defaultVersion = (Get-ToolsetContent).java.default
 
     It "Java <DefaultJavaVersion> is default" -TestCases @(@{ DefaultJavaVersion = $defaultVersion }) {
@@ -20,21 +20,17 @@ Describe "Java" {
         "$ToolName -version" | Should -ReturnZeroExitCode
     }
 
-    foreach ($version in $jdkVersions) {
-        $jdk = @{ jdkVersion = $version }
+    It "Java <Version>" -TestCases $jdkVersions {
+        $javaVariableValue = Get-EnvironmentVariable "JAVA_HOME_${Version}_X64"
+        $javaVariableValue | Should -Not -BeNullOrEmpty
+        $javaPath = Join-Path $javaVariableValue "bin\java"
 
-        It "Java ${version}" -TestCases $jdk {
-            $javaVariableValue = Get-EnvironmentVariable "JAVA_HOME_${jdkVersion}_X64"
-            $javaVariableValue | Should -Not -BeNullOrEmpty
-            $javaPath = Join-Path $javaVariableValue "bin\java"
+        $result = Get-CommandResult "`"$javaPath`" -version"
+        $result.ExitCode | Should -Be 0
 
-            $result = Get-CommandResult "`"$javaPath`" -version"
-            $result.ExitCode | Should -Be 0
-
-            if ($jdkVersion -eq 7 -or $jdkVersion -eq 8) {
-                $jdkVersion = "1.${jdkVersion}"
-            }
-            $result.Output[0] | Should -Match ([regex]::Escape("openjdk version `"${jdkVersion}."))
+        if ($Version -eq 7 -or $Version -eq 8) {
+            $Version = "1.${Version}"
         }
+        $result.Output[0] | Should -Match ([regex]::Escape("openjdk version `"${Version}."))
     }
 }
