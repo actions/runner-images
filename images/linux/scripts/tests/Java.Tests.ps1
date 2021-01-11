@@ -29,7 +29,7 @@ Describe "Java" {
         It "Java ${version}" -TestCases $jdk {
             $javaVariableValue = Get-EnvironmentVariable "JAVA_HOME_${jdkVersion}_X64"
             $javaVariableValue | Should -Not -BeNullOrEmpty
-            $javaPath = Join-Path $javaVariableValue "bin\java"
+            $javaPath = Join-Path $javaVariableValue "bin/java"
     
             $result = Get-CommandResult "`"$javaPath`" -version"
             $result.ExitCode | Should -Be 0
@@ -37,7 +37,7 @@ Describe "Java" {
             if ($jdkVersion -eq 7 -or $jdkVersion -eq 8) {
                 $jdkVersion = "1.${jdkVersion}"
             }
-            $result.Output[0] | Should -Match ([regex]::Escape("openjdk version `"${jdkVersion}."))
+            $result.Output | Should -Match ([regex]::Escape("openjdk version `"${jdkVersion}."))
         }
     }
 }
