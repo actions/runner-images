@@ -72,7 +72,10 @@
         "extra-list": [
             "android;m2repository", "google;m2repository", "google;google_play_services", "intel;Hardware_Accelerated_Execution_Manager"
         ],
-        "addon-list": []
+        "addon-list": [],
+        "additional-tools": [
+            "cmdline-tools;latest"
+        ]
     },
     "powershellModules": [
         {
@@ -147,7 +150,8 @@
                 "2.4.*",
                 "2.5.*",
                 "2.6.*",
-                "2.7.*"
+                "2.7.*",
+                "3.0.*"
             ]
         }
     ],

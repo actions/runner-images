@@ -7,7 +7,6 @@
 
 # Source the helpers
 source $HELPER_SCRIPTS/etc-environment.sh
-source $HELPER_SCRIPTS/invoke-tests.sh
 
 # Install the Homebrew on Linux
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"

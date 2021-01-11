@@ -4,8 +4,6 @@
 ##  Desc:  Installs google-chrome  and chromedriver
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
-
 LSB_RELEASE=$(lsb_release -rs)
 
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -

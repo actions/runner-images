@@ -4,8 +4,6 @@
 ##  Desc:  Installs PhantomJS
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
-
 # Install PhantomJS
 apt-get install -y chrpath libssl-dev libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
 PHANTOM_JS=phantomjs-2.1.1-linux-x86_64

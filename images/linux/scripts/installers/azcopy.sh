@@ -4,8 +4,6 @@
 ##  Desc:  Installs AzCopy
 ################################################################################
 
-source $HELPER_SCRIPTS/invoke-tests.sh
-
 # Install AzCopy7
 wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinux64
 tar -xf azcopy.tar.gz
