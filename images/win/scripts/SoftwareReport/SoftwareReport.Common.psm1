@@ -52,11 +52,6 @@ function Get-RustCargoVersion {
      return $version
 }
 
-function Get-RustDocVersion {
-     $version = [regex]::matches($(rustdoc --version), "\d+\.\d+\.\d+").Value
-     return $version
-}
-
 function Get-RustdocVersion {
      $version = [regex]::matches($(rustdoc --version), "\d+\.\d+\.\d+").Value
      return $version
