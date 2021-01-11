@@ -12,8 +12,8 @@ download_with_retries "$url" "/tmp" "graalvm-archive.tar.gz"
 mkdir $GRAALVM_ROOT
 tar -xzf "/tmp/graalvm-archive.tar.gz" -C $GRAALVM_ROOT
 
-# Set two variables as described here: https://www.graalvm.org/docs/getting-started/linux/
-setEtcEnvironmentVariable "GRAALVM_11_ROOT " $GRAALVM_11_ROOT
+# Set environment variable for GraalVM root
+setEtcEnvironmentVariable "GRAALVM_11_ROOT" $GRAALVM_11_ROOT
 
 # Install Native Image
 $GRAALVM_11_ROOT/bin/gu install native-image
