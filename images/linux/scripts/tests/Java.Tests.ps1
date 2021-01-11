@@ -33,6 +33,10 @@ Describe "Java" {
     
             $result = Get-CommandResult "`"$javaPath`" -version"
             $result.ExitCode | Should -Be 0
+
+            if ($jdkVersion -eq 7 -or $jdkVersion -eq 8) {
+                $jdkVersion = "1.${jdkVersion}"
+            }
             $result.Output[0] | Should -Match ([regex]::Escape("openjdk version `"${jdkVersion}."))
         }
     }
