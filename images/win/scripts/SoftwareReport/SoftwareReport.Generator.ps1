@@ -42,7 +42,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-PerlVersion),
     (Get-PHPVersion),
     (Get-PythonVersion),
-    (Get-RubyVersion) | Sort-Object)
+    (Get-RubyVersion)
+    ) | Sort-Object
 )
 
 $markdown += New-MDHeader "Package Management" -Level 3
@@ -57,7 +58,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-PipVersion),
     (Get-RubyGemsVersion),
     (Get-VcpkgVersion),
-    (Get-YarnVersion) | Sort-Object)
+    (Get-YarnVersion)
+    ) | Sort-Object)
 )
 
 $markdown += New-MDHeader "Project Management" -Level 3
@@ -65,7 +67,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-AntVersion),
     (Get-GradleVersion),
     (Get-MavenVersion),
-    (Get-SbtVersion) | Sort-Object)
+    (Get-SbtVersion)
+    ) | Sort-Object
 )
 
 $markdown += New-MDHeader "Tools" -Level 3
@@ -100,7 +103,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-VSWhereVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
-    (Get-YAMLLintVersion) | Sort-Object)
+    (Get-YAMLLintVersion)
+    ) | Sort-Object
 )
 
 $markdown += New-MDHeader "CLI Tools" -Level 3
@@ -114,7 +118,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-AzureDevopsExtVersion),
     (Get-CloudFoundryVersion),
     (Get-GHVersion),
-    (Get-HubVersion) | Sort-Object)
+    (Get-HubVersion)
+    ) | Sort-Object
 )
 
 $markdown += New-MDHeader "Rust Tools" -Level 3
@@ -126,18 +131,19 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BindgenVersion),
     (Get-CargoAuditVersion),
     (Get-CargoOutdatedVersion),
-    (Get-CbindgenVersion) | Sort-Object)
+    (Get-CbindgenVersion)
+    ) | Sort-Object
 )
 
 $markdown += New-MDHeader "Browsers and webdrivers" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$markdown += New-MDList -Style Unordered -Lines @(
     (Get-BrowserVersion -Browser "chrome"),
     (Get-SeleniumWebDriverVersion -Driver "chrome"),
     (Get-BrowserVersion -Browser "edge"),
     (Get-SeleniumWebDriverVersion -Driver "edge"),
     (Get-BrowserVersion -Browser "firefox"),
     (Get-SeleniumWebDriverVersion -Driver "firefox"),
-    (Get-SeleniumWebDriverVersion -Driver "iexplorer") | Sort-Object)
+    (Get-SeleniumWebDriverVersion -Driver "iexplorer")
 )
 
 $markdown += New-MDHeader "MSYS2" -Level 3
@@ -173,7 +179,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
     (Get-MySQLVersion),
-    (Get-SQLPSVersion) | Sort-Object)
+    (Get-SQLPSVersion)
+    ) | Sort-Object
 )
 $markdown += New-MDNewLine
 
