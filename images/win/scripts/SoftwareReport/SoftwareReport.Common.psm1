@@ -284,7 +284,7 @@ function Get-ShellTarget {
         if ($_.Name -eq "msys2bash.cmd") {
             "C:\msys64\usr\bin\bash.exe"
         } else {
-            ($_.Target)[0]
+            @($_.Target)[0]
         }
     }} | Sort-Object Name
     $shells | New-MDTable -Columns ([ordered]@{Name = "left"; Target = "left";})
