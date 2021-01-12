@@ -64,7 +64,7 @@ try {
 $vm = Get-VM $VMName
 
 if ($VMName -notmatch "10.13") {
-    Write-Host "Change cpu count $cpu, cores count to $cores, amount of RAM to $memoryMb"
+    Write-Host "Change cpu count to $CpuCount, cores count to $CoresPerSocketCount, amount of RAM to $Memory"
     $vm | Set-VM -NumCPU $CpuCount -CoresPerSocket $CoresPerSocketCount -MemoryMB $Memory -Confirm:$false
 }
 
