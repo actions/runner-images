@@ -1,11 +1,10 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
 Describe "Toolcache" {
     $toolcacheDirectory = Join-Path $env:HOME "hostedtoolcache"
-    [array]$packages = @()
     [array]$packages += Get-ToolsetValue -KeyPath "toolcache" | ForEach-Object {
         return [PSCustomObject] @{
             ToolName = ($_.name).ToLower()
