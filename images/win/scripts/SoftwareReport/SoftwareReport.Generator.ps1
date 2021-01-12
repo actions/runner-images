@@ -35,18 +35,18 @@ $markdown += New-MDList -Style Unordered -Lines @(
 )
 
 $markdown += New-MDList -Lines (Get-JavaVersionsList -DefaultVersion "1.8.0") -Style Unordered -NoNewLine
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BashVersion),
     (Get-JuliaVersion),
     (Get-NodeVersion),
     (Get-PerlVersion),
     (Get-PHPVersion),
     (Get-PythonVersion),
-    (Get-RubyVersion)   
+    (Get-RubyVersion) | Sort-Object)
 )
 
 $markdown += New-MDHeader "Package Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-ChocoVersion),
     (Get-ComposerVersion),
     (Get-HelmVersion),
@@ -57,19 +57,19 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-PipVersion),
     (Get-RubyGemsVersion),
     (Get-VcpkgVersion),
-    (Get-YarnVersion)
+    (Get-YarnVersion) | Sort-Object)
 )
 
 $markdown += New-MDHeader "Project Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-AntVersion),
     (Get-GradleVersion),
     (Get-MavenVersion),
-    (Get-SbtVersion)
+    (Get-SbtVersion) | Sort-Object)
 )
 
 $markdown += New-MDHeader "Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-7zipVersion),
     (Get-AzCopyVersion),
     (Get-BazelVersion),
@@ -100,11 +100,11 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-VSWhereVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
-    (Get-YAMLLintVersion)
+    (Get-YAMLLintVersion) | Sort-Object)
 )
 
 $markdown += New-MDHeader "CLI Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-AlibabaCLIVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMVersion),
@@ -114,7 +114,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzureDevopsExtVersion),
     (Get-CloudFoundryVersion),
     (Get-GHVersion),
-    (Get-HubVersion)
+    (Get-HubVersion) | Sort-Object)
 )
 
 $markdown += New-MDHeader "Rust Tools" -Level 3
@@ -122,22 +122,22 @@ $markdown += New-MDList -Style Unordered -Lines @(
     "Rust $(Get-RustVersion)"
 )
 $markdown += New-MDHeader "Packages" -Level 4
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BindgenVersion),
     (Get-CargoAuditVersion),
     (Get-CargoOutdatedVersion),
-    (Get-CbindgenVersion)
+    (Get-CbindgenVersion) | Sort-Object)
 )
 
 $markdown += New-MDHeader "Browsers and webdrivers" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BrowserVersion -Browser "chrome"),
     (Get-SeleniumWebDriverVersion -Driver "chrome"),
     (Get-BrowserVersion -Browser "edge"),
     (Get-SeleniumWebDriverVersion -Driver "edge"),
     (Get-BrowserVersion -Browser "firefox"),
     (Get-SeleniumWebDriverVersion -Driver "firefox"),
-    (Get-SeleniumWebDriverVersion -Driver "iexplorer")
+    (Get-SeleniumWebDriverVersion -Driver "iexplorer") | Sort-Object)
 )
 
 $markdown += New-MDHeader "MSYS2" -Level 3
@@ -169,11 +169,11 @@ $markdown += Build-DatabasesMarkdown
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Database tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
     (Get-MySQLVersion),
-    (Get-SQLPSVersion)
+    (Get-SQLPSVersion) | Sort-Object)
 )
 $markdown += New-MDNewLine
 
