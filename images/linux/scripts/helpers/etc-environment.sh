@@ -18,7 +18,7 @@ function addEtcEnvironmentVariable {
     variable_name="$1"
     variable_value="$2"
 
-    echo "$variable_name=\"$variable_value\"" | sudo tee -a /etc/environment
+    echo "$variable_name=$variable_value" | sudo tee -a /etc/environment
 }
 
 function replaceEtcEnvironmentVariable {

@@ -123,15 +123,21 @@ $markdown += New-MDList -Style Unordered -Lines (@(
 )
 
 $markdown += New-MDHeader "Rust Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
-    "Rust $(Get-RustVersion)"
+$markdown += New-MDList -Style Unordered -Lines (@(
+    "Rust $(Get-RustVersion)",
+    "Rustup $(Get-RustupVersion)",
+    "Cargo $(Get-RustCargoVersion)",
+    "Rustdoc $(Get-RustdocVersion)"
+    ) | Sort-Object
 )
+
 $markdown += New-MDHeader "Packages" -Level 4
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BindgenVersion),
     (Get-CargoAuditVersion),
     (Get-CargoOutdatedVersion),
-    (Get-CbindgenVersion)
+    "Rustfmt $(Get-RustfmtVersion)",
+    "Clippy $(Get-RustClippyVersion)"
     ) | Sort-Object
 )
 
