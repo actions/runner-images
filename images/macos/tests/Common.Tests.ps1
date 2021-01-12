@@ -299,15 +299,6 @@ Describe "Newman" -Skip:($os.IsHighSierra -or $os.IsMojave) {
     }
 }
 
-Describe "Visual Studio For Mac" {
-    It "VS4Mac is installed" {
-        $vsPath = "/Applications/Visual Studio.app"
-        $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
-        $vsPath | Should -Exist
-        $vstoolPath | Should -Exist
-    }
-}
-
 Describe "AWS" {
     It "AWS CLI" {
         "aws --version" | Should -ReturnZeroExitCode
