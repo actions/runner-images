@@ -61,12 +61,12 @@ function Build-AndroidTable {
             "Version" = Get-AndroidGoogleAPIsVersions -PackageInfo $packageInfo
         },
         @{
-            "Package" = "Android Support Repository"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Support Repository"
+            "Package" = "NDK"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
         },
         @{
-            "Package" = "CMake"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "cmake"
+            "Package" = "Android Support Repository"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Support Repository"
         },
         @{
             "Package" = "Google Play services"
@@ -77,12 +77,12 @@ function Build-AndroidTable {
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Google Repository"
         },
         @{
-            "Package" = "NDK"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
-        },
-        @{
             "Package" = "SDK Patch Applier v4"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "SDK Patch Applier v4"
+        },
+        @{
+            "Package" = "CMake"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "cmake"
         }
     ) | Where-Object { $_.Version } | ForEach-Object {
         [PSCustomObject] @{

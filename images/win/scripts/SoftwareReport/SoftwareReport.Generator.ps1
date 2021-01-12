@@ -36,12 +36,12 @@ $markdown += New-MDList -Style Unordered -Lines @(
 
 $markdown += New-MDList -Lines (Get-JavaVersionsList -DefaultVersion "1.8.0") -Style Unordered -NoNewLine
 $markdown += New-MDList -Style Unordered -Lines @(
+    (Get-BashVersion),
     (Get-JuliaVersion),
     (Get-NodeVersion),
     (Get-PerlVersion),
     (Get-PHPVersion),
     (Get-PythonVersion),
-    (Get-BashVersion),
     (Get-RubyVersion)   
 )
 
