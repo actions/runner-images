@@ -83,20 +83,19 @@ function Expand-XcodeXipArchive {
         [Parameter(Mandatory)]
         [string]$DownloadDirectory,
         [Parameter(Mandatory)]
-        [string]$TargetPath,
-        [Parameter(Mandatory)]
-        [string]$Version
+        [string]$TargetPath
     )
 
     $xcodeXipPath = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_*.xip" | Select-Object -First 1
+
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
-    Push-Location "$DownloadDirectory"
+    Push-Location $DownloadDirectory
     Invoke-ValidateCommand "xip -x $xcodeXipPath"
     Pop-Location
 
     if (Test-Path "$DownloadDirectory/Xcode-beta.app") {
         Write-Host "Renaming Xcode-beta.app to Xcode.app"
-        Rename-Item -Path "$tempXipDir/Xcode-beta.app" -NewName "Xcode.app"
+        Rename-Item -Path "$DownloadDirectory/Xcode-beta.app" -NewName "Xcode.app"
     }
 
     if (-not (Test-Path "$DownloadDirectory/Xcode.app")) {
