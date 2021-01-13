@@ -17,17 +17,13 @@ $defaultXcode = Get-ToolsetValue "xcode.default"
 $threadCount = [Environment]::ProcessorCount
 
 Write-Host "Installing Xcode versions..."
-$InstallXcodeVersionString = ${function:Install-XcodeVersion}.ToString()
-$ConfirmXcodeIntegrityString = ${function:Confirm-XcodeIntegrity}.ToString()
-$ApproveXcodeLicenseString = ${function:Approve-XcodeLicense}.ToString()
 $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
+    Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
+    Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
     $ErrorActionPreference = "SilentlyContinue"
-    $function:InstallXcodeVersion = $using:InstallXcodeVersionString
-    $function:ConfirmXcodeIntegrity = $using:ConfirmXcodeIntegrityString
-    $function:ApproveXcodeLicense = $using:ApproveXcodeLicenseString
-    InstallXcodeVersion -Version $_.version -LinkTo $_.link
-    ConfirmXcodeIntegrity -Version $_.link
-    ApproveXcodeLicense -Version $_.link
+    Install-XcodeVersion -Version $_.version -LinkTo $_.link
+    Confirm-XcodeIntegrity -Version $_.link
+    Approve-XcodeLicense -Version $_.link
 }
 
 if ($os.IsLessThanCatalina) {
