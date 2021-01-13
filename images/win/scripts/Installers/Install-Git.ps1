@@ -31,7 +31,8 @@ Install-Binary  -Url $downloadUrl `
                     "/o:EnableSymlinks=Enabled", `
                     "/COMPONENTS=gitlfs")
 
-Choco-Install -PackageName hub
+# Install hub with --ignore-dependencies option to prevent the installation of the git package. See details in https://github.com/actions/virtual-environments/issues/2375
+Choco-Install -PackageName hub -ArgumentList "--ignore-dependencies"
 
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
