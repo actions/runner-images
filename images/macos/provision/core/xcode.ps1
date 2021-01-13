@@ -21,7 +21,7 @@ $InstallXcodeVersionString = ${function:Install-XcodeVersion}.ToString()
 $ConfirmXcodeIntegrityString = ${function:Confirm-XcodeIntegrity}.ToString()
 $ApproveXcodeLicenseString = ${function:Approve-XcodeLicense}.ToString()
 $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
-    $ErrorActionPreference = "Stop"
+    $ErrorActionPreference = "SilentlyContinue"
     $function:InstallXcodeVersion = $using:InstallXcodeVersionString
     $function:ConfirmXcodeIntegrity = $using:ConfirmXcodeIntegrityString
     $function:ApproveXcodeLicense = $using:ApproveXcodeLicenseString

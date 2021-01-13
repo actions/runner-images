@@ -31,13 +31,13 @@ function Invoke-DownloadXcodeArchive {
 
     # TO-DO: Consider replacing of xcversion with own implementation
     Write-Host "Downloading Xcode $resolvedVersion"
-    Invoke-ValidateCommand "xcversion install '$resolvedVersion' --no-install" | out-host
-    $fixedResolvedVersion = "$resolvedVersion" -replace " ", "_"
-    $xcodeXip = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_$fixedResolvedVersion.xip" | Select-Object -First 1
-    $tempXipDir = New-Item -Path $DownloadDirectory -Name "Xcode$fixedResolvedVersion" -ItemType "directory"
-    Move-Item -Path "$xcodeXip" -Destination $tempXipDir
+    Invoke-ValidateCommand "xcversion install '$resolvedVersion' --no-install" | Out-Host
+    $xcodeXipName = "$resolvedVersion" -replace " ", "_"
+    $xcodeXipFile = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_$xcodeXipName.xip" | Select-Object -First 1
+    $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$xcodeXipName" -ItemType "Directory"
+    Move-Item -Path "$xcodeXipFile" -Destination $tempXipDirectory
 
-    return "$tempXipDir"
+    return $tempXipDirectory
 }
 
 function Resolve-ExactXcodeVersion {
