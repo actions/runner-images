@@ -9,9 +9,8 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 # Ubuntu 20 doesn't support EOL versions
-toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-LATEST_DOTNET_PACKAGES=$(jq -r '.dotnet.aptPackages[]' $toolset)
-versions=$(jq -r '.dotnet.versions[]' $toolset)
+LATEST_DOTNET_PACKAGES=($(get_toolset_value '.dotnet.aptPackages[]'))
+versions=($(get_toolset_value '.dotnet.versions[]'))
 
 mksamples()
 {

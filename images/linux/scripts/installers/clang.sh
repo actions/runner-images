@@ -32,10 +32,8 @@ function SetDefaultClang {
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
 
-toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-
-versions=$(jq -r '.clang.versions[]' $toolset)
-default_clang_version=$(jq -r '.clang.default_version' $toolset)
+versions=($(get_toolset_value '.clang.versions[]'))
+default_clang_version=($(get_toolset_value '.clang.default_version'))
 
 for version in ${versions[*]}; do
     InstallClang $version
