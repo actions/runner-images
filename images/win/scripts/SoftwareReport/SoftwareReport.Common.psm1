@@ -42,6 +42,31 @@ function Get-RustVersion {
     return $rustVersion
 }
 
+function Get-RustupVersion {
+     $version = [regex]::matches($(rustup --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustCargoVersion {
+     $version = [regex]::matches($(cargo --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustdocVersion {
+     $version = [regex]::matches($(rustdoc --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustfmtVersion {
+     $version = [regex]::matches($(rustfmt --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustClippyVersion {
+     $version = [regex]::matches($(cargo clippy  --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
 function Get-BindgenVersion {
     return bindgen --version
 }

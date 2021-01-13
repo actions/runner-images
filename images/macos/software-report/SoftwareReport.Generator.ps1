@@ -175,14 +175,18 @@ if ( -not $os.IsHighSierra) {
     $markdown += New-MDHeader "Rust Tools" -Level 3
     $markdown += New-MDList -Style Unordered -Lines @(
         (Get-RustVersion),
-        (Get-RustupVersion)
+        (Get-RustupVersion),
+        (Get-RustdocVersion),
+        (Get-RustCargoVersion)
     )
     $markdown += New-MDHeader "Packages" -Level 4
     $markdown += New-MDList -Style Unordered -Lines @(
         (Get-Bindgen),
         (Get-Cbindgen),
         (Get-Cargooutdated),
-        (Get-Cargoaudit)
+        (Get-Cargoaudit),
+        (Get-RustfmtVersion),
+        (Get-RustClippyVersion)
     )
 }
 

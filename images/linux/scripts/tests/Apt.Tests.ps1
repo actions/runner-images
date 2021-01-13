@@ -9,6 +9,21 @@ Describe "Apt" {
     }
 
     It "<toolName> is available" -TestCases $testCases {
+        if ($toolName -eq "p7zip-full")
+        {
+            $toolName = "p7zip"
+        }
+
+        if ($toolName -eq "subversion")
+        {
+            $toolName = "svn"
+        }
+
+        if ($toolName -eq "sphinxsearch")
+        {
+            $toolName = "searchd"
+        }
+
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
     }
 }

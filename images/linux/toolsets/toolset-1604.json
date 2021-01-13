@@ -79,6 +79,12 @@
             ]
         }
     ],
+    "java": {
+        "default": "8",
+        "versions": [
+            "7", "8", "11", "12"
+        ]
+    },
     "android": {
         "platform_min_version": "10",
         "build_tools_min_version": "19.1.0",
@@ -131,11 +137,13 @@
     ],
     "apt": {
         "common_packages": [
+            "build-essential",
             "dbus",
             "dnsutils",
             "dpkg",
             "fakeroot",
             "gnupg2",
+            "imagemagick",
             "iproute2",
             "iputils-ping",
             "lib32z1",
@@ -147,6 +155,9 @@
             "libgsl-dev",
             "libgtk-3-0",
             "libicu55",
+            "libmagic-dev",
+            "libmagickcore-dev",
+            "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
             "libunwind8",
@@ -154,6 +165,8 @@
             "libxss1",
             "locales",
             "openssh-client",
+            "p7zip-rar",
+            "p7zip",
             "pkg-config",
             "rpm",
             "texinfo",
@@ -174,18 +187,24 @@
             "file",
             "flex",
             "ftp",
+            "haveged",
             "jq",
             "m4",
             "mediainfo",
             "netcat",
+            "p7zip-full",
             "parallel",
             "pass",
             "patchelf",
+            "pollinate",
             "rsync",
             "shellcheck",
+            "sphinxsearch",
             "sqlite3",
             "ssh",
+            "subversion",
             "sudo",
+            "swig",
             "telnet",
             "time",
             "unzip",
