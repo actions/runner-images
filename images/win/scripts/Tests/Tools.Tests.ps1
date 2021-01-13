@@ -127,7 +127,6 @@ Describe "Mingw64" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "gcc" }
         @{ ToolName = "g++" }
-        @{ ToolName = "make" }
     ) {
         "$ToolName --version" | Should -ReturnZeroExitCode
     }
