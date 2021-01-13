@@ -14,20 +14,29 @@ $os = Get-OSVersion
 $xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
 [Array]::Reverse($xcodeVersions)
+$threadCount = [Environment]::ProcessorCount
 
 Write-Host "Installing Xcode versions..."
-$xcodeVersions | ForEach-Object {
-    Install-XcodeVersion -Version $_.version -LinkTo $_.link
-    Confirm-XcodeIntegrity -Version $_.link
-    Approve-XcodeLicense -Version $_.link
+$InstallXcodeVersionString = ${function:Install-XcodeVersion}.ToString()
+$ConfirmXcodeIntegrityString = ${function:Confirm-XcodeIntegrity}.ToString()
+$ApproveXcodeLicenseString = ${function:Approve-XcodeLicense}.ToString()
+$xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
+    $ErrorActionPreference = "Stop"
+    $function:InstallXcodeVersion = $using:InstallXcodeVersionString
+    $function:ConfirmXcodeIntegrity = $using:ConfirmXcodeIntegrityString
+    $function:ApproveXcodeLicense = $using:ApproveXcodeLicenseString
+    InstallXcodeVersion -Version $_.version -LinkTo $_.link
+    ConfirmXcodeIntegrity -Version $_.link
+    ApproveXcodeLicense -Version $_.link
 }
 
-Write-Host "Configuring Xcode versions..."
 if ($os.IsLessThanCatalina) {
     $latestXcodeVersion = $xcodeVersions | Select-Object -Last 1 -ExpandProperty link
     Install-XcodeAdditionalPackages -Version $latestXcodeVersion
 }
-$xcodeVersions | ForEach-Object { Invoke-XcodeRunFirstLaunch -Version $_.link }
+$xcodeVersions | ForEach-Object { 
+    Invoke-XcodeRunFirstLaunch -Version $_.link 
+}
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
 Write-Host "Configuring Xcode symlinks..."

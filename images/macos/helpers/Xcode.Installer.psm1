@@ -10,11 +10,8 @@ function Install-XcodeVersion {
 
     $xcodeDownloadDirectory = "$env:HOME/Library/Caches/XcodeInstall"
     $xcodeTargetPath = Get-XcodeRootPath -Version $LinkTo
-
-    Invoke-DownloadXcodeArchive -Version $Version
-    Expand-XcodeXipArchive -DownloadDirectory $xcodeDownloadDirectory -TargetPath $xcodeTargetPath
-
-    Get-ChildItem $xcodeDownloadDirectory | Remove-Item -Force
+    $resolvedVersion = Invoke-DownloadXcodeArchive -Version $Version
+    Expand-XcodeXipArchive -DownloadDirectory $xcodeDownloadDirectory -TargetPath $xcodeTargetPath -Version "$resolvedVersion"
 }
 
 function Invoke-DownloadXcodeArchive {
@@ -30,7 +27,9 @@ function Invoke-DownloadXcodeArchive {
 
     # TO-DO: Consider replacing of xcversion with own implementation
     Write-Host "Downloading Xcode $resolvedVersion"
-    Invoke-ValidateCommand "xcversion install '$resolvedVersion' --no-install"
+    Invoke-ValidateCommand "xcversion install '$resolvedVersion' --no-install" | out-null
+    $fixedResolvedVersion = "$resolvedVersion" -replace " ", "_"
+    return "$fixedResolvedVersion"
 }
 
 function Resolve-ExactXcodeVersion {
@@ -76,27 +75,33 @@ function Expand-XcodeXipArchive {
         [Parameter(Mandatory)]
         [string]$DownloadDirectory,
         [Parameter(Mandatory)]
-        [string]$TargetPath
+        [string]$TargetPath,
+        [Parameter(Mandatory)]
+        [string]$Version
     )
 
-    $xcodeXipPath = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_*.xip" | Select-Object -First 1
-
+    $xcodeXip = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_$Version.xip" | Select-Object -First 1
+    $xcodeXipName = $xcodeXip.Name
+    $tempXipDir = New-Item -Path $DownloadDirectory -Name "Xcode$Version" -ItemType "directory"
+    Move-Item -Path "$xcodeXip" -Destination $tempXipDir
+    $xcodeXipPath = Join-Path -Path "$tempXipDir" "$xcodeXipName"
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
-    Push-Location $DownloadDirectory
+    Push-Location "$tempXipDir"
     Invoke-ValidateCommand "xip -x $xcodeXipPath"
     Pop-Location
 
-    if (Test-Path "$DownloadDirectory/Xcode-beta.app") {
+    if (Test-Path "$tempXipDir/Xcode-beta.app") {
         Write-Host "Renaming Xcode-beta.app to Xcode.app"
-        Rename-Item -Path "$DownloadDirectory/Xcode-beta.app" -NewName "Xcode.app"
+        Rename-Item -Path "$tempXipDir/Xcode-beta.app" -NewName "Xcode.app"
     }
 
-    if (-not (Test-Path "$DownloadDirectory/Xcode.app")) {
+    if (-not (Test-Path "$tempXipDir/Xcode.app")) {
         throw "XIP archive '$xcodeXipPath' doesn't contain 'Xcode.app'"
     }
 
-    Write-Host "Moving '$DownloadDirectory/Xcode.app' to '$TargetPath'"
-    Move-Item -Path "$DownloadDirectory/Xcode.app" -Destination $TargetPath
+    Write-Host "Moving '$tempXipDir/Xcode.app' to '$TargetPath'"
+    Move-Item -Path "$tempXipDir/Xcode.app" -Destination $TargetPath
+    Remove-Item -Path $tempXipDir -Force -Recurse
 }
 
 function Confirm-XcodeIntegrity {
