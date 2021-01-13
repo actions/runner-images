@@ -5,5 +5,4 @@
 ################################################################################
 
 toolset_path="/imagegeneration/installers/toolset.json"
-query=$1
-echo "$(jq -r "$query" $toolset_path)"
+echo "$(jq -r "$1" $toolset_path)"
