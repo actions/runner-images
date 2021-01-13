@@ -21,13 +21,13 @@ $xcodeVersions | ForEach-Object {
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
 }
 
-$ConfirmXcodeIntegrity = ${function:Confirm-XcodeIntegrity}.ToString()
-$ApproveXcodeLicense = ${function:Approve-XcodeLicense}.ToString()
+$ConfirmXcodeIntegrityString = ${function:Confirm-XcodeIntegrity}.ToString()
+$ApproveXcodeLicenseString = ${function:Approve-XcodeLicense}.ToString()
 $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
-    ${function:Confirm-XcodeIntegrity} = $using:ConfirmXcodeIntegrity
-    ${function:Approve-XcodeLicense} = $using:ApproveXcodeLicense
-    Confirm-XcodeIntegrity -Version $_.link
-    Approve-XcodeLicense -Version $_.link
+    $function:ConfirmXcodeIntegrity = $using:ConfirmXcodeIntegrityString
+    $function:ApproveXcodeLicense = $using:ApproveXcodeLicenseString
+    ConfirmXcodeIntegrity -Version $_.link
+    ApproveXcodeLicense -Version $_.link
 }
 
 Write-Host "Configuring Xcode versions..."
