@@ -63,11 +63,6 @@ try {
 
 $vm = Get-VM $VMName
 
-if ($VMName -notmatch "10.13") {
-    Write-Host "Change cpu count to $CpuCount, cores count to $CoresPerSocketCount, amount of RAM to $Memory"
-    $vm | Set-VM -NumCPU $CpuCount -CoresPerSocket $CoresPerSocketCount -MemoryMB $Memory -Confirm:$false
-}
-
 if ($env:AGENT_JOBSTATUS -eq 'Failed') {
     try {
         if($vm.PowerState -ne "PoweredOff") {
@@ -81,6 +76,10 @@ if ($env:AGENT_JOBSTATUS -eq 'Failed') {
 }
 
 try {
+    if ($VMName -notmatch "10.13") {
+        Write-Host "Change cpu count to $CpuCount, cores count to $CoresPerSocketCount, amount of RAM to $Memory"
+        $vm | Set-VM -NumCPU $CpuCount -CoresPerSocket $CoresPerSocketCount -MemoryMB $Memory -Confirm:$false
+    }
     Move-VM -Vm $vm -Datastore $TargetDataStore -ErrorAction Stop
     Write-Host "VM has been moved successfully to target datastore '$TargetDataStore'"
 } catch {
