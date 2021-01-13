@@ -140,6 +140,12 @@
             ]
         }
     ],
+    "java": {
+        "default": "8",
+        "versions": [
+            "7", "8", "11", "13"
+        ]
+    },
     "android": {
         "platform_min_version": "19",
         "build_tools_min_version": "19.1.0",
