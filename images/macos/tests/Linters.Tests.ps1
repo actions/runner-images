@@ -1,4 +1,4 @@
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
