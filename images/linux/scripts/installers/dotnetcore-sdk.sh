@@ -10,7 +10,7 @@ source $HELPER_SCRIPTS/os.sh
 
 # Ubuntu 20 doesn't support EOL versions
 LATEST_DOTNET_PACKAGES=($(get_toolset_value '.dotnet.aptPackages[]'))
-versions=($(get_toolset_value '.dotnet.versions[]'))
+DOTNET_VERSIONS=($(get_toolset_value '.dotnet.versions[]'))
 
 mksamples()
 {
@@ -42,7 +42,7 @@ done
 
 # Get list of all released SDKs from channels which are not end-of-life or preview
 sdks=()
-for version in ${versions[@]}; do
+for version in ${DOTNET_VERSIONS[@]}; do
     release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
     download_with_retries "${release_url}" "." "${version}.json"
     releases=$(cat "./${version}.json")

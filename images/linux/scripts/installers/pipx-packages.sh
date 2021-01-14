@@ -3,6 +3,7 @@
 ##  File:  pipx-packages.sh
 ##  Desc:  Install tools via pipx
 ################################################################################
+source $HELPER_SCRIPTS/install.sh
 
 export PATH="$PATH:/opt/pipx_bin"
 

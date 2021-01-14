@@ -3,7 +3,7 @@
 ##  File:  gfortran.sh
 ##  Desc:  Installs GNU Fortran
 ################################################################################
-
+source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 function InstallFortran {

@@ -29,7 +29,3 @@ echo 'vm.max_map_count=262144' | tee -a /etc/sysctl.conf
 # Create symlink for tests running
 chmod +x $HELPER_SCRIPTS/invoke-tests.sh
 ln -s $HELPER_SCRIPTS/invoke-tests.sh /usr/local/bin/invoke_tests
-
-# Create symlink for toolset helper
-chmod +x $HELPER_SCRIPTS/get-toolset-value.sh
-ln -s $HELPER_SCRIPTS/get-toolset-value.sh /usr/local/bin/get_toolset_value
