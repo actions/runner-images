@@ -214,7 +214,6 @@
             "platform" : "darwin",
             "arch": "x64",
             "versions": [
-                "8.*",
                 "10.*",
                 "12.*",
                 "14.*"
