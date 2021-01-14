@@ -76,7 +76,7 @@ function InstallPyPy
 uri="https://downloads.python.org/pypy/"
 download_with_retries $uri "/tmp" "pypyUrls.html" compressed
 pypyVersions="$(cat /tmp/pypyUrls.html | grep 'linux64' | awk -v uri="$uri" -F'>|<' '{print uri$5}')"
-toolsetVersions=($(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]'))
+toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
 
 for toolsetVersion in $toolsetVersions; do
     latestMajorPyPyVersion=$(echo "${pypyVersions}" | grep -E "pypy${toolsetVersion}-v[0-9]+\.[0-9]+\.[0-9]+-" | head -1)

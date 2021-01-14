@@ -29,7 +29,7 @@ sleep 10
 docker info
 
 # Pull images
-images=($(get_toolset_value '.docker.images[]'))
+images=$(get_toolset_value '.docker.images[]')
 for image in $images; do
     docker pull "$image"
 done

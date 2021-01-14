@@ -14,7 +14,7 @@ apt-add-repository ppa:ondrej/php -y
 apt-get update
 
 # Install PHP
-php_versions=($(get_toolset_value '.php.versions[]'))
+php_versions=$(get_toolset_value '.php.versions[]')
 
 for version in $php_versions; do
     echo "Installing PHP $version"

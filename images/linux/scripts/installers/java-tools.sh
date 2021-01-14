@@ -7,7 +7,7 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
-JAVA_VERSIONS_LIST=($(get_toolset_value '.java.versions | .[]'))
+JAVA_VERSIONS_LIST=$(get_toolset_value '.java.versions | .[]')
 DEFAULT_JDK_VERSION=$(get_toolset_value '.java.default')
 
 # Install GPG Key for Adopt Open JDK. See https://adoptopenjdk.net/installation.html

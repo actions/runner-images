@@ -19,7 +19,7 @@ function InstallGcc {
 add-apt-repository ppa:ubuntu-toolchain-r/test -y
 apt-get update -y
 
-versions=($(get_toolset_value '.gcc.versions[]'))
+versions=$(get_toolset_value '.gcc.versions[]')
 
 for version in ${versions[*]}; do
     InstallGcc $version

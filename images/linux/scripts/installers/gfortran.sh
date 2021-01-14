@@ -17,7 +17,7 @@ function InstallFortran {
 add-apt-repository ppa:ubuntu-toolchain-r/test -y
 apt-get update -y
 
-versions=($(get_toolset_value '.gfortran.versions[]'))
+versions=$(get_toolset_value '.gfortran.versions[]')
 
 for version in ${versions[*]}
 do

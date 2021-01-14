@@ -58,9 +58,9 @@ fi
 
 minimumBuildToolVersion=$(get_toolset_value '.android.build_tools_min_version')
 minimumPlatformVersion=$(get_toolset_value '.android.platform_min_version')
-extras=($(get_toolset_value '.android.extra_list[]|"extras;" + .'))
-addons=($(get_toolset_value '.android.addon_list[]|"add-ons;" + .'))
-additional=($(get_toolset_value '.android.additional_tools[]'))
+extras=$(get_toolset_value '.android.extra_list[]|"extras;" + .')
+addons=$(get_toolset_value '.android.addon_list[]|"add-ons;" + .')
+additional=$(get_toolset_value '.android.additional_tools[]')
 
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" )
