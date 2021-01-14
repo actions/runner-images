@@ -10,11 +10,13 @@ Describe "Rust" -Skip:($os.IsHighSierra) {
             "rustc --version" | Should -ReturnZeroExitCode
         }
     }
+    
     Context "Cargo" {
         It "Cargo is installed" {
             "cargo --version" | Should -ReturnZeroExitCode
         }
     }
+
     Context "Cargo dependencies" {
         It "bindgen" {
             "bindgen --version" | Should -ReturnZeroExitCode
