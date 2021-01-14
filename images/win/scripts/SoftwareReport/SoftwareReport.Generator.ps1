@@ -6,6 +6,7 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNam
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Databases.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Java.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -DisableNameChecking
 
 $markdown = ""
@@ -30,7 +31,6 @@ if (Test-IsWin19)
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
-$markdown += New-MDList -Lines (Get-JavaVersionsList -DefaultVersion "1.8.0") -Style Unordered -NoNewLine
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-BashVersion),
     (Get-PythonVersion),
@@ -41,6 +41,10 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-PerlVersion),
     (Get-NodeVersion)
 )
+
+$markdown += New-MDHeader "Java" -Level 3
+$markdown += Get-JavaVersions | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Package Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
