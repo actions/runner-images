@@ -61,7 +61,7 @@ $markdown += New-MDList -Style Unordered -Lines ($languageAndRuntimeList | Sort-
 
 # Package Management
 $markdown += New-MDHeader "Package Management" -Level 3
-$packageManagmentList = @(
+$packageManagementList = @(
     (Get-PipVersion -Version 2),
     (Get-PipVersion -Version 3),
     (Get-PipxVersion),
@@ -78,12 +78,12 @@ $packageManagmentList = @(
 )
 
 if ($os.IsHigherThanMojave) {
-    $packageManagmentList += @(
+    $packageManagementList += @(
         (Get-VcpkgVersion)
     )
 }
 
-$markdown += New-MDList -Style Unordered -Lines ($packageManagmentList | Sort-Object)
+$markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
 
 # Project Management
 $markdown += New-MDHeader "Project Management" -Level 3
