@@ -16,6 +16,7 @@ $defaultXcode = Get-ToolsetValue "xcode.default"
 [Array]::Reverse($xcodeVersions)
 $threadCount = [Environment]::ProcessorCount
 
+Write-Host "ProcessorCount is $threadCount"
 Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
     Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
