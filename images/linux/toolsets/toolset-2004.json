@@ -30,7 +30,6 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "8.*",
                 "10.*",
                 "12.*",
                 "14.*"
@@ -67,6 +66,12 @@
             ]
         }
     ],
+    "java": {
+        "default": "11",
+        "versions": [
+            "8", "11"
+        ]
+    },
     "android": {
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
