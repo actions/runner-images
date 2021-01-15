@@ -132,7 +132,8 @@
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
-                "IMAGE_OS={{user `image_os`}}"
+                "IMAGE_OS={{user `image_os`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
@@ -198,7 +199,6 @@
                 "{{template_dir}}/scripts/installers/hhvm.sh",
                 "{{template_dir}}/scripts/installers/image-magick.sh",
                 "{{template_dir}}/scripts/installers/java-tools.sh",
-                "{{template_dir}}/scripts/installers/kind.sh",
                 "{{template_dir}}/scripts/installers/kubernetes-tools.sh",
                 "{{template_dir}}/scripts/installers/oc.sh",
                 "{{template_dir}}/scripts/installers/leiningen.sh",
@@ -247,8 +247,7 @@
             "type": "shell",
             "scripts": [
                 "{{template_dir}}/scripts/installers/Install-Toolset.ps1",
-                "{{template_dir}}/scripts/installers/Configure-Toolset.ps1",
-                "{{template_dir}}/scripts/installers/Validate-Toolset.ps1"
+                "{{template_dir}}/scripts/installers/Configure-Toolset.ps1"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
@@ -273,7 +272,8 @@
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "DEBIAN_FRONTEND=noninteractive"
+                "DEBIAN_FRONTEND=noninteractive",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
             ],
             "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
         },
@@ -287,16 +287,8 @@
         },
         {
             "type": "shell",
-            "pause_before": "30s",
-            "timeout": "10m",
-            "start_retry_timeout": "10s",
-            "scripts": [
-                "{{template_dir}}/scripts/installers/homebrew-validate.sh"
-            ],
-            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
+            "pause_before": "60s",
+            "start_retry_timeout": "10m",
             "scripts": [
                 "{{template_dir}}/scripts/installers/cleanup.sh"
             ],

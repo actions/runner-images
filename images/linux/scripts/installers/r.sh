@@ -11,4 +11,5 @@ sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $osLab
 
 sudo apt update
 sudo apt install r-base
-version=$(R --version | grep "R version" | cut -d " " -f 3)
+
+invoke_tests "Tools" "R"

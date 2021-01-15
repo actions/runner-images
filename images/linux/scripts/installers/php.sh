@@ -13,17 +13,9 @@ apt-add-repository ppa:ondrej/php -y
 apt-get update
 
 # Install PHP
-if isUbuntu16 ; then
-    php_versions="5.6 7.0 7.1 7.2 7.3 7.4 8.0"
-fi
+toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 
-if isUbuntu18 ; then
-    php_versions="7.1 7.2 7.3 7.4 8.0"
-fi
-
-if isUbuntu20 ; then
-    php_versions="7.4 8.0"
-fi
+php_versions=$(jq -r '.php.versions[]' $toolset)
 
 for version in $php_versions; do
     echo "Installing PHP $version"
@@ -111,28 +103,11 @@ wget -q -O phpunit https://phar.phpunit.de/phpunit-8.phar
 chmod +x phpunit
 mv phpunit /usr/local/bin/phpunit
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in composer pear pecl phpunit; do
-    if ! command -v $cmd; then
-        echo "$cmd was not installed"
-        exit 1
-    fi
-done
-
-for version in $php_versions; do
-    if ! command -v php$version; then
-        echo "php$version was not installed"
-        exit 1
-    elif ! command -v php-config$version || ! command -v phpize$version; then
-        echo "php$version-dev was not installed"
-        exit 1
-    fi
-done
-
 # ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
 # see https://github.com/actions/virtual-environments/issues/1084
 if isUbuntu20 ; then
   rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
   apt-get update
 fi
+
+invoke_tests "Common" "PHP"

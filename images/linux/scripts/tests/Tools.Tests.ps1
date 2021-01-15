@@ -16,6 +16,49 @@ Describe "azcopy" {
     }
 }
 
+Describe "Rust" {
+    It "Rustup is installed" {
+        "rustup --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Rustc is installed" {
+        "rustc --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Rustdoc is installed" {
+        "rustdoc --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Rustfmt is installed" {
+        "rustfmt --version" | Should -ReturnZeroExitCode
+    }
+
+    Context "Cargo dependencies" {
+        It "bindgen" {
+            "bindgen --version" | Should -ReturnZeroExitCode
+        }
+
+        It "cbindgen" {
+            "cbindgen --version" | Should -ReturnZeroExitCode
+        }
+
+        It "cargo" {
+            "cargo --version" | Should -ReturnZeroExitCode
+        }
+
+        It "cargo-clippy" {
+            "cargo-clippy --version" | Should -ReturnZeroExitCode
+        }
+
+        It "Cargo audit" {
+            "cargo audit --version" | Should -ReturnZeroExitCode
+        }
+
+        It "Cargo outdated" {
+            "cargo outdated --version" | Should -ReturnZeroExitCode
+        }
+    }
+}
 Describe "Docker" {
     It "docker" {
         "docker --version" | Should -ReturnZeroExitCode
@@ -37,16 +80,6 @@ Describe "Docker" {
 Describe "Docker-compose" {
     It "docker-compose" {
         "docker-compose --version"| Should -ReturnZeroExitCode
-    }
-}
-
-Describe "PowerShell Core" {
-    It "pwsh" {
-        "pwsh --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Execute 2+2 command" {
-        pwsh -Command "2+2" | Should -BeExactly 4
     }
 }
 
@@ -118,4 +151,228 @@ Describe "gfortran" {
 
         "$GfortranVersion --version" | Should -ReturnZeroExitCode
     }
+}
+
+Describe "Mono" {
+    It "mono" {
+        "mono --version" | Should -ReturnZeroExitCode
+    }
+
+    It "nuget" {
+        "nuget" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "MSSQLCommandLineTools" {
+    It "sqlcmd" {
+        "sqlcmd -?" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "R" {
+    It "r" {
+        "R --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Sbt" {
+    It "sbt" {
+        "sbt --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Sphinx" {
+    It "sphinx" {
+        "searchd -h" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Selenium" {
+    It "Selenium Server 'selenium-server-standalone.jar' is installed" {
+        "/usr/share/java/selenium-server-standalone.jar" | Should -Exist
+    }
+}
+
+Describe "SVN" {
+    It "svn" {
+        "svn --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Swig" {
+    It "swig" {
+        "swig -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Terraform" {
+    It "terraform" {
+        "terraform --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Vcpkg" {
+    It "vcpkg" {
+        "vcpkg version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Git" {
+    It "git" {
+        "git --version" | Should -ReturnZeroExitCode
+    }
+
+    It "git-lfs" {
+        "git-lfs --version" | Should -ReturnZeroExitCode
+    }
+
+    It "git-ftp" {
+        "git-ftp --version" | Should -ReturnZeroExitCode
+    }
+
+    It "hub-cli" {
+        "hub --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Heroku" {
+    It "heroku" {
+        "heroku --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "HHVM" {
+    It "hhvm" {
+        "hhvm --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Homebrew" {
+    It "homebrew" {
+        "brew --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Julia" {
+    It "julia" {
+        "julia --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Kubernetes tools" {
+    It "kind" {
+        "kind --version" | Should -ReturnZeroExitCode
+    }
+
+    It "kubectl" {
+        "kubectl version" | Should -MatchCommandOutput "Client Version: version.Info"
+    }
+
+    It "helm" {
+        "helm version" | Should -ReturnZeroExitCode
+    }
+
+    It "minikube" {
+        "minikube version" | Should -ReturnZeroExitCode
+    }
+
+    It "kustomize" {
+        "kustomize version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Leiningen" {
+    It "leiningen" {
+        "lein --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Mercurial" {
+    It "mercurial" {
+        "hg --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Conda" {
+    It "conda" {
+        "conda --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Netlify" {
+    It "netlify" {
+        "netlify --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Packer" {
+    It "packer" {
+        "packer --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Pollinate" {
+    It "pollinate" {
+        "sudo pollinate -r && sleep 5 && sudo grep pollinate /var/log/syslog" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Pulumi" {
+    It "pulumi" {
+        "pulumi version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Phantomjs" {
+    It "phantomjs" {
+        "phantomjs --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Haveged" {
+    It "haveged" {
+        "systemctl status haveged  | grep 'active (running)'" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Containers" -Skip:(Test-IsUbuntu16) {
+    $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
+
+    It "<ContainerCommand>" -TestCases $testCases {
+        param (
+            [string] $ContainerCommand
+        )
+
+        "$ContainerCommand -v" | Should -ReturnZeroExitCode
+    }   
+}
+
+Describe "Node.js" {
+    $testCases = @("node", "grunt", "gulp", "webpack", "parcel", "yarn", "newman") | ForEach-Object { @{NodeCommand = $_} }
+
+    It "<NodeCommand>" -TestCases $testCases {
+        param (
+            [string] $NodeCommand
+        )
+
+        "$NodeCommand --version" | Should -ReturnZeroExitCode
+    }   
+}
+
+Describe "nvm" {
+    It "nvm" {
+        "source /etc/skel/.nvm/nvm.sh && nvm --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Python" {
+    $testCases = @("python", "pip", "python3", "pip3") | ForEach-Object { @{PythonCommand = $_} }
+
+    It "<PythonCommand>" -TestCases $testCases {
+        param (
+            [string] $PythonCommand
+        )
+
+        "$PythonCommand --version" | Should -ReturnZeroExitCode
+    }   
 }

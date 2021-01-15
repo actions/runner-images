@@ -40,11 +40,4 @@ if isUbuntu18 || isUbuntu20 ; then
     fi
 fi
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in python pip python3 pip3; do
-    if ! command -v $cmd; then
-        echo "$cmd was not installed or not found on PATH"
-        exit 1
-    fi
-done
+invoke_tests "Tools" "Python"
