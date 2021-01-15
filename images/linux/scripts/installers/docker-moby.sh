@@ -29,8 +29,7 @@ sleep 10
 docker info
 
 # Pull images
-toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-images=$(jq -r '.docker.images[]' $toolset)
+images=$(get_toolset_value '.docker.images[]')
 for image in $images; do
     docker pull "$image"
 done
