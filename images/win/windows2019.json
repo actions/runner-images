@@ -144,7 +144,7 @@
             "inline": [
                 "setx ImageVersion {{user `image_version` }} /m",
                 "setx ImageOS {{user `image_os` }} /m",
-                "setx AGENT_TOOLSDIRECTORY {{user `agent_tools_directroy` }} /m"
+                "setx AGENT_TOOLSDIRECTORY {{user `agent_tools_directory` }} /m"
             ]
         },
         {
