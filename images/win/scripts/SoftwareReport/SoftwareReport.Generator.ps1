@@ -142,6 +142,10 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SeleniumWebDriverVersion -Driver "iexplorer")
 )
 
+$markdown += New-MDHeader "Shells" -Level 3
+$markdown += Get-ShellTarget
+$markdown += New-MDNewLine
+
 $markdown += New-MDHeader "MSYS2" -Level 3
 $markdown += Get-PacmanVersion
 $markdown += New-MDNewLine
