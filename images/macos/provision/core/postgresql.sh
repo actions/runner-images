@@ -1,5 +1,6 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
+source ~/utils/invoke-tests.sh
 
 #Install latest version of postgresql
 brew_smart_install "postgres"
@@ -25,3 +26,5 @@ done
 
 #Stop postgresql
 brew services stop postgresql
+
+invoke_tests "Databases" "PostgreSQL"
