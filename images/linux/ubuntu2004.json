@@ -195,6 +195,7 @@
                 "{{template_dir}}/scripts/installers/github-cli.sh",
                 "{{template_dir}}/scripts/installers/google-chrome.sh",
                 "{{template_dir}}/scripts/installers/google-cloud-sdk.sh",
+                "{{template_dir}}/scripts/installers/chromium-browser.sh",
                 "{{template_dir}}/scripts/installers/haskell.sh",
                 "{{template_dir}}/scripts/installers/heroku.sh",
                 "{{template_dir}}/scripts/installers/hhvm.sh",

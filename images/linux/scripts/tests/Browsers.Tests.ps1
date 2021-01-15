@@ -18,7 +18,7 @@ Describe "Chrome" {
     }
 }
 
-Describe "Chromium" {
+Describe "Chromium" -Skip:(-not (Test-IsUbuntu20)) {
     It "Chromium" {
         "chromium --version" | Should -ReturnZeroExitCode
     }
