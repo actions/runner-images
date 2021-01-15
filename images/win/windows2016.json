@@ -21,6 +21,7 @@
         "imagedata_file": "C:\\imagedata.json",
         "helper_script_folder": "C:\\Program Files\\WindowsPowerShell\\Modules\\",
         "psmodules_root_folder": "C:\\Modules",
+        "agent_tools_directory": "C:\\hostedtoolcache\\windows",
         "install_user": "installer",
         "install_password": null,
         "capture_name_prefix": "packer",
@@ -138,7 +139,8 @@
             "type": "powershell",
             "inline": [
                 "setx ImageVersion {{user `image_version` }} /m",
-                "setx ImageOS {{user `image_os` }} /m"
+                "setx ImageOS {{user `image_os` }} /m",
+                "setx Agent_ToolsDirectory {{user `agent_tools_directroy` }} /m"
             ]
         },
         {
