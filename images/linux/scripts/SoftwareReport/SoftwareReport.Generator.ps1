@@ -193,12 +193,16 @@ $markdown += New-MDList -Style Unordered -Lines @(
 )
 
 $markdown += New-MDHeader "Browsers and Drivers" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$browsersAndDriversList = @(
     (Get-ChromeVersion),
     (Get-ChromeDriverVersion),
     (Get-FirefoxVersion),
     (Get-GeckodriverVersion)
 )
+if (Test-IsUbuntu20) {
+    $browsersAndDriversList += @(Get-ChromiumVersion)
+}
+$markdown += New-MDList -Style Unordered -Lines ($browsersAndDriversList | Sort-Object)
 
 $markdown += New-MDHeader ".NET Core SDK" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
