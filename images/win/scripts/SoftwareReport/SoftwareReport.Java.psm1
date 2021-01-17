@@ -1,8 +1,8 @@
 function Get-JavaFullVersion {
     param($JavaRootPath)
 
-    $javaBinPath = Join-Path $javaRootPath "/bin/java"
-    $javaVersionOutput = (Get-CommandResult "$javaBinPath -version").Output
+    $javaBinPath = Join-Path "$javaRootPath" "/bin/java"
+    $javaVersionOutput = (Get-CommandResult "`"$javaBinPath`" -version").Output
     $matchResult = $javaVersionOutput | Select-String '^openjdk version \"([\d\._]+)\"'
     return $matchResult.Matches.Groups[1].Value
 }
@@ -17,7 +17,7 @@ function Get-JavaVersions {
 
     return $javaVersions | Sort-Object $sortRules | ForEach-Object {
         $javaPath = $_.Value
-        $version = Get-JavaFullVersion $javaPath
+        $version = Get-JavaFullVersion "$javaPath"
         $vendor = $version.StartsWith("1.7") ? "Zulu" : "AdoptOpenJDK"
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
 

@@ -31,10 +31,9 @@ if (Test-IsWin19)
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BashVersion),
     (Get-GoVersion),
-    (Get-JavaVersionsList -DefaultVersion "1.8.0")
     (Get-JuliaVersion),
     (Get-NodeVersion),
     (Get-PerlVersion),
