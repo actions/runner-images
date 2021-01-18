@@ -30,7 +30,6 @@ if (Test-IsWin19)
 
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
-
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BashVersion),
     (Get-GoVersion),
@@ -42,10 +41,6 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-RubyVersion)
     ) | Sort-Object
 )
-
-$markdown += New-MDHeader "Java" -Level 3
-$markdown += Get-JavaVersions | New-MDTable
-$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Package Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
@@ -152,6 +147,10 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SeleniumWebDriverVersion -Driver "firefox"),
     (Get-SeleniumWebDriverVersion -Driver "iexplorer")
 )
+
+$markdown += New-MDHeader "Java" -Level 3
+$markdown += Get-JavaVersions | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Shells" -Level 3
 $markdown += Get-ShellTarget
