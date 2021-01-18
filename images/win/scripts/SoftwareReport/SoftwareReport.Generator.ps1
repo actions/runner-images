@@ -6,6 +6,7 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNam
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Databases.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Java.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -DisableNameChecking
 
 $markdown = ""
@@ -32,7 +33,6 @@ $markdown += New-MDHeader "Language and Runtime" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BashVersion),
     (Get-GoVersion),
-    (Get-JavaVersionsList -DefaultVersion "1.8.0")
     (Get-JuliaVersion),
     (Get-NodeVersion),
     (Get-PerlVersion),
@@ -147,6 +147,10 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SeleniumWebDriverVersion -Driver "firefox"),
     (Get-SeleniumWebDriverVersion -Driver "iexplorer")
 )
+
+$markdown += New-MDHeader "Java" -Level 3
+$markdown += Get-JavaVersions | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Shells" -Level 3
 $markdown += Get-ShellTarget
