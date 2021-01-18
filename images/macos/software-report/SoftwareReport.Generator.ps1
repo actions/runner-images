@@ -45,10 +45,10 @@ $languageAndRuntimeList = @(
 
 if ( -not $os.IsHighSierra) {
     $languageAndRuntimeList += @(
-        (Get-ClangLLVMVersion),
         (Get-GccVersion),
-        (Get-FortranVersion)
-    )
+        (Get-FortranVersion),
+        (Get-ClangLLVMVersion)
+    )   
 }
 
 if ($os.IsLessThanBigSur) {
