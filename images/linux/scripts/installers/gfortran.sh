@@ -3,7 +3,7 @@
 ##  File:  gfortran.sh
 ##  Desc:  Installs GNU Fortran
 ################################################################################
-
+source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 function InstallFortran {
@@ -17,8 +17,7 @@ function InstallFortran {
 add-apt-repository ppa:ubuntu-toolchain-r/test -y
 apt-get update -y
 
-toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-versions=$(jq -r '.gfortran.versions[]' $toolset)
+versions=$(get_toolset_value '.gfortran.versions[]')
 
 for version in ${versions[*]}
 do

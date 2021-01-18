@@ -3,13 +3,12 @@
 ##  File:  java-tools.sh
 ##  Desc:  Installs Java and related tooling (Ant, Gradle, Maven)
 ################################################################################
-
+source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
-toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-JAVA_VERSIONS_LIST=$(jq -r '.java.versions | .[]' $toolset)
-DEFAULT_JDK_VERSION=$(jq -r '.java.default' $toolset)
+JAVA_VERSIONS_LIST=$(get_toolset_value '.java.versions | .[]')
+DEFAULT_JDK_VERSION=$(get_toolset_value '.java.default')
 
 # Install GPG Key for Adopt Open JDK. See https://adoptopenjdk.net/installation.html
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
