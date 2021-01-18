@@ -33,40 +33,40 @@ function Build-AndroidTable {
     $packageInfo = Get-AndroidInstalledPackages
     return @(
         @{
-            "Package" = "Android SDK Platform-Tools"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Platform-Tools"
+            "Package" = "Android Command Line Tools"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Command-line Tools"
         },
         @{
-            "Package" = "Android SDK Tools"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Tools"
-        },
-        @{
-            "Package" = "Android SDK Platforms"
-            "Version" = Get-AndroidPlatformVersions -PackageInfo $packageInfo
+            "Package" = "Android Emulator"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Emulator"
         },
         @{
             "Package" = "Android SDK Build-tools"
             "Version" = Get-AndroidBuildToolVersions -PackageInfo $packageInfo
         },
         @{
-            "Package" = "Android Command Line Tools"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Command-line Tools"
+            "Package" = "Android SDK Platform-Tools"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Platform-Tools"
         },
         @{
-            "Package" = "Android emulator"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Emulator"
+            "Package" = "Android SDK Platforms"
+            "Version" = Get-AndroidPlatformVersions -PackageInfo $packageInfo
         },
         @{
-            "Package" = "Google APIs"
-            "Version" = Get-AndroidGoogleAPIsVersions -PackageInfo $packageInfo
-        },
-        @{
-            "Package" = "NDK"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
+            "Package" = "Android SDK Tools"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Tools"
         },
         @{
             "Package" = "Android Support Repository"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Support Repository"
+        },
+        @{
+            "Package" = "CMake"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "cmake"
+        },
+        @{
+            "Package" = "Google APIs"
+            "Version" = Get-AndroidGoogleAPIsVersions -PackageInfo $packageInfo
         },
         @{
             "Package" = "Google Play services"
@@ -77,12 +77,12 @@ function Build-AndroidTable {
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Google Repository"
         },
         @{
-            "Package" = "SDK Patch Applier v4"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "SDK Patch Applier v4"
+            "Package" = "NDK"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
         },
         @{
-            "Package" = "CMake"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "cmake"
+            "Package" = "SDK Patch Applier v4"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "SDK Patch Applier v4"
         }
     ) | Where-Object { $_.Version } | ForEach-Object {
         [PSCustomObject] @{
