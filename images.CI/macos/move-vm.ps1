@@ -65,9 +65,9 @@ $vm = Get-VM $VMName
 if ($env:AGENT_JOBSTATUS -eq 'Failed') {
     try {
         if($vm.PowerState -ne "PoweredOff") {
-            Stop-VM -VM $vm -Confirm:$false -ErrorAction Stop
+            Stop-VM -VM $vm -Confirm:$false -ErrorAction Stop | Out-Null
         }
-        Set-VM -VM $vm -Name "${VMName}_failed" -Confirm:$false -ErrorAction Stop
+        Set-VM -VM $vm -Name "${VMName}_failed" -Confirm:$false -ErrorAction Stop | Out-Null
         Write-Host "VM has been successfully powered off and renamed to [${VMName}_failed]"
     } catch {
         Write-Host "##vso[task.LogIssue type=error;]Failed to power off and rename VM '$VMName'"
@@ -75,7 +75,7 @@ if ($env:AGENT_JOBSTATUS -eq 'Failed') {
 }
 
 try {
-    Move-VM -Vm $vm -Datastore $TargetDataStore -ErrorAction Stop
+    Move-VM -Vm $vm -Datastore $TargetDataStore -ErrorAction Stop | Out-Null
     Write-Host "VM has been moved successfully to target datastore '$TargetDataStore'"
 } catch {
     Write-Host "##vso[task.LogIssue type=error;]Failed to move VM '$VMName' to target datastore '$TargetDataStore'"
@@ -84,7 +84,7 @@ try {
 try {
     if ($VMName -notmatch "10.13") {
         Write-Host "Change CPU count to $CpuCount, cores count to $CoresPerSocketCount, amount of RAM to $Memory"
-        $vm | Set-VM -NumCPU $CpuCount -CoresPerSocket $CoresPerSocketCount -MemoryMB $Memory -Confirm:$false -ErrorAction Stop
+        $vm | Set-VM -NumCPU $CpuCount -CoresPerSocket $CoresPerSocketCount -MemoryMB $Memory -Confirm:$false -ErrorAction Stop | Out-Null
     }
 } catch {
     Write-Host "##vso[task.LogIssue type=error;]Failed to change specs for VM '$VMName'"
