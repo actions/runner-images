@@ -3,6 +3,7 @@
 ##  Desc:  Install Git for Windows
 ################################################################################
 
+# Install git
 Choco-Install -PackageName git -ArgumentList (
     "--installargs", `
     "/VERYSILENT", `
@@ -16,8 +17,9 @@ Choco-Install -PackageName git -ArgumentList (
     "/o:EnableSymlinks=Enabled", `
     "/COMPONENTS=gitlfs")
 
-# Install hub with --ignore-dependencies option to prevent the installation of the git package. See details in https://github.com/actions/virtual-environments/issues/2375
-Choco-Install -PackageName hub -ArgumentList "--ignore-dependencies"
+
+# Install hub    
+Choco-Install -PackageName hub
 
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
