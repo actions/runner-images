@@ -184,6 +184,7 @@ $markdown += Get-BrowserSection
 
 $markdown += New-MDHeader "Java" -Level 3
 $markdown += Get-JavaVersions | New-MDTable
+$markdown += New-MDNewLine
 
 # Toolcache
 $markdown += Build-ToolcacheSection

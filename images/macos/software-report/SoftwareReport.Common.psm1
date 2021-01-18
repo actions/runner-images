@@ -82,28 +82,34 @@ function Get-VcpkgVersion {
 }
 
 function Get-GccVersion {
+    $output = ""
     $versionList = @("8", "9", "10")
     $versionList | Foreach-Object {
         $version = Run-Command "gcc-${_} --version" | Select-Object -First 1
-        "$version - available by ``gcc-${_}`` alias"
+        $output += "$version - available by ``gcc-${_}`` alias`n"
     }
+    return $output
 }
 
 function Get-FortranVersion {
+    $output = ""
     $versionList = @("8", "9", "10")
     $versionList | Foreach-Object {
         $version = Run-Command "gfortran-${_} --version" | Select-Object -First 1
-        "$version  - available by ``gfortran-${_}`` alias"
+        $output += "$version  - available by ``gfortran-${_}`` alias`n"
     }
+    return $output
 }
 
 function Get-ClangLLVMVersion {
+    $output = ""
     $locationsList = @("$((Get-Command clang).Source)", '$(brew --prefix llvm)/bin/clang')
     $locationsList | Foreach-Object {
         (Run-Command "${_} --version" | Out-String) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
         $version = $Matches.version
-        "Clang/LLVM $version " + $(if(${_} -Match "brew") {"is available on ```'${_}`'``"} else {"is default"})
+        $output += "Clang/LLVM $version " + $(if(${_} -Match "brew") {"is available on ```'${_}`'```n"} else {"is default`n"})
     }
+    return $output
 }
 
 function Get-NVMVersion {
