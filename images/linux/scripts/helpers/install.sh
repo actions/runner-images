@@ -48,3 +48,13 @@ verlte() {
     sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
     [  "$1" = "$sortedVersion" ]
 }
+
+get_toolset_path() {
+    echo "/imagegeneration/installers/toolset.json"
+}
+
+get_toolset_value() {
+    local toolset_path=$(get_toolset_path)
+    local query=$1
+    echo "$(jq -r "$query" $toolset_path)"
+}

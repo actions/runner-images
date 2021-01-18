@@ -1,6 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
-Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1"
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
