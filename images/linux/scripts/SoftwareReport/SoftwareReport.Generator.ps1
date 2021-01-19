@@ -53,6 +53,7 @@ $markdown += New-MDHeader "Package Management" -Level 3
 
 $packageManagementList = @(
         (Get-HomebrewVersion),
+        (Get-CpanVersion),
         (Get-GemVersion),
         (Get-MinicondaVersion),
         (Get-HelmVersion),
