@@ -1,5 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
@@ -156,58 +156,9 @@ Describe ".NET" {
     }
 }
 
-Describe "CocoaPods" {
-    It "CocoaPods" {
-        "pod --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Homebrew" {
     It "Homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Common utilities" {
-
-    It "Bundler" {
-        "bundler --version" | Should -ReturnZeroExitCode
-    }
-
-    Context "Nomad" -Skip:($os.IsBigSur) {
-        It "Nomad CLI" {
-            $result = Get-CommandResult "gem list"
-            $result.Output | Should -BeLike "*nomad-cli*"
-        }
-
-        It "Nomad CLI IPA" {
-            "ipa --version" | Should -ReturnZeroExitCode
-        }
-    }
-
-    It "Fastlane" {
-        "fastlane --version" | Should -ReturnZeroExitCode
-    }
-
-    It "xcpretty" {
-        "xcpretty --version" | Should -ReturnZeroExitCode
-    }
-
-    It "PostgreSQL-Client" {
-        "psql --version" | Should -ReturnZeroExitCode
-    }
-
-    It "PostgreSQL-Server" {
-        "pg_config --version" | Should -ReturnZeroExitCode
-    }
-
-    It "PHP" {
-        Get-WhichTool "php" | Should -Not -BeLike "/usr/bin/php*"
-        "php --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Composer" {
-        "composer --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -240,20 +191,6 @@ Describe "Rust" -Skip:($os.IsHighSierra) {
         It "Cargo outdated" {
             "cargo outdated --version" | Should -ReturnZeroExitCode
         }
-    }
-}
-
-Describe "Haskell" -Skip:($os.IsHighSierra) {
-    It "GHCup" {
-        "ghcup --version" | Should -ReturnZeroExitCode
-    }
-
-    It "GHC" {
-        "ghc --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Cabal" {
-        "cabal --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -369,9 +306,8 @@ Describe "Stack" -Skip:($os.IsHighSierra) {
     }
 }
 
-Describe "Mongo" {
-    It "mongodb" {
-        "mongo --version" | Should -ReturnZeroExitCode
-        "mongod --version"| Should -ReturnZeroExitCode
+Describe "CocoaPods" {
+    It "CocoaPods" {
+        "pod --version" | Should -ReturnZeroExitCode
     }
 }

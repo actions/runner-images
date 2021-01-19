@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1637
-- Image Version: 20201210.0
+- Image Version: 20210110.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -11,23 +11,24 @@
 - Java 1.8.0_275 (default)
 - Java 11.0.9.1 
 - Java 13.0.2 
+- Bash 4.4.23(1)-release
 - Python 3.7.9
 - Ruby 2.5.8p224
 - Go 1.14.13
-- PHP 7.4.13
+- PHP 8.0.1
 - Julia 1.5.3
 - Perl 5.32.0
-- Node 14.15.1
+- Node 14.15.4
 
 ### Package Management
 - Chocolatey 0.10.15
-- Vcpkg 2020.11.12 (build from master <c309037>)
-- NPM 6.14.8
+- Vcpkg 2020.11.12 (build from master \<a14a6bc>)
+- NPM 6.14.10
 - Yarn 1.22.10
-- pip 20.3.1 (python 3.7)
+- pip 20.3.3 (python 3.7)
 - Miniconda 4.9.2
 - RubyGems 2.7.6.2
-- Helm 3.4.1
+- Helm 3.4.2
 - Composer 2.0.8
 - NuGet 5.8.0.6930
 - Pipx 0.15.6.0
@@ -36,20 +37,20 @@
 - Ant 1.10.9
 - Maven 3.6.3
 - Gradle 6.7
-- sbt 1.4.4
+- sbt 1.4.5
 
 ### Tools
-- azcopy 10.7.0
-- Bazel 3.7.1
+- azcopy 10.8.0
+- Bazel 3.7.2
 - Bazelisk 1.7.3
-- CMake 3.19.1
+- CMake 3.19.2
 - CodeQL Action Bundle 2.4.0
 - R 4.0.3
-- Docker 19.03.13
+- Docker 19.03.14
 - Docker-compose 1.27.4
-- Git 2.29.2
-- Git LFS 2.12.1
-- Google Cloud SDK 320.0.0
+- Git 2.30.0
+- Git LFS 2.13.1
+- Google Cloud SDK 322.0.0
 - InnoSetup 6.1.2
 - jq 1.6
 - Kubectl 1.20.0
@@ -57,12 +58,12 @@
 - Mingw-w64 8.1.0
 - Mercurial 5.0
 - NSIS v3.06.1
-- Newman 5.2.1
+- Newman 5.2.2
 - OpenSSL 1.1.1
-- Packer 1.6.5
-- Pulumi v2.15.4
+- Packer 1.6.6
+- Pulumi v2.17.0
 - Subversion (SVN) 1.14.0
-- ghc 8.10.2
+- ghc 8.10.3
 - Cabal 3.2.0.0
 - Stack 2.5.1
 - WinAppDriver 1.2.2009.02003
@@ -72,32 +73,32 @@
 - yamllint 1.25.0
 
 ### CLI Tools
-- Azure CLI 2.16.0
+- Azure CLI 2.17.1
 - Azure DevOps CLI extension 0.18.0
-- Azure Dev Spaces CLI 1.0.20201028.9
-- AWS CLI 2.1.8
-- AWS SAM CLI 1.13.2
+- Azure Dev Spaces CLI 1.0.20201219.2
+- AWS CLI 2.1.17
+- AWS SAM CLI 1.15.0
 - AWS Session Manager CLI 1.2.30.0
-- Alibaba Cloud CLI 3.0.64
+- Alibaba Cloud CLI 3.0.65
 - Cloud Foundry CLI 6.53.0
 - Hub CLI 2.14.2
-- GitHub CLI 1.3.1
+- GitHub CLI 1.4.0
 
 ### Rust Tools
-- Rust 1.48.0
+- Rust 1.49.0
 
 #### Packages
 - bindgen 0.56.0
-- cbindgen 0.15.0
+- cbindgen 0.16.0
 - cargo-audit 0.13.1
 - cargo-outdated v0.9.13
 
 ### Browsers and webdrivers
-- Google Chrome 87.0.4280.88
+- Google Chrome 87.0.4280.141
 - Chrome Driver 87.0.4280.88
-- Microsoft Edge 87.0.664.57
-- Microsoft Edge Driver 87.0.664.57
-- Mozilla Firefox 83.0
+- Microsoft Edge 87.0.664.75
+- Microsoft Edge Driver 87.0.664.75
+- Mozilla Firefox 84.0.2
 - Gecko Driver 0.28.0
 - IE Driver 3.150.1.0
 
@@ -147,9 +148,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 8.17.0  | x64          |
-| 10.23.0 | x64          |
-| 12.20.0 | x64          |
-| 14.15.1 | x64          |
+| 10.23.1 | x64          |
+| 12.20.1 | x64          |
+| 14.15.4 | x64          |
 
 
 #### Python
@@ -159,7 +160,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.5.4   | x64, x86     |
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
-| 3.8.6   | x64, x86     |
+| 3.8.7   | x64, x86     |
 | 3.9.1   | x64, x86     |
 
 
@@ -170,6 +171,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.5.8 (Default) | x64          |
 | 2.6.6   | x64          |
 | 2.7.2   | x64          |
+| 3.0.0   | x64          |
 
 
 #### PyPy
@@ -197,12 +199,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 4.4.2.0 | MongoDB     | Running       | Automatic        |
+| 4.4.3.0 | MongoDB     | Running       | Automatic        |
 
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.11.9.0
+- Azure CosmosDb Emulator 2.11.10.0
 - DacFx 15.0.4897.1
 - SQLPS 1.0
 - MySQL 5.7.21.0
@@ -435,10 +437,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Universal                                 | 16.8.30530.185 |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 16.4.29409.204 |
 | SSDT Microsoft Analysis Services Projects                                 | 2.9.15         |
-| SSDT SQL Server Integration Services Projects                             | 3.10           |
+| SSDT SQL Server Integration Services Projects                             | 3.11.1         |
 | SSDT Microsoft Reporting Services Projects                                | 2.6.7          |
 | Windows Driver Kit                                                        | 3.11.4516      |
-| Windows Driver Kit Visual Studio Extension                                | 10.1.19041.1   |
+| Windows Driver Kit Visual Studio Extension                                | 10.1.19041.685 |
 | WIX Toolset                                                               | 3.11.4516      |
 | WIX Toolset Studio 2019 Extension                                         | 1.0.0.4        |
 
@@ -502,7 +504,7 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Pester             | 3.4.0<br>5.1.0   |
+| Pester             | 3.4.0<br>5.1.1   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSWindowsUpdate    | 2.2.0.2          |
 | SqlServer          | 21.1.18230       |
@@ -513,9 +515,10 @@ All other versions are saved but not installed.
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                                                                                                |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                |
+| Android Command Line Tools | 3.0                                                                                                                                                                                                                                                                                   |
 | Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)                  |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0 |
-| NDK                        | 21.3.6528147                                                                                                                                                                                                                                                                          |
+| NDK                        | 22.0.7026061                                                                                                                                                                                                                                                                          |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                    |

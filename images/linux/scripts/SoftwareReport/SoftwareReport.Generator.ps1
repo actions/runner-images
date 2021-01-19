@@ -32,7 +32,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
         (Get-BashVersion),
         (Get-CPPVersions),
         (Get-FortranVersions),
@@ -46,6 +46,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
         (Get-RubyVersion),
         (Get-SwiftVersion),
         (Get-JuliaVersion)
+        ) | Sort-Object
 )
 
 $markdown += New-MDHeader "Package Management" -Level 3
@@ -71,11 +72,12 @@ if (-not (Test-IsUbuntu16)) {
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
 
 $markdown += New-MDHeader "Project Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
         (Get-AntVersion),
         (Get-GradleVersion),
         (Get-MavenVersion),
         (Get-SbtVersion)
+        ) | Sort-Object
 )
 
 $markdown += New-MDHeader "Tools" -Level 3
@@ -137,7 +139,7 @@ if (-not (Test-IsUbuntu16)) {
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 
 $markdown += New-MDHeader "CLI Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-AlibabaCloudCliVersion),
     (Get-AWSCliVersion),
     (Get-AWSCliSessionManagerPluginVersion),
@@ -151,39 +153,49 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-OCCliVersion),
     (Get-ORASCliVersion),
     (Get-VerselCliversion)
+    ) | Sort-Object
 )
 
 $markdown += New-MDHeader "Java" -Level 3
 $markdown += Get-JavaVersions | New-MDTable
 $markdown += New-MDNewLine
 
+if (Test-IsUbuntu20) {
+    $markdown += New-MDHeader "GraalVM" -Level 3
+    $markdown += Build-GraalVMTable | New-MDTable
+    $markdown += New-MDNewLine
+}
+
 $markdown += New-MDHeader "PHP" -Level 3
 $markdown += Build-PHPTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Haskell" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-GHCVersion),
     (Get-CabalVersion),
     (Get-StackVersion)
+    ) | Sort-Object
 )
 
 $markdown += New-MDHeader "Rust Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-RustVersion),
     (Get-RustupVersion),
     (Get-RustdocVersion),
     (Get-CargoVersion)
+    ) | Sort-Object
 )
 
 $markdown += New-MDHeader "Packages" -Level 4
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BindgenVersion),
     (Get-CargoAuditVersion),
     (Get-CargoOutdatedVersion),
     (Get-CargoClippyVersion),
     (Get-CbindgenVersion),
     (Get-RustfmtVersion)
+    ) | Sort-Object
 )
 
 $markdown += New-MDHeader "Browsers and Drivers" -Level 3
@@ -205,10 +217,11 @@ $markdown += New-MDList -Style Unordered -Lines @(
 )
 
 $markdown += New-MDHeader "Databases" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-PostgreSqlVersion),
     (Get-MongoDbVersion),
     (Get-SqliteVersion)
+    ) | Sort-Object
 )
 
 $markdown += Build-MySQLSection
