@@ -27,5 +27,5 @@ popd
 sudo hdiutil detach "$TMPMOUNT"
 sudo rm -rf "$TMPMOUNT"
 
-invoke_tests "VSMac"
+invoke_tests "Common" "VSMac"
 

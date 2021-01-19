@@ -162,38 +162,6 @@ Describe "Homebrew" {
     }
 }
 
-Describe "Rust" -Skip:($os.IsHighSierra) {
-    It "Rustup is installed" {
-        "rustup --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Rustc is installed" {
-        "rustc --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Cargo is installed" {
-        "cargo --version" | Should -ReturnZeroExitCode
-    }
-
-    Context "Cargo dependencies" {
-        It "bindgen" {
-            "bindgen --version" | Should -ReturnZeroExitCode
-        }
-
-        It "cbindgen" {
-            "cbindgen --version" | Should -ReturnZeroExitCode
-        }
-
-        It "Cargo audit" {
-            "cargo audit --version" | Should -ReturnZeroExitCode
-        }
-
-        It "Cargo outdated" {
-            "cargo outdated --version" | Should -ReturnZeroExitCode
-        }
-    }
-}
-
 Describe "GCC" -Skip:($os.IsHighSierra) {
     $testCases = @("8", "9", "10") | ForEach-Object { @{Version = $_} }
 
