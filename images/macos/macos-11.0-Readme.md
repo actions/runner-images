@@ -4,7 +4,6 @@
 | [[macOS] Default Xcode will be set to Xcode 12.3 on January, 25](https://github.com/actions/virtual-environments/issues/2440) |
 | [[all OS versions] Android NDK is updated to r22.](https://github.com/actions/virtual-environments/issues/2420) |
 | [[macOS] Homebrew is updated to 2.7 with few major changes](https://github.com/actions/virtual-environments/issues/2415) |
-| [macOS 11.0 (Big Sur) is available as a preview 🚀](https://github.com/actions/virtual-environments/issues/1814) |
 ***
 # macOS 11.0 info
 - System Version: macOS 11.0.1 (20B29)
