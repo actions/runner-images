@@ -66,6 +66,10 @@ foreach ($tool in $tools)
             $envName = $toolEnvVars.variableTemplate -f $version.Split(".")
 
             setx $envName $foundVersionArchPath /M | Out-Null
+
+            if ($tool.name -eq "Python" -and $version -ne "2.7.*") {
+                New-Item -Path "$toolVersionPath\python3.exe" -ItemType SymbolicLink -Value "$toolVersionPath\python.exe"
+            }
         }
     }
 
@@ -76,10 +80,6 @@ foreach ($tool in $tools)
         $toolVersionPath = Get-ToolsetToolFullPath -Name $tool.name -Version $tool.default -Arch $tool.arch
 
         Set-DefaultVariables -ToolVersionPath $toolVersionPath -EnvVars $toolEnvVars
-
-        if ($tool.name -eq "Python") {
-            New-Item -Path "$toolVersionPath\python3" -ItemType SymbolicLink -Value "$toolVersionPath\python"
-        }
     }
 }
 
