@@ -164,7 +164,7 @@ function Get-NodeVersion {
 }
 
 function Get-PerlVersion {
-    $version = Run-Command "perl -e 'print substr($^V,1)'"
+    $version = Run-Command "perl -e 'print substr(`$^V,1)'"
     return "Perl $version"
 }
 
