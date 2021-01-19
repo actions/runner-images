@@ -86,7 +86,6 @@ function Invoke-RestMethodWithRetry {
 }
 
 function Invoke-ValidateCommand {
-    [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
         [string]$Command
