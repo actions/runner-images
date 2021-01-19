@@ -4,8 +4,6 @@
 # and installs them onto the system
 #
 ###########################################################################
-source ~/utils/invoke-tests.sh
-
 SOURCE_URL="https://vstsagenttools.blob.core.windows.net/tools"
 PACKAGES_DIR=/tmp/hostedtoolcache
 
@@ -25,5 +23,3 @@ for package in $packages; do
     npm install
     popd
 done;
-
-invoke_tests "Toolcache"
