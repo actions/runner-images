@@ -95,7 +95,7 @@ function Get-CpanVersion {
     $result = Get-CommandResult "cpan --version"
     $result.Output -match "version (?<version>\d+\.\d+) " | Out-Null
     $cpanVersion = $Matches.version
-    return "Gem $cpanVersion"
+    return "cpan $cpanVersion"
 }
 
 function Get-GemVersion {
