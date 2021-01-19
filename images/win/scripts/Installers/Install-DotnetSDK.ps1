@@ -109,7 +109,7 @@ function RunPostInstallationSteps()
     Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "DOTNETUSERPATH" -Value $cmdDotNet
 
     # Clear list of local NuGet resources in temporary cache
-    Invoke-Expression "dotnet nuget locals all --clear"
+    dotnet nuget locals all --clear
 }
 
 InstallAllValidSdks
