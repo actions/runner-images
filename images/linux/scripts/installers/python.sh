@@ -40,4 +40,7 @@ if isUbuntu18 || isUbuntu20 ; then
     fi
 fi
 
+# Adding this dir to PATH will make installed pip commands are immediately available.
+prependEtcEnvironmentVariable "$HOME/.local/bin"
+
 invoke_tests "Tools" "Python"
