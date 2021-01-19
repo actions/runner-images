@@ -76,6 +76,10 @@ foreach ($tool in $tools)
         $toolVersionPath = Get-ToolsetToolFullPath -Name $tool.name -Version $tool.default -Arch $tool.arch
 
         Set-DefaultVariables -ToolVersionPath $toolVersionPath -EnvVars $toolEnvVars
+
+        if ($tool.name -eq "Python") {
+            New-Item -Path "$toolVersionPath\python3" -ItemType SymbolicLink -Value "$toolVersionPath\python"
+        }
     }
 }
 
