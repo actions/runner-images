@@ -220,8 +220,7 @@ function Install-VsixExtension
     $argumentList = ('/quiet', "`"$FilePath`"")
 
     Write-Host "Starting Install $Name..."
-    $toolset = Get-ToolsetContent
-    $vsEdition = $toolset.visualStudio.edition
+    $vsEdition = (Get-ToolsetContent).visualStudio.edition
     try
     {
         #There are 2 types of packages at the moment - exe and vsix
