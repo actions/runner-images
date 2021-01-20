@@ -81,6 +81,10 @@ Describe "CommonUtils" {
         "packer --version" | Should -ReturnZeroExitCode
     }
 
+    It "Perl" {
+        "perl -e 'print substr($^V,1)'" | Should -ReturnZeroExitCode
+    }
+
     It "Helm" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
@@ -121,10 +125,6 @@ Describe "CommonUtils" {
         "julia --version" | Should -ReturnZeroExitCode
     }
 
-    It "virtualbox" -Skip:($os.IsBigSur) {
-        "vboxmanage -v" | Should -ReturnZeroExitCode
-    }
-
     It "jq" {
         "jq --version" | Should -ReturnZeroExitCode
     }
@@ -139,6 +139,10 @@ Describe "CommonUtils" {
 
     It "vagrant" -Skip:($os.IsBigSur) {
         "vagrant --version" | Should -ReturnZeroExitCode
+    }
+
+    It "virtualbox" -Skip:($os.IsBigSur) {
+        "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 
     It "xctool" -Skip:($os.IsBigSur) {
