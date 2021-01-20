@@ -112,7 +112,6 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "ImageVersion={{user `image_version`}}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
@@ -141,7 +140,6 @@
         {
             "type": "powershell",
             "inline": [
-                "setx ImageVersion {{user `image_version` }} /m",
                 "setx ImageOS {{user `image_os` }} /m"
             ]
         },
