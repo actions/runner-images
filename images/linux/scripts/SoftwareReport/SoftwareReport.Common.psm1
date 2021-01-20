@@ -91,6 +91,13 @@ function Get-HomebrewVersion {
     return "Homebrew $version"
 }
 
+function Get-CpanVersion {
+    $result = Get-CommandResult "cpan --version"
+    $result.Output -match "version (?<version>\d+\.\d+) " | Out-Null
+    $cpanVersion = $Matches.version
+    return "cpan $cpanVersion"
+}
+
 function Get-GemVersion {
     $result = Get-CommandResult "gem --version"
     $result.Output -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
