@@ -95,6 +95,7 @@
 - bindgen 0.56.0
 - cargo-audit 0.13.1
 - cargo-outdated v0.9.13
+- cbindgen 0.16.0
 - Clippy 0.0.212
 - Rustfmt 1.4.25
 
