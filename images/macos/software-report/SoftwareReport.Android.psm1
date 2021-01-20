@@ -98,6 +98,29 @@ function Build-AndroidTable {
     }
 }
 
+function Build-AndroidEnvironmentTable {
+    Write-Host "Build-AndroidEnvironmentTable"
+    return @(
+        @{
+            "Name" = "ANDROID_HOME"
+            "Value" = $env:ANDROID_HOME
+        },
+        @{
+            "Name" = "ANDROID_SDK_ROOT"
+            "Value" = $env:ANDROID_SDK_ROOT
+        },
+        @{
+            "Name" = "ANDROID_NDK_HOME"
+            "Value" = $env:ANDROID_NDK_HOME
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
+}
+
 function Get-AndroidPackageVersions {
     param (
         [Parameter(Mandatory)]
