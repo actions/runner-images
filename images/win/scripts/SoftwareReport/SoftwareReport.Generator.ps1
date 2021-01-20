@@ -58,6 +58,9 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-YarnVersion)
     ) | Sort-Object
 )
+$markdown += New-MDHeader "Package management environment variables" -Level 4
+$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
@@ -67,6 +70,10 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-SbtVersion)
     ) | Sort-Object
 )
+
+$markdown += New-MDHeader "Project management environment variables" -Level 4
+$markdown += Build-ProjectManagementEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
@@ -149,6 +156,10 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SeleniumWebDriverVersion -Driver "firefox"),
     (Get-SeleniumWebDriverVersion -Driver "iexplorer")
 )
+
+$markdown += New-MDHeader "Browsers and webdrivers environment variables" -Level 4
+$markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Java" -Level 3
 $markdown += Get-JavaVersions | New-MDTable
@@ -258,6 +269,9 @@ $markdown += New-MDNewLine
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
 $markdown += Build-AndroidTable | New-MDTable
+$markdown += New-MDNewLine
+$markdown += New-MDHeader "Android environment variables" -Level 4
+$markdown += Build-AndroidEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 # Docker images section

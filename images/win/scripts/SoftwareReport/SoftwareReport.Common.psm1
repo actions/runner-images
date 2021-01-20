@@ -337,3 +337,45 @@ function Get-PipxVersion {
     $pipxVersion = pipx --version
     return "Pipx $pipxVersion"
 }
+
+function Build-PackageManagementEnvironmentTable {
+    Write-Host "Build-PackageManagementEnvironmentTable"
+    return @(
+        @{
+            "Name" = "VCPKG_INSTALLATION_ROOT"
+            "Value" = $env:VCPKG_INSTALLATION_ROOT
+        },
+        @{
+            "Name" = "CONDA"
+            "Value" = $env:CONDA
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
+}
+
+function Build-ProjectManagementEnvironmentTable {
+    Write-Host "Build-ProjectManagementEnvironmentTable"
+    return @(
+        @{
+            "Name" = "ANT_HOME"
+            "Value" = $env:ANT_HOME
+        },
+        @{
+            "Name" = "GRADLE_HOME"
+            "Value" = $env:GRADLE_HOME
+        },
+        @{
+            "Name" = "M2_HOME"
+            "Value" = $env:M2_HOME
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
+}
