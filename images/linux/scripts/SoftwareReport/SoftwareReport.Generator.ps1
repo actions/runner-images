@@ -210,7 +210,7 @@ if (Test-IsUbuntu20) {
     $browsersAndDriversList = @(Get-ChromiumVersion) + $browsersAndDriversList
 }
 
-$markdown += New-MDList -Style Unordered -Lines ($browsersAndDriversList | Sort-Object)
+$markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList
 
 $markdown += New-MDHeader ".NET Core SDK" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
