@@ -29,25 +29,12 @@ $markdown += New-MDList -Style Unordered -Lines ("Image Version: {0}" -f $ImageN
 # Software report
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
-
-if ( -not $os.IsHighSierra) {
-    $clangLLVMVersion = Get-ClangLLVMVersion
-    $gccVersion = Get-GccVersion
-    $gfortranVersion = Get-FortranVersion
-    $lines = @($clangLLVMVersion, $gccVersion, $gfortranVersion) | ForEach-Object {$_}
-    $markdown += New-MDList -Style Unordered -NoNewLine -Lines $lines
-}
-
-if ($os.IsLessThanBigSur) {
-    $markdown += New-MDList -Style Unordered -Lines @(Get-RVersion) -NoNewLine
-}
-
-# Language and Runtime
-$markdown += New-MDList -Style Unordered -Lines @(
+$languageAndRuntimeList = @(
     (Get-BashVersion),
     (Get-NodeVersion),
     (Get-NVMVersion),
     (Get-NVMNodeVersionList),
+    (Get-PerlVersion),
     (Get-PythonVersion),
     (Get-Python3Version),
     (Get-RubyVersion),
@@ -57,13 +44,25 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-JuliaVersion)
 )
 
-# Package Management
-$markdown += New-MDHeader "Package Management" -Level 3
-if ($os.IsHigherThanMojave) {
-    $markdown += New-MDList -Lines (Get-VcpkgVersion) -Style Unordered -NoNewLine
+if ( -not $os.IsHighSierra) {
+    $languageAndRuntimeList += @(
+        (Get-GccVersion)
+        (Get-FortranVersion)
+        (Get-ClangLLVMVersion)
+    )
 }
 
-$markdown += New-MDList -Style Unordered -Lines @(
+if ($os.IsLessThanBigSur) {
+    $languageAndRuntimeList += @(
+        (Get-RVersion)
+    )
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($languageAndRuntimeList | Sort-Object)
+
+# Package Management
+$markdown += New-MDHeader "Package Management" -Level 3
+$packageManagementList = @(
     (Get-PipVersion -Version 2),
     (Get-PipVersion -Version 3),
     (Get-PipxVersion),
@@ -79,17 +78,26 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-ComposerVersion)
 )
 
+if ($os.IsHigherThanMojave) {
+    $packageManagementList += @(
+        (Get-VcpkgVersion)
+    )
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
+
 # Project Management
 $markdown += New-MDHeader "Project Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
+$markdown += New-MDList -Style Unordered -Lines (@(
     (Get-MavenVersion),
     (Get-GradleVersion),
     (Get-ApacheAntVersion)
+    ) | Sort-Object
 )
 
 # Utilities
 $markdown += New-MDHeader "Utilities" -Level 3
-$markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
+$utilitiesList = @(
     (Get-CurlVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
@@ -115,21 +123,27 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
     (Get-BsdtarVersion),
     (Get-GnuTarVersion)
 )
+
 if ($os.IsHigherThanMojave) {
-    $markdown += New-MDList -Lines (Get-NewmanVersion) -Style Unordered -NoNewLine
+    $utilitiesList += @(
+        (Get-NewmanVersion)
+    )
 }
+
 if ($os.IsLessThanBigSur) {
-    $markdown += New-MDList -Style Unordered -Lines @(
+    $utilitiesList += @(
         (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
         (Get-ParallelVersion)
     )
 }
+
+$markdown += New-MDList -Style Unordered -Lines ($utilitiesList | Sort-Object)
 $markdown += New-MDNewLine
 
 # Tools
 $markdown += New-MDHeader "Tools" -Level 3
-$markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
+$toolsList = @(
     (Get-FastlaneVersion),
     (Get-CmakeVersion),
     (Get-AppCenterCLIVersion),
@@ -142,7 +156,7 @@ $markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
 )
 
 if( -not $os.IsHighSierra) {
-    $markdown += New-MDList -Style Unordered -Lines @(
+    $toolsList += @(
         (Get-GHCupVersion),
         (Get-GHCVersion),
         (Get-CabalVersion),
@@ -150,43 +164,51 @@ if( -not $os.IsHighSierra) {
     )
 }
 
+$markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
+
 # Linters
 $markdown += New-MDHeader "Linters" -Level 3
-$markdown += New-MDList -Style Unordered -NoNewLine -Lines @(
+$lintersList = @(
     (Get-YamllintVersion)
 )
 
 if ( -not $os.IsHighSierra) {
-    $markdown += New-MDList -Style Unordered -Lines @(
+    $lintersList += @(
         (Get-SwiftLintVersion)
     )
 }
+
+$markdown += New-MDList -Style Unordered -Lines ($lintersList | Sort-Object)
 
 $markdown += New-MDHeader "Browsers" -Level 3
 $markdown += Get-BrowserSection
 
 $markdown += New-MDHeader "Java" -Level 3
 $markdown += Get-JavaVersions | New-MDTable
+$markdown += New-MDNewLine
 
 # Toolcache
 $markdown += Build-ToolcacheSection
 
 if ( -not $os.IsHighSierra) {
     $markdown += New-MDHeader "Rust Tools" -Level 3
-    $markdown += New-MDList -Style Unordered -Lines @(
+    $markdown += New-MDList -Style Unordered -Lines (@(
         (Get-RustVersion),
         (Get-RustupVersion),
         (Get-RustdocVersion),
         (Get-RustCargoVersion)
+        ) | Sort-Object
     )
+    
     $markdown += New-MDHeader "Packages" -Level 4
-    $markdown += New-MDList -Style Unordered -Lines @(
+    $markdown += New-MDList -Style Unordered -Lines (@(
         (Get-Bindgen),
         (Get-Cbindgen),
         (Get-Cargooutdated),
         (Get-Cargoaudit),
         (Get-RustfmtVersion),
         (Get-RustClippyVersion)
+        ) | Sort-Object
     )
 }
 

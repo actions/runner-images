@@ -96,23 +96,24 @@
     ],
     "brew": {
         "common_packages": [
-            "carthage",
-            "cmake",
-            "subversion",
-            "go",
-            "gnupg",
-            "llvm",
-            "libpq",
-            "zstd",
-            "packer",
-            "helm",
             "aliyun-cli",
-            "bazelisk",
-            "gh",
-            "p7zip",
             "ant",
             "aria2",
-            "gnu-tar"
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "go",
+            "helm",
+            "libpq",
+            "llvm",
+            "p7zip",
+            "packer",
+            "perl",
+            "subversion",
+            "zstd"
         ],
         "cask_packages": [
             "julia"
