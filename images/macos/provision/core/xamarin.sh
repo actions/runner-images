@@ -1,5 +1,4 @@
 #!/bin/bash -e -o pipefail
-source ~/utils/invoke-tests.sh
 source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
 

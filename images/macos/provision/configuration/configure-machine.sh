@@ -24,3 +24,7 @@ sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
 curl https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer --output $HOME/AppleWWDRCAG3.cer --silent
 sudo security add-trusted-cert -d -r unspecified -k /Library/Keychains/System.keychain $HOME/AppleWWDRCAG3.cer
 rm $HOME/AppleWWDRCAG3.cer
+
+# Create symlink for tests running
+chmod +x ~/utils/invoke-tests.sh
+ln -s ~/utils/invoke-tests.sh /usr/local/bin/invoke_tests
