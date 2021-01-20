@@ -68,7 +68,7 @@ foreach ($tool in $tools)
             setx $envName $foundVersionArchPath /M | Out-Null
 
             if ($tool.name -eq "Python" -and $version -ne "2.7.*") {
-                New-Item -Path "$toolVersionPath\python3.exe" -ItemType SymbolicLink -Value "$toolVersionPath\python.exe"
+                New-Item -Path "$foundVersionArchPath\python3.exe" -ItemType SymbolicLink -Value "$foundVersionArchPath\python.exe"
             }
         }
     }
