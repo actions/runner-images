@@ -4,21 +4,9 @@
 ################################################################################
 
 # Install git
-Choco-Install -PackageName git -ArgumentList (
-    "--installargs", `
-    "/VERYSILENT", `
-    "/NORESTART", `
-    "/NOCANCEL", `
-    "/SP-", `
-    "/CLOSEAPPLICATIONS", `
-    "/RESTARTAPPLICATIONS", `
-    "/o:PathOption=CmdTools", `
-    "/o:BashTerminalOption=ConHost", `
-    "/o:EnableSymlinks=Enabled", `
-    "/COMPONENTS=gitlfs")
+Choco-Install -PackageName git -ArgumentList '--installargs="/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /o:PathOption=CmdTools /o:BashTerminalOption=ConHost /o:EnableSymlinks=Enabled /COMPONENTS=gitlfs"'
 
-
-# Install hub    
+# Install hub
 Choco-Install -PackageName hub
 
 # Disable GCM machine-wide
