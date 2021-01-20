@@ -28,6 +28,33 @@ function Get-ToolcacheGoVersions {
     return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
 }
 
+function Build-GoEnvironmentTable {
+    Write-Host "Build-GoEnvironmentTable"
+    return @(
+        @{
+            "Name" = "GOROOT"
+            "Value" = $env:GOROOT
+        },
+        @{
+            "Name" = "GOROOT_1_13_X64"
+            "Value" = $env:GOROOT_1_13_X64
+        },
+        @{
+            "Name" = "GOROOT_1_14_X64"
+            "Value" = $env:GOROOT_1_14_X64
+        },
+        @{
+            "Name" = "GOROOT_1_15_X64"
+            "Value" = $env:GOROOT_1_15_X64
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
+}
+
 function Get-ToolcacheBoostVersions {
     $Name = "Boost"
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "boost"

@@ -22,3 +22,26 @@ function Get-ChromiumVersion {
     $chromiumVersion = chromium --version | Take-OutputPart -Part 0,1
     return $chromiumVersion
 }
+
+function Build-BrowserWebdriversEnvironmentTable {
+    Write-Host "Build-BrowserWebdriversEnvironmentTable"
+    return @(
+        @{
+            "Name" = "CHROMEWEBDRIVER"
+            "Value" = $env:CHROMEWEBDRIVER
+        },
+        @{
+            "Name" = "EDGEWEBDRIVER"
+            "Value" = $env:EDGEWEBDRIVER
+        },
+        @{
+            "Name" = "GECKOWEBDRIVER"
+            "Value" = $env:GECKOWEBDRIVER
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
+}
