@@ -27,4 +27,4 @@ rm $HOME/AppleWWDRCAG3.cer
 
 # Create symlink for tests running
 chmod +x ~/utils/invoke-tests.sh
-sudo ln -s ~/utils/invoke-tests.sh /usr/local/bin/invoke_tests
+sudo ln -s ~/utils/invoke-tests.sh /usr/bin/invoke_tests

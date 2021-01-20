@@ -39,4 +39,4 @@ sudo log stream | grep -q -E 'mds.*Released.*BackgroundTask' || true
 echo "Indexing completed"
 
 # delete symlink for tests running
-sudo rm -f /usr/local/bin/invoke_tests
+sudo rm -f /usr/bin/invoke_tests
