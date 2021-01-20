@@ -26,5 +26,8 @@ sudo security add-trusted-cert -d -r unspecified -k /Library/Keychains/System.ke
 rm $HOME/AppleWWDRCAG3.cer
 
 # Create symlink for tests running
-chmod +x ~/utils/invoke-tests.sh
-sudo ln -s ~/utils/invoke-tests.sh /usr/bin/invoke_tests
+if [ ! -d "/usr/local/bin" ];then
+    sudo mkdir -p /usr/local/bin
+fi
+chmod +x $HOME/utils/invoke-tests.sh
+sudo ln -s $HOME/utils/invoke-tests.sh /usr/local/bin/invoke_tests
