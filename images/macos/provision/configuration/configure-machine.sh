@@ -27,7 +27,7 @@ rm $HOME/AppleWWDRCAG3.cer
 
 # Create symlink for tests running
 if [ ! -d "/usr/local/bin" ];then
-    sudo mkdir -p /usr/local/bin
+    sudo mkdir -p -m 775 /usr/local/bin
     sudo chown $USER:admin /usr/local/bin
 fi
 chmod +x $HOME/utils/invoke-tests.sh
