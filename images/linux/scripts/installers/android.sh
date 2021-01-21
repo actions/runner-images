@@ -70,6 +70,11 @@ additional=$(get_toolset_value '.android.additional_tools[]')
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" )
 
+# This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
+# Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
+# Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
+ln -s $ANDROID_SDK_ROOT/ndk/21.3.6528147 $ANDROID_NDK_ROOT
+
 availablePlatforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
 allBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
