@@ -17,7 +17,7 @@ $markdown += New-MDHeader "$OSName" -Level 1
 $OSVersion = Get-OSVersion
 $markdown += New-MDList -Style Unordered -Lines @(
     "$OSVersion"
-    "Image Version: $env:ImageVersion"
+    "Image Version: $env:IMAGE_VERSION"
 )
 
 if (Test-IsWin19)

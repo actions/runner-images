@@ -112,7 +112,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "ImageVersion={{user `image_version`}}",
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGE_OS={{user `image_os`}}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
@@ -136,13 +137,6 @@
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-ContainersFeature.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "inline": [
-                "setx ImageVersion {{user `image_version` }} /m",
-                "setx ImageOS {{user `image_os` }} /m"
             ]
         },
         {
@@ -350,6 +344,7 @@
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ],
             "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ]
         },

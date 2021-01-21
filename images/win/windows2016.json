@@ -112,7 +112,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "ImageVersion={{user `image_version`}}",
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGE_OS={{user `image_os`}}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
@@ -133,13 +134,6 @@
         {
             "type": "windows-restart",
             "restart_timeout": "30m"
-        },
-        {
-            "type": "powershell",
-            "inline": [
-                "setx ImageVersion {{user `image_version` }} /m",
-                "setx ImageOS {{user `image_os` }} /m"
-            ]
         },
         {
             "type": "powershell",
