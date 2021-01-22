@@ -541,6 +541,7 @@ All other versions are saved but not installed.
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                    |
+| NDK                        | 21.3.6528147   |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                     |
 
 ### Cached Docker images
