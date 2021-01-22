@@ -35,7 +35,8 @@ function Build-WebServersSection {
         (Get-ApacheVersion),
         (Get-NginxVersion)
     ) | Sort-Object Name | New-MDTable
-    
+
+    $output += New-MDNewLine
     $output += New-MDHeader "Notes:" -Level 5
     $output += @'
 ```
@@ -49,5 +50,7 @@ function Build-WebServersSection {
     brew services stop "$service"
 ```
 '@
+
+    $output += New-MDNewLine
     return $output
 }
