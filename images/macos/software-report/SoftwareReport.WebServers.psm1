@@ -7,8 +7,8 @@ function Get-ApacheVersion {
     return [PsCustomObject]@{
         "Name" = $name
         "Version" = $version
-        "ServiceStatus" = $serviceStatus
         "ConfigFile" = $configFile
+        "ServiceStatus" = $serviceStatus
         "ListenPort" = $port
     }
 }
@@ -22,11 +22,12 @@ function Get-NginxVersion {
     return [PsCustomObject]@{
         "Name" = $name
         "Version" = $version
-        "ServiceStatus" = $serviceStatus
         "ConfigFile" = $configFile
+        "ServiceStatus" = $serviceStatus
         "ListenPort" = $port
     }
 }
+
 function Build-WebServersSection {
     $output = ""
     $output += New-MDHeader "Web Servers" -Level 3
