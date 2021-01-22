@@ -2,6 +2,7 @@
     "xcode": {
         "default": "12.2",
         "versions": [
+            { "link": "12.4", "version": "12.4.0"},
             { "link": "12.3", "version": "12.3.0"},
             { "link": "12.2", "version": "12.2.0" },
             { "link": "11.7", "version": "11.7.0", "symlinks": ["11.7_beta"] }
