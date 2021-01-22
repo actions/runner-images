@@ -8,7 +8,8 @@
                 "2.4",
                 "2.5",
                 "2.6",
-                "2.7"
+                "2.7",
+                "3.0"
             ],
             "default": "2.5"
         },
@@ -56,7 +57,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "8.*",
                 "10.*",
                 "12.*",
                 "14.*"
@@ -68,10 +68,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.9.*",
-                "1.10.*",
-                "1.11.*",
-                "1.12.*",
                 "1.13.*",
                 "1.14.*",
                 "1.15.*"
@@ -139,6 +135,12 @@
             ]
         }
     ],
+    "java": {
+        "default": "8",
+        "versions": [
+            "7", "8", "11", "13"
+        ]
+    },
     "android": {
         "platform_min_version": "19",
         "build_tools_min_version": "19.1.0",
@@ -161,7 +163,8 @@
             "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
             "patcher;v4",
-            "ndk-bundle"
+            "ndk;21.3.6528147",
+            "cmdline-tools;latest"
         ]
     },
     "visualStudio": {

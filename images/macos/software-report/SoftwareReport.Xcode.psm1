@@ -76,6 +76,11 @@ function Get-XcodePlatformOrder {
     }
 }
 
+function Get-XcodeCommandLineToolsVersion {
+    $xcodeCommandLineToolsVersion = Run-Command "pkgutil --pkg-info com.apple.pkg.CLTools_Executables" | Select -Index 1 | Take-Part -Part 1
+    return "Xcode Command Line Tools $xcodeCommandLineToolsVersion"
+}
+
 function Build-XcodeTable {
     param (
         [Parameter(Mandatory)]

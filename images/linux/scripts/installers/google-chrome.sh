@@ -12,13 +12,6 @@ apt-get update
 apt-get install -y google-chrome-stable
 echo "CHROME_BIN=/usr/bin/google-chrome" | tee -a /etc/environment
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v google-chrome; then
-    echo "google-chrome was not installed"
-    exit 1
-fi
-
 CHROME_VERSION=$(google-chrome --product-version)
 CHROME_VERSION=${CHROME_VERSION%.*}
 
@@ -41,9 +34,4 @@ chmod +x $CHROMEDRIVER_BIN
 ln -s "$CHROMEDRIVER_BIN" /usr/bin/
 echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment
 
-# Run tests to determine that the chromedriver installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v chromedriver; then
-    echo "chromedriver was not installed"
-    exit 1
-fi
+invoke_tests "Browsers" "Chrome"

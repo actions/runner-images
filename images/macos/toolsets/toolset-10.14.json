@@ -209,6 +209,9 @@
         ],
         "addon-list": [
             "addon-google_apis-google-24", "addon-google_apis-google-23", "addon-google_apis-google-22", "addon-google_apis-google-21"
+        ],
+        "additional-tools": [
+            "cmdline-tools;latest"
         ]
     },
     "powershellModules": [
@@ -221,6 +224,37 @@
         {"name": "MarkdownPS"},
         {"name": "Pester"}
     ],
+    "brew": {
+        "common_packages": [
+            "aliyun-cli",
+            "ant",
+            "aria2",
+            "bats",
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "go",
+            "helm",
+            "libpq",
+            "llvm",
+            "p7zip",
+            "packer",
+            "parallel",
+            "perl",
+            "subversion",
+            "xctool",
+            "zstd"
+        ],
+        "cask_packages": [
+            "julia",
+            "r",
+            "vagrant",
+            "virtualbox"
+        ]
+    },
     "toolcache": [
         {
             "name": "Python",
@@ -251,7 +285,6 @@
             "platform" : "darwin",
             "arch": "x64",
             "versions": [
-                "8.*",
                 "10.*",
                 "12.*",
                 "14.*"
@@ -263,8 +296,6 @@
             "arch": "x64",
             "platform" : "darwin",
             "versions": [
-                "1.11.*",
-                "1.12.*",
                 "1.13.*",
                 "1.14.*",
                 "1.15.*"
@@ -277,7 +308,8 @@
                 "2.4.*",
                 "2.5.*",
                 "2.6.*",
-                "2.7.*"
+                "2.7.*",
+                "3.0.*"
             ]
         }
     ],

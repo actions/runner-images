@@ -10,9 +10,4 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyr
 sudo apt-get update -y
 sudo apt-get install -y google-cloud-sdk
 
-# Validate the installation
-echo "Validate the installation"
-if ! command -v gcloud; then
-    echo "gcloud was not installed"
-    exit 1
-fi
+invoke_tests "CLI.Tools" "Google Cloud SDK"

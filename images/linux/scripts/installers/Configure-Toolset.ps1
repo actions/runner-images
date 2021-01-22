@@ -4,6 +4,8 @@
 ##  Desc:  Configure toolset
 ################################################################################
 
+Import-Module "$env:HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
+
 function Get-ToolsetToolFullPath
 {
     param
@@ -93,3 +95,5 @@ foreach ($tool in $toolset.toolcache)
         Invoke-Expression -Command $command
     }
 }
+
+Invoke-PesterTests -TestFile "Toolset" -TestName "Toolset"

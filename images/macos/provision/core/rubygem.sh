@@ -1,5 +1,4 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
 
 echo Updating RubyGems...
@@ -14,7 +13,7 @@ gem install cocoapods
 if is_Less_BigSur; then
     # fix nomad-cli installation
     if is_HighSierra; then
-        brew install libxml2
+        brew_smart_install "libxml2"
         gem install nokogiri -v 1.6.8.1 -- --use-system-libraries --with-xml2-include=$(brew --prefix libxml2)/include/libxml2
     fi
 
@@ -30,3 +29,5 @@ gem install bundler --force
 
 echo Installing fastlane tools...
 gem install fastlane
+
+invoke_tests "RubyGem"

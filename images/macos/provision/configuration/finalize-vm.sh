@@ -37,3 +37,6 @@ sudo rm -rf ~/utils ~/image-generation /tmp/*
 sudo mdutil -E /
 sudo log stream | grep -q -E 'mds.*Released.*BackgroundTask' || true
 echo "Indexing completed"
+
+# delete symlink for tests running
+sudo rm -f /usr/local/bin/invoke_tests

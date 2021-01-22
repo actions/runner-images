@@ -1,5 +1,4 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
 
 # Set env variable for vcpkg
@@ -12,3 +11,5 @@ $VCPKG_INSTALLATION_ROOT/bootstrap-vcpkg.sh
 $VCPKG_INSTALLATION_ROOT/vcpkg integrate install
 chmod -R 0777 $VCPKG_INSTALLATION_ROOT
 ln -sf $VCPKG_INSTALLATION_ROOT/vcpkg /usr/local/bin
+
+invoke_tests "Common" "vcpkg"

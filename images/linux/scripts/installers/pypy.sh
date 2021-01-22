@@ -33,6 +33,9 @@ function InstallPyPy
 
     PACKAGE_TEMP_FOLDER="/tmp/$PACKAGE_NAME"
     PYTHON_FULL_VERSION=$("$PACKAGE_TEMP_FOLDER/bin/$PYPY_MAJOR" -c "import sys;print('{}.{}.{}'.format(sys.version_info[0],sys.version_info[1],sys.version_info[2]))")
+    PYPY_FULL_VERSION=$("$PACKAGE_TEMP_FOLDER/bin/$PYPY_MAJOR" -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))")
+    echo "Put '$PYPY_FULL_VERSION' to PYPY_VERSION file"
+    echo $PYPY_FULL_VERSION > "$PACKAGE_TEMP_FOLDER/PYPY_VERSION"
 
     # PyPy folder structure
     PYPY_TOOLCACHE_PATH=$AGENT_TOOLSDIRECTORY/PyPy
@@ -52,6 +55,7 @@ function InstallPyPy
 
     echo "Create additional symlinks (Required for UsePythonVersion Azure DevOps task)"
     cd $PYPY_TOOLCACHE_VERSION_ARCH_PATH/bin
+
     ln -s $PYPY_MAJOR $PYTHON_MAJOR
     ln -s $PYTHON_MAJOR python
 
@@ -72,10 +76,7 @@ function InstallPyPy
 uri="https://downloads.python.org/pypy/"
 download_with_retries $uri "/tmp" "pypyUrls.html" compressed
 pypyVersions="$(cat /tmp/pypyUrls.html | grep 'linux64' | awk -v uri="$uri" -F'>|<' '{print uri$5}')"
-
-toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-toolsetVersions=$(jq -r '.toolcache[] | select(.name | contains("PyPy")) | .versions[]' $toolset)
-
+toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
 
 for toolsetVersion in $toolsetVersions; do
     latestMajorPyPyVersion=$(echo "${pypyVersions}" | grep -E "pypy${toolsetVersion}-v[0-9]+\.[0-9]+\.[0-9]+-" | head -1)

@@ -91,6 +91,13 @@ function Get-HomebrewVersion {
     return "Homebrew $version"
 }
 
+function Get-CpanVersion {
+    $result = Get-CommandResult "cpan --version"
+    $result.Output -match "version (?<version>\d+\.\d+) " | Out-Null
+    $cpanVersion = $Matches.version
+    return "cpan $cpanVersion"
+}
+
 function Get-GemVersion {
     $result = Get-CommandResult "gem --version"
     $result.Output -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
@@ -138,7 +145,7 @@ function Get-VcpkgVersion {
     $result.Output -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $vcpkgVersion = $Matches.version
     $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
-    return "Vcpkg $vcpkgVersion (build from master <$commitId>)"
+    return "Vcpkg $vcpkgVersion (build from master \<$commitId>)"
 }
 
 function Get-AntVersion {
@@ -283,4 +290,19 @@ function Get-PipxVersion {
     $result -match "(?<version>\d+\.\d+\.\d+\.?\d*)" | Out-Null
     $pipxVersion = $Matches.Version
     return "Pipx $pipxVersion"
+}
+
+function Get-GraalVMVersion {
+    $version = & "$env:GRAALVM_11_ROOT\bin\java" --version | Select-String -Pattern "GraalVM" | Take-OutputPart -Part 5,6
+    return $version
+}
+
+function Build-GraalVMTable {
+    $version = Get-GraalVMVersion
+    $envVariables = "GRAALVM_11_ROOT"
+
+    return [PSCustomObject] @{
+        "Version" = $version
+        "Environment variables" = $envVariables
+    }
 }

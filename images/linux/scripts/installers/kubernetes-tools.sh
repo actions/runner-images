@@ -4,6 +4,11 @@
 ##  Desc:  Installs kubectl, helm, kustomize
 ################################################################################
 
+# Install KIND
+URL=$(curl -s https://api.github.com/repos/kubernetes-sigs/kind/releases/latest | jq -r '.assets[].browser_download_url | select(contains("kind-linux-amd64"))')
+curl -L -o /usr/local/bin/kind $URL
+chmod +x /usr/local/bin/kind
+
 ## Install kubectl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 touch /etc/apt/sources.list.d/kubernetes.list
@@ -25,27 +30,4 @@ download_url="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master
 curl -s "$download_url" | bash
 mv kustomize /usr/local/bin
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v kubectl; then
-    echo "kubectl was not installed"
-    exit 1
-fi
-
-if ! command -v helm; then
-    echo "helm was not installed"
-    exit 1
-fi
-
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that minikube was installed"
-if ! command -v minikube; then
-    echo "minikube was not installed"
-    exit 1
-fi
-
-echo "Testing to make sure that kustomize was installed"
-if ! command -v kustomize; then
-    echo "kustomize was not installed"
-    exit 1
-fi
+invoke_tests "Tools" "Kubernetes tools"

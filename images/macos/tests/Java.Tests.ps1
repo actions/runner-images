@@ -1,5 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 function Get-NativeVersionFormat {
     param($Version)
@@ -54,6 +54,30 @@ Describe "Java" {
                 It "Version is default" -TestCases $_ {
                     Validate-JavaVersion -JavaCommand "java -version" -ExpectedVersion $Version
                 }
+            }
+        }
+    }
+
+    Context "Maven" {
+        Describe "Maven" {
+            It "Maven" {
+                "mvn --version" | Should -ReturnZeroExitCode
+            }
+        }
+    }
+    
+    Context "Gradle" {
+        Describe "Gradle" {
+            It "Gradle is installed" {
+                "gradle --version" | Should -ReturnZeroExitCode
+            }
+        
+            It "Gradle is installed to /usr/local/bin" {
+                (Get-Command "gradle").Path | Should -BeExactly "/usr/local/bin/gradle"
+            }
+        
+            It "Gradle is compatible with init.d plugins" {
+                "cd /tmp && gradle tasks" | Should -ReturnZeroExitCode
             }
         }
     }

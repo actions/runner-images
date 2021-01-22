@@ -1,60 +1,20 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
 
-# TO-DO: Move the list of brew packages and casks to toolset
-
-# brew install
-binst_common_utils=(
-    carthage
-    cmake
-    subversion
-    go
-    gnupg
-    llvm
-    libpq
-    zstd
-    packer
-    helm
-    aliyun-cli
-    bazelisk
-    gh
-    p7zip
-    ant
-    aria2
-    gnu-tar
-)
-
-if is_Less_BigSur; then
-    binst_common_utils+=(
-        xctool
-        bats
-        parallel
-    )
-fi
-
-for package in ${binst_common_utils[@]}; do
-    echo "Install $package"
-    brew install $package
+common_packages=$(get_toolset_value '.brew.common_packages[]')
+for package in $common_packages; do
+    echo "Installing $package..."
+    brew_smart_install "$package"
 done
 
-# brew cask install
-bcask_common_utils=(
-    julia
-)
-
-if is_Less_BigSur; then
-    bcask_common_utils+=(
-        virtualbox
-        vagrant
-        r
-    )
-fi
-
-for package in ${bcask_common_utils[@]}; do
-    echo "Install $package"
-    brew cask install $package
+cask_packages=$(get_toolset_value '.brew.cask_packages[]')
+for package in $cask_packages; do
+    echo "Installing $package..."
+    brew install --cask $package
 done
 
 # Invoke bazel to download the latest bazel version via bazelisk
 bazel
+
+# Invoke tests for all common tools
+invoke_tests "Common" "CommonUtils"

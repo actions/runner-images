@@ -3,6 +3,7 @@
 ##  File:  gfortran.sh
 ##  Desc:  Installs GNU Fortran
 ################################################################################
+source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 function InstallFortran {
@@ -10,29 +11,17 @@ function InstallFortran {
 
     echo "Installing $version..."
     apt-get install $version -y
-
-    # Run tests to determine that the software installed as expected
-    echo "Testing to make sure that script performed as expected, and basic scenarios work"
-    if ! command -v $version; then
-        echo "$version was not installed"
-        exit 1
-    fi
 }
 
 # Install GNU Fortran compiler
 add-apt-repository ppa:ubuntu-toolchain-r/test -y
 apt-get update -y
 
-versions=(
-    "gfortran-8"
-    "gfortran-9"
-)
-
-if ! isUbuntu16; then
-    versions+=("gfortran-10")
-fi
+versions=$(get_toolset_value '.gfortran.versions[]')
 
 for version in ${versions[*]}
 do
     InstallFortran $version
 done
+
+invoke_tests "Tools" "gfortran"

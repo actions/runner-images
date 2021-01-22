@@ -10,9 +10,4 @@ wget -P /tmp $URL
 tar xzvf /tmp/aliyun-cli-linux-*-amd64.tgz
 mv aliyun /usr/local/bin
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v aliyun ; then
-    echo "aliyun was not installed"
-    exit 1
-fi
+invoke_tests "CLI.Tools" "Aliyun CLI"

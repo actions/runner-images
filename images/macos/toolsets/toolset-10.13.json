@@ -201,6 +201,37 @@
         {"name": "MarkdownPS"},
         {"name": "Pester"}
     ],
+    "brew": {
+        "common_packages": [
+            "aliyun-cli",
+            "ant",
+            "aria2",
+            "bats",
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "go",
+            "helm",
+            "libpq",
+            "llvm",
+            "p7zip",
+            "packer",
+            "parallel",
+            "perl",
+            "subversion",
+            "xctool",
+            "zstd"
+        ],
+        "cask_packages": [
+            "julia",
+            "r",
+            "vagrant",
+            "virtualbox"
+        ]
+    },
     "toolcache": [
         {
             "name": "PyPy",

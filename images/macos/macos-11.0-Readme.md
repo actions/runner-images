@@ -1,111 +1,113 @@
 | Announcements |
 |-|
-| [Hosted macOS workflows will experience longer wait times the week of December 14th.](https://github.com/actions/virtual-environments/issues/2247) |
-| [[macOS] Backward compatibility of Az and AzureRM will be dropped on December, 14](https://github.com/actions/virtual-environments/issues/2090) |
-| [[macOS] Default OpenSSL will be switched to 1.1.1 and OpenSSL 1.0.2 will be removed on December, 14](https://github.com/actions/virtual-environments/issues/2089) |
-| [.NET 5.0 will become a default .NET version on December, 14](https://github.com/actions/virtual-environments/issues/1891) |
-| [macOS 11.0 (Big Sur) is available as a preview 🚀](https://github.com/actions/virtual-environments/issues/1814) |
+| [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
+| [[macOS] Default Xcode will be set to Xcode 12.3 on January, 25](https://github.com/actions/virtual-environments/issues/2440) |
+| [[all OS versions] Android NDK is updated to r22.](https://github.com/actions/virtual-environments/issues/2420) |
+| [[macOS] Homebrew is updated to 2.7 with few major changes](https://github.com/actions/virtual-environments/issues/2415) |
 ***
 # macOS 11.0 info
 - System Version: macOS 11.0.1 (20B29)
 - Kernel Version: Darwin 20.1.0
-- Image Version: 20201213.1
+- Image Version: 20210118.2
 
 ## Installed Software
 ### Language and Runtime
 - Clang/LLVM 12.0.0 is default
-- Clang/LLVM 11.0.0 is available on `$(brew --prefix llvm)/bin/clang`
-- gcc-8 (Homebrew GCC 8.4.0_1) 8.4.0 - available by `gcc-8` alias
-- gcc-9 (Homebrew GCC 9.3.0) 9.3.0 - available by `gcc-9` alias
-- gcc-10 (Homebrew GCC 10.2.0) 10.2.0 - available by `gcc-10` alias
-- GNU Fortran (Homebrew GCC 8.4.0_1) 8.4.0  - available by `gfortran-8` alias
-- GNU Fortran (Homebrew GCC 9.3.0) 9.3.0  - available by `gfortran-9` alias
-- GNU Fortran (Homebrew GCC 10.2.0) 10.2.0  - available by `gfortran-10` alias
-- Node.js v14.15.1
+- Clang/LLVM 11.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
+- gcc-8 (Homebrew GCC 8.4.0_2) 8.4.0 - available by `gcc-8` alias
+- gcc-9 (Homebrew GCC 9.3.0_1) 9.3.0 - available by `gcc-9` alias
+- gcc-10 (Homebrew GCC 10.2.0_2) 10.2.0 - available by `gcc-10` alias
+- GNU Fortran (Homebrew GCC 8.4.0_2) 8.4.0  - available by `gfortran-8` alias
+- GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0  - available by `gfortran-9` alias
+- GNU Fortran (Homebrew GCC 10.2.0_2) 10.2.0  - available by `gfortran-10` alias
+- Bash 3.2.57(1)-release
+- Node.js v14.15.4
 - NVM 0.37.2
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.0 v12.20.0 v13.14.0 v14.15.1
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.1 v12.20.1 v13.14.0 v14.15.4
 - Python 2.7.18
 - Python 3.9.1
 - Ruby 2.7.2p137
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 5.0.100 5.0.101
-- Go 1.15.5
-- PHP 8.0.0
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 5.0.100 5.0.101 5.0.102
+- Go 1.15.6
+- PHP 8.0.1
 - julia 1.5.3
 
 ### Package Management
-- Vcpkg 2020.11.12 (build from master <81b67c3>)
-- Pip 20.3.1 (python 2.7)
-- Pip 20.3.1 (python 3.9)
-- Pipx 0.15.6.0
-- Bundler version 2.2.0
-- Carthage 0.36.0
-- CocoaPods 1.10.0
-- Homebrew 2.6.1
-- NPM 6.14.8
+- Vcpkg 2020.11.12 (build from master \<0c94afc>)
+- Pip 20.3.3 (python 2.7)
+- Pip 20.3.3 (python 3.9)
+- Pipx 0.16.0.0
+- Bundler version 2.2.5
+- Carthage 0.36.1
+- CocoaPods 1.10.1
+- Homebrew 2.7.5
+- NPM 6.14.10
 - Yarn 1.22.5
 - NuGet 5.6.0.6489
 - Miniconda 4.9.2
-- RubyGems 3.2.0
+- RubyGems 3.2.5
 - Composer 2.0.8
 
 ### Project Management
 - Apache Maven 3.6.3
-- Gradle 6.7.1
+- Gradle 6.8
 - Apache Ant(TM) 1.10.9
 
 ### Utilities
 - Curl 7.74.0
-- Git: 2.29.2
-- Git LFS: 2.13.1
-- GitHub CLI: 1.3.1
+- Git: 2.30.0
+- Git LFS: 2.13.2
+- GitHub CLI: 1.4.0
 - Hub CLI: 2.14.2
-- GNU Wget 1.20.3
+- GNU Wget 1.21
 - Subversion (SVN) 1.14.0
-- Packer 1.6.5
+- Packer 1.6.6
 - OpenSSL 1.1.1i  8 Dec 2020 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1i)`
 - jq 1.6
-- gpg (GnuPG) 2.2.25
+- gpg (GnuPG) 2.2.27
 - psql (PostgreSQL) 13.1
 - PostgreSQL 13.1
 - aria2 1.35.0
 - azcopy 10.8.0
-- zstd 1.4.5
-- bazel 3.7.1
+- zstd 1.4.8
+- bazel 3.7.2
 - bazelisk 1.7.4
-- helm v3.4.2+g23dd3af
-- mongo v4.4.1
-- mongod v4.4.1
+- helm v3.5.0+g32c2223
+- mongo v4.4.3
+- mongod v4.4.3
 - 7-Zip 16.02
-- Newman 5.2.1
+- bsdtar 3.3.2 - available by 'tar' alias
+- GNU Tar 1.33 - available by 'gtar' alias
+- Newman 5.2.2
 
 ### Tools
-- Fastlane 2.170.0
-- Cmake 3.19.1
+- Fastlane 2.171.0
+- Cmake 3.19.3
 - App Center CLI 2.7.3
-- Azure CLI 2.16.0
-- AWS CLI 2.1.10
-- AWS SAM CLI 1.13.2
+- Azure CLI 2.17.1
+- AWS CLI 2.1.19
+- AWS SAM CLI 1.15.0
 - AWS Session Manager CLI 1.2.30.0
-- Aliyun CLI 3.0.64
-- Xcode Command Line Tools 12.2.0.0.1.1604076827
+- Aliyun CLI 3.0.66
+- Xcode Command Line Tools 12.3.0.0.1.1607026830
 - GHCup v0.1.12
-- GHC 8.10.2
+- GHC 8.10.3
 - Cabal 3.2.0.0
 - Stack 2.5.1
 
 ### Linters
 - yamllint 1.25.0
-- SwiftLint 0.41.0
+- SwiftLint 0.42.0
 
 ### Browsers
 - Safari 14.0.1 (16610.2.11.51.8)
 - SafariDriver 14.0.1 (16610.2.11.51.8)
-- Google Chrome 87.0.4280.88 
-- ChromeDriver 87.0.4280.20
-- Microsoft Edge 87.0.664.60 
-- MSEdgeDriver 87.0.664.60
-- Mozilla Firefox 83.0
-- geckodriver 0.28.0
+- Google Chrome 87.0.4280.141 
+- ChromeDriver 87.0.4280.88
+- Microsoft Edge 87.0.664.75 
+- MSEdgeDriver 87.0.664.75
+- Mozilla Firefox 84.0.2
+- geckodriver 0.29.0
 
 ### Java
 | Version   | Vendor       | Environment Variable |
@@ -118,32 +120,37 @@
 - 2.5.8
 - 2.6.6
 - 2.7.2
+- 3.0.0
 
 #### Python
 - 3.7.9
-- 3.8.6
+- 3.8.7
 - 3.9.1
 
 #### Node.js
-- 10.23.0
-- 12.20.0
-- 14.15.1
+- 10.23.1
+- 12.20.1
+- 14.15.4
 
 #### Go
 - 1.15.6
 
 ### Rust Tools
-- Rust 1.48.0
+- Rust 1.49.0
 - Rustup 1.23.1
+- Rustdoc 1.49.0
+- Cargo 1.49.0
 
 #### Packages
 - Bindgen 0.56.0
-- Cbindgen 0.15.0
+- Cbindgen 0.16.0
 - Cargo-outdated v0.9.13
 - Cargo-audit 0.13.1
+- Rustfmt 1.4.25-stable
+- Clippy 0.0.212
 
 ### PowerShell Tools
-- PowerShell 7.1.0
+- PowerShell 7.1.1
 
 #### PowerShell Modules
 | Module     | Version |
@@ -154,12 +161,13 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.8.3.16
+- 8.8.4.30
 
 #### Mono
-- 6.12.0.107
+- 6.12.0.113
 
 #### Xamarin.iOS
+- 14.8.0.3
 - 14.6.0.15
 - 14.4.1.3
 - 14.2.0.12
@@ -167,6 +175,7 @@
 - 13.20.2.2
 
 #### Xamarin.Mac
+- 7.2.0.3
 - 7.0.0.15
 - 6.22.1.26
 - 6.20.2.2
@@ -236,14 +245,15 @@
 | Android SDK Tools          | 26.1.1                                                                                                                   |
 | Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                                     |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
+| Android Command Line Tools | 3.0                                                                                                                      |
 | Android SDK Platform-Tools | 30.0.5                                                                                                                   |
-| Android emulator           | 30.2.6                                                                                                                   |
+| Android emulator           | 30.3.5                                                                                                                   |
 | Android Support Repository | 47.0.0                                                                                                                   |
 | Google Play services       | 49                                                                                                                       |
 | Google Repository          | 58                                                                                                                       |
 | SDK Patch Applier v4       | 1                                                                                                                        |
 | CMake                      | 3.6.4111459                                                                                                              |
-| NDK                        | 21.3.6528147                                                                                                             |
+| NDK                        | 22.0.7026061                                                                                                             |
 
 
 

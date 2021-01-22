@@ -4,6 +4,7 @@
 ##  Desc:  Installs Swift
 ################################################################################
 
+
 # Install
 image_label="$(lsb_release -rs)"
 swift_version=$(curl -s -L -N https://swift.org/download|awk -F"[ <]" '/id="swift-/ {print $4; exit}')
@@ -20,14 +21,4 @@ ln -s "$SWIFT_BIN" /usr/local/bin/swift
 ln -s "$SWIFTC_BIN" /usr/local/bin/swiftc
 echo "SWIFT_PATH=$SWIFT_PATH" | tee -a /etc/environment
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v swift; then
-    echo "Swift was not installed"
-    exit 1
-fi
-
-if ! command -v swiftc; then
-    echo "Swiftc is not linked to swift binary"
-    exit 1
-fi
+invoke_tests "Common" "Swift"

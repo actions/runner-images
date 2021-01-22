@@ -42,6 +42,31 @@ function Get-RustVersion {
     return $rustVersion
 }
 
+function Get-RustupVersion {
+     $version = [regex]::matches($(rustup --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustCargoVersion {
+     $version = [regex]::matches($(cargo --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustdocVersion {
+     $version = [regex]::matches($(rustdoc --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustfmtVersion {
+     $version = [regex]::matches($(rustfmt --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustClippyVersion {
+     $version = [regex]::matches($(cargo clippy  --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
 function Get-BindgenVersion {
     return bindgen --version
 }
@@ -109,7 +134,7 @@ function Get-VcpkgVersion {
     ($(vcpkg version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $vcpkgVersion = $Matches.Version
     $commitId = git -C "C:\vcpkg" rev-parse --short HEAD
-    return "Vcpkg $vcpkgVersion (build from master <$commitId>)"
+    return "Vcpkg $vcpkgVersion (build from master \<$commitId>)"
 }
 
 function Get-NPMVersion {
@@ -277,6 +302,17 @@ function Get-CachedDockerImagesTableData {
               "Created" = $parts[2].split(' ')[0]
          }
     }
+}
+
+function Get-ShellTarget {
+    $shells = Get-ChildItem C:\shells -File | Select-Object Name, @{n="Target";e={
+        if ($_.Name -eq "msys2bash.cmd") {
+            "C:\msys64\usr\bin\bash.exe"
+        } else {
+            @($_.Target)[0]
+        }
+    }} | Sort-Object Name
+    $shells | New-MDTable -Columns ([ordered]@{Name = "left"; Target = "left";})
 }
 
 function Get-PacmanVersion {

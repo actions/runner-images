@@ -30,3 +30,5 @@ else
 fi
 
 echo "Node version manager has been installed successfully"
+
+invoke_tests "Node" "nvm"
