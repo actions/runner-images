@@ -173,6 +173,8 @@
                 "./provision/core/xamarin.sh",
                 "./provision/core/vsmac.sh",
                 "./provision/core/nvm.sh",
+                "./provision/core/apache.sh",
+                "./provision/core/nginx.sh",
                 "./provision/core/postgresql.sh",
                 "./provision/core/mongodb.sh",
                 "./provision/core/vcpkg.sh",
