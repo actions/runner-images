@@ -220,12 +220,13 @@ function Install-VsixExtension
     $argumentList = ('/quiet', "`"$FilePath`"")
 
     Write-Host "Starting Install $Name..."
+    $vsEdition = (Get-ToolsetContent).visualStudio.edition
     try
     {
         #There are 2 types of packages at the moment - exe and vsix
         if ($Name -match "vsix")
         {
-            $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\$VSversion\Enterprise\Common7\IDE\VSIXInstaller.exe" -ArgumentList $argumentList -Wait -PassThru
+            $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\$VSversion\${vsEdition}\Common7\IDE\VSIXInstaller.exe" -ArgumentList $argumentList -Wait -PassThru
         }
         else
         {
