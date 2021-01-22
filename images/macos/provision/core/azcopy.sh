@@ -1,7 +1,5 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
-source ~/utils/invoke-tests.sh
 
 AZCOPY_DOWNLOAD_URL="https://aka.ms/downloadazcopy-v10-mac"
 
