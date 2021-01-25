@@ -1,7 +1,5 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
-source ~/utils/invoke-tests.sh
 
 echo Installing aws...
 AWS_CLI_URL="https://awscli.amazonaws.com/AWSCLIV2.pkg"

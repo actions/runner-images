@@ -18,8 +18,8 @@ For general questions about using the virtual environments or writing your Actio
 | Windows Server 2019 | `windows-latest` or `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 | Windows Server 2016 | `windows-2016` | [windows-2016] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
 ```
-The MacOS 11.0 virtual environment is currently provided as a preview only.
-The "macos-latest" YAML workflow label still uses the MacOS 10.15 virtual environment.
+The macOS 11.0 virtual environment is currently provided as a private preview only.
+The "macos-latest" YAML workflow label still uses the macOS 10.15 virtual environment.
 ```
 
 ***What images are available for GitHub Actions and Azure DevOps?***
