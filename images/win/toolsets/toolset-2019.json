@@ -163,9 +163,12 @@
             "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
             "patcher;v4",
-            "ndk;21.3.6528147",
             "cmdline-tools;latest"
-        ]
+        ],
+        "ndk": {
+            "lts" : "ndk;21.3.6528147",
+            "latest" : "ndk;22.0.7026061"
+        }
     },
     "visualStudio": {
         "version" : "2019",

@@ -80,7 +80,7 @@ function Build-AndroidTable {
         },
         @{
             "Package" = "NDK"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk;"
         },
         @{
             "Package" = "SDK Patch Applier v4"
@@ -90,6 +90,32 @@ function Build-AndroidTable {
         [PSCustomObject] @{
             "Package Name" = $_.Package
             "Version" = $_.Version
+        }
+    }
+}
+
+function Build-AndroidVariablesTable {
+    $androidSDKRoot = "C:\Program Files (x86)\Android\android-sdk"
+    $androidToolset = (Get-ToolsetContent).android
+    $ndkLTSVersion = $androidToolset.ndk.lts
+    $ndkLatestVersion = $androidToolset.ndk.latest
+    return @(
+        @{
+            "Variable" = @("ANDROID_HOME", "ANDROID_SDK_ROOT")
+            "Value" = $androidSDKRoot
+        },
+        @{
+            "Variable" = @("ANDROID_NDK_HOME", "ANDROID_NDK_ROOT", "ANDROID_NDK_PATH")
+            "Value" = "$androidSDKRoot\ndk\$ndkLTSVersion"
+        },
+        @{
+            "Variable" = "ANDROID_NDK_LATEST_HOME"
+            "Value" = "$androidSDKRoot\ndk\$ndkLatestVersion"
+        } 
+    ) | Where-Object { $_.Value } | ForEach-Object {
+        [PSCustomObject] @{
+            "Variable" = $_.Variable
+            "Value" = $_.Value
         }
     }
 }

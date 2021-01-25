@@ -75,12 +75,21 @@ Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
                           -AndroidPackages $androidToolset.additional_tools
 
+# NDKs
+$ndkLTSVersion = $androidToolset.ndk.lts
+$ndkLatestVersion = $androidToolset.ndk.latest
+$androidNDKs = @($ndkLTSVersion, $ndkLatestVersion)
+
+Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
+                          -AndroidSDKRootPath $sdkRoot `
+                          -AndroidPackages $androidNDKs
+
 # Android NDK root path.
 $ndkRoot = "$sdkRoot\ndk-bundle"
 # This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
 # Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
 # Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
-New-Item -Path $ndkRoot -ItemType SymbolicLink -Value "$sdkRoot\ndk\21.3.6528147"
+New-Item -Path $ndkRoot -ItemType SymbolicLink -Value "$sdkRoot\ndk\$ndkLTSVersion"
 
 if (Test-Path $ndkRoot) {
     setx ANDROID_HOME $sdkRoot /M
@@ -90,9 +99,16 @@ if (Test-Path $ndkRoot) {
     setx ANDROID_NDK_ROOT $ndkRoot /M
     (Get-Content -Encoding UTF8 "${ndkRoot}\ndk-build.cmd").replace('%~dp0\build\ndk-build.cmd','"%~dp0\build\ndk-build.cmd"')|Set-Content -Encoding UTF8 "${ndkRoot}\ndk-build.cmd"
 } else {
-    Write-Host "NDK is not installed at path $ndk_root"
+    Write-Host "LTS NDK $ndkLTSVersion is not installed at path $ndk_root"
     exit 1
 }
 
+$ndkLatestPath = "$sdkRoot\ndk\$ndkLatestVersion"
+if (Test-Path $ndkLatestPath) {
+    setx ANDROID_NDK_LATEST_HOME $ndkLatestPath /M
+} else {
+    Write-Host "Latest NDK $ndkLatestVersion is not installed at path $ndkLatestPath"
+    exit 1
+}
 Invoke-PesterTests -TestFile "Android"
 

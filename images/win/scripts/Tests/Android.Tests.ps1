@@ -66,4 +66,12 @@ Describe "Android SDK" {
     It "Additional tool <additionalToolVersion> is installed" -TestCases $additionalToolsTestCases {
         "$installedPackages" | Should -Match $additionalToolVersion
     }
+
+    It "LTS NDK is installed" {
+        "$androidInstalledPackages" | Should -Match $androidToolset.ndk.lts
+    }
+
+    It "Latest NDK is installed" {
+        "$androidInstalledPackages" | Should -Match $androidToolset.ndk.latest
+    }
 }

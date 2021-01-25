@@ -257,6 +257,10 @@ $markdown += New-MDHeader "Android" -Level 3
 $markdown += Build-AndroidTable | New-MDTable
 $markdown += New-MDNewLine
 
+$markdown += New-MDHeader "Android environment variables" -Level 4
+$markdown += Build-AndroidVariablesTable | New-MDTable
+$markdown += New-MDNewLine
+
 # Docker images section
 $markdown += New-MDHeader "Cached Docker images" -Level 3
 $markdown += Get-CachedDockerImagesTableData | New-MDTable
