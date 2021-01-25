@@ -75,6 +75,8 @@ components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" )
 # Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
 ln -s $ANDROID_SDK_ROOT/ndk/21.3.6528147 $ANDROID_NDK_ROOT
 
+echo "ANDROID_NDK_LATEST_HOME=${ANDROID_SDK_ROOT}/ndk/22.0.7026061" | tee -a /etc/environment
+
 availablePlatforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
 allBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
