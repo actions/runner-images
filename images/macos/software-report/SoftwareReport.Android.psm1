@@ -188,9 +188,9 @@ function Get-AndroidNDKVersions {
 }
 
 function Get-AndroidVariables {
-    $javaVersions = Get-Item env:ANDROID_*
+    $androidVariables = Get-Item env:ANDROID_*
 
-    return $javaVersions | ForEach-Object {
+    return $androidVariables | ForEach-Object {
         [PSCustomObject] @{
             "Path" = $_.Value
             "Environment Variable" = $_.Name
