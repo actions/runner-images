@@ -13,7 +13,12 @@ for package in $cask_packages; do
     brew install --cask $package
 done
 
-# Invoke bazel to download the latest bazel version via bazelisk
+# Specify Bazel version 3.7.1 to install due to the bug with 4.0.0: https://github.com/bazelbuild/bazel/pull/12882
+if is_Less_Catalina; then
+    export USE_BAZEL_VERSION="3.7.1"
+fi
+
+# Invoke bazel to download bazel version via bazelisk
 bazel
 
 # Invoke tests for all common tools
