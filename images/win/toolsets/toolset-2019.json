@@ -166,8 +166,8 @@
             "cmdline-tools;latest"
         ],
         "ndk": {
-            "lts" : "ndk;21.3.6528147",
-            "latest" : "ndk;22.0.7026061"
+            "lts" : "21.3.6528147",
+            "latest" : "22.0.7026061"
         }
     },
     "visualStudio": {

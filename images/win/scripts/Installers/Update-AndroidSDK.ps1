@@ -78,7 +78,7 @@ Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
 # NDKs
 $ndkLTSVersion = $androidToolset.ndk.lts
 $ndkLatestVersion = $androidToolset.ndk.latest
-$androidNDKs = @($ndkLTSVersion, $ndkLatestVersion)
+$androidNDKs = @("ndk;$ndkLTSVersion", "ndk;$ndkLatestVersion")
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
