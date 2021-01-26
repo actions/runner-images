@@ -37,20 +37,5 @@ function Build-WebServersSection {
     ) | Sort-Object Name | New-MDTable
 
     $output += New-MDNewLine
-    $output += New-MDHeader "Notes:" -Level 5
-    $output += @'
-```
-    1. Start the service formula immediately
-    brew services start $service
-    2. List all managed services
-    brew services list | grep $service
-    3. Port 80 availability check
-    sudo lsof -i :80 | grep LISTEN
-    4. Stop the service formula immediately
-    brew services stop "$service"
-```
-'@
-
-    $output += New-MDNewLine
     return $output
 }
