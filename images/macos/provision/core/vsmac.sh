@@ -1,7 +1,6 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
-source ~/utils/invoke-tests.sh
 
 VSMAC_VERSION=$(get_toolset_value '.xamarin.vsmac')
 if [ $VSMAC_VERSION == "latest" ]; then
@@ -28,4 +27,3 @@ sudo hdiutil detach "$TMPMOUNT"
 sudo rm -rf "$TMPMOUNT"
 
 invoke_tests "Common" "VSMac"
-

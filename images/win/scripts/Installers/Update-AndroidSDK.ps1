@@ -77,6 +77,10 @@ Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
 
 # Android NDK root path.
 $ndkRoot = "$sdkRoot\ndk-bundle"
+# This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
+# Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
+# Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
+New-Item -Path $ndkRoot -ItemType SymbolicLink -Value "$sdkRoot\ndk\21.3.6528147"
 
 if (Test-Path $ndkRoot) {
     setx ANDROID_HOME $sdkRoot /M
