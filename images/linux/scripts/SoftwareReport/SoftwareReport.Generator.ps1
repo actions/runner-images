@@ -248,7 +248,6 @@ $markdown += New-MDHeader "Android" -Level 3
 $markdown += Build-AndroidTable | New-MDTable
 $markdown += New-MDNewLine
 $markdown += New-MDHeader "Android Environment Variables" -Level 4
-$markdown += New-MDNewLine
 $markdown += Get-AndroidVariables | New-MDTable
 $markdown += New-MDNewLine
 
