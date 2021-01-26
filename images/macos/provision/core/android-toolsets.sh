@@ -66,12 +66,14 @@ echo "Installing latest CMake..."
 echo y | $SDKMANAGER "cmake;3.6.4111459"
 
 echo "Installing latest ndk..."
-echo y | $SDKMANAGER  "ndk;$ANDROID_NDK_LTS" "ndk;$ANDROID_NDK_LATEST"
+ndkVersions=($(${SDKMANAGER} --list | grep "ndk;${ANDROID_NDK_LATEST}.*" | cut -d"|" -f 1 | sort -V | cut -d";" -f 2))
+ndkLatestVersion="${ndkVersions[@]:(-1)}"
+echo y | $SDKMANAGER  "ndk;$ANDROID_NDK_LTS" "ndk;$ndkLatestVersion"
 # This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
 # Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
 # Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
 ln -s $ANDROID_HOME/ndk/$ANDROID_NDK_LTS $ANDROID_HOME/ndk-bundle
-ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ANDROID_NDK_LATEST
+ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ndkLatestVersion
 echo "export ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> "${HOME}/.bashrc"
 
 availablePlatforms=($(${ANDROID_HOME}/tools/bin/sdkmanager --list | grep "platforms;android-" | cut -d"|" -f 1 | sort -u))

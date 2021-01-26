@@ -153,7 +153,7 @@
         ],
         "ndk": {
             "lts": "21.3.6528147",
-            "latest": "22.0.7026061"
+            "latest": "22"
         }
     },
     "powershellModules": [
