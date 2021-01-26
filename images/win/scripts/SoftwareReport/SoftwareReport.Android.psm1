@@ -94,17 +94,6 @@ function Build-AndroidTable {
     }
 }
 
-function Build-AndroidVariablesTable {
-    $androidVariables = Get-Item env:ANDROID_*
-
-    return $androidVariables | ForEach-Object {
-        [PSCustomObject] @{
-            "Path" = $_.Value
-            "Environment Variable" = $_.Name
-        }
-    }
-}
-
 function Get-AndroidPackageVersions {
     param (
         [Parameter(Mandatory)]
