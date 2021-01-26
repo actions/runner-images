@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "12.2",
+        "default": "12.3",
         "versions": [
             { "link": "12.4", "version": "12.4.0"},
             { "link": "12.3", "version": "12.3.0"},
@@ -22,7 +22,7 @@
         "android-versions": [
             "11.1.0.26", "11.0.2.0"
         ],
-        "bundle-default": "6_12_4",
+        "bundle-default": "6_12_5",
         "bundles": [
             {
                 "symlink": "6_12_5",
