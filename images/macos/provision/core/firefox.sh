@@ -4,7 +4,7 @@ source ~/utils/utils.sh
 echo "Installing Firefox..."
 brew install --cask firefox
 
-# High Sierra builds driver from sources and it takes about 2 hours, it's much faster to download the binary directly
+# High Sierra builds driver from sources, and it takes about 2 hours. It's much faster to download the binary directly
 if ! is_HighSierra; then
     echo "Installing Geckodriver..."
     brew_smart_install "geckodriver"
