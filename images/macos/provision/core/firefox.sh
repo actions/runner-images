@@ -10,7 +10,7 @@ if ! is_HighSierra; then
     brew_smart_install "geckodriver"
     geckoPath="$(brew --prefix geckodriver)/bin"
 else
-    geckoVersion=$(curl https://formulae.brew.sh/api/formula/geckodriver.json 2>/dev/null | jq .versions.stable | tr -d \")
+    geckoVersion=$(curl https://formulae.brew.sh/api/formula/geckodriver.json 2>/dev/null | jq -r .versions.stable)
     geckoUrl="https://github.com/mozilla/geckodriver/releases/download/v${geckoVersion}/geckodriver-v${geckoVersion}-macos.tar.gz"
     download_with_retries $geckoUrl "/tmp" "geckodriver.tar.gz"
     geckoPath="/usr/local/bin"
