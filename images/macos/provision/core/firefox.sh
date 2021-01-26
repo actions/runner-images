@@ -11,8 +11,8 @@ if ! is_HighSierra; then
     geckoPath="$(brew --prefix geckodriver)/bin"
 else
     geckoVersion=$(curl https://formulae.brew.sh/api/formula/geckodriver.json 2>/dev/null | jq .versions.stable | tr -d \")
-    geckorUrl="https://github.com/mozilla/geckodriver/releases/download/v${geckoVersion}/geckodriver-v${geckoVersion}-macos.tar.gz"
-    download_with_retries $geckorUrl "/tmp" "geckodriver.tar.gz"
+    geckoUrl="https://github.com/mozilla/geckodriver/releases/download/v${geckoVersion}/geckodriver-v${geckoVersion}-macos.tar.gz"
+    download_with_retries $geckoUrl "/tmp" "geckodriver.tar.gz"
     geckoPath="/usr/local/bin"
     tar -xzf /tmp/geckodriver.tar.gz -C $geckoPath
 fi
