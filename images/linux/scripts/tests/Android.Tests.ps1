@@ -2,6 +2,8 @@ Describe "Android" {
     $androidSdkManagerPackages = Get-AndroidPackages
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
+    [version]$ndkLtsVersion = Get-ToolsetValue "android.ndk.lts"
+    [version]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
 
     $platforms = (($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;', '' |
     Where-Object { [int]$_.Split("-")[1] -ge $platformMinVersion } | Sort-Object { [int]$_.Split("-")[1] } -Unique |
@@ -16,7 +18,9 @@ Describe "Android" {
         $buildTools,
         (Get-ToolsetValue "android.extra_list" | ForEach-Object { "extras/${_}" }),
         (Get-ToolsetValue "android.addon_list" | ForEach-Object { "add-ons/${_}" }),
-        (Get-ToolsetValue "android.additional_tools" | ForEach-Object { "${_}" })
+        (Get-ToolsetValue "android.additional_tools" | ForEach-Object { "${_}" }),
+        "ndk/$ndkLtsVersion",
+        "ndk/$ndkLatestVersion"
     ) | ForEach-Object { $_ }
 
     BeforeAll {
@@ -37,7 +41,6 @@ Describe "Android" {
             $targetPath | Should -Exist
         }
     }
-
 
     Context "Packages" {
         $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }

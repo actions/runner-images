@@ -66,16 +66,18 @@ minimumPlatformVersion=$(get_toolset_value '.android.platform_min_version')
 extras=$(get_toolset_value '.android.extra_list[]|"extras;" + .')
 addons=$(get_toolset_value '.android.addon_list[]|"add-ons;" + .')
 additional=$(get_toolset_value '.android.additional_tools[]')
+ANDROID_NDK_LTS=($(get_toolset_value '.android.ndk.lts'))
+ANDROID_NDK_LATEST=($(get_toolset_value '.android.ndk.latest'))
 
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
-components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" )
+components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" "ndk;$ANDROID_NDK_LTS" "ndk;$ANDROID_NDK_LATEST" )
 
 # This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
 # Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
 # Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
-ln -s $ANDROID_SDK_ROOT/ndk/21.3.6528147 $ANDROID_NDK_ROOT
+ln -s $ANDROID_SDK_ROOT/ndk/$ANDROID_NDK_LTS $ANDROID_NDK_ROOT
 
-echo "ANDROID_NDK_LATEST_HOME=${ANDROID_SDK_ROOT}/ndk/22.0.7026061" | tee -a /etc/environment
+echo "ANDROID_NDK_LATEST_HOME=${ANDROID_SDK_ROOT}/ndk/$ANDROID_NDK_LATEST" | tee -a /etc/environment
 
 availablePlatforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
 allBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))

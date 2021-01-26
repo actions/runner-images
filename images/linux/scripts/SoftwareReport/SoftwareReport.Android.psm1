@@ -153,14 +153,3 @@ function Get-AndroidGoogleAPIsVersions {
     }
     return ($versions -Join "<br>")
 }
-
-function Get-AndroidVariables {
-    $androidVersions = Get-Item env:ANDROID_*
-
-    return $androidVersions | ForEach-Object {
-        [PSCustomObject] @{
-            "Path" = $_.Value
-            "Environment Variable" = $_.Name
-        }
-    }
-}
