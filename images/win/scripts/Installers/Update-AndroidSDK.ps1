@@ -99,7 +99,7 @@ if (Test-Path $ndkRoot) {
     setx ANDROID_NDK_ROOT $ndkRoot /M
     (Get-Content -Encoding UTF8 "${ndkRoot}\ndk-build.cmd").replace('%~dp0\build\ndk-build.cmd','"%~dp0\build\ndk-build.cmd"')|Set-Content -Encoding UTF8 "${ndkRoot}\ndk-build.cmd"
 } else {
-    Write-Host "LTS NDK $ndkLTSVersion is not installed at path $ndk_root"
+    Write-Host "LTS NDK $ndkLTSVersion is not installed at path $ndkRoot"
     exit 1
 }
 
