@@ -42,3 +42,4 @@ New-Item -Path "/Applications/Xcode.app" -ItemType SymbolicLink -Value (Get-Xcod
 
 Write-Host "Setting environment variables 'XCODE_<VERSION>_DEVELOPER_DIR'"
 Set-XcodeDeveloperDirEnvironmentVariables -XcodeList $xcodeVersions.link
+

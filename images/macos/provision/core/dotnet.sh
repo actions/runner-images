@@ -6,9 +6,7 @@
 # https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script
 #
 ###########################################################################
-
 source ~/utils/utils.sh
-source ~/utils/invoke-tests.sh
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
@@ -56,7 +54,6 @@ if [ $(dotnet --list-sdks | wc -l) -lt "1" ]; then
 fi
 
 echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> "$HOME/.bashrc"
-
 echo "Dotnet operations have been completed successfully..."
 
 invoke_tests "Common" ".NET"

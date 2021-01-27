@@ -27,10 +27,15 @@ function filter_components_by_version {
 # Set env variable for SDK Root (https://developer.android.com/studio/command-line/variables)
 ANDROID_ROOT=/usr/local/lib/android
 ANDROID_SDK_ROOT=${ANDROID_ROOT}/sdk
+ANDROID_NDK_ROOT=${ANDROID_SDK_ROOT}/ndk-bundle
 echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
 echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
+
+# Set env variables for NDK Root
+echo "ANDROID_NDK_HOME=${ANDROID_NDK_ROOT}" | tee -a /etc/environment
+echo "ANDROID_NDK_ROOT=${ANDROID_NDK_ROOT}" | tee -a /etc/environment
 
 # Create android sdk directory
 mkdir -p ${ANDROID_SDK_ROOT}
@@ -64,6 +69,11 @@ additional=$(get_toolset_value '.android.additional_tools[]')
 
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
 components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" )
+
+# This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
+# Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
+# Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
+ln -s $ANDROID_SDK_ROOT/ndk/21.3.6528147 $ANDROID_NDK_ROOT
 
 availablePlatforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
 allBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))

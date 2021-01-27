@@ -4,7 +4,6 @@
 # and installs them onto the system
 #
 ###########################################################################
-
 SOURCE_URL="https://vstsagenttools.blob.core.windows.net/tools"
 PACKAGES_DIR=/tmp/hostedtoolcache
 

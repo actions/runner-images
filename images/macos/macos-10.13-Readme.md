@@ -1,112 +1,115 @@
 | Announcements |
 |-|
+| [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 | [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
 | [[macOS] Default Xcode will be set to Xcode 12.3 on January, 25](https://github.com/actions/virtual-environments/issues/2440) |
-| [[all OS versions] Android NDK is updated to r22.](https://github.com/actions/virtual-environments/issues/2420) |
 | [[macOS] Homebrew is updated to 2.7 with few major changes](https://github.com/actions/virtual-environments/issues/2415) |
-| [macOS 11.0 (Big Sur) is available as a preview 🚀](https://github.com/actions/virtual-environments/issues/1814) |
 ***
 # macOS 10.13 info
 - System Version: macOS 10.13.6 (17G14033)
 - Kernel Version: Darwin 17.7.0
-- Image Version: 20210115.1
+- Image Version: 20210123.2
 
 ## Installed Software
 ### Language and Runtime
-- R 4.0.3
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507
 - Bash 3.2.57(1)-release
+- Go 1.15.7
+- julia 1.5.3
 - Node.js v8.17.0
-- NVM 0.37.2
 - NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.1 v12.20.1 v13.14.0 v14.15.4
+- NVM 0.37.2
+- Perl 5.32.0
+- PHP 8.0.1
 - Python 2.7.18
 - Python 3.9.1
+- R 4.0.3
 - Ruby 2.7.2p137
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507
-- Go 1.15.6
-- PHP 8.0.1
-- julia 1.5.3
 
 ### Package Management
-- Pip 20.3.3 (python 2.7)
-- Pip 20.3.3 (python 3.9)
-- Pipx 0.15.6.0
-- Bundler version 2.2.5
+- Bundler version 2.2.6
 - Carthage 0.36.1
 - CocoaPods 1.10.1
-- Homebrew 2.7.5
-- NPM 3.10.10
-- Yarn 1.22.5
-- NuGet 4.7.0.5148
-- Miniconda 4.9.2
-- RubyGems 3.2.5
 - Composer 2.0.8
+- Homebrew 2.7.5
+- Miniconda 4.9.2
+- NPM 3.10.10
+- NuGet 4.7.0.5148
+- Pip 20.3.3 (python 3.9)
+- Pip 20.3.4 (python 2.7)
+- Pipx 0.16.0.0
+- RubyGems 3.2.6
+- Yarn 1.22.5
 
 ### Project Management
-- Apache Maven 3.6.3
-- Gradle 6.8
 - Apache Ant(TM) 1.10.9
+- Apache Maven 3.6.3
+- Gradle 6.8.1
 
 ### Utilities
-- Curl 7.74.0
-- Git: 2.30.0
-- Git LFS: 2.13.2
-- GitHub CLI: 1.4.0
-- Hub CLI: 2.14.2
-- GNU Wget 1.21
-- Subversion (SVN) 1.14.0
-- Packer 1.6.6
-- OpenSSL 1.1.1i  8 Dec 2020 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1i)`
-- jq 1.6
-- gpg (GnuPG) 2.2.27
-- psql (PostgreSQL) 13.1
-- PostgreSQL 13.1
+- 7-Zip 16.02
 - aria2 1.35.0
 - azcopy 10.8.0
-- zstd 1.4.8
-- bazel 3.7.2
+- bazel 4.0.0
 - bazelisk 1.7.4
+- bsdtar 2.8.3 - available by 'tar' alias
+- Curl 7.74.0
+- Git LFS: 2.13.2
+- Git: 2.30.0
+- GitHub CLI: 1.5.0
+- GNU parallel 20201122
+- GNU Tar 1.33 - available by 'gtar' alias
+- GNU Wget 1.21
+- gpg (GnuPG) 2.2.27
 - helm v3.5.0+g32c2223
+- Hub CLI: 2.14.2
+- jq 1.6
 - mongo v4.4.3
 - mongod v4.4.3
-- 7-Zip 16.02
-- bsdtar 2.8.3 - available by 'tar' alias
-- GNU Tar 1.33 - available by 'gtar' alias
-- virtualbox 6.1.16r140961
+- OpenSSL 1.1.1i  8 Dec 2020 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1i)`
+- Packer 1.6.6
+- PostgreSQL 13.1
+- psql (PostgreSQL) 13.1
+- Subversion (SVN) 1.14.0
 - Vagrant 2.2.14
-- GNU parallel 20201122
+- virtualbox 6.1.18r142142
+- zstd 1.4.8
 
 
 ### Tools
-- Fastlane 2.171.0
-- Cmake 3.19.3
+- Aliyun CLI 3.0.66
 - App Center CLI 1.2.2
-- Azure CLI 2.17.1
-- AWS CLI 2.1.19
+- AWS CLI 2.1.21
 - AWS SAM CLI 1.15.0
 - AWS Session Manager CLI 1.2.30.0
-- Aliyun CLI 3.0.66
+- Azure CLI 2.18.0
+- Cmake 3.19.3
+- Fastlane 2.172.0
 - Xcode Command Line Tools 10.1.0.0.1.1539992718
+
 ### Linters
 - yamllint 1.25.0
+
 ### Browsers
 - Safari 13.1.2 (13609.3.5.1.5)
 - SafariDriver 13.1.2 (13609.3.5.1.5)
-- Google Chrome 87.0.4280.141 
-- ChromeDriver 87.0.4280.88
-- Microsoft Edge 87.0.664.75 
-- MSEdgeDriver 87.0.664.75
+- Google Chrome 88.0.4324.96 
+- ChromeDriver 88.0.4324.96
+- Microsoft Edge 88.0.705.50 
+- MSEdgeDriver 88.0.705.50
 - Mozilla Firefox 84.0.2
-- geckodriver 0.28.0
+- geckodriver 0.29.0
 
 ### Java
 | Version   | Vendor       | Environment Variable |
 | --------- | ------------ | -------------------- |
 | 1.7.0_285 | Zulu         | JAVA_HOME_7_X64      |
-| 1.8.0_275 | AdoptOpenJDK | JAVA_HOME_8_X64      |
-| 11.0.9.1  | AdoptOpenJDK | JAVA_HOME_11_X64     |
+| 1.8.0_282 | AdoptOpenJDK | JAVA_HOME_8_X64      |
+| 11.0.10   | AdoptOpenJDK | JAVA_HOME_11_X64     |
 | 12.0.2    | AdoptOpenJDK | JAVA_HOME_12_X64     |
 | 13.0.2    | AdoptOpenJDK | JAVA_HOME_13_X64     |
 | 14.0.2    | AdoptOpenJDK | JAVA_HOME_14_X64     |
+
 ### Cached Tools
 #### Ruby
 - 2.4.10
@@ -229,7 +232,7 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.6.8
-- Nomad CLI 3.2.5
+- Nomad CLI 3.2.6
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
 
@@ -342,18 +345,18 @@
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                              |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                                                                               |
-| Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)<br>android-18 (rev 3)<br>android-17 (rev 3)<br>android-16 (rev 5)<br>android-15 (rev 5)                                         |
+| Android Emulator           | 30.3.5                                                                                                                                                                                                                                                                                                                                                                                               |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3 23.0.0<br>22.0.1 22.0.0<br>21.1.2 21.0.0 21.0.1 21.0.2 21.1.0 21.1.1<br>20.0.0<br>19.1.0 19.0.0 19.0.1 19.0.2 19.0.3<br>18.0.1 18.1.0 18.1.1<br>17.0.0 |
+| Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)<br>android-18 (rev 3)<br>android-17 (rev 3)<br>android-16 (rev 5)<br>android-15 (rev 5)                                         |
 | Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                                                                                                                                                                                                               |
-| Android emulator           | 30.3.5                                                                                                                                                                                                                                                                                                                                                                                               |
-| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                                                                                                             |
+| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                                                                               |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                               |
+| CMake                      | 3.6.4111459                                                                                                                                                                                                                                                                                                                                                                                          |
+| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                                                                                                             |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                   |
+| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.3.6528147                                                                                                                                                                                                                                                                                                                                                         |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                                                                                                                                    |
-| CMake                      | 3.6.4111459                                                                                                                                                                                                                                                                                                                                                                                          |
-| NDK                        | 15.2.4203891<br>18.1.5063045<br>22.0.7026061                                                                                                                                                                                                                                                                                                                                                         |
 
 
 

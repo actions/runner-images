@@ -1,5 +1,4 @@
 #!/bin/bash -e -o pipefail
-source ~/utils/invoke-tests.sh
 source ~/utils/utils.sh
 
 ANDROID_HOME=$HOME/Library/Android/sdk
@@ -63,3 +62,5 @@ fi
 echo "Installing ndk r18B..."
 echo y | $SDKMANAGER "ndk;18.1.5063045"
 echo "export ANDROID_NDK_18R_PATH=${ANDROID_HOME}/ndk/18.1.5063045" >> "${HOME}/.bashrc"
+
+invoke_tests "XamarinNDK"

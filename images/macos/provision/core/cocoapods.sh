@@ -1,5 +1,4 @@
 #!/bin/bash -e -o pipefail
-source ~/utils/invoke-tests.sh
 
 # Setup the Cocoapods
 echo "Installing Cocoapods..."

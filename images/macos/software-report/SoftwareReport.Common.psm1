@@ -163,6 +163,11 @@ function Get-NodeVersion {
     return "Node.js $nodeVersion"
 }
 
+function Get-PerlVersion {
+    $version = Run-Command "perl -e 'print substr(`$^V,1)'"
+    return "Perl $version"
+}
+
 function Get-PythonVersion {
     $pythonVersion = Run-Command "python --version"
     return $pythonVersion
