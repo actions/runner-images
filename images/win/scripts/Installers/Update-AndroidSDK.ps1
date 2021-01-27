@@ -76,9 +76,22 @@ Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidPackages $androidToolset.additional_tools
 
 # NDKs
-$ndkLTSVersion = $androidToolset.ndk.lts
-$ndkLatestVersion = $androidToolset.ndk.latest
-$androidNDKs = @("ndk;$ndkLTSVersion", "ndk;$ndkLatestVersion")
+$ndkLTSMajorVersion = $androidToolset.ndk.lts
+$ndkLatestMajorVersion = $androidToolset.ndk.latest
+
+$ndkLTSFullVersion = Get-AndroidPackagesByName -AndroidPackages $androidPackages `
+                -PrefixPackageName "ndk;" `
+                | Where-Object { $_ -Match "ndk;$ndkLTSMajorVersion.*" } `
+                | Sort-Object -Unique `
+                | Select-Object -Last 1
+
+$ndkLatestFullVersion = Get-AndroidPackagesByName -AndroidPackages $androidPackages `
+                -PrefixPackageName "ndk;" `
+                | Where-Object { $_ -Match "ndk;$ndkLatestMajorVersion.*" } `
+                | Sort-Object -Unique `
+                | Select-Object -Last 1
+
+$androidNDKs = @($ndkLTSFullVersion, $ndkLatestFullVersion)
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
