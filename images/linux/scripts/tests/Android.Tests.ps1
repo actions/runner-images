@@ -3,7 +3,7 @@ Describe "Android" {
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
     [version]$ndkLtsVersion = Get-ToolsetValue "android.ndk.lts"
-    [version]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
+    [string]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
     $ndkLatestFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLatestVersion.*" | Select-Object -Last 1).Name
 
     $platforms = (($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;', '' |
