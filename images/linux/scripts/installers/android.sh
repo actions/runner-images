@@ -28,6 +28,7 @@ function filter_components_by_version {
 ANDROID_ROOT=/usr/local/lib/android
 ANDROID_SDK_ROOT=${ANDROID_ROOT}/sdk
 ANDROID_NDK_ROOT=${ANDROID_SDK_ROOT}/ndk-bundle
+SDKMANAGER=$ANDROID_SDK_ROOT/tools/bin/sdkmanager
 echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
@@ -52,7 +53,7 @@ if isUbuntu20 ; then
 fi
 
 # Check sdk manager installation
-/usr/local/lib/android/sdk/tools/bin/sdkmanager --list 1>/dev/null
+$SDKMANAGER --list 1>/dev/null
 if [ $? -eq 0 ]
 then
     echo "Android SDK manager was installed"
@@ -68,25 +69,27 @@ addons=$(get_toolset_value '.android.addon_list[]|"add-ons;" + .')
 additional=$(get_toolset_value '.android.additional_tools[]')
 ANDROID_NDK_LTS=($(get_toolset_value '.android.ndk.lts'))
 ANDROID_NDK_LATEST=($(get_toolset_value '.android.ndk.latest'))
+ndkVersions=($(${SDKMANAGER} --list | grep "ndk;${ANDROID_NDK_LATEST}.*" | cut -d"|" -f 1 | sort -V | cut -d";" -f 2))
+ndkLatestFullVersion="${ndkVersions[@]:(-1)}"
 
 # Install the following SDKs and build tools, passing in "y" to accept licenses.
-components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" "ndk;$ANDROID_NDK_LTS" "ndk;$ANDROID_NDK_LATEST" )
+components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" "ndk;$ANDROID_NDK_LTS" "ndk;$ndkLatestFullVersion" )
 
 # This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
 # Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
 # Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
 ln -s $ANDROID_SDK_ROOT/ndk/$ANDROID_NDK_LTS $ANDROID_NDK_ROOT
 
-echo "ANDROID_NDK_LATEST_HOME=${ANDROID_SDK_ROOT}/ndk/$ANDROID_NDK_LATEST" | tee -a /etc/environment
+echo "ANDROID_NDK_LATEST_HOME=$ANDROID_SDK_ROOT/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
 
-availablePlatforms=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
-allBuildTools=($(${ANDROID_SDK_ROOT}/tools/bin/sdkmanager --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
+availablePlatforms=($(${SDKMANAGER} --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
+allBuildTools=($(${SDKMANAGER} --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
 
 filter_components_by_version $minimumPlatformVersion "${availablePlatforms[@]}"
 filter_components_by_version $minimumBuildToolVersion "${availableBuildTools[@]}"
 
-echo "y" | ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager ${components[@]}
+echo "y" | $SDKMANAGER ${components[@]}
 
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}

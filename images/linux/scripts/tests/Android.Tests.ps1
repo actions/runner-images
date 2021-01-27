@@ -4,6 +4,7 @@ Describe "Android" {
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
     [version]$ndkLtsVersion = Get-ToolsetValue "android.ndk.lts"
     [version]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
+    $ndkLatestFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLatestVersion.*" | Select-Object -Last 1).Name
 
     $platforms = (($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;', '' |
     Where-Object { [int]$_.Split("-")[1] -ge $platformMinVersion } | Sort-Object { [int]$_.Split("-")[1] } -Unique |
@@ -20,7 +21,7 @@ Describe "Android" {
         (Get-ToolsetValue "android.addon_list" | ForEach-Object { "add-ons/${_}" }),
         (Get-ToolsetValue "android.additional_tools" | ForEach-Object { "${_}" }),
         "ndk/$ndkLtsVersion",
-        "ndk/$ndkLatestVersion"
+        "ndk/$ndkLatestFullVersion"
     ) | ForEach-Object { $_ }
 
     BeforeAll {
