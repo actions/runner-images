@@ -365,12 +365,12 @@ function Build-ProjectManagementEnvironmentTable {
             "Value" = $env:ANT_HOME
         },
         @{
-            "Name" = "GRADLE_HOME"
-            "Value" = $env:GRADLE_HOME
-        },
-        @{
             "Name" = "M2_HOME"
             "Value" = $env:M2_HOME
+        },
+        @{
+            "Name" = "GRADLE_HOME"
+            "Value" = $env:GRADLE_HOME
         }
     ) | ForEach-Object {
         [PSCustomObject] @{
