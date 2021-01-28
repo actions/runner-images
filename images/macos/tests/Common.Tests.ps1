@@ -81,6 +81,10 @@ Describe "CommonUtils" {
         "packer --version" | Should -ReturnZeroExitCode
     }
 
+    It "Perl" {
+        "perl -e 'print substr($^V,1)'" | Should -ReturnZeroExitCode
+    }
+
     It "Helm" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
@@ -121,10 +125,6 @@ Describe "CommonUtils" {
         "julia --version" | Should -ReturnZeroExitCode
     }
 
-    It "virtualbox" -Skip:($os.IsBigSur) {
-        "vboxmanage -v" | Should -ReturnZeroExitCode
-    }
-
     It "jq" {
         "jq --version" | Should -ReturnZeroExitCode
     }
@@ -139,6 +139,10 @@ Describe "CommonUtils" {
 
     It "vagrant" -Skip:($os.IsBigSur) {
         "vagrant --version" | Should -ReturnZeroExitCode
+    }
+
+    It "virtualbox" -Skip:($os.IsBigSur) {
+        "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 
     It "xctool" -Skip:($os.IsBigSur) {
@@ -159,38 +163,6 @@ Describe ".NET" {
 Describe "Homebrew" {
     It "Homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Rust" -Skip:($os.IsHighSierra) {
-    It "Rustup is installed" {
-        "rustup --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Rustc is installed" {
-        "rustc --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Cargo is installed" {
-        "cargo --version" | Should -ReturnZeroExitCode
-    }
-
-    Context "Cargo dependencies" {
-        It "bindgen" {
-            "bindgen --version" | Should -ReturnZeroExitCode
-        }
-
-        It "cbindgen" {
-            "cbindgen --version" | Should -ReturnZeroExitCode
-        }
-
-        It "Cargo audit" {
-            "cargo audit --version" | Should -ReturnZeroExitCode
-        }
-
-        It "Cargo outdated" {
-            "cargo outdated --version" | Should -ReturnZeroExitCode
-        }
     }
 }
 
@@ -233,15 +205,6 @@ Describe "vcpkg" -Skip:($os.IsHighSierra -or $os.IsMojave) {
 Describe "Newman" -Skip:($os.IsHighSierra -or $os.IsMojave) {
     It "Newman" {
         "newman --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Visual Studio For Mac" {
-    It "VS4Mac is installed" {
-        $vsPath = "/Applications/Visual Studio.app"
-        $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
-        $vsPath | Should -Exist
-        $vstoolPath | Should -Exist
     }
 }
 
@@ -309,5 +272,14 @@ Describe "Stack" -Skip:($os.IsHighSierra) {
 Describe "CocoaPods" {
     It "CocoaPods" {
         "pod --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "VSMac" {
+    It "VS4Mac is installed" {
+        $vsPath = "/Applications/Visual Studio.app"
+        $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
+        $vsPath | Should -Exist
+        $vstoolPath | Should -Exist
     }
 }

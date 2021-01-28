@@ -226,32 +226,33 @@
     ],
     "brew": {
         "common_packages": [
-            "carthage",
-            "cmake",
-            "subversion",
-            "go",
-            "gnupg",
-            "llvm",
-            "libpq",
-            "zstd",
-            "packer",
-            "helm",
             "aliyun-cli",
-            "bazelisk",
-            "gh",
-            "p7zip",
             "ant",
             "aria2",
-            "gnu-tar",
-            "xctool",
             "bats",
-            "parallel"
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "go",
+            "helm",
+            "libpq",
+            "llvm",
+            "p7zip",
+            "packer",
+            "parallel",
+            "perl",
+            "subversion",
+            "xctool",
+            "zstd"
         ],
         "cask_packages": [
             "julia",
-            "virtualbox",
+            "r",
             "vagrant",
-            "r"
+            "virtualbox"
         ]
     },
     "toolcache": [
@@ -284,7 +285,6 @@
             "platform" : "darwin",
             "arch": "x64",
             "versions": [
-                "8.*",
                 "10.*",
                 "12.*",
                 "14.*"
@@ -296,8 +296,6 @@
             "arch": "x64",
             "platform" : "darwin",
             "versions": [
-                "1.11.*",
-                "1.12.*",
                 "1.13.*",
                 "1.14.*",
                 "1.15.*"

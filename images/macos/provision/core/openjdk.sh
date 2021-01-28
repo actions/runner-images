@@ -1,7 +1,5 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
-source ~/utils/invoke-tests.sh
 
 installAzulJDK() {
     local URL=$1
