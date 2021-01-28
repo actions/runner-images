@@ -4,7 +4,12 @@
 ################################################################################
 
 Write-Host "Install Kind"
-Choco-Install -PackageName kind
+# Choco installation can't be used because it depends on docker-desktop
+$url = 'https://api.github.com/repos/kubernetes-sigs/kind/releases/latest'
+$kindDownloadLink = (Invoke-RestMethod -Uri $url).assets.browser_download_url -match "kind-windows-amd64"
+$destFilePath = "C:\ProgramData\kind"
+$null = New-Item -Path $destFilePath -ItemType Directory -Force
+Start-DownloadWithRetry -Url $kindDownloadLink -Name "kind.exe" -DownloadPath $destFilePath
 
 Write-Host "Install Kubectl"
 Choco-Install -PackageName kubernetes-cli
