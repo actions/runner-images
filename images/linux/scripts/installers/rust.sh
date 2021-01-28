@@ -17,9 +17,7 @@ source $CARGO_HOME/env
 
 # Install common tools
 rustup component add rustfmt clippy
-cargo install bindgen cbindgen
-cargo install cargo-audit
-cargo install cargo-outdated
+cargo install --locked bindgen cbindgen cargo-audit cargo-outdated
 
 # Permissions
 chmod -R 777 $(dirname $RUSTUP_HOME)
