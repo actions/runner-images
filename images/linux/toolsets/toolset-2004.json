@@ -89,7 +89,7 @@
             "cmdline-tools;latest"
         ],
         "ndk": {
-            "lts": "21.3.6528147",
+            "lts": "21",
             "latest": "22"
         }
     },
