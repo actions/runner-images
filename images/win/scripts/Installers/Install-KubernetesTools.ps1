@@ -10,6 +10,7 @@ $url = 'https://api.github.com/repos/kubernetes-sigs/kind/releases/latest'
 $destFilePath = "C:\ProgramData\kind"
 $null = New-Item -Path $destFilePath -ItemType Directory -Force
 Start-DownloadWithRetry -Url $kindDownloadLink -Name "kind.exe" -DownloadPath $destFilePath
+Add-MachinePathItem $destFilePath
 
 Write-Host "Install Kubectl"
 Choco-Install -PackageName kubernetes-cli
