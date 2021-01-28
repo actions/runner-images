@@ -2,7 +2,7 @@ Describe "Nginx" {
     Context "Path" {
         It "Nginx" {
             $nginxPath = Join-Path (Join-Path "C:\tools\" (Get-Item C:\tools\nginx*).Name) "\nginx"
-            ". $nginxPath -v" | Should -ReturnZeroExitCode
+            "$nginxPath -v" | Should -ReturnZeroExitCode
         }
     }
 

@@ -2,7 +2,7 @@ Describe "Apache" {
     Context "Path" {
         It "Apache" {
             $apachePath = Join-Path (Join-Path "C:\tools\" (Get-Item C:\tools\apache*).Name) "\bin\httpd"
-            ". $apachePath -V" | Should -ReturnZeroExitCode
+            "$apachePath -V" | Should -ReturnZeroExitCode
         }
     }
 
