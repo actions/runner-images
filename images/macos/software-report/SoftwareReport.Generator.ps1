@@ -14,6 +14,7 @@ Import-Module "$PSScriptRoot/SoftwareReport.Java.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Xamarin.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Toolcache.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Browsers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/SoftwareReport.WebServers.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Xcode.Helpers.psm1"
@@ -218,6 +219,11 @@ $markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
 $markdown += New-MDHeader "PowerShell Modules" -Level 4
 $markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
+
+# Web Servers
+if ($os.IsHigherThanMojave) {
+    $markdown += Build-WebServersSection
+}
 
 # Xamarin section
 $markdown += New-MDHeader "Xamarin" -Level 3
