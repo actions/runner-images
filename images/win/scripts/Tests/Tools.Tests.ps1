@@ -66,7 +66,7 @@ Describe "DACFx" {
     }
  }
 
-Describe "Docker" {
+ Describe "Docker" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "docker" }
         @{ ToolName = "docker-compose" }
@@ -77,10 +77,6 @@ Describe "Docker" {
     It "docker service is up" {
         "docker images" | Should -ReturnZeroExitCode
     }
-
-    It "Helm" {
-        "helm version --short" | Should -ReturnZeroExitCode
-    }
 }
 
 Describe "DockerImages" {
@@ -90,12 +86,6 @@ Describe "DockerImages" {
         It "<ImageName>" -TestCases $testCases {
             docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
         }
-    }
-}
-
-Describe "Kind" {
-    It "Kind" {
-        "kind version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -127,9 +117,17 @@ Describe "Mercurial" {
     }
 }
 
-Describe "KubernetesCli" {
+Describe "KubernetesTools" {
+    It "Kind" {
+        "kind version" | Should -ReturnZeroExitCode
+    }
+
     It "kubectl" {
         "kubectl version --client=true --short=true" | Should -ReturnZeroExitCode
+    }
+
+    It "Helm" {
+        "helm version --short" | Should -ReturnZeroExitCode
     }
 
     It "minikube" {

@@ -21,4 +21,4 @@ foreach($dockerImage in $dockerToolset.images) {
   DockerPull $dockerImage
 }
 
-Invoke-PesterTests -TestFile "Tools" -TestName "DockerImages"
+Invoke-PesterTests -TestFile "Docker" -TestName "DockerImages"
