@@ -33,6 +33,10 @@ function Disable-UserAccessControl {
 # Enable $ErrorActionPreference='Stop' for AllUsersAllHosts
 Add-Content -Path $profile.AllUsersAllHosts -Value '$ErrorActionPreference="Stop"'
 
+# Set static env vars
+setx ImageVersion $env:IMAGE_VERSION /m
+setx ImageOS $env:IMAGE_OS /m
+
 # Set TLS1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
