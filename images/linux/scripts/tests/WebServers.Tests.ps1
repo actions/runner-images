@@ -1,6 +1,6 @@
 Describe "Apache" {
     It "Apache CLI" {
-        "source /etc/apache2/envvars && apache2 -V" | Should -ReturnZeroExitCode
+        "apache2 -v" | Should -ReturnZeroExitCode
     }
 
     It "Apache Service" {
