@@ -196,7 +196,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
 )
 $markdown += New-MDNewLine
 
-$markdown += Build-WebServerMarkdown
+$markdown += Build-WebServersSection
 
 $vs = Get-VisualStudioVersion
 $markdown += New-MDHeader "$($vs.Name)" -Level 3
