@@ -22,5 +22,5 @@ fi
 # Invoke bazel to download bazel version via bazelisk
 bazel
 
-# Invoke tests for all common tools
-invoke_tests "Common" "CommonUtils"
+# Invoke tests for all basic tools
+invoke_tests "BasicTools"
