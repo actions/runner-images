@@ -68,10 +68,12 @@ Describe "Android SDK" {
     }
 
     It "LTS NDK is installed" {
-        "$androidInstalledPackages" | Should -Match $androidToolset.ndk.lts
+        $ndkLTSMajorVersion = $androidToolset.ndk.lts
+        "$androidInstalledPackages" | Should -Match "ndk;$ndkLTSMajorVersion"
     }
 
     It "Latest NDK is installed" {
-        "$androidInstalledPackages" | Should -Match $androidToolset.ndk.latest
+        $ndkLatestMajorVersion = $androidToolset.ndk.latest
+        "$androidInstalledPackages" | Should -Match "ndk;$ndkLatestMajorVersion"
     }
 }
