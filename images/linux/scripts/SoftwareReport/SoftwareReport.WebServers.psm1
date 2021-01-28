@@ -16,7 +16,7 @@ function Get-ApacheVersion {
 function Get-NginxVersion {
     $name = "nginx"
     $port = 80
-    $version = nginx -v 2>&1 | Take-OutputPart -Part 1 -Delimiter "/" | Take-OutputPart -Part 0
+    $version = (dpkg-query --showformat='${Version}' --show nginx).Split('-')[0]
     $serviceStatus = systemctl status nginx | grep "Active:" | Take-OutputPart -Part 1
     $configFile = "/etc/nginx/nginx.conf"
     return [PsCustomObject]@{
