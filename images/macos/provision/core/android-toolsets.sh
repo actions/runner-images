@@ -17,7 +17,7 @@ function filter_components_by_version {
     done
 }
 
-function get_latest_major_ndk {
+function get_full_ndk_version {
     majorVersion=$1
     ndkVersion=$(${SDKMANAGER} --list | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
 
@@ -73,8 +73,8 @@ echo "Installing latest CMake..."
 echo y | $SDKMANAGER "cmake;3.6.4111459"
 
 echo "Installing latest ndk..."
-ndkLtsLatest=$(get_latest_major_ndk  $ANDROID_NDK_MAJOR_LTS)
-ndkLatest=$(get_latest_major_ndk  $ANDROID_NDK_MAJOR_LATEST)
+ndkLtsLatest=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LTS)
+ndkLatest=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LATEST)
 echo y | $SDKMANAGER  "ndk;$ndkLtsLatest" "ndk;$ndkLatest"
 # This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
 # Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
