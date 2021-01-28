@@ -19,9 +19,7 @@ function filter_components_by_version {
 
 function get_latest_major_ndk {
     majorVersion=$1
-
-    ndkVersions=($(${SDKMANAGER} --list | grep "ndk;${majorVersion}.*" | cut -d"|" -f 1 | sort -V | cut -d";" -f 2))
-    ndkVersion="${ndkVersions[@]:(-1)}"
+    ndkVersion=$(${SDKMANAGER} --list | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
 
     echo "$ndkVersion"
 }
