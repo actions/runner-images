@@ -41,10 +41,6 @@ echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
 echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 
-# Set env variables for NDK Root
-echo "ANDROID_NDK_HOME=${ANDROID_NDK_ROOT}" | tee -a /etc/environment
-echo "ANDROID_NDK_ROOT=${ANDROID_NDK_ROOT}" | tee -a /etc/environment
-
 # Create android sdk directory
 mkdir -p ${ANDROID_SDK_ROOT}
 
@@ -87,7 +83,10 @@ components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" "ndk;$ndkLTSFullVe
 # Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
 ln -s $ /ndk/$ndkLTSFullVersion $ANDROID_NDK_ROOT
 
-echo "ANDROID_NDK_LATEST_HOME=$ANDROID_SDK_ROOT/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
+# Set env variables for NDK Root
+echo "ANDROID_NDK_ROOT=${ANDROID_NDK_ROOT}" | tee -a /etc/environment
+echo "ANDROID_NDK_HOME=${ANDROID_SDK_ROOT}/ndk/$ndkLTSFullVersion" | tee -a /etc/environment
+echo "ANDROID_NDK_LATEST_HOME=${ANDROID_SDK_ROOT}/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
 
 availablePlatforms=($(${SDKMANAGER} --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
 allBuildTools=($(${SDKMANAGER} --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
