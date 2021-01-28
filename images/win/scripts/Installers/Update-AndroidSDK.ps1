@@ -96,8 +96,8 @@ Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                           -AndroidSDKRootPath $sdkRoot `
                           -AndroidPackages $androidNDKs
 
-$ndkLTSVersion = $ndkLTSFullVersion.Split(';')[1]
-$ndkLatestVersion = $ndkLatestFullVersion.Split(';')[1]
+$ndkLTSVersion = $ndkLTSPackageName.Split(';')[1]
+$ndkLatestVersion = $ndkLatestPackageName.Split(';')[1]
 
 # Android NDK root path.
 $ndkRoot = "$sdkRoot\ndk-bundle"
