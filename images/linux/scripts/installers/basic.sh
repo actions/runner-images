@@ -12,4 +12,4 @@ for package in $common_packages $cmd_packages; do
     apt-get install -y --no-install-recommends $package
 done
 
-invoke_tests "BasicTools"
+invoke_tests "Apt"
