@@ -21,7 +21,14 @@ Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
     Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
     Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
+    $ErrorActionPreference = "SilentlyContinue"
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
+}
+
+$xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
+    Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
+    Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
+    $ErrorActionPreference = "Stop"
     Confirm-XcodeIntegrity -Version $_.link
     Approve-XcodeLicense -Version $_.link
 }

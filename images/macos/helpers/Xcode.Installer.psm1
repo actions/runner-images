@@ -31,7 +31,10 @@ function Invoke-DownloadXcodeArchive {
 
     # TO-DO: Consider replacing of xcversion with own implementation
     Write-Host "Downloading Xcode $resolvedVersion"
-    Invoke-ValidateCommand "bash -c `"xcversion install '$resolvedVersion' --no-install 2>&1`"" | Out-Host
+    Invoke-ValidateCommand "xcversion install '$resolvedVersion' --no-install" -ErrorVariable xcversionError | Out-Host
+    if ($xcversionError){
+        Write-Host "Xcode $Version errors are $xcversionError"
+    }
     $xcodeXipName = "$resolvedVersion" -replace " ", "_"
     $xcodeXipFile = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_$xcodeXipName.xip" | Select-Object -First 1
     $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$xcodeXipName" -ItemType "Directory"
