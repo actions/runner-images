@@ -20,7 +20,9 @@
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "ubuntu18",
-        "run_validation_diskspace": "false"
+        "run_validation_diskspace": "false",
+        "dockerhub_login": "{{env `DOCKERHUB_LOGIN`}}",
+        "dockerhub_password": "{{env `DOCKERHUB_PASSWORD`}}"
     },
     "sensitive-variables": [
         "client_secret"
@@ -172,6 +174,20 @@
         {
             "type": "shell",
             "scripts": [
+                "{{template_dir}}/scripts/installers/docker-compose.sh",
+                "{{template_dir}}/scripts/installers/docker-moby.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "DOCKERHUB_LOGIN={{user `dockerhub_login`}}",
+                "DOCKERHUB_PASSWORD={{user `dockerhub_password`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
                 "{{template_dir}}/scripts/installers/ansible.sh",
                 "{{template_dir}}/scripts/installers/azcopy.sh",
                 "{{template_dir}}/scripts/installers/azure-cli.sh",
@@ -184,8 +200,6 @@
                 "{{template_dir}}/scripts/installers/cmake.sh",
                 "{{template_dir}}/scripts/installers/codeql-bundle.sh",
                 "{{template_dir}}/scripts/installers/containers.sh",
-                "{{template_dir}}/scripts/installers/docker-compose.sh",
-                "{{template_dir}}/scripts/installers/docker-moby.sh",
                 "{{template_dir}}/scripts/installers/dotnetcore-sdk.sh",
                 "{{template_dir}}/scripts/installers/erlang.sh",
                 "{{template_dir}}/scripts/installers/firefox.sh",
