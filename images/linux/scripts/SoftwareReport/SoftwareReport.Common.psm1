@@ -308,15 +308,14 @@ function Build-GraalVMTable {
 }
 
 function Build-PackageManagementEnvironmentTable {
-    Write-Host "Build-PackageManagementEnvironmentTable"
     return @(
-        @{
-            "Name" = "VCPKG_INSTALLATION_ROOT"
-            "Value" = $env:VCPKG_INSTALLATION_ROOT
-        },
         @{
             "Name" = "CONDA"
             "Value" = $env:CONDA
+        },
+        @{
+            "Name" = "VCPKG_INSTALLATION_ROOT"
+            "Value" = $env:VCPKG_INSTALLATION_ROOT
         }
     ) | ForEach-Object {
         [PSCustomObject] @{
@@ -327,7 +326,6 @@ function Build-PackageManagementEnvironmentTable {
 }
 
 function Build-ProjectManagementEnvironmentTable {
-    Write-Host "Build-ProjectManagementEnvironmentTable"
     return @(
         @{
             "Name" = "ANT_HOME"

@@ -223,7 +223,7 @@ if (Test-IsUbuntu20) {
 $markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList
 $markdown += New-MDNewLine
 $markdown += New-MDHeader "Browsers environment variables" -Level 4
-$markdown += Build-BrowserWebdriversEnvironmentTable
+$markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader ".NET Core SDK" -Level 3

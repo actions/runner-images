@@ -24,7 +24,6 @@ function Get-ChromiumVersion {
 }
 
 function Build-BrowserWebdriversEnvironmentTable {
-    Write-Host "Build-BrowserWebdriversEnvironmentTable"
     return @(
         @{
             "Name" = "CHROMEWEBDRIVER"
