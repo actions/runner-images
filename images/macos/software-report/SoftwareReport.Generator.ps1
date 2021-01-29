@@ -191,7 +191,7 @@ $markdown += New-MDList -Style Unordered -Lines ($lintersList | Sort-Object)
 $markdown += New-MDHeader "Browsers" -Level 3
 $markdown += Get-BrowserSection
 $markdown += New-MDHeader "Browsers environment variables" -Level 4
-$markdown += Build-BrowserWebdriversEnvironmentTable
+$markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Java" -Level 3

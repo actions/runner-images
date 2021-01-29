@@ -475,15 +475,14 @@ function Get-PowershellVersion {
 }
 
 function Build-PackageManagementEnvironmentTable {
-    Write-Host "Build-PackageManagementEnvironmentTable"
     return @(
-        @{
-            "Name" = "VCPKG_INSTALLATION_ROOT"
-            "Value" = $env:VCPKG_INSTALLATION_ROOT
-        },
         @{
             "Name" = "CONDA"
             "Value" = $env:CONDA
+        },
+        @{
+            "Name" = "VCPKG_INSTALLATION_ROOT"
+            "Value" = $env:VCPKG_INSTALLATION_ROOT
         }
     ) | ForEach-Object {
         [PSCustomObject] @{
@@ -494,20 +493,19 @@ function Build-PackageManagementEnvironmentTable {
 }
 
 function Build-ProjectManagementEnvironmentTable {
-    Write-Host "Build-ProjectManagementEnvironmentTable"
     return @(
         @{
             "Name" = "ANT_HOME"
             "Value" = $env:ANT_HOME
         },
         @{
+            "Name" = "GRADLE_HOME"
+            "Value" = $env:GRADLE_HOME
+        },
+        @{
             "Name" = "M2_HOME"
             "Value" = $env:M2_HOME
         },
-        @{
-            "Name" = "GRADLE_HOME"
-            "Value" = $env:GRADLE_HOME
-        }
     ) | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
