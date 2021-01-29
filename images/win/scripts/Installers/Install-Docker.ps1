@@ -12,7 +12,4 @@ Start-Service docker
 Write-Host "Install-Package Docker-Compose"
 Choco-Install -PackageName docker-compose
 
-Write-Host "Install Helm"
-Choco-Install -PackageName kubernetes-helm
-
-Invoke-PesterTests -TestFile "Tools" -TestName "Docker"
+Invoke-PesterTests -TestFile "Docker" -TestName "Docker"
