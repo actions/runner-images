@@ -157,13 +157,12 @@ function Get-AndroidGoogleAPIsVersions {
 }
 
 function Build-AndroidEnvironmentTable {
-    Write-Host "Build-AndroidEnvironmentTable"
     $androidVersions = Get-Item env:ANDROID_*	
 
     return $androidVersions | ForEach-Object {	
         [PSCustomObject] @{	
-            "Path" = $_.Value	
-            "Environment Variable" = $_.Name	
+            "Name" = $_.Name	
+            "Value" = $_.Value	
         }	
     }
 }
