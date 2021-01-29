@@ -26,7 +26,7 @@ function filter_components_by_version {
 
 function get_full_ndk_version {
     majorVersion=$1
-    
+
     ndkFullVersion=$($SDKMANAGER --list | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
 
     echo "$ndkFullVersion"
@@ -76,11 +76,11 @@ extras=$(get_toolset_value '.android.extra_list[]|"extras;" + .')
 addons=$(get_toolset_value '.android.addon_list[]|"add-ons;" + .')
 additional=$(get_toolset_value '.android.additional_tools[]')
 ANDROID_NDK_MAJOR_LTS=($(get_toolset_value '.android.ndk.lts'))
-ANDROID_NDK_MAJOR_LATEST=($(get_toolset_value '.android.ndk.latest'))
 ndkLTSFullVersion=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LTS)
 
 components=("${extras[@]}" "${addons[@]}" "${additional[@]}" "ndk;$ndkLTSFullVersion")
 if isUbuntu20 ; then
+    ANDROID_NDK_MAJOR_LATEST=($(get_toolset_value '.android.ndk.latest'))
     ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST) 
     components+="ndk;$ndkLatestFullVersion"
 fi
