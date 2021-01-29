@@ -191,6 +191,7 @@
                 "{{template_dir}}/scripts/installers/azure-devops-cli.sh",
                 "{{template_dir}}/scripts/installers/basic.sh",
                 "{{template_dir}}/scripts/installers/aliyun-cli.sh",
+                "{{template_dir}}/scripts/installers/apache.sh",
                 "{{template_dir}}/scripts/installers/aws.sh",
                 "{{template_dir}}/scripts/installers/nvm.sh",
                 "{{template_dir}}/scripts/installers/clang.sh",
@@ -238,6 +239,7 @@
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
                 "{{template_dir}}/scripts/installers/mongodb.sh",
                 "{{template_dir}}/scripts/installers/netlify.sh",
+                "{{template_dir}}/scripts/installers/nginx.sh",
                 "{{template_dir}}/scripts/installers/android.sh",
                 "{{template_dir}}/scripts/installers/pypy.sh",
                 "{{template_dir}}/scripts/installers/python.sh"
