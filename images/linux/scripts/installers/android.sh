@@ -31,25 +31,6 @@ ANDROID_NDK_ROOT=${ANDROID_SDK_ROOT}/ndk-bundle
 SDKMANAGER=${ANDROID_SDK_ROOT}/tools/bin/sdkmanager
 echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 
-# Check sdk manager installation
-${SDKMANAGER} --list 1>/dev/null
-if [ $? -eq 0 ]
-then
-    echo "Android SDK manager was installed"
-else
-    echo "Android SDK manager was not installed"
-    exit 1
-fi
-
-sdkPackagesList=$(${SDKMANAGER} --list)
-
-function get_full_ndk_version {
-    majorVersion=$1
-    ndkFullVersion=$($sdkPackagesList | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
-
-    echo "$ndkFullVersion"
-}
-
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
 echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 
@@ -70,6 +51,26 @@ if isUbuntu20 ; then
     # Sdk manager doesn't work with Java > 8, set version 8 explicitly
     sed -i "2i export JAVA_HOME=${JAVA_HOME_8_X64}" "$SDKMANAGER"
 fi
+
+# Get list of packages from SDK Manager 
+sdkPackagesList=$(${SDKMANAGER} --list)
+
+# Check sdk manager installation
+${SDKMANAGER} --list 1>/dev/null
+if [ $? -eq 0 ]
+then
+    echo "Android SDK manager was installed"
+else
+    echo "Android SDK manager was not installed"
+    exit 1
+fi
+
+function get_full_ndk_version {
+    majorVersion=$1
+    ndkFullVersion=$($sdkPackagesList | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
+
+    echo "$ndkFullVersion"
+}
 
 minimumBuildToolVersion=$(get_toolset_value '.android.build_tools_min_version')
 minimumPlatformVersion=$(get_toolset_value '.android.platform_min_version')
