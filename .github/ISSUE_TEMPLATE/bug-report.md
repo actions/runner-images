@@ -25,6 +25,10 @@ A clear and concise description of what the bug is, and why you consider it to b
 - [ ] Windows Server 2016 R2
 - [ ] Windows Server 2019
 
+**Image version**
+<!-- Image version can be found in build logs under "Set up job" -> "Virtual Environment" -> "Version" -->
+Image version where you are experiencing the issue.
+
 **Expected behavior**  
 A description of what you expected to happen.
 

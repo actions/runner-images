@@ -112,7 +112,8 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "ImageVersion={{user `image_version`}}",
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGE_OS={{user `image_os`}}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
@@ -139,13 +140,6 @@
             ]
         },
         {
-            "type": "powershell",
-            "inline": [
-                "setx ImageVersion {{user `image_version` }} /m",
-                "setx ImageOS {{user `image_os` }} /m"
-            ]
-        },
-        {
             "type": "windows-restart",
             "restart_timeout": "10m"
         },
@@ -153,7 +147,8 @@
             "type": "powershell",
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
-                "IMAGEDATA_FILE={{user `imagedata_file`}}"
+                "IMAGEDATA_FILE={{user `imagedata_file`}}",
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1",
@@ -176,6 +171,7 @@
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NET48.ps1"
             ],
@@ -303,8 +299,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-CloudFoundryCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vcpkg.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-KubernetesCli.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Kind.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Bazel.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-RootCA.ps1",
@@ -350,6 +344,7 @@
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ],
             "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ]
         },
