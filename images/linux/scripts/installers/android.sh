@@ -26,9 +26,8 @@ function filter_components_by_version {
 
 function get_full_ndk_version {
     majorVersion=$1
-    packagesList=$2
     
-    ndkFullVersion=$($packagesList | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
+    ndkFullVersion=$($SDKMANAGER --list | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
 
     echo "$ndkFullVersion"
 }
@@ -61,9 +60,6 @@ if isUbuntu20 ; then
     sed -i "2i export JAVA_HOME=${JAVA_HOME_8_X64}" "$SDKMANAGER"
 fi
 
-# Get list of packages from SDK Manager 
-sdkPackagesList=$(${SDKMANAGER} --list)
-
 # Check sdk manager installation
 ${SDKMANAGER} --list 1>/dev/null
 if [ $? -eq 0 ]
@@ -81,21 +77,25 @@ addons=$(get_toolset_value '.android.addon_list[]|"add-ons;" + .')
 additional=$(get_toolset_value '.android.additional_tools[]')
 ANDROID_NDK_MAJOR_LTS=($(get_toolset_value '.android.ndk.lts'))
 ANDROID_NDK_MAJOR_LATEST=($(get_toolset_value '.android.ndk.latest'))
-ndkLTSFullVersion=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LTS $sdkPackagesList)
-ndkLatestFullVersion=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LATEST $sdkPackagesList)
+ndkLTSFullVersion=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LTS)
 
-# Install the following SDKs and build tools, passing in "y" to accept licenses.
-components=( "${extras[@]}" "${addons[@]}" "${additional[@]}" "ndk;$ndkLTSFullVersion" "ndk;$ndkLatestFullVersion" )
+components=("${extras[@]}" "${addons[@]}" "${additional[@]}" "ndk;$ndkLTSFullVersion")
+if isUbuntu20 ; then
+    ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST) 
+    components+="ndk;$ndkLatestFullVersion"
+fi
 
 # This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
 # Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
 # Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
 ln -s $ANDROID_SDK_ROOT/ndk/$ndkLTSFullVersion $ANDROID_NDK_ROOT
 
-echo "ANDROID_NDK_LATEST_HOME=${ANDROID_SDK_ROOT}/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
+if isUbuntu20; then
+    echo "ANDROID_NDK_LATEST_HOME=${ANDROID_SDK_ROOT}/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
+fi
 
-availablePlatforms=($($sdkPackagesList | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
-allBuildTools=($($sdkPackagesList | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
+availablePlatforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
+allBuildTools=($($SDKMANAGER --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
 
 filter_components_by_version $minimumPlatformVersion "${availablePlatforms[@]}"

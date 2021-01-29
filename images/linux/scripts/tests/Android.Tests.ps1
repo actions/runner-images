@@ -4,8 +4,6 @@ Describe "Android" {
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
     [string]$ndkLTSVersion = Get-ToolsetValue "android.ndk.lts"
     $ndkLTSFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLTSVersion.*" | Select-Object -Last 1).Name
-    [string]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
-    $ndkLatestFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLatestVersion.*" | Select-Object -Last 1).Name
 
     $platforms = (($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;', '' |
     Where-Object { [int]$_.Split("-")[1] -ge $platformMinVersion } | Sort-Object { [int]$_.Split("-")[1] } -Unique |
@@ -21,9 +19,16 @@ Describe "Android" {
         (Get-ToolsetValue "android.extra_list" | ForEach-Object { "extras/${_}" }),
         (Get-ToolsetValue "android.addon_list" | ForEach-Object { "add-ons/${_}" }),
         (Get-ToolsetValue "android.additional_tools" | ForEach-Object { "${_}" }),
-        "ndk/$ndkLTSFullVersion",
-        "ndk/$ndkLatestFullVersion"
-    ) | ForEach-Object { $_ }
+        "ndk/$ndkLTSFullVersion"
+    )
+
+    if (Test-IsUbuntu20) {
+        [string]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
+        $ndkLatestFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLatestVersion.*" | Select-Object -Last 1).Name
+        $androidPackages += @("ndk/$ndkLatestFullVersion")
+    }
+    
+    $androidPackages | ForEach-Object { $_ }
 
     BeforeAll {
         $ANDROID_SDK_DIR = "/usr/local/lib/android/sdk"

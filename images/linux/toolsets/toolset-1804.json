@@ -106,8 +106,7 @@
             "cmdline-tools;latest"
         ],
         "ndk": {
-            "lts": "21",
-            "latest": "22"
+            "lts": "21"
         }
     },
     "powershellModules": [
