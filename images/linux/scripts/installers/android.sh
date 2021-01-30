@@ -76,13 +76,13 @@ extras=$(get_toolset_value '.android.extra_list[]|"extras;" + .')
 addons=$(get_toolset_value '.android.addon_list[]|"add-ons;" + .')
 additional=$(get_toolset_value '.android.additional_tools[]')
 ANDROID_NDK_MAJOR_LTS=($(get_toolset_value '.android.ndk.lts'))
-ndkLTSFullVersion=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LTS)
+ndkLTSFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LTS)
 
 components=("${extras[@]}" "${addons[@]}" "${additional[@]}" "ndk;$ndkLTSFullVersion")
 if isUbuntu20 ; then
     ANDROID_NDK_MAJOR_LATEST=($(get_toolset_value '.android.ndk.latest'))
     ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST) 
-    components+="ndk;$ndkLatestFullVersion"
+    components+=("ndk;$ndkLatestFullVersion")
 fi
 
 # This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
@@ -91,7 +91,7 @@ fi
 ln -s $ANDROID_SDK_ROOT/ndk/$ndkLTSFullVersion $ANDROID_NDK_ROOT
 
 if isUbuntu20; then
-    echo "ANDROID_NDK_LATEST_HOME=${ANDROID_SDK_ROOT}/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
+    echo "ANDROID_NDK_LATEST_HOME=$ANDROID_SDK_ROOT/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
 fi
 
 availablePlatforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
