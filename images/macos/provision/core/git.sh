@@ -1,6 +1,4 @@
 #!/bin/bash -e -o pipefail
-source ~/utils/invoke-tests.sh
-
 source ~/utils/utils.sh
 
 echo Installing Git...
@@ -33,4 +31,4 @@ git config --global advice.detachedHead false
 git config --global advice.amWorkDir false
 git config --global advice.rmHints false
 
-invoke_tests "Common" "Git"
+invoke_tests "Git"

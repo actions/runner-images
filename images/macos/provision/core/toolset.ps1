@@ -3,7 +3,7 @@
 ##  Team:  CI-Build
 ##  Desc:  Install toolset
 ################################################################################
-
+Import-Module "~/image-generation/helpers/Tests.Helpers.psm1"
 Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
 
 Function Get-ToolcacheFromToolset {
@@ -58,3 +58,5 @@ foreach ($tool in $tools) {
         }
     }
 }
+
+Invoke-PesterTests "Toolcache"

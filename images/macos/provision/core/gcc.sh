@@ -1,6 +1,5 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
-source ~/utils/invoke-tests.sh
 
 echo "Installing GCC@8 using homebrew..."
 brew_smart_install "gcc@8"

@@ -17,3 +17,8 @@ function Get-GeckodriverVersion {
     $geckodriverVersion = geckodriver --version | Select-Object -First 1 | Take-OutputPart -Part 1
     return "Geckodriver $geckodriverVersion"
 }
+
+function Get-ChromiumVersion {
+    $chromiumVersion = chromium --version | Take-OutputPart -Part 0,1
+    return $chromiumVersion
+}

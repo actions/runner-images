@@ -1,5 +1,4 @@
 #!/bin/bash -e -o pipefail
-source ~/utils/invoke-tests.sh
 source ~/utils/utils.sh
 
 echo "install soundflower"
@@ -15,4 +14,4 @@ echo "set Soundflower (2ch) as input/output device"
 SwitchAudioSource -s "Soundflower (2ch)" -t input
 SwitchAudioSource -s "Soundflower (2ch)" -t output
 
-invoke_tests "Common" "Audio Device"
+invoke_tests "System" "Audio Device"
