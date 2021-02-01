@@ -58,7 +58,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-YarnVersion)
     ) | Sort-Object
 )
-$markdown += New-MDHeader "Package management environment variables" -Level 4
+$markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
@@ -70,10 +70,6 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-SbtVersion)
     ) | Sort-Object
 )
-
-$markdown += New-MDHeader "Project management environment variables" -Level 4
-$markdown += Build-ProjectManagementEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
@@ -157,7 +153,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SeleniumWebDriverVersion -Driver "iexplorer")
 )
 
-$markdown += New-MDHeader "Browsers and webdrivers environment variables" -Level 4
+$markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
@@ -270,7 +266,7 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Android" -Level 3
 $markdown += Build-AndroidTable | New-MDTable
 $markdown += New-MDNewLine
-$markdown += New-MDHeader "Android environment variables" -Level 4
+$markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-AndroidEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
