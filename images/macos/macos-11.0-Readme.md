@@ -266,6 +266,7 @@
 | CMake                      | 3.6.4111459                                                                                                              |
 | Google Play services       | 49                                                                                                                       |
 | Google Repository          | 58                                                                                                                       |
+| NDK                        | 21.3.6528147 |
 | SDK Patch Applier v4       | 1                                                                                                                        |
 
 
