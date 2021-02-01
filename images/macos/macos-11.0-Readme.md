@@ -1,52 +1,53 @@
 | Announcements |
 |-|
+| [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
+| [[macOS] Bazel 4.0.0 breaking changes](https://github.com/actions/virtual-environments/issues/2547) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 | [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
-| [[macOS] Default Xcode will be set to Xcode 12.3 on January, 25](https://github.com/actions/virtual-environments/issues/2440) |
 | [[macOS] Homebrew is updated to 2.7 with few major changes](https://github.com/actions/virtual-environments/issues/2415) |
 ***
 # macOS 11.0 info
 - System Version: macOS 11.0.1 (20B29)
 - Kernel Version: Darwin 20.1.0
-- Image Version: 20210123.1
+- Image Version: 20210131.1
 
 ## Installed Software
 ### Language and Runtime
 - .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 5.0.100 5.0.101 5.0.102
 - Bash 3.2.57(1)-release
-- Clang/LLVM 11.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
+- Clang/LLVM 11.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
-- gcc-10 (Homebrew GCC 10.2.0_2) 10.2.0 - available by `gcc-10` alias
+- gcc-10 (Homebrew GCC 10.2.0_3) 10.2.0 - available by `gcc-10` alias
 - gcc-8 (Homebrew GCC 8.4.0_2) 8.4.0 - available by `gcc-8` alias
 - gcc-9 (Homebrew GCC 9.3.0_1) 9.3.0 - available by `gcc-9` alias
-- GNU Fortran (Homebrew GCC 10.2.0_2) 10.2.0  - available by `gfortran-10` alias
+- GNU Fortran (Homebrew GCC 10.2.0_3) 10.2.0  - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 8.4.0_2) 8.4.0  - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0  - available by `gfortran-9` alias
 - Go 1.15.7
 - julia 1.5.3
 - Node.js v14.15.4
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.1 v12.20.1 v13.14.0 v14.15.4
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.2 v12.20.1 v13.14.0 v14.15.4
 - NVM 0.37.2
-- Perl 5.32.0
+- Perl 5.32.1
 - PHP 8.0.1
 - Python 2.7.18
 - Python 3.9.1
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.6
+- Bundler version 2.2.7
 - Carthage 0.36.1
 - CocoaPods 1.10.1
-- Composer 2.0.8
-- Homebrew 2.7.5
+- Composer 2.0.9
+- Homebrew 2.7.7
 - Miniconda 4.9.2
 - NPM 6.14.10
 - NuGet 5.6.0.6489
-- Pip 20.3.3 (python 2.7)
 - Pip 20.3.3 (python 3.9)
+- Pip 20.3.4 (python 2.7)
 - Pipx 0.16.0.0
-- RubyGems 3.2.6
-- Vcpkg 2021 (build from master \<e4ce66e>)
+- RubyGems 3.2.7
+- Vcpkg 2021 (build from master \<401b26c>)
 - Yarn 1.22.5
 
 ### Project Management
@@ -66,9 +67,9 @@
 - Git: 2.30.0
 - GitHub CLI: 1.5.0
 - GNU Tar 1.33 - available by 'gtar' alias
-- GNU Wget 1.21
+- GNU Wget 1.21.1
 - gpg (GnuPG) 2.2.27
-- helm v3.5.0+g32c2223
+- helm v3.5.1+g32c2223
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v4.4.3
@@ -83,39 +84,39 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.66
-- App Center CLI 2.7.3
-- AWS CLI 2.1.21
-- AWS SAM CLI 1.15.0
+- Aliyun CLI 3.0.69
+- App Center CLI 2.7.4
+- AWS CLI 2.1.22
+- AWS SAM CLI 1.16.0
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.18.0
 - Cabal 3.2.0.0
-- Cmake 3.19.3
+- Cmake 3.19.4
 - Fastlane 2.172.0
 - GHC 8.10.3
 - GHCup v0.1.12
 - Stack 2.5.1
-- Xcode Command Line Tools 12.3.0.0.1.1607026830
+- Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
 - SwiftLint 0.42.0
-- yamllint 1.25.0
+- yamllint 1.26.0
 
 ### Browsers
 - Safari 14.0.1 (16610.2.11.51.8)
 - SafariDriver 14.0.1 (16610.2.11.51.8)
 - Google Chrome 88.0.4324.96 
 - ChromeDriver 88.0.4324.96
-- Microsoft Edge 88.0.705.50 
-- MSEdgeDriver 88.0.705.50
-- Mozilla Firefox 84.0.2
+- Microsoft Edge 88.0.705.56 
+- MSEdgeDriver 88.0.705.56
+- Mozilla Firefox 85.0
 - geckodriver 0.29.0
 
 ### Java
 | Version   | Vendor       | Environment Variable |
 | --------- | ------------ | -------------------- |
-| 1.8.0_275 | AdoptOpenJDK | JAVA_HOME_8_X64      |
-| 11.0.9.1  | AdoptOpenJDK | JAVA_HOME_11_X64     |
+| 1.8.0_282 | AdoptOpenJDK | JAVA_HOME_8_X64      |
+| 11.0.10   | AdoptOpenJDK | JAVA_HOME_11_X64     |
 
 ### Cached Tools
 #### Ruby
@@ -131,7 +132,7 @@
 - 3.9.1
 
 #### Node.js
-- 10.23.1
+- 10.23.2
 - 12.20.1
 - 14.15.4
 
@@ -161,6 +162,12 @@
 | Az         | 4.8.0   |
 | MarkdownPS | 1.9     |
 | Pester     | 5.1.1   |
+
+### Web Servers
+| Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
+| ----- | -------- | ------------------------------- | ------------- | ---------- |
+| httpd | 2.4.46_2 | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
+| nginx | 1.19.6   | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
@@ -259,7 +266,6 @@
 | CMake                      | 3.6.4111459                                                                                                              |
 | Google Play services       | 49                                                                                                                       |
 | Google Repository          | 58                                                                                                                       |
-| NDK                        | 21.3.6528147                                                                                                             |
 | SDK Patch Applier v4       | 1                                                                                                                        |
 
 
