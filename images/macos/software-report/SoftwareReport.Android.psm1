@@ -84,7 +84,7 @@ function Build-AndroidTable {
         },
         @{
             "Package" = "NDK"
-            "Version" = Get-AndroidNDKVersions -PackageInfo $packageInfo
+            "Version" = Get-AndroidNDKVersions
         },
         @{
             "Package" = "SDK Patch Applier v4"
@@ -161,11 +161,6 @@ function Get-AndroidGoogleAPIsVersions {
 }
 
 function Get-AndroidNDKVersions {
-    param (
-        [Parameter(Mandatory)][AllowEmptyString()]
-        [string[]] $packageInfo
-    )
-
     $os = Get-OSVersion
     $versions = @()
 
