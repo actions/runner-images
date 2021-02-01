@@ -172,11 +172,11 @@ function Get-AndroidNDKVersions {
     if ($os.IsLessThanBigSur) {
         # Hardcode NDK 15 as a separate case since it is installed manually without sdk-manager (to none default location)
         $versions += "15.2.4203891"
+    }
 
-        $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
-        Get-ChildItem -Path $ndkFolderPath | ForEach-Object {
-            $versions += $_.Name
-        }
+    $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
+    Get-ChildItem -Path $ndkFolderPath | ForEach-Object {
+        $versions += $_.Name
     }
 
     $versions += $packageInfo | Where-Object { $_ -Match "ndk-bundle" } | ForEach-Object {
