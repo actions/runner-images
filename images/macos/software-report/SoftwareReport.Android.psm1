@@ -162,10 +162,10 @@ function Get-AndroidGoogleAPIsVersions {
 
 function Get-AndroidNDKVersions {
     $os = Get-OSVersion
-    $versions = @()
 
     if ($os.IsLessThanBigSur) {
         # Hardcode NDK 15 as a separate case since it is installed manually without sdk-manager (to none default location)
+        $versions = @()
         $versions += "15.2.4203891"
     }
 
