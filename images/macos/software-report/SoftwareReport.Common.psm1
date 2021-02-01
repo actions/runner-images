@@ -491,25 +491,3 @@ function Build-PackageManagementEnvironmentTable {
         }
     }
 }
-
-function Build-ProjectManagementEnvironmentTable {
-    return @(
-        @{
-            "Name" = "ANT_HOME"
-            "Value" = $env:ANT_HOME
-        },
-        @{
-            "Name" = "GRADLE_HOME"
-            "Value" = $env:GRADLE_HOME
-        },
-        @{
-            "Name" = "M2_HOME"
-            "Value" = $env:M2_HOME
-        },
-    ) | ForEach-Object {
-        [PSCustomObject] @{
-            "Name" = $_.Name
-            "Value" = $_.Value
-        }
-    }
-}
