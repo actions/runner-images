@@ -227,6 +227,7 @@
 | CMake                      | 3.10.2                                                                                                                   |
 | Google Play services       | 49                                                                                                                       |
 | Google Repository          | 58                                                                                                                       |
+| NDK                        | 21.3.6528147  |
 | SDK Patch Applier v4       | 1                                                                                                                        |
 
 ### Cached Docker images
