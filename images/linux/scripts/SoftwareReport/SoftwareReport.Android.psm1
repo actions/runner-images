@@ -155,7 +155,6 @@ function Get-AndroidGoogleAPIsVersions {
 }
 
 function Get-AndroidNDKVersions {
-    $versions = @()
     $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
     $versions = Get-ChildItem -Path $ndkFolderPath -Name
     return ($versions -Join "<br>")
