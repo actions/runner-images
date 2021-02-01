@@ -157,9 +157,6 @@ function Get-AndroidGoogleAPIsVersions {
 function Get-AndroidNDKVersions {
     $versions = @()
     $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
-    Get-ChildItem -Path $ndkFolderPath | ForEach-Object {
-        $versions += $_.Name
-    }
-    
+    $versions = Get-ChildItem -Path $ndkFolderPath -Name
     return ($versions -Join "<br>")
 }
