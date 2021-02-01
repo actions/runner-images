@@ -150,7 +150,11 @@
         ],
         "additional-tools": [
             "cmdline-tools;latest"
-        ]
+        ],
+        "ndk": {
+            "lts": "21",
+            "latest": "22"
+        }
     },
     "powershellModules": [
         {
