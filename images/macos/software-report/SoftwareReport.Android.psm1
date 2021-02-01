@@ -179,10 +179,5 @@ function Get-AndroidNDKVersions {
         $versions += $_.Name
     }
 
-    $versions += $packageInfo | Where-Object { $_ -Match "ndk-bundle" } | ForEach-Object {
-        $packageInfoParts = Split-TableRowByColumns $_
-        return $packageInfoParts[1]
-    }
-
     return ($versions -Join "<br>")
 }
