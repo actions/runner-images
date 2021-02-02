@@ -487,7 +487,7 @@ function Build-PackageManagementEnvironmentTable {
     ) | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = $_.Value
+            "Value" = Get-Path-With-Link($_.Value)
         }
     }
 }

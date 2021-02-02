@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+
 function Get-BrowserSection {
     return New-MDList -Style Unordered -Lines @(
         (Get-SafariVersion),
@@ -69,7 +71,7 @@ function Build-BrowserWebdriversEnvironmentTable {
     ) | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = $_.Value
+            "Value" = Get-Path-With-Link($_.Value)
         }
     }
 }
