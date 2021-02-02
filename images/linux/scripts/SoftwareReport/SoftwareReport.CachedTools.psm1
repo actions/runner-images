@@ -1,3 +1,4 @@
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
 function Get-ToolcacheRubyVersions {
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Ruby"
     return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
@@ -50,7 +51,7 @@ function Build-GoEnvironmentTable {
     ) | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = $_.Value
+            "Value" = Get-Path-With-Link($_.Value)
         }
     }
 }

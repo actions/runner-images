@@ -1,3 +1,4 @@
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
 function Split-TableRowByColumns {
     param(
         [string] $Row
@@ -166,7 +167,7 @@ function Build-AndroidEnvironmentTable {
     return $androidVersions | ForEach-Object {	
         [PSCustomObject] @{	
             "Name" = $_.Name	
-            "Value" = $_.Value	
+            "Value" = Get-Path-With-Link($_.Value)
         }	
     }
 }

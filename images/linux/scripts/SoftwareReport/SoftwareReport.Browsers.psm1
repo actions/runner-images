@@ -1,3 +1,4 @@
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
 function Get-ChromeVersion {
     $googleChromeVersion = google-chrome --version | Take-OutputPart -Part 2
     return "Google Chrome $googleChromeVersion"
@@ -40,7 +41,7 @@ function Build-BrowserWebdriversEnvironmentTable {
     ) | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = $_.Value
+            "Value" = Get-Path-With-Link($_.Value)
         }
     }
 }
