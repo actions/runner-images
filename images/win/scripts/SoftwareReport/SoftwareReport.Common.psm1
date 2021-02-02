@@ -1,3 +1,4 @@
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
 function Get-OSName {
     return (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
@@ -351,7 +352,7 @@ function Build-PackageManagementEnvironmentTable {
     ) | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = $_.Value
+            "Value" = Get-Path-With-Link($_.Value)
         }
     }
 }
