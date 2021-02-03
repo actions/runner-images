@@ -16,6 +16,7 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameCheckin
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Java.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Rust.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -DisableNameChecking
 
 # Restore file owner in user profile
 Restore-UserOwner
@@ -243,6 +244,8 @@ $markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
 $markdown += New-MDHeader "PowerShell Modules" -Level 4
 $markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
+
+$markdown += Build-WebServersSection
 
 $markdown += New-MDHeader "Android" -Level 3
 $markdown += Build-AndroidTable | New-MDTable
