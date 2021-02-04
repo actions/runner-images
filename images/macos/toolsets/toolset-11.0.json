@@ -2,6 +2,7 @@
     "xcode": {
         "default": "12.3",
         "versions": [
+            { "link": "12.5", "version": "12.5.0"},
             { "link": "12.4", "version": "12.4.0"},
             { "link": "12.3", "version": "12.3.0"},
             { "link": "12.2", "version": "12.2.0" },
@@ -83,7 +84,11 @@
         "addon-list": [],
         "additional-tools": [
             "cmdline-tools;latest"
-        ]
+        ],
+        "ndk": {
+            "lts": "21",
+            "latest": "22"
+        }
     },
     "powershellModules": [
         {
