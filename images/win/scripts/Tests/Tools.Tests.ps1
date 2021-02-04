@@ -64,25 +64,6 @@ Describe "DACFx" {
         "${sqlPackagePath}" | Should -Exist
         "${sqlLocalDBPath}" | Should -Exist
     }
- }
-
-Describe "Docker" {
-    It "<ToolName>" -TestCases @(
-        @{ ToolName = "docker" }
-        @{ ToolName = "docker-compose" }
-    ) {
-        "$ToolName --version"| Should -ReturnZeroExitCode
-    }
-
-    It "Helm" {
-        "helm version --short" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Kind" {
-    It "Kind" {
-        "kind version" | Should -ReturnZeroExitCode
-    }
 }
 
 Describe "DotnetTLS" {
@@ -113,9 +94,17 @@ Describe "Mercurial" {
     }
 }
 
-Describe "KubernetesCli" {
+Describe "KubernetesTools" {
+    It "Kind" {
+        "kind version" | Should -ReturnZeroExitCode
+    }
+
     It "kubectl" {
         "kubectl version --client=true --short=true" | Should -ReturnZeroExitCode
+    }
+
+    It "Helm" {
+        "helm version --short" | Should -ReturnZeroExitCode
     }
 
     It "minikube" {

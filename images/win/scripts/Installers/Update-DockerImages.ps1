@@ -16,7 +16,14 @@ function DockerPull {
     }
 }
 
+# Temporary replace ip for download server to the more stable one
+Copy-Item -Path "$env:windir\System32\drivers\etc\hosts" -Destination "C:\hosts_backup" -Verbose
+"40.71.10.214 mcr.microsoft.com" >> "$env:windir\System32\drivers\etc\hosts"
+
 $dockerToolset = (Get-ToolsetContent).docker
 foreach($dockerImage in $dockerToolset.images) {
   DockerPull $dockerImage
 }
+
+Move-Item -Path "C:\hosts_backup" -Destination "$env:windir\System32\drivers\etc\hosts" -Force -Verbose
+Invoke-PesterTests -TestFile "Docker" -TestName "DockerImages"

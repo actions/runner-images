@@ -13,7 +13,7 @@
         "virtual_network_resource_group_name": "{{env `VNET_RESOURCE_GROUP`}}",
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
-        "vm_size": "Standard_DS4_v2",
+        "vm_size": "Standard_D8s_v4",
         "run_scan_antivirus": "false",
         "root_folder": "C:",
         "toolset_json_path": "{{env `TEMP`}}\\toolset.json",
@@ -139,7 +139,8 @@
             "type": "powershell",
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
-                "IMAGEDATA_FILE={{user `imagedata_file`}}"
+                "IMAGEDATA_FILE={{user `imagedata_file`}}",
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1",
@@ -162,6 +163,7 @@
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NET48.ps1",
                 "{{ template_dir }}/scripts/Installers/Windows2016/Install-SSDT.ps1"
@@ -244,7 +246,9 @@
                 "{{ template_dir }}/scripts/Installers/Install-Edge.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Firefox.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Selenium.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Apache.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1"
             ]
         },
         {
@@ -313,8 +317,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-NSIS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CloudFoundryCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vcpkg.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-KubernetesCli.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Kind.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1"
