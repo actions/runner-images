@@ -104,11 +104,11 @@ function New-MDNewLine {
     return $newLineSymbol * $Count
 }
 
-function Get-Link-Target {
+function Get-LinkTarget {
     param (
         [string] $inputPath
     )
-    $link = Get-Item $inputPath| Select-Object -ExpandProperty Target
+    $link = Get-Item $inputPath | Select-Object -ExpandProperty Target
     If ($link) {
       return " -> $link"
     } Else {
@@ -116,10 +116,10 @@ function Get-Link-Target {
     }
 }
 
-function Get-Path-With-Link {
+function Get-PathWithLink {
     param (
         [string] $inputPath
     )
-    $link = Get-Link-Target($inputPath)
+    $link = Get-LinkTarget($inputPath)
     return "${inputPath}${link}"
 }
