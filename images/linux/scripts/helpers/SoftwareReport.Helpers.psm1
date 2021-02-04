@@ -21,3 +21,24 @@ function New-MDNewLine {
 function Restore-UserOwner {
     sudo chown -R ${env:USER}: $env:HOME
 }
+
+function Get-LinkTarget {
+    param (
+        [string] $inputPath
+    )
+    $link = Get-Item $inputPath | Select-Object -ExpandProperty Target
+    If ($link) {
+      return " -> $link"
+    } Else {
+      return ""
+    }
+}
+
+function Get-PathWithLink {
+    param (
+        [string] $inputPath
+    )
+    $link = Get-LinkTarget($inputPath)
+    return "${inputPath}${link}"
+}
+

@@ -1,4 +1,3 @@
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
 function Get-BashVersion {
     $version = bash -c 'echo ${BASH_VERSION}'
     return "Bash $version"
@@ -321,7 +320,7 @@ function Build-PackageManagementEnvironmentTable {
     ) | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = Get-Path-With-Link($_.Value)
+            "Value" = Get-PathWithLink($_.Value)
         }
     }
 }
