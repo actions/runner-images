@@ -83,6 +83,15 @@ Function GenerateResourcesAndImage {
         .PARAMETER GithubFeedToken
             GitHub PAT to download tool packages from GitHub Package Registry
 
+        .PARAMETER AzureClientId
+            Client id needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
+
+        .PARAMETER AzureClientSecret
+            Client secret needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
+
+        .PARAMETER AzureTenant
+            Tenant needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
+
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1604 -AzureLocation "East US"
     #>
@@ -102,6 +111,12 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [string] $GithubFeedToken,
         [Parameter(Mandatory = $False)]
+        [string] $AzureClientId,
+        [Parameter(Mandatory = $False)]
+        [string] $AzureClientSecret,
+        [Parameter(Mandatory = $False)]
+        [string] $AzureTenant,
+        [Parameter(Mandatory = $False)]
         [Switch] $Force
     )
 
@@ -115,7 +130,13 @@ Function GenerateResourcesAndImage {
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
 
-    Connect-AzAccount
+    if (([string]::IsNullOrEmpty($AzClientId)))
+    {
+        Connect-AzAccount
+    } else {
+        $AzureAppCred = (New-Object System.Management.Automation.PSCredential $AzureClientId, (ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force))
+        Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenant
+    }
     Set-AzContext -SubscriptionId $SubscriptionId
 
     $alreadyExists = $true;
