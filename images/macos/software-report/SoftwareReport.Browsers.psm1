@@ -71,7 +71,7 @@ function Build-BrowserWebdriversEnvironmentTable {
     ) | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = Get-Path-With-Link($_.Value)
+            "Value" = Get-PathWithLink($_.Value)
         }
     }
 }
