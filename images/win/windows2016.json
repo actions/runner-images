@@ -115,6 +115,7 @@
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
                 "IMAGE_OS={{user `image_os`}}",
+                "AGENT_TOOLSDIRECTORY={{user `agent_tools_directory`}}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
