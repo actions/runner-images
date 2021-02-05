@@ -34,12 +34,24 @@ function Get-BazeliskVersion {
     return "Bazelisk $bazeliskVersion"
 }
 
+function Get-BinUtilsVersion {
+    $result = Get-CommandResult "dpkg-query --show binutils"
+    $binUtilsVersion = $result.Output.Split() | Select-Object -Last 1 | Take-OutputPart -Part 0 -Delimiter "-"
+    return "binutils $binUtilsVersion"
+}
+
 function Get-CodeQLBundleVersion {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
     $CodeQLVersion = & $CodeQLPath version --quiet
     return "CodeQL Action Bundle $CodeQLVersion"
+}
+
+function Get-CoreUtilsVersion {
+    $result = Get-CommandResult "dpkg-query --show coreutils"
+    $binUtilsVersion = $result.Output.Split() | Select-Object -Last 1 | Take-OutputPart -Part 0 -Delimiter "-"
+    return "coreutils $binUtilsVersion"
 }
 
 function Get-PodManVersion {

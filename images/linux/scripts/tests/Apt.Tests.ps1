@@ -24,6 +24,16 @@ Describe "Apt" {
             $toolName = "searchd"
         }
 
+        if ($toolName -eq "binutils")
+        {
+            $toolName = "strings"
+        }
+
+        if ($toolName -eq "coreutils")
+        {
+            $toolName = "tr"
+        }
+
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
     }
 }
