@@ -1,4 +1,3 @@
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
 $browsers = @{
     chrome = @{
         Name="Google Chrome";
@@ -72,7 +71,7 @@ function Build-BrowserWebdriversEnvironmentTable {
     ) | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = Get-PathWithLink($_.Value)
+            "Value" = $_.Value
         }
     }
 }
