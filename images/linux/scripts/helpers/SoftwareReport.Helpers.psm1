@@ -27,11 +27,10 @@ function Get-LinkTarget {
         [string] $inputPath
     )
     $link = Get-Item $inputPath | Select-Object -ExpandProperty Target
-    If ($link) {
+    if ($link) {
       return " -> $link"
-    } Else {
-      return ""
     }
+    return ""
 }
 
 function Get-PathWithLink {

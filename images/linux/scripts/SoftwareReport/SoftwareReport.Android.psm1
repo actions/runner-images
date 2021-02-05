@@ -163,10 +163,10 @@ function Get-AndroidNDKVersions {
 function Build-AndroidEnvironmentTable {
     $androidVersions = Get-Item env:ANDROID_*	
 
-    return $androidVersions | ForEach-Object {	
+    return $androidVersions | Sort-Object -Property Name | ForEach-Object {	
         [PSCustomObject] @{	
             "Name" = $_.Name	
-            "Value" = Get-PathWithLink($_.Value)
+            "Value" = if ($_.Name -eq 'ANDROID_NDK_PATH') { Get-PathWithLink($_.Value) } else {$_.Value}
         }	
     }
 }
