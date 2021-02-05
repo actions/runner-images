@@ -102,10 +102,12 @@
             "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
             "patcher;v4",
-            "ndk;21.3.6528147",
             "platform-tools",
             "cmdline-tools;latest"
-        ]
+        ],
+        "ndk": {
+            "lts": "21"
+        }
     },
     "powershellModules": [
         {"name": "MarkdownPS"},

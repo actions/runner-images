@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
 | [[ubuntu, windows] Default Go version will be set to 1.15 on February, 8](https://github.com/actions/virtual-environments/issues/2447) |
 | [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
 | [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
 ***
 # Ubuntu 16.04.7 LTS
-- Image Version: 20210123.1
+- Image Version: 20210131.1
 
 ## Installed Software
 ### Language and Runtime
@@ -21,25 +22,25 @@
 - Python 2.7.12
 - Python3 3.5.2
 - Ruby 2.3.1p112
-- Swift 5.3.2
+- Swift 5.3.3
 
 ### Package Management
 - cpan 1.61
 - Gem 2.5.2
-- Helm 3.5.0
-- Homebrew 2.7.5
+- Helm 3.5.1
+- Homebrew 2.7.7
 - Miniconda 4.9.2
 - Npm 6.14.11
 - Pip 8.1.1
 - Pip3 8.1.1
-- Vcpkg  (build from master \<e4ce66e>)
+- Vcpkg  (build from master \<401b26c>)
 - Yarn 1.22.5
 
 ### Project Management
 - Ant 1.9.6
 - Gradle 6.8.1
 - Maven 3.6.3
-- Sbt 1.4.6
+- Sbt 1.4.7
 
 ### Tools
 - 7-Zip 9.20
@@ -49,10 +50,10 @@
 - AzCopy7 7.3.0 (available by `azcopy` alias)
 - Bazel 4.0.0
 - Bazelisk 1.7.3
-- CMake 3.19.3
-- CodeQL Action Bundle 2.4.0
+- CMake 3.19.4
+- CodeQL Action Bundle 2.4.2
 - curl 7.47.0
-- Docker Compose 1.27.4
+- Docker Compose 1.28.2
 - Docker-Buildx 0.5.1
 - Docker-Moby 19.03.14
 - Git 2.29.0
@@ -69,13 +70,13 @@
 - m4 1.4.17
 - MediaInfo 0.7.82
 - Mercurial 4.4.1
-- Minikube 1.17.0
+- Minikube 1.17.1
 - Newman 5.2.2
 - nvm 0.37.2
 - Packer 1.6.6
 - pass 1.6.5
 - PhantomJS 2.1.1
-- Pulumi 2.18.2
+- Pulumi 2.19.0
 - R 4.0.3
 - Sphinx Open Source Search Server 2.2.9
 - SVN 1.9.3
@@ -88,19 +89,19 @@
 - zstd 1.3.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.66
-- AWS CLI 1.18.219
+- Alibaba Cloud CLI 3.0.69
+- AWS CLI 1.18.223
 - AWS CLI Session manager plugin 1.2.30.0
-- AWS SAM CLI 1.15.0
+- AWS SAM CLI 1.16.0
 - Azure CLI (azure-cli) 2.18.0
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.5.0
-- Google Cloud SDK 324.0.0
+- Google Cloud SDK 325.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 3.4.2
-- oc CLI 4.6.12
+- Netlify CLI 3.4.6
+- oc CLI 4.6.13
 - ORAS CLI 0.9.0
-- Vercel CLI 21.1.0
+- Vercel CLI 21.2.2
 
 ### Java
 | Version             | Vendor       | Environment Variable |
@@ -114,7 +115,7 @@
 | Tool     | Version                                         |
 | -------- | ----------------------------------------------- |
 | PHP      | 5.6.40 7.0.33 7.1.33 7.2.34 7.3.26 7.4.14 8.0.1 |
-| Composer | 2.0.8                                           |
+| Composer | 2.0.9                                           |
 | PHPUnit  | 8.5.14                                          |
 
 ### Haskell
@@ -161,7 +162,7 @@
     MySQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
 ```
 #### MS SQL Server Client Tools
-- sqlcmd 17.6.0001.1
+- sqlcmd 17.7.0001.1
 
 ### Cached Tools
 #### Boost
@@ -176,7 +177,7 @@
 - 1.15.7
 
 #### Node.js
-- 10.23.1
+- 10.23.2
 - 12.20.1
 - 14.15.4
 
@@ -208,6 +209,12 @@
 | MarkdownPS | 1.9     |
 | Pester     | 5.1.1   |
 
+### Web Servers
+| Name    | Version | ConfigFile                | ServiceStatus | ListenPort |
+| ------- | ------- | ------------------------- | ------------- | ---------- |
+| apache2 | 2.4.18  | /etc/apache2/apache2.conf | inactive      | 80         |
+| nginx   | 1.10.3  | /etc/nginx/nginx.conf     | inactive      | 80         |
+
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -220,20 +227,20 @@
 | CMake                      | 3.10.2<br>3.6.4111459                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                                                                                                                                                                                   |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Google Repository          | 58                                                                                                                                                                                                                                                                                                      |
 | NDK                        | 21.3.6528147  |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 ### Cached Docker images
 | Repository:Tag                                            | Digest                                                                   | Created    |
 | --------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| node:10                                                   | sha256:0c8a7818d9d8e1bb19eb7d1a0614ccdce157fc6ed9f0870b8685b97c31283cc8  | 2021-01-12 |
+| node:10                                                   | sha256:e7948c8721f6ed5f6c78ead4c3942526c5ddef94f5859c61639bfd55ca751fbb  | 2021-01-27 |
+| node:10-alpine                                            | sha256:7351c71024245bd1133674ce2a0869c80926712a9e03004a93cf58a066a8ad68  | 2021-01-27 |
 | node:12                                                   | sha256:9c5e64d867035cd2b08dbc4a537dbd638c8d761be627c85a00e585309489d6e6  | 2021-01-12 |
 | buildpack-deps:stretch                                    | sha256:3b52799bb11d79e36b8d6ac739fed89e1ee5ead0c851fc8df42a677cfb6e6b61  | 2021-01-12 |
 | buildpack-deps:buster                                     | sha256:782de14b2481856bb30181ef6c1987ddc550579fcf0dae94403c66791095b455  | 2021-01-12 |
 | debian:9                                                  | sha256:7f2706b124ee835c3bcd7dc81d151d4f5eca3f4306c5af5c73848f5f89f10e0b  | 2021-01-12 |
 | debian:8                                                  | sha256:d54da4e38a30a690017856dc3b67e53bf3a3094dd693006b5d00408ba1d90d50  | 2021-01-12 |
-| node:10-alpine                                            | sha256:aa38d0212b474344d2a0d180a1a656a34cff8a4c785adcb116de510d3f17f699  | 2021-01-05 |
 | node:12-alpine                                            | sha256:41ae2b38e38e387517c59ca50498eac0537a2ff2316552c3df3b406d31414d78  | 2021-01-05 |
 | jekyll/builder:latest                                     | sha256:b918b81939a1076dce89d142c0764c2c3cb93858f56ecf4f04ad0387338e77aa  | 2020-12-21 |
 | ubuntu:14.04                                              | sha256:63fce984528cec8714c365919882f8fb64c8a3edf23fdfa0b218a2756125456f  | 2020-09-16 |

@@ -1,14 +1,15 @@
 | Announcements |
 |-|
+| [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
+| [[macOS] Bazel 4.0.0 breaking changes](https://github.com/actions/virtual-environments/issues/2547) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 | [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
-| [[macOS] Default Xcode will be set to Xcode 12.3 on January, 25](https://github.com/actions/virtual-environments/issues/2440) |
 | [[macOS] Homebrew is updated to 2.7 with few major changes](https://github.com/actions/virtual-environments/issues/2415) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H114)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210123.2
+- Image Version: 20210130.1
 
 ## Installed Software
 ### Language and Runtime
@@ -16,18 +17,18 @@
 - Bash 3.2.57(1)-release
 - Clang/LLVM 11.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
-- gcc-10 (Homebrew GCC 10.2.0_2) 10.2.0 - available by `gcc-10` alias
+- gcc-10 (Homebrew GCC 10.2.0_3) 10.2.0 - available by `gcc-10` alias
 - gcc-8 (Homebrew GCC 8.4.0_2) 8.4.0 - available by `gcc-8` alias
 - gcc-9 (Homebrew GCC 9.3.0_1) 9.3.0 - available by `gcc-9` alias
-- GNU Fortran (Homebrew GCC 10.2.0_2) 10.2.0  - available by `gfortran-10` alias
+- GNU Fortran (Homebrew GCC 10.2.0_3) 10.2.0  - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 8.4.0_2) 8.4.0  - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0  - available by `gfortran-9` alias
 - Go 1.15.7
 - julia 1.5.3
 - Node.js v14.15.4
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.1 v12.20.1 v13.14.0 v14.15.4
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.2 v12.20.1 v13.14.0 v14.15.4
 - NVM 0.37.2
-- Perl 5.32.0
+- Perl 5.32.1
 - PHP 8.0.1
 - Python 2.7.18
 - Python 3.9.1
@@ -35,19 +36,19 @@
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.6
+- Bundler version 2.2.7
 - Carthage 0.36.1
 - CocoaPods 1.10.1
-- Composer 2.0.8
-- Homebrew 2.7.5
+- Composer 2.0.9
+- Homebrew 2.7.7
 - Miniconda 4.9.2
 - NPM 6.14.10
 - NuGet 5.6.0.6489
 - Pip 20.3.3 (python 3.9)
 - Pip 20.3.4 (python 2.7)
 - Pipx 0.16.0.0
-- RubyGems 3.2.6
-- Vcpkg 2021 (build from master \<e4ce66e>)
+- RubyGems 3.2.7
+- Vcpkg 2021 (build from master \<401b26c>)
 - Yarn 1.22.5
 
 ### Project Management
@@ -68,9 +69,9 @@
 - GitHub CLI: 1.5.0
 - GNU parallel 20201122
 - GNU Tar 1.33 - available by 'gtar' alias
-- GNU Wget 1.21
+- GNU Wget 1.21.1
 - gpg (GnuPG) 2.2.27
-- helm v3.5.0+g32c2223
+- helm v3.5.1+g32c2223
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v4.4.3
@@ -87,38 +88,38 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.66
-- App Center CLI 2.7.3
-- AWS CLI 2.1.21
-- AWS SAM CLI 1.15.0
+- Aliyun CLI 3.0.69
+- App Center CLI 2.7.4
+- AWS CLI 2.1.22
+- AWS SAM CLI 1.16.0
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.18.0
 - Cabal 3.2.0.0
-- Cmake 3.19.3
+- Cmake 3.19.4
 - Fastlane 2.172.0
 - GHC 8.10.3
 - GHCup v0.1.12
 - Stack 2.5.1
-- Xcode Command Line Tools 12.3.0.0.1.1607026830
+- Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
 - SwiftLint 0.42.0
-- yamllint 1.25.0
+- yamllint 1.26.0
 
 ### Browsers
 - Safari 14.0.2 (15610.3.7.1.10)
 - SafariDriver 14.0.2 (15610.3.7.1.10)
 - Google Chrome 88.0.4324.96 
 - ChromeDriver 88.0.4324.96
-- Microsoft Edge 88.0.705.50 
-- MSEdgeDriver 88.0.705.50
-- Mozilla Firefox 84.0.2
+- Microsoft Edge 88.0.705.56 
+- MSEdgeDriver 88.0.705.56
+- Mozilla Firefox 85.0
 - geckodriver 0.29.0
 
 ### Java
 | Version   | Vendor       | Environment Variable |
 | --------- | ------------ | -------------------- |
-| 1.7.0_285 | Zulu         | JAVA_HOME_7_X64      |
+| 1.7.0_292 | Zulu         | JAVA_HOME_7_X64      |
 | 1.8.0_282 | AdoptOpenJDK | JAVA_HOME_8_X64      |
 | 11.0.10   | AdoptOpenJDK | JAVA_HOME_11_X64     |
 | 12.0.2    | AdoptOpenJDK | JAVA_HOME_12_X64     |
@@ -146,7 +147,7 @@
 - 3.6.12 [PyPy 7.3.3]
 
 #### Node.js
-- 10.23.1
+- 10.23.2
 - 12.20.1
 - 14.15.4
 
@@ -178,6 +179,12 @@
 | Az         | 4.8.0   |
 | MarkdownPS | 1.9     |
 | Pester     | 5.1.1   |
+
+### Web Servers
+| Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
+| ----- | -------- | ------------------------------- | ------------- | ---------- |
+| httpd | 2.4.46_2 | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
+| nginx | 1.19.6   | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
@@ -251,7 +258,7 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.6.8
-- Nomad CLI 3.2.6
+- Nomad CLI 3.2.7
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
 

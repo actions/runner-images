@@ -78,7 +78,7 @@ function Build-AndroidTable {
         },
         @{
             "Package" = "NDK"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
+            "Version" = Get-AndroidNDKVersions
         },
         @{
             "Package" = "SDK Patch Applier v4"
@@ -154,3 +154,8 @@ function Get-AndroidGoogleAPIsVersions {
     return ($versions -Join "<br>")
 }
 
+function Get-AndroidNDKVersions {
+    $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
+    $versions = Get-ChildItem -Path $ndkFolderPath -Name
+    return ($versions -Join "<br>")
+}

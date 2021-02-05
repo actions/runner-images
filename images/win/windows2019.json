@@ -252,7 +252,9 @@
                 "{{ template_dir }}/scripts/Installers/Install-Edge.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Firefox.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Selenium.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Apache.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1"
             ]
         },
         {
