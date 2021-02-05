@@ -1,22 +1,6 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
-installAzulJDK() {
-    local URL=$1
-    local TMP_FILE=/tmp/openjdk.dmg
-    local TMP_MOUNT=`/usr/bin/mktemp -d /tmp/zulu.XXXX`
-    # Download dmg
-    download_with_retries $URL "/tmp" "openjdk.dmg"
-    # Attach dmg
-    hdiutil attach "${TMP_FILE}" -mountpoint "${TMP_MOUNT}"
-    # Install pkg
-    sudo installer -pkg "${TMP_MOUNT}/"*.pkg -target /
-    # Detach dmg
-    hdiutil detach "${TMP_MOUNT}"
-    # Remove dmg
-    rm -rf "${TMP_FILE}"
-}
-
 createEnvironmentVariable() {
     local VARIABLE_NAME=$1
     local JAVA_VERSION=$2
