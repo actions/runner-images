@@ -20,7 +20,7 @@ installAzulJDK() {
 createEnvironmentVariable() {
     local VARIABLE_NAME=$1
     local JAVA_VERSION=$2
-    if [[ $JAVA_VERSION == "7" || $JAVA_VERSION == "8" ]]; then
+    if [[ $JAVA_VERSION == "8" ]]; then
         JAVA_VERSION="1.${JAVA_VERSION}"
     fi
     local JAVA_PATH=$(/usr/libexec/java_home -v${JAVA_VERSION})
@@ -33,11 +33,7 @@ JAVA_VERSIONS_LIST=($(get_toolset_value '.java.versions | .[]'))
 JAVA_DEFAULT=$(get_toolset_value '.java.default')
 for JAVA_VERSION in "${JAVA_VERSIONS_LIST[@]}"
 do
-    if [[ $JAVA_VERSION == "7" ]]; then
-        installAzulJDK "https://cdn.azul.com/zulu/bin/zulu7.44.0.11-ca-jdk7.0.292-macosx_x64.dmg"
-    else
-        brew install --cask "adoptopenjdk${JAVA_VERSION}"
-    fi
+    brew install --cask "adoptopenjdk${JAVA_VERSION}"
     createEnvironmentVariable "JAVA_HOME_${JAVA_VERSION}_X64" $JAVA_VERSION
 done
 
