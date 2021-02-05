@@ -10,6 +10,10 @@ if ([string]::IsNullOrEmpty($env:XCODE_INSTALL_USER) -or [string]::IsNullOrEmpty
     throw "Required environment variables XCODE_INSTALL_USER and XCODE_INSTALL_PASSWORD are not set"
 }
 
+# Spaceship Apple ID login fails due to Apple ID prompting to be upgraded to 2FA.
+# https://github.com/fastlane/fastlane/pull/18116
+$env:SPACESHIP_SKIP_2FA_UPGRADE = 1
+
 $os = Get-OSVersion
 $xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
