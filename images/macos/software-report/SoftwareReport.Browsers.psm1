@@ -1,5 +1,3 @@
-Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
-
 function Get-BrowserSection {
     return New-MDList -Style Unordered -Lines @(
         (Get-SafariVersion),
@@ -54,7 +52,6 @@ function Get-GeckodriverVersion {
 }
 
 function Build-BrowserWebdriversEnvironmentTable {
-    Write-Host "Build-BrowserWebdriversEnvironmentTable"
     return @(
         @{
             "Name" = "CHROMEWEBDRIVER"
@@ -71,7 +68,7 @@ function Build-BrowserWebdriversEnvironmentTable {
     ) | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = Get-PathWithLink($_.Value)
+            "Value" = $_.Value
         }
     }
 }
