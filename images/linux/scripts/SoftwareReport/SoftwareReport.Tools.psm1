@@ -50,8 +50,8 @@ function Get-CodeQLBundleVersion {
 
 function Get-CoreUtilsVersion {
     $result = Get-CommandResult "dpkg-query --show coreutils"
-    $binUtilsVersion = $result.Output.Split() | Select-Object -Last 1 | Take-OutputPart -Part 0 -Delimiter "-"
-    return "coreutils $binUtilsVersion"
+    $coreUtilsVersion = $result.Output.Split() | Select-Object -Last 1 | Take-OutputPart -Part 0 -Delimiter "-"
+    return "coreutils $coreUtilsVersion"
 }
 
 function Get-PodManVersion {
