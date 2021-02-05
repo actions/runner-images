@@ -36,7 +36,7 @@ function Get-BazeliskVersion {
 
 function Get-BinUtilsVersion {
     $result = Get-CommandResult "dpkg-query --show binutils"
-    $binUtilsVersion = $result.Output.Split() | Select-Object -Last 1 | Take-OutputPart -Part 0 -Delimiter "-"
+    $binUtilsVersion = $result.Output| Take-OutputPart -Part 1 -Delimiter "`t" | Take-OutputPart -Part 0 -Delimiter "-"
     return "binutils $binUtilsVersion"
 }
 
@@ -50,7 +50,7 @@ function Get-CodeQLBundleVersion {
 
 function Get-CoreUtilsVersion {
     $result = Get-CommandResult "dpkg-query --show coreutils"
-    $coreUtilsVersion = $result.Output.Split() | Select-Object -Last 1 | Take-OutputPart -Part 0 -Delimiter "-"
+    $coreUtilsVersion = $result.Output | Take-OutputPart -Part 1 -Delimiter "`t" | Take-OutputPart -Part 0 -Delimiter "-"
     return "coreutils $coreUtilsVersion"
 }
 
