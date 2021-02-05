@@ -1,6 +1,6 @@
 Describe "Haskell" {
 
-    $GHCCommonPath = "/opt/ghc"
+    $GHCCommonPath = "/usr/local/.ghcup/ghc"
     $GHCVersions = Get-ChildItem -Path $GHCCommonPath | Where-Object { $_.Name -match "\d+\.\d+" }
     
     $testCase = @{ GHCVersions = $GHCVersions }
@@ -15,6 +15,10 @@ Describe "Haskell" {
     It "GHC version <GHCPath>" -TestCases $testCases {
             param ([string] $GHCPath)
             "$GHCPath --version" | Should -ReturnZeroExitCode
+    }
+
+    It "GHCup" {
+        "ghcup --version" | Should -ReturnZeroExitCode
     }
 
     It "Default GHC" {

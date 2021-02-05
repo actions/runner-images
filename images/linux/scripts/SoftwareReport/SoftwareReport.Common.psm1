@@ -219,6 +219,12 @@ function Get-GHCVersion {
     return "GHC $ghcVersion"
 }
 
+function Get-GHCupVersion {
+    $(ghcup --version) -match "version v(?<version>\d+\.\d+\.\d+)" | Out-Null
+    $ghcVersion = $Matches.version
+    return "GHCup $ghcVersion"
+}
+
 function Get-CabalVersion {
     $(cabal --version | Out-String) -match "cabal-install version (?<version>\d+\.\d+\.\d+\.\d+)" | Out-Null
     $cabalVersion = $Matches.version
