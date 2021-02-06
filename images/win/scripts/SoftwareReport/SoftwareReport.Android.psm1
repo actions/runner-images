@@ -161,10 +161,11 @@ function Get-AndroidGoogleAPIsVersions {
 function Build-AndroidEnvironmentTable {
     $androidVersions = Get-Item env:ANDROID_*	
 
-    return $androidVersions | Sort-Object -Property Name | ForEach-Object {	
-        [PSCustomObject] @{	
-            "Name" = $_.Name	
-            "Value" = if ($_.Name -eq 'ANDROID_NDK_PATH') { Get-PathWithLink($_.Value) } else {$_.Value}
-        }	
+    $shoulddResolveLink = 'ANDROID_NDK_PATH', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
+    return $androidVersions | Sort-Object -Property Name | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = if ($shoulddResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else {$_.Value}
+        }
     }
 }
