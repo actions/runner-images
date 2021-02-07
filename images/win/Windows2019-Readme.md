@@ -2,12 +2,11 @@
 |-|
 | [[ubuntu, windows] Default Go version will be set to 1.15 on February, 8](https://github.com/actions/virtual-environments/issues/2447) |
 | [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
-| [[all OS versions] Android NDK is updated to r22.](https://github.com/actions/virtual-environments/issues/2420) |
 | [[Windows] Default PHP is set to 8.0](https://github.com/actions/virtual-environments/issues/2416) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1697
-- Image Version: 20210121.0
+- Image Version: 20210202.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -18,29 +17,29 @@
 - Go 1.14.14
 - Julia 1.5.3
 - Node 14.15.4
-- Perl 5.32.0
+- Perl 5.32.1
 - PHP 8.0.1
 - Python 3.7.9
 - Ruby 2.5.8p224
 
 ### Package Management
 - Chocolatey 0.10.15
-- Composer 2.0.8
-- Helm 3.5.0
+- Composer 2.0.9
+- Helm 3.5.1
 - Miniconda 4.9.2
 - NPM 6.14.10
 - NuGet 5.8.1.7021
-- pip 20.3.3 (python 3.7)
+- pip 21.0.1 (python 3.7)
 - Pipx 0.16.0.0
 - RubyGems 2.7.6.2
-- Vcpkg  (build from master \<5065bf9>)
+- Vcpkg  (build from master \<d97ce7d>)
 - Yarn 1.22.10
 
 ### Project Management
 - Ant 1.10.9
 - Gradle 6.8
 - Maven 3.6.3
-- sbt 1.4.5
+- sbt 1.4.7
 
 ### Tools
 - 7zip 19.00
@@ -48,17 +47,17 @@
 - Bazel 4.0.0
 - Bazelisk 1.7.3
 - Cabal 3.2.0.0
-- CMake 3.19.3
-- CodeQL Action Bundle 2.4.0
+- CMake 3.19.4
+- CodeQL Action Bundle 2.4.2
 - Docker 19.03.14
 - Docker-compose 1.27.4
 - ghc 8.10.3
 - Git 2.30.0
 - Git LFS 2.13.2
-- Google Cloud SDK 324.0.0
+- Google Cloud SDK 325.0.0
 - InnoSetup 6.1.2
 - jq 1.6
-- Kind 0.9.0
+- Kind 0.10.0
 - Kubectl 1.20.2
 - Mercurial 5.0
 - Mingw-w64 8.1.0
@@ -66,19 +65,19 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.6.6
-- Pulumi v2.18.0
+- Pulumi v2.19.0
 - R 4.0.3
 - Stack 2.5.1
 - Subversion (SVN) 1.14.0
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
-- yamllint 1.25.0
+- yamllint 1.26.0
 - zstd 1.4.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.66
-- AWS CLI 2.1.20
-- AWS SAM CLI 1.15.0
+- Alibaba Cloud CLI 3.0.69
+- AWS CLI 2.1.22
+- AWS SAM CLI 1.16.0
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.18.0
 - Azure Dev Spaces CLI 1.0.20201219.2
@@ -94,19 +93,19 @@
 - Rustup 1.23.1
 
 #### Packages
-- bindgen 0.56.0
+- bindgen 0.57.0
 - cargo-audit 0.13.1
-- cargo-outdated v0.9.13
-- cbindgen 0.16.0
+- cargo-outdated v0.9.14
+- cbindgen 0.17.0
 - Clippy 0.0.212
 - Rustfmt 1.4.25
 
 ### Browsers and webdrivers
 - Google Chrome 88.0.4324.104
 - Chrome Driver 88.0.4324.96
-- Microsoft Edge 87.0.664.75
-- Microsoft Edge Driver 87.0.664.75
-- Mozilla Firefox 84.0.2
+- Microsoft Edge 88.0.705.56
+- Microsoft Edge Driver 88.0.705.56
+- Mozilla Firefox 85.0
 - Gecko Driver 0.29.0
 - IE Driver 3.150.1.0
 
@@ -115,7 +114,7 @@
 | ------------------- | ------------ | -------------------- |
 | 1.7.0_232           | Zulu         | JAVA_HOME_7_X64      |
 | 1.8.0_282 (default) | AdoptOpenJDK | JAVA_HOME_8_X64      |
-| 11.0.9.1            | AdoptOpenJDK | JAVA_HOME_11_X64     |
+| 11.0.10             | AdoptOpenJDK | JAVA_HOME_11_X64     |
 | 13.0.2              | AdoptOpenJDK | JAVA_HOME_13_X64     |
 
 ### Shells
@@ -166,7 +165,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
-| 10.23.1 | x64          |
+| 10.23.2 | x64          |
 | 12.20.1 | x64          |
 | 14.15.4 | x64          |
 
@@ -227,6 +226,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - MySQL 5.7.21.0
 - SQLPS 1.0
 
+
+### Web Servers
+| Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
+| ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
+| Apache | 2.4.46  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
+| Nginx  | 1.19.6  | C:\tools\nginx-1.19.6\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version        | Path                                                           |
@@ -455,7 +460,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Universal                                 | 16.8.30530.185 |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 16.4.29409.204 |
 | SSDT Microsoft Analysis Services Projects                                 | 2.9.15         |
-| SSDT SQL Server Integration Services Projects                             | 3.11.1         |
+| SSDT SQL Server Integration Services Projects                             | 3.12           |
 | SSDT Microsoft Reporting Services Projects                                | 2.6.7          |
 | Windows Driver Kit                                                        | 3.11.4516      |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.19041.685 |
@@ -541,7 +546,7 @@ All other versions are saved but not installed.
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                    |
-| NDK                        | 21.3.6528147   |
+| NDK                        | 21.4.7075529<br>22.0.7026061                                                                                                                                                                                                                                                          |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                     |
 
 ### Cached Docker images
