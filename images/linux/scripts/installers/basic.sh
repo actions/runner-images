@@ -13,3 +13,4 @@ for package in $common_packages $cmd_packages; do
 done
 
 invoke_tests "Apt"
+invoke_tests "Browsers" "Chromium"
