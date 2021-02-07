@@ -111,7 +111,8 @@
     },
     "powershellModules": [
         {"name": "MarkdownPS"},
-        {"name": "Pester"}
+        {"name": "Pester"},
+        {"name": "PSScriptAnalyzer"}
     ],
     "azureModules": [
         {
