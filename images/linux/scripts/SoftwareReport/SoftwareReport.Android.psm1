@@ -167,7 +167,7 @@ function Build-AndroidEnvironmentTable {
     return $androidVersions | Sort-Object -Property Name | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = if ($shoulddResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else {$_.Value}
+            "Value" = if ($shouldResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else {$_.Value}
         }
     }
 }
