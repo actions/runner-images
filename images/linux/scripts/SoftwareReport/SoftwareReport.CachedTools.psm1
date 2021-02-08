@@ -29,30 +29,27 @@ function Get-ToolcacheGoVersions {
 }
 
 function Build-GoEnvironmentTable {
-    Write-Host "Build-GoEnvironmentTable"
-    return @(
-        @{
-            "Name" = "GOROOT"
-            "Value" = $env:GOROOT
-        },
-        @{
-            "Name" = "GOROOT_1_13_X64"
-            "Value" = $env:GOROOT_1_13_X64
-        },
-        @{
-            "Name" = "GOROOT_1_14_X64"
-            "Value" = $env:GOROOT_1_14_X64
-        },
-        @{
-            "Name" = "GOROOT_1_15_X64"
-            "Value" = $env:GOROOT_1_15_X64
-        }
-    ) | ForEach-Object {
-        [PSCustomObject] @{
-            "Name" = $_.Name
-            "Value" = $_.Value
+    $variables = ,@{
+        "Name" = "GOROOT"
+        "Value" = $env:GOROOT
+    }
+
+    Get-CachedToolInstances -Name "go" -VersionCommand "version" | ForEach-Object {
+        $Version = [System.Version]($_.Version -Split(" "))[0]
+        $Name = "GOROOT_$($Version.major)_$($Version.minor)_X64"
+        $Value = (Get-Item env:\$Name).Value
+        $variables += ,@{
+            "Name" = $Name
+            "Value" = (Get-Item env:\$Name).Value
         }
     }
+
+    return $variables | ForEach-Object {
+         [PSCustomObject] @{
+             "Name" = $_.Name
+             "Value" = $_.Value
+         }
+     }
 }
 
 function Get-ToolcacheBoostVersions {
