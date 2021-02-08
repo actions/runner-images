@@ -1,14 +1,13 @@
 | Announcements |
 |-|
+| [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 | [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
-| [[macOS] Default Xcode will be set to Xcode 12.3 on January, 25](https://github.com/actions/virtual-environments/issues/2440) |
-| [[macOS] Homebrew is updated to 2.7 with few major changes](https://github.com/actions/virtual-environments/issues/2415) |
 ***
 # macOS 10.13 info
 - System Version: macOS 10.13.6 (17G14033)
 - Kernel Version: Darwin 17.7.0
-- Image Version: 20210123.2
+- Image Version: 20210207.2
 
 ## Installed Software
 ### Language and Runtime
@@ -17,51 +16,51 @@
 - Go 1.15.7
 - julia 1.5.3
 - Node.js v8.17.0
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.1 v12.20.1 v13.14.0 v14.15.4
+- NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.2 v12.20.1 v13.14.0 v14.15.4
 - NVM 0.37.2
-- Perl 5.32.0
-- PHP 8.0.1
+- Perl 5.32.1
+- PHP 8.0.2
 - Python 2.7.18
 - Python 3.9.1
 - R 4.0.3
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.6
-- Carthage 0.36.1
+- Bundler version 2.2.8
+- Carthage 0.37.0
 - CocoaPods 1.10.1
-- Composer 2.0.8
-- Homebrew 2.7.5
+- Composer 2.0.9
+- Homebrew 3.0.0
 - Miniconda 4.9.2
 - NPM 3.10.10
 - NuGet 4.7.0.5148
-- Pip 20.3.3 (python 3.9)
 - Pip 20.3.4 (python 2.7)
+- Pip 21.0.1 (python 3.9)
 - Pipx 0.16.0.0
-- RubyGems 3.2.6
+- RubyGems 3.2.8
 - Yarn 1.22.5
 
 ### Project Management
 - Apache Ant(TM) 1.10.9
 - Apache Maven 3.6.3
-- Gradle 6.8.1
+- Gradle 6.8.2
 
 ### Utilities
 - 7-Zip 16.02
 - aria2 1.35.0
 - azcopy 10.8.0
-- bazel 4.0.0
+- bazel 3.7.1
 - bazelisk 1.7.4
 - bsdtar 2.8.3 - available by 'tar' alias
-- Curl 7.74.0
+- Curl 7.75.0
 - Git LFS: 2.13.2
 - Git: 2.30.0
 - GitHub CLI: 1.5.0
 - GNU parallel 20201122
 - GNU Tar 1.33 - available by 'gtar' alias
-- GNU Wget 1.21
+- GNU Wget 1.21.1
 - gpg (GnuPG) 2.2.27
-- helm v3.5.0+g32c2223
+- helm v3.5.2+g167aac7
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v4.4.3
@@ -77,33 +76,32 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.66
+- Aliyun CLI 3.0.70
 - App Center CLI 1.2.2
-- AWS CLI 2.1.21
-- AWS SAM CLI 1.15.0
+- AWS CLI 2.1.24
+- AWS SAM CLI 1.17.0
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.18.0
-- Cmake 3.19.3
-- Fastlane 2.172.0
+- Cmake 3.19.4
+- Fastlane 2.173.0
 - Xcode Command Line Tools 10.1.0.0.1.1539992718
 
 ### Linters
-- yamllint 1.25.0
+- yamllint 1.26.0
 
 ### Browsers
 - Safari 13.1.2 (13609.3.5.1.5)
 - SafariDriver 13.1.2 (13609.3.5.1.5)
-- Google Chrome 88.0.4324.96 
+- Google Chrome 88.0.4324.150 
 - ChromeDriver 88.0.4324.96
-- Microsoft Edge 88.0.705.50 
-- MSEdgeDriver 88.0.705.50
-- Mozilla Firefox 84.0.2
-- geckodriver 0.29.0
+- Microsoft Edge 88.0.705.63 
+- MSEdgeDriver 88.0.705.63
+- Mozilla Firefox 85.0.1
+- geckodriver 0.29.0 (cf6956a5ec8e 2021-01-14 10:31 +0200)
 
 ### Java
 | Version   | Vendor       | Environment Variable |
 | --------- | ------------ | -------------------- |
-| 1.7.0_285 | Zulu         | JAVA_HOME_7_X64      |
 | 1.8.0_282 | AdoptOpenJDK | JAVA_HOME_8_X64      |
 | 11.0.10   | AdoptOpenJDK | JAVA_HOME_11_X64     |
 | 12.0.2    | AdoptOpenJDK | JAVA_HOME_12_X64     |
@@ -232,7 +230,7 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.6.8
-- Nomad CLI 3.2.6
+- Nomad CLI 3.2.8
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
 
@@ -355,7 +353,7 @@
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                                                                                                             |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                   |
-| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.3.6528147                                                                                                                                                                                                                                                                                                                                                         |
+| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.4.7075529<br>22.0.7026061                                                                                                                                                                                                                                                                                                                                         |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 
