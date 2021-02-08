@@ -97,7 +97,7 @@
 - Microsoft Edge 88.0.705.63 
 - MSEdgeDriver 88.0.705.63
 - Mozilla Firefox 85.0.1
-- geckodriver 0.29.0 (cf6956a5ec8e 2021-01-14 10:31 +0200)
+- geckodriver 0.29.0
 
 ### Java
 | Version   | Vendor       | Environment Variable |
