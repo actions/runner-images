@@ -45,7 +45,7 @@
                 "1.14.*",
                 "1.15.*"
             ],
-            "default": "1.14.*"
+            "default": "1.15.*"
         },
         {
             "name": "boost",
@@ -81,7 +81,7 @@
     "java": {
         "default": "8",
         "versions": [
-            "7", "8", "11", "12"
+            "8", "11", "12"
         ]
     },
     "android": {
@@ -175,9 +175,11 @@
             "zsync"
         ],
         "cmd_packages": [
+            "binutils",
             "bison",
             "brotli",
             "bzip2",
+            "coreutils",
             "curl",
             "file",
             "flex",

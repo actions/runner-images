@@ -1,5 +1,3 @@
-Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
-
 function Get-BashVersion {
     $version = bash -c 'echo ${BASH_VERSION}'
     return "Bash $version"
@@ -472,4 +470,22 @@ function Get-SwiftLintVersion {
 function Get-PowershellVersion {
     $powershellVersion = Run-Command "powershell --version"
     return $powershellVersion
+}
+
+function Build-PackageManagementEnvironmentTable {
+    return @(
+        @{
+            "Name" = "CONDA"
+            "Value" = $env:CONDA
+        },
+        @{
+            "Name" = "VCPKG_INSTALLATION_ROOT"
+            "Value" = $env:VCPKG_INSTALLATION_ROOT
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
 }

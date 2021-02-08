@@ -50,3 +50,25 @@ function Get-FirefoxVersion {
 function Get-GeckodriverVersion {
     return Run-Command "geckodriver --version" | Select-Object -First 1
 }
+
+function Build-BrowserWebdriversEnvironmentTable {
+    return @(
+        @{
+            "Name" = "CHROMEWEBDRIVER"
+            "Value" = $env:CHROMEWEBDRIVER
+        },
+        @{
+            "Name" = "EDGEWEBDRIVER"
+            "Value" = $env:EDGEWEBDRIVER
+        },
+        @{
+            "Name" = "GECKOWEBDRIVER"
+            "Value" = $env:GECKOWEBDRIVER
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
+}

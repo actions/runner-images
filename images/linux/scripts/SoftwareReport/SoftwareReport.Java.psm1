@@ -18,12 +18,11 @@ function Get-JavaVersions {
     return $javaVersions | Sort-Object $sortRules | ForEach-Object {
         $javaPath = $_.Value
         $version = Get-JavaFullVersion $javaPath
-        $vendor = $version.StartsWith("1.7") ? "Zulu" : "AdoptOpenJDK"
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
 
         [PSCustomObject] @{
             "Version" = $version + $defaultPostfix
-            "Vendor" = $vendor
+            "Vendor" = "AdoptOpenJDK"
             "Environment Variable" = $_.Name
         }
     }
