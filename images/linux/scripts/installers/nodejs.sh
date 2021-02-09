@@ -9,6 +9,16 @@ curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-inst
 ~/n/bin/n lts
 npm install -g grunt gulp n parcel-bundler typescript newman
 npm install -g --save-dev webpack webpack-cli
+
+# Install the Netlify CLI
+npm i -g netlify-cli --unsafe-perm=true
+
+# Install the Vercel CLI
+npm i -g vercel
+
+echo "Creating the symlink for [now] command to vercel CLI"
+ln -s /usr/local/bin/vercel /usr/local/bin/now
+
 rm -rf ~/n
 
 # Install Yarn repository and key
@@ -20,3 +30,4 @@ apt-get update
 apt-get install -y --no-install-recommends yarn
 
 invoke_tests "Tools" "Node.js"
+invoke_tests "CLI.Tools" "Vercel CLI"
