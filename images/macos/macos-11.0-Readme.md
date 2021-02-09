@@ -1,15 +1,13 @@
 | Announcements |
 |-|
 | [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
-| [[macOS] Bazel 4.0.0 breaking changes](https://github.com/actions/virtual-environments/issues/2547) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 | [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
-| [[macOS] Homebrew is updated to 2.7 with few major changes](https://github.com/actions/virtual-environments/issues/2415) |
 ***
-# macOS 11.0 info
-- System Version: macOS 11.0.1 (20B29)
-- Kernel Version: Darwin 20.1.0
-- Image Version: 20210131.1
+# macOS 11.2 info
+- System Version: macOS 11.2 (20D64)
+- Kernel Version: Darwin 20.3.0
+- Image Version: 20210208.1
 
 ## Installed Software
 ### Language and Runtime
@@ -29,31 +27,37 @@
 - NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.2 v12.20.1 v13.14.0 v14.15.4
 - NVM 0.37.2
 - Perl 5.32.1
-- PHP 8.0.1
+- PHP 8.0.2
 - Python 2.7.18
 - Python 3.9.1
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.7
-- Carthage 0.36.1
+- Bundler version 2.2.8
+- Carthage 0.37.0
 - CocoaPods 1.10.1
 - Composer 2.0.9
-- Homebrew 2.7.7
+- Homebrew 3.0.0
 - Miniconda 4.9.2
 - NPM 6.14.10
 - NuGet 5.6.0.6489
-- Pip 20.3.3 (python 3.9)
 - Pip 20.3.4 (python 2.7)
+- Pip 21.0.1 (python 3.9)
 - Pipx 0.16.0.0
-- RubyGems 3.2.7
-- Vcpkg 2021 (build from master \<401b26c>)
+- RubyGems 3.2.8
+- Vcpkg 2021 (build from master \<5eea585>)
 - Yarn 1.22.5
+
+#### Environment variables
+| Name                    | Value                  |
+| ----------------------- | ---------------------- |
+| CONDA                   | /usr/local/miniconda   |
+| VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
 - Apache Ant(TM) 1.10.9
 - Apache Maven 3.6.3
-- Gradle 6.8.1
+- Gradle 6.8.2
 
 ### Utilities
 - 7-Zip 16.02
@@ -62,14 +66,14 @@
 - bazel 4.0.0
 - bazelisk 1.7.4
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.74.0
+- Curl 7.75.0
 - Git LFS: 2.13.2
 - Git: 2.30.0
 - GitHub CLI: 1.5.0
 - GNU Tar 1.33 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.2.27
-- helm v3.5.1+g32c2223
+- helm v3.5.2+g167aac7
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v4.4.3
@@ -84,16 +88,16 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.69
+- Aliyun CLI 3.0.70
 - App Center CLI 2.7.4
-- AWS CLI 2.1.22
-- AWS SAM CLI 1.16.0
+- AWS CLI 2.1.24
+- AWS SAM CLI 1.17.0
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.18.0
 - Cabal 3.2.0.0
 - Cmake 3.19.4
-- Fastlane 2.172.0
-- GHC 8.10.3
+- Fastlane 2.173.0
+- GHC 9.0.1
 - GHCup v0.1.12
 - Stack 2.5.1
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
@@ -103,14 +107,21 @@
 - yamllint 1.26.0
 
 ### Browsers
-- Safari 14.0.1 (16610.2.11.51.8)
-- SafariDriver 14.0.1 (16610.2.11.51.8)
-- Google Chrome 88.0.4324.96 
+- Safari 14.0.3 (16610.4.3.1.4)
+- SafariDriver 14.0.3 (16610.4.3.1.4)
+- Google Chrome 88.0.4324.150 
 - ChromeDriver 88.0.4324.96
-- Microsoft Edge 88.0.705.56 
-- MSEdgeDriver 88.0.705.56
-- Mozilla Firefox 85.0
+- Microsoft Edge 88.0.705.63 
+- MSEdgeDriver 88.0.705.63
+- Mozilla Firefox 85.0.1
 - geckodriver 0.29.0
+
+#### Environment variables
+| Name            | Value                                         |
+| --------------- | --------------------------------------------- |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/88.0.4324.96 |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
+| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
 ### Java
 | Version   | Vendor       | Environment Variable |
@@ -137,7 +148,7 @@
 - 14.15.4
 
 #### Go
-- 1.15.7
+- 1.15.8
 
 ### Rust Tools
 - Cargo 1.49.0
@@ -146,10 +157,10 @@
 - Rustup 1.23.1
 
 #### Packages
-- Bindgen 0.56.0
+- Bindgen 0.57.0
 - Cargo-audit 0.13.1
 - Cargo-outdated v0.9.14
-- Cbindgen 0.16.0
+- Cbindgen 0.17.0
 - Clippy 0.0.212
 - Rustfmt 1.4.25-stable
 
@@ -171,7 +182,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.8.6.15
+- 8.8.7.18
 
 #### Mono
 - 6.12.0.113
@@ -198,12 +209,13 @@
 - NUnit 3.6.1
 
 ### Xcode
-| Version        | Build   | Path                         |
-| -------------- | ------- | ---------------------------- |
-| 12.4           | 12D4e   | /Applications/Xcode_12.4.app |
-| 12.3 (default) | 12C33   | /Applications/Xcode_12.3.app |
-| 12.2           | 12B45b  | /Applications/Xcode_12.2.app |
-| 11.7           | 11E801a | /Applications/Xcode_11.7.app |
+| Version        | Build    | Path                         |
+| -------------- | -------- | ---------------------------- |
+| 12.5 (beta)    | 12E5220o | /Applications/Xcode_12.5.app |
+| 12.4           | 12D4e    | /Applications/Xcode_12.4.app |
+| 12.3 (default) | 12C33    | /Applications/Xcode_12.3.app |
+| 12.2           | 12B45b   | /Applications/Xcode_12.2.app |
+| 11.7           | 11E801a  | /Applications/Xcode_11.7.app |
 
 #### Xcode Support Tools
 - xcpretty 0.3.0
@@ -215,29 +227,37 @@
 | macOS 10.15             | macosx10.15          | 11.7          |
 | macOS 11.0              | macosx11.0           | 12.2          |
 | macOS 11.1              | macosx11.1           | 12.3, 12.4    |
+| macOS 11.3              | macosx11.3           | 12.5          |
 | iOS 13.7                | iphoneos13.7         | 11.7          |
 | iOS 14.2                | iphoneos14.2         | 12.2          |
 | iOS 14.3                | iphoneos14.3         | 12.3          |
 | iOS 14.4                | iphoneos14.4         | 12.4          |
+| iOS 14.5                | iphoneos14.5         | 12.5          |
 | Simulator - iOS 13.7    | iphonesimulator13.7  | 11.7          |
 | Simulator - iOS 14.2    | iphonesimulator14.2  | 12.2          |
 | Simulator - iOS 14.3    | iphonesimulator14.3  | 12.3          |
 | Simulator - iOS 14.4    | iphonesimulator14.4  | 12.4          |
+| Simulator - iOS 14.5    | iphonesimulator14.5  | 12.5          |
 | tvOS 13.4               | appletvos13.4        | 11.7          |
 | tvOS 14.2               | appletvos14.2        | 12.2          |
 | tvOS 14.3               | appletvos14.3        | 12.3, 12.4    |
+| tvOS 14.5               | appletvos14.5        | 12.5          |
 | Simulator - tvOS 13.4   | appletvsimulator13.4 | 11.7          |
 | Simulator - tvOS 14.2   | appletvsimulator14.2 | 12.2          |
 | Simulator - tvOS 14.3   | appletvsimulator14.3 | 12.3, 12.4    |
+| Simulator - tvOS 14.5   | appletvsimulator14.5 | 12.5          |
 | watchOS 6.2             | watchos6.2           | 11.7          |
 | watchOS 7.1             | watchos7.1           | 12.2          |
 | watchOS 7.2             | watchos7.2           | 12.3, 12.4    |
+| watchOS 7.4             | watchos7.4           | 12.5          |
 | Simulator - watchOS 6.2 | watchsimulator6.2    | 11.7          |
 | Simulator - watchOS 7.1 | watchsimulator7.1    | 12.2          |
 | Simulator - watchOS 7.2 | watchsimulator7.2    | 12.3, 12.4    |
+| Simulator - watchOS 7.4 | watchsimulator7.4    | 12.5          |
 | DriverKit 19.0          | driverkit.macosx19.0 | 11.7          |
 | DriverKit 20.0          | driverkit.macosx20.0 | 12.2          |
 | DriverKit 20.2          | driverkit.macosx20.2 | 12.3, 12.4    |
+| DriverKit 20.4          | driverkit.macosx20.4 | 12.5          |
 
 #### Installed Simulators
 | OS          | Xcode Version | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -246,12 +266,15 @@
 | iOS 14.2    | 12.2          | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (7th generation)<br>iPad (8th generation)<br>iPad Air (3rd generation)<br>iPad Air (4th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Pro (9.7-inch) |
 | iOS 14.3    | 12.3          | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (7th generation)<br>iPad (8th generation)<br>iPad Air (3rd generation)<br>iPad Air (4th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Pro (9.7-inch) |
 | iOS 14.4    | 12.4          | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (7th generation)<br>iPad (8th generation)<br>iPad Air (3rd generation)<br>iPad Air (4th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Pro (9.7-inch) |
+| iOS 14.5    | 12.5          | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (7th generation)<br>iPad (8th generation)<br>iPad Air (3rd generation)<br>iPad Air (4th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Pro (9.7-inch) |
 | tvOS 13.4   | 11.7          | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                 |
 | tvOS 14.2   | 12.2          | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                 |
 | tvOS 14.3   | 12.3<br>12.4  | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                 |
+| tvOS 14.5   | 12.5          | Apple TV<br>Apple TV 4K<br>Apple TV 4K (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                 |
 | watchOS 6.2 | 11.7          | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm                                                                                                                                                                                                                                                                                                          |
 | watchOS 7.1 | 12.2          | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm                                                                                                                                                                                                                                            |
 | watchOS 7.2 | 12.3<br>12.4  | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm                                                                                                                                                                                                                                            |
+| watchOS 7.4 | 12.5          | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm                                                                                                                                                                                                                                            |
 
 ### Android
 | Package Name               | Version                                                                                                                  |
@@ -266,8 +289,17 @@
 | CMake                      | 3.6.4111459                                                                                                              |
 | Google Play services       | 49                                                                                                                       |
 | Google Repository          | 58                                                                                                                       |
-| NDK                        | 21.3.6528147 |
+| NDK                        | 21.4.7075529<br>22.0.7026061                                                                                             |
 | SDK Patch Applier v4       | 1                                                                                                                        |
+
+#### Environment variables
+| Name                    | Value                                                                                              |
+| ----------------------- | -------------------------------------------------------------------------------------------------- |
+| ANDROID_HOME            | /Users/runner/Library/Android/sdk                                                                  |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/21.4.7075529 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/22.0.7026061                                                 |
+| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/21.4.7075529 |
+| ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                                                                  |
 
 
 
