@@ -316,7 +316,7 @@ Describe "Containers" -Skip:(Test-IsUbuntu16) {
 }
 
 Describe "Node.js" {
-    $testCases = @("node", "grunt", "gulp", "webpack", "parcel", "yarn", "newman", "netlify") | ForEach-Object { @{NodeCommand = $_} }
+    $testCases = @("node", "grunt", "gulp", "webpack", "parcel", "yarn", "newman", "netlify", "vercel") | ForEach-Object { @{NodeCommand = $_} }
 
     It "<NodeCommand>" -TestCases $testCases {
         param (
@@ -325,15 +325,9 @@ Describe "Node.js" {
 
         "$NodeCommand --version" | Should -ReturnZeroExitCode
     }
-
-    Context "Vercel CLI" {
-        It "Vercel CLI" {
-            "vercel --version" | Should -ReturnZeroExitCode
-        }
     
-        It "Validate the symlink link [now]" {
-            "now --version" | Should -ReturnZeroExitCode
-        }
+    It "Validate the symlink link [now]" {
+        "now --version" | Should -ReturnZeroExitCode
     }
 }
 
