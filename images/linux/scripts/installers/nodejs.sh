@@ -10,8 +10,8 @@ curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-inst
 npm install -g grunt gulp n parcel-bundler typescript newman
 npm install -g --save-dev webpack webpack-cli
 
-# Install the Netlify CLI
-npm i -g netlify-cli --unsafe-perm=true
+# Install the Netlify CLI using --unsafe-perm=true --allow-root options to avoid permission issues
+sudo npm i --unsafe-perm=true --allow-root -g netlify-cli
 
 # Install the Vercel CLI
 npm i -g vercel
@@ -30,4 +30,3 @@ apt-get update
 apt-get install -y --no-install-recommends yarn
 
 invoke_tests "Tools" "Node.js"
-invoke_tests "CLI.Tools" "Vercel CLI"
