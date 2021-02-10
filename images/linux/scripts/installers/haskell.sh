@@ -13,6 +13,10 @@ export GHCUP_INSTALL_BASE_PREFIX=/usr/local
 ghcup_bin=$GHCUP_INSTALL_BASE_PREFIX/.ghcup/bin
 setEtcEnvironmentVariable "BOOTSTRAP_HASKELL_NONINTERACTIVE" $BOOTSTRAP_HASKELL_NONINTERACTIVE
 
+apt-get install -y software-properties-common
+add-apt-repository -y ppa:hvr/ghc
+apt-get update
+
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 export PATH="$ghcup_bin:$PATH"
 prependEtcEnvironmentPath $ghcup_bin
@@ -30,6 +34,7 @@ done
 echo "install cabal..."
 ghcup install cabal
 
+chmod -R 777 $GHCUP_INSTALL_BASE_PREFIX/.ghcup
 ln -s $GHCUP_INSTALL_BASE_PREFIX/.ghcup /etc/skel/.ghcup
 
 # Install the latest stable release of haskell stack
