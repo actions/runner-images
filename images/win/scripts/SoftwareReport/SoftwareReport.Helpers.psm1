@@ -103,3 +103,22 @@ function New-MDNewLine {
     $newLineSymbol = [System.Environment]::NewLine
     return $newLineSymbol * $Count
 }
+
+function Get-LinkTarget {
+    param (
+        [string] $inputPath
+    )
+    $link = Get-Item $inputPath | Select-Object -ExpandProperty Target
+    if ($link) {
+      return " -> $link"
+    }
+    return ""
+}
+
+function Get-PathWithLink {
+    param (
+        [string] $inputPath
+    )
+    $link = Get-LinkTarget($inputPath)
+    return "${inputPath}${link}"
+}

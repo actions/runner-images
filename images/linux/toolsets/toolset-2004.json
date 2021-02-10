@@ -44,7 +44,7 @@
                 "1.14.*",
                 "1.15.*"
             ],
-            "default": "1.14.*"
+            "default": "1.15.*"
         },
         {
             "name": "Ruby",
@@ -85,10 +85,13 @@
         "additional_tools": [
             "cmake;3.10.2.4988404",
             "patcher;v4",
-            "ndk;21.3.6528147",
             "platform-tools",
             "cmdline-tools;latest"
-        ]
+        ],
+        "ndk": {
+            "lts": "21",
+            "latest": "22"
+        }
     },
     "powershellModules": [
         {"name": "MarkdownPS"},
@@ -148,9 +151,11 @@
             "zsync"
         ],
         "cmd_packages": [
+            "binutils",
             "bison",
             "brotli",
             "bzip2",
+            "coreutils",
             "curl",
             "file",
             "flex",

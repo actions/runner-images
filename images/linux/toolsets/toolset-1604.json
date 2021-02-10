@@ -45,7 +45,7 @@
                 "1.14.*",
                 "1.15.*"
             ],
-            "default": "1.14.*"
+            "default": "1.15.*"
         },
         {
             "name": "boost",
@@ -81,7 +81,7 @@
     "java": {
         "default": "8",
         "versions": [
-            "7", "8", "11", "12"
+            "8", "11", "12"
         ]
     },
     "android": {
@@ -106,10 +106,12 @@
             "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
             "patcher;v4",
-            "ndk;21.3.6528147",
             "platform-tools",
             "cmdline-tools;latest"
-        ]
+        ],
+        "ndk": {
+            "lts": "21"
+        }
     },
     "powershellModules": [
         {"name": "MarkdownPS"},
@@ -179,9 +181,11 @@
             "zsync"
         ],
         "cmd_packages": [
+            "binutils",
             "bison",
             "brotli",
             "bzip2",
+            "coreutils",
             "curl",
             "file",
             "flex",
