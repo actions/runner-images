@@ -98,11 +98,6 @@ function Set-DefaultRubyVersion
     Add-MachinePathItem -PathItem $rubyDir | Out-Null
 }
 
-# Define AGENT_TOOLSDIRECTORY environment variable
-$toolsDirectory = "C:/hostedtoolcache/windows"
-$env:AGENT_TOOLSDIRECTORY = $toolsDirectory
-setx AGENT_TOOLSDIRECTORY $toolsDirectory /M
-
 # Install Ruby
 $rubyTools = (Get-ToolsetContent).toolcache | Where-Object { $_.name -eq "Ruby" }
 $rubyToolVersions = $rubyTools.versions
