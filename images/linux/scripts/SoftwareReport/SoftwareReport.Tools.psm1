@@ -34,12 +34,24 @@ function Get-BazeliskVersion {
     return "Bazelisk $bazeliskVersion"
 }
 
+function Get-BinUtilsVersion {
+    $result = Get-CommandResult "dpkg-query --show binutils"
+    $binUtilsVersion = $result.Output| Take-OutputPart -Part 1 -Delimiter "`t" | Take-OutputPart -Part 0 -Delimiter "-"
+    return "binutils $binUtilsVersion"
+}
+
 function Get-CodeQLBundleVersion {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
     $CodeQLVersion = & $CodeQLPath version --quiet
     return "CodeQL Action Bundle $CodeQLVersion"
+}
+
+function Get-CoreUtilsVersion {
+    $result = Get-CommandResult "dpkg-query --show coreutils"
+    $coreUtilsVersion = $result.Output | Take-OutputPart -Part 1 -Delimiter "`t" | Take-OutputPart -Part 0 -Delimiter "-"
+    return "coreutils $coreUtilsVersion"
 }
 
 function Get-PodManVersion {
@@ -72,9 +84,14 @@ function Get-DockerComposeVersion {
     return "Docker Compose $composeVersion"
 }
 
-function Get-DockerMobyVersion {
-    $dockerVersion = docker -v | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "+"
-    return "Docker-Moby $dockerVersion"
+function Get-DockerMobyClientVersion {
+    $dockerClientVersion = sudo docker version --format '{{.Client.Version}}'
+    return "Docker-Moby Client $dockerClientVersion"
+}
+
+function Get-DockerMobyServerVersion {
+    $dockerServerVersion = sudo docker version --format '{{.Server.Version}}'
+    return "Docker-Moby Server $dockerServerVersion"
 }
 
 function Get-DockerBuildxVersion {

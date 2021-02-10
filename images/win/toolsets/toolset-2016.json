@@ -72,7 +72,7 @@
                 "1.14.*",
                 "1.15.*"
             ],
-            "default": "1.14.*"
+            "default": "1.15.*"
         },
         {
             "name": "Boost",
@@ -90,6 +90,7 @@
         {"name": "MarkdownPS"},
         {"name": "Pester"},
         {"name": "PowerShellGet"},
+        {"name": "PSScriptAnalyzer"},
         {"name": "PSWindowsUpdate"},
         {"name": "SqlServer"},
         {"name": "VSSetup"}
@@ -138,7 +139,7 @@
     "java": {
         "default": "8",
         "versions": [
-            "7", "8", "11", "13"
+            "8", "11", "13"
         ]
     },
     "android": {
