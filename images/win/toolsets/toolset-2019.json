@@ -90,6 +90,7 @@
         {"name": "MarkdownPS"},
         {"name": "Pester"},
         {"name": "PowerShellGet"},
+        {"name": "PSScriptAnalyzer"},
         {"name": "PSWindowsUpdate"},
         {"name": "SqlServer"},
         {"name": "VSSetup"}
