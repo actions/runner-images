@@ -191,6 +191,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzCopy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevSpacesCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Meteor.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-7zip.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Packer.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Pulumi.ps1",
@@ -240,7 +241,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-Git.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PHP.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Rust.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Julia.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Sbt.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Svn.ps1",
@@ -376,7 +376,9 @@
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1"
+                "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1",
+                "{{ template_dir }}/scripts/Installers/Configure-Updates.ps1",
+                "{{ template_dir }}/scripts/Installers/Configure-Networking.ps1"
             ]
         },
         {
