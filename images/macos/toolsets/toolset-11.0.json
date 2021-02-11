@@ -23,8 +23,15 @@
         "android-versions": [
             "11.1.0.26", "11.0.2.0"
         ],
-        "bundle-default": "6_12_5",
+        "bundle-default": "6_12_6",
         "bundles": [
+            {
+                "symlink": "6_12_6",
+                "mono":"6.12",
+                "ios": "14.10",
+                "mac": "7.4",
+                "android": "11.1"
+            },
             {
                 "symlink": "6_12_5",
                 "mono":"6.12",
