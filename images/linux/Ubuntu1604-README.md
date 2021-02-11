@@ -102,7 +102,7 @@
 - Google Cloud SDK 326.0.0
 - Hub CLI 2.14.2
 - Netlify CLI 3.5.0
-- oc CLI 4.6.15
+- OpenShift CLI (oc) 4.6.15
 - ORAS CLI 0.10.0
 - Vercel CLI 21.2.3
 
