@@ -1,18 +1,19 @@
 | Announcements |
 |-|
+| [[Ubuntu] M2_HOME variable will be removed on February, 15](https://github.com/actions/virtual-environments/issues/2600) |
 | [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
 | [[ubuntu, windows] Default Go version will be set to 1.15 on February, 8](https://github.com/actions/virtual-environments/issues/2447) |
 | [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
 | [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
 ***
 # Ubuntu 18.04.5 LTS
-- Image Version: 20210131.1
+- Image Version: 20210208.0
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.20(1)-release
 - Clang 6.0.0, 8.0.0, 9.0.0
-- Erlang 11.1.5
+- Erlang 11.1.7
 - GNU C++ 7.5.0, 8.4.0, 9.3.0, 10.1.0
 - GNU Fortran 7.5.0, 8.4.0, 9.3.0, 10.1.0
 - Julia 1.5.3
@@ -27,19 +28,19 @@
 ### Package Management
 - cpan 1.64
 - Gem 2.7.6
-- Helm 3.5.1
-- Homebrew 2.7.7
+- Helm 3.5.2
+- Homebrew 3.0.0
 - Miniconda 4.9.2
-- Npm 6.14.11
+- Npm 6.14.10
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 0.16.0.0
-- Vcpkg  (build from master \<401b26c>)
+- Vcpkg  (build from master \<5eea585>)
 - Yarn 1.22.5
 
 ### Project Management
 - Ant 1.10.5
-- Gradle 6.8.1
+- Gradle 6.8.2
 - Maven 3.6.3
 - Sbt 1.4.7
 
@@ -51,23 +52,25 @@
 - AzCopy7 7.3.0 (available by `azcopy` alias)
 - Bazel 4.0.0
 - Bazelisk 1.7.3
+- binutils 2.30
 - Buildah 1.19.2
 - CMake 3.19.4
 - CodeQL Action Bundle 2.4.2
+- coreutils 8.28
 - curl 7.58.0
 - Docker Compose 1.28.2
 - Docker-Buildx 0.5.1
-- Docker-Moby 19.03.14
+- Docker-Moby 19.03.15
 - Git 2.30.0
 - Git LFS 2.13.2
 - Git-ftp 1.3.1
 - Haveged 1.9.1
-- Heroku 7.47.11
-- HHVM (HipHop VM) 4.94.0
+- Heroku 7.47.12
+- HHVM (HipHop VM) 4.95.0
 - jq 1.5
 - Kind 0.10.0
 - Kubectl 1.19.0
-- Kustomize 3.9.2
+- Kustomize 3.9.3
 - Leiningen 2.9.5
 - m4 1.4.18
 - MediaInfo 17.12
@@ -79,13 +82,13 @@
 - pass 1.7.1
 - PhantomJS 2.1.1
 - Podman 2.2.1
-- Pulumi 2.19.0
+- Pulumi 2.20.0
 - R 4.0.3
 - Skopeo 1.2.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.9.7
 - Swig 3.0.12
-- Terraform 0.14.5
+- Terraform 0.14.6
 - unzip 6.00
 - wget 1.19.4
 - yamllint 1.26.0
@@ -93,24 +96,23 @@
 - zstd 1.3.3
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.69
-- AWS CLI 1.18.223
-- AWS CLI Session manager plugin 1.2.30.0
-- AWS SAM CLI 1.16.0
+- Alibaba Cloud CLI 3.0.71
+- AWS CLI 1.19.3
+- AWS CLI Session manager plugin 1.2.54.0
+- AWS SAM CLI 1.17.0
 - Azure CLI (azure-cli) 2.18.0
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.5.0
-- Google Cloud SDK 325.0.0
+- Google Cloud SDK 326.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 3.4.6
-- oc CLI 4.6.13
-- ORAS CLI 0.9.0
-- Vercel CLI 21.2.2
+- Netlify CLI 3.5.0
+- oc CLI 4.6.15
+- ORAS CLI 0.10.0
+- Vercel CLI 21.2.3
 
 ### Java
 | Version             | Vendor       | Environment Variable |
 | ------------------- | ------------ | -------------------- |
-| 1.7.0_292           | Zulu         | JAVA_HOME_7_X64      |
 | 1.8.0_282 (default) | AdoptOpenJDK | JAVA_HOME_8_X64      |
 | 11.0.10             | AdoptOpenJDK | JAVA_HOME_11_X64     |
 | 12.0.2              | AdoptOpenJDK | JAVA_HOME_12_X64     |
@@ -118,7 +120,7 @@
 ### PHP
 | Tool     | Version                           |
 | -------- | --------------------------------- |
-| PHP      | 7.1.33 7.2.34 7.3.26 7.4.14 8.0.1 |
+| PHP      | 7.1.33 7.2.34 7.3.27 7.4.15 8.0.2 |
 | Composer | 2.0.9                             |
 | PHPUnit  | 8.5.14                            |
 
@@ -134,17 +136,17 @@
 - Rustup 1.23.1
 
 #### Packages
-- Bindgen 0.56.0
+- Bindgen 0.57.0
 - Cargo audit 0.13.1
 - Cargo clippy 0.0.212
 - Cargo outdated 0.9.14
-- Cbindgen 0.16.0
+- Cbindgen 0.17.0
 - Rustfmt 1.4.25
 
 ### Browsers and Drivers
-- Google Chrome 88.0.4324.96
+- Google Chrome 88.0.4324.150
 - ChromeDriver 88.0.4324.96
-- Mozilla Firefox 84.0.2
+- Mozilla Firefox 85.0
 - Geckodriver 0.29.0
 
 ### .NET Core SDK
@@ -159,7 +161,7 @@
 - sqlite3 3.22.0
 
 #### MySQL
-- MySQL 5.7.32
+- MySQL 5.7.33
 - MySQL Server (user:root password:root)
 
 ```
@@ -177,8 +179,8 @@
 
 #### Go
 - 1.13.15
-- 1.14.14
-- 1.15.7
+- 1.14.15
+- 1.15.8
 
 #### Node.js
 - 10.23.2
@@ -232,16 +234,16 @@
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                         |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                               |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                               |
-| NDK                        | 21.3.6528147  |
+| NDK                        | 21.4.7075529                                                                                                                                                                                                                                                                                                     |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                                                |
 
 ### Cached Docker images
 | Repository:Tag                                            | Digest                                                                   | Created    |
 | --------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| node:10                                                   | sha256:e7948c8721f6ed5f6c78ead4c3942526c5ddef94f5859c61639bfd55ca751fbb  | 2021-01-27 |
+| node:10                                                   | sha256:033ebaadc711dbfc3b6805c6202e88a2aaf764448dc720a5c4e0396bdf54482e  | 2021-02-06 |
+| node:12                                                   | sha256:aa530dfdd028ee531db6fd0e8f262b130603e5480513c19d497eefe9e7a4f158  | 2021-02-06 |
+| buildpack-deps:stretch                                    | sha256:d29b531f43722076334061ae4e9d8e108e78e421b1c144556c46c58955dd558b  | 2021-02-05 |
 | node:10-alpine                                            | sha256:7351c71024245bd1133674ce2a0869c80926712a9e03004a93cf58a066a8ad68  | 2021-01-27 |
-| node:12                                                   | sha256:9c5e64d867035cd2b08dbc4a537dbd638c8d761be627c85a00e585309489d6e6  | 2021-01-12 |
-| buildpack-deps:stretch                                    | sha256:3b52799bb11d79e36b8d6ac739fed89e1ee5ead0c851fc8df42a677cfb6e6b61  | 2021-01-12 |
 | buildpack-deps:buster                                     | sha256:782de14b2481856bb30181ef6c1987ddc550579fcf0dae94403c66791095b455  | 2021-01-12 |
 | debian:9                                                  | sha256:7f2706b124ee835c3bcd7dc81d151d4f5eca3f4306c5af5c73848f5f89f10e0b  | 2021-01-12 |
 | debian:8                                                  | sha256:d54da4e38a30a690017856dc3b67e53bf3a3094dd693006b5d00408ba1d90d50  | 2021-01-12 |
@@ -255,7 +257,7 @@
 | mcr.microsoft.com/azure-pipelines/node8-typescript:latest | sha256:e52e60b9f71183969830a3664279b5d8c799b4b0ec2c25a0686f7c02f6a9669a  | 2018-10-09 |
 
 ### Installed apt packages
-- bison, brotli, build-essential, bzip2, curl, dbus, dnsutils, dpkg, fakeroot, file, flex, ftp, gnupg2, haveged, imagemagick, iproute2, iputils-ping, jq, lib32z1, libc++-dev, libc++abi-dev, libcurl3, libgbm-dev, libgconf-2-4, libgsl-dev, libgtk-3-0, libmagic-dev, libmagickcore-dev, libmagickwand-dev, libsecret-1-dev, libsqlite3-dev, libunwind8, libxkbfile-dev, libxss1, locales, m4, mediainfo, netcat, openssh-client, p7zip-full, p7zip-rar, parallel, pass, patchelf, pkg-config, pollinate, rpm, rsync, shellcheck, sphinxsearch, sqlite3, ssh, subversion, sudo, swig, telnet, texinfo, time, tk, tzdata, unzip, upx, wget, xorriso, xvfb, xz-utils, zip, zstd, zsync
+- binutils, bison, brotli, build-essential, bzip2, coreutils, curl, dbus, dnsutils, dpkg, fakeroot, file, flex, ftp, gnupg2, haveged, imagemagick, iproute2, iputils-ping, jq, lib32z1, libc++-dev, libc++abi-dev, libcurl3, libgbm-dev, libgconf-2-4, libgsl-dev, libgtk-3-0, libmagic-dev, libmagickcore-dev, libmagickwand-dev, libsecret-1-dev, libsqlite3-dev, libunwind8, libxkbfile-dev, libxss1, locales, m4, mediainfo, netcat, openssh-client, p7zip-full, p7zip-rar, parallel, pass, patchelf, pkg-config, pollinate, rpm, rsync, shellcheck, sphinxsearch, sqlite3, ssh, subversion, sudo, swig, telnet, texinfo, time, tk, tzdata, unzip, upx, wget, xorriso, xvfb, xz-utils, zip, zstd, zsync
 
 
 
