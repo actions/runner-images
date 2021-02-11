@@ -60,13 +60,3 @@ Describe "Oras CLI" {
         "oras version" | Should -ReturnZeroExitCode
     }
 }
-
-Describe "Vercel CLI" {
-    It "Vercel CLI" {
-        "vercel --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Validate the symlink link [now]" {
-        "now --version" | Should -ReturnZeroExitCode
-    }
-}

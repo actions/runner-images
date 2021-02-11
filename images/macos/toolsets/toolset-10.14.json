@@ -226,7 +226,8 @@
             ]
         },
         {"name": "MarkdownPS"},
-        {"name": "Pester"}
+        {"name": "Pester"},
+        {"name": "PSScriptAnalyzer"}
     ],
     "brew": {
         "common_packages": [
