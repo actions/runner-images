@@ -7,7 +7,7 @@ Describe "Haskell" {
 
     It "GHC directory contains three version of GHC" -TestCases $testCase {
         param ([object] $GHCVersions)
-        $GHCVersions.Count | Should -Be 3
+        $GHCVersions.Count | Should -Be 2
     }
 
     $testCases = $GHCVersions | ForEach-Object { @{ GHCPath = "${_}/bin/ghc"} }
