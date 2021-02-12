@@ -5,7 +5,7 @@ Describe "Haskell" {
     
     $testCase = @{ GHCVersions = $GHCVersions }
 
-    It "GHC directory contains three version of GHC" -TestCases $testCase {
+    It "GHC directory contains two version of GHC" -TestCases $testCase {
         param ([object] $GHCVersions)
         $GHCVersions.Count | Should -Be 2
     }
