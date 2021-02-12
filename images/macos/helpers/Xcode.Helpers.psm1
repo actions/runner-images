@@ -122,3 +122,28 @@ function Get-XcodePairsList {
     }
     return $result
 }
+
+function Invoke-XCVersion {
+    param(
+        [Parameter(Mandatory)]
+        [string] $Command,
+        [Parameter()]
+        [int] $RetryAttempts = 7,
+        [Parameter()]
+        [int] $PauseDuration = 1
+    )
+
+    do {
+        Write-Host "Current attempt: [$RetryAttempts]"
+        $result = Get-CommandResult -Command $Command -Multiline
+        Write-Host "Exit code: [$($result.ExitCode)]"
+        Write-Host "Output message: "
+        $($result.Output)
+        $RetryAttempts--
+        Start-Sleep -Seconds $PauseDuration
+    }
+    while(($result.ExitCode -ne 0) -and ($RetryAttempts -gt 0))
+    if ($result.ExitCode -ne 0) {
+        throw "Command [$Command] has finished with non-zero exit code. Output Message: [$($result.Output)]"
+    }
+}
