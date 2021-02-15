@@ -18,7 +18,7 @@ apt-get install -y software-properties-common
 add-apt-repository -y ppa:hvr/ghc
 apt-get update
 
-curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh > /dev/null 2>&1 || true
 export PATH="$ghcup_bin:$PATH"
 prependEtcEnvironmentPath $ghcup_bin
 
