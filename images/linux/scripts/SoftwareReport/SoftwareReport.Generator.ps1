@@ -103,7 +103,6 @@ $toolsList = @(
     (Get-DockerMobyServerVersion),
     (Get-DockerComposeVersion),
     (Get-DockerBuildxVersion),
-    (Get-FastlaneVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GitFTPVersion),
@@ -143,6 +142,10 @@ if (-not (Test-IsUbuntu16)) {
         (Get-BuildahVersion),
         (Get-SkopeoVersion)
     )
+}
+
+if (Test-IsUbuntu20) {
+    $toolsList += (Get-FastlaneVersion)
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
