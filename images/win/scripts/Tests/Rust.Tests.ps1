@@ -13,18 +13,18 @@ Describe "Rust" {
         @{ToolName = "cargo outdated"; binPath = "C:\Users\Default\.cargo\bin\cargo-outdated.exe"}
     )
 
-    $rustEnvNotExists = @(
-        @{envVar = "RUSTUP_HOME"}
-        @{envVar = "CARGO_HOME"}
-    )
+#     $rustEnvNotExists = @(
+#         @{envVar = "RUSTUP_HOME"}
+#         @{envVar = "CARGO_HOME"}
+#     )
 
     It "C:\Users\Default\.rustup and C:\Users\Default\.cargo folders exist" {
         "C:\Users\Default\.rustup", "C:\Users\Default\.cargo" | Should -Exist
     }
 
-    It "<envVar> environment variable does not exist" -TestCases $rustEnvNotExists {
-        [Environment]::GetEnvironmentVariables("Machine").ContainsKey($envVar) | Should -BeFalse
-    }
+#     It "<envVar> environment variable does not exist" -TestCases $rustEnvNotExists {
+#         [Environment]::GetEnvironmentVariables("Machine").ContainsKey($envVar) | Should -BeFalse
+#     }
 
     It "<ToolName> is installed to the '<binPath>' folder" -TestCases $rustTools {
         "$ToolName --version" | Should -ReturnZeroExitCode
