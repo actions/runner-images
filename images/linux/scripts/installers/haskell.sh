@@ -18,18 +18,21 @@ apt-get install -y software-properties-common
 add-apt-repository -y ppa:hvr/ghc
 apt-get update
 
+# Install GHCup
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh > /dev/null 2>&1 || true
 export PATH="$ghcup_bin:$PATH"
 prependEtcEnvironmentPath $ghcup_bin
 
-availableVersions=$(ghcup list -t ghc -r | grep -v "prerelease" | awk '{print $2}')
+# Get 2 latest Haskell Major.Minor versions
+allGhcVersions=$(apt-cache search "^ghc-" | grep -Po '(\d*\.){2}\d*' | sort --unique --version-sort)
+ghcMajorMinorVersions=$(echo "$allGhcVersions" | cut -d "." -f 1,2 | sort --unique --version-sort | tail -2)
 
-minorMajorVersions=$(echo "$availableVersions" | cut -d"." -f 1,2 | uniq | tail -n2)
-for majorMinorVersion in $minorMajorVersions; do
-    fullVersion=$(echo "$availableVersions" | grep "$majorMinorVersion." | tail -n1)
-    echo "install ghc version $fullVersion..."
-    apt-get install -y ghc-$fullVersion
-    defaultGHCVersion=$fullVersion
+for version in $ghcMajorMinorVersions; do
+    # Get latest patch version for given Major.Minor one (ex. 8.6.5 for 8.6) and install it
+    exactVersion=$(echo "$allGhcVersions" | grep $version | sort --unique --version-sort | tail -1)
+    apt-get install -y ghc-$exactVersion
+    ghcInstalledVersions+=("$exactVersion")
+    defaultGHCVersion=$exactVersion
 done
 
 echo "install cabal..."
