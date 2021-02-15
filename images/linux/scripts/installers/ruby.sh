@@ -1,13 +1,23 @@
 #!/bin/bash -e
 ################################################################################
 ##  File:  ruby.sh
-##  Desc:  Installs Ruby requirements
+##  Desc:  Installs Ruby requirements and ruby gems
 ################################################################################
 
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/os.sh
 
-sudo apt-get install ruby-full
-sudo gem update --system
+apt-get install ruby-full
+gem update --system
+
+# Install ruby gems from toolset
+gemsToInstall=$(get_toolset_value ".rubygems[] .name")
+if [ -n "$gemsToInstall" ]; then
+    for $gem in $gemsToInstall; do
+        echo "Installing rubygem $gem"
+        gem install $gem
+    done
+fi
 
 # Install Ruby requirements
 apt-get install -y libz-dev openssl libssl-dev
@@ -44,3 +54,5 @@ for TOOLSET_VERSION in ${TOOLSET_VERSIONS[@]}; do
         touch $COMPLETE_FILE_PATH
     fi
 done
+
+invoke_tests "Tools" "Ruby"
