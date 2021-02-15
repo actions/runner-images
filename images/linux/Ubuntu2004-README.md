@@ -29,11 +29,6 @@
 - Swift 5.3.3
 
 ### Package Management
-#### Environment variables
-| Name                    | Value                  |
-| ----------------------- | ---------------------- |
-| CONDA                   | /usr/share/miniconda   |
-| VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 - cpan 1.64
 - Gem 3.1.2
@@ -46,6 +41,12 @@
 - Pipx 0.16.0.0
 - Vcpkg  (build from master \<17c3670>)
 - Yarn 1.22.5
+
+#### Environment variables
+| Name                    | Value                  |
+| ----------------------- | ---------------------- |
+| CONDA                   | /usr/share/miniconda   |
+| VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
 - Ant 1.10.7
