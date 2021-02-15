@@ -42,7 +42,6 @@ $toolsEnvironmentVariables = @{
         pathTemplates = @(
             "{0}\bin"
         )
-        defaultVariable = "GOROOT"
         variableTemplate = "GOROOT_{0}_{1}_X64"
     }
 }
