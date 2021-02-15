@@ -65,9 +65,6 @@ $packageManagementList = @(
         (Get-RubyGemsVersion),
         (Get-VcpkgVersion)
 )
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
 
 if (-not (Test-IsUbuntu16)) {
     $packageManagementList += @(
@@ -76,6 +73,9 @@ if (-not (Test-IsUbuntu16)) {
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
@@ -224,7 +224,6 @@ if (Test-IsUbuntu20) {
 }
 
 $markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList
-$markdown += New-MDNewLine
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
