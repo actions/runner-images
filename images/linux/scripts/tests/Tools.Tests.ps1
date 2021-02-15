@@ -344,3 +344,26 @@ Describe "Python" {
         "$PythonCommand --version" | Should -ReturnZeroExitCode
     }   
 }
+
+Describe "Ruby" {
+    $testCases = @("ruby", "gem") | ForEach-Object { @{RubyCommand = $_} }
+
+    It "<RubyCommand>" -TestCases $testCases {
+        param (
+            [string] $RubyCommand
+        )
+
+        "$RubyCommand --version" | Should -ReturnZeroExitCode
+    }
+
+    $gemTestCases = (Get-ToolsetContent).rubygems | ForEach-Object {
+        @{gemName = $_.name}
+    }
+
+    if ($gemTestCases)
+    {
+        It "<gemName> is installed" -TestCases $gemTestCases {
+            "gem list -i '^$gemName$'" | Should -BeTrue
+        }
+    }
+}
