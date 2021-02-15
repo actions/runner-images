@@ -264,6 +264,11 @@ function Get-AWSSAMVersion {
     return "AWS SAM CLI $(sam --version | Take-OutputPart -Part -1)"
 }
 
+function Get-FastlaneVersion {
+    $fastlaneVersion = fastlane --version | Select-String "^fastlane [0-9]" | Take-OutputPart -Part 1
+    return "Fastlane $fastlaneVersion"
+}
+
 function Get-HubCliVersion {
     $hubVersion = hub --version | Select-String "hub version" | Take-OutputPart -Part 2
     return "Hub CLI $hubVersion"
