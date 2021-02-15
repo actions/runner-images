@@ -362,7 +362,7 @@ Describe "Ruby" {
 
     if ($gemTestCases)
     {
-        It "<gemName> is installed" -TestCases $gemTestCases {
+        It "Gem <gemName> is installed" -TestCases $gemTestCases {
             "gem list -i '^$gemName$'" | Should -BeTrue
         }
     }
