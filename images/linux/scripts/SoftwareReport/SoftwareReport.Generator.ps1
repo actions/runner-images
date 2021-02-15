@@ -103,6 +103,7 @@ $toolsList = @(
     (Get-DockerMobyServerVersion),
     (Get-DockerComposeVersion),
     (Get-DockerBuildxVersion),
+    (Get-FastlaneVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GitFTPVersion),
