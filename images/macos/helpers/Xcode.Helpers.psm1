@@ -130,7 +130,7 @@ function Invoke-XCVersion {
         [Parameter()]
         [int] $RetryAttempts = 7,
         [Parameter()]
-        [int] $PauseDuration = 1
+        [int] $PauseDurationSecs = 1
     )
     
     $Command = "xcversion $Arguments"
@@ -143,7 +143,7 @@ function Invoke-XCVersion {
         $result.Output | ForEach-Object { Write-Host $_ }
         $RetryAttempts--
         if($result.ExitCode -ne 0) {
-            Start-Sleep -Seconds $PauseDuration
+            Start-Sleep -Seconds $PauseDurationSecs
         }
     }
     while(($result.ExitCode -ne 0) -and ($RetryAttempts -gt 0))
