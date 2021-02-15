@@ -181,6 +181,11 @@ function Get-RubyVersion {
     return "Ruby $rubyVersion"
 }
 
+function Get-RubyGemsVersion {
+    $rubyGemsVersion = Run-Command "gem --version"
+    return "RubyGems $rubyGemsVersion"
+}
+
 function Get-PHPVersion {
     $PHPVersion = Run-Command "php --version" | Select-Object -First 1 | Take-Part -Part 0,1
     return $PHPVersion
