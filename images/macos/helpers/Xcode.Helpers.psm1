@@ -140,7 +140,7 @@ function Invoke-XCVersion {
         $result = Get-CommandResult -Command $Command -Multiline
         Write-Host "Exit code: [$($result.ExitCode)]"
         Write-Host "Output message: "
-        $($result.Output)
+        $result.Output | ForEach-Object { Write-Host $_ }
         $RetryAttempts--
         if($result.ExitCode -ne 0) {
             Start-Sleep -Seconds $PauseDuration
