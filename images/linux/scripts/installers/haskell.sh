@@ -14,6 +14,8 @@ export BOOTSTRAP_HASKELL_GHC_VERSION=0
 ghcup_bin=$GHCUP_INSTALL_BASE_PREFIX/.ghcup/bin
 setEtcEnvironmentVariable "BOOTSTRAP_HASKELL_NONINTERACTIVE" $BOOTSTRAP_HASKELL_NONINTERACTIVE
 
+# Install Herbert V. Riedel's PPA for managing multiple version of ghc on ubuntu.
+# https://launchpad.net/~hvr/+archive/ubuntu/ghc
 apt-get install -y software-properties-common
 add-apt-repository -y ppa:hvr/ghc
 apt-get update
@@ -27,6 +29,8 @@ prependEtcEnvironmentPath $ghcup_bin
 allGhcVersions=$(apt-cache search "^ghc-" | grep -Po '(\d*\.){2}\d*' | sort --unique --version-sort)
 ghcMajorMinorVersions=$(echo "$allGhcVersions" | cut -d "." -f 1,2 | sort --unique --version-sort | tail -2)
 
+# We are using apt-get to install ghc, not ghcup,
+# because ghc installed through ghcup takes up too much disk space (2GB versus 1GB through apt-get)
 for version in $ghcMajorMinorVersions; do
     # Get latest patch version for given Major.Minor one (ex. 8.6.5 for 8.6) and install it
     exactVersion=$(echo "$allGhcVersions" | grep $version | sort --unique --version-sort | tail -1)
