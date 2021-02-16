@@ -123,6 +123,7 @@ function Get-XcodePairsList {
     return $result
 }
 
+#Helper function for execution of xcversion due to: https://github.com/fastlane/fastlane/issues/18161
 function Invoke-XCVersion {
     param(
         [Parameter(Mandatory)]
@@ -135,21 +136,19 @@ function Invoke-XCVersion {
     
     $Command = "xcversion $Arguments"
     Write-Host "Execute [$Command]"
-    do {
-        Write-Host "Current attempt: [$RetryAttempts]"
+    for ($Attempt=1; $Attempt -le $RetryAttempts; $Attempt++) {
+        Write-Host "Current attempt: [$Attempt]"
         $result = Get-CommandResult -Command $Command -Multiline
         Write-Host "Exit code: [$($result.ExitCode)]"
         Write-Host "Output message: "
         $result.Output | ForEach-Object { Write-Host $_ }
-        $RetryAttempts--
-        if($result.ExitCode -ne 0) {
+        if ($result.ExitCode -ne 0) {
             Start-Sleep -Seconds $PauseDurationSecs
+        } else {
+            return $result.Output
         }
     }
-    while(($result.ExitCode -ne 0) -and ($RetryAttempts -gt 0))
     if ($result.ExitCode -ne 0) {
         throw "Command [$Command] has finished with non-zero exit code."
-    } else {
-        return $result.Output
-    }
+    } 
 }
