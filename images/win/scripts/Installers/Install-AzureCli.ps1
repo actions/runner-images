@@ -3,7 +3,8 @@
 ##  Desc:  Install Azure CLI
 ################################################################################
 
-Choco-Install -PackageName azure-cli
+# Stick to 2.18.0 since 2.19 contains a bug https://github.com/Azure/azure-cli/issues/16908
+Choco-Install -PackageName azure-cli --version 2.18.0
 
 $AzureCliExtensionPath = Join-Path $Env:CommonProgramFiles 'AzureCliExtensionDirectory'
 New-Item -ItemType "directory" -Path $AzureCliExtensionPath
