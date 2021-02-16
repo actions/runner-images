@@ -17,11 +17,6 @@ apt-get -qq -y install ${install_packages[@]}
 mkdir -p /etc/containers
 echo -e "[registries.search]\nregistries = ['docker.io', 'quay.io']" | tee /etc/containers/registries.conf
 
-if isUbuntu18; then
-    # Remote error from secret service: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.secrets was not provided by any .service files
-    apt-get remove dbus-user-session
-fi
-
 if isUbuntu18 || isUbuntu20 ; then
     invoke_tests "Tools" "Containers"
 fi
