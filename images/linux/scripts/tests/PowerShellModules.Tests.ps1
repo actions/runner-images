@@ -22,7 +22,7 @@ Describe "PowerShellModules" {
     }
 }
 
-Describe "AzureModules" {
+Describe "AzureModules" -Skip:(Test-IsUbuntu18) {
     $modules = (Get-ToolsetContent).azureModules
     $modulesRootPath = "/usr/share"
 
@@ -45,6 +45,45 @@ Describe "AzureModules" {
                         Import-Module -Name $moduleName
                         (Get-Module -Name $moduleName).Version.ToString()
 
+                    } -ArgumentList $modulePath, $moduleName
+
+                    $moduleVersion = $testJob | Wait-Job | Receive-Job
+                    Remove-Job $testJob
+                    $moduleVersion | Should -Match $expectedVersion
+                }
+            }
+
+            if ($module.default) {
+                $moduleInfo = @{ moduleName = $moduleName; moduleDefault = $module.default }
+                It "<moduleDefault> set as default" -TestCases $moduleInfo {
+                        $moduleVersion = (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
+                        $moduleVersion | Should -Match $moduleDefault
+                }
+            }
+        }
+    }
+}
+
+Describe "AzureModules" -Skip:(-not (Test-IsUbuntu18)) {
+    $modules = (Get-ToolsetContent).azureModules
+    $modulesRootPath = "/usr/share"
+
+    foreach ($module in $modules) {
+        $moduleName = $module.name
+
+        Context "$moduleName" {
+            foreach ($version in $module.versions) {
+                $modulePath = Join-Path -Path $modulesRootPath -ChildPath "${moduleName}_${version}"
+                $moduleInfo = @{ moduleName = $moduleName; modulePath = $modulePath; expectedVersion = $version }
+                It "<expectedVersion> exists in modules directory" -TestCases $moduleInfo {
+                    $testJob = Start-Job -ScriptBlock {
+                        param (
+                            $modulePath,
+                            $moduleName
+                        )
+
+                        $env:PSModulePath = "${modulePath}:${env:PSModulePath}"
+                        (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
                     } -ArgumentList $modulePath, $moduleName
 
                     $moduleVersion = $testJob | Wait-Job | Receive-Job
