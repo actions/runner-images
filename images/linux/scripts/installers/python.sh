@@ -41,6 +41,7 @@ if isUbuntu18 || isUbuntu20 ; then
 fi
 
 # Adding this dir to PATH will make installed pip commands are immediately available.
+mkdir -p /etc/skel/.local/bin
 echo 'export PATH="$PATH:$HOME/.local/bin"' | tee -a /etc/skel/.bashrc
 
 invoke_tests "Tools" "Python"
