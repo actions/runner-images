@@ -29,7 +29,7 @@ function Invoke-DownloadXcodeArchive {
         throw "Version '$Version' can't be matched to any available version"
     }
     Write-Host "Downloading Xcode $resolvedVersion"
-    Invoke-XCVersion -Arguments "install '$resolvedVersion' --no-install"    
+    Invoke-XCVersion -Arguments "install '$resolvedVersion' --no-install" | Out-Host    
 
     $xcodeXipName = "$resolvedVersion" -replace " ", "_"
     $xcodeXipFile = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_$xcodeXipName.xip" | Select-Object -First 1
