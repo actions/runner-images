@@ -70,7 +70,7 @@ Describe "AzureModules" {
                         $moduleVersion = (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
                         $moduleVersion | Should -Match $moduleDefault
                 }
-            }  
+            }
         }
     }
 }
