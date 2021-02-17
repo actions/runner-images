@@ -4,8 +4,6 @@
 ##  Desc:  Installs container tools: podman, buildah and skopeo onto the image
 ################################################################################
 
-source $HELPER_SCRIPTS/os.sh
-
 # Install podman, buildah, scopeo container's tools
 install_packages=(podman buildah skopeo)
 source /etc/os-release

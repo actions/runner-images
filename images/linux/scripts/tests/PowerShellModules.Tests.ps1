@@ -34,30 +34,16 @@ Describe "AzureModules" {
                 $modulePath = Join-Path -Path $modulesRootPath -ChildPath "${moduleName}_${version}"
                 $moduleInfo = @{ moduleName = $moduleName; modulePath = $modulePath; expectedVersion = $version }
                 It "<expectedVersion> exists in modules directory" -TestCases $moduleInfo {
-                    $sb = {
+                    $testJob = Start-Job -ScriptBlock {
                         param (
                             $modulePath,
                             $moduleName
                         )
 
                         $env:PSModulePath = "${modulePath}:${env:PSModulePath}"
-                        Import-Module -Name $moduleName
-                        (Get-Module -Name $moduleName).Version.ToString()
-                    }
-                    
-                    if (Test-IsUbuntu18) {
-                        $sb = {
-                            param (
-                                $modulePath,
-                                $moduleName
-                            )
+                        (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
+                    } -ArgumentList $modulePath, $moduleName
 
-                            $env:PSModulePath = "${modulePath}:${env:PSModulePath}"
-                            (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
-                        }
-                    }
-                    
-                    $testJob = Start-Job -ScriptBlock $sb -ArgumentList $modulePath, $moduleName
                     $moduleVersion = $testJob | Wait-Job | Receive-Job
                     Remove-Job $testJob
                     $moduleVersion | Should -Match $expectedVersion
