@@ -17,6 +17,4 @@ apt-get -qq -y install ${install_packages[@]}
 mkdir -p /etc/containers
 echo -e "[registries.search]\nregistries = ['docker.io', 'quay.io']" | tee /etc/containers/registries.conf
 
-if isUbuntu18 || isUbuntu20 ; then
-    invoke_tests "Tools" "Containers"
-fi
+invoke_tests "Tools" "Containers"

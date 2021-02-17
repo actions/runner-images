@@ -22,7 +22,7 @@ Describe "PowerShellModules" {
     }
 }
 
-Describe "AzureModules" -Skip:(Test-IsUbuntu18) {
+Describe "AzureModules" {
     $modules = (Get-ToolsetContent).azureModules
     $modulesRootPath = "/usr/share"
 
@@ -30,12 +30,11 @@ Describe "AzureModules" -Skip:(Test-IsUbuntu18) {
         $moduleName = $module.name
 
         Context "$moduleName" {
-
             foreach ($version in $module.versions) {
                 $modulePath = Join-Path -Path $modulesRootPath -ChildPath "${moduleName}_${version}"
                 $moduleInfo = @{ moduleName = $moduleName; modulePath = $modulePath; expectedVersion = $version }
                 It "<expectedVersion> exists in modules directory" -TestCases $moduleInfo {
-                    $testJob = Start-Job -ScriptBlock {
+                    $sb = {
                         param (
                             $modulePath,
                             $moduleName
@@ -44,9 +43,21 @@ Describe "AzureModules" -Skip:(Test-IsUbuntu18) {
                         $env:PSModulePath = "${modulePath}:${env:PSModulePath}"
                         Import-Module -Name $moduleName
                         (Get-Module -Name $moduleName).Version.ToString()
+                    }
+                    
+                    if (Test-IsUbuntu18) {
+                        $sb = {
+                            param (
+                                $modulePath,
+                                $moduleName
+                            )
 
-                    } -ArgumentList $modulePath, $moduleName
-
+                            $env:PSModulePath = "${modulePath}:${env:PSModulePath}"
+                            (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
+                        }
+                    }
+                    
+                    $testJob = Start-Job -ScriptBlock $sb -ArgumentList $modulePath, $moduleName
                     $moduleVersion = $testJob | Wait-Job | Receive-Job
                     Remove-Job $testJob
                     $moduleVersion | Should -Match $expectedVersion
@@ -59,46 +70,7 @@ Describe "AzureModules" -Skip:(Test-IsUbuntu18) {
                         $moduleVersion = (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
                         $moduleVersion | Should -Match $moduleDefault
                 }
-            }
-        }
-    }
-}
-
-Describe "AzureModules" -Skip:(-not (Test-IsUbuntu18)) {
-    $modules = (Get-ToolsetContent).azureModules
-    $modulesRootPath = "/usr/share"
-
-    foreach ($module in $modules) {
-        $moduleName = $module.name
-
-        Context "$moduleName" {
-            foreach ($version in $module.versions) {
-                $modulePath = Join-Path -Path $modulesRootPath -ChildPath "${moduleName}_${version}"
-                $moduleInfo = @{ moduleName = $moduleName; modulePath = $modulePath; expectedVersion = $version }
-                It "<expectedVersion> exists in modules directory" -TestCases $moduleInfo {
-                    $testJob = Start-Job -ScriptBlock {
-                        param (
-                            $modulePath,
-                            $moduleName
-                        )
-
-                        $env:PSModulePath = "${modulePath}:${env:PSModulePath}"
-                        (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
-                    } -ArgumentList $modulePath, $moduleName
-
-                    $moduleVersion = $testJob | Wait-Job | Receive-Job
-                    Remove-Job $testJob
-                    $moduleVersion | Should -Match $expectedVersion
-                }
-            }
-
-            if ($module.default) {
-                $moduleInfo = @{ moduleName = $moduleName; moduleDefault = $module.default }
-                It "<moduleDefault> set as default" -TestCases $moduleInfo {
-                        $moduleVersion = (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
-                        $moduleVersion | Should -Match $moduleDefault
-                }
-            }
+            }  
         }
     }
 }
