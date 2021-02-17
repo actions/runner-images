@@ -1,21 +1,19 @@
 | Announcements |
 |-|
 | [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
-| [[macOS] Bazel 4.0.0 breaking changes](https://github.com/actions/virtual-environments/issues/2547) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 | [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
-| [[macOS] Homebrew is updated to 2.7 with few major changes](https://github.com/actions/virtual-environments/issues/2415) |
 ***
 # macOS 10.15 info
-- System Version: macOS 10.15.7 (19H114)
+- System Version: macOS 10.15.7 (19H512)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210130.1
+- Image Version: 20210207.2
 
 ## Installed Software
 ### Language and Runtime
 - .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 5.0.100 5.0.101 5.0.102
 - Bash 3.2.57(1)-release
-- Clang/LLVM 11.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
+- Clang/LLVM 11.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
 - gcc-10 (Homebrew GCC 10.2.0_3) 10.2.0 - available by `gcc-10` alias
 - gcc-8 (Homebrew GCC 8.4.0_2) 8.4.0 - available by `gcc-8` alias
@@ -29,32 +27,32 @@
 - NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.2 v12.20.1 v13.14.0 v14.15.4
 - NVM 0.37.2
 - Perl 5.32.1
-- PHP 8.0.1
+- PHP 8.0.2
 - Python 2.7.18
 - Python 3.9.1
 - R 4.0.3
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.7
-- Carthage 0.36.1
+- Bundler version 2.2.8
+- Carthage 0.37.0
 - CocoaPods 1.10.1
 - Composer 2.0.9
-- Homebrew 2.7.7
+- Homebrew 3.0.0
 - Miniconda 4.9.2
 - NPM 6.14.10
 - NuGet 5.6.0.6489
-- Pip 20.3.3 (python 3.9)
 - Pip 20.3.4 (python 2.7)
+- Pip 21.0.1 (python 3.9)
 - Pipx 0.16.0.0
-- RubyGems 3.2.7
-- Vcpkg 2021 (build from master \<401b26c>)
+- RubyGems 3.2.8
+- Vcpkg 2021 (build from master \<5eea585>)
 - Yarn 1.22.5
 
 ### Project Management
 - Apache Ant(TM) 1.10.9
 - Apache Maven 3.6.3
-- Gradle 6.8.1
+- Gradle 6.8.2
 
 ### Utilities
 - 7-Zip 16.02
@@ -63,7 +61,7 @@
 - bazel 4.0.0
 - bazelisk 1.7.4
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.74.0
+- Curl 7.75.0
 - Git LFS: 2.13.2
 - Git: 2.30.0
 - GitHub CLI: 1.5.0
@@ -71,7 +69,7 @@
 - GNU Tar 1.33 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.2.27
-- helm v3.5.1+g32c2223
+- helm v3.5.2+g167aac7
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v4.4.3
@@ -88,16 +86,16 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.69
+- Aliyun CLI 3.0.70
 - App Center CLI 2.7.4
-- AWS CLI 2.1.22
-- AWS SAM CLI 1.16.0
+- AWS CLI 2.1.24
+- AWS SAM CLI 1.17.0
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.18.0
 - Cabal 3.2.0.0
 - Cmake 3.19.4
-- Fastlane 2.172.0
-- GHC 8.10.3
+- Fastlane 2.173.0
+- GHC 9.0.1
 - GHCup v0.1.12
 - Stack 2.5.1
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
@@ -107,19 +105,18 @@
 - yamllint 1.26.0
 
 ### Browsers
-- Safari 14.0.2 (15610.3.7.1.10)
-- SafariDriver 14.0.2 (15610.3.7.1.10)
-- Google Chrome 88.0.4324.96 
+- Safari 14.0.3 (15610.4.3.1.6)
+- SafariDriver 14.0.3 (15610.4.3.1.6)
+- Google Chrome 88.0.4324.150 
 - ChromeDriver 88.0.4324.96
-- Microsoft Edge 88.0.705.56 
-- MSEdgeDriver 88.0.705.56
-- Mozilla Firefox 85.0
+- Microsoft Edge 88.0.705.63 
+- MSEdgeDriver 88.0.705.63
+- Mozilla Firefox 85.0.1
 - geckodriver 0.29.0
 
 ### Java
 | Version   | Vendor       | Environment Variable |
 | --------- | ------------ | -------------------- |
-| 1.7.0_292 | Zulu         | JAVA_HOME_7_X64      |
 | 1.8.0_282 | AdoptOpenJDK | JAVA_HOME_8_X64      |
 | 11.0.10   | AdoptOpenJDK | JAVA_HOME_11_X64     |
 | 12.0.2    | AdoptOpenJDK | JAVA_HOME_12_X64     |
@@ -153,8 +150,8 @@
 
 #### Go
 - 1.13.15
-- 1.14.14
-- 1.15.7
+- 1.14.15
+- 1.15.8
 
 ### Rust Tools
 - Cargo 1.49.0
@@ -163,10 +160,10 @@
 - Rustup 1.23.1
 
 #### Packages
-- Bindgen 0.56.0
+- Bindgen 0.57.0
 - Cargo-audit 0.13.1
 - Cargo-outdated v0.9.14
-- Cbindgen 0.16.0
+- Cbindgen 0.17.0
 - Clippy 0.0.212
 - Rustfmt 1.4.25-stable
 
@@ -188,7 +185,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.8.6.15
+- 8.8.7.18
 
 #### Mono
 - 6.12.0.113
@@ -258,7 +255,7 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.6.8
-- Nomad CLI 3.2.7
+- Nomad CLI 3.2.8
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
 
@@ -362,7 +359,7 @@
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                    |
-| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.3.6528147                                                                                                                                                                          |
+| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.4.7075529<br>22.0.7026061                                                                                                                                                          |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                     |
 
 

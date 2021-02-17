@@ -28,13 +28,8 @@ function Invoke-DownloadXcodeArchive {
     if (-not $resolvedVersion) {
         throw "Version '$Version' can't be matched to any available version"
     }
-
-    # TO-DO: Consider replacing of xcversion with own implementation
     Write-Host "Downloading Xcode $resolvedVersion"
-    $output = & bash -c "xcversion install '$resolvedVersion' --no-install 2>&1"
-    $commandOutputIndent = " " * 4
-    $commandOutput = ($output | ForEach-Object { "${commandOutputIndent}${_}" }) -join "`n"
-    Write-Host "$commandOutput"
+    Invoke-XCVersion -Arguments "install '$resolvedVersion' --no-install"    
 
     $xcodeXipName = "$resolvedVersion" -replace " ", "_"
     $xcodeXipFile = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_$xcodeXipName.xip" | Select-Object -First 1
@@ -42,6 +37,7 @@ function Invoke-DownloadXcodeArchive {
     Move-Item -Path "$xcodeXipFile" -Destination $tempXipDirectory
 
     return $tempXipDirectory
+
 }
 
 function Resolve-ExactXcodeVersion {
@@ -62,7 +58,7 @@ function Resolve-ExactXcodeVersion {
 }
 
 function Get-AvailableXcodeVersions {
-    $rawVersionsList = & bash -c "xcversion list 2>&1" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match "^\d" }
+    $rawVersionsList = Invoke-XCVersion -Arguments "list" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match "^\d" }
     $availableVersions = $rawVersionsList | ForEach-Object {
         $partStable,$partMajor = $_.Split(" ", 2)
         $semver = $stableSemver = [SemVer]::Parse($partStable)
