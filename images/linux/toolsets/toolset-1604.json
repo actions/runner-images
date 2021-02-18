@@ -76,14 +76,6 @@
             "versions": [
                 "*"
             ]
-        },
-        {
-            "name": "Az",
-            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
-            "versions": [
-                "3.1.0",
-                "4.4.0"
-            ]
         }
     ],
     "java": {
@@ -128,8 +120,13 @@
     "azureModules": [
         {
             "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
                 "5.5.0"
+            ],
+            "zipversions": [
+                "3.1.0",
+                "4.4.0"
             ]
         }
     ],

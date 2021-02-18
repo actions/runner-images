@@ -83,23 +83,6 @@
             "versions": [
                 "1.72.0"
             ]
-        },
-        {
-            "name": "Az",
-            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
-            "versions": [
-                "1.0.0",
-                "1.6.0",
-                "2.3.2",
-                "2.6.0",
-                "3.1.0",
-                "3.5.0",
-                "3.8.0",
-                "4.3.0",
-                "4.4.0",
-                "4.6.0",
-                "4.7.0"
-            ]
         }
     ],
     "powershellModules": [
@@ -142,8 +125,22 @@
         },
         {
             "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
                 "5.5.0"
+            ],
+            "zipversions": [
+                "1.0.0",
+                "1.6.0",
+                "2.3.2",
+                "2.6.0",
+                "3.1.0",
+                "3.5.0",
+                "3.8.0",
+                "4.3.0",
+                "4.4.0",
+                "4.6.0",
+                "4.7.0"
             ]
         }
     ],

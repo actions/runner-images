@@ -17,25 +17,17 @@ foreach ($module in $modules)
         Write-Host " - $version [$modulePath]"
         Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force -Verbose
     }
-}
 
-$toolset = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
-$toolsToInstall = @("Az")
-
-$tools = ConvertFrom-Json -InputObject $toolset | Select-Object -ExpandProperty toolcache | Where-Object {$ToolsToInstall -contains $_.Name}
-
-foreach ($tool in $tools) {
-    # Get versions manifest for current tool
-    $assets = Invoke-RestMethod $tool.url
+    $assets = Invoke-RestMethod $module.url
 
     # Get github release asset for each version
-    foreach ($toolVersion in $tool.versions) {
+    foreach ($toolVersion in $module.zipversions) {
         $asset = $assets | Where-Object version -like $toolVersion `
         | Select-Object -ExpandProperty files `
-        | Where-Object { ($_.platform -eq $tool.platform) -and ($_.platform_version -eq $tool.platform_version)} `
+        | Where-Object { ($_.platform -eq $module.platform) -and ($_.platform_version -eq $module.platform_version)} `
         | Select-Object -First 1
 
-        Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
+        Write-Host "Installing $($module.name) $toolVersion $($module.arch)..."
         if ($null -ne $asset) {
             Write-Host "Download $($asset.filename)"
             wget $asset.download_url -nv --retry-connrefused --tries=10 -P $installPSModulePath
