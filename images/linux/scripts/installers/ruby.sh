@@ -8,12 +8,12 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 apt-get install ruby-full
-apt-get install rubygems
+gem update
 
 # Install ruby gems from toolset
 gemsToInstall=$(get_toolset_value ".rubygems[] .name")
 if [ -n "$gemsToInstall" ]; then
-    for $gem in $gemsToInstall; do
+    for gem in $gemsToInstall; do
         echo "Installing rubygem $gem"
         gem install $gem
     done
