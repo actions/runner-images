@@ -16,7 +16,7 @@
         "imagedata_file": "/imagegeneration/imagedata.json",
         "installer_script_folder": "/imagegeneration/installers",
         "helper_script_folder": "/imagegeneration/helpers",
-        "vm_size": "Standard_DS2_v2",
+        "vm_size": "Standard_D4s_v4",
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "ubuntu18",
