@@ -74,11 +74,6 @@ function Get-RubyVersion {
     return "Ruby $rubyVersion"
 }
 
-function Get-RubyGemsVersion {
-    $rubyGemsVersion = Run-Command "gem --version"
-    return "RubyGems $rubyGemsVersion"
-}
-
 function Get-SwiftVersion {
     $swiftVersion = swift --version | Out-String | Take-OutputPart -Part 2
     return "Swift $swiftVersion"
@@ -107,7 +102,7 @@ function Get-GemVersion {
     $result = Get-CommandResult "gem --version"
     $result.Output -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $gemVersion = $Matches.version
-    return "Gem $gemVersion"
+    return "RubyGems $gemVersion"
 }
 
 function Get-MinicondaVersion {

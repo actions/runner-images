@@ -62,7 +62,6 @@ $packageManagementList = @(
         (Get-YarnVersion),
         (Get-PipVersion),
         (Get-Pip3Version),
-        (Get-RubyGemsVersion),
         (Get-VcpkgVersion)
 )
 
