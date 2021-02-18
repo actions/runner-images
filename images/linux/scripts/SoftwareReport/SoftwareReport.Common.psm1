@@ -74,6 +74,11 @@ function Get-RubyVersion {
     return "Ruby $rubyVersion"
 }
 
+function Get-RubyGemsVersion {
+    $rubyGemsVersion = Run-Command "gem --version"
+    return "RubyGems $rubyGemsVersion"
+}
+
 function Get-SwiftVersion {
     $swiftVersion = swift --version | Out-String | Take-OutputPart -Part 2
     return "Swift $swiftVersion"
