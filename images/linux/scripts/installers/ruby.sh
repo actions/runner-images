@@ -13,7 +13,7 @@ gem update
 gemsToInstall=$(get_toolset_value ".rubygems[] .name")
 if [ -n "$gemsToInstall" ]; then
     for gem in $gemsToInstall; do
-        echo "Installing rubygem $gem"
+        echo "Installing gem $gem"
         gem install $gem
     done
 fi
