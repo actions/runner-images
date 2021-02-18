@@ -11,9 +11,8 @@ Describe "Android" {
     $platforms = $platformNumericList + $platformLetterList | ForEach-Object { "platforms/${_}" }
 
     $buildToolsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', ''
-    $buildToolsNumericList = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}$"} | Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object -Unique
-    $buildToolsLetterList = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}-\w+"} | Sort-Object -Unique
-    $buildTools = $buildToolsNumericList + $buildToolsLetterList | ForEach-Object { "build-tools/${_}" }
+    $buildTools = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}$"} | Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object -Unique |
+    ForEach-Object { "build-tools/${_}" }
 
     $androidPackages = @(
         $platforms,
