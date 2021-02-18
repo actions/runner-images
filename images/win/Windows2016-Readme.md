@@ -1,8 +1,8 @@
 | Announcements |
 |-|
-| [[Windows, Ubuntu] Boost 1.72.0 will be removed from images on March, 8](https://github.com/actions/virtual-environments/issues/2667) |
-| [[ubuntu, windows] Default Go version will be set to 1.15 on February, 8](https://github.com/actions/virtual-environments/issues/2447) |
-| [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
+| [[all OSs] Java 7 was removed](https://github.com/actions/virtual-environments/issues/2446) |
+| [[Ubuntu, Windows] Boost 1.72.0 will be removed from images on March, 8](https://github.com/actions/virtual-environments/issues/2667) |
+| [[Ubuntu, Windows] Default Go version is set to 1.15](https://github.com/actions/virtual-environments/issues/2447) |
 | [[Windows] Default PHP is set to 8.0](https://github.com/actions/virtual-environments/issues/2416) |
 ***
 # Microsoft Windows Server 2016 Datacenter

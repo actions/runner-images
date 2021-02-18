@@ -2,7 +2,7 @@
 |-|
 | [[macOS] Default Xcode will be set to Xcode 12.4 on February, 22](https://github.com/actions/virtual-environments/issues/2685) |
 | [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
-| [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
+| [macOS 11.0 pools will be transited to private preview](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 11.2 info
 - System Version: macOS 11.2 (20D64)

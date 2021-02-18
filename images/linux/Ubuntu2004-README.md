@@ -1,9 +1,9 @@
 | Announcements |
 |-|
+| [[all OSs] Java 7 was removed](https://github.com/actions/virtual-environments/issues/2446) |
 | [[Ubuntu] M2_HOME variable will be removed on February, 15](https://github.com/actions/virtual-environments/issues/2600) |
 | [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
-| [[ubuntu, windows] Default Go version will be set to 1.15 on February, 8](https://github.com/actions/virtual-environments/issues/2447) |
-| [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
+| [[Ubuntu, Windows] Default Go version set to 1.15](https://github.com/actions/virtual-environments/issues/2447) |
 | [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
 ***
 # Ubuntu 20.04.2 LTS

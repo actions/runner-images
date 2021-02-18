@@ -1,9 +1,9 @@
 | Announcements |
 |-|
+| [[all OSs] Java 7 was removed](https://github.com/actions/virtual-environments/issues/2446) |
 | [[macOS] Default Xcode will be set to Xcode 12.4 on February, 22](https://github.com/actions/virtual-environments/issues/2685) |
 | [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
-| [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
-| [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
+| [macOS 11.0 pools will be transited to private preview](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H512)
