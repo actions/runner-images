@@ -30,7 +30,6 @@ Describe "AzureModules" {
         $moduleName = $module.name
 
         Context "$moduleName" {
-
             foreach ($version in $module.versions) {
                 $modulePath = Join-Path -Path $modulesRootPath -ChildPath "${moduleName}_${version}"
                 $moduleInfo = @{ moduleName = $moduleName; modulePath = $modulePath; expectedVersion = $version }
@@ -42,9 +41,7 @@ Describe "AzureModules" {
                         )
 
                         $env:PSModulePath = "${modulePath}:${env:PSModulePath}"
-                        Import-Module -Name $moduleName
-                        (Get-Module -Name $moduleName).Version.ToString()
-
+                        (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
                     } -ArgumentList $modulePath, $moduleName
 
                     $moduleVersion = $testJob | Wait-Job | Receive-Job
