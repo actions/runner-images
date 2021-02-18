@@ -5,13 +5,15 @@ Describe "Android" {
     [string]$ndkLTSVersion = Get-ToolsetValue "android.ndk.lts"
     $ndkLTSFullVersion = (Get-ChildItem "/usr/local/lib/android/sdk/ndk/$ndkLTSVersion.*" | Select-Object -Last 1).Name
 
-    $platforms = (($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;', '' |
-    Where-Object { [int]$_.Split("-")[1] -ge $platformMinVersion } | Sort-Object { [int]$_.Split("-")[1] } -Unique |
-    ForEach-Object { "platforms/${_}" })
+    $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', ''
+    $platformNumericList = $platformVersionsList | Where-Object { $_ -match "\d+" } | Where-Object { [int]$_ -ge $platformMinVersion } | Sort-Object -Unique
+    $platformLetterList = $platformVersionsList | Where-Object { $_ -match "\D+" } | Sort-Object -Unique
+    $platforms = $platformNumericList + $platformLetterList | ForEach-Object { "platforms/${_}" }
 
-    $buildTools = (($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', '' |
-    Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object { [version]$_ } -Unique |
-    ForEach-Object { "build-tools/${_}" })
+    $buildToolsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', ''
+    $buildToolsNumericList = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}$"} | Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object -Unique
+    $buildToolsLetterList = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}-\w+"} | Sort-Object -Unique
+    $buildTools = $buildToolsNumericList + $buildToolsLetterList | ForEach-Object { "build-tools/${_}" }
 
     $androidPackages = @(
         $platforms,
@@ -23,7 +25,7 @@ Describe "Android" {
     )
 
     [string]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
-    if ($ndkLatestVersion) {        
+    if ($ndkLatestVersion) {
         $ndkLatestFullVersion = (Get-ChildItem "/usr/local/lib/android/sdk/ndk/$ndkLatestVersion.*" | Select-Object -Last 1).Name
         $androidPackages += @("ndk/$ndkLatestFullVersion")
     }
