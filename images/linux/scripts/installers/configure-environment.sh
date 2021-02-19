@@ -8,6 +8,9 @@ echo ImageOS=$IMAGE_OS | tee -a /etc/environment
 mkdir -p /etc/skel/.config/configstore
 echo 'export XDG_CONFIG_HOME=$HOME/.config' | tee -a /etc/skel/.bashrc
 
+# This step is required to reload user's .bashrc 
+echo 'source $HOME/.bashrc' | tee -a /etc/skel/.bash_profile
+
 # Change waagent entries to use /mnt for swapfile
 sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf
 sed -i 's/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
