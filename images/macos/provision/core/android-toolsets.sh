@@ -69,9 +69,6 @@ echo "84831b9409646a918e30573bab4c9c91346d8abd" >> $ANDROID_HOME/licenses/androi
 echo "Installing latest tools & platform tools..."
 echo y | $SDKMANAGER "tools" "platform-tools"
 
-echo "Installing latest CMake..."
-echo y | $SDKMANAGER "cmake;3.6.4111459"
-
 echo "Installing latest ndk..."
 ndkLtsLatest=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LTS)
 ndkLatest=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LATEST)
