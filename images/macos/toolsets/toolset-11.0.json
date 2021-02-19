@@ -90,6 +90,7 @@
         ],
         "addon-list": [],
         "additional-tools": [
+            "cmake;3.10.2.4988404",
             "cmdline-tools;latest"
         ],
         "ndk": {
