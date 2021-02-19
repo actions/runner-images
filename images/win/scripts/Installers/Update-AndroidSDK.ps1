@@ -39,11 +39,14 @@ $androidPackages = Get-AndroidPackages -AndroidSDKManagerPath $sdkManager
 
 # platforms
 [int]$platformMinVersion = $androidToolset.platform_min_version
-$platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+$platformListByVersion = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
                 -PrefixPackageName "platforms;" `
                 -MinimumVersion $platformMinVersion `
                 -Delimiter "-" `
                 -Index 1
+$platformListByName = Get-AndroidPackagesByName -AndroidPackages $androidPackages `
+                -PrefixPackageName "platforms;" | Where-Object {$_ -match "-\D+$"}
+$platformList = $platformListByVersion + $platformListByName
 
 # build-tools
 [version]$buildToolsMinVersion = $androidToolset.build_tools_min_version
