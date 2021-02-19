@@ -10,15 +10,16 @@ function Install-XcodeVersion {
 
     $xcodeDownloadDirectory = "$env:HOME/Library/Caches/XcodeInstall"
     $xcodeTargetPath = Get-XcodeRootPath -Version $LinkTo
+    $xcodeXipDirectory = Invoke-DownloadXcodeArchive -DownloadDirectory $xcodeDownloadDirectory -Version $Version
+    Expand-XcodeXipArchive -DownloadDirectory $xcodeXipDirectory -TargetPath $xcodeTargetPath
 
-    Invoke-DownloadXcodeArchive -Version $Version
-    Expand-XcodeXipArchive -DownloadDirectory $xcodeDownloadDirectory -TargetPath $xcodeTargetPath
-
-    Get-ChildItem $xcodeDownloadDirectory | Remove-Item -Force
+    Remove-Item -Path $xcodeXipDirectory -Force -Recurse
 }
 
 function Invoke-DownloadXcodeArchive {
     param(
+        [Parameter(Mandatory)]
+        [string]$DownloadDirectory,
         [Parameter(Mandatory)]
         [string]$Version
     )
@@ -28,7 +29,15 @@ function Invoke-DownloadXcodeArchive {
         throw "Version '$Version' can't be matched to any available version"
     }
     Write-Host "Downloading Xcode $resolvedVersion"
-    Invoke-XCVersion -Arguments "install '$resolvedVersion' --no-install"
+    Invoke-XCVersion -Arguments "install '$resolvedVersion' --no-install" | Out-Host    
+
+    $xcodeXipName = "$resolvedVersion" -replace " ", "_"
+    $xcodeXipFile = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_$xcodeXipName.xip" | Select-Object -First 1
+    $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$xcodeXipName" -ItemType "Directory"
+    Move-Item -Path "$xcodeXipFile" -Destination $tempXipDirectory
+
+    return $tempXipDirectory
+
 }
 
 function Resolve-ExactXcodeVersion {
