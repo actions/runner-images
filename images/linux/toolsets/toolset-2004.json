@@ -69,6 +69,14 @@
         {"name": "MarkdownPS"},
         {"name": "Pester"}
     ],
+    "azureModules": [
+        {
+            "name": "az",
+            "versions": [
+                "4.8.0"
+            ]
+        }
+    ],
     "apt": {
         "common_packages": [
             "dbus",
