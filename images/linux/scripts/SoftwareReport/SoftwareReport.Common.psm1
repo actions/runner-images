@@ -102,7 +102,7 @@ function Get-GemVersion {
     $result = Get-CommandResult "gem --version"
     $result.Output -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $gemVersion = $Matches.version
-    return "Gem $gemVersion"
+    return "RubyGems $gemVersion"
 }
 
 function Get-MinicondaVersion {
