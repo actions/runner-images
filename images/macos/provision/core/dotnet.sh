@@ -12,7 +12,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Download installer from dot.net and keep it locally
 DOTNET_INSTALL_SCRIPT="https://dotnet.microsoft.com/download/dotnet-core/scripts/v1/dotnet-install.sh"
-curl -o "dotnet-install.sh" "$DOTNET_INSTALL_SCRIPT"
+curl -L -o "dotnet-install.sh" "$DOTNET_INSTALL_SCRIPT"
 chmod +x ./dotnet-install.sh
 
 ARGS_LIST=()
