@@ -78,7 +78,7 @@ function Select-DataStore {
 
     # Wait for 60 seconds to check if any other tags are assigned to the same datastore
     Start-Sleep -Seconds 60
-    # If there are no datastores with 0 VMs, take a datastore with 1 VM (index 1 if datastore has 0 VMs and 2 if 1 VMs)
+    # If there are no datastores with 0 VMs, take a datastore with 1 VM (index 1 if datastore has 0 VMs and 2 if 1 VM)
     $index = 1 + [int]$datastore.VmCount
     $tagAssignments = (Get-TagAssignment -Entity $buildDatastore).Tag.Name | Select-Object -First $index
     $isAllow = $tagAssignments -contains $VMName
