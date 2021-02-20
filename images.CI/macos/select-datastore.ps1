@@ -79,7 +79,7 @@ function Select-DataStore {
     # Wait for 60 seconds to check if any other tags are assigned to the same datastore
     Start-Sleep -Seconds 60
     # Take only first 2 tags, all the others will go to the next round
-    $tagAssignments = (Get-TagAssignment -Entity $buildDatastore).Tag.Name | Select-Object -First 2
+    $tagAssignments = (Get-TagAssignment -Entity $buildDatastore).Tag.Name | Select-Object -Last 1
     $isAllow = $tagAssignments -contains $VMName
 
     if ($isAllow)
