@@ -21,8 +21,13 @@ meteor update --release 1.8.2
 meteor update --release 1.8.1
 meteor update --release 1.8.0
 
+
+# Copy meteor out of installing user's homedir into a general location
+$copypath = "C:\Users\All Users\AppData\Local"
+$meteorpath = "$copypath\.meteor"
+Copy-Item $env:LOCALAPPDATA\.meteor $copypath -Recurse
+
 # Set perms on the meteor install path for everyone
-$meteorpath = "$env:LOCALAPPDATA\.meteor"
 $Acl = Get-ACL $meteorpath
 $AccessRule= New-Object System.Security.AccessControl.FileSystemAccessRule("everyone","FullControl","ContainerInherit,Objectinherit","none","Allow")
 $Acl.AddAccessRule($AccessRule)
