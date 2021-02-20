@@ -65,8 +65,8 @@ function Select-DataStore {
         $vmOnDatastore -lt $vmCount } `
     | Group-Object -Property { $vmOnDatastore }
 
-    $datastore = $availableDatastores | Select-Object @{n="VmCount";e={$_.Name}},@{n="Datastore";e={$_.Group | Get-Random}} -First 1
-    $buildDatastore = $datastore.Datastore
+    $datastore = $availableDatastores | Select-Object @{n="VmCount";e={$_.Name}},@{n="DatastoreName";e={$_.Group | Get-Random}} -First 1
+    $buildDatastore = $datastore.DatastoreName
 
     $tag = Get-Tag -Category $TagCategory -Name $VMName -ErrorAction Ignore
     if (-not $tag)
