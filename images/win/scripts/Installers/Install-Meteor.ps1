@@ -6,10 +6,10 @@
 Choco-Install -PackageName meteor
 
 # Copy meteor out of installing user's homedir into a general location
-# $meteorpath = "C:\meteor"
-# Copy-Item $env:LOCALAPPDATA\.meteor $meteorpath -Recurse
+$meteorpath = "C:\meteor"
+Copy-Item "$env:LOCALAPPDATA\.meteor" $meteorpath -Recurse
 
-$meteorpath = "$env:LOCALAPPDATA\.meteor"
+# $meteorpath = "$env:LOCALAPPDATA\.meteor"
 
 # Set perms on the meteor install path for everyone
 $Acl = Get-ACL $meteorpath
