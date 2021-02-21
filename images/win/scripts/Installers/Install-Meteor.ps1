@@ -18,8 +18,9 @@ $Acl.AddAccessRule($AccessRule)
 Set-Acl $meteorpath $Acl
 
 # Add the new Meteor installation into the PATH for all users. 
-$OldPath = Get-ItemProperty -Path "HKLM:SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -Name "Path"
-Set-ItemProperty -Path "HKLM:SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -Name "Path" -Value "$OldPath;$meteorpath"
+$oldpath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
+$newpath = “$oldpath;$meteorpath”
+Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
 
 # Prefetch the recent Meteor releases
 # meteor update --release 2.0
