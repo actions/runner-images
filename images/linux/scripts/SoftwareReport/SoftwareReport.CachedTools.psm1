@@ -13,7 +13,7 @@ function Get-ToolcachePyPyVersions {
     Get-ChildItem -Path $toolcachePath -Name | Sort-Object { [Version] $_ } | ForEach-Object {
         $pypyRootPath = Join-Path $toolcachePath $_ "x64"
         [string]$pypyVersionOutput = & "$pypyRootPath/bin/python" -c "import sys;print(sys.version)"
-        $pypyVersionOutput -match "^([\d\.]+) \(.+\) \[PyPy ([\d\.]+) .+]$" | Out-Null
+        $pypyVersionOutput -match "^([\d\.]+) \(.+\) \[PyPy ([\d\.]+\S*) .+]$" | Out-Null
         return "{0} [PyPy {1}]" -f $Matches[1], $Matches[2]
     }
 }
