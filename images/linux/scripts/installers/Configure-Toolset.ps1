@@ -44,7 +44,6 @@ $toolsEnvironment = @{
     }
     go = @{
         command = "ln -s {0}/bin/* /usr/bin/"
-        defaultVariable = "GOROOT"
         variableTemplate = "GOROOT_{0}_{1}_X64"
     }
 }

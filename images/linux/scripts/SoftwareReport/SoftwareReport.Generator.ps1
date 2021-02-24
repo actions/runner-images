@@ -144,6 +144,10 @@ if (-not (Test-IsUbuntu16)) {
     )
 }
 
+if (Test-IsUbuntu20) {
+    $toolsList += (Get-FastlaneVersion)
+}
+
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 
 $markdown += New-MDHeader "CLI Tools" -Level 3
@@ -181,6 +185,7 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Haskell" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-GHCVersion),
+    (Get-GHCupVersion),
     (Get-CabalVersion),
     (Get-StackVersion)
     ) | Sort-Object

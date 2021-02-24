@@ -99,7 +99,6 @@
             "addon-google_apis-google-21"
         ],
         "additional_tools": [
-            "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
             "patcher;v4",
             "platform-tools",
@@ -282,5 +281,6 @@
             "7.4",
             "8.0"
         ]
-    }
+    },
+    "rubygems": []
 }
