@@ -14,8 +14,8 @@ function Get-AptFastVersion {
 }
 
 function Get-AzCopyVersion {
-    $azcopy10Version = azcopy --version | Take-OutputPart -Part 2
-    return "AzCopy $azcopy10Version (available by ``azcopy`` and ``azcopy10`` aliases)"
+    $azcopyVersion = azcopy --version | Take-OutputPart -Part 2
+    return "AzCopy $azcopyVersion (available by ``azcopy`` and ``azcopy10`` aliases)"
 }
 
 function Get-BazelVersion {
