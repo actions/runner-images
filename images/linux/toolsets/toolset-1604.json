@@ -85,8 +85,8 @@
         ]
     },
     "android": {
-        "platform_min_version": "10",
-        "build_tools_min_version": "19.1.0",
+        "platform_min_version": "23",
+        "build_tools_min_version": "23.0.1",
         "extra_list": [
             "android;m2repository",
             "google;m2repository",
