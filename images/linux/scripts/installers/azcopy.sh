@@ -4,6 +4,8 @@
 ##  Desc:  Installs AzCopy
 ################################################################################
 
+source $HELPER_SCRIPTS/install.sh
+
 # Install AzCopy10
 download_with_retries "https://aka.ms/downloadazcopy-v10-linux" "/tmp" "azcopy.tar.gz"
 tar zxvf /tmp/azcopy.tar.gz --strip-components=1 -C /tmp
