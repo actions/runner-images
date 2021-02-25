@@ -261,49 +261,49 @@
         {"name": "fastlane"}
     ],
     "node_modules": [
-	    {
-		    "name": "grunt",
-		    "command": "grunt"
-	    },
-	    {
-		    "name": "gulp",
-		    "command": "gulp"
-	    },
-	    {
-		    "name": "n",
-		    "command": "n"
-	    },
-	    {
-	            "name": "parcel-bundler",
-		    "command": "parcel"
-	    },
-	    {
-		    "name": "typescript",
-		    "command": "tsc"
-	    },
-	    {
-		    "name": "newman",
-		    "command": "newman"
-	    },
-	    {
-	            "name": "vercel",
-		    "command": "vercel"
-	    },
-	    {
-	            "name": "webpack",
-		    "command": "webpack"
-	    },
-	    {
-	            "name": "webpack-cli",
-		    "command": "webpack-cli"
-	    },
-	    {
-	            "name": "netlify-cli",
-		    "command": "netlify"
-	    },
-	    {
-	            "name": "lerna",
-		    "command": "lerna"
-	    }
+        {
+            "name": "grunt",
+            "command": "grunt"
+        },
+        {
+            "name": "gulp",
+            "command": "gulp"
+        },
+        {
+            "name": "n",
+            "command": "n"
+        },
+        {
+            "name": "parcel-bundler",
+            "command": "parcel"
+        },
+        {
+            "name": "typescript",
+            "command": "tsc"
+        },
+        {
+            "name": "newman",
+            "command": "newman"
+        },
+        {
+            "name": "vercel",
+            "command": "vercel"
+        },
+        {
+            "name": "webpack",
+            "command": "webpack"
+        },
+        {
+            "name": "webpack-cli",
+            "command": "webpack-cli"
+        },
+        {
+            "name": "netlify-cli",
+            "command": "netlify"
+        },
+        {
+            "name": "lerna",
+            "command": "lerna"
+        }
     ]
 }
