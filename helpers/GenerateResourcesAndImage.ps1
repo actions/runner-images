@@ -130,7 +130,7 @@ Function GenerateResourcesAndImage {
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
 
-    if (([string]::IsNullOrEmpty($AzClientId)))
+    if (([string]::IsNullOrEmpty($AzureClientId)))
     {
         Connect-AzAccount
     } else {
@@ -192,7 +192,7 @@ Function GenerateResourcesAndImage {
 
     New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
 
-    if (([string]::IsNullOrEmpty($AzClientId))) {
+    if (([string]::IsNullOrEmpty($AzureClientId))) {
         # Interactive authentication: A service principal is created during runtime.
         $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
         $credentialProperties = @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$ServicePrincipalClientSecret }
@@ -212,11 +212,11 @@ Function GenerateResourcesAndImage {
     } else {
         # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
         # is used for all authentication purposes.
-        $spAppId = $AzClientId
-        $spClientId = $AzClientId
+        $spAppId = $AzureClientId
+        $spClientId = $AzureClientId
         $credentials = $AzureAppCred
-        $ServicePrincipalClientSecret = $AzClientSecret
-        $tenantId = $AzTenant
+        $ServicePrincipalClientSecret = $AzureClientSecret
+        $tenantId = $AzureTenant
     }
 
     Get-LatestCommit -ErrorAction SilentlyContinue
