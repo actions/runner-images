@@ -11,12 +11,14 @@ if ($caption -match "2019")
 {
     $imageLabel = "windows-2019"
     $softwareUrl = "${githubUrl}/win19/${imageVersion}/images/win/Windows2019-Readme.md"
+    $releaseUrl="https://github.com/actions/virtual-environments/releases/tag/win19%2F${imageVersion}"
 }
 
 if ($caption -match "2016")
 {
     $imageLabel = "windows-2016"
     $softwareUrl = "${githubUrl}/win16/${imageVersion}/images/win/Windows2016-Readme.md"
+    $releaseUrl="https://github.com/actions/virtual-environments/releases/tag/win16%2F${imageVersion}"
 }
 
 $json = @"
@@ -27,7 +29,7 @@ $json = @"
   },
   {
     "group": "Virtual Environment",
-    "detail": "Environment: ${imageLabel}\nVersion: ${imageVersion}\nIncluded Software: ${softwareUrl}"
+    "detail": "Environment: ${imageLabel}\nVersion: ${imageVersion}\nIncluded Software: ${softwareUrl}\nImage Release: ${releaseUrl}"
   }
 ]
 "@
