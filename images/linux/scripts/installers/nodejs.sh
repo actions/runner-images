@@ -20,6 +20,7 @@ node_modules=$(get_toolset_value '.node_modules[].name')
 for module in $node_modules; do
     echo "Installing node module $module"
     if [ $module = "netlify-cli" ];then
+      # Install the Netlify CLI using --unsafe-perm=true options to avoid permission issues
       npm install -g --unsafe-perm=true $module
     else	    
       npm install -g $module
