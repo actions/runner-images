@@ -192,21 +192,32 @@ Function GenerateResourcesAndImage {
 
     New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
 
-    $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
-    $credentialProperties = @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$ServicePrincipalClientSecret }
-    $credentials = New-Object -TypeName Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential -Property $credentialProperties
-    $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
+    if (([string]::IsNullOrEmpty($AzClientId))) {
+        # Interactive authentication: A service principal is created during runtime.
+        $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
+        $credentialProperties = @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$ServicePrincipalClientSecret }
+        $credentials = New-Object -TypeName Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential -Property $credentialProperties
+        $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
 
-    $spAppId = $sp.ApplicationId
-    $spClientId = $sp.ApplicationId
-    $spObjectId = $sp.Id
-    Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
+        $spAppId = $sp.ApplicationId
+        $spClientId = $sp.ApplicationId
+        $spObjectId = $sp.Id
+        Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
 
-    New-AzRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
-    Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-    $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
-    $tenantId = $sub.TenantId
-    # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
+        New-AzRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
+        Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
+        $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
+        $tenantId = $sub.TenantId
+        # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
+    } else {
+        # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
+        # is used for all authentication purposes.
+        $spAppId = $AzClientId
+        $spClientId = $AzClientId
+        $credentials = $AzureAppCred
+        $ServicePrincipalClientSecret = $AzClientSecret
+        $tenantId = $AzTenant
+    }
 
     Get-LatestCommit -ErrorAction SilentlyContinue
 
@@ -220,7 +231,6 @@ Function GenerateResourcesAndImage {
         -var "client_secret=$($ServicePrincipalClientSecret)" `
         -var "subscription_id=$($SubscriptionId)" `
         -var "tenant_id=$($tenantId)" `
-        -var "object_id=$($spObjectId)" `
         -var "location=$($AzureLocation)" `
         -var "resource_group=$($ResourceGroupName)" `
         -var "storage_account=$($storageAccountName)" `
