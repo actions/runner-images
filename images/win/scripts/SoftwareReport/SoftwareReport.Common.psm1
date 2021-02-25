@@ -8,6 +8,11 @@ function Get-OSVersion {
     return "OS Version: $OSVersion Build $OSBuild"
 }
 
+function Get-BashVersion {
+    $version = bash -c 'echo ${BASH_VERSION}'
+    return "Bash $version"
+}
+
 function Get-JavaVersionsList {
     param(
         [string] $DefaultVersion
@@ -35,6 +40,31 @@ function Get-JavaVersionsList {
 function Get-RustVersion {
     $rustVersion = [regex]::matches($(rustc --version), "\d+\.\d+\.\d+").Value
     return $rustVersion
+}
+
+function Get-RustupVersion {
+     $version = [regex]::matches($(rustup --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustCargoVersion {
+     $version = [regex]::matches($(cargo --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustdocVersion {
+     $version = [regex]::matches($(rustdoc --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustfmtVersion {
+     $version = [regex]::matches($(rustfmt --version), "\d+\.\d+\.\d+").Value
+     return $version
+}
+
+function Get-RustClippyVersion {
+     $version = [regex]::matches($(cargo clippy  --version), "\d+\.\d+\.\d+").Value
+     return $version
 }
 
 function Get-BindgenVersion {
@@ -104,7 +134,7 @@ function Get-VcpkgVersion {
     ($(vcpkg version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $vcpkgVersion = $Matches.Version
     $commitId = git -C "C:\vcpkg" rev-parse --short HEAD
-    return "Vcpkg $vcpkgVersion (build from master <$commitId>)"
+    return "Vcpkg $vcpkgVersion (build from master \<$commitId>)"
 }
 
 function Get-NPMVersion {
@@ -264,14 +294,26 @@ function Get-CachedDockerImages {
 }
 
 function Get-CachedDockerImagesTableData {
-    return (docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}").Split("*")     | Where-Object { $_ } |  ForEach-Object {
-      $parts=$_.Split("|")
-      [PSCustomObject] @{
-             "Repository:Tag" = $parts[0]
-              "Digest" = $parts[1]
-              "Created" = $parts[2].split(' ')[0]
-         }
-    }
+    $allImages = docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}"
+    $allImages.Split("*") | Where-Object { $_ } | ForEach-Object {
+        $parts = $_.Split("|")
+        [PSCustomObject] @{
+            "Repository:Tag" = $parts[0]
+            "Digest" = $parts[1]
+            "Created" = $parts[2].split(' ')[0]
+        }
+    } | Sort-Object -Property "Repository:Tag"
+}
+
+function Get-ShellTarget {
+    $shells = Get-ChildItem C:\shells -File | Select-Object Name, @{n="Target";e={
+        if ($_.Name -eq "msys2bash.cmd") {
+            "C:\msys64\usr\bin\bash.exe"
+        } else {
+            @($_.Target)[0]
+        }
+    }} | Sort-Object Name
+    $shells | New-MDTable -Columns ([ordered]@{Name = "left"; Target = "left";})
 }
 
 function Get-PacmanVersion {
@@ -296,3 +338,22 @@ function Get-PipxVersion {
     $pipxVersion = pipx --version
     return "Pipx $pipxVersion"
 }
+
+function Build-PackageManagementEnvironmentTable {
+    return @(
+        @{
+            "Name" = "CONDA"
+            "Value" = $env:CONDA
+        },
+        @{
+            "Name" = "VCPKG_INSTALLATION_ROOT"
+            "Value" = $env:VCPKG_INSTALLATION_ROOT
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
+}
+

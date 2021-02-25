@@ -121,15 +121,6 @@ jobs:
       arguments: -PackerLogPath "$(Agent.TempDirectory)/packer-log.txt" `
                         -PrintTopNLongest 25
 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: '*.xml'
-      testResultsFormat: NUnit
-      searchFolder: '$(Common.TestResultsDirectory)'
-      failTaskOnFailedTests: true
-    displayName: Publish test results
-    condition: always()
-
   - task: PowerShell@2
     displayName: 'Move vm to cold storage and clear datastore tag'
     condition: always()
@@ -141,6 +132,9 @@ jobs:
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
                  -VIPassword "$(vcenter-password-v2)"
+                 -CpuCount "$(cpu-count)" `
+                 -CoresPerSocketCount "$(cores-per-socket-count)" `
+                 -Memory "$(memory)"
 
   - task: PowerShell@2
     displayName: 'Destroy VM (if build canceled only)'

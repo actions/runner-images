@@ -1,22 +1,30 @@
 #!/bin/bash -e
 ################################################################################
 ##  File:  ruby.sh
-##  Desc:  Installs Ruby requirements
+##  Desc:  Installs Ruby requirements and ruby gems
 ################################################################################
 
 source $HELPER_SCRIPTS/install.sh
 
-sudo apt-get install ruby-full
-sudo gem update --system
+apt-get install ruby-full
+gem update
+
+# Install ruby gems from toolset
+gemsToInstall=$(get_toolset_value ".rubygems[] .name")
+if [ -n "$gemsToInstall" ]; then
+    for gem in $gemsToInstall; do
+        echo "Installing gem $gem"
+        gem install $gem
+    done
+fi
 
 # Install Ruby requirements
 apt-get install -y libz-dev openssl libssl-dev
 
 echo "Install Ruby from toolset..."
-toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
 PACKAGE_TAR_NAMES=$(curl -s "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
-TOOLSET_VERSIONS=$(jq -r '.toolcache[] | select(.name | contains("Ruby")) | .versions[]' $toolset)
-PLATFORM_VERSION=$(jq -r '.toolcache[] | select(.name | contains("Ruby")) | .platform_version' $toolset)
+TOOLSET_VERSIONS=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .versions[]')
+PLATFORM_VERSION=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .platform_version')
 RUBY_PATH="$AGENT_TOOLSDIRECTORY/Ruby"
 
 echo "Check if Ruby hostedtoolcache folder exist..."
@@ -45,3 +53,5 @@ for TOOLSET_VERSION in ${TOOLSET_VERSIONS[@]}; do
         touch $COMPLETE_FILE_PATH
     fi
 done
+
+invoke_tests "Tools" "Ruby"

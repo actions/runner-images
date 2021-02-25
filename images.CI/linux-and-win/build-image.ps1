@@ -16,10 +16,11 @@ param(
 
 if (-not (Test-Path $TemplatePath))
 {
-    Write-Error "'-Image' parameter is not valid. You have to specify correct image type."
+    Write-Error "'-TemplatePath' parameter is not valid. You have to specify correct Template Path"
     exit 1
 }
 
+$Image = [io.path]::GetFileNameWithoutExtension($TemplatePath)
 $TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 

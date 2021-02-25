@@ -18,7 +18,8 @@
             "platform" : "linux",
             "versions": [
                 "2.7",
-                "3.6"
+                "3.6",
+                "3.7"
             ]
         },
         {
@@ -39,19 +40,35 @@
             "platform" : "linux",
             "versions": [
                 "1.14.*",
-                "1.15.*"
+                "1.15.*",
+                "1.16.*"
             ],
-            "default": "1.14.*"
+            "default": "1.15.*"
         },
         {
             "name": "Ruby",
             "platform_version": "20.04",
             "arch": "x64",
             "versions": [
-                "2.7.*"
+                "2.7.*",
+                "3.0.*"
+            ]
+        },
+        {
+            "name": "CodeQL",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": [
+                "*"
             ]
         }
     ],
+    "java": {
+        "default": "11",
+        "versions": [
+            "8", "11"
+        ]
+    },
     "android": {
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
@@ -65,13 +82,18 @@
         "additional_tools": [
             "cmake;3.10.2.4988404",
             "patcher;v4",
-            "ndk-bundle",
-            "platform-tools"
-        ]
+            "platform-tools",
+            "cmdline-tools;latest"
+        ],
+        "ndk": {
+            "lts": "21",
+            "latest": "22"
+        }
     },
     "powershellModules": [
         {"name": "MarkdownPS"},
-        {"name": "Pester"}
+        {"name": "Pester"},
+        {"name": "PSScriptAnalyzer"}
     ],
     "azureModules": [
         {
@@ -84,11 +106,14 @@
     ],
     "apt": {
         "common_packages": [
+            "build-essential",
+            "chromium-browser",
             "dbus",
             "dnsutils",
             "dpkg",
             "fakeroot",
             "gnupg2",
+            "imagemagick",
             "iproute2",
             "iputils-ping",
             "lib32z1",
@@ -97,7 +122,11 @@
             "libcurl4",
             "libgbm-dev",
             "libgconf-2-4",
+            "libgsl-dev",
             "libgtk-3-0",
+            "libmagic-dev",
+            "libmagickcore-dev",
+            "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
             "libunwind8",
@@ -105,6 +134,7 @@
             "libxss1",
             "locales",
             "openssh-client",
+            "p7zip-rar",
             "pkg-config",
             "python-is-python3",
             "rpm",
@@ -119,24 +149,33 @@
             "zsync"
         ],
         "cmd_packages": [
+            "binutils",
             "bison",
             "brotli",
             "bzip2",
+            "coreutils",
             "curl",
             "file",
             "flex",
             "ftp",
+            "haveged",
             "jq",
             "m4",
             "mediainfo",
             "netcat",
+            "p7zip-full",
             "parallel",
+            "pass",
             "patchelf",
+            "pollinate",
             "rsync",
             "shellcheck",
+            "sphinxsearch",
             "sqlite3",
             "ssh",
+            "subversion",
             "sudo",
+            "swig",
             "telnet",
             "time",
             "unzip",
@@ -177,5 +216,37 @@
             "3.1",
             "5.0"
         ]
-    }
+    },
+    "clang": {
+        "versions": [
+            "8",
+            "9",
+            "10"
+        ],
+        "default_version": "10"
+    },
+    "gcc": {
+        "versions": [
+            "g++-7",
+            "g++-8",
+            "g++-9",
+            "g++-10"
+        ]
+    },
+    "gfortran": {
+        "versions": [
+            "gfortran-8",
+            "gfortran-9",
+            "gfortran-10"
+        ]
+    },
+    "php": {
+        "versions": [
+            "7.4",
+            "8.0"
+        ]
+    },
+    "rubygems": [
+        {"name": "fastlane"}
+    ]
 }

@@ -13,14 +13,9 @@ function Get-AptFastVersion {
     return "apt-fast $aptFastVersion"
 }
 
-function Get-AzCopy7Version {
-    $azcopy7Version = azcopy --version | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
-    return "AzCopy7 $azcopy7Version (available by ``azcopy`` alias)"
-}
-
-function Get-AzCopy10Version {
-    $azcopy10Version = azcopy10 --version | Take-OutputPart -Part 2
-    return "AzCopy10 $azcopy10Version (available by ``azcopy10`` alias)"
+function Get-AzCopyVersion {
+    $azcopyVersion = azcopy --version | Take-OutputPart -Part 2
+    return "AzCopy $azcopyVersion (available by ``azcopy`` and ``azcopy10`` aliases)"
 }
 
 function Get-BazelVersion {
@@ -34,12 +29,24 @@ function Get-BazeliskVersion {
     return "Bazelisk $bazeliskVersion"
 }
 
+function Get-BinUtilsVersion {
+    $result = Get-CommandResult "dpkg-query --show binutils"
+    $binUtilsVersion = $result.Output| Take-OutputPart -Part 1 -Delimiter "`t" | Take-OutputPart -Part 0 -Delimiter "-"
+    return "binutils $binUtilsVersion"
+}
+
 function Get-CodeQLBundleVersion {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
     $CodeQLVersion = & $CodeQLPath version --quiet
     return "CodeQL Action Bundle $CodeQLVersion"
+}
+
+function Get-CoreUtilsVersion {
+    $result = Get-CommandResult "dpkg-query --show coreutils"
+    $coreUtilsVersion = $result.Output | Take-OutputPart -Part 1 -Delimiter "`t" | Take-OutputPart -Part 0 -Delimiter "-"
+    return "coreutils $coreUtilsVersion"
 }
 
 function Get-PodManVersion {
@@ -72,9 +79,14 @@ function Get-DockerComposeVersion {
     return "Docker Compose $composeVersion"
 }
 
-function Get-DockerMobyVersion {
-    $dockerVersion = docker -v | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "+"
-    return "Docker-Moby $dockerVersion"
+function Get-DockerMobyClientVersion {
+    $dockerClientVersion = sudo docker version --format '{{.Client.Version}}'
+    return "Docker-Moby Client $dockerClientVersion"
+}
+
+function Get-DockerMobyServerVersion {
+    $dockerServerVersion = sudo docker version --format '{{.Server.Version}}'
+    return "Docker-Moby Server $dockerServerVersion"
 }
 
 function Get-DockerBuildxVersion {
@@ -175,6 +187,11 @@ function Get-PackerVersion {
     return "Packer $(packer --version)"
 }
 
+function Get-PassVersion {
+    $passVersion = (pass version | Select-String "^=\s+v").Line.Replace('v','') | Take-OutputPart -Part 1
+    return "pass $passVersion"
+}
+
 function Get-PhantomJSVersion {
     return "PhantomJS $(phantomjs --version)"
 }
@@ -240,6 +257,11 @@ function Get-AWSCliSessionManagerPluginVersion {
 
 function Get-AWSSAMVersion {
     return "AWS SAM CLI $(sam --version | Take-OutputPart -Part -1)"
+}
+
+function Get-FastlaneVersion {
+    $fastlaneVersion = fastlane --version | Select-String "^fastlane [0-9]" | Take-OutputPart -Part 1
+    return "Fastlane $fastlaneVersion"
 }
 
 function Get-HubCliVersion {

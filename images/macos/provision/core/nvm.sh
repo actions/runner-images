@@ -1,6 +1,6 @@
 #!/bin/bash -e -o pipefail
 ###########################################################################
-# The script installs node version manager with node versions 6,8,10 and 12
+# The script installs node version manager with node versions 10,12 and 14
 #
 ###########################################################################
 source ~/utils/utils.sh
@@ -11,18 +11,12 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$VERSION/install.sh | bash
 if [ $? -eq 0 ]; then
         . ~/.bashrc
         nvm --version
-        nvm install lts/boron # 6.x
-        nvm install lts/carbon # 8.x
-        nvm install lts/dubnium # 10.x
-        nvm install lts/erbium # 12.x
-        nvm install v13 # 13.x
-        nvm install v14 # 14.x
-        nvm alias node6 lts/boron
-        nvm alias node8 lts/carbon
-        nvm alias node10 lts/dubnium
-        nvm alias node12 lts/erbium
-        nvm alias node13 v13
-        nvm alias node14 v14
+        nodeVersions=("v10" "v12" "v14")
+        for version in ${nodeVersions[@]}
+        do
+                nvm install $version
+        done
+
         # set system node as default
         nvm alias default system
 else
@@ -30,3 +24,5 @@ else
 fi
 
 echo "Node version manager has been installed successfully"
+
+invoke_tests "Node" "nvm"

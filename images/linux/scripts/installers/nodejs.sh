@@ -7,9 +7,15 @@
 # Install LTS Node.js and related build tools
 curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-install | bash -s -- -ny -
 ~/n/bin/n lts
-npm install -g grunt gulp n parcel-bundler typescript newman
+npm install -g grunt gulp n parcel-bundler typescript newman vercel
 npm install -g --save-dev webpack webpack-cli
-npm install -g npm
+
+# Install the Netlify CLI using --unsafe-perm=true options to avoid permission issues
+npm install -g --unsafe-perm=true netlify-cli
+
+echo "Creating the symlink for [now] command to vercel CLI"
+ln -s /usr/local/bin/vercel /usr/local/bin/now
+
 rm -rf ~/n
 
 # Install Yarn repository and key
@@ -20,11 +26,4 @@ apt-get update
 # Install yarn
 apt-get install -y --no-install-recommends yarn
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in node grunt gulp webpack parcel yarn newman; do
-    if ! command -v $cmd; then
-        echo "$cmd was not installed"
-        exit 1
-    fi
-done
+invoke_tests "Tools" "Node.js"

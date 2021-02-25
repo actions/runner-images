@@ -18,9 +18,7 @@ $env:Path = Get-MachinePath
 setx npm_config_prefix $PrefixPath /M
 $env:npm_config_prefix = $PrefixPath
 
-setx npm_config_cache $CachePath /M
-$env:npm_config_cache = $CachePath
-
+npm config set cache $CachePath --global
 npm config set registry http://registry.npmjs.org/
 
 npm install -g cordova

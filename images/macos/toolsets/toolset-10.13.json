@@ -178,7 +178,7 @@
     "java": {
         "default": "8",
         "versions": [
-            "7", "8", "11", "12", "13", "14"
+            "8", "11", "12", "13", "14"
         ]
     },
     "android": {
@@ -189,7 +189,14 @@
         ],
         "addon-list": [
             "addon-google_apis-google-24", "addon-google_apis-google-23", "addon-google_apis-google-22", "addon-google_apis-google-21"
-        ]
+        ],
+        "additional-tools": [
+            "cmake;3.10.2.4988404"
+        ],
+        "ndk": {
+            "lts": "21",
+            "latest": "22"
+        }
     },
     "powershellModules": [
         {
@@ -199,8 +206,40 @@
             ]
         },
         {"name": "MarkdownPS"},
-        {"name": "Pester"}
+        {"name": "Pester"},
+        {"name": "PSScriptAnalyzer"}
     ],
+    "brew": {
+        "common_packages": [
+            "aliyun-cli",
+            "ant",
+            "aria2",
+            "bats",
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "go",
+            "helm",
+            "libpq",
+            "llvm",
+            "p7zip",
+            "packer",
+            "parallel",
+            "perl",
+            "subversion",
+            "xctool",
+            "zstd"
+        ],
+        "cask_packages": [
+            "julia",
+            "r",
+            "vagrant",
+            "virtualbox"
+        ]
+    },
     "toolcache": [
         {
             "name": "PyPy",

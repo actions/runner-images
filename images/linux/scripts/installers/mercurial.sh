@@ -16,8 +16,4 @@ fi
 
 apt-get install -y --no-install-recommends mercurial
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v hg; then
-    exit 1
-fi
+invoke_tests "Tools" "Mercurial"

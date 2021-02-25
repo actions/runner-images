@@ -1,4 +1,7 @@
-Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+function Get-BashVersion {
+    $version = bash -c 'echo ${BASH_VERSION}'
+    return "Bash $version"
+}
 
 function Get-DotnetVersionList {
     $sdkRawList = Run-Command "dotnet --list-sdks"
@@ -12,16 +15,37 @@ function Get-GoVersion {
         $goOutput = $goOutput.Substring(2)
     }
 
-    return $goOutput
+    return "Go $goOutput"
 }
 
 function Get-RVersion {
     $rVersion = Run-Command "R --version | grep 'R version'" | Take-Part -Part 2
     return "R $rVersion"
 }
+
 function Get-RustVersion {
     $rustVersion = Run-Command "rustc --version" | Take-Part -Part 1
-    return "${rustVersion}"
+    return "Rust $rustVersion"
+}
+
+function Get-RustfmtVersion {
+    $version = Run-Command "rustfmt --version" | Take-Part -Part 1
+    return "Rustfmt $version"
+}
+
+function Get-RustdocVersion {
+    $version = Run-Command "rustdoc --version" | Take-Part -Part 1
+    return "Rustdoc $version"
+}
+
+function Get-RustCargoVersion {
+    $version = Run-Command "cargo --version" | Take-Part -Part 1
+    return "Cargo $version"
+}
+
+function Get-RustClippyVersion {
+    $version = Run-Command "cargo clippy --version" | Take-Part -Part 1
+    return "Clippy $version"
 }
 
 function Get-Bindgen {
@@ -52,7 +76,7 @@ function Get-RustupVersion {
 function Get-VcpkgVersion {
     $vcpkgVersion = Run-Command "vcpkg version" | Select-Object -First 1 | Take-Part -Part 5 | Take-Part -Part 0 -Delimiter "-"
     $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
-    return "Vcpkg $vcpkgVersion (build from master <$commitId>)"
+    return "Vcpkg $vcpkgVersion (build from master \<$commitId>)"
 }
 
 function Get-GccVersion {
@@ -76,7 +100,7 @@ function Get-ClangLLVMVersion {
     $locationsList | Foreach-Object {
         (Run-Command "${_} --version" | Out-String) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
         $version = $Matches.version
-        "Clang/LLVM $version " + $(if(${_} -Match "brew") {"is available on ``${_}``"} else {"is default"})
+        "Clang/LLVM $version " + $(if(${_} -Match "brew") {"is available on ```'${_}`'``"} else {"is default"})
     }
 }
 
@@ -84,7 +108,7 @@ function Get-NVMVersion {
     $nvmPath = Join-Path $env:HOME ".nvm" "nvm.sh"
     $nvmInitCommand = ". ${nvmPath} > /dev/null 2>&1 || true"
     $nodejsVersion = Run-Command "${nvmInitCommand} && nvm --version"
-    return $nodejsVersion
+    return "NVM $nodejsVersion"
 }
 
 function Get-PipVersion {
@@ -98,7 +122,7 @@ function Get-PipVersion {
     $versionPart1 = $commandOutput | Take-Part -Part 1
     $versionPart2 = $commandOutput | Take-Part -Part 4
     $versionPart3 = $commandOutput | Take-Part -Part 5
-    return "${versionPart1} ${versionPart2} ${versionPart3}"
+    return "Pip ${versionPart1} ${versionPart2} ${versionPart3}"
 }
 
 function Get-PipxVersion {
@@ -111,7 +135,8 @@ function Get-NVMNodeVersionList {
     $nvmInitCommand = ". ${nvmPath} > /dev/null 2>&1 || true"
     $nodejsVersionsRaw = Run-Command "${nvmInitCommand} && nvm ls"
     $nodeVersions = $nodejsVersionsRaw | ForEach-Object { $_.TrimStart(" ").TrimEnd(" *") } | Where-Object { $_.StartsWith("v") }
-    return [string]::Join(" ", $nodeVersions)
+    $result = [string]::Join(" ", $nodeVersions)
+    return "NVM - Cached node versions: $result"
 }
 
 function Build-OSInfoSection {
@@ -124,4 +149,343 @@ function Build-OSInfoSection {
     $output += New-MDHeader "macOS $version info" -Level 1
     $output += New-MDList -Style Unordered -Lines $parsedSystemInfo -NoNewLine
     return $output
+}
+
+function Get-PHPVersion {
+    $PHPVersion = Run-Command "php --version" | Select-Object -First 1 | Take-Part -Part 0,1
+    return $PHPVersion
+}
+
+function Get-NodeVersion {
+    $nodeVersion = Run-Command "node --version"
+    return "Node.js $nodeVersion"
+}
+
+function Get-PerlVersion {
+    $version = Run-Command "perl -e 'print substr(`$^V,1)'"
+    return "Perl $version"
+}
+
+function Get-PythonVersion {
+    $pythonVersion = Run-Command "python --version"
+    return $pythonVersion
+}
+
+function Get-Python3Version {
+    $python3Version = Run-Command "python3 --version"
+    return $python3Version
+}
+
+function Get-RubyVersion {
+    $rubyVersion = Run-Command "ruby --version" | Take-Part -Part 1
+    return "Ruby $rubyVersion"
+}
+
+function Get-PHPVersion {
+    $PHPVersion = Run-Command "php --version" | Select-Object -First 1 | Take-Part -Part 0,1
+    return $PHPVersion
+}
+
+function Get-JuliaVersion {
+    $juliaVersion = Run-Command "julia --version" | Take-Part -Part 0,2
+    return $juliaVersion
+}
+
+function Get-BundlerVersion {
+    $bundlerVersion = Run-Command "bundle --version"
+    return $bundlerVersion
+}
+
+function Get-CarthageVersion {
+    $carthageVersion = Run-Command "carthage version" -SuppressStderr
+    return "Carthage $carthageVersion"
+}
+
+function Get-CocoaPodsVersion {
+    $cocoaPodsVersion = Run-Command "pod --version"
+    return "CocoaPods $cocoaPodsVersion"
+}
+
+function Get-HomebrewVersion {
+    $homebrewVersion = Run-Command "brew --version" | Select-Object -First 1
+    return $homebrewVersion
+}
+
+function Get-NPMVersion {
+    $NPMVersion = Run-Command "npm --version"
+    return "NPM $NPMVersion"
+}
+
+function Get-YarnVersion {
+    $yarmVersion = Run-Command "yarn --version"
+    return "Yarn $yarmVersion"
+}
+
+function Get-NuGetVersion {
+    $nugetVersion = Run-Command "nuget help" | Select-Object -First 1 | Take-Part -Part 2
+    return "NuGet $nugetVersion"
+}
+
+function Get-CondaVersion {
+    $condaVersion = Invoke-Expression "conda --version"
+    return "Mini$condaVersion"
+}
+
+function Get-RubyGemsVersion {
+    $rubyGemsVersion = Run-Command "gem --version"
+    return "RubyGems $rubyGemsVersion"
+}
+
+function Get-ComposerVersion {
+    $composerVersion = Run-Command "composer --version" | Take-Part -Part 2
+    return "Composer $composerVersion"
+}
+
+function Get-MavenVersion {
+    $mavenVersion = Run-Command "mvn -version" | Select-Object -First 1 | Take-Part -Part 2
+    return "Apache Maven $mavenVersion"
+}
+
+#gradle output differs on the first launch – a welcome message, that we don't need is rendered. The solution is to take the last "Gradle" occurrence from the output
+function Get-GradleVersion {
+    $gradleVersion = (Run-Command "gradle --version" | Select-String "Gradle")[-1]
+    return $gradleVersion
+}
+
+function Get-ApacheAntVersion {
+    $apacheAntVersion = Run-Command "ant -version"  | Take-Part -Part 0,1,3
+    return $apacheAntVersion
+}
+
+function Get-CurlVersion {
+    $curlVersion = Run-Command "curl --version" | Select-Object -First 1 | Take-Part -Part 1
+    return "Curl $curlVersion"
+}
+
+function Get-GitVersion {
+    $gitVersion = Run-Command "git --version" | Take-Part -Part 2
+    return "Git: $gitVersion"
+}
+
+function Get-GitLFSVersion {
+    $gitLFSVersion = Run-Command "git-lfs version" | Take-Part -Part 0 | Take-Part -Part 1 -Delimiter "/"
+    return "Git LFS: $gitLFSVersion"
+}
+
+function Get-GitHubCLIVersion {
+    $ghVersion = Run-Command "gh --version" | Select-String "gh version" | Select-Object -First 1 | Take-Part -Part 2
+    return "GitHub CLI: $ghVersion"
+}
+
+function Get-HubVersion {
+    $hubVersion = Run-Command "brew list --versions hub" | Take-Part -Part 1
+    return "Hub CLI: $hubVersion"
+}
+
+function Get-WgetVersion {
+    $wgetVersion = Run-Command "wget --version" | Select-String "GNU Wget" | Take-Part -Part 2
+    return "GNU Wget $wgetVersion"
+}
+
+function Get-SVNVersion {
+    $svnVersion = Run-Command "svn --version --quiet"
+    return "Subversion (SVN) $svnVersion"
+}
+
+function Get-PackerVersion {
+    $packerVersion = Run-Command "packer --version"
+    return "Packer $packerVersion"
+}
+
+function Get-OpenSSLVersion {
+    $opensslVersion = Get-Item /usr/local/opt/openssl | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
+    return $opensslVersion
+}
+
+function Get-JqVersion {
+    $jqVersion = Run-Command "jq --version" | Take-Part -Part 1 -Delimiter "-"
+    return "jq $jqVersion"
+}
+
+function Get-GPGVersion {
+    $gpgVersion = Run-Command "gpg --version" | Select-String 'gpg (GnuPG)' -SimpleMatch
+    return $gpgVersion
+}
+
+function Get-PostgresClientVersion {
+    $postgresClientVersion = Run-Command "psql --version"
+    return $postgresClientVersion
+}
+
+function Get-PostgresServerVersion {
+    $postgresServerVersion = Run-Command "pg_config --version"
+    return $postgresServerVersion
+}
+
+function Get-Aria2Version {
+    $aria2Version = Run-Command "aria2c --version" | Select-Object -First 1 | Take-Part -Part 2
+    return "aria2 $aria2Version"
+}
+
+function Get-AzcopyVersion {
+    $azcopyVersion = Run-Command "azcopy --version" | Take-Part -Part 2
+    return "azcopy $azcopyVersion"
+}
+
+function Get-ZstdVersion {
+    $zstdVersion = Run-Command "zstd --version" | Take-Part -Part 1 -Delimiter "v" | Take-Part -Part 0 -Delimiter ","
+    return "zstd $zstdVersion"
+}
+
+function Get-BazelVersion {
+    $bazelVersion = Run-Command "bazel --version" | Take-Part -Part 0 -Delimiter "-"
+    return $bazelVersion
+}
+
+function Get-BazeliskVersion {
+    $bazeliskVersion = Run-Command "brew list bazelisk --versions"
+    return $bazeliskVersion
+}
+
+function Get-HelmVersion {
+    $helmVersion = Run-Command "helm version --short"
+    return "helm $helmVersion"
+}
+
+function Get-MongoVersion {
+    $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
+    return "mongo $mongo"
+}
+
+function Get-MongodVersion {
+    $mongod = Run-Command "mongod --version" | Select-String "db version " | Take-Part -Part 2
+    return "mongod $mongod"
+}
+
+function Get-7zipVersion {
+    $7zip = Run-Command "7z i" | Select-String "7-Zip" | Take-Part -Part 0,2
+    return $7zip
+}
+
+function Get-GnuTarVersion {
+    $gnuTar = Run-Command "gtar --version" | Select-String "tar" | Take-Part -Part 3
+    return "GNU Tar $gnuTar - available by 'gtar' alias"
+}
+
+function Get-BsdtarVersion {
+    $bsdtar = Run-Command "tar --version" | Take-Part -Part 1
+    return "bsdtar $bsdtar - available by 'tar' alias"
+}
+
+function Get-NewmanVersion {
+    $newmanVersion = Run-Command "newman --version"
+    return "Newman $newmanVersion"
+}
+
+function Get-VirtualBoxVersion {
+    $virtualBox = Run-Command "vboxmanage -v"
+    return "virtualbox $virtualBox"
+}
+
+function Get-VagrantVersion {
+    $vagrant = Run-Command "vagrant -v"
+    return $vagrant
+}
+
+function Get-ParallelVersion {
+    $parallelVersion = Run-Command "parallel --version" | Select-String "GNU parallel" | Select-Object -First 1
+    return $parallelVersion
+}
+
+function Get-FastlaneVersion {
+    $fastlaneVersion = Run-Command "fastlane --version" | Select-String "^fastlane [0-9]" | Take-Part -Part 1
+    return "Fastlane $fastlaneVersion"
+}
+
+function Get-CmakeVersion {
+    $cmakeVersion = Run-Command "cmake --version" | Select-Object -First 1 | Take-Part -Part 2
+    return "Cmake $cmakeVersion"
+}
+
+function Get-AppCenterCLIVersion {
+    $appcenterCLIVersion = Run-Command "appcenter --version" | Take-Part -Part 2
+    return "App Center CLI $appcenterCLIVersion"
+}
+
+function Get-AzureCLIVersion {
+    $azureCLIVersion = Run-Command "az -v" | Select-String "^azure-cli" | Take-Part -Part 1
+    return "Azure CLI $azureCLIVersion"
+}
+
+function Get-AWSCLIVersion {
+    $awsVersion = Run-Command "aws --version" | Take-Part -Part 0 | Take-Part -Delimiter "/" -Part 1
+    return "AWS CLI $awsVersion"
+}
+
+function Get-AWSSAMCLIVersion {
+    $awsSamVersion = Run-Command "sam --version" | Take-Part -Part 3
+    return "AWS SAM CLI $awsSamVersion"
+}
+
+function Get-AWSSessionManagerCLIVersion {
+    $awsSessionManagerVersion = Run-Command "session-manager-plugin --version"
+    return "AWS Session Manager CLI $awsSessionManagerVersion"
+}
+
+function Get-AliyunCLIVersion {
+    $aliyunVersion = Run-Command "aliyun --version" | Select-String "Alibaba Cloud Command Line Interface Version " | Take-Part -Part 6
+    return "Aliyun CLI $aliyunVersion"
+}
+
+function Get-GHCupVersion {
+    $ghcUpVersion = Run-Command "ghcup --version" | Take-Part -Part 5
+    return "GHCup $ghcUpVersion"
+}
+
+function Get-GHCVersion {
+    $ghcVersion = Run-Command "ghc --version" | Take-Part -Part 7
+    return "GHC $ghcVersion"
+}
+
+function Get-CabalVersion {
+    $cabalVersion = Run-Command "cabal --version" | Take-Part -Part 3
+    return "Cabal $cabalVersion"
+}
+
+function Get-StackVersion {
+    $stackVersion = Run-Command "stack --version" | Take-Part -Part 1 | ForEach-Object {$_.replace(",","")}
+    return "Stack $stackVersion"
+}
+
+function Get-YamllintVersion {
+    $yamllintVersion = Run-Command "yamllint --version"
+    return $yamllintVersion
+}
+
+function Get-SwiftLintVersion {
+    $swiftlintVersion = Run-Command "swiftlint version"
+    return "SwiftLint $swiftlintVersion"
+}
+
+function Get-PowershellVersion {
+    $powershellVersion = Run-Command "powershell --version"
+    return $powershellVersion
+}
+
+function Build-PackageManagementEnvironmentTable {
+    return @(
+        @{
+            "Name" = "CONDA"
+            "Value" = $env:CONDA
+        },
+        @{
+            "Name" = "VCPKG_INSTALLATION_ROOT"
+            "Value" = $env:VCPKG_INSTALLATION_ROOT
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
 }

@@ -10,9 +10,4 @@ curl -LO "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKE
 unzip "packer_${PACKER_VERSION}_linux_amd64.zip" -d /usr/local/bin
 rm -f "packer_${PACKER_VERSION}_linux_amd64.zip"
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v packer; then
-    echo "Packer was not installed or found on PATH"
-    exit 1
-fi
+invoke_tests "Tools" "Packer"

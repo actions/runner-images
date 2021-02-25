@@ -32,6 +32,9 @@ while [ \$i -le 30 ];do
   elif grep -q 'Temporary failure in name resolution' \$err;then
     # It looks like DNS is not updated with random generated hostname yet
     retry=true
+  elif grep -q 'dpkg frontend is locked by another process' \$err;then
+    # dpkg process is busy by another process
+    retry=true
   fi
 
   rm \$err

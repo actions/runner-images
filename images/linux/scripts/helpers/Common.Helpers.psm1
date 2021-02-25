@@ -13,16 +13,8 @@ function Get-CommandResult {
     }
 }
 
-function Take-OutputPart {
-    param (
-        [Parameter(ValueFromPipeline)]
-        [string] $toolOutput,
-        [string] $Delimiter = " ",
-        [int[]] $Part
-    )
-    $parts = $toolOutput.Split($Delimiter, [System.StringSplitOptions]::RemoveEmptyEntries)
-    $selectedParts = $parts[$Part]
-    return [string]::Join($Delimiter, $selectedParts)
+function Get-OSName {
+    lsb_release -ds
 }
 
 function Test-IsUbuntu16 {
@@ -42,14 +34,28 @@ function Get-ToolsetContent {
     Get-Content $toolset -Raw | ConvertFrom-Json
 }
 
-function New-MDNewLine {
+function Get-ToolsetValue {
     param (
-        [int] $Count = 1
+        [Parameter(Mandatory = $true)]
+        [string] $KeyPath
     )
-    $newLineSymbol = [System.Environment]::NewLine
-    return $newLineSymbol * $Count
+
+    $jsonNode = Get-ToolsetContent
+
+    $pathParts = $KeyPath.Split(".")
+    # try to walk through all arguments consequentially to resolve specific json node
+    $pathParts | ForEach-Object {
+        $jsonNode = $jsonNode.$_
+    }
+    return $jsonNode
 }
 
-function Restore-UserOwner {
-    sudo chown -R ${env:USER}: $env:HOME
+function Get-AndroidPackages {
+    $androidSDKManagerPath = "/usr/local/lib/android/sdk/tools/bin/sdkmanager"
+    $androidPackages = & $androidSDKManagerPath --list --verbose
+    return $androidPackages
+}
+
+function Get-EnvironmentVariable($variable) {
+    return [System.Environment]::GetEnvironmentVariable($variable)
 }

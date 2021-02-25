@@ -1,5 +1,4 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
 
 AZCOPY_DOWNLOAD_URL="https://aka.ms/downloadazcopy-v10-mac"
@@ -12,3 +11,5 @@ chmod +x "/usr/local/bin/azcopy"
 
 echo "Done, cleaning up"
 rm -rf azcopy*
+
+invoke_tests "Common" "AzCopy"

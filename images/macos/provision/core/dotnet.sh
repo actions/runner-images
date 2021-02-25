@@ -6,14 +6,13 @@
 # https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script
 #
 ###########################################################################
-
 source ~/utils/utils.sh
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Download installer from dot.net and keep it locally
 DOTNET_INSTALL_SCRIPT="https://dotnet.microsoft.com/download/dotnet-core/scripts/v1/dotnet-install.sh"
-curl -o "dotnet-install.sh" "$DOTNET_INSTALL_SCRIPT"
+curl -L -o "dotnet-install.sh" "$DOTNET_INSTALL_SCRIPT"
 chmod +x ./dotnet-install.sh
 
 ARGS_LIST=()
@@ -55,5 +54,6 @@ if [ $(dotnet --list-sdks | wc -l) -lt "1" ]; then
 fi
 
 echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> "$HOME/.bashrc"
-
 echo "Dotnet operations have been completed successfully..."
+
+invoke_tests "Common" ".NET"

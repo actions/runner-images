@@ -17,3 +17,5 @@ for package in $pipx_packages; do
         pipx install $package
     fi
 done
+
+invoke_tests "PipxPackages"

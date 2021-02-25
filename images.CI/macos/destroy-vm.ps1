@@ -39,7 +39,7 @@ param(
 Import-Module $PSScriptRoot\helpers.psm1 -DisableNameChecking
 
 # Connection to a vCenter Server system
-Connect-VCServer
+Connect-VCServer -VIServer $VIServer -VIUserName $VIUserName -VIPassword $VIPassword
 
 # Check vm clone status
 $chainId = (Get-VIEvent -Entity $VMName).ChainId

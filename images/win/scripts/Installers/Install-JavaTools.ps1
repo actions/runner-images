@@ -10,11 +10,7 @@ function Set-JavaPath {
         [switch] $Default
     )
 
-    if ($Version -eq 7) {
-        $matchedString = "azure-jdk_7"
-    } else {
-        $matchedString = "jdk-?$Version"
-    }
+    $matchedString = "jdk-?$Version"
     $javaPath = (Get-ChildItem -Path $JavaRootPath | Where-Object { $_ -match $matchedString}).FullName
 
     if ([string]::IsNullOrEmpty($javaPath)) {
@@ -51,15 +47,6 @@ function Set-JavaPath {
     }
 }
 
-function Install-Java7FromAzul {
-    param(
-        [string] $DestinationPath
-    )
-    $azulJDK7URL = 'https://repos.azul.com/azure-only/zulu/packages/zulu-7/7u232/zulu-7-azure-jdk_7.31.0.5-7.0.232-win_x64.zip'
-    $archivePath = Start-DownloadWithRetry -Url $azulJDK7URL -Name $([IO.Path]::GetFileName($azulJDK7URL))
-    Extract-7Zip -Path $archivePath -DestinationPath $DestinationPath
-}
-
 function Install-JavaFromAdoptOpenJDK {
     param(
         [string] $JDKVersion,
@@ -77,16 +64,12 @@ function Install-JavaFromAdoptOpenJDK {
     Extract-7Zip -Path $archivePath -DestinationPath $DestinationPath
 }
 
-$jdkVersions = @(7, 8, 11, 13)
-$defaultVersion = 8
+$jdkVersions = (Get-ToolsetContent).java.versions
+$defaultVersion = (Get-ToolsetContent).java.default
 $javaRootPath = "C:\Program Files\Java\"
 
 foreach ($jdkVersion in $jdkVersions) {
-    if ($jdkVersion -eq 7) {
-        Install-Java7FromAzul -DestinationPath $javaRootPath
-    } else {
-        Install-JavaFromAdoptOpenJDK -JDKVersion $jdkVersion -DestinationPath $javaRootPath
-    }
+    Install-JavaFromAdoptOpenJDK -JDKVersion $jdkVersion -DestinationPath $javaRootPath
 
     if ($jdkVersion -eq $defaultVersion) {
         Set-JavaPath -Version $jdkVersion -JavaRootPath $javaRootPath -Default
@@ -112,7 +95,6 @@ $m2_repo = 'C:\ProgramData\m2'
 New-Item -Path $m2_repo -ItemType Directory -Force
 
 setx M2 $m2 /M
-setx M2_HOME $m2_home /M
 setx M2_REPO $m2_repo /M
 setx MAVEN_OPTS $maven_opts /M
 

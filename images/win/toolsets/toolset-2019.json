@@ -8,7 +8,8 @@
                 "2.4",
                 "2.5",
                 "2.6",
-                "2.7"
+                "2.7",
+                "3.0"
             ],
             "default": "2.5"
         },
@@ -47,7 +48,8 @@
             "platform" : "win32",
             "versions": [
                 "2.7",
-                "3.6"
+                "3.6",
+                "3.7"
             ]
         },
         {
@@ -56,7 +58,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "8.*",
                 "10.*",
                 "12.*",
                 "14.*"
@@ -68,15 +69,12 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.9.*",
-                "1.10.*",
-                "1.11.*",
-                "1.12.*",
                 "1.13.*",
                 "1.14.*",
-                "1.15.*"
+                "1.15.*",
+                "1.16.*"
             ],
-            "default": "1.14.*"
+            "default": "1.15.*"
         },
         {
             "name": "Boost",
@@ -94,6 +92,7 @@
         {"name": "MarkdownPS"},
         {"name": "Pester"},
         {"name": "PowerShellGet"},
+        {"name": "PSScriptAnalyzer"},
         {"name": "PSWindowsUpdate"},
         {"name": "SqlServer"},
         {"name": "VSSetup"}
@@ -135,10 +134,17 @@
                 "4.3.0",
                 "4.4.0",
                 "4.6.0",
-                "4.7.0"
+                "4.7.0",
+                "5.5.0"
             ]
         }
     ],
+    "java": {
+        "default": "8",
+        "versions": [
+            "8", "11", "13"
+        ]
+    },
     "android": {
         "platform_min_version": "19",
         "build_tools_min_version": "19.1.0",
@@ -158,11 +164,14 @@
             "addon-google_apis-google-21"
         ],
         "additional_tools": [
-            "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
             "patcher;v4",
-            "ndk-bundle"
-        ]
+            "cmdline-tools;latest"
+        ],
+        "ndk": {
+            "lts": "21",
+            "latest": "22"
+        }
     },
     "visualStudio": {
         "version" : "2019",

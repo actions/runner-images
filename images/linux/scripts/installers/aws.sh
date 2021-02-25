@@ -23,19 +23,7 @@ if isUbuntu16 || isUbuntu18 ; then
     rm -rf awscli-bundle
 fi
 
-# Validate the installation
-echo "Validate the installation"
-if ! command -v aws; then
-    echo "aws was not installed"
-    exit 1
-fi
-
 curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
-sudo dpkg -i session-manager-plugin.deb
+sudo apt install ./session-manager-plugin.deb
 
-sessionPlugin=$(session-manager-plugin)
-echo "$sessionPlugin"
-if ! [[ $sessionPlugin == *"was installed successfully"* ]]
-then
-    exit 1
-fi
+invoke_tests "CLI.Tools" "AWS"

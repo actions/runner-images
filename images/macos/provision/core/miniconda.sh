@@ -10,3 +10,5 @@ sudo ln -s /usr/local/miniconda/bin/conda /usr/local/bin/conda
 if [ -d "$HOME/.conda" ]; then
     sudo chown -R $USER "$HOME/.conda"
 fi
+
+invoke_tests "Common" "Miniconda"

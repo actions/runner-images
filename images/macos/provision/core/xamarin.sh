@@ -1,5 +1,4 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
 
@@ -88,3 +87,5 @@ sudo rm -rf "$TMPMOUNT"
 PREFERENCES_XAMARIN_DIR="${HOME}/Library/Preferences/Xamarin"
 mkdir -p $PREFERENCES_XAMARIN_DIR
 /usr/libexec/PlistBuddy -c "add :AppleSdkRoot string /Applications/Xcode_${DEFAULT_XCODE_VERSION}.app" $PREFERENCES_XAMARIN_DIR/Settings.plist
+
+invoke_tests "Xamarin"

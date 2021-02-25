@@ -1,8 +1,4 @@
-# Invokes command and validate that the exit code is 0
-function Validate-ZeroExitCode($command) {
-    $result = Get-CommandResult $command
-    $result.ExitCode | Should -Be 0 -Because $result.Output
-}
+Import-Module "$PSScriptRoot/Common.Helpers.psm1"
 
 # Validates that tool is installed and in PATH
 function Validate-ToolExist($tool) {
@@ -84,4 +80,41 @@ function ShouldReturnZeroExitCode {
 
 If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
     Add-AssertionOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
+}
+
+function Invoke-PesterTests {
+    Param(
+        [Parameter(Mandatory)][string] $TestFile,
+        [string] $TestName
+    )
+
+    $testPath = "$HOME/image-generation/tests/${TestFile}.Tests.ps1"
+    if (-not (Test-Path $testPath)) {
+        throw "Unable to find test file '$TestFile' on '$testPath'."
+    }
+
+    # Check that Pester module is imported
+    if (!(Get-Module "Pester")) {
+        Import-Module Pester
+    }
+
+    $configuration = [PesterConfiguration] @{
+        Run = @{ Path = $testPath; PassThru = $true }
+        Output = @{ Verbosity = "Detailed" }
+    }
+    if ($TestName) {
+        $configuration.Filter.FullName = $TestName
+    }
+
+    # Switch ErrorActionPreference to make sure that tests will fail on silent errors too
+    $backupErrorActionPreference = $ErrorActionPreference
+    $ErrorActionPreference = "Stop"
+    $results = Invoke-Pester -Configuration $configuration
+    $ErrorActionPreference = $backupErrorActionPreference
+
+    # Fail in case if no tests are run
+    if (-not ($results -and ($results.FailedCount -eq 0) -and ($results.PassedCount -gt 0))) {
+        $results
+        throw "Test run has failed"
+    }
 }

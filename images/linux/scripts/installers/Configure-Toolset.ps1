@@ -4,6 +4,8 @@
 ##  Desc:  Configure toolset
 ################################################################################
 
+Import-Module "$env:HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
+
 function Get-ToolsetToolFullPath
 {
     param
@@ -42,7 +44,6 @@ $toolsEnvironment = @{
     }
     go = @{
         command = "ln -s {0}/bin/* /usr/bin/"
-        defaultVariable = "GOROOT"
         variableTemplate = "GOROOT_{0}_{1}_X64"
     }
 }
@@ -93,3 +94,5 @@ foreach ($tool in $toolset.toolcache)
         Invoke-Expression -Command $command
     }
 }
+
+Invoke-PesterTests -TestFile "Toolset" -TestName "Toolset"

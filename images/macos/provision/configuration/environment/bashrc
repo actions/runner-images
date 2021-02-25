@@ -5,6 +5,7 @@ export LANG=en_US.UTF-8
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 export ANDROID_SDK_ROOT=${HOME}/Library/Android/sdk
 export ANDROID_NDK_HOME=${ANDROID_HOME}/ndk-bundle
+export ANDROID_NDK_ROOT=${ANDROID_HOME}/ndk-bundle
 
 export NUNIT_BASE_PATH=/Library/Developer/nunit
 export NUNIT3_PATH=/Library/Developer/nunit/3.6.0
@@ -18,7 +19,7 @@ export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:$
 export PATH=/usr/local/go/bin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:~/bin:~/.yarn/bin:$PATH
 export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/opt/ruby@2.7/bin:$PATH"
 GEM_PATH=`gem env|awk '/EXECUTABLE DIRECTORY/ {print $4}'`
 export PATH="$GEM_PATH:$PATH"
 export PATH=$HOME/.cargo/bin:$PATH
@@ -28,6 +29,7 @@ export DOTNET_ROOT=$HOME/.dotnet
 export DOTNET_MULTILEVEL_LOOKUP=0
 
 export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=3650
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 export BOOTSTRAP_HASKELL_NONINTERACTIVE=1

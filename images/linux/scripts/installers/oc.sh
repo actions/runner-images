@@ -12,9 +12,4 @@ PACKAGE_TAR_NAME="oc.tar.gz"
 download_with_retries $DOWNLOAD_URL "/tmp" $PACKAGE_TAR_NAME
 tar xvzf "/tmp/$PACKAGE_TAR_NAME" -C "/usr/local/bin"
 
-# Validate the installation
-echo "Validate the installation"
-if ! command -v oc; then
-    echo "oc was not installed"
-    exit 1
-fi
+invoke_tests "CLI.Tools" "OC CLI"
