@@ -22,7 +22,7 @@ for module in $node_modules; do
     if [ $module = "netlify-cli" ];then
       # Install the Netlify CLI using --unsafe-perm=true options to avoid permission issues
       npm install -g --unsafe-perm=true $module
-    else	    
+    else    
       npm install -g $module
     fi
 done

@@ -1,5 +1,5 @@
 Describe "Node.js" {
-    $binaries = ,"node"
+    $binaries = @("node")
     $module_commands = (Get-ToolsetContent).node_modules | ForEach-Object { $_.command }
     $testCases = $binaries + $module_commands | ForEach-Object { @{NodeCommand = $_} }
 
