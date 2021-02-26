@@ -3,39 +3,38 @@
 | [[macOS] Default Xcode will be set to Xcode 12.4 on February, 22](https://github.com/actions/virtual-environments/issues/2685) |
 | [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
-| [[all OSs] Java 7 will be removed from images on February, 8.](https://github.com/actions/virtual-environments/issues/2446) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H512)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210213.1
+- Image Version: 20210220.1
 
 ## Installed Software
 ### Language and Runtime
 - .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 5.0.100 5.0.101 5.0.102 5.0.103
 - Bash 3.2.57(1)-release
-- Clang/LLVM 11.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
+- Clang/LLVM 11.1.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
-- gcc-10 (Homebrew GCC 10.2.0_3) 10.2.0 - available by `gcc-10` alias
+- gcc-10 (Homebrew GCC 10.2.0_4) 10.2.0 - available by `gcc-10` alias
 - gcc-8 (Homebrew GCC 8.4.0_2) 8.4.0 - available by `gcc-8` alias
 - gcc-9 (Homebrew GCC 9.3.0_1) 9.3.0 - available by `gcc-9` alias
-- GNU Fortran (Homebrew GCC 10.2.0_3) 10.2.0  - available by `gfortran-10` alias
+- GNU Fortran (Homebrew GCC 10.2.0_4) 10.2.0  - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 8.4.0_2) 8.4.0  - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0  - available by `gfortran-9` alias
-- Go 1.15.7
+- Go 1.15.8
 - julia 1.5.3
 - Node.js v14.15.5
-- NVM - Cached node versions: v6.17.1 v8.17.0 v10.23.3 v12.20.2 v13.14.0 v14.15.5
+- NVM - Cached node versions: v10.23.3 v12.20.2 v14.15.5
 - NVM 0.37.2
 - Perl 5.32.1
 - PHP 8.0.2
 - Python 2.7.18
 - Python 3.9.1
-- R 4.0.3
+- R 4.0.4
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.9
+- Bundler version 2.2.11
 - Carthage 0.37.0
 - CocoaPods 1.10.1
 - Composer 2.0.9
@@ -46,8 +45,8 @@
 - Pip 20.3.4 (python 2.7)
 - Pip 21.0.1 (python 3.9)
 - Pipx 0.16.0.0
-- RubyGems 3.2.9
-- Vcpkg 2021 (build from master \<f79c681>)
+- RubyGems 3.2.11
+- Vcpkg 2021 (build from master \<99dc49d>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -71,9 +70,9 @@
 - Curl 7.75.0
 - Git LFS: 2.13.2
 - Git: 2.30.1
-- GitHub CLI: 1.5.0
+- GitHub CLI: 1.6.1
 - GNU parallel 20201122
-- GNU Tar 1.33 - available by 'gtar' alias
+- GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.2.27
 - helm v3.5.2+g167aac7
@@ -82,8 +81,8 @@
 - mongo v4.4.3
 - mongod v4.4.3
 - Newman 5.2.2
-- OpenSSL 1.1.1i  8 Dec 2020 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1i)`
-- Packer 1.6.6
+- OpenSSL 1.1.1j  16 Feb 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1j)`
+- Packer 1.7.0
 - PostgreSQL 13.2
 - psql (PostgreSQL) 13.2
 - Subversion (SVN) 1.14.1
@@ -93,15 +92,15 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.72
+- Aliyun CLI 3.0.73
 - App Center CLI 2.7.4
-- AWS CLI 2.1.26
-- AWS SAM CLI 1.18.1
+- AWS CLI 2.1.27
+- AWS SAM CLI 1.18.2
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.19.1
-- Cabal 3.2.0.0
-- Cmake 3.19.4
-- Fastlane 2.174.0
+- Cabal 3.4.0.0
+- Cmake 3.19.5
+- Fastlane 2.175.0
 - GHC 9.0.1
 - GHCup v0.1.12
 - Stack 2.5.1
@@ -114,10 +113,10 @@
 ### Browsers
 - Safari 14.0.3 (15610.4.3.1.6)
 - SafariDriver 14.0.3 (15610.4.3.1.6)
-- Google Chrome 88.0.4324.150 
+- Google Chrome 88.0.4324.182 
 - ChromeDriver 88.0.4324.96
-- Microsoft Edge 88.0.705.68 
-- MSEdgeDriver 88.0.705.68
+- Microsoft Edge 88.0.705.74 
+- MSEdgeDriver 88.0.705.74
 - Mozilla Firefox 85.0.2
 - geckodriver 0.29.0
 
@@ -148,14 +147,15 @@
 #### Python
 - 2.7.18
 - 3.5.10
-- 3.6.12
-- 3.7.9
-- 3.8.7
-- 3.9.1
+- 3.6.13
+- 3.7.10
+- 3.8.8
+- 3.9.2
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.3]
 - 3.6.12 [PyPy 7.3.3]
+- 3.7.9 [PyPy 7.3.3-beta0]
 
 #### Node.js
 - 10.23.3
@@ -166,6 +166,7 @@
 - 1.13.15
 - 1.14.15
 - 1.15.8
+- 1.16.0
 
 ### Rust Tools
 - Cargo 1.50.0
@@ -196,14 +197,14 @@
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | -------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.46_2 | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
-| nginx | 1.19.6   | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
+| nginx | 1.19.7   | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.8.8.12
+- 8.8.9.10
 
 #### Mono
-- 6.12.0.113
+- 6.12.0.122
 - 6.10.0.106
 - 6.8.0.123
 - 6.6.0.166
@@ -255,8 +256,8 @@
 ### Xcode
 | Version        | Build    | Path                           |
 | -------------- | -------- | ------------------------------ |
-| 12.4           | 12D4e    | /Applications/Xcode_12.4.app   |
-| 12.3 (default) | 12C33    | /Applications/Xcode_12.3.app   |
+| 12.4 (default) | 12D4e    | /Applications/Xcode_12.4.app   |
+| 12.3           | 12C33    | /Applications/Xcode_12.3.app   |
 | 12.2           | 12B45b   | /Applications/Xcode_12.2.app   |
 | 12.1.1         | 12A7605b | /Applications/Xcode_12.1.1.app |
 | 12.1           | 12A7403  | /Applications/Xcode_12.1.app   |
@@ -272,7 +273,7 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.6.8
-- Nomad CLI 3.2.9
+- Nomad CLI 3.2.11
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
 
@@ -368,11 +369,11 @@
 | Android Command Line Tools | 3.0                                                                                                                                                                                                                   |
 | Android Emulator           | 30.3.5                                                                                                                                                                                                                |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
-| Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                                                |
-| Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                                |
+| Android SDK Platforms      | android-S (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                           |
+| Android SDK Platform-Tools | 31.0.0                                                                                                                                                                                                                |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                |
-| CMake                      | 3.6.4111459                                                                                                                                                                                                           |
+| CMake                      | 3.10.2                                                                                                                                                                                                                |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                    |
