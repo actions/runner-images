@@ -1,11 +1,9 @@
 Describe "azcopy" {
     It "azcopy" {
-        #(azcopy --version) command returns exit code 1 (see details: https://github.com/Azure/azure-storage-azcopy/releases)
-        $azcopyVersion = (Get-CommandResult "azcopy --version").Output
-        $azcopyVersion | Should -BeLike "*azcopy*"
+        "azcopy --version" | Should -ReturnZeroExitCode
     }
 
-    It "azcopy10" {
+    It "azcopy10 link exists" {
         "azcopy10 --version" | Should -ReturnZeroExitCode
     }
 }
