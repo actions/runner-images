@@ -89,7 +89,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER AzureClientSecret
             Client secret needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
 
-        .PARAMETER AzureTenant
+        .PARAMETER AzureTenantId
             Tenant needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
 
         .EXAMPLE
@@ -115,7 +115,7 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [string] $AzureClientSecret,
         [Parameter(Mandatory = $False)]
-        [string] $AzureTenant,
+        [string] $AzureTenantId,
         [Parameter(Mandatory = $False)]
         [Switch] $Force
     )
@@ -135,7 +135,7 @@ Function GenerateResourcesAndImage {
         Connect-AzAccount
     } else {
         $AzureAppCred = (New-Object System.Management.Automation.PSCredential $AzureClientId, (ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force))
-        Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenant
+        Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
     }
     Set-AzContext -SubscriptionId $SubscriptionId
 
@@ -216,7 +216,7 @@ Function GenerateResourcesAndImage {
         $spClientId = $AzureClientId
         $credentials = $AzureAppCred
         $ServicePrincipalClientSecret = $AzureClientSecret
-        $tenantId = $AzureTenant
+        $tenantId = $AzureTenantId
     }
 
     Get-LatestCommit -ErrorAction SilentlyContinue
