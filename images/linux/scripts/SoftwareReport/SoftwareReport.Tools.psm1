@@ -13,14 +13,9 @@ function Get-AptFastVersion {
     return "apt-fast $aptFastVersion"
 }
 
-function Get-AzCopy7Version {
-    $azcopy7Version = azcopy --version | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
-    return "AzCopy7 $azcopy7Version (available by ``azcopy`` alias)"
-}
-
-function Get-AzCopy10Version {
-    $azcopy10Version = azcopy10 --version | Take-OutputPart -Part 2
-    return "AzCopy10 $azcopy10Version (available by ``azcopy10`` alias)"
+function Get-AzCopyVersion {
+    $azcopyVersion = azcopy --version | Take-OutputPart -Part 2
+    return "AzCopy $azcopyVersion (available by ``azcopy`` and ``azcopy10`` aliases)"
 }
 
 function Get-BazelVersion {
