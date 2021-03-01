@@ -1,11 +1,9 @@
 Describe "azcopy" {
     It "azcopy" {
-        #(azcopy --version) command returns exit code 1 (see details: https://github.com/Azure/azure-storage-azcopy/releases)
-        $azcopyVersion = (Get-CommandResult "azcopy --version").Output
-        $azcopyVersion | Should -BeLike "*azcopy*"
+        "azcopy --version" | Should -ReturnZeroExitCode
     }
 
-    It "azcopy10" {
+    It "azcopy10 link exists" {
         "azcopy10 --version" | Should -ReturnZeroExitCode
     }
 }
@@ -313,18 +311,6 @@ Describe "Containers" -Skip:(Test-IsUbuntu16) {
 
         "$ContainerCommand -v" | Should -ReturnZeroExitCode
     }   
-}
-
-Describe "Node.js" {
-    $testCases = @("node", "grunt", "gulp", "webpack", "parcel", "yarn", "newman", "netlify", "vercel", "now") | ForEach-Object { @{NodeCommand = $_} }
-
-    It "<NodeCommand>" -TestCases $testCases {
-        param (
-            [string] $NodeCommand
-        )
-
-        "$NodeCommand --version" | Should -ReturnZeroExitCode
-    }
 }
 
 Describe "nvm" {

@@ -16,7 +16,6 @@ export RUNNER_TOOL_CACHE=$HOME/hostedtoolcache
 
 export PATH=/Library/Frameworks/Mono.framework/Versions/Current/Commands:$PATH
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:$PATH
-export PATH=/usr/local/go/bin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:~/bin:~/.yarn/bin:$PATH
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/ruby@2.7/bin:$PATH"
