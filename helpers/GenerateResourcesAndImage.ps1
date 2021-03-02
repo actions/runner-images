@@ -167,7 +167,7 @@ Function GenerateResourcesAndImage {
 
     # Resource group names may contain special characters, that are not allowed in the storage account name
     $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
-    $storageAccountName += "001"
+    $storageAccountName += "9845612"
 
     New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
 
