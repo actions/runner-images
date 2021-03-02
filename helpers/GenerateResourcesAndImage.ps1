@@ -166,7 +166,7 @@ Function GenerateResourcesAndImage {
     } else { $ResourceGroupName }
 
     # Resource group names may contain special characters, that are not allowed in the storage account name
-    $storageAccountName = "teststr9845612"
+    $storageAccountName = "stracc9845612"
 
     New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
 
