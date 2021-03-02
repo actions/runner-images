@@ -72,7 +72,7 @@ Set-Location C:\virtual-environments
 
 Import-Module .\helpers\CreateAzureVMFromPackerTemplate.ps1
 
-CreateAzureVMFromPackerTemplate -SubscriptionId {YourSubscriptionId}  -ResourceGroupName {ResourceGroupName} -TemplateFile "C:\BuildVmImages\temporaryTemplate.json" -VirtualMachineName "testvm1" -AdminUsername "shady1" -AdminPassword "SomeSecurePassword1" -AzureLocation "eastus"
+CreateAzureVMFromPackerTemplate -SubscriptionId {YourSubscriptionId}  -ResourceGroupName {ResourceGroupName} -TemplateFile "C:\BuildVmImages\temporaryTemplate.json" -VirtualMachineName "testvm1" -AdminUsername "shady1" -AdminPassword "SomeSecurePassword1" -AzureLocation "westeurope"
 ```
 Where:
 - `SubscriptionId` - The Azure subscription Id where resources will be created.
@@ -81,7 +81,7 @@ Where:
 - `VirtualMachineName` - The name of the virtual machine to be generated.
 - `AdminUserName` - The administrator username for the virtual machine to be created.
 - `AdminPassword` - The administrator password for the virtual machine to be created.
-- `AzureLocation` - The location where the Azure virtual machine will be provisioned. Example: "eastus"
+- `AzureLocation` - The location where the Azure virtual machine will be provisioned. Example: "westeurope"
 
 \* *ARM-template can be obtained from the Packer output. For now, it seems like there is an [Az CLI bug](https://github.com/Azure/azure-cli/issues/5899) with specifying the template through a URI, so download the template from URI, that will be printed at the bottom of image-generation log, and use the local path of the template file.*
 
