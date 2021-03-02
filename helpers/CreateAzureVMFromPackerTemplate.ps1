@@ -25,10 +25,10 @@ Function CreateAzureVMFromPackerTemplate {
             The administrator password for the virtual machine to be created.
 
         .PARAMETER AzureLocation
-            The location where the Azure virtual machine will be provisioned. Example: "eastus"
+            The location where the Azure virtual machine will be provisioned. Example: "westeurope"
 
         .EXAMPLE
-            CreateAzureVMFromPackerTemplate -SubscriptionId {YourSubscriptionId}  -ResourceGroupName {ResourceGroupName} -TemplateFile "C:\BuildVmImages\temporaryTemplate.json" -VirtualMachineName "testvm1" -AdminUsername "shady1" -AdminPassword "SomeSecurePassword1" -AzureLocation "eastus"
+            CreateAzureVMFromPackerTemplate -SubscriptionId {YourSubscriptionId}  -ResourceGroupName {ResourceGroupName} -TemplateFile "C:\BuildVmImages\temporaryTemplate.json" -VirtualMachineName "testvm1" -AdminUsername "shady1" -AdminPassword "SomeSecurePassword1" -AzureLocation "westeurope"
     #>
     param (
         [Parameter(Mandatory = $True)]
