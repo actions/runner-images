@@ -134,7 +134,8 @@ Function GenerateResourcesAndImage {
     {
         Connect-AzAccount
     } else {
-        $AzureAppCred = (New-Object System.Management.Automation.PSCredential $AzureClientId, (ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force))
+        $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
+        $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
         Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
     }
     Set-AzContext -SubscriptionId $SubscriptionId
