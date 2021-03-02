@@ -202,7 +202,6 @@ Function GenerateResourcesAndImage {
 
         $spAppId = $sp.ApplicationId
         $spClientId = $sp.ApplicationId
-        $spObjectId = $sp.Id
         Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
 
         New-AzRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
