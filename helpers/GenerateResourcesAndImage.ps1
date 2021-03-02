@@ -120,7 +120,7 @@ Function GenerateResourcesAndImage {
         [Switch] $Force
     )
 
-    if (([string]::IsNullOrEmpty($GithubFeedToken)))
+    if ([string]::IsNullOrEmpty($GithubFeedToken))
     {
         Write-Error "'-GithubFeedToken' parameter is not specified. You have to specify valid GitHub PAT to download tool packages from GitHub Package Registry"
         exit 1
@@ -130,7 +130,7 @@ Function GenerateResourcesAndImage {
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
 
-    if (([string]::IsNullOrEmpty($AzureClientId)))
+    if ([string]::IsNullOrEmpty($AzureClientId))
     {
         Connect-AzAccount
     } else {
@@ -192,7 +192,7 @@ Function GenerateResourcesAndImage {
 
     New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
 
-    if (([string]::IsNullOrEmpty($AzureClientId))) {
+    if ([string]::IsNullOrEmpty($AzureClientId)) {
         # Interactive authentication: A service principal is created during runtime.
         $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
         $credentialProperties = @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$ServicePrincipalClientSecret }
