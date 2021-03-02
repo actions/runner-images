@@ -20,8 +20,6 @@ To connect to a temporary VM packer use WinRM or SSH connections on public IP in
 If you use a build agent located in an Azure subscription, please make sure that HTTPS/SSH ports are allowed for incoming/outgoing connections.
 In case of firewall restrictions, prohibiting connections from public addresses, private virtual network resources can be deployed and passed as arguments to the packer. This approach allows virtual machines to use private connections inside VLAN.
 
-A sample pipeline for using a self-hosted build agent is available [here](../azure_pipelines/create_azure_build_agent_vm.yaml).
-
 ### Service principal
 Packer uses Service Principal to authorize in Azure infrastructure. To setup image-generation CI or use packer manually — SP with full read-write permissions for selected Azure subscription needed.
 Detailed instruction can be found in [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
