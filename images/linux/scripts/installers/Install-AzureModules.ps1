@@ -25,10 +25,9 @@ $assets = Invoke-RestMethod $module.url
 foreach ($toolVersion in $module.zipversions) {
     $asset = $assets | Where-Object version -like $toolVersion `
     | Select-Object -ExpandProperty files `
-    | Where-Object { ($_.platform -eq $module.platform) -and ($_.platform_version -eq $module.platform_version)} `
     | Select-Object -First 1
 
-    Write-Host "Installing $($module.name) $toolVersion $($module.arch)..."
+    Write-Host "Installing $($module.name) $toolVersion ..."
     if ($null -ne $asset) {
         Write-Host "Download $($asset.filename)"
         wget $asset.download_url -nv --retry-connrefused --tries=10 -P $installPSModulePath
