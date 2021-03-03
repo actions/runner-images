@@ -41,6 +41,6 @@ if isUbuntu18 || isUbuntu20 ; then
 fi
 
 # Adding this dir to PATH will make installed pip commands are immediately available.
-echo 'export PATH="$PATH:$HOME/.local/bin"' | tee -a /etc/profile.d/env_vars.sh
+echo 'export PATH=$PATH:$HOME/.local/bin' | tee -a /etc/profile.d/env_vars.sh
 
 invoke_tests "Tools" "Python"
