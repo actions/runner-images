@@ -69,5 +69,5 @@ Function CreateAzureVMFromPackerTemplate {
     az network nic ip-config update -g $ResourceGroupName -n ipconfig1 --nic-name $nicName --public-ip-address $publicIpId --subscription $subscriptionId
 
     Write-Host "`nCreating the VM"
-    az group deployment create -g $ResourceGroupName -n $VirtualMachineName --subscription $subscriptionId --template-file $templateFilePath --parameters vmSize=$vmSize vmName=$VirtualMachineName adminUserName=$AdminUsername adminPassword=$AdminPassword networkInterfaceId=$networkId
+    az group deployment create -g $ResourceGroupName -n $VirtualMachineName --subscription $subscriptionId --template-file $templateFilePath --parameters  vmName=$VirtualMachineName adminUserName=$AdminUsername adminPassword=$AdminPassword networkInterfaceId=$networkId
 }
