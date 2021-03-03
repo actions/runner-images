@@ -204,7 +204,11 @@
             "node:12",
             "node:10-alpine",
             "node:12-alpine",
-            "ubuntu:14.04"
+            "ubuntu:14.04",
+            "mcr.microsoft.com/dotnet/sdk:5.0-buster-slim",
+            "mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim",
+            "mcr.microsoft.com/dotnet/runtime:5.0-buster-slim",
+            "mcr.microsoft.com/dotnet/runtime-deps:5.0-buster-slim"
         ]
     },
     "pipx": [
