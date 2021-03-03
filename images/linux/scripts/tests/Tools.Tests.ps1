@@ -1,11 +1,9 @@
 Describe "azcopy" {
     It "azcopy" {
-        #(azcopy --version) command returns exit code 1 (see details: https://github.com/Azure/azure-storage-azcopy/releases)
-        $azcopyVersion = (Get-CommandResult "azcopy --version").Output
-        $azcopyVersion | Should -BeLike "*azcopy*"
+        "azcopy --version" | Should -ReturnZeroExitCode
     }
 
-    It "azcopy10" {
+    It "azcopy10 link exists" {
         "azcopy10 --version" | Should -ReturnZeroExitCode
     }
 }
@@ -315,18 +313,6 @@ Describe "Containers" -Skip:(Test-IsUbuntu16) {
     }   
 }
 
-Describe "Node.js" {
-    $testCases = @("node", "grunt", "gulp", "webpack", "parcel", "yarn", "newman", "netlify", "vercel", "now") | ForEach-Object { @{NodeCommand = $_} }
-
-    It "<NodeCommand>" -TestCases $testCases {
-        param (
-            [string] $NodeCommand
-        )
-
-        "$NodeCommand --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "nvm" {
     It "nvm" {
         "source /etc/skel/.nvm/nvm.sh && nvm --version" | Should -ReturnZeroExitCode
@@ -343,4 +329,27 @@ Describe "Python" {
 
         "$PythonCommand --version" | Should -ReturnZeroExitCode
     }   
+}
+
+Describe "Ruby" {
+    $testCases = @("ruby", "gem") | ForEach-Object { @{RubyCommand = $_} }
+
+    It "<RubyCommand>" -TestCases $testCases {
+        param (
+            [string] $RubyCommand
+        )
+
+        "$RubyCommand --version" | Should -ReturnZeroExitCode
+    }
+
+    $gemTestCases = (Get-ToolsetContent).rubygems | ForEach-Object {
+        @{gemName = $_.name}
+    }
+
+    if ($gemTestCases)
+    {
+        It "Gem <gemName> is installed" -TestCases $gemTestCases {
+            "gem list -i '^$gemName$'" | Should -MatchCommandOutput "true"
+        }
+    }
 }
