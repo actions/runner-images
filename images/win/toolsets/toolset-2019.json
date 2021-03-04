@@ -75,16 +75,6 @@
                 "1.16.*"
             ],
             "default": "1.15.*"
-        },
-        {
-            "name": "Boost",
-            "url" : "https://raw.githubusercontent.com/actions/boost-versions/main/versions-manifest.json",
-            "arch": "x86_64",
-            "platform" : "win32",
-            "toolset": "msvc14.2",
-            "versions": [
-                "1.72.0"
-            ]
         }
     ],
     "powershellModules": [
