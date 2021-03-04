@@ -175,7 +175,7 @@ function Get-MediainfoVersion {
 }
 
 function Get-NetToolsVersion {
-    $netToolsVersion = dpkg-query --showformat='${Version}' --show net-tools | Take-OutputPart -Part 0 -Delimiter "+"
+    $netToolsVersion = dpkg-query --showformat='${Version}' --show net-tools | Take-OutputPart -Part 0 -Delimiter '-' | Take-OutputPart -Part 0 -Delimiter '+'
     return "net-tools $netToolsVersion"
 }
 
