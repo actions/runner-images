@@ -4,12 +4,11 @@
 | [[ubuntu, windows] GOROOT environment variable will be removed on March, 1](https://github.com/actions/virtual-environments/issues/2683) |
 | [[Ubuntu] Android SDK Platforms and Build-tools that are less than version 23 will be removed on March, 1](https://github.com/actions/virtual-environments/issues/2673) |
 | [[Windows, Ubuntu] Boost 1.72.0 will be removed from images on March, 8](https://github.com/actions/virtual-environments/issues/2667) |
-| [[Ubuntu, windows] M2_HOME variable will be removed on February, 15](https://github.com/actions/virtual-environments/issues/2600) |
 | [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
 | [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
 ***
 # Ubuntu 20.04.2 LTS
-- Image Version: 20210219.1
+- Image Version: 20210302.0
 
 ## Installed Software
 ### Language and Runtime
@@ -19,8 +18,8 @@
 - GNU C++ 7.5.0, 8.4.0, 9.3.0, 10.2.0
 - GNU Fortran 8.4.0, 9.3.0, 10.2.0
 - Julia 1.5.3
-- Mono 6.12.0.107
-- Node 14.15.5
+- Mono 6.12.0.122
+- Node 14.16.0
 - Perl 5.30.0
 - Python 3.8.5
 - Python3 3.8.5
@@ -30,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.5.2
-- Homebrew 3.0.1
+- Homebrew 3.0.3
 - Miniconda 4.9.2
 - Npm 6.14.11
 - Pip 20.0.2
 - Pip3 20.0.2
-- Pipx 0.16.0.0
+- Pipx 0.16.1.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<99dc49d>)
+- Vcpkg  (build from master \<307ac18>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -48,7 +47,7 @@
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 6.8.2
+- Gradle 6.8.3
 - Maven 3.6.3
 - Sbt 1.4.7
 
@@ -56,45 +55,44 @@
 - 7-Zip 16.02
 - Ansible 2.9.6
 - apt-fast 1.9.10
-- AzCopy10 10.8.0 (available by `azcopy10` alias)
-- AzCopy7 7.3.0 (available by `azcopy` alias)
+- AzCopy 10.9.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.0.0
 - Bazelisk 1.7.5
 - binutils 2.34
-- Buildah 1.19.4
-- CMake 3.19.5
+- Buildah 1.19.6
+- CMake 3.19.6
 - CodeQL Action Bundle 2.4.2
 - coreutils 8.30
 - curl 7.68.0
-- Docker Compose 1.28.4
+- Docker Compose 1.28.5
 - Docker-Buildx 0.5.1
 - Docker-Moby Client 20.10.3+azure
 - Docker-Moby Server 20.10.3+azure
-- Fastlane 2.175.0
-- Git 2.30.0
+- Fastlane 2.176.0
+- Git 2.30.1
 - Git LFS 2.13.2
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 7.47.13
-- HHVM (HipHop VM) 4.97.0
+- Heroku 7.49.1
+- HHVM (HipHop VM) 4.99.0
 - jq 1.6
 - Kind 0.10.0
-- Kubectl 1.19.0
-- Kustomize 4.0.1
+- Kubectl 1.20.1-5-g76a04fc
+- Kustomize 4.0.4
 - Leiningen 2.9.5
 - m4 1.4.18
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.17.1
+- Minikube 1.18.0
 - Newman 5.2.2
 - nvm 0.37.2
 - Packer 1.7.0
 - pass 1.7.3
 - PhantomJS 2.1.1
 - Podman 3.0.1
-- Pulumi 2.21.1
+- Pulumi 2.21.2
 - R 4.0.4
-- Skopeo 1.2.1
+- Skopeo 1.2.2
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
 - Swig 4.0.1
@@ -107,18 +105,18 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.73
-- AWS CLI 2.1.27
+- AWS CLI 2.1.29
 - AWS CLI Session manager plugin 1.2.54.0
-- AWS SAM CLI 1.18.2
-- Azure CLI (azure-cli) 2.19.1
+- AWS SAM CLI 1.19.1
+- Azure CLI (azure-cli) 2.20.0
 - Azure CLI (azure-devops) 0.18.0
-- GitHub CLI 1.6.1
-- Google Cloud SDK 328.0.0
+- GitHub CLI 1.6.2
+- Google Cloud SDK 329.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 3.8.4
-- oc CLI 4.6.17
+- Netlify CLI 3.10.2
+- oc CLI 4.7.0
 - ORAS CLI 0.10.0
-- Vercel CLI 21.2.3
+- Vercel CLI 21.3.1
 
 ### Java
 | Version           | Vendor       | Environment Variable |
@@ -135,13 +133,13 @@
 | Tool     | Version      |
 | -------- | ------------ |
 | PHP      | 7.4.15 8.0.2 |
-| Composer | 2.0.9        |
+| Composer | 2.0.11       |
 | PHPUnit  | 8.5.14       |
 
 ### Haskell
-- Cabal 3.2.0.0
-- GHC 8.10.3
-- GHCup 0.1.12
+- Cabal 3.4.0.0
+- GHC 9.0.1
+- GHCup 0.1.13
 - Stack 2.5.1
 
 ### Rust Tools
@@ -155,14 +153,14 @@
 - Cargo audit 0.13.1
 - Cargo clippy 0.0.212
 - Cargo outdated 0.9.14
-- Cbindgen 0.17.0
+- Cbindgen 0.18.0
 - Rustfmt 1.4.30
 
 ### Browsers and Drivers
 - Chromium 88.0.4324.182
 - Google Chrome 88.0.4324.182
 - ChromeDriver 88.0.4324.96
-- Mozilla Firefox 85.0.1
+- Mozilla Firefox 86.0
 - Geckodriver 0.29.0
 
 #### Environment variables
@@ -199,9 +197,9 @@
 - 1.16.0
 
 #### Node.js
-- 10.23.3
-- 12.20.2
-- 14.15.5
+- 10.24.0
+- 12.21.0
+- 14.16.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.3]
@@ -213,8 +211,8 @@
 - 3.5.10
 - 3.6.13
 - 3.7.10
-- 3.8.7
-- 3.9.1
+- 3.8.8
+- 3.9.2
 
 #### Ruby
 - 2.5.8
@@ -272,7 +270,7 @@
 ### Cached Docker images
 | Repository:Tag                                            | Digest                                                                   | Created    |
 | --------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| alpine:3.10                                               | sha256:f0e9534a598e501320957059cb2a23774b4d4072e37c7b2cf7e95b241f019e35  | 2020-04-24 |
+| alpine:3.10                                               | sha256:0b4d282d7ae7cf5ed91801654a918aea45d6c1de6df0db6a29d60619141fb8de  | 2021-02-24 |
 | alpine:3.7                                                | sha256:8421d9a84432575381bfabd248f1eb56f3aa21d9d7cd2511583c68c9b7511d10  | 2019-03-07 |
 | alpine:3.8                                                | sha256:2bb501e6173d9d006e56de5bce2720eb06396803300fe1687b58a7ff32bf4c14  | 2020-01-23 |
 | alpine:3.9                                                | sha256:414e0518bb9228d35e4cd5165567fb91d26c6a214e9c95899e1e056fcd349011  | 2020-04-24 |
@@ -282,10 +280,10 @@
 | debian:9                                                  | sha256:d0b7b71db141cedc48e1c2807d12b199ffd7ffe75baf272a34c37480dc2159d1  | 2021-02-09 |
 | jekyll/builder:latest                                     | sha256:b918b81939a1076dce89d142c0764c2c3cb93858f56ecf4f04ad0387338e77aa  | 2020-12-21 |
 | mcr.microsoft.com/azure-pipelines/node8-typescript:latest | sha256:e52e60b9f71183969830a3664279b5d8c799b4b0ec2c25a0686f7c02f6a9669a  | 2018-10-09 |
-| node:10                                                   | sha256:4fafd9b63fdfb15112775847a10b2917760c720c8c28cef5167ff40f36b3cd93  | 2021-02-12 |
-| node:10-alpine                                            | sha256:dae0a441e1b5201e074312e44b35571bed4a39b5bc07c26c1bfab9f18017ff54  | 2021-02-12 |
-| node:12                                                   | sha256:0140c4e17aa1f3fd78b939e3c7ac45accdd5274d0194046b484029a5e46b9db6  | 2021-02-12 |
-| node:12-alpine                                            | sha256:77fe10dbc042121e94db7f43b4b912a52514759b847978588eec4d5d0eb5282c  | 2021-02-12 |
+| node:10                                                   | sha256:426ce4b7e659e081413b739ec3c6a6dea22dfc1a53bfaa147117dfb0238013a2  | 2021-02-23 |
+| node:10-alpine                                            | sha256:47cfff9b9eda43e97f42d516ff66c5490ed1f71262a03f3348ea867f222c1a7e  | 2021-02-24 |
+| node:12                                                   | sha256:7f961434ce9e96be7bf2455bbf362152787c529bb9cf86a15ab1499ea89bfa8c  | 2021-02-23 |
+| node:12-alpine                                            | sha256:5d8b181a0738654bbe659a68879298f8d2d4256685282ee1c2330d97c33e3eee  | 2021-02-24 |
 | ubuntu:14.04                                              | sha256:63fce984528cec8714c365919882f8fb64c8a3edf23fdfa0b218a2756125456f  | 2020-09-16 |
 
 ### Installed apt packages
