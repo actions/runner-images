@@ -188,6 +188,7 @@
             "m4",
             "mediainfo",
             "netcat",
+            "net-tools",
             "parallel",
             "pass",
             "p7zip-full",
