@@ -80,14 +80,6 @@ function Get-CachedToolInstances
         [string]$instanceInfo.Path = Join-Path -Path $toolPath -ChildPath $version.Name
         [string]$instanceInfo.Version = $version.Name
 
-        ### Temporary workaround. Currently Boost instances don't have architecture subfolders.
-        if ($Name -eq "Boost")
-        {
-            [string]$instanceInfo.Architecture = "x64, x86"
-            $toolInstances += $instanceInfo
-            continue
-        }
-
         # Get all architectures for current version
         [array]$instanceInfo.Architecture_Array = Get-ChildItem $version.FullName -Name -Directory | Where-Object { $_ -match "^x[0-9]{2}$" }
         [string]$instanceInfo.Architecture = $instanceInfo.Architecture_Array -Join ", "
