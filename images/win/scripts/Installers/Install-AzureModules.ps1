@@ -41,12 +41,12 @@ foreach ($module in $modules)
         $assets = Invoke-RestMethod $module.url
     }
 
-    foreach ($version in $module.zipversions)
+    foreach ($version in $module.zip_versions)
     {
         # Install modules from GH Release
         if($null -ne $assets) 
         {
-            $asset = $assets | Where-Object version -like $version `
+            $asset = $assets | Where-Object version -eq $version `
                          | Select-Object -ExpandProperty files `
                          | Select-Object -First 1
 
