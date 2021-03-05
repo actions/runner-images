@@ -107,7 +107,7 @@
             "versions": [
                 "5.5.0"
             ],
-            "zipversions": [
+            "zip_versions": [
                 "3.8.0",
                 "4.8.0"
             ]

@@ -17,25 +17,26 @@ foreach ($module in $modules)
         Write-Host " - $version [$modulePath]"
         Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force -Verbose
     }
-}
 
-$assets = Invoke-RestMethod $module.url
+    $assets = Invoke-RestMethod $module.url
 
-# Get github release asset for each version
-foreach ($toolVersion in $module.zipversions) {
-    $asset = $assets | Where-Object version -like $toolVersion `
-    | Select-Object -ExpandProperty files `
-    | Select-Object -First 1
+    # Get github release asset for each version
+    foreach ($toolVersion in $module.zip_versions) {
+        $asset = $assets | Where-Object version -eq $toolVersion `
+        | Select-Object -ExpandProperty files `
+        | Select-Object -First 1
 
-    Write-Host "Installing $($module.name) $toolVersion ..."
-    if ($null -ne $asset) {
-        Write-Host "Download $($asset.filename)"
-        wget $asset.download_url -nv --retry-connrefused --tries=10 -P $installPSModulePath
-    } else {
-        Write-Host "Asset was not found in versions manifest"
-        exit 1
+        Write-Host "Installing $($module.name) $toolVersion ..."
+        if ($null -ne $asset) {
+            Write-Host "Download $($asset.filename)"
+            wget $asset.download_url -nv --retry-connrefused --tries=10 -P $installPSModulePath
+        } else {
+            Write-Host "Asset was not found in versions manifest"
+            exit 1
+        }
     }
 }
+
 
 # If Az.Accounts > 1.0.0 unable to load module with error: Assembly with same name is already loaded
 # Force install Az.Accounts 1.0.0
