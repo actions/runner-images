@@ -48,16 +48,6 @@
             "default": "1.15.*"
         },
         {
-            "name": "boost",
-            "url" : "https://raw.githubusercontent.com/actions/boost-versions/main/versions-manifest.json",
-            "platform" : "linux",
-            "platform_version": "16.04",
-            "arch": "x64",
-            "versions": [
-                "1.72.0"
-            ]
-        },
-        {
             "name": "Ruby",
             "platform_version": "16.04",
             "arch": "x64",
@@ -85,8 +75,8 @@
         ]
     },
     "android": {
-        "platform_min_version": "10",
-        "build_tools_min_version": "19.1.0",
+        "platform_min_version": "23",
+        "build_tools_min_version": "23.0.1",
         "extra_list": [
             "android;m2repository",
             "google;m2repository",
@@ -103,7 +93,6 @@
             "addon-google_apis-google-21"
         ],
         "additional_tools": [
-            "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
             "patcher;v4",
             "platform-tools",
@@ -195,6 +184,7 @@
             "m4",
             "mediainfo",
             "netcat",
+            "net-tools",
             "p7zip-full",
             "parallel",
             "pass",
@@ -237,13 +227,11 @@
     },
     "dotnet": {
         "aptPackages": [
-            "dotnet-sdk-3.0",
             "dotnet-sdk-3.1",
             "dotnet-sdk-5.0"
         ],
         "versions": [
             "2.1",
-            "3.0",
             "3.1",
             "5.0"
         ]
@@ -279,5 +267,48 @@
             "7.4",
             "8.0"
         ]
-    }
+    },
+    "rubygems": [],
+    "node_modules": [
+        {
+            "name": "grunt",
+            "command": "grunt"
+        },
+        {
+            "name": "gulp",
+            "command": "gulp"
+        },
+        {
+            "name": "n",
+            "command": "n"
+        },
+        {
+            "name": "parcel-bundler",
+            "command": "parcel"
+        },
+        {
+            "name": "typescript",
+            "command": "tsc"
+        },
+        {
+            "name": "newman",
+            "command": "newman"
+        },
+        {
+            "name": "vercel",
+            "command": "vercel"
+        },
+        {
+            "name": "webpack",
+            "command": "webpack"
+        },
+        {
+            "name": "webpack-cli",
+            "command": "webpack-cli"
+        },
+        {
+            "name": "netlify-cli",
+            "command": "netlify"
+        }
+    ]
 }

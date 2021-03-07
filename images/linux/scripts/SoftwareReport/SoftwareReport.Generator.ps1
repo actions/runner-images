@@ -90,8 +90,7 @@ $toolsList = @(
     (Get-7zipVersion),
     (Get-AnsibleVersion),
     (Get-AptFastVersion),
-    (Get-AzCopy7Version),
-    (Get-AzCopy10Version),
+    (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
     (Get-BinUtilsVersion),
@@ -119,6 +118,7 @@ $toolsList = @(
     (Get-M4Version),
     (Get-HGVersion),
     (Get-MinikubeVersion),
+    (Get-NetToolsVersion),
     (Get-NewmanVersion),
     (Get-NvmVersion),
     (Get-PackerVersion),
@@ -142,6 +142,10 @@ if (-not (Test-IsUbuntu16)) {
         (Get-BuildahVersion),
         (Get-SkopeoVersion)
     )
+}
+
+if (Test-IsUbuntu20) {
+    $toolsList += (Get-FastlaneVersion)
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
@@ -181,6 +185,7 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Haskell" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-GHCVersion),
+    (Get-GHCupVersion),
     (Get-CabalVersion),
     (Get-StackVersion)
     ) | Sort-Object

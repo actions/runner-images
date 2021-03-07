@@ -17,6 +17,10 @@ Describe "Haskell" {
             "$GHCPath --version" | Should -ReturnZeroExitCode
     }
 
+    It "GHCup" {
+        "ghcup --version" | Should -ReturnZeroExitCode
+    }
+
     It "Default GHC" {
         "ghc --version" | Should -ReturnZeroExitCode
     }

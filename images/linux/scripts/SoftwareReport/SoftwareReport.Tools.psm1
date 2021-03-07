@@ -13,14 +13,9 @@ function Get-AptFastVersion {
     return "apt-fast $aptFastVersion"
 }
 
-function Get-AzCopy7Version {
-    $azcopy7Version = azcopy --version | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
-    return "AzCopy7 $azcopy7Version (available by ``azcopy`` alias)"
-}
-
-function Get-AzCopy10Version {
-    $azcopy10Version = azcopy10 --version | Take-OutputPart -Part 2
-    return "AzCopy10 $azcopy10Version (available by ``azcopy10`` alias)"
+function Get-AzCopyVersion {
+    $azcopyVersion = azcopy --version | Take-OutputPart -Part 2
+    return "AzCopy $azcopyVersion (available by ``azcopy`` and ``azcopy10`` aliases)"
 }
 
 function Get-BazelVersion {
@@ -179,6 +174,11 @@ function Get-MediainfoVersion {
     return "MediaInfo $mediainfoVersion"
 }
 
+function Get-NetToolsVersion {
+    $netToolsVersion = dpkg-query --showformat='${Version}' --show net-tools | Take-OutputPart -Part 0 -Delimiter '-' | Take-OutputPart -Part 0 -Delimiter '+'
+    return "net-tools $netToolsVersion"
+}
+
 function Get-NewmanVersion {
     return "Newman $(newman --version)"
 }
@@ -262,6 +262,11 @@ function Get-AWSCliSessionManagerPluginVersion {
 
 function Get-AWSSAMVersion {
     return "AWS SAM CLI $(sam --version | Take-OutputPart -Part -1)"
+}
+
+function Get-FastlaneVersion {
+    $fastlaneVersion = fastlane --version | Select-String "^fastlane [0-9]" | Take-OutputPart -Part 1
+    return "Fastlane $fastlaneVersion"
 }
 
 function Get-HubCliVersion {

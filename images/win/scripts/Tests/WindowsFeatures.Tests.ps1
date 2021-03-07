@@ -57,3 +57,12 @@ Describe "DynamicPorts" {
         $udpPorts | Should -BeNullOrEmpty
     }
 }
+
+Describe "GDIProcessHandleQuota" {
+    It "The GDIProcessHandleQuota value is 20000" {
+        $regPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows"
+        $regPath32 = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\Windows"
+        (Get-ItemProperty $regPath).GDIProcessHandleQuota | Should -BeExactly 20000
+        (Get-ItemProperty $regPath32).GDIProcessHandleQuota | Should -BeExactly 20000
+    }
+}

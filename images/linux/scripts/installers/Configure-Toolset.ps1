@@ -39,12 +39,8 @@ $ErrorActionPreference = "Stop"
 
 Write-Host "Configure toolset tools environment..."
 $toolsEnvironment = @{
-    boost = @{
-        variableTemplate = "BOOST_ROOT_{0}_{1}_{2}"
-    }
     go = @{
         command = "ln -s {0}/bin/* /usr/bin/"
-        defaultVariable = "GOROOT"
         variableTemplate = "GOROOT_{0}_{1}_X64"
     }
 }
