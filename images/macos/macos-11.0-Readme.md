@@ -4,9 +4,9 @@
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 11.2 info
-- System Version: macOS 11.2 (20D64)
+- System Version: macOS 11.2.3 (20D91)
 - Kernel Version: Darwin 20.3.0
-- Image Version: 20210302.1
+- Image Version: 20210308.1
 
 ## Installed Software
 ### Language and Runtime
@@ -26,13 +26,13 @@
 - NVM - Cached node versions: v10.24.0 v12.21.0 v14.16.0
 - NVM 0.37.2
 - Perl 5.32.1
-- PHP 8.0.2
+- PHP 8.0.3
 - Python 2.7.18
 - Python 3.9.2
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.12
+- Bundler version 2.2.14
 - Carthage 0.37.0
 - CocoaPods 1.10.1
 - Composer 2.0.11
@@ -43,8 +43,8 @@
 - Pip 20.3.4 (python 2.7)
 - Pip 21.0.1 (python 3.9)
 - Pipx 0.16.1.0
-- RubyGems 3.2.12
-- Vcpkg 2021 (build from master \<395cb68>)
+- RubyGems 3.2.14
+- Vcpkg 2021 (build from master \<0dc27b9>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -68,7 +68,7 @@
 - Curl 7.75.0
 - Git LFS: 2.13.2
 - Git: 2.30.1
-- GitHub CLI: 1.6.2
+- GitHub CLI: 1.7.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.2.27
@@ -83,42 +83,42 @@
 - PostgreSQL 13.2
 - psql (PostgreSQL) 13.2
 - Subversion (SVN) 1.14.1
-- zstd 1.4.8
+- zstd 1.4.9
 
 
 ### Tools
 - Aliyun CLI 3.0.73
 - App Center CLI 2.7.4
 - AWS CLI 2.1.29
-- AWS SAM CLI 1.19.1
+- AWS SAM CLI 1.20.0
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.20.0
 - Cabal 3.4.0.0
 - Cmake 3.19.6
-- Fastlane 2.176.0
+- Fastlane 2.177.0
 - GHC 9.0.1
-- GHCup v0.1.13
+- GHCup v0.1.14
 - Stack 2.5.1
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
-- SwiftLint 0.42.0
+- SwiftLint 0.43.0
 - yamllint 1.26.0
 
 ### Browsers
-- Safari 14.0.3 (16610.4.3.1.4)
-- SafariDriver 14.0.3 (16610.4.3.1.4)
-- Google Chrome 89.0.4389.72 
-- ChromeDriver 88.0.4324.96
-- Microsoft Edge 88.0.705.81 
-- MSEdgeDriver 88.0.705.81
+- Safari 14.0.3 (16610.4.3.1.7)
+- SafariDriver 14.0.3 (16610.4.3.1.7)
+- Google Chrome 89.0.4389.82 
+- ChromeDriver 89.0.4389.23
+- Microsoft Edge 89.0.774.45 
+- MSEdgeDriver 89.0.774.48
 - Mozilla Firefox 86.0
 - geckodriver 0.29.0
 
 #### Environment variables
 | Name            | Value                                         |
 | --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/88.0.4324.96 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/89.0.4389.23 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
@@ -158,7 +158,7 @@
 
 #### Packages
 - Bindgen 0.57.0
-- Cargo-audit 0.13.1
+- Cargo-audit 0.14.0
 - Cargo-outdated v0.9.14
 - Cbindgen 0.18.0
 - Clippy 0.0.212
@@ -183,7 +183,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.8.10.2
+- 8.9.0.1651
 
 #### Mono
 - 6.12.0.122
