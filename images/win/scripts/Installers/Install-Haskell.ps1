@@ -19,6 +19,12 @@ ForEach ($version in $VersionsList)
 $DefaultGhcVersion = $VersionsList | Select-Object -Last 1
 $DefaultGhcShortVersion = ([version]$DefaultGhcVersion).ToString(3)
 $DefaultGhcPath = Join-Path $env:ChocolateyInstall "lib\ghc.$DefaultGhcVersion\tools\ghc-$DefaultGhcShortVersion\bin"
+# Starting from version 9 haskell installation directory is $env:ChocolateyToolsLocation instead of $env:ChocolateyInstall\lib
+if ($ghcVersion -notmatch "^[0-8]\.\d+.*")
+{
+    $DefaultGhcPath = Join-Path $env:ChocolateyToolsLocation "ghc-$DefaultGhcShortVersion\bin"
+}
+
 Add-MachinePathItem -PathItem $DefaultGhcPath
 
 Write-Host "Installing cabal..."

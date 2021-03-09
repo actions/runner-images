@@ -132,6 +132,10 @@ if (Test-IsWin19) {
     Choco-Install -PackageName vcredist2010
 }
 
+# Initialize environmental variable ChocolateyToolsLocation by invoking choco Get-ToolsLocation function
+Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
+Get-ToolsLocation
+
 # Expand disk size of OS drive
 $driveLetter = "C"
 $size = Get-PartitionSupportedSize -DriveLetter $driveLetter

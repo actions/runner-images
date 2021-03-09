@@ -34,6 +34,11 @@ Describe "Apt" {
             $toolName = "tr"
         }
 
+        if ($toolName -eq "net-tools")
+        {
+            $toolName = "netstat"
+        }
+
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
     }
 }

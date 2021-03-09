@@ -174,6 +174,11 @@ function Get-MediainfoVersion {
     return "MediaInfo $mediainfoVersion"
 }
 
+function Get-NetToolsVersion {
+    $netToolsVersion = dpkg-query --showformat='${Version}' --show net-tools | Take-OutputPart -Part 0 -Delimiter '-' | Take-OutputPart -Part 0 -Delimiter '+'
+    return "net-tools $netToolsVersion"
+}
+
 function Get-NewmanVersion {
     return "Newman $(newman --version)"
 }
