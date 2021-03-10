@@ -58,16 +58,16 @@ foreach ($module in $modules)
                 exit 1
             }
         }
-        # Install modules from powershell gallery
+        # Install modules from vsts blob 
         else 
         {
             $modulePath = Join-Path -Path $installPSModulePath -ChildPath "${moduleName}_${version}"
+            $filename = "${moduleName}_${version}.zip"
+            $download_url = [System.String]::Concat($module.blob_url,$filename)
             Write-Host " - $version [$modulePath]"
             try
             {
-                Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force -ErrorAction Stop
-                Compress-Archive -Path $modulePath -DestinationPath "${modulePath}.zip"
-                Remove-Item $modulePath -Recurse -Force
+                Start-DownloadWithRetry -Url $download_url -Name $filename -DownloadPath $installPSModulePath
             }
             catch
             {
