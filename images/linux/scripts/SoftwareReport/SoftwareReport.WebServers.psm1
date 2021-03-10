@@ -28,12 +28,28 @@ function Get-NginxVersion {
     }
 }
 
+function Get-Xsp4Version {
+    $name = "xsp4"
+    $port = 8084
+    $version = ($(xsp4 --version)  | Select-Object -first 1).Split(' ')[1]
+    $serviceStatus =  ((/etc/init.d/mono-xsp4 status) | Select-Object -index 2).Split(' ')[6]
+    $configFile = "/etc/default/mono-xsp4"
+    return [PsCustomObject]@{
+        "Name" = $name
+        "Version" = $version
+        "ConfigFile" = $configFile
+        "ServiceStatus" = $serviceStatus
+        "ListenPort" = $port
+    }
+}
+
 function Build-WebServersSection {
     $output = ""
     $output += New-MDHeader "Web Servers" -Level 3
     $output += @(
     (Get-ApacheVersion),
     (Get-NginxVersion)
+    (Get-Xsp4Version)
     ) | Sort-Object Name | New-MDTable
 
     $output += New-MDNewLine
