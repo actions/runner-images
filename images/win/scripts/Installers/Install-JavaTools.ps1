@@ -6,12 +6,12 @@
 function Set-JavaPath {
     param (
         [string] $Version,
-        [string] $JavaRootPath,
+        [string] $Architecture = "x64",
         [switch] $Default
     )
 
-    $matchedString = "jdk-?$Version"
-    $javaPath = (Get-ChildItem -Path $JavaRootPath | Where-Object { $_ -match $matchedString}).FullName
+    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adoptium_jdk/${Version}*/${Architecture}"
+    $javaPath = (Get-Item -Path $javaPathPattern).FullName
 
     if ([string]::IsNullOrEmpty($javaPath)) {
         Write-Host "Not found path to Java $Version"
