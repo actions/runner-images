@@ -31,6 +31,10 @@ Describe "Java" {
 
     $testCases | ForEach-Object {
         Context $_.Title {
+            It "Version is found by 'java_home'" -TestCases $_ {
+                "/usr/libexec/java_home -v${Version}" | Should -ReturnZeroExitCode
+            }
+
             It "Java <Version>" -TestCases $_ {
                 $envVariablePath = Get-EnvironmentVariable $EnvVariable
                 $javaBinPath = Join-Path $envVariablePath "/bin/java"
