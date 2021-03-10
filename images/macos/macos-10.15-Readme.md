@@ -1,17 +1,16 @@
 | Announcements |
 |-|
-| [[macOS] Default Xcode will be set to Xcode 12.4 on February, 22](https://github.com/actions/virtual-environments/issues/2685) |
 | [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H512)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210220.1
+- Image Version: 20210302.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 3.0.100 3.0.101 3.0.102 3.0.103 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 5.0.100 5.0.101 5.0.102 5.0.103
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 5.0.100 5.0.101 5.0.102 5.0.200
 - Bash 3.2.57(1)-release
 - Clang/LLVM 11.1.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
@@ -23,30 +22,30 @@
 - GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0  - available by `gfortran-9` alias
 - Go 1.15.8
 - julia 1.5.3
-- Node.js v14.15.5
-- NVM - Cached node versions: v10.23.3 v12.20.2 v14.15.5
+- Node.js v14.16.0
+- NVM - Cached node versions: v10.24.0 v12.21.0 v14.16.0
 - NVM 0.37.2
 - Perl 5.32.1
 - PHP 8.0.2
 - Python 2.7.18
-- Python 3.9.1
+- Python 3.9.2
 - R 4.0.4
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.11
+- Bundler version 2.2.12
 - Carthage 0.37.0
 - CocoaPods 1.10.1
-- Composer 2.0.9
-- Homebrew 3.0.1
+- Composer 2.0.11
+- Homebrew 3.0.4
 - Miniconda 4.9.2
 - NPM 6.14.11
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.0.1 (python 3.9)
-- Pipx 0.16.0.0
-- RubyGems 3.2.11
-- Vcpkg 2021 (build from master \<99dc49d>)
+- Pipx 0.16.1.0
+- RubyGems 3.2.12
+- Vcpkg 2021 (build from master \<395cb68>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -58,19 +57,19 @@
 ### Project Management
 - Apache Ant(TM) 1.10.9
 - Apache Maven 3.6.3
-- Gradle 6.8.2
+- Gradle 6.8.3
 
 ### Utilities
-- 7-Zip 16.02
+- 7-Zip 17.03
 - aria2 1.35.0
-- azcopy 10.8.0
+- azcopy 10.9.0
 - bazel 4.0.0
 - bazelisk 1.7.5
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.75.0
 - Git LFS: 2.13.2
 - Git: 2.30.1
-- GitHub CLI: 1.6.1
+- GitHub CLI: 1.6.2
 - GNU parallel 20201122
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
@@ -94,15 +93,15 @@
 ### Tools
 - Aliyun CLI 3.0.73
 - App Center CLI 2.7.4
-- AWS CLI 2.1.27
-- AWS SAM CLI 1.18.2
+- AWS CLI 2.1.29
+- AWS SAM CLI 1.19.1
 - AWS Session Manager CLI 1.2.30.0
-- Azure CLI 2.19.1
+- Azure CLI 2.20.0
 - Cabal 3.4.0.0
-- Cmake 3.19.5
-- Fastlane 2.175.0
+- Cmake 3.19.6
+- Fastlane 2.176.0
 - GHC 9.0.1
-- GHCup v0.1.12
+- GHCup v0.1.13
 - Stack 2.5.1
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -113,11 +112,11 @@
 ### Browsers
 - Safari 14.0.3 (15610.4.3.1.6)
 - SafariDriver 14.0.3 (15610.4.3.1.6)
-- Google Chrome 88.0.4324.182 
+- Google Chrome 89.0.4389.72 
 - ChromeDriver 88.0.4324.96
-- Microsoft Edge 88.0.705.74 
-- MSEdgeDriver 88.0.705.74
-- Mozilla Firefox 85.0.2
+- Microsoft Edge 88.0.705.81 
+- MSEdgeDriver 88.0.705.81
+- Mozilla Firefox 86.0
 - geckodriver 0.29.0
 
 #### Environment variables
@@ -158,9 +157,9 @@
 - 3.7.9 [PyPy 7.3.3-beta0]
 
 #### Node.js
-- 10.23.3
-- 12.20.2
-- 14.15.5
+- 10.24.0
+- 12.21.0
+- 14.16.0
 
 #### Go
 - 1.13.15
@@ -178,7 +177,7 @@
 - Bindgen 0.57.0
 - Cargo-audit 0.13.1
 - Cargo-outdated v0.9.14
-- Cbindgen 0.17.0
+- Cbindgen 0.18.0
 - Clippy 0.0.212
 - Rustfmt 1.4.30-stable
 
@@ -201,7 +200,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.8.9.10
+- 8.8.10.2
 
 #### Mono
 - 6.12.0.122
@@ -228,7 +227,7 @@
 - 13.2.0.47
 
 #### Xamarin.Mac
-- 7.4.0.4
+- 7.4.0.10
 - 7.2.0.3
 - 7.0.0.15
 - 6.22.1.26
@@ -273,7 +272,7 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.6.8
-- Nomad CLI 3.2.11
+- Nomad CLI 3.2.12
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
 
@@ -367,7 +366,7 @@
 | Package Name               | Version                                                                                                                                                                                                               |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 3.0                                                                                                                                                                                                                   |
-| Android Emulator           | 30.3.5                                                                                                                                                                                                                |
+| Android Emulator           | 30.4.5                                                                                                                                                                                                                |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
 | Android SDK Platforms      | android-S (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                           |
 | Android SDK Platform-Tools | 31.0.0                                                                                                                                                                                                                |
