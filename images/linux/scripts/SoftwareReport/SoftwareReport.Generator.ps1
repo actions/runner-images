@@ -118,6 +118,7 @@ $toolsList = @(
     (Get-M4Version),
     (Get-HGVersion),
     (Get-MinikubeVersion),
+    (Get-NetToolsVersion),
     (Get-NewmanVersion),
     (Get-NvmVersion),
     (Get-PackerVersion),

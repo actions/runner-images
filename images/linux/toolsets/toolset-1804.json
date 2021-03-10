@@ -48,16 +48,6 @@
             "default": "1.15.*"
         },
         {
-            "name": "boost",
-            "url" : "https://raw.githubusercontent.com/actions/boost-versions/main/versions-manifest.json",
-            "platform" : "linux",
-            "platform_version": "18.04",
-            "arch": "x64",
-            "versions": [
-                "1.72.0"
-            ]
-        },
-        {
             "name": "Ruby",
             "platform_version": "18.04",
             "arch": "x64",
@@ -188,6 +178,7 @@
             "m4",
             "mediainfo",
             "netcat",
+            "net-tools",
             "parallel",
             "pass",
             "p7zip-full",
