@@ -30,7 +30,7 @@ installJavaFromAdoptOpenJDK() {
     tar -xzf /tmp/OpenJDK${JAVA_VERSION}.tar.gz -C $javaToolcacheVersionArchPath --strip-components=1
 
     createEnvironmentVariable $JAVA_VERSION $javaToolcacheVersionArchPath
-    ln -sf $javaToolcacheVersionArchPath /Library/Java/JavaVirtualMachines/adoptopenjdk-${JAVA_VERSION}.jdk
+    sudo ln -sf $javaToolcacheVersionArchPath /Library/Java/JavaVirtualMachines/adoptopenjdk-${JAVA_VERSION}.jdk
 }
 
 JAVA_VERSIONS_LIST=($(get_toolset_value '.java.versions | .[]'))
