@@ -10,11 +10,11 @@ function Set-JavaPath {
         [switch] $Default
     )
 
-    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adoptium_jdk/${Version}*/${architecture}"
+    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adoptium_jdk/${Version}*/${Architecture}"
     $javaPath = (Get-Item -Path $javaPathPattern).FullName
 
     if ([string]::IsNullOrEmpty($javaPath)) {
-        Write-Host "Not found path to Java '${version}'"
+        Write-Host "Not found path to Java '${Version}'"
         exit 1
     }
 
@@ -57,7 +57,7 @@ function Install-JavaFromAdoptOpenJDK {
     $assetUrl = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/${JDKVersion}/hotspot"
     $asset = $assetUrl | Where-Object {
         $_.binary.os -eq "windows" `
-        -and $_.binary.architecture -eq $architecture `
+        -and $_.binary.architecture -eq $Architecture `
         -and $_.binary.image_type -eq "jdk"
     }
     $downloadUrl = $asset.binary.package.link
@@ -72,7 +72,7 @@ function Install-JavaFromAdoptOpenJDK {
     # Create directories in toolcache path
     $javaToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adoptium_jdk"
     $javaVersionPath = Join-Path -Path $javaToolcachePath -ChildPath $fullJavaVersion
-    $javaArchPath = Join-Path -Path $javaVersionPath -ChildPath $architecture
+    $javaArchPath = Join-Path -Path $javaVersionPath -ChildPath $Architecture
 
     if (-not (Test-Path $javaToolcachePath))
     {
@@ -85,7 +85,7 @@ function Install-JavaFromAdoptOpenJDK {
 
     # Complete the installation by moving Java binaries from temporary directory to toolcache and creating the complete file
     Move-Item -Path $javaTempBinariesPath -Destination $javaArchPath 
-    New-Item -ItemType File -Path $javaVersionPath -Name "$architecture.complete" | Out-Null
+    New-Item -ItemType File -Path $javaVersionPath -Name "$Architecture.complete" | Out-Null
 }
 
 $jdkVersions = (Get-ToolsetContent).java.versions
@@ -95,9 +95,9 @@ foreach ($jdkVersion in $jdkVersions) {
     Install-JavaFromAdoptOpenJDK -JDKVersion $jdkVersion
 
     if ($jdkVersion -eq $defaultVersion) {
-        Set-JavaPath -Version $jdkVersion -JavaRootPath $javaRootPath -Default
+        Set-JavaPath -Version $jdkVersion -Default
     } else {
-        Set-JavaPath -Version $jdkVersion -JavaRootPath $javaRootPath
+        Set-JavaPath -Version $jdkVersion
     }
 }
 
