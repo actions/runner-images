@@ -12,7 +12,7 @@ $zstdArchivePath = Start-DownloadWithRetry -Url $zstdLatest -Name "zstd-win64.zi
 Write-Host "Expand zstd-win64 archive"
 $toolPath = "C:\tools"
 Extract-7Zip -Path $zstdArchivePath -DestinationPath $toolPath
-Rename-Item -Path "${toolPath}\zstd-*-win64" -NewName zstd
+Rename-Item -Path "${toolPath}\zstd*" -NewName zstd
 
 # Add zstd-win64 to PATH
 Add-MachinePathItem $zstdPath
