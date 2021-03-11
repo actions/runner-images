@@ -117,6 +117,7 @@
             "dnsutils",
             "dpkg",
             "fakeroot",
+            "fonts-noto-color-emoji",
             "gnupg2",
             "imagemagick",
             "iproute2",
