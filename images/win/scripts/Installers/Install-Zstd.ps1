@@ -10,9 +10,9 @@ $url = "https://api.github.com/repos/facebook/zstd/releases/latest"
 $zstdArchivePath = Start-DownloadWithRetry -Url $zstdLatest -Name "zstd-win64.zip"
 
 Write-Host "Expand zstd-win64 archive"
-$zstdPath = "C:\tools\zstd"
-New-Item -Path $zstdPath -ItemType Directory -Force
-Extract-7Zip -Path $zstdArchivePath -DestinationPath $zstdPath
+$toolPath = "C:\tools"
+Extract-7Zip -Path $zstdArchivePath -DestinationPath $toolPath
+Rename-Item -Path "${toolPath}\zstd-*-win64" -NewName zstd
 
 # Add zstd-win64 to PATH
 Add-MachinePathItem $zstdPath
