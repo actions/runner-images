@@ -23,7 +23,7 @@
         "android-versions": [
             "11.2.0.21", "11.1.0.26", "11.0.2.0"
         ],
-        "bundle-default": "6_12_6",
+        "bundle-default": "6_12_7",
         "bundles": [
             {
                 "symlink": "6_12_7",
