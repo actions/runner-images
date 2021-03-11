@@ -29,10 +29,10 @@ function Get-NginxVersion {
 }
 
 function Get-Xsp4Version {
-    $name = "xsp4"
-    $port = 8084
-    $version = ($(xsp4 --version)  | Select-Object -first 1).Split(' ')[1]
-    $serviceStatus =  ((/etc/init.d/mono-xsp4 status) | Select-Object -index 2).Split(' ')[6]
+    $name = "mono-xsp4"
+    $port = (grep '^port=' /etc/default/mono-xsp4).Split('=')[1]
+    $version = (dpkg-query --showformat='${Version}' --show mono-xsp4).Split('-')[0]
+    $serviceStatus = systemctl show -p ActiveState --value mono-xsp4
     $configFile = "/etc/default/mono-xsp4"
     return [PsCustomObject]@{
         "Name" = $name
@@ -44,14 +44,18 @@ function Get-Xsp4Version {
 }
 
 function Build-WebServersSection {
+    $servers = @(
+        (Get-ApacheVersion),
+        (Get-NginxVersion)
+    )
+    if (Test-IsUbuntu20) {
+        $servers += (Get-Xsp4Version)
+    }
+
     $output = ""
     $output += New-MDHeader "Web Servers" -Level 3
-    $output += @(
-    (Get-ApacheVersion),
-    (Get-NginxVersion)
-    (Get-Xsp4Version)
-    ) | Sort-Object Name | New-MDTable
-
+    $output += $servers | Sort-Object Name | New-MDTable
     $output += New-MDNewLine
+
     return $output
 }
