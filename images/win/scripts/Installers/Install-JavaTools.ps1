@@ -10,15 +10,15 @@ function Set-JavaPath {
         [switch] $Default
     )
 
-    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adoptium_jdk/${Version}*/${Architecture}"
+    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adoptium_jdk/${Version}*/${architecture}"
     $javaPath = (Get-Item -Path $javaPathPattern).FullName
 
     if ([string]::IsNullOrEmpty($javaPath)) {
-        Write-Host "Not found path to Java $Version"
+        Write-Host "Not found path to Java '${version}'"
         exit 1
     }
 
-    Write-Host "Set JAVA_HOME_${Version}_X64 environmental variable as $javaPath"
+    Write-Host "Set 'JAVA_HOME_${Version}_X64' environmental variable as $javaPath"
     setx JAVA_HOME_${Version}_X64 $javaPath /M
 
     if ($Default)
@@ -54,7 +54,7 @@ function Install-JavaFromAdoptOpenJDK {
     )
 
     # Get Java version from adopt openjdk api
-    $assetUrl = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/$JDKVersion/hotspot"
+    $assetUrl = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/${JDKVersion}/hotspot"
     $asset = $assetUrl | Where-Object {
         $_.binary.os -eq "windows" `
         -and $_.binary.architecture -eq $architecture `
@@ -72,7 +72,7 @@ function Install-JavaFromAdoptOpenJDK {
     # Create directories in toolcache path
     $javaToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adoptium_jdk"
     $javaVersionPath = Join-Path -Path $javaToolcachePath -ChildPath $fullJavaVersion
-    $javaArchPath = Join-Path -Path $javaVersionPath -ChildPath $Architecture
+    $javaArchPath = Join-Path -Path $javaVersionPath -ChildPath $architecture
 
     if (-not (Test-Path $javaToolcachePath))
     {
