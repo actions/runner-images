@@ -123,7 +123,9 @@
             "iputils-ping",
             "lib32z1",
             "libc++abi-dev",
+            "libc++abi-11-dev",
             "libc++-dev",
+            "libc++-11-dev",
             "libcurl4",
             "libgbm-dev",
             "libgconf-2-4",
@@ -233,7 +235,8 @@
         "versions": [
             "8",
             "9",
-            "10"
+            "10",
+            "11"
         ],
         "default_version": "10"
     },
