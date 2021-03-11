@@ -20,7 +20,7 @@ installJavaFromAdoptOpenJDK() {
 
     javaRelease=$(curl -s "https://api.adoptopenjdk.net/v3/assets/latest/${JAVA_VERSION}/hotspot" | jq -r '[.[] | select(.binary.os=="mac")][0]')
     archivePath=$(echo $javaRelease | jq -r '.binary.package.link')
-    fullVersion=$(echo $javaRelease | jq -r '.version.openjdk_version' | grep -o -E '^[0-9]+\.[0-9]+\.[0-9]+')
+    fullVersion=$(echo $javaRelease | jq -r '.version.semver')
 
     javaToolcacheVersionPath=$JAVA_TOOLCACHE_PATH/$fullVersion
     javaToolcacheVersionArchPath=$javaToolcacheVersionPath/x64
@@ -30,6 +30,8 @@ installJavaFromAdoptOpenJDK() {
     tar -xzf /tmp/OpenJDK${JAVA_VERSION}.tar.gz -C $javaToolcacheVersionArchPath --strip-components=1
 
     createEnvironmentVariable $JAVA_VERSION $javaToolcacheVersionArchPath
+
+    # Create a symlink to make sure the java_home tool works as expected
     sudo ln -sf $javaToolcacheVersionArchPath /Library/Java/JavaVirtualMachines/adoptopenjdk-${JAVA_VERSION}.jdk
 }
 
