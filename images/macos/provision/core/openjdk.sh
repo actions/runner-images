@@ -11,7 +11,7 @@ createEnvironmentVariable() {
     if [[ $JAVA_VERSION == $JAVA_DEFAULT ]]; then
         echo "export JAVA_HOME=${JAVA_HOME_PATH}" >> "${HOME}/.bashrc"
     fi
-    echo "export JAVA_HOME_${JAVA_VERSION}_x64=${JAVA_HOME_PATH}" >> "${HOME}/.bashrc"
+    echo "export JAVA_HOME_${JAVA_VERSION}_X64=${JAVA_HOME_PATH}" >> "${HOME}/.bashrc"
 }
 
 installJavaFromAdoptOpenJDK() {
