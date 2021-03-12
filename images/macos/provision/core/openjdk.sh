@@ -27,10 +27,10 @@ installJavaFromAdoptOpenJDK() {
     javaToolcacheVersionArchPath=$javaToolcacheVersionPath/x64
 
     # Download and extract Java binaries
-    # Create complete file
     download_with_retries $archivePath /tmp OpenJDK${JAVA_VERSION}.tar.gz
     mkdir -p $javaToolcacheVersionArchPath
     tar -xzf /tmp/OpenJDK${JAVA_VERSION}.tar.gz -C $javaToolcacheVersionArchPath --strip-components=1
+    # Create complete file
     touch $javaToolcacheVersionPath/x64.complete
 
     createEnvironmentVariable $JAVA_VERSION $javaToolcacheVersionArchPath
