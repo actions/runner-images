@@ -37,11 +37,8 @@ installJavaFromAdoptOpenJDK() {
     mkdir -p "$javaToolcacheVersionArchPath"
     tar -xzf "/tmp/OpenJDK${JAVA_VERSION}.tar.gz" -C $javaToolcacheVersionArchPath --strip-components=1
 
-    COMPLETE_FILE_PATH="$javaToolcacheVersionPath/x64.complete"
-    if [ ! -f $COMPLETE_FILE_PATH ]; then
-        echo "Create complete file"
-        touch $COMPLETE_FILE_PATH
-    fi
+    # Create a complete file
+    touch $javaToolcacheVersionPath/x64.complete
 
     createEnvironmentVariable $JAVA_VERSION $javaToolcacheVersionArchPath
 
