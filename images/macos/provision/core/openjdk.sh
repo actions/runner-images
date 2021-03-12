@@ -10,28 +10,33 @@ createEnvironmentVariable() {
     local JAVA_HOME_PATH=$JAVA_PATH/Contents/Home
     if [[ $JAVA_VERSION == $JAVA_DEFAULT ]]; then
         echo "export JAVA_HOME=${JAVA_HOME_PATH}" >> "${HOME}/.bashrc"
-        export PATH="$JAVA_HOME_PATH:$PATH"
     fi
-    echo "export JAVA_HOME_${JAVA_VERSION}_X64=${JAVA_HOME_PATH}" >> "${HOME}/.bashrc"
+    echo "export JAVA_HOME_${JAVA_VERSION}_x64=${JAVA_HOME_PATH}" >> "${HOME}/.bashrc"
 }
 
 installJavaFromAdoptOpenJDK() {
     local JAVA_VERSION=$1
 
-    javaRelease=$(curl -s "https://api.adoptopenjdk.net/v3/assets/latest/${JAVA_VERSION}/hotspot" | jq -r '[.[] | select(.binary.os=="mac")][0]')
-    archivePath=$(echo $javaRelease | jq -r '.binary.package.link')
-    fullVersion=$(echo $javaRelease | jq -r '.version.semver')
+    # Get link for Java binaries and Java version
+    assetUrl=$(curl -s "https://api.adoptopenjdk.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
+    asset=$(echo $assetUrl | jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="x64")')
+    archivePath=$(echo $asset | jq -r '.binary.package.link')
+    fullVersion=$(echo $asset | jq -r '.version.semver')
 
     javaToolcacheVersionPath=$JAVA_TOOLCACHE_PATH/$fullVersion
     javaToolcacheVersionArchPath=$javaToolcacheVersionPath/x64
 
+    # Download and extract Java binaries
+    # Create complete file
     download_with_retries $archivePath /tmp OpenJDK${JAVA_VERSION}.tar.gz
     mkdir -p $javaToolcacheVersionArchPath
     tar -xzf /tmp/OpenJDK${JAVA_VERSION}.tar.gz -C $javaToolcacheVersionArchPath --strip-components=1
+    touch $javaToolcacheVersionPath/x64.complete
 
     createEnvironmentVariable $JAVA_VERSION $javaToolcacheVersionArchPath
 
-    # Create a symlink to make sure the java_home tool works as expected
+    # Create a symlink to '/Library/Java/JavaVirtualMachines'
+    # so '/usr/libexec/java_home' will be able to find Java
     sudo ln -sf $javaToolcacheVersionArchPath /Library/Java/JavaVirtualMachines/adoptopenjdk-${JAVA_VERSION}.jdk
 }
 
@@ -40,7 +45,7 @@ JAVA_DEFAULT=$(get_toolset_value '.java.default')
 
 for JAVA_VERSION in "${JAVA_VERSIONS_LIST[@]}"
 do
-    installJavaFromAdoptOpenJDK $JAVA_VERSION
+    installJavaFromAdoptOpenJDK $JAVA_VERSION 
 done
 
 echo Installing Maven...
