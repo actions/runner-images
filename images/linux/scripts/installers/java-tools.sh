@@ -25,7 +25,7 @@ installJavaFromAdoptOpenJDK() {
     local JAVA_VERSION=$1
 
     javaRelease=$(curl -s "https://api.adoptopenjdk.net/v3/assets/latest/${JAVA_VERSION}/hotspot" \
-                | jq -r '[.[] | select(.binary.os=="linux" and .binary.image_type=="jdk" and .binary.architecture=="x64")][0]')
+                | jq -r '.[] | select(.binary.os=="linux" and .binary.image_type=="jdk" and .binary.architecture=="x64")')
     archivePath=$(echo $javaRelease | jq -r '.binary.package.link')
     fullVersion=$(echo $javaRelease | jq -r '.version.semver')
 
