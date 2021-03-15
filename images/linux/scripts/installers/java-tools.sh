@@ -13,7 +13,7 @@ createEnvironmentVariable() {
     local JAVA_VERSION=$1
     local JAVA_PATH=$2
 
-    local JAVA_HOME_PATH=$JAVA_PATH/Contents/Home
+    local JAVA_HOME_PATH=$JAVA_PATH/bin/java
     if [[ $JAVA_VERSION == $JAVA_DEFAULT ]]; then
         echo "JAVA_HOME=${JAVA_HOME_PATH}" | tee -a /etc/environment
     fi
