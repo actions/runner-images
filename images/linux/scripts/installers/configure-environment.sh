@@ -1,10 +1,13 @@
 #!/bin/bash -e
 
-#Set ImageVersion and ImageOS env variables
+# Set ImageVersion and ImageOS env variables
 echo ImageVersion=$IMAGE_VERSION | tee -a /etc/environment
 echo ImageOS=$IMAGE_OS | tee -a /etc/environment
 
-# Create a file to store user-related global environment variables 
+# Set the ACCEPT_EULA variable to Y value to confirm your acceptance of the End-User Licensing Agreement
+echo ACCEPT_EULA=Y | tee -a /etc/environment
+
+# Create a file to store user-related global environment variables
 touch /etc/profile.d/env_vars.sh
 # Set BASH_ENV variable pointed to the file with user-related global environment variables for non-interactive sessions
 echo "BASH_ENV=/etc/profile.d/env_vars.sh" | tee -a /etc/environment
