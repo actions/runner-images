@@ -17,7 +17,7 @@ cat > "${Launch_Daemons}/limit.maxfiles.plist" << EOF
       <string>launchctl</string>
       <string>limit</string>
       <string>maxfiles</string>
-      <string>52428</string>
+      <string>65536</string>
       <string>524288</string>
     </array>
     <key>RunAtLoad</key>
