@@ -7,13 +7,13 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
-JAVA_TOOLCACHE_PATH="$AGENT_TOOLSDIRECTORY/Java_Adoptium_jdk"
+JAVA_TOOLCACHE_PATH="$AGENT_TOOLSDIRECTORY/Java_Adopt_jdk"
 
 createEnvironmentVariable() {
     local JAVA_VERSION=$1
     local JAVA_PATH=$2
 
-    local JAVA_HOME_PATH=$JAVA_PATH/bin/java
+    local JAVA_HOME_PATH="$JAVA_PATH/Contents/Home"
     if [[ $JAVA_VERSION == $JAVA_DEFAULT ]]; then
         echo "JAVA_HOME=${JAVA_HOME_PATH}" | tee -a /etc/environment
     fi
