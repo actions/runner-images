@@ -6,7 +6,7 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H512)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210302.1
+- Image Version: 20210307.1
 
 ## Installed Software
 ### Language and Runtime
@@ -26,14 +26,14 @@
 - NVM - Cached node versions: v10.24.0 v12.21.0 v14.16.0
 - NVM 0.37.2
 - Perl 5.32.1
-- PHP 8.0.2
+- PHP 8.0.3
 - Python 2.7.18
 - Python 3.9.2
 - R 4.0.4
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.12
+- Bundler version 2.2.13
 - Carthage 0.37.0
 - CocoaPods 1.10.1
 - Composer 2.0.11
@@ -44,8 +44,8 @@
 - Pip 20.3.4 (python 2.7)
 - Pip 21.0.1 (python 3.9)
 - Pipx 0.16.1.0
-- RubyGems 3.2.12
-- Vcpkg 2021 (build from master \<395cb68>)
+- RubyGems 3.2.13
+- Vcpkg 2021 (build from master \<c47216a>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -69,7 +69,7 @@
 - Curl 7.75.0
 - Git LFS: 2.13.2
 - Git: 2.30.1
-- GitHub CLI: 1.6.2
+- GitHub CLI: 1.7.0
 - GNU parallel 20201122
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
@@ -87,42 +87,42 @@
 - Subversion (SVN) 1.14.1
 - Vagrant 2.2.14
 - virtualbox 6.1.18r142142
-- zstd 1.4.8
+- zstd 1.4.9
 
 
 ### Tools
 - Aliyun CLI 3.0.73
 - App Center CLI 2.7.4
 - AWS CLI 2.1.29
-- AWS SAM CLI 1.19.1
+- AWS SAM CLI 1.20.0
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.20.0
 - Cabal 3.4.0.0
 - Cmake 3.19.6
 - Fastlane 2.176.0
 - GHC 9.0.1
-- GHCup v0.1.13
+- GHCup v0.1.14
 - Stack 2.5.1
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
-- SwiftLint 0.42.0
+- SwiftLint 0.43.0
 - yamllint 1.26.0
 
 ### Browsers
 - Safari 14.0.3 (15610.4.3.1.6)
 - SafariDriver 14.0.3 (15610.4.3.1.6)
-- Google Chrome 89.0.4389.72 
-- ChromeDriver 88.0.4324.96
-- Microsoft Edge 88.0.705.81 
-- MSEdgeDriver 88.0.705.81
+- Google Chrome 89.0.4389.82 
+- ChromeDriver 89.0.4389.23
+- Microsoft Edge 89.0.774.45 
+- MSEdgeDriver 89.0.774.45
 - Mozilla Firefox 86.0
 - geckodriver 0.29.0
 
 #### Environment variables
 | Name            | Value                                         |
 | --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/88.0.4324.96 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/89.0.4389.23 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
@@ -200,7 +200,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.8.10.2
+- 8.9.0.1651
 
 #### Mono
 - 6.12.0.122
@@ -272,7 +272,7 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.6.8
-- Nomad CLI 3.2.12
+- Nomad CLI 3.2.13
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
 
