@@ -295,10 +295,20 @@ function Get-CachedDockerImagesTableData {
 }
 
 function Get-AptPackages {
-    $toolsetJson = Get-ToolsetContent
-    $apt = $toolsetJson.apt
-    $pkgs = ($apt.common_packages + $apt.cmd_packages | Sort-Object) -join ", "
-    return $pkgs
+    $apt = (Get-ToolsetContent).Apt
+    $output = @()
+    ForEach ($pkg in ($apt.common_packages + $apt.cmd_packages)) {
+        $version = $(dpkg-query -W -f '${Version}' $pkg)
+        if ($Null -eq $version) {
+            $version = $(dpkg-query -W -f '${Version}' "$pkg*")
+        }
+
+        $output += [PSCustomObject] @{
+            Name    = $pkg
+            Version = $version
+        }
+    }
+    return ($output | Sort-Object Name)
 }
 
 function Get-PipxVersion {
