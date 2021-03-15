@@ -10,7 +10,7 @@ function Set-JavaPath {
         [switch] $Default
     )
 
-    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adoptium_jdk/${Version}*/${Architecture}"
+    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adopt_jdk/${Version}*/${Architecture}"
     $javaPath = (Get-Item -Path $javaPathPattern).FullName
 
     if ([string]::IsNullOrEmpty($javaPath)) {
@@ -70,7 +70,7 @@ function Install-JavaFromAdoptOpenJDK {
     $javaTempBinariesPath = Join-Path -Path $javaTempPath -ChildPath "\jdk*\"
 
     # Create directories in toolcache path
-    $javaToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adoptium_jdk"
+    $javaToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adopt_jdk"
     $javaVersionPath = Join-Path -Path $javaToolcachePath -ChildPath $fullJavaVersion
     $javaArchPath = Join-Path -Path $javaVersionPath -ChildPath $Architecture
 
