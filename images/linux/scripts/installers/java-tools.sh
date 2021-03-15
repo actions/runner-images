@@ -41,9 +41,6 @@ installJavaFromAdoptOpenJDK() {
     touch $javaToolcacheVersionPath/x64.complete
 
     createEnvironmentVariable $JAVA_VERSION $javaToolcacheVersionArchPath
-
-    # Create a symlink to '/usr/lib/jvm' so '/usr/libexec/java_home' will be able to find Java
-    ln -sf $javaToolcacheVersionArchPath /usr/lib/jvm/adoptopenjdk-${JAVA_VERSION}.jdk
 }
 
 JAVA_VERSIONS_LIST=$(get_toolset_value '.java.versions[]')
