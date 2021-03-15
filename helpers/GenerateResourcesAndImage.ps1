@@ -83,6 +83,15 @@ Function GenerateResourcesAndImage {
         .PARAMETER GithubFeedToken
             GitHub PAT to download tool packages from GitHub Package Registry
 
+        .PARAMETER AzureClientId
+            Client id needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
+
+        .PARAMETER AzureClientSecret
+            Client secret needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
+
+        .PARAMETER AzureTenantId
+            Tenant needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
+
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1604 -AzureLocation "East US"
     #>
@@ -102,10 +111,16 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [string] $GithubFeedToken,
         [Parameter(Mandatory = $False)]
+        [string] $AzureClientId,
+        [Parameter(Mandatory = $False)]
+        [string] $AzureClientSecret,
+        [Parameter(Mandatory = $False)]
+        [string] $AzureTenantId,
+        [Parameter(Mandatory = $False)]
         [Switch] $Force
     )
 
-    if (([string]::IsNullOrEmpty($GithubFeedToken)))
+    if ([string]::IsNullOrEmpty($GithubFeedToken))
     {
         Write-Error "'-GithubFeedToken' parameter is not specified. You have to specify valid GitHub PAT to download tool packages from GitHub Package Registry"
         exit 1
@@ -115,7 +130,14 @@ Function GenerateResourcesAndImage {
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
 
-    Connect-AzAccount
+    if ([string]::IsNullOrEmpty($AzureClientId))
+    {
+        Connect-AzAccount
+    } else {
+        $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
+        $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
+        Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
+    }
     Set-AzContext -SubscriptionId $SubscriptionId
 
     $alreadyExists = $true;
@@ -171,21 +193,31 @@ Function GenerateResourcesAndImage {
 
     New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
 
-    $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
-    $credentialProperties = @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$ServicePrincipalClientSecret }
-    $credentials = New-Object -TypeName Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential -Property $credentialProperties
-    $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
+    if ([string]::IsNullOrEmpty($AzureClientId)) {
+        # Interactive authentication: A service principal is created during runtime.
+        $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
+        $credentialProperties = @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$ServicePrincipalClientSecret }
+        $credentials = New-Object -TypeName Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential -Property $credentialProperties
+        $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
 
-    $spAppId = $sp.ApplicationId
-    $spClientId = $sp.ApplicationId
-    $spObjectId = $sp.Id
-    Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
+        $spAppId = $sp.ApplicationId
+        $spClientId = $sp.ApplicationId
+        Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
 
-    New-AzRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
-    Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-    $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
-    $tenantId = $sub.TenantId
-    # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
+        New-AzRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
+        Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
+        $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
+        $tenantId = $sub.TenantId
+        # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
+    } else {
+        # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
+        # is used for all authentication purposes.
+        $spAppId = $AzureClientId
+        $spClientId = $AzureClientId
+        $credentials = $AzureAppCred
+        $ServicePrincipalClientSecret = $AzureClientSecret
+        $tenantId = $AzureTenantId
+    }
 
     Get-LatestCommit -ErrorAction SilentlyContinue
 
@@ -199,7 +231,6 @@ Function GenerateResourcesAndImage {
         -var "client_secret=$($ServicePrincipalClientSecret)" `
         -var "subscription_id=$($SubscriptionId)" `
         -var "tenant_id=$($tenantId)" `
-        -var "object_id=$($spObjectId)" `
         -var "location=$($AzureLocation)" `
         -var "resource_group=$($ResourceGroupName)" `
         -var "storage_account=$($storageAccountName)" `
