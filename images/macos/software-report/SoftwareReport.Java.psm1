@@ -9,8 +9,7 @@ function Get-JavaVersions {
     return $javaVersions | Sort-Object $sortRules | ForEach-Object {
         $javaPath = $_.Value
         # Take semver from the java path
-        $javaPath -match "$env:AGENT_TOOLSDIRECTORY/Java_Adoptium_jdk/(?<version>.*)/x64/Contents/Home" | Out-Null
-        $version = $Matches.version
+        $version = $javaPath.split('/')[5]
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
 
         [PSCustomObject] @{
