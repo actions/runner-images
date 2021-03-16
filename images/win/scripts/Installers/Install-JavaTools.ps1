@@ -6,19 +6,19 @@
 function Set-JavaPath {
     param (
         [string] $Version,
-        [string] $JavaRootPath,
+        [string] $Architecture = "x64",
         [switch] $Default
     )
 
-    $matchedString = "jdk-?$Version"
-    $javaPath = (Get-ChildItem -Path $JavaRootPath | Where-Object { $_ -match $matchedString}).FullName
+    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adopt_jdk/${Version}*/${Architecture}"
+    $javaPath = (Get-Item -Path $javaPathPattern).FullName
 
     if ([string]::IsNullOrEmpty($javaPath)) {
-        Write-Host "Not found path to Java $Version"
+        Write-Host "Not found path to Java '${Version}'"
         exit 1
     }
 
-    Write-Host "Set JAVA_HOME_${Version}_X64 environmental variable as $javaPath"
+    Write-Host "Set 'JAVA_HOME_${Version}_X64' environmental variable as $javaPath"
     setx JAVA_HOME_${Version}_X64 $javaPath /M
 
     if ($Default)
@@ -50,31 +50,54 @@ function Set-JavaPath {
 function Install-JavaFromAdoptOpenJDK {
     param(
         [string] $JDKVersion,
-        [string] $DestinationPath
+        [string] $Architecture = "x64"
     )
 
-    $assets = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/$JDKVersion/hotspot"
-    $downloadUrl = ($assets | Where-Object {
+    # Get Java version from adopt openjdk api
+    $assetUrl = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/${JDKVersion}/hotspot"
+    $asset = $assetUrl | Where-Object {
         $_.binary.os -eq "windows" `
-        -and $_.binary.architecture -eq "x64" `
+        -and $_.binary.architecture -eq $Architecture `
         -and $_.binary.image_type -eq "jdk"
-    }).binary.package.link
+    }
+    $downloadUrl = $asset.binary.package.link
+    $fullJavaVersion = $asset.version.semver
 
+    # Download and extract java binaries to temporary folder
     $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))
-    Extract-7Zip -Path $archivePath -DestinationPath $DestinationPath
+    $javaTempPath = Join-Path -Path $env:TEMP -ChildPath "Java_$fullJavaVersion"
+    Extract-7Zip -Path $archivePath -DestinationPath $javaTempPath
+    $javaTempBinariesPath = Join-Path -Path $javaTempPath -ChildPath "\jdk*\"
+
+    # Create directories in toolcache path
+    $javaToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adopt_jdk"
+    $javaVersionPath = Join-Path -Path $javaToolcachePath -ChildPath $fullJavaVersion
+    $javaArchPath = Join-Path -Path $javaVersionPath -ChildPath $Architecture
+
+    if (-not (Test-Path $javaToolcachePath))
+    {
+        Write-Host "Creating Adopt openjdk toolcache folder"
+        New-Item -ItemType Directory -Path $javaToolcachePath | Out-Null
+    }
+
+    Write-Host "Creating Java '${fullJavaVersion}' folder in '${javaVersionPath}'"
+    New-Item -ItemType Directory -Path $javaVersionPath -Force | Out-Null
+
+    # Complete the installation by moving Java binaries from temporary directory to toolcache and creating the complete file
+    Move-Item -Path $javaTempBinariesPath -Destination $javaArchPath 
+    New-Item -ItemType File -Path $javaVersionPath -Name "$Architecture.complete" | Out-Null
 }
 
 $jdkVersions = (Get-ToolsetContent).java.versions
 $defaultVersion = (Get-ToolsetContent).java.default
-$javaRootPath = "C:\Program Files\Java\"
 
 foreach ($jdkVersion in $jdkVersions) {
-    Install-JavaFromAdoptOpenJDK -JDKVersion $jdkVersion -DestinationPath $javaRootPath
+    Install-JavaFromAdoptOpenJDK -JDKVersion $jdkVersion
 
     if ($jdkVersion -eq $defaultVersion) {
-        Set-JavaPath -Version $jdkVersion -JavaRootPath $javaRootPath -Default
+        Set-JavaPath -Version $jdkVersion -Default
     } else {
-        Set-JavaPath -Version $jdkVersion -JavaRootPath $javaRootPath
+        Set-JavaPath -Version $jdkVersion
     }
 }
 
