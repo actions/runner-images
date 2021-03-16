@@ -11,9 +11,8 @@ JAVA_TOOLCACHE_PATH="$AGENT_TOOLSDIRECTORY/Java_Adopt_jdk"
 
 createEnvironmentVariable() {
     local JAVA_VERSION=$1
-    local JAVA_PATH=$2
+    local JAVA_HOME_PATH=$2
 
-    local JAVA_HOME_PATH="$JAVA_PATH/Contents/Home"
     if [[ $JAVA_VERSION == $JAVA_DEFAULT ]]; then
         echo "JAVA_HOME=${JAVA_HOME_PATH}" | tee -a /etc/environment
     fi
@@ -46,7 +45,7 @@ installJavaFromAdoptOpenJDK() {
 JAVA_VERSIONS_LIST=$(get_toolset_value '.java.versions[]')
 JAVA_DEFAULT=$(get_toolset_value '.java.default')
 
-for JAVA_VERSION in "${JAVA_VERSIONS_LIST[@]}"
+for JAVA_VERSION in $JAVA_VERSIONS_LIST
 do
     installJavaFromAdoptOpenJDK $JAVA_VERSION
 done
