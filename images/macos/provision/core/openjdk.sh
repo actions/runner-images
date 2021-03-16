@@ -1,7 +1,7 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
-JAVA_TOOLCACHE_PATH=$AGENT_TOOLSDIRECTORY/Java_Adoptium_jdk
+JAVA_TOOLCACHE_PATH=$AGENT_TOOLSDIRECTORY/Java_Adopt_jdk
 
 createEnvironmentVariable() {
     local JAVA_VERSION=$1
