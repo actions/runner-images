@@ -13,30 +13,6 @@ function Get-BashVersion {
     return "Bash $version"
 }
 
-function Get-JavaVersionsList {
-    param(
-        [string] $DefaultVersion
-    )
-
-    $postfix = ""
-    $javaDir = Join-Path $env:PROGRAMFILES "Java"
-    return Get-ChildItem $javaDir | ForEach-Object {
-        $javaBinPath = Join-Path $_ "bin"
-        $rawVersion = & cmd /c "`"$javaBinPath\java.exe`" -version 2>&1" | Out-String
-        $rawVersion -match 'openjdk version "(?<version>.+)"' | Out-Null
-        $version = $Matches.Version
-        if ($version -match $DefaultVersion) {
-            $postfix = "(default)"
-        } else {
-            $postfix = ""
-        }
-        return "Java $version $postfix"
-    } | Sort-Object {
-        $version = ($_.Split(" ")[1]).Split("_")[0]
-        return [System.Version]$version
-    }
-}
-
 function Get-RustVersion {
     $rustVersion = [regex]::matches($(rustc --version), "\d+\.\d+\.\d+").Value
     return $rustVersion
