@@ -286,7 +286,7 @@ function Get-NetlifyCliVersion {
 
 function Get-OCCliVersion {
     $ocVersion = oc version | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "-"
-    return "oc CLI $ocVersion"
+    return "OpenShift CLI $ocVersion"
 }
 
 function Get-ORASCliVersion {
