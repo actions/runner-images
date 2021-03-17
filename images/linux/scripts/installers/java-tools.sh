@@ -15,6 +15,12 @@ createEnvironmentVariable() {
 
     if [[ $JAVA_VERSION == $JAVA_DEFAULT ]]; then
         echo "JAVA_HOME=${JAVA_HOME_PATH}" | tee -a /etc/environment
+
+        update-alternatives --install "/usr/bin/java" "java" "$JAVA_HOME_PATH/bin/java" 1
+        update-alternatives --set java "$JAVA_HOME_PATH/bin/java"
+        
+        update-alternatives --install "/usr/bin/javac" "javac" "$JAVA_HOME_PATH/bin/javac" 1
+        update-alternatives --set javac "$JAVA_HOME_PATH/bin/javac"
     fi
 
     echo "JAVA_HOME_${JAVA_VERSION}_X64=${JAVA_HOME_PATH}" | tee -a /etc/environment
