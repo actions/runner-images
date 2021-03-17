@@ -35,15 +35,7 @@ Describe "Java" {
                 "/usr/libexec/java_home -v${Version}" | Should -ReturnZeroExitCode
             }
 
-            if ($_.Title -ne "Default") {
-                It "Version is valid" -TestCases $_ {
-                    $javaRootPath = "/Library/Java/JavaVirtualMachines/adoptopenjdk-${Title}.jdk/Contents/Home"
-                    $javaBinPath = Join-Path $javaRootPath "/bin/java"
-                    Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
-                }
-            }
-
-            It "<EnvVariable>" -TestCases $_ {
+            It "Java <Version>" -TestCases $_ {
                 $envVariablePath = Get-EnvironmentVariable $EnvVariable
                 $javaBinPath = Join-Path $envVariablePath "/bin/java"
                 Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
