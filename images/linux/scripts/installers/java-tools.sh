@@ -12,20 +12,26 @@ JAVA_TOOLCACHE_PATH="$AGENT_TOOLSDIRECTORY/Java_Adopt_jdk"
 createEnvironmentVariable() {
     local JAVA_VERSION=$1
     local JAVA_HOME_PATH=$2
+    
+    # Set priority for default java - 1, for none default versions - 2
+    local priorityLevel="2"
 
     if [[ $JAVA_VERSION == $JAVA_DEFAULT ]]; then
+        priorityLevel="1"
         echo "JAVA_HOME=${JAVA_HOME_PATH}" | tee -a /etc/environment
-
-        # Use `update-alternatives` to set up default java version
-        update-alternatives --install "/usr/bin/java" "java" "$JAVA_HOME_PATH/bin/java" 1
-        update-alternatives --set java "$JAVA_HOME_PATH/bin/java"
-        
-        # stackoverflow: https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
-        update-alternatives --install "/usr/bin/javac" "javac" "$JAVA_HOME_PATH/bin/javac" 1
-        update-alternatives --set javac "$JAVA_HOME_PATH/bin/javac"
     fi
 
     echo "JAVA_HOME_${JAVA_VERSION}_X64=${JAVA_HOME_PATH}" | tee -a /etc/environment
+
+    javaExecutables=$(ls $JAVA_HOME_PATH/bin)
+
+    for javaExecutable in $javaExecutables
+    do
+        # Use `update-alternatives` to set up default java version
+        # and https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
+        update-alternatives --install "/usr/bin/$javaExecutable" "$javaExecutable" "$JAVA_HOME_PATH/bin/$javaExecutable" $priorityLevel
+        update-alternatives --set "$javaExecutable" "$JAVA_HOME_PATH/bin/$javaExecutable"
+    done
 }
 
 installJavaFromAdoptOpenJDK() {
