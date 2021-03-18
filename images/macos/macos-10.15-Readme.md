@@ -1,16 +1,15 @@
 | Announcements |
 |-|
-| [[Ubuntu, macOS] .NET 3.0 will be removed from images on March, 1](https://github.com/actions/virtual-environments/issues/2558) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 10.15 info
-- System Version: macOS 10.15.7 (19H512)
+- System Version: macOS 10.15.7 (19H524)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210307.1
+- Image Version: 20210314.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 5.0.100 5.0.101 5.0.102 5.0.200
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201
 - Bash 3.2.57(1)-release
 - Clang/LLVM 11.1.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
@@ -20,8 +19,8 @@
 - GNU Fortran (Homebrew GCC 10.2.0_4) 10.2.0  - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 8.4.0_2) 8.4.0  - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0  - available by `gfortran-9` alias
-- Go 1.15.8
-- julia 1.5.3
+- Go 1.15.10
+- julia 1.5.4
 - Node.js v14.16.0
 - NVM - Cached node versions: v10.24.0 v12.21.0 v14.16.0
 - NVM 0.37.2
@@ -33,19 +32,19 @@
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.13
+- Bundler version 2.2.14
 - Carthage 0.37.0
 - CocoaPods 1.10.1
 - Composer 2.0.11
-- Homebrew 3.0.4
+- Homebrew 3.0.5
 - Miniconda 4.9.2
 - NPM 6.14.11
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.0.1 (python 3.9)
 - Pipx 0.16.1.0
-- RubyGems 3.2.13
-- Vcpkg 2021 (build from master \<c47216a>)
+- RubyGems 3.2.14
+- Vcpkg 2021 (build from master \<75522bb>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -68,13 +67,13 @@
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.75.0
 - Git LFS: 2.13.2
-- Git: 2.30.1
+- Git: 2.30.2
 - GitHub CLI: 1.7.0
 - GNU parallel 20201122
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.2.27
-- helm v3.5.2+g167aac7
+- helm v3.5.3+g041ce5a
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v4.4.3
@@ -93,13 +92,13 @@
 ### Tools
 - Aliyun CLI 3.0.73
 - App Center CLI 2.7.4
-- AWS CLI 2.1.29
+- AWS CLI 2.1.30
 - AWS SAM CLI 1.20.0
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.20.0
 - Cabal 3.4.0.0
 - Cmake 3.19.6
-- Fastlane 2.176.0
+- Fastlane 2.178.0
 - GHC 9.0.1
 - GHCup v0.1.14
 - Stack 2.5.1
@@ -110,13 +109,13 @@
 - yamllint 1.26.0
 
 ### Browsers
-- Safari 14.0.3 (15610.4.3.1.6)
-- SafariDriver 14.0.3 (15610.4.3.1.6)
-- Google Chrome 89.0.4389.82 
+- Safari 14.0.3 (15610.4.3.1.7)
+- SafariDriver 14.0.3 (15610.4.3.1.7)
+- Google Chrome 89.0.4389.90 
 - ChromeDriver 89.0.4389.23
-- Microsoft Edge 89.0.774.45 
-- MSEdgeDriver 89.0.774.45
-- Mozilla Firefox 86.0
+- Microsoft Edge 89.0.774.50 
+- MSEdgeDriver 89.0.774.54
+- Mozilla Firefox 86.0.1
 - geckodriver 0.29.0
 
 #### Environment variables
@@ -164,8 +163,8 @@
 #### Go
 - 1.13.15
 - 1.14.15
-- 1.15.8
-- 1.16.0
+- 1.15.10
+- 1.16.2
 
 ### Rust Tools
 - Cargo 1.50.0
@@ -175,14 +174,14 @@
 
 #### Packages
 - Bindgen 0.57.0
-- Cargo-audit 0.13.1
+- Cargo-audit 0.14.0
 - Cargo-outdated v0.9.14
 - Cbindgen 0.18.0
 - Clippy 0.0.212
 - Rustfmt 1.4.30-stable
 
 ### PowerShell Tools
-- PowerShell 7.1.2
+- PowerShell 7.1.3
 
 #### PowerShell Modules
 | Module           | Version |
@@ -196,11 +195,11 @@
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | -------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.46_2 | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
-| nginx | 1.19.7   | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
+| nginx | 1.19.8   | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.9.0.1651
+- 8.9.1.34
 
 #### Mono
 - 6.12.0.122
@@ -210,6 +209,7 @@
 - 6.4.0.208
 
 #### Xamarin.iOS
+- 14.14.2.5
 - 14.10.0.4
 - 14.8.0.3
 - 14.6.0.15
@@ -227,6 +227,7 @@
 - 13.2.0.47
 
 #### Xamarin.Mac
+- 7.8.2.5
 - 7.4.0.10
 - 7.2.0.3
 - 7.0.0.15
@@ -242,6 +243,7 @@
 - 6.2.0.47
 
 #### Xamarin.Android
+- 11.2.0
 - 11.1.0
 - 11.0.2
 - 10.3.1
@@ -272,7 +274,7 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.6.8
-- Nomad CLI 3.2.13
+- Nomad CLI 3.2.14
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
 
