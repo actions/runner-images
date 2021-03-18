@@ -16,9 +16,11 @@ createEnvironmentVariable() {
     if [[ $JAVA_VERSION == $JAVA_DEFAULT ]]; then
         echo "JAVA_HOME=${JAVA_HOME_PATH}" | tee -a /etc/environment
 
+        # Use `update-alternatives` to set up default java version
         update-alternatives --install "/usr/bin/java" "java" "$JAVA_HOME_PATH/bin/java" 1
         update-alternatives --set java "$JAVA_HOME_PATH/bin/java"
         
+        # stackoverflow: https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
         update-alternatives --install "/usr/bin/javac" "javac" "$JAVA_HOME_PATH/bin/javac" 1
         update-alternatives --set javac "$JAVA_HOME_PATH/bin/javac"
     fi
