@@ -129,6 +129,7 @@ $toolsList = @(
     (Get-NetToolsVersion),
     (Get-NewmanVersion),
     (Get-NvmVersion),
+    (Get-OpensslVersion),
     (Get-PackerVersion),
     (Get-PassVersion),
     (Get-PhantomJSVersion),

@@ -48,6 +48,10 @@ function Get-NodeVersion {
     return "Node $nodeVersion"
 }
 
+function Get-OpensslVersion {
+    return $(openssl version)
+}
+
 function Get-PerlVersion {
     $version = $(perl -e 'print substr($^V,1)')
     return "Perl $version"
