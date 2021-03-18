@@ -26,7 +26,9 @@ $markdown = ""
 $OSName = Get-OSName
 $markdown += New-MDHeader "$OSName" -Level 1
 
+$kernelVersion = Get-KernelVersion
 $markdown += New-MDList -Style Unordered -Lines @(
+    "$kernelVersion"
     "Image Version: $env:IMAGE_VERSION"
 )
 
@@ -77,13 +79,19 @@ $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Project Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-        (Get-AntVersion),
-        (Get-GradleVersion),
-        (Get-MavenVersion),
-        (Get-SbtVersion)
-        ) | Sort-Object
+$projectManagementList = @(
+    (Get-AntVersion),
+    (Get-GradleVersion),
+    (Get-MavenVersion),
+    (Get-SbtVersion)
 )
+
+if (Test-IsUbuntu20) {
+    $projectManagementList += @(
+        (Get-LernaVersion)
+    )
+}
+$markdown += New-MDList -Style Unordered -Lines ($projectManagementList | Sort-Object)
 
 $markdown += New-MDHeader "Tools" -Level 3
 $toolsList = @(
