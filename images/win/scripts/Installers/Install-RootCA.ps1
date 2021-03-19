@@ -46,7 +46,9 @@ function Import-SSTFromWU {
     # Serialized Certificate Store File
     $sstFile = "$env:TEMP\roots.sst"
     # Generate SST from Windows Update
-    $result = certutil.exe -generateSSTFromWU $sstFile
+    $result = Invoke-WithRetry `
+        -Command { certutil.exe -generateSSTFromWU $sstFile }
+        -BreakCondition {$LASTEXITCODE -eq 0}
     if ($LASTEXITCODE -ne 0) {
         Write-Host "[Error]: failed to generate $sstFile sst file`n$result"
         exit $LASTEXITCODE
@@ -103,6 +105,27 @@ function Disable-RootAutoUpdate {
 
     Set-ItemProperty $regPath -Name $regKey -Type DWord -Value 1
 }
+
+function Invoke-WithRetry {
+     param([ScriptBlock]$Command, [ScriptBlock] $BreakCondition, [int] $RetryCount=4, [int] $Sleep=1)
+
+     $c = 0
+     while($c -lt $RetryCount -or $c -eq 0){
+        $result = & $Command
+        if(& $BreakCondition){
+            break
+        }
+        Start-Sleep $Sleep
+        $c++
+     }
+     $result
+     
+     <#
+        .SYNOPSIS
+        Runs $command block until $BreakCondition or $RetryCount is reached.
+     #>
+}
+
 
 # Property to remove
 $CERT_NOT_BEFORE_FILETIME_PROP_ID = 126
