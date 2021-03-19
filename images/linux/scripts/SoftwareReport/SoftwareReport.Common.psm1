@@ -84,6 +84,11 @@ function Get-JuliaVersion {
     return "Julia $juliaVersion"
 }
 
+function Get-LernaVersion {
+    $version = lerna -v
+    return "Lerna $version"
+}
+
 function Get-HomebrewVersion {
     $result = Get-CommandResult "brew -v"
     $result.Output -match "Homebrew (?<version>\d+\.\d+\.\d+)" | Out-Null

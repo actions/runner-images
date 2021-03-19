@@ -10,8 +10,15 @@ $zstdArchivePath = Start-DownloadWithRetry -Url $zstdLatest -Name "zstd-win64.zi
 
 $toolPath = "C:\tools"
 $zstdPath = Join-Path $toolPath zstd
-Extract-7Zip -Path $zstdArchivePath -DestinationPath $toolPath
-Move-Item -Path "${zstdPath}*" -Destination $zstdPath
+$zstdParentName = [IO.Path]::GetFileNameWithoutExtension($zstdLatest)
+$filesInArchive = 7z l $zstdArchivePath | Out-String
+
+if ($filesInArchive.Contains($zstdParentName)) {
+    Extract-7Zip -Path $zstdArchivePath -DestinationPath $toolPath
+    Move-Item -Path "${zstdPath}*" -Destination $zstdPath
+} else {
+    Extract-7Zip -Path $zstdArchivePath -DestinationPath $zstdPath
+}
 
 # Add zstd-win64 to PATH
 Add-MachinePathItem $zstdPath

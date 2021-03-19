@@ -1,12 +1,3 @@
-function Get-JavaFullVersion {
-    param($JavaRootPath)
-
-    $javaBinPath = Join-Path "$javaRootPath" "/bin/java"
-    $javaVersionOutput = (Get-CommandResult "`"$javaBinPath`" -version").Output
-    $matchResult = $javaVersionOutput | Select-String '^openjdk version \"([\d\._]+)\"'
-    return $matchResult.Matches.Groups[1].Value
-}
-
 function Get-JavaVersions {
     $defaultJavaPath = $env:JAVA_HOME
     $javaVersions = Get-Item env:JAVA_HOME_*_X64
@@ -17,7 +8,8 @@ function Get-JavaVersions {
 
     return $javaVersions | Sort-Object $sortRules | ForEach-Object {
         $javaPath = $_.Value
-        $version = Get-JavaFullVersion "$javaPath"
+        # Take semver from the java path
+        $version = (Split-Path $javaPath) -replace "\w:\\.*\\"
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
 
         [PSCustomObject] @{
