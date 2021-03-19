@@ -1,12 +1,12 @@
 | Announcements |
 |-|
+| [[Ubuntu] jekyll/builder and node8-typescript docker images will be removed from images on March, 22](https://github.com/actions/virtual-environments/issues/2958) |
+| [[Ubuntu] Clang, GCC and Gfortran versions less than 9.x will be removed from images on March, 29](https://github.com/actions/virtual-environments/issues/2950) |
 | [[windows, ubuntu] Az, Azure and AzureRM module preinstallation policy will be changed on March, 29th](https://github.com/actions/virtual-environments/issues/2916) |
-| [[ubuntu, windows] GOROOT environment variable will be removed on March, 1](https://github.com/actions/virtual-environments/issues/2683) |
-| [[Windows, Ubuntu] Boost 1.72.0 will be removed from images on March, 8](https://github.com/actions/virtual-environments/issues/2667) |
-| [Ubuntu-latest workflows will use Ubuntu-20.04](https://github.com/actions/virtual-environments/issues/1816) |
 ***
 # Ubuntu 18.04.5 LTS
-- Image Version: 20210315.1
+- Linux kernel version: 5.4.0-1041-azure
+- Image Version: 20210318.0
 
 ## Installed Software
 ### Language and Runtime
@@ -27,14 +27,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.5.3
-- Homebrew 3.0.5
+- Homebrew 3.0.7
 - Miniconda 4.9.2
 - Npm 6.14.11
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 0.16.1.0
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<75522bb>)
+- Vcpkg  (build from master \<c8f6537>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -51,14 +51,14 @@
 
 ### Tools
 - 7-Zip 16.02
-- Ansible 2.9.18
+- Ansible 2.9.19
 - apt-fast 1.9.10
 - AzCopy 10.9.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.0.0
 - Bazelisk 1.7.5
 - binutils 2.30
 - Buildah 1.19.6
-- CMake 3.19.6
+- CMake 3.19.7
 - CodeQL Action Bundle 2.4.5
 - coreutils 8.28
 - curl 7.58.0
@@ -66,12 +66,12 @@
 - Docker-Buildx 0.5.1
 - Docker-Moby Client 20.10.5+azure
 - Docker-Moby Server 20.10.5+azure
-- Git 2.30.2
+- Git 2.31.0
 - Git LFS 2.13.2
 - Git-ftp 1.3.1
 - Haveged 1.9.1
-- Heroku 7.50.0
-- HHVM (HipHop VM) 4.100.0
+- Heroku 7.51.0
+- HHVM (HipHop VM) 4.101.0
 - jq 1.5
 - Kind 0.10.0
 - Kubectl 1.20.1-5-g76a04fc
@@ -88,7 +88,7 @@
 - pass 1.7.1
 - PhantomJS 2.1.1
 - Podman 3.0.1
-- Pulumi 2.22.0
+- Pulumi 2.23.1
 - R 4.0.4
 - Skopeo 1.2.2
 - Sphinx Open Source Search Server 2.2.11
@@ -103,17 +103,17 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.73
-- AWS CLI 1.19.27
+- AWS CLI 1.19.30
 - AWS CLI Session manager plugin 1.2.54.0
-- AWS SAM CLI 1.20.0
+- AWS SAM CLI 1.21.1
 - Azure CLI (azure-cli) 2.20.0
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.7.0
-- Google Cloud SDK 331.0.0
+- Google Cloud SDK 332.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 3.10.12
-- oc CLI 4.7.1
-- ORAS CLI 0.10.0
+- Netlify CLI 3.13.3
+- OpenShift CLI 4.7.2
+- ORAS CLI 0.11.1
 - Vercel CLI 21.3.3
 
 ### Java
@@ -128,7 +128,7 @@
 | -------- | --------------------------------- |
 | PHP      | 7.1.33 7.2.34 7.3.27 7.4.16 8.0.3 |
 | Composer | 2.0.11                            |
-| PHPUnit  | 8.5.14                            |
+| PHPUnit  | 8.5.15                            |
 
 ### Haskell
 - Cabal 3.4.0.0
@@ -240,8 +240,8 @@
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 3.0                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3 |
-| Android SDK Platform-Tools | 31.0.0                                                                                                                                                                                                                                        |
-| Android SDK Platforms      | android-S (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)                                             |
+| Android SDK Platform-Tools | 31.0.1                                                                                                                                                                                                                                        |
+| Android SDK Platforms      | android-S (rev 2)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)                                             |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                        |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                        |
 | CMake                      | 3.10.2                                                                                                                                                                                                                                        |
@@ -260,23 +260,21 @@
 | ANDROID_SDK_ROOT | /usr/local/lib/android/sdk                                                           |
 
 ### Cached Docker images
-| Repository:Tag                                            | Digest                                                                   | Created    |
-| --------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| alpine:3.10                                               | sha256:0b4d282d7ae7cf5ed91801654a918aea45d6c1de6df0db6a29d60619141fb8de  | 2021-02-24 |
-| alpine:3.7                                                | sha256:8421d9a84432575381bfabd248f1eb56f3aa21d9d7cd2511583c68c9b7511d10  | 2019-03-07 |
-| alpine:3.8                                                | sha256:2bb501e6173d9d006e56de5bce2720eb06396803300fe1687b58a7ff32bf4c14  | 2020-01-23 |
-| alpine:3.9                                                | sha256:414e0518bb9228d35e4cd5165567fb91d26c6a214e9c95899e1e056fcd349011  | 2020-04-24 |
-| buildpack-deps:buster                                     | sha256:a78316a3d9d366e8f5d80840a2c9ee361c66bf8a7d7d28edd9224ca70f32fd9c  | 2021-03-12 |
-| buildpack-deps:stretch                                    | sha256:6f928e94e06da507f1d133c26acf70b3807e2bb6d584e5843507511574c3ad6e  | 2021-03-12 |
-| debian:8                                                  | sha256:6b1960e0a149981c3c115abee6b9e035591fe55533a20a1cd912e636b8df8820  | 2021-03-12 |
-| debian:9                                                  | sha256:ca2af3c25b43f185cc86cc2038a217d9b4cdbb4d47adbcfe5d25e04c1d75e1d9  | 2021-03-12 |
-| jekyll/builder:latest                                     | sha256:b918b81939a1076dce89d142c0764c2c3cb93858f56ecf4f04ad0387338e77aa  | 2020-12-21 |
-| mcr.microsoft.com/azure-pipelines/node8-typescript:latest | sha256:e52e60b9f71183969830a3664279b5d8c799b4b0ec2c25a0686f7c02f6a9669a  | 2018-10-09 |
-| node:10                                                   | sha256:e84df6f7647a1c3993f724c9a0cacdf6b9b2a4ee722b4face9b29f0013634f17  | 2021-03-12 |
-| node:10-alpine                                            | sha256:017b55be202b81bd6b4e9f841d5ddeb6df48467ca5cba0c4194015b987f48a60  | 2021-03-12 |
-| node:12                                                   | sha256:0ae1a6a3a8a61e2bcf7f826b2562eb865f9a3095acf41bc6f184773ab66f3007  | 2021-03-12 |
-| node:12-alpine                                            | sha256:81eec5b1cac69ff6af62097563737b40ac94b605b43d01466c0cf48e220494be  | 2021-03-12 |
-| ubuntu:14.04                                              | sha256:63fce984528cec8714c365919882f8fb64c8a3edf23fdfa0b218a2756125456f  | 2020-09-16 |
+| Repository:Tag         | Digest                                                                   | Created    |
+| ---------------------- | ------------------------------------------------------------------------ | ---------- |
+| alpine:3.10            | sha256:0b4d282d7ae7cf5ed91801654a918aea45d6c1de6df0db6a29d60619141fb8de  | 2021-02-24 |
+| alpine:3.7             | sha256:8421d9a84432575381bfabd248f1eb56f3aa21d9d7cd2511583c68c9b7511d10  | 2019-03-07 |
+| alpine:3.8             | sha256:2bb501e6173d9d006e56de5bce2720eb06396803300fe1687b58a7ff32bf4c14  | 2020-01-23 |
+| alpine:3.9             | sha256:414e0518bb9228d35e4cd5165567fb91d26c6a214e9c95899e1e056fcd349011  | 2020-04-24 |
+| buildpack-deps:buster  | sha256:a78316a3d9d366e8f5d80840a2c9ee361c66bf8a7d7d28edd9224ca70f32fd9c  | 2021-03-12 |
+| buildpack-deps:stretch | sha256:6f928e94e06da507f1d133c26acf70b3807e2bb6d584e5843507511574c3ad6e  | 2021-03-12 |
+| debian:8               | sha256:6b1960e0a149981c3c115abee6b9e035591fe55533a20a1cd912e636b8df8820  | 2021-03-12 |
+| debian:9               | sha256:ca2af3c25b43f185cc86cc2038a217d9b4cdbb4d47adbcfe5d25e04c1d75e1d9  | 2021-03-12 |
+| node:10                | sha256:e84df6f7647a1c3993f724c9a0cacdf6b9b2a4ee722b4face9b29f0013634f17  | 2021-03-12 |
+| node:10-alpine         | sha256:017b55be202b81bd6b4e9f841d5ddeb6df48467ca5cba0c4194015b987f48a60  | 2021-03-12 |
+| node:12                | sha256:0ae1a6a3a8a61e2bcf7f826b2562eb865f9a3095acf41bc6f184773ab66f3007  | 2021-03-12 |
+| node:12-alpine         | sha256:81eec5b1cac69ff6af62097563737b40ac94b605b43d01466c0cf48e220494be  | 2021-03-12 |
+| ubuntu:14.04           | sha256:63fce984528cec8714c365919882f8fb64c8a3edf23fdfa0b218a2756125456f  | 2020-09-16 |
 
 ### Installed apt packages
 - binutils, bison, brotli, build-essential, bzip2, coreutils, curl, dbus, dnsutils, dpkg, fakeroot, file, flex, ftp, gnupg2, haveged, imagemagick, iproute2, iputils-ping, jq, lib32z1, libc++-dev, libc++abi-dev, libcurl3, libgbm-dev, libgconf-2-4, libgsl-dev, libgtk-3-0, libmagic-dev, libmagickcore-dev, libmagickwand-dev, libsecret-1-dev, libsqlite3-dev, libunwind8, libxkbfile-dev, libxss1, locales, m4, mediainfo, net-tools, netcat, openssh-client, p7zip-full, p7zip-rar, parallel, pass, patchelf, pkg-config, pollinate, rpm, rsync, shellcheck, sphinxsearch, sqlite3, ssh, subversion, sudo, swig, telnet, texinfo, time, tk, tzdata, unzip, upx, wget, xorriso, xvfb, xz-utils, zip, zstd, zsync
