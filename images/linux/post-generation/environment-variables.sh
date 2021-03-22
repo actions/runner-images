@@ -3,7 +3,10 @@
 # Set environmental variables related to the default user home directory
 
 default_user=$(cut -d: -f1 /etc/passwd | tail -1)
-home_directory="/home/${default_user}"
+HOME="/home/${default_user}"
+envVars=$(cat /imagegeneration/env_variables)
 
-echo "XDG_CONFIG_HOME=${home_directory}/.config" | tee -a /etc/environment
-echo "NVM_DIR=${home_directory}/.nvm" | tee -a /etc/environment
+for envVar in ${envVars[@]}
+do
+    eval echo $envVar | tee -a /etc/environment
+done
