@@ -26,7 +26,9 @@ $markdown = ""
 $OSName = Get-OSName
 $markdown += New-MDHeader "$OSName" -Level 1
 
+$kernelVersion = Get-KernelVersion
 $markdown += New-MDList -Style Unordered -Lines @(
+    "$kernelVersion"
     "Image Version: $env:IMAGE_VERSION"
 )
 
@@ -127,6 +129,7 @@ $toolsList = @(
     (Get-NetToolsVersion),
     (Get-NewmanVersion),
     (Get-NvmVersion),
+    (Get-OpensslVersion),
     (Get-PackerVersion),
     (Get-PassVersion),
     (Get-PhantomJSVersion),
