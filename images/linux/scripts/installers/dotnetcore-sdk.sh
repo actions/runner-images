@@ -90,6 +90,6 @@ setEtcEnvironmentVariable DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1
 setEtcEnvironmentVariable DOTNET_NOLOGO 1
 setEtcEnvironmentVariable DOTNET_MULTILEVEL_LOOKUP 0
 prependEtcEnvironmentPath /home/runner/.dotnet/tools
-echo 'PATH="$PATH:$HOME/.dotnet/tools"' | tee -a /imagegeneration/env_variables
+echo 'PATH=$PATH:$HOME/.dotnet/tools' | tee -a /imagegeneration/env_variables
 
 invoke_tests "DotnetSDK"
