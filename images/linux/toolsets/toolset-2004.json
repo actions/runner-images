@@ -156,6 +156,7 @@
             "zsync"
         ],
         "cmd_packages": [
+            "acl",
             "binutils",
             "bison",
             "brotli",
