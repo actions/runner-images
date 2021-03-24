@@ -5,7 +5,7 @@
 # macOS 11.2 info
 - System Version: macOS 11.2.3 (20D91)
 - Kernel Version: Darwin 20.3.0
-- Image Version: 20210314.1
+- Image Version: 20210321.1
 
 ## Installed Software
 ### Language and Runtime
@@ -31,19 +31,19 @@
 - Ruby 2.7.2p137
 
 ### Package Management
-- Bundler version 2.2.14
+- Bundler version 2.2.15
 - Carthage 0.37.0
 - CocoaPods 1.10.1
 - Composer 2.0.11
-- Homebrew 3.0.5
+- Homebrew 3.0.7
 - Miniconda 4.9.2
 - NPM 6.14.11
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.0.1 (python 3.9)
 - Pipx 0.16.1.0
-- RubyGems 3.2.14
-- Vcpkg 2021 (build from master \<75522bb>)
+- RubyGems 3.2.15
+- Vcpkg 2021 (build from master \<9986c28>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -66,7 +66,7 @@
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.75.0
 - Git LFS: 2.13.2
-- Git: 2.30.2
+- Git: 2.31.0
 - GitHub CLI: 1.7.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
@@ -87,13 +87,13 @@
 
 ### Tools
 - Aliyun CLI 3.0.73
-- App Center CLI 2.7.4
-- AWS CLI 2.1.30
-- AWS SAM CLI 1.20.0
+- App Center CLI 2.8.1
+- AWS CLI 2.1.31
+- AWS SAM CLI 1.21.1
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.20.0
 - Cabal 3.4.0.0
-- Cmake 3.19.6
+- Cmake 3.19.7
 - Fastlane 2.178.0
 - GHC 9.0.1
 - GHCup v0.1.14
@@ -101,7 +101,7 @@
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
-- SwiftLint 0.43.0
+- SwiftLint 0.43.1
 - yamllint 1.26.0
 
 ### Browsers
@@ -109,8 +109,8 @@
 - SafariDriver 14.0.3 (16610.4.3.1.7)
 - Google Chrome 89.0.4389.90 
 - ChromeDriver 89.0.4389.23
-- Microsoft Edge 89.0.774.50 
-- MSEdgeDriver 89.0.774.54
+- Microsoft Edge 89.0.774.57 
+- MSEdgeDriver 89.0.774.57
 - Mozilla Firefox 86.0.1
 - geckodriver 0.29.0
 
@@ -122,10 +122,10 @@
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
 ### Java
-| Version   | Vendor       | Environment Variable |
-| --------- | ------------ | -------------------- |
-| 1.8.0_282 | AdoptOpenJDK | JAVA_HOME_8_X64      |
-| 11.0.10   | AdoptOpenJDK | JAVA_HOME_11_X64     |
+| Version   | Vendor        | Environment Variable |
+| --------- | ------------- | -------------------- |
+| 8.0.282+8 | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.10+9 | Adopt OpenJDK | JAVA_HOME_11_X64     |
 
 ### Cached Tools
 #### Ruby
@@ -182,10 +182,10 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.9.1.34
+- 8.9.2.0
 
 #### Mono
-- 6.12.0.122
+- 6.12.0.125
 
 #### Xamarin.iOS
 - 14.14.2.5
@@ -206,7 +206,7 @@
 - 6.20.2.2
 
 #### Xamarin.Android
-- 11.2.0
+- 11.2.2
 - 11.1.0
 - 11.0.2
 
@@ -285,10 +285,10 @@
 | Package Name               | Version                                                                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 3.0                                                                                                                      |
-| Android Emulator           | 30.4.5                                                                                                                   |
+| Android Emulator           | 30.5.3                                                                                                                   |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platforms      | android-S (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                |
-| Android SDK Platform-Tools | 31.0.0                                                                                                                   |
+| Android SDK Platforms      | android-S (rev 2)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                |
+| Android SDK Platform-Tools | 31.0.1                                                                                                                   |
 | Android SDK Tools          | 26.1.1                                                                                                                   |
 | Android Support Repository | 47.0.0                                                                                                                   |
 | CMake                      | 3.10.2                                                                                                                   |
