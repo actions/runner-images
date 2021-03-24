@@ -217,6 +217,10 @@
         {
             "package": "aws-sam-cli",
             "cmd": "sam"
+        },
+        {
+            "package": "ansible-base",
+            "cmd": "ansible"
         }
     ],
     "dotnet": {

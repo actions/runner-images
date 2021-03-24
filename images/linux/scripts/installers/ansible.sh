@@ -4,16 +4,9 @@
 ##  Desc:  Installs Ansible
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/os.sh
-
-# ppa:ansible/ansible doesn't contain packages for Ubuntu20.04
-if isUbuntu16 || isUbuntu18 ; then
-    add-apt-repository ppa:ansible/ansible
-    apt-get update
-fi
-
 # Install latest Ansible
+add-apt-repository ppa:ansible/ansible
+apt-get update
 apt-get install -y --no-install-recommends ansible
 
 invoke_tests "Tools" "Ansible"
