@@ -41,6 +41,6 @@ if isUbuntu18 || isUbuntu20 ; then
 fi
 
 # Adding this dir to PATH will make installed pip commands are immediately available.
-echo 'PATH=$PATH:$HOME/.local/bin' | tee -a /imagegeneration/env_variables
+prependEtcEnvironmentPath '$HOME/.local/bin'
 
 invoke_tests "Tools" "Python"
