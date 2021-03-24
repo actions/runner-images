@@ -203,8 +203,6 @@
             "buildpack-deps:buster",
             "debian:8",
             "debian:9",
-            "jekyll/builder",
-            "mcr.microsoft.com/azure-pipelines/node8-typescript",
             "node:10",
             "node:12",
             "node:10-alpine",

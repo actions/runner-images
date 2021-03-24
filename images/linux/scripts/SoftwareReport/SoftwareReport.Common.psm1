@@ -48,6 +48,10 @@ function Get-NodeVersion {
     return "Node $nodeVersion"
 }
 
+function Get-OpensslVersion {
+    return $(openssl version)
+}
+
 function Get-PerlVersion {
     $version = $(perl -e 'print substr($^V,1)')
     return "Perl $version"
@@ -82,6 +86,11 @@ function Get-SwiftVersion {
 function Get-JuliaVersion {
     $juliaVersion = julia --version | Take-OutputPart -Part 2
     return "Julia $juliaVersion"
+}
+
+function Get-LernaVersion {
+    $version = lerna -v
+    return "Lerna $version"
 }
 
 function Get-HomebrewVersion {

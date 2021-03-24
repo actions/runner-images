@@ -9,6 +9,11 @@ Describe "Apt" {
     }
 
     It "<toolName> is available" -TestCases $testCases {
+        if ($toolName -eq "acl")
+        {
+            $toolName = "getfacl"
+        }
+
         if ($toolName -eq "p7zip-full")
         {
             $toolName = "p7zip"
