@@ -37,14 +37,4 @@ foreach ($module in $modules)
     }
 }
 
-
-# If Az.Accounts > 1.0.0 unable to load module with error: Assembly with same name is already loaded
-# Force install Az.Accounts 1.0.0
-$azAccountsPath = "/usr/share/az_1.0.0/Az.Accounts"
-if (Test-Path $azAccountsPath)
-{
-    Remove-Item -Path $azAccountsPath -Force -Recurse
-    Save-Module -Name Az.Accounts -Path "/usr/share/az_1.0.0" -RequiredVersion 1.0.0 -Force
-}
-
 Invoke-PesterTests -TestFile "PowerShellModules" -TestName "AzureModules"
