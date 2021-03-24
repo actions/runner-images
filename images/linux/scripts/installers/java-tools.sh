@@ -7,62 +7,48 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
+JAVA_VERSIONS_LIST=$(get_toolset_value '.java.versions | .[]')
+DEFAULT_JDK_VERSION=$(get_toolset_value '.java.default')
 JAVA_TOOLCACHE_PATH="$AGENT_TOOLSDIRECTORY/Java_Adopt_jdk"
 
-createEnvironmentVariable() {
-    local JAVA_VERSION=$1
-    local JAVA_HOME_PATH=$2
-    
-    # Set priority for default java - 1, for none default versions - 2
-    local priorityLevel="2"
+# Install GPG Key for Adopt Open JDK. See https://adoptopenjdk.net/installation.html
+wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
+add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 
-    if [[ $JAVA_VERSION == $JAVA_DEFAULT ]]; then
-        priorityLevel="1"
-        echo "JAVA_HOME=${JAVA_HOME_PATH}" | tee -a /etc/environment
-    fi
+if isUbuntu16 || isUbuntu18 ; then
+    # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
+    apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
+fi
 
-    echo "JAVA_HOME_${JAVA_VERSION}_X64=${JAVA_HOME_PATH}" | tee -a /etc/environment
+apt-get update
 
-    javaExecutables=$(ls $JAVA_HOME_PATH/bin)
+for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
+    apt-get -y install adoptopenjdk-$JAVA_VERSION-hotspot=\*
+    javaVersionPath="/usr/lib/jvm/adoptopenjdk-${JAVA_VERSION}-hotspot-amd64"
+    echo "JAVA_HOME_${JAVA_VERSION}_X64=$javaVersionPath" | tee -a /etc/environment
 
-    for javaExecutable in $javaExecutables
-    do
-        # Use `update-alternatives` to set up default java version
-        # and https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
-        update-alternatives --install "/usr/bin/$javaExecutable" "$javaExecutable" "$JAVA_HOME_PATH/bin/$javaExecutable" $priorityLevel
-        update-alternatives --set "$javaExecutable" "$JAVA_HOME_PATH/bin/$javaExecutable"
-    done
-}
-
-installJavaFromAdoptOpenJDK() {
-    local JAVA_VERSION=$1
-
-    javaRelease=$(curl -s "https://api.adoptopenjdk.net/v3/assets/latest/${JAVA_VERSION}/hotspot" \
-                | jq -r '.[] | select(.binary.os=="linux" and .binary.image_type=="jdk" and .binary.architecture=="x64")')
-    archivePath=$(echo $javaRelease | jq -r '.binary.package.link')
-    fullVersion=$(echo $javaRelease | jq -r '.version.semver')
-
-    javaToolcacheVersionPath="$JAVA_TOOLCACHE_PATH/$fullVersion"
-    javaToolcacheVersionArchPath="$javaToolcacheVersionPath/x64"
-
-    echo "Downloading tar archive $archivePath"
-    download_with_retries $archivePath "/tmp" "OpenJDK$JAVA_VERSION.tar.gz"
-    mkdir -p "$javaToolcacheVersionArchPath"
-    tar -xzf "/tmp/OpenJDK${JAVA_VERSION}.tar.gz" -C $javaToolcacheVersionArchPath --strip-components=1
+    fullJavaVersion=$(cat "$javaVersionPath/release" | grep "^SEMANTIC" | cut -d "=" -f 2 | tr -d "\"")
+    javaToolcacheVersionPath="$JAVA_TOOLCACHE_PATH/$fullJavaVersion"
+    mkdir -p "$javaToolcacheVersionPath/x64"
 
     # Create a complete file
-    touch $javaToolcacheVersionPath/x64.complete
+    touch "$javaToolcacheVersionPath/x64.complete"
 
-    createEnvironmentVariable $JAVA_VERSION $javaToolcacheVersionArchPath
-}
-
-JAVA_VERSIONS_LIST=$(get_toolset_value '.java.versions[]')
-JAVA_DEFAULT=$(get_toolset_value '.java.default')
-
-for JAVA_VERSION in $JAVA_VERSIONS_LIST
-do
-    installJavaFromAdoptOpenJDK $JAVA_VERSION
+    # Create symlink for Java
+    ln -s $javaVersionPath/* $javaToolcacheVersionPath/x64
 done
+
+# Set Default Java version
+if isUbuntu16; then
+    # issue: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825987
+    # stackoverflow: https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
+    sed -i 's/(hl|jre|jdk|plugin|DUMMY) /(hl|jre|jdk|jdkhl|plugin|DUMMY) /g' /usr/sbin/update-java-alternatives
+fi
+
+update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
+
+echo "JAVA_HOME=/usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64" | tee -a /etc/environment
 
 # Install Ant
 apt-fast install -y --no-install-recommends ant ant-optional
@@ -93,5 +79,4 @@ ln -s /usr/share/gradle-"${gradleVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=/usr/share/gradle" | tee -a /etc/environment
 
 reloadEtcEnvironment
-
 invoke_tests "Java"

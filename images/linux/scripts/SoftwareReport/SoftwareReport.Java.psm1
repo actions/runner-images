@@ -1,22 +1,19 @@
 function Get-JavaVersions {
-    $defaultJavaPath = Get-Item env:JAVA_HOME
-    $javaVersions = Get-Item env:JAVA_HOME_*_X64
-    $sortRules = @{
-        Expression = { [Int32]$_.Name.Split("_")[2] }  
-        Descending = $false
-    }
+    $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Java_Adopt_jdk"
+    [Array]$javaToolcacheVersions = Get-ChildItem $toolcachePath -Name | Sort-Object -Descending
 
-    return $javaVersions | Sort-Object $sortRules | ForEach-Object {
-        $javaPath = $_.Value
+    return $javaToolcacheVersions | ForEach-Object {
+        $majorVersion = $_.split(".")[0]
+        $defaultJavaPath = Get-Item env:JAVA_HOME
+        $javaPath = Get-Item env:JAVA_HOME_${majorVersion}_X64
 
         # Take semver from the java path
-        $version = $javaPath.split('/')[4]
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
 
         [PSCustomObject] @{
-            "Version" = $version + $defaultPostfix
+            "Version" = $_ + $defaultPostfix
             "Vendor" = "Adopt OpenJDK"
-            "Environment Variable" = $_.Name
+            "Environment Variable" = $javaPath.Name
         }
     }
 }
