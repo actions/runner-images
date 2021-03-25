@@ -16,4 +16,4 @@ function Get-JavaVersions {
             "Environment Variable" = $javaPath.Name
         }
     }
-}   
+}

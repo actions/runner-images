@@ -30,13 +30,13 @@ for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
 
     fullJavaVersion=$(cat "$javaVersionPath/release" | grep "^SEMANTIC" | cut -d "=" -f 2 | tr -d "\"" | tr "+" "-")
     javaToolcacheVersionPath="$JAVA_TOOLCACHE_PATH/$fullJavaVersion"
-    mkdir -p "$javaToolcacheVersionPath/x64"
+    mkdir -p "$javaToolcacheVersionPath"
 
     # Create a complete file
     touch "$javaToolcacheVersionPath/x64.complete"
 
     # Create symlink for Java
-    ln -s $javaVersionPath/* $javaToolcacheVersionPath/x64
+    ln -s $javaVersionPath "$javaToolcacheVersionPath/x64"
 done
 
 # Set Default Java version
