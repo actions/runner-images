@@ -4,15 +4,16 @@ function Get-JavaVersions {
 
     return $javaToolcacheVersions | ForEach-Object {
         $majorVersion = $_.split(".")[0]
+        $fullVersion = $_.Replace("-", "+")
         $defaultJavaPath = $env:JAVA_HOME
         $javaPath = Get-Item env:JAVA_HOME_${majorVersion}_X64
-        
+
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
 
         [PSCustomObject] @{
-            "Version" = $_ + $defaultPostfix
+            "Version" = $fullVersion + $defaultPostfix
             "Vendor" = "Adopt OpenJDK"
             "Environment Variable" = $javaPath.Name
         }
     }
-}
+}   
