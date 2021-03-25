@@ -61,7 +61,8 @@ function Install-JavaFromAdoptOpenJDK {
         -and $_.binary.image_type -eq "jdk"
     }
     $downloadUrl = $asset.binary.package.link
-    $fullJavaVersion = $asset.version.semver
+    # We have to replace '+' sign in the version to '-' due to the issue with incorrect path in Android builds https://github.com/actions/virtual-environments/issues/3014
+    $fullJavaVersion = $asset.version.semver -replace '\+', '-'
 
     # Download and extract java binaries to temporary folder
     $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))

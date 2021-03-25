@@ -9,7 +9,9 @@ function Get-JavaVersions {
     return $javaVersions | Sort-Object $sortRules | ForEach-Object {
         $javaPath = $_.Value
         # Take semver from the java path
-        $version = (Split-Path $javaPath) -replace "\w:\\.*\\"
+        # The path contains - sign in the version number instead of '+' due to the issue, need to substitute it back https://github.com/actions/virtual-environments/issues/3014
+        $versionInPath = (Split-Path $javaPath) -replace "\w:\\.*\\"
+        $version = $versionInPath -replace '-', '+'
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
 
         [PSCustomObject] @{
