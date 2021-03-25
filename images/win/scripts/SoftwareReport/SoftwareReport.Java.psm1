@@ -16,7 +16,7 @@ function Get-JavaVersions {
 
         [PSCustomObject] @{
             "Version" = $version + $defaultPostfix
-            "Vendor" = "AdoptOpenJDK"
+            "Vendor" = "Adopt OpenJDK"
             "Environment Variable" = $_.Name
         }
     }
