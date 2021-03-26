@@ -4,32 +4,33 @@
 ##  Desc:  Installs google-chrome  and chromedriver
 ################################################################################
 
-LSB_RELEASE=$(lsb_release -rs)
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/install.sh
 
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-apt-get update
-apt-get install -y google-chrome-stable
+# Download and install Google Chrome
+CHROME_DEB_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+CHROME_DEB_NAME="google-chrome-stable_current_amd64.deb"
+download_with_retries $CHROME_DEB_URL "/tmp" "${CHROME_DEB_NAME}"
+apt install "/tmp/${CHROME_DEB_NAME}" -f
 echo "CHROME_BIN=/usr/bin/google-chrome" | tee -a /etc/environment
 
+# Parse Google Chrome version
 CHROME_VERSION=$(google-chrome --product-version)
 CHROME_VERSION=${CHROME_VERSION%.*}
 
-# Determine latest release of chromedriver
+# Determine the latest release of chromedriver
 # Compatibility of Google Chrome and Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/downloads/version-selection
-LATEST_CHROMEDRIVER_VERSION=$(curl "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+LATEST_CHROMEDRIVER_VERSION=$(curl -sL "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
 
-# Download and unpack latest release of chromedriver
+# Download and unpack the latest release of chromedriver
 echo "Downloading chromedriver v$LATEST_CHROMEDRIVER_VERSION..."
-wget "https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
-unzip chromedriver_linux64.zip
-rm chromedriver_linux64.zip
-
 CHROMEDRIVER_DIR="/usr/local/share/chrome_driver"
 CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
+CHROMEDRIVER_URL="https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+download_with_retries $CHROMEDRIVER_URL "/tmp" "chromedriver_linux64.zip"
 
 mkdir -p $CHROMEDRIVER_DIR
-mv "chromedriver" $CHROMEDRIVER_BIN
+unzip /tmp/chromedriver_linux64.zip -d $CHROMEDRIVER_DIR
 chmod +x $CHROMEDRIVER_BIN
 ln -s "$CHROMEDRIVER_BIN" /usr/bin/
 echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment
