@@ -6,9 +6,9 @@ function Get-JavaVersions {
         $majorVersion = $_.split(".")[0]
         $fullVersion = $_.Replace("-", "+")
         $defaultJavaPath = $env:JAVA_HOME
-        $javaPath = (Get-Item env:JAVA_HOME_${majorVersion}_X64).Value
+        $javaPath = Get-Item env:JAVA_HOME_${majorVersion}_X64
 
-        $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
+        $defaultPostfix = ($javaPath.Value -eq $defaultJavaPath) ? " (default)" : ""
 
         [PSCustomObject] @{
             "Version" = $fullVersion + $defaultPostfix
