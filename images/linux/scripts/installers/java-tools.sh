@@ -27,8 +27,13 @@ for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
     apt-get -y install adoptopenjdk-$JAVA_VERSION-hotspot=\*
     javaVersionPath="/usr/lib/jvm/adoptopenjdk-${JAVA_VERSION}-hotspot-amd64"
     echo "JAVA_HOME_${JAVA_VERSION}_X64=$javaVersionPath" | tee -a /etc/environment
-
     fullJavaVersion=$(cat "$javaVersionPath/release" | grep "^SEMANTIC" | cut -d "=" -f 2 | tr -d "\"" | tr "+" "-")
+
+    # c
+    if [[ ! -z $fullJavaVersion ]]; then
+        fullJavaVersion=$(java -fullversion 2>&1 | tr -d "\"" | tr "+" "-" | awk '{print $4}')
+    fi
+    
     javaToolcacheVersionPath="$JAVA_TOOLCACHE_PATH/$fullJavaVersion"
     mkdir -p "$javaToolcacheVersionPath"
 
