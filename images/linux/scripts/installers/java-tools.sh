@@ -30,7 +30,7 @@ for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
     fullJavaVersion=$(cat "$javaVersionPath/release" | grep "^SEMANTIC" | cut -d "=" -f 2 | tr -d "\"" | tr "+" "-")
 
     # If there is no semver in java release, then extract java version from -fullversion
-    if [[ ! -z $fullJavaVersion ]]; then
+    if [[ -z $fullJavaVersion ]]; then
         fullJavaVersion=$(java -fullversion 2>&1 | tr -d "\"" | tr "+" "-" | awk '{print $4}')
     fi
     
