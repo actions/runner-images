@@ -29,7 +29,7 @@ for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
     echo "JAVA_HOME_${JAVA_VERSION}_X64=$javaVersionPath" | tee -a /etc/environment
     fullJavaVersion=$(cat "$javaVersionPath/release" | grep "^SEMANTIC" | cut -d "=" -f 2 | tr -d "\"" | tr "+" "-")
 
-    # c
+    # If there is no semver in java release, then extract java version from -fullversion
     if [[ ! -z $fullJavaVersion ]]; then
         fullJavaVersion=$(java -fullversion 2>&1 | tr -d "\"" | tr "+" "-" | awk '{print $4}')
     fi
