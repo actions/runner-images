@@ -296,6 +296,10 @@
         {
             "name": "netlify-cli",
             "command": "netlify"
+        },
+        {
+            "name": "yarn",
+            "command": "yarn"
         }
     ]
 }
