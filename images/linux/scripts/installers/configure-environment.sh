@@ -9,7 +9,7 @@ echo ACCEPT_EULA=Y | tee -a /etc/environment
 
 # This directory is supposed to be created in $HOME and owned by user(https://github.com/actions/virtual-environments/issues/491)
 mkdir -p /etc/skel/.config/configstore
-echo 'export XDG_CONFIG_HOME=$HOME/.config' | tee -a /etc/skel/.bashrc
+echo 'XDG_CONFIG_HOME=$HOME/.config' | tee -a /etc/environment
 
 # Change waagent entries to use /mnt for swapfile
 sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf
