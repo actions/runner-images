@@ -90,30 +90,40 @@
     "azureModules": [
         {
             "name": "azurerm",
+            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
+                "6.13.1"
+            ],
+            "zip_versions": [
                 "3.8.0",
                 "4.2.1",
                 "5.1.1",
-                "6.7.0",
-                "6.13.1"
+                "6.7.0"
             ],
             "default": "2.1.0"
         },
         {
             "name": "azure",
+            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
+                "5.3.0"
+            ],
+            "zip_versions": [
                 "3.8.0",
                 "4.2.1",
-                "5.1.1",
-                "5.3.0"
+                "5.1.1"
             ],
             "default": "2.1.0"
         },
         {
             "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
+                "5.5.0"
+            ],
+            "zip_versions": [
                 "1.0.0",
                 "1.6.0",
                 "2.3.2",
@@ -124,8 +134,7 @@
                 "4.3.0",
                 "4.4.0",
                 "4.6.0",
-                "4.7.0",
-                "5.5.0"
+                "4.7.0"
             ]
         }
     ],
