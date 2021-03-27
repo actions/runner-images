@@ -1,29 +1,19 @@
-function Get-JavaFullVersion {
-    param($JavaRootPath)
-
-    $javaBinPath = Join-Path $javaRootPath "/bin/java"
-    $javaVersionOutput = (Get-CommandResult "$javaBinPath -version").Output
-    $matchResult = $javaVersionOutput | Select-String '^openjdk version \"([\d\._]+)\"'
-    return $matchResult.Matches.Groups[1].Value
-}
-
 function Get-JavaVersions {
-    $defaultJavaPath = $env:JAVA_HOME
-    $javaVersions = Get-Item env:JAVA_HOME_*_X64
-    $sortRules = @{
-        Expression = { [Int32]$_.Name.Split("_")[2] }  
-        Descending = $false
-    }
+    $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Java_Adopt_jdk"
+    $javaToolcacheVersions = Get-ChildItem $toolcachePath -Name | Sort-Object -Descending
 
-    return $javaVersions | Sort-Object $sortRules | ForEach-Object {
-        $javaPath = $_.Value
-        $version = Get-JavaFullVersion $javaPath
-        $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
+    return $javaToolcacheVersions | ForEach-Object {
+        $majorVersion = $_.split(".")[0]
+        $fullVersion = $_.Replace("-", "+")
+        $defaultJavaPath = $env:JAVA_HOME
+        $javaPath = Get-Item env:JAVA_HOME_${majorVersion}_X64
+
+        $defaultPostfix = ($javaPath.Value -eq $defaultJavaPath) ? " (default)" : ""
 
         [PSCustomObject] @{
-            "Version" = $version + $defaultPostfix
-            "Vendor" = "AdoptOpenJDK"
-            "Environment Variable" = $_.Name
+            "Version" = $fullVersion + $defaultPostfix
+            "Vendor" = "Adopt OpenJDK"
+            "Environment Variable" = $javaPath.Name
         }
     }
 }
