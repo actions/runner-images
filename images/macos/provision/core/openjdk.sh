@@ -21,7 +21,7 @@ installJavaFromAdoptOpenJDK() {
     assetUrl=$(curl -s "https://api.adoptopenjdk.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
     asset=$(echo $assetUrl | jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="x64")')
     archivePath=$(echo $asset | jq -r '.binary.package.link')
-    fullVersion=$(echo $asset | jq -r '.version.semver')
+    fullVersion=$(echo $asset | jq -r '.version.semver' | tr '+' '-')
 
     javaToolcacheVersionPath=$JAVA_TOOLCACHE_PATH/$fullVersion
     javaToolcacheVersionArchPath=$javaToolcacheVersionPath/x64
