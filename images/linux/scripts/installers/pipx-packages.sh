@@ -19,7 +19,7 @@ for package in $pipx_packages; do
         echo "Install $package into default python"
         pipx install $package
 
-        # Install ansible into an existing Virtual Environment
+        # Install ansible into an ansible-base existing Virtual Environment
         if [[ $package == "ansible-base" ]]; then
             pipx inject ansible-base ansible
         fi
