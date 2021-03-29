@@ -1,6 +1,6 @@
 function Get-JavaVersions {
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Java_Adopt_jdk"
-    $javaToolcacheVersions = Get-ChildItem $toolcachePath -Name | Sort-Object -Descending
+    $javaToolcacheVersions = Get-ChildItem $toolcachePath -Name | Sort-Object { [int]$_.Split(".")[0] }
 
     return $javaToolcacheVersions | ForEach-Object {
         $majorVersion = $_.split(".")[0]
