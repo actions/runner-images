@@ -23,7 +23,7 @@ function GetChromiumRevision {
     echo $RIGHT_REVISION
 }
 
-CHROME_VERSION=$(google-chrome --version | cut -d " " -f 3)
+CHROME_VERSION=$(curl -sL https://omahaproxy.appspot.com/linux)
 
 # Get Chromium version corresponding to the Google Chrome version
 REVISION=$(GetChromiumRevision $CHROME_VERSION)
