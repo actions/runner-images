@@ -1,0 +1,19 @@
+trigger:
+  batch: true
+
+
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: Build
+    workspace:
+      clean: all
+    displayName: Build
+    pool: vmss-windows
+
+    steps:
+    - powershell: |
+        Import-Module .\helpers\GenerateResourcesAndImage.ps1
+        # GenerateResourcesAndImage -SubscriptionId  -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -GithubFeedToken 8b15d767edbc217fdbaa94b597b77a7cfd39c467 -ResourceGroupName "buildagentswest06"
+      displayName: build resources
