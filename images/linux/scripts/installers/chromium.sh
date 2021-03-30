@@ -8,13 +8,13 @@ function GetChromiumRevision {
     URL="https://omahaproxy.appspot.com/deps.json?version=${CHROME_VERSION}"
     REVISION=$(curl -s $URL | jq -r '.chromium_base_position')
     # Take the first part of revision variable for search
-    FIRST_PART_OF_REVISION=${revision:0:${#revision}/2}
+    FIRST_PART_OF_REVISION=${REVISION:0:${#REVISION}/2}
     URL="https://www.googleapis.com/storage/v1/b/chromium-browser-snapshots/o?delimiter=/&prefix=Linux_x64/${FIRST_PART_OF_REVISION}"
     VERSIONS=$(curl -s $URL | jq -r '.prefixes[]' | cut -d "/" -f 2 | sort --version-sort)
 
     RIGHT_REVISION=$(echo $VERSIONS | cut -f 1 -d " ")
     for version in $VERSIONS; do
-        if [ $revision -lt  $version ]; then
+        if [ $REVISION -lt  $version ]; then
             echo $RIGHT_REVISION
             return
         fi
