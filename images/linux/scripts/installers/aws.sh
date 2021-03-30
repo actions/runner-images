@@ -17,7 +17,7 @@ fi
 
 if isUbuntu16 || isUbuntu18 ; then
     download_with_retries "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" "/tmp" "awscli-bundle.zip"
-    unzip -qq awscli-bundle.zip -d /tmp
+    unzip -qq /tmp/awscli-bundle.zip -d /tmp
     /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 fi
 
