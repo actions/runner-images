@@ -1,6 +1,10 @@
 trigger:
   batch: true
 
+variables:
+ AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+ GITHUB_TOKEN: $(GITHUB_TOKEN)
+
 
 stages:
 - stage: Build
