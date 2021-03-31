@@ -124,3 +124,22 @@ Generated tool versions and details can be found in related projects:
 - [Go](https://github.com/actions/go-versions)
 - [Node](https://github.com/actions/node-versions)
 - [Boost](https://github.com/actions/boost-versions)
+
+### Post-generation scripts
+Scripts for setting up some specific configuration after packer build procedure are placed in `post-generation` folder. These scripts are intended to apply configuration which cannot be covered during packer build procedure. Scripts are required, since packer build and default agent users are not the same and some specific configuration should be applied after build process under agent's user.
+
+Detailed description for the scripts:
+
+#### Ubuntu
+- **cleanup-logs.sh** - wipes all log files, which were generated during build procedure
+- **environment-variables.sh** - replaces `$HOME` with the default user's home directory for environmental variables related to the default user home directory
+- **homebrew-permissions.sh** - resets brew repository directory to make the brew clean after rights change for /home directory
+- **rust-permissions.sh** - fixes permissions for the Rust folder. Detailed issue explanation is avaliable by [the link](https://github.com/actions/virtual-environments/issues/572).
+
+#### Windows
+- **Choco.ps1** - contains dummy command to cleanup orphaned packages to avoid initial delay for future choco commands
+- **Dotnet.ps1** - adds `$env:USERPROFILE\.dotnet\tools` direcort to the PATH
+- **InternetExplorerConfiguration** - turns off the Internet Explorer Enhanced Security feature
+- **Msys2FirstLaunch.ps1** - creates user profile at the first launch
+- **RustJunction.ps1** - creates Rust junction points to cargo and rustup folders
+- **VSConfiguration** - performs initial Visual Studio configuration
