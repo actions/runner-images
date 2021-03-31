@@ -10,10 +10,11 @@ function Get-JavaVersions {
         $javaPath = $_.Value
         # Take semver from the java path
         $version = $javaPath.split('/')[5]
+        $fullVersion = $version.Replace('-', '+')
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
 
         [PSCustomObject] @{
-            "Version" = $version + $defaultPostfix
+            "Version" = $fullVersion + $defaultPostfix
             "Vendor" = "Adopt OpenJDK"
             "Environment Variable" = $_.Name
         }

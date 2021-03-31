@@ -110,15 +110,15 @@ Describe "Cmake" {
 }
 
 Describe "erlang" {
-    $testCases = @("erl", "erlc", "rebar3") | ForEach-Object { @{ErlangCommand = $_} }
+    $testCases = @("erl -version", "erlc -v", "rebar3 -v") | ForEach-Object { @{ErlangCommand = $_} }
 
     It "erlang <ErlangCommand>" -TestCases $testCases {
         param (
             [string] $ErlangCommand
         )
 
-        "$ErlangCommand -v" | Should -ReturnZeroExitCode
-    }   
+        "$ErlangCommand" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "gcc" {

@@ -286,6 +286,6 @@ $markdown += Get-CachedDockerImagesTableData | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Installed apt packages" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(Get-AptPackages)
+$markdown += Get-AptPackages | New-MDTable
 
 $markdown | Out-File -FilePath "${OutputDirectory}/Ubuntu-Readme.md"

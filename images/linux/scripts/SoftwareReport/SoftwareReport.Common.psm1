@@ -34,8 +34,9 @@ function Get-ClangVersions {
 }
 
 function Get-ErlangVersion {
-    $version = (erl -eval 'erlang:display(erlang:system_info(version)), halt().' -noshell).Trim('"')
-    return "Erlang $version"
+    $erlangVersion = (erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), ''OTP_VERSION''])), io:fwrite(Version), halt().' -noshell)
+    $shellVersion = (erl -eval 'erlang:display(erlang:system_info(version)), halt().' -noshell).Trim('"')
+    return "Erlang $erlangVersion (Eshell $shellVersion)"
 }
 
 function Get-MonoVersion {
@@ -295,10 +296,20 @@ function Get-CachedDockerImagesTableData {
 }
 
 function Get-AptPackages {
-    $toolsetJson = Get-ToolsetContent
-    $apt = $toolsetJson.apt
-    $pkgs = ($apt.common_packages + $apt.cmd_packages | Sort-Object) -join ", "
-    return $pkgs
+    $apt = (Get-ToolsetContent).Apt
+    $output = @()
+    ForEach ($pkg in ($apt.common_packages + $apt.cmd_packages)) {
+        $version = $(dpkg-query -W -f '${Version}' $pkg)
+        if ($Null -eq $version) {
+            $version = $(dpkg-query -W -f '${Version}' "$pkg*")
+        }
+
+        $output += [PSCustomObject] @{
+            Name    = $pkg
+            Version = $version
+        }
+    }
+    return ($output | Sort-Object Name)
 }
 
 function Get-PipxVersion {

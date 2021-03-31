@@ -5,7 +5,7 @@
 # macOS 11.2 info
 - System Version: macOS 11.2.3 (20D91)
 - Kernel Version: Darwin 20.3.0
-- Image Version: 20210321.1
+- Image Version: 20210328.1
 
 ## Installed Software
 ### Language and Runtime
@@ -20,7 +20,7 @@
 - GNU Fortran (Homebrew GCC 8.4.0_2) 8.4.0  - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0  - available by `gfortran-9` alias
 - Go 1.15.10
-- julia 1.5.4
+- julia 1.6.0
 - Node.js v14.16.0
 - NVM - Cached node versions: v10.24.0 v12.21.0 v14.16.0
 - NVM 0.37.2
@@ -35,7 +35,7 @@
 - Carthage 0.37.0
 - CocoaPods 1.10.1
 - Composer 2.0.11
-- Homebrew 3.0.7
+- Homebrew 3.0.9
 - Miniconda 4.9.2
 - NPM 6.14.11
 - NuGet 5.6.0.6489
@@ -43,7 +43,7 @@
 - Pip 21.0.1 (python 3.9)
 - Pipx 0.16.1.0
 - RubyGems 3.2.15
-- Vcpkg 2021 (build from master \<9986c28>)
+- Vcpkg 2021 (build from master \<6d9ed56>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -65,8 +65,8 @@
 - bazelisk 1.7.5
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.75.0
-- Git LFS: 2.13.2
-- Git: 2.31.0
+- Git LFS: 2.13.3
+- Git: 2.31.1
 - GitHub CLI: 1.7.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
@@ -77,7 +77,7 @@
 - mongo v4.4.3
 - mongod v4.4.3
 - Newman 5.2.2
-- OpenSSL 1.1.1j  16 Feb 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1j)`
+- OpenSSL 1.1.1k  25 Mar 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1k)`
 - Packer 1.7.0
 - PostgreSQL 13.2
 - psql (PostgreSQL) 13.2
@@ -88,13 +88,13 @@
 ### Tools
 - Aliyun CLI 3.0.73
 - App Center CLI 2.8.1
-- AWS CLI 2.1.31
+- AWS CLI 2.1.32
 - AWS SAM CLI 1.21.1
 - AWS Session Manager CLI 1.2.30.0
-- Azure CLI 2.20.0
+- Azure CLI 2.21.0
 - Cabal 3.4.0.0
-- Cmake 3.19.7
-- Fastlane 2.178.0
+- Cmake 3.20.0
+- Fastlane 2.179.0
 - GHC 9.0.1
 - GHCup v0.1.14
 - Stack 2.5.1
@@ -109,9 +109,9 @@
 - SafariDriver 14.0.3 (16610.4.3.1.7)
 - Google Chrome 89.0.4389.90 
 - ChromeDriver 89.0.4389.23
-- Microsoft Edge 89.0.774.57 
-- MSEdgeDriver 89.0.774.57
-- Mozilla Firefox 86.0.1
+- Microsoft Edge 89.0.774.63 
+- MSEdgeDriver 89.0.774.63
+- Mozilla Firefox 87.0
 - geckodriver 0.29.0
 
 #### Environment variables
@@ -150,9 +150,9 @@
 - 1.16.2
 
 ### Rust Tools
-- Cargo 1.50.0
-- Rust 1.50.0
-- Rustdoc 1.50.0
+- Cargo 1.51.0
+- Rust 1.51.0
+- Rustdoc 1.51.0
 - Rustup 1.23.1
 
 #### Packages
@@ -160,8 +160,8 @@
 - Cargo-audit 0.14.0
 - Cargo-outdated v0.9.14
 - Cbindgen 0.18.0
-- Clippy 0.0.212
-- Rustfmt 1.4.30-stable
+- Clippy 0.1.51
+- Rustfmt 1.4.36-stable
 
 ### PowerShell Tools
 - PowerShell 7.1.3
@@ -182,7 +182,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.9.2.0
+- 8.9.3.13
 
 #### Mono
 - 6.12.0.125
@@ -294,7 +294,7 @@
 | CMake                      | 3.10.2                                                                                                                   |
 | Google Play services       | 49                                                                                                                       |
 | Google Repository          | 58                                                                                                                       |
-| NDK                        | 21.4.7075529<br>22.0.7026061                                                                                             |
+| NDK                        | 21.4.7075529<br>22.1.7171670                                                                                             |
 | SDK Patch Applier v4       | 1                                                                                                                        |
 
 #### Environment variables
@@ -302,7 +302,7 @@
 | ----------------------- | -------------------------------------------------------------------------------------------------- |
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                                                                  |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/21.4.7075529 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/22.0.7026061                                                 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/22.1.7171670                                                 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/21.4.7075529 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                                                                  |
 
