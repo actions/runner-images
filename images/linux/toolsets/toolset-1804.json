@@ -146,6 +146,7 @@
             "openssh-client",
             "p7zip-rar",
             "pkg-config",
+            "python-setuptools",
             "rpm",
             "texinfo",
             "tk",
