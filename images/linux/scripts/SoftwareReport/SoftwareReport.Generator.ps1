@@ -265,6 +265,7 @@ $markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
 
 $markdown += New-MDHeader "PowerShell Modules" -Level 4
 $markdown += Get-PowerShellModules | New-MDTable
+$markdown += New-MDNewLine
 $markdown += New-MDHeader "Az PowerShell Modules" -Level 4
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-AzModuleVersions)
