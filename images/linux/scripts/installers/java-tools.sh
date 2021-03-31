@@ -61,7 +61,7 @@ echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven
 curl -sL https://www-eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
-unzip -d /usr/share maven.zip
+unzip -qq -d /usr/share maven.zip
 rm maven.zip
 ln -s /usr/share/apache-maven-3.6.3/bin/mvn /usr/bin/mvn
 
@@ -78,7 +78,7 @@ rm gradleReleases.html
 echo "gradleUrl=$gradleUrl"
 echo "gradleVersion=$gradleVersion"
 curl -sL $gradleUrl -o gradleLatest.zip
-unzip -d /usr/share gradleLatest.zip
+unzip -qq -d /usr/share gradleLatest.zip
 rm gradleLatest.zip
 ln -s /usr/share/gradle-"${gradleVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=/usr/share/gradle" | tee -a /etc/environment
