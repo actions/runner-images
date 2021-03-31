@@ -242,11 +242,6 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-DotNetCoreSdkVersions)
 )
 
-$markdown += New-MDHeader "Az Module" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
-    (Get-AzModuleVersions)
-)
-
 $markdown += New-MDHeader "Databases" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-PostgreSqlVersion),
@@ -270,7 +265,10 @@ $markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
 
 $markdown += New-MDHeader "PowerShell Modules" -Level 4
 $markdown += Get-PowerShellModules | New-MDTable
-$markdown += New-MDNewLine
+$markdown += New-MDHeader "Az PowerShell Modules" -Level 4
+$markdown += New-MDList -Style Unordered -Lines @(
+    (Get-AzModuleVersions)
+)
 
 $markdown += Build-WebServersSection
 
