@@ -95,17 +95,13 @@ $markdown += New-MDList -Style Unordered -Lines ($projectManagementList | Sort-O
 
 $markdown += New-MDHeader "Tools" -Level 3
 $toolsList = @(
-    (Get-7zipVersion),
     (Get-AnsibleVersion),
     (Get-AptFastVersion),
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
-    (Get-BinUtilsVersion),
     (Get-CodeQLBundleVersion),
-    (Get-CoreUtilsVersion),
     (Get-CMakeVersion),
-    (Get-CurlVersion),
     (Get-DockerMobyClientVersion),
     (Get-DockerMobyServerVersion),
     (Get-DockerComposeVersion),
@@ -123,33 +119,25 @@ $toolsList = @(
     (Get-KustomizeVersion),
     (Get-LeiningenVersion),
     (Get-MediainfoVersion),
-    (Get-M4Version),
     (Get-HGVersion),
     (Get-MinikubeVersion),
-    (Get-NetToolsVersion),
     (Get-NewmanVersion),
     (Get-NvmVersion),
     (Get-OpensslVersion),
     (Get-PackerVersion),
-    (Get-PassVersion),
     (Get-PhantomJSVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
     (Get-SphinxVersion),
-    (Get-SwigVersion),
-    (Get-TerraformVersion),
-    (Get-UnZipVersion),
-    (Get-WgetVersion),
-    (Get-YamllintVersion),
-    (Get-ZipVersion),
-    (Get-ZstdVersion)
+    (Get-TerraformVersion)
 )
 
 if (-not (Test-IsUbuntu16)) {
     $toolsList += @(
         (Get-PodManVersion),
         (Get-BuildahVersion),
-        (Get-SkopeoVersion)
+        (Get-SkopeoVersion),
+        (Get-YamllintVersion)
     )
 }
 

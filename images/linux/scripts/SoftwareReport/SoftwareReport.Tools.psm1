@@ -1,8 +1,3 @@
-function Get-7zipVersion {
-    $7zVersion = 7z i | Select-String "7-Zip" | Take-OutputPart -Part 2
-    return "7-Zip $7zVersion"
-}
-
 function Get-AnsibleVersion {
     $ansibleVersion = ansible --version | Select-Object -First 1 | Take-OutputPart -Part 1
     return "Ansible $ansibleVersion"
@@ -29,24 +24,12 @@ function Get-BazeliskVersion {
     return "Bazelisk $bazeliskVersion"
 }
 
-function Get-BinUtilsVersion {
-    $result = Get-CommandResult "dpkg-query --show binutils"
-    $binUtilsVersion = $result.Output| Take-OutputPart -Part 1 -Delimiter "`t" | Take-OutputPart -Part 0 -Delimiter "-"
-    return "binutils $binUtilsVersion"
-}
-
 function Get-CodeQLBundleVersion {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
     $CodeQLVersion = & $CodeQLPath version --quiet
     return "CodeQL Action Bundle $CodeQLVersion"
-}
-
-function Get-CoreUtilsVersion {
-    $result = Get-CommandResult "dpkg-query --show coreutils"
-    $coreUtilsVersion = $result.Output | Take-OutputPart -Part 1 -Delimiter "`t" | Take-OutputPart -Part 0 -Delimiter "-"
-    return "coreutils $coreUtilsVersion"
 }
 
 function Get-PodManVersion {
@@ -67,11 +50,6 @@ function Get-SkopeoVersion {
 function Get-CMakeVersion {
     $cmakeVersion = cmake --version | Select-Object -First 1 | Take-OutputPart -Part 2
     return "CMake $cmakeVersion"
-}
-
-function Get-CurlVersion {
-    $curlVersion = curl --version | Select-Object -First 1 | Take-OutputPart -Part 0,1
-    return $curlVersion
 }
 
 function Get-DockerComposeVersion {
@@ -160,11 +138,6 @@ function Get-HGVersion {
     return "Mercurial $hgVersion"
 }
 
-function Get-M4Version {
-    $m4Version = m4 --version | Select-Object -First 1 | Take-OutputPart -Part -1
-    return "m4 $m4Version"
-}
-
 function Get-LeiningenVersion {
     return "$(lein -v | Take-OutputPart -Part 0,1)"
 }
@@ -172,11 +145,6 @@ function Get-LeiningenVersion {
 function Get-MediainfoVersion {
     $mediainfoVersion = (mediainfo --version | Select-Object -Index 1 | Take-OutputPart -Part 2).Replace('v', '')
     return "MediaInfo $mediainfoVersion"
-}
-
-function Get-NetToolsVersion {
-    $netToolsVersion = dpkg-query --showformat='${Version}' --show net-tools | Take-OutputPart -Part 0 -Delimiter '-' | Take-OutputPart -Part 0 -Delimiter '+'
-    return "net-tools $netToolsVersion"
 }
 
 function Get-NewmanVersion {
@@ -192,42 +160,12 @@ function Get-PackerVersion {
     return "Packer $(packer --version)"
 }
 
-function Get-PassVersion {
-    $passVersion = (pass version | Select-String "^=\s+v").Line.Replace('v','') | Take-OutputPart -Part 1
-    return "pass $passVersion"
-}
-
 function Get-PhantomJSVersion {
     return "PhantomJS $(phantomjs --version)"
 }
 
-function Get-SwigVersion {
-    $swigVersion = swig -version | Select-String "SWIG Version" | Take-OutputPart -Part 2
-    return "Swig $swigVersion"
-}
-
 function Get-TerraformVersion {
     return (terraform version | Select-String "^Terraform").Line.Replace('v','')
-}
-
-function Get-UnZipVersion {
-    $unzipVersion = unzip -v | Select-Object -First 1 | Take-OutputPart -Part 1
-    return "unzip $unzipVersion"
-}
-
-function Get-WgetVersion {
-    $wgetVersion = wget --version | Select-Object -First 1 | Take-OutputPart -Part 2
-    return "wget $wgetVersion"
-}
-
-function Get-ZipVersion {
-    $zipVersion = zip -v | Select-String "This is Zip" | Take-OutputPart -Part 3
-    return "zip $zipVersion"
-}
-
-function Get-ZstdVersion {
-    $zstdVersion = (zstd --version).Split() -match "v\d+" | ForEach-Object {$_.Replace("v","").Replace(",","")}
-    return "zstd $zstdVersion"
 }
 
 function Get-JqVersion {
