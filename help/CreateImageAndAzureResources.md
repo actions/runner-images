@@ -126,20 +126,32 @@ Generated tool versions and details can be found in related projects:
 - [Boost](https://github.com/actions/boost-versions)
 
 ### Post-generation scripts
-Scripts for setting up some specific configuration after packer build procedure are placed in `post-generation` folder. These scripts are intended to apply configuration which cannot be covered during packer build procedure. Scripts are required, since packer build and default agent users are not the same and some specific configuration should be applied after build process under agent's user.
+Extra configuration should be applied after packer build process, because packer build user and default agent's user are not the same. These configuration scripts are located in the `post-generation` folder. 
+
+The scripts are copied to the virtual machines during the packer build and can be found in the `/opt/post-generation` directory for Ubuntu and `C:\post-generation` directory for Windows images.
+
+In order to run all post-generation scripts it is possible to use the following commands:
+
+- **Ubuntu**
+
+        for i in $(find /opt/post-generation -mindepth 1 -maxdepth 1 -type f -name '*.sh'); do bash "$script"; done
+
+- **Windows**
+
+        Get-ChildItem C:\post-generation -Filter *.ps1 | ForEach-Object { $_.FullName }
 
 Detailed description for the scripts:
 
 #### Ubuntu
-- **cleanup-logs.sh** - wipes all log files, which were generated during build procedure
+- **cleanup-logs.sh** - removes all build process logs from the machine
 - **environment-variables.sh** - replaces `$HOME` with the default user's home directory for environmental variables related to the default user home directory
-- **homebrew-permissions.sh** - resets brew repository directory to make the brew clean after rights change for /home directory
-- **rust-permissions.sh** - fixes permissions for the Rust folder. Detailed issue explanation is avaliable by [the link](https://github.com/actions/virtual-environments/issues/572).
+- **homebrew-permissions.sh** - changes brew repository folder owner to make the brew clean after changing permissions for `/home` directory
+- **rust-permissions.sh** - fixes permissions for the Rust folder. Detailed issue explanation is provided in [virtual-environments/issues/572](https://github.com/actions/virtual-environments/issues/572).
 
 #### Windows
 - **Choco.ps1** - contains dummy command to cleanup orphaned packages to avoid initial delay for future choco commands
-- **Dotnet.ps1** - adds `$env:USERPROFILE\.dotnet\tools` direcort to the PATH
+- **Dotnet.ps1** - adds `$env:USERPROFILE\.dotnet\tools` directory to the PATH
 - **InternetExplorerConfiguration** - turns off the Internet Explorer Enhanced Security feature
 - **Msys2FirstLaunch.ps1** - creates user profile at the first launch
 - **RustJunction.ps1** - creates Rust junction points to cargo and rustup folders
-- **VSConfiguration** - performs initial Visual Studio configuration
+- **VSConfiguration.ps1** - performs initial Visual Studio configuration
