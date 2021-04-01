@@ -38,6 +38,27 @@ function Build-MySQLSection {
     return $output
 }
 
+function Build-PostgreSqlSection {
+    $output = ""
+
+    $output += New-MDHeader "PostgreSql" -Level 4
+    $output += New-MDList -Style Unordered -Lines @(
+        (Get-PostgreSqlVersion ),
+        "PostgreSql Server (user:root password:root)"
+    )
+    $output += New-MDCode -Lines @(@"
+        To create the root user and enable the service, use the following commands:
+        sudo systemctl start postgresql.service
+        echo "create user root password 'root';" > /tmp/create_user.sql
+        echo "ALTER ROLE root WITH CREATEDB;" >> /tmp/create_user.sql
+        sudo su postgres -c "psql --file=/tmp/create_user.sql"
+        sudo su postgres -c "createdb root"
+"@
+    )
+
+    return $output
+}
+
 function Build-MSSQLToolsSection {
     $output = ""
 
