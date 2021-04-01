@@ -128,9 +128,9 @@ Generated tool versions and details can be found in related projects:
 ### Post-generation scripts
 Extra configuration should be applied after packer build process, because packer build user and default agent's user are not the same. These configuration scripts are located in the `post-generation` folder. 
 
-The scripts are copied to the virtual machines during the packer build and can be found in the `/opt/post-generation` directory for Ubuntu and `C:\post-generation` directory for Windows images.
+The scripts are copied to the virtual machines during the packer build to `/opt/post-generation` directory for Ubuntu and to `C:\post-generation` directory for Windows images.
 
-In order to run all post-generation scripts it is possible to use the following commands:
+Use the following commands to run these scripts::
 
 - **Ubuntu**
 
@@ -140,7 +140,7 @@ In order to run all post-generation scripts it is possible to use the following 
 
         Get-ChildItem C:\post-generation -Filter *.ps1 | ForEach-Object { $_.FullName }
 
-Detailed description for the scripts:
+Scripts detailed description:
 
 #### Ubuntu
 - **cleanup-logs.sh** - removes all build process logs from the machine
