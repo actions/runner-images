@@ -30,7 +30,7 @@ CHROMEDRIVER_URL="https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIV
 download_with_retries $CHROMEDRIVER_URL "/tmp" "chromedriver_linux64.zip"
 
 mkdir -p $CHROMEDRIVER_DIR
-unzip /tmp/chromedriver_linux64.zip -d $CHROMEDRIVER_DIR
+unzip -qq /tmp/chromedriver_linux64.zip -d $CHROMEDRIVER_DIR
 chmod +x $CHROMEDRIVER_BIN
 ln -s "$CHROMEDRIVER_BIN" /usr/bin/
 echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment

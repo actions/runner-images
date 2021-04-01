@@ -34,8 +34,9 @@ function Get-ClangVersions {
 }
 
 function Get-ErlangVersion {
-    $version = (erl -eval 'erlang:display(erlang:system_info(version)), halt().' -noshell).Trim('"')
-    return "Erlang $version"
+    $erlangVersion = (erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), ''OTP_VERSION''])), io:fwrite(Version), halt().' -noshell)
+    $shellVersion = (erl -eval 'erlang:display(erlang:system_info(version)), halt().' -noshell).Trim('"')
+    return "Erlang $erlangVersion (Eshell $shellVersion)"
 }
 
 function Get-MonoVersion {
