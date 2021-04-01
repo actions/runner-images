@@ -132,13 +132,13 @@ The scripts are copied to the virtual machines during the packer build to `/opt/
 
 Use the following commands to run these scripts::
 
-- **Ubuntu**
+#### Ubuntu
 
-        for i in $(find /opt/post-generation -mindepth 1 -maxdepth 1 -type f -name '*.sh'); do bash "$script"; done
+        find /opt/post-generation -mindepth 1 -maxdepth 1 -type f -name '*.sh' -exec bash {} \;
 
-- **Windows**
+#### Windows
 
-        Get-ChildItem C:\post-generation -Filter *.ps1 | ForEach-Object { $_.FullName }
+        Get-ChildItem C:\post-generation -Filter *.ps1 | ForEach-Object { & $_.FullName }
 
 Scripts detailed description:
 
