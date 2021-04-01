@@ -130,7 +130,7 @@ Extra configuration should be applied after packer build process, because packer
 
 The scripts are copied to the virtual machines during the packer build to `/opt/post-generation` directory for Ubuntu and to `C:\post-generation` directory for Windows images.
 
-Use the following commands to run these scripts::
+#### Running scripts
 
 #### Ubuntu
 
