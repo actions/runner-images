@@ -12,21 +12,6 @@ source $HELPER_SCRIPTS/os.sh
 LATEST_DOTNET_PACKAGES=$(get_toolset_value '.dotnet.aptPackages[]')
 DOTNET_VERSIONS=$(get_toolset_value '.dotnet.versions[]')
 
-mksamples()
-{
-    sdk=$1
-    sample=$2
-    mkdir "$sdk"
-    cd "$sdk" || exit
-    dotnet new globaljson --sdk-version "$sdk"
-    dotnet new "$sample"
-    dotnet restore
-    dotnet build
-    set +e
-    cd .. || exit
-    rm -rf "$sdk"
-}
-
 # Disable telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
@@ -73,16 +58,6 @@ parallel --jobs 0 --halt soon,fail=1 \
     download_with_retries $url' ::: "${sortedSdks[@]}"
 
 find . -name "*.tar.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
-
-# Smoke test each SDK
-for sdk in $sortedSdks; do
-    mksamples "$sdk" "console"
-    mksamples "$sdk" "mstest"
-    mksamples "$sdk" "xunit"
-    mksamples "$sdk" "web"
-    mksamples "$sdk" "mvc"
-    mksamples "$sdk" "webapi"
-done
 
 # NuGetFallbackFolder at /usr/share/dotnet/sdk/NuGetFallbackFolder is warmed up by smoke test
 # Additional FTE will just copy to ~/.dotnet/NuGet which provides no benefit on a fungible machine
