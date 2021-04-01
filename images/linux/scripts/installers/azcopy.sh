@@ -8,7 +8,7 @@ source $HELPER_SCRIPTS/install.sh
 
 # Install AzCopy10
 download_with_retries "https://aka.ms/downloadazcopy-v10-linux" "/tmp" "azcopy.tar.gz"
-tar zxvf /tmp/azcopy.tar.gz --strip-components=1 -C /tmp
+tar xzf /tmp/azcopy.tar.gz --strip-components=1 -C /tmp
 mv /tmp/azcopy /usr/local/bin/azcopy
 chmod +x /usr/local/bin/azcopy
 # Create azcopy 10 alias for backward compatibility

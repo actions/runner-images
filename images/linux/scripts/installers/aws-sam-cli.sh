@@ -9,7 +9,7 @@
 TarballUrl=$(curl -s https://api.github.com/repos/aws/aws-sam-cli/releases/latest | jq -r '.tarball_url')
 TarballPath="/tmp/aws-sam-cli.tar.gz"
 wget $TarballUrl -O $TarballPath
-tar -xzvf $TarballPath -C /tmp
+tar -xzf $TarballPath -C /tmp
 cd /tmp/aws-aws-sam-cli*
 
 mkdir /opt/python-aws-sam-cli
