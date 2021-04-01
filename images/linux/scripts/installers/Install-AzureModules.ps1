@@ -15,7 +15,7 @@ foreach ($module in $modules)
     {
         $modulePath = Join-Path -Path $installPSModulePath -ChildPath "${moduleName}_${version}"
         Write-Host " - $version [$modulePath]"
-        Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force -Verbose
+        Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force
     }
 
     $assets = Invoke-RestMethod $module.url

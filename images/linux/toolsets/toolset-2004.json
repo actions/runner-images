@@ -310,6 +310,10 @@
         {
             "name": "lerna",
             "command": "lerna"
+        },
+        {
+            "name": "yarn",
+            "command": "yarn"
         }
     ]
 }
