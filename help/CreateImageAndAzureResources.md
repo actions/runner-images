@@ -140,7 +140,7 @@ The scripts are copied to the virtual machines during the packer build to `/opt/
 
         Get-ChildItem C:\post-generation -Filter *.ps1 | ForEach-Object { & $_.FullName }
 
-Scripts detailed description:
+#### Script details
 
 #### Ubuntu
 - **cleanup-logs.sh** - removes all build process logs from the machine
