@@ -23,14 +23,26 @@ function Get-FortranVersions {
 function Get-ClangVersions {
     $clangVersions = @()
     $result = Get-CommandResult "apt list --installed" -Multiline
+
     $clangVersions = $result.Output | Where-Object { $_ -match "^clang-\d+"} | ForEach-Object {
         $clangCommand = ($_ -Split "/")[0]
         Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "clang version" } | ForEach-Object {
             $_ -match "clang version (?<version>\d+\.\d+\.\d+)-" | Out-Null
             $Matches.version
+            }
+        } | Sort-Object {[Version]$_}
+    $clangVersions = "Clang " + ($clangVersions -Join ", ")
+
+    $clangFormatVersions = $result.Output | Where-Object { $_ -match "^clang-format-\d+"} | ForEach-Object {
+        $clangCommand = ($_ -Split "/")[0]
+        Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "clang-format version" } | ForEach-Object {
+            $_ -match "clang-format version (?<version>\d+\.\d+\.\d+)-" | Out-Null
+            $Matches.version
         }
     } | Sort-Object {[Version]$_}
-    return "Clang " + ($clangVersions -Join ", ")
+    $clangFormatVersions = "Clang-format " + ($clangFormatVersions -Join ", ")
+
+    return "$clangVersions`n$clangFormatVersions"
 }
 
 function Get-ErlangVersion {
