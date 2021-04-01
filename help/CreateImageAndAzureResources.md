@@ -126,7 +126,10 @@ Generated tool versions and details can be found in related projects:
 - [Boost](https://github.com/actions/boost-versions)
 
 ### Post-generation scripts
-Extra configuration should be applied after packer build process, because packer build user and default agent's user are not the same. These configuration scripts are located in the `post-generation` folder. 
+### Post-generation scripts
+The user, created during the image generation, does not exist in the result VHD hence some configuration files related to the user's home directory need to be changed as well as the file permissions for some directories. Scripts for that are located in the `post-generation` folder in the repository:
+- Windows https://github.com/actions/virtual-environments/tree/main/images/win/post-generation
+- Linux https://github.com/actions/virtual-environments/tree/main/images/linux/post-generation
 
 The scripts are copied to the virtual machines during the packer build to `/opt/post-generation` directory for Ubuntu and to `C:\post-generation` directory for Windows images.
 
