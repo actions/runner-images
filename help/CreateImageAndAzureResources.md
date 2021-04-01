@@ -132,24 +132,24 @@ The scripts are copied to the virtual machines during the packer build to `/opt/
 
 #### Running scripts
 
-- **Ubuntu**
+##### Ubuntu
 
         find /opt/post-generation -mindepth 1 -maxdepth 1 -type f -name '*.sh' -exec bash {} \;
 
-- **Windows**
+##### Windows
 
         Get-ChildItem C:\post-generation -Filter *.ps1 | ForEach-Object { & $_.FullName }
 
 #### Script details
 
-- **Ubuntu**
+##### Ubuntu
 
 - **cleanup-logs.sh** - removes all build process logs from the machine
 - **environment-variables.sh** - replaces `$HOME` with the default user's home directory for environmental variables related to the default user home directory
 - **homebrew-permissions.sh** - changes brew repository folder owner to make the brew clean after changing permissions for `/home` directory
 - **rust-permissions.sh** - fixes permissions for the Rust folder. Detailed issue explanation is provided in [virtual-environments/issues/572](https://github.com/actions/virtual-environments/issues/572).
 
-- **Windows**
+##### Windows
 
 - **Choco.ps1** - contains dummy command to cleanup orphaned packages to avoid initial delay for future choco commands
 - **Dotnet.ps1** - adds `$env:USERPROFILE\.dotnet\tools` directory to the PATH
