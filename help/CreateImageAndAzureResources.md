@@ -131,7 +131,9 @@ The user, created during the image generation, does not exist in the result VHD 
 - Windows https://github.com/actions/virtual-environments/tree/main/images/win/post-generation
 - Linux https://github.com/actions/virtual-environments/tree/main/images/linux/post-generation
 
-The scripts are copied to the virtual machines during the packer build to `/opt/post-generation` directory for Ubuntu and to `C:\post-generation` directory for Windows images.
+The scripts are copied to the VHD during the image generation process to the following paths:
+- Windows `C:\post-generation`
+- Linux  `/opt/post-generation` 
 
 #### Running scripts
 
