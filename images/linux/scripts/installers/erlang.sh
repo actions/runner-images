@@ -8,7 +8,7 @@ source_list=/etc/apt/sources.list.d/eslerlang.list
 
 # Install Erlang
 echo "deb https://binaries.erlang-solutions.com/debian $(lsb_release -cs) contrib" > $source_list
-wget -O - https://binaries.erlang-solutions.com/debian/erlang_solutions.asc | apt-key add -
+wget -q -O - https://binaries.erlang-solutions.com/debian/erlang_solutions.asc | apt-key add -
 apt-get update
 apt-get install -y --no-install-recommends esl-erlang
 
