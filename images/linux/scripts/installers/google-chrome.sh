@@ -81,3 +81,4 @@ unzip -qq /tmp/${ZIP_FILE} -d $CHROMIUM_DIR
 ln -s $CHROMIUM_BIN /usr/bin/chromium
 
 invoke_tests "Browsers" "Chrome"
+invoke_tests "Browsers" "Chromium"

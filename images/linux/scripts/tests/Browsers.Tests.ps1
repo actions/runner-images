@@ -16,8 +16,10 @@ Describe "Chrome" {
     It "Chrome Driver" {
         "chromedriver --version" | Should -ReturnZeroExitCode
     }
+}
 
+Describe "Chromium" {
     It "Chromium" {
         "chromium --version" | Should -ReturnZeroExitCode
     }
-}
+} 
