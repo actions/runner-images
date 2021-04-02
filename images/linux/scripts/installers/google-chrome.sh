@@ -10,13 +10,20 @@ source $HELPER_SCRIPTS/install.sh
 function GetChromiumRevision {
     CHROME_VERSION=$1
 
+    # Get the required Chromium revision corresponding to the Chrome version
     URL="https://omahaproxy.appspot.com/deps.json?version=${CHROME_VERSION}"
     REVISION=$(curl -s $URL | jq -r '.chromium_base_position')
-    # Take the first part of revision variable for search
+
+    # Take the first part of the revision variable to search not only for a specific version,
+    # but also for similar ones, so that we can get a previous one if the required revision is not found
     FIRST_PART_OF_REVISION=${REVISION:0:${#REVISION}/2}
     URL="https://www.googleapis.com/storage/v1/b/chromium-browser-snapshots/o?delimiter=/&prefix=Linux_x64/${FIRST_PART_OF_REVISION}"
     VERSIONS=$(curl -s $URL | jq -r '.prefixes[]' | cut -d "/" -f 2 | sort --version-sort)
 
+    # If required Chromium revision is not found in the list
+    # we should have to decrement the revision number until we find one.
+    # This is mentioned in the documentation we use for this installation:
+    # https://www.chromium.org/getting-involved/download-chromium
     RIGHT_REVISION=$(echo $VERSIONS | cut -f 1 -d " ")
     for version in $VERSIONS; do
         if [ $REVISION -lt  $version ]; then
