@@ -22,7 +22,6 @@ systemctl is-active --quiet postgresql.service && systemctl stop postgresql.serv
 systemctl disable postgresql.service
 
 rm /etc/apt/sources.list.d/pgdg.list
-rm /etc/apt/sources.list.d/pgdg.list.save
 
 echo "postgresql $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
 
