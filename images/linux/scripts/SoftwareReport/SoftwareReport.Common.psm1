@@ -38,6 +38,7 @@ function Get-ClangTool {
 
     return $clangVersions -Join ", "
 }
+
 function Get-ClangVersions {
     $clangVersions = Get-ClangTool -ToolName "clang"
     return "Clang " + $clangVersions
