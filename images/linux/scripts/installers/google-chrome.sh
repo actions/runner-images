@@ -69,7 +69,7 @@ CHROMIUM_BIN="$CHROMIUM_DIR/chrome-linux/chrome"
 # Download and unzip Chromium archive
 download_with_retries $ZIP_URL "/tmp" $ZIP_FILE
 mkdir $CHROMIUM_DIR
-unzip /tmp/${ZIP_FILE} -d $CHROMIUM_DIR
+unzip -qq /tmp/${ZIP_FILE} -d $CHROMIUM_DIR
 
 ln -s $CHROMIUM_BIN /usr/bin/chromium
 
