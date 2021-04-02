@@ -25,7 +25,7 @@ tmp_hub="/tmp/hub"
 mkdir -p "$tmp_hub"
 url=$(curl -s https://api.github.com/repos/github/hub/releases/latest | jq -r '.assets[].browser_download_url | select(contains("hub-linux-amd64"))')
 download_with_retries "$url" "$tmp_hub"
-tar xzvf "$tmp_hub"/hub-linux-amd64-*.tgz --strip-components 1 -C "$tmp_hub"
+tar xzf "$tmp_hub"/hub-linux-amd64-*.tgz --strip-components 1 -C "$tmp_hub"
 mv "$tmp_hub"/bin/hub /usr/local/bin
 
 # Add well-known SSH host keys to known_hosts
