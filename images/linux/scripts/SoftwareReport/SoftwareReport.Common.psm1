@@ -20,7 +20,7 @@ function Get-FortranVersions {
     return "GNU Fortran " + ($fortranVersions -Join ", ")
 }
 
-function Get-ClangTool {
+function Get-ClangToolVersions {
     param (
         [Parameter(Mandatory = $true)]
         [string] $ToolName,
@@ -28,7 +28,7 @@ function Get-ClangTool {
     )
 
     $result = Get-CommandResult "apt list --installed" -Multiline
-    $clangVersions = $result.Output | Where-Object { $_ -match "^${ToolName}-\d+"} | ForEach-Object {
+    $toolVersions = $result.Output | Where-Object { $_ -match "^${ToolName}-\d+"} | ForEach-Object {
         $clangCommand = ($_ -Split "/")[0]
         Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "${ToolName} version" } | ForEach-Object {
             $_ -match "${ToolName} version (?<version>${VersionPattern}" | Out-Null
@@ -36,16 +36,16 @@ function Get-ClangTool {
             }
         } | Sort-Object {[Version]$_}
 
-    return $clangVersions -Join ", "
+    return $toolVersions -Join ", "
 }
 
 function Get-ClangVersions {
-    $clangVersions = Get-ClangTool -ToolName "clang"
+    $clangVersions = Get-ClangToolVersions -ToolName "clang"
     return "Clang " + $clangVersions
 }
 
 function Get-ClangFormatVersions {
-    $clangFormatVersions = Get-ClangTool -ToolName "clang-format"
+    $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
     return "Clang-format " + $clangFormatVersions
 }
 
