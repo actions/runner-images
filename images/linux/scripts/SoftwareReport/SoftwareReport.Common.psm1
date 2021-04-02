@@ -20,30 +20,34 @@ function Get-FortranVersions {
     return "GNU Fortran " + ($fortranVersions -Join ", ")
 }
 
-function Get-ClangVersions {
-    $clangVersions = @()
-    $result = Get-CommandResult "apt list --installed" -Multiline
+function Get-ClangTool {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string] $ToolName,
+        [string] $VersionPattern = "\d+\.\d+\.\d+)-"
+    )
 
-    $clangVersions = $result.Output | Where-Object { $_ -match "^clang-\d+"} | ForEach-Object {
+    $result = Get-CommandResult "apt list --installed" -Multiline
+    $clangVersions = $result.Output | Where-Object { $_ -match "^${ToolName}-\d+"} | ForEach-Object {
         $clangCommand = ($_ -Split "/")[0]
-        Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "clang version" } | ForEach-Object {
-            $_ -match "clang version (?<version>\d+\.\d+\.\d+)-" | Out-Null
+        Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "${ToolName} version" } | ForEach-Object {
+            $_ -match "${ToolName} version (?<version>${VersionPattern}" | Out-Null
             $Matches.version
             }
         } | Sort-Object {[Version]$_}
-    $clangVersions = "Clang " + ($clangVersions -Join ", ")
 
-    $clangFormatVersions = $result.Output | Where-Object { $_ -match "^clang-format-\d+"} | ForEach-Object {
-        $clangCommand = ($_ -Split "/")[0]
-        Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "clang-format version" } | ForEach-Object {
-            $_ -match "clang-format version (?<version>\d+\.\d+\.\d+)-" | Out-Null
-            $Matches.version
-        }
-    } | Sort-Object {[Version]$_}
-    $clangFormatVersions = "Clang-format " + ($clangFormatVersions -Join ", ")
-
-    return "$clangVersions`n$clangFormatVersions"
+    return $clangVersions -Join ", "
 }
+function Get-ClangVersions {
+    $clangVersions = Get-ClangTool -ToolName "clang"
+    return "Clang " + $clangVersions
+}
+
+function Get-ClangFormatVersions {
+    $clangFormatVersions = Get-ClangTool -ToolName "clang-format"
+    return "Clang-format " + $clangFormatVersions
+}
+
 
 function Get-ErlangVersion {
     $erlangVersion = (erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), ''OTP_VERSION''])), io:fwrite(Version), halt().' -noshell)
