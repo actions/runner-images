@@ -51,8 +51,8 @@ mkdir -p ${ANDROID_SDK_ROOT}
 
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
-wget -O android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-unzip android-sdk.zip -d ${ANDROID_SDK_ROOT}
+download_with_retries https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip "." android-sdk.zip
+unzip -qq android-sdk.zip -d ${ANDROID_SDK_ROOT}
 rm -f android-sdk.zip
 
 if isUbuntu20 ; then

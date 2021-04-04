@@ -30,7 +30,7 @@ function SetDefaultClang {
 }
 
 # Download script for automatic installation
-wget https://apt.llvm.org/llvm.sh
+download_with_retries https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
 
 versions=$(get_toolset_value '.clang.versions[]')

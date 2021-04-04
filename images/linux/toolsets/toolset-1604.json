@@ -152,6 +152,7 @@
             "p7zip-rar",
             "p7zip",
             "pkg-config",
+            "python-setuptools",
             "rpm",
             "texinfo",
             "tk",
@@ -296,6 +297,10 @@
         {
             "name": "netlify-cli",
             "command": "netlify"
+        },
+        {
+            "name": "yarn",
+            "command": "yarn"
         }
     ]
 }

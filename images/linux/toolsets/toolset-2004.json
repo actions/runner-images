@@ -116,7 +116,6 @@
     "apt": {
         "common_packages": [
             "build-essential",
-            "chromium-browser",
             "dbus",
             "dnsutils",
             "dpkg",
@@ -310,6 +309,10 @@
         {
             "name": "lerna",
             "command": "lerna"
+        },
+        {
+            "name": "yarn",
+            "command": "yarn"
         }
     ]
 }
