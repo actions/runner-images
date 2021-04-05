@@ -13,7 +13,6 @@ apt-get install git -y
 git --version
 
 # Install git-lfs
-apt-get update -y
 apt-get install -y git-lfs
 
 # Install git-ftp
