@@ -61,7 +61,7 @@ echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven
 curl -sL https://www-eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
-unzip -d /usr/share maven.zip
+unzip -qq -d /usr/share maven.zip
 rm maven.zip
 ln -s /usr/share/apache-maven-3.6.3/bin/mvn /usr/bin/mvn
 
@@ -71,14 +71,14 @@ ln -s /usr/share/apache-maven-3.6.3/bin/mvn /usr/bin/mvn
 # The release download URL looks like this: https://services.gradle.org/distributions/gradle-5.2.1-bin.zip
 # The release version is extracted from the download URL (i.e. 5.2.1).
 # After all of this, the release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
-wget -O gradleReleases.html https://gradle.org/releases/
+wget -qO gradleReleases.html https://gradle.org/releases/
 gradleUrl=$(grep -m 1 -o "https:\/\/services.gradle.org\/distributions\/gradle-.*-bin\.zip" gradleReleases.html | head -1)
 gradleVersion=$(echo $gradleUrl | sed -nre 's/^[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p')
 rm gradleReleases.html
 echo "gradleUrl=$gradleUrl"
 echo "gradleVersion=$gradleVersion"
 curl -sL $gradleUrl -o gradleLatest.zip
-unzip -d /usr/share gradleLatest.zip
+unzip -qq -d /usr/share gradleLatest.zip
 rm gradleLatest.zip
 ln -s /usr/share/gradle-"${gradleVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=/usr/share/gradle" | tee -a /etc/environment
