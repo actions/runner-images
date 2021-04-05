@@ -293,7 +293,9 @@ function Get-SVNVersion {
 }
 
 function Get-PackerVersion {
-    $packerVersion = Run-Command "packer --version"
+    # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
+    $result = Run-Command -Command "packer --version"
+    $packerVersion = [regex]::matches($result, "(\d+.){2}\d+").Value
     return "Packer $packerVersion"
 }
 
