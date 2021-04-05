@@ -110,7 +110,7 @@ $toolsList = @(
     (Get-GitLFSVersion),
     (Get-GitFTPVersion),
     (Get-HavegedVersion),
-    "$(Get-HerokuVersion) $(Get-AptSourceRepository -PackageName 'heroku')",
+    (Get-HerokuVersion),
     (Get-HHVMVersion),
     (Get-SVNVersion),
     (Get-JqVersion),
@@ -232,8 +232,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
 
 $markdown += New-MDHeader "Databases" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
-    "$(Get-PostgreSqlVersion) $(Get-AptSourceRepository -PackageName 'postgresql')",
-    "$(Get-MongoDbVersion) $(Get-AptSourceRepository -PackageName 'mongodb')",
+    (Get-PostgreSqlVersion),
+    (Get-MongoDbVersion),
     (Get-SqliteVersion)
     ) | Sort-Object
 )
