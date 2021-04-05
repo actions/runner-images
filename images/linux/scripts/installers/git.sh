@@ -8,14 +8,21 @@
 source $HELPER_SCRIPTS/install.sh
 
 ## Install git
-add-apt-repository ppa:git-core/ppa -y
-apt-get update
-apt-get install git -y
+latest_git_version=$(curl -s -L "https://api.github.com/repos/git/git/tags" | jq -r '.[].name' | grep -ve "-.*" | head -1 | tr -d "v")
+download_with_retries https://github.com/git/git/archive/v${latest_git_version}.tar.gz "/tmp" "git.tar.gz"
+git_installation_path="/usr/local/git"
+git_tar_tmp="/tmp/git.tar.gz"
+mkdir -p "${git_installation_path}"
+tar -zxf "${git_tar_tmp}" -C "${git_installation_path}"
+rm -f "${git_tar_tmp}"
+cd "${git_installation_path}/git-${latest_git_version}"
+make prefix=/usr/local all
+make prefix=/usr/local install
 git --version
 
 # Install git-lfs
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
-apt-get install -y --no-install-recommends git-lfs
+apt-get update -y
+apt-get install -y git-lfs
 
 # Install git-ftp
 apt-get install git-ftp -y
