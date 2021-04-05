@@ -80,7 +80,7 @@
 - Newman 5.2.2
 - nvm 0.38.0
 - OpenSSL 1.1.1f  31 Mar 2020
-- Packer 
+- Packer 1.7.1
 - PhantomJS 2.1.1
 - Podman 3.0.1
 - Pulumi 2.24.1
