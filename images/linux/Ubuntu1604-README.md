@@ -76,7 +76,7 @@
 - Newman 5.2.2
 - nvm 0.38.0
 - OpenSSL 1.0.2g  1 Mar 2016
-- Packer 
+- Packer 1.7.1
 - PhantomJS 2.1.1
 - Pulumi 2.24.1
 - R 4.0.5
