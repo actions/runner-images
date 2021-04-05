@@ -190,6 +190,7 @@
             "sphinxsearch",
             "sqlite3",
             "ssh",
+            "sshpass",
             "subversion",
             "sudo",
             "swig",
