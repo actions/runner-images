@@ -78,7 +78,7 @@
 - mongo v4.4.3
 - mongod v4.4.3
 - OpenSSL 1.1.1k  25 Mar 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1k)`
-- Packer  Running in background, not using a TTY 1.7.1
+- Packer 1.7.1
 - PostgreSQL 13.2
 - psql (PostgreSQL) 13.2
 - Subversion (SVN) 1.14.1
