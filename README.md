@@ -57,9 +57,9 @@ You can also track upcoming changes using the [awaiting-deployment](https://gith
 [macOS-10.15]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
-## Software And Image Guidelines
+## Software and image guidelines
 
-### Sotware re-installation policy
+### Software preinstallation policy
 In general, these are the guidelines we consider when deciding what to pre-install:
 
 - Tools and ecosystems that are broadly popular and widely-used will be given priority.
@@ -79,6 +79,7 @@ These are the guidelines we use in software and images supporting process:
 - We support at least 2 latest LTS OS versions, and initiate deprecation process for the oldest one when images usage drops below 5%.
 - Most of the tools are preinstalled as a single version and always the latest one.
 - Popular tools might have several versions installed side-by-side with the following strategy:
+
 | Tool name | Installation strategy |
 |-----------|-----------------------|
 | Java      | all LTS versions |
