@@ -4,13 +4,13 @@
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4283
-- Image Version: 20210329.1
+- Image Version: 20210404.2
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
-- Go 1.15.10
-- Julia 1.5.4
+- Go 1.15.11
+- Julia 1.6.0
 - Node 14.16.0
 - Perl 5.32.1
 - PHP 8.0.3
@@ -19,7 +19,7 @@
 
 ### Package Management
 - Chocolatey 0.10.15
-- Composer 2.0.11
+- Composer 2.0.12
 - Helm 3.5.3
 - Miniconda 4.9.2
 - NPM 6.14.11
@@ -27,7 +27,7 @@
 - pip 21.0.1 (python 3.7)
 - Pipx 0.16.1.0
 - RubyGems 2.7.6.2
-- Vcpkg  (build from master \<1054567>)
+- Vcpkg  (build from master \<030cfaa>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -40,7 +40,7 @@
 - Ant 1.10.9
 - Gradle 6.8
 - Maven 3.6.3
-- sbt 1.4.9
+- sbt 1.5.0
 
 ### Tools
 - 7zip 19.00
@@ -53,9 +53,9 @@
 - Docker 20.10.0
 - Docker-compose 1.28.5
 - ghc 9.0.1
-- Git 2.31.0
-- Git LFS 2.13.2
-- Google Cloud SDK 333.0.0
+- Git 2.31.1
+- Git LFS 2.13.3
+- Google Cloud SDK 334.0.0
 - InnoSetup 6.1.2
 - jq 1.6
 - Kind 0.10.0
@@ -66,8 +66,8 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.0
-- Pulumi 2.23.1
-- R 4.0.4
+- Pulumi v2.24.1
+- R 4.0.5
 - Stack 2.5.1
 - Subversion (SVN) 1.14.1
 - VSWhere 2.8.4
@@ -77,14 +77,14 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.73
-- AWS CLI 2.1.29
+- AWS CLI 2.1.34
 - AWS SAM CLI 1.21.1
 - AWS Session Manager CLI 1.2.54.0
 - Azure CLI 2.21.0
 - Azure Dev Spaces CLI 1.0.20201219.2
 - Azure DevOps CLI extension 0.18.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 1.7.0
+- GitHub CLI 1.8.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -94,7 +94,7 @@
 - Rustup 1.23.1
 
 #### Packages
-- bindgen 0.57.0
+- bindgen 0.58.0
 - cargo-audit 0.14.0
 - cargo-outdated v0.9.14
 - cbindgen 0.18.0
@@ -102,10 +102,10 @@
 - Rustfmt 1.4.36
 
 ### Browsers and webdrivers
-- Google Chrome 89.0.4389.90
+- Google Chrome 89.0.4389.114
 - Chrome Driver 89.0.4389.23
-- Microsoft Edge 89.0.774.63
-- Microsoft Edge Driver 89.0.774.63
+- Microsoft Edge 89.0.774.68
+- Microsoft Edge Driver 89.0.774.68
 - Mozilla Firefox 87.0
 - Gecko Driver 0.29.0
 - IE Driver 3.150.1.0
@@ -144,15 +144,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ | -------------------- |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
-| 1.15.10 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.2  | x64          | GOROOT_1_16_X64      |
+| 1.15.11 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.3  | x64          | GOROOT_1_16_X64      |
 
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
 | 10.24.0 | x64          |
-| 12.21.0 | x64          |
+| 12.22.0 | x64          |
 | 14.16.0 | x64          |
 
 
@@ -164,7 +164,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.8   | x64, x86     |
-| 3.9.2   | x64, x86     |
+| 3.9.4   | x64, x86     |
 
 
 #### Ruby
@@ -218,7 +218,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.46  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.19.8  | C:\tools\nginx-1.19.8\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.19.9  | C:\tools\nginx-1.19.9\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
