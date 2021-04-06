@@ -100,8 +100,7 @@ function Get-HavegedVersion {
 
 function Get-HerokuVersion {
     $herokuVersion = heroku version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "heroku"
-    return "Heroku $herokuVersion (apt source repository: $aptSourceRepo)"
+    return "Heroku $herokuVersion"
 }
 
 function Get-HHVMVersion {
