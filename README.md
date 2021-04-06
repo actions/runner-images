@@ -34,21 +34,6 @@ The availability of images for GitHub Actions and Azure DevOps is different. See
 ***How to contribute to macOS source?*** macOS source lives in this repository and available for everyone. However, MacOS image-generation CI doesn't support external contributions yet so we are not able to accept pull-requests for now.
 We are in the process of preparing MacOS CI to accept contributions. Until then, we appreciate your patience and ask you continue to make tool requests by filing issues.
 
-## Software Guidelines
-In general, these are the guidelines we consider when deciding what to pre-install:
-
-- Tools and ecosystems that are broadly popular and widely-used will be given priority.
-- Recent versions of tools will be given priority over older versions.
-- Tools and versions that are deprecated or have reached end-of-life will not be added.
-- Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life.
-- If a tool can be installed during the build, we will evaluate how much time is saved
- and how much space is used by having the tool pre-installed.
-- MIT, Apache, and GNU licenses are ok, anything else we'll have to check with lawyers.
-- If a tool takes much space we will evaluate space usage and provide a decision if this tool can be pre-installed.
-- If a tool requires the support of more than one version, we will consider the cost of this maintenance, how often new versions bring dangerous updates.
-
-**Note:** For new tools, please, create an issue and get an approval from us to add this tool to the image before creating the pull request.
-
 ## Updates to virtual environments
 *Cadence*
 
@@ -68,6 +53,42 @@ You can also track upcoming changes using the [awaiting-deployment](https://gith
 [ubuntu-16.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1604-README.md
 [Windows-2019]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
 [windows-2016]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
-[macOS-10.15]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 [macOS-11.0]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11.0-Readme.md
+[macOS-10.15]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
+
+## Software And Image Guidelines
+
+### Sotware re-installation policy
+In general, these are the guidelines we consider when deciding what to pre-install:
+
+- Tools and ecosystems that are broadly popular and widely-used will be given priority.
+- Recent versions of tools will be given priority over older versions.
+- Tools and versions that are deprecated or have reached end-of-life will not be added.
+- If a tool can be installed during the build, we will evaluate how much time is saved
+ and how much space is used by having the tool pre-installed.
+- MIT, Apache, and GNU licenses are ok, anything else we'll have to check with lawyers.
+- If a tool takes much space we will evaluate space usage and provide a decision if this tool can be pre-installed.
+- If a tool requires the support of more than one version, we will consider the cost of this maintenance, how often new versions bring dangerous updates.
+
+**Note:** For new tools, please, create an issue and get an approval from us to add this tool to the image before creating the pull request.
+
+### Software and images support policy
+These are the guidelines we use in software and images supporting process:
+- Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life.
+- We support at least 2 latest LTS OS versions, and initiate deprecation process for the oldest one when images usage drops below 5%.
+- Most of the tools are preinstalled as a single version and always the latest one.
+- Popular tools might have several versions installed side-by-side with the following strategy:
+| Tool name | Installation strategy |
+|-----------|-----------------------|
+| Java      | all LTS versions |
+| Node.js   | 3 latest LTS versions |
+| Go        | 3 latest versions     |
+| Python <br/> Ruby | 5 most popular major.minor versions |
+| PyPy      | 3 most popular major.minor versions |
+| .NET Core | 2 latest LTS versions and 1 latest version. For each minor version only latest patch is installed |
+| GCC <br/> GNU Fortran <br/> Clang <br/> GNU C++ | 3 latest major versions |
+| Android NDK | 1 latest, 1 LTS version |
+
+### Software default versions update policy
+In general, once software is installed on the image, we announce default version update 2 weeks prior to deploying them to give time to adapt to upcoming changes. For possibly dangerous updates, we can extend the timeline up to 1 month between announcement and deployment. 
