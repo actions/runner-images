@@ -150,7 +150,7 @@ The scripts are copied to the VHD during the image generation process to the fol
 
 - **cleanup-logs.sh** - removes all build process logs from the machine
 - **environment-variables.sh** - replaces `$HOME` with the default user's home directory for environmental variables related to the default user home directory
-- **homebrew-permissions.sh** - changes brew repository folder owner to make the brew clean after changing permissions for `/home` directory
+- **homebrew-permissions.sh** - Resets homebrew repository directory by running `git reset --hard` to make the working tree clean after chmoding /home and changes the repository directory owner to the current user
 - **rust-permissions.sh** - fixes permissions for the Rust folder. Detailed issue explanation is provided in [virtual-environments/issues/572](https://github.com/actions/virtual-environments/issues/572).
 
 ##### Windows
