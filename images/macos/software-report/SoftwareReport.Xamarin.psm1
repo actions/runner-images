@@ -13,6 +13,9 @@ function Get-NUnitVersion {
 function Build-XamarinTable {
     $xamarinBundles = Get-ToolsetValue "xamarin.bundles"
     $defaultSymlink = Get-ToolsetValue "xamarin.bundle-default"
+    if ($defaultSymlink -eq "latest") {
+        $defaultSymlink = $xamarinBundles[0].symlink
+    }
     $sortRules = @{
         Expression = { [System.String]::($_.symlink) }
         Descending = $true
