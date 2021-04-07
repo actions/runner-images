@@ -157,7 +157,10 @@ function Get-NvmVersion {
 }
 
 function Get-PackerVersion {
-    return "Packer $(packer --version)"
+    # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
+    $result = (Get-CommandResult -Command "packer --version").Output
+    $packerVersion = [regex]::matches($result, "(\d+.){2}\d+").Value
+    return "Packer $packerVersion"
 }
 
 function Get-PhantomJSVersion {
