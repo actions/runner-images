@@ -1,11 +1,13 @@
 function Get-PostgreSqlVersion {
     $postgreSQLVersion = psql --version | Take-OutputPart -Part 2
-    return "Postgre SQL $postgreSQLVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "postgresql"
+    return "Postgre SQL $postgreSQLVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-MongoDbVersion {
     $mongoDBVersion = mongod --version | Select-Object -First 1 | Take-OutputPart -Part 2 -Delimiter "v"
-    return "MongoDB $mongoDBVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "mongodb"
+    return "MongoDB $mongoDBVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-SqliteVersion {
