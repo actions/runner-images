@@ -16,12 +16,8 @@ function Build-XamarinTable {
     if ($defaultSymlink -eq "latest") {
         $defaultSymlink = $xamarinBundles[0].symlink
     }
-    $sortRules = @{
-        Expression = { [System.String]::($_.symlink) }
-        Descending = $true
-    }
 
-    return $xamarinBundles | Sort-Object $sortRules | ForEach-Object {
+    return $xamarinBundles | ForEach-Object {
         $defaultPostfix = ($_.symlink -eq $defaultSymlink ) ? " (default)" : ""
         [PSCustomObject] @{
             "symlink" = $_.symlink + $defaultPostfix 
