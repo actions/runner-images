@@ -19,10 +19,8 @@ apt-get -qq -y install ${install_packages[@]}
 mkdir -p /etc/containers
 echo -e "[registries.search]\nregistries = ['docker.io', 'quay.io']" | tee /etc/containers/registries.conf
 
-# We can safely remove source repo on Ubuntu20
-if isUbuntu20 ; then
-    rm /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
-fi
+# Remove source repo
+rm /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 
 # Document source repo
 echo "containers $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
