@@ -175,7 +175,7 @@
         {
             "name": "Az",
             "versions": [
-                "4.8.0"
+                "5.7.0"
             ]
         },
         {"name": "MarkdownPS"},
