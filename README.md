@@ -1,5 +1,5 @@
 # GitHub Actions Virtual Environments
-This repository contains the source used to create the [virtual environments](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners) for GitHub Actions hosted runners, as well as the VM images of [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines. To build a VM machine from this repo's source, see the [instructions](./docs/create-image-and-azure-resources.md).
+This repository contains the source used to create the [virtual environments](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners) for GitHub Actions hosted runners, as well as the VM images of [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines. To build a VM machine from this repo's source, see the [instructions](docs/create-image-and-azure-resources.md).
 
 How to get in touch with us:
 - To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/virtual-environments/issues/new/choose)
