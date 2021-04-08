@@ -5,7 +5,7 @@
 # macOS 11.2 info
 - System Version: macOS 11.2.3 (20D91)
 - Kernel Version: Darwin 20.3.0
-- Image Version: 20210328.1
+- Image Version: 20210404.2
 
 ## Installed Software
 ### Language and Runtime
@@ -19,11 +19,11 @@
 - GNU Fortran (Homebrew GCC 10.2.0_4) 10.2.0  - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 8.4.0_2) 8.4.0  - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0  - available by `gfortran-9` alias
-- Go 1.15.10
+- Go 1.15.11
 - julia 1.6.0
 - Node.js v14.16.0
-- NVM - Cached node versions: v10.24.0 v12.21.0 v14.16.0
-- NVM 0.37.2
+- NVM - Cached node versions: v10.24.0 v12.22.0 v14.16.0
+- NVM 0.38.0
 - Perl 5.32.1
 - PHP 8.0.3
 - Python 2.7.18
@@ -34,8 +34,8 @@
 - Bundler version 2.2.15
 - Carthage 0.37.0
 - CocoaPods 1.10.1
-- Composer 2.0.11
-- Homebrew 3.0.9
+- Composer 2.0.12
+- Homebrew 3.0.10
 - Miniconda 4.9.2
 - NPM 6.14.11
 - NuGet 5.6.0.6489
@@ -43,7 +43,7 @@
 - Pip 21.0.1 (python 3.9)
 - Pipx 0.16.1.0
 - RubyGems 3.2.15
-- Vcpkg 2021 (build from master \<6d9ed56>)
+- Vcpkg 2021 (build from master \<030cfaa>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -54,20 +54,20 @@
 
 ### Project Management
 - Apache Ant(TM) 1.10.9
-- Apache Maven 3.6.3
+- Apache Maven 3.8.1
 - Gradle 6.8.3
 
 ### Utilities
-- 7-Zip 17.03
+- 7-Zip 17.04
 - aria2 1.35.0
 - azcopy 10.9.0
 - bazel 4.0.0
 - bazelisk 1.7.5
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.75.0
+- Curl 7.76.0
 - Git LFS: 2.13.3
 - Git: 2.31.1
-- GitHub CLI: 1.7.0
+- GitHub CLI: 1.8.1
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.2.27
@@ -78,7 +78,7 @@
 - mongod v4.4.3
 - Newman 5.2.2
 - OpenSSL 1.1.1k  25 Mar 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1k)`
-- Packer 1.7.0
+- Packer 1.7.1
 - PostgreSQL 13.2
 - psql (PostgreSQL) 13.2
 - Subversion (SVN) 1.14.1
@@ -88,7 +88,7 @@
 ### Tools
 - Aliyun CLI 3.0.73
 - App Center CLI 2.8.1
-- AWS CLI 2.1.32
+- AWS CLI 2.1.34
 - AWS SAM CLI 1.21.1
 - AWS Session Manager CLI 1.2.30.0
 - Azure CLI 2.21.0
@@ -107,10 +107,10 @@
 ### Browsers
 - Safari 14.0.3 (16610.4.3.1.7)
 - SafariDriver 14.0.3 (16610.4.3.1.7)
-- Google Chrome 89.0.4389.90 
+- Google Chrome 89.0.4389.114 
 - ChromeDriver 89.0.4389.23
 - Microsoft Edge 89.0.774.63 
-- MSEdgeDriver 89.0.774.63
+- MSEdgeDriver 89.0.774.68
 - Mozilla Firefox 87.0
 - geckodriver 0.29.0
 
@@ -138,16 +138,16 @@
 #### Python
 - 3.7.10
 - 3.8.8
-- 3.9.2
+- 3.9.4
 
 #### Node.js
 - 10.24.0
-- 12.21.0
+- 12.22.0
 - 14.16.0
 
 #### Go
-- 1.15.10
-- 1.16.2
+- 1.15.11
+- 1.16.3
 
 ### Rust Tools
 - Cargo 1.51.0
@@ -156,7 +156,7 @@
 - Rustup 1.23.1
 
 #### Packages
-- Bindgen 0.57.0
+- Bindgen 0.58.0
 - Cargo-audit 0.14.0
 - Cargo-outdated v0.9.14
 - Cbindgen 0.18.0
@@ -182,7 +182,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.9.3.13
+- 8.9.4.25
 
 #### Mono
 - 6.12.0.125
@@ -285,7 +285,7 @@
 | Package Name               | Version                                                                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 3.0                                                                                                                      |
-| Android Emulator           | 30.5.3                                                                                                                   |
+| Android Emulator           | 30.5.4                                                                                                                   |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-S (rev 2)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                |
 | Android SDK Platform-Tools | 31.0.1                                                                                                                   |
