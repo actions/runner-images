@@ -42,6 +42,27 @@ function Get-CertificatesWithoutPropId {
     }
     $certsWithoutPropId
 }
+
+function Invoke-WithRetry {
+     <#
+        .SYNOPSIS
+        Runs $command block until $BreakCondition or $RetryCount is reached.
+     #>
+
+     param([ScriptBlock]$Command, [ScriptBlock] $BreakCondition, [int] $RetryCount=5, [int] $Sleep=10)
+     
+     $c = 0
+     while($c -lt $RetryCount){
+        $result = & $Command
+        if(& $BreakCondition){
+            break
+        }
+        Start-Sleep $Sleep
+        $c++
+     }
+     $result
+}
+
 function Import-SSTFromWU {
     # Serialized Certificate Store File
     $sstFile = "$env:TEMP\roots.sst"
@@ -103,27 +124,6 @@ function Disable-RootAutoUpdate {
 
     Set-ItemProperty $regPath -Name $regKey -Type DWord -Value 1
 }
-
-function Invoke-WithRetry {
-     param([ScriptBlock]$Command, [ScriptBlock] $BreakCondition, [int] $RetryCount=4, [int] $Sleep=1)
-
-     $c = 0
-     while($c -lt $RetryCount -or $c -eq 0){
-        $result = & $Command
-        if(& $BreakCondition){
-            break
-        }
-        Start-Sleep $Sleep
-        $c++
-     }
-     $result
-     
-     <#
-        .SYNOPSIS
-        Runs $command block until $BreakCondition or $RetryCount is reached.
-     #>
-}
-
 
 # Property to remove
 $CERT_NOT_BEFORE_FILETIME_PROP_ID = 126
