@@ -28,7 +28,7 @@ These are the guidelines we follow in software and images supporting routine:
 | Go        | 3 latest minor versions     |
 | Python <br/> Ruby | 5 most popular `major.minor` versions |
 | PyPy      | 3 most popular `major.minor` versions |
-| .NET Core | 2 latest LTS versions and 1 latest version. For each minor version only latest patch is installed |
+| .NET Core | 2 latest LTS versions and 1 latest version. For each feature version only latest patch is installed |
 | GCC <br/> GNU Fortran <br/> Clang <br/> GNU C++ | 3 latest major versions |
 | Android NDK | 1 latest, 1 LTS version |
 
