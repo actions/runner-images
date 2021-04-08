@@ -8,4 +8,4 @@ if (-not $latestPath.Contains($dotnetPath))
 }
 
 # Add nuget.org package source to the default nuget.config file https://github.com/actions/virtual-environments/issues/3038
-dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
+dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org --configfile $env:APPDATA\NuGet\NuGet.Config
