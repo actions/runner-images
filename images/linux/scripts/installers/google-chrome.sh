@@ -78,6 +78,7 @@ download_with_retries $ZIP_URL "/tmp" $ZIP_FILE
 mkdir $CHROMIUM_DIR
 unzip -qq /tmp/${ZIP_FILE} -d $CHROMIUM_DIR
 
+ln -s $CHROMIUM_BIN /usr/bin/chromium
 ln -s $CHROMIUM_BIN /usr/bin/chromium-browser
 
 invoke_tests "Browsers" "Chrome"
