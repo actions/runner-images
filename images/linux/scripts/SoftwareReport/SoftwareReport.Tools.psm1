@@ -82,7 +82,7 @@ function Get-GitVersion {
 function Get-GitLFSVersion {
     $result = Get-CommandResult "git-lfs --version"
     $gitlfsversion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "git-lfs"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "lfs"
     return "Git LFS $gitlfsversion (apt source repository: $aptSourceRepo)"
 }
 
