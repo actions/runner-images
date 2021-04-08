@@ -103,3 +103,10 @@ function Get-CachedToolInstances
     return $toolInstances
 }
 
+function Get-AptSourceRepository {
+    param([String] $PackageName)
+
+    $sourceUrl = Get-Content "$PSScriptRoot/../helpers/apt-sources.txt" | Select-String -Pattern $PackageName | Take-OutputPart -Part 1
+    return $sourceUrl
+}
+

@@ -124,3 +124,40 @@ Generated tool versions and details can be found in related projects:
 - [Go](https://github.com/actions/go-versions)
 - [Node](https://github.com/actions/node-versions)
 - [Boost](https://github.com/actions/boost-versions)
+
+### Post-generation scripts
+The user, created during the image generation, does not exist in the result VHD hence some configuration files related to the user's home directory need to be changed as well as the file permissions for some directories. Scripts for that are located in the `post-generation` folder in the repository:
+- Windows: https://github.com/actions/virtual-environments/tree/main/images/win/post-generation
+- Linux: https://github.com/actions/virtual-environments/tree/main/images/linux/post-generation
+
+The scripts are copied to the VHD during the image generation process to the following paths:
+- Windows: `C:\post-generation`
+- Linux:  `/opt/post-generation` 
+
+#### Running scripts
+
+##### Ubuntu
+
+        find /opt/post-generation -mindepth 1 -maxdepth 1 -type f -name '*.sh' -exec bash {} \;
+
+##### Windows
+
+        Get-ChildItem C:\post-generation -Filter *.ps1 | ForEach-Object { & $_.FullName }
+
+#### Script details
+
+##### Ubuntu
+
+- **cleanup-logs.sh** - removes all build process logs from the machine
+- **environment-variables.sh** - replaces `$HOME` with the default user's home directory for environmental variables related to the default user home directory
+- **homebrew-permissions.sh** - Resets homebrew repository directory by running `git reset --hard` to make the working tree clean after chmoding /home and changes the repository directory owner to the current user
+- **rust-permissions.sh** - fixes permissions for the Rust folder. Detailed issue explanation is provided in [virtual-environments/issues/572](https://github.com/actions/virtual-environments/issues/572).
+
+##### Windows
+
+- **Choco.ps1** - contains dummy command to cleanup orphaned packages to avoid initial delay for future choco commands
+- **Dotnet.ps1** - adds `$env:USERPROFILE\.dotnet\tools` directory to the PATH
+- **InternetExplorerConfiguration** - turns off the Internet Explorer Enhanced Security feature
+- **Msys2FirstLaunch.ps1** - initializes bash user profile in MSYS2
+- **RustJunction.ps1** - creates Rust junction points to cargo and rustup folders
+- **VSConfiguration.ps1** - performs initial Visual Studio configuration
