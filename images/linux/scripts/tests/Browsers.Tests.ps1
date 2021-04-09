@@ -20,6 +20,6 @@ Describe "Chrome" {
 
 Describe "Chromium" {
     It "Chromium" {
-        "chromium --version" | Should -ReturnZeroExitCode
+        "chromium-browser --version" | Should -ReturnZeroExitCode
     }
 } 
