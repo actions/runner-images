@@ -7,18 +7,29 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
+GIT_REPO="ppa:git-core/ppa"
+GIT_LFS_REPO="https://packagecloud.io/install/repositories/github/git-lfs"
+
 ## Install git
-add-apt-repository ppa:git-core/ppa -y
+add-apt-repository $GIT_REPO -y
 apt-get update
 apt-get install git -y
 git --version
 
 # Install git-lfs
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
-apt-get install -y --no-install-recommends git-lfs
+curl -s $GIT_LFS_REPO/script.deb.sh | bash
+apt-get install -y git-lfs
 
 # Install git-ftp
 apt-get install git-ftp -y
+
+# Remove source repo's
+add-apt-repository --remove $GIT_REPO
+rm /etc/apt/sources.list.d/github_git-lfs.list
+
+# Document apt source repo's
+echo "git-core $GIT_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
+echo "git-lfs $GIT_LFS_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
 
 #Install hub
 tmp_hub="/tmp/hub"
