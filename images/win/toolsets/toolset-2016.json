@@ -255,7 +255,7 @@
             "mcr.microsoft.com/windows/nanoserver:10.0.14393.953",
             "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016",
             "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016",
-            "microsoft/aspnetcore-build:1.0-2.0"
+            "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016"
         ]
     },
     "pipx": [
