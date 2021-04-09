@@ -19,7 +19,7 @@ if ($groupExist -eq "true") {
     az group delete --name $TempResourceGroupName --subscription $SubscriptionId --yes | Out-Null
     Write-Host "Temporary group was deleted succesfully"
     Write-Host "Deleting OS disk"
-    az storage remove --account-name $StorageAccount -c "images" -n "$osDiskName.vhd" 2>&1 | Out-Null
+    az storage remove --account-name $StorageAccount -c "images" -n "$osDiskName.vhd" --only-show-errors | Out-Null
     Write-Host "OS disk deleted"
 } else {
     Write-Host "No temporary groups found"
