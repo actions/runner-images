@@ -78,14 +78,14 @@ function Get-DockerBuildxVersion {
 function Get-GitVersion {
     $result = Get-CommandResult "git --version"
     $gitVersion = $result.Output | Take-OutputPart -Part 2
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "git"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "git-core"
     return "Git $gitVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-GitLFSVersion {
     $result = Get-CommandResult "git-lfs --version"
     $gitlfsversion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "lfs"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "git-lfs"
     return "Git LFS $gitlfsversion (apt source repository: $aptSourceRepo)"
 }
 
