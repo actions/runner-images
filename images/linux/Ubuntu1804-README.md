@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| [[windows, ubuntu] Az, Azure and AzureRM module preinstallation policy will be changed on March, 29th](https://github.com/actions/virtual-environments/issues/2916) |
+| [[windows, ubuntu] Few outdated Docker images will be removed on April, 12](https://github.com/actions/virtual-environments/issues/3111) |
 ***
 # Ubuntu 18.04.5 LTS
 - Linux kernel version: 5.4.0-1043-azure
-- Image Version: 20210405.1
+- Image Version: 20210412.1
 
 ## Installed Software
 ### Language and Runtime
@@ -16,7 +16,7 @@
 - GNU Fortran 7.5.0, 9.3.0, 10.1.0
 - Julia 1.6.0
 - Mono 6.12.0.122
-- Node 14.16.0
+- Node 14.16.1
 - Perl 5.26.1
 - Python 2.7.17
 - Python3 3.6.9
@@ -26,14 +26,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.5.3
-- Homebrew 3.0.10
+- Homebrew 3.0.11
 - Miniconda 4.9.2
-- Npm 6.14.11
+- Npm 6.14.12
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 0.16.1.0
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<030cfaa>)
+- Vcpkg  (build from master \<fe112d8>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -44,7 +44,7 @@
 
 ### Project Management
 - Ant 1.10.5
-- Gradle 6.8.3
+- Gradle 7.0
 - Maven 3.6.3
 - Sbt 1.5.0
 
@@ -54,19 +54,19 @@
 - AzCopy 10.9.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.0.0
 - Bazelisk 1.7.5
-- Buildah 1.19.6
-- CMake 3.20.0
+- Buildah 1.19.6 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
+- CMake 3.20.1
 - CodeQL Action Bundle 2.5.0
-- Docker Compose 1.28.6
+- Docker Compose 1.29.0
 - Docker-Buildx 0.5.1
 - Docker-Moby Client 20.10.5+azure
 - Docker-Moby Server 20.10.5+azure
-- Git 2.31.1
-- Git LFS 2.13.3
+- Git 2.31.1 (apt source repository: ppa:git-core/ppa)
+- Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.3.1
 - Haveged 1.9.1
-- Heroku 7.51.0
-- HHVM (HipHop VM) 4.103.0
+- Heroku 7.52.0
+- HHVM (HipHop VM) 4.104.0
 - jq 1.5
 - Kind 0.10.0
 - Kubectl 1.20.1-5-g76a04fc
@@ -74,33 +74,33 @@
 - Leiningen 2.9.5
 - MediaInfo 17.12
 - Mercurial 4.5.3
-- Minikube 1.18.1
+- Minikube 1.19.0
 - Newman 5.2.2
 - nvm 0.38.0
 - OpenSSL 1.1.1  11 Sep 2018
-- Packer 1.7.1
+- Packer 1.7.2
 - PhantomJS 2.1.1
-- Podman 3.0.1
+- Podman 3.0.1 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Pulumi 2.24.1
 - R 4.0.5
-- Skopeo 1.2.2
+- Skopeo 1.2.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.9.7
-- Terraform 0.14.9
-- yamllint 1.26.0
+- Terraform 0.14.10
+- yamllint 1.26.1
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.73
-- AWS CLI 1.19.44
+- AWS CLI 1.19.49
 - AWS CLI Session manager plugin 1.2.54.0
-- AWS SAM CLI 1.21.1
+- AWS SAM CLI 1.22.0
 - Azure CLI (azure-cli) 2.21.0
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.8.1
-- Google Cloud SDK 334.0.0
+- Google Cloud SDK 335.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 3.14.0
-- OpenShift CLI 4.7.4
+- Netlify CLI 3.17.0
+- OpenShift CLI 4.7.5
 - ORAS CLI 0.11.1
 - Vercel CLI 21.3.3
 
@@ -121,7 +121,7 @@
 ### Haskell
 - Cabal 3.4.0.0
 - GHC 9.0.1
-- GHCup 0.1.14
+- GHCup 0.1.14.1
 - Stack 2.5.1
 
 ### Rust Tools
@@ -131,18 +131,18 @@
 - Rustup 1.23.1
 
 #### Packages
-- Bindgen 0.58.0
+- Bindgen 0.58.1
 - Cargo audit 0.14.0
 - Cargo clippy 0.1.51
 - Cargo outdated 0.9.14
-- Cbindgen 0.18.0
+- Cbindgen 0.19.0
 - Rustfmt 1.4.36
 
 ### Browsers and Drivers
 - Google Chrome 89.0.4389.114
 - ChromeDriver 89.0.4389.23
 - Mozilla Firefox 87.0
-- Geckodriver 0.29.0
+- Geckodriver 0.29.1
 - Chromium 89.0.4389.0
 
 #### Environment variables
@@ -152,11 +152,11 @@
 | GECKOWEBDRIVER  | /usr/local/share/gecko_driver  |
 
 ### .NET Core SDK
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201
+- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202
 
 ### Databases
-- MongoDB 4.4.4
-- Postgre SQL 13.2
+- MongoDB 4.4.5 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
+- Postgre SQL 13.2 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - sqlite3 3.22.0
 
 #### MySQL
@@ -176,12 +176,12 @@
 - 1.15.11
 
 #### Node.js
-- 10.24.0
-- 12.22.0
-- 14.16.0
+- 10.24.1
+- 12.22.1
+- 14.16.1
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.3]
+- 2.7.18 [PyPy 7.3.4]
 - 3.6.12 [PyPy 7.3.3]
 
 #### Python
@@ -189,15 +189,15 @@
 - 3.5.10
 - 3.6.13
 - 3.7.10
-- 3.8.8
+- 3.8.9
 - 3.9.4
 
 #### Ruby
 - 2.4.10
-- 2.5.8
-- 2.6.6
-- 2.7.2
-- 3.0.0
+- 2.5.9
+- 2.6.7
+- 2.7.3
+- 3.0.1
 
 #### Environment variables
 | Name            | Value                               | Architecture |
@@ -216,7 +216,7 @@
 | Pester     | 5.1.1   |
 
 #### Az PowerShell Modules
-- 5.5.0 3.1.0.zip 4.4.0.zip
+- 5.7.0 3.1.0.zip 4.4.0.zip
 
 ### Web Servers
 | Name    | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -251,19 +251,20 @@
 ### Cached Docker images
 | Repository:Tag         | Digest                                                                   | Created    |
 | ---------------------- | ------------------------------------------------------------------------ | ---------- |
-| alpine:3.10            | sha256:4929878917a37edf0b7f69594552508a3432fe304335dd92be29bbaa839362ed  | 2021-03-31 |
-| alpine:3.7             | sha256:8421d9a84432575381bfabd248f1eb56f3aa21d9d7cd2511583c68c9b7511d10  | 2019-03-07 |
-| alpine:3.8             | sha256:2bb501e6173d9d006e56de5bce2720eb06396803300fe1687b58a7ff32bf4c14  | 2020-01-23 |
-| alpine:3.9             | sha256:414e0518bb9228d35e4cd5165567fb91d26c6a214e9c95899e1e056fcd349011  | 2020-04-24 |
-| buildpack-deps:buster  | sha256:08e16a0f30c3b53918405bfec408efdc5f058136a9715ad6479e503100b1c8ff  | 2021-03-30 |
-| buildpack-deps:stretch | sha256:7e051954f6d8d951be2f555b111bec8835a8c3fc18ad23425a25c7ce141e06b0  | 2021-03-30 |
-| debian:8               | sha256:32ad5050caffb2c7e969dac873bce2c370015c2256ff984b70c1c08b3a2816a0  | 2021-03-26 |
-| debian:9               | sha256:4b9b2ef8de1f3e9531626e8eb3d19e104e9dfde0a2b0f42b763b38235773f48e  | 2021-03-30 |
-| node:10                | sha256:1e8c3b26a17b53b4faabccd886d262ed3c58ceb07b08795783c53ec9403432fa  | 2021-03-31 |
-| node:10-alpine         | sha256:8876535a96d4a8a71b8899851824d93d9595f9a8ae75a534d0076636db4587b3  | 2021-04-01 |
-| node:12                | sha256:1f7e77446431e580974828a59e55d08bcbdb3147e58d9f207215201e5e008258  | 2021-03-31 |
-| node:12-alpine         | sha256:c4e50b1f0f4f86b7f1a2315efc9dea7e2d4152975da6125d1f981d8d0bca09b5  | 2021-04-01 |
-| ubuntu:14.04           | sha256:4a8a6fa8810a3e01352981b35165b0b28403fe2a4e2535e315b23b4a69cd130a  | 2021-03-25 |
+| alpine:3.11            | sha256:bf5fa774f08a9ed2cb301e522b769d43d48124315a4ec50eae3228d03b9dc558  | 2021-03-31 |
+| alpine:3.12            | sha256:834e9309b5ef0f78d8d20ef0652e7b0272fe97b5baf45720e1b830eaf013cc1b  | 2021-03-31 |
+| alpine:3.13            | sha256:ec14c7992a97fc11425907e908340c6c3d6ff602f5f13d899e6b7027c9b4133a  | 2021-03-31 |
+| buildpack-deps:buster  | sha256:da41958eb012d10ac2e9764885e02612dd515df1b455900f3eda81d81a574ca3  | 2021-04-10 |
+| buildpack-deps:stretch | sha256:ea0e73d4d5c3341e1328b58a69f513067c79fd6effd9776fc2d2f8d46e2f6e78  | 2021-04-10 |
+| debian:10              | sha256:ba4a437377a0c450ac9bb634c3754a17b1f814ce6fa3157c0dc9eef431b29d1f  | 2021-04-10 |
+| debian:9               | sha256:c0daa8e312c326ac15721712b8a1e68a5039d725ff47bc25c781921089de0a66  | 2021-04-10 |
+| node:10                | sha256:59531d2835edd5161c8f9512f9e095b1836f7a1fcb0ab73e005ec46047384911  | 2021-04-10 |
+| node:10-alpine         | sha256:8459a952511f363fbb4db57b991608b8d10c0fbd1ed89176f5dce474df1d5db8  | 2021-04-07 |
+| node:12                | sha256:609103746810535f5a3a987a26ba4ce95d96225d28e9d6228faa5aa331980f37  | 2021-04-10 |
+| node:12-alpine         | sha256:3423a5eea6a1151df079c5e94458dbd946cd53bcb75b47954a16af3137731ec7  | 2021-04-07 |
+| ubuntu:16.04           | sha256:bb84bbf2ff36d46acaf0bb0c6bcb33dae64cd93cba8652d74c9aaf438fada438  | 2021-03-25 |
+| ubuntu:18.04           | sha256:122f506735a26c0a1aff2363335412cfc4f84de38326356d31ee00c2cbe52171  | 2021-03-25 |
+| ubuntu:20.04           | sha256:3c9c713e0979e9bd6061ed52ac1e9e1f246c9495aa063619d9d695fb8039aa1f  | 2021-04-03 |
 
 ### Installed apt packages
 | Name              | Version                           |
@@ -324,6 +325,7 @@
 | sphinxsearch      | 2.2.11-2                          |
 | sqlite3           | 3.22.0-1ubuntu0.4                 |
 | ssh               | 1:7.6p1-4ubuntu0.3                |
+| sshpass           | 1.06-1                            |
 | subversion        | 1.9.7-4ubuntu1                    |
 | sudo              | 1.8.21p2-3ubuntu1.4               |
 | swig              | 3.0.12-1                          |
