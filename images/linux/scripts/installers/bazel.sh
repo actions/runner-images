@@ -4,13 +4,12 @@
 ##  Desc:  Installs Bazel and Bazelisk (A user-friendly launcher for Bazel)
 ################################################################################
 
-# Install bazel
-curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
-echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
-apt-get update -y
-apt-get install -y bazel
+source $HELPER_SCRIPTS/install.sh
 
 # Install bazelisk
 npm install -g @bazel/bazelisk
+
+# run bazelisk once in order to instal /usr/local/bin/bazel binary
+bazelisk
 
 invoke_tests "Tools" "Bazel"
