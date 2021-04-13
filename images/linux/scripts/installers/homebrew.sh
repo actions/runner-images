@@ -7,6 +7,7 @@
 
 # Source the helpers
 source $HELPER_SCRIPTS/etc-environment.sh
+source $HELPER_SCRIPTS/install.sh
 
 # Install the Homebrew on Linux
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -24,5 +25,12 @@ setEtcEnvironmentVariable HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS 3650
 # Validate the installation ad hoc
 echo "Validate the installation reloading /etc/environment"
 reloadEtcEnvironment
+
+# Install additional brew packages
+brew_packages=$(get_toolset_value .brew[].name)
+for package in brew_packages; do
+    echo "Install $package"
+    brew install $package
+done
 
 invoke_tests "Tools" "Homebrew"

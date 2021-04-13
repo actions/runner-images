@@ -161,7 +161,6 @@
             "xorriso",
             "xvfb",
             "xz-utils",
-            "zstd",
             "zsync"
         ],
         "cmd_packages": [
@@ -202,6 +201,9 @@
             "zip"
         ]
     },
+    "brew": [
+        {"name": "zstd"}
+    ],
     "docker": {
         "images": [
             "alpine:3.11",
