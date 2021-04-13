@@ -39,12 +39,6 @@
 - RubyGems 3.2.16
 - Yarn 1.22.5
 
-#### Environment variables
-| Name                    | Value                |
-| ----------------------- | -------------------- |
-| CONDA                   | /usr/local/miniconda |
-| VCPKG_INSTALLATION_ROOT |                      |
-
 ### Project Management
 - Apache Ant(TM) 1.10.9
 - Apache Maven 3.8.1
@@ -103,13 +97,6 @@
 - MSEdgeDriver 89.0.774.75
 - Mozilla Firefox 87.0
 - geckodriver 0.29.1 (970ef713fe58 2021-04-08 23:34 +0200)
-
-#### Environment variables
-| Name            | Value                                         |
-| --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/89.0.4389.23 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
-| GECKOWEBDRIVER  | /usr/local/bin                                |
 
 ### Java
 | Version     | Vendor        | Environment Variable |
