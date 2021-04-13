@@ -265,6 +265,6 @@ function Get-YamllintVersion {
 }
 
 function Get-ZstdVersion {
-    $zstdVersion = Run-Command "zstd --version" | Take-Part -Part 1 -Delimiter "v" | Take-Part -Part 0 -Delimiter ","
+    $zstdVersion = zstd --version | Take-Part -Part 1 -Delimiter "v" | Take-Part -Part 0 -Delimiter ","
     return "zstd $zstdVersion"
 }
