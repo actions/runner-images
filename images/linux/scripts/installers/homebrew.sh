@@ -28,7 +28,7 @@ reloadEtcEnvironment
 
 # Install additional brew packages
 brew_packages=$(get_toolset_value .brew[].name)
-for package in brew_packages; do
+for package in $brew_packages; do
     echo "Install $package"
     brew install $package
 done
