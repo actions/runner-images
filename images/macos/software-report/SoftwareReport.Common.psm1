@@ -459,6 +459,11 @@ function Get-StackVersion {
     return "Stack $stackVersion"
 }
 
+function Get-SwiftFormatVersion {
+    $swiftFormatVersion = Run-Command "swiftformat --version"
+    return "SwiftFormat $swiftFormatVersion"
+}
+
 function Get-YamllintVersion {
     $yamllintVersion = Run-Command "yamllint --version"
     return $yamllintVersion

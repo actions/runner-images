@@ -164,7 +164,8 @@ if( -not $os.IsHighSierra) {
         (Get-GHCupVersion),
         (Get-GHCVersion),
         (Get-CabalVersion),
-        (Get-StackVersion)
+        (Get-StackVersion),
+        (Get-SwiftFormatVersion)
     )
 }
 
