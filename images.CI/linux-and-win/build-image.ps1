@@ -44,7 +44,6 @@ packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
                 -var "client_id=$ClientId" `
                 -var "client_secret=$ClientSecret" `
                 -var "install_password=$InstallPassword" `
-                -var "github_feed_token=$GitHubFeedToken" `
                 -var "location=$Location" `
                 -var "resource_group=$ResourceGroup" `
                 -var "storage_account=$StorageAccount" `

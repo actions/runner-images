@@ -75,7 +75,6 @@ jobs:
         -var="vm_password=$(vm-password)" `
         -var="build_id=$(VirtualMachineName)" `
         -var="baseimage_name=${{ parameters.base_image_name }}" `
-        -var="github_feed_token=$(github-feed-token)" `
         -var="xcode_install_user=$(xcode-installation-user)" `
         -var="xcode_install_password=$(xcode-installation-password)" `
         -color=false `

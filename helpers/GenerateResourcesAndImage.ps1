@@ -235,6 +235,5 @@ Function GenerateResourcesAndImage {
         -var "resource_group=$($ResourceGroupName)" `
         -var "storage_account=$($storageAccountName)" `
         -var "install_password=$($InstallPassword)" `
-        -var "github_feed_token=$($GithubFeedToken)" `
         $builderScriptPath
 }
