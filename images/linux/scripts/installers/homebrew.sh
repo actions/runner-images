@@ -31,6 +31,10 @@ brew_packages=$(get_toolset_value .brew[].name)
 for package in $brew_packages; do
     echo "Install $package"
     brew install $package
+    # create symlinks for zstd in /usr/local/bin
+    if [[ $package == "zstd" ]]; then
+        find $(brew --prefix)/bin -name *zstd* -exec sudo sh -c 'ln -s {} /usr/local/bin/$(basename {})' ';'
+    fi
 done
 
 invoke_tests "Tools" "Homebrew"
