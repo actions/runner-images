@@ -122,7 +122,6 @@ Generated tool versions and details can be found in related projects:
 - [Python](https://github.com/actions/python-versions/)
 - [Go](https://github.com/actions/go-versions)
 - [Node](https://github.com/actions/node-versions)
-- [Boost](https://github.com/actions/boost-versions)
 
 ### Post-generation scripts
 The user, created during the image generation, does not exist in the result VHD hence some configuration files related to the user's home directory need to be changed as well as the file permissions for some directories. Scripts for that are located in the `post-generation` folder in the repository:
