@@ -225,6 +225,14 @@ Describe "Homebrew" {
     It "homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
     }
+
+    Context "Packages" {
+        $testCases = (Get-ToolsetContent).brew | ForEach-Object { @{ ToolName = $_.name } }
+
+        It "<ToolName>" -TestCases $testCases {
+           "$ToolName --version" | Should -Not -BeNullOrEmpty
+        }
+    }
 }
 
 Describe "Julia" {

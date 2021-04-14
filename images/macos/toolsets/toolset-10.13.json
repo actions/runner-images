@@ -221,7 +221,7 @@
             "gh",
             "gnupg",
             "gnu-tar",
-            "go",
+            "go@1.15",
             "helm",
             "libpq",
             "llvm",

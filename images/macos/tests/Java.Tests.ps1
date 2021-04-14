@@ -66,10 +66,6 @@ Describe "Java" {
             It "Gradle is installed to /usr/local/bin" {
                 (Get-Command "gradle").Path | Should -BeExactly "/usr/local/bin/gradle"
             }
-        
-            It "Gradle is compatible with init.d plugins" {
-                "cd /tmp && gradle tasks" | Should -ReturnZeroExitCode
-            }
         }
     }
 }
