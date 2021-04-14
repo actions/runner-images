@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| [[windows, ubuntu] Az, Azure and AzureRM module preinstallation policy will be changed on March, 29th](https://github.com/actions/virtual-environments/issues/2916) |
+| [[windows, ubuntu] Few outdated Docker images will be removed on April, 12](https://github.com/actions/virtual-environments/issues/3111) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1817
-- Image Version: 20210404.2
+- Image Version: 20210411.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -14,7 +14,7 @@
 - Bash 4.4.23(1)-release
 - Go 1.15.11
 - Julia 1.6.0
-- Node 14.16.0
+- Node 14.16.1
 - Perl 5.32.1
 - PHP 8.0.3
 - Python 3.7.9
@@ -25,12 +25,12 @@
 - Composer 2.0.12
 - Helm 3.5.3
 - Miniconda 4.9.2
-- NPM 6.14.11
+- NPM 6.14.12
 - NuGet 5.8.1.7021
 - pip 21.0.1 (python 3.7)
 - Pipx 0.16.1.0
 - RubyGems 2.7.6.2
-- Vcpkg  (build from master \<030cfaa>)
+- Vcpkg  (build from master \<fe112d8>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -51,18 +51,18 @@
 - Bazel 4.0.0
 - Bazelisk 1.7.5
 - Cabal 3.4.0.0
-- CMake 3.20.0
+- CMake 3.20.1
 - CodeQL Action Bundle 2.5.0
 - Docker 20.10.0
 - Docker-compose 1.28.5
 - ghc 9.0.1
 - Git 2.31.1
 - Git LFS 2.13.3
-- Google Cloud SDK 334.0.0
+- Google Cloud SDK 335.0.0
 - InnoSetup 6.1.2
 - jq 1.6
 - Kind 0.10.0
-- Kubectl 1.20.5
+- Kubectl 1.21.0
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.2.2
@@ -75,13 +75,13 @@
 - Subversion (SVN) 1.14.1
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
-- yamllint 1.26.0
+- yamllint 1.26.1
 - zstd 1.4.9
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.73
-- AWS CLI 2.1.34
-- AWS SAM CLI 1.21.1
+- AWS CLI 2.1.36
+- AWS SAM CLI 1.22.0
 - AWS Session Manager CLI 1.2.54.0
 - Azure CLI 2.21.0
 - Azure Dev Spaces CLI 1.0.20201219.2
@@ -97,20 +97,20 @@
 - Rustup 1.23.1
 
 #### Packages
-- bindgen 0.58.0
+- bindgen 0.58.1
 - cargo-audit 0.14.0
 - cargo-outdated v0.9.14
-- cbindgen 0.18.0
+- cbindgen 0.19.0
 - Clippy 0.1.51
 - Rustfmt 1.4.36
 
 ### Browsers and webdrivers
 - Google Chrome 89.0.4389.114
 - Chrome Driver 89.0.4389.23
-- Microsoft Edge 89.0.774.68
-- Microsoft Edge Driver 89.0.774.68
+- Microsoft Edge 89.0.774.75
+- Microsoft Edge Driver 89.0.774.75
 - Mozilla Firefox 87.0
-- Gecko Driver 0.29.0
+- Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
 
 #### Environment variables
@@ -157,9 +157,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
-| 10.24.0 | x64          |
-| 12.22.0 | x64          |
-| 14.16.0 | x64          |
+| 10.24.1 | x64          |
+| 12.22.1 | x64          |
+| 14.16.1 | x64          |
 
 
 #### Python
@@ -169,7 +169,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.5.4   | x64, x86     |
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
-| 3.8.8   | x64, x86     |
+| 3.8.9   | x64, x86     |
 | 3.9.4   | x64, x86     |
 
 
@@ -209,7 +209,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 4.4.4.0 | MongoDB     | Running       | Automatic        |
+| 4.4.5.0 | MongoDB     | Running       | Automatic        |
 
 
 
@@ -482,20 +482,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201
+- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
 - 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4
+- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -508,7 +508,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                              | Path                           |
 | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.6.0.zip<br>4.7.0.zip<br>5.5.0 | C:\Modules\az_\<version\>      |
+| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.7.0 | C:\Modules\az_\<version\>      |
 | Azure   | 3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>2.1.0 [Installed]<br>5.3.0                                                                                    | C:\Modules\azure_\<version\>   |
 | AzureRM | 3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>6.7.0.zip<br>2.1.0 [Installed]<br>6.13.1                                                                      | C:\Modules\azurerm_\<version\> |
 ```
@@ -559,9 +559,9 @@ All other versions are saved but not installed.
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
 | mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:953245d144c00acd448ae1d85814d95a7c3064a5c0675cadc78e9860a32a071b  | 2021-03-09 |
 | mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:4d5dc01599c02124bcd5f7778753ea6f8369c6fdd5c39da88f5ac91e37e352e6  | 2021-03-09 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:a874ab90088183363e74257e163cf3c8494d35561bf074c64de4bac5566ebddd  | 2021-03-09 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:def85061f840b63c4e45019ba716a4b35649ecba2e273621d6e80c8640ceff4c  | 2021-02-26 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:acae9dedd8ce6fbc624e8c4b52555a9d3201eb47aacd45b4a00e0d81083b4cab  | 2021-02-27 |
-| microsoft/aspnetcore-build:1.0-2.0                                        | sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c  | 2018-08-15 |
 
 
 
