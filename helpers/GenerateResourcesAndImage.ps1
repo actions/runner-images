@@ -117,6 +117,12 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [string] $AzureTenantId,
         [Parameter(Mandatory = $False)]
+        [string] $PrivateVirtualNetworkWithPublicIp,
+        [Parameter(Mandatory = $False)]
+        [string] $VirtualNetworkSubnetName,
+        [Parameter(Mandatory = $False)]
+        [string] VirtualNetworkResourceGroupName,
+        [Parameter(Mandatory = $False)]
         [Switch] $Force
     )
 
@@ -236,5 +242,8 @@ Function GenerateResourcesAndImage {
         -var "storage_account=$($storageAccountName)" `
         -var "install_password=$($InstallPassword)" `
         -var "github_feed_token=$($GithubFeedToken)" `
+        -var "private_virtual_network_with_public_ip=$($PrivateVirtualNetworkWithPublicIp)" `
+        -var "virtual_network_subnet_name=$($VirtualNetworkSubnetName)" `
+        -var "virtual_network_resource_group_name=$($VirtualNetworkResourceGroupName)" `
         $builderScriptPath
 }
