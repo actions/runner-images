@@ -15,7 +15,7 @@ Please note that this project is released with a [Contributor Code of Conduct][c
 1. [Fork][fork] and clone the repository
 1. Create a new branch: `git checkout -b my-branch-name`
 1. Make your changes, ensure that they include steps to install, validate post-install and update software report (please see [How to add new tool](CONTRIBUTING.md#how-to-add-new-tool) for details).
-1. Test your changes by [creating VHD and deploying a VM](help/CreateImageAndAzureResources.md).
+1. Test your changes by [creating VHD and deploying a VM](docs/create-image-and-azure-resources.md).
 1. Push to your fork and [submit a pull request][pr]
 
 Here are a few things you can do that will increase the likelihood of your pull request being accepted:

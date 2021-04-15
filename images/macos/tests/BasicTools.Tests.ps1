@@ -18,6 +18,12 @@ Describe "Subversion" {
     }
 }
 
+Describe "SwiftFormat" {
+    It "SwiftFormat" {
+        "swiftformat --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Go" {
     It "Go" {
         "go version" | Should -ReturnZeroExitCode
