@@ -7,6 +7,8 @@ export ANDROID_SDK_ROOT=${HOME}/Library/Android/sdk
 export ANDROID_NDK_HOME=${ANDROID_HOME}/ndk-bundle
 export ANDROID_NDK_ROOT=${ANDROID_HOME}/ndk-bundle
 
+export VM_ASSETS=/usr/local/opt/$USER/scripts
+
 export NUNIT_BASE_PATH=/Library/Developer/nunit
 export NUNIT3_PATH=/Library/Developer/nunit/3.6.0
 

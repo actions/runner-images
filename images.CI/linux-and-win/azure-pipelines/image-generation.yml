@@ -51,8 +51,8 @@ jobs:
                         -Location $(AZURE_LOCATION) `
                         -VirtualNetworkName $(BUILD_AGENT_VNET_NAME) `
                         -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
-                        -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME) `
-                        -GitHubFeedToken $(GITHUB_TOKEN)
+                        -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME)
+
     env:
       PACKER_LOG: 1
       PACKER_LOG_PATH: $(Build.ArtifactStagingDirectory)/packer-log.txt

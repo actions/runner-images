@@ -80,9 +80,6 @@ Function GenerateResourcesAndImage {
         .PARAMETER Force
             Delete the resource group if it exists without user confirmation.
 
-        .PARAMETER GithubFeedToken
-            GitHub PAT to download tool packages from GitHub Package Registry
-
         .PARAMETER AzureClientId
             Client id needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
 
@@ -112,8 +109,6 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [int] $SecondsToWaitForServicePrincipalSetup = 30,
         [Parameter(Mandatory = $False)]
-        [string] $GithubFeedToken,
-        [Parameter(Mandatory = $False)]
         [string] $AzureClientId,
         [Parameter(Mandatory = $False)]
         [string] $AzureClientSecret,
@@ -124,12 +119,6 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [Switch] $Force
     )
-
-    if ([string]::IsNullOrEmpty($GithubFeedToken))
-    {
-        Write-Error "'-GithubFeedToken' parameter is not specified. You have to specify valid GitHub PAT to download tool packages from GitHub Package Registry"
-        exit 1
-    }
 
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
@@ -245,7 +234,6 @@ Function GenerateResourcesAndImage {
         -var "resource_group=$($ResourceGroupName)" `
         -var "storage_account=$($storageAccountName)" `
         -var "install_password=$($InstallPassword)" `
-        -var "github_feed_token=$($GithubFeedToken)" `
         -var "allowed_inbound_ip_addresses=$($AgentIp)" `
         $builderScriptPath
 }

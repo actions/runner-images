@@ -251,6 +251,7 @@
             "parallel",
             "perl",
             "subversion",
+            "swiftformat",
             "xctool",
             "zstd"
         ],

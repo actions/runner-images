@@ -130,7 +130,8 @@ $toolsList = @(
     (Get-PulumiVersion),
     (Get-RVersion),
     (Get-SphinxVersion),
-    (Get-TerraformVersion)
+    (Get-TerraformVersion),
+    (Get-ZstdVersion)
 )
 
 if (-not (Test-IsUbuntu16)) {
