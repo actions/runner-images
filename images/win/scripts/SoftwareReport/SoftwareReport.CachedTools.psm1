@@ -52,6 +52,9 @@ function Get-PyPyMarkdown
     {
         $Instance."PyPy Version" = @()
         $Instance."Python Version" = $Instance.Version
+        # PyPy x64 is installed but it is placed in x86 folder
+        # to keep backward compatibility with tasks
+        $Instance."Architecture" = "x64"
         foreach ($Arch in $Instance.Architecture_Array)
         {
             $pythonExePath = Join-Path $Instance.Path $Arch | Join-Path -ChildPath "python.exe"
