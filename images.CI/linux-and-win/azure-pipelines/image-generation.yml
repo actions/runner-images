@@ -52,7 +52,7 @@ jobs:
                         -VirtualNetworkName $(BUILD_AGENT_VNET_NAME) `
                         -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
                         -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME) `
-                        -GitHubFeedToken $(GITHUB_TOKEN)
+
     env:
       PACKER_LOG: 1
       PACKER_LOG_PATH: $(Build.ArtifactStagingDirectory)/packer-log.txt
