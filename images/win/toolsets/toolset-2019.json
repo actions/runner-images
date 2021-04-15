@@ -45,7 +45,7 @@
         {
             "name": "PyPy",
             "arch": "x86",
-            "platform" : "win32",
+            "platform" : "win64",
             "versions": [
                 "2.7",
                 "3.6",
