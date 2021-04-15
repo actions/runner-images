@@ -135,6 +135,7 @@
             "packer",
             "perl",
             "subversion",
+            "swiftformat",
             "zstd"
         ],
         "cask_packages": [

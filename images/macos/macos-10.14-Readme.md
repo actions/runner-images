@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[macOS] Az modules will be upgraded from 4.8.0 to 5.7.0 on April, 12](https://github.com/actions/virtual-environments/issues/3129) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 10.14 info
 - System Version: macOS 10.14.6 (18G8022)
 - Kernel Version: Darwin 18.7.0
-- Image Version: 20210405.1
+- Image Version: 20210413.1
 
 ## Installed Software
 ### Language and Runtime
@@ -14,36 +15,36 @@
 - Clang/LLVM 11.0.0 is default
 - Clang/LLVM 11.1.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - gcc-10 (Homebrew GCC 10.2.0_4) 10.2.0 - available by `gcc-10` alias
-- gcc-8 (Homebrew GCC 8.4.0_2) 8.4.0 - available by `gcc-8` alias
-- gcc-9 (Homebrew GCC 9.3.0_1) 9.3.0 - available by `gcc-9` alias
+- gcc-8 (Homebrew GCC 8.4.0_3) 8.4.0 - available by `gcc-8` alias
+- gcc-9 (Homebrew GCC 9.3.0_2) 9.3.0 - available by `gcc-9` alias
 - GNU Fortran (Homebrew GCC 10.2.0_4) 10.2.0  - available by `gfortran-10` alias
-- GNU Fortran (Homebrew GCC 8.4.0_2) 8.4.0  - available by `gfortran-8` alias
-- GNU Fortran (Homebrew GCC 9.3.0_1) 9.3.0  - available by `gfortran-9` alias
+- GNU Fortran (Homebrew GCC 8.4.0_3) 8.4.0  - available by `gfortran-8` alias
+- GNU Fortran (Homebrew GCC 9.3.0_2) 9.3.0  - available by `gfortran-9` alias
 - Go 1.15.11
 - julia 1.6.0
 - Node.js v8.17.0
-- NVM - Cached node versions: v10.24.0 v12.22.0 v14.16.0
+- NVM - Cached node versions: v10.24.1 v12.22.1 v14.16.1
 - NVM 0.38.0
 - Perl 5.32.1
 - PHP 8.0.3
 - Python 2.7.18
-- Python 3.9.2
+- Python 3.9.4
 - R 4.0.5
-- Ruby 2.7.2p137
+- Ruby 2.7.3p183
 
 ### Package Management
-- Bundler version 2.2.15
+- Bundler version 2.2.16
 - Carthage 0.37.0
 - CocoaPods 1.10.1
 - Composer 2.0.12
-- Homebrew 3.0.10
+- Homebrew 3.1.1
 - Miniconda 4.9.2
 - NPM 3.10.10
 - NuGet 4.7.0.5148
 - Pip 20.3.4 (python 2.7)
 - Pip 21.0.1 (python 3.9)
 - Pipx 0.16.1.0
-- RubyGems 3.2.15
+- RubyGems 3.2.16
 - Yarn 1.22.5
 
 #### Environment variables
@@ -55,7 +56,7 @@
 ### Project Management
 - Apache Ant(TM) 1.10.9
 - Apache Maven 3.8.1
-- Gradle 6.8.3
+- Gradle 7.0
 
 ### Utilities
 - 7-Zip 17.04
@@ -75,10 +76,10 @@
 - helm v3.5.3+g041ce5a
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v4.4.3
-- mongod v4.4.3
+- mongo v4.4.4
+- mongod v4.4.4
 - OpenSSL 1.1.1k  25 Mar 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1k)`
-- Packer 1.7.1
+- Packer 1.7.2
 - PostgreSQL 13.2
 - psql (PostgreSQL) 13.2
 - Subversion (SVN) 1.14.1
@@ -90,31 +91,31 @@
 ### Tools
 - Aliyun CLI 3.0.73
 - App Center CLI 1.2.2
-- AWS CLI 2.1.34
-- AWS SAM CLI 1.21.1
+- AWS CLI 2.1.37
+- AWS SAM CLI 1.22.0
 - AWS Session Manager CLI 1.2.30.0
-- Azure CLI 2.21.0
+- Azure CLI 2.22.0
 - Cabal 3.4.0.0
-- Cmake 3.20.0
-- Fastlane 2.179.0
+- Cmake 3.20.1
+- Fastlane 2.180.1
 - GHC 9.0.1
-- GHCup v0.1.14
+- GHCup v0.1.14.1
 - Stack 2.5.1
 - Xcode Command Line Tools 10.3.0.0.1.1562985497
 
 ### Linters
 - SwiftLint 0.43.1
-- yamllint 1.26.0
+- yamllint 1.26.1
 
 ### Browsers
 - Safari 14.0.3 (14610.4.3.1.7)
 - SafariDriver 14.0.3 (14610.4.3.1.7)
-- Google Chrome 89.0.4389.114 
+- Google Chrome 89.0.4389.128 
 - ChromeDriver 89.0.4389.23
-- Microsoft Edge 89.0.774.63 
-- MSEdgeDriver 89.0.774.68
+- Microsoft Edge 89.0.774.75 
+- MSEdgeDriver 89.0.774.76
 - Mozilla Firefox 87.0
-- geckodriver 0.29.0
+- geckodriver 0.29.1
 
 #### Environment variables
 | Name            | Value                                         |
@@ -135,27 +136,27 @@
 ### Cached Tools
 #### Ruby
 - 2.4.10
-- 2.5.8
-- 2.6.6
-- 2.7.2
-- 3.0.0
+- 2.5.9
+- 2.6.7
+- 2.7.3
+- 3.0.1
 
 #### Python
 - 2.7.18
 - 3.5.10
 - 3.6.13
 - 3.7.10
-- 3.8.8
+- 3.8.9
 - 3.9.4
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.3]
+- 2.7.18 [PyPy 7.3.4]
 - 3.6.12 [PyPy 7.3.3]
 
 #### Node.js
-- 10.24.0
-- 12.22.0
-- 14.16.0
+- 10.24.1
+- 12.22.1
+- 14.16.1
 
 #### Go
 - 1.13.15
@@ -170,10 +171,10 @@
 - Rustup 1.23.1
 
 #### Packages
-- Bindgen 0.58.0
+- Bindgen 0.58.1
 - Cargo-audit 0.14.0
 - Cargo-outdated v0.9.14
-- Cbindgen 0.18.0
+- Cbindgen 0.19.0
 - Clippy 0.1.51
 - Rustfmt 1.4.36-stable
 
@@ -183,7 +184,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 4.8.0   |
+| Az               | 5.7.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.1.1   |
 | PSScriptAnalyzer | 1.19.1  |
@@ -192,82 +193,32 @@
 #### Visual Studio for Mac
 - 8.5.0.3183
 
-#### Mono
-- 6.8.0.123
-- 6.6.0.166
-- 6.4.0.208
-- 6.0.0.334
-- 5.18.1.3
-- 5.16.1.0
-- 5.12.0.309
-- 5.10.1.57
-- 5.8.1.0
-- 5.4.1.7
-- 5.2.0.224
-- 5.0.1.1
-- 4.8.1
-
-#### Xamarin.iOS
-- 13.14.1.39
-- 13.10.0.21
-- 13.8.3.0
-- 13.6.0.12
-- 13.4.0.2
-- 13.2.0.47
-- 12.14.0.114
-- 12.10.0.157
-- 12.8.0.2
-- 12.6.0.25
-- 12.2.1.16
-- 12.0.0.15
-- 11.14.0.13
-- 11.12.0.4
-- 11.9.1.24
-- 11.8.0.20
-- 11.6.1.4
-- 11.2.0.11
-- 11.0.0.0
-- 10.10.0.36
-- 10.6.0.10
-
-#### Xamarin.Mac
-- 6.14.1.39
-- 6.10.0.21
-- 6.8.3.0
-- 6.6.0.12
-- 6.4.0.2
-- 6.2.0.47
-- 5.16.1.24
-- 5.10.0.157
-- 5.8.0.0
-- 5.6.0.25
-- 5.3.1.28
-- 5.2.1.16
-- 4.6.0.13
-- 4.4.1.193
-- 4.2.1.28
-- 4.0.0.216
-- 3.8.0.49
-- 3.6.3.3
-- 3.4.0.36
-- 3.0.0.398
-
-#### Xamarin.Android
-- 10.2.0
-- 10.1.3
-- 10.0.6
-- 9.4.1
-- 9.3.0
-- 9.2.3
-- 9.1.8
-- 9.0.0
-- 8.3.3
-- 8.2.0
-- 8.1.5
-- 8.0.0
-- 7.4.5
-- 7.3.1
-- 7.1.0
+#### Xamarin bundles
+| symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
+| ---------------- | ------------ | ----------- | ----------- | --------------- |
+| 6_8_0            | 6.8          | 13.14       | 6.14        | 10.2            |
+| 6_6_1            | 6.6          | 13.10       | 6.10        | 10.1            |
+| 6_6_0            | 6.6          | 13.8        | 6.8         | 10.1            |
+| 6_4_2            | 6.4          | 13.6        | 6.6         | 10.0            |
+| 6_4_1            | 6.4          | 13.4        | 6.4         | 10.0            |
+| 6_4_0            | 6.4          | 13.2        | 6.2         | 10.0            |
+| 6_0_0            | 6.0          | 12.14       | 5.16        | 9.4             |
+| 5_18_3           | 5.18         | 12.10       | 5.10        | 9.3             |
+| 5_18_2           | 5.18         | 12.8        | 5.8         | 9.2             |
+| 5_18_1           | 5.18         | 12.6        | 5.6         | 9.2             |
+| 5_16_0_0         | 5.16         | 12.2        | 5.2         | 9.1             |
+| 5_16_0           | 5.16         | 12.2        | 5.2         | 9.1             |
+| 5_12_0_3         | 5.12         | 12.2        | 5.3         | 9.0             |
+| 5_12_0_XC10_PRE  | 5.12         | 12.0        | 5.2         | 9.0             |
+| 5_12_0 (default) | 5.12         | 11.14       | 4.6         | 9.0             |
+| 5_10_1           | 5.10         | 11.12       | 4.4         | 8.3             |
+| 5_8_1            | 5.8          | 11.9        | 4.2         | 8.2             |
+| 5_8_0            | 5.8          | 11.8        | 4.2         | 8.2             |
+| 5_4_1            | 5.4          | 11.6        | 4.0         | 8.1             |
+| 5_4_0            | 5.4          | 11.2        | 3.8         | 8.0             |
+| 5_2_0            | 5.2          | 11.0        | 3.6         | 7.4             |
+| Legacy_5_0_1     | 5.0          | 10.10       | 3.4         | 7.3             |
+| Legacy_4_8_1     | 4.8          | 10.6        | 3.0         | 7.1             |
 
 #### Unit Test Framework
 - NUnit 3.6.1
@@ -291,7 +242,7 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.6.8
-- Nomad CLI 3.2.15
+- Nomad CLI 3.2.16
 - Nomad CLI IPA ipa 0.14.3
 - xctool 0.3.7
 
