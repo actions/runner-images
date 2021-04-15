@@ -51,7 +51,7 @@ jobs:
                         -Location $(AZURE_LOCATION) `
                         -VirtualNetworkName $(BUILD_AGENT_VNET_NAME) `
                         -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
-                        -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME) `
+                        -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME)
 
     env:
       PACKER_LOG: 1
