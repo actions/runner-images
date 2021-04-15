@@ -89,7 +89,9 @@ foreach($pypyTool in $pypyTools)
     foreach($pypyVersion in $pypyTool.versions)
     {
         # Query latest PyPy version
-        $filter = '{0}{1}-v\d+\.\d+\.\d+-{2}.zip' -f $pypyTool.name, $pypyVersion, $pypyTool.platform
+        # PyPy 3.6 is not updated anymore and win32 should be used
+        $platform = if ($pypyVersion -like "3.6*") { "win32" } else { $pypyTool.platform }
+        $filter = '{0}{1}-v\d+\.\d+\.\d+-{2}.zip' -f $pypyTool.name, $pypyVersion, $platform
         $latestMajorPyPyVersion = $pypyVersions | Where-Object {$_.name -match $filter} | Select-Object -First 1
 
         if ($latestMajorPyPyVersion)
