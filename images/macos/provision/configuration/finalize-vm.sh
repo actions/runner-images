@@ -22,6 +22,8 @@ mv $HOME/image-generation/assets/* /usr/local/opt/$USER/scripts
 
 find /usr/local/opt/$USER/scripts -type f -name "*\.sh" -exec chmod +x {} \;
 
+echo "export VM_ASSETS=/usr/local/opt/$USER/scripts" >> "$HOME/.bashrc"
+
 # Clean up npm cache which collected during image-generation
 # we have to do that here because `npm install` is run in a few different places during image-generation
 npm cache clean --force
