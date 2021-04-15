@@ -263,3 +263,8 @@ function Get-SphinxVersion {
 function Get-YamllintVersion {
     return "$(yamllint --version)"
 }
+
+function Get-ZstdVersion {
+    $zstdVersion = zstd --version | Take-OutputPart -Part 1 -Delimiter "v" | Take-OutputPart -Part 0 -Delimiter ","
+    return "zstd $zstdVersion (homebrew)"
+}
