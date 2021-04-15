@@ -92,6 +92,9 @@ Function GenerateResourcesAndImage {
         .PARAMETER AzureTenantId
             Tenant needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
 
+        .PARAMETER RestrictToAgentIpAddress
+            If set, access to the VM used by packer to generate the image is restricted to the public IP address this script is run from
+
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1604 -AzureLocation "East US"
     #>
@@ -117,11 +120,7 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [string] $AzureTenantId,
         [Parameter(Mandatory = $False)]
-        [string] $PrivateVirtualNetworkWithPublicIp,
-        [Parameter(Mandatory = $False)]
-        [string] $VirtualNetworkSubnetName,
-        [Parameter(Mandatory = $False)]
-        [string] VirtualNetworkResourceGroupName,
+        [Switch] $RestrictToAgentIpAddress,
         [Parameter(Mandatory = $False)]
         [Switch] $Force
     )
@@ -232,6 +231,11 @@ Function GenerateResourcesAndImage {
         throw "'packer' binary is not found on PATH"
     }
 
+    if($RestrictToAgentIpAddress -eq $true) {
+        $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
+        echo "Restricting access to packer generated VM to agent IP Address: $AgentIp"
+    }
+
     & $packerBinary build -on-error=ask `
         -var "client_id=$($spClientId)" `
         -var "client_secret=$($ServicePrincipalClientSecret)" `
@@ -242,8 +246,6 @@ Function GenerateResourcesAndImage {
         -var "storage_account=$($storageAccountName)" `
         -var "install_password=$($InstallPassword)" `
         -var "github_feed_token=$($GithubFeedToken)" `
-        -var "private_virtual_network_with_public_ip=$($PrivateVirtualNetworkWithPublicIp)" `
-        -var "virtual_network_subnet_name=$($VirtualNetworkSubnetName)" `
-        -var "virtual_network_resource_group_name=$($VirtualNetworkResourceGroupName)" `
+        -var "allowed_inbound_ip_addresses=$($AgentIp)" `
         $builderScriptPath
 }
