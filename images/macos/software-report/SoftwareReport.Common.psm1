@@ -156,6 +156,14 @@ function Get-PHPVersion {
     return $PHPVersion
 }
 
+function Get-MSBuildVersion {
+    $msbuildVersion = msbuild -version | Select-Object -Last 1
+    $result = Select-String -Path (Get-Command msbuild).Source -Pattern "msbuild"
+    $result -match "(?<path>\/\S*\.dll)" | Out-Null
+    $msbuildPath = $Matches.path
+    return "MSBuild $msbuildVersion (from $msbuildPath)"
+}
+
 function Get-NodeVersion {
     $nodeVersion = Run-Command "node --version"
     return "Node.js $nodeVersion"
