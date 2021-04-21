@@ -127,10 +127,10 @@ if (Test-IsWin16) {
     Choco-Install -PackageName vcredist140
 }
 
-if (Test-IsWin19) {
-    # Install vcredist2010
-    Choco-Install -PackageName vcredist2010
-}
+#if (Test-IsWin19) {
+#    # Install vcredist2010
+#    Choco-Install -PackageName vcredist2010
+#}
 
 # Initialize environmental variable ChocolateyToolsLocation by invoking choco Get-ToolsLocation function
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force

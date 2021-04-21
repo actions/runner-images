@@ -271,23 +271,18 @@
         ],
         "vsix": [
             {
-                "name": "Microsoft Analysis Services Projects",
                 "url": "https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftAnalysisServicesModelingProjects"
             },
             {
-                "name": "SQL Server Integration Services Projects",
                 "url": "https://marketplace.visualstudio.com/items?itemName=SSIS.SqlServerIntegrationServicesProjects"
             },
             {
-                "name": "Microsoft Reporting Services Projects",
                 "url": "https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftReportProjectsforVisualStudio"
             },
             {
-                "name": "Microsoft Visual Studio Installer Projects",
                 "url": "https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects"
             },
             {
-                "name": "BizTalk Server",
                 "url": "https://marketplace.visualstudio.com/items?itemName=ms-biztalk.BizTalk"
             }
         ]

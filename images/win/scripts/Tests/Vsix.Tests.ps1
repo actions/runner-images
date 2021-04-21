@@ -4,7 +4,7 @@ Describe "Vsix" {
 
     $allPackages = (Get-VSSetupInstance | Select-VsSetupInstance -Product *).Packages
     $testCases = $requiredVsixs | ForEach-Object {
-        $vsix = Get-VsixExtenstionFromMarketplace -MarketplaceUri $_.url -ExtensionName $_.name
+        $vsix = Get-VsixExtenstionFromMarketplace -MarketplaceUri $_.url
         @{
             VsixName = $vsix.ExtensionName
             VsixId = $vsix.VsixId

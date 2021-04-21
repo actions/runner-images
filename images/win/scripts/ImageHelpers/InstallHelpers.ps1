@@ -201,24 +201,25 @@ function Start-DownloadWithRetry
 function Get-VsixExtenstionFromMarketplace {
     Param
     (
-        [string] $MarketplaceUri,
-        [string] $ExtensionName
+        [string] $MarketplaceUri
     )
 
     $request = Invoke-WebRequest -Uri $MarketplaceUri -UseBasicParsing
+    $request -match "UniqueIdentifierValue`":`"(?<extensionname>[^`"]*)"
+    $ExtensionName = $Matches.extensionname
+    $request -match "VsixId`":`"(?<vsixid>[^`"]*)"
+    $vsixId = $Matches.vsixid
     $request -match "`"AssetUri`":`"(?<uri>[^`"]*)" | Out-Null
     $assetUri = $Matches.uri
     $request -match "`"Microsoft\.VisualStudio\.Services\.Payload\.FileName`":`"(?<filename>[^`"]*)" | Out-Null
     $fileName = $Matches.filename
-    $request -match "VsixId`":`"(?<vsixid>[^`"]*)"
-    $vsixId = $Matches.vsixid
-    $cdnUri = $assetUri + "/" + $fileName
+    $DownloadUri = $assetUri + "/" + $fileName
 
     return [PSCustomObject] @{
         "ExtensionName" = $ExtensionName
         "VsixId" = $vsixId
         "FileName" = $fileName
-        "CdnUri" = $cdnUri
+        "CdnUri" = $DownloadUri
     }
 }
 
