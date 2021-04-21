@@ -3,7 +3,13 @@ Describe "Vsix" {
     $requiredVsixs = $toolset.visualStudio.vsix
 
     $allPackages = (Get-VSSetupInstance | Select-VsSetupInstance -Product *).Packages
-    $testCases = $requiredVsixs | ForEach-Object { @{ VsixId = $_.Id;  AllPackages = $allPackages }}
+    $testCases = $requiredVsixs | ForEach-Object {
+        $vsixId = (Get-VsixExtenstionFromMarketplace -MarketplaceUri $_.url).VsixId
+        @{
+            VsixId = $vsixId
+            AllPackages = $allPackages
+        }
+    }
     if ($testCases.Count -gt 0) {
         It "Extension <VsixId>" -TestCases $testCases {
             $objVsix = $AllPackages | Where-Object { $_.id -eq $VsixId }

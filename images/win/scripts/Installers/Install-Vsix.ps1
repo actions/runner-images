@@ -13,14 +13,8 @@ if (-not $vsixPackagesList) {
 $vsVersion = $toolset.visualStudio.Version
 $vsixPackagesList | ForEach-Object {
     # Retrieve cdn endpoint to avoid HTTP error 429 https://github.com/actions/virtual-environments/issues/3074 
-    $request = Invoke-WebRequest -Uri $_.url -UseBasicParsing
-    $request -match "`"AssetUri`":`"(?<uri>https:\/\/\S*\.vsassets\.io\S*\/\d*)`""
-    $assetUri = $Matches.uri
-    $request -match "`"Microsoft\.VisualStudio\.Services\.Payload\.FileName`":`"(?<filename>\S*\.(?:vsix|exe))`""
-    $fileName = $Matches.filename
-    $cdnUri = $assetUri + "/" + $fileName
-    Write-Host "Installing $fileName extension from $cdnUri"
-    Install-VsixExtension -Url $cdnUri -Name $fileName -VSversion $vsVersion
+    $vsixPackage = Get-VsixExtenstionFromMarketplace -MarketplaceUri $_.url
+    Install-VsixExtension -Url $vsixPackage.CdnUri -Name $vsixPackage.FileName -VSversion $vsVersion
 }
 
 Invoke-PesterTests -TestFile "Vsix"

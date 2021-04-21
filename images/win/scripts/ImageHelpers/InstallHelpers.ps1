@@ -198,6 +198,28 @@ function Start-DownloadWithRetry
     return $filePath
 }
 
+function Get-VsixExtenstionFromMarketplace {
+    Param
+    (
+        [string] $MarketplaceUri
+    )
+
+    $request = Invoke-WebRequest -Uri $MarketplaceUri -UseBasicParsing
+    $request -match "`"AssetUri`":`"(?<uri>[^`"]*)" | Out-Null
+    $assetUri = $Matches.uri
+    $request -match "`"Microsoft\.VisualStudio\.Services\.Payload\.FileName`":`"(?<filename>[^`"]*)" | Out-Null
+    $fileName = $Matches.filename
+    $request -match "VsixId`":`"(?<vsixid>[^`"]*)"
+    $vsixId = $Matches.vsixid
+    $cdnUri = $assetUri + "/" + $fileName
+
+    return [PSCustomObject] @{
+        "VsixId" = $vsixId
+        "FileName" = $fileName
+        "CdnUri" = $cdnUri
+    }
+}
+
 function Install-VsixExtension
 {
     Param
