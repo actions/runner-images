@@ -90,7 +90,8 @@ Function GenerateResourcesAndImage {
             Tenant needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
 
         .PARAMETER RestrictToAgentIpAddress
-            If set, access to the VM used by packer to generate the image is restricted to the public IP address this script is run from. This parameter cannot be used in combination with the virtual_network_name packer parameter.
+            If set, access to the VM used by packer to generate the image is restricted to the public IP address this script is run from. 
+            This parameter cannot be used in combination with the virtual_network_name packer parameter.
 
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1604 -AzureLocation "East US"
