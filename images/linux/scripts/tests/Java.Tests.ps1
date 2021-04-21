@@ -18,9 +18,21 @@ Describe "Java" {
         @{ ToolName = "javac" }
         @{ ToolName = "mvn" }
         @{ ToolName = "ant" }
+    ) {
+        "$ToolName -version" | Should -ReturnZeroExitCode
+    }
+
+    It "Gradle" -TestCases @(
         @{ ToolName = "gradle" }
     ) {
         "$ToolName -version" | Should -ReturnZeroExitCode
+
+        $gradleVariableValue = Get-EnvironmentVariable "GRADLE_HOME"
+        $gradleVariableValue | Should -BeLike "/usr/share/gradle-*"
+
+        $gradlePath = Join-Path $env:GRADLE_HOME "bin/gradle"
+        $result = Get-CommandResult "`"$GradlePath`" -version"
+        $result.ExitCode | Should -Be 0
     }
 
     It "Java <Version>" -TestCases $jdkVersions {
