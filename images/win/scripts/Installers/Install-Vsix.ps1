@@ -19,6 +19,7 @@ $vsixPackagesList | ForEach-Object {
     $request -match "`"Microsoft\.VisualStudio\.Services\.Payload\.FileName`":`"(?<filename>\S*\.(?:vsix|exe))`""
     $fileName = $Matches.filename
     $cdnUri = $assetUri + "/" + $fileName
+    Write-Host "Installing $fileName extension from $cdnUri"
     Install-VsixExtension -Url $cdnUri -Name $fileName -VSversion $vsVersion
 }
 
