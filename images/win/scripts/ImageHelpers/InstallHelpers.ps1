@@ -201,7 +201,8 @@ function Start-DownloadWithRetry
 function Get-VsixExtenstionFromMarketplace {
     Param
     (
-        [string] $MarketplaceUri
+        [string] $MarketplaceUri,
+        [string] $ExtensionName
     )
 
     $request = Invoke-WebRequest -Uri $MarketplaceUri -UseBasicParsing
@@ -214,6 +215,7 @@ function Get-VsixExtenstionFromMarketplace {
     $cdnUri = $assetUri + "/" + $fileName
 
     return [PSCustomObject] @{
+        "ExtensionName" = $ExtensionName
         "VsixId" = $vsixId
         "FileName" = $fileName
         "CdnUri" = $cdnUri

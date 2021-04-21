@@ -4,14 +4,15 @@ Describe "Vsix" {
 
     $allPackages = (Get-VSSetupInstance | Select-VsSetupInstance -Product *).Packages
     $testCases = $requiredVsixs | ForEach-Object {
-        $vsixId = (Get-VsixExtenstionFromMarketplace -MarketplaceUri $_.url).VsixId
+        $vsix = Get-VsixExtenstionFromMarketplace -MarketplaceUri $_.url -ExtensionName $_.name
         @{
-            VsixId = $vsixId
+            VsixName = $vsix.ExtensionName
+            VsixId = $vsix.VsixId
             AllPackages = $allPackages
         }
     }
     if ($testCases.Count -gt 0) {
-        It "Extension <VsixId>" -TestCases $testCases {
+        It "Extension <VsixName>" -TestCases $testCases {
             $objVsix = $AllPackages | Where-Object { $_.id -eq $VsixId }
             $objVsix | Should -Not -BeNullOrEmpty
         }
