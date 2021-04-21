@@ -271,27 +271,22 @@
         ],
         "vsix": [
             {
-                "name": "Microsoft.DataTools.AnalysisServices.vsix",
                 "url": "https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftAnalysisServicesModelingProjects",
                 "id": "04a86fc2-dbd5-4222-848e-911638e487fe"
             },
             {
-                "name": "Microsoft.DataTools.IntegrationServices.exe",
                 "url": "https://marketplace.visualstudio.com/items?itemName=SSIS.SqlServerIntegrationServicesProjects",
                 "id": "851E7A09-7B2B-4F06-A15D-BABFCB26B970"
             },
             {
-                "name": "Microsoft.DataTools.ReportingServices.vsix",
                 "url": "https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftReportProjectsforVisualStudio",
                 "id": "717ad572-c4b7-435c-c166-c2969777f718"
             },
             {
-                "name": "Microsoft.VisualStudio.Installer.Projects.vsix",
                 "url": "https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects",
                 "id": "VSInstallerProjects"
             },
             {
-                "name": "BizTalkVsix.vsix",
                 "url": "https://marketplace.visualstudio.com/items?itemName=ms-biztalk.BizTalk",
                 "id": "BizTalkProjectSystem.BD1D0FA0-E48A-4270-995F-F110DD9F7838"
             }

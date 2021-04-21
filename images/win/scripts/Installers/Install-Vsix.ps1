@@ -15,9 +15,11 @@ $vsixPackagesList | ForEach-Object {
     # Retrieve cdn endpoint to avoid HTTP error 429 https://github.com/actions/virtual-environments/issues/3074 
     $request = Invoke-WebRequest -Uri $_.url -UseBasicParsing
     $request -match "`"AssetUri`":`"(?<uri>https:\/\/\S*\.vsassets\.io\S*\/\d*)`""
-    $packageName = $_.name
-    $cdnUrl = $Matches.uri + "/" + $packageName
-    Install-VsixExtension -Url $cdnUrl -Name $packageName -VSversion $vsVersion
+    $assetUri = $Matches.uri
+    $request -match "`"Microsoft\.VisualStudio\.Services\.Payload\.FileName`":`"(?<filename>\S*\.(?:vsix|exe))`""
+    $fileName = $Matches.filename
+    $cdnUri = $assetUri + "/" + $fileName
+    Install-VsixExtension -Url $cdnUri -Name $fileName -VSversion $vsVersion
 }
 
 Invoke-PesterTests -TestFile "Vsix"
