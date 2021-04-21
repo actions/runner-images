@@ -22,10 +22,8 @@ Describe "Java" {
         "$ToolName -version" | Should -ReturnZeroExitCode
     }
 
-    It "Gradle" -TestCases @(
-        @{ ToolName = "gradle" }
-    ) {
-        "$ToolName -version" | Should -ReturnZeroExitCode
+    It "Gradle" {
+        "gradle -version" | Should -ReturnZeroExitCode
 
         $gradleVariableValue = Get-EnvironmentVariable "GRADLE_HOME"
         $gradleVariableValue | Should -BeLike "/usr/share/gradle-*"
