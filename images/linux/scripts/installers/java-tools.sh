@@ -83,7 +83,7 @@ curl -sL $gradleUrl -o gradleLatest.zip
 unzip -qq -d /usr/share gradleLatest.zip
 rm gradleLatest.zip
 ln -s /usr/share/gradle-"${gradleVersion}"/bin/gradle /usr/bin/gradle
-echo "GRADLE_HOME=/usr/share/gradle" | tee -a /etc/environment
+echo "GRADLE_HOME=$(find /usr/share -depth -maxdepth 1 -name "gradle*")" | tee -a /etc/environment
 
 reloadEtcEnvironment
 invoke_tests "Java"

@@ -43,6 +43,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
         (Get-ClangFormatVersions),
         (Get-ErlangVersion),
         (Get-MonoVersion),
+        (Get-MsbuildVersion),
         (Get-NodeVersion),
         (Get-PerlVersion),
         (Get-PythonVersion),
