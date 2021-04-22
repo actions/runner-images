@@ -219,7 +219,7 @@ function Get-VsixExtenstionFromMarketplace {
         "ExtensionName" = $ExtensionName
         "VsixId" = $vsixId
         "FileName" = $fileName
-        "CdnUri" = $DownloadUri
+        "DownloadUri" = $DownloadUri
     }
 }
 
