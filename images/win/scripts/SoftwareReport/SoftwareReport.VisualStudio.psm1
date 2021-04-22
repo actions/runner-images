@@ -23,12 +23,15 @@ function Get-VisualStudioExtensions {
     # Additional vsixs
     $toolset = Get-ToolsetContent
     $vsixUrls = $toolset.visualStudio.vsix
-    $vsixs = $vsixUrls | ForEach-Object {
-        $vsix = Get-VsixExtenstionFromMarketplace -MarketplaceUri $_.url
-        $vsixVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match $vsix.VsixId -and $_.type -eq 'vsix'}).Version
-        @{
-            Package = $vsix.ExtensionName
-            Version = $vsixVersion
+    if ($vsixUrls)
+    {
+        $vsixs = $vsixUrls | ForEach-Object {
+            $vsix = Get-VsixExtenstionFromMarketplace -MarketplaceUri $_.url
+            $vsixVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match $vsix.VsixId -and $_.type -eq 'vsix'}).Version
+            @{
+                Package = $vsix.ExtensionName
+                Version = $vsixVersion
+            }
         }
     }
 
