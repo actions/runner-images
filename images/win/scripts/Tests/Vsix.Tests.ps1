@@ -12,7 +12,7 @@ Describe "Vsix" {
         }
     }
     if ($testCases.Count -gt 0) {
-        It "Extension <VsixName>" -TestCases $testCases {
+        It "Extension <VsixName> is installed" -TestCases $testCases {
             $objVsix = $AllPackages | Where-Object { $_.id -eq $VsixId }
             $objVsix | Should -Not -BeNullOrEmpty
         }
