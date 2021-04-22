@@ -213,13 +213,13 @@ function Get-VsixExtenstionFromMarketplace {
     $assetUri = $Matches.uri
     $request -match "`"Microsoft\.VisualStudio\.Services\.Payload\.FileName`":`"(?<filename>[^`"]*)" | Out-Null
     $fileName = $Matches.filename
-    $DownloadUri = $assetUri + "/" + $fileName
+    $downloadUri = $assetUri + "/" + $fileName
 
     return [PSCustomObject] @{
         "ExtensionName" = $ExtensionName
         "VsixId" = $vsixId
         "FileName" = $fileName
-        "DownloadUri" = $DownloadUri
+        "DownloadUri" = $downloadUri
     }
 }
 
