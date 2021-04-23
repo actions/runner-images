@@ -205,9 +205,9 @@ function Get-VsixExtenstionFromMarketplace {
     )
 
     $request = Invoke-WebRequest -Uri $MarketplaceUri -UseBasicParsing
-    $request -match "UniqueIdentifierValue`":`"(?<extensionname>[^`"]*)"
-    $ExtensionName = $Matches.extensionname
-    $request -match "VsixId`":`"(?<vsixid>[^`"]*)"
+    $request -match "UniqueIdentifierValue`":`"(?<extensionname>[^`"]*)" | Out-Null
+    $extensionName = $Matches.extensionname
+    $request -match "VsixId`":`"(?<vsixid>[^`"]*)" | Out-Null
     $vsixId = $Matches.vsixid
     $request -match "`"AssetUri`":`"(?<uri>[^`"]*)" | Out-Null
     $assetUri = $Matches.uri
@@ -216,7 +216,7 @@ function Get-VsixExtenstionFromMarketplace {
     $downloadUri = $assetUri + "/" + $fileName
 
     return [PSCustomObject] @{
-        "ExtensionName" = $ExtensionName
+        "ExtensionName" = $extensionName
         "VsixId" = $vsixId
         "FileName" = $fileName
         "DownloadUri" = $downloadUri
