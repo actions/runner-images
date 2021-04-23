@@ -26,7 +26,7 @@ function Get-VisualStudioExtensions {
     if ($vsixUrls)
     {
         $vsixs = $vsixUrls | ForEach-Object {
-            $vsix = Get-VsixExtenstionFromMarketplace -MarketplaceUri $_.url
+            $vsix = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
             $vsixVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match $vsix.VsixId -and $_.type -eq 'vsix'}).Version
             @{
                 Package = $vsix.ExtensionName

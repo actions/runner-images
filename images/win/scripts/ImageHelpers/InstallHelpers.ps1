@@ -201,17 +201,19 @@ function Start-DownloadWithRetry
 function Get-VsixExtenstionFromMarketplace {
     Param
     (
-        [string] $MarketplaceUri
+        [string] $ExtensionMarketPlaceName,
+        [string] $MarketplaceUri = "https://marketplace.visualstudio.com/items?itemName="
     )
 
-    $request = Invoke-WebRequest -Uri $MarketplaceUri -UseBasicParsing
-    $request -match "UniqueIdentifierValue`":`"(?<extensionname>[^`"]*)" | Out-Null
+    $extensionUri = $MarketplaceUri + $ExtensionMarketPlaceName
+    $request = Invoke-WebRequest -Uri $extensionUri -UseBasicParsing
+    $request -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
     $extensionName = $Matches.extensionname
-    $request -match "VsixId`":`"(?<vsixid>[^`"]*)" | Out-Null
+    $request -match 'VsixId":"(?<vsixid>[^"]*)' | Out-Null
     $vsixId = $Matches.vsixid
-    $request -match "`"AssetUri`":`"(?<uri>[^`"]*)" | Out-Null
+    $request -match 'AssetUri":"(?<uri>[^"]*)' | Out-Null
     $assetUri = $Matches.uri
-    $request -match "`"Microsoft\.VisualStudio\.Services\.Payload\.FileName`":`"(?<filename>[^`"]*)" | Out-Null
+    $request -match 'Microsoft\.VisualStudio\.Services\.Payload\.FileName":"(?<filename>[^"]*)' | Out-Null
     $fileName = $Matches.filename
     $downloadUri = $assetUri + "/" + $fileName
 

@@ -270,21 +270,11 @@
             "Component.MDD.Linux.GCC.arm"
         ],
         "vsix": [
-            {
-                "url": "https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftAnalysisServicesModelingProjects"
-            },
-            {
-                "url": "https://marketplace.visualstudio.com/items?itemName=SSIS.SqlServerIntegrationServicesProjects"
-            },
-            {
-                "url": "https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftReportProjectsforVisualStudio"
-            },
-            {
-                "url": "https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects"
-            },
-            {
-                "url": "https://marketplace.visualstudio.com/items?itemName=ms-biztalk.BizTalk"
-            }
+            "ProBITools.MicrosoftAnalysisServicesModelingProjects",
+            "SSIS.SqlServerIntegrationServicesProjects",
+            "ProBITools.MicrosoftReportProjectsforVisualStudio",
+            "VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects",
+            "ms-biztalk.BizTalk"
         ]
     },
     "docker": {
