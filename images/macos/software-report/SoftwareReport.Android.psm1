@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+
 function Split-TableRowByColumns {
     param(
         [string] $Row
@@ -84,7 +86,7 @@ function Build-AndroidTable {
         },
         @{
             "Package" = "NDK"
-            "Version" = Get-AndroidNDKVersions -PackageInfo $packageInfo
+            "Version" = Get-AndroidNDKVersions
         },
         @{
             "Package" = "SDK Patch Applier v4"
@@ -94,6 +96,18 @@ function Build-AndroidTable {
         [PSCustomObject] @{
             "Package Name" = $_.Package
             "Version" = $_.Version
+        }
+    }
+}
+
+function Build-AndroidEnvironmentTable {
+    $androidVersions = Get-Item env:ANDROID_*	
+
+    $shoulddResolveLink = 'ANDROID_NDK_PATH', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
+    return $androidVersions | Sort-Object -Property Name | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = if ($shoulddResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else {$_.Value}
         }
     }
 }
@@ -161,28 +175,16 @@ function Get-AndroidGoogleAPIsVersions {
 }
 
 function Get-AndroidNDKVersions {
-    param (
-        [Parameter(Mandatory)][AllowEmptyString()]
-        [string[]] $packageInfo
-    )
-
     $os = Get-OSVersion
-    $versions = @()
 
     if ($os.IsLessThanBigSur) {
         # Hardcode NDK 15 as a separate case since it is installed manually without sdk-manager (to none default location)
+        $versions = @()
         $versions += "15.2.4203891"
-
-        $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
-        Get-ChildItem -Path $ndkFolderPath | ForEach-Object {
-            $versions += $_.Name
-        }
     }
 
-    $versions += $packageInfo | Where-Object { $_ -Match "ndk-bundle" } | ForEach-Object {
-        $packageInfoParts = Split-TableRowByColumns $_
-        return $packageInfoParts[1]
-    }
+    $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
+    $versions += Get-ChildItem -Path $ndkFolderPath -Name
 
     return ($versions -Join "<br>")
 }

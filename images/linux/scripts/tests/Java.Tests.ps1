@@ -18,9 +18,19 @@ Describe "Java" {
         @{ ToolName = "javac" }
         @{ ToolName = "mvn" }
         @{ ToolName = "ant" }
-        @{ ToolName = "gradle" }
     ) {
         "$ToolName -version" | Should -ReturnZeroExitCode
+    }
+
+    It "Gradle" {
+        "gradle -version" | Should -ReturnZeroExitCode
+
+        $gradleVariableValue = Get-EnvironmentVariable "GRADLE_HOME"
+        $gradleVariableValue | Should -BeLike "/usr/share/gradle-*"
+
+        $gradlePath = Join-Path $env:GRADLE_HOME "bin/gradle"
+        $result = Get-CommandResult "`"$GradlePath`" -version"
+        $result.ExitCode | Should -Be 0
     }
 
     It "Java <Version>" -TestCases $jdkVersions {
@@ -31,7 +41,7 @@ Describe "Java" {
         $result = Get-CommandResult "`"$javaPath`" -version"
         $result.ExitCode | Should -Be 0
 
-        if ($Version -eq 7 -or $Version -eq 8) {
+        if ($Version -eq 8) {
             $Version = "1.${Version}"
         }
         $result.Output | Should -Match ([regex]::Escape("openjdk version `"${Version}."))

@@ -78,7 +78,7 @@ function Build-AndroidTable {
         },
         @{
             "Package" = "NDK"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
+            "Version" = Get-AndroidNDKVersions
         },
         @{
             "Package" = "SDK Patch Applier v4"
@@ -154,3 +154,20 @@ function Get-AndroidGoogleAPIsVersions {
     return ($versions -Join "<br>")
 }
 
+function Get-AndroidNDKVersions {
+    $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
+    $versions = Get-ChildItem -Path $ndkFolderPath -Name
+    return ($versions -Join "<br>")
+}
+
+function Build-AndroidEnvironmentTable {
+    $androidVersions = Get-Item env:ANDROID_*	
+
+    $shouldResolveLink = 'ANDROID_NDK_PATH', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
+    return $androidVersions | Sort-Object -Property Name | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = if ($shouldResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else {$_.Value}
+        }
+    }
+}

@@ -1,6 +1,8 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
+$os = Get-OSVersion
+
 Describe "Node.js" {
     BeforeAll {
         $os = Get-OSVersion
@@ -36,7 +38,7 @@ Describe "nvm" {
     }
 
     Context "nvm versions" {
-        $NVM_VERSIONS = @(6, 8, 10, 12)
+        $NVM_VERSIONS = @(10, 12, 14)
         $testCases = $NVM_VERSIONS | ForEach-Object { @{NvmVersion = $_} }
 
         It "<NvmVersion>" -TestCases $testCases {
@@ -46,5 +48,17 @@ Describe "nvm" {
 
             "$nvmInitCommand && nvm ls $($NvmVersion)" | Should -ReturnZeroExitCode
         }
+    }
+}
+
+Describe "AppCenterCLI" {
+    It "App Center CLI" {
+        "appcenter --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Newman" -Skip:($os.IsHighSierra -or $os.IsMojave) {
+    It "Newman" {
+        "newman --version" | Should -ReturnZeroExitCode
     }
 }

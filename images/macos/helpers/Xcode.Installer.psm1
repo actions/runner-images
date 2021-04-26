@@ -10,15 +10,16 @@ function Install-XcodeVersion {
 
     $xcodeDownloadDirectory = "$env:HOME/Library/Caches/XcodeInstall"
     $xcodeTargetPath = Get-XcodeRootPath -Version $LinkTo
+    $xcodeXipDirectory = Invoke-DownloadXcodeArchive -DownloadDirectory $xcodeDownloadDirectory -Version $Version
+    Expand-XcodeXipArchive -DownloadDirectory $xcodeXipDirectory -TargetPath $xcodeTargetPath
 
-    Invoke-DownloadXcodeArchive -Version $Version
-    Expand-XcodeXipArchive -DownloadDirectory $xcodeDownloadDirectory -TargetPath $xcodeTargetPath
-
-    Get-ChildItem $xcodeDownloadDirectory | Remove-Item -Force
+    Remove-Item -Path $xcodeXipDirectory -Force -Recurse
 }
 
 function Invoke-DownloadXcodeArchive {
     param(
+        [Parameter(Mandatory)]
+        [string]$DownloadDirectory,
         [Parameter(Mandatory)]
         [string]$Version
     )
@@ -27,10 +28,16 @@ function Invoke-DownloadXcodeArchive {
     if (-not $resolvedVersion) {
         throw "Version '$Version' can't be matched to any available version"
     }
-
-    # TO-DO: Consider replacing of xcversion with own implementation
     Write-Host "Downloading Xcode $resolvedVersion"
-    Invoke-ValidateCommand "xcversion install '$resolvedVersion' --no-install"
+    Invoke-XCVersion -Arguments "install '$resolvedVersion' --no-install" | Out-Host    
+
+    $xcodeXipName = "$resolvedVersion" -replace " ", "_"
+    $xcodeXipFile = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_$xcodeXipName.xip" | Select-Object -First 1
+    $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$xcodeXipName" -ItemType "Directory"
+    Move-Item -Path "$xcodeXipFile" -Destination $tempXipDirectory
+
+    return $tempXipDirectory
+
 }
 
 function Resolve-ExactXcodeVersion {
@@ -51,7 +58,7 @@ function Resolve-ExactXcodeVersion {
 }
 
 function Get-AvailableXcodeVersions {
-    $rawVersionsList = & xcversion list | ForEach-Object { $_.Trim() } | Where-Object { $_ -match "^\d" }
+    $rawVersionsList = Invoke-XCVersion -Arguments "list" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match "^\d" }
     $availableVersions = $rawVersionsList | ForEach-Object {
         $partStable,$partMajor = $_.Split(" ", 2)
         $semver = $stableSemver = [SemVer]::Parse($partStable)

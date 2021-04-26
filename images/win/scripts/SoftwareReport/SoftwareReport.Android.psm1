@@ -1,3 +1,5 @@
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
+
 function Split-TableRowByColumns {
     param(
         [string] $Row
@@ -80,7 +82,7 @@ function Build-AndroidTable {
         },
         @{
             "Package" = "NDK"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk;"
         },
         @{
             "Package" = "SDK Patch Applier v4"
@@ -156,3 +158,14 @@ function Get-AndroidGoogleAPIsVersions {
     return ($versions -Join "<br>")
 }
 
+function Build-AndroidEnvironmentTable {
+    $androidVersions = Get-Item env:ANDROID_*	
+
+    $shoulddResolveLink = 'ANDROID_NDK_PATH', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
+    return $androidVersions | Sort-Object -Property Name | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = if ($shoulddResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else {$_.Value}
+        }
+    }
+}

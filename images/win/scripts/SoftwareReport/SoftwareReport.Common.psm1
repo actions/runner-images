@@ -13,30 +13,6 @@ function Get-BashVersion {
     return "Bash $version"
 }
 
-function Get-JavaVersionsList {
-    param(
-        [string] $DefaultVersion
-    )
-
-    $postfix = ""
-    $javaDir = Join-Path $env:PROGRAMFILES "Java"
-    return Get-ChildItem $javaDir | ForEach-Object {
-        $javaBinPath = Join-Path $_ "bin"
-        $rawVersion = & cmd /c "`"$javaBinPath\java.exe`" -version 2>&1" | Out-String
-        $rawVersion -match 'openjdk version "(?<version>.+)"' | Out-Null
-        $version = $Matches.Version
-        if ($version -match $DefaultVersion) {
-            $postfix = "(default)"
-        } else {
-            $postfix = ""
-        }
-        return "Java $version $postfix"
-    } | Sort-Object {
-        $version = ($_.Split(" ")[1]).Split("_")[0]
-        return [System.Version]$version
-    }
-}
-
 function Get-RustVersion {
     $rustVersion = [regex]::matches($(rustc --version), "\d+\.\d+\.\d+").Value
     return $rustVersion
@@ -294,14 +270,15 @@ function Get-CachedDockerImages {
 }
 
 function Get-CachedDockerImagesTableData {
-    return (docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}").Split("*")     | Where-Object { $_ } |  ForEach-Object {
-      $parts=$_.Split("|")
-      [PSCustomObject] @{
-             "Repository:Tag" = $parts[0]
-              "Digest" = $parts[1]
-              "Created" = $parts[2].split(' ')[0]
-         }
-    }
+    $allImages = docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}"
+    $allImages.Split("*") | Where-Object { $_ } | ForEach-Object {
+        $parts = $_.Split("|")
+        [PSCustomObject] @{
+            "Repository:Tag" = $parts[0]
+            "Digest" = $parts[1]
+            "Created" = $parts[2].split(' ')[0]
+        }
+    } | Sort-Object -Property "Repository:Tag"
 }
 
 function Get-ShellTarget {
@@ -337,3 +314,22 @@ function Get-PipxVersion {
     $pipxVersion = pipx --version
     return "Pipx $pipxVersion"
 }
+
+function Build-PackageManagementEnvironmentTable {
+    return @(
+        @{
+            "Name" = "CONDA"
+            "Value" = $env:CONDA
+        },
+        @{
+            "Name" = "VCPKG_INSTALLATION_ROOT"
+            "Value" = $env:VCPKG_INSTALLATION_ROOT
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
+}
+

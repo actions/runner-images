@@ -4,20 +4,32 @@
 ##  Desc:  Installs Node.js LTS and related tooling (Gulp, Grunt)
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/install.sh
+
 # Install LTS Node.js and related build tools
 curl -sL https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-install | bash -s -- -ny -
 ~/n/bin/n lts
-npm install -g grunt gulp n parcel-bundler typescript newman
-npm install -g --save-dev webpack webpack-cli
-npm install -g npm
+# Install node modules
+node_modules=$(get_toolset_value '.node_modules[].name')
+
+# remove commenting out of this line as nmp migrated to v7
+# npm install -g $node_modules
+
+# TODO: workaround for Netlify CLI with npm6. Remove 19-28 and uncomment 17 if migration to npm7 compelted
+for module in $node_modules; do
+    echo "Installing node module $module"
+    if [ $module = "netlify-cli" ];then
+      # Install the Netlify CLI using --unsafe-perm=true options to avoid permission issues
+      npm install -g --unsafe-perm=true $module
+    else    
+      npm install -g $module
+    fi
+done
+
+echo "Creating the symlink for [now] command to vercel CLI"
+ln -s /usr/local/bin/vercel /usr/local/bin/now
+
 rm -rf ~/n
 
-# Install Yarn repository and key
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-apt-get update
-
-# Install yarn
-apt-get install -y --no-install-recommends yarn
-
-invoke_tests "Tools" "Node.js"
+invoke_tests "Node" "Node.js"

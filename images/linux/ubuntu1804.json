@@ -188,12 +188,12 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/scripts/installers/ansible.sh",
                 "{{template_dir}}/scripts/installers/azcopy.sh",
                 "{{template_dir}}/scripts/installers/azure-cli.sh",
                 "{{template_dir}}/scripts/installers/azure-devops-cli.sh",
                 "{{template_dir}}/scripts/installers/basic.sh",
                 "{{template_dir}}/scripts/installers/aliyun-cli.sh",
+                "{{template_dir}}/scripts/installers/apache.sh",
                 "{{template_dir}}/scripts/installers/aws.sh",
                 "{{template_dir}}/scripts/installers/clang.sh",
                 "{{template_dir}}/scripts/installers/swift.sh",
@@ -221,6 +221,7 @@
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
                 "{{template_dir}}/scripts/installers/mssql-cmd-tools.sh",
+                "{{template_dir}}/scripts/installers/nginx.sh",
                 "{{template_dir}}/scripts/installers/nvm.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
                 "{{template_dir}}/scripts/installers/bazel.sh",
@@ -238,10 +239,8 @@
                 "{{template_dir}}/scripts/installers/terraform.sh",
                 "{{template_dir}}/scripts/installers/packer.sh",
                 "{{template_dir}}/scripts/installers/vcpkg.sh",
-                "{{template_dir}}/scripts/installers/vercel.sh",
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
                 "{{template_dir}}/scripts/installers/mongodb.sh",
-                "{{template_dir}}/scripts/installers/netlify.sh",
                 "{{template_dir}}/scripts/installers/android.sh",
                 "{{template_dir}}/scripts/installers/pypy.sh",
                 "{{template_dir}}/scripts/installers/python.sh"

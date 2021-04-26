@@ -198,7 +198,7 @@
     "java": {
         "default": "8",
         "versions": [
-            "7", "8", "11", "12", "13", "14"
+            "8", "11", "12", "13", "14"
         ]
     },
     "android": {
@@ -211,18 +211,24 @@
             "addon-google_apis-google-24", "addon-google_apis-google-23", "addon-google_apis-google-22", "addon-google_apis-google-21"
         ],
         "additional-tools": [
+            "cmake;3.10.2.4988404",
             "cmdline-tools;latest"
-        ]
+        ],
+        "ndk": {
+            "lts": "21",
+            "latest": "22"
+        }
     },
     "powershellModules": [
         {
             "name": "Az",
             "versions": [
-                "4.8.0"
+                "5.7.0"
             ]
         },
         {"name": "MarkdownPS"},
-        {"name": "Pester"}
+        {"name": "Pester"},
+        {"name": "PSScriptAnalyzer"}
     ],
     "brew": {
         "common_packages": [
@@ -236,7 +242,7 @@
             "gh",
             "gnupg",
             "gnu-tar",
-            "go",
+            "go@1.15",
             "helm",
             "libpq",
             "llvm",
@@ -245,6 +251,7 @@
             "parallel",
             "perl",
             "subversion",
+            "swiftformat",
             "xctool",
             "zstd"
         ],
@@ -298,7 +305,8 @@
             "versions": [
                 "1.13.*",
                 "1.14.*",
-                "1.15.*"
+                "1.15.*",
+                "1.16.*"
             ]
         },
         {

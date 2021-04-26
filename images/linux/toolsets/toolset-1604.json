@@ -45,17 +45,7 @@
                 "1.14.*",
                 "1.15.*"
             ],
-            "default": "1.14.*"
-        },
-        {
-            "name": "boost",
-            "url" : "https://raw.githubusercontent.com/actions/boost-versions/main/versions-manifest.json",
-            "platform" : "linux",
-            "platform_version": "16.04",
-            "arch": "x64",
-            "versions": [
-                "1.72.0"
-            ]
+            "default": "1.15.*"
         },
         {
             "name": "Ruby",
@@ -81,12 +71,12 @@
     "java": {
         "default": "8",
         "versions": [
-            "7", "8", "11", "12"
+            "8", "11", "12"
         ]
     },
     "android": {
-        "platform_min_version": "10",
-        "build_tools_min_version": "19.1.0",
+        "platform_min_version": "23",
+        "build_tools_min_version": "23.0.1",
         "extra_list": [
             "android;m2repository",
             "google;m2repository",
@@ -103,13 +93,14 @@
             "addon-google_apis-google-21"
         ],
         "additional_tools": [
-            "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
             "patcher;v4",
-            "ndk;21.3.6528147",
             "platform-tools",
             "cmdline-tools;latest"
-        ]
+        ],
+        "ndk": {
+            "lts": "21"
+        }
     },
     "powershellModules": [
         {"name": "MarkdownPS"},
@@ -118,19 +109,13 @@
     "azureModules": [
         {
             "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "1.0.0",
-                "1.6.0",
-                "2.3.2",
-                "2.6.0",
-                "2.8.0",
+                "5.7.0"
+            ],
+            "zip_versions": [
                 "3.1.0",
-                "3.5.0",
-                "3.8.0",
-                "4.3.0",
-                "4.4.0",
-                "4.6.0",
-                "4.7.0"
+                "4.4.0"
             ]
         }
     ],
@@ -167,6 +152,7 @@
             "p7zip-rar",
             "p7zip",
             "pkg-config",
+            "python-setuptools",
             "rpm",
             "texinfo",
             "tk",
@@ -175,13 +161,14 @@
             "xorriso",
             "xvfb",
             "xz-utils",
-            "zstd",
             "zsync"
         ],
         "cmd_packages": [
+            "binutils",
             "bison",
             "brotli",
             "bzip2",
+            "coreutils",
             "curl",
             "file",
             "flex",
@@ -191,6 +178,7 @@
             "m4",
             "mediainfo",
             "netcat",
+            "net-tools",
             "p7zip-full",
             "parallel",
             "pass",
@@ -201,6 +189,7 @@
             "sphinxsearch",
             "sqlite3",
             "ssh",
+            "sshpass",
             "subversion",
             "sudo",
             "swig",
@@ -212,56 +201,53 @@
             "zip"
         ]
     },
+    "brew": [
+        {"name": "zstd"}
+    ],
     "docker": {
         "images": [
-            "alpine:3.7",
-            "alpine:3.8",
-            "alpine:3.9",
-            "alpine:3.10",
+            "alpine:3.11",
+            "alpine:3.12",
+            "alpine:3.13",
             "buildpack-deps:stretch",
             "buildpack-deps:buster",
-            "debian:8",
             "debian:9",
-            "jekyll/builder",
-            "mcr.microsoft.com/azure-pipelines/node8-typescript",
+            "debian:10",
             "node:10",
             "node:12",
+            "node:14",
             "node:10-alpine",
             "node:12-alpine",
-            "ubuntu:14.04"
+            "node:14-alpine",
+            "ubuntu:16.04",
+            "ubuntu:18.04",
+            "ubuntu:20.04"
         ]
     },
     "dotnet": {
         "aptPackages": [
-            "dotnet-sdk-3.0",
             "dotnet-sdk-3.1",
             "dotnet-sdk-5.0"
         ],
         "versions": [
             "2.1",
-            "3.0",
             "3.1",
             "5.0"
         ]
     },
     "clang": {
         "versions": [
-            "6.0",
-            "8",
             "9"
         ],
         "default_version": "9"
     },
     "gcc": {
         "versions": [
-            "g++-7",
-            "g++-8",
             "g++-9"
         ]
     },
     "gfortran": {
         "versions": [
-            "gfortran-8",
             "gfortran-9"
         ]
     },
@@ -275,5 +261,52 @@
             "7.4",
             "8.0"
         ]
-    }
+    },
+    "rubygems": [],
+    "node_modules": [
+        {
+            "name": "grunt",
+            "command": "grunt"
+        },
+        {
+            "name": "gulp",
+            "command": "gulp"
+        },
+        {
+            "name": "n",
+            "command": "n"
+        },
+        {
+            "name": "parcel-bundler",
+            "command": "parcel"
+        },
+        {
+            "name": "typescript",
+            "command": "tsc"
+        },
+        {
+            "name": "newman",
+            "command": "newman"
+        },
+        {
+            "name": "vercel",
+            "command": "vercel"
+        },
+        {
+            "name": "webpack",
+            "command": "webpack"
+        },
+        {
+            "name": "webpack-cli",
+            "command": "webpack-cli"
+        },
+        {
+            "name": "netlify-cli",
+            "command": "netlify"
+        },
+        {
+            "name": "yarn",
+            "command": "yarn"
+        }
+    ]
 }

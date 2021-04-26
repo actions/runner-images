@@ -4,24 +4,24 @@
 ##  Desc:  Installs Julia, and adds Julia to the path
 ################################################################################
 
-# This function fetches the latest Julia release from the GitHub API
-# Based on https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
-function GetLatestJuliaRelease () {
-    curl --silent "https://api.github.com/repos/julialang/julia/releases/latest" |
-    grep '"tag_name":' |
-    sed -E 's/.*"([^"]+)".*/\1/' |
-    sed 's/v//' # remove v prefix
-}
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/install.sh
 
-juliaVersion="$(GetLatestJuliaRelease)"
-juliaMajorAndMinorVersion="$(cut -d. -f1,2 <<< $juliaVersion)"
-juliaInstallationPath="/usr/local/julia$juliaVersion"
+# get the latest julia version
+json=$(curl -sL "https://julialang-s3.julialang.org/bin/versions.json")
+julia_version=$(echo $json | jq -r '.[].files[] | select(.triplet=="x86_64-linux-gnu" and (.version | contains("-") | not)).version' | sort -V | tail -n1)
 
-curl -sL "https://julialang-s3.julialang.org/bin/linux/x64/$juliaMajorAndMinorVersion/julia-$juliaVersion-linux-x86_64.tar.gz" -o "julia-$juliaVersion-linux-x86_64.tar.gz"
-mkdir -p "$juliaInstallationPath"
-tar -C "$juliaInstallationPath" -xzf "julia-$juliaVersion-linux-x86_64.tar.gz" --strip-components=1
-rm "julia-$juliaVersion-linux-x86_64.tar.gz"
+# download julia archive
+julia_tar_url=$(echo $json | jq -r ".[].files[].url | select(endswith(\"julia-${julia_version}-linux-x86_64.tar.gz\"))")
+julia_tar_name="julia-${julia_version}-linux-x86_64.tar.gz"
+download_with_retries $julia_tar_url "/tmp" "${julia_tar_name}"
 
-ln -s "$juliaInstallationPath/bin/julia" /usr/bin/julia
+# extract files and make symlink
+julia_tar_tmp="/tmp/${julia_tar_name}"
+julia_installation_path="/usr/local/julia${julia_version}"
+mkdir -p "${julia_installation_path}"
+tar -C "${julia_installation_path}" -xzf "${julia_tar_tmp}" --strip-components=1
+ln -s "${julia_installation_path}/bin/julia" /usr/bin/julia
+rm "${julia_tar_tmp}"
 
 invoke_tests "Tools" "Julia"

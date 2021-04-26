@@ -17,6 +17,13 @@ function filter_components_by_version {
     done
 }
 
+function get_full_ndk_version {
+    majorVersion=$1
+    ndkVersion=$(${SDKMANAGER} --list | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
+
+    echo "$ndkVersion"
+}
+
 components=()
 
 ANDROID_PLATFORM=($(get_toolset_value '.android.platform_min_version'))
@@ -24,7 +31,8 @@ ANDROID_BUILD_TOOL=($(get_toolset_value '.android.build_tools_min_version'))
 ANDROID_EXTRA_LIST=($(get_toolset_value '.android."extra-list"[]'))
 ANDROID_ADDON_LIST=($(get_toolset_value '.android."addon-list"[]'))
 ANDROID_ADDITIONAL_TOOLS=($(get_toolset_value '.android."additional-tools"[]'))
-
+ANDROID_NDK_MAJOR_LTS=($(get_toolset_value '.android.ndk.lts'))
+ANDROID_NDK_MAJOR_LATEST=($(get_toolset_value '.android.ndk.latest'))
 # Get the latest command line tools from https://developer.android.com/studio/index.html
 # Release note: https://developer.android.com/studio/releases/sdk-tools.html
 ANDROID_OSX_SDK_LOCATION="https://dl.google.com/android/repository/sdk-tools-darwin-3859397.zip"
@@ -61,15 +69,16 @@ echo "84831b9409646a918e30573bab4c9c91346d8abd" >> $ANDROID_HOME/licenses/androi
 echo "Installing latest tools & platform tools..."
 echo y | $SDKMANAGER "tools" "platform-tools"
 
-echo "Installing latest CMake..."
-echo y | $SDKMANAGER "cmake;3.6.4111459"
-
 echo "Installing latest ndk..."
-echo y | $SDKMANAGER  "ndk;21.3.6528147"
+ndkLtsLatest=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LTS)
+ndkLatest=$(get_full_ndk_version  $ANDROID_NDK_MAJOR_LATEST)
+echo y | $SDKMANAGER  "ndk;$ndkLtsLatest" "ndk;$ndkLatest"
 # This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
 # Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
 # Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
-ln -s $ANDROID_HOME/ndk/21.3.6528147 $ANDROID_HOME/ndk-bundle
+ln -s $ANDROID_HOME/ndk/$ndkLtsLatest $ANDROID_HOME/ndk-bundle
+ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ndkLatest
+echo "export ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> "${HOME}/.bashrc"
 
 availablePlatforms=($(${ANDROID_HOME}/tools/bin/sdkmanager --list | grep "platforms;android-" | cut -d"|" -f 1 | sort -u))
 filter_components_by_version $ANDROID_PLATFORM "${availablePlatforms[@]}"

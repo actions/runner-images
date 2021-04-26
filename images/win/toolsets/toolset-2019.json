@@ -45,10 +45,11 @@
         {
             "name": "PyPy",
             "arch": "x86",
-            "platform" : "win32",
+            "platform" : "win64",
             "versions": [
                 "2.7",
-                "3.6"
+                "3.6",
+                "3.7"
             ]
         },
         {
@@ -70,19 +71,10 @@
             "versions": [
                 "1.13.*",
                 "1.14.*",
-                "1.15.*"
+                "1.15.*",
+                "1.16.*"
             ],
-            "default": "1.14.*"
-        },
-        {
-            "name": "Boost",
-            "url" : "https://raw.githubusercontent.com/actions/boost-versions/main/versions-manifest.json",
-            "arch": "x86_64",
-            "platform" : "win32",
-            "toolset": "msvc14.2",
-            "versions": [
-                "1.72.0"
-            ]
+            "default": "1.15.*"
         }
     ],
     "powershellModules": [
@@ -90,6 +82,7 @@
         {"name": "MarkdownPS"},
         {"name": "Pester"},
         {"name": "PowerShellGet"},
+        {"name": "PSScriptAnalyzer"},
         {"name": "PSWindowsUpdate"},
         {"name": "SqlServer"},
         {"name": "VSSetup"}
@@ -97,30 +90,40 @@
     "azureModules": [
         {
             "name": "azurerm",
+            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
+                "6.13.1"
+            ],
+            "zip_versions": [
                 "3.8.0",
                 "4.2.1",
                 "5.1.1",
-                "6.7.0",
-                "6.13.1"
+                "6.7.0"
             ],
             "default": "2.1.0"
         },
         {
             "name": "azure",
+            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
+                "5.3.0"
+            ],
+            "zip_versions": [
                 "3.8.0",
                 "4.2.1",
-                "5.1.1",
-                "5.3.0"
+                "5.1.1"
             ],
             "default": "2.1.0"
         },
         {
             "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
+                "5.7.0"
+            ],
+            "zip_versions": [
                 "1.0.0",
                 "1.6.0",
                 "2.3.2",
@@ -130,15 +133,15 @@
                 "3.8.0",
                 "4.3.0",
                 "4.4.0",
-                "4.6.0",
-                "4.7.0"
+                "4.7.0",
+                "5.5.0"
             ]
         }
     ],
     "java": {
         "default": "8",
         "versions": [
-            "7", "8", "11", "13"
+            "8", "11", "13"
         ]
     },
     "android": {
@@ -160,12 +163,14 @@
             "addon-google_apis-google-21"
         ],
         "additional_tools": [
-            "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
             "patcher;v4",
-            "ndk;21.3.6528147",
             "cmdline-tools;latest"
-        ]
+        ],
+        "ndk": {
+            "lts": "21",
+            "latest": "22"
+        }
     },
     "visualStudio": {
         "version" : "2019",
@@ -265,31 +270,11 @@
             "Component.MDD.Linux.GCC.arm"
         ],
         "vsix": [
-            {
-                "name": "Microsoft.DataTools.AnalysisServices.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftAnalysisServicesModelingProjects/2.9.5/vspackage",
-                "id": "04a86fc2-dbd5-4222-848e-911638e487fe"
-            },
-            {
-                "name": "Microsoft.DataTools.IntegrationServices.exe",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/SSIS/vsextensions/SqlServerIntegrationServicesProjects/3.4/vspackage",
-                "id": "851E7A09-7B2B-4F06-A15D-BABFCB26B970"
-            },
-            {
-                "name": "Microsoft.DataTools.ReportingServices.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftReportProjectsforVisualStudio/2.6.3/vspackage",
-                "id": "717ad572-c4b7-435c-c166-c2969777f718"
-            },
-            {
-                "name": "Microsoft.VisualStudio.Installer.Projects.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/VisualStudioClient/vsextensions/MicrosoftVisualStudio2017InstallerProjects/latest/vspackage",
-                "id": "VSInstallerProjects"
-            },
-            {
-                "name": "BizTalkVsix.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-biztalk/vsextensions/BizTalk/3.13.2.0/vspackage",
-                "id": "BizTalkProjectSystem.BD1D0FA0-E48A-4270-995F-F110DD9F7838"
-            }
+            "ProBITools.MicrosoftAnalysisServicesModelingProjects",
+            "SSIS.SqlServerIntegrationServicesProjects",
+            "ProBITools.MicrosoftReportProjectsforVisualStudio",
+            "VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects",
+            "ms-biztalk.BizTalk"
         ]
     },
     "docker": {
@@ -298,7 +283,7 @@
             "mcr.microsoft.com/windows/nanoserver:1809",
             "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019",
             "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019",
-            "microsoft/aspnetcore-build:1.0-2.0"
+            "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019"
         ]
     },
     "pipx": [

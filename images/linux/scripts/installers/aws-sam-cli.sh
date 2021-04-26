@@ -5,11 +5,14 @@
 ##         Requires Python >=3.6, must be run as non-root user after toolset installation
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/install.sh
+
 # Download latest aws sam cli sources
 TarballUrl=$(curl -s https://api.github.com/repos/aws/aws-sam-cli/releases/latest | jq -r '.tarball_url')
 TarballPath="/tmp/aws-sam-cli.tar.gz"
-wget $TarballUrl -O $TarballPath
-tar -xzvf $TarballPath -C /tmp
+download_with_retries $TarballUrl "/tmp" "aws-sam-cli.tar.gz"
+tar -xzf $TarballPath -C /tmp
 cd /tmp/aws-aws-sam-cli*
 
 mkdir /opt/python-aws-sam-cli
