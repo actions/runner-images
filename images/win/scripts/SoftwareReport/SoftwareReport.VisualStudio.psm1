@@ -35,8 +35,21 @@ function Get-VisualStudioExtensions {
         }
     }
 
-    # Wix
+    # SSDT extensions for VS2017
     $vs = (Get-VisualStudioVersion).Name.Split()[-1]
+    if ($vs -eq "2017")
+    {
+        $analysisPackageVersion = Get-VSExtensionVersion -packageName '04a86fc2-dbd5-4222-848e-911638e487fe'
+        $reportingPackageVersion = Get-VSExtensionVersion -packageName '717ad572-c4b7-435c-c166-c2969777f718'
+        $integrationPackageName = Get-VSExtensionVersion -packageName 'D1B09713-C12E-43CC-9EF4-6562298285AB'
+        $ssdtPackages = @(
+            @{Package = 'SSDT Microsoft Analysis Services Projects'; Version = $analysisPackageVersion}
+            @{Package = 'SSDT SQL Server Integration Services Projects'; Version = $reportingPackageVersion}
+            @{Package = 'SSDT Microsoft Reporting Services Projects'; Version = $integrationPackageName}
+        )
+    }
+
+    # Wix
     $wixPackageVersion = Get-WixVersion
     $wixExtensionVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
 
@@ -46,6 +59,7 @@ function Get-VisualStudioExtensions {
 
     $extensions = @(
         $vsixs
+        $ssdtPackages
         @{Package = 'Windows Driver Kit'; Version = $wdkPackageVersion}
         @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
         @{Package = 'WIX Toolset'; Version = $wixPackageVersion}
