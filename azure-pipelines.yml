@@ -18,8 +18,12 @@ stages:
 
     steps:
     - powershell: |
-      Write-Host $(GH_TOKEN)
-      Write-Host $(GITHUB_TOKEN)
+        Write-Host $(GH_TOKEN)
+        Write-Host $(GITHUB_TOKEN)
+        # Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
+        # Import-Module .\helpers\GenerateResourcesAndImage.ps1
+        # GenerateResourcesAndImage -SubscriptionId $(AZURE_SUB_ID) -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -GithubFeedToken $(GH_TOKEN) -ResourceGroupName "buildagents-$(Build.BuildId)"
+
         # Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
         # Import-Module .\helpers\GenerateResourcesAndImage.ps1
         # GenerateResourcesAndImage -SubscriptionId $(AZURE_SUB_ID) -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -GithubFeedToken $(GH_TOKEN) -ResourceGroupName "buildagents-$(Build.BuildId)"
