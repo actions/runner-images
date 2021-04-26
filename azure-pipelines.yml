@@ -1,6 +1,10 @@
 trigger:
   batch: true
 
+variables:
+ AZURE_SUB_ID: $(AZURE_SUBSCRIPTION_ID)
+ GH_TOKEN: $(GITHUB_TOKEN)
+
 
 stages:
 - stage: Build
@@ -14,6 +18,9 @@ stages:
 
     steps:
     - powershell: |
+        Uninstall-AzureRm
+    - powershell: |
+        Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
         Import-Module .\helpers\GenerateResourcesAndImage.ps1
-        # GenerateResourcesAndImage -SubscriptionId  -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -GithubFeedToken 8b15d767edbc217fdbaa94b597b77a7cfd39c467 -ResourceGroupName "buildagentswest06"
+        GenerateResourcesAndImage -SubscriptionId $(AZURE_SUB_ID) -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -GithubFeedToken $(GH_TOKEN) -ResourceGroupName "buildagents-$(Build.BuildId)"
       displayName: build resources
