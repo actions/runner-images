@@ -1,11 +1,6 @@
 trigger:
   batch: true
 
-variables:
- AZURE_SUB_ID: ${env:AZURE_SUBSCRIPTION_ID}
- GH_TOKEN: ${env:GITHUB_TOKEN}
-
-
 stages:
 - stage: Build
   displayName: Build stage
