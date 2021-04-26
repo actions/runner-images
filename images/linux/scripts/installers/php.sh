@@ -99,7 +99,7 @@ chmod +x phpunit
 mv phpunit /usr/local/bin/phpunit
 
 # remove repository after successfull installation
-rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
+rm -r /etc/apt/sources.list.d/ondrej-ubuntu-php-*
 apt-get update
 
 invoke_tests "Common" "PHP"
