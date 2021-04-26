@@ -2,8 +2,8 @@ trigger:
   batch: true
 
 variables:
- AZURE_SUB_ID: $(AZURE_SUBSCRIPTION_ID)
- GH_TOKEN: $(GITHUB_TOKEN)
+ AZURE_SUB_ID: ${env:AZURE_SUBSCRIPTION_ID}
+ GH_TOKEN: ${env:GITHUB_TOKEN}
 
 
 stages:
@@ -20,9 +20,9 @@ stages:
     - powershell: |
         Write-Host $(GH_TOKEN)
         Write-Host $(GITHUB_TOKEN)
-        # Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
-        # Import-Module .\helpers\GenerateResourcesAndImage.ps1
-        # GenerateResourcesAndImage -SubscriptionId $(AZURE_SUB_ID) -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -GithubFeedToken $(GH_TOKEN) -ResourceGroupName "buildagents-$(Build.BuildId)"
+        Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
+        Import-Module .\helpers\GenerateResourcesAndImage.ps1
+        GenerateResourcesAndImage -SubscriptionId ${env:AZURE_SUBSCRIPTION_ID} -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -GithubFeedToken ${env:GITHUB_TOKEN} -ResourceGroupName "buildagents-$(Build.BuildId)"
 
         # Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
         # Import-Module .\helpers\GenerateResourcesAndImage.ps1
