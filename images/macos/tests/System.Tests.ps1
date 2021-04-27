@@ -10,7 +10,7 @@ Describe "Disk free space" {
 }
 
 Describe "Certificate" {
-    It "Apple Worldwide Developer Relations Certification Authority[expired: 2030-02] is installed" {
+    It "Apple Worldwide Developer Relations Certification Authority[expired: 2030-02] is installed (Should be on the base image for Big Sur)" {
         $sha1Hash = "06EC06599F4ED0027CC58956B4D3AC1255114F35"
         $certs = security find-certificate -a -c Worldwide -p -Z | Out-String
         $certs | Should -Match $sha1Hash
