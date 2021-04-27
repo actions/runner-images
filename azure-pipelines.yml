@@ -12,6 +12,15 @@ stages:
     pool: vmss-windows
 
     steps:
+    - task: AzureCLI@2
+      displayName: Azure CLI
+      inputs:
+        azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
+        scriptType: ps
+        scriptLocation: inlineScript
+        inlineScript: |
+          az --version
+          az account show
     - powershell: |
         Uninstall-AzureRm
         Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
