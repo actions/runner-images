@@ -129,84 +129,91 @@ Function GenerateResourcesAndImage {
     }
     Set-AzContext -SubscriptionId $SubscriptionId
 
-    $alreadyExists = $true;
-    try {
-        Get-AzResourceGroup -Name $ResourceGroupName
-        Write-Verbose "Resource group was found, will delete and recreate it."
-    }
-    catch {
-        Write-Verbose "Resource group was not found, will create it."
-        $alreadyExists = $false;
-    }
+    # We assume that the resource group already exists, else we fail
+    # $alreadyExists = $true;
+    # try {
+    #     Get-AzResourceGroup -Name $ResourceGroupName
+    #     Write-Verbose "Resource group was found, will delete and recreate it."
+    # }
+    # catch {
+    #     Write-Verbose "Resource group was not found, will create it."
+    #     $alreadyExists = $false;
+    # }
 
-    if ($alreadyExists) {
-        if($Force -eq $true) {
-            # Cleanup the resource group if it already exitsted before
-            Remove-AzResourceGroup -Name $ResourceGroupName -Force
-            New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
-        } else {
-            $title = "Delete Resource Group"
-            $message = "The resource group you specified already exists. Do you want to clean it up?"
+    # if ($alreadyExists) {
+    #     if($Force -eq $true) {
+    #         # Cleanup the resource group if it already exitsted before
+    #         Remove-AzResourceGroup -Name $ResourceGroupName -Force
+    #         New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
+    #     } else {
+    #         $title = "Delete Resource Group"
+    #         $message = "The resource group you specified already exists. Do you want to clean it up?"
 
-            $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", `
-                "Delete the resource group including all resources."
+    #         $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", `
+    #             "Delete the resource group including all resources."
 
-            $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", `
-                "Keep the resource group and continue."
+    #         $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", `
+    #             "Keep the resource group and continue."
 
-            $stop = New-Object System.Management.Automation.Host.ChoiceDescription "&Stop", `
-                "Stop the current action."
+    #         $stop = New-Object System.Management.Automation.Host.ChoiceDescription "&Stop", `
+    #             "Stop the current action."
 
-            $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no, $stop)
-            $result = $host.ui.PromptForChoice($title, $message, $options, 0)
+    #         $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no, $stop)
+    #         $result = $host.ui.PromptForChoice($title, $message, $options, 0)
 
-            switch ($result)
-            {
-                0 { Remove-AzResourceGroup -Name $ResourceGroupName -Force; New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation }
-                1 { <# Do nothing #> }
-                2 { exit }
-            }
-        }
-    } else {
-        New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
-    }
+    #         switch ($result)
+    #         {
+    #             0 { Remove-AzResourceGroup -Name $ResourceGroupName -Force; New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation }
+    #             1 { <# Do nothing #> }
+    #             2 { exit }
+    #         }
+    #     }
+    # } else {
+    #     New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
+    # }
 
     # This script should follow the recommended naming conventions for azure resources
-    $storageAccountName = if($ResourceGroupName.EndsWith("-rg")) {
-        $ResourceGroupName.Substring(0, $ResourceGroupName.Length -3)
-    } else { $ResourceGroupName }
+    # $storageAccountName = if($ResourceGroupName.EndsWith("-rg")) {
+    #     $ResourceGroupName.Substring(0, $ResourceGroupName.Length -3)
+    # } else { $ResourceGroupName }
+    $StorageAccountName = $ResourceGroupName
 
     # Resource group names may contain special characters, that are not allowed in the storage account name
     $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
-    $storageAccountName += "001"
-
-    New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
-
-    if ([string]::IsNullOrEmpty($AzureClientId)) {
-        # Interactive authentication: A service principal is created during runtime.
-        $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
-        $credentialProperties = @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$ServicePrincipalClientSecret }
-        $credentials = New-Object -TypeName Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential -Property $credentialProperties
-        $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
-
-        $spAppId = $sp.ApplicationId
-        $spClientId = $sp.ApplicationId
-        Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-
-        New-AzRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
-        Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-        $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
-        $tenantId = $sub.TenantId
-        # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
-    } else {
-        # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
-        # is used for all authentication purposes.
-        $spAppId = $AzureClientId
-        $spClientId = $AzureClientId
-        $credentials = $AzureAppCred
-        $ServicePrincipalClientSecret = $AzureClientSecret
-        $tenantId = $AzureTenantId
+   try {
+        Get-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $storageAccountName
+        Write-Verbose "Storage account $StorageAccountName was found"
     }
+    catch {
+        Write-Verbose "Storage account $StorageAccountName was not found, will create it."
+        New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $StorageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
+    }
+
+    # if ([string]::IsNullOrEmpty($AzureClientId)) {
+    #     # Interactive authentication: A service principal is created during runtime.
+    #     $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
+    #     $credentialProperties = @{ StartDate=Get-Date; EndDate=Get-Date -Year 2024; Password=$ServicePrincipalClientSecret }
+    #     $credentials = New-Object -TypeName Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential -Property $credentialProperties
+    #     $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
+
+    #     $spAppId = $sp.ApplicationId
+    #     $spClientId = $sp.ApplicationId
+    #     Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
+
+    #     New-AzRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $spAppId
+    #     Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
+    #     $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
+    #     $tenantId = $sub.TenantId
+    #     # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
+    # } else {
+    #     # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
+    #     # is used for all authentication purposes.
+    #     $spAppId = $AzureClientId
+    #     $spClientId = $AzureClientId
+    #     $credentials = $AzureAppCred
+    #     $ServicePrincipalClientSecret = $AzureClientSecret
+    #     $tenantId = $AzureTenantId
+    # }
 
     Get-LatestCommit -ErrorAction SilentlyContinue
 
