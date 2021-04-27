@@ -180,14 +180,14 @@ Function GenerateResourcesAndImage {
 
     # Resource group names may contain special characters, that are not allowed in the storage account name
     $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
-   try {
-        Get-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $storageAccountName
-        Write-Verbose "Storage account $StorageAccountName was found"
-    }
-    catch {
-        Write-Verbose "Storage account $StorageAccountName was not found, will create it."
-        New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $StorageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
-    }
+#    try {
+#         Get-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $storageAccountName
+#         Write-Verbose "Storage account $StorageAccountName was found"
+#     }
+#     catch {
+#         Write-Verbose "Storage account $StorageAccountName was not found, will create it."
+#         New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $StorageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
+#     }
 
     # if ([string]::IsNullOrEmpty($AzureClientId)) {
     #     # Interactive authentication: A service principal is created during runtime.
