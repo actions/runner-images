@@ -15,7 +15,7 @@ stages:
     - task: AzureCLI@2
       displayName: Azure CLI
       inputs:
-        azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
+        azureSubscription: ca9a7991-a1c8-4951-a321-11e7c1ffc279
         addSpnToEnvironment: true
         scriptType: ps
         scriptLocation: inlineScript
