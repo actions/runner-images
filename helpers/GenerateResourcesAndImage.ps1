@@ -265,7 +265,7 @@ Function GenerateResourcesAndImage {
 
     # if ([string]::IsNullOrEmpty($AzureClientId))
     # {
-    #     Connect-AzAccount
+    Connect-AzAccount
     # } else {
     #     $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
     #     $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
