@@ -10,7 +10,8 @@ source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
 # add repository
-apt-add-repository ppa:ondrej/php -y
+REPO_URL="ppa:ondrej/php"
+apt-add-repository $REPO_URL -y
 apt-get update
 
 # Install PHP
@@ -100,6 +101,8 @@ mv phpunit /usr/local/bin/phpunit
 
 # remove repository after successfull installation
 rm -r /etc/apt/sources.list.d/ondrej-ubuntu-php-*
+
+echo "php $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
 apt-get update
 
 invoke_tests "Common" "PHP"
