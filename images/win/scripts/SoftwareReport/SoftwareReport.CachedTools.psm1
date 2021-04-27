@@ -61,7 +61,6 @@ function Get-PyPyMarkdown
 
     $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
         "Python Version" = "left";
-        Architecture = "left";
         "PyPy Version" = "left"
     })
 

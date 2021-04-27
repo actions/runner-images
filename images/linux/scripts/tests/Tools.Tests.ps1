@@ -150,6 +150,10 @@ Describe "Mono" {
         "mono --version" | Should -ReturnZeroExitCode
     }
 
+    It "msbuild" {
+        "msbuild -version" | Should -ReturnZeroExitCode
+    }
+
     It "nuget" {
         "nuget" | Should -ReturnZeroExitCode
     }

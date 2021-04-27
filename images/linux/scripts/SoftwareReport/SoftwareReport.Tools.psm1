@@ -95,7 +95,8 @@ function Get-GitFTPVersion {
 }
 
 function Get-GoogleCloudSDKVersion {
-    return "$(gcloud --version | Select-Object -First 1)"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "google-cloud-sdk"
+    return "$(gcloud --version | Select-Object -First 1) (apt source repository: $aptSourceRepo)"
 }
 
 function Get-HavegedVersion {
