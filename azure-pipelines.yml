@@ -16,10 +16,11 @@ stages:
       displayName: Azure CLI
       inputs:
         azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
+        addSpnToEnvironment: true
         scriptType: ps
         scriptLocation: inlineScript
         inlineScript: |
           Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
           Uninstall-AzureRm
           Import-Module .\helpers\GenerateResourcesAndImage.ps1
-          GenerateResourcesAndImage -SubscriptionId 0fc6d504-3fba-461e-934e-25744d5c7f6c -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName "lsg-gs3-build-agent-images"
+          GenerateResourcesAndImage -AzureClientId ${env:AZURECLIENTID} -AzureClientSecret ${env:AzureClientSecret} -AzureTenantId ${env:AzureTenantId} -SubscriptionId 0fc6d504-3fba-461e-934e-25744d5c7f6c -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName "lsg-gs3-build-agent-images"
