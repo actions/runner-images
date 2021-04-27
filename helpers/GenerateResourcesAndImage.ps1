@@ -119,15 +119,15 @@ Function GenerateResourcesAndImage {
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
 
-    if ([string]::IsNullOrEmpty($AzureClientId))
-    {
-        Connect-AzAccount
-    } else {
-        $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
-        $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
-        Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
-    }
-    Set-AzContext -SubscriptionId $SubscriptionId
+    # if ([string]::IsNullOrEmpty($AzureClientId))
+    # {
+    #     Connect-AzAccount
+    # } else {
+    #     $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
+    #     $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
+    #     Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
+    # }
+    # Set-AzContext -SubscriptionId $SubscriptionId
 
     # We assume that the resource group already exists, else we fail
     # $alreadyExists = $true;
