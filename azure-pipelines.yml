@@ -19,7 +19,7 @@ stages:
         scriptType: ps
         scriptLocation: inlineScript
         inlineScript: |
-          Uninstall-AzureRm
           Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
+          Uninstall-AzureRm
           Import-Module .\helpers\GenerateResourcesAndImage.ps1
           GenerateResourcesAndImage -SubscriptionId 0fc6d504-3fba-461e-934e-25744d5c7f6c -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName "buildagents-$(Build.BuildId)"
