@@ -352,11 +352,11 @@ Function GenerateResourcesAndImage {
     # } else {
     #     # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
     #     # is used for all authentication purposes.
-    #     $spAppId = $AzureClientId
-    #     $spClientId = $AzureClientId
-    #     $credentials = $AzureAppCred
-    #     $ServicePrincipalClientSecret = $AzureClientSecret
-    #     $tenantId = $AzureTenantId
+    $spAppId = $AzureClientId
+    $spClientId = $AzureClientId
+    $credentials = $AzureAppCred
+    $ServicePrincipalClientSecret = $AzureClientSecret
+    $tenantId = $AzureTenantId
     # }
 >>>>>>> d2f2ba92 (updating)
 
