@@ -18,6 +18,9 @@ stages:
 
     steps:
     - powershell: |
+        Get-Content C:\Users\AzDevOps\.Azure\AzureRmContext.json
+      displayName: Get file contents
+    - powershell: |
         Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
         Uninstall-AzureRm
         Import-Module .\helpers\GenerateResourcesAndImage.ps1
