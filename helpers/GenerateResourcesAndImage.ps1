@@ -222,7 +222,7 @@ Function GenerateResourcesAndImage {
     # }
 
     Get-LatestCommit -ErrorAction SilentlyContinue
-    Write-Host "starting packer..."
+    Write-Host "\n starting packer (${packerBinary})"
 
     $packerBinary = Get-Command "packer"
     if (-not ($packerBinary)) {
