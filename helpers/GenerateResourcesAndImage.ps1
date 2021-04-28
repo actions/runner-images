@@ -225,6 +225,7 @@ Function GenerateResourcesAndImage {
 
     $packerBinary = Get-Command "packer"
     Write-Host "\n starting packer from ${packerBinary}"
+    Get-Content $builderScriptPath
 
     if (-not ($packerBinary)) {
         throw "'packer' binary is not found on PATH"
