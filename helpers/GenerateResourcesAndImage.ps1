@@ -222,9 +222,10 @@ Function GenerateResourcesAndImage {
     # }
 
     Get-LatestCommit -ErrorAction SilentlyContinue
-    Write-Host "\n starting packer (${packerBinary})"
 
     $packerBinary = Get-Command "packer"
+    Write-Host "\n starting packer from ${packerBinary}"
+
     if (-not ($packerBinary)) {
         throw "'packer' binary is not found on PATH"
     }
