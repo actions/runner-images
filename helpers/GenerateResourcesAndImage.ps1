@@ -127,151 +127,19 @@ Function GenerateResourcesAndImage {
         [hashtable] $Tags
     )
 
-<<<<<<< HEAD
-    try {
-        $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
-        $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
-        $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
-
-        if ([string]::IsNullOrEmpty($AzureClientId))
-        {
-            Connect-AzAccount
-        } else {
-            $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
-            $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
-            Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
-        }
-        Set-AzContext -SubscriptionId $SubscriptionId
-
-        $alreadyExists = $true;
-        try {
-            Get-AzResourceGroup -Name $ResourceGroupName
-            Write-Verbose "Resource group was found, will delete and recreate it."
-        }
-        catch {
-            Write-Verbose "Resource group was not found, will create it."
-            $alreadyExists = $false;
-        }
-
-        if ($alreadyExists) {
-            if($Force -eq $true) {
-                # Cleanup the resource group if it already exitsted before
-                Remove-AzResourceGroup -Name $ResourceGroupName -Force
-                New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation -Tag $tags
-
-            } else {
-                $title = "Delete Resource Group"
-                $message = "The resource group you specified already exists. Do you want to clean it up?"
-
-                $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", `
-                    "Delete the resource group including all resources."
-
-                $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", `
-                    "Keep the resource group and continue."
-
-                $stop = New-Object System.Management.Automation.Host.ChoiceDescription "&Stop", `
-                    "Stop the current action."
-
-                $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no, $stop)
-                $result = $host.ui.PromptForChoice($title, $message, $options, 0)
-
-                switch ($result)
-                {
-                    0 { Remove-AzResourceGroup -Name $ResourceGroupName -Force; New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation  -Tag $tags }
-                    1 { <# Do nothing #> }
-                    2 { exit }
-                }
-            }
-        } else {
-            New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation -Tag $tags
-        }
-
-        # This script should follow the recommended naming conventions for azure resources
-        $storageAccountName = if($ResourceGroupName.EndsWith("-rg")) {
-            $ResourceGroupName.Substring(0, $ResourceGroupName.Length -3)
-        } else { $ResourceGroupName }
-
-        # Resource group names may contain special characters, that are not allowed in the storage account name
-        $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
-        $storageAccountName += "001"
-        
-        
-        # Storage Account Name can only be 24 characters long
-        if ($storageAccountName.Length -gt 24){
-            $storageAccountName = $storageAccountName.Substring(0, 24)
-        }
-
-        if ($tags) {
-            New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly -Tag $tags
-        } else {
-            New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly
-        }
-
-        if ([string]::IsNullOrEmpty($AzureClientId)) {
-            # Interactive authentication: A service principal is created during runtime.
-            $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
-            $startDate = Get-Date
-            $endDate = $startDate.AddYears(1)
-
-            if ('Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential' -as [type]) {
-                $credentials = [Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential]@{
-                    StartDate = $startDate
-                    EndDate = $endDate
-                    Password = $ServicePrincipalClientSecret
-                }
-                $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
-                $spClientId = $sp.ApplicationId
-                $azRoleParam = @{
-                    RoleDefinitionName = "Contributor"
-                    ServicePrincipalName = $spClientId
-                }
-            }
-
-            if ('Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential' -as [type]) {
-                $credentials = [Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential]@{
-                    StartDateTime = $startDate
-                    EndDateTime = $endDate
-                }
-                $sp = New-AzADServicePrincipal -DisplayName $spDisplayName
-                $appCred = New-AzADAppCredential -ApplicationId $sp.AppId -PasswordCredentials $credentials
-                $spClientId = $sp.AppId
-                $azRoleParam = @{
-                    RoleDefinitionName = "Contributor"
-                    PrincipalId = $sp.Id
-                }
-                $ServicePrincipalClientSecret = $appCred.SecretText
-            }
-
-            Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-            New-AzRoleAssignment @azRoleParam
-            Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-            $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
-            $tenantId = $sub.TenantId
-
-            # Remove ADPrincipal after the script completed
-            $isCleanupADPrincipal = $true
-        } else {
-            # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
-            # is used for all authentication purposes.
-            $spClientId = $AzureClientId
-            $credentials = $AzureAppCred
-            $ServicePrincipalClientSecret = $AzureClientSecret
-            $tenantId = $AzureTenantId
-        }
-=======
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
 
-    # if ([string]::IsNullOrEmpty($AzureClientId))
-    # {
-    # Connect-AzAccount
-    # } else {
-    $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
-    $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
-    Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
-    # }
-    # Set-AzContext -SubscriptionId $SubscriptionId
+    if ([string]::IsNullOrEmpty($AzureClientId))
+    {
+        Connect-AzAccount
+    } else {
+        $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
+        $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
+        Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
+    }
+    Set-AzContext -SubscriptionId $SubscriptionId
 
     # We assume that the resource group already exists, else we fail
     # $alreadyExists = $true;
@@ -324,14 +192,14 @@ Function GenerateResourcesAndImage {
 
     # Resource group names may contain special characters, that are not allowed in the storage account name
     $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
-#    try {
-#         Get-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $storageAccountName
-#         Write-Verbose "Storage account $StorageAccountName was found"
-#     }
-#     catch {
-#         Write-Verbose "Storage account $StorageAccountName was not found, will create it."
-#         New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $StorageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
-#     }
+   try {
+        Get-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $storageAccountName
+        Write-Verbose "Storage account $StorageAccountName was found"
+    }
+    catch {
+        Write-Verbose "Storage account $StorageAccountName was not found, will create it."
+        New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $StorageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
+    }
 
     # if ([string]::IsNullOrEmpty($AzureClientId)) {
     #     # Interactive authentication: A service principal is created during runtime.
@@ -352,13 +220,12 @@ Function GenerateResourcesAndImage {
     # } else {
     #     # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
     #     # is used for all authentication purposes.
-    $spAppId = $AzureClientId
-    $spClientId = $AzureClientId
-    $credentials = $AzureAppCred
-    $ServicePrincipalClientSecret = $AzureClientSecret
-    $tenantId = $AzureTenantId
+    #     $spAppId = $AzureClientId
+    #     $spClientId = $AzureClientId
+    #     $credentials = $AzureAppCred
+    #     $ServicePrincipalClientSecret = $AzureClientSecret
+    #     $tenantId = $AzureTenantId
     # }
->>>>>>> d2f2ba92 (updating)
 
         Get-LatestCommit -ErrorAction SilentlyContinue
 
