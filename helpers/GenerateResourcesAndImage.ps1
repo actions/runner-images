@@ -224,7 +224,13 @@ Function GenerateResourcesAndImage {
     Get-LatestCommit -ErrorAction SilentlyContinue
 
     $packerBinary = Get-Command "packer"
-    Write-Host "\n starting packer from ${packerBinary}"
+    Write-Host ""
+    Write-Host "starting packer from ${packerBinary}"
+    Write-Host "spAppId: ${spAppId}"
+    Write-Host "spClientId: ${spClientId}"
+    Write-Host "credentials: ${credentials}"
+    # Write-Host "ServicePrincipalClientSecret: ${ServicePrincipalClientSecret}"
+    Write-Host "tenantId: ${tenantId}"
     Get-Content $builderScriptPath
 
     if (-not ($packerBinary)) {
