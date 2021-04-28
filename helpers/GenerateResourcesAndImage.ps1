@@ -115,9 +115,12 @@ Function GenerateResourcesAndImage {
         [Switch] $Force
     )
 
+    Write-Host "beginning"
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper();
+
+    Write-Host "builderScriptPath = ${builderScriptPath}"
 
     # if ([string]::IsNullOrEmpty($AzureClientId))
     # {
@@ -125,7 +128,10 @@ Function GenerateResourcesAndImage {
     # } else {
     $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
     $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
+    Write-Host "authenticating..."
+
     Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
+    Get-Content C:\Users\AzDevOps\.Azure\AzureRmContext.json
     # }
     # Set-AzContext -SubscriptionId $SubscriptionId
 
@@ -216,6 +222,7 @@ Function GenerateResourcesAndImage {
     # }
 
     Get-LatestCommit -ErrorAction SilentlyContinue
+    Write-Host "starting packer..."
 
     $packerBinary = Get-Command "packer"
     if (-not ($packerBinary)) {
