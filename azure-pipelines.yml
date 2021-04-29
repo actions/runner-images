@@ -23,10 +23,18 @@ stages:
         azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
         scriptType: ps
         scriptLocation: inlineScript
+        addSpnToEnvironment: true
+
         inlineScript: |
-          $RmContext = Get-Content C:\Users\AzDevOps\.Azure\AzureRmContext.json | ConvertFrom-Json
-          Write-Host $RmContent
+          # $RmContext = Get-Content C:\Users\AzDevOps\.Azure\AzureRmContext.json | ConvertFrom-Json
+          # Write-Host $RmContent
+          Write-Host "Saving Service Principal ID to environment variable SPN_ID"
+          Write-Host "##vso[task.setvariable variable=SpnID]$env:SPN_ID"
+          Write-Host "Saving Service Principal Key to environment variable SPN_KEY"
+          Write-Host "##vso[task.setvariable variable=SpnKey]$env:SPN_KEY"
+          Write-Host "Saving AzureAD Tenant ID  to environment variable SPN_KEY"
+          Write-Host "##vso[task.setvariable variable=tenant]$env:TENANT_ID"
           Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
           Uninstall-AzureRm
           Import-Module .\helpers\GenerateResourcesAndImage.ps1
-          GenerateResourcesAndImage -AzureClientId $(AZURECLIENTID) -AzureClientSecret $(AzureClientSecret) -AzureTenantId $(AzureTenantId) -SubscriptionId ca9a7991-a1c8-4951-a321-11e7c1ffc279 -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName gs3-build-agent-images
+          GenerateResourcesAndImage -AzureClientId $env:SPN_ID -AzureClientSecret $env:SPN_KEY -AzureTenantId $env:TENANT_ID -SubscriptionId 0fc6d504-3fba-461e-934e-25744d5c7f6c -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName gs3-build-agent-images
