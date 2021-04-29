@@ -58,7 +58,8 @@ function Get-ErlangVersion {
 
 function Get-MonoVersion {
     $monoVersion = mono --version | Out-String | Take-OutputPart -Part 4
-    return "Mono $monoVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "mono"
+    return "Mono $monoVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-MsbuildVersion {
