@@ -31,4 +31,4 @@ stages:
           Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
           Uninstall-AzureRm
           Import-Module .\helpers\GenerateResourcesAndImage.ps1
-          GenerateResourcesAndImage -AzureClientId ${env:servicePrincipalId} -AzureClientSecret ${env:servicePrincipalKey} -AzureTenantId $(az account show --query 'tenantId' --output tsv) -SubscriptionId $(az account show --query 'id' --output tsv) -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName gs3-build-agent-images
+          GenerateResourcesAndImage -AzureClientId ${env:servicePrincipalId} -AzureClientSecret ${env:servicePrincipalKey} -AzureTenantId $(az account show --query 'tenantId' --output tsv) -SubscriptionId $(az account show --query 'id' --output tsv) -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName gss-build-agent-images
