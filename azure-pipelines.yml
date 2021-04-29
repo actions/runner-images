@@ -24,9 +24,8 @@ stages:
         scriptType: ps
         scriptLocation: inlineScript
         inlineScript: |
-          az --version
-          az account show
-          Get-Content C:\Users\AzDevOps\.Azure\AzureRmContext.json
+          $RmContext = Get-Content C:\Users\AzDevOps\.Azure\AzureRmContext.json | ConvertFrom-Json
+          Write-Host $RmContent
           Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
           Uninstall-AzureRm
           Import-Module .\helpers\GenerateResourcesAndImage.ps1
