@@ -28,10 +28,6 @@ stages:
         inlineScript: |
           # $RmContext = Get-Content C:\Users\AzDevOps\.Azure\AzureRmContext.json | ConvertFrom-Json
           # Write-Host $RmContent
-          SUBSCRIPTION_ID=$(az account show --query 'id' --output tsv)
-          TENANT_ID=$(az account show --query 'tenantId' --output tsv)
-          CLIENT_ID=${servicePrincipalId:-}
-          CLIENT_SECRET=${servicePrincipalKey:-}
           Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
           Uninstall-AzureRm
           Import-Module .\helpers\GenerateResourcesAndImage.ps1
