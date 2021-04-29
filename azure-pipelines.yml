@@ -11,6 +11,7 @@ stages:
   displayName: Build stage
   jobs:
   - job: Build
+    timeoutInMinutes: 300
     workspace:
       clean: all
     displayName: Build
