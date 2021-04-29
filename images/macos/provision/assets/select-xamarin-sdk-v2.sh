@@ -22,7 +22,7 @@ change_framework_version() {
   fi
 
   local framework_path=$(get_framework_path "$framework")
-  sudo rm -f ${framework_path}/Current
+  sudo rm -f "${framework_path}/Current"
   sudo ln -s "${framework_path}/${version}" "${framework_path}/Current"
 }
 
