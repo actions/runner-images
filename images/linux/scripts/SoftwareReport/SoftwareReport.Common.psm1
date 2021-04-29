@@ -211,10 +211,11 @@ function Get-SbtVersion {
 
 function Get-PHPVersions {
     $result = Get-CommandResult "apt list --installed" -Multiline
-    return $result.Output | Where-Object { $_ -match "^php\d+\.\d+/"} | ForEach-Object {
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "php"
+    $versionsList = $result.Output | Where-Object { $_ -match "^php\d+\.\d+/"} | ForEach-Object {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
-        $Matches.version
-    }
+        $Matches.version }
+    return $versionsList + "(apt source repository: $aptSourceRepo)"
 }
 
 function Get-ComposerVersion {
@@ -251,7 +252,8 @@ function Build-PHPTable {
 function Get-GHCVersion {
     $(ghc --version) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $ghcVersion = $Matches.version
-    return "GHC $ghcVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "ghc"
+    return "GHC $ghcVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-GHCupVersion {
