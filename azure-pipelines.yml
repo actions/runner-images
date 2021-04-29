@@ -31,8 +31,8 @@ stages:
           SUBSCRIPTION_ID=$(az account show --query 'id' --output tsv)
           TENANT_ID=$(az account show --query 'tenantId' --output tsv)
           CLIENT_ID=${servicePrincipalId:-}
-          CLIENT_SECRET=${servicePrincipalKey:-}"Saving Service Principal ID to environment variable SPN_ID:$env:SPN_ID:${env:SPN_ID} "
+          CLIENT_SECRET=${servicePrincipalKey:-}
           Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
           Uninstall-AzureRm
           Import-Module .\helpers\GenerateResourcesAndImage.ps1
-          GenerateResourcesAndImage -AzureClientId ${env:CLIENT_ID} -AzureClientSecret ${env:CLIENT_SECRET} -AzureTenantId ${env:TENANT_ID} -SubscriptionId ${SUBSCRIPTION_ID} -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName gs3-build-agent-images
+          GenerateResourcesAndImage -AzureClientId ${servicePrincipalId:-} -AzureClientSecret ${servicePrincipalKey:-} -AzureTenantId $(az account show --query 'tenantId' --output tsv) -SubscriptionId $(az account show --query 'id' --output tsv) -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName gs3-build-agent-images
