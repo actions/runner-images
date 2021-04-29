@@ -26,8 +26,9 @@ stages:
         addSpnToEnvironment: true
 
         inlineScript: |
-          Write-Host "servicePrincipalId: ${servicePrincipalId} : $(servicePrincipalId) : ${env:servicePrincipalId}"
+          dir env:
+          # Write-Host "servicePrincipalId: ${servicePrincipalId} : $(servicePrincipalId) : ${env:servicePrincipalId}"
           Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
           Uninstall-AzureRm
           Import-Module .\helpers\GenerateResourcesAndImage.ps1
-          GenerateResourcesAndImage -AzureClientId ${servicePrincipalId} -AzureClientSecret ${servicePrincipalKey} -AzureTenantId $(az account show --query 'tenantId' --output tsv) -SubscriptionId $(az account show --query 'id' --output tsv) -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName gs3-build-agent-images
+          # GenerateResourcesAndImage -AzureClientId ${servicePrincipalId} -AzureClientSecret ${servicePrincipalKey} -AzureTenantId $(az account show --query 'tenantId' --output tsv) -SubscriptionId $(az account show --query 'id' --output tsv) -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 -AzureLocation "west US" -ResourceGroupName gs3-build-agent-images
