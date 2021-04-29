@@ -1,21 +1,22 @@
 | Announcements |
 |-|
-| [[windows, ubuntu] Few outdated Docker images will be removed on April, 12](https://github.com/actions/virtual-environments/issues/3111) |
+| [[ubuntu] Clang 9 will be removed on May, 17th](https://github.com/actions/virtual-environments/issues/3235) |
 ***
 # Ubuntu 18.04.5 LTS
 - Linux kernel version: 5.4.0-1046-azure
-- Image Version: 20210419.1
+- Image Version: 20210425.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.20(1)-release
 - Clang 9.0.0
 - Clang-format 9.0.0
-- Erlang 23.2.3 (Eshell 11.1.7)
+- Erlang 23.3.1 (Eshell 11.2)
 - GNU C++ 7.5.0, 9.3.0, 10.3.0
 - GNU Fortran 7.5.0, 9.3.0, 10.3.0
-- Julia 1.6.0
+- Julia 1.6.1
 - Mono 6.12.0.122
+- MSBuild 16.6.0.15201 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node 14.16.1
 - Perl 5.26.1
 - Python 2.7.17
@@ -26,14 +27,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.5.4
-- Homebrew 3.1.2
+- Homebrew 3.1.3
 - Miniconda 4.9.2
 - Npm 6.14.12
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 0.16.1.0
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<414bec0>)
+- Vcpkg  (build from master \<6ebcd4e>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -53,10 +54,10 @@
 - apt-fast 1.9.10
 - AzCopy 10.10.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.0.0
-- Bazelisk 1.7.5
+- Bazelisk 1.8.0
 - Buildah 1.19.6 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.20.1
-- CodeQL Action Bundle 2.5.0
+- CodeQL Action Bundle 2.5.2
 - Docker Compose 1.29.1
 - Docker-Buildx 0.5.1
 - Docker-Moby Client 20.10.6+azure
@@ -66,7 +67,7 @@
 - Git-ftp 1.3.1
 - Haveged 1.9.1
 - Heroku 7.52.0
-- HHVM (HipHop VM) 4.105.0
+- HHVM (HipHop VM) 4.106.0
 - jq 1.5
 - Kind 0.10.0
 - Kubectl 1.20.1-5-g76a04fc
@@ -81,7 +82,7 @@
 - Packer 1.7.2
 - PhantomJS 2.1.1
 - Podman 3.0.1 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 2.25.2
+- Pulumi 3.1.0
 - R 4.0.5
 - Skopeo 1.2.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
@@ -92,18 +93,18 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.73
-- AWS CLI 1.19.53
+- AWS CLI 1.19.57
 - AWS CLI Session manager plugin 1.2.54.0
-- AWS SAM CLI 1.22.0
-- Azure CLI (azure-cli) 2.22.0
+- AWS SAM CLI 1.23.0
+- Azure CLI (azure-cli) 2.22.1
 - Azure CLI (azure-devops) 0.18.0
-- GitHub CLI 1.9.1
-- Google Cloud SDK 336.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- GitHub CLI 1.9.2
+- Google Cloud SDK 337.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 3.18.3
-- OpenShift CLI 4.7.6
+- Netlify CLI 3.21.9
+- OpenShift CLI 4.7.7
 - ORAS CLI 0.11.1
-- Vercel CLI 21.3.3
+- Vercel CLI 22.0.1
 
 ### Java
 | Version             | Vendor        | Environment Variable |
@@ -135,12 +136,12 @@
 - Bindgen 0.58.1
 - Cargo audit 0.14.0
 - Cargo clippy 0.1.51
-- Cargo outdated 0.9.14
+- Cargo outdated 0.9.15
 - Cbindgen 0.19.0
 - Rustfmt 1.4.36
 
 ### Browsers and Drivers
-- Google Chrome 90.0.4430.72
+- Google Chrome 90.0.4430.85
 - ChromeDriver 90.0.4430.24
 - Mozilla Firefox 87.0
 - Geckodriver 0.29.1
@@ -231,7 +232,7 @@
 | Android Command Line Tools | 3.0                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3 |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                                        |
-| Android SDK Platforms      | android-S (rev 2)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)                                             |
+| Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)                                             |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                        |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                        |
 | CMake                      | 3.10.2                                                                                                                                                                                                                                        |
@@ -265,9 +266,9 @@
 | node:12-alpine         | sha256:9923c9efb13cf7535f67e49b03010f0977a800068e4c8e0e2c93433a6bfa1e77  | 2021-04-14 |
 | node:14                | sha256:8eb45f4677c813ad08cef8522254640aa6a1800e75a9c213a0a651f6f3564189  | 2021-04-10 |
 | node:14-alpine         | sha256:ed51af876dd7932ce5c1e3b16c2e83a3f58419d824e366de1f7b00f40c848c40  | 2021-04-14 |
-| ubuntu:16.04           | sha256:bb84bbf2ff36d46acaf0bb0c6bcb33dae64cd93cba8652d74c9aaf438fada438  | 2021-03-25 |
-| ubuntu:18.04           | sha256:122f506735a26c0a1aff2363335412cfc4f84de38326356d31ee00c2cbe52171  | 2021-03-25 |
-| ubuntu:20.04           | sha256:3c9c713e0979e9bd6061ed52ac1e9e1f246c9495aa063619d9d695fb8039aa1f  | 2021-04-03 |
+| ubuntu:16.04           | sha256:eed7e1076bbc1f342c4474c718e5438af4784f59a4e88ad687dbb98483b59ee4  | 2021-04-23 |
+| ubuntu:18.04           | sha256:538529c9d229fb55f50e6746b119e899775205d62c0fc1b7e679b30d02ecb6e8  | 2021-04-23 |
+| ubuntu:20.04           | sha256:cf31af331f38d1d7158470e095b132acd126a7180a54f263d386da88eb681d93  | 2021-04-23 |
 
 ### Installed apt packages
 | Name              | Version                           |
