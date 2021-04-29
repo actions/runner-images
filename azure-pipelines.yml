@@ -26,7 +26,7 @@ stages:
         addSpnToEnvironment: true
 
         inlineScript: |
-          Write-Host "servicePrincipalId: ${servicePrincipalId}"
+          Write-Host "servicePrincipalId: ${servicePrincipalId} : $(servicePrincipalId) : ${env:servicePrincipalId}"
           Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
           Uninstall-AzureRm
           Import-Module .\helpers\GenerateResourcesAndImage.ps1
