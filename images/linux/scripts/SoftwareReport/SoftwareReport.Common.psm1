@@ -215,7 +215,7 @@ function Get-PHPVersions {
     $versionsList = $result.Output | Where-Object { $_ -match "^php\d+\.\d+/"} | ForEach-Object {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version }
-    return $versionsList + "apt source repository: $aptSourceRepo"
+    return $versionsList + "(apt source repository: $aptSourceRepo)"
 }
 
 function Get-ComposerVersion {
