@@ -20,7 +20,7 @@ stages:
     - task: AzureCLI@2
       displayName: Azure CLI
       inputs:
-        azureSubscription: dfc69404-c6a0-4262-970c-08dec22ffb31
+        azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
         scriptType: ps
         scriptLocation: inlineScript
         inlineScript: |
