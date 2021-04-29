@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[macOS] Az modules will be upgraded from 4.8.0 to 5.7.0 on April, 12](https://github.com/actions/virtual-environments/issues/3129) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 11.2 info
 - System Version: macOS 11.2.3 (20D91)
 - Kernel Version: Darwin 20.3.0
-- Image Version: 20210420.1
+- Image Version: 20210424.1
 
 ## Installed Software
 ### Language and Runtime
@@ -21,7 +20,7 @@
 - GNU Fortran (Homebrew GCC 8.4.0_3) 8.4.0  - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0_2) 9.3.0  - available by `gfortran-9` alias
 - Go 1.15.11
-- julia 1.6.0
+- julia 1.6.1
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v14.16.1
 - NVM - Cached node versions: v10.24.1 v12.22.1 v14.16.1
@@ -45,7 +44,7 @@
 - Pip 21.0.1 (python 3.9)
 - Pipx 0.16.1.0
 - RubyGems 3.2.16
-- Vcpkg 2021 (build from master \<807a798>)
+- Vcpkg 2021 (build from master \<6ebcd4e>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -64,15 +63,15 @@
 - aria2 1.35.0
 - azcopy 10.10.0
 - bazel 4.0.0
-- bazelisk 1.7.5
+- bazelisk 1.8.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.76.1
 - Git LFS: 2.13.3
 - Git: 2.31.1
-- GitHub CLI: 1.9.1
+- GitHub CLI: 1.9.2
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
-- gpg (GnuPG) 2.2.27
+- gpg (GnuPG) 2.3.1
 - helm v3.5.4+g1b5edb6
 - Hub CLI: 2.14.2
 - jq 1.6
@@ -90,8 +89,8 @@
 ### Tools
 - Aliyun CLI 3.0.73
 - App Center CLI 2.9.0
-- AWS CLI 2.1.38
-- AWS SAM CLI 1.22.0
+- AWS CLI 2.1.39
+- AWS SAM CLI 1.23.0
 - AWS Session Manager CLI 1.2.54.0
 - Azure CLI 2.22.1
 - Cabal 3.4.0.0
@@ -100,7 +99,7 @@
 - GHC 9.0.1
 - GHCup v0.1.14.1
 - Stack 2.5.1
-- SwiftFormat 0.47.13
+- SwiftFormat 0.48.0
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
@@ -112,8 +111,8 @@
 - SafariDriver 14.0.3 (16610.4.3.1.7)
 - Google Chrome 90.0.4430.85 
 - ChromeDriver 90.0.4430.24
-- Microsoft Edge 90.0.818.41 
-- MSEdgeDriver 90.0.818.42
+- Microsoft Edge 90.0.818.42 
+- MSEdgeDriver 90.0.818.46
 - Mozilla Firefox 88.0
 - geckodriver 0.29.1
 
@@ -125,10 +124,10 @@
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
 ### Java
-| Version   | Vendor        | Environment Variable |
-| --------- | ------------- | -------------------- |
-| 8.0.282+8 | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.10+9 | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| Version    | Vendor        | Environment Variable |
+| ---------- | ------------- | -------------------- |
+| 8.0.292+10 | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.11+9  | Adopt OpenJDK | JAVA_HOME_11_X64     |
 
 ### Cached Tools
 #### Ruby
@@ -161,7 +160,7 @@
 #### Packages
 - Bindgen 0.58.1
 - Cargo-audit 0.14.0
-- Cargo-outdated v0.9.14
+- Cargo-outdated v0.9.15
 - Cbindgen 0.19.0
 - Clippy 0.1.51
 - Rustfmt 1.4.36-stable
@@ -185,7 +184,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.9.6.6
+- 8.9.7.8
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -274,9 +273,9 @@
 | Package Name               | Version                                                                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 3.0                                                                                                                      |
-| Android Emulator           | 30.5.4                                                                                                                   |
+| Android Emulator           | 30.5.5                                                                                                                   |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platforms      | android-S (rev 2)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                |
+| Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                   |
 | Android SDK Tools          | 26.1.1                                                                                                                   |
 | Android Support Repository | 47.0.0                                                                                                                   |
