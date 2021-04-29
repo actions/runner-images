@@ -29,6 +29,10 @@ stages:
           # $RmContext = Get-Content C:\Users\AzDevOps\.Azure\AzureRmContext.json | ConvertFrom-Json
           # Write-Host $RmContent
           Write-Host "Saving Service Principal ID to environment variable SPN_ID:$env:SPN_ID:${env:SPN_ID} "
+          Write-Host $(az account show --query 'id' --output tsv)
+          Write-Host $(az account show --query 'tenantId' --output tsv)
+          Write-Host ${servicePrincipalId:-}
+          # CLIENT_SECRET=${servicePrincipalKey:-}"Saving Service Principal ID to environment variable SPN_ID:$env:SPN_ID:${env:SPN_ID} "
           Write-Host "##vso[task.setvariable variable=SpnID]$env:SPN_ID"
           Write-Host "Saving Service Principal Key to environment variable SPN_KEY"
           Write-Host "##vso[task.setvariable variable=SpnKey]$env:SPN_KEY"
