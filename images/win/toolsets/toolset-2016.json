@@ -262,6 +262,10 @@
         {
             "package": "yamllint",
             "cmd": "yamllint --version"
+        },
+        {
+            "package": "poetry",
+            "cmd": "poetry --version"
         }
     ],
     "dotnet": {
