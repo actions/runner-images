@@ -229,6 +229,10 @@
         {
             "package": "ansible-base",
             "cmd": "ansible"
+        },
+        {
+            "package": "poetry",
+            "cmd": "poetry"
         }
     ],
     "dotnet": {
