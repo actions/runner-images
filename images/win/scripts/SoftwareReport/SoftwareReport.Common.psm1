@@ -315,6 +315,11 @@ function Get-PipxVersion {
     return "Pipx $pipxVersion"
 }
 
+function Get-PoetryVersion {
+    $poetryVersion = poetry --version
+    return "Poetry $poetryVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{

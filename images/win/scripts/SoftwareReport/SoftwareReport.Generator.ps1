@@ -53,6 +53,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-NugetVersion),
     (Get-PipxVersion),
     (Get-PipVersion),
+	(Get-PoetryVersion)
     (Get-RubyGemsVersion),
     (Get-VcpkgVersion),
     (Get-YarnVersion)
