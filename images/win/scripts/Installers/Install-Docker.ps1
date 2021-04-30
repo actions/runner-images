@@ -6,6 +6,7 @@
 ################################################################################
 
 Write-Host "Install-Package Docker"
+smc -stop
 Install-Package -Name docker -ProviderName DockerMsftProvider -Force
 Start-Service docker
 
