@@ -18,7 +18,7 @@ change_framework_version() {
 
   local countDigit=$(echo "${version}" | grep -o "\." | grep -c "\.")
   if [[ countDigit -gt 1 ]]; then
-    echo "[WARNING] It is not recommended to specify version in "a.b.c.d" format because your pipeline can be broken suddenly in future. Use "a.b" format."
+    echo "[WARNING] It is not recommended to specify the exact framework version because your build can be broken with the next patch update. Consider using "major.minor" only format."
   fi
 
   local framework_path=$(get_framework_path "$framework")
