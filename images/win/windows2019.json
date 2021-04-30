@@ -122,7 +122,6 @@
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-PowerShellModules.ps1",
                 "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-TrendMicro.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1"
             ],
             "execution_policy": "unrestricted"
@@ -384,6 +383,7 @@
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Updates.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-TrendMicro.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Networking.ps1"
             ]
         },
