@@ -72,6 +72,7 @@ $packageManagementList = @(
 if (-not (Test-IsUbuntu16)) {
     $packageManagementList += @(
         (Get-PipxVersion)
+		(Get-PoetryVersion)
     )
 }
 

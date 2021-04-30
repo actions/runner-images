@@ -346,6 +346,13 @@ function Get-PipxVersion {
     return "Pipx $pipxVersion"
 }
 
+function Get-PoetryVersion {
+    $result = Get-CommandResult "poetry --version"
+    $result.Output -match "Poetry version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $pipVersion = $Matches.version
+    return "Poetry $pipVersion"
+}
+
 function Get-GraalVMVersion {
     $version = & "$env:GRAALVM_11_ROOT\bin\java" --version | Select-String -Pattern "GraalVM" | Take-OutputPart -Part 5,6
     return $version
