@@ -9,11 +9,23 @@ jobs:
   displayName: Image Generation (${{ parameters.image_type }})
   timeoutInMinutes: 600
   cancelTimeoutInMinutes: 30
-  pool: ci-agent-pool
+  pool: vmss-windows
   variables:
   - group: Image Generation Variables
 
   steps:
+  - task: AzureCLI@2
+    displayName: Azure CLI
+    inputs:
+      azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
+      scriptType: ps
+      scriptLocation: inlineScript
+      addSpnToEnvironment: true
+
+      inlineScript: |
+        Write-Host "##vso[task.setvariable variable=CLIENT_ID;]${env:servicePrincipalId}"
+        Write-Host "##vso[task.setvariable variable=CLIENT_SECRET;]${env:servicePrincipalKey}"
+
   - task: PowerShell@2
     displayName: 'Download custom repository'
     condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
