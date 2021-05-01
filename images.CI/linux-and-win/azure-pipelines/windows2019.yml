@@ -6,7 +6,9 @@ schedules:
     - main
   always: true
 
-trigger: none
+trigger:
+  batch: true
+
 pr:
   autoCancel: true
   branches:
