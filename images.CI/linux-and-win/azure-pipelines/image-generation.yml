@@ -26,6 +26,13 @@ jobs:
         Write-Host "##vso[task.setvariable variable=CLIENT_ID;]${env:servicePrincipalId}"
         Write-Host "##vso[task.setvariable variable=CLIENT_SECRET;]${env:servicePrincipalKey}"
 
+        GenerateResourcesAndImage -AzureClientId ${env:servicePrincipalId} 
+        -AzureClientSecret ${env:servicePrincipalKey} 
+        -AzureTenantId $(az account show --query 'tenantId' --output tsv) 
+        -SubscriptionId $(az account show --query 'id' --output tsv) 
+        -ImageGenerationRepositoryRoot "$pwd" -ImageType windows2019 
+        -AzureLocation "west US" -ResourceGroupName gss-build-agent-images
+
   - task: PowerShell@2
     displayName: 'Download custom repository'
     condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
@@ -51,10 +58,12 @@ jobs:
     displayName: 'Build VM'
     inputs:
       targetType: filePath
+      azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
+      addSpnToEnvironment: true
       filePath: ./images.CI/linux-and-win/build-image.ps1
       arguments: -ResourcesNamePrefix $(Build.BuildId) `
-                        -ClientId $(CLIENT_ID) `
-                        -ClientSecret $(CLIENT_SECRET) `
+                        -ClientId ${env:servicePrincipalId} `
+                        -ClientSecret ${env:servicePrincipalKey} `
                         -TemplatePath $(TemplatePath) `
                         -ResourceGroup $(AZURE_RESOURCE_GROUP) `
                         -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
