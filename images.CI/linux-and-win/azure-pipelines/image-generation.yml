@@ -24,8 +24,8 @@ jobs:
       inlineScript: |
         Write-Host "-AzureClientId ${env:servicePrincipalId}" 
         Write-Host "-AzureClientSecret ${env:servicePrincipalKey}"
-        Write-Host "##vso[task.setvariable variable=servicePrincipalId;]${env:servicePrincipalId}"
-        Write-Host "##vso[task.setvariable variable=servicePrincipalKey;]${env:servicePrincipalKey}"
+        Write-Output "##vso[task.setvariable variable=servicePrincipalId;]${env:servicePrincipalId}"
+        Write-Output "##vso[task.setvariable variable=servicePrincipalKey;]${env:servicePrincipalKey}"
 
   - task: PowerShell@2
     displayName: 'Download custom repository'
