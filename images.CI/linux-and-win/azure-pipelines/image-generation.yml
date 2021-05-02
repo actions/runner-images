@@ -35,7 +35,7 @@ jobs:
         Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
 
-  - task: PowerShell@2
+  - task: AzureCLI@2
     displayName: 'Build VM'
     inputs:
       targetType: filePath
@@ -43,8 +43,8 @@ jobs:
       addSpnToEnvironment: true
       filePath: ./images.CI/linux-and-win/build-image.ps1
       arguments: -ResourcesNamePrefix $(Build.BuildId) `
-                        -ClientId foo `
-                        -ClientSecret bar `
+                        -ClientId ${env:servicePrincipalId} `
+                        -ClientSecret ${env:servicePrincipalKey} `
                         -TemplatePath $(TemplatePath) `
                         -ResourceGroup $(AZURE_RESOURCE_GROUP) `
                         -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
