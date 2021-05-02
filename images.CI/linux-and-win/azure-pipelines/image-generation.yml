@@ -14,6 +14,17 @@ jobs:
   - group: Image Generation Variables
 
   steps:
+  - task: AzureCLI@2
+    displayName: Azure CLI
+    inputs:
+      azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
+      scriptType: ps
+      scriptLocation: inlineScript
+      addSpnToEnvironment: true
+      inlineScript: |
+        Write-Host "-AzureClientId ${env:servicePrincipalId}" 
+        Write-Host "-AzureClientSecret ${env:servicePrincipalKey}"
+
   - task: PowerShell@2
     displayName: 'Download custom repository'
     condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
@@ -35,13 +46,12 @@ jobs:
         Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
 
-  - task: AzureCLI@2
+  - task: PowerShell@2
     displayName: 'Build VM'
     inputs:
       targetType: filePath
       azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
       addSpnToEnvironment: true
-      scriptType: ps
       filePath: ./images.CI/linux-and-win/build-image.ps1
       arguments: -ResourcesNamePrefix $(Build.BuildId) `
                         -ClientId ${env:servicePrincipalId} `
