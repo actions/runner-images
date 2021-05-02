@@ -22,10 +22,8 @@ jobs:
       scriptLocation: inlineScript
       addSpnToEnvironment: true
       inlineScript: |
-        Write-Host "-AzureClientId ${env:servicePrincipalId}" 
-        Write-Host "-AzureClientSecret ${env:servicePrincipalKey}"
-        Write-Output "##vso[task.setvariable variable=servicePrincipalId;]${env:servicePrincipalId}"
-        Write-Output "##vso[task.setvariable variable=servicePrincipalKey;]${env:servicePrincipalKey}"
+        Write-Output "##vso[task.setvariable variable=CLIENT_ID;]${env:servicePrincipalId}"
+        Write-Output "##vso[task.setvariable variable=CLIENT_SECRET;]${env:servicePrincipalKey}"
 
   - task: PowerShell@2
     displayName: 'Download custom repository'
@@ -56,8 +54,8 @@ jobs:
       addSpnToEnvironment: true
       filePath: ./images.CI/linux-and-win/build-image.ps1
       arguments: -ResourcesNamePrefix $(Build.BuildId) `
-                        -ClientId foo `
-                        -ClientSecret bar `
+                        -ClientId $(CLIENT_ID) `
+                        -ClientSecret $(CLIENT_SECRET) `
                         -TemplatePath $(TemplatePath) `
                         -ResourceGroup $(AZURE_RESOURCE_GROUP) `
                         -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
