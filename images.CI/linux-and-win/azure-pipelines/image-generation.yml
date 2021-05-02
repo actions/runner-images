@@ -54,8 +54,8 @@ jobs:
       addSpnToEnvironment: true
       filePath: ./images.CI/linux-and-win/build-image.ps1
       arguments: -ResourcesNamePrefix $(Build.BuildId) `
-                        -ClientId ${env:servicePrincipalId} `
-                        -ClientSecret ${env:servicePrincipalKey} `
+                        -ClientId foo `
+                        -ClientSecret bar `
                         -TemplatePath $(TemplatePath) `
                         -ResourceGroup $(AZURE_RESOURCE_GROUP) `
                         -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
