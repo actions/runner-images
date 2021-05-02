@@ -41,6 +41,7 @@ jobs:
       targetType: filePath
       azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
       addSpnToEnvironment: true
+      scriptType: ps
       filePath: ./images.CI/linux-and-win/build-image.ps1
       arguments: -ResourcesNamePrefix $(Build.BuildId) `
                         -ClientId ${env:servicePrincipalId} `
