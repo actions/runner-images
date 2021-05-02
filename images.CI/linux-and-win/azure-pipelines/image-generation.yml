@@ -35,7 +35,7 @@ jobs:
         Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
 
-  - task: PowerShell@2
+  - task: PowerShell@5
     displayName: 'Build VM'
     inputs:
       targetType: filePath
