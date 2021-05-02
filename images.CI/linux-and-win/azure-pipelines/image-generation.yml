@@ -24,7 +24,9 @@ jobs:
       inlineScript: |
         Write-Output "##vso[task.setvariable variable=CLIENT_ID;]${env:servicePrincipalId}"
         Write-Output "##vso[task.setvariable variable=CLIENT_SECRET;]${env:servicePrincipalKey}"
+        $AZURE_TENANT = $(az account show --query 'tenantId' --output tsv)
         Write-Output "##vso[task.setvariable variable=AZURE_TENANT;]$(AZURE_TENANT)"
+        $AZURE_SUBSCRIPTION = $(az account show --query 'id' --output tsv)
         Write-Output "##vso[task.setvariable variable=AZURE_SUBSCRIPTION;]$(AZURE_SUBSCRIPTION)"
 
   - task: PowerShell@2
