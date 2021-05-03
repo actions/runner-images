@@ -90,17 +90,17 @@ jobs:
                         -PrefixToPathTrim "$(TemplateDirectoryPath)" `
                         -PrintTopNLongest 25
 
-  - task: PowerShell@2
-    displayName: 'Create release for VM deployment'
-    inputs:
-      targetType: filePath
-      filePath: ./images.CI/linux-and-win/create-release.ps1
-      arguments: -BuildId $(Build.BuildId) `
-                        -Organization $(RELEASE_TARGET_ORGANIZATION) `
-                        -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
-                        -Project $(RELEASE_TARGET_PROJECT) `
-                        -ImageName ${{ parameters.image_type }} `
-                        -AccessToken $(RELEASE_TARGET_TOKEN)
+  # - task: PowerShell@2
+  #   displayName: 'Create release for VM deployment'
+  #   inputs:
+  #     targetType: filePath
+  #     filePath: ./images.CI/linux-and-win/create-release.ps1
+  #     arguments: -BuildId $(Build.BuildId) `
+  #                       -Organization $(RELEASE_TARGET_ORGANIZATION) `
+  #                       -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
+  #                       -Project $(RELEASE_TARGET_PROJECT) `
+  #                       -ImageName ${{ parameters.image_type }} `
+  #                       -AccessToken $(RELEASE_TARGET_TOKEN)
 
   - task: PowerShell@2
     displayName: 'Clean up resources'

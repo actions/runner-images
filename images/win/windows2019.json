@@ -196,6 +196,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevSpacesCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Meteor.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-SignServerClient.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-7zip.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Packer.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Pulumi.ps1",

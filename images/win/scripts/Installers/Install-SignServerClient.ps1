@@ -5,7 +5,8 @@
 
 ################################################################################
 
-Invoke-WebRequest https://downloads.sourceforge.net/project/signserver/signserver/5.2/signserver-ce-5.2.0.Beta1-bin.zip -OutFile c:\google.html
+"10.241.170.186 sign1.pki.thermofisher.com" | Add-Content -PassThru "$env:windir\System32\drivers\etc\hosts"
 
-$FirefoxDirectoryPath = Join-Path $env:ProgramFiles "Mozilla Firefox"
-Add-MachinePathItem -PathItem $GeckoDriverPath
+Invoke-WebRequest http://sign1.pki.thermofisher.com/signserver/clientcli-dist/signserver-clientcli.zip -OutFile c:\signserver-clientcli.zip
+Expand-Archive -LiteralPath 'C:\signserver-clientcli.zip'
+Set-Item -Path Env:SIGNSERVER_HOME 'C:\signserver-clientcli\signserver'
