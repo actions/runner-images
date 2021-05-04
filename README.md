@@ -22,9 +22,7 @@ The "macos-latest" YAML workflow label still uses the macOS 10.15 virtual enviro
 ```
 
 ```
-Ubuntu 16.04 is being deprecated. If any of your workflows use Ubuntu 16.04,
-migrate to Ubuntu 20.04 or 18.04. For more information, see the issue
-https://github.com/actions/virtual-environments/issues/3287.
+Ubuntu 16.04 is being deprecated. If any of your workflows use Ubuntu 16.04, migrate to Ubuntu 20.04 or 18.04.
 ```
 
 ***What images are available for GitHub Actions and Azure DevOps?***
