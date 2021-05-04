@@ -2,10 +2,10 @@
 |-|
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
-# macOS 11.2 info
-- System Version: macOS 11.2.3 (20D91)
-- Kernel Version: Darwin 20.3.0
-- Image Version: 20210424.1
+# macOS 11.3 info
+- System Version: macOS 11.3.1 (20E241)
+- Kernel Version: Darwin 20.4.0
+- Image Version: 20210503.1
 
 ## Installed Software
 ### Language and Runtime
@@ -26,7 +26,7 @@
 - NVM - Cached node versions: v10.24.1 v12.22.1 v14.16.1
 - NVM 0.38.0
 - Perl 5.32.1
-- PHP 8.0.3
+- PHP 8.0.5
 - Python 2.7.18
 - Python 3.9.4
 - Ruby 2.7.3p183
@@ -35,16 +35,16 @@
 - Bundler version 2.2.16
 - Carthage 0.37.0
 - CocoaPods 1.10.1
-- Composer 2.0.12
-- Homebrew 3.1.3
+- Composer 2.0.13
+- Homebrew 3.1.5
 - Miniconda 4.9.2
 - NPM 6.14.12
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.0.1 (python 3.9)
-- Pipx 0.16.1.0
+- Pipx 0.16.2.1
 - RubyGems 3.2.16
-- Vcpkg 2021 (build from master \<6ebcd4e>)
+- Vcpkg 2021 (build from master \<8f03e22>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -75,9 +75,9 @@
 - helm v3.5.4+g1b5edb6
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v4.4.4
-- mongod v4.4.4
-- Newman 5.2.2
+- mongo v4.4.5
+- mongod v4.4.5
+- Newman 5.2.3
 - OpenSSL 1.1.1k  25 Mar 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1k)`
 - Packer 1.7.2
 - PostgreSQL 13.2
@@ -87,32 +87,32 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.73
+- Aliyun CLI 3.0.74
 - App Center CLI 2.9.0
-- AWS CLI 2.1.39
+- AWS CLI 2.2.1
 - AWS SAM CLI 1.23.0
 - AWS Session Manager CLI 1.2.54.0
 - Azure CLI 2.22.1
 - Cabal 3.4.0.0
-- Cmake 3.20.1
+- Cmake 3.20.2
 - Fastlane 2.181.0
 - GHC 9.0.1
 - GHCup v0.1.14.1
 - Stack 2.5.1
 - SwiftFormat 0.48.0
-- Xcode Command Line Tools 12.4.0.0.1.1610135815
+- Xcode Command Line Tools 12.5.0.0.1.1617976050
 
 ### Linters
 - SwiftLint 0.43.1
 - yamllint 1.26.1
 
 ### Browsers
-- Safari 14.0.3 (16610.4.3.1.7)
-- SafariDriver 14.0.3 (16610.4.3.1.7)
-- Google Chrome 90.0.4430.85 
+- Safari 14.1 (16611.1.21.161.6)
+- SafariDriver 14.1 (16611.1.21.161.6)
+- Google Chrome 90.0.4430.93 
 - ChromeDriver 90.0.4430.24
-- Microsoft Edge 90.0.818.42 
-- MSEdgeDriver 90.0.818.46
+- Microsoft Edge 90.0.818.51 
+- MSEdgeDriver 90.0.818.51
 - Mozilla Firefox 88.0
 - geckodriver 0.29.1
 
@@ -159,7 +159,7 @@
 
 #### Packages
 - Bindgen 0.58.1
-- Cargo-audit 0.14.0
+- Cargo-audit 0.14.1
 - Cargo-outdated v0.9.15
 - Cbindgen 0.19.0
 - Clippy 0.1.51
@@ -184,7 +184,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.9.7.8
+- 8.9.8.7
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -272,8 +272,8 @@
 ### Android
 | Package Name               | Version                                                                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Android Command Line Tools | 3.0                                                                                                                      |
-| Android Emulator           | 30.5.5                                                                                                                   |
+| Android Command Line Tools | 4.0                                                                                                                      |
+| Android Emulator           | 30.5.6                                                                                                                   |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                   |
