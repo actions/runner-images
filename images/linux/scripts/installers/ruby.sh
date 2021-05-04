@@ -16,7 +16,6 @@ if isUbuntu20 ; then
     gem install rdoc -v 6.3.0
 fi
 
-
 # Install ruby gems from toolset
 gemsToInstall=$(get_toolset_value ".rubygems[] .name")
 if [ -n "$gemsToInstall" ]; then
