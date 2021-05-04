@@ -12,7 +12,6 @@ For general questions about using the virtual environments or writing your Actio
 | --------------------|---------------------|--------------------|---------------------|
 | Ubuntu 20.04 | `ubuntu-latest` or `ubuntu-20.04` | [ubuntu-20.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
 | Ubuntu 18.04 | `ubuntu-18.04` | [ubuntu-18.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
-| Ubuntu 16.04 | `ubuntu-16.04` | [ubuntu-16.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu16&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu16&redirect=1) |
 | macOS 11.0 | `macos-11.0` | [macOS-11.0] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11.0&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11.0&redirect=1)
 | macOS 10.15 | `macos-latest` or `macos-10.15` | [macOS-10.15] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
 | Windows Server 2019 | `windows-latest` or `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
@@ -20,6 +19,10 @@ For general questions about using the virtual environments or writing your Actio
 ```
 The macOS 11.0 virtual environment is currently provided as a private preview only.
 The "macos-latest" YAML workflow label still uses the macOS 10.15 virtual environment.
+```
+
+```
+Ubuntu 16.04 is being deprecated. If any of your workflows use Ubuntu 16.04, migrate to Ubuntu 20.04 or 18.04. For more information, see the issue https://github.com/actions/virtual-environments/issues/3287.
 ```
 
 ***What images are available for GitHub Actions and Azure DevOps?***
