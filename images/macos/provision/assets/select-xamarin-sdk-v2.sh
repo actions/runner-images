@@ -17,19 +17,18 @@ change_framework_version() {
 
   local countDigit=$(echo "${version}" | grep -o "\." | grep -c "\.")
   
-  if [[( countDigit -gt 1 ) && ( ! countDigit -eq 3)]]; then
+  if [[ countDigit -gt 1 ]]; then
     echo "[WARNING] It is not recommended to specify the exact framework version because your build can be broken with the next patch update. Consider using "major.minor" only format."
   fi
 
   local framework_path=$(get_framework_path "$framework")
-  local is_existed_version=$(find "${framework_path}" -name "${version}*")
 
-  if [ -z "$is_existed_version" ]; then
-    echo "Invalid framework version"
-    exit 1
-  else
+  if [ -d "${framework_path}/${version}" ]; then
     sudo rm -f "${framework_path}/Current"
     sudo ln -s "${framework_path}/${version}" "${framework_path}/Current"
+  else
+    echo "Invalid framework version ${framework_path}/${version}"
+    exit 1
   fi
 }
 
