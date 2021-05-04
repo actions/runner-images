@@ -1,18 +1,17 @@
 | Announcements |
 |-|
-| [[macOS] Az modules will be upgraded from 4.8.0 to 5.7.0 on April, 12](https://github.com/actions/virtual-environments/issues/3129) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H524)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210412.2
+- Image Version: 20210423.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202
 - Bash 3.2.57(1)-release
-- Clang/LLVM 11.1.0 is available on `'$(brew --prefix llvm)/bin/clang'`
+- Clang/LLVM 12.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
 - gcc-10 (Homebrew GCC 10.2.0_4) 10.2.0 - available by `gcc-10` alias
 - gcc-8 (Homebrew GCC 8.4.0_3) 8.4.0 - available by `gcc-8` alias
@@ -22,6 +21,7 @@
 - GNU Fortran (Homebrew GCC 9.3.0_2) 9.3.0  - available by `gfortran-9` alias
 - Go 1.15.11
 - julia 1.6.0
+- MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v14.16.1
 - NVM - Cached node versions: v10.24.1 v12.22.1 v14.16.1
 - NVM 0.38.0
@@ -37,7 +37,7 @@
 - Carthage 0.37.0
 - CocoaPods 1.10.1
 - Composer 2.0.12
-- Homebrew 3.1.1
+- Homebrew 3.1.3
 - Miniconda 4.9.2
 - NPM 6.14.12
 - NuGet 5.6.0.6489
@@ -45,7 +45,7 @@
 - Pip 21.0.1 (python 3.9)
 - Pipx 0.16.1.0
 - RubyGems 3.2.16
-- Vcpkg 2021 (build from master \<00b218d>)
+- Vcpkg 2021 (build from master \<6ebcd4e>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -55,26 +55,26 @@
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
-- Apache Ant(TM) 1.10.9
+- Apache Ant(TM) 1.10.10
 - Apache Maven 3.8.1
 - Gradle 7.0
 
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.35.0
-- azcopy 10.9.0
+- azcopy 10.10.0
 - bazel 4.0.0
-- bazelisk 1.7.5
+- bazelisk 1.8.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.76.0
+- Curl 7.76.1
 - Git LFS: 2.13.3
 - Git: 2.31.1
-- GitHub CLI: 1.8.1
-- GNU parallel 20210322
+- GitHub CLI: 1.9.2
+- GNU parallel 20210422
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
-- gpg (GnuPG) 2.2.27
-- helm v3.5.3+g041ce5a
+- gpg (GnuPG) 2.3.1
+- helm v3.5.4+g1b5edb6
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v4.4.4
@@ -86,23 +86,24 @@
 - psql (PostgreSQL) 13.2
 - Subversion (SVN) 1.14.1
 - Vagrant 2.2.15
-- virtualbox 6.1.18r142142
+- virtualbox 6.1.20r143896
 - zstd 1.4.9
 
 
 ### Tools
 - Aliyun CLI 3.0.73
 - App Center CLI 2.9.0
-- AWS CLI 2.1.36
-- AWS SAM CLI 1.22.0
-- AWS Session Manager CLI 1.2.30.0
-- Azure CLI 2.21.0
+- AWS CLI 2.1.39
+- AWS SAM CLI 1.23.0
+- AWS Session Manager CLI 1.2.54.0
+- Azure CLI 2.22.1
 - Cabal 3.4.0.0
 - Cmake 3.20.1
-- Fastlane 2.180.1
+- Fastlane 2.181.0
 - GHC 9.0.1
 - GHCup v0.1.14.1
 - Stack 2.5.1
+- SwiftFormat 0.48.0
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
@@ -112,25 +113,25 @@
 ### Browsers
 - Safari 14.0.3 (15610.4.3.1.7)
 - SafariDriver 14.0.3 (15610.4.3.1.7)
-- Google Chrome 89.0.4389.114 
-- ChromeDriver 89.0.4389.23
-- Microsoft Edge 89.0.774.75 
-- MSEdgeDriver 89.0.774.75
-- Mozilla Firefox 87.0
+- Google Chrome 90.0.4430.85 
+- ChromeDriver 90.0.4430.24
+- Microsoft Edge 90.0.818.42 
+- MSEdgeDriver 90.0.818.46
+- Mozilla Firefox 88.0
 - geckodriver 0.29.1
 
 #### Environment variables
 | Name            | Value                                         |
 | --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/89.0.4389.23 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/90.0.4430.24 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
 ### Java
 | Version     | Vendor        | Environment Variable |
 | ----------- | ------------- | -------------------- |
-| 8.0.282+8   | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.10+9   | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 8.0.292+10  | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.11+9   | Adopt OpenJDK | JAVA_HOME_11_X64     |
 | 12.0.2+10.3 | Adopt OpenJDK | JAVA_HOME_12_X64     |
 | 13.0.2+8.1  | Adopt OpenJDK | JAVA_HOME_13_X64     |
 | 14.0.2+12   | Adopt OpenJDK | JAVA_HOME_14_X64     |
@@ -196,11 +197,11 @@
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | -------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.46_2 | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
-| nginx | 1.19.9   | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
+| nginx | 1.19.10  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.9.5.4
+- 8.9.7.8
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -339,10 +340,10 @@
 | Package Name               | Version                                                                                                                                                                                                               |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 3.0                                                                                                                                                                                                                   |
-| Android Emulator           | 30.5.4                                                                                                                                                                                                                |
+| Android Emulator           | 30.5.5                                                                                                                                                                                                                |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
-| Android SDK Platforms      | android-S (rev 2)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                           |
-| Android SDK Platform-Tools | 31.0.1                                                                                                                                                                                                                |
+| Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                           |
+| Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                |
 | CMake                      | 3.10.2                                                                                                                                                                                                                |

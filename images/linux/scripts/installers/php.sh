@@ -10,7 +10,8 @@ source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
 # add repository
-apt-add-repository ppa:ondrej/php -y
+REPO_URL="ppa:ondrej/php"
+apt-add-repository $REPO_URL -y
 apt-get update
 
 # Install PHP
@@ -98,11 +99,10 @@ wget -q -O phpunit https://phar.phpunit.de/phpunit-8.phar
 chmod +x phpunit
 mv phpunit /usr/local/bin/phpunit
 
-# ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
-# see https://github.com/actions/virtual-environments/issues/1084
-if isUbuntu20 ; then
-  rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
-  apt-get update
-fi
+# remove repository after successfull installation
+rm -r /etc/apt/sources.list.d/ondrej-ubuntu-php-*
+
+echo "php $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
+apt-get update
 
 invoke_tests "Common" "PHP"

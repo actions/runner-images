@@ -21,6 +21,7 @@ Export-ModuleMember -Function @(
     'Stop-SvcWithErrHandling'
     'Set-SvcWithErrHandling'
     'Start-DownloadWithRetry'
+    'Get-VsixExtenstionFromMarketplace'
     'Install-VsixExtension'
     'Get-VSExtensionVersion'
     'Get-WinVersion'

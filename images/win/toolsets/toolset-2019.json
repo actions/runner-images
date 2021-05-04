@@ -270,31 +270,11 @@
             "Component.MDD.Linux.GCC.arm"
         ],
         "vsix": [
-            {
-                "name": "Microsoft.DataTools.AnalysisServices.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftAnalysisServicesModelingProjects/2.9.5/vspackage",
-                "id": "04a86fc2-dbd5-4222-848e-911638e487fe"
-            },
-            {
-                "name": "Microsoft.DataTools.IntegrationServices.exe",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/SSIS/vsextensions/SqlServerIntegrationServicesProjects/3.4/vspackage",
-                "id": "851E7A09-7B2B-4F06-A15D-BABFCB26B970"
-            },
-            {
-                "name": "Microsoft.DataTools.ReportingServices.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftReportProjectsforVisualStudio/2.6.3/vspackage",
-                "id": "717ad572-c4b7-435c-c166-c2969777f718"
-            },
-            {
-                "name": "Microsoft.VisualStudio.Installer.Projects.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/VisualStudioClient/vsextensions/MicrosoftVisualStudio2017InstallerProjects/latest/vspackage",
-                "id": "VSInstallerProjects"
-            },
-            {
-                "name": "BizTalkVsix.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-biztalk/vsextensions/BizTalk/3.13.2.0/vspackage",
-                "id": "BizTalkProjectSystem.BD1D0FA0-E48A-4270-995F-F110DD9F7838"
-            }
+            "ProBITools.MicrosoftAnalysisServicesModelingProjects",
+            "SSIS.SqlServerIntegrationServicesProjects",
+            "ProBITools.MicrosoftReportProjectsforVisualStudio",
+            "VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects",
+            "ms-biztalk.BizTalk"
         ]
     },
     "docker": {
