@@ -6,7 +6,6 @@
 ################################################################################
 
 "10.241.170.186 sign1.pki.thermofisher.com" | Add-Content -PassThru "$env:windir\System32\drivers\etc\hosts"
-
 Invoke-WebRequest http://sign1.pki.thermofisher.com/signserver/clientcli-dist/signserver-clientcli.zip -OutFile c:\signserver-clientcli.zip
-Expand-Archive -LiteralPath 'C:\signserver-clientcli.zip'
-Set-Item -Path Env:SIGNSERVER_HOME 'C:\signserver-clientcli\signserver'
+Expand-Archive -LiteralPath 'C:\signserver-clientcli.zip' -DestinationPath C:
+Set-Item -Path Env:SIGNSERVER_HOME 'C:\signserver'
