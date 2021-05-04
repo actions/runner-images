@@ -10,7 +10,8 @@ curl -L -o /usr/local/bin/kind $URL
 chmod +x /usr/local/bin/kind
 
 ## Install kubectl
-curl -o /usr/local/bin/kubectl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+KUBECTL_VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+curl -o /usr/local/bin/kubectl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl
 chmod +x /usr/local/bin/kubectl
 
 # Install Helm
