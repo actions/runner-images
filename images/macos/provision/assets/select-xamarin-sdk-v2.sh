@@ -16,13 +16,21 @@ change_framework_version() {
   echo "Select $framework $version"
 
   local countDigit=$(echo "${version}" | grep -o "\." | grep -c "\.")
-  if [[ countDigit -gt 1 ]]; then
+  
+  if [[( countDigit -gt 1 ) && ( ! countDigit -eq 3)]]; then
     echo "[WARNING] It is not recommended to specify the exact framework version because your build can be broken with the next patch update. Consider using "major.minor" only format."
   fi
 
   local framework_path=$(get_framework_path "$framework")
-  sudo rm -f "${framework_path}/Current"
-  sudo ln -s "${framework_path}/${version}" "${framework_path}/Current"
+  local is_existed_version=$(find "${framework_path}" -name "${version}*")
+
+  if [ -z "$is_existed_version" ]; then
+    echo "Invalid framework version"
+    exit 1
+  else
+    sudo rm -f "${framework_path}/Current"
+    sudo ln -s "${framework_path}/${version}" "${framework_path}/Current"
+  fi
 }
 
 for arg in "$@"; do
