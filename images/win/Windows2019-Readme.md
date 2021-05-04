@@ -1,10 +1,6 @@
-| Announcements |
-|-|
-| [[windows, ubuntu] Few outdated Docker images will be removed on April, 12](https://github.com/actions/virtual-environments/issues/3111) |
-***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1879
-- Image Version: 20210419.1
+- Image Version: 20210425.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -13,24 +9,24 @@
 ### Language and Runtime
 - Bash 4.4.23(1)-release
 - Go 1.15.11
-- Julia 1.6.0
+- Julia 1.6.1
 - Node 14.16.1
 - Perl 5.32.1
 - PHP 8.0.3
 - Python 3.7.9
-- Ruby 2.5.8p224
+- Ruby 2.5.9p229
 
 ### Package Management
 - Chocolatey 0.10.15
 - Composer 2.0.12
-- Helm 3.5.3
+- Helm 3.5.4
 - Miniconda 4.9.2
 - NPM 6.14.12
 - NuGet 5.9.1.11
-- pip 21.0.1 (python 3.7)
+- pip 21.1 (python 3.7)
 - Pipx 0.16.1.0
-- RubyGems 2.7.6.2
-- Vcpkg  (build from master \<414bec0>)
+- RubyGems 2.7.6.3
+- Vcpkg  (build from master \<84e5852>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -49,16 +45,16 @@
 - 7zip 19.00
 - azcopy 10.10.0
 - Bazel 4.0.0
-- Bazelisk 1.7.5
+- Bazelisk 1.8.0
 - Cabal 3.4.0.0
 - CMake 3.20.1
-- CodeQL Action Bundle 2.5.0
+- CodeQL Action Bundle 2.5.2
 - Docker 20.10.4
 - Docker-compose 1.29.1
 - ghc 9.0.1
 - Git 2.31.1
 - Git LFS 2.13.3
-- Google Cloud SDK 336.0.0
+- Google Cloud SDK 337.0.0
 - InnoSetup 6.1.2
 - jq 1.6
 - Kind 0.10.0
@@ -69,7 +65,7 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.2
-- Pulumi v2.25.2
+- Pulumi v3.1.0
 - R 4.0.5
 - Stack 2.5.1
 - Subversion (SVN) 1.14.1
@@ -81,13 +77,13 @@
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.73
 - AWS CLI 2.1.38
-- AWS SAM CLI 1.22.0
+- AWS SAM CLI 1.23.0
 - AWS Session Manager CLI 1.2.54.0
-- Azure CLI 2.22.0
-- Azure Dev Spaces CLI 1.0.20201219.2
+- Azure CLI 2.22.1
+- Azure Dev Spaces CLI 1.0.20210421.4
 - Azure DevOps CLI extension 0.18.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 1.9.1
+- GitHub CLI 1.9.2
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -99,17 +95,17 @@
 #### Packages
 - bindgen 0.58.1
 - cargo-audit 0.14.0
-- cargo-outdated v0.9.14
+- cargo-outdated v0.9.15
 - cbindgen 0.19.0
 - Clippy 0.1.51
 - Rustfmt 1.4.36
 
 ### Browsers and webdrivers
-- Google Chrome 90.0.4430.72
+- Google Chrome 90.0.4430.85
 - Chrome Driver 90.0.4430.24
-- Microsoft Edge 90.0.818.41
-- Microsoft Edge Driver 90.0.818.41
-- Mozilla Firefox 87.0
+- Microsoft Edge 90.0.818.46
+- Microsoft Edge Driver 90.0.818.46
+- Mozilla Firefox 88.0
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
 
@@ -121,11 +117,11 @@
 | GECKOWEBDRIVER  | C:\SeleniumWebDrivers\GeckoDriver  |
 
 ### Java
-| Version             | Vendor        | Environment Variable |
-| ------------------- | ------------- | -------------------- |
-| 8.0.282+8 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.10+9           | Adopt OpenJDK | JAVA_HOME_11_X64     |
-| 13.0.2+8.1          | Adopt OpenJDK | JAVA_HOME_13_X64     |
+| Version              | Vendor        | Environment Variable |
+| -------------------- | ------------- | -------------------- |
+| 8.0.292+10 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.11+9            | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 13.0.2+8.1           | Adopt OpenJDK | JAVA_HOME_13_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -177,18 +173,18 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 2.4.10  | x64          |
-| 2.5.8 (Default) | x64          |
-| 2.6.6   | x64          |
-| 2.7.2   | x64          |
-| 3.0.0   | x64          |
+| 2.5.9 (Default) | x64          |
+| 2.6.7   | x64          |
+| 2.7.3   | x64          |
+| 3.0.1   | x64          |
 
 
 #### PyPy
-| Python Version | Architecture | PyPy Version |
-| -------------- | ------------ | ------------ |
-| 2.7.18         | x86          | PyPy 7.3.3 with MSC v.1927 32 bit |
-| 3.6.12         | x86          | PyPy 7.3.3 with MSC v.1927 32 bit |
-| 3.7.9          | x86          | PyPy 7.3.3-beta0 with MSC v.1927 32 bit |
+| Python Version | PyPy Version |
+| -------------- | ------------ |
+| 2.7.18         | PyPy 7.3.4 with MSC v.1927 64 bit (AMD64) |
+| 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
+| 3.7.10         | PyPy 7.3.4 with MSC v.1927 64 bit (AMD64) |
 
 
 
@@ -214,7 +210,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.11.11.0
+- Azure CosmosDb Emulator 2.11.13.0
 - DacFx 15.0.4897.1
 - MySQL 5.7.21.0
 - SQLPS 1.0
@@ -453,10 +449,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Python                                    | 16.9.31201.172 |
 | Microsoft.VisualStudio.Workload.Universal                                 | 16.9.31004.209 |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 16.9.31004.209 |
-| SSDT Microsoft Analysis Services Projects                                 | 2.9.17         |
-| SSDT SQL Server Integration Services Projects                             | 3.12.1         |
-| SSDT Microsoft Reporting Services Projects                                | 2.6.11         |
-| Windows Driver Kit                                                        | 3.11.4516      |
+| ms-biztalk.BizTalk                                                        | 3.13.2.0       |
+| ProBITools.MicrosoftAnalysisServicesModelingProjects                      | 2.9.17         |
+| ProBITools.MicrosoftReportProjectsforVisualStudio                         | 2.6.11         |
+| SSIS.SqlServerIntegrationServicesProjects                                 | 3.13.1         |
+| VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 0.9.9          |
+| Windows Driver Kit                                                        | 10.0.19030.0   |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.19041.685 |
 | WIX Toolset                                                               | 3.11.4516      |
 | WIX Toolset Studio 2019 Extension                                         | 1.0.0.4        |
@@ -533,7 +531,7 @@ All other versions are saved but not installed.
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 3.0                                                                                                                                                                                                                                                                                       |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0     |
-| Android SDK Platforms      | android-S (rev 2)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
+| Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                                                                                    |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                    |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                    |
@@ -562,6 +560,5 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:c298b710b4e1a2687bce3f88492f9e8bd812f31bfd7473a1880992a87722d83a  | 2021-04-13 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:8746dc8b6726d53ba7176332580712c2c5622290b2b44345ded8e302356203ac  | 2021-04-08 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:1bb6543a7fe87bb95d9adfa4c53ea3469c1c846ad63baf32729078062e8c1127  | 2021-04-09 |
-
 
 
