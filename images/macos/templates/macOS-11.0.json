@@ -63,6 +63,11 @@
         },
         {
             "type": "file",
+            "source": "./provision/configuration/add-certificate.swift",
+            "destination": "~/image-generation/add-certificate.swift"
+        },
+        {
+            "type": "file",
             "source": "./provision/configuration/environment/bashrc",
             "destination": "~/.bashrc"
         },
@@ -109,6 +114,7 @@
             "scripts": [
                 "./provision/configuration/preimagedata.sh",
                 "./provision/configuration/configure-ssh.sh",
+                "./provision/core/xcode-clt.sh",
                 "./provision/configuration/configure-machine.sh"
             ],
             "environment_vars": [
@@ -127,7 +133,6 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "pause_before": "30s",
             "scripts": [
-                "./provision/core/xcode-clt.sh",
                 "./provision/core/homebrew.sh",
                 "./provision/core/powershell.sh",
                 "./provision/core/dotnet.sh",
