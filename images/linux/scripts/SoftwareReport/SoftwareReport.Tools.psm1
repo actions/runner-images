@@ -4,7 +4,7 @@ function Get-AnsibleVersion {
 }
 
 function Get-AptFastVersion {
-    $aptFastVersion = (dpkg-query --showformat='${Version}' --show apt-fast).Split('-')[0]
+    $aptFastVersion = apt-fast --version | Select-String "amd64" | Take-OutputPart -Part 2
     return "apt-fast $aptFastVersion"
 }
 
