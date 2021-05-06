@@ -1,10 +1,11 @@
 | Announcements |
 |-|
-| [[ubuntu] Clang 9 will be removed on May, 17th](https://github.com/actions/virtual-environments/issues/3235) |
+| [Ubuntu 16.04 environment will be removed on September 20, 2021](https://github.com/actions/virtual-environments/issues/3287) |
+| [[ubuntu] Clang 9 will be removed on May, 17th and default will be set to Clang 11](https://github.com/actions/virtual-environments/issues/3235) |
 ***
 # Ubuntu 16.04.7 LTS
 - Linux kernel version: 4.15.0-1113-azure
-- Image Version: 20210425.1
+- Image Version: 20210504.1
 
 ## Installed Software
 ### Language and Runtime
@@ -22,18 +23,18 @@
 - Python 2.7.12
 - Python3 3.5.2
 - Ruby 2.3.1p112
-- Swift 5.3.3
+- Swift 5.4
 
 ### Package Management
 - cpan 1.61
 - Helm 3.5.4
-- Homebrew 3.1.3
+- Homebrew 3.1.5
 - Miniconda 4.9.2
 - Npm 6.14.12
 - Pip 8.1.1
 - Pip3 8.1.1
 - RubyGems 2.5.2
-- Vcpkg  (build from master \<84e5852>)
+- Vcpkg  (build from master \<95836f4>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -45,17 +46,17 @@
 ### Project Management
 - Ant 1.9.6
 - Gradle 7.0
-- Maven 3.6.3
-- Sbt 1.5.0
+- Maven 3.8.1
+- Sbt 1.5.1
 
 ### Tools
-- Ansible 2.9.20
-- apt-fast 1.9.10
+- Ansible 2.9.21
+- apt-fast 1.9.11
 - AzCopy 10.10.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.0.0
 - Bazelisk 1.8.0
-- CMake 3.20.1
-- CodeQL Action Bundle 2.5.2
+- CMake 3.20.2
+- CodeQL Action Bundle 2.5.4
 - Docker Compose 1.29.1
 - Docker-Buildx 0.5.1
 - Docker-Moby Client 20.10.6+azure
@@ -64,7 +65,7 @@
 - Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.0.2
 - Haveged 1.9.1
-- Heroku 7.52.0
+- Heroku 7.53.0
 - HHVM (HipHop VM) 4.56.6
 - jq 1.5
 - Kind 0.10.0
@@ -74,7 +75,7 @@
 - MediaInfo 0.7.82
 - Mercurial 4.4.1
 - Minikube 1.19.0
-- Newman 5.2.2
+- Newman 5.2.3
 - nvm 0.38.0
 - OpenSSL 1.0.2g  1 Mar 2016
 - Packer 1.7.2
@@ -83,41 +84,41 @@
 - R 4.0.5
 - Sphinx Open Source Search Server 2.2.9
 - SVN 1.9.3
-- Terraform 0.15.0
+- Terraform 0.15.1
 - zstd 1.4.9 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.73
-- AWS CLI 1.19.57
+- Alibaba Cloud CLI 3.0.74
+- AWS CLI 1.19.64
 - AWS CLI Session manager plugin 1.2.54.0
 - AWS SAM CLI 1.23.0
 - Azure CLI (azure-cli) 2.22.1
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.9.2
-- Google Cloud SDK 337.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 338.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 3.21.9
-- OpenShift CLI 4.7.7
+- Netlify CLI 3.25.0
+- OpenShift CLI 4.7.8
 - ORAS CLI 0.11.1
 - Vercel CLI 22.0.1
 
 ### Java
 | Version             | Vendor        | Environment Variable |
 | ------------------- | ------------- | -------------------- |
-| 8.0.282+8 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.10+9           | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 8.0.292+1 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.11+9           | Adopt OpenJDK | JAVA_HOME_11_X64     |
 | 12.0.2+10           | Adopt OpenJDK | JAVA_HOME_12_X64     |
 
 ### PHP
-| Tool     | Version                                         |
-| -------- | ----------------------------------------------- |
-| PHP      | 5.6.40 7.0.33 7.1.33 7.2.34 7.3.27 7.4.16 8.0.3 |
-| Composer | 2.0.12                                          |
-| PHPUnit  | 8.5.15                                          |
+| Tool     | Version                                                                                 |
+| -------- | --------------------------------------------------------------------------------------- |
+| PHP      | 5.6.40 7.0.33 7.1.33 7.2.34 7.3.28 7.4.18 8.0.5 (apt source repository: ppa:ondrej/php) |
+| Composer | 2.0.13                                                                                  |
+| PHPUnit  | 8.5.15                                                                                  |
 
 ### Haskell
 - Cabal 3.4.0.0
-- GHC 9.0.1
+- GHC 9.0.1 (apt source repository: ppa:hvr/ghc)
 - GHCup 0.1.14.1
 - Stack 2.5.1
 
@@ -125,20 +126,20 @@
 - Cargo 1.51.0
 - Rust 1.51.0
 - Rustdoc 1.51.0
-- Rustup 1.23.1
+- Rustup 1.24.1
 
 #### Packages
 - Bindgen 0.58.1
-- Cargo audit 0.14.0
+- Cargo audit 0.14.1
 - Cargo clippy 0.1.51
 - Cargo outdated 0.9.15
 - Cbindgen 0.19.0
 - Rustfmt 1.4.36
 
 ### Browsers and Drivers
-- Google Chrome 90.0.4430.85
+- Google Chrome 90.0.4430.93
 - ChromeDriver 90.0.4430.24
-- Mozilla Firefox 87.0
+- Mozilla Firefox 88.0
 - Geckodriver 0.29.1
 - Chromium 90.0.4430.0
 
@@ -224,7 +225,7 @@
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                       |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 3.0                                                                                                                                                                                                                                           |
+| Android Command Line Tools | 4.0                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3 |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                                        |
 | Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)                                             |
@@ -276,8 +277,8 @@
 | coreutils         | 8.25-2ubuntu3~16.04          |
 | curl              | 7.47.0-1ubuntu2.19           |
 | dbus              | 1.10.6-1ubuntu3.6            |
-| dnsutils          | 1:9.10.3.dfsg.P4-8ubuntu1.18 |
-| dpkg              | 1.18.4ubuntu1.6              |
+| dnsutils          | 1:9.10.3.dfsg.P4-8ubuntu1.19 |
+| dpkg              | 1.18.4ubuntu1.7              |
 | fakeroot          | 1.20.2-1ubuntu1              |
 | file              | 1:5.25-2ubuntu1.4            |
 | flex              | 2.6.0-11                     |
