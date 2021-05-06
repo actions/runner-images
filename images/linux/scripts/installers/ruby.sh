@@ -4,10 +4,10 @@
 ##  Desc:  Installs Ruby requirements and ruby gems
 ################################################################################
 
+source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
 apt-get install ruby-full
-gem update
 
 # Install ruby gems from toolset
 gemsToInstall=$(get_toolset_value ".rubygems[] .name")
