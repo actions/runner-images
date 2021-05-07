@@ -17,16 +17,6 @@ echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 # Uninstall apt-fast
 sudo apt-get purge apt-fast
 
-# Use apt-fast for parallel downloads
-# add-apt-repository -y ppa:apt-fast/stable
-
-# Need to limit arch for default apt repos due to 
-# https://github.com/actions/virtual-environments/issues/1961
-# sed -i'' -E 's/^deb http:\/\/(azure.archive|security).ubuntu.com/deb [arch=amd64,i386] http:\/\/\1.ubuntu.com/' /etc/apt/sources.list
-
-# echo 'APT sources limited to the actual architectures'
-# cat /etc/apt/sources.list
-
 apt-get update
 # Install aria2 , jq and apt-fast
 apt-get install aria2 jq
