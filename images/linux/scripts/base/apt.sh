@@ -14,6 +14,9 @@ echo "APT::Acquire::Retries \"10\";" > /etc/apt/apt.conf.d/80-retries
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
+# Uninstall unattended-upgrades
+apt-get purge unattended-upgrades
+
 # Need to limit arch for default apt repos due to 
 # https://github.com/actions/virtual-environments/issues/1961
 sed -i'' -E 's/^deb http:\/\/(azure.archive|security).ubuntu.com/deb [arch=amd64,i386] http:\/\/\1.ubuntu.com/' /etc/apt/sources.list
