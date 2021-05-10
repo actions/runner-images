@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Ubuntu] .NET SDK pre-installation policy will be changed on June 14](https://github.com/actions/virtual-environments/issues/3338) |
 | [Ubuntu 16.04 environment will be removed on September 20, 2021](https://github.com/actions/virtual-environments/issues/3287) |
 | [[ubuntu] Clang 9 will be removed on May, 17th and default will be set to Clang 11](https://github.com/actions/virtual-environments/issues/3235) |
 ***
 # Ubuntu 16.04.7 LTS
 - Linux kernel version: 4.15.0-1113-azure
-- Image Version: 20210504.1
+- Image Version: 20210509.1
 
 ## Installed Software
 ### Language and Runtime
@@ -34,7 +35,7 @@
 - Pip 8.1.1
 - Pip3 8.1.1
 - RubyGems 2.5.2
-- Vcpkg  (build from master \<95836f4>)
+- Vcpkg  (build from master \<86d689b>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -45,7 +46,7 @@
 
 ### Project Management
 - Ant 1.9.6
-- Gradle 7.0
+- Gradle 6.9
 - Maven 3.8.1
 - Sbt 1.5.1
 
@@ -54,7 +55,7 @@
 - apt-fast 1.9.11
 - AzCopy 10.10.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.0.0
-- Bazelisk 1.8.0
+- Bazelisk 1.8.1
 - CMake 3.20.2
 - CodeQL Action Bundle 2.5.4
 - Docker Compose 1.29.1
@@ -74,31 +75,31 @@
 - Leiningen 2.9.6
 - MediaInfo 0.7.82
 - Mercurial 4.4.1
-- Minikube 1.19.0
+- Minikube 
 - Newman 5.2.3
 - nvm 0.38.0
 - OpenSSL 1.0.2g  1 Mar 2016
 - Packer 1.7.2
 - PhantomJS 2.1.1
-- Pulumi 3.1.0
+- Pulumi 3.2.1
 - R 4.0.5
 - Sphinx Open Source Search Server 2.2.9
 - SVN 1.9.3
-- Terraform 0.15.1
+- Terraform 0.15.3
 - zstd 1.4.9 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.74
-- AWS CLI 1.19.64
+- AWS CLI 1.19.69
 - AWS CLI Session manager plugin 1.2.54.0
 - AWS SAM CLI 1.23.0
-- Azure CLI (azure-cli) 2.22.1
+- Azure CLI (azure-cli) 2.23.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.9.2
-- Google Cloud SDK 338.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 339.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 3.25.0
-- OpenShift CLI 4.7.8
+- Netlify CLI 3.28.0
+- OpenShift CLI 4.7.9
 - ORAS CLI 0.11.1
 - Vercel CLI 22.0.1
 
@@ -110,28 +111,28 @@
 | 12.0.2+10           | Adopt OpenJDK | JAVA_HOME_12_X64     |
 
 ### PHP
-| Tool     | Version                                                                                 |
-| -------- | --------------------------------------------------------------------------------------- |
-| PHP      | 5.6.40 7.0.33 7.1.33 7.2.34 7.3.28 7.4.18 8.0.5 (apt source repository: ppa:ondrej/php) |
-| Composer | 2.0.13                                                                                  |
-| PHPUnit  | 8.5.15                                                                                  |
+| Tool     | Version                                         |
+| -------- | ----------------------------------------------- |
+| PHP      | 5.6.40 7.0.33 7.1.33 7.2.34 7.3.28 7.4.18 8.0.5 |
+| Composer | 2.0.13                                          |
+| PHPUnit  | 8.5.15                                          |
 
 ### Haskell
 - Cabal 3.4.0.0
 - GHC 9.0.1 (apt source repository: ppa:hvr/ghc)
 - GHCup 0.1.14.1
-- Stack 2.5.1
+- Stack 2.7.1
 
 ### Rust Tools
-- Cargo 1.51.0
-- Rust 1.51.0
-- Rustdoc 1.51.0
+- Cargo 1.52.0
+- Rust 1.52.0
+- Rustdoc 1.52.0
 - Rustup 1.24.1
 
 #### Packages
 - Bindgen 0.58.1
 - Cargo audit 0.14.1
-- Cargo clippy 0.1.51
+- Cargo clippy 0.1.52
 - Cargo outdated 0.9.15
 - Cbindgen 0.19.0
 - Rustfmt 1.4.36
@@ -171,7 +172,7 @@
 #### Go
 - 1.13.15
 - 1.14.15
-- 1.15.11
+- 1.15.12
 
 #### Node.js
 - 10.24.1
@@ -187,8 +188,8 @@
 - 3.5.10
 - 3.6.13
 - 3.7.10
-- 3.8.9
-- 3.9.4
+- 3.8.10
+- 3.9.5
 
 #### Ruby
 - 2.4.10
@@ -202,7 +203,7 @@
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_13_X64 | /opt/hostedtoolcache/go/1.13.15/x64 | x64          |
 | GOROOT_1_14_X64 | /opt/hostedtoolcache/go/1.14.15/x64 | x64          |
-| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.11/x64 | x64          |
+| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.12/x64 | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.1.3
@@ -211,7 +212,7 @@
 | Module     | Version |
 | ---------- | ------- |
 | MarkdownPS | 1.9     |
-| Pester     | 5.1.1   |
+| Pester     | 5.2.0   |
 
 #### Az PowerShell Modules
 - 5.7.0 3.1.0.zip 4.4.0.zip
@@ -231,7 +232,7 @@
 | Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)                                             |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                        |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                        |
-| CMake                      | 3.10.2                                                                                                                                                                                                                                        |
+| CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                              |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                            |
 | Google Repository          | 58                                                                                                                                                                                                                                            |
