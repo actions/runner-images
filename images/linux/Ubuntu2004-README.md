@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Ubuntu] .NET SDK pre-installation policy will be changed on June 14](https://github.com/actions/virtual-environments/issues/3338) |
 | [Ubuntu 16.04 environment will be removed on September 20, 2021](https://github.com/actions/virtual-environments/issues/3287) |
 | [[ubuntu] Clang 9 will be removed on May, 17th and default will be set to Clang 11](https://github.com/actions/virtual-environments/issues/3235) |
 ***
 # Ubuntu 20.04.2 LTS
 - Linux kernel version: 5.4.0-1046-azure
-- Image Version: 20210504.1
+- Image Version: 20210509.1
 
 ## Installed Software
 ### Language and Runtime
@@ -13,8 +14,8 @@
 - Clang 9.0.1, 10.0.0, 11.0.0
 - Clang-format 9.0.1, 10.0.0, 11.0.0
 - Erlang 23.3.1 (Eshell 11.2)
-- GNU C++ 9.3.0, 10.2.0
-- GNU Fortran 9.3.0, 10.2.0
+- GNU C++ 9.3.0, 10.2.0, 11.1.0
+- GNU Fortran 9.3.0, 10.2.0, 11.1.0
 - Julia 1.6.1
 - Mono 6.12.0.122
 - MSBuild 16.6.0.15201 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
@@ -35,7 +36,7 @@
 - Pip3 20.0.2
 - Pipx 0.16.2.1
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<e8dbfcf>)
+- Vcpkg  (build from master \<86d689b>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -46,7 +47,7 @@
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 7.0
+- Gradle 6.9
 - Lerna 4.0.0
 - Maven 3.8.1
 - Sbt 1.5.1
@@ -56,7 +57,7 @@
 - apt-fast 1.9.11
 - AzCopy 10.10.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.0.0
-- Bazelisk 1.8.0
+- Bazelisk 1.8.1
 - Buildah 1.20.1 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.20.2
 - CodeQL Action Bundle 2.5.4
@@ -64,13 +65,13 @@
 - Docker-Buildx 0.5.1
 - Docker-Moby Client 20.10.6+azure
 - Docker-Moby Server 20.10.6+azure
-- Fastlane 2.181.0
+- Fastlane 2.182.0
 - Git 2.31.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.53.0
-- HHVM (HipHop VM) 4.107.0
+- HHVM (HipHop VM) 4.108.0
 - jq 1.6
 - Kind 0.10.0
 - Kubectl 1.20.1-5-g76a04fc
@@ -78,34 +79,34 @@
 - Leiningen 2.9.6
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.19.0
+- Minikube 
 - Newman 5.2.3
 - nvm 0.38.0
 - OpenSSL 1.1.1f  31 Mar 2020
 - Packer 1.7.2
 - PhantomJS 2.1.1
 - Podman 3.1.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.1.0
+- Pulumi 3.2.1
 - R 4.0.5
 - Skopeo 1.2.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 0.15.1
+- Terraform 0.15.3
 - yamllint 1.26.1
 - zstd 1.4.9 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.74
-- AWS CLI 2.2.1
+- AWS CLI 2.2.3
 - AWS CLI Session manager plugin 1.2.54.0
 - AWS SAM CLI 1.23.0
-- Azure CLI (azure-cli) 2.22.1
+- Azure CLI (azure-cli) 2.23.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.9.2
-- Google Cloud SDK 338.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 339.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 3.26.0
-- OpenShift CLI 4.7.8
+- Netlify CLI 3.28.0
+- OpenShift CLI 4.7.9
 - ORAS CLI 0.11.1
 - Vercel CLI 22.0.1
 
@@ -121,28 +122,28 @@
 | CE 21.1.0 | GRAALVM_11_ROOT       |
 
 ### PHP
-| Tool     | Version                                              |
-| -------- | ---------------------------------------------------- |
-| PHP      | 7.4.18 8.0.5 (apt source repository: ppa:ondrej/php) |
-| Composer | 2.0.13                                               |
-| PHPUnit  | 8.5.15                                               |
+| Tool     | Version      |
+| -------- | ------------ |
+| PHP      | 7.4.18 8.0.5 |
+| Composer | 2.0.13       |
+| PHPUnit  | 8.5.15       |
 
 ### Haskell
 - Cabal 3.4.0.0
 - GHC 9.0.1 (apt source repository: ppa:hvr/ghc)
 - GHCup 0.1.14.1
-- Stack 2.5.1
+- Stack 2.7.1
 
 ### Rust Tools
-- Cargo 1.51.0
-- Rust 1.51.0
-- Rustdoc 1.51.0
+- Cargo 1.52.0
+- Rust 1.52.0
+- Rustdoc 1.52.0
 - Rustup 1.24.1
 
 #### Packages
 - Bindgen 0.58.1
 - Cargo audit 0.14.1
-- Cargo clippy 0.1.51
+- Cargo clippy 0.1.52
 - Cargo outdated 0.9.15
 - Cbindgen 0.19.0
 - Rustfmt 1.4.36
@@ -181,8 +182,8 @@
 ### Cached Tools
 #### Go
 - 1.14.15
-- 1.15.11
-- 1.16.3
+- 1.15.12
+- 1.16.4
 
 #### Node.js
 - 10.24.1
@@ -212,8 +213,8 @@
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_14_X64 | /opt/hostedtoolcache/go/1.14.15/x64 | x64          |
-| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.11/x64 | x64          |
-| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.3/x64  | x64          |
+| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.12/x64 | x64          |
+| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.4/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.1.3
@@ -222,7 +223,7 @@
 | Module           | Version |
 | ---------------- | ------- |
 | MarkdownPS       | 1.9     |
-| Pester           | 5.1.1   |
+| Pester           | 5.2.0   |
 | PSScriptAnalyzer | 1.19.1  |
 
 #### Az PowerShell Modules
@@ -244,7 +245,7 @@
 | Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                |
 | Android SDK Tools          | 26.1.1                                                                                                                   |
 | Android Support Repository | 47.0.0                                                                                                                   |
-| CMake                      | 3.10.2                                                                                                                   |
+| CMake                      | 3.10.2<br>3.18.1                                                                                                         |
 | Google Play services       | 49                                                                                                                       |
 | Google Repository          | 58                                                                                                                       |
 | NDK                        | 21.4.7075529<br>22.1.7171670                                                                                             |
