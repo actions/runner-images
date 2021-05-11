@@ -77,7 +77,7 @@
 - Leiningen 2.9.6
 - MediaInfo 17.12
 - Mercurial 4.5.3
-- Minikube 
+- Minikube 1.19.0
 - Newman 5.2.3
 - nvm 0.38.0
 - OpenSSL 1.1.1  11 Sep 2018
