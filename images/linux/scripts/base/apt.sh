@@ -29,4 +29,5 @@ apt-get update
 apt-get install aria2 jq
 
 # Install apt-fast using quick-install.sh
-bash -c "$(curl -sL https://git.io/vokNn)"
+# https://github.com/ilikenwf/apt-fast
+bash -c "$(curl -sL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"
