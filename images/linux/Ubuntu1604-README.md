@@ -75,7 +75,7 @@
 - Leiningen 2.9.6
 - MediaInfo 0.7.82
 - Mercurial 4.4.1
-- Minikube 
+- Minikube 1.19.0
 - Newman 5.2.3
 - nvm 0.38.0
 - OpenSSL 1.0.2g  1 Mar 2016
