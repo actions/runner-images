@@ -79,7 +79,7 @@
 - Leiningen 2.9.6
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.19.0
+- Minikube 1.20.0
 - Newman 5.2.3
 - nvm 0.38.0
 - OpenSSL 1.1.1f  31 Mar 2020
