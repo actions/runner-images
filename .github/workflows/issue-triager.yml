@@ -29,8 +29,6 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo
           });
-          
-          console.log(JSON.stringify(context.issue));
 
           const isAnnouncement = issueLabels.data && issueLabels.data
             .map(label => label.name)
