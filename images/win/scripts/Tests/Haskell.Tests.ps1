@@ -36,6 +36,11 @@ Describe "Haskell" {
         "ghc --version" | Should -MatchCommandOutput $defaultGhcShortVersion
     }
 
+    # Sometimes choco doesn't return version 9, need to check it explicitly https://github.com/chocolatey/choco/issues/2271
+    It "Default GHC version is 9" -TestCases $ghcDefaultCases {
+        "ghc --version" | Should -MatchCommandOutput "9(\.\d+){2,}"
+    }
+
     It "Cabal is installed" {
         "cabal --version" | Should -ReturnZeroExitCode
     }
