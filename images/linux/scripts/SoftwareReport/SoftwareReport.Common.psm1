@@ -8,7 +8,7 @@ function Get-CPPVersions {
     $cppVersions = $result.Output | Where-Object { $_ -match "g\+\+-\d+"} | ForEach-Object {
         & $_.Split("/")[0] --version | Select-Object -First 1 | Take-OutputPart -Part 3
     } | Sort-Object {[Version]$_}
-    return "GNU C++ " + ($cppVersions -Join ", ")
+    return "GNU C++ " + ($cppVersions -Join ", ") + "(apt source repository: http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu)"
 }
 
 function Get-FortranVersions {
@@ -17,7 +17,7 @@ function Get-FortranVersions {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
     } | Sort-Object {[Version]$_}
-    return "GNU Fortran " + ($fortranVersions -Join ", ")
+    return "GNU Fortran " + ($fortranVersions -Join ", ") + "(apt source repository: http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu)"
 }
 
 function Get-ClangToolVersions {

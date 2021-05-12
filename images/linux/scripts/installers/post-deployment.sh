@@ -12,6 +12,9 @@ if [[ -d "/opt" ]]; then
     chmod -R 777 /opt
 fi
 
+# remove PPA repositories which were added during the build
+add-apt-repository -r ppa:ubuntu-toolchain-r/test -y
+
 # remove installer and helper folders
 rm -rf $HELPER_SCRIPT_FOLDER
 rm -rf $INSTALLER_SCRIPT_FOLDER
