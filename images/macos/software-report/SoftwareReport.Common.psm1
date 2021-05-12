@@ -91,7 +91,7 @@ function Get-FortranVersion {
     $versionList = Get-ToolsetValue -KeyPath gcc.versions
     $versionList | Foreach-Object {
         $version = Run-Command "gfortran-${_} --version" | Select-Object -First 1
-        "$version  - available by ``gfortran-${_}`` alias"
+        "$version - available by ``gfortran-${_}`` alias"
     }
 }
 
