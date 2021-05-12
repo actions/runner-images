@@ -124,6 +124,9 @@ Generated tool versions and details can be found in related projects:
 - [Node](https://github.com/actions/node-versions)
 
 ### Post-generation scripts
+
+> :warning: These scripts are intended to run on a VM deployed in Azure
+
 The user, created during the image generation, does not exist in the result VHD hence some configuration files related to the user's home directory need to be changed as well as the file permissions for some directories. Scripts for that are located in the `post-generation` folder in the repository:
 - Windows: https://github.com/actions/virtual-environments/tree/main/images/win/post-generation
 - Linux: https://github.com/actions/virtual-environments/tree/main/images/linux/post-generation
