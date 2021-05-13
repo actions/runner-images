@@ -4,9 +4,9 @@ function Get-AnsibleVersion {
 }
 
 function Get-AptFastVersion {
-    $versionFileContent = Get-Content "/usr/local/sbin/apt-fast"
+    $versionFileContent = Get-Content "/usr/bin/apt-fast" -Raw
     $match = [Regex]::Match($versionFileContent, '# apt-fast v(.+)\n')
-    $aptFastVersion = $match.Groups[0].Value
+    $aptFastVersion = $match.Groups[1].Value
     return "apt-fast $aptFastVersion"
 }
 
