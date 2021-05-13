@@ -1,15 +1,16 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
-echo "Installing GCC@8 using homebrew..."
-brew_smart_install "gcc@8"
+gccVersions=$(get_toolset_value '.gcc.versions | .[]')
 
-echo "Installing GCC@9 using homebrew..."
-brew_smart_install "gcc@9"
+for gccVersion in $gccVersions; do
+    brew_smart_install "gcc@${gccVersion}"
+done
 
-# https://github.com/actions/virtual-environments/issues/1280
-echo "Installing GCC@10 using homebrew..."
-brew_smart_install "gcc@10"
-rm $(which gfortran)
+# Delete default gfortran link if it exists https://github.com/actions/virtual-environments/issues/1280
+gfortranPath=$(which gfortran)
+if [ $gfortranPath ]; then
+    rm $gfortranPath
+fi
 
 invoke_tests "Common" "GCC"
