@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Ubuntu] .NET SDK pre-installation policy will be changed on June 14](https://github.com/actions/virtual-environments/issues/3338) |
 | [Ubuntu 16.04 environment will be removed on September 20, 2021](https://github.com/actions/virtual-environments/issues/3287) |
 | [[ubuntu] Clang 9 will be removed on May, 17th and default will be set to Clang 11](https://github.com/actions/virtual-environments/issues/3235) |
 ***
 # Ubuntu 16.04.7 LTS
 - Linux kernel version: 4.15.0-1113-azure
-- Image Version: 20210504.1
+- Image Version: 20210510.0
 
 ## Installed Software
 ### Language and Runtime
@@ -28,13 +29,13 @@
 ### Package Management
 - cpan 1.61
 - Helm 3.5.4
-- Homebrew 3.1.5
+- Homebrew 3.1.6
 - Miniconda 4.9.2
 - Npm 6.14.12
 - Pip 8.1.1
 - Pip3 8.1.1
 - RubyGems 2.5.2
-- Vcpkg  (build from master \<95836f4>)
+- Vcpkg  (build from master \<5a271a9>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -45,19 +46,19 @@
 
 ### Project Management
 - Ant 1.9.6
-- Gradle 7.0
+- Gradle 7.0.1
 - Maven 3.8.1
-- Sbt 1.5.1
+- Sbt 1.5.2
 
 ### Tools
 - Ansible 2.9.21
 - apt-fast 1.9.11
 - AzCopy 10.10.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.0.0
-- Bazelisk 1.8.0
+- Bazelisk 1.8.1
 - CMake 3.20.2
 - CodeQL Action Bundle 2.5.4
-- Docker Compose 1.29.1
+- Docker Compose 1.29.2
 - Docker-Buildx 0.5.1
 - Docker-Moby Client 20.10.6+azure
 - Docker-Moby Server 20.10.6+azure
@@ -65,7 +66,7 @@
 - Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.0.2
 - Haveged 1.9.1
-- Heroku 7.53.0
+- Heroku 7.53.1
 - HHVM (HipHop VM) 4.56.6
 - jq 1.5
 - Kind 0.10.0
@@ -74,31 +75,31 @@
 - Leiningen 2.9.6
 - MediaInfo 0.7.82
 - Mercurial 4.4.1
-- Minikube 1.19.0
+- Minikube 1.20.0
 - Newman 5.2.3
 - nvm 0.38.0
 - OpenSSL 1.0.2g  1 Mar 2016
 - Packer 1.7.2
 - PhantomJS 2.1.1
-- Pulumi 3.1.0
+- Pulumi 3.2.1
 - R 4.0.5
 - Sphinx Open Source Search Server 2.2.9
 - SVN 1.9.3
-- Terraform 0.15.1
+- Terraform 0.15.3
 - zstd 1.4.9 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.74
-- AWS CLI 1.19.64
+- AWS CLI 1.19.70
 - AWS CLI Session manager plugin 1.2.54.0
 - AWS SAM CLI 1.23.0
-- Azure CLI (azure-cli) 2.22.1
+- Azure CLI (azure-cli) 2.23.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.9.2
-- Google Cloud SDK 338.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 339.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 3.25.0
-- OpenShift CLI 4.7.8
+- Netlify CLI 3.29.2
+- OpenShift CLI 4.7.9
 - ORAS CLI 0.11.1
 - Vercel CLI 22.0.1
 
@@ -110,34 +111,34 @@
 | 12.0.2+10           | Adopt OpenJDK | JAVA_HOME_12_X64     |
 
 ### PHP
-| Tool     | Version                                                                                 |
-| -------- | --------------------------------------------------------------------------------------- |
-| PHP      | 5.6.40 7.0.33 7.1.33 7.2.34 7.3.28 7.4.18 8.0.5 (apt source repository: ppa:ondrej/php) |
-| Composer | 2.0.13                                                                                  |
-| PHPUnit  | 8.5.15                                                                                  |
+| Tool     | Version                                         |
+| -------- | ----------------------------------------------- |
+| PHP      | 5.6.40 7.0.33 7.1.33 7.2.34 7.3.28 7.4.18 8.0.5 |
+| Composer | 2.0.13                                          |
+| PHPUnit  | 8.5.15                                          |
 
 ### Haskell
 - Cabal 3.4.0.0
 - GHC 9.0.1 (apt source repository: ppa:hvr/ghc)
 - GHCup 0.1.14.1
-- Stack 2.5.1
+- Stack 2.7.1
 
 ### Rust Tools
-- Cargo 1.51.0
-- Rust 1.51.0
-- Rustdoc 1.51.0
+- Cargo 1.52.0
+- Rust 1.52.1
+- Rustdoc 1.52.1
 - Rustup 1.24.1
 
 #### Packages
 - Bindgen 0.58.1
 - Cargo audit 0.14.1
-- Cargo clippy 0.1.51
+- Cargo clippy 0.1.52
 - Cargo outdated 0.9.15
 - Cbindgen 0.19.0
 - Rustfmt 1.4.36
 
 ### Browsers and Drivers
-- Google Chrome 90.0.4430.93
+- Google Chrome 90.0.4430.212
 - ChromeDriver 90.0.4430.24
 - Mozilla Firefox 88.0
 - Geckodriver 0.29.1
@@ -153,7 +154,7 @@
 - 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202
 
 ### Databases
-- MongoDB 4.4.5 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
+- MongoDB 4.4.6 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
 - Postgre SQL 13.2 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - sqlite3 3.11.0
 
@@ -171,7 +172,7 @@
 #### Go
 - 1.13.15
 - 1.14.15
-- 1.15.11
+- 1.15.12
 
 #### Node.js
 - 10.24.1
@@ -187,8 +188,8 @@
 - 3.5.10
 - 3.6.13
 - 3.7.10
-- 3.8.9
-- 3.9.4
+- 3.8.10
+- 3.9.5
 
 #### Ruby
 - 2.4.10
@@ -202,7 +203,7 @@
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_13_X64 | /opt/hostedtoolcache/go/1.13.15/x64 | x64          |
 | GOROOT_1_14_X64 | /opt/hostedtoolcache/go/1.14.15/x64 | x64          |
-| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.11/x64 | x64          |
+| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.12/x64 | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.1.3
@@ -211,7 +212,7 @@
 | Module     | Version |
 | ---------- | ------- |
 | MarkdownPS | 1.9     |
-| Pester     | 5.1.1   |
+| Pester     | 5.2.0   |
 
 #### Az PowerShell Modules
 - 5.7.0 3.1.0.zip 4.4.0.zip
@@ -231,7 +232,7 @@
 | Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)                                             |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                        |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                        |
-| CMake                      | 3.10.2                                                                                                                                                                                                                                        |
+| CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                              |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                            |
 | Google Repository          | 58                                                                                                                                                                                                                                            |
