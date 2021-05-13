@@ -8,6 +8,8 @@
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
+$REPO_URL="http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu"
+
 function InstallGcc {
     version=$1
 
@@ -24,5 +26,7 @@ versions=$(get_toolset_value '.gcc.versions[]')
 for version in ${versions[*]}; do
     InstallGcc $version
 done
+
+echo "gcc $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
 
 invoke_tests "Tools" "gcc"
