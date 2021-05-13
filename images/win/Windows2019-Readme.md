@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1879
-- Image Version: 20210425.1
+- Image Version: 20210509.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -8,25 +8,25 @@
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
-- Go 1.15.11
+- Go 1.15.12
 - Julia 1.6.1
 - Node 14.16.1
 - Perl 5.32.1
-- PHP 8.0.3
+- PHP 8.0.6
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
 - Chocolatey 0.10.15
-- Composer 2.0.12
+- Composer 2.0.13
 - Helm 3.5.4
 - Miniconda 4.9.2
 - NPM 6.14.12
 - NuGet 5.9.1.11
-- pip 21.1 (python 3.7)
-- Pipx 0.16.1.0
+- pip 21.1.1 (python 3.7)
+- Pipx 0.16.2.1
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<84e5852>)
+- Vcpkg  (build from master \<86d689b>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -38,36 +38,36 @@
 ### Project Management
 - Ant 1.10.10
 - Gradle 7.0
-- Maven 3.6.3
-- sbt 1.5.0
+- Maven 3.8.1
+- sbt 1.5.1
 
 ### Tools
 - 7zip 19.00
 - azcopy 10.10.0
 - Bazel 4.0.0
-- Bazelisk 1.8.0
+- Bazelisk 1.8.1
 - Cabal 3.4.0.0
-- CMake 3.20.1
-- CodeQL Action Bundle 2.5.2
+- CMake 3.20.2
+- CodeQL Action Bundle 2.5.4
 - Docker 20.10.4
 - Docker-compose 1.29.1
 - ghc 9.0.1
 - Git 2.31.1
 - Git LFS 2.13.3
-- Google Cloud SDK 337.0.0
+- Google Cloud SDK 339.0.0
 - InnoSetup 6.1.2
 - jq 1.6
 - Kind 0.10.0
 - Kubectl 1.21.0
 - Mercurial 5.0
 - Mingw-w64 8.1.0
-- Newman 5.2.2
+- Newman 5.2.3
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.2
-- Pulumi v3.1.0
+- Pulumi v3.2.1
 - R 4.0.5
-- Stack 2.5.1
+- Stack 2.7.1
 - Subversion (SVN) 1.14.1
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
@@ -75,11 +75,11 @@
 - zstd 1.4.9
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.73
-- AWS CLI 2.1.38
+- Alibaba Cloud CLI 3.0.74
+- AWS CLI 2.2.3
 - AWS SAM CLI 1.23.0
 - AWS Session Manager CLI 1.2.54.0
-- Azure CLI 2.22.1
+- Azure CLI 2.23.0
 - Azure Dev Spaces CLI 1.0.20210421.4
 - Azure DevOps CLI extension 0.18.0
 - Cloud Foundry CLI 6.53.0
@@ -87,25 +87,25 @@
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.51.0
-- Rust 1.51.0
-- Rustdoc 1.51.0
-- Rustup 1.23.1
+- Cargo 1.52.0
+- Rust 1.52.0
+- Rustdoc 1.52.0
+- Rustup 1.24.1
 
 #### Packages
 - bindgen 0.58.1
-- cargo-audit 0.14.0
+- cargo-audit 0.14.1
 - cargo-outdated v0.9.15
 - cbindgen 0.19.0
-- Clippy 0.1.51
+- Clippy 0.1.52
 - Rustfmt 1.4.36
 
 ### Browsers and webdrivers
-- Google Chrome 90.0.4430.85
+- Google Chrome 90.0.4430.93
 - Chrome Driver 90.0.4430.24
-- Microsoft Edge 90.0.818.46
-- Microsoft Edge Driver 90.0.818.46
-- Mozilla Firefox 88.0
+- Microsoft Edge 90.0.818.56
+- Microsoft Edge Driver 90.0.818.56
+- Mozilla Firefox 88.0.1
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
 
@@ -146,8 +146,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ | -------------------- |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
-| 1.15.11 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.3  | x64          | GOROOT_1_16_X64      |
+| 1.15.12 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.4  | x64          | GOROOT_1_16_X64      |
 
 
 #### Node
@@ -165,8 +165,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.5.4   | x64, x86     |
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
-| 3.8.9   | x64, x86     |
-| 3.9.4   | x64, x86     |
+| 3.8.10  | x64, x86     |
+| 3.9.5   | x64, x86     |
 
 
 #### Ruby
@@ -219,7 +219,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Web Servers
 | Name   | Version | ConfigFile                             | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | -------------------------------------- | ----------- | ------------- | ---------- |
-| Apache | 2.4.46  | C:\tools\Apache24\conf\httpd.conf      | Apache      | Stopped       | 80         |
+| Apache | 2.4.47  | C:\tools\Apache24\conf\httpd.conf      | Apache      | Stopped       | 80         |
 | Nginx  | 1.19.10 | C:\tools\nginx-1.19.10\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
@@ -251,7 +251,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.UnityEngine.x64                                                 | 16.9.31004.209 |
 | Component.Unreal                                                          | 16.1.28810.153 |
 | Component.Unreal.Android                                                  | 16.1.28810.153 |
-| Component.VSInstallerProjects                                             | 0.9.9          |
+| Component.VSInstallerProjects                                             | 1.0.0          |
 | Component.WixToolset.VisualStudioExtension.Dev16                          | 1.0.0.4        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.4        |
 | Component.WixToolset.VisualStudioExtension.Schemas4                       | 1.0.0.4        |
@@ -453,7 +453,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ProBITools.MicrosoftAnalysisServicesModelingProjects                      | 2.9.17         |
 | ProBITools.MicrosoftReportProjectsforVisualStudio                         | 2.6.11         |
 | SSIS.SqlServerIntegrationServicesProjects                                 | 3.13.1         |
-| VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 0.9.9          |
+| VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.0          |
 | Windows Driver Kit                                                        | 10.0.19030.0   |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.19041.685 |
 | WIX Toolset                                                               | 3.11.4516      |
@@ -519,7 +519,7 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Pester             | 3.4.0<br>5.1.1   |
+| Pester             | 3.4.0<br>5.2.0   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.19.1           |
 | PSWindowsUpdate    | 2.2.0.2          |
@@ -529,13 +529,13 @@ All other versions are saved but not installed.
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                                                   |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 3.0                                                                                                                                                                                                                                                                                       |
+| Android Command Line Tools | 4.0                                                                                                                                                                                                                                                                                       |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0     |
 | Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                                                                                    |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                    |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                    |
-| CMake                      | 3.10.2                                                                                                                                                                                                                                                                                    |
+| CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                                          |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                  |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                        |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                        |
