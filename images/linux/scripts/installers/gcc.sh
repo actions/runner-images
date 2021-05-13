@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
-$REPO_URL="http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu"
+REPO_URL="http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu"
 
 function InstallGcc {
     version=$1

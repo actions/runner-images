@@ -6,7 +6,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-$REPO_URL="http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu"
+REPO_URL="http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu"
 
 function InstallFortran {
     version=$1
