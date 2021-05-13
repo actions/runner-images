@@ -60,7 +60,9 @@ if ($os.IsLessThanBigSur) {
     )
 }
 
-$markdown += New-MDList -Style Unordered -Lines ($languageAndRuntimeList | Sort-Object)
+# To sort GCC and Gfortran correctly, we need to use natural sort https://gist.github.com/markwragg/e2a9dc05f3464103d6998298fb575d4e#file-sort-natural-ps1
+$toNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
+$markdown += New-MDList -Style Unordered -Lines ($languageAndRuntimeList | Sort-Object $toNatural)
 
 # Package Management
 $markdown += New-MDHeader "Package Management" -Level 3
