@@ -135,7 +135,7 @@ function Get-KubectlVersion {
 }
 
 function Get-MinikubeVersion {
-    $minikubeVersion = minikube version --short | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
+    $minikubeVersion = minikube version --short | Take-OutputPart -Part 0 -Delimiter "v"
     return "Minikube $minikubeVersion"
 }
 
