@@ -245,12 +245,11 @@
     },
     "clang": {
         "versions": [
-            "9",
             "10",
             "11",
             "12"
         ],
-        "default_version": "10"
+        "default_version": "11"
     },
     "gcc": {
         "versions": [
