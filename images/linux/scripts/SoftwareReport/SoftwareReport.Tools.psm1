@@ -4,7 +4,9 @@ function Get-AnsibleVersion {
 }
 
 function Get-AptFastVersion {
-    $aptFastVersion = (dpkg-query --showformat='${Version}' --show apt-fast).Split('-')[0]
+    $versionFileContent = Get-Content (which apt-fast) -Raw
+    $match = [Regex]::Match($versionFileContent, '# apt-fast v(.+)\n')
+    $aptFastVersion = $match.Groups[1].Value
     return "apt-fast $aptFastVersion"
 }
 
