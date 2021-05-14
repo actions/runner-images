@@ -69,20 +69,18 @@ ln -s /usr/share/apache-maven-3.8.1/bin/mvn /usr/bin/mvn
 
 # Install Gradle
 # This script downloads the latest HTML list of releases at https://gradle.org/releases/.
-# Then, it extracts the top-most release download URL, relying on the top-most URL being for the latest release.
-# The release download URL looks like this: https://services.gradle.org/distributions/gradle-5.2.1-bin.zip
-# The release version is extracted from the download URL (i.e. 5.2.1).
+# Then, it extracts the latest release version and the release url for this version.
 # After all of this, the release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
 wget -qO gradleReleases.html https://gradle.org/releases/
-gradleUrl=$(grep -m 1 -o "https:\/\/services.gradle.org\/distributions\/gradle-.*-bin\.zip" gradleReleases.html | head -1)
-gradleVersion=$(echo $gradleUrl | sed -nre 's/^[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p')
+gradleLatestVersion=$(grep -oP "gradle-\K.*(?=-bin\.zip)" gradleReleases.html | sort -V | tail -n1)
+gradleUrl=$(grep -oP "href=\x22\K.*${gradleLatestVersion}-bin\.zip(?=\x22)" gradleReleases.html)
 rm gradleReleases.html
 echo "gradleUrl=$gradleUrl"
-echo "gradleVersion=$gradleVersion"
+echo "gradleVersion=$gradleLatestVersion"
 curl -sL $gradleUrl -o gradleLatest.zip
 unzip -qq -d /usr/share gradleLatest.zip
 rm gradleLatest.zip
-ln -s /usr/share/gradle-"${gradleVersion}"/bin/gradle /usr/bin/gradle
+ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=$(find /usr/share -depth -maxdepth 1 -name "gradle*")" | tee -a /etc/environment
 
 reloadEtcEnvironment
