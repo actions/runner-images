@@ -230,7 +230,7 @@
                 "{{template_dir}}/scripts/installers/php.sh",
                 "{{template_dir}}/scripts/installers/postgresql.sh",
                 "{{template_dir}}/scripts/installers/pulumi.sh",
-                "{{template_dir}}/scripts/installers/ruby.sh",
+                "{{template_dir}}/scripts/installers/rubyUbuntu2004.sh",
                 "{{template_dir}}/scripts/installers/r.sh",
                 "{{template_dir}}/scripts/installers/rust.sh",
                 "{{template_dir}}/scripts/installers/julia.sh",
