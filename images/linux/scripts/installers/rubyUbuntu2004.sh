@@ -7,7 +7,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 #apt-get install ruby-full
-sudo apt-get -y install build-essential ruby-dev libncurses-dev libssl-dev libreadline-dev libffi-dev
+apt-get -y install build-essential ruby-dev libncurses-dev libssl-dev libreadline-dev libffi-dev
 gem update
 
 # Install ruby gems from toolset
