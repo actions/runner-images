@@ -1,30 +1,33 @@
 | Announcements |
 |-|
+| [[macOS] GCC version 8 will be removed from images on May, 31](https://github.com/actions/virtual-environments/issues/3378) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 11.3 info
 - System Version: macOS 11.3.1 (20E241)
 - Kernel Version: Darwin 20.4.0
-- Image Version: 20210510.1
+- Image Version: 20210516.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202 5.0.203
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
-- gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
 - gcc-8 (Homebrew GCC 8.4.0_3) 8.4.0 - available by `gcc-8` alias
 - gcc-9 (Homebrew GCC 9.3.0_2) 9.3.0 - available by `gcc-9` alias
-- GNU Fortran (Homebrew GCC 10.3.0) 10.3.0  - available by `gfortran-10` alias
-- GNU Fortran (Homebrew GCC 8.4.0_3) 8.4.0  - available by `gfortran-8` alias
-- GNU Fortran (Homebrew GCC 9.3.0_2) 9.3.0  - available by `gfortran-9` alias
+- gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
+- gcc-11 (Homebrew GCC 11.1.0) 11.1.0 - available by `gcc-11` alias
+- GNU Fortran (Homebrew GCC 8.4.0_3) 8.4.0 - available by `gfortran-8` alias
+- GNU Fortran (Homebrew GCC 9.3.0_2) 9.3.0 - available by `gfortran-9` alias
+- GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
+- GNU Fortran (Homebrew GCC 11.1.0) 11.1.0 - available by `gfortran-11` alias
 - Go 1.15.12
 - julia 1.6.1
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v14.16.1
-- NVM - Cached node versions: v10.24.1 v12.22.1 v14.16.1
+- Node.js v14.17.0
 - NVM 0.38.0
+- NVM - Cached node versions: v10.24.1 v12.22.1 v14.17.0
 - Perl 5.32.1
 - PHP 8.0.6
 - Python 2.7.18
@@ -36,15 +39,15 @@
 - Carthage 0.38.0
 - CocoaPods 1.10.1
 - Composer 2.0.13
-- Homebrew 3.1.5
+- Homebrew 3.1.7
 - Miniconda 4.9.2
-- NPM 6.14.12
+- NPM 6.14.13
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.1.1 (python 3.9)
 - Pipx 0.16.2.1
 - RubyGems 3.2.17
-- Vcpkg 2021 (build from master \<5a271a9>)
+- Vcpkg 2021 (build from master \<e6dcc07>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -56,7 +59,7 @@
 ### Project Management
 - Apache Ant(TM) 1.10.10
 - Apache Maven 3.8.1
-- Gradle 7.0
+- Gradle 7.0.2
 
 ### Utilities
 - 7-Zip 17.04
@@ -80,8 +83,8 @@
 - Newman 5.2.3
 - OpenSSL 1.1.1k  25 Mar 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1k)`
 - Packer 1.7.2
-- PostgreSQL 13.2
-- psql (PostgreSQL) 13.2
+- PostgreSQL 13.3
+- psql (PostgreSQL) 13.3
 - Subversion (SVN) 1.14.1
 - zstd 1.4.9
 
@@ -89,17 +92,17 @@
 ### Tools
 - Aliyun CLI 3.0.74
 - App Center CLI 2.9.0
-- AWS CLI 2.2.3
+- AWS CLI 2.2.5
 - AWS SAM CLI 1.23.0
 - AWS Session Manager CLI 1.2.54.0
 - Azure CLI 2.23.0
 - Cabal 3.4.0.0
 - Cmake 3.20.2
-- Fastlane 2.182.0
+- Fastlane 2.183.0
 - GHC 9.0.1
 - GHCup v0.1.14.1
 - Stack 2.7.1
-- SwiftFormat 0.48.1
+- SwiftFormat 0.48.2
 - Xcode Command Line Tools 12.5.0.0.1.1617976050
 
 ### Linters
@@ -109,10 +112,10 @@
 ### Browsers
 - Safari 14.1 (16611.1.21.161.6)
 - SafariDriver 14.1 (16611.1.21.161.6)
-- Google Chrome 90.0.4430.93 
+- Google Chrome 90.0.4430.212 
 - ChromeDriver 90.0.4430.24
-- Microsoft Edge 90.0.818.56 
-- MSEdgeDriver 90.0.818.56
+- Microsoft Edge 90.0.818.62 
+- MSEdgeDriver 90.0.818.62
 - Mozilla Firefox 88.0.1
 - geckodriver 0.29.1
 
@@ -145,7 +148,7 @@
 #### Node.js
 - 10.24.1
 - 12.22.1
-- 14.16.1
+- 14.17.0
 
 #### Go
 - 1.15.12
@@ -153,8 +156,8 @@
 
 ### Rust Tools
 - Cargo 1.52.0
-- Rust 1.52.0
-- Rustdoc 1.52.0
+- Rust 1.52.1
+- Rustdoc 1.52.1
 - Rustup 1.24.1
 
 #### Packages
@@ -173,18 +176,18 @@
 | ---------------- | ------- |
 | Az               | 5.7.0   |
 | MarkdownPS       | 1.9     |
-| Pester           | 5.2.0   |
+| Pester           | 5.2.1   |
 | PSScriptAnalyzer | 1.19.1  |
 
 ### Web Servers
-| Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
-| ----- | -------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.46_2 | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
-| nginx | 1.19.10  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
+| Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
+| ----- | ------- | ------------------------------- | ------------- | ---------- |
+| httpd | 2.4.47  | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
+| nginx | 1.19.10 | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.9.8.7
+- 8.9.9.3
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
