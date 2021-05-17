@@ -3,6 +3,7 @@
 ##  File:  java-tools.sh
 ##  Desc:  Installs Java and related tooling (Ant, Gradle, Maven)
 ################################################################################
+
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/etc-environment.sh
@@ -61,25 +62,22 @@ chmod -R 777 /usr/lib/jvm
 apt-fast install -y --no-install-recommends ant ant-optional
 echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
-# Install Maven
-curl -sL https://www-eu.apache.org/dist/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.zip -o maven.zip
-unzip -qq -d /usr/share maven.zip
-rm maven.zip
+# Install Maven 3.8.1
+mavenDownloadUrl="https://www-eu.apache.org/dist/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.zip"
+download_with_retries $mavenDownloadUrl "/tmp" "maven.zip"
+unzip -qq -d /usr/share /tmp/maven.zip
 ln -s /usr/share/apache-maven-3.8.1/bin/mvn /usr/bin/mvn
 
 # Install Gradle
-# This script downloads the latest HTML list of releases at https://gradle.org/releases/.
-# Then, it extracts the latest release version and the release url for this version.
-# After all of this, the release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
-wget -qO gradleReleases.html https://gradle.org/releases/
-gradleLatestVersion=$(grep -oP "gradle-\K.*(?=-bin\.zip)" gradleReleases.html | sort -V | tail -n1)
-gradleUrl=$(grep -oP "href=\x22\K.*${gradleLatestVersion}-bin\.zip(?=\x22)" gradleReleases.html)
-rm gradleReleases.html
-echo "gradleUrl=$gradleUrl"
+# This script founds the latest gradle release from https://services.gradle.org/versions/all
+# The release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
+gradleJson=$(curl -s https://services.gradle.org/versions/all)
+gradleLatestVersion=$(echo $gradleJson | jq -r '.[] | select(.version | contains("-") | not).version' | sort -V | tail -n1)
+gradleDownloadUrl=$(echo $gradleJson | jq -r ".[] | select(.version==\"$gradleLatestVersion\") | .downloadUrl")
+echo "gradleUrl=$gradleDownloadUrl"
 echo "gradleVersion=$gradleLatestVersion"
-curl -sL $gradleUrl -o gradleLatest.zip
-unzip -qq -d /usr/share gradleLatest.zip
-rm gradleLatest.zip
+download_with_retries $gradleDownloadUrl "/tmp" "gradleLatest.zip"
+unzip -qq -d /usr/share /tmp/gradleLatest.zip
 ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=$(find /usr/share -depth -maxdepth 1 -name "gradle*")" | tee -a /etc/environment
 
