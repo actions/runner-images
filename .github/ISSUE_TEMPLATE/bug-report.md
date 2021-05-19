@@ -21,7 +21,7 @@ A clear and concise description of what the bug is, and why you consider it to b
 - [ ] Ubuntu 18.04
 - [ ] Ubuntu 20.04
 - [ ] macOS 10.15
-- [ ] macOS 11.0
+- [ ] macOS 11
 - [ ] Windows Server 2016 R2
 - [ ] Windows Server 2019
 
