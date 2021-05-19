@@ -251,7 +251,8 @@ function Build-PHPTable {
 function Get-GHCVersion {
     $(ghc --version) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $ghcVersion = $Matches.version
-    return "GHC $ghcVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "ghc"
+    return "GHC $ghcVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-GHCupVersion {

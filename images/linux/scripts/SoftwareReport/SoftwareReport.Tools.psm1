@@ -4,7 +4,9 @@ function Get-AnsibleVersion {
 }
 
 function Get-AptFastVersion {
-    $aptFastVersion = (dpkg-query --showformat='${Version}' --show apt-fast).Split('-')[0]
+    $versionFileContent = Get-Content (which apt-fast) -Raw
+    $match = [Regex]::Match($versionFileContent, '# apt-fast v(.+)\n')
+    $aptFastVersion = $match.Groups[1].Value
     return "apt-fast $aptFastVersion"
 }
 
@@ -135,7 +137,7 @@ function Get-KubectlVersion {
 }
 
 function Get-MinikubeVersion {
-    $minikubeVersion = minikube version --short | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
+    $minikubeVersion = minikube version --short | Take-OutputPart -Part 0 -Delimiter "v"
     return "Minikube $minikubeVersion"
 }
 
@@ -184,7 +186,8 @@ function Get-JqVersion {
 
 function Get-AzureCliVersion {
     $azcliVersion = az -v | Select-String "azure-cli" | Take-OutputPart -Part -1
-    return "Azure CLI (azure-cli) $azcliVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "azure-cli"
+    return "Azure CLI (azure-cli) $azcliVersion (installation method: $aptSourceRepo)"
 }
 
 function Get-AzureDevopsVersion {
