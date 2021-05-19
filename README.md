@@ -25,7 +25,7 @@ If any of your workflows use Ubuntu 16.04, migrate to Ubuntu 20.04 or 18.04.
 The macOS 11 virtual environment is currently provided as a private preview only.
 The "macos-latest" YAML workflow label still uses the macOS 10.15 virtual environment.
 ```
-Onboarding of new customers to macOS 11 is now opened. For more information, see [Onboarding page](./docs/macos-11-onboarding.md)
+> Onboarding of new customers to macOS 11 is now opened. For more information, see the [Onboarding page](./docs/macos-11-onboarding.md)
 
 ***What images are available for GitHub Actions and Azure DevOps?***
 The availability of images for GitHub Actions and Azure DevOps is different. See documentation for more details:  
