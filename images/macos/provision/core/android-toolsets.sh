@@ -58,7 +58,7 @@ mv tools $ANDROID_HOME
 
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
 
-SDKMANAGER=$ANDROID_HOME/tools/bin/sdkmanager
+SDKMANAGER=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
 
 # Mark the different Android licenses as accepted
 mkdir -p $ANDROID_HOME/licenses
@@ -80,14 +80,16 @@ ln -s $ANDROID_HOME/ndk/$ndkLtsLatest $ANDROID_HOME/ndk-bundle
 ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ndkLatest
 echo "export ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> "${HOME}/.bashrc"
 
-availablePlatforms=($(${ANDROID_HOME}/tools/bin/sdkmanager --list | grep "platforms;android-" | cut -d"|" -f 1 | sort -u))
+availablePlatforms=($(${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --list | grep "platforms;android-" | cut -d"|" -f 1 | sort -u))
 filter_components_by_version $ANDROID_PLATFORM "${availablePlatforms[@]}"
 
-allBuildTools=($(${ANDROID_HOME}/tools/bin/sdkmanager --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
-availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
+allBuildTools=($(${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --list --include_obsolete | grep -A99999 'Available Packages:.*' | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
+stableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
+recentBuildToolsRCs=($(${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --list | grep -A99999 'Available Packages:.*' | grep "build-tools;[0-9\.]*-rc" | cut -d"|" -f 1))
+availableBuildTools=(${stableBuildTools[@]} ${recentBuildToolsRCs[@]})
 filter_components_by_version $ANDROID_BUILD_TOOL "${availableBuildTools[@]}"
 
-echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager ${components[@]}
+echo "y" | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager ${components[@]}
 
 for extra_name in "${ANDROID_EXTRA_LIST[@]}"
 do

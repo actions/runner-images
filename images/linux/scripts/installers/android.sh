@@ -95,8 +95,10 @@ if isUbuntu20; then
 fi
 
 availablePlatforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
-allBuildTools=($($SDKMANAGER --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
-availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
+allBuildTools=($(${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --list --include_obsolete | grep -A99999 'Available Packages:.*' | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
+stableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
+recentBuildToolsRCs=($(${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --list | grep -A99999 'Available Packages:.*' | grep "build-tools;[0-9\.]*-rc" | cut -d"|" -f 1))
+availableBuildTools=(${stableBuildTools[@]} ${recentBuildToolsRCs[@]})
 
 filter_components_by_version $minimumPlatformVersion "${availablePlatforms[@]}"
 filter_components_by_version $minimumBuildToolVersion "${availableBuildTools[@]}"
