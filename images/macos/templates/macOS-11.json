@@ -88,7 +88,7 @@
         },
         {
             "type": "file",
-            "source": "./toolsets/toolset-11.0.json",
+            "source": "./toolsets/toolset-11.json",
             "destination": "~/image-generation/toolset.json"
         },
         {
