@@ -6,20 +6,20 @@
 ***
 # Ubuntu 16.04.7 LTS
 - Linux kernel version: 4.15.0-1113-azure
-- Image Version: 20210510.0
+- Image Version: 20210517.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.3.48(1)-release
 - Clang 9.0.1
 - Clang-format 9.0.1
-- Erlang 23.3.1 (Eshell 11.2)
+- Erlang 24.0 (Eshell 12.0)
 - GNU C++ 5.5.0, 9.3.0
 - GNU Fortran 5.5.0, 9.3.0
 - Julia 1.6.1
 - Mono 6.12.0.122
 - MSBuild 16.6.0.15201 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node 14.16.1
+- Node 14.17.0
 - Perl 5.22.1
 - Python 2.7.12
 - Python3 3.5.2
@@ -29,13 +29,13 @@
 ### Package Management
 - cpan 1.61
 - Helm 3.5.4
-- Homebrew 3.1.6
+- Homebrew 3.1.7
 - Miniconda 4.9.2
-- Npm 6.14.12
+- Npm 6.14.13
 - Pip 8.1.1
 - Pip3 8.1.1
 - RubyGems 2.5.2
-- Vcpkg  (build from master \<5a271a9>)
+- Vcpkg  (build from master \<e6dcc07>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -46,7 +46,7 @@
 
 ### Project Management
 - Ant 1.9.6
-- Gradle 7.0.1
+- Gradle 7.0.2
 - Maven 3.8.1
 - Sbt 1.5.2
 
@@ -90,15 +90,15 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.74
-- AWS CLI 1.19.70
+- AWS CLI 1.19.73
 - AWS CLI Session manager plugin 1.2.54.0
 - AWS SAM CLI 1.23.0
 - Azure CLI (azure-cli) 2.23.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.9.2
-- Google Cloud SDK 339.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 340.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 3.29.2
+- Netlify CLI 3.29.15
 - OpenShift CLI 4.7.9
 - ORAS CLI 0.11.1
 - Vercel CLI 22.0.1
@@ -151,11 +151,11 @@
 | GECKOWEBDRIVER  | /usr/local/share/gecko_driver  |
 
 ### .NET Core SDK
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202
+- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203
 
 ### Databases
 - MongoDB 4.4.6 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
-- Postgre SQL 13.2 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
+- Postgre SQL 13.3 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - sqlite3 3.11.0
 
 #### MySQL
@@ -177,7 +177,7 @@
 #### Node.js
 - 10.24.1
 - 12.22.1
-- 14.16.1
+- 14.17.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.4]
@@ -212,7 +212,7 @@
 | Module     | Version |
 | ---------- | ------- |
 | MarkdownPS | 1.9     |
-| Pester     | 5.2.0   |
+| Pester     | 5.2.1   |
 
 #### Az PowerShell Modules
 - 5.7.0 3.1.0.zip 4.4.0.zip
@@ -253,16 +253,16 @@
 | alpine:3.11            | sha256:18a918a714d1368847b67173d120ebd110fcfae208305412f3005a61cdc7c20e  | 2021-04-14 |
 | alpine:3.12            | sha256:36553b10a4947067b9fbb7d532951066293a68eae893beba1d9235f7d11a20ad  | 2021-04-14 |
 | alpine:3.13            | sha256:69e70a79f2d41ab5d637de98c1e0b055206ba40a8145e7bddb55ccc04e13cf8f  | 2021-04-14 |
-| buildpack-deps:buster  | sha256:da41958eb012d10ac2e9764885e02612dd515df1b455900f3eda81d81a574ca3  | 2021-04-10 |
-| buildpack-deps:stretch | sha256:ea0e73d4d5c3341e1328b58a69f513067c79fd6effd9776fc2d2f8d46e2f6e78  | 2021-04-10 |
-| debian:10              | sha256:ba4a437377a0c450ac9bb634c3754a17b1f814ce6fa3157c0dc9eef431b29d1f  | 2021-04-10 |
-| debian:9               | sha256:c0daa8e312c326ac15721712b8a1e68a5039d725ff47bc25c781921089de0a66  | 2021-04-10 |
+| buildpack-deps:buster  | sha256:28200c7265b185cbceb55ec2d14b5b303d503aeb4dcf6c456e4a66029400a4eb  | 2021-05-12 |
+| buildpack-deps:stretch | sha256:a84d08cb47515db24a1228de35a909ba782bc2b9ac66b986f566c9dd973ecc24  | 2021-05-12 |
+| debian:10              | sha256:acf7795dc91df17e10effee064bd229580a9c34213b4dba578d64768af5d8c51  | 2021-05-12 |
+| debian:9               | sha256:4f8deed5755299e2d7ae1f5649656de89a6b7e30c0be37a3a1b4a49f0af51f7e  | 2021-05-12 |
 | node:10                | sha256:59531d2835edd5161c8f9512f9e095b1836f7a1fcb0ab73e005ec46047384911  | 2021-04-10 |
 | node:10-alpine         | sha256:dc98dac24efd4254f75976c40bce46944697a110d06ce7fa47e7268470cf2e28  | 2021-04-14 |
-| node:12                | sha256:609103746810535f5a3a987a26ba4ce95d96225d28e9d6228faa5aa331980f37  | 2021-04-10 |
+| node:12                | sha256:e38a48c584fde720a43b1bacfea1178e0900936cb8d0141630e5e35693ee6d08  | 2021-05-12 |
 | node:12-alpine         | sha256:9923c9efb13cf7535f67e49b03010f0977a800068e4c8e0e2c93433a6bfa1e77  | 2021-04-14 |
-| node:14                | sha256:8eb45f4677c813ad08cef8522254640aa6a1800e75a9c213a0a651f6f3564189  | 2021-04-10 |
-| node:14-alpine         | sha256:ed51af876dd7932ce5c1e3b16c2e83a3f58419d824e366de1f7b00f40c848c40  | 2021-04-14 |
+| node:14                | sha256:9025a77b2f37fcda3bbd367587367a9f2251d16a756ed544550b8a571e16a653  | 2021-05-13 |
+| node:14-alpine         | sha256:3689ad4435a413342ccc352170ad0f77433b41173af7fe4c0076f0c9792642cb  | 2021-05-13 |
 | ubuntu:16.04           | sha256:eed7e1076bbc1f342c4474c718e5438af4784f59a4e88ad687dbb98483b59ee4  | 2021-04-23 |
 | ubuntu:18.04           | sha256:538529c9d229fb55f50e6746b119e899775205d62c0fc1b7e679b30d02ecb6e8  | 2021-04-23 |
 | ubuntu:20.04           | sha256:cf31af331f38d1d7158470e095b132acd126a7180a54f263d386da88eb681d93  | 2021-04-23 |
@@ -307,7 +307,7 @@
 | libunwind8        | 1.1-4.1                      |
 | libxkbfile-dev    | 1:1.0.9-0ubuntu1             |
 | libxss1           | 1:1.2.2-1                    |
-| locales           | 2.23-0ubuntu11.2             |
+| locales           | 2.23-0ubuntu11.3             |
 | m4                | 1.4.17-5                     |
 | mediainfo         | 0.7.82-1                     |
 | net-tools         | 1.60-26ubuntu1               |
