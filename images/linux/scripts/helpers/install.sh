@@ -19,7 +19,7 @@ download_with_retries() {
         COMMAND="curl $URL -4 -sL -o '$DEST/$NAME'"
     fi
 
-    echo "Downloading $URL..."
+    echo "Downloading '$URL' to '${DEST}/${NAME}'..."
     i=20
     while [ $i -gt 0 ]; do
         ((i--))
@@ -27,6 +27,7 @@ download_with_retries() {
         if [ $? != 0 ]; then
             sleep 30
         else
+            echo "Download completed"
             return 0
         fi
     done

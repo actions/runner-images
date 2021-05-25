@@ -3,6 +3,7 @@
 ##  File:  java-tools.sh
 ##  Desc:  Installs Java and related tooling (Ant, Gradle, Maven)
 ################################################################################
+
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/etc-environment.sh
@@ -62,27 +63,23 @@ apt-fast install -y --no-install-recommends ant ant-optional
 echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven
-curl -sL https://www-eu.apache.org/dist/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.zip -o maven.zip
-unzip -qq -d /usr/share maven.zip
-rm maven.zip
-ln -s /usr/share/apache-maven-3.8.1/bin/mvn /usr/bin/mvn
+mavenVersion=$(get_toolset_value '.java.maven')
+mavenDownloadUrl="https://www-eu.apache.org/dist/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}-bin.zip"
+download_with_retries $mavenDownloadUrl "/tmp" "maven.zip"
+unzip -qq -d /usr/share /tmp/maven.zip
+ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
 
 # Install Gradle
-# This script downloads the latest HTML list of releases at https://gradle.org/releases/.
-# Then, it extracts the top-most release download URL, relying on the top-most URL being for the latest release.
-# The release download URL looks like this: https://services.gradle.org/distributions/gradle-5.2.1-bin.zip
-# The release version is extracted from the download URL (i.e. 5.2.1).
-# After all of this, the release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
-wget -qO gradleReleases.html https://gradle.org/releases/
-gradleUrl=$(grep -m 1 -o "https:\/\/services.gradle.org\/distributions\/gradle-.*-bin\.zip" gradleReleases.html | head -1)
-gradleVersion=$(echo $gradleUrl | sed -nre 's/^[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p')
-rm gradleReleases.html
-echo "gradleUrl=$gradleUrl"
-echo "gradleVersion=$gradleVersion"
-curl -sL $gradleUrl -o gradleLatest.zip
-unzip -qq -d /usr/share gradleLatest.zip
-rm gradleLatest.zip
-ln -s /usr/share/gradle-"${gradleVersion}"/bin/gradle /usr/bin/gradle
+# This script founds the latest gradle release from https://services.gradle.org/versions/all
+# The release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
+gradleJson=$(curl -s https://services.gradle.org/versions/all)
+gradleLatestVersion=$(echo $gradleJson | jq -r '.[] | select(.version | contains("-") | not).version' | sort -V | tail -n1)
+gradleDownloadUrl=$(echo $gradleJson | jq -r ".[] | select(.version==\"$gradleLatestVersion\") | .downloadUrl")
+echo "gradleUrl=$gradleDownloadUrl"
+echo "gradleVersion=$gradleLatestVersion"
+download_with_retries $gradleDownloadUrl "/tmp" "gradleLatest.zip"
+unzip -qq -d /usr/share /tmp/gradleLatest.zip
+ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=$(find /usr/share -depth -maxdepth 1 -name "gradle*")" | tee -a /etc/environment
 
 reloadEtcEnvironment
