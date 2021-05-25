@@ -1,6 +1,6 @@
 # macOS 11 (Big Sur) onboarding guide
 
-macOS 11 pools are opened to existing customers only, and we are working on making them ready for production use, rebalancing capacity and analyzing possible load.
+macOS 11 pools were opened to existing customers only, and we are working on making them ready for production use, rebalancing capacity and analyzing possible load.
 
 Meanwhile, we'd like to start including customers to private preview on demand. 
 
