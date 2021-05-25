@@ -30,6 +30,7 @@ gem install bundler --force
 # AppStoreRelease Azure DevOps has issues with Fastlane 2.184.0. Temporary hardcoding the version until the issue is fixed
 # https://github.com/microsoft/app-store-vsts-extension/issues/244
 echo Installing fastlane tools...
+gem uninstall fastlane -aI
 gem install fastlane -v 2.183.2
 
 invoke_tests "RubyGem"
