@@ -4,7 +4,7 @@ macOS 11 pools were opened to existing customers only, and we are working on mak
 
 Meanwhile, we'd like to start including customers to private preview on demand. 
 
-> Big Sur will automatically became available for current Enterprise customers. New enterprises and customers on other plans, please go through the sign up process described below.
+> Big Sur will automatically became available to existing Enterprise customers. New enterprises and customers on other plans, please go through the sign up process described below.
 
 ## Sign up process
 
