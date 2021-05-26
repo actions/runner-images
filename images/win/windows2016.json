@@ -254,7 +254,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Apache.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1"
-                "{{ template_dir }}/scripts/Installers/Install-Install-swig.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-swig.ps1"
             ]
         },
         {
