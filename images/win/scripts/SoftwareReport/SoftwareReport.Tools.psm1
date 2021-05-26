@@ -254,7 +254,6 @@ function Get-VisualCPPComponents {
     cd "C:\Program Files\Microsoft SQL Server\150\DAC\bin\"
     $dacfxversion = (./sqlpackage.exe /version)
     return "DacFx $dacfxversion"
-}
 
 
 function Get-SwigVersion {
