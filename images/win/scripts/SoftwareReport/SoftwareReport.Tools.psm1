@@ -248,7 +248,10 @@ function Get-VisualCPPComponents {
                 Name = $name
                 Architecture = $arch
                 Version = $version
- }
+             }
+        }
+    }
+}
  
 function Get-DacFxVersion {
     cd "C:\Program Files\Microsoft SQL Server\150\DAC\bin\"
@@ -261,5 +264,3 @@ function Get-SwigVersion {
     $version = $Matches.Version
     return "swig $version"
           }
-        }
-    }
