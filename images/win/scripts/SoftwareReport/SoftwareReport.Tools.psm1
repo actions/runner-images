@@ -265,6 +265,3 @@ function Get-SwigVersion {
         }
     }
    
-}
-
-
