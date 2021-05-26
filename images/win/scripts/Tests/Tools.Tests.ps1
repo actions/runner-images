@@ -215,8 +215,8 @@ Describe "Stack" {
     }
 }
 
-Describe "swig" {
-    It "swig" {
+Describe "Swig" {
+    It "Swig" {
         "swig -version" | Should -ReturnZeroExitCode
     }
 }
