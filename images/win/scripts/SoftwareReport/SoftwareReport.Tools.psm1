@@ -258,6 +258,7 @@ function Get-DacFxVersion {
     $dacfxversion = (./sqlpackage.exe /version)
     return "DacFx $dacfxversion"
 }
+}
 
 function Get-SwigVersion {
     (swig | Out-String) -match "swig (?<version>\d+\.\d+\.?\d*)" | Out-Null
