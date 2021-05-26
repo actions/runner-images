@@ -24,6 +24,6 @@ Describe "Nginx" {
 
 Describe "Meteor" {
     It "Meteor CLI" {
-        "meteor --allow-superuser --version" | Should -ReturnZeroExitCode
+        "meteor --version" | Should -ReturnZeroExitCode
     }
 }

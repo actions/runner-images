@@ -51,7 +51,7 @@ jobs:
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
 
   - task: PowerShell@2
-    displayName: 'Build VM'
+    displayName: 'Build VM $(Build.BuildId)'
     inputs:
       targetType: filePath
       azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
