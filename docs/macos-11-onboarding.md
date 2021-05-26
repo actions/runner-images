@@ -11,8 +11,8 @@ Meanwhile, we'd like to start including customers to private preview on demand.
 If you need to build and test your project with macOS 11, please, fill out the [form](https://forms.office.com/r/Pn0a7NqBXg).
 
 We will review the incoming requests periodically and open macOS 11 pool for some amount of them. These are the aspects we consider when processing requests:
-- _Pool capacity_. New onboardings are only possible if current performace won't degrade for existing customers.
-- _Billing plan_. New Enterprise or Teams customers will be given a prioroty in joining macOS 11.
+- _Pool capacity_. New onboardings are only possible if current performance won't degrade for existing customers.
+- _Billing plan_. New Enterprise or Teams customers will be given a priority in joining macOS 11.
 - _Necessity of macOS 11_. Currently, we can afford adding only those projects who really depends on the latest macOS version and its features.
 
 ## Usage
@@ -23,4 +23,3 @@ jobs:
   build:
     runs-on: macos-11
 ```
-
