@@ -13,6 +13,6 @@ wget -qO- https://install.meteor.com | sh
 # if not, then in the test, --allow-superuser
 
 meteor_user=$(cut -d: -f1 /etc/passwd | tail -1)
-chown -Rh $meteor_user .meteor/local
+chown -Rh $meteor_user ~/.meteor/local
 
 invoke_tests "WebServers" "Meteor"
