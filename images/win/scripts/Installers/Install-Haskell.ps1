@@ -3,10 +3,13 @@
 ##  Desc:  Install Haskell for Windows
 ################################################################################
 
-# Get 3 latest versions of GHC
-[Version[]] $ChocoVersionsOutput = & choco search ghc --allversions | Where-Object { $_.StartsWith('ghc ') -and $_ -match 'Approved' } | ForEach-Object { [regex]::matches($_, '\d+(\.\d+){2,}').value }
-$MajorMinorGroups = $ChocoVersionsOutput | Sort-Object -Descending | Group-Object { $_.ToString(2) } | Select-Object -First 3
-$VersionsList = $MajorMinorGroups | ForEach-Object { $_.Group | Select-Object -First 1 } | Sort-Object
+# Get 3 latest versions of GHC, use OData query for that since choco search has issues https://github.com/chocolatey/choco/issues/2271
+$ODataQuery = '$filter=(Title eq ''ghc'') and (IsPrerelease eq false)&$orderby=Version desc'
+$Url = "https://community.chocolatey.org/api/v2/Packages()?$ODataQuery"
+$ChocoVersionsOutput = Invoke-RestMethod -Uri $Url | ForEach-Object { [Version]$_.properties.Version }
+$GroupedVersions = $ChocoVersionsOutput | Group-Object { $_.ToString(2) }
+$LatestMajorMinor = $GroupedVersions | ForEach-Object { [Version]$_.Name } | Sort-Object | Select-Object -last 3
+$VersionsList = $GroupedVersions | Where-Object { $_.Name -in $LatestMajorMinor } | ForEach-Object { $_.Group | Select-Object -First 1 } | Sort-Object
 
 # The latest version will be installed as a default
 ForEach ($version in $VersionsList)
