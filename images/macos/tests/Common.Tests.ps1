@@ -78,6 +78,12 @@ Describe "CocoaPods" {
     }
 }
 
+Describe "Swig" {
+    It "Swig" {
+        "swig -version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "VSMac" {
     It "VS4Mac is installed" {
         $vsPath = "/Applications/Visual Studio.app"
