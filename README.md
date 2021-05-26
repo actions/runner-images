@@ -25,7 +25,6 @@ Existing workflows using `Ubuntu 16.04` should migrate to `Ubuntu 20.04` or `Ubu
 New customers or customers on other plans should fill this form to request access to macOS 11 virtual environment. Please view our [Big Sur guide](./docs/macos-11-onboarding.md) for more details. 
 The `macos-latest` YAML workflow label still uses the macOS 10.15 virtual environment.
 
-
 ***What images are available for GitHub Actions and Azure DevOps?***
 The availability of images for GitHub Actions and Azure DevOps is different. See documentation for more details:  
 - [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources)  
