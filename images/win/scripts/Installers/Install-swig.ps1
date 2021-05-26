@@ -3,6 +3,6 @@
 ##  Desc:  Install swig
 ################################################################################
 
-Choco-Install -PackageName swig.install
+Choco-Install -PackageName swig
 
 Invoke-PesterTests -TestFile "Tools" -TestName "swig"
