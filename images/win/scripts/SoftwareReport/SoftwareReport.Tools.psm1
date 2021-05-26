@@ -263,4 +263,4 @@ function Get-SwigVersion {
     (swig | Out-String) -match "swig (?<version>\d+\.\d+\.?\d*)" | Out-Null
     $version = $Matches.Version
     return "swig $version"
-          }
+}
