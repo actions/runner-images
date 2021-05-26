@@ -215,6 +215,12 @@ Describe "Stack" {
     }
 }
 
+Describe "swig" {
+    It "swig" {
+        "swig --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Typescript" {
     It "tsc" {
         "tsc --version" | Should -ReturnZeroExitCode
