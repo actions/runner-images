@@ -248,9 +248,9 @@ function Get-VisualCPPComponents {
                 Name = $name
                 Architecture = $arch
                 Version = $version
-            }
+ }
             
-            function Get-DacFxVersion {
+function Get-DacFxVersion {
     cd "C:\Program Files\Microsoft SQL Server\150\DAC\bin\"
     $dacfxversion = (./sqlpackage.exe /version)
     return "DacFx $dacfxversion"
