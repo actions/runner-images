@@ -12,7 +12,7 @@ After successful image generation, a snapshot of the temporary VM will be conver
 - `packer` - Can be downloaded from https://www.packer.io/downloads
 - `PowerShell 5.0 or higher` or `PSCore` for linux distributes.
 - `Azure CLI ` - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
-- `Azure Powershell module` - https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
+- `Azure Az Powershell module` - https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
 - `Git for Windows` - https://gitforwindows.org/
 
 ### Azure DevOps self-hosted pool requirements
