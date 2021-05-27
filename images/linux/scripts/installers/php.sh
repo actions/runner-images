@@ -80,6 +80,7 @@ for version in $php_versions; do
         apt-fast install -y --no-install-recommends php$version-pcov
 
         # Disable PCOV, as Xdebug is enabled by default
+        # https://github.com/krakjoe/pcov#interoperability
         phpdismod pcov
     fi
 
