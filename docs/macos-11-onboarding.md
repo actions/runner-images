@@ -13,11 +13,11 @@ If you need to build and test your project with macOS 11, please, fill out the [
 We will review the incoming requests periodically and open macOS 11 pool for some amount of them. These are the aspects we consider when processing requests:
 - _Pool capacity_. New onboardings are only possible if current performance won't degrade for existing customers.
 - _Billing plan_. New Enterprise or Teams customers will be given a priority in joining macOS 11.
-- _Necessity of macOS 11_. Currently, we can afford adding only those projects who really depends on the latest macOS version and its features.
+- _Necessity of macOS 11_. We can currently afford to add only those projects that really depend on the latest macOS version and its features.
 
 ## Usage
 
-macOS 11 image label was changed to `macos-11` to avoid confusion with minor version. We always update images to the latest available OS version. Use the following code snippet to run your builds on macOS Big Sur:
+macOS 11 image label was changed to `macos-11` to avoid confusion with the minor version. We always update images to the latest available OS version. Use the following code snippet to run your builds on macOS Big Sur:
 ```
 jobs:
   build:
