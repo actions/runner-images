@@ -80,7 +80,7 @@ for version in $php_versions; do
         apt-fast install -y --no-install-recommends php$version-pcov
 
         # Disable PCOV, as Xdebug is enabled by default
-        echo "" | sudo tee /etc/php/$version/mods-available/pcov.ini
+        phpdismod pcov
     fi
 
     if [[ $version = "7.0" || $version = "7.1" ]]; then
