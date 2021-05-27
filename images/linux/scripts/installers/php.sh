@@ -81,7 +81,7 @@ for version in $php_versions; do
 
         # Disable PCOV, as Xdebug is enabled by default
         # https://github.com/krakjoe/pcov#interoperability
-        phpdismod pcov
+        phpdismod -v $version pcov
     fi
 
     if [[ $version = "7.0" || $version = "7.1" ]]; then
