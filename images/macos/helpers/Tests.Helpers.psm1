@@ -78,8 +78,8 @@ function ShouldReturnZeroExitCode {
     }
 }
 
-If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
-    Add-AssertionOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
+If (Get-Command -Name Add-ShouldOperator -ErrorAction SilentlyContinue) {
+    Add-ShouldOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
 }
 
 function Invoke-PesterTests {

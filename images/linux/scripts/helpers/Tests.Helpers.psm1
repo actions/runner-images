@@ -67,10 +67,6 @@ function ShouldReturnZeroExitCode {
     }
 }
 
-If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
-    Add-AssertionOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
-}
-
 function ShouldMatchCommandOutput {
     Param(
         [String] $ActualValue,
@@ -102,7 +98,7 @@ function ShouldMatchCommandOutput {
     }
 }
 
-If (Get-Command -Name Add-AssertionOperator -ErrorAction SilentlyContinue) {
-    Add-AssertionOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
-    Add-AssertionOperator -Name MatchCommandOutput -InternalName ShouldMatchCommandOutput -Test ${function:ShouldMatchCommandOutput}
+If (Get-Command -Name Add-ShouldOperator -ErrorAction SilentlyContinue) {
+    Add-ShouldOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
+    Add-ShouldOperator -Name MatchCommandOutput -InternalName ShouldMatchCommandOutput -Test ${function:ShouldMatchCommandOutput}
 }
