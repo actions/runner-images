@@ -14,9 +14,9 @@ function InstallClang {
     echo "Installing clang-$version..."
     if [[ $version =~ 9 ]] && isUbuntu16 || [[ $version =~ 12 ]]; then
         ./llvm.sh $version
-        apt-get install -y "clang-format-$version"
+        apt-get install -y "clang-format-$version" "libc++-$version-dev" "libc++abi-$version-dev"
     else
-        apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version"
+        apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version" "libc++-$version-dev" "libc++abi-$version-dev"
     fi    
 }
 
