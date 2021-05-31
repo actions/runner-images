@@ -4,9 +4,9 @@
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 10.15 info
-- System Version: macOS 10.15.7 (19H1030)
+- System Version: macOS 10.15.7 (19H1217)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210516.1
+- Image Version: 20210525.2
 
 ## Installed Software
 ### Language and Runtime
@@ -14,11 +14,11 @@
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
-- gcc-8 (Homebrew GCC 8.4.0_3) 8.4.0 - available by `gcc-8` alias
+- gcc-8 (Homebrew GCC 8.5.0) 8.5.0 - available by `gcc-8` alias
 - gcc-9 (Homebrew GCC 9.3.0_2) 9.3.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
 - gcc-11 (Homebrew GCC 11.1.0) 11.1.0 - available by `gcc-11` alias
-- GNU Fortran (Homebrew GCC 8.4.0_3) 8.4.0 - available by `gfortran-8` alias
+- GNU Fortran (Homebrew GCC 8.5.0) 8.5.0 - available by `gfortran-8` alias
 - GNU Fortran (Homebrew GCC 9.3.0_2) 9.3.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.1.0) 11.1.0 - available by `gfortran-11` alias
@@ -28,19 +28,19 @@
 - Node.js v14.17.0
 - NVM 0.38.0
 - NVM - Cached node versions: v10.24.1 v12.22.1 v14.17.0
-- Perl 5.32.1
+- Perl 5.34.0
 - PHP 8.0.6
 - Python 2.7.18
 - Python 3.9.5
-- R 4.0.5
+- R 4.1.0
 - Ruby 2.7.3p183
 
 ### Package Management
 - Bundler version 2.2.17
 - Carthage 0.38.0
 - CocoaPods 1.10.1
-- Composer 2.0.13
-- Homebrew 3.1.7
+- Composer 2.0.14
+- Homebrew 3.1.9
 - Miniconda 4.9.2
 - NPM 6.14.13
 - NuGet 5.6.0.6489
@@ -48,7 +48,7 @@
 - Pip 21.1.1 (python 3.9)
 - Pipx 0.16.2.1
 - RubyGems 3.2.17
-- Vcpkg 2021 (build from master \<e6dcc07>)
+- Vcpkg 2021 (build from master \<7c55eca>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -66,13 +66,13 @@
 - 7-Zip 17.04
 - aria2 1.35.0
 - azcopy 10.10.0
-- bazel 4.0.0
-- bazelisk 1.8.1
+- bazel 4.1.0
+- bazelisk 1.9.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.76.1
 - Git LFS: 2.13.3
 - Git: 2.31.1
-- GitHub CLI: 1.9.2
+- GitHub CLI: 1.10.3
 - GNU parallel 20210422
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
@@ -90,7 +90,7 @@
 - Subversion (SVN) 1.14.1
 - Vagrant 2.2.16
 - virtualbox 6.1.22r144080
-- zstd 1.4.9
+- zstd 1.5.0
 
 
 ### Tools
@@ -102,11 +102,11 @@
 - Azure CLI 2.23.0
 - Cabal 3.4.0.0
 - Cmake 3.20.2
-- Fastlane 2.183.0
+- Fastlane 2.183.2
 - GHC 9.0.1
 - GHCup v0.1.14.1
 - Stack 2.7.1
-- SwiftFormat 0.48.2
+- SwiftFormat 0.48.3
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
@@ -114,12 +114,12 @@
 - yamllint 1.26.1
 
 ### Browsers
-- Safari 14.1 (15611.1.21.161.7)
-- SafariDriver 14.1 (15611.1.21.161.7)
+- Safari 14.1.1 (15611.2.7.1.6)
+- SafariDriver 14.1.1 (15611.2.7.1.6)
 - Google Chrome 90.0.4430.212 
 - ChromeDriver 90.0.4430.24
-- Microsoft Edge 90.0.818.62 
-- MSEdgeDriver 90.0.818.62
+- Microsoft Edge 90.0.818.66 
+- MSEdgeDriver 90.0.818.66
 - Mozilla Firefox 88.0.1
 - geckodriver 0.29.1
 
@@ -156,9 +156,9 @@
 - 3.9.5
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.4]
+- 2.7.18 [PyPy 7.3.5]
 - 3.6.12 [PyPy 7.3.3]
-- 3.7.10 [PyPy 7.3.4]
+- 3.7.10 [PyPy 7.3.5]
 
 #### Node.js
 - 10.24.1
@@ -175,7 +175,7 @@
 - Cargo 1.52.0
 - Rust 1.52.1
 - Rustdoc 1.52.1
-- Rustup 1.24.1
+- Rustup 1.24.2
 
 #### Packages
 - Bindgen 0.58.1
@@ -204,7 +204,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.9.9.3
+- 8.9.10.4
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -345,7 +345,7 @@
 | Android Command Line Tools | 4.0                                                                                                                                                                                                                   |
 | Android Emulator           | 30.6.5                                                                                                                                                                                                                |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
-| Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                           |
+| Android SDK Platforms      | android-S (rev 4)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                           |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                |

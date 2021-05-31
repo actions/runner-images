@@ -78,8 +78,40 @@ function ShouldReturnZeroExitCode {
     }
 }
 
+function ShouldMatchCommandOutput {
+    Param(
+        [String] $ActualValue,
+        [String] $RegularExpression,
+        [switch] $Negate
+    )
+
+    $output = (Get-CommandResult $ActualValue).Output | Out-String
+    [bool] $succeeded = $output -cmatch $RegularExpression
+
+    if ($Negate) {
+        $succeeded = -not $succeeded
+    }
+
+    $failureMessage = ''
+
+    if (-not $succeeded) {
+        if ($Negate) {
+            $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to not match '$output', but it did match."
+        }
+        else {
+            $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to match '$output', but it did not match."
+        }
+    }
+
+    return [PSCustomObject] @{
+        Succeeded      = $succeeded
+        FailureMessage = $failureMessage
+    }
+}
+
 If (Get-Command -Name Add-ShouldOperator -ErrorAction SilentlyContinue) {
     Add-ShouldOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
+    Add-ShouldOperator -Name MatchCommandOutput -InternalName ShouldMatchCommandOutput -Test ${function:ShouldMatchCommandOutput}
 }
 
 function Invoke-PesterTests {
