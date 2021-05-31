@@ -217,7 +217,6 @@
     },
     "gcc": {
         "versions": [
-            "8",
             "9",
             "10",
             "11"
@@ -295,5 +294,13 @@
             "3.1",
             "5.0"
         ]
-    }
+    },
+    "rubygems": [
+        "xcode-install",
+        "cocoapods",
+        "nomad-cli",
+        "xcpretty",
+        "bundler",
+        "fastlane"
+    ]
 }

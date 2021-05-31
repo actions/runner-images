@@ -251,15 +251,13 @@
     "gcc": {
         "versions": [
             "g++-9",
-            "g++-10",
-            "g++-11"
+            "g++-10"
         ]
     },
     "gfortran": {
         "versions": [
             "gfortran-9",
-            "gfortran-10",
-            "gfortran-11"
+            "gfortran-10"
         ]
     },
     "php": {
