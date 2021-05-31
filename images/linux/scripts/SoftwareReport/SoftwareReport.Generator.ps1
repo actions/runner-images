@@ -26,7 +26,9 @@ $markdown = ""
 $OSName = Get-OSName
 $markdown += New-MDHeader "$OSName" -Level 1
 
+$kernelVersion = Get-KernelVersion
 $markdown += New-MDList -Style Unordered -Lines @(
+    "$kernelVersion"
     "Image Version: $env:IMAGE_VERSION"
 )
 
@@ -38,8 +40,10 @@ $markdown += New-MDList -Style Unordered -Lines (@(
         (Get-CPPVersions),
         (Get-FortranVersions),
         (Get-ClangVersions),
+        (Get-ClangFormatVersions),
         (Get-ErlangVersion),
         (Get-MonoVersion),
+        (Get-MsbuildVersion),
         (Get-NodeVersion),
         (Get-PerlVersion),
         (Get-PythonVersion),
@@ -72,30 +76,34 @@ if (-not (Test-IsUbuntu16)) {
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Project Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-        (Get-AntVersion),
-        (Get-GradleVersion),
-        (Get-MavenVersion),
-        (Get-SbtVersion)
-        ) | Sort-Object
+$projectManagementList = @(
+    (Get-AntVersion),
+    (Get-GradleVersion),
+    (Get-MavenVersion),
+    (Get-SbtVersion)
 )
+
+if (Test-IsUbuntu20) {
+    $projectManagementList += @(
+        (Get-LernaVersion)
+    )
+}
+$markdown += New-MDList -Style Unordered -Lines ($projectManagementList | Sort-Object)
 
 $markdown += New-MDHeader "Tools" -Level 3
 $toolsList = @(
-    (Get-7zipVersion),
     (Get-AnsibleVersion),
     (Get-AptFastVersion),
-    (Get-AzCopy7Version),
-    (Get-AzCopy10Version),
+    (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
-    (Get-BinUtilsVersion),
     (Get-CodeQLBundleVersion),
-    (Get-CoreUtilsVersion),
     (Get-CMakeVersion),
-    (Get-CurlVersion),
     (Get-DockerMobyClientVersion),
     (Get-DockerMobyServerVersion),
     (Get-DockerComposeVersion),
@@ -113,23 +121,17 @@ $toolsList = @(
     (Get-KustomizeVersion),
     (Get-LeiningenVersion),
     (Get-MediainfoVersion),
-    (Get-M4Version),
     (Get-HGVersion),
     (Get-MinikubeVersion),
     (Get-NewmanVersion),
     (Get-NvmVersion),
+    (Get-OpensslVersion),
     (Get-PackerVersion),
-    (Get-PassVersion),
     (Get-PhantomJSVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
     (Get-SphinxVersion),
-    (Get-SwigVersion),
     (Get-TerraformVersion),
-    (Get-UnZipVersion),
-    (Get-WgetVersion),
-    (Get-YamllintVersion),
-    (Get-ZipVersion),
     (Get-ZstdVersion)
 )
 
@@ -137,8 +139,13 @@ if (-not (Test-IsUbuntu16)) {
     $toolsList += @(
         (Get-PodManVersion),
         (Get-BuildahVersion),
-        (Get-SkopeoVersion)
+        (Get-SkopeoVersion),
+        (Get-YamllintVersion)
     )
+}
+
+if (Test-IsUbuntu20) {
+    $toolsList += (Get-FastlaneVersion)
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
@@ -178,6 +185,7 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Haskell" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-GHCVersion),
+    (Get-GHCupVersion),
     (Get-CabalVersion),
     (Get-StackVersion)
     ) | Sort-Object
@@ -209,22 +217,18 @@ $browsersAndDriversList = @(
     (Get-ChromeVersion),
     (Get-ChromeDriverVersion),
     (Get-FirefoxVersion),
-    (Get-GeckodriverVersion)
+    (Get-GeckodriverVersion),
+    (Get-ChromiumVersion)
 )
-if (Test-IsUbuntu20) {
-    $browsersAndDriversList = @(Get-ChromiumVersion) + $browsersAndDriversList
-}
 
 $markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader ".NET Core SDK" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-DotNetCoreSdkVersions)
-)
-
-$markdown += New-MDHeader "Az Module" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
-    (Get-AzModuleVersions)
 )
 
 $markdown += New-MDHeader "Databases" -Level 3
@@ -241,17 +245,28 @@ $markdown += Build-MSSQLToolsSection
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection
 
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-GoEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
+
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
 $markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
 
 $markdown += New-MDHeader "PowerShell Modules" -Level 4
 $markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
+$markdown += New-MDHeader "Az PowerShell Modules" -Level 4
+$markdown += New-MDList -Style Unordered -Lines @(
+    (Get-AzModuleVersions)
+)
 
 $markdown += Build-WebServersSection
 
 $markdown += New-MDHeader "Android" -Level 3
 $markdown += Build-AndroidTable | New-MDTable
+$markdown += New-MDNewLine
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-AndroidEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Cached Docker images" -Level 3
@@ -259,6 +274,6 @@ $markdown += Get-CachedDockerImagesTableData | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Installed apt packages" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(Get-AptPackages)
+$markdown += Get-AptPackages | New-MDTable
 
 $markdown | Out-File -FilePath "${OutputDirectory}/Ubuntu-Readme.md"

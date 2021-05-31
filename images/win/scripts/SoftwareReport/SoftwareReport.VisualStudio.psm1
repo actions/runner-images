@@ -20,8 +20,36 @@ function Get-WDKVersion {
 }
 
 function Get-VisualStudioExtensions {
-    # Wix
+    # Additional vsixs
+    $toolset = Get-ToolsetContent
+    $vsixUrls = $toolset.visualStudio.vsix
+    if ($vsixUrls)
+    {
+        $vsixs = $vsixUrls | ForEach-Object {
+            $vsix = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
+            $vsixVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match $vsix.VsixId -and $_.type -eq 'vsix'}).Version
+            @{
+                Package = $vsix.ExtensionName
+                Version = $vsixVersion
+            }
+        }
+    }
+
+    # SSDT extensions for VS2017
     $vs = (Get-VisualStudioVersion).Name.Split()[-1]
+    if ($vs -eq "2017")
+    {
+        $analysisPackageVersion = Get-VSExtensionVersion -packageName '04a86fc2-dbd5-4222-848e-911638e487fe'
+        $reportingPackageVersion = Get-VSExtensionVersion -packageName '717ad572-c4b7-435c-c166-c2969777f718'
+        $integrationPackageName = Get-VSExtensionVersion -packageName 'd1b09713-c12e-43cc-9ef4-6562298285ab'
+        $ssdtPackages = @(
+            @{Package = 'SSDT Microsoft Analysis Services Projects'; Version = $analysisPackageVersion}
+            @{Package = 'SSDT SQL Server Integration Services Projects'; Version = $reportingPackageVersion}
+            @{Package = 'SSDT Microsoft Reporting Services Projects'; Version = $integrationPackageName}
+        )
+    }
+
+    # Wix
     $wixPackageVersion = Get-WixVersion
     $wixExtensionVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
 
@@ -29,18 +57,10 @@ function Get-VisualStudioExtensions {
     $wdkPackageVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
     $wdkExtensionVersion = Get-WDKVersion
 
-    # SSDT
-    $analysisPackageVersion = Get-VSExtensionVersion -packageName '04a86fc2-dbd5-4222-848e-911638e487fe'
-    $reportingPackageVersion = Get-VSExtensionVersion -packageName '717ad572-c4b7-435c-c166-c2969777f718'
-
-    $integrationPackageName = ($vs -match "2019") ? '851E7A09-7B2B-4F06-A15D-BABFCB26B970' : 'D1B09713-C12E-43CC-9EF4-6562298285AB'
-    $integrationPackageVersion = Get-VSExtensionVersion -packageName $integrationPackageName
-
     $extensions = @(
-        @{Package = 'SSDT Microsoft Analysis Services Projects'; Version = $analysisPackageVersion}
-        @{Package = 'SSDT SQL Server Integration Services Projects'; Version = $integrationPackageVersion}
-        @{Package = 'SSDT Microsoft Reporting Services Projects'; Version = $reportingPackageVersion}
-        @{Package = 'Windows Driver Kit'; Version = $wixPackageVersion}
+        $vsixs
+        $ssdtPackages
+        @{Package = 'Windows Driver Kit'; Version = $wdkPackageVersion}
         @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
         @{Package = 'WIX Toolset'; Version = $wixPackageVersion}
         @{Package = "WIX Toolset Studio $vs Extension"; Version = $wixExtensionVersion}
@@ -48,5 +68,5 @@ function Get-VisualStudioExtensions {
 
     $extensions | Foreach-Object {
         [PSCustomObject]$_
-    } | Select-Object Package, Version
+    } | Select-Object Package, Version | Sort-Object Package
 }

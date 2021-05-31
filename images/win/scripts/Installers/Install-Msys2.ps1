@@ -60,8 +60,9 @@ Write-Host "`n$dash Remove p7zip/7z package due to conflicts"
 pacman.exe -R --noconfirm --noprogressbar p7zip
 
 # mingw package list
-$tools64 = "___clang ___clang-tools-extra ___cmake ___llvm  ___toolchain ___ragel"
-$tools32 = "___clang ___cmake ___llvm  ___toolchain ___ragel"
+# libxml2 can be removed from the list after the issue is fixed https://github.com/msys2/MINGW-packages/issues/8658
+$tools64 = "___clang ___clang-tools-extra ___cmake ___libxml2 ___llvm ___toolchain ___ragel"
+$tools32 = "___clang ___cmake ___libxml2 ___llvm ___toolchain ___ragel"
 
 # install mingw64 packages
 Write-Host "`n$dash Install mingw64 packages"

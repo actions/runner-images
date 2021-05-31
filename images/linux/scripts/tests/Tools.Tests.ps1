@@ -1,11 +1,9 @@
 Describe "azcopy" {
     It "azcopy" {
-        #(azcopy --version) command returns exit code 1 (see details: https://github.com/Azure/azure-storage-azcopy/releases)
-        $azcopyVersion = (Get-CommandResult "azcopy --version").Output
-        $azcopyVersion | Should -BeLike "*azcopy*"
+        "azcopy --version" | Should -ReturnZeroExitCode
     }
 
-    It "azcopy10" {
+    It "azcopy10 link exists" {
         "azcopy10 --version" | Should -ReturnZeroExitCode
     }
 }
@@ -112,15 +110,15 @@ Describe "Cmake" {
 }
 
 Describe "erlang" {
-    $testCases = @("erl", "erlc", "rebar3") | ForEach-Object { @{ErlangCommand = $_} }
+    $testCases = @("erl -version", "erlc -v", "rebar3 -v") | ForEach-Object { @{ErlangCommand = $_} }
 
     It "erlang <ErlangCommand>" -TestCases $testCases {
         param (
             [string] $ErlangCommand
         )
 
-        "$ErlangCommand -v" | Should -ReturnZeroExitCode
-    }   
+        "$ErlangCommand" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "gcc" {
@@ -150,6 +148,10 @@ Describe "gfortran" {
 Describe "Mono" {
     It "mono" {
         "mono --version" | Should -ReturnZeroExitCode
+    }
+
+    It "msbuild" {
+        "msbuild -version" | Should -ReturnZeroExitCode
     }
 
     It "nuget" {
@@ -226,6 +228,14 @@ Describe "HHVM" {
 Describe "Homebrew" {
     It "homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
+    }
+
+    Context "Packages" {
+        $testCases = (Get-ToolsetContent).brew | ForEach-Object { @{ ToolName = $_.name } }
+
+        It "<ToolName>" -TestCases $testCases {
+           "$ToolName --version" | Should -Not -BeNullOrEmpty
+        }
     }
 }
 
@@ -315,18 +325,6 @@ Describe "Containers" -Skip:(Test-IsUbuntu16) {
     }   
 }
 
-Describe "Node.js" {
-    $testCases = @("node", "grunt", "gulp", "webpack", "parcel", "yarn", "newman", "netlify", "vercel", "now") | ForEach-Object { @{NodeCommand = $_} }
-
-    It "<NodeCommand>" -TestCases $testCases {
-        param (
-            [string] $NodeCommand
-        )
-
-        "$NodeCommand --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "nvm" {
     It "nvm" {
         "source /etc/skel/.nvm/nvm.sh && nvm --version" | Should -ReturnZeroExitCode
@@ -343,4 +341,27 @@ Describe "Python" {
 
         "$PythonCommand --version" | Should -ReturnZeroExitCode
     }   
+}
+
+Describe "Ruby" {
+    $testCases = @("ruby", "gem") | ForEach-Object { @{RubyCommand = $_} }
+
+    It "<RubyCommand>" -TestCases $testCases {
+        param (
+            [string] $RubyCommand
+        )
+
+        "$RubyCommand --version" | Should -ReturnZeroExitCode
+    }
+
+    $gemTestCases = (Get-ToolsetContent).rubygems | ForEach-Object {
+        @{gemName = $_.name}
+    }
+
+    if ($gemTestCases)
+    {
+        It "Gem <gemName> is installed" -TestCases $gemTestCases {
+            "gem list -i '^$gemName$'" | Should -MatchCommandOutput "true"
+        }
+    }
 }

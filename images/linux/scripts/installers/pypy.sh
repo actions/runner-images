@@ -56,8 +56,9 @@ function InstallPyPy
     echo "Create additional symlinks (Required for UsePythonVersion Azure DevOps task)"
     cd $PYPY_TOOLCACHE_VERSION_ARCH_PATH/bin
 
-    ln -s $PYPY_MAJOR $PYTHON_MAJOR
-    ln -s $PYTHON_MAJOR python
+    # Starting from PyPy 7.3.4 these links are already included in the package
+    [ -f ./$PYTHON_MAJOR ] || ln -s $PYPY_MAJOR $PYTHON_MAJOR
+    [ -f ./python ] || ln -s $PYTHON_MAJOR python
 
     chmod +x ./python ./$PYTHON_MAJOR
 

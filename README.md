@@ -1,5 +1,5 @@
 # GitHub Actions Virtual Environments
-This repository contains the source used to create the [virtual environments](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners) for GitHub Actions hosted runners, as well as the VM images of [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines. To build a VM machine from this repo's source, see the [instructions](./help/CreateImageAndAzureResources.md).
+This repository contains the source used to create the [virtual environments](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners) for GitHub Actions hosted runners, as well as the VM images of [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines. To build a VM machine from this repo's source, see the [instructions](docs/create-image-and-azure-resources.md).
 
 How to get in touch with us:
 - To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/virtual-environments/issues/new/choose)
@@ -10,16 +10,20 @@ For general questions about using the virtual environments or writing your Actio
 ## Available Environments
 | Environment | YAML Label | Included Software | Latest Release & Rollout Progress |
 | --------------------|---------------------|--------------------|---------------------|
-| Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
-| Ubuntu 18.04 | `ubuntu-latest` or `ubuntu-18.04` | [ubuntu-18.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
-| Ubuntu 16.04 | `ubuntu-16.04` | [ubuntu-16.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu16&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu16&redirect=1) |
-| macOS 11.0 | `macos-11.0` | [macOS-11.0] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11.0&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11.0&redirect=1)
+| Ubuntu 20.04 | `ubuntu-latest` or `ubuntu-20.04` | [ubuntu-20.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
+| Ubuntu 18.04 | `ubuntu-18.04` | [ubuntu-18.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
+| macOS 11 | `macos-11` | [macOS-11] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11.0&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11.0&redirect=1)
 | macOS 10.15 | `macos-latest` or `macos-10.15` | [macOS-10.15] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
 | Windows Server 2019 | `windows-latest` or `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 | Windows Server 2016 | `windows-2016` | [windows-2016] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
 ```
-The macOS 11.0 virtual environment is currently provided as a private preview only.
+The macOS 11 virtual environment is currently provided as a private preview only.
 The "macos-latest" YAML workflow label still uses the macOS 10.15 virtual environment.
+```
+
+```
+Ubuntu 16.04 is being deprecated. It is not recommended for new users. 
+If any of your workflows use Ubuntu 16.04, migrate to Ubuntu 20.04 or 18.04.
 ```
 
 ***What images are available for GitHub Actions and Azure DevOps?***
@@ -33,21 +37,6 @@ The availability of images for GitHub Actions and Azure DevOps is different. See
 
 ***How to contribute to macOS source?*** macOS source lives in this repository and available for everyone. However, MacOS image-generation CI doesn't support external contributions yet so we are not able to accept pull-requests for now.
 We are in the process of preparing MacOS CI to accept contributions. Until then, we appreciate your patience and ask you continue to make tool requests by filing issues.
-
-## Software Guidelines
-In general, these are the guidelines we consider when deciding what to pre-install:
-
-- Tools and ecosystems that are broadly popular and widely-used will be given priority.
-- Recent versions of tools will be given priority over older versions.
-- Tools and versions that are deprecated or have reached end-of-life will not be added.
-- Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life.
-- If a tool can be installed during the build, we will evaluate how much time is saved
- and how much space is used by having the tool pre-installed.
-- MIT, Apache, and GNU licenses are ok, anything else we'll have to check with lawyers.
-- If a tool takes much space we will evaluate space usage and provide a decision if this tool can be pre-installed.
-- If a tool requires the support of more than one version, we will consider the cost of this maintenance, how often new versions bring dangerous updates.
-
-**Note:** For new tools, please, create an issue and get an approval from us to add this tool to the image before creating the pull request.
 
 ## Updates to virtual environments
 *Cadence*
@@ -68,6 +57,9 @@ You can also track upcoming changes using the [awaiting-deployment](https://gith
 [ubuntu-16.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1604-README.md
 [Windows-2019]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
 [windows-2016]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
+[macOS-11]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11-Readme.md
 [macOS-10.15]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
-[macOS-11.0]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11.0-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
+
+## Software and image guidelines
+To learn more about tools and images support policy, see the [guidelines](./docs/software-and-images-guidelines.md).

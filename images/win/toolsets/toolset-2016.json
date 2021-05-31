@@ -45,10 +45,11 @@
         {
             "name": "PyPy",
             "arch": "x86",
-            "platform" : "win32",
+            "platform" : "win64",
             "versions": [
                 "2.7",
-                "3.6"
+                "3.6",
+                "3.7"
             ]
         },
         {
@@ -70,19 +71,10 @@
             "versions": [
                 "1.13.*",
                 "1.14.*",
-                "1.15.*"
+                "1.15.*",
+                "1.16.*"
             ],
             "default": "1.15.*"
-        },
-        {
-            "name": "Boost",
-            "url" : "https://raw.githubusercontent.com/actions/boost-versions/main/versions-manifest.json",
-            "arch": "x86_64",
-            "platform" : "win32",
-            "toolset": "msvc14.1",
-            "versions": [
-                "1.72.0"
-            ]
         }
     ],
     "powershellModules": [
@@ -98,30 +90,40 @@
     "azureModules": [
         {
             "name": "azurerm",
+            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
+                "6.13.1"
+            ],
+            "zip_versions": [
                 "3.8.0",
                 "4.2.1",
                 "5.1.1",
-                "6.7.0",
-                "6.13.1"
+                "6.7.0"
             ],
             "default": "2.1.0"
         },
         {
             "name": "azure",
+            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
+                "5.3.0"
+            ],
+            "zip_versions": [
                 "3.8.0",
                 "4.2.1",
-                "5.1.1",
-                "5.3.0"
+                "5.1.1"
             ],
             "default": "2.1.0"
         },
         {
             "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
+                "5.7.0"
+            ],
+            "zip_versions": [
                 "1.0.0",
                 "1.6.0",
                 "2.3.2",
@@ -131,8 +133,8 @@
                 "3.8.0",
                 "4.3.0",
                 "4.4.0",
-                "4.6.0",
-                "4.7.0"
+                "4.7.0",
+                "5.5.0"
             ]
         }
     ],
@@ -161,8 +163,8 @@
             "addon-google_apis-google-21"
         ],
         "additional_tools": [
-            "cmake;3.6.4111459",
             "cmake;3.10.2.4988404",
+            "cmake;3.18.1",
             "patcher;v4",
             "cmdline-tools;latest"
         ],
@@ -254,7 +256,7 @@
             "mcr.microsoft.com/windows/nanoserver:10.0.14393.953",
             "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016",
             "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016",
-            "microsoft/aspnetcore-build:1.0-2.0"
+            "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016"
         ]
     },
     "pipx": [

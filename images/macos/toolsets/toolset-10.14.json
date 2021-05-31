@@ -211,6 +211,8 @@
             "addon-google_apis-google-24", "addon-google_apis-google-23", "addon-google_apis-google-22", "addon-google_apis-google-21"
         ],
         "additional-tools": [
+            "cmake;3.10.2.4988404",
+            "cmake;3.18.1",
             "cmdline-tools;latest"
         ],
         "ndk": {
@@ -222,7 +224,7 @@
         {
             "name": "Az",
             "versions": [
-                "4.8.0"
+                "5.7.0"
             ]
         },
         {"name": "MarkdownPS"},
@@ -241,7 +243,7 @@
             "gh",
             "gnupg",
             "gnu-tar",
-            "go",
+            "go@1.15",
             "helm",
             "libpq",
             "llvm",
@@ -250,6 +252,7 @@
             "parallel",
             "perl",
             "subversion",
+            "swiftformat",
             "xctool",
             "zstd"
         ],
@@ -258,6 +261,13 @@
             "r",
             "vagrant",
             "virtualbox"
+        ]
+    },
+    "gcc": {
+        "versions": [
+            "9",
+            "10",
+            "11"
         ]
     },
     "toolcache": [
@@ -303,7 +313,8 @@
             "versions": [
                 "1.13.*",
                 "1.14.*",
-                "1.15.*"
+                "1.15.*",
+                "1.16.*"
             ]
         },
         {
@@ -328,5 +339,13 @@
         "versions": [
             "2.1"
         ]
-    }
+    },
+    "rubygems": [
+        "xcode-install",
+        "cocoapods",
+        "nomad-cli",
+        "xcpretty",
+        "bundler",
+        "fastlane"
+    ]
 }

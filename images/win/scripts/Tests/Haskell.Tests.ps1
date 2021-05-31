@@ -11,10 +11,16 @@ Describe "Haskell" {
     $ghcTestCases = $ghcVersionList | ForEach-Object {
         $ghcVersion = $_
         $ghcShortVersion = ([version]$ghcVersion).ToString(3)
+        $binGhcPath = Join-Path $chocoPackagesPath "ghc.$ghcVersion\tools\ghc-$ghcShortVersion\bin\ghc.exe"
+        # Starting from version 9 haskell installation directory is $env:ChocolateyToolsLocation instead of $env:ChocolateyInstall\lib
+        if ($ghcVersion -notmatch "^[0-8]\.\d+.*")
+        {
+            $binGhcPath = Join-Path $env:ChocolateyToolsLocation "ghc-$ghcShortVersion\bin\ghc.exe"
+        }
         @{
             ghcVersion = $ghcVersion
             ghcShortVersion = $ghcShortVersion
-            binGhcPath = Join-Path $chocoPackagesPath "ghc.$ghcVersion\tools\ghc-$ghcShortVersion\bin\ghc.exe"
+            binGhcPath = $binGhcPath
         }
     }
 
@@ -28,6 +34,11 @@ Describe "Haskell" {
 
     It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases $ghcDefaultCases {
         "ghc --version" | Should -MatchCommandOutput $defaultGhcShortVersion
+    }
+
+    # Sometimes choco doesn't return version 9, need to check it explicitly https://github.com/chocolatey/choco/issues/2271
+    It "Default GHC version is 9" -TestCases $ghcDefaultCases {
+        "ghc --version" | Should -MatchCommandOutput "9(\.\d+){2,}"
     }
 
     It "Cabal is installed" {

@@ -58,15 +58,15 @@ function Select-DataStore {
 
     Write-Host "Start Datastore selection process..."
     $allDatastores = Get-Datastore -Name $templateDatastore | Where-Object { $_.State -eq "Available" }
-    $buildDatastore = $allDatastores `
+    $availableDatastores = $allDatastores `
     | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } `
     | Where-Object {
         $vmOnDatastore = @((Get-ChildItem -Path $_.DatastoreBrowserPath).Name -notmatch "^\.").Count
         $vmOnDatastore -lt $vmCount } `
-    | Group-Object -Property { $vmOnDatastore } `
-    | Select-Object -First 1 -ExpandProperty Group `
-    | Get-Random `
-    | Select-Object -ExpandProperty Name
+    | Group-Object -Property { $vmOnDatastore }
+
+    $datastore = $availableDatastores | Select-Object @{n="VmCount";e={$_.Name}},@{n="DatastoreName";e={$_.Group | Get-Random}} -First 1
+    $buildDatastore = $datastore.DatastoreName
 
     $tag = Get-Tag -Category $TagCategory -Name $VMName -ErrorAction Ignore
     if (-not $tag)
@@ -78,8 +78,9 @@ function Select-DataStore {
 
     # Wait for 60 seconds to check if any other tags are assigned to the same datastore
     Start-Sleep -Seconds 60
-    # Take only first 2 tags, all the others will go to the next round
-    $tagAssignments = (Get-TagAssignment -Entity $buildDatastore).Tag.Name | Select-Object -First 2
+    # If there are no datastores with 0 VMs, take a datastore with 1 VM (index 1 if datastore has 0 VMs and 2 if 1 VM)
+    $index = 1 + [int]$datastore.VmCount
+    $tagAssignments = (Get-TagAssignment -Entity $buildDatastore).Tag.Name | Select-Object -First $index
     $isAllow = $tagAssignments -contains $VMName
 
     if ($isAllow)

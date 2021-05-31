@@ -40,9 +40,9 @@ Describe "Swift" {
 }
 
 Describe "PipxPackages" -Skip:(Test-IsUbuntu16) {
-    [array]$testCases = (Get-ToolsetContent).pipx | ForEach-Object { @{cmd = $_.cmd} }
+    [array]$testCases = (Get-ToolsetContent).pipx | ForEach-Object { @{package=$_.package; cmd = $_.cmd} }
 
     It "<package>" -TestCases $testCases {
-        "$cmd  --version" | Should -ReturnZeroExitCode
+        "$cmd --version" | Should -ReturnZeroExitCode
     }
 }
