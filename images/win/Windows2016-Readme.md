@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4402
-- Image Version: 20210516.0
+- Image Version: 20210525.0
 
 ## Installed Software
 ### Language and Runtime
@@ -15,15 +15,15 @@
 
 ### Package Management
 - Chocolatey 0.10.15
-- Composer 2.0.13
+- Composer 2.0.14
 - Helm 3.5.4
 - Miniconda 4.9.2
 - NPM 6.14.13
 - NuGet 5.9.1.11
-- pip 21.1.1 (python 3.7)
+- pip 21.1.2 (python 3.7)
 - Pipx 0.16.2.1
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<e6dcc07>)
+- Vcpkg  (build from master \<83f9a6c>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -41,20 +41,20 @@
 ### Tools
 - 7zip 19.00
 - azcopy 10.10.0
-- Bazel 4.0.0
-- Bazelisk 1.8.1
+- Bazel 4.1.0
+- Bazelisk 1.9.0
 - Cabal 3.4.0.0
 - CMake 3.20.2
-- CodeQL Action Bundle 2.5.4
+- CodeQL Action Bundle 2.5.5
 - Docker 20.10.4
 - Docker-compose 1.29.1
 - ghc 9.0.1
 - Git 2.31.1
 - Git LFS 2.13.3
-- Google Cloud SDK 340.0.0
+- Google Cloud SDK 342.0.0
 - InnoSetup 6.1.2
 - jq 1.6
-- Kind 0.10.0
+- Kind 0.11.0
 - Kubectl 1.21.1
 - Mercurial 5.0
 - Mingw-w64 8.1.0
@@ -62,8 +62,8 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.2
-- Pulumi v3.2.1
-- R 4.0.5
+- Pulumi v3.3.1
+- R 4.1.0
 - Stack 2.7.1
 - Subversion (SVN) 1.14.1
 - VSWhere 2.8.4
@@ -72,22 +72,21 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.74
+- Alibaba Cloud CLI 3.0.75
 - AWS CLI 2.2.5
 - AWS SAM CLI 1.23.0
 - AWS Session Manager CLI 1.2.54.0
-- Azure CLI 2.23.0
-- Azure Dev Spaces CLI 1.0.20210421.4
+- Azure CLI 2.24.0
 - Azure DevOps CLI extension 0.18.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 1.9.2
+- GitHub CLI 1.10.3
 - Hub CLI 2.14.2
 
 ### Rust Tools
 - Cargo 1.52.0
 - Rust 1.52.1
 - Rustdoc 1.52.1
-- Rustup 1.24.1
+- Rustup 1.24.2
 
 #### Packages
 - bindgen 0.58.1
@@ -98,10 +97,10 @@
 - Rustfmt 1.4.36
 
 ### Browsers and webdrivers
-- Google Chrome 90.0.4430.212
-- Chrome Driver 90.0.4430.24
-- Microsoft Edge 90.0.818.62
-- Microsoft Edge Driver 90.0.818.62
+- Google Chrome 91.0.4472.77
+- Chrome Driver 91.0.4472.19
+- Microsoft Edge 90.0.818.66
+- Microsoft Edge Driver 90.0.818.66
 - Mozilla Firefox 88.0.1
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
@@ -176,9 +175,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### PyPy
 | Python Version | PyPy Version |
 | -------------- | ------------ |
-| 2.7.18         | PyPy 7.3.4 with MSC v.1927 64 bit (AMD64) |
+| 2.7.18         | PyPy 7.3.5 with MSC v.1927 64 bit (AMD64) |
 | 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
-| 3.7.10         | PyPy 7.3.4 with MSC v.1927 64 bit (AMD64) |
+| 3.7.10         | PyPy 7.3.5 with MSC v.1927 64 bit (AMD64) |
 
 
 
@@ -211,10 +210,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Web Servers
-| Name   | Version | ConfigFile                             | ServiceName | ServiceStatus | ListenPort |
-| ------ | ------- | -------------------------------------- | ----------- | ------------- | ---------- |
-| Apache | 2.4.47  | C:\tools\Apache24\conf\httpd.conf      | Apache      | Stopped       | 80         |
-| Nginx  | 1.19.10 | C:\tools\nginx-1.19.10\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
+| ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
+| Apache | 2.4.47  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
+| Nginx  | 1.21.0  | C:\tools\nginx-1.21.0\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
@@ -488,7 +487,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203
+- 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203 5.0.300
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
@@ -539,7 +538,7 @@ All other versions are saved but not installed.
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 4.0                                                                                                                                                                                                                                                                                       |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0     |
-| Android SDK Platforms      | android-S (rev 3)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
+| Android SDK Platforms      | android-S (rev 4)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                                                                                    |
 | Android SDK Tools          | 25.2.5                                                                                                                                                                                                                                                                                    |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                    |
