@@ -52,21 +52,24 @@ Write-Host "`n$dash pacman --noconfirm -Syuu (2nd pass)"
 pacman.exe -Syuu  --noconfirm
 taskkill /f /fi "MODULES eq msys-2.0.dll"
 
+$toolsetContent = (Get-ToolsetContent).MsysPackages
+
 Write-Host "`n$dash Install msys2 packages"
-$msysPackages = (Get-ToolsetContent).MsysPackages.msys2
-pacman.exe -S --noconfirm --needed --noprogressbar $msysPackages
+$msys2Packages = $toolsetContent.msys2
+pacman.exe -S --noconfirm --needed --noprogressbar $$msys2Packages
 taskkill /f /fi "MODULES eq msys-2.0.dll"
 
 Write-Host "`n$dash Remove p7zip/7z package due to conflicts"
 pacman.exe -R --noconfirm --noprogressbar p7zip
 
 # install mingw packages
-$archs = (Get-ToolsetContent).MsysPackages.mingw.arch
+$archs = $toolsetContent.mingw.arch
 foreach ($arch in $archs)
 {
   Write-Host "Installing $arch packages"
-  $runtimePackages = ((Get-ToolsetContent).MsysPackages.mingw | Where-Object { $_.arch -eq $arch }).runtime_packages.name | ForEach-Object { "${arch}-$_" }
-  $additionalPackages = ((Get-ToolsetContent).MsysPackages.mingw | Where-Object { $_.arch -eq $arch }).additional_packages | ForEach-Object { "${arch}-$_" }
+  $archPackages = $toolsetContent.mingw | Where-Object { $_.arch -eq $arch }
+  $runtimePackages = $archPackages.runtime_packages.name | ForEach-Object { "${arch}-$_" }
+  $additionalPackages = $archPackages.additional_packages | ForEach-Object { "${arch}-$_" }
   $packagesToInstall = $runtimePackages + $additionalPackages
   Write-Host "The following packages will be installed: $packagesToInstall"
   pacman.exe -S --noconfirm --needed --noprogressbar $packagesToInstall
