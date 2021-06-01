@@ -100,6 +100,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-RVersion),
     (Get-StackVersion),
     (Get-SVNVersion),
+    (Get-SwigVersion),
     (Get-VSWhereVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
