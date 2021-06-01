@@ -53,7 +53,7 @@
             "azure_tags": {
                 "dept": "GSSS",
                 "task": "Build VM Deployment"
-            },
+            }
         }
     ],
     "provisioners": [
