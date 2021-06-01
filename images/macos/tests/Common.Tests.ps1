@@ -72,12 +72,6 @@ Describe "Stack" -Skip:($os.IsHighSierra) {
     }
 }
 
-Describe "Swig" {
-    It "Swig" {
-        "swig -version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "CocoaPods" {
     It "CocoaPods" {
         "pod --version" | Should -ReturnZeroExitCode
