@@ -482,11 +482,6 @@ function Get-SwiftLintVersion {
     return "SwiftLint $swiftlintVersion"
 }
 
-function Get-SwigVersion {
-    $swigVersion = Run-Command "swig -version"
-    return "Swig $swigVersion"
-}
-
 function Get-PowershellVersion {
     $powershellVersion = Run-Command "powershell --version"
     return $powershellVersion
