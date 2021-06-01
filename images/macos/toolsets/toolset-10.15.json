@@ -206,6 +206,7 @@
             "subversion",
             "swiftformat",
             "xctool",
+            "swig",
             "zstd"
         ],
         "cask_packages": [
