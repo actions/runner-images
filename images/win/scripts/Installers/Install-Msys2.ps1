@@ -56,7 +56,7 @@ $toolsetContent = (Get-ToolsetContent).MsysPackages
 
 Write-Host "`n$dash Install msys2 packages"
 $msys2Packages = $toolsetContent.msys2
-pacman.exe -S --noconfirm --needed --noprogressbar $$msys2Packages
+pacman.exe -S --noconfirm --needed --noprogressbar $msys2Packages
 taskkill /f /fi "MODULES eq msys-2.0.dll"
 
 Write-Host "`n$dash Remove p7zip/7z package due to conflicts"
