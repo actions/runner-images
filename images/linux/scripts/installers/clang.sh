@@ -37,8 +37,11 @@ versions=$(get_toolset_value '.clang.versions[]')
 default_clang_version=$(get_toolset_value '.clang.default_version')
 
 for version in ${versions[*]}; do
-    InstallClang $version
+    if [[ $version != $default_clang_version ]]; then
+        InstallClang $version
+    fi
 done
+InstallClang $default_clang_version
 
 SetDefaultClang $default_clang_version
 rm llvm.sh
