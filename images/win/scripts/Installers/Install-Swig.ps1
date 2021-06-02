@@ -5,4 +5,4 @@
 
 Choco-Install -PackageName swig
 
-Invoke-PesterTests -TestFile "Tools" -TestName "swig"
+Invoke-PesterTests -TestFile "Tools" -TestName "Swig"
