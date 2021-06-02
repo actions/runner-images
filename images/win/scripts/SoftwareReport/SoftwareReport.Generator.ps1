@@ -48,7 +48,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-ChocoVersion),
     (Get-ComposerVersion),
     (Get-HelmVersion),
-    (Get-CondaVersion),
+    "$(Get-CondaVersion) (pre-installed on the image but not added to PATH)",
     (Get-NPMVersion),
     (Get-NugetVersion),
     (Get-PipxVersion),
@@ -58,15 +58,6 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-YarnVersion)
     ) | Sort-Object
 )
-$markdown += New-MDNewLine
-$markdown += New-MDHeader "Notes:" -Level 5
-$markdown += @'
-```
-Note: Conda is pre-installed on image but not added to PATH.
-Conda's path is available via environment variable 'CONDA'
-```
-'@
-$markdown += New-MDNewLine
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
