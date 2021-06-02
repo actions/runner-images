@@ -263,3 +263,4 @@ function Get-DacFxVersion {
 function Get-SwigVersion {
     return "Swig $(swig -version)"
 }
+}
