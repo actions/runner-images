@@ -17,14 +17,12 @@ For general questions about using the virtual environments or writing your Actio
 | Windows Server 2019 | `windows-latest` or `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 | Windows Server 2016 | `windows-2016` | [windows-2016] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
 ```
-The macOS 11 virtual environment is currently provided as a private preview only.
-The "macos-latest" YAML workflow label still uses the macOS 10.15 virtual environment.
+Ubuntu 16.04 has been deprecated and will be removed on September 20, 2021.
+Existing workflows using `Ubuntu 16.04` should migrate to `Ubuntu 20.04` or `Ubuntu 18.04`
 ```
 
-```
-Ubuntu 16.04 is being deprecated. It is not recommended for new users. 
-If any of your workflows use Ubuntu 16.04, migrate to Ubuntu 20.04 or 18.04.
-```
+> The macOS 11 virtual environment is currently in preview, and is automatically available to existing Enterprise plan customers. New Enterprise plan customers, or customers on other plans, should fill the form to request access to macOS 11 virtual environment. Please view our [Big Sur guide](./docs/macos-11-onboarding.md) for more details. <br/>
+The `macos-latest` YAML workflow label still uses the macOS 10.15 virtual environment.
 
 ***What images are available for GitHub Actions and Azure DevOps?***
 The availability of images for GitHub Actions and Azure DevOps is different. See documentation for more details:  
