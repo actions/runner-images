@@ -21,7 +21,7 @@ Ubuntu 16.04 has been deprecated and will be removed on September 20, 2021.
 Existing workflows using `Ubuntu 16.04` should migrate to `Ubuntu 20.04` or `Ubuntu 18.04`
 ```
 
-> The macOS 11 virtual environment is currently in preview, and is automatically available to existing Enterprise plan customers. New Enterprise plan customers, or customers on other plans, should fill this form to request access to macOS 11 virtual environment. Please view our [Big Sur guide](./docs/macos-11-onboarding.md) for more details. <br/>
+> The macOS 11 virtual environment is currently in preview, and is automatically available to existing Enterprise plan customers. New Enterprise plan customers, or customers on other plans, should fill the form to request access to macOS 11 virtual environment. Please view our [Big Sur guide](./docs/macos-11-onboarding.md) for more details. <br/>
 The `macos-latest` YAML workflow label still uses the macOS 10.15 virtual environment.
 
 ***What images are available for GitHub Actions and Azure DevOps?***
