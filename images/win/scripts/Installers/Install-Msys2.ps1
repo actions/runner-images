@@ -52,40 +52,41 @@ Write-Host "`n$dash pacman --noconfirm -Syuu (2nd pass)"
 pacman.exe -Syuu  --noconfirm
 taskkill /f /fi "MODULES eq msys-2.0.dll"
 
+$toolsetContent = (Get-ToolsetContent).MsysPackages
+
 Write-Host "`n$dash Install msys2 packages"
-pacman.exe -S --noconfirm --needed --noprogressbar base-devel compression
+$msys2Packages = $toolsetContent.msys2
+pacman.exe -S --noconfirm --needed --noprogressbar $msys2Packages
 taskkill /f /fi "MODULES eq msys-2.0.dll"
 
 Write-Host "`n$dash Remove p7zip/7z package due to conflicts"
 pacman.exe -R --noconfirm --noprogressbar p7zip
 
-# mingw package list
-# libxml2 can be removed from the list after the issue is fixed https://github.com/msys2/MINGW-packages/issues/8658
-$tools64 = "___clang ___clang-tools-extra ___cmake ___libxml2 ___llvm ___toolchain ___ragel"
-$tools32 = "___clang ___cmake ___libxml2 ___llvm ___toolchain ___ragel"
-
-# install mingw64 packages
-Write-Host "`n$dash Install mingw64 packages"
-$pre = "mingw-w64-x86_64-"
-pacman.exe -S --noconfirm --needed --noprogressbar $tools64.replace('___', $pre).split(' ')
-
-# install mingw32 packages
-Write-Host "`n$dash Install mingw32 packages"
-$pre = "mingw-w64-i686-"
-pacman.exe -S --noconfirm --needed --noprogressbar $tools32.replace('___', $pre).split(' ')
+# install mingw packages
+$archs = $toolsetContent.mingw.arch
+foreach ($arch in $archs)
+{
+  Write-Host "Installing $arch packages"
+  $archPackages = $toolsetContent.mingw | Where-Object { $_.arch -eq $arch }
+  $runtimePackages = $archPackages.runtime_packages.name | ForEach-Object { "${arch}-$_" }
+  $additionalPackages = $archPackages.additional_packages | ForEach-Object { "${arch}-$_" }
+  $packagesToInstall = $runtimePackages + $additionalPackages
+  Write-Host "The following packages will be installed: $packagesToInstall"
+  pacman.exe -S --noconfirm --needed --noprogressbar $packagesToInstall
+}
 
 # clean all packages to decrease image size
 Write-Host "`n$dash Clean packages"
 pacman.exe -Scc --noconfirm
 
-Write-Host "`n$dash Installed mingw64 packages"
-pacman.exe -Q | grep ^mingw-w64-x86_64-
-
-Write-Host "`n$dash Installed mingw32 packages"
-pacman.exe -Q | grep ^mingw-w64-i686-
-
 Write-Host "`n$dash Installed msys2 packages"
 pacman.exe -Q | grep -v ^mingw-w64-
+
+foreach ($arch in $archs)
+{
+  Write-Host "`n$dash Installed $arch packages"
+  pacman.exe -Q | grep ^${arch}-
+}
 
 Write-Host "`nMSYS2 installation completed"
 
