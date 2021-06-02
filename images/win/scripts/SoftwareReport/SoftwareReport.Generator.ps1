@@ -48,7 +48,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-ChocoVersion),
     (Get-ComposerVersion),
     (Get-HelmVersion),
-    "$(Get-CondaVersion) (pre-installed on the image but not added to PATH)",
+    (Get-CondaVersion),
     (Get-NPMVersion),
     (Get-NugetVersion),
     (Get-PipxVersion),
