@@ -26,6 +26,11 @@
 - Vcpkg  (build from master \<83f9a6c>)
 - Yarn 1.22.10
 
+##### Notes:
+```
+conda is pre-installed on image but not added to PATH.
+```
+
 #### Environment variables
 | Name                    | Value        |
 | ----------------------- | ------------ |
