@@ -40,7 +40,7 @@ packer --version
 
 Write-Host "Build $Image VM"
 packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
-                -var "capture_container_name=$ResourcesNamePrefix" `
+                -var "capture_container_name=CaptureContainer" `
                 -var "client_id=$ClientId" `
                 -var "client_secret=$ClientSecret" `
                 -var "install_password=$InstallPassword" `
