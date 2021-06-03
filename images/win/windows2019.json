@@ -270,6 +270,9 @@
         },
         {
             "type": "powershell",
+            "environment_vars": [
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
             "elevated_user": "SYSTEM",
             "elevated_password": "",
             "scripts": [
