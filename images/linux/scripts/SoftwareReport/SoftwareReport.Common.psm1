@@ -256,6 +256,17 @@ function Build-PHPTable {
     }
 }
 
+function Build-PHPSection {
+    $output = ""
+    $output += New-MDHeader "PHP" -Level 3
+    $output += Build-PHPTable | New-MDTable
+    $output += New-MDCode -Lines @(
+        "Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled."
+    )
+
+    return $output
+}
+
 function Get-GHCVersion {
     $(ghc --version) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $ghcVersion = $Matches.version
