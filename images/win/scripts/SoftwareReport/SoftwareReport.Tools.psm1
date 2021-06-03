@@ -260,7 +260,7 @@ function Get-DacFxVersion {
 }
 
 
-function Get-SwigVersion {
-    return "Swig $(swig -version)"
+function Get-SwigVersionVersion {
+    return "Swig $(swig -version)" | Select-String -Pattern "SWIG Version"
 }
 }
