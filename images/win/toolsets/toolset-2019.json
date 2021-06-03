@@ -173,6 +173,79 @@
             "latest": "22"
         }
     },
+    "MsysPackages": {
+        "msys2": [
+            "base-devel",
+            "compression"
+        ],
+        "mingw": [
+            {
+                "arch": "mingw-w64-x86_64",
+                "runtime_packages": [
+                    {
+                        "name": "clang",
+                        "executables": [
+                            "clang",
+                            "g++",
+                            "gcc"
+                        ]
+                    },
+                    {
+                        "name": "cmake",
+                        "executables": [
+                            "cmake",
+                            "cpack",
+                            "ctest"
+                        ]
+                    },
+                    {
+                        "name": "ragel",
+                        "executables": [
+                            "ragel"
+                        ]
+                    }
+                ],
+                "additional_packages": [
+                    "clang-tools-extra",
+                    "libxml2",
+                    "llvm",
+                    "toolchain"
+                ]
+            },
+            {
+                "arch": "mingw-w64-i686",
+                "runtime_packages": [
+                    {
+                        "name": "clang",
+                        "executables": [
+                            "clang",
+                            "g++",
+                            "gcc"
+                        ]
+                    },
+                    {
+                        "name": "cmake",
+                        "executables": [
+                            "cmake",
+                            "cpack",
+                            "ctest"
+                        ]
+                    },
+                    {
+                        "name": "ragel",
+                        "executables": [
+                            "ragel"
+                        ]
+                    }
+                ],
+                "additional_packages": [
+                    "libxml2",
+                    "llvm",
+                    "toolchain"
+                ]
+            }
+        ]
+    },
     "visualStudio": {
         "version" : "2019",
         "subversion" : "16",
