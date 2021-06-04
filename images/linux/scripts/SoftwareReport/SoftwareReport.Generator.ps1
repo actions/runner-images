@@ -35,7 +35,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
-$markdown += New-MDList -Style Unordered -Lines (@(
+$runtimesList = @(
         (Get-BashVersion),
         (Get-CPPVersions),
         (Get-FortranVersions),
@@ -52,8 +52,13 @@ $markdown += New-MDList -Style Unordered -Lines (@(
         (Get-RubyVersion),
         (Get-SwiftVersion),
         (Get-JuliaVersion)
-        ) | Sort-Object
-)
+        ) 
+
+if (Test-IsUbuntu20) {
+    $runtimesList += (Get-LLVMInfo)
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
 
 $markdown += New-MDHeader "Package Management" -Level 3
 

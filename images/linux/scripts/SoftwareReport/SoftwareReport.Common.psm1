@@ -44,6 +44,11 @@ function Get-ClangVersions {
     return "Clang " + $clangVersions
 }
 
+function Get-LLVMInfo {
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "llvm"
+    return "LLVM libc++ is not preinstalled (apt source to install: $aptSourceRepo)"
+}
+
 function Get-ClangFormatVersions {
     $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
     return "Clang-format " + $clangFormatVersions
