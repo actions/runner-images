@@ -488,7 +488,7 @@ function Get-PowershellVersion {
 }
 
 function Get-SwigVersion {
-    $swigVersion = Run-Command "swig -version" | Select-String "SWIG Version -version " | Take-Part -Part 3
+    $swigVersion = Run-Command "swig -version" | Select-Object -First 1 | Take-Part -Part 2
     return "Swig $swigVersion"
 }
 
