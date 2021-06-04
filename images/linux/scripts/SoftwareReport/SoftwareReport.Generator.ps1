@@ -42,6 +42,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
         (Get-ClangVersions),
         (Get-ClangFormatVersions),
         (Get-ErlangVersion),
+        (Get-ErlangRebar3Version),
         (Get-MonoVersion),
         (Get-MsbuildVersion),
         (Get-NodeVersion),
@@ -178,9 +179,7 @@ if (Test-IsUbuntu20) {
     $markdown += New-MDNewLine
 }
 
-$markdown += New-MDHeader "PHP" -Level 3
-$markdown += Build-PHPTable | New-MDTable
-$markdown += New-MDNewLine
+$markdown += Build-PHPSection
 
 $markdown += New-MDHeader "Haskell" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
