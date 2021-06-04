@@ -260,7 +260,7 @@ function Get-DacFxVersion {
 }
 
 function Get-SwigVersion {
-    ($(swig -version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    (swig -version | Out-String) -match "version (?<version>\d+\.\d+\.\d+)"
     $swigVersion = $Matches.Version
     return "Swig $swigVersion"
 }
