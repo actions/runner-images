@@ -489,7 +489,7 @@ function Get-PowershellVersion {
 
 function Get-SwigVersion {
     $swigVersion = Run-Command "swig -version" | Select-Object -First 1 | Take-Part -Part 2
-    return "Swig $swigVersion"
+    return $swigVersion
 }
 
 function Build-PackageManagementEnvironmentTable {
