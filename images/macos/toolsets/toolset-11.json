@@ -177,6 +177,15 @@
             ]
         },
         {
+            "name": "PyPy",
+            "arch": "x64",
+            "platform" : "darwin",
+            "versions": [
+                "2.7",
+                "3.7"
+            ]
+        },
+        {
             "name": "Node",
             "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
             "platform" : "darwin",
