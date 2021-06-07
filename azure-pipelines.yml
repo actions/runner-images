@@ -15,7 +15,7 @@ stages:
     workspace:
       clean: all
     displayName: Build
-    pool: gss-build-agents-linux-dev-tf
+    pool: linux-dev-tf
 
     steps:
     - task: AzureCLI@2
