@@ -151,6 +151,7 @@
             "perl",
             "subversion",
             "swiftformat",
+            "swig",
             "zstd"
         ],
         "cask_packages": [
