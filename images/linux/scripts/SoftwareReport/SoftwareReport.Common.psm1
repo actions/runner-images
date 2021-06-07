@@ -56,6 +56,13 @@ function Get-ErlangVersion {
     return "Erlang $erlangVersion (Eshell $shellVersion)"
 }
 
+function Get-ErlangRebar3Version {
+    $result = Get-CommandResult "rebar3 --version"
+    $result.Output -match "rebar (?<version>(\d+.){2}\d+)" | Out-Null
+    $rebarVersion = $Matches.version
+    return "Erlang rebar3 $rebarVersion"
+}
+
 function Get-MonoVersion {
     $monoVersion = mono --version | Out-String | Take-OutputPart -Part 4
     $aptSourceRepo = Get-AptSourceRepository -PackageName "mono"
@@ -247,6 +254,17 @@ function Build-PHPTable {
             "Version" = $_.Version
         }
     }
+}
+
+function Build-PHPSection {
+    $output = ""
+    $output += New-MDHeader "PHP" -Level 3
+    $output += Build-PHPTable | New-MDTable
+    $output += New-MDCode -Lines @(
+        "Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled."
+    )
+
+    return $output
 }
 
 function Get-GHCVersion {
