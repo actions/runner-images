@@ -1,19 +1,19 @@
 | Announcements |
 |-|
-| [[ubuntu] GCC and Gfortran 11 will be removed on May, 31](https://github.com/actions/virtual-environments/issues/3467) |
 | [[Ubuntu] .NET SDK pre-installation policy will be changed on June 14](https://github.com/actions/virtual-environments/issues/3338) |
 | [Ubuntu 16.04 environment will be removed on September 20, 2021](https://github.com/actions/virtual-environments/issues/3287) |
 ***
 # Ubuntu 20.04.2 LTS
-- Linux kernel version: 5.4.0-1047-azure
-- Image Version: 20210531.0
+- Linux kernel version: 5.8.0-1033-azure
+- Image Version: 20210606.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 5.0.17(1)-release
 - Clang 10.0.0, 11.0.0, 12.0.1
 - Clang-format 10.0.0, 11.0.0, 12.0.1
-- Erlang 24.0.1 (Eshell 12.0.1)
+- Erlang 24.0.2 (Eshell 12.0.2)
+- Erlang rebar3 3.16.1
 - GNU C++ 9.3.0, 10.2.0
 - GNU Fortran 9.3.0, 10.2.0
 - Julia 1.6.1
@@ -36,7 +36,7 @@
 - Pip3 20.0.2
 - Pipx 0.16.3
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<7bc5b8c>)
+- Vcpkg  (build from master \<b2544fd>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -50,7 +50,7 @@
 - Gradle 7.0.2
 - Lerna 4.0.0
 - Maven 3.8.1
-- Sbt 1.5.2
+- Sbt 1.5.3
 
 ### Tools
 - Ansible 2.10.10
@@ -65,13 +65,13 @@
 - Docker-Buildx 0.5.1
 - Docker-Moby Client 20.10.6+azure
 - Docker-Moby Server 20.10.6+azure
-- Fastlane 2.184.1
+- Fastlane 2.185.0
 - Git 2.31.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.54.0
-- HHVM (HipHop VM) 4.111.0
+- HHVM (HipHop VM) 4.112.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.20.1-5-g76a04fc
@@ -86,28 +86,28 @@
 - Packer 1.7.2
 - PhantomJS 2.1.1
 - Podman 3.1.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.3.1
+- Pulumi 3.4.0
 - R 4.1.0
 - Skopeo 1.2.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 0.15.4
+- Terraform 0.15.5
 - yamllint 1.26.1
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.77
-- AWS CLI 2.2.7
+- Alibaba Cloud CLI 3.0.79
+- AWS CLI 2.2.9
 - AWS CLI Session manager plugin 1.2.54.0
-- AWS SAM CLI 1.23.0
-- Azure CLI (azure-cli) 2.24.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- AWS SAM CLI 1.24.0
+- Azure CLI (azure-cli) 2.24.2 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.18.0
-- GitHub CLI 1.10.3
-- Google Cloud SDK 342.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- GitHub CLI 1.11.0
+- Google Cloud SDK 343.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 3.32.5
-- OpenShift CLI 4.7.12
-- ORAS CLI 0.11.1
+- Netlify CLI 3.35.1
+- OpenShift CLI 4.7.13
+- ORAS CLI 0.12.0
 - Vercel CLI 23.0.0
 
 ### Java
@@ -124,10 +124,12 @@
 ### PHP
 | Tool     | Version      |
 | -------- | ------------ |
-| PHP      | 7.4.18 8.0.5 |
-| Composer | 2.0.14       |
-| PHPUnit  | 8.5.15       |
-
+| PHP      | 7.4.20 8.0.7 |
+| Composer | 2.1.1        |
+| PHPUnit  | 8.5.16       |
+```
+    Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
+```
 ### Haskell
 - Cabal 3.4.0.0
 - GHC 9.0.1 (apt source repository: ppa:hvr/ghc)
@@ -151,7 +153,7 @@
 ### Browsers and Drivers
 - Google Chrome 91.0.4472.77
 - ChromeDriver 91.0.4472.19
-- Mozilla Firefox 88.0.1
+- Mozilla Firefox 89.0
 - Geckodriver 0.29.1
 - Chromium 91.0.4472.0
 
@@ -182,8 +184,8 @@
 ### Cached Tools
 #### Go
 - 1.14.15
-- 1.15.12
-- 1.16.4
+- 1.15.13
+- 1.16.5
 
 #### Node.js
 - 10.24.1
@@ -213,8 +215,8 @@
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_14_X64 | /opt/hostedtoolcache/go/1.14.15/x64 | x64          |
-| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.12/x64 | x64          |
-| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.4/x64  | x64          |
+| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.13/x64 | x64          |
+| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.5/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.1.3
