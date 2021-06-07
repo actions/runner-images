@@ -179,7 +179,9 @@ if (Test-IsUbuntu20) {
     $markdown += New-MDNewLine
 }
 
-$markdown += Build-PHPSection
+if (-not (Test-IsUbuntu16)) {
+    $markdown += Build-PHPSection
+}
 
 $markdown += New-MDHeader "Haskell" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
