@@ -3,25 +3,23 @@
 | [[macOS] GCC version 8 will be removed from images on May, 31](https://github.com/actions/virtual-environments/issues/3378) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
-# macOS 11.3 info
-- System Version: macOS 11.3.1 (20E241)
-- Kernel Version: Darwin 20.4.0
-- Image Version: 20210523.1
+# macOS 11.4 info
+- System Version: macOS 11.4 (20F71)
+- Kernel Version: Darwin 20.5.0
+- Image Version: 20210531.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202 5.0.203
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202 5.0.300
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
-- gcc-8 (Homebrew GCC 8.5.0) 8.5.0 - available by `gcc-8` alias
 - gcc-9 (Homebrew GCC 9.3.0_2) 9.3.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
-- gcc-11 (Homebrew GCC 11.1.0) 11.1.0 - available by `gcc-11` alias
-- GNU Fortran (Homebrew GCC 8.5.0) 8.5.0 - available by `gfortran-8` alias
+- gcc-11 (Homebrew GCC 11.1.0_1) 11.1.0 - available by `gcc-11` alias
 - GNU Fortran (Homebrew GCC 9.3.0_2) 9.3.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
-- GNU Fortran (Homebrew GCC 11.1.0) 11.1.0 - available by `gfortran-11` alias
+- GNU Fortran (Homebrew GCC 11.1.0_1) 11.1.0 - available by `gfortran-11` alias
 - Go 1.15.12
 - julia 1.6.1
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
@@ -35,7 +33,7 @@
 - Ruby 2.7.3p183
 
 ### Package Management
-- Bundler version 2.2.17
+- Bundler version 2.2.19
 - Carthage 0.38.0
 - CocoaPods 1.10.1
 - Composer 2.0.14
@@ -45,9 +43,9 @@
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.1.1 (python 3.9)
-- Pipx 0.16.2.1
-- RubyGems 3.2.17
-- Vcpkg 2021 (build from master \<a3db16a>)
+- Pipx 0.16.3
+- RubyGems 3.2.19
+- Vcpkg 2021 (build from master \<7bc5b8c>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -68,14 +66,14 @@
 - bazel 4.1.0
 - bazelisk 1.9.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.76.1
+- Curl 7.77.0
 - Git LFS: 2.13.3
 - Git: 2.31.1
 - GitHub CLI: 1.10.3
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.3.1
-- helm v3.5.4+g1b5edb6
+- helm v3.6.0+g7f2df64
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v4.4.5
@@ -90,19 +88,19 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.74
+- Aliyun CLI 3.0.77
 - App Center CLI 2.9.0
-- AWS CLI 2.2.5
+- AWS CLI 2.2.7
 - AWS SAM CLI 1.23.0
 - AWS Session Manager CLI 1.2.54.0
-- Azure CLI 2.23.0
+- Azure CLI 2.24.0
 - Cabal 3.4.0.0
-- Cmake 3.20.2
-- Fastlane 2.184.0
+- Cmake 3.20.3
+- Fastlane 2.184.1
 - GHC 9.0.1
 - GHCup v0.1.14.1
 - Stack 2.7.1
-- SwiftFormat 0.48.3
+- SwiftFormat 0.48.4
 - Xcode Command Line Tools 12.5.0.0.1.1617976050
 
 ### Linters
@@ -110,12 +108,12 @@
 - yamllint 1.26.1
 
 ### Browsers
-- Safari 14.1 (16611.1.21.161.6)
-- SafariDriver 14.1 (16611.1.21.161.6)
-- Google Chrome 90.0.4430.212 
+- Safari 14.1.1 (16611.2.7.1.4)
+- SafariDriver 14.1.1 (16611.2.7.1.4)
+- Google Chrome 91.0.4472.77 
 - ChromeDriver 90.0.4430.24
-- Microsoft Edge 90.0.818.66 
-- MSEdgeDriver 90.0.818.66
+- Microsoft Edge 91.0.864.37 
+- MSEdgeDriver 91.0.864.37
 - Mozilla Firefox 88.0.1
 - geckodriver 0.29.1
 
@@ -176,14 +174,14 @@
 | ---------------- | ------- |
 | Az               | 5.7.0   |
 | MarkdownPS       | 1.9     |
-| Pester           | 5.2.1   |
+| Pester           | 5.2.2   |
 | PSScriptAnalyzer | 1.19.1  |
 
 ### Web Servers
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.47  | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
-| nginx | 1.19.10 | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
+| httpd | 2.4.48  | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
+| nginx | 1.21.0  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
@@ -217,6 +215,8 @@
 #### Xcode Support Tools
 - xcpretty 0.3.0
 - xcversion 2.7.0
+- Nomad CLI 0.0.2
+- Nomad shenzhen CLI 0.14.3
 
 #### Installed SDKs
 | SDK                     | SDK Name             | Xcode Version |

@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4402
-- Image Version: 20210525.0
+- Image Version: 20210531.1
 
 ## Installed Software
 ### Language and Runtime
@@ -16,14 +16,14 @@
 ### Package Management
 - Chocolatey 0.10.15
 - Composer 2.0.14
-- Helm 3.5.4
+- Helm 3.6.0
 - Miniconda 4.9.2
 - NPM 6.14.13
 - NuGet 5.9.1.11
 - pip 21.1.2 (python 3.7)
-- Pipx 0.16.2.1
+- Pipx 0.16.3
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<83f9a6c>)
+- Vcpkg  (build from master \<7bc5b8c>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -44,9 +44,9 @@
 - Bazel 4.1.0
 - Bazelisk 1.9.0
 - Cabal 3.4.0.0
-- CMake 3.20.2
+- CMake 3.20.3
 - CodeQL Action Bundle 2.5.5
-- Docker 20.10.4
+- Docker 20.10.5
 - Docker-compose 1.29.1
 - ghc 9.0.1
 - Git 2.31.1
@@ -54,7 +54,7 @@
 - Google Cloud SDK 342.0.0
 - InnoSetup 6.1.2
 - jq 1.6
-- Kind 0.11.0
+- Kind 0.11.1
 - Kubectl 1.21.1
 - Mercurial 5.0
 - Mingw-w64 8.1.0
@@ -72,8 +72,8 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.75
-- AWS CLI 2.2.5
+- Alibaba Cloud CLI 3.0.77
+- AWS CLI 2.2.7
 - AWS SAM CLI 1.23.0
 - AWS Session Manager CLI 1.2.54.0
 - Azure CLI 2.24.0
@@ -99,8 +99,8 @@
 ### Browsers and webdrivers
 - Google Chrome 91.0.4472.77
 - Chrome Driver 91.0.4472.19
-- Microsoft Edge 90.0.818.66
-- Microsoft Edge Driver 90.0.818.66
+- Microsoft Edge 91.0.864.37
+- Microsoft Edge Driver 91.0.864.37
 - Mozilla Firefox 88.0.1
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
@@ -212,7 +212,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
-| Apache | 2.4.47  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
+| Apache | 2.4.48  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
 | Nginx  | 1.21.0  | C:\tools\nginx-1.21.0\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2017
@@ -480,10 +480,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2017 Debug Runtime      | x64          | 14.16.27033 |
 | Microsoft Visual C++ 2017 Debug Runtime      | x86          | 14.16.27033 |
-| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.28.29914 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.28.29914 |
-| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.28.29914 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.28.29914 |
+| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30037 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30037 |
+| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30037 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30037 |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
@@ -526,7 +526,7 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Pester             | 3.4.0<br>5.2.1   |
+| Pester             | 3.4.0<br>5.2.2   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.19.1           |
 | PSWindowsUpdate    | 2.2.0.2          |
@@ -564,7 +564,7 @@ All other versions are saved but not installed.
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
 | mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:616e2816b0024ab7f69a58dfefd1bee58d6ac5501adb8abb9f52b104a1f0a5da  | 2021-05-11 |
 | mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:7a7b03014820cb4bf0f9a137f33ceade2fa7102ee63a91de720b13bdce43bf3c  | 2021-05-11 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:f19f7100d6ce4090e9f4b3c06729304cf384459f16ca07f9595155c8254a66c0  | 2021-05-11 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:7cc0e9e7599ea9b0a8ac9b0c809236d239ba4ab384270b91a371368d715f4156  | 2021-05-25 |
 | mcr.microsoft.com/windows/nanoserver:10.0.14393.953                       | sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268  | 2017-03-08 |
 | mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:b96ee2b8278f1e62418473f47eefd22340b8c6cefbb565a630d28791efbea16d  | 2021-04-26 |
 
