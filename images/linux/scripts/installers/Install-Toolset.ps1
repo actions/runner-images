@@ -43,13 +43,13 @@ foreach ($tool in $tools) {
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
         if ($null -ne $asset) {
-            #Install-Asset -ReleaseAsset $asset
+            Install-Asset -ReleaseAsset $asset
         } else {
             Write-Host "Asset was not found in versions manifest"
             exit 1
         }
     }
-} 
+}
 if ($toolsToInstall -contains "Python"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python}
 if ($toolsToInstall -contains "node"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node}
 if ($toolsToInstall -contains "go"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/go}
