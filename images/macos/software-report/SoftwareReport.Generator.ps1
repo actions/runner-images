@@ -145,6 +145,13 @@ if ($os.IsLessThanBigSur) {
     )
 }
 
+if (-not $os.IsHighSierra) {
+    $utilitiesList += @(
+        (Get-SwitchAudioOsxVersion),
+        (Get-SoxVersion)
+    )
+}
+
 $markdown += New-MDList -Style Unordered -Lines ($utilitiesList | Sort-Object)
 $markdown += New-MDNewLine
 
