@@ -68,6 +68,11 @@
             ]
         }
     ],
+    "tools":[
+      "node",
+      "Python",
+      "go"
+    ],
     "java": {
         "default": "11",
         "versions": [

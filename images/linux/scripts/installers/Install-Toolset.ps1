@@ -28,10 +28,8 @@ $ErrorActionPreference = "Stop"
 
 # Get toolset content
 $toolset = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
-$toolsToInstall = @("Python", "Node", "Go")
-
-$tools = ConvertFrom-Json -InputObject $toolset | Select-Object -ExpandProperty toolcache | Where-Object {$ToolsToInstall -contains $_.Name}
-
+$toolsToInstall = ConvertFrom-Json -InputObject $toolset | Select-Object -ExpandProperty tools
+$tools = ConvertFrom-Json -InputObject $toolset | Select-Object -ExpandProperty toolcache | Where-Object {$toolsToInstall -contains $_.Name}
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
     $assets = Invoke-RestMethod $tool.url
@@ -45,14 +43,13 @@ foreach ($tool in $tools) {
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
         if ($null -ne $asset) {
-            Install-Asset -ReleaseAsset $asset
+            #Install-Asset -ReleaseAsset $asset
         } else {
             Write-Host "Asset was not found in versions manifest"
             exit 1
         }
     }
-}
-
-chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python
-chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node
-chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/go
+} 
+if ($toolsToInstall.Contains("Python")){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python}
+if ($toolsToInstall.Contains("node")){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node}
+if ($toolsToInstall.Contains("go")){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/go}
