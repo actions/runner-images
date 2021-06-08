@@ -27,16 +27,25 @@ done
 
 # Get list of all released SDKs from channels which are not end-of-life or preview
 sdks=()
-for version in ${DOTNET_VERSIONS[@]}; do
-    release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
-    download_with_retries "${release_url}" "." "${version}.json"
-    releases=$(cat "./${version}.json")
-    sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdk.version'))
-    sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdks[]?' | jq '.version'))
-    rm ./${version}.json
+for dotnet_version in ${DOTNET_VERSIONS[@]}; do
+    release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${dotnet_version}/releases.json"
+    download_with_retries "${release_url}" "." "${dotnet_version}.json"
+    releases=$(cat "./${dotnet_version}.json")
+    versions=()
+    versions=("${versions[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdk.version'))
+    versions=("${versions[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdks[]?' | jq '.version'))
+    versions_sorted=$(echo ${versions[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u)
+
+    unset features
+    declare -A features
+    for version in $versions_sorted; do
+        feature=$(echo $version|grep -oP '\d+\.\d+\.\d')
+        features[$feature]=$version
+    done
+    sdks=("${sdks[@]}" $(echo ${features[@]}))
+    rm ./${dotnet_version}.json
 done
 
-sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
 extract_dotnet_sdk() {
     local ARCHIVE_NAME="$1"
     set -e
@@ -53,9 +62,11 @@ extract_dotnet_sdk() {
 export -f download_with_retries
 export -f extract_dotnet_sdk
 
+echo ".net sdks to be installed: ${sdks[@]}"
+
 parallel --jobs 0 --halt soon,fail=1 \
     'url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/{}/dotnet-sdk-{}-linux-x64.tar.gz"; \
-    download_with_retries $url' ::: "${sortedSdks[@]}"
+    download_with_retries $url' ::: "${sdks[@]}"
 
 find . -name "*.tar.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
 
