@@ -29,7 +29,9 @@ $ErrorActionPreference = "Stop"
 # Get toolset content
 $toolset = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
 $toolsToInstall = ConvertFrom-Json -InputObject $toolset | Select-Object -ExpandProperty tools
+
 $tools = ConvertFrom-Json -InputObject $toolset | Select-Object -ExpandProperty toolcache | Where-Object {$toolsToInstall -contains $_.Name}
+
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
     $assets = Invoke-RestMethod $tool.url
