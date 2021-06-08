@@ -39,7 +39,7 @@
             "resource_group_name": "{{user `resource_group`}}",
             "storage_account": "{{user `storage_account`}}",
             "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
-            "capture_container_name": "buildImages",
+            "capture_container_name": "images",
             "capture_name_prefix": "{{user `capture_name_prefix`}}",
             "virtual_network_name": "{{user `virtual_network_name`}}",
             "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",
