@@ -50,6 +50,6 @@ foreach ($tool in $tools) {
         }
     }
 } 
-if ($toolsToInstall.Contains("Python")){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python}
-if ($toolsToInstall.Contains("node")){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node}
-if ($toolsToInstall.Contains("go")){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/go}
+if ($toolsToInstall -contains "Python"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python}
+if ($toolsToInstall -contains "node"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node}
+if ($toolsToInstall -contains "go"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/go}
