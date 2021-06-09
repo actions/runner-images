@@ -6,8 +6,8 @@ schedules:
     - main
   always: true
 
-trigger:
-  batch: true
+trigger: none
+# batch: true
 
 pr:
   autoCancel: true
