@@ -15,7 +15,7 @@ stages:
     workspace:
       clean: all
     displayName: Build
-    pool: vmss-windows
+    pool: linux-dev-tf
 
     steps:
     - task: AzureCLI@2
