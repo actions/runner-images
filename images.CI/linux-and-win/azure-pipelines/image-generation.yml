@@ -39,7 +39,7 @@ jobs:
       inlineScript: |
         $BLOB_STORAGE_ACCOUNT_KEY = $(az storage account keys list -g gss-build-agent-images -n gssbuildagentimages --query "[0].value" --output tsv)
         $BLOBS_FROM_THIS_JOB = $(az storage blob list --container-name system --account-name gssbuildagentimages --account-key $BLOB_STORAGE_ACCOUNT_KEY | grep 9384-osDisk)
-        Write-Output "##vso[task.setvariable variable=BLOBS_FROM_THIS_JOB;]$(BLOBS_FROM_THIS_JOB)"
+        echo $(BLOBS_FROM_THIS_JOB)
   # 9384 above should eventually be $(Build.BuildId), but that will only work at the end of the process, after the artifacts have been created
 
   # - task: PowerShell@2
