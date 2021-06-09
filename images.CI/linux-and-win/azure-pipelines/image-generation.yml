@@ -41,7 +41,7 @@ jobs:
         $BLOBS_FROM_THIS_JOB = $(az storage blob list --container-name system --account-name gssbuildagentimages --account-key $BLOB_STORAGE_ACCOUNT_KEY) 
         echo ("test")
         echo $(Build.BuildId)
-        echo ($BLOBS_FROM_THIS_JOB)
+        echo ($BLOBS_FROM_THIS_JOB.name)
   # | grep 9384-osDisk)
   # 9384 above should eventually be $(Build.BuildId), but that will only work at the end of the process, after the artifacts have been created
 
