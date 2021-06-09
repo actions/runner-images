@@ -55,10 +55,8 @@ $runtimesList = @(
 if (Test-IsUbuntu20) {
     $runtimesList += (Get-LLVMInfo)
 } else {
-    $runtimesList += 
-        (Get-ClangVersions)
-    $runtimesList += 
-        (Get-ClangFormatVersions)
+    $runtimesList += (Get-ClangVersions)
+    $runtimesList += (Get-ClangFormatVersions)
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
