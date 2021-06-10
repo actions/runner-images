@@ -29,6 +29,79 @@ jobs:
         $AZURE_SUBSCRIPTION = $(az account show --query 'id' --output tsv)
         Write-Output "##vso[task.setvariable variable=AZURE_SUBSCRIPTION;]$(AZURE_SUBSCRIPTION)"
 
+  - task: PowerShell@2
+    displayName: 'Download custom repository'
+    condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/download-repo.ps1
+      arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
+                 -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
+    
+  - task: PowerShell@2
+    displayName: 'Set image template variables'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $ImageType = "${{ parameters.image_type }}"
+        $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "win" }
+        $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
+        $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
+        Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
+        Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
+
+  - task: PowerShell@2
+    displayName: 'Build VM $(Build.BuildId)'
+    inputs:
+      targetType: filePath
+      azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
+      addSpnToEnvironment: true
+      filePath: ./images.CI/linux-and-win/build-image.ps1
+      arguments: -ResourcesNamePrefix $(Build.BuildId) `
+                        -ClientId $(CLIENT_ID) `
+                        -ClientSecret $(CLIENT_SECRET) `
+                        -TemplatePath $(TemplatePath) `
+                        -ResourceGroup $(AZURE_RESOURCE_GROUP) `
+                        -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
+                        -SubscriptionId $(AZURE_SUBSCRIPTION) `
+                        -TenantId $(AZURE_TENANT) `
+                        -Location $(AZURE_LOCATION) `
+                        -VirtualNetworkName $(BUILD_AGENT_VNET_NAME) `
+                        -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
+                        -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME)
+
+    env:
+      PACKER_LOG: 1
+      PACKER_LOG_PATH: $(Build.ArtifactStagingDirectory)/packer-log.txt
+
+  - task: PowerShell@2
+    displayName: 'Output Readme file content'
+    inputs:
+      targetType: 'inline'
+      script: |
+        Get-Content -Path (Join-Path "$(TemplateDirectoryPath)" "${{ parameters.image_readme_name }}")
+
+  - task: PowerShell@2
+    displayName: 'Print provisioners duration'
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/measure-provisioners-duration.ps1
+      arguments: -PackerLogPath "$(Build.ArtifactStagingDirectory)/packer-log.txt" `
+                        -PrefixToPathTrim "$(TemplateDirectoryPath)" `
+                        -PrintTopNLongest 25
+
+  # - task: PowerShell@2
+  #   displayName: 'Create release for VM deployment'
+  #   inputs:
+  #     targetType: filePath
+  #     filePath: ./images.CI/linux-and-win/create-release.ps1
+  #     arguments: -BuildId $(Build.BuildId) `
+  #                       -Organization $(RELEASE_TARGET_ORGANIZATION) `
+  #                       -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
+  #                       -Project $(RELEASE_TARGET_PROJECT) `
+  #                       -ImageName ${{ parameters.image_type }} `
+  #                       -AccessToken $(RELEASE_TARGET_TOKEN)
+
   - task: AzureCLI@2
     displayName: Log final image name
     inputs: 
@@ -39,104 +112,22 @@ jobs:
       inlineScript: |
         $BLOB_STORAGE_ACCOUNT_KEY = $(az storage account keys list -g gss-build-agent-images -n gssbuildagentimages --query "[0].value" --output tsv)
         $JOB_ID = $(Build.BuildId)
-        $JOB_ID = "9386"
         $BLOBS_IN_STORAGE = $(az storage blob list --container-name system --account-name gssbuildagentimages --account-key $BLOB_STORAGE_ACCOUNT_KEY)
         $STRING_ARRAY = $BLOBS_IN_STORAGE -split "Images/images/"
-        echo "JOB_ID:"
-        echo $JOB_ID
-        echo "String array:"
-        echo $STRING_ARRAY
-        $MATCH_STRING = "$JOB_ID-"
-        $BLOBS_FROM_THIS_JOB = $STRING_ARRAY -Match $MATCH_STRING
+        $BLOBS_FROM_THIS_JOB = $STRING_ARRAY -Match "$JOB_ID-"
         echo "Blobs from this job:"
         echo $BLOBS_FROM_THIS_JOB
 
-  # | grep 9384-osDisk)
-  # 9384 above should eventually be $(Build.BuildId), but that will only work at the end of the process, after the artifacts have been created
-
-  # - task: PowerShell@2
-  #   displayName: 'Download custom repository'
-  #   condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
-  #   inputs:
-  #     targetType: 'filePath'
-  #     filePath: ./images.CI/download-repo.ps1
-  #     arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
-  #                -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
-    
-  # - task: PowerShell@2
-  #   displayName: 'Set image template variables'
-  #   inputs:
-  #     targetType: 'inline'
-  #     script: |
-  #       $ImageType = "${{ parameters.image_type }}"
-  #       $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "win" }
-  #       $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
-  #       $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
-  #       Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
-  #       Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
-
-  # - task: PowerShell@2
-  #   displayName: 'Build VM $(Build.BuildId)'
-  #   inputs:
-  #     targetType: filePath
-  #     azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
-  #     addSpnToEnvironment: true
-  #     filePath: ./images.CI/linux-and-win/build-image.ps1
-  #     arguments: -ResourcesNamePrefix $(Build.BuildId) `
-  #                       -ClientId $(CLIENT_ID) `
-  #                       -ClientSecret $(CLIENT_SECRET) `
-  #                       -TemplatePath $(TemplatePath) `
-  #                       -ResourceGroup $(AZURE_RESOURCE_GROUP) `
-  #                       -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
-  #                       -SubscriptionId $(AZURE_SUBSCRIPTION) `
-  #                       -TenantId $(AZURE_TENANT) `
-  #                       -Location $(AZURE_LOCATION) `
-  #                       -VirtualNetworkName $(BUILD_AGENT_VNET_NAME) `
-  #                       -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
-  #                       -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME)
-
-  #   env:
-  #     PACKER_LOG: 1
-  #     PACKER_LOG_PATH: $(Build.ArtifactStagingDirectory)/packer-log.txt
-
-  # - task: PowerShell@2
-  #   displayName: 'Output Readme file content'
-  #   inputs:
-  #     targetType: 'inline'
-  #     script: |
-  #       Get-Content -Path (Join-Path "$(TemplateDirectoryPath)" "${{ parameters.image_readme_name }}")
-
-  # - task: PowerShell@2
-  #   displayName: 'Print provisioners duration'
-  #   inputs:
-  #     targetType: 'filePath'
-  #     filePath: ./images.CI/measure-provisioners-duration.ps1
-  #     arguments: -PackerLogPath "$(Build.ArtifactStagingDirectory)/packer-log.txt" `
-  #                       -PrefixToPathTrim "$(TemplateDirectoryPath)" `
-  #                       -PrintTopNLongest 25
-
-  # # - task: PowerShell@2
-  # #   displayName: 'Create release for VM deployment'
-  # #   inputs:
-  # #     targetType: filePath
-  # #     filePath: ./images.CI/linux-and-win/create-release.ps1
-  # #     arguments: -BuildId $(Build.BuildId) `
-  # #                       -Organization $(RELEASE_TARGET_ORGANIZATION) `
-  # #                       -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
-  # #                       -Project $(RELEASE_TARGET_PROJECT) `
-  # #                       -ImageName ${{ parameters.image_type }} `
-  # #                       -AccessToken $(RELEASE_TARGET_TOKEN)
-
-  # - task: PowerShell@2
-  #   displayName: 'Clean up resources'
-  #   condition: always()
-  #   inputs:
-  #     targetType: filePath
-  #     filePath: ./images.CI/linux-and-win/cleanup.ps1
-  #     arguments: -ResourcesNamePrefix $(Build.BuildId) `
-  #                    -Image ${{ parameters.image_type }} `
-  #                    -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
-  #                    -SubscriptionId $(AZURE_SUBSCRIPTION) `
-  #                    -ClientId $(CLIENT_ID) `
-  #                    -ClientSecret $(CLIENT_SECRET) `
-  #                    -TenantId $(AZURE_TENANT)
+  - task: PowerShell@2
+    displayName: 'Clean up resources'
+    condition: always()
+    inputs:
+      targetType: filePath
+      filePath: ./images.CI/linux-and-win/cleanup.ps1
+      arguments: -ResourcesNamePrefix $(Build.BuildId) `
+                     -Image ${{ parameters.image_type }} `
+                     -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
+                     -SubscriptionId $(AZURE_SUBSCRIPTION) `
+                     -ClientId $(CLIENT_ID) `
+                     -ClientSecret $(CLIENT_SECRET) `
+                     -TenantId $(AZURE_TENANT)
