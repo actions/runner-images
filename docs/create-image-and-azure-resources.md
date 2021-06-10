@@ -136,6 +136,8 @@ The user, created during the image generation, does not exist in the result VHD 
 - Windows: https://github.com/actions/virtual-environments/tree/main/images/win/post-generation
 - Linux: https://github.com/actions/virtual-environments/tree/main/images/linux/post-generation
 
+**Note:** The default user for Linux should have `sudo privileges`.
+
 The scripts are copied to the VHD during the image generation process to the following paths:
 - Windows: `C:\post-generation`
 - Linux:  `/opt/post-generation` 
@@ -144,7 +146,7 @@ The scripts are copied to the VHD during the image generation process to the fol
 
 ##### Ubuntu
 
-        find /opt/post-generation -mindepth 1 -maxdepth 1 -type f -name '*.sh' -exec bash {} \;
+        sudo su -c "find /opt/post-generation -mindepth 1 -maxdepth 1 -type f -name '*.sh' -exec bash {} \;"
 
 ##### Windows
 
