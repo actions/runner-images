@@ -86,3 +86,9 @@ Describe "VSMac" {
         $vstoolPath | Should -Exist
     }
 }
+
+Describe "Swig" {
+    It "Swig" {
+        "swig -version" | Should -ReturnZeroExitCode
+    }
+}

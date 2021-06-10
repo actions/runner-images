@@ -17,7 +17,7 @@ Describe "Certificate" {
     }
 }
 
-Describe "Audio device" -Skip:($os.IsHighSierra -or $os.IsBigSur) {
+Describe "Audio device" -Skip:($os.IsHighSierra) {
     It "Sox is installed" {
         "sox --version" | Should -ReturnZeroExitCode
     }
@@ -26,8 +26,12 @@ Describe "Audio device" -Skip:($os.IsHighSierra -or $os.IsBigSur) {
         "SwitchAudioSource -c" | Should -ReturnZeroExitCode
     }
 
-    It "Audio channel Soundflower (2ch)" {
+    It "Audio channel Soundflower (2ch)" -Skip:($os.IsBigSur) {
         SwitchAudioSource -c | Should -BeLikeExactly "Soundflower (2ch)"
+    }
+
+    It "Audio channel BlackHole 2ch" -Skip:($os.IsLessThanBigSur) {
+        SwitchAudioSource -c | Should -BeLikeExactly "BlackHole 2ch"
     }
 }
 
