@@ -13,6 +13,8 @@ for package in $common_packages $cmd_packages; do
     apt-get install -y --no-install-recommends $package
 done
 
+# Toolcache Python requires updated libssl-dev, which was previously installed from ppa:ondrej.
+# The ppa dropped Ubuntu 16 support hence we need to build OpenSSL from source
 if isUbuntu16; then
     openSslArchiveName="openssl-1.1.1k.tar.gz"
     openSslUrl="https://www.openssl.org/source/${openSslArchiveName}"
