@@ -42,6 +42,7 @@ jobs:
         $BLOBS_FROM_THIS_JOB = $(az storage blob list --container-name system --account-name gssbuildagentimages --account-key $BLOB_STORAGE_ACCOUNT_KEY)
         echo $JOB_ID
         echo $BLOBS_FROM_THIS_JOB
+        $BLOBS_FROM_THIS_JOB | Get-Member -MemberType Property
         echo $BLOBS_FROM_THIS_JOB[0]
 
   # | grep 9384-osDisk)
