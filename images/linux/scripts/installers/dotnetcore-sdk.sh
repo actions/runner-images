@@ -36,7 +36,8 @@ for version in ${DOTNET_VERSIONS[@]}; do
     rm ./${version}.json
 done
 
-sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
+sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -r | uniq -w 5)
+
 extract_dotnet_sdk() {
     local ARCHIVE_NAME="$1"
     set -e

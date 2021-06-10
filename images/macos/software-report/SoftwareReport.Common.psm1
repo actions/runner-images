@@ -462,6 +462,16 @@ function Get-CabalVersion {
     return "Cabal $cabalVersion"
 }
 
+function Get-SwitchAudioOsxVersion {
+    $switchAudioVersion = Get-BrewPackageVersion -CommandName "SwitchAudioSource"
+    return "Switchaudio-osx $switchAudioVersion"
+}
+
+function Get-SoxVersion {
+    $soxVersion = Get-BrewPackageVersion -CommandName "sox"
+    return "Sox $soxVersion"
+}
+
 function Get-StackVersion {
     $stackVersion = Run-Command "stack --version" | Take-Part -Part 1 | ForEach-Object {$_.replace(",","")}
     return "Stack $stackVersion"
