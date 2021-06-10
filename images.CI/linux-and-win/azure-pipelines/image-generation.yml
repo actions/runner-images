@@ -115,6 +115,7 @@ jobs:
         $BLOBS_IN_STORAGE = $(az storage blob list --container-name system --account-name gssbuildagentimages --account-key $BLOB_STORAGE_ACCOUNT_KEY)
         $STRING_ARRAY = $BLOBS_IN_STORAGE -split "Images/images/"
         $BLOBS_FROM_THIS_JOB = $STRING_ARRAY -Match "$JOB_ID-"
+        echo "Blobs are stored in https://portal.azure.com, Container: gssbuildagentimages/system/Microsoft.Compute/Images/images/"
         echo "Blobs from this job:"
         echo $BLOBS_FROM_THIS_JOB
 
