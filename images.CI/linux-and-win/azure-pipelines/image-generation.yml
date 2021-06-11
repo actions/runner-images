@@ -115,7 +115,7 @@ jobs:
         $BLOBS_IN_STORAGE = $(az storage blob list --container-name system --account-name gssbuildagentimages --account-key $BLOB_STORAGE_ACCOUNT_KEY)
         $STRING_ARRAY = $BLOBS_IN_STORAGE -split "Images/images/"
         $BLOB_FROM_THIS_JOB_WHOLE_LINE = $STRING_ARRAY -Match "$JOB_ID-osDisk"
-        $BLOB_FROM_THIS_JOB = ($BLOB_FROM_THIS_JOB_WHOLE_LINE -split ' ')[0]
+        $BLOB_FROM_THIS_JOB = ($BLOB_FROM_THIS_JOB_WHOLE_LINE -split ',')[0]
         echo "Blob from this job:"
         echo "https://gssbuildagentimages.blob.core.windows.net/system/Microsoft.Compute/Images/images/$BLOB_FROM_THIS_JOB"
 
