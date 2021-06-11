@@ -111,14 +111,14 @@ jobs:
       addSpnToEnvironment: true
       inlineScript: |
         $BLOB_STORAGE_ACCOUNT_KEY = $(az storage account keys list -g gss-build-agent-images -n gssbuildagentimages --query "[0].value" --output tsv)
-       # $JOB_ID = $(Build.BuildId)
-        $JOB_ID = 12
+        $JOB_ID = 9484
         $BLOBS_IN_STORAGE = $(az storage blob list --container-name system --account-name gssbuildagentimages --account-key $BLOB_STORAGE_ACCOUNT_KEY)
         $STRING_ARRAY = $BLOBS_IN_STORAGE -split "Images/images/"
         $BLOB_FROM_THIS_JOB = $STRING_ARRAY -Match "$JOB_ID-osDisk"
         echo "Blob from this job:"
         echo "https://gssbuildagentimages.blob.core.windows.net/system/Microsoft.Compute/Images/images/$BLOB_FROM_THIS_JOB"
 
+  # $JOB_ID = $(Build.BuildId)
   # - task: PowerShell@2
   #   displayName: 'Clean up resources'
   #   condition: always()
