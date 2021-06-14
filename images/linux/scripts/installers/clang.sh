@@ -15,6 +15,8 @@ function InstallClang {
     if [[ $version =~ 9 ]] && isUbuntu16 || [[ $version =~ 12 ]]; then
         ./llvm.sh $version
         apt-get install -y "clang-format-$version"
+	llvm_repo=$(grep '^deb.*apt.llvm.org\/' /etc/apt/sources.list)
+	echo "llvm $llvm_repo" >> $HELPER_SCRIPTS/apt-sources.txt
     else
         apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version"
     fi    

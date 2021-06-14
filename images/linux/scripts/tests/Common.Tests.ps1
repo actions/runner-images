@@ -1,4 +1,4 @@
-Describe "PHP" {
+Describe "PHP" -Skip:(Test-IsUbuntu16) {
 
     [array]$testCases = (Get-ToolsetContent).php.versions | ForEach-Object { @{phpVersion = $_} }
 

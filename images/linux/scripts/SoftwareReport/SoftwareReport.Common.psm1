@@ -44,6 +44,13 @@ function Get-ClangVersions {
     return "Clang " + $clangVersions
 }
 
+function Get-LLVMInfo {
+    $clangVersions = Get-ClangToolVersions -ToolName "clang"
+    $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "llvm"
+    return "LLVM components: Clang $clangFormatVersions, Clang-format $clangFormatVersions (apt source: $aptSourceRepo)"
+}
+
 function Get-ClangFormatVersions {
     $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
     return "Clang-format " + $clangFormatVersions

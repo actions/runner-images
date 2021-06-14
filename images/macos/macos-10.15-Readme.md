@@ -1,12 +1,12 @@
 | Announcements |
 |-|
-| [[macOS] GCC version 8 will be removed from images on May, 31](https://github.com/actions/virtual-environments/issues/3378) |
+| [[macOS] Default Xcode on Big Sur image will be set to Xcode 12.5 on June, 15](https://github.com/actions/virtual-environments/issues/3522) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1217)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210531.1
+- Image Version: 20210607.1
 
 ## Installed Software
 ### Language and Runtime
@@ -14,20 +14,20 @@
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
-- gcc-9 (Homebrew GCC 9.3.0_2) 9.3.0 - available by `gcc-9` alias
+- gcc-9 (Homebrew GCC 9.4.0) 9.4.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
 - gcc-11 (Homebrew GCC 11.1.0_1) 11.1.0 - available by `gcc-11` alias
-- GNU Fortran (Homebrew GCC 9.3.0_2) 9.3.0 - available by `gfortran-9` alias
+- GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.1.0_1) 11.1.0 - available by `gfortran-11` alias
-- Go 1.15.12
+- Go 1.15.13
 - julia 1.6.1
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v14.17.0
 - NVM 0.38.0
 - NVM - Cached node versions: v10.24.1 v12.22.1 v14.17.0
 - Perl 5.34.0
-- PHP 8.0.6
+- PHP 8.0.7
 - Python 2.7.18
 - Python 3.9.5
 - R 4.1.0
@@ -37,8 +37,8 @@
 - Bundler version 2.2.19
 - Carthage 0.38.0
 - CocoaPods 1.10.1
-- Composer 2.0.14
-- Homebrew 3.1.9
+- Composer 2.1.1
+- Homebrew 3.1.10
 - Miniconda 4.9.2
 - NPM 6.14.13
 - NuGet 5.6.0.6489
@@ -46,7 +46,7 @@
 - Pip 21.1.1 (python 3.9)
 - Pipx 0.16.3
 - RubyGems 3.2.19
-- Vcpkg 2021 (build from master \<7bc5b8c>)
+- Vcpkg 2021 (build from master \<b2544fd>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -69,8 +69,8 @@
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.77.0
 - Git LFS: 2.13.3
-- Git: 2.31.1
-- GitHub CLI: 1.10.3
+- Git: 2.32.0
+- GitHub CLI: 1.11.0
 - GNU parallel 20210422
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
@@ -92,19 +92,20 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.77
+- Aliyun CLI 3.0.79
 - App Center CLI 2.9.0
-- AWS CLI 2.2.7
-- AWS SAM CLI 1.23.0
+- AWS CLI 2.2.9
+- AWS SAM CLI 1.24.0
 - AWS Session Manager CLI 1.2.54.0
-- Azure CLI 2.24.0
+- Azure CLI 2.24.2
 - Cabal 3.4.0.0
 - Cmake 3.20.3
-- Fastlane 2.184.1
+- Fastlane 2.185.0
 - GHC 9.0.1
 - GHCup v0.1.14.1
 - Stack 2.7.1
 - SwiftFormat 0.48.4
+- Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
@@ -115,27 +116,27 @@
 - Safari 14.1.1 (15611.2.7.1.6)
 - SafariDriver 14.1.1 (15611.2.7.1.6)
 - Google Chrome 91.0.4472.77 
-- ChromeDriver 90.0.4430.24
-- Microsoft Edge 91.0.864.37 
-- MSEdgeDriver 91.0.864.37
-- Mozilla Firefox 88.0.1
+- ChromeDriver 91.0.4472.19
+- Microsoft Edge 91.0.864.41 
+- MSEdgeDriver 91.0.864.41
+- Mozilla Firefox 89.0
 - geckodriver 0.29.1
 
 #### Environment variables
 | Name            | Value                                         |
 | --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/90.0.4430.24 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/91.0.4472.19 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
 ### Java
-| Version     | Vendor        | Environment Variable |
-| ----------- | ------------- | -------------------- |
-| 8.0.292+10  | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.11+9   | Adopt OpenJDK | JAVA_HOME_11_X64     |
-| 12.0.2+10.3 | Adopt OpenJDK | JAVA_HOME_12_X64     |
-| 13.0.2+8.1  | Adopt OpenJDK | JAVA_HOME_13_X64     |
-| 14.0.2+12   | Adopt OpenJDK | JAVA_HOME_14_X64     |
+| Version              | Vendor        | Environment Variable |
+| -------------------- | ------------- | -------------------- |
+| 8.0.292+10 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.11+9            | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 12.0.2+10.3          | Adopt OpenJDK | JAVA_HOME_12_X64     |
+| 13.0.2+8.1           | Adopt OpenJDK | JAVA_HOME_13_X64     |
+| 14.0.2+12            | Adopt OpenJDK | JAVA_HOME_14_X64     |
 
 ### Cached Tools
 #### Ruby
@@ -166,8 +167,8 @@
 #### Go
 - 1.13.15
 - 1.14.15
-- 1.15.12
-- 1.16.4
+- 1.15.13
+- 1.16.5
 
 ### Rust Tools
 - Cargo 1.52.0
@@ -202,7 +203,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.9.10.4
+- 8.10.0.1773
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |

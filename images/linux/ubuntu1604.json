@@ -227,7 +227,6 @@
                 "{{template_dir}}/scripts/installers/bazel.sh",
                 "{{template_dir}}/scripts/installers/oras-cli.sh",
                 "{{template_dir}}/scripts/installers/phantomjs.sh",
-                "{{template_dir}}/scripts/installers/php.sh",
                 "{{template_dir}}/scripts/installers/postgresql.sh",
                 "{{template_dir}}/scripts/installers/pulumi.sh",
                 "{{template_dir}}/scripts/installers/ruby.sh",
