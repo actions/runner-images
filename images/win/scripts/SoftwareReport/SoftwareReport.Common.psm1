@@ -140,7 +140,7 @@ function Get-PipVersion {
 
 function Get-CondaVersion {
     $condaVersion = & "$env:CONDA\Scripts\conda.exe" --version
-    return "Mini$condaVersion"
+    return "Mini$condaVersion (pre-installed on the image but not added to PATH)"
 }
 
 function Get-ComposerVersion {

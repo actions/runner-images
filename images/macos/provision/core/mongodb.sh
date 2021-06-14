@@ -8,6 +8,7 @@ source ~/utils/utils.sh
 echo "Installing mongodb..."
 
 brew tap mongodb/brew
-brew_smart_install "mongodb-community"
+brew_smart_install "mongodb-community@4.4"
+ln -sf $(brew --prefix mongodb-community@4.4)/bin/* /usr/local/bin/
 
 invoke_tests "Databases" "Mongo"

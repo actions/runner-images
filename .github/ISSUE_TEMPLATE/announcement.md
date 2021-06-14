@@ -26,7 +26,7 @@ assignees: ''
 - [ ] macOS 10.13
 - [ ] macOS 10.14
 - [ ] macOS 10.15
-- [ ] macOS 11.0
+- [ ] macOS 11
 - [ ] Windows Server 2016 R2
 - [ ] Windows Server 2019
 
