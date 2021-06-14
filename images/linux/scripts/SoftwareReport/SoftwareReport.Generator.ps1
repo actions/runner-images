@@ -35,12 +35,10 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
-$markdown += New-MDList -Style Unordered -Lines (@(
+$runtimesList = @(
         (Get-BashVersion),
         (Get-CPPVersions),
         (Get-FortranVersions),
-        (Get-ClangVersions),
-        (Get-ClangFormatVersions),
         (Get-ErlangVersion),
         (Get-ErlangRebar3Version),
         (Get-MonoVersion),
@@ -52,8 +50,16 @@ $markdown += New-MDList -Style Unordered -Lines (@(
         (Get-RubyVersion),
         (Get-SwiftVersion),
         (Get-JuliaVersion)
-        ) | Sort-Object
-)
+        ) 
+
+if (Test-IsUbuntu20) {
+    $runtimesList += (Get-LLVMInfo)
+} else {
+    $runtimesList += (Get-ClangVersions)
+    $runtimesList += (Get-ClangFormatVersions)
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
 
 $markdown += New-MDHeader "Package Management" -Level 3
 
@@ -179,7 +185,9 @@ if (Test-IsUbuntu20) {
     $markdown += New-MDNewLine
 }
 
-$markdown += Build-PHPSection
+if (-not (Test-IsUbuntu16)) {
+    $markdown += Build-PHPSection
+}
 
 $markdown += New-MDHeader "Haskell" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(

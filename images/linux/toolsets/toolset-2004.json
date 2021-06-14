@@ -107,7 +107,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "5.7.0"
+                "5.9.0"
             ],
             "zip_versions": [
                 "3.1.0",
