@@ -98,7 +98,7 @@ Describe "Toolcache" {
             }
         }
     }
-    Context "PyPy" -Skip:($os.IsBigSur) {
+    Context "PyPy" {
         $pypyDirectory = Join-Path $toolcacheDirectory "PyPy"
         $pypyPackage = $packages | Where-Object { $_.ToolName -eq "pypy" } | Select-Object -First 1
         $testCase = @{ PypyDirectory = $pypyDirectory }

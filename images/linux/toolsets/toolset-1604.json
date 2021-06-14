@@ -72,7 +72,8 @@
         "default": "8",
         "versions": [
             "8", "11", "12"
-        ]
+        ],
+        "maven": "3.8.1"
     },
     "android": {
         "platform_min_version": "23",
@@ -94,6 +95,7 @@
         ],
         "additional_tools": [
             "cmake;3.10.2.4988404",
+            "cmake;3.18.1",
             "patcher;v4",
             "platform-tools",
             "cmdline-tools;latest"
@@ -249,17 +251,6 @@
     "gfortran": {
         "versions": [
             "gfortran-9"
-        ]
-    },
-    "php": {
-        "versions": [
-            "5.6",
-            "7.0",
-            "7.1",
-            "7.2",
-            "7.3",
-            "7.4",
-            "8.0"
         ]
     },
     "rubygems": [],

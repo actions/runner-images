@@ -7,12 +7,14 @@
         "object_id": "{{env `ARM_OBJECT_ID`}}",
         "resource_group": "{{env `ARM_RESOURCE_GROUP`}}",
         "storage_account": "{{env `ARM_STORAGE_ACCOUNT`}}",
+        "build_resource_group_name": "{{env `BUILD_RESOURCE_GROUP_NAME`}}",
         "temp_resource_group_name": "{{env `TEMP_RESOURCE_GROUP_NAME`}}",
         "location": "{{env `ARM_RESOURCE_LOCATION`}}",
         "virtual_network_name": "{{env `VNET_NAME`}}",
         "virtual_network_resource_group_name": "{{env `VNET_RESOURCE_GROUP`}}",
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
+        "allowed_inbound_ip_addresses": "{{env `AGENT_IP`}}",
         "vm_size": "Standard_D8s_v4",
         "run_scan_antivirus": "false",
         "root_folder": "C:",
@@ -46,6 +48,7 @@
             "vm_size": "{{user `vm_size`}}",
             "resource_group_name": "{{user `resource_group`}}",
             "storage_account": "{{user `storage_account`}}",
+            "build_resource_group_name": "{{user `build_resource_group_name`}}",
             "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
             "capture_container_name": "images",
             "capture_name_prefix": "{{user `capture_name_prefix`}}",
@@ -53,6 +56,7 @@
             "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",
             "virtual_network_subnet_name": "{{user `virtual_network_subnet_name`}}",
             "private_virtual_network_with_public_ip": "{{user `private_virtual_network_with_public_ip`}}",
+            "allowed_inbound_ip_addresses": "{{user `allowed_inbound_ip_addresses`}}",
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
@@ -205,7 +209,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzCopy.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-AzureDevSpacesCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Bazel.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-7zip.ps1",
@@ -250,7 +253,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-Selenium.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Apache.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Swig.ps1"
             ]
         },
         {
@@ -296,6 +300,9 @@
         },
         {
             "type": "powershell",
+            "environment_vars": [
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
             "elevated_user": "SYSTEM",
             "elevated_password": "",
             "scripts": [

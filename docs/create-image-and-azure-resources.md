@@ -11,8 +11,8 @@ After successful image generation, a snapshot of the temporary VM will be conver
 - `OS` - Windows/Linux
 - `packer` - Can be downloaded from https://www.packer.io/downloads
 - `PowerShell 5.0 or higher` or `PSCore` for linux distributes.
-- `Azure CLI ` - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest
-- `Azure Powershell module` - https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-4.6.1
+- `Azure CLI ` - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
+- `Azure Az Powershell module` - https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
 - `Git for Windows` - https://gitforwindows.org/
 
 ### Azure DevOps self-hosted pool requirements
@@ -31,6 +31,11 @@ Local machine or [Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machi
 Download `packer` from https://www.packer.io/downloads, or install it via Chocolately.
 ```
 choco install packer
+```
+
+Install the Azure Az PowerShell module - https://docs.microsoft.com/en-us/powershell/azure/install-az-ps.
+```
+Install-Module -Name Az -Repository PSGallery -Force
 ```
 
 Install Azure CLI - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest&tabs=azure-cli.
@@ -124,9 +129,14 @@ Generated tool versions and details can be found in related projects:
 - [Node](https://github.com/actions/node-versions)
 
 ### Post-generation scripts
+
+> :warning: These scripts are intended to run on a VM deployed in Azure
+
 The user, created during the image generation, does not exist in the result VHD hence some configuration files related to the user's home directory need to be changed as well as the file permissions for some directories. Scripts for that are located in the `post-generation` folder in the repository:
 - Windows: https://github.com/actions/virtual-environments/tree/main/images/win/post-generation
 - Linux: https://github.com/actions/virtual-environments/tree/main/images/linux/post-generation
+
+**Note:** The default user for Linux should have `sudo privileges`.
 
 The scripts are copied to the VHD during the image generation process to the following paths:
 - Windows: `C:\post-generation`
@@ -136,7 +146,7 @@ The scripts are copied to the VHD during the image generation process to the fol
 
 ##### Ubuntu
 
-        find /opt/post-generation -mindepth 1 -maxdepth 1 -type f -name '*.sh' -exec bash {} \;
+        sudo su -c "find /opt/post-generation -mindepth 1 -maxdepth 1 -type f -name '*.sh' -exec bash {} \;"
 
 ##### Windows
 

@@ -25,9 +25,7 @@ Describe "AWS" {
     It "Session Manager Plugin for the AWS CLI" {
         session-manager-plugin | Out-String | Should -Match "plugin was installed successfully"
     }
-}
 
-Describe "AWS SAM CLI" {
     It "AWS SAM CLI" {
         "sam --version" | Should -ReturnZeroExitCode
     }

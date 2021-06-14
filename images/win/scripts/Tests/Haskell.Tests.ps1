@@ -12,8 +12,8 @@ Describe "Haskell" {
         $ghcVersion = $_
         $ghcShortVersion = ([version]$ghcVersion).ToString(3)
         $binGhcPath = Join-Path $chocoPackagesPath "ghc.$ghcVersion\tools\ghc-$ghcShortVersion\bin\ghc.exe"
-        # Starting from version 9 haskell installation directory is $env:ChocolateyToolsLocation instead of $env:ChocolateyInstall\lib
-        if ($ghcVersion -notmatch "^[0-8]\.\d+.*")
+        # The most recent GHC versions installation directory is $env:ChocolateyToolsLocation instead of $env:ChocolateyInstall\lib
+        if (-not (Test-Path $binGhcPath))
         {
             $binGhcPath = Join-Path $env:ChocolateyToolsLocation "ghc-$ghcShortVersion\bin\ghc.exe"
         }

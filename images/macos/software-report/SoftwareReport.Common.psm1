@@ -80,7 +80,7 @@ function Get-VcpkgVersion {
 }
 
 function Get-GccVersion {
-    $versionList = @("8", "9", "10")
+    $versionList = Get-ToolsetValue -KeyPath gcc.versions
     $versionList | Foreach-Object {
         $version = Run-Command "gcc-${_} --version" | Select-Object -First 1
         "$version - available by ``gcc-${_}`` alias"
@@ -88,10 +88,10 @@ function Get-GccVersion {
 }
 
 function Get-FortranVersion {
-    $versionList = @("8", "9", "10")
+    $versionList = Get-ToolsetValue -KeyPath gcc.versions
     $versionList | Foreach-Object {
         $version = Run-Command "gfortran-${_} --version" | Select-Object -First 1
-        "$version  - available by ``gfortran-${_}`` alias"
+        "$version - available by ``gfortran-${_}`` alias"
     }
 }
 
@@ -462,6 +462,16 @@ function Get-CabalVersion {
     return "Cabal $cabalVersion"
 }
 
+function Get-SwitchAudioOsxVersion {
+    $switchAudioVersion = Get-BrewPackageVersion -CommandName "SwitchAudioSource"
+    return "Switchaudio-osx $switchAudioVersion"
+}
+
+function Get-SoxVersion {
+    $soxVersion = Get-BrewPackageVersion -CommandName "sox"
+    return "Sox $soxVersion"
+}
+
 function Get-StackVersion {
     $stackVersion = Run-Command "stack --version" | Take-Part -Part 1 | ForEach-Object {$_.replace(",","")}
     return "Stack $stackVersion"
@@ -485,6 +495,11 @@ function Get-SwiftLintVersion {
 function Get-PowershellVersion {
     $powershellVersion = Run-Command "powershell --version"
     return $powershellVersion
+}
+
+function Get-SwigVersion {
+    $swigVersion = Run-Command "swig -version" | Select-Object -First 2 | Take-Part -Part 2
+    return "Swig $swigVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {

@@ -1,5 +1,5 @@
 function Get-JavaVersions {
-    $defaultJavaPath = Get-Item env:JAVA_HOME
+    $defaultJavaPath = (Get-Item env:JAVA_HOME).value
     $javaVersions = Get-Item env:JAVA_HOME_*_X64
     $sortRules = @{
         Expression = { [Int32]$_.Name.Split("_")[2] }  
