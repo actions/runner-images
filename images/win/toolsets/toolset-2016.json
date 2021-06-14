@@ -121,7 +121,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "5.7.0"
+                "5.9.0"
             ],
             "zip_versions": [
                 "1.0.0",
@@ -164,6 +164,7 @@
         ],
         "additional_tools": [
             "cmake;3.10.2.4988404",
+            "cmake;3.18.1",
             "patcher;v4",
             "cmdline-tools;latest"
         ],
@@ -171,6 +172,79 @@
             "lts": "21",
             "latest": "22"
         }
+    },
+    "MsysPackages": {
+        "msys2": [
+            "base-devel",
+            "compression"
+        ],
+        "mingw": [
+            {
+                "arch": "mingw-w64-x86_64",
+                "runtime_packages": [
+                    {
+                        "name": "clang",
+                        "executables": [
+                            "clang",
+                            "g++",
+                            "gcc"
+                        ]
+                    },
+                    {
+                        "name": "cmake",
+                        "executables": [
+                            "cmake",
+                            "cpack",
+                            "ctest"
+                        ]
+                    },
+                    {
+                        "name": "ragel",
+                        "executables": [
+                            "ragel"
+                        ]
+                    }
+                ],
+                "additional_packages": [
+                    "clang-tools-extra",
+                    "libxml2",
+                    "llvm",
+                    "toolchain"
+                ]
+            },
+            {
+                "arch": "mingw-w64-i686",
+                "runtime_packages": [
+                    {
+                        "name": "clang",
+                        "executables": [
+                            "clang",
+                            "g++",
+                            "gcc"
+                        ]
+                    },
+                    {
+                        "name": "cmake",
+                        "executables": [
+                            "cmake",
+                            "cpack",
+                            "ctest"
+                        ]
+                    },
+                    {
+                        "name": "ragel",
+                        "executables": [
+                            "ragel"
+                        ]
+                    }
+                ],
+                "additional_packages": [
+                    "libxml2",
+                    "llvm",
+                    "toolchain"
+                ]
+            }
+        ]
     },
     "visualStudio": {
         "version" : "2017",

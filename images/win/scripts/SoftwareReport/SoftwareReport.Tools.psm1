@@ -253,13 +253,14 @@ function Get-VisualCPPComponents {
     }
 }
 
-function Get-AZDSVersion {
-    $azdsVersion = $(azds --version) | Select-String "(\d+\.\d+\.\d+.\d+)"
-    return "Azure Dev Spaces CLI $azdsVersion"
-}
-
 function Get-DacFxVersion {
     cd "C:\Program Files\Microsoft SQL Server\150\DAC\bin\"
     $dacfxversion = (./sqlpackage.exe /version)
     return "DacFx $dacfxversion"
+}
+
+function Get-SwigVersion {
+    (swig -version | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $swigVersion = $Matches.Version
+    return "Swig $swigVersion"
 }

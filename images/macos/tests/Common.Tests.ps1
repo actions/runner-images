@@ -10,7 +10,7 @@ Describe ".NET" {
 }
 
 Describe "GCC" -Skip:($os.IsHighSierra) {
-    $testCases = @("8", "9", "10") | ForEach-Object { @{Version = $_} }
+    $testCases = Get-ToolsetValue -KeyPath gcc.versions | ForEach-Object { @{Version = $_} }
 
     It "GCC <Version>" -TestCases $testCases {
         param (
@@ -84,5 +84,11 @@ Describe "VSMac" {
         $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
         $vsPath | Should -Exist
         $vstoolPath | Should -Exist
+    }
+}
+
+Describe "Swig" {
+    It "Swig" {
+        "swig -version" | Should -ReturnZeroExitCode
     }
 }

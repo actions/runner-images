@@ -4,30 +4,12 @@ source ~/utils/utils.sh
 echo Updating RubyGems...
 gem update --system
 
-echo Installing xcode-install utility...
-gem install xcode-install --force
-
-echo Installing CocoaPods...
-gem install cocoapods
-
-if is_Less_BigSur; then
-    # fix nomad-cli installation
-    if is_HighSierra; then
-        brew_smart_install "libxml2"
-        gem install nokogiri -v 1.6.8.1 -- --use-system-libraries --with-xml2-include=$(brew --prefix libxml2)/include/libxml2
-    fi
-
-    echo Installing nomad-cli...
-    gem install nomad-cli
+gemsToInstall=$(get_toolset_value ".rubygems[]")
+if [ -n "$gemsToInstall" ]; then
+    for gem in $gemsToInstall; do
+        echo "Installing gem $gem"
+        gem install $gem
+    done
 fi
-
-echo Installing xcpretty...
-gem install xcpretty
-
-echo Installing bundler...
-gem install bundler --force
-
-echo Installing fastlane tools...
-gem install fastlane
 
 invoke_tests "RubyGem"

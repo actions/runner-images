@@ -212,6 +212,7 @@
         ],
         "additional-tools": [
             "cmake;3.10.2.4988404",
+            "cmake;3.18.1",
             "cmdline-tools;latest"
         ],
         "ndk": {
@@ -223,7 +224,7 @@
         {
             "name": "Az",
             "versions": [
-                "5.7.0"
+                "5.9.0"
             ]
         },
         {"name": "MarkdownPS"},
@@ -252,6 +253,7 @@
             "perl",
             "subversion",
             "swiftformat",
+            "swig",
             "xctool",
             "zstd"
         ],
@@ -260,6 +262,13 @@
             "r",
             "vagrant",
             "virtualbox"
+        ]
+    },
+    "gcc": {
+        "versions": [
+            "9",
+            "10",
+            "11"
         ]
     },
     "toolcache": [
@@ -331,5 +340,13 @@
         "versions": [
             "2.1"
         ]
-    }
+    },
+    "rubygems": [
+        "xcode-install",
+        "cocoapods",
+        "nomad-cli",
+        "xcpretty",
+        "bundler",
+        "fastlane"
+    ]
 }
