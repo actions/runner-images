@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2019 Datacenter
-- OS Version: 10.0.17763 Build 1935
-- Image Version: 20210531.1
+- OS Version: 10.0.17763 Build 1999
+- Image Version: 20210608.0
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -8,25 +8,25 @@
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
-- Go 1.15.12
+- Go 1.15.13
 - Julia 1.6.1
 - Node 14.17.0
 - Perl 5.32.1
-- PHP 8.0.6
+- PHP 8.0.7
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
 - Chocolatey 0.10.15
-- Composer 2.0.14
+- Composer 2.1.2
 - Helm 3.6.0
-- Miniconda 4.9.2
+- Miniconda 4.9.2 (pre-installed on the image but not added to PATH)
 - NPM 6.14.13
 - NuGet 5.9.1.11
 - pip 21.1.2 (python 3.7)
 - Pipx 0.16.3
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<7bc5b8c>)
+- Vcpkg  (build from master \<38d2893>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -39,7 +39,7 @@
 - Ant 1.10.10
 - Gradle 7.0
 - Maven 3.8.1
-- sbt 1.5.2
+- sbt 1.5.3
 
 ### Tools
 - 7zip 19.00
@@ -52,10 +52,10 @@
 - Docker 20.10.5
 - Docker-compose 1.29.1
 - ghc 9.0.1
-- Git 2.31.1
+- Git 2.32.0
 - Git LFS 2.13.3
-- Google Cloud SDK 342.0.0
-- InnoSetup 6.1.2
+- Google Cloud SDK 344.0.0
+- InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.21.1
@@ -65,31 +65,32 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.2
-- Pulumi v3.3.1
+- Pulumi v3.4.0
 - R 4.1.0
 - Stack 2.7.1
 - Subversion (SVN) 1.14.1
+- Swig 4.0.2
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
 - yamllint 1.26.1
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.77
-- AWS CLI 2.2.7
-- AWS SAM CLI 1.23.0
+- Alibaba Cloud CLI 3.0.79
+- AWS CLI 2.2.9
+- AWS SAM CLI 1.24.1
 - AWS Session Manager CLI 1.2.54.0
-- Azure CLI 2.24.0
+- Azure CLI 2.24.2
 - Azure DevOps CLI extension 0.18.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 1.10.3
+- GitHub CLI 1.11.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
 - Cargo 1.52.0
 - Rust 1.52.1
 - Rustdoc 1.52.1
-- Rustup 1.24.2
+- Rustup 1.24.3
 
 #### Packages
 - bindgen 0.58.1
@@ -102,9 +103,9 @@
 ### Browsers and webdrivers
 - Google Chrome 91.0.4472.77
 - Chrome Driver 91.0.4472.19
-- Microsoft Edge 91.0.864.37
-- Microsoft Edge Driver 91.0.864.37
-- Mozilla Firefox 88.0.1
+- Microsoft Edge 91.0.864.41
+- Microsoft Edge Driver 91.0.864.41
+- Mozilla Firefox 89.0
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
 
@@ -145,8 +146,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ | -------------------- |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
-| 1.15.12 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.4  | x64          | GOROOT_1_16_X64      |
+| 1.15.13 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.5  | x64          | GOROOT_1_16_X64      |
 
 
 #### Node
@@ -224,13 +225,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.10.31321.278 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Visual Studio Enterprise 2019 | 16.10.31402.337 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.10.31320.204 |
+| Component.Android.NDK.R16B                                                | 16.10.31401.40  |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -285,9 +286,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 16.3.29207.166  |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 16.0.28516.191  |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 16.10.31303.231 |
-| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.10.31320.204 |
-| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.10.31320.204 |
-| Microsoft.NetCore.Component.SDK                                           | 16.10.31320.204 |
+| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.10.31401.124 |
+| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.10.31401.124 |
+| Microsoft.NetCore.Component.SDK                                           | 16.10.31401.124 |
 | Microsoft.NetCore.Component.Web                                           | 16.10.31303.231 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 16.5.29515.121  |
 | Microsoft.VisualStudio.Component.AspNet45                                 | 16.10.31205.252 |
@@ -450,7 +451,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ms-biztalk.BizTalk                                                        | 3.13.2.0        |
 | ProBITools.MicrosoftAnalysisServicesModelingProjects                      | 2.9.17          |
 | ProBITools.MicrosoftReportProjectsforVisualStudio                         | 2.6.11          |
-| SSIS.SqlServerIntegrationServicesProjects                                 | 3.13.1          |
+| SSIS.SqlServerIntegrationServicesProjects                                 | 3.14            |
 | VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.0           |
 | Windows Driver Kit                                                        | 10.0.19030.0    |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.19041.685  |
@@ -478,20 +479,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203 5.0.300
+- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.116 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203 5.0.204 5.0.300 5.0.301
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
 - 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6
+- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7
 
 ### .NET Framework
 `Type: Developer Pack`
