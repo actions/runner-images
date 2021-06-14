@@ -12,7 +12,7 @@ function InstallClang {
     local version=$1
 
     echo "Installing clang-$version..."
-    if [[ $version =~ 9 ]] && isUbuntu16; then
+    if [[ $version =~ 9 ]] && isUbuntu16 || [[ $version =~ 12 ]]; then
         ./llvm.sh $version
         apt-get install -y "clang-format-$version"
     else

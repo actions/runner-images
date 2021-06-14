@@ -49,4 +49,8 @@ ln -s "/opt/ghc/$defaultGHCVersion/bin/ghc" "/usr/bin/ghc"
 # Install the latest stable release of haskell stack
 curl -sSL https://get.haskellstack.org/ | sh
 
+# remove PPA repo
+echo "ghc ppa:hvr/ghc" >> $HELPER_SCRIPTS/apt-sources.txt
+add-apt-repository --remove ppa:hvr/ghc
+
 invoke_tests "Haskell"

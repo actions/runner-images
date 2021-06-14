@@ -21,3 +21,9 @@ Describe "Nginx" {
         "sudo systemctl stop nginx" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Meteor" {
+    It "Meteor CLI" {
+        "meteor --allow-superuser --version"  | Should -ReturnZeroExitCode
+    }
+}

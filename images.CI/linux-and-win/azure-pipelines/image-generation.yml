@@ -51,7 +51,7 @@ jobs:
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
 
   - task: PowerShell@2
-    displayName: 'Build VM'
+    displayName: 'Build VM $(Build.BuildId)'
     inputs:
       targetType: filePath
       azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
@@ -101,6 +101,23 @@ jobs:
   #                       -Project $(RELEASE_TARGET_PROJECT) `
   #                       -ImageName ${{ parameters.image_type }} `
   #                       -AccessToken $(RELEASE_TARGET_TOKEN)
+
+  - task: AzureCLI@2
+    displayName: Log final image name
+    inputs: 
+      azureSubscription: azr-lsg-gss-global(0fc6d504-3fba-461e-934e-25744d5c7f6c)
+      scriptType: ps
+      scriptLocation: inlineScript
+      addSpnToEnvironment: true
+      inlineScript: |
+        $BLOB_STORAGE_ACCOUNT_KEY = $(az storage account keys list -g gss-build-agent-images -n gssbuildagentimages --query "[0].value" --output tsv)
+        $JOB_ID = $(Build.BuildId)
+        $BLOBS_IN_STORAGE = $(az storage blob list --container-name system --account-name gssbuildagentimages --account-key $BLOB_STORAGE_ACCOUNT_KEY)
+        $STRING_ARRAY = $BLOBS_IN_STORAGE -split "Images/images/"
+        $BLOB_FROM_THIS_JOB_WHOLE_LINE = $STRING_ARRAY -Match "$JOB_ID-osDisk"
+        $BLOB_FROM_THIS_JOB = ($BLOB_FROM_THIS_JOB_WHOLE_LINE -split '"')[0]
+        echo "Blob from this job:"
+        echo "https://gssbuildagentimages.blob.core.windows.net/system/Microsoft.Compute/Images/images/$BLOB_FROM_THIS_JOB"
 
   - task: PowerShell@2
     displayName: 'Clean up resources'
