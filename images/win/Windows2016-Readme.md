@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2016 Datacenter
-- OS Version: 10.0.14393 Build 4402
-- Image Version: 20210609.1
+- OS Version: 10.0.14393 Build 4467
+- Image Version: 20210614.1
 
 ## Installed Software
 ### Language and Runtime
@@ -23,7 +23,7 @@
 - pip 21.1.2 (python 3.7)
 - Pipx 0.16.3
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<38d2893>)
+- Vcpkg  (build from master \<92b42c4>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -74,9 +74,9 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.79
-- AWS CLI 2.2.10
+- AWS CLI 2.2.11
 - AWS SAM CLI 1.24.1
-- AWS Session Manager CLI 1.2.54.0
+- AWS Session Manager CLI 1.2.205.0
 - Azure CLI 2.24.2
 - Azure DevOps CLI extension 0.18.0
 - Cloud Foundry CLI 6.53.0
@@ -99,9 +99,9 @@
 
 ### Browsers and webdrivers
 - Google Chrome 91.0.4472.101
-- Chrome Driver 91.0.4472.19
-- Microsoft Edge 91.0.864.41
-- Microsoft Edge Driver 91.0.864.41
+- Chrome Driver 91.0.4472.101
+- Microsoft Edge 91.0.864.48
+- Microsoft Edge Driver 91.0.864.48
 - Mozilla Firefox 89.0
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
@@ -127,7 +127,7 @@
 | msys2bash.cmd | C:\msys64\usr\bin\bash.exe        |
 
 ### MSYS2
-- Pacman 5.2.2
+- Pacman 6.0.0
 ##### Notes:
 ```
 Location: C:\msys64
@@ -514,7 +514,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                              | Path                           |
 | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.7.0 | C:\Modules\az_\<version\>      |
+| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.9.0 | C:\Modules\az_\<version\>      |
 | Azure   | 3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>2.1.0 [Installed]<br>5.3.0                                                                                    | C:\Modules\azure_\<version\>   |
 | AzureRM | 3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>6.7.0.zip<br>2.1.0 [Installed]<br>6.13.1                                                                      | C:\Modules\azurerm_\<version\> |
 ```
