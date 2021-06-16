@@ -1,23 +1,64 @@
-BeforeAll {
-    $msys2BinDir = "C:\msys64\usr\bin"
-    $msys2mingwDir = "C:\msys64\mingw64\bin"
-}
+$toolsetContent = (Get-ToolsetContent).MsysPackages
+$archs = $toolsetContent.mingw.arch
 
-Describe "MSYS2" {
-    It "<ToolName>" -TestCases @(
+Describe "MSYS2 packages" {
+    BeforeAll {
+        $msys2Dir = "C:\msys64\usr\bin"
+    }
+
+    It "msys2Dir exists" {
+        $msys2Dir | Should -Exist
+    }
+    
+    $TestCases = @(
         @{ ToolName = "bash.exe" }
         @{ ToolName = "tar.exe" }
         @{ ToolName = "make.exe" }
-    ) {
-        Join-Path $msys2BinDir $ToolName | Should -Exist
+    )
+
+    It "<ToolName> is installed in <msys2Dir>" -TestCases $TestCases {
+        $env:PATH = "$msys2Dir;$env:PATH"
+        (get-command "$ToolName").Source | Should -BeLike "$msys2Dir*"
     }
 
-    It "<ToolName>" -TestCases @(
-        @{ ToolName = "gcc.exe" }
-        @{ ToolName = "cmake.exe" }
-        @{ ToolName = "g++.exe" }
-        @{ ToolName = "clang-tidy.exe" }
-    ) {
-        Join-Path $msys2mingwDir $ToolName | Should -Exist
+    It "<ToolName> is avaialable" -TestCases $TestCases {
+        "$ToolName" | Should -ReturnZeroExitCodeWithParam
+    }
+}
+
+foreach ($arch in $archs) {
+    Describe "$arch arch packages" {
+        $archPackages = $toolsetContent.mingw | Where-Object { $_.arch -eq $arch }
+        $tools = $archPackages.runtime_packages.name
+
+        foreach ($tool in $tools) {
+            Context "$tool package"{
+                if ($arch -eq "mingw-w64-i686")
+                {
+                    $ExecDir = "C:\msys64\mingw32\bin"
+                }
+                else
+                {
+                    $ExecDir = "C:\msys64\mingw64\bin"
+                }
+
+                $executables = ($archPackages.runtime_packages | Where-Object { $_.name -eq $tool }).executables | ForEach-Object {
+                    @{
+                        ExecName = $_
+                        ExecDir = $ExecDir
+                    }
+                }
+
+                It "<ExecName> is installed in <ExecDir>" -TestCases $executables {
+                    $env:PATH = "$ExecDir;$env:PATH"
+                    (get-command "$ExecName").Source | Should -BeLike "$ExecDir*"
+                }
+
+                It "<ExecName> is available" -TestCases $executables {
+                    $env:PATH = "$ExecDir;$env:PATH"
+                    "$ExecName" | Should -ReturnZeroExitCodeWithParam
+                }
+            }
+        }
     }
 }
