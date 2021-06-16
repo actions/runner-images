@@ -258,7 +258,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Apache.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Swig.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Swig.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Bicep.ps1"
             ]
         },
         {

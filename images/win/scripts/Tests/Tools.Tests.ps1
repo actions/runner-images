@@ -35,6 +35,12 @@ Describe "Bazel" {
     }
 }
 
+Describe "Bicep" {
+    It "Bicep" {
+        "bicep --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "CMake" {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
