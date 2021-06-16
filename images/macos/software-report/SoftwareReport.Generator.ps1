@@ -145,6 +145,13 @@ if ($os.IsLessThanBigSur) {
     )
 }
 
+if (-not $os.IsHighSierra) {
+    $utilitiesList += @(
+        (Get-SwitchAudioOsxVersion),
+        (Get-SoxVersion)
+    )
+}
+
 $markdown += New-MDList -Style Unordered -Lines ($utilitiesList | Sort-Object)
 $markdown += New-MDNewLine
 
@@ -159,7 +166,8 @@ $toolsList = @(
     (Get-AWSSAMCLIVersion),
     (Get-AWSSessionManagerCLIVersion),
     (Get-AliyunCLIVersion),
-    (Get-XcodeCommandLineToolsVersion)
+    (Get-XcodeCommandLineToolsVersion),
+    (Get-SwigVersion)
 )
 
 if( -not $os.IsHighSierra) {

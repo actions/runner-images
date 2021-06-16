@@ -224,7 +224,7 @@
         {
             "name": "Az",
             "versions": [
-                "5.7.0"
+                "5.9.0"
             ]
         },
         {"name": "MarkdownPS"},
@@ -253,6 +253,7 @@
             "perl",
             "subversion",
             "swiftformat",
+            "swig",
             "xctool",
             "zstd"
         ],
