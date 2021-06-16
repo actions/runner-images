@@ -67,15 +67,6 @@ function Install-PyPy
             exit 1
         }
 
-        # https://github.com/actions/setup-python/blob/master/src/find-python.ts
-        # https://github.com/microsoft/azure-pipelines-tasks/blob/master/Tasks/UsePythonVersionV0/usepythonversion.ts
-        #  // For PyPy, Windows uses 'bin', not 'Scripts'.
-        # const _binDir = path.join(installDir, 'bin');
-        # PyPy v7.3.1 or higher creates only Scripts folder therefore to preserve back compatibility with UsePythonVersionV0 task
-        # We should create a Scripts -> bin symlink
-        Write-Host "Symbolic link created for '$pypyArchPath\Scripts' <<===>> '$pypyArchPath\bin'"
-        New-Item -Path "$pypyArchPath\bin" -ItemType SymbolicLink -Value "$pypyArchPath\Scripts" | Out-Null
-
         Write-Host "Create complete file"
         New-Item -ItemType File -Path $pypyVersionPath -Name "$architecture.complete" | Out-Null
     }
@@ -98,7 +89,9 @@ foreach($pypyTool in $pypyTools)
     foreach($pypyVersion in $pypyTool.versions)
     {
         # Query latest PyPy version
-        $filter = '{0}{1}-v\d+\.\d+\.\d+-{2}.zip' -f $pypyTool.name, $pypyVersion, $pypyTool.platform
+        # PyPy 3.6 is not updated anymore and win32 should be used
+        $platform = if ($pypyVersion -like "3.6*") { "win32" } else { $pypyTool.platform }
+        $filter = '{0}{1}-v\d+\.\d+\.\d+-{2}.zip' -f $pypyTool.name, $pypyVersion, $platform
         $latestMajorPyPyVersion = $pypyVersions | Where-Object {$_.name -match $filter} | Select-Object -First 1
 
         if ($latestMajorPyPyVersion)

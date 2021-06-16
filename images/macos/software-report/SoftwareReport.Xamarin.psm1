@@ -1,7 +1,4 @@
-$sortRulesByVersion = @{
-    Expression = { [System.Version]::Parse($_) }
-    Descending = $true
-}
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 function Get-VSMacVersion {
     $plistPath = "/Applications/Visual Studio.app/Contents/Info.plist"
@@ -13,66 +10,22 @@ function Get-NUnitVersion {
     return "NUnit ${version}"
 }
 
-function Build-MonoList {
-    $monoVersionsPath = "/Library/Frameworks/Mono.framework/Versions"
-    $monoFolders = Get-ChildItemWithoutSymlinks $monoVersionsPath
+function Build-XamarinTable {
+    $xamarinBundles = Get-ToolsetValue "xamarin.bundles"
+    $defaultSymlink = Get-ToolsetValue "xamarin.bundle-default"
+    if ($defaultSymlink -eq "latest") {
+        $defaultSymlink = $xamarinBundles[0].symlink
+    }
 
-    $monoVersionList = $monoFolders | ForEach-Object {
-        $versionFilePath = Join-Path $_.FullName "Version"
-        if (Test-Path $versionFilePath) {
-            return Get-Content -Raw $versionFilePath
+    return $xamarinBundles | ForEach-Object {
+        $defaultPostfix = ($_.symlink -eq $defaultSymlink ) ? " (default)" : ""
+        [PSCustomObject] @{
+            "symlink" = $_.symlink + $defaultPostfix 
+            "Xamarin.Mono" = $_.mono
+            "Xamarin.iOS" = $_.ios
+            "Xamarin.Mac" = $_.mac
+            "Xamarin.Android" = $_.android
         }
-
-        return $_.Name
-    } | ForEach-Object { $_.Trim() }
-
-    return $monoVersionList | Sort-Object -Property $sortRulesByVersion
+    }
 }
 
-function Build-XamarinIOSList {
-    $sdkVersionsPath = "/Library/Frameworks/Xamarin.iOS.framework/Versions"
-    $sdkFolders = Get-ChildItemWithoutSymlinks $sdkVersionsPath
-
-    $sdkVersionList = $sdkFolders | ForEach-Object {
-        $versionFilePath = Join-Path $_.FullName "Version"
-        if (Test-Path $versionFilePath) {
-            return Get-Content -Raw $versionFilePath
-        }
-
-        return $_.Name
-    } | ForEach-Object { $_.Trim() }
-
-    return $sdkVersionList | Sort-Object -Property $sortRulesByVersion
-}
-
-function Build-XamarinMacList {
-    $sdkVersionsPath = "/Library/Frameworks/Xamarin.Mac.framework/Versions"
-    $sdkFolders = Get-ChildItemWithoutSymlinks $sdkVersionsPath
-
-    $sdkVersionList = $sdkFolders | ForEach-Object {
-        $versionFilePath = Join-Path $_.FullName "Version"
-        if (Test-Path $versionFilePath) {
-            return Get-Content -Raw $versionFilePath
-        }
-
-        return $_.Name
-    } | ForEach-Object { $_.Trim() }
-
-    return $sdkVersionList | Sort-Object -Property $sortRulesByVersion
-}
-
-function Build-XamarinAndroidList {
-    $sdkVersionsPath = "/Library/Frameworks/Xamarin.Android.framework/Versions"
-    $sdkFolders = Get-ChildItemWithoutSymlinks $sdkVersionsPath
-
-    $sdkVersionList = $sdkFolders | ForEach-Object {
-        $versionFilePath = Join-Path $_.FullName "Version"
-        if (Test-Path $versionFilePath) {
-            return Get-Content -Raw $versionFilePath
-        }
-
-        return $_.Name
-    } | ForEach-Object { $_.Trim() }
-
-    return $sdkVersionList | Sort-Object -Property $sortRulesByVersion
-}

@@ -32,6 +32,7 @@ $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 $languageAndRuntimeList = @(
     (Get-BashVersion),
+    (Get-MSBuildVersion),
     (Get-NodeVersion),
     (Get-NVMVersion),
     (Get-NVMNodeVersionList),
@@ -59,7 +60,9 @@ if ($os.IsLessThanBigSur) {
     )
 }
 
-$markdown += New-MDList -Style Unordered -Lines ($languageAndRuntimeList | Sort-Object)
+# To sort GCC and Gfortran correctly, we need to use natural sort https://gist.github.com/markwragg/e2a9dc05f3464103d6998298fb575d4e#file-sort-natural-ps1
+$toNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
+$markdown += New-MDList -Style Unordered -Lines ($languageAndRuntimeList | Sort-Object $toNatural)
 
 # Package Management
 $markdown += New-MDHeader "Package Management" -Level 3
@@ -142,6 +145,13 @@ if ($os.IsLessThanBigSur) {
     )
 }
 
+if (-not $os.IsHighSierra) {
+    $utilitiesList += @(
+        (Get-SwitchAudioOsxVersion),
+        (Get-SoxVersion)
+    )
+}
+
 $markdown += New-MDList -Style Unordered -Lines ($utilitiesList | Sort-Object)
 $markdown += New-MDNewLine
 
@@ -156,7 +166,8 @@ $toolsList = @(
     (Get-AWSSAMCLIVersion),
     (Get-AWSSessionManagerCLIVersion),
     (Get-AliyunCLIVersion),
-    (Get-XcodeCommandLineToolsVersion)
+    (Get-XcodeCommandLineToolsVersion),
+    (Get-SwigVersion)
 )
 
 if( -not $os.IsHighSierra) {
@@ -164,7 +175,8 @@ if( -not $os.IsHighSierra) {
         (Get-GHCupVersion),
         (Get-GHCVersion),
         (Get-CabalVersion),
-        (Get-StackVersion)
+        (Get-StackVersion),
+        (Get-SwiftFormatVersion)
     )
 }
 
@@ -236,17 +248,9 @@ $markdown += New-MDHeader "Xamarin" -Level 3
 $markdown += New-MDHeader "Visual Studio for Mac" -Level 4
 $markdown += New-MDList -Lines @(Get-VSMacVersion) -Style Unordered
 
-$markdown += New-MDHeader "Mono" -Level 4
-$markdown += New-MDList -Lines (Build-MonoList) -Style Unordered
-
-$markdown += New-MDHeader "Xamarin.iOS" -Level 4
-$markdown += New-MDList -Lines (Build-XamarinIOSList) -Style Unordered
-
-$markdown += New-MDHeader "Xamarin.Mac" -Level 4
-$markdown += New-MDList -Lines (Build-XamarinMacList) -Style Unordered
-
-$markdown += New-MDHeader "Xamarin.Android" -Level 4
-$markdown += New-MDList -Lines (Build-XamarinAndroidList) -Style Unordered
+$markdown += New-MDHeader "Xamarin bundles" -Level 4
+$markdown += Build-XamarinTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Unit Test Framework" -Level 4
 $markdown += New-MDList -Lines @(Get-NUnitVersion) -Style Unordered

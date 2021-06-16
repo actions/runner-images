@@ -19,6 +19,24 @@ function Get-GeckodriverVersion {
 }
 
 function Get-ChromiumVersion {
-    $chromiumVersion = chromium --version | Take-OutputPart -Part 0,1
+    $chromiumVersion = chromium-browser --version | Take-OutputPart -Part 0,1
     return $chromiumVersion
+}
+
+function Build-BrowserWebdriversEnvironmentTable {
+    return @(
+        @{
+            "Name" = "CHROMEWEBDRIVER"
+            "Value" = $env:CHROMEWEBDRIVER
+        },
+        @{
+            "Name" = "GECKOWEBDRIVER"
+            "Value" = $env:GECKOWEBDRIVER
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
 }

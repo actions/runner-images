@@ -12,7 +12,7 @@ function Choco-Install {
         while($true)
         {
             Write-Host "Running [#$count]: choco install $packageName -y $argumentList"
-            choco install $packageName -y @argumentList
+            choco install $packageName -y @argumentList --no-progress
 
             $pkg = choco list --localonly $packageName --exact --all --limitoutput
             if ($pkg) {

@@ -58,8 +58,9 @@ function InstallPyPy
     echo "PYPY_FULL_VERSION is $PYPY_FULL_VERSION"
     echo $PYPY_FULL_VERSION > "PYPY_VERSION"
 
-    ln -s $PYPY_MAJOR $PYTHON_MAJOR
-    ln -s $PYTHON_MAJOR python
+    # Starting from PyPy 7.3.4 these links are already included in the package
+    [ -f ./$PYTHON_MAJOR ] || ln -s $PYPY_MAJOR $PYTHON_MAJOR
+    [ -f ./python ] || ln -s $PYTHON_MAJOR python
 
     chmod +x ./python ./$PYTHON_MAJOR
 
