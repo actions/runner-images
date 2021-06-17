@@ -76,6 +76,11 @@ function Get-XcodePlatformOrder {
     }
 }
 
+function Get-XcodeCommandLineToolsVersion {
+    $xcodeCommandLineToolsVersion = Run-Command "pkgutil --pkg-info com.apple.pkg.CLTools_Executables" | Select -Index 1 | Take-Part -Part 1
+    return "Xcode Command Line Tools $xcodeCommandLineToolsVersion"
+}
+
 function Build-XcodeTable {
     param (
         [Parameter(Mandatory)]
@@ -229,13 +234,18 @@ function Build-XcodeSupportToolsSection {
         "xcversion $xcversion"
     )
 
+    $nomadOutput = Run-Command "gem list nomad-cli"
+    $nomadCLI = [regex]::matches($nomadOutput, "(\d+.){2}\d+").Value
+    $nomadShenzhenOutput = Run-Command "ipa -version"
+    $nomadShenzhen = [regex]::matches($nomadShenzhenOutput, "(\d+.){2}\d+").Value
+    $toolList += @(
+        "Nomad CLI $nomadCLI",
+        "Nomad shenzhen CLI $nomadShenzhen"
+    )
+
     if ($os.IsLessThanBigSur) {
-        $nomadCLI = Run-Command "gem -v nomad-cli"
-        $nomadIPA = Run-Command "ipa -version"
         $xctool = Run-Command "xctool --version"
         $toolList += @(
-            "Nomad CLI $nomadCLI",
-            "Nomad CLI IPA $nomadIPA",
             "xctool $xctool"
         )
     }

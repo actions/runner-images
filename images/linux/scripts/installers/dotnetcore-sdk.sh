@@ -9,25 +9,8 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 # Ubuntu 20 doesn't support EOL versions
-toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-LATEST_DOTNET_PACKAGES=$(jq -r '.dotnet.aptPackages[]' $toolset)
-versions=$(jq -r '.dotnet.versions[]' $toolset)
-
-mksamples()
-{
-    sdk=$1
-    sample=$2
-    mkdir "$sdk"
-    cd "$sdk" || exit
-    dotnet help
-    dotnet new globaljson --sdk-version "$sdk"
-    dotnet new "$sample"
-    dotnet restore
-    dotnet build
-    set +e
-    cd .. || exit
-    rm -rf "$sdk"
-}
+LATEST_DOTNET_PACKAGES=$(get_toolset_value '.dotnet.aptPackages[]')
+DOTNET_VERSIONS=$(get_toolset_value '.dotnet.versions[]')
 
 # Disable telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -44,7 +27,7 @@ done
 
 # Get list of all released SDKs from channels which are not end-of-life or preview
 sdks=()
-for version in ${versions[@]}; do
+for version in ${DOTNET_VERSIONS[@]}; do
     release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
     download_with_retries "${release_url}" "." "${version}.json"
     releases=$(cat "./${version}.json")
@@ -53,7 +36,8 @@ for version in ${versions[@]}; do
     rm ./${version}.json
 done
 
-sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -u -r)
+sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -r | uniq -w 5)
+
 extract_dotnet_sdk() {
     local ARCHIVE_NAME="$1"
     set -e
@@ -76,20 +60,11 @@ parallel --jobs 0 --halt soon,fail=1 \
 
 find . -name "*.tar.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
 
-# Smoke test each SDK
-for sdk in $sortedSdks; do
-    mksamples "$sdk" "console"
-    mksamples "$sdk" "mstest"
-    mksamples "$sdk" "xunit"
-    mksamples "$sdk" "web"
-    mksamples "$sdk" "mvc"
-    mksamples "$sdk" "webapi"
-done
-
 # NuGetFallbackFolder at /usr/share/dotnet/sdk/NuGetFallbackFolder is warmed up by smoke test
 # Additional FTE will just copy to ~/.dotnet/NuGet which provides no benefit on a fungible machine
 setEtcEnvironmentVariable DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1
 setEtcEnvironmentVariable DOTNET_NOLOGO 1
 setEtcEnvironmentVariable DOTNET_MULTILEVEL_LOOKUP 0
-prependEtcEnvironmentPath /home/runner/.dotnet/tools
-echo 'export PATH="$PATH:$HOME/.dotnet/tools"' | tee -a /etc/skel/.bashrc
+prependEtcEnvironmentPath '$HOME/.dotnet/tools'
+
+invoke_tests "DotnetSDK"

@@ -17,21 +17,10 @@ source $CARGO_HOME/env
 
 # Install common tools
 rustup component add rustfmt clippy
-cargo install bindgen cbindgen
-cargo install cargo-audit
-cargo install cargo-outdated
-
-echo "Test installation of the Rust toochain"
+cargo install --locked bindgen cbindgen cargo-audit cargo-outdated
 
 # Permissions
 chmod -R 777 $(dirname $RUSTUP_HOME)
-
-for cmd in rustup rustc rustdoc cargo rustfmt cargo-clippy bindgen cbindgen 'cargo audit' 'cargo outdated'; do
-    if ! command -v $cmd --version; then
-        echo "$cmd was not installed or is not found on the path"
-        exit 1
-    fi
-done
 
 # Cleanup Cargo cache
 rm -rf ${CARGO_HOME}/registry/*
@@ -44,3 +33,5 @@ pushd /etc/skel
 ln -sf $RUSTUP_HOME .rustup
 ln -sf $CARGO_HOME .cargo
 popd
+
+invoke_tests "Tools" "Rust"

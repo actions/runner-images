@@ -1,9 +1,11 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 Describe "Powershell" {
-    It "Powershell is installed" {
-        "pwsh -v" | Should -ReturnZeroExitCode
+    Context "Powershell is installed" {
+        It "Powershell is installed" {
+            "pwsh -v" | Should -ReturnZeroExitCode
+        }
     }
 
     Context "Powershell Modules" {
@@ -36,6 +38,12 @@ Describe "Powershell" {
 
                 (Get-Module -Name $moduleName -ListAvailable).Version -contains $expectedVersion | Should -BeTrue
             }
+        }
+    }
+    
+    Context "Azure CLI" {
+        It "Azure CLI" {
+            "az -v" | Should -ReturnZeroExitCode
         }
     }
 }

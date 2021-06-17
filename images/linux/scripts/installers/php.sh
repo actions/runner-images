@@ -7,28 +7,21 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
 
 # add repository
 apt-add-repository ppa:ondrej/php -y
 apt-get update
 
 # Install PHP
-if isUbuntu16 ; then
-    php_versions="5.6 7.0 7.1 7.2 7.3 7.4 8.0"
-fi
-
-if isUbuntu18 ; then
-    php_versions="7.1 7.2 7.3 7.4 8.0"
-fi
-
-if isUbuntu20 ; then
-    php_versions="7.4 8.0"
-fi
+php_versions=$(get_toolset_value '.php.versions[]')
 
 for version in $php_versions; do
     echo "Installing PHP $version"
     apt-fast install -y --no-install-recommends \
         php$version \
+        php$version-amqp \
+        php$version-apcu \
         php$version-bcmath \
         php$version-bz2 \
         php$version-cgi \
@@ -41,11 +34,16 @@ for version in $php_versions; do
         php$version-fpm \
         php$version-gd \
         php$version-gmp \
+        php$version-igbinary \
+        php$version-imagick \
         php$version-imap \
         php$version-interbase \
         php$version-intl \
         php$version-ldap \
         php$version-mbstring \
+        php$version-memcache \
+        php$version-memcached \
+        php$version-mongodb \
         php$version-mysql \
         php$version-odbc \
         php$version-opcache \
@@ -53,14 +51,18 @@ for version in $php_versions; do
         php$version-phpdbg \
         php$version-pspell \
         php$version-readline \
+        php$version-redis \
         php$version-snmp \
         php$version-soap \
         php$version-sqlite3 \
         php$version-sybase \
         php$version-tidy \
+        php$version-xdebug \
         php$version-xml \
         php$version-xsl \
-        php$version-zip
+        php$version-yaml \
+        php$version-zip \
+        php$version-zmq
 
     if [[ $version == "5.6" || $version == "7.0" || $version == "7.1" ]]; then
         apt-fast install -y --no-install-recommends php$version-mcrypt php$version-recode
@@ -73,20 +75,21 @@ for version in $php_versions; do
     if [[ $version != "8.0" ]]; then
         apt-fast install -y --no-install-recommends php$version-xmlrpc php$version-json
     fi
+
+    if [[ $version != "5.6" && $version != "7.0" ]]; then
+        apt-fast install -y --no-install-recommends php$version-pcov
+
+        # Disable PCOV, as Xdebug is enabled by default
+        # https://github.com/krakjoe/pcov#interoperability
+        phpdismod -v $version pcov
+    fi
+
+    if [[ $version = "7.0" || $version = "7.1" ]]; then
+        apt-fast install -y --no-install-recommends php$version-sodium
+    fi
 done
 
-apt-fast install -y --no-install-recommends \
-    php-amqp \
-    php-apcu \
-    php-igbinary \
-    php-memcache \
-    php-memcached \
-    php-mongodb \
-    php-pear \
-    php-redis \
-    php-xdebug \
-    php-yaml \
-    php-zmq
+apt-fast install -y --no-install-recommends php-pear
 
 apt-fast install -y --no-install-recommends snmp
 
@@ -97,11 +100,8 @@ php composer-setup.php
 sudo mv composer.phar /usr/bin/composer
 php -r "unlink('composer-setup.php');"
 
-# Update /etc/environment
-prependEtcEnvironmentPath /home/runner/.config/composer/vendor/bin
-
 # Add composer bin folder to path
-echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> /etc/skel/.bashrc
+prependEtcEnvironmentPath '$HOME/.config/composer/vendor/bin'
 
 #Create composer folder for user to preserve folder permissions
 mkdir -p /etc/skel/.composer
@@ -111,28 +111,11 @@ wget -q -O phpunit https://phar.phpunit.de/phpunit-8.phar
 chmod +x phpunit
 mv phpunit /usr/local/bin/phpunit
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-for cmd in composer pear pecl phpunit; do
-    if ! command -v $cmd; then
-        echo "$cmd was not installed"
-        exit 1
-    fi
-done
-
-for version in $php_versions; do
-    if ! command -v php$version; then
-        echo "php$version was not installed"
-        exit 1
-    elif ! command -v php-config$version || ! command -v phpize$version; then
-        echo "php$version-dev was not installed"
-        exit 1
-    fi
-done
-
 # ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
 # see https://github.com/actions/virtual-environments/issues/1084
 if isUbuntu20 ; then
   rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
   apt-get update
 fi
+
+invoke_tests "Common" "PHP"

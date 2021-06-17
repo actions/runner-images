@@ -5,13 +5,19 @@ Describe "Android SDK" {
     $androidPackages = Get-AndroidPackages -AndroidSDKManagerPath (Get-AndroidSDKManagerPath)
     $androidInstalledPackages = Get-AndroidInstalledPackages
 
+    $ndkLTSMajorVersion = $androidToolset.ndk.lts
+    $ndkLatestMajorVersion = $androidToolset.ndk.latest
+
     $platformTestCases = @()
     [int]$platformMinVersion = $androidToolset.platform_min_version
-    $platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+    $platformListByVersion = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
                     -PrefixPackageName "platforms;" `
                     -MinimumVersion $platformMinVersion `
                     -Delimiter "-" `
                     -Index 1
+    $platformListByName = Get-AndroidPackagesByName -AndroidPackages $androidPackages `
+                    -PrefixPackageName "platforms;" | Where-Object {$_ -match "-\D+$"}
+    $platformList = $platformListByVersion + $platformListByName 
     $platformList | ForEach-Object {
         $platformTestCases += @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
     }
@@ -65,5 +71,13 @@ Describe "Android SDK" {
 
     It "Additional tool <additionalToolVersion> is installed" -TestCases $additionalToolsTestCases {
         "$installedPackages" | Should -Match $additionalToolVersion
+    }
+
+    It "LTS NDK is installed" -TestCases @(@{ ndkLTSVersion = $ndkLTSMajorVersion; installedPackages = $androidInstalledPackages }) {
+        "$installedPackages" | Should -Match "ndk;$ndkLTSVersion"
+    }
+
+    It "Latest NDK is installed" -TestCases @(@{ ndkLatestVersion = $ndkLatestMajorVersion; installedPackages = $androidInstalledPackages }) {
+        "$installedPackages" | Should -Match "ndk;$ndkLatestVersion"
     }
 }

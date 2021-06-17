@@ -2,7 +2,6 @@ param(
     [String] [Parameter (Mandatory=$true)] $TemplatePath,
     [String] [Parameter (Mandatory=$true)] $ClientId,
     [String] [Parameter (Mandatory=$true)] $ClientSecret,
-    [String] [Parameter (Mandatory=$true)] $GitHubFeedToken,
     [String] [Parameter (Mandatory=$true)] $ResourcesNamePrefix,
     [String] [Parameter (Mandatory=$true)] $Location,
     [String] [Parameter (Mandatory=$true)] $ResourceGroup,
@@ -16,10 +15,11 @@ param(
 
 if (-not (Test-Path $TemplatePath))
 {
-    Write-Error "'-Image' parameter is not valid. You have to specify correct image type."
+    Write-Error "'-TemplatePath' parameter is not valid. You have to specify correct Template Path"
     exit 1
 }
 
+$Image = [io.path]::GetFileNameWithoutExtension($TemplatePath)
 $TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 
@@ -43,7 +43,6 @@ packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
                 -var "client_id=$ClientId" `
                 -var "client_secret=$ClientSecret" `
                 -var "install_password=$InstallPassword" `
-                -var "github_feed_token=$GitHubFeedToken" `
                 -var "location=$Location" `
                 -var "resource_group=$ResourceGroup" `
                 -var "storage_account=$StorageAccount" `

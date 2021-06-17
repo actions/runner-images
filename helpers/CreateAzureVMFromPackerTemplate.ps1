@@ -48,21 +48,22 @@ Function CreateAzureVMFromPackerTemplate {
     )
 
     $vmSize = "Standard_DS2_v2"
-    $vnetName = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
-    $subnetName = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
-    $nicName = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
-    $publicIpName = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
+    $guid = [System.GUID]::NewGuid().ToString().ToUpper()
+    $vnetName = $env:UserName + "vnet-" + $guid
+    $subnetName = $env:UserName + "subnet-" + $guid
+    $nicName = $env:UserName + "nic-" + $guid
+    $publicIpName = $env:UserName + "pip-" +  $guid
 
     Write-Host "Creating a virtual network and subnet"
-    ($vnet = az network vnet create -g $ResourceGroupName -l $AzureLocation -n $vnetName --address-prefixes 10.0.0.0/16 --subnet-name $subnetName --subnet-prefixes 10.0.1.0/24 --subscription $subscriptionId)
+    ($vnet = az network vnet create -g $ResourceGroupName -l $AzureLocation -n $vnetName --address-prefixes 10.0.0.0/16 --subnet-name $subnetName --subnet-prefixes 10.0.1.0/24 --subscription $subscriptionId -o json)
     $subnetId = ($vnet | ConvertFrom-Json).newVNet.subnets[0].id
 
     Write-Host "`nCreating a network interface controller (NIC)"
-    ($nic = az network nic create -g $ResourceGroupName -l $AzureLocation -n $nicName --subnet $subnetId --subscription $subscriptionId)
+    ($nic = az network nic create -g $ResourceGroupName -l $AzureLocation -n $nicName --subnet $subnetId --subscription $subscriptionId -o json)
     $networkId = ($nic | ConvertFrom-Json).NewNIC.id
 
     Write-Host "`nCreating a public IP address"
-    ($publicIp = az network public-ip create -g $ResourceGroupName -l $AzureLocation -n $publicIpName --allocation-method Static --sku Standard --version IPv4 --subscription $subscriptionId)
+    ($publicIp = az network public-ip create -g $ResourceGroupName -l $AzureLocation -n $publicIpName --allocation-method Static --sku Standard --version IPv4 --subscription $subscriptionId -o json)
     $publicIpId = ($publicIp | ConvertFrom-Json).publicIp.id
 
     Write-Host "`nAdding the public IP to the NIC"
@@ -70,4 +71,6 @@ Function CreateAzureVMFromPackerTemplate {
 
     Write-Host "`nCreating the VM"
     az group deployment create -g $ResourceGroupName -n $VirtualMachineName --subscription $subscriptionId --template-file $templateFilePath --parameters vmSize=$vmSize vmName=$VirtualMachineName adminUserName=$AdminUsername adminPassword=$AdminPassword networkInterfaceId=$networkId
+    
+    Write-Host "`nCreated in $(ResourceGroupName):`n  vnet $(vnetName)`n  subnet $(subnetName)`n  nic $(nicName)`n  publicip $(publicIpName)`n  vm $(VirtualMachineName)"
 }

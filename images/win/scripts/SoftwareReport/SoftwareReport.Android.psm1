@@ -1,3 +1,5 @@
+Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Helpers.psm1") -DisableNameChecking
+
 function Split-TableRowByColumns {
     param(
         [string] $Row
@@ -35,6 +37,22 @@ function Build-AndroidTable {
     $packageInfo = Get-AndroidInstalledPackages
     return @(
         @{
+            "Package" = "Android Command Line Tools"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Command-line Tools"
+        },
+        @{
+            "Package" = "Android Emulator"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Emulator"
+        },
+        @{
+            "Package" = "Android SDK Build-tools"
+            "Version" = Get-AndroidBuildToolVersions -PackageInfo $packageInfo
+        },
+        @{
+            "Package" = "Android SDK Platforms"
+            "Version" = Get-AndroidPlatformVersions -PackageInfo $packageInfo
+        },
+        @{
             "Package" = "Android SDK Platform-Tools"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Platform-Tools"
         },
@@ -43,20 +61,12 @@ function Build-AndroidTable {
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Tools"
         },
         @{
-            "Package" = "Android SDK Platforms"
-            "Version" = Get-AndroidPlatformVersions -PackageInfo $packageInfo
-        },
-        @{
-            "Package" = "Android SDK Build-tools"
-            "Version" = Get-AndroidBuildToolVersions -PackageInfo $packageInfo
-        },
-        @{
-            "Package" = "NDK"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk-bundle"
-        },
-        @{
             "Package" = "Android Support Repository"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Support Repository"
+        },
+        @{
+            "Package" = "CMake"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "cmake"
         },
         @{
             "Package" = "Google APIs"
@@ -71,12 +81,12 @@ function Build-AndroidTable {
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Google Repository"
         },
         @{
-            "Package" = "SDK Patch Applier v4"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "SDK Patch Applier v4"
+            "Package" = "NDK"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk;"
         },
         @{
-            "Package" = "CMake"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "cmake"
+            "Package" = "SDK Patch Applier v4"
+            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "SDK Patch Applier v4"
         }
     ) | Where-Object { $_.Version } | ForEach-Object {
         [PSCustomObject] @{
@@ -146,4 +156,16 @@ function Get-AndroidGoogleAPIsVersions {
         return $packageInfoParts[0].split(";")[1]
     }
     return ($versions -Join "<br>")
+}
+
+function Build-AndroidEnvironmentTable {
+    $androidVersions = Get-Item env:ANDROID_*	
+
+    $shoulddResolveLink = 'ANDROID_NDK_PATH', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
+    return $androidVersions | Sort-Object -Property Name | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = if ($shoulddResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else {$_.Value}
+        }
+    }
 }

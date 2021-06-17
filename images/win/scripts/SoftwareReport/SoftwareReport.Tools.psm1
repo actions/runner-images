@@ -112,7 +112,10 @@ function Get-OpenSSLVersion {
 }
 
 function Get-PackerVersion {
-    return "Packer $(packer --version)"
+    # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
+    ($(cmd /c "packer --version 2>&1") | Out-String) -match "(?<version>(\d+.){2}\d+)" | Out-Null
+    $packerVersion = $Matches.Version
+    return "Packer $packerVersion"
 }
 
 function Get-PulumiVersion {
@@ -250,13 +253,14 @@ function Get-VisualCPPComponents {
     }
 }
 
-function Get-AZDSVersion {
-    $azdsVersion = $(azds --version) | Select-String "(\d+\.\d+\.\d+.\d+)"
-    return "Azure Dev Spaces CLI $azdsVersion"
-}
-
 function Get-DacFxVersion {
     cd "C:\Program Files\Microsoft SQL Server\150\DAC\bin\"
     $dacfxversion = (./sqlpackage.exe /version)
     return "DacFx $dacfxversion"
+}
+
+function Get-SwigVersion {
+    (swig -version | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $swigVersion = $Matches.Version
+    return "Swig $swigVersion"
 }

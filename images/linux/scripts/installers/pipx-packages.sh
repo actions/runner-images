@@ -3,15 +3,14 @@
 ##  File:  pipx-packages.sh
 ##  Desc:  Install tools via pipx
 ################################################################################
-
+source $HELPER_SCRIPTS/install.sh
 
 export PATH="$PATH:/opt/pipx_bin"
 
-toolset="$INSTALLER_SCRIPT_FOLDER/toolset.json"
-pipx_packages=$(jq -r ".pipx[] .package" $toolset)
+pipx_packages=$(get_toolset_value ".pipx[] .package")
 
 for package in $pipx_packages; do
-    python_version=$(jq -r ".pipx[] | select(.package == \"$package\") .python" $toolset)
+    python_version=$(get_toolset_value ".pipx[] | select(.package == \"$package\") .python")
     if [ "$python_version" != "null" ]; then
         python_path="/opt/hostedtoolcache/Python/$python_version*/x64/bin/python$python_version"
         echo "Install $package into python $python_path"
@@ -19,12 +18,13 @@ for package in $pipx_packages; do
     else
         echo "Install $package into default python"
         pipx install $package
+
+        # Install ansible into an existing ansible-base Virtual Environment
+        if [[ $package == "ansible-base" ]]; then
+            pipx inject ansible-base ansible
+        fi
     fi
 
-    # Run tests to determine that the software installed as expected
-    cmd=$(jq -r ".pipx[] | select(.package == \"$package\") .cmd" $toolset)
-    if ! command -v $cmd; then
-        echo "$package was not installed"
-        exit 1
-    fi
 done
+
+invoke_tests "Common" "PipxPackages"

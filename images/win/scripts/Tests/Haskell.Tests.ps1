@@ -11,10 +11,16 @@ Describe "Haskell" {
     $ghcTestCases = $ghcVersionList | ForEach-Object {
         $ghcVersion = $_
         $ghcShortVersion = ([version]$ghcVersion).ToString(3)
+        $binGhcPath = Join-Path $chocoPackagesPath "ghc.$ghcVersion\tools\ghc-$ghcShortVersion\bin\ghc.exe"
+        # The most recent GHC versions installation directory is $env:ChocolateyToolsLocation instead of $env:ChocolateyInstall\lib
+        if (-not (Test-Path $binGhcPath))
+        {
+            $binGhcPath = Join-Path $env:ChocolateyToolsLocation "ghc-$ghcShortVersion\bin\ghc.exe"
+        }
         @{
             ghcVersion = $ghcVersion
             ghcShortVersion = $ghcShortVersion
-            binGhcPath = Join-Path $chocoPackagesPath "ghc.$ghcVersion\tools\ghc-$ghcShortVersion\bin\ghc.exe"
+            binGhcPath = $binGhcPath
         }
     }
 

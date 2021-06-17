@@ -4,13 +4,18 @@
 ##  Desc:  Installs Swift
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/install.sh
+
 # Install
 image_label="$(lsb_release -rs)"
 swift_version=$(curl -s -L -N https://swift.org/download|awk -F"[ <]" '/id="swift-/ {print $4; exit}')
 
-wget -P /tmp https://swift.org/builds/swift-$swift_version-release/ubuntu${image_label//./}/swift-$swift_version-RELEASE/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
+swift_tar_name="swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz"
+swift_tar_url="https://swift.org/builds/swift-$swift_version-release/ubuntu${image_label//./}/swift-$swift_version-RELEASE/$swift_tar_name"
+download_with_retries $swift_tar_url "/tmp" "$swift_tar_name"
 
-tar xzf /tmp/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
+tar xzf /tmp/$swift_tar_name
 mv swift-$swift_version-RELEASE-ubuntu$image_label /usr/share/swift
 
 SWIFT_PATH="/usr/share/swift/usr/bin"
@@ -20,14 +25,4 @@ ln -s "$SWIFT_BIN" /usr/local/bin/swift
 ln -s "$SWIFTC_BIN" /usr/local/bin/swiftc
 echo "SWIFT_PATH=$SWIFT_PATH" | tee -a /etc/environment
 
-# Run tests to determine that the software installed as expected
-echo "Testing to make sure that script performed as expected, and basic scenarios work"
-if ! command -v swift; then
-    echo "Swift was not installed"
-    exit 1
-fi
-
-if ! command -v swiftc; then
-    echo "Swiftc is not linked to swift binary"
-    exit 1
-fi
+invoke_tests "Common" "Swift"

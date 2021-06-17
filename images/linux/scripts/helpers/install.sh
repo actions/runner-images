@@ -19,7 +19,7 @@ download_with_retries() {
         COMMAND="curl $URL -4 -sL -o '$DEST/$NAME'"
     fi
 
-    echo "Downloading $URL..."
+    echo "Downloading '$URL' to '${DEST}/${NAME}'..."
     i=20
     while [ $i -gt 0 ]; do
         ((i--))
@@ -27,6 +27,7 @@ download_with_retries() {
         if [ $? != 0 ]; then
             sleep 30
         else
+            echo "Download completed"
             return 0
         fi
     done
@@ -47,4 +48,14 @@ function IsPackageInstalled {
 verlte() {
     sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
     [  "$1" = "$sortedVersion" ]
+}
+
+get_toolset_path() {
+    echo "/imagegeneration/installers/toolset.json"
+}
+
+get_toolset_value() {
+    local toolset_path=$(get_toolset_path)
+    local query=$1
+    echo "$(jq -r "$query" $toolset_path)"
 }

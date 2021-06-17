@@ -18,3 +18,5 @@ done
 
 echo "install cabal..."
 ghcup install-cabal
+
+invoke_tests "Haskell"

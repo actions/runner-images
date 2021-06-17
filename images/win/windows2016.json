@@ -7,13 +7,15 @@
         "object_id": "{{env `ARM_OBJECT_ID`}}",
         "resource_group": "{{env `ARM_RESOURCE_GROUP`}}",
         "storage_account": "{{env `ARM_STORAGE_ACCOUNT`}}",
+        "build_resource_group_name": "{{env `BUILD_RESOURCE_GROUP_NAME`}}",
         "temp_resource_group_name": "{{env `TEMP_RESOURCE_GROUP_NAME`}}",
         "location": "{{env `ARM_RESOURCE_LOCATION`}}",
         "virtual_network_name": "{{env `VNET_NAME`}}",
         "virtual_network_resource_group_name": "{{env `VNET_RESOURCE_GROUP`}}",
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
-        "vm_size": "Standard_DS4_v2",
+        "allowed_inbound_ip_addresses": "{{env `AGENT_IP`}}",
+        "vm_size": "Standard_D8s_v4",
         "run_scan_antivirus": "false",
         "root_folder": "C:",
         "toolset_json_path": "{{env `TEMP`}}\\toolset.json",
@@ -21,6 +23,7 @@
         "imagedata_file": "C:\\imagedata.json",
         "helper_script_folder": "C:\\Program Files\\WindowsPowerShell\\Modules\\",
         "psmodules_root_folder": "C:\\Modules",
+        "agent_tools_directory": "C:\\hostedtoolcache\\windows",
         "install_user": "installer",
         "install_password": null,
         "capture_name_prefix": "packer",
@@ -45,6 +48,7 @@
             "vm_size": "{{user `vm_size`}}",
             "resource_group_name": "{{user `resource_group`}}",
             "storage_account": "{{user `storage_account`}}",
+            "build_resource_group_name": "{{user `build_resource_group_name`}}",
             "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
             "capture_container_name": "images",
             "capture_name_prefix": "{{user `capture_name_prefix`}}",
@@ -52,6 +56,7 @@
             "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",
             "virtual_network_subnet_name": "{{user `virtual_network_subnet_name`}}",
             "private_virtual_network_with_public_ip": "{{user `private_virtual_network_with_public_ip`}}",
+            "allowed_inbound_ip_addresses": "{{user `allowed_inbound_ip_addresses`}}",
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
@@ -112,7 +117,9 @@
         {
             "type": "powershell",
             "environment_vars": [
-                "ImageVersion={{user `image_version`}}",
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGE_OS={{user `image_os`}}",
+                "AGENT_TOOLSDIRECTORY={{user `agent_tools_directory`}}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
@@ -136,16 +143,10 @@
         },
         {
             "type": "powershell",
-            "inline": [
-                "setx ImageVersion {{user `image_version` }} /m",
-                "setx ImageOS {{user `image_os` }} /m"
-            ]
-        },
-        {
-            "type": "powershell",
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
-                "IMAGEDATA_FILE={{user `imagedata_file`}}"
+                "IMAGEDATA_FILE={{user `imagedata_file`}}",
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1",
@@ -168,6 +169,7 @@
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NET48.ps1",
                 "{{ template_dir }}/scripts/Installers/Windows2016/Install-SSDT.ps1"
@@ -200,11 +202,13 @@
         },
         {
             "type": "powershell",
+            "environment_vars": [
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzCopy.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-AzureDevSpacesCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Bazel.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-7zip.ps1",
@@ -247,7 +251,10 @@
                 "{{ template_dir }}/scripts/Installers/Install-Edge.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Firefox.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Selenium.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Apache.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Swig.ps1"
             ]
         },
         {
@@ -293,6 +300,9 @@
         },
         {
             "type": "powershell",
+            "environment_vars": [
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
             "elevated_user": "SYSTEM",
             "elevated_password": "",
             "scripts": [
@@ -316,8 +326,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-NSIS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CloudFoundryCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vcpkg.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-KubernetesCli.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Kind.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1"
@@ -327,7 +335,9 @@
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
-                "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1"
+                "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
+                "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",
+                "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
@@ -353,6 +363,7 @@
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ],
             "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ]
         },

@@ -31,6 +31,9 @@ function InstallPyPy
 
     PACKAGE_TEMP_FOLDER="/tmp/$PACKAGE_NAME"
     PYTHON_FULL_VERSION=$("$PACKAGE_TEMP_FOLDER/bin/$PYPY_MAJOR" -c "import sys;print('{}.{}.{}'.format(sys.version_info[0],sys.version_info[1],sys.version_info[2]))")
+    PYPY_FULL_VERSION=$("$PACKAGE_TEMP_FOLDER/bin/$PYPY_MAJOR" -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))")
+    echo "Put '$PYPY_FULL_VERSION' to PYPY_VERSION file"
+    echo $PYPY_FULL_VERSION > "$PACKAGE_TEMP_FOLDER/PYPY_VERSION"
 
     # PyPy folder structure
     PYPY_TOOLCACHE_PATH=$AGENT_TOOLSDIRECTORY/PyPy
@@ -50,8 +53,14 @@ function InstallPyPy
 
     echo "Create additional symlinks (Required for UsePythonVersion Azure DevOps task)"
     cd $PYPY_TOOLCACHE_VERSION_ARCH_PATH/bin
-    ln -s $PYPY_MAJOR $PYTHON_MAJOR
-    ln -s $PYTHON_MAJOR python
+
+    PYPY_FULL_VERSION=$(./$PYPY_MAJOR -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))")
+    echo "PYPY_FULL_VERSION is $PYPY_FULL_VERSION"
+    echo $PYPY_FULL_VERSION > "PYPY_VERSION"
+
+    # Starting from PyPy 7.3.4 these links are already included in the package
+    [ -f ./$PYTHON_MAJOR ] || ln -s $PYPY_MAJOR $PYTHON_MAJOR
+    [ -f ./python ] || ln -s $PYTHON_MAJOR python
 
     chmod +x ./python ./$PYTHON_MAJOR
 
@@ -70,13 +79,6 @@ uri="https://downloads.python.org/pypy/"
 pypyVersions=$(curl -4 -s --compressed $uri | grep 'osx64' | awk -v uri="$uri" -F'>|<' '{print uri$5}')
 toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
 versionPattern="v[0-9]+\.[0-9]+\.[0-9]+-"
-
-# PyPy 7.3.2 for High Sierra is broken, use 7.3.1 instead https://foss.heptapod.net/pypy/pypy/-/issues/3311
-if is_HighSierra; then
-    versionPattern="v7.3.1-"
-    # PyPy 7.3.1 relies on system libffi.6.dylib, which is not existed in in libffi 3.3 release. As a workaround symlink can be created
-    ln -s libffi.7.dylib /usr/local/opt/libffi/lib/libffi.6.dylib
-fi
 
 for toolsetVersion in $toolsetVersions; do
     latestMajorPyPyVersion=$(echo "${pypyVersions}" | grep -E "pypy${toolsetVersion}-${versionPattern}" | head -1)

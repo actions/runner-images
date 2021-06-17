@@ -33,6 +33,11 @@ function Disable-UserAccessControl {
 # Enable $ErrorActionPreference='Stop' for AllUsersAllHosts
 Add-Content -Path $profile.AllUsersAllHosts -Value '$ErrorActionPreference="Stop"'
 
+# Set static env vars
+setx ImageVersion $env:IMAGE_VERSION /m
+setx ImageOS $env:IMAGE_OS /m
+setx AGENT_TOOLSDIRECTORY $env:AGENT_TOOLSDIRECTORY /m
+
 # Set TLS1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
@@ -124,8 +129,18 @@ if (Test-IsWin16) {
 
 if (Test-IsWin19) {
     # Install vcredist2010
-    Choco-Install -PackageName vcredist2010
+    $Vc2010x86Name = "vcredist_x86.exe"
+    $Vc2010x86URI = "https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/${Vc2010x86Name}"
+    $Vc2010x64Name = "vcredist_x64.exe"
+    $Vc2010x64URI = "https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/${Vc2010x64Name}"
+    $ArgumentList = ("/install", "/quiet", "/norestart")
+    Install-Binary -Url $Vc2010x86URI -Name $Vc2010x86Name -ArgumentList $ArgumentList
+    Install-Binary -Url $Vc2010x64URI -Name $Vc2010x64Name -ArgumentList $ArgumentList
 }
+
+# Initialize environmental variable ChocolateyToolsLocation by invoking choco Get-ToolsLocation function
+Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
+Get-ToolsLocation
 
 # Expand disk size of OS drive
 $driveLetter = "C"

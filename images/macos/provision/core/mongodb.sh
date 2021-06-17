@@ -1,4 +1,5 @@
 #!/bin/bash -e -o pipefail
+source ~/utils/utils.sh
 
 # MongoDB object-value database
 # installs last version of MongoDB Community Edition
@@ -7,4 +8,7 @@
 echo "Installing mongodb..."
 
 brew tap mongodb/brew
-brew install mongodb-community
+brew_smart_install "mongodb-community@4.4"
+ln -sf $(brew --prefix mongodb-community@4.4)/bin/* /usr/local/bin/
+
+invoke_tests "Databases" "Mongo"

@@ -198,7 +198,7 @@
     "java": {
         "default": "8",
         "versions": [
-            "7", "8", "11", "12", "13", "14"
+            "8", "11", "12", "13", "14"
         ]
     },
     "android": {
@@ -209,18 +209,68 @@
         ],
         "addon-list": [
             "addon-google_apis-google-24", "addon-google_apis-google-23", "addon-google_apis-google-22", "addon-google_apis-google-21"
-        ]
+        ],
+        "additional-tools": [
+            "cmake;3.10.2.4988404",
+            "cmake;3.18.1",
+            "cmdline-tools;latest"
+        ],
+        "ndk": {
+            "lts": "21",
+            "latest": "22"
+        }
     },
     "powershellModules": [
         {
             "name": "Az",
             "versions": [
-                "4.8.0"
+                "5.9.0"
             ]
         },
         {"name": "MarkdownPS"},
-        {"name": "Pester"}
+        {"name": "Pester"},
+        {"name": "PSScriptAnalyzer"}
     ],
+    "brew": {
+        "common_packages": [
+            "aliyun-cli",
+            "ant",
+            "aria2",
+            "bats",
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "go@1.15",
+            "helm",
+            "libpq",
+            "llvm",
+            "p7zip",
+            "packer",
+            "parallel",
+            "perl",
+            "subversion",
+            "swiftformat",
+            "swig",
+            "xctool",
+            "zstd"
+        ],
+        "cask_packages": [
+            "julia",
+            "r",
+            "vagrant",
+            "virtualbox"
+        ]
+    },
+    "gcc": {
+        "versions": [
+            "9",
+            "10",
+            "11"
+        ]
+    },
     "toolcache": [
         {
             "name": "Python",
@@ -251,7 +301,6 @@
             "platform" : "darwin",
             "arch": "x64",
             "versions": [
-                "8.*",
                 "10.*",
                 "12.*",
                 "14.*"
@@ -263,11 +312,10 @@
             "arch": "x64",
             "platform" : "darwin",
             "versions": [
-                "1.11.*",
-                "1.12.*",
                 "1.13.*",
                 "1.14.*",
-                "1.15.*"
+                "1.15.*",
+                "1.16.*"
             ]
         },
         {
@@ -277,7 +325,8 @@
                 "2.4.*",
                 "2.5.*",
                 "2.6.*",
-                "2.7.*"
+                "2.7.*",
+                "3.0.*"
             ]
         }
     ],
@@ -291,5 +340,13 @@
         "versions": [
             "2.1"
         ]
-    }
+    },
+    "rubygems": [
+        "xcode-install",
+        "cocoapods",
+        "nomad-cli",
+        "xcpretty",
+        "bundler",
+        "fastlane"
+    ]
 }

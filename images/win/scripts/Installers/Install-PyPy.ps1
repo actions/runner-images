@@ -34,13 +34,17 @@ function Install-PyPy
     # Get Python version from binaries
     $pypyApp = Get-ChildItem -Path "$tempFolder\pypy*.exe" | Where-Object Name -match "pypy(\d+)?.exe"
     $pypyName = $pypyApp.Name
-    $pypyVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(sys.version_info[0],sys.version_info[1],sys.version_info[2]))"
+    $pythonVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(sys.version_info[0],sys.version_info[1],sys.version_info[2]))"
 
-    if ($pypyVersion)
+    $pypyFullVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))"
+    Write-Host "Put '$pypyFullVersion' to PYPY_VERSION file"
+    New-Item -Path "$tempFolder\PYPY_VERSION" -Value $pypyFullVersion
+
+    if ($pythonVersion)
     {
-        Write-Host "Installing PyPy $pypyVersion"
+        Write-Host "Installing PyPy $pythonVersion"
         $pypyToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "PyPy"
-        $pypyVersionPath = Join-Path -Path $pypyToolcachePath -ChildPath $pypyVersion
+        $pypyVersionPath = Join-Path -Path $pypyToolcachePath -ChildPath $pythonVersion
         $pypyArchPath = Join-Path -Path $pypyVersionPath -ChildPath $architecture
 
         if (-not (Test-Path $pypyToolcachePath)) {
@@ -48,13 +52,13 @@ function Install-PyPy
             New-Item -ItemType Directory -Path $pypyToolcachePath | Out-Null
         }
 
-        Write-Host "Create PyPy '${pypyVersion}' folder in '${pypyVersionPath}'"
+        Write-Host "Create PyPy '${pythonVersion}' folder in '${pypyVersionPath}'"
         New-Item -ItemType Directory -Path $pypyVersionPath -Force | Out-Null
 
-        Write-Host "Move PyPy '${pypyVersion}' files to '${pypyArchPath}'"
+        Write-Host "Move PyPy '${pythonVersion}' files to '${pypyArchPath}'"
         Move-Item -Path $tempFolder -Destination $pypyArchPath | Out-Null
 
-        Write-Host "Install PyPy '${pypyVersion}' in '${pypyArchPath}'"
+        Write-Host "Install PyPy '${pythonVersion}' in '${pypyArchPath}'"
         cmd.exe /c "cd /d $pypyArchPath && mklink python.exe $pypyName && python.exe -m ensurepip && python.exe -m pip install --upgrade pip"
 
         if ($LASTEXITCODE -ne 0)
@@ -62,15 +66,6 @@ function Install-PyPy
             Throw "Error happened during PyPy installation"
             exit 1
         }
-
-        # https://github.com/actions/setup-python/blob/master/src/find-python.ts
-        # https://github.com/microsoft/azure-pipelines-tasks/blob/master/Tasks/UsePythonVersionV0/usepythonversion.ts
-        #  // For PyPy, Windows uses 'bin', not 'Scripts'.
-        # const _binDir = path.join(installDir, 'bin');
-        # PyPy v7.3.1 or higher creates only Scripts folder therefore to preserve back compatibility with UsePythonVersionV0 task
-        # We should create a Scripts -> bin symlink
-        Write-Host "Symbolic link created for '$pypyArchPath\Scripts' <<===>> '$pypyArchPath\bin'"
-        New-Item -Path "$pypyArchPath\bin" -ItemType SymbolicLink -Value "$pypyArchPath\Scripts" | Out-Null
 
         Write-Host "Create complete file"
         New-Item -ItemType File -Path $pypyVersionPath -Name "$architecture.complete" | Out-Null
@@ -94,7 +89,9 @@ foreach($pypyTool in $pypyTools)
     foreach($pypyVersion in $pypyTool.versions)
     {
         # Query latest PyPy version
-        $filter = '{0}{1}-v\d+\.\d+\.\d+-{2}.zip' -f $pypyTool.name, $pypyVersion, $pypyTool.platform
+        # PyPy 3.6 is not updated anymore and win32 should be used
+        $platform = if ($pypyVersion -like "3.6*") { "win32" } else { $pypyTool.platform }
+        $filter = '{0}{1}-v\d+\.\d+\.\d+-{2}.zip' -f $pypyTool.name, $pypyVersion, $platform
         $latestMajorPyPyVersion = $pypyVersions | Where-Object {$_.name -match $filter} | Select-Object -First 1
 
         if ($latestMajorPyPyVersion)

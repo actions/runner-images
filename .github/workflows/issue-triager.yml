@@ -19,8 +19,42 @@ jobs:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         configuration-path: "./triage-rules.yml"
 
-    - if: always()
-      uses: actions/github-script@0.4.0
+    - uses: actions/github-script@v4
+      id: check-if-spammy
+      name: Check if new issue is spammy
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        result-encoding: string
+        script: |
+          const issue = context.payload.issue;
+          const minTitleLength = 2;
+          const titleLength = issue.title.trim().split(' ').length;
+          const isEmptyToolRequest = !!(issue.title.includes('[tool name]') && issue.body.includes('Tool name: <!--- Name -->'));
+
+          if (isEmptyToolRequest || titleLength < minTitleLength) {
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: "This issue appears to have been opened accidentally. I'm going to close it now, but feel free to open a new issue or ask any questions in discussions!"
+            });
+
+            await github.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['Invalid'],
+              issue_number: issue.number,
+              state: 'closed'
+            });
+
+            return true;
+          }
+
+          return false;
+
+    - if: ${{ steps.check-if-spammy.outputs.result == 'false' }}
+      uses: actions/github-script@v4
+      name: Assign labels to issue
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |

@@ -1,5 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 $MONO_VERSIONS = Get-ToolsetValue "xamarin.mono-versions"
 $XAMARIN_IOS_VERSIONS = Get-ToolsetValue "xamarin.ios-versions"
@@ -75,9 +75,13 @@ Describe "Mono" {
             }
         }
     }
+
+    It "MSBuild is available" {
+        "msbuild -version" | Should -ReturnZeroExitCode
+    }
 }
 
-Describe "Xamarin.iOS" {  
+Describe "Xamarin.iOS" {
     $XAMARIN_IOS_VERSIONS | ForEach-Object {
         Context "$_" {
             $XAMARIN_IOS_VERSIONS_PATH = "/Library/Frameworks/Xamarin.iOS.framework/Versions"

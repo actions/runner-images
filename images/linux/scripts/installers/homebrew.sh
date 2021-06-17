@@ -7,6 +7,7 @@
 
 # Source the helpers
 source $HELPER_SCRIPTS/etc-environment.sh
+source $HELPER_SCRIPTS/install.sh
 
 # Install the Homebrew on Linux
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -18,12 +19,22 @@ brew shellenv|grep 'export HOMEBREW'|sed -E 's/^export (.*);$/\1/' | sudo tee -a
 # add brew executables locations to PATH
 brew_path=$(brew shellenv|grep  '^export PATH' |sed -E 's/^export PATH="([^$]+)\$.*/\1/')
 prependEtcEnvironmentPath "$brew_path"
+setEtcEnvironmentVariable HOMEBREW_NO_AUTO_UPDATE 1
+setEtcEnvironmentVariable HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS 3650
 
 # Validate the installation ad hoc
 echo "Validate the installation reloading /etc/environment"
 reloadEtcEnvironment
 
-if ! command -v brew; then
-    echo "brew was not installed"
-    exit 1
-fi
+# Install additional brew packages
+brew_packages=$(get_toolset_value .brew[].name)
+for package in $brew_packages; do
+    echo "Install $package"
+    brew install $package
+    # create symlinks for zstd in /usr/local/bin
+    if [[ $package == "zstd" ]]; then
+        find $(brew --prefix)/bin -name *zstd* -exec sudo sh -c 'ln -s {} /usr/local/bin/$(basename {})' ';'
+    fi
+done
+
+invoke_tests "Tools" "Homebrew"

@@ -30,8 +30,8 @@
             "vm_name": "{{user `build_id`}}",
             "ssh_username": "{{user `vm_username`}}",
             "ssh_password": "{{user `vm_password`}}",
-            "CPUs": "4",
-            "RAM": "12288",
+            "CPUs": "10",
+            "RAM": "24576",
             "NestedHV": "true",
             "shutdown_timeout": "15m"
         }
@@ -128,13 +128,13 @@
             "scripts": [
                 "./provision/core/xcode-clt.sh",
                 "./provision/core/homebrew.sh",
+                "./provision/core/powershell.sh",
                 "./provision/core/dotnet.sh",
                 "./provision/core/python.sh",
                 "./provision/core/azcopy.sh",
                 "./provision/core/openssl.sh",
                 "./provision/core/ruby.sh",
                 "./provision/core/rubygem.sh",
-                "./provision/core/powershell.sh",
                 "./provision/core/git.sh",
                 "./provision/core/node.sh"
             ]
@@ -159,6 +159,7 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
                 "./provision/core/commonutils.sh",
+                "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
                 "./provision/core/php.sh",
                 "./provision/core/aws.sh",
@@ -201,7 +202,7 @@
             "type": "shell",
             "inline": [
                 "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName {{user `build_id`}}",
-                "pwsh -File \"$HOME/image-generation/tests/Run-Tests.ps1\" -WorkingDirectory \"$HOME/image-generation/tests\" -OutputFile \"$HOME/image-generation/output/tests/test-results.xml\""
+                "pwsh -File \"$HOME/image-generation/tests/RunAll-Tests.ps1\""
             ]
         },
         {

@@ -1,11 +1,10 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
 
 VSMAC_VERSION=$(get_toolset_value '.xamarin.vsmac')
 if [ $VSMAC_VERSION == "latest" ]; then
-    VSMAC_VERSION=$(curl https://formulae.brew.sh/api/cask/visual-studio.json 2>/dev/null | jq .version | tr -d \")
+    VSMAC_VERSION=$(curl -L "http://aka.ms/manifest/stable" | jq -r ".items[] | select(.genericName==\"VisualStudioMac\").version")
 fi
 VSMAC_DOWNLOAD_URL=$(buildVSMacDownloadUrl $VSMAC_VERSION)
 
@@ -26,3 +25,5 @@ tar cf - "./Visual Studio.app" | tar xf - -C /Applications/
 popd
 sudo hdiutil detach "$TMPMOUNT"
 sudo rm -rf "$TMPMOUNT"
+
+invoke_tests "Common" "VSMac"

@@ -1,12 +1,11 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
 
 echo Installing Azure CLI...
-brew install azure-cli
+brew_smart_install "azure-cli"
 
 echo Installing PowerShell...
-brew cask install powershell
+brew install --cask powershell
 
 # A dummy call of `az` to initialize ~/.azure directory before the modules are installed
 az -v
@@ -26,8 +25,8 @@ for module in ${psModules[@]}; do
     fi
 done
 
-# Enables AzureRm prefix aliases for Az modules
-sudo pwsh -command "& {Import-Module Az; Enable-AzureRmAlias -Scope LocalMachine}"
+# A dummy call to initialize .IdentityService directory
+pwsh -command "& {Import-Module Az}"
 
 # powershell link was removed in powershell-6.0.0-beta9
 sudo ln -s /usr/local/bin/pwsh /usr/local/bin/powershell
@@ -35,5 +34,4 @@ sudo ln -s /usr/local/bin/pwsh /usr/local/bin/powershell
 # fix ~/.azure directory permissions
 sudo chown -R ${USER}: $HOME/.azure
 
-# fix permissions for Az.Account version 2.*
-sudo chown -R ${USER}: $HOME/.local/share/.IdentityService
+invoke_tests "Powershell"

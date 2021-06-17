@@ -1,9 +1,8 @@
 #!/bin/bash -e -o pipefail
-
 source ~/utils/utils.sh
 
 echo "Installing Microsoft Edge..."
-brew cask install microsoft-edge
+brew install --cask microsoft-edge
 
 EDGE_INSTALLATION_PATH="/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
 EDGE_VERSION=$("$EDGE_INSTALLATION_PATH" --version | cut -d' ' -f 3)
@@ -45,7 +44,7 @@ do
 done
 
 echo "kill autoupdate process"
-ps -ef | grep [M]icrosoft | awk '{print $2}' | sudo xargs kill -9
+pgrep [M]icrosoft | sudo xargs kill -9 || true
 echo "remove autupdate service"
 sudo launchctl remove com.microsoft.autoupdate.helper
 
@@ -58,3 +57,5 @@ sudo rm -rf "$HOME/Library/Caches/com.microsoft.autoupdate2"
 sudo rm -rf "/Library/Application Support/Microsoft/MAU2.0/"
 sudo rm -rf "/Library/LaunchAgents/com.microsoft.update.agent.plist"
 sudo rm -rf "/Library/PrivelegedHelperTools/com.microsoft.autoupdate.helper"
+
+invoke_tests "Browsers" "Edge"

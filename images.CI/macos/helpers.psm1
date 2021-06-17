@@ -6,6 +6,18 @@ Helper functions to use in images.CI scripts
 
 Function Connect-VCServer
 {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [System.String]$VIUserName,
+
+        [Parameter(Mandatory)]
+        [System.String]$VIPassword,
+
+        [Parameter(Mandatory)]
+        [System.String]$VIServer
+    )
+    
     try
     {
         # Preference

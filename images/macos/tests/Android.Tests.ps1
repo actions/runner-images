@@ -1,22 +1,26 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
-Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1"
+Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
 Describe "Android" {
-    $androidNdkToolchains = @("mips64el-linux-android-4.9", "mipsel-linux-android-4.9")
     $androidSdkManagerPackages = Get-AndroidPackages
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
+    [string]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
+    [string]$ndkLtsVersion = Get-ToolsetValue "android.ndk.lts"
+    $ndkLatestFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLatestVersion.*" | Select-Object -Last 1).Name
+    $ndkLtsFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLtsVersion.*" | Select-Object -Last 1).Name
 
-    $platforms = (($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;', '' |
-    Where-Object { [int]$_.Split("-")[1] -ge $platformMinVersion } | Sort-Object { [int]$_.Split("-")[1] } -Unique |
-    ForEach-Object { "platforms/${_}" })
+    $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', ''
+    $platformNumericList = $platformVersionsList | Where-Object { $_ -match "\d+" } | Where-Object { [int]$_ -ge $platformMinVersion } | Sort-Object -Unique
+    $platformLetterList = $platformVersionsList | Where-Object { $_ -match "\D+" } | Sort-Object -Unique
+    $platforms = $platformNumericList + $platformLetterList | ForEach-Object { "platforms/android-${_}" }
 
-    $buildTools = (($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', '' |
-    Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object { [version]$_ } -Unique |
-    ForEach-Object { "build-tools/${_}" })
+    $buildToolsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', ''
+    $buildTools = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}$"} | Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object -Unique |
+    ForEach-Object { "build-tools/${_}" }
 
     $androidPackages = @(
         "tools",
@@ -24,11 +28,17 @@ Describe "Android" {
         "tools/proguard",
         "ndk-bundle",
         "cmake",
+        "ndk/$ndkLatestFullVersion",
+        "ndk/$ndkLtsFullVersion",
         $platforms,
         $buildTools,
         (Get-ToolsetValue "android.extra-list" | ForEach-Object { "extras/${_}" }),
-        (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" })
+        (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" }),
+        (Get-ToolsetValue "android.additional-tools")
     ) | ForEach-Object { $_ }
+
+    # Remove empty strings from array to avoid possible issues
+    $androidPackages = $androidPackages | Where-Object {$_}
 
     BeforeAll {
         $ANDROID_SDK_DIR = Join-Path $env:HOME "Library" "Android" "sdk"
@@ -47,7 +57,6 @@ Describe "Android" {
         }
     }
 
-
     Context "Packages" {
         $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
 
@@ -57,47 +66,8 @@ Describe "Android" {
         }
     }
 
-    Context "NDK toolchains" -Skip:($os.IsBigSur) {
-        $testCases = $androidNdkToolchains | ForEach-Object { @{AndroidNdkToolchain = $_} }
-
-        It "<AndroidNdkToolchain>" -TestCases $testCases {
-            param ([string] $AndroidNdkToolchain)
-
-            $toolchainPath = Join-Path $ANDROID_SDK_DIR "ndk-bundle" "toolchains" $AndroidNdkToolchain
-            $toolchainPath | Should -Exist
-        }
-    }
-
-    Context "Legacy NDK versions" -Skip:($os.IsBigSur) {
-        It "Android NDK version is 21" {
-            $ndkBundlePath = Join-Path $ANDROID_SDK_DIR "ndk-bundle" "source.properties"
-            $rawContent = Get-Content $ndkBundlePath -Raw
-            $rawContent | Should -BeLikeExactly "*Revision = 21.*"
-        }
-
-        It "Android NDK version r18b is installed" {
-            $ndk18BundlePath = Join-Path $ANDROID_SDK_DIR "ndk" "18.1.5063045" "source.properties"
-            $rawContent = Get-Content $ndk18BundlePath -Raw
-            $rawContent | Should -BeLikeExactly "*Revision = 18.*"
-        }
-    }
-
     It "HAXM is installed" {
         $haxmPath = Join-Path $ANDROID_SDK_DIR "extras" "intel" "Hardware_Accelerated_Execution_Manager" "silent_install.sh"
         "$haxmPath -v" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Gradle" {
-    It "Gradle is installed" {
-        "gradle --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Gradle is installed to /usr/local/bin" {
-        (Get-Command "gradle").Path | Should -BeExactly "/usr/local/bin/gradle"
-    }
-
-    It "Gradle is compatible with init.d plugins" {
-        "cd /tmp && gradle tasks" | Should -ReturnZeroExitCode
     }
 }

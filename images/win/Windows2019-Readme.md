@@ -1,158 +1,161 @@
-| Announcements |
-|-|
-| [Default Node.JS will be switched to 14.x on all platforms ](https://github.com/actions/virtual-environments/issues/1953) |
-| [.NET 5.0 will become a default .NET version soon [date will be defined later]](https://github.com/actions/virtual-environments/issues/1891) |
-| [[Ubuntu] [Windows] Boost 1.69.0 will be deprecated on November, 10](https://github.com/actions/virtual-environments/issues/1847) |
-***
 # Microsoft Windows Server 2019 Datacenter
-- OS Version: 10.0.17763 Build 1577
-- Image Version: 20201116.1
+- OS Version: 10.0.17763 Build 1999
+- Image Version: 20210608.0
 
 ## Enabled windows optional features
-- Windows Subsystem for Linux
+- Windows Subsystem for Linux [WSLv1]
 
 ## Installed Software
 ### Language and Runtime
-- Java 1.7.0_232 
-- Java 1.8.0_275 (default)
-- Java 11.0.9 
-- Java 13.0.2 
+- Bash 4.4.23(1)-release
+- Go 1.15.13
+- Julia 1.6.1
+- Node 14.17.0
+- Perl 5.32.1
+- PHP 8.0.7
 - Python 3.7.9
-- Ruby 2.5.8p224
-- Go 1.14.12
-- PHP 7.4.11
-- Julia 1.5.2
-- Perl 5.32.0
-- Node 14.15.0
+- Ruby 2.5.9p229
 
 ### Package Management
 - Chocolatey 0.10.15
-- Vcpkg 2020.11.12
-- NPM 6.14.8
+- Composer 2.1.2
+- Helm 3.6.0
+- Miniconda 4.9.2 (pre-installed on the image but not added to PATH)
+- NPM 6.14.13
+- NuGet 5.9.1.11
+- pip 21.1.2 (python 3.7)
+- Pipx 0.16.3
+- RubyGems 2.7.6.3
+- Vcpkg  (build from master \<38d2893>)
 - Yarn 1.22.10
-- pip 20.2.4 (python 3.7)
-- Miniconda 4.8.3
-- RubyGems 3.1.4
-- Helm 3.4.1
-- Composer 2.0.7
-- NuGet 5.8.0.6930
-- Pipx 0.15.6.0
+
+#### Environment variables
+| Name                    | Value        |
+| ----------------------- | ------------ |
+| CONDA                   | C:\Miniconda |
+| VCPKG_INSTALLATION_ROOT | C:\vcpkg     |
 
 ### Project Management
-- Ant 1.10.9
-- Maven 3.6.3
-- Gradle 6.7
-- sbt 1.4.2
+- Ant 1.10.10
+- Gradle 7.0
+- Maven 3.8.1
+- sbt 1.5.3
 
 ### Tools
-- azcopy 10.7.0
-- Bazel 3.7.0
-- Bazelisk 1.7.3
-- CMake 3.18.4
-- CodeQL Action Bundle 2.3.3
-- R 4.0.3
-- Docker 19.03.12
-- Docker-compose 1.27.4
-- Git 2.29.2
-- Git LFS 2.12.1
-- Google Cloud SDK 318.0.0
-- InnoSetup 6.0.5
-- jq 1.6
-- Kubectl 1.19.3
-- Kind 0.9.0
-- Mingw-w64 8.1.0
-- Mercurial 5.0
-- NSIS v3.06.1
-- Newman 5.2.1
-- OpenSSL 1.1.1
-- Packer 1.6.5
-- Pulumi v2.13.2
-- Subversion (SVN) 1.14.0
-- ghc 8.10.2
-- Cabal 3.2.0.0
-- Stack 2.5.1
-- WinAppDriver 1.2.2009.02003
-- zstd 1.4.5
-- VSWhere 2.8.4
 - 7zip 19.00
-- yamllint 1.25.0
+- azcopy 10.10.0
+- Bazel 4.1.0
+- Bazelisk 1.9.0
+- Cabal 3.4.0.0
+- CMake 3.20.3
+- CodeQL Action Bundle 2.5.5
+- Docker 20.10.5
+- Docker-compose 1.29.1
+- ghc 9.0.1
+- Git 2.32.0
+- Git LFS 2.13.3
+- Google Cloud SDK 344.0.0
+- InnoSetup 6.2.0
+- jq 1.6
+- Kind 0.11.1
+- Kubectl 1.21.1
+- Mercurial 5.0
+- Mingw-w64 8.1.0
+- Newman 5.2.3
+- NSIS v3.06.1
+- OpenSSL 1.1.1
+- Packer 1.7.2
+- Pulumi v3.4.0
+- R 4.1.0
+- Stack 2.7.1
+- Subversion (SVN) 1.14.1
+- Swig 4.0.2
+- VSWhere 2.8.4
+- WinAppDriver 1.2.2009.02003
+- yamllint 1.26.1
+- zstd 1.5.0
 
 ### CLI Tools
-- Azure CLI 2.14.2
+- Alibaba Cloud CLI 3.0.79
+- AWS CLI 2.2.9
+- AWS SAM CLI 1.24.1
+- AWS Session Manager CLI 1.2.54.0
+- Azure CLI 2.24.2
 - Azure DevOps CLI extension 0.18.0
-- Azure Dev Spaces CLI 1.0.20201028.9
-- AWS CLI 2.1.0
-- AWS SAM CLI 1.10.0
-- AWS Session Manager CLI 1.2.7.0
-- Alibaba Cloud CLI 3.0.60
 - Cloud Foundry CLI 6.53.0
+- GitHub CLI 1.11.0
 - Hub CLI 2.14.2
-- GitHub CLI 1.2.1
 
 ### Rust Tools
-- Rust 1.47.0
+- Cargo 1.52.0
+- Rust 1.52.1
+- Rustdoc 1.52.1
+- Rustup 1.24.3
 
 #### Packages
-- bindgen 0.55.1
-- cbindgen 0.15.0
-- cargo-audit 0.13.1
-- cargo-outdated v0.9.13
+- bindgen 0.58.1
+- cargo-audit 0.14.1
+- cargo-outdated v0.9.15
+- cbindgen 0.19.0
+- Clippy 0.1.52
+- Rustfmt 1.4.36
 
 ### Browsers and webdrivers
-- Google Chrome 86.0.4240.198
-- Chrome Driver 86.0.4240.22
-- Microsoft Edge 86.0.622.69
-- Microsoft Edge Driver 86.0.622.69
-- Mozilla Firefox 82.0.3
-- Gecko Driver 0.28.0
+- Google Chrome 91.0.4472.77
+- Chrome Driver 91.0.4472.19
+- Microsoft Edge 91.0.864.41
+- Microsoft Edge Driver 91.0.864.41
+- Mozilla Firefox 89.0
+- Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
+
+#### Environment variables
+| Name            | Value                              |
+| --------------- | ---------------------------------- |
+| CHROMEWEBDRIVER | C:\SeleniumWebDrivers\ChromeDriver |
+| EDGEWEBDRIVER   | C:\SeleniumWebDrivers\EdgeDriver   |
+| GECKOWEBDRIVER  | C:\SeleniumWebDrivers\GeckoDriver  |
+
+### Java
+| Version              | Vendor        | Environment Variable |
+| -------------------- | ------------- | -------------------- |
+| 8.0.292+10 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.11+9            | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 13.0.2+8.1           | Adopt OpenJDK | JAVA_HOME_13_X64     |
+
+### Shells
+| Name          | Target                            |
+| ------------- | --------------------------------- |
+| gitbash.exe   | C:\Program Files\Git\bin\bash.exe |
+| msys2bash.cmd | C:\msys64\usr\bin\bash.exe        |
+| wslbash.exe   | C:\Windows\System32\bash.exe      |
 
 ### MSYS2
 - Pacman 5.2.2
+##### Notes:
 ```
 Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
 ```
+### BizTalk Server
+- BizTalk Server Project Build Component 3.13.765.0 
 ### Cached Tools
-#### Boost
-| Version | Architecture | Environment Variable |
-| ------- | ------------ | -------------------- |
-| 1.72.0  | x64, x86     | BOOST_ROOT_1_72_0    |
-##### Notes:
-```
-1. Environment variable "BOOST_ROOT" is not set by default.
-   Please make sure you set this variable value to proper value
-   from table above depending on the Boost version you are using.
-2. If Boost was built using the boost-cmake project or from Boost 1.70.0
-   on it provides a package configuration file for use with find_package's config mode.
-   This module looks for the package configuration file called BoostConfig.cmake or boost-config.cmake
-   and stores the result in CACHE entry "Boost_DIR". If found, the package configuration file
-   is loaded and this module returns with no further action.
-   See documentation of the Boost CMake package configuration for details on what it provides.
-   Set Boost_NO_BOOST_CMAKE to ON, to disable the search for boost-cmake.
-   Link: https://cmake.org/cmake/help/latest/module/FindBoost.html
-```
-
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.9.7   | x64          | GOROOT_1_9_X64       |
-| 1.10.8  | x64          | GOROOT_1_10_X64      |
-| 1.11.13 | x64          | GOROOT_1_11_X64      |
-| 1.12.17 | x64          | GOROOT_1_12_X64      |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
-| 1.14.12 (Default) | x64          | GOROOT_1_14_X64      |
-| 1.15.5  | x64          | GOROOT_1_15_X64      |
+| 1.14.15 | x64          | GOROOT_1_14_X64      |
+| 1.15.13 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.5  | x64          | GOROOT_1_16_X64      |
 
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
-| 8.17.0  | x64          |
-| 10.23.0 | x64          |
-| 12.19.0 | x64          |
-| 14.15.0 | x64          |
+| 10.24.1 | x64          |
+| 12.22.1 | x64          |
+| 14.17.0 | x64          |
 
 
 #### Python
@@ -162,24 +165,26 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.5.4   | x64, x86     |
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
-| 3.8.6   | x64, x86     |
-| 3.9.0   | x64, x86     |
+| 3.8.10  | x64, x86     |
+| 3.9.5   | x64, x86     |
 
 
 #### Ruby
 | Version | Architecture |
 | ------- | ------------ |
 | 2.4.10  | x64          |
-| 2.5.8 (Default) | x64          |
-| 2.6.6   | x64          |
-| 2.7.2   | x64          |
+| 2.5.9 (Default) | x64          |
+| 2.6.7   | x64          |
+| 2.7.3   | x64          |
+| 3.0.1   | x64          |
 
 
 #### PyPy
-| Python Version | Architecture | PyPy Version |
-| -------------- | ------------ | ------------ |
-| 2.7.13         | x86          | PyPy 7.3.2 with MSC v.1927 32 bit |
-| 3.6.9          | x86          | PyPy 7.3.2 with MSC v.1927 32 bit |
+| Python Version | PyPy Version |
+| -------------- | ------------ |
+| 2.7.18         | PyPy 7.3.5 with MSC v.1927 64 bit (AMD64) |
+| 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
+| 3.7.10         | PyPy 7.3.5 with MSC v.1927 64 bit (AMD64) |
 
 
 
@@ -188,7 +193,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-13                                                                                                                    |
-| Version              | 13.1                                                                                                                                 |
+| Version              | 13.3                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\13\bin <br> PGDATA=C:\Program Files\PostgreSQL\13\data <br> PGROOT=C:\Program Files\PostgreSQL\13  |
@@ -200,250 +205,258 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 4.4.1.0 | MongoDB     | Running       | Automatic        |
+| 4.4.6.0 | MongoDB     | Running       | Automatic        |
 
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.11.8.0
+- Azure CosmosDb Emulator 2.11.13.0
 - DacFx 15.0.4897.1
-- SQLPS 1.0
 - MySQL 5.7.21.0
+- SQLPS 1.0
 
+
+### Web Servers
+| Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
+| ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
+| Apache | 2.4.48  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
+| Nginx  | 1.21.0  | C:\tools\nginx-1.21.0\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
-| Name                          | Version       | Path                                                           |
-| ----------------------------- | ------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.8.30711.63 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Name                          | Version         | Path                                                           |
+| ----------------------------- | --------------- | -------------------------------------------------------------- |
+| Visual Studio Enterprise 2019 | 16.10.31402.337 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
-| Package                                                                   | Version        |
-| ------------------------------------------------------------------------- | -------------- |
-| Component.Android.NDK.R16B                                                | 16.8.30711.63  |
-| Component.Android.SDK25.Private                                           | 16.0.28625.61  |
-| Component.Android.SDK28                                                   | 16.2.29003.222 |
-| Component.Ant                                                             | 1.9.3.8        |
-| Component.Dotfuscator                                                     | 16.0.28528.71  |
-| Component.Linux.CMake                                                     | 16.2.29003.222 |
-| Component.MDD.Android                                                     | 16.0.28517.75  |
-| Component.MDD.Linux                                                       | 16.5.29515.121 |
-| Component.MDD.Linux.GCC.arm                                               | 16.5.29515.121 |
-| Component.Microsoft.VisualStudio.LiveShare                                | 1.0.2876       |
-| Component.Microsoft.VisualStudio.RazorExtension                           | 16.0.28714.129 |
-| Component.Microsoft.VisualStudio.Tools.Applications                       | 16.0.29425.2   |
-| Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 16.0.28714.129 |
-| Component.Microsoft.Web.LibraryManager                                    | 16.0.28315.86  |
-| Component.Microsoft.Windows.DriverKit                                     | 10.0.19030.0   |
-| Component.OpenJDK                                                         | 16.1.28811.260 |
-| Component.UnityEngine.x64                                                 | 16.8.30509.167 |
-| Component.Unreal                                                          | 16.1.28810.153 |
-| Component.Unreal.Android                                                  | 16.1.28810.153 |
-| Component.VSInstallerProjects                                             | 0.9.9          |
-| Component.WixToolset.VisualStudioExtension.Dev16                          | 1.0.0.4        |
-| Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.4        |
-| Component.WixToolset.VisualStudioExtension.Schemas4                       | 1.0.0.4        |
-| Component.Xamarin                                                         | 16.8.30509.167 |
-| Component.Xamarin.RemotedSimulator                                        | 16.8.30509.167 |
-| Microsoft.Component.Azure.DataLake.Tools                                  | 16.8.30509.167 |
-| Microsoft.Component.ClickOnce                                             | 16.4.29409.204 |
-| Microsoft.Component.MSBuild                                               | 16.5.29515.121 |
-| Microsoft.Component.NetFX.Native                                          | 16.5.29515.121 |
-| Microsoft.Component.PythonTools                                           | 16.5.29515.121 |
-| Microsoft.Component.PythonTools.Miniconda                                 | 16.2.29003.222 |
-| Microsoft.Component.PythonTools.Web                                       | 16.0.28517.75  |
-| Microsoft.Component.VC.Runtime.UCRTSDK                                    | 16.0.28625.61  |
-| Microsoft.ComponentGroup.Blend                                            | 16.0.28315.86  |
-| Microsoft.ComponentGroup.ClickOnce.Publish                                | 16.8.30622.256 |
-| Microsoft.Net.Component.3.5.DeveloperTools                                | 16.0.28517.75  |
-| Microsoft.Net.Component.4.5.1.TargetingPack                               | 16.0.28517.75  |
-| Microsoft.Net.Component.4.5.2.TargetingPack                               | 16.0.28517.75  |
-| Microsoft.Net.Component.4.5.TargetingPack                                 | 16.0.28517.75  |
-| Microsoft.Net.Component.4.6.1.TargetingPack                               | 16.0.28517.75  |
-| Microsoft.Net.Component.4.6.2.TargetingPack                               | 16.0.28517.75  |
-| Microsoft.Net.Component.4.6.TargetingPack                                 | 16.0.28517.75  |
-| Microsoft.Net.Component.4.7.1.TargetingPack                               | 16.8.30509.167 |
-| Microsoft.Net.Component.4.7.2.SDK                                         | 16.4.29409.204 |
-| Microsoft.Net.Component.4.7.2.TargetingPack                               | 16.8.30509.167 |
-| Microsoft.Net.Component.4.7.TargetingPack                                 | 16.8.30509.167 |
-| Microsoft.Net.Component.4.8.SDK                                           | 16.4.29313.120 |
-| Microsoft.Net.Component.4.TargetingPack                                   | 16.0.28517.75  |
-| Microsoft.Net.ComponentGroup.4.6.2.DeveloperTools                         | 16.3.29207.166 |
-| Microsoft.Net.ComponentGroup.4.7.1.DeveloperTools                         | 16.3.29207.166 |
-| Microsoft.Net.ComponentGroup.4.7.DeveloperTools                           | 16.3.29207.166 |
-| Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 16.3.29207.166 |
-| Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 16.0.28516.191 |
-| Microsoft.Net.Core.Component.SDK.2.1                                      | 16.8.30703.189 |
-| Microsoft.NetCore.Component.DevelopmentTools                              | 16.8.30607.99  |
-| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.8.30703.189 |
-| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.8.30703.189 |
-| Microsoft.NetCore.Component.SDK                                           | 16.8.30703.189 |
-| Microsoft.NetCore.Component.Web                                           | 16.5.29721.120 |
-| Microsoft.VisualStudio.Component.AppInsights.Tools                        | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.AspNet45                                 | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.Azure.AuthoringTools                     | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.Azure.ClientLibs                         | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.Azure.Compute.Emulator                   | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.Azure.Kubernetes.Tools                   | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.Azure.Powershell                         | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.Azure.ResourceManager.Tools              | 16.4.29409.204 |
-| Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools                | 16.4.29313.120 |
-| Microsoft.VisualStudio.Component.Azure.Storage.AzCopy                     | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.Azure.Storage.Emulator                   | 16.4.29313.120 |
-| Microsoft.VisualStudio.Component.Azure.Waverton                           | 16.4.29409.204 |
-| Microsoft.VisualStudio.Component.Azure.Waverton.BuildTools                | 16.3.29207.166 |
-| Microsoft.VisualStudio.Component.ClassDesigner                            | 16.0.28528.71  |
-| Microsoft.VisualStudio.Component.CloudExplorer                            | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.CodeMap                                  | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.Common.Azure.Tools                       | 16.4.29409.204 |
-| Microsoft.VisualStudio.Component.CoreEditor                               | 16.1.28811.260 |
-| Microsoft.VisualStudio.Component.Debugger.JustInTime                      | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.Debugger.Snapshot                        | 16.5.29813.82  |
-| Microsoft.VisualStudio.Component.Debugger.TimeTravel                      | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.DiagnosticTools                          | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.DockerTools                              | 16.4.29409.204 |
-| Microsoft.VisualStudio.Component.DotNetModelBuilder                       | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.DslTools                                 | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.EntityFramework                          | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.FSharp                                   | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.FSharp.Desktop                           | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.FSharp.WebTemplates                      | 16.3.29207.166 |
-| Microsoft.VisualStudio.Component.GraphDocument                            | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.Graphics                                 | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.Graphics.Tools                           | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.IISExpress                               | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 0.3            |
-| Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.LinqToSql                                | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.LiveUnitTesting                          | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.ManagedDesktop.Core                      | 16.4.29318.151 |
-| Microsoft.VisualStudio.Component.ManagedDesktop.Prerequisites             | 16.8.30607.99  |
-| Microsoft.VisualStudio.Component.Merq                                     | 16.2.29012.281 |
-| Microsoft.VisualStudio.Component.MonoDebugger                             | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.MSODBC.SQL                               | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.MSSQL.CMDLnUtils                         | 16.0.28707.177 |
-| Microsoft.VisualStudio.Component.Node.Tools                               | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.NuGet                                    | 16.1.28829.92  |
-| Microsoft.VisualStudio.Component.NuGet.BuildTools                         | 16.1.28829.92  |
-| Microsoft.VisualStudio.Component.PortableLibrary                          | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.Roslyn.Compiler                          | 16.0.28714.129 |
-| Microsoft.VisualStudio.Component.Roslyn.LanguageServices                  | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.Sharepoint.Tools                         | 16.4.29409.204 |
-| Microsoft.VisualStudio.Component.SQL.ADAL                                 | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.SQL.CLR                                  | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.SQL.DataSources                          | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.SQL.LocalDB.Runtime                      | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.SQL.SSDT                                 | 16.3.29207.166 |
-| Microsoft.VisualStudio.Component.TeamOffice                               | 16.4.29409.204 |
-| Microsoft.VisualStudio.Component.TestTools.CodedUITest                    | 16.0.28327.66  |
-| Microsoft.VisualStudio.Component.TestTools.WebLoadTest                    | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.TextTemplating                           | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.TypeScript.4.0                           | 16.0.30509.167 |
-| Microsoft.VisualStudio.Component.Unity                                    | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.UWP.VC.ARM64                             | 16.3.29207.166 |
-| Microsoft.VisualStudio.Component.VC.14.25.x86.x64                         | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.140                                   | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.ASAN                                  | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.VC.ATL                                   | 16.4.29313.120 |
-| Microsoft.VisualStudio.Component.VC.ATL.ARM                               | 16.4.29313.120 |
-| Microsoft.VisualStudio.Component.VC.ATL.ARM.Spectre                       | 16.5.29721.120 |
-| Microsoft.VisualStudio.Component.VC.ATL.ARM64                             | 16.4.29313.120 |
-| Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre                     | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.VC.ATL.Spectre                           | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.VC.ATLMFC                                | 16.4.29313.120 |
-| Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre                        | 16.5.29721.120 |
-| Microsoft.VisualStudio.Component.VC.CLI.Support                           | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.CMake.Project                         | 16.3.29103.31  |
-| Microsoft.VisualStudio.Component.VC.CoreIde                               | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.DiagnosticTools                       | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.VC.Llvm.Clang                            | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset                     | 16.3.29207.166 |
-| Microsoft.VisualStudio.Component.VC.MFC.ARM                               | 16.4.29313.120 |
-| Microsoft.VisualStudio.Component.VC.MFC.ARM.Spectre                       | 16.5.29721.120 |
-| Microsoft.VisualStudio.Component.VC.MFC.ARM64                             | 16.4.29313.120 |
-| Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre                     | 16.5.29721.120 |
-| Microsoft.VisualStudio.Component.VC.Redist.14.Latest                      | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.VC.Redist.MSM                            | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre                  | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre                | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre              | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest               | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest              | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.VC.Tools.ARM                             | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.Tools.ARM64                           | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.Tools.x86.x64                         | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.v141.ARM                              | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.v141.ARM.Spectre                      | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.VC.v141.ARM64                            | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.v141.ARM64.Spectre                    | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.VC.v141.ATL                              | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.VC.v141.ATL.ARM.Spectre                  | 16.5.29721.120 |
-| Microsoft.VisualStudio.Component.VC.v141.ATL.ARM64.Spectre                | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.VC.v141.ATL.Spectre                      | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.VC.v141.MFC                              | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.VC.v141.MFC.ARM.Spectre                  | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.VC.v141.MFC.ARM64.Spectre                | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre                      | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.VC.v141.x86.x64                          | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre                  | 16.5.29515.121 |
-| Microsoft.VisualStudio.Component.VSSDK                                    | 16.0.28315.86  |
-| Microsoft.VisualStudio.Component.Wcf.Tooling                              | 16.0.28625.61  |
-| Microsoft.VisualStudio.Component.Web                                      | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.WebDeploy                                | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.Windows10SDK                             | 16.4.29409.204 |
-| Microsoft.VisualStudio.Component.Windows10SDK.16299                       | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.Windows10SDK.17134                       | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.Windows10SDK.17763                       | 16.0.28517.75  |
-| Microsoft.VisualStudio.Component.Windows10SDK.18362                       | 16.1.28829.92  |
-| Microsoft.VisualStudio.Component.Windows10SDK.19041                       | 16.8.30509.167 |
-| Microsoft.VisualStudio.Component.WinXP                                    | 16.1.28811.260 |
-| Microsoft.VisualStudio.Component.Workflow                                 | 16.0.28315.86  |
-| Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Native            | 16.0.28621.142 |
-| Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices                 | 16.4.29409.204 |
-| Microsoft.VisualStudio.ComponentGroup.Azure.Prerequisites                 | 16.8.30509.167 |
-| Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools         | 16.0.28528.71  |
-| Microsoft.VisualStudio.ComponentGroup.AzureFunctions                      | 16.0.28621.142 |
-| Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging                      | 16.8.30607.99  |
-| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core                  | 16.2.29012.281 |
-| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang            | 16.8.30509.167 |
-| Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard              | 16.3.29102.218 |
-| Microsoft.VisualStudio.ComponentGroup.UWP.Support                         | 16.4.29409.204 |
-| Microsoft.VisualStudio.ComponentGroup.UWP.VC                              | 16.8.30607.99  |
-| Microsoft.VisualStudio.ComponentGroup.UWP.Xamarin                         | 16.8.30607.99  |
-| Microsoft.VisualStudio.ComponentGroup.VisualStudioExtension.Prerequisites | 16.4.29318.151 |
-| Microsoft.VisualStudio.ComponentGroup.Web                                 | 16.4.29318.151 |
-| Microsoft.VisualStudio.ComponentGroup.Web.Client                          | 16.8.30607.99  |
-| Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 16.2.29003.222 |
-| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions                  | 16.8.30509.167 |
-| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.CMake            | 16.3.29207.166 |
-| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.TemplateEngine   | 16.0.28315.86  |
-| Microsoft.VisualStudio.Workload.Azure                                     | 16.4.29409.204 |
-| Microsoft.VisualStudio.Workload.CoreEditor                                | 16.0.28315.86  |
-| Microsoft.VisualStudio.Workload.Data                                      | 16.0.28720.110 |
-| Microsoft.VisualStudio.Workload.DataScience                               | 16.0.28720.110 |
-| Microsoft.VisualStudio.Workload.ManagedDesktop                            | 16.8.30509.167 |
-| Microsoft.VisualStudio.Workload.ManagedGame                               | 16.5.29514.35  |
-| Microsoft.VisualStudio.Workload.NativeCrossPlat                           | 16.4.29409.204 |
-| Microsoft.VisualStudio.Workload.NativeDesktop                             | 16.8.30530.185 |
-| Microsoft.VisualStudio.Workload.NativeGame                                | 16.8.30530.185 |
-| Microsoft.VisualStudio.Workload.NativeMobile                              | 16.5.29514.35  |
-| Microsoft.VisualStudio.Workload.NetCoreTools                              | 16.8.30509.167 |
-| Microsoft.VisualStudio.Workload.NetCrossPlat                              | 16.5.29514.35  |
-| Microsoft.VisualStudio.Workload.NetWeb                                    | 16.8.30509.167 |
-| Microsoft.VisualStudio.Workload.Node                                      | 16.1.28825.262 |
-| Microsoft.VisualStudio.Workload.Office                                    | 16.3.29207.166 |
-| Microsoft.VisualStudio.Workload.Python                                    | 16.0.28621.142 |
-| Microsoft.VisualStudio.Workload.Universal                                 | 16.8.30530.185 |
-| Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 16.4.29409.204 |
-| SSDT Microsoft Analysis Services Projects                                 | 2.9.14         |
-| SSDT SQL Server Integration Services Projects                             | 3.10           |
-| SSDT Microsoft Reporting Services Projects                                | 2.6.7          |
-| Windows Driver Kit                                                        | 3.11.4516      |
-| Windows Driver Kit Visual Studio Extension                                | 10.1.19041.1   |
-| WIX Toolset                                                               | 3.11.4516      |
-| WIX Toolset Studio 2019 Extension                                         | 1.0.0.4        |
+| Package                                                                   | Version         |
+| ------------------------------------------------------------------------- | --------------- |
+| Component.Android.NDK.R16B                                                | 16.10.31401.40  |
+| Component.Android.SDK25.Private                                           | 16.0.28625.61   |
+| Component.Android.SDK30                                                   | 16.10.31205.252 |
+| Component.Ant                                                             | 1.9.3.8         |
+| Component.Dotfuscator                                                     | 16.10.31205.252 |
+| Component.Linux.CMake                                                     | 16.2.29003.222  |
+| Component.MDD.Android                                                     | 16.0.28517.75   |
+| Component.MDD.Linux                                                       | 16.5.29515.121  |
+| Component.MDD.Linux.GCC.arm                                               | 16.5.29515.121  |
+| Component.Microsoft.VisualStudio.LiveShare                                | 1.0.4062        |
+| Component.Microsoft.VisualStudio.RazorExtension                           | 16.10.31205.252 |
+| Component.Microsoft.VisualStudio.Tools.Applications                       | 16.0.31110.1    |
+| Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 16.10.31205.252 |
+| Component.Microsoft.Web.LibraryManager                                    | 16.10.31205.180 |
+| Component.Microsoft.WebTools.BrowserLink.WebLivePreview                   | 0.7.22.39845    |
+| Component.Microsoft.Windows.DriverKit                                     | 10.0.19030.0    |
+| Component.OpenJDK                                                         | 16.10.31303.311 |
+| Component.UnityEngine.x64                                                 | 16.10.31205.252 |
+| Component.Unreal                                                          | 16.1.28810.153  |
+| Component.Unreal.Android                                                  | 16.1.28810.153  |
+| Component.VSInstallerProjects                                             | 1.0.0           |
+| Component.WixToolset.VisualStudioExtension.Dev16                          | 1.0.0.4         |
+| Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.4         |
+| Component.WixToolset.VisualStudioExtension.Schemas4                       | 1.0.0.4         |
+| Component.Xamarin                                                         | 16.10.31205.252 |
+| Component.Xamarin.RemotedSimulator                                        | 16.10.31205.252 |
+| Microsoft.Component.Azure.DataLake.Tools                                  | 16.10.31205.252 |
+| Microsoft.Component.ClickOnce                                             | 16.4.29409.204  |
+| Microsoft.Component.MSBuild                                               | 16.5.29515.121  |
+| Microsoft.Component.NetFX.Native                                          | 16.5.29515.121  |
+| Microsoft.Component.PythonTools                                           | 16.10.31313.127 |
+| Microsoft.Component.PythonTools.Miniconda                                 | 16.10.31313.127 |
+| Microsoft.Component.PythonTools.Web                                       | 16.10.31205.252 |
+| Microsoft.Component.VC.Runtime.UCRTSDK                                    | 16.0.28625.61   |
+| Microsoft.ComponentGroup.Blend                                            | 16.0.28315.86   |
+| Microsoft.ComponentGroup.ClickOnce.Publish                                | 16.10.31303.231 |
+| Microsoft.Net.Component.3.5.DeveloperTools                                | 16.0.28517.75   |
+| Microsoft.Net.Component.4.5.1.TargetingPack                               | 16.0.28517.75   |
+| Microsoft.Net.Component.4.5.2.TargetingPack                               | 16.0.28517.75   |
+| Microsoft.Net.Component.4.5.TargetingPack                                 | 16.0.28517.75   |
+| Microsoft.Net.Component.4.6.1.TargetingPack                               | 16.0.28517.75   |
+| Microsoft.Net.Component.4.6.2.TargetingPack                               | 16.0.28517.75   |
+| Microsoft.Net.Component.4.6.TargetingPack                                 | 16.0.28517.75   |
+| Microsoft.Net.Component.4.7.1.TargetingPack                               | 16.10.31205.252 |
+| Microsoft.Net.Component.4.7.2.SDK                                         | 16.4.29409.204  |
+| Microsoft.Net.Component.4.7.2.TargetingPack                               | 16.10.31205.252 |
+| Microsoft.Net.Component.4.7.TargetingPack                                 | 16.10.31205.252 |
+| Microsoft.Net.Component.4.8.SDK                                           | 16.4.29313.120  |
+| Microsoft.Net.Component.4.TargetingPack                                   | 16.0.28517.75   |
+| Microsoft.Net.ComponentGroup.4.6.2.DeveloperTools                         | 16.3.29207.166  |
+| Microsoft.Net.ComponentGroup.4.7.1.DeveloperTools                         | 16.3.29207.166  |
+| Microsoft.Net.ComponentGroup.4.7.DeveloperTools                           | 16.3.29207.166  |
+| Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 16.3.29207.166  |
+| Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 16.0.28516.191  |
+| Microsoft.NetCore.Component.DevelopmentTools                              | 16.10.31303.231 |
+| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.10.31401.124 |
+| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.10.31401.124 |
+| Microsoft.NetCore.Component.SDK                                           | 16.10.31401.124 |
+| Microsoft.NetCore.Component.Web                                           | 16.10.31303.231 |
+| Microsoft.VisualStudio.Component.AppInsights.Tools                        | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.AspNet45                                 | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Azure.AuthoringTools                     | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.Azure.ClientLibs                         | 16.0.28315.86   |
+| Microsoft.VisualStudio.Component.Azure.Compute.Emulator                   | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Azure.Kubernetes.Tools                   | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Azure.Powershell                         | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.Azure.ResourceManager.Tools              | 16.4.29409.204  |
+| Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools                | 16.4.29313.120  |
+| Microsoft.VisualStudio.Component.Azure.Storage.AzCopy                     | 16.0.28517.75   |
+| Microsoft.VisualStudio.Component.Azure.Storage.Emulator                   | 16.4.29313.120  |
+| Microsoft.VisualStudio.Component.Azure.Waverton                           | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Azure.Waverton.BuildTools                | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.ClassDesigner                            | 16.0.28528.71   |
+| Microsoft.VisualStudio.Component.CloudExplorer                            | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.CodeMap                                  | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.Common.Azure.Tools                       | 16.4.29409.204  |
+| Microsoft.VisualStudio.Component.CoreEditor                               | 16.1.28811.260  |
+| Microsoft.VisualStudio.Component.Debugger.JustInTime                      | 16.0.28517.75   |
+| Microsoft.VisualStudio.Component.Debugger.Snapshot                        | 16.5.29813.82   |
+| Microsoft.VisualStudio.Component.Debugger.TimeTravel                      | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.DiagnosticTools                          | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.DockerTools                              | 16.4.29409.204  |
+| Microsoft.VisualStudio.Component.DotNetModelBuilder                       | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.DslTools                                 | 16.0.28315.86   |
+| Microsoft.VisualStudio.Component.EntityFramework                          | 16.0.28315.86   |
+| Microsoft.VisualStudio.Component.FSharp                                   | 16.0.28315.86   |
+| Microsoft.VisualStudio.Component.FSharp.Desktop                           | 16.0.28315.86   |
+| Microsoft.VisualStudio.Component.FSharp.WebTemplates                      | 16.3.29207.166  |
+| Microsoft.VisualStudio.Component.GraphDocument                            | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.Graphics                                 | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Graphics.Tools                           | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.IISExpress                               | 16.0.28315.86   |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 16.10.31305.154 |
+| Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 16.0.28517.75   |
+| Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 16.10.31303.231 |
+| Microsoft.VisualStudio.Component.LinqToSql                                | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.LiveUnitTesting                          | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.ManagedDesktop.Core                      | 16.4.29318.151  |
+| Microsoft.VisualStudio.Component.ManagedDesktop.Prerequisites             | 16.10.31205.180 |
+| Microsoft.VisualStudio.Component.Merq                                     | 16.2.29012.281  |
+| Microsoft.VisualStudio.Component.MonoDebugger                             | 16.0.28517.75   |
+| Microsoft.VisualStudio.Component.MSODBC.SQL                               | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.MSSQL.CMDLnUtils                         | 16.0.28707.177  |
+| Microsoft.VisualStudio.Component.Node.Tools                               | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.NuGet                                    | 16.1.28829.92   |
+| Microsoft.VisualStudio.Component.NuGet.BuildTools                         | 16.1.28829.92   |
+| Microsoft.VisualStudio.Component.PortableLibrary                          | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Roslyn.Compiler                          | 16.0.28714.129  |
+| Microsoft.VisualStudio.Component.Roslyn.LanguageServices                  | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Sharepoint.Tools                         | 16.4.29409.204  |
+| Microsoft.VisualStudio.Component.SQL.ADAL                                 | 16.0.28517.75   |
+| Microsoft.VisualStudio.Component.SQL.CLR                                  | 16.0.28315.86   |
+| Microsoft.VisualStudio.Component.SQL.DataSources                          | 16.0.28315.86   |
+| Microsoft.VisualStudio.Component.SQL.LocalDB.Runtime                      | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.SQL.SSDT                                 | 16.3.29207.166  |
+| Microsoft.VisualStudio.Component.TeamOffice                               | 16.4.29409.204  |
+| Microsoft.VisualStudio.Component.TestTools.CodedUITest                    | 16.0.28327.66   |
+| Microsoft.VisualStudio.Component.TestTools.WebLoadTest                    | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.TextTemplating                           | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.TypeScript.4.2                           | 16.0.31303.231  |
+| Microsoft.VisualStudio.Component.Unity                                    | 16.0.28315.86   |
+| Microsoft.VisualStudio.Component.UWP.VC.ARM64                             | 16.3.29207.166  |
+| Microsoft.VisualStudio.Component.VC.14.25.x86.x64                         | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.140                                   | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.ASAN                                  | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.ATL                                   | 16.4.29313.120  |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM                               | 16.4.29313.120  |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM.Spectre                       | 16.5.29721.120  |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM64                             | 16.4.29313.120  |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre                     | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.VC.ATL.Spectre                           | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.VC.ATLMFC                                | 16.4.29313.120  |
+| Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre                        | 16.5.29721.120  |
+| Microsoft.VisualStudio.Component.VC.CLI.Support                           | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.CMake.Project                         | 16.3.29103.31   |
+| Microsoft.VisualStudio.Component.VC.CoreIde                               | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.DiagnosticTools                       | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.VC.Llvm.Clang                            | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset                     | 16.3.29207.166  |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM                               | 16.4.29313.120  |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM.Spectre                       | 16.5.29721.120  |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM64                             | 16.4.29313.120  |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre                     | 16.5.29721.120  |
+| Microsoft.VisualStudio.Component.VC.Redist.14.Latest                      | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.VC.Redist.MSM                            | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre                  | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre                | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre              | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest               | 16.0.28517.75   |
+| Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest              | 16.0.28517.75   |
+| Microsoft.VisualStudio.Component.VC.Tools.ARM                             | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.Tools.ARM64                           | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.Tools.x86.x64                         | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.v141.ARM                              | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.v141.ARM.Spectre                      | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.VC.v141.ARM64                            | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.v141.ARM64.Spectre                    | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.VC.v141.ATL                              | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.VC.v141.ATL.ARM.Spectre                  | 16.5.29721.120  |
+| Microsoft.VisualStudio.Component.VC.v141.ATL.ARM64.Spectre                | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.VC.v141.ATL.Spectre                      | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.VC.v141.MFC                              | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.VC.v141.MFC.ARM.Spectre                  | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.VC.v141.MFC.ARM64.Spectre                | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre                      | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.VC.v141.x86.x64                          | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre                  | 16.5.29515.121  |
+| Microsoft.VisualStudio.Component.VSSDK                                    | 16.0.28315.86   |
+| Microsoft.VisualStudio.Component.Wcf.Tooling                              | 16.0.28625.61   |
+| Microsoft.VisualStudio.Component.Web                                      | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.WebDeploy                                | 16.0.28517.75   |
+| Microsoft.VisualStudio.Component.Windows10SDK                             | 16.4.29409.204  |
+| Microsoft.VisualStudio.Component.Windows10SDK.16299                       | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Windows10SDK.17134                       | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Windows10SDK.17763                       | 16.0.28517.75   |
+| Microsoft.VisualStudio.Component.Windows10SDK.18362                       | 16.1.28829.92   |
+| Microsoft.VisualStudio.Component.Windows10SDK.19041                       | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.WinXP                                    | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Workflow                                 | 16.0.28315.86   |
+| Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Native            | 16.0.28621.142  |
+| Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices                 | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.Azure.Prerequisites                 | 16.10.31303.231 |
+| Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools         | 16.0.28528.71   |
+| Microsoft.VisualStudio.ComponentGroup.AzureFunctions                      | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging                      | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core                  | 16.2.29012.281  |
+| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang            | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard              | 16.3.29102.218  |
+| Microsoft.VisualStudio.ComponentGroup.UWP.Support                         | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.UWP.VC                              | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.UWP.Xamarin                         | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.VisualStudioExtension.Prerequisites | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.Web                                 | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.Web.Client                          | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions                  | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.CMake            | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.TemplateEngine   | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.Azure                                     | 16.10.31303.231 |
+| Microsoft.VisualStudio.Workload.CoreEditor                                | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.Data                                      | 16.0.28720.110  |
+| Microsoft.VisualStudio.Workload.DataScience                               | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.ManagedDesktop                            | 16.10.31303.231 |
+| Microsoft.VisualStudio.Workload.ManagedGame                               | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.NativeCrossPlat                           | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.NativeDesktop                             | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.NativeGame                                | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.NativeMobile                              | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.NetCoreTools                              | 16.10.31303.231 |
+| Microsoft.VisualStudio.Workload.NetCrossPlat                              | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.NetWeb                                    | 16.10.31303.231 |
+| Microsoft.VisualStudio.Workload.Node                                      | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.Office                                    | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.Python                                    | 16.10.31303.231 |
+| Microsoft.VisualStudio.Workload.Universal                                 | 16.10.31205.180 |
+| Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 16.10.31205.180 |
+| ms-biztalk.BizTalk                                                        | 3.13.2.0        |
+| ProBITools.MicrosoftAnalysisServicesModelingProjects                      | 2.9.17          |
+| ProBITools.MicrosoftReportProjectsforVisualStudio                         | 2.6.11          |
+| SSIS.SqlServerIntegrationServicesProjects                                 | 3.14            |
+| VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.0           |
+| Windows Driver Kit                                                        | 10.0.19030.0    |
+| Windows Driver Kit Visual Studio Extension                                | 10.1.19041.685  |
+| WIX Toolset                                                               | 3.11.4516       |
+| WIX Toolset Studio 2019 Extension                                         | 1.0.0.4         |
 
 #### Microsoft Visual C++:
 
@@ -457,29 +470,29 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Additional Runtime | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
-| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.28.29325 |
-| Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.28.29325 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.28.29325 |
-| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.28.29325 |
-| Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.28.29325 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.28.29325 |
+| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30037 |
+| Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.29.30037 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30037 |
+| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30037 |
+| Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.29.30037 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30037 |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 5.0.100
+- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.116 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203 5.0.204 5.0.300 5.0.301
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 5.0.0
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 5.0.0
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 5.0.0
+- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -487,14 +500,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.7.2 4.8
 
 ### PowerShell Tools
-- PowerShell 7.1.0
+- PowerShell 7.1.3
 
 #### Azure Powershell Modules
-| Module  | Version                                                                                         | Path                           |
-| ------- | ----------------------------------------------------------------------------------------------- | ------------------------------ |
-| Az      | 1.0.0<br>1.6.0<br>2.3.2<br>2.6.0<br>3.1.0<br>3.5.0<br>3.8.0<br>4.3.0<br>4.4.0<br>4.6.0<br>4.7.0 | C:\Modules\az_\<version\>      |
-| Azure   | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>5.3.0                                           | C:\Modules\azure_\<version\>   |
-| AzureRM | 2.1.0 [Installed]<br>3.8.0<br>4.2.1<br>5.1.1<br>6.7.0<br>6.13.1                                 | C:\Modules\azurerm_\<version\> |
+| Module  | Version                                                                                                                                              | Path                           |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.7.0 | C:\Modules\az_\<version\>      |
+| Azure   | 3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>2.1.0 [Installed]<br>5.3.0                                                                                    | C:\Modules\azure_\<version\>   |
+| AzureRM | 3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>6.7.0.zip<br>2.1.0 [Installed]<br>6.13.1                                                                      | C:\Modules\azurerm_\<version\> |
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
@@ -505,34 +518,46 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Pester             | 3.4.0<br>5.0.4   |
+| Pester             | 3.4.0<br>5.2.2   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
+| PSScriptAnalyzer   | 1.19.1           |
 | PSWindowsUpdate    | 2.2.0.2          |
-| SqlServer          | 21.1.18229       |
+| SqlServer          | 21.1.18245       |
 | VSSetup            | 2.2.16           |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                                                                        |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Android SDK Platform-Tools | 30.0.5                                                                                                                                                                                                                                                                         |
-| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                         |
-| Android SDK Platforms      | android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)           |
-| Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0 |
-| NDK                        | 21.3.6528147                                                                                                                                                                                                                                                                   |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                         |
-| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                       |
-| Google Play services       | 49                                                                                                                                                                                                                                                                             |
-| Google Repository          | 58                                                                                                                                                                                                                                                                             |
-| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                              |
-| CMake                      | 3.10.2<br>3.6.4111459                                                                                                                                                                                                                                                          |
+| Package Name               | Version                                                                                                                                                                                                                                                                                   |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 4.0                                                                                                                                                                                                                                                                                       |
+| Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0     |
+| Android SDK Platforms      | android-S (rev 4)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
+| Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                                                                                    |
+| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                    |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                    |
+| CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                                          |
+| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                  |
+| Google Play services       | 49                                                                                                                                                                                                                                                                                        |
+| Google Repository          | 58                                                                                                                                                                                                                                                                                        |
+| NDK                        | 21.4.7075529<br>22.1.7171670                                                                                                                                                                                                                                                              |
+| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                         |
+
+#### Environment variables
+| Name                    | Value                                                                        |
+| ----------------------- | ---------------------------------------------------------------------------- |
+| ANDROID_HOME            | C:\Android\android-sdk                                                       |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\22.1.7171670                                      |
+| ANDROID_NDK_PATH        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
+| ANDROID_SDK_ROOT        | C:\Android\android-sdk                                                       |
 
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:778b5bb7839f483f869b016fdb66400525093fbe0f75878a2950472e6c58573e  | 2020-11-10 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:bfc6c9dd77473be518e4c63171d6d06baf300d873756d2f3c10d21a4defb2978  | 2020-11-10 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:0da0b0e6cf9cf435c6470f23a97a0b9b80495f3712529abc748d80c5fb59209c  | 2020-11-03 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:a109b9910e8784221914ff5970c398c14c7a13b41ada10500f62806f5f522d53  | 2020-10-31 |
-| microsoft/aspnetcore-build:1.0-2.0                                        | sha256:9ecc7c5a8a7a11dca5f08c860165646cb30d084606360a3a72b9cbe447241c0c  | 2018-08-15 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:6c8ea03414851b5a77a951a9fc82a43e580e816b12e9d05d6a5918a76c2dd7c1  | 2021-05-11 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:c615be2cb06c4f4386f4ba424239f2172af7a3c8360ab0008131828d50fe020f  | 2021-05-11 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:a3b51566290b6aa485de6d8ac3d8cbf008f560feda73ed1addb208166cbdd3ad  | 2021-05-25 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:7810b00b2b0ce434cf8a420627b3aba335a40e1b805e1be2e02241b7446f7a00  | 2021-05-07 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:edd6d6de1e7252d2d434af58798db1d96762d738f60e15b24ed631f55e26681d  | 2021-05-08 |
 
 
