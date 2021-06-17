@@ -5,18 +5,17 @@
 ***
 # Ubuntu 20.04.2 LTS
 - Linux kernel version: 5.8.0-1033-azure
-- Image Version: 20210606.1
+- Image Version: 20210614.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 5.0.17(1)-release
-- Clang 10.0.0, 11.0.0, 12.0.1
-- Clang-format 10.0.0, 11.0.0, 12.0.1
 - Erlang 24.0.2 (Eshell 12.0.2)
 - Erlang rebar3 3.16.1
 - GNU C++ 9.3.0, 10.2.0
 - GNU Fortran 9.3.0, 10.2.0
 - Julia 1.6.1
+- LLVM components: Clang 10.0.0, 11.0.0, 12.0.1, Clang-format 10.0.0, 11.0.0, 12.0.1 (apt source: deb http://apt.llvm.org/focal/ llvm-toolchain-focal-12)
 - Mono 6.12.0.122 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.6.0.15201 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node 14.17.0
@@ -29,14 +28,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.6.0
-- Homebrew 3.1.9
+- Homebrew 3.1.12
 - Miniconda 4.9.2
 - Npm 6.14.13
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 0.16.3
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<b2544fd>)
+- Vcpkg  (build from master \<92b42c4>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -50,7 +49,7 @@
 - Gradle 7.0.2
 - Lerna 4.0.0
 - Maven 3.8.1
-- Sbt 1.5.3
+- Sbt 1.5.4
 
 ### Tools
 - Ansible 2.10.10
@@ -66,12 +65,12 @@
 - Docker-Moby Client 20.10.6+azure
 - Docker-Moby Server 20.10.6+azure
 - Fastlane 2.185.0
-- Git 2.31.1 (apt source repository: ppa:git-core/ppa)
+- Git 2.32.0 (apt source repository: ppa:git-core/ppa)
 - Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 7.54.0
-- HHVM (HipHop VM) 4.112.0
+- Heroku 7.54.1
+- HHVM (HipHop VM) 4.113.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.20.1-5-g76a04fc
@@ -79,7 +78,7 @@
 - Leiningen 2.9.6
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.20.0
+- Minikube 1.21.0
 - Newman 5.2.3
 - nvm 0.38.0
 - OpenSSL 1.1.1f  31 Mar 2020
@@ -88,24 +87,24 @@
 - Podman 3.1.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Pulumi 3.4.0
 - R 4.1.0
-- Skopeo 1.2.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
+- Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 0.15.5
+- Terraform 1.0.0
 - yamllint 1.26.1
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.79
-- AWS CLI 2.2.9
-- AWS CLI Session manager plugin 1.2.54.0
-- AWS SAM CLI 1.24.0
+- AWS CLI 2.2.11
+- AWS CLI Session manager plugin 1.2.205.0
+- AWS SAM CLI 1.24.1
 - Azure CLI (azure-cli) 2.24.2 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.11.0
-- Google Cloud SDK 343.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 344.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 3.35.1
+- Netlify CLI 3.37.18
 - OpenShift CLI 4.7.13
 - ORAS CLI 0.12.0
 - Vercel CLI 23.0.0
@@ -125,7 +124,7 @@
 | Tool     | Version      |
 | -------- | ------------ |
 | PHP      | 7.4.20 8.0.7 |
-| Composer | 2.1.1        |
+| Composer | 2.1.3        |
 | PHPUnit  | 8.5.16       |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -133,14 +132,14 @@
 ### Haskell
 - Cabal 3.4.0.0
 - GHC 9.0.1 (apt source repository: ppa:hvr/ghc)
-- GHCup 0.1.14.1
+- GHCup 0.1.15.2
 - Stack 2.7.1
 
 ### Rust Tools
 - Cargo 1.52.0
 - Rust 1.52.1
 - Rustdoc 1.52.1
-- Rustup 1.24.2
+- Rustup 1.24.3
 
 #### Packages
 - Bindgen 0.58.1
@@ -151,8 +150,8 @@
 - Rustfmt 1.4.36
 
 ### Browsers and Drivers
-- Google Chrome 91.0.4472.77
-- ChromeDriver 91.0.4472.19
+- Google Chrome 91.0.4472.101
+- ChromeDriver 91.0.4472.101
 - Mozilla Firefox 89.0
 - Geckodriver 0.29.1
 - Chromium 91.0.4472.0
@@ -164,7 +163,7 @@
 | GECKOWEBDRIVER  | /usr/local/share/gecko_driver  |
 
 ### .NET Core SDK
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203 5.0.300
+- 2.1.302 2.1.403 2.1.524 2.1.617 2.1.701 2.1.816 3.1.116 3.1.202 3.1.302 3.1.410 5.0.104 5.0.204 5.0.301
 
 ### Databases
 - MongoDB 4.4.6 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
@@ -229,7 +228,7 @@
 | PSScriptAnalyzer | 1.19.1  |
 
 #### Az PowerShell Modules
-- 5.7.0 3.1.0.zip 4.4.0.zip
+- 5.9.0 3.1.0.zip 4.4.0.zip
 
 ### Web Servers
 | Name      | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -244,7 +243,7 @@
 | Android Command Line Tools | 4.0                                                                                                                      |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                   |
-| Android SDK Platforms      | android-S (rev 4)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                |
+| Android SDK Platforms      | android-S (rev 5)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                |
 | Android SDK Tools          | 26.1.1                                                                                                                   |
 | Android Support Repository | 47.0.0                                                                                                                   |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                         |
