@@ -7,6 +7,10 @@ BeforeAll {
 }
 
 Describe "MSYS2 packages" {
+    BeforeEach {
+        $env:PATH = "$msys2Dir;$env:PATH"
+    }
+
     It "msys2Dir exists" {
         $msys2Dir | Should -Exist
     }
@@ -18,14 +22,14 @@ Describe "MSYS2 packages" {
     )
 
     It "<ToolName> is installed in <msys2Dir>" -TestCases $TestCases {
-        $env:PATH = "$msys2Dir;$env:PATH"
         (get-command "$ToolName").Source | Should -BeLike "$msys2Dir*"
-        $env:PATH = $originalPath
     }
 
     It "<ToolName> is avaialable" -TestCases $TestCases {
-        $env:PATH = "$msys2Dir;$env:PATH"
         "$ToolName" | Should -ReturnZeroExitCodeWithParam
+    }
+
+    AfterEach {
         $env:PATH = $originalPath
     }
 }
@@ -53,15 +57,19 @@ foreach ($arch in $archs) {
                     }
                 }
 
-                It "<ExecName> is installed in <ExecDir>" -TestCases $executables {
+                BeforeEach {
                     $env:PATH = "$ExecDir;$env:PATH"
+                }
+
+                It "<ExecName> is installed in <ExecDir>" -TestCases $executables {
                     (get-command "$ExecName").Source | Should -BeLike "$ExecDir*"
-                    $env:PATH = $originalPath
                 }
 
                 It "<ExecName> is available" -TestCases $executables {
-                    $env:PATH = "$ExecDir;$env:PATH"
                     "$ExecName" | Should -ReturnZeroExitCodeWithParam
+                }
+
+                AfterEach {
                     $env:PATH = $originalPath
                 }
             }
