@@ -22,7 +22,7 @@ Describe "MSYS2 packages" {
     )
 
     It "<ToolName> is installed in <msys2Dir>" -TestCases $TestCases {
-        (get-command "$ToolName").Source | Should -BeLike "$msys2Dir*"
+        (Get-Command "$ToolName").Source | Should -BeLike "$msys2Dir*"
     }
 
     It "<ToolName> is avaialable" -TestCases $TestCases {
@@ -62,7 +62,7 @@ foreach ($arch in $archs) {
                 }
 
                 It "<ExecName> is installed in <ExecDir>" -TestCases $executables {
-                    (get-command "$ExecName").Source | Should -BeLike "$ExecDir*"
+                    (Get-Command "$ExecName").Source | Should -BeLike "$ExecDir*"
                 }
 
                 It "<ExecName> is available" -TestCases $executables {
