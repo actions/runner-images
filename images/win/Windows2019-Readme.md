@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1999
-- Image Version: 20210608.0
+- Image Version: 20210616.0
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -10,7 +10,7 @@
 - Bash 4.4.23(1)-release
 - Go 1.15.13
 - Julia 1.6.1
-- Node 14.17.0
+- Node 14.17.1
 - Perl 5.32.1
 - PHP 8.0.7
 - Python 3.7.9
@@ -18,7 +18,7 @@
 
 ### Package Management
 - Chocolatey 0.10.15
-- Composer 2.1.2
+- Composer 2.1.3
 - Helm 3.6.0
 - Miniconda 4.9.2 (pre-installed on the image but not added to PATH)
 - NPM 6.14.13
@@ -26,7 +26,7 @@
 - pip 21.1.2 (python 3.7)
 - Pipx 0.16.3
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<38d2893>)
+- Vcpkg  (build from master \<4dc864e>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -47,14 +47,14 @@
 - Bazel 4.1.0
 - Bazelisk 1.9.0
 - Cabal 3.4.0.0
-- CMake 3.20.3
+- CMake 3.20.4
 - CodeQL Action Bundle 2.5.5
 - Docker 20.10.5
 - Docker-compose 1.29.1
 - ghc 9.0.1
 - Git 2.32.0
 - Git LFS 2.13.3
-- Google Cloud SDK 344.0.0
+- Google Cloud SDK 345.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
@@ -77,10 +77,10 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.79
-- AWS CLI 2.2.9
+- AWS CLI 2.2.12
 - AWS SAM CLI 1.24.1
-- AWS Session Manager CLI 1.2.54.0
-- Azure CLI 2.24.2
+- AWS Session Manager CLI 1.2.205.0
+- Azure CLI 2.25.0
 - Azure DevOps CLI extension 0.18.0
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 1.11.0
@@ -101,11 +101,11 @@
 - Rustfmt 1.4.36
 
 ### Browsers and webdrivers
-- Google Chrome 91.0.4472.77
-- Chrome Driver 91.0.4472.19
-- Microsoft Edge 91.0.864.41
-- Microsoft Edge Driver 91.0.864.41
-- Mozilla Firefox 89.0
+- Google Chrome 91.0.4472.106
+- Chrome Driver 91.0.4472.101
+- Microsoft Edge 91.0.864.48
+- Microsoft Edge Driver 91.0.864.48
+- Mozilla Firefox 89.0.1
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
 
@@ -131,7 +131,7 @@
 | wslbash.exe   | C:\Windows\System32\bash.exe      |
 
 ### MSYS2
-- Pacman 5.2.2
+- Pacman 6.0.0
 ##### Notes:
 ```
 Location: C:\msys64
@@ -155,7 +155,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 10.24.1 | x64          |
 | 12.22.1 | x64          |
-| 14.17.0 | x64          |
+| 14.17.1 | x64          |
 
 
 #### Python
@@ -210,7 +210,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.11.13.0
+- Azure CosmosDb Emulator 2.14.0.0
 - DacFx 15.0.4897.1
 - MySQL 5.7.21.0
 - SQLPS 1.0
@@ -225,13 +225,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.10.31402.337 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Visual Studio Enterprise 2019 | 16.10.31410.357 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.10.31401.40  |
+| Component.Android.NDK.R16B                                                | 16.10.31408.198 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -470,12 +470,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Additional Runtime | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
-| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30037 |
-| Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.29.30037 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30037 |
-| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30037 |
-| Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.29.30037 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30037 |
+| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30038 |
+| Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.29.30038 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30038 |
+| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30038 |
+| Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.29.30038 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30038 |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
@@ -505,7 +505,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                              | Path                           |
 | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.7.0 | C:\Modules\az_\<version\>      |
+| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.9.0 | C:\Modules\az_\<version\>      |
 | Azure   | 3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>2.1.0 [Installed]<br>5.3.0                                                                                    | C:\Modules\azure_\<version\>   |
 | AzureRM | 3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>6.7.0.zip<br>2.1.0 [Installed]<br>6.13.1                                                                      | C:\Modules\azurerm_\<version\> |
 ```
@@ -530,7 +530,7 @@ All other versions are saved but not installed.
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 4.0                                                                                                                                                                                                                                                                                       |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0     |
-| Android SDK Platforms      | android-S (rev 4)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
+| Android SDK Platforms      | android-S (rev 5)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                                                                                    |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                    |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                    |
@@ -554,10 +554,10 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:6c8ea03414851b5a77a951a9fc82a43e580e816b12e9d05d6a5918a76c2dd7c1  | 2021-05-11 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:c615be2cb06c4f4386f4ba424239f2172af7a3c8360ab0008131828d50fe020f  | 2021-05-11 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:a3b51566290b6aa485de6d8ac3d8cbf008f560feda73ed1addb208166cbdd3ad  | 2021-05-25 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:7810b00b2b0ce434cf8a420627b3aba335a40e1b805e1be2e02241b7446f7a00  | 2021-05-07 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:edd6d6de1e7252d2d434af58798db1d96762d738f60e15b24ed631f55e26681d  | 2021-05-08 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:7da03aef9a9acb66678d5c14dda85c741268557bdcd55484e6351e373445157f  | 2021-06-08 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:8af4375ff474def9233a8a0ce8f0faad829c143c447e98d85c55a24586904f63  | 2021-06-08 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:ceb674e14c24078b16c2b7a3dfe0c31929acbdd34352902bcf381a4489dc6422  | 2021-06-08 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:944184f0b31444a929debcd9668218f1e80ef342fe03f5c4b8491eda6da3ffb8  | 2021-06-06 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:3458c7dbc9ee16016170ecce85bee03b0e7f13744809d67fc881ec8d2086f5ef  | 2021-06-06 |
 
 
