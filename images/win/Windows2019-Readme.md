@@ -211,7 +211,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.11.13.0
-- DacFx 15.0.4897.1
+- DacFx 15.0.5164.1
 - MySQL 5.7.21.0
 - SQLPS 1.0
 
