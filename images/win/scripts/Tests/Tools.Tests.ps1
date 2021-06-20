@@ -197,6 +197,12 @@ Describe "Pulumi" {
     }
 }
 
+Describe "Terraform" {
+  It "terraform" {
+     "terraform -version" | Should -ReturnZeroExitCode
+  }
+}
+
 Describe "Sbt" {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode

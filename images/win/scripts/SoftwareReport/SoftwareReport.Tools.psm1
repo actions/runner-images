@@ -127,6 +127,11 @@ function Get-PackerVersion {
 function Get-PulumiVersion {
     return "Pulumi $(pulumi version)"
 }
+function Get-TerraformVersion {
+  $(terraform -version | Select-Object -First 1) -match "Terraform v(?<version>\d+\.\d+\.\d+)" | Out-Null
+  $terraformVersion = $Matches.Version
+  return "Terraform $terraformVersion"
+}
 
 function Get-SQLPSVersion {
     $module = Get-Module -Name SQLPS -ListAvailable
