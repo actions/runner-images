@@ -9,7 +9,7 @@ jobs:
   displayName: Image Generation (${{ parameters.image_type }})
   timeoutInMinutes: 600
   cancelTimeoutInMinutes: 30
-  pool: vmss-windows
+  pool: windows2019-prod-tf
   variables:
   - group: Image Generation Variables
 
