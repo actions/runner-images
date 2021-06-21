@@ -1,13 +1,12 @@
 | Announcements |
 |-|
 | [[macOS] Xcode 12.2 and 12.3 will be removed from Big Sur on June, 28](https://github.com/actions/virtual-environments/issues/3555) |
-| [[macOS] Default Xcode on Big Sur image will be set to Xcode 12.5 on June, 15](https://github.com/actions/virtual-environments/issues/3522) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 11.4 info
 - System Version: macOS 11.4 (20F71)
 - Kernel Version: Darwin 20.5.0
-- Image Version: 20210614.1
+- Image Version: 20210620.1
 
 ## Installed Software
 ### Language and Runtime
@@ -24,9 +23,9 @@
 - Go 1.15.13
 - julia 1.6.1
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v14.17.0
+- Node.js v14.17.1
 - NVM 0.38.0
-- NVM - Cached node versions: v10.24.1 v12.22.1 v14.17.0
+- NVM - Cached node versions: v10.24.1 v12.22.1 v14.17.1
 - Perl 5.34.0
 - PHP 8.0.7
 - Python 2.7.18
@@ -46,7 +45,7 @@
 - Pip 21.1.1 (python 3.9)
 - Pipx 0.16.3
 - RubyGems 3.2.20
-- Vcpkg 2021 (build from master \<14418e1>)
+- Vcpkg 2021 (build from master \<08214e1>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -63,7 +62,7 @@
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.35.0
-- azcopy 10.10.0
+- azcopy 10.11.0
 - bazel 4.1.0
 - bazelisk 1.9.0
 - bsdtar 3.3.2 - available by 'tar' alias
@@ -74,14 +73,14 @@
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.3.1
-- helm v3.6.0+g7f2df64
+- helm v3.6.1+g61d8e8c
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v4.4.5
 - mongod v4.4.5
 - Newman 5.2.3
 - OpenSSL 1.1.1k  25 Mar 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1k)`
-- Packer 1.7.2
+- Packer 1.7.3
 - PostgreSQL 13.3
 - psql (PostgreSQL) 13.3
 - Sox 14.4.2
@@ -91,19 +90,19 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.79
+- Aliyun CLI 3.0.80
 - App Center CLI 2.9.0
-- AWS CLI 2.2.11
+- AWS CLI 2.2.13
 - AWS SAM CLI 1.24.1
-- AWS Session Manager CLI 1.2.54.0
-- Azure CLI 2.24.2
+- AWS Session Manager CLI 1.2.205.0
+- Azure CLI 2.25.0
 - Cabal 3.4.0.0
-- Cmake 3.20.3
+- Cmake 3.20.4
 - Fastlane 2.185.1
 - GHC 9.0.1
 - GHCup v0.1.15.2
 - Stack 2.7.1
-- SwiftFormat 0.48.4
+- SwiftFormat 0.48.5
 - Swig 4.0.2
 - Xcode Command Line Tools 12.5.0.0.1.1617976050
 
@@ -114,19 +113,19 @@
 ### Browsers
 - Safari 14.1.1 (16611.2.7.1.4)
 - SafariDriver 14.1.1 (16611.2.7.1.4)
-- Google Chrome 91.0.4472.106 
-- ChromeDriver 91.0.4472.19
-- Microsoft Edge 91.0.864.48 
-- MSEdgeDriver 91.0.864.48
-- Mozilla Firefox 89.0
+- Google Chrome 91.0.4472.114 
+- ChromeDriver 91.0.4472.101
+- Microsoft Edge 91.0.864.54 
+- MSEdgeDriver 91.0.864.54
+- Mozilla Firefox 89.0.1
 - geckodriver 0.29.1
 
 #### Environment variables
-| Name            | Value                                         |
-| --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/91.0.4472.19 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
-| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
+| Name            | Value                                          |
+| --------------- | ---------------------------------------------- |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/91.0.4472.101 |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
+| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
 ### Java
 | Version              | Vendor        | Environment Variable |
@@ -154,16 +153,16 @@
 #### Node.js
 - 10.24.1
 - 12.22.1
-- 14.17.0
+- 14.17.1
 
 #### Go
 - 1.15.13
 - 1.16.5
 
 ### Rust Tools
-- Cargo 1.52.0
-- Rust 1.52.1
-- Rustdoc 1.52.1
+- Cargo 1.53.0
+- Rust 1.53.0
+- Rustdoc 1.53.0
 - Rustup 1.24.3
 
 #### Packages
@@ -171,8 +170,8 @@
 - Cargo-audit 0.14.1
 - Cargo-outdated v0.9.15
 - Cbindgen 0.19.0
-- Clippy 0.1.52
-- Rustfmt 1.4.36-stable
+- Clippy 0.1.53
+- Rustfmt 1.4.37-stable
 
 ### PowerShell Tools
 - PowerShell 7.1.3
@@ -193,7 +192,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.1.71
+- 8.10.2.17
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
