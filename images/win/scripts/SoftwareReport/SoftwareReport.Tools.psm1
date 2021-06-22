@@ -19,7 +19,7 @@ function Get-BazeliskVersion {
 }
 
 function Get-BicepVersion {
-    ($(bicep --version) | Out-String) -match  "bicep version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $bicepVersion = $Matches.Version
     return "Bicep $bicepVersion"
 }
