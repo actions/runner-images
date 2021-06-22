@@ -4,8 +4,10 @@
 ##  Desc:  Installs bicep cli
 ################################################################################
 
-# Fetch the latest Bicep CLI binary
-curl -Lo bicep.bin https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+source $HELPER_SCRIPTS/install.sh
+
+# Install Bicep CLI
+download_with_retries "https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64" "." "bicep.bin"
 # Mark it as executable
 chmod +x ./bicep.bin
 # Add bicep to PATH (requires admin)
