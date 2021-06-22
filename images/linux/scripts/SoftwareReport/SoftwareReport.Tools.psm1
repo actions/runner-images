@@ -25,6 +25,11 @@ function Get-BazeliskVersion {
     $bazeliskVersion = $result.Output | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
     return "Bazelisk $bazeliskVersion"
 }
+function Get-BicepVersion {
+    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $bicepVersion = $Matches.Version
+    return "Bicep $bicepVersion"
+}
 
 function Get-CodeQLBundleVersion {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
