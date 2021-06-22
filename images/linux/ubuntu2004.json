@@ -311,6 +311,11 @@
         },
         {
             "type": "shell",
+            "script": "{{template_dir}}/scripts/installers/make-run-user.sh",
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
             "script": "{{template_dir}}/scripts/base/apt-mock-remove.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
