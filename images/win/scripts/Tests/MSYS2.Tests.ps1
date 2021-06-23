@@ -38,22 +38,14 @@ foreach ($arch in $archs) {
     Describe "$arch arch packages" {
         $archPackages = $toolsetContent.mingw | Where-Object { $_.arch -eq $arch }
         $tools = $archPackages.runtime_packages.name
-
-        if ($arch -eq "mingw-w64-i686")
-        {
-            $ExecDir = "C:\msys64\mingw32\bin"
-        }
-        else
-        {
-            $ExecDir = "C:\msys64\mingw64\bin"
-        }
+        $execDir = "C:\msys64\" + $archPackages.exec_dir + "\bin"
         
         foreach ($tool in $tools) {
             Context "$tool package"{
                 $executables = ($archPackages.runtime_packages | Where-Object { $_.name -eq $tool }).executables | ForEach-Object {
                     @{
                         ExecName = $_
-                        ExecDir = $ExecDir
+                        ExecDir = $execDir
                     }
                 }
 
