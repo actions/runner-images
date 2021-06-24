@@ -3,6 +3,7 @@
         "default": "12.5",
         "versions": [
             { "link": "13.0", "version": "13.0.0"},
+            { "link": "12.5.1", "version": "12.5.1"},
             { "link": "12.5", "version": "12.5.0"},
             { "link": "12.4", "version": "12.4.0"},
             { "link": "12.3", "version": "12.3.0"},
