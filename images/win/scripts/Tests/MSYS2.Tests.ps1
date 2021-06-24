@@ -1,6 +1,3 @@
-$toolsetContent = (Get-ToolsetContent).MsysPackages
-$archs = $toolsetContent.mingw.arch
-
 BeforeAll {
     $msys2Dir = "C:\msys64\usr\bin"
     $originalPath = $env:PATH
@@ -35,10 +32,10 @@ Describe "MSYS2 packages" {
 }
 
 $mingwTypes = (Get-ToolsetContent).MsysPackages.mingw
-foreach ($type in $mingwTypes) {
-    Describe "$($type.arch) packages" {
-        $tools = $type.runtime_packages
-        $execDir = "C:\msys64\" + $type.exec_dir + "\bin"
+foreach ($mingwType in $mingwTypes) {
+    Describe "$($mingwType.arch) packages" {
+        $tools = $mingwType.runtime_packages
+        $execDir = "C:\msys64\" + $mingwType.exec_dir + "\bin"
         
         foreach ($tool in $tools) {
             Context "$($tool.name) package"{
