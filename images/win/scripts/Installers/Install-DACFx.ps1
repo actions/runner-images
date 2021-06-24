@@ -4,7 +4,7 @@
 ####################################################################################
 
 $InstallerName = "DacFramework.msi"
-$InstallerUrl = "https://go.microsoft.com/fwlink/?linkid=2143544"
+$InstallerUrl = "https://go.microsoft.com/fwlink/?linkid=2165211"
 
 Install-Binary -Url $InstallerUrl -Name $InstallerName
 
