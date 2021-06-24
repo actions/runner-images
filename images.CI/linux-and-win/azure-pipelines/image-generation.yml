@@ -9,10 +9,14 @@ jobs:
   displayName: Image Generation (${{ parameters.image_type }})
   timeoutInMinutes: 600
   cancelTimeoutInMinutes: 30
-  pool: windows2019-prod-tf
+  pool: gss-build-agents-windows2019-prod-tf
+
+  workspace:
+    clean: all
+    
   variables:
   - group: Image Generation Variables
-
+  
   steps:
   - task: AzureCLI@2
     displayName: Azure CLI
