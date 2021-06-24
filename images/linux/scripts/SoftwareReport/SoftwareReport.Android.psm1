@@ -11,7 +11,7 @@ function Get-AndroidSDKRoot {
 
 function Get-AndroidSDKManagerPath {
     $androidSDKDir = Get-AndroidSDKRoot
-    return Join-Path $androidSDKDir "tools" "bin" "sdkmanager"
+    return Join-Path $androidSDKDir "cmdline-tools" "latest" "bin" "sdkmanager"
 }
 
 function Get-AndroidInstalledPackages {
