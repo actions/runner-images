@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
+################################################################################
+##  File:  LinuxProdTrendAgentDeploymentScript.sh
+##  Desc:  Installs The Trend Agent for TFS
+################################################################################
 
 ACTIVATIONURL='dsm://agents.deepsecurity.trendmicro.com:443/'
 MANAGERURL='https://app.deepsecurity.trendmicro.com:443'
