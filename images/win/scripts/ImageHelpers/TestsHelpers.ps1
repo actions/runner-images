@@ -96,6 +96,42 @@ function ShouldReturnZeroExitCode {
     }
 }
 
+#  Pester Assert to check exit code of command with given parameter, the assertion performed up to 3 checks (without '-', with 1 and 2 '-') until succeeded
+function ShouldReturnZeroExitCodeWithParam {
+    param (
+        [Parameter(Mandatory)] [string] $ActualValue,
+        [switch] $Negate,
+        [string] $CallParameter = "version",
+        [string] $CallerSessionState
+    )
+
+    $delimiterCharacter = ""
+
+    while ($delimiterCharacter.Length -le 2)
+    {
+        $callParameterWithDelimeter = $delimiterCharacter + $CallParameter
+        $commandToCheck = "$ActualValue $callParameterWithDelimeter"
+        [bool]$succeeded = (ShouldReturnZeroExitCode -ActualValue $commandToCheck).Succeeded
+        
+        if ($succeeded)
+        {
+            break
+        }
+        $delimiterCharacter += '-'
+    }
+    if ($Negate) { $succeeded = -not $succeeded }
+
+    if (-not $succeeded)
+    {
+        $failureMessage = "Tool '$ActualValue' has not returned 0 exit code for any of these flags: '$CallParameter' or '-$CallParameter' or '--$CallParameter'"
+    }
+
+    return [PSCustomObject] @{
+        Succeeded      = $succeeded
+        FailureMessage = $failureMessage
+    }
+}
+
 # Pester Assert to match output of command
 function ShouldMatchCommandOutput {
     Param(
@@ -130,5 +166,6 @@ function ShouldMatchCommandOutput {
 
 If (Get-Command -Name Add-ShouldOperator -ErrorAction SilentlyContinue) {
     Add-ShouldOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
+    Add-ShouldOperator -Name ReturnZeroExitCodeWithParam -InternalName ShouldReturnZeroExitCodeWithParam -Test ${function:ShouldReturnZeroExitCodeWithParam}
     Add-ShouldOperator -Name MatchCommandOutput -InternalName ShouldMatchCommandOutput -Test ${function:ShouldMatchCommandOutput}
 }
