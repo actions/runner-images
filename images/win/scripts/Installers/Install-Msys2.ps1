@@ -79,8 +79,9 @@ foreach ($arch in $archs)
 Write-Host "`n$dash Clean packages"
 pacman.exe -Scc --noconfirm
 
+$pkgs = $(pacman.exe -Q)
 Write-Host "`n$dash Installed msys2 packages"
-pacman.exe -Q | grep -v ^mingw-w64-
+$pkgs | grep -v ^mingw-w64-
 
 foreach ($arch in $archs)
 {

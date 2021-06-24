@@ -34,15 +34,15 @@ Describe "MSYS2 packages" {
     }
 }
 
-foreach ($arch in $archs) {
-    Describe "$arch arch packages" {
-        $archPackages = $toolsetContent.mingw | Where-Object { $_.arch -eq $arch }
-        $tools = $archPackages.runtime_packages.name
-        $execDir = "C:\msys64\" + $archPackages.exec_dir + "\bin"
+$mingwTypes = (Get-ToolsetContent).MsysPackages.mingw
+foreach ($type in $mingwTypes) {
+    Describe "$($type.arch) packages" {
+        $tools = $type.runtime_packages
+        $execDir = "C:\msys64\" + $type.exec_dir + "\bin"
         
         foreach ($tool in $tools) {
-            Context "$tool package"{
-                $executables = ($archPackages.runtime_packages | Where-Object { $_.name -eq $tool }).executables | ForEach-Object {
+            Context "$($tool.name) package"{
+                $executables = $tool.executables | ForEach-Object {
                     @{
                         ExecName = $_
                         ExecDir = $execDir
