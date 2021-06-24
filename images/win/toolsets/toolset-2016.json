@@ -181,6 +181,7 @@
         "mingw": [
             {
                 "arch": "mingw-w64-x86_64",
+                "exec_dir": "mingw64",
                 "runtime_packages": [
                     {
                         "name": "clang",
@@ -214,6 +215,7 @@
             },
             {
                 "arch": "mingw-w64-i686",
+                "exec_dir": "mingw32",
                 "runtime_packages": [
                     {
                         "name": "clang",
