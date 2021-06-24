@@ -114,6 +114,7 @@
 | ------------------- | ------------- | -------------------- |
 | 8.0.292+1           | Adopt OpenJDK | JAVA_HOME_8_X64      |
 | 11.0.11+9 (default) | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 16.0.1+9            | Adopt OpenJDK | JAVA_HOME_16_X64     |
 
 ### GraalVM
 | Version   | Environment variables |

@@ -118,7 +118,7 @@
 | -------------------- | ------------- | -------------------- |
 | 8.0.292+10 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
 | 11.0.11+9            | Adopt OpenJDK | JAVA_HOME_11_X64     |
-| 13.0.2+8.1           | Adopt OpenJDK | JAVA_HOME_13_X64     |
+| 16.0.1+9             | Adopt OpenJDK | JAVA_HOME_16_X64     |
 
 ### Shells
 | Name          | Target                            |
