@@ -254,7 +254,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Apache.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Swig.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Swig.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Bicep.ps1"
             ]
         },
         {
@@ -303,8 +304,6 @@
             "environment_vars": [
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
-            "elevated_user": "SYSTEM",
-            "elevated_password": "",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Msys2.ps1"
             ]

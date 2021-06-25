@@ -18,6 +18,12 @@ function Get-BazeliskVersion {
     return "Bazelisk $bazeliskVersion"
 }
 
+function Get-BicepVersion {
+    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $bicepVersion = $Matches.Version
+    return "Bicep $bicepVersion"
+}
+
 function Get-RVersion {
     ($(cmd /c "Rscript --version 2>&1")  | Out-String) -match  "R scripting front-end version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $rVersion = $Matches.Version
