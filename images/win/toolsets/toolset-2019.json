@@ -272,12 +272,6 @@
                             "ragel"
                         ]
                     }
-                ],
-                "additional_packages": [
-                    "clang-tools-extra",
-                    "libxml2",
-                    "llvm",
-                    "toolchain"
                 ]
             }
         ]
