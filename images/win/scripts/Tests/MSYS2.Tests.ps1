@@ -35,7 +35,7 @@ $mingwTypes = (Get-ToolsetContent).MsysPackages.mingw
 foreach ($mingwType in $mingwTypes) {
     Describe "$($mingwType.arch) packages" {
         $tools = $mingwType.runtime_packages
-        $execDir = "C:\msys64\" + $mingwType.exec_dir + "\bin"
+        $execDir = Join-Path "C:\msys64" $mingwType.exec_dir | Join-Path -ChildPath "bin"
         
         foreach ($tool in $tools) {
             Context "$($tool.name) package"{
@@ -47,7 +47,7 @@ foreach ($mingwType in $mingwTypes) {
                 }
 
                 BeforeEach {
-                    $env:PATH = "$ExecDir;$env:PATH"
+                    $env:PATH = "$execDir;$env:PATH"
                 }
 
                 It "<ExecName> is installed in <ExecDir>" -TestCases $executables {
