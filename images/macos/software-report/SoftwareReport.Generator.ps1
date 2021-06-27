@@ -167,7 +167,8 @@ $toolsList = @(
     (Get-AWSSessionManagerCLIVersion),
     (Get-AliyunCLIVersion),
     (Get-XcodeCommandLineToolsVersion),
-    (Get-SwigVersion)
+    (Get-SwigVersion),
+    (Get-BicepVersion)
 )
 
 if( -not $os.IsHighSierra) {

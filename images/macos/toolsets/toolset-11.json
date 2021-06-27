@@ -137,6 +137,7 @@
             "ant",
             "aria2",
             "bazelisk",
+            "bicep",
             "carthage",
             "cmake",
             "gh",

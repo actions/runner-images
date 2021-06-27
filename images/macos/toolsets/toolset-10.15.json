@@ -190,6 +190,7 @@
             "aria2",
             "bats",
             "bazelisk",
+            "bicep",
             "carthage",
             "cmake",
             "gh",
