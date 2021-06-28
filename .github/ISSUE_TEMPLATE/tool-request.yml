@@ -35,7 +35,7 @@ body:
       description: Leave blank if unknown.
   - type: markdown
     attributes:
-      value: "### If this is an add request:"
+      value: "## If this is an add request"
   - type: textarea
     attributes:
       label: Brief description of tool.
@@ -44,7 +44,8 @@ body:
       label: URL for tool's homepage.
   - type: textarea
     attributes:
-      label: Provide a basic test case to validate the tool's functionality.
+      label: Provide a basic test case to validate the tool's functionality. 
+      description: This will be automatically formatted into code.
       render: bash
   - type: dropdown
     attributes:
@@ -61,7 +62,7 @@ body:
   - type: textarea
     attributes:
       label: Can this tool be installed during the build?
-      description: If so, please provide a description with required steps.
+      description: If so, please provide a description with required steps. This will be automatically formatted into code.
       render: bash
   - type: input
     attributes:
