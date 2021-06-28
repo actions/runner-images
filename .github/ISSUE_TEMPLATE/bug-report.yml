@@ -10,13 +10,6 @@ body:
       required: true
   - type: dropdown
     attributes:
-      label: Issue type
-      options:
-        - Bug
-        - Question
-        - Feature request
-  - type: dropdown
-    attributes:
       label: Virtual environments affected
       multiple: true
       options:
@@ -25,7 +18,7 @@ body:
         - Ubuntu 20.04
         - macOS 10.15
         - macOS 11
-        - Windows Server 2016 R2
+        - Windows Server 2016
         - Windows Server 2019
     validations:
       required: true
