@@ -62,8 +62,8 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.2
-- Pulumi v3.4.0
-- Pulumi v1.0.0
+- Pulumi v3.5.1
+- Terraform v1.0.0
 - R 4.1.0
 - Stack 2.7.1
 - Subversion (SVN) 1.14.1
