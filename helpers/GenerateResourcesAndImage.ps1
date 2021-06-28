@@ -72,7 +72,7 @@ Function GenerateResourcesAndImage {
             The root path of the image generation repository source.
 
         .PARAMETER ImageType
-            The type of the image being generated. Valid options are: {"Windows2016", "Windows2019", "Ubuntu1604", "Ubuntu1804"}.
+            The type of the image being generated. Valid options are: {"Windows2016", "Windows2019", "Ubuntu1604", "Ubuntu1804", "Ubuntu2004"}.
 
         .PARAMETER AzureLocation
             The location of the resources being created in Azure. For example "East US".
