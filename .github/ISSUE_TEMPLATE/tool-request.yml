@@ -4,7 +4,8 @@ title: Update/Add [tool name]
 labels: [feature request, needs triage]
 body:
   - type: markdown
-    value: "## Tool information"
+    attributes:
+      value: "## Tool information"
   - type: input
     attributes:
       label: Tool name
@@ -20,8 +21,8 @@ body:
     attributes:
       label: Add or update?
       options:
-        - Add
-        - Update
+        - label: Add
+        - label: Update
     validations:
       required: true
   - type: input
@@ -33,7 +34,8 @@ body:
       label: Approximate size.
       description: Leave blank if unknown.
   - type: markdown
-    value: "### If this is an add request:"
+    attributes:
+      value: "### If this is an add request:"
   - type: textarea
     attributes:
       label: Brief description of tool.

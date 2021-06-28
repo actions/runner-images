@@ -27,6 +27,8 @@ body:
         - macOS 11
         - Windows Server 2016 R2
         - Windows Server 2019
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Image version and build link
