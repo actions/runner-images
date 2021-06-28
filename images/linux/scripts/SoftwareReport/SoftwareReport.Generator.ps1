@@ -109,7 +109,6 @@ $toolsList = @(
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
-    (Get-BicepVersion),
     (Get-CodeQLBundleVersion),
     (Get-CMakeVersion),
     (Get-DockerMobyClientVersion),
@@ -145,8 +144,9 @@ $toolsList = @(
 
 if (-not (Test-IsUbuntu16)) {
     $toolsList += @(
-        (Get-PodManVersion),
+        (Get-BicepVersion),
         (Get-BuildahVersion),
+        (Get-PodManVersion),
         (Get-SkopeoVersion),
         (Get-YamllintVersion)
     )
