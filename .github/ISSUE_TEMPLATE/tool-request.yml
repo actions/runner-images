@@ -23,12 +23,12 @@ body:
       options:
         - label: Add
         - label: Update
-    validations:
-      required: true
   - type: input
     attributes:
       label: Desired version
       description: Let us know if you're requesting a specific version, dev/RC, whatever is latest, etc.
+    validations:
+      required: true
   - type: input
     attributes:
       label: Approximate size
@@ -58,6 +58,8 @@ body:
         - label: macOS 11
         - label: Windows Server 2016
         - label: Windows Server 2019
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Can this tool be installed during the build?
