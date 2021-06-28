@@ -1,0 +1,37 @@
+name: Announcement
+description: Submit an announcement
+labels: [Announcement]
+body:
+  - type: textarea
+    attributes:
+      label: Breaking changes
+      placeholder: Short description of the upcoming change
+  - type: textarea
+    attributes:
+      label: Target date
+      placeholder: Date of changes propagation start
+  - type: textarea
+    attributes:
+      label: The motivation for the changes
+      placeholder: Description of main reasons for this change
+  - type: textarea
+    attributes:
+      label: Possible impact
+      placeholder: Description of who might be impacted by this change
+  - type: dropdown
+    attributes:
+      label: Virtual environments affected
+      multiple: true
+      options:
+        - Ubuntu 16.04
+        - Ubuntu 18.04
+        - Ubuntu 20.04
+        - macOS 10.15
+        - macOS 11
+        - Windows Server 2016 R2
+        - Windows Server 2019
+  - type: textarea
+    attributes:
+      label: Mitigation ways
+      description: Steps or options for impact mitigation
+
