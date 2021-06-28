@@ -8,7 +8,7 @@ Describe "azcopy" {
     }
 }
 
-Describe "Bicep" {
+Describe "Bicep" -Skip:(Test-IsUbuntu16) {
     It "Bicep" {
         "bicep --version" | Should -ReturnZeroExitCode
     }
