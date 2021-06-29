@@ -1,6 +1,10 @@
+| Announcements |
+|-|
+| [[all OS versions] Android SDK tools will be changed to Command line tools on July, 12](https://github.com/actions/virtual-environments/issues/3638) |
+***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1999
-- Image Version: 20210620.1
+- Image Version: 20210628.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -19,14 +23,14 @@
 ### Package Management
 - Chocolatey 0.10.15
 - Composer 2.1.3
-- Helm 3.6.0
+- Helm 3.6.1
 - Miniconda 4.9.2 (pre-installed on the image but not added to PATH)
 - NPM 6.14.13
 - NuGet 5.10.0.7240
-- pip 21.1.2 (python 3.7)
+- pip 21.1.3 (python 3.7)
 - Pipx 0.16.3
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<08214e1>)
+- Vcpkg  (build from master \<bb002cd>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -46,22 +50,23 @@
 - azcopy 10.11.0
 - Bazel 4.1.0
 - Bazelisk 1.9.0
+- Bicep 0.4.63
 - Cabal 3.4.0.0
-- CMake 3.20.4
-- CodeQL Action Bundle 2.5.5
+- CMake 3.20.5
+- CodeQL Action Bundle 2.5.6
 - Docker 20.10.5
 - Docker-compose 1.29.1
 - ghc 9.0.1
 - Git 2.32.0
 - Git LFS 2.13.3
-- Google Cloud SDK 345.0.0
+- Google Cloud SDK 346.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.21.1
+- Kubectl 1.21.2
 - Mercurial 5.0
 - Mingw-w64 8.1.0
-- Newman 5.2.3
+- Newman 5.2.4
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.2
@@ -77,7 +82,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.80
-- AWS CLI 2.2.13
+- AWS CLI 2.2.14
 - AWS SAM CLI 1.24.1
 - AWS Session Manager CLI 1.2.205.0
 - Azure CLI 2.25.0
@@ -95,17 +100,17 @@
 #### Packages
 - bindgen 0.58.1
 - cargo-audit 0.14.1
-- cargo-outdated v0.9.15
+- cargo-outdated v0.9.16
 - cbindgen 0.19.0
 - Clippy 0.1.53
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 91.0.4472.114
+- Google Chrome 91.0.4472.124
 - Chrome Driver 91.0.4472.101
-- Microsoft Edge 91.0.864.54
-- Microsoft Edge Driver 91.0.864.54
-- Mozilla Firefox 89.0.1
+- Microsoft Edge 91.0.864.59
+- Microsoft Edge Driver 91.0.864.59
+- Mozilla Firefox 89.0.2
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
 
@@ -211,7 +216,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.1.0
-- DacFx 15.0.4897.1
+- DacFx 15.0.5164.1
 - MySQL 5.7.21.0
 - SQLPS 1.0
 
@@ -559,5 +564,6 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:ceb674e14c24078b16c2b7a3dfe0c31929acbdd34352902bcf381a4489dc6422  | 2021-06-08 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:944184f0b31444a929debcd9668218f1e80ef342fe03f5c4b8491eda6da3ffb8  | 2021-06-06 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:3458c7dbc9ee16016170ecce85bee03b0e7f13744809d67fc881ec8d2086f5ef  | 2021-06-06 |
+
 
 
