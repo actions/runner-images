@@ -238,7 +238,7 @@
             "aria2",
             "bats",
             "bazelisk",
-            "azure/bicep",
+            "bicep",
             "carthage",
             "cmake",
             "gh",
