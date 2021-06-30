@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 1999
-- Image Version: 20210616.0
+- Image Version: 20210620.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -22,11 +22,11 @@
 - Helm 3.6.0
 - Miniconda 4.9.2 (pre-installed on the image but not added to PATH)
 - NPM 6.14.13
-- NuGet 5.9.1.11
+- NuGet 5.10.0.7240
 - pip 21.1.2 (python 3.7)
 - Pipx 0.16.3
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<4dc864e>)
+- Vcpkg  (build from master \<08214e1>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -37,13 +37,13 @@
 
 ### Project Management
 - Ant 1.10.10
-- Gradle 7.0
+- Gradle 7.1
 - Maven 3.8.1
 - sbt 1.5.3
 
 ### Tools
 - 7zip 19.00
-- azcopy 10.10.0
+- azcopy 10.11.0
 - Bazel 4.1.0
 - Bazelisk 1.9.0
 - Cabal 3.4.0.0
@@ -65,7 +65,7 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.2
-- Pulumi v3.4.0
+- Pulumi v3.5.1
 - R 4.1.0
 - Stack 2.7.1
 - Subversion (SVN) 1.14.1
@@ -76,8 +76,8 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.79
-- AWS CLI 2.2.12
+- Alibaba Cloud CLI 3.0.80
+- AWS CLI 2.2.13
 - AWS SAM CLI 1.24.1
 - AWS Session Manager CLI 1.2.205.0
 - Azure CLI 2.25.0
@@ -87,9 +87,9 @@
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.52.0
-- Rust 1.52.1
-- Rustdoc 1.52.1
+- Cargo 1.53.0
+- Rust 1.53.0
+- Rustdoc 1.53.0
 - Rustup 1.24.3
 
 #### Packages
@@ -97,14 +97,14 @@
 - cargo-audit 0.14.1
 - cargo-outdated v0.9.15
 - cbindgen 0.19.0
-- Clippy 0.1.52
-- Rustfmt 1.4.36
+- Clippy 0.1.53
+- Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 91.0.4472.106
+- Google Chrome 91.0.4472.114
 - Chrome Driver 91.0.4472.101
-- Microsoft Edge 91.0.864.48
-- Microsoft Edge Driver 91.0.864.48
+- Microsoft Edge 91.0.864.54
+- Microsoft Edge Driver 91.0.864.54
 - Mozilla Firefox 89.0.1
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
@@ -210,7 +210,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.0.0
+- Azure CosmosDb Emulator 2.14.1.0
 - DacFx 15.0.4897.1
 - MySQL 5.7.21.0
 - SQLPS 1.0
