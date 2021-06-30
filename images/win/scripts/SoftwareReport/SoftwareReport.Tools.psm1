@@ -1,3 +1,9 @@
+function Get-Aria2Version {
+    (aria2c -v | Out-String) -match "(?<version>(\d+\.){1,}\d+)" | Out-Null
+    $aria2Version = $Matches.Version
+    return "aria2 $aria2Version"
+}
+
 function Get-AzCosmosDBEmulatorVersion {
     $regKey = gci HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\* | gp | ? { $_.DisplayName -eq 'Azure Cosmos DB Emulator' }
     $installDir = $regKey.InstallLocation
