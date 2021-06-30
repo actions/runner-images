@@ -270,3 +270,8 @@ function Get-SwigVersion {
     $swigVersion = $Matches.Version
     return "Swig $swigVersion"
 }
+
+function Get-YqVersion {
+    $yqVersion = ($(yq -V) -Split " ")[-1]
+    return "yq $yqVersion"
+}
