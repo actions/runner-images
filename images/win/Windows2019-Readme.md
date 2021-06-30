@@ -43,6 +43,7 @@
 
 ### Tools
 - 7zip 19.00
+- aria2 1.35.0
 - azcopy 10.11.0
 - Bazel 4.1.0
 - Bazelisk 1.9.0
