@@ -16,16 +16,8 @@ function Get-AndroidSDKManagerPath {
 
 function Get-AndroidInstalledPackages {
     $androidSDKManagerPath = Get-AndroidSDKManagerPath
-    $androidSDKManagerList = Invoke-Expression "$androidSDKManagerPath --list --include_obsolete"
-    $androidInstalledPackages = @()
-    foreach($packageInfo in $androidSDKManagerList) {
-        if($packageInfo -Match "Available Packages:") {
-            break
-        }
-
-        $androidInstalledPackages += $packageInfo
-    }
-    return $androidInstalledPackages
+    $androidSDKManagerList = Invoke-Expression "$androidSDKManagerPath --list_installed --include_obsolete"
+    return $androidSDKManagerList
 }
 
 
@@ -34,7 +26,7 @@ function Build-AndroidTable {
     return @(
         @{
             "Package" = "Android Command Line Tools"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Command-line Tools"
+            "Version" = Get-AndroidCommandLineToolsVersion
         },
         @{
             "Package" = "Android Emulator"
@@ -121,6 +113,13 @@ function Get-AndroidPlatformVersions {
     }
     [array]::Reverse($versions)
     return ($versions -Join "<br>")
+}
+
+function Get-AndroidCommandLineToolsVersion {
+    $commandLineTools = Get-AndroidSDKManagerPath
+    (& $commandLineTools --version | Out-String).Trim() -match "^\d+\.{1,}\d+$" | Out-Null
+    $commandLineToolsVersion = $Matches.Values
+    return $commandLineToolsVersion
 }
 
 function Get-AndroidBuildToolVersions {
