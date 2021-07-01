@@ -1,0 +1,55 @@
+name: Bug Report
+description: Submit a bug report
+labels: [needs triage]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is, and why you consider it to be a bug.
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Virtual environments affected
+      options:
+        - label: Ubuntu 16.04
+        - label: Ubuntu 18.04
+        - label: Ubuntu 20.04
+        - label: macOS 10.15
+        - label: macOS 11
+        - label: Windows Server 2016
+        - label: Windows Server 2019
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Image version and build link
+      description: |
+        Image version where you are experiencing the issue. Where to find image version in build logs:
+        1. For GitHub Actions, under "Set up job" -> "Virtual Environment" -> "Version".
+        2. For Azure DevOps, under "Initialize job" -> "Virtual Environment" -> "Version".
+        
+        If you have a public example, please, provide a link to the failed build.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Is it regression?
+      description: If yes, please, provide the latest image version where the issue didn't persist, and a link to the latest successful build.
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A description of what you expected to happen.
+  - type: textarea
+    attributes:
+      label: Actual behavior
+      description: A description of what is actually happening.
+  - type: textarea
+    attributes:
+      label: Repro steps
+      placeholder: |
+        A description with steps to reproduce the issue.
+        1. Step 1
+        2. Step 2
+    validations: 
+        required: true

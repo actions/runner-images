@@ -79,13 +79,12 @@ foreach ($arch in $archs)
 Write-Host "`n$dash Clean packages"
 pacman.exe -Scc --noconfirm
 
-Write-Host "`n$dash Installed msys2 packages"
-pacman.exe -Q | grep -v ^mingw-w64-
+$pkgs = pacman.exe -Q
 
 foreach ($arch in $archs)
 {
   Write-Host "`n$dash Installed $arch packages"
-  pacman.exe -Q | grep ^${arch}-
+  $pkgs | grep ^${arch}-
 }
 
 $env:PATH = $origPath
