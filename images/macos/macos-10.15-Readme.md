@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[all OS versions] Android SDK tools will be changed to Command line tools on July, 12](https://github.com/actions/virtual-environments/issues/3638) |
 | [[macOS] Xcode 12.2 and 12.3 will be removed from Big Sur on June, 28](https://github.com/actions/virtual-environments/issues/3555) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1217)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210620.1
+- Image Version: 20210626.1
 
 ## Installed Software
 ### Language and Runtime
@@ -34,19 +35,19 @@
 - Ruby 2.7.3p183
 
 ### Package Management
-- Bundler version 2.2.20
+- Bundler version 2.2.21
 - Carthage 0.38.0
 - CocoaPods 1.10.1
 - Composer 2.1.3
-- Homebrew 3.1.12
+- Homebrew 3.2.0
 - Miniconda 4.9.2
 - NPM 6.14.13
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.1.1 (python 3.9)
 - Pipx 0.16.3
-- RubyGems 3.2.20
-- Vcpkg 2021 (build from master \<08214e1>)
+- RubyGems 3.2.21
+- Vcpkg 2021 (build from master \<bb002cd>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -71,7 +72,7 @@
 - Git LFS: 2.13.3
 - Git: 2.32.0
 - GitHub CLI: 1.11.0
-- GNU parallel 20210422
+- GNU parallel 20210622
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.3.1
@@ -80,7 +81,7 @@
 - jq 1.6
 - mongo v4.4.5
 - mongod v4.4.5
-- Newman 5.2.3
+- Newman 5.2.4
 - OpenSSL 1.1.1k  25 Mar 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1k)`
 - Packer 1.7.3
 - PostgreSQL 13.3
@@ -96,17 +97,17 @@
 ### Tools
 - Aliyun CLI 3.0.80
 - App Center CLI 2.9.0
-- AWS CLI 2.2.13
+- AWS CLI 2.2.14
 - AWS SAM CLI 1.24.1
 - AWS Session Manager CLI 1.2.205.0
 - Azure CLI 2.25.0
 - Cabal 3.4.0.0
-- Cmake 3.20.4
-- Fastlane 2.185.1
+- Cmake 3.20.5
+- Fastlane 2.186.0
 - GHC 9.0.1
 - GHCup v0.1.15.2
 - Stack 2.7.1
-- SwiftFormat 0.48.5
+- SwiftFormat 0.48.6
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -119,9 +120,9 @@
 - SafariDriver 14.1.1 (15611.2.7.1.6)
 - Google Chrome 91.0.4472.114 
 - ChromeDriver 91.0.4472.101
-- Microsoft Edge 91.0.864.54 
-- MSEdgeDriver 91.0.864.54
-- Mozilla Firefox 89.0.1
+- Microsoft Edge 91.0.864.59 
+- MSEdgeDriver 91.0.864.59
+- Mozilla Firefox 89.0.2
 - geckodriver 0.29.1
 
 #### Environment variables
@@ -181,7 +182,7 @@
 #### Packages
 - Bindgen 0.58.1
 - Cargo-audit 0.14.1
-- Cargo-outdated v0.9.15
+- Cargo-outdated v0.9.16
 - Cbindgen 0.19.0
 - Clippy 0.1.53
 - Rustfmt 1.4.37-stable
@@ -205,7 +206,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.2.17
+- 8.10.3.15
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
