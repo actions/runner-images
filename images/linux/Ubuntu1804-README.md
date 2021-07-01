@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [[all OS versions] Android SDK tools will be changed to Command line tools on July, 12](https://github.com/actions/virtual-environments/issues/3638) |
 | [Ubuntu 16.04 environment will be removed on September 20, 2021](https://github.com/actions/virtual-environments/issues/3287) |
 ***
 # Ubuntu 18.04.5 LTS
-- Linux kernel version: 5.4.0-1049-azure
-- Image Version: 20210621.1
+- Linux kernel version: 5.4.0-1051-azure
+- Image Version: 20210628.1
 
 ## Installed Software
 ### Language and Runtime
@@ -28,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.6.1
-- Homebrew 3.1.12
+- Homebrew 3.2.0
 - Miniconda 4.9.2
 - Npm 6.14.13
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 0.16.3
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<08214e1>)
+- Vcpkg  (build from master \<bb002cd>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -51,14 +52,15 @@
 - Sbt 1.5.4
 
 ### Tools
-- Ansible 2.10.10
+- Ansible 2.10.11
 - apt-fast 1.9.11
 - AzCopy 10.11.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.1.0
 - Bazelisk 1.9.0
+- Bicep 0.4.63
 - Buildah 1.19.6 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- CMake 3.20.4
-- CodeQL Action Bundle 2.5.5
+- CMake 3.20.5
+- CodeQL Action Bundle 2.5.6
 - Docker Compose 1.29.2
 - Docker-Buildx 0.5.1
 - Docker-Moby Client 20.10.6+azure
@@ -68,7 +70,7 @@
 - Git-ftp 1.3.1
 - Haveged 1.9.1
 - Heroku 7.54.1
-- HHVM (HipHop VM) 4.114.0
+- HHVM (HipHop VM) 4.115.0
 - jq 1.5
 - Kind 0.11.1
 - Kubectl 1.20.1-5-g76a04fc
@@ -77,7 +79,7 @@
 - MediaInfo 17.12
 - Mercurial 4.5.3
 - Minikube 1.21.0
-- Newman 5.2.3
+- Newman 5.2.4
 - nvm 0.38.0
 - OpenSSL 1.1.1  11 Sep 2018
 - Packer 1.7.3
@@ -88,21 +90,21 @@
 - Skopeo 1.2.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.9.7
-- Terraform 1.0.0
+- Terraform 1.0.1
 - yamllint 1.26.1
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.80
-- AWS CLI 1.19.97
+- AWS CLI 1.19.101
 - AWS CLI Session manager plugin 1.2.205.0
 - AWS SAM CLI 1.24.1
 - Azure CLI (azure-cli) 2.25.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.18.0
 - GitHub CLI 1.11.0
-- Google Cloud SDK 345.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 346.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 3.37.37
+- Netlify CLI 3.39.0
 - OpenShift CLI 4.7.16
 - ORAS CLI 0.12.0
 - Vercel CLI 23.0.1
@@ -119,7 +121,7 @@
 | -------- | --------------------------------- |
 | PHP      | 7.1.33 7.2.34 7.3.28 7.4.20 8.0.7 |
 | Composer | 2.1.3                             |
-| PHPUnit  | 8.5.16                            |
+| PHPUnit  | 8.5.17                            |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -139,7 +141,7 @@
 - Bindgen 0.58.1
 - Cargo audit 0.14.1
 - Cargo clippy 0.1.53
-- Cargo outdated 0.9.15
+- Cargo outdated 0.9.16
 - Cbindgen 0.19.0
 - Rustfmt 1.4.37
 
@@ -259,16 +261,16 @@
 | alpine:3.11            | sha256:20117524da64d995fd769f0aa3d7cfe2040518426f4b238f43e8373f4aa56c06  | 2021-04-14 |
 | alpine:3.12            | sha256:87703314048c40236c6d674424159ee862e2b96ce1c37c62d877e21ed27a387e  | 2021-04-14 |
 | alpine:3.13            | sha256:f51ff2d96627690d62fee79e6eecd9fa87429a38142b5df8a3bfbb26061df7fc  | 2021-04-14 |
-| buildpack-deps:buster  | sha256:b4ba9e547bb2e4f48186b234a816ec0182c86fda31f4de5c1eeb824a5d3330df  | 2021-05-12 |
-| buildpack-deps:stretch | sha256:fe5d31963e568ba5c418ad26c7c1391ddeedd801672236f081fc3e1e2950e27b  | 2021-05-12 |
-| debian:10              | sha256:acf7795dc91df17e10effee064bd229580a9c34213b4dba578d64768af5d8c51  | 2021-05-12 |
-| debian:9               | sha256:4f8deed5755299e2d7ae1f5649656de89a6b7e30c0be37a3a1b4a49f0af51f7e  | 2021-05-12 |
+| buildpack-deps:buster  | sha256:3e2554a4168887038da647f8d22f94348fadd67f753a7287e1e8193000fb4b3a  | 2021-06-23 |
+| buildpack-deps:stretch | sha256:04f933352c6a3e46933907f5a7fb6f37134e027207f5de2d3c234bfec43d0d72  | 2021-06-23 |
+| debian:10              | sha256:33a8231b1ec668c044b583971eea94fff37151de3a1d5a3737b08665300c8a0b  | 2021-06-23 |
+| debian:9               | sha256:8afcdd92f29e1706625631df94ecdfe3bdeb919bb2c6ee685803d245b75ee45a  | 2021-06-23 |
 | node:10                | sha256:59531d2835edd5161c8f9512f9e095b1836f7a1fcb0ab73e005ec46047384911  | 2021-04-10 |
 | node:10-alpine         | sha256:dc98dac24efd4254f75976c40bce46944697a110d06ce7fa47e7268470cf2e28  | 2021-04-14 |
-| node:12                | sha256:0d6b3522991d04ead0b119feaffafa6a8cd1b374218e9f997a1d4753b7064882  | 2021-05-12 |
-| node:12-alpine         | sha256:152bd04c3bb9001eebaa1f5a9c5d8bb9253fd3ae8b4a261f5fe760dce38b98ff  | 2021-04-14 |
-| node:14                | sha256:52fe2e3604ca3d7d0bc017c0d60df5baaf54c3e261bab8334b0657f923092523  | 2021-06-15 |
-| node:14-alpine         | sha256:cc1a31b2f4a3b8e9cdc6f8dc0c39a3b946d7aa5d10a53439d960d4352b2acfc0  | 2021-06-15 |
+| node:12                | sha256:07ca77017dff8fccf0e333bd1fc7026844eb1e4e6677cc1f98e59843406cec29  | 2021-06-23 |
+| node:12-alpine         | sha256:be24b4fe27c92231c051a06e717b67e2a4dfc70d8edb0281285762292b854c03  | 2021-04-14 |
+| node:14                | sha256:d8f90b676efb1260957a4170a9a0843fc003b673ae164f22df07eaee9bbc6223  | 2021-06-23 |
+| node:14-alpine         | sha256:21b87afa5f267e50b806f696f754b15b37b4118bb0ef722192f27ddff78d8d67  | 2021-06-15 |
 | ubuntu:16.04           | sha256:6aab78d1825b4c15c159fecc62b8eef4fdf0c693a15aace3a605ad44e5e2df0c  | 2021-06-17 |
 | ubuntu:18.04           | sha256:139b3846cee2e63de9ced83cee7023a2d95763ee2573e5b0ab6dea9dfbd4db8f  | 2021-06-17 |
 | ubuntu:20.04           | sha256:aba80b77e27148d99c034a987e7da3a287ed455390352663418c0f2ed40417fe  | 2021-06-17 |
