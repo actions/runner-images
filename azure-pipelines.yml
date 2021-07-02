@@ -12,10 +12,11 @@ stages:
   jobs:
   - job: Build
     timeoutInMinutes: 600
+    displayName: Build
+    pool: gss-build-agents-ubuntu2004-prod-tf
+
     workspace:
       clean: all
-    displayName: Build
-    pool: linux-dev-tf
 
     steps:
     - task: AzureCLI@2
