@@ -9,9 +9,11 @@ $cmdlineToolsArchPath = Start-DownloadWithRetry -Url $cmdlineToolsUrl -Name "cmd
 $sdkInstallRoot = "C:\Program Files (x86)\Android\android-sdk"
 $sdkRoot = "C:\Android\android-sdk"
 Expand-Archive -Path $cmdlineToolsArchPath -DestinationPath "${sdkInstallRoot}\cmdline-tools" -Force
+
 # cmdline tools should be installed in ${sdkInstallRoot}\cmdline-tools\latest\bin, but archive contains ${sdkInstallRoot}\cmdline-tools\bin 
 # we need to create the proper folder structure
 Rename-Item "${sdkInstallRoot}\cmdline-tools\cmdline-tools" "latest"
+
 # ANDROID_NDK_PATH/HOME should not contain spaces. Otherwise, the script ndk-build.cmd gives an error https://github.com/actions/virtual-environments/issues/1122
 # create "C:\Android" directory and a hardlink inside pointed to sdk in Program Files
 New-Item -Path "C:\Android" -ItemType Directory
@@ -108,7 +110,6 @@ $ndkLatestPackageName = Get-AndroidPackagesByName -AndroidPackages $androidPacka
                 | Select-Object -Last 1
 
 $androidNDKs = @($ndkLTSPackageName, $ndkLatestPackageName)
-
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                 -AndroidSDKRootPath $sdkRoot `
