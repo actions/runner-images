@@ -32,8 +32,6 @@ Describe "Android" {
     $androidPackages = $androidPackages | ForEach-Object { $_ }
 
     BeforeAll {
-        $ANDROID_SDK_DIR = "/usr/local/lib/android/sdk"
-
         function Validate-AndroidPackage {
             param (
                 [Parameter(Mandatory=$true)]
@@ -45,7 +43,7 @@ Describe "Android" {
             #         'cmake;3.6.4111459' -> 'cmake/3.6.4111459'
             #         'patcher;v4' -> 'patcher/v4'
             $PackageName = $PackageName.Replace(";", "/")
-            $targetPath = Join-Path $ANDROID_SDK_DIR $PackageName
+            $targetPath = Join-Path $env:ANDROID_HOME $PackageName
             $targetPath | Should -Exist
         }
     }
@@ -54,11 +52,11 @@ Describe "Android" {
         $testCases = @(
             @{
                 PackageName = "SDK tools"
-                Sdkmanager = "/usr/local/lib/android/sdk/tools/bin/sdkmanager"
+                Sdkmanager = "$env:ANDROID_HOME/tools/bin/sdkmanager"
             },
             @{
                 PackageName = "Command-line tools"
-                Sdkmanager = "/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager"
+                Sdkmanager = "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
             }
         )
 

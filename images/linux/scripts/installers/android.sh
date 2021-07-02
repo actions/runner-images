@@ -7,6 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/etc-environment.sh
 
 function filter_components_by_version {
     minimumVersion=$1
@@ -107,4 +108,5 @@ fi
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}
 
+reloadEtcEnvironment
 invoke_tests "Android"
