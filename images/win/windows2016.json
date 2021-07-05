@@ -208,6 +208,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Bazel.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CommonUtils.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1",

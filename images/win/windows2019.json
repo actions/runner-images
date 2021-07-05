@@ -294,6 +294,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-CloudFoundryCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vcpkg.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Bazel.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-RootCA.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1",
