@@ -23,9 +23,3 @@ Describe "Git" {
         $env:GCM_INTERACTIVE | Should -BeExactly Never
     }
 }
-
-Describe "GitVersion" {
-    It "gitversion is installed" {
-        "gitversion /version" | Should -ReturnZeroExitCode
-    }
-}
