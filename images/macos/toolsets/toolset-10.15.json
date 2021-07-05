@@ -164,8 +164,7 @@
         ],
         "additional-tools": [
             "cmake;3.10.2.4988404",
-            "cmake;3.18.1",
-            "cmdline-tools;latest"
+            "cmake;3.18.1"
         ],
         "ndk": {
             "lts": "21",
