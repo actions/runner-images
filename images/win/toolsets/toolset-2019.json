@@ -379,7 +379,6 @@
         "common_packages": [
             { "name": "7zip.install"},
             { "name": "azcopy10"},
-            { "name": "bazel" },
             { "name": "Bicep"},
             { "name": "gitversion.portable"},
             { "name": "innosetup"},

@@ -10,6 +10,4 @@ foreach ($package in $commonPackages)
     }
 }
 
-npm install -g @bazel/bazelisk
-
-Invoke-PesterTests -TestFile "BasicTools"
+Invoke-PesterTests -TestFile "ChocoPackages"

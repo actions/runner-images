@@ -14,6 +14,15 @@ Describe "Azure Cosmos DB Emulator" {
     }
 }
 
+Describe "Bazel" {
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "bazel" }
+        @{ ToolName = "bazelisk" }
+    ) {
+        "$ToolName --version"| Should -ReturnZeroExitCode
+    }
+}
+
 Describe "CodeQLBundle" {
     It "CodeQLBundle" {
         $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "*"

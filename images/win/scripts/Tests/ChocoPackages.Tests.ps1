@@ -82,15 +82,6 @@ Describe "VSWhere" {
     }
 }
 
-Describe "Bazel" {
-    It "<ToolName>" -TestCases @(
-        @{ ToolName = "bazel" }
-        @{ ToolName = "bazelisk" }
-    ) {
-        "$ToolName --version"| Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Julia" {
     It "Julia path exists" {
         "C:\Julia" | Should -Exist
