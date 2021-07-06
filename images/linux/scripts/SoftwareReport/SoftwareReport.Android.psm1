@@ -117,8 +117,8 @@ function Get-AndroidPlatformVersions {
 
 function Get-AndroidCommandLineToolsVersion {
     $commandLineTools = Get-AndroidSDKManagerPath
-    (& $commandLineTools --version | Out-String).Trim() -match "^(\d+\.){1,}\d+$" | Out-Null
-    $commandLineToolsVersion = $Matches.Values
+    (& $commandLineTools --version | Out-String).Trim() -match "(?<version>^(\d+\.){1,}\d+$)" | Out-Null
+    $commandLineToolsVersion = $Matches.Version
     return $commandLineToolsVersion
 }
 
