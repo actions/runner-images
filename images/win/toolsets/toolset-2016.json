@@ -345,5 +345,31 @@
             "3.1",
             "5.0"
         ]
+    },
+    "choco": {
+        "common_packages": [
+            { "name": "7zip.install" },
+            { "name": "azcopy10" },
+            { "name": "Bicep" },
+            { "name": "gitversion.portable" },
+            { "name": "innosetup" },
+            { "name": "jq" },
+            { "name": "NuGet.CommandLine" },
+            { "name": "openssl.light" },
+            { "name": "packer" },
+            { "name": "strawberryperl" },
+            { "name": "pulumi" },
+            { "name": "tortoisesvn" },
+            { "name": "swig" },
+            { "name": "vswhere" },
+            {
+                "name": "julia",
+                "args": [ "--ia", "/DIR=C:\\Julia" ]
+            },
+            {
+                "name": "cmake.install",
+                "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
+            }
+        ]
     }
 }
