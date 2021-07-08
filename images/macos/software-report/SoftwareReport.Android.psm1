@@ -187,3 +187,11 @@ function Get-AndroidNDKVersions {
 
     return ($versions -Join "<br>")
 }
+
+function Get-IntelHaxmVersion {
+    kextstat | Where-Object { $_ -match "com.intel.kext.intelhaxm \((?<version>(\d+\.){1,}\d+)\)" } | Out-Null
+    return [PSCustomObject] @{
+        "Package Name" = "Intel HAXM"
+        "Version" = $Matches.Version
+    }
+}
