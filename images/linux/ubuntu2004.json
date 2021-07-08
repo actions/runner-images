@@ -226,6 +226,7 @@
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
                 "{{template_dir}}/scripts/installers/mssql-cmd-tools.sh",
+                "{{template_dir}}/scripts/installers/sqlpackage.sh",
                 "{{template_dir}}/scripts/installers/nginx.sh",
                 "{{template_dir}}/scripts/installers/nvm.sh",
                 "{{template_dir}}/scripts/installers/nodejs.sh",
