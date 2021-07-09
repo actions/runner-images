@@ -28,9 +28,8 @@ $ErrorActionPreference = "Stop"
 
 # Get toolset content
 $toolset = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw
-$toolsToInstall = @("Python", "Node", "Go")
 
-$tools = ConvertFrom-Json -InputObject $toolset | Select-Object -ExpandProperty toolcache | Where-Object {$ToolsToInstall -contains $_.Name}
+$tools = ConvertFrom-Json -InputObject $toolset | Select-Object -ExpandProperty toolcache | Where-Object {$_.url -ne $null }
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
@@ -53,6 +52,6 @@ foreach ($tool in $tools) {
     }
 }
 
-chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python
-chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node
-chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/go
+if ($tools -contains "Python"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python}
+if ($tools -contains "node"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node}
+if ($tools -contains "go"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/go}
