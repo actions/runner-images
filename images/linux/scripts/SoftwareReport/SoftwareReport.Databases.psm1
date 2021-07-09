@@ -26,7 +26,7 @@ function Get-SQLCmdVersion {
 }
 
 function Get-SqlPackageVersion {
-    $sqlPackageVersion = sqlpackage /version | Take-OutputPart -Part 0
+    $sqlPackageVersion = sqlpackage /version
     return "SqlPackage $sqlPackageVersion"
 }
 
