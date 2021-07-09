@@ -96,9 +96,7 @@
         "additional_tools": [
             "cmake;3.10.2.4988404",
             "cmake;3.18.1",
-            "patcher;v4",
-            "platform-tools",
-            "cmdline-tools;latest"
+            "platform-tools"
         ],
         "ndk": {
             "lts": "21"

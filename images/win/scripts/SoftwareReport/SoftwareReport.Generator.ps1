@@ -77,6 +77,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
+    (Get-BicepVersion),
     (Get-CabalVersion),
     (Get-CMakeVersion),
     (Get-CodeQLBundleVersion),

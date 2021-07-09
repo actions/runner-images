@@ -502,6 +502,11 @@ function Get-SwigVersion {
     return "Swig $swigVersion"
 }
 
+function Get-BicepVersion {
+    $bicepVersion = Run-Command "bicep --version" | Take-Part -Part 3
+    return "Bicep CLI $bicepVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{
