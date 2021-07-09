@@ -50,8 +50,5 @@ foreach ($tool in $tools) {
             exit 1
         }
     }
+    chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/$toolToInstall
 }
-
-if ($tools -contains "Python"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/Python}
-if ($tools -contains "node"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/node}
-if ($tools -contains "go"){chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/go}
