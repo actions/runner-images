@@ -23,6 +23,8 @@ download_with_retries() {
     i=20
     while [ $i -gt 0 ]; do
         ((i--))
+        echo "Verifying $URL HTTP status code..."
+        verify_http_status_code $URL
         eval $COMMAND
         if [ $? != 0 ]; then
             sleep 30
@@ -48,6 +50,20 @@ function IsPackageInstalled {
 verlte() {
     sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
     [  "$1" = "$sortedVersion" ]
+}
+
+verify_http_status_code()
+{
+    URL="$1"
+    http_code=$(curl -s -o out.html -w '%{http_code}' $URL;)
+
+    if [[ $http_code -ge 400 ]]; then
+        return 0
+    else
+        cat out.html
+        echo "Bad HTTP status code: $http_code for the provided link: $URL."
+        return 1
+    fi
 }
 
 get_toolset_path() {
