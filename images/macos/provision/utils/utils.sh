@@ -15,6 +15,9 @@ download_with_retries() {
         COMMAND="curl $URL -4 -sL -o '$DEST/$NAME'"
     fi
 
+    echo "Verifying $URL HTTP status code..."
+    verify_http_status_code $URL
+
     echo "Downloading $URL..."
     retries=20
     interval=30
@@ -79,6 +82,20 @@ is_Less_BigSur() {
         true
     else
         false
+    fi
+}
+
+verify_http_status_code()
+{
+    URL="$1"
+    http_code=$(curl -s -o out.html -w '%{http_code}'  http://www.google.com/linux;)
+
+    if [[ $http_code -eq 200 ]]; then
+        exit 0
+    else
+        cat out.html
+        echo "Bad HTTP status code: $http_code for the provided link: $URL."
+        exit 1
     fi
 }
 
