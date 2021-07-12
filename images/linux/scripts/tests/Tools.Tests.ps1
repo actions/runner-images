@@ -171,6 +171,12 @@ Describe "MSSQLCommandLineTools" {
     }
 }
 
+Describe "SqlPackage" {
+    It "sqlpackage" {
+        "sqlpackage /version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "R" {
     It "r" {
         "R --version" | Should -ReturnZeroExitCode
