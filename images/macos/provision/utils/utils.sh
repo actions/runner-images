@@ -15,14 +15,13 @@ download_with_retries() {
         COMMAND="curl $URL -4 -sL -o '$DEST/$NAME'"
     fi
 
-    echo "Verifying $URL HTTP status code..."
-    verify_http_status_code $URL
-
     echo "Downloading $URL..."
     retries=20
     interval=30
     while [ $retries -gt 0 ]; do
         ((retries--))
+        echo "Verifying $URL HTTP status code..."
+        verify_http_status_code $URL
         eval $COMMAND
         if [ $? != 0 ]; then
             echo "Unable to download $URL, next attempt in $interval sec, $retries attempts left"
