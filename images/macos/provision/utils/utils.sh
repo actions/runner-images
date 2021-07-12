@@ -87,14 +87,14 @@ is_Less_BigSur() {
 verify_http_status_code()
 {
     URL="$1"
-    http_code=$(curl -s -o out.html -w '%{http_code}'  http://www.google.com/linux;)
+    http_code=$(curl -s -o out.html -w '%{http_code}' $URL;)
 
     if [[ $http_code -eq 200 ]]; then
-        exit 0
+        return 0
     else
         cat out.html
         echo "Bad HTTP status code: $http_code for the provided link: $URL."
-        exit 1
+        return 1
     fi
 }
 
