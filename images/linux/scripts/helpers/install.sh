@@ -58,11 +58,11 @@ verify_http_status_code()
     http_code=$(curl -s -o out.html -w '%{http_code}' $URL;)
 
     if [[ $http_code -ge 400 ]]; then
-        return 0
-    else
         cat out.html
         echo "Bad HTTP status code: $http_code for the provided link: $URL."
         return 1
+    else
+        return 0
     fi
 }
 
