@@ -22,13 +22,15 @@ download_with_retries() {
         ((retries--))
         echo "Verifying $URL HTTP status code..."
         verify_http_status_code $URL
-        eval $COMMAND
         if [ $? != 0 ]; then
-            echo "Unable to download $URL, next attempt in $interval sec, $retries attempts left"
-            sleep $interval
-        else
-            echo "$URL was downloaded successfully to $DEST/$NAME"
-            return 0
+            eval $COMMAND
+            if [ $? != 0 ]; then
+                echo "Unable to download $URL, next attempt in $interval sec, $retries attempts left"
+                sleep $interval
+            else
+                echo "$URL was downloaded successfully to $DEST/$NAME"
+                return 0
+            fi
         fi
     done
 
@@ -87,15 +89,11 @@ is_Less_BigSur() {
 verify_http_status_code()
 {
     URL="$1"
-    http_code=$(curl -s -o out.html -w '%{http_code}' $URL;)
+    http_code=$(curl -sL -o out.html -w '%{http_code}' $URL)
 
-    if [[ $http_code -ge 400 ]]; then
-        cat out.html
+    if [[ $http_code -eq 200 ]]; then
         echo "Bad HTTP status code: $http_code for the provided link: $URL."
         return 1
-        
-    else
-        return 0
     fi
 }
 
