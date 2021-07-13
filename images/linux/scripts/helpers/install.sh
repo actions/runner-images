@@ -25,12 +25,14 @@ download_with_retries() {
         ((i--))
         echo "Verifying $URL HTTP status code..."
         verify_http_status_code $URL
-        eval $COMMAND
         if [ $? != 0 ]; then
-            sleep 30
-        else
-            echo "Download completed"
-            return 0
+            eval $COMMAND
+            if [ $? != 0 ]; then
+                sleep 30
+            else
+                echo "Download completed"
+                return 0
+            fi
         fi
     done
 
@@ -55,14 +57,11 @@ verlte() {
 verify_http_status_code()
 {
     URL="$1"
-    http_code=$(curl -s -o out.html -w '%{http_code}' $URL;)
+    http_code=$(curl -sL -o out.html -w '%{http_code}' $URL)
 
-    if [[ $http_code -ge 400 ]]; then
-        cat out.html
+    if [[ $http_code -eq 200 ]]; then
         echo "Bad HTTP status code: $http_code for the provided link: $URL."
         return 1
-    else
-        return 0
     fi
 }
 
