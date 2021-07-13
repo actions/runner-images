@@ -91,7 +91,7 @@ verify_http_status_code()
     URL="$1"
     http_code=$(curl -sL -o out.html -w '%{http_code}' $URL)
 
-    if [[ $http_code -eq 200 ]]; then
+    if [[ $http_code == 200 ]]; then
         echo "Bad HTTP status code: $http_code for the provided link: $URL."
         return 1
     fi
