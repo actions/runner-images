@@ -150,7 +150,7 @@ function Get-AndroidGoogleAPIsVersions {
         [object] $PackageInfo
     )
 
-    $versions = $packageInfo | Where-Object { $_ -Match "Google APIs" } | ForEach-Object {
+    $versions = $packageInfo | Where-Object { $_ -Match "addon-google_apis" } | ForEach-Object {
         $packageInfoParts = Split-TableRowByColumns $_
         return $packageInfoParts[0].split(";")[1]
     }
