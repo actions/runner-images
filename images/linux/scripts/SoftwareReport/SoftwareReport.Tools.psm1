@@ -1,5 +1,5 @@
 function Get-AnsibleVersion {
-    $ansibleVersion = ansible --version | Select-Object -First 1 | Take-OutputPart -Part 1
+    $ansibleVersion = (ansible --version)[0] -replace "[^\d.]"
     return "Ansible $ansibleVersion"
 }
 
