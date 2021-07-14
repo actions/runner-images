@@ -14,25 +14,22 @@ download_with_retries() {
     local COMPRESSED="$4"
 
     if [[ $COMPRESSED == "compressed" ]]; then
-        COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME'"
+        local COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME' -w '%{http_code}'"
     else
-        COMMAND="curl $URL -4 -sL -o '$DEST/$NAME'"
+        local COMMAND="curl $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
     fi
 
     echo "Downloading '$URL' to '${DEST}/${NAME}'..."
     i=20
     while [ $i -gt 0 ]; do
         ((i--))
-        echo "Verifying $URL HTTP status code..."
-        verify_http_status_code $URL
-        if [ $? != 0 ]; then
-            eval $COMMAND
-            if [ $? != 0 ]; then
-                sleep 30
-            else
-                echo "Download completed"
-                return 0
-            fi
+        http_code=$(eval $COMMAND)
+        if [ $http_code == 200 ]; then
+            echo "Download completed"
+            return 0
+        else
+            echo "Error — HTTP response code for '$URL' is '$http_code'. Waiting 30 seconds before the next attempt, $i attempts left"
+            sleep 30
         fi
     done
 
@@ -52,19 +49,6 @@ function IsPackageInstalled {
 verlte() {
     sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
     [  "$1" = "$sortedVersion" ]
-}
-
-verify_http_status_code()
-{
-    URL="$1"
-    http_code=$(curl -sL -o out.html -w '%{http_code}' $URL)
-
-    if [[ $http_code -eq 200 ]]; then
-        return 0
-    else
-        echo "Bad HTTP status code: $http_code for the provided link: $URL."
-        return 1
-    fi
 }
 
 get_toolset_path() {
