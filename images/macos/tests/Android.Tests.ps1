@@ -83,8 +83,7 @@ Describe "Android" {
         }
     }
 
-    It "HAXM is installed" {
-        $haxmPath = Join-Path $ANDROID_SDK_DIR "extras" "intel" "Hardware_Accelerated_Execution_Manager" "silent_install.sh"
-        "$haxmPath -v" | Should -ReturnZeroExitCode
+    It "HAXM is installed" -Skip:($os.IsBigSur) {
+        "kextstat | grep 'com.intel.kext.intelhaxm'" | Should -ReturnZeroExitCode
     }
 }

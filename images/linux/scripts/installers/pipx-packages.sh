@@ -19,9 +19,10 @@ for package in $pipx_packages; do
         echo "Install $package into default python"
         pipx install $package
 
-        # Install ansible into an existing ansible-base Virtual Environment
-        if [[ $package == "ansible-base" ]]; then
-            pipx inject ansible-base ansible
+        # https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
+        # Install ansible into an existing ansible-core Virtual Environment
+        if [[ $package == "ansible-core" ]]; then
+            pipx inject $package ansible
         fi
     fi
 
