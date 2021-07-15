@@ -123,6 +123,7 @@ $toolsList = @(
     (Get-HHVMVersion),
     (Get-SVNVersion),
     (Get-JqVersion),
+    (Get-YqVersion),
     (Get-KindVersion),
     (Get-KubectlVersion),
     (Get-KustomizeVersion),
