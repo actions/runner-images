@@ -1,19 +1,18 @@
 | Announcements |
 |-|
 | [[all OS versions] Android SDK tools will be changed to Command line tools on July, 12](https://github.com/actions/virtual-environments/issues/3638) |
-| [[macOS] Xcode 12.2 and 12.3 will be removed from Big Sur on June, 28](https://github.com/actions/virtual-environments/issues/3555) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 11.4 info
 - System Version: macOS 11.4 (20F71)
 - Kernel Version: Darwin 20.5.0
-- Image Version: 20210626.1
+- Image Version: 20210712.4
 
 ## Installed Software
 ### Language and Runtime
 - .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202 5.0.300 5.0.301
 - Bash 3.2.57(1)-release
-- Clang/LLVM 12.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
+- Clang/LLVM 12.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.5 is default
 - gcc-9 (Homebrew GCC 9.4.0) 9.4.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
@@ -24,29 +23,29 @@
 - Go 1.15.13
 - julia 1.6.1
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v14.17.1
+- Node.js v14.17.3
 - NVM 0.38.0
-- NVM - Cached node versions: v10.24.1 v12.22.1 v14.17.1
+- NVM - Cached node versions: v10.24.1 v12.22.3 v14.17.3
 - Perl 5.34.0
-- PHP 8.0.7
+- PHP 8.0.8
 - Python 2.7.18
-- Python 3.9.5
-- Ruby 2.7.3p183
+- Python 3.9.6
+- Ruby 2.7.4p191
 
 ### Package Management
-- Bundler version 2.2.21
+- Bundler version 2.2.23
 - Carthage 0.38.0
 - CocoaPods 1.10.1
 - Composer 2.1.3
-- Homebrew 3.2.0
+- Homebrew 3.2.2
 - Miniconda 4.9.2
 - NPM 6.14.13
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
-- Pip 21.1.1 (python 3.9)
+- Pip 21.1.3 (python 3.9)
 - Pipx 0.16.3
-- RubyGems 3.2.21
-- Vcpkg 2021 (build from master \<bb002cd>)
+- RubyGems 3.2.23
+- Vcpkg 2021 (build from master \<b1b4808>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -58,23 +57,23 @@
 ### Project Management
 - Apache Ant(TM) 1.10.10
 - Apache Maven 3.8.1
-- Gradle 7.1
+- Gradle 7.1.1
 
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.35.0
 - azcopy 10.11.0
 - bazel 4.1.0
-- bazelisk 1.9.0
+- bazelisk 1.10.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.77.0
 - Git LFS: 2.13.3
 - Git: 2.32.0
-- GitHub CLI: 1.11.0
+- GitHub CLI: 1.12.1
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.3.1
-- helm v3.6.1+g61d8e8c
+- helm v3.6.2+gee407bd
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v4.4.5
@@ -91,19 +90,20 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.80
+- Aliyun CLI 3.0.81
 - App Center CLI 2.9.0
-- AWS CLI 2.2.14
-- AWS SAM CLI 1.24.1
+- AWS CLI 2.2.18
+- AWS SAM CLI 1.26.0
 - AWS Session Manager CLI 1.2.205.0
-- Azure CLI 2.25.0
+- Azure CLI 2.26.0
+- Bicep CLI 0.4.63
 - Cabal 3.4.0.0
 - Cmake 3.20.5
-- Fastlane 2.186.0
+- Fastlane 2.187.0
 - GHC 9.0.1
 - GHCup v0.1.15.2
 - Stack 2.7.1
-- SwiftFormat 0.48.6
+- SwiftFormat 0.48.9
 - Swig 4.0.2
 - Xcode Command Line Tools 12.5.0.0.1.1617976050
 
@@ -116,8 +116,8 @@
 - SafariDriver 14.1.1 (16611.2.7.1.4)
 - Google Chrome 91.0.4472.114 
 - ChromeDriver 91.0.4472.101
-- Microsoft Edge 91.0.864.59 
-- MSEdgeDriver 91.0.864.59
+- Microsoft Edge 91.0.864.67 
+- MSEdgeDriver 91.0.864.67
 - Mozilla Firefox 89.0.2
 - geckodriver 0.29.1
 
@@ -138,14 +138,14 @@
 #### Ruby
 - 2.4.10
 - 2.5.9
-- 2.6.7
-- 2.7.3
-- 3.0.1
+- 2.6.8
+- 2.7.4
+- 3.0.2
 
 #### Python
-- 3.7.10
-- 3.8.10
-- 3.9.5
+- 3.7.11
+- 3.8.11
+- 3.9.6
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.5]
@@ -153,8 +153,8 @@
 
 #### Node.js
 - 10.24.1
-- 12.22.1
-- 14.17.1
+- 12.22.3
+- 14.17.3
 
 #### Go
 - 1.15.13
@@ -168,8 +168,8 @@
 
 #### Packages
 - Bindgen 0.58.1
-- Cargo-audit 0.14.1
-- Cargo-outdated v0.9.16
+- Cargo-audit 0.15.0
+- Cargo-outdated v0.9.17
 - Cbindgen 0.19.0
 - Clippy 0.1.53
 - Rustfmt 1.4.37-stable
@@ -180,7 +180,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 5.9.0   |
+| Az               | 6.1.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.2.2   |
 | PSScriptAnalyzer | 1.19.1  |
@@ -189,11 +189,11 @@
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.48  | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
-| nginx | 1.21.0  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
+| nginx | 1.21.1  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.3.15
+- 8.10.5.16
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -283,11 +283,10 @@
 | Package Name               | Version                                                                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 4.0                                                                                                                      |
-| Android Emulator           | 30.6.5                                                                                                                   |
+| Android Emulator           | 30.7.5                                                                                                                   |
 | Android SDK Build-tools    | 30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-S (rev 5)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                |
 | Android SDK Platform-Tools | 31.0.2                                                                                                                   |
-| Android SDK Tools          | 26.1.1                                                                                                                   |
 | Android Support Repository | 47.0.0                                                                                                                   |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                         |
 | Google Play services       | 49                                                                                                                       |
