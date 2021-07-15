@@ -180,7 +180,7 @@
 #### Go
 - 1.13.15
 - 1.14.15
-- 1.15.13
+- 1.15.14
 
 #### Node.js
 - 10.24.1
@@ -211,7 +211,7 @@
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_13_X64 | /opt/hostedtoolcache/go/1.13.15/x64 | x64          |
 | GOROOT_1_14_X64 | /opt/hostedtoolcache/go/1.14.15/x64 | x64          |
-| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.13/x64 | x64          |
+| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.14/x64 | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.1.3

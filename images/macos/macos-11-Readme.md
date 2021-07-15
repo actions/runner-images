@@ -20,7 +20,7 @@
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.1.0_1) 11.1.0 - available by `gfortran-11` alias
-- Go 1.15.13
+- Go 1.15.14
 - julia 1.6.1
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v14.17.3
@@ -157,8 +157,8 @@
 - 14.17.3
 
 #### Go
-- 1.15.13
-- 1.16.5
+- 1.15.14
+- 1.16.6
 
 ### Rust Tools
 - Cargo 1.53.0

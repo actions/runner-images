@@ -12,7 +12,7 @@
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
-- Go 1.15.13
+- Go 1.15.14
 - Julia 1.6.1
 - Node 14.17.3
 - Perl 5.32.1
@@ -151,8 +151,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ | -------------------- |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
-| 1.15.13 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.5  | x64          | GOROOT_1_16_X64      |
+| 1.15.14 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.6  | x64          | GOROOT_1_16_X64      |
 
 
 #### Node

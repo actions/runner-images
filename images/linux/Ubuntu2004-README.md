@@ -184,8 +184,8 @@
 ### Cached Tools
 #### Go
 - 1.14.15
-- 1.15.13
-- 1.16.5
+- 1.15.14
+- 1.16.6
 
 #### Node.js
 - 10.24.1
@@ -215,8 +215,8 @@
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_14_X64 | /opt/hostedtoolcache/go/1.14.15/x64 | x64          |
-| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.13/x64 | x64          |
-| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.5/x64  | x64          |
+| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.14/x64 | x64          |
+| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.6/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.1.3
