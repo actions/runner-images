@@ -377,3 +377,9 @@ Describe "Ruby" {
         }
     }
 }
+
+Describe "yq" {
+    It "yq" {
+        "yq -V" | Should -ReturnZeroExitCode
+    }
+}
