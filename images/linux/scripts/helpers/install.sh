@@ -20,17 +20,23 @@ download_with_retries() {
     fi
 
     echo "Downloading '$URL' to '${DEST}/${NAME}'..."
-    i=20
-    while [ $i -gt 0 ]; do
-        ((i--))
+    retries=20
+    interval=30
+    while [ $retries -gt 0 ]; do
+        ((retries--))
+        # Temporary disable exit on error to retry on non-zero exit code
+        set +e
         http_code=$(eval $COMMAND)
-        if [ $http_code == 200 ]; then
+        exit_code=$?
+        if [ $http_code -eq 200 ] && [ $exit_code -eq 0 ]; then
             echo "Download completed"
             return 0
         else
-            echo "Error — HTTP response code for '$URL' is '$http_code'. Waiting 30 seconds before the next attempt, $i attempts left"
+            echo "Error — Either HTTP response code for '$URL' is wrong - '$http_code' or exit code is not 0 - '$exit_code'. Waiting $interval seconds before the next attempt, $retries attempts left"
             sleep 30
         fi
+        # Enable exit on error back
+        set -e
     done
 
     echo "Could not download $URL"
