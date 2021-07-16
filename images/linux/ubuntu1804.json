@@ -199,7 +199,6 @@
                 "{{template_dir}}/scripts/installers/bicep.sh",
                 "{{template_dir}}/scripts/installers/aliyun-cli.sh",
                 "{{template_dir}}/scripts/installers/apache.sh",
-                "{{template_dir}}/scripts/installers/aws.sh",
                 "{{template_dir}}/scripts/installers/clang.sh",
                 "{{template_dir}}/scripts/installers/swift.sh",
                 "{{template_dir}}/scripts/installers/cmake.sh",
@@ -248,8 +247,10 @@
                 "{{template_dir}}/scripts/installers/dpkg-config.sh",
                 "{{template_dir}}/scripts/installers/mongodb.sh",
                 "{{template_dir}}/scripts/installers/android.sh",
+                "{{template_dir}}/scripts/installers/yq.sh",
                 "{{template_dir}}/scripts/installers/pypy.sh",
-                "{{template_dir}}/scripts/installers/python.sh"
+                "{{template_dir}}/scripts/installers/python.sh",
+                "{{template_dir}}/scripts/installers/aws.sh"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
