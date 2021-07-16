@@ -10,28 +10,29 @@ download_with_retries() {
     local COMPRESSED="$4"
 
     if [[ $COMPRESSED == "compressed" ]]; then
-        COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME'"
+        local COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME' -w '%{http_code}'"
     else
-        COMMAND="curl $URL -4 -sL -o '$DEST/$NAME'"
+        local COMMAND="curl $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
     fi
 
-    echo "Downloading $URL..."
+    echo "Downloading '$URL' to '${DEST}/${NAME}'..."
     retries=20
     interval=30
     while [ $retries -gt 0 ]; do
         ((retries--))
-        echo "Verifying $URL HTTP status code..."
-        verify_http_status_code $URL
-        if [ $? != 0 ]; then
-            eval $COMMAND
-            if [ $? != 0 ]; then
-                echo "Unable to download $URL, next attempt in $interval sec, $retries attempts left"
-                sleep $interval
-            else
-                echo "$URL was downloaded successfully to $DEST/$NAME"
-                return 0
-            fi
+        # Temporary disable exit on error to retry on non-zero exit code
+        set +e
+        http_code=$(eval $COMMAND)
+        exit_code=$?
+        if [ $http_code -eq 200 ] && [ $exit_code -eq 0 ]; then
+            echo "Download completed"
+            return 0
+        else
+            echo "Error — Either HTTP response code for '$URL' is wrong - '$http_code' or exit code is not 0 - '$exit_code'. Waiting $interval seconds before the next attempt, $retries attempts left"
+            sleep 30
         fi
+        # Enable exit on error back
+        set -e
     done
 
     echo "Could not download $URL"
@@ -83,19 +84,6 @@ is_Less_BigSur() {
         true
     else
         false
-    fi
-}
-
-verify_http_status_code()
-{
-    URL="$1"
-    http_code=$(curl -sL -o out.html -w '%{http_code}' $URL)
-
-    if [[ $http_code -eq 200 ]]; then
-        return 0
-    else
-        echo "Bad HTTP status code: $http_code for the provided link: $URL."
-        return 1
     fi
 }
 
