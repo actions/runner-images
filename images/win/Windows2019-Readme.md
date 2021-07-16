@@ -3,8 +3,8 @@
 | [[all OS versions] Android SDK tools will be changed to Command line tools on July, 12](https://github.com/actions/virtual-environments/issues/3638) |
 ***
 # Microsoft Windows Server 2019 Datacenter
-- OS Version: 10.0.17763 Build 1999
-- Image Version: 20210628.1
+- OS Version: 10.0.17763 Build 2029
+- Image Version: 20210711.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -14,23 +14,23 @@
 - Bash 4.4.23(1)-release
 - Go 1.15.13
 - Julia 1.6.1
-- Node 14.17.1
+- Node 14.17.3
 - Perl 5.32.1
-- PHP 8.0.7
+- PHP 8.0.8
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
 - Chocolatey 0.10.15
 - Composer 2.1.3
-- Helm 3.6.1
+- Helm 3.6.2
 - Miniconda 4.9.2 (pre-installed on the image but not added to PATH)
 - NPM 6.14.13
 - NuGet 5.10.0.7240
 - pip 21.1.3 (python 3.7)
 - Pipx 0.16.3
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<bb002cd>)
+- Vcpkg  (build from master \<7d169b4>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -43,7 +43,7 @@
 - Ant 1.10.10
 - Gradle 7.1
 - Maven 3.8.1
-- sbt 1.5.3
+- sbt 1.5.4
 
 ### Tools
 - 7zip 19.00
@@ -53,13 +53,13 @@
 - Bicep 0.4.63
 - Cabal 3.4.0.0
 - CMake 3.20.5
-- CodeQL Action Bundle 2.5.6
-- Docker 20.10.5
+- CodeQL Action Bundle 2.5.7
+- Docker 20.10.6
 - Docker-compose 1.29.1
 - ghc 9.0.1
 - Git 2.32.0
 - Git LFS 2.13.3
-- Google Cloud SDK 346.0.0
+- Google Cloud SDK 347.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
@@ -70,7 +70,7 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.2
-- Pulumi v3.5.1
+- Pulumi v3.6.1
 - R 4.1.0
 - Stack 2.7.1
 - Subversion (SVN) 1.14.1
@@ -81,14 +81,14 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.80
-- AWS CLI 2.2.14
-- AWS SAM CLI 1.24.1
+- Alibaba Cloud CLI 3.0.81
+- AWS CLI 2.2.18
+- AWS SAM CLI 1.26.0
 - AWS Session Manager CLI 1.2.205.0
-- Azure CLI 2.25.0
+- Azure CLI 2.26.0
 - Azure DevOps CLI extension 0.18.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 1.11.0
+- GitHub CLI 1.12.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -99,8 +99,8 @@
 
 #### Packages
 - bindgen 0.58.1
-- cargo-audit 0.14.1
-- cargo-outdated v0.9.16
+- cargo-audit 0.15.0
+- cargo-outdated v0.9.17
 - cbindgen 0.19.0
 - Clippy 0.1.53
 - Rustfmt 1.4.37
@@ -108,8 +108,8 @@
 ### Browsers and webdrivers
 - Google Chrome 91.0.4472.124
 - Chrome Driver 91.0.4472.101
-- Microsoft Edge 91.0.864.59
-- Microsoft Edge Driver 91.0.864.59
+- Microsoft Edge 91.0.864.67
+- Microsoft Edge Driver 91.0.864.67
 - Mozilla Firefox 89.0.2
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
@@ -159,8 +159,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 10.24.1 | x64          |
-| 12.22.1 | x64          |
-| 14.17.1 | x64          |
+| 12.22.3 | x64          |
+| 14.17.3 | x64          |
 
 
 #### Python
@@ -171,7 +171,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.5   | x64, x86     |
+| 3.9.6   | x64, x86     |
 
 
 #### Ruby
@@ -179,9 +179,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 2.4.10  | x64          |
 | 2.5.9 (Default) | x64          |
-| 2.6.7   | x64          |
-| 2.7.3   | x64          |
-| 3.0.1   | x64          |
+| 2.6.8   | x64          |
+| 2.7.4   | x64          |
+| 3.0.2   | x64          |
 
 
 #### PyPy
@@ -225,18 +225,18 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.48  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.21.0  | C:\tools\nginx-1.21.0\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.21.1  | C:\tools\nginx-1.21.1\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.10.31410.357 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Visual Studio Enterprise 2019 | 16.10.31424.327 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.10.31408.198 |
+| Component.Android.NDK.R16B                                                | 16.10.31415.396 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -559,11 +559,11 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:7da03aef9a9acb66678d5c14dda85c741268557bdcd55484e6351e373445157f  | 2021-06-08 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:8af4375ff474def9233a8a0ce8f0faad829c143c447e98d85c55a24586904f63  | 2021-06-08 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:ceb674e14c24078b16c2b7a3dfe0c31929acbdd34352902bcf381a4489dc6422  | 2021-06-08 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:944184f0b31444a929debcd9668218f1e80ef342fe03f5c4b8491eda6da3ffb8  | 2021-06-06 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:3458c7dbc9ee16016170ecce85bee03b0e7f13744809d67fc881ec8d2086f5ef  | 2021-06-06 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:8243310953cf430f0e7bbd5881ad02627dca2aac0c1672af016d0e7981c068a3  | 2021-07-08 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:87507e123f65c703b941da540914a8cf5c1d08334913e69c222927220352c2cd  | 2021-07-08 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:aa3c8d10c1b6e503863b4f0672cf594919ab54b9431892eee422d797a19bd217  | 2021-07-08 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:38c1fb9049c603299d7e885dc74ce55a6c97d22cef9b01df0e8a11489691bed6  | 2021-07-06 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:6dfc9ed8c6048a7a45fba93fdfc0b5c4cf1215392e74dfa674003ccfb99061fa  | 2021-07-06 |
 
 
 
