@@ -230,7 +230,7 @@ function Get-PowerShellAzureModules {
     $modulesPath = "C:\Modules"
     $modules = Get-ChildItem -Path $modulesPath | Sort-Object Name |  Group-Object {$_.Name.Split('_')[0]}
     $modules | ForEach-Object {
-        $group = $_.group | Sort-Object {[Version]$_.Name.Split('_')[1]}
+        $group = $_.group | Sort-Object {[Version]$_.Name.Split('_')[1].Replace(".zip","")}
         $moduleName = $names[$_.Name]
         $moduleVersions = $group | ForEach-Object {$_.Name.Split('_')[1]}
         $moduleVersions = $moduleVersions -join '<br>'
