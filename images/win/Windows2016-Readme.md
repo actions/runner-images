@@ -3,31 +3,31 @@
 | [[all OS versions] Android SDK tools will be changed to Command line tools on July, 12](https://github.com/actions/virtual-environments/issues/3638) |
 ***
 # Microsoft Windows Server 2016 Datacenter
-- OS Version: 10.0.14393 Build 4467
-- Image Version: 20210628.1
+- OS Version: 10.0.14393 Build 4470
+- Image Version: 20210711.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
 - Go 1.15.13
 - Julia 1.6.1
-- Node 14.17.1
+- Node 14.17.3
 - Perl 5.32.1
-- PHP 8.0.7
+- PHP 8.0.8
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
 - Chocolatey 0.10.15
 - Composer 2.1.3
-- Helm 3.6.1
+- Helm 3.6.2
 - Miniconda 4.9.2 (pre-installed on the image but not added to PATH)
 - NPM 6.14.13
 - NuGet 5.10.0.7240
 - pip 21.1.3 (python 3.7)
 - Pipx 0.16.3
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<bb002cd>)
+- Vcpkg  (build from master \<7d169b4>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -40,7 +40,7 @@
 - Ant 1.10.10
 - Gradle 7.1
 - Maven 3.8.1
-- sbt 1.5.3
+- sbt 1.5.4
 
 ### Tools
 - 7zip 19.00
@@ -50,13 +50,13 @@
 - Bicep 0.4.63
 - Cabal 3.4.0.0
 - CMake 3.20.5
-- CodeQL Action Bundle 2.5.6
-- Docker 20.10.5
+- CodeQL Action Bundle 2.5.7
+- Docker 20.10.6
 - Docker-compose 1.29.1
 - ghc 9.0.1
 - Git 2.32.0
 - Git LFS 2.13.3
-- Google Cloud SDK 346.0.0
+- Google Cloud SDK 347.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
@@ -67,7 +67,7 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.2
-- Pulumi v3.5.1
+- Pulumi v3.6.1
 - R 4.1.0
 - Stack 2.7.1
 - Subversion (SVN) 1.14.1
@@ -78,14 +78,14 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.80
-- AWS CLI 2.2.14
-- AWS SAM CLI 1.24.1
+- Alibaba Cloud CLI 3.0.81
+- AWS CLI 2.2.18
+- AWS SAM CLI 1.26.0
 - AWS Session Manager CLI 1.2.205.0
-- Azure CLI 2.25.0
+- Azure CLI 2.26.0
 - Azure DevOps CLI extension 0.18.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 1.11.0
+- GitHub CLI 1.12.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -96,8 +96,8 @@
 
 #### Packages
 - bindgen 0.58.1
-- cargo-audit 0.14.1
-- cargo-outdated v0.9.16
+- cargo-audit 0.15.0
+- cargo-outdated v0.9.17
 - cbindgen 0.19.0
 - Clippy 0.1.53
 - Rustfmt 1.4.37
@@ -105,8 +105,8 @@
 ### Browsers and webdrivers
 - Google Chrome 91.0.4472.124
 - Chrome Driver 91.0.4472.101
-- Microsoft Edge 91.0.864.59
-- Microsoft Edge Driver 91.0.864.59
+- Microsoft Edge 91.0.864.67
+- Microsoft Edge Driver 91.0.864.67
 - Mozilla Firefox 89.0.2
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
@@ -153,8 +153,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 10.24.1 | x64          |
-| 12.22.1 | x64          |
-| 14.17.1 | x64          |
+| 12.22.3 | x64          |
+| 14.17.3 | x64          |
 
 
 #### Python
@@ -165,7 +165,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.5   | x64, x86     |
+| 3.9.6   | x64, x86     |
 
 
 #### Ruby
@@ -173,9 +173,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 2.4.10  | x64          |
 | 2.5.9 (Default) | x64          |
-| 2.6.7   | x64          |
-| 2.7.3   | x64          |
-| 3.0.1   | x64          |
+| 2.6.8   | x64          |
+| 2.7.4   | x64          |
+| 3.0.2   | x64          |
 
 
 #### PyPy
@@ -219,7 +219,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.48  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.21.0  | C:\tools\nginx-1.21.0\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.21.1  | C:\tools\nginx-1.21.1\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
@@ -549,7 +549,7 @@ All other versions are saved but not installed.
 | Android SDK Tools          | 25.2.5                                                                                                                                                                                                                                                                                    |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                    |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                                          |
-| Google APIs                | addon-g..._apis-google-21<br>addon-g..._apis-google-22<br>addon-g..._apis-google-23<br>addon-g..._apis-google-24<br>a...google_apis                                                                                                                                                       |
+| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24|
 | Google Play services       | 49                                                                                                                                                                                                                                                                                        |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                        |
 | NDK                        | 21.4.7075529<br>22.1.7171670                                                                                                                                                                                                                                                              |
@@ -568,11 +568,11 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:80ebe3ac5d462f858967ed3af42b6abb4d774229aa65614e11f2229bb1eb67c7  | 2021-06-08 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:af5a3ae6f3fe3ff6723eaa5cb25c10727760905e0b748fcdd7a74f2a0311b1bc  | 2021-06-08 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:43aa741b7d100954d86a824eab6e25c76b51e5eef92727d5744e8800efdb4089  | 2021-06-08 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:6f1f6e1e3cf6391a8738aacea3128db2d888a7ac269ea9b0a2d3632394dc194c  | 2021-07-08 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:d839398735dd59b2fa38a1b309a01478fcec69c1adbf67df8dfabadbe9b93dda  | 2021-07-08 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:b0039c9880b74156fd6da75cb9c549494b22d43ddce47d690aeaa4064b6e4d37  | 2021-07-08 |
 | mcr.microsoft.com/windows/nanoserver:10.0.14393.953                       | sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268  | 2017-03-08 |
-| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:431315d3208b79a74c7e598aacb469f0e58a18977f5b93885b1d8d7027cae03d  | 2021-06-06 |
+| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:f07c36fa2f9220861e3c0508080d035271e3960fbc1f28eb2ffe6d05e69b6047  | 2021-07-06 |
 
 
 
