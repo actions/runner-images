@@ -2,6 +2,7 @@
 |-|
 | [[Ubuntu] Ansible will be updated to Ansible 4 on July, 19th](https://github.com/actions/virtual-environments/issues/3714) |
 | [Ubuntu 16.04 environment will be removed on September 20, 2021](https://github.com/actions/virtual-environments/issues/3287) |
+| [[all OS] MongoDB will be updated to version 5 on July, 26th](https://github.com/actions/virtual-environments/issues/3749) |
 ***
 # Ubuntu 18.04.5 LTS
 - Linux kernel version: 5.4.0-1051-azure
