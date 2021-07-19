@@ -1,6 +1,7 @@
 | Announcements |
 |-|
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
+| [[all OS] MongoDB will be updated to version 5 on July, 26th](https://github.com/actions/virtual-environments/issues/3749) |
 ***
 # macOS 11.4 info
 - System Version: macOS 11.4 (20F71)
