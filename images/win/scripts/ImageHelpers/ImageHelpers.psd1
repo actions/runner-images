@@ -12,15 +12,6 @@ ModuleVersion = '0.0.1'
 # ID used to uniquely identify this module
 GUID = 'c9334909-16a1-48f1-a94a-c7baf1b961d9'
 
-# Author of this module
-Author = 'chrispat'
-
-# Company or vendor of this module
-CompanyName = 'Unknown'
-
-# Copyright statement for this module
-Copyright = '(c) 2017 chrispat. All rights reserved.'
-
 # Description of the functionality provided by this module
 Description = 'Helper functions for creating vsts images'
 
