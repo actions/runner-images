@@ -44,6 +44,13 @@ function Get-ClangVersions {
     return "Clang " + $clangVersions
 }
 
+function Get-LLVMInfo {
+    $clangVersions = Get-ClangToolVersions -ToolName "clang"
+    $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "llvm"
+    return "LLVM components: Clang $clangFormatVersions, Clang-format $clangFormatVersions (apt source: $aptSourceRepo)"
+}
+
 function Get-ClangFormatVersions {
     $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
     return "Clang-format " + $clangFormatVersions
@@ -56,9 +63,17 @@ function Get-ErlangVersion {
     return "Erlang $erlangVersion (Eshell $shellVersion)"
 }
 
+function Get-ErlangRebar3Version {
+    $result = Get-CommandResult "rebar3 --version"
+    $result.Output -match "rebar (?<version>(\d+.){2}\d+)" | Out-Null
+    $rebarVersion = $Matches.version
+    return "Erlang rebar3 $rebarVersion"
+}
+
 function Get-MonoVersion {
     $monoVersion = mono --version | Out-String | Take-OutputPart -Part 4
-    return "Mono $monoVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "mono"
+    return "Mono $monoVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-MsbuildVersion {
@@ -246,6 +261,17 @@ function Build-PHPTable {
             "Version" = $_.Version
         }
     }
+}
+
+function Build-PHPSection {
+    $output = ""
+    $output += New-MDHeader "PHP" -Level 3
+    $output += Build-PHPTable | New-MDTable
+    $output += New-MDCode -Lines @(
+        "Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled."
+    )
+
+    return $output
 }
 
 function Get-GHCVersion {

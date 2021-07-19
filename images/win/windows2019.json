@@ -7,12 +7,14 @@
         "object_id": "{{env `ARM_OBJECT_ID`}}",
         "resource_group": "{{env `ARM_RESOURCE_GROUP`}}",
         "storage_account": "{{env `ARM_STORAGE_ACCOUNT`}}",
+        "build_resource_group_name": "{{env `BUILD_RESOURCE_GROUP_NAME`}}",
         "temp_resource_group_name": "{{env `TEMP_RESOURCE_GROUP_NAME`}}",
         "location": "{{env `ARM_RESOURCE_LOCATION`}}",
         "virtual_network_name": "{{env `VNET_NAME`}}",
         "virtual_network_resource_group_name": "{{env `VNET_RESOURCE_GROUP`}}",
         "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
+        "allowed_inbound_ip_addresses": "{{env `AGENT_IP`}}",
         "vm_size": "Standard_D8s_v4",
         "run_scan_antivirus": "false",
         "root_folder": "C:",
@@ -46,6 +48,7 @@
             "vm_size": "{{user `vm_size`}}",
             "resource_group_name": "{{user `resource_group`}}",
             "storage_account": "{{user `storage_account`}}",
+            "build_resource_group_name": "{{user `build_resource_group_name`}}",
             "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
             "capture_container_name": "images",
             "capture_name_prefix": "{{user `capture_name_prefix`}}",
@@ -53,6 +56,7 @@
             "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",
             "virtual_network_subnet_name": "{{user `virtual_network_subnet_name`}}",
             "private_virtual_network_with_public_ip": "{{user `private_virtual_network_with_public_ip`}}",
+            "allowed_inbound_ip_addresses": "{{user `allowed_inbound_ip_addresses`}}",
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
@@ -186,18 +190,13 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-Nuget.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Wix.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vsix.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-AzCopy.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-AzureDevSpacesCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-7zip.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Packer.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Pulumi.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-CommonUtils.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
             ]
         },
@@ -230,7 +229,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
-                "{{ template_dir }}/scripts/Installers/Update-AndroidSDK.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-AndroidSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Pipx.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PipxPackages.ps1"
@@ -239,15 +238,11 @@
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-OpenSSL.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Perl.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Git.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PHP.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Rust.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Julia.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Sbt.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Svn.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Chrome.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Edge.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Firefox.ps1",
@@ -267,8 +262,9 @@
         },
         {
             "type": "powershell",
-            "elevated_user": "SYSTEM",
-            "elevated_password": "",
+            "environment_vars": [
+                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+            ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Msys2.ps1"
             ]
@@ -279,9 +275,7 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-VSWhere.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WinAppDriver.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Cmake.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-R.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AWS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-DACFx.ps1",
@@ -295,10 +289,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-Miniconda.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureCosmosDbEmulator.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Mercurial.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Jq.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Zstd.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-InnoSetup.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-GitVersion.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NSIS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CloudFoundryCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vcpkg.ps1",

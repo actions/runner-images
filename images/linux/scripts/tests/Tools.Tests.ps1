@@ -8,6 +8,12 @@ Describe "azcopy" {
     }
 }
 
+Describe "Bicep" -Skip:(Test-IsUbuntu16) {
+    It "Bicep" {
+        "bicep --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Rust" {
     It "Rustup is installed" {
         "rustup --version" | Should -ReturnZeroExitCode
@@ -162,6 +168,12 @@ Describe "Mono" {
 Describe "MSSQLCommandLineTools" {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "SqlPackage" {
+    It "sqlpackage" {
+        "sqlpackage /version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -363,5 +375,11 @@ Describe "Ruby" {
         It "Gem <gemName> is installed" -TestCases $gemTestCases {
             "gem list -i '^$gemName$'" | Should -MatchCommandOutput "true"
         }
+    }
+}
+
+Describe "yq" {
+    It "yq" {
+        "yq -V" | Should -ReturnZeroExitCode
     }
 }

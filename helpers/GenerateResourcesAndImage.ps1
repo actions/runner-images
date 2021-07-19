@@ -72,7 +72,7 @@ Function GenerateResourcesAndImage {
             The root path of the image generation repository source.
 
         .PARAMETER ImageType
-            The type of the image being generated. Valid options are: {"Windows2016", "Windows2019", "Ubuntu1604", "Ubuntu1804"}.
+            The type of the image being generated. Valid options are: {"Windows2016", "Windows2019", "Ubuntu1604", "Ubuntu1804", "Ubuntu2004"}.
 
         .PARAMETER AzureLocation
             The location of the resources being created in Azure. For example "East US".
@@ -88,6 +88,10 @@ Function GenerateResourcesAndImage {
 
         .PARAMETER AzureTenantId
             Tenant needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
+
+        .PARAMETER RestrictToAgentIpAddress
+            If set, access to the VM used by packer to generate the image is restricted to the public IP address this script is run from. 
+            This parameter cannot be used in combination with the virtual_network_name packer parameter.
 
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1604 -AzureLocation "East US"
@@ -111,6 +115,8 @@ Function GenerateResourcesAndImage {
         [string] $AzureClientSecret,
         [Parameter(Mandatory = $False)]
         [string] $AzureTenantId,
+        [Parameter(Mandatory = $False)]
+        [Switch] $RestrictToAgentIpAddress,
         [Parameter(Mandatory = $False)]
         [Switch] $Force
     )
@@ -215,6 +221,11 @@ Function GenerateResourcesAndImage {
         throw "'packer' binary is not found on PATH"
     }
 
+    if($RestrictToAgentIpAddress -eq $true) {
+        $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
+        echo "Restricting access to packer generated VM to agent IP Address: $AgentIp"
+    }
+
     & $packerBinary build -on-error=ask `
         -var "client_id=$($spClientId)" `
         -var "client_secret=$($ServicePrincipalClientSecret)" `
@@ -224,5 +235,6 @@ Function GenerateResourcesAndImage {
         -var "resource_group=$($ResourceGroupName)" `
         -var "storage_account=$($storageAccountName)" `
         -var "install_password=$($InstallPassword)" `
+        -var "allowed_inbound_ip_addresses=$($AgentIp)" `
         $builderScriptPath
 }

@@ -35,13 +35,12 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
-$markdown += New-MDList -Style Unordered -Lines (@(
+$runtimesList = @(
         (Get-BashVersion),
         (Get-CPPVersions),
         (Get-FortranVersions),
-        (Get-ClangVersions),
-        (Get-ClangFormatVersions),
         (Get-ErlangVersion),
+        (Get-ErlangRebar3Version),
         (Get-MonoVersion),
         (Get-MsbuildVersion),
         (Get-NodeVersion),
@@ -51,8 +50,16 @@ $markdown += New-MDList -Style Unordered -Lines (@(
         (Get-RubyVersion),
         (Get-SwiftVersion),
         (Get-JuliaVersion)
-        ) | Sort-Object
-)
+        ) 
+
+if (Test-IsUbuntu20) {
+    $runtimesList += (Get-LLVMInfo)
+} else {
+    $runtimesList += (Get-ClangVersions)
+    $runtimesList += (Get-ClangFormatVersions)
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
 
 $markdown += New-MDHeader "Package Management" -Level 3
 
@@ -116,6 +123,7 @@ $toolsList = @(
     (Get-HHVMVersion),
     (Get-SVNVersion),
     (Get-JqVersion),
+    (Get-YqVersion),
     (Get-KindVersion),
     (Get-KubectlVersion),
     (Get-KustomizeVersion),
@@ -137,8 +145,9 @@ $toolsList = @(
 
 if (-not (Test-IsUbuntu16)) {
     $toolsList += @(
-        (Get-PodManVersion),
+        (Get-BicepVersion),
         (Get-BuildahVersion),
+        (Get-PodManVersion),
         (Get-SkopeoVersion),
         (Get-YamllintVersion)
     )
@@ -178,9 +187,9 @@ if (Test-IsUbuntu20) {
     $markdown += New-MDNewLine
 }
 
-$markdown += New-MDHeader "PHP" -Level 3
-$markdown += Build-PHPTable | New-MDTable
-$markdown += New-MDNewLine
+if (-not (Test-IsUbuntu16)) {
+    $markdown += Build-PHPSection
+}
 
 $markdown += New-MDHeader "Haskell" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(

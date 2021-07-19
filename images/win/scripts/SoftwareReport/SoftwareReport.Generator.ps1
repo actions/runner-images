@@ -77,6 +77,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
+    (Get-BicepVersion),
     (Get-CabalVersion),
     (Get-CMakeVersion),
     (Get-CodeQLBundleVersion),
@@ -101,6 +102,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-StackVersion),
     (Get-SVNVersion),
     (Get-VSWhereVersion),
+    (Get-SwigVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
     (Get-YAMLLintVersion)
@@ -114,7 +116,6 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-AWSSAMVersion),
     (Get-AWSSessionManagerVersion),
     (Get-AzureCLIVersion),
-    (Get-AZDSVersion),
     (Get-AzureDevopsExtVersion),
     (Get-CloudFoundryVersion),
     (Get-GHVersion),

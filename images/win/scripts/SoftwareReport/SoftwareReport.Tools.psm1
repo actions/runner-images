@@ -18,6 +18,12 @@ function Get-BazeliskVersion {
     return "Bazelisk $bazeliskVersion"
 }
 
+function Get-BicepVersion {
+    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $bicepVersion = $Matches.Version
+    return "Bicep $bicepVersion"
+}
+
 function Get-RVersion {
     ($(cmd /c "Rscript --version 2>&1")  | Out-String) -match  "R scripting front-end version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $rVersion = $Matches.Version
@@ -253,13 +259,14 @@ function Get-VisualCPPComponents {
     }
 }
 
-function Get-AZDSVersion {
-    $azdsVersion = $(azds --version) | Select-String "(\d+\.\d+\.\d+.\d+)"
-    return "Azure Dev Spaces CLI $azdsVersion"
-}
-
 function Get-DacFxVersion {
     cd "C:\Program Files\Microsoft SQL Server\150\DAC\bin\"
     $dacfxversion = (./sqlpackage.exe /version)
     return "DacFx $dacfxversion"
+}
+
+function Get-SwigVersion {
+    (swig -version | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $swigVersion = $Matches.Version
+    return "Swig $swigVersion"
 }

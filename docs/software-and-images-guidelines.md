@@ -31,7 +31,7 @@ These are the guidelines we follow in software and images supporting routine:
 | .NET Core | 2 latest LTS versions and 1 latest version. For each feature version only latest patch is installed |
 | GCC <br/> GNU Fortran <br/> Clang <br/> GNU C++ | 3 latest major versions |
 | Android NDK | 1 latest, 1 LTS version |
-| Xcode     | all OS compatible versions, latest beta for each new version |
+| Xcode     | - all OS compatible versions side-by-side <br/> - for beta, GM versions - latest beta only <br/> - old patch versions are deprecated in 3 months |
 
 ## Software default versions update policy for tools with multiple versions installed
 In general, once a new version is installed on the image, we announce the default version update 2 weeks prior to deploying it to give time to adapt to upcoming changes. For potentially dangerous updates, we can extend the timeline up to 1 month between the announcement and deployment.

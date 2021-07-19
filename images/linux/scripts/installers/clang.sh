@@ -12,9 +12,11 @@ function InstallClang {
     local version=$1
 
     echo "Installing clang-$version..."
-    if [[ $version =~ 9 ]] && isUbuntu16; then
+    if [[ $version =~ 9 ]] && isUbuntu16 || [[ $version =~ 12 ]]; then
         ./llvm.sh $version
         apt-get install -y "clang-format-$version"
+	llvm_repo=$(grep '^deb.*apt.llvm.org\/' /etc/apt/sources.list)
+	echo "llvm $llvm_repo" >> $HELPER_SCRIPTS/apt-sources.txt
     else
         apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version"
     fi    
@@ -37,8 +39,11 @@ versions=$(get_toolset_value '.clang.versions[]')
 default_clang_version=$(get_toolset_value '.clang.default_version')
 
 for version in ${versions[*]}; do
-    InstallClang $version
+    if [[ $version != $default_clang_version ]]; then
+        InstallClang $version
+    fi
 done
+InstallClang $default_clang_version
 
 SetDefaultClang $default_clang_version
 rm llvm.sh

@@ -4,6 +4,9 @@
 ##  Desc:  Installs erlang
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/install.sh
+
 source_list=/etc/apt/sources.list.d/eslerlang.list
 
 # Install Erlang
@@ -13,9 +16,12 @@ apt-get update
 apt-get install -y --no-install-recommends esl-erlang
 
 # Install rebar3
-wget -q -O rebar3 https://s3.amazonaws.com/rebar3/rebar3
-chmod +x rebar3
-mv rebar3 /usr/local/bin/rebar3
+json=$(curl -sL "https://api.github.com/repos/erlang/rebar3/releases")
+rebar3Version=$(echo $json | jq -r '.[] | select(.tag_name | contains("-") | not).tag_name' | sort -V | tail -n1)
+rebar3DownloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"$rebar3Version\").assets[].browser_download_url")
+download_with_retries $rebar3DownloadUrl "/tmp"
+mv /tmp/rebar3 /usr/local/bin/rebar3
+chmod +x /usr/local/bin/rebar3
 
 invoke_tests "Tools" "erlang"
 
