@@ -1,4 +1,11 @@
 #!/bin/bash -e -o pipefail
+
+# Select any Xamarin SDK versions as the default ones independently by specifying only those versions that need to be changed.
+# Examples:
+# 1. Change all versions: $VM_ASSETS/select-xamarin-sdkv-v2.sh --mono=6.12 --ios=14.8 --android=10.2 --mac=7.8
+# 2. Change default Mono and iOS only: $VM_ASSETS/select-xamarin-sdkv-v2.sh --mono=6.12 --ios=14.8
+# 3. Change default Android only: $VM_ASSETS/select-xamarin-sdkv-v2.sh --android=11.1
+
 get_framework_path() {
   case $1 in
   --mono) echo '/Library/Frameworks/Mono.framework/Versions' ;;
@@ -16,7 +23,7 @@ change_framework_version() {
   echo "Select $framework $version"
 
   local countDigit=$(echo "${version}" | grep -o "\." | grep -c "\.")
-  
+
   if [[ countDigit -gt 1 ]]; then
     echo "[WARNING] It is not recommended to specify the exact framework version because your build can be broken with the next patch update. Consider using "major.minor" only format."
   fi
