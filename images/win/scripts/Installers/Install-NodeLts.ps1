@@ -19,7 +19,7 @@ setx npm_config_prefix $PrefixPath /M
 $env:npm_config_prefix = $PrefixPath
 
 npm config set cache $CachePath --global
-npm config set registry http://registry.npmjs.org/
+npm config set registry https://registry.npmjs.org/
 
 npm install -g cordova
 npm install -g grunt-cli

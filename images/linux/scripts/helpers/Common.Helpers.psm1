@@ -56,7 +56,7 @@ function Get-ToolsetValue {
 }
 
 function Get-AndroidPackages {
-    $androidSDKManagerPath = "/usr/local/lib/android/sdk/tools/bin/sdkmanager"
+    $androidSDKManagerPath = "/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager"
     $androidPackages = & $androidSDKManagerPath --list --verbose
     return $androidPackages
 }

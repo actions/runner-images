@@ -49,3 +49,14 @@ function Get-PathWithLink {
     $link = Get-LinkTarget($inputPath)
     return "${inputPath}${link}"
 }
+
+function Get-BrewPackageVersion {
+    param (
+        [string] $CommandName
+    )
+
+    (Get-LinkTarget (Get-Command $CommandName).Source | Out-String) -match "(?<version>(\d+.){2}\d+)" | Out-Null 
+    $packageVersion = $Matches.Version
+
+    return $packageVersion
+}

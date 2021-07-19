@@ -12,15 +12,17 @@ For general questions about using the virtual environments or writing your Actio
 | --------------------|---------------------|--------------------|---------------------|
 | Ubuntu 20.04 | `ubuntu-latest` or `ubuntu-20.04` | [ubuntu-20.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
 | Ubuntu 18.04 | `ubuntu-18.04` | [ubuntu-18.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
-| Ubuntu 16.04 | `ubuntu-16.04` | [ubuntu-16.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu16&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu16&redirect=1) |
-| macOS 11.0 | `macos-11.0` | [macOS-11.0] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11.0&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11.0&redirect=1)
+| macOS 11 | `macos-11` | [macOS-11] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
 | macOS 10.15 | `macos-latest` or `macos-10.15` | [macOS-10.15] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
 | Windows Server 2019 | `windows-latest` or `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 | Windows Server 2016 | `windows-2016` | [windows-2016] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
 ```
-The macOS 11.0 virtual environment is currently provided as a private preview only.
-The "macos-latest" YAML workflow label still uses the macOS 10.15 virtual environment.
+Ubuntu 16.04 has been deprecated and will be removed on September 20, 2021.
+Existing workflows using `Ubuntu 16.04` should migrate to `Ubuntu 20.04` or `Ubuntu 18.04`
 ```
+
+> The macOS 11 virtual environment is currently in preview and is automatically available to the existing Enterprise plan customers who used macOS hosted runners at least once between May, 1 - June, 1. New Enterprise plan customers, or customers on other plans, should fill the form to request access to macOS 11 virtual environment. Please view our [Big Sur guide](./docs/macos-11-onboarding.md) for more details. <br/>
+The `macos-latest` YAML workflow label still uses the macOS 10.15 virtual environment.
 
 ***What images are available for GitHub Actions and Azure DevOps?***
 The availability of images for GitHub Actions and Azure DevOps is different. See documentation for more details:  
@@ -53,7 +55,7 @@ You can also track upcoming changes using the [awaiting-deployment](https://gith
 [ubuntu-16.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1604-README.md
 [Windows-2019]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
 [windows-2016]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
-[macOS-11.0]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11.0-Readme.md
+[macOS-11]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11-Readme.md
 [macOS-10.15]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 

@@ -16,21 +16,13 @@ function Get-AndroidSDKRoot {
 }
 
 function Get-AndroidSDKManagerPath {
-    return Join-Path $env:ANDROID_HOME "tools\bin\sdkmanager.bat"
+    return Join-Path $env:ANDROID_HOME "cmdline-tools\latest\bin\sdkmanager.bat"
 }
 
 function Get-AndroidInstalledPackages {
     $androidSDKManagerPath = Get-AndroidSDKManagerPath
-    $androidSDKManagerList = & $androidSDKManagerPath --list --include_obsolete
-    $androidInstalledPackages = @()
-    foreach($packageInfo in $androidSDKManagerList) {
-        if($packageInfo -Match "Available Packages:") {
-            break
-        }
-
-        $androidInstalledPackages += $packageInfo
-    }
-    return $androidInstalledPackages
+    $androidSDKManagerList = & $androidSDKManagerPath --list_installed
+    return $androidSDKManagerList
 }
 
 function Build-AndroidTable {
@@ -38,7 +30,7 @@ function Build-AndroidTable {
     return @(
         @{
             "Package" = "Android Command Line Tools"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Command-line Tools"
+            "Version" = Get-AndroidCommandLineToolsVersion
         },
         @{
             "Package" = "Android Emulator"
@@ -127,6 +119,13 @@ function Get-AndroidPlatformVersions {
     return ($versions -Join "<br>")
 }
 
+function Get-AndroidCommandLineToolsVersion {
+    $commandLineTools = Get-AndroidSDKManagerPath
+    (& $commandLineTools --version | Out-String).Trim() -match "(?<version>^(\d+\.){1,}\d+$)" | Out-Null
+    $commandLineToolsVersion = $Matches.Version
+    return $commandLineToolsVersion
+}
+
 function Get-AndroidBuildToolVersions {
     param (
         [Parameter(Mandatory)]
@@ -151,7 +150,7 @@ function Get-AndroidGoogleAPIsVersions {
         [object] $PackageInfo
     )
 
-    $versions = $packageInfo | Where-Object { $_ -Match "Google APIs" } | ForEach-Object {
+    $versions = $packageInfo | Where-Object { $_ -Match "addon-google_apis" } | ForEach-Object {
         $packageInfoParts = Split-TableRowByColumns $_
         return $packageInfoParts[0].split(";")[1]
     }

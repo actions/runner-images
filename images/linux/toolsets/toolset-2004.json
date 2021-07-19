@@ -72,7 +72,8 @@
         "default": "11",
         "versions": [
             "8", "11"
-        ]
+        ],
+        "maven": "3.8.1"
     },
     "android": {
         "platform_min_version": "27",
@@ -86,9 +87,8 @@
         ],
         "additional_tools": [
             "cmake;3.10.2.4988404",
-            "patcher;v4",
-            "platform-tools",
-            "cmdline-tools;latest"
+            "cmake;3.18.1",
+            "platform-tools"
         ],
         "ndk": {
             "lts": "21",
@@ -105,11 +105,12 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "5.7.0"
+                "6.1.0"
             ],
             "zip_versions": [
                 "3.1.0",
-                "4.4.0"
+                "4.4.0",
+                "5.9.0"
             ]
         }
     ],
@@ -223,11 +224,7 @@
             "cmd": "yamllint"
         },
         {
-            "package": "aws-sam-cli",
-            "cmd": "sam"
-        },
-        {
-            "package": "ansible-base",
+            "package": "ansible-core",
             "cmd": "ansible"
         }
     ],
@@ -244,11 +241,11 @@
     },
     "clang": {
         "versions": [
-            "9",
             "10",
-            "11"
+            "11",
+            "12"
         ],
-        "default_version": "10"
+        "default_version": "11"
     },
     "gcc": {
         "versions": [

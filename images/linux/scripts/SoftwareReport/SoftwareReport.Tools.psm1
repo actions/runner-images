@@ -1,10 +1,12 @@
 function Get-AnsibleVersion {
-    $ansibleVersion = ansible --version | Select-Object -First 1 | Take-OutputPart -Part 1
+    $ansibleVersion = (ansible --version)[0] -replace "[^\d.]"
     return "Ansible $ansibleVersion"
 }
 
 function Get-AptFastVersion {
-    $aptFastVersion = (dpkg-query --showformat='${Version}' --show apt-fast).Split('-')[0]
+    $versionFileContent = Get-Content (which apt-fast) -Raw
+    $match = [Regex]::Match($versionFileContent, '# apt-fast v(.+)\n')
+    $aptFastVersion = $match.Groups[1].Value
     return "apt-fast $aptFastVersion"
 }
 
@@ -22,6 +24,12 @@ function Get-BazeliskVersion {
     $result = Get-CommandResult "bazelisk version" -Multiline
     $bazeliskVersion = $result.Output | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
     return "Bazelisk $bazeliskVersion"
+}
+
+function Get-BicepVersion {
+    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $bicepVersion = $Matches.Version
+    return "Bicep $bicepVersion"
 }
 
 function Get-CodeQLBundleVersion {
@@ -135,7 +143,7 @@ function Get-KubectlVersion {
 }
 
 function Get-MinikubeVersion {
-    $minikubeVersion = minikube version --short | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
+    $minikubeVersion = minikube version --short | Take-OutputPart -Part 0 -Delimiter "v"
     return "Minikube $minikubeVersion"
 }
 
@@ -184,7 +192,8 @@ function Get-JqVersion {
 
 function Get-AzureCliVersion {
     $azcliVersion = az -v | Select-String "azure-cli" | Take-OutputPart -Part -1
-    return "Azure CLI (azure-cli) $azcliVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "azure-cli"
+    return "Azure CLI (azure-cli) $azcliVersion (installation method: $aptSourceRepo)"
 }
 
 function Get-AzureDevopsVersion {
@@ -268,4 +277,9 @@ function Get-YamllintVersion {
 function Get-ZstdVersion {
     $zstdVersion = zstd --version | Take-OutputPart -Part 1 -Delimiter "v" | Take-OutputPart -Part 0 -Delimiter ","
     return "zstd $zstdVersion (homebrew)"
+}
+
+function Get-YqVersion {
+    $yqVersion = ($(yq -V) -Split " ")[-1]
+    return "yq $yqVersion"
 }
