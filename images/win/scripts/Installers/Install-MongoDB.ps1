@@ -3,7 +3,7 @@
 ##  Desc:  Install MongoDB
 ####################################################################################
 
-Choco-Install -PackageName mongodb
+Choco-Install -PackageName mongodb -ArgumentList "--version=4.4.7"
 $mongoPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'mongodb'").PathName
 $mongoBin = Split-Path -Path $mongoPath.split('"')[1]
 Add-MachinePathItem "$mongoBin"
