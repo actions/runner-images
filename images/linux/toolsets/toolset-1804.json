@@ -196,7 +196,8 @@
         ]
     },
     "brew": [
-        {"name": "zstd"}
+        {"name": "zstd"},
+        {"name": "kotlin"}
     ],
     "docker": {
         "images": [
