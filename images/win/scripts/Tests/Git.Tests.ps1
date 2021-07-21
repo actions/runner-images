@@ -25,7 +25,7 @@ Describe "Git" {
 }
 
 Describe "GVFS" {
-    It "GVFS is installed" -TestCases $gitTestCases {
+    It "GVFS is installed" {
         "gvfs --version" | Should -ReturnZeroExitCode
     }
 }
