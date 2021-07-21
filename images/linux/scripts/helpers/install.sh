@@ -14,22 +14,29 @@ download_with_retries() {
     local COMPRESSED="$4"
 
     if [[ $COMPRESSED == "compressed" ]]; then
-        COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME'"
+        local COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME' -w '%{http_code}'"
     else
-        COMMAND="curl $URL -4 -sL -o '$DEST/$NAME'"
+        local COMMAND="curl $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
     fi
 
     echo "Downloading '$URL' to '${DEST}/${NAME}'..."
-    i=20
-    while [ $i -gt 0 ]; do
-        ((i--))
-        eval $COMMAND
-        if [ $? != 0 ]; then
-            sleep 30
-        else
+    retries=20
+    interval=30
+    while [ $retries -gt 0 ]; do
+        ((retries--))
+        # Temporary disable exit on error to retry on non-zero exit code
+        set +e
+        http_code=$(eval $COMMAND)
+        exit_code=$?
+        if [ $http_code -eq 200 ] && [ $exit_code -eq 0 ]; then
             echo "Download completed"
             return 0
+        else
+            echo "Error — Either HTTP response code for '$URL' is wrong - '$http_code' or exit code is not 0 - '$exit_code'. Waiting $interval seconds before the next attempt, $retries attempts left"
+            sleep 30
         fi
+        # Enable exit on error back
+        set -e
     done
 
     echo "Could not download $URL"
