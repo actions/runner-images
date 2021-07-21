@@ -125,7 +125,7 @@ function Get-SwiftVersion {
 }
 
 function Get-KotlinVersion {
-    $kotlinVersion = kotlin --version | Out-String | Take-OutputPart -Part 2
+    $kotlinVersion = kotlin -version | Out-String | Take-OutputPart -Part 2
     return "Kotlin $kotlinVersion"
 }
 

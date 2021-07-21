@@ -6,18 +6,13 @@
 
 source $HELPER_SCRIPTS/install.sh
 
+KOTLIN_ROOT="/usr/local"
+
 URL=$(curl -s https://api.github.com/repos/JetBrains/kotlin/releases/latest | jq -r '.assets[].browser_download_url | select(contains("kotlin-compiler"))')
 download_with_retries $URL "/tmp"
 
-unzip -qq /tmp/kotlin-compiler*.zip -d /tmp
-FILES="/tmp/kotlinc/bin/*"
-
-for f in $FILES
-do
-    if [[ "$f" != *".bat"* ]]; then
-      chmod +x "$f"
-      mv "$f" /usr/local/bin
-    fi
-done
+unzip -qq /tmp/kotlin-compiler*.zip -d $KOTLIN_ROOT
+rm $KOTLIN_ROOT/kotlinc/bin/*.bat
+ln -sf $KOTLIN_ROOT/kotlinc/bin/* /usr/local/bin/
 
 invoke_tests "Tools" "Kotlin"
