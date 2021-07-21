@@ -67,7 +67,7 @@ function Get-GitLFSVersion {
     return "Git LFS $gitLfsVersion"
 }
 
-function Get-GvfsVersion {
+function Get-GVFSVersion {
     $gvfsVersion = (Get-Command gvfs).Version
     return "GVFS $gvfsVersion"
 }
