@@ -50,5 +50,5 @@ foreach ($tool in $tools) {
             exit 1
         }
     }
-    chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" /opt/hostedtoolcache/$tool
+    chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" "/opt/hostedtoolcache/$($tool.name)"
 }
