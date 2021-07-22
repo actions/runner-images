@@ -67,6 +67,11 @@ function Get-GitLFSVersion {
     return "Git LFS $gitLfsVersion"
 }
 
+function Get-GVFSVersion {
+    $gvfsVersion = (Get-Command gvfs).Version
+    return "GVFS $gvfsVersion"
+}
+
 function Get-InnoSetupVersion {
     return $(choco list --local-only innosetup) | Select-String -Pattern "InnoSetup"
 }

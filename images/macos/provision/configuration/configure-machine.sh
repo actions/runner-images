@@ -15,6 +15,9 @@ sudo /usr/sbin/DevToolsSecurity --enable
 sudo pmset hibernatemode 0
 sudo rm -f /var/vm/sleepimage
 
+# Disable App Nap System Wide
+defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
+
 # Change screen resolution to the maximum supported for 4Mb video memory
 sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
 

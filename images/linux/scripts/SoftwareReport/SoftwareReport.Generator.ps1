@@ -49,7 +49,8 @@ $runtimesList = @(
         (Get-Python3Version),
         (Get-RubyVersion),
         (Get-SwiftVersion),
-        (Get-JuliaVersion)
+        (Get-JuliaVersion),
+        (Get-KotlinVersion)
         ) 
 
 if (Test-IsUbuntu20) {

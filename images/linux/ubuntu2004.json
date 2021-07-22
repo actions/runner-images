@@ -224,6 +224,7 @@
                 "{{template_dir}}/scripts/installers/mercurial.sh",
                 "{{template_dir}}/scripts/installers/miniconda.sh",
                 "{{template_dir}}/scripts/installers/mono.sh",
+                "{{template_dir}}/scripts/installers/kotlin.sh",
                 "{{template_dir}}/scripts/installers/mysql.sh",
                 "{{template_dir}}/scripts/installers/mssql-cmd-tools.sh",
                 "{{template_dir}}/scripts/installers/sqlpackage.sh",

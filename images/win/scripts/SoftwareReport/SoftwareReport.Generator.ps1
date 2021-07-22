@@ -86,6 +86,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-GHCVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
+    (Get-GVFSVersion),
     (Get-GoogleCloudSDKVersion),
     (Get-InnoSetupVersion),
     (Get-JQVersion),
