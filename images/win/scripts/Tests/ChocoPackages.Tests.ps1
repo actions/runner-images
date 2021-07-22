@@ -100,6 +100,6 @@ Describe "CMake" {
 
 Describe "Kotlinc" {
     It "kotlinc" {
-        "kotlinc --version" | Should -ReturnZeroExitCode
+        "kotlinc -version" | Should -ReturnZeroExitCode
     }
 }
