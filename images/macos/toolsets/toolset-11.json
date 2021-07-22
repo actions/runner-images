@@ -151,7 +151,8 @@
             "subversion",
             "swiftformat",
             "swig",
-            "zstd"
+            "zstd",
+            "kotlin"
         ],
         "cask_packages": [
             "julia"

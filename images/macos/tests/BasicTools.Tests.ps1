@@ -167,3 +167,9 @@ Describe "Homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Kotlin" {
+    It "Kotlin" {
+        "kotlin -version" | Should -ReturnZeroExitCode
+    }
+}

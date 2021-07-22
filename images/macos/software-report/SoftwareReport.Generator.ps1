@@ -128,7 +128,8 @@ $utilitiesList = @(
     (Get-MongodVersion),
     (Get-7zipVersion),
     (Get-BsdtarVersion),
-    (Get-GnuTarVersion)
+    (Get-GnuTarVersion),
+    (Get-KotlinVersion)
 )
 
 if ($os.IsHigherThanMojave) {

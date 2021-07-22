@@ -206,7 +206,8 @@
             "swiftformat",
             "swig",
             "xctool",
-            "zstd"
+            "zstd",
+            "kotlin"
         ],
         "cask_packages": [
             "julia",
