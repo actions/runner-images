@@ -231,8 +231,7 @@
             "perl",
             "subversion",
             "xctool",
-            "zstd",
-            "kotlin"
+            "zstd"
         ],
         "cask_packages": [
             "julia",
