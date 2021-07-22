@@ -124,6 +124,11 @@ function Get-SwiftVersion {
     return "Swift $swiftVersion"
 }
 
+function Get-KotlinVersion {
+    $kotlinVersion = kotlin -version | Out-String | Take-OutputPart -Part 2
+    return "Kotlin $kotlinVersion"
+}
+
 function Get-JuliaVersion {
     $juliaVersion = julia --version | Take-OutputPart -Part 2
     return "Julia $juliaVersion"
