@@ -107,7 +107,7 @@ prependEtcEnvironmentPath '$HOME/.config/composer/vendor/bin'
 mkdir -p /etc/skel/.composer
 
 # Install phpunit (for PHP)
-wget -q -O phpunit https://phar.phpunit.de/phpunit-8.phar
+wget -q -O phpunit https://phar.phpunit.de/phpunit-$version.phar
 chmod +x phpunit
 mv phpunit /usr/local/bin/phpunit
 
