@@ -87,6 +87,49 @@ for version in $php_versions; do
     if [[ $version = "7.0" || $version = "7.1" ]]; then
         apt-fast install -y --no-install-recommends php$version-sodium
     fi
+
+    # Install additional phpunit according to PHP version
+    regex="^5\.[3-6]\$"
+    if [[ $version =~ $regex ]]; then
+        wget -q -O phpunit-4 https://phar.phpunit.de/phpunit-4.phar
+        chmod +x phpunit-4
+        mv phpunit-4 /usr/local/bin/phpunit-4
+    fi
+
+    regex="^(5\.6|7\.[0-1])\$"
+    if [[ $version =~ $regex ]]; then
+        wget -q -O phpunit-5 https://phar.phpunit.de/phpunit-5.phar
+        chmod +x phpunit-5
+        mv phpunit-5 /usr/local/bin/phpunit-5
+    fi
+
+    regex="^7\.[0-2]\$"
+    if [[ $version =~ $regex ]]; then
+        wget -q -O phpunit-6 https://phar.phpunit.de/phpunit-6.phar
+        chmod +x phpunit-6
+        mv phpunit-6 /usr/local/bin/phpunit-6
+    fi
+
+    regex="^7\.[1-3]\$"
+    if [[ $version =~ $regex ]]; then
+        wget -q -O phpunit-7 https://phar.phpunit.de/phpunit-7.phar
+        chmod +x phpunit-7
+        mv phpunit-7 /usr/local/bin/phpunit-7
+    fi
+
+    regex="^7\.[2-9]\$"
+    if [[ $version =~ $regex ]]; then
+        wget -q -O phpunit-8 https://phar.phpunit.de/phpunit-8.phar
+        chmod +x phpunit-8
+        mv phpunit-8 /usr/local/bin/phpunit-8
+    fi
+
+    regex="^7\.[3-9]\$"
+    if [[ $version =~ $regex ]]; then
+        wget -q -O phpunit-9 https://phar.phpunit.de/phpunit-9.phar
+        chmod +x phpunit-9
+        mv phpunit-9 /usr/local/bin/phpunit-9
+    fi
 done
 
 apt-fast install -y --no-install-recommends php-pear
