@@ -170,26 +170,26 @@ Describe "Homebrew" {
 
 Describe "Kotlin" {
     It "kapt" {
-        "kapt -version"| Should -ReturnZeroExitCode
+        "kapt -version" | Should -ReturnZeroExitCode
     }
 
     It "kotlin" {
-        "kotlin -version"| Should -ReturnZeroExitCode
+        "kotlin -version" | Should -ReturnZeroExitCode
     }
 
     It "kotlinc" {
-        "kotlinc -version"| Should -ReturnZeroExitCode
+        "kotlinc -version" | Should -ReturnZeroExitCode
     }
 
     It "kotlinc-js" {
-        "kotlinc-js -version"| Should -ReturnZeroExitCode
+        "kotlinc-js -version" | Should -ReturnZeroExitCode
     }
 
     It "kotlinc-jvm" {
-        "kotlinc-jvm -version"| Should -ReturnZeroExitCode
+        "kotlinc-jvm -version" | Should -ReturnZeroExitCode
     }
 
     It "kotlin-dce-js" {
-        "kotlin-dce-js -version"| Should -ReturnZeroExitCode
+        "kotlin-dce-js -version" | Should -ReturnZeroExitCode
     }
 }
