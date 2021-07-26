@@ -80,7 +80,7 @@ function Get-GoVersion {
 
 function Get-KotlinVersion {
     $kotlinVersion = $(kotlinc -version).split(" ")[1]
-    return "Ruby $kotlinVersion"
+    return "Kotlin $kotlinVersion"
 }
 
 

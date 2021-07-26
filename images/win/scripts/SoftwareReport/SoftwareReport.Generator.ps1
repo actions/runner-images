@@ -39,7 +39,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-PerlVersion),
     (Get-PHPVersion),
     (Get-PythonVersion),
-    (Get-RubyVersion)
+    (Get-RubyVersion),
+    (Get-KotlinVersion)
     ) | Sort-Object
 )
 
@@ -106,8 +107,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-SwigVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
-    (Get-YAMLLintVersion),
-    (Get-KotlinVersion)
+    (Get-YAMLLintVersion)
     ) | Sort-Object
 )
 

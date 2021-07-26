@@ -98,8 +98,9 @@ Describe "CMake" {
     }
 }
 
-Describe "Kotlinc" {
-    It "kotlinc" {
-        "kotlinc -version" | Should -ReturnZeroExitCode
+Describe "Kotlin" {
+    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlinc-js", "kotlinc-jvm", "kotlin-dce-js")
+    It -TestCases ($kotlinPackages | ForEach-Object { { Name = $_ } })  { 
+        "$Name -version" | Should -ReturnZeroExitCode
     }
 }
