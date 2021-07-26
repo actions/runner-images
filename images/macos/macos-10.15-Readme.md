@@ -6,7 +6,7 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1217)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210718.2
+- Image Version: 20210725.1
 
 ## Installed Software
 ### Language and Runtime
@@ -37,16 +37,16 @@
 - Bundler version 2.2.24
 - Carthage 0.38.0
 - CocoaPods 1.10.1
-- Composer 2.1.3
-- Homebrew 3.2.2
-- Miniconda 4.9.2
+- Composer 2.1.5
+- Homebrew 3.2.3
+- Miniconda 4.10.3
 - NPM 6.14.13
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.1.3 (python 3.9)
 - Pipx 0.16.3
 - RubyGems 3.2.24
-- Vcpkg 2021 (build from master \<111220b>)
+- Vcpkg 2021 (build from master \<d781bd9>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -67,10 +67,10 @@
 - bazel 4.1.0
 - bazelisk 1.10.1
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.77.0
+- Curl 7.78.0
 - Git LFS: 2.13.3
 - Git: 2.32.0
-- GitHub CLI: 1.12.1
+- GitHub CLI: 1.13.1
 - GNU parallel 20210622
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
@@ -78,36 +78,36 @@
 - helm v3.6.3+gd506314
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v4.4.6
-- mongod v4.4.6
+- mongo v5.0.1
+- mongod v5.0.1
 - Newman 5.2.4
 - OpenSSL 1.1.1k  25 Mar 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1k)`
-- Packer 1.7.3
+- Packer 1.7.4
 - PostgreSQL 13.3
 - psql (PostgreSQL) 13.3
 - Sox 14.4.2
 - Subversion (SVN) 1.14.1
 - Switchaudio-osx 1.1.0
 - Vagrant 2.2.17
-- virtualbox 6.1.22r144080
+- virtualbox 6.1.24r145767
 - zstd 1.5.0
 
 
 ### Tools
-- Aliyun CLI 3.0.81
+- Aliyun CLI 3.0.82
 - App Center CLI 2.9.0
-- AWS CLI 2.2.20
-- AWS SAM CLI 1.26.0
+- AWS CLI 2.2.22
+- AWS SAM CLI 1.27.2
 - AWS Session Manager CLI 1.2.205.0
 - Azure CLI 2.26.1
-- Bicep CLI 0.4.412
+- Bicep CLI 0.4.451
 - Cabal 3.4.0.0
 - Cmake 3.21.0
-- Fastlane 2.187.0
+- Fastlane 2.188.0
 - GHC 9.0.1
 - GHCup v0.1.15.2
-- Stack 2.7.1
-- SwiftFormat 0.48.9
+- Stack 2.7.3
+- SwiftFormat 0.48.11
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -118,11 +118,11 @@
 ### Browsers
 - Safari 14.1.1 (15611.2.7.1.6)
 - SafariDriver 14.1.1 (15611.2.7.1.6)
-- Google Chrome 91.0.4472.164 
+- Google Chrome 92.0.4515.107 
 - ChromeDriver 91.0.4472.101
-- Microsoft Edge 91.0.864.67 
-- MSEdgeDriver 91.0.864.70
-- Mozilla Firefox 90.0
+- Microsoft Edge 92.0.902.55 
+- MSEdgeDriver 92.0.902.55
+- Mozilla Firefox 90.0.2
 - geckodriver 0.29.1
 
 #### Environment variables
@@ -180,7 +180,7 @@
 - Rustup 1.24.3
 
 #### Packages
-- Bindgen 0.58.1
+- Bindgen 0.59.1
 - Cargo-audit 0.15.0
 - Cargo-outdated v0.9.17
 - Cbindgen 0.19.0
