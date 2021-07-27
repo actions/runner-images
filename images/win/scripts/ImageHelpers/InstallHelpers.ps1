@@ -379,6 +379,11 @@ function Get-WinVersion
     (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
 
+function Test-IsWin22
+{
+    (Get-WinVersion) -match "2022"
+}
+
 function Test-IsWin19
 {
     (Get-WinVersion) -match "2019"
