@@ -101,7 +101,7 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolsets/toolset-2019.json",
+            "source": "{{template_dir}}/toolsets/toolset-2022.json",
             "destination": "{{user `toolset_json_path`}}"
         },
         {
