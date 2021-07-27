@@ -364,12 +364,6 @@
         {
             "type": "powershell",
             "scripts": [
-                
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
             ]
         },
