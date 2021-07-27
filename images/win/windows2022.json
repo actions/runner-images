@@ -138,8 +138,7 @@
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-ContainersFeature.ps1"
+                "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1"
             ]
         },
         {
