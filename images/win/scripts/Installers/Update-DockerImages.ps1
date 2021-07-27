@@ -18,7 +18,7 @@ function DockerPull {
 
 $dockerToolset = (Get-ToolsetContent).docker
 foreach($dockerImage in $dockerToolset.images) {
-  DockerPull $dockerImage
+  # DockerPull $dockerImage
 }
 
-Invoke-PesterTests -TestFile "Docker" -TestName "DockerImages"
+# Invoke-PesterTests -TestFile "Docker" -TestName "DockerImages"
