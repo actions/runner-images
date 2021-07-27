@@ -13,6 +13,8 @@ param(
     [String] [Parameter (Mandatory=$true)] $VirtualNetworkSubnet
 )
 
+$TemplatePath = Join-Path (Join-Path "images" "win") "windows2022.json"
+
 if (-not (Test-Path $TemplatePath))
 {
     Write-Error "'-TemplatePath' parameter is not valid. You have to specify correct Template Path"
