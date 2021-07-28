@@ -15,12 +15,9 @@ if ([string]::IsNullOrEmpty($env:XCODE_INSTALL_USER) -or [string]::IsNullOrEmpty
 $env:SPACESHIP_SKIP_2FA_UPGRADE = 1
 
 $os = Get-OSVersion
-$xcodeVersions = Get-ToolsetValue "xcode.versions"
+[Array]$xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
-if ($xcodeVersions.Count -gt 1)
-{
-    [Array]::Reverse($xcodeVersions)
-}
+[Array]::Reverse($xcodeVersions)
 $threadCount = "5"
 
 Write-Host "Installing Xcode versions..."
