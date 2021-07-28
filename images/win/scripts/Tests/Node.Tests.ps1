@@ -7,15 +7,20 @@ Describe "Node.JS" {
         "$ToolName --version" | Should -ReturnZeroExitCode
         }
     }
-    Context "Global NPM Packages" {
-        It "<ToolName> " -TestCases @(
-            @{ ToolName = "gulp" }
-            @{ ToolName = "grunt" }
+    Context "Global NPM Packages"  {
+        $testCases = @(
             @{ ToolName = "yarn" }
             @{ ToolName = "lerna" }
             @{ ToolName = "newman" }
-        ) {
-        "$ToolName --version" | Should -ReturnZeroExitCode
+        )
+        if (Test-IsWin16 -or Test-IsWin19) {
+            $testCases += @(
+                @{ ToolName = "gulp" }
+                @{ ToolName = "grunt" }
+            )
+        }
+        It "<ToolName> " -TestCases $testCases {
+            "$ToolName --version" | Should -ReturnZeroExitCode
         }
     }
 }

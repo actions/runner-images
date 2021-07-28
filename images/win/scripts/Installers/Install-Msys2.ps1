@@ -56,35 +56,39 @@ $toolsetContent = (Get-ToolsetContent).MsysPackages
 
 Write-Host "`n$dash Install msys2 packages"
 $msys2Packages = $toolsetContent.msys2
-pacman.exe -S --noconfirm --needed --noprogressbar $msys2Packages
-taskkill /f /fi "MODULES eq msys-2.0.dll"
+if ($msys2Packages) {
+  pacman.exe -S --noconfirm --needed --noprogressbar $msys2Packages
+  taskkill /f /fi "MODULES eq msys-2.0.dll"
 
-Write-Host "`n$dash Remove p7zip/7z package due to conflicts"
-pacman.exe -R --noconfirm --noprogressbar p7zip
-
-# install mingw packages
-$archs = $toolsetContent.mingw.arch
-foreach ($arch in $archs)
-{
-  Write-Host "Installing $arch packages"
-  $archPackages = $toolsetContent.mingw | Where-Object { $_.arch -eq $arch }
-  $runtimePackages = $archPackages.runtime_packages.name | ForEach-Object { "${arch}-$_" }
-  $additionalPackages = $archPackages.additional_packages | ForEach-Object { "${arch}-$_" }
-  $packagesToInstall = $runtimePackages + $additionalPackages
-  Write-Host "The following packages will be installed: $packagesToInstall"
-  pacman.exe -S --noconfirm --needed --noprogressbar $packagesToInstall
+  Write-Host "`n$dash Remove p7zip/7z package due to conflicts"
+  pacman.exe -R --noconfirm --noprogressbar p7zip
 }
 
-# clean all packages to decrease image size
-Write-Host "`n$dash Clean packages"
-pacman.exe -Scc --noconfirm
+Write-Host "`n$dash Install mingw packages"
+$archs = $toolsetContent.mingw.arch
+if ($archs) {
+  foreach ($arch in $archs)
+  {
+    Write-Host "Installing $arch packages"
+    $archPackages = $toolsetContent.mingw | Where-Object { $_.arch -eq $arch }
+    $runtimePackages = $archPackages.runtime_packages.name | ForEach-Object { "${arch}-$_" }
+    $additionalPackages = $archPackages.additional_packages | ForEach-Object { "${arch}-$_" }
+    $packagesToInstall = $runtimePackages + $additionalPackages
+    Write-Host "The following packages will be installed: $packagesToInstall"
+    pacman.exe -S --noconfirm --needed --noprogressbar $packagesToInstall
+  }
 
-$pkgs = pacman.exe -Q
+  # clean all packages to decrease image size
+  Write-Host "`n$dash Clean packages"
+  pacman.exe -Scc --noconfirm
 
-foreach ($arch in $archs)
-{
-  Write-Host "`n$dash Installed $arch packages"
-  $pkgs | grep ^${arch}-
+  $pkgs = pacman.exe -Q
+
+  foreach ($arch in $archs)
+  {
+    Write-Host "`n$dash Installed $arch packages"
+    $pkgs | grep ^${arch}-
+  }
 }
 
 $env:PATH = $origPath

@@ -139,7 +139,7 @@ Describe "Stack" {
     }
 }
 
-Describe "Typescript" {
+Describe "Typescript" -Skip (Test-IsWin22) {
     It "tsc" {
         "tsc --version" | Should -ReturnZeroExitCode
     }
@@ -159,7 +159,7 @@ Describe "Vcpkg" {
     }
 }
 
-Describe "WebPlatformInstaller" {
+Describe "WebPlatformInstaller" -Skip (Test-IsWin22) {
     It "WebPlatformInstaller" {
         "WebPICMD" | Should -ReturnZeroExitCode
     }

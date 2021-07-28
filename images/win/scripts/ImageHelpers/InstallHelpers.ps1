@@ -421,6 +421,7 @@ function Install-AndroidSDKPackages {
         [Parameter(Mandatory=$true)]
         [string]$AndroidSDKRootPath,
         [Parameter(Mandatory=$true)]
+        [AllowEmptyCollection()]
         [string[]]$AndroidPackages,
         [string] $PrefixPackageName
     )
