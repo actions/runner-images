@@ -18,19 +18,20 @@ elseif (Test-IsWin16)
     $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\WDK.vsix"
     $VSver = "2017"
 }
-
-if ($winSdkUrl -and $wdkUrl)
+else
 {
-    $argumentList = ("/features", "+", "/quiet")
-
-    # `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
-    Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList $argumentList
-
-    # `wdksetup.exe /features + /quiet` installs all features without showing the GUI
-    Install-Binary -Url $wdkUrl -Name "wdksetup.exe" -ArgumentList $argumentList
-
-    # Need to install the VSIX to get the build targets when running VSBuild
-    Install-VsixExtension -FilePath $FilePath -Name "WDK.vsix" -VSversion $VSver -InstallOnly
-
-    Invoke-PesterTests -TestFile "WDK"
+    throw "Invalid version of Visual Studio is found. Either 2017 or 2019 are required"
 }
+
+$argumentList = ("/features", "+", "/quiet")
+
+# `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
+Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList $argumentList
+
+# `wdksetup.exe /features + /quiet` installs all features without showing the GUI
+Install-Binary -Url $wdkUrl -Name "wdksetup.exe" -ArgumentList $argumentList
+
+# Need to install the VSIX to get the build targets when running VSBuild
+Install-VsixExtension -FilePath $FilePath -Name "WDK.vsix" -VSversion $VSver -InstallOnly
+
+Invoke-PesterTests -TestFile "WDK"
