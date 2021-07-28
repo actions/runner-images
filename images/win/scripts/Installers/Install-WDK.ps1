@@ -11,7 +11,7 @@ if (Test-IsWin19)
     $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"
     $VSver = "2019"
 }
-else
+elseif (Test-IsWin16)
 {
     $winSdkUrl = "https://go.microsoft.com/fwlink/p/?LinkID=2023014"
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2026156"
@@ -19,15 +19,18 @@ else
     $VSver = "2017"
 }
 
-$argumentList = ("/features", "+", "/quiet")
+if ($winSdkUrl -and $wdkUrl)
+{
+    $argumentList = ("/features", "+", "/quiet")
 
-# `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
-Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList $argumentList
+    # `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
+    Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList $argumentList
 
-# `wdksetup.exe /features + /quiet` installs all features without showing the GUI
-Install-Binary -Url $wdkUrl -Name "wdksetup.exe" -ArgumentList $argumentList
+    # `wdksetup.exe /features + /quiet` installs all features without showing the GUI
+    Install-Binary -Url $wdkUrl -Name "wdksetup.exe" -ArgumentList $argumentList
 
-# Need to install the VSIX to get the build targets when running VSBuild
-Install-VsixExtension -FilePath $FilePath -Name "WDK.vsix" -VSversion $VSver -InstallOnly
+    # Need to install the VSIX to get the build targets when running VSBuild
+    Install-VsixExtension -FilePath $FilePath -Name "WDK.vsix" -VSversion $VSver -InstallOnly
 
-Invoke-PesterTests -TestFile "WDK"
+    Invoke-PesterTests -TestFile "WDK"
+}
