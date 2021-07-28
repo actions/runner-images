@@ -19,7 +19,7 @@ Describe "WindowsFeatures" {
         (Get-WindowsFeature -Name $FeatureName).InstallState | Should -Be "Installed"
     }
 
-    it "Check WSL is on path" -Skip (-not (Test-isWin19)) {
+    it "Check WSL is on path" -Skip:(-not (Test-isWin19)) {
             (Get-Command -Name 'wsl') | Should -BeTrue
     }
 }
