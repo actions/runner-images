@@ -186,8 +186,6 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-Wix.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-WDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vsix.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
