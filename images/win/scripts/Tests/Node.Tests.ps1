@@ -7,15 +7,13 @@ Describe "Node.JS" {
         "$ToolName --version" | Should -ReturnZeroExitCode
         }
     }
+
+    $npmToolset = (Get-ToolsetContent).npm
+    $globalNpmPackages = $npmToolset.global_packages | Where-Object { $_.test } | ForEach-Object { $_.test }
+
     Context "Global NPM Packages" {
-        It "<ToolName> " -TestCases @(
-            @{ ToolName = "gulp" }
-            @{ ToolName = "grunt" }
-            @{ ToolName = "yarn" }
-            @{ ToolName = "lerna" }
-            @{ ToolName = "newman" }
-        ) {
-        "$ToolName --version" | Should -ReturnZeroExitCode
+        It "<ToolName> " -TestCases $globalNpmPackages {
+            "$test --version" | Should -ReturnZeroExitCode
         }
     }
 }

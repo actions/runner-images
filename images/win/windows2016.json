@@ -304,7 +304,6 @@
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Mingw64.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-TypeScript.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Haskell.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Stack.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Miniconda.ps1",
