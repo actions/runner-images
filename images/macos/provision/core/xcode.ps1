@@ -15,7 +15,7 @@ if ([string]::IsNullOrEmpty($env:XCODE_INSTALL_USER) -or [string]::IsNullOrEmpty
 $env:SPACESHIP_SKIP_2FA_UPGRADE = 1
 
 $os = Get-OSVersion
-$xcodeVersions = Get-ToolsetValue "xcode.versions"
+[Array]$xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
 [Array]::Reverse($xcodeVersions)
 $threadCount = "5"
@@ -36,8 +36,8 @@ if ($os.IsLessThanCatalina) {
     $latestXcodeVersion = $xcodeVersions | Select-Object -Last 1 -ExpandProperty link
     Install-XcodeAdditionalPackages -Version $latestXcodeVersion
 }
-$xcodeVersions | ForEach-Object { 
-    Invoke-XcodeRunFirstLaunch -Version $_.link 
+$xcodeVersions | ForEach-Object {
+    Invoke-XcodeRunFirstLaunch -Version $_.link
 }
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
