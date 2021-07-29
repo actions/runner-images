@@ -30,48 +30,21 @@ function Disable-UserAccessControl {
     Write-Host "User Access Control (UAC) has been disabled."
 }
 
+function Disable-WindowsUpdate {
+    $AutoUpdatePath = "HKLM:SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
+    If (Test-Path -Path $AutoUpdatePath) {
+        Set-ItemProperty -Path $AutoUpdatePath -Name NoAutoUpdate -Value 1
+        Write-Host "Disabled Windows Update"
+    } else {
+        Write-Host "Windows Update key does not exist"
+    }
+}
+
 # Enable $ErrorActionPreference='Stop' for AllUsersAllHosts
 Add-Content -Path $profile.AllUsersAllHosts -Value '$ErrorActionPreference="Stop"'
 
-# Set static env vars
-setx ImageVersion $env:IMAGE_VERSION /m
-setx ImageOS $env:IMAGE_OS /m
-setx AGENT_TOOLSDIRECTORY $env:AGENT_TOOLSDIRECTORY /m
-
-# Set TLS1.2
-[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
-
-Write-Host "Disable Antivirus"
-Set-MpPreference -DisableRealtimeMonitoring $true
-
-# Disable Windows Update
-$AutoUpdatePath = "HKLM:SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
-If (Test-Path -Path $AutoUpdatePath) {
-    Set-ItemProperty -Path $AutoUpdatePath -Name NoAutoUpdate -Value 1
-    Write-Host "Disabled Windows Update"
-}
-else {
-    Write-Host "Windows Update key does not exist"
-}
-
-# Install .NET Framework 3.5 (required by Chocolatey)
-# Explicitly install all 4.7 sub features to include ASP.Net.
-# As of  1/16/2019, WinServer 19 lists .Net 4.7 as NET-Framework-45-Features
-Install-WindowsFeature -Name NET-Framework-Features -IncludeAllSubFeature
-Install-WindowsFeature -Name NET-Framework-45-Features -IncludeAllSubFeature
-if (Test-IsWin16) {
-    Install-WindowsFeature -Name BITS -IncludeAllSubFeature
-    Install-WindowsFeature -Name DSC-Service
-}
-
-# Install FS-iSCSITarget-Server
-$fsResult = Install-WindowsFeature -Name FS-iSCSITarget-Server -IncludeAllSubFeature -IncludeManagementTools
-if ( $fsResult.Success ) {
-    Write-Host "FS-iSCSITarget-Server has been successfully installed"
-} else {
-    Write-Host "Failed to install FS-iSCSITarget-Server"
-    exit 1
-}
+Write-Host "Disable Windows Update"
+Disable-WindowsUpdate
 
 Write-Host "Disable UAC"
 Disable-UserAccessControl
@@ -89,58 +62,6 @@ Get-ExecutionPolicy -List
 Write-Host "Enable long path behavior"
 # See https://docs.microsoft.com/en-us/windows/desktop/fileio/naming-a-file#maximum-path-length-limitation
 Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1
-
-Write-Host "Install chocolatey"
-$chocoExePath = 'C:\ProgramData\Chocolatey\bin'
-
-if ($($env:Path).ToLower().Contains($($chocoExePath).ToLower())) {
-    Write-Host "Chocolatey found in PATH, skipping install..."
-    Exit
-}
-
-# Add to system PATH
-$systemPath = [Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::Machine)
-$systemPath += ';' + $chocoExePath
-[Environment]::SetEnvironmentVariable("PATH", $systemPath, [System.EnvironmentVariableTarget]::Machine)
-
-# Update local process' path
-$userPath = [Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
-if ($userPath) {
-    $env:Path = $systemPath + ";" + $userPath
-}
-else {
-    $env:Path = $systemPath
-}
-
-# Run the installer
-Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
-
-# Turn off confirmation
-choco feature enable -n allowGlobalConfirmation
-
-# https://github.com/chocolatey/choco/issues/89
-# Remove some of the command aliases, like `cpack` #89
-Remove-Item -Path $env:ChocolateyInstall\bin\cpack.exe -Force
-
-if (Test-IsWin16) {
-    # Install vcredist140
-    Choco-Install -PackageName vcredist140
-}
-
-if (Test-IsWin19) {
-    # Install vcredist2010
-    $Vc2010x86Name = "vcredist_x86.exe"
-    $Vc2010x86URI = "https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/${Vc2010x86Name}"
-    $Vc2010x64Name = "vcredist_x64.exe"
-    $Vc2010x64URI = "https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/${Vc2010x64Name}"
-    $ArgumentList = ("/install", "/quiet", "/norestart")
-    Install-Binary -Url $Vc2010x86URI -Name $Vc2010x86Name -ArgumentList $ArgumentList
-    Install-Binary -Url $Vc2010x64URI -Name $Vc2010x64Name -ArgumentList $ArgumentList
-}
-
-# Initialize environmental variable ChocolateyToolsLocation by invoking choco Get-ToolsLocation function
-Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
-Get-ToolsLocation
 
 # Expand disk size of OS drive
 $driveLetter = "C"
