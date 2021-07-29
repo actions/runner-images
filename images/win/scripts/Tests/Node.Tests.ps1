@@ -8,11 +8,11 @@ Describe "Node.JS" {
         }
     }
 
-    $npmToolset = (Get-ToolsetContent).npm
-    $globalNpmPackages = $npmToolset.global_packages | Where-Object { $_.test } | ForEach-Object { $_.test }
+    $globalNpmPackages = (Get-ToolsetContent).npm.global_packages
+    $globalNpmPackagesWithTests = $npmToolset.global_packages | Where-Object { $_.test }
 
     Context "Global NPM Packages" {
-        It "<ToolName> " -TestCases $globalNpmPackages {
+        It "<name> " -TestCases $globalNpmPackagesWithTests {
             $test | Should -ReturnZeroExitCode
         }
     }

@@ -21,8 +21,8 @@ $env:npm_config_prefix = $PrefixPath
 npm config set cache $CachePath --global
 npm config set registry https://registry.npmjs.org/
 
-$npmToolset = (Get-ToolsetContent).npm
-$npmToolset.global_packages | ForEach-Object {
+$globalNpmPackages = (Get-ToolsetContent).npm.global_packages
+$globalNpmPackages | ForEach-Object {
     npm install -g $package
 }
 
