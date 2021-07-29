@@ -35,3 +35,9 @@ $json = @"
 "@
 
 $json | Out-File -FilePath $imageDataFile
+
+
+# Set static env vars
+setx ImageVersion $env:IMAGE_VERSION /m
+setx ImageOS $env:IMAGE_OS /m
+setx AGENT_TOOLSDIRECTORY $env:AGENT_TOOLSDIRECTORY /m
