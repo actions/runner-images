@@ -318,7 +318,8 @@ function Get-VSExtensionVersion
 
 function Get-ToolsetContent
 {
-    $toolsetJson = Get-Content -Path $env:TOOLSET_JSON_PATH -Raw
+    $toolsetPath = Join-Path $env:TEMP "toolset.json"
+    $toolsetJson = Get-Content -Path $toolsetPath -Raw
     ConvertFrom-Json -InputObject $toolsetJson
 }
 
