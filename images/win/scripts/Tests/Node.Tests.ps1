@@ -13,7 +13,7 @@ Describe "Node.JS" {
 
     Context "Global NPM Packages" {
         It "<ToolName> " -TestCases $globalNpmPackages {
-            "$test --version" | Should -ReturnZeroExitCode
+            $test | Should -ReturnZeroExitCode
         }
     }
 }
