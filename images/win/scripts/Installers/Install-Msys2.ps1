@@ -7,6 +7,37 @@
 # https://github.com/msys2/MINGW-packages/blob/master/azure-pipelines.yml
 # https://packages.msys2.org/group/
 
+function Initialize-TrustedKeys
+{
+    $retries = 20
+    while ($retries -gt 0)
+    {
+        Write-Host "`n$dash bash pacman-key --init"
+        bash.exe -c "pacman-key --init 2>&1"
+        Write-Host "bash pacman-key --populate msys2"
+        bash.exe -c "pacman-key --populate msys2 2>&1"
+
+        $keys = bash.exe -c "pacman-key --list-keys 2>&1"
+        if ([String]::IsNullOrEmpty($keys) -or $keys -match "pacman-key --init")
+        {
+            Remove-Item C:\msys64\etc\pacman.d\gnupg -Force -Recurse -ErrorAction SilentlyContinue
+
+            $retries--
+            if ($retries -eq 0)
+            {
+                Write-Host "The keyring is not properly initialized."
+                exit 1
+            }
+
+            Write-Host "Waiting 30 seconds before retrying. Retries left: $retries"
+            Start-Sleep -Seconds 30
+            continue
+        }
+
+        break
+    }
+}
+
 $dash = "-" * 40
 
 $origPath = $env:PATH
@@ -39,11 +70,7 @@ Write-Host "Finished extraction"
 # Add msys2 bin tools folders to PATH temporary
 $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
 
-Write-Host "`n$dash bash pacman-key --init"
-bash.exe -c "pacman-key --init 2>&1"
-
-Write-Host "bash pacman-key --populate msys2"
-bash.exe -c "pacman-key --populate msys2 2>&1"
+Initialize-TrustedKeys
 
 Write-Host "`n$dash pacman --noconfirm -Syyuu"
 pacman.exe -Syyuu --noconfirm
