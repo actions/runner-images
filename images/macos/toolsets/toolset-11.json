@@ -143,6 +143,7 @@
             "gnu-tar",
             "go@1.15",
             "helm",
+            "kotlin",
             "libpq",
             "llvm",
             "p7zip",
