@@ -143,6 +143,7 @@
             "gnu-tar",
             "go@1.15",
             "helm",
+            "kotlin",
             "libpq",
             "llvm",
             "p7zip",
@@ -151,8 +152,7 @@
             "subversion",
             "swiftformat",
             "swig",
-            "zstd",
-            "kotlin"
+            "zstd"
         ],
         "cask_packages": [
             "julia"
