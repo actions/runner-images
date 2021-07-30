@@ -507,6 +507,11 @@ function Get-BicepVersion {
     return "Bicep CLI $bicepVersion"
 }
 
+function Get-KotlinVersion {
+    $kotlinVersion = Run-Command "kotlin -version" | Take-Part -Part 2
+    return "kotlin $kotlinVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{
