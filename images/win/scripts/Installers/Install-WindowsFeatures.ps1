@@ -9,16 +9,18 @@ if (Test-IsWin16) {
     Install-WindowsFeature -Name DSC-Service
 }
 
-# Install FS-iSCSITarget-Server
-$fsResult = Install-WindowsFeature -Name FS-iSCSITarget-Server -IncludeAllSubFeature -IncludeManagementTools
-if ( $fsResult.Success ) {
-    Write-Host "FS-iSCSITarget-Server has been successfully installed"
-} else {
-    Write-Host "Failed to install FS-iSCSITarget-Server"
-    exit 1
+if (Test-IsWin16 -or Test-IsWin19) {
+    # Install FS-iSCSITarget-Server
+    $fsResult = Install-WindowsFeature -Name FS-iSCSITarget-Server -IncludeAllSubFeature -IncludeManagementTools
+    if ( $fsResult.Success ) {
+        Write-Host "FS-iSCSITarget-Server has been successfully installed"
+    } else {
+        Write-Host "Failed to install FS-iSCSITarget-Server"
+        exit 1
+    }
+
+    Write-Host "Install Containers feature"
+    Install-WindowsFeature -Name Containers
 }
 
-Write-Host "Install Containers feature"
-Install-WindowsFeature -Name Containers
-
-Invoke-PesterTests -TestFile "WindowsFeatures" -TestName "ContainersFeature"
+# Invoke-PesterTests -TestFile "WindowsFeatures" -TestName "ContainersFeature"
