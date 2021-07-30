@@ -97,4 +97,4 @@ if ($archs) {
 $env:PATH = $origPath
 Write-Host "`nMSYS2 installation completed"
 
-Invoke-PesterTests -TestFile "MSYS2"
+# Invoke-PesterTests -TestFile "MSYS2"
