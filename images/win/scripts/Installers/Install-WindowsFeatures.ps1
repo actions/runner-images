@@ -22,5 +22,3 @@ if (Test-IsWin16 -or Test-IsWin19) {
     Write-Host "Install Containers feature"
     Install-WindowsFeature -Name Containers
 }
-
-# Invoke-PesterTests -TestFile "WindowsFeatures" -TestName "ContainersFeature"

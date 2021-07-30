@@ -22,10 +22,9 @@ Describe "WindowsFeatures" {
     it "Check WSL is on path" -Skip:(-not (Test-isWin19)) {
             (Get-Command -Name 'wsl') | Should -BeTrue
     }
-}
 
-Describe "ContainersFeature" {
-    It "Windows containers feature is installed" {
+    # TO-DO
+    It "Windows containers feature is installed" -Skip:(Test-IsWin22) {
         (Get-WindowsFeature -Name "Containers").InstallState | Should -Be "Installed"
     }
 }

@@ -1,4 +1,5 @@
-Describe "Docker" {
+# TO-DO
+Describe "Docker" -Skip:(Test-IsWin22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "docker" }
         @{ ToolName = "docker-compose" }
