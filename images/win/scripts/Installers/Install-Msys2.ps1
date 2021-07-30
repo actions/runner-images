@@ -39,6 +39,8 @@ Write-Host "Finished extraction"
 # Add msys2 bin tools folders to PATH temporary
 $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
 
+<#
+
 Write-Host "`n$dash bash pacman-key --init"
 bash.exe -c "pacman-key --init 2>&1"
 
@@ -51,6 +53,7 @@ taskkill /f /fi "MODULES eq msys-2.0.dll"
 Write-Host "`n$dash pacman --noconfirm -Syuu (2nd pass)"
 pacman.exe -Syuu  --noconfirm
 taskkill /f /fi "MODULES eq msys-2.0.dll"
+#>
 
 $toolsetContent = (Get-ToolsetContent).MsysPackages
 
