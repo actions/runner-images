@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2061
-- Image Version: 20210719.0
+- Image Version: 20210725.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -22,15 +22,15 @@
 
 ### Package Management
 - Chocolatey 0.10.15
-- Composer 2.1.3
+- Composer 2.1.5
 - Helm 3.6.2
-- Miniconda 4.9.2 (pre-installed on the image but not added to PATH)
+- Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.13
 - NuGet 5.10.0.7240
-- pip 21.1.3 (python 3.7)
+- pip 21.2.1 (python 3.7)
 - Pipx 0.16.3
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<111220b>)
+- Vcpkg  (build from master \<7d2541c>)
 - Yarn 1.22.10
 
 #### Environment variables
@@ -50,7 +50,7 @@
 - azcopy 10.11.0
 - Bazel 4.1.0
 - Bazelisk 1.10.1
-- Bicep 0.4.412
+- Bicep 0.4.451
 - Cabal 3.4.0.0
 - CMake 3.21.0
 - CodeQL Action Bundle 2.5.7
@@ -59,7 +59,8 @@
 - ghc 9.0.1
 - Git 2.32.0
 - Git LFS 2.13.3
-- Google Cloud SDK 348.0.0
+- Google Cloud SDK 349.0.0
+- GVFS 1.0.21085.9
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
@@ -70,9 +71,9 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.3
-- Pulumi v3.7.0
+- Pulumi v3.8.0
 - R 4.1.0
-- Stack 2.7.1
+- Stack 2.7.3
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
 - VSWhere 2.8.4
@@ -81,14 +82,14 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.81
-- AWS CLI 2.2.20
-- AWS SAM CLI 1.26.0
+- Alibaba Cloud CLI 3.0.82
+- AWS CLI 2.2.22
+- AWS SAM CLI 1.27.2
 - AWS Session Manager CLI 1.2.205.0
 - Azure CLI 2.26.1
 - Azure DevOps CLI extension 0.18.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 1.12.1
+- GitHub CLI 1.13.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -98,7 +99,7 @@
 - Rustup 1.24.3
 
 #### Packages
-- bindgen 0.58.1
+- bindgen 0.59.0
 - cargo-audit 0.15.0
 - cargo-outdated v0.9.17
 - cbindgen 0.19.0
@@ -106,11 +107,11 @@
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 91.0.4472.164
-- Chrome Driver 91.0.4472.101
-- Microsoft Edge 91.0.864.70
-- Microsoft Edge Driver 91.0.864.70
-- Mozilla Firefox 90.0
+- Google Chrome 92.0.4515.107
+- Chrome Driver 92.0.4515.43
+- Microsoft Edge 92.0.902.55
+- Microsoft Edge Driver 92.0.902.55
+- Mozilla Firefox 90.0.2
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.0
 
@@ -210,7 +211,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 4.4.7.0 | MongoDB     | Running       | Automatic        |
+| 5.0.1.0 | MongoDB     | Running       | Automatic        |
 
 
 
@@ -230,13 +231,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.10.31424.327 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Visual Studio Enterprise 2019 | 16.10.31515.178 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.10.31415.396 |
+| Component.Android.NDK.R16B                                                | 16.10.31515.66  |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -245,7 +246,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.MDD.Android                                                     | 16.0.28517.75   |
 | Component.MDD.Linux                                                       | 16.5.29515.121  |
 | Component.MDD.Linux.GCC.arm                                               | 16.5.29515.121  |
-| Component.Microsoft.VisualStudio.LiveShare                                | 1.0.4062        |
+| Component.Microsoft.VisualStudio.LiveShare                                | 1.0.4473        |
 | Component.Microsoft.VisualStudio.RazorExtension                           | 16.10.31205.252 |
 | Component.Microsoft.VisualStudio.Tools.Applications                       | 16.0.31110.1    |
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 16.10.31205.252 |
@@ -291,9 +292,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 16.3.29207.166  |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 16.0.28516.191  |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 16.10.31303.231 |
-| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.10.31401.124 |
-| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.10.31401.124 |
-| Microsoft.NetCore.Component.SDK                                           | 16.10.31401.124 |
+| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.10.31515.66  |
+| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.10.31515.66  |
+| Microsoft.NetCore.Component.SDK                                           | 16.10.31515.66  |
 | Microsoft.NetCore.Component.Web                                           | 16.10.31303.231 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 16.5.29515.121  |
 | Microsoft.VisualStudio.Component.AspNet45                                 | 16.10.31205.252 |
@@ -475,12 +476,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Additional Runtime | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
-| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30038 |
-| Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.29.30038 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30038 |
-| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30038 |
-| Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.29.30038 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30038 |
+| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30040 |
+| Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.29.30040 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30040 |
+| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30040 |
+| Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.29.30040 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30040 |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`

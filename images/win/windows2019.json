@@ -16,7 +16,6 @@
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
         "allowed_inbound_ip_addresses": "{{env `AGENT_IP`}}",
         "vm_size": "Standard_D8s_v4",
-        "run_scan_antivirus": "false",
         "root_folder": "C:",
         "toolset_json_path": "{{env `TEMP`}}\\toolset.json",
         "image_folder": "C:\\image",
@@ -124,9 +123,11 @@
                 "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
             ],
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowerShellModules.ps1",
-                "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-WindowsFeatures.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Choco.ps1",
+                "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1"
             ],
             "execution_policy": "unrestricted"
         },
@@ -141,8 +142,8 @@
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-ContainersFeature.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1",
+                "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1"
             ]
         },
         {
@@ -153,10 +154,13 @@
             "type": "powershell",
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGE_OS={{user `image_os`}}",
+                "AGENT_TOOLSDIRECTORY={{user `agent_tools_directory`}}",
                 "IMAGEDATA_FILE={{user `imagedata_file`}}",
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-VCRedist.ps1",
                 "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"
@@ -359,21 +363,6 @@
         {
             "type": "windows-restart",
             "restart_timeout": "10m"
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "RUN_SCAN_ANTIVIRUS={{user `run_scan_antivirus`}}"
-            ],
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Run-Antivirus.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1"
-            ]
         },
         {
             "type": "powershell",
