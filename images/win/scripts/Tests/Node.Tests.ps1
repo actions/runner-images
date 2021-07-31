@@ -4,15 +4,15 @@ Describe "Node.JS" {
             @{ ToolName = "node" }
             @{ ToolName = "npm" }
         ) {
-        "$ToolName --version" | Should -ReturnZeroExitCode
+            "$ToolName --version" | Should -ReturnZeroExitCode
         }
     }
 
     $globalNpmPackages = (Get-ToolsetContent).npm.global_packages
-    $globalNpmPackagesWithTests = $npmToolset.global_packages | Where-Object { $_.test }
+    $globalNpmPackagesWithTests = $globalNpmPackages.global_packages | Where-Object { $_.test }
 
     Context "Global NPM Packages" {
-        It "<name> " -TestCases $globalNpmPackagesWithTests {
+        It "<name>" -TestCases $globalNpmPackagesWithTests {
             $test | Should -ReturnZeroExitCode
         }
     }

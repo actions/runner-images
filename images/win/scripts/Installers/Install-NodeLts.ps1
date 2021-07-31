@@ -23,7 +23,7 @@ npm config set registry https://registry.npmjs.org/
 
 $globalNpmPackages = (Get-ToolsetContent).npm.global_packages
 $globalNpmPackages | ForEach-Object {
-    npm install -g $package
+    npm install -g $_
 }
 
 Invoke-PesterTests -TestFile "Node"
