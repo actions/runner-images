@@ -146,8 +146,9 @@
     },
     "visualStudio": {
         "version" : "2019",
-        "subversion" : "16",
+        "subversion" : "17",
         "edition" : "Enterprise",
+        "channel": "pre",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
