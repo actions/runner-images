@@ -9,7 +9,7 @@ Describe "Node.JS" {
     }
 
     $globalNpmPackages = (Get-ToolsetContent).npm.global_packages
-    $globalNpmPackagesWithTests = $globalNpmPackages.global_packages | Where-Object { $_.test }
+    $globalNpmPackagesWithTests = $globalNpmPackages | Where-Object { $_.test }
 
     Context "Global NPM Packages" {
         It "<name>" -TestCases $globalNpmPackagesWithTests {
