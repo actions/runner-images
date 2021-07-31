@@ -282,8 +282,12 @@ $markdown += Build-AndroidEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 # Docker images section
-$markdown += New-MDHeader "Cached Docker images" -Level 3
-$markdown += Get-CachedDockerImagesTableData | New-MDTable
-$markdown += New-MDNewLine
+$cachedImages = Get-CachedDockerImagesTableData
+if ($cachedImages) {
+    $markdown += New-MDHeader "Cached Docker images" -Level 3
+    $markdown += $cachedImages | New-MDTable
+    $markdown += New-MDNewLine
+}
+
 
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"
