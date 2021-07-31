@@ -49,7 +49,8 @@ function Get-VisualStudioExtensions {
         )
     }
 
-    if (($vs -eq "2017") -or ($vs -eq "2019")) {
+    # TO-DO 
+    if (($vs -eq "2017") -or ($vs -eq "20119")) {
         # Wix
         $wixPackageVersion = Get-WixVersion
         $wixExtensionVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
