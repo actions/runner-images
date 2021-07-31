@@ -43,12 +43,10 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     ) | Sort-Object
 )
 
-$markdown += New-MDHeader "Package Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$packageManagementList = @(
     (Get-ChocoVersion),
     (Get-ComposerVersion),
     (Get-HelmVersion),
-    (Get-CondaVersion),
     (Get-NPMVersion),
     (Get-NugetVersion),
     (Get-PipxVersion),
@@ -56,8 +54,17 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-RubyGemsVersion),
     (Get-VcpkgVersion),
     (Get-YarnVersion)
-    ) | Sort-Object
 )
+
+if (Test-IsWin16 -or Test-IsWin19) {
+    $packageManagementList += @(
+        (Get-CondaVersion)
+    )
+}
+
+$markdown += New-MDHeader "Package Management" -Level 3
+$markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
+
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
@@ -81,8 +88,9 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-CabalVersion),
     (Get-CMakeVersion),
     (Get-CodeQLBundleVersion),
-    (Get-DockerVersion),
-    (Get-DockerComposeVersion),
+    # TO-DO
+    # (Get-DockerVersion),
+    # (Get-DockerComposeVersion),
     (Get-GHCVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
@@ -136,8 +144,9 @@ $markdown += New-MDList -Style Unordered -Lines (@(
 $markdown += New-MDHeader "Packages" -Level 4
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BindgenVersion),
-    (Get-CargoAuditVersion),
-    (Get-CargoOutdatedVersion),
+    # TO-DO
+    # (Get-CargoAuditVersion),
+    # (Get-CargoOutdatedVersion),
     (Get-CbindgenVersion),
     "Rustfmt $(Get-RustfmtVersion)",
     "Clippy $(Get-RustClippyVersion)"

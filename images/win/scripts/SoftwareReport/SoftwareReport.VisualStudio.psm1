@@ -49,21 +49,30 @@ function Get-VisualStudioExtensions {
         )
     }
 
-    # Wix
-    $wixPackageVersion = Get-WixVersion
-    $wixExtensionVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
+    if (($vs -eq "2017") -or ($vs -eq "2019")) {
+        # Wix
+        $wixPackageVersion = Get-WixVersion
+        $wixExtensionVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
+        $wixPackages = @(
+            @{Package = 'WIX Toolset'; Version = $wixPackageVersion}
+            @{Package = "WIX Toolset Studio $vs Extension"; Version = $wixExtensionVersion}
+        )
 
-    # WDK
-    $wdkPackageVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
-    $wdkExtensionVersion = Get-WDKVersion
+        # WDK
+        $wdkPackageVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
+        $wdkExtensionVersion = Get-WDKVersion
+        $wdkPackages = @(
+            @{Package = 'Windows Driver Kit'; Version = $wdkPackageVersion}
+            @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
+        )
+    }
+    
 
     $extensions = @(
         $vsixs
         $ssdtPackages
-        @{Package = 'Windows Driver Kit'; Version = $wdkPackageVersion}
-        @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
-        @{Package = 'WIX Toolset'; Version = $wixPackageVersion}
-        @{Package = "WIX Toolset Studio $vs Extension"; Version = $wixExtensionVersion}
+        $wixPackages
+        $wdkPackages
     )
 
     $extensions | Foreach-Object {
