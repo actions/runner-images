@@ -139,12 +139,6 @@ Describe "Stack" {
     }
 }
 
-Describe "Typescript" {
-    It "tsc" {
-        "tsc --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Vcpkg" {
     It "vcpkg" {
       "vcpkg version" | Should -ReturnZeroExitCode

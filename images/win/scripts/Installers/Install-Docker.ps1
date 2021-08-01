@@ -12,4 +12,15 @@ Start-Service docker
 Write-Host "Install-Package Docker-Compose"
 Choco-Install -PackageName docker-compose
 
-Invoke-PesterTests -TestFile "Docker" -TestName "Docker"
+$dockerImages = (Get-ToolsetContent).docker.images
+foreach ($dockerImage in $dockerImages) {
+    Write-Host "Pulling docker image $dockerImage ..."
+    docker pull $dockerImage
+
+    if (!$?) {
+        Write-Host "Docker pull failed with a non-zero exit code"
+        exit 1
+    }
+}
+
+Invoke-PesterTests -TestFile "Docker"

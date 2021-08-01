@@ -12,16 +12,26 @@ Set-SystemVariable -SystemVariable DOTNET_MULTILEVEL_LOOKUP -Value "0"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
-$templates = @(
-    'console',
-    'mstest',
-    'web',
-    'mvc',
-    'webapi'
-)
+function Invoke-Warmup (
+    $SdkVersion
+) {
+    # warm up dotnet for first time experience
+    $projectTypes = @('console', 'mstest', 'web', 'mvc', 'webapi')
+    $projectTypes | ForEach-Object {
+        $template = $_
+        $projectPath = Join-Path -Path C:\temp -ChildPath $template
+        New-Item -Path $projectPath -Force -ItemType Directory
+        Push-Location -Path $projectPath
+        & $env:ProgramFiles\dotnet\dotnet.exe new globaljson --sdk-version "$sdkVersion"
+        & $env:ProgramFiles\dotnet\dotnet.exe new $template
+        Pop-Location
+        Remove-Item $projectPath -Force -Recurse
+    }
+}
 
 function InstallSDKVersion (
-    $sdkVersion
+    $SdkVersion,
+    $Warmup
 )
 {
     if (!(Test-Path -Path "C:\Program Files\dotnet\sdk\$sdkVersion"))
@@ -40,16 +50,8 @@ function InstallSDKVersion (
     $sdkTargetsPath = "C:\Program Files\dotnet\sdk\$sdkVersion\Sdks\Microsoft.NET.Sdk\targets"
     Start-DownloadWithRetry -Url $sdkTargetsUrl -DownloadPath $sdkTargetsPath -Name $sdkTargetsName
 
-    # warm up dotnet for first time experience
-    $templates | ForEach-Object {
-        $template = $_
-        $projectPath = Join-Path -Path C:\temp -ChildPath $template
-        New-Item -Path $projectPath -Force -ItemType Directory
-        Push-Location -Path $projectPath
-        & $env:ProgramFiles\dotnet\dotnet.exe new globaljson --sdk-version "$sdkVersion"
-        & $env:ProgramFiles\dotnet\dotnet.exe new $template
-        Pop-Location
-        Remove-Item $projectPath -Force -Recurse
+    if ($Warmup) {
+        Invoke-Warmup -SdkVersion $SdkVersion
     }
 }
 
@@ -57,7 +59,9 @@ function InstallAllValidSdks()
 {
     # Consider all channels except preview/eol channels.
     # Sort the channels in ascending order
-    $dotnetVersions = (Get-ToolsetContent).dotnet.versions
+    $dotnetToolset = (Get-ToolsetContent).dotnet
+    $dotnetVersions = $dotnetToolset.versions
+    $warmup = $dotnetToolset.warmup
 
     # Download installation script.
     $installationName = "dotnet-install.ps1"
@@ -93,7 +97,7 @@ function InstallAllValidSdks()
             elseif (!$release.'sdk'.'version'.Contains('-'))
             {
                 $sdkVersion = $release.'sdk'.'version'
-                InstallSDKVersion -sdkVersion $sdkVersion
+                InstallSDKVersion -SdkVersion $sdkVersion -Warmup $warmup
             }
         }
     }

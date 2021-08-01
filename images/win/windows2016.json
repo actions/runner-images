@@ -172,7 +172,6 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NET48.ps1",
@@ -304,7 +303,6 @@
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Mingw64.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-TypeScript.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Haskell.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Stack.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Miniconda.ps1",
