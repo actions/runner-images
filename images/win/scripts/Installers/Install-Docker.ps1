@@ -23,4 +23,4 @@ foreach ($dockerImage in $dockerImages) {
     }
 }
 
-Invoke-PesterTests -TestFile "Docker"
+# Invoke-PesterTests -TestFile "Docker"
