@@ -13,10 +13,11 @@ Set-SystemVariable -SystemVariable DOTNET_MULTILEVEL_LOOKUP -Value "0"
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
 function Invoke-Warmup (
-    $sdkVersion
+    $SdkVersion
 ) {
     # warm up dotnet for first time experience
-    @('console', 'mstest', 'web', 'mvc', 'webapi') | ForEach-Object {
+    $projectTypes = @('console', 'mstest', 'web', 'mvc', 'webapi')
+    $projectTypes | ForEach-Object {
         $template = $_
         $projectPath = Join-Path -Path C:\temp -ChildPath $template
         New-Item -Path $projectPath -Force -ItemType Directory
@@ -29,8 +30,8 @@ function Invoke-Warmup (
 }
 
 function InstallSDKVersion (
-    $sdkVersion,
-    $warmup
+    $SdkVersion,
+    $Warmup
 )
 {
     if (!(Test-Path -Path "C:\Program Files\dotnet\sdk\$sdkVersion"))
@@ -52,8 +53,8 @@ function InstallSDKVersion (
     }
     
 
-    if ($warmup) {
-        Invoke-Warmup -sdkVersion $sdkVersion
+    if ($Warmup) {
+        Invoke-Warmup -SdkVersion $SdkVersion
     }
     
 }
@@ -100,7 +101,7 @@ function InstallAllValidSdks()
             elseif (!$release.'sdk'.'version'.Contains('-'))
             {
                 $sdkVersion = $release.'sdk'.'version'
-                InstallSDKVersion -sdkVersion $sdkVersion -warmup $warmup
+                InstallSDKVersion -SdkVersion $sdkVersion -Warmup $warmup
             }
         }
     }
