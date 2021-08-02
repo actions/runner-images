@@ -23,5 +23,8 @@ if (Test-IsWin16 -or Test-IsWin19) {
 Write-Host "Enabling Windows Feature 'Containers'"
 Install-WindowsFeature -Name Containers
 
+Write-Host "Enabling Windows Feature 'Client-ProjFS'"
+Enable-WindowsOptionalFeature -Online -FeatureName Client-ProjFS -NoRestart
+
 Write-Host "Enabling Windows Feature 'NET-Framework-Features'"
 Install-WindowsFeature -Name NET-Framework-Features -IncludeAllSubFeature
