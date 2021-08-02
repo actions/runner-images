@@ -11,12 +11,8 @@ chmod +x /usr/local/bin/kind
 
 ## Install kubectl
 KUBECTL_VERSION=$(curl -L -s "https://dl.k8s.io/release/stable.txt")
-echo "downloading $KUBECTL_VERSION..."
-#KUBECTL_VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
 curl -o /usr/local/bin/kubectl -LO "https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl"
-#curl -o /usr/local/bin/kubectl -LO https://storage.googleapis.com/kubernetes-release/release/v1.21.3/bin/linux/amd64/kubectl
 chmod +x /usr/local/bin/kubectl
-kubectl version --client --short
 
 # Install Helm
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
