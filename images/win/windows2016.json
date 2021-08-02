@@ -125,7 +125,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-WindowsFeatures.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Choco.ps1",
                 "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1",
-                "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1"
+                "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1",
+                "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1"
             ],
             "execution_policy": "unrestricted"
         },
@@ -139,8 +140,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-VCRedist.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1",
-                "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1"
             ]
         },
         {
