@@ -33,7 +33,7 @@ function Fix-ImportPublishProfile (
     $SdkVersion
 ) {
     if (Test-IsWin16 -or Test-IsWin19) {
-        # Fix for issue 1276.  This will be fixed in 3.1.
+        # Fix for issue https://github.com/dotnet/sdk/issues/1276.  This will be fixed in 3.1.
         $sdkTargetsName = "Microsoft.NET.Sdk.ImportPublishProfile.targets"
         $sdkTargetsUrl = "https://raw.githubusercontent.com/dotnet/sdk/82bc30c99f1325dfaa7ad450be96857a4fca2845/src/Tasks/Microsoft.NET.Build.Tasks/targets/${sdkTargetsName}"
         $sdkTargetsPath = "C:\Program Files\dotnet\sdk\$sdkVersion\Sdks\Microsoft.NET.Sdk\targets"
