@@ -176,9 +176,9 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
                 "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NET48.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
