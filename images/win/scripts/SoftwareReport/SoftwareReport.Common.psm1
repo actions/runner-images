@@ -316,16 +316,21 @@ function Get-PipxVersion {
 }
 
 function Build-PackageManagementEnvironmentTable {
-    return @(
-        @{
-            "Name" = "CONDA"
-            "Value" = $env:CONDA
-        },
+    $envVariables = @(
         @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
         }
-    ) | ForEach-Object {
+    )
+    if (Test-IsWin16 -or Test-IsWin19) {
+        $envVariables += @(
+            @{
+                "Name" = "CONDA"
+                "Value" = $env:CONDA
+            }
+        )
+    }
+    return $envVariables | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
             "Value" = $_.Value

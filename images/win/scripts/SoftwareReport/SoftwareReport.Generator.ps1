@@ -43,12 +43,10 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     ) | Sort-Object
 )
 
-$markdown += New-MDHeader "Package Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$packageManagementList = @(
     (Get-ChocoVersion),
     (Get-ComposerVersion),
     (Get-HelmVersion),
-    (Get-CondaVersion),
     (Get-NPMVersion),
     (Get-NugetVersion),
     (Get-PipxVersion),
@@ -56,8 +54,17 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-RubyGemsVersion),
     (Get-VcpkgVersion),
     (Get-YarnVersion)
-    ) | Sort-Object
 )
+
+if (Test-IsWin16 -or Test-IsWin19) {
+    $packageManagementList += @(
+        (Get-CondaVersion)
+    )
+}
+
+$markdown += New-MDHeader "Package Management" -Level 3
+$markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
+
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
@@ -81,8 +88,9 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-CabalVersion),
     (Get-CMakeVersion),
     (Get-CodeQLBundleVersion),
-    (Get-DockerVersion),
-    (Get-DockerComposeVersion),
+    # TO-DO https://github.com/actions/virtual-environments-internal/issues/2512
+    # (Get-DockerVersion),
+    # (Get-DockerComposeVersion),
     (Get-GHCVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
@@ -273,8 +281,12 @@ $markdown += Build-AndroidEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 # Docker images section
-$markdown += New-MDHeader "Cached Docker images" -Level 3
-$markdown += Get-CachedDockerImagesTableData | New-MDTable
-$markdown += New-MDNewLine
+$cachedImages = Get-CachedDockerImagesTableData
+if ($cachedImages) {
+    $markdown += New-MDHeader "Cached Docker images" -Level 3
+    $markdown += $cachedImages | New-MDTable
+    $markdown += New-MDNewLine
+}
+
 
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"

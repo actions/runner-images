@@ -22,7 +22,7 @@ Describe "GitVersion" {
     }
 }
 
-Describe "InnoSetup" {
+Describe "InnoSetup" -Skip:(Test-IsWin22) {
     It "InnoSetup" {
         (Get-Command -Name iscc).CommandType | Should -BeExactly "Application"
     }

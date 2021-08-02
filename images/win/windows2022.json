@@ -138,16 +138,7 @@
         },
         {
             "type": "powershell",
-            "elevated_user": "SYSTEM",
-            "elevated_password": "",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-WSL.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1",
                 "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1"
             ]
         },
@@ -185,7 +176,6 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Update-DockerImages.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NET48.ps1"
@@ -199,8 +189,6 @@
                 "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
             ],
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-Wix.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-WDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vsix.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
@@ -208,13 +196,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-CommonUtils.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
             ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-ServiceFabricSDK.ps1"
-            ],
-            "execution_policy": "remotesigned"
         },
         {
             "type": "windows-restart",
@@ -292,10 +273,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-SQLPowerShellTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-DotnetSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Mingw64.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-TypeScript.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Haskell.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Stack.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Miniconda.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureCosmosDbEmulator.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Mercurial.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Zstd.ps1",

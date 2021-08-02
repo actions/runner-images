@@ -3,30 +3,28 @@ Describe "WindowsFeatures" {
     $testCases = @(
         @{ FeatureName = "NET-Framework-Features" }
         @{ FeatureName = "NET-Framework-45-Features" }
-        @{ FeatureName = "FS-iSCSITarget-Server" }
     )
 
     if (Test-isWin16) {
         $testCases += @{ FeatureName = "BITS" }
         $testCases += @{ FeatureName = "DSC-Service" }
+        $testCases += @{ FeatureName = "FS-iSCSITarget-Server" }
     }
     if (Test-isWin19) {
         $testCases += @{ FeatureName = "Microsoft-Windows-Subsystem-Linux" }
+        $testCases += @{ FeatureName = "FS-iSCSITarget-Server" }
     }
 
     It "Windows Feature <FeatureName> is installed" -TestCases $testCases {
         (Get-WindowsFeature -Name $FeatureName).InstallState | Should -Be "Installed"
     }
 
-    if (Test-isWin19) {
-        it "Check WSL is on path" {
+    it "Check WSL is on path" -Skip:(-not (Test-isWin19)) {
             (Get-Command -Name 'wsl') | Should -BeTrue
-        }
     }
-}
 
-Describe "ContainersFeature" {
-    It "Windows containers feature is installed" {
+    # TO-DO
+    It "Windows containers feature is installed" -Skip:(Test-IsWin22) {
         (Get-WindowsFeature -Name "Containers").InstallState | Should -Be "Installed"
     }
 }
