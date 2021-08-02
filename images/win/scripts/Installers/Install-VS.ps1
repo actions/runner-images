@@ -31,6 +31,13 @@ if ($instanceFolders -is [array])
     exit 1
 }
 
+Write-Host "debug start"
+Get-VSSetupInstance -Prerelease
+
+Get-VSSetupInstance -Prerelease | Select-VSSetupInstance -Product *
+
+Write-Host "debug end"
+
 $vsInstallRoot = Get-VisualStudioPath
 
 # Initialize Visual Studio Experimental Instance
