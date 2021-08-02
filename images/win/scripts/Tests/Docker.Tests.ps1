@@ -1,4 +1,4 @@
-# TO-DO
+# TO-DO: Will be fixed in https://github.com/actions/virtual-environments-internal/issues/2512
 Describe "Docker" -Skip:(Test-IsWin22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "docker" }

@@ -5,6 +5,7 @@
 ##         can continue.
 ################################################################################
 
+# TO-DO: Will be fixed with https://github.com/actions/virtual-environments-internal/issues/2512
 # Write-Host "Install-Package Docker"
 # Install-Package -Name docker -ProviderName DockerMsftProvider -Force
 # Start-Service docker
