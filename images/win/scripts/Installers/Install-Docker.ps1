@@ -12,8 +12,8 @@ Start-Service docker
 Write-Host "Install-Package Docker-Compose"
 Choco-Install -PackageName docker-compose
 
-$dockerToolset = (Get-ToolsetContent).docker
-foreach($dockerImage in $dockerToolset.images) {
+$dockerImages = (Get-ToolsetContent).docker.images
+foreach ($dockerImage in $dockerImages) {
     Write-Host "Pulling docker image $dockerImage ..."
     docker pull $dockerImage
 

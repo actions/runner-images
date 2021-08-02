@@ -167,3 +167,11 @@ Describe "Homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Kotlin" {
+    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlinc-js", "kotlinc-jvm", "kotlin-dce-js")
+
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object {  @{ toolName = $_ } })  { 
+        "$toolName -version" | Should -ReturnZeroExitCode
+    }
+}

@@ -8,42 +8,24 @@
 # https://packages.msys2.org/group/
 
 $dash = "-" * 40
-
 $origPath = $env:PATH
-$gitPath  = "$env:ProgramFiles\Git"
 
 $msys2_release = "https://api.github.com/repos/msys2/msys2-installer/releases/latest"
-
 $msys2Uri = ((Invoke-RestMethod $msys2_release).assets | Where-Object {
-  $_.name -match "x86_64" -and $_.name.EndsWith("tar.xz") }).browser_download_url
+  $_.name -match "^msys2-x86_64" -and $_.name.EndsWith(".exe") }).browser_download_url
 
 # Download the latest msys2 x86_64, filename includes release date
 Write-Host "Starting msys2 download using $($msys2Uri.split('/')[-1])"
 $msys2File = Start-DownloadWithRetry -Url $msys2Uri
 Write-Host "Finished download"
 
-# nix style path for tar
-$msys2FileU = "/$msys2File".replace(':', '').replace('\', '/')
-
-# Git tar needs exe's from mingw64\bin
-$env:PATH = "$gitPath\usr\bin;$gitPath\mingw64\bin;$origPath"
-
-$tar = "$gitPath\usr\bin\tar.exe"
-
 # extract tar.xz to C:\
-Write-Host "Starting msys2 extraction"
-&$tar -xJf $msys2FileU -C /c/
+Write-Host "Starting msys2 installation"
+& $msys2File in --confirm-command --accept-messages --root C:/msys64
 Remove-Item $msys2File
-Write-Host "Finished extraction"
 
 # Add msys2 bin tools folders to PATH temporary
 $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
-
-Write-Host "`n$dash bash pacman-key --init"
-bash.exe -c "pacman-key --init 2>&1"
-
-Write-Host "bash pacman-key --populate msys2"
-bash.exe -c "pacman-key --populate msys2 2>&1"
 
 Write-Host "`n$dash pacman --noconfirm -Syyuu"
 pacman.exe -Syyuu --noconfirm
@@ -53,7 +35,6 @@ pacman.exe -Syuu  --noconfirm
 taskkill /f /fi "MODULES eq msys-2.0.dll"
 
 $toolsetContent = (Get-ToolsetContent).MsysPackages
-
 Write-Host "`n$dash Install msys2 packages"
 $msys2Packages = $toolsetContent.msys2
 pacman.exe -S --noconfirm --needed --noprogressbar $msys2Packages

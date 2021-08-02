@@ -43,7 +43,8 @@ $languageAndRuntimeList = @(
     (Get-DotnetVersionList),
     (Get-GoVersion),
     (Get-PHPVersion),
-    (Get-JuliaVersion)
+    (Get-JuliaVersion),
+    (Get-KotlinVersion)
 )
 
 if ( -not $os.IsHighSierra) {
