@@ -94,7 +94,7 @@
         {
             "type": "file",
             "source": "{{template_dir}}/toolsets/toolset-2016.json",
-            "destination": "{{env `TEMP`}}\\toolset.json"
+            "destination": "{{user `image_folder`}}\\toolset.json"
         },
         {
             "type": "windows-shell",
