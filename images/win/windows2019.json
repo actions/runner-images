@@ -16,12 +16,9 @@
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
         "allowed_inbound_ip_addresses": "{{env `AGENT_IP`}}",
         "vm_size": "Standard_D8s_v4",
-        "root_folder": "C:",
-        "toolset_json_path": "{{env `TEMP`}}\\toolset.json",
         "image_folder": "C:\\image",
         "imagedata_file": "C:\\imagedata.json",
         "helper_script_folder": "C:\\Program Files\\WindowsPowerShell\\Modules\\",
-        "psmodules_root_folder": "C:\\Modules",
         "agent_tools_directory": "C:\\hostedtoolcache\\windows",
         "install_user": "installer",
         "install_password": null,
@@ -96,7 +93,7 @@
         {
             "type": "file",
             "source": "{{template_dir}}/toolsets/toolset-2019.json",
-            "destination": "{{user `toolset_json_path`}}"
+            "destination": "{{user `image_folder`}}\\toolset.json"
         },
         {
             "type": "windows-shell",
@@ -119,15 +116,16 @@
                 "IMAGE_VERSION={{user `image_version`}}",
                 "IMAGE_OS={{user `image_os`}}",
                 "AGENT_TOOLSDIRECTORY={{user `agent_tools_directory`}}",
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
-                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
+                "IMAGEDATA_FILE={{user `imagedata_file`}}"
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Configure-Antivirus.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowerShellModules.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WindowsFeatures.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Choco.ps1",
-                "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1"
+                "{{ template_dir }}/scripts/Installers/Initialize-VM.ps1",
+                "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1",
+                "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1"
             ],
             "execution_policy": "unrestricted"
         },
@@ -140,30 +138,16 @@
             ]
         },
         {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1",
-                "{{ template_dir }}/scripts/Installers/Update-DotnetTLS.ps1"
-            ]
-        },
-        {
             "type": "windows-restart",
             "restart_timeout": "10m"
         },
         {
             "type": "powershell",
-            "environment_vars": [
-                "IMAGE_VERSION={{user `image_version`}}",
-                "IMAGE_OS={{user `image_os`}}",
-                "AGENT_TOOLSDIRECTORY={{user `agent_tools_directory`}}",
-                "IMAGEDATA_FILE={{user `imagedata_file`}}",
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-VCRedist.ps1",
-                "{{ template_dir }}/scripts/Installers/Update-ImageData.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1"
             ]
         },
         {
@@ -176,22 +160,17 @@
                 0,
                 3010
             ],
-            "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-NET48.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-NET48.ps1",
+                "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
         },
         {
             "type": "powershell",
-            "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Wix.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WDK.ps1",
@@ -222,11 +201,6 @@
         },
         {
             "type": "powershell",
-            "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
-                "ROOT_FOLDER={{user `root_folder`}}",
-                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}"
-            ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Ruby.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
@@ -235,12 +209,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-AndroidSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Pipx.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-PipxPackages.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-PipxPackages.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Git.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PHP.ps1",
@@ -252,32 +221,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-Selenium.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Apache.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
-            ],
-            "elevated_user": "{{user `install_user`}}",
-            "elevated_password": "{{user `install_password`}}"
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-Msys2.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
-            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Msys2.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WinAppDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-R.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AWS.ps1",
@@ -301,13 +246,10 @@
                 "{{ template_dir }}/scripts/Installers/Install-RootCA.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1",
+                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
+                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1"
             ]
         },
         {
@@ -329,11 +271,6 @@
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
-            ],
-            "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}",
-                "PSMODULES_ROOT_FOLDER={{user `psmodules_root_folder`}}",
-                "ROOT_FOLDER={{user `root_folder`}}"
             ]
         },
         {
@@ -342,8 +279,7 @@
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ],
             "environment_vars": [
-                "IMAGE_VERSION={{user `image_version`}}",
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
+                "IMAGE_VERSION={{user `image_version`}}"
             ]
         },
         {
@@ -361,18 +297,6 @@
         {
             "type": "windows-restart",
             "restart_timeout": "10m"
-        },
-        {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1"
-            ]
         },
         {
             "type": "powershell",
