@@ -33,9 +33,9 @@ if ($instanceFolders -is [array])
 
 Write-Host "debug start"
 Write-Host "$instanceFolders"
-Get-VSSetupInstance -Prerelease
+Get-VSSetupInstance -Prerelease -All
 
-Get-VSSetupInstance -Prerelease | Select-VSSetupInstance -Product *
+Get-VSSetupInstance -Prerelease -All | Select-VSSetupInstance -Product *
 
 Write-Host "debug end"
 
