@@ -7,8 +7,8 @@ $toolset = Get-ToolsetContent
 $requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
 $workLoads = @(
 	"--allWorkloads --includeRecommended"
-	$requiredComponents
-	"--remove Component.CPython3.x64"
+	# $requiredComponents
+	# "--remove Component.CPython3.x64"
 )
 $workLoadsArgument = [String]::Join(" ", $workLoads)
 
@@ -32,6 +32,7 @@ if ($instanceFolders -is [array])
 }
 
 Write-Host "debug start"
+Write-Host "$instanceFolders"
 Get-VSSetupInstance -Prerelease
 
 Get-VSSetupInstance -Prerelease | Select-VSSetupInstance -Product *

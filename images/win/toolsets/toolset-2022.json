@@ -145,12 +145,11 @@
         "mingw": []
     },
     "visualStudio": {
-        "version" : "2019",
+        "version" : "2022",
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "pre",
-        "workloads": [
-        ],
+        "workloads": [],
         "vsix": []
     },
     "docker": {
