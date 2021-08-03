@@ -11,7 +11,7 @@ if (Test-IsWin19)
     $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"
     $VSver = "2019"
 }
-else
+elseif (Test-IsWin16)
 {
     $winSdkUrl = "https://go.microsoft.com/fwlink/p/?LinkID=2023014"
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2026156"
