@@ -2,7 +2,7 @@ Describe "Vsix" {
     $toolset = Get-ToolsetContent
     $requiredVsixs = $toolset.visualStudio.vsix
 
-    $allPackages = (Get-VSSetupInstance -Prerelease | Select-VsSetupInstance -Product *).Packages
+    $allPackages = (Get-VSSetupInstance -Prerelease -All | Select-VsSetupInstance -Product *).Packages
     $testCases = $requiredVsixs | ForEach-Object {
         $vsix = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
         @{

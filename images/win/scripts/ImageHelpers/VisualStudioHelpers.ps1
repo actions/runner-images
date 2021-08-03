@@ -73,11 +73,11 @@ function Get-VsCatalogJsonPath {
 }
 
 function Get-VisualStudioPath {
-    return (Get-VSSetupInstance -Prerelease | Select-VSSetupInstance -Product *).InstallationPath
+    return (Get-VSSetupInstance -Prerelease -All | Select-VSSetupInstance -Product *).InstallationPath
 }
 
 function Get-VisualStudioPackages {
-    return (Get-VSSetupInstance -Prerelease | Select-VSSetupInstance -Product *).Packages
+    return (Get-VSSetupInstance -Prerelease -All | Select-VSSetupInstance -Product *).Packages
 }
 
 function Get-VisualStudioComponents {
