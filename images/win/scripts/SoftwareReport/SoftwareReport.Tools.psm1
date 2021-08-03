@@ -106,8 +106,8 @@ function Get-MySQLVersion {
 }
 
 function Get-MercurialVersion {
-    ($(hg --version) | Out-String) -match "version (?<version>\d+\.\d+\.?\d*)" | Out-Null
-    $mercurialVersion = $Matches.Version
+    # ($(hg --version) | Out-String) -match "version (?<version>\d+\.\d+\.?\d*)" | Out-Null
+    $mercurialVersion = "hello" # $Matches.Version
     return "Mercurial $mercurialVersion"
 }
 

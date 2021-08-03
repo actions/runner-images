@@ -7,7 +7,7 @@ $toolset = Get-ToolsetContent
 $requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
 $workLoads = @(
 	"--allWorkloads --includeRecommended"
-	# $requiredComponents
+	$requiredComponents
 	# "--remove Component.CPython3.x64"
 )
 $workLoadsArgument = [String]::Join(" ", $workLoads)
@@ -30,14 +30,6 @@ if ($instanceFolders -is [array])
     Write-Host "More than one instance installed"
     exit 1
 }
-
-Write-Host "debug start"
-Write-Host "$instanceFolders"
-Get-VSSetupInstance -Prerelease -All
-
-Get-VSSetupInstance -Prerelease -All | Select-VSSetupInstance -Product *
-
-Write-Host "debug end"
 
 $vsInstallRoot = Get-VisualStudioPath
 
