@@ -18,6 +18,10 @@ elseif (Test-IsWin16)
     $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\WDK.vsix"
     $VSver = "2017"
 }
+else
+{
+    throw "Invalid version of Visual Studio is found. Either 2017 or 2019 are required"
+}
 
 $argumentList = ("/features", "+", "/quiet")
 
