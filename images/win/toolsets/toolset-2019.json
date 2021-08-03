@@ -368,12 +368,28 @@
             "cmd": "yamllint --version"
         }
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "yarn", "test": "yarn --version" },
+            { "name": "newman", "test": "newman --version" },
+            { "name": "lerna", "test": "lerna --version" },
+            { "name": "typescript", "test": "tsc --version" },
+            { "name": "cordova" },
+            { "name": "grunt-cli", "test": "grunt --version" },
+            { "name": "gulp-cli", "test": "gulp --version" },
+            { "name": "parcel-bundler" },
+            { "name": "webpack" },
+            { "name": "webpack-cli" },
+            { "name": "node-sass" }
+        ]
+    },
     "dotnet": {
         "versions": [
             "2.1",
             "3.1",
             "5.0"
-        ]
+        ],
+        "warmup": true
     },
     "choco": {
         "common_packages": [
