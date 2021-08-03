@@ -4,7 +4,7 @@
 ################################################################################
 
 # The correct Modules need to be saved in C:\Modules
-$installPSModulePath = $env:PSMODULES_ROOT_FOLDER
+$installPSModulePath = "C:\\Modules"
 if (-not (Test-Path -LiteralPath $installPSModulePath))
 {
     Write-Host "Creating ${installPSModulePath} folder to store PowerShell Azure modules..."
