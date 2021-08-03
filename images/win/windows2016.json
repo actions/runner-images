@@ -245,9 +245,6 @@
         },
         {
             "type": "powershell",
-            "environment_vars": [
-                "TOOLSET_JSON_PATH={{user `toolset_json_path`}}"
-            ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
