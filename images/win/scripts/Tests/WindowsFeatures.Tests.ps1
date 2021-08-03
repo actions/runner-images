@@ -1,6 +1,6 @@
 Describe "WindowsFeatures" {
     $windowsFeatures = (Get-ToolsetContent).windowsFeatures
-    $testCases = $windowsFeatures | ForEach-Object { Name = $_.name; OptionalFeature = $_.optionalFeature }
+    $testCases = $windowsFeatures | ForEach-Object { @{ Name = $_.name; OptionalFeature = $_.optionalFeature } }
 
     It "Windows Feature <Name> is installed" -TestCases $testCases {
         if ($OptionalFeature) {
