@@ -61,7 +61,6 @@ function InstallSDKVersion (
     if ($Warmup) {
         Invoke-Warmup -SdkVersion $SdkVersion
     }
-    
 }
 
 function InstallAllValidSdks()

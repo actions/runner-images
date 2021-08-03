@@ -144,6 +144,11 @@
         "msys2": [],
         "mingw": []
     },
+    "windowsFeatures": [
+        { "name": "Containers" },
+        { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
+        { "name": "NET-Framework-Features", "includeAllSubFeatures": true }
+    ],
     "visualStudio": {
         "version" : "2019",
         "subversion" : "16",
