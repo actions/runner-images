@@ -248,6 +248,12 @@
             }
         ]
     },
+    "windowsFeatures": [
+        { "name": "NET-Framework-Features", "includeAllSubFeatures": true },
+        { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
+        { "name": "FS-iSCSITarget-Server", "includeAllSubFeatures": true, "includeManagementTools": true },
+        { "name": "Containers" }
+    ],
     "visualStudio": {
         "version" : "2019",
         "subversion" : "16",
