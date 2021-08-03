@@ -79,7 +79,7 @@ function Get-GoVersion {
 }
 
 function Get-KotlinVersion {
-    $kotlinVersion = $(kotlinc -version).split(" ")[1]
+    $kotlinVersion = $((cmd /c "kotlinc  -version 2>&1") | Out-String).split(" ")[2]
     return "Kotlin $kotlinVersion"
 }
 
