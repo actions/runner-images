@@ -44,12 +44,6 @@ function Get-ClangVersions {
     return "Clang " + $clangVersions
 }
 
-function Get-LLVMInfo {
-    $clangVersions = Get-ClangToolVersions -ToolName "clang"
-    $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
-    return "LLVM components: Clang $clangVersions, Clang-format $clangFormatVersions"
-}
-
 function Get-ClangFormatVersions {
     $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
     return "Clang-format " + $clangFormatVersions
