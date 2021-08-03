@@ -1,12 +1,12 @@
 | Announcements |
 |-|
-| [[all OS] MongoDB will be updated to version 5 on July, 26th](https://github.com/actions/virtual-environments/issues/3749) |
+| [[macOS, Windows] .NET SDK pre-installation policy will be changed on September, 6](https://github.com/actions/virtual-environments/issues/3809) |
 | [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 10.14 info
-- System Version: macOS 10.14.6 (18G9216)
+- System Version: macOS 10.14.6 (18G9323)
 - Kernel Version: Darwin 18.7.0
-- Image Version: 20210724.1
+- Image Version: 20210731.1
 
 ## Installed Software
 ### Language and Runtime
@@ -22,30 +22,31 @@
 - GNU Fortran (Homebrew GCC 11.1.0_1) 11.1.0 - available by `gfortran-11` alias
 - Go 1.15.14
 - julia 1.6.2
+- kotlin 1.5.21-release-314
 - MSBuild 15.7.224.30163 (from /Library/Frameworks/Mono.framework/Versions/5.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v8.17.0
 - NVM 0.38.0
-- NVM - Cached node versions: v10.24.1 v12.22.3 v14.17.3
+- NVM - Cached node versions: v10.24.1 v12.22.4 v14.17.4
 - Perl 5.34.0
-- PHP 8.0.8
+- PHP 8.0.9
 - Python 2.7.18
 - Python 3.9.6
 - R 4.1.0
 - Ruby 2.7.4p191
 
 ### Package Management
-- Bundler version 2.2.24
+- Bundler version 2.2.25
 - Carthage 0.38.0
-- CocoaPods 1.10.1
+- CocoaPods 1.10.2
 - Composer 2.1.5
-- Homebrew 3.2.3
+- Homebrew 3.2.5
 - Miniconda 4.10.3
 - NPM 3.10.10
 - NuGet 4.7.0.5148
 - Pip 20.3.4 (python 2.7)
 - Pip 21.1.3 (python 3.9)
 - Pipx 0.16.3
-- RubyGems 3.2.24
+- RubyGems 3.2.25
 - Yarn 1.22.5
 
 #### Environment variables
@@ -86,24 +87,24 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.1
 - Switchaudio-osx 1.1.0
-- Vagrant 2.2.17
-- virtualbox 6.1.24r145767
+- Vagrant 2.2.18
+- virtualbox 6.1.26r145957
 - zstd 1.5.0
 
 
 ### Tools
 - Aliyun CLI 3.0.82
 - App Center CLI 1.2.2
-- AWS CLI 2.2.22
+- AWS CLI 2.2.25
 - AWS SAM CLI 1.27.2
-- AWS Session Manager CLI 1.2.205.0
+- AWS Session Manager CLI 1.2.234.0
 - Azure CLI 2.26.1
 - Bicep CLI 0.4.451
 - Cabal 3.4.0.0
-- Cmake 3.21.0
-- Fastlane 2.188.0
+- Cmake 3.21.1
+- Fastlane 2.189.0
 - GHC 9.0.1
-- GHCup v0.1.15.2
+- GHCup v0.1.16.1
 - Stack 2.7.3
 - SwiftFormat 0.48.11
 - Swig 4.0.2
@@ -114,19 +115,19 @@
 - yamllint 1.26.1
 
 ### Browsers
-- Safari 14.1.1 (14611.2.7.1.6)
-- SafariDriver 14.1.1 (14611.2.7.1.6)
+- Safari 14.1.2 (14611.3.10.1.5)
+- SafariDriver 14.1.2 (14611.3.10.1.5)
 - Google Chrome 92.0.4515.107 
-- ChromeDriver 91.0.4472.101
-- Microsoft Edge 92.0.902.55 
-- MSEdgeDriver 92.0.902.55
+- ChromeDriver 92.0.4515.107
+- Microsoft Edge 92.0.902.62 
+- MSEdgeDriver 92.0.902.62
 - Mozilla Firefox 90.0.2
 - geckodriver 0.29.1
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/91.0.4472.101 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/92.0.4515.107 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -161,8 +162,8 @@
 
 #### Node.js
 - 10.24.1
-- 12.22.3
-- 14.17.3
+- 12.22.4
+- 14.17.4
 
 #### Go
 - 1.13.15
@@ -171,17 +172,17 @@
 - 1.16.6
 
 ### Rust Tools
-- Cargo 1.53.0
-- Rust 1.53.0
-- Rustdoc 1.53.0
+- Cargo 1.54.0
+- Rust 1.54.0
+- Rustdoc 1.54.0
 - Rustup 1.24.3
 
 #### Packages
-- Bindgen 0.59.0
-- Cargo-audit 0.15.0
+- Bindgen 0.59.1
+- Cargo-audit 0.14.1
 - Cargo-outdated v0.9.17
-- Cbindgen 0.19.0
-- Clippy 0.1.53
+- Cbindgen 0.20.0
+- Clippy 0.1.54
 - Rustfmt 1.4.37-stable
 
 ### PowerShell Tools
@@ -348,7 +349,7 @@
 | Android Emulator           | 30.7.5                                                                                                                                                                                                                                                                                                                                                                             |
 | Android SDK Build-tools    | 31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0                                                                                    |
 | Android SDK Platforms      | android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)<br>android-18 (rev 3)<br>android-17 (rev 3)<br>android-16 (rev 5)<br>android-15 (rev 5) |
-| Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                                                                                                                                                                             |
+| Android SDK Platform-Tools | 31.0.3                                                                                                                                                                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                             |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                                                                                                                                   |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                                                                                           |
