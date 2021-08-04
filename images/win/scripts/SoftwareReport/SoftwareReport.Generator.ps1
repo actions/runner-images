@@ -39,7 +39,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-PerlVersion),
     (Get-PHPVersion),
     (Get-PythonVersion),
-    (Get-RubyVersion)
+    (Get-RubyVersion),
+    (Get-KotlinVersion)
     ) | Sort-Object
 )
 
