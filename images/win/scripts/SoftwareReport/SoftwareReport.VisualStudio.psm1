@@ -49,7 +49,7 @@ function Get-VisualStudioExtensions {
         )
     }
 
-    if (Test-IsWin16 -or Test-IsWin19) {
+    if ((Test-IsWin16) -or (Test-IsWin19)) {
         # Wix
         $wixPackageVersion = Get-WixVersion
         $wixExtensionVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
