@@ -97,3 +97,11 @@ Describe "CMake" {
         "cmake --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Kotlin" {
+    $kotlinPackages =  @("kotlinc", "kotlinc-js", "kotlinc-jvm")
+
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  { 
+        "$toolName -version" | Should -ReturnZeroExitCode
+    }
+}
