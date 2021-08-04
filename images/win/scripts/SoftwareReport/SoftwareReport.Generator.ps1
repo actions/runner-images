@@ -100,7 +100,6 @@ $toolsList = @(
     # (Get-DockerVersion),
     # (Get-DockerComposeVersion),
     (Get-GHCVersion),
-    (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GVFSVersion),
     (Get-InnoSetupVersion),
@@ -125,7 +124,8 @@ if (Test-IsWin16 -or Test-IsWin19) {
     $toolsList += @(
         (Get-NSISVersion),
         (Get-GoogleCloudSDKVersion),
-        (Get-MinGWVersion)
+        (Get-MinGWVersion),
+        (Get-GitVersion)
     )
 }
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
