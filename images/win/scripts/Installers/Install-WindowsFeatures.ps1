@@ -17,13 +17,6 @@ foreach ($feature in $windowsFeatures) {
 
         $resultSuccess = $result.Success
     }
-}
-
-Write-Host "Enabling Windows Feature 'Containers'"
-Install-WindowsFeature -Name Containers
-
-Write-Host "Enabling Windows Feature 'Client-ProjFS'"
-Enable-WindowsOptionalFeature -Online -FeatureName Client-ProjFS -NoRestart
 
     if ($resultSuccess) {
         Write-Host "Windows Feature '$($feature.name)' was activated successfully"
