@@ -31,7 +31,7 @@ if ($instanceFolders -is [array])
     exit 1
 }
 
-$vsInstallRoot = Get-VisualStudioPath
+$vsInstallRoot = (Get-VisualStudioInstance).InstallationPath
 
 # Initialize Visual Studio Experimental Instance
 & "$vsInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit

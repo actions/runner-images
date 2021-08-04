@@ -78,16 +78,8 @@ function Get-VisualStudioInstance {
     $vsInstance | Select-VSSetupInstance -Product *
 }
 
-function Get-VisualStudioPath {
-    return (Get-VisualStudioInstance).InstallationPath
-}
-
-function Get-VisualStudioPackages {
-    return (Get-VisualStudioInstance).Packages
-}
-
 function Get-VisualStudioComponents {
-    Get-VisualStudioPackages | Where-Object type -in 'Component', 'Workload' |
+    (Get-VisualStudioInstance).Packages | Where-Object type -in 'Component', 'Workload' |
     Sort-Object Id, Version | Select-Object @{n = 'Package'; e = {$_.Id}}, Version |
     Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
 }
