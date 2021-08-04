@@ -22,8 +22,18 @@ Start-Process $gvfsInstallerPath -ArgumentList $argList -PassThru | Wait-Process
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
 
+# Remove Git tools from PATH
+if (Test-IsWin22) {
+    $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+    $newPath = $oldPath.Replace(";C:\Program Files\Git\usr\bin", "")
+    $newPath = $newPath.Replace(";C:\Program Files\Git\mingw64\bin", "")
+    [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Machine)
+}
+
 # Add to PATH
-Add-MachinePathItem "C:\Program Files\Git\cmd"
+if (Test-IsWin16 -or Test-IsWin19) {
+    Add-MachinePathItem "C:\Program Files\Git\bin"
+}
 
 if (Test-IsWin16) {
     $env:Path += ";$env:ProgramFiles\Git\usr\bin\"
