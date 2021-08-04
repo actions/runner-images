@@ -88,9 +88,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-CabalVersion),
     (Get-CMakeVersion),
     (Get-CodeQLBundleVersion),
-    # TO-DO https://github.com/actions/virtual-environments-internal/issues/2512
-    # (Get-DockerVersion),
-    # (Get-DockerComposeVersion),
+    (Get-DockerVersion),
+    (Get-DockerComposeVersion),
     (Get-GHCVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),

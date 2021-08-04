@@ -48,7 +48,6 @@ Describe "DACFx" {
     }
 }
 
-# TO-DO
 Describe "DotnetTLS" -Skip:(Test-IsWin22) {
     It "Tls 1.2 is enabled" {
         [Net.ServicePointManager]::SecurityProtocol -band "Tls12" | Should -Be Tls12
