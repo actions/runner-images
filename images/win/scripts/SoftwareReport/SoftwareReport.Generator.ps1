@@ -288,5 +288,4 @@ if ($cachedImages) {
     $markdown += New-MDNewLine
 }
 
-
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"

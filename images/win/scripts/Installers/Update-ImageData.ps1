@@ -20,7 +20,7 @@ if (Test-IsWin22) {
     $softwareUrl = "${githubUrl}/win16/${imageVersion}/images/win/Windows2016-Readme.md"
     $releaseUrl="https://github.com/actions/virtual-environments/releases/tag/win16%2F${imageVersion}"
 } else {
-  throw "Invalid platform version is found. Either Windows Server 2016 or 2019 or 2022 are required"
+    throw "Invalid platform version is found. Either Windows Server 2016 or 2019 or 2022 are required"
 }
 
 $json = @"
