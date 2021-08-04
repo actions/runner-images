@@ -1,9 +1,9 @@
 function Get-VisualStudioVersion {
-    $vsVersion = vswhere -format json | ConvertFrom-Json
+    $vsInstance = Get-VisualStudioInstance
     [PSCustomObject]@{
-        Name = $vsVersion.displayName
-        Version = $vsVersion.installationVersion
-        Path = $vsVersion.installationPath
+        Name = $vsInstance.DisplayName
+        Version = $vsInstance.InstallationVersion
+        Path = $vsInstance.InstallationPath
     }
 }
 
