@@ -31,17 +31,21 @@ if (Test-IsWin19)
 
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$languageTools = @(
     (Get-BashVersion),
     (Get-GoVersion),
     (Get-JuliaVersion),
     (Get-NodeVersion),
-    (Get-PerlVersion),
     (Get-PHPVersion),
     (Get-PythonVersion),
     (Get-RubyVersion)
-    ) | Sort-Object
 )
+if (Test-IsWin16 -or Test-IsWin19) {
+    $languageTools += @(
+        (Get-PerlVersion)
+    )
+}
+$markdown += New-MDList -Style Unordered -Lines ($languageTools | Sort-Object)
 
 $packageManagementList = @(
     (Get-ChocoVersion),
@@ -70,16 +74,20 @@ $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Project Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$projectManagementTools = @(
     (Get-AntVersion),
     (Get-GradleVersion),
     (Get-MavenVersion),
-    (Get-SbtVersion)
-    ) | Sort-Object
 )
+if (Test-IsWin16 -or Test-IsWin19) {
+    $projectManagementTools += @(
+        (Get-SbtVersion)
+    )
+}
+$markdown += New-MDList -Style Unordered -Lines ($projectManagementTools | Sort-Object)
 
 $markdown += New-MDHeader "Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$toolsList = @(
     (Get-7zipVersion),
     (Get-AzCopyVersion),
     (Get-BazelVersion),
@@ -95,15 +103,12 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GVFSVersion),
-    (Get-GoogleCloudSDKVersion),
     (Get-InnoSetupVersion),
     (Get-JQVersion),
     (Get-KindVersion),
     (Get-KubectlVersion),
     (Get-MercurialVersion),
-    (Get-MinGWVersion),
     (Get-NewmanVersion),
-    (Get-NSISVersion),
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
     (Get-PulumiVersion),
@@ -115,22 +120,33 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-WinAppDriver),
     (Get-ZstdVersion),
     (Get-YAMLLintVersion)
-    ) | Sort-Object
 )
+if (Test-IsWin16 -or Test-IsWin19) {
+    $toolsList += @(
+        (Get-NSISVersion),
+        (Get-GoogleCloudSDKVersion),
+        (Get-MinGWVersion)
+    )
+}
+$markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 
 $markdown += New-MDHeader "CLI Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$cliTools = @(
     (Get-AlibabaCLIVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMVersion),
     (Get-AWSSessionManagerVersion),
     (Get-AzureCLIVersion),
     (Get-AzureDevopsExtVersion),
-    (Get-CloudFoundryVersion),
     (Get-GHVersion),
     (Get-HubVersion)
-    ) | Sort-Object
 )
+if (Test-IsWin16 -or Test-IsWin19) {
+    $cliTools += @(
+        (Get-CloudFoundryVersion)
+    )
+}
+$markdown += New-MDList -Style Unordered -Lines ($cliTools | Sort-Object)
 
 $markdown += New-MDHeader "Rust Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(

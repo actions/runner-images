@@ -79,7 +79,7 @@ Describe "KubernetesTools" {
     }
 }
 
-Describe "Mingw64" {
+Describe "Mingw64" -Skip:(Test-IsWin22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "gcc" }
         @{ ToolName = "g++" }
@@ -89,7 +89,7 @@ Describe "Mingw64" {
     }
 }
 
-Describe "GoogleCloudSDK"  {
+Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
@@ -106,7 +106,7 @@ Describe "NET48" {
     }
 }
 
-Describe "NSIS" {
+Describe "NSIS" -Skip:(Test-IsWin22) {
     It "NSIS" {
        "makensis /VERSION" | Should -ReturnZeroExitCode
     }
@@ -122,7 +122,7 @@ Describe "PowerShell Core" {
     }
 }
 
-Describe "Sbt" {
+Describe "Sbt" -Skip:(Test-IsWin22) {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
     }

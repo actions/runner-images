@@ -52,7 +52,7 @@ Describe "Packer" {
     }
 }
 
-Describe "Perl" {
+Describe "Perl" -Skip:(Test-IsWin22) {
     It "Perl" {
        "perl --version" | Should -ReturnZeroExitCode
     }

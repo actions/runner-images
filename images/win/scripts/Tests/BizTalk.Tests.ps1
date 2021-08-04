@@ -3,7 +3,7 @@
 ##  Desc:  Test BizTalk project build component installed.
 ################################################################################
 
-Describe "BizTalk Build Component Setup" -Skip:(Test-IsWin16) {
+Describe "BizTalk Build Component Setup" -Skip:(-not (Test-IsWin19)) {
     It "BizTalk Registry Check" {
         Test-Path "HKLM:\SOFTWARE\WOW6432Node\Microsoft\BizTalk Server\3.0" | Should -BeTrue
     }
