@@ -70,7 +70,6 @@ function Install-MingwPackages($Packages) {
   }
 }
 
-
 Install-Msys2
 
 # Add msys2 bin tools folders to PATH temporary
