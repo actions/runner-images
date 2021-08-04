@@ -78,6 +78,11 @@ function Get-GoVersion {
     return "Go $goVersion"
 }
 
+function Get-KotlinVersion {
+    $kotlinVersion = $((cmd /c "kotlinc  -version 2>&1") | Out-String).split(" ")[2]
+    return "Kotlin $kotlinVersion"
+}
+
 function Get-PHPVersion {
     ($(php --version) | Out-String) -match "PHP (?<version>\d+\.\d+\.\d+)" | Out-Null
     $phpVersion = $Matches.Version
