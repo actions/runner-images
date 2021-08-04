@@ -157,8 +157,8 @@
                 3010
             ],
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
