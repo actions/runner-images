@@ -147,6 +147,7 @@
     "windowsFeatures": [
         { "name": "Containers" },
         { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
+        { "name": "Client-ProjFS", "optionalFeature": true },
         { "name": "NET-Framework-Features", "includeAllSubFeatures": true }
     ],
     "visualStudio": {
