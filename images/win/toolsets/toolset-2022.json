@@ -89,8 +89,7 @@
             "versions": [
                 "6.1.0"
             ],
-            "zip_versions": [],
-            "default": "6.1.0"
+            "zip_versions": []
         }
     ],
     "java": {
