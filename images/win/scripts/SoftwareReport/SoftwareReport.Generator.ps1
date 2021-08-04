@@ -77,7 +77,7 @@ $markdown += New-MDHeader "Project Management" -Level 3
 $projectManagementTools = @(
     (Get-AntVersion),
     (Get-GradleVersion),
-    (Get-MavenVersion),
+    (Get-MavenVersion)
 )
 if (Test-IsWin16 -or Test-IsWin19) {
     $projectManagementTools += @(
