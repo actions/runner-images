@@ -146,6 +146,8 @@
     },
     "windowsFeatures": [
         { "name": "Containers" },
+        { "name": "Microsoft-Windows-Subsystem-Linux" },
+        { "name": "VirtualMachinePlatform" },
         { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
         { "name": "NET-Framework-Features", "includeAllSubFeatures": true }
     ],

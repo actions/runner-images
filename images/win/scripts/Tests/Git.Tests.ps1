@@ -1,5 +1,8 @@
 Describe "Git" {
     $gitTools = 'bash', 'awk', 'git', 'git-lfs'
+    if (Test-IsWin22) {
+        $gitTools = 'git', 'git-lfs'
+    }
     $gitTestCases = $gitTools | ForEach-Object {
         @{
             toolName = $_

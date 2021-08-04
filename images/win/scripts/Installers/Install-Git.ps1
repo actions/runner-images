@@ -23,7 +23,7 @@ Start-Process $gvfsInstallerPath -ArgumentList $argList -PassThru | Wait-Process
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
 
 # Add to PATH
-Add-MachinePathItem "C:\Program Files\Git\bin"
+Add-MachinePathItem "C:\Program Files\Git\cmd"
 
 if (Test-IsWin16) {
     $env:Path += ";$env:ProgramFiles\Git\usr\bin\"
