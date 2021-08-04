@@ -1,5 +1,4 @@
-# TO-DO: Will be fixed in https://github.com/actions/virtual-environments-internal/issues/2512
-Describe "Docker" -Skip:(Test-IsWin22) {
+Describe "Docker" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "docker" }
         @{ ToolName = "docker-compose" }
