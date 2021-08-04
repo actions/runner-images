@@ -55,11 +55,11 @@ Describe "DotnetTLS" -Skip:(Test-IsWin22) {
     }
 }
 
-# Describe "Mercurial" {
-#     It "Mercurial" {
-#        "hg --version" | Should -ReturnZeroExitCode
-#    }
-# }
+Describe "Mercurial" {
+    It "Mercurial" {
+       "hg --version" | Should -ReturnZeroExitCode
+   }
+}
 
 Describe "KubernetesTools" {
     It "Kind" {
