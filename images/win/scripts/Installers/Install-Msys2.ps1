@@ -8,70 +8,46 @@
 # https://packages.msys2.org/group/
 
 $dash = "-" * 40
-
 $origPath = $env:PATH
-$gitPath  = "$env:ProgramFiles\Git"
 
-$msys2_release = "https://api.github.com/repos/msys2/msys2-installer/releases/latest"
+function Install-Msys2 {
+  $msys2_release = "https://api.github.com/repos/msys2/msys2-installer/releases/latest"
+  $msys2Uri = ((Invoke-RestMethod $msys2_release).assets | Where-Object {
+    $_.name -match "^msys2-x86_64" -and $_.name.EndsWith(".exe") }).browser_download_url
 
-$msys2Uri = ((Invoke-RestMethod $msys2_release).assets | Where-Object {
-  $_.name -match "x86_64" -and $_.name.EndsWith("tar.xz") }).browser_download_url
+  # Download the latest msys2 x86_64, filename includes release date
+  Write-Host "Starting msys2 download using $($msys2Uri.split('/')[-1])"
+  $msys2File = Start-DownloadWithRetry -Url $msys2Uri
+  Write-Host "Finished download"
 
-# Download the latest msys2 x86_64, filename includes release date
-Write-Host "Starting msys2 download using $($msys2Uri.split('/')[-1])"
-$msys2File = Start-DownloadWithRetry -Url $msys2Uri
-Write-Host "Finished download"
+  # extract tar.xz to C:\
+  Write-Host "Starting msys2 installation"
+  & $msys2File in --confirm-command --accept-messages --root C:/msys64
+  Remove-Item $msys2File
+}
 
-# nix style path for tar
-$msys2FileU = "/$msys2File".replace(':', '').replace('\', '/')
+function Install-Msys2Packages($Packages) {
+  if (-not $Packages) {
+    return
+  }
 
-# Git tar needs exe's from mingw64\bin
-$env:PATH = "$gitPath\usr\bin;$gitPath\mingw64\bin;$origPath"
-
-$tar = "$gitPath\usr\bin\tar.exe"
-
-# extract tar.xz to C:\
-Write-Host "Starting msys2 extraction"
-&$tar -xJf $msys2FileU -C /c/
-Remove-Item $msys2File
-Write-Host "Finished extraction"
-
-# Add msys2 bin tools folders to PATH temporary
-$env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
-
-<#
-
-Write-Host "`n$dash bash pacman-key --init"
-bash.exe -c "pacman-key --init 2>&1"
-
-Write-Host "bash pacman-key --populate msys2"
-bash.exe -c "pacman-key --populate msys2 2>&1"
-
-Write-Host "`n$dash pacman --noconfirm -Syyuu"
-pacman.exe -Syyuu --noconfirm
-taskkill /f /fi "MODULES eq msys-2.0.dll"
-Write-Host "`n$dash pacman --noconfirm -Syuu (2nd pass)"
-pacman.exe -Syuu  --noconfirm
-taskkill /f /fi "MODULES eq msys-2.0.dll"
-#>
-
-$toolsetContent = (Get-ToolsetContent).MsysPackages
-
-Write-Host "`n$dash Install msys2 packages"
-$msys2Packages = $toolsetContent.msys2
-if ($msys2Packages) {
-  pacman.exe -S --noconfirm --needed --noprogressbar $msys2Packages
+  Write-Host "`n$dash Install msys2 packages"
+  pacman.exe -S --noconfirm --needed --noprogressbar $Packages
   taskkill /f /fi "MODULES eq msys-2.0.dll"
 
   Write-Host "`n$dash Remove p7zip/7z package due to conflicts"
   pacman.exe -R --noconfirm --noprogressbar p7zip
 }
 
-Write-Host "`n$dash Install mingw packages"
-$archs = $toolsetContent.mingw.arch
-if ($archs) {
-  foreach ($arch in $archs)
-  {
+function Install-MingwPackages($Packages) {
+  if (-not $Packages) {
+    return
+  }
+
+  Write-Host "`n$dash Install mingw packages"
+  $archs = $Packages.arch
+
+  foreach ($arch in $archs) {
     Write-Host "Installing $arch packages"
     $archPackages = $toolsetContent.mingw | Where-Object { $_.arch -eq $arch }
     $runtimePackages = $archPackages.runtime_packages.name | ForEach-Object { "${arch}-$_" }
@@ -94,7 +70,23 @@ if ($archs) {
   }
 }
 
+Install-Msys2
+
+# Add msys2 bin tools folders to PATH temporary
+$env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
+
+Write-Host "`n$dash pacman --noconfirm -Syyuu"
+pacman.exe -Syyuu --noconfirm
+taskkill /f /fi "MODULES eq msys-2.0.dll"
+Write-Host "`n$dash pacman --noconfirm -Syuu (2nd pass)"
+pacman.exe -Syuu  --noconfirm
+taskkill /f /fi "MODULES eq msys-2.0.dll"
+
+$toolsetContent = (Get-ToolsetContent).MsysPackages
+Install-Msys2Packages -Packages $toolsetContent.msys2
+Install-MingwPackages -Packages $toolsetContent.mingw
+
 $env:PATH = $origPath
 Write-Host "`nMSYS2 installation completed"
 
-# Invoke-PesterTests -TestFile "MSYS2"
+Invoke-PesterTests -TestFile "MSYS2"

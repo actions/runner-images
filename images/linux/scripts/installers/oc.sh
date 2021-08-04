@@ -10,6 +10,6 @@ source $HELPER_SCRIPTS/install.sh
 DOWNLOAD_URL="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz"
 PACKAGE_TAR_NAME="oc.tar.gz"
 download_with_retries $DOWNLOAD_URL "/tmp" $PACKAGE_TAR_NAME
-tar xzf "/tmp/$PACKAGE_TAR_NAME" -C "/usr/local/bin"
+tar xzf "/tmp/$PACKAGE_TAR_NAME" -C "/usr/local/bin" oc
 
 invoke_tests "CLI.Tools" "OC CLI"

@@ -88,7 +88,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-CabalVersion),
     (Get-CMakeVersion),
     (Get-CodeQLBundleVersion),
-    # TO-DO
+    # TO-DO https://github.com/actions/virtual-environments-internal/issues/2512
     # (Get-DockerVersion),
     # (Get-DockerComposeVersion),
     (Get-GHCVersion),
@@ -144,9 +144,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
 $markdown += New-MDHeader "Packages" -Level 4
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-BindgenVersion),
-    # TO-DO
-    # (Get-CargoAuditVersion),
-    # (Get-CargoOutdatedVersion),
+    (Get-CargoAuditVersion),
+    (Get-CargoOutdatedVersion),
     (Get-CbindgenVersion),
     "Rustfmt $(Get-RustfmtVersion)",
     "Clippy $(Get-RustClippyVersion)"
@@ -288,6 +287,5 @@ if ($cachedImages) {
     $markdown += $cachedImages | New-MDTable
     $markdown += New-MDNewLine
 }
-
 
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"

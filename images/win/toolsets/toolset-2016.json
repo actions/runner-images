@@ -248,6 +248,14 @@
             }
         ]
     },
+    "windowsFeatures": [
+        { "name": "NET-Framework-Features", "includeAllSubFeatures": true },
+        { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
+        { "name": "BITS", "includeAllSubFeatures": true },
+        { "name": "DSC-Service" },
+        { "name": "FS-iSCSITarget-Server", "includeAllSubFeatures": true, "includeManagementTools": true },
+        { "name": "Containers" }
+    ],
     "visualStudio": {
         "version" : "2017",
         "subversion" : "15",
@@ -341,6 +349,21 @@
             "cmd": "yamllint --version"
         }
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "yarn", "test": "yarn --version" },
+            { "name": "newman", "test": "newman --version" },
+            { "name": "lerna", "test": "lerna --version" },
+            { "name": "typescript", "test": "tsc --version" },
+            { "name": "cordova" },
+            { "name": "grunt-cli", "test": "grunt --version" },
+            { "name": "gulp-cli", "test": "gulp --version" },
+            { "name": "parcel-bundler" },
+            { "name": "webpack" },
+            { "name": "webpack-cli" },
+            { "name": "node-sass" }
+        ]
+    },
     "dotnet": {
         "versions": [
             "2.1",

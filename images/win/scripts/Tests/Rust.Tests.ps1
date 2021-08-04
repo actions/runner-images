@@ -3,8 +3,8 @@ Describe "Rust" {
         @{ToolName = "rustup"; binPath = "C:\Rust\.cargo\bin\rustup.exe"}
         @{ToolName = "rustc"; binPath = "C:\Rust\.cargo\bin\rustc.exe"}
         @{ToolName = "cargo"; binPath = "C:\Rust\.cargo\bin\cargo.exe"}
-        # @{ToolName = "cargo audit"; binPath = "C:\Rust\.cargo\bin\cargo-audit.exe"}
-        # @{ToolName = "cargo outdated"; binPath = "C:\Rust\.cargo\bin\cargo-outdated.exe"}
+        @{ToolName = "cargo audit"; binPath = "C:\Rust\.cargo\bin\cargo-audit.exe"}
+        @{ToolName = "cargo outdated"; binPath = "C:\Rust\.cargo\bin\cargo-outdated.exe"}
     )
 
     $rustEnvNotExists = @(

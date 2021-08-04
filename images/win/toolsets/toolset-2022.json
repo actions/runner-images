@@ -144,6 +144,11 @@
         "msys2": [],
         "mingw": []
     },
+    "windowsFeatures": [
+        { "name": "Containers" },
+        { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
+        { "name": "NET-Framework-Features", "includeAllSubFeatures": true }
+    ],
     "visualStudio": {
         "version" : "2022",
         "subversion" : "17",
@@ -210,6 +215,13 @@
             "cmd": "yamllint --version"
         }
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "yarn", "test": "yarn --version" },
+            { "name": "newman", "test": "newman --version" },
+            { "name": "lerna", "test": "lerna --version" }
+        ]
+    },
     "dotnet": {
         "versions": [
             "3.1",

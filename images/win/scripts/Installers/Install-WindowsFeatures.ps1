@@ -1,22 +1,21 @@
-# Install .NET Framework 3.5 (required by Chocolatey)
-# Explicitly install all 4.7 sub features to include ASP.Net.
-# As of  1/16/2019, WinServer 19 lists .Net 4.7 as NET-Framework-45-Features
-Write-Host "Enabling Windows Feature 'NET-Framework-45-Features'"
-Install-WindowsFeature -Name NET-Framework-45-Features -IncludeAllSubFeature
+$windowsFeatures = (Get-ToolsetContent).windowsFeatures
 
-if (Test-IsWin16) {
-    Install-WindowsFeature -Name BITS -IncludeAllSubFeature
-    Install-WindowsFeature -Name DSC-Service
-}
+foreach ($feature in $windowsFeatures) {
+    if ($feature.optionalFeature) {
+        Write-Host "Activating Windows Optional Feature '$($feature.name)'..."
+        Enable-WindowsOptionalFeature -Online -FeatureName $feature.name -NoRestart
 
-if (Test-IsWin16 -or Test-IsWin19) {
-    # Install FS-iSCSITarget-Server
-    $fsResult = Install-WindowsFeature -Name FS-iSCSITarget-Server -IncludeAllSubFeature -IncludeManagementTools
-    if ( $fsResult.Success ) {
-        Write-Host "FS-iSCSITarget-Server has been successfully installed"
+        $resultSuccess = $?
     } else {
-        Write-Host "Failed to install FS-iSCSITarget-Server"
-        exit 1
+        Write-Host "Activating Windows Feature '$($feature.name)'..."
+        $Arguments = @{
+            Name = $feature.name
+            IncludeAllSubFeature = [System.Convert]::ToBoolean($feature.includeAllSubFeatures)
+            IncludeManagementTools = [System.Convert]::ToBoolean($feature.includeManagementTools)
+        }
+        $result = Install-WindowsFeature @Arguments
+
+        $resultSuccess = $result.Success
     }
 }
 
@@ -26,5 +25,9 @@ Install-WindowsFeature -Name Containers
 Write-Host "Enabling Windows Feature 'Client-ProjFS'"
 Enable-WindowsOptionalFeature -Online -FeatureName Client-ProjFS -NoRestart
 
-Write-Host "Enabling Windows Feature 'NET-Framework-Features'"
-Install-WindowsFeature -Name NET-Framework-Features -IncludeAllSubFeature
+    if ($resultSuccess) {
+        Write-Host "Windows Feature '$($feature.name)' was activated successfully"
+    } else {
+        throw "Failed to activate Windows Feature '$($feature.name)'"
+    }
+}

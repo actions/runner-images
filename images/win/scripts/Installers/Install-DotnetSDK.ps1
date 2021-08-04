@@ -13,10 +13,11 @@ Set-SystemVariable -SystemVariable DOTNET_MULTILEVEL_LOOKUP -Value "0"
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
 function Invoke-Warmup (
-    $sdkVersion
+    $SdkVersion
 ) {
     # warm up dotnet for first time experience
-    @('console', 'mstest', 'web', 'mvc', 'webapi') | ForEach-Object {
+    $projectTypes = @('console', 'mstest', 'web', 'mvc', 'webapi')
+    $projectTypes | ForEach-Object {
         $template = $_
         $projectPath = Join-Path -Path C:\temp -ChildPath $template
         New-Item -Path $projectPath -Force -ItemType Directory
@@ -28,9 +29,21 @@ function Invoke-Warmup (
     }
 }
 
+function Fix-ImportPublishProfile (
+    $SdkVersion
+) {
+    if (Test-IsWin16 -or Test-IsWin19) {
+        # Fix for issue https://github.com/dotnet/sdk/issues/1276.  This will be fixed in 3.1.
+        $sdkTargetsName = "Microsoft.NET.Sdk.ImportPublishProfile.targets"
+        $sdkTargetsUrl = "https://raw.githubusercontent.com/dotnet/sdk/82bc30c99f1325dfaa7ad450be96857a4fca2845/src/Tasks/Microsoft.NET.Build.Tasks/targets/${sdkTargetsName}"
+        $sdkTargetsPath = "C:\Program Files\dotnet\sdk\$sdkVersion\Sdks\Microsoft.NET.Sdk\targets"
+        Start-DownloadWithRetry -Url $sdkTargetsUrl -DownloadPath $sdkTargetsPath -Name $sdkTargetsName
+    }
+}
+
 function InstallSDKVersion (
-    $sdkVersion,
-    $warmup
+    $SdkVersion,
+    $Warmup
 )
 {
     if (!(Test-Path -Path "C:\Program Files\dotnet\sdk\$sdkVersion"))
@@ -43,19 +56,11 @@ function InstallSDKVersion (
         Write-Host "Sdk version $sdkVersion already installed"
     }
 
-    if (Test-IsWin16 -or Test-IsWin19) {
-        # Fix for issue 1276.  This will be fixed in 3.1.
-        $sdkTargetsName = "Microsoft.NET.Sdk.ImportPublishProfile.targets"
-        $sdkTargetsUrl = "https://raw.githubusercontent.com/dotnet/sdk/82bc30c99f1325dfaa7ad450be96857a4fca2845/src/Tasks/Microsoft.NET.Build.Tasks/targets/${sdkTargetsName}"
-        $sdkTargetsPath = "C:\Program Files\dotnet\sdk\$sdkVersion\Sdks\Microsoft.NET.Sdk\targets"
-        Start-DownloadWithRetry -Url $sdkTargetsUrl -DownloadPath $sdkTargetsPath -Name $sdkTargetsName
-    }
-    
+    Fix-ImportPublishProfile -SdkVersion $SdkVersion
 
-    if ($warmup) {
-        Invoke-Warmup -sdkVersion $sdkVersion
+    if ($Warmup) {
+        Invoke-Warmup -SdkVersion $SdkVersion
     }
-    
 }
 
 function InstallAllValidSdks()
@@ -100,7 +105,7 @@ function InstallAllValidSdks()
             elseif (!$release.'sdk'.'version'.Contains('-'))
             {
                 $sdkVersion = $release.'sdk'.'version'
-                InstallSDKVersion -sdkVersion $sdkVersion -warmup $warmup
+                InstallSDKVersion -SdkVersion $sdkVersion -Warmup $warmup
             }
         }
     }
