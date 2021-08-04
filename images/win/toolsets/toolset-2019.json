@@ -258,6 +258,7 @@
         "version" : "2019",
         "subversion" : "16",
         "edition" : "Enterprise",
+        "channel": "release",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",

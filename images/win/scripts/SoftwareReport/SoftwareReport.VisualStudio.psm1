@@ -1,9 +1,9 @@
 function Get-VisualStudioVersion {
-    $vsVersion = vswhere -format json | ConvertFrom-Json
+    $vsInstance = Get-VisualStudioInstance
     [PSCustomObject]@{
-        Name = $vsVersion.displayName
-        Version = $vsVersion.installationVersion
-        Path = $vsVersion.installationPath
+        Name = $vsInstance.DisplayName
+        Version = $vsInstance.InstallationVersion
+        Path = $vsInstance.InstallationPath
     }
 }
 
@@ -20,6 +20,8 @@ function Get-WDKVersion {
 }
 
 function Get-VisualStudioExtensions {
+    $vsPackages = (Get-VisualStudioInstance).Packages
+
     # Additional vsixs
     $toolset = Get-ToolsetContent
     $vsixUrls = $toolset.visualStudio.vsix
@@ -27,7 +29,8 @@ function Get-VisualStudioExtensions {
     {
         $vsixs = $vsixUrls | ForEach-Object {
             $vsix = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
-            $vsixVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match $vsix.VsixId -and $_.type -eq 'vsix'}).Version
+            
+            $vsixVersion = ($vsPackages | Where-Object {$_.Id -match $vsix.VsixId -and $_.type -eq 'vsix'}).Version
             @{
                 Package = $vsix.ExtensionName
                 Version = $vsixVersion
@@ -52,7 +55,7 @@ function Get-VisualStudioExtensions {
     if (Test-IsWin16 -or Test-IsWin19) {
         # Wix
         $wixPackageVersion = Get-WixVersion
-        $wixExtensionVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
+        $wixExtensionVersion = ($vsPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
         $wixPackages = @(
             @{Package = 'WIX Toolset'; Version = $wixPackageVersion}
             @{Package = "WIX Toolset Studio $vs Extension"; Version = $wixExtensionVersion}
