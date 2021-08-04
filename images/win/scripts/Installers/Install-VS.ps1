@@ -8,7 +8,7 @@ $requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add 
 $workLoads = @(
 	"--allWorkloads --includeRecommended"
 	$requiredComponents
-	# "--remove Component.CPython3.x64"
+	"--remove Component.CPython3.x64"
 )
 $workLoadsArgument = [String]::Join(" ", $workLoads)
 
