@@ -260,6 +260,7 @@
         "version" : "2017",
         "subversion" : "15",
         "edition" : "Enterprise",
+        "channel": "release",
         "workloads": [
             "Microsoft.Net.Component.4.6.2.SDK",
             "Microsoft.Net.Component.4.6.2.TargetingPack",

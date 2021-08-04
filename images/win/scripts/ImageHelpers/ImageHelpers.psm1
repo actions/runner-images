@@ -34,11 +34,12 @@ Export-ModuleMember -Function @(
     'Get-EnvironmentVariable'
     'Invoke-PesterTests'
     'Get-VsCatalogJsonPath'
-    'Get-VisualStudioPath'
     'Install-AndroidSDKPackages'
     'Get-AndroidPackages'
     'Get-AndroidPackagesByName'
     'Get-AndroidPackagesByVersion'
+    'Get-VisualStudioInstance'
+    'Get-VisualStudioPath'
     'Get-VisualStudioPackages'
     'Get-VisualStudioComponents'
 )

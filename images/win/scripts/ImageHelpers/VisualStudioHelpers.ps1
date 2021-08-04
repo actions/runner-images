@@ -72,12 +72,18 @@ function Get-VsCatalogJsonPath {
     return Join-Path $instanceFolder.FullName "catalog.json"
 }
 
+function Get-VisualStudioInstance {
+    # Use -Prerelease and -All flags to make sure that Preview versions of VS are found correctly
+    $vsInstance = Get-VSSetupInstance -Prerelease -All | Where-Object { $_.DisplayName -match "Visual Studio" } | Select-Object -First 1
+    $vsInstance | Select-VSSetupInstance -Product *
+}
+
 function Get-VisualStudioPath {
-    return (Get-VSSetupInstance | Select-VSSetupInstance -Product *).InstallationPath
+    return (Get-VisualStudioInstance).InstallationPath
 }
 
 function Get-VisualStudioPackages {
-    return (Get-VSSetupInstance | Select-VSSetupInstance -Product *).Packages
+    return (Get-VisualStudioInstance).Packages
 }
 
 function Get-VisualStudioComponents {

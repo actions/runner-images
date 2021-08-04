@@ -14,7 +14,8 @@ $workLoadsArgument = [String]::Join(" ", $workLoads)
 
 $releaseInPath = $toolset.visualStudio.edition
 $subVersion = $toolset.visualStudio.subversion
-$bootstrapperUrl = "https://aka.ms/vs/${subVersion}/release/vs_${releaseInPath}.exe"
+$channel = $toolset.visualStudio.channel
+$bootstrapperUrl = "https://aka.ms/vs/${subVersion}/${channel}/vs_${releaseInPath}.exe"
 
 # Install VS
 Install-VisualStudio -BootstrapperUrl $bootstrapperUrl -WorkLoads $workLoadsArgument
