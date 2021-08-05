@@ -16,7 +16,7 @@ Describe "Bicep" {
     }
 }
 
-Describe "GitVersion" {
+Describe "GitVersion" -Skip:(Test-IsWin22) {
     It "gitversion is installed" {
         "gitversion /version" | Should -ReturnZeroExitCode
     }
@@ -52,7 +52,7 @@ Describe "Packer" {
     }
 }
 
-Describe "Perl" {
+Describe "Perl" -Skip:(Test-IsWin22) {
     It "Perl" {
        "perl --version" | Should -ReturnZeroExitCode
     }
