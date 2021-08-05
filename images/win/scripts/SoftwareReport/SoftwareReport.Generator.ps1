@@ -42,7 +42,7 @@ $languageTools = @(
     (Get-KotlinVersion)
     ) | Sort-Object
 )
-if (Test-IsWin16 -or Test-IsWin19) {
+if ((Test-IsWin16) -or (Test-IsWin19)) {
     $languageTools += @(
         (Get-PerlVersion)
     )
@@ -62,7 +62,7 @@ $packageManagementList = @(
     (Get-YarnVersion)
 )
 
-if (Test-IsWin16 -or Test-IsWin19) {
+if ((Test-IsWin16) -or (Test-IsWin19)) {
     $packageManagementList += @(
         (Get-CondaVersion)
     )
@@ -81,7 +81,7 @@ $projectManagementTools = @(
     (Get-GradleVersion),
     (Get-MavenVersion)
 )
-if (Test-IsWin16 -or Test-IsWin19) {
+if ((Test-IsWin16) -or (Test-IsWin19)) {
     $projectManagementTools += @(
         (Get-SbtVersion)
     )
@@ -121,7 +121,7 @@ $toolsList = @(
     (Get-ZstdVersion),
     (Get-YAMLLintVersion)
 )
-if (Test-IsWin16 -or Test-IsWin19) {
+if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
         (Get-NSISVersion),
         (Get-GoogleCloudSDKVersion),
@@ -142,7 +142,7 @@ $cliTools = @(
     (Get-GHVersion),
     (Get-HubVersion)
 )
-if (Test-IsWin16 -or Test-IsWin19) {
+if ((Test-IsWin16) -or (Test-IsWin19)) {
     $cliTools += @(
         (Get-CloudFoundryVersion)
     )
