@@ -275,13 +275,16 @@ $markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
 
 $markdown += New-MDHeader "Azure Powershell Modules" -Level 4
 $markdown += Get-PowerShellAzureModules | New-MDTable
-$markdown += @'
+if ((Test-IsWin16) -or (Test-IsWin19)) {
+    $markdown += @'
+
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
 ```
 '@
+}
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Powershell Modules" -Level 4
