@@ -154,11 +154,10 @@
                 3010
             ],
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NET48.ps1",
-                "{{ template_dir }}/scripts/Installers/Windows2016/Install-SSDT.ps1",
-                "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
+                "{{ template_dir }}/scripts/Installers/Windows2016/Install-SSDT.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
@@ -249,7 +248,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",
-                "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1"
+                "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1",
+                "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"

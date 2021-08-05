@@ -40,7 +40,5 @@ Export-ModuleMember -Function @(
     'Get-AndroidPackagesByName'
     'Get-AndroidPackagesByVersion'
     'Get-VisualStudioInstance'
-    'Get-VisualStudioPath'
-    'Get-VisualStudioPackages'
     'Get-VisualStudioComponents'
 )

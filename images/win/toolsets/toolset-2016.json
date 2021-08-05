@@ -388,6 +388,7 @@
             { "name": "tortoisesvn" },
             { "name": "swig" },
             { "name": "vswhere" },
+            { "name": "kotlinc" },
             {
                 "name": "julia",
                 "args": [ "--ia", "/DIR=C:\\Julia" ]
