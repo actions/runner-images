@@ -31,7 +31,7 @@ if (Test-IsWin22) {
 }
 
 # Add to PATH
-if (Test-IsWin16 -or Test-IsWin19) {
+if ((Test-IsWin16) -or (Test-IsWin19)) {
     Add-MachinePathItem "C:\Program Files\Git\bin"
 }
 
