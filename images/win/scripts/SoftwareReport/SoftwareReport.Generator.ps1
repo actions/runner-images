@@ -40,7 +40,6 @@ $languageTools = @(
     (Get-PythonVersion),
     (Get-RubyVersion),
     (Get-KotlinVersion)
-    ) | Sort-Object
 )
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $languageTools += @(
