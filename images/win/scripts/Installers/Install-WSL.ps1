@@ -15,4 +15,7 @@ C:\WSLUbuntu\ubuntu2004.exe install --root
 # Update repos
 bash -c "apt update && apt -y upgrade"
 
+# Export registry WSL settings
+reg export HKCU\Software\Microsoft\Windows\CurrentVersion\Lxss C:\WSLUbuntu\wsl.reg
+
 Invoke-PesterTests -TestFile "WSL"
