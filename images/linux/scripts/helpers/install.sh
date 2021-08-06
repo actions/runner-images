@@ -48,7 +48,7 @@ download_with_retries() {
 ## if ! IsPackageInstalled packageName; then
 ##     echo "packageName is not installed!"
 ## fi
-IsPackageInstalled {
+IsPackageInstalled() {
     dpkg -S $1 &> /dev/null
 }
 
