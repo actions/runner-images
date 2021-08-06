@@ -17,7 +17,7 @@ For general questions about using the virtual environments or writing your Actio
 | Windows Server 2019 | `windows-latest` or `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 | Windows Server 2016 | `windows-2016` | [windows-2016] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
 ```
-Ubuntu 16.04 has been deprecated and will be removed on September 20, 2021. Its usage is limited to current customers, no new onboardins are accepted.
+Ubuntu 16.04 has been deprecated and will be removed on September 20, 2021. Its usage is limited to current customers, no new onboardings are accepted.
 Existing workflows using `Ubuntu 16.04` should migrate to `Ubuntu 20.04` or `Ubuntu 18.04`
 ```
 
