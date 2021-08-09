@@ -4,7 +4,11 @@
 ################################################################################
 
 # Install git
-Choco-Install -PackageName git -ArgumentList '--installargs="/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /o:PathOption=CmdTools /o:BashTerminalOption=ConHost /o:EnableSymlinks=Enabled /COMPONENTS=gitlfs"'
+$gitArgs = '--installargs="/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /o:PathOption=CmdTools /o:BashTerminalOption=ConHost /o:EnableSymlinks=Enabled /COMPONENTS=gitlfs"'
+if (Test-IsWin22) {
+    $gitArgs = '--installargs="/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /o:PathOption=Cmd /o:BashTerminalOption=ConHost /o:EnableSymlinks=Enabled /COMPONENTS=gitlfs"'
+}
+Choco-Install -PackageName git -ArgumentList $gitArgs
 
 # Install hub
 Choco-Install -PackageName hub
@@ -21,14 +25,6 @@ Start-Process $gvfsInstallerPath -ArgumentList $argList -PassThru | Wait-Process
 
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
-
-# Remove Git tools from PATH
-if (Test-IsWin22) {
-    $oldPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
-    $newPath = $oldPath.Replace(";C:\Program Files\Git\usr\bin", "")
-    $newPath = $newPath.Replace(";C:\Program Files\Git\mingw64\bin", "")
-    [Environment]::SetEnvironmentVariable("PATH", $newPath, [System.EnvironmentVariableTarget]::Machine)
-}
 
 # Add to PATH
 if ((Test-IsWin16) -or (Test-IsWin19)) {
