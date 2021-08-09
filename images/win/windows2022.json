@@ -264,7 +264,7 @@
         {
             "type": "file",
             "source": "C:\\InstalledSoftware.md",
-            "destination": "{{ template_dir }}/Windows2019-Readme.md",
+            "destination": "{{ template_dir }}/Windows2022-Readme.md",
             "direction": "download"
         },
         {
