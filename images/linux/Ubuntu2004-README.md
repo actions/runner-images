@@ -2,8 +2,8 @@
 |-|
 | [Ubuntu 16.04 environment will be removed on September 20, 2021](https://github.com/actions/virtual-environments/issues/3287) |
 ***
-# Ubuntu 20.04.2 LTS
-- Linux kernel version: 5.8.0-1039-azure
+# Ubuntu 20.04.2 LTS 
+- Linux kernel version: 5.8.0-1039-azure 
 - Image Version: 20210803.0
 
 ## Installed Software
