@@ -14,7 +14,8 @@ $workLoadsArgument = [String]::Join(" ", $workLoads)
 
 $releaseInPath = $toolset.visualStudio.edition
 $subVersion = $toolset.visualStudio.subversion
-$bootstrapperUrl = "https://aka.ms/vs/${subVersion}/release/vs_${releaseInPath}.exe"
+$channel = $toolset.visualStudio.channel
+$bootstrapperUrl = "https://aka.ms/vs/${subVersion}/${channel}/vs_${releaseInPath}.exe"
 
 # Install VS
 Install-VisualStudio -BootstrapperUrl $bootstrapperUrl -WorkLoads $workLoadsArgument
@@ -30,7 +31,7 @@ if ($instanceFolders -is [array])
     exit 1
 }
 
-$vsInstallRoot = Get-VisualStudioPath
+$vsInstallRoot = (Get-VisualStudioInstance).InstallationPath
 
 # Initialize Visual Studio Experimental Instance
 & "$vsInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit

@@ -7,6 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/etc-environment.sh
 
 function filter_components_by_version {
     minimumVersion=$1
@@ -26,9 +27,7 @@ function filter_components_by_version {
 
 function get_full_ndk_version {
     majorVersion=$1
-
     ndkFullVersion=$($SDKMANAGER --list | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
-
     echo "$ndkFullVersion"
 }
 
@@ -36,7 +35,7 @@ function get_full_ndk_version {
 ANDROID_ROOT=/usr/local/lib/android
 ANDROID_SDK_ROOT=${ANDROID_ROOT}/sdk
 ANDROID_NDK_ROOT=${ANDROID_SDK_ROOT}/ndk-bundle
-SDKMANAGER=${ANDROID_SDK_ROOT}/tools/bin/sdkmanager
+SDKMANAGER=${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager
 echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
@@ -51,14 +50,12 @@ mkdir -p ${ANDROID_SDK_ROOT}
 
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
-download_with_retries https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip "." android-sdk.zip
-unzip -qq android-sdk.zip -d ${ANDROID_SDK_ROOT}
-rm -f android-sdk.zip
-
-if isUbuntu20 ; then
-    # Sdk manager doesn't work with Java > 8, set version 8 explicitly
-    sed -i "2i export JAVA_HOME=${JAVA_HOME_8_X64}" "$SDKMANAGER"
-fi
+cmdlineTools="android-cmdline-tools.zip"
+download_with_retries https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip "." $cmdlineTools
+unzip -qq $cmdlineTools -d ${ANDROID_SDK_ROOT}/cmdline-tools
+# Command line tools need to be placed in ${ANDROID_SDK_ROOT}/sdk/cmdline-tools/latest to determine SDK root
+mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/latest
+rm -f $cmdlineTools
 
 # Check sdk manager installation
 ${SDKMANAGER} --list 1>/dev/null
@@ -79,9 +76,9 @@ ANDROID_NDK_MAJOR_LTS=($(get_toolset_value '.android.ndk.lts'))
 ndkLTSFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LTS)
 
 components=("${extras[@]}" "${addons[@]}" "${additional[@]}" "ndk;$ndkLTSFullVersion")
-if isUbuntu20 ; then
+if isUbuntu20; then
     ANDROID_NDK_MAJOR_LATEST=($(get_toolset_value '.android.ndk.latest'))
-    ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST) 
+    ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
     components+=("ndk;$ndkLatestFullVersion")
 fi
 
@@ -103,7 +100,13 @@ filter_components_by_version $minimumBuildToolVersion "${availableBuildTools[@]}
 
 echo "y" | $SDKMANAGER ${components[@]}
 
+# Old skdmanager from sdk tools doesn't work with Java > 8, set version 8 explicitly
+if isUbuntu20; then
+    sed -i "2i export JAVA_HOME=${JAVA_HOME_8_X64}" ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager
+fi
+
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}
 
+reloadEtcEnvironment
 invoke_tests "Android"

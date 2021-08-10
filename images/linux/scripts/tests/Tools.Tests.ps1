@@ -8,6 +8,12 @@ Describe "azcopy" {
     }
 }
 
+Describe "Bicep" -Skip:(Test-IsUbuntu16) {
+    It "Bicep" {
+        "bicep --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Rust" {
     It "Rustup is installed" {
         "rustup --version" | Should -ReturnZeroExitCode
@@ -162,6 +168,12 @@ Describe "Mono" {
 Describe "MSSQLCommandLineTools" {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "SqlPackage" {
+    It "sqlpackage" {
+        "sqlpackage /version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -363,5 +375,37 @@ Describe "Ruby" {
         It "Gem <gemName> is installed" -TestCases $gemTestCases {
             "gem list -i '^$gemName$'" | Should -MatchCommandOutput "true"
         }
+    }
+}
+
+Describe "yq" {
+    It "yq" {
+        "yq -V" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Kotlin" {
+    It "kapt" {
+        "kapt -version"| Should -ReturnZeroExitCode
+    }
+
+    It "kotlin" {
+        "kotlin -version"| Should -ReturnZeroExitCode
+    }
+
+    It "kotlinc" {
+        "kotlinc -version"| Should -ReturnZeroExitCode
+    }
+
+    It "kotlinc-js" {
+        "kotlinc-js -version"| Should -ReturnZeroExitCode
+    }
+
+    It "kotlinc-jvm" {
+        "kotlinc-jvm -version"| Should -ReturnZeroExitCode
+    }
+
+    It "kotlin-dce-js" {
+        "kotlin-dce-js -version"| Should -ReturnZeroExitCode
     }
 }

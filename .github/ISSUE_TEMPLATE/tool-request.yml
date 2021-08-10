@@ -1,0 +1,75 @@
+name: Tool request
+description: Request a new tool or update to a tool
+title: Update/Add [tool name]
+labels: [feature request, needs triage]
+body:
+  - type: markdown
+    attributes:
+      value: "## Tool information"
+  - type: input
+    attributes:
+      label: Tool name
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Tool license
+      description: Type of licensing for desired tool.
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Add or update?
+      options:
+        - label: Add
+        - label: Update
+  - type: input
+    attributes:
+      label: Desired version
+      description: Let us know if you're requesting a specific version, dev/RC, whatever is latest, etc.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Approximate size
+      description: Leave blank if unknown.
+  - type: markdown
+    attributes:
+      value: "## If this is an add request"
+  - type: textarea
+    attributes:
+      label: Brief description of tool
+  - type: input
+    attributes:
+      label: URL for tool's homepage
+  - type: textarea
+    attributes:
+      label: Provide a basic test case to validate the tool's functionality. 
+      description: This will be automatically formatted into code.
+      render: bash
+  - type: checkboxes
+    attributes:
+      label: Virtual environments affected
+      options:
+        - label: Ubuntu 16.04
+        - label: Ubuntu 18.04
+        - label: Ubuntu 20.04
+        - label: macOS 10.15
+        - label: macOS 11
+        - label: Windows Server 2016
+        - label: Windows Server 2019
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Can this tool be installed during the build?
+      description: If so, please provide a description with required steps. This will be automatically formatted into code.
+      render: bash
+  - type: input
+    attributes:
+      label: Tool installation time in runtime
+      description: How long does it take to install the tool?
+  - type: input
+    attributes:
+      label: Are you willing to submit a PR?
+      description: We accept contributions!

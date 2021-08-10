@@ -1,5 +1,5 @@
 function Get-AnsibleVersion {
-    $ansibleVersion = ansible --version | Select-Object -First 1 | Take-OutputPart -Part 1
+    $ansibleVersion = (ansible --version)[0] -replace "[^\d.]"
     return "Ansible $ansibleVersion"
 }
 
@@ -24,6 +24,12 @@ function Get-BazeliskVersion {
     $result = Get-CommandResult "bazelisk version" -Multiline
     $bazeliskVersion = $result.Output | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
     return "Bazelisk $bazeliskVersion"
+}
+
+function Get-BicepVersion {
+    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $bicepVersion = $Matches.Version
+    return "Bicep $bicepVersion"
 }
 
 function Get-CodeQLBundleVersion {
@@ -271,4 +277,9 @@ function Get-YamllintVersion {
 function Get-ZstdVersion {
     $zstdVersion = zstd --version | Take-OutputPart -Part 1 -Delimiter "v" | Take-OutputPart -Part 0 -Delimiter ","
     return "zstd $zstdVersion (homebrew)"
+}
+
+function Get-YqVersion {
+    $yqVersion = ($(yq -V) -Split " ")[-1]
+    return "yq $yqVersion"
 }

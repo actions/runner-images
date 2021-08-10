@@ -24,8 +24,8 @@ Describe "Git" {
     }
 }
 
-Describe "GitVersion" {
-    It "gitversion is installed" {
-        "gitversion /version" | Should -ReturnZeroExitCode
+Describe "GVFS" {
+    It "GVFS is installed" {
+        "gvfs --version" | Should -ReturnZeroExitCode
     }
 }

@@ -502,6 +502,16 @@ function Get-SwigVersion {
     return "Swig $swigVersion"
 }
 
+function Get-BicepVersion {
+    $bicepVersion = Run-Command "bicep --version" | Take-Part -Part 3
+    return "Bicep CLI $bicepVersion"
+}
+
+function Get-KotlinVersion {
+    $kotlinVersion = Run-Command "kotlin -version" | Take-Part -Part 2
+    return "kotlin $kotlinVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{

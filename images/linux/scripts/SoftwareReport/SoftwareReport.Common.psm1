@@ -44,13 +44,6 @@ function Get-ClangVersions {
     return "Clang " + $clangVersions
 }
 
-function Get-LLVMInfo {
-    $clangVersions = Get-ClangToolVersions -ToolName "clang"
-    $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "llvm"
-    return "LLVM components: Clang $clangFormatVersions, Clang-format $clangFormatVersions (apt source: $aptSourceRepo)"
-}
-
 function Get-ClangFormatVersions {
     $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
     return "Clang-format " + $clangFormatVersions
@@ -122,6 +115,11 @@ function Get-RubyVersion {
 function Get-SwiftVersion {
     $swiftVersion = swift --version | Out-String | Take-OutputPart -Part 2
     return "Swift $swiftVersion"
+}
+
+function Get-KotlinVersion {
+    $kotlinVersion = kotlin -version | Out-String | Take-OutputPart -Part 2
+    return "Kotlin $kotlinVersion"
 }
 
 function Get-JuliaVersion {
@@ -355,6 +353,8 @@ function Get-AptPackages {
         if ($Null -eq $version) {
             $version = $(dpkg-query -W -f '${Version}' "$pkg*")
         }
+        
+        $version = $version -replace '~','\~'
 
         $output += [PSCustomObject] @{
             Name    = $pkg
