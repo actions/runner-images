@@ -10,4 +10,4 @@ $InstallerName = "WindowsApplicationDriver.msi"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Install-Binary -Url $InstallerUrl -Name $InstallerName
 
-Invoke-PesterTests -TestFile "WinAppDriver"
+Invoke-PesterTests -TestFile "WinAppDriver" -TestName "WinAppDriver"

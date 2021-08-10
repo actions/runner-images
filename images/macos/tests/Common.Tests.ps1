@@ -92,3 +92,9 @@ Describe "Swig" {
         "swig -version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Bicep" {
+    It "Bicep" {
+        "bicep --version" | Should -ReturnZeroExitCode
+    }
+}

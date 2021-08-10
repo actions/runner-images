@@ -7,7 +7,10 @@ source $HELPER_SCRIPTS/etc-environment.sh
 GRAALVM_ROOT=/usr/local/graalvm
 export GRAALVM_11_ROOT=$GRAALVM_ROOT/graalvm-ce-java11*
 
-url=$(curl -s https://api.github.com/repos/graalvm/graalvm-ce-builds/releases/latest | jq -r '.assets[].browser_download_url | select(contains("graalvm-ce-java11-linux-amd64"))')
+json=$(curl -s "https://api.github.com/repos/graalvm/graalvm-ce-builds/releases")
+latest_tag=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | tail -1)
+url=$(echo $json | jq -r ".[] | select(.tag_name==\"${latest_tag}\").assets[].browser_download_url | select(contains(\"graalvm-ce-java11-linux-amd64\") and endswith(\"tar.gz\"))")
+
 download_with_retries "$url" "/tmp" "graalvm-archive.tar.gz"
 mkdir $GRAALVM_ROOT
 tar -xzf "/tmp/graalvm-archive.tar.gz" -C $GRAALVM_ROOT

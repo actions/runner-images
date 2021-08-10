@@ -49,15 +49,11 @@ $runtimesList = @(
         (Get-Python3Version),
         (Get-RubyVersion),
         (Get-SwiftVersion),
-        (Get-JuliaVersion)
+        (Get-JuliaVersion),
+        (Get-KotlinVersion),
+        (Get-ClangVersions),
+        (Get-ClangFormatVersions)
         ) 
-
-if (Test-IsUbuntu20) {
-    $runtimesList += (Get-LLVMInfo)
-} else {
-    $runtimesList += (Get-ClangVersions)
-    $runtimesList += (Get-ClangFormatVersions)
-}
 
 $markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
 
@@ -123,6 +119,7 @@ $toolsList = @(
     (Get-HHVMVersion),
     (Get-SVNVersion),
     (Get-JqVersion),
+    (Get-YqVersion),
     (Get-KindVersion),
     (Get-KubectlVersion),
     (Get-KustomizeVersion),
@@ -144,8 +141,9 @@ $toolsList = @(
 
 if (-not (Test-IsUbuntu16)) {
     $toolsList += @(
-        (Get-PodManVersion),
+        (Get-BicepVersion),
         (Get-BuildahVersion),
+        (Get-PodManVersion),
         (Get-SkopeoVersion),
         (Get-YamllintVersion)
     )

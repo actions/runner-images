@@ -87,10 +87,7 @@
         ],
         "additional_tools": [
             "cmake;3.10.2.4988404",
-            "cmake;3.18.1",
-            "patcher;v4",
-            "platform-tools",
-            "cmdline-tools;latest"
+            "cmake;3.18.1"
         ],
         "ndk": {
             "lts": "21",
@@ -107,11 +104,12 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "5.9.0"
+                "6.1.0"
             ],
             "zip_versions": [
                 "3.1.0",
-                "4.4.0"
+                "4.4.0",
+                "5.9.0"
             ]
         }
     ],
@@ -225,7 +223,7 @@
             "cmd": "yamllint"
         },
         {
-            "package": "ansible-base",
+            "package": "ansible-core",
             "cmd": "ansible"
         }
     ],

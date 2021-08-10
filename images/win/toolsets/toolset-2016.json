@@ -121,7 +121,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "5.9.0"
+                "6.1.0"
             ],
             "zip_versions": [
                 "1.0.0",
@@ -134,7 +134,8 @@
                 "4.3.0",
                 "4.4.0",
                 "4.7.0",
-                "5.5.0"
+                "5.5.0",
+                "5.9.0"
             ]
         }
     ],
@@ -165,8 +166,7 @@
         "additional_tools": [
             "cmake;3.10.2.4988404",
             "cmake;3.18.1",
-            "patcher;v4",
-            "cmdline-tools;latest"
+            "patcher;v4"
         ],
         "ndk": {
             "lts": "21",
@@ -181,6 +181,7 @@
         "mingw": [
             {
                 "arch": "mingw-w64-x86_64",
+                "exec_dir": "mingw64",
                 "runtime_packages": [
                     {
                         "name": "clang",
@@ -214,6 +215,7 @@
             },
             {
                 "arch": "mingw-w64-i686",
+                "exec_dir": "mingw32",
                 "runtime_packages": [
                     {
                         "name": "clang",
@@ -246,10 +248,19 @@
             }
         ]
     },
+    "windowsFeatures": [
+        { "name": "NET-Framework-Features", "includeAllSubFeatures": true },
+        { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
+        { "name": "BITS", "includeAllSubFeatures": true },
+        { "name": "DSC-Service" },
+        { "name": "FS-iSCSITarget-Server", "includeAllSubFeatures": true, "includeManagementTools": true },
+        { "name": "Containers" }
+    ],
     "visualStudio": {
         "version" : "2017",
         "subversion" : "15",
         "edition" : "Enterprise",
+        "channel": "release",
         "workloads": [
             "Microsoft.Net.Component.4.6.2.SDK",
             "Microsoft.Net.Component.4.6.2.TargetingPack",
@@ -338,11 +349,55 @@
             "cmd": "yamllint --version"
         }
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "yarn", "test": "yarn --version" },
+            { "name": "newman", "test": "newman --version" },
+            { "name": "lerna", "test": "lerna --version" },
+            { "name": "typescript", "test": "tsc --version" },
+            { "name": "cordova" },
+            { "name": "grunt-cli", "test": "grunt --version" },
+            { "name": "gulp-cli", "test": "gulp --version" },
+            { "name": "parcel-bundler" },
+            { "name": "webpack" },
+            { "name": "webpack-cli" },
+            { "name": "node-sass" }
+        ]
+    },
     "dotnet": {
         "versions": [
             "2.1",
             "3.1",
             "5.0"
+        ],
+        "warmup": true
+    },
+    "choco": {
+        "common_packages": [
+            { "name": "7zip.install" },
+            { "name": "aria2" },
+            { "name": "azcopy10" },
+            { "name": "Bicep" },
+            { "name": "gitversion.portable" },
+            { "name": "innosetup" },
+            { "name": "jq" },
+            { "name": "NuGet.CommandLine" },
+            { "name": "openssl.light" },
+            { "name": "packer" },
+            { "name": "strawberryperl" },
+            { "name": "pulumi" },
+            { "name": "tortoisesvn" },
+            { "name": "swig" },
+            { "name": "vswhere" },
+            { "name": "kotlinc" },
+            {
+                "name": "julia",
+                "args": [ "--ia", "/DIR=C:\\Julia" ]
+            },
+            {
+                "name": "cmake.install",
+                "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
+            }
         ]
     }
 }

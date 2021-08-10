@@ -15,10 +15,11 @@ if isUbuntu20 ; then
     /tmp/aws/install -i /usr/local/aws-cli -b /usr/local/bin
 fi
 
+# The installation should be run after python3 is installed as aws-cli V1 dropped python2 support
 if isUbuntu16 || isUbuntu18 ; then
     download_with_retries "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" "/tmp" "awscli-bundle.zip"
     unzip -qq /tmp/awscli-bundle.zip -d /tmp
-    /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+    python3 /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 fi
 
 download_with_retries "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" "/tmp" "session-manager-plugin.deb"

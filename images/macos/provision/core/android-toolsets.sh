@@ -33,38 +33,27 @@ ANDROID_ADDON_LIST=($(get_toolset_value '.android."addon-list"[]'))
 ANDROID_ADDITIONAL_TOOLS=($(get_toolset_value '.android."additional-tools"[]'))
 ANDROID_NDK_MAJOR_LTS=($(get_toolset_value '.android.ndk.lts'))
 ANDROID_NDK_MAJOR_LATEST=($(get_toolset_value '.android.ndk.latest'))
-# Get the latest command line tools from https://developer.android.com/studio/index.html
-# Release note: https://developer.android.com/studio/releases/sdk-tools.html
-ANDROID_OSX_SDK_LOCATION="https://dl.google.com/android/repository/sdk-tools-darwin-3859397.zip"
+# Get the latest command line tools from https://developer.android.com/studio#cmdline-tools
+ANDROID_OSX_SDK_URL="https://dl.google.com/android/repository/commandlinetools-mac-7302050_latest.zip"
 ANDROID_HOME=$HOME/Library/Android/sdk
 ANDROID_OSX_SDK_FILE=tools-macosx.zip
 
 pushd $HOME
 
-# Prevent the warning of sdkmanager
-mkdir $HOME/.android
-echo "count=0" >> $HOME/.android/repositories.cfg
+echo "Downloading android command line tools..."
+download_with_retries $ANDROID_OSX_SDK_URL "." $ANDROID_OSX_SDK_FILE
 
-echo "Downloading android sdk..."
-curl -L -o $ANDROID_OSX_SDK_FILE $ANDROID_OSX_SDK_LOCATION
-
-echo "Uncompressing android sdk..."
-unzip -q $ANDROID_OSX_SDK_FILE && rm -f $ANDROID_OSX_SDK_FILE
-rm -rf $HOME/Library/Android/sdk
+echo "Uncompressing android command line tools..."
 mkdir -p $HOME/Library/Android/sdk
+unzip -q $ANDROID_OSX_SDK_FILE -d $HOME/Library/Android/sdk/cmdline-tools
+# Command line tools need to be placed in $HOME/Library/Android/sdk/cmdline-tools/latest to function properly
+mv $HOME/Library/Android/sdk/cmdline-tools/cmdline-tools $HOME/Library/Android/sdk/cmdline-tools/latest
+rm -f $ANDROID_OSX_SDK_FILE
 
 echo ANDROID_HOME is $ANDROID_HOME
-mv tools $ANDROID_HOME
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest:$ANDROID_HOME/cmdline-tools/latest/bin
 
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
-
-SDKMANAGER=$ANDROID_HOME/tools/bin/sdkmanager
-
-# Mark the different Android licenses as accepted
-mkdir -p $ANDROID_HOME/licenses
-echo "8933bad161af4178b1185d1a37fbf41ea5269c55
-d56f5187479451eabf01fb78af6dfcb131a6481e" >> $ANDROID_HOME/licenses/android-sdk-license
-echo "84831b9409646a918e30573bab4c9c91346d8abd" >> $ANDROID_HOME/licenses/android-sdk-preview-license
+SDKMANAGER=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
 
 echo "Installing latest tools & platform tools..."
 echo y | $SDKMANAGER "tools" "platform-tools"
@@ -80,14 +69,14 @@ ln -s $ANDROID_HOME/ndk/$ndkLtsLatest $ANDROID_HOME/ndk-bundle
 ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ndkLatest
 echo "export ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> "${HOME}/.bashrc"
 
-availablePlatforms=($(${ANDROID_HOME}/tools/bin/sdkmanager --list | grep "platforms;android-" | cut -d"|" -f 1 | sort -u))
+availablePlatforms=($($SDKMANAGER --list | grep "platforms;android-" | cut -d"|" -f 1 | sort -u))
 filter_components_by_version $ANDROID_PLATFORM "${availablePlatforms[@]}"
 
-allBuildTools=($(${ANDROID_HOME}/tools/bin/sdkmanager --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
+allBuildTools=($($SDKMANAGER --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
 filter_components_by_version $ANDROID_BUILD_TOOL "${availableBuildTools[@]}"
 
-echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager ${components[@]}
+echo "y" | $SDKMANAGER ${components[@]}
 
 for extra_name in "${ANDROID_EXTRA_LIST[@]}"
 do
@@ -96,10 +85,13 @@ do
 done
 
 # Intel x86 Emulator Accelerator (HAXM installer)
-# see Issue 31164 notes
-# Command needs to be run under sudo.
-chmod +x $ANDROID_HOME/extras/intel/Hardware_Accelerated_Execution_Manager/silent_install.sh
-sudo $ANDROID_HOME/extras/intel/Hardware_Accelerated_Execution_Manager/silent_install.sh
+# The Android Emulator uses the built-in Hypervisor.Framework by default, and falls back to using Intel HAXM if Hypervisor.Framework fails to initialize
+# https://developer.android.com/studio/run/emulator-acceleration#vm-mac
+# The installation doesn't work properly on macOS Big Sur, /dev/HAX is not created
+if is_Less_BigSur; then
+    chmod +x $ANDROID_HOME/extras/intel/Hardware_Accelerated_Execution_Manager/silent_install.sh
+    sudo $ANDROID_HOME/extras/intel/Hardware_Accelerated_Execution_Manager/silent_install.sh
+fi
 
 for addon_name in "${ANDROID_ADDON_LIST[@]}"
 do

@@ -164,8 +164,7 @@
         ],
         "additional-tools": [
             "cmake;3.10.2.4988404",
-            "cmake;3.18.1",
-            "cmdline-tools;latest"
+            "cmake;3.18.1"
         ],
         "ndk": {
             "lts": "21",
@@ -176,7 +175,7 @@
         {
             "name": "Az",
             "versions": [
-                "5.9.0"
+                "6.1.0"
             ]
         },
         {"name": "MarkdownPS"},
@@ -197,6 +196,7 @@
             "gnu-tar",
             "go@1.15",
             "helm",
+            "kotlin",
             "libpq",
             "llvm",
             "p7zip",

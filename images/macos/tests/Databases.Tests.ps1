@@ -1,4 +1,4 @@
-Describe "Mongo" {
+Describe "MongoDB" {
     It "mongodb" {
         "mongo --version" | Should -ReturnZeroExitCode
         "mongod --version"| Should -ReturnZeroExitCode

@@ -2,13 +2,11 @@
 source ~/utils/utils.sh
 
 # MongoDB object-value database
-# installs last version of MongoDB Community Edition
-# https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/v
+# Install latest release version of MongoDB Community Edition
+# https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x
 
 echo "Installing mongodb..."
-
 brew tap mongodb/brew
-brew_smart_install "mongodb-community@4.4"
-ln -sf $(brew --prefix mongodb-community@4.4)/bin/* /usr/local/bin/
+brew_smart_install "mongodb-community@5.0"
 
-invoke_tests "Databases" "Mongo"
+invoke_tests "Databases" "MongoDB"

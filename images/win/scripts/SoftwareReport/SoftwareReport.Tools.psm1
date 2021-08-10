@@ -1,3 +1,9 @@
+function Get-Aria2Version {
+    (aria2c -v | Out-String) -match "(?<version>(\d+\.){1,}\d+)" | Out-Null
+    $aria2Version = $Matches.Version
+    return "aria2 $aria2Version"
+}
+
 function Get-AzCosmosDBEmulatorVersion {
     $regKey = gci HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\* | gp | ? { $_.DisplayName -eq 'Azure Cosmos DB Emulator' }
     $installDir = $regKey.InstallLocation
@@ -16,6 +22,12 @@ function Get-BazeliskVersion {
     ((cmd /c "bazelisk version 2>&1") | Out-String) -match "Bazelisk version: v(?<version>\d+\.\d+\.\d+)" | Out-Null
     $bazeliskVersion = $Matches.Version
     return "Bazelisk $bazeliskVersion"
+}
+
+function Get-BicepVersion {
+    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $bicepVersion = $Matches.Version
+    return "Bicep $bicepVersion"
 }
 
 function Get-RVersion {
@@ -59,6 +71,11 @@ function Get-GitLFSVersion {
     $(git-lfs version) -match "git-lfs\/(?<version>\d+\.\d+\.\d+)" | Out-Null
     $gitLfsVersion = $Matches.Version
     return "Git LFS $gitLfsVersion"
+}
+
+function Get-GVFSVersion {
+    $gvfsVersion = (Get-Command gvfs).Version
+    return "GVFS $gvfsVersion"
 }
 
 function Get-InnoSetupVersion {

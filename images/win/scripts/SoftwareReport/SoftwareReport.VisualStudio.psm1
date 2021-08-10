@@ -1,9 +1,9 @@
 function Get-VisualStudioVersion {
-    $vsVersion = vswhere -format json | ConvertFrom-Json
+    $vsInstance = Get-VisualStudioInstance
     [PSCustomObject]@{
-        Name = $vsVersion.displayName
-        Version = $vsVersion.installationVersion
-        Path = $vsVersion.installationPath
+        Name = $vsInstance.DisplayName
+        Version = $vsInstance.InstallationVersion
+        Path = $vsInstance.InstallationPath
     }
 }
 
@@ -20,6 +20,8 @@ function Get-WDKVersion {
 }
 
 function Get-VisualStudioExtensions {
+    $vsPackages = (Get-VisualStudioInstance).Packages
+
     # Additional vsixs
     $toolset = Get-ToolsetContent
     $vsixUrls = $toolset.visualStudio.vsix
@@ -27,7 +29,8 @@ function Get-VisualStudioExtensions {
     {
         $vsixs = $vsixUrls | ForEach-Object {
             $vsix = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
-            $vsixVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match $vsix.VsixId -and $_.type -eq 'vsix'}).Version
+            
+            $vsixVersion = ($vsPackages | Where-Object {$_.Id -match $vsix.VsixId -and $_.type -eq 'vsix'}).Version
             @{
                 Package = $vsix.ExtensionName
                 Version = $vsixVersion
@@ -37,7 +40,7 @@ function Get-VisualStudioExtensions {
 
     # SSDT extensions for VS2017
     $vs = (Get-VisualStudioVersion).Name.Split()[-1]
-    if ($vs -eq "2017")
+    if (Test-IsWin16)
     {
         $analysisPackageVersion = Get-VSExtensionVersion -packageName '04a86fc2-dbd5-4222-848e-911638e487fe'
         $reportingPackageVersion = Get-VSExtensionVersion -packageName '717ad572-c4b7-435c-c166-c2969777f718'
@@ -49,21 +52,30 @@ function Get-VisualStudioExtensions {
         )
     }
 
-    # Wix
-    $wixPackageVersion = Get-WixVersion
-    $wixExtensionVersion = (Get-VisualStudioPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
+    if ((Test-IsWin16) -or (Test-IsWin19)) {
+        # Wix
+        $wixPackageVersion = Get-WixVersion
+        $wixExtensionVersion = ($vsPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
+        $wixPackages = @(
+            @{Package = 'WIX Toolset'; Version = $wixPackageVersion}
+            @{Package = "WIX Toolset Studio $vs Extension"; Version = $wixExtensionVersion}
+        )
 
-    # WDK
-    $wdkPackageVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
-    $wdkExtensionVersion = Get-WDKVersion
+        # WDK
+        $wdkPackageVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
+        $wdkExtensionVersion = Get-WDKVersion
+        $wdkPackages = @(
+            @{Package = 'Windows Driver Kit'; Version = $wdkPackageVersion}
+            @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
+        )
+    }
+    
 
     $extensions = @(
         $vsixs
         $ssdtPackages
-        @{Package = 'Windows Driver Kit'; Version = $wdkPackageVersion}
-        @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
-        @{Package = 'WIX Toolset'; Version = $wixPackageVersion}
-        @{Package = "WIX Toolset Studio $vs Extension"; Version = $wixExtensionVersion}
+        $wixPackages
+        $wdkPackages
     )
 
     $extensions | Foreach-Object {
