@@ -347,6 +347,10 @@
         {
             "package": "yamllint",
             "cmd": "yamllint --version"
+        },
+        {
+            "package": "oci-cli",
+            "cmd": "oci --version"
         }
     ],
     "npm": {

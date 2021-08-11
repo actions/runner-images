@@ -225,6 +225,10 @@
         {
             "package": "ansible-core",
             "cmd": "ansible"
+        },
+        {
+            "package": "oci-cli",
+            "cmd": "oci"
         }
     ],
     "dotnet": {

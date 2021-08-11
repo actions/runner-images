@@ -90,6 +90,7 @@
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 1.14.0
 - Hub CLI 2.14.2
+- Oracle Cloud Infrastructure CLI 3.0.0
 
 ### Rust Tools
 - Cargo 1.54.0
@@ -576,6 +577,3 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:65d94ee17565554801c4ba0a9b153ee90b6a25bcdb5395356d8f0c452c002203  | 2021-07-13 |
 | mcr.microsoft.com/windows/nanoserver:10.0.14393.953                       | sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268  | 2017-03-08 |
 | mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:c6b1c3fecf651e7629f96874393476ba00cda2a1c2090314fdfe384267cd584f  | 2021-07-09 |
-
-
-

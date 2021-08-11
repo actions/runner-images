@@ -105,8 +105,9 @@
 - GitHub CLI 1.14.0
 - Google Cloud SDK 351.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 6.0.9
-- OpenShift CLI 4.8.4
+- Netlify CLI 5.4.9
+- OpenShift CLI 4.8.3
+- Oracle Cloud Infrastructure CLI 3.0.0
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
@@ -354,5 +355,3 @@
 | xz-utils          | 5.2.2-1.3                         |
 | zip               | 3.0-11build1                      |
 | zsync             | 0.6.2-3ubuntu1                    |
-
-

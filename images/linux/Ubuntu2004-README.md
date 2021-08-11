@@ -109,6 +109,7 @@
 - Hub CLI 2.14.2
 - Netlify CLI 6.0.9
 - OpenShift CLI 4.8.3
+- Oracle Cloud Infrastructure CLI 3.0.0
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
@@ -364,5 +365,3 @@
 | xz-utils               | 5.2.4-1ubuntu1                    |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
-
-
