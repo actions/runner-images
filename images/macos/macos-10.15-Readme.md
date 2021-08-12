@@ -6,7 +6,7 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1323)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210801.1
+- Image Version: 20210808.1
 
 ## Installed Software
 ### Language and Runtime
@@ -20,7 +20,7 @@
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0) 11.2.0 - available by `gfortran-11` alias
-- Go 1.15.14
+- Go 1.15.15
 - julia 1.6.2
 - kotlin 1.5.21-release-314
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
@@ -39,15 +39,15 @@
 - Carthage 0.38.0
 - CocoaPods 1.10.2
 - Composer 2.1.5
-- Homebrew 3.2.5
+- Homebrew 3.2.6
 - Miniconda 4.10.3
 - NPM 6.14.14
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.1.3 (python 3.9)
-- Pipx 0.16.3
+- Pipx 0.16.4
 - RubyGems 3.2.25
-- Vcpkg 2021 (build from master \<261c458>)
+- Vcpkg 2021 (build from master \<57bd710>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -71,7 +71,7 @@
 - Curl 7.78.0
 - Git LFS: 2.13.3
 - Git: 2.32.0
-- GitHub CLI: 1.13.1
+- GitHub CLI: 1.14.0
 - GNU parallel 20210622
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
@@ -95,16 +95,16 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.82
+- Aliyun CLI 3.0.85
 - App Center CLI 2.10.0
-- AWS CLI 2.2.25
+- AWS CLI 2.2.27
 - AWS SAM CLI 1.27.2
 - AWS Session Manager CLI 1.2.234.0
-- Azure CLI 2.26.1
+- Azure CLI 2.27.0
 - Bicep CLI 0.4.451
 - Cabal 3.4.0.0
 - Cmake 3.21.1
-- Fastlane 2.189.0
+- Fastlane 2.191.0
 - GHC 9.0.1
 - GHCup v0.1.16.1
 - Stack 2.7.3
@@ -114,15 +114,15 @@
 
 ### Linters
 - SwiftLint 0.43.1
-- yamllint 1.26.1
+- yamllint 1.26.2
 
 ### Browsers
 - Safari 14.1.2 (15611.3.10.1.5)
 - SafariDriver 14.1.2 (15611.3.10.1.5)
-- Google Chrome 92.0.4515.107 
+- Google Chrome 92.0.4515.131 
 - ChromeDriver 92.0.4515.107
-- Microsoft Edge 92.0.902.62 
-- MSEdgeDriver 92.0.902.62
+- Microsoft Edge 92.0.902.67 
+- MSEdgeDriver 92.0.902.67
 - Mozilla Firefox 90.0.2
 - geckodriver 0.29.1
 
@@ -134,13 +134,13 @@
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
 ### Java
-| Version              | Vendor        | Environment Variable |
-| -------------------- | ------------- | -------------------- |
-| 8.0.292+10 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.11+9            | Adopt OpenJDK | JAVA_HOME_11_X64     |
-| 12.0.2+10.3          | Adopt OpenJDK | JAVA_HOME_12_X64     |
-| 13.0.2+8.1           | Adopt OpenJDK | JAVA_HOME_13_X64     |
-| 14.0.2+12            | Adopt OpenJDK | JAVA_HOME_14_X64     |
+| Version             | Vendor        | Environment Variable |
+| ------------------- | ------------- | -------------------- |
+| 8.0.302+8 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.12+7           | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 12.0.2+10.3         | Adopt OpenJDK | JAVA_HOME_12_X64     |
+| 13.0.2+8.1          | Adopt OpenJDK | JAVA_HOME_13_X64     |
+| 14.0.2+12           | Adopt OpenJDK | JAVA_HOME_14_X64     |
 
 ### Cached Tools
 #### Ruby
@@ -171,8 +171,8 @@
 #### Go
 - 1.13.15
 - 1.14.15
-- 1.15.14
-- 1.16.6
+- 1.15.15
+- 1.16.7
 
 ### Rust Tools
 - Cargo 1.54.0
