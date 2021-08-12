@@ -9,7 +9,7 @@ function Get-OSVersion {
 }
 
 function Get-BashVersion {
-    $version = cmd /c 'bash -c ''echo ${BASH_VERSION}'''
+    $version = bash --% -c 'echo ${BASH_VERSION}'
     return "Bash $version"
 }
 
