@@ -86,7 +86,7 @@
 - OpenSSL 1.1.1f  31 Mar 2020
 - Packer 1.7.4
 - PhantomJS 2.1.1
-- Podman 3.2.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
+- Podman 3.2.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable) 
 - Pulumi 3.9.1
 - R 4.1.0
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
