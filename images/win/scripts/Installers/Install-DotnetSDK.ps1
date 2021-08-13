@@ -28,19 +28,15 @@ function Get-SDKVersionsToInstall (
         $sdks += $release.'sdks'
     }
 
-    $sdkVersions = @()
-    $sdks | ForEach-Object { $sdkVersions += $_.'version' }
-    $sortedSdkVersions = $sdkVersions | Sort-Object { [Version] $_ } -Unique
+    $sortedSdkVersions = $sdks.version | Sort-Object { [Version] $_ } -Unique
 
-    # return the latest patch version for every feature version
-    return $sortedSdkVersions | Where-Object {
-        $nextItemIndex = [array]::IndexOf($sortedSdkVersions, $_) + 1
-
-        if ($sortedSdkVersions.Length -eq $nextItemIndex) {
-            $true
-        } else {
-            $_.substring(0, 5) -ne ($sortedSdkVersions[$nextItemIndex]).substring(0, 5)
-        }
+    if (Test-IsWin22)
+    {
+        return $sortedSdkVersions | Group-Object { $_.substring(0, 5) } | Foreach-Object { $_.Group[-1] }
+    }
+    else 
+    {
+        return $sortedSdkVersions
     }
 }
 
