@@ -142,8 +142,16 @@
     ],
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11", "13"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11", "13" ]
+            }
         ]
     },
     "android": {
