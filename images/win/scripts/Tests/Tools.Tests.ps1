@@ -81,7 +81,7 @@ Describe "KubernetesTools" {
     }
 }
 
-Describe "Mingw64" -Skip:(Test-IsWin22) {
+Describe "Mingw64" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "gcc" }
         @{ ToolName = "g++" }
