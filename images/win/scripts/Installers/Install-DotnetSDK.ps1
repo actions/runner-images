@@ -34,10 +34,8 @@ function Get-SDKVersionsToInstall (
     {
         return $sortedSdkVersions | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } | Foreach-Object { $_.Group[-1] }
     }
-    else 
-    {
-        return $sortedSdkVersions
-    }
+
+    return $sortedSdkVersions
 }
 
 function Invoke-Warmup (
