@@ -9,20 +9,14 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 # Ubuntu 20 doesn't support EOL versions
-LATEST_DOTNET_PACKAGES=$(get_toolset_value '.dotnet.aptPackages[]')
+APT_PACKAGES=$(get_toolset_value '.dotnet.aptPackages[]')
 DOTNET_VERSIONS=$(get_toolset_value '.dotnet.versions[]')
 
 # Disable telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
-    echo "Determing if .NET Core ($latest_package) is installed"
-    if ! IsPackageInstalled $latest_package; then
-        echo "Could not find .NET Core ($latest_package), installing..."
-        apt-get install $latest_package -y
-    else
-        echo ".NET Core ($latest_package) is already installed"
-    fi
+for apt_package in ${APT_PACKAGES[@]}; do
+    apt-get install $apt_package -y
 done
 
 # Get list of all released SDKs from channels which are not end-of-life or preview

@@ -229,8 +229,7 @@
     ],
     "dotnet": {
         "aptPackages": [
-            "dotnet-sdk-3.1",
-            "dotnet-sdk-5.0"
+            "dotnet-host"
         ],
         "versions": [
             "2.1",
