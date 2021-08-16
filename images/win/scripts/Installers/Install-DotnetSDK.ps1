@@ -32,7 +32,7 @@ function Get-SDKVersionsToInstall (
 
     if (Test-IsWin22)
     {
-        return $sortedSdkVersions | Group-Object { $_.substring(0, 5) } | Foreach-Object { $_.Group[-1] }
+        return $sortedSdkVersions | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } | Foreach-Object { $_.Group[-1] }
     }
     else 
     {
