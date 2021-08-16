@@ -3,8 +3,8 @@
 | [[macOS, Windows] .NET SDK pre-installation policy will be changed on September, 6](https://github.com/actions/virtual-environments/issues/3809) |
 ***
 # Microsoft Windows Server 2019 Datacenter
-- OS Version: 10.0.17763 Build 2061
-- Image Version: 20210803.1
+- OS Version: 10.0.17763 Build 2114
+- Image Version: 20210815.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -12,9 +12,10 @@
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
-- Go 1.15.14
+- Go 1.15.15
 - Julia 1.6.2
-- Node 14.17.4
+- Kotlin 1.5.20
+- Node 14.17.5
 - Perl 5.32.1
 - PHP 8.0.9
 - Python 3.7.9
@@ -26,11 +27,11 @@
 - Helm 3.6.3
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.14
-- NuGet 5.10.0.7240
-- pip 21.2.2 (python 3.7)
-- Pipx 0.16.3
+- NuGet 5.11.0.10
+- pip 21.2.4 (python 3.7)
+- Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<a863c84>)
+- Vcpkg  (build from master \<6bc4362>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -47,49 +48,50 @@
 
 ### Tools
 - 7zip 19.00
+- aria2 1.35.0
 - azcopy 10.11.0
 - Bazel 4.1.0
 - Bazelisk 1.10.1
-- Bicep 0.4.451
+- Bicep 0.4.613
 - Cabal 3.4.0.0
 - CMake 3.21.1
-- CodeQL Action Bundle 2.5.8
+- CodeQL Action Bundle 2.5.9
 - Docker 20.10.6
 - Docker-compose 1.29.2
 - ghc 9.0.1
 - Git 2.32.0
 - Git LFS 2.13.3
-- Google Cloud SDK 350.0.0
+- Google Cloud SDK 352.0.0
 - GVFS 1.0.21085.9
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.21.3
+- Kubectl 1.22.0
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.2.4
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.4
-- Pulumi v3.9.1
-- R 4.1.0
+- Pulumi v3.10.1
+- R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
-- yamllint 1.26.1
+- yamllint 1.26.2
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.83
-- AWS CLI 2.2.25
+- Alibaba Cloud CLI 3.0.85
+- AWS CLI 2.2.29
 - AWS SAM CLI 1.27.2
 - AWS Session Manager CLI 1.2.234.0
-- Azure CLI 2.27.0
-- Azure DevOps CLI extension 0.18.0
+- Azure CLI 2.27.1
+- Azure DevOps CLI extension 0.20.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 1.13.1
+- GitHub CLI 1.14.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -109,11 +111,11 @@
 ### Browsers and webdrivers
 - Google Chrome 92.0.4515.131
 - Chrome Driver 92.0.4515.107
-- Microsoft Edge 92.0.902.62
-- Microsoft Edge Driver 92.0.902.62
-- Mozilla Firefox 90.0.2
+- Microsoft Edge 92.0.902.73
+- Microsoft Edge Driver 92.0.902.73
+- Mozilla Firefox 91.0
 - Gecko Driver 0.29.1
-- IE Driver 3.150.1.0
+- IE Driver 3.150.1.1
 
 #### Environment variables
 | Name            | Value                              |
@@ -123,11 +125,11 @@
 | GECKOWEBDRIVER  | C:\SeleniumWebDrivers\GeckoDriver  |
 
 ### Java
-| Version              | Vendor        | Environment Variable |
-| -------------------- | ------------- | -------------------- |
-| 8.0.292+10 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.11+9            | Adopt OpenJDK | JAVA_HOME_11_X64     |
-| 13.0.2+8.1           | Adopt OpenJDK | JAVA_HOME_13_X64     |
+| Version             | Vendor        | Environment Variable |
+| ------------------- | ------------- | -------------------- |
+| 8.0.302+8 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.12+7           | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 13.0.2+8.1          | Adopt OpenJDK | JAVA_HOME_13_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -152,16 +154,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ | -------------------- |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
-| 1.15.14 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.6  | x64          | GOROOT_1_16_X64      |
+| 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.7  | x64          | GOROOT_1_16_X64      |
 
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
 | 10.24.1 | x64          |
-| 12.22.4 | x64          |
-| 14.17.4 | x64          |
+| 12.22.5 | x64          |
+| 14.17.5 | x64          |
 
 
 #### Python
@@ -211,12 +213,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.0.1.0 | MongoDB     | Running       | Automatic        |
+| 5.0.2.0 | MongoDB     | Running       | Automatic        |
 
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.1.0
+- Azure CosmosDb Emulator 2.14.2.0
 - DacFx 15.0.5164.1
 - MySQL 5.7.21.0
 - SQLPS 1.0
@@ -231,13 +233,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.10.31515.178 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Visual Studio Enterprise 2019 | 16.11.31605.320 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.10.31515.66  |
+| Component.Android.NDK.R16B                                                | 16.11.31603.221 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -246,7 +248,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.MDD.Android                                                     | 16.0.28517.75   |
 | Component.MDD.Linux                                                       | 16.5.29515.121  |
 | Component.MDD.Linux.GCC.arm                                               | 16.5.29515.121  |
-| Component.Microsoft.VisualStudio.LiveShare                                | 1.0.4473        |
+| Component.Microsoft.VisualStudio.LiveShare                                | 1.0.4438        |
 | Component.Microsoft.VisualStudio.RazorExtension                           | 16.10.31205.252 |
 | Component.Microsoft.VisualStudio.Tools.Applications                       | 16.0.31110.1    |
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 16.10.31205.252 |
@@ -264,19 +266,19 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Xamarin                                                         | 16.10.31205.252 |
 | Component.Xamarin.RemotedSimulator                                        | 16.10.31205.252 |
 | Microsoft.Component.Azure.DataLake.Tools                                  | 16.10.31205.252 |
-| Microsoft.Component.ClickOnce                                             | 16.4.29409.204  |
+| Microsoft.Component.ClickOnce                                             | 16.11.31603.221 |
 | Microsoft.Component.MSBuild                                               | 16.5.29515.121  |
 | Microsoft.Component.NetFX.Native                                          | 16.5.29515.121  |
-| Microsoft.Component.PythonTools                                           | 16.10.31313.127 |
-| Microsoft.Component.PythonTools.Miniconda                                 | 16.10.31313.127 |
+| Microsoft.Component.PythonTools                                           | 16.11.31314.313 |
+| Microsoft.Component.PythonTools.Miniconda                                 | 16.11.31314.313 |
 | Microsoft.Component.PythonTools.Web                                       | 16.10.31205.252 |
 | Microsoft.Component.VC.Runtime.UCRTSDK                                    | 16.0.28625.61   |
 | Microsoft.ComponentGroup.Blend                                            | 16.0.28315.86   |
-| Microsoft.ComponentGroup.ClickOnce.Publish                                | 16.10.31303.231 |
+| Microsoft.ComponentGroup.ClickOnce.Publish                                | 16.11.31603.221 |
 | Microsoft.Net.Component.3.5.DeveloperTools                                | 16.0.28517.75   |
-| Microsoft.Net.Component.4.5.1.TargetingPack                               | 16.0.28517.75   |
+| Microsoft.Net.Component.4.5.1.TargetingPack                               | 16.11.31605.320 |
 | Microsoft.Net.Component.4.5.2.TargetingPack                               | 16.0.28517.75   |
-| Microsoft.Net.Component.4.5.TargetingPack                                 | 16.0.28517.75   |
+| Microsoft.Net.Component.4.5.TargetingPack                                 | 16.11.31605.320 |
 | Microsoft.Net.Component.4.6.1.TargetingPack                               | 16.0.28517.75   |
 | Microsoft.Net.Component.4.6.2.TargetingPack                               | 16.0.28517.75   |
 | Microsoft.Net.Component.4.6.TargetingPack                                 | 16.0.28517.75   |
@@ -285,16 +287,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.Component.4.7.2.TargetingPack                               | 16.10.31205.252 |
 | Microsoft.Net.Component.4.7.TargetingPack                                 | 16.10.31205.252 |
 | Microsoft.Net.Component.4.8.SDK                                           | 16.4.29313.120  |
-| Microsoft.Net.Component.4.TargetingPack                                   | 16.0.28517.75   |
+| Microsoft.Net.Component.4.TargetingPack                                   | 16.11.31605.320 |
 | Microsoft.Net.ComponentGroup.4.6.2.DeveloperTools                         | 16.3.29207.166  |
 | Microsoft.Net.ComponentGroup.4.7.1.DeveloperTools                         | 16.3.29207.166  |
 | Microsoft.Net.ComponentGroup.4.7.DeveloperTools                           | 16.3.29207.166  |
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 16.3.29207.166  |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 16.0.28516.191  |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 16.10.31303.231 |
-| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.10.31515.66  |
-| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.10.31515.66  |
-| Microsoft.NetCore.Component.SDK                                           | 16.10.31515.66  |
+| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.11.31603.221 |
+| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.11.31603.221 |
+| Microsoft.NetCore.Component.SDK                                           | 16.11.31603.221 |
 | Microsoft.NetCore.Component.Web                                           | 16.10.31303.231 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 16.5.29515.121  |
 | Microsoft.VisualStudio.Component.AspNet45                                 | 16.10.31205.252 |
@@ -329,10 +331,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Graphics                                 | 16.10.31205.252 |
 | Microsoft.VisualStudio.Component.Graphics.Tools                           | 16.0.28625.61   |
 | Microsoft.VisualStudio.Component.IISExpress                               | 16.0.28315.86   |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 16.10.31305.154 |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 16.11.31603.221 |
 | Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 16.5.29515.121  |
 | Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 16.0.28517.75   |
-| Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 16.10.31303.231 |
+| Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 16.11.31404.150 |
 | Microsoft.VisualStudio.Component.LinqToSql                                | 16.0.28625.61   |
 | Microsoft.VisualStudio.Component.LiveUnitTesting                          | 16.10.31205.252 |
 | Microsoft.VisualStudio.Component.ManagedDesktop.Core                      | 16.4.29318.151  |
@@ -357,10 +359,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.TestTools.CodedUITest                    | 16.0.28327.66   |
 | Microsoft.VisualStudio.Component.TestTools.WebLoadTest                    | 16.0.28625.61   |
 | Microsoft.VisualStudio.Component.TextTemplating                           | 16.0.28625.61   |
-| Microsoft.VisualStudio.Component.TypeScript.4.2                           | 16.0.31303.231  |
+| Microsoft.VisualStudio.Component.TypeScript.4.3                           | 16.0.31506.151  |
 | Microsoft.VisualStudio.Component.Unity                                    | 16.0.28315.86   |
 | Microsoft.VisualStudio.Component.UWP.VC.ARM64                             | 16.3.29207.166  |
-| Microsoft.VisualStudio.Component.VC.14.25.x86.x64                         | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.14.25.x86.x64                         | 16.11.31317.239 |
 | Microsoft.VisualStudio.Component.VC.140                                   | 16.10.31205.252 |
 | Microsoft.VisualStudio.Component.VC.ASAN                                  | 16.10.31205.252 |
 | Microsoft.VisualStudio.Component.VC.ATL                                   | 16.4.29313.120  |
@@ -375,7 +377,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.CMake.Project                         | 16.3.29103.31   |
 | Microsoft.VisualStudio.Component.VC.CoreIde                               | 16.10.31205.252 |
 | Microsoft.VisualStudio.Component.VC.DiagnosticTools                       | 16.5.29515.121  |
-| Microsoft.VisualStudio.Component.VC.Llvm.Clang                            | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.Llvm.Clang                            | 16.11.31603.221 |
 | Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset                     | 16.3.29207.166  |
 | Microsoft.VisualStudio.Component.VC.MFC.ARM                               | 16.4.29313.120  |
 | Microsoft.VisualStudio.Component.VC.MFC.ARM.Spectre                       | 16.5.29721.120  |
@@ -390,7 +392,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest              | 16.0.28517.75   |
 | Microsoft.VisualStudio.Component.VC.Tools.ARM                             | 16.10.31205.252 |
 | Microsoft.VisualStudio.Component.VC.Tools.ARM64                           | 16.10.31205.252 |
-| Microsoft.VisualStudio.Component.VC.Tools.x86.x64                         | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.VC.Tools.x86.x64                         | 16.11.31317.239 |
 | Microsoft.VisualStudio.Component.VC.v141.ARM                              | 16.10.31205.252 |
 | Microsoft.VisualStudio.Component.VC.v141.ARM.Spectre                      | 16.5.29515.121  |
 | Microsoft.VisualStudio.Component.VC.v141.ARM64                            | 16.10.31205.252 |
@@ -424,7 +426,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.ComponentGroup.AzureFunctions                      | 16.10.31205.180 |
 | Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging                      | 16.10.31205.180 |
 | Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core                  | 16.2.29012.281  |
-| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang            | 16.10.31205.180 |
+| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang            | 16.11.31603.221 |
 | Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard              | 16.3.29102.218  |
 | Microsoft.VisualStudio.ComponentGroup.UWP.Support                         | 16.10.31205.180 |
 | Microsoft.VisualStudio.ComponentGroup.UWP.VC                              | 16.10.31205.180 |
@@ -436,7 +438,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions                  | 16.10.31205.180 |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.CMake            | 16.10.31205.180 |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.TemplateEngine   | 16.10.31205.180 |
-| Microsoft.VisualStudio.Workload.Azure                                     | 16.10.31303.231 |
+| Microsoft.VisualStudio.Workload.Azure                                     | 16.11.31503.43  |
 | Microsoft.VisualStudio.Workload.CoreEditor                                | 16.10.31205.180 |
 | Microsoft.VisualStudio.Workload.Data                                      | 16.0.28720.110  |
 | Microsoft.VisualStudio.Workload.DataScience                               | 16.10.31205.180 |
@@ -476,29 +478,29 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Additional Runtime | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
-| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30040 |
-| Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.29.30040 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30040 |
-| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30040 |
-| Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.29.30040 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30040 |
+| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30133 |
+| Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.29.30133 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30133 |
+| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30133 |
+| Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.29.30133 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30133 |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.116 3.1.117 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 3.1.411 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203 5.0.204 5.0.205 5.0.300 5.0.301 5.0.302
+- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.525 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 2.1.817 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.116 3.1.117 3.1.118 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 3.1.411 3.1.412 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203 5.0.204 5.0.205 5.0.206 5.0.300 5.0.301 5.0.302 5.0.303 5.0.400
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 2.1.29
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 2.1.29 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 3.1.18 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8 5.0.9
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 2.1.29 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 3.1.18 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8 5.0.9
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8
+- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 3.1.18 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8 5.0.9
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -506,7 +508,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.7.2 4.8
 
 ### PowerShell Tools
-- PowerShell 7.1.3
+- PowerShell 7.1.4
 
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                           | Path                           |
@@ -560,11 +562,11 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:a1ff3aa24d42ea02743db1599c9beece02d66d3b48d3876b185ab2a1110b420c  | 2021-07-13 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:6196293feeaed05af457e937edd64dde27fd49f996c1a9e00e198afd5edc8929  | 2021-07-13 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:c6e9c591b9e80e2cb0f8bcb736008ebbc3e3ed23de045523847ef0f9778dbaa6  | 2021-07-13 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:0cfbe14b2bcb1bd1af2bdc1603f9b60e63effaf25bce3fbab9ceb23e02b2b97f  | 2021-07-06 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:cc8a0215d2d19516c23b5f8a8e04799631c5ff2fb9a3c509fbd46f7ef7057877  | 2021-07-06 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:60f7a23b2120c61b486c46d7efb1cb41bb56fe420d30289d25ecacf0298804d3  | 2021-08-10 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:454808052e90913049436560705482dbd22539ab14cfb1b4c05f4403b6651ce7  | 2021-08-10 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:4479ef12594660436cdeaa60f6bce8d06ab7b45a4af9d6c8b17413462262cd79  | 2021-08-10 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:bf497134e6b9f1c0b0bcd677cff79f7fae6e545e5a6bf0198676b3b6eede1a64  | 2021-08-05 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:1be9c8378b8c32d31538253a4b96169f5138a5f6d4c0a04e8d8f9a80b9ac8097  | 2021-08-05 |
 
 
 
