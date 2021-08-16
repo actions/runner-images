@@ -4,7 +4,7 @@
 ***
 # Ubuntu 18.04.5 LTS
 - Linux kernel version: 5.4.0-1055-azure
-- Image Version: 20210803.5
+- Image Version: 20210810.1
 
 ## Installed Software
 ### Language and Runtime
@@ -34,9 +34,9 @@
 - Npm 6.14.14
 - Pip 9.0.1
 - Pip3 9.0.1
-- Pipx 0.16.3
+- Pipx 0.16.4
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<a863c84>)
+- Vcpkg  (build from master \<be45664>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -60,7 +60,7 @@
 - Bicep 0.4.451
 - Buildah 1.19.6 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.21.1
-- CodeQL Action Bundle 2.5.8
+- CodeQL Action Bundle 2.5.9
 - Docker Compose 1.29.2
 - Docker-Buildx 0.6.0
 - Docker-Moby Client 20.10.7+azure
@@ -73,7 +73,7 @@
 - HHVM (HipHop VM) 4.121.0
 - jq 1.5
 - Kind 0.11.1
-- Kubectl 1.21.3
+- Kubectl 1.22.0
 - Kustomize 4.2.0
 - Leiningen 2.9.6
 - MediaInfo 17.12
@@ -90,25 +90,25 @@
 - Skopeo 1.2.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.9.7
-- Terraform 1.0.3
+- Terraform 1.0.4
 - yamllint 1.26.2
 - yq 4.11.2
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.83
-- AWS CLI 1.20.12
+- Alibaba Cloud CLI 3.0.85
+- AWS CLI 1.20.17
 - AWS CLI Session manager plugin 1.2.234.0
 - AWS SAM CLI 1.27.2
 - Azure CLI (azure-cli) 2.27.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
-- Azure CLI (azure-devops) 0.18.0
-- GitHub CLI 1.13.1
-- Google Cloud SDK 350.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Azure CLI (azure-devops) 0.20.0
+- GitHub CLI 1.14.0
+- Google Cloud SDK 351.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 5.4.9
-- OpenShift CLI 4.8.3
+- Netlify CLI 6.0.9
+- OpenShift CLI 4.8.4
 - ORAS CLI 0.12.0
-- Vercel CLI 23.0.1
+- Vercel CLI 23.1.2
 
 ### Java
 | Version             | Vendor        | Environment Variable |
@@ -163,7 +163,7 @@
 - 2.1.302 2.1.403 2.1.524 2.1.617 2.1.701 2.1.816 3.1.117 3.1.202 3.1.302 3.1.411 5.0.104 5.0.205 5.0.302
 
 ### Databases
-- MongoDB 5.0.1 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
+- MongoDB 5.0.2 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
 - Postgre SQL 13.3 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - sqlite3 3.22.0
 
@@ -182,7 +182,7 @@
 #### Go
 - 1.13.15
 - 1.14.15
-- 1.15.14
+- 1.15.15
 
 #### Node.js
 - 10.24.1
@@ -213,7 +213,7 @@
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_13_X64 | /opt/hostedtoolcache/go/1.13.15/x64 | x64          |
 | GOROOT_1_14_X64 | /opt/hostedtoolcache/go/1.14.15/x64 | x64          |
-| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.14/x64 | x64          |
+| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.15/x64 | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.1.3
@@ -281,7 +281,7 @@
 ### Installed apt packages
 | Name              | Version                           |
 | ----------------- | --------------------------------- |
-| binutils          | 2.30-21ubuntu1~18.04.5            |
+| binutils          | 2.30-21ubuntu1\~18.04.5           |
 | bison             | 2:3.0.4.dfsg-1build1              |
 | brotli            | 1.0.3-1ubuntu1.3                  |
 | build-essential   | 12.4ubuntu1                       |
@@ -305,7 +305,7 @@
 | libc++-dev        | 6.0-2                             |
 | libc++abi-dev     | 6.0-2                             |
 | libcurl3          | 7.58.0-2ubuntu3.14                |
-| libgbm-dev        | 20.0.8-0ubuntu1~18.04.1           |
+| libgbm-dev        | 20.0.8-0ubuntu1\~18.04.1          |
 | libgconf-2-4      | 3.2.6-4ubuntu1                    |
 | libgsl-dev        | 2.4+dfsg-6                        |
 | libgtk-3-0        | 3.22.30-1ubuntu4                  |
@@ -329,7 +329,7 @@
 | pass              | 1.7.1-3                           |
 | patchelf          | 0.9-1                             |
 | pkg-config        | 0.29.1-0ubuntu2                   |
-| pollinate         | 4.33-0ubuntu1~18.04.2             |
+| pollinate         | 4.33-0ubuntu1\~18.04.2            |
 | python-setuptools | 39.0.1-2                          |
 | rpm               | 4.14.1+dfsg1-2                    |
 | rsync             | 3.1.2-2.1ubuntu1.1                |
