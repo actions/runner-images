@@ -276,6 +276,10 @@ function Get-CachedDockerImages {
 
 function Get-CachedDockerImagesTableData {
     $allImages = docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}"
+    if (-not $allImages) {
+        return $null
+    }
+
     $allImages.Split("*") | Where-Object { $_ } | ForEach-Object {
         $parts = $_.Split("|")
         [PSCustomObject] @{
