@@ -100,6 +100,7 @@ $toolsList = @(
     (Get-DockerVersion),
     (Get-DockerComposeVersion),
     (Get-GHCVersion),
+    (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GVFSVersion),
     (Get-InnoSetupVersion),

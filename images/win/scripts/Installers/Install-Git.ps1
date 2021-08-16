@@ -4,11 +4,7 @@
 ################################################################################
 
 # Install git
-$gitArgs = '--installargs="/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /o:PathOption=CmdTools /o:BashTerminalOption=ConHost /o:EnableSymlinks=Enabled /COMPONENTS=gitlfs"'
-if (Test-IsWin22) {
-    $gitArgs = '--installargs="/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /o:PathOption=Cmd /o:BashTerminalOption=ConHost /o:EnableSymlinks=Enabled /COMPONENTS=gitlfs"'
-}
-Choco-Install -PackageName git -ArgumentList $gitArgs
+Choco-Install -PackageName git -ArgumentList '--installargs="/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /o:PathOption=CmdTools /o:BashTerminalOption=ConHost /o:EnableSymlinks=Enabled /COMPONENTS=gitlfs"'
 
 # Install hub
 Choco-Install -PackageName hub
@@ -27,9 +23,7 @@ Start-Process $gvfsInstallerPath -ArgumentList $argList -PassThru | Wait-Process
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
 
 # Add to PATH
-if ((Test-IsWin16) -or (Test-IsWin19)) {
-    Add-MachinePathItem "C:\Program Files\Git\bin"
-}
+Add-MachinePathItem "C:\Program Files\Git\bin"
 
 if (Test-IsWin16) {
     $env:Path += ";$env:ProgramFiles\Git\usr\bin\"
