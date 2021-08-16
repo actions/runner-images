@@ -353,6 +353,8 @@ function Get-AptPackages {
         if ($Null -eq $version) {
             $version = $(dpkg-query -W -f '${Version}' "$pkg*")
         }
+        
+        $version = $version -replace '~','\~'
 
         $output += [PSCustomObject] @{
             Name    = $pkg

@@ -90,6 +90,7 @@ $markdown += New-MDList -Style Unordered -Lines ($projectManagementTools | Sort-
 $markdown += New-MDHeader "Tools" -Level 3
 $toolsList = @(
     (Get-7zipVersion),
+    (Get-Aria2Version),
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
