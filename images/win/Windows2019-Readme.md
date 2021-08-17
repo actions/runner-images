@@ -93,6 +93,7 @@
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 1.14.0
 - Hub CLI 2.14.2
+- Oracle Cloud Infrastructure CLI 3.0.0
 
 ### Rust Tools
 - Cargo 1.54.0
