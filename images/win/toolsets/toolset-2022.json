@@ -104,7 +104,7 @@
         }
     ],
     "java": {
-        "default": "11",
+        "default": "8",
         "versions": [
             "8", "11"
         ]
