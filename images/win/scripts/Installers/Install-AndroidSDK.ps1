@@ -115,13 +115,6 @@ Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                 -AndroidSDKRootPath $sdkRoot `
                 -AndroidPackages $androidNDKs
 
-# Old skdmanager from sdk tools doesn't work with Java > 8, set version 8 explicitly
-if (Test-IsWin22) {
-    $oldSdkManagerPath = "$sdkRoot\tools\bin\sdkmanager.bat"
-    $contentToPrepend = @("set JAVA_HOME=$($env:JAVA_HOME_8_X64)")
-    $contentToPrepend + (Get-Content -Path $oldSdkManagerPath) | Set-Content -Path $oldSdkManagerPath
-}
-
 $ndkLTSVersion = $ndkLTSPackageName.Split(';')[1]
 $ndkLatestVersion = $ndkLatestPackageName.Split(';')[1]
 
