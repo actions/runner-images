@@ -107,7 +107,6 @@
 - Hub CLI 2.14.2
 - Netlify CLI 6.0.9
 - OpenShift CLI 4.8.4
-- Oracle Cloud Infrastructure CLI 3.0.0
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
