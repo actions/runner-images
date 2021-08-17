@@ -33,3 +33,23 @@ jobs:
             base: "${{ github.event.client_payload.PullRequestBase }}",
             body: `${{ github.event.client_payload.PullRequestBody }}`
           });
+
+    - name: Get pull request number for ${{ github.event.client_payload.ReleaseBranchName }}-docs
+      run: |
+        OWNER=${{ github.repository_owner }}
+        REPO=${{ github.repository }}
+        BRANCH=${{ github.event.client_payload.ReleaseBranchName }}-docs
+        PULL_REQUEST_NUMBER=$(curl https://api.github.com/repos/$REPO/pulls\?head\=$OWNER:$BRANCH\&base\=main | jq -r '.[] .number')
+        echo "PULL_REQUEST_NUMBER=$PULL_REQUEST_NUMBER" >> $GITHUB_ENV
+
+    - name: Request reviewers
+      uses: actions/github-script@v2
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.pulls.requestReviewers({
+              owner: context.repo.owner
+              repo: context.repo.repo
+              pull_number: ${{ env.PULL_REQUEST_NUMBER }}
+              team_reviewers: ['virtual-environments-akvelon']
+          })
