@@ -228,7 +228,7 @@
         },
         {
             "package": "oci-cli",
-            "cmnd": "oci"
+            "cmd": "oci"
         }
     ],
     "dotnet": {
