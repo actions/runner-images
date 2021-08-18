@@ -252,7 +252,9 @@
         { "name": "NET-Framework-Features", "includeAllSubFeatures": true },
         { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
         { "name": "FS-iSCSITarget-Server", "includeAllSubFeatures": true, "includeManagementTools": true },
-        { "name": "Containers" }
+        { "name": "Containers" },
+        { "name": "Microsoft-Windows-Subsystem-Linux", "optionalFeature": true },
+        { "name": "VirtualMachinePlatform", "optionalFeature": true }
     ],
     "visualStudio": {
         "version" : "2019",
