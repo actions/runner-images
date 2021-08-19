@@ -14,6 +14,11 @@ Describe "Apt" {
             $toolName = "getfacl"
         }
 
+        if ($toolName -eq "aria2")
+        {
+            $toolName = "aria2c"
+        }
+
         if ($toolName -eq "p7zip-full")
         {
             $toolName = "p7zip"

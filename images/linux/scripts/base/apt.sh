@@ -25,8 +25,8 @@ echo 'APT sources limited to the actual architectures'
 cat /etc/apt/sources.list
 
 apt-get update
-# Install aria2 , jq
-apt-get install aria2 jq
+# Install jq
+apt-get install jq
 
 # Install apt-fast using quick-install.sh
 # https://github.com/ilikenwf/apt-fast

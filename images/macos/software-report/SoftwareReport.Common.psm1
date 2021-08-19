@@ -509,7 +509,7 @@ function Get-BicepVersion {
 
 function Get-KotlinVersion {
     $kotlinVersion = Run-Command "kotlin -version" | Take-Part -Part 2
-    return "kotlin $kotlinVersion"
+    return "Kotlin $kotlinVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {
