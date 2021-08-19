@@ -158,6 +158,7 @@
         ],
         "cmd_packages": [
             "acl",
+            "aria2",
             "binutils",
             "bison",
             "brotli",
