@@ -158,6 +158,7 @@
             "zsync"
         ],
         "cmd_packages": [
+            "aria2",
             "binutils",
             "bison",
             "brotli",
