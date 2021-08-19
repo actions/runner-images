@@ -1,34 +1,35 @@
 | Announcements |
 |-|
-| [[all OS] MongoDB will be updated to version 5 on July, 26th](https://github.com/actions/virtual-environments/issues/3749) |
+| [[macOS, Windows] .NET SDK pre-installation policy will be changed on September, 6](https://github.com/actions/virtual-environments/issues/3809) |
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4530
-- Image Version: 20210725.1
+- Image Version: 20210810.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
-- Go 1.15.14
+- Go 1.15.15
 - Julia 1.6.2
-- Node 14.17.3
+- Kotlin 1.5.20
+- Node 14.17.4
 - Perl 5.32.1
-- PHP 8.0.8
+- PHP 8.0.9
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
 - Chocolatey 0.10.15
 - Composer 2.1.5
-- Helm 3.6.2
+- Helm 3.6.3
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
-- NPM 6.14.13
+- NPM 6.14.14
 - NuGet 5.10.0.7240
-- pip 21.2.1 (python 3.7)
-- Pipx 0.16.3
+- pip 21.2.3 (python 3.7)
+- Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<7d2541c>)
-- Yarn 1.22.10
+- Vcpkg  (build from master \<be45664>)
+- Yarn 1.22.11
 
 #### Environment variables
 | Name                    | Value        |
@@ -44,73 +45,74 @@
 
 ### Tools
 - 7zip 19.00
+- aria2 1.35.0
 - azcopy 10.11.0
 - Bazel 4.1.0
 - Bazelisk 1.10.1
 - Bicep 0.4.451
 - Cabal 3.4.0.0
-- CMake 3.21.0
-- CodeQL Action Bundle 2.5.7
+- CMake 3.21.1
+- CodeQL Action Bundle 2.5.9
 - Docker 20.10.6
-- Docker-compose 1.29.1
+- Docker-compose 1.29.2
 - ghc 9.0.1
 - Git 2.32.0
 - Git LFS 2.13.3
-- Google Cloud SDK 349.0.0
+- Google Cloud SDK 351.0.0
 - GVFS 1.0.21085.9
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.21.3
+- Kubectl 1.22.0
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.2.4
 - NSIS v3.06.1
 - OpenSSL 1.1.1
-- Packer 1.7.3
-- Pulumi v3.8.0
+- Packer 1.7.4
+- Pulumi v3.9.1
 - R 4.1.0
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
-- yamllint 1.26.1
+- yamllint 1.26.2
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.82
-- AWS CLI 2.2.22
+- Alibaba Cloud CLI 3.0.85
+- AWS CLI 2.2.27
 - AWS SAM CLI 1.27.2
-- AWS Session Manager CLI 1.2.205.0
-- Azure CLI 2.26.1
-- Azure DevOps CLI extension 0.18.0
+- AWS Session Manager CLI 1.2.234.0
+- Azure CLI 2.27.0
+- Azure DevOps CLI extension 0.20.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 1.13.1
+- GitHub CLI 1.14.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.53.0
-- Rust 1.53.0
-- Rustdoc 1.53.0
+- Cargo 1.54.0
+- Rust 1.54.0
+- Rustdoc 1.54.0
 - Rustup 1.24.3
 
 #### Packages
-- bindgen 0.59.0
-- cargo-audit 0.15.0
+- bindgen 0.59.1
+- cargo-audit 0.14.1
 - cargo-outdated v0.9.17
-- cbindgen 0.19.0
-- Clippy 0.1.53
+- cbindgen 0.20.0
+- Clippy 0.1.54
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 92.0.4515.107
-- Chrome Driver 92.0.4515.43
-- Microsoft Edge 92.0.902.55
-- Microsoft Edge Driver 92.0.902.55
+- Google Chrome 92.0.4515.131
+- Chrome Driver 92.0.4515.107
+- Microsoft Edge 92.0.902.67
+- Microsoft Edge Driver 92.0.902.67
 - Mozilla Firefox 90.0.2
 - Gecko Driver 0.29.1
-- IE Driver 3.150.1.0
+- IE Driver 3.150.1.1
 
 #### Environment variables
 | Name            | Value                              |
@@ -120,11 +122,11 @@
 | GECKOWEBDRIVER  | C:\SeleniumWebDrivers\GeckoDriver  |
 
 ### Java
-| Version              | Vendor        | Environment Variable |
-| -------------------- | ------------- | -------------------- |
-| 8.0.292+10 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.11+9            | Adopt OpenJDK | JAVA_HOME_11_X64     |
-| 13.0.2+8.1           | Adopt OpenJDK | JAVA_HOME_13_X64     |
+| Version             | Vendor        | Environment Variable |
+| ------------------- | ------------- | -------------------- |
+| 8.0.302+8 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.12+7           | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 13.0.2+8.1          | Adopt OpenJDK | JAVA_HOME_13_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -146,16 +148,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ | -------------------- |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
-| 1.15.14 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.6  | x64          | GOROOT_1_16_X64      |
+| 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.7  | x64          | GOROOT_1_16_X64      |
 
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
 | 10.24.1 | x64          |
-| 12.22.3 | x64          |
-| 14.17.3 | x64          |
+| 12.22.4 | x64          |
+| 14.17.4 | x64          |
 
 
 #### Python
@@ -205,7 +207,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.0.1.0 | MongoDB     | Running       | Automatic        |
+| 5.0.2.0 | MongoDB     | Running       | Automatic        |
 
 
 
@@ -546,7 +548,7 @@ All other versions are saved but not installed.
 | Android Command Line Tools | 4.0                                                                                                                                                                                                                                                                                             |
 | Android SDK Build-tools    | 31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0 |
 | Android SDK Platforms      | android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4)      |
-| Android SDK Platform-Tools | 31.0.2                                                                                                                                                                                                                                                                                          |
+| Android SDK Platform-Tools | 31.0.3                                                                                                                                                                                                                                                                                          |
 | Android SDK Tools          | 25.2.5                                                                                                                                                                                                                                                                                          |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                          |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                                                |

@@ -29,6 +29,18 @@ function Invoke-Warmup (
     }
 }
 
+function Fix-ImportPublishProfile (
+    $SdkVersion
+) {
+    if ((Test-IsWin16) -or (Test-IsWin19)) {
+        # Fix for issue https://github.com/dotnet/sdk/issues/1276.  This will be fixed in 3.1.
+        $sdkTargetsName = "Microsoft.NET.Sdk.ImportPublishProfile.targets"
+        $sdkTargetsUrl = "https://raw.githubusercontent.com/dotnet/sdk/82bc30c99f1325dfaa7ad450be96857a4fca2845/src/Tasks/Microsoft.NET.Build.Tasks/targets/${sdkTargetsName}"
+        $sdkTargetsPath = "C:\Program Files\dotnet\sdk\$sdkVersion\Sdks\Microsoft.NET.Sdk\targets"
+        Start-DownloadWithRetry -Url $sdkTargetsUrl -DownloadPath $sdkTargetsPath -Name $sdkTargetsName
+    }
+}
+
 function InstallSDKVersion (
     $SdkVersion,
     $Warmup
@@ -44,11 +56,7 @@ function InstallSDKVersion (
         Write-Host "Sdk version $sdkVersion already installed"
     }
 
-    # Fix for issue 1276.  This will be fixed in 3.1.
-    $sdkTargetsName = "Microsoft.NET.Sdk.ImportPublishProfile.targets"
-    $sdkTargetsUrl = "https://raw.githubusercontent.com/dotnet/sdk/82bc30c99f1325dfaa7ad450be96857a4fca2845/src/Tasks/Microsoft.NET.Build.Tasks/targets/${sdkTargetsName}"
-    $sdkTargetsPath = "C:\Program Files\dotnet\sdk\$sdkVersion\Sdks\Microsoft.NET.Sdk\targets"
-    Start-DownloadWithRetry -Url $sdkTargetsUrl -DownloadPath $sdkTargetsPath -Name $sdkTargetsName
+    Fix-ImportPublishProfile -SdkVersion $SdkVersion
 
     if ($Warmup) {
         Invoke-Warmup -SdkVersion $SdkVersion
@@ -91,7 +99,7 @@ function InstallAllValidSdks()
 
                 ForEach ($sdk in $sdks)
                 {
-                    InstallSDKVersion -sdkVersion $sdk.'version'
+                    InstallSDKVersion -sdkVersion $sdk.'version' -Warmup $warmup
                 }
             }
             elseif (!$release.'sdk'.'version'.Contains('-'))

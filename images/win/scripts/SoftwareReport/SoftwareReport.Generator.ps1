@@ -39,7 +39,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-PerlVersion),
     (Get-PHPVersion),
     (Get-PythonVersion),
-    (Get-RubyVersion)
+    (Get-RubyVersion),
+    (Get-KotlinVersion)
     ) | Sort-Object
 )
 
@@ -74,6 +75,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
 $markdown += New-MDHeader "Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-7zipVersion),
+    (Get-Aria2Version),
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
@@ -273,8 +275,11 @@ $markdown += Build-AndroidEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 # Docker images section
-$markdown += New-MDHeader "Cached Docker images" -Level 3
-$markdown += Get-CachedDockerImagesTableData | New-MDTable
-$markdown += New-MDNewLine
+$cachedImages = Get-CachedDockerImagesTableData
+if ($cachedImages) {
+    $markdown += New-MDHeader "Cached Docker images" -Level 3
+    $markdown += $cachedImages | New-MDTable
+    $markdown += New-MDNewLine
+}
 
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"

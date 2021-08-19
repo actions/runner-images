@@ -24,7 +24,7 @@ Describe "PowerShellModules" {
 
 Describe "AzureModules" {
     $modules = (Get-ToolsetContent).azureModules
-    $modulesRootPath = $env:PSMODULES_ROOT_FOLDER
+    $modulesRootPath = "C:\\Modules"
 
     foreach ($module in $modules) {
         $moduleName = $module.name

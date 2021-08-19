@@ -248,10 +248,19 @@
             }
         ]
     },
+    "windowsFeatures": [
+        { "name": "NET-Framework-Features", "includeAllSubFeatures": true },
+        { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
+        { "name": "FS-iSCSITarget-Server", "includeAllSubFeatures": true, "includeManagementTools": true },
+        { "name": "Containers" },
+        { "name": "Microsoft-Windows-Subsystem-Linux", "optionalFeature": true },
+        { "name": "VirtualMachinePlatform", "optionalFeature": true }
+    ],
     "visualStudio": {
         "version" : "2019",
         "subversion" : "16",
         "edition" : "Enterprise",
+        "channel": "release",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -394,6 +403,7 @@
     "choco": {
         "common_packages": [
             { "name": "7zip.install" },
+            { "name": "aria2" },
             { "name": "azcopy10" },
             { "name": "Bicep" },
             { "name": "gitversion.portable" },
@@ -407,6 +417,7 @@
             { "name": "tortoisesvn" },
             { "name": "swig" },
             { "name": "vswhere" },
+            { "name": "kotlinc" },
             {
                 "name": "julia",
                 "args": [ "--ia", "/DIR=C:\\Julia" ]

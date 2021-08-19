@@ -4,6 +4,12 @@ Describe "7-Zip" {
     }
 }
 
+Describe "Aria2" {
+    It "Aria2" {
+        "aria2c --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "AzCopy" {
     It "AzCopy" {
         "azcopy --version" | Should -ReturnZeroExitCode
@@ -95,5 +101,13 @@ Describe "Julia" {
 Describe "CMake" {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Kotlin" {
+    $kotlinPackages =  @("kotlinc", "kotlinc-js", "kotlinc-jvm")
+
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  { 
+        "$toolName -version" | Should -ReturnZeroExitCode
     }
 }
