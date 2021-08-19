@@ -4,13 +4,14 @@
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4530
-- Image Version: 20210802.1
+- Image Version: 20210810.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
-- Go 1.15.14
+- Go 1.15.15
 - Julia 1.6.2
+- Kotlin 1.5.20
 - Node 14.17.4
 - Perl 5.32.1
 - PHP 8.0.9
@@ -24,10 +25,10 @@
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.14
 - NuGet 5.10.0.7240
-- pip 21.2.2 (python 3.7)
-- Pipx 0.16.3
+- pip 21.2.3 (python 3.7)
+- Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<261c458>)
+- Vcpkg  (build from master \<be45664>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -44,24 +45,25 @@
 
 ### Tools
 - 7zip 19.00
+- aria2 1.35.0
 - azcopy 10.11.0
 - Bazel 4.1.0
 - Bazelisk 1.10.1
 - Bicep 0.4.451
 - Cabal 3.4.0.0
 - CMake 3.21.1
-- CodeQL Action Bundle 2.5.8
+- CodeQL Action Bundle 2.5.9
 - Docker 20.10.6
 - Docker-compose 1.29.2
 - ghc 9.0.1
 - Git 2.32.0
 - Git LFS 2.13.3
-- Google Cloud SDK 350.0.0
+- Google Cloud SDK 351.0.0
 - GVFS 1.0.21085.9
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.21.3
+- Kubectl 1.22.0
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.2.4
@@ -75,18 +77,18 @@
 - Swig 4.0.2
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
-- yamllint 1.26.1
+- yamllint 1.26.2
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.82
-- AWS CLI 2.2.25
+- Alibaba Cloud CLI 3.0.85
+- AWS CLI 2.2.27
 - AWS SAM CLI 1.27.2
 - AWS Session Manager CLI 1.2.234.0
-- Azure CLI 2.26.1
-- Azure DevOps CLI extension 0.18.0
+- Azure CLI 2.27.0
+- Azure DevOps CLI extension 0.20.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 1.13.1
+- GitHub CLI 1.14.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -104,13 +106,13 @@
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 92.0.4515.107
+- Google Chrome 92.0.4515.131
 - Chrome Driver 92.0.4515.107
-- Microsoft Edge 92.0.902.62
-- Microsoft Edge Driver 92.0.902.62
+- Microsoft Edge 92.0.902.67
+- Microsoft Edge Driver 92.0.902.67
 - Mozilla Firefox 90.0.2
 - Gecko Driver 0.29.1
-- IE Driver 3.150.1.0
+- IE Driver 3.150.1.1
 
 #### Environment variables
 | Name            | Value                              |
@@ -120,11 +122,11 @@
 | GECKOWEBDRIVER  | C:\SeleniumWebDrivers\GeckoDriver  |
 
 ### Java
-| Version              | Vendor        | Environment Variable |
-| -------------------- | ------------- | -------------------- |
-| 8.0.292+10 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.11+9            | Adopt OpenJDK | JAVA_HOME_11_X64     |
-| 13.0.2+8.1           | Adopt OpenJDK | JAVA_HOME_13_X64     |
+| Version             | Vendor        | Environment Variable |
+| ------------------- | ------------- | -------------------- |
+| 8.0.302+8 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.12+7           | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 13.0.2+8.1          | Adopt OpenJDK | JAVA_HOME_13_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -146,8 +148,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ | -------------------- |
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
-| 1.15.14 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.6  | x64          | GOROOT_1_16_X64      |
+| 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.7  | x64          | GOROOT_1_16_X64      |
 
 
 #### Node
@@ -205,7 +207,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.0.1.0 | MongoDB     | Running       | Automatic        |
+| 5.0.2.0 | MongoDB     | Running       | Automatic        |
 
 
 
