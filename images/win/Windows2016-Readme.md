@@ -3,8 +3,8 @@
 | [[macOS, Windows] .NET SDK pre-installation policy will be changed on September, 6](https://github.com/actions/virtual-environments/issues/3809) |
 ***
 # Microsoft Windows Server 2016 Datacenter
-- OS Version: 10.0.14393 Build 4530
-- Image Version: 20210810.1
+- OS Version: 10.0.14393 Build 4583
+- Image Version: 20210815.1
 
 ## Installed Software
 ### Language and Runtime
@@ -12,7 +12,7 @@
 - Go 1.15.15
 - Julia 1.6.2
 - Kotlin 1.5.20
-- Node 14.17.4
+- Node 14.17.5
 - Perl 5.32.1
 - PHP 8.0.9
 - Python 3.7.9
@@ -24,11 +24,11 @@
 - Helm 3.6.3
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.14
-- NuGet 5.10.0.7240
-- pip 21.2.3 (python 3.7)
+- NuGet 5.11.0.10
+- pip 21.2.4 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<be45664>)
+- Vcpkg  (build from master \<6bc4362>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -49,7 +49,7 @@
 - azcopy 10.11.0
 - Bazel 4.1.0
 - Bazelisk 1.10.1
-- Bicep 0.4.451
+- Bicep 0.4.613
 - Cabal 3.4.0.0
 - CMake 3.21.1
 - CodeQL Action Bundle 2.5.9
@@ -58,7 +58,7 @@
 - ghc 9.0.1
 - Git 2.32.0
 - Git LFS 2.13.3
-- Google Cloud SDK 351.0.0
+- Google Cloud SDK 352.0.0
 - GVFS 1.0.21085.9
 - InnoSetup 6.2.0
 - jq 1.6
@@ -70,8 +70,8 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.4
-- Pulumi v3.9.1
-- R 4.1.0
+- Pulumi v3.10.1
+- R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
@@ -82,10 +82,10 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.85
-- AWS CLI 2.2.27
+- AWS CLI 2.2.29
 - AWS SAM CLI 1.27.2
 - AWS Session Manager CLI 1.2.234.0
-- Azure CLI 2.27.0
+- Azure CLI 2.27.1
 - Azure DevOps CLI extension 0.20.0
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 1.14.0
@@ -108,9 +108,9 @@
 ### Browsers and webdrivers
 - Google Chrome 92.0.4515.131
 - Chrome Driver 92.0.4515.107
-- Microsoft Edge 92.0.902.67
-- Microsoft Edge Driver 92.0.902.67
-- Mozilla Firefox 90.0.2
+- Microsoft Edge 92.0.902.73
+- Microsoft Edge Driver 92.0.902.73
+- Mozilla Firefox 91.0
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.1
 
@@ -156,8 +156,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 10.24.1 | x64          |
-| 12.22.4 | x64          |
-| 14.17.4 | x64          |
+| 12.22.5 | x64          |
+| 14.17.5 | x64          |
 
 
 #### Python
@@ -212,7 +212,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.1.0
+- Azure CosmosDb Emulator 2.14.2.0
 - DacFx 15.0.5164.1
 - MySQL 5.7.21.0
 - SQLPS 1.0
@@ -227,7 +227,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2017 | 15.9.28307.1585 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
+| Visual Studio Enterprise 2017 | 15.9.28307.1622 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
 
 #### Workloads, components and extensions:
 
@@ -489,27 +489,27 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2017 Debug Runtime      | x64          | 14.16.27033 |
 | Microsoft Visual C++ 2017 Debug Runtime      | x86          | 14.16.27033 |
-| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30040 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30040 |
-| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30040 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30040 |
+| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30133 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30133 |
+| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30133 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30133 |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.116 3.1.117 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 3.1.411 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203 5.0.204 5.0.205 5.0.300 5.0.301 5.0.302
+- 1.1.14 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.525 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 2.1.817 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.116 3.1.117 3.1.118 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 3.1.411 3.1.412 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203 5.0.204 5.0.205 5.0.206 5.0.300 5.0.301 5.0.302 5.0.303 5.0.400
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 2.1.29
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8
+- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 2.1.29 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 3.1.18 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8 5.0.9
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 1.0.16 1.1.13 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8
+- 1.0.16 1.1.13 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 2.1.29 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 3.1.18 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8 5.0.9
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8
+- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 3.1.18 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8 5.0.9
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -517,7 +517,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8
 
 ### PowerShell Tools
-- PowerShell 7.1.3
+- PowerShell 7.1.4
 
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                           | Path                           |
@@ -571,11 +571,11 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:3910e75b2ee39515b598e107bdeb7fe83578aea0c1042c1b168070add760a0c3  | 2021-07-13 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:1fdb72914bfdedf0b121b911d4d4d948d3e369d4dee36e39c135f967215b7092  | 2021-07-13 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:65d94ee17565554801c4ba0a9b153ee90b6a25bcdb5395356d8f0c452c002203  | 2021-07-13 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:1337170239cc81ea287e70fc5092e860183c7ebcbc34b01c84f5c65e98ccf89f  | 2021-08-10 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:e3788091ce9cb0e75c6a880d02fdb5057da8a922cefb9516d0e437a877501edb  | 2021-08-10 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:6a37ef7cd6367bf53c9f71f1b0221efb90d7f34f1d91b50ce7254e6b7de8007a  | 2021-08-10 |
 | mcr.microsoft.com/windows/nanoserver:10.0.14393.953                       | sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268  | 2017-03-08 |
-| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:c6b1c3fecf651e7629f96874393476ba00cda2a1c2090314fdfe384267cd584f  | 2021-07-09 |
+| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:ac71e33f27c2a6b5db30be0419458e0c4e926214bc9c85afd4d6d6f9028d7233  | 2021-08-01 |
 
 
 
