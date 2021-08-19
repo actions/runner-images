@@ -170,7 +170,7 @@
 
 ### Databases
 - MongoDB 5.0.2 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
-- Postgre SQL 13.4 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
+- PostgreSQL 13.4 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - sqlite3 3.31.1
 
 #### MySQL
