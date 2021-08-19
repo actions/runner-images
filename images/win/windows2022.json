@@ -55,13 +55,8 @@
             "allowed_inbound_ip_addresses": "{{user `allowed_inbound_ip_addresses`}}",
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
-            "image_offer": "microsoftserveroperatingsystems-previews",
-            "image_sku": "windows-server-2022",
-            "plan_info": {
-                "plan_name": "windows-server-2022",
-                "plan_product": "microsoftserveroperatingsystems-previews",
-                "plan_publisher": "microsoftwindowsserver"
-            },
+            "image_offer": "WindowsServer",
+            "image_sku": "2022-Datacenter",
             "communicator": "winrm",
             "winrm_use_ssl": "true",
             "winrm_insecure": "true",
