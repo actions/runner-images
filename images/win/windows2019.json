@@ -56,7 +56,7 @@
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
-            "image_sku": "2019-Datacenter",
+            "image_sku": "2019-Datacenter-g1",
             "communicator": "winrm",
             "winrm_use_ssl": "true",
             "winrm_insecure": "true",
