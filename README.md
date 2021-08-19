@@ -21,13 +21,13 @@ Ubuntu 16.04 has been deprecated and will be removed on September 20, 2021. Its 
 Existing workflows using `Ubuntu 16.04` should migrate to `Ubuntu 20.04` or `Ubuntu 18.04`
 ```
 
-> The macOS 11 virtual environment is currently in preview and is automatically available to the existing Enterprise plan customers who used macOS hosted runners at least once between May, 1 - June, 1. New Enterprise plan customers, or customers on other plans, should fill the form to request access to macOS 11 virtual environment. Please view our [Big Sur guide](./docs/macos-11-onboarding.md) for more details. <br/>
+> The macOS 11 virtual environment is currently available only on GitHub Actions. Azure DevOps users can track the macOS 11 onboarding progress in [this issue](https://github.com/actions/virtual-environments/issues/2072).<br/>
 The `macos-latest` YAML workflow label still uses the macOS 10.15 virtual environment.
 
 ***What images are available for GitHub Actions and Azure DevOps?***
-The availability of images for GitHub Actions and Azure DevOps is different. See documentation for more details:  
-- [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources)  
-- [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#software)  
+The availability of images for GitHub Actions and Azure DevOps is different. See documentation for more details:
+- [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources)
+- [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#software)
 
 ***What image version is used in my build?*** Usually, image deployment takes 3-4 days, and documentation in the `main` branch is only updated when deployment is finished. To find out which image version and what software versions are used in a specific build, see `Set up job` (GitHub Actions) or `Initialize job` (Azure DevOps) step log.
 
@@ -45,9 +45,9 @@ we pin the tool to specific version(s).
 
 *Following Along / Change Notifications*
 
-* **High Impact Changes** (ex. breaking changes, new or deprecated environments) will be posted to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).  
+* **High Impact Changes** (ex. breaking changes, new or deprecated environments) will be posted to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).
 * **Low Impact Changes** will be pinned in this repository and marked with the [Announcement](https://github.com/actions/virtual-environments/labels/Announcement) label.
-* **Regular Weekly Rhythm** can be followed by watching [Releases](https://github.com/actions/virtual-environments/releases). Pre-release is created when deployment is started. As soon as deployment is finished, it is converted to release. 
+* **Regular Weekly Rhythm** can be followed by watching [Releases](https://github.com/actions/virtual-environments/releases). Pre-release is created when deployment is started. As soon as deployment is finished, it is converted to release.
 You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/virtual-environments/labels/awaiting-deployment) label.
 
 [ubuntu-20.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
