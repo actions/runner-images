@@ -334,6 +334,7 @@
             "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
             "Microsoft.VisualStudio.ComponentGroup.UWP.VC",
+            "Microsoft.VisualStudio.ComponentGroup.UWP.VC.v141",
             "Microsoft.VisualStudio.Workload.Azure",
             "Microsoft.VisualStudio.Workload.Data",
             "Microsoft.VisualStudio.Workload.DataScience",
