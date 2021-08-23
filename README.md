@@ -17,7 +17,8 @@ For general questions about using the virtual environments or writing your Actio
 | Windows Server 2022<sup>[beta]</sup> | `windows-2022` | [windows-2022] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&redirect=1) |
 | Windows Server 2019 | `windows-latest` or `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 | Windows Server 2016 | `windows-2016` | [windows-2016] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
-<b>Note:</b> Beta and Preview images are provided "as-is," "with all faults," and "as available," and are excluded from the service level agreement and warranty. Beta and Preview images may not be covered by customer support.
+
+<b>Note:</b> Beta and Preview images are provided "as-is", "with all faults" and "as available" and are excluded from the service level agreement and warranty. Beta and Preview images may not be covered by customer support.
 
 ***What images are available for GitHub Actions and Azure DevOps?***
 The availability of images for GitHub Actions and Azure DevOps is different. See documentation for more details:
