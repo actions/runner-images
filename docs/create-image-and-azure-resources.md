@@ -69,6 +69,79 @@ The function automatically creates all required Azure resources and kicks off pa
 
 *Please, check synopsis of `GenerateResourcesAndImage` for details about non-mandatory parameters.*
 
+##### Alternate output types (Managed Imaged/Shared Image Gallery)
+
+If you would like to use a more modern output image type you can add a small snippet to your pipeline to output a Managed Image or Shared Gallery Image instead.
+
+```
+git clone https://github.com/actions/virtual-environments.git
+Set-Location ./virtual-environments
+$templatePath = "images\win\windows2019.json"
+$JSON = Get-Content -Path "$templatePath" -Raw | ConvertFrom-Json
+# Print the incoming JSON
+$JSON | ConvertTo-Json -Depth 8 | Out-Host
+# Remove the builder properties that are only for VHD builds
+# basically https://github.com/actions/virtual-environments/blob/d522cafafedd41e155754b78f292b14f3ff62870/images/win/windows2019.json#L45-L50
+$JSON.builders[0].psobject.properties.remove('resource_group_name')
+$JSON.builders[0].psobject.properties.remove('storage_account')
+$JSON.builders[0].psobject.properties.remove('capture_container_name')
+$JSON.builders[0].psobject.properties.remove('capture_name_prefix')
+
+# Assign new properties to the first (and only) element of array <builders>
+# This could also be used to instead add a source shared_image_gallery
+# and/or shared_image_gallery_destination
+$JSON.builders[0] | Add-Member @{ 
+managed_image_resource_group_name = '{{user `resource_group`}}'
+managed_image_name = '{{user `capture_name_prefix`}}{{isotime | clean_resource_name}}'
+}
+
+# Print the resulting JSON
+$JSON | ConvertTo-Json -Depth 8 | Out-Host
+# Write the JSON to a file
+$JSON | ConvertTo-Json -Depth 8 | Out-File $templatePath -Encoding Ascii -Force
+```
+
+For a Shared Gallery Image you need to have created the gallery and the initial Image Definition beforehand (defining Windows or Linux as the osType as appropriate).
+
+```
+git clone https://github.com/actions/virtual-environments.git
+Set-Location ./virtual-environments
+$templatePath = "images\win\windows2019.json"
+$JSON = Get-Content -Path "$templatePath" -Raw | ConvertFrom-Json
+# Print the incoming JSON
+$JSON | ConvertTo-Json -Depth 8 | Out-Host
+# Remove the builder properties that are only for VHD builds
+# basically https://github.com/actions/virtual-environments/blob/d522cafafedd41e155754b78f292b14f3ff62870/images/win/windows2019.json#L45-L50
+$JSON.builders[0].psobject.properties.remove('resource_group_name')
+$JSON.builders[0].psobject.properties.remove('storage_account')
+$JSON.builders[0].psobject.properties.remove('capture_container_name')
+$JSON.builders[0].psobject.properties.remove('capture_name_prefix')
+
+# Assign new properties to the first (and only) element of array <builders>
+# This could also be used to instead add a source shared_image_gallery
+# and/or shared_image_gallery_destination
+# You need to have created the SIG (Shared Image Gallery) and the image definition before Packer can create an image version
+$JSON.builders[0] | Add-Member @{ 
+      managed_image_resource_group_name = 'YourResourceGroupName'
+      managed_image_name = '{{user `capture_name_prefix`}}{{isotime | clean_resource_name}}'
+      shared_image_gallery_destination = @{
+        subscription = "YOUR-SUBSCRIPTION-ID"
+        resource_group = "YourResourceGroupName"
+        gallery_name = "YourGalleryName"
+        image_name = 'YourImageName'
+        image_version = "1.0.0"
+        replication_regions = "Central US", "northcentralus"
+        storage_account_type = "Standard_LRS"
+    }
+}
+
+# Print the resulting JSON
+$JSON | ConvertTo-Json -Depth 8 | Out-Host
+# Write the JSON to a file
+$JSON | ConvertTo-Json -Depth 8 | Out-File $templatePath -Encoding Ascii -Force
+```
+
+
 #### Generated VM Deployment
 After the successful image generation, Virtual Machine can be created from the generated VHD using [CreateAzureVMFromPackerTemplate](../helpers/CreateAzureVMFromPackerTemplate.ps1) script.
 
