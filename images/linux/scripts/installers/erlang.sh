@@ -23,7 +23,7 @@ download_with_retries $rebar3DownloadUrl "/tmp"
 mv /tmp/rebar3 /usr/local/bin/rebar3
 chmod +x /usr/local/bin/rebar3
 
-invoke_tests "Tools" "erlang"
-
 # Clean up source list
 rm $source_list
+
+invoke_tests "Tools" "erlang"
