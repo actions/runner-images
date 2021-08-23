@@ -42,8 +42,8 @@ jobs:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
           github.pulls.requestReviewers({
-              owner: context.repo.owner
-              repo: context.repo.repo
-              pull_number: ${{ steps.create-pr.outputs.result }}
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: ${{ steps.create-pr.outputs.result }},
               team_reviewers: ['virtual-environments-akvelon']
           })
