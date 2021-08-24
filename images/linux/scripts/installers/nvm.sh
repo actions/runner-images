@@ -12,7 +12,7 @@ echo 'NVM_DIR=$HOME/.nvm' | tee -a /etc/environment
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' | tee -a /etc/skel/.bash_profile
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+invoke_tests "Tools" "nvm"
+
 # set system node.js as default one
 nvm alias default system
-
-invoke_tests "Tools" "nvm"
