@@ -263,14 +263,14 @@
             "type": "powershell",
             "inline": [
                 "& {{ template_dir }}/scripts/Tests/RunAll-Tests.ps1",
-                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\image\\Tests\\testResults.xml not found'}"
+                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\image\\Tests\\testResults.xml not found' }"
             ]
         },
         {
             "type": "powershell",
             "inline": [
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'",
-                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\InstalledSoftware.md not found'}"
+                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\InstalledSoftware.md not found' }"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}"
