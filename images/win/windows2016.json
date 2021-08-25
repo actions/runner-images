@@ -260,8 +260,9 @@
         },
         {
             "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
+            "inline": [
+                "& {{ template_dir }}/scripts/Tests/RunAll-Tests.ps1",
+                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\image\\Tests\\testResults.xml not found'}"
             ]
         },
         {
