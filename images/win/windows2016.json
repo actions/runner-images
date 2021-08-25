@@ -267,7 +267,8 @@
         {
             "type": "powershell",
             "inline": [
-                "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
+                "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'",
+                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\InstalledSoftware.md is not found'}"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}"
