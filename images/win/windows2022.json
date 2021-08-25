@@ -222,8 +222,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-RootCA.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1",
-                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
-                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1"
+                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
             ]
         },
         {
@@ -278,6 +277,7 @@
         {
             "type": "powershell",
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1",
                 "{{ template_dir }}/scripts/Installers/Finalize-VM.ps1"
             ]
         },
