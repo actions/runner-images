@@ -1,16 +1,15 @@
 | Announcements |
 |-|
 | [[macOS, Windows] .NET SDK pre-installation policy will be changed on September, 6](https://github.com/actions/virtual-environments/issues/3809) |
-| [macOS 11.0 pools will be transited to private preview.](https://github.com/actions/virtual-environments/issues/2486) |
 ***
 # macOS 11.5 info
 - System Version: macOS 11.5 (20G71)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20210814.1
+- Image Version: 20210824.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 2.1.817 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 3.1.411 3.1.412 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202 5.0.300 5.0.301 5.0.302 5.0.400
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 2.1.818 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 3.1.411 3.1.412 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202 5.0.300 5.0.301 5.0.302 5.0.400
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.5 is default
@@ -22,7 +21,7 @@
 - GNU Fortran (Homebrew GCC 11.2.0) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
 - julia 1.6.2
-- kotlin 1.5.21-release-314
+- Kotlin 1.5.21-release-314
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v14.17.5
 - NVM 0.38.0
@@ -34,19 +33,19 @@
 - Ruby 2.7.4p191
 
 ### Package Management
-- Bundler version 2.2.25
+- Bundler version 2.2.26
 - Carthage 0.38.0
 - CocoaPods 1.10.2
-- Composer 2.1.5
-- Homebrew 3.2.6
+- Composer 2.1.6
+- Homebrew 3.2.9
 - Miniconda 4.10.3
 - NPM 6.14.14
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.1.3 (python 3.9)
 - Pipx 0.16.4
-- RubyGems 3.2.25
-- Vcpkg 2021 (build from master \<6bc4362>)
+- RubyGems 3.2.26
+- Vcpkg 2021 (build from master \<d8e1d6b>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -58,19 +57,19 @@
 ### Project Management
 - Apache Ant(TM) 1.10.11
 - Apache Maven 3.8.2
-- Gradle 7.1.1
+- Gradle 7.2
 
 ### Utilities
 - 7-Zip 17.04
-- aria2 1.35.0
+- aria2 1.36.0
 - azcopy 10.11.0
-- bazel 4.1.0
+- bazel 4.2.0
 - bazelisk 1.10.1
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.78.0
 - Git LFS: 2.13.3
-- Git: 2.32.0
-- GitHub CLI: 1.14.0
+- Git: 2.33.0
+- GitHub CLI: 2.0.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
 - gpg (GnuPG) 2.3.1
@@ -91,16 +90,16 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.85
+- Aliyun CLI 3.0.88
 - App Center CLI 2.10.0
-- AWS CLI 2.2.29
-- AWS SAM CLI 1.27.2
-- AWS Session Manager CLI 1.2.234.0
-- Azure CLI 2.27.1
+- AWS CLI 2.2.32
+- AWS SAM CLI 1.29.0
+- AWS Session Manager CLI 1.2.245.0
+- Azure CLI 2.27.2
 - Bicep CLI 0.4.613
 - Cabal 3.4.0.0
 - Cmake 3.21.1
-- Fastlane 2.191.0
+- Fastlane 2.192.0
 - GHC 9.0.1
 - GHCup v0.1.16.2
 - Stack 2.7.3
@@ -110,16 +109,16 @@
 
 ### Linters
 - SwiftLint 0.43.1
-- yamllint 1.26.2
+- yamllint 1.26.3
 
 ### Browsers
 - Safari 14.1.2 (16611.3.10.1.3)
 - SafariDriver 14.1.2 (16611.3.10.1.3)
-- Google Chrome 92.0.4515.131 
+- Google Chrome 92.0.4515.159 
 - ChromeDriver 92.0.4515.107
-- Microsoft Edge 92.0.902.73 
-- MSEdgeDriver 92.0.902.73
-- Mozilla Firefox 91.0
+- Microsoft Edge 92.0.902.78 
+- MSEdgeDriver 92.0.902.78
+- Mozilla Firefox 91.0.2
 - geckodriver 0.29.1
 
 #### Environment variables
@@ -183,8 +182,8 @@
 | ---------------- | ------- |
 | Az               | 6.1.0   |
 | MarkdownPS       | 1.9     |
-| Pester           | 5.2.2   |
-| PSScriptAnalyzer | 1.19.1  |
+| Pester           | 5.3.0   |
+| PSScriptAnalyzer | 1.20.0  |
 
 ### Web Servers
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
@@ -194,7 +193,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.7.17
+- 8.10.8.0
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -284,7 +283,7 @@
 | Package Name               | Version                                                                                                                            |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 4.0                                                                                                                                |
-| Android Emulator           | 30.7.5                                                                                                                             |
+| Android Emulator           | 30.8.4                                                                                                                             |
 | Android SDK Build-tools    | 31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                         |
 | Android SDK Platform-Tools | 31.0.3                                                                                                                             |
