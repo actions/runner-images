@@ -21,7 +21,7 @@ function Get-AndroidSDKManagerPath {
 
 function Get-AndroidInstalledPackages {
     $androidSDKManagerPath = Get-AndroidSDKManagerPath
-    $androidSDKManagerList = & $androidSDKManagerPath --list_installed
+    $androidSDKManagerList = cmd /c "$androidSDKManagerPath --list_installed 2>&1"
     return $androidSDKManagerList
 }
 
