@@ -239,8 +239,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1",
-                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
-                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1"
+                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
             ]
         },
         {
@@ -268,10 +267,22 @@
         {
             "type": "powershell",
             "inline": [
+                "if (-not (Test-Path {{user `image_folder`}}\\Tests\\testResults.xml)) { throw '{{user `image_folder`}}\\Tests\\testResults.xml not found' }"
+            ]
+        },
+        {
+            "type": "powershell",
+            "inline": [
                 "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}"
+            ]
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\InstalledSoftware.md not found' }"
             ]
         },
         {
@@ -283,6 +294,7 @@
         {
             "type": "powershell",
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1",
                 "{{ template_dir }}/scripts/Installers/Finalize-VM.ps1"
             ]
         },
