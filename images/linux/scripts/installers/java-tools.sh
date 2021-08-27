@@ -64,7 +64,7 @@ echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven
 json=$(curl -s "https://api.github.com/repos/apache/maven/tags")
-latestMavenVersion=$(echo $json | jq -r '.[] | select(.name | contains("maven")) | .zipball_url' | head -1 | cut -d- -f2)
+latestMavenVersion=$(echo $json | jq -r '.[] | select(.name | match("^(maven-[0-9.]*)$")) | .name' | head -1 | cut -d- -f2)
 mavenDownloadUrl="https://www-eu.apache.org/dist/maven/maven-3/${latestMavenVersion}/binaries/apache-maven-${latestMavenVersion}-bin.zip"
 download_with_retries $mavenDownloadUrl "/tmp" "maven.zip"
 unzip -qq -d /usr/share /tmp/maven.zip
