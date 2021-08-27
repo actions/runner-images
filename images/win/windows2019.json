@@ -130,8 +130,16 @@
             "execution_policy": "unrestricted"
         },
         {
+            "type": "powershell",
+            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
+        },
+        {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
@@ -239,24 +247,16 @@
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1",
-                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
+                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1",
                 "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
-            ],
-            "elevated_user": "{{user `install_user`}}",
-            "elevated_password": "{{user `install_password`}}"
+            ]
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "30m"
+            "restart_timeout": "10m"
         },
         {
             "type": "powershell",
