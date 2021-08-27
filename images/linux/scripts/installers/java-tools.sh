@@ -64,10 +64,11 @@ echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven
 json=$(curl -s "https://api.github.com/repos/apache/maven/tags")
-mavenDownloadUrl=$(echo $json | jq -r '.[] | select(.name | contains("maven")) | .zipball_url' | head -1)
+latestMavenVersion=$(echo $json | jq -r '.[] | select(.name | contains("maven")) | .zipball_url' | head -1 | cut -d- -f2)
+mavenDownloadUrl="https://www-eu.apache.org/dist/maven/maven-3/${latestMavenVersion}/binaries/apache-maven-${latestMavenVersion}-bin.zip"
 download_with_retries $mavenDownloadUrl "/tmp" "maven.zip"
 unzip -qq -d /usr/share /tmp/maven.zip
-ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
+ln -s /usr/share/apache-maven-${latestMavenVersion}/bin/mvn /usr/bin/mvn
 
 # Install Gradle
 # This script founds the latest gradle release from https://services.gradle.org/versions/all
