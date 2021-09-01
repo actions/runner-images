@@ -1,0 +1,248 @@
+{
+    "toolcache": [
+        {
+            "name": "Ruby",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "2.7",
+                "3.0"
+            ],
+            "default": "3.0"
+        },
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "3.7.*",
+                "3.8.*",
+                "3.9.*"
+            ],
+            "default": "3.9.*"
+        },
+        {
+            "name": "PyPy",
+            "arch": "x86",
+            "platform" : "win64",
+            "versions": [
+                "2.7",
+                "3.7"
+            ]
+        },
+        {
+            "name": "node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "10.*",
+                "12.*",
+                "14.*"
+            ]
+        },
+        {
+            "name": "go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "1.15.*",
+                "1.16.*"
+            ],
+            "default": "1.16.*"
+        }
+    ],
+    "powershellModules": [
+        { "name": "DockerMsftProvider" },
+        { "name": "MarkdownPS" },
+        { "name": "Pester" },
+        { "name": "PowerShellGet" },
+        { "name": "PSScriptAnalyzer" },
+        { "name": "PSWindowsUpdate" },
+        { "name": "SqlServer" },
+        { "name": "VSSetup" }
+    ],
+    "azureModules": [
+        {
+            "name": "azurerm",
+            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
+            "versions": [
+                "2.1.0",
+                "6.13.1"
+            ],
+            "zip_versions": [
+                "3.8.0",
+                "4.2.1",
+                "5.1.1",
+                "6.7.0"
+            ],
+            "default": "2.1.0"
+        },
+        {
+            "name": "azure",
+            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
+            "versions": [
+                "2.1.0",
+                "5.3.0"
+            ],
+            "zip_versions": [
+                "3.8.0",
+                "4.2.1",
+                "5.1.1"
+            ],
+            "default": "2.1.0"
+        },
+        {
+            "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
+            "versions": [
+                "6.1.0"
+            ],
+            "zip_versions": []
+        }
+    ],
+    "java": {
+        "default": "8",
+        "versions": [
+            "8", "11"
+        ]
+    },
+    "android": {
+        "platform_min_version": "27",
+        "build_tools_min_version": "27.0.0",
+        "extra_list": [
+            "android;m2repository",
+            "google;m2repository",
+            "google;google_play_services"
+        ],
+        "addon_list": [],
+        "additional_tools": [
+            "cmake;3.18.1",
+            "patcher;v4"
+        ],
+        "ndk": {
+            "lts": "21",
+            "latest": "22"
+        }
+    },
+    "MsysPackages": {
+        "msys2": [],
+        "mingw": []
+    },
+    "windowsFeatures": [
+        { "name": "Containers" },
+        { "name": "Microsoft-Windows-Subsystem-Linux", "optionalFeature": true },
+        { "name": "VirtualMachinePlatform", "optionalFeature": true },
+        { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
+        { "name": "Client-ProjFS", "optionalFeature": true },
+        { "name": "NET-Framework-Features", "includeAllSubFeatures": true }
+    ],
+    "visualStudio": {
+        "version" : "2022",
+        "subversion" : "17",
+        "edition" : "Enterprise",
+        "channel": "pre",
+        "workloads": [
+            "Component.Linux.CMake",
+            "Component.UnityEngine.x64",
+            "Component.Unreal.Android",
+            "Microsoft.Component.VC.Runtime.UCRTSDK",
+            "Microsoft.Net.Component.4.7.2.TargetingPack",
+            "Microsoft.VisualStudio.Component.AspNet45",
+            "Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools",
+            "Microsoft.VisualStudio.Component.Debugger.JustInTime",
+            "Microsoft.VisualStudio.Component.EntityFramework",
+            "Microsoft.VisualStudio.Component.LinqToSql",
+            "Microsoft.VisualStudio.Component.SQL.SSDT",
+            "Microsoft.VisualStudio.Component.Sharepoint.Tools",
+            "Microsoft.VisualStudio.Component.PortableLibrary",
+            "Microsoft.VisualStudio.Component.TeamOffice",
+            "Microsoft.VisualStudio.Component.TestTools.CodedUITest",
+            "Microsoft.VisualStudio.Component.TestTools.WebLoadTest",
+            "Microsoft.VisualStudio.Component.VC.CLI.Support",
+            "Microsoft.VisualStudio.Component.VC.CMake.Project",
+            "Microsoft.VisualStudio.Component.VC.DiagnosticTools",
+            "Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset",
+            "Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest",
+            "Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest",
+            "Microsoft.VisualStudio.Component.VC.v141.x86.x64",
+            "Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.v141.MFC",
+            "Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre",
+            "Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre",
+            "Microsoft.VisualStudio.Component.Windows10SDK.19041",
+            "Microsoft.VisualStudio.Component.Workflow",
+            "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
+            "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
+            "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
+            "Microsoft.VisualStudio.Workload.Azure",
+            "Microsoft.VisualStudio.Workload.Data",
+            "Microsoft.VisualStudio.Workload.ManagedDesktop",
+            "Microsoft.VisualStudio.Workload.ManagedGame",
+            "Microsoft.VisualStudio.Workload.NativeCrossPlat",
+            "Microsoft.VisualStudio.Workload.NativeDesktop",
+            "Microsoft.VisualStudio.Workload.NativeGame",
+            "Microsoft.VisualStudio.Workload.NativeMobile",
+            "Microsoft.VisualStudio.Workload.NetCrossPlat",
+            "Microsoft.VisualStudio.Workload.NetWeb",
+            "Microsoft.VisualStudio.Workload.Node",
+            "Microsoft.VisualStudio.Workload.Office",
+            "Microsoft.VisualStudio.Workload.Python",
+            "Microsoft.VisualStudio.Workload.Universal",
+            "Microsoft.VisualStudio.Workload.VisualStudioExtension",
+            "Component.MDD.Linux"
+        ],
+        "vsix": []
+    },
+    "docker": {
+        "images": []
+    },
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint --version"
+        }
+    ],
+    "npm": {
+        "global_packages": [
+            { "name": "yarn", "test": "yarn --version" },
+            { "name": "newman", "test": "newman --version" },
+            { "name": "lerna", "test": "lerna --version" }
+        ]
+    },
+    "dotnet": {
+        "versions": [
+            "3.1",
+            "5.0"
+        ],
+        "warmup": false
+    },
+    "choco": {
+        "common_packages": [
+            { "name": "7zip.install" },
+            { "name": "aria2" },
+            { "name": "azcopy10" },
+            { "name": "Bicep" },
+            { "name": "jq" },
+            { "name": "NuGet.CommandLine" },
+            { "name": "openssl.light" },
+            { "name": "packer" },
+            { "name": "pulumi" },
+            { "name": "tortoisesvn" },
+            { "name": "swig" },
+            { "name": "vswhere" },
+            { "name": "kotlinc" },
+            {
+                "name": "julia",
+                "args": [ "--ia", "/DIR=C:\\Julia" ]
+            },
+            {
+                "name": "cmake.install",
+                "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
+            }
+        ]
+    }
+}

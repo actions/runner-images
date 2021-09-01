@@ -13,8 +13,8 @@ function Get-ApacheVersion {
 }
 
 function Get-NginxVersion {
-    $nginxBinPath = Join-Path (Get-NginxPath) "\nginx"
-    (. $nginxBinPath -v 2>&1 | Select-String -Pattern "nginx/") -match "nginx/(?<version>\d+\.\d+\.\d+)" | Out-Null
+    $nginxBinPath = Join-Path (Get-NginxPath) "nginx"
+    (cmd /c "$nginxBinPath -v 2>&1") -match "nginx/(?<version>\d+\.\d+\.\d+)" | Out-Null
     return $Matches.Version
 }
 

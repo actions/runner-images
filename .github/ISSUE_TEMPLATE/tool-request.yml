@@ -58,6 +58,7 @@ body:
         - label: macOS 11
         - label: Windows Server 2016
         - label: Windows Server 2019
+        - label: Windows Server 2022
     validations:
       required: true
   - type: textarea

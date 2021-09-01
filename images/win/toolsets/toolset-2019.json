@@ -252,7 +252,9 @@
         { "name": "NET-Framework-Features", "includeAllSubFeatures": true },
         { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
         { "name": "FS-iSCSITarget-Server", "includeAllSubFeatures": true, "includeManagementTools": true },
-        { "name": "Containers" }
+        { "name": "Containers" },
+        { "name": "Microsoft-Windows-Subsystem-Linux", "optionalFeature": true },
+        { "name": "VirtualMachinePlatform", "optionalFeature": true }
     ],
     "visualStudio": {
         "version" : "2019",
@@ -332,6 +334,7 @@
             "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
             "Microsoft.VisualStudio.ComponentGroup.UWP.VC",
+            "Microsoft.VisualStudio.ComponentGroup.UWP.VC.v141",
             "Microsoft.VisualStudio.Workload.Azure",
             "Microsoft.VisualStudio.Workload.Data",
             "Microsoft.VisualStudio.Workload.DataScience",

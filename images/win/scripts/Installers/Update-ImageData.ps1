@@ -7,7 +7,11 @@ $imageVersion = $env:IMAGE_VERSION
 $imageDataFile = $env:IMAGEDATA_FILE
 $githubUrl="https://github.com/actions/virtual-environments/blob"
 
-if (Test-IsWin19) {
+if (Test-IsWin22) {
+    $imageLabel = "windows-2022"
+    $softwareUrl = "${githubUrl}/win22/${imageVersion}/images/win/Windows2022-Readme.md"
+    $releaseUrl="https://github.com/actions/virtual-environments/releases/tag/win22%2F${imageVersion}"
+} elseif (Test-IsWin19) {
     $imageLabel = "windows-2019"
     $softwareUrl = "${githubUrl}/win19/${imageVersion}/images/win/Windows2019-Readme.md"
     $releaseUrl="https://github.com/actions/virtual-environments/releases/tag/win19%2F${imageVersion}"

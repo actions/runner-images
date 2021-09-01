@@ -72,8 +72,7 @@
         "default": "8",
         "versions": [
             "8", "11", "12"
-        ],
-        "maven": "3.8.1"
+        ]
     },
     "android": {
         "platform_min_version": "23",
@@ -158,6 +157,7 @@
             "zsync"
         ],
         "cmd_packages": [
+            "aria2",
             "binutils",
             "bison",
             "brotli",

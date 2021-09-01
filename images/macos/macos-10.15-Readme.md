@@ -6,11 +6,11 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1323)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210801.1
+- Image Version: 20210814.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 3.1.411 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202 5.0.300 5.0.301 5.0.302
+- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 2.1.817 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 3.1.411 3.1.412 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202 5.0.300 5.0.301 5.0.302 5.0.400
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is default
 - Clang/LLVM 12.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
@@ -20,18 +20,18 @@
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0) 11.2.0 - available by `gfortran-11` alias
-- Go 1.15.14
+- Go 1.15.15
 - julia 1.6.2
 - kotlin 1.5.21-release-314
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v14.17.4
+- Node.js v14.17.5
 - NVM 0.38.0
-- NVM - Cached node versions: v10.24.1 v12.22.4 v14.17.4
+- NVM - Cached node versions: v10.24.1 v12.22.5 v14.17.5
 - Perl 5.34.0
 - PHP 8.0.9
 - Python 2.7.18
 - Python 3.9.6
-- R 4.1.0
+- R 4.1.1
 - Ruby 2.7.4p191
 
 ### Package Management
@@ -39,15 +39,15 @@
 - Carthage 0.38.0
 - CocoaPods 1.10.2
 - Composer 2.1.5
-- Homebrew 3.2.5
+- Homebrew 3.2.6
 - Miniconda 4.10.3
 - NPM 6.14.14
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.1.3 (python 3.9)
-- Pipx 0.16.3
+- Pipx 0.16.4
 - RubyGems 3.2.25
-- Vcpkg 2021 (build from master \<261c458>)
+- Vcpkg 2021 (build from master \<6bc4362>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -58,7 +58,7 @@
 
 ### Project Management
 - Apache Ant(TM) 1.10.11
-- Apache Maven 3.8.1
+- Apache Maven 3.8.2
 - Gradle 7.1.1
 
 ### Utilities
@@ -71,7 +71,7 @@
 - Curl 7.78.0
 - Git LFS: 2.13.3
 - Git: 2.32.0
-- GitHub CLI: 1.13.1
+- GitHub CLI: 1.14.0
 - GNU parallel 20210622
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.1
@@ -79,13 +79,13 @@
 - helm v3.6.3+gd506314
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v5.0.1
-- mongod v5.0.1
+- mongo v5.0.2
+- mongod v5.0.2
 - Newman 5.2.4
 - OpenSSL 1.1.1k  25 Mar 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1k)`
 - Packer 1.7.4
-- PostgreSQL 13.3
-- psql (PostgreSQL) 13.3
+- PostgreSQL 13.4
+- psql (PostgreSQL) 13.4
 - Sox 14.4.2
 - Subversion (SVN) 1.14.1
 - Switchaudio-osx 1.1.0
@@ -95,18 +95,18 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.82
+- Aliyun CLI 3.0.85
 - App Center CLI 2.10.0
-- AWS CLI 2.2.25
+- AWS CLI 2.2.29
 - AWS SAM CLI 1.27.2
 - AWS Session Manager CLI 1.2.234.0
-- Azure CLI 2.26.1
-- Bicep CLI 0.4.451
+- Azure CLI 2.27.1
+- Bicep CLI 0.4.613
 - Cabal 3.4.0.0
 - Cmake 3.21.1
-- Fastlane 2.189.0
+- Fastlane 2.191.0
 - GHC 9.0.1
-- GHCup v0.1.16.1
+- GHCup v0.1.16.2
 - Stack 2.7.3
 - SwiftFormat 0.48.11
 - Swig 4.0.2
@@ -114,16 +114,16 @@
 
 ### Linters
 - SwiftLint 0.43.1
-- yamllint 1.26.1
+- yamllint 1.26.2
 
 ### Browsers
 - Safari 14.1.2 (15611.3.10.1.5)
 - SafariDriver 14.1.2 (15611.3.10.1.5)
-- Google Chrome 92.0.4515.107 
+- Google Chrome 92.0.4515.131 
 - ChromeDriver 92.0.4515.107
-- Microsoft Edge 92.0.902.62 
-- MSEdgeDriver 92.0.902.62
-- Mozilla Firefox 90.0.2
+- Microsoft Edge 92.0.902.73 
+- MSEdgeDriver 92.0.902.73
+- Mozilla Firefox 91.0
 - geckodriver 0.29.1
 
 #### Environment variables
@@ -134,13 +134,13 @@
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
 ### Java
-| Version              | Vendor        | Environment Variable |
-| -------------------- | ------------- | -------------------- |
-| 8.0.292+10 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.11+9            | Adopt OpenJDK | JAVA_HOME_11_X64     |
-| 12.0.2+10.3          | Adopt OpenJDK | JAVA_HOME_12_X64     |
-| 13.0.2+8.1           | Adopt OpenJDK | JAVA_HOME_13_X64     |
-| 14.0.2+12            | Adopt OpenJDK | JAVA_HOME_14_X64     |
+| Version             | Vendor        | Environment Variable |
+| ------------------- | ------------- | -------------------- |
+| 8.0.302+8 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
+| 11.0.12+7           | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| 12.0.2+10.3         | Adopt OpenJDK | JAVA_HOME_12_X64     |
+| 13.0.2+8.1          | Adopt OpenJDK | JAVA_HOME_13_X64     |
+| 14.0.2+12           | Adopt OpenJDK | JAVA_HOME_14_X64     |
 
 ### Cached Tools
 #### Ruby
@@ -165,14 +165,14 @@
 
 #### Node.js
 - 10.24.1
-- 12.22.4
-- 14.17.4
+- 12.22.5
+- 14.17.5
 
 #### Go
 - 1.13.15
 - 1.14.15
-- 1.15.14
-- 1.16.6
+- 1.15.15
+- 1.16.7
 
 ### Rust Tools
 - Cargo 1.54.0
@@ -189,7 +189,7 @@
 - Rustfmt 1.4.37-stable
 
 ### PowerShell Tools
-- PowerShell 7.1.3
+- PowerShell 7.1.4
 
 #### PowerShell Modules
 | Module           | Version |
@@ -207,7 +207,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.6.10
+- 8.10.7.17
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |

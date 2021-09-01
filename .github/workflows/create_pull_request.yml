@@ -21,11 +21,12 @@ jobs:
         git push origin ${{ github.event.client_payload.ReleaseBranchName }}-docs
 
     - name: Create pull request for ${{ github.event.client_payload.ReleaseBranchName }}
+      id: create-pr
       uses: actions/github-script@v2
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          github.pulls.create({
+          let response = await github.pulls.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
             title: "${{ github.event.client_payload.PullRequestTitle }}",
@@ -33,3 +34,16 @@ jobs:
             base: "${{ github.event.client_payload.PullRequestBase }}",
             body: `${{ github.event.client_payload.PullRequestBody }}`
           });
+          return response.data.number
+
+    - name: Request reviewers
+      uses: actions/github-script@v2
+      with:
+        github-token: ${{secrets.PRAPPROVAL_SECRET}}
+        script: |
+          github.pulls.requestReviewers({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: ${{ steps.create-pr.outputs.result }},
+              team_reviewers: ['virtual-environments-akvelon']
+          })

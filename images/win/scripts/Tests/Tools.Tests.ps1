@@ -42,13 +42,16 @@ Describe "DACFx" {
     It "DACFx" {
         (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Contains "Microsoft SQL Server Data-Tier Application Framework (x64)" | Should -BeTrue
         $sqlPackagePath = 'C:\Program Files\Microsoft SQL Server\150\DAC\bin\SqlPackage.exe'
-        $sqlLocalDBPath = 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe'
         "${sqlPackagePath}" | Should -Exist
+    }
+
+    It "SqlLocalDB" -Skip:(Test-IsWin22) {
+        $sqlLocalDBPath = 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe'
         "${sqlLocalDBPath}" | Should -Exist
     }
 }
 
-Describe "DotnetTLS" {
+Describe "DotnetTLS" -Skip:(Test-IsWin22) {
     It "Tls 1.2 is enabled" {
         [Net.ServicePointManager]::SecurityProtocol -band "Tls12" | Should -Be Tls12
     }
@@ -88,7 +91,7 @@ Describe "Mingw64" {
     }
 }
 
-Describe "GoogleCloudSDK"  {
+Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
@@ -105,7 +108,7 @@ Describe "NET48" {
     }
 }
 
-Describe "NSIS" {
+Describe "NSIS" -Skip:(Test-IsWin22) {
     It "NSIS" {
        "makensis /VERSION" | Should -ReturnZeroExitCode
     }
@@ -121,13 +124,13 @@ Describe "PowerShell Core" {
     }
 }
 
-Describe "Sbt" {
+Describe "Sbt" -Skip:(Test-IsWin22) {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "ServiceFabricSDK" {
+Describe "ServiceFabricSDK" -Skip:(Test-IsWin22) {
     It "PowerShell Module" {
         Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
     }
@@ -153,7 +156,7 @@ Describe "Vcpkg" {
     }
 }
 
-Describe "WebPlatformInstaller" {
+Describe "WebPlatformInstaller" -Skip:(Test-IsWin22) {
     It "WebPlatformInstaller" {
         "WebPICMD" | Should -ReturnZeroExitCode
     }

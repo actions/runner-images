@@ -72,8 +72,7 @@
         "default": "11",
         "versions": [
             "8", "11"
-        ],
-        "maven": "3.8.1"
+        ]
     },
     "android": {
         "platform_min_version": "27",
@@ -158,6 +157,7 @@
         ],
         "cmd_packages": [
             "acl",
+            "aria2",
             "binutils",
             "bison",
             "brotli",
