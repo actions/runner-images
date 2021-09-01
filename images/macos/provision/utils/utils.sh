@@ -173,3 +173,20 @@ brew_smart_install() {
         brew install $tool_name
     fi
 }
+
+configure_tccdb () {
+    local dbPath=$1
+    shift
+    local valuesArray=("$@")
+
+    for values in "${valuesArray[@]}"
+    do
+        local sqlQuery="INSERT INTO access VALUES($values);"
+
+        if [[ $dbPath == "/Library/Application Support/com.apple.TCC/TCC.db" ]]; then
+            sudo sqlite3 "$dbPath" "$sqlQuery"
+        else
+            sqlite3 "$dbPath" "$sqlQuery"
+        fi
+    done
+}
