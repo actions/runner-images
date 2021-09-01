@@ -181,6 +181,7 @@
                 "./provision/core/audiodevice.sh",
                 "./provision/core/vcpkg.sh",
                 "./provision/core/miniconda.sh",
+                "./provision/core/safari.sh",
                 "./provision/core/chrome.sh",
                 "./provision/core/edge.sh",
                 "./provision/core/firefox.sh",
