@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [(Public Beta) Windows Server 2022 with Visual Studio 2022 is now available](https://github.com/actions/virtual-environments/issues/3949) |
 | [[macOS, Windows] .NET SDK pre-installation policy will be changed on September, 6](https://github.com/actions/virtual-environments/issues/3809) |
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 169
-- Image Version: 20210819.7
+- Image Version: 20210901.3
 
 ## Installed Software
 ### Language and Runtime
@@ -12,21 +13,21 @@
 - Go 1.16.7
 - Julia 1.6.2
 - Kotlin 1.5.20
-- Node 14.17.5
-- PHP 8.0.9
+- Node 14.17.6
+- PHP 8.0.10
 - Python 3.9.6
 - Ruby 3.0.2p107
 
 ### Package Management
 - Chocolatey 0.10.15
-- Composer 2.1.5
+- Composer 2.1.6
 - Helm 3.6.3
-- NPM 6.14.14
+- NPM 6.14.15
 - NuGet 5.11.0.10
 - pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.22
-- Vcpkg  (build from master \<bd7fc2c>)
+- Vcpkg  (build from master \<5bc27e8>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -36,19 +37,19 @@
 
 ### Project Management
 - Ant 1.10.11
-- Gradle 7.1
-- Maven 3.8.1
+- Gradle 7.2
+- Maven 3.8.2
 
 ### Tools
 - 7zip 19.00
-- aria2 1.35.0
-- azcopy 10.11.0
-- Bazel 4.2.0
+- aria2 1.36.0
+- azcopy 10.12.0
+- Bazel 4.2.1
 - Bazelisk 1.10.1
 - Bicep 0.4.613
 - Cabal 3.4.0.0
-- CMake 3.21.1
-- CodeQL Action Bundle 2.5.9
+- CMake 3.21.2
+- CodeQL Action Bundle 2.6.0
 - Docker 20.10.6
 - Docker-compose 1.29.2
 - ghc 9.0.1
@@ -57,30 +58,30 @@
 - GVFS 1.0.21085.9
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.22.0
+- Kubectl 1.22.1
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.2.4
 - OpenSSL 1.1.1
 - Packer 1.7.4
-- Pulumi v3.10.2
+- Pulumi v3.11.0
 - R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
-- yamllint 1.26.2
+- yamllint 1.26.3
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.88
-- AWS CLI 2.2.30
-- AWS SAM CLI 1.28.0
+- Alibaba Cloud CLI 3.0.90
+- AWS CLI 2.2.33
+- AWS SAM CLI 1.29.0
 - AWS Session Manager CLI 1.2.245.0
-- Azure CLI 2.27.1
+- Azure CLI 2.27.2
 - Azure DevOps CLI extension 0.20.0
-- GitHub CLI 1.14.0
+- GitHub CLI 2.0.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -98,11 +99,11 @@
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 92.0.4515.159
-- Chrome Driver 92.0.4515.107
-- Microsoft Edge 92.0.902.73
-- Microsoft Edge Driver 92.0.902.73
-- Mozilla Firefox 91.0.1
+- Google Chrome 93.0.4577.63
+- Chrome Driver 93.0.4577.15
+- Microsoft Edge 92.0.902.84
+- Microsoft Edge Driver 92.0.902.84
+- Mozilla Firefox 91.0.2
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.1
 
@@ -146,8 +147,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 10.24.1 | x64          |
-| 12.22.5 | x64          |
-| 14.17.5 | x64          |
+| 12.22.6 | x64          |
+| 14.17.6 | x64          |
 
 
 #### Python
@@ -205,7 +206,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.48  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.21.1  | C:\tools\nginx-1.21.1\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.21.2  | C:\tools\nginx-1.21.2\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                  |
@@ -313,6 +314,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Unity                                    | 17.0.31530.272 |
 | Microsoft.VisualStudio.Component.VC.ASAN                                  | 17.0.31530.272 |
 | Microsoft.VisualStudio.Component.VC.ATL                                   | 17.0.31530.272 |
+| Microsoft.VisualStudio.Component.VC.ATL.Spectre                           | 17.0.31530.272 |
+| Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre                        | 17.0.31530.272 |
 | Microsoft.VisualStudio.Component.VC.CLI.Support                           | 17.0.31530.272 |
 | Microsoft.VisualStudio.Component.VC.CMake.Project                         | 17.0.31530.272 |
 | Microsoft.VisualStudio.Component.VC.CoreIde                               | 17.0.31530.272 |
@@ -423,7 +426,7 @@ All other versions are saved but not installed.
 | MarkdownPS         | 1.9              |
 | Pester             | 3.4.0<br>5.3.0   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
-| PSScriptAnalyzer   | 1.19.1           |
+| PSScriptAnalyzer   | 1.20.0           |
 | PSWindowsUpdate    | 2.2.0.2          |
 | SqlServer          | 21.1.18256       |
 | VSSetup            | 2.2.16           |
@@ -440,7 +443,7 @@ All other versions are saved but not installed.
 | CMake                      | 3.18.1                                                                                                                             |
 | Google Play services       | 49                                                                                                                                 |
 | Google Repository          | 58                                                                                                                                 |
-| NDK                        | 21.4.7075529<br>22.1.7171670                                                                                                       |
+| NDK                        | a<br>a<br>21.4.7075529<br>22.1.7171670                                                                                             |
 | SDK Patch Applier v4       | 1                                                                                                                                  |
 
 #### Environment variables
