@@ -1,3 +1,5 @@
+#!/bin/bash -e -o pipefail
+
 echo "Enabling safari driver..."
 # https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari
 # Safari’s executable is located at /usr/bin/safaridriver
