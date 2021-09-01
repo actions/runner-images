@@ -5,7 +5,7 @@ variable "source_vm_name" {
 
 variable "source_vm_tag" {
   type = string
-  default = "bigsur_300g"
+  default = "bigsur_300gb"
 }
 
 variable "vm_name" {
@@ -27,30 +27,20 @@ variable "build_id" {
   type = string
 }
 
-variable "macos_user" {
+variable "vm_username" {
   type = string
 }
 
-variable "macos_password" {
+variable "vm_password" {
   type = string
 }
 
-variable "xcode_user" {
-  type = string
-}
-
-variable "xcode_password" {
-  type = string
-}
-
-variable "tools_dir" {
-  type = string
-  default = "/Users/runner/hostedtoolcache"
-}
+variable "xcode_install_user" { type = string }
+variable "xcode_install_password" { type = string }
 
 variable "image_os" {
   type = string
-  default = "macos"
+  default = "macos11"
 }
          
 source "veertu-anka-vm-clone" "template" {     
@@ -73,19 +63,7 @@ build {
   }
   provisioner "file" {
     destination = "image-generation/"
-    source      = "./provision/assets"
-  }
-  provisioner "file" {
-    destination = "image-generation/"
-    source      = "./tests"
-  }
-  provisioner "file" {
-    destination = "image-generation/"
-    source      = "./software-report"
-  }
-  provisioner "file" {
-    destination = "image-generation/"
-    source      = "./helpers"
+    sources     = [ "./provision/assets", "./tests", "./software-report", "./helpers" ]
   }
   provisioner "file" {
     destination = "image-generation/add-certificate.swift"
@@ -127,8 +105,8 @@ build {
       "./provision/configuration/shell-change.sh"
     ]
     environment_vars = [
-      "PASSWORD=${var.macos_password}",
-      "USERNAME=${var.macos_user}"
+      "PASSWORD=${var.vm_password}",
+      "USERNAME=${var.vm_username}"
     ]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
   }
@@ -164,13 +142,13 @@ build {
       "./provision/core/node.sh"
     ]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
-    environment_vars = ["AGENT_TOOLSDIRECTORY=${var.tools_dir}"]
+    environment_vars = ["AGENT_TOOLSDIRECTORY=/Users/runner/hostedtoolcache"]
   }
   provisioner "shell" {
     script = "./provision/core/xcode.ps1"
     environment_vars = [
-      "XCODE_INSTALL_USER=${var.xcode_user}",
-      "XCODE_INSTALL_PASSWORD=${var.xcode_password}"
+      "XCODE_INSTALL_USER=${var.xcode_install_user}",
+      "XCODE_INSTALL_PASSWORD=${var.xcode_install_password}"
     ]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
