@@ -439,7 +439,7 @@ function Get-AndroidPackages {
         [string]$AndroidSDKManagerPath
     )
 
-    return (& $AndroidSDKManagerPath --list --verbose).Trim() | Foreach-Object { $_.Split()[0] } | Where-Object {$_}
+    return (cmd /c "$AndroidSDKManagerPath --list --verbose 2>&1").Trim() | Foreach-Object { $_.Split()[0] } | Where-Object {$_}
 }
 
 function Get-AndroidPackagesByName {

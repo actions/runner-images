@@ -15,7 +15,7 @@ brew_shellenv="/home/linuxbrew/.linuxbrew/bin/brew shellenv"
 
 # Update /etc/environment
 ## Put HOMEBREW_* variables.
-$brew_shellenv | grep 'export HOMEBREW' | sed -E 's/^export (.*);$/\1/' | sudo tee -a /etc/environment
+$brew_shellenv | grep 'export HOMEBREW' | sed -E 's/^export (.*);$/\1/' | tr -d '"' | sudo tee -a /etc/environment
 # add brew executables locations to PATH
 brew_path=$($brew_shellenv | grep '^export PATH' | sed -E 's/^export PATH="([^$]+)\$.*/\1/')
 prependEtcEnvironmentPath "$brew_path"
