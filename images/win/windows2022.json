@@ -24,7 +24,7 @@
         "install_password": null,
         "capture_name_prefix": "packer",
         "image_version": "dev",
-        "image_os": "win19"
+        "image_os": "win22"
     },
     "sensitive-variables": [
         "install_password",
@@ -56,7 +56,7 @@
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
-            "image_sku": "2019-Datacenter",
+            "image_sku": "2022-Datacenter",
             "communicator": "winrm",
             "winrm_use_ssl": "true",
             "winrm_insecure": "true",
@@ -92,7 +92,7 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolsets/toolset-2019.json",
+            "source": "{{template_dir}}/toolsets/toolset-2022.json",
             "destination": "{{user `image_folder`}}\\toolset.json"
         },
         {
@@ -130,24 +130,15 @@
             "execution_policy": "unrestricted"
         },
         {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
-            ],
-            "elevated_user": "{{user `install_user`}}",
-            "elevated_password": "{{user `install_password`}}"
-        },
-        {
             "type": "windows-restart",
-            "restart_timeout": "30m"
+            "restart_timeout": "10m"
         },
         {
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-VCRedist.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"
             ]
         },
         {
@@ -162,8 +153,7 @@
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-NET48.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
@@ -171,8 +161,6 @@
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-Wix.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-WDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vsix.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
@@ -180,13 +168,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-CommonUtils.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
             ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-ServiceFabricSDK.ps1"
-            ],
-            "execution_policy": "remotesigned"
         },
         {
             "type": "windows-restart",
@@ -213,7 +194,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PHP.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Rust.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Sbt.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Chrome.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Edge.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Firefox.ps1",
@@ -232,31 +212,34 @@
                 "{{ template_dir }}/scripts/Installers/Install-Mingw64.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Haskell.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Stack.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Miniconda.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureCosmosDbEmulator.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Mercurial.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Zstd.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-NSIS.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-CloudFoundryCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vcpkg.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Bazel.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-RootCA.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-MongoDB.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1",
-                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
+                "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1",
                 "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
-            ]
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
@@ -288,7 +271,7 @@
         {
             "type": "file",
             "source": "C:\\InstalledSoftware.md",
-            "destination": "{{ template_dir }}/Windows2019-Readme.md",
+            "destination": "{{ template_dir }}/Windows2022-Readme.md",
             "direction": "download"
         },
         {

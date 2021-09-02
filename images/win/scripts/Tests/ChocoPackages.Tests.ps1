@@ -22,13 +22,13 @@ Describe "Bicep" {
     }
 }
 
-Describe "GitVersion" {
+Describe "GitVersion" -Skip:(Test-IsWin22) {
     It "gitversion is installed" {
         "gitversion /version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "InnoSetup" {
+Describe "InnoSetup" -Skip:(Test-IsWin22) {
     It "InnoSetup" {
         (Get-Command -Name iscc).CommandType | Should -BeExactly "Application"
     }
@@ -58,7 +58,7 @@ Describe "Packer" {
     }
 }
 
-Describe "Perl" {
+Describe "Perl" -Skip:(Test-IsWin22) {
     It "Perl" {
        "perl --version" | Should -ReturnZeroExitCode
     }

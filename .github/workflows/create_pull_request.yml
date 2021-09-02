@@ -39,11 +39,11 @@ jobs:
     - name: Request reviewers
       uses: actions/github-script@v2
       with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
+        github-token: ${{secrets.PRAPPROVAL_SECRET}}
         script: |
           github.pulls.requestReviewers({
-              owner: context.repo.owner
-              repo: context.repo.repo
-              pull_number: ${{ steps.create-pr.outputs.result }}
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: ${{ steps.create-pr.outputs.result }},
               team_reviewers: ['virtual-environments-akvelon']
           })

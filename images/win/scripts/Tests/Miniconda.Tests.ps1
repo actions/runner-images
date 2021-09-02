@@ -1,4 +1,4 @@
-Describe "Miniconda" {
+Describe "Miniconda" -Skip:(Test-IsWin22) {
     It "Miniconda Environment variables is set. " {
         ${env:CONDA} | Should -Not -BeNullOrEmpty
     }

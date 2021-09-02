@@ -380,6 +380,11 @@ function Get-WinVersion
     (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
 
+function Test-IsWin22
+{
+    (Get-WinVersion) -match "2022"
+}
+
 function Test-IsWin19
 {
     (Get-WinVersion) -match "2019"
@@ -434,7 +439,7 @@ function Get-AndroidPackages {
         [string]$AndroidSDKManagerPath
     )
 
-    return (& $AndroidSDKManagerPath --list --verbose).Trim() | Foreach-Object { $_.Split()[0] } | Where-Object {$_}
+    return (cmd /c "$AndroidSDKManagerPath --list --verbose 2>&1").Trim() | Foreach-Object { $_.Split()[0] } | Where-Object {$_}
 }
 
 function Get-AndroidPackagesByName {

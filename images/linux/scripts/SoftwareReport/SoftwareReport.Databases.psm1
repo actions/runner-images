@@ -1,7 +1,7 @@
 function Get-PostgreSqlVersion {
     $postgreSQLVersion = psql --version | Take-OutputPart -Part 2
     $aptSourceRepo = Get-AptSourceRepository -PackageName "postgresql"
-    return "Postgre SQL $postgreSQLVersion (apt source repository: $aptSourceRepo)"
+    return "PostgreSQL $postgreSQLVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-MongoDbVersion {
