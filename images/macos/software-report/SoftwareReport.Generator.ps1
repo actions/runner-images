@@ -129,7 +129,8 @@ $utilitiesList = @(
     (Get-MongodVersion),
     (Get-7zipVersion),
     (Get-BsdtarVersion),
-    (Get-GnuTarVersion)
+    (Get-GnuTarVersion),
+    (Get-VirtualBoxVersion)
 )
 
 if ($os.IsHigherThanMojave) {
@@ -140,7 +141,6 @@ if ($os.IsHigherThanMojave) {
 
 if ($os.IsLessThanBigSur) {
     $utilitiesList += @(
-        (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
         (Get-ParallelVersion)
     )
