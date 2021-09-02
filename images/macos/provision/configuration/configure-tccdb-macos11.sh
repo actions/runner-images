@@ -17,8 +17,7 @@ systemValuesArray=(
     "'kTCCServiceMicrophone','/usr/local/opt/runner/runprovisioner.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1576661342"
     "'kTCCServiceScreenCapture','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1599831148"
 )
-for values in "${systemValuesArray[@]}"
-do
+for values in "${systemValuesArray[@]}"; do
     configure_system_tccdb $values
 done
 
@@ -40,7 +39,6 @@ userValuesArray=(
     "'kTCCServiceUbiquity','com.apple.PassKitCore',0,2,5,1,NULL,NULL,NULL,'UNUSED',NULL,0,1619516250"
     "'kTCCServiceAppleEvents','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,3,1,X'fade0c00000000ac0000000100000006000000020000001e636f6d2e7665657274752e616e6b612e6164646f6e732e616e6b6172756e0000000000060000000f000000060000000e000000010000000a2a864886f76364060206000000000000000000060000000e000000000000000a2a864886f7636406010d0000000000000000000b000000000000000a7375626a6563742e4f550000000000010000000a545439464157503656340000',NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1629294900"
 )
-for values in "${userValuesArray[@]}"
-do
+for values in "${userValuesArray[@]}"; do
     configure_user_tccdb $values
 done
