@@ -174,19 +174,16 @@ brew_smart_install() {
     fi
 }
 
-configure_tccdb () {
-    local dbPath=$1
-    shift
-    local valuesArray=("$@")
+configure_system_tccdb () {
+    local values=$1
 
-    for values in "${valuesArray[@]}"
-    do
-        local sqlQuery="INSERT INTO access VALUES($values);"
+    local sqlQuery="INSERT INTO access VALUES($values);"
+    sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "$sqlQuery"
+}
 
-        if [[ $dbPath == "/Library/Application Support/com.apple.TCC/TCC.db" ]]; then
-            sudo sqlite3 "$dbPath" "$sqlQuery"
-        else
-            sqlite3 "$dbPath" "$sqlQuery"
-        fi
-    done
+configure_user_tccdb () {
+    local values=$1
+
+    local sqlQuery="INSERT INTO access VALUES($values);"
+    sqlite3 $HOME/Library/Application\ Support/com.apple.TCC/TCC.db "$sqlQuery"
 }
