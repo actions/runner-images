@@ -191,7 +191,16 @@
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
                 "./provision/core/bicep.sh"
+            ],
+            "environment_vars": [
+                "USER_PASSWORD={{user `vm_password`}}"
             ]
+        },
+        {
+            "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
+            "script": "./provision/core/reboot.sh",
+            "expect_disconnect": true
         },
         {
             "type": "shell",

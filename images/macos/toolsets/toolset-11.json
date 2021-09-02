@@ -155,7 +155,8 @@
             "zstd"
         ],
         "cask_packages": [
-            "julia"
+            "julia",
+            "virtualbox"
         ]
     },
     "gcc": {
