@@ -32,15 +32,14 @@ if (Test-IsWin19)
     $diskImage = Mount-DiskImage -ImagePath $isoPath
     $driveLetter = ($diskImage | Get-Volume).DriveLetter
     $filePath = Join-Path "${driveLetter}:\" "winsdksetup.exe"
-    
+
     # `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
     Install-Binary -FilePath $filePath -ArgumentList $argumentList
-    
+
     # Dismount ISO
     Dismount-DiskImage -DevicePath $diskImage.DevicePath | Out-Null
 }
-
-if (Test-IsWin16)
+else
 {
     # `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
     Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList $argumentList
