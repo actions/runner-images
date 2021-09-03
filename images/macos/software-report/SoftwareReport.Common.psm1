@@ -394,7 +394,7 @@ function Get-NewmanVersion {
 
 function Get-VirtualBoxVersion {
     $virtualBox = Run-Command "vboxmanage -v"
-    return "virtualbox $virtualBox"
+    return "VirtualBox $virtualBox"
 }
 
 function Get-VagrantVersion {

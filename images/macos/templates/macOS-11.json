@@ -142,7 +142,11 @@
                 "./provision/core/ruby.sh",
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
-                "./provision/core/node.sh"
+                "./provision/core/node.sh",
+                "./provision/core/commonutils.sh"
+            ],
+            "environment_vars": [
+                "USER_PASSWORD={{user `vm_password`}}"
             ]
         },
         {
@@ -164,7 +168,6 @@
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
-                "./provision/core/commonutils.sh",
                 "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
                 "./provision/core/php.sh",
@@ -191,16 +194,7 @@
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
                 "./provision/core/bicep.sh"
-            ],
-            "environment_vars": [
-                "USER_PASSWORD={{user `vm_password`}}"
             ]
-        },
-        {
-            "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
-            "script": "./provision/core/reboot.sh",
-            "expect_disconnect": true
         },
         {
             "type": "shell",

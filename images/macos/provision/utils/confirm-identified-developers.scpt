@@ -1,3 +1,13 @@
+# This AppleScript confirms developers in security preferences via macOS UI. 
+# It uses after VirtualBox installation to add 'Oracle Inc' as identified developer.
+# Steps:
+# - Close security preferences pop-up (it can be open after VirtualBox installation)
+# - Open System Preferences -> Security & Privacy -> General
+# - Unlock security preferences with user password (button 'Click the lock to make changes')
+# - Click 'Allow' or 'Details…' button to confirm developers
+# - Click 'Not now' button on restarting pop-up
+# - Close System Preferences
+
 on run argv
   set userpassword to item 1 of argv
   set secpane to "Security & Privacy"

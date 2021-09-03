@@ -14,7 +14,10 @@ for package in $cask_packages; do
 done
 
 # Execute AppleScript to change security preferences for virtualbox
-osascript confirm-identified-developers.scpt $USER_PASSWORD
+# System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
+if is_BigSur; then
+    osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
+fi
 
 # Specify Bazel version 3.7.1 to install due to the bug with 4.0.0: https://github.com/bazelbuild/bazel/pull/12882
 if is_Less_Catalina; then
