@@ -25,18 +25,24 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh > /dev/n
 export PATH="$ghcup_bin:$PATH"
 prependEtcEnvironmentPath $ghcup_bin
 
-# Get 2 latest Haskell Major.Minor versions
-allGhcVersions=$(apt-cache search "^ghc-" | grep -Po '(\d*\.){2}\d*' | sort --unique --version-sort)
-ghcMajorMinorVersions=$(echo "$allGhcVersions" | cut -d "." -f 1,2 | sort --unique --version-sort | tail -2)
+availableVersions=$(ghcup list -t ghc -r | grep -v "prerelease" | awk '{print $2}')
 
-# We are using apt-get to install ghc, not ghcup,
-# because ghc installed through ghcup takes up too much disk space (2GB versus 1GB through apt-get)
-for version in $ghcMajorMinorVersions; do
-    # Get latest patch version for given Major.Minor one (ex. 8.6.5 for 8.6) and install it
-    exactVersion=$(echo "$allGhcVersions" | grep $version | sort --unique --version-sort | tail -1)
-    apt-get install -y ghc-$exactVersion
-    ghcInstalledVersions+=("$exactVersion")
-    defaultGHCVersion=$exactVersion
+# Install 3 latest major versions(For instance 8.6.5, 8.8.4, 8.10.2)
+minorMajorVersions=$(echo "$availableVersions" | cut -d"." -f 1,2 | uniq | tail -n3)
+for majorMinorVersion in $minorMajorVersions; do
+    fullVersion=$(echo "$availableVersions" | grep "$majorMinorVersion." | tail -n1)
+    echo "install ghc version $fullVersion..."
+    ghcup install ghc $fullVersion
+    ghcup set ghc $fullVersion
+
+	# remove docs and profiling libs
+	ghc_bin_dir="$(ghcup whereis --directory ghc $fullVersion)"
+	[ -e "${ghc_bin_dir}" ] || exit 1
+	ghc_dir="$(realpath "${ghc_bin_dir}"/..)"
+	[ -e "${ghc_dir}" ] || exit 1
+	find "${ghc_dir}" \( -name "*_p.a" -o -name "*.p_hi" \) -type f -delete
+	rm -r "${ghc_dir}"/share/*
+	unset ghc_bin_dir ghc_dir
 done
 
 echo "install cabal..."
