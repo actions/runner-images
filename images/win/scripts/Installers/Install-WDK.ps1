@@ -31,10 +31,10 @@ if (Test-IsWin19)
     $isoPath = Start-DownloadWithRetry -Url $winSdkUrl -Name winsdk.iso
     $diskImage = Mount-DiskImage -ImagePath $isoPath
     $driveLetter = ($diskImage | Get-Volume).DriveLetter
-    $filePath = Join-Path "${driveLetter}:\" "winsdksetup.exe"
+    $sdkPath = Join-Path "${driveLetter}:\" "winsdksetup.exe"
 
     # `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
-    Install-Binary -FilePath $filePath -ArgumentList $argumentList
+    Install-Binary -FilePath $sdkPath -ArgumentList $argumentList
 
     # Dismount ISO
     Dismount-DiskImage -DevicePath $diskImage.DevicePath | Out-Null
