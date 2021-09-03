@@ -144,8 +144,8 @@ Describe "vagrant" -Skip:($os.IsBigSur) {
     }
 }
 
-Describe "virtualbox" {
-    It "virtualbox" {
+Describe "VirtualBox" {
+    It "vboxmanage" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 }
