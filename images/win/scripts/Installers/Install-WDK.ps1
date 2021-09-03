@@ -25,7 +25,7 @@ else
 
 $argumentList = ("/features", "+", "/quiet")
 
-if (Test-IsWind19)
+if (Test-IsWin19)
 {
     # Download WDK ISO file
     $isoPath = Start-DownloadWithRetry -Url $winSdkUrl -Name winsdk.iso
