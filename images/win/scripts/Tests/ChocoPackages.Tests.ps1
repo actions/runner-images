@@ -44,6 +44,9 @@ Describe "Nuget" {
     It "Nuget" {
        "nuget" | Should -ReturnZeroExitCode
     }
+    It "NuGet.Config not exists" {
+        "$env:APPDATA\NuGet\NuGet.Config" | Should -Not -Exist
+    }
 }
 
 Describe "OpenSSL" {
