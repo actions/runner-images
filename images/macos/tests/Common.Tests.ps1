@@ -101,6 +101,6 @@ Describe "Bicep" {
 
 Describe "VirtualBox" {
     It "Check kext kernel modules" {
-        "kextstat | grep 'virtualbox.kext'" | Should -ReturnZeroExitCode
+        "kextstat" | Should -Match "virtualbox.kext"
     }
 }
