@@ -215,8 +215,10 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "lts": "21",
-            "latest": "22"
+            "default": "21",
+            "versions": [
+                "21", "22", "23"
+            ]
         }
     },
     "powershellModules": [
