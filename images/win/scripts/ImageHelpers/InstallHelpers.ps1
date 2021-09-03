@@ -22,11 +22,11 @@ function Install-Binary
 
     Param
     (
-        [Parameter(Mandatory,ParameterSetName="Url")]
+        [Parameter(Mandatory, ParameterSetName="Url")]
         [String] $Url,
-        [Parameter(Mandatory,ParameterSetName="Url")]
+        [Parameter(Mandatory, ParameterSetName="Url")]
         [String] $Name,
-        [Parameter(Mandatory,ParameterSetName="LocalPath")]
+        [Parameter(Mandatory, ParameterSetName="LocalPath")]
         [String] $FilePath,
         [String[]] $ArgumentList
     )
