@@ -33,3 +33,7 @@ Write-Host 'Installing cabal...'
 Choco-Install -PackageName cabal
 
 Invoke-PesterTests -TestFile 'Haskell'
+
+# install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
+Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;Invoke-Command -ScriptBlock ([ScriptBlock]::Create((Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing))) -ArgumentList $false, $true, $true, $false, $false, $false, $false, C:\, "", C:\msys64, C:\cabal
+
