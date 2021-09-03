@@ -8,5 +8,4 @@ if (-not $latestPath.Contains($dotnetPath))
 }
 
 # Recreate the config using the 'dotnet nuget list source command'
-# https://github.com/actions/virtual-environments/issues/3038
 dotnet nuget list source
