@@ -40,7 +40,7 @@ if (Test-IsWin19)
     Dismount-DiskImage -DevicePath $diskImage.DevicePath | Out-Null
 }
 
-if (Test-IsWind16)
+if (Test-IsWin16)
 {
     # `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
     Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList $argumentList
