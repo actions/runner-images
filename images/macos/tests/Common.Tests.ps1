@@ -101,6 +101,6 @@ Describe "Bicep" {
 
 Describe "VirtualBox" {
     It "Check kext kernel modules" {
-        "kextstat" | Should -Match "virtualbox.kext"
+        kextstat | Out-String | Should -Match "org.virtualbox.kext"
     }
 }
