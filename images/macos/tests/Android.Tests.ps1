@@ -8,10 +8,8 @@ Describe "Android" {
     $androidSdkManagerPackages = Get-AndroidPackages
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
-    [string]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
-    [string]$ndkLtsVersion = Get-ToolsetValue "android.ndk.lts"
-    $ndkLatestFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLatestVersion.*" | Select-Object -Last 1).Name
-    $ndkLtsFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLtsVersion.*" | Select-Object -Last 1).Name
+    [array]$ndkVersions = Get-ToolsetValue "android.ndk.versions"
+    $ndkFullVersions = $ndkVersions | ForEach-Object { (Get-ChildItem "$env:ANDROID_HOME/ndk/${_}.*" | Select-Object -Last 1).Name }
 
     $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', ''
     $platformNumericList = $platformVersionsList | Where-Object { $_ -match "\d+" } | Where-Object { [int]$_ -ge $platformMinVersion } | Sort-Object -Unique
@@ -28,10 +26,9 @@ Describe "Android" {
         "tools/proguard",
         "ndk-bundle",
         "cmake",
-        "ndk/$ndkLatestFullVersion",
-        "ndk/$ndkLtsFullVersion",
         $platforms,
         $buildTools,
+        $ndkFullVersions | ForEach-Object { "ndk/${_}" },
         (Get-ToolsetValue "android.extra-list" | ForEach-Object { "extras/${_}" }),
         (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" }),
         (Get-ToolsetValue "android.additional-tools")
