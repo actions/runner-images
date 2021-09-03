@@ -28,7 +28,7 @@ $argumentList = ("/features", "+", "/quiet")
 if (Test-IsWind19)
 {
     # Download WDK ISO file
-    $isoPath = Start-DownloadWithRetry -Url $winSdkUrl -Name wdk.iso
+    $isoPath = Start-DownloadWithRetry -Url $winSdkUrl -Name winsdk.iso
     $diskImage = Mount-DiskImage -ImagePath $isoPath
     $driveLetter = ($diskImage | Get-Volume).DriveLetter
     $filePath = Join-Path "${driveLetter}:\" "winsdksetup.exe"
