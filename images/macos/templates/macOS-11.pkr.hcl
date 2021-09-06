@@ -23,38 +23,29 @@ variable "ram_size" {
   default = "6G"
 }
 
-variable "build_id" {
-  type = string
-}
-
-variable "vm_username" {
-  type = string
-}
-
-variable "vm_password" {
-  type = string
-}
-
-variable "xcode_install_user" { type = string }
-variable "xcode_install_password" { type = string }
-
 variable "image_os" {
   type = string
   default = "macos11"
 }
-         
-source "veertu-anka-vm-clone" "template" {     
-  vm_name = "${var.vm_name}"      
-  source_vm_name = "${var.source_vm_name}"    
-  source_vm_tag = "${var.source_vm_tag}"      
+
+variable "build_id" { type = string }
+variable "vm_username" { type = string }
+variable "vm_password" { type = string }
+variable "xcode_install_user" { type = string }
+variable "xcode_install_password" { type = string }
+
+source "veertu-anka-vm-clone" "template" {
+  vm_name = "${var.vm_name}"
+  source_vm_name = "${var.source_vm_name}"
+  source_vm_tag = "${var.source_vm_tag}"
   vcpu_count = "${var.vcpu_count}"
-  ram_size = "${var.ram_size}"    
+  ram_size = "${var.ram_size}"
   stop_vm =  "true"
-}        
-         
+}
+
 build {  
   sources = [        
-    "source.veertu-anka-vm-clone.template",       
+    "source.veertu-anka-vm-clone.template",
   ]
   provisioner "shell" {
     inline = [
@@ -142,7 +133,6 @@ build {
       "./provision/core/node.sh"
     ]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
-    environment_vars = ["AGENT_TOOLSDIRECTORY=/Users/runner/hostedtoolcache"]
   }
   provisioner "shell" {
     script = "./provision/core/xcode.ps1"
