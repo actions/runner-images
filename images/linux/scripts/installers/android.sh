@@ -72,7 +72,7 @@ minimumPlatformVersion=$(get_toolset_value '.android.platform_min_version')
 extras=$(get_toolset_value '.android.extra_list[]|"extras;" + .')
 addons=$(get_toolset_value '.android.addon_list[]|"add-ons;" + .')
 additional=$(get_toolset_value '.android.additional_tools[]')
-ANDROID_NDK_MAJOR_VERSIONS=($(get_toolset_value '.android.ndk."versions[]"'))
+ANDROID_NDK_MAJOR_VERSIONS=($(get_toolset_value '.android.ndk.versions[]'))
 ANDROID_NDK_MAJOR_DEFAULT=($(get_toolset_value '.android.ndk.default'))
 ndkDefaultFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
 
