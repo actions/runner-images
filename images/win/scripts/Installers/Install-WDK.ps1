@@ -6,8 +6,8 @@
 # Requires Windows SDK with the same version number as the WDK
 if (Test-IsWin19)
 {
-    $winSdkUrl = "https://go.microsoft.com/fwlink/p/?linkid=2120843"
-    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2128854"
+    $winSdkUrl = "https://go.microsoft.com/fwlink/?linkid=2164145"
+    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2164149"
     $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"
     $VSver = "2019"
 }
