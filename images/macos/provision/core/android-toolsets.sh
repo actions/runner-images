@@ -31,7 +31,7 @@ ANDROID_BUILD_TOOL=($(get_toolset_value '.android.build_tools_min_version'))
 ANDROID_EXTRA_LIST=($(get_toolset_value '.android."extra-list"[]'))
 ANDROID_ADDON_LIST=($(get_toolset_value '.android."addon-list"[]'))
 ANDROID_ADDITIONAL_TOOLS=($(get_toolset_value '.android."additional-tools"[]'))
-ANDROID_NDK_MAJOR_VERSIONS=($(get_toolset_value '.android.ndk."versions[]"'))
+ANDROID_NDK_MAJOR_VERSIONS=($(get_toolset_value '.android.ndk."versions"[]'))
 ANDROID_NDK_MAJOR_DEFAULT=($(get_toolset_value '.android.ndk.default'))
 ANDROID_NDK_MAJOR_LATEST=(${ANDROID_NDK_MAJOR_VERSIONS[${#ANDROID_NDK_MAJOR_VERSIONS[@]}-1]})
 # Get the latest command line tools from https://developer.android.com/studio#cmdline-tools
