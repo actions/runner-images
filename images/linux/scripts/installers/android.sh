@@ -90,7 +90,7 @@ ln -s $ANDROID_SDK_ROOT/ndk/$ndkDefaultFullVersion $ANDROID_NDK_ROOT
 
 if isUbuntu20; then
     ANDROID_NDK_MAJOR_LATEST=(${ANDROID_NDK_MAJOR_VERSIONS[-1]})
-    ndkLatest=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
+    ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
     echo "ANDROID_NDK_LATEST_HOME=$ANDROID_SDK_ROOT/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
 fi
 
