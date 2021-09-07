@@ -144,11 +144,6 @@ build {
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
   provisioner "shell" {
-    script = "./provision/core/reboot.sh"
-    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
-    expect_disconnect = true
-  }
-  provisioner "shell" {
     scripts = [
                 "./provision/core/commonutils.sh",
                 "./provision/core/swiftlint.sh",
