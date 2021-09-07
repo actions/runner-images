@@ -5,7 +5,7 @@
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 169
-- Image Version: 20210901.3
+- Image Version: 20210907.1
 
 ## Installed Software
 ### Language and Runtime
@@ -15,11 +15,11 @@
 - Kotlin 1.5.20
 - Node 14.17.6
 - PHP 8.0.10
-- Python 3.9.6
+- Python 3.9.7
 - Ruby 3.0.2p107
 
 ### Package Management
-- Chocolatey 0.10.15
+- Chocolatey 0.11.1
 - Composer 2.1.6
 - Helm 3.6.3
 - NPM 6.14.15
@@ -27,7 +27,7 @@
 - pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.22
-- Vcpkg  (build from master \<5bc27e8>)
+- Vcpkg  (build from master \<71422c6>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -43,7 +43,7 @@
 ### Tools
 - 7zip 19.00
 - aria2 1.36.0
-- azcopy 10.12.0
+- azcopy 10.12.1
 - Bazel 4.2.1
 - Bazelisk 1.10.1
 - Bicep 0.4.613
@@ -76,10 +76,10 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.90
-- AWS CLI 2.2.33
-- AWS SAM CLI 1.29.0
+- AWS CLI 2.2.35
+- AWS SAM CLI 1.30.0
 - AWS Session Manager CLI 1.2.245.0
-- Azure CLI 2.27.2
+- Azure CLI 2.28.0
 - Azure DevOps CLI extension 0.20.0
 - GitHub CLI 2.0.0
 - Hub CLI 2.14.2
@@ -101,8 +101,8 @@
 ### Browsers and webdrivers
 - Google Chrome 93.0.4577.63
 - Chrome Driver 93.0.4577.15
-- Microsoft Edge 92.0.902.84
-- Microsoft Edge Driver 92.0.902.84
+- Microsoft Edge 93.0.961.38
+- Microsoft Edge Driver 93.0.961.38
 - Mozilla Firefox 91.0.2
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.1
@@ -141,6 +141,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ | -------------------- |
 | 1.15.15 | x64          | GOROOT_1_15_X64      |
 | 1.16.7 (Default) | x64          | GOROOT_1_16_X64      |
+| 1.17.0  | x64          | GOROOT_1_17_X64      |
 
 
 #### Node
@@ -156,7 +157,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 3.7.9   | x64          |
 | 3.8.10  | x64          |
-| 3.9.6 (Default) | x64          |
+| 3.9.7 (Default) | x64          |
 
 
 #### Ruby
@@ -338,6 +339,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.WebDeploy                                | 17.0.31530.272 |
 | Microsoft.VisualStudio.Component.Windows10SDK                             | 17.0.31530.272 |
 | Microsoft.VisualStudio.Component.Windows10SDK.19041                       | 17.0.31530.272 |
+| Microsoft.VisualStudio.Component.Windows10SDK.20348                       | 17.0.31530.272 |
 | Microsoft.VisualStudio.Component.Workflow                                 | 17.0.31530.272 |
 | Microsoft.VisualStudio.Component.WslDebugging                             | 17.0.31530.272 |
 | Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Native            | 17.0.31530.272 |
