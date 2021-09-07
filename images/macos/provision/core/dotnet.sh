@@ -26,14 +26,16 @@ for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
     # https://rider-support.jetbrains.com/hc/en-us/articles/360004180039
     if is_Less_Catalina; then
         ARGS_LIST+=(
-        $(curl -s "$RELEASE_URL" | \
-        jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*' | grep -v -E '2.1.[6-9]\d*')
-    )
+            $(curl -s "$RELEASE_URL" | \
+            jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*' | grep -v -E '2.1.[6-9]\d*' | \
+            sort -r | rev | uniq -s 2 | rev)
+        )
     else
         ARGS_LIST+=(
-        $(curl -s "$RELEASE_URL" | \
-        jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*')
-    )
+            $(curl -s "$RELEASE_URL" | \
+            jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*' | \
+            sort -r | rev | uniq -s 2 | rev)
+        )
     fi
 done
 
