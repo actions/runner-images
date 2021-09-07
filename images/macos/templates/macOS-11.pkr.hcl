@@ -88,6 +88,7 @@ build {
   provisioner "shell" {
     scripts = [
       "./provision/configuration/add-network-interface-detection.sh",
+      "./provision/configuration/configure-tccdb-macos11.sh",
       "./provision/configuration/autologin.sh",
       "./provision/configuration/disable-auto-updates.sh",
       "./provision/configuration/screensaver-off.sh",
@@ -202,7 +203,6 @@ build {
   provisioner "shell" {
     scripts = [
       "./provision/configuration/configure-hostname.sh",
-      "./provision/configuration/configure-tccdb-macos11.sh",
       "./provision/configuration/finalize-vm.sh"
     ]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
