@@ -28,7 +28,7 @@ Describe "Android" {
         "cmake",
         $platforms,
         $buildTools,
-        $ndkFullVersions | ForEach-Object { "ndk/${_}" },
+        ($ndkFullVersions | ForEach-Object { "ndk/${_}" }),
         (Get-ToolsetValue "android.extra-list" | ForEach-Object { "extras/${_}" }),
         (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" }),
         (Get-ToolsetValue "android.additional-tools")
