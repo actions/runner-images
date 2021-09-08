@@ -1,5 +1,11 @@
 $os = Get-OSVersion
 
+Describe "Azure CLI" {
+    It "Azure CLI" {
+        "az -v" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Carthage" {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
