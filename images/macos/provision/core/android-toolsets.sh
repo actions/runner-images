@@ -60,8 +60,6 @@ echo "Installing latest tools & platform tools..."
 echo y | $SDKMANAGER "tools" "platform-tools"
 
 echo "Installing latest ndk..."
-ndkDefault=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
-ndkLatest=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
 for ndk_version in "${ANDROID_NDK_MAJOR_VERSIONS[@]}"
 do
     ndk_full_version=$(get_full_ndk_version $ndk_version)
@@ -70,6 +68,8 @@ done
 # This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
 # Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
 # Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
+ndkDefault=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
+ndkLatest=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
 ln -s $ANDROID_HOME/ndk/$ndkDefault $ANDROID_HOME/ndk-bundle
 ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ndkLatest
 echo "export ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> "${HOME}/.bashrc"

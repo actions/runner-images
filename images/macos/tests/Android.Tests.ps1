@@ -9,7 +9,7 @@ Describe "Android" {
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
     [array]$ndkVersions = Get-ToolsetValue "android.ndk.versions"
-    $ndkFullVersions = $ndkVersions | ForEach-Object { (Get-ChildItem "$env:ANDROID_HOME/ndk/${_}.*" | Select-Object -Last 1).Name }
+    $ndkFullVersions = $ndkVersions | ForEach-Object { Get-ChildItem "$env:ANDROID_HOME/ndk/${_}.*" -Name | Select-Object -Last 1} | ForEach-Object { "ndk/${_}" }
 
     $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', ''
     $platformNumericList = $platformVersionsList | Where-Object { $_ -match "\d+" } | Where-Object { [int]$_ -ge $platformMinVersion } | Sort-Object -Unique
@@ -28,7 +28,7 @@ Describe "Android" {
         "cmake",
         $platforms,
         $buildTools,
-        ($ndkFullVersions | ForEach-Object { "ndk/${_}" }),
+        $ndkFullVersions,
         (Get-ToolsetValue "android.extra-list" | ForEach-Object { "extras/${_}" }),
         (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" }),
         (Get-ToolsetValue "android.additional-tools")
