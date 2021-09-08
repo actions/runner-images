@@ -19,10 +19,6 @@ if is_Less_Catalina; then
     echo "export USE_BAZEL_VERSION=${USE_BAZEL_VERSION}" >> "${HOME}/.bashrc"
 fi
 
-DEFAULT_GO_VERSION=$(get_toolset_value '.default_go.version')
-# Create symlinks for Go 1.15 to preserve backward compatibility
-ln -sf $(brew --prefix go@${DEFAULT_GO_VERSION})/bin/* /usr/local/bin/
-
 # Invoke bazel to download bazel version via bazelisk
 bazel
 

@@ -24,11 +24,6 @@ Describe "SwiftFormat" {
     }
 }
 
-Describe "Go" {
-    It "Go" {
-        "go version" | Should -ReturnZeroExitCode
-    }
-}
 
 Describe "GnuPG" {
     It "GnuPG" {

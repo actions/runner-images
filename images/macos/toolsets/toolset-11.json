@@ -233,18 +233,18 @@
             "5.0"
         ]
     },
-    "rubygems": [
-        "xcode-install",
-        "cocoapods",
-        "nomad-cli",
-        "xcpretty",
-        "bundler",
-        "fastlane"
-    ],
-    "default_ruby": {
-        "version": "2.7"
+    "ruby": {
+        "default": "2.7",
+        "rubygems": [
+            "xcode-install",
+            "cocoapods",
+            "nomad-cli",
+            "xcpretty",
+            "bundler",
+            "fastlane"
+        ]
     },
-    "default_go": {
-        "version": "1.15"
+    "go": {
+        "default": "go@1.15"
     }
 }
