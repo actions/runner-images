@@ -130,6 +130,12 @@
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "appcenter-cli", "test": "appcenter --version" },
+            { "name": "newman", "test": "newman --version" }
+        ]
+    },
     "brew": {
         "common_packages": [
             "aliyun-cli",
