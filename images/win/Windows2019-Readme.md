@@ -5,7 +5,7 @@
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2114
-- Image Version: 20210903.7
+- Image Version: 20210907.4
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -32,7 +32,7 @@
 - pip 21.2.4 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<a4d0471>)
+- Vcpkg  (build from master \<642d1cc>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -70,7 +70,7 @@
 - Kubectl 1.22.1
 - Mercurial 5.0
 - Mingw-w64 8.1.0
-- Newman 5.2.4
+- Newman 5.3.0
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.4
@@ -89,7 +89,7 @@
 - AWS CLI 2.2.35
 - AWS SAM CLI 1.30.0
 - AWS Session Manager CLI 1.2.245.0
-- Azure CLI 2.27.2
+- Azure CLI 2.28.0
 - Azure DevOps CLI extension 0.20.0
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 2.0.0
@@ -114,7 +114,7 @@
 - Chrome Driver 93.0.4577.15
 - Microsoft Edge 93.0.961.38
 - Microsoft Edge Driver 92.0.902.84
-- Mozilla Firefox 91.0.2
+- Mozilla Firefox 92.0
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.1
 
@@ -157,6 +157,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
 | 1.16.7  | x64          | GOROOT_1_16_X64      |
+| 1.17.0  | x64          | GOROOT_1_17_X64      |
 
 
 #### Node
@@ -175,7 +176,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.6   | x64, x86     |
+| 3.9.7   | x64, x86     |
 
 
 #### Ruby
@@ -229,7 +230,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.48  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.21.2  | C:\tools\nginx-1.21.2\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.21.3  | C:\tools\nginx-1.21.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
@@ -255,7 +256,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 16.10.31205.252 |
 | Component.Microsoft.Web.LibraryManager                                    | 16.10.31205.180 |
 | Component.Microsoft.WebTools.BrowserLink.WebLivePreview                   | 0.7.22.39845    |
-| Component.Microsoft.Windows.DriverKit                                     | 10.0.19030.0    |
+| Component.Microsoft.Windows.DriverKit                                     | 10.0.20324.0    |
 | Component.OpenJDK                                                         | 16.10.31303.311 |
 | Component.UnityEngine.x64                                                 | 16.10.31205.252 |
 | Component.Unreal                                                          | 16.1.28810.153  |
@@ -418,6 +419,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Windows10SDK.17763                       | 16.0.28517.75   |
 | Microsoft.VisualStudio.Component.Windows10SDK.18362                       | 16.1.28829.92   |
 | Microsoft.VisualStudio.Component.Windows10SDK.19041                       | 16.10.31205.252 |
+| Microsoft.VisualStudio.Component.Windows10SDK.20348                       | 16.11.31603.221 |
 | Microsoft.VisualStudio.Component.WinXP                                    | 16.10.31205.252 |
 | Microsoft.VisualStudio.Component.Workflow                                 | 16.0.28315.86   |
 | Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Native            | 16.0.28621.142  |
@@ -463,8 +465,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ProBITools.MicrosoftReportProjectsforVisualStudio                         | 2.6.11          |
 | SSIS.SqlServerIntegrationServicesProjects                                 | 3.15            |
 | VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.0           |
-| Windows Driver Kit                                                        | 10.0.19030.0    |
-| Windows Driver Kit Visual Studio Extension                                | 10.1.19041.685  |
+| Windows Driver Kit                                                        | 10.0.20324.0    |
+| Windows Driver Kit Visual Studio Extension                                | 10.1.20348.1    |
 | WIX Toolset                                                               | 3.11.4516       |
 | WIX Toolset Studio 2019 Extension                                         | 1.0.0.4         |
 
@@ -489,20 +491,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.508 2.1.509 2.1.510 2.1.511 2.1.512 2.1.513 2.1.514 2.1.515 2.1.516 2.1.517 2.1.518 2.1.519 2.1.520 2.1.521 2.1.522 2.1.523 2.1.524 2.1.526 2.1.602 2.1.603 2.1.604 2.1.605 2.1.606 2.1.607 2.1.608 2.1.609 2.1.610 2.1.611 2.1.612 2.1.613 2.1.614 2.1.615 2.1.616 2.1.617 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 2.1.818 3.1.100 3.1.101 3.1.102 3.1.103 3.1.104 3.1.105 3.1.106 3.1.107 3.1.108 3.1.109 3.1.110 3.1.111 3.1.112 3.1.113 3.1.114 3.1.115 3.1.116 3.1.117 3.1.118 3.1.200 3.1.201 3.1.202 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 3.1.411 3.1.412 5.0.100 5.0.101 5.0.102 5.0.103 5.0.104 5.0.200 5.0.201 5.0.202 5.0.203 5.0.204 5.0.205 5.0.206 5.0.300 5.0.301 5.0.302 5.0.303 5.0.400
+- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.118 3.1.202 3.1.302 3.1.412 5.0.104 5.0.206 5.0.303 5.0.400
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 2.1.30
+- 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 2.1.30 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 3.1.18 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8 5.0.9
+- 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.18 5.0.4 5.0.9
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 2.1.0 2.1.1 2.1.2 2.1.3 2.1.4 2.1.5 2.1.6 2.1.7 2.1.8 2.1.9 2.1.10 2.1.11 2.1.12 2.1.13 2.1.14 2.1.15 2.1.16 2.1.17 2.1.18 2.1.19 2.1.20 2.1.21 2.1.22 2.1.23 2.1.24 2.1.25 2.1.26 2.1.27 2.1.28 2.1.30 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 3.1.18 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8 5.0.9
+- 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.18 5.0.4 5.0.9
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.1.9 3.1.10 3.1.11 3.1.12 3.1.13 3.1.14 3.1.15 3.1.16 3.1.17 3.1.18 5.0.0 5.0.1 5.0.2 5.0.3 5.0.4 5.0.5 5.0.6 5.0.7 5.0.8 5.0.9
+- 3.1.4 3.1.6 3.1.18 5.0.4 5.0.9
 
 ### .NET Framework
 `Type: Developer Pack`
