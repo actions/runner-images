@@ -32,3 +32,14 @@ Describe "Firefox" {
         "geckodriver --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Safari" {
+    It "'Allow Remote Automation' option is activated" {
+        $plistPath = "$env:HOME/Library/WebDriver/com.apple.Safari.plist"
+        $command = "/usr/libexec/PlistBuddy -c 'print AllowRemoteAutomation' $plistPath"
+        $plistPath | Should -Exist
+        $commandResult = Get-CommandResult $command
+        $commandResult.ExitCode | Should -Be 0
+        $commandResult.Output | Should -Be "true"
+    }
+}
