@@ -5,11 +5,11 @@
 # macOS 11.5 info
 - System Version: macOS 11.5.2 (20G95)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20210831.3
+- Image Version: 20210905.2
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.300 2.1.301 2.1.302 2.1.401 2.1.402 2.1.403 2.1.500 2.1.502 2.1.503 2.1.504 2.1.505 2.1.506 2.1.507 2.1.602 2.1.603 2.1.604 2.1.607 2.1.700 2.1.701 2.1.801 2.1.802 2.1.803 2.1.804 2.1.805 2.1.806 2.1.807 2.1.808 2.1.809 2.1.810 2.1.811 2.1.812 2.1.813 2.1.814 2.1.815 2.1.816 2.1.818 3.1.100 3.1.101 3.1.200 3.1.201 3.1.300 3.1.301 3.1.302 3.1.401 3.1.402 3.1.403 3.1.404 3.1.405 3.1.406 3.1.407 3.1.408 3.1.409 3.1.410 3.1.411 3.1.412 5.0.100 5.0.101 5.0.102 5.0.200 5.0.201 5.0.202 5.0.300 5.0.301 5.0.302 5.0.400
+- .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.412 5.0.102 5.0.202 5.0.302 5.0.400
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 12.0.5 is default
@@ -29,23 +29,23 @@
 - Perl 5.34.0
 - PHP 8.0.10
 - Python 2.7.18
-- Python 3.9.6
+- Python 3.9.7
 - Ruby 2.7.4p191
 
 ### Package Management
-- Bundler version 2.2.26
+- Bundler version 2.2.27
 - Carthage 0.38.0
-- CocoaPods 1.10.2
+- CocoaPods 1.11.0
 - Composer 2.1.6
 - Homebrew 3.2.10
 - Miniconda 4.10.3
 - NPM 6.14.15
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
-- Pip 21.1.3 (python 3.9)
+- Pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
-- RubyGems 3.2.26
-- Vcpkg 2021 (build from master \<2ea3e99>)
+- RubyGems 3.2.27
+- Vcpkg 2021 (build from master \<71422c6>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -62,7 +62,7 @@
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
-- azcopy 10.12.0
+- azcopy 10.12.1
 - bazel 4.2.1
 - bazelisk 1.10.1
 - bsdtar 3.3.2 - available by 'tar' alias
@@ -92,14 +92,14 @@
 ### Tools
 - Aliyun CLI 3.0.90
 - App Center CLI 2.10.0
-- AWS CLI 2.2.34
-- AWS SAM CLI 1.29.0
+- AWS CLI 2.2.35
+- AWS SAM CLI 1.30.0
 - AWS Session Manager CLI 1.2.245.0
 - Azure CLI 2.27.2
 - Bicep CLI 0.4.613
 - Cabal 3.4.0.0
 - Cmake 3.21.2
-- Fastlane 2.193.0
+- Fastlane 2.193.1
 - GHC 9.0.1
 - GHCup v0.1.16.2
 - Stack 2.7.3
@@ -116,8 +116,8 @@
 - SafariDriver 14.1.2 (16611.3.10.1.6)
 - Google Chrome 93.0.4577.63 
 - ChromeDriver 92.0.4515.107
-- Microsoft Edge 92.0.902.84 
-- MSEdgeDriver 92.0.902.84
+- Microsoft Edge 93.0.961.38 
+- MSEdgeDriver 93.0.961.38
 - Mozilla Firefox 91.0.2
 - geckodriver 0.29.1
 
@@ -159,6 +159,7 @@
 #### Go
 - 1.15.15
 - 1.16.7
+- 1.17.0
 
 ### Rust Tools
 - Cargo 1.54.0
@@ -189,7 +190,7 @@
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.48  | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
-| nginx | 1.21.1  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
+| nginx | 1.21.2  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
@@ -223,7 +224,7 @@
 
 #### Xcode Support Tools
 - xcpretty 0.3.0
-- xcversion 2.7.0
+- xcversion 2.8.0
 - Nomad CLI 0.0.2
 - Nomad shenzhen CLI 0.14.3
 

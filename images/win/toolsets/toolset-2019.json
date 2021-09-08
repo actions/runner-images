@@ -72,7 +72,8 @@
                 "1.13.*",
                 "1.14.*",
                 "1.15.*",
-                "1.16.*"
+                "1.16.*",
+                "1.17.*"
             ],
             "default": "1.15.*"
         }
@@ -327,6 +328,7 @@
             "Microsoft.VisualStudio.Component.Windows10SDK.17763",
             "Microsoft.VisualStudio.Component.Windows10SDK.18362",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
+            "Microsoft.VisualStudio.Component.Windows10SDK.20348",
             "Microsoft.VisualStudio.Component.WinXP",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",

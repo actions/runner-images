@@ -49,7 +49,8 @@
             "platform" : "win32",
             "versions": [
                 "1.15.*",
-                "1.16.*"
+                "1.16.*",
+                "1.17.*"
             ],
             "default": "1.16.*"
         }
@@ -174,6 +175,7 @@
             "Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
+            "Microsoft.VisualStudio.Component.Windows10SDK.20348",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
