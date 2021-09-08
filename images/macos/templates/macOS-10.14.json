@@ -159,6 +159,7 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
                 "./provision/core/commonutils.sh",
+                "./provision/core/go.sh",
                 "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
                 "./provision/core/php.sh",
