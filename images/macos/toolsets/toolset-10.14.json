@@ -349,5 +349,11 @@
         "xcpretty",
         "bundler",
         "fastlane"
-    ]
+    ],
+    "default_ruby": {
+        "version": "2.7"
+    },
+    "default_go": {
+        "version": "1.15"
+    }
 }
