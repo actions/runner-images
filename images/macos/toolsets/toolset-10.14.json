@@ -230,6 +230,14 @@
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "npm@3" },
+            { "name": "omelette@0.4.14" },
+            { "name": "appcenter-cli@^1.0.0", "test": "appcenter --version" },
+            { "name": "node-gyp" }
+        ]
+    },
     "brew": {
         "common_packages": [
             "aliyun-cli",
