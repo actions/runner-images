@@ -65,6 +65,7 @@ createBundleLink $CURRENT_SDK_SYMLINK "Current"
 #
 
 if is_BigSur || is_Catalina; then
+  # The "nuget restore" command fails: https://github.com/mono/mono/issues/21180
   installNuget "6.12.0" "5.9.1"
 fi
 
