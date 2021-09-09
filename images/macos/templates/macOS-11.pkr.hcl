@@ -100,7 +100,6 @@ build {
       "PASSWORD=${var.vm_password}",
       "USERNAME=${var.vm_username}"
     ]
-    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
     scripts = [
@@ -113,11 +112,9 @@ build {
       "IMAGE_VERSION=${var.build_id}",
       "IMAGE_OS=${var.image_os}"
     ]
-    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
     script = "./provision/core/reboot.sh"
-    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
     expect_disconnect = true
   }
   provisioner "shell" {
@@ -133,7 +130,6 @@ build {
       "./provision/core/git.sh",
       "./provision/core/node.sh"
     ]
-    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
     script = "./provision/core/xcode.ps1"
@@ -141,7 +137,10 @@ build {
       "XCODE_INSTALL_USER=${var.xcode_install_user}",
       "XCODE_INSTALL_PASSWORD=${var.xcode_install_password}"
     ]
-    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
+  }
+  provisioner "shell" {
+    script = "./provision/core/reboot.sh"
+    expect_disconnect = true
   }
   provisioner "shell" {
     scripts = [
@@ -173,22 +172,18 @@ build {
                 "./provision/core/pipx-packages.sh",
                 "./provision/core/bicep.sh"
     ]
-    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
     script = "./provision/core/toolset.ps1"
-    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
   provisioner "shell" {
     script = "./provision/core/delete-duplicate-sims.rb"
-    execute_command  = "source $HOME/.bash_profile; ruby {{ .Path }}"
   }
   provisioner "shell" {
     inline = [
       "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName UUID=${build.PackerRunUUID}",
       "pwsh -File \"$HOME/image-generation/tests/RunAll-Tests.ps1\""
     ]
-    execute_command  = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "file" {
     destination = "../image-output/"
