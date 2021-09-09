@@ -22,15 +22,24 @@ function Install-Binary
 
     Param
     (
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ParameterSetName="Url")]
         [String] $Url,
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ParameterSetName="Url")]
         [String] $Name,
+        [Parameter(Mandatory, ParameterSetName="LocalPath")]
+        [String] $FilePath,
         [String[]] $ArgumentList
     )
 
-    Write-Host "Downloading $Name..."
-    $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    if ($PSCmdlet.ParameterSetName -eq "LocalPath")
+    {
+        $name = Split-Path -Path $FilePath -Leaf
+    }
+    else
+    {
+        Write-Host "Downloading $Name..."
+        $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    }
 
     # MSI binaries should be installed via msiexec.exe
     $fileExtension = ([System.IO.Path]::GetExtension($Name)).Replace(".", "")
