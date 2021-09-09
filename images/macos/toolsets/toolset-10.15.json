@@ -182,6 +182,13 @@
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "appcenter-cli", "test": "appcenter --version" },
+            { "name": "newman", "test": "newman --version" },
+            { "name": "node-gyp" }
+        ]
+    },
     "brew": {
         "common_packages": [
             "aliyun-cli",
