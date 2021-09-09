@@ -1,7 +1,7 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
-DEFAULT_RUBY_VERSION=$(get_toolset_value '.default_ruby.version')
+DEFAULT_RUBY_VERSION=$(get_toolset_value '.ruby.default')
 echo Installing Ruby...
 brew_smart_install "ruby@${DEFAULT_RUBY_VERSION}"
 
