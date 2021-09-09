@@ -9,7 +9,9 @@ Describe "Android" {
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
     [array]$ndkVersions = Get-ToolsetValue "android.ndk.versions"
+    [string]$ndkDefaultVersion = Get-ToolsetValue "android.ndk.default"
     $ndkFullVersions = $ndkVersions | ForEach-Object { Get-ChildItem "$env:ANDROID_HOME/ndk/${_}.*" -Name | Select-Object -Last 1} | ForEach-Object { "ndk/${_}" }
+    $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultVersion.*" -Name | Select-Object -Last 1
 
     $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', ''
     $platformNumericList = $platformVersionsList | Where-Object { $_ -match "\d+" } | Where-Object { [int]$_ -ge $platformMinVersion } | Sort-Object -Unique
@@ -77,6 +79,12 @@ Describe "Android" {
         It "<PackageName>" -TestCases $testCases {
             param ([string] $PackageName)
             Validate-AndroidPackage $PackageName
+        }
+
+        It "ndk-bundle points to the default NDK version" {
+            $ndkLinkTarget = (Get-Item $env:ANDROID_NDK_HOME).Target
+            $ndkVersion = Split-Path -Path $ndkLinkTarget -Leaf
+            $ndkVersion | Should -BeExactly $ndkDefaultFullVersion
         }
     }
 
