@@ -456,14 +456,5 @@ All other versions are saved but not installed.
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                                                       |
 
-### Cached Docker images
-| Repository:Tag                                                            | Digest                                                                   | Created    |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:38857a55ffcfc715fd4f79d1524db88ec0a8fefe11543db42a030424329b0bf6  | 2021-08-18 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:f449e95b12aa5e1c79681a5dd0dc35c4dcd95a2ca4c4568343b2b87cb6341084  | 2021-08-18 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:a3632ef8d3a55159f006cefd6306b832c67093564b1a89c1ae7e299299b7f175  | 2021-08-18 |
-| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:3df3372895223b44475125ab3553fd39a71d89a896099d463d3216f1e22a3ab0  | 2021-08-09 |
-| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:8f756a7fd4fe963cc7dd2c3ad1597327535da8e8f55a7d1932780934efa87e04  | 2021-08-09 |
-
 
 
