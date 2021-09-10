@@ -194,6 +194,7 @@
             "aliyun-cli",
             "ant",
             "aria2",
+            "azure-cli",
             "bats",
             "bazelisk",
             "carthage",

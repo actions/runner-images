@@ -141,6 +141,7 @@
             "aliyun-cli",
             "ant",
             "aria2",
+            "azure-cli",
             "bazelisk",
             "carthage",
             "cmake",
