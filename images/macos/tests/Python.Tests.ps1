@@ -41,4 +41,9 @@ Describe "Python" {
         $python3Path = Split-Path (readlink (which python3))
         $pip3Path | Should -BeExactly $python3Path
     }
+
+    It "2to3 symlink does not point to Python 2" {
+        $2to3path = (Get-ChildItem (Get-Command 2to3).Path).Target
+        $2to3path | Should -Not -BeLike '/Frameworks/Python.framework/Versions/2.*'
+    }
 }

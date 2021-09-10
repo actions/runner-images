@@ -275,8 +275,7 @@ function Build-PHPSection {
 function Get-GHCVersion {
     $(ghc --version) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $ghcVersion = $Matches.version
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "ghc"
-    return "GHC $ghcVersion (apt source repository: $aptSourceRepo)"
+    return "GHC $ghcVersion"
 }
 
 function Get-GHCupVersion {
