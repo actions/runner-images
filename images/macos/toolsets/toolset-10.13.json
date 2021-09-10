@@ -229,7 +229,6 @@
             "gh",
             "gnupg",
             "gnu-tar",
-            "go@1.15",
             "helm",
             "libpq",
             "llvm",
@@ -279,5 +278,19 @@
         "versions": [
             "2.1"
         ]
+    },
+    "ruby": {
+        "default": "2.7",
+        "rubygems": [
+            "xcode-install",
+            "cocoapods",
+            "nomad-cli",
+            "xcpretty",
+            "bundler",
+            "fastlane"
+        ]
+    },
+    "go": {
+        "default": "1.15"
     }
 }

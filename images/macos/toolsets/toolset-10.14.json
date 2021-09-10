@@ -250,7 +250,6 @@
             "gh",
             "gnupg",
             "gnu-tar",
-            "go@1.15",
             "helm",
             "kotlin",
             "libpq",
@@ -350,12 +349,18 @@
             "2.1"
         ]
     },
-    "rubygems": [
-        "xcode-install",
-        "cocoapods",
-        "nomad-cli",
-        "xcpretty",
-        "bundler",
-        "fastlane"
-    ]
+    "ruby": {
+        "default": "2.7",
+        "rubygems": [
+            "xcode-install",
+            "cocoapods",
+            "nomad-cli",
+            "xcpretty",
+            "bundler",
+            "fastlane"
+        ]
+    },
+    "go": {
+        "default": "1.15"
+    }
 }

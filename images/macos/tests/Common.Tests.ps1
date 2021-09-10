@@ -98,3 +98,9 @@ Describe "Bicep" {
         "bicep --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Go" {
+    It "Go" {
+        "go version" | Should -ReturnZeroExitCode
+    }
+}
