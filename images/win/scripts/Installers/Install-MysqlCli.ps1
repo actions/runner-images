@@ -26,7 +26,7 @@ Extract-7Zip -Path $MysqlArchPath -DestinationPath "C:\"
 
 # Rename mysql-version to mysql folder
 $MysqlPath = "C:\mysql"
-Rename-Item -Path "C:\${$MysqlVersionName}" -NewName $MysqlPath
+Rename-Item -Path "C:\${MysqlVersionName}" -NewName $MysqlPath
 
 # Adding mysql in system environment path
 Add-MachinePathItem "${MysqlPath}\bin"
