@@ -22,7 +22,7 @@ function Get-AndroidSDKManagerPath {
 function Get-AndroidInstalledPackages {
     $androidSDKManagerPath = Get-AndroidSDKManagerPath
     $androidSDKManagerList = cmd /c "$androidSDKManagerPath --list_installed 2>&1"
-    $androidSDKManagerList = $androidSDKManagerList | Where-Object {$_ -notmatch "Warning"}
+    $androidSDKManagerList = $androidSDKManagerList -notmatch "Warning"
     return $androidSDKManagerList
 }
 
