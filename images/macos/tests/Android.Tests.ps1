@@ -75,16 +75,17 @@ Describe "Android" {
 
     Context "Packages" {
         $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
+        $defaultNdkTestCase = @{ NdkDefaultFullVersion = $ndkDefaultFullVersion }
 
         It "<PackageName>" -TestCases $testCases {
             param ([string] $PackageName)
             Validate-AndroidPackage $PackageName
         }
 
-        It "ndk-bundle points to the default NDK version" {
+        It "ndk-bundle points to the default NDK version" -TestCases $defaultNdkTestCase {
             $ndkLinkTarget = (Get-Item $env:ANDROID_NDK_HOME).Target
             $ndkVersion = Split-Path -Path $ndkLinkTarget -Leaf
-            $ndkVersion | Should -BeExactly $ndkDefaultFullVersion
+            $ndkVersion | Should -BeExactly $NdkDefaultFullVersion
         }
     }
 
