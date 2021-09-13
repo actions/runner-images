@@ -91,6 +91,12 @@ Describe "Mingw64" {
     }
 }
 
+Describe "Microsoft GDK" {
+    It "GDK" {
+        Get-ChildItem -Path "$($env:GRDKLatest)grdk.ini" | Should -Exist
+    }
+}
+
 Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
