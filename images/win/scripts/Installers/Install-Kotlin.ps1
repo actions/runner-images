@@ -5,7 +5,7 @@
 
 # Install Kotlin
 $url = "https://api.github.com/repos/JetBrains/kotlin/releases/latest"
-[System.String] $kotlinLatest = (Invoke-RestMethod -Uri $url).assets.browser_download_url -match "kotlin-compiler$"
+[System.String] $kotlinLatest = (Invoke-RestMethod -Uri $url).assets.browser_download_url -match "kotlin-compiler"
 $kotlinInstallerPath = Start-DownloadWithRetry -Url $kotlinLatest -Name "kotlin-compiler.zip"
 
 Write-Host "Expand Kotlin archive"
