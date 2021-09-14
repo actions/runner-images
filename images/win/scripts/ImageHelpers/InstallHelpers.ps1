@@ -168,6 +168,8 @@ function Start-DownloadWithRetry
     (
         [Parameter(Mandatory)]
         [string] $Url,
+        [Parameter(Mandatory=$false)]
+        [Switch]$RestDownload = $false,
         [string] $Name,
         [string] $DownloadPath = "${env:Temp}",
         [int] $Retries = 20
@@ -185,7 +187,14 @@ function Start-DownloadWithRetry
         try
         {
             Write-Host "Downloading package from: $Url to path $filePath ."
-            (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
+            if ($RestDownload)
+            {
+                Invoke-RestMethod -Uri $Url -Method Get -ContentType "application/zip" -OutFile $filePath
+            }
+            else
+            {
+                (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
+            }
             break
         }
         catch
