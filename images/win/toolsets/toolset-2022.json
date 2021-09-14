@@ -246,7 +246,10 @@
             { "name": "Bicep" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
-            { "name": "openssl.light" },
+            {
+                "name": "openssl.light",
+                "args": [ "--version=1.1.1.20181020" ]
+            },
             { "name": "packer" },
             { "name": "pulumi" },
             { "name": "tortoisesvn" },
