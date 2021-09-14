@@ -99,15 +99,23 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.1.0"
+                "6.4.0"
             ],
             "zip_versions": []
         }
     ],
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11"]
+            }
         ]
     },
     "android": {
@@ -200,7 +208,13 @@
         "vsix": []
     },
     "docker": {
-        "images": []
+        "images": [
+            "mcr.microsoft.com/windows/servercore:ltsc2022",
+            "mcr.microsoft.com/windows/nanoserver:ltsc2022",
+            "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022",
+            "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022",
+            "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022"
+        ]
     },
     "pipx": [
         {

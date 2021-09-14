@@ -40,10 +40,4 @@ Describe "Powershell" {
             }
         }
     }
-    
-    Context "Azure CLI" {
-        It "Azure CLI" {
-            "az -v" | Should -ReturnZeroExitCode
-        }
-    }
 }

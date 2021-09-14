@@ -1,8 +1,9 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
+DEFAULT_RUBY_VERSION=$(get_toolset_value '.ruby.default')
 echo Installing Ruby...
-brew_smart_install "ruby@2.7"
+brew_smart_install "ruby@${DEFAULT_RUBY_VERSION}"
 
 #if High Sierra - skip installation from toolset
 if is_HighSierra; then

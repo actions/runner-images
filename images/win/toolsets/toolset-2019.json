@@ -122,7 +122,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.1.0"
+                "6.4.0"
             ],
             "zip_versions": [
                 "1.0.0",
@@ -142,8 +142,16 @@
     ],
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11", "13"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11", "13" ]
+            }
         ]
     },
     "android": {
