@@ -325,11 +325,10 @@ function Get-PipxVersion {
 }
 
 function Get-GDKVersion {
-    $GDKVersion = (Get-Content -Path "$($env:GRDKLatest)grdk.ini" `
-    | Select-Object -Skip 2 `
-    | ConvertFrom-StringData `
-    | Where-Object {$_.Keys -like "*full_productbuild"}).Values
-    return $GDKVersion
+    $GDKConfig = Get-Content -Path "$($env:GRDKLatest)grdk.ini" | Select-Object -Skip 2 | ConvertFrom-StringData
+    $GDKRelease = ($GDKConfig | Where-Object {$_.Keys -like "*name"}).Values
+    $GDKVersion = ($GDKConfig | Where-Object {$_.Keys -like "*full_productbuild"}).Values
+    return "Microsoft Game Development Kit (GDK) $GDKRelease ($GDKVersion)"
 }
 
 function Build-PackageManagementEnvironmentTable {
