@@ -5,6 +5,8 @@ Describe "Android SDK" {
     $androidPackages = Get-AndroidPackages -AndroidSDKManagerPath (Get-AndroidSDKManagerPath)
     $androidInstalledPackages = Get-AndroidInstalledPackages
 
+    $ndkDefaultMajorVersion = $androidToolset.ndk.default
+    $ndkLatestMajorVersion = $androidToolset.ndk.versions | Select-Object -Last 1
     $ndkPackagesTestCases = @()
     $ndkVersions = $androidToolset.ndk.versions
     $ndkVersions | ForEach-Object {
@@ -96,6 +98,14 @@ Describe "Android SDK" {
 
         It "NDK <ndkPackage> is installed" -TestCases $ndkPackagesTestCases {
             "$installedPackages" | Should -Match "ndk;$ndkPackage"
+        }
+
+        It "Default NDK is installed" -TestCases @(@{ ndkDefaultVersion = $ndkDefaultMajorVersion; installedPackages = $androidInstalledPackages }) {
+            "$installedPackages" | Should -Match "ndk;$ndkDefaultVersion"
+        }
+
+        It "Latest NDK is installed" -TestCases @(@{ ndkLatestVersion = $ndkLatestMajorVersion; installedPackages = $androidInstalledPackages }) {
+            "$installedPackages" | Should -Match "ndk;$ndkLatestVersion"
         }
     }
 }
