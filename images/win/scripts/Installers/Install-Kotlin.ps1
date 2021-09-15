@@ -15,4 +15,4 @@ Extract-7Zip -Path $kotlinInstallerPath -DestinationPath $kotlinPath
 # Add to PATH
 Add-MachinePathItem "$kotlinPath\kotlinc\bin"
 
-Invoke-PesterTests -TestFile "Kotlin"
+Invoke-PesterTests -TestFile "Tools" -TestName "Kotlin"
