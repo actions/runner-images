@@ -98,10 +98,7 @@
             "platform-tools"
         ],
         "ndk": {
-            "default": "21",
-            "versions": [
-                "21", "23"
-            ]
+            "lts": "21"
         }
     },
     "powershellModules": [
