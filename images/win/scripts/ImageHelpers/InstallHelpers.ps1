@@ -168,7 +168,7 @@ function Start-DownloadWithRetry
     (
         [Parameter(Mandatory)]
         [string] $Url,
-        [Switch]$RestDownload = $false,
+        [Switch] $RestDownload = $false,
         [string] $Name,
         [string] $DownloadPath = "${env:Temp}",
         [int] $Retries = 20
