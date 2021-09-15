@@ -168,6 +168,7 @@ function Start-DownloadWithRetry
     (
         [Parameter(Mandatory)]
         [string] $Url,
+        [Parameter(Mandatory=$false)]
         [Switch]$RestDownload = $false,
         [string] $Name,
         [string] $DownloadPath = "${env:Temp}",
@@ -188,7 +189,7 @@ function Start-DownloadWithRetry
             Write-Host "Downloading package from: $Url to path $filePath ."
             if ($RestDownload)
             {
-                Invoke-RestMethod -Uri $Url -Method Get -OutFile $filePath
+                Invoke-RestMethod -Uri $Url -Method Get -ContentType "application/zip" -OutFile $filePath
             }
             else
             {
