@@ -87,8 +87,8 @@ build {
   }
   provisioner "shell" {
     scripts = [
-      "./provision/configuration/add-network-interface-detection.sh",
       "./provision/configuration/configure-tccdb-macos11.sh",
+      "./provision/configuration/add-network-interface-detection.sh",
       "./provision/configuration/autologin.sh",
       "./provision/configuration/disable-auto-updates.sh",
       "./provision/configuration/screensaver-off.sh",
@@ -100,7 +100,7 @@ build {
       "PASSWORD=${var.vm_password}",
       "USERNAME=${var.vm_username}"
     ]
-    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}; sudo chown $(whoami) /Users/$(whoami)/Library/LaunchDaemons; sudo chown $(whoami) /Users/$(whoami)/Library/LaunchAgents"
+    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
     scripts = [
