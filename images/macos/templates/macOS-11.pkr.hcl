@@ -100,7 +100,7 @@ build {
       "PASSWORD=${var.vm_password}",
       "USERNAME=${var.vm_username}"
     ]
-    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
+    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}; sudo chown $(whoami) /Users/$(whoami)/Library/LaunchDaemons; sudo chown $(whoami) /Users/$(whoami)/Library/LaunchAgents"
   }
   provisioner "shell" {
     scripts = [
