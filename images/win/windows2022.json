@@ -112,6 +112,14 @@
         },
         {
             "type": "powershell",
+            "inline": [
+                "bcdedit.exe /set TESTSIGNING ON"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
+        },
+        {
+            "type": "powershell",
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
                 "IMAGE_OS={{user `image_os`}}",
@@ -140,14 +148,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"
             ]
-        },
-        {
-            "type": "powershell",
-            "inline": [
-                "bcdedit.exe /set TESTSIGNING ON"
-            ],
-            "elevated_user": "{{user `install_user`}}",
-            "elevated_password": "{{user `install_password`}}"
         },
         {
             "type": "windows-restart",
