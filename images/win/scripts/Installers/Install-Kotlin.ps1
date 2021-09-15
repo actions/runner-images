@@ -9,7 +9,7 @@ $url = "https://api.github.com/repos/JetBrains/kotlin/releases/latest"
 $kotlinInstallerPath = Start-DownloadWithRetry -Url $kotlinLatest -Name "kotlin-compiler.zip"
 
 Write-Host "Expand Kotlin archive"
-$kotlinPath = "C:\Program Files"
+$kotlinPath = "C:\tools"
 Extract-7Zip -Path $kotlinInstallerPath -DestinationPath $kotlinPath
 
 # Add to PATH
