@@ -5,7 +5,7 @@ Describe "Android" {
     [string]$ndkDefaultVersion = Get-ToolsetValue "android.ndk.default"
     [array]$ndkVersions = Get-ToolsetValue "android.ndk.versions"
     $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultVersion.*" -Name | Select-Object -Last 1
-    $ndkFullVersions = $ndkVersions | ForEach-Object { (Get-ChildItem "/usr/local/lib/android/sdk/ndk/${_}.*" | Select-Object -Last 1).Name }
+    $ndkFullVersions = $ndkVersions | ForEach-Object { (Get-ChildItem "/usr/local/lib/android/sdk/ndk/${_}.*" | Select-Object -Last 1).Name } | ForEach-Object { "ndk/${_}" }
 
     $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', ''
     $platformNumericList = $platformVersionsList | Where-Object { $_ -match "\d+" } | Where-Object { [int]$_ -ge $platformMinVersion } | Sort-Object -Unique
