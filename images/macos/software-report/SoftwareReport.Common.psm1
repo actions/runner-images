@@ -513,8 +513,8 @@ function Get-KotlinVersion {
 }
 
 function Get-SbtVersion {
-    $sbtVersion = (sbt -version) -match "sbt script version:" -replace "script version: "
-    return "$sbtVersion"
+    $sbtVersion = Run-Command "sbt -version" | Take-Part -Part 3
+    return "Sbt $sbtVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {

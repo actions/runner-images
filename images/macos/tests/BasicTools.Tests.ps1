@@ -179,6 +179,6 @@ Describe "Kotlin" {
 
 Describe "sbt" {
     It "sbt" {
-        "sbt --version" | Should -ReturnZeroExitCode
+        "sbt -version" | Should -ReturnZeroExitCode
     }
 }
