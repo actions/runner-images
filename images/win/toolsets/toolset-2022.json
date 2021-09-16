@@ -177,6 +177,8 @@
             "Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest",
+            "Microsoft.VisualStudio.Component.VC.Tools.ARM",
+            "Microsoft.VisualStudio.Component.VC.Tools.ARM64",
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64",
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.MFC",
@@ -244,13 +246,15 @@
             { "name": "Bicep" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
-            { "name": "openssl.light" },
+            {
+                "name": "openssl.light",
+                "args": [ "--version=1.1.1.20181020" ]
+            },
             { "name": "packer" },
             { "name": "pulumi" },
             { "name": "tortoisesvn" },
             { "name": "swig" },
             { "name": "vswhere" },
-            { "name": "kotlinc" },
             {
                 "name": "julia",
                 "args": [ "--ia", "/DIR=C:\\Julia" ]
