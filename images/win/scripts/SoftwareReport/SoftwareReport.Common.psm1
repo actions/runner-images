@@ -325,10 +325,10 @@ function Get-PipxVersion {
 }
 
 function Get-GDKVersion {
-    $GDKConfig = Get-Content -Path "$($env:GRDKLatest)grdk.ini" | Select-Object -Skip 2 | ConvertFrom-StringData
-    $GDKRelease = ($GDKConfig | Where-Object {$_.Keys -like "*name"}).Values
-    $GDKVersion = ($GDKConfig | Where-Object {$_.Keys -like "*full_productbuild"}).Values
-    return "Microsoft Game Development Kit (GDK) $GDKRelease ($GDKVersion)"
+    $regKey = "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
+    $installedApplications = Get-ItemProperty -Path $regKey
+    $GDKRelease = $installedApplications | Where-Object DisplayName -match "Microsoft Game Development Kit"
+    return "$($GDKRelease.DisplayName) $($GDKRelease.DisplayVersion)"
 }
 
 function Build-PackageManagementEnvironmentTable {
