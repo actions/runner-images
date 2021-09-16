@@ -187,6 +187,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Kotlin.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Ruby.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
