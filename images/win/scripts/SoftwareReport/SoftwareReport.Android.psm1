@@ -171,10 +171,13 @@ function Get-AndroidNdkVersions {
         $packageInfoParts = Split-TableRowByColumns $_
         return $packageInfoParts[1]
     }
-    return ($versions | ForEach-Object {
-        $defaultPostfix = ( $_ -eq $ndkDefaultFullVersion ) ? " (default)" : ""
+    return (($versions | ForEach-Object {
+        $defaultPostfix = ""
+        if ($_ -eq $ndkDefaultFullVersion) {
+            $defaultPostfix = " (default)"
+        }
         $_ + $defaultPostfix
-    } | Join-String -Separator "<br>")
+    }) -Join "<br>")
 }
 
 function Build-AndroidEnvironmentTable {
