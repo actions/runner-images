@@ -31,7 +31,6 @@ function Install-Binary
         [String[]] $ArgumentList
     )
 
-    $installStartTime = Get-Date
     if ($PSCmdlet.ParameterSetName -eq "LocalPath")
     {
         $name = Split-Path -Path $FilePath -Leaf
@@ -50,26 +49,29 @@ function Install-Binary
         $filePath = "msiexec.exe"
     }
 
+    $installStartTime = Get-Date
     try
     {
         Write-Host "Starting Install $Name..."
         $process = Start-Process -FilePath $filePath -ArgumentList $ArgumentList -Wait -PassThru
-
         $exitCode = $process.ExitCode
+        $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
         if ($exitCode -eq 0 -or $exitCode -eq 3010)
         {
-            $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
             Write-Host "Installation successful in $($installCompleteTime) seconds"
         }
         else
         {
             Write-Host "Non zero exit code returned by the installation process: $exitCode"
+            Write-Host "Total time elapsed: $($installCompleteTime) seconds"
             exit $exitCode
         }
     }
     catch
     {
+        $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
         Write-Host "Failed to install the $fileExtension ${Name}: $($_.Exception.Message)"
+        Write-Host "Installation failed after $($installCompleteTime) seconds"
         exit 1
     }
 }
