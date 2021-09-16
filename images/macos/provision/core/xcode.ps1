@@ -44,7 +44,11 @@ Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 Write-Host "Configuring Xcode symlinks..."
 $xcodeVersions | ForEach-Object {
     Build-XcodeSymlinks -Version $_.link -Symlinks $_.symlinks
-    Build-ProvisionatorSymlink -Version $_.link
+
+    # Temporary solution to install Xcode 13 beta along with 13 stable
+    if ($_.link -ne "13.0_beta") {
+        Build-ProvisionatorSymlink -Version $_.link
+    }
 }
 
 Write-Host "Setting default Xcode to $defaultXcode"
