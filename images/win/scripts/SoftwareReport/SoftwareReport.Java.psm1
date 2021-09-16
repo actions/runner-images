@@ -13,10 +13,11 @@ function Get-JavaVersions {
         $versionInPath = (Split-Path $javaPath) -replace "\w:\\.*\\"
         $version = $versionInPath -replace '-', '+'
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
+        $VendorName = ($javaPath -like '*Java_Adopt_jdk*') ? "Adopt OpenJDK" :  "Eclipse Temurin"
 
         [PSCustomObject] @{
             "Version" = $version + $defaultPostfix
-            "Vendor" = "Adopt OpenJDK"
+            "Vendor" = $VendorName
             "Environment Variable" = $_.Name
         }
     }

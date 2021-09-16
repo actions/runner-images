@@ -122,7 +122,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.1.0"
+                "6.4.0"
             ],
             "zip_versions": [
                 "1.0.0",
@@ -142,8 +142,16 @@
     ],
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11", "13"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11", "13" ]
+            }
         ]
     },
     "android": {
@@ -330,6 +338,7 @@
             "Microsoft.VisualStudio.Component.Windows10SDK.17763",
             "Microsoft.VisualStudio.Component.Windows10SDK.18362",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
+            "Microsoft.VisualStudio.Component.Windows10SDK.20348",
             "Microsoft.VisualStudio.Component.WinXP",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
@@ -414,7 +423,10 @@
             { "name": "innosetup" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
-            { "name": "openssl.light" },
+            {
+                "name": "openssl.light",
+                "args": [ "--version=1.1.1.20181020" ]
+            },
             { "name": "packer" },
             { "name": "strawberryperl" },
             { "name": "pulumi" },

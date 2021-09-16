@@ -167,8 +167,10 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "lts": "21",
-            "latest": "22"
+            "default": "21",
+            "versions": [
+                "21", "22", "23"
+            ]
         }
     },
     "powershellModules": [
@@ -182,11 +184,19 @@
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "appcenter-cli", "test": "appcenter --version" },
+            { "name": "newman", "test": "newman --version" },
+            { "name": "node-gyp" }
+        ]
+    },
     "brew": {
         "common_packages": [
             "aliyun-cli",
             "ant",
             "aria2",
+            "azure-cli",
             "bats",
             "bazelisk",
             "carthage",
@@ -194,7 +204,6 @@
             "gh",
             "gnupg",
             "gnu-tar",
-            "go@1.15",
             "helm",
             "kotlin",
             "libpq",
@@ -297,12 +306,18 @@
             "5.0"
         ]
     },
-    "rubygems": [
-        "xcode-install",
-        "cocoapods",
-        "nomad-cli",
-        "xcpretty",
-        "bundler",
-        "fastlane"
-    ]
+    "ruby": {
+        "default": "2.7",
+        "rubygems": [
+            "xcode-install",
+            "cocoapods",
+            "nomad-cli",
+            "xcpretty",
+            "bundler",
+            "fastlane"
+        ]
+    },
+    "go": {
+        "default": "1.15"
+    }
 }

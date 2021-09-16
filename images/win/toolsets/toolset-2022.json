@@ -99,15 +99,23 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.1.0"
+                "6.4.0"
             ],
             "zip_versions": []
         }
     ],
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11"]
+            }
         ]
     },
     "android": {
@@ -171,12 +179,15 @@
             "Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest",
+            "Microsoft.VisualStudio.Component.VC.Tools.ARM",
+            "Microsoft.VisualStudio.Component.VC.Tools.ARM64",
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64",
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.MFC",
             "Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
+            "Microsoft.VisualStudio.Component.Windows10SDK.20348",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
@@ -201,7 +212,13 @@
         "vsix": []
     },
     "docker": {
-        "images": []
+        "images": [
+            "mcr.microsoft.com/windows/servercore:ltsc2022",
+            "mcr.microsoft.com/windows/nanoserver:ltsc2022",
+            "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022",
+            "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022",
+            "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022"
+        ]
     },
     "pipx": [
         {
@@ -231,7 +248,10 @@
             { "name": "Bicep" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
-            { "name": "openssl.light" },
+            {
+                "name": "openssl.light",
+                "args": [ "--version=1.1.1.20181020" ]
+            },
             { "name": "packer" },
             { "name": "pulumi" },
             { "name": "tortoisesvn" },
