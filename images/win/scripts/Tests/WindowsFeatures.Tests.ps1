@@ -50,3 +50,9 @@ Describe "GDIProcessHandleQuota" {
         (Get-ItemProperty $regPath32).GDIProcessHandleQuota | Should -BeExactly 20000
     }
 }
+
+Describe "Test Signed Drivers" -Skip:(-not (Test-IsWin22)) {
+    It "bcdedit testsigning should be Yes"{
+        "$(bcdedit)" | Should -Match "testsigning\s+Yes"
+    }
+}
