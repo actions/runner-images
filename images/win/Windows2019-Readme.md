@@ -1,11 +1,10 @@
 | Announcements |
 |-|
 | [(Public Beta) Windows Server 2022 with Visual Studio 2022 is now available](https://github.com/actions/virtual-environments/issues/3949) |
-| [[macOS, Windows] .NET SDK pre-installation policy will be changed on September, 6](https://github.com/actions/virtual-environments/issues/3809) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2114
-- Image Version: 20210907.4
+- Image Version: 20210914.2
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -24,7 +23,7 @@
 
 ### Package Management
 - Chocolatey 0.11.1
-- Composer 2.1.6
+- Composer 2.1.7
 - Helm 3.6.3
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.15
@@ -32,7 +31,7 @@
 - pip 21.2.4 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<642d1cc>)
+- Vcpkg  (build from master \<e201002>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -56,13 +55,13 @@
 - Bicep 0.4.613
 - Cabal 3.4.0.0
 - CMake 3.21.2
-- CodeQL Action Bundle 2.6.0
-- Docker 20.10.6
+- CodeQL Action Bundle 2.6.1
+- Docker 20.10.7
 - Docker-compose 1.29.2
 - ghc 9.0.1
 - Git 2.33.0
 - Git LFS 2.13.3
-- Google Cloud SDK 355.0.0
+- Google Cloud SDK 357.0.0
 - GVFS 1.0.21085.9
 - InnoSetup 6.2.0
 - jq 1.6
@@ -74,7 +73,7 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.4
-- Pulumi v3.11.0
+- Pulumi v3.12.0
 - R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -86,8 +85,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.90
-- AWS CLI 2.2.35
-- AWS SAM CLI 1.30.0
+- AWS CLI 2.2.37
+- AWS SAM CLI 1.31.0
 - AWS Session Manager CLI 1.2.245.0
 - Azure CLI 2.28.0
 - Azure DevOps CLI extension 0.20.0
@@ -96,24 +95,24 @@
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.54.0
-- Rust 1.54.0
-- Rustdoc 1.54.0
+- Cargo 1.55.0
+- Rust 1.55.0
+- Rustdoc 1.55.0
 - Rustup 1.24.3
 
 #### Packages
 - bindgen 0.59.1
-- cargo-audit 0.14.1
+- cargo-audit 0.15.2
 - cargo-outdated v0.9.17
 - cbindgen 0.20.0
-- Clippy 0.1.54
+- Clippy 0.1.55
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 93.0.4577.63
-- Chrome Driver 93.0.4577.15
-- Microsoft Edge 93.0.961.38
-- Microsoft Edge Driver 92.0.902.84
+- Google Chrome 93.0.4577.82
+- Chrome Driver 93.0.4577.63
+- Microsoft Edge 93.0.961.47
+- Microsoft Edge Driver 93.0.961.47
 - Mozilla Firefox 92.0
 - Gecko Driver 0.29.1
 - IE Driver 3.150.1.1
@@ -126,11 +125,11 @@
 | GECKOWEBDRIVER  | C:\SeleniumWebDrivers\GeckoDriver  |
 
 ### Java
-| Version             | Vendor        | Environment Variable |
-| ------------------- | ------------- | -------------------- |
-| 8.0.302+8 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.12+7           | Adopt OpenJDK | JAVA_HOME_11_X64     |
-| 13.0.2+8.1          | Adopt OpenJDK | JAVA_HOME_13_X64     |
+| Version             | Vendor          | Environment Variable |
+| ------------------- | --------------- | -------------------- |
+| 8.0.302+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.12+7           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -140,7 +139,7 @@
 | wslbash.exe   | C:\Windows\System32\bash.exe      |
 
 ### MSYS2
-- Pacman 6.0.0
+- Pacman 6.0.1
 ##### Notes:
 ```
 Location: C:\msys64
@@ -156,8 +155,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.7  | x64          | GOROOT_1_16_X64      |
-| 1.17.0  | x64          | GOROOT_1_17_X64      |
+| 1.16.8  | x64          | GOROOT_1_16_X64      |
+| 1.17.1  | x64          | GOROOT_1_17_X64      |
 
 
 #### Node
@@ -220,9 +219,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.2.0
+- Azure CosmosDb Emulator 2.14.3.0
 - DacFx 15.0.5164.1
-- MySQL 5.7.21.0
+- MySQL 5.7.35.0
 - SQLPS 1.0
 
 
@@ -256,7 +255,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 16.10.31205.252 |
 | Component.Microsoft.Web.LibraryManager                                    | 16.10.31205.180 |
 | Component.Microsoft.WebTools.BrowserLink.WebLivePreview                   | 0.7.22.39845    |
-| Component.Microsoft.Windows.DriverKit                                     | 10.0.20324.0    |
+| Component.Microsoft.Windows.DriverKit                                     | 10.0.21381.0    |
 | Component.OpenJDK                                                         | 16.10.31303.311 |
 | Component.UnityEngine.x64                                                 | 16.10.31205.252 |
 | Component.Unreal                                                          | 16.1.28810.153  |
@@ -465,8 +464,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ProBITools.MicrosoftReportProjectsforVisualStudio                         | 2.6.11          |
 | SSIS.SqlServerIntegrationServicesProjects                                 | 3.15            |
 | VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.0           |
-| Windows Driver Kit                                                        | 10.0.20324.0    |
-| Windows Driver Kit Visual Studio Extension                                | 10.1.20348.1    |
+| Windows Driver Kit                                                        | 10.0.21381.0    |
+| Windows Driver Kit Visual Studio Extension                                | 10.1.22000.1    |
+| Windows Software Development Kit Extension                                | 10.1.22000.1    |
 | WIX Toolset                                                               | 3.11.4516       |
 | WIX Toolset Studio 2019 Extension                                         | 1.0.0.4         |
 
@@ -517,7 +517,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                           | Path                           |
 | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.9.0.zip<br>6.1.0 | C:\Modules\az_\<version\>      |
+| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.9.0.zip<br>6.4.0 | C:\Modules\az_\<version\>      |
 | Azure   | 2.1.0 [Installed]<br>3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>5.3.0                                                                                                 | C:\Modules\azure_\<version\>   |
 | AzureRM | 2.1.0 [Installed]<br>3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>6.7.0.zip<br>6.13.1                                                                                   | C:\Modules\azurerm_\<version\> |
 ```
@@ -550,7 +550,7 @@ All other versions are saved but not installed.
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                        |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                              |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                              |
-| NDK                        | a<br>a<br>21.4.7075529<br>22.1.7171670                                                                                                                                                                                                                                                          |
+| NDK                        | 21.4.7075529<br>22.1.7171670                                                                                                                                                                                                                                                                    |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                               |
 
 #### Environment variables
