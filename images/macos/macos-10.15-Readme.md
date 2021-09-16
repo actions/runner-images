@@ -1,11 +1,11 @@
 | Announcements |
 |-|
-| [[macOS, Windows] .NET SDK pre-installation policy will be changed on September, 6](https://github.com/actions/virtual-environments/issues/3809) |
+| [macOS-latest workflows will use macOS-11](https://github.com/actions/virtual-environments/issues/4060) |
 ***
 # macOS 10.15 info
-- System Version: macOS 10.15.7 (19H1323)
+- System Version: macOS 10.15.7 (19H1417)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210905.2
+- Image Version: 20210914.1
 
 ## Installed Software
 ### Language and Runtime
@@ -36,9 +36,9 @@
 ### Package Management
 - Bundler version 2.2.27
 - Carthage 0.38.0
-- CocoaPods 1.11.0
+- CocoaPods 1.11.2
 - Composer 2.1.6
-- Homebrew 3.2.10
+- Homebrew 3.2.11
 - Miniconda 4.10.3
 - NPM 6.14.15
 - NuGet 5.6.0.6489
@@ -46,7 +46,7 @@
 - Pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.27
-- Vcpkg 2021 (build from master \<71422c6>)
+- Vcpkg 2021 (build from master \<e201002>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -73,14 +73,14 @@
 - GitHub CLI: 2.0.0
 - GNU parallel 20210822
 - GNU Tar 1.34 - available by 'gtar' alias
-- GNU Wget 1.21.1
+- GNU Wget 1.21.2
 - gpg (GnuPG) 2.3.2
 - helm v3.6.3+gd506314
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v5.0.2
 - mongod v5.0.2
-- Newman 5.2.4
+- Newman 5.3.0
 - OpenSSL 1.1.1l  24 Aug 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1l)`
 - Packer 1.7.4
 - PostgreSQL 13.4
@@ -96,10 +96,10 @@
 ### Tools
 - Aliyun CLI 3.0.90
 - App Center CLI 2.10.0
-- AWS CLI 2.2.35
-- AWS SAM CLI 1.30.0
+- AWS CLI 2.2.37
+- AWS SAM CLI 1.31.0
 - AWS Session Manager CLI 1.2.245.0
-- Azure CLI 2.27.2
+- Azure CLI 2.28.0
 - Bicep CLI 0.4.613
 - Cabal 3.4.0.0
 - Cmake 3.21.2
@@ -112,25 +112,25 @@
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
-- SwiftLint 0.43.1
+- SwiftLint 0.44.0
 - yamllint 1.26.3
 
 ### Browsers
-- Safari 14.1.2 (15611.3.10.1.5)
-- SafariDriver 14.1.2 (15611.3.10.1.5)
-- Google Chrome 93.0.4577.63 
-- ChromeDriver 92.0.4515.107
-- Microsoft Edge 93.0.961.38 
-- MSEdgeDriver 93.0.961.38
-- Mozilla Firefox 91.0.2
+- Safari 14.1.2 (15611.3.10.1.7)
+- SafariDriver 14.1.2 (15611.3.10.1.7)
+- Google Chrome 93.0.4577.82 
+- ChromeDriver 93.0.4577.63
+- Microsoft Edge 93.0.961.47 
+- MSEdgeDriver 93.0.961.47
+- Mozilla Firefox 92.0
 - geckodriver 0.29.1
 
 #### Environment variables
-| Name            | Value                                          |
-| --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/92.0.4515.107 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
-| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
+| Name            | Value                                         |
+| --------------- | --------------------------------------------- |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/93.0.4577.63 |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
+| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
 ### Java
 | Version             | Vendor        | Environment Variable |
@@ -152,10 +152,10 @@
 #### Python
 - 2.7.18
 - 3.5.10
-- 3.6.14
-- 3.7.11
-- 3.8.11
-- 3.9.6
+- 3.6.15
+- 3.7.12
+- 3.8.12
+- 3.9.7
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.5]
@@ -171,21 +171,21 @@
 - 1.13.15
 - 1.14.15
 - 1.15.15
-- 1.16.7
-- 1.17.0
+- 1.16.8
+- 1.17.1
 
 ### Rust Tools
-- Cargo 1.54.0
-- Rust 1.54.0
-- Rustdoc 1.54.0
+- Cargo 1.55.0
+- Rust 1.55.0
+- Rustdoc 1.55.0
 - Rustup 1.24.3
 
 #### Packages
 - Bindgen 0.59.1
-- Cargo-audit 0.14.1
+- Cargo-audit 0.15.2
 - Cargo-outdated v0.9.17
 - Cbindgen 0.20.0
-- Clippy 0.1.54
+- Clippy 0.1.55
 - Rustfmt 1.4.37-stable
 
 ### PowerShell Tools
@@ -203,7 +203,7 @@
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.48  | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
-| nginx | 1.21.2  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
+| nginx | 1.21.3  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
