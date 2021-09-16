@@ -31,6 +31,7 @@ function Install-Binary
         [String[]] $ArgumentList
     )
 
+    $installStartTime = Get-Date
     if ($PSCmdlet.ParameterSetName -eq "LocalPath")
     {
         $name = Split-Path -Path $FilePath -Leaf
@@ -57,7 +58,8 @@ function Install-Binary
         $exitCode = $process.ExitCode
         if ($exitCode -eq 0 -or $exitCode -eq 3010)
         {
-            Write-Host "Installation successful"
+            $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
+            Write-Host "Installation successful in $($installCompleteTime) seconds"
         }
         else
         {
@@ -179,18 +181,21 @@ function Start-DownloadWithRetry
 
     $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
 
-    #Default retry logic for the package.
+    # Default retry logic for the package.
     while ($Retries -gt 0)
     {
         try
         {
+            $downloadStartTime = Get-Date
             Write-Host "Downloading package from: $Url to path $filePath ."
             (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
             break
         }
         catch
         {
+            $failTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
             Write-Host "There is an error during package downloading:`n $_"
+            Write-Host "Total time elapsed $($failTime)"
             $Retries--
 
             if ($Retries -eq 0)
@@ -204,6 +209,8 @@ function Start-DownloadWithRetry
         }
     }
 
+    $downloadCompleteTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
+    Write-Host "Package downloaded successfully in $($downloadCompleteTime) seconds"
     return $filePath
 }
 
