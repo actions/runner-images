@@ -93,7 +93,7 @@ Describe "Mingw64" {
 
 Describe "Microsoft GDK" {
     It "GDK" {
-        Get-ChildItem -Path "$($env:GRDKLatest)grdk.ini" | Should -Exist
+        "$($env:GRDKLatest)grdk.ini" | Should -Exist
     }
 }
 
