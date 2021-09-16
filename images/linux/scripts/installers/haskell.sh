@@ -44,7 +44,6 @@ ghcup install cabal
 
 chmod -R 777 $GHCUP_INSTALL_BASE_PREFIX/.ghcup
 ln -s $GHCUP_INSTALL_BASE_PREFIX/.ghcup /etc/skel/.ghcup
-ln -s "/opt/ghc/$defaultGHCVersion/bin/ghc" "/usr/bin/ghc"
 
 # Install the latest stable release of haskell stack
 curl -sSL https://get.haskellstack.org/ | sh
