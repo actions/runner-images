@@ -45,8 +45,8 @@ Write-Host "Configuring Xcode symlinks..."
 $xcodeVersions | ForEach-Object {
     Build-XcodeSymlinks -Version $_.link -Symlinks $_.symlinks
 
-    # Temporary solution to install Xcode 13 beta along with 13 stable
-    if ($_.link -ne "13.0_beta") {
+    # Skip creating symlink to install multiple releases of the same Xcode version side-by-side
+    if ($_."skip-symlink" -ne "true") {
         Build-ProvisionatorSymlink -Version $_.link
     }
 }
