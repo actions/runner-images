@@ -7,10 +7,9 @@ Describe "Android SDK" {
 
     $ndkDefaultMajorVersion = $androidToolset.ndk.default
     $ndkLatestMajorVersion = $androidToolset.ndk.versions | Select-Object -Last 1
-    $ndkPackagesTestCases = @()
     $ndkVersions = $androidToolset.ndk.versions
-    $ndkVersions | ForEach-Object {
-        $ndkPackagesTestCases += @{ ndkPackage = $_; installedPackages = $androidInstalledPackages }
+    $ndkPackagesTestCases = $ndkVersions | ForEach-Object {
+        @{ ndkPackage = $_; installedPackages = $androidInstalledPackages }
     }
 
     $platformTestCases = @()

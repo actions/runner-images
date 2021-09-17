@@ -166,18 +166,15 @@ function Get-AndroidNdkVersions {
 
     $ndkLinkTarget = (Get-Item $env:ANDROID_NDK_HOME).Target
     $ndkDefaultFullVersion = Split-Path -Path $ndkLinkTarget -Leaf
-    
+
     $versions = $packageInfo | Where-Object { $_ -Match "ndk;" } | ForEach-Object {
-        $packageInfoParts = Split-TableRowByColumns $_
-        return $packageInfoParts[1]
-    }
-    return (($versions | ForEach-Object {
-        $defaultPostfix = ""
-        if ($_ -eq $ndkDefaultFullVersion) {
-            $defaultPostfix = " (default)"
+        $version = (Split-TableRowByColumns $_)[1]
+        if ($version -eq $ndkDefaultFullVersion) {
+            $version += " (default)"
         }
-        $_ + $defaultPostfix
-    }) -Join "<br>")
+        $version
+    }
+    return ($versions -Join "<br>")
 }
 
 function Build-AndroidEnvironmentTable {

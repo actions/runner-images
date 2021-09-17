@@ -111,13 +111,8 @@ $ndkLatestPackageName = Get-AndroidPackagesByName -AndroidPackages $androidPacka
                 | Sort-Object -Unique `
                 | Select-Object -Last 1
 
-$androidNDKs = @()
-foreach ($version in $ndkMajorVersions) {
-    $ndkPackageName = Get-AndroidPackagesByName -AndroidPackages $androidPackages `
-                -PrefixPackageName "ndk;$version" `
-                | Sort-Object -Unique `
-                | Select-Object -Last 1
-    $androidNDKs += $ndkPackageName
+$androidNDKs = $ndkMajorVersions | Foreach-Object {
+    Get-AndroidPackagesByName -AndroidPackages $androidPackages -PrefixPackageName "ndk;$_" | Sort-Object -Unique | Select-Object -Last 1
 }
 
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
