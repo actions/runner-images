@@ -199,12 +199,12 @@ function Start-DownloadWithRetry
             $failTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
             $attemptTime = [math]::Round(($(Get-Date) - $downloadAttemptStartTime).TotalSeconds, 2)
             Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n $_"
-            Write-Host "Total time elapsed $failTime"
             $Retries--
 
             if ($Retries -eq 0)
             {
                 Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
+                Write-Host "Total time elapsed $failTime"
                 exit 1
             }
 
