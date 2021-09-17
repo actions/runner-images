@@ -25,12 +25,6 @@ Describe "Android" {
         (Get-ToolsetValue "android.additional_tools" | ForEach-Object { "${_}" })
     )
 
-    [string]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
-    if ($ndkLatestVersion) {
-        $ndkLatestFullVersion = (Get-ChildItem "/usr/local/lib/android/sdk/ndk/$ndkLatestVersion.*" | Select-Object -Last 1).Name
-        $androidPackages += @("ndk/$ndkLatestFullVersion")
-    }
-
     $androidPackages = $androidPackages | ForEach-Object { $_ }
 
     BeforeAll {
