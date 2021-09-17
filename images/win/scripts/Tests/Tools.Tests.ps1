@@ -91,7 +91,7 @@ Describe "Mingw64" {
     }
 }
 
-Describe "Microsoft GDK" {
+Describe "Microsoft GDK" -Skip:(-not (Test-IsWin19)) {
     It "GDK" {
         "$($env:GRDKLatest)grdk.ini" | Should -Exist
     }
