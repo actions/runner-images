@@ -49,21 +49,21 @@ function Install-Binary
         $filePath = "msiexec.exe"
     }
 
-    $installStartTime = Get-Date
     try
     {
+        $installStartTime = Get-Date
         Write-Host "Starting Install $Name..."
         $process = Start-Process -FilePath $filePath -ArgumentList $ArgumentList -Wait -PassThru
         $exitCode = $process.ExitCode
         $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
         if ($exitCode -eq 0 -or $exitCode -eq 3010)
         {
-            Write-Host "Installation successful in $($installCompleteTime) seconds"
+            Write-Host "Installation successful in $installCompleteTime seconds"
         }
         else
         {
             Write-Host "Non zero exit code returned by the installation process: $exitCode"
-            Write-Host "Total time elapsed: $($installCompleteTime) seconds"
+            Write-Host "Total time elapsed: $installCompleteTime seconds"
             exit $exitCode
         }
     }
@@ -71,7 +71,7 @@ function Install-Binary
     {
         $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
         Write-Host "Failed to install the $fileExtension ${Name}: $($_.Exception.Message)"
-        Write-Host "Installation failed after $($installCompleteTime) seconds"
+        Write-Host "Installation failed after $installCompleteTime seconds"
         exit 1
     }
 }
@@ -182,13 +182,14 @@ function Start-DownloadWithRetry
     }
 
     $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
-
+    $downloadStartTime = Get-Date
+    
     # Default retry logic for the package.
     while ($Retries -gt 0)
     {
         try
         {
-            $downloadStartTime = Get-Date
+            $downloadAttemptStartTime = Get-Date
             Write-Host "Downloading package from: $Url to path $filePath ."
             (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
             break
@@ -196,8 +197,9 @@ function Start-DownloadWithRetry
         catch
         {
             $failTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
-            Write-Host "There is an error during package downloading:`n $_"
-            Write-Host "Total time elapsed $($failTime)"
+            $attemptTime = [math]::Round(($(Get-Date) - $downloadAttemptStartTime).TotalSeconds, 2)
+            Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n $_"
+            Write-Host "Total time elapsed $failTime"
             $Retries--
 
             if ($Retries -eq 0)
@@ -212,7 +214,7 @@ function Start-DownloadWithRetry
     }
 
     $downloadCompleteTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
-    Write-Host "Package downloaded successfully in $($downloadCompleteTime) seconds"
+    Write-Host "Package downloaded successfully in $downloadCompleteTime seconds"
     return $filePath
 }
 
