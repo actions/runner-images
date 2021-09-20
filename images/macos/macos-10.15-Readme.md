@@ -5,11 +5,11 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1417)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210914.1
+- Image Version: 20210919.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.412 5.0.102 5.0.202 5.0.302 5.0.400
+- .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.413 5.0.102 5.0.202 5.0.302 5.0.401
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is default
 - Clang/LLVM 12.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
@@ -37,8 +37,8 @@
 - Bundler version 2.2.27
 - Carthage 0.38.0
 - CocoaPods 1.11.2
-- Composer 2.1.6
-- Homebrew 3.2.11
+- Composer 2.1.8
+- Homebrew 3.2.12
 - Miniconda 4.10.3
 - NPM 6.14.15
 - NuGet 5.6.0.6489
@@ -46,7 +46,7 @@
 - Pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.27
-- Vcpkg 2021 (build from master \<e201002>)
+- Vcpkg 2021 (build from master \<4428702>)
 - Yarn 1.22.5
 
 #### Environment variables
@@ -67,7 +67,7 @@
 - bazel 4.2.1
 - bazelisk 1.10.1
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.78.0
+- Curl 7.79.0
 - Git LFS: 2.13.3
 - Git: 2.33.0
 - GitHub CLI: 2.0.0
@@ -75,14 +75,14 @@
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.2
 - gpg (GnuPG) 2.3.2
-- helm v3.6.3+gd506314
+- helm v3.7.0+geeac838
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v5.0.2
 - mongod v5.0.2
 - Newman 5.3.0
 - OpenSSL 1.1.1l  24 Aug 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1l)`
-- Packer 1.7.4
+- Packer 1.7.5
 - PostgreSQL 13.4
 - psql (PostgreSQL) 13.4
 - Sox 14.4.2
@@ -96,14 +96,14 @@
 ### Tools
 - Aliyun CLI 3.0.90
 - App Center CLI 2.10.0
-- AWS CLI 2.2.37
+- AWS CLI 2.2.39
 - AWS SAM CLI 1.31.0
 - AWS Session Manager CLI 1.2.245.0
 - Azure CLI 2.28.0
 - Bicep CLI 0.4.613
 - Cabal 3.4.0.0
 - Cmake 3.21.2
-- Fastlane 2.193.1
+- Fastlane 2.194.0
 - GHC 9.0.1
 - GHCup v0.1.16.2
 - Stack 2.7.3
@@ -120,8 +120,8 @@
 - SafariDriver 14.1.2 (15611.3.10.1.7)
 - Google Chrome 93.0.4577.82 
 - ChromeDriver 93.0.4577.63
-- Microsoft Edge 93.0.961.47 
-- MSEdgeDriver 93.0.961.47
+- Microsoft Edge 93.0.961.52 
+- MSEdgeDriver 93.0.961.52
 - Mozilla Firefox 92.0
 - geckodriver 0.29.1
 
@@ -202,12 +202,12 @@
 ### Web Servers
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.48  | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
+| httpd | 2.4.49  | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
 | nginx | 1.21.3  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.8.0
+- 8.10.9.3
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -355,7 +355,7 @@
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                        |
 | Google Play services       | 49                                                                                                                                                                                                                              |
 | Google Repository          | 58                                                                                                                                                                                                                              |
-| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.4.7075529<br>22.1.7171670                                                                                                                                                                    |
+| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.4.7075529 (default)<br>22.1.7171670<br>23.0.7599858                                                                                                                                          |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                               |
 | Intel HAXM                 | 7.6.5                                                                                                                                                                                                                           |
 
@@ -365,7 +365,7 @@
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                                                                  |
 | ANDROID_NDK_18R_PATH    | /Users/runner/Library/Android/sdk/ndk/18.1.5063045                                                 |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/21.4.7075529 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/22.1.7171670                                                 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/23.0.7599858                                                 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/21.4.7075529 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                                                                  |
 
