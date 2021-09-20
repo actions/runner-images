@@ -123,6 +123,11 @@ $toolsList = @(
     (Get-ZstdVersion),
     (Get-YAMLLintVersion)
 )
+if (Test-IsWin19) {
+    $toolsList += @(
+        (Get-GDKVersion)
+    )
+}
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
         (Get-NSISVersion),
