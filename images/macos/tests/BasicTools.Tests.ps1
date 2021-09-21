@@ -176,3 +176,9 @@ Describe "Kotlin" {
         "$toolName -version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "sbt" {
+    It "sbt" {
+        "sbt -version" | Should -ReturnZeroExitCode
+    }
+}
