@@ -31,7 +31,7 @@ These are the guidelines we follow in software and images supporting routine:
 | PyPy      | 3 most popular `major.minor` versions |
 | .NET Core | 2 latest LTS versions and 1 latest version. For each feature version only latest patch is installed |
 | GCC <br/> GNU Fortran <br/> Clang <br/> GNU C++ | 3 latest major versions |
-| Android NDK | 1 latest, 1 LTS version |
+| Android NDK | 1 latest non-LTS, 2 latest LTS versions |
 | Xcode     | - all OS compatible versions side-by-side <br/> - for beta, GM versions - latest beta only <br/> - old patch versions are deprecated in 3 months |
 
 ## Software default versions update policy for tools with multiple versions installed
