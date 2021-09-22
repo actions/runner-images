@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    veertu-anka = {
+      version = ">= v2.1.0"
+      source = "github.com/veertuinc/veertu-anka"
+    }
+  }
+}
+
 variable "source_vm_name" {
   type = string 
   default = "clean_macos_11_300gb"
