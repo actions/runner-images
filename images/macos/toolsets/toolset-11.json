@@ -158,6 +158,7 @@
             "p7zip",
             "packer",
             "perl",
+            "sbt",
             "subversion",
             "swiftformat",
             "swig",

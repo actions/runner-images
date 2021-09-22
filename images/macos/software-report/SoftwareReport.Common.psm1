@@ -512,6 +512,11 @@ function Get-KotlinVersion {
     return "Kotlin $kotlinVersion"
 }
 
+function Get-SbtVersion {
+    $sbtVersion = Run-Command "sbt -version" | Take-Part -Part 3
+    return "Sbt $sbtVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{

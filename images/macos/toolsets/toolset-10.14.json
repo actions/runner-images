@@ -261,6 +261,7 @@
             "packer",
             "parallel",
             "perl",
+            "sbt",
             "subversion",
             "swiftformat",
             "swig",
