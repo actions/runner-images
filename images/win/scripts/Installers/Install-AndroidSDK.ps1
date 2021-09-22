@@ -100,17 +100,6 @@ $ndkMajorVersions = $androidToolset.ndk.versions
 $ndkDefaultMajorVersion = $androidToolset.ndk.default
 $ndkLatestMajorVersion = $ndkMajorVersions | Select-Object -Last 1
 
-
-$ndkDefaultPackageName = Get-AndroidPackagesByName -AndroidPackages $androidPackages `
-                -PrefixPackageName "ndk;$ndkDefaultMajorVersion" `
-                | Sort-Object -Unique `
-                | Select-Object -Last 1
-
-$ndkLatestPackageName = Get-AndroidPackagesByName -AndroidPackages $androidPackages `
-                -PrefixPackageName "ndk;$ndkLatestMajorVersion" `
-                | Sort-Object -Unique `
-                | Select-Object -Last 1
-
 $androidNDKs = $ndkMajorVersions | Foreach-Object {
     Get-AndroidPackagesByName -AndroidPackages $androidPackages -PrefixPackageName "ndk;$_" | Sort-Object -Unique | Select-Object -Last 1
 }
@@ -119,8 +108,8 @@ Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                 -AndroidSDKRootPath $sdkRoot `
                 -AndroidPackages $androidNDKs
 
-$ndkDefaultVersion = $ndkDefaultPackageName.Split(';')[1]
-$ndkLatestVersion = $ndkLatestPackageName.Split(';')[1]
+$ndkDefaultVersion = ($androidNDKs | Where-Object { $_ -match "ndk;$ndkDefaultMajorVersion" }).Split(';')[1]
+$ndkLatestVersion = ($androidNDKs | Where-Object { $_ -match "ndk;$ndkLatestMajorVersion" }).Split(';')[1]
 
 # Android NDK root path.
 $ndkRoot = "$sdkRoot\ndk-bundle"
