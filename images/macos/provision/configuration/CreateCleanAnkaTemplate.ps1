@@ -107,7 +107,7 @@ function Get-AvailableVersions {
         $searchPostfix = " beta"
     }
     
-    $softwareUpdates = Invoke-WithRetry { softwareupdate --list-full-installers | Where-Object { $_.Contains("Title: macOS") -and $_ -match $searchPostfix } } { $allVersions -ne $null }
+    $softwareUpdates = Invoke-WithRetry { softwareupdate --list-full-installers | Where-Object { $_.Contains("Title: macOS") -and $_ -match $searchPostfix } } { $softwareUpdates }
     $allVersions = $softwareUpdates -replace "(\* )?(Title|Version|Size):" | ConvertFrom-Csv -Header OsName, OsVersion
         
     return $allVersions
