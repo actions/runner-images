@@ -21,48 +21,74 @@ $ErrorActionPreference = "Stop"
 
 function Get-MacOSInstaller {
     param (
-        [Version] $MacOSVersion,
-        [Bool] $BetaSearch = $false
+        [version] $MacOSVersion,
+        [bool] $BetaSearch = $false
     )
 
     # Enroll machine to DeveloperSeed if we need beta and unenroll otherwise
-    if ($BetaSearch)
-    {
+    $seedutil = "/System/Library/PrivateFrameworks/Seeding.framework/Versions/Current/Resources/seedutil"
+    if ($BetaSearch) {
         Write-Host "Beta Version requested. Enrolling machine to DeveloperSeed"
-        sudo /System/Library/PrivateFrameworks/Seeding.framework/Versions/Current/Resources/seedutil enroll DeveloperSeed | Out-Null
-    }
-    else
-    {
+        sudo $seedutil enroll DeveloperSeed | Out-Null
+    } else {
         Write-Host "Reseting the seed before requesting stable versions"
-        sudo /System/Library/PrivateFrameworks/Seeding.framework/Versions/Current/Resources/seedutil unenroll | Out-Null
-    }
-
-    $availableVersions = Get-AvailableVersions -IsBeta $BetaSearch
-
-    if (-not ($MacOSVersion -in $availableVersions.OsVersion))
-    {
-        Write-Host "Requested macOS version '$MacOSVersion' not found in the list of avaialable installers. Avaialable versions are:`n$($availableVersions.OsVersion)"
-        Write-Host 'Make sure to pass "-BetaSearch $true" if you need a beta version installer'
-        exit 1
+        sudo $seedutil unenroll | Out-Null
     }
 
     # Validate there is no softwareupdate at the moment
     Test-SoftwareUpdate
 
-    $macOsName = ($availableVersions | Where-Object { $_.OsVersion -match $MacOSVersion }).OsName
-    $installerPathPattern = "/Applications/Install*${macOsName}.app"
-
-    if (Test-Path $installerPathPattern) {
-        Write-Host "Removing existed macOS $macOsName installation package before downloading the new one"
-        bash -c "sudo rm -rf $installerPathPattern"
+    # Validate availability OSVersion
+    $availableVersions = Get-AvailableVersions -IsBeta $BetaSearch
+    $macOSName = $availableVersions.Where{ $_.OSVersion -eq $MacOSVersion }.OSName
+    if (-not $macOSName) {
+        Write-Host "Requested macOS '$MacOSVersion' version not found in the list of available installers. Available versions are:`n$($availableVersions.OSVersion)"
+        Write-Host 'Make sure to pass "-BetaSearch $true" if you need a beta version installer'
+        exit 1
     }
 
-    Write-Host "Requested macOS version '$MacOSVersion' installer found, fetching it from Apple"
-    softwareupdate --fetch-full-installer --full-installer-version $MacOSVersion
-    $installerPath = Get-ChildItem -Path $installerPathPattern
+    $installerPathPattern = "/Applications/Install*${macOSName}.app"
+    if (Test-Path $installerPathPattern) {
+        $previousInstallerPath = Get-Item -Path $installerPathPattern
+        Write-Host "Removing '$previousInstallerPathPath' installation app before downloading the new one"
+        sudo rm -rf "$previousInstallerPath"
+    }
+
+    # Download macOS installer
+    Write-Host "Requested macOS '$MacOSVersion' version installer found, fetching it from Apple Software Update"
+    $result = Invoke-WithRetry { softwareupdate --fetch-full-installer --full-installer-version $MacOSVersion } {$LASTEXITCODE -eq 0} | Out-String
+    if (-not $result.Contains("Install finished successfully")) {
+        Write-Host "[Error]: failed to fetch $MacOSVersion macOS '$MacOSVersion' `n$result"
+        exit 1
+    }
+
+    $installerPath = Get-Item -Path $installerPathPattern
     Write-Host "Installer successfully downloaded to '$installerPath'"
 
     return $installerPath.FullName
+}
+
+function Invoke-WithRetry {
+    param(
+        [scriptblock] $Command,
+        [scriptblock] $BreakCondition,
+        [int] $RetryCount = 20,
+        [int] $Seconds = 60
+    )
+
+    while ($RetryCount -gt 0) {
+       $result = & $Command
+
+       if (& $BreakCondition) {
+           break
+       }
+
+       $RetryCount--
+       Write-Host "Waiting $Seconds seconds before retrying. Retries left: $RetryCount"
+       Start-Sleep -Seconds $Seconds
+    }
+
+    $result
 }
 
 function Get-AvailableVersions {
@@ -175,13 +201,26 @@ function Add-AnkaImageToRegistry {
         [String] $ShortMacOSVersion,
         [String] $TemplateName
     )
-
-    Write-Host "Adding Anka remote registry to the list of registries"
-    Invoke-Anka { anka registry add ankaregistry $RegistryUrl  }
+    $repoName = "ankaregistry"
+    $reposlist = bash -c "anka registry list-repos"
+    if (-Not ($reposlist -like "*$repoName*"))
+    {
+        Write-Host "Adding Anka remote registry to the list of registries"
+        Invoke-Anka { anka registry add $repoName $RegistryUrl }
+    }
 
     Write-Host "Setting up default registry for push"
-    Invoke-Anka { anka registry set ankaregistry }
+    Invoke-Anka { anka registry set $repoName }
 
+    $($(Invoke-WebRequest -Uri $RegistryUrl/registry/vm).Content | ConvertFrom-Json).body | ForEach-Object 
+    {
+        if ($_ -like "*$TemplateName*")
+        {
+                $vmUuid = $($_ | get-member -MemberType NoteProperty).Name
+                Write-Host $vmUuid
+                Invoke-WebRequest -Method DELETE -Uri $RegistryUrl/registry/vm?id=$vmUuid
+        }
+    }
     Write-Host "Pushing clean macOS $ShortMacOSVersion to the $RegistryUrl"
     Invoke-Anka { anka registry push -t $ShortMacOSVersion $TemplateName }
 }
