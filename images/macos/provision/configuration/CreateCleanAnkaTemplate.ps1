@@ -98,8 +98,7 @@ function Get-AvailableVersions {
         [Bool] $IsBeta = $false
     )
 
-    if ($IsBeta)
-    {
+    if ($IsBeta) {
         $searchPostfix = " beta"
     }
 
@@ -117,8 +116,7 @@ function Get-AvailableVersions {
         }
     } | Sort-Object -Property OsVersion -Unique
 
-    if ($allVersions)
-    {
+    if ($allVersions) {
         return $allVersions
     }
 
@@ -142,8 +140,7 @@ function Test-SoftwareUpdate {
         $RetryCount--
         $updateProcess = (Get-Process -Name $UpdateProcessName -ErrorAction SilentlyContinue).id
 
-        if (-not $updateProcess)
-        {
+        if (-not $updateProcess) {
             return
         }
 
@@ -171,8 +168,7 @@ function New-AnkaVMTemplate {
     )
 
     $isTemplateExists = (Invoke-Anka { anka --machine-readable list } | ConvertFrom-Json).body.name -eq $templateName
-    if ($isTemplateExists)
-    {
+    if ($isTemplateExists) {
         Write-Host "Deleting existed template with name '$templateName' before creating a new one"
         Invoke-Anka { anka delete $templateName --yes }
     }
@@ -184,8 +180,7 @@ function New-AnkaVMTemplate {
     Invoke-Anka { anka create --cpu-count $CpuCount --ram-size "${RamSizeGb}G" --disk-size "${DiskSizeGb}G" --app $InstallerPath $templateName }
 
     # Apple Metal is available starting from Big Sur
-    if (-not $ShortMacOSVersion.StartsWith("10"))
-    {
+    if (-not $ShortMacOSVersion.StartsWith("10")) {
         Write-Host "Enabling Graphics Acceleration with Apple Metal for $templateName"
         Invoke-Anka { anka modify $templateName set display -c pg }
     }
@@ -203,8 +198,7 @@ function Add-AnkaImageToRegistry {
     )
     $repoName = "ankaregistry"
     $reposlist = bash -c "anka registry list-repos"
-    if (-Not ($reposlist -like "*$repoName*"))
-    {
+    if (-Not ($reposlist -like "*$repoName*")) {
         Write-Host "Adding Anka remote registry to the list of registries"
         Invoke-Anka { anka registry add $repoName $RegistryUrl }
     }
@@ -214,8 +208,7 @@ function Add-AnkaImageToRegistry {
 
     $($(Invoke-WebRequest -Uri $RegistryUrl/registry/vm).Content | ConvertFrom-Json).body | ForEach-Object 
     {
-        if ($_ -like "*$TemplateName*")
-        {
+        if ($_ -like "*$TemplateName*") {
                 $vmUuid = $($_ | get-member -MemberType NoteProperty).Name
                 Write-Host $vmUuid
                 Invoke-WebRequest -Method DELETE -Uri $RegistryUrl/registry/vm?id=$vmUuid
@@ -243,8 +236,7 @@ function Get-ShortMacOSVersion {
     )
 
     # Take Major.Minor version for macOS 10 (10.14 or 10.15) and Major for all further versions
-    if ($MacOSVersion.Major -eq 10)
-    {
+    if ($MacOSVersion.Major -eq 10) {
         $shortMacOSVersion = "$($MacOSVersion.Major).$($MacOSVersion.Minor)"
     }
     else
