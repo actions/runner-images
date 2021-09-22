@@ -106,22 +106,11 @@ function Get-AvailableVersions {
     if ($IsBeta) {
         $searchPostfix = " beta"
     }
-
-    while ($RetryCount -ne 0) {
-        $RetryCount--
-        $softwareUpdates = softwareupdate --list-full-installers | Where-Object {$_.Contains("Title: macOS") -and $_ -match $searchPostfix}
-        $allVersions = $softwareUpdates -replace "(\* )?(Title|Version|Size):" | ConvertFrom-Csv -Header OsName, OsVersion
-
-        if ($allVersions) {
-            return $allVersions
-        }
-
-        Write-Host "Could not fetch installers list, wait $RetryInterval seconds, $RetryCount attempts left"
-        Start-Sleep -Seconds $RetryInterval
-    }
-
-    Write-Host "All the attempts exhausted, try again later"
-    exit 1
+    
+    $softwareUpdates = Invoke-WithRetry { softwareupdate --list-full-installers | Where-Object { $_.Contains("Title: macOS") -and $_ -match $searchPostfix } } { $allVersions }
+    $allVersions = $softwareUpdates -replace "(\* )?(Title|Version|Size):" | ConvertFrom-Csv -Header OsName, OsVersion
+        
+    return $allVersions
 }
 
 function Test-SoftwareUpdate {
