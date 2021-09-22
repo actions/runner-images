@@ -55,7 +55,7 @@ function Get-MacOSInstallers {
     $installerPathPattern = "/Applications/Install*${macOSName}.app"
     if (Test-Path $installerPathPattern) {
         $previousInstallerPath = Get-Item -Path $installerPathPattern
-        Write-Host "Removing '$previousInstallerPathPath' installation app before downloading the new one"
+        Write-Host "Removing '$previousInstallerPath' installation app before downloading the new one"
         sudo rm -rf "$previousInstallerPath"
     }
 
@@ -216,9 +216,7 @@ function Get-ShortMacOSVersion {
     return $shortMacOSVersion
 }
 
-$macOSInstaller = (Get-MacOSInstallers -MacOSVersion $MacOSVersion -BetaSearch $BetaSearch)[-1]
-$macOSInstallerr = Get-MacOSInstallers -MacOSVersion $MacOSVersion -BetaSearch $BetaSearch
-Write-Host "macOSInstaller: $macOSInstaller, $macOSInstallerr"
+$macOSInstaller = Get-MacOSInstallers -MacOSVersion $MacOSVersion -BetaSearch $BetaSearch
 $shortMacOSVersion = Get-ShortMacOSVersion -MacOSVersion $MacOSVersion
 $templateName = "clean_macos_${shortMacOSVersion}_${DiskSizeGb}gb"
 New-AnkaVMTemplate -InstallerPath $macOSInstaller `
