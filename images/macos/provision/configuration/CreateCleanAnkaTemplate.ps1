@@ -107,8 +107,6 @@ function Get-AvailableVersions {
         $searchPostfix = " beta"
     }
 
-    $searchPattern = "macOS (?<osname>[a-zA-z ]*$searchPostfix), Version: (?<osversion>(\d+\.){1,}\d+)"
-
     while ($RetryCount -ne 0) {
         $RetryCount--
         $softwareUpdates = softwareupdate --list-full-installers | Where-Object {$_.Contains("Title: macOS") -and $_ -match $searchPostfix}
