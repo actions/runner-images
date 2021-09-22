@@ -17,11 +17,7 @@ function Set-SystemVariable {
 }
 
 function Get-MachinePath {
-    [CmdletBinding()]
-    param(
-
-    )
-    return Get-SystemVariable PATH
+    Get-SystemVariable PATH
 }
 
 function Set-MachinePath {
@@ -44,11 +40,12 @@ function Test-MachinePath {
 }
 
 function Add-MachinePathItem {
+    [CmdletBinding()]
     param(
         [string]$PathItem
     )
 
     $currentPath = Get-MachinePath
     $newPath = $PathItem + ';' + $currentPath
-    Set-MachinePath -NewPath $newPath
+    return Set-MachinePath -NewPath $newPath
 }
