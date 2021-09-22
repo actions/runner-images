@@ -109,24 +109,17 @@ function Get-AvailableVersions {
 
     $searchPattern = "macOS (?<osname>[a-zA-z ]*$searchPostfix), Version: (?<osversion>(\d+\.){1,}\d+)"
 
-    while ($RetryCount -ne 0)
-    {
-    $RetryCount--
-    $allVersions = softwareupdate --list-full-installers | Select-String -Pattern $searchPattern -AllMatches | ForEach-Object {
-        $osName = ($_.Matches.Groups | Where-Object { $_.Name -eq "osname" }).Value
-        $osVersion = ($_.Matches.Groups | Where-Object { $_.Name -eq "osversion" }).Value
-        [PSCustomObject]@{
-            OsName = $osName
-            OsVersion = $osVersion
+    while ($RetryCount -ne 0) {
+        $RetryCount--
+        $softwareUpdates = softwareupdate --list-full-installers | Where-Object {$_.Contains("Title: macOS") -and $_ -match $searchPostfix}
+        $allVersions = $softwareUpdates -replace "(\* )?(Title|Version|Size):" | ConvertFrom-Csv -Header OsName, OsVersion
+
+        if ($allVersions) {
+            return $allVersions
         }
-    } | Sort-Object -Property OsVersion -Unique
 
-    if ($allVersions) {
-        return $allVersions
-    }
-
-    Write-Host "Could not fetch installers list, wait $RetryInterval seconds, $RetryCount attempts left"
-    Start-Sleep -Seconds $RetryInterval
+        Write-Host "Could not fetch installers list, wait $RetryInterval seconds, $RetryCount attempts left"
+        Start-Sleep -Seconds $RetryInterval
     }
 
     Write-Host "All the attempts exhausted, try again later"
@@ -202,28 +195,9 @@ function Add-AnkaImageToRegistry {
         [String] $ShortMacOSVersion,
         [String] $TemplateName
     )
-    
-    $repoName = "ankaregistry"
-    $reposlist = bash -c "anka registry list-repos"
-    if (-Not ($reposlist -like "*$repoName*")) {
-        Write-Host "Adding Anka remote registry to the list of registries"
-        Invoke-Anka { anka registry add $repoName $RegistryUrl }
-    }
 
-    Write-Host "Setting up default registry for push"
-    Invoke-Anka { anka registry set $repoName }
-
-    $($(Invoke-WebRequest -Uri $RegistryUrl/registry/vm).Content | ConvertFrom-Json).body | ForEach-Object 
-    {
-        if ($_ -like "*$TemplateName*") {
-                $vmUuid = $($_ | get-member -MemberType NoteProperty).Name
-                Write-Host $vmUuid
-                Invoke-WebRequest -Method DELETE -Uri $RegistryUrl/registry/vm?id=$vmUuid
-        }
-    }
-
-    Write-Host "Pushing clean macOS $ShortMacOSVersion to the $RegistryUrl"
-    Invoke-Anka { anka registry push -t $ShortMacOSVersion $TemplateName }
+    Write-Host "Pushing image to the registry..."
+    Invoke-Anka { anka registry -a $RegistryUrl push -t $ShortMacOSVersion $TemplateName }
 }
 
 function Invoke-Anka {
@@ -245,10 +219,10 @@ function Get-ShortMacOSVersion {
 
     # Take Major.Minor version for macOS 10 (10.14 or 10.15) and Major for all further versions
     if ($MacOSVersion.Major -eq 10) {
-        $shortMacOSVersion = "$($MacOSVersion.Major).$($MacOSVersion.Minor)"
+        $shortMacOSVersion = $MacOSVersion.ToString(2)
     }
     else {
-        $shortMacOSVersion = "$($MacOSVersion.Major)"
+        $shortMacOSVersion = $MacOSVersion.Major
     }
 
     return $shortMacOSVersion
