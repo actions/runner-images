@@ -3,13 +3,18 @@ param(
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
     [Version] $MacOSVersion,
+
     [ValidateNotNullOrEmpty()]
     [String] $TemplateUsername,
+
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
     [String] $TemplatePassword,
+
+    [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
     [String] $RegistryUrl,
+
     [Bool] $BetaSearch = $false,
     [Int] $CpuCount = 6,
     [Int] $RamSizeGb = 7,
@@ -173,7 +178,7 @@ function New-AnkaVMTemplate {
         Invoke-Anka { anka delete $templateName --yes }
     }
 
-    Write-Host "Creating Anka VM template with name '$templateName' and user $TemplateUsername"
+    Write-Host "Creating Anka VM template with name '$TemplateName' and user $TemplateUsername"
     $env:ANKA_DEFAULT_USER = $TemplateUsername
     $env:ANKA_DEFAULT_PASSWD = $TemplatePassword
     $env:ANKA_CREATE_SUSPEND = 0
@@ -248,7 +253,7 @@ function Get-ShortMacOSVersion {
 
 $macOSInstaller = (Get-MacOSInstaller -MacOSVersion $MacOSVersion -BetaSearch $BetaSearch)[-1]
 $shortMacOSVersion = Get-ShortMacOSVersion -MacOSVersion $MacOSVersion
-$templateName = "clean_macos_${ShortMacOSVersion}_${DiskSizeGb}gb"
+$templateName = "clean_macos_${shortMacOSVersion}_${DiskSizeGb}gb"
 New-AnkaVMTemplate -InstallerPath $macOSInstaller `
                    -ShortMacOSVersion $shortMacOSVersion `
                    -TemplateName $templateName `
