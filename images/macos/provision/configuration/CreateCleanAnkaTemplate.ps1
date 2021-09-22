@@ -120,23 +120,19 @@ function Test-SoftwareUpdate {
         [Int] $RetryInterval = 60
     )
 
-    while ($RetryCount -ne 0)
-    {
-        $RetryCount--
-        $updateProcess = (Get-Process -Name $UpdateProcessName -ErrorAction SilentlyContinue).id
+   $command = {
+      $updateProcess = (Get-Process -Name $UpdateProcessName -ErrorAction SilentlyContinue).id
+      if ($updateProcess) {
+          # Workaround to get commandline param as it doesn't work for macOS atm https://github.com/PowerShell/PowerShell/issues/13943
+          $processName = ps -o command= $updateProcess
+          Write-Host "Another software update process is in place with the following arguments '$processName', wait $RetryInterval seconds, $RetryCount attempts left"
+      }
+   }
+   $condition = {
+      $null -eq (Get-Process -Name $UpdateProcessName -ErrorAction SilentlyContinue)
+   }
 
-        if (-not $updateProcess) {
-            return
-        }
-
-        # Workaround to get commandline param as it doesn't work for macOS atm https://github.com/PowerShell/PowerShell/issues/13943
-        $processName = ps -o command= $updateProcess
-        Write-Host "Another software update process is in place with the following arguments '$processName', wait $RetryInterval seconds, $RetryCount attempts left"
-        Start-Sleep -Seconds $RetryInterval
-    }
-
-    Write-Host "All the attempts exhausted, try again later"
-    exit 1
+   Invoke-WithRetry -Command $command -BreakCondition $condition
 }
 
 function New-AnkaVMTemplate {
