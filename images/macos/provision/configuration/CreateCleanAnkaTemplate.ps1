@@ -239,8 +239,7 @@ function Get-ShortMacOSVersion {
     if ($MacOSVersion.Major -eq 10) {
         $shortMacOSVersion = "$($MacOSVersion.Major).$($MacOSVersion.Minor)"
     }
-    else
-    {
+    else {
         $shortMacOSVersion = "$($MacOSVersion.Major)"
     }
 
