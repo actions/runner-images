@@ -89,7 +89,7 @@ Describe "Android" {
         }
     }
 
-    It "HAXM is installed" -Skip:($os.IsBigSur) {
+    It "HAXM is installed" -Skip:($os.IsHigherThanCatalina) {
         "kextstat | grep 'com.intel.kext.intelhaxm'" | Should -ReturnZeroExitCode
     }
 }

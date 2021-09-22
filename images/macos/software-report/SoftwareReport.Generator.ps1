@@ -47,10 +47,10 @@ $languageAndRuntimeList = @(
     (Get-KotlinVersion)
 )
 
-if ( -not $os.IsHighSierra) {
+if ( -not $os.IsHighSierra -and $os.IsLessThanMonterey) {
     $languageAndRuntimeList += @(
-        (Get-GccVersion)
-        (Get-FortranVersion)
+        (Get-FortranVersion),
+        (Get-GccVersion),
         (Get-ClangLLVMVersion)
     )
 }
@@ -72,18 +72,23 @@ $packageManagementList = @(
     (Get-PipVersion -Version 3),
     (Get-PipxVersion),
     (Get-BundlerVersion),
-    (Get-CarthageVersion),
     (Get-CocoaPodsVersion),
     (Get-HomebrewVersion),
     (Get-NPMVersion),
     (Get-YarnVersion),
     (Get-NuGetVersion),
-    (Get-CondaVersion),
     (Get-RubyGemsVersion),
     (Get-ComposerVersion)
 )
 
-if ($os.IsHigherThanMojave) {
+if ($os.IsLessThanMonterey) {
+    $packageManagementList += @(
+        (Get-CarthageVersion),
+        (Get-CondaVersion)
+    )
+}
+
+if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
     $packageManagementList += @(
         (Get-VcpkgVersion)
     )
@@ -117,7 +122,6 @@ $utilitiesList = @(
     (Get-PackerVersion),
     (Get-OpenSSLVersion),
     (Get-JqVersion),
-    (Get-GPGVersion),
     (Get-PostgresClientVersion),
     (Get-PostgresServerVersion),
     (Get-Aria2Version),
@@ -125,7 +129,6 @@ $utilitiesList = @(
     (Get-ZstdVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
-    (Get-HelmVersion),
     (Get-MongoVersion),
     (Get-MongodVersion),
     (Get-7zipVersion),
@@ -133,7 +136,14 @@ $utilitiesList = @(
     (Get-GnuTarVersion)
 )
 
-if ($os.IsHigherThanMojave) {
+if ($os.IsLessThanMonterey) {
+    $utilitiesList += @(
+        (Get-GPGVersion),
+        (Get-HelmVersion)
+    )
+}
+
+if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
     $utilitiesList += @(
         (Get-NewmanVersion)
     )
@@ -147,7 +157,7 @@ if ($os.IsLessThanBigSur) {
     )
 }
 
-if (-not $os.IsHighSierra) {
+if (-not $os.IsHighSierra -and $os.IsLessThanMonterey) {
     $utilitiesList += @(
         (Get-SwitchAudioOsxVersion),
         (Get-SoxVersion)
@@ -166,8 +176,16 @@ $toolsList = @(
     (Get-AzureCLIVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMCLIVersion),
-    (Get-AWSSessionManagerCLIVersion),
-    (Get-AliyunCLIVersion),
+    (Get-AWSSessionManagerCLIVersion)
+)
+
+if ($os.IsLessThanMonterey) {
+    $toolsList += @(
+        (Get-AliyunCLIVersion)
+    )
+}
+
+$toolsList += @(
     (Get-XcodeCommandLineToolsVersion),
     (Get-SwigVersion),
     (Get-BicepVersion)
@@ -178,9 +196,13 @@ if( -not $os.IsHighSierra) {
         (Get-GHCupVersion),
         (Get-GHCVersion),
         (Get-CabalVersion),
-        (Get-StackVersion),
-        (Get-SwiftFormatVersion)
+        (Get-StackVersion)
     )
+    if($os.IsLessThanMonterey) {
+        $toolsList += @(
+            (Get-SwiftFormatVersion)
+        )
+    }
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)

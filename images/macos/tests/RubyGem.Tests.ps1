@@ -1,3 +1,5 @@
+$os = Get-OSVersion
+
 Describe "RubyGems" {
     $gemTestCases = Get-ToolsetValue -KeyPath "ruby.rubygems" | ForEach-Object {
         @{gemName = $_}
@@ -17,7 +19,7 @@ Describe "Bundler" {
     }
 }
 
-Describe "Nomad shenzhen CLI" {
+Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey) {
     It "Nomad shenzhen CLI" {
         "ipa --version" | Should -ReturnZeroExitCode
     }

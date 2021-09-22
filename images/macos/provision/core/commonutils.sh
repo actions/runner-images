@@ -1,6 +1,8 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
+# Monterey needs future review:
+# Llvm, aliyun-cli, gnupg, helm have issues with building from the source code.
 common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
     echo "Installing $package..."
