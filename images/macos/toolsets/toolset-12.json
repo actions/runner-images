@@ -76,6 +76,7 @@
             "p7zip",
             "packer",
             "perl",
+            "sbt",
             "subversion",
             "swig",
             "zstd"

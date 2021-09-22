@@ -49,8 +49,8 @@ $languageAndRuntimeList = @(
 
 if ( -not $os.IsHighSierra -and $os.IsLessThanMonterey) {
     $languageAndRuntimeList += @(
-        (Get-FortranVersion),
-        (Get-GccVersion),
+        (Get-GccVersion)
+        (Get-FortranVersion)
         (Get-ClangLLVMVersion)
     )
 }
@@ -95,10 +95,11 @@ if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
+if ($os.IsLessThanMonterey) {
+    $markdown += New-MDHeader "Environment variables" -Level 4
+    $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+    $markdown += New-MDNewLine
+}
 # Project Management
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
