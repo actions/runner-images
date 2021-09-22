@@ -42,10 +42,15 @@ $languageAndRuntimeList = @(
     (Get-RubyVersion),
     (Get-DotnetVersionList),
     (Get-GoVersion),
-    (Get-PHPVersion),
     (Get-JuliaVersion),
     (Get-KotlinVersion)
 )
+
+if ($os.IsLessThanMonterey) {
+    $languageAndRuntimeList += @(
+        (Get-PHPVersion)
+    )
+}
 
 if ( -not $os.IsHighSierra -and $os.IsLessThanMonterey) {
     $languageAndRuntimeList += @(
