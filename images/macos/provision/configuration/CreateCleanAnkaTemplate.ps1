@@ -24,7 +24,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-function Get-MacOSInstaller {
+function Get-MacOSInstallers {
     param (
         [version] $MacOSVersion,
         [bool] $BetaSearch = $false
@@ -185,10 +185,11 @@ function New-AnkaVMTemplate {
     Invoke-Anka { anka create --cpu-count $CpuCount --ram-size "${RamSizeGb}G" --disk-size "${DiskSizeGb}G" --app $InstallerPath $templateName }
 
     # Apple Metal is available starting from Big Sur
-    if (-not $ShortMacOSVersion.StartsWith("10")) {
+    if (-not $ShortMacOSVersion.StartsWith("10.")) {
         Write-Host "Enabling Graphics Acceleration with Apple Metal for $templateName"
         Invoke-Anka { anka modify $templateName set display -c pg }
     }
+
     Write-Host "Setting screen resolution to $DisplayResolution for $templateName"
     Invoke-Anka { anka modify $templateName set display -r $DisplayResolution }
 
@@ -201,6 +202,7 @@ function Add-AnkaImageToRegistry {
         [String] $ShortMacOSVersion,
         [String] $TemplateName
     )
+    
     $repoName = "ankaregistry"
     $reposlist = bash -c "anka registry list-repos"
     if (-Not ($reposlist -like "*$repoName*")) {
@@ -219,6 +221,7 @@ function Add-AnkaImageToRegistry {
                 Invoke-WebRequest -Method DELETE -Uri $RegistryUrl/registry/vm?id=$vmUuid
         }
     }
+
     Write-Host "Pushing clean macOS $ShortMacOSVersion to the $RegistryUrl"
     Invoke-Anka { anka registry push -t $ShortMacOSVersion $TemplateName }
 }
@@ -251,7 +254,7 @@ function Get-ShortMacOSVersion {
     return $shortMacOSVersion
 }
 
-$macOSInstaller = (Get-MacOSInstaller -MacOSVersion $MacOSVersion -BetaSearch $BetaSearch)[-1]
+$macOSInstaller = (Get-MacOSInstallers -MacOSVersion $MacOSVersion -BetaSearch $BetaSearch)[-1]
 $shortMacOSVersion = Get-ShortMacOSVersion -MacOSVersion $MacOSVersion
 $templateName = "clean_macos_${shortMacOSVersion}_${DiskSizeGb}gb"
 New-AnkaVMTemplate -InstallerPath $macOSInstaller `
