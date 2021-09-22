@@ -217,6 +217,8 @@ function Get-ShortMacOSVersion {
 }
 
 $macOSInstaller = (Get-MacOSInstallers -MacOSVersion $MacOSVersion -BetaSearch $BetaSearch)[-1]
+$macOSInstallerr = Get-MacOSInstallers -MacOSVersion $MacOSVersion -BetaSearch $BetaSearch
+Write-Host "macOSInstaller: $macOSInstaller, $macOSInstallerr"
 $shortMacOSVersion = Get-ShortMacOSVersion -MacOSVersion $MacOSVersion
 $templateName = "clean_macos_${shortMacOSVersion}_${DiskSizeGb}gb"
 New-AnkaVMTemplate -InstallerPath $macOSInstaller `
