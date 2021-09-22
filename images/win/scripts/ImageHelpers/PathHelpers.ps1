@@ -1,4 +1,4 @@
-function Get-SystemVariable{
+function Get-SystemVariable {
     [CmdletBinding()]
     param(
         [string]$SystemVariable
@@ -6,7 +6,7 @@ function Get-SystemVariable{
     return [System.Environment]::GetEnvironmentVariable($SystemVariable, "Machine")
 }
 
-function Set-SystemVariable{
+function Set-SystemVariable {
     [CmdletBinding()]
     param(
         [string]$SystemVariable,
@@ -16,7 +16,7 @@ function Set-SystemVariable{
     return Get-SystemVariable $SystemVariable
 }
 
-function Get-MachinePath{
+function Get-MachinePath {
     [CmdletBinding()]
     param(
 
@@ -24,7 +24,7 @@ function Get-MachinePath{
     return Get-SystemVariable PATH
 }
 
-function Set-MachinePath{
+function Set-MachinePath {
     [CmdletBinding()]
     param(
         [string]$NewPath
@@ -32,7 +32,8 @@ function Set-MachinePath{
     Set-SystemVariable PATH $NewPath
     return Get-SystemVariable PATH
 }
-function Test-MachinePath{
+
+function Test-MachinePath {
     [CmdletBinding()]
     param(
         [string]$PathItem
@@ -43,8 +44,7 @@ function Test-MachinePath{
     return $pathItems.Contains($PathItem)
 }
 
-function Add-MachinePathItem
-{
+function Add-MachinePathItem {
     [CmdletBinding()]
     param(
         [string]$PathItem
