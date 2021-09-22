@@ -146,7 +146,7 @@
         "vendors": [
             {
                 "name": "Temurin-Hotspot",
-                "versions": [ "8", "11" ]
+                "versions": [ "8", "11", "17" ]
             },
             {
                 "name": "Adopt",
