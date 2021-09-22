@@ -162,6 +162,7 @@ function New-AnkaVMTemplate {
     $env:ANKA_DEFAULT_USER = $TemplateUsername
     $env:ANKA_DEFAULT_PASSWD = $TemplatePassword
     $env:ANKA_CREATE_SUSPEND = 0
+    Write-Host "Cpu Count: $CpuCount, RamSize: ${RamSizeGb}G, DiskSizeGb: ${DiskSizeGb}G, InstallerPath: $InstallerPath, TemplateName: $templateName"
     Invoke-Anka { anka create --cpu-count $CpuCount --ram-size "${RamSizeGb}G" --disk-size "${DiskSizeGb}G" --app $InstallerPath $templateName }
 
     # Apple Metal is available starting from Big Sur
