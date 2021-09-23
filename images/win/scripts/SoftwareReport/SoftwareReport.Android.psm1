@@ -75,7 +75,7 @@ function Build-AndroidTable {
         },
         @{
             "Package" = "NDK"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "ndk;"
+            "Version" = Get-AndroidNdkVersions -PackageInfo $packageInfo
         },
         @{
             "Package" = "SDK Patch Applier v4"
@@ -154,6 +154,25 @@ function Get-AndroidGoogleAPIsVersions {
     $versions = $packageInfo | Where-Object { $_ -Match "addon-google_apis" } | ForEach-Object {
         $packageInfoParts = Split-TableRowByColumns $_
         return $packageInfoParts[0].split(";")[1]
+    }
+    return ($versions -Join "<br>")
+}
+
+function Get-AndroidNdkVersions {
+    param (
+        [Parameter(Mandatory)]
+        [object] $PackageInfo
+    )
+
+    $ndkLinkTarget = (Get-Item $env:ANDROID_NDK_HOME).Target
+    $ndkDefaultFullVersion = Split-Path -Path $ndkLinkTarget -Leaf
+
+    $versions = $packageInfo | Where-Object { $_ -Match "ndk;" } | ForEach-Object {
+        $version = (Split-TableRowByColumns $_)[1]
+        if ($version -eq $ndkDefaultFullVersion) {
+            $version += " (default)"
+        }
+        $version
     }
     return ($versions -Join "<br>")
 }

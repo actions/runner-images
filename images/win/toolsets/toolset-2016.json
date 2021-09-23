@@ -178,8 +178,10 @@
             "patcher;v4"
         ],
         "ndk": {
-            "lts": "21",
-            "latest": "22"
+            "default": "21",
+            "versions": [
+                "21", "22", "23"
+            ]
         }
     },
     "MsysPackages": {
