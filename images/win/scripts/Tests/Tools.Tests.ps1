@@ -81,6 +81,15 @@ Describe "KubernetesTools" {
     }
 }
 
+Describe "LLVM" {
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "clang" }
+        @{ ToolName = "clang++" }
+    ) {
+        "$ToolName --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Mingw64" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "gcc" }
