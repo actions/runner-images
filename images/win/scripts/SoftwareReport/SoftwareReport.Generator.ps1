@@ -35,6 +35,7 @@ $languageTools = @(
     (Get-BashVersion),
     (Get-GoVersion),
     (Get-JuliaVersion),
+    (Get-LLVMVersion),
     (Get-NodeVersion),
     (Get-PHPVersion),
     (Get-PythonVersion),

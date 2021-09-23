@@ -197,8 +197,16 @@
     },
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11", "12", "13", "14"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11", "17" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11", "12", "13", "14" ]
+            }
         ]
     },
     "android": {
@@ -261,6 +269,7 @@
             "packer",
             "parallel",
             "perl",
+            "sbt",
             "subversion",
             "swiftformat",
             "swig",
