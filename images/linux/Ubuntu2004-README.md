@@ -5,7 +5,7 @@
 ***
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.8.0-1041-azure
-- Image Version: 20210913.1
+- Image Version: 20210919.1
 
 ## Installed Software
 ### Language and Runtime
@@ -29,15 +29,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.6.3
-- Homebrew 3.2.11
+- Helm 3.7.0
+- Homebrew 3.2.12
 - Miniconda 4.10.3
 - Npm 6.14.15
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 0.16.4
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<c264772>)
+- Vcpkg  (build from master \<4428702>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -54,7 +54,7 @@
 - Sbt 1.5.5
 
 ### Tools
-- Ansible 2.11.4
+- Ansible 2.11.5
 - apt-fast 1.9.11
 - AzCopy 10.12.1 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.2.1
@@ -67,49 +67,49 @@
 - Docker-Buildx 0.6.3
 - Docker-Moby Client 20.10.8+azure
 - Docker-Moby Server 20.10.8+azure
-- Fastlane 2.193.1
+- Fastlane 2.194.0
 - Git 2.33.0 (apt source repository: ppa:git-core/ppa)
 - Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.0
-- HHVM (HipHop VM) 4.126.0
+- HHVM (HipHop VM) 4.127.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.22.1
+- Kubectl 1.22.2
 - Kustomize 4.3.0
-- Leiningen 2.9.6
+- Leiningen 2.9.7
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.23.0
+- Minikube 1.23.1
 - Newman 5.3.0
 - nvm 0.38.0
 - OpenSSL 1.1.1f  31 Mar 2020
-- Packer 1.7.4
+- Packer 1.7.5
 - PhantomJS 2.1.1
-- Podman 3.2.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
+- Podman 3.3.1 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Pulumi 3.12.0
 - R 4.1.1
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.0.6
+- Terraform 1.0.7
 - yamllint 1.26.3
-- yq 4.12.2
+- yq 4.13.0
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.90
-- AWS CLI 2.2.37
+- AWS CLI 2.2.39
 - AWS CLI Session manager plugin 1.2.245.0
 - AWS SAM CLI 1.31.0
 - Azure CLI (azure-cli) 2.28.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.20.0
 - GitHub CLI 2.0.0
-- Google Cloud SDK 356.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 357.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 6.8.12
-- OpenShift CLI 4.8.10
+- Netlify CLI 6.9.6
+- OpenShift CLI 4.8.11
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
@@ -128,7 +128,7 @@
 | Tool     | Version       |
 | -------- | ------------- |
 | PHP      | 7.4.23 8.0.10 |
-| Composer | 2.1.6         |
+| Composer | 2.1.8         |
 | PHPUnit  | 8.5.20        |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -147,17 +147,17 @@
 
 #### Packages
 - Bindgen 0.59.1
-- Cargo audit 0.14.1
+- Cargo audit 0.15.2
 - Cargo clippy 0.1.55
 - Cargo outdated 0.9.17
 - Cbindgen 0.20.0
 - Rustfmt 1.4.37
 
 ### Browsers and Drivers
-- Google Chrome 93.0.4577.63
+- Google Chrome 93.0.4577.82
 - ChromeDriver 93.0.4577.63
 - Mozilla Firefox 92.0
-- Geckodriver 0.29.1
+- Geckodriver 0.30.0
 - Chromium 93.0.4577.0
 
 #### Environment variables
@@ -167,7 +167,7 @@
 | GECKOWEBDRIVER  | /usr/local/share/gecko_driver  |
 
 ### .NET Core SDK
-- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.118 3.1.202 3.1.302 3.1.412 5.0.104 5.0.206 5.0.303 5.0.400
+- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.119 3.1.202 3.1.302 3.1.413 5.0.104 5.0.207 5.0.303 5.0.401
 
 ### Databases
 - MongoDB 5.0.2 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
@@ -207,7 +207,7 @@
 - 3.5.10
 - 3.6.15
 - 3.7.12
-- 3.8.11
+- 3.8.12
 - 3.9.7
 
 #### Ruby
@@ -272,7 +272,6 @@
 ### Cached Docker images
 | Repository:Tag          | Digest                                                                   | Created    |
 | ----------------------- | ------------------------------------------------------------------------ | ---------- |
-| alpine:3.11             | sha256:e457c945f4be075a9e5365c6628e552fcd15551f0bc1c1fc2ea0f2227a524210  | 2021-08-31 |
 | alpine:3.12             | sha256:a296b4c6f6ee2b88f095b61e95c7ef4f51ba25598835b4978c9256d8c8ace48a  | 2021-08-31 |
 | alpine:3.13             | sha256:2582893dec6f12fd499d3a709477f2c0c0c1dfcd28024c93f1f0626b9e3540c8  | 2021-08-31 |
 | alpine:3.14             | sha256:e1c082e3d3c45cccac829840a25941e679c25d438cc8412c2fa221cf1a824e6a  | 2021-08-27 |
@@ -303,7 +302,7 @@
 | build-essential        | 12.8ubuntu1.1                     |
 | bzip2                  | 1.0.8-2                           |
 | coreutils              | 8.30-3ubuntu2                     |
-| curl                   | 7.68.0-1ubuntu2.6                 |
+| curl                   | 7.68.0-1ubuntu2.7                 |
 | dbus                   | 1.12.16-2ubuntu2.1                |
 | dnsutils               | 1:9.16.1-0ubuntu2.8               |
 | dpkg                   | 1.19.7ubuntu3                     |
@@ -321,7 +320,7 @@
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu1.2          |
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
-| libcurl4               | 7.68.0-1ubuntu2.6                 |
+| libcurl4               | 7.68.0-1ubuntu2.7                 |
 | libgbm-dev             | 21.0.3-0ubuntu0.3\~20.04.1        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6build1                  |
