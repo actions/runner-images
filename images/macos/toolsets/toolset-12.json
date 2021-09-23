@@ -79,7 +79,8 @@
             "sbt",
             "subversion",
             "swig",
-            "zstd"
+            "zstd",
+            "gmp"
         ],
         "cask_packages": [
             "julia"
