@@ -95,7 +95,10 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "lts": "21"
+            "default": "21",
+            "versions": [
+                "21", "23"
+            ]
         }
     },
     "powershellModules": [
@@ -107,7 +110,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.1.0"
+                "6.4.0"
             ],
             "zip_versions": [
                 "3.1.0",
