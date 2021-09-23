@@ -71,6 +71,7 @@
 - Git 2.33.0 (apt source repository: ppa:git-core/ppa)
 - Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
+- GNU Make 4.2.1
 - Haveged 1.9.1
 - Heroku 7.59.0
 - HHVM (HipHop VM) 4.127.0
