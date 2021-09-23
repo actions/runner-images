@@ -156,7 +156,13 @@ function Get-AndroidGoogleAPIsVersions {
 function Get-AndroidNDKVersions {
     $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
     $versions = Get-ChildItem -Path $ndkFolderPath -Name
-    return ($versions -Join "<br>")
+    $ndkDefaultVersion = Get-ToolsetValue "android.ndk.default"
+    $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultVersion.*" -Name | Select-Object -Last 1
+
+    return ($versions | ForEach-Object {
+        $defaultPostfix = ( $_ -eq $ndkDefaultFullVersion ) ? " (default)" : ""
+        $_ + $defaultPostfix
+    } | Join-String -Separator "<br>")
 }
 
 function Build-AndroidEnvironmentTable {

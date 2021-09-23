@@ -252,6 +252,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-GDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",

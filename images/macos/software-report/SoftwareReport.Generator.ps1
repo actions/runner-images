@@ -99,7 +99,8 @@ $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-MavenVersion),
     (Get-GradleVersion),
-    (Get-ApacheAntVersion)
+    (Get-ApacheAntVersion),
+    (Get-SbtVersion)
     ) | Sort-Object
 )
 

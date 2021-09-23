@@ -81,6 +81,15 @@ Describe "KubernetesTools" {
     }
 }
 
+Describe "LLVM" {
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "clang" }
+        @{ ToolName = "clang++" }
+    ) {
+        "$ToolName --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Mingw64" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "gcc" }
@@ -88,6 +97,12 @@ Describe "Mingw64" {
         @{ ToolName = "make" }
     ) {
         "$ToolName --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Microsoft GDK" -Skip:(-not (Test-IsWin19)) {
+    It "GDK" {
+        "$($env:GRDKLatest)grdk.ini" | Should -Exist
     }
 }
 

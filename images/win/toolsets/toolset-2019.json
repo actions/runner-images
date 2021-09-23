@@ -420,6 +420,7 @@
             { "name": "gitversion.portable" },
             { "name": "innosetup" },
             { "name": "jq" },
+            { "name": "llvm" },
             { "name": "NuGet.CommandLine" },
             {
                 "name": "openssl.light",
