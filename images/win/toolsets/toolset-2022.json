@@ -245,6 +245,7 @@
             { "name": "azcopy10" },
             { "name": "Bicep" },
             { "name": "jq" },
+            { "name": "llvm" },
             { "name": "NuGet.CommandLine" },
             {
                 "name": "openssl.light",

@@ -94,6 +94,11 @@ function Get-JuliaVersion {
     return "Julia $juliaVersion"
 }
 
+function Get-LLVMVersion {
+    $llvmVersion = [regex]::matches($(clang --version), "\d+\.\d+\.\d+").Value
+    return "LLVM $llvmVersion"
+}
+
 function Get-PerlVersion {
     ($(perl --version) | Out-String) -match "\(v(?<version>\d+\.\d+\.\d+)\)" | Out-Null
     $perlVersion = $Matches.Version
