@@ -1,14 +1,8 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
-echo Installing Azure CLI...
-brew_smart_install "azure-cli"
-
 echo Installing PowerShell...
 brew install --cask powershell
-
-# A dummy call of `az` to initialize ~/.azure directory before the modules are installed
-az -v
 
 # Install PowerShell modules
 psModules=$(get_toolset_value '.powershellModules[].name')
@@ -30,8 +24,5 @@ pwsh -command "& {Import-Module Az}"
 
 # powershell link was removed in powershell-6.0.0-beta9
 sudo ln -s /usr/local/bin/pwsh /usr/local/bin/powershell
-
-# fix ~/.azure directory permissions
-sudo chown -R ${USER}: $HOME/.azure
 
 invoke_tests "Powershell"

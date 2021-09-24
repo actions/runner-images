@@ -14,29 +14,27 @@ export BOOTSTRAP_HASKELL_GHC_VERSION=0
 ghcup_bin=$GHCUP_INSTALL_BASE_PREFIX/.ghcup/bin
 setEtcEnvironmentVariable "BOOTSTRAP_HASKELL_NONINTERACTIVE" $BOOTSTRAP_HASKELL_NONINTERACTIVE
 
-# Install Herbert V. Riedel's PPA for managing multiple version of ghc on ubuntu.
-# https://launchpad.net/~hvr/+archive/ubuntu/ghc
-apt-get install -y software-properties-common
-add-apt-repository -y ppa:hvr/ghc
-apt-get update
-
 # Install GHCup
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh > /dev/null 2>&1 || true
 export PATH="$ghcup_bin:$PATH"
 prependEtcEnvironmentPath $ghcup_bin
 
-# Get 2 latest Haskell Major.Minor versions
-allGhcVersions=$(apt-cache search "^ghc-" | grep -Po '(\d*\.){2}\d*' | sort --unique --version-sort)
-ghcMajorMinorVersions=$(echo "$allGhcVersions" | cut -d "." -f 1,2 | sort --unique --version-sort | tail -2)
+availableVersions=$(ghcup list -t ghc -r | grep -v "prerelease" | awk '{print $2}')
 
-# We are using apt-get to install ghc, not ghcup,
-# because ghc installed through ghcup takes up too much disk space (2GB versus 1GB through apt-get)
-for version in $ghcMajorMinorVersions; do
-    # Get latest patch version for given Major.Minor one (ex. 8.6.5 for 8.6) and install it
-    exactVersion=$(echo "$allGhcVersions" | grep $version | sort --unique --version-sort | tail -1)
-    apt-get install -y ghc-$exactVersion
-    ghcInstalledVersions+=("$exactVersion")
-    defaultGHCVersion=$exactVersion
+# Get 2 latest Haskell Major.Minor versions
+minorMajorVersions=$(echo "$availableVersions" | cut -d"." -f 1,2 | uniq | tail -n2)
+for majorMinorVersion in $minorMajorVersions; do
+    fullVersion=$(echo "$availableVersions" | grep "$majorMinorVersion." | tail -n1)
+    echo "install ghc version $fullVersion..."
+    ghcup install ghc $fullVersion
+    ghcup set ghc $fullVersion
+
+    # remove docs and profiling libs
+    ghc_dir="$(ghcup whereis basedir)/ghc/$fullVersion"
+    [ -e "${ghc_dir}" ] || exit 1
+    find "${ghc_dir}" \( -name "*_p.a" -o -name "*.p_hi" \) -type f -delete
+    rm -r "${ghc_dir}"/share/*
+    unset ghc_bin_dir ghc_dir
 done
 
 echo "install cabal..."
@@ -44,13 +42,8 @@ ghcup install cabal
 
 chmod -R 777 $GHCUP_INSTALL_BASE_PREFIX/.ghcup
 ln -s $GHCUP_INSTALL_BASE_PREFIX/.ghcup /etc/skel/.ghcup
-ln -s "/opt/ghc/$defaultGHCVersion/bin/ghc" "/usr/bin/ghc"
 
 # Install the latest stable release of haskell stack
 curl -sSL https://get.haskellstack.org/ | sh
-
-# remove PPA repo
-echo "ghc ppa:hvr/ghc" >> $HELPER_SCRIPTS/apt-sources.txt
-add-apt-repository --remove ppa:hvr/ghc
 
 invoke_tests "Haskell"

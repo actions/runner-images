@@ -1,5 +1,11 @@
 $os = Get-OSVersion
 
+Describe "Azure CLI" {
+    It "Azure CLI" {
+        "az -v" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Carthage" {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
@@ -24,11 +30,6 @@ Describe "SwiftFormat" {
     }
 }
 
-Describe "Go" {
-    It "Go" {
-        "go version" | Should -ReturnZeroExitCode
-    }
-}
 
 Describe "GnuPG" {
     It "GnuPG" {
@@ -173,5 +174,11 @@ Describe "Kotlin" {
 
     It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object {  @{ toolName = $_ } })  { 
         "$toolName -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "sbt" {
+    It "sbt" {
+        "sbt -version" | Should -ReturnZeroExitCode
     }
 }

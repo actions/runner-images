@@ -130,6 +130,10 @@
             "execution_policy": "unrestricted"
         },
         {
+            "type": "windows-restart",
+            "restart_timeout": "30m"
+        },
+        {
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
@@ -178,7 +182,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CommonUtils.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Kotlin.ps1"
             ]
         },
         {
@@ -247,6 +252,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-GDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",

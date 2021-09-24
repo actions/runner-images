@@ -5,8 +5,12 @@ Describe "Android SDK" {
     $androidPackages = Get-AndroidPackages -AndroidSDKManagerPath (Get-AndroidSDKManagerPath)
     $androidInstalledPackages = Get-AndroidInstalledPackages
 
-    $ndkLTSMajorVersion = $androidToolset.ndk.lts
-    $ndkLatestMajorVersion = $androidToolset.ndk.latest
+    $ndkDefaultMajorVersion = $androidToolset.ndk.default
+    $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultMajorVersion.*" -Name | Select-Object -Last 1
+    $ndkVersions = $androidToolset.ndk.versions
+    $ndkPackagesTestCases = $ndkVersions | ForEach-Object {
+        @{ ndkPackage = $_; installedPackages = $androidInstalledPackages }
+    }
 
     $platformTestCases = @()
     [int]$platformMinVersion = $androidToolset.platform_min_version
@@ -91,12 +95,14 @@ Describe "Android SDK" {
             "$installedPackages" | Should -Match $additionalToolVersion
         }
 
-        It "LTS NDK is installed" -TestCases @(@{ ndkLTSVersion = $ndkLTSMajorVersion; installedPackages = $androidInstalledPackages }) {
-            "$installedPackages" | Should -Match "ndk;$ndkLTSVersion"
+        It "NDK <ndkPackage> is installed" -TestCases $ndkPackagesTestCases {
+            "$installedPackages" | Should -Match "ndk;$ndkPackage"
         }
 
-        It "Latest NDK is installed" -TestCases @(@{ ndkLatestVersion = $ndkLatestMajorVersion; installedPackages = $androidInstalledPackages }) {
-            "$installedPackages" | Should -Match "ndk;$ndkLatestVersion"
+        It "ndk-bundle points to the default NDK version" -TestCases @{ ndkDefaultVersion = $ndkDefaultFullVersion } {
+            $ndkLinkTarget = (Get-Item $env:ANDROID_NDK_HOME).Target
+            $ndkVersion = Split-Path -Path $ndkLinkTarget -Leaf
+            $ndkVersion | Should -BeExactly $ndkDefaultVersion
         }
     }
 }

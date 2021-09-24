@@ -209,6 +209,14 @@
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "npm@3" },
+            { "name": "omelette@0.4.14" },
+            { "name": "appcenter-cli@^1.0.0", "test": "appcenter --version" },
+            { "name": "node-gyp" }
+        ]
+    },
     "brew": {
         "common_packages": [
             "aliyun-cli",
@@ -221,7 +229,6 @@
             "gh",
             "gnupg",
             "gnu-tar",
-            "go@1.15",
             "helm",
             "libpq",
             "llvm",
@@ -271,5 +278,19 @@
         "versions": [
             "2.1"
         ]
+    },
+    "ruby": {
+        "default": "2.7",
+        "rubygems": [
+            "xcode-install",
+            "cocoapods",
+            "nomad-cli",
+            "xcpretty",
+            "bundler",
+            "fastlane"
+        ]
+    },
+    "go": {
+        "default": "1.15"
     }
 }

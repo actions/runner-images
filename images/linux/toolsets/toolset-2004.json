@@ -44,7 +44,8 @@
             "versions": [
                 "1.14.*",
                 "1.15.*",
-                "1.16.*"
+                "1.16.*",
+                "1.17.*"
             ],
             "default": "1.15.*"
         },
@@ -89,8 +90,10 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "lts": "21",
-            "latest": "22"
+            "default": "21",
+            "versions": [
+                "21", "22", "23"
+            ]
         }
     },
     "powershellModules": [
@@ -103,7 +106,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.1.0"
+                "6.4.0"
             ],
             "zip_versions": [
                 "3.1.0",
@@ -199,13 +202,15 @@
     ],
     "docker": {
         "images": [
-            "alpine:3.11",
             "alpine:3.12",
             "alpine:3.13",
+            "alpine:3.14",
             "buildpack-deps:stretch",
             "buildpack-deps:buster",
+            "buildpack-deps:bullseye",
             "debian:9",
             "debian:10",
+            "debian:11",
             "node:10",
             "node:12",
             "node:14",

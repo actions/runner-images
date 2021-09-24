@@ -1,5 +1,5 @@
 Describe "RubyGems" {
-    $gemTestCases = Get-ToolsetValue -KeyPath "rubygems" | ForEach-Object {
+    $gemTestCases = Get-ToolsetValue -KeyPath "ruby.rubygems" | ForEach-Object {
         @{gemName = $_}
     }
 
