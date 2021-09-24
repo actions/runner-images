@@ -1,12 +1,3 @@
-packer {
-  required_plugins {
-    veertu-anka = {
-      version = ">= v2.1.0"
-      source = "github.com/veertuinc/veertu-anka"
-    }
-  }
-}
-
 variable "source_vm_name" {
   type = string 
   default = "clean_macos_11_300gb"
@@ -130,6 +121,7 @@ build {
     expect_disconnect = true
   }
   provisioner "shell" {
+    pause_before = "30s"
     scripts = [
       "./provision/core/homebrew.sh",
       "./provision/core/powershell.sh",
@@ -160,6 +152,7 @@ build {
   provisioner "shell" {
     scripts = [
                 "./provision/core/commonutils.sh",
+                "./provision/core/golang.sh",
                 "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
                 "./provision/core/php.sh",
@@ -180,6 +173,7 @@ build {
                 "./provision/core/audiodevice.sh",
                 "./provision/core/vcpkg.sh",
                 "./provision/core/miniconda.sh",
+                "./provision/core/safari.sh",
                 "./provision/core/chrome.sh",
                 "./provision/core/edge.sh",
                 "./provision/core/firefox.sh",
