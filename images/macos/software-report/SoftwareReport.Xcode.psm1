@@ -238,13 +238,10 @@ function Build-XcodeSupportToolsSection {
     $nomadCLI = [regex]::matches($nomadOutput, "(\d+.){2}\d+").Value
     $nomadShenzhenOutput = Run-Command "ipa -version"
     $nomadShenzhen = [regex]::matches($nomadShenzhenOutput, "(\d+.){2}\d+").Value
-
-    if ($os.IsLessThanMonterey) {
-        $toolList += @(
-            "Nomad CLI $nomadCLI",
-            "Nomad shenzhen CLI $nomadShenzhen"
-        )
-    }
+    $toolList += @(
+        "Nomad CLI $nomadCLI",
+        "Nomad shenzhen CLI $nomadShenzhen"
+    )
 
     if ($os.IsLessThanBigSur) {
         $xctool = Run-Command "xctool --version"

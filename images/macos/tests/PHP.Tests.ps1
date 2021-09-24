@@ -1,6 +1,4 @@
-$os = Get-OSVersion
-
-Describe "PHP" -Skip:($os.IsMonterey) {
+Describe "PHP" {
     Context "PHP" {
         It "PHP Path" {
             Get-WhichTool "php" | Should -Not -BeLike "/usr/bin/php*"
