@@ -1,0 +1,166 @@
+{
+    "xcode": {
+        "default": "13.0",
+        "versions": [
+            { "link": "13.0", "version": "13.0.0"}
+        ]
+    },
+    "xamarin": {
+        "vsmac": "latest",
+        "mono-versions": [
+            "6.12.0.125"
+        ],
+        "ios-versions": [
+            "14.20.0.24"
+        ],
+        "mac-versions": [
+            "7.14.0.24"
+        ],
+        "android-versions": [
+            "11.3.0.4"
+        ],
+        "bundle-default": "6_12_9",
+        "bundles": [
+            {
+                "symlink": "6_12_9",
+                "mono":"6.12",
+                "ios": "14.20",
+                "mac": "7.14",
+                "android": "11.3"
+            }
+        ]
+    },
+    "java": {
+        "default": "8",
+        "versions": [
+            "8", "11"
+        ]
+    },
+    "android": {
+        "platform_min_version": "27",
+        "build_tools_min_version": "27.0.0",
+        "extra-list": [
+            "android;m2repository", "google;m2repository", "google;google_play_services", "intel;Hardware_Accelerated_Execution_Manager"
+        ],
+        "addon-list": [],
+        "additional-tools": [
+            "cmake;3.18.1"
+        ],
+        "ndk": {
+            "default": "21",
+            "versions": [
+                "21", "22", "23"
+            ]
+        }
+    },
+    "powershellModules": [
+        { "name": "Az" },
+        { "name": "MarkdownPS" },
+        { "name": "Pester" },
+        { "name": "PSScriptAnalyzer" }
+    ],
+    "npm": {
+        "global_packages": []
+    },
+    "brew": {
+        "common_packages": [
+            "ant",
+            "aria2",
+            "azure-cli",
+            "bazelisk",
+            "cmake",
+            "gh",
+            "gnu-tar",
+            "kotlin",
+            "libpq",
+            "p7zip",
+            "packer",
+            "perl",
+            "sbt",
+            "subversion",
+            "swig",
+            "zstd",
+            "gmp"
+        ],
+        "cask_packages": [
+            "julia"
+        ]
+    },
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "darwin",
+            "versions": [
+                "3.7.*",
+                "3.8.*",
+                "3.9.*"
+            ]
+        },
+        {
+            "name": "PyPy",
+            "arch": "x64",
+            "platform" : "darwin",
+            "versions": [
+                "2.7",
+                "3.7"
+            ]
+        },
+        {
+            "name": "Node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": "x64",
+            "versions": [
+                "10.*",
+                "12.*",
+                "14.*"
+            ]
+        },
+        {
+            "name": "Go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "darwin",
+            "versions": [
+                "1.15.*",
+                "1.16.*",
+                "1.17.*"
+            ]
+        },
+        {
+            "name": "Ruby",
+            "arch": "x64",
+            "versions": [
+                "2.7.*",
+                "3.0.*"
+            ]
+        }
+    ],
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint --version"
+        }
+    ],
+    "dotnet": {
+        "versions": [
+            "3.1",
+            "5.0"
+        ]
+    },
+    "ruby": {
+        "default": "3.0",
+        "rubygems": [
+            "xcode-install",
+            "cocoapods",
+            "xcpretty",
+            "bundler",
+            "fastlane"
+        ]
+    },
+    "go": {
+        "default": "1.17"
+    }
+}

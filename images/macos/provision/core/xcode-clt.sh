@@ -12,6 +12,10 @@ install_clt() {
     clt_placeholder="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
     sudo touch $clt_placeholder
     cltPattern="Command Line Tools"
+    # Command Line Tools for Xcode 13.0 does not support macOS 12
+    if is_Monterey; then
+        cltPattern="Command Line Tools beta"
+    fi
 
     clt_label_command="/usr/sbin/softwareupdate -l |
                         grep -B 1 -E '${cltPattern}' |
