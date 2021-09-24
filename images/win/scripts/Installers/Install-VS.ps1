@@ -34,6 +34,7 @@ if ($instanceFolders -is [array])
 $vsInstallRoot = (Get-VisualStudioInstance).InstallationPath
 
 # Initialize Visual Studio Experimental Instance
+# The Out-Null cmdlet is required to ensure PowerShell waits until the '/ResetSettings' command fully completes.
 & "$vsInstallRoot\Common7\IDE\devenv.exe" /RootSuffix Exp /ResetSettings General.vssettings /Command File.Exit | Out-Null
 
 # Updating content of MachineState.json file to disable autoupdate of VSIX extensions
