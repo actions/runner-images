@@ -9,7 +9,7 @@ Describe ".NET" {
     }
 }
 
-Describe "GCC" -Skip:($os.IsHighSierra -or $os.IsMonterey) {
+Describe "GCC" -Skip:($os.IsHighSierra) {
     $testCases = Get-ToolsetValue -KeyPath gcc.versions | ForEach-Object { @{Version = $_} }
 
     It "GCC <Version>" -TestCases $testCases {
@@ -33,7 +33,7 @@ Describe "GCC" -Skip:($os.IsHighSierra -or $os.IsMonterey) {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsHighSierra -or $os.IsMojave -or $os.IsMonterey) {
+Describe "vcpkg" -Skip:($os.IsHighSierra -or $os.IsMojave) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -58,7 +58,7 @@ Describe "AzCopy" {
     }
 }
 
-Describe "Miniconda" -Skip:($os.IsMonterey) {
+Describe "Miniconda" {
     It "Conda" {
         Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
         $condaBinPath = Join-Path $env:CONDA "bin" "conda"

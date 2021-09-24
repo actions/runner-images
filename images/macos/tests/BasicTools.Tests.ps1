@@ -6,7 +6,7 @@ Describe "Azure CLI" {
     }
 }
 
-Describe "Carthage" -Skip:($os.IsMonterey) {
+Describe "Carthage" {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
     }
@@ -24,20 +24,20 @@ Describe "Subversion" {
     }
 }
 
-Describe "SwiftFormat" -Skip:($os.IsMonterey) {
+Describe "SwiftFormat" {
     It "SwiftFormat" {
         "swiftformat --version" | Should -ReturnZeroExitCode
     }
 }
 
 
-Describe "GnuPG" -Skip:($os.IsMonterey) {
+Describe "GnuPG" {
     It "GnuPG" {
         "gpg --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Clang/LLVM" -Skip:($os.IsMonterey) {
+Describe "Clang/LLVM" {
     It "Clang/LLVM is installed" {
         "$(brew --prefix llvm)/bin/clang --version" | Should -ReturnZeroExitCode
     }
@@ -61,7 +61,7 @@ Describe "Perl" {
     }
 }
 
-Describe "Helm" -Skip:($os.IsMonterey) {
+Describe "Helm" {
     It "Helm" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
@@ -109,7 +109,7 @@ Describe "bazel" {
     }
 }
 
-Describe "Aliyun CLI" -Skip:($os.IsMonterey) {
+Describe "Aliyun CLI" {
     It "Aliyun CLI" {
         "aliyun --version" | Should -ReturnZeroExitCode
     }
@@ -139,25 +139,25 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsHigherThanCatalina) {
+Describe "vagrant" -Skip:($os.IsBigSur) {
     It "vagrant" {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "virtualbox" -Skip:($os.IsHigherThanCatalina) {
+Describe "virtualbox" -Skip:($os.IsBigSur) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "xctool" -Skip:($os.IsHigherThanCatalina) {
+Describe "xctool" -Skip:($os.IsBigSur) {
     It "xctool" {
         "xctool --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "R" -Skip:($os.IsHigherThanCatalina) {
+Describe "R" -Skip:($os.IsBigSur) {
     It "R" {
         "R --version" | Should -ReturnZeroExitCode
     }
