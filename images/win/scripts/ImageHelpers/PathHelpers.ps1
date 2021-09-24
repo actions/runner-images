@@ -2,6 +2,7 @@ function Get-SystemVariable {
     param(
         [string]$SystemVariable
     )
+    
     [System.Environment]::GetEnvironmentVariable($SystemVariable, "Machine")
 }
 
@@ -10,6 +11,7 @@ function Set-SystemVariable {
         [string]$SystemVariable,
         [string]$Value
     )
+    
     [System.Environment]::SetEnvironmentVariable($SystemVariable, $Value, "Machine")
     Get-SystemVariable $SystemVariable
 }
@@ -22,6 +24,7 @@ function Set-MachinePath {
     param(
         [string]$NewPath
     )
+    
     Set-SystemVariable PATH $NewPath
 }
 
