@@ -23,10 +23,9 @@ These are the guidelines we follow in software and images supporting routine:
 
 | Tool name | Installation strategy |
 |-----------|-----------------------|
-| Docker images | not more than 3 latest LTS OS\tool versions. New images or new versions of current images are added using the standard tool request process |
 | Java      | all LTS versions |
 | Node.js   | 3 latest LTS versions |
-| Go        | 3 latest minor versions |
+| Go        | 3 latest minor versions     |
 | Python <br/> Ruby | 5 most popular `major.minor` versions |
 | PyPy      | 3 most popular `major.minor` versions |
 | .NET Core | 2 latest LTS versions and 1 latest version. For each feature version only latest patch is installed |
