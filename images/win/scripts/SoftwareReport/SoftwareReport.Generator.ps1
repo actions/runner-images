@@ -21,7 +21,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
     "Image Version: $env:IMAGE_VERSION"
 )
 
-if ((Test-IsWin19) -or (Test-IsWin22))
+if (Test-IsWin19)
 {
     $markdown += New-MDHeader "Enabled windows optional features" -Level 2
     $markdown += New-MDList -Style Unordered -Lines @(
