@@ -37,6 +37,6 @@ Describe "Audio device" -Skip:($os.IsHighSierra -or $os.IsMonterey) {
 
 Describe "Screen Resolution" -Skip:($os.IsHighSierra) {
     It "Screen Resolution" {
-        system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885"
+        system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885|1920 x 1080"
     }
 }

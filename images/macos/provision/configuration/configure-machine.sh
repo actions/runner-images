@@ -13,7 +13,9 @@ sudo rm -f /var/vm/sleepimage
 defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
 
 # Change screen resolution to the maximum supported for 4Mb video memory
-sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
+if [ -d "/Library/Application Support/VMware Tools" ]; then
+    sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
+fi
 
 # https://developer.apple.com/support/expiration/
 # Enterprise iOS Distribution Certificates generated between February 7 and September 1st, 2020 will expire on February 7, 2023.
