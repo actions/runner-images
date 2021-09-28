@@ -100,12 +100,6 @@ Describe "Mingw64" {
     }
 }
 
-Describe "Microsoft GDK" -Skip:(-not (Test-IsWin19)) {
-    It "GDK" {
-        "$($env:GRDKLatest)grdk.ini" | Should -Exist
-    }
-}
-
 Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
