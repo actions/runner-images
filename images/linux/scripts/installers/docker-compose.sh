@@ -5,7 +5,7 @@
 ################################################################################
 
 # Install latest docker-compose from releases
-URL=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.assets[].browser_download_url | select(endswith("docker-compose-Linux-x86_64"))')
+URL=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.assets[].browser_download_url | select(endswith("docker-compose-linux-amd64"))')
 curl -L $URL -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
