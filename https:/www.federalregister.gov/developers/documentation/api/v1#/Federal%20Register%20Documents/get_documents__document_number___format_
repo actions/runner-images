@@ -1,0 +1,14 @@
+curl -X GET "https://www.federalregister.gov/api/v1/suggested_searches/federal-property-management" -H "accept: */*"
+  "description": "<p>The General Services Administration administers the Federal Property Management Regulations (FMR). The FMR is the successor regulation to the Federal Property Management Regulations (FPMR). Property management regulations apply to the Executive branch of the Federal government, unless specifically extended to other Federal agencies. The FMRs encompass management of real property, such as Federal buildings; personal property, such as motor vehicles and aircraft; and transport, such as the transportation of commodities, household goods, and other freight from one location to another by a transportation service provider.</p>",
+  "slug": "federal-property-management",
+  "search_conditions": {
+    "term": "\"federal property management\" | \"federal management regulations\" | FMR | FPMR",
+    "near": {
+      "within": "25"
+    },
+    "agency_ids": [
+      210
+    ]
+  },
+  "section": "money",
+  "title": "Federal Property Management"
