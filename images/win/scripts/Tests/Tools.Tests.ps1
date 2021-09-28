@@ -171,13 +171,17 @@ Describe "Vcpkg" {
     }
 }
 
-Describe "VCRedist" -Skip:(!(Test-IsWin19)) {
-    It "vcredist_2010_x86" {
-        "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{F0C3E5D1-1ADE-321E-8167-68EF0DE699A5}" | Should -Exist
-        "C:\Windows\SysWOW64\mfcm100u.dll" | Should -Exist
+Describe "VCRedist" -Skip:(Test-IsWin22) {
+    It "vcredist_140" -Skip:(Test-IsWin19) {
+        "C:\Windows\System32\vcruntime140.dll" | Should -Exist
     }
 
-    It "vcredist_2010_x64" {
+    It "vcredist_2010_x64" -Skip:(Test-IsWin16) {
+        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
+        "C:\Windows\System32\msvcr100.dll" | Should -Exist
+    }
+
+    It "vcredist_2010_x64" -Skip:(Test-IsWin16) {
         "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
         "C:\Windows\System32\msvcr100.dll" | Should -Exist
     }
