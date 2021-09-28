@@ -179,7 +179,7 @@ Describe "VCRedist" -Skip:(!(Test-IsWin19)) {
 
     It "vcredist_2010_x64" {
         "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
-        "C:\Windows\System32\msvcr110.dll" | Should -Exist
+        "C:\Windows\System32\msvcr100.dll" | Should -Exist
     }
 }
 
