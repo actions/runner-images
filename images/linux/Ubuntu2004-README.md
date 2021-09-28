@@ -1,11 +1,10 @@
 | Announcements |
 |-|
-| [[Ubuntu] Alpine 3.11 docker image will be removed on September, 20](https://github.com/actions/virtual-environments/issues/4042) |
 | [Ubuntu 16.04 environment will be removed on September 20, 2021](https://github.com/actions/virtual-environments/issues/3287) |
 ***
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.8.0-1041-azure
-- Image Version: 20210919.1
+- Image Version: 20210927.1
 
 ## Installed Software
 ### Language and Runtime
@@ -16,8 +15,8 @@
 - Erlang rebar3 3.17.0
 - GNU C++ 9.3.0, 10.3.0
 - GNU Fortran 9.3.0, 10.3.0
-- Julia 1.6.2
-- Kotlin 1.5.30-release-407
+- Julia 1.6.3
+- Kotlin 1.5.31-release-548
 - Mono 6.12.0.122 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.6.0.15201 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node 14.17.6
@@ -25,19 +24,19 @@
 - Python 3.8.10
 - Python3 3.8.10
 - Ruby 2.7.0p0
-- Swift 5.4.3
+- Swift 5.5
 
 ### Package Management
 - cpan 1.64
 - Helm 3.7.0
-- Homebrew 3.2.12
+- Homebrew 3.2.13
 - Miniconda 4.10.3
 - Npm 6.14.15
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 0.16.4
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<4428702>)
+- Vcpkg  (build from master \<59a3f35>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -56,24 +55,24 @@
 ### Tools
 - Ansible 2.11.5
 - apt-fast 1.9.11
-- AzCopy 10.12.1 (available by `azcopy` and `azcopy10` aliases)
+- AzCopy 10.12.2 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.2.1
 - Bazelisk 1.10.1
 - Bicep 0.4.613
 - Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- CMake 3.21.2
-- CodeQL Action Bundle 2.6.1
+- CMake 3.21.3
+- CodeQL Action Bundle 2.6.2
 - Docker Compose 1.29.2
 - Docker-Buildx 0.6.3
 - Docker-Moby Client 20.10.8+azure
 - Docker-Moby Server 20.10.8+azure
-- Fastlane 2.194.0
+- Fastlane 2.195.0
 - Git 2.33.0 (apt source repository: ppa:git-core/ppa)
-- Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
+- Git LFS 3.0.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.0
-- HHVM (HipHop VM) 4.127.0
+- HHVM (HipHop VM) 4.128.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.22.2
@@ -81,35 +80,35 @@
 - Leiningen 2.9.7
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.23.1
+- Minikube 1.23.2
 - Newman 5.3.0
 - nvm 0.38.0
 - OpenSSL 1.1.1f  31 Mar 2020
 - Packer 1.7.5
 - PhantomJS 2.1.1
 - Podman 3.3.1 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.12.0
+- Pulumi 3.13.0
 - R 4.1.1
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
 - Terraform 1.0.7
 - yamllint 1.26.3
-- yq 4.13.0
+- yq 4.13.2
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.90
-- AWS CLI 2.2.39
+- Alibaba Cloud CLI 3.0.93
+- AWS CLI 2.2.41
 - AWS CLI Session manager plugin 1.2.245.0
-- AWS SAM CLI 1.31.0
+- AWS SAM CLI 1.32.0
 - Azure CLI (azure-cli) 2.28.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.20.0
 - GitHub CLI 2.0.0
-- Google Cloud SDK 357.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 358.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 6.9.6
-- OpenShift CLI 4.8.11
+- Netlify CLI 6.9.17
+- OpenShift CLI 4.8.12
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
@@ -127,16 +126,16 @@
 ### PHP
 | Tool     | Version       |
 | -------- | ------------- |
-| PHP      | 7.4.23 8.0.10 |
+| PHP      | 7.4.24 8.0.11 |
 | Composer | 2.1.8         |
-| PHPUnit  | 8.5.20        |
+| PHPUnit  | 8.5.21        |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 ### Haskell
-- Cabal 3.4.0.0
+- Cabal 3.6.0.0
 - GHC 9.0.1
-- GHCup 0.1.16.2
+- GHCup 0.1.17.1
 - Stack 2.7.3
 
 ### Rust Tools
@@ -154,11 +153,11 @@
 - Rustfmt 1.4.37
 
 ### Browsers and Drivers
-- Google Chrome 93.0.4577.82
-- ChromeDriver 93.0.4577.63
+- Google Chrome 94.0.4606.61
+- ChromeDriver 94.0.4606.41
 - Mozilla Firefox 92.0
 - Geckodriver 0.30.0
-- Chromium 93.0.4577.0
+- Chromium 94.0.4606.0
 
 #### Environment variables
 | Name            | Value                          |
@@ -170,7 +169,7 @@
 - 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.119 3.1.202 3.1.302 3.1.413 5.0.104 5.0.207 5.0.303 5.0.401
 
 ### Databases
-- MongoDB 5.0.2 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
+- MongoDB 5.0.3 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
 - PostgreSQL 13.4 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - sqlite3 3.31.1
 
@@ -231,11 +230,11 @@
 | Module           | Version |
 | ---------------- | ------- |
 | MarkdownPS       | 1.9     |
-| Pester           | 5.3.0   |
+| Pester           | 5.3.1   |
 | PSScriptAnalyzer | 1.20.0  |
 
 #### Az PowerShell Modules
-- 6.1.0 3.1.0.zip 4.4.0.zip 5.9.0.zip
+- 6.4.0 3.1.0.zip 4.4.0.zip 5.9.0.zip
 
 ### Web Servers
 | Name      | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -257,7 +256,7 @@
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                   |
 | Google Play services       | 49                                                                                                                                 |
 | Google Repository          | 58                                                                                                                                 |
-| NDK                        | 21.4.7075529<br>22.1.7171670                                                                                                       |
+| NDK                        | 21.4.7075529 (default)<br>22.1.7171670<br>23.0.7599858                                                                             |
 | SDK Patch Applier v4       | 1                                                                                                                                  |
 
 #### Environment variables
@@ -265,7 +264,7 @@
 | ----------------------- | ------------------------------------------------------------------------------------ |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                                                           |
 | ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk-bundle -> /usr/local/lib/android/sdk/ndk/21.4.7075529 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/22.1.7171670                                          |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/23.0.7599858                                          |
 | ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk-bundle -> /usr/local/lib/android/sdk/ndk/21.4.7075529 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                                                           |
 
