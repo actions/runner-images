@@ -63,9 +63,7 @@ apt-fast install -y --no-install-recommends ant ant-optional
 echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven
-json=$(curl -s "https://api.github.com/repos/apache/maven/tags")
-latestMavenVersion=$(echo $json | jq -r '.[] | select(.name | match("^(maven-[0-9.]*)$")) | .name' | head -1 | cut -d- -f2)
-mavenDownloadUrl="https://www-eu.apache.org/dist/maven/maven-3/${latestMavenVersion}/binaries/apache-maven-${latestMavenVersion}-bin.zip"
+mavenDownloadUrl=$(curl -sL https://maven.apache.org/download.cgi | grep -oP 'https://[^/"].+/apache-maven-.+-bin.zip(?=")')
 download_with_retries $mavenDownloadUrl "/tmp" "maven.zip"
 unzip -qq -d /usr/share /tmp/maven.zip
 ln -s /usr/share/apache-maven-${latestMavenVersion}/bin/mvn /usr/bin/mvn
