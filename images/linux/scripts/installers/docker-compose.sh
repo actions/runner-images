@@ -4,7 +4,7 @@
 ##  Desc:  Installs Docker Compose
 ################################################################################
 
-# Install latest docker-compose from releases
+# Install docker-compose v1 from releases
 URL="https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64"
 curl -L $URL -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
