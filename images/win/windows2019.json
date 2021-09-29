@@ -143,6 +143,8 @@
         },
         {
             "type": "windows-restart",
+            "check_registry": true,
+            "restart_check_command": "powershell -command \"& {if (-not (Get-Process TiWorker.exe -ErrorAction SilentlyContinue)) { Write-Output 'Restart complete' }}\"",
             "restart_timeout": "30m"
         },
         {
@@ -252,7 +254,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-GDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",
