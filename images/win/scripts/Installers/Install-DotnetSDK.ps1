@@ -12,6 +12,27 @@ Set-SystemVariable -SystemVariable DOTNET_MULTILEVEL_LOOKUP -Value "0"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
+function Get-SDKVersionsToInstall (
+    $DotnetVersion
+) {
+    $releaseJson = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
+    $releasesJsonPath = Start-DownloadWithRetry -Url $releaseJson -Name "releases-${DotnetVersion}.json"
+    $currentReleases = Get-Content -Path $releasesJsonPath | ConvertFrom-Json
+    # filtering out the preview/rc releases
+    $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') }
+
+    $sdks = @()
+    ForEach ($release in $currentReleases)
+    {
+        $sdks += $release.'sdk'
+        $sdks += $release.'sdks'
+    }
+
+    return $sdks.version | Sort-Object { [Version] $_ } -Unique `
+                         | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } `
+                         | Foreach-Object { $_.Group[-1] }
+}
+
 function Invoke-Warmup (
     $SdkVersion
 ) {
@@ -78,35 +99,11 @@ function InstallAllValidSdks()
 
     ForEach ($dotnetVersion in $dotnetVersions)
     {
-        $releaseJson = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${dotnetVersion}/releases.json"
-        $releasesJsonPath = Start-DownloadWithRetry -Url $releaseJson -Name "releases-${dotnetVersion}.json"
-        $currentReleases = Get-Content -Path $releasesJsonPath | ConvertFrom-Json
-        # filtering out the preview/rc releases
-        $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') } | Sort-Object { [Version] $_.'release-version' }
-
-        ForEach ($release in $currentReleases)
+        $sdkVersionsToInstall = Get-SDKVersionsToInstall -DotnetVersion $dotnetVersion
+        
+        ForEach ($sdkVersion in $sdkVersionsToInstall)
         {
-            if ($release.'sdks'.Count -gt 0)
-            {
-                Write-Host 'Found sdks property in release: ' + $release.'release-version' + 'with sdks count: ' + $release.'sdks'.Count
-
-                # Remove duplicate entries & preview/rc version from download list
-                # Sort the sdks on version
-                $sdks = @($release.'sdk');
-
-                $sdks += $release.'sdks' | Where-Object { !$_.'version'.Contains('-') -and !$_.'version'.Equals($release.'sdk'.'version') }
-                $sdks = $sdks | Sort-Object { [Version] $_.'version' }
-
-                ForEach ($sdk in $sdks)
-                {
-                    InstallSDKVersion -sdkVersion $sdk.'version'
-                }
-            }
-            elseif (!$release.'sdk'.'version'.Contains('-'))
-            {
-                $sdkVersion = $release.'sdk'.'version'
-                InstallSDKVersion -SdkVersion $sdkVersion -Warmup $warmup
-            }
+            InstallSDKVersion -SdkVersion $sdkVersion -Warmup $warmup
         }
     }
 }

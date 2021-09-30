@@ -22,15 +22,24 @@ function Install-Binary
 
     Param
     (
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ParameterSetName="Url")]
         [String] $Url,
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ParameterSetName="Url")]
         [String] $Name,
+        [Parameter(Mandatory, ParameterSetName="LocalPath")]
+        [String] $FilePath,
         [String[]] $ArgumentList
     )
 
-    Write-Host "Downloading $Name..."
-    $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    if ($PSCmdlet.ParameterSetName -eq "LocalPath")
+    {
+        $name = Split-Path -Path $FilePath -Leaf
+    }
+    else
+    {
+        Write-Host "Downloading $Name..."
+        $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    }
 
     # MSI binaries should be installed via msiexec.exe
     $fileExtension = ([System.IO.Path]::GetExtension($Name)).Replace(".", "")
@@ -42,23 +51,27 @@ function Install-Binary
 
     try
     {
+        $installStartTime = Get-Date
         Write-Host "Starting Install $Name..."
         $process = Start-Process -FilePath $filePath -ArgumentList $ArgumentList -Wait -PassThru
-
         $exitCode = $process.ExitCode
+        $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
         if ($exitCode -eq 0 -or $exitCode -eq 3010)
         {
-            Write-Host "Installation successful"
+            Write-Host "Installation successful in $installCompleteTime seconds"
         }
         else
         {
             Write-Host "Non zero exit code returned by the installation process: $exitCode"
+            Write-Host "Total time elapsed: $installCompleteTime seconds"
             exit $exitCode
         }
     }
     catch
     {
+        $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
         Write-Host "Failed to install the $fileExtension ${Name}: $($_.Exception.Message)"
+        Write-Host "Installation failed after $installCompleteTime seconds"
         exit 1
     }
 }
@@ -169,24 +182,29 @@ function Start-DownloadWithRetry
     }
 
     $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
-
-    #Default retry logic for the package.
+    $downloadStartTime = Get-Date
+    
+    # Default retry logic for the package.
     while ($Retries -gt 0)
     {
         try
         {
+            $downloadAttemptStartTime = Get-Date
             Write-Host "Downloading package from: $Url to path $filePath ."
             (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
             break
         }
         catch
         {
-            Write-Host "There is an error during package downloading:`n $_"
+            $failTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
+            $attemptTime = [math]::Round(($(Get-Date) - $downloadAttemptStartTime).TotalSeconds, 2)
+            Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n $_"
             $Retries--
 
             if ($Retries -eq 0)
             {
                 Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
+                Write-Host "Total time elapsed $failTime"
                 exit 1
             }
 
@@ -195,6 +213,8 @@ function Start-DownloadWithRetry
         }
     }
 
+    $downloadCompleteTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
+    Write-Host "Package downloaded successfully in $downloadCompleteTime seconds"
     return $filePath
 }
 
@@ -380,6 +400,11 @@ function Get-WinVersion
     (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
 
+function Test-IsWin22
+{
+    (Get-WinVersion) -match "2022"
+}
+
 function Test-IsWin19
 {
     (Get-WinVersion) -match "2019"
@@ -434,7 +459,7 @@ function Get-AndroidPackages {
         [string]$AndroidSDKManagerPath
     )
 
-    return (& $AndroidSDKManagerPath --list --verbose).Trim() | Foreach-Object { $_.Split()[0] } | Where-Object {$_}
+    return (cmd /c "$AndroidSDKManagerPath --list --verbose 2>&1").Trim() | Foreach-Object { $_.Split()[0] } | Where-Object {$_}
 }
 
 function Get-AndroidPackagesByName {

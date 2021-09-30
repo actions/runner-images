@@ -11,4 +11,6 @@ if [ -d "$HOME/.conda" ]; then
     sudo chown -R $USER "$HOME/.conda"
 fi
 
+echo "export CONDA=/usr/local/miniconda" >> $HOME/.bashrc
+
 invoke_tests "Common" "Miniconda"

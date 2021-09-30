@@ -1,9 +1,6 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
-echo "Install latest openssl"
-brew_smart_install "openssl"
-
 echo "Install openssl@1.1"
 brew_smart_install "openssl@1.1"
 

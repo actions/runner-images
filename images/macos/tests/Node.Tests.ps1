@@ -51,14 +51,12 @@ Describe "nvm" {
     }
 }
 
-Describe "AppCenterCLI" {
-    It "App Center CLI" {
-        "appcenter --version" | Should -ReturnZeroExitCode
+Describe "Global NPM Packages" {
+    $globalNpmPackages = Get-ToolsetValue "npm.global_packages"
+    $globalNpmPackagesWithTests = $globalNpmPackages | Where-Object { $_.test } | ForEach-Object { @{ Name = $_.name; Test = $_.test } }
+
+    It "<Name>" -TestCases $globalNpmPackagesWithTests {
+        $Test | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Newman" -Skip:($os.IsHighSierra -or $os.IsMojave) {
-    It "Newman" {
-        "newman --version" | Should -ReturnZeroExitCode
-    }
-}

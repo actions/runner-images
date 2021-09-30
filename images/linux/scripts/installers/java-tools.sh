@@ -63,11 +63,10 @@ apt-fast install -y --no-install-recommends ant ant-optional
 echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven
-mavenVersion=$(get_toolset_value '.java.maven')
-mavenDownloadUrl="https://www-eu.apache.org/dist/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}-bin.zip"
+mavenDownloadUrl=$(curl -sL https://maven.apache.org/download.cgi | grep -oP 'https://[^/"].+/binaries/apache-maven-.+-bin.zip(?=")')
 download_with_retries $mavenDownloadUrl "/tmp" "maven.zip"
 unzip -qq -d /usr/share /tmp/maven.zip
-ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
+ln -s /usr/share/apache-maven-*/bin/mvn /usr/bin/mvn
 
 # Install Gradle
 # This script founds the latest gradle release from https://services.gradle.org/versions/all

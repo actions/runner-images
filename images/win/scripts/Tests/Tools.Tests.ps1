@@ -42,13 +42,16 @@ Describe "DACFx" {
     It "DACFx" {
         (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Contains "Microsoft SQL Server Data-Tier Application Framework (x64)" | Should -BeTrue
         $sqlPackagePath = 'C:\Program Files\Microsoft SQL Server\150\DAC\bin\SqlPackage.exe'
-        $sqlLocalDBPath = 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe'
         "${sqlPackagePath}" | Should -Exist
+    }
+
+    It "SqlLocalDB" -Skip:(Test-IsWin22) {
+        $sqlLocalDBPath = 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe'
         "${sqlLocalDBPath}" | Should -Exist
     }
 }
 
-Describe "DotnetTLS" {
+Describe "DotnetTLS" -Skip:(Test-IsWin22) {
     It "Tls 1.2 is enabled" {
         [Net.ServicePointManager]::SecurityProtocol -band "Tls12" | Should -Be Tls12
     }
@@ -78,6 +81,15 @@ Describe "KubernetesTools" {
     }
 }
 
+Describe "LLVM" {
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "clang" }
+        @{ ToolName = "clang++" }
+    ) {
+        "$ToolName --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Mingw64" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "gcc" }
@@ -88,7 +100,7 @@ Describe "Mingw64" {
     }
 }
 
-Describe "GoogleCloudSDK"  {
+Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
@@ -105,7 +117,7 @@ Describe "NET48" {
     }
 }
 
-Describe "NSIS" {
+Describe "NSIS" -Skip:(Test-IsWin22) {
     It "NSIS" {
        "makensis /VERSION" | Should -ReturnZeroExitCode
     }
@@ -121,13 +133,13 @@ Describe "PowerShell Core" {
     }
 }
 
-Describe "Sbt" {
+Describe "Sbt" -Skip:(Test-IsWin22) {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "ServiceFabricSDK" {
+Describe "ServiceFabricSDK" -Skip:(Test-IsWin22) {
     It "PowerShell Module" {
         Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
     }
@@ -153,7 +165,23 @@ Describe "Vcpkg" {
     }
 }
 
-Describe "WebPlatformInstaller" {
+Describe "VCRedist" -Skip:(Test-IsWin22) {
+    It "vcredist_140" -Skip:(Test-IsWin19) {
+        "C:\Windows\System32\vcruntime140.dll" | Should -Exist
+    }
+
+    It "vcredist_2010_x64" -Skip:(Test-IsWin16) {
+        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
+        "C:\Windows\System32\msvcr100.dll" | Should -Exist
+    }
+
+    It "vcredist_2010_x64" -Skip:(Test-IsWin16) {
+        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
+        "C:\Windows\System32\msvcr100.dll" | Should -Exist
+    }
+}
+
+Describe "WebPlatformInstaller" -Skip:(Test-IsWin22) {
     It "WebPlatformInstaller" {
         "WebPICMD" | Should -ReturnZeroExitCode
     }
@@ -168,5 +196,13 @@ Describe "Zstd" {
 Describe "Pipx" {
     It "Pipx" {
         "pipx --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Kotlin" {
+    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlin-dce-js", "kotlinc-js", "kotlinc-jvm")
+
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  { 
+        "$toolName -version" | Should -ReturnZeroExitCode
     }
 }

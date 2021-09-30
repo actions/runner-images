@@ -130,16 +130,22 @@
             "execution_policy": "unrestricted"
         },
         {
+            "type": "windows-restart",
+            "restart_timeout": "30m"
+        },
+        {
             "type": "powershell",
-            "elevated_user": "SYSTEM",
-            "elevated_password": "",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Windows2019/Install-WSL.ps1"
-            ]
+                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "check_registry": true,
+            "restart_check_command": "powershell -command \"& {if (-not (Get-Process TiWorker.exe -ErrorAction SilentlyContinue)) { Write-Output 'Restart complete' }}\"",
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
@@ -178,7 +184,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CommonUtils.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Kotlin.ps1"
             ]
         },
         {
@@ -248,29 +255,26 @@
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1",
                 "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
-                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1"
-            ]
-        },
-        {
-            "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1",
                 "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
-            ],
-            "elevated_user": "{{user `install_user`}}",
-            "elevated_password": "{{user `install_password`}}"
+            ]
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "30m"
+            "restart_timeout": "10m"
         },
         {
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "if (-not (Test-Path {{user `image_folder`}}\\Tests\\testResults.xml)) { throw '{{user `image_folder`}}\\Tests\\testResults.xml not found' }"
             ]
         },
         {
@@ -283,6 +287,12 @@
             ]
         },
         {
+            "type": "powershell",
+            "inline": [
+                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\InstalledSoftware.md not found' }"
+            ]
+        },
+        {
             "type": "file",
             "source": "C:\\InstalledSoftware.md",
             "destination": "{{ template_dir }}/Windows2019-Readme.md",
@@ -291,6 +301,7 @@
         {
             "type": "powershell",
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Run-NGen.ps1",
                 "{{ template_dir }}/scripts/Installers/Finalize-VM.ps1"
             ]
         },

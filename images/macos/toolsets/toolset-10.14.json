@@ -197,8 +197,16 @@
     },
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11", "12", "13", "14"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11", "17" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11", "12", "13", "14" ]
+            }
         ]
     },
     "android": {
@@ -215,8 +223,10 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "lts": "21",
-            "latest": "22"
+            "default": "21",
+            "versions": [
+                "21", "22", "23"
+            ]
         }
     },
     "powershellModules": [
@@ -230,11 +240,20 @@
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "npm@3" },
+            { "name": "omelette@0.4.14" },
+            { "name": "appcenter-cli@^1.0.0", "test": "appcenter --version" },
+            { "name": "node-gyp" }
+        ]
+    },
     "brew": {
         "common_packages": [
             "aliyun-cli",
             "ant",
             "aria2",
+            "azure-cli",
             "bats",
             "bazelisk",
             "carthage",
@@ -242,7 +261,6 @@
             "gh",
             "gnupg",
             "gnu-tar",
-            "go@1.15",
             "helm",
             "kotlin",
             "libpq",
@@ -251,6 +269,7 @@
             "packer",
             "parallel",
             "perl",
+            "sbt",
             "subversion",
             "swiftformat",
             "swig",
@@ -315,7 +334,8 @@
                 "1.13.*",
                 "1.14.*",
                 "1.15.*",
-                "1.16.*"
+                "1.16.*",
+                "1.17.*"
             ]
         },
         {
@@ -341,12 +361,18 @@
             "2.1"
         ]
     },
-    "rubygems": [
-        "xcode-install",
-        "cocoapods",
-        "nomad-cli",
-        "xcpretty",
-        "bundler",
-        "fastlane"
-    ]
+    "ruby": {
+        "default": "2.7",
+        "rubygems": [
+            "xcode-install",
+            "cocoapods",
+            "nomad-cli",
+            "xcpretty",
+            "bundler",
+            "fastlane"
+        ]
+    },
+    "go": {
+        "default": "1.15"
+    }
 }

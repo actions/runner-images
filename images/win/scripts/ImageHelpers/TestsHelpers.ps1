@@ -53,6 +53,10 @@ function Invoke-PesterTests {
     if ($TestName) {
         $configuration.Filter.FullName = $TestName
     }
+    if ($TestFile -eq "*") {
+        $configuration.TestResult.Enabled = $true
+        $configuration.TestResult.OutputPath = "C:\image\Tests\testResults.xml"
+    }
 
     # Update environment variables without reboot
     Update-Environment

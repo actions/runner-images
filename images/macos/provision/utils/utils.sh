@@ -39,6 +39,14 @@ download_with_retries() {
     return 1
 }
 
+is_Monterey() {
+    if [ "$OSTYPE" = "darwin21" ]; then
+        true
+    else
+        false
+    fi
+}
+
 is_BigSur() {
     if [ "$OSTYPE" = "darwin20" ]; then
         true
@@ -87,6 +95,14 @@ is_Less_BigSur() {
     fi
 }
 
+is_Less_Monterey() {
+    if is_HighSierra || is_Mojave || is_Catalina || is_BigSur; then
+        true
+    else
+        false
+    fi
+}
+
 get_toolset_path() {
     echo "$HOME/image-generation/toolset.json"
 }
@@ -124,6 +140,8 @@ get_brew_os_keyword() {
         echo "catalina"
     elif is_BigSur; then
         echo "big_sur"
+    elif is_Monterey; then
+        echo "monterey"
     else
         echo "null"
     fi
@@ -172,4 +190,20 @@ brew_smart_install() {
         echo "Downloading $tool_name..."
         brew install $tool_name
     fi
+}
+
+configure_system_tccdb () {
+    local values=$1
+
+    local dbPath="/Library/Application Support/com.apple.TCC/TCC.db"
+    local sqlQuery="INSERT INTO access VALUES($values);"
+    sudo sqlite3 "$dbPath" "$sqlQuery"
+}
+
+configure_user_tccdb () {
+    local values=$1
+
+    local dbPath="$HOME/Library/Application Support/com.apple.TCC/TCC.db"
+    local sqlQuery="INSERT INTO access VALUES($values);"
+    sqlite3 "$dbPath" "$sqlQuery"
 }

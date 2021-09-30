@@ -13,3 +13,5 @@ if (Test-IsWin19) {
     Install-Binary -Url $Vc2010x86URI -Name $Vc2010x86Name -ArgumentList $ArgumentList
     Install-Binary -Url $Vc2010x64URI -Name $Vc2010x64Name -ArgumentList $ArgumentList
 }
+
+Invoke-PesterTests -TestFile "Tools" -TestName "VCRedist"
