@@ -44,7 +44,11 @@ Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 Write-Host "Configuring Xcode symlinks..."
 $xcodeVersions | ForEach-Object {
     Build-XcodeSymlinks -Version $_.link -Symlinks $_.symlinks
-    Build-ProvisionatorSymlink -Version $_.link
+
+    # Skip creating symlink to install multiple releases of the same Xcode version side-by-side
+    if ($_."skip-symlink" -ne "true") {
+        Build-ProvisionatorSymlink -Version $_.link
+    }
 }
 
 Write-Host "Setting default Xcode to $defaultXcode"

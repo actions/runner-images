@@ -1,6 +1,9 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
+# Monterey needs future review:
+# Llvm, aliyun-cli, gnupg, helm have issues with building from the source code.
+# Added gmp for now, because toolcache ruby needs its libs. Remove it when php starts to build from source code. 
 common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
     echo "Installing $package..."
@@ -18,9 +21,6 @@ if is_Less_Catalina; then
     export USE_BAZEL_VERSION="3.7.1"
     echo "export USE_BAZEL_VERSION=${USE_BAZEL_VERSION}" >> "${HOME}/.bashrc"
 fi
-
-# Create symlinks for Go 1.15 to preserve backward compatibility
-ln -sf $(brew --prefix go@1.15)/bin/* /usr/local/bin/
 
 # Invoke bazel to download bazel version via bazelisk
 bazel

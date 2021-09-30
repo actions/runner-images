@@ -23,14 +23,15 @@ These are the guidelines we follow in software and images supporting routine:
 
 | Tool name | Installation strategy |
 |-----------|-----------------------|
+| Docker images | not more than 3 latest LTS OS\tool versions. New images or new versions of current images are added using the standard tool request process |
 | Java      | all LTS versions |
 | Node.js   | 3 latest LTS versions |
-| Go        | 3 latest minor versions     |
+| Go        | 3 latest minor versions |
 | Python <br/> Ruby | 5 most popular `major.minor` versions |
 | PyPy      | 3 most popular `major.minor` versions |
 | .NET Core | 2 latest LTS versions and 1 latest version. For each feature version only latest patch is installed |
 | GCC <br/> GNU Fortran <br/> Clang <br/> GNU C++ | 3 latest major versions |
-| Android NDK | 1 latest, 1 LTS version |
+| Android NDK | 1 latest non-LTS, 2 latest LTS versions |
 | Xcode     | - all OS compatible versions side-by-side <br/> - for beta, GM versions - latest beta only <br/> - old patch versions are deprecated in 3 months |
 
 ## Software default versions update policy for tools with multiple versions installed

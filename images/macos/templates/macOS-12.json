@@ -13,7 +13,7 @@
         "vm_password": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
-        "image_os": "macos1013"
+        "image_os": "macos12"
     },
     "builders": [
         {
@@ -63,6 +63,11 @@
         },
         {
             "type": "file",
+            "source": "./provision/configuration/add-certificate.swift",
+            "destination": "~/image-generation/add-certificate.swift"
+        },
+        {
+            "type": "file",
             "source": "./provision/configuration/environment/bashrc",
             "destination": "~/.bashrc"
         },
@@ -83,7 +88,7 @@
         },
         {
             "type": "file",
-            "source": "./toolsets/toolset-10.13.json",
+            "source": "./toolsets/toolset-12.json",
             "destination": "~/image-generation/toolset.json"
         },
         {
@@ -95,7 +100,8 @@
                 "./provision/configuration/disable-auto-updates.sh",
                 "./provision/configuration/screensaver-off.sh",
                 "./provision/configuration/ntpconf.sh",
-                "./provision/configuration/max-files.sh"
+                "./provision/configuration/max-files.sh",
+                "./provision/configuration/shell-change.sh"
             ],
             "environment_vars": [
                 "PASSWORD={{user `vm_password`}}",
@@ -108,6 +114,7 @@
             "scripts": [
                 "./provision/configuration/preimagedata.sh",
                 "./provision/configuration/configure-ssh.sh",
+                "./provision/core/xcode-clt.sh",
                 "./provision/configuration/configure-machine.sh"
             ],
             "environment_vars": [
@@ -126,7 +133,6 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "pause_before": "30s",
             "scripts": [
-                "./provision/core/xcode-clt.sh",
                 "./provision/core/homebrew.sh",
                 "./provision/core/powershell.sh",
                 "./provision/core/dotnet.sh",
@@ -160,27 +166,40 @@
             "scripts": [
                 "./provision/core/commonutils.sh",
                 "./provision/core/golang.sh",
+                "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
-                "./provision/core/php.sh",
                 "./provision/core/aws.sh",
+                "./provision/core/rust.sh",
+                "./provision/core/haskell.sh",
+                "./provision/core/stack.sh",
                 "./provision/core/cocoapods.sh",
                 "./provision/core/android-toolsets.sh",
                 "./provision/core/xamarin.sh",
-                "./provision/core/xamarin-android-ndk.sh",
                 "./provision/core/vsmac.sh",
                 "./provision/core/nvm.sh",
+                "./provision/core/apache.sh",
+                "./provision/core/nginx.sh",
                 "./provision/core/postgresql.sh",
                 "./provision/core/mongodb.sh",
-                "./provision/core/miniconda.sh",
                 "./provision/core/safari.sh",
                 "./provision/core/chrome.sh",
                 "./provision/core/edge.sh",
                 "./provision/core/firefox.sh",
-                "./provision/core/toolcache-high-sierra.sh",
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
-                "./provision/core/xcode-sims.sh",
-                "./provision/core/build-xcode-symlinks.sh"
+                "./provision/core/bicep.sh"
+            ]
+        },
+        {
+            "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
+            "scripts": "./provision/core/toolset.ps1"
+        },
+        {
+            "type": "shell",
+            "execute_command": "ruby {{ .Path }}",
+            "scripts": [
+                "./provision/core/delete-duplicate-sims.rb"
             ]
         },
         {

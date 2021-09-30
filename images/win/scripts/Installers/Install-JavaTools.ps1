@@ -7,10 +7,11 @@ function Set-JavaPath {
     param (
         [string] $Version,
         [string] $Architecture = "x64",
-        [switch] $Default
+        [switch] $Default,
+        [string] $VendorName
     )
 
-    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adopt_jdk/${Version}*/${Architecture}"
+    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_${VendorName}_jdk/${Version}*/${Architecture}"
     $javaPath = (Get-Item -Path $javaPathPattern).FullName
 
     if ([string]::IsNullOrEmpty($javaPath)) {
@@ -23,6 +24,7 @@ function Set-JavaPath {
 
     if ($Default)
     {
+        # Clean up any other Java folders from PATH to make sure that they won't conflict with each other
         $currentPath = Get-MachinePath
 
         $pathSegments = $currentPath.Split(';')
@@ -47,14 +49,21 @@ function Set-JavaPath {
     }
 }
 
-function Install-JavaFromAdoptOpenJDK {
+function Install-JavaJDK {
     param(
         [string] $JDKVersion,
-        [string] $Architecture = "x64"
+        [string] $Architecture = "x64",
+        [string] $VendorName
     )
 
-    # Get Java version from adopt openjdk api
-    $assetUrl = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/${JDKVersion}/hotspot"
+    # Get Java version from api
+    if ($VendorName -eq "Temurin-Hotspot") {
+        $assetUrl = Invoke-RestMethod -Uri "https://api.adoptium.net/v3/assets/latest/${JDKVersion}/hotspot"
+    } elseif ($VendorName -eq "Adopt") {
+        $assetUrl = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/${JDKVersion}/hotspot"
+    } else {
+        throw "$VendorName is invalid vendor name. 'Adopt' and 'Temurin-Hotspot' are allowed values"
+    }
     $asset = $assetUrl | Where-Object {
         $_.binary.os -eq "windows" `
         -and $_.binary.architecture -eq $Architecture `
@@ -68,13 +77,13 @@ function Install-JavaFromAdoptOpenJDK {
     # We have to replace '+' sign in the version to '-' due to the issue with incorrect path in Android builds https://github.com/actions/virtual-environments/issues/3014
     $fullJavaVersion = $asset.version.semver -replace '\+', '-'
     # Create directories in toolcache path
-    $javaToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Adopt_jdk"
+    $javaToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_${VendorName}_jdk"
     $javaVersionPath = Join-Path -Path $javaToolcachePath -ChildPath $fullJavaVersion
     $javaArchPath = Join-Path -Path $javaVersionPath -ChildPath $Architecture
 
     if (-not (Test-Path $javaToolcachePath))
     {
-        Write-Host "Creating Adopt openjdk toolcache folder"
+        Write-Host "Creating ${VendorName} toolcache folder"
         New-Item -ItemType Directory -Path $javaToolcachePath | Out-Null
     }
 
@@ -87,17 +96,36 @@ function Install-JavaFromAdoptOpenJDK {
     New-Item -ItemType File -Path $javaVersionPath -Name "$Architecture.complete" | Out-Null
 }
 
-$jdkVersions = (Get-ToolsetContent).java.versions
-$defaultVersion = (Get-ToolsetContent).java.default
+$toolsetJava = (Get-ToolsetContent).java
+$jdkVendors = $toolsetJava.vendors
+$defaultVendor = $toolsetJava.default_vendor
+$defaultVersion = $toolsetJava.default
 
-foreach ($jdkVersion in $jdkVersions) {
-    Install-JavaFromAdoptOpenJDK -JDKVersion $jdkVersion
+foreach ($jdkVendor in $jdkVendors) {
+    $jdkVendorName = $jdkVendor.name
+    $jdkVersionsToInstall = $jdkVendor.versions
+    
+    $isDefaultVendor = $jdkVendorName -eq $defaultVendor
 
-    if ($jdkVersion -eq $defaultVersion) {
-        Set-JavaPath -Version $jdkVersion -Default
-    } else {
-        Set-JavaPath -Version $jdkVersion
+    foreach ($jdkVersionToInstall in $jdkVersionsToInstall) {
+        $isDefaultVersion = $jdkVersionToInstall -eq $defaultVersion
+
+        Install-JavaJDK -VendorName $jdkVendorName -JDKVersion $jdkVersionToInstall
+
+        if ($isDefaultVendor) {
+            if ($isDefaultVersion) {
+                Set-JavaPath -Version $jdkVersionToInstall -VendorName $jdkVendorName -Default
+            } else {
+                Set-JavaPath -Version $jdkVersionToInstall -VendorName $jdkVendorName
+            }
+        }
     }
+}
+
+# Setup JAVA_HOME_13_X64 as this is the only Adopt version needed
+# There is no jdk 13 on Windows 2022
+if (-not (Test-IsWin22)) {
+    Set-JavaPath -Version "13" -VendorName "Adopt"
 }
 
 # Install Java tools

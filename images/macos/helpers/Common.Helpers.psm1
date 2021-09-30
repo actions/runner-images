@@ -28,6 +28,9 @@ function Get-EnvironmentVariable($variable) {
 function Get-OSVersion {
     $osVersion = [Environment]::OSVersion
     $osVersionMajorMinor = $osVersion.Version.ToString(2)
+    # Monterey needs future review:
+    # [Environment]::OSVersion returns 11.0 for Monterey preview.
+    [SemVer]$osMontereyVersion = sw_vers -productVersion
     return [PSCustomObject]@{
         Version = $osVersion.Version
         Platform = $osVersion.Platform
@@ -35,9 +38,12 @@ function Get-OSVersion {
         IsMojave = $osVersionMajorMinor -eq "10.14"
         IsCatalina = $osVersionMajorMinor -eq "10.15"
         IsBigSur = $osVersionMajorMinor -eq "11.0"
+        IsMonterey = $osMontereyVersion.Major -eq "12"
         IsLessThanCatalina = [SemVer]$osVersion.Version -lt "10.15"
         IsLessThanBigSur = [SemVer]$osVersion.Version -lt "11.0"
+        IsLessThanMonterey = $osMontereyVersion -lt "12.0"
         IsHigherThanMojave = [SemVer]$osVersion.Version -ge "10.15"
+        IsHigherThanCatalina = [SemVer]$osVersion.Version -ge "11.0"
     }
 }
 

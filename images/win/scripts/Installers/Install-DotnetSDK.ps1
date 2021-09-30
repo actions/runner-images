@@ -28,14 +28,9 @@ function Get-SDKVersionsToInstall (
         $sdks += $release.'sdks'
     }
 
-    $sortedSdkVersions = $sdks.version | Sort-Object { [Version] $_ } -Unique
-
-    if (Test-IsWin22)
-    {
-        return $sortedSdkVersions | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } | Foreach-Object { $_.Group[-1] }
-    }
-
-    return $sortedSdkVersions
+    return $sdks.version | Sort-Object { [Version] $_ } -Unique `
+                         | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } `
+                         | Foreach-Object { $_.Group[-1] }
 }
 
 function Invoke-Warmup (
