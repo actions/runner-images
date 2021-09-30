@@ -130,6 +130,10 @@
             "execution_policy": "unrestricted"
         },
         {
+            "type": "windows-restart",
+            "restart_timeout": "30m"
+        },
+        {
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
@@ -139,6 +143,8 @@
         },
         {
             "type": "windows-restart",
+            "check_registry": true,
+            "restart_check_command": "powershell -command \"& {if (-not (Get-Process TiWorker.exe -ErrorAction SilentlyContinue)) { Write-Output 'Restart complete' }}\"",
             "restart_timeout": "30m"
         },
         {
@@ -178,7 +184,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CommonUtils.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Kotlin.ps1"
             ]
         },
         {

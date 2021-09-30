@@ -165,6 +165,7 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
                 "./provision/core/commonutils.sh",
+                "./provision/core/golang.sh",
                 "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
                 "./provision/core/php.sh",
@@ -185,6 +186,7 @@
                 "./provision/core/audiodevice.sh",
                 "./provision/core/vcpkg.sh",
                 "./provision/core/miniconda.sh",
+                "./provision/core/safari.sh",
                 "./provision/core/chrome.sh",
                 "./provision/core/edge.sh",
                 "./provision/core/firefox.sh",

@@ -81,6 +81,15 @@ Describe "KubernetesTools" {
     }
 }
 
+Describe "LLVM" {
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "clang" }
+        @{ ToolName = "clang++" }
+    ) {
+        "$ToolName --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Mingw64" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "gcc" }
@@ -156,6 +165,22 @@ Describe "Vcpkg" {
     }
 }
 
+Describe "VCRedist" -Skip:(Test-IsWin22) {
+    It "vcredist_140" -Skip:(Test-IsWin19) {
+        "C:\Windows\System32\vcruntime140.dll" | Should -Exist
+    }
+
+    It "vcredist_2010_x64" -Skip:(Test-IsWin16) {
+        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
+        "C:\Windows\System32\msvcr100.dll" | Should -Exist
+    }
+
+    It "vcredist_2010_x64" -Skip:(Test-IsWin16) {
+        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
+        "C:\Windows\System32\msvcr100.dll" | Should -Exist
+    }
+}
+
 Describe "WebPlatformInstaller" -Skip:(Test-IsWin22) {
     It "WebPlatformInstaller" {
         "WebPICMD" | Should -ReturnZeroExitCode
@@ -171,5 +196,13 @@ Describe "Zstd" {
 Describe "Pipx" {
     It "Pipx" {
         "pipx --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Kotlin" {
+    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlin-dce-js", "kotlinc-js", "kotlinc-jvm")
+
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  { 
+        "$toolName -version" | Should -ReturnZeroExitCode
     }
 }

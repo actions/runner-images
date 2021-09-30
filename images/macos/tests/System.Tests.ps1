@@ -17,7 +17,7 @@ Describe "Certificate" {
     }
 }
 
-Describe "Audio device" -Skip:($os.IsHighSierra) {
+Describe "Audio device" -Skip:($os.IsHighSierra -or $os.IsMonterey) {
     It "Sox is installed" {
         "sox --version" | Should -ReturnZeroExitCode
     }
@@ -26,7 +26,7 @@ Describe "Audio device" -Skip:($os.IsHighSierra) {
         "SwitchAudioSource -c" | Should -ReturnZeroExitCode
     }
 
-    It "Audio channel Soundflower (2ch)" -Skip:($os.IsBigSur) {
+    It "Audio channel Soundflower (2ch)" -Skip:($os.IsHigherThanCatalina) {
         SwitchAudioSource -c | Should -BeLikeExactly "Soundflower (2ch)"
     }
 
@@ -37,6 +37,6 @@ Describe "Audio device" -Skip:($os.IsHighSierra) {
 
 Describe "Screen Resolution" -Skip:($os.IsHighSierra) {
     It "Screen Resolution" {
-        system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885"
+        system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885|1920 x 1080"
     }
 }

@@ -112,6 +112,14 @@
         },
         {
             "type": "powershell",
+            "inline": [
+                "bcdedit.exe /set TESTSIGNING ON"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
+        },
+        {
+            "type": "powershell",
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
                 "IMAGE_OS={{user `image_os`}}",
@@ -136,14 +144,13 @@
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-VCRedist.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"
             ]
         },
         {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
@@ -166,7 +173,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CommonUtils.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Kotlin.ps1"
             ]
         },
         {

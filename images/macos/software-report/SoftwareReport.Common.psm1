@@ -308,7 +308,7 @@ function Get-PackerVersion {
 }
 
 function Get-OpenSSLVersion {
-    $opensslVersion = Get-Item /usr/local/opt/openssl | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
+    $opensslVersion = Get-Item /usr/local/opt/openssl@1.1 | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
     return $opensslVersion
 }
 
@@ -510,6 +510,11 @@ function Get-BicepVersion {
 function Get-KotlinVersion {
     $kotlinVersion = Run-Command "kotlin -version" | Take-Part -Part 2
     return "Kotlin $kotlinVersion"
+}
+
+function Get-SbtVersion {
+    $sbtVersion = Run-Command "sbt -version" | Take-Part -Part 3
+    return "Sbt $sbtVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {

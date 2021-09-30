@@ -11,7 +11,7 @@ Describe "Xamarin NDK" {
         $ANDROID_SDK_DIR = Join-Path $env:HOME "Library" "Android" "sdk"
     }
     
-    Context "Xamarin NDK toolchains" -Skip:($os.IsBigSur) {
+    Context "Xamarin NDK toolchains" -Skip:($os.IsHigherThanCatalina) {
         $testCases = $androidNdkToolchains | ForEach-Object { @{AndroidNdkToolchain = $_} }
 
         It "<AndroidNdkToolchain>" -TestCases $testCases {
@@ -22,7 +22,7 @@ Describe "Xamarin NDK" {
         }
     }
 
-    Context "Xamarin Legacy NDK versions" -Skip:($os.IsBigSur) {
+    Context "Xamarin Legacy NDK versions" -Skip:($os.IsHigherThanCatalina) {
         It "Android NDK version r18b is installed" {
             $ndk18BundlePath = Join-Path $ANDROID_SDK_DIR "ndk" "18.1.5063045" "source.properties"
             $rawContent = Get-Content $ndk18BundlePath -Raw
