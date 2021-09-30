@@ -18,7 +18,7 @@ git --version
 
 # Install git-lfs
 curl -s $GIT_LFS_REPO/script.deb.sh | bash
-apt-get install -y git-lfs
+apt-get install -y git-lfs=2.13.3
 
 # Install git-ftp
 apt-get install git-ftp -y
