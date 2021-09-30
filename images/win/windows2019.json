@@ -143,6 +143,8 @@
         },
         {
             "type": "windows-restart",
+            "check_registry": true,
+            "restart_check_command": "powershell -command \"& {if (-not (Get-Process TiWorker.exe -ErrorAction SilentlyContinue)) { Write-Output 'Restart complete' }}\"",
             "restart_timeout": "30m"
         },
         {
