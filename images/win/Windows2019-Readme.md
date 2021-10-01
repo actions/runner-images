@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2183
-- Image Version: 20210920.1
+- Image Version: 20210928.2
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -13,8 +13,9 @@
 ### Language and Runtime
 - Bash 4.4.23(1)-release
 - Go 1.15.15
-- Julia 1.6.2
+- Julia 1.6.3
 - Kotlin 1.5.31
+- LLVM 12.0.1
 - Node 14.17.6
 - Perl 5.32.1
 - PHP 8.0.10
@@ -22,7 +23,7 @@
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 0.11.1
+- Chocolatey 0.11.2
 - Composer 2.1.8
 - Helm 3.6.3
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
@@ -31,7 +32,7 @@
 - pip 21.2.4 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<4428702>)
+- Vcpkg  (build from master \<042e1db>)
 - Yarn 1.22.11
 
 #### Environment variables
@@ -49,19 +50,19 @@
 ### Tools
 - 7zip 19.00
 - aria2 1.36.0
-- azcopy 10.12.1
+- azcopy 10.12.2
 - Bazel 4.2.1
 - Bazelisk 1.10.1
 - Bicep 0.4.613
 - Cabal 3.4.0.0
-- CMake 3.21.2
-- CodeQL Action Bundle 2.6.1
+- CMake 3.21.3
+- CodeQL Action Bundle 2.6.2
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - ghc 9.0.1
 - Git 2.33.0
 - Git LFS 2.13.3
-- Google Cloud SDK 357.0.0
+- Google Cloud SDK 359.0.0
 - GVFS 1.0.21085.9
 - InnoSetup 6.2.0
 - jq 1.6
@@ -72,8 +73,8 @@
 - Newman 5.3.0
 - NSIS v3.06.1
 - OpenSSL 1.1.1
-- Packer 1.7.4
-- Pulumi v3.12.0
+- Packer 1.7.5
+- Pulumi v3.13.2
 - R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -84,9 +85,9 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.90
-- AWS CLI 2.2.39
-- AWS SAM CLI 1.31.0
+- Alibaba Cloud CLI 3.0.93
+- AWS CLI 2.2.41
+- AWS SAM CLI 1.32.0
 - AWS Session Manager CLI 1.2.245.0
 - Azure CLI 2.28.0
 - Azure DevOps CLI extension 0.20.0
@@ -109,11 +110,11 @@
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 93.0.4577.82
-- Chrome Driver 93.0.4577.63
-- Microsoft Edge 93.0.961.52
-- Microsoft Edge Driver 93.0.961.52
-- Mozilla Firefox 92.0
+- Google Chrome 94.0.4606.61
+- Chrome Driver 94.0.4606.61
+- Microsoft Edge 94.0.992.31
+- Microsoft Edge Driver 94.0.992.31
+- Mozilla Firefox 92.0.1
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 
@@ -130,6 +131,7 @@
 | 8.0.302+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.12+7           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
+| 17.0.0+35           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -214,7 +216,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.0.2.0 | MongoDB     | Running       | Automatic        |
+| 5.0.3.0 | MongoDB     | Running       | Automatic        |
 
 
 
@@ -530,7 +532,7 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Pester             | 3.4.0<br>5.3.0   |
+| Pester             | 3.4.0<br>5.3.1   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
 | PSWindowsUpdate    | 2.2.0.2          |
@@ -550,7 +552,7 @@ All other versions are saved but not installed.
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                        |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                              |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                              |
-| NDK                        | 21.4.7075529<br>22.1.7171670                                                                                                                                                                                                                                                                    |
+| NDK                        | 21.4.7075529 (default)<br>22.1.7171670<br>23.0.7599858                                                                                                                                                                                                                                          |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                               |
 
 #### Environment variables
@@ -558,7 +560,7 @@ All other versions are saved but not installed.
 | ----------------------- | ---------------------------------------------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                                                       |
 | ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\22.1.7171670                                      |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\23.0.7599858                                      |
 | ANDROID_NDK_PATH        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                                                       |

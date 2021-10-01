@@ -63,9 +63,14 @@ function Get-CMakeVersion {
     return "CMake $cmakeVersion"
 }
 
-function Get-DockerComposeVersion {
+function Get-DockerComposeV1Version {
     $composeVersion = docker-compose -v | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter ","
-    return "Docker Compose $composeVersion"
+    return "Docker Compose v1 $composeVersion"
+}
+
+function Get-DockerComposeV2Version {
+    $composeVersion = docker compose version | Take-OutputPart -Part 3
+    return "Docker Compose v2 $composeVersion"
 }
 
 function Get-DockerMobyClientVersion {

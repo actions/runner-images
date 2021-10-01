@@ -143,10 +143,13 @@
         },
         {
             "type": "windows-restart",
+            "check_registry": true,
+            "restart_check_command": "powershell -command \"& {if ((-not (Get-Process TiWorker.exe -ErrorAction SilentlyContinue)) -and (-not [System.Environment]::HasShutdownStarted) ) { Write-Output 'Restart complete' }}\"",
             "restart_timeout": "30m"
         },
         {
             "type": "powershell",
+            "pause_before": "2m",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-VCRedist.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
@@ -252,7 +255,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-GoogleCloudSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CodeQLBundle.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-BizTalkBuildComponent.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-GDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Disable-JITDebugger.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",
