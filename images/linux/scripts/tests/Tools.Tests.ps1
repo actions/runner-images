@@ -66,6 +66,10 @@ Describe "Docker" {
         "docker buildx" | Should -ReturnZeroExitCode
     }
 
+    It "docker compose v2" {
+        "docker compose" | Should -ReturnZeroExitCode
+    }
+
     Context "docker images" {
         $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 
@@ -75,7 +79,7 @@ Describe "Docker" {
     }
 }
 
-Describe "Docker-compose" {
+Describe "Docker-compose v1" {
     It "docker-compose" {
         "docker-compose --version"| Should -ReturnZeroExitCode
     }

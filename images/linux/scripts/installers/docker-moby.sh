@@ -16,6 +16,7 @@ if ! IsPackageInstalled $docker_package; then
     apt-get update
     apt-get install -y moby-engine moby-cli
     apt-get install --no-install-recommends -y moby-buildx
+    apt-get install -y moby-compose
 else
     echo "Docker ($docker_package) is already installed"
 fi
