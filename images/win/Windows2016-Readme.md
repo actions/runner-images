@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4651
-- Image Version: 20210927.1
+- Image Version: 20211003.1
 
 ## Installed Software
 ### Language and Runtime
@@ -13,7 +13,7 @@
 - Julia 1.6.3
 - Kotlin 1.5.31
 - LLVM 12.0.1
-- Node 14.17.6
+- Node 14.18.0
 - Perl 5.32.1
 - PHP 8.0.10
 - Python 3.7.9
@@ -29,8 +29,8 @@
 - pip 21.2.4 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<3768cef>)
-- Yarn 1.22.11
+- Vcpkg  (build from master \<2a31089>)
+- Yarn 1.22.15
 
 #### Environment variables
 | Name                    | Value        |
@@ -59,7 +59,7 @@
 - ghc 9.0.1
 - Git 2.33.0
 - Git LFS 2.13.3
-- Google Cloud SDK 358.0.0
+- Google Cloud SDK 359.0.0
 - GVFS 1.0.21085.9
 - InnoSetup 6.2.0
 - jq 1.6
@@ -71,7 +71,7 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.5
-- Pulumi v3.13.0
+- Pulumi v3.13.2
 - R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -82,9 +82,9 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.93
-- AWS CLI 2.2.41
-- AWS SAM CLI 1.32.0
+- Alibaba Cloud CLI 3.0.94
+- AWS CLI 2.2.43
+- AWS SAM CLI 1.33.0
 - AWS Session Manager CLI 1.2.245.0
 - Azure CLI 2.28.0
 - Azure DevOps CLI extension 0.20.0
@@ -107,10 +107,10 @@
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 94.0.4606.61
+- Google Chrome 94.0.4606.71
 - Chrome Driver 94.0.4606.61
-- Microsoft Edge 94.0.992.31
-- Microsoft Edge Driver 94.0.992.31
+- Microsoft Edge 94.0.992.38
+- Microsoft Edge Driver 94.0.992.38
 - Mozilla Firefox 92.0.1
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
@@ -160,7 +160,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 10.24.1 | x64          |
 | 12.22.6 | x64          |
-| 14.17.6 | x64          |
+| 14.18.0 | x64          |
 
 
 #### Python
@@ -197,12 +197,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### PostgreSQL
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| ServiceName          | postgresql-x64-13                                                                                                                    |
-| Version              | 13.4                                                                                                                                 |
+| ServiceName          | postgresql-x64-14                                                                                                                    |
+| Version              | 14.0                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
-| EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\13\bin <br> PGDATA=C:\Program Files\PostgreSQL\13\data <br> PGROOT=C:\Program Files\PostgreSQL\13  |
-| Path                 | C:\Program Files\PostgreSQL\13                                                                                                       |
+| EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
+| Path                 | C:\Program Files\PostgreSQL\14                                                                                                       |
 | UserName             | postgres                                                                                                                             |
 | Password             | root                                                                                                                                 |
 
