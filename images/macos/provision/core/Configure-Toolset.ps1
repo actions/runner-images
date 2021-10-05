@@ -35,19 +35,13 @@ function Add-EnvironmentVariable
     Tee-Object -InputObject $envVar -FilePath $filePath -Append
 }
 
-$toolsEnvironment = @{
-    go = @{
-        variableTemplate = "GOROOT_{0}_{1}_X64"
-    }
-}
-
 $toolset = Get-Content -Path "$env:HOME/image-generation/toolset.json" -Raw | ConvertFrom-Json
 
 foreach ($tool in $toolset.toolcache)
 {
     $toolName = $tool.name
     $toolArch = $tool.arch
-    $toolEnvironment = $toolsEnvironment[$toolName]
+    $toolEnvironment = $tool.variableTemplate
 
     if (-not $toolEnvironment)
     {
