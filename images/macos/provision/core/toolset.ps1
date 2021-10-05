@@ -6,12 +6,6 @@
 Import-Module "~/image-generation/helpers/Tests.Helpers.psm1"
 Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
 
-Function Get-ToolcacheFromToolset {
-    $toolsetPath = Join-Path $env:HOME "image-generation" "toolset.json"
-    $toolsetJson = Get-Content -Raw $toolsetPath | ConvertFrom-Json
-    return $toolsetJson.toolcache
-}
-
 Function Install-Asset {
     param(
         [Parameter(Mandatory=$true)]

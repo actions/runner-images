@@ -22,22 +22,9 @@ function Get-ToolsetToolFullPath
     return $installationDir
 }
 
-function Add-EnvironmentVariable
-{
-    param
-    (
-        [Parameter(Mandatory)] [string] $Name,
-        [Parameter(Mandatory)] [string] $Value,
-        [string] $FilePath = "${env:HOME}/.bashrc"
-    )
+$toolcache = Get-ToolcacheFromToolset
 
-    $envVar = "{0}={1}" -f $name, $value
-    Tee-Object -InputObject $envVar -FilePath $filePath -Append
-}
-
-$toolset = Get-Content -Path "$env:HOME/image-generation/toolset.json" -Raw | ConvertFrom-Json
-
-foreach ($tool in $toolset.toolcache)
+foreach ($tool in $toolcache)
 {
     $toolName = $tool.name
     $toolArch = $tool.arch
