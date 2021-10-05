@@ -30,7 +30,7 @@ Function Install-Asset {
 
 # Get toolcache content from toolset
 $toolsToInstall = @("Python", "Node", "Go")
-$tools =  Get-ToolcacheFromToolset | Where-Object {$ToolsToInstall -contains $_.Name}
+$tools = (Get-ToolsetValue "toolcache") | Where-Object {$ToolsToInstall -contains $_.Name}
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool

@@ -161,9 +161,3 @@ function Add-EnvironmentVariable
     $envVar = "export {0}={1}" -f $name, $value
     Tee-Object -InputObject $envVar -FilePath $filePath -Append
 }
-
-function Get-ToolcacheFromToolset {
-    $toolsetPath = Join-Path $env:HOME "image-generation" "toolset.json"
-    $toolsetJson = Get-Content -Raw $toolsetPath | ConvertFrom-Json
-    return $toolsetJson.toolcache
-}

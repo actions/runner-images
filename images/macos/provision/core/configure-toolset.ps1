@@ -22,7 +22,7 @@ function Get-ToolsetToolFullPath
     return $installationDir
 }
 
-$toolcache = Get-ToolcacheFromToolset
+$toolcache = Get-ToolsetValue "toolcache"
 
 foreach ($tool in $toolcache)
 {
