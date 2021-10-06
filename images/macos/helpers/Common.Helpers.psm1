@@ -156,6 +156,6 @@ function Add-EnvironmentVariable {
         [string] $FilePath = "${env:HOME}/.bashrc"
     )
 
-    $envVar = "export {0}={1}" -f $name, $value
-    Add-Content -Path $filePath -Value $envVar
+    $envVar = "export {0}={1}" -f $Name, $Value
+    Add-Content -Path $FilePath -Value $envVar
 }

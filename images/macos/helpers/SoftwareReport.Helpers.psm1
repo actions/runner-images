@@ -65,10 +65,10 @@ function Get-CachedToolInstances
 {
     <#
     .SYNOPSIS
-    Returns hastable of installed cached tools.
+    Returns hashtable of installed cached tools.
 
     .DESCRIPTION
-    Return hastable that contains versions and architectures for selected cached tool.
+    Return hashtable that contains versions and architectures for the selected cached tool.
 
     .PARAMETER Name
     Name of cached tool.
