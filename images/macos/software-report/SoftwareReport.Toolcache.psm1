@@ -28,11 +28,9 @@ function Get-ToolcacheNodeVersions {
     return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
 }
 
-function Get-ToolcacheGoTable
-{
+function Get-ToolcacheGoTable {
     $ToolInstances = Get-CachedToolInstances -Name "Go" -VersionCommand "version"
-    foreach ($Instance in $ToolInstances)
-    {
+    foreach ($Instance in $ToolInstances) {
         $Version = [System.Version]($Instance.Version -Split(" "))[0]
         $Instance."Environment Variable" = "GOROOT_$($Version.major)_$($Version.minor)_X64"
     }

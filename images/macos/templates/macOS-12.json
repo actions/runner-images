@@ -195,7 +195,7 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
             "scripts": [ 
                 "./provision/core/toolset.ps1",
-                "./provision/core/Configure-Toolset.ps1"
+                "./provision/core/configure-toolset.ps1"
             ]
         },
         {

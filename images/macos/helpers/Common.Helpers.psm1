@@ -104,8 +104,7 @@ function Invoke-ValidateCommand {
     return $output
 }
 
-function Start-DownloadWithRetry
-{
+function Start-DownloadWithRetry {
     Param
     (
         [Parameter(Mandatory)]
@@ -149,8 +148,7 @@ function Start-DownloadWithRetry
     return $filePath
 }
 
-function Add-EnvironmentVariable
-{
+function Add-EnvironmentVariable {
     param
     (
         [Parameter(Mandatory)] [string] $Name,
@@ -159,5 +157,5 @@ function Add-EnvironmentVariable
     )
 
     $envVar = "export {0}={1}" -f $name, $value
-    Tee-Object -InputObject $envVar -FilePath $filePath -Append
+    Add-Content -Path $filePath -Value $envVar
 }
