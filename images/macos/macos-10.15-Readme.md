@@ -1,11 +1,13 @@
 | Announcements |
 |-|
+| [[macOS] Xcode 12.5 will be removed from Big Sur on October, 18](https://github.com/actions/virtual-environments/issues/4183) |
+| [[macOS] Default Xcode on Big Sur image will be set to Xcode 13.0 on October, 18](https://github.com/actions/virtual-environments/issues/4180) |
 | [macOS-latest workflows will use macOS-11](https://github.com/actions/virtual-environments/issues/4060) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1417)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20210927.1
+- Image Version: 20211002.1
 
 ## Installed Software
 ### Language and Runtime
@@ -25,7 +27,7 @@
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v14.17.6
 - NVM 0.38.0
-- NVM - Cached node versions: v10.24.1 v12.22.6 v14.17.6
+- NVM - Cached node versions: v10.24.1 v12.22.6 v14.18.0
 - Perl 5.34.0
 - PHP 8.0.11
 - Python 2.7.18
@@ -38,7 +40,7 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.2
 - Composer 2.1.8
-- Homebrew 3.2.13
+- Homebrew 3.2.14
 - Miniconda 4.10.3
 - NPM 6.14.15
 - NuGet 5.6.0.6489
@@ -46,8 +48,8 @@
 - Pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.28
-- Vcpkg 2021 (build from master \<3768cef>)
-- Yarn 1.22.5
+- Vcpkg 2021 (build from master \<2a31089>)
+- Yarn 1.22.15
 
 #### Environment variables
 | Name                    | Value                  |
@@ -69,7 +71,7 @@
 - bazelisk 1.10.1
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.79.1
-- Git LFS: 2.13.3
+- Git LFS: 3.0.1
 - Git: 2.33.0
 - GitHub CLI: 2.0.0
 - GNU parallel 20210922
@@ -79,11 +81,11 @@
 - helm v3.7.0+geeac838
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v5.0.2
-- mongod v5.0.2
+- mongo v5.0.3
+- mongod v5.0.3
 - Newman 5.3.0
 - OpenSSL 1.1.1l  24 Aug 2021 `(/usr/local/opt/openssl@1.1 -> /usr/local/Cellar/openssl@1.1/1.1.1l)`
-- Packer 1.7.5
+- Packer 1.7.6
 - PostgreSQL 13.4
 - psql (PostgreSQL) 13.4
 - Sox 14.4.2
@@ -95,10 +97,10 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.93
-- App Center CLI 2.10.1
-- AWS CLI 2.2.41
-- AWS SAM CLI 1.32.0
+- Aliyun CLI 3.0.94
+- App Center CLI 2.10.2
+- AWS CLI 2.2.43
+- AWS SAM CLI 1.33.0
 - AWS Session Manager CLI 1.2.245.0
 - Azure CLI 2.28.0
 - Bicep CLI 0.4.613
@@ -106,7 +108,7 @@
 - Cmake 3.21.3
 - Fastlane 2.195.0
 - GHC 9.0.1
-- GHCup 0.1.17.1
+- GHCup 0.1.17.2
 - Stack 2.7.3
 - SwiftFormat 0.48.11
 - Swig 4.0.2
@@ -119,17 +121,17 @@
 ### Browsers
 - Safari 14.1.2 (15611.3.10.1.7)
 - SafariDriver 14.1.2 (15611.3.10.1.7)
-- Google Chrome 94.0.4606.61 
-- ChromeDriver 93.0.4577.63
-- Microsoft Edge 94.0.992.31 
-- MSEdgeDriver 94.0.992.31
+- Google Chrome 94.0.4606.71 
+- ChromeDriver 94.0.4606.61
+- Microsoft Edge 94.0.992.38 
+- MSEdgeDriver 94.0.992.38
 - Mozilla Firefox 92.0.1
 - geckodriver 0.30.0
 
 #### Environment variables
 | Name            | Value                                         |
 | --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/93.0.4577.63 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/94.0.4606.61 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
@@ -167,7 +169,7 @@
 #### Node.js
 - 10.24.1
 - 12.22.6
-- 14.17.6
+- 14.18.0
 
 #### Go
 - 1.13.15
@@ -209,7 +211,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.9.3
+- 8.10.10.8
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
