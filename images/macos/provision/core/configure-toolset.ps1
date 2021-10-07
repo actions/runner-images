@@ -28,7 +28,7 @@ foreach ($tool in $toolcache)
 {
     $toolName = $tool.name
     $toolArch = $tool.arch
-    $toolEnvironment = $tool.variableTemplate
+    $toolEnvironment = $tool.variable_template
 
     if (-not $toolEnvironment)
     {
@@ -39,7 +39,7 @@ foreach ($tool in $toolcache)
     {
         Write-Host "Set $toolName $toolVersion environment variable..."
         $toolPath = Get-ToolsetToolFullPath -ToolName $toolName -ToolVersion $toolVersion -ToolArchitecture $toolArch
-        $envName = $toolEnvironment.variableTemplate -f $toolVersion.split(".")
+        $envName = $toolEnvironment -f $toolVersion.split(".")
 
         # Add environment variable name=value
         Add-EnvironmentVariable -Name $envName -Value $toolPath
