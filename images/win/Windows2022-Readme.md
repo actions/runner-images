@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 230
-- Image Version: 20210927.1
+- Image Version: 20211003.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -16,7 +16,7 @@
 - Julia 1.6.3
 - Kotlin 1.5.31
 - LLVM 12.0.1
-- Node 14.17.6
+- Node 14.18.0
 - PHP 8.0.10
 - Python 3.9.7
 - Ruby 3.0.2p107
@@ -30,8 +30,8 @@
 - pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.22
-- Vcpkg  (build from master \<46700e2>)
-- Yarn 1.22.11
+- Vcpkg  (build from master \<2a31089>)
+- Yarn 1.22.15
 
 #### Environment variables
 | Name                    | Value    |
@@ -67,7 +67,7 @@
 - Newman 5.3.0
 - OpenSSL 1.1.1
 - Packer 1.7.5
-- Pulumi v3.13.0
+- Pulumi v3.13.2
 - R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -78,9 +78,9 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.93
-- AWS CLI 2.2.41
-- AWS SAM CLI 1.32.0
+- Alibaba Cloud CLI 3.0.94
+- AWS CLI 2.2.43
+- AWS SAM CLI 1.33.0
 - AWS Session Manager CLI 1.2.245.0
 - Azure CLI 2.28.0
 - Azure DevOps CLI extension 0.20.0
@@ -102,10 +102,10 @@
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 94.0.4606.61
+- Google Chrome 94.0.4606.71
 - Chrome Driver 94.0.4606.61
-- Microsoft Edge 94.0.992.31
-- Microsoft Edge Driver 94.0.992.31
+- Microsoft Edge 94.0.992.38
+- Microsoft Edge Driver 94.0.992.38
 - Mozilla Firefox 92.0.1
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
@@ -153,7 +153,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 10.24.1 | x64          |
 | 12.22.6 | x64          |
-| 14.17.6 | x64          |
+| 14.18.0 | x64          |
 
 
 #### Python
@@ -183,12 +183,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### PostgreSQL
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| ServiceName          | postgresql-x64-13                                                                                                                    |
-| Version              | 13.4                                                                                                                                 |
+| ServiceName          | postgresql-x64-14                                                                                                                    |
+| Version              | 14.0                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
-| EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\13\bin <br> PGDATA=C:\Program Files\PostgreSQL\13\data <br> PGROOT=C:\Program Files\PostgreSQL\13  |
-| Path                 | C:\Program Files\PostgreSQL\13                                                                                                       |
+| EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
+| Path                 | C:\Program Files\PostgreSQL\14                                                                                                       |
 | UserName             | postgres                                                                                                                             |
 | Password             | root                                                                                                                                 |
 
@@ -321,6 +321,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.ASAN                                  | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ATL                                   | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ATL.Spectre                           | 17.0.31709.181 |
+| Microsoft.VisualStudio.Component.VC.ATLMFC                                | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre                        | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.CLI.Support                           | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.CMake.Project                         | 17.0.31709.181 |
