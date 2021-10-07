@@ -213,6 +213,7 @@
             "debian:9",
             "debian:10",
             "debian:11",
+            "moby/buildkit:latest",
             "node:10",
             "node:12",
             "node:14",
