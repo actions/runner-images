@@ -151,11 +151,6 @@ function Build-OSInfoSection {
     return $output
 }
 
-function Get-PHPVersion {
-    $PHPVersion = Run-Command "php --version" | Select-Object -First 1 | Take-Part -Part 0,1
-    return $PHPVersion
-}
-
 function Get-MSBuildVersion {
     $msbuildVersion = msbuild -version | Select-Object -Last 1
     $result = Select-String -Path (Get-Command msbuild).Source -Pattern "msbuild"
@@ -308,7 +303,7 @@ function Get-PackerVersion {
 }
 
 function Get-OpenSSLVersion {
-    $opensslVersion = Get-Item /usr/local/opt/openssl | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
+    $opensslVersion = Get-Item /usr/local/opt/openssl@1.1 | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
     return $opensslVersion
 }
 

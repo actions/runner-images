@@ -185,6 +185,7 @@
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.MFC",
             "Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre",
+            "Microsoft.VisualStudio.Component.VC.ATLMFC",
             "Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
             "Microsoft.VisualStudio.Component.Windows10SDK.20348",

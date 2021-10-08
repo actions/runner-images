@@ -1,11 +1,13 @@
 | Announcements |
 |-|
+| [[macOS] Xcode 12.5 will be removed from Big Sur on October, 18](https://github.com/actions/virtual-environments/issues/4183) |
+| [[macOS] Default Xcode on Big Sur image will be set to Xcode 13.0 on October, 18](https://github.com/actions/virtual-environments/issues/4180) |
 | [macOS-latest workflows will use macOS-11](https://github.com/actions/virtual-environments/issues/4060) |
 ***
 # macOS 11.6 info
 - System Version: macOS 11.6 (20G165)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20210917.1
+- Image Version: 20211001.1
 
 ## Installed Software
 ### Language and Runtime
@@ -20,33 +22,33 @@
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
-- julia 1.6.2
-- Kotlin 1.5.30-release-407
+- julia 1.6.3
+- Kotlin 1.5.31-release-548
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v14.17.6
 - NVM 0.38.0
-- NVM - Cached node versions: v10.24.1 v12.22.6 v14.17.6
+- NVM - Cached node versions: v10.24.1 v12.22.6 v14.18.0
 - Perl 5.34.0
-- PHP 8.0.10
+- PHP 8.0.11
 - Python 2.7.18
 - Python 3.9.7
 - Ruby 2.7.4p191
 
 ### Package Management
-- Bundler version 2.2.27
+- Bundler version 2.2.28
 - Carthage 0.38.0
 - CocoaPods 1.11.2
 - Composer 2.1.8
-- Homebrew 3.2.12
+- Homebrew 3.2.14
 - Miniconda 4.10.3
 - NPM 6.14.15
 - NuGet 5.6.0.6489
 - Pip 20.3.4 (python 2.7)
 - Pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
-- RubyGems 3.2.27
-- Vcpkg 2021 (build from master \<4428702>)
-- Yarn 1.22.5
+- RubyGems 3.2.28
+- Vcpkg 2021 (build from master \<2a31089>)
+- Yarn 1.22.15
 
 #### Environment variables
 | Name                    | Value                  |
@@ -58,16 +60,17 @@
 - Apache Ant(TM) 1.10.11
 - Apache Maven 3.8.2
 - Gradle 7.2
+- Sbt 1.5.5
 
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
-- azcopy 10.12.1
+- azcopy 10.12.2
 - bazel 4.2.1
 - bazelisk 1.10.1
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.79.0
-- Git LFS: 2.13.3
+- Curl 7.79.1
+- Git LFS: 3.0.1
 - Git: 2.33.0
 - GitHub CLI: 2.0.0
 - GNU Tar 1.34 - available by 'gtar' alias
@@ -76,11 +79,11 @@
 - helm v3.7.0+geeac838
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v5.0.2
-- mongod v5.0.2
+- mongo v5.0.3
+- mongod v5.0.3
 - Newman 5.3.0
-- OpenSSL 1.1.1l  24 Aug 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1l)`
-- Packer 1.7.5
+- OpenSSL 1.1.1l  24 Aug 2021 `(/usr/local/opt/openssl@1.1 -> /usr/local/Cellar/openssl@1.1/1.1.1l)`
+- Packer 1.7.6
 - PostgreSQL 13.4
 - psql (PostgreSQL) 13.4
 - Sox 14.4.2
@@ -90,22 +93,22 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.90
-- App Center CLI 2.10.0
-- AWS CLI 2.2.39
-- AWS SAM CLI 1.31.0
+- Aliyun CLI 3.0.94
+- App Center CLI 2.10.2
+- AWS CLI 2.2.43
+- AWS SAM CLI 1.33.0
 - AWS Session Manager CLI 1.2.245.0
 - Azure CLI 2.28.0
 - Bicep CLI 0.4.613
-- Cabal 3.4.0.0
-- Cmake 3.21.2
-- Fastlane 2.194.0
+- Cabal 3.6.1.0
+- Cmake 3.21.3
+- Fastlane 2.195.0
 - GHC 9.0.1
-- GHCup v0.1.16.2
+- GHCup 0.1.17.2
 - Stack 2.7.3
 - SwiftFormat 0.48.11
 - Swig 4.0.2
-- Xcode Command Line Tools 12.5.0.0.1.1617976050
+- Xcode Command Line Tools 13.0.0.0.1.1630607135
 
 ### Linters
 - SwiftLint 0.44.0
@@ -114,25 +117,26 @@
 ### Browsers
 - Safari 14.1.2 (16611.3.10.1.6)
 - SafariDriver 14.1.2 (16611.3.10.1.6)
-- Google Chrome 93.0.4577.82 
-- ChromeDriver 93.0.4577.63
-- Microsoft Edge 93.0.961.52 
-- MSEdgeDriver 93.0.961.52
-- Mozilla Firefox 92.0
-- geckodriver 0.29.1
+- Google Chrome 94.0.4606.71 
+- ChromeDriver 94.0.4606.61
+- Microsoft Edge 94.0.992.37 
+- MSEdgeDriver 94.0.992.38
+- Mozilla Firefox 92.0.1
+- geckodriver 0.30.0
 
 #### Environment variables
 | Name            | Value                                         |
 | --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/93.0.4577.63 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/94.0.4606.61 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
 ### Java
-| Version             | Vendor        | Environment Variable |
-| ------------------- | ------------- | -------------------- |
-| 8.0.302+8 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.12+7           | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| Version             | Vendor          | Environment Variable |
+| ------------------- | --------------- | -------------------- |
+| 8.0.302+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.12+7           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.0+35           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Cached Tools
 #### Ruby
@@ -154,7 +158,7 @@
 #### Node.js
 - 10.24.1
 - 12.22.6
-- 14.17.6
+- 14.18.0
 
 #### Go
 - 1.15.15
@@ -183,7 +187,7 @@
 | ---------------- | ------- |
 | Az               | 6.1.0   |
 | MarkdownPS       | 1.9     |
-| Pester           | 5.3.0   |
+| Pester           | 5.3.1   |
 | PSScriptAnalyzer | 1.20.0  |
 
 ### Web Servers
@@ -194,21 +198,22 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.9.3
+- 8.10.10.8
 
 #### Xamarin bundles
-| symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
-| ---------------- | ------------ | ----------- | ----------- | --------------- |
-| 6_12_9 (default) | 6.12         | 14.20       | 7.14        | 11.3            |
-| 6_12_8           | 6.12         | 14.16       | 7.10        | 11.2            |
-| 6_12_7           | 6.12         | 14.14       | 7.8         | 11.2            |
-| 6_12_6           | 6.12         | 14.10       | 7.4         | 11.1            |
-| 6_12_5           | 6.12         | 14.8        | 7.2         | 11.1            |
-| 6_12_4           | 6.12         | 14.6        | 7.0         | 11.1            |
-| 6_12_3           | 6.12         | 14.4        | 6.22        | 11.1            |
-| 6_12_2           | 6.12         | 14.2        | 6.20        | 11.0            |
-| 6_12_1           | 6.12         | 14.0        | 6.20        | 11.0            |
-| 6_12_0           | 6.12         | 13.20       | 6.20        | 11.0            |
+| symlink           | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
+| ----------------- | ------------ | ----------- | ----------- | --------------- |
+| 6_12_10 (default) | 6.12         | 15.0        | 7.14        | 11.3            |
+| 6_12_9            | 6.12         | 14.20       | 7.14        | 11.3            |
+| 6_12_8            | 6.12         | 14.16       | 7.10        | 11.2            |
+| 6_12_7            | 6.12         | 14.14       | 7.8         | 11.2            |
+| 6_12_6            | 6.12         | 14.10       | 7.4         | 11.1            |
+| 6_12_5            | 6.12         | 14.8        | 7.2         | 11.1            |
+| 6_12_4            | 6.12         | 14.6        | 7.0         | 11.1            |
+| 6_12_3            | 6.12         | 14.4        | 6.22        | 11.1            |
+| 6_12_2            | 6.12         | 14.2        | 6.20        | 11.0            |
+| 6_12_1            | 6.12         | 14.0        | 6.20        | 11.0            |
+| 6_12_0            | 6.12         | 13.20       | 6.20        | 11.0            |
 
 #### Unit Test Framework
 - NUnit 3.6.1
@@ -216,8 +221,8 @@
 ### Xcode
 | Version          | Build    | Path                              |
 | ---------------- | -------- | --------------------------------- |
-| 13.0 (beta)      | 13A5212g | /Applications/Xcode_13.0_beta.app |
 | 13.0             | 13A233   | /Applications/Xcode_13.0.app      |
+| 13.0 (beta)      | 13A5212g | /Applications/Xcode_13.0_beta.app |
 | 12.5.1 (default) | 12E507   | /Applications/Xcode_12.5.1.app    |
 | 12.5             | 12E262   | /Applications/Xcode_12.5.app      |
 | 12.4             | 12D4e    | /Applications/Xcode_12.4.app      |

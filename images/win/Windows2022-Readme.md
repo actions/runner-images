@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 230
-- Image Version: 20210920.1
+- Image Version: 20211003.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -13,15 +13,16 @@
 ### Language and Runtime
 - Bash 4.4.23(1)-release
 - Go 1.16.8
-- Julia 1.6.2
-- Kotlin 1.5.30
-- Node 14.17.6
+- Julia 1.6.3
+- Kotlin 1.5.31
+- LLVM 12.0.1
+- Node 14.18.0
 - PHP 8.0.10
 - Python 3.9.7
 - Ruby 3.0.2p107
 
 ### Package Management
-- Chocolatey 0.11.1
+- Chocolatey 0.11.2
 - Composer 2.1.8
 - Helm 3.6.3
 - NPM 6.14.15
@@ -29,8 +30,8 @@
 - pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.22
-- Vcpkg  (build from master \<4428702>)
-- Yarn 1.22.11
+- Vcpkg  (build from master \<2a31089>)
+- Yarn 1.22.15
 
 #### Environment variables
 | Name                    | Value    |
@@ -45,13 +46,13 @@
 ### Tools
 - 7zip 19.00
 - aria2 1.36.0
-- azcopy 10.12.1
+- azcopy 10.12.2
 - Bazel 4.2.1
 - Bazelisk 1.10.1
 - Bicep 0.4.613
 - Cabal 3.4.0.0
-- CMake 3.21.2
-- CodeQL Action Bundle 2.6.1
+- CMake 3.21.3
+- CodeQL Action Bundle 2.6.2
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - ghc 9.0.1
@@ -65,8 +66,8 @@
 - Mingw-w64 8.1.0
 - Newman 5.3.0
 - OpenSSL 1.1.1
-- Packer 1.7.4
-- Pulumi v3.12.0
+- Packer 1.7.5
+- Pulumi v3.13.2
 - R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -77,9 +78,9 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.90
-- AWS CLI 2.2.39
-- AWS SAM CLI 1.31.0
+- Alibaba Cloud CLI 3.0.94
+- AWS CLI 2.2.43
+- AWS SAM CLI 1.33.0
 - AWS Session Manager CLI 1.2.245.0
 - Azure CLI 2.28.0
 - Azure DevOps CLI extension 0.20.0
@@ -101,11 +102,11 @@
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 93.0.4577.82
-- Chrome Driver 93.0.4577.63
-- Microsoft Edge 93.0.961.52
-- Microsoft Edge Driver 93.0.961.52
-- Mozilla Firefox 92.0
+- Google Chrome 94.0.4606.71
+- Chrome Driver 94.0.4606.61
+- Microsoft Edge 94.0.992.38
+- Microsoft Edge Driver 94.0.992.38
+- Mozilla Firefox 92.0.1
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 
@@ -121,6 +122,7 @@
 | ------------------- | --------------- | -------------------- |
 | 8.0.302+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.12+7           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.0+35           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -151,7 +153,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 10.24.1 | x64          |
 | 12.22.6 | x64          |
-| 14.17.6 | x64          |
+| 14.18.0 | x64          |
 
 
 #### Python
@@ -181,12 +183,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### PostgreSQL
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| ServiceName          | postgresql-x64-13                                                                                                                    |
-| Version              | 13.4                                                                                                                                 |
+| ServiceName          | postgresql-x64-14                                                                                                                    |
+| Version              | 14.0                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
-| EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\13\bin <br> PGDATA=C:\Program Files\PostgreSQL\13\data <br> PGROOT=C:\Program Files\PostgreSQL\13  |
-| Path                 | C:\Program Files\PostgreSQL\13                                                                                                       |
+| EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
+| Path                 | C:\Program Files\PostgreSQL\14                                                                                                       |
 | UserName             | postgres                                                                                                                             |
 | Password             | root                                                                                                                                 |
 
@@ -194,7 +196,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.0.2.0 | MongoDB     | Running       | Automatic        |
+| 5.0.3.0 | MongoDB     | Running       | Automatic        |
 
 
 
@@ -212,9 +214,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.21.3  | C:\tools\nginx-1.21.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version      | Path                                                  |
-| ----------------------------- | ------------ | ----------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.0.31710.8 | C:\Program Files\Microsoft Visual Studio\2022\Preview |
+| Name                          | Version       | Path                                                  |
+| ----------------------------- | ------------- | ----------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.0.31717.71 | C:\Program Files\Microsoft Visual Studio\2022\Preview |
 
 #### Workloads, components and extensions:
 
@@ -257,8 +259,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 17.0.31709.181 |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 17.0.31709.181 |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 17.0.31709.181 |
-| Microsoft.NetCore.Component.Runtime.6.0                                   | 17.0.31709.181 |
-| Microsoft.NetCore.Component.SDK                                           | 17.0.31709.198 |
+| Microsoft.NetCore.Component.Runtime.6.0                                   | 17.0.31716.346 |
+| Microsoft.NetCore.Component.SDK                                           | 17.0.31716.346 |
 | Microsoft.NetCore.Component.Web                                           | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.AspNet                                   | 17.0.31709.181 |
@@ -319,6 +321,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.ASAN                                  | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ATL                                   | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ATL.Spectre                           | 17.0.31709.181 |
+| Microsoft.VisualStudio.Component.VC.ATLMFC                                | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre                        | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.CLI.Support                           | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.CMake.Project                         | 17.0.31709.181 |
@@ -395,7 +398,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 3.1.119 3.1.202 3.1.302 3.1.413 5.0.104 5.0.207 5.0.303 5.0.401 6.0.100-rc.1.21458.32
+- 3.1.119 3.1.202 3.1.302 3.1.413 5.0.104 5.0.207 5.0.303 5.0.401 6.0.100-rc.1.21463.6
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
@@ -431,7 +434,7 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Pester             | 3.4.0<br>5.3.0   |
+| Pester             | 3.4.0<br>5.3.1   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
 | PSWindowsUpdate    | 2.2.0.2          |
@@ -450,7 +453,7 @@ All other versions are saved but not installed.
 | CMake                      | 3.18.1                                                                                                                             |
 | Google Play services       | 49                                                                                                                                 |
 | Google Repository          | 58                                                                                                                                 |
-| NDK                        | 21.4.7075529<br>22.1.7171670                                                                                                       |
+| NDK                        | 21.4.7075529 (default)<br>22.1.7171670<br>23.0.7599858                                                                             |
 | SDK Patch Applier v4       | 1                                                                                                                                  |
 
 #### Environment variables
@@ -458,7 +461,7 @@ All other versions are saved but not installed.
 | ----------------------- | ---------------------------------------------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                                                       |
 | ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\22.1.7171670                                      |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\23.0.7599858                                      |
 | ANDROID_NDK_PATH        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                                                       |
