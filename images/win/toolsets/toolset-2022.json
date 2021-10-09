@@ -139,7 +139,10 @@
         }
     },
     "MsysPackages": {
-        "msys2": [],
+        "msys2": [
+            "base-devel",
+            "compression"
+        ],
         "mingw": []
     },
     "windowsFeatures": [
