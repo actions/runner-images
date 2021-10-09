@@ -181,6 +181,7 @@
             "Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM",
+            "Microsoft.VisualStudio.Component.VC.ATL.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64EC",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64",
