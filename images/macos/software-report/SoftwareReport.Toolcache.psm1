@@ -58,7 +58,7 @@ function Build-ToolcacheSection {
         $output += New-MDHeader "Node.js" -Level 4
         $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
         $output += New-MDHeader "Go" -Level 4
-        $output += (Get-ToolcacheGoTable)
+        $output += Get-ToolcacheGoTable
     }
 
     return $output
