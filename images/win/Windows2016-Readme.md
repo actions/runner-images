@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4651
-- Image Version: 20211003.1
+- Image Version: 20211011.0
 
 ## Installed Software
 ### Language and Runtime
@@ -12,7 +12,7 @@
 - Go 1.15.15
 - Julia 1.6.3
 - Kotlin 1.5.31
-- LLVM 12.0.1
+- LLVM 13.0.0
 - Node 14.18.0
 - Perl 5.32.1
 - PHP 8.0.10
@@ -21,15 +21,15 @@
 
 ### Package Management
 - Chocolatey 0.11.2
-- Composer 2.1.8
-- Helm 3.6.3
+- Composer 2.1.9
+- Helm 3.7.0
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.15
 - NuGet 5.11.0.10
 - pip 21.2.4 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<2a31089>)
+- Vcpkg  (build from master \<1d4128f>)
 - Yarn 1.22.15
 
 #### Environment variables
@@ -41,7 +41,7 @@
 ### Project Management
 - Ant 1.10.11
 - Gradle 7.2
-- Maven 3.8.2
+- Maven 3.8.3
 - sbt 1.5.5
 
 ### Tools
@@ -53,14 +53,14 @@
 - Bicep 0.4.613
 - Cabal 3.4.0.0
 - CMake 3.21.3
-- CodeQL Action Bundle 2.6.2
+- CodeQL Action Bundle 2.6.3
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - ghc 9.0.1
 - Git 2.33.0
 - Git LFS 2.13.3
-- Google Cloud SDK 359.0.0
-- GVFS 1.0.21085.9
+- Google Cloud SDK 360.0.0
+- GVFS 1.0.21229.1
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
@@ -71,7 +71,7 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.5
-- Pulumi v3.13.2
+- Pulumi v3.14.0
 - R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -107,11 +107,11 @@
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 94.0.4606.71
+- Google Chrome 94.0.4606.81
 - Chrome Driver 94.0.4606.61
 - Microsoft Edge 94.0.992.38
 - Microsoft Edge Driver 94.0.992.38
-- Mozilla Firefox 92.0.1
+- Mozilla Firefox 93.0
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 
@@ -151,8 +151,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.8  | x64          | GOROOT_1_16_X64      |
-| 1.17.1  | x64          | GOROOT_1_17_X64      |
+| 1.16.9  | x64          | GOROOT_1_16_X64      |
+| 1.17.2  | x64          | GOROOT_1_17_X64      |
 
 
 #### Node
@@ -172,6 +172,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
 | 3.9.7   | x64, x86     |
+| 3.10.0  | x64          |
 
 
 #### Ruby
@@ -224,7 +225,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
-| Apache | 2.4.49  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
+| Apache | 2.4.51  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
 | Nginx  | 1.21.3  | C:\tools\nginx-1.21.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2017
@@ -492,10 +493,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2017 Debug Runtime      | x64          | 14.16.27033 |
 | Microsoft Visual C++ 2017 Debug Runtime      | x86          | 14.16.27033 |
-| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30133 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30133 |
-| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30133 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30133 |
+| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30135 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30135 |
+| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30135 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30135 |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
