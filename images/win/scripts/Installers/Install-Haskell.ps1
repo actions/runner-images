@@ -44,3 +44,4 @@ Invoke-Command -ScriptBlock ([ScriptBlock]::Create($bootstrapHaskell)) -Argument
 [Environment]::SetEnvironmentVariable("GHCUP_MSYS2", $msysPath, [System.EnvironmentVariableTarget]::Machine)
 [Environment]::SetEnvironmentVariable("CABAL_DIR", $cabalDir, [System.EnvironmentVariableTarget]::Machine)
 Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
+Add-MachinePathItem "$cabalDir\bin"
