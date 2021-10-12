@@ -49,6 +49,11 @@ Describe "Haskell" {
         "cabal --version" | Should -ReturnZeroExitCode
     }
 
+    It "cabal config was modified and exists" {
+        [Environment]::GetEnvironmentVariable('CABAL_DIR', [System.EnvironmentVariableTarget]::Machine) | Should -Exist
+        "cabal user-config diff" | Should -Not -BeNullOrEmpty
+    }
+
     It "ghcup is installed" {
         "ghcup --version" | Should -ReturnZeroExitCode
     }
