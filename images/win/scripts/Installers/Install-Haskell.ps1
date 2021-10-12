@@ -35,5 +35,9 @@ Choco-Install -PackageName cabal
 Invoke-PesterTests -TestFile 'Haskell'
 
 # install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
-$bootstrapHaskell = Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing
-Invoke-Command -ScriptBlock ([ScriptBlock]::Create($bootstrapHaskell)) -ArgumentList $false, $true, $true, $false, $false, $false, $false, C:\, "", C:\msys64, C:\cabal
+$msysPath = "C:\msys64"
+$ghcupPrefix = "C:\"
+Invoke-Command -ScriptBlock ([ScriptBlock]::Create($bootstrapHaskell)) -ArgumentList $false, $true, $true, $false, $false, $false, $false, $ghcupPrefix, "", $msysPath, C:\cabal
+[Environment]::SetEnvironmentVariable("GHCUP_INSTALL_BASE_PREFIX", $ghcupPrefix, [System.EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("GHCUP_MSYS2", $msysPath, [System.EnvironmentVariableTarget]::Machine)
+Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
