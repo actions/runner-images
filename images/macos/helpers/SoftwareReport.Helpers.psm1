@@ -61,8 +61,7 @@ function Get-BrewPackageVersion {
     return $packageVersion
 }
 
-function Get-CachedToolInstances
-{
+function Get-CachedToolInstances {
     <#
     .SYNOPSIS
     Returns hashtable of installed cached tools.
@@ -92,8 +91,7 @@ function Get-CachedToolInstances
 
     # Get all installed versions from TOOLSDIRECTORY folder
     $versions = Get-ChildItem $toolPath | Sort-Object { [System.Version]$_.Name }
-    foreach ($version in $versions)
-    {
+    foreach ($version in $versions) {
         $instanceInfo = @{}
 
         # Create instance hashtable
@@ -105,14 +103,12 @@ function Get-CachedToolInstances
         [string]$instanceInfo.Architecture = $instanceInfo.Architecture_Array -Join ", "
 
         # Add (default) postfix to version name, in case if current version is in environment path
-        if (-not ([string]::IsNullOrEmpty($VersionCommand)))
-        {
+        if (-not ([string]::IsNullOrEmpty($VersionCommand))) {
             $defaultVersion = $(& ($Name.ToLower()) $VersionCommand 2>&1)
             $defaultToolVersion = $defaultVersion   | Select-String -Pattern "\d+\.\d+\.\d+" -AllMatches `
                                                     | ForEach-Object { $_.Matches.Value }
 
-            if ([version]$version.Name -eq [version]$defaultToolVersion)
-            {
+            if ([version]$version.Name -eq [version]$defaultToolVersion) {
                 $instanceInfo.Version += " (Default)"
             }
         }
