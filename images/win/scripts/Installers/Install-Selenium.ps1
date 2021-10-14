@@ -5,13 +5,13 @@
 
 # Create Selenium directory
 $seleniumDirectory = "C:\selenium\"
-$seleniumFileName = "selenium-server-standalone.jar"
+$seleniumFileName = "selenium-server.jar"
 
 New-Item -ItemType directory -Path $seleniumDirectory
 
 # Download Selenium
 $url = "https://api.github.com/repos/SeleniumHQ/selenium/releases/latest"
-[System.String] $seleniumReleaseUrl = (Invoke-RestMethod -Uri $url).assets.browser_download_url -match "selenium-server-standalone-.+.jar"
+[System.String] $seleniumReleaseUrl = (Invoke-RestMethod -Uri $url).assets.browser_download_url -match "selenium-server-.+.jar"
 
 Start-DownloadWithRetry -Url $seleniumReleaseUrl -Name $seleniumFileName -DownloadPath $seleniumDirectory
 
