@@ -538,7 +538,6 @@ All other versions are saved but not installed.
 | PSWindowsUpdate    | 2.2.0.2          |
 | SqlServer          | 21.1.18256       |
 | VSSetup            | 2.2.16           |
-| Microsoft.Graph    | 1.7.0            |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                                                         |
