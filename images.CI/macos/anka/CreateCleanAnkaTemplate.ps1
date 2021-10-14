@@ -169,7 +169,7 @@ Test-VMStopped
 
 # Configure graphics settings
 Write-Host "`t[*] Enabling Graphics Acceleration with Apple Metal for '$TemplateName' VM"
-Set-AnkaVMPGVideoController -VMName $TemplateName -ShortMacOSVersion $ShortMacOSVersion
+Set-AnkaVMVideoController -VMName $TemplateName -ShortMacOSVersion $ShortMacOSVersion
 
 Write-Host "`t[*] Setting screen resolution to $DisplayResolution for $TemplateName"
 Set-AnkaVMDisplayResolution -VMName $TemplateName -DisplayResolution $DisplayResolution

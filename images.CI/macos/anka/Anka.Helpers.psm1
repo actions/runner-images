@@ -114,7 +114,7 @@ function Remove-AnkaVM {
     }
 }
 
-function Set-AnkaVMPGVideoController {
+function Set-AnkaVMVideoController {
     param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -122,10 +122,13 @@ function Set-AnkaVMPGVideoController {
 
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
-        [string] $ShortMacOSVersion
+        [string] $ShortMacOSVersion,
+
+        [ValidateSet("fbuf", "pg")]
+        [string] $Controller = "pg"
     )
 
-    $command = "anka modify $VMName set display -c pg"
+    $command = "anka modify $VMName set display -c $Controller"
     # Apple Metal is available starting from Big Sur
     if (-not $ShortMacOSVersion.StartsWith("10.")) {
         $null = Invoke-AnkaCommand -Command $command
