@@ -132,6 +132,7 @@
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
             "arch": "x64",
             "platform" : "darwin",
+            "variable_template" : "GOROOT_{0}_{1}_X64",
             "versions": [
                 "1.15.*",
                 "1.16.*",
