@@ -23,9 +23,3 @@ Describe "Git" {
         $env:GCM_INTERACTIVE | Should -BeExactly Never
     }
 }
-
-Describe "GVFS" {
-    It "GVFS is installed" {
-        "gvfs --version" | Should -ReturnZeroExitCode
-    }
-}
