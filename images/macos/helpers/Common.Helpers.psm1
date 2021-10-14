@@ -104,8 +104,7 @@ function Invoke-ValidateCommand {
     return $output
 }
 
-function Start-DownloadWithRetry
-{
+function Start-DownloadWithRetry {
     Param
     (
         [Parameter(Mandatory)]
@@ -147,4 +146,16 @@ function Start-DownloadWithRetry
     }
 
     return $filePath
+}
+
+function Add-EnvironmentVariable {
+    param
+    (
+        [Parameter(Mandatory)] [string] $Name,
+        [Parameter(Mandatory)] [string] $Value,
+        [string] $FilePath = "${env:HOME}/.bashrc"
+    )
+
+    $envVar = "export {0}={1}" -f $Name, $Value
+    Add-Content -Path $FilePath -Value $envVar
 }

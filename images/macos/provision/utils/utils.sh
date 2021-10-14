@@ -196,7 +196,7 @@ configure_system_tccdb () {
     local values=$1
 
     local dbPath="/Library/Application Support/com.apple.TCC/TCC.db"
-    local sqlQuery="INSERT INTO access VALUES($values);"
+    local sqlQuery="INSERT OR IGNORE INTO access VALUES($values);"
     sudo sqlite3 "$dbPath" "$sqlQuery"
 }
 
@@ -204,6 +204,6 @@ configure_user_tccdb () {
     local values=$1
 
     local dbPath="$HOME/Library/Application Support/com.apple.TCC/TCC.db"
-    local sqlQuery="INSERT INTO access VALUES($values);"
+    local sqlQuery="INSERT OR IGNORE INTO access VALUES($values);"
     sqlite3 "$dbPath" "$sqlQuery"
 }
