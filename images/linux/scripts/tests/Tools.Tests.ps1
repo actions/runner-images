@@ -194,8 +194,8 @@ Describe "Sbt" {
 }
 
 Describe "Selenium" {
-    It "Selenium Server 'selenium-server-standalone.jar' is installed" {
-        "/usr/share/java/selenium-server-standalone.jar" | Should -Exist
+    It "Selenium Server 'selenium-server.jar' is installed" {
+        "/usr/share/java/selenium-server.jar" | Should -Exist
     }
 }
 
