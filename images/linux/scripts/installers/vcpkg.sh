@@ -12,7 +12,7 @@ VCPKG_INSTALLATION_ROOT=/usr/local/share/vcpkg
 echo "VCPKG_INSTALLATION_ROOT=${VCPKG_INSTALLATION_ROOT}" | tee -a /etc/environment
 
 # Install vcpkg
-git clone --depth=1 https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
+git clone https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
 
 # vcpkg requires g++ version 7+, yet Ubuntu 16 default is 5.4. Set version 7 as default temporarily
 if isUbuntu16; then
