@@ -1,12 +1,11 @@
 {
     "xcode": {
-        "default": "12.5.1",
+        "default": "13.0",
         "versions": [
-            { "link": "13.0", "version": "13.0.0"},
-            { "link": "13.0_beta", "version": "13 beta 5", "skip-symlink": "true"},
-            { "link": "12.5.1", "version": "12.5.1"},
-            { "link": "12.5", "version": "12.5.0"},
-            { "link": "12.4", "version": "12.4.0"},
+            { "link": "13.0", "version": "13.0.0" },
+            { "link": "13.0_beta", "version": "13 beta 5", "skip-symlink": "true" },
+            { "link": "12.5.1", "version": "12.5.1" },
+            { "link": "12.4", "version": "12.4.0" },
             { "link": "11.7", "version": "11.7.0", "symlinks": ["11.7_beta"] }
         ]
     },
@@ -228,6 +227,7 @@
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
             "arch": "x64",
             "platform" : "darwin",
+            "variable_template" : "GOROOT_{0}_{1}_X64",
             "versions": [
                 "1.15.*",
                 "1.16.*",

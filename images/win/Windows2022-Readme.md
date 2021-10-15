@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 230
-- Image Version: 20211003.1
+- Image Version: 20211011.0
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -12,10 +12,10 @@
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
-- Go 1.16.8
+- Go 1.16.9
 - Julia 1.6.3
 - Kotlin 1.5.31
-- LLVM 12.0.1
+- LLVM 13.0.0
 - Node 14.18.0
 - PHP 8.0.10
 - Python 3.9.7
@@ -23,14 +23,14 @@
 
 ### Package Management
 - Chocolatey 0.11.2
-- Composer 2.1.8
-- Helm 3.6.3
+- Composer 2.1.9
+- Helm 3.7.0
 - NPM 6.14.15
 - NuGet 5.11.0.10
 - pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.22
-- Vcpkg  (build from master \<2a31089>)
+- Vcpkg  (build from master \<973a7d5>)
 - Yarn 1.22.15
 
 #### Environment variables
@@ -41,7 +41,7 @@
 ### Project Management
 - Ant 1.10.11
 - Gradle 7.2
-- Maven 3.8.2
+- Maven 3.8.3
 
 ### Tools
 - 7zip 19.00
@@ -52,13 +52,13 @@
 - Bicep 0.4.613
 - Cabal 3.4.0.0
 - CMake 3.21.3
-- CodeQL Action Bundle 2.6.2
+- CodeQL Action Bundle 2.6.3
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - ghc 9.0.1
 - Git 2.33.0
 - Git LFS 2.13.3
-- GVFS 1.0.21085.9
+- GVFS 1.0.21229.1
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.22.2
@@ -67,7 +67,7 @@
 - Newman 5.3.0
 - OpenSSL 1.1.1
 - Packer 1.7.5
-- Pulumi v3.13.2
+- Pulumi v3.14.0
 - R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -102,11 +102,11 @@
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 94.0.4606.71
+- Google Chrome 94.0.4606.81
 - Chrome Driver 94.0.4606.61
 - Microsoft Edge 94.0.992.38
 - Microsoft Edge Driver 94.0.992.38
-- Mozilla Firefox 92.0.1
+- Mozilla Firefox 93.0
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 
@@ -144,8 +144,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.15.15 | x64          | GOROOT_1_15_X64      |
-| 1.16.8 (Default) | x64          | GOROOT_1_16_X64      |
-| 1.17.1  | x64          | GOROOT_1_17_X64      |
+| 1.16.9 (Default) | x64          | GOROOT_1_16_X64      |
+| 1.17.2  | x64          | GOROOT_1_17_X64      |
 
 
 #### Node
@@ -162,6 +162,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.7.9   | x64          |
 | 3.8.10  | x64          |
 | 3.9.7 (Default) | x64          |
+| 3.10.0  | x64          |
 
 
 #### Ruby
@@ -210,7 +211,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
-| Apache | 2.4.49  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
+| Apache | 2.4.51  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
 | Nginx  | 1.21.3  | C:\tools\nginx-1.21.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
@@ -320,6 +321,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Unity                                    | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ASAN                                  | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ATL                                   | 17.0.31709.181 |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM                               | 17.0.31709.181 |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM64                             | 17.0.31709.181 |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM64EC                           | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ATL.Spectre                           | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ATLMFC                                | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre                        | 17.0.31709.181 |
@@ -328,12 +332,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.CoreIde                               | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.DiagnosticTools                       | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset                     | 17.0.31709.181 |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM                               | 17.0.31709.181 |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM64                             | 17.0.31709.181 |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM64EC                           | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.Redist.14.Latest                      | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre              | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest               | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest              | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.Tools.ARM                             | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.Tools.ARM64                           | 17.0.31709.181 |
+| Microsoft.VisualStudio.Component.VC.Tools.ARM64EC                         | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.Tools.x86.x64                         | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.v141.ATL                              | 17.0.31709.181 |
 | Microsoft.VisualStudio.Component.VC.v141.ATL.Spectre                      | 17.0.31709.181 |
