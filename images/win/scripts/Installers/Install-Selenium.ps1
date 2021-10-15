@@ -9,11 +9,12 @@ $seleniumFileName = "selenium-server-standalone.jar"
 
 New-Item -ItemType directory -Path $seleniumDirectory
 
-# Download Selenium
-$url = "https://api.github.com/repos/SeleniumHQ/selenium/releases/latest"
-[System.String] $seleniumReleaseUrl = (Invoke-RestMethod -Uri $url).assets.browser_download_url -match "selenium-server-standalone-.+.jar"
+# Temporarily download Selenium 3.141.59, since 4.* can contain some breaking changes
+#$url = "https://api.github.com/repos/SeleniumHQ/selenium/releases"
+#[System.String] $seleniumReleaseUrl = (Invoke-RestMethod -Uri $url).assets.browser_download_url -match "selenium-server-standalone-.+.jar"
 
-Start-DownloadWithRetry -Url $seleniumReleaseUrl -Name $seleniumFileName -DownloadPath $seleniumDirectory
+$seleniumDownloadUrl = "https://github.com/SeleniumHQ/selenium/releases/download/selenium-3.141.59/selenium-server-standalone-3.141.59.jar"
+Start-DownloadWithRetry -Url $seleniumDownloadUrl -Name $seleniumFileName -DownloadPath $seleniumDirectory
 
 # Add SELENIUM_JAR_PATH environment variable
 $seleniumBinPath = Join-Path $seleniumDirectory $seleniumFileName
