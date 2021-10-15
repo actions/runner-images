@@ -87,7 +87,8 @@
         {"name": "PSScriptAnalyzer"},
         {"name": "PSWindowsUpdate"},
         {"name": "SqlServer"},
-        {"name": "VSSetup"}
+        {"name": "VSSetup"},
+        {"name": "Microsoft.Graph"}
     ],
     "azureModules": [
         {
