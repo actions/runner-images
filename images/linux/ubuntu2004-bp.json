@@ -18,7 +18,7 @@
         {
             "type": "amazon-ebs",
             "region": "us-east-1",
-            "profile": "{{ user `profile`}}",
+            "profile": "dev",
             "source_ami_filter": {
                 "filters": {
                     "virtualization-type": "hvm",
@@ -29,9 +29,11 @@
                 "most_recent": true
             },
             "encrypt_boot": "false",
-            "instance_type": "m5.large",
+            "instance_type": "m5.xlarge",
             "ssh_username": "ubuntu",
-            "subnet_id": "{{user `subnet_id`}}",
+            "ssh_timeout": "10m",
+            "vpc_id": "vpc-0327443f8fc269ed4",
+            "subnet_id": "subnet-0a0404228e23402fe",
             "ami_name": "bold-penguin-focal-gh-runner-{{isotime \"2006.01.02-03.04\"}}",
             "ami_users": "{{ user `aws_accounts` }}",
             "snapshot_users": "{{ user `aws_accounts` }}",
@@ -155,8 +157,7 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/scripts/installers/Install-PowerShellModules.ps1",
-                "{{template_dir}}/scripts/installers/Install-AzureModules.ps1"
+                "{{template_dir}}/scripts/installers/Install-PowerShellModules.ps1"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
@@ -181,7 +182,6 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/scripts/installers/ansible.sh",
                 "{{template_dir}}/scripts/installers/basic.sh",
                 "{{template_dir}}/scripts/installers/apache.sh",
                 "{{template_dir}}/scripts/installers/aws.sh",
