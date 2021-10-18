@@ -1,3 +1,9 @@
+function Get-Aria2Version {
+    (aria2c -v | Out-String) -match "(?<version>(\d+\.){1,}\d+)" | Out-Null
+    $aria2Version = $Matches.Version
+    return "aria2 $aria2Version"
+}
+
 function Get-AzCosmosDBEmulatorVersion {
     $regKey = gci HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\* | gp | ? { $_.DisplayName -eq 'Azure Cosmos DB Emulator' }
     $installDir = $regKey.InstallLocation
@@ -16,6 +22,12 @@ function Get-BazeliskVersion {
     ((cmd /c "bazelisk version 2>&1") | Out-String) -match "Bazelisk version: v(?<version>\d+\.\d+\.\d+)" | Out-Null
     $bazeliskVersion = $Matches.Version
     return "Bazelisk $bazeliskVersion"
+}
+
+function Get-BicepVersion {
+    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $bicepVersion = $Matches.Version
+    return "Bicep $bicepVersion"
 }
 
 function Get-RVersion {
@@ -112,7 +124,10 @@ function Get-OpenSSLVersion {
 }
 
 function Get-PackerVersion {
-    return "Packer $(packer --version)"
+    # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
+    ($(cmd /c "packer --version 2>&1") | Out-String) -match "(?<version>(\d+.){2}\d+)" | Out-Null
+    $packerVersion = $Matches.Version
+    return "Packer $packerVersion"
 }
 
 function Get-PulumiVersion {
@@ -250,13 +265,13 @@ function Get-VisualCPPComponents {
     }
 }
 
-function Get-AZDSVersion {
-    $azdsVersion = $(azds --version) | Select-String "(\d+\.\d+\.\d+.\d+)"
-    return "Azure Dev Spaces CLI $azdsVersion"
+function Get-DacFxVersion {
+    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\150\DAC\bin\sqlpackage.exe" /version
+    return "DacFx $dacfxversion"
 }
 
-function Get-DacFxVersion {
-    cd "C:\Program Files\Microsoft SQL Server\150\DAC\bin\"
-    $dacfxversion = (./sqlpackage.exe /version)
-    return "DacFx $dacfxversion"
+function Get-SwigVersion {
+    (swig -version | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $swigVersion = $Matches.Version
+    return "Swig $swigVersion"
 }

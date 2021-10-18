@@ -24,7 +24,8 @@
                 "3.6.*",
                 "3.7.*",
                 "3.8.*",
-                "3.9.*"
+                "3.9.*",
+                "3.10.*"
             ],
             "default": "3.7.*"
         },
@@ -45,7 +46,7 @@
         {
             "name": "PyPy",
             "arch": "x86",
-            "platform" : "win32",
+            "platform" : "win64",
             "versions": [
                 "2.7",
                 "3.6",
@@ -72,19 +73,10 @@
                 "1.13.*",
                 "1.14.*",
                 "1.15.*",
-                "1.16.*"
+                "1.16.*",
+                "1.17.*"
             ],
             "default": "1.15.*"
-        },
-        {
-            "name": "Boost",
-            "url" : "https://raw.githubusercontent.com/actions/boost-versions/main/versions-manifest.json",
-            "arch": "x86_64",
-            "platform" : "win32",
-            "toolset": "msvc14.2",
-            "versions": [
-                "1.72.0"
-            ]
         }
     ],
     "powershellModules": [
@@ -95,35 +87,46 @@
         {"name": "PSScriptAnalyzer"},
         {"name": "PSWindowsUpdate"},
         {"name": "SqlServer"},
-        {"name": "VSSetup"}
+        {"name": "VSSetup"},
+        {"name": "Microsoft.Graph"}
     ],
     "azureModules": [
         {
             "name": "azurerm",
+            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
+                "6.13.1"
+            ],
+            "zip_versions": [
                 "3.8.0",
                 "4.2.1",
                 "5.1.1",
-                "6.7.0",
-                "6.13.1"
+                "6.7.0"
             ],
             "default": "2.1.0"
         },
         {
             "name": "azure",
+            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
+                "5.3.0"
+            ],
+            "zip_versions": [
                 "3.8.0",
                 "4.2.1",
-                "5.1.1",
-                "5.3.0"
+                "5.1.1"
             ],
             "default": "2.1.0"
         },
         {
             "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
+                "6.4.0"
+            ],
+            "zip_versions": [
                 "1.0.0",
                 "1.6.0",
                 "2.3.2",
@@ -133,16 +136,24 @@
                 "3.8.0",
                 "4.3.0",
                 "4.4.0",
-                "4.6.0",
                 "4.7.0",
-                "5.5.0"
+                "5.5.0",
+                "5.9.0"
             ]
         }
     ],
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11", "13"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11", "17" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11", "13" ]
+            }
         ]
     },
     "android": {
@@ -165,18 +176,104 @@
         ],
         "additional_tools": [
             "cmake;3.10.2.4988404",
-            "patcher;v4",
-            "cmdline-tools;latest"
+            "cmake;3.18.1",
+            "patcher;v4"
         ],
         "ndk": {
-            "lts": "21",
-            "latest": "22"
+            "default": "21",
+            "versions": [
+                "21", "22", "23"
+            ]
         }
     },
+    "MsysPackages": {
+        "msys2": [
+            "base-devel",
+            "compression"
+        ],
+        "mingw": [
+            {
+                "arch": "mingw-w64-x86_64",
+                "exec_dir": "mingw64",
+                "runtime_packages": [
+                    {
+                        "name": "clang",
+                        "executables": [
+                            "clang",
+                            "g++",
+                            "gcc"
+                        ]
+                    },
+                    {
+                        "name": "cmake",
+                        "executables": [
+                            "cmake",
+                            "cpack",
+                            "ctest"
+                        ]
+                    },
+                    {
+                        "name": "ragel",
+                        "executables": [
+                            "ragel"
+                        ]
+                    }
+                ],
+                "additional_packages": [
+                    "clang-tools-extra",
+                    "libxml2",
+                    "llvm",
+                    "toolchain"
+                ]
+            },
+            {
+                "arch": "mingw-w64-i686",
+                "exec_dir": "mingw32",
+                "runtime_packages": [
+                    {
+                        "name": "clang",
+                        "executables": [
+                            "clang",
+                            "g++",
+                            "gcc"
+                        ]
+                    },
+                    {
+                        "name": "cmake",
+                        "executables": [
+                            "cmake",
+                            "cpack",
+                            "ctest"
+                        ]
+                    },
+                    {
+                        "name": "ragel",
+                        "executables": [
+                            "ragel"
+                        ]
+                    }
+                ],
+                "additional_packages": [
+                    "libxml2",
+                    "llvm",
+                    "toolchain"
+                ]
+            }
+        ]
+    },
+    "windowsFeatures": [
+        { "name": "NET-Framework-Features", "includeAllSubFeatures": true },
+        { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
+        { "name": "FS-iSCSITarget-Server", "includeAllSubFeatures": true, "includeManagementTools": true },
+        { "name": "Containers" },
+        { "name": "Microsoft-Windows-Subsystem-Linux", "optionalFeature": true },
+        { "name": "VirtualMachinePlatform", "optionalFeature": true }
+    ],
     "visualStudio": {
         "version" : "2019",
         "subversion" : "16",
         "edition" : "Enterprise",
+        "channel": "release",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -243,6 +340,8 @@
             "Microsoft.VisualStudio.Component.Windows10SDK.17763",
             "Microsoft.VisualStudio.Component.Windows10SDK.18362",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
+            "Microsoft.VisualStudio.Component.Windows10SDK.20348",
+            "Microsoft.VisualStudio.Component.Windows11SDK.22000",
             "Microsoft.VisualStudio.Component.WinXP",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
@@ -250,6 +349,7 @@
             "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
             "Microsoft.VisualStudio.ComponentGroup.UWP.VC",
+            "Microsoft.VisualStudio.ComponentGroup.UWP.VC.v141",
             "Microsoft.VisualStudio.Workload.Azure",
             "Microsoft.VisualStudio.Workload.Data",
             "Microsoft.VisualStudio.Workload.DataScience",
@@ -271,31 +371,11 @@
             "Component.MDD.Linux.GCC.arm"
         ],
         "vsix": [
-            {
-                "name": "Microsoft.DataTools.AnalysisServices.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftAnalysisServicesModelingProjects/2.9.5/vspackage",
-                "id": "04a86fc2-dbd5-4222-848e-911638e487fe"
-            },
-            {
-                "name": "Microsoft.DataTools.IntegrationServices.exe",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/SSIS/vsextensions/SqlServerIntegrationServicesProjects/3.4/vspackage",
-                "id": "851E7A09-7B2B-4F06-A15D-BABFCB26B970"
-            },
-            {
-                "name": "Microsoft.DataTools.ReportingServices.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftReportProjectsforVisualStudio/2.6.3/vspackage",
-                "id": "717ad572-c4b7-435c-c166-c2969777f718"
-            },
-            {
-                "name": "Microsoft.VisualStudio.Installer.Projects.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/VisualStudioClient/vsextensions/MicrosoftVisualStudio2017InstallerProjects/latest/vspackage",
-                "id": "VSInstallerProjects"
-            },
-            {
-                "name": "BizTalkVsix.vsix",
-                "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-biztalk/vsextensions/BizTalk/3.13.2.0/vspackage",
-                "id": "BizTalkProjectSystem.BD1D0FA0-E48A-4270-995F-F110DD9F7838"
-            }
+            "ProBITools.MicrosoftAnalysisServicesModelingProjects",
+            "SSIS.SqlServerIntegrationServicesProjects",
+            "ProBITools.MicrosoftReportProjectsforVisualStudio",
+            "VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects",
+            "ms-biztalk.BizTalk"
         ]
     },
     "docker": {
@@ -304,7 +384,7 @@
             "mcr.microsoft.com/windows/nanoserver:1809",
             "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019",
             "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019",
-            "microsoft/aspnetcore-build:1.0-2.0"
+            "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019"
         ]
     },
     "pipx": [
@@ -313,11 +393,58 @@
             "cmd": "yamllint --version"
         }
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "yarn", "test": "yarn --version" },
+            { "name": "newman", "test": "newman --version" },
+            { "name": "lerna", "test": "lerna --version" },
+            { "name": "typescript", "test": "tsc --version" },
+            { "name": "cordova" },
+            { "name": "grunt-cli", "test": "grunt --version" },
+            { "name": "gulp-cli", "test": "gulp --version" },
+            { "name": "parcel-bundler" },
+            { "name": "webpack" },
+            { "name": "webpack-cli" },
+            { "name": "node-sass" }
+        ]
+    },
     "dotnet": {
         "versions": [
             "2.1",
             "3.1",
             "5.0"
+        ],
+        "warmup": true
+    },
+    "choco": {
+        "common_packages": [
+            { "name": "7zip.install" },
+            { "name": "aria2" },
+            { "name": "azcopy10" },
+            { "name": "Bicep" },
+            { "name": "gitversion.portable" },
+            { "name": "innosetup" },
+            { "name": "jq" },
+            { "name": "llvm" },
+            { "name": "NuGet.CommandLine" },
+            {
+                "name": "openssl.light",
+                "args": [ "--version=1.1.1.20181020" ]
+            },
+            { "name": "packer" },
+            { "name": "strawberryperl" },
+            { "name": "pulumi" },
+            { "name": "tortoisesvn" },
+            { "name": "swig" },
+            { "name": "vswhere" },
+            {
+                "name": "julia",
+                "args": [ "--ia", "/DIR=C:\\Julia" ]
+            },
+            {
+                "name": "cmake.install",
+                "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
+            }
         ]
     }
 }

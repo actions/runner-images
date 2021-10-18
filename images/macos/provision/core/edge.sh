@@ -44,7 +44,7 @@ do
 done
 
 echo "kill autoupdate process"
-ps -ef | grep [M]icrosoft | awk '{print $2}' | sudo xargs kill -9
+pgrep [M]icrosoft | sudo xargs kill -9 || true
 echo "remove autupdate service"
 sudo launchctl remove com.microsoft.autoupdate.helper
 

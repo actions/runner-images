@@ -9,7 +9,8 @@
             "versions": [
                 "2.7.*",
                 "3.8.*",
-                "3.9.*"
+                "3.9.*",
+                "3.10.*"
             ]
         },
         {
@@ -41,7 +42,8 @@
             "versions": [
                 "1.14.*",
                 "1.15.*",
-                "1.16.*"
+                "1.16.*",
+                "1.17.*"
             ],
             "default": "1.15.*"
         },
@@ -81,13 +83,13 @@
         ],
         "additional_tools": [
             "cmake;3.10.2.4988404",
-            "patcher;v4",
-            "platform-tools",
-            "cmdline-tools;latest"
+            "cmake;3.18.1"
         ],
         "ndk": {
-            "lts": "21",
-            "latest": "22"
+            "default": "21",
+            "versions": [
+                "21", "22", "23"
+            ]
         }
     },
     "powershellModules": [
@@ -98,20 +100,25 @@
     "azureModules": [
         {
             "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "3.8.0",
-                "4.8.0"
+                "6.4.0"
+            ],
+            "zip_versions": [
+                "3.1.0",
+                "4.4.0",
+                "5.9.0"
             ]
         }
     ],
     "apt": {
         "common_packages": [
             "build-essential",
-            "chromium-browser",
             "dbus",
             "dnsutils",
             "dpkg",
             "fakeroot",
+            "fonts-noto-color-emoji",
             "gnupg2",
             "imagemagick",
             "iproute2",
@@ -145,10 +152,11 @@
             "xorriso",
             "xvfb",
             "xz-utils",
-            "zstd",
             "zsync"
         ],
         "cmd_packages": [
+            "acl",
+            "aria2",
             "binutils",
             "bison",
             "brotli",
@@ -163,6 +171,7 @@
             "m4",
             "mediainfo",
             "netcat",
+            "net-tools",
             "p7zip-full",
             "parallel",
             "pass",
@@ -173,6 +182,7 @@
             "sphinxsearch",
             "sqlite3",
             "ssh",
+            "sshpass",
             "subversion",
             "sudo",
             "swig",
@@ -183,17 +193,30 @@
             "zip"
         ]
     },
+    "brew": [
+        {"name": "zstd"}
+    ],
     "docker": {
         "images": [
-            "alpine:3.8",
-            "alpine:3.9",
-            "alpine:3.10",
+            "alpine:3.12",
+            "alpine:3.13",
+            "alpine:3.14",
+            "buildpack-deps:stretch",
             "buildpack-deps:buster",
+            "buildpack-deps:bullseye",
             "debian:9",
+            "debian:10",
+            "debian:11",
+            "moby/buildkit:latest",
             "node:10",
             "node:12",
+            "node:14",
             "node:10-alpine",
-            "node:12-alpine"
+            "node:12-alpine",
+            "node:14-alpine",
+            "ubuntu:16.04",
+            "ubuntu:18.04",
+            "ubuntu:20.04"
         ]
     },
     "pipx": [
@@ -202,8 +225,8 @@
             "cmd": "yamllint"
         },
         {
-            "package": "aws-sam-cli",
-            "cmd": "sam"
+            "package": "ansible-core",
+            "cmd": "ansible"
         }
     ],
     "dotnet": {
@@ -219,23 +242,20 @@
     },
     "clang": {
         "versions": [
-            "8",
-            "9",
-            "10"
+            "10",
+            "11",
+            "12"
         ],
-        "default_version": "10"
+        "default_version": "11"
     },
     "gcc": {
         "versions": [
-            "g++-7",
-            "g++-8",
             "g++-9",
             "g++-10"
         ]
     },
     "gfortran": {
         "versions": [
-            "gfortran-8",
             "gfortran-9",
             "gfortran-10"
         ]
@@ -248,5 +268,55 @@
     },
     "rubygems": [
         {"name": "fastlane"}
+    ],
+    "node_modules": [
+        {
+            "name": "grunt",
+            "command": "grunt"
+        },
+        {
+            "name": "gulp",
+            "command": "gulp"
+        },
+        {
+            "name": "n",
+            "command": "n"
+        },
+        {
+            "name": "parcel-bundler",
+            "command": "parcel"
+        },
+        {
+            "name": "typescript",
+            "command": "tsc"
+        },
+        {
+            "name": "newman",
+            "command": "newman"
+        },
+        {
+            "name": "vercel",
+            "command": "vercel"
+        },
+        {
+            "name": "webpack",
+            "command": "webpack"
+        },
+        {
+            "name": "webpack-cli",
+            "command": "webpack-cli"
+        },
+        {
+            "name": "netlify-cli",
+            "command": "netlify"
+        },
+        {
+            "name": "lerna",
+            "command": "lerna"
+        },
+        {
+            "name": "yarn",
+            "command": "yarn"
+        }
     ]
 }

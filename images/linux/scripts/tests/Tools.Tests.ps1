@@ -8,6 +8,12 @@ Describe "azcopy" {
     }
 }
 
+Describe "Bicep" -Skip:(Test-IsUbuntu16) {
+    It "Bicep" {
+        "bicep --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Rust" {
     It "Rustup is installed" {
         "rustup --version" | Should -ReturnZeroExitCode
@@ -60,6 +66,10 @@ Describe "Docker" {
         "docker buildx" | Should -ReturnZeroExitCode
     }
 
+    It "docker compose v2" {
+        "docker compose" | Should -ReturnZeroExitCode
+    }
+
     Context "docker images" {
         $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 
@@ -69,7 +79,7 @@ Describe "Docker" {
     }
 }
 
-Describe "Docker-compose" {
+Describe "Docker-compose v1" {
     It "docker-compose" {
         "docker-compose --version"| Should -ReturnZeroExitCode
     }
@@ -110,15 +120,15 @@ Describe "Cmake" {
 }
 
 Describe "erlang" {
-    $testCases = @("erl", "erlc", "rebar3") | ForEach-Object { @{ErlangCommand = $_} }
+    $testCases = @("erl -version", "erlc -v", "rebar3 -v") | ForEach-Object { @{ErlangCommand = $_} }
 
     It "erlang <ErlangCommand>" -TestCases $testCases {
         param (
             [string] $ErlangCommand
         )
 
-        "$ErlangCommand -v" | Should -ReturnZeroExitCode
-    }   
+        "$ErlangCommand" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "gcc" {
@@ -150,6 +160,10 @@ Describe "Mono" {
         "mono --version" | Should -ReturnZeroExitCode
     }
 
+    It "msbuild" {
+        "msbuild -version" | Should -ReturnZeroExitCode
+    }
+
     It "nuget" {
         "nuget" | Should -ReturnZeroExitCode
     }
@@ -158,6 +172,12 @@ Describe "Mono" {
 Describe "MSSQLCommandLineTools" {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "SqlPackage" {
+    It "sqlpackage" {
+        "sqlpackage /version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -224,6 +244,14 @@ Describe "HHVM" {
 Describe "Homebrew" {
     It "homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
+    }
+
+    Context "Packages" {
+        $testCases = (Get-ToolsetContent).brew | ForEach-Object { @{ ToolName = $_.name } }
+
+        It "<ToolName>" -TestCases $testCases {
+           "$ToolName --version" | Should -Not -BeNullOrEmpty
+        }
     }
 }
 
@@ -313,18 +341,6 @@ Describe "Containers" -Skip:(Test-IsUbuntu16) {
     }   
 }
 
-Describe "Node.js" {
-    $testCases = @("node", "grunt", "gulp", "webpack", "parcel", "yarn", "newman", "netlify", "vercel", "now") | ForEach-Object { @{NodeCommand = $_} }
-
-    It "<NodeCommand>" -TestCases $testCases {
-        param (
-            [string] $NodeCommand
-        )
-
-        "$NodeCommand --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "nvm" {
     It "nvm" {
         "source /etc/skel/.nvm/nvm.sh && nvm --version" | Should -ReturnZeroExitCode
@@ -363,5 +379,37 @@ Describe "Ruby" {
         It "Gem <gemName> is installed" -TestCases $gemTestCases {
             "gem list -i '^$gemName$'" | Should -MatchCommandOutput "true"
         }
+    }
+}
+
+Describe "yq" {
+    It "yq" {
+        "yq -V" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Kotlin" {
+    It "kapt" {
+        "kapt -version"| Should -ReturnZeroExitCode
+    }
+
+    It "kotlin" {
+        "kotlin -version"| Should -ReturnZeroExitCode
+    }
+
+    It "kotlinc" {
+        "kotlinc -version"| Should -ReturnZeroExitCode
+    }
+
+    It "kotlinc-js" {
+        "kotlinc-js -version"| Should -ReturnZeroExitCode
+    }
+
+    It "kotlinc-jvm" {
+        "kotlinc-jvm -version"| Should -ReturnZeroExitCode
+    }
+
+    It "kotlin-dce-js" {
+        "kotlin-dce-js -version"| Should -ReturnZeroExitCode
     }
 }

@@ -32,8 +32,7 @@ function Install-PyPy
     Extract-7Zip -Path $packagePath -DestinationPath $env:Temp
 
     # Get Python version from binaries
-    $pypyApp = Get-ChildItem -Path "$tempFolder\pypy*.exe" | Where-Object Name -match "pypy(\d+)?.exe"
-    $pypyName = $pypyApp.Name
+    $pypyApp = Get-ChildItem -Path "$tempFolder\pypy*.exe" | Where-Object Name -match "pypy(\d+)?.exe" | Select-Object -First 1
     $pythonVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(sys.version_info[0],sys.version_info[1],sys.version_info[2]))"
 
     $pypyFullVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))"
@@ -59,7 +58,12 @@ function Install-PyPy
         Move-Item -Path $tempFolder -Destination $pypyArchPath | Out-Null
 
         Write-Host "Install PyPy '${pythonVersion}' in '${pypyArchPath}'"
-        cmd.exe /c "cd /d $pypyArchPath && mklink python.exe $pypyName && python.exe -m ensurepip && python.exe -m pip install --upgrade pip"
+        if (Test-Path "$pypyArchPath\python.exe") {
+            cmd.exe /c "cd /d $pypyArchPath && python.exe -m ensurepip && python.exe -m pip install --upgrade pip"
+        } else {
+            $pypyName = $pypyApp.Name
+            cmd.exe /c "cd /d $pypyArchPath && mklink python.exe $pypyName && python.exe -m ensurepip && python.exe -m pip install --upgrade pip"
+        }
 
         if ($LASTEXITCODE -ne 0)
         {
@@ -89,7 +93,9 @@ foreach($pypyTool in $pypyTools)
     foreach($pypyVersion in $pypyTool.versions)
     {
         # Query latest PyPy version
-        $filter = '{0}{1}-v\d+\.\d+\.\d+-{2}.zip' -f $pypyTool.name, $pypyVersion, $pypyTool.platform
+        # PyPy 3.6 is not updated anymore and win32 should be used
+        $platform = if ($pypyVersion -like "3.6*") { "win32" } else { $pypyTool.platform }
+        $filter = '{0}{1}-v\d+\.\d+\.\d+-{2}.zip' -f $pypyTool.name, $pypyVersion, $platform
         $latestMajorPyPyVersion = $pypyVersions | Where-Object {$_.name -match $filter} | Select-Object -First 1
 
         if ($latestMajorPyPyVersion)

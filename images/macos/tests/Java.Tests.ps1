@@ -23,11 +23,17 @@ Describe "Java" {
         }
     }
 
-    $versionsList = Get-ToolsetValue "java.versions"
-    $defaultJava = Get-ToolsetValue "java.default"
+    $toolsetJava = Get-ToolsetValue "java"
+    $defaultVersion = $toolsetJava.default
+    $defaultVendor = $toolsetJava.default_vendor
+    $javaVendors = $toolsetJava.vendors
 
-    $testCases = $versionsList | ForEach-Object { @{ Title = $_; Version = (Get-NativeVersionFormat $_); EnvVariable = "JAVA_HOME_${_}_X64" } }
-    $testCases += @{ Title = "Default"; Version = (Get-NativeVersionFormat $defaultJava); EnvVariable = "JAVA_HOME" }
+    [array]$jdkVersions = ($javaVendors | Where-Object {$_.name -eq $defaultVendor}).versions
+    [array]$adoptJdkVersions = ($javaVendors | Where-Object {$_.name -eq "Adopt"}).versions
+
+    $adoptCases = $adoptJdkVersions | ForEach-Object { @{Version = $_} }
+    $testCases = $jdkVersions | ForEach-Object { @{ Title = $_; Version = (Get-NativeVersionFormat $_); EnvVariable = "JAVA_HOME_${_}_X64" } }
+    $testCases += @{ Title = "Default"; Version = (Get-NativeVersionFormat $defaultVersion); EnvVariable = "JAVA_HOME" }
 
     $testCases | ForEach-Object {
         Context $_.Title {
@@ -35,15 +41,7 @@ Describe "Java" {
                 "/usr/libexec/java_home -v${Version}" | Should -ReturnZeroExitCode
             }
 
-            if ($_.Title -ne "Default") {
-                It "Version is valid" -TestCases $_ {
-                    $javaRootPath = "/Library/Java/JavaVirtualMachines/adoptopenjdk-${Title}.jdk/Contents/Home"
-                    $javaBinPath = Join-Path $javaRootPath "/bin/java"
-                    Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
-                }
-            }
-
-            It "<EnvVariable>" -TestCases $_ {
+            It "Java <Version>" -TestCases $_ {
                 $envVariablePath = Get-EnvironmentVariable $EnvVariable
                 $javaBinPath = Join-Path $envVariablePath "/bin/java"
                 Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
@@ -53,6 +51,17 @@ Describe "Java" {
                 It "Version is default" -TestCases $_ {
                     Validate-JavaVersion -JavaCommand "java -version" -ExpectedVersion $Version
                 }
+            }
+        }
+    }
+
+    Context "Java Adopt" {
+        Describe "Java Adopt" {
+                It "Java Adopt <Version>" -TestCases $adoptCases {
+                $adoptPath = Join-Path (Get-ChildItem ${env:AGENT_TOOLSDIRECTORY}\Java_Adopt_jdk\${Version}*) "x64\Contents\Home\bin\java"
+
+                $result = Get-CommandResult "`"$adoptPath`" -version"
+                $result.ExitCode | Should -Be 0
             }
         }
     }
@@ -73,10 +82,6 @@ Describe "Java" {
         
             It "Gradle is installed to /usr/local/bin" {
                 (Get-Command "gradle").Path | Should -BeExactly "/usr/local/bin/gradle"
-            }
-        
-            It "Gradle is compatible with init.d plugins" {
-                "cd /tmp && gradle tasks" | Should -ReturnZeroExitCode
             }
         }
     }

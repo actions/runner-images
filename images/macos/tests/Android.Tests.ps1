@@ -8,10 +8,10 @@ Describe "Android" {
     $androidSdkManagerPackages = Get-AndroidPackages
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
-    [string]$ndkLatestVersion = Get-ToolsetValue "android.ndk.latest"
-    [string]$ndkLtsVersion = Get-ToolsetValue "android.ndk.lts"
-    $ndkLatestFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLatestVersion.*" | Select-Object -Last 1).Name
-    $ndkLtsFullVersion = (Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkLtsVersion.*" | Select-Object -Last 1).Name
+    [array]$ndkVersions = Get-ToolsetValue "android.ndk.versions"
+    [string]$ndkDefaultVersion = Get-ToolsetValue "android.ndk.default"
+    $ndkFullVersions = $ndkVersions | ForEach-Object { Get-ChildItem "$env:ANDROID_HOME/ndk/${_}.*" -Name | Select-Object -Last 1} | ForEach-Object { "ndk/${_}" }
+    $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultVersion.*" -Name | Select-Object -Last 1
 
     $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', ''
     $platformNumericList = $platformVersionsList | Where-Object { $_ -match "\d+" } | Where-Object { [int]$_ -ge $platformMinVersion } | Sort-Object -Unique
@@ -28,10 +28,9 @@ Describe "Android" {
         "tools/proguard",
         "ndk-bundle",
         "cmake",
-        "ndk/$ndkLatestFullVersion",
-        "ndk/$ndkLtsFullVersion",
         $platforms,
         $buildTools,
+        $ndkFullVersions,
         (Get-ToolsetValue "android.extra-list" | ForEach-Object { "extras/${_}" }),
         (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" }),
         (Get-ToolsetValue "android.additional-tools")
@@ -57,17 +56,40 @@ Describe "Android" {
         }
     }
 
+    Context "SDKManagers" {
+        $testCases = @(
+            @{
+                PackageName = "SDK tools"
+                Sdkmanager = "$env:ANDROID_HOME/tools/bin/sdkmanager"
+            },
+            @{
+                PackageName = "Command-line tools"
+                Sdkmanager = "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+            }
+        )
+
+        It "Sdkmanager from <PackageName> is available" -TestCases $testCases {
+            "$Sdkmanager --version" | Should -ReturnZeroExitCode
+        }
+    }
+
     Context "Packages" {
         $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
+        $defaultNdkTestCase = @{ NdkDefaultFullVersion = $ndkDefaultFullVersion }
 
         It "<PackageName>" -TestCases $testCases {
             param ([string] $PackageName)
             Validate-AndroidPackage $PackageName
         }
+
+        It "ndk-bundle points to the default NDK version" -TestCases $defaultNdkTestCase {
+            $ndkLinkTarget = (Get-Item $env:ANDROID_NDK_HOME).Target
+            $ndkVersion = Split-Path -Path $ndkLinkTarget -Leaf
+            $ndkVersion | Should -BeExactly $NdkDefaultFullVersion
+        }
     }
 
-    It "HAXM is installed" {
-        $haxmPath = Join-Path $ANDROID_SDK_DIR "extras" "intel" "Hardware_Accelerated_Execution_Manager" "silent_install.sh"
-        "$haxmPath -v" | Should -ReturnZeroExitCode
+    It "HAXM is installed" -Skip:($os.IsHigherThanCatalina) {
+        "kextstat | grep 'com.intel.kext.intelhaxm'" | Should -ReturnZeroExitCode
     }
 }

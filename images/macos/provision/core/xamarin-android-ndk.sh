@@ -3,7 +3,7 @@ source ~/utils/utils.sh
 
 ANDROID_HOME=$HOME/Library/Android/sdk
 ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
-SDKMANAGER=$ANDROID_HOME/tools/bin/sdkmanager
+SDKMANAGER=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
 
 # Android NDK v16 is not compatible with old Xamarin.Android SDK
 # and fails builds with BundleAssemblies enabled

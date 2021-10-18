@@ -1,11 +1,13 @@
 function Get-PostgreSqlVersion {
     $postgreSQLVersion = psql --version | Take-OutputPart -Part 2
-    return "Postgre SQL $postgreSQLVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "postgresql"
+    return "PostgreSQL $postgreSQLVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-MongoDbVersion {
     $mongoDBVersion = mongod --version | Select-Object -First 1 | Take-OutputPart -Part 2 -Delimiter "v"
-    return "MongoDB $mongoDBVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "mongodb"
+    return "MongoDB $mongoDBVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-SqliteVersion {
@@ -21,6 +23,11 @@ function Get-MySQLVersion {
 function Get-SQLCmdVersion {
     $sqlcmdVersion = sqlcmd -? | Select-String -Pattern "Version" | Take-OutputPart -Part 1
     return "sqlcmd $sqlcmdVersion"
+}
+
+function Get-SqlPackageVersion {
+    $sqlPackageVersion = sqlpackage /version
+    return "SqlPackage $sqlPackageVersion"
 }
 
 function Build-MySQLSection {
@@ -43,7 +50,8 @@ function Build-MSSQLToolsSection {
 
     $output += New-MDHeader "MS SQL Server Client Tools" -Level 4
     $output += New-MDList -Style Unordered -Lines @(
-        (Get-SQLCmdVersion)
+        (Get-SQLCmdVersion),
+        (Get-SqlPackageVersion)
     )
 
     return $output

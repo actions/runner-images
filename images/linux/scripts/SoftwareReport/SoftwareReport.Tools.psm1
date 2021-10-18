@@ -1,15 +1,12 @@
-function Get-7zipVersion {
-    $7zVersion = 7z i | Select-String "7-Zip" | Take-OutputPart -Part 2
-    return "7-Zip $7zVersion"
-}
-
 function Get-AnsibleVersion {
-    $ansibleVersion = ansible --version | Select-Object -First 1 | Take-OutputPart -Part 1
+    $ansibleVersion = (ansible --version)[0] -replace "[^\d.]"
     return "Ansible $ansibleVersion"
 }
 
 function Get-AptFastVersion {
-    $aptFastVersion = (dpkg-query --showformat='${Version}' --show apt-fast).Split('-')[0]
+    $versionFileContent = Get-Content (which apt-fast) -Raw
+    $match = [Regex]::Match($versionFileContent, '# apt-fast v(.+)\n')
+    $aptFastVersion = $match.Groups[1].Value
     return "apt-fast $aptFastVersion"
 }
 
@@ -29,10 +26,10 @@ function Get-BazeliskVersion {
     return "Bazelisk $bazeliskVersion"
 }
 
-function Get-BinUtilsVersion {
-    $result = Get-CommandResult "dpkg-query --show binutils"
-    $binUtilsVersion = $result.Output| Take-OutputPart -Part 1 -Delimiter "`t" | Take-OutputPart -Part 0 -Delimiter "-"
-    return "binutils $binUtilsVersion"
+function Get-BicepVersion {
+    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $bicepVersion = $Matches.Version
+    return "Bicep $bicepVersion"
 }
 
 function Get-CodeQLBundleVersion {
@@ -43,25 +40,22 @@ function Get-CodeQLBundleVersion {
     return "CodeQL Action Bundle $CodeQLVersion"
 }
 
-function Get-CoreUtilsVersion {
-    $result = Get-CommandResult "dpkg-query --show coreutils"
-    $coreUtilsVersion = $result.Output | Take-OutputPart -Part 1 -Delimiter "`t" | Take-OutputPart -Part 0 -Delimiter "-"
-    return "coreutils $coreUtilsVersion"
-}
-
 function Get-PodManVersion {
     $podmanVersion = podman --version | Take-OutputPart -Part 2
-    return "Podman $podmanVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
+    return "Podman $podmanVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-BuildahVersion {
     $buildahVersion = buildah --version | Take-OutputPart -Part 2
-    return "Buildah $buildahVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
+    return "Buildah $buildahVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-SkopeoVersion {
     $skopeoVersion = skopeo --version | Take-OutputPart -Part 2
-    return "Skopeo $skopeoVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
+    return "Skopeo $skopeoVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-CMakeVersion {
@@ -69,14 +63,14 @@ function Get-CMakeVersion {
     return "CMake $cmakeVersion"
 }
 
-function Get-CurlVersion {
-    $curlVersion = curl --version | Select-Object -First 1 | Take-OutputPart -Part 0,1
-    return $curlVersion
+function Get-DockerComposeV1Version {
+    $composeVersion = docker-compose -v | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter ","
+    return "Docker Compose v1 $composeVersion"
 }
 
-function Get-DockerComposeVersion {
-    $composeVersion = docker-compose -v | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter ","
-    return "Docker Compose $composeVersion"
+function Get-DockerComposeV2Version {
+    $composeVersion = docker compose version | Take-OutputPart -Part 3
+    return "Docker Compose v2 $composeVersion"
 }
 
 function Get-DockerMobyClientVersion {
@@ -97,13 +91,15 @@ function Get-DockerBuildxVersion {
 function Get-GitVersion {
     $result = Get-CommandResult "git --version"
     $gitVersion = $result.Output | Take-OutputPart -Part 2
-    return "Git $gitVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "git-core"
+    return "Git $gitVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-GitLFSVersion {
     $result = Get-CommandResult "git-lfs --version"
     $gitlfsversion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
-    return "Git LFS $gitlfsversion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "git-lfs"
+    return "Git LFS $gitlfsversion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-GitFTPVersion {
@@ -112,7 +108,8 @@ function Get-GitFTPVersion {
 }
 
 function Get-GoogleCloudSDKVersion {
-    return "$(gcloud --version | Select-Object -First 1)"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "google-cloud-sdk"
+    return "$(gcloud --version | Select-Object -First 1) (apt source repository: $aptSourceRepo)"
 }
 
 function Get-HavegedVersion {
@@ -151,18 +148,13 @@ function Get-KubectlVersion {
 }
 
 function Get-MinikubeVersion {
-    $minikubeVersion = minikube version --short | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
+    $minikubeVersion = minikube version --short | Take-OutputPart -Part 0 -Delimiter "v"
     return "Minikube $minikubeVersion"
 }
 
 function Get-HGVersion {
     $hgVersion = hg --version | Select-Object -First 1 | Take-OutputPart -Part -1 | Take-OutputPart -Part 0 -Delimiter ")"
     return "Mercurial $hgVersion"
-}
-
-function Get-M4Version {
-    $m4Version = m4 --version | Select-Object -First 1 | Take-OutputPart -Part -1
-    return "m4 $m4Version"
 }
 
 function Get-LeiningenVersion {
@@ -184,45 +176,18 @@ function Get-NvmVersion {
 }
 
 function Get-PackerVersion {
-    return "Packer $(packer --version)"
-}
-
-function Get-PassVersion {
-    $passVersion = (pass version | Select-String "^=\s+v").Line.Replace('v','') | Take-OutputPart -Part 1
-    return "pass $passVersion"
+    # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
+    $result = (Get-CommandResult -Command "packer --version").Output
+    $packerVersion = [regex]::matches($result, "(\d+.){2}\d+").Value
+    return "Packer $packerVersion"
 }
 
 function Get-PhantomJSVersion {
     return "PhantomJS $(phantomjs --version)"
 }
 
-function Get-SwigVersion {
-    $swigVersion = swig -version | Select-String "SWIG Version" | Take-OutputPart -Part 2
-    return "Swig $swigVersion"
-}
-
 function Get-TerraformVersion {
     return (terraform version | Select-String "^Terraform").Line.Replace('v','')
-}
-
-function Get-UnZipVersion {
-    $unzipVersion = unzip -v | Select-Object -First 1 | Take-OutputPart -Part 1
-    return "unzip $unzipVersion"
-}
-
-function Get-WgetVersion {
-    $wgetVersion = wget --version | Select-Object -First 1 | Take-OutputPart -Part 2
-    return "wget $wgetVersion"
-}
-
-function Get-ZipVersion {
-    $zipVersion = zip -v | Select-String "This is Zip" | Take-OutputPart -Part 3
-    return "zip $zipVersion"
-}
-
-function Get-ZstdVersion {
-    $zstdVersion = (zstd --version).Split() -match "v\d+" | ForEach-Object {$_.Replace("v","").Replace(",","")}
-    return "zstd $zstdVersion"
 }
 
 function Get-JqVersion {
@@ -232,7 +197,8 @@ function Get-JqVersion {
 
 function Get-AzureCliVersion {
     $azcliVersion = az -v | Select-String "azure-cli" | Take-OutputPart -Part -1
-    return "Azure CLI (azure-cli) $azcliVersion"
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "azure-cli"
+    return "Azure CLI (azure-cli) $azcliVersion (installation method: $aptSourceRepo)"
 }
 
 function Get-AzureDevopsVersion {
@@ -281,7 +247,7 @@ function Get-NetlifyCliVersion {
 
 function Get-OCCliVersion {
     $ocVersion = oc version | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "-"
-    return "oc CLI $ocVersion"
+    return "OpenShift CLI $ocVersion"
 }
 
 function Get-ORASCliVersion {
@@ -311,4 +277,14 @@ function Get-SphinxVersion {
 
 function Get-YamllintVersion {
     return "$(yamllint --version)"
+}
+
+function Get-ZstdVersion {
+    $zstdVersion = zstd --version | Take-OutputPart -Part 1 -Delimiter "v" | Take-OutputPart -Part 0 -Delimiter ","
+    return "zstd $zstdVersion (homebrew)"
+}
+
+function Get-YqVersion {
+    $yqVersion = ($(yq -V) -Split " ")[-1]
+    return "yq $yqVersion"
 }

@@ -1,6 +1,12 @@
 $os = Get-OSVersion
 
-Describe "Carthage" {
+Describe "Azure CLI" {
+    It "Azure CLI" {
+        "az -v" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Carthage" -Skip:($os.IsMonterey) {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
     }
@@ -18,19 +24,20 @@ Describe "Subversion" {
     }
 }
 
-Describe "Go" {
-    It "Go" {
-        "go version" | Should -ReturnZeroExitCode
+Describe "SwiftFormat" -Skip:($os.IsMonterey) {
+    It "SwiftFormat" {
+        "swiftformat --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "GnuPG" {
+
+Describe "GnuPG" -Skip:($os.IsMonterey) {
     It "GnuPG" {
         "gpg --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Clang/LLVM" {
+Describe "Clang/LLVM" -Skip:($os.IsMonterey) {
     It "Clang/LLVM is installed" {
         "$(brew --prefix llvm)/bin/clang --version" | Should -ReturnZeroExitCode
     }
@@ -54,7 +61,7 @@ Describe "Perl" {
     }
 }
 
-Describe "Helm" {
+Describe "Helm" -Skip:($os.IsMonterey) {
     It "Helm" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
@@ -102,7 +109,7 @@ Describe "bazel" {
     }
 }
 
-Describe "Aliyun CLI" {
+Describe "Aliyun CLI" -Skip:($os.IsMonterey) {
     It "Aliyun CLI" {
         "aliyun --version" | Should -ReturnZeroExitCode
     }
@@ -132,25 +139,25 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsBigSur) {
+Describe "vagrant" -Skip:($os.IsHigherThanCatalina) {
     It "vagrant" {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "virtualbox" -Skip:($os.IsBigSur) {
+Describe "virtualbox" -Skip:($os.IsHigherThanCatalina) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "xctool" -Skip:($os.IsBigSur) {
+Describe "xctool" -Skip:($os.IsHigherThanCatalina) {
     It "xctool" {
         "xctool --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "R" -Skip:($os.IsBigSur) {
+Describe "R" -Skip:($os.IsHigherThanCatalina) {
     It "R" {
         "R --version" | Should -ReturnZeroExitCode
     }
@@ -159,5 +166,19 @@ Describe "R" -Skip:($os.IsBigSur) {
 Describe "Homebrew" {
     It "Homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Kotlin" {
+    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlinc-js", "kotlinc-jvm", "kotlin-dce-js")
+
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object {  @{ toolName = $_ } })  { 
+        "$toolName -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "sbt" {
+    It "sbt" {
+        "sbt -version" | Should -ReturnZeroExitCode
     }
 }

@@ -75,9 +75,13 @@ Describe "Mono" {
             }
         }
     }
+
+    It "MSBuild is available" {
+        "msbuild -version" | Should -ReturnZeroExitCode
+    }
 }
 
-Describe "Xamarin.iOS" {  
+Describe "Xamarin.iOS" {
     $XAMARIN_IOS_VERSIONS | ForEach-Object {
         Context "$_" {
             $XAMARIN_IOS_VERSIONS_PATH = "/Library/Frameworks/Xamarin.iOS.framework/Versions"

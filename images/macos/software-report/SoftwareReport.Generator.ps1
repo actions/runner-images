@@ -32,6 +32,7 @@ $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 $languageAndRuntimeList = @(
     (Get-BashVersion),
+    (Get-MSBuildVersion),
     (Get-NodeVersion),
     (Get-NVMVersion),
     (Get-NVMNodeVersionList),
@@ -41,11 +42,17 @@ $languageAndRuntimeList = @(
     (Get-RubyVersion),
     (Get-DotnetVersionList),
     (Get-GoVersion),
-    (Get-PHPVersion),
-    (Get-JuliaVersion)
+    (Get-JuliaVersion),
+    (Get-KotlinVersion)
 )
 
-if ( -not $os.IsHighSierra) {
+if ($os.IsLessThanMonterey) {
+    $languageAndRuntimeList += @(
+        (Get-PHPVersion)
+    )
+}
+
+if ( -not $os.IsHighSierra -and $os.IsLessThanMonterey) {
     $languageAndRuntimeList += @(
         (Get-GccVersion)
         (Get-FortranVersion)
@@ -59,7 +66,9 @@ if ($os.IsLessThanBigSur) {
     )
 }
 
-$markdown += New-MDList -Style Unordered -Lines ($languageAndRuntimeList | Sort-Object)
+# To sort GCC and Gfortran correctly, we need to use natural sort https://gist.github.com/markwragg/e2a9dc05f3464103d6998298fb575d4e#file-sort-natural-ps1
+$toNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
+$markdown += New-MDList -Style Unordered -Lines ($languageAndRuntimeList | Sort-Object $toNatural)
 
 # Package Management
 $markdown += New-MDHeader "Package Management" -Level 3
@@ -68,34 +77,41 @@ $packageManagementList = @(
     (Get-PipVersion -Version 3),
     (Get-PipxVersion),
     (Get-BundlerVersion),
-    (Get-CarthageVersion),
     (Get-CocoaPodsVersion),
     (Get-HomebrewVersion),
     (Get-NPMVersion),
     (Get-YarnVersion),
     (Get-NuGetVersion),
-    (Get-CondaVersion),
     (Get-RubyGemsVersion),
     (Get-ComposerVersion)
 )
 
-if ($os.IsHigherThanMojave) {
+if ($os.IsLessThanMonterey) {
+    $packageManagementList += @(
+        (Get-CarthageVersion),
+        (Get-CondaVersion)
+    )
+}
+
+if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
     $packageManagementList += @(
         (Get-VcpkgVersion)
     )
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
+if ($os.IsLessThanMonterey) {
+    $markdown += New-MDHeader "Environment variables" -Level 4
+    $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+    $markdown += New-MDNewLine
+}
 # Project Management
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-MavenVersion),
     (Get-GradleVersion),
-    (Get-ApacheAntVersion)
+    (Get-ApacheAntVersion),
+    (Get-SbtVersion)
     ) | Sort-Object
 )
 
@@ -112,7 +128,6 @@ $utilitiesList = @(
     (Get-PackerVersion),
     (Get-OpenSSLVersion),
     (Get-JqVersion),
-    (Get-GPGVersion),
     (Get-PostgresClientVersion),
     (Get-PostgresServerVersion),
     (Get-Aria2Version),
@@ -120,7 +135,6 @@ $utilitiesList = @(
     (Get-ZstdVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
-    (Get-HelmVersion),
     (Get-MongoVersion),
     (Get-MongodVersion),
     (Get-7zipVersion),
@@ -128,7 +142,14 @@ $utilitiesList = @(
     (Get-GnuTarVersion)
 )
 
-if ($os.IsHigherThanMojave) {
+if ($os.IsLessThanMonterey) {
+    $utilitiesList += @(
+        (Get-GPGVersion),
+        (Get-HelmVersion)
+    )
+}
+
+if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
     $utilitiesList += @(
         (Get-NewmanVersion)
     )
@@ -139,6 +160,13 @@ if ($os.IsLessThanBigSur) {
         (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
         (Get-ParallelVersion)
+    )
+}
+
+if (-not $os.IsHighSierra -and $os.IsLessThanMonterey) {
+    $utilitiesList += @(
+        (Get-SwitchAudioOsxVersion),
+        (Get-SoxVersion)
     )
 }
 
@@ -154,9 +182,19 @@ $toolsList = @(
     (Get-AzureCLIVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMCLIVersion),
-    (Get-AWSSessionManagerCLIVersion),
-    (Get-AliyunCLIVersion),
-    (Get-XcodeCommandLineToolsVersion)
+    (Get-AWSSessionManagerCLIVersion)
+)
+
+if ($os.IsLessThanMonterey) {
+    $toolsList += @(
+        (Get-AliyunCLIVersion)
+    )
+}
+
+$toolsList += @(
+    (Get-XcodeCommandLineToolsVersion),
+    (Get-SwigVersion),
+    (Get-BicepVersion)
 )
 
 if( -not $os.IsHighSierra) {
@@ -166,6 +204,11 @@ if( -not $os.IsHighSierra) {
         (Get-CabalVersion),
         (Get-StackVersion)
     )
+    if($os.IsLessThanMonterey) {
+        $toolsList += @(
+            (Get-SwiftFormatVersion)
+        )
+    }
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
@@ -236,17 +279,9 @@ $markdown += New-MDHeader "Xamarin" -Level 3
 $markdown += New-MDHeader "Visual Studio for Mac" -Level 4
 $markdown += New-MDList -Lines @(Get-VSMacVersion) -Style Unordered
 
-$markdown += New-MDHeader "Mono" -Level 4
-$markdown += New-MDList -Lines (Build-MonoList) -Style Unordered
-
-$markdown += New-MDHeader "Xamarin.iOS" -Level 4
-$markdown += New-MDList -Lines (Build-XamarinIOSList) -Style Unordered
-
-$markdown += New-MDHeader "Xamarin.Mac" -Level 4
-$markdown += New-MDList -Lines (Build-XamarinMacList) -Style Unordered
-
-$markdown += New-MDHeader "Xamarin.Android" -Level 4
-$markdown += New-MDList -Lines (Build-XamarinAndroidList) -Style Unordered
+$markdown += New-MDHeader "Xamarin bundles" -Level 4
+$markdown += Build-XamarinTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Unit Test Framework" -Level 4
 $markdown += New-MDList -Lines @(Get-NUnitVersion) -Style Unordered
@@ -271,7 +306,11 @@ $markdown += New-MDNewLine
 
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
-$markdown += Build-AndroidTable | New-MDTable
+$androidTable = Build-AndroidTable
+if ($os.IsLessThanBigSur) {
+    $androidTable += Get-IntelHaxmVersion
+}
+$markdown += $androidTable | New-MDTable
 $markdown += New-MDNewLine
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-AndroidEnvironmentTable | New-MDTable

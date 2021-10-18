@@ -1,6 +1,11 @@
 Describe "Java" {
-    [array]$jdkVersions = (Get-ToolsetContent).java.versions | ForEach-Object { @{Version = $_} }
-    $defaultVersion = (Get-ToolsetContent).java.default
+    $toolsetJava = (Get-ToolsetContent).java
+    $defaultVendor = $toolsetJava.default_vendor
+    $javaVendors = $toolsetJava.vendors
+    $defaultVersion = $toolsetJava.default
+
+    [array]$jdkVersions = ($javaVendors | Where-Object {$_.name -eq $defaultVendor}).versions | ForEach-Object { @{Version = $_} }
+    [array]$adoptJdkVersions = ($javaVendors | Where-Object {$_.name -eq "Adopt"}).versions | ForEach-Object { @{Version = $_} }
 
     It "Java <DefaultJavaVersion> is default" -TestCases @(@{ DefaultJavaVersion = $defaultVersion }) {
         $actualJavaPath = Get-EnvironmentVariable "JAVA_HOME"
@@ -31,6 +36,20 @@ Describe "Java" {
         if ($Version -eq 8) {
             $Version = "1.${Version}"
         }
-        $result.Output[0] | Should -Match ([regex]::Escape("openjdk version `"${Version}."))
+        $outputPattern = "openjdk version `"${Version}"
+        $result.Output[0] | Should -Match $outputPattern
+    }
+
+    It "Java Adopt Jdk <Version>" -TestCases $adoptJdkVersions {
+        $adoptPath = Join-Path (Get-ChildItem ${env:AGENT_TOOLSDIRECTORY}\Java_Adopt_jdk\${Version}*) "x64\bin\java"
+
+        $result = Get-CommandResult "`"$adoptPath`" -version"
+        $result.ExitCode | Should -Be 0
+
+        if ($Version -eq 8) {
+            $Version = "1.${Version}"
+        }
+        $outputPattern = "openjdk version `"${Version}"
+        $result.Output[0] | Should -Match $outputPattern
     }
 }

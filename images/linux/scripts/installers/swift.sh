@@ -4,14 +4,18 @@
 ##  Desc:  Installs Swift
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/install.sh
 
 # Install
 image_label="$(lsb_release -rs)"
 swift_version=$(curl -s -L -N https://swift.org/download|awk -F"[ <]" '/id="swift-/ {print $4; exit}')
 
-wget -P /tmp https://swift.org/builds/swift-$swift_version-release/ubuntu${image_label//./}/swift-$swift_version-RELEASE/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
+swift_tar_name="swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz"
+swift_tar_url="https://swift.org/builds/swift-$swift_version-release/ubuntu${image_label//./}/swift-$swift_version-RELEASE/$swift_tar_name"
+download_with_retries $swift_tar_url "/tmp" "$swift_tar_name"
 
-tar xzf /tmp/swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz
+tar xzf /tmp/$swift_tar_name
 mv swift-$swift_version-RELEASE-ubuntu$image_label /usr/share/swift
 
 SWIFT_PATH="/usr/share/swift/usr/bin"

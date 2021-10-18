@@ -197,8 +197,16 @@
     },
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11", "12", "13", "14"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11", "17" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11", "12", "13", "14" ]
+            }
         ]
     },
     "android": {
@@ -212,29 +220,40 @@
         ],
         "additional-tools": [
             "cmake;3.10.2.4988404",
-            "cmdline-tools;latest"
+            "cmake;3.18.1"
         ],
         "ndk": {
-            "lts": "21",
-            "latest": "22"
+            "default": "21",
+            "versions": [
+                "21", "22", "23"
+            ]
         }
     },
     "powershellModules": [
         {
             "name": "Az",
             "versions": [
-                "4.8.0"
+                "6.1.0"
             ]
         },
         {"name": "MarkdownPS"},
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
     ],
+    "npm": {
+        "global_packages": [
+            { "name": "npm@3" },
+            { "name": "omelette@0.4.14" },
+            { "name": "appcenter-cli@^1.0.0", "test": "appcenter --version" },
+            { "name": "node-gyp" }
+        ]
+    },
     "brew": {
         "common_packages": [
             "aliyun-cli",
             "ant",
             "aria2",
+            "azure-cli",
             "bats",
             "bazelisk",
             "carthage",
@@ -242,15 +261,18 @@
             "gh",
             "gnupg",
             "gnu-tar",
-            "go",
             "helm",
+            "kotlin",
             "libpq",
             "llvm",
             "p7zip",
             "packer",
             "parallel",
             "perl",
+            "sbt",
             "subversion",
+            "swiftformat",
+            "swig",
             "xctool",
             "zstd"
         ],
@@ -259,6 +281,13 @@
             "r",
             "vagrant",
             "virtualbox"
+        ]
+    },
+    "gcc": {
+        "versions": [
+            "9",
+            "10",
+            "11"
         ]
     },
     "toolcache": [
@@ -273,7 +302,8 @@
                 "3.6.*",
                 "3.7.*",
                 "3.8.*",
-                "3.9.*"
+                "3.9.*",
+                "3.10.*"
             ]
         },
         {
@@ -301,11 +331,13 @@
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
             "arch": "x64",
             "platform" : "darwin",
+            "variable_template" : "GOROOT_{0}_{1}_X64",
             "versions": [
                 "1.13.*",
                 "1.14.*",
                 "1.15.*",
-                "1.16.*"
+                "1.16.*",
+                "1.17.*"
             ]
         },
         {
@@ -330,5 +362,19 @@
         "versions": [
             "2.1"
         ]
+    },
+    "ruby": {
+        "default": "2.7",
+        "rubygems": [
+            "xcode-install",
+            "cocoapods",
+            "nomad-cli",
+            "xcpretty",
+            "bundler",
+            "fastlane"
+        ]
+    },
+    "go": {
+        "default": "1.15"
     }
 }

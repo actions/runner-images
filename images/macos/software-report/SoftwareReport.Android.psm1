@@ -1,4 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 function Split-TableRowByColumns {
     param(
@@ -13,21 +14,13 @@ function Get-AndroidSDKRoot {
 
 function Get-AndroidSDKManagerPath {
     $androidSDKDir = Get-AndroidSDKRoot
-    return Join-Path $androidSDKDir "tools" "bin" "sdkmanager"
+    return Join-Path $androidSDKDir "cmdline-tools" "latest" "bin" "sdkmanager"
 }
 
 function Get-AndroidInstalledPackages {
     $androidSDKManagerPath = Get-AndroidSDKManagerPath
-    $androidSDKManagerList = Invoke-Expression "$androidSDKManagerPath --list --include_obsolete"
-    $androidInstalledPackages = @()
-    foreach($packageInfo in $androidSDKManagerList) {
-        if($packageInfo -Match "Available Packages:") {
-            break
-        }
-
-        $androidInstalledPackages += $packageInfo
-    }
-    return $androidInstalledPackages
+    $androidSDKManagerList = Invoke-Expression "$androidSDKManagerPath --list_installed"
+    return $androidSDKManagerList
 }
 
 function Get-AndroidPackages {
@@ -42,7 +35,7 @@ function Build-AndroidTable {
     return @(
         @{
             "Package" = "Android Command Line Tools"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Command-line Tools"
+            "Version" = Get-AndroidCommandLineToolsVersion
         },
         @{
             "Package" = "Android Emulator"
@@ -143,6 +136,13 @@ function Get-AndroidPlatformVersions {
     return ($versions -Join "<br>")
 }
 
+function Get-AndroidCommandLineToolsVersion {
+    $commandLineTools = Get-AndroidSDKManagerPath
+    (& $commandLineTools --version | Out-String).Trim() -match "(?<version>^(\d+\.){1,}\d+$)" | Out-Null
+    $commandLineToolsVersion = $Matches.Version
+    return $commandLineToolsVersion
+}
+
 function Get-AndroidBuildToolVersions {
     param (
         [Parameter(Mandatory)]
@@ -185,6 +185,19 @@ function Get-AndroidNDKVersions {
 
     $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
     $versions += Get-ChildItem -Path $ndkFolderPath -Name
+    $ndkDefaultVersion = Get-ToolsetValue "android.ndk.default"
+    $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultVersion.*" -Name | Select-Object -Last 1
 
-    return ($versions -Join "<br>")
+    return ($versions | ForEach-Object {
+        $defaultPostfix = ( $_ -eq $ndkDefaultFullVersion ) ? " (default)" : ""
+        $_ + $defaultPostfix
+    } | Join-String -Separator "<br>")
+}
+
+function Get-IntelHaxmVersion {
+    kextstat | Where-Object { $_ -match "com.intel.kext.intelhaxm \((?<version>(\d+\.){1,}\d+)\)" } | Out-Null
+    return [PSCustomObject] @{
+        "Package Name" = "Intel HAXM"
+        "Version" = $Matches.Version
+    }
 }

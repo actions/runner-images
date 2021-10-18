@@ -12,16 +12,59 @@ Set-SystemVariable -SystemVariable DOTNET_MULTILEVEL_LOOKUP -Value "0"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
-$templates = @(
-    'console',
-    'mstest',
-    'web',
-    'mvc',
-    'webapi'
-)
+function Get-SDKVersionsToInstall (
+    $DotnetVersion
+) {
+    $releaseJson = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
+    $releasesJsonPath = Start-DownloadWithRetry -Url $releaseJson -Name "releases-${DotnetVersion}.json"
+    $currentReleases = Get-Content -Path $releasesJsonPath | ConvertFrom-Json
+    # filtering out the preview/rc releases
+    $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') }
+
+    $sdks = @()
+    ForEach ($release in $currentReleases)
+    {
+        $sdks += $release.'sdk'
+        $sdks += $release.'sdks'
+    }
+
+    return $sdks.version | Sort-Object { [Version] $_ } -Unique `
+                         | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } `
+                         | Foreach-Object { $_.Group[-1] }
+}
+
+function Invoke-Warmup (
+    $SdkVersion
+) {
+    # warm up dotnet for first time experience
+    $projectTypes = @('console', 'mstest', 'web', 'mvc', 'webapi')
+    $projectTypes | ForEach-Object {
+        $template = $_
+        $projectPath = Join-Path -Path C:\temp -ChildPath $template
+        New-Item -Path $projectPath -Force -ItemType Directory
+        Push-Location -Path $projectPath
+        & $env:ProgramFiles\dotnet\dotnet.exe new globaljson --sdk-version "$sdkVersion"
+        & $env:ProgramFiles\dotnet\dotnet.exe new $template
+        Pop-Location
+        Remove-Item $projectPath -Force -Recurse
+    }
+}
+
+function Fix-ImportPublishProfile (
+    $SdkVersion
+) {
+    if ((Test-IsWin16) -or (Test-IsWin19)) {
+        # Fix for issue https://github.com/dotnet/sdk/issues/1276.  This will be fixed in 3.1.
+        $sdkTargetsName = "Microsoft.NET.Sdk.ImportPublishProfile.targets"
+        $sdkTargetsUrl = "https://raw.githubusercontent.com/dotnet/sdk/82bc30c99f1325dfaa7ad450be96857a4fca2845/src/Tasks/Microsoft.NET.Build.Tasks/targets/${sdkTargetsName}"
+        $sdkTargetsPath = "C:\Program Files\dotnet\sdk\$sdkVersion\Sdks\Microsoft.NET.Sdk\targets"
+        Start-DownloadWithRetry -Url $sdkTargetsUrl -DownloadPath $sdkTargetsPath -Name $sdkTargetsName
+    }
+}
 
 function InstallSDKVersion (
-    $sdkVersion
+    $SdkVersion,
+    $Warmup
 )
 {
     if (!(Test-Path -Path "C:\Program Files\dotnet\sdk\$sdkVersion"))
@@ -34,22 +77,10 @@ function InstallSDKVersion (
         Write-Host "Sdk version $sdkVersion already installed"
     }
 
-    # Fix for issue 1276.  This will be fixed in 3.1.
-    $sdkTargetsName = "Microsoft.NET.Sdk.ImportPublishProfile.targets"
-    $sdkTargetsUrl = "https://raw.githubusercontent.com/dotnet/sdk/82bc30c99f1325dfaa7ad450be96857a4fca2845/src/Tasks/Microsoft.NET.Build.Tasks/targets/${sdkTargetsName}"
-    $sdkTargetsPath = "C:\Program Files\dotnet\sdk\$sdkVersion\Sdks\Microsoft.NET.Sdk\targets"
-    Start-DownloadWithRetry -Url $sdkTargetsUrl -DownloadPath $sdkTargetsPath -Name $sdkTargetsName
+    Fix-ImportPublishProfile -SdkVersion $SdkVersion
 
-    # warm up dotnet for first time experience
-    $templates | ForEach-Object {
-        $template = $_
-        $projectPath = Join-Path -Path C:\temp -ChildPath $template
-        New-Item -Path $projectPath -Force -ItemType Directory
-        Push-Location -Path $projectPath
-        & $env:ProgramFiles\dotnet\dotnet.exe new globaljson --sdk-version "$sdkVersion"
-        & $env:ProgramFiles\dotnet\dotnet.exe new $template
-        Pop-Location
-        Remove-Item $projectPath -Force -Recurse
+    if ($Warmup) {
+        Invoke-Warmup -SdkVersion $SdkVersion
     }
 }
 
@@ -57,7 +88,9 @@ function InstallAllValidSdks()
 {
     # Consider all channels except preview/eol channels.
     # Sort the channels in ascending order
-    $dotnetVersions = (Get-ToolsetContent).dotnet.versions
+    $dotnetToolset = (Get-ToolsetContent).dotnet
+    $dotnetVersions = $dotnetToolset.versions
+    $warmup = $dotnetToolset.warmup
 
     # Download installation script.
     $installationName = "dotnet-install.ps1"
@@ -66,35 +99,11 @@ function InstallAllValidSdks()
 
     ForEach ($dotnetVersion in $dotnetVersions)
     {
-        $releaseJson = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${dotnetVersion}/releases.json"
-        $releasesJsonPath = Start-DownloadWithRetry -Url $releaseJson -Name "releases-${dotnetVersion}.json"
-        $currentReleases = Get-Content -Path $releasesJsonPath | ConvertFrom-Json
-        # filtering out the preview/rc releases
-        $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') } | Sort-Object { [Version] $_.'release-version' }
-
-        ForEach ($release in $currentReleases)
+        $sdkVersionsToInstall = Get-SDKVersionsToInstall -DotnetVersion $dotnetVersion
+        
+        ForEach ($sdkVersion in $sdkVersionsToInstall)
         {
-            if ($release.'sdks'.Count -gt 0)
-            {
-                Write-Host 'Found sdks property in release: ' + $release.'release-version' + 'with sdks count: ' + $release.'sdks'.Count
-
-                # Remove duplicate entries & preview/rc version from download list
-                # Sort the sdks on version
-                $sdks = @($release.'sdk');
-
-                $sdks += $release.'sdks' | Where-Object { !$_.'version'.Contains('-') -and !$_.'version'.Equals($release.'sdk'.'version') }
-                $sdks = $sdks | Sort-Object { [Version] $_.'version' }
-
-                ForEach ($sdk in $sdks)
-                {
-                    InstallSDKVersion -sdkVersion $sdk.'version'
-                }
-            }
-            elseif (!$release.'sdk'.'version'.Contains('-'))
-            {
-                $sdkVersion = $release.'sdk'.'version'
-                InstallSDKVersion -sdkVersion $sdkVersion
-            }
+            InstallSDKVersion -SdkVersion $sdkVersion -Warmup $warmup
         }
     }
 }

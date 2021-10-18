@@ -24,7 +24,7 @@ Describe "PowerShellModules" {
 
 Describe "AzureModules" {
     $modules = (Get-ToolsetContent).azureModules
-    $modulesRootPath = $env:PSMODULES_ROOT_FOLDER
+    $modulesRootPath = "C:\\Modules"
 
     foreach ($module in $modules) {
         $moduleName = $module.name
@@ -59,8 +59,8 @@ Describe "AzureModules" {
             if ($module.default) {
                 $moduleInfo = @{ moduleName = $moduleName; moduleDefault = $module.default }
                 It "<moduleDefault> set as default" -TestCases $moduleInfo {
-                        $moduleVersion = (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
-                        $moduleVersion | Should -Match $moduleDefault
+                        $moduleVersions = Get-Module -ListAvailable -Name $moduleName | ForEach-Object { $_.Version.ToString() }
+                        $moduleVersions | Should -Contain $moduleDefault
                 }
             }
         }

@@ -39,7 +39,7 @@ Describe "GitHub CLI" {
     }
 }
 
-Describe "CloudFoundry CLI" {
+Describe "CloudFoundry CLI" -Skip:(Test-IsWin22) {
     It "cf is located in C:\cf-cli" {
         "C:\cf-cli\cf.exe" | Should -Exist
     }
@@ -52,11 +52,5 @@ Describe "CloudFoundry CLI" {
 Describe "Hub CLI" {
     It "hub is installed" {
         "hub --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Azure Dev Spaces CLI" {
-    It "Azure Dev Spaces CLI" {
-        "azds --version" | Should -ReturnZeroExitCode
     }
 }

@@ -6,23 +6,25 @@
 function Set-JavaPath {
     param (
         [string] $Version,
-        [string] $JavaRootPath,
-        [switch] $Default
+        [string] $Architecture = "x64",
+        [switch] $Default,
+        [string] $VendorName
     )
 
-    $matchedString = "jdk-?$Version"
-    $javaPath = (Get-ChildItem -Path $JavaRootPath | Where-Object { $_ -match $matchedString}).FullName
+    $javaPathPattern = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_${VendorName}_jdk/${Version}*/${Architecture}"
+    $javaPath = (Get-Item -Path $javaPathPattern).FullName
 
     if ([string]::IsNullOrEmpty($javaPath)) {
-        Write-Host "Not found path to Java $Version"
+        Write-Host "Not found path to Java '${Version}'"
         exit 1
     }
 
-    Write-Host "Set JAVA_HOME_${Version}_X64 environmental variable as $javaPath"
+    Write-Host "Set 'JAVA_HOME_${Version}_X64' environmental variable as $javaPath"
     setx JAVA_HOME_${Version}_X64 $javaPath /M
 
     if ($Default)
     {
+        # Clean up any other Java folders from PATH to make sure that they won't conflict with each other
         $currentPath = Get-MachinePath
 
         $pathSegments = $currentPath.Split(';')
@@ -47,41 +49,89 @@ function Set-JavaPath {
     }
 }
 
-function Install-JavaFromAdoptOpenJDK {
+function Install-JavaJDK {
     param(
         [string] $JDKVersion,
-        [string] $DestinationPath
+        [string] $Architecture = "x64",
+        [string] $VendorName
     )
 
-    $assets = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/$JDKVersion/hotspot"
-    $downloadUrl = ($assets | Where-Object {
+    # Get Java version from api
+    if ($VendorName -eq "Temurin-Hotspot") {
+        $assetUrl = Invoke-RestMethod -Uri "https://api.adoptium.net/v3/assets/latest/${JDKVersion}/hotspot"
+    } elseif ($VendorName -eq "Adopt") {
+        $assetUrl = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/${JDKVersion}/hotspot"
+    } else {
+        throw "$VendorName is invalid vendor name. 'Adopt' and 'Temurin-Hotspot' are allowed values"
+    }
+    $asset = $assetUrl | Where-Object {
         $_.binary.os -eq "windows" `
-        -and $_.binary.architecture -eq "x64" `
+        -and $_.binary.architecture -eq $Architecture `
         -and $_.binary.image_type -eq "jdk"
-    }).binary.package.link
+    }
 
+    # Download and extract java binaries to temporary folder
+    $downloadUrl = $asset.binary.package.link
     $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))
-    Extract-7Zip -Path $archivePath -DestinationPath $DestinationPath
+
+    # We have to replace '+' sign in the version to '-' due to the issue with incorrect path in Android builds https://github.com/actions/virtual-environments/issues/3014
+    $fullJavaVersion = $asset.version.semver -replace '\+', '-'
+    # Create directories in toolcache path
+    $javaToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_${VendorName}_jdk"
+    $javaVersionPath = Join-Path -Path $javaToolcachePath -ChildPath $fullJavaVersion
+    $javaArchPath = Join-Path -Path $javaVersionPath -ChildPath $Architecture
+
+    if (-not (Test-Path $javaToolcachePath))
+    {
+        Write-Host "Creating ${VendorName} toolcache folder"
+        New-Item -ItemType Directory -Path $javaToolcachePath | Out-Null
+    }
+
+    Write-Host "Creating Java '${fullJavaVersion}' folder in '${javaVersionPath}'"
+    New-Item -ItemType Directory -Path $javaVersionPath -Force | Out-Null
+
+    # Complete the installation by extarcting Java binaries to toolcache and creating the complete file
+    Extract-7Zip -Path $archivePath -DestinationPath $javaVersionPath
+    Get-ChildItem -Path $javaVersionPath | Rename-Item -NewName $javaArchPath
+    New-Item -ItemType File -Path $javaVersionPath -Name "$Architecture.complete" | Out-Null
 }
 
-$jdkVersions = (Get-ToolsetContent).java.versions
-$defaultVersion = (Get-ToolsetContent).java.default
-$javaRootPath = "C:\Program Files\Java\"
+$toolsetJava = (Get-ToolsetContent).java
+$jdkVendors = $toolsetJava.vendors
+$defaultVendor = $toolsetJava.default_vendor
+$defaultVersion = $toolsetJava.default
 
-foreach ($jdkVersion in $jdkVersions) {
-    Install-JavaFromAdoptOpenJDK -JDKVersion $jdkVersion -DestinationPath $javaRootPath
+foreach ($jdkVendor in $jdkVendors) {
+    $jdkVendorName = $jdkVendor.name
+    $jdkVersionsToInstall = $jdkVendor.versions
+    
+    $isDefaultVendor = $jdkVendorName -eq $defaultVendor
 
-    if ($jdkVersion -eq $defaultVersion) {
-        Set-JavaPath -Version $jdkVersion -JavaRootPath $javaRootPath -Default
-    } else {
-        Set-JavaPath -Version $jdkVersion -JavaRootPath $javaRootPath
+    foreach ($jdkVersionToInstall in $jdkVersionsToInstall) {
+        $isDefaultVersion = $jdkVersionToInstall -eq $defaultVersion
+
+        Install-JavaJDK -VendorName $jdkVendorName -JDKVersion $jdkVersionToInstall
+
+        if ($isDefaultVendor) {
+            if ($isDefaultVersion) {
+                Set-JavaPath -Version $jdkVersionToInstall -VendorName $jdkVendorName -Default
+            } else {
+                Set-JavaPath -Version $jdkVersionToInstall -VendorName $jdkVendorName
+            }
+        }
     }
+}
+
+# Setup JAVA_HOME_13_X64 as this is the only Adopt version needed
+# There is no jdk 13 on Windows 2022
+if (-not (Test-IsWin22)) {
+    Set-JavaPath -Version "13" -VendorName "Adopt"
 }
 
 # Install Java tools
 # Force chocolatey to ignore dependencies on Ant and Maven or else they will download the Oracle JDK
 Choco-Install -PackageName ant -ArgumentList "-i"
-Choco-Install -PackageName maven -ArgumentList "-i", "--version=3.6.3"
+Choco-Install -PackageName maven -ArgumentList "-i"
 Choco-Install -PackageName gradle
 
 # Move maven variables to Machine. They may not be in the environment for this script so we need to read them from the registry.

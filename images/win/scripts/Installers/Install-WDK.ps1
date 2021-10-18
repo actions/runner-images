@@ -6,17 +6,21 @@
 # Requires Windows SDK with the same version number as the WDK
 if (Test-IsWin19)
 {
-    $winSdkUrl = "https://go.microsoft.com/fwlink/p/?linkid=2120843"
-    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2128854"
+    $winSdkUrl = "https://go.microsoft.com/fwlink/?linkid=2173743"
+    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2166289"
     $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"
     $VSver = "2019"
 }
-else
+elseif (Test-IsWin16)
 {
     $winSdkUrl = "https://go.microsoft.com/fwlink/p/?LinkID=2023014"
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2026156"
     $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\WDK.vsix"
     $VSver = "2017"
+}
+else
+{
+    throw "Invalid version of Visual Studio is found. Either 2017 or 2019 are required"
 }
 
 $argumentList = ("/features", "+", "/quiet")

@@ -1,22 +1,27 @@
 $os = Get-OSVersion
 
+Describe "RubyGems" {
+    $gemTestCases = Get-ToolsetValue -KeyPath "ruby.rubygems" | ForEach-Object {
+        @{gemName = $_}
+    }
+
+    if ($gemTestCases)
+    {
+        It "Gem <gemName> is installed" -TestCases $gemTestCases {
+            "gem list -i '^$gemName$'" | Should -MatchCommandOutput "true"
+        }
+    }
+}
+
 Describe "Bundler" {
     It "Bundler" {
         "bundler --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Nomad" -Skip:($os.IsBigSur) {
-    Context "Nomad" {
-        It "Nomad CLI" {
-            $result = Get-CommandResult "gem list"
-            $result.Output | Should -BeLike "*nomad-cli*"
-        }
-    }
-    Context "Nomad CLI" {
-        It "Nomad CLI IPA" {
-            "ipa --version" | Should -ReturnZeroExitCode
-        }
+Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey) {
+    It "Nomad shenzhen CLI" {
+        "ipa --version" | Should -ReturnZeroExitCode
     }
 }
 

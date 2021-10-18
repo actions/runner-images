@@ -15,7 +15,7 @@ if ([string]::IsNullOrEmpty($env:XCODE_INSTALL_USER) -or [string]::IsNullOrEmpty
 $env:SPACESHIP_SKIP_2FA_UPGRADE = 1
 
 $os = Get-OSVersion
-$xcodeVersions = Get-ToolsetValue "xcode.versions"
+[Array]$xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
 [Array]::Reverse($xcodeVersions)
 $threadCount = "5"
@@ -36,15 +36,19 @@ if ($os.IsLessThanCatalina) {
     $latestXcodeVersion = $xcodeVersions | Select-Object -Last 1 -ExpandProperty link
     Install-XcodeAdditionalPackages -Version $latestXcodeVersion
 }
-$xcodeVersions | ForEach-Object { 
-    Invoke-XcodeRunFirstLaunch -Version $_.link 
+$xcodeVersions | ForEach-Object {
+    Invoke-XcodeRunFirstLaunch -Version $_.link
 }
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
 Write-Host "Configuring Xcode symlinks..."
 $xcodeVersions | ForEach-Object {
     Build-XcodeSymlinks -Version $_.link -Symlinks $_.symlinks
-    Build-ProvisionatorSymlink -Version $_.link
+
+    # Skip creating symlink to install multiple releases of the same Xcode version side-by-side
+    if ($_."skip-symlink" -ne "true") {
+        Build-ProvisionatorSymlink -Version $_.link
+    }
 }
 
 Write-Host "Setting default Xcode to $defaultXcode"

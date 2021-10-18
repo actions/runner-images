@@ -9,8 +9,8 @@ Describe ".NET" {
     }
 }
 
-Describe "GCC" -Skip:($os.IsHighSierra) {
-    $testCases = @("8", "9", "10") | ForEach-Object { @{Version = $_} }
+Describe "GCC" -Skip:($os.IsHighSierra -or $os.IsMonterey) {
+    $testCases = Get-ToolsetValue -KeyPath gcc.versions | ForEach-Object { @{Version = $_} }
 
     It "GCC <Version>" -TestCases $testCases {
         param (
@@ -33,7 +33,7 @@ Describe "GCC" -Skip:($os.IsHighSierra) {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsHighSierra -or $os.IsMojave) {
+Describe "vcpkg" -Skip:($os.IsHighSierra -or $os.IsMojave -or $os.IsMonterey) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -58,7 +58,7 @@ Describe "AzCopy" {
     }
 }
 
-Describe "Miniconda" {
+Describe "Miniconda" -Skip:($os.IsMonterey) {
     It "Conda" {
         Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
         $condaBinPath = Join-Path $env:CONDA "bin" "conda"
@@ -84,5 +84,23 @@ Describe "VSMac" {
         $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
         $vsPath | Should -Exist
         $vstoolPath | Should -Exist
+    }
+}
+
+Describe "Swig" {
+    It "Swig" {
+        "swig -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Bicep" {
+    It "Bicep" {
+        "bicep --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Go" {
+    It "Go" {
+        "go version" | Should -ReturnZeroExitCode
     }
 }

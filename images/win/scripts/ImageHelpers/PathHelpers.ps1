@@ -1,68 +1,48 @@
-function Test-MachinePath{
-    [CmdletBinding()]
+function Get-SystemVariable {
+    param(
+        [string]$SystemVariable
+    )
+    
+    [System.Environment]::GetEnvironmentVariable($SystemVariable, "Machine")
+}
+
+function Set-SystemVariable {
+    param(
+        [string]$SystemVariable,
+        [string]$Value
+    )
+    
+    [System.Environment]::SetEnvironmentVariable($SystemVariable, $Value, "Machine")
+    Get-SystemVariable $SystemVariable
+}
+
+function Get-MachinePath {
+    Get-SystemVariable PATH
+}
+
+function Set-MachinePath {
+    param(
+        [string]$NewPath
+    )
+    
+    Set-SystemVariable PATH $NewPath
+}
+
+function Test-MachinePath {
     param(
         [string]$PathItem
     )
 
-    $currentPath = Get-MachinePath
-
-    $pathItems = $currentPath.Split(';')
-
-    if($pathItems.Contains($PathItem))
-    {
-        return $true
-    }
-    else
-    {
-        return $false
-    }
+    $pathItems = (Get-MachinePath).Split(';')
+    $pathItems.Contains($PathItem)
 }
 
-function Set-MachinePath{
-    [CmdletBinding()]
-    param(
-        [string]$NewPath
-    )
-    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name Path -Value $NewPath
-    return $NewPath
-}
-
-function Add-MachinePathItem
-{
-    [CmdletBinding()]
+function Add-MachinePathItem {
     param(
         [string]$PathItem
     )
 
     $currentPath = Get-MachinePath
     $newPath = $PathItem + ';' + $currentPath
-    return Set-MachinePath -NewPath $newPath
-}
-
-function Get-MachinePath{
-    [CmdletBinding()]
-    param(
-
-    )
-    $currentPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).Path
-    return $currentPath
-}
-
-function Get-SystemVariable{
-    [CmdletBinding()]
-    param(
-        [string]$SystemVariable
-    )
-    $currentPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name $SystemVariable).$SystemVariable
-    return $currentPath
-}
-
-function Set-SystemVariable{
-    [CmdletBinding()]
-    param(
-        [string]$SystemVariable,
-        [string]$Value
-    )
-    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name $SystemVariable -Value $Value
-    return $Value
+    Set-MachinePath -NewPath $newPath
 }
