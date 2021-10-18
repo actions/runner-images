@@ -32,8 +32,7 @@ function Install-PyPy
     Extract-7Zip -Path $packagePath -DestinationPath $env:Temp
 
     # Get Python version from binaries
-    $pypyApp = Get-ChildItem -Path "$tempFolder\pypy*.exe" | Where-Object Name -match "pypy(\d+)?.exe"
-    $pypyName = $pypyApp.Name
+    $pypyApp = Get-ChildItem -Path "$tempFolder\pypy*.exe" | Where-Object Name -match "pypy(\d+)?.exe" | Select-Object -First 1
     $pythonVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(sys.version_info[0],sys.version_info[1],sys.version_info[2]))"
 
     $pypyFullVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))"
@@ -59,7 +58,12 @@ function Install-PyPy
         Move-Item -Path $tempFolder -Destination $pypyArchPath | Out-Null
 
         Write-Host "Install PyPy '${pythonVersion}' in '${pypyArchPath}'"
-        cmd.exe /c "cd /d $pypyArchPath && mklink python.exe $pypyName && python.exe -m ensurepip && python.exe -m pip install --upgrade pip"
+        if (Test-Path "$pypyArchPath\python.exe") {
+            cmd.exe /c "cd /d $pypyArchPath && python.exe -m ensurepip && python.exe -m pip install --upgrade pip"
+        } else {
+            $pypyName = $pypyApp.Name
+            cmd.exe /c "cd /d $pypyArchPath && mklink python.exe $pypyName && python.exe -m ensurepip && python.exe -m pip install --upgrade pip"
+        }
 
         if ($LASTEXITCODE -ne 0)
         {
