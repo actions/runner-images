@@ -274,6 +274,9 @@
     "rubygems": [
         {"name": "fastlane"}
     ],
+    "selenium": {
+        "version": "3"
+    },
     "node_modules": [
         {
             "name": "grunt",

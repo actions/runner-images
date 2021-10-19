@@ -274,6 +274,9 @@
             "8.0"
         ]
     },
+    "selenium": {
+        "version": "3"
+    },
     "rubygems": [],
     "node_modules": [
         {
