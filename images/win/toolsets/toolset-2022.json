@@ -235,6 +235,9 @@
             "cmd": "yamllint --version"
         }
     ],
+    "selenium": {
+        "version": "3"
+    },
     "npm": {
         "global_packages": [
             { "name": "yarn", "test": "yarn --version" },
