@@ -30,7 +30,6 @@ body:
     attributes:
       label: Virtual environments affected
       options:
-        - label: Ubuntu 16.04
         - label: Ubuntu 18.04
         - label: Ubuntu 20.04
         - label: macOS 10.15
