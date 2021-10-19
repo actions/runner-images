@@ -48,7 +48,6 @@ You can also track upcoming changes using the [awaiting-deployment](https://gith
 
 [ubuntu-20.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
 [ubuntu-18.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md
-[ubuntu-16.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1604-README.md
 [windows-2022]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2022-Readme.md
 [windows-2019]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
 [windows-2016]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
