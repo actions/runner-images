@@ -24,13 +24,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: PowerShell script
-        # You may pin to the exact commit or the version.
-        # uses: Amadevus/pwsh-script@1f1751bbf3d1a92127bfc6c32403283625880cbf
-        uses: Amadevus/pwsh-script@v2.0.1
-        with:
-          # PowerShell script to execute in Actions-hydrated context
-          script: virtual-environments/images.CI/linux-and-win/build-image.ps1
+      - run: |
+          ./images.CI/linux-and-win/build-image.ps1
+        shell: pwsh  
 
       
       
