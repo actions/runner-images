@@ -11,11 +11,10 @@ New-Item -ItemType directory -Path $seleniumDirectory
 
 # Temporarily download Selenium 3.*, since 4.* can contain some breaking changes
 $seleniumMajorVersion = (Get-ToolsetContent).selenium.version
-$json = (Invoke-RestMethod -Uri "https://api.github.com/repos/SeleniumHQ/selenium/releases?per_page=100")
-$seleniumFullVersion = $json.Where{ -not $_.prerelease}.tag_name | `
-                             ForEach-Object {$_.Split("-")[1]} | `
-                             Sort-Object {[Version]$_} -Descending | `
-                             Where-Object {$_ -like "$seleniumMajorVersion.*"} | `
+$json = Invoke-RestMethod -Uri "https://api.github.com/repos/SeleniumHQ/selenium/releases?per_page=100"
+$seleniumFullVersion = $json.Where{-not $_.prerelease}.tag_name |
+                             ForEach-Object {$_.Split("-")[1]} |
+                             Where-Object {$_ -like "$seleniumMajorVersion.*"} |
                              Select-Object -First 1
 [System.String] $seleniumDownloadUrl = $json.assets.browser_download_url -match "selenium-server-standalone-$seleniumFullVersion.jar"
 
