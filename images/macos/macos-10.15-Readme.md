@@ -7,11 +7,11 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1417)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20211011.2
+- Image Version: 20211016.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.413 5.0.102 5.0.202 5.0.302 5.0.401
+- .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.414 5.0.102 5.0.202 5.0.302 5.0.402
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is default
 - Clang/LLVM 13.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
@@ -25,9 +25,9 @@
 - julia 1.6.3
 - Kotlin 1.5.31-release-548
 - MSBuild 16.6.0.15801 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v14.18.0
+- Node.js v14.18.1
 - NVM 0.39.0
-- NVM - Cached node versions: v10.24.1 v12.22.6 v14.18.0
+- NVM - Cached node versions: v10.24.1 v12.22.7 v14.18.1
 - Perl 5.34.0
 - PHP 8.0.11
 - Python 2.7.18
@@ -48,7 +48,7 @@
 - Pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.29
-- Vcpkg 2021 (build from master \<1d4128f>)
+- Vcpkg 2021 (build from master \<699c877>)
 - Yarn 1.22.15
 
 #### Environment variables
@@ -72,13 +72,13 @@
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.79.1
 - Git LFS: 3.0.1
-- Git: 2.33.0
-- GitHub CLI: 2.0.0
+- Git: 2.33.1
+- GitHub CLI: 2.1.0
 - GNU parallel 20210922
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.2
 - gpg (GnuPG) 2.3.2
-- helm v3.7.0+geeac838
+- helm v3.7.1+g1d11fcb
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v5.0.3
@@ -99,18 +99,18 @@
 ### Tools
 - Aliyun CLI 3.0.94
 - App Center CLI 2.10.3
-- AWS CLI 2.2.44
+- AWS CLI 2.2.46
 - AWS SAM CLI 1.33.0
 - AWS Session Manager CLI 1.2.245.0
-- Azure CLI 2.28.1
-- Bicep CLI 0.4.613
+- Azure CLI 2.29.0
+- Bicep CLI 0.4.1008
 - Cabal 3.4.1.0
 - Cmake 3.21.3
-- Fastlane 2.195.0
+- Fastlane 2.196.0
 - GHC 9.0.1
 - GHCup 0.1.17.2
 - Stack 2.7.3
-- SwiftFormat 0.48.15
+- SwiftFormat 0.48.16
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -123,8 +123,8 @@
 - SafariDriver 14.1.2 (15611.3.10.1.7)
 - Google Chrome 94.0.4606.81 
 - ChromeDriver 94.0.4606.61
-- Microsoft Edge 94.0.992.38 
-- MSEdgeDriver 94.0.992.38
+- Microsoft Edge 94.0.992.50 
+- MSEdgeDriver 94.0.992.50
 - Mozilla Firefox 93.0
 - geckodriver 0.30.0
 
@@ -169,16 +169,17 @@
 
 #### Node.js
 - 10.24.1
-- 12.22.6
-- 14.18.0
+- 12.22.7
+- 14.18.1
 
 #### Go
-- 1.13.15
-- 1.14.15
-- 1.15.15
-- 1.16.9
-- 1.17.2
-
+| Version | Architecture | Environment Variable |
+| ------- | ------------ | -------------------- |
+| 1.13.15 | x64          | GOROOT_1_13_X64      |
+| 1.14.15 | x64          | GOROOT_1_14_X64      |
+| 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.9  | x64          | GOROOT_1_16_X64      |
+| 1.17.2  | x64          | GOROOT_1_17_X64      |
 ### Rust Tools
 - Cargo 1.55.0
 - Rust 1.55.0
@@ -194,7 +195,7 @@
 - Rustfmt 1.4.37-stable
 
 ### PowerShell Tools
-- PowerShell 7.1.4
+- PowerShell 7.1.5
 
 #### PowerShell Modules
 | Module           | Version |
@@ -212,7 +213,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.10.8
+- 8.10.11.8
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
