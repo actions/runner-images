@@ -26,10 +26,17 @@ function Install-PyPy
         [String]$Architecture
     )
 
+    # Create PyPy toolcache folder
+    $pypyToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "PyPy"
+    if (-not (Test-Path $pypyToolcachePath)) {
+        Write-Host "Create PyPy toolcache folder"
+        New-Item -ItemType Directory -Path $pypyToolcachePath | Out-Null
+    }
+
     # Expand archive with binaries
     $packageName = [IO.Path]::GetFileNameWithoutExtension((Split-Path -Path $packagePath -Leaf))
-    $tempFolder = Join-Path -Path $env:Temp -ChildPath $packageName
-    Extract-7Zip -Path $packagePath -DestinationPath $env:Temp
+    $tempFolder = Join-Path -Path $pypyToolcachePath -ChildPath $packageName
+    Extract-7Zip -Path $packagePath -DestinationPath $pypyToolcachePath
 
     # Get Python version from binaries
     $pypyApp = Get-ChildItem -Path "$tempFolder\pypy*.exe" | Where-Object Name -match "pypy(\d+)?.exe" | Select-Object -First 1
@@ -37,19 +44,13 @@ function Install-PyPy
 
     $pypyFullVersion = & $pypyApp -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))"
     Write-Host "Put '$pypyFullVersion' to PYPY_VERSION file"
-    New-Item -Path "$tempFolder\PYPY_VERSION" -Value $pypyFullVersion
+    New-Item -Path "$tempFolder\PYPY_VERSION" -Value $pypyFullVersion | Out-Null
 
     if ($pythonVersion)
     {
         Write-Host "Installing PyPy $pythonVersion"
-        $pypyToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "PyPy"
         $pypyVersionPath = Join-Path -Path $pypyToolcachePath -ChildPath $pythonVersion
         $pypyArchPath = Join-Path -Path $pypyVersionPath -ChildPath $architecture
-
-        if (-not (Test-Path $pypyToolcachePath)) {
-            Write-Host "Create PyPy toolcache folder"
-            New-Item -ItemType Directory -Path $pypyToolcachePath | Out-Null
-        }
 
         Write-Host "Create PyPy '${pythonVersion}' folder in '${pypyVersionPath}'"
         New-Item -ItemType Directory -Path $pypyVersionPath -Force | Out-Null
