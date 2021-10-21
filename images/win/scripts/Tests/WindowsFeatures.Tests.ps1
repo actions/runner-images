@@ -51,7 +51,7 @@ Describe "GDIProcessHandleQuota" {
     }
 }
 
-Describe "Test Signed Drivers" -Skip:(-not (Test-IsWin22)) {
+Describe "Test Signed Drivers" -Skip:(Test-IsWin16) {
     It "bcdedit testsigning should be Yes"{
         "$(bcdedit)" | Should -Match "testsigning\s+Yes"
     }
