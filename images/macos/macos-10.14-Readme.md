@@ -1,18 +1,20 @@
 | Announcements |
 |-|
+| [[macOS] Xcode 12.5 will be removed from Big Sur on October, 18](https://github.com/actions/virtual-environments/issues/4183) |
+| [[macOS] Default Xcode on Big Sur image will be set to Xcode 13.0 on October, 18](https://github.com/actions/virtual-environments/issues/4180) |
 | [macOS-latest workflows will use macOS-11](https://github.com/actions/virtual-environments/issues/4060) |
 ***
 # macOS 10.14 info
 - System Version: macOS 10.14.6 (18G9323)
 - Kernel Version: Darwin 18.7.0
-- Image Version: 20210918.1
+- Image Version: 20211016.1
 
 ## Installed Software
 ### Language and Runtime
 - .NET SDK 2.1.302 2.1.403 2.1.507
 - Bash 3.2.57(1)-release
 - Clang/LLVM 11.0.0 is default
-- Clang/LLVM 12.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
+- Clang/LLVM 13.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - gcc-9 (Homebrew GCC 9.4.0) 9.4.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
 - gcc-11 (Homebrew GCC 11.2.0) 11.2.0 - available by `gcc-11` alias
@@ -20,33 +22,33 @@
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
-- julia 1.6.2
-- Kotlin 1.5.30-release-407
+- julia 1.6.3
+- Kotlin 1.5.31-release-548
 - MSBuild 15.7.224.30163 (from /Library/Frameworks/Mono.framework/Versions/5.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v8.17.0
-- NVM 0.38.0
-- NVM - Cached node versions: v10.24.1 v12.22.6 v14.17.6
+- NVM 0.39.0
+- NVM - Cached node versions: v10.24.1 v12.22.7 v14.18.1
 - Perl 5.34.0
-- PHP 8.0.10
+- PHP 8.0.11
 - Python 2.7.18
 - Python 3.9.7
 - R 4.1.1
 - Ruby 2.7.4p191
 
 ### Package Management
-- Bundler version 2.2.27
+- Bundler version 2.2.29
 - Carthage 0.38.0
 - CocoaPods 1.11.2
-- Composer 2.1.8
-- Homebrew 3.2.12
+- Composer 2.1.9
+- Homebrew 3.2.16
 - Miniconda 4.10.3
 - NPM 3.10.10
 - NuGet 4.7.0.5148
 - Pip 20.3.4 (python 2.7)
 - Pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
-- RubyGems 3.2.27
-- Yarn 1.22.5
+- RubyGems 3.2.29
+- Yarn 1.22.15
 
 #### Environment variables
 | Name                    | Value                |
@@ -56,33 +58,34 @@
 
 ### Project Management
 - Apache Ant(TM) 1.10.11
-- Apache Maven 3.8.2
+- Apache Maven 3.8.3
 - Gradle 7.2
+- Sbt 1.5.5
 
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
-- azcopy 10.12.1
+- azcopy 10.12.2
 - bazel 3.7.1
 - bazelisk 1.10.1
 - bsdtar 2.8.3 - available by 'tar' alias
-- Curl 7.79.0
-- Git LFS: 2.13.3
-- Git: 2.33.0
-- GitHub CLI: 2.0.0
-- GNU parallel 20210822
+- Curl 7.79.1
+- Git LFS: 3.0.1
+- Git: 2.33.1
+- GitHub CLI: 2.1.0
+- GNU parallel 20210922
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.2
 - gpg (GnuPG) 2.3.2
-- helm v3.7.0+geeac838
+- helm v3.7.1+g1d11fcb
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v5.0.2
-- mongod v5.0.2
-- OpenSSL 1.1.1l  24 Aug 2021 `(/usr/local/opt/openssl -> /usr/local/Cellar/openssl@1.1/1.1.1l)`
-- Packer 1.7.5
-- PostgreSQL 13.4
-- psql (PostgreSQL) 13.4
+- mongo v5.0.3
+- mongod v5.0.3
+- OpenSSL 1.1.1l  24 Aug 2021 `(/usr/local/opt/openssl@1.1 -> /usr/local/Cellar/openssl@1.1/1.1.1l_1)`
+- Packer 1.7.6
+- PostgreSQL 14.0
+- psql (PostgreSQL) 14.0
 - Sox 14.4.2
 - Subversion (SVN) 1.14.1
 - Switchaudio-osx 1.1.0
@@ -92,20 +95,20 @@
 
 
 ### Tools
-- Aliyun CLI 3.0.90
+- Aliyun CLI 3.0.94
 - App Center CLI 1.2.2
-- AWS CLI 2.2.39
-- AWS SAM CLI 1.31.0
+- AWS CLI 2.2.46
+- AWS SAM CLI 1.33.0
 - AWS Session Manager CLI 1.2.245.0
-- Azure CLI 2.28.0
-- Bicep CLI 0.4.613
-- Cabal 3.4.0.0
-- Cmake 3.21.2
-- Fastlane 2.194.0
+- Azure CLI 2.29.0
+- Bicep CLI 0.4.1008
+- Cabal 3.4.1.0
+- Cmake 3.21.3
+- Fastlane 2.196.0
 - GHC 9.0.1
-- GHCup v0.1.16.2
+- GHCup 0.1.17.2
 - Stack 2.7.3
-- SwiftFormat 0.48.11
+- SwiftFormat 0.48.16
 - Swig 4.0.2
 - Xcode Command Line Tools 10.3.0.0.1.1562985497
 
@@ -116,28 +119,29 @@
 ### Browsers
 - Safari 14.1.2 (14611.3.10.1.5)
 - SafariDriver 14.1.2 (14611.3.10.1.5)
-- Google Chrome 93.0.4577.82 
-- ChromeDriver 93.0.4577.63
-- Microsoft Edge 93.0.961.52 
-- MSEdgeDriver 93.0.961.52
-- Mozilla Firefox 92.0
-- geckodriver 0.29.1
+- Google Chrome 94.0.4606.81 
+- ChromeDriver 94.0.4606.61
+- Microsoft Edge 94.0.992.50 
+- MSEdgeDriver 94.0.992.50
+- Mozilla Firefox 93.0
+- geckodriver 0.30.0
 
 #### Environment variables
 | Name            | Value                                         |
 | --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/93.0.4577.63 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/94.0.4606.61 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
 ### Java
-| Version             | Vendor        | Environment Variable |
-| ------------------- | ------------- | -------------------- |
-| 8.0.302+8 (default) | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.12+7           | Adopt OpenJDK | JAVA_HOME_11_X64     |
-| 12.0.2+10.3         | Adopt OpenJDK | JAVA_HOME_12_X64     |
-| 13.0.2+8.1          | Adopt OpenJDK | JAVA_HOME_13_X64     |
-| 14.0.2+12           | Adopt OpenJDK | JAVA_HOME_14_X64     |
+| Version             | Vendor          | Environment Variable |
+| ------------------- | --------------- | -------------------- |
+| 8.0.302+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.12+7           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 12.0.2+10.3         | Adopt OpenJDK   | JAVA_HOME_12_X64     |
+| 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
+| 14.0.2+12           | Adopt OpenJDK   | JAVA_HOME_14_X64     |
+| 17.0.0+35           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Cached Tools
 #### Ruby
@@ -154,6 +158,7 @@
 - 3.7.12
 - 3.8.12
 - 3.9.7
+- 3.10.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.5]
@@ -161,16 +166,17 @@
 
 #### Node.js
 - 10.24.1
-- 12.22.6
-- 14.17.6
+- 12.22.7
+- 14.18.1
 
 #### Go
-- 1.13.15
-- 1.14.15
-- 1.15.15
-- 1.16.8
-- 1.17.1
-
+| Version | Architecture | Environment Variable |
+| ------- | ------------ | -------------------- |
+| 1.13.15 | x64          | GOROOT_1_13_X64      |
+| 1.14.15 | x64          | GOROOT_1_14_X64      |
+| 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.9  | x64          | GOROOT_1_16_X64      |
+| 1.17.2  | x64          | GOROOT_1_17_X64      |
 ### Rust Tools
 - Cargo 1.55.0
 - Rust 1.55.0
@@ -186,14 +192,14 @@
 - Rustfmt 1.4.37-stable
 
 ### PowerShell Tools
-- PowerShell 7.1.4
+- PowerShell 7.1.5
 
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
 | Az               | 6.1.0   |
 | MarkdownPS       | 1.9     |
-| Pester           | 5.3.0   |
+| Pester           | 5.3.1   |
 | PSScriptAnalyzer | 1.20.0  |
 
 ### Xamarin
