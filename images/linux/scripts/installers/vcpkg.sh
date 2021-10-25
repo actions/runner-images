@@ -4,9 +4,6 @@
 ##  Desc:  Installs vcpkg
 ################################################################################
 
-# Source the helpers for use with the script
-source $HELPER_SCRIPTS/os.sh
-
 # Set env variable for vcpkg
 VCPKG_INSTALLATION_ROOT=/usr/local/share/vcpkg
 echo "VCPKG_INSTALLATION_ROOT=${VCPKG_INSTALLATION_ROOT}" | tee -a /etc/environment

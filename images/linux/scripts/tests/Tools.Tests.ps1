@@ -289,12 +289,6 @@ Describe "Leiningen" {
     }
 }
 
-Describe "Mercurial" {
-    It "mercurial" {
-        "hg --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Conda" {
     It "conda" {
         "conda --version" | Should -ReturnZeroExitCode

@@ -70,7 +70,7 @@ $packageManagementList = @(
         (Get-PipxVersion),
         (Get-PipVersion),
         (Get-Pip3Version),
-        (Get-VcpkgVersion)        
+        (Get-VcpkgVersion)
 )
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
