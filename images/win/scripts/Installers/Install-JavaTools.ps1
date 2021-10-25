@@ -135,7 +135,7 @@ Choco-Install -PackageName maven -ArgumentList "-i"
 Choco-Install -PackageName gradle
 
 # Add maven env variables to Machine
-$m2 = Split-Path (Get-Command mvn).Path
+[string]$m2 = (Get-MachinePath).Split(";") -match "maven"
 $maven_opts = '-Xms256m'
 
 $m2_repo = 'C:\ProgramData\m2'
