@@ -67,16 +67,11 @@ $packageManagementList = @(
         (Get-HelmVersion),
         (Get-NpmVersion),
         (Get-YarnVersion),
+        (Get-PipxVersion),
         (Get-PipVersion),
         (Get-Pip3Version),
-        (Get-VcpkgVersion)
+        (Get-VcpkgVersion)        
 )
-
-if (-not (Test-IsUbuntu16)) {
-    $packageManagementList += @(
-        (Get-PipxVersion)
-    )
-}
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
 $markdown += New-MDHeader "Environment variables" -Level 4
@@ -105,6 +100,8 @@ $toolsList = @(
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
+    (Get-BicepVersion),
+    (Get-BuildahVersion),
     (Get-CodeQLBundleVersion),
     (Get-CMakeVersion),
     (Get-DockerMobyClientVersion),
@@ -133,22 +130,15 @@ $toolsList = @(
     (Get-OpensslVersion),
     (Get-PackerVersion),
     (Get-PhantomJSVersion),
+    (Get-PodManVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
+    (Get-SkopeoVersion),
     (Get-SphinxVersion),
     (Get-TerraformVersion),
+    (Get-YamllintVersion),
     (Get-ZstdVersion)
 )
-
-if (-not (Test-IsUbuntu16)) {
-    $toolsList += @(
-        (Get-BicepVersion),
-        (Get-BuildahVersion),
-        (Get-PodManVersion),
-        (Get-SkopeoVersion),
-        (Get-YamllintVersion)
-    )
-}
 
 if (Test-IsUbuntu20) {
     $toolsList += (Get-FastlaneVersion)
@@ -184,9 +174,7 @@ if (Test-IsUbuntu20) {
     $markdown += New-MDNewLine
 }
 
-if (-not (Test-IsUbuntu16)) {
-    $markdown += Build-PHPSection
-}
+$markdown += Build-PHPSection
 
 $markdown += New-MDHeader "Haskell" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(

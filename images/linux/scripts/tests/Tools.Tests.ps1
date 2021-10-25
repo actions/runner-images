@@ -8,7 +8,7 @@ Describe "azcopy" {
     }
 }
 
-Describe "Bicep" -Skip:(Test-IsUbuntu16) {
+Describe "Bicep" {
     It "Bicep" {
         "bicep --version" | Should -ReturnZeroExitCode
     }
@@ -329,7 +329,7 @@ Describe "GraalVM" -Skip:(-not (Test-IsUbuntu20)) {
     }
 }
 
-Describe "Containers" -Skip:(Test-IsUbuntu16) {
+Describe "Containers" {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {
