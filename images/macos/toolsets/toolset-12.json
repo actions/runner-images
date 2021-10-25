@@ -155,6 +155,9 @@
             "cmd": "yamllint --version"
         }
     ],
+    "selenium": {
+        "version": "3"
+    },
     "dotnet": {
         "versions": [
             "3.1",

@@ -182,3 +182,9 @@ Describe "sbt" {
         "sbt -version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Selenium" {
+    It "Selenium Server 'selenium-server-standalone.jar' is installed" {
+        "usr/local/Cellar/selenium-server-standalone.jar" | Should -Exist
+    }
+}

@@ -310,6 +310,9 @@
             "cmd": "yamllint --version"
         }
     ],
+    "selenium": {
+        "version": "3"
+    },
     "dotnet": {
         "versions": [
             "2.1",
