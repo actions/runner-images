@@ -134,15 +134,12 @@ Choco-Install -PackageName ant -ArgumentList "-i"
 Choco-Install -PackageName maven -ArgumentList "-i"
 Choco-Install -PackageName gradle
 
-# Move maven variables to Machine. They may not be in the environment for this script so we need to read them from the registry.
-$userEnvironmentKey = 'Registry::HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment'
-
-$m2_home = (Get-ItemProperty -Path $userEnvironmentKey -Name M2_HOME).M2_HOME
-$m2 = $m2_home + '\bin'
+# Add maven env variables to Machine
+[string]$m2 = (Get-MachinePath).Split(";") -match "maven"
 $maven_opts = '-Xms256m'
 
 $m2_repo = 'C:\ProgramData\m2'
-New-Item -Path $m2_repo -ItemType Directory -Force
+New-Item -Path $m2_repo -ItemType Directory -Force | Out-Null
 
 setx M2 $m2 /M
 setx M2_REPO $m2_repo /M
