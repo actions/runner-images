@@ -12,8 +12,7 @@ SELENIUM_MAJOR_VERSION=$(get_toolset_value '.selenium.version')
 SELENIUM_JAR_NAME="selenium-server-standalone.jar"
 SELENIUM_JAR_PATH="/usr/share/java"
 json=$(curl -s "https://api.github.com/repos/SeleniumHQ/selenium/releases?per_page=100")
-tag_name=$(echo $json | jq -r ".[] | select(.prerelease==false).tag_name" | grep "selenium-${SELENIUM_MAJOR_VERSION}.*" | head -1)
-SELENIUM_DOWNLOAD_URL=$(echo $json | jq -r ".[] | select(.tag_name==\"${tag_name}\").assets[].browser_download_url | select(contains(\"selenium-server-standalone\") and endswith(\".jar\"))")
+SELENIUM_DOWNLOAD_URL=$(echo $json | jq -r ".[] | select(.prerelease==false).assets[].browser_download_url | select(contains(\"selenium-server-standalone-${SELENIUM_MAJOR_VERSION}\") and endswith(\".jar\"))" | head -1)
 download_with_retries $SELENIUM_DOWNLOAD_URL $SELENIUM_JAR_PATH $SELENIUM_JAR_NAME
 
 # Add SELENIUM_JAR_PATH environment variable
