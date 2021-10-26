@@ -223,6 +223,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzureCosmosDbEmulator.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Mercurial.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Zstd.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-NSIS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Vcpkg.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Bazel.ps1",
