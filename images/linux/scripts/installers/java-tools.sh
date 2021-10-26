@@ -16,7 +16,7 @@ JAVA_TOOLCACHE_PATH="$AGENT_TOOLSDIRECTORY/Java_Adopt_jdk"
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
 add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 
-if isUbuntu16 || isUbuntu18 ; then
+if isUbuntu18 ; then
     # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
     apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
@@ -46,12 +46,6 @@ for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
 done
 
 # Set Default Java version
-if isUbuntu16; then
-    # issue: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825987
-    # stackoverflow: https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
-    sed -i 's/(hl|jre|jdk|plugin|DUMMY) /(hl|jre|jdk|jdkhl|plugin|DUMMY) /g' /usr/sbin/update-java-alternatives
-fi
-
 update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
 
 echo "JAVA_HOME=/usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64" | tee -a /etc/environment
