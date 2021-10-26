@@ -22,9 +22,7 @@ installOpenJDK() {
     local VENDOR_NAME=$2
 
     # Get link for Java binaries and Java version
-    if [[ ${VENDOR_NAME} == "Temurin-Hotspot" ]]; then
-        assetUrl=$(curl -s "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
-    elif [[ ${VENDOR_NAME} == "Adopt" ]]; then
+    if [[ ${VENDOR_NAME} == "Temurin-Hotspot" ]] || [[ ${VENDOR_NAME} == "Adopt" ]] ; then
         assetUrl=$(curl -s "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
     else
         echo "${VENDOR_NAME} is invalid, valid names are: Temurin-Hotspot and Adopt"
@@ -42,7 +40,7 @@ installOpenJDK() {
 
     # Download and extract Java binaries
     download_with_retries ${archivePath} /tmp OpenJDK-${VENDOR_NAME}-${fullVersion}.tar.gz
-    
+
     echo "Creating ${javaToolcacheVersionArchPath} directory"
     mkdir -p ${javaToolcacheVersionArchPath}
 
