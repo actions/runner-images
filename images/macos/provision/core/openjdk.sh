@@ -25,7 +25,7 @@ installOpenJDK() {
     if [[ ${VENDOR_NAME} == "Temurin-Hotspot" ]]; then
         assetUrl=$(curl -s "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
     elif [[ ${VENDOR_NAME} == "Adopt" ]]; then
-        assetUrl=$(curl -s "https://api.adoptopenjdk.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
+        assetUrl=$(curl -s "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
     else
         echo "${VENDOR_NAME} is invalid, valid names are: Temurin-Hotspot and Adopt"
         exit 1
