@@ -4,9 +4,8 @@ enum ImageType {
     Windows2016 = 0
     Windows2019 = 1
     Windows2022 = 2
-    Ubuntu1604 = 3
-    Ubuntu1804 = 4
-    Ubuntu2004 = 5
+    Ubuntu1804 = 3
+    Ubuntu2004 = 4
 }
 
 Function Get-PackerTemplatePath {
@@ -26,9 +25,6 @@ Function Get-PackerTemplatePath {
         }
         ([ImageType]::Windows2022) {
             $relativeTemplatePath = Join-Path "win" "windows2022.json"
-        }
-        ([ImageType]::Ubuntu1604) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu1604.json"
         }
         ([ImageType]::Ubuntu1804) {
             $relativeTemplatePath = Join-Path "linux" "ubuntu1804.json"
@@ -76,7 +72,7 @@ Function GenerateResourcesAndImage {
             The root path of the image generation repository source.
 
         .PARAMETER ImageType
-            The type of the image being generated. Valid options are: {"Windows2016", "Windows2019", "Ubuntu1604", "Ubuntu1804", "Ubuntu2004"}.
+            The type of the image being generated. Valid options are: {"Windows2016", "Windows2019", "Windows2022", "Ubuntu1804", "Ubuntu2004"}.
 
         .PARAMETER AzureLocation
             The location of the resources being created in Azure. For example "East US".
@@ -98,7 +94,7 @@ Function GenerateResourcesAndImage {
             This parameter cannot be used in combination with the virtual_network_name packer parameter.
 
         .EXAMPLE
-            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1604 -AzureLocation "East US"
+            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1804 -AzureLocation "East US"
     #>
     param (
         [Parameter(Mandatory = $True)]

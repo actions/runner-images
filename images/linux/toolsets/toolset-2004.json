@@ -145,6 +145,7 @@
             "libxkbfile-dev",
             "libxss1",
             "locales",
+            "mercurial",
             "openssh-client",
             "p7zip-rar",
             "pkg-config",

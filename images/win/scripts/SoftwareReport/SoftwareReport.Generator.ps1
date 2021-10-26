@@ -111,6 +111,7 @@ $toolsList = @(
     (Get-MercurialVersion),
     (Get-MinGWVersion),
     (Get-NewmanVersion),
+    (Get-NSISVersion),
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
     (Get-PulumiVersion),
@@ -125,7 +126,6 @@ $toolsList = @(
 )
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
-        (Get-NSISVersion),
         (Get-GoogleCloudSDKVersion)
     )
 }
