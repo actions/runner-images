@@ -268,7 +268,8 @@
             "nomad-cli",
             "xcpretty",
             "bundler",
-            "fastlane"
+            "fastlane",
+            "jazzy"
         ]
     },
     "go": {
