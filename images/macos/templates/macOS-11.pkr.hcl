@@ -1,10 +1,34 @@
-variable "source_vm_name" { type = string }
-variable "source_vm_tag" { type = string }
-variable "build_id" { type = string }
-variable "vm_username" { type = string }
-variable "vm_password" { type = string }
-variable "xcode_install_user" { type = string }
-variable "xcode_install_password" { type = string }
+variable "source_vm_name" {
+  type = string
+}
+
+variable "source_vm_tag" {
+  type = string
+}
+
+variable "build_id" {
+  type = string
+}
+
+variable "vm_username" {
+  type = string
+  sensitive = true
+}
+
+variable "vm_password" {
+  type = string
+  sensitive = true
+}
+
+variable "xcode_install_user" {
+  type = string
+  sensitive = true
+}
+
+variable "xcode_install_password" {
+  type = string
+  sensitive = true
+}
 
 variable "vcpu_count" {
   type = string
