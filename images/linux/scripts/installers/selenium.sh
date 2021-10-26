@@ -7,7 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
-# Temporarily download Selenium 3.* since 4.* can contain some breaking changes
+# Download Selenium
 SELENIUM_MAJOR_VERSION=$(get_toolset_value '.selenium.version')
 SELENIUM_JAR_NAME="selenium-server-standalone.jar"
 SELENIUM_JAR_PATH="/usr/share/java"
