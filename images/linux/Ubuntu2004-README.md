@@ -4,7 +4,7 @@
 ***
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.8.0-1042-azure
-- Image Version: 20211011.1
+- Image Version: 20211017.0
 
 ## Installed Software
 ### Language and Runtime
@@ -19,7 +19,7 @@
 - Kotlin 1.5.31-release-548
 - Mono 6.12.0.122 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.6.0.15201 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node 14.18.0
+- Node 14.18.1
 - Perl 5.30.0
 - Python 3.8.10
 - Python3 3.8.10
@@ -28,16 +28,16 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.7.0
-- Homebrew 3.2.15
+- Helm 3.7.1
+- Homebrew 3.2.16
 - Miniconda 4.10.3
 - Npm 6.14.15
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 0.16.4
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<973a7d5>)
-- Yarn 1.22.15
+- Vcpkg  (build from master \<699c877>)
+- Yarn 1.22.17
 
 #### Environment variables
 | Name                    | Value                  |
@@ -53,27 +53,27 @@
 - Sbt 1.5.5
 
 ### Tools
-- Ansible 2.11.5
+- Ansible 2.11.6
 - apt-fast 1.9.11
 - AzCopy 10.12.2 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.2.1
 - Bazelisk 1.10.1
-- Bicep 0.4.613
+- Bicep 0.4.1008
 - Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.21.3
-- CodeQL Action Bundle 2.6.3
+- CodeQL Action Bundle 2.6.3-a
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.0.0
 - Docker-Buildx 0.6.3
 - Docker-Moby Client 20.10.9+azure-1
 - Docker-Moby Server 20.10.9+azure-1
-- Fastlane 2.195.0
-- Git 2.33.0 (apt source repository: ppa:git-core/ppa)
+- Fastlane 2.196.0
+- Git 2.33.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.0
-- HHVM (HipHop VM) 4.130.0
+- HHVM (HipHop VM) 4.131.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.22.2
@@ -88,28 +88,28 @@
 - Packer 1.7.6
 - PhantomJS 2.1.1
 - Podman 3.3.1 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.14.0
+- Pulumi 3.15.0
 - R 4.1.1
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.0.8
+- Terraform 1.0.9
 - yamllint 1.26.3
 - yq 4.13.4
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.94
-- AWS CLI 2.2.44
+- AWS CLI 2.2.46
 - AWS CLI Session manager plugin 1.2.245.0
 - AWS SAM CLI 1.33.0
-- Azure CLI (azure-cli) 2.28.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- Azure CLI (azure-cli) 2.29.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.20.0
-- GitHub CLI 2.0.0
+- GitHub CLI 2.1.0
 - Google Cloud SDK 360.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 6.10.4
-- OpenShift CLI 4.8.13
+- Netlify CLI 6.13.2
+- OpenShift CLI 4.8.14
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
@@ -167,7 +167,7 @@
 | GECKOWEBDRIVER  | /usr/local/share/gecko_driver  |
 
 ### .NET Core SDK
-- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.119 3.1.202 3.1.302 3.1.413 5.0.104 5.0.207 5.0.303 5.0.401
+- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.414 5.0.104 5.0.208 5.0.303 5.0.402
 
 ### Databases
 - MongoDB 5.0.3 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
@@ -194,13 +194,13 @@
 
 #### Node.js
 - 10.24.1
-- 12.22.6
-- 14.18.0
+- 12.22.7
+- 14.18.1
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.5]
+- 2.7.18 [PyPy 7.3.6]
 - 3.6.12 [PyPy 7.3.3]
-- 3.7.10 [PyPy 7.3.5]
+- 3.7.12 [PyPy 7.3.6]
 
 #### Python
 - 2.7.18
@@ -209,6 +209,7 @@
 - 3.7.12
 - 3.8.12
 - 3.9.7
+- 3.10.0
 
 #### Ruby
 - 2.5.9
@@ -225,7 +226,7 @@
 | GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.2/x64  | x64          |
 
 ### PowerShell Tools
-- PowerShell 7.1.4
+- PowerShell 7.1.5
 
 #### PowerShell Modules
 | Module           | Version |
@@ -275,22 +276,22 @@
 | alpine:3.12             | sha256:a296b4c6f6ee2b88f095b61e95c7ef4f51ba25598835b4978c9256d8c8ace48a  | 2021-08-31 |
 | alpine:3.13             | sha256:2582893dec6f12fd499d3a709477f2c0c0c1dfcd28024c93f1f0626b9e3540c8  | 2021-08-31 |
 | alpine:3.14             | sha256:e1c082e3d3c45cccac829840a25941e679c25d438cc8412c2fa221cf1a824e6a  | 2021-08-27 |
-| buildpack-deps:bullseye | sha256:781dbad21bcc644af42ec465c2adbf6d9470b256755a13b2a2eadadf331cdaf9  | 2021-09-28 |
-| buildpack-deps:buster   | sha256:4ab33f2a6712321207d5736d6899841e03d3cc26d50fb7489b0e4a48bf42a1d0  | 2021-09-28 |
-| buildpack-deps:stretch  | sha256:57d5d14748554b31c75a2e95e63c51e8cdfb24393e33c1431982123b7d0c2280  | 2021-09-28 |
-| debian:10               | sha256:e5cfab8012b17d80f93a7f567797b0c8a2839069d4f50e499152162152518663  | 2021-09-28 |
-| debian:11               | sha256:b6a47ddbc1de53e0024d19908f5ef7b3d870686f1234fdb2d19770e097db1575  | 2021-09-28 |
-| debian:9                | sha256:c1274c24446b98394e1594ceefac1012e1b39b752586ca993fe3c3bea6f6d20f  | 2021-09-28 |
+| buildpack-deps:bullseye | sha256:1062c3cabe1b62d7e64609e1ebe30406b9d802684758a01fd386bbc60ea6b1aa  | 2021-10-12 |
+| buildpack-deps:buster   | sha256:6d442a75a480d13760660675e0094e87e7b64ebd64acb43754c5ed46cb1ea532  | 2021-10-12 |
+| buildpack-deps:stretch  | sha256:63b243cde6ed83435eb26eda196769a37b9426abc76cc7e89ad364c3a24ce18f  | 2021-10-12 |
+| debian:10               | sha256:f9182ead292f45165f4a851e5ff98ea0800e172ccedce7d17764ffaae5ed4d6e  | 2021-10-12 |
+| debian:11               | sha256:4d6ab716de467aad58e91b1b720f0badd7478847ec7a18f66027d0f8a329a43c  | 2021-10-12 |
+| debian:9                | sha256:86269e614274db90a1d71dac258c74ed0a867a1d05f67dea6263b0f216ec7724  | 2021-10-12 |
 | moby/buildkit:latest    | sha256:94bc3a93cfa5197064cfdc86e4289cead7b46a2bc95874f142fbf51c67ad2826  | 2021-10-04 |
 | node:10                 | sha256:59531d2835edd5161c8f9512f9e095b1836f7a1fcb0ab73e005ec46047384911  | 2021-04-10 |
 | node:10-alpine          | sha256:dc98dac24efd4254f75976c40bce46944697a110d06ce7fa47e7268470cf2e28  | 2021-04-14 |
-| node:12                 | sha256:86afd89e91d667a65b37e05659974ccd702b8e3b1aff30416d1f77cf67729e2b  | 2021-09-28 |
-| node:12-alpine          | sha256:1ea5900145028957ec0e7b7e590ac677797fa8962ccec4e73188092f7bc14da5  | 2021-08-31 |
-| node:14                 | sha256:167d0a4af6b4e0d0769086b871a36c25faed75b72705144cabbda70466cc0d8e  | 2021-09-29 |
-| node:14-alpine          | sha256:6e52e0b3bedfb494496488514d18bee7fd503fd4e44289ea012ad02f8f41a312  | 2021-09-29 |
-| ubuntu:16.04            | sha256:454054f5bbd571b088db25b662099c6c7b3f0cb78536a2077d54adc48f00cd68  | 2021-08-31 |
-| ubuntu:18.04            | sha256:bfb4cabd667790ead5c95d9fe341937f0c21118fa79bc768d51c5da9d1dbe917  | 2021-10-01 |
-| ubuntu:20.04            | sha256:a0d9e826ab87bd665cfc640598a871b748b4b70a01a4f3d174d4fb02adad07a9  | 2021-10-01 |
+| node:12                 | sha256:9b9e79251f73f999dd440a41714a91eea34996ec809953906009592def0d4380  | 2021-10-13 |
+| node:12-alpine          | sha256:dfbebf17bfb014e1e7068e76325a117bccf8679c68aec6a28514184a209c8bae  | 2021-10-13 |
+| node:14                 | sha256:109b118e0d49dd12ca6f5b84a7a9a9c8a147f75567b3ad50620bdacaf5e6320d  | 2021-10-13 |
+| node:14-alpine          | sha256:a251de4db0e0632446c0ba62adbe1e37ff148a53732e4574d2ed0f5462cc4407  | 2021-10-13 |
+| ubuntu:16.04            | sha256:0f71fa8d4d2d4292c3c617fda2b36f6dabe5c8b6e34c3dc5b0d17d4e704bd39c  | 2021-08-31 |
+| ubuntu:18.04            | sha256:0fedbd5bd9fb72089c7bbca476949e10593cebed9b1fb9edf5b79dbbacddd7d6  | 2021-10-01 |
+| ubuntu:20.04            | sha256:626ffe58f6e7566e00254b638eb7e0f3b11d4da9675088f4781a50ae288f3322  | 2021-10-16 |
 
 ### Installed apt packages
 | Name                   | Version                           |
@@ -322,7 +323,7 @@
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
 | libcurl4               | 7.68.0-1ubuntu2.7                 |
-| libgbm-dev             | 21.0.3-0ubuntu0.3\~20.04.2        |
+| libgbm-dev             | 21.0.3-0ubuntu0.3\~20.04.3        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6build1                  |
 | libgtk-3-0             | 3.24.20-0ubuntu1                  |

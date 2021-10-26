@@ -3,8 +3,8 @@
 | [(Public Beta) Windows Server 2022 with Visual Studio 2022 is now available](https://github.com/actions/virtual-environments/issues/3949) |
 ***
 # Microsoft Windows Server 2016 Datacenter
-- OS Version: 10.0.14393 Build 4651
-- Image Version: 20211011.0
+- OS Version: 10.0.14393 Build 4704
+- Image Version: 20211018.0
 
 ## Installed Software
 ### Language and Runtime
@@ -13,7 +13,7 @@
 - Julia 1.6.3
 - Kotlin 1.5.31
 - LLVM 13.0.0
-- Node 14.18.0
+- Node 14.18.1
 - Perl 5.32.1
 - PHP 8.0.10
 - Python 3.7.9
@@ -26,11 +26,11 @@
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.15
 - NuGet 5.11.0.10
-- pip 21.2.4 (python 3.7)
+- pip 21.3 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<1d4128f>)
-- Yarn 1.22.15
+- Vcpkg  (build from master \<699c877>)
+- Yarn 1.22.17
 
 #### Environment variables
 | Name                    | Value        |
@@ -50,17 +50,16 @@
 - azcopy 10.12.2
 - Bazel 4.2.1
 - Bazelisk 1.10.1
-- Bicep 0.4.613
-- Cabal 3.4.0.0
+- Bicep 0.4.1008
+- Cabal 3.6.2.0
 - CMake 3.21.3
-- CodeQL Action Bundle 2.6.3
+- CodeQL Action Bundle 2.6.3-a
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - ghc 9.0.1
-- Git 2.33.0
-- Git LFS 2.13.3
+- Git 2.33.1
+- Git LFS 3.0.1
 - Google Cloud SDK 360.0.0
-- GVFS 1.0.21229.1
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
@@ -70,8 +69,8 @@
 - Newman 5.3.0
 - NSIS v3.06.1
 - OpenSSL 1.1.1
-- Packer 1.7.5
-- Pulumi v3.14.0
+- Packer 1.7.6
+- Pulumi v3.15.0
 - R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -83,13 +82,13 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.94
-- AWS CLI 2.2.43
+- AWS CLI 2.2.46
 - AWS SAM CLI 1.33.0
 - AWS Session Manager CLI 1.2.245.0
-- Azure CLI 2.28.0
+- Azure CLI 2.29.0
 - Azure DevOps CLI extension 0.20.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.0.0
+- GitHub CLI 2.1.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -109,8 +108,8 @@
 ### Browsers and webdrivers
 - Google Chrome 94.0.4606.81
 - Chrome Driver 94.0.4606.61
-- Microsoft Edge 94.0.992.38
-- Microsoft Edge Driver 94.0.992.38
+- Microsoft Edge 94.0.992.50
+- Microsoft Edge Driver 94.0.992.50
 - Mozilla Firefox 93.0
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
@@ -159,8 +158,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 10.24.1 | x64          |
-| 12.22.6 | x64          |
-| 14.18.0 | x64          |
+| 12.22.7 | x64          |
+| 14.18.1 | x64          |
 
 
 #### Python
@@ -188,9 +187,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### PyPy
 | Python Version | PyPy Version |
 | -------------- | ------------ |
-| 2.7.18         | PyPy 7.3.5 with MSC v.1927 64 bit (AMD64) |
+| 2.7.18         | PyPy 7.3.6 with MSC v.1929 64 bit (AMD64) |
 | 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
-| 3.7.10         | PyPy 7.3.5 with MSC v.1927 64 bit (AMD64) |
+| 3.7.12         | PyPy 7.3.6 with MSC v.1929 64 bit (AMD64) |
 
 
 
@@ -217,7 +216,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.3.0
-- DacFx 15.0.5164.1
+- DacFx 15.0.5282.3
 - MySQL 5.7.35.0
 - SQLPS 1.0
 
@@ -231,7 +230,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2017 | 15.9.28307.1684 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
+| Visual Studio Enterprise 2017 | 15.9.28307.1705 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
 
 #### Workloads, components and extensions:
 
@@ -500,20 +499,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 1.1.14 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.119 3.1.202 3.1.302 3.1.413 5.0.104 5.0.207 5.0.303 5.0.401
+- 1.1.14 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.414 5.0.104 5.0.208 5.0.303 5.0.402
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
 - 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.19 5.0.4 5.0.9 5.0.10
+- 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.20 5.0.4 5.0.9 5.0.11
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 1.0.16 1.1.13 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.19 5.0.4 5.0.9 5.0.10
+- 1.0.16 1.1.13 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.20 5.0.4 5.0.9 5.0.11
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.4 3.1.6 3.1.19 5.0.4 5.0.9 5.0.10
+- 3.1.4 3.1.6 3.1.20 5.0.4 5.0.9 5.0.11
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -521,7 +520,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8
 
 ### PowerShell Tools
-- PowerShell 7.1.4
+- PowerShell 7.1.5
 
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                           | Path                           |
@@ -539,6 +538,7 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
+| Microsoft.Graph    | 1.7.0            |
 | Pester             | 3.4.0<br>5.3.1   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
@@ -575,11 +575,11 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:dde4551c0b326807cfd2b0457d6cf6a44906d788c917b6f6115bf5cab03a670c  | 2021-09-14 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:a5b246ba628f417576dbca9c12e241627be4aa786b9508fea57a934ec3ebdf30  | 2021-09-14 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:c12743903deef533e2232e3a04af92f5558ef0449d5d6dbd139cddf07f5bcb15  | 2021-09-14 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:8475573b3deea860097590fe71c1a5333c937f5aadb7a6b07d760fe9017e28b1  | 2021-10-12 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:97bbc6dd603e44f5a34e3f309b493c77b964b0e07d9e3dd7333f063ccaf33523  | 2021-10-12 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:bff7dee44dc39f9e997389be6de0c9fcde608879eb52070839ac03f6058f1385  | 2021-10-12 |
 | mcr.microsoft.com/windows/nanoserver:10.0.14393.953                       | sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268  | 2017-03-08 |
-| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:22cc6661c975edc09fa44c497f8310b264da4ff102a56a974e4cf1a790626a22  | 2021-09-13 |
+| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:bcff581aa164b5d0036284c21fb1733d4f5a7356341a32876ef9d0f6539aaa2b  | 2021-10-06 |
 
 
 

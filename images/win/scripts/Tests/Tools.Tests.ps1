@@ -117,7 +117,7 @@ Describe "NET48" {
     }
 }
 
-Describe "NSIS" -Skip:(Test-IsWin22) {
+Describe "NSIS" {
     It "NSIS" {
        "makensis /VERSION" | Should -ReturnZeroExitCode
     }

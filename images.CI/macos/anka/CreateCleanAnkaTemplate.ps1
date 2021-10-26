@@ -76,7 +76,7 @@ function Invoke-SoftwareUpdate {
 
     Write-Host "`t[*] Fetching Software Updates ready to install on '$TemplateName' VM:"
     Show-StringWithFormat $newUpdates
-    Write-Host "`t[*] Installing Software Updates on 'test_vm' VM:"
+    Write-Host "`t[*] Installing Software Updates on '$TemplateName' VM:"
     Install-SoftwareUpdate -HostName $ipAddress | Show-StringWithFormat
 
     # Check if Action: restart
