@@ -195,7 +195,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | -------------- | ------------ |
 | 2.7.18         | PyPy 7.3.6 with MSC v.1929 64 bit (AMD64) |
 | 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
-| 3.7.12         | PyPy 7.3.6 with MSC v.1929 64 bit (AMD64) |
+| 3.7.12         | PyPy 7.3.7 with MSC v.1929 64 bit (AMD64) |
+| 3.8.12         | PyPy 7.3.7 with MSC v.1929 64 bit (AMD64) |
 
 
 
