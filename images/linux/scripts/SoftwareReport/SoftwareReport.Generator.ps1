@@ -133,6 +133,7 @@ $toolsList = @(
     (Get-PodManVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
+    (Get-SeleniumVersion),
     (Get-SkopeoVersion),
     (Get-SphinxVersion),
     (Get-TerraformVersion),

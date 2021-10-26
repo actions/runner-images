@@ -288,3 +288,8 @@ function Get-YqVersion {
     $yqVersion = ($(yq -V) -Split " ")[-1]
     return "yq $yqVersion"
 }
+
+function Get-SeleniumVersion {
+    $seleniumVersion = $Env:SELENIUM_JAR_PATH | Take-OutputPart -Part 3 -Delimiter "-" | Take-OutputPart -Part 0,1,2 -Delimiter "."
+    return "Selenium server standalone $seleniumVersion"
+}
