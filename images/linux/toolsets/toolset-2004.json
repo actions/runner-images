@@ -276,7 +276,8 @@
         {"name": "fastlane"}
     ],
     "selenium": {
-        "version": "3"
+        "version": "3",
+        "binary_name": "selenium-server-standalone"
     },
     "node_modules": [
         {
