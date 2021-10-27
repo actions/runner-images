@@ -194,8 +194,9 @@ Describe "Sbt" {
 }
 
 Describe "Selenium" {
-    It "Selenium Server 'selenium-server-standalone.jar' is installed" {
-        "/usr/share/java/selenium-server-standalone.jar" | Should -Exist
+    It "Selenium Server is installed" {
+        $seleniumVariableValue = Get-EnvironmentVariable "SELENIUM_JAR_PATH"
+        $seleniumVariableValue | Should -Exist
     }
 }
 

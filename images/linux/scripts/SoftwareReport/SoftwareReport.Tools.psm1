@@ -290,6 +290,6 @@ function Get-YqVersion {
 }
 
 function Get-SeleniumVersion {
-    $seleniumVersion = $Env:SELENIUM_JAR_PATH | Take-OutputPart -Part 3 -Delimiter "-" | Take-OutputPart -Part 0,1,2 -Delimiter "."
-    return "Selenium server standalone $seleniumVersion"
+    $seleniumVersion = $Env:SELENIUM_JAR_PATH | Take-OutputPart -Part 2 -Delimiter "-" | Take-OutputPart -Part 0,1,2 -Delimiter "."
+    return "Selenium server $seleniumVersion"
 }
