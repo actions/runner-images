@@ -168,7 +168,8 @@
             "cocoapods",
             "xcpretty",
             "bundler",
-            "fastlane"
+            "fastlane",
+            "jazzy"
         ]
     },
     "go": {

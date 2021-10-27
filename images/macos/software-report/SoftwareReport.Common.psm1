@@ -512,6 +512,11 @@ function Get-SbtVersion {
     return "Sbt $sbtVersion"
 }
 
+function Get-JazzyVersion {
+    $jazzyVersion = Run-Command "jazzy --version" | Take-Part -Part 2
+    return "Jazzy $jazzyVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{
