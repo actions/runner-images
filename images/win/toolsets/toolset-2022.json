@@ -236,7 +236,8 @@
         }
     ],
     "selenium": {
-        "version": "3"
+        "version": "3",
+        "binary_name": "selenium-server-standalone"
     },
     "npm": {
         "global_packages": [
