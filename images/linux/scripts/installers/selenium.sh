@@ -18,7 +18,7 @@ download_with_retries $SELENIUM_DOWNLOAD_URL $SELENIUM_JAR_PATH $SELENIUM_JAR_NA
 
 # Create an epmty file to retrive selenium version 
 SELENIUM_FULL_VERSION=$(echo $SELENIUM_DOWNLOAD_URL | cut -d"-" -f2 | cut -d"/" -f1)
-touch "$SELENIUM_JAR_PATH/$SELENIUM_JAR_NAME-$SELENIUM_FULL_VERSION"
+touch "$SELENIUM_JAR_PATH/$SELENIUM_BINARY_NAME-$SELENIUM_FULL_VERSION"
 
 # Add SELENIUM_JAR_PATH environment variable
 echo "SELENIUM_JAR_PATH=$SELENIUM_JAR_PATH/$SELENIUM_JAR_NAME" | tee -a /etc/environment

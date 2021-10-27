@@ -194,9 +194,8 @@ Describe "Sbt" {
 }
 
 Describe "Selenium" {
-    It "Selenium Server is installed" {
-        $seleniumVariableValue = Get-EnvironmentVariable "SELENIUM_JAR_PATH"
-        $seleniumVariableValue | Should -Exist
+    It "Selenium is installed" {
+        $env:SELENIUM_JAR_PATH | Should -Exist
     }
 }
 
