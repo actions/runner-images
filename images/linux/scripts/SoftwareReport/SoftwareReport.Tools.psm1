@@ -291,6 +291,6 @@ function Get-YqVersion {
 
 function Get-SeleniumVersion {
     $seleniumBinaryName = Get-ToolsetValue "selenium.binary_name"
-    $fullSeleniumVersion = ((Get-ChildItem "/usr/share/java").Name | Where-Object { $_ -match "$seleniumBinaryName-(\d)*" }).Replace("-", " ")
-    return $fullSeleniumVersion
+    $fullSeleniumVersion = (Get-ChildItem "/usr/share/java/${seleniumBinaryName}-*").Name -replace "${seleniumBinaryName}-"
+    return "Selenium server $fullSeleniumVersion"
 }
