@@ -507,6 +507,11 @@ function Get-KotlinVersion {
     return "Kotlin $kotlinVersion"
 }
 
+function Get-SeleniumVersion {
+    $seleniumVersion = (Get-ChildItem -Path "/usr/local/Cellar/selenium-server*/*").Name
+    return "Selenium server $seleniumVersion"
+}
+
 function Get-SbtVersion {
     $sbtVersion = Run-Command "sbt -version" | Take-Part -Part 3
     return "Sbt $sbtVersion"
