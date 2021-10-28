@@ -119,6 +119,7 @@ $toolsList = @(
     (Get-StackVersion),
     (Get-SVNVersion),
     (Get-VSWhereVersion),
+    (Get-SeleniumVersion),
     (Get-SwigVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
