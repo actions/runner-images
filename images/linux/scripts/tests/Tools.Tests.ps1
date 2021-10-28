@@ -195,7 +195,10 @@ Describe "Sbt" {
 
 Describe "Selenium" {
     It "Selenium is installed" {
-        $env:SELENIUM_JAR_PATH | Should -Exist
+        $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
+        $seleniumPath = Join-Path "/usr/share/java" "$seleniumBinaryName.jar"
+        
+        $seleniumPath | Should -Exist
     }
 }
 
