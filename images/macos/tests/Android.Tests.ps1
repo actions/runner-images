@@ -12,9 +12,9 @@ Describe "Android" {
     [string]$ndkDefaultVersion = Get-ToolsetValue "android.ndk.default"
     $ndkFullVersions = $ndkVersions | ForEach-Object { Get-ChildItem "$env:ANDROID_HOME/ndk/${_}.*" -Name | Select-Object -Last 1} | ForEach-Object { "ndk/${_}" }
     $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultVersion.*" -Name | Select-Object -Last 1
-
-    $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', ''
-    $platforms = $platformVersionsList | Where-Object { $_ -match "^\d+$" } | Where-Object { [int]$_ -ge $platformMinVersion } | Sort-Object -Unique
+    # Platforms starting with a letter are the preview versions, which is not installed on the image
+    $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', '' | Where-Object { $_ -match "^\d+$" } | Sort-Object -Unique
+    $platformsInstalled = $platformVersionsList | Where-Object { [int]$_ -ge $platformMinVersion } | ForEach-Object { "platforms/android-${_}" }
 
     $buildToolsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', ''
     $buildTools = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}$"} | Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object -Unique |
@@ -26,7 +26,7 @@ Describe "Android" {
         "tools/proguard",
         "ndk-bundle",
         "cmake",
-        $platforms,
+        $platformsInstalled,
         $buildTools,
         $ndkFullVersions,
         (Get-ToolsetValue "android.extra-list" | ForEach-Object { "extras/${_}" }),
