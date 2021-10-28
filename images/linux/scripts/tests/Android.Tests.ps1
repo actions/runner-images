@@ -8,9 +8,7 @@ Describe "Android" {
     $ndkFullVersions = $ndkVersions | ForEach-Object { (Get-ChildItem "/usr/local/lib/android/sdk/ndk/${_}.*" | Select-Object -Last 1).Name } | ForEach-Object { "ndk/${_}" }
 
     $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', ''
-    $platformNumericList = $platformVersionsList | Where-Object { $_ -match "\d+" } | Where-Object { [int]$_ -ge $platformMinVersion } | Sort-Object -Unique
-    $platformLetterList = $platformVersionsList | Where-Object { $_ -match "\D+" } | Sort-Object -Unique
-    $platforms = $platformNumericList + $platformLetterList | ForEach-Object { "platforms/android-${_}" }
+    $platforms = $platformVersionsList | Where-Object { $_ -match "^\d+$" } | Where-Object { [int]$_ -ge $platformMinVersion } | Sort-Object -Unique
 
     $buildToolsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', ''
     $buildTools = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}$"} | Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object -Unique |
