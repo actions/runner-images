@@ -278,6 +278,10 @@
             "8.0"
         ]
     },
+    "selenium": {
+        "version": "3",
+        "binary_name": "selenium-server-standalone"
+    },
     "rubygems": [],
     "node_modules": [
         {

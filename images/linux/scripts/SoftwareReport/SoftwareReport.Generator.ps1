@@ -212,7 +212,8 @@ $browsersAndDriversList = @(
     (Get-ChromeDriverVersion),
     (Get-FirefoxVersion),
     (Get-GeckodriverVersion),
-    (Get-ChromiumVersion)
+    (Get-ChromiumVersion),    
+    (Get-SeleniumVersion)
 )
 
 $markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList
