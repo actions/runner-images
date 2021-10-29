@@ -275,3 +275,9 @@ function Get-SwigVersion {
     $swigVersion = $Matches.Version
     return "Swig $swigVersion"
 }
+
+function Get-SeleniumVersion {
+    $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
+    $fullSeleniumVersion = (Get-ChildItem "C:\selenium\${seleniumBinaryName}-*").Name -replace "${seleniumBinaryName}-"
+    return "Selenium server $fullSeleniumVersion"
+}
