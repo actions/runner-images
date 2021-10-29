@@ -74,12 +74,11 @@ function InstallPyPy
 }
 
 # Installation PyPy
-uri="https://downloads.python.org/pypy/versions.json"
-pypyVersions=$(curl $uri | jq '.[].files[].download_url' | grep 'linux64')
+pypyVersions=$(curl https://downloads.python.org/pypy/versions.json)
 toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
 
 for toolsetVersion in $toolsetVersions; do
-    latestMajorPyPyVersion=$(echo "${pypyVersions}" | grep -E "pypy${toolsetVersion}-v[0-9]+\.[0-9]+\.[0-9]+-" | head -1)
+    latestMajorPyPyVersion=$(echo $pypyVersions | jq --arg toolsetVersion $toolsetVersions '.[] | select((.python_version | contains($toolsetVersion)) and .stable == true).files[] | select(.arch == "x64" and .platform == "linux").download_url' | head -1)
 
     if [[ -z "$latestMajorPyPyVersion" ]]; then
         echo "Failed to get PyPy version '$toolsetVersion'"
