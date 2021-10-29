@@ -9,7 +9,7 @@
     "xamarin": {
         "vsmac": "latest",
         "mono-versions": [
-            "6.12.0.125"
+            "6.12.0.140"
         ],
         "ios-versions": [
             "15.0.0.6"
