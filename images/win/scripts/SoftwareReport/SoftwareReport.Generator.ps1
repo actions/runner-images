@@ -119,7 +119,6 @@ $toolsList = @(
     (Get-StackVersion),
     (Get-SVNVersion),
     (Get-VSWhereVersion),
-    (Get-SeleniumVersion),
     (Get-SwigVersion),
     (Get-WinAppDriver),
     (Get-ZstdVersion),
@@ -178,7 +177,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SeleniumWebDriverVersion -Driver "edge"),
     (Get-BrowserVersion -Browser "firefox"),
     (Get-SeleniumWebDriverVersion -Driver "firefox"),
-    (Get-SeleniumWebDriverVersion -Driver "iexplorer")
+    (Get-SeleniumWebDriverVersion -Driver "iexplorer"),
+    (Get-SeleniumVersion)
 )
 
 $markdown += New-MDHeader "Environment variables" -Level 4
