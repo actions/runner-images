@@ -133,7 +133,6 @@ $toolsList = @(
     (Get-PodManVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
-    (Get-SeleniumVersion),
     (Get-SkopeoVersion),
     (Get-SphinxVersion),
     (Get-TerraformVersion),
@@ -213,7 +212,8 @@ $browsersAndDriversList = @(
     (Get-ChromeDriverVersion),
     (Get-FirefoxVersion),
     (Get-GeckodriverVersion),
-    (Get-ChromiumVersion)
+    (Get-ChromiumVersion),    
+    (Get-SeleniumVersion)
 )
 
 $markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList
