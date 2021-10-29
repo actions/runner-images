@@ -74,7 +74,7 @@ ln -s $ANDROID_HOME/ndk/$ndkDefault $ANDROID_HOME/ndk-bundle
 ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ndkLatest
 echo "export ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> "${HOME}/.bashrc"
 
-availablePlatforms=($($SDKMANAGER --list | grep "platforms;android-" | cut -d"|" -f 1 | sort -u))
+availablePlatforms=($($SDKMANAGER --list | grep "platforms;android-[0-9]" | cut -d"|" -f 1 | sort -u))
 filter_components_by_version $ANDROID_PLATFORM "${availablePlatforms[@]}"
 
 allBuildTools=($($SDKMANAGER --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
