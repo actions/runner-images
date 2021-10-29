@@ -283,6 +283,9 @@
         "binary_name": "selenium-server-standalone"
     },
     "rubygems": [],
+    "node": {
+        "default": "14"
+    },
     "node_modules": [
         {
             "name": "grunt",
