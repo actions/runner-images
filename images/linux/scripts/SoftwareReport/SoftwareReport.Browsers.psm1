@@ -23,6 +23,12 @@ function Get-ChromiumVersion {
     return $chromiumVersion
 }
 
+function Get-SeleniumVersion {
+    $seleniumBinaryName = Get-ToolsetValue "selenium.binary_name"
+    $fullSeleniumVersion = (Get-ChildItem "/usr/share/java/${seleniumBinaryName}-*").Name -replace "${seleniumBinaryName}-"
+    return "Selenium server $fullSeleniumVersion"
+}
+
 function Build-BrowserWebdriversEnvironmentTable {
     return @(
         @{
