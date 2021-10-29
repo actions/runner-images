@@ -61,7 +61,8 @@
             "versions": [
                 "10.*",
                 "12.*",
-                "14.*"
+                "14.*",
+                "16.*"
             ]
         },
         {
@@ -124,7 +125,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.4.0"
+                "6.5.0"
             ],
             "zip_versions": [
                 "1.0.0",
@@ -362,6 +363,10 @@
             "cmd": "yamllint --version"
         }
     ],
+    "selenium": {
+        "version": "3",
+        "binary_name": "selenium-server-standalone"
+    },
     "npm": {
         "global_packages": [
             { "name": "yarn", "test": "yarn --version" },
