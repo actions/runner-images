@@ -7,7 +7,8 @@ function Get-BrowserSection {
         (Get-EdgeVersion),
         (Get-EdgeDriverVersion),
         (Get-FirefoxVersion),
-        (Get-GeckodriverVersion)
+        (Get-GeckodriverVersion),
+        (Get-SeleniumVersion)
     )
 }
 
@@ -51,6 +52,11 @@ function Get-GeckodriverVersion {
     return Run-Command "geckodriver --version" | Select-Object -First 1
 }
 
+function Get-SeleniumVersion {
+    $seleniumVersion = (Get-ChildItem -Path "/usr/local/Cellar/selenium-server*/*").Name
+    return "Selenium server $seleniumVersion"
+}
+
 function Build-BrowserWebdriversEnvironmentTable {
     return @(
         @{
@@ -64,6 +70,10 @@ function Build-BrowserWebdriversEnvironmentTable {
         @{
             "Name" = "GECKOWEBDRIVER"
             "Value" = $env:GECKOWEBDRIVER
+        },
+        @{
+            "Name" = "SELENIUMSERVER"
+            "Value" = $env:SELENIUM_JAR_PATH
         }
     ) | ForEach-Object {
         [PSCustomObject] @{
