@@ -275,7 +275,8 @@
             "versions": [
                 "10.*",
                 "12.*",
-                "14.*"
+                "14.*",
+                "16.*"
             ]
         },
         {
@@ -325,7 +326,8 @@
             "nomad-cli",
             "xcpretty",
             "bundler",
-            "fastlane"
+            "fastlane",
+            "jazzy"
         ]
     },
     "go": {

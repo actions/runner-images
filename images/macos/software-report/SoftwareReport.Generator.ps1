@@ -176,6 +176,7 @@ $markdown += New-MDNewLine
 # Tools
 $markdown += New-MDHeader "Tools" -Level 3
 $toolsList = @(
+    (Get-JazzyVersion),
     (Get-FastlaneVersion),
     (Get-CmakeVersion),
     (Get-AppCenterCLIVersion),

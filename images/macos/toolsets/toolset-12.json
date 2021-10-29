@@ -125,7 +125,8 @@
             "versions": [
                 "10.*",
                 "12.*",
-                "14.*"
+                "14.*",
+                "16.*"
             ]
         },
         {
@@ -168,7 +169,8 @@
             "cocoapods",
             "xcpretty",
             "bundler",
-            "fastlane"
+            "fastlane",
+            "jazzy"
         ]
     },
     "go": {

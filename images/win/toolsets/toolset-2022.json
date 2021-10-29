@@ -40,7 +40,8 @@
             "versions": [
                 "10.*",
                 "12.*",
-                "14.*"
+                "14.*",
+                "16.*"
             ]
         },
         {
@@ -101,7 +102,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.4.0"
+                "6.5.0"
             ],
             "zip_versions": []
         }
@@ -178,6 +179,7 @@
             "Microsoft.VisualStudio.Component.VC.CMake.Project",
             "Microsoft.VisualStudio.Component.VC.DiagnosticTools",
             "Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset",
+            "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest",
@@ -192,6 +194,12 @@
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.MFC",
             "Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM64",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATLMFC",
             "Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
@@ -235,6 +243,10 @@
             "cmd": "yamllint --version"
         }
     ],
+    "selenium": {
+        "version": "3",
+        "binary_name": "selenium-server-standalone"
+    },
     "npm": {
         "global_packages": [
             { "name": "yarn", "test": "yarn --version" },

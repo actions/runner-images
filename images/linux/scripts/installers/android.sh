@@ -94,7 +94,7 @@ if isUbuntu20; then
     echo "ANDROID_NDK_LATEST_HOME=$ANDROID_SDK_ROOT/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
 fi
 
-availablePlatforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
+availablePlatforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-[0-9]" | cut -d"|" -f 1))
 allBuildTools=($($SDKMANAGER --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
 
