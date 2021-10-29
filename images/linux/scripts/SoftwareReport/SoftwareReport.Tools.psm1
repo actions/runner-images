@@ -196,7 +196,9 @@ function Get-JqVersion {
 }
 
 function Get-AzureCliVersion {
-    $azcliVersion = az -v | Select-String "azure-cli" | Take-OutputPart -Part -1
+    $result = Get-CommandResult "az -v"
+    $result.Output -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    $azcliVersion = $Matches.version
     $aptSourceRepo = Get-AptSourceRepository -PackageName "azure-cli"
     return "Azure CLI (azure-cli) $azcliVersion (installation method: $aptSourceRepo)"
 }
