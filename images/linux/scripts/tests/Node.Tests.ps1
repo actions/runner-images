@@ -10,5 +10,9 @@ Describe "Node.js" {
 
         "$NodeCommand --version" | Should -ReturnZeroExitCode
     }
+
+    It "Node.js version should correspond to the version in the toolset" {
+        node --version | Should -BeLike "v$((Get-ToolsetContent).node.default).*"
+    }
 }
 
