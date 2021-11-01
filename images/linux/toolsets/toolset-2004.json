@@ -283,6 +283,9 @@
         "version": "3",
         "binary_name": "selenium-server-standalone"
     },
+    "node": {
+        "default": "14"
+    },
     "node_modules": [
         {
             "name": "grunt",
