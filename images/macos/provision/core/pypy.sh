@@ -81,7 +81,7 @@ toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyP
 for toolsetVersion in $toolsetVersions; do
     latestMajorPyPyVersion=$(echo $pypyVersions |
         jq -r --arg toolsetVersion $toolsetVersion '.[]
-        | select((.python_version | contains($toolsetVersion)) and .stable == true).files[]
+        | select((.python_version | startswith($toolsetVersion)) and .stable == true).files[]
         | select(.platform == "darwin").download_url' | head -1)
     if [[ -z "$latestMajorPyPyVersion" ]]; then
         echo "Failed to get PyPy version '$toolsetVersion'"
