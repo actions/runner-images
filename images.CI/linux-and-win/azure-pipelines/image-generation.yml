@@ -22,7 +22,7 @@ jobs:
       filePath: ./images.CI/download-repo.ps1
       arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
                  -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
-    
+
   - task: PowerShell@2
     displayName: 'Set image template variables'
     inputs:
