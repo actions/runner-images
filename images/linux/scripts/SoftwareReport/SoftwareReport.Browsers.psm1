@@ -23,6 +23,12 @@ function Get-ChromiumVersion {
     return $chromiumVersion
 }
 
+function Get-SeleniumVersion {
+    $seleniumBinaryName = Get-ToolsetValue "selenium.binary_name"
+    $fullSeleniumVersion = (Get-ChildItem "/usr/share/java/${seleniumBinaryName}-*").Name -replace "${seleniumBinaryName}-"
+    return "Selenium server $fullSeleniumVersion"
+}
+
 function Build-BrowserWebdriversEnvironmentTable {
     return @(
         @{
@@ -32,6 +38,10 @@ function Build-BrowserWebdriversEnvironmentTable {
         @{
             "Name" = "GECKOWEBDRIVER"
             "Value" = $env:GECKOWEBDRIVER
+        },
+        @{
+            "Name" = "SELENIUM_JAR_PATH"
+            "Value" = $env:SELENIUM_JAR_PATH
         }
     ) | ForEach-Object {
         [PSCustomObject] @{

@@ -16,4 +16,10 @@ Describe "Node.JS" {
             $Test | Should -ReturnZeroExitCode
         }
     }
+
+    Context "Node.js version" {
+        It "Node.js version should correspond to the version in the toolset" {
+            node --version | Should -BeLike "v$((Get-ToolsetContent).node.default)*"
+        }
+    }
 }

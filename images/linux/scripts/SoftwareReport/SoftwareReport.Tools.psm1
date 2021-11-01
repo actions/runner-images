@@ -196,13 +196,13 @@ function Get-JqVersion {
 }
 
 function Get-AzureCliVersion {
-    $azcliVersion = az -v | Select-String "azure-cli" | Take-OutputPart -Part -1
+    $azcliVersion = (az version | ConvertFrom-Json).'azure-cli'
     $aptSourceRepo = Get-AptSourceRepository -PackageName "azure-cli"
     return "Azure CLI (azure-cli) $azcliVersion (installation method: $aptSourceRepo)"
 }
 
 function Get-AzureDevopsVersion {
-    $azdevopsVersion = az -v | Select-String "azure-devops" | Take-OutputPart -Part -1
+    $azdevopsVersion = (az version | ConvertFrom-Json).extensions.'azure-devops'
     return "Azure CLI (azure-devops) $azdevopsVersion"
 }
 
