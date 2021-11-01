@@ -78,8 +78,10 @@ pypyVersions=$(curl https://downloads.python.org/pypy/versions.json)
 toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
 
 for toolsetVersion in $toolsetVersions; do
-    latestMajorPyPyVersion=$(echo $pypyVersions | jq --arg toolsetVersion $toolsetVersion '.[] | select((.python_version | contains($toolsetVersion)) and .stable == true).files[] | select(.arch == "x64" and .platform == "linux").download_url' | head -1)
-    latestMajorPyPyVersion=`sed -e 's/^"//' -e 's/"$//' <<<"$latestMajorPyPyVersion"`
+    latestMajorPyPyVersion=$(echo $pypyVersions |
+        jq -r --arg toolsetVersion $toolsetVersion '.[]
+        | select((.python_version | contains($toolsetVersion)) and .stable == true).files[]
+        | select(.arch == "x64" and .platform == "linux").download_url' | head -1)
     if [[ -z "$latestMajorPyPyVersion" ]]; then
         echo "Failed to get PyPy version '$toolsetVersion'"
         exit 1
