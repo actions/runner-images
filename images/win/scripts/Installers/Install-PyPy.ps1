@@ -84,8 +84,8 @@ foreach($toolsetVersion in $toolsetVersions)
     if ($latestMajorPyPyVersion)
     {
         Write-Host "Found PyPy '$($latestMajorPyPyVersion.filename)' package"
-        $tempPyPyPackagePath = Start-DownloadWithRetry -Url $latestMajorPyPyRelease.download_url -Name  $latestMajorPyPyRelease.filename
-        Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $latestMajorPyPyRelease.arch
+        $tempPyPyPackagePath = Start-DownloadWithRetry -Url $latestMajorPyPyVersion.download_url -Name  $latestMajorPyPyVersion.filename
+        Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $latestMajorPyPyVersion.arch
     }
     else
     {
