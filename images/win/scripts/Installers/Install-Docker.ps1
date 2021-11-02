@@ -23,10 +23,4 @@ foreach ($dockerImage in $dockerImages) {
     }
 }
 
-# fatal: open C:\ProgramData\docker\panic.log: Access is denied.
-$panicLog = "C:\ProgramData\docker\panic.log"
-if (Test-Path -Path $panicLog) {
-    Set-ItemProperty -Path "C:\ProgramData\docker\panic.log" -Name IsReadOnly -Value $false
-}
-
 Invoke-PesterTests -TestFile "Docker"
