@@ -29,7 +29,8 @@
             "platform" : "win64",
             "versions": [
                 "2.7",
-                "3.7"
+                "3.7",
+                "3.8"
             ]
         },
         {
@@ -288,5 +289,8 @@
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             }
         ]
+    },
+    "node": {
+        "default": "14.18.1"
     }
 }

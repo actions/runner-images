@@ -1,7 +1,8 @@
 {
     "xcode": {
-        "default": "13.0",
+        "default": "13.1",
         "versions": [
+            { "link": "13.2", "version": "13.2.0" },
             { "link": "13.1", "version": "13.1.0" },
             { "link": "13.0", "version": "13.0.0"}
         ]
@@ -9,7 +10,7 @@
     "xamarin": {
         "vsmac": "latest",
         "mono-versions": [
-            "6.12.0.125"
+            "6.12.0.140"
         ],
         "ios-versions": [
             "15.0.0.6"
@@ -114,7 +115,8 @@
             "platform" : "darwin",
             "versions": [
                 "2.7",
-                "3.7"
+                "3.7",
+                "3.8"
             ]
         },
         {
