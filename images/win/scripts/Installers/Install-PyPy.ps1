@@ -79,12 +79,12 @@ foreach($toolsetVersion in $toolsetVersions.versions)
     $latestMajorPyPyVersion = ($pypyVersions |
         Where-Object {$_.python_version.StartsWith("$toolsetVersion") -and $_.stable -eq $true} |
         Select-Object -First 1).files |
-        Where-Object platform -like "win??"
+        Where-Object platform -like "win*"
     
     if ($latestMajorPyPyVersion)
     {
         Write-Host "Found PyPy '$($latestMajorPyPyVersion.filename)' package"
-        $tempPyPyPackagePath = Start-DownloadWithRetry -Url $latestMajorPyPyVersion.download_url -Name  $latestMajorPyPyVersion.filename
+        $tempPyPyPackagePath = Start-DownloadWithRetry -Url $latestMajorPyPyVersion.download_url -Name $latestMajorPyPyVersion.filename
         Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $toolsetVersions.arch
     }
     else
