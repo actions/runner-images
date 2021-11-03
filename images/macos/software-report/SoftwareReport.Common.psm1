@@ -418,7 +418,7 @@ function Get-AppCenterCLIVersion {
 }
 
 function Get-AzureCLIVersion {
-    $azureCLIVersion = Run-Command "az -v" | Select-String "^azure-cli" | Take-Part -Part 1
+    $azureCLIVersion = (az version | ConvertFrom-Json).'azure-cli'
     return "Azure CLI $azureCLIVersion"
 }
 
