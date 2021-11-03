@@ -67,7 +67,7 @@ function Install-PyPy
 }
 
 # Get PyPy content from toolset
-$toolsetVersions = (Get-ToolsetContent).toolcache | Where-Object Name -eq "PyPy"
+$toolsetVersions = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Object Name -eq "PyPy"
 
 # Get PyPy releases
 $pypyVersions = Invoke-RestMethod https://downloads.python.org/pypy/versions.json
@@ -76,9 +76,9 @@ Write-Host "Starting installation PyPy..."
 foreach($toolsetVersion in $toolsetVersions.versions)
 {
     # Query latest PyPy version
-    $latestMajorPyPyVersion = ($pypyVersions |
+    $latestMajorPyPyVersion = $pypyVersions |
         Where-Object {$_.python_version.StartsWith("$toolsetVersion") -and $_.stable -eq $true} |
-        Select-Object -First 1).files |
+        Select-Object -ExpandProperty files -First 1 |
         Where-Object platform -like "win*"
     
     if ($latestMajorPyPyVersion)
