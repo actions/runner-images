@@ -454,5 +454,8 @@
     },
     "node": {
         "default": "14.18.1"
+    },
+    "mongodb": {
+        "default": "5"
     }
 }
