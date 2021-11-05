@@ -92,6 +92,9 @@ Function GenerateResourcesAndImage {
         .PARAMETER RestrictToAgentIpAddress
             If set, access to the VM used by packer to generate the image is restricted to the public IP address this script is run from. 
             This parameter cannot be used in combination with the virtual_network_name packer parameter.
+        
+        .PARAMETER AllowBlobPublicAccess
+            The Azure storage account will be created with this option.
 
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1804 -AzureLocation "East US"
@@ -118,7 +121,9 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [Switch] $RestrictToAgentIpAddress,
         [Parameter(Mandatory = $False)]
-        [Switch] $Force
+        [Switch] $Force,
+        [Parameter(Mandatory = $False)]
+        [bool] $AllowBlobPublicAccess = $False,
     )
 
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
@@ -186,7 +191,7 @@ Function GenerateResourcesAndImage {
     $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
     $storageAccountName += "001"
 
-    New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS"
+    New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess
 
     if ([string]::IsNullOrEmpty($AzureClientId)) {
         # Interactive authentication: A service principal is created during runtime.
