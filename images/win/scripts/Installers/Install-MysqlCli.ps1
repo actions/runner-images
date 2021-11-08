@@ -11,13 +11,9 @@ $ArgumentList = ("/install", "/quiet", "/norestart")
 Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
 
 ## Downloading mysql
-if (Test-IsWin22) {
-    $MysqlVersionName = "mysql-8.0.26-winx64"
-    $MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-8/${MysqlVersionName}.zip"
-} else {
-    $MysqlVersionName = "mysql-5.7.35-winx64"
-    $MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-5.7/${MysqlVersionName}.zip"
-}
+$MysqlShortVersion = (Get-ToolsetContent).Mysql.short_version
+$MysqlFullVersion = (Get-ToolsetContent).Mysql.full_version
+$MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-${MysqlShortVersion}/mysql-${MysqlFullVersion}-winx64.zip"
 
 $MysqlArchPath = Start-DownloadWithRetry -Url $MysqlVersionUrl -Name "mysql.zip"
 
@@ -26,7 +22,7 @@ Extract-7Zip -Path $MysqlArchPath -DestinationPath "C:\"
 
 # Rename mysql-version to mysql folder
 $MysqlPath = "C:\mysql"
-Rename-Item -Path "C:\${MysqlVersionName}" -NewName $MysqlPath
+Rename-Item -Path "C:\mysql-${MysqlFullVersion}-winx64" -NewName $MysqlPath
 
 # Adding mysql in system environment path
 Add-MachinePathItem "${MysqlPath}\bin"

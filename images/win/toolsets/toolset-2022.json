@@ -304,5 +304,9 @@
     },
     "node": {
         "default": "14.18.1"
+    },
+    "Mysql": {
+        "short_version": "8",
+        "full_version": "8.0.26"
     }
 }

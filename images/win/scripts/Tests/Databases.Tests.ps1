@@ -53,8 +53,7 @@ Describe "PostgreSQL" {
 }
 
 Describe "MySQL" {
-    It "MySQL CLI" {
-        "mysql -V" | Should -ReturnZeroExitCode
+    It "MySQL version should correspond to the version in the toolset" {
+        mysql --version | Should -BeLike "*$((Get-ToolsetContent).Mysql.full_version)*"
     }
 }
-
