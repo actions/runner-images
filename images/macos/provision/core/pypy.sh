@@ -75,13 +75,14 @@ function InstallPyPy
     rm -f $PACKAGE_TAR_TEMP_PATH
 }
 
-uri="https://downloads.python.org/pypy/"
-pypyVersions=$(curl -4 -s --compressed $uri | grep 'osx64' | awk -v uri="$uri" -F'>|<' '{print uri$5}')
+pypyVersions=$(curl https://downloads.python.org/pypy/versions.json)
 toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
-versionPattern="v[0-9]+\.[0-9]+\.[0-9]+-"
 
 for toolsetVersion in $toolsetVersions; do
-    latestMajorPyPyVersion=$(echo "${pypyVersions}" | grep -E "pypy${toolsetVersion}-${versionPattern}" | head -1)
+    latestMajorPyPyVersion=$(echo $pypyVersions |
+        jq -r --arg toolsetVersion $toolsetVersion '.[]
+        | select((.python_version | startswith($toolsetVersion)) and .stable == true).files[]
+        | select(.platform == "darwin").download_url' | head -1)
     if [[ -z "$latestMajorPyPyVersion" ]]; then
         echo "Failed to get PyPy version '$toolsetVersion'"
         exit 1

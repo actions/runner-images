@@ -4,11 +4,6 @@
 ##  Desc:  Helper functions for installing tools
 ################################################################################
 
-function isUbuntu16
-{
-    lsb_release -d | grep -q 'Ubuntu 16'
-}
-
 function isUbuntu18
 {
     lsb_release -d | grep -q 'Ubuntu 18'

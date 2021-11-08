@@ -22,10 +22,6 @@ function Get-KernelVersion {
     return "Linux kernel version: $kernelVersion"
 }
 
-function Test-IsUbuntu16 {
-    return (lsb_release -rs) -eq "16.04"
-}
-
 function Test-IsUbuntu18 {
     return (lsb_release -rs) -eq "18.04"
 }
