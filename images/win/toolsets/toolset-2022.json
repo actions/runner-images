@@ -303,7 +303,7 @@
         ]
     },
     "node": {
-        "default": "14.18.1"
+        "default": "14"
     },
     "mongodb": {
         "default": "5"
