@@ -10,8 +10,8 @@ source $HELPER_SCRIPTS/install.sh
 
 REPO_URL="https://repo.mongodb.org/apt/ubuntu"
 osLabel=$(getOSVersionLabel)
-toolsetVersion=$(get_toolset_value '.mongodb.default')
-latestVersion=$(curl $REPO_URL/dists/$osLabel/mongodb-org/ | grep $toolsetVersion\.. | awk -F'>|<' '{print $3}' | tail -1)
+toolsetVersion=$(get_toolset_value '.mongodb.version')
+latestVersion=$(curl $REPO_URL/dists/$osLabel/mongodb-org/ | awk -F'>|<' '{print $3}' | grep "^$toolsetVersion" | tail -1)
 
 #  Install Mongo DB
 wget -qO - https://www.mongodb.org/static/pgp/server-$latestVersion.asc | sudo apt-key add -

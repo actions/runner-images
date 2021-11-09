@@ -336,6 +336,6 @@
         }
     ],
     "mongodb": {
-        "default": "5"
+        "version": "5"
     }
 }

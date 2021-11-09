@@ -3,7 +3,7 @@ Describe "MongoDB" {
         @{ ToolName = "mongo" }
         @{ ToolName = "mongod" }
     ) {
-        toolsetVersion=$(get_toolset_value '.mongodb.default')
+        $toolsetVersion = (Get-ToolsetContent).mongodb.version
         (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
     }
 }
