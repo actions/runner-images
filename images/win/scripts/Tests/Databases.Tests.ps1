@@ -53,10 +53,10 @@ Describe "PostgreSQL" {
 }
 
 Describe "MySQL" {
-    It "MySQL version should correspond to the version in the toolset" {
-        $MysqlShortVersion = (Get-ToolsetContent).Mysql.short_version
-        $MysqlFullVersion = ((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/${MysqlShortVersion}.html).Content | Select-String -Pattern "${MysqlShortVersion}\.\d+").Matches.Value
+    It "MySQL CLI" {
+        $MysqlMajorMinor = (Get-ToolsetContent).Mysql.version
+        $MysqlFullVersion = ((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/${MysqlMajorMinor}.html).Content | Select-String -Pattern "${MysqlMajorMinor}\.\d+").Matches.Value
 
-        mysql --version | Should -BeLike "*${MysqlFullVersion}*"
+        mysql --version | Should -BeLike "*${MysqlMajorMinor}*"
     }
 }

@@ -11,9 +11,9 @@ $ArgumentList = ("/install", "/quiet", "/norestart")
 Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
 
 ## Downloading mysql
-$MysqlShortVersion = (Get-ToolsetContent).Mysql.short_version
-$MysqlFullVersion = ((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/${MysqlShortVersion}.html).Content | Select-String -Pattern "${MysqlShortVersion}\.\d+").Matches.Value
-$MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-${MysqlShortVersion}/mysql-${MysqlFullVersion}-winx64.zip"
+$MysqlMajorMinor = (Get-ToolsetContent).Mysql.version
+$MysqlFullVersion = ((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/${MysqlMajorMinor}.html).Content | Select-String -Pattern "${MysqlMajorMinor}\.\d+").Matches.Value
+$MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-${MysqlMajorMinor}/mysql-${MysqlFullVersion}-winx64.zip"
 
 $MysqlArchPath = Start-DownloadWithRetry -Url $MysqlVersionUrl -Name "mysql.zip"
 

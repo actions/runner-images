@@ -424,6 +424,6 @@
         "default": "14.18.1"
     },
     "Mysql": {
-        "short_version": "5.7"
+        "version": "5.7"
     }
 }
