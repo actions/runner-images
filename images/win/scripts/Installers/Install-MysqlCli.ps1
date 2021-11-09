@@ -12,7 +12,7 @@ Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentLi
 
 ## Downloading mysql
 $MysqlShortVersion = (Get-ToolsetContent).Mysql.short_version
-$MysqlFullVersion = (Get-ToolsetContent).Mysql.full_version
+$MysqlFullVersion = ((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/${MysqlShortVersion}.html).Content | Select-String -Pattern "${MysqlShortVersion}\.\d+").Matches.Value
 $MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-${MysqlShortVersion}/mysql-${MysqlFullVersion}-winx64.zip"
 
 $MysqlArchPath = Start-DownloadWithRetry -Url $MysqlVersionUrl -Name "mysql.zip"

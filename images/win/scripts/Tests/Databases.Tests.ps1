@@ -54,6 +54,9 @@ Describe "PostgreSQL" {
 
 Describe "MySQL" {
     It "MySQL version should correspond to the version in the toolset" {
-        mysql --version | Should -BeLike "*$((Get-ToolsetContent).Mysql.full_version)*"
+        $MysqlShortVersion = (Get-ToolsetContent).Mysql.short_version
+        $MysqlFullVersion = ((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/${MysqlShortVersion}.html).Content | Select-String -Pattern "${MysqlShortVersion}\.\d+").Matches.Value
+
+        mysql --version | Should -BeLike "*${MysqlFullVersion}*"
     }
 }
