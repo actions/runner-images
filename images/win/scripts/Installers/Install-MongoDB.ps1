@@ -4,7 +4,7 @@
 ####################################################################################
 
 $toolsetVersion = (Get-ToolsetContent).mongodb.default
-$latestChocoPackage = Get-ChocoPackageLatestVersion -TargetVersion $toolsetVersion -PackageName "mongodb"
+$latestChocoPackage = Get-LatestChocoPackageVersion -TargetVersion $toolsetVersion -PackageName "mongodb"
 Choco-Install -PackageName mongodb -ArgumentList "--version $latestChocoPackage"
 $mongoPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'mongodb'").PathName
 $mongoBin = Split-Path -Path $mongoPath.split('"')[1]
