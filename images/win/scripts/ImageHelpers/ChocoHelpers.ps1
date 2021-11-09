@@ -44,7 +44,6 @@ function Send-RequestToCocolateyPackages {
 }
 
 function Get-LatestChocoPackageVersion {
-    [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
         [string] $PackageName,

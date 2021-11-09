@@ -424,6 +424,6 @@
         "default": "14"
     },
     "mongodb": {
-        "default": "5"
+        "version": "5"
     }
 }
