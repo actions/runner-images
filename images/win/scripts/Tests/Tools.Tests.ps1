@@ -187,6 +187,12 @@ Describe "WebPlatformInstaller" -Skip:(Test-IsWin22) {
     }
 }
 
+Describe "WiX" {
+    It "WiX directory exists" {
+      $env:WIX | Should -Exist
+    }
+}
+
 Describe "Zstd" {
     It "zstd" {
         "zstd -V" | Should -ReturnZeroExitCode
