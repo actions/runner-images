@@ -3,7 +3,8 @@ Describe "MongoDB" {
         @{ ToolName = "mongo" }
         @{ ToolName = "mongod" }
     ) {
-        "$ToolName --version" | Should -ReturnZeroExitCode
+        toolsetVersion=$(get_toolset_value '.mongodb.default')
+        (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
     }
 }
 
