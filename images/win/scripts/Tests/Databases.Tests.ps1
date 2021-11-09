@@ -4,7 +4,8 @@ Describe "MongoDB" {
         @{ ToolName = "mongod" }
     ) {
         $toolsetVersion = (Get-ToolsetContent).mongodb.default
-        ("$ToolName --version")[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
+        $toolNameVersion = "$ToolName --version"
+        $toolNameVersion.Split('"')[-2] | Should -BeLike "$toolsetVersion*"
     }
 }
 

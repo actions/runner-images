@@ -31,7 +31,19 @@ function Choco-Install {
     }
 }
 
-function Get-ChocoPackageLatestVersion {
+function Send-RequestToCocolateyPackages {
+    param(
+        [Parameter(Mandatory)]
+        [string] $FilterQuery,
+        [int] $ApiVersion = 2
+    )
+
+    $response = Invoke-RestMethod "https://community.chocolatey.org/api/v$ApiVersion/Packages()?$filterQuery"
+
+    return $response
+}
+
+function Get-LatestChocoPackageVersion {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
@@ -40,10 +52,10 @@ function Get-ChocoPackageLatestVersion {
         [string] $TargetVersion
     )
 
-    $filterQuery = "`$filter=(Id eq `'$PackageName`') and (IsPrerelease eq false) and (Version ge `'$TargetVersion`') and (Version lt `'$($TargetVersion + 1)`')"
-    $latestVersion = (Invoke-RestMethod "https://community.chocolatey.org/api/v2/Packages()?$filterQuery").properties.Version |
-        Sort-Object{[version]$_} -Descending |
-        Select-Object -First 1
+    $filterQuery = "`$filter=(Id eq '$PackageName') and (IsPrerelease eq false) and (Version ge '$TargetVersion') and (Version lt '$($TargetVersion + 1)')"
+    $latestVersion = (Send-RequestToCocolateyPackages -FilterQuery $filterQuery).properties.Version |
+        Sort-Object {[version]$_} |
+        Select-Object -Last 1
     
     return $latestVersion
 }
