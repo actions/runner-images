@@ -123,7 +123,7 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [Switch] $Force,
         [Parameter(Mandatory = $False)]
-        [bool] $AllowBlobPublicAccess = $False,
+        [bool] $AllowBlobPublicAccess = $False
     )
 
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
