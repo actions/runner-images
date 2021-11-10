@@ -24,12 +24,25 @@
             "default": "3.9.*"
         },
         {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "arch": "x86",
+            "platform" : "win32",
+            "versions": [
+                "3.7.*",
+                "3.8.*",
+                "3.9.*",
+                "3.10.*"
+            ]
+        },
+        {
             "name": "PyPy",
             "arch": "x86",
             "platform" : "win64",
             "versions": [
                 "2.7",
-                "3.7"
+                "3.7",
+                "3.8"
             ]
         },
         {
@@ -40,7 +53,8 @@
             "versions": [
                 "10.*",
                 "12.*",
-                "14.*"
+                "14.*",
+                "16.*"
             ]
         },
         {
@@ -64,7 +78,8 @@
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
         { "name": "SqlServer" },
-        { "name": "VSSetup" }
+        { "name": "VSSetup" },
+        { "name": "Microsoft.Graph" }
     ],
     "azureModules": [
         {
@@ -100,7 +115,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.4.0"
+                "6.5.0"
             ],
             "zip_versions": []
         }
@@ -155,7 +170,7 @@
         "version" : "2022",
         "subversion" : "17",
         "edition" : "Enterprise",
-        "channel": "pre",
+        "channel": "release",
         "workloads": [
             "Component.Linux.CMake",
             "Component.UnityEngine.x64",
@@ -177,6 +192,7 @@
             "Microsoft.VisualStudio.Component.VC.CMake.Project",
             "Microsoft.VisualStudio.Component.VC.DiagnosticTools",
             "Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset",
+            "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest",
@@ -191,10 +207,17 @@
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.MFC",
             "Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM64",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64",
+            "Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATLMFC",
             "Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
             "Microsoft.VisualStudio.Component.Windows10SDK.20348",
+            "Microsoft.VisualStudio.Component.Windows11SDK.22000",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
@@ -233,6 +256,10 @@
             "cmd": "yamllint --version"
         }
     ],
+    "selenium": {
+        "version": "3",
+        "binary_name": "selenium-server-standalone"
+    },
     "npm": {
         "global_packages": [
             { "name": "yarn", "test": "yarn --version" },
@@ -274,5 +301,11 @@
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             }
         ]
+    },
+    "node": {
+        "default": "14"
+    },
+    "mongodb": {
+        "version": "5"
     }
 }

@@ -73,11 +73,6 @@ function Get-GitLFSVersion {
     return "Git LFS $gitLfsVersion"
 }
 
-function Get-GVFSVersion {
-    $gvfsVersion = (Get-Command gvfs).Version
-    return "GVFS $gvfsVersion"
-}
-
 function Get-InnoSetupVersion {
     return $(choco list --local-only innosetup) | Select-String -Pattern "InnoSetup"
 }
@@ -159,6 +154,12 @@ function Get-VSWhereVersion {
 function Get-WinAppDriver {
     $winAppDriverVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe").FileVersion
     return "WinAppDriver $winAppDriverVersion"
+}
+
+function Get-WixVersion {
+    $regKey = "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
+    $installedApplications = Get-ItemProperty -Path $regKey
+    return ($installedApplications | Where-Object { $_.BundleCachePath -imatch ".*\\WiX\d*\.exe$" } | Select-Object -First 1).DisplayName
 }
 
 function Get-ZstdVersion {

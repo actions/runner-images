@@ -33,7 +33,8 @@
             "versions": [
                 "10.*",
                 "12.*",
-                "14.*"
+                "14.*",
+                "16.*"
             ]
         },
         {
@@ -42,8 +43,6 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.13.*",
-                "1.14.*",
                 "1.15.*",
                 "1.16.*",
                 "1.17.*"
@@ -148,6 +147,7 @@
             "libxkbfile-dev",
             "libxss1",
             "locales",
+            "mercurial",
             "openssh-client",
             "p7zip-rar",
             "pkg-config",
@@ -215,12 +215,12 @@
             "debian:10",
             "debian:11",
             "moby/buildkit:latest",
-            "node:10",
             "node:12",
             "node:14",
-            "node:10-alpine",
+            "node:16",
             "node:12-alpine",
             "node:14-alpine",
+            "node:16-alpine",
             "ubuntu:16.04",
             "ubuntu:18.04",
             "ubuntu:20.04"
@@ -274,7 +274,14 @@
             "8.0"
         ]
     },
+    "selenium": {
+        "version": "3",
+        "binary_name": "selenium-server-standalone"
+    },
     "rubygems": [],
+    "node": {
+        "default": "14"
+    },
     "node_modules": [
         {
             "name": "grunt",
@@ -320,5 +327,8 @@
             "name": "yarn",
             "command": "yarn"
         }
-    ]
+    ],
+    "mongodb": {
+        "version": "5"
+    }
 }

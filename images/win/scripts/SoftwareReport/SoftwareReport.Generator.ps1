@@ -104,7 +104,6 @@ $toolsList = @(
     (Get-GHCVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
-    (Get-GVFSVersion),
     (Get-InnoSetupVersion),
     (Get-JQVersion),
     (Get-KindVersion),
@@ -112,6 +111,7 @@ $toolsList = @(
     (Get-MercurialVersion),
     (Get-MinGWVersion),
     (Get-NewmanVersion),
+    (Get-NSISVersion),
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
     (Get-PulumiVersion),
@@ -121,12 +121,12 @@ $toolsList = @(
     (Get-VSWhereVersion),
     (Get-SwigVersion),
     (Get-WinAppDriver),
+    (Get-WixVersion),
     (Get-ZstdVersion),
     (Get-YAMLLintVersion)
 )
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
-        (Get-NSISVersion),
         (Get-GoogleCloudSDKVersion)
     )
 }
@@ -178,7 +178,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SeleniumWebDriverVersion -Driver "edge"),
     (Get-BrowserVersion -Browser "firefox"),
     (Get-SeleniumWebDriverVersion -Driver "firefox"),
-    (Get-SeleniumWebDriverVersion -Driver "iexplorer")
+    (Get-SeleniumWebDriverVersion -Driver "iexplorer"),
+    (Get-SeleniumVersion)
 )
 
 $markdown += New-MDHeader "Environment variables" -Level 4

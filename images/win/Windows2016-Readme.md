@@ -1,10 +1,14 @@
 | Announcements |
 |-|
+| [[all OSs] Selenium server version will be upgraded from 3 to 4 on November, 15](https://github.com/actions/virtual-environments/issues/4376) |
+| [[All OSs] Node.js version 10 will be removed from the images on November, 15](https://github.com/actions/virtual-environments/issues/4356) |
+| [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
+| [[All OSs] Go versions less than 1.15 will be removed on November, 8](https://github.com/actions/virtual-environments/issues/4311) |
 | [(Public Beta) Windows Server 2022 with Visual Studio 2022 is now available](https://github.com/actions/virtual-environments/issues/3949) |
 ***
 # Microsoft Windows Server 2016 Datacenter
-- OS Version: 10.0.14393 Build 4651
-- Image Version: 20211003.1
+- OS Version: 10.0.14393 Build 4704
+- Image Version: 20211102.4
 
 ## Installed Software
 ### Language and Runtime
@@ -12,25 +16,25 @@
 - Go 1.15.15
 - Julia 1.6.3
 - Kotlin 1.5.31
-- LLVM 12.0.1
-- Node 14.18.0
+- LLVM 13.0.0
+- Node 14.18.1
 - Perl 5.32.1
 - PHP 8.0.10
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 0.11.2
-- Composer 2.1.8
-- Helm 3.6.3
+- Chocolatey 0.11.3
+- Composer 2.1.11
+- Helm 3.7.0
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.15
 - NuGet 5.11.0.10
-- pip 21.2.4 (python 3.7)
+- pip 21.3.1 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<2a31089>)
-- Yarn 1.22.15
+- Vcpkg  (build from master \<85b3115>)
+- Yarn 1.22.17
 
 #### Environment variables
 | Name                    | Value        |
@@ -39,39 +43,38 @@
 | CONDA                   | C:\Miniconda |
 
 ### Project Management
-- Ant 1.10.11
+- Ant 1.10.12
 - Gradle 7.2
-- Maven 3.8.2
+- Maven 3.8.3
 - sbt 1.5.5
 
 ### Tools
 - 7zip 19.00
 - aria2 1.36.0
-- azcopy 10.12.2
+- azcopy 10.13.0
 - Bazel 4.2.1
 - Bazelisk 1.10.1
-- Bicep 0.4.613
-- Cabal 3.4.0.0
-- CMake 3.21.3
-- CodeQL Action Bundle 2.6.2
+- Bicep 0.4.1008
+- Cabal 3.6.2.0
+- CMake 3.21.4
+- CodeQL Action Bundle 2.7.0
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - ghc 9.0.1
-- Git 2.33.0
-- Git LFS 2.13.3
-- Google Cloud SDK 359.0.0
-- GVFS 1.0.21085.9
+- Git 2.33.1
+- Git LFS 3.0.1
+- Google Cloud SDK 363.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.22.2
+- Kubectl 1.22.3
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.0
 - NSIS v3.06.1
 - OpenSSL 1.1.1
-- Packer 1.7.5
-- Pulumi v3.13.2
+- Packer 1.7.6
+- Pulumi v3.16.0
 - R 4.1.1
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -82,20 +85,20 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.94
-- AWS CLI 2.2.43
-- AWS SAM CLI 1.33.0
-- AWS Session Manager CLI 1.2.245.0
-- Azure CLI 2.28.0
-- Azure DevOps CLI extension 0.20.0
+- Alibaba Cloud CLI 3.0.97
+- AWS CLI 2.3.0
+- AWS SAM CLI 1.34.1
+- AWS Session Manager CLI 1.2.279.0
+- Azure CLI 2.30.0
+- Azure DevOps CLI extension 0.21.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.0.0
+- GitHub CLI 2.2.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.55.0
-- Rust 1.55.0
-- Rustdoc 1.55.0
+- Cargo 1.56.0
+- Rust 1.56.1
+- Rustdoc 1.56.1
 - Rustup 1.24.3
 
 #### Packages
@@ -103,32 +106,34 @@
 - cargo-audit 0.15.2
 - cargo-outdated v0.9.17
 - cbindgen 0.20.0
-- Clippy 0.1.55
+- Clippy 0.1.56
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 94.0.4606.71
-- Chrome Driver 94.0.4606.61
-- Microsoft Edge 94.0.992.38
-- Microsoft Edge Driver 94.0.992.38
-- Mozilla Firefox 92.0.1
+- Google Chrome 95.0.4638.69
+- Chrome Driver 95.0.4638.54
+- Microsoft Edge 95.0.1020.40
+- Microsoft Edge Driver 95.0.1020.40
+- Mozilla Firefox 94.0
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
+- Selenium server 3.141.59
 
 #### Environment variables
-| Name            | Value                              |
-| --------------- | ---------------------------------- |
-| CHROMEWEBDRIVER | C:\SeleniumWebDrivers\ChromeDriver |
-| EDGEWEBDRIVER   | C:\SeleniumWebDrivers\EdgeDriver   |
-| GECKOWEBDRIVER  | C:\SeleniumWebDrivers\GeckoDriver  |
+| Name              | Value                                      |
+| ----------------- | ------------------------------------------ |
+| CHROMEWEBDRIVER   | C:\SeleniumWebDrivers\ChromeDriver         |
+| EDGEWEBDRIVER     | C:\SeleniumWebDrivers\EdgeDriver           |
+| GECKOWEBDRIVER    | C:\SeleniumWebDrivers\GeckoDriver          |
+| SELENIUM_JAR_PATH | C:\selenium\selenium-server-standalone.jar |
 
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.302+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.12+7           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 8.0.312+7 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.13+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
-| 17.0.0+35           | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 17.0.1+12           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -151,16 +156,17 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.13.15 | x64          | GOROOT_1_13_X64      |
 | 1.14.15 | x64          | GOROOT_1_14_X64      |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.8  | x64          | GOROOT_1_16_X64      |
-| 1.17.1  | x64          | GOROOT_1_17_X64      |
+| 1.16.9  | x64          | GOROOT_1_16_X64      |
+| 1.17.2  | x64          | GOROOT_1_17_X64      |
 
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
 | 10.24.1 | x64          |
-| 12.22.6 | x64          |
-| 14.18.0 | x64          |
+| 12.22.7 | x64          |
+| 14.18.1 | x64          |
+| 16.13.0 | x64          |
 
 
 #### Python
@@ -172,6 +178,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
 | 3.9.7   | x64, x86     |
+| 3.10.0  | x64          |
 
 
 #### Ruby
@@ -187,9 +194,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### PyPy
 | Python Version | PyPy Version |
 | -------------- | ------------ |
-| 2.7.18         | PyPy 7.3.5 with MSC v.1927 64 bit (AMD64) |
+| 2.7.18         | PyPy 7.3.6 with MSC v.1929 64 bit (AMD64) |
 | 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
-| 3.7.10         | PyPy 7.3.5 with MSC v.1927 64 bit (AMD64) |
+| 3.7.12         | PyPy 7.3.7 with MSC v.1929 64 bit (AMD64) |
+| 3.8.12         | PyPy 7.3.7 with MSC v.1929 64 bit (AMD64) |
 
 
 
@@ -215,8 +223,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.3.0
-- DacFx 15.0.5164.1
+- Azure CosmosDb Emulator 2.14.4.0
+- DacFx 15.0.5282.3
 - MySQL 5.7.35.0
 - SQLPS 1.0
 
@@ -224,13 +232,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
-| Apache | 2.4.49  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
+| Apache | 2.4.51  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
 | Nginx  | 1.21.3  | C:\tools\nginx-1.21.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2017 | 15.9.28307.1684 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
+| Visual Studio Enterprise 2017 | 15.9.28307.1705 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
 
 #### Workloads, components and extensions:
 
@@ -492,27 +500,27 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2017 Debug Runtime      | x64          | 14.16.27033 |
 | Microsoft Visual C++ 2017 Debug Runtime      | x86          | 14.16.27033 |
-| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30133 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30133 |
-| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30133 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30133 |
+| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30135 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30135 |
+| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30135 |
+| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30135 |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 1.1.14 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.119 3.1.202 3.1.302 3.1.413 5.0.104 5.0.207 5.0.303 5.0.401
+- 1.1.14 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.414 5.0.104 5.0.208 5.0.303 5.0.402
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
 - 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.19 5.0.4 5.0.9 5.0.10
+- 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.20 5.0.4 5.0.9 5.0.11
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 1.0.16 1.1.13 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.19 5.0.4 5.0.9 5.0.10
+- 1.0.16 1.1.13 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.20 5.0.4 5.0.9 5.0.11
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.4 3.1.6 3.1.19 5.0.4 5.0.9 5.0.10
+- 3.1.4 3.1.6 3.1.20 5.0.4 5.0.9 5.0.11
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -520,12 +528,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8
 
 ### PowerShell Tools
-- PowerShell 7.1.4
+- PowerShell 7.1.5
 
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                           | Path                           |
 | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.9.0.zip<br>6.4.0 | C:\Modules\az_\<version\>      |
+| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.9.0.zip<br>6.5.0 | C:\Modules\az_\<version\>      |
 | Azure   | 2.1.0 [Installed]<br>3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>5.3.0                                                                                                 | C:\Modules\azure_\<version\>   |
 | AzureRM | 2.1.0 [Installed]<br>3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>6.7.0.zip<br>6.13.1                                                                                   | C:\Modules\azurerm_\<version\> |
 ```
@@ -538,6 +546,7 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
+| Microsoft.Graph    | 1.8.0            |
 | Pester             | 3.4.0<br>5.3.1   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
@@ -558,7 +567,7 @@ All other versions are saved but not installed.
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                        |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                              |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                              |
-| NDK                        | 21.4.7075529 (default)<br>22.1.7171670<br>23.0.7599858                                                                                                                                                                                                                                          |
+| NDK                        | 21.4.7075529 (default)<br>22.1.7171670<br>23.1.7779620                                                                                                                                                                                                                                          |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                               |
 
 #### Environment variables
@@ -566,7 +575,7 @@ All other versions are saved but not installed.
 | ----------------------- | ---------------------------------------------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                                                       |
 | ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\23.0.7599858                                      |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\23.1.7779620                                      |
 | ANDROID_NDK_PATH        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                                                       |
@@ -574,11 +583,11 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:dde4551c0b326807cfd2b0457d6cf6a44906d788c917b6f6115bf5cab03a670c  | 2021-09-14 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:a5b246ba628f417576dbca9c12e241627be4aa786b9508fea57a934ec3ebdf30  | 2021-09-14 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:c12743903deef533e2232e3a04af92f5558ef0449d5d6dbd139cddf07f5bcb15  | 2021-09-14 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:8475573b3deea860097590fe71c1a5333c937f5aadb7a6b07d760fe9017e28b1  | 2021-10-12 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:97bbc6dd603e44f5a34e3f309b493c77b964b0e07d9e3dd7333f063ccaf33523  | 2021-10-12 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:bff7dee44dc39f9e997389be6de0c9fcde608879eb52070839ac03f6058f1385  | 2021-10-12 |
 | mcr.microsoft.com/windows/nanoserver:10.0.14393.953                       | sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268  | 2017-03-08 |
-| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:22cc6661c975edc09fa44c497f8310b264da4ff102a56a974e4cf1a790626a22  | 2021-09-13 |
+| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:bcff581aa164b5d0036284c21fb1733d4f5a7356341a32876ef9d0f6539aaa2b  | 2021-10-06 |
 
 
 

@@ -418,7 +418,7 @@ function Get-AppCenterCLIVersion {
 }
 
 function Get-AzureCLIVersion {
-    $azureCLIVersion = Run-Command "az -v" | Select-String "^azure-cli" | Take-Part -Part 1
+    $azureCLIVersion = (az version | ConvertFrom-Json).'azure-cli'
     return "Azure CLI $azureCLIVersion"
 }
 
@@ -510,6 +510,11 @@ function Get-KotlinVersion {
 function Get-SbtVersion {
     $sbtVersion = Run-Command "sbt -version" | Take-Part -Part 3
     return "Sbt $sbtVersion"
+}
+
+function Get-JazzyVersion {
+    $jazzyVersion = Run-Command "jazzy --version" | Take-Part -Part 2
+    return "Jazzy $jazzyVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {

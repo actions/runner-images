@@ -1,26 +1,34 @@
 {
     "xcode": {
-        "default": "13.0",
+        "default": "13.1",
         "versions": [
-            { "link": "13.0", "version": "13.0.0"}
+            { "link": "13.2", "version": "13.2.0" },
+            { "link": "13.1", "version": "13.1.0" }
         ]
     },
     "xamarin": {
         "vsmac": "latest",
         "mono-versions": [
-            "6.12.0.125"
+            "6.12.0.140"
         ],
         "ios-versions": [
-            "15.0.0.6"
+            "15.2.0.1", "15.0.0.6"
         ],
         "mac-versions": [
-            "7.14.0.27"
+            "8.2.0.1", "7.14.0.27"
         ],
         "android-versions": [
-            "11.3.0.4"
+            "12.0.0.3", "11.3.0.4"
         ],
         "bundle-default": "6_12_10",
         "bundles": [
+            {
+                "symlink": "6_12_11",
+                "mono":"6.12",
+                "ios": "15.2",
+                "mac": "8.2",
+                "android": "12.0"
+            },
             {
                 "symlink": "6_12_10",
                 "mono":"6.12",
@@ -113,7 +121,8 @@
             "platform" : "darwin",
             "versions": [
                 "2.7",
-                "3.7"
+                "3.7",
+                "3.8"
             ]
         },
         {
@@ -124,7 +133,8 @@
             "versions": [
                 "10.*",
                 "12.*",
-                "14.*"
+                "14.*",
+                "16.*"
             ]
         },
         {
@@ -132,6 +142,7 @@
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
             "arch": "x64",
             "platform" : "darwin",
+            "variable_template" : "GOROOT_{0}_{1}_X64",
             "versions": [
                 "1.15.*",
                 "1.16.*",
@@ -166,10 +177,19 @@
             "cocoapods",
             "xcpretty",
             "bundler",
-            "fastlane"
+            "fastlane",
+            "jazzy"
         ]
     },
     "go": {
         "default": "1.17"
+    },
+    "node": {
+        "default": "14",
+        "nvm_versions": [
+            "10",
+            "12",
+            "14"
+        ]
     }
 }

@@ -117,7 +117,7 @@ Describe "NET48" {
     }
 }
 
-Describe "NSIS" -Skip:(Test-IsWin22) {
+Describe "NSIS" {
     It "NSIS" {
        "makensis /VERSION" | Should -ReturnZeroExitCode
     }
@@ -184,6 +184,12 @@ Describe "VCRedist" -Skip:(Test-IsWin22) {
 Describe "WebPlatformInstaller" -Skip:(Test-IsWin22) {
     It "WebPlatformInstaller" {
         "WebPICMD" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "WiX" {
+    It "WiX directory exists" {
+      $env:WIX | Should -Exist
     }
 }
 
