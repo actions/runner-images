@@ -29,6 +29,7 @@
 - Chocolatey 0.11.3
 - Composer 2.1.11
 - Helm 3.7.0
+- Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.15
 - NuGet 5.11.0.10
 - pip 21.3.1 (python 3.9)
