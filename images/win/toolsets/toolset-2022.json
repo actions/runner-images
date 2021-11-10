@@ -170,7 +170,7 @@
         "version" : "2022",
         "subversion" : "17",
         "edition" : "Enterprise",
-        "channel": "pre",
+        "channel": "release",
         "workloads": [
             "Component.Linux.CMake",
             "Component.UnityEngine.x64",
@@ -303,6 +303,6 @@
         ]
     },
     "node": {
-        "default": "14.18.1"
+        "default": "14"
     }
 }
