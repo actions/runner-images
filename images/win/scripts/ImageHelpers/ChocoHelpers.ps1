@@ -35,10 +35,11 @@ function Send-RequestToCocolateyPackages {
     param(
         [Parameter(Mandatory)]
         [string] $FilterQuery,
+        [string] $Url = "https://community.chocolatey.org/api",
         [int] $ApiVersion = 2
     )
 
-    $response = Invoke-RestMethod "https://community.chocolatey.org/api/v$ApiVersion/Packages()?$filterQuery"
+    $response = Invoke-RestMethod "$Url/v$ApiVersion/Packages()?$filterQuery"
 
     return $response
 }
