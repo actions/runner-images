@@ -51,6 +51,7 @@ $markdown += New-MDList -Style Unordered -Lines ($languageTools | Sort-Object)
 
 $packageManagementList = @(
     (Get-ChocoVersion),
+    (Get-CondaVersion),
     (Get-ComposerVersion),
     (Get-HelmVersion),
     (Get-NPMVersion),
@@ -61,12 +62,6 @@ $packageManagementList = @(
     (Get-VcpkgVersion),
     (Get-YarnVersion)
 )
-
-if ((Test-IsWin16) -or (Test-IsWin19)) {
-    $packageManagementList += @(
-        (Get-CondaVersion)
-    )
-}
 
 $markdown += New-MDHeader "Package Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
