@@ -55,7 +55,6 @@ Describe "PostgreSQL" {
 Describe "MySQL" {
     It "MySQL CLI" {
         $MysqlMajorMinor = (Get-ToolsetContent).Mysql.version
-        $MysqlFullVersion = ((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/${MysqlMajorMinor}.html).Content | Select-String -Pattern "${MysqlMajorMinor}\.\d+").Matches.Value
 
         mysql --version | Should -BeLike "*${MysqlMajorMinor}*"
     }

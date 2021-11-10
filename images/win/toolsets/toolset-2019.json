@@ -453,7 +453,7 @@
         ]
     },
     "node": {
-        "default": "14.18.1"
+        "default": "14"
     },
     "Mysql": {
         "version": "5.7"
