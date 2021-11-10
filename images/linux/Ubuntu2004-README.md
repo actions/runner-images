@@ -7,7 +7,7 @@
 ***
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.11.0-1020-azure
-- Image Version: 20211101.1
+- Image Version: 20211108.1
 
 ## Installed Software
 ### Language and Runtime
@@ -76,7 +76,7 @@
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.1
-- HHVM (HipHop VM) 4.133.0
+- HHVM (HipHop VM) 4.134.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.22.3
@@ -84,15 +84,15 @@
 - Leiningen 2.9.7
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.23.2
+- Minikube 1.24.0
 - Newman 5.3.0
 - nvm 0.39.0
 - OpenSSL 1.1.1f  31 Mar 2020
-- Packer 1.7.7
+- Packer 1.7.8
 - PhantomJS 2.1.1
 - Podman 3.3.1 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.16.0
-- R 4.1.1
+- Pulumi 3.17.0
+- R 4.1.2
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
@@ -103,15 +103,15 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.97
-- AWS CLI 2.3.2
+- AWS CLI 2.3.4
 - AWS CLI Session manager plugin 1.2.279.0
-- AWS SAM CLI 1.34.1
-- Azure CLI (azure-cli) 2.29.2 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- AWS SAM CLI 1.35.0
+- Azure CLI (azure-cli) 2.30.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.21.0
 - GitHub CLI 2.2.0
-- Google Cloud SDK 362.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 363.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 6.14.7
+- Netlify CLI 6.14.16
 - OpenShift CLI 4.9.5
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
@@ -131,7 +131,7 @@
 | Tool     | Version       |
 | -------- | ------------- |
 | PHP      | 7.4.25 8.0.12 |
-| Composer | 2.1.10        |
+| Composer | 2.1.11        |
 | PHPUnit  | 8.5.21        |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -158,8 +158,8 @@
 
 ### Browsers and Drivers
 - Google Chrome 95.0.4638.69
-- ChromeDriver 95.0.4638.54
-- Mozilla Firefox 93.0
+- ChromeDriver 95.0.4638.69
+- Mozilla Firefox 94.0
 - Geckodriver 0.30.0
 - Chromium 95.0.4638.0
 - Selenium server 3.141.59
@@ -172,7 +172,7 @@
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server-standalone.jar |
 
 ### .NET Core SDK
-- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.414 5.0.104 5.0.208 5.0.303 5.0.402
+- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.414 3.1.415 5.0.104 5.0.208 5.0.303 5.0.402 5.0.403
 
 ### Databases
 - MongoDB 5.0.3 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
@@ -192,10 +192,9 @@
 
 ### Cached Tools
 #### Go
-- 1.14.15
 - 1.15.15
-- 1.16.9
-- 1.17.2
+- 1.16.10
+- 1.17.3
 
 #### Node.js
 - 10.24.1
@@ -215,7 +214,7 @@
 - 3.6.15
 - 3.7.12
 - 3.8.12
-- 3.9.7
+- 3.9.8
 - 3.10.0
 
 #### Ruby
@@ -227,13 +226,12 @@
 #### Environment variables
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
-| GOROOT_1_14_X64 | /opt/hostedtoolcache/go/1.14.15/x64 | x64          |
 | GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.15/x64 | x64          |
-| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.9/x64  | x64          |
-| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.2/x64  | x64          |
+| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.10/x64 | x64          |
+| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.3/x64  | x64          |
 
 ### PowerShell Tools
-- PowerShell 7.1.5
+- PowerShell 7.2.0
 
 #### PowerShell Modules
 | Module           | Version |
@@ -289,15 +287,15 @@
 | debian:10               | sha256:f9182ead292f45165f4a851e5ff98ea0800e172ccedce7d17764ffaae5ed4d6e  | 2021-10-12 |
 | debian:11               | sha256:4d6ab716de467aad58e91b1b720f0badd7478847ec7a18f66027d0f8a329a43c  | 2021-10-12 |
 | debian:9                | sha256:86269e614274db90a1d71dac258c74ed0a867a1d05f67dea6263b0f216ec7724  | 2021-10-12 |
-| moby/buildkit:latest    | sha256:94bc3a93cfa5197064cfdc86e4289cead7b46a2bc95874f142fbf51c67ad2826  | 2021-10-04 |
+| moby/buildkit:latest    | sha256:be268d9d1aa75a670a12417a17122eaaa889c036c465fb30dd010bccb88b35d1  | 2021-11-02 |
 | node:10                 | sha256:59531d2835edd5161c8f9512f9e095b1836f7a1fcb0ab73e005ec46047384911  | 2021-04-10 |
 | node:10-alpine          | sha256:dc98dac24efd4254f75976c40bce46944697a110d06ce7fa47e7268470cf2e28  | 2021-04-14 |
 | node:12                 | sha256:15a9da96daf0609aee1b8971d3487095f0385d990e64f099684b5d9d8d711f4d  | 2021-10-22 |
-| node:12-alpine          | sha256:88656c98cc43bafa6a517dfdb7b4945693c47ff7d0d24da2254a3174d308f93e  | 2021-10-22 |
+| node:12-alpine          | sha256:1ecf7789a48e604a841409e65cf2e172d5a014ecd5e60689137d785d2613e9b0  | 2021-10-22 |
 | node:14                 | sha256:ab6c8cd32006f8a4c1c795e55ddfbc7f54f5a3fb7318506ecb355cab8f5e7182  | 2021-10-22 |
-| node:14-alpine          | sha256:dc92f36e7cd917816fa2df041d4e9081453366381a00f40398d99e9392e78664  | 2021-10-22 |
+| node:14-alpine          | sha256:c346198378f78f8611254dce222e7e6635804e41e5203d1825321edd6c59dca1  | 2021-10-22 |
 | node:16                 | sha256:683b8ea4ebc033a0f9060501fc31c1481d3f7232cc032851abbd8cc8d91fdff7  | 2021-10-27 |
-| node:16-alpine          | sha256:8f1827381eb7fca5a79ad21cb42e935546bedf67d9f668519a7db69d77d812bf  | 2021-10-27 |
+| node:16-alpine          | sha256:3bca55259ada636e5fee8f2836aba7fa01fed7afd0652e12773ad44af95868b9  | 2021-10-27 |
 | ubuntu:16.04            | sha256:0f71fa8d4d2d4292c3c617fda2b36f6dabe5c8b6e34c3dc5b0d17d4e704bd39c  | 2021-08-31 |
 | ubuntu:18.04            | sha256:0fedbd5bd9fb72089c7bbca476949e10593cebed9b1fb9edf5b79dbbacddd7d6  | 2021-10-01 |
 | ubuntu:20.04            | sha256:626ffe58f6e7566e00254b638eb7e0f3b11d4da9675088f4781a50ae288f3322  | 2021-10-16 |
