@@ -1,11 +1,10 @@
 {
     "xcode": {
-        "default": "13.0",
+        "default": "13.1",
         "versions": [
             { "link": "13.2", "version": "13.2.0" },
             { "link": "13.1", "version": "13.1.0" },
             { "link": "13.0", "version": "13.0.0" },
-            { "link": "13.0_beta", "version": "13 beta 5", "skip-symlink": "true" },
             { "link": "12.5.1", "version": "12.5.1", "symlinks": ["12.5"] },
             { "link": "12.4", "version": "12.4.0" },
             { "link": "11.7", "version": "11.7.0", "symlinks": ["11.7_beta"] }
