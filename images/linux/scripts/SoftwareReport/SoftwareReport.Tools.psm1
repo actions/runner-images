@@ -170,6 +170,11 @@ function Get-NewmanVersion {
     return "Newman $(newman --version)"
 }
 
+Get-NVersion {
+    $nVersion = (n --version).Replace('v', '')
+    return "n $nVersion"
+}
+
 function Get-NvmVersion {
     $nvmVersion = bash -c "source /etc/skel/.nvm/nvm.sh && nvm --version"
     return "nvm $nvmVersion"
