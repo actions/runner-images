@@ -10,9 +10,12 @@ if is_Less_Catalina; then
   rm -rf "${TMP_FILE}"
   sudo chown -R $USER "/usr/local/lib/node_modules"
 else
-  # Install Node.js 14 for macOS >= 10.15
-  brew_smart_install "node@14"
-  brew link node@14 --force
+  # Install default Node.js for macOS >= 10.15
+  defaultVersion=$(get_toolset_value '.node.default')
+
+  echo "Installing Node.js $defaultVersion"
+  brew_smart_install "node@$defaultVersion"
+  brew link node@$defaultVersion --force
 fi
 
 echo Installing yarn...
