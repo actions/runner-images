@@ -329,5 +329,8 @@
             "name": "yarn",
             "command": "yarn"
         }
-    ]
+    ],
+    "mongodb": {
+        "version": "5"
+    }
 }
