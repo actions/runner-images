@@ -10,6 +10,12 @@ Describe "Chrome" {
     }
 }
 
+Describe "Selenium server" {
+    It "Selenium server" {
+        (Get-ChildItem -Path "/usr/local/Cellar/selenium-server*/*").Name | Should -BeLike "4.*"
+    }
+}
+
 Describe "Edge" {
     It "Microsoft Edge" {
         $edgeLocation = "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
