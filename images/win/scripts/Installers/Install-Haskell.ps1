@@ -40,8 +40,8 @@ $ghcupPrefix = "C:\"
 $appdata = [Environment]::GetEnvironmentVariable('APPDATA', [System.EnvironmentVariableTarget]::Machine) 
 $cabalDir = "$appdata\cabal"
 Invoke-Command -ScriptBlock ([ScriptBlock]::Create($bootstrapHaskell)) -ArgumentList $false, $true, $true, $false, $false, $false, $false, $ghcupPrefix, "", $msysPath, $cabalDir
-[Environment]::SetEnvironmentVariable("GHCUP_INSTALL_BASE_PREFIX", $ghcupPrefix, [System.EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("GHCUP_MSYS2", $msysPath, [System.EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("CABAL_DIR", $cabalDir, [System.EnvironmentVariableTarget]::Machine)
+Set-SystemVariable "GHCUP_INSTALL_BASE_PREFIX" $ghcupPrefix
+Set-SystemVariable "GHCUP_MSYS2" $msysPath
+Set-SystemVariable "CABAL_DIR" $cabalDir
 Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
 Add-MachinePathItem "$cabalDir\bin"
