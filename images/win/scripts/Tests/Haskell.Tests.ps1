@@ -30,7 +30,7 @@ Describe "Haskell" {
     )
 
     It "<envVar> environment variable exists" -TestCases $ghcupEnvExists {
-        [Environment]::GetEnvironmentVariables("Machine").ContainsKey($envVar) | Should -BeTrue
+        Test-Path env:\$envVar
     }
 
     It "Accurate 3 versions of GHC are installed" -TestCases @{ghcCount = $ghcCount} {
@@ -50,8 +50,8 @@ Describe "Haskell" {
     }
 
     It "cabal config was modified and exists" {
-        [Environment]::GetEnvironmentVariable('CABAL_DIR', [System.EnvironmentVariableTarget]::Machine) | Should -Exist
-        "cabal user-config diff" | Should -Not -BeNullOrEmpty
+        $env:CABAL_DIR | Should -Exist
+        "cabal user-config diff" | Should -ReturnZeroExitCode
     }
 
     It "ghcup is installed" {
