@@ -61,7 +61,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "10.*",
                 "12.*",
                 "14.*",
                 "16.*"
@@ -454,5 +453,8 @@
     },
     "node": {
         "default": "14"
+    },
+    "mongodb": {
+        "version": "5"
     }
 }

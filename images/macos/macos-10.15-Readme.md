@@ -9,7 +9,7 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1419)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20211029.1
+- Image Version: 20211106.1
 
 ## Installed Software
 ### Language and Runtime
@@ -19,10 +19,10 @@
 - Clang/LLVM 13.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - gcc-9 (Homebrew GCC 9.4.0) 9.4.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
-- gcc-11 (Homebrew GCC 11.2.0) 11.2.0 - available by `gcc-11` alias
+- gcc-11 (Homebrew GCC 11.2.0_1) 11.2.0 - available by `gcc-11` alias
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
-- GNU Fortran (Homebrew GCC 11.2.0) 11.2.0 - available by `gfortran-11` alias
+- GNU Fortran (Homebrew GCC 11.2.0_1) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
 - julia 1.6.3
 - Kotlin 1.5.31-release-548
@@ -34,15 +34,15 @@
 - PHP 8.0.12
 - Python 2.7.18
 - Python 3.9.7
-- R 4.1.1
+- R 4.1.2
 - Ruby 2.7.4p191
 
 ### Package Management
 - Bundler version 2.2.30
 - Carthage 0.38.0
 - CocoaPods 1.11.2
-- Composer 2.1.9
-- Homebrew 3.3.1
+- Composer 2.1.11
+- Homebrew 3.3.2
 - Miniconda 4.10.3
 - NPM 6.14.15
 - NuGet 5.9.0.7134
@@ -50,7 +50,7 @@
 - Pip 21.2.4 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.30
-- Vcpkg 2021 (build from master \<d78a0b4>)
+- Vcpkg 2021 (build from master \<d78a0b47b>)
 - Yarn 1.22.15
 
 #### Environment variables
@@ -93,27 +93,27 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.1
 - Switchaudio-osx 1.1.0
-- Vagrant 2.2.18
+- Vagrant 2.2.19
 - virtualbox 6.1.28r147628
 - zstd 1.5.0
 
 
 ### Tools
-- Aliyun CLI 3.0.96
+- Aliyun CLI 3.0.97
 - App Center CLI 2.10.4
-- AWS CLI 2.3.2
-- AWS SAM CLI 1.34.1
+- AWS CLI 2.3.4
+- AWS SAM CLI 1.35.0
 - AWS Session Manager CLI 1.2.279.0
-- Azure CLI 2.29.2
+- Azure CLI 2.30.0
 - Bicep CLI 0.4.1008
-- Cabal 3.4.1.0
+- Cabal 3.6.2.0
 - Cmake 3.21.4
 - Fastlane 2.197.0
-- GHC 9.0.1
+- GHC 9.2.1
 - GHCup 0.1.17.3
 - Jazzy 0.14.1
 - Stack 2.7.3
-- SwiftFormat 0.48.17
+- SwiftFormat 0.48.18
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -126,10 +126,11 @@
 - SafariDriver 15.0 (15612.1.29.41.4)
 - Google Chrome 95.0.4638.69 
 - ChromeDriver 95.0.4638.54
-- Microsoft Edge 95.0.1020.38 
-- MSEdgeDriver 95.0.1020.38
-- Mozilla Firefox 93.0
+- Microsoft Edge 95.0.1020.44 
+- MSEdgeDriver 95.0.1020.44
+- Mozilla Firefox 94.0.1
 - geckodriver 0.30.0
+- Selenium server 3.141.59_2
 
 #### Environment variables
 | Name            | Value                                         |
@@ -162,7 +163,7 @@
 - 3.6.15
 - 3.7.12
 - 3.8.12
-- 3.9.7
+- 3.9.8
 - 3.10.0
 
 #### PyPy
@@ -180,15 +181,13 @@
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.13.15 | x64          | GOROOT_1_13_X64      |
-| 1.14.15 | x64          | GOROOT_1_14_X64      |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.9  | x64          | GOROOT_1_16_X64      |
-| 1.17.2  | x64          | GOROOT_1_17_X64      |
+| 1.16.10 | x64          | GOROOT_1_16_X64      |
+| 1.17.3  | x64          | GOROOT_1_17_X64      |
 ### Rust Tools
 - Cargo 1.56.0
-- Rust 1.56.0
-- Rustdoc 1.56.0
+- Rust 1.56.1
+- Rustdoc 1.56.1
 - Rustup 1.24.3
 
 #### Packages
@@ -214,11 +213,11 @@
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.51  | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
-| nginx | 1.21.3  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
+| nginx | 1.21.4  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.11.8
+- 8.10.12.16
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
