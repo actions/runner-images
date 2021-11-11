@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [[all OSs] Default Nodejs version will be set to 16 on November, 29](https://github.com/actions/virtual-environments/issues/4446) |
 | [[all OSs] Selenium server version will be upgraded from 3 to 4 on November, 15](https://github.com/actions/virtual-environments/issues/4376) |
 | [[All OSs] Node.js version 10 will be removed from the images on November, 15](https://github.com/actions/virtual-environments/issues/4356) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
@@ -7,8 +8,8 @@
 | [(Public Beta) Windows Server 2022 with Visual Studio 2022 is now available](https://github.com/actions/virtual-environments/issues/3949) |
 ***
 # Microsoft Windows Server 2016 Datacenter
-- OS Version: 10.0.14393 Build 4704
-- Image Version: 20211102.4
+- OS Version: 10.0.14393 Build 4770
+- Image Version: 20211109.0
 
 ## Installed Software
 ### Language and Runtime
@@ -25,15 +26,15 @@
 
 ### Package Management
 - Chocolatey 0.11.3
-- Composer 2.1.11
-- Helm 3.7.0
+- Composer 2.1.12
+- Helm 3.7.1
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.15
-- NuGet 5.11.0.10
+- NuGet 6.0.0.280
 - pip 21.3.1 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<85b3115>)
+- Vcpkg  (build from master \<6cfa934>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -60,10 +61,10 @@
 - CodeQL Action Bundle 2.7.0
 - Docker 20.10.7
 - Docker-compose 1.29.2
-- ghc 9.0.1
+- ghc 9.2.1
 - Git 2.33.1
 - Git LFS 3.0.1
-- Google Cloud SDK 363.0.0
+- Google Cloud SDK 364.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
@@ -74,8 +75,8 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.6
-- Pulumi v3.16.0
-- R 4.1.1
+- Pulumi v3.17.0
+- R 4.1.2
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
@@ -85,12 +86,12 @@
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.97
-- AWS CLI 2.3.0
-- AWS SAM CLI 1.34.1
+- Alibaba Cloud CLI 3.0.99
+- AWS CLI 2.3.4
+- AWS SAM CLI 1.35.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.30.0
-- Azure DevOps CLI extension 0.21.0
+- Azure DevOps CLI extension 0.22.0
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 2.2.0
 - Hub CLI 2.14.2
@@ -111,10 +112,10 @@
 
 ### Browsers and webdrivers
 - Google Chrome 95.0.4638.69
-- Chrome Driver 95.0.4638.54
-- Microsoft Edge 95.0.1020.40
-- Microsoft Edge Driver 95.0.1020.40
-- Mozilla Firefox 94.0
+- Chrome Driver 95.0.4638.69
+- Microsoft Edge 95.0.1020.44
+- Microsoft Edge Driver 95.0.1020.44
+- Mozilla Firefox 94.0.1
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 - Selenium server 3.141.59
@@ -153,11 +154,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.13.15 | x64          | GOROOT_1_13_X64      |
-| 1.14.15 | x64          | GOROOT_1_14_X64      |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.9  | x64          | GOROOT_1_16_X64      |
-| 1.17.2  | x64          | GOROOT_1_17_X64      |
+| 1.16.10 | x64          | GOROOT_1_16_X64      |
+| 1.17.3  | x64          | GOROOT_1_17_X64      |
 
 
 #### Node
@@ -177,7 +176,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.7   | x64, x86     |
+| 3.9.8   | x64, x86     |
 | 3.10.0  | x64          |
 
 
@@ -218,7 +217,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.0.3.0 | MongoDB     | Running       | Automatic        |
+| 5.1.0.0 | MongoDB     | Running       | Automatic        |
 
 
 
@@ -233,12 +232,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.51  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.21.3  | C:\tools\nginx-1.21.3\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.21.4  | C:\tools\nginx-1.21.4\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2017 | 15.9.28307.1705 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
+| Visual Studio Enterprise 2017 | 15.9.28307.1745 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
 
 #### Workloads, components and extensions:
 
@@ -500,27 +499,27 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2017 Debug Runtime      | x64          | 14.16.27033 |
 | Microsoft Visual C++ 2017 Debug Runtime      | x86          | 14.16.27033 |
-| Microsoft Visual C++ 2019 Additional Runtime | x64          | 14.29.30135 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x64          | 14.29.30135 |
-| Microsoft Visual C++ 2019 Additional Runtime | x86          | 14.29.30135 |
-| Microsoft Visual C++ 2019 Minimum Runtime    | x86          | 14.29.30135 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.30.30704 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.30.30704 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.30.30704 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.30.30704 |
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 1.1.14 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.414 5.0.104 5.0.208 5.0.303 5.0.402
+- 1.1.14 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.415 5.0.104 5.0.209 5.0.303 5.0.403
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
 - 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.20 5.0.4 5.0.9 5.0.11
+- 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.20 3.1.21 5.0.4 5.0.9 5.0.12
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 1.0.16 1.1.13 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.20 5.0.4 5.0.9 5.0.11
+- 1.0.16 1.1.13 2.1.2 2.1.5 2.1.12 2.1.24 2.1.30 3.1.4 3.1.6 3.1.20 3.1.21 5.0.4 5.0.9 5.0.12
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.4 3.1.6 3.1.20 5.0.4 5.0.9 5.0.11
+- 3.1.4 3.1.6 3.1.20 3.1.21 5.0.4 5.0.9 5.0.12
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -528,7 +527,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8
 
 ### PowerShell Tools
-- PowerShell 7.1.5
+- PowerShell 7.2.0
 
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                           | Path                           |
@@ -587,7 +586,7 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:97bbc6dd603e44f5a34e3f309b493c77b964b0e07d9e3dd7333f063ccaf33523  | 2021-10-12 |
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:bff7dee44dc39f9e997389be6de0c9fcde608879eb52070839ac03f6058f1385  | 2021-10-12 |
 | mcr.microsoft.com/windows/nanoserver:10.0.14393.953                       | sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268  | 2017-03-08 |
-| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:bcff581aa164b5d0036284c21fb1733d4f5a7356341a32876ef9d0f6539aaa2b  | 2021-10-06 |
+| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:0a54ee92e51c03f30b6902df63fb88be973c8d04a40c456058ab6acbdd92d103  | 2021-11-03 |
 
 
 
