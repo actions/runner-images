@@ -42,7 +42,7 @@ Describe "nvm" {
     }
 
     Context "nvm versions" {
-        $NVM_VERSIONS = @(10, 12, 14)
+        $NVM_VERSIONS = @(12, 14, 16)
         $testCases = $NVM_VERSIONS | ForEach-Object { @{NvmVersion = $_} }
 
         It "<NvmVersion>" -TestCases $testCases {
