@@ -275,8 +275,8 @@
         ]
     },
     "selenium": {
-        "version": "3",
-        "binary_name": "selenium-server-standalone"
+        "version": "4",
+        "binary_name": "selenium-server"
     },
     "rubygems": [],
     "node": {
