@@ -139,15 +139,14 @@ Describe "Internet Explorer" {
 }
 
 Describe "Selenium" {
-    It "Selenium 'C:\selenium' path exists" {
-        "C:\selenium" | Should -Exist
+    $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
+    $seleniumBinPath = Join-Path "C:\selenium\" "$seleniumBinaryName.jar"
+
+    It "Selenium server is installed" -TestCases @{seleniumBinPath = $seleniumBinPath} {
+        $seleniumBinPath | Should -Exist
     }
 
-    It "Selenium Server 'selenium-server-standalone.jar' is installed" {
-        "C:\selenium\selenium-server-standalone.jar" | Should -Exist
-    }
-
-    It "SELENIUM_JAR_PATH environment variable exists" {
-        Get-EnvironmentVariable "SELENIUM_JAR_PATH" | Should -BeExactly "C:\selenium\selenium-server-standalone.jar"
+    It "SELENIUM_JAR_PATH environment variable exists" -TestCases @{seleniumBinPath = $seleniumBinPath} {
+        Get-EnvironmentVariable "SELENIUM_JAR_PATH" | Should -BeExactly "$seleniumBinPath"
     }
 }
