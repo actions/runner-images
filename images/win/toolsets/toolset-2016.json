@@ -423,6 +423,6 @@
         "default": "14"
     },
     "mongodb": {
-        "version": "5"
+        "version": "5.0"
     }
 }
