@@ -215,7 +215,6 @@
             "helm",
             "kotlin",
             "libpq",
-            "llvm",
             "p7zip",
             "packer",
             "parallel",
@@ -339,5 +338,8 @@
             "12",
             "14"
         ]
+    },
+    "llvm": {
+        "version": "13"
     }
 }
