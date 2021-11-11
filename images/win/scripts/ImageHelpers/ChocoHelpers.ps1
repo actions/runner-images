@@ -31,7 +31,7 @@ function Choco-Install {
     }
 }
 
-function Send-RequestToCocolateyPackages {
+function Send-RequestToChocolateyPackages {
     param(
         [Parameter(Mandatory)]
         [string] $FilterQuery,
@@ -56,9 +56,9 @@ function Get-LatestChocoPackageVersion {
     [int]$versionNumbers[-1] += 1
     $incrementedVersion = $versionNumbers -join "."
     $filterQuery = "`$filter=(Id eq '$PackageName') and (IsPrerelease eq false) and (Version ge '$TargetVersion') and (Version lt '$incrementedVersion')"
-    $latestVersion = (Send-RequestToCocolateyPackages -FilterQuery $filterQuery).properties.Version |
+    $latestVersion = (Send-RequestToChocolateyPackages -FilterQuery $filterQuery).properties.Version |
         Sort-Object {[version]$_} |
         Select-Object -Last 1
-    
+
     return $latestVersion
 }
