@@ -425,5 +425,8 @@
     },
     "Mysql": {
         "version": "5.7"
+    }, 
+    "mongodb": {
+        "version": "5" 
     }
 }

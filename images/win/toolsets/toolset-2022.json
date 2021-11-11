@@ -307,5 +307,8 @@
     },
     "Mysql": {
         "version": "8.0"
+    },
+    "mongodb": {
+        "version": "5"
     }
 }

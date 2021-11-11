@@ -29,6 +29,8 @@ Export-ModuleMember -Function @(
     'Test-IsWin19'
     'Test-IsWin16'
     'Choco-Install'
+    'Send-RequestToCocolateyPackages'
+    'Get-LatestChocoPackageVersion'
     'Extract-7Zip'
     'Get-CommandResult'
     'Get-WhichTool'
