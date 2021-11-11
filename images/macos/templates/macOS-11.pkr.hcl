@@ -163,6 +163,7 @@ build {
   provisioner "shell" {
     scripts = [
                 "./provision/core/commonutils.sh",
+                "./provision/core/llvm.sh",
                 "./provision/core/golang.sh",
                 "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
