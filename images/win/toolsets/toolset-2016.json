@@ -422,6 +422,9 @@
     "node": {
         "default": "14"
     },
+    "Mysql": {
+        "version": "5.7"
+    },
     "mongodb": {
         "version": "5"
     }
