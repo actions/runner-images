@@ -3,8 +3,7 @@
         "default": "13.1",
         "versions": [
             { "link": "13.2", "version": "13.2.0" },
-            { "link": "13.1", "version": "13.1.0" },
-            { "link": "13.0", "version": "13.0.0"}
+            { "link": "13.1", "version": "13.1.0" }
         ]
     },
     "xamarin": {
