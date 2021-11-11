@@ -170,7 +170,7 @@ function Get-NewmanVersion {
     return "Newman $(newman --version)"
 }
 
-Get-NVersion {
+function Get-NVersion {
     $nVersion = (n --version).Replace('v', '')
     return "n $nVersion"
 }
