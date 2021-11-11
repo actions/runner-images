@@ -61,7 +61,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "10.*",
                 "12.*",
                 "14.*",
                 "16.*"
@@ -395,8 +394,8 @@
         }
     ],
     "selenium": {
-        "version": "3",
-        "binary_name": "selenium-server-standalone"
+        "version": "4",
+        "binary_name": "selenium-server"
     },
     "npm": {
         "global_packages": [
@@ -454,5 +453,11 @@
     },
     "node": {
         "default": "14"
+    },
+    "Mysql": {
+        "version": "5.7"
+    },
+    "mongodb": {
+        "version": "5"
     }
 }

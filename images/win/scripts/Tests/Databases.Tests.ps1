@@ -3,7 +3,8 @@ Describe "MongoDB" {
         @{ ToolName = "mongo" }
         @{ ToolName = "mongod" }
     ) {
-        "$ToolName --version" | Should -ReturnZeroExitCode
+        $toolsetVersion = (Get-ToolsetContent).mongodb.version
+        (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
     }
 }
 
@@ -54,7 +55,7 @@ Describe "PostgreSQL" {
 
 Describe "MySQL" {
     It "MySQL CLI" {
-        "mysql -V" | Should -ReturnZeroExitCode
+        $MysqlMajorMinor = (Get-ToolsetContent).Mysql.version
+        mysql -V | Should -BeLike "*${MysqlMajorMinor}*"
     }
 }
-

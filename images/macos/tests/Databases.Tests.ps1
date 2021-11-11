@@ -1,7 +1,10 @@
 Describe "MongoDB" {
-    It "mongodb" {
-        "mongo --version" | Should -ReturnZeroExitCode
-        "mongod --version"| Should -ReturnZeroExitCode
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "mongo" }
+        @{ ToolName = "mongod" }
+    ) {
+        $toolsetVersion = Get-ToolsetValue 'mongodb.version'
+        (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
     }
 }
 
