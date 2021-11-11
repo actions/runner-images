@@ -341,5 +341,8 @@
     },
     "llvm": {
         "version": "13"
+    },
+    "mongodb": {
+        "version": "5"
     }
 }
