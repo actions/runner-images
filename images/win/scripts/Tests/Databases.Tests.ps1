@@ -55,9 +55,9 @@ Describe "PostgreSQL" {
     Context "PostgreSQL version" {
         It "PostgreSQL version should correspond to the version in the toolset" {
             $toolsetVersion = (Get-ToolsetContent).postgresql.version
-            #Client version
+            # Client version
             (&$Env:PGBIN\psql --version).split(" ")[-1] | Should -BeLike "$toolsetVersion*"
-            #Server version
+            # Server version
             (&$Env:PGBIN\pg_config --version).split(" ")[-1] | Should -BeLike "$toolsetVersion*"
         }
     }

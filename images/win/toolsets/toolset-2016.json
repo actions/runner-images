@@ -426,7 +426,7 @@
         "version": "5.7"
     },
     "mongodb": {
-        "version": "5"
+        "version": "5.0"
     },
     "postgresql": {
         "version": "14"
