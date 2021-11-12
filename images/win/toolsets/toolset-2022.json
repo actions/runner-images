@@ -257,8 +257,8 @@
         }
     ],
     "selenium": {
-        "version": "3",
-        "binary_name": "selenium-server-standalone"
+        "version": "4",
+        "binary_name": "selenium-server"
     },
     "npm": {
         "global_packages": [
@@ -309,6 +309,6 @@
         "version": "8.0"
     },
     "mongodb": {
-        "version": "5"
+        "version": "5.0"
     }
 }
