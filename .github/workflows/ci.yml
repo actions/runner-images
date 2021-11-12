@@ -25,7 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - run: |
-          ./images.CI/linux-and-win/build-image.ps1 -TempplatePath ./images/linux/ubuntu2004.json -ClientId ${{secrets.AZURE_CLIENTID}} -ClientSecret ${{secrets.AZURE_CLIENT_SECRET}} -ResourcesNamePrefix "temp" -Location ${{secrets.AZURE_LOCATION}} -ResourceGroup ${{secrets.AZURE_RESOURCE_GROUP}} -StorageAccount ${{secrets.AZURE_STORAGE_ACCOUNT}} -SubscriptionId ${{secrets.AZURE_SUBSCRIPTION}} -TenantId ${{secrets.AZURE_TENANT_ID}} -VirtualNetworkName ${{secrets.AZURE_VNET}} -VirtualNetworkRG ${{secrets.AZURE_VNET_RSG}} -VirtualNetworkSubnet ${{secrets.AZURE_VNET_SUBNET}}
+          ./images.CI/linux-and-win/build-image.ps1 -TemplatePath ./images/linux/ubuntu2004.json -ClientId ${{secrets.AZURE_CLIENTID}} -ClientSecret ${{secrets.AZURE_CLIENT_SECRET}} -ResourcesNamePrefix "temp" -Location ${{secrets.AZURE_LOCATION}} -ResourceGroup ${{secrets.AZURE_RESOURCE_GROUP}} -StorageAccount ${{secrets.AZURE_STORAGE_ACCOUNT}} -SubscriptionId ${{secrets.AZURE_SUBSCRIPTION}} -TenantId ${{secrets.AZURE_TENANT_ID}} -VirtualNetworkName ${{secrets.AZURE_VNET}} -VirtualNetworkRG ${{secrets.AZURE_VNET_RSG}} -VirtualNetworkSubnet ${{secrets.AZURE_VNET_SUBNET}}
         shell: pwsh  
 
       
