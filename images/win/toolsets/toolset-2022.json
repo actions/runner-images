@@ -308,6 +308,6 @@
         "version": "8.0"
     },
     "mongodb": {
-        "version": "5"
+        "version": "5.0"
     }
 }
