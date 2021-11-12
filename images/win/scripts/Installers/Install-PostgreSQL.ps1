@@ -6,8 +6,12 @@ $pgPwd = "root"
 Set-SystemVariable -SystemVariable PGUSER -Value $pgUser
 Set-SystemVariable -SystemVariable PGPASSWORD -Value $pgPwd
 
+#Define latest available version to install based on version specified in the toolset
+$toolsetVersion = (Get-ToolsetContent).postgresql.version
+$latestChocoPackage = Get-LatestChocoPackageVersion -TargetVersion $toolsetVersion -PackageName "postgresql"
+
 #Install latest PostgreSQL
-Choco-Install -PackageName postgresql -ArgumentList "--params", "'/Password:$pgPwd /NoPath'", "--params-global"
+Choco-Install -PackageName postgresql -ArgumentList "--params", "'/Password:$pgPwd /NoPath'", "--params-global", "--version=$latestChocoPackage"
 
 #Get Path to pg_ctl.exe
 $pgPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName

@@ -309,5 +309,8 @@
     },
     "mongodb": {
         "version": "5"
+    },
+    "postgresql": {
+        "version": "14"
     }
 }
