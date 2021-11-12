@@ -3,7 +3,7 @@ Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 $os = Get-OSVersion
 
 Describe "SwiftLint" {
-    It "SwiftLint" -Skip:($os.IsHighSierra) {
+    It "SwiftLint" {
         "swiftlint version" | Should -ReturnZeroExitCode
     }
 }

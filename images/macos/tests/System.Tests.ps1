@@ -17,7 +17,7 @@ Describe "Certificate" {
     }
 }
 
-Describe "Audio device" -Skip:($os.IsHighSierra -or $os.IsMonterey) {
+Describe "Audio device" -Skip:($os.IsMonterey) {
     It "Sox is installed" {
         "sox --version" | Should -ReturnZeroExitCode
     }
@@ -35,7 +35,7 @@ Describe "Audio device" -Skip:($os.IsHighSierra -or $os.IsMonterey) {
     }
 }
 
-Describe "Screen Resolution" -Skip:($os.IsHighSierra) {
+Describe "Screen Resolution" {
     It "Screen Resolution" {
         system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885|1920 x 1080"
     }
