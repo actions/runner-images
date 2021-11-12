@@ -343,6 +343,6 @@
         "version": "13"
     },
     "mongodb": {
-        "version": "5"
+        "version": "5.0"
     }
 }
