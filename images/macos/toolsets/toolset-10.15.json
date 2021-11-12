@@ -215,7 +215,6 @@
             "helm",
             "kotlin",
             "libpq",
-            "llvm",
             "p7zip",
             "packer",
             "parallel",
@@ -274,7 +273,6 @@
             "platform" : "darwin",
             "arch": "x64",
             "versions": [
-                "10.*",
                 "12.*",
                 "14.*",
                 "16.*"
@@ -331,5 +329,19 @@
     },
     "go": {
         "default": "1.15"
+    },
+    "node": {
+        "default": "14",
+        "nvm_versions": [
+            "12",
+            "14",
+            "16"
+        ]
+    },
+    "llvm": {
+        "version": "13"
+    },
+    "mongodb": {
+        "version": "5.0"
     }
 }

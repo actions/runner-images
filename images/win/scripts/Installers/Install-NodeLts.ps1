@@ -11,7 +11,9 @@ New-Item -Path $PrefixPath -Force -ItemType Directory
 New-Item -Path $CachePath -Force -ItemType Directory
 
 $defaultVersion = (Get-ToolsetContent).node.default
-Choco-Install -PackageName nodejs -ArgumentList "--version=$defaultVersion"
+$versionToInstall = Get-LatestChocoPackageVersion -TargetVersion $defaultVersion -PackageName "nodejs"
+
+Choco-Install -PackageName nodejs -ArgumentList "--version=$versionToInstall"
 
 Add-MachinePathItem $PrefixPath
 $env:Path = Get-MachinePath

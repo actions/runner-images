@@ -1,8 +1,8 @@
-Describe "Miniconda" -Skip:(Test-IsWin22) {
+Describe "Miniconda" {
     It "Miniconda Environment variables is set. " {
         ${env:CONDA} | Should -Not -BeNullOrEmpty
     }
-    
+
     It "Miniconda $env:CONDA\<PathTest> " -TestCases @(
         @{ PathTest = "python.exe" }
         @{ PathTest = "Scripts\conda.exe" }

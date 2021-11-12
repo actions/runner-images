@@ -51,7 +51,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "10.*",
                 "12.*",
                 "14.*",
                 "16.*"
@@ -170,7 +169,7 @@
         "version" : "2022",
         "subversion" : "17",
         "edition" : "Enterprise",
-        "channel": "pre",
+        "channel": "release",
         "workloads": [
             "Component.Linux.CMake",
             "Component.UnityEngine.x64",
@@ -237,7 +236,8 @@
             "Microsoft.VisualStudio.Workload.Python",
             "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
-            "Component.MDD.Linux"
+            "Component.MDD.Linux",
+            "wasm.tools"
         ],
         "vsix": []
     },
@@ -257,8 +257,8 @@
         }
     ],
     "selenium": {
-        "version": "3",
-        "binary_name": "selenium-server-standalone"
+        "version": "4",
+        "binary_name": "selenium-server"
     },
     "npm": {
         "global_packages": [
@@ -303,6 +303,12 @@
         ]
     },
     "node": {
-        "default": "14.18.1"
+        "default": "14"
+    },
+    "Mysql": {
+        "version": "8.0"
+    },
+    "mongodb": {
+        "version": "5.0"
     }
 }

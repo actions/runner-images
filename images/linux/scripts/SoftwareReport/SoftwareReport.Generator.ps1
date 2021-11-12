@@ -126,6 +126,7 @@ $toolsList = @(
     (Get-HGVersion),
     (Get-MinikubeVersion),
     (Get-NewmanVersion),
+    (Get-NVersion),
     (Get-NvmVersion),
     (Get-OpensslVersion),
     (Get-PackerVersion),

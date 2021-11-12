@@ -13,6 +13,10 @@ Describe "Node.js" {
         "node --version" | Should -ReturnZeroExitCode
     }
 
+    It "Node.js version should correspond to the version in the toolset" {
+        node --version | Should -BeLike "v$(Get-ToolsetValue 'node.default')*"
+    }
+
     It "Node.js $expectedNodeVersion is default" {
         (Get-CommandResult "node --version").Output | Should -BeLike $expectedNodeVersion
     }
@@ -38,8 +42,8 @@ Describe "nvm" {
     }
 
     Context "nvm versions" {
-        $NVM_VERSIONS = @(10, 12, 14)
-        $testCases = $NVM_VERSIONS | ForEach-Object { @{NvmVersion = $_} }
+        [array]$nvmVersions = Get-ToolsetValue 'node.nvm_versions'
+        $testCases = $nvmVersions | ForEach-Object { @{NvmVersion = $_} }
 
         It "<NvmVersion>" -TestCases $testCases {
             param (
