@@ -4,6 +4,10 @@
 ##  Desc:  Installs PostgreSQL
 ################################################################################
 
+# Source the helpers
+source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
+
 REPO_URL="https://apt.postgresql.org/pub/repos/apt/"
 
 # Preparing repo for PostgreSQL
