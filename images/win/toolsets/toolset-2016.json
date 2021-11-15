@@ -425,7 +425,7 @@
         "version": "5.7"
     },
     "mongodb": {
-        "version": "5"
+        "version": "5.0"
     },
     "llvm": {
         "version": "13"

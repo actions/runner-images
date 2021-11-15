@@ -236,7 +236,8 @@
             "Microsoft.VisualStudio.Workload.Python",
             "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
-            "Component.MDD.Linux"
+            "Component.MDD.Linux",
+            "wasm.tools"
         ],
         "vsix": []
     },
@@ -308,6 +309,6 @@
         "version": "8.0"
     },
     "mongodb": {
-        "version": "5"
+        "version": "5.0"
     }
 }
