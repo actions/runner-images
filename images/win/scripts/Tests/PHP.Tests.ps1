@@ -1,7 +1,7 @@
 Describe "PHP" {
     It "Check PHP version" {
         $phpMajorMinor = (Get-ToolsetContent).php.version
-        $phpInstalledVersion = php --version | Select-String -Pattern "$phpMajorMinor"
+        $phpInstalledVersion = php --version | Select-String -Pattern "PHP $phpMajorMinor"
         $phpInstalledVersion | Should -BeLike "*${phpMajorMinor}*"
     }
 
