@@ -6,7 +6,6 @@
 
 mv -f /imagegeneration/post-generation /opt
 
-
 echo "chmod -R 777 /opt"
 chmod -R 777 /opt
 echo "chmod -R 777 /usr/share"
