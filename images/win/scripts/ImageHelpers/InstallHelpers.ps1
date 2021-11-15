@@ -503,17 +503,17 @@ function Get-WindowsUpdatesHistory {
     $events = Get-WinEvent -FilterHashtable $filter -ErrorAction SilentlyContinue | Sort-Object Id
 
     foreach ( $event in $events ) {
-        switch ( $evnt.Id ) {
+        switch ( $event.Id ) {
             19 {
                 $status = "Successful"
                 $title = $event.Properties[0].Value
-                $allEvents.Add($title, "")
+                $allEvents[$title] = ""
                 break
             }
             20 {
                 $status = "Failure"
                 $title = $event.Properties[1].Value
-                $allEvents.Add($title, "")
+                $allEvents[$title] = ""
                 break
             }
             43 {
