@@ -131,7 +131,6 @@
             "platform" : "darwin",
             "arch": "x64",
             "versions": [
-                "10.*",
                 "12.*",
                 "14.*",
                 "16.*"
@@ -187,12 +186,12 @@
     "node": {
         "default": "14",
         "nvm_versions": [
-            "10",
             "12",
-            "14"
+            "14",
+            "16"
         ]
     },
     "mongodb": {
-        "version": "5"
+        "version": "5.0"
     }
 }
