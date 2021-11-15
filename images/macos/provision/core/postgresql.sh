@@ -1,4 +1,4 @@
-# !/bin/bash -e -o pipefail
+#!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
 # Fetch postgresql version to install from the toolset
