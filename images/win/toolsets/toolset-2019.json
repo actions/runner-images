@@ -429,7 +429,6 @@
             { "name": "gitversion.portable" },
             { "name": "innosetup" },
             { "name": "jq" },
-            { "name": "llvm" },
             { "name": "NuGet.CommandLine" },
             {
                 "name": "openssl.light",
@@ -462,5 +461,8 @@
     },
     "php": {
         "version": "8.0"
+    },
+    "llvm": {
+        "version": "13"
     }
 }
