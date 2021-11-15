@@ -17,7 +17,7 @@ function Install-WindowsUpdates {
     }
 
     Write-Host "Installing windows updates"
-    Get-WindowsUpdate -MicrosoftUpdate -AcceptAll -Install -IgnoreUserInput -IgnoreReboot -OutVariable current | Out-Host
+    Get-WindowsUpdate -MicrosoftUpdate -AcceptAll -Install -IgnoreUserInput -IgnoreReboot | Out-Host
 
     Write-Host "Validating windows updates installation and skip Microsoft Defender Antivirus"
     # Azure service can automatic updates AV engine(Microsoft.Azure.Security.AntimalwareSignature.AntimalwareConfiguration)
