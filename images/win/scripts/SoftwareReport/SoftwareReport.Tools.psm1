@@ -156,6 +156,12 @@ function Get-WinAppDriver {
     return "WinAppDriver $winAppDriverVersion"
 }
 
+function Get-WixVersion {
+    $regKey = "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
+    $installedApplications = Get-ItemProperty -Path $regKey
+    return ($installedApplications | Where-Object { $_.BundleCachePath -imatch ".*\\WiX\d*\.exe$" } | Select-Object -First 1).DisplayName
+}
+
 function Get-ZstdVersion {
     $(zstd --version) -match "v(?<version>\d+\.\d+\.\d+)" | Out-Null
     $zstdVersion = $Matches.Version

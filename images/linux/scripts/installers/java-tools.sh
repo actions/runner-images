@@ -16,7 +16,7 @@ JAVA_TOOLCACHE_PATH="$AGENT_TOOLSDIRECTORY/Java_Adopt_jdk"
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
 add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 
-if isUbuntu16 || isUbuntu18 ; then
+if isUbuntu18 ; then
     # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
     apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
@@ -34,7 +34,7 @@ for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
     if [[ -z $fullJavaVersion ]]; then
         fullJavaVersion=$(java -fullversion 2>&1 | tr -d "\"" | tr "+" "-" | awk '{print $4}')
     fi
-    
+
     javaToolcacheVersionPath="$JAVA_TOOLCACHE_PATH/$fullJavaVersion"
     mkdir -p "$javaToolcacheVersionPath"
 
@@ -46,12 +46,6 @@ for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
 done
 
 # Set Default Java version
-if isUbuntu16; then
-    # issue: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825987
-    # stackoverflow: https://askubuntu.com/questions/1187136/update-java-alternatives-only-java-but-not-javac-is-changed
-    sed -i 's/(hl|jre|jdk|plugin|DUMMY) /(hl|jre|jdk|jdkhl|plugin|DUMMY) /g' /usr/sbin/update-java-alternatives
-fi
-
 update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
 
 echo "JAVA_HOME=/usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64" | tee -a /etc/environment
@@ -63,12 +57,11 @@ apt-fast install -y --no-install-recommends ant ant-optional
 echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven
-json=$(curl -s "https://api.github.com/repos/apache/maven/tags")
-latestMavenVersion=$(echo $json | jq -r '.[] | select(.name | match("^(maven-[0-9.]*)$")) | .name' | head -1 | cut -d- -f2)
-mavenDownloadUrl="https://www-eu.apache.org/dist/maven/maven-3/${latestMavenVersion}/binaries/apache-maven-${latestMavenVersion}-bin.zip"
-download_with_retries $mavenDownloadUrl "/tmp" "maven.zip"
+mavenVersion=$(get_toolset_value '.java.maven')
+mavenDownloadUrl="https://www-eu.apache.org/dist/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}-bin.zip"
+download_with_retries ${mavenDownloadUrl} "/tmp" "maven.zip"
 unzip -qq -d /usr/share /tmp/maven.zip
-ln -s /usr/share/apache-maven-${latestMavenVersion}/bin/mvn /usr/bin/mvn
+ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
 
 # Install Gradle
 # This script founds the latest gradle release from https://services.gradle.org/versions/all

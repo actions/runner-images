@@ -112,6 +112,14 @@
         },
         {
             "type": "powershell",
+            "inline": [
+                "bcdedit.exe /set TESTSIGNING ON"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
+        },
+        {
+            "type": "powershell",
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
                 "IMAGE_OS={{user `image_os`}}",
@@ -259,7 +267,8 @@
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1",
-                "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
+                "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-LLVM.ps1"
             ]
         },
         {

@@ -40,7 +40,8 @@
                 "3.6.*",
                 "3.7.*",
                 "3.8.*",
-                "3.9.*"
+                "3.9.*",
+                "3.10.*"
             ]
         },
         {
@@ -50,7 +51,8 @@
             "versions": [
                 "2.7",
                 "3.6",
-                "3.7"
+                "3.7",
+                "3.8"
             ]
         },
         {
@@ -59,9 +61,9 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "10.*",
                 "12.*",
-                "14.*"
+                "14.*",
+                "16.*"
             ]
         },
         {
@@ -70,8 +72,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.13.*",
-                "1.14.*",
                 "1.15.*",
                 "1.16.*",
                 "1.17.*"
@@ -124,7 +124,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.4.0"
+                "6.5.0"
             ],
             "zip_versions": [
                 "1.0.0",
@@ -393,6 +393,10 @@
             "cmd": "yamllint --version"
         }
     ],
+    "selenium": {
+        "version": "4",
+        "binary_name": "selenium-server"
+    },
     "npm": {
         "global_packages": [
             { "name": "yarn", "test": "yarn --version" },
@@ -425,7 +429,6 @@
             { "name": "gitversion.portable" },
             { "name": "innosetup" },
             { "name": "jq" },
-            { "name": "llvm" },
             { "name": "NuGet.CommandLine" },
             {
                 "name": "openssl.light",
@@ -446,5 +449,17 @@
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             }
         ]
+    },
+    "node": {
+        "default": "14"
+    },
+    "Mysql": {
+        "version": "5.7"
+    },
+    "mongodb": {
+        "version": "5.0"
+    },
+    "llvm": {
+        "version": "13"
     }
 }

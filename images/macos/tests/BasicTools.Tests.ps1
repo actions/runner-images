@@ -30,16 +30,9 @@ Describe "SwiftFormat" -Skip:($os.IsMonterey) {
     }
 }
 
-
 Describe "GnuPG" -Skip:($os.IsMonterey) {
     It "GnuPG" {
         "gpg --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Clang/LLVM" -Skip:($os.IsMonterey) {
-    It "Clang/LLVM is installed" {
-        "$(brew --prefix llvm)/bin/clang --version" | Should -ReturnZeroExitCode
     }
 }
 
