@@ -62,16 +62,19 @@ Describe "Windows Updates" {
         "$env:windir\WindowsUpdateDone.txt" | Should -Exist
     }
 
-    $testCases = Get-WUHistory | Where-Object Title -notmatch "Microsoft Defender Antivirus" | ForEach-Object {
+    $testCases = Get-WindowsUpdatesHistory | Sort-Object Title | ForEach-Object {
         @{
             Title = $_.Title
-            Result = $_.Result
-            OperationName = $_.OperationName
+            Status = $_.Status
         }
     }
 
     It "<Title>" -TestCases $testCases {
-        $Result | Should -Be "Succeeded"
-        $OperationName | Should -Be "Installation"
+        $expect = "Successful"
+        if ( $Title -match "Microsoft Defender Antivirus" ) {
+            $expect = "Successful", "Failure"
+        }
+
+        $Status | Should -BeIn $expect
     }
 }
