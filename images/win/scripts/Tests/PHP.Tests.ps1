@@ -6,7 +6,7 @@ Describe "PHP" {
     }
 
     It "Check Composer in the PATH" {
-        composer --version | Should -ReturnZeroExitCode
+        "composer --version" | Should -ReturnZeroExitCode
     }
 
     It "PHP Environment variables is set." {
