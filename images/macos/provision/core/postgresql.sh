@@ -1,16 +1,13 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
-# Fetch postgresql version to install from the toolset
+# Fetch PostgreSQL version to install from the toolset
 toolsetVersion=$(get_toolset_value '.postgresql.version')
 
-# Search for the latest version of the postgresql corresponding to version from the toolset
-versionToInstall=$(brew search /postgresql@$toolsetVersion/ | awk -F' ' '{print $1}' | tail -1)
+# Install latest version of PostgreSQL
+brew_smart_install postgresql@$toolsetVersion
 
-# Install latest version of postgresql
-brew_smart_install $versionToInstall
-
-# Service postgresql should be started before use
+# Service PostgreSQL should be started before use
 brew services start postgresql
 
 # Verify PostgreSQL is ready for accept incoming connections
@@ -29,7 +26,7 @@ while [ $i -gt 0 ]; do
     sleep 10
 done
 
-# Stop postgresql
+# Stop PostgreSQL
 brew services stop postgresql
 
 invoke_tests "Databases" "PostgreSQL"
