@@ -267,7 +267,8 @@
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1",
-                "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
+                "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-LLVM.ps1"
             ]
         },
         {
