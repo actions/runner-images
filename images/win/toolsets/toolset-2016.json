@@ -432,5 +432,8 @@
     },
     "llvm": {
         "version": "13"
+    },
+    "postgresql": {
+        "version": "14"
     }
 }
