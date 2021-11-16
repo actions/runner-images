@@ -1,9 +1,12 @@
 Describe "PHP" {
-    It "Check <ToolName> in the PATH" -TestCases @(
-        @{ ToolName = "php" }
-        @{ ToolName = "composer" }
-    ) {
-        "$ToolName --version" | Should -ReturnZeroExitCode
+    It "Check PHP version" {
+        $phpMajorMinor = (Get-ToolsetContent).php.version
+        $phpInstalledVersion = php --version | Select-String -Pattern "PHP $phpMajorMinor"
+        $phpInstalledVersion | Should -BeLike "*${phpMajorMinor}*"
+    }
+
+    It "Check Composer in the PATH" {
+        "composer --version" | Should -ReturnZeroExitCode
     }
 
     It "PHP Environment variables is set." {
