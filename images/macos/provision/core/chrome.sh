@@ -10,7 +10,7 @@ brew install --cask chromedriver
 echo "Installing Selenium"
 brew_smart_install "selenium-server"
 
-echo "Installing Geckodriver"
-brew_smart_install "geckodriver"
+CHROMEWEBDRIVER_DIR=$(readlink $(which chromedriver) | xargs dirname)
+echo "export CHROMEWEBDRIVER=$CHROMEWEBDRIVER_DIR" >> "${HOME}/.bashrc"
 
 invoke_tests "Browsers" "Chrome"
