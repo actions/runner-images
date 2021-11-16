@@ -5,6 +5,9 @@ name: Linter
 on:
   pull_request:
     branches: [ main ]
+    paths:
+      - '**.json'
+      - '**.md'
 
 jobs:
   build:
