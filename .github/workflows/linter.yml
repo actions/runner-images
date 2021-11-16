@@ -26,7 +26,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSON: true
-          VALIDATE_MD: true
+          VALIDATE_MARKDOWN: true
           DEFAULT_BRANCH: ${{ github.base_ref }}
 
       - name: Checking shebang lines in MacOS and Ubuntu releases.
