@@ -6,6 +6,7 @@ brew install --cask firefox
 
 echo "Installing Geckodriver..."
 brew_smart_install "geckodriver"
+geckoPath="$(brew --prefix geckodriver)/bin"
 
 echo "Add GECKOWEBDRIVER to bashrc..."
 echo "export GECKOWEBDRIVER=${geckoPath}" >> "${HOME}/.bashrc"
