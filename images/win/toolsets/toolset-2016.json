@@ -427,7 +427,13 @@
     "mongodb": {
         "version": "5.0"
     },
+    "php": {
+        "version": "8.0"
+    },
     "llvm": {
         "version": "13"
+    },
+    "postgresql": {
+        "version": "14"
     }
 }

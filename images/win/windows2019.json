@@ -144,21 +144,6 @@
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
-            ],
-            "elevated_user": "{{user `install_user`}}",
-            "elevated_password": "{{user `install_password`}}"
-        },
-        {
-            "type": "windows-restart",
-            "check_registry": true,
-            "restart_check_command": "powershell -command \"& {if ((-not (Get-Process TiWorker.exe -ErrorAction SilentlyContinue)) -and (-not [System.Environment]::HasShutdownStarted) ) { Write-Output 'Restart complete' }}\"",
-            "restart_timeout": "30m"
-        },
-        {
-            "type": "powershell",
-            "pause_before": "2m",
-            "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-VCRedist.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1",
@@ -272,11 +257,22 @@
             ]
         },
         {
+            "type": "powershell",
+            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-WindowsUpdates.ps1"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
+        },
+        {
             "type": "windows-restart",
-            "restart_timeout": "10m"
+            "check_registry": true,
+            "restart_check_command": "powershell -command \"& {if ((-not (Get-Process TiWorker.exe -ErrorAction SilentlyContinue)) -and (-not [System.Environment]::HasShutdownStarted) ) { Write-Output 'Restart complete' }}\"",
+            "restart_timeout": "30m"
         },
         {
             "type": "powershell",
+            "pause_before": "2m",
             "scripts": [
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
             ]
