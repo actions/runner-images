@@ -1,18 +1,26 @@
 #!/bin/bash -e
 ################################################################################
 ##  File:  postgresql.sh
-##  Desc:  Installs Postgresql
+##  Desc:  Installs PostgreSQL
 ################################################################################
+
+# Source the helpers
+source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
 
 REPO_URL="https://apt.postgresql.org/pub/repos/apt/"
 
-#Preparing repo for PostgreSQL 12.
+# Preparing repo for PostgreSQL
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-echo "deb $REPO_URL `lsb_release -cs`-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
+echo "deb $REPO_URL $(getOSVersionLabel)-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
 
+# Fetch PostgreSQL version to install from the toolset
+toolsetVersion=$(get_toolset_value '.postgresql.version')
+
+# Install PostgreSQL
 echo "Install PostgreSQL"
 apt update
-apt install postgresql postgresql-client
+apt install postgresql-$toolsetVersion
 
 echo "Install libpq-dev"
 apt-get install libpq-dev
