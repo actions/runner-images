@@ -8,6 +8,7 @@ on:
     paths:
       - '**.json'
       - '**.md'
+      - '**.sh'
 
 jobs:
   build:
