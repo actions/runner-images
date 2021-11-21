@@ -14,6 +14,7 @@ apt-add-repository ppa:ondrej/php -y
 apt-get update
 
 # install specific version of libpcre2 otherwise latest ppa-hosted php fails
+# https://github.com/oerdnj/deb.sury.org/issues/1682
 if isUbuntu20 ; then
     apt-get install -y libpcre2-8-0
 fi
