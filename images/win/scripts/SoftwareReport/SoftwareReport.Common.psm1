@@ -111,9 +111,7 @@ function Get-NodeVersion {
 }
 
 function Get-ChocoVersion {
-    ($(choco version) | Out-String) -match "v(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $chocoVersion = $Matches.Version
-    return "Chocolatey $chocoVersion"
+    return "Chocolatey $(choco --version)"
 }
 
 function Get-VcpkgVersion {

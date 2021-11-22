@@ -1,6 +1,6 @@
 $os = Get-OSVersion
 
-Describe "Rust" -Skip:($os.IsHighSierra) {
+Describe "Rust" {
     Context "Rust" {
         It "Rustup is installed" {
             "rustup --version" | Should -ReturnZeroExitCode
