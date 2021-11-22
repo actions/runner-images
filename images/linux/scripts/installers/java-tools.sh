@@ -34,7 +34,7 @@ for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
     if [[ -z $fullJavaVersion ]]; then
         fullJavaVersion=$(java -fullversion 2>&1 | tr -d "\"" | tr "+" "-" | awk '{print $4}')
     fi
-    
+
     javaToolcacheVersionPath="$JAVA_TOOLCACHE_PATH/$fullJavaVersion"
     mkdir -p "$javaToolcacheVersionPath"
 
@@ -57,12 +57,11 @@ apt-fast install -y --no-install-recommends ant ant-optional
 echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven
-json=$(curl -s "https://api.github.com/repos/apache/maven/tags")
-latestMavenVersion=$(echo $json | jq -r '.[] | select(.name | match("^(maven-[0-9.]*)$")) | .name' | head -1 | cut -d- -f2)
-mavenDownloadUrl=$(echo $json | jq -r ".[] | select(.name==\"maven-$latestMavenVersion\") | .zipball_url")
-download_with_retries $mavenDownloadUrl "/tmp" "maven.zip"
+mavenVersion=$(get_toolset_value '.java.maven')
+mavenDownloadUrl="https://www-eu.apache.org/dist/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}-bin.zip"
+download_with_retries ${mavenDownloadUrl} "/tmp" "maven.zip"
 unzip -qq -d /usr/share /tmp/maven.zip
-ln -s /usr/share/apache-maven-${latestMavenVersion}/bin/mvn /usr/bin/mvn
+ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
 
 # Install Gradle
 # This script founds the latest gradle release from https://services.gradle.org/versions/all
