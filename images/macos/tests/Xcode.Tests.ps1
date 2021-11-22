@@ -34,7 +34,7 @@ Describe "Xcode" {
     }
 
     Context "Additional tools" {
-        It "Xcode <XcodeVersion> tools are installed" -TestCases $testCases -Skip:($os.IsHighSierra) {
+        It "Xcode <XcodeVersion> tools are installed" -TestCases $testCases {
             $TOOLS_NOT_INSTALLED_EXIT_CODE = 69
             $xcodebuildPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "xcodebuild"
             $result = Get-CommandResult "$xcodebuildPath -checkFirstLaunchStatus"

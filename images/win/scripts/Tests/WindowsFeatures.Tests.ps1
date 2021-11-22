@@ -56,3 +56,25 @@ Describe "Test Signed Drivers" -Skip:(Test-IsWin16) {
         "$(bcdedit)" | Should -Match "testsigning\s+Yes"
     }
 }
+
+Describe "Windows Updates" {
+    It "WindowsUpdateDone.txt should exist" {
+        "$env:windir\WindowsUpdateDone.txt" | Should -Exist
+    }
+
+    $testCases = Get-WindowsUpdatesHistory | Sort-Object Title | ForEach-Object {
+        @{
+            Title = $_.Title
+            Status = $_.Status
+        }
+    }
+
+    It "<Title>" -TestCases $testCases {
+        $expect = "Successful"
+        if ( $Title -match "Microsoft Defender Antivirus" ) {
+            $expect = "Successful", "Failure"
+        }
+
+        $Status | Should -BeIn $expect
+    }
+}

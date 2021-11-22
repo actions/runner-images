@@ -1,13 +1,13 @@
 | Announcements |
 |-|
+| [[all OSs] Default Nodejs version will be set to 16 on November, 29](https://github.com/actions/virtual-environments/issues/4446) |
 | [[all OSs] Selenium server version will be upgraded from 3 to 4 on November, 15](https://github.com/actions/virtual-environments/issues/4376) |
 | [[Ubuntu] Node:10 docker images will be removed on November, 15](https://github.com/actions/virtual-environments/issues/4357) |
 | [[All OSs] Node.js version 10 will be removed from the images on November, 15](https://github.com/actions/virtual-environments/issues/4356) |
-| [[All OSs] Go versions less than 1.15 will be removed on November, 8](https://github.com/actions/virtual-environments/issues/4311) |
 ***
 # Ubuntu 18.04.6 LTS
-- Linux kernel version: 5.4.0-1062-azure
-- Image Version: 20211108.1
+- Linux kernel version: 5.4.0-1063-azure
+- Image Version: 20211114.1
 
 ## Installed Software
 ### Language and Runtime
@@ -32,14 +32,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.7.1
-- Homebrew 3.3.2
+- Homebrew 3.3.3
 - Miniconda 4.10.3
 - Npm 6.14.15
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 0.16.4
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<d78a0b47b>)
+- Vcpkg  (build from master \<12bdfc7dd>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -50,7 +50,7 @@
 
 ### Project Management
 - Ant 1.10.5
-- Gradle 7.2
+- Gradle 7.3
 - Maven 3.8.3
 - Sbt 1.5.5
 
@@ -65,8 +65,8 @@
 - CMake 3.21.4
 - CodeQL Action Bundle 2.7.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.0.0
-- Docker-Buildx 0.6.0
+- Docker Compose v2 2.1.1+azure-1
+- Docker-Buildx 0.7.0
 - Docker-Moby Client 20.10.10+azure-1
 - Docker-Moby Server 20.10.10+azure-1
 - Git 2.33.1 (apt source repository: ppa:git-core/ppa)
@@ -74,43 +74,44 @@
 - Git-ftp 1.3.1
 - Haveged 1.9.1
 - Heroku 7.59.1
-- HHVM (HipHop VM) 4.134.0
+- HHVM (HipHop VM) 4.135.0
 - jq 1.5
 - Kind 0.11.1
 - Kubectl 1.22.3
-- Kustomize 4.4.0
-- Leiningen 2.9.7
+- Kustomize 4.4.1
+- Leiningen 2.9.8
 - MediaInfo 17.12
 - Mercurial 4.5.3
 - Minikube 1.24.0
+- n 8.0.0
 - Newman 5.3.0
 - nvm 0.39.0
 - OpenSSL 1.1.1  11 Sep 2018
 - Packer 1.7.8
 - PhantomJS 2.1.1
 - Podman 3.0.1 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.17.0
+- Pulumi 3.17.1
 - R 4.1.2
 - Skopeo 1.2.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.9.7
-- Terraform 1.0.10
+- Terraform 1.0.11
 - yamllint 1.26.3
-- yq 4.14.1
+- yq 4.14.2
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.97
-- AWS CLI 1.21.12
+- Alibaba Cloud CLI 3.0.99
+- AWS CLI 1.22.5
 - AWS CLI Session manager plugin 1.2.279.0
 - AWS SAM CLI 1.35.0
 - Azure CLI (azure-cli) 2.30.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
-- Azure CLI (azure-devops) 0.21.0
+- Azure CLI (azure-devops) 0.22.0
 - GitHub CLI 2.2.0
-- Google Cloud SDK 363.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 364.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 6.14.16
-- OpenShift CLI 4.9.5
+- Netlify CLI 6.14.23
+- OpenShift CLI 4.9.6
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
@@ -125,7 +126,7 @@
 | Tool     | Version                            |
 | -------- | ---------------------------------- |
 | PHP      | 7.1.33 7.2.34 7.3.31 7.4.25 8.0.12 |
-| Composer | 2.1.11                             |
+| Composer | 2.1.12                             |
 | PHPUnit  | 8.5.21                             |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -146,7 +147,7 @@
 - Bindgen 0.59.1
 - Cargo audit 0.15.2
 - Cargo clippy 0.1.56
-- Cargo outdated 0.9.17
+- Cargo outdated 0.10.0
 - Cbindgen 0.20.0
 - Rustfmt 1.4.37
 
@@ -156,21 +157,21 @@
 - Mozilla Firefox 94.0
 - Geckodriver 0.30.0
 - Chromium 95.0.4638.0
-- Selenium server 3.141.59
+- Selenium server 4.0.0
 
 #### Environment variables
-| Name              | Value                                          |
-| ----------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER   | /usr/local/share/chrome_driver                 |
-| GECKOWEBDRIVER    | /usr/local/share/gecko_driver                  |
-| SELENIUM_JAR_PATH | /usr/share/java/selenium-server-standalone.jar |
+| Name              | Value                               |
+| ----------------- | ----------------------------------- |
+| CHROMEWEBDRIVER   | /usr/local/share/chrome_driver      |
+| GECKOWEBDRIVER    | /usr/local/share/gecko_driver       |
+| SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Core SDK
-- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.414 3.1.415 5.0.104 5.0.208 5.0.303 5.0.402 5.0.403
+- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.415 5.0.104 5.0.209 5.0.303 5.0.403
 
 ### Databases
 - MongoDB 5.0.3 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
-- PostgreSQL 14.0 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
+- PostgreSQL 14.1 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - sqlite3 3.22.0
 
 #### MySQL
@@ -191,7 +192,6 @@
 - 1.17.3
 
 #### Node.js
-- 10.24.1
 - 12.22.7
 - 14.18.1
 - 16.13.0
@@ -270,9 +270,9 @@
 ### Cached Docker images
 | Repository:Tag          | Digest                                                                   | Created    |
 | ----------------------- | ------------------------------------------------------------------------ | ---------- |
-| alpine:3.12             | sha256:a296b4c6f6ee2b88f095b61e95c7ef4f51ba25598835b4978c9256d8c8ace48a  | 2021-08-31 |
-| alpine:3.13             | sha256:2582893dec6f12fd499d3a709477f2c0c0c1dfcd28024c93f1f0626b9e3540c8  | 2021-08-31 |
-| alpine:3.14             | sha256:e1c082e3d3c45cccac829840a25941e679c25d438cc8412c2fa221cf1a824e6a  | 2021-08-27 |
+| alpine:3.12             | sha256:d9459083f962de6bd980ae6a05be2a4cf670df6a1d898157bceb420342bec280  | 2021-11-12 |
+| alpine:3.13             | sha256:026f721af4cf2843e07bba648e158fb35ecc876d822130633cc49f707f0fc88c  | 2021-11-12 |
+| alpine:3.14             | sha256:635f0aa53d99017b38d1a0aa5b2082f7812b03e3cdb299103fe77b5c8a07f1d2  | 2021-11-12 |
 | buildpack-deps:bullseye | sha256:1062c3cabe1b62d7e64609e1ebe30406b9d802684758a01fd386bbc60ea6b1aa  | 2021-10-12 |
 | buildpack-deps:buster   | sha256:6d442a75a480d13760660675e0094e87e7b64ebd64acb43754c5ed46cb1ea532  | 2021-10-12 |
 | buildpack-deps:stretch  | sha256:63b243cde6ed83435eb26eda196769a37b9426abc76cc7e89ad364c3a24ce18f  | 2021-10-12 |
@@ -280,14 +280,12 @@
 | debian:11               | sha256:4d6ab716de467aad58e91b1b720f0badd7478847ec7a18f66027d0f8a329a43c  | 2021-10-12 |
 | debian:9                | sha256:86269e614274db90a1d71dac258c74ed0a867a1d05f67dea6263b0f216ec7724  | 2021-10-12 |
 | moby/buildkit:latest    | sha256:be268d9d1aa75a670a12417a17122eaaa889c036c465fb30dd010bccb88b35d1  | 2021-11-02 |
-| node:10                 | sha256:59531d2835edd5161c8f9512f9e095b1836f7a1fcb0ab73e005ec46047384911  | 2021-04-10 |
-| node:10-alpine          | sha256:dc98dac24efd4254f75976c40bce46944697a110d06ce7fa47e7268470cf2e28  | 2021-04-14 |
 | node:12                 | sha256:15a9da96daf0609aee1b8971d3487095f0385d990e64f099684b5d9d8d711f4d  | 2021-10-22 |
-| node:12-alpine          | sha256:1ecf7789a48e604a841409e65cf2e172d5a014ecd5e60689137d785d2613e9b0  | 2021-10-22 |
+| node:12-alpine          | sha256:0eca266c5fe38ba93aebac00e45c9ac1bb7328b0702a6dc10e1a6ea543d49301  | 2021-11-13 |
 | node:14                 | sha256:ab6c8cd32006f8a4c1c795e55ddfbc7f54f5a3fb7318506ecb355cab8f5e7182  | 2021-10-22 |
-| node:14-alpine          | sha256:c346198378f78f8611254dce222e7e6635804e41e5203d1825321edd6c59dca1  | 2021-10-22 |
+| node:14-alpine          | sha256:240e1e6ef6dfba3bb70d6e88cca6cbb0b5a6f3a2b4496ed7edc5474e8ed594bd  | 2021-11-13 |
 | node:16                 | sha256:683b8ea4ebc033a0f9060501fc31c1481d3f7232cc032851abbd8cc8d91fdff7  | 2021-10-27 |
-| node:16-alpine          | sha256:3bca55259ada636e5fee8f2836aba7fa01fed7afd0652e12773ad44af95868b9  | 2021-10-27 |
+| node:16-alpine          | sha256:60ef0bed1dc2ec835cfe3c4226d074fdfaba571fd619c280474cc04e93f0ec5b  | 2021-11-13 |
 | ubuntu:16.04            | sha256:0f71fa8d4d2d4292c3c617fda2b36f6dabe5c8b6e34c3dc5b0d17d4e704bd39c  | 2021-08-31 |
 | ubuntu:18.04            | sha256:0fedbd5bd9fb72089c7bbca476949e10593cebed9b1fb9edf5b79dbbacddd7d6  | 2021-10-01 |
 | ubuntu:20.04            | sha256:626ffe58f6e7566e00254b638eb7e0f3b11d4da9675088f4781a50ae288f3322  | 2021-10-16 |

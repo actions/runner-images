@@ -53,13 +53,10 @@ function Build-ToolcacheSection {
     $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
     $output += New-MDHeader "PyPy" -Level 4
     $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
-
-    if( -not $os.IsHighSierra) {
-        $output += New-MDHeader "Node.js" -Level 4
-        $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
-        $output += New-MDHeader "Go" -Level 4
-        $output += Get-ToolcacheGoTable
-    }
+    $output += New-MDHeader "Node.js" -Level 4
+    $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
+    $output += New-MDHeader "Go" -Level 4
+    $output += Get-ToolcacheGoTable
 
     return $output
 }
