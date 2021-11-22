@@ -66,7 +66,7 @@ function Invoke-SoftwareUpdate {
 
     # Unenroll Seed
     Write-Host "`t[*] Reseting the seed before requesting stable versions"
-    Remove-CurrentBetaSeed -HostName $ipAddress
+    Remove-CurrentBetaSeed -HostName $ipAddress | Show-StringWithFormat
 
     # Install Software Updates
     # Security updates may not be able to install(hang, freeze) when AutoLogon is turned off

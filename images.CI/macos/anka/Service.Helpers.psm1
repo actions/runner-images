@@ -240,7 +240,7 @@ function Remove-CurrentBetaSeed {
     )
 
     $command = "sudo /System/Library/PrivateFrameworks/Seeding.framework/Versions/Current/Resources/seedutil unenroll"
-    Invoke-SSHPassCommand -HostName $HostName -Command $command
+    Invoke-SSHPassCommand -HostName $HostName -Command $command | Out-String
 }
 
 function Test-AutoLogon {
