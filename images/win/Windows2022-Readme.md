@@ -1,15 +1,14 @@
 | Announcements |
 |-|
+| [Windows Server 2022 with Visual Studio 2022 is generally available starting from November, 15](https://github.com/actions/virtual-environments/issues/4488) |
 | [[all OSs] Default Nodejs version will be set to 16 on November, 29](https://github.com/actions/virtual-environments/issues/4446) |
 | [[all OSs] Selenium server version will be upgraded from 3 to 4 on November, 15](https://github.com/actions/virtual-environments/issues/4376) |
 | [[All OSs] Node.js version 10 will be removed from the images on November, 15](https://github.com/actions/virtual-environments/issues/4356) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
-| [[All OSs] Go versions less than 1.15 will be removed on November, 8](https://github.com/actions/virtual-environments/issues/4311) |
-| [(Public Beta) Windows Server 2022 with Visual Studio 2022 is now available](https://github.com/actions/virtual-environments/issues/3949) |
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 350
-- Image Version: 20211109.2
+- Image Version: 20211115.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -30,12 +29,13 @@
 - Chocolatey 0.11.3
 - Composer 2.1.12
 - Helm 3.7.1
+- Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 6.14.15
 - NuGet 6.0.0.280
 - pip 21.3.1 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.22
-- Vcpkg  (build from master \<70033db>)
+- Vcpkg  (build from master \<c973b499f>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -71,20 +71,21 @@
 - Newman 5.3.0
 - NSIS v3.06.1
 - OpenSSL 1.1.1
-- Packer 1.7.6
-- Pulumi v3.17.0
+- Packer 1.7.8
+- Pulumi v3.17.1
 - R 4.1.2
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
+- WiX Toolset v3.11.2.4516
 - yamllint 1.26.3
 - zstd 1.5.0
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.99
-- AWS CLI 2.3.4
+- AWS CLI 2.3.6
 - AWS SAM CLI 1.35.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.30.0
@@ -101,7 +102,7 @@
 #### Packages
 - bindgen 0.59.1
 - cargo-audit 0.15.2
-- cargo-outdated v0.9.17
+- cargo-outdated v0.10.0
 - cbindgen 0.20.0
 - Clippy 0.1.56
 - Rustfmt 1.4.37
@@ -109,20 +110,20 @@
 ### Browsers and webdrivers
 - Google Chrome 95.0.4638.69
 - Chrome Driver 95.0.4638.69
-- Microsoft Edge 95.0.1020.44
-- Microsoft Edge Driver 95.0.1020.44
+- Microsoft Edge 95.0.1020.53
+- Microsoft Edge Driver 95.0.1020.53
 - Mozilla Firefox 94.0.1
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
-- Selenium server 3.141.59
+- Selenium server 4.0.0
 
 #### Environment variables
-| Name              | Value                                      |
-| ----------------- | ------------------------------------------ |
-| CHROMEWEBDRIVER   | C:\SeleniumWebDrivers\ChromeDriver         |
-| EDGEWEBDRIVER     | C:\SeleniumWebDrivers\EdgeDriver           |
-| GECKOWEBDRIVER    | C:\SeleniumWebDrivers\GeckoDriver          |
-| SELENIUM_JAR_PATH | C:\selenium\selenium-server-standalone.jar |
+| Name              | Value                              |
+| ----------------- | ---------------------------------- |
+| CHROMEWEBDRIVER   | C:\SeleniumWebDrivers\ChromeDriver |
+| EDGEWEBDRIVER     | C:\SeleniumWebDrivers\EdgeDriver   |
+| GECKOWEBDRIVER    | C:\SeleniumWebDrivers\GeckoDriver  |
+| SELENIUM_JAR_PATH | C:\selenium\selenium-server.jar    |
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -158,7 +159,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
-| 10.24.1 | x64          |
 | 12.22.7 | x64          |
 | 14.18.1 | x64          |
 | 16.13.0 | x64          |
@@ -194,7 +194,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-14                                                                                                                    |
-| Version              | 14.0                                                                                                                                 |
+| Version              | 14.1                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -206,14 +206,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.1.0.0 | MongoDB     | Running       | Automatic        |
+| 5.0.3.0 | MongoDB     | Running       | Automatic        |
 
 
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.4.0
 - DacFx 15.0.5282.3
-- MySQL 8.0.26.0
+- MySQL 8.0.27.0
 - SQLPS 1.0
 
 
@@ -269,6 +269,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.4.8.DeveloperTools                           | 17.0.31804.368 |
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 17.0.31804.368 |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 17.0.31804.368 |
+| microsoft.net.runtime.mono.tooling                                        | 6.0.21.52210   |
+| microsoft.net.sdk.emscripten                                              | 6.0.5.2003     |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 17.0.31804.368 |
 | Microsoft.NetCore.Component.Runtime.6.0                                   | 17.0.31902.203 |
 | Microsoft.NetCore.Component.SDK                                           | 17.0.31902.203 |
@@ -410,6 +412,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Python                                    | 17.0.31804.368 |
 | Microsoft.VisualStudio.Workload.Universal                                 | 17.0.31804.368 |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 17.0.31804.368 |
+| wasm.tools                                                                | 6.0.21.52210   |
 
 #### Microsoft Visual C++:
 
