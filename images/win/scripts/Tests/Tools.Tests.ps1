@@ -101,12 +101,6 @@ Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
     }
 }
 
-Describe "ServiceFabricSDK" -Skip:(Test-IsWin22) {
-    It "ServiceFabricSDK" {
-        Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "NET48" {
     It "NET48" {
         $netPath = (Get-DotnetFrameworkTools).Path.Split("<")[0]
@@ -139,6 +133,10 @@ Describe "Sbt" -Skip:(Test-IsWin22) {
 Describe "ServiceFabricSDK" -Skip:(Test-IsWin22) {
     It "PowerShell Module" {
         Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
+    }
+
+    It "ServiceFabricSDK version" {
+        Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion | Should -ReturnZeroExitCode
     }
 }
 
