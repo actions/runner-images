@@ -14,6 +14,13 @@ Start-Service docker
 Write-Host "Install-Package Docker-Compose"
 Choco-Install -PackageName docker-compose
 
+Write-Host "Install docker-wincred"
+$dockerCredLatestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/docker/docker-credential-helpers/releases/latest"
+$dockerCredDownloadUrl = $dockerCredLatestRelease.assets.browser_download_url -match "docker-credential-wincred-.+\.zip" | Select-Object -First 1
+$dockerCredArchive = Start-DownloadWithRetry -Url $dockerCredDownloadUrl
+Expand-Archive -Path $dockerCredArchive -DestinationPath "C:\Program Files\Docker"
+
+Write-Host "Download docker images"
 $dockerImages = (Get-ToolsetContent).docker.images
 foreach ($dockerImage in $dockerImages) {
     Write-Host "Pulling docker image $dockerImage ..."

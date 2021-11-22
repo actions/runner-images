@@ -52,7 +52,7 @@ if ($os.IsLessThanMonterey) {
     )
 }
 
-if ( -not $os.IsHighSierra -and $os.IsLessThanMonterey) {
+if ($os.IsLessThanMonterey) {
     $languageAndRuntimeList += @(
         (Get-GccVersion)
         (Get-FortranVersion)
@@ -163,7 +163,7 @@ if ($os.IsLessThanBigSur) {
     )
 }
 
-if (-not $os.IsHighSierra -and $os.IsLessThanMonterey) {
+if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
         (Get-SwitchAudioOsxVersion),
         (Get-SoxVersion)
@@ -195,21 +195,17 @@ if ($os.IsLessThanMonterey) {
 $toolsList += @(
     (Get-XcodeCommandLineToolsVersion),
     (Get-SwigVersion),
-    (Get-BicepVersion)
+    (Get-BicepVersion),
+    (Get-GHCupVersion),
+    (Get-GHCVersion),
+    (Get-CabalVersion),
+    (Get-StackVersion)
 )
 
-if( -not $os.IsHighSierra) {
+if($os.IsLessThanMonterey) {
     $toolsList += @(
-        (Get-GHCupVersion),
-        (Get-GHCVersion),
-        (Get-CabalVersion),
-        (Get-StackVersion)
+        (Get-SwiftFormatVersion)
     )
-    if($os.IsLessThanMonterey) {
-        $toolsList += @(
-            (Get-SwiftFormatVersion)
-        )
-    }
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
@@ -217,14 +213,9 @@ $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 # Linters
 $markdown += New-MDHeader "Linters" -Level 3
 $lintersList = @(
-    (Get-YamllintVersion)
+    (Get-YamllintVersion),
+    (Get-SwiftLintVersion)
 )
-
-if ( -not $os.IsHighSierra) {
-    $lintersList += @(
-        (Get-SwiftLintVersion)
-    )
-}
 
 $markdown += New-MDList -Style Unordered -Lines ($lintersList | Sort-Object)
 
@@ -241,27 +232,25 @@ $markdown += New-MDNewLine
 # Toolcache
 $markdown += Build-ToolcacheSection
 
-if ( -not $os.IsHighSierra) {
-    $markdown += New-MDHeader "Rust Tools" -Level 3
-    $markdown += New-MDList -Style Unordered -Lines (@(
-        (Get-RustVersion),
-        (Get-RustupVersion),
-        (Get-RustdocVersion),
-        (Get-RustCargoVersion)
-        ) | Sort-Object
-    )
-    
-    $markdown += New-MDHeader "Packages" -Level 4
-    $markdown += New-MDList -Style Unordered -Lines (@(
-        (Get-Bindgen),
-        (Get-Cbindgen),
-        (Get-Cargooutdated),
-        (Get-Cargoaudit),
-        (Get-RustfmtVersion),
-        (Get-RustClippyVersion)
-        ) | Sort-Object
-    )
-}
+$markdown += New-MDHeader "Rust Tools" -Level 3
+$markdown += New-MDList -Style Unordered -Lines (@(
+    (Get-RustVersion),
+    (Get-RustupVersion),
+    (Get-RustdocVersion),
+    (Get-RustCargoVersion)
+    ) | Sort-Object
+)
+
+$markdown += New-MDHeader "Packages" -Level 4
+$markdown += New-MDList -Style Unordered -Lines (@(
+    (Get-Bindgen),
+    (Get-Cbindgen),
+    (Get-Cargooutdated),
+    (Get-Cargoaudit),
+    (Get-RustfmtVersion),
+    (Get-RustClippyVersion)
+    ) | Sort-Object
+)
 
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
 $markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
