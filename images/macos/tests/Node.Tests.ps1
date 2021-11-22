@@ -4,7 +4,6 @@ Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 $os = Get-OSVersion
 
 Describe "Node.js" {
-
     It "Node.js is installed" {
         "node --version" | Should -ReturnZeroExitCode
     }
