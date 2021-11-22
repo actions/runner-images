@@ -123,7 +123,8 @@ $toolsList = @(
 )
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
-        (Get-GoogleCloudSDKVersion)
+        (Get-GoogleCloudSDKVersion),
+        (Get-ServiceFabricSDKVersion)
     )
 }
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
