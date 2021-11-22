@@ -64,6 +64,10 @@ function Invoke-SoftwareUpdate {
 
     $ipAddress = Get-AnkaVMIPAddress -VMName $TemplateName
 
+    # Unenroll Seed
+    Write-Host "`t[*] Reseting the seed before requesting stable versions"
+    Remove-CurrentBetaSeed -HostName $ipAddress
+
     # Install Software Updates
     # Security updates may not be able to install(hang, freeze) when AutoLogon is turned off
     Write-Host "`t[*] Finding available software"
