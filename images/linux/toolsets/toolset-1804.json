@@ -73,7 +73,8 @@
         "default": "8",
         "versions": [
             "8", "11", "12"
-        ]
+        ],
+        "maven": "3.8.4"
     },
     "android": {
         "platform_min_version": "23",
@@ -329,5 +330,8 @@
     ],
     "mongodb": {
         "version": "5.0"
+    },
+    "postgresql": {
+        "version": "14"
     }
 }

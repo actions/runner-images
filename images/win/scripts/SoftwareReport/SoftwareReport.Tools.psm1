@@ -61,6 +61,11 @@ function Get-DockerComposeVersion {
     return "Docker-compose $dockerComposeVersion"
 }
 
+function Get-DockerWincredVersion {
+    $dockerCredVersion = $(docker-credential-wincred version)
+    return "Docker-wincred $dockerCredVersion"
+}
+
 function Get-GitVersion {
     $(git version) -match "git version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $gitVersion = $Matches.Version

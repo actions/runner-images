@@ -16,7 +16,7 @@ JAVA_TOOLCACHE_PATH="$AGENT_TOOLSDIRECTORY/Java_Adopt_jdk"
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
 add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 
-if isUbuntu18 ; then
+if isUbuntu18; then
     # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
     apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
@@ -34,7 +34,7 @@ for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
     if [[ -z $fullJavaVersion ]]; then
         fullJavaVersion=$(java -fullversion 2>&1 | tr -d "\"" | tr "+" "-" | awk '{print $4}')
     fi
-    
+
     javaToolcacheVersionPath="$JAVA_TOOLCACHE_PATH/$fullJavaVersion"
     mkdir -p "$javaToolcacheVersionPath"
 
@@ -62,7 +62,7 @@ latestMavenVersion=$(echo $json | jq -r '.[] | select(.name | match("^(maven-[0-
 mavenDownloadUrl=$(echo $json | jq -r ".[] | select(.name==\"maven-$latestMavenVersion\") | .zipball_url")
 download_with_retries $mavenDownloadUrl "/tmp" "maven.zip"
 unzip -qq -d /usr/share /tmp/maven.zip
-ln -s /usr/share/apache-maven-${latestMavenVersion}/bin/mvn /usr/bin/mvn
+ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
 
 # Install Gradle
 # This script founds the latest gradle release from https://services.gradle.org/versions/all

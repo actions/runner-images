@@ -142,7 +142,7 @@ Describe "Toolcache" {
         }
     }
 
-    Context "Node" -Skip:($os.IsHighSierra) {
+    Context "Node" {
         $nodeDirectory = Join-Path $toolcacheDirectory "node"
         $nodePackage = $packages | Where-Object { $_.ToolName -eq "node" } | Select-Object -First 1
         $testCase = @{ NodeDirectory = $nodeDirectory }
@@ -192,7 +192,7 @@ Describe "Toolcache" {
         }
     }
 
-    Context "Go" -Skip:($os.IsHighSierra) {
+    Context "Go" {
         $goDirectory = Join-Path $toolcacheDirectory "go"
         $goPackage = $packages | Where-Object { $_.ToolName -eq "go" } | Select-Object -First 1
         $testCase = @{ GoDirectory = $goDirectory }
