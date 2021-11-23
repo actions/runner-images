@@ -136,7 +136,7 @@ Describe "ServiceFabricSDK" -Skip:(Test-IsWin22) {
     }
 
     It "ServiceFabricSDK version" {
-        Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion | Should -ReturnZeroExitCode
+        Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion | Should -Not -BeNullOrEmpty
     }
 }
 
