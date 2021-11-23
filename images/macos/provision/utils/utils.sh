@@ -71,16 +71,8 @@ is_Mojave() {
     fi
 }
 
-is_HighSierra() {
-    if [ "$OSTYPE" = "darwin17" ]; then
-        true
-    else
-        false
-    fi
-}
-
 is_Less_Catalina() {
-    if is_HighSierra || is_Mojave; then
+    if is_Mojave; then
         true
     else
         false
@@ -88,7 +80,7 @@ is_Less_Catalina() {
 }
 
 is_Less_BigSur() {
-    if is_HighSierra || is_Mojave || is_Catalina; then
+    if is_Mojave || is_Catalina; then
         true
     else
         false
@@ -96,7 +88,7 @@ is_Less_BigSur() {
 }
 
 is_Less_Monterey() {
-    if is_HighSierra || is_Mojave || is_Catalina || is_BigSur; then
+    if is_Mojave || is_Catalina || is_BigSur; then
         true
     else
         false
@@ -132,9 +124,7 @@ brew_cask_install_ignoring_sha256() {
 }
 
 get_brew_os_keyword() {
-    if is_HighSierra; then
-        echo "high_sierra"
-    elif is_Mojave; then
+    if is_Mojave; then
         echo "mojave"
     elif is_Catalina; then
         echo "catalina"
