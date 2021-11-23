@@ -36,6 +36,7 @@ Export-ModuleMember -Function @(
     'Get-WhichTool'
     'Get-EnvironmentVariable'
     'Invoke-PesterTests'
+    'Invoke-SBWithRetry'
     'Get-VsCatalogJsonPath'
     'Install-AndroidSDKPackages'
     'Get-AndroidPackages'
