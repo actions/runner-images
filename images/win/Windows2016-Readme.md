@@ -1,15 +1,14 @@
 | Announcements |
 |-|
+| [Windows Server 2022 with Visual Studio 2022 is generally available starting from November, 15](https://github.com/actions/virtual-environments/issues/4488) |
 | [[all OSs] Default Nodejs version will be set to 16 on November, 29](https://github.com/actions/virtual-environments/issues/4446) |
 | [[all OSs] Selenium server version will be upgraded from 3 to 4 on November, 15](https://github.com/actions/virtual-environments/issues/4376) |
 | [[All OSs] Node.js version 10 will be removed from the images on November, 15](https://github.com/actions/virtual-environments/issues/4356) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
-| [[All OSs] Go versions less than 1.15 will be removed on November, 8](https://github.com/actions/virtual-environments/issues/4311) |
-| [(Public Beta) Windows Server 2022 with Visual Studio 2022 is now available](https://github.com/actions/virtual-environments/issues/3949) |
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4770
-- Image Version: 20211109.0
+- Image Version: 20211115.1
 
 ## Installed Software
 ### Language and Runtime
@@ -34,7 +33,7 @@
 - pip 21.3.1 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<6cfa934>)
+- Vcpkg  (build from master \<c973b499f>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -74,20 +73,21 @@
 - Newman 5.3.0
 - NSIS v3.06.1
 - OpenSSL 1.1.1
-- Packer 1.7.6
-- Pulumi v3.17.0
+- Packer 1.7.8
+- Pulumi v3.17.1
 - R 4.1.2
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
+- WiX Toolset v3.11.2.4516
 - yamllint 1.26.3
 - zstd 1.5.0
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.99
-- AWS CLI 2.3.4
+- AWS CLI 2.3.6
 - AWS SAM CLI 1.35.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.30.0
@@ -105,7 +105,7 @@
 #### Packages
 - bindgen 0.59.1
 - cargo-audit 0.15.2
-- cargo-outdated v0.9.17
+- cargo-outdated v0.10.0
 - cbindgen 0.20.0
 - Clippy 0.1.56
 - Rustfmt 1.4.37
@@ -113,20 +113,20 @@
 ### Browsers and webdrivers
 - Google Chrome 95.0.4638.69
 - Chrome Driver 95.0.4638.69
-- Microsoft Edge 95.0.1020.44
-- Microsoft Edge Driver 95.0.1020.44
+- Microsoft Edge 95.0.1020.53
+- Microsoft Edge Driver 95.0.1020.53
 - Mozilla Firefox 94.0.1
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
-- Selenium server 3.141.59
+- Selenium server 4.0.0
 
 #### Environment variables
-| Name              | Value                                      |
-| ----------------- | ------------------------------------------ |
-| CHROMEWEBDRIVER   | C:\SeleniumWebDrivers\ChromeDriver         |
-| EDGEWEBDRIVER     | C:\SeleniumWebDrivers\EdgeDriver           |
-| GECKOWEBDRIVER    | C:\SeleniumWebDrivers\GeckoDriver          |
-| SELENIUM_JAR_PATH | C:\selenium\selenium-server-standalone.jar |
+| Name              | Value                              |
+| ----------------- | ---------------------------------- |
+| CHROMEWEBDRIVER   | C:\SeleniumWebDrivers\ChromeDriver |
+| EDGEWEBDRIVER     | C:\SeleniumWebDrivers\EdgeDriver   |
+| GECKOWEBDRIVER    | C:\SeleniumWebDrivers\GeckoDriver  |
+| SELENIUM_JAR_PATH | C:\selenium\selenium-server.jar    |
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -162,7 +162,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
-| 10.24.1 | x64          |
 | 12.22.7 | x64          |
 | 14.18.1 | x64          |
 | 16.13.0 | x64          |
@@ -205,7 +204,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-14                                                                                                                    |
-| Version              | 14.0                                                                                                                                 |
+| Version              | 14.1                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -217,14 +216,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.1.0.0 | MongoDB     | Running       | Automatic        |
+| 5.0.3.0 | MongoDB     | Running       | Automatic        |
 
 
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.4.0
 - DacFx 15.0.5282.3
-- MySQL 5.7.35.0
+- MySQL 5.7.36.0
 - SQLPS 1.0
 
 
@@ -273,7 +272,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.UnityEngine.x64                                                 | 15.9.28307.616   |
 | Component.Unreal                                                          | 15.8.27729.1     |
 | Component.Unreal.Android                                                  | 15.9.28307.341   |
-| Component.WixToolset.VisualStudioExtension.Dev15                          | 0.9.21.62588     |
 | Component.Xamarin                                                         | 15.9.28307.1177  |
 | Component.Xamarin.Profiler                                                | 15.0.27005.2     |
 | Component.Xamarin.RemotedSimulator                                        | 15.6.27323.2     |
@@ -482,8 +480,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | SSDT SQL Server Integration Services Projects                             | 2.6.3            |
 | Windows Driver Kit                                                        | 10.0.17740.0     |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.17763.1     |
-| WIX Toolset                                                               | 3.11.4516        |
-| WIX Toolset Studio 2017 Extension                                         | 0.9.21.62588     |
 
 #### Microsoft Visual C++:
 
@@ -582,9 +578,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:8475573b3deea860097590fe71c1a5333c937f5aadb7a6b07d760fe9017e28b1  | 2021-10-12 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:97bbc6dd603e44f5a34e3f309b493c77b964b0e07d9e3dd7333f063ccaf33523  | 2021-10-12 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:bff7dee44dc39f9e997389be6de0c9fcde608879eb52070839ac03f6058f1385  | 2021-10-12 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:04596195c24adb48a59ecfdfaa3fcefff5563e4cdb6d22cadfb588d4525a5a3f  | 2021-11-09 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:b77c157fca59b9a93b6ed1bf34f7c224497184546d5e63953fb08d9769f73123  | 2021-11-09 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:9c649d68d85741479778a3e7006ac002fe47ded9fccd01be5b03ced5e0d23e27  | 2021-11-09 |
 | mcr.microsoft.com/windows/nanoserver:10.0.14393.953                       | sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268  | 2017-03-08 |
 | mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:0a54ee92e51c03f30b6902df63fb88be973c8d04a40c456058ab6acbdd92d103  | 2021-11-03 |
 
