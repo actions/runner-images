@@ -9,7 +9,7 @@
 # macOS 11.6 info
 - System Version: macOS 11.6.1 (20G224)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20211114.1
+- Image Version: 20211120.1
 
 ## Installed Software
 ### Language and Runtime
@@ -19,19 +19,19 @@
 - Clang/LLVM 13.0.0 is default
 - gcc-9 (Homebrew GCC 9.4.0) 9.4.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
-- gcc-11 (Homebrew GCC 11.2.0_1) 11.2.0 - available by `gcc-11` alias
+- gcc-11 (Homebrew GCC 11.2.0_2) 11.2.0 - available by `gcc-11` alias
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
-- GNU Fortran (Homebrew GCC 11.2.0_1) 11.2.0 - available by `gfortran-11` alias
+- GNU Fortran (Homebrew GCC 11.2.0_2) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
-- julia 1.6.3
-- Kotlin 1.5.31-release-548
+- julia 1.6.4
+- Kotlin 1.6.0-release-798
 - MSBuild 16.9.0.22901 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v14.18.1
 - NVM 0.39.0
 - NVM - Cached node versions: v12.22.7 v14.18.1 v16.13.0
 - Perl 5.34.0
-- PHP 8.0.12
+- PHP 8.0.13
 - Python 2.7.18
 - Python 3.9.8
 - Ruby 2.7.4p191
@@ -41,7 +41,7 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.2
 - Composer 2.1.12
-- Homebrew 3.3.3
+- Homebrew 3.3.4
 - Miniconda 4.10.3
 - NPM 6.14.15
 - NuGet 5.9.0.7134
@@ -49,7 +49,7 @@
 - Pip 21.3.1 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.31
-- Vcpkg 2021 (build from master \<c973b499f>)
+- Vcpkg 2021 (build from master \<709e9ec32>)
 - Yarn 1.22.15
 
 #### Environment variables
@@ -60,7 +60,7 @@
 
 ### Project Management
 - Apache Ant(TM) 1.10.12
-- Apache Maven 3.8.3
+- Apache Maven 3.8.4
 - Gradle 7.3
 - Sbt 1.5.5
 
@@ -73,7 +73,7 @@
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.80.0
 - Git LFS: 3.0.2
-- Git: 2.33.1
+- Git: 2.34.0
 - GitHub CLI: 2.2.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.2
@@ -97,14 +97,14 @@
 ### Tools
 - Aliyun CLI 3.0.99
 - App Center CLI 2.10.4
-- AWS CLI 2.3.6
+- AWS CLI 2.4.0
 - AWS SAM CLI 1.35.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.30.0
 - Bicep CLI 0.4.1008
 - Cabal 3.6.2.0
-- Cmake 3.21.4
-- Fastlane 2.197.0
+- Cmake 3.22.0
+- Fastlane 2.198.1
 - GHC 9.2.1
 - GHCup 0.1.17.4
 - Jazzy 0.14.1
@@ -120,8 +120,8 @@
 ### Browsers
 - Safari 15.1 (16612.2.9.1.30)
 - SafariDriver 15.1 (16612.2.9.1.30)
-- Google Chrome 95.0.4638.69 
-- ChromeDriver 95.0.4638.69
+- Google Chrome 96.0.4664.55 
+- ChromeDriver 96.0.4664.45
 - Microsoft Edge 95.0.1020.53 
 - MSEdgeDriver 95.0.1020.53
 - Mozilla Firefox 94.0.1
@@ -131,7 +131,7 @@
 #### Environment variables
 | Name            | Value                                         |
 | --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/95.0.4638.69 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/96.0.4664.45 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
@@ -153,7 +153,7 @@
 #### Python
 - 3.7.12
 - 3.8.12
-- 3.9.8
+- 3.9.9
 - 3.10.0
 
 #### PyPy
@@ -180,8 +180,8 @@
 
 #### Packages
 - Bindgen 0.59.1
-- Cargo-audit 0.15.2
-- Cargo-outdated v0.10.0
+- Cargo-audit 0.16.0
+- Cargo-outdated v0.10.2
 - Cbindgen 0.20.0
 - Clippy 0.1.56
 - Rustfmt 1.4.37-stable
@@ -205,7 +205,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.13.11
+- 8.10.14.17
 
 #### Xamarin bundles
 | symlink           | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -229,7 +229,7 @@
 ### Xcode
 | Version        | Build    | Path                           |
 | -------------- | -------- | ------------------------------ |
-| 13.2 (beta)    | 13C5066c | /Applications/Xcode_13.2.app   |
+| 13.2 (beta)    | 13C5081f | /Applications/Xcode_13.2.app   |
 | 13.1 (default) | 13A1030d | /Applications/Xcode_13.1.app   |
 | 13.0           | 13A233   | /Applications/Xcode_13.0.app   |
 | 12.5.1         | 12E507   | /Applications/Xcode_12.5.1.app |
