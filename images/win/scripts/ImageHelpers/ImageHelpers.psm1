@@ -8,12 +8,19 @@ param()
 . $PSScriptRoot\VisualStudioHelpers.ps1
 
 Export-ModuleMember -Function @(
+    'Connect-Hive'
+    'Disconnect-Hive'
     'Test-MachinePath'
     'Get-MachinePath'
+    'Get-DefaultPath'
     'Set-MachinePath'
+    'Set-DefaultPath'
     'Add-MachinePathItem'
+    'Add-DefaultPathItem'
     'Get-SystemVariable'
+    'Get-DefaultVariable'
     'Set-SystemVariable'
+    'Set-DefaultVariable'
     'Install-Binary'
     'Install-VisualStudio'
     'Get-ToolsetContent'
