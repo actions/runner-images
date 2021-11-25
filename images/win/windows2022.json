@@ -203,6 +203,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PHP.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Rust.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Sbt.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Chrome.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Edge.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Firefox.ps1",

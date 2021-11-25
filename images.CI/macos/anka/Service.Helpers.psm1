@@ -232,6 +232,17 @@ function Show-StringWithFormat {
     }
 }
 
+function Remove-CurrentBetaSeed {
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $HostName
+    )
+
+    $command = "sudo /System/Library/PrivateFrameworks/Seeding.framework/Versions/Current/Resources/seedutil unenroll"
+    Invoke-SSHPassCommand -HostName $HostName -Command $command | Out-String
+}
+
 function Test-AutoLogon {
     param(
         [Parameter(Mandatory)]
