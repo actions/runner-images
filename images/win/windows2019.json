@@ -67,7 +67,8 @@
         {
             "type": "powershell",
             "inline": [
-                "New-Item -Path {{user `image_folder`}} -ItemType Directory -Force"
+                "New-Item -Path {{user `image_folder`}} -ItemType Directory -Force",
+                "Get-ChildItem 'C:\\Users' -Force"
             ]
         },
         {
