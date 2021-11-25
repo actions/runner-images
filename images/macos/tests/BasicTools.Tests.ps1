@@ -54,7 +54,7 @@ Describe "Perl" {
     }
 }
 
-Describe "Helm" -Skip:($os.IsMonterey) {
+Describe "Helm" {
     It "Helm" {
         "helm version --short" | Should -ReturnZeroExitCode
     }

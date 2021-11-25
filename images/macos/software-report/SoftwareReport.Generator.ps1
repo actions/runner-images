@@ -129,13 +129,13 @@ $utilitiesList = @(
     (Get-MongodVersion),
     (Get-7zipVersion),
     (Get-BsdtarVersion),
-    (Get-GnuTarVersion)
+    (Get-GnuTarVersion),
+    (Get-HelmVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
-        (Get-GPGVersion),
-        (Get-HelmVersion)
+        (Get-GPGVersion)
     )
 }
 
