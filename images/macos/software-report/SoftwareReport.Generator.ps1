@@ -125,14 +125,9 @@ $utilitiesList = @(
     (Get-7zipVersion),
     (Get-BsdtarVersion),
     (Get-GnuTarVersion),
-    (Get-HelmVersion)
+    (Get-HelmVersion),
+    (Get-GPGVersion)
 )
-
-if ($os.IsLessThanMonterey) {
-    $utilitiesList += @(
-        (Get-GPGVersion)
-    )
-}
 
 if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
     $utilitiesList += @(

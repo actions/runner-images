@@ -87,6 +87,7 @@
             "carthage",
             "cmake",
             "gh",
+            "gnupg",
             "gnu-tar",
             "helm",
             "kotlin",
