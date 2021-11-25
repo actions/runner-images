@@ -182,7 +182,8 @@ function Rebuild-Xcode-LaunchServicesDb {
     )
 
     $xcodePath = Get-XcodeRootPath -Version $Version
-    Get-ChildItem -Recurse -Filter "*.app" $xcodePath | Select-Object FullName | Foreach-Object {Invoke-Expression '/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f $_'}
+    $lsregister = '/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister'
+    Get-ChildItem -Recurse -Filter "*.app" $xcodePath | Foreach-Object { & $lsregister -f $_.FullName}
 }
 
 function Build-ProvisionatorSymlink {
