@@ -249,6 +249,11 @@ function Get-GoogleCloudSDKVersion {
     (gcloud --version) -match "Google Cloud SDK"
 }
 
+function Get-ServiceFabricSDKVersion {
+    $serviceFabricSDKVersion = Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion
+    return "Service Fabric SDK $serviceFabricSDKVersion"
+}
+
 function Get-NewmanVersion {
     return "Newman $(newman --version)"
 }

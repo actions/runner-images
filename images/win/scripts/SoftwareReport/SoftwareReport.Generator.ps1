@@ -74,13 +74,10 @@ $markdown += New-MDHeader "Project Management" -Level 3
 $projectManagementTools = @(
     (Get-AntVersion),
     (Get-GradleVersion),
-    (Get-MavenVersion)
+    (Get-MavenVersion),
+    (Get-SbtVersion)
 )
-if ((Test-IsWin16) -or (Test-IsWin19)) {
-    $projectManagementTools += @(
-        (Get-SbtVersion)
-    )
-}
+
 $markdown += New-MDList -Style Unordered -Lines ($projectManagementTools | Sort-Object)
 
 $markdown += New-MDHeader "Tools" -Level 3
@@ -123,7 +120,8 @@ $toolsList = @(
 )
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
-        (Get-GoogleCloudSDKVersion)
+        (Get-GoogleCloudSDKVersion),
+        (Get-ServiceFabricSDKVersion)
     )
 }
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
