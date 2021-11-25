@@ -419,7 +419,7 @@
         ]
     },
     "node": {
-        "default": "14"
+        "default": "16"
     },
     "Mysql": {
         "version": "5.7"

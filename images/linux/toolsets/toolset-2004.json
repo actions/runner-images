@@ -281,7 +281,7 @@
         "binary_name": "selenium-server"
     },
     "node": {
-        "default": "14"
+        "default": "16"
     },
     "node_modules": [
         {

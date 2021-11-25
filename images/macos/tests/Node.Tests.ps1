@@ -4,21 +4,12 @@ Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 $os = Get-OSVersion
 
 Describe "Node.js" {
-    BeforeAll {
-        $os = Get-OSVersion
-        $expectedNodeVersion = if ($os.IsHigherThanMojave) { "v14.*" } else { "v8.*" }
-    }
-
     It "Node.js is installed" {
         "node --version" | Should -ReturnZeroExitCode
     }
 
     It "Node.js version should correspond to the version in the toolset" {
         node --version | Should -BeLike "v$(Get-ToolsetValue 'node.default')*"
-    }
-
-    It "Node.js $expectedNodeVersion is default" {
-        (Get-CommandResult "node --version").Output | Should -BeLike $expectedNodeVersion
     }
 
     It "NPM is installed" {
