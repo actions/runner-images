@@ -175,10 +175,10 @@ function Build-XcodeSymlinks {
     }
 }
 
-function Rebuild-Xcode-LaunchServicesDb {
+function Rebuild-XcodeLaunchServicesDb {
     param(
         [Parameter(Mandatory)]
-        [string]$Version,
+        [string]$Version
     )
 
     $xcodePath = Get-XcodeRootPath -Version $Version

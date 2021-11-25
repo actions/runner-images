@@ -53,7 +53,7 @@ $xcodeVersions | ForEach-Object {
 
 Write-Host "Rebuilding Launch Services database ..."
 $xcodeVersions | ForEach-Object {
-    Rebuild-Xcode-LaunchServicesDb -Version $_
+    Rebuild-XcodeLaunchServicesDb -Version $_.link
 }
 
 Write-Host "Setting default Xcode to $defaultXcode"
