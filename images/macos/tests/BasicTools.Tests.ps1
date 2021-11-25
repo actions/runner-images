@@ -6,7 +6,7 @@ Describe "Azure CLI" {
     }
 }
 
-Describe "Carthage" -Skip:($os.IsMonterey) {
+Describe "Carthage" {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
     }

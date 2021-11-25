@@ -84,6 +84,7 @@
             "aria2",
             "azure-cli",
             "bazelisk",
+            "carthage",
             "cmake",
             "gh",
             "gnu-tar",

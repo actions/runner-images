@@ -83,12 +83,12 @@ $packageManagementList = @(
     (Get-YarnVersion),
     (Get-NuGetVersion),
     (Get-RubyGemsVersion),
-    (Get-ComposerVersion)
+    (Get-ComposerVersion),
+    (Get-CarthageVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $packageManagementList += @(
-        (Get-CarthageVersion),
         (Get-CondaVersion)
     )
 }
