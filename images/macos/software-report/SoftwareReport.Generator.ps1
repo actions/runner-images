@@ -43,14 +43,9 @@ $languageAndRuntimeList = @(
     (Get-DotnetVersionList),
     (Get-GoVersion),
     (Get-JuliaVersion),
-    (Get-KotlinVersion)
+    (Get-KotlinVersion),
+    (Get-PHPVersion)
 )
-
-if ($os.IsLessThanMonterey) {
-    $languageAndRuntimeList += @(
-        (Get-PHPVersion)
-    )
-}
 
 if ($os.IsLessThanMonterey) {
     $languageAndRuntimeList += @(

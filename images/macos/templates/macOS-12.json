@@ -168,6 +168,7 @@
                 "./provision/core/golang.sh",
                 "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
+                "./provision/core/php.sh",
                 "./provision/core/aws.sh",
                 "./provision/core/rust.sh",
                 "./provision/core/haskell.sh",
