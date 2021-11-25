@@ -181,6 +181,7 @@
                 "./provision/core/nginx.sh",
                 "./provision/core/postgresql.sh",
                 "./provision/core/mongodb.sh",
+                "./provision/core/miniconda.sh",
                 "./provision/core/safari.sh",
                 "./provision/core/chrome.sh",
                 "./provision/core/edge.sh",
