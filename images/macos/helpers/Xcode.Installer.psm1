@@ -175,6 +175,16 @@ function Build-XcodeSymlinks {
     }
 }
 
+function Rebuild-Xcode-LaunchServicesDb {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Version,
+    )
+
+    $xcodePath = Get-XcodeRootPath -Version $Version
+    Get-ChildItem -Recurse -Filter "*.app" $xcodePath | Select-Object FullName | Foreach-Object {Invoke-Expression '/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f $_'}
+}
+
 function Build-ProvisionatorSymlink {
     param(
         [Parameter(Mandatory)]

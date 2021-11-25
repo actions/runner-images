@@ -51,6 +51,11 @@ $xcodeVersions | ForEach-Object {
     }
 }
 
+Write-Host "Rebuilding Launch Services database ..."
+$xcodeVersions | ForEach-Object {
+    Rebuild-Xcode-LaunchServicesDb -Version $_
+}
+
 Write-Host "Setting default Xcode to $defaultXcode"
 Switch-Xcode -Version $defaultXcode
 New-Item -Path "/Applications/Xcode.app" -ItemType SymbolicLink -Value (Get-XcodeRootPath -Version $defaultXcode) | Out-Null
