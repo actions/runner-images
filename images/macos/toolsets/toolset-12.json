@@ -105,6 +105,13 @@
             "julia"
         ]
     },
+    "gcc": {
+        "versions": [
+            "9",
+            "10",
+            "11"
+        ]
+    },
     "toolcache": [
         {
             "name": "Python",
