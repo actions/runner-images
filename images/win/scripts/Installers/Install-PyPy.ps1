@@ -40,7 +40,9 @@ function Install-PyPy
         New-Item -ItemType Directory -Path $pypyVersionPath -Force | Out-Null
 
         Write-Host "Move PyPy '${pythonVersion}' files to '${pypyArchPath}'"
-        Move-Item -Path $tempFolder -Destination $pypyArchPath | Out-Null
+        Invoke-SBWithRetry -Command {
+            Move-Item -Path $tempFolder -Destination $pypyArchPath -ErrorAction Stop | Out-Null
+        }
 
         Write-Host "Install PyPy '${pythonVersion}' in '${pypyArchPath}'"
         if (Test-Path "$pypyArchPath\python.exe") {

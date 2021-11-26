@@ -22,7 +22,9 @@ Extract-7Zip -Path $MysqlArchPath -DestinationPath "C:\"
 
 # Rename mysql-version to mysql folder
 $MysqlPath = "C:\mysql"
-Rename-Item -Path "C:\mysql-${MysqlFullVersion}-winx64" -NewName $MysqlPath
+Invoke-SBWithRetry -Command {
+    Rename-Item -Path "C:\mysql-${MysqlFullVersion}-winx64" -NewName $MysqlPath -ErrorAction Stop
+}
 
 # Adding mysql in system environment path
 Add-MachinePathItem "${MysqlPath}\bin"
