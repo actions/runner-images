@@ -171,7 +171,6 @@ if ($os.IsLessThanMonterey) {
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($utilitiesList | Sort-Object)
-$markdown += New-MDNewLine
 
 # Tools
 $markdown += New-MDHeader "Tools" -Level 3
@@ -231,6 +230,7 @@ $markdown += New-MDNewLine
 
 # Toolcache
 $markdown += Build-ToolcacheSection
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Rust Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
