@@ -9,7 +9,7 @@ source $HELPER_SCRIPTS/install.sh
 
 # Install
 image_label="$(lsb_release -rs)"
-swift_version=$(curl -s -L -N https://swift.org/download|awk -F"[ <]" '/id="swift-/ {print $4; exit}')
+swift_version=$(curl -s "https://api.github.com/repos/apple/swift/releases/latest" | jq -r '.tag_name | match("[0-9.]+").string')
 
 swift_tar_name="swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz"
 swift_tar_url="https://swift.org/builds/swift-$swift_version-release/ubuntu${image_label//./}/swift-$swift_version-RELEASE/$swift_tar_name"

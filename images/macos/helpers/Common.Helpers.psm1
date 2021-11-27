@@ -34,7 +34,6 @@ function Get-OSVersion {
     return [PSCustomObject]@{
         Version = $osVersion.Version
         Platform = $osVersion.Platform
-        IsHighSierra = $osVersionMajorMinor -eq "10.13"
         IsMojave = $osVersionMajorMinor -eq "10.14"
         IsCatalina = $osVersionMajorMinor -eq "10.15"
         IsBigSur = $osVersionMajorMinor -eq "11.0"
@@ -104,8 +103,7 @@ function Invoke-ValidateCommand {
     return $output
 }
 
-function Start-DownloadWithRetry
-{
+function Start-DownloadWithRetry {
     Param
     (
         [Parameter(Mandatory)]
@@ -147,4 +145,16 @@ function Start-DownloadWithRetry
     }
 
     return $filePath
+}
+
+function Add-EnvironmentVariable {
+    param
+    (
+        [Parameter(Mandatory)] [string] $Name,
+        [Parameter(Mandatory)] [string] $Value,
+        [string] $FilePath = "${env:HOME}/.bashrc"
+    )
+
+    $envVar = "export {0}={1}" -f $Name, $Value
+    Add-Content -Path $FilePath -Value $envVar
 }

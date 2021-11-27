@@ -67,16 +67,11 @@ $packageManagementList = @(
         (Get-HelmVersion),
         (Get-NpmVersion),
         (Get-YarnVersion),
+        (Get-PipxVersion),
         (Get-PipVersion),
         (Get-Pip3Version),
         (Get-VcpkgVersion)
 )
-
-if (-not (Test-IsUbuntu16)) {
-    $packageManagementList += @(
-        (Get-PipxVersion)
-    )
-}
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
 $markdown += New-MDHeader "Environment variables" -Level 4
@@ -105,11 +100,14 @@ $toolsList = @(
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
+    (Get-BicepVersion),
+    (Get-BuildahVersion),
     (Get-CodeQLBundleVersion),
     (Get-CMakeVersion),
     (Get-DockerMobyClientVersion),
     (Get-DockerMobyServerVersion),
-    (Get-DockerComposeVersion),
+    (Get-DockerComposeV1Version),
+    (Get-DockerComposeV2Version),
     (Get-DockerBuildxVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
@@ -128,26 +126,20 @@ $toolsList = @(
     (Get-HGVersion),
     (Get-MinikubeVersion),
     (Get-NewmanVersion),
+    (Get-NVersion),
     (Get-NvmVersion),
     (Get-OpensslVersion),
     (Get-PackerVersion),
     (Get-PhantomJSVersion),
+    (Get-PodManVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
+    (Get-SkopeoVersion),
     (Get-SphinxVersion),
     (Get-TerraformVersion),
+    (Get-YamllintVersion),
     (Get-ZstdVersion)
 )
-
-if (-not (Test-IsUbuntu16)) {
-    $toolsList += @(
-        (Get-BicepVersion),
-        (Get-BuildahVersion),
-        (Get-PodManVersion),
-        (Get-SkopeoVersion),
-        (Get-YamllintVersion)
-    )
-}
 
 if (Test-IsUbuntu20) {
     $toolsList += (Get-FastlaneVersion)
@@ -183,9 +175,7 @@ if (Test-IsUbuntu20) {
     $markdown += New-MDNewLine
 }
 
-if (-not (Test-IsUbuntu16)) {
-    $markdown += Build-PHPSection
-}
+$markdown += Build-PHPSection
 
 $markdown += New-MDHeader "Haskell" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
@@ -223,7 +213,8 @@ $browsersAndDriversList = @(
     (Get-ChromeDriverVersion),
     (Get-FirefoxVersion),
     (Get-GeckodriverVersion),
-    (Get-ChromiumVersion)
+    (Get-ChromiumVersion),    
+    (Get-SeleniumVersion)
 )
 
 $markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList

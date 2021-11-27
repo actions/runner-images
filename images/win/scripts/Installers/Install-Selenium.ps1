@@ -5,15 +5,20 @@
 
 # Create Selenium directory
 $seleniumDirectory = "C:\selenium\"
-$seleniumFileName = "selenium-server-standalone.jar"
-
 New-Item -ItemType directory -Path $seleniumDirectory
 
 # Download Selenium
-$url = "https://api.github.com/repos/SeleniumHQ/selenium/releases/latest"
-[System.String] $seleniumReleaseUrl = (Invoke-RestMethod -Uri $url).assets.browser_download_url -match "selenium-server-standalone-.+.jar"
+$seleniumMajorVersion = (Get-ToolsetContent).selenium.version
+$seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
+$seleniumFileName = "$seleniumBinaryName.jar"
+$json = Invoke-RestMethod -Uri "https://api.github.com/repos/SeleniumHQ/selenium/releases?per_page=100"
+$seleniumDownloadUrl = $json.Where{-not $_.prerelease}.assets.browser_download_url | Where-Object { $_ -like "*${seleniumBinaryName}-${seleniumMajorVersion}.*jar" } | Select-Object -First 1
 
-Start-DownloadWithRetry -Url $seleniumReleaseUrl -Name $seleniumFileName -DownloadPath $seleniumDirectory
+Start-DownloadWithRetry -Url $seleniumDownloadUrl -Name $seleniumFileName -DownloadPath $seleniumDirectory
+
+# Create an epmty file to retrive selenium version
+$seleniumFullVersion = $seleniumDownloadUrl.Split("-")[1].Split("/")[0]
+New-Item -Path $seleniumDirectory -Name "$seleniumBinaryName-$seleniumFullVersion"
 
 # Add SELENIUM_JAR_PATH environment variable
 $seleniumBinPath = Join-Path $seleniumDirectory $seleniumFileName

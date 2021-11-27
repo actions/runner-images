@@ -82,10 +82,8 @@ try {
 }
 
 try {
-    if ($VMName -notmatch "10.13") {
-        Write-Host "Change CPU count to $CpuCount, cores count to $CoresPerSocketCount, amount of RAM to $Memory"
-        $vm | Set-VM -NumCPU $CpuCount -CoresPerSocket $CoresPerSocketCount -MemoryMB $Memory -Confirm:$false -ErrorAction Stop | Out-Null
-    }
+    Write-Host "Change CPU count to $CpuCount, cores count to $CoresPerSocketCount, amount of RAM to $Memory"
+    $vm | Set-VM -NumCPU $CpuCount -CoresPerSocket $CoresPerSocketCount -MemoryMB $Memory -Confirm:$false -ErrorAction Stop | Out-Null
 } catch {
     Write-Host "##vso[task.LogIssue type=error;]Failed to change specs for VM '$VMName'"
 }

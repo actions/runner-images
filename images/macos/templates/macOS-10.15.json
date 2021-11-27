@@ -160,6 +160,7 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
                 "./provision/core/commonutils.sh",
+                "./provision/core/llvm.sh",
                 "./provision/core/golang.sh",
                 "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
@@ -195,7 +196,10 @@
         {
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
-            "scripts": "./provision/core/toolset.ps1"
+            "scripts": [ 
+                "./provision/core/toolset.ps1",
+                "./provision/core/configure-toolset.ps1"
+            ]
         },
         {
             "type": "shell",

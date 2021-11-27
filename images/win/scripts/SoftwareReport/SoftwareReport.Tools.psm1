@@ -61,6 +61,11 @@ function Get-DockerComposeVersion {
     return "Docker-compose $dockerComposeVersion"
 }
 
+function Get-DockerWincredVersion {
+    $dockerCredVersion = $(docker-credential-wincred version)
+    return "Docker-wincred $dockerCredVersion"
+}
+
 function Get-GitVersion {
     $(git version) -match "git version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $gitVersion = $Matches.Version
@@ -71,11 +76,6 @@ function Get-GitLFSVersion {
     $(git-lfs version) -match "git-lfs\/(?<version>\d+\.\d+\.\d+)" | Out-Null
     $gitLfsVersion = $Matches.Version
     return "Git LFS $gitLfsVersion"
-}
-
-function Get-GVFSVersion {
-    $gvfsVersion = (Get-Command gvfs).Version
-    return "GVFS $gvfsVersion"
 }
 
 function Get-InnoSetupVersion {
@@ -241,6 +241,11 @@ function Get-StackVersion {
 
 function Get-GoogleCloudSDKVersion {
     (gcloud --version) -match "Google Cloud SDK"
+}
+
+function Get-ServiceFabricSDKVersion {
+    $serviceFabricSDKVersion = Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion
+    return "Service Fabric SDK $serviceFabricSDKVersion"
 }
 
 function Get-NewmanVersion {

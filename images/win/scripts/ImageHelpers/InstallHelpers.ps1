@@ -489,3 +489,73 @@ function Get-AndroidPackagesByVersion {
     $packagesByVersion = $packagesByName | Where-Object { ($_.Split($Delimiter)[$Index] -as $Type) -ge $MinimumVersion }
     return $packagesByVersion | Sort-Object { $_.Split($Delimiter)[$Index] -as $Type} -Unique
 }
+
+function Get-WindowsUpdatesHistory {
+    $allEvents = @{}
+    # 19 - Installation Successful: Windows successfully installed the following update
+    # 20 - Installation Failure: Windows failed to install the following update with error
+    # 43 - Installation Started: Windows has started installing the following update
+    $filter = @{
+        LogName = "System"
+        Id = 19, 20, 43
+        ProviderName = "Microsoft-Windows-WindowsUpdateClient"
+    }
+    $events = Get-WinEvent -FilterHashtable $filter -ErrorAction SilentlyContinue | Sort-Object Id
+
+    foreach ( $event in $events ) {
+        switch ( $event.Id ) {
+            19 {
+                $status = "Successful"
+                $title = $event.Properties[0].Value
+                $allEvents[$title] = ""
+                break
+            }
+            20 {
+                $status = "Failure"
+                $title = $event.Properties[1].Value
+                $allEvents[$title] = ""
+                break
+            }
+            43 {
+                $status = "InProgress"
+                $title = $event.Properties[0].Value
+                break 
+            }
+        }
+
+        if ( $status -eq "InProgress" -and $allEvents.ContainsKey($title) ) {
+            continue
+        }
+
+        [PSCustomObject]@{
+            Status = $status
+            Title = $title
+        }
+    }
+}
+
+function Invoke-SBWithRetry {
+    param (
+        [scriptblock] $Command,
+        [int] $RetryCount = 10,
+        [int] $TimeoutInSecs = 5
+    )
+
+    while ($RetryCount -gt 0) {
+        try {
+            & $Command
+            return
+        }
+        catch {
+            Write-Host "There is an error encounterd:`n $_"
+            $RetryCount--
+
+            if ($RetryCount -eq 0) {
+                exit 1
+            }
+
+            Write-Host "Waiting $TimeoutInSecs seconds before retrying. Retries left: $RetryCount"
+            Start-Sleep -Seconds $TimeoutInSecs
+        }
+    }
+}

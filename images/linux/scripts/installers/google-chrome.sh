@@ -17,8 +17,9 @@ function GetChromiumRevision {
     # Take the first part of the revision variable to search not only for a specific version,
     # but also for similar ones, so that we can get a previous one if the required revision is not found
     FIRST_PART_OF_REVISION=${REVISION:0:${#REVISION}/2}
-    URL="https://www.googleapis.com/storage/v1/b/chromium-browser-snapshots/o?delimiter=/&prefix=Linux_x64/${FIRST_PART_OF_REVISION}"
-    VERSIONS=$(curl -s $URL | jq -r '.prefixes[]' | cut -d "/" -f 2 | sort --version-sort)
+    FIRST_PART_OF_PREVIOUS_REVISION=$(expr $FIRST_PART_OF_REVISION - 1)
+    URL="https://www.googleapis.com/storage/v1/b/chromium-browser-snapshots/o?delimiter=/&prefix=Linux_x64"
+    VERSIONS=$((curl -s $URL/${FIRST_PART_OF_REVISION} | jq -r '.prefixes[]' && curl -s $URL/${FIRST_PART_OF_PREVIOUS_REVISION} | jq -r '.prefixes[]') | cut -d "/" -f 2 | sort --version-sort)
 
     # If required Chromium revision is not found in the list
     # we should have to decrement the revision number until we find one.

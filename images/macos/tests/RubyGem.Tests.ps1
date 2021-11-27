@@ -36,3 +36,9 @@ Describe "xcpretty" {
         "xcpretty --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "jazzy" {
+    It "jazzy" {
+        "jazzy --version" | Should -ReturnZeroExitCode
+    }
+}

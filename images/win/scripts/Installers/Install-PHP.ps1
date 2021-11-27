@@ -5,7 +5,9 @@
 
 # Install latest PHP in chocolatey
 $installDir = "c:\tools\php"
-Choco-Install -PackageName php -ArgumentList "--force", "--params", "/InstallDir:$installDir"
+$phpMajorMinor = (Get-ToolsetContent).php.version
+$phpVersionToInstall = Get-LatestChocoPackageVersion -TargetVersion $phpMajorMinor -PackageName "php"
+Choco-Install -PackageName php -ArgumentList "--params", "/InstallDir:$installDir", "--version=$phpVersionToInstall"
 
 # Install latest Composer in chocolatey
 Choco-Install -PackageName composer -ArgumentList "--ia", "/DEV=$installDir /PHP=$installDir"

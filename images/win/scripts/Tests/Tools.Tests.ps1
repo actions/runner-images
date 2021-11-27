@@ -81,15 +81,6 @@ Describe "KubernetesTools" {
     }
 }
 
-Describe "LLVM" {
-    It "<ToolName>" -TestCases @(
-        @{ ToolName = "clang" }
-        @{ ToolName = "clang++" }
-    ) {
-        "$ToolName --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Mingw64" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "gcc" }
@@ -117,7 +108,7 @@ Describe "NET48" {
     }
 }
 
-Describe "NSIS" -Skip:(Test-IsWin22) {
+Describe "NSIS" {
     It "NSIS" {
        "makensis /VERSION" | Should -ReturnZeroExitCode
     }
@@ -133,7 +124,7 @@ Describe "PowerShell Core" {
     }
 }
 
-Describe "Sbt" -Skip:(Test-IsWin22) {
+Describe "Sbt" {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
     }
@@ -142,6 +133,10 @@ Describe "Sbt" -Skip:(Test-IsWin22) {
 Describe "ServiceFabricSDK" -Skip:(Test-IsWin22) {
     It "PowerShell Module" {
         Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
+    }
+
+    It "ServiceFabricSDK version" {
+        Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion | Should -Not -BeNullOrEmpty
     }
 }
 
@@ -202,7 +197,7 @@ Describe "Pipx" {
 Describe "Kotlin" {
     $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlin-dce-js", "kotlinc-js", "kotlinc-jvm")
 
-    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  { 
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  {
         "$toolName -version" | Should -ReturnZeroExitCode
     }
 }

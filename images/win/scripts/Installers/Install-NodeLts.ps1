@@ -10,7 +10,10 @@ $CachePath = 'C:\npm\cache'
 New-Item -Path $PrefixPath -Force -ItemType Directory
 New-Item -Path $CachePath -Force -ItemType Directory
 
-Choco-Install -PackageName nodejs-lts -ArgumentList "--force"
+$defaultVersion = (Get-ToolsetContent).node.default
+$versionToInstall = Get-LatestChocoPackageVersion -TargetVersion $defaultVersion -PackageName "nodejs"
+
+Choco-Install -PackageName nodejs -ArgumentList "--version=$versionToInstall"
 
 Add-MachinePathItem $PrefixPath
 $env:Path = Get-MachinePath

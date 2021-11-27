@@ -63,9 +63,14 @@ function Get-CMakeVersion {
     return "CMake $cmakeVersion"
 }
 
-function Get-DockerComposeVersion {
+function Get-DockerComposeV1Version {
     $composeVersion = docker-compose -v | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter ","
-    return "Docker Compose $composeVersion"
+    return "Docker Compose v1 $composeVersion"
+}
+
+function Get-DockerComposeV2Version {
+    $composeVersion = docker compose version | Take-OutputPart -Part 3
+    return "Docker Compose v2 $composeVersion"
 }
 
 function Get-DockerMobyClientVersion {
@@ -165,6 +170,11 @@ function Get-NewmanVersion {
     return "Newman $(newman --version)"
 }
 
+function Get-NVersion {
+    $nVersion = (n --version).Replace('v', '')
+    return "n $nVersion"
+}
+
 function Get-NvmVersion {
     $nvmVersion = bash -c "source /etc/skel/.nvm/nvm.sh && nvm --version"
     return "nvm $nvmVersion"
@@ -191,13 +201,13 @@ function Get-JqVersion {
 }
 
 function Get-AzureCliVersion {
-    $azcliVersion = az -v | Select-String "azure-cli" | Take-OutputPart -Part -1
+    $azcliVersion = (az version | ConvertFrom-Json).'azure-cli'
     $aptSourceRepo = Get-AptSourceRepository -PackageName "azure-cli"
     return "Azure CLI (azure-cli) $azcliVersion (installation method: $aptSourceRepo)"
 }
 
 function Get-AzureDevopsVersion {
-    $azdevopsVersion = az -v | Select-String "azure-devops" | Take-OutputPart -Part -1
+    $azdevopsVersion = (az version | ConvertFrom-Json).extensions.'azure-devops'
     return "Azure CLI (azure-devops) $azdevopsVersion"
 }
 

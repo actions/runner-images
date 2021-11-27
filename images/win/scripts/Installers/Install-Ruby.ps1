@@ -43,10 +43,18 @@ function Install-Ruby
         [String]$Architecture = "x64"
     )
 
+    # Create Ruby toolcache folder
+    $rubyToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Ruby"
+    if (-not (Test-Path $rubyToolcachePath))
+    {
+        Write-Host "Creating Ruby toolcache folder"
+        New-Item -ItemType Directory -Path $rubyToolcachePath | Out-Null
+    }
+
     # Expand archive with binaries
     $packageName = [IO.Path]::GetFileNameWithoutExtension((Split-Path -Path $PackagePath -Leaf))
-    $tempFolder = Join-Path -Path $env:TEMP -ChildPath $packageName
-    Extract-7Zip -Path $PackagePath -DestinationPath $env:TEMP
+    $tempFolder = Join-Path -Path $rubyToolcachePath -ChildPath $packageName
+    Extract-7Zip -Path $PackagePath -DestinationPath $rubyToolcachePath
 
     # Get Ruby version from binaries
     $rubyVersion = & "$tempFolder\bin\ruby.exe" -e "print RUBY_VERSION"
@@ -54,21 +62,16 @@ function Install-Ruby
     if ($rubyVersion)
     {
         Write-Host "Installing Ruby $rubyVersion"
-        $rubyToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Ruby"
         $rubyVersionPath = Join-Path -Path $rubyToolcachePath -ChildPath $rubyVersion
         $rubyArchPath = Join-Path -Path $rubyVersionPath -ChildPath $Architecture
-
-        if (-not (Test-Path $rubyToolcachePath))
-        {
-            Write-Host "Creating Ruby toolcache folder"
-            New-Item -ItemType Directory -Path $rubyToolcachePath | Out-Null
-        }
 
         Write-Host "Creating Ruby '${rubyVersion}' folder in '${rubyVersionPath}'"
         New-Item -ItemType Directory -Path $rubyVersionPath -Force | Out-Null
 
         Write-Host "Moving Ruby '${rubyVersion}' files to '${rubyArchPath}'"
-        Move-Item -Path $tempFolder -Destination $rubyArchPath | Out-Null
+        Invoke-SBWithRetry -Command {
+            Move-Item -Path $tempFolder -Destination $rubyArchPath -ErrorAction Stop | Out-Null
+        }
 
         Write-Host "Removing Ruby '${rubyVersion}' documentation '${rubyArchPath}\share\doc' folder"
         Remove-Item -Path "${rubyArchPath}\share\doc" -Force -Recurse -ErrorAction Ignore
