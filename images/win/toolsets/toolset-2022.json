@@ -264,8 +264,7 @@
         "global_packages": [
             { "name": "yarn", "test": "yarn --version" },
             { "name": "newman", "test": "newman --version" },
-            { "name": "lerna", "test": "lerna --version" },
-            { "name": "gulp-cli", "test": "gulp --version" }
+            { "name": "lerna", "test": "lerna --version" }
         ]
     },
     "dotnet": {
