@@ -8,18 +8,18 @@
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4770
-- Image Version: 20211122.1
+- Image Version: 20211115.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
 - Go 1.15.15
-- Julia 1.6.4
-- Kotlin 1.6.0
+- Julia 1.6.3
+- Kotlin 1.5.31
 - LLVM 13.0.0
 - Node 14.18.1
 - Perl 5.32.1
-- PHP 8.0.13
+- PHP 8.0.10
 - Python 3.7.9
 - Ruby 2.5.9p229
 
@@ -33,7 +33,7 @@
 - pip 21.3.1 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<653912591>)
+- Vcpkg  (build from master \<c973b499f>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -45,37 +45,36 @@
 ### Project Management
 - Ant 1.10.12
 - Gradle 7.2
-- Maven 3.8.4
+- Maven 3.8.3
 - sbt 1.5.5
 
 ### Tools
-- 7zip 21.05
+- 7zip 19.00
 - aria2 1.36.0
 - azcopy 10.13.0
 - Bazel 4.2.1
 - Bazelisk 1.10.1
 - Bicep 0.4.1008
 - Cabal 3.6.2.0
-- CMake 3.22.0
-- CodeQL Action Bundle 2.7.1
+- CMake 3.21.4
+- CodeQL Action Bundle 2.7.0
 - Docker 20.10.7
 - Docker-compose 1.29.2
-- Docker-wincred 0.6.4
 - ghc 9.2.1
-- Git 2.34.0
-- Git LFS 3.0.2
-- Google Cloud SDK 365.0.0
+- Git 2.33.1
+- Git LFS 3.0.1
+- Google Cloud SDK 364.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.22.4
+- Kubectl 1.22.3
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.0
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.8
-- Pulumi v3.18.0
+- Pulumi v3.17.1
 - R 4.1.2
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -88,7 +87,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.99
-- AWS CLI 2.4.0
+- AWS CLI 2.3.6
 - AWS SAM CLI 1.35.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.30.0
@@ -105,17 +104,17 @@
 
 #### Packages
 - bindgen 0.59.1
-- cargo-audit 0.16.0
-- cargo-outdated v0.10.2
+- cargo-audit 0.15.2
+- cargo-outdated v0.10.0
 - cbindgen 0.20.0
 - Clippy 0.1.56
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 96.0.4664.45
-- Chrome Driver 96.0.4664.45
-- Microsoft Edge 96.0.1054.29
-- Microsoft Edge Driver 96.0.1054.29
+- Google Chrome 95.0.4638.69
+- Chrome Driver 95.0.4638.69
+- Microsoft Edge 95.0.1020.53
+- Microsoft Edge Driver 95.0.1020.53
 - Mozilla Firefox 94.0.1
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
@@ -176,7 +175,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.9   | x64, x86     |
+| 3.9.8   | x64, x86     |
 | 3.10.0  | x64          |
 
 
@@ -217,7 +216,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.0.4.0 | MongoDB     | Running       | Automatic        |
+| 5.0.3.0 | MongoDB     | Running       | Automatic        |
 
 
 
