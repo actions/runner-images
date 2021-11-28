@@ -8,7 +8,7 @@
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 350
-- Image Version: 20211115.1
+- Image Version: 20211122.0
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -17,12 +17,12 @@
 ### Language and Runtime
 - Bash 4.4.23(1)-release
 - Go 1.16.10
-- Julia 1.6.3
-- Kotlin 1.5.31
+- Julia 1.6.4
+- Kotlin 1.6.0
 - LLVM 13.0.0
 - Node 14.18.1
-- PHP 8.0.10
-- Python 3.9.8
+- PHP 8.0.13
+- Python 3.9.9
 - Ruby 3.0.2p107
 
 ### Package Management
@@ -35,7 +35,7 @@
 - pip 21.3.1 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.22
-- Vcpkg  (build from master \<c973b499f>)
+- Vcpkg  (build from master \<653912591>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -46,33 +46,35 @@
 ### Project Management
 - Ant 1.10.12
 - Gradle 7.2
-- Maven 3.8.3
+- Maven 3.8.4
+- sbt 1.5.5
 
 ### Tools
-- 7zip 19.00
+- 7zip 21.05
 - aria2 1.36.0
 - azcopy 10.13.0
 - Bazel 4.2.1
 - Bazelisk 1.10.1
 - Bicep 0.4.1008
 - Cabal 3.6.2.0
-- CMake 3.21.4
-- CodeQL Action Bundle 2.7.0
+- CMake 3.22.0
+- CodeQL Action Bundle 2.7.2
 - Docker 20.10.7
 - Docker-compose 1.29.2
+- Docker-wincred 0.6.4
 - ghc 9.2.1
-- Git 2.33.1
-- Git LFS 3.0.1
+- Git 2.34.0
+- Git LFS 3.0.2
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.22.3
+- Kubectl 1.22.4
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.0
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.8
-- Pulumi v3.17.1
+- Pulumi v3.18.0
 - R 4.1.2
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -85,7 +87,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.99
-- AWS CLI 2.3.6
+- AWS CLI 2.4.0
 - AWS SAM CLI 1.35.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.30.0
@@ -101,18 +103,18 @@
 
 #### Packages
 - bindgen 0.59.1
-- cargo-audit 0.15.2
-- cargo-outdated v0.10.0
+- cargo-audit 0.16.0
+- cargo-outdated v0.10.2
 - cbindgen 0.20.0
 - Clippy 0.1.56
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 95.0.4638.69
-- Chrome Driver 95.0.4638.69
-- Microsoft Edge 95.0.1020.53
-- Microsoft Edge Driver 95.0.1020.53
-- Mozilla Firefox 94.0.1
+- Google Chrome 96.0.4664.45
+- Chrome Driver 96.0.4664.45
+- Microsoft Edge 96.0.1054.29
+- Microsoft Edge Driver 96.0.1054.29
+- Mozilla Firefox 94.0.2
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 - Selenium server 4.0.0
@@ -169,7 +171,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 3.7.9   | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.8 (Default) | x64, x86     |
+| 3.9.9 (Default) | x64, x86     |
 | 3.10.0  | x64, x86     |
 
 
@@ -206,7 +208,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.0.3.0 | MongoDB     | Running       | Automatic        |
+| 5.0.4.0 | MongoDB     | Running       | Automatic        |
 
 
 
@@ -224,9 +226,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.21.4  | C:\tools\nginx-1.21.4\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version       | Path                                                     |
-| ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.0.31903.59 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version        | Path                                                     |
+| ----------------------------- | -------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.0.31912.275 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions:
 
@@ -273,7 +275,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | microsoft.net.sdk.emscripten                                              | 6.0.5.2003     |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 17.0.31804.368 |
 | Microsoft.NetCore.Component.Runtime.6.0                                   | 17.0.31902.203 |
-| Microsoft.NetCore.Component.SDK                                           | 17.0.31902.203 |
+| Microsoft.NetCore.Component.SDK                                           | 17.0.31912.81  |
 | Microsoft.NetCore.Component.Web                                           | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.AspNet                                   | 17.0.31804.368 |

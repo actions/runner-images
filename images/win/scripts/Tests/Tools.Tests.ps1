@@ -134,6 +134,10 @@ Describe "ServiceFabricSDK" -Skip:(Test-IsWin22) {
     It "PowerShell Module" {
         Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
     }
+
+    It "ServiceFabricSDK version" {
+        Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion | Should -Not -BeNullOrEmpty
+    }
 }
 
 Describe "Stack" {
@@ -175,12 +179,6 @@ Describe "VCRedist" -Skip:(Test-IsWin22) {
 Describe "WebPlatformInstaller" -Skip:(Test-IsWin22) {
     It "WebPlatformInstaller" {
         "WebPICMD" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "WiX" {
-    It "WiX directory exists" {
-      $env:WIX | Should -Exist
     }
 }
 

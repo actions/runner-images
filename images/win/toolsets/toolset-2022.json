@@ -264,7 +264,8 @@
         "global_packages": [
             { "name": "yarn", "test": "yarn --version" },
             { "name": "newman", "test": "newman --version" },
-            { "name": "lerna", "test": "lerna --version" }
+            { "name": "lerna", "test": "lerna --version" },
+            { "name": "gulp-cli", "test": "gulp --version" }
         ]
     },
     "dotnet": {
@@ -303,10 +304,11 @@
         ]
     },
     "node": {
-        "default": "14"
+        "default": "16"
     },
-    "Mysql": {
-        "version": "8.0"
+    "mysql": {
+        "major_version": "8.0",
+        "full_version": "8.0.26"
     },
     "mongodb": {
         "version": "5.0"

@@ -110,12 +110,21 @@ function InstallAllValidSdks()
 
 function RunPostInstallationSteps()
 {
+    # Add dotnet to PATH
     Add-MachinePathItem "C:\Program Files\dotnet"
-    # Run script at startup for all users
-    $cmdDotNet = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -Command "[System.Environment]::SetEnvironmentVariable(''PATH'',"""$env:USERPROFILE\.dotnet\tools;$env:PATH""", ''USER'')"'
 
-    # Update Run key to run a script at logon
-    Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "DOTNETUSERPATH" -Value $cmdDotNet
+    # Remove NuGet Folder
+    $nugetPath = "$env:APPDATA\NuGet"
+    if (Test-Path $nugetPath) {
+        Remove-Item -Path $nugetPath -Force -Recurse
+    }
+
+    # Generate and copy new NuGet.Config config
+    dotnet nuget list source | Out-Null
+    Copy-Item -Path $nugetPath -Destination C:\Users\Default\AppData\Roaming -Force -Recurse
+
+    # Add %USERPROFILE%\.dotnet\tools to USER PATH
+    Add-DefaultPathItem "%USERPROFILE%\.dotnet\tools"
 }
 
 InstallAllValidSdks
