@@ -15,7 +15,9 @@ $filesInArchive = 7z l $zstdArchivePath | Out-String
 
 if ($filesInArchive.Contains($zstdParentName)) {
     Extract-7Zip -Path $zstdArchivePath -DestinationPath $toolPath
-    Move-Item -Path "${zstdPath}*" -Destination $zstdPath
+    Invoke-SBWithRetry -Command {
+        Move-Item -Path "${zstdPath}*" -Destination $zstdPath -ErrorAction Stop
+    }
 } else {
     Extract-7Zip -Path $zstdArchivePath -DestinationPath $zstdPath
 }
