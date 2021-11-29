@@ -455,7 +455,7 @@
     },
     "mysql": {
         "major_version": "5.7",
-        "full_version": "5.7.35"
+        "full_version": "5.7.36"
     },
     "mongodb": {
         "version": "5.0"
