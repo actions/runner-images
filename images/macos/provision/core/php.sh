@@ -8,4 +8,6 @@ brew_smart_install "php@${phpVersionToolset}"
 echo Installing composer
 brew_smart_install "composer"
 
+brew link --overwrite php@${phpVersionToolset}
+
 invoke_tests "PHP"
