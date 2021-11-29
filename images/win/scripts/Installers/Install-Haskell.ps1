@@ -37,8 +37,7 @@ Invoke-PesterTests -TestFile 'Haskell'
 # install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
 $msysPath = "C:\msys64"
 $ghcupPrefix = "C:\"
-$appdata = [Environment]::GetEnvironmentVariable('APPDATA', [System.EnvironmentVariableTarget]::Machine) 
-$cabalDir = "$appdata\cabal"
+$cabalDir = "C:\cabal"
 Invoke-Command -ScriptBlock ([ScriptBlock]::Create($bootstrapHaskell)) -ArgumentList $false, $true, $true, $false, $false, $false, $false, $ghcupPrefix, "", $msysPath, $cabalDir
 Set-SystemVariable "GHCUP_INSTALL_BASE_PREFIX" $ghcupPrefix
 Set-SystemVariable "GHCUP_MSYS2" $msysPath
