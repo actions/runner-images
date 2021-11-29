@@ -308,7 +308,7 @@
     },
     "mysql": {
         "major_version": "8.0",
-        "full_version": "8.0.26"
+        "full_version": "8.0.27"
     },
     "mongodb": {
         "version": "5.0"
