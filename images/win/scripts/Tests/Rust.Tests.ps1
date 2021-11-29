@@ -1,4 +1,10 @@
 Describe "Rust" {
+    BeforeAll {
+        $env:RUSTUP_HOME = "C:\Users\Default\.rustup"
+        $env:CARGO_HOME = "C:\Users\Default\.cargo"
+        $env:Path += ";$env:CARGO_HOME\bin"
+    }
+
     $rustTools = @(
         @{ToolName = "rustup"; binPath = "C:\Users\Default\.cargo\bin\rustup.exe"}
         @{ToolName = "rustc"; binPath = "C:\Users\Default\.cargo\bin\rustc.exe"}
