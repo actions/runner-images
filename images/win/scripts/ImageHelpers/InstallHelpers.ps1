@@ -547,7 +547,7 @@ function Invoke-SBWithRetry {
             return
         }
         catch {
-            Write-Host "There is an error encounterd:`n $_"
+            Write-Host "There is an error encountered:`n $_"
             $RetryCount--
 
             if ($RetryCount -eq 0) {
