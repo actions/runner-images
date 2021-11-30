@@ -9,7 +9,7 @@ Describe ".NET" {
     }
 }
 
-Describe "GCC" {
+Describe "GCC" -Skip:($os.IsMonterey) {
     $testCases = Get-ToolsetValue -KeyPath gcc.versions | ForEach-Object { @{Version = $_} }
 
     It "GCC <Version>" -TestCases $testCases {

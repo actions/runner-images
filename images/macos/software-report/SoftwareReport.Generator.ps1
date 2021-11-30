@@ -45,10 +45,16 @@ $languageAndRuntimeList = @(
     (Get-JuliaVersion),
     (Get-KotlinVersion),
     (Get-PHPVersion),
-    (Get-GccVersion),
     (Get-FortranVersion),
     (Get-ClangLLVMVersion)
+    (Get-PHPVersion)
 )
+
+if ($os.IsLessThanMonterey) {
+    $languageAndRuntimeList += @(
+        (Get-GccVersion)
+   )
+}
 
 if ($os.IsLessThanBigSur) {
     $languageAndRuntimeList += @(
