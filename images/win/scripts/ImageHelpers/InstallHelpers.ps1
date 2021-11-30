@@ -519,7 +519,7 @@ function Get-WindowsUpdatesHistory {
             43 {
                 $status = "InProgress"
                 $title = $event.Properties[0].Value
-                break 
+                break
             }
         }
 
