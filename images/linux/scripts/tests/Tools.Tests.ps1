@@ -15,6 +15,13 @@ Describe "Bicep" {
 }
 
 Describe "Rust" {
+    BeforeAll {
+        $env:PATH = "/etc/skel/.cargo/bin:/etc/skel/.rustup/bin:$($env:PATH)"
+        $env:RUSTUP_HOME = "/etc/skel/.rustup"
+        $env:CARGO_HOME = "/etc/skel/.cargo"
+    }
+    
+   
     It "Rustup is installed" {
         "rustup --version" | Should -ReturnZeroExitCode
     }
