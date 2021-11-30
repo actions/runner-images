@@ -259,7 +259,7 @@
             "type": "powershell",
             "pause_before": "2m",
             "scripts": [
-                "{{ template_dir }}/scripts/Tests/Wait-WindowsUpdatesForInstall.ps1",
+                "{{ template_dir }}/scripts/Wait-WindowsUpdatesForInstall.ps1",
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
             ]
         },
