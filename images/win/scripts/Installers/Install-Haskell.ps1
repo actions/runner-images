@@ -38,6 +38,7 @@ Invoke-PesterTests -TestFile 'Haskell'
 $msysPath = "C:\msys64"
 $ghcupPrefix = "C:\"
 $cabalDir = "C:\cabal"
+$bootstrapHaskell = Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing
 Invoke-Command -ScriptBlock ([ScriptBlock]::Create($bootstrapHaskell)) -ArgumentList $false, $true, $true, $false, $false, $false, $false, $ghcupPrefix, "", $msysPath, $cabalDir
 Set-SystemVariable "GHCUP_INSTALL_BASE_PREFIX" $ghcupPrefix
 Set-SystemVariable "GHCUP_MSYS2" $msysPath
