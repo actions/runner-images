@@ -11,9 +11,17 @@ $ArgumentList = ("/install", "/quiet", "/norestart")
 Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
 
 ## Downloading mysql
-$MysqlMajorVersion = (Get-ToolsetContent).mysql.major_version
-$MysqlFullVersion = (Get-ToolsetContent).mysql.full_version
-$MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-${MysqlMajorVersion}/mysql-${MysqlFullVersion}-winx64.zip"
+$MysqlVersion = [version](Get-ToolsetContent).mysql.version
+if ($MysqlVersion.Build -lt 0) {
+    $MysqlVersion = New-Object System.Version (
+        $MysqlVersion.Major,
+        $MysqlVersion.Minor,
+        ([version]((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/$($MysqlVersion.Major).$($MysqlVersion.Minor).html -UseBasicParsing).Content |
+            Select-String -Pattern "$($MysqlVersion.Major).$($MysqlVersion.Minor)\.\d+").Matches.Value).Build
+    )
+}
+
+$MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-$($MysqlVersion.Major).$($MysqlVersion.Minor)/mysql-$($MysqlVersion.ToString())-winx64.zip"
 
 $MysqlArchPath = Start-DownloadWithRetry -Url $MysqlVersionUrl -Name "mysql.zip"
 
@@ -23,7 +31,7 @@ Extract-7Zip -Path $MysqlArchPath -DestinationPath "C:\"
 # Rename mysql-version to mysql folder
 $MysqlPath = "C:\mysql"
 Invoke-SBWithRetry -Command {
-    Rename-Item -Path "C:\mysql-${MysqlFullVersion}-winx64" -NewName $MysqlPath -ErrorAction Stop
+    Rename-Item -Path "C:\mysql-$($MysqlVersion.ToString())-winx64" -NewName $MysqlPath -ErrorAction Stop
 }
 
 # Adding mysql in system environment path

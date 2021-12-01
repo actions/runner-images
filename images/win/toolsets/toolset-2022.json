@@ -307,8 +307,7 @@
         "default": "16"
     },
     "mysql": {
-        "major_version": "8.0",
-        "full_version": "8.0.26"
+        "version": "8.0.26"
     },
     "mongodb": {
         "version": "5.0"
