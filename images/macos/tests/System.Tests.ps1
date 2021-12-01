@@ -17,7 +17,7 @@ Describe "Certificate" {
     }
 }
 
-Describe "Audio device" -Skip:($os.IsMonterey) {
+Describe "Audio device" {
     It "Sox is installed" {
         "sox --version" | Should -ReturnZeroExitCode
     }

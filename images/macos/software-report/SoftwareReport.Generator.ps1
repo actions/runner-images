@@ -132,7 +132,9 @@ $utilitiesList = @(
     (Get-BsdtarVersion),
     (Get-GnuTarVersion),
     (Get-HelmVersion),
-    (Get-GPGVersion)
+    (Get-GPGVersion),
+    (Get-SwitchAudioOsxVersion),
+    (Get-SoxVersion)
 )
 
 if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
@@ -146,13 +148,6 @@ if ($os.IsLessThanBigSur) {
         (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
         (Get-ParallelVersion)
-    )
-}
-
-if ($os.IsLessThanMonterey) {
-    $utilitiesList += @(
-        (Get-SwitchAudioOsxVersion),
-        (Get-SoxVersion)
     )
 }
 
