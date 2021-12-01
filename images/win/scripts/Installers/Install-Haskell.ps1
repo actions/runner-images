@@ -32,8 +32,6 @@ Add-MachinePathItem -PathItem $DefaultGhcPath
 Write-Host 'Installing cabal...'
 Choco-Install -PackageName cabal
 
-Invoke-PesterTests -TestFile 'Haskell'
-
 # install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
 $msysPath = "C:\msys64"
 $ghcupPrefix = "C:\"
@@ -45,3 +43,5 @@ Set-SystemVariable "GHCUP_MSYS2" $msysPath
 Set-SystemVariable "CABAL_DIR" $cabalDir
 Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
 Add-MachinePathItem "$cabalDir\bin"
+
+Invoke-PesterTests -TestFile 'Haskell'
