@@ -538,7 +538,7 @@ function Invoke-SBWithRetry {
     param (
         [scriptblock] $Command,
         [int] $RetryCount = 10,
-        [int] $TimeoutInSecs = 5
+        [int] $RetryIntervalSeconds = 5
     )
 
     while ($RetryCount -gt 0) {
@@ -554,8 +554,8 @@ function Invoke-SBWithRetry {
                 exit 1
             }
 
-            Write-Host "Waiting $TimeoutInSecs seconds before retrying. Retries left: $RetryCount"
-            Start-Sleep -Seconds $TimeoutInSecs
+            Write-Host "Waiting $RetryIntervalSeconds seconds before retrying. Retries left: $RetryCount"
+            Start-Sleep -Seconds $RetryIntervalSeconds
         }
     }
 }
