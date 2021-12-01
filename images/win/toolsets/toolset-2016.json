@@ -436,5 +436,9 @@
     },
     "postgresql": {
         "version": "14"
+    },
+    "kotlin": {
+        "version": "1.6",
+        "binary_name": "kotlin-compiler"
     }
 }
