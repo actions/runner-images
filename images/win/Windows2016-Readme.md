@@ -2,22 +2,20 @@
 |-|
 | [Windows Server 2022 with Visual Studio 2022 is generally available starting from November, 15](https://github.com/actions/virtual-environments/issues/4488) |
 | [[all OSs] Default Nodejs version will be set to 16 on November, 29](https://github.com/actions/virtual-environments/issues/4446) |
-| [[all OSs] Selenium server version will be upgraded from 3 to 4 on November, 15](https://github.com/actions/virtual-environments/issues/4376) |
-| [[All OSs] Node.js version 10 will be removed from the images on November, 15](https://github.com/actions/virtual-environments/issues/4356) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4770
-- Image Version: 20211122.1
+- Image Version: 20211229.2
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
 - Go 1.15.15
 - Julia 1.6.4
-- Kotlin 1.6.0
+- Kotlin 1.5.32
 - LLVM 13.0.0
-- Node 14.18.1
+- Node 16.13.0
 - Perl 5.32.1
 - PHP 8.0.13
 - Python 3.7.9
@@ -28,12 +26,12 @@
 - Composer 2.1.12
 - Helm 3.7.1
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
-- NPM 6.14.15
+- NPM 8.1.0
 - NuGet 6.0.0.280
 - pip 21.3.1 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<653912591>)
+- Vcpkg  (build from master \<60a8f7971>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -49,7 +47,7 @@
 - sbt 1.5.5
 
 ### Tools
-- 7zip 21.05
+- 7zip 21.06
 - aria2 1.36.0
 - azcopy 10.13.0
 - Bazel 4.2.1
@@ -57,14 +55,14 @@
 - Bicep 0.4.1008
 - Cabal 3.6.2.0
 - CMake 3.22.0
-- CodeQL Action Bundle 2.7.1
+- CodeQL Action Bundle 2.7.2
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - Docker-wincred 0.6.4
 - ghc 9.2.1
-- Git 2.34.0
+- Git 2.34.1
 - Git LFS 3.0.2
-- Google Cloud SDK 365.0.0
+- Google Cloud SDK 365.0.1
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
@@ -75,21 +73,21 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.8
-- Pulumi v3.18.0
+- Pulumi v3.18.1
 - R 4.1.2
+- Service Fabric SDK 8.2.1235.9590
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
-- WiX Toolset v3.11.2.4516
 - yamllint 1.26.3
 - zstd 1.5.0
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.99
-- AWS CLI 2.4.0
-- AWS SAM CLI 1.35.0
+- AWS CLI 2.4.2
+- AWS SAM CLI 1.36.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.30.0
 - Azure DevOps CLI extension 0.22.0
@@ -104,7 +102,7 @@
 - Rustup 1.24.3
 
 #### Packages
-- bindgen 0.59.1
+- bindgen 0.59.2
 - cargo-audit 0.16.0
 - cargo-outdated v0.10.2
 - cbindgen 0.20.0
@@ -114,12 +112,12 @@
 ### Browsers and webdrivers
 - Google Chrome 96.0.4664.45
 - Chrome Driver 96.0.4664.45
-- Microsoft Edge 96.0.1054.29
-- Microsoft Edge Driver 96.0.1054.29
-- Mozilla Firefox 94.0.1
+- Microsoft Edge 96.0.1054.34
+- Microsoft Edge Driver 96.0.1054.34
+- Mozilla Firefox 94.0.2
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
-- Selenium server 4.0.0
+- Selenium server 4.1.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -185,9 +183,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 2.4.10  | x64          |
 | 2.5.9 (Default) | x64          |
-| 2.6.8   | x64          |
-| 2.7.4   | x64          |
-| 3.0.2   | x64          |
+| 2.6.9   | x64          |
+| 2.7.5   | x64          |
+| 3.0.3   | x64          |
 
 
 #### PyPy
@@ -273,6 +271,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.UnityEngine.x64                                                 | 15.9.28307.616   |
 | Component.Unreal                                                          | 15.8.27729.1     |
 | Component.Unreal.Android                                                  | 15.9.28307.341   |
+| Component.WixToolset.VisualStudioExtension.Dev15                          | 0.9.21.62588     |
 | Component.Xamarin                                                         | 15.9.28307.1177  |
 | Component.Xamarin.Profiler                                                | 15.0.27005.2     |
 | Component.Xamarin.RemotedSimulator                                        | 15.6.27323.2     |
@@ -481,6 +480,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | SSDT SQL Server Integration Services Projects                             | 2.6.3            |
 | Windows Driver Kit                                                        | 10.0.17740.0     |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.17763.1     |
+| WIX Toolset                                                               | 3.11.4516        |
+| WIX Toolset Studio 2017 Extension                                         | 0.9.21.62588     |
 
 #### Microsoft Visual C++:
 
@@ -542,7 +543,7 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.8.0            |
+| Microsoft.Graph    | 1.9.0            |
 | Pester             | 3.4.0<br>5.3.1   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
