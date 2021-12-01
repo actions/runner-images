@@ -33,6 +33,7 @@ Write-Host 'Installing cabal...'
 Choco-Install -PackageName cabal
 
 # install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
+Write-Host 'Installing ghcup...'
 $msysPath = "C:\msys64"
 $ghcupPrefix = "C:\"
 $cabalDir = "C:\cabal"
