@@ -43,21 +43,16 @@ $languageAndRuntimeList = @(
     (Get-DotnetVersionList),
     (Get-GoVersion),
     (Get-JuliaVersion),
-    (Get-KotlinVersion)
+    (Get-KotlinVersion),
+    (Get-PHPVersion),
+    (Get-ClangLLVMVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $languageAndRuntimeList += @(
-        (Get-PHPVersion)
-    )
-}
-
-if ($os.IsLessThanMonterey) {
-    $languageAndRuntimeList += @(
-        (Get-GccVersion)
+        (Get-GccVersion),
         (Get-FortranVersion)
-        (Get-ClangLLVMVersion)
-    )
+   )
 }
 
 if ($os.IsLessThanBigSur) {
@@ -83,17 +78,17 @@ $packageManagementList = @(
     (Get-YarnVersion),
     (Get-NuGetVersion),
     (Get-RubyGemsVersion),
-    (Get-ComposerVersion)
+    (Get-ComposerVersion),
+    (Get-CarthageVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $packageManagementList += @(
-        (Get-CarthageVersion),
         (Get-CondaVersion)
     )
 }
 
-if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
+if ($os.IsHigherThanMojave) {
     $packageManagementList += @(
         (Get-VcpkgVersion)
     )
@@ -139,12 +134,14 @@ $utilitiesList = @(
     (Get-MongodVersion),
     (Get-7zipVersion),
     (Get-BsdtarVersion),
-    (Get-GnuTarVersion)
+    (Get-GnuTarVersion),
+    (Get-GPGVersion),
+    (Get-SwitchAudioOsxVersion),
+    (Get-SoxVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
-        (Get-GPGVersion),
         (Get-HelmVersion)
     )
 }
@@ -160,13 +157,6 @@ if ($os.IsLessThanBigSur) {
         (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
         (Get-ParallelVersion)
-    )
-}
-
-if ($os.IsLessThanMonterey) {
-    $utilitiesList += @(
-        (Get-SwitchAudioOsxVersion),
-        (Get-SoxVersion)
     )
 }
 
