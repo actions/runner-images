@@ -519,7 +519,7 @@ function Get-WindowsUpdatesHistory {
             43 {
                 $status = "InProgress"
                 $title = $event.Properties[0].Value
-                break 
+                break
             }
         }
 
@@ -538,7 +538,7 @@ function Invoke-SBWithRetry {
     param (
         [scriptblock] $Command,
         [int] $RetryCount = 10,
-        [int] $TimeoutInSecs = 5
+        [int] $RetryIntervalSeconds = 5
     )
 
     while ($RetryCount -gt 0) {
@@ -547,15 +547,15 @@ function Invoke-SBWithRetry {
             return
         }
         catch {
-            Write-Host "There is an error encounterd:`n $_"
+            Write-Host "There is an error encountered:`n $_"
             $RetryCount--
 
             if ($RetryCount -eq 0) {
                 exit 1
             }
 
-            Write-Host "Waiting $TimeoutInSecs seconds before retrying. Retries left: $RetryCount"
-            Start-Sleep -Seconds $TimeoutInSecs
+            Write-Host "Waiting $RetryIntervalSeconds seconds before retrying. Retries left: $RetryCount"
+            Start-Sleep -Seconds $RetryIntervalSeconds
         }
     }
 }

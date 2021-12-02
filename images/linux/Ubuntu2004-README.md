@@ -1,20 +1,17 @@
 | Announcements |
 |-|
 | [[all OSs] Default Nodejs version will be set to 16 on November, 29](https://github.com/actions/virtual-environments/issues/4446) |
-| [[all OSs] Selenium server version will be upgraded from 3 to 4 on November, 15](https://github.com/actions/virtual-environments/issues/4376) |
-| [[Ubuntu] Node:10 docker images will be removed on November, 15](https://github.com/actions/virtual-environments/issues/4357) |
-| [[All OSs] Node.js version 10 will be removed from the images on November, 15](https://github.com/actions/virtual-environments/issues/4356) |
 ***
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.11.0-1021-azure
-- Image Version: 20211122.1
+- Image Version: 20211129.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 5.0.17(1)-release
 - Clang 10.0.0, 11.0.0, 12.0.0
 - Clang-format 10.0.0, 11.0.0, 12.0.0
-- Erlang 24.1.5 (Eshell 12.1.5)
+- Erlang 24.1.6 (Eshell 12.1.5)
 - Erlang rebar3 3.17.0
 - GNU C++ 9.3.0, 10.3.0
 - GNU Fortran 9.3.0, 10.3.0
@@ -22,7 +19,7 @@
 - Kotlin 1.6.0-release-798
 - Mono 6.12.0.122 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.6.0.15201 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node 14.18.1
+- Node 16.13.0
 - Perl 5.30.0
 - Python 3.8.10
 - Python3 3.8.10
@@ -32,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.7.1
-- Homebrew 3.3.4
+- Homebrew 3.3.5
 - Miniconda 4.10.3
-- Npm 6.14.15
+- Npm 8.1.0
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 0.16.4
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<653912591>)
+- Vcpkg  (build from master \<3a68454af>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -64,19 +61,19 @@
 - Bicep 0.4.1008
 - Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.22.0
-- CodeQL Action Bundle 2.7.1
+- CodeQL Action Bundle 2.7.2
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.1.1+azure-1
 - Docker-Buildx 0.7.0
 - Docker-Moby Client 20.10.11+azure-1
 - Docker-Moby Server 20.10.11+azure-1
 - Fastlane 2.198.1
-- Git 2.34.0 (apt source repository: ppa:git-core/ppa)
-- Git LFS 2.13.3 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
+- Git 2.34.1 (apt source repository: ppa:git-core/ppa)
+- Git LFS 3.0.2 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.136.0
+- HHVM (HipHop VM) 4.137.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.22.4
@@ -92,28 +89,28 @@
 - Packer 1.7.8
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.18.0
+- Pulumi 3.18.1
 - R 4.1.2
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
 - Terraform 1.0.11
 - yamllint 1.26.3
-- yq 4.14.2
+- yq 4.15.1
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.99
-- AWS CLI 2.4.0
+- AWS CLI 2.4.2
 - AWS CLI Session manager plugin 1.2.279.0
-- AWS SAM CLI 1.35.0
+- AWS SAM CLI 1.36.0
 - Azure CLI (azure-cli) 2.30.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.22.0
 - GitHub CLI 2.2.0
-- Google Cloud SDK 365.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 365.0.1 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 7.0.2
-- OpenShift CLI 4.9.7
+- Netlify CLI 8.0.3
+- OpenShift CLI 4.9.8
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
@@ -150,7 +147,7 @@
 - Rustup 1.24.3
 
 #### Packages
-- Bindgen 0.59.1
+- Bindgen 0.59.2
 - Cargo audit 0.16.0
 - Cargo clippy 0.1.56
 - Cargo outdated 0.10.2
@@ -163,7 +160,7 @@
 - Mozilla Firefox 94.0
 - Geckodriver 0.30.0
 - Chromium 96.0.4664.0
-- Selenium server 4.0.0
+- Selenium server 4.1.0
 
 #### Environment variables
 | Name              | Value                               |
@@ -219,9 +216,9 @@
 
 #### Ruby
 - 2.5.9
-- 2.6.8
-- 2.7.4
-- 3.0.2
+- 2.6.9
+- 2.7.5
+- 3.0.3
 
 #### Environment variables
 | Name            | Value                               | Architecture |
@@ -372,7 +369,7 @@
 | tzdata                 | 2021e-0ubuntu0.20.04              |
 | unzip                  | 6.0-25ubuntu1                     |
 | upx                    | 3.95-2build1                      |
-| wget                   | 1.20.3-1ubuntu1                   |
+| wget                   | 1.20.3-1ubuntu2                   |
 | xorriso                | 1.5.2-1                           |
 | xvfb                   | 2:1.20.11-1ubuntu1\~20.04.2       |
 | xz-utils               | 5.2.4-1ubuntu1                    |
