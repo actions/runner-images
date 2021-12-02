@@ -184,7 +184,6 @@
                 "./provision/core/postgresql.sh",
                 "./provision/core/mongodb.sh",
                 "./provision/core/audiodevice.sh",
-                "./provision/core/vcpkg.sh",
                 "./provision/core/miniconda.sh",
                 "./provision/core/safari.sh",
                 "./provision/core/chrome.sh",

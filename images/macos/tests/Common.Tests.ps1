@@ -33,7 +33,7 @@ Describe "GCC" -Skip:($os.IsMonterey) {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsMojave) {
+Describe "vcpkg" -Skip:($os.IsMojave -or $os.IsMonterey) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }

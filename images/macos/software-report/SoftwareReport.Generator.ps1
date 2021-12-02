@@ -83,7 +83,7 @@ $packageManagementList = @(
     (Get-CondaVersion)
 )
 
-if ($os.IsHigherThanMojave) {
+if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
     $packageManagementList += @(
         (Get-VcpkgVersion)
     )
