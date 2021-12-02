@@ -15,14 +15,13 @@ elseif (Test-IsWin16)
     $extensionUrl = "https://robmensching.gallerycdn.vsassets.io/extensions/robmensching/wixtoolsetvisualstudio2017extension/0.9.21.62588/1494013210879/250616/4/Votive2017.vsix"
     $VSver = "2017"
 }
-else
+
+if (-not (Test-IsWin22))
 {
-    throw "Invalid version of Visual Studio is found. Either 2017 or 2019 are required"
+    $extensionName = "Votive$VSver.vsix"
+
+    #Installing VS extension 'Wix Toolset Visual Studio Extension'
+    Install-VsixExtension -Url $extensionUrl -Name $extensionName -VSversion $VSver
 }
-
-$extensionName = "Votive$VSver.vsix"
-
-#Installing VS extension 'Wix Toolset Visual Studio Extension'
-Install-VsixExtension -Url $extensionUrl -Name $extensionName -VSversion $VSver
 
 Invoke-PesterTests -TestFile "Wix"
