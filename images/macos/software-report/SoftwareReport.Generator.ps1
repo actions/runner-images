@@ -50,7 +50,8 @@ $languageAndRuntimeList = @(
 
 if ($os.IsLessThanMonterey) {
     $languageAndRuntimeList += @(
-        (Get-GccVersion)
+        (Get-GccVersion),
+        (Get-FortranVersion)
    )
 }
 
