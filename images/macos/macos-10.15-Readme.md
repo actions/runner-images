@@ -1,15 +1,12 @@
 | Announcements |
 |-|
 | [[all OSs] Default Nodejs version will be set to 16 on November, 29](https://github.com/actions/virtual-environments/issues/4446) |
-| [[all OSs] Selenium server version will be upgraded from 3 to 4 on November, 15](https://github.com/actions/virtual-environments/issues/4376) |
-| [[All OSs] Node.js version 10 will be removed from the images on November, 15](https://github.com/actions/virtual-environments/issues/4356) |
-| [[macOS Big Sur] Xcode 13 beta will be removed and Xcode 13.1 set as default on November, 15](https://github.com/actions/virtual-environments/issues/4355) |
 | [macOS-latest workflows will use macOS-11](https://github.com/actions/virtual-environments/issues/4060) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1519)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20211120.1
+- Image Version: 20211126.1
 
 ## Installed Software
 ### Language and Runtime
@@ -19,38 +16,38 @@
 - Clang/LLVM 13.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
 - gcc-9 (Homebrew GCC 9.4.0) 9.4.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
-- gcc-11 (Homebrew GCC 11.2.0_2) 11.2.0 - available by `gcc-11` alias
+- gcc-11 (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gcc-11` alias
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
-- GNU Fortran (Homebrew GCC 11.2.0_2) 11.2.0 - available by `gfortran-11` alias
+- GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
 - julia 1.6.4
 - Kotlin 1.6.0-release-798
 - MSBuild 16.9.0.22901 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v14.18.1
+- Node.js v16.13.0
 - NVM 0.39.0
 - NVM - Cached node versions: v12.22.7 v14.18.1 v16.13.0
 - Perl 5.34.0
 - PHP 8.0.13
 - Python 2.7.18
-- Python 3.9.8
+- Python 3.9.9
 - R 4.1.2
-- Ruby 2.7.4p191
+- Ruby 2.7.5p203
 
 ### Package Management
-- Bundler version 2.2.31
+- Bundler version 2.2.32
 - Carthage 0.38.0
 - CocoaPods 1.11.2
 - Composer 2.1.12
-- Homebrew 3.3.4
+- Homebrew 3.3.5
 - Miniconda 4.10.3
-- NPM 6.14.15
+- NPM 8.1.0
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
 - Pip 21.3.1 (python 3.9)
 - Pipx 0.16.4
-- RubyGems 3.2.31
-- Vcpkg 2021 (build from master \<709e9ec32>)
+- RubyGems 3.2.32
+- Vcpkg 2021 (build from master \<b3cfaaf1b>)
 - Yarn 1.22.15
 
 #### Environment variables
@@ -74,9 +71,9 @@
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.80.0
 - Git LFS: 3.0.2
-- Git: 2.34.0
+- Git: 2.34.1
 - GitHub CLI: 2.2.0
-- GNU parallel 20211022
+- GNU parallel 20211122
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.2
 - gpg (GnuPG) 2.3.3
@@ -94,15 +91,14 @@
 - Subversion (SVN) 1.14.1
 - Switchaudio-osx 1.1.0
 - Vagrant 2.2.19
-- virtualbox 6.1.28r147628
+- virtualbox 6.1.30r148432
 - zstd 1.5.0
-
 
 ### Tools
 - Aliyun CLI 3.0.99
-- App Center CLI 2.10.4
-- AWS CLI 2.4.0
-- AWS SAM CLI 1.35.0
+- App Center CLI 2.10.6
+- AWS CLI 2.4.2
+- AWS SAM CLI 1.36.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.30.0
 - Bicep CLI 0.4.1008
@@ -126,11 +122,11 @@
 - SafariDriver 15.1 (15612.2.9.1.30)
 - Google Chrome 96.0.4664.55 
 - ChromeDriver 96.0.4664.45
-- Microsoft Edge 95.0.1020.53 
-- MSEdgeDriver 95.0.1020.53
-- Mozilla Firefox 94.0.1
+- Microsoft Edge 96.0.1054.34 
+- MSEdgeDriver 96.0.1054.34
+- Mozilla Firefox 94.0.2
 - geckodriver 0.30.0
-- Selenium server 4.0.0
+- Selenium server 4.1.0
 
 #### Environment variables
 | Name            | Value                                         |
@@ -153,9 +149,9 @@
 #### Ruby
 - 2.4.10
 - 2.5.9
-- 2.6.8
-- 2.7.4
-- 3.0.2
+- 2.6.9
+- 2.7.5
+- 3.0.3
 
 #### Python
 - 2.7.18
@@ -183,6 +179,7 @@
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
 | 1.16.10 | x64          | GOROOT_1_16_X64      |
 | 1.17.3  | x64          | GOROOT_1_17_X64      |
+
 ### Rust Tools
 - Cargo 1.56.0
 - Rust 1.56.1
@@ -190,7 +187,7 @@
 - Rustup 1.24.3
 
 #### Packages
-- Bindgen 0.59.1
+- Bindgen 0.59.2
 - Cargo-audit 0.16.0
 - Cargo-outdated v0.10.2
 - Cbindgen 0.20.0
