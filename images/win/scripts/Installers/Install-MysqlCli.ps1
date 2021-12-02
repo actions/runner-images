@@ -11,17 +11,17 @@ $ArgumentList = ("/install", "/quiet", "/norestart")
 Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
 
 ## Downloading mysql
-$MysqlVersion = [version](Get-ToolsetContent).mysql.version
+[version]$MysqlVersion = (Get-ToolsetContent).mysql.version
+$MysqlVersionMajorMinor = $MysqlVersion.ToString(2)
+
 if ($MysqlVersion.Build -lt 0) {
-    $MysqlVersion = New-Object System.Version (
-        $MysqlVersion.Major,
-        $MysqlVersion.Minor,
-        ([version]((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/$($MysqlVersion.Major).$($MysqlVersion.Minor).html -UseBasicParsing).Content |
-            Select-String -Pattern "$($MysqlVersion.Major).$($MysqlVersion.Minor)\.\d+").Matches.Value).Build
-    )
+    $MysqlVersion = ((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/${MysqlVersionMajorMinor}.html -UseBasicParsing).Content |
+        Select-String -Pattern "${MysqlVersionMajorMinor}\.\d+").Matches.Value
+
 }
 
-$MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-$($MysqlVersion.Major).$($MysqlVersion.Minor)/mysql-$($MysqlVersion.ToString())-winx64.zip"
+$MysqlVersionFull = $MysqlVersion.ToString()
+$MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-${MysqlVersionMajorMinor}/mysql-${MysqlVersionFull}-winx64.zip"
 
 $MysqlArchPath = Start-DownloadWithRetry -Url $MysqlVersionUrl -Name "mysql.zip"
 
@@ -31,7 +31,7 @@ Extract-7Zip -Path $MysqlArchPath -DestinationPath "C:\"
 # Rename mysql-version to mysql folder
 $MysqlPath = "C:\mysql"
 Invoke-SBWithRetry -Command {
-    Rename-Item -Path "C:\mysql-$($MysqlVersion.ToString())-winx64" -NewName $MysqlPath -ErrorAction Stop
+    Rename-Item -Path "C:\mysql-${MysqlVersionFull}-winx64" -NewName $MysqlPath -ErrorAction Stop
 }
 
 # Adding mysql in system environment path
