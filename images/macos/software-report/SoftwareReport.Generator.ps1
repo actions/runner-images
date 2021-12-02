@@ -47,7 +47,6 @@ $languageAndRuntimeList = @(
     (Get-PHPVersion),
     (Get-FortranVersion),
     (Get-ClangLLVMVersion)
-    (Get-PHPVersion)
 )
 
 if ($os.IsLessThanMonterey) {
