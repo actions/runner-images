@@ -438,7 +438,7 @@
         "version": "14"
     },
     "kotlin": {
-        "version": "1.6",
+        "version": "latest",
         "binary_name": "kotlin-compiler"
     }
 }
