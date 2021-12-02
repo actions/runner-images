@@ -21,7 +21,7 @@ function Build-MarkdownElement
     )
 
     $markdown = New-MDHeader $Head -Level 4
-    $markdown += New-MDParagraph -Lines $Content
+    $markdown += New-MDParagraph -Lines $Content -NoNewLine
 
     return $markdown
 }
