@@ -17,7 +17,6 @@ $MysqlVersionMajorMinor = $MysqlVersion.ToString(2)
 if ($MysqlVersion.Build -lt 0) {
     $MysqlVersion = ((Invoke-WebRequest -Uri https://dev.mysql.com/downloads/mysql/${MysqlVersionMajorMinor}.html -UseBasicParsing).Content |
         Select-String -Pattern "${MysqlVersionMajorMinor}\.\d+").Matches.Value
-
 }
 
 $MysqlVersionFull = $MysqlVersion.ToString()
