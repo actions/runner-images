@@ -45,7 +45,6 @@ $languageAndRuntimeList = @(
     (Get-JuliaVersion),
     (Get-KotlinVersion),
     (Get-PHPVersion),
-    (Get-FortranVersion),
     (Get-ClangLLVMVersion)
 )
 
