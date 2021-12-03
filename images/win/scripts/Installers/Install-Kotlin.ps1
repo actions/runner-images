@@ -7,7 +7,7 @@
 $kotlinVersion = (Get-ToolsetContent).kotlin.version
 $kotlinBinaryName = (Get-ToolsetContent).kotlin.binary_name
 
-$kotlinDownloadUrl = Get-GitHubPackageDownloadUrl -RepoOwner "JetBrains" -RepoName "kotlin" -BinaryName $kotlinBinaryName -Version $kotlinVersion
+$kotlinDownloadUrl = Get-GitHubPackageDownloadUrl -RepoOwner "JetBrains" -RepoName "kotlin" -BinaryName $kotlinBinaryName -Version $kotlinVersion -UrlFilter "*{BinaryName}-{Version}.zip"
 $kotlinInstallerPath = Start-DownloadWithRetry -Url $kotlinDownloadUrl -Name "$kotlinBinaryName.zip"
 
 Write-Host "Expand Kotlin archive"

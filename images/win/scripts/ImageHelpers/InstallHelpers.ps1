@@ -565,19 +565,22 @@ function Get-GitHubPackageDownloadUrl {
         [string]$RepoOwner,
         [string]$RepoName,
         [string]$BinaryName,
-        [string]$Version
+        [string]$Version,
+        [string]$UrlFilter
     )
 
     if ($Version -eq "latest") { 
         $Version = "*" 
     }
     $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=100"
-    $latestVersion = ($json.Where{ -not $_.prerelease }.tag_name |
+    $versionToDownload = ($json.Where{ -not $_.prerelease }.tag_name |
         Select-String -Pattern "\d+.\d+.\d+").Matches.Value |
             Where-Object {$_ -Like "${Version}.*" -or $_ -eq ${Version}} |
             Sort-Object {[version]$_} |
             Select-Object -Last 1
-    $downloadUrl = $json.assets.browser_download_url -like "*${BinaryName}-${latestVersion}.*"
+
+    $UrlFilter = $UrlFilter -replace "{BinaryName}",$BinaryName -replace "{Version}",$versionToDownload
+    $downloadUrl = $json.assets.browser_download_url -like $UrlFilter
 
     return $downloadUrl
 }
