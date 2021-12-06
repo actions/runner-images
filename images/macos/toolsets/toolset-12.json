@@ -181,7 +181,6 @@
         "rubygems": [
             "xcode-install",
             "cocoapods",
-            "nomad-cli",
             "xcpretty",
             "bundler",
             "fastlane",
