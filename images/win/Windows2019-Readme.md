@@ -1,12 +1,11 @@
 | Announcements |
 |-|
 | [Windows Server 2022 with Visual Studio 2022 is generally available starting from November, 15](https://github.com/actions/virtual-environments/issues/4488) |
-| [[all OSs] Default Nodejs version will be set to 16 on November, 29](https://github.com/actions/virtual-environments/issues/4446) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2300
-- Image Version: 20211229.2
+- Image Version: 20211207.2
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -15,10 +14,10 @@
 ### Language and Runtime
 - Bash 4.4.23(1)-release
 - Go 1.15.15
-- Julia 1.6.4
+- Julia 1.7.0
 - Kotlin 1.5.32
 - LLVM 13.0.0
-- Node 16.13.0
+- Node 16.13.1
 - Perl 5.32.1
 - PHP 8.0.13
 - Python 3.7.9
@@ -26,15 +25,15 @@
 
 ### Package Management
 - Chocolatey 0.11.3
-- Composer 2.1.12
+- Composer 2.1.14
 - Helm 3.7.1
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
-- NPM 8.1.0
+- NPM 8.1.2
 - NuGet 6.0.0.280
 - pip 21.3.1 (python 3.7)
 - Pipx 0.16.4
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<60a8f7971>)
+- Vcpkg  (build from master \<431d3810a>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -45,7 +44,7 @@
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 7.2
+- Gradle 7.3
 - Maven 3.8.4
 - sbt 1.5.5
 
@@ -53,7 +52,7 @@
 - 7zip 21.06
 - aria2 1.36.0
 - azcopy 10.13.0
-- Bazel 4.2.1
+- Bazel 4.2.2
 - Bazelisk 1.10.1
 - Bicep 0.4.1008
 - Cabal 3.6.2.0
@@ -76,7 +75,7 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.8
-- Pulumi v3.18.1
+- Pulumi v3.19.0
 - R 4.1.2
 - Service Fabric SDK 8.2.1235.9590
 - Stack 2.7.3
@@ -84,24 +83,25 @@
 - Swig 4.0.2
 - VSWhere 2.8.4
 - WinAppDriver 1.2.2009.02003
+- WiX Toolset v3.11.2.4516
 - yamllint 1.26.3
 - zstd 1.5.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.99
-- AWS CLI 2.4.2
+- Alibaba Cloud CLI 3.0.100
+- AWS CLI 2.4.5
 - AWS SAM CLI 1.36.0
 - AWS Session Manager CLI 1.2.279.0
-- Azure CLI 2.30.0
+- Azure CLI 2.31.0
 - Azure DevOps CLI extension 0.22.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.2.0
+- GitHub CLI 2.3.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.56.0
-- Rust 1.56.1
-- Rustdoc 1.56.1
+- Cargo 1.57.0
+- Rust 1.57.0
+- Rustdoc 1.57.0
 - Rustup 1.24.3
 
 #### Packages
@@ -109,14 +109,14 @@
 - cargo-audit 0.16.0
 - cargo-outdated v0.10.2
 - cbindgen 0.20.0
-- Clippy 0.1.56
+- Clippy 0.1.57
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 96.0.4664.45
+- Google Chrome 96.0.4664.93
 - Chrome Driver 96.0.4664.45
-- Microsoft Edge 96.0.1054.34
-- Microsoft Edge Driver 96.0.1054.34
+- Microsoft Edge 96.0.1054.43
+- Microsoft Edge Driver 96.0.1054.43
 - Mozilla Firefox 94.0.2
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
@@ -147,30 +147,31 @@
 
 ### MSYS2
 - Pacman 6.0.1
+
 ##### Notes:
 ```
 Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
 ```
+
 ### BizTalk Server
-- BizTalk Server Project Build Component 3.13.765.0 
+- BizTalk Server Project Build Component 3.13.765.0
+
 ### Cached Tools
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.10 | x64          | GOROOT_1_16_X64      |
-| 1.17.3  | x64          | GOROOT_1_17_X64      |
-
+| 1.16.11 | x64          | GOROOT_1_16_X64      |
+| 1.17.4  | x64          | GOROOT_1_17_X64      |
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
 | 12.22.7 | x64          |
-| 14.18.1 | x64          |
-| 16.13.0 | x64          |
-
+| 14.18.2 | x64          |
+| 16.13.1 | x64          |
 
 #### Python
 | Version | Architecture |
@@ -183,7 +184,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.9.9   | x64, x86     |
 | 3.10.0  | x64, x86     |
 
-
 #### Ruby
 | Version | Architecture |
 | ------- | ------------ |
@@ -193,7 +193,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.7.5   | x64          |
 | 3.0.3   | x64          |
 
-
 #### PyPy
 | Python Version | PyPy Version |
 | -------------- | ------------ |
@@ -201,8 +200,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
 | 3.7.12         | PyPy 7.3.7 with MSC v.1929 64 bit (AMD64) |
 | 3.8.12         | PyPy 7.3.7 with MSC v.1929 64 bit (AMD64) |
-
-
 
 ### Databases
 #### PostgreSQL
@@ -217,20 +214,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | UserName             | postgres                                                                                                                             |
 | Password             | root                                                                                                                                 |
 
-
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.0.4.0 | MongoDB     | Running       | Automatic        |
-
-
+| 5.0.5.0 | MongoDB     | Running       | Automatic        |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.4.0
 - DacFx 15.0.5282.3
 - MySQL 5.7.36.0
 - SQLPS 1.0
-
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
@@ -244,7 +237,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Visual Studio Enterprise 2019 | 16.11.31911.196 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
-
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
 | Component.Android.NDK.R16B                                                | 16.11.31910.99  |
@@ -475,11 +467,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Windows Driver Kit                                                        | 10.0.21381.0    |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.22000.1    |
 | Windows Software Development Kit Extension                                | 10.1.22000.194  |
-| WIX Toolset                                                               | 3.11.4516       |
 | WIX Toolset Studio 2019 Extension                                         | 1.0.0.4         |
 
 #### Microsoft Visual C++:
-
 | Name                                         | Architecture | Version     |
 | -------------------------------------------- | ------------ | ----------- |
 | Microsoft Visual C++ 2010 Redistributable    | x64          | 10.0.40219  |
@@ -533,6 +523,7 @@ Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
 ```
+
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
@@ -580,6 +571,5 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:f1915874869d31d4ba9002478809248b7661937d28a01156b12e4c72558ec8f2  | 2021-11-09 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:3c0ca16693dfc1252120cb6066ddfccf53b9bbce4523bdb7c7fb3f55dd86f33f  | 2021-11-04 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:bfa356b928c9977bf2c03d536e251eda8879debf42d884771cb855313a6a5da7  | 2021-11-04 |
-
 
 
