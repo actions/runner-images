@@ -190,6 +190,7 @@
             "Microsoft.VisualStudio.Component.VC.CLI.Support",
             "Microsoft.VisualStudio.Component.VC.CMake.Project",
             "Microsoft.VisualStudio.Component.VC.DiagnosticTools",
+            "Microsoft.VisualStudio.Component.VC.Llvm.Clang",
             "Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre",
