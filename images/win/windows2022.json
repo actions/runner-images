@@ -139,10 +139,12 @@
         },
         {
             "type": "windows-restart",
+            "check_registry": true,
             "restart_timeout": "10m"
         },
         {
             "type": "powershell",
+            "pause_before": "2m",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"
