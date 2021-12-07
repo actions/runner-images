@@ -334,6 +334,6 @@ function Update-SoftwareBundle {
 
     if ( $productVersion.StartsWith('11.') ) {
         sudo rm -rf /Library/Preferences/com.apple.commerce.plist
-        sudo /usr/bin/defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist LastRecommendedMajorOSBundleIdentifier ''
+        sudo /usr/bin/defaults delete /Library/Preferences/com.apple.SoftwareUpdate.plist LastRecommendedMajorOSBundleIdentifier | Out-Null
     }
 }
