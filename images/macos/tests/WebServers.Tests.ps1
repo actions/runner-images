@@ -6,7 +6,7 @@ Describe "Apache" -Skip:($os.IsLessThanCatalina) {
     }
 
     It "Apache Service" {
-        brew services list | Out-String | Should -Match "httpd\s+stopped"
+        brew services list | Out-String | Should -Match "httpd\s+none"
     }
 }
 
@@ -16,6 +16,6 @@ Describe "Nginx" -Skip:($os.IsLessThanCatalina) {
     }
 
     It "Nginx Service" {
-        brew services list | Out-String | Should -Match "nginx\s+stopped"
+        brew services list | Out-String | Should -Match "nginx\s+none"
     }
 }
