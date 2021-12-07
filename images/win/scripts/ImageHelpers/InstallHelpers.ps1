@@ -566,14 +566,16 @@ function Get-GitHubPackageDownloadUrl {
         [string]$RepoName,
         [string]$BinaryName,
         [string]$Version,
-        [string]$UrlFilter
+        [string]$UrlFilter,
+        [boolean]$IsPrerelease = $false,
+        [int]$SearchInCount = 100
     )
 
     if ($Version -eq "latest") { 
         $Version = "*" 
     }
-    $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=100"
-    $versionToDownload = ($json.Where{ -not $_.prerelease }.tag_name |
+    $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
+    $versionToDownload = ($json.Where{ $_.prerelease -eq $IsPrerelease }.tag_name |
         Select-String -Pattern "\d+.\d+.\d+").Matches.Value |
             Where-Object {$_ -Like "${Version}.*" -or $_ -eq ${Version}} |
             Sort-Object {[version]$_} |
