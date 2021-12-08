@@ -12,11 +12,11 @@
 - .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.415 5.0.102 5.0.202 5.0.302 5.0.403
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0 is default Clang/LLVM 13.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
-- gcc-9 (Homebrew GCC 9.4.0) 9.4.0 - available by `gcc-9` alias 
-- gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias 
+- gcc-9 (Homebrew GCC 9.4.0) 9.4.0 - available by `gcc-9` alias
+- gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
 - gcc-11 (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gcc-11` alias
-- GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias 
-- GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias 
+- GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
+- GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
 - julia 1.7.0
