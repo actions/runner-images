@@ -460,7 +460,7 @@
         "version": "5.0"
     },
     "php": {
-        "version": "8.0"
+        "version": "8.1"
     },
     "llvm": {
         "version": "13"
