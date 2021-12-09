@@ -104,6 +104,11 @@
             "julia"
         ]
     },
+    "gcc": {
+        "versions": [
+            "11"
+        ]
+    },
     "toolcache": [
         {
             "name": "Python",
@@ -176,7 +181,6 @@
         "rubygems": [
             "xcode-install",
             "cocoapods",
-            "nomad-cli",
             "xcpretty",
             "bundler",
             "fastlane",
