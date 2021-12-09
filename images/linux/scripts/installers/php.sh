@@ -72,7 +72,7 @@ for version in $php_versions; do
         apt-fast install -y --no-install-recommends php$version-recode
     fi
 
-    if [[ $version != "8.0" ]]; then
+    if [[ $version != "8.0" && $version != "8.1" ]]; then
         apt-fast install -y --no-install-recommends php$version-xmlrpc php$version-json
     fi
 

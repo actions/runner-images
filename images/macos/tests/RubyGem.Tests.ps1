@@ -19,7 +19,7 @@ Describe "Bundler" {
     }
 }
 
-Describe "Nomad shenzhen CLI" {
+Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey) {
     It "Nomad shenzhen CLI" {
         "ipa --version" | Should -ReturnZeroExitCode
     }

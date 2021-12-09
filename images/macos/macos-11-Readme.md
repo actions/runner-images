@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[all OSs] Default Nodejs version will be set to 16 on November, 29](https://github.com/actions/virtual-environments/issues/4446) |
 | [macOS-latest workflows will use macOS-11](https://github.com/actions/virtual-environments/issues/4060) |
 ***
 # macOS 11.6 info
 - System Version: macOS 11.6.1 (20G224)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20211127.1
+- Image Version: 20211207.1
 
 ## Installed Software
 ### Language and Runtime
@@ -21,32 +20,32 @@
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
-- julia 1.6.4
+- julia 1.7.0
 - Kotlin 1.6.0-release-798
 - MSBuild 16.9.0.22901 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.13.0
+- Node.js v16.13.1
 - NVM 0.39.0
-- NVM - Cached node versions: v12.22.7 v14.18.1 v16.13.0
+- NVM - Cached node versions: v12.22.7 v14.18.2 v16.13.1
 - Perl 5.34.0
-- PHP 8.0.13
+- PHP 8.1.0
 - Python 2.7.18
 - Python 3.9.9
 - Ruby 2.7.5p203
 
 ### Package Management
-- Bundler version 2.2.32
+- Bundler version 2.2.33
 - Carthage 0.38.0
 - CocoaPods 1.11.2
-- Composer 2.1.12
-- Homebrew 3.3.5
+- Composer 2.1.14
+- Homebrew 3.3.7
 - Miniconda 4.10.3
-- NPM 8.1.0
+- NPM 8.1.2
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
 - Pip 21.3.1 (python 3.9)
 - Pipx 0.16.4
-- RubyGems 3.2.32
-- Vcpkg 2021 (build from master \<b3cfaaf1b>)
+- RubyGems 3.2.33
+- Vcpkg 2021 (build from master \<7bb175eaf>)
 - Yarn 1.22.15
 
 #### Environment variables
@@ -58,28 +57,28 @@
 ### Project Management
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.4
-- Gradle 7.3
+- Gradle 7.3.1
 - Sbt 1.5.5
 
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
 - azcopy 10.13.0
-- bazel 4.2.1
+- bazel 4.2.2
 - bazelisk 1.10.1
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.80.0
 - Git LFS: 3.0.2
 - Git: 2.34.1
-- GitHub CLI: 2.2.0
+- GitHub CLI: 2.3.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.2
 - gpg (GnuPG) 2.3.3
 - helm v3.7.1+g1d11fcb
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v5.0.3
-- mongod v5.0.3
+- mongo v5.0.4
+- mongod v5.0.4
 - Newman 5.3.0
 - OpenSSL 1.1.1l  24 Aug 2021 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1l_1)`
 - Packer 1.7.8
@@ -91,12 +90,12 @@
 - zstd 1.5.0
 
 ### Tools
-- Aliyun CLI 3.0.99
+- Aliyun CLI 3.0.100
 - App Center CLI 2.10.6
-- AWS CLI 2.4.2
+- AWS CLI 2.4.5
 - AWS SAM CLI 1.36.0
 - AWS Session Manager CLI 1.2.279.0
-- Azure CLI 2.30.0
+- Azure CLI 2.31.0
 - Bicep CLI 0.4.1008
 - Cabal 3.6.2.0
 - Cmake 3.22.0
@@ -105,22 +104,22 @@
 - GHCup 0.1.17.4
 - Jazzy 0.14.1
 - Stack 2.7.3
-- SwiftFormat 0.48.18
+- SwiftFormat 0.49.0
 - Swig 4.0.2
 - Xcode Command Line Tools 13.0.0.0.1.1630607135
 
 ### Linters
-- SwiftLint 0.45.0
+- SwiftLint 0.45.1
 - yamllint 1.26.3
 
 ### Browsers
 - Safari 15.1 (16612.2.9.1.30)
 - SafariDriver 15.1 (16612.2.9.1.30)
-- Google Chrome 96.0.4664.55 
+- Google Chrome 96.0.4664.93 
 - ChromeDriver 96.0.4664.45
-- Microsoft Edge 96.0.1054.34 
-- MSEdgeDriver 96.0.1054.34
-- Mozilla Firefox 94.0.2
+- Microsoft Edge 96.0.1054.43 
+- MSEdgeDriver 96.0.1054.43
+- Mozilla Firefox 95.0
 - geckodriver 0.30.0
 - Selenium server 4.1.0
 
@@ -159,20 +158,20 @@
 
 #### Node.js
 - 12.22.7
-- 14.18.1
-- 16.13.0
+- 14.18.2
+- 16.13.1
 
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.10 | x64          | GOROOT_1_16_X64      |
-| 1.17.3  | x64          | GOROOT_1_17_X64      |
+| 1.16.11 | x64          | GOROOT_1_16_X64      |
+| 1.17.4  | x64          | GOROOT_1_17_X64      |
 
 ### Rust Tools
-- Cargo 1.56.0
-- Rust 1.56.1
-- Rustdoc 1.56.1
+- Cargo 1.57.0
+- Rust 1.57.0
+- Rustdoc 1.57.0
 - Rustup 1.24.3
 
 #### Packages
@@ -180,7 +179,7 @@
 - Cargo-audit 0.16.0
 - Cargo-outdated v0.10.2
 - Cbindgen 0.20.0
-- Clippy 0.1.56
+- Clippy 0.1.57
 - Rustfmt 1.4.37-stable
 
 ### PowerShell Tools
@@ -197,8 +196,8 @@
 ### Web Servers
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.51  | /usr/local/etc/httpd/httpd.conf | stopped       | 80         |
-| nginx | 1.21.4  | /usr/local/etc/nginx/nginx.conf | stopped       | 80         |
+| httpd | 2.4.51  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| nginx | 1.21.4  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
@@ -226,7 +225,7 @@
 ### Xcode
 | Version        | Build    | Path                           |
 | -------------- | -------- | ------------------------------ |
-| 13.2 (beta)    | 13C5081f | /Applications/Xcode_13.2.app   |
+| 13.2           | 13C90    | /Applications/Xcode_13.2.app   |
 | 13.1 (default) | 13A1030d | /Applications/Xcode_13.1.app   |
 | 13.0           | 13A233   | /Applications/Xcode_13.0.app   |
 | 12.5.1         | 12E507   | /Applications/Xcode_12.5.1.app |
@@ -306,7 +305,7 @@
 | Package Name               | Version                                                                                                                            |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 4.0                                                                                                                                |
-| Android Emulator           | 30.9.5                                                                                                                             |
+| Android Emulator           | 31.1.4                                                                                                                             |
 | Android SDK Build-tools    | 31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)                         |
 | Android SDK Platform-Tools | 31.0.3                                                                                                                             |
