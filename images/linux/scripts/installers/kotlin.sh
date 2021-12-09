@@ -8,7 +8,9 @@ source $HELPER_SCRIPTS/install.sh
 
 KOTLIN_ROOT="/usr/share"
 
-URL=$(curl -s https://api.github.com/repos/JetBrains/kotlin/releases/latest | jq -r '.assets[].browser_download_url | select(contains("kotlin-compiler"))')
+kotlinReleasesUrl="https://api.github.com/repos/JetBrains/kotlin/releases"
+latestRelease=$(curl -s $kotlinReleasesUrl | jq -r 'map(select(.prerelease == false)) | sort_by(.target_commitish)[-1]')
+URL=$(echo $latestRelease | jq -r '.assets[].browser_download_url | select(contains("kotlin-compiler"))')
 download_with_retries $URL "/tmp"
 
 unzip -qq /tmp/kotlin-compiler*.zip -d $KOTLIN_ROOT
