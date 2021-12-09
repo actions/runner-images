@@ -1,12 +1,11 @@
 | Announcements |
 |-|
 | [Windows Server 2022 with Visual Studio 2022 is generally available starting from November, 15](https://github.com/actions/virtual-environments/issues/4488) |
-| [[all OSs] Default Nodejs version will be set to 16 on November, 29](https://github.com/actions/virtual-environments/issues/4446) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 350
-- Image Version: 20211130.3
+- Image Version: 20211206.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -14,11 +13,11 @@
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
-- Go 1.16.10
-- Julia 1.6.4
+- Go 1.16.11
+- Julia 1.7.0
 - Kotlin 1.5.32
 - LLVM 13.0.0
-- Node 16.13.0
+- Node 16.13.1
 - PHP 8.0.13
 - Python 3.9.9
 - Ruby 3.0.3p157
@@ -28,12 +27,12 @@
 - Composer 2.1.14
 - Helm 3.7.1
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
-- NPM 8.1.0
+- NPM 8.1.2
 - NuGet 6.0.0.280
 - pip 21.3.1 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.32
-- Vcpkg  (build from master \<c1c6eb92e>)
+- Vcpkg  (build from master \<63e935d96>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -43,7 +42,7 @@
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 7.2
+- Gradle 7.3
 - Maven 3.8.4
 - sbt 1.5.5
 
@@ -51,7 +50,7 @@
 - 7zip 21.06
 - aria2 1.36.0
 - azcopy 10.13.0
-- Bazel 4.2.1
+- Bazel 4.2.2
 - Bazelisk 1.10.1
 - Bicep 0.4.1008
 - Cabal 3.6.2.0
@@ -72,7 +71,7 @@
 - NSIS v3.06.1
 - OpenSSL 1.1.1
 - Packer 1.7.8
-- Pulumi v3.18.1
+- Pulumi v3.19.0
 - R 4.1.2
 - Stack 2.7.3
 - Subversion (SVN) 1.14.1
@@ -85,18 +84,18 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.100
-- AWS CLI 2.4.2
+- AWS CLI 2.4.5
 - AWS SAM CLI 1.36.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.30.0
 - Azure DevOps CLI extension 0.22.0
-- GitHub CLI 2.2.0
+- GitHub CLI 2.3.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.56.0
-- Rust 1.56.1
-- Rustdoc 1.56.1
+- Cargo 1.57.0
+- Rust 1.57.0
+- Rustdoc 1.57.0
 - Rustup 1.24.3
 
 #### Packages
@@ -104,14 +103,14 @@
 - cargo-audit 0.16.0
 - cargo-outdated v0.10.2
 - cbindgen 0.20.0
-- Clippy 0.1.56
+- Clippy 0.1.57
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
 - Google Chrome 96.0.4664.45
 - Chrome Driver 96.0.4664.45
-- Microsoft Edge 96.0.1054.34
-- Microsoft Edge Driver 96.0.1054.34
+- Microsoft Edge 96.0.1054.43
+- Microsoft Edge Driver 96.0.1054.43
 - Mozilla Firefox 94.0.2
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
@@ -141,28 +140,28 @@
 
 ### MSYS2
 - Pacman 6.0.1
+
 ##### Notes:
 ```
 Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
 ```
+
 ### Cached Tools
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.15.15 | x64          | GOROOT_1_15_X64      |
-| 1.16.10 (Default) | x64          | GOROOT_1_16_X64      |
-| 1.17.3  | x64          | GOROOT_1_17_X64      |
-
+| 1.16.11 (Default) | x64          | GOROOT_1_16_X64      |
+| 1.17.4  | x64          | GOROOT_1_17_X64      |
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
 | 12.22.7 | x64          |
-| 14.18.1 | x64          |
-| 16.13.0 | x64          |
-
+| 14.18.2 | x64          |
+| 16.13.1 | x64          |
 
 #### Python
 | Version | Architecture |
@@ -172,13 +171,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.9.9 (Default) | x64, x86     |
 | 3.10.0  | x64, x86     |
 
-
 #### Ruby
 | Version | Architecture |
 | ------- | ------------ |
 | 2.7.5   | x64          |
 | 3.0.3 (Default) | x64          |
-
 
 #### PyPy
 | Python Version | PyPy Version |
@@ -186,8 +183,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.7.18         | PyPy 7.3.6 with MSC v.1929 64 bit (AMD64) |
 | 3.7.12         | PyPy 7.3.7 with MSC v.1929 64 bit (AMD64) |
 | 3.8.12         | PyPy 7.3.7 with MSC v.1929 64 bit (AMD64) |
-
-
 
 ### Databases
 #### PostgreSQL
@@ -202,20 +197,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | UserName             | postgres                                                                                                                             |
 | Password             | root                                                                                                                                 |
 
-
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
 | 5.0.4.0 | MongoDB     | Running       | Automatic        |
-
-
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.4.0
 - DacFx 15.0.5282.3
 - MySQL 8.0.26.0
 - SQLPS 1.0
-
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
@@ -226,10 +217,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
 | ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.0.31912.275 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.0.31919.166 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions:
-
 | Package                                                                   | Version        |
 | ------------------------------------------------------------------------- | -------------- |
 | Component.Android.NDK.R21E                                                | 17.0.31804.368 |
@@ -409,13 +399,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.NetWeb                                    | 17.0.31804.368 |
 | Microsoft.VisualStudio.Workload.Node                                      | 17.0.31804.368 |
 | Microsoft.VisualStudio.Workload.Office                                    | 17.0.31804.368 |
-| Microsoft.VisualStudio.Workload.Python                                    | 17.0.31804.368 |
+| Microsoft.VisualStudio.Workload.Python                                    | 17.0.31919.74  |
 | Microsoft.VisualStudio.Workload.Universal                                 | 17.0.31804.368 |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 17.0.31804.368 |
 | wasm.tools                                                                | 6.0.21.52210   |
 
 #### Microsoft Visual C++:
-
 | Name                                         | Architecture | Version     |
 | -------------------------------------------- | ------------ | ----------- |
 | Microsoft Visual C++ 2013 Additional Runtime | x64          | 12.0.40660  |
@@ -460,6 +449,7 @@ Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
 ```
+
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
@@ -506,6 +496,5 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:11db21e65550210228cf257c56fe81bd40bd99912b597d277ab869e38215bfde  | 2021-11-09 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:c093aac93e3771a85832fcf27d21dc5c12751091255a79be5a05d9bfb48c6a73  | 2021-11-03 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:35b987eaca23cce6456c07adea57a155352dce50adf0539fd57e68f3af3e8e29  | 2021-11-03 |
-
 
 
