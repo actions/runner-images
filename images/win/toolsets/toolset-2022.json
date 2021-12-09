@@ -266,7 +266,8 @@
             { "name": "yarn", "test": "yarn --version" },
             { "name": "newman", "test": "newman --version" },
             { "name": "lerna", "test": "lerna --version" },
-            { "name": "gulp-cli", "test": "gulp --version" }
+            { "name": "gulp-cli", "test": "gulp --version" },
+            { "name": "grunt-cli", "test": "grunt --version" }
         ]
     },
     "dotnet": {
