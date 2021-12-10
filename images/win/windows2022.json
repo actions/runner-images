@@ -139,7 +139,6 @@
         },
         {
             "type": "windows-restart",
-            "restart_check_command": "powershell -command \"& {while ( (Get-WindowsOptionalFeature -Online -FeatureName Containers -ErrorAction SilentlyContinue).State -ne 'Enabled' ) { Start-Sleep 30; Write-Output 'InProgress' }}\"",
             "check_registry": true,
             "restart_timeout": "10m"
         },
