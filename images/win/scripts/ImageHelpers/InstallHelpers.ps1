@@ -252,7 +252,6 @@ function Install-VsixExtension
         [string] $Url,
         [Parameter(Mandatory = $true)]
         [string] $Name,
-        [string] $InstallPath = ${env:ProgramFiles(x86)},
         [string] $FilePath,
         [Parameter(Mandatory = $true)]
         [string] $VSversion,
@@ -271,15 +270,17 @@ function Install-VsixExtension
     $vsEdition = (Get-ToolsetContent).visualStudio.edition
     try
     {
+        $installPath = ${env:ProgramFiles(x86)}
+        
         if (Test-IsWin22)
         {
-            $InstallPath = ${env:ProgramFiles}
+            $installPath = ${env:ProgramFiles}
         }
         
         #There are 2 types of packages at the moment - exe and vsix
         if ($Name -match "vsix")
         {
-            $process = Start-Process -FilePath "${InstallPath}\Microsoft Visual Studio\${VSversion}\${vsEdition}\Common7\IDE\VSIXInstaller.exe" -ArgumentList $argumentList -Wait -PassThru
+            $process = Start-Process -FilePath "${installPath}\Microsoft Visual Studio\${VSversion}\${vsEdition}\Common7\IDE\VSIXInstaller.exe" -ArgumentList $argumentList -Wait -PassThru
         }
         else
         {
