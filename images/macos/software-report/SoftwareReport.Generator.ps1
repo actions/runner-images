@@ -31,22 +31,22 @@ $markdown += New-MDList -Style Unordered -Lines ("Image Version: {0}" -f $ImageN
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 $languageAndRuntimeList = @(
-    (Get-BashVersion),
-    (Get-MSBuildVersion),
-    (Get-NodeVersion),
-    (Get-NVMVersion),
-    (Get-NVMNodeVersionList),
-    (Get-PerlVersion),
-    (Get-PythonVersion),
-    (Get-Python3Version),
-    (Get-RubyVersion),
-    (Get-DotnetVersionList),
-    (Get-GoVersion),
-    (Get-JuliaVersion),
-    (Get-KotlinVersion),
-    (Get-PHPVersion),
-    (Get-ClangLLVMVersion),
-    (Get-GccVersion),
+    (Get-BashVersion)
+    (Get-MSBuildVersion)
+    (Get-NodeVersion)
+    (Get-NVMVersion)
+    (Get-NVMNodeVersionList)
+    (Get-PerlVersion)
+    (Get-PythonVersion)
+    (Get-Python3Version)
+    (Get-RubyVersion)
+    (Get-DotnetVersionList)
+    (Get-GoVersion)
+    (Get-JuliaVersion)
+    (Get-KotlinVersion)
+    (Get-PHPVersion)
+    (Get-ClangLLVMVersion)
+    (Get-GccVersion)
     (Get-FortranVersion)
 )
 
