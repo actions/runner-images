@@ -453,19 +453,23 @@
     "node": {
         "default": "16"
     },
-    "Mysql": {
+    "mysql": {
         "version": "5.7"
     },
     "mongodb": {
         "version": "5.0"
     },
     "php": {
-        "version": "8.0"
+        "version": "8.1"
     },
     "llvm": {
         "version": "13"
     },
     "postgresql": {
         "version": "14"
+    },
+    "kotlin": {
+        "version": "latest",
+        "binary_name": "kotlin-compiler"
     }
 }

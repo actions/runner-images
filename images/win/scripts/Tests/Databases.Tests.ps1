@@ -65,7 +65,7 @@ Describe "PostgreSQL" {
 
 Describe "MySQL" {
     It "MySQL CLI" {
-        $MysqlMajorMinor = (Get-ToolsetContent).Mysql.version
-        mysql -V | Should -BeLike "*${MysqlMajorMinor}*"
+        $MysqlVersion = (Get-ToolsetContent).mysql.version
+        mysql -V | Should -BeLike "*${MysqlVersion}*"
     }
 }

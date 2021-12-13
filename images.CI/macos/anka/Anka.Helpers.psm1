@@ -13,7 +13,16 @@ function Push-AnkaTemplateToRegistry {
         [string] $TemplateName
     )
 
-    $command = "anka registry -a $RegistryUrl push -t $TagVersion $TemplateName"
+    # if registry uuid doesn't match than delete an image in registry
+    $images = anka --machine-readable registry --registry-path $RegistryUrl list | ConvertFrom-Json | ForEach-Object body
+    $images | Where-Object name -eq $TemplateName | ForEach-Object {
+        $id = $_.id
+        Show-StringWithFormat "Deleting '$TemplateName[$id]' VM and '$TagVersion' tag"
+        $uri = '{0}/registry/vm?id={1}' -f $RegistryUrl, $id
+        Invoke-WebRequest -Uri $uri -Method Delete | Out-Null
+    }
+
+    $command = "anka registry --registry-path $RegistryUrl push --force --tag $TagVersion $TemplateName"
     Invoke-AnkaCommand -Command $command
 }
 

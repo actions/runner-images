@@ -31,34 +31,24 @@ $markdown += New-MDList -Style Unordered -Lines ("Image Version: {0}" -f $ImageN
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 $languageAndRuntimeList = @(
-    (Get-BashVersion),
-    (Get-MSBuildVersion),
-    (Get-NodeVersion),
-    (Get-NVMVersion),
-    (Get-NVMNodeVersionList),
-    (Get-PerlVersion),
-    (Get-PythonVersion),
-    (Get-Python3Version),
-    (Get-RubyVersion),
-    (Get-DotnetVersionList),
-    (Get-GoVersion),
-    (Get-JuliaVersion),
+    (Get-BashVersion)
+    (Get-MSBuildVersion)
+    (Get-NodeVersion)
+    (Get-NVMVersion)
+    (Get-NVMNodeVersionList)
+    (Get-PerlVersion)
+    (Get-PythonVersion)
+    (Get-Python3Version)
+    (Get-RubyVersion)
+    (Get-DotnetVersionList)
+    (Get-GoVersion)
+    (Get-JuliaVersion)
     (Get-KotlinVersion)
+    (Get-PHPVersion)
+    (Get-ClangLLVMVersion)
+    (Get-GccVersion)
+    (Get-FortranVersion)
 )
-
-if ($os.IsLessThanMonterey) {
-    $languageAndRuntimeList += @(
-        (Get-PHPVersion)
-    )
-}
-
-if ($os.IsLessThanMonterey) {
-    $languageAndRuntimeList += @(
-        (Get-GccVersion)
-        (Get-FortranVersion)
-        (Get-ClangLLVMVersion)
-    )
-}
 
 if ($os.IsLessThanBigSur) {
     $languageAndRuntimeList += @(
@@ -83,17 +73,17 @@ $packageManagementList = @(
     (Get-YarnVersion),
     (Get-NuGetVersion),
     (Get-RubyGemsVersion),
-    (Get-ComposerVersion)
+    (Get-ComposerVersion),
+    (Get-CarthageVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $packageManagementList += @(
-        (Get-CarthageVersion),
         (Get-CondaVersion)
     )
 }
 
-if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
+if ($os.IsHigherThanMojave) {
     $packageManagementList += @(
         (Get-VcpkgVersion)
     )
@@ -139,12 +129,14 @@ $utilitiesList = @(
     (Get-MongodVersion),
     (Get-7zipVersion),
     (Get-BsdtarVersion),
-    (Get-GnuTarVersion)
+    (Get-GnuTarVersion),
+    (Get-GPGVersion),
+    (Get-SwitchAudioOsxVersion),
+    (Get-SoxVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
-        (Get-GPGVersion),
         (Get-HelmVersion)
     )
 }
@@ -163,15 +155,7 @@ if ($os.IsLessThanBigSur) {
     )
 }
 
-if ($os.IsLessThanMonterey) {
-    $utilitiesList += @(
-        (Get-SwitchAudioOsxVersion),
-        (Get-SoxVersion)
-    )
-}
-
 $markdown += New-MDList -Style Unordered -Lines ($utilitiesList | Sort-Object)
-$markdown += New-MDNewLine
 
 # Tools
 $markdown += New-MDHeader "Tools" -Level 3
@@ -231,6 +215,7 @@ $markdown += New-MDNewLine
 
 # Toolcache
 $markdown += Build-ToolcacheSection
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Rust Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(

@@ -93,6 +93,10 @@ function Get-MacOSInstaller {
         sudo rm -rf "$previousInstallerPath"
     }
 
+    # Clear LastRecommendedMajorOSBundleIdentifier to prevent error during fetching updates
+    # Install failed with error: Update not found
+    Update-SoftwareBundle
+
     # Download macOS installer
     Write-Host "`t[*] Requested macOS '$MacOSVersion' version installer found, fetching it from Apple Software Update"
     $result = Invoke-WithRetry { /usr/sbin/softwareupdate --fetch-full-installer --full-installer-version $MacOSVersion } {$LASTEXITCODE -eq 0} | Out-String
@@ -323,4 +327,13 @@ function Wait-LoginWindow {
         $proc.Contains($lw) -and $proc.Contains($ctk)
     }
     Invoke-WithRetry -RetryCount $RetryCount -Seconds $Seconds -BreakCondition $condition
+}
+
+function Update-SoftwareBundle {
+    $productVersion = sw_vers -productVersion
+
+    if ( $productVersion.StartsWith('11.') ) {
+        sudo rm -rf /Library/Preferences/com.apple.commerce.plist
+        sudo /usr/bin/defaults delete /Library/Preferences/com.apple.SoftwareUpdate.plist LastRecommendedMajorOSBundleIdentifier | Out-Null
+    }
 }

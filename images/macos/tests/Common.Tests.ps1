@@ -9,7 +9,7 @@ Describe ".NET" {
     }
 }
 
-Describe "GCC" -Skip:($os.IsMonterey) {
+Describe "GCC" {
     $testCases = Get-ToolsetValue -KeyPath gcc.versions | ForEach-Object { @{Version = $_} }
 
     It "GCC <Version>" -TestCases $testCases {
@@ -33,7 +33,7 @@ Describe "GCC" -Skip:($os.IsMonterey) {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsMojave -or $os.IsMonterey) {
+Describe "vcpkg" -Skip:($os.IsMojave) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
