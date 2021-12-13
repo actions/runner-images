@@ -4,7 +4,7 @@
 ################################################################################
 
 # Retrieve the name of the CodeQL bundle preferred by the Action (in the format codeql-bundle-YYYYMMDD).
-$CodeQLBundleName = (Invoke-RestMethod "https://raw.githubusercontent.com/github/codeql-action/main/src/defaults.json").bundleVersion
+$CodeQLBundleName = (Invoke-RestMethod "https://raw.githubusercontent.com/github/codeql-action/v1/src/defaults.json").bundleVersion
 # Convert the bundle name to a version number (0.0.0-YYYYMMDD).
 $CodeQLBundleVersion = "0.0.0-" + $CodeQLBundleName.split("-")[-1]
 
