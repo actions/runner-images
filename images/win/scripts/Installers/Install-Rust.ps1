@@ -14,7 +14,7 @@ $rustupPath = Start-DownloadWithRetry -Url "https://win.rustup.rs/x86_64" -Name 
 # Install Rust by running rustup-init.exe (disabling the confirmation prompt with -y)
 & $rustupPath -y --default-toolchain=stable --profile=minimal
 
-# Add %USERPROFILE%\.dotnet\tools to USER PATH
+# Add %USERPROFILE%\.cargo\bin to USER PATH
 Add-DefaultPathItem "%USERPROFILE%\.cargo\bin"
 # Add Rust binaries to the path
 $env:Path += ";$env:CARGO_HOME\bin"
