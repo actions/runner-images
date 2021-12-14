@@ -241,7 +241,9 @@
             "Component.MDD.Linux",
             "wasm.tools"
         ],
-        "vsix": []
+        "vsix": [
+            "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects"
+        ]
     },
     "docker": {
         "images": [
