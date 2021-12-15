@@ -56,6 +56,7 @@ $packageManagementList = @(
     (Get-HelmVersion),
     (Get-NPMVersion),
     (Get-NugetVersion),
+    (Get-ParcelVersion),
     (Get-PipxVersion),
     (Get-PipVersion),
     (Get-RubyGemsVersion),
