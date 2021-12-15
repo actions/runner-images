@@ -174,6 +174,11 @@ function Get-YarnVersion {
     return "Yarn $yarnVersion"
 }
 
+function Get-ParcelVersion {
+    $parcelVersion = parcel --version
+    return "Parcel $parcelVersion"
+}
+
 function Get-PipVersion {
     $result = Get-CommandResult "pip --version"
     $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
