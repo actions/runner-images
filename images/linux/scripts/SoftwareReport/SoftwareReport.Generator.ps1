@@ -68,7 +68,6 @@ $packageManagementList = @(
         (Get-NpmVersion),
         (Get-YarnVersion),
         (Get-PipxVersion),
-        (Get-ParcelVersion),
         (Get-PipVersion),
         (Get-Pip3Version),
         (Get-VcpkgVersion)
@@ -131,6 +130,7 @@ $toolsList = @(
     (Get-NvmVersion),
     (Get-OpensslVersion),
     (Get-PackerVersion),
+    (Get-ParcelVersion),
     (Get-PhantomJSVersion),
     (Get-PodManVersion),
     (Get-PulumiVersion),
@@ -214,7 +214,7 @@ $browsersAndDriversList = @(
     (Get-ChromeDriverVersion),
     (Get-FirefoxVersion),
     (Get-GeckodriverVersion),
-    (Get-ChromiumVersion),    
+    (Get-ChromiumVersion),
     (Get-SeleniumVersion)
 )
 
