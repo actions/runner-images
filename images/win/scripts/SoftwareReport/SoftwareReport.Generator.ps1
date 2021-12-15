@@ -56,7 +56,6 @@ $packageManagementList = @(
     (Get-HelmVersion),
     (Get-NPMVersion),
     (Get-NugetVersion),
-    (Get-ParcelVersion),
     (Get-PipxVersion),
     (Get-PipVersion),
     (Get-RubyGemsVersion),
@@ -122,6 +121,7 @@ $toolsList = @(
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
         (Get-GoogleCloudSDKVersion),
+        (Get-ParcelVersion),
         (Get-ServiceFabricSDKVersion)
     )
 }
