@@ -406,7 +406,7 @@
             { "name": "cordova" },
             { "name": "grunt-cli", "test": "grunt --version" },
             { "name": "gulp-cli", "test": "gulp --version" },
-            { "name": "parcel-bundler" },
+            { "name": "parcel", "test": "parcel --version"},
             { "name": "webpack" },
             { "name": "webpack-cli" },
             { "name": "node-sass" }
