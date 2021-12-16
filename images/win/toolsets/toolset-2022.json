@@ -221,6 +221,7 @@
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
+            "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
             "Microsoft.VisualStudio.Workload.Azure",
             "Microsoft.VisualStudio.Workload.Data",
@@ -240,7 +241,9 @@
             "Component.MDD.Linux",
             "wasm.tools"
         ],
-        "vsix": []
+        "vsix": [
+            "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects"
+        ]
     },
     "docker": {
         "images": [
