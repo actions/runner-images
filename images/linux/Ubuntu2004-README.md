@@ -1,6 +1,6 @@
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.11.0-1022-azure
-- Image Version: 20211209.3
+- Image Version: 20211214.2
 
 ## Installed Software
 ### Language and Runtime
@@ -20,19 +20,19 @@
 - Python 3.8.10
 - Python3 3.8.10
 - Ruby 2.7.0p0
-- Swift 5.5.1
+- Swift 5.5.2
 
 ### Package Management
 - cpan 1.64
 - Helm 3.7.2
-- Homebrew 3.3.7
+- Homebrew 3.3.8
 - Miniconda 4.10.3
 - Npm 8.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 0.16.4
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<14543ba18>)
+- Vcpkg  (build from master \<a9ff505c5>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -46,30 +46,30 @@
 - Gradle 7.3.1
 - Lerna 4.0.0
 - Maven 3.8.4
-- Sbt 1.5.5
+- Sbt 1.5.6
 
 ### Tools
 - Ansible 2.12.1
 - apt-fast 1.9.11
 - AzCopy 10.13.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.2.2
-- Bazelisk 1.10.1
+- Bazelisk 1.11.0
 - Bicep 0.4.1008
 - Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.22.1
 - CodeQL Action Bundle 2.7.3
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.1.1+azure-2
+- Docker Compose v2 2.2.2+azure-1
 - Docker-Buildx 0.7.1
-- Docker-Moby Client 20.10.11+azure-2
-- Docker-Moby Server 20.10.11+azure-2
-- Fastlane 2.198.1
+- Docker-Moby Client 20.10.11+azure-3
+- Docker-Moby Server 20.10.11+azure-3
+- Fastlane 2.199.0
 - Git 2.34.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.0.2 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.138.0
+- HHVM (HipHop VM) 4.139.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.23.0
@@ -96,8 +96,8 @@
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.100
-- AWS CLI 2.4.5
+- Alibaba Cloud CLI 3.0.101
+- AWS CLI 2.4.6
 - AWS CLI Session manager plugin 1.2.279.0
 - AWS SAM CLI 1.36.0
 - Azure CLI (azure-cli) 2.31.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
@@ -105,8 +105,8 @@
 - GitHub CLI 2.3.0
 - Google Cloud SDK 366.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 8.0.18
-- OpenShift CLI 4.9.10
+- Netlify CLI 8.1.1
+- OpenShift CLI 4.9.11
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
@@ -151,9 +151,9 @@
 - Rustfmt 1.4.37
 
 ### Browsers and Drivers
-- Google Chrome 96.0.4664.93
+- Google Chrome 96.0.4664.110
 - ChromeDriver 96.0.4664.45
-- Mozilla Firefox 94.0
+- Mozilla Firefox 95.0
 - Geckodriver 0.30.0
 - Chromium 96.0.4664.0
 - Selenium server 4.1.0
@@ -187,8 +187,8 @@
 ### Cached Tools
 #### Go
 - 1.15.15
-- 1.16.11
-- 1.17.4
+- 1.16.12
+- 1.17.5
 
 #### Node.js
 - 12.22.7
@@ -208,7 +208,7 @@
 - 3.7.12
 - 3.8.12
 - 3.9.9
-- 3.10.0
+- 3.10.1
 
 #### Ruby
 - 2.5.9
@@ -220,8 +220,8 @@
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.15/x64 | x64          |
-| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.11/x64 | x64          |
-| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.4/x64  | x64          |
+| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.12/x64 | x64          |
+| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.5/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.2.0
