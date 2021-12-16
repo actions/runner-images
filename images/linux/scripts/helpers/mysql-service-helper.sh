@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 #
 # Temporary fix for the https://github.com/actions/virtual-environments/issues/4732 issue
 # Taken from the official ubuntu:20.04 docker container
