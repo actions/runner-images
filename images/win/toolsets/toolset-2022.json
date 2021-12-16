@@ -241,7 +241,9 @@
             "Component.MDD.Linux",
             "wasm.tools"
         ],
-        "vsix": []
+        "vsix": [
+            "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects"
+        ]
     },
     "docker": {
         "images": [
@@ -314,6 +316,9 @@
     },
     "mongodb": {
         "version": "5.0"
+    },
+    "nsis": {
+        "version": "3.08"
     },
     "php": {
         "version": "8.1"
