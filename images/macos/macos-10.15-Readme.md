@@ -5,7 +5,7 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1519)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20211207.1
+- Image Version: 20211212.1
 
 ## Installed Software
 ### Language and Runtime
@@ -46,7 +46,7 @@
 - Pip 21.3.1 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.33
-- Vcpkg 2021 (build from master \<7bb175eaf>)
+- Vcpkg 2021 (build from master \<48bba4f9c>)
 - Yarn 1.22.15
 
 #### Environment variables
@@ -59,14 +59,14 @@
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.4
 - Gradle 7.3.1
-- Sbt 1.5.5
+- Sbt 1.5.6
 
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
 - azcopy 10.13.0
 - bazel 4.2.2
-- bazelisk 1.10.1
+- bazelisk 1.11.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.80.0
 - Git LFS: 3.0.2
@@ -76,7 +76,7 @@
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.2
 - gpg (GnuPG) 2.3.3
-- helm v3.7.1+g1d11fcb
+- helm v3.7.2+g663a896
 - Hub CLI: 2.14.2
 - jq 1.6
 - mongo v5.0.4
@@ -96,19 +96,19 @@
 ### Tools
 - Aliyun CLI 3.0.100
 - App Center CLI 2.10.6
-- AWS CLI 2.4.5
+- AWS CLI 2.4.6
 - AWS SAM CLI 1.36.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.31.0
 - Bicep CLI 0.4.1008
 - Cabal 3.6.2.0
-- Cmake 3.22.0
-- Fastlane 2.198.1
+- Cmake 3.22.1
+- Fastlane 2.199.0
 - GHC 9.2.1
 - GHCup 0.1.17.4
 - Jazzy 0.14.1
 - Stack 2.7.3
-- SwiftFormat 0.49.0
+- SwiftFormat 0.49.1
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -121,9 +121,9 @@
 - SafariDriver 15.1 (15612.2.9.1.30)
 - Google Chrome 96.0.4664.93 
 - ChromeDriver 96.0.4664.45
-- Microsoft Edge 96.0.1054.43 
-- MSEdgeDriver 96.0.1054.43
-- Mozilla Firefox 94.0.2
+- Microsoft Edge 96.0.1054.53 
+- MSEdgeDriver 96.0.1054.53
+- Mozilla Firefox 95.0
 - geckodriver 0.30.0
 - Selenium server 4.1.0
 
@@ -176,8 +176,8 @@
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.11 | x64          | GOROOT_1_16_X64      |
-| 1.17.4  | x64          | GOROOT_1_17_X64      |
+| 1.16.12 | x64          | GOROOT_1_16_X64      |
+| 1.17.5  | x64          | GOROOT_1_17_X64      |
 
 ### Rust Tools
 - Cargo 1.57.0
@@ -348,21 +348,21 @@
 | watchOS 7.2 | 12.3<br>12.4                   | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm                                                                                                                                                                                                                                                                                                      |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                         |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 4.0                                                                                                                                                                                                                             |
-| Android Emulator           | 31.1.4                                                                                                                                                                                                                          |
-| Android SDK Build-tools    | 31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
-| Android SDK Platforms      | android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                                    |
-| Android SDK Platform-Tools | 31.0.3                                                                                                                                                                                                                          |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                          |
-| CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                |
-| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                        |
-| Google Play services       | 49                                                                                                                                                                                                                              |
-| Google Repository          | 58                                                                                                                                                                                                                              |
-| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.4.7075529 (default)<br>22.1.7171670<br>23.1.7779620                                                                                                                                          |
-| SDK Patch Applier v4       | 1                                                                                                                                                                                                                               |
-| Intel HAXM                 | 7.6.5                                                                                                                                                                                                                           |
+| Package Name               | Version                                                                                                                                                                                                                                   |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 4.0                                                                                                                                                                                                                                       |
+| Android Emulator           | 31.1.4                                                                                                                                                                                                                                    |
+| Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
+| Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                        |
+| Android SDK Platform-Tools | 31.0.3                                                                                                                                                                                                                                    |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                    |
+| CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                          |
+| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                  |
+| Google Play services       | 49                                                                                                                                                                                                                                        |
+| Google Repository          | 58                                                                                                                                                                                                                                        |
+| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.4.7075529 (default)<br>22.1.7171670<br>23.1.7779620                                                                                                                                                    |
+| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                         |
+| Intel HAXM                 | 7.6.5                                                                                                                                                                                                                                     |
 
 #### Environment variables
 | Name                    | Value                                                                                              |

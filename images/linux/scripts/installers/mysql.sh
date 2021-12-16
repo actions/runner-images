@@ -45,6 +45,11 @@ if isUbuntu20 ; then
         dpkg -i $package
     done
 
+    # Install the /etc/init.d/mysql script for backward compatibility with sysVinit
+    cp $HELPER_SCRIPTS/mysql-service-helper.sh /etc/init.d/mysql
+    # Fix permission
+    chmod 755 /etc/init.d/mysql
+
     # Start mysql to change its settings
     systemctl start mysql.service
     # Enable mysql log-in without sudo by activation of the mysql_native_password plugin
