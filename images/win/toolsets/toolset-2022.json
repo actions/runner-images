@@ -187,6 +187,7 @@
             "Microsoft.VisualStudio.Component.TeamOffice",
             "Microsoft.VisualStudio.Component.TestTools.CodedUITest",
             "Microsoft.VisualStudio.Component.TestTools.WebLoadTest",
+            "Microsoft.VisualStudio.Component.UWP.VC.ARM64",
             "Microsoft.VisualStudio.Component.VC.CLI.Support",
             "Microsoft.VisualStudio.Component.VC.CMake.Project",
             "Microsoft.VisualStudio.Component.VC.DiagnosticTools",
@@ -221,6 +222,7 @@
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
+            "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
             "Microsoft.VisualStudio.Workload.Azure",
             "Microsoft.VisualStudio.Workload.Data",
@@ -240,7 +242,9 @@
             "Component.MDD.Linux",
             "wasm.tools"
         ],
-        "vsix": []
+        "vsix": [
+            "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects"
+        ]
     },
     "docker": {
         "images": [
@@ -313,6 +317,9 @@
     },
     "mongodb": {
         "version": "5.0"
+    },
+    "nsis": {
+        "version": "3.08"
     },
     "php": {
         "version": "8.1"
