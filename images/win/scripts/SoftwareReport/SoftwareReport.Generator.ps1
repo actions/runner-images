@@ -121,6 +121,7 @@ $toolsList = @(
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
         (Get-GoogleCloudSDKVersion),
+        (Get-ParcelVersion),
         (Get-ServiceFabricSDKVersion)
     )
 }
