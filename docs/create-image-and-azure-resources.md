@@ -15,8 +15,7 @@ After successful image generation, a snapshot of the temporary VM will be conver
 - `Azure Az Powershell module` - https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
 - `Git for Windows` - https://gitforwindows.org/
 
-### Azure DevOps self-hosted pool requirements
-To connect to a temporary VM packer use WinRM or SSH connections on public IP interfaces.
+> To connect to a temporary VM packer uses WinRM or SSH connections on public IP interfaces.
 If you use a build agent located in an Azure subscription, please make sure that HTTPS/SSH ports are allowed for incoming/outgoing connections.
 In case of firewall restrictions, prohibiting connections from public addresses, private virtual network resources can be deployed and passed as arguments to the packer. This approach allows virtual machines to use private connections inside VLAN.
 
