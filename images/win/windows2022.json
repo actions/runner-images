@@ -140,11 +140,11 @@
         {
             "type": "windows-restart",
             "check_registry": true,
+            "restart_check_command": "powershell -command \"& {while ( (Get-WindowsOptionalFeature -Online -FeatureName Containers -ErrorAction SilentlyContinue).State -ne 'Enabled' ) { Start-Sleep 30; Write-Output 'InProgress' }}\"",
             "restart_timeout": "10m"
         },
         {
             "type": "powershell",
-            "pause_before": "2m",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"

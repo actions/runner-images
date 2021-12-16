@@ -298,7 +298,7 @@
             "command": "n"
         },
         {
-            "name": "parcel-bundler",
+            "name": "parcel",
             "command": "parcel"
         },
         {

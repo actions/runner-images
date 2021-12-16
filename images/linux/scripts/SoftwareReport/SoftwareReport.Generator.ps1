@@ -130,6 +130,7 @@ $toolsList = @(
     (Get-NvmVersion),
     (Get-OpensslVersion),
     (Get-PackerVersion),
+    (Get-ParcelVersion),
     (Get-PhantomJSVersion),
     (Get-PodManVersion),
     (Get-PulumiVersion),
@@ -213,7 +214,7 @@ $browsersAndDriversList = @(
     (Get-ChromeDriverVersion),
     (Get-FirefoxVersion),
     (Get-GeckodriverVersion),
-    (Get-ChromiumVersion),    
+    (Get-ChromiumVersion),
     (Get-SeleniumVersion)
 )
 
