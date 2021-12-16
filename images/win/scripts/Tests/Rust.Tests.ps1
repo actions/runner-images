@@ -1,10 +1,16 @@
 Describe "Rust" {
+    BeforeAll {
+        $env:RUSTUP_HOME = "C:\Users\Default\.rustup"
+        $env:CARGO_HOME = "C:\Users\Default\.cargo"
+        $env:Path += ";$env:CARGO_HOME\bin"
+    }
+
     $rustTools = @(
-        @{ToolName = "rustup"; binPath = "C:\Rust\.cargo\bin\rustup.exe"}
-        @{ToolName = "rustc"; binPath = "C:\Rust\.cargo\bin\rustc.exe"}
-        @{ToolName = "cargo"; binPath = "C:\Rust\.cargo\bin\cargo.exe"}
-        @{ToolName = "cargo audit"; binPath = "C:\Rust\.cargo\bin\cargo-audit.exe"}
-        @{ToolName = "cargo outdated"; binPath = "C:\Rust\.cargo\bin\cargo-outdated.exe"}
+        @{ToolName = "rustup"; binPath = "C:\Users\Default\.cargo\bin\rustup.exe"}
+        @{ToolName = "rustc"; binPath = "C:\Users\Default\.cargo\bin\rustc.exe"}
+        @{ToolName = "cargo"; binPath = "C:\Users\Default\.cargo\bin\cargo.exe"}
+        @{ToolName = "cargo audit"; binPath = "C:\Users\Default\.cargo\bin\cargo-audit.exe"}
+        @{ToolName = "cargo outdated"; binPath = "C:\Users\Default\.cargo\bin\cargo-outdated.exe"}
     )
 
     $rustEnvNotExists = @(
@@ -12,8 +18,8 @@ Describe "Rust" {
         @{envVar = "CARGO_HOME"}
     )
 
-    It "C:\Rust\.rustup and C:\Rust\.cargo folders exist" {
-        "C:\Rust\.rustup", "C:\Rust\.cargo" | Should -Exist
+    It "C:\Users\Default\.rustup and C:\Users\Default\.cargo folders exist" {
+        "C:\Users\Default\.rustup", "C:\Users\Default\.cargo" | Should -Exist
     }
 
     It "<envVar> environment variable does not exist" -TestCases $rustEnvNotExists {
