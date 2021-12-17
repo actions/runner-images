@@ -303,7 +303,7 @@ function Get-PackerVersion {
 }
 
 function Get-OpenSSLVersion {
-    $opensslVersion = Get-Item /usr/local/opt/openssl@1.1 | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
+    $opensslVersion = Get-Item /usr/local/opt/openssl@3 | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
     return $opensslVersion
 }
 
