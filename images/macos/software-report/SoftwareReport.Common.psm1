@@ -517,6 +517,11 @@ function Get-JazzyVersion {
     return "Jazzy $jazzyVersion"
 }
 
+function Get-ZlibVersion {
+	$zlibVersion = (brew info zlib)[0] | Take-Part -Part 2
+	return "Zlib $zlibVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{

@@ -98,7 +98,8 @@
             "subversion",
             "swig",
             "zstd",
-            "gmp"
+            "gmp",
+            "zlib"
         ],
         "cask_packages": [
             "julia"
