@@ -7,6 +7,7 @@ before=$(df / -Pm | awk 'NR==2{print $4}')
 # It removes everything but the lock file from /var/cache/apt/archives/ and /var/cache/apt/archives/partial
 apt-get clean
 rm -rf /tmp/*
+rm -rf /root/.cache
 
 # journalctl
 if command -v journalctl; then
