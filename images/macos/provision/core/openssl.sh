@@ -1,13 +1,13 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
-echo "Install openssl@1.1"
-brew_smart_install "openssl@1.1"
+echo "Install openssl@3"
+brew_smart_install "openssl@3"
 
-# Symlink brew openssl@1.1 to `/usr/local/bin` as Homebrew refuses
-ln -sf $(brew --prefix openssl@1.1)/bin/openssl /usr/local/bin/openssl
+# Symlink brew openssl@3 to `/usr/local/bin` as Homebrew refuses
+ln -sf $(brew --prefix openssl@3)/bin/openssl /usr/local/bin/openssl
 
 # Most of buildsystems and scripts look up ssl here
-ln -sf $(brew --cellar openssl@1.1)/1.1* /usr/local/opt/openssl
+ln -sf $(brew --cellar openssl@3)/3* /usr/local/opt/openssl
 
 invoke_tests "OpenSSL"
