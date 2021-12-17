@@ -224,7 +224,8 @@
             "swiftformat",
             "swig",
             "xctool",
-            "zstd"
+            "zstd",
+            "zlib"
         ],
         "cask_packages": [
             "julia",

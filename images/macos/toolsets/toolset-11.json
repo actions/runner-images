@@ -183,7 +183,8 @@
             "subversion",
             "swiftformat",
             "swig",
-            "zstd"
+            "zstd",
+            "zlib"
         ],
         "cask_packages": [
             "julia"
