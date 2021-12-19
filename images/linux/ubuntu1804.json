@@ -318,7 +318,7 @@
         },
         {
             "type": "shell",
-            "script": "{{template_dir}}/scripts/base/snap.sh"
+            "script": "{{template_dir}}/scripts/base/snap.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
