@@ -97,13 +97,18 @@
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 
-- Rust 
-- Rustdoc 
+- Cargo 1.57.0
+- Rust 1.57.0
+- Rustdoc 1.57.0
 - Rustup 1.24.3
 
 #### Packages
 - bindgen 0.59.2
+- cargo-audit 0.16.0
+- cargo-outdated v0.10.2
+- cbindgen 0.20.0
+- Clippy 0.1.57
+- Rustfmt 1.4.37
 
 ### Browsers and webdrivers
 - Google Chrome 96.0.4664.110
