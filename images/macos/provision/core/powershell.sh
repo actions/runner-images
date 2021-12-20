@@ -2,7 +2,16 @@
 source ~/utils/utils.sh
 
 echo Installing PowerShell...
-brew install --cask powershell
+psRelease=$(curl -s "https://api.github.com/repos/PowerShell/PowerShell/releases/latest")
+psDownloadUrl=$(echo $psRelease | jq -r '.assets[].browser_download_url | select(contains("osx-x64.pkg"))' | head -n 1)
+download_with_retries $psDownloadUrl "/tmp" "powershell.pkg"
+
+# Work around the issue on macOS Big Sur 11.5 or higher for possible error message ("can't be opened because Apple cannot check it for malicious software") when installing the package
+if is_BigSur; then
+    xattr -rd com.apple.quarantine /tmp/powershell.pkg
+fi
+
+installer -pkg /tmp/powershell.pkg -target /
 
 # Install PowerShell modules
 psModules=$(get_toolset_value '.powershellModules[].name')
