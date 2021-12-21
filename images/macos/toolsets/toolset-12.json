@@ -100,7 +100,9 @@
             "swig",
             "zstd",
             "gmp",
-            "zlib"
+            "zlib",
+            "libxext",
+            "libxft"
         ],
         "cask_packages": [
             "julia"
