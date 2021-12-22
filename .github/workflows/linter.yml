@@ -28,6 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSON: true
           VALIDATE_MARKDOWN: true
+          FILTER_REGEX_EXCLUDE: .*images/*/.*-Readme.md
           DEFAULT_BRANCH: ${{ github.base_ref }}
 
       - name: Checking shebang lines in MacOS and Ubuntu releases.
