@@ -292,7 +292,12 @@ $markdown += Build-AndroidEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Miscellaneous" -Level 3
-$markdown += New-MDList -Lines @(Get-ZlibVersion) -Style Unordered
+$markdown += New-MDList -Style Unordered -Lines (@(
+    (Get-ZlibVersion),
+    (Get-LibXextVersion),
+    (Get-LibXftVersion)
+    ) | Sort-Object
+)
 
 #
 # Generate systeminfo.txt with information about image (for debug purpose)
