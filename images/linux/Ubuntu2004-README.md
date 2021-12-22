@@ -1,6 +1,10 @@
+| Announcements |
+|-|
+| [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
+***
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.11.0-1022-azure
-- Image Version: 20211214.2
+- Image Version: 20211219.1
 
 ## Installed Software
 ### Language and Runtime
@@ -32,7 +36,7 @@
 - Pip3 20.0.2
 - Pipx 0.16.4
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<a9ff505c5>)
+- Vcpkg  (build from master \<50fd3d995>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -43,10 +47,10 @@
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 7.3.1
+- Gradle 7.3.2
 - Lerna 4.0.0
 - Maven 3.8.4
-- Sbt 1.5.6
+- Sbt 1.5.7
 
 ### Tools
 - Ansible 2.12.1
@@ -54,7 +58,7 @@
 - AzCopy 10.13.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 4.2.2
 - Bazelisk 1.11.0
-- Bicep 0.4.1008
+- Bicep 0.4.1124
 - Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.22.1
 - CodeQL Action Bundle 2.7.3
@@ -69,10 +73,10 @@
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.139.0
+- HHVM (HipHop VM) 4.140.1
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.23.0
+- Kubectl 1.23.1
 - Kustomize 4.4.1
 - Leiningen 2.9.8
 - MediaInfo 19.09
@@ -80,9 +84,10 @@
 - Minikube 1.24.0
 - n 8.0.1
 - Newman 5.3.0
-- nvm 0.39.0
+- nvm 0.39.1
 - OpenSSL 1.1.1f  31 Mar 2020
 - Packer 1.7.8
+- Parcel 2.0.1
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Pulumi 3.19.0
@@ -90,22 +95,22 @@
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.1.0
+- Terraform 1.1.2
 - yamllint 1.26.3
 - yq 4.16.1
 - zstd 1.5.0 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.101
+- Alibaba Cloud CLI 3.0.102
 - AWS CLI 2.4.6
 - AWS CLI Session manager plugin 1.2.279.0
 - AWS SAM CLI 1.36.0
 - Azure CLI (azure-cli) 2.31.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.22.0
 - GitHub CLI 2.3.0
-- Google Cloud SDK 366.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 367.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 8.1.1
+- Netlify CLI 8.1.8
 - OpenShift CLI 4.9.11
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
@@ -166,7 +171,7 @@
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Core SDK
-- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.415 5.0.104 5.0.209 5.0.303 5.0.403
+- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.416 5.0.104 5.0.210 5.0.303 5.0.404
 
 ### Databases
 - MongoDB 5.0.5 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
@@ -191,7 +196,7 @@
 - 1.17.5
 
 #### Node.js
-- 12.22.7
+- 12.22.8
 - 14.18.2
 - 16.13.1
 
@@ -224,7 +229,7 @@
 | GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.5/x64  | x64          |
 
 ### PowerShell Tools
-- PowerShell 7.2.0
+- PowerShell 7.2.1
 
 #### PowerShell Modules
 | Module           | Version |
@@ -281,8 +286,8 @@
 | debian:11               | sha256:45ee40a844048c2f6d0105899c1a17733530b56d481612608aab5e2e4048570b  | 2021-12-02 |
 | debian:9                | sha256:aa78ddaa7f8a14bad8f940ebff5542377f91843f6dcc168e41a8628c6007e815  | 2021-12-02 |
 | moby/buildkit:latest    | sha256:d6c89b7085b106301645ddcc77cf64eb7b705ab507b72d52d130ac33f1300417  | 2021-11-18 |
-| node:12                 | sha256:eb92ed2473762b6d11736a4b4345aa3ef68f773999fe633bc4d9c91fa5d8f9d6  | 2021-12-02 |
-| node:12-alpine          | sha256:0eca266c5fe38ba93aebac00e45c9ac1bb7328b0702a6dc10e1a6ea543d49301  | 2021-11-13 |
+| node:12                 | sha256:f881ce751096a214a7e595b0ccf9ee7d6e38d8e0141d7e9d5880b2f242ad392b  | 2021-12-18 |
+| node:12-alpine          | sha256:8fad09b7620b2bc715cbba92e3313c64a797e453f560118576f1740a44584d5d  | 2021-12-18 |
 | node:14                 | sha256:52c884d7cf8509c27def168415a1ff23a0bd95d358dd5787ca77b60474dcb3db  | 2021-12-02 |
 | node:14-alpine          | sha256:7bcf853eeb97a25465cb385b015606c22e926f548cbd117f85b7196df8aa0d29  | 2021-12-02 |
 | node:16                 | sha256:89b59ce49929d8a8e230946bdb1b58c14cdbbb86c9a7397610afcecfce1be035  | 2021-12-02 |
@@ -367,8 +372,9 @@
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2                   |
 | xorriso                | 1.5.2-1                           |
-| xvfb                   | 2:1.20.11-1ubuntu1\~20.04.2       |
+| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.2       |
 | xz-utils               | 5.2.4-1ubuntu1                    |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
+
 
