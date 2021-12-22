@@ -225,7 +225,9 @@
             "swig",
             "xctool",
             "zstd",
-            "zlib"
+            "zlib",
+            "libxext",
+            "libxft"
         ],
         "cask_packages": [
             "julia",
