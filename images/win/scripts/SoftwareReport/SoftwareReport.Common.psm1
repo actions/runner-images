@@ -1,3 +1,9 @@
+function Initialize-RustEnvironment {
+    $env:RUSTUP_HOME = "C:\Users\Default\.rustup"
+    $env:CARGO_HOME = "C:\Users\Default\.cargo"
+    $env:Path += ";$env:CARGO_HOME\bin"
+}
+
 function Get-OSName {
     return (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
@@ -14,6 +20,7 @@ function Get-BashVersion {
 }
 
 function Get-RustVersion {
+    Initialize-RustEnvironment
     $rustVersion = [regex]::matches($(rustc --version), "\d+\.\d+\.\d+").Value
     return $rustVersion
 }
@@ -349,4 +356,3 @@ function Build-PackageManagementEnvironmentTable {
         }
     }
 }
-
