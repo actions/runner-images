@@ -3,7 +3,7 @@
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
 ***
 # Microsoft Windows Server 2019 Datacenter
-- OS Version: 10.0.17763 Build 2300
+- OS Version: 10.0.17763 Build 2301
 - Image Version: 20211212.1
 
 ## Enabled windows optional features
