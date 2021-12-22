@@ -53,7 +53,7 @@ $runtimesList = @(
         (Get-KotlinVersion),
         (Get-ClangVersions),
         (Get-ClangFormatVersions)
-        ) 
+        )
 
 $markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
 
