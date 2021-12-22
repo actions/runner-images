@@ -1,15 +1,16 @@
 | Announcements |
 |-|
+| [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
 | [macOS-latest workflows will use macOS-11](https://github.com/actions/virtual-environments/issues/4060) |
 ***
 # macOS 10.15 info
-- System Version: macOS 10.15.7 (19H1519)
+- System Version: macOS 10.15.7 (19H1615)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20211212.1
+- Image Version: 20211220.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.415 5.0.102 5.0.202 5.0.302 5.0.403
+- .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.416 5.0.102 5.0.202 5.0.302 5.0.404
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is default
 - Clang/LLVM 13.0.0 is available on `'$(brew --prefix llvm)/bin/clang'`
@@ -21,13 +22,13 @@
 - GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
 - julia 1.7.0
-- Kotlin 1.6.0-release-798
-- MSBuild 16.9.0.22901 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
+- Kotlin 1.6.10-release-923
+- MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.13.1
-- NVM 0.39.0
-- NVM - Cached node versions: v12.22.7 v14.18.2 v16.13.1
+- NVM 0.39.1
+- NVM - Cached node versions: v12.22.8 v14.18.2 v16.13.1
 - Perl 5.34.0
-- PHP 8.1.0
+- PHP 8.1.1
 - Python 2.7.18
 - Python 3.9.9
 - R 4.1.2
@@ -38,7 +39,7 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.2
 - Composer 2.1.14
-- Homebrew 3.3.7
+- Homebrew 3.3.9
 - Miniconda 4.10.3
 - NPM 8.1.2
 - NuGet 5.9.0.7134
@@ -46,8 +47,8 @@
 - Pip 21.3.1 (python 3.9)
 - Pipx 0.16.4
 - RubyGems 3.2.33
-- Vcpkg 2021 (build from master \<48bba4f9c>)
-- Yarn 1.22.15
+- Vcpkg 2021 (build from master \<cf43cf71c>)
+- Yarn 1.22.17
 
 #### Environment variables
 | Name                    | Value                  |
@@ -58,8 +59,8 @@
 ### Project Management
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.4
-- Gradle 7.3.1
-- Sbt 1.5.6
+- Gradle 7.3.2
+- Sbt 1.5.7
 
 ### Utilities
 - 7-Zip 17.04
@@ -82,7 +83,7 @@
 - mongo v5.0.4
 - mongod v5.0.4
 - Newman 5.3.0
-- OpenSSL 1.1.1l  24 Aug 2021 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1l_1)`
+- OpenSSL 1.1.1m  14 Dec 2021 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1m)`
 - Packer 1.7.8
 - PostgreSQL 14.1
 - psql (PostgreSQL) 14.1
@@ -94,13 +95,13 @@
 - zstd 1.5.0
 
 ### Tools
-- Aliyun CLI 3.0.100
-- App Center CLI 2.10.6
+- Aliyun CLI 3.0.102
+- App Center CLI 2.10.7
 - AWS CLI 2.4.6
 - AWS SAM CLI 1.36.0
 - AWS Session Manager CLI 1.2.279.0
 - Azure CLI 2.31.0
-- Bicep CLI 0.4.1008
+- Bicep CLI 0.4.1124
 - Cabal 3.6.2.0
 - Cmake 3.22.1
 - Fastlane 2.199.0
@@ -117,13 +118,13 @@
 - yamllint 1.26.3
 
 ### Browsers
-- Safari 15.1 (15612.2.9.1.30)
-- SafariDriver 15.1 (15612.2.9.1.30)
-- Google Chrome 96.0.4664.93 
+- Safari 15.2 (15612.3.6.1.8)
+- SafariDriver 15.2 (15612.3.6.1.8)
+- Google Chrome 96.0.4664.110 
 - ChromeDriver 96.0.4664.45
-- Microsoft Edge 96.0.1054.53 
-- MSEdgeDriver 96.0.1054.53
-- Mozilla Firefox 95.0
+- Microsoft Edge 96.0.1054.62 
+- MSEdgeDriver 96.0.1054.62
+- Mozilla Firefox 95.0.2
 - geckodriver 0.30.0
 - Selenium server 4.1.0
 
@@ -168,7 +169,7 @@
 - 3.8.12 [PyPy 7.3.7]
 
 #### Node.js
-- 12.22.7
+- 12.22.8
 - 14.18.2
 - 16.13.1
 
@@ -194,7 +195,7 @@
 - Rustfmt 1.4.37-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.0
+- PowerShell 7.2.1
 
 #### PowerShell Modules
 | Module           | Version |
@@ -207,12 +208,12 @@
 ### Web Servers
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.51  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| httpd | 2.4.52  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
 | nginx | 1.21.4  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.14.17
+- 8.10.16.2
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -373,6 +374,11 @@
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/23.1.7779620                                                 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/21.4.7075529 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                                                                  |
+
+### Miscellaneous
+- libXext 1.3.4
+- libXft 2.3.4
+- Zlib 1.2.11
 
 
 
