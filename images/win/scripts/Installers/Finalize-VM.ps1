@@ -8,33 +8,32 @@ Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
 
 Write-Host "Clean up various directories"
 @(
-    "C:\\Recovery",
-    "$env:windir\\logs",
-    "$env:windir\\winsxs\\manifestcache",
-    "$env:windir\\Temp",
+    "$env:SystemDrive\Recovery",
+    "$env:SystemRoot\logs",
+    "$env:SystemRoot\winsxs\manifestcache",
+    "$env:SystemRoot\Temp",
     "$env:TEMP"
 ) | ForEach-Object {
     if (Test-Path $_) {
         Write-Host "Removing $_"
-        try {
-            Takeown /d Y /R /f $_ | Out-Null
-            Icacls $_ /GRANT:r administrators:F /T /c /q  2>&1 | Out-Null
-            Remove-Item $_ -Recurse -Force | Out-Null
-        }
-        catch { $global:error.RemoveAt(0) }
+        cmd /c "takeown /d Y /R /f $_ 2>&1" | Out-Null
+        cmd /c "icacls $_ /grant:r administrators:f /t /c /q 2>&1" | Out-Null
+        Remove-Item $_ -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
     }
 }
 
-$winInstallDir = "$env:windir\\Installer"
-New-Item -Path $winInstallDir -ItemType Directory -Force
+$winInstallDir = "$env:SystemRoot\Installer"
+New-Item -Path $winInstallDir -ItemType Directory -Force | Out-Null
 
 # Remove AllUsersAllHosts profile
-Remove-Item $profile.AllUsersAllHosts -Force
+Remove-Item $profile.AllUsersAllHosts -Force -ErrorAction SilentlyContinue | Out-Null
 
 # Clean yarn and npm cache
-yarn cache clean
-npm cache clean --force
+cmd /c "yarn cache clean 2>&1" | Out-Null
+cmd /c "npm cache clean --force 2>&1" | Out-Null
 
 # allow msi to write to temp folder
 # see https://github.com/actions/virtual-environments/issues/1704
-icacls "C:\Windows\Temp" /q /c /t /grant Users:F /T
+cmd /c "icacls $env:SystemRoot\Temp /grant Users:f /t /c /q 2>&1" | Out-Null
+
+Write-Host "Finalize-VM.ps1 - completed"
