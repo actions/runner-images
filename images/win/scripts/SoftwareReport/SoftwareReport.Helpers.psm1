@@ -122,7 +122,7 @@ function Test-BlankElement {
 
     $splitByLines = $Markdown.Split("`n")
     # Validate entry without version
-    $blankVersions = $splitByLines -match "^-" -notmatch "WSL|Vcpkg|\d\." | Out-String
+    $blankVersions = $splitByLines -match "^-" -notmatch "(OS|Image) Version|WSL|Vcpkg|\d\." | Out-String
 
     # Validate tables with blank rows
     $blankRows = ""
@@ -131,10 +131,10 @@ function Test-BlankElement {
         $table = @()
         if ($splitByLines[$i].StartsWith("#") -and $splitByLines[$i+1].StartsWith("|")) {
             $table += $splitByLines[$i,($i+1),($i+2)]
-            $i += 2
+            $i += 3
             $current = $splitByLines[$i]
             while ($current.StartsWith("|")) {
-                $isBlankRow = $current.Trim("|").Split("|").Trim() -contains ""
+                $isBlankRow = $current.Substring(1, $current.LastIndexOf("|") - 2).Split("|").Trim() -contains ""
                 if ($isBlankRow) {
                     $table += $current
                     $addRows = $true
@@ -158,6 +158,6 @@ function Test-BlankElement {
         $isReport = $true
     }
     if ($isReport) {
-        Write-Host exit 1
+        exit 1
     }
 }
