@@ -26,28 +26,29 @@ function Get-RustVersion {
 }
 
 function Get-RustupVersion {
-     $version = [regex]::matches($(rustup --version), "\d+\.\d+\.\d+").Value
-     return $version
+    $rustupInfo = cmd /c "rustup --version 2>NUL"
+    $version = [regex]::matches($rustupInfo, "\d+\.\d+\.\d+").Value
+    return $version
 }
 
 function Get-RustCargoVersion {
-     $version = [regex]::matches($(cargo --version), "\d+\.\d+\.\d+").Value
-     return $version
+    $version = [regex]::matches($(cargo --version), "\d+\.\d+\.\d+").Value
+    return $version
 }
 
 function Get-RustdocVersion {
-     $version = [regex]::matches($(rustdoc --version), "\d+\.\d+\.\d+").Value
-     return $version
+    $version = [regex]::matches($(rustdoc --version), "\d+\.\d+\.\d+").Value
+    return $version
 }
 
 function Get-RustfmtVersion {
-     $version = [regex]::matches($(rustfmt --version), "\d+\.\d+\.\d+").Value
-     return $version
+    $version = [regex]::matches($(rustfmt --version), "\d+\.\d+\.\d+").Value
+    return $version
 }
 
 function Get-RustClippyVersion {
-     $version = [regex]::matches($(cargo clippy  --version), "\d+\.\d+\.\d+").Value
-     return $version
+    $version = [regex]::matches($(cargo clippy  --version), "\d+\.\d+\.\d+").Value
+    return $version
 }
 
 function Get-BindgenVersion {
@@ -122,10 +123,8 @@ function Get-ChocoVersion {
 }
 
 function Get-VcpkgVersion {
-    ($(vcpkg version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $vcpkgVersion = $Matches.Version
     $commitId = git -C "C:\vcpkg" rev-parse --short HEAD
-    return "Vcpkg $vcpkgVersion (build from master \<$commitId>)"
+    return "Vcpkg (build from master \<$commitId>)"
 }
 
 function Get-NPMVersion {

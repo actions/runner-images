@@ -1,3 +1,8 @@
+$global:ErrorActionPreference = "Stop"
+$global:ProgressPreference = "SilentlyContinue"
+$ErrorView = "NormalView"
+Set-StrictMode -Version Latest
+
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
@@ -294,4 +299,5 @@ if ($cachedImages) {
     $markdown += $cachedImages | New-MDTable
 }
 
+Test-BlankElement -Markdown $markdown
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"
