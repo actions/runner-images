@@ -21,7 +21,7 @@ function Get-BazelVersion {
 }
 
 function Get-BazeliskVersion {
-    $result = Get-CommandResult "bazelisk version" -Multiline
+    $result = Get-CommandResult "bazelisk version" -Multiline -ValidateExitCode
     $bazeliskVersion = $result.Output | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
     return "Bazelisk $bazeliskVersion"
 }
@@ -89,14 +89,14 @@ function Get-DockerBuildxVersion {
 }
 
 function Get-GitVersion {
-    $result = Get-CommandResult "git --version"
+    $result = Get-CommandResult "git --version" -ValidateExitCode
     $gitVersion = $result.Output | Take-OutputPart -Part 2
     $aptSourceRepo = Get-AptSourceRepository -PackageName "git-core"
     return "Git $gitVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-GitLFSVersion {
-    $result = Get-CommandResult "git-lfs --version"
+    $result = Get-CommandResult "git-lfs --version" -ValidateExitCode
     $gitlfsversion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
     $aptSourceRepo = Get-AptSourceRepository -PackageName "git-lfs"
     return "Git LFS $gitlfsversion (apt source repository: $aptSourceRepo)"
@@ -182,7 +182,7 @@ function Get-NvmVersion {
 
 function Get-PackerVersion {
     # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
-    $result = (Get-CommandResult -Command "packer --version").Output
+    $result = (Get-CommandResult -Command "packer --version" -ValidateExitCode).Output
     $packerVersion = [regex]::matches($result, "(\d+.){2}\d+").Value
     return "Packer $packerVersion"
 }
@@ -222,7 +222,7 @@ function Get-AWSCliVersion {
 }
 
 function Get-AWSCliSessionManagerPluginVersion {
-    $result = (Get-CommandResult "session-manager-plugin --version").Output
+    $result = (Get-CommandResult "session-manager-plugin --version" -ValidateExitCode).Output
     return "AWS CLI Session manager plugin $result"
 }
 
@@ -271,7 +271,7 @@ function Get-PulumiVersion {
 }
 
 function Get-RVersion {
-    $rVersion = (Get-CommandResult "R --version | grep 'R version'").Output |  Take-OutputPart -Part 2
+    $rVersion = (Get-CommandResult "R --version | grep 'R version'" -ValidateExitCode).Output |  Take-OutputPart -Part 2
     return "R $rVersion"
 }
 

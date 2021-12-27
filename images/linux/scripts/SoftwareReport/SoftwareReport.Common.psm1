@@ -4,7 +4,7 @@ function Get-BashVersion {
 }
 
 function Get-CPPVersions {
-    $result = Get-CommandResult "apt list --installed" -Multiline
+    $result = Get-CommandResult "apt list --installed" -Multiline -ValidateExitCode
     $cppVersions = $result.Output | Where-Object { $_ -match "g\+\+-\d+"} | ForEach-Object {
         & $_.Split("/")[0] --version | Select-Object -First 1 | Take-OutputPart -Part 3
     } | Sort-Object {[Version]$_}
@@ -12,7 +12,7 @@ function Get-CPPVersions {
 }
 
 function Get-FortranVersions {
-    $result = Get-CommandResult "apt list --installed" -Multiline
+    $result = Get-CommandResult "apt list --installed" -Multiline -ValidateExitCode
     $fortranVersions = $result.Output | Where-Object { $_ -match "^gfortran-\d+"} | ForEach-Object {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
@@ -27,7 +27,7 @@ function Get-ClangToolVersions {
         [string] $VersionPattern = "\d+\.\d+\.\d+)-"
     )
 
-    $result = Get-CommandResult "apt list --installed" -Multiline
+    $result = Get-CommandResult "apt list --installed" -Multiline -ValidateExitCode
     $toolVersions = $result.Output | Where-Object { $_ -match "^${ToolName}-\d+"} | ForEach-Object {
         $clangCommand = ($_ -Split "/")[0]
         Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "${ToolName} version" } | ForEach-Object {
@@ -57,7 +57,7 @@ function Get-ErlangVersion {
 }
 
 function Get-ErlangRebar3Version {
-    $result = Get-CommandResult "rebar3 --version"
+    $result = Get-CommandResult "rebar3 --version" -ValidateExitCode
     $result.Output -match "rebar (?<version>(\d+.){2}\d+)" | Out-Null
     $rebarVersion = $Matches.version
     return "Erlang rebar3 $rebarVersion"
@@ -92,13 +92,13 @@ function Get-PerlVersion {
 }
 
 function Get-PythonVersion {
-    $result = Get-CommandResult "python --version"
+    $result = Get-CommandResult "python --version" -ValidateExitCode
     $version = $result.Output | Take-OutputPart -Part 1
     return "Python $version"
 }
 
 function Get-Python3Version {
-    $result = Get-CommandResult "python3 --version"
+    $result = Get-CommandResult "python3 --version" -ValidateExitCode
     $version = $result.Output | Take-OutputPart -Part 1
     return "Python3 $version"
 }
@@ -133,21 +133,21 @@ function Get-LernaVersion {
 }
 
 function Get-HomebrewVersion {
-    $result = Get-CommandResult "brew -v"
+    $result = Get-CommandResult "brew -v" -ValidateExitCode
     $result.Output -match "Homebrew (?<version>\d+\.\d+\.\d+)" | Out-Null
     $version = $Matches.version
     return "Homebrew $version"
 }
 
 function Get-CpanVersion {
-    $result = Get-CommandResult "cpan --version"
+    $result = Get-CommandResult "cpan --version" -ValidateExitCode
     $result.Output -match "version (?<version>\d+\.\d+) " | Out-Null
     $cpanVersion = $Matches.version
     return "cpan $cpanVersion"
 }
 
 function Get-GemVersion {
-    $result = Get-CommandResult "gem --version"
+    $result = Get-CommandResult "gem --version" -ValidateExitCode
     $result.Output -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $gemVersion = $Matches.version
     return "RubyGems $gemVersion"
@@ -180,21 +180,21 @@ function Get-ParcelVersion {
 }
 
 function Get-PipVersion {
-    $result = Get-CommandResult "pip --version"
+    $result = Get-CommandResult "pip --version" -ValidateExitCode
     $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
     $pipVersion = $Matches.version
     return "Pip $pipVersion"
 }
 
 function Get-Pip3Version {
-    $result = Get-CommandResult "pip3 --version"
+    $result = Get-CommandResult "pip3 --version" -ValidateExitCode
     $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
     $pipVersion = $Matches.version
     return "Pip3 $pipVersion"
 }
 
 function Get-VcpkgVersion {
-    $result = Get-CommandResult "vcpkg version"
+    $result = Get-CommandResult "vcpkg version" -ValidateExitCode
     $result.Output -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $vcpkgVersion = $Matches.version
     $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
@@ -221,14 +221,14 @@ function Get-MavenVersion {
 }
 
 function Get-SbtVersion {
-    $result = Get-CommandResult "sbt -version"
+    $result = Get-CommandResult "sbt -version" -ValidateExitCode
     $result.Output -match "sbt script version: (?<version>\d+\.\d+\.\d+)" | Out-Null
     $sbtVersion = $Matches.version
     return "Sbt $sbtVersion"
 }
 
 function Get-PHPVersions {
-    $result = Get-CommandResult "apt list --installed" -Multiline
+    $result = Get-CommandResult "apt list --installed" -Multiline -ValidateExitCode
     return $result.Output | Where-Object { $_ -match "^php\d+\.\d+/"} | ForEach-Object {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
@@ -369,7 +369,7 @@ function Get-AptPackages {
 }
 
 function Get-PipxVersion {
-    $result = (Get-CommandResult "pipx --version").Output
+    $result = (Get-CommandResult "pipx --version" -ValidateExitCode).Output
     $result -match "(?<version>\d+\.\d+\.\d+\.?\d*)" | Out-Null
     $pipxVersion = $Matches.Version
     return "Pipx $pipxVersion"

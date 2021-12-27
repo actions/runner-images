@@ -2,11 +2,26 @@ function Get-CommandResult {
     param (
         [Parameter(Mandatory=$true)]
         [string] $Command,
-        [switch] $Multiline
+        [int] $ExpectExitCode = 0,
+        [switch] $Multiline,
+        [switch] $ValidateExitCode
     )
     # Bash trick to suppress and show error output because some commands write to stderr (for example, "python --version")
     $stdout = & bash -c "$Command 2>&1"
     $exitCode = $LASTEXITCODE
+
+    if ($ValidateExitCode) {
+        if ($exitCode -ne $ExpectExitCode) {
+            try {
+                throw "StdOut: '$stdout' ExitCode: '$exitCode'"
+            } catch {
+                Write-Host $_.Exception.Message
+                Write-Host $_.ScriptStackTrace
+                exit $LASTEXITCODE
+            }
+        }
+    }
+
     return @{
         Output = If ($Multiline -eq $true) { $stdout } else { [string]$stdout }
         ExitCode = $exitCode
