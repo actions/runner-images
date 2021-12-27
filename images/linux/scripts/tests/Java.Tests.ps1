@@ -42,6 +42,6 @@ Describe "Java" {
         if ($Version -eq 8) {
             $Version = "1.${Version}"
         }
-        $result.Output | Should -Match ([regex]::Escape("openjdk version `"${Version}."))
+        "`"$javaPath`" -version" | Should -MatchCommandOutput ([regex]::Escape("openjdk version `"${Version}."))
     }
 }
