@@ -295,6 +295,7 @@
                 "args": [ "--version=1.1.1.20181020" ]
             },
             { "name": "packer" },
+            { "name": "strawberryperl" },
             { "name": "pulumi" },
             { "name": "tortoisesvn" },
             { "name": "swig" },
