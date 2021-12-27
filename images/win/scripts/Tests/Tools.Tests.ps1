@@ -130,7 +130,7 @@ Describe "Sbt" {
     }
 }
 
-Describe "ServiceFabricSDK" -Skip:(Test-IsWin22) {
+Describe "ServiceFabricSDK" {
     It "PowerShell Module" {
         Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
     }
@@ -176,7 +176,7 @@ Describe "VCRedist" -Skip:(Test-IsWin22) {
     }
 }
 
-Describe "WebPlatformInstaller" -Skip:(Test-IsWin22) {
+Describe "WebPlatformInstaller" {
     It "WebPlatformInstaller" {
         "WebPICMD" | Should -ReturnZeroExitCode
     }
