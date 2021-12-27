@@ -44,7 +44,7 @@ function Invoke-PesterTests {
 
 function ShouldReturnZeroExitCode {
     Param(
-        [String] $ActualValue,
+        [string] $ActualValue,
         [switch] $Negate,
         [string] $Because # This parameter is unused but we need it to match Pester asserts signature
     )
@@ -69,8 +69,8 @@ function ShouldReturnZeroExitCode {
 
 function ShouldMatchCommandOutput {
     Param(
-        [String] $ActualValue,
-        [String] $RegularExpression,
+        [string] $ActualValue,
+        [string] $RegularExpression,
         [switch] $Negate
     )
 
