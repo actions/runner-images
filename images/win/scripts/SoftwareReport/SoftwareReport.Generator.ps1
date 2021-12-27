@@ -110,6 +110,7 @@ $toolsList = @(
     (Get-PackerVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
+    (Get-ServiceFabricSDKVersion),
     (Get-StackVersion),
     (Get-SVNVersion),
     (Get-VSWhereVersion),
@@ -122,8 +123,7 @@ $toolsList = @(
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
         (Get-GoogleCloudSDKVersion),
-        (Get-ParcelVersion),
-        (Get-ServiceFabricSDKVersion)
+        (Get-ParcelVersion)
     )
 }
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
