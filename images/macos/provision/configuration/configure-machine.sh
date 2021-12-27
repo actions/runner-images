@@ -17,6 +17,11 @@ if [ -d "/Library/Application Support/VMware Tools" ]; then
     sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
 fi
 
+# Update VoiceOver Utility to allow VoiceOver to be controlled with AppleScript by creating a special file (SIP must be disabled)
+if csrutil status | grep -Eq  "System Integrity Protection status: (disabled|unknown)"; then
+    sudo bash -c 'echo -n "a" > /private/var/db/Accessibility/.VoiceOverAppleScriptEnabled'
+fi
+
 # https://developer.apple.com/support/expiration/
 # Enterprise iOS Distribution Certificates generated between February 7 and September 1st, 2020 will expire on February 7, 2023.
 # Rotate the certificate before expiration to ensure your apps are installed and signed with an active certificate.
