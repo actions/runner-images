@@ -2,7 +2,7 @@ function Get-CommandResult {
     param (
         [Parameter(Mandatory=$true)]
         [string] $Command,
-        [int] $ExpectExitCode = 0,
+        [int[]] $ExpectExitCode = 0,
         [switch] $Multiline,
         [switch] $ValidateExitCode
     )
@@ -11,7 +11,7 @@ function Get-CommandResult {
     $exitCode = $LASTEXITCODE
 
     if ($ValidateExitCode) {
-        if ($exitCode -ne $ExpectExitCode) {
+        if ($ExpectExitCode -notcontains $exitCode) {
             try {
                 throw "StdOut: '$stdout' ExitCode: '$exitCode'"
             } catch {
