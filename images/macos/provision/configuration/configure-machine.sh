@@ -19,7 +19,7 @@ fi
 
 # Update VoiceOver Utility to allow VoiceOver to be controlled with AppleScript by creating a special file (SIP must be disabled)
 if csrutil status | grep -Eq  "System Integrity Protection status: (disabled|unknown)"; then
-    sudo echo -n "a" > /private/var/db/Accessibility/.VoiceOverAppleScriptEnabled
+    sudo bash -c 'echo -n "a" > /private/var/db/Accessibility/.VoiceOverAppleScriptEnabled'
 fi
 
 # https://developer.apple.com/support/expiration/
