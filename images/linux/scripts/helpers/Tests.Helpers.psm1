@@ -49,7 +49,7 @@ function ShouldReturnZeroExitCode {
         [string] $Because # This parameter is unused but we need it to match Pester asserts signature
     )
 
-    $result = Get-CommandResult $ActualValue
+    $result = Get-CommandResult $ActualValue -ValidateExitCode $false
 
     [bool]$succeeded = $result.ExitCode -eq 0
     if ($Negate) { $succeeded = -not $succeeded }
@@ -74,7 +74,7 @@ function ShouldMatchCommandOutput {
         [switch] $Negate
     )
 
-    $output = (Get-CommandResult $ActualValue).Output | Out-String
+    $output = (Get-CommandResult $ActualValue -ValidateExitCode $false).Output | Out-String
     [bool] $succeeded = $output -cmatch $RegularExpression
 
     if ($Negate) {
