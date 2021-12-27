@@ -42,16 +42,12 @@ $languageTools = @(
     (Get-JuliaVersion),
     (Get-LLVMVersion),
     (Get-NodeVersion),
+    (Get-PerlVersion)
     (Get-PHPVersion),
     (Get-PythonVersion),
     (Get-RubyVersion),
     (Get-KotlinVersion)
 )
-if ((Test-IsWin16) -or (Test-IsWin19)) {
-    $languageTools += @(
-        (Get-PerlVersion)
-    )
-}
 $markdown += New-MDList -Style Unordered -Lines ($languageTools | Sort-Object)
 
 $packageManagementList = @(
