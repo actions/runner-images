@@ -63,24 +63,8 @@ is_Catalina() {
     fi
 }
 
-is_Mojave() {
-    if [ "$OSTYPE" = "darwin18" ]; then
-        true
-    else
-        false
-    fi
-}
-
-is_Less_Catalina() {
-    if is_Mojave; then
-        true
-    else
-        false
-    fi
-}
-
 is_Less_BigSur() {
-    if is_Mojave || is_Catalina; then
+    if is_Catalina; then
         true
     else
         false
@@ -88,7 +72,7 @@ is_Less_BigSur() {
 }
 
 is_Less_Monterey() {
-    if is_Mojave || is_Catalina || is_BigSur; then
+    if is_Catalina || is_BigSur; then
         true
     else
         false
@@ -124,9 +108,7 @@ brew_cask_install_ignoring_sha256() {
 }
 
 get_brew_os_keyword() {
-    if is_Mojave; then
-        echo "mojave"
-    elif is_Catalina; then
+    if is_Catalina; then
         echo "catalina"
     elif is_BigSur; then
         echo "big_sur"

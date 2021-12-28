@@ -22,21 +22,11 @@ DOTNET_VERSIONS=($(get_toolset_value '.dotnet.versions | .[]'))
 
 for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
     RELEASE_URL="https://raw.githubusercontent.com/dotnet/core/master/release-notes/${DOTNET_VERSION}/releases.json"
-    # Old Mono versions don't support NuGet versions from .Net sdk >=2.1.6**, exclude them explicitly from Mojave and HS images
-    # https://rider-support.jetbrains.com/hc/en-us/articles/360004180039
-    if is_Less_Catalina; then
-        ARGS_LIST+=(
-            $(curl -s "$RELEASE_URL" | \
-            jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*' | grep -v -E '2.1.[6-9]\d*' | \
-            sort -r | rev | uniq -s 2 | rev)
-        )
-    else
-        ARGS_LIST+=(
-            $(curl -s "$RELEASE_URL" | \
-            jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*' | \
-            sort -r | rev | uniq -s 2 | rev)
-        )
-    fi
+    ARGS_LIST+=(
+        $(curl -s "$RELEASE_URL" | \
+        jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*' | \
+        sort -r | rev | uniq -s 2 | rev)
+    )
 done
 
 for ARGS in "${ARGS_LIST[@]}"; do

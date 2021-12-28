@@ -69,12 +69,6 @@ if is_Less_BigSur; then
   installNuget "6.4.0" "5.3.1"
 fi
 
-if is_Less_Catalina; then
-  installNuget "4.8.1" "4.3.0"
-  installNuget "5.0.1" "4.3.0"
-  installNuget "5.2.0" "4.3.0"
-fi
-
 # Creating UWP Shim to hack UWP build failure
 createUWPShim
 

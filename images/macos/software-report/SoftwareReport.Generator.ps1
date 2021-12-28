@@ -74,18 +74,13 @@ $packageManagementList = @(
     (Get-NuGetVersion),
     (Get-RubyGemsVersion),
     (Get-ComposerVersion),
-    (Get-CarthageVersion)
+    (Get-CarthageVersion),
+    (Get-VcpkgVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $packageManagementList += @(
         (Get-CondaVersion)
-    )
-}
-
-if ($os.IsHigherThanMojave) {
-    $packageManagementList += @(
-        (Get-VcpkgVersion)
     )
 }
 
@@ -141,7 +136,7 @@ if ($os.IsLessThanMonterey) {
     )
 }
 
-if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
+if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
         (Get-NewmanVersion)
     )
@@ -245,9 +240,8 @@ $markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
 
 # Web Servers
-if ($os.IsHigherThanMojave) {
-    $markdown += Build-WebServersSection
-}
+$markdown += Build-WebServersSection
+
 
 # Xamarin section
 $markdown += New-MDHeader "Xamarin" -Level 3
