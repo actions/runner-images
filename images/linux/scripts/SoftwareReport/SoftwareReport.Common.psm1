@@ -140,7 +140,7 @@ function Get-HomebrewVersion {
 }
 
 function Get-CpanVersion {
-    $result = Get-CommandResult "cpan --version"
+    $result = Get-CommandResult "cpan --version" -ExpectExitCode @(25, 255)
     $result.Output -match "version (?<version>\d+\.\d+) " | Out-Null
     $cpanVersion = $Matches.version
     return "cpan $cpanVersion"
