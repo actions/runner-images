@@ -63,14 +63,6 @@ is_Catalina() {
     fi
 }
 
-is_Less_BigSur() {
-    if is_Catalina; then
-        true
-    else
-        false
-    fi
-}
-
 is_Less_Monterey() {
     if is_Catalina || is_BigSur; then
         true

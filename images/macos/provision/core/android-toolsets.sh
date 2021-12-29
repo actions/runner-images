@@ -93,7 +93,7 @@ done
 # The Android Emulator uses the built-in Hypervisor.Framework by default, and falls back to using Intel HAXM if Hypervisor.Framework fails to initialize
 # https://developer.android.com/studio/run/emulator-acceleration#vm-mac
 # The installation doesn't work properly on macOS Big Sur, /dev/HAX is not created
-if is_Less_BigSur; then
+if is_Catalina; then
     chmod +x $ANDROID_HOME/extras/intel/Hardware_Accelerated_Execution_Manager/silent_install.sh
     sudo $ANDROID_HOME/extras/intel/Hardware_Accelerated_Execution_Manager/silent_install.sh
 fi

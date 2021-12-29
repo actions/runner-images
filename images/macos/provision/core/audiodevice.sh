@@ -9,7 +9,7 @@ brew_smart_install "sox"
 
 # Big Sur doesn't support soundflower installation without user interaction https://github.com/mattingalls/Soundflower/releases/tag/2.0b2
 # Install blackhole-2ch for Big Sur instead
-if is_Less_BigSur; then
+if is_Catalina; then
     echo "install soundflower"
     brew install --cask soundflower
 
