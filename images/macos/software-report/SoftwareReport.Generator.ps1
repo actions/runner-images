@@ -50,7 +50,7 @@ $languageAndRuntimeList = @(
     (Get-FortranVersion)
 )
 
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $languageAndRuntimeList += @(
         (Get-RVersion)
     )
@@ -142,7 +142,7 @@ if ($os.IsLessThanMonterey) {
     )
 }
 
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $utilitiesList += @(
         (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
@@ -276,7 +276,7 @@ $markdown += New-MDNewLine
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
 $androidTable = Build-AndroidTable
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $androidTable += Get-IntelHaxmVersion
 }
 $markdown += $androidTable | New-MDTable
