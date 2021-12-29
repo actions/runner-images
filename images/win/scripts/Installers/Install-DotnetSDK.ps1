@@ -108,6 +108,17 @@ function InstallAllValidSdks()
     }
 }
 
+function InstallTools()
+{
+    $dotnetToolset = (Get-ToolsetContent).dotnet
+    $dotnetTools = $dotnetToolset.tools
+
+    ForEach ($dotnetTool in $dotnetTools)
+    {
+        dotnet tool install -g $dotnetTool | Out-Null
+    }
+}
+
 function RunPostInstallationSteps()
 {
     # Add dotnet to PATH
@@ -128,6 +139,7 @@ function RunPostInstallationSteps()
 }
 
 InstallAllValidSdks
+InstallTools
 RunPostInstallationSteps
 
 Invoke-PesterTests -TestFile "DotnetSDK"

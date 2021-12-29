@@ -200,6 +200,22 @@ function Get-DotnetSdks {
     }
 }
 
+function Get-DotnetTools {
+
+    $dotnetToolset = (Get-ToolsetContent).dotnet
+    $dotnetTools = $dotnetToolset.tools
+
+    $toolsList = @()
+
+    ForEach ($dotnetTool in $dotnetTools)
+    {
+        (dotnet tool update -g $dotnetTool | Out-String) -match "was reinstalled with the latest stable version \(version \'(?<version>\d+\.\d+\.\d+)" | Out-Null
+        $toolsList += [PSCustomObject]@{
+            ToolInfo = "$dotnetTool v" + $Matches.Version
+        }
+    }
+}
+
 function Get-DotnetRuntimes {
     $runtimesRawList = dotnet --list-runtimes
     $runtimesRawList | Group-Object {$_.Split()[0]} | ForEach-Object {

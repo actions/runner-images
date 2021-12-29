@@ -1,6 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
-Describe "Dotnet" {
+Describe "Dotnet and tools" {
 
     BeforeAll {
         $dotnetSDKs = dotnet --list-sdks | ConvertTo-Json
@@ -25,6 +25,17 @@ Describe "Dotnet" {
 
             It "Runtime $version is available" -TestCases $dotnet {
                 $dotnetRuntimes | Should -Match "$dotnetVersion.[1-9]*"
+            }
+        }
+    }
+
+    $dotnetTools = (Get-ToolsetContent).dotnet.tools
+
+    foreach ($dotnetTool in $dotnetTools) {
+        Context "Dotnet tool $dotnetTool" {
+            It "dotnet tool '$dotnetTool' is available" {
+                
+                $dotnetTool
             }
         }
     }

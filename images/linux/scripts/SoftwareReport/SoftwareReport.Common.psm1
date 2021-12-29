@@ -331,6 +331,22 @@ function Get-DotNetCoreSdkVersions {
     return $dotNetCoreSdkVersion
 }
 
+function Get-DotnetTools {
+
+    $dotnetToolset = (Get-ToolsetContent).dotnet
+    $dotnetTools = $dotnetToolset.tools
+
+    $toolsList = @()
+
+    ForEach ($dotnetTool in $dotnetTools)
+    {
+        (dotnet tool update -g $dotnetTool | Out-String) -match "was reinstalled with the latest stable version \(version \'(?<version>\d+\.\d+\.\d+)" | Out-Null
+        $toolsList += [PSCustomObject]@{
+            ToolInfo = "$dotnetTool v" + $Matches.Version
+        }
+    }
+}
+
 function Get-CachedDockerImages {
     $toolsetJson = Get-ToolsetContent
     $images = $toolsetJson.docker.images

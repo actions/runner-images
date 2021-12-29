@@ -261,6 +261,11 @@ $markdown += "``Location $($frameworks.Path)``"
 $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $frameworks.Versions -Style Unordered
 
+$markdown += New-MDHeader ".NET tools" -Level 3
+$tools = Get-DotnetTools
+$markdown += New-MDNewLine
+$markdown += New-MDList -Lines $tools.ToolInfo -Style Unordered
+
 # PowerShell Tools
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
 $markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
