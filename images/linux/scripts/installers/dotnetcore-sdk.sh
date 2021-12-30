@@ -71,7 +71,7 @@ prependEtcEnvironmentPath '$HOME/.dotnet/tools'
 # install dotnet tools
 for dotnet_tool in ${DOTNET_TOOLS[@]}; do
     echo "Installing dotnet tool ($dotnet_tool)"
-    dotnet tool install -g ${dotnetTool}.name
+    dotnet tool install -g ${dotnet_tool}.name
 done
 
 invoke_tests "DotnetSDK"

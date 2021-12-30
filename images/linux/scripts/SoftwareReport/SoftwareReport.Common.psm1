@@ -340,9 +340,11 @@ function Get-DotnetTools {
     ForEach ($dotnetTool in $dotnetTools) {
         $version = $dotnetTool.getversion
         $toolsList += [PSCustomObject]@{
-            ToolInfo = "$dotnetTool.name v" + $version
+            ToolInfo = $dotnetTool.name + " v" + $version
         }
     }
+
+    return $toolsList
 }
 
 function Get-CachedDockerImages {
