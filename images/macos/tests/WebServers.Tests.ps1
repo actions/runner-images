@@ -1,6 +1,6 @@
 $os = Get-OSVersion
 
-Describe "Apache" -Skip:($os.IsLessThanCatalina) {
+Describe "Apache" {
     It "Apache CLI" {
         "httpd -v" | Should -ReturnZeroExitCode
     }
@@ -10,7 +10,7 @@ Describe "Apache" -Skip:($os.IsLessThanCatalina) {
     }
 }
 
-Describe "Nginx" -Skip:($os.IsLessThanCatalina) {
+Describe "Nginx" {
     It "Nginx CLI" {
         "nginx -v" | Should -ReturnZeroExitCode
     }

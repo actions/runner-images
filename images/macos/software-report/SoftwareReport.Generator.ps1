@@ -50,7 +50,7 @@ $languageAndRuntimeList = @(
     (Get-FortranVersion)
 )
 
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $languageAndRuntimeList += @(
         (Get-RVersion)
     )
@@ -74,18 +74,13 @@ $packageManagementList = @(
     (Get-NuGetVersion),
     (Get-RubyGemsVersion),
     (Get-ComposerVersion),
-    (Get-CarthageVersion)
+    (Get-CarthageVersion),
+    (Get-VcpkgVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $packageManagementList += @(
         (Get-CondaVersion)
-    )
-}
-
-if ($os.IsHigherThanMojave) {
-    $packageManagementList += @(
-        (Get-VcpkgVersion)
     )
 }
 
@@ -141,13 +136,13 @@ if ($os.IsLessThanMonterey) {
     )
 }
 
-if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
+if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
         (Get-NewmanVersion)
     )
 }
 
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $utilitiesList += @(
         (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
@@ -245,9 +240,8 @@ $markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
 
 # Web Servers
-if ($os.IsHigherThanMojave) {
-    $markdown += Build-WebServersSection
-}
+$markdown += Build-WebServersSection
+
 
 # Xamarin section
 $markdown += New-MDHeader "Xamarin" -Level 3
@@ -282,7 +276,7 @@ $markdown += New-MDNewLine
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
 $androidTable = Build-AndroidTable
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $androidTable += Get-IntelHaxmVersion
 }
 $markdown += $androidTable | New-MDTable
