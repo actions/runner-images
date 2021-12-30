@@ -207,8 +207,7 @@ function Get-DotnetTools {
 
     $toolsList = @()
 
-    ForEach ($dotnetTool in $dotnetTools)
-    {
+    ForEach ($dotnetTool in $dotnetTools){
         (dotnet tool update -g $dotnetTool | Out-String) -match "was reinstalled with the latest stable version \(version \'(?<version>\d+\.\d+\.\d+)" | Out-Null
         $toolsList += [PSCustomObject]@{
             ToolInfo = "$dotnetTool v" + $Matches.Version
