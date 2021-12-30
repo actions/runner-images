@@ -31,10 +31,9 @@ Describe "Dotnet and tools" {
 
     $dotnetTools = (Get-ToolsetContent).dotnet.tools
     foreach ($dotnetTool in $dotnetTools) {
-        Context "Dotnet tool $dotnetTool" {
-            It "dotnet tool '$dotnetTool' is available" {
-                
-                $dotnetTool
+        Context "Dotnet tool $dotnetTool.name" {
+            It "dotnet tool '$dotnetTool.name' is available" {
+                $dotnetTool.test | Should -Not -BeNullOrEmpty
             }
         }
     }

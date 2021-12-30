@@ -115,7 +115,7 @@ function InstallTools()
 
     ForEach ($dotnetTool in $dotnetTools)
     {
-        dotnet tool install -g $dotnetTool | Out-Null
+        dotnet tool install -g $dotnetTool.name | Out-Null
     }
 }
 

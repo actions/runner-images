@@ -284,7 +284,7 @@
             "5.0"
         ],
         "tools": [
-             "nbgv"
+            { "name": "nbgv", "test": "nbgv --version", "getversion" : "nbgv --version" }
         ],
         "warmup": false
     },
