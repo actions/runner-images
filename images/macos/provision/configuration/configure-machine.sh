@@ -17,7 +17,9 @@ if [ -d "/Library/Application Support/VMware Tools" ]; then
     sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
 fi
 
-# Update VoiceOver Utility to allow VoiceOver to be controlled with AppleScript by creating a special file (SIP must be disabled)
+# Update VoiceOver Utility to allow VoiceOver to be controlled with AppleScript by updating defaults and creating a special file (SIP must be disabled)
+defaults write com.apple.VoiceOver4/default SCREnableAppleScript -bool YES
+
 if csrutil status | grep -Eq  "System Integrity Protection status: (disabled|unknown)"; then
     sudo bash -c 'echo -n "a" > /private/var/db/Accessibility/.VoiceOverAppleScriptEnabled'
 fi
