@@ -11,7 +11,7 @@ source $HELPER_SCRIPTS/os.sh
 # Ubuntu 20 doesn't support EOL versions
 LATEST_DOTNET_PACKAGES=$(get_toolset_value '.dotnet.aptPackages[]')
 DOTNET_VERSIONS=$(get_toolset_value '.dotnet.versions[]')
-DOTNET_TOOLS=$(get_toolset_value '.dotnet.tools["name"]')
+DOTNET_TOOLS=$(get_toolset_value '.dotnet.tools[].name')
 
 # Disable telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
