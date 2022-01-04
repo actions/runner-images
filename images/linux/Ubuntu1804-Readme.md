@@ -168,6 +168,7 @@
 - 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.416 5.0.104 5.0.210 5.0.303 5.0.404
 
 ### Databases
+- Cassandra 4.0.1 (apt source repository: https://downloads.apache.org/cassandra/)
 - MongoDB 5.0.5 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
 - PostgreSQL 14.1 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - sqlite3 3.22.0

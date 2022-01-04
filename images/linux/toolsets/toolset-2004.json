@@ -339,5 +339,10 @@
     },
     "postgresql": {
         "version": "14"
+    },
+    "cassandra": {
+        "version": "4.0",
+        "series" : "40x",
+        "cqlsh" : "6.0"
     }
 }

@@ -1,3 +1,18 @@
+Describe "Cassandra" {
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "cassandra" }
+    ) {
+        $toolsetVersion = (Get-ToolsetContent).cassandra.version
+        (&$ToolName -v).split()[-1] | Should -BeLike "$toolsetVersion*"
+    }
+
+    It "CQLSH validation" {
+        # Cassandra Query Language (CQL) Shell version
+        $cqlshVersion = (Get-ToolsetContent).cassandra.cqlsh
+        (cqlsh --version).split()[-1] | Should -BeLike "cqlsh $cqlshVersion*"
+    }
+}
+
 Describe "MongoDB" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "mongo" }
