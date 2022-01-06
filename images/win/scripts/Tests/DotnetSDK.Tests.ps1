@@ -26,7 +26,8 @@ Describe "Dotnet SDK and tools" {
     foreach ($dotnetTool in $dotnetTools) {
         Context "Dotnet tool $($dotnetTool.name)" {
             It "dotnet tool $($dotnetTool.name) is available" {
-                Invoke-Expression $dotnetTool.test | Should -Not -BeNullOrEmpty
+                $testResult = ($dotnetTool.test)
+                $testResult | Should -Not -BeNullOrEmpty
             }
         }
     }
