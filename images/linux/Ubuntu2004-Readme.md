@@ -47,7 +47,7 @@
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 7.3.2
+- Gradle 7.3.3
 - Lerna 4.0.0
 - Maven 3.8.4
 - Sbt 1.5.7
@@ -116,10 +116,11 @@
 - Vercel CLI 23.1.2
 
 ### Java
-| Version             | Vendor        | Environment Variable |
-| ------------------- | ------------- | -------------------- |
-| 8.0.292+1           | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.11+9 (default) | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| Version             | Vendor          | Environment Variable |
+| ------------------- | --------------- | -------------------- |
+| 8.0.312+7 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.13+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.1+12           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version   | Environment variables |

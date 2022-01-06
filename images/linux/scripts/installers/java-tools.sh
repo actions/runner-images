@@ -12,21 +12,15 @@ JAVA_VERSIONS_LIST=$(get_toolset_value '.java.versions | .[]')
 DEFAULT_JDK_VERSION=$(get_toolset_value '.java.default')
 JAVA_TOOLCACHE_PATH="$AGENT_TOOLSDIRECTORY/Java_Adopt_jdk"
 
-# Install GPG Key for Adopt Open JDK. See https://adoptopenjdk.net/installation.html
-wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
-add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-
-if isUbuntu18 ; then
-    # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
-    apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
-fi
+# Install GPG Key for Eclipse Temurin JDK. See https://blog.adoptium.net/2021/12/eclipse-temurin-linux-installers-available/
+wget -qO - "https://packages.adoptium.net/artifactory/api/gpg/key/public" | apt-key add -
+add-apt-repository --yes https://packages.adoptium.net/artifactory/deb/
 
 apt-get update
 
 for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
-    apt-get -y install adoptopenjdk-$JAVA_VERSION-hotspot=\*
-    javaVersionPath="/usr/lib/jvm/adoptopenjdk-${JAVA_VERSION}-hotspot-amd64"
+    apt-get -y install temurin-$JAVA_VERSION-jdk=\*
+    javaVersionPath="/usr/lib/jvm/temurin-${JAVA_VERSION}-jdk-amd64"
     echo "JAVA_HOME_${JAVA_VERSION}_X64=$javaVersionPath" | tee -a /etc/environment
     fullJavaVersion=$(cat "$javaVersionPath/release" | grep "^SEMANTIC" | cut -d "=" -f 2 | tr -d "\"" | tr "+" "-")
 
@@ -46,9 +40,9 @@ for JAVA_VERSION in ${JAVA_VERSIONS_LIST[@]}; do
 done
 
 # Set Default Java version
-update-java-alternatives -s /usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64
+update-java-alternatives -s /usr/lib/jvm/temurin-${DEFAULT_JDK_VERSION}-jdk-amd64
 
-echo "JAVA_HOME=/usr/lib/jvm/adoptopenjdk-${DEFAULT_JDK_VERSION}-hotspot-amd64" | tee -a /etc/environment
+echo "JAVA_HOME=/usr/lib/jvm/temurin-${DEFAULT_JDK_VERSION}-jdk-amd64" | tee -a /etc/environment
 
 # add extra permissions to be able execute command without sudo
 chmod -R 777 /usr/lib/jvm
