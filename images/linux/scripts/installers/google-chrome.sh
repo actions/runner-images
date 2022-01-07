@@ -40,7 +40,7 @@ function GetChromiumRevision {
 CHROME_DEB_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 CHROME_DEB_NAME="google-chrome-stable_current_amd64.deb"
 download_with_retries $CHROME_DEB_URL "/tmp" "${CHROME_DEB_NAME}"
-apt install "/tmp/${CHROME_DEB_NAME}" -f
+apt install "/tmp/${CHROME_DEB_NAME}" -f -y
 echo "CHROME_BIN=/usr/bin/google-chrome" | tee -a /etc/environment
 
 # Remove Google Chrome repo
