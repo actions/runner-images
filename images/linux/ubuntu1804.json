@@ -296,6 +296,11 @@
         },
         {
             "type": "shell",
+            "script": "{{template_dir}}/scripts/base/snap.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
             "expect_disconnect": true,
             "scripts": [
                 "{{template_dir}}/scripts/base/reboot.sh"
@@ -314,11 +319,6 @@
         {
             "type": "shell",
             "script": "{{template_dir}}/scripts/base/apt-mock-remove.sh",
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "script": "{{template_dir}}/scripts/base/snap.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
