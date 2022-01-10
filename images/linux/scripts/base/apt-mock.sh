@@ -4,7 +4,7 @@
 
 prefix=/usr/local/bin
 
-for real_tool in /usr/bin/apt /usr/bin/apt-get /usr/bin/apt-fast /usr/bin/apt-key;do
+for real_tool in /usr/bin/apt /usr/bin/apt-get /usr/bin/apt-key;do
   tool=`basename $real_tool`
   cat >$prefix/$tool <<EOT
 #!/bin/sh

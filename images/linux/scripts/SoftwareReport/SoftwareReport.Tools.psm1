@@ -3,13 +3,6 @@ function Get-AnsibleVersion {
     return "Ansible $ansibleVersion"
 }
 
-function Get-AptFastVersion {
-    $versionFileContent = Get-Content (which apt-fast) -Raw
-    $match = [Regex]::Match($versionFileContent, '# apt-fast v(.+)\n')
-    $aptFastVersion = $match.Groups[1].Value
-    return "apt-fast $aptFastVersion"
-}
-
 function Get-AzCopyVersion {
     $azcopyVersion = azcopy --version | Take-OutputPart -Part 2
     return "AzCopy $azcopyVersion (available by ``azcopy`` and ``azcopy10`` aliases)"

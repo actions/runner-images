@@ -98,7 +98,6 @@ $markdown += New-MDList -Style Unordered -Lines ($projectManagementList | Sort-O
 $markdown += New-MDHeader "Tools" -Level 3
 $toolsList = @(
     (Get-AnsibleVersion),
-    (Get-AptFastVersion),
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
