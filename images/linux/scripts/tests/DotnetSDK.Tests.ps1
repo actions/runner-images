@@ -29,12 +29,13 @@ Describe "Dotnet and tools" {
         }
     }
 
-    $dotnetTools = (Get-ToolsetContent).dotnet.tools
-    foreach ($dotnetTool in $dotnetTools) {
-        Context "Dotnet tool $($dotnetTool.name)" {
-            It "dotnet tool $($dotnetTool.name) is available" {
-                $dotnetTool.test | Should -ReturnZeroExitCode
-            }
+    Context "Dotnet tools" {
+        $dotnetTools = (Get-ToolsetContent).dotnet.tools
+        $testCases = $dotnetTools | ForEach-Object { @{ ToolName = $_.name; TestInstance = $_.test }}
+
+        It "<ToolName> is available" -TestCases $testCases {
+            "$TestInstance" | Should -ReturnZeroExitCode
         }
     }
+
 }
