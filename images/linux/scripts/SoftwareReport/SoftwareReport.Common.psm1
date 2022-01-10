@@ -338,9 +338,8 @@ function Get-DotnetTools {
     $toolsList = @()
 
     ForEach ($dotnetTool in $dotnetTools) {
-        $version = ($dotnetTool.getversion)
-        $toolsList += [PSCustomObject]@{
-            ToolInfo = $dotnetTool.name + " v" + $version
+        foreach  ($dotnetTool in $dotnetTools) {
+            $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
         }
     }
 
