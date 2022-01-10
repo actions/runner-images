@@ -333,7 +333,6 @@ function Get-DotNetCoreSdkVersions {
 
 function Get-DotnetTools {
     $dotnetTools = (Get-ToolsetContent).dotnet.tools
-    $dotnetTools = $dotnetToolset.tools
 
     $toolsList = @()
 
