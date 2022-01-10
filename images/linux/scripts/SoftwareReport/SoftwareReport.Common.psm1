@@ -332,15 +332,13 @@ function Get-DotNetCoreSdkVersions {
 }
 
 function Get-DotnetTools {
-    $dotnetToolset = (Get-ToolsetContent).dotnet
+    $dotnetTools = (Get-ToolsetContent).dotnet.tools
     $dotnetTools = $dotnetToolset.tools
 
     $toolsList = @()
 
     ForEach ($dotnetTool in $dotnetTools) {
-        foreach  ($dotnetTool in $dotnetTools) {
-            $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
-        }
+        $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
     }
 
     return $toolsList

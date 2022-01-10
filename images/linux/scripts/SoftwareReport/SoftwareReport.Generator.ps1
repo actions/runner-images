@@ -233,7 +233,7 @@ $markdown += New-MDList -Style Unordered -Lines @(
 $markdown += New-MDHeader ".NET tools" -Level 3
 $tools = Get-DotnetTools
 $markdown += New-MDNewLine
-$markdown += New-MDList -Lines $tools.ToolInfo -Style Unordered
+$markdown += New-MDList -Lines $tools -Style Unordered
 
 $markdown += New-MDHeader "Databases" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(

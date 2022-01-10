@@ -33,8 +33,7 @@ Describe "Dotnet and tools" {
     foreach ($dotnetTool in $dotnetTools) {
         Context "Dotnet tool $($dotnetTool.name)" {
             It "dotnet tool $($dotnetTool.name) is available" {
-                $testResult = ($dotnetTool.test)
-                $testResult | Should -Not -BeNullOrEmpty
+                $dotnetTool.test | Should -ReturnZeroExitCode
             }
         }
     }
