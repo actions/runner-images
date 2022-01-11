@@ -3,6 +3,7 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Describe "Dotnet and tools" {
 
     BeforeAll {
+        $env:PATH = "/etc/skel/.dotnet/tools:$($env:PATH)"
         $dotnetSDKs = dotnet --list-sdks | ConvertTo-Json
         $dotnetRuntimes = dotnet --list-runtimes | ConvertTo-Json
     }
