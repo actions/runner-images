@@ -38,4 +38,5 @@ sed -i 's/ENABLED=1/ENABLED=0/g' /etc/default/motd-news
 
 if [[ -f "/etc/fwupd/daemon.conf" ]]; then
     sed -i 's/UpdateMotd=true/UpdateMotd=false/g' /etc/fwupd/daemon.conf
+    systemctl mask fwupd-refresh.timer
 fi
