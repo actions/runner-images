@@ -35,4 +35,7 @@ ln -s $HELPER_SCRIPTS/invoke-tests.sh /usr/local/bin/invoke_tests
 
 # Disable motd updates metadata
 sed -i 's/ENABLED=1/ENABLED=0/g' /etc/default/motd-news
-sed -i 's/UpdateMotd=true/UpdateMotd=false/g' /etc/fwupd/daemon.conf
+
+if [[ -f "/etc/fwupd/daemon.conf" ]]; then
+    sed -i 's/UpdateMotd=true/UpdateMotd=false/g' /etc/fwupd/daemon.conf
+fi
