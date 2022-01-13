@@ -263,7 +263,6 @@ $markdown += New-MDList -Lines $frameworks.Versions -Style Unordered
 
 $markdown += New-MDHeader ".NET tools" -Level 3
 $tools = Get-DotnetTools
-$markdown += New-MDNewLine
 $markdown += New-MDList -Lines $tools -Style Unordered
 
 # PowerShell Tools
