@@ -71,8 +71,16 @@
     ],
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11", "12"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11", "17" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11", "12" ]
+            }
         ],
         "maven": "3.8.4"
     },
@@ -110,12 +118,13 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.4.0"
+                "7.1.0"
             ],
             "zip_versions": [
                 "3.1.0",
                 "4.4.0",
-                "5.9.0"
+                "5.9.0",
+                "6.6.0"
             ]
         }
     ],
