@@ -71,7 +71,7 @@ prependEtcEnvironmentPath '$HOME/.dotnet/tools'
 # install dotnet tools
 for dotnet_tool in ${DOTNET_TOOLS[@]}; do
     echo "Installing dotnet tool $dotnet_tool"
-    dotnet tool install $dotnet_tool --tool-path '/etc/skel/.donet/tools'
+    dotnet tool install $dotnet_tool --tool-path '/etc/skel/.dotnet/tools'
 done
 
 invoke_tests "DotnetSDK"
