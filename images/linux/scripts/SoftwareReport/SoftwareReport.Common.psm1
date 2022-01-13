@@ -332,6 +332,8 @@ function Get-DotNetCoreSdkVersions {
 }
 
 function Get-DotnetTools {
+    $env:PATH = "/etc/skel/.dotnet/tools:$($env:PATH)"
+
     $dotnetTools = (Get-ToolsetContent).dotnet.tools
 
     $toolsList = @()
