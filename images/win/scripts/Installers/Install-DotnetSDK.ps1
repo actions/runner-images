@@ -110,8 +110,7 @@ function InstallAllValidSdks()
 
 function InstallTools()
 {
-    $dotnetToolset = (Get-ToolsetContent).dotnet
-    $dotnetTools = $dotnetToolset.tools
+    $dotnetTools = (Get-ToolsetContent).dotnet.tools
 
     ForEach ($dotnetTool in $dotnetTools)
     {
@@ -139,7 +138,7 @@ function RunPostInstallationSteps()
 }
 
 InstallAllValidSdks
-InstallTools
 RunPostInstallationSteps
+InstallTools
 
 Invoke-PesterTests -TestFile "DotnetSDK"
