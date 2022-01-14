@@ -114,7 +114,9 @@ function InstallTools()
 
     ForEach ($dotnetTool in $dotnetTools)
     {
-        dotnet tool install -g $dotnetTool.name --add-source https://api.nuget.org/v3/index.json | Out-Null
+        Write-Host "Installing dotnet tool '$($dotnetTool.name)'"
+
+        dotnet tool install -g $($dotnetTool.name) --add-source https://api.nuget.org/v3/index.json
     }
 }
 
