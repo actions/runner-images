@@ -1,17 +1,19 @@
 | Announcements |
 |-|
+| [windows-latest workflows will use Windows Server 2022](https://github.com/actions/virtual-environments/issues/4856) |
+| [[All OSs] Az PowerShell Module will be upgraded to 7.1.0 on January, 17](https://github.com/actions/virtual-environments/issues/4841) |
 | [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4825
-- Image Version: 20211219.1
+- Image Version: 20220110.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(1)-release
 - Go 1.15.15
-- Julia 1.7.0
+- Julia 1.7.1
 - Kotlin 1.6.10
 - LLVM 13.0.0
 - Node 16.13.1
@@ -22,15 +24,15 @@
 
 ### Package Management
 - Chocolatey 0.11.3
-- Composer 2.1.14
+- Composer 2.2.4
 - Helm 3.7.1
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 8.1.2
 - NuGet 6.0.0.280
 - pip 21.3.1 (python 3.7)
-- Pipx 0.16.4
+- Pipx 1.0.0
 - RubyGems 2.7.6.3
-- Vcpkg  (build from master \<50fd3d995>)
+- Vcpkg (build from master \<5edd518dc>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -43,10 +45,10 @@
 - Ant 1.10.12
 - Gradle 7.3
 - Maven 3.8.4
-- sbt 1.5.7
+- sbt 1.6.1
 
 ### Tools
-- 7zip 21.06
+- 7zip 21.07
 - aria2 1.36.0
 - azcopy 10.13.0
 - Bazel 4.2.2
@@ -68,12 +70,12 @@
 - Kubectl 1.23.1
 - Mercurial 5.0
 - Mingw-w64 8.1.0
-- Newman 5.3.0
+- Newman 5.3.1
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.7.8
-- Parcel 2.0.1
-- Pulumi v3.20.0
+- Parcel 2.1.1
+- Pulumi v3.21.1
 - R 4.1.2
 - Service Fabric SDK 8.2.1363.9590
 - Stack 2.7.3
@@ -83,17 +85,17 @@
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset v3.11.2.4516
 - yamllint 1.26.3
-- zstd 1.5.0
+- zstd 1.5.1
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.102
-- AWS CLI 2.4.6
-- AWS SAM CLI 1.36.0
+- AWS CLI 2.4.9
+- AWS SAM CLI 1.37.0
 - AWS Session Manager CLI 1.2.279.0
-- Azure CLI 2.31.0
+- Azure CLI 2.32.0
 - Azure DevOps CLI extension 0.22.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.3.0
+- GitHub CLI 2.4.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -111,10 +113,10 @@
 - Rustfmt 1.4.37
 
 ### Browsers and webdrivers
-- Google Chrome 96.0.4664.110
-- Chrome Driver 96.0.4664.45
-- Microsoft Edge 96.0.1054.62
-- Microsoft Edge Driver 96.0.1054.62
+- Google Chrome 97.0.4692.71
+- Chrome Driver 97.0.4692.71
+- Microsoft Edge 97.0.1072.55
+- Microsoft Edge Driver 97.0.1072.55
 - Mozilla Firefox 95.0.2
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
@@ -157,8 +159,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.12 | x64          | GOROOT_1_16_X64      |
-| 1.17.5  | x64          | GOROOT_1_17_X64      |
+| 1.16.13 | x64          | GOROOT_1_16_X64      |
+| 1.17.6  | x64          | GOROOT_1_17_X64      |
 
 #### Node
 | Version | Architecture |
@@ -222,8 +224,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
-| Apache | 2.4.51  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.21.4  | C:\tools\nginx-1.21.4\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Apache | 2.4.52  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
+| Nginx  | 1.21.5  | C:\tools\nginx-1.21.5\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
@@ -534,7 +536,7 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.9.0            |
+| Microsoft.Graph    | 1.9.1            |
 | Pester             | 3.4.0<br>5.3.1   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
