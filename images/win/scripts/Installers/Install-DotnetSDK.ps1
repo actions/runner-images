@@ -114,9 +114,7 @@ function InstallTools()
 
     ForEach ($dotnetTool in $dotnetTools)
     {
-        Write-Host "Installing dotnet tool '$($dotnetTool.name)'"
-
-        dotnet tool install $($dotnetTool.name) --tool-path "C:\Users\Default.dotnet\tools" --add-source https://api.nuget.org/v3/index.json
+        dotnet tool install $($dotnetTool.name) --tool-path "C:\Users\Default.dotnet\tools" --add-source https://api.nuget.org/v3/index.json | Out-Null
     }
 }
 
