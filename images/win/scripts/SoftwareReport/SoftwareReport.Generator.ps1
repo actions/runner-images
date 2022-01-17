@@ -223,6 +223,11 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     ) | Sort-Object
 )
 
+if (!(Test-IsWin16))
+{
+    $markdown += (Get-SQLOLEDBDriverVersion)
+}
+
 $markdown += Build-WebServersSection
 
 $vs = Get-VisualStudioVersion
