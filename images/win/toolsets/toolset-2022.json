@@ -243,7 +243,8 @@
             "wasm.tools"
         ],
         "vsix": [
-            "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects"
+            "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects",
+            "WixToolset.WixToolsetVisualStudio2022Extension"
         ]
     },
     "docker": {
