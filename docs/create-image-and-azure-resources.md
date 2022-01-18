@@ -66,6 +66,12 @@ Where:
 
 The function automatically creates all required Azure resources and kicks off packer image generation for the selected image type.
 
+For optional authentication via service principal make sure to provide the following params — `AzureClientId`, `AzureClientSecret`, `AzureTenantId`, so the whole command will be:
+
+```
+GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "myTestResourceGroup" -ImageGenerationRepositoryRoot "$pwd" -ImageType Ubuntu1804 -AzureLocation "East US" -AzureClientId {AADApplicationID} -AzureClientSecret {AADApplicationSecret} -AzureTenantId {AADTenantID}
+```
+
 *Please, check synopsis of `GenerateResourcesAndImage` for details about non-mandatory parameters.*
 
 #### Generated VM Deployment
