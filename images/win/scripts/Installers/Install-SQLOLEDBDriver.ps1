@@ -4,5 +4,6 @@
 ################################################################################
 
 $SQLOLEDBDriverName = "msoledbsql.msi"
-$SQLOLEDBDriverUrl = "https://go.microsoft.com/fwlink/?linkid=2183083"
-Install-Binary -Url $SQLOLEDBDriverUrl -Name $SQLOLEDBDriverName -ArgumentList ("ADDLOCAL=ALL", "IACCEPTMSOLEDBSQLLICENSETERMS=YES", "/qn")
+$binaryDownloadPath = Start-DownloadWithRetry "https://go.microsoft.com/fwlink/?linkid=2183083"
+$ArgumentList = "/i $binaryDownloadPath ADDLOCAL=ALL IACCEPTMSOLEDBSQLLICENSETERMS=YES /qn"
+Install-Binary -FilePath $binaryDownloadPath -ArgumentList $ArgumentList

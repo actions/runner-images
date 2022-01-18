@@ -225,7 +225,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
 
 if (!(Test-IsWin16))
 {
-    $markdown += (Get-SQLOLEDBDriverVersion)
+    $markdown += Get-SQLOLEDBDriverVersion
 }
 
 $markdown += Build-WebServersSection
