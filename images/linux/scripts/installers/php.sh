@@ -18,7 +18,7 @@ php_versions=$(get_toolset_value '.php.versions[]')
 
 for version in $php_versions; do
     echo "Installing PHP $version"
-    apt-fast install -y --no-install-recommends \
+    apt-get install -y --no-install-recommends \
         php$version \
         php$version-amqp \
         php$version-apcu \
@@ -65,19 +65,19 @@ for version in $php_versions; do
         php$version-zmq
 
     if [[ $version == "5.6" || $version == "7.0" || $version == "7.1" ]]; then
-        apt-fast install -y --no-install-recommends php$version-mcrypt php$version-recode
+        apt-get install -y --no-install-recommends php$version-mcrypt php$version-recode
     fi
 
     if [[ $version == "7.2" || $version == "7.3" ]]; then
-        apt-fast install -y --no-install-recommends php$version-recode
+        apt-get install -y --no-install-recommends php$version-recode
     fi
 
-    if [[ $version != "8.0" ]]; then
-        apt-fast install -y --no-install-recommends php$version-xmlrpc php$version-json
+    if [[ $version != "8.0" && $version != "8.1" ]]; then
+        apt-get install -y --no-install-recommends php$version-xmlrpc php$version-json
     fi
 
     if [[ $version != "5.6" && $version != "7.0" ]]; then
-        apt-fast install -y --no-install-recommends php$version-pcov
+        apt-get install -y --no-install-recommends php$version-pcov
 
         # Disable PCOV, as Xdebug is enabled by default
         # https://github.com/krakjoe/pcov#interoperability
@@ -85,13 +85,13 @@ for version in $php_versions; do
     fi
 
     if [[ $version = "7.0" || $version = "7.1" ]]; then
-        apt-fast install -y --no-install-recommends php$version-sodium
+        apt-get install -y --no-install-recommends php$version-sodium
     fi
 done
 
-apt-fast install -y --no-install-recommends php-pear
+apt-get install -y --no-install-recommends php-pear
 
-apt-fast install -y --no-install-recommends snmp
+apt-get install -y --no-install-recommends snmp
 
 # Install composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"

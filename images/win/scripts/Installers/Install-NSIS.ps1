@@ -3,7 +3,8 @@
 ##  Desc:  Install NSIS
 ################################################################################
 
-Install-Binary -Url 'https://downloads.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1-setup.exe' -Name  nsis-3.06.1-setup.exe -ArgumentList ('/S')
+$NsisVersion = (Get-ToolsetContent).nsis.version
+Install-Binary -Url "https://downloads.sourceforge.net/project/nsis/NSIS%203/${NsisVersion}/nsis-${NsisVersion}-setup.exe" -Name  "nsis-${NsisVersion}-setup.exe" -ArgumentList ('/S')
 
 $NsisPath = "${env:ProgramFiles(x86)}\NSIS\"
 Add-MachinePathItem $NsisPath

@@ -135,6 +135,11 @@ function Get-PackerVersion {
     return "Packer $packerVersion"
 }
 
+function Get-ParcelVersion {
+    $parcelVersion = parcel --version
+    return "Parcel $parcelVersion"
+}
+
 function Get-PulumiVersion {
     return "Pulumi $(pulumi version)"
 }
@@ -159,6 +164,12 @@ function Get-VSWhereVersion {
 function Get-WinAppDriver {
     $winAppDriverVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe").FileVersion
     return "WinAppDriver $winAppDriverVersion"
+}
+
+function Get-WixVersion {
+    $regKey = "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
+    $installedApplications = Get-ItemProperty -Path $regKey
+    return ($installedApplications | Where-Object { $_.BundleCachePath -imatch ".*\\WiX\d*\.exe$" } | Select-Object -First 1).DisplayName
 }
 
 function Get-ZstdVersion {

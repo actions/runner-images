@@ -15,8 +15,7 @@ After successful image generation, a snapshot of the temporary VM will be conver
 - `Azure Az Powershell module` - https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
 - `Git for Windows` - https://gitforwindows.org/
 
-### Azure DevOps self-hosted pool requirements
-To connect to a temporary VM packer use WinRM or SSH connections on public IP interfaces.
+> To connect to a temporary VM packer uses WinRM or SSH connections on public IP interfaces.
 If you use a build agent located in an Azure subscription, please make sure that HTTPS/SSH ports are allowed for incoming/outgoing connections.
 In case of firewall restrictions, prohibiting connections from public addresses, private virtual network resources can be deployed and passed as arguments to the packer. This approach allows virtual machines to use private connections inside VLAN.
 
@@ -67,6 +66,12 @@ Where:
 
 The function automatically creates all required Azure resources and kicks off packer image generation for the selected image type.
 
+For optional authentication via service principal make sure to provide the following params — `AzureClientId`, `AzureClientSecret`, `AzureTenantId`, so the whole command will be:
+
+```
+GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "myTestResourceGroup" -ImageGenerationRepositoryRoot "$pwd" -ImageType Ubuntu1804 -AzureLocation "East US" -AzureClientId {AADApplicationID} -AzureClientSecret {AADApplicationSecret} -AzureTenantId {AADTenantID}
+```
+
 *Please, check synopsis of `GenerateResourcesAndImage` for details about non-mandatory parameters.*
 
 #### Generated VM Deployment
@@ -96,6 +101,7 @@ The function creates an Azure VM from a template and generates network resources
 ### User variables
 The Packer template includes `variables` section containing user variables used in image generation. Each variable is defined as a key/value strings. User variables can be passed to packer via predefined environment variables, or as direct arguments, in case if packer started manually.
 
+- `build_resource_group_name` - Specify an existing resource group to run the build in it. By default, a temporary resource group will be created and destroyed as part of the build. If you do not have permission to do so, use build_resource_group_name to specify an existing resource group to run the build in it.
 - `client_id` - The application ID of the AAD Service Principal. Requires `client_secret`.
 - `object_id` - The object ID for the AAD SP. Will be derived from the oAuth token if empty.
 - `client_secret` - A password/secret registered for the AAD SP.
