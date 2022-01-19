@@ -101,7 +101,7 @@ The function creates an Azure VM from a template and generates network resources
 ### User variables
 The Packer template includes `variables` section containing user variables used in image generation. Each variable is defined as a key/value strings. User variables can be passed to packer via predefined environment variables, or as direct arguments, in case if packer started manually.
 
-- `build_resource_group_name` - Specify an existing resource group to run the build in. By default a temporary resource group will be created and destroyed as part of the build. If you do not have permissions to do so, use build_resource_group_name to specify an existing resource group to run the build in.
+- `build_resource_group_name` - Specify an existing resource group to run the build in it. By default, a temporary resource group will be created and destroyed as part of the build. If you do not have permission to do so, use build_resource_group_name to specify an existing resource group to run the build in it.
 - `client_id` - The application ID of the AAD Service Principal. Requires `client_secret`.
 - `object_id` - The object ID for the AAD SP. Will be derived from the oAuth token if empty.
 - `client_secret` - A password/secret registered for the AAD SP.
