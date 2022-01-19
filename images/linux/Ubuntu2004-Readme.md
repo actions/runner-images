@@ -234,11 +234,12 @@
 - PowerShell 7.2.1
 
 #### PowerShell Modules
-| Module           | Version |
-| ---------------- | ------- |
-| MarkdownPS       | 1.9     |
-| Pester           | 5.3.1   |
-| PSScriptAnalyzer | 1.20.0  |
+| Module               | Version |
+| -------------------- | ------- |
+| MarkdownPS           | 1.9     |
+| Pester               | 5.3.1   |
+| PSScriptAnalyzer     | 1.20.0  |
+| GuestConfiguration   | latest  |
 
 #### Az PowerShell Modules
 - 6.4.0 3.1.0.zip 4.4.0.zip 5.9.0.zip
