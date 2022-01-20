@@ -215,13 +215,19 @@ $markdown += New-MDHeader "Databases" -Level 3
 $markdown += Build-DatabasesMarkdown
 
 $markdown += New-MDHeader "Database tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$databaseTools = @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
     (Get-MySQLVersion),
     (Get-SQLPSVersion)
-    ) | Sort-Object
 )
+
+if (-not (Test-IsWin16))
+{
+    $databaseTools += Get-SQLOLEDBDriverVersion
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($databaseTools | Sort-Object)
 
 $markdown += Build-WebServersSection
 
