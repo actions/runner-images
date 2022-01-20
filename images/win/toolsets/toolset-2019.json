@@ -422,6 +422,9 @@
             "3.1",
             "5.0"
         ],
+        "tools": [
+            { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }
+        ],
         "warmup": true
     },
     "choco": {

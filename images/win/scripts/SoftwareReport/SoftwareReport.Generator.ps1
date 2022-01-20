@@ -215,13 +215,19 @@ $markdown += New-MDHeader "Databases" -Level 3
 $markdown += Build-DatabasesMarkdown
 
 $markdown += New-MDHeader "Database tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$databaseTools = @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
     (Get-MySQLVersion),
     (Get-SQLPSVersion)
-    ) | Sort-Object
 )
+
+if (-not (Test-IsWin16))
+{
+    $databaseTools += Get-SQLOLEDBDriverVersion
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($databaseTools | Sort-Object)
 
 $markdown += Build-WebServersSection
 
@@ -260,6 +266,10 @@ $markdown += New-MDNewLine
 $markdown += "``Location $($frameworks.Path)``"
 $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $frameworks.Versions -Style Unordered
+
+$markdown += New-MDHeader ".NET tools" -Level 3
+$tools = Get-DotnetTools
+$markdown += New-MDList -Lines $tools -Style Unordered
 
 # PowerShell Tools
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
