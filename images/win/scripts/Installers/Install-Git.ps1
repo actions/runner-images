@@ -14,6 +14,7 @@ Choco-Install -PackageName hub
 
 # Add to PATH
 Add-MachinePathItem "C:\Program Files\Git\bin"
+$env:Path = Get-MachinePath
 
 if (Test-IsWin16) {
     $env:Path += ";$env:ProgramFiles\Git\usr\bin\"
