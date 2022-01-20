@@ -2,7 +2,7 @@
 source ~/utils/utils.sh
 
 echo Installing PowerShell...
-psRelease=$(curl -s "https://api.github.com/repos/PowerShell/PowerShell/releases/latest")
+psRelease=$(curl -H "Authorization: token $API_PAT" -s "https://api.github.com/repos/PowerShell/PowerShell/releases/latest")
 psDownloadUrl=$(echo $psRelease | jq -r '.assets[].browser_download_url | select(contains("osx-x64.pkg"))' | head -n 1)
 download_with_retries $psDownloadUrl "/tmp" "powershell.pkg"
 
