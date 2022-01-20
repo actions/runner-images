@@ -331,6 +331,20 @@ function Get-DotNetCoreSdkVersions {
     return $dotNetCoreSdkVersion
 }
 
+function Get-DotnetTools {
+    $env:PATH = "/etc/skel/.dotnet/tools:$($env:PATH)"
+
+    $dotnetTools = (Get-ToolsetContent).dotnet.tools
+
+    $toolsList = @()
+
+    ForEach ($dotnetTool in $dotnetTools) {
+        $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
+    }
+
+    return $toolsList
+}
+
 function Get-CachedDockerImages {
     $toolsetJson = Get-ToolsetContent
     $images = $toolsetJson.docker.images
