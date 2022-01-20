@@ -197,3 +197,23 @@ configure_user_tccdb () {
     local sqlQuery="INSERT OR IGNORE INTO access VALUES($values);"
     sqlite3 "$dbPath" "$sqlQuery"
 }
+
+get_github_package_download_url() {
+    local REPO_OWNER=$1
+    local REPO_NAME=$2
+    local FILTER=$3
+    local VERSION=$4
+    local SEARCH_IN_COUNT="100"
+
+    json=$(curl -s "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=${SEARCH_IN_COUNT}")
+
+    if [ $VERSION ]; then
+        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | grep -ve ".*-[a-z]" | grep -e "\w*${VERSION}\." | tail -1)
+    else
+        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | grep -ve ".*-[a-z]" | tail -1)
+    fi    
+
+    versionToDownload=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
+
+    echo $versionToDownload
+}
