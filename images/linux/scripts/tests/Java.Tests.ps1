@@ -1,10 +1,15 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameChecking
 
 Describe "Java" {
-    [array]$jdkVersions = (Get-ToolsetContent).java.versions | ForEach-Object { @{Version = $_} }
-    $defaultJavaVersion = (Get-ToolsetContent).java.default
+    $toolsetJava = (Get-ToolsetContent).java
+    $defaultVersion = $toolsetJava.default
+    $defaultVendor = $toolsetJava.default_vendor
+    $javaVendors = $toolsetJava.vendors
 
-    It "Java <DefaultJavaVersion> is default" -TestCases @{ DefaultJavaVersion = $defaultJavaVersion } {
+    [array]$jdkVersions = ($javaVendors | Where-Object {$_.name -eq $defaultVendor}).versions | ForEach-Object { @{Version = $_} }
+    [array]$adoptJdkVersions = ($javaVendors | Where-Object {$_.name -eq "Adopt"}).versions | ForEach-Object { @{Version = $_} }
+
+    It "Java <DefaultJavaVersion> is default" -TestCases @{ DefaultJavaVersion = $defaultVersion } {
         $actualJavaPath = Get-EnvironmentVariable "JAVA_HOME"
         $expectedJavaPath = Get-EnvironmentVariable "JAVA_HOME_${DefaultJavaVersion}_X64"
 
@@ -29,8 +34,7 @@ Describe "Java" {
         $gradleVariableValue | Should -BeLike "/usr/share/gradle-*"
 
         $gradlePath = Join-Path $env:GRADLE_HOME "bin/gradle"
-        $result = Get-CommandResult "`"$GradlePath`" -version"
-        $result.ExitCode | Should -Be 0
+        "`"$GradlePath`" -version" | Should -ReturnZeroExitCode
     }
 
     It "Java <Version>" -TestCases $jdkVersions {
@@ -38,12 +42,21 @@ Describe "Java" {
         $javaVariableValue | Should -Not -BeNullOrEmpty
         $javaPath = Join-Path $javaVariableValue "bin/java"
 
-        $result = Get-CommandResult "`"$javaPath`" -version"
-        $result.ExitCode | Should -Be 0
+        "`"$javaPath`" -version" | Should -ReturnZeroExitCode
 
         if ($Version -eq 8) {
             $Version = "1.${Version}"
         }
-        $result.Output | Should -Match ([regex]::Escape("openjdk version `"${Version}."))
+      "`"$javaPath`" -version" | Should -MatchCommandOutput ([regex]::Escape("openjdk version `"${Version}."))
+    }
+
+    It "Java Adopt <Version>" -TestCases $adoptJdkVersions {
+        $javaPath = Join-Path (Get-ChildItem ${env:AGENT_TOOLSDIRECTORY}\Java_Adopt_jdk\${Version}*) "x64\bin\java"
+        "`"$javaPath`" -version" | Should -ReturnZeroExitCode
+
+        if ($Version -eq 8) {
+            $Version = "1.${Version}"
+        }
+       "`"$javaPath`" -version" | Should -MatchCommandOutput ([regex]::Escape("openjdk version `"${Version}."))
     }
 }

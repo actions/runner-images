@@ -42,16 +42,12 @@ $languageTools = @(
     (Get-JuliaVersion),
     (Get-LLVMVersion),
     (Get-NodeVersion),
+    (Get-PerlVersion)
     (Get-PHPVersion),
     (Get-PythonVersion),
     (Get-RubyVersion),
     (Get-KotlinVersion)
 )
-if ((Test-IsWin16) -or (Test-IsWin19)) {
-    $languageTools += @(
-        (Get-PerlVersion)
-    )
-}
 $markdown += New-MDList -Style Unordered -Lines ($languageTools | Sort-Object)
 
 $packageManagementList = @(
@@ -114,6 +110,7 @@ $toolsList = @(
     (Get-PackerVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
+    (Get-ServiceFabricSDKVersion),
     (Get-StackVersion),
     (Get-SVNVersion),
     (Get-VSWhereVersion),
@@ -126,8 +123,7 @@ $toolsList = @(
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
         (Get-GoogleCloudSDKVersion),
-        (Get-ParcelVersion),
-        (Get-ServiceFabricSDKVersion)
+        (Get-ParcelVersion)
     )
 }
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
@@ -219,13 +215,19 @@ $markdown += New-MDHeader "Databases" -Level 3
 $markdown += Build-DatabasesMarkdown
 
 $markdown += New-MDHeader "Database tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$databaseTools = @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
     (Get-MySQLVersion),
     (Get-SQLPSVersion)
-    ) | Sort-Object
 )
+
+if (-not (Test-IsWin16))
+{
+    $databaseTools += Get-SQLOLEDBDriverVersion
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($databaseTools | Sort-Object)
 
 $markdown += Build-WebServersSection
 
@@ -264,6 +266,10 @@ $markdown += New-MDNewLine
 $markdown += "``Location $($frameworks.Path)``"
 $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $frameworks.Versions -Style Unordered
+
+$markdown += New-MDHeader ".NET tools" -Level 3
+$tools = Get-DotnetTools
+$markdown += New-MDList -Lines $tools -Style Unordered
 
 # PowerShell Tools
 $markdown += New-MDHeader "PowerShell Tools" -Level 3

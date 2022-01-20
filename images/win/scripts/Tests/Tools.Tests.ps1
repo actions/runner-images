@@ -130,7 +130,7 @@ Describe "Sbt" {
     }
 }
 
-Describe "ServiceFabricSDK" -Skip:(Test-IsWin22) {
+Describe "ServiceFabricSDK" {
     It "PowerShell Module" {
         Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
     }
@@ -176,7 +176,7 @@ Describe "VCRedist" -Skip:(Test-IsWin22) {
     }
 }
 
-Describe "WebPlatformInstaller" -Skip:(Test-IsWin22) {
+Describe "WebPlatformInstaller" {
     It "WebPlatformInstaller" {
         "WebPICMD" | Should -ReturnZeroExitCode
     }
@@ -199,5 +199,11 @@ Describe "Kotlin" {
 
     It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  {
         "$toolName -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "SQL OLEDB Driver" {
+    It "SQL OLEDB Driver" {
+        "HKLM:\SOFTWARE\Microsoft\MSOLEDBSQL" | Should -Exist
     }
 }

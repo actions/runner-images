@@ -6,7 +6,7 @@ psDownloadUrl=$(get_github_package_download_url "PowerShell" "PowerShell" "conta
 download_with_retries $psDownloadUrl "/tmp" "powershell.pkg"
 
 # Work around the issue on macOS Big Sur 11.5 or higher for possible error message ("can't be opened because Apple cannot check it for malicious software") when installing the package
-if ! is_Less_BigSur; then
+if ! is_Catalina; then
     sudo xattr -rd com.apple.quarantine /tmp/powershell.pkg
 fi
 
