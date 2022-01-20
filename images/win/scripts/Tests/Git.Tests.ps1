@@ -19,6 +19,10 @@ Describe "Git" {
         git config core.symlinks | Should -BeExactly true
     }
 
+    It "Git core.longpaths=true option is enabled" {
+        git config core.longpaths | Should -BeExactly true
+    }
+
     It "GCM_INTERACTIVE environment variable should be equal Never" {
         $env:GCM_INTERACTIVE | Should -BeExactly Never
     }
