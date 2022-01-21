@@ -3,7 +3,7 @@ source ~/utils/utils.sh
 
 echo "Get the latest Stack version..."
 stackRelease=$(curl -H "Authorization: token $API_PAT" -s "https://api.github.com/repos/commercialhaskell/stack/releases/latest")
-stackDownloadUrl=$(get_github_package_download_url "commercialhaskell" "stack" "contains(\"osx-x86_64.tar.gz\")")
+stackDownloadUrl=$(get_github_package_download_url "commercialhaskell" "stack" "contains(\"osx-x86_64.tar.gz\")" "$API_PAT")
 stackVersion=$(echo $stackRelease | jq -r '.name' | cut -c2-)
 stackArchive="/tmp/stack.tar.gz"
 

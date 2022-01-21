@@ -176,10 +176,15 @@ get_github_package_download_url() {
     local REPO_OWNER=$1
     local REPO_NAME=$2
     local FILTER=$3
-    local VERSION=$4
+    local API_PAT=$4
+    local VERSION=$5
     local SEARCH_IN_COUNT="100"
 
-    json=$(curl -H "Authorization: token $API_PAT" -s "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=${SEARCH_IN_COUNT}")
+    if [ $API_PAT ]; then
+        json=$(curl -H "Authorization: token $API_PAT" -s "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=${SEARCH_IN_COUNT}")
+    else
+        json=$(curl -s "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=${SEARCH_IN_COUNT}")
+    fi    
 
     if [ $VERSION ]; then
         tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | grep -ve ".*-[a-z]" | grep -e "\w*${VERSION}\." | tail -1)
