@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 | [[All OSs] Az PowerShell Module will be upgraded to 7.1.0 on January, 17](https://github.com/actions/virtual-environments/issues/4841) |
 | [[macOS] Default Xcode on Big Sur image will be set to Xcode 13.2.1 on January, 24](https://github.com/actions/virtual-environments/issues/4800) |
 | [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
@@ -8,7 +9,7 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1615)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220110.2
+- Image Version: 20220118.8
 
 ## Installed Software
 ### Language and Runtime
@@ -26,22 +27,22 @@
 - julia 1.7.1
 - Kotlin 1.6.10-release-923
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.13.1
+- Node.js v16.13.2
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.9 v14.18.3 v16.13.2
 - Perl 5.34.0
 - PHP 8.1.1
 - Python 2.7.18
-- Python 3.9.9
+- Python 3.9.10
 - R 4.1.2
 - Ruby 2.7.5p203
 
 ### Package Management
-- Bundler version 2.3.4
+- Bundler version 2.3.5
 - Carthage 0.38.0
 - CocoaPods 1.11.2
 - Composer 2.2.4
-- Homebrew 3.3.9
+- Homebrew 3.3.11
 - Miniconda 4.10.3
 - NPM 8.1.2
 - NuGet 5.9.0.7134
@@ -49,7 +50,7 @@
 - Pip 21.3.1 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2021 (build from master \<5edd518dc>)
+- Vcpkg 2021 (build from master \<4184491f0>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -82,8 +83,8 @@
 - helm v3.7.2+g663a896
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v5.0.4
-- mongod v5.0.4
+- mongo v5.0.5
+- mongod v5.0.5
 - Newman 5.3.1
 - OpenSSL 1.1.1m  14 Dec 2021 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1m)`
 - Packer 1.7.8
@@ -97,21 +98,21 @@
 - zstd 1.5.1
 
 ### Tools
-- Aliyun CLI 3.0.102
+- Aliyun CLI 3.0.104
 - App Center CLI 2.10.8
-- AWS CLI 2.4.9
+- AWS CLI 2.4.11
 - AWS SAM CLI 1.37.0
-- AWS Session Manager CLI 1.2.279.0
+- AWS Session Manager CLI 1.2.295.0
 - Azure CLI 2.32.0
 - Bicep CLI 0.4.1124
 - Cabal 3.6.2.0
 - Cmake 3.22.1
-- Fastlane 2.199.0
+- Fastlane 2.200.0
 - GHC 9.2.1
 - GHCup 0.1.17.4
 - Jazzy 0.14.1
 - Stack 2.7.3
-- SwiftFormat 0.49.1
+- SwiftFormat 0.49.2
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -124,9 +125,9 @@
 - SafariDriver 15.2 (15612.3.6.1.8)
 - Google Chrome 97.0.4692.71 
 - ChromeDriver 97.0.4692.71
-- Microsoft Edge 97.0.1072.55 
-- MSEdgeDriver 97.0.1072.55
-- Mozilla Firefox 95.0.2
+- Microsoft Edge 97.0.1072.62 
+- MSEdgeDriver 97.0.1072.62
+- Mozilla Firefox 96.0.1
 - geckodriver 0.30.0
 - Selenium server 4.1.1
 
@@ -161,8 +162,8 @@
 - 3.6.15
 - 3.7.12
 - 3.8.12
-- 3.9.9
-- 3.10.1
+- 3.9.10
+- 3.10.2
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.6]
@@ -171,9 +172,9 @@
 - 3.8.12 [PyPy 7.3.7]
 
 #### Node.js
-- 12.22.8
-- 14.18.2
-- 16.13.1
+- 12.22.9
+- 14.18.3
+- 16.13.2
 
 #### Go
 | Version | Architecture | Environment Variable |
@@ -183,9 +184,9 @@
 | 1.17.6  | x64          | GOROOT_1_17_X64      |
 
 ### Rust Tools
-- Cargo 1.57.0
-- Rust 1.57.0
-- Rustdoc 1.57.0
+- Cargo 1.58.0
+- Rust 1.58.0
+- Rustdoc 1.58.0
 - Rustup 1.24.3
 
 #### Packages
@@ -193,8 +194,8 @@
 - Cargo-audit 0.16.0
 - Cargo-outdated v0.10.2
 - Cbindgen 0.20.0
-- Clippy 0.1.57
-- Rustfmt 1.4.37-stable
+- Clippy 0.1.58
+- Rustfmt 1.4.38-stable
 
 ### PowerShell Tools
 - PowerShell 7.2.1
@@ -202,7 +203,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 6.1.0   |
+| Az               | 7.1.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.1   |
 | PSScriptAnalyzer | 1.20.0  |

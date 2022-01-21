@@ -201,3 +201,9 @@ Describe "Kotlin" {
         "$toolName -version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "SQL OLEDB Driver" -Skip:(Test-IsWin16) {
+    It "SQL OLEDB Driver" {
+        "HKLM:\SOFTWARE\Microsoft\MSOLEDBSQL" | Should -Exist
+    }
+}

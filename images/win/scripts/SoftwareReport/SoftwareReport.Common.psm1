@@ -200,6 +200,18 @@ function Get-DotnetSdks {
     }
 }
 
+function Get-DotnetTools {
+    $env:Path += ";C:\Users\Default.dotnet\tools"
+    $dotnetTools = (Get-ToolsetContent).dotnet.tools
+
+    $toolsList = @()
+
+    foreach  ($dotnetTool in $dotnetTools) {
+        $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
+    }
+    return $toolsList
+}
+
 function Get-DotnetRuntimes {
     $runtimesRawList = dotnet --list-runtimes
     $runtimesRawList | Group-Object {$_.Split()[0]} | ForEach-Object {
