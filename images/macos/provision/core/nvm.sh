@@ -5,7 +5,7 @@
 ###########################################################################
 source ~/utils/utils.sh
 
-VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
+VERSION=$(curl -H "Authorization: token $API_PAT" -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$VERSION/install.sh | bash
 
 if [ $? -eq 0 ]; then

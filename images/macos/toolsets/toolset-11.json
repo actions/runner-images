@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "13.1",
+        "default": "13.2.1",
         "versions": [
             { "link": "13.2.1", "version": "13.2.1" },
             { "link": "13.2", "version": "13.2.0" },
@@ -25,7 +25,7 @@
         "android-versions": [
             "12.0.0.3", "11.3.0.4", "11.2.2.1", "11.1.0.26", "11.0.2.0"
         ],
-        "bundle-default": "6_12_10",
+        "bundle-default": "6_12_12",
         "bundles": [
             {
                 "symlink": "6_12_12",
@@ -156,7 +156,7 @@
         {
             "name": "Az",
             "versions": [
-                "6.1.0"
+                "7.1.0"
             ]
         },
         {"name": "MarkdownPS"},

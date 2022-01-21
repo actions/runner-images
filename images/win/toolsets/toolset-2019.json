@@ -20,7 +20,6 @@
             "platform" : "win32",
             "versions": [
                 "2.7.*",
-                "3.5.*",
                 "3.6.*",
                 "3.7.*",
                 "3.8.*",
@@ -36,7 +35,6 @@
             "platform" : "win32",
             "versions": [
                 "2.7.*",
-                "3.5.*",
                 "3.6.*",
                 "3.7.*",
                 "3.8.*",
@@ -124,7 +122,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.5.0"
+                "7.1.0"
             ],
             "zip_versions": [
                 "1.0.0",
@@ -138,7 +136,8 @@
                 "4.4.0",
                 "4.7.0",
                 "5.5.0",
-                "5.9.0"
+                "5.9.0",
+                "6.6.0"
             ]
         }
     ],
@@ -316,6 +315,7 @@
             "Microsoft.VisualStudio.Component.VC.MFC.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.Modules.x86.x64",
             "Microsoft.VisualStudio.Component.VC.Redist.MSM",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
@@ -327,6 +327,8 @@
             "Microsoft.VisualStudio.Component.VC.v141.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.ATL",
+            "Microsoft.VisualStudio.Component.VC.v141.ATL.ARM",
+            "Microsoft.VisualStudio.Component.VC.v141.ATL.ARM64",
             "Microsoft.VisualStudio.Component.VC.v141.ATL.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.ATL.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.ATL.Spectre",
@@ -418,6 +420,9 @@
             "2.1",
             "3.1",
             "5.0"
+        ],
+        "tools": [
+            { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }
         ],
         "warmup": true
     },

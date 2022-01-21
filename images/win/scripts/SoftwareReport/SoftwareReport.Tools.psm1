@@ -111,6 +111,11 @@ function Get-MySQLVersion {
     return "MySQL $mysqlVersion"
 }
 
+function Get-SQLOLEDBDriverVersion {
+    $SQLOLEDBDriverVersion = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSOLEDBSQL' InstalledVersion).InstalledVersion
+    return "SQL OLEDB Driver $SQLOLEDBDriverVersion"
+}
+
 function Get-MercurialVersion {
     ($(hg --version) | Out-String) -match "version (?<version>\d+\.\d+\.?\d*)" | Out-Null
     $mercurialVersion = $Matches.Version

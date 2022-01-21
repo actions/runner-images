@@ -229,6 +229,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-DACFx.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-MysqlCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-SQLPowerShellTools.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-SQLOLEDBDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-DotnetSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Mingw64.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Haskell.ps1",

@@ -1,12 +1,15 @@
 | Announcements |
 |-|
+| [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
+| [[All OSs] Az PowerShell Module will be upgraded to 7.1.0 on January, 17](https://github.com/actions/virtual-environments/issues/4841) |
+| [[macOS] Default Xcode on Big Sur image will be set to Xcode 13.2.1 on January, 24](https://github.com/actions/virtual-environments/issues/4800) |
 | [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
 | [macOS-latest workflows will use macOS-11](https://github.com/actions/virtual-environments/issues/4060) |
 ***
 # macOS 11.6 info
 - System Version: macOS 11.6.2 (20G314)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20211219.1
+- Image Version: 20220118.8
 
 ## Installed Software
 ### Language and Runtime
@@ -21,32 +24,32 @@
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
-- julia 1.7.0
+- julia 1.7.1
 - Kotlin 1.6.10-release-923
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.13.1
+- Node.js v16.13.2
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.8 v14.18.2 v16.13.1
+- NVM - Cached node versions: v12.22.9 v14.18.3 v16.13.2
 - Perl 5.34.0
 - PHP 8.1.1
 - Python 2.7.18
-- Python 3.9.9
+- Python 3.9.10
 - Ruby 2.7.5p203
 
 ### Package Management
-- Bundler version 2.2.33
+- Bundler version 2.3.5
 - Carthage 0.38.0
 - CocoaPods 1.11.2
-- Composer 2.1.14
-- Homebrew 3.3.8
+- Composer 2.2.4
+- Homebrew 3.3.11
 - Miniconda 4.10.3
 - NPM 8.1.2
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
 - Pip 21.3.1 (python 3.9)
-- Pipx 0.16.4
+- Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2021 (build from master \<50fd3d995>)
+- Vcpkg 2021 (build from master \<4184491f0>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -58,8 +61,8 @@
 ### Project Management
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.4
-- Gradle 7.3.2
-- Sbt 1.5.7
+- Gradle 7.3.3
+- Sbt 1.6.1
 
 ### Utilities
 - 7-Zip 17.04
@@ -68,19 +71,19 @@
 - bazel 4.2.2
 - bazelisk 1.11.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.80.0
+- Curl 7.81.0
 - Git LFS: 3.0.2
 - Git: 2.34.1
-- GitHub CLI: 2.3.0
+- GitHub CLI: 2.4.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.2
-- gpg (GnuPG) 2.3.3
+- gpg (GnuPG) 2.3.4
 - helm v3.7.2+g663a896
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v5.0.4
-- mongod v5.0.4
-- Newman 5.3.0
+- mongo v5.0.5
+- mongod v5.0.5
+- Newman 5.3.1
 - OpenSSL 1.1.1m  14 Dec 2021 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1m)`
 - Packer 1.7.8
 - PostgreSQL 14.1
@@ -88,24 +91,24 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.1
 - Switchaudio-osx 1.1.0
-- zstd 1.5.0
+- zstd 1.5.1
 
 ### Tools
-- Aliyun CLI 3.0.102
-- App Center CLI 2.10.6
-- AWS CLI 2.4.6
-- AWS SAM CLI 1.36.0
-- AWS Session Manager CLI 1.2.279.0
-- Azure CLI 2.31.0
+- Aliyun CLI 3.0.104
+- App Center CLI 2.10.8
+- AWS CLI 2.4.11
+- AWS SAM CLI 1.37.0
+- AWS Session Manager CLI 1.2.295.0
+- Azure CLI 2.32.0
 - Bicep CLI 0.4.1124
 - Cabal 3.6.2.0
 - Cmake 3.22.1
-- Fastlane 2.199.0
+- Fastlane 2.200.0
 - GHC 9.2.1
 - GHCup 0.1.17.4
 - Jazzy 0.14.1
 - Stack 2.7.3
-- SwiftFormat 0.49.1
+- SwiftFormat 0.49.2
 - Swig 4.0.2
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -116,18 +119,18 @@
 ### Browsers
 - Safari 15.2 (16612.3.6.1.8)
 - SafariDriver 15.2 (16612.3.6.1.8)
-- Google Chrome 96.0.4664.110 
-- ChromeDriver 96.0.4664.45
-- Microsoft Edge 96.0.1054.62 
-- MSEdgeDriver 96.0.1054.62
-- Mozilla Firefox 95.0.1
+- Google Chrome 97.0.4692.71 
+- ChromeDriver 97.0.4692.71
+- Microsoft Edge 97.0.1072.62 
+- MSEdgeDriver 97.0.1072.62
+- Mozilla Firefox 96.0.1
 - geckodriver 0.30.0
-- Selenium server 4.1.0
+- Selenium server 4.1.1
 
 #### Environment variables
 | Name            | Value                                         |
 | --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/96.0.4664.45 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/97.0.4692.71 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
 
@@ -149,8 +152,8 @@
 #### Python
 - 3.7.12
 - 3.8.12
-- 3.9.9
-- 3.10.0
+- 3.9.10
+- 3.10.2
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.6]
@@ -158,21 +161,21 @@
 - 3.8.12 [PyPy 7.3.7]
 
 #### Node.js
-- 12.22.8
-- 14.18.2
-- 16.13.1
+- 12.22.9
+- 14.18.3
+- 16.13.2
 
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.12 | x64          | GOROOT_1_16_X64      |
-| 1.17.5  | x64          | GOROOT_1_17_X64      |
+| 1.16.13 | x64          | GOROOT_1_16_X64      |
+| 1.17.6  | x64          | GOROOT_1_17_X64      |
 
 ### Rust Tools
-- Cargo 1.57.0
-- Rust 1.57.0
-- Rustdoc 1.57.0
+- Cargo 1.58.0
+- Rust 1.58.0
+- Rustdoc 1.58.0
 - Rustup 1.24.3
 
 #### Packages
@@ -180,8 +183,8 @@
 - Cargo-audit 0.16.0
 - Cargo-outdated v0.10.2
 - Cbindgen 0.20.0
-- Clippy 0.1.57
-- Rustfmt 1.4.37-stable
+- Clippy 0.1.58
+- Rustfmt 1.4.38-stable
 
 ### PowerShell Tools
 - PowerShell 7.2.1
@@ -189,7 +192,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 6.1.0   |
+| Az               | 7.1.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.1   |
 | PSScriptAnalyzer | 1.20.0  |
@@ -197,8 +200,8 @@
 ### Web Servers
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.51  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.21.4  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| httpd | 2.4.52  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| nginx | 1.21.5  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
@@ -207,6 +210,7 @@
 #### Xamarin bundles
 | symlink           | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
 | ----------------- | ------------ | ----------- | ----------- | --------------- |
+| 6_12_12           | 6.12         | 15.4        | 8.4         | 12.0            |
 | 6_12_11           | 6.12         | 15.2        | 8.2         | 12.0            |
 | 6_12_10 (default) | 6.12         | 15.0        | 7.14        | 11.3            |
 | 6_12_9            | 6.12         | 14.20       | 7.14        | 11.3            |
@@ -328,6 +332,8 @@
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                                                                  |
 
 ### Miscellaneous
+- libXext 1.3.4
+- libXft 2.3.4
 - Zlib 1.2.11
 
 
