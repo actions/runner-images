@@ -192,7 +192,7 @@ get_github_package_download_url() {
         tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | grep -ve ".*-[a-z]" | grep -e "\w*${VERSION}" | tail -1)
     fi    
 
-    versionToDownload=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
+    downloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
 
-    echo $versionToDownload
+    echo $downloadUrl
 }
