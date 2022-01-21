@@ -176,8 +176,8 @@ get_github_package_download_url() {
     local REPO_OWNER=$1
     local REPO_NAME=$2
     local FILTER=$3
-    local API_PAT=$4
-    local VERSION=$5
+    local VERSION=$4
+    local API_PAT=$5
     local SEARCH_IN_COUNT="100"
 
     if [ $API_PAT ]; then
@@ -186,10 +186,10 @@ get_github_package_download_url() {
         json=$(curl -s "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=${SEARCH_IN_COUNT}")
     fi    
 
-    if [ $VERSION ]; then
-        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | grep -ve ".*-[a-z]" | grep -e "\w*${VERSION}\." | tail -1)
-    else
+    if [ "$VERSION" == "latest" ]; then
         tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | grep -ve ".*-[a-z]" | tail -1)
+    else
+        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | grep -ve ".*-[a-z]" | grep -e "\w*${VERSION}\." | tail -1)
     fi    
 
     versionToDownload=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
