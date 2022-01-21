@@ -343,6 +343,7 @@
             "Microsoft.VisualStudio.Workload.Office"
         ],
         "vsix": [
+            "WixToolset.WixToolsetVisualStudio2017Extension"
         ]
     },
     "docker": {

@@ -377,7 +377,8 @@
             "SSIS.SqlServerIntegrationServicesProjects",
             "ProBITools.MicrosoftReportProjectsforVisualStudio",
             "VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects",
-            "ms-biztalk.BizTalk"
+            "ms-biztalk.BizTalk",
+            "WixToolset.WixToolsetVisualStudio2019Extension"
         ]
     },
     "docker": {
