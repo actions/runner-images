@@ -5,8 +5,8 @@
 ################################################################################
 
 # Install KIND
-URL=$(curl -s https://api.github.com/repos/kubernetes-sigs/kind/releases/latest | jq -r '.assets[].browser_download_url | select(contains("kind-linux-amd64"))')
-curl -L -o /usr/local/bin/kind $URL
+downloadUrl=$(get_github_package_download_url "kubernetes-sig" "kind" "contains(\"kind-linux-amd64\")")
+curl -L -o /usr/local/bin/kind $downloadUrl
 chmod +x /usr/local/bin/kind
 
 ## Install kubectl
