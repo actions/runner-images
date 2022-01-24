@@ -1,19 +1,20 @@
 | Announcements |
 |-|
+| [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 | [[All OSs] Az PowerShell Module will be upgraded to 7.1.0 on January, 17](https://github.com/actions/virtual-environments/issues/4841) |
 | [[Ubuntu] Issue with libstdc++ cannot allocate memory in static TLS block](https://github.com/actions/virtual-environments/issues/4799) |
 | [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
 ***
 # Ubuntu 20.04.3 LTS
-- Linux kernel version: 5.11.0-1025-azure
-- Image Version: 20220111.1
+- Linux kernel version: 5.11.0-1027-azure
+- Image Version: 20220119.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 5.0.17(1)-release
 - Clang 10.0.0, 11.0.0, 12.0.0
 - Clang-format 10.0.0, 11.0.0, 12.0.0
-- Erlang 24.1.7 (Eshell 12.1.5)
+- Erlang 24.2 (Eshell 12.2)
 - Erlang rebar3 3.18.0
 - GNU C++ 9.3.0, 10.3.0
 - GNU Fortran 9.3.0, 10.3.0
@@ -31,14 +32,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.7.2
-- Homebrew 3.3.10
+- Homebrew 3.3.11
 - Miniconda 4.10.3
 - Npm 8.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.0.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<b8b1217bd>)
+- Vcpkg  (build from master \<5ef52b5b7>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -56,29 +57,29 @@
 
 ### Tools
 - Ansible 2.12.1
-- apt-fast 1.9.11
+- apt-fast 1.9.12
 - AzCopy 10.13.0 (available by `azcopy` and `azcopy10` aliases)
-- Bazel 4.2.2
+- Bazel 5.0.0
 - Bazelisk 1.11.0
 - Bicep 0.4.1124
 - Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.22.1
-- CodeQL Action Bundle 2.7.3
+- CodeQL Action Bundle 2.7.5
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.2.2+azure-1
+- Docker Compose v2 2.2.3+azure-1
 - Docker-Buildx 0.7.1
 - Docker-Moby Client 20.10.11+azure-3
 - Docker-Moby Server 20.10.11+azure-3
-- Fastlane 2.199.0
+- Fastlane 2.200.0
 - Git 2.34.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.0.2 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.143.0
+- HHVM (HipHop VM) 4.144.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.23.1
+- Kubectl 1.23.2
 - Kustomize 4.4.1
 - Leiningen 2.9.8
 - MediaInfo 19.09
@@ -88,40 +89,41 @@
 - Newman 5.3.1
 - nvm 0.39.1
 - OpenSSL 1.1.1f  31 Mar 2020
-- Packer 1.7.8
-- Parcel 2.1.1
+- Packer 1.7.9
+- Parcel 2.2.1
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.21.1
+- Pulumi 3.22.1
 - R 4.1.2
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.1.3
+- Terraform 1.1.4
 - yamllint 1.26.3
 - yq 4.16.2
 - zstd 1.5.1 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.102
-- AWS CLI 2.4.9
+- Alibaba Cloud CLI 3.0.104
+- AWS CLI 2.4.12
 - AWS CLI Session manager plugin 1.2.295.0
 - AWS SAM CLI 1.37.0
 - Azure CLI (azure-cli) 2.32.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.22.0
 - GitHub CLI 2.4.0
-- Google Cloud SDK 368.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 8.6.21
-- OpenShift CLI 4.9.13
+- Netlify CLI 8.10.2
+- OpenShift CLI 4.9.15
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
 ### Java
-| Version             | Vendor        | Environment Variable |
-| ------------------- | ------------- | -------------------- |
-| 8.0.292+1           | Adopt OpenJDK | JAVA_HOME_8_X64      |
-| 11.0.11+9 (default) | Adopt OpenJDK | JAVA_HOME_11_X64     |
+| Version             | Vendor          | Environment Variable |
+| ------------------- | --------------- | -------------------- |
+| 8.0.312+7           | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.13+8 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.1+12           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version   | Environment variables |
@@ -144,23 +146,23 @@
 - Stack 2.7.3
 
 ### Rust Tools
-- Cargo 1.57.0
-- Rust 1.57.0
-- Rustdoc 1.57.0
+- Cargo 1.58.0
+- Rust 1.58.0
+- Rustdoc 1.58.0
 - Rustup 1.24.3
 
 #### Packages
 - Bindgen 0.59.2
 - Cargo audit 0.16.0
-- Cargo clippy 0.1.57
+- Cargo clippy 0.1.58
 - Cargo outdated 0.10.2
 - Cbindgen 0.20.0
-- Rustfmt 1.4.37
+- Rustfmt 1.4.38
 
 ### Browsers and Drivers
 - Google Chrome 97.0.4692.71
 - ChromeDriver 97.0.4692.71
-- Mozilla Firefox 95.0.1
+- Mozilla Firefox 96.0
 - Geckodriver 0.30.0
 - Chromium 97.0.4692.0
 - Selenium server 4.1.0
@@ -174,6 +176,9 @@
 
 ### .NET Core SDK
 - 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.416 5.0.104 5.0.210 5.0.303 5.0.404
+
+### .NET tools
+- nbgv 3.4.255+06fb9182bf
 
 ### Databases
 - MongoDB 5.0.5 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
@@ -214,8 +219,8 @@
 - 3.6.15
 - 3.7.12
 - 3.8.12
-- 3.9.9
-- 3.10.1
+- 3.9.10
+- 3.10.2
 
 #### Ruby
 - 2.5.9
@@ -241,7 +246,7 @@
 | PSScriptAnalyzer | 1.20.0  |
 
 #### Az PowerShell Modules
-- 6.4.0 3.1.0.zip 4.4.0.zip 5.9.0.zip
+- 7.1.0 3.1.0.zip 4.4.0.zip 5.9.0.zip 6.6.0.zip
 
 ### Web Servers
 | Name      | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -288,12 +293,12 @@
 | debian:11               | sha256:2906804d2a64e8a13a434a1a127fe3f6a28bf7cf3696be4223b06276f32f1f2d  | 2021-12-21 |
 | debian:9                | sha256:54284a7a45383b407c1968657e8f1c50dc25b82d8d56b3812e46ad19f8bcfd83  | 2021-12-21 |
 | moby/buildkit:latest    | sha256:d6c89b7085b106301645ddcc77cf64eb7b705ab507b72d52d130ac33f1300417  | 2021-11-18 |
-| node:12                 | sha256:36b3ee4724ab60ac5f288d22999074437ed517e8d1bd2e24ab19609479d39c81  | 2021-12-21 |
-| node:12-alpine          | sha256:05d61228b85c54b5527e74afc54153eb3572aae005948fb068a0f4ebe01f7c1e  | 2022-01-03 |
-| node:14                 | sha256:e5c6aac226819f88d6431a56f502972d323d052b1b6108094ba7e6b07154a542  | 2021-12-21 |
-| node:14-alpine          | sha256:1e7481a9a977d8e4160a73ed6a0e726724570bf7d941adbec63a82cf7c07ae19  | 2022-01-03 |
-| node:16                 | sha256:32605ead97ed57bd39a8a7b0e919240e1a3218974dfc6965e61b54a801753131  | 2021-12-21 |
-| node:16-alpine          | sha256:0e071f3c5c84cffa6b1035023e1956cf28d48f4b36e229cef328772da81ec0c5  | 2022-01-03 |
+| node:12                 | sha256:04334b2efca8f5f23d246ce8818fe358c2c0116819e5fd043e7929cae6ca7398  | 2022-01-11 |
+| node:12-alpine          | sha256:c3e7817c8fd124f1597cd66124d247db8e138e8ef311ba085b7104d900129d0b  | 2022-01-12 |
+| node:14                 | sha256:50d4540794db9bdbd423a5823c4d840fc2ba0b9c82d71b059ff34b4aeb3e328f  | 2022-01-11 |
+| node:14-alpine          | sha256:a9b200d25469261a4cccde176db08ec9f0b5799fa4220d8edfe57e69684c6dad  | 2022-01-11 |
+| node:16                 | sha256:4b0b5c3db44f567d5d25c80a6fe33a981d911cdae20b39d2395be268aea2cb97  | 2022-01-11 |
+| node:16-alpine          | sha256:2f50f4a428f8b5280817c9d4d896dbee03f072e93f4e0c70b90cc84bd1fcfe0d  | 2022-01-12 |
 | ubuntu:16.04            | sha256:0f71fa8d4d2d4292c3c617fda2b36f6dabe5c8b6e34c3dc5b0d17d4e704bd39c  | 2021-08-31 |
 | ubuntu:18.04            | sha256:37b7471c1945a2a12e5a57488ee4e3e216a8369d0b9ee1ec2e41db9c2c1e3d22  | 2022-01-07 |
 | ubuntu:20.04            | sha256:b5a61709a9a44284d88fb12e5c48db0409cfad5b69d4ff8224077c57302df9cf  | 2022-01-07 |
