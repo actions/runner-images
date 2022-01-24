@@ -27,4 +27,10 @@ echo "export PIPX_BIN_DIR=${PIPX_BIN_DIR}" >> "${HOME}/.bashrc"
 echo "export PIPX_HOME=${PIPX_HOME}" >> "${HOME}/.bashrc"
 echo 'export PATH="$PIPX_BIN_DIR:$PATH"' >> "${HOME}/.bashrc"
 
+if is_BigSur; then
+    version=$(brew info tcl-tk --json | jq -r '.[].installed[].version')
+    ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtcl8.6.dylib /usr/local/lib/libtcl8.6.dylib
+    ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtk8.6.dylib /usr/local/lib/libtk8.6.dylib
+fi
+
 invoke_tests "Python"
