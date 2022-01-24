@@ -6,6 +6,6 @@
 # Download and install WebPlatformInstaller
 $webPlatformInstallerFile = "WebPlatformInstaller_x64_en-US.msi"
 $webPlatformInstallerUrl = "http://go.microsoft.com/fwlink/?LinkId=287166"
-Install-Binary -Url $webPlatformInstallerUrl -Name $webPlatformInstallerFile -ArgumentList ("/silent", "/install")
+Install-Binary -Url $webPlatformInstallerUrl -Name $webPlatformInstallerFile
 
 Invoke-PesterTests -TestFile "Tools" -TestName "WebPlatformInstaller"
