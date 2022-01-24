@@ -180,7 +180,7 @@ get_github_package_download_url() {
     local API_PAT=$5
     local SEARCH_IN_COUNT="100"
 
-    [ $API_PAT ] && authString="-H 'Authorization: token $API_PAT'"
+    [ -n "$API_PAT" ] && authString="-H 'Authorization: token $API_PAT'"
 
     json=$(curl $authString -s "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=${SEARCH_IN_COUNT}")
 
