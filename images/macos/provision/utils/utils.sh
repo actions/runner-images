@@ -180,16 +180,14 @@ get_github_package_download_url() {
     local API_PAT=$5
     local SEARCH_IN_COUNT="100"
 
-    if [ $API_PAT ]; then
-        authString="-H 'Authorization: token $API_PAT'"
-    fi
+    [ $API_PAT ] && authString="-H 'Authorization: token $API_PAT'"
 
     json=$(curl $authString -s "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=${SEARCH_IN_COUNT}")
 
-    if [ "$VERSION" == "latest" ]; then
-        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | grep -ve ".*-[a-z]" | tail -1)
+    if [[ "$VERSION" == "latest" ]]; then
+        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | tail -1)
     else
-        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | grep -ve ".*-[a-z]" | grep -e "\w*${VERSION}" | tail -1)
+        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | grep -e "\w*${VERSION}" | tail -1)
     fi    
 
     downloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
