@@ -27,6 +27,8 @@ echo "export PIPX_BIN_DIR=${PIPX_BIN_DIR}" >> "${HOME}/.bashrc"
 echo "export PIPX_HOME=${PIPX_HOME}" >> "${HOME}/.bashrc"
 echo 'export PATH="$PIPX_BIN_DIR:$PATH"' >> "${HOME}/.bashrc"
 
+# Workaround https://github.com/actions/virtual-environments/issues/4931
+# by making Tcl/Tk paths the same on macOS 10.15 and macOS 11
 if is_BigSur; then
     version=$(brew info tcl-tk --json | jq -r '.[].installed[].version')
     ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtcl8.6.dylib /usr/local/lib/libtcl8.6.dylib
