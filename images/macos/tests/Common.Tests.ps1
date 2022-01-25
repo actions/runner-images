@@ -9,7 +9,7 @@ Describe ".NET" {
     }
 }
 
-Describe "GCC" -Skip:($os.IsHighSierra -or $os.IsMonterey) {
+Describe "GCC" {
     $testCases = Get-ToolsetValue -KeyPath gcc.versions | ForEach-Object { @{Version = $_} }
 
     It "GCC <Version>" -TestCases $testCases {
@@ -33,7 +33,7 @@ Describe "GCC" -Skip:($os.IsHighSierra -or $os.IsMonterey) {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsHighSierra -or $os.IsMojave -or $os.IsMonterey) {
+Describe "vcpkg" {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -66,7 +66,7 @@ Describe "Miniconda" -Skip:($os.IsMonterey) {
     }
 }
 
-Describe "Stack" -Skip:($os.IsHighSierra) {
+Describe "Stack" {
     It "Stack" {
         "stack --version" | Should -ReturnZeroExitCode
     }

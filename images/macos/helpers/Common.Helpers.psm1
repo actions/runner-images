@@ -34,15 +34,10 @@ function Get-OSVersion {
     return [PSCustomObject]@{
         Version = $osVersion.Version
         Platform = $osVersion.Platform
-        IsHighSierra = $osVersionMajorMinor -eq "10.13"
-        IsMojave = $osVersionMajorMinor -eq "10.14"
         IsCatalina = $osVersionMajorMinor -eq "10.15"
         IsBigSur = $osVersionMajorMinor -eq "11.0"
         IsMonterey = $osMontereyVersion.Major -eq "12"
-        IsLessThanCatalina = [SemVer]$osVersion.Version -lt "10.15"
-        IsLessThanBigSur = [SemVer]$osVersion.Version -lt "11.0"
         IsLessThanMonterey = $osMontereyVersion -lt "12.0"
-        IsHigherThanMojave = [SemVer]$osVersion.Version -ge "10.15"
         IsHigherThanCatalina = [SemVer]$osVersion.Version -ge "11.0"
     }
 }

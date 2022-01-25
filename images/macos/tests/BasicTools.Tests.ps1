@@ -6,7 +6,7 @@ Describe "Azure CLI" {
     }
 }
 
-Describe "Carthage" -Skip:($os.IsMonterey) {
+Describe "Carthage" {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
     }
@@ -30,7 +30,7 @@ Describe "SwiftFormat" -Skip:($os.IsMonterey) {
     }
 }
 
-Describe "GnuPG" -Skip:($os.IsMonterey) {
+Describe "GnuPG" {
     It "GnuPG" {
         "gpg --version" | Should -ReturnZeroExitCode
     }

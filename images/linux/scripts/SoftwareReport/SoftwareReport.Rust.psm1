@@ -1,6 +1,7 @@
 function Initialize-RustEnvironment {
-    ln -sf "/usr/share/rust/.rustup" $HOME/.rustup
-    ln -sf "/usr/share/rust/.cargo" $HOME/.cargo
+    $env:PATH = "/etc/skel/.cargo/bin:/etc/skel/.rustup/bin:$($env:PATH)"
+    $env:RUSTUP_HOME = "/etc/skel/.rustup"
+    $env:CARGO_HOME = "/etc/skel/.cargo"
 }
 
 function Get-RustVersion {

@@ -61,6 +61,12 @@ function Get-VisualStudioExtensions {
     }
 
     if ((Test-IsWin16) -or (Test-IsWin19)) {
+        # Wix
+        $wixExtensionVersion = ($vsPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
+        $wixPackages = @(
+            @{Package = "WIX Toolset Studio $vs Extension"; Version = $wixExtensionVersion}
+        )
+
         # WDK
         $wdkPackageVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
         $wdkExtensionVersion = Get-WDKVersion
@@ -75,6 +81,7 @@ function Get-VisualStudioExtensions {
         $vsixs
         $ssdtPackages
         $sdkPackages
+        $wixPackages
         $wdkPackages
     )
 

@@ -69,7 +69,9 @@ function Install-Ruby
         New-Item -ItemType Directory -Path $rubyVersionPath -Force | Out-Null
 
         Write-Host "Moving Ruby '${rubyVersion}' files to '${rubyArchPath}'"
-        Move-Item -Path $tempFolder -Destination $rubyArchPath | Out-Null
+        Invoke-SBWithRetry -Command {
+            Move-Item -Path $tempFolder -Destination $rubyArchPath -ErrorAction Stop | Out-Null
+        }
 
         Write-Host "Removing Ruby '${rubyVersion}' documentation '${rubyArchPath}\share\doc' folder"
         Remove-Item -Path "${rubyArchPath}\share\doc" -Force -Recurse -ErrorAction Ignore

@@ -21,7 +21,7 @@ function Build-MarkdownElement
     )
 
     $markdown = New-MDHeader $Head -Level 4
-    $markdown += New-MDParagraph -Lines $Content
+    $markdown += New-MDParagraph -Lines $Content -NoNewLine
 
     return $markdown
 }
@@ -113,4 +113,51 @@ function Get-PathWithLink {
     )
     $link = Get-LinkTarget($inputPath)
     return "${inputPath}${link}"
+}
+
+function Test-BlankElement {
+    param(
+        [string] $Markdown
+    )
+
+    $splitByLines = $Markdown.Split("`n")
+    # Validate entry without version
+    $blankVersions = $splitByLines -match "^-" -notmatch "(OS|Image) Version|WSL|Vcpkg|\d\." | Out-String
+
+    # Validate tables with blank rows
+    $blankRows = ""
+    for($i = 0; $i -lt $splitByLines.Length; $i++) {
+        $addRows= $false
+        $table = @()
+        if ($splitByLines[$i].StartsWith("#") -and $splitByLines[$i+1].StartsWith("|")) {
+            $table += $splitByLines[$i,($i+1),($i+2)]
+            $i += 3
+            $current = $splitByLines[$i]
+            while ($current.StartsWith("|")) {
+                $isBlankRow = $current.Substring(1, $current.LastIndexOf("|") - 2).Split("|").Trim() -contains ""
+                if ($isBlankRow) {
+                    $table += $current
+                    $addRows = $true
+                }
+                $current = $splitByLines[++$i]
+            }
+            if ($addRows) {
+                $blankRows += $table | Out-String
+            }
+        }
+    }
+
+    # Display report
+    $isReport = $false
+    if ($blankVersions) {
+        Write-Host "Software list with blank version:`n${blankVersions}"
+        $isReport = $true
+    }
+    if ($blankRows) {
+        Write-Host "Tables with blank rows:`n${blankRows}"
+        $isReport = $true
+    }
+    if ($isReport) {
+        exit 1
+    }
 }

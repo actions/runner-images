@@ -25,7 +25,8 @@ param(
     [int] $CPUCount = 6,
     [int] $RamSizeGb = 7,
     [int] $DiskSizeGb = 300,
-    [string] $DisplayResolution = "1920x1080"
+    [string] $DisplayResolution = "1920x1080",
+    [string] $TagName = [DateTimeOffset]::Now.ToUnixTimeSeconds()
 )
 
 $ErrorActionPreference = "Stop"
@@ -63,6 +64,10 @@ function Invoke-SoftwareUpdate {
     }
 
     $ipAddress = Get-AnkaVMIPAddress -VMName $TemplateName
+
+    # Unenroll Seed
+    Write-Host "`t[*] Reseting the seed before requesting stable versions"
+    Remove-CurrentBetaSeed -HostName $ipAddress | Show-StringWithFormat
 
     # Install Software Updates
     # Security updates may not be able to install(hang, freeze) when AutoLogon is turned off
@@ -175,5 +180,5 @@ Write-Host "`t[*] Setting screen resolution to $DisplayResolution for $TemplateN
 Set-AnkaVMDisplayResolution -VMName $TemplateName -DisplayResolution $DisplayResolution
 
 # Push a VM template (and tag) to the Cloud
-Write-Host "`t[*] Pushing '$TemplateName' image with '$ShortMacOSVersion' tag to the '$RegistryUrl' registry..."
-Push-AnkaTemplateToRegistry -RegistryUrl $registryUrl -TagVersion $shortMacOSVersion -TemplateName $TemplateName
+Write-Host "`t[*] Pushing '$TemplateName' image with '$TagName' tag to the '$RegistryUrl' registry..."
+Push-AnkaTemplateToRegistry -RegistryUrl $registryUrl -TagName $TagName -TemplateName $TemplateName

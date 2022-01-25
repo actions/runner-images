@@ -61,6 +61,11 @@ function Get-DockerComposeVersion {
     return "Docker-compose $dockerComposeVersion"
 }
 
+function Get-DockerWincredVersion {
+    $dockerCredVersion = $(docker-credential-wincred version)
+    return "Docker-wincred $dockerCredVersion"
+}
+
 function Get-GitVersion {
     $(git version) -match "git version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $gitVersion = $Matches.Version
@@ -106,6 +111,11 @@ function Get-MySQLVersion {
     return "MySQL $mysqlVersion"
 }
 
+function Get-SQLOLEDBDriverVersion {
+    $SQLOLEDBDriverVersion = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSOLEDBSQL' InstalledVersion).InstalledVersion
+    return "SQL OLEDB Driver $SQLOLEDBDriverVersion"
+}
+
 function Get-MercurialVersion {
     ($(hg --version) | Out-String) -match "version (?<version>\d+\.\d+\.?\d*)" | Out-Null
     $mercurialVersion = $Matches.Version
@@ -128,6 +138,11 @@ function Get-PackerVersion {
     ($(cmd /c "packer --version 2>&1") | Out-String) -match "(?<version>(\d+.){2}\d+)" | Out-Null
     $packerVersion = $Matches.Version
     return "Packer $packerVersion"
+}
+
+function Get-ParcelVersion {
+    $parcelVersion = parcel --version
+    return "Parcel $parcelVersion"
 }
 
 function Get-PulumiVersion {
@@ -242,6 +257,11 @@ function Get-StackVersion {
 
 function Get-GoogleCloudSDKVersion {
     (gcloud --version) -match "Google Cloud SDK"
+}
+
+function Get-ServiceFabricSDKVersion {
+    $serviceFabricSDKVersion = Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion
+    return "Service Fabric SDK $serviceFabricSDKVersion"
 }
 
 function Get-NewmanVersion {

@@ -5,4 +5,4 @@
 
 Choco-Install -PackageName wixtoolset -ArgumentList "--force"
 
-Invoke-PesterTests -TestFile "Tools" -TestName "WiX"
+Invoke-PesterTests -TestFile "Wix"

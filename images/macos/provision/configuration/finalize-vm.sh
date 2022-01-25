@@ -5,7 +5,7 @@ source ~/utils/utils.sh
 # Close all finder windows because they can interfere with UI tests
 osascript -e 'tell application "Finder" to close windows'
 
-if is_Less_BigSur; then
+if is_Catalina; then
     # Ignore available updates to prevent system pop-ups
     updateName=$(softwareupdate -l | grep "Title: " | awk -F[:,] '{print $2}' | awk '{$1=$1};1') || true
     if [ ! -z "$updateName" ]; then

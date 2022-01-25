@@ -7,7 +7,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Retrieve the name of the CodeQL bundle preferred by the Action (in the format codeql-bundle-YYYYMMDD).
-codeql_bundle_name="$(curl -sSL https://raw.githubusercontent.com/github/codeql-action/main/src/defaults.json | jq -r .bundleVersion)"
+codeql_bundle_name="$(curl -sSL https://raw.githubusercontent.com/github/codeql-action/v1/src/defaults.json | jq -r .bundleVersion)"
 # Convert the bundle name to a version number (0.0.0-YYYYMMDD).
 codeql_bundle_version="0.0.0-${codeql_bundle_name##*-}"
 

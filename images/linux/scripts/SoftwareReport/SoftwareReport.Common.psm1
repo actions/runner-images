@@ -140,7 +140,7 @@ function Get-HomebrewVersion {
 }
 
 function Get-CpanVersion {
-    $result = Get-CommandResult "cpan --version"
+    $result = Get-CommandResult "cpan --version" -ExpectExitCode @(25, 255)
     $result.Output -match "version (?<version>\d+\.\d+) " | Out-Null
     $cpanVersion = $Matches.version
     return "cpan $cpanVersion"
@@ -172,6 +172,11 @@ function Get-NpmVersion {
 function Get-YarnVersion {
     $yarnVersion = yarn --version
     return "Yarn $yarnVersion"
+}
+
+function Get-ParcelVersion {
+    $parcelVersion = parcel --version
+    return "Parcel $parcelVersion"
 }
 
 function Get-PipVersion {
@@ -324,6 +329,20 @@ function Get-DotNetCoreSdkVersions {
     $unsortedDotNetCoreSdkVersion = dotnet --list-sdks list | ForEach-Object { $_ | Take-OutputPart -Part 0 }
     $dotNetCoreSdkVersion = $unsortedDotNetCoreSdkVersion -join " "
     return $dotNetCoreSdkVersion
+}
+
+function Get-DotnetTools {
+    $env:PATH = "/etc/skel/.dotnet/tools:$($env:PATH)"
+
+    $dotnetTools = (Get-ToolsetContent).dotnet.tools
+
+    $toolsList = @()
+
+    ForEach ($dotnetTool in $dotnetTools) {
+        $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
+    }
+
+    return $toolsList
 }
 
 function Get-CachedDockerImages {

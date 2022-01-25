@@ -9,13 +9,8 @@ GEM_PATH=`gem env|awk '/EXECUTABLE DIRECTORY/ {print $4}'`
 echo "GEM_PATH=$GEM_PATH" >> "$HOME/.bashrc"
 echo 'export PATH="$GEM_PATH:/usr/local/opt/ruby@'${DEFAULT_RUBY_VERSION}'/bin:$PATH"'  >> "$HOME/.bashrc"
 
-#if High Sierra - skip installation from toolset
-if is_HighSierra; then
-    exit 0
-fi
-
 echo "Install Ruby from toolset..."
-PACKAGE_TAR_NAMES=$(curl -s "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
+PACKAGE_TAR_NAMES=$(curl -H "Authorization: token $API_PAT" -s "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
 TOOLSET_VERSIONS=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .versions[]')
 RUBY_PATH="$AGENT_TOOLSDIRECTORY/Ruby"
 

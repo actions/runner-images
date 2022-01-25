@@ -90,9 +90,11 @@ function Install-JavaJDK {
     Write-Host "Creating Java '${fullJavaVersion}' folder in '${javaVersionPath}'"
     New-Item -ItemType Directory -Path $javaVersionPath -Force | Out-Null
 
-    # Complete the installation by extarcting Java binaries to toolcache and creating the complete file
+    # Complete the installation by extracting Java binaries to toolcache and creating the complete file
     Extract-7Zip -Path $archivePath -DestinationPath $javaVersionPath
-    Get-ChildItem -Path $javaVersionPath | Rename-Item -NewName $javaArchPath
+    Invoke-SBWithRetry -Command {
+        Get-ChildItem -Path $javaVersionPath | Rename-Item -NewName $javaArchPath -ErrorAction Stop
+    }
     New-Item -ItemType File -Path $javaVersionPath -Name "$Architecture.complete" | Out-Null
 }
 

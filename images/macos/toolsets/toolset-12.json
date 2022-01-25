@@ -1,7 +1,8 @@
 {
     "xcode": {
-        "default": "13.1",
+        "default": "13.2.1",
         "versions": [
+            { "link": "13.2.1", "version": "13.2.1" },
             { "link": "13.2", "version": "13.2.0" },
             { "link": "13.1", "version": "13.1.0" }
         ]
@@ -9,19 +10,26 @@
     "xamarin": {
         "vsmac": "latest",
         "mono-versions": [
-            "6.12.0.140"
+            "6.12.0.162"
         ],
         "ios-versions": [
-            "15.2.0.1", "15.0.0.6"
+            "15.4.0.0", "15.2.0.17", "15.0.0.6"
         ],
         "mac-versions": [
-            "8.2.0.1", "7.14.0.27"
+            "8.4.0.0", "8.2.0.17", "7.14.0.27"
         ],
         "android-versions": [
             "12.0.0.3", "11.3.0.4"
         ],
-        "bundle-default": "6_12_10",
+        "bundle-default": "6_12_12",
         "bundles": [
+            {
+                "symlink": "6_12_12",
+                "mono":"6.12",
+                "ios": "15.4",
+                "mac": "8.4",
+                "android": "12.0"
+            },
             {
                 "symlink": "6_12_11",
                 "mono":"6.12",
@@ -84,8 +92,10 @@
             "aria2",
             "azure-cli",
             "bazelisk",
+            "carthage",
             "cmake",
             "gh",
+            "gnupg",
             "gnu-tar",
             "kotlin",
             "libpq",
@@ -96,10 +106,18 @@
             "subversion",
             "swig",
             "zstd",
-            "gmp"
+            "gmp",
+            "zlib",
+            "libxext",
+            "libxft"
         ],
         "cask_packages": [
             "julia"
+        ]
+    },
+    "gcc": {
+        "versions": [
+            "11"
         ]
     },
     "toolcache": [
@@ -184,14 +202,23 @@
         "default": "1.17"
     },
     "node": {
-        "default": "14",
+        "default": "16",
         "nvm_versions": [
             "12",
             "14",
             "16"
         ]
     },
+    "llvm": {
+        "version": "13"
+    },
+    "php": {
+        "version": "8.1"
+    },
     "mongodb": {
         "version": "5.0"
+    },
+    "postgresql": {
+        "version": "14"
     }
 }

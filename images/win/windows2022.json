@@ -139,13 +139,16 @@
         },
         {
             "type": "windows-restart",
+            "check_registry": true,
+            "restart_check_command": "powershell -command \"& {while ( (Get-WindowsOptionalFeature -Online -FeatureName Containers -ErrorAction SilentlyContinue).State -ne 'Enabled' ) { Start-Sleep 30; Write-Output 'InProgress' }}\"",
             "restart_timeout": "10m"
         },
         {
             "type": "powershell",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1"
             ]
         },
         {
@@ -179,6 +182,13 @@
             ]
         },
         {
+            "type": "powershell",
+            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-ServiceFabricSDK.ps1"
+            ],
+            "execution_policy": "remotesigned"
+        },
+        {
             "type": "windows-restart",
             "restart_timeout": "10m"
         },
@@ -203,6 +213,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-GitHub-CLI.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PHP.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Rust.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Sbt.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Chrome.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Edge.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Firefox.ps1",
@@ -217,6 +228,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-DACFx.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-MysqlCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-SQLPowerShellTools.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-SQLOLEDBDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-DotnetSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Mingw64.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Haskell.ps1",
@@ -250,11 +262,15 @@
         },
         {
             "type": "windows-restart",
+            "check_registry": true,
+            "restart_check_command": "powershell -command \"& {if ((-not (Get-Process TiWorker.exe -ErrorAction SilentlyContinue)) -and (-not [System.Environment]::HasShutdownStarted) ) { Write-Output 'Restart complete' }}\"",
             "restart_timeout": "30m"
         },
         {
             "type": "powershell",
+            "pause_before": "2m",
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Wait-WindowsUpdatesForInstall.ps1",
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
             ]
         },
@@ -287,6 +303,7 @@
         },
         {
             "type": "powershell",
+            "skip_clean": true,
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Run-NGen.ps1",
                 "{{ template_dir }}/scripts/Installers/Finalize-VM.ps1"

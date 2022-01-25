@@ -8,7 +8,6 @@
             "arch": "x64",
             "versions": [
                 "2.7.*",
-                "3.5.*",
                 "3.6.*",
                 "3.7.*",
                 "3.8.*",
@@ -71,10 +70,18 @@
     ],
     "java": {
         "default": "8",
-        "versions": [
-            "8", "11", "12"
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11", "17" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11", "12" ]
+            }
         ],
-        "maven": "3.8.3"
+        "maven": "3.8.4"
     },
     "android": {
         "platform_min_version": "23",
@@ -110,12 +117,13 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.4.0"
+                "7.1.0"
             ],
             "zip_versions": [
                 "3.1.0",
                 "4.4.0",
-                "5.9.0"
+                "5.9.0",
+                "6.6.0"
             ]
         }
     ],
@@ -245,6 +253,9 @@
             "2.1",
             "3.1",
             "5.0"
+        ],
+        "tools": [
+            { "name": "nbgv", "test": "nbgv --version", "getversion" : "nbgv --version" }
         ]
     },
     "clang": {
@@ -271,7 +282,8 @@
             "7.2",
             "7.3",
             "7.4",
-            "8.0"
+            "8.0",
+            "8.1"
         ]
     },
     "selenium": {
@@ -280,7 +292,7 @@
     },
     "rubygems": [],
     "node": {
-        "default": "14"
+        "default": "16"
     },
     "node_modules": [
         {
@@ -296,7 +308,7 @@
             "command": "n"
         },
         {
-            "name": "parcel-bundler",
+            "name": "parcel",
             "command": "parcel"
         },
         {
@@ -330,5 +342,8 @@
     ],
     "mongodb": {
         "version": "5.0"
+    },
+    "postgresql": {
+        "version": "14"
     }
 }

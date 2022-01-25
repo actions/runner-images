@@ -5,6 +5,10 @@ name: Linter
 on:
   pull_request:
     branches: [ main ]
+    paths:
+      - '**.json'
+      - '**.md'
+      - '**.sh'
 
 jobs:
   build:
@@ -18,13 +22,14 @@ jobs:
           fetch-depth: 0
 
       - name: Lint Code Base
-        uses: github/super-linter@v3
+        uses: github/super-linter/slim@v4
         env:
           VALIDATE_ALL_CODEBASE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSON: true
-          VALIDATE_MD: true
+          VALIDATE_MARKDOWN: true
           DEFAULT_BRANCH: ${{ github.base_ref }}
+          FILTER_REGEX_EXCLUDE: .*images/*/.*-Readme.md
 
       - name: Checking shebang lines in MacOS and Ubuntu releases.
         run: ./images.CI/shebang-linter.ps1
