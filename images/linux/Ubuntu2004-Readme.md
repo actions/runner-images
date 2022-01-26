@@ -100,7 +100,7 @@
 - SVN 1.13.0
 - Terraform 1.1.4
 - yamllint 1.26.3
-- yq 4.16.2
+- [yq](https://github.com/mikefarah/yq) 4.16.2
 - zstd 1.5.1 (homebrew)
 
 ### CLI Tools
