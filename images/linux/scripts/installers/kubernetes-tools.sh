@@ -4,6 +4,9 @@
 ##  Desc:  Installs kubectl, helm, kustomize
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/install.sh
+
 # Install KIND
 downloadUrl=$(get_github_package_download_url "kubernetes-sig" "kind" "contains(\"kind-linux-amd64\")")
 curl -L -o /usr/local/bin/kind $downloadUrl
