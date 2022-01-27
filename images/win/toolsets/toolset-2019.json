@@ -20,7 +20,6 @@
             "platform" : "win32",
             "versions": [
                 "2.7.*",
-                "3.5.*",
                 "3.6.*",
                 "3.7.*",
                 "3.8.*",
@@ -36,7 +35,6 @@
             "platform" : "win32",
             "versions": [
                 "2.7.*",
-                "3.5.*",
                 "3.6.*",
                 "3.7.*",
                 "3.8.*",
@@ -379,7 +377,8 @@
             "SSIS.SqlServerIntegrationServicesProjects",
             "ProBITools.MicrosoftReportProjectsforVisualStudio",
             "VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects",
-            "ms-biztalk.BizTalk"
+            "ms-biztalk.BizTalk",
+            "WixToolset.WixToolsetVisualStudio2019Extension"
         ]
     },
     "docker": {
