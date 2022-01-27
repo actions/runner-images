@@ -6,11 +6,10 @@
 
 mv -f /imagegeneration/post-generation /opt
 
-# set chmod -R 777 /opt
-if [[ -d "/opt" ]]; then
-    echo "chmod -R 777 /opt"
-    chmod -R 777 /opt
-fi
+echo "chmod -R 777 /opt"
+chmod -R 777 /opt
+echo "chmod -R 777 /usr/share"
+chmod -R 777 /usr/share
 
 # remove installer and helper folders
 rm -rf $HELPER_SCRIPT_FOLDER

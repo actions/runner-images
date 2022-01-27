@@ -4,17 +4,12 @@ Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 $os = Get-OSVersion
 
 Describe "Node.js" {
-    BeforeAll {
-        $os = Get-OSVersion
-        $expectedNodeVersion = if ($os.IsHigherThanMojave) { "v14.*" } else { "v8.*" }
-    }
-
     It "Node.js is installed" {
         "node --version" | Should -ReturnZeroExitCode
     }
 
-    It "Node.js $expectedNodeVersion is default" {
-        (Get-CommandResult "node --version").Output | Should -BeLike $expectedNodeVersion
+    It "Node.js version should correspond to the version in the toolset" {
+        node --version | Should -BeLike "v$(Get-ToolsetValue 'node.default')*"
     }
 
     It "NPM is installed" {
@@ -38,8 +33,8 @@ Describe "nvm" {
     }
 
     Context "nvm versions" {
-        $NVM_VERSIONS = @(10, 12, 14)
-        $testCases = $NVM_VERSIONS | ForEach-Object { @{NvmVersion = $_} }
+        [array]$nvmVersions = Get-ToolsetValue 'node.nvm_versions'
+        $testCases = $nvmVersions | ForEach-Object { @{NvmVersion = $_} }
 
         It "<NvmVersion>" -TestCases $testCases {
             param (
@@ -51,14 +46,12 @@ Describe "nvm" {
     }
 }
 
-Describe "AppCenterCLI" {
-    It "App Center CLI" {
-        "appcenter --version" | Should -ReturnZeroExitCode
+Describe "Global NPM Packages" {
+    $globalNpmPackages = Get-ToolsetValue "npm.global_packages"
+    $globalNpmPackagesWithTests = $globalNpmPackages | Where-Object { $_.test } | ForEach-Object { @{ Name = $_.name; Test = $_.test } }
+
+    It "<Name>" -TestCases $globalNpmPackagesWithTests {
+        $Test | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Newman" -Skip:($os.IsHighSierra -or $os.IsMojave) {
-    It "Newman" {
-        "newman --version" | Should -ReturnZeroExitCode
-    }
-}

@@ -1,3 +1,9 @@
+function Initialize-RustEnvironment {
+    $env:RUSTUP_HOME = "C:\Users\Default\.rustup"
+    $env:CARGO_HOME = "C:\Users\Default\.cargo"
+    $env:Path += ";$env:CARGO_HOME\bin"
+}
+
 function Get-OSName {
     return (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
@@ -14,33 +20,35 @@ function Get-BashVersion {
 }
 
 function Get-RustVersion {
+    Initialize-RustEnvironment
     $rustVersion = [regex]::matches($(rustc --version), "\d+\.\d+\.\d+").Value
     return $rustVersion
 }
 
 function Get-RustupVersion {
-     $version = [regex]::matches($(rustup --version), "\d+\.\d+\.\d+").Value
-     return $version
+    $rustupInfo = cmd /c "rustup --version 2>NUL"
+    $version = [regex]::matches($rustupInfo, "\d+\.\d+\.\d+").Value
+    return $version
 }
 
 function Get-RustCargoVersion {
-     $version = [regex]::matches($(cargo --version), "\d+\.\d+\.\d+").Value
-     return $version
+    $version = [regex]::matches($(cargo --version), "\d+\.\d+\.\d+").Value
+    return $version
 }
 
 function Get-RustdocVersion {
-     $version = [regex]::matches($(rustdoc --version), "\d+\.\d+\.\d+").Value
-     return $version
+    $version = [regex]::matches($(rustdoc --version), "\d+\.\d+\.\d+").Value
+    return $version
 }
 
 function Get-RustfmtVersion {
-     $version = [regex]::matches($(rustfmt --version), "\d+\.\d+\.\d+").Value
-     return $version
+    $version = [regex]::matches($(rustfmt --version), "\d+\.\d+\.\d+").Value
+    return $version
 }
 
 function Get-RustClippyVersion {
-     $version = [regex]::matches($(cargo clippy  --version), "\d+\.\d+\.\d+").Value
-     return $version
+    $version = [regex]::matches($(cargo clippy  --version), "\d+\.\d+\.\d+").Value
+    return $version
 }
 
 function Get-BindgenVersion {
@@ -94,6 +102,11 @@ function Get-JuliaVersion {
     return "Julia $juliaVersion"
 }
 
+function Get-LLVMVersion {
+    $llvmVersion = [regex]::matches($(clang --version), "\d+\.\d+\.\d+").Value
+    return "LLVM $llvmVersion"
+}
+
 function Get-PerlVersion {
     ($(perl --version) | Out-String) -match "\(v(?<version>\d+\.\d+\.\d+)\)" | Out-Null
     $perlVersion = $Matches.Version
@@ -106,16 +119,12 @@ function Get-NodeVersion {
 }
 
 function Get-ChocoVersion {
-    ($(choco version) | Out-String) -match "v(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $chocoVersion = $Matches.Version
-    return "Chocolatey $chocoVersion"
+    return "Chocolatey $(choco --version)"
 }
 
 function Get-VcpkgVersion {
-    ($(vcpkg version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $vcpkgVersion = $Matches.Version
     $commitId = git -C "C:\vcpkg" rev-parse --short HEAD
-    return "Vcpkg $vcpkgVersion (build from master \<$commitId>)"
+    return "Vcpkg (build from master \<$commitId>)"
 }
 
 function Get-NPMVersion {
@@ -189,6 +198,18 @@ function Get-DotnetSdks {
         Versions = $sdkVersions
         Path = $sdkPath
     }
+}
+
+function Get-DotnetTools {
+    $env:Path += ";C:\Users\Default.dotnet\tools"
+    $dotnetTools = (Get-ToolsetContent).dotnet.tools
+
+    $toolsList = @()
+
+    foreach  ($dotnetTool in $dotnetTools) {
+        $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
+    }
+    return $toolsList
 }
 
 function Get-DotnetRuntimes {
@@ -307,7 +328,7 @@ function Get-PacmanVersion {
     $rawVersion = & $pacmanPath --version
     $rawVersion.Split([System.Environment]::NewLine)[1] -match "\d+\.\d+(\.\d+)?" | Out-Null
     $pacmanVersion = $matches[0]
-    return "- Pacman $pacmanVersion"
+    return "Pacman $pacmanVersion"
 }
 
 function Get-YAMLLintVersion {
@@ -316,7 +337,7 @@ function Get-YAMLLintVersion {
 
 function Get-BizTalkVersion {
     $bizTalkReg = Get-ItemProperty "HKLM:\SOFTWARE\WOW6432Node\Microsoft\BizTalk Server\3.0"
-    return "- $($bizTalkReg.ProductName) $($bizTalkReg.ProductVersion) "
+    return "$($bizTalkReg.ProductName) $($bizTalkReg.ProductVersion)"
 }
 
 function Get-PipxVersion {
@@ -346,4 +367,3 @@ function Build-PackageManagementEnvironmentTable {
         }
     }
 }
-

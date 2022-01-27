@@ -72,26 +72,27 @@ minimumPlatformVersion=$(get_toolset_value '.android.platform_min_version')
 extras=$(get_toolset_value '.android.extra_list[]|"extras;" + .')
 addons=$(get_toolset_value '.android.addon_list[]|"add-ons;" + .')
 additional=$(get_toolset_value '.android.additional_tools[]')
-ANDROID_NDK_MAJOR_LTS=($(get_toolset_value '.android.ndk.lts'))
-ndkLTSFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LTS)
+ANDROID_NDK_MAJOR_VERSIONS=($(get_toolset_value '.android.ndk.versions[]'))
+ANDROID_NDK_MAJOR_DEFAULT=$(get_toolset_value '.android.ndk.default')
+ndkDefaultFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
 
-components=("${extras[@]}" "${addons[@]}" "${additional[@]}" "ndk;$ndkLTSFullVersion")
-if isUbuntu20; then
-    ANDROID_NDK_MAJOR_LATEST=($(get_toolset_value '.android.ndk.latest'))
-    ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
-    components+=("ndk;$ndkLatestFullVersion")
-fi
+components=("${extras[@]}" "${addons[@]}" "${additional[@]}")
+for ndk_version in "${ANDROID_NDK_MAJOR_VERSIONS[@]}"
+do
+    ndk_full_version=$(get_full_ndk_version $ndk_version)
+    components+=("ndk;$ndk_full_version")
+done
 
 # This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
 # Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
 # Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
-ln -s $ANDROID_SDK_ROOT/ndk/$ndkLTSFullVersion $ANDROID_NDK_ROOT
+ln -s $ANDROID_SDK_ROOT/ndk/$ndkDefaultFullVersion $ANDROID_NDK_ROOT
 
-if isUbuntu20; then
-    echo "ANDROID_NDK_LATEST_HOME=$ANDROID_SDK_ROOT/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
-fi
+ANDROID_NDK_MAJOR_LATEST=(${ANDROID_NDK_MAJOR_VERSIONS[-1]})
+ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
+echo "ANDROID_NDK_LATEST_HOME=$ANDROID_SDK_ROOT/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
 
-availablePlatforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-" | cut -d"|" -f 1))
+availablePlatforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-[0-9]" | cut -d"|" -f 1))
 allBuildTools=($($SDKMANAGER --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
 

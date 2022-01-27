@@ -1,14 +1,17 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
-echo Installing Azure CLI...
-brew_smart_install "azure-cli"
-
 echo Installing PowerShell...
-brew install --cask powershell
+psRelease=$(curl -H "Authorization: token $API_PAT" -s "https://api.github.com/repos/PowerShell/PowerShell/releases/latest")
+psDownloadUrl=$(echo $psRelease | jq -r '.assets[].browser_download_url | select(contains("osx-x64.pkg"))' | head -n 1)
+download_with_retries $psDownloadUrl "/tmp" "powershell.pkg"
 
-# A dummy call of `az` to initialize ~/.azure directory before the modules are installed
-az -v
+# Work around the issue on macOS Big Sur 11.5 or higher for possible error message ("can't be opened because Apple cannot check it for malicious software") when installing the package
+if ! is_Catalina; then
+    sudo xattr -rd com.apple.quarantine /tmp/powershell.pkg
+fi
+
+sudo installer -pkg /tmp/powershell.pkg -target /
 
 # Install PowerShell modules
 psModules=$(get_toolset_value '.powershellModules[].name')
@@ -30,8 +33,5 @@ pwsh -command "& {Import-Module Az}"
 
 # powershell link was removed in powershell-6.0.0-beta9
 sudo ln -s /usr/local/bin/pwsh /usr/local/bin/powershell
-
-# fix ~/.azure directory permissions
-sudo chown -R ${USER}: $HOME/.azure
 
 invoke_tests "Powershell"

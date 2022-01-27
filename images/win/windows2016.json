@@ -187,6 +187,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-AliyunCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PostgreSQL.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Kotlin.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Ruby.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
@@ -205,7 +206,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-Selenium.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-IEWebDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Apache.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Nginx.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-LLVM.ps1"
             ]
         },
         {
@@ -256,11 +258,15 @@
         },
         {
             "type": "windows-restart",
+            "check_registry": true,
+            "restart_check_command": "powershell -command \"& {if ((-not (Get-Process TiWorker.exe -ErrorAction SilentlyContinue)) -and (-not [System.Environment]::HasShutdownStarted) ) { Write-Output 'Restart complete' }}\"",
             "restart_timeout": "30m"
         },
         {
             "type": "powershell",
+            "pause_before": "2m",
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Wait-WindowsUpdatesForInstall.ps1",
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
             ]
         },
@@ -293,6 +299,7 @@
         },
         {
             "type": "powershell",
+            "skip_clean": true,
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Finalize-VM.ps1"
             ]

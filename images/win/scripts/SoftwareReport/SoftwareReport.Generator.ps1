@@ -1,3 +1,8 @@
+$global:ErrorActionPreference = "Stop"
+$global:ProgressPreference = "SilentlyContinue"
+$ErrorView = "NormalView"
+Set-StrictMode -Version Latest
+
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
@@ -35,21 +40,19 @@ $languageTools = @(
     (Get-BashVersion),
     (Get-GoVersion),
     (Get-JuliaVersion),
+    (Get-LLVMVersion),
     (Get-NodeVersion),
+    (Get-PerlVersion)
     (Get-PHPVersion),
     (Get-PythonVersion),
     (Get-RubyVersion),
     (Get-KotlinVersion)
 )
-if ((Test-IsWin16) -or (Test-IsWin19)) {
-    $languageTools += @(
-        (Get-PerlVersion)
-    )
-}
 $markdown += New-MDList -Style Unordered -Lines ($languageTools | Sort-Object)
 
 $packageManagementList = @(
     (Get-ChocoVersion),
+    (Get-CondaVersion),
     (Get-ComposerVersion),
     (Get-HelmVersion),
     (Get-NPMVersion),
@@ -60,12 +63,6 @@ $packageManagementList = @(
     (Get-VcpkgVersion),
     (Get-YarnVersion)
 )
-
-if ((Test-IsWin16) -or (Test-IsWin19)) {
-    $packageManagementList += @(
-        (Get-CondaVersion)
-    )
-}
 
 $markdown += New-MDHeader "Package Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
@@ -78,13 +75,10 @@ $markdown += New-MDHeader "Project Management" -Level 3
 $projectManagementTools = @(
     (Get-AntVersion),
     (Get-GradleVersion),
-    (Get-MavenVersion)
+    (Get-MavenVersion),
+    (Get-SbtVersion)
 )
-if ((Test-IsWin16) -or (Test-IsWin19)) {
-    $projectManagementTools += @(
-        (Get-SbtVersion)
-    )
-}
+
 $markdown += New-MDList -Style Unordered -Lines ($projectManagementTools | Sort-Object)
 
 $markdown += New-MDHeader "Tools" -Level 3
@@ -100,10 +94,10 @@ $toolsList = @(
     (Get-CodeQLBundleVersion),
     (Get-DockerVersion),
     (Get-DockerComposeVersion),
+    (Get-DockerWincredVersion),
     (Get-GHCVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
-    (Get-GVFSVersion),
     (Get-InnoSetupVersion),
     (Get-JQVersion),
     (Get-KindVersion),
@@ -111,22 +105,25 @@ $toolsList = @(
     (Get-MercurialVersion),
     (Get-MinGWVersion),
     (Get-NewmanVersion),
+    (Get-NSISVersion),
     (Get-OpenSSLVersion),
     (Get-PackerVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
+    (Get-ServiceFabricSDKVersion),
     (Get-StackVersion),
     (Get-SVNVersion),
     (Get-VSWhereVersion),
     (Get-SwigVersion),
     (Get-WinAppDriver),
+    (Get-WixVersion),
     (Get-ZstdVersion),
     (Get-YAMLLintVersion)
 )
 if ((Test-IsWin16) -or (Test-IsWin19)) {
     $toolsList += @(
-        (Get-NSISVersion),
-        (Get-GoogleCloudSDKVersion)
+        (Get-GoogleCloudSDKVersion),
+        (Get-ParcelVersion)
     )
 }
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
@@ -177,7 +174,8 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-SeleniumWebDriverVersion -Driver "edge"),
     (Get-BrowserVersion -Browser "firefox"),
     (Get-SeleniumWebDriverVersion -Driver "firefox"),
-    (Get-SeleniumWebDriverVersion -Driver "iexplorer")
+    (Get-SeleniumWebDriverVersion -Driver "iexplorer"),
+    (Get-SeleniumVersion)
 )
 
 $markdown += New-MDHeader "Environment variables" -Level 4
@@ -193,42 +191,43 @@ $markdown += Get-ShellTarget
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "MSYS2" -Level 3
-$markdown += Get-PacmanVersion
-$markdown += New-MDNewLine
+$markdown += "$(Get-PacmanVersion)" | New-MDList -Style Unordered
 $markdown += New-MDHeader "Notes:" -Level 5
-$markdown += @'
+$reportMsys64 = @'
 ```
 Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
 ```
 '@
-$markdown += New-MDNewLine
+$markdown += New-MDParagraph -Lines $reportMsys64
 
 if (Test-IsWin19)
 {
     $markdown += New-MDHeader "BizTalk Server" -Level 3
-    $markdown += Get-BizTalkVersion
-    $markdown += New-MDNewLine
+    $markdown += "$(Get-BizTalkVersion)" | New-MDList -Style Unordered
 }
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += (Build-CachedToolsMarkdown)
-$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Databases" -Level 3
 $markdown += Build-DatabasesMarkdown
-$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Database tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$databaseTools = @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
     (Get-MySQLVersion),
     (Get-SQLPSVersion)
-    ) | Sort-Object
 )
-$markdown += New-MDNewLine
+
+if (-not (Test-IsWin16))
+{
+    $databaseTools += Get-SQLOLEDBDriverVersion
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($databaseTools | Sort-Object)
 
 $markdown += Build-WebServersSection
 
@@ -238,12 +237,10 @@ $markdown += $vs | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Workloads, components and extensions:" -Level 4
-$markdown += New-MDNewLine
 $markdown += ((Get-VisualStudioComponents) + (Get-VisualStudioExtensions)) | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Microsoft Visual C++:" -Level 4
-$markdown += New-MDNewLine
 $markdown += Get-VisualCPPComponents | New-MDTable
 $markdown += New-MDNewLine
 
@@ -270,20 +267,24 @@ $markdown += "``Location $($frameworks.Path)``"
 $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $frameworks.Versions -Style Unordered
 
+$markdown += New-MDHeader ".NET tools" -Level 3
+$tools = Get-DotnetTools
+$markdown += New-MDList -Lines $tools -Style Unordered
+
 # PowerShell Tools
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
 $markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
 
 $markdown += New-MDHeader "Azure Powershell Modules" -Level 4
 $markdown += Get-PowerShellAzureModules | New-MDTable
-$markdown += @'
+$reportAzPwsh = @'
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
 ```
 '@
-$markdown += New-MDNewLine
+$markdown += New-MDParagraph -Lines $reportAzPwsh
 
 $markdown += New-MDHeader "Powershell Modules" -Level 4
 $markdown += Get-PowerShellModules | New-MDTable
@@ -302,7 +303,7 @@ $cachedImages = Get-CachedDockerImagesTableData
 if ($cachedImages) {
     $markdown += New-MDHeader "Cached Docker images" -Level 3
     $markdown += $cachedImages | New-MDTable
-    $markdown += New-MDNewLine
 }
 
+Test-BlankElement -Markdown $markdown
 $markdown | Out-File -FilePath "C:\InstalledSoftware.md"

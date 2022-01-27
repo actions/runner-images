@@ -7,10 +7,10 @@ function Get-VisualStudioVersion {
     }
 }
 
-function Get-WixVersion {
+function Get-SDKVersion {
     $regKey = "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
     $installedApplications = Get-ItemProperty -Path $regKey
-    ($installedApplications | Where-Object { $_.DisplayName -match "wix" } | Select-Object -First 1).DisplayVersion
+    ($installedApplications | Where-Object { $_.DisplayName -eq 'Windows SDK' } | Select-Object -First 1).DisplayVersion
 }
 
 function Get-WDKVersion {
@@ -52,12 +52,18 @@ function Get-VisualStudioExtensions {
         )
     }
 
+    # SDK
+    if (Test-IsWin19) {
+        $sdkPackageVersion = Get-SDKVersion
+        $sdkPackages = @(
+            @{Package = 'Windows Software Development Kit Extension'; Version = $sdkPackageVersion}
+        )
+    }
+
     if ((Test-IsWin16) -or (Test-IsWin19)) {
         # Wix
-        $wixPackageVersion = Get-WixVersion
         $wixExtensionVersion = ($vsPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
         $wixPackages = @(
-            @{Package = 'WIX Toolset'; Version = $wixPackageVersion}
             @{Package = "WIX Toolset Studio $vs Extension"; Version = $wixExtensionVersion}
         )
 
@@ -74,6 +80,7 @@ function Get-VisualStudioExtensions {
     $extensions = @(
         $vsixs
         $ssdtPackages
+        $sdkPackages
         $wixPackages
         $wdkPackages
     )

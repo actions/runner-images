@@ -1,5 +1,7 @@
+$os = Get-OSVersion
+
 Describe "RubyGems" {
-    $gemTestCases = Get-ToolsetValue -KeyPath "rubygems" | ForEach-Object {
+    $gemTestCases = Get-ToolsetValue -KeyPath "ruby.rubygems" | ForEach-Object {
         @{gemName = $_}
     }
 
@@ -17,7 +19,7 @@ Describe "Bundler" {
     }
 }
 
-Describe "Nomad shenzhen CLI" {
+Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey) {
     It "Nomad shenzhen CLI" {
         "ipa --version" | Should -ReturnZeroExitCode
     }
@@ -32,5 +34,11 @@ Describe "Fastlane" {
 Describe "xcpretty" {
     It "xcpretty" {
         "xcpretty --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "jazzy" {
+    It "jazzy" {
+        "jazzy --version" | Should -ReturnZeroExitCode
     }
 }

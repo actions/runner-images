@@ -12,7 +12,7 @@ if (-not $vsixPackagesList) {
 
 $vsVersion = $toolset.visualStudio.Version
 $vsixPackagesList | ForEach-Object {
-    # Retrieve cdn endpoint to avoid HTTP error 429 https://github.com/actions/virtual-environments/issues/3074 
+    # Retrieve cdn endpoint to avoid HTTP error 429 https://github.com/actions/virtual-environments/issues/3074
     $vsixPackage = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
     Install-VsixExtension -Url $vsixPackage.DownloadUri -Name $vsixPackage.FileName -VSversion $vsVersion
 }

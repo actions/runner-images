@@ -28,9 +28,20 @@ function Get-ToolcacheNodeVersions {
     return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
 }
 
-function Get-ToolcacheGoVersions {
-    $toolcachePath = Join-Path $env:HOME "hostedtoolcache" "Go"
-    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+function Get-ToolcacheGoTable {
+    $ToolInstances = Get-CachedToolInstances -Name "Go" -VersionCommand "version"
+    foreach ($Instance in $ToolInstances) {
+        $Version = [System.Version]($Instance.Version -Split(" "))[0]
+        $Instance."Environment Variable" = "GOROOT_$($Version.major)_$($Version.minor)_X64"
+    }
+
+    $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
+        Version = "left";
+        Architecture = "left";
+        "Environment Variable" = "left"
+    })
+
+    return $Content
 }
 
 function Build-ToolcacheSection { 
@@ -42,13 +53,10 @@ function Build-ToolcacheSection {
     $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
     $output += New-MDHeader "PyPy" -Level 4
     $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
-
-    if( -not $os.IsHighSierra) {
-        $output += New-MDHeader "Node.js" -Level 4
-        $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
-        $output += New-MDHeader "Go" -Level 4
-        $output += New-MDList -Lines (Get-ToolcacheGoVersions) -Style Unordered
-    }
+    $output += New-MDHeader "Node.js" -Level 4
+    $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
+    $output += New-MDHeader "Go" -Level 4
+    $output += Get-ToolcacheGoTable
 
     return $output
 }

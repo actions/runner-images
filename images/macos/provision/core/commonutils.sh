@@ -1,6 +1,9 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
+# Monterey needs future review:
+# aliyun-cli, gnupg, helm have issues with building from the source code.
+# Added gmp for now, because toolcache ruby needs its libs. Remove it when php starts to build from source code.
 common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
     echo "Installing $package..."
@@ -13,17 +16,16 @@ for package in $cask_packages; do
     brew install --cask $package
 done
 
-# Specify Bazel version 3.7.1 to install due to the bug with 4.0.0: https://github.com/bazelbuild/bazel/pull/12882
-if is_Less_Catalina; then
-    export USE_BAZEL_VERSION="3.7.1"
-    echo "export USE_BAZEL_VERSION=${USE_BAZEL_VERSION}" >> "${HOME}/.bashrc"
-fi
-
-# Create symlinks for Go 1.15 to preserve backward compatibility
-ln -sf $(brew --prefix go@1.15)/bin/* /usr/local/bin/
-
 # Invoke bazel to download bazel version via bazelisk
 bazel
+
+# Workaround https://github.com/actions/virtual-environments/issues/4931
+# by making Tcl/Tk paths the same on macOS 10.15 and macOS 11
+if is_BigSur; then
+    version=$(brew info tcl-tk --json | jq -r '.[].installed[].version')
+    ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtcl8.6.dylib /usr/local/lib/libtcl8.6.dylib
+    ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtk8.6.dylib /usr/local/lib/libtk8.6.dylib
+fi
 
 # Invoke tests for all basic tools
 invoke_tests "BasicTools"

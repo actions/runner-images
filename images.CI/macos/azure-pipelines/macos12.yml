@@ -1,0 +1,23 @@
+name: macOS-12_$(date:yyyyMMdd)$(rev:.r)_unstable
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily
+  branches:
+    include:
+    - main
+  always: true
+
+trigger: none
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - main
+
+jobs:
+- template: image-generation.yml
+  parameters:
+    image_label: 'macOS Monterey'
+    base_image_name: 'clean-macOS-12-380Gb-runner'
+    template_path: 'templates/macOS-12.json'
+    target_datastore: 'ds-image'

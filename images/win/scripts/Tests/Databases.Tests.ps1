@@ -3,7 +3,8 @@ Describe "MongoDB" {
         @{ ToolName = "mongo" }
         @{ ToolName = "mongod" }
     ) {
-        "$ToolName --version" | Should -ReturnZeroExitCode
+        $toolsetVersion = (Get-ToolsetContent).mongodb.version
+        (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
     }
 }
 
@@ -50,11 +51,21 @@ Describe "PostgreSQL" {
             $StartType | Should -Be "Disabled"
         }
     }
+
+    Context "PostgreSQL version" {
+        It "PostgreSQL version should correspond to the version in the toolset" {
+            $toolsetVersion = (Get-ToolsetContent).postgresql.version
+            # Client version
+            (&$Env:PGBIN\psql --version).split()[-1] | Should -BeLike "$toolsetVersion*"
+            # Server version
+            (&$Env:PGBIN\pg_config --version).split()[-1] | Should -BeLike "$toolsetVersion*"
+        }
+    }
 }
 
 Describe "MySQL" {
     It "MySQL CLI" {
-        "mysql -V" | Should -ReturnZeroExitCode
+        $MysqlVersion = (Get-ToolsetContent).mysql.version
+        mysql -V | Should -BeLike "*${MysqlVersion}*"
     }
 }
-

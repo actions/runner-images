@@ -1,6 +1,6 @@
 $os = Get-OSVersion
 
-Describe "Haskell" -Skip:($os.IsHighSierra) {
+Describe "Haskell" {
     Context "GHCup" {
         It "GHCup" {
             "ghcup --version" | Should -ReturnZeroExitCode

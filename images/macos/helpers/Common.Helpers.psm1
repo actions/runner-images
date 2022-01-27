@@ -28,16 +28,17 @@ function Get-EnvironmentVariable($variable) {
 function Get-OSVersion {
     $osVersion = [Environment]::OSVersion
     $osVersionMajorMinor = $osVersion.Version.ToString(2)
+    # Monterey needs future review:
+    # [Environment]::OSVersion returns 11.0 for Monterey preview.
+    [SemVer]$osMontereyVersion = sw_vers -productVersion
     return [PSCustomObject]@{
         Version = $osVersion.Version
         Platform = $osVersion.Platform
-        IsHighSierra = $osVersionMajorMinor -eq "10.13"
-        IsMojave = $osVersionMajorMinor -eq "10.14"
         IsCatalina = $osVersionMajorMinor -eq "10.15"
         IsBigSur = $osVersionMajorMinor -eq "11.0"
-        IsLessThanCatalina = [SemVer]$osVersion.Version -lt "10.15"
-        IsLessThanBigSur = [SemVer]$osVersion.Version -lt "11.0"
-        IsHigherThanMojave = [SemVer]$osVersion.Version -ge "10.15"
+        IsMonterey = $osMontereyVersion.Major -eq "12"
+        IsLessThanMonterey = $osMontereyVersion -lt "12.0"
+        IsHigherThanCatalina = [SemVer]$osVersion.Version -ge "11.0"
     }
 }
 
@@ -98,8 +99,7 @@ function Invoke-ValidateCommand {
     return $output
 }
 
-function Start-DownloadWithRetry
-{
+function Start-DownloadWithRetry {
     Param
     (
         [Parameter(Mandatory)]
@@ -141,4 +141,16 @@ function Start-DownloadWithRetry
     }
 
     return $filePath
+}
+
+function Add-EnvironmentVariable {
+    param
+    (
+        [Parameter(Mandatory)] [string] $Name,
+        [Parameter(Mandatory)] [string] $Value,
+        [string] $FilePath = "${env:HOME}/.bashrc"
+    )
+
+    $envVar = "export {0}={1}" -f $Name, $Value
+    Add-Content -Path $FilePath -Value $envVar
 }

@@ -8,7 +8,7 @@ echo "Installing Chrome Driver"
 brew install --cask chromedriver
 
 echo "Installing Selenium"
-brew_smart_install "selenium-server-standalone"
+brew_smart_install "selenium-server"
 
 CHROMEWEBDRIVER_DIR=$(readlink $(which chromedriver) | xargs dirname)
 echo "export CHROMEWEBDRIVER=$CHROMEWEBDRIVER_DIR" >> "${HOME}/.bashrc"

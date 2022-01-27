@@ -151,11 +151,6 @@ function Build-OSInfoSection {
     return $output
 }
 
-function Get-PHPVersion {
-    $PHPVersion = Run-Command "php --version" | Select-Object -First 1 | Take-Part -Part 0,1
-    return $PHPVersion
-}
-
 function Get-MSBuildVersion {
     $msbuildVersion = msbuild -version | Select-Object -Last 1
     $result = Select-String -Path (Get-Command msbuild).Source -Pattern "msbuild"
@@ -308,7 +303,7 @@ function Get-PackerVersion {
 }
 
 function Get-OpenSSLVersion {
-    $opensslVersion = Get-Item /usr/local/opt/openssl | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
+    $opensslVersion = Get-Item /usr/local/opt/openssl@1.1 | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
     return $opensslVersion
 }
 
@@ -423,7 +418,7 @@ function Get-AppCenterCLIVersion {
 }
 
 function Get-AzureCLIVersion {
-    $azureCLIVersion = Run-Command "az -v" | Select-String "^azure-cli" | Take-Part -Part 1
+    $azureCLIVersion = (az version | ConvertFrom-Json).'azure-cli'
     return "Azure CLI $azureCLIVersion"
 }
 
@@ -510,6 +505,31 @@ function Get-BicepVersion {
 function Get-KotlinVersion {
     $kotlinVersion = Run-Command "kotlin -version" | Take-Part -Part 2
     return "Kotlin $kotlinVersion"
+}
+
+function Get-SbtVersion {
+    $sbtVersion = Run-Command "sbt -version" | Take-Part -Part 3
+    return "Sbt $sbtVersion"
+}
+
+function Get-JazzyVersion {
+    $jazzyVersion = Run-Command "jazzy --version" | Take-Part -Part 2
+    return "Jazzy $jazzyVersion"
+}
+
+function Get-ZlibVersion {
+	$zlibVersion = (brew info zlib)[0] | Take-Part -Part 2
+	return "Zlib $zlibVersion"
+}
+
+function Get-LibXftVersion {
+    $libXftVersion = (brew info libxft)[0] | Take-Part -Part 2
+    return "libXft $libXftVersion"
+}
+
+function Get-LibXextVersion {
+    $libXextVersion = (brew info libxext)[0] | Take-Part -Part 2
+    return "libXext $libXextVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {

@@ -221,7 +221,6 @@
                 "{{template_dir}}/scripts/installers/kubernetes-tools.sh",
                 "{{template_dir}}/scripts/installers/oc.sh",
                 "{{template_dir}}/scripts/installers/leiningen.sh",
-                "{{template_dir}}/scripts/installers/mercurial.sh",
                 "{{template_dir}}/scripts/installers/miniconda.sh",
                 "{{template_dir}}/scripts/installers/mono.sh",
                 "{{template_dir}}/scripts/installers/kotlin.sh",
@@ -298,6 +297,11 @@
         },
         {
             "type": "shell",
+            "script": "{{template_dir}}/scripts/base/snap.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
             "expect_disconnect": true,
             "scripts": [
                 "{{template_dir}}/scripts/base/reboot.sh"
@@ -332,7 +336,7 @@
         {
             "type": "file",
             "source": "{{user `image_folder`}}/Ubuntu-Readme.md",
-            "destination": "{{template_dir}}/Ubuntu2004-README.md",
+            "destination": "{{template_dir}}/Ubuntu2004-Readme.md",
             "direction": "download"
         },
         {

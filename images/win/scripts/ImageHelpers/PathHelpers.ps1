@@ -1,68 +1,136 @@
-function Test-MachinePath{
-    [CmdletBinding()]
+function Connect-Hive {
+    param(
+        [string]$FileName = "C:\Users\Default\NTUSER.DAT",
+        [string]$SubKey = "HKLM\DEFAULT"
+    )
+
+    Write-Host "Loading the file $FileName to the Key $SubKey"
+    if (Test-Path $SubKey.Replace("\",":")) {
+        return
+    }
+
+    $result = reg load $SubKey $FileName *>&1
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Failed to load hive: $result"
+        exit 1
+    }
+}
+
+function Disconnect-Hive {
+    param(
+        [string]$SubKey = "HKLM\DEFAULT"
+    )
+
+    Write-Host "Unloading the hive $SubKey"
+    if (-not (Test-Path $SubKey.Replace("\",":"))) {
+        return
+    }
+
+    $result = reg unload $SubKey *>&1
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Failed to unload hive: $result"
+        exit 1
+    }
+}
+
+function Get-SystemVariable {
+    param(
+        [string]$SystemVariable
+    )
+    
+    [System.Environment]::GetEnvironmentVariable($SystemVariable, "Machine")
+}
+
+function Get-DefaultVariable {
+    param(
+        [string]$DefaultVariable,
+        [string]$Name = "DEFAULT\Environment",
+        [bool]$Writable = $false
+    )
+
+    $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($Name, $Writable)
+    $key.GetValue($DefaultVariable, "", "DoNotExpandEnvironmentNames")
+    $key.Handle.Close()
+    [System.GC]::Collect()
+}
+
+function Set-SystemVariable {
+    param(
+        [string]$SystemVariable,
+        [string]$Value
+    )
+    
+    [System.Environment]::SetEnvironmentVariable($SystemVariable, $Value, "Machine")
+    Get-SystemVariable $SystemVariable
+}
+
+function Set-DefaultVariable {
+    param(
+        [string]$DefaultVariable,
+        [string]$Value,
+        [string]$Name = "DEFAULT\Environment",
+        [string]$Kind = "ExpandString",
+        [bool]$Writable = $true
+    )
+
+    $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($Name, $Writable)
+    $key.SetValue($DefaultVariable, $Value, $Kind)
+    Get-DefaultVariable $DefaultVariable
+    $key.Handle.Close()
+    [System.GC]::Collect()
+}
+
+function Get-MachinePath {
+    Get-SystemVariable PATH
+}
+
+function Get-DefaultPath {
+    Get-DefaultVariable Path
+}
+
+function Set-MachinePath {
+    param(
+        [string]$NewPath
+    )
+    
+    Set-SystemVariable PATH $NewPath
+}
+
+function Set-DefaultPath {
+    param(
+        [string]$NewPath
+    )
+
+    Set-DefaultVariable PATH $NewPath
+}
+
+function Test-MachinePath {
     param(
         [string]$PathItem
     )
 
-    $currentPath = Get-MachinePath
-
-    $pathItems = $currentPath.Split(';')
-
-    if($pathItems.Contains($PathItem))
-    {
-        return $true
-    }
-    else
-    {
-        return $false
-    }
+    $pathItems = (Get-MachinePath).Split(';')
+    $pathItems.Contains($PathItem)
 }
 
-function Set-MachinePath{
-    [CmdletBinding()]
-    param(
-        [string]$NewPath
-    )
-    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name Path -Value $NewPath
-    return $NewPath
-}
-
-function Add-MachinePathItem
-{
-    [CmdletBinding()]
+function Add-MachinePathItem {
     param(
         [string]$PathItem
     )
 
     $currentPath = Get-MachinePath
     $newPath = $PathItem + ';' + $currentPath
-    return Set-MachinePath -NewPath $newPath
+    Set-MachinePath -NewPath $newPath
 }
 
-function Get-MachinePath{
-    [CmdletBinding()]
+function Add-DefaultPathItem {
     param(
-
+        [string]$PathItem
     )
-    $currentPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).Path
-    return $currentPath
-}
 
-function Get-SystemVariable{
-    [CmdletBinding()]
-    param(
-        [string]$SystemVariable
-    )
-    $currentPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name $SystemVariable).$SystemVariable
-    return $currentPath
-}
-
-function Set-SystemVariable{
-    [CmdletBinding()]
-    param(
-        [string]$SystemVariable,
-        [string]$Value
-    )
-    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name $SystemVariable -Value $Value
-    return $Value
+    Connect-Hive
+    $currentPath = Get-DefaultPath
+    $newPath = $PathItem + ';' + $currentPath
+    Set-DefaultPath -NewPath $newPath
+    Disconnect-Hive
 }

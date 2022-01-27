@@ -1,4 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 function Split-TableRowByColumns {
     param(
@@ -176,7 +177,7 @@ function Get-AndroidGoogleAPIsVersions {
 function Get-AndroidNDKVersions {
     $os = Get-OSVersion
 
-    if ($os.IsLessThanBigSur) {
+    if ($os.IsCatalina) {
         # Hardcode NDK 15 as a separate case since it is installed manually without sdk-manager (to none default location)
         $versions = @()
         $versions += "15.2.4203891"
@@ -184,8 +185,13 @@ function Get-AndroidNDKVersions {
 
     $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
     $versions += Get-ChildItem -Path $ndkFolderPath -Name
+    $ndkDefaultVersion = Get-ToolsetValue "android.ndk.default"
+    $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultVersion.*" -Name | Select-Object -Last 1
 
-    return ($versions -Join "<br>")
+    return ($versions | ForEach-Object {
+        $defaultPostfix = ( $_ -eq $ndkDefaultFullVersion ) ? " (default)" : ""
+        $_ + $defaultPostfix
+    } | Join-String -Separator "<br>")
 }
 
 function Get-IntelHaxmVersion {

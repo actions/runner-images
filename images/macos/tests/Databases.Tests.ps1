@@ -1,16 +1,19 @@
 Describe "MongoDB" {
-    It "mongodb" {
-        "mongo --version" | Should -ReturnZeroExitCode
-        "mongod --version"| Should -ReturnZeroExitCode
+    It "<ToolName>" -TestCases @(
+        @{ ToolName = "mongo" }
+        @{ ToolName = "mongod" }
+    ) {
+        $toolsetVersion = Get-ToolsetValue 'mongodb.version'
+        (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
     }
 }
 
 Describe "PostgreSQL" {
-    It "PostgreSQL-Client" {
-        "psql --version" | Should -ReturnZeroExitCode
-    }
-
-    It "PostgreSQL-Server" {
-        "pg_config --version" | Should -ReturnZeroExitCode
+    It "PostgreSQL version should correspond to the version in the toolset" {
+        $toolsetVersion = Get-ToolsetValue 'postgresql.version'
+        # Client version
+        (psql --version).split()[-1] | Should -BeLike "$toolsetVersion*"
+        # Server version
+        (pg_config --version).split()[-1] | Should -BeLike "$toolsetVersion*"
     }
 }

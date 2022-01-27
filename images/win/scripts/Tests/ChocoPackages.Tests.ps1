@@ -58,7 +58,7 @@ Describe "Packer" {
     }
 }
 
-Describe "Perl" -Skip:(Test-IsWin22) {
+Describe "Perl" {
     It "Perl" {
        "perl --version" | Should -ReturnZeroExitCode
     }
@@ -101,13 +101,5 @@ Describe "Julia" {
 Describe "CMake" {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Kotlin" {
-    $kotlinPackages =  @("kotlinc", "kotlinc-js", "kotlinc-jvm")
-
-    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  { 
-        "$toolName -version" | Should -ReturnZeroExitCode
     }
 }

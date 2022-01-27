@@ -22,43 +22,59 @@ function Install-Binary
 
     Param
     (
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ParameterSetName="Url")]
         [String] $Url,
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ParameterSetName="Url")]
         [String] $Name,
+        [Parameter(Mandatory, ParameterSetName="LocalPath")]
+        [String] $FilePath,
         [String[]] $ArgumentList
     )
 
-    Write-Host "Downloading $Name..."
-    $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    if ($PSCmdlet.ParameterSetName -eq "LocalPath")
+    {
+        $name = Split-Path -Path $FilePath -Leaf
+    }
+    else
+    {
+        Write-Host "Downloading $Name..."
+        $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    }
 
     # MSI binaries should be installed via msiexec.exe
     $fileExtension = ([System.IO.Path]::GetExtension($Name)).Replace(".", "")
     if ($fileExtension -eq "msi")
     {
-        $ArgumentList = ('/i', $filePath, '/QN', '/norestart')
+        if (-not $ArgumentList)
+        {
+            $ArgumentList = ('/i', $filePath, '/QN', '/norestart')
+        }
         $filePath = "msiexec.exe"
     }
 
     try
     {
+        $installStartTime = Get-Date
         Write-Host "Starting Install $Name..."
         $process = Start-Process -FilePath $filePath -ArgumentList $ArgumentList -Wait -PassThru
-
         $exitCode = $process.ExitCode
+        $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
         if ($exitCode -eq 0 -or $exitCode -eq 3010)
         {
-            Write-Host "Installation successful"
+            Write-Host "Installation successful in $installCompleteTime seconds"
         }
         else
         {
             Write-Host "Non zero exit code returned by the installation process: $exitCode"
+            Write-Host "Total time elapsed: $installCompleteTime seconds"
             exit $exitCode
         }
     }
     catch
     {
+        $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
         Write-Host "Failed to install the $fileExtension ${Name}: $($_.Exception.Message)"
+        Write-Host "Installation failed after $installCompleteTime seconds"
         exit 1
     }
 }
@@ -169,24 +185,29 @@ function Start-DownloadWithRetry
     }
 
     $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
-
-    #Default retry logic for the package.
+    $downloadStartTime = Get-Date
+    
+    # Default retry logic for the package.
     while ($Retries -gt 0)
     {
         try
         {
+            $downloadAttemptStartTime = Get-Date
             Write-Host "Downloading package from: $Url to path $filePath ."
             (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
             break
         }
         catch
         {
-            Write-Host "There is an error during package downloading:`n $_"
+            $failTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
+            $attemptTime = [math]::Round(($(Get-Date) - $downloadAttemptStartTime).TotalSeconds, 2)
+            Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n $_"
             $Retries--
 
             if ($Retries -eq 0)
             {
                 Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
+                Write-Host "Total time elapsed $failTime"
                 exit 1
             }
 
@@ -195,6 +216,8 @@ function Start-DownloadWithRetry
         }
     }
 
+    $downloadCompleteTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
+    Write-Host "Package downloaded successfully in $downloadCompleteTime seconds"
     return $filePath
 }
 
@@ -250,10 +273,17 @@ function Install-VsixExtension
     $vsEdition = (Get-ToolsetContent).visualStudio.edition
     try
     {
+        $installPath = ${env:ProgramFiles(x86)}
+        
+        if (Test-IsWin22)
+        {
+            $installPath = ${env:ProgramFiles}
+        }
+        
         #There are 2 types of packages at the moment - exe and vsix
         if ($Name -match "vsix")
         {
-            $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\$VSversion\${vsEdition}\Common7\IDE\VSIXInstaller.exe" -ArgumentList $argumentList -Wait -PassThru
+            $process = Start-Process -FilePath "${installPath}\Microsoft Visual Studio\${VSversion}\${vsEdition}\Common7\IDE\VSIXInstaller.exe" -ArgumentList $argumentList -Wait -PassThru
         }
         else
         {
@@ -468,4 +498,101 @@ function Get-AndroidPackagesByVersion {
     $packagesByName = Get-AndroidPackagesByName -AndroidPackages $AndroidPackages -PrefixPackageName $PrefixPackageName
     $packagesByVersion = $packagesByName | Where-Object { ($_.Split($Delimiter)[$Index] -as $Type) -ge $MinimumVersion }
     return $packagesByVersion | Sort-Object { $_.Split($Delimiter)[$Index] -as $Type} -Unique
+}
+
+function Get-WindowsUpdatesHistory {
+    $allEvents = @{}
+    # 19 - Installation Successful: Windows successfully installed the following update
+    # 20 - Installation Failure: Windows failed to install the following update with error
+    # 43 - Installation Started: Windows has started installing the following update
+    $filter = @{
+        LogName = "System"
+        Id = 19, 20, 43
+        ProviderName = "Microsoft-Windows-WindowsUpdateClient"
+    }
+    $events = Get-WinEvent -FilterHashtable $filter -ErrorAction SilentlyContinue | Sort-Object Id
+
+    foreach ( $event in $events ) {
+        switch ( $event.Id ) {
+            19 {
+                $status = "Successful"
+                $title = $event.Properties[0].Value
+                $allEvents[$title] = ""
+                break
+            }
+            20 {
+                $status = "Failure"
+                $title = $event.Properties[1].Value
+                $allEvents[$title] = ""
+                break
+            }
+            43 {
+                $status = "InProgress"
+                $title = $event.Properties[0].Value
+                break
+            }
+        }
+
+        if ( $status -eq "InProgress" -and $allEvents.ContainsKey($title) ) {
+            continue
+        }
+
+        [PSCustomObject]@{
+            Status = $status
+            Title = $title
+        }
+    }
+}
+
+function Invoke-SBWithRetry {
+    param (
+        [scriptblock] $Command,
+        [int] $RetryCount = 10,
+        [int] $RetryIntervalSeconds = 5
+    )
+
+    while ($RetryCount -gt 0) {
+        try {
+            & $Command
+            return
+        }
+        catch {
+            Write-Host "There is an error encountered:`n $_"
+            $RetryCount--
+
+            if ($RetryCount -eq 0) {
+                exit 1
+            }
+
+            Write-Host "Waiting $RetryIntervalSeconds seconds before retrying. Retries left: $RetryCount"
+            Start-Sleep -Seconds $RetryIntervalSeconds
+        }
+    }
+}
+
+function Get-GitHubPackageDownloadUrl {
+    param (
+        [string]$RepoOwner,
+        [string]$RepoName,
+        [string]$BinaryName,
+        [string]$Version,
+        [string]$UrlFilter,
+        [boolean]$IsPrerelease = $false,
+        [int]$SearchInCount = 100
+    )
+
+    if ($Version -eq "latest") { 
+        $Version = "*" 
+    }
+    $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
+    $versionToDownload = ($json.Where{ $_.prerelease -eq $IsPrerelease }.tag_name |
+        Select-String -Pattern "\d+.\d+.\d+").Matches.Value |
+            Where-Object {$_ -Like "${Version}.*" -or $_ -eq ${Version}} |
+            Sort-Object {[version]$_} |
+            Select-Object -Last 1
+
+    $UrlFilter = $UrlFilter -replace "{BinaryName}",$BinaryName -replace "{Version}",$versionToDownload
+    $downloadUrl = $json.assets.browser_download_url -like $UrlFilter
+
+    return $downloadUrl
 }

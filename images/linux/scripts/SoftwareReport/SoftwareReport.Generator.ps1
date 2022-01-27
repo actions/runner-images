@@ -3,7 +3,9 @@ param (
     $OutputDirectory
 )
 
-$ErrorActionPreference = "Stop"
+$global:ErrorActionPreference = "Stop"
+$global:ErrorView = "NormalView"
+Set-StrictMode -Version Latest
 
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
@@ -36,47 +38,42 @@ $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
 $runtimesList = @(
-        (Get-BashVersion),
-        (Get-CPPVersions),
-        (Get-FortranVersions),
-        (Get-ErlangVersion),
-        (Get-ErlangRebar3Version),
-        (Get-MonoVersion),
-        (Get-MsbuildVersion),
-        (Get-NodeVersion),
-        (Get-PerlVersion),
-        (Get-PythonVersion),
-        (Get-Python3Version),
-        (Get-RubyVersion),
-        (Get-SwiftVersion),
-        (Get-JuliaVersion),
-        (Get-KotlinVersion),
-        (Get-ClangVersions),
-        (Get-ClangFormatVersions)
-        ) 
+    (Get-BashVersion),
+    (Get-CPPVersions),
+    (Get-FortranVersions),
+    (Get-ErlangVersion),
+    (Get-ErlangRebar3Version),
+    (Get-MonoVersion),
+    (Get-MsbuildVersion),
+    (Get-NodeVersion),
+    (Get-PerlVersion),
+    (Get-PythonVersion),
+    (Get-Python3Version),
+    (Get-RubyVersion),
+    (Get-SwiftVersion),
+    (Get-JuliaVersion),
+    (Get-KotlinVersion),
+    (Get-ClangVersions),
+    (Get-ClangFormatVersions)
+)
 
 $markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
 
 $markdown += New-MDHeader "Package Management" -Level 3
 
 $packageManagementList = @(
-        (Get-HomebrewVersion),
-        (Get-CpanVersion),
-        (Get-GemVersion),
-        (Get-MinicondaVersion),
-        (Get-HelmVersion),
-        (Get-NpmVersion),
-        (Get-YarnVersion),
-        (Get-PipVersion),
-        (Get-Pip3Version),
-        (Get-VcpkgVersion)
+    (Get-HomebrewVersion),
+    (Get-CpanVersion),
+    (Get-GemVersion),
+    (Get-MinicondaVersion),
+    (Get-HelmVersion),
+    (Get-NpmVersion),
+    (Get-YarnVersion),
+    (Get-PipxVersion),
+    (Get-PipVersion),
+    (Get-Pip3Version),
+    (Get-VcpkgVersion)
 )
-
-if (-not (Test-IsUbuntu16)) {
-    $packageManagementList += @(
-        (Get-PipxVersion)
-    )
-}
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
 $markdown += New-MDHeader "Environment variables" -Level 4
@@ -105,11 +102,14 @@ $toolsList = @(
     (Get-AzCopyVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
+    (Get-BicepVersion),
+    (Get-BuildahVersion),
     (Get-CodeQLBundleVersion),
     (Get-CMakeVersion),
     (Get-DockerMobyClientVersion),
     (Get-DockerMobyServerVersion),
-    (Get-DockerComposeVersion),
+    (Get-DockerComposeV1Version),
+    (Get-DockerComposeV2Version),
     (Get-DockerBuildxVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
@@ -128,26 +128,21 @@ $toolsList = @(
     (Get-HGVersion),
     (Get-MinikubeVersion),
     (Get-NewmanVersion),
+    (Get-NVersion),
     (Get-NvmVersion),
     (Get-OpensslVersion),
     (Get-PackerVersion),
+    (Get-ParcelVersion),
     (Get-PhantomJSVersion),
+    (Get-PodManVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
+    (Get-SkopeoVersion),
     (Get-SphinxVersion),
     (Get-TerraformVersion),
+    (Get-YamllintVersion),
     (Get-ZstdVersion)
 )
-
-if (-not (Test-IsUbuntu16)) {
-    $toolsList += @(
-        (Get-BicepVersion),
-        (Get-BuildahVersion),
-        (Get-PodManVersion),
-        (Get-SkopeoVersion),
-        (Get-YamllintVersion)
-    )
-}
 
 if (Test-IsUbuntu20) {
     $toolsList += (Get-FastlaneVersion)
@@ -183,9 +178,7 @@ if (Test-IsUbuntu20) {
     $markdown += New-MDNewLine
 }
 
-if (-not (Test-IsUbuntu16)) {
-    $markdown += Build-PHPSection
-}
+$markdown += Build-PHPSection
 
 $markdown += New-MDHeader "Haskell" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
@@ -223,7 +216,8 @@ $browsersAndDriversList = @(
     (Get-ChromeDriverVersion),
     (Get-FirefoxVersion),
     (Get-GeckodriverVersion),
-    (Get-ChromiumVersion)
+    (Get-ChromiumVersion),
+    (Get-SeleniumVersion)
 )
 
 $markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList
@@ -235,6 +229,10 @@ $markdown += New-MDHeader ".NET Core SDK" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-DotNetCoreSdkVersions)
 )
+
+$markdown += New-MDHeader ".NET tools" -Level 3
+$tools = Get-DotnetTools
+$markdown += New-MDList -Lines $tools -Style Unordered
 
 $markdown += New-MDHeader "Databases" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
@@ -281,4 +279,5 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Installed apt packages" -Level 3
 $markdown += Get-AptPackages | New-MDTable
 
+Test-BlankElement
 $markdown | Out-File -FilePath "${OutputDirectory}/Ubuntu-Readme.md"

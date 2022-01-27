@@ -1,0 +1,224 @@
+{
+    "xcode": {
+        "default": "13.2.1",
+        "versions": [
+            { "link": "13.2.1", "version": "13.2.1" },
+            { "link": "13.2", "version": "13.2.0" },
+            { "link": "13.1", "version": "13.1.0" }
+        ]
+    },
+    "xamarin": {
+        "vsmac": "latest",
+        "mono-versions": [
+            "6.12.0.162"
+        ],
+        "ios-versions": [
+            "15.4.0.0", "15.2.0.17", "15.0.0.6"
+        ],
+        "mac-versions": [
+            "8.4.0.0", "8.2.0.17", "7.14.0.27"
+        ],
+        "android-versions": [
+            "12.0.0.3", "11.3.0.4"
+        ],
+        "bundle-default": "6_12_12",
+        "bundles": [
+            {
+                "symlink": "6_12_12",
+                "mono":"6.12",
+                "ios": "15.4",
+                "mac": "8.4",
+                "android": "12.0"
+            },
+            {
+                "symlink": "6_12_11",
+                "mono":"6.12",
+                "ios": "15.2",
+                "mac": "8.2",
+                "android": "12.0"
+            },
+            {
+                "symlink": "6_12_10",
+                "mono":"6.12",
+                "ios": "15.0",
+                "mac": "7.14",
+                "android": "11.3"
+            }
+        ]
+    },
+    "java": {
+        "default": "8",
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11", "17" ]
+            },
+            {
+                "name": "Adopt",
+                "versions": [ "8", "11" ]
+            }
+        ]
+    },
+    "android": {
+        "platform_min_version": "27",
+        "build_tools_min_version": "27.0.0",
+        "extra-list": [
+            "android;m2repository", "google;m2repository", "google;google_play_services", "intel;Hardware_Accelerated_Execution_Manager"
+        ],
+        "addon-list": [],
+        "additional-tools": [
+            "cmake;3.18.1"
+        ],
+        "ndk": {
+            "default": "21",
+            "versions": [
+                "21", "22", "23"
+            ]
+        }
+    },
+    "powershellModules": [
+        { "name": "Az" },
+        { "name": "MarkdownPS" },
+        { "name": "Pester" },
+        { "name": "PSScriptAnalyzer" }
+    ],
+    "npm": {
+        "global_packages": []
+    },
+    "brew": {
+        "common_packages": [
+            "ant",
+            "aria2",
+            "azure-cli",
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "kotlin",
+            "libpq",
+            "p7zip",
+            "packer",
+            "perl",
+            "sbt",
+            "subversion",
+            "swig",
+            "zstd",
+            "gmp",
+            "zlib",
+            "libxext",
+            "libxft"
+        ],
+        "cask_packages": [
+            "julia"
+        ]
+    },
+    "gcc": {
+        "versions": [
+            "11"
+        ]
+    },
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "darwin",
+            "versions": [
+                "3.7.*",
+                "3.8.*",
+                "3.9.*",
+                "3.10.*"
+            ]
+        },
+        {
+            "name": "PyPy",
+            "arch": "x64",
+            "platform" : "darwin",
+            "versions": [
+                "2.7",
+                "3.7",
+                "3.8"
+            ]
+        },
+        {
+            "name": "Node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": "x64",
+            "versions": [
+                "12.*",
+                "14.*",
+                "16.*"
+            ]
+        },
+        {
+            "name": "Go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "darwin",
+            "variable_template" : "GOROOT_{0}_{1}_X64",
+            "versions": [
+                "1.15.*",
+                "1.16.*",
+                "1.17.*"
+            ]
+        },
+        {
+            "name": "Ruby",
+            "arch": "x64",
+            "versions": [
+                "2.7.*",
+                "3.0.*"
+            ]
+        }
+    ],
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint --version"
+        }
+    ],
+    "dotnet": {
+        "versions": [
+            "3.1",
+            "5.0"
+        ]
+    },
+    "ruby": {
+        "default": "3.0",
+        "rubygems": [
+            "xcode-install",
+            "cocoapods",
+            "xcpretty",
+            "bundler",
+            "fastlane",
+            "jazzy"
+        ]
+    },
+    "go": {
+        "default": "1.17"
+    },
+    "node": {
+        "default": "16",
+        "nvm_versions": [
+            "12",
+            "14",
+            "16"
+        ]
+    },
+    "llvm": {
+        "version": "13"
+    },
+    "php": {
+        "version": "8.1"
+    },
+    "mongodb": {
+        "version": "5.0"
+    },
+    "postgresql": {
+        "version": "14"
+    }
+}

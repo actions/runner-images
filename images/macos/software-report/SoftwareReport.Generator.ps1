@@ -31,31 +31,26 @@ $markdown += New-MDList -Style Unordered -Lines ("Image Version: {0}" -f $ImageN
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 $languageAndRuntimeList = @(
-    (Get-BashVersion),
-    (Get-MSBuildVersion),
-    (Get-NodeVersion),
-    (Get-NVMVersion),
-    (Get-NVMNodeVersionList),
-    (Get-PerlVersion),
-    (Get-PythonVersion),
-    (Get-Python3Version),
-    (Get-RubyVersion),
-    (Get-DotnetVersionList),
-    (Get-GoVersion),
-    (Get-PHPVersion),
-    (Get-JuliaVersion),
+    (Get-BashVersion)
+    (Get-MSBuildVersion)
+    (Get-NodeVersion)
+    (Get-NVMVersion)
+    (Get-NVMNodeVersionList)
+    (Get-PerlVersion)
+    (Get-PythonVersion)
+    (Get-Python3Version)
+    (Get-RubyVersion)
+    (Get-DotnetVersionList)
+    (Get-GoVersion)
+    (Get-JuliaVersion)
     (Get-KotlinVersion)
+    (Get-PHPVersion)
+    (Get-ClangLLVMVersion)
+    (Get-GccVersion)
+    (Get-FortranVersion)
 )
 
-if ( -not $os.IsHighSierra) {
-    $languageAndRuntimeList += @(
-        (Get-GccVersion)
-        (Get-FortranVersion)
-        (Get-ClangLLVMVersion)
-    )
-}
-
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $languageAndRuntimeList += @(
         (Get-RVersion)
     )
@@ -72,34 +67,36 @@ $packageManagementList = @(
     (Get-PipVersion -Version 3),
     (Get-PipxVersion),
     (Get-BundlerVersion),
-    (Get-CarthageVersion),
     (Get-CocoaPodsVersion),
     (Get-HomebrewVersion),
     (Get-NPMVersion),
     (Get-YarnVersion),
     (Get-NuGetVersion),
-    (Get-CondaVersion),
     (Get-RubyGemsVersion),
-    (Get-ComposerVersion)
+    (Get-ComposerVersion),
+    (Get-CarthageVersion),
+    (Get-VcpkgVersion)
 )
 
-if ($os.IsHigherThanMojave) {
+if ($os.IsLessThanMonterey) {
     $packageManagementList += @(
-        (Get-VcpkgVersion)
+        (Get-CondaVersion)
     )
 }
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
+if ($os.IsLessThanMonterey) {
+    $markdown += New-MDHeader "Environment variables" -Level 4
+    $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+    $markdown += New-MDNewLine
+}
 # Project Management
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-MavenVersion),
     (Get-GradleVersion),
-    (Get-ApacheAntVersion)
+    (Get-ApacheAntVersion),
+    (Get-SbtVersion)
     ) | Sort-Object
 )
 
@@ -116,7 +113,6 @@ $utilitiesList = @(
     (Get-PackerVersion),
     (Get-OpenSSLVersion),
     (Get-JqVersion),
-    (Get-GPGVersion),
     (Get-PostgresClientVersion),
     (Get-PostgresServerVersion),
     (Get-Aria2Version),
@@ -124,21 +120,29 @@ $utilitiesList = @(
     (Get-ZstdVersion),
     (Get-BazelVersion),
     (Get-BazeliskVersion),
-    (Get-HelmVersion),
     (Get-MongoVersion),
     (Get-MongodVersion),
     (Get-7zipVersion),
     (Get-BsdtarVersion),
-    (Get-GnuTarVersion)
+    (Get-GnuTarVersion),
+    (Get-GPGVersion),
+    (Get-SwitchAudioOsxVersion),
+    (Get-SoxVersion)
 )
 
-if ($os.IsHigherThanMojave) {
+if ($os.IsLessThanMonterey) {
+    $utilitiesList += @(
+        (Get-HelmVersion)
+    )
+}
+
+if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
         (Get-NewmanVersion)
     )
 }
 
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $utilitiesList += @(
         (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
@@ -146,38 +150,39 @@ if ($os.IsLessThanBigSur) {
     )
 }
 
-if (-not $os.IsHighSierra) {
-    $utilitiesList += @(
-        (Get-SwitchAudioOsxVersion),
-        (Get-SoxVersion)
-    )
-}
-
 $markdown += New-MDList -Style Unordered -Lines ($utilitiesList | Sort-Object)
-$markdown += New-MDNewLine
 
 # Tools
 $markdown += New-MDHeader "Tools" -Level 3
 $toolsList = @(
+    (Get-JazzyVersion),
     (Get-FastlaneVersion),
     (Get-CmakeVersion),
     (Get-AppCenterCLIVersion),
     (Get-AzureCLIVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMCLIVersion),
-    (Get-AWSSessionManagerCLIVersion),
-    (Get-AliyunCLIVersion),
-    (Get-XcodeCommandLineToolsVersion),
-    (Get-SwigVersion),
-    (Get-BicepVersion)
+    (Get-AWSSessionManagerCLIVersion)
 )
 
-if( -not $os.IsHighSierra) {
+if ($os.IsLessThanMonterey) {
     $toolsList += @(
-        (Get-GHCupVersion),
-        (Get-GHCVersion),
-        (Get-CabalVersion),
-        (Get-StackVersion),
+        (Get-AliyunCLIVersion)
+    )
+}
+
+$toolsList += @(
+    (Get-XcodeCommandLineToolsVersion),
+    (Get-SwigVersion),
+    (Get-BicepVersion),
+    (Get-GHCupVersion),
+    (Get-GHCVersion),
+    (Get-CabalVersion),
+    (Get-StackVersion)
+)
+
+if($os.IsLessThanMonterey) {
+    $toolsList += @(
         (Get-SwiftFormatVersion)
     )
 }
@@ -187,14 +192,9 @@ $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 # Linters
 $markdown += New-MDHeader "Linters" -Level 3
 $lintersList = @(
-    (Get-YamllintVersion)
+    (Get-YamllintVersion),
+    (Get-SwiftLintVersion)
 )
-
-if ( -not $os.IsHighSierra) {
-    $lintersList += @(
-        (Get-SwiftLintVersion)
-    )
-}
 
 $markdown += New-MDList -Style Unordered -Lines ($lintersList | Sort-Object)
 
@@ -210,28 +210,27 @@ $markdown += New-MDNewLine
 
 # Toolcache
 $markdown += Build-ToolcacheSection
+$markdown += New-MDNewLine
 
-if ( -not $os.IsHighSierra) {
-    $markdown += New-MDHeader "Rust Tools" -Level 3
-    $markdown += New-MDList -Style Unordered -Lines (@(
-        (Get-RustVersion),
-        (Get-RustupVersion),
-        (Get-RustdocVersion),
-        (Get-RustCargoVersion)
-        ) | Sort-Object
-    )
-    
-    $markdown += New-MDHeader "Packages" -Level 4
-    $markdown += New-MDList -Style Unordered -Lines (@(
-        (Get-Bindgen),
-        (Get-Cbindgen),
-        (Get-Cargooutdated),
-        (Get-Cargoaudit),
-        (Get-RustfmtVersion),
-        (Get-RustClippyVersion)
-        ) | Sort-Object
-    )
-}
+$markdown += New-MDHeader "Rust Tools" -Level 3
+$markdown += New-MDList -Style Unordered -Lines (@(
+    (Get-RustVersion),
+    (Get-RustupVersion),
+    (Get-RustdocVersion),
+    (Get-RustCargoVersion)
+    ) | Sort-Object
+)
+
+$markdown += New-MDHeader "Packages" -Level 4
+$markdown += New-MDList -Style Unordered -Lines (@(
+    (Get-Bindgen),
+    (Get-Cbindgen),
+    (Get-Cargooutdated),
+    (Get-Cargoaudit),
+    (Get-RustfmtVersion),
+    (Get-RustClippyVersion)
+    ) | Sort-Object
+)
 
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
 $markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
@@ -241,9 +240,8 @@ $markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
 
 # Web Servers
-if ($os.IsHigherThanMojave) {
-    $markdown += Build-WebServersSection
-}
+$markdown += Build-WebServersSection
+
 
 # Xamarin section
 $markdown += New-MDHeader "Xamarin" -Level 3
@@ -278,7 +276,7 @@ $markdown += New-MDNewLine
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
 $androidTable = Build-AndroidTable
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $androidTable += Get-IntelHaxmVersion
 }
 $markdown += $androidTable | New-MDTable
@@ -286,6 +284,14 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-AndroidEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Miscellaneous" -Level 3
+$markdown += New-MDList -Style Unordered -Lines (@(
+    (Get-ZlibVersion),
+    (Get-LibXextVersion),
+    (Get-LibXftVersion)
+    ) | Sort-Object
+)
 
 #
 # Generate systeminfo.txt with information about image (for debug purpose)

@@ -18,7 +18,7 @@ In general, these are the guidelines we consider when deciding what to pre-insta
 These are the guidelines we follow in software and images supporting routine:
 - Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life.
 - We support at least 2 latest OS versions (LTS only for Ubuntu) and initiate deprecation process for the oldest one when image usage drops below 5%.
-- Most of the tools are preinstalled in the latest version only.
+- The images generally contain the latest versions of packages installed except for Ubuntu LTS where we rely on the Canonical-provided repositories mostly.
 - Popular tools can have several versions installed side-by-side with the following strategy:
 
 | Tool name | Installation strategy |
@@ -31,7 +31,7 @@ These are the guidelines we follow in software and images supporting routine:
 | PyPy      | 3 most popular `major.minor` versions |
 | .NET Core | 2 latest LTS versions and 1 latest version. For each feature version only latest patch is installed |
 | GCC <br/> GNU Fortran <br/> Clang <br/> GNU C++ | 3 latest major versions |
-| Android NDK | 1 latest, 1 LTS version |
+| Android NDK | 1 latest non-LTS, 2 latest LTS versions |
 | Xcode     | - all OS compatible versions side-by-side <br/> - for beta, GM versions - latest beta only <br/> - old patch versions are deprecated in 3 months |
 
 ## Software default versions update policy for tools with multiple versions installed
