@@ -201,7 +201,7 @@ function Get-DotnetSdks {
 }
 
 function Get-DotnetTools {
-    $env:Path += ";C:\Users\Default.dotnet\tools"
+    $env:Path += ";C:\Users\Default\.dotnet\tools"
     $dotnetTools = (Get-ToolsetContent).dotnet.tools
 
     $toolsList = @()
