@@ -7,7 +7,7 @@
 ***
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.11.0-1027-azure
-- Image Version: 20220119.1
+- Image Version: 20220123.1
 
 ## Installed Software
 ### Language and Runtime
@@ -39,7 +39,7 @@
 - Pip3 20.0.2
 - Pipx 1.0.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<5ef52b5b7>)
+- Vcpkg  (build from master \<df40d1c47>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -70,13 +70,13 @@
 - Docker-Buildx 0.7.1
 - Docker-Moby Client 20.10.11+azure-3
 - Docker-Moby Server 20.10.11+azure-3
-- Fastlane 2.200.0
+- Fastlane 2.201.1
 - Git 2.34.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.0.2 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.144.0
+- HHVM (HipHop VM) 4.145.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.23.2
@@ -84,7 +84,7 @@
 - Leiningen 2.9.8
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.24.0
+- Minikube 1.25.1
 - n 8.0.2
 - Newman 5.3.1
 - nvm 0.39.1
@@ -100,12 +100,12 @@
 - SVN 1.13.0
 - Terraform 1.1.4
 - yamllint 1.26.3
-- yq 4.16.2
-- zstd 1.5.1 (homebrew)
+- yq 4.17.2
+- zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.104
-- AWS CLI 2.4.12
+- AWS CLI 2.4.13
 - AWS CLI Session manager plugin 1.2.295.0
 - AWS SAM CLI 1.37.0
 - Azure CLI (azure-cli) 2.32.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
@@ -113,7 +113,7 @@
 - GitHub CLI 2.4.0
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 8.10.2
+- Netlify CLI 8.13.0
 - OpenShift CLI 4.9.15
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
@@ -134,8 +134,8 @@
 | Tool     | Version             |
 | -------- | ------------------- |
 | PHP      | 7.4.27 8.0.14 8.1.1 |
-| Composer | 2.2.4               |
-| PHPUnit  | 8.5.22              |
+| Composer | 2.2.5               |
+| PHPUnit  | 8.5.23              |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -147,8 +147,8 @@
 
 ### Rust Tools
 - Cargo 1.58.0
-- Rust 1.58.0
-- Rustdoc 1.58.0
+- Rust 1.58.1
+- Rustdoc 1.58.1
 - Rustup 1.24.3
 
 #### Packages
@@ -160,7 +160,7 @@
 - Rustfmt 1.4.38
 
 ### Browsers and Drivers
-- Google Chrome 97.0.4692.71
+- Google Chrome 97.0.4692.99
 - ChromeDriver 97.0.4692.71
 - Mozilla Firefox 96.0
 - Geckodriver 0.30.0
@@ -215,7 +215,6 @@
 
 #### Python
 - 2.7.18
-- 3.5.10
 - 3.6.15
 - 3.7.12
 - 3.8.12
