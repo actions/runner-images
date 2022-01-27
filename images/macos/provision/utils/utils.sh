@@ -187,8 +187,8 @@ get_github_package_download_url() {
     if [[ "$VERSION" == "latest" ]]; then
         tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | tail -1)
     else
-        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | grep -e "\w*${VERSION}" | tail -1)
-    fi    
+        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | egrep "\w*${VERSION}" | tail -1)
+    fi
 
     downloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
 
