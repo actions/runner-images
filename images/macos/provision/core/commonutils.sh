@@ -19,5 +19,13 @@ done
 # Invoke bazel to download bazel version via bazelisk
 bazel
 
+# Workaround https://github.com/actions/virtual-environments/issues/4931
+# by making Tcl/Tk paths the same on macOS 10.15 and macOS 11
+if is_BigSur; then
+    version=$(brew info tcl-tk --json | jq -r '.[].installed[].version')
+    ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtcl8.6.dylib /usr/local/lib/libtcl8.6.dylib
+    ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtk8.6.dylib /usr/local/lib/libtk8.6.dylib
+fi
+
 # Invoke tests for all basic tools
 invoke_tests "BasicTools"
