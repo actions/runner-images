@@ -15,6 +15,6 @@ if is_Catalina; then
 fi
 
 # Install Native Image
-$exportPath/bin/gu install native-image
+$exportPath/gu install native-image
 
 invoke_tests "Common" "GraalVM"
