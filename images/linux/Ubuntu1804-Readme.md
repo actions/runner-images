@@ -6,8 +6,8 @@
 | [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
 ***
 # Ubuntu 18.04.6 LTS
-- Linux kernel version: 5.4.0-1065-azure
-- Image Version: 20220116.1
+- Linux kernel version: 5.4.0-1067-azure
+- Image Version: 20220123.1
 
 ## Installed Software
 ### Language and Runtime
@@ -32,14 +32,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.7.2
-- Homebrew 3.3.10
+- Homebrew 3.3.11
 - Miniconda 4.10.3
 - Npm 8.1.2
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 1.0.0
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<bba8794b8>)
+- Vcpkg  (build from master \<df40d1c47>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -58,12 +58,12 @@
 - Ansible 2.11.7
 - apt-fast 1.9.12
 - AzCopy 10.13.0 (available by `azcopy` and `azcopy10` aliases)
-- Bazel 4.2.2
+- Bazel 5.0.0
 - Bazelisk 1.11.0
 - Bicep 0.4.1124
 - Buildah 1.19.6 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.22.1
-- CodeQL Action Bundle 2.7.3
+- CodeQL Action Bundle 2.7.5
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.2.3+azure-1
 - Docker-Buildx 0.7.1
@@ -74,45 +74,45 @@
 - Git-ftp 1.3.1
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.144.0
+- HHVM (HipHop VM) 4.145.0
 - jq 1.5
 - Kind 0.11.1
-- Kubectl 1.23.1
+- Kubectl 1.23.2
 - Kustomize 4.4.1
 - Leiningen 2.9.8
 - MediaInfo 17.12
 - Mercurial 4.5.3
-- Minikube 1.24.0
+- Minikube 1.25.1
 - n 8.0.2
 - Newman 5.3.1
 - nvm 0.39.1
 - OpenSSL 1.1.1  11 Sep 2018
-- Packer 1.7.8
-- Parcel 2.2.0
+- Packer 1.7.9
+- Parcel 2.2.1
 - PhantomJS 2.1.1
 - Podman 3.0.1 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.22.0
+- Pulumi 3.22.1
 - R 4.1.2
 - Skopeo 1.2.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.9.7
-- Terraform 1.1.3
+- Terraform 1.1.4
 - yamllint 1.26.3
-- yq 4.16.2
-- zstd 1.5.1 (homebrew)
+- yq 4.17.2
+- zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.104
-- AWS CLI 1.22.37
+- AWS CLI 1.22.41
 - AWS CLI Session manager plugin 1.2.295.0
 - AWS SAM CLI 1.37.0
 - Azure CLI (azure-cli) 2.32.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.22.0
 - GitHub CLI 2.4.0
-- Google Cloud SDK 368.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 8.8.2
-- OpenShift CLI 4.9.13
+- Netlify CLI 8.13.0
+- OpenShift CLI 4.9.15
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
@@ -128,8 +128,8 @@
 | Tool     | Version                                  |
 | -------- | ---------------------------------------- |
 | PHP      | 7.1.33 7.2.34 7.3.33 7.4.27 8.0.14 8.1.1 |
-| Composer | 2.2.4                                    |
-| PHPUnit  | 8.5.22                                   |
+| Composer | 2.2.5                                    |
+| PHPUnit  | 8.5.23                                   |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -141,8 +141,8 @@
 
 ### Rust Tools
 - Cargo 1.58.0
-- Rust 1.58.0
-- Rustdoc 1.58.0
+- Rust 1.58.1
+- Rustdoc 1.58.1
 - Rustup 1.24.3
 
 #### Packages
@@ -154,7 +154,7 @@
 - Rustfmt 1.4.38
 
 ### Browsers and Drivers
-- Google Chrome 97.0.4692.71
+- Google Chrome 97.0.4692.99
 - ChromeDriver 97.0.4692.71
 - Mozilla Firefox 96.0
 - Geckodriver 0.30.0
@@ -170,6 +170,9 @@
 
 ### .NET Core SDK
 - 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.416 5.0.104 5.0.210 5.0.303 5.0.404
+
+### .NET tools
+- nbgv 3.4.255+06fb9182bf
 
 ### Databases
 - MongoDB 5.0.5 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
@@ -204,7 +207,6 @@
 
 #### Python
 - 2.7.18
-- 3.5.10
 - 3.6.15
 - 3.7.12
 - 3.8.12
