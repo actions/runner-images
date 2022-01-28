@@ -17,4 +17,4 @@ fi
 # Install Native Image
 $GRAALVM_11_ROOT/bin/gu install native-image
 
-invoke_tests "BasicTools" "GraalVM"
+invoke_tests "Common" "GraalVM"

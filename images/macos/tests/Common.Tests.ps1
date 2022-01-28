@@ -104,3 +104,13 @@ Describe "Go" {
         "go version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "GraalVM" -Skip:($os.IsMonterey) {
+    It "graalvm" {
+        '$GRAALVM_11_ROOT/bin/java -version' | Should -ReturnZeroExitCode
+    }
+
+    It "native-image" {
+        '$GRAALVM_11_ROOT/bin/native-image --version' | Should -ReturnZeroExitCode
+    }
+}
