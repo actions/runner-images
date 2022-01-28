@@ -1,7 +1,6 @@
 | Announcements |
 |-|
 | [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
-| [[All OSs] Az PowerShell Module will be upgraded to 7.1.0 on January, 17](https://github.com/actions/virtual-environments/issues/4841) |
 | [[macOS] Default Xcode on Big Sur image will be set to Xcode 13.2.1 on January, 24](https://github.com/actions/virtual-environments/issues/4800) |
 | [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
 | [macOS-latest workflows will use macOS-11](https://github.com/actions/virtual-environments/issues/4060) |
@@ -9,7 +8,7 @@
 # macOS 11.6 info
 - System Version: macOS 11.6.2 (20G314)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220118.8
+- Image Version: 20220124.1
 
 ## Installed Software
 ### Language and Runtime
@@ -31,7 +30,7 @@
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.9 v14.18.3 v16.13.2
 - Perl 5.34.0
-- PHP 8.1.1
+- PHP 8.1.2
 - Python 2.7.18
 - Python 3.9.10
 - Ruby 2.7.5p203
@@ -40,7 +39,7 @@
 - Bundler version 2.3.5
 - Carthage 0.38.0
 - CocoaPods 1.11.2
-- Composer 2.2.4
+- Composer 2.2.5
 - Homebrew 3.3.11
 - Miniconda 4.10.3
 - NPM 8.1.2
@@ -49,7 +48,7 @@
 - Pip 21.3.1 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2021 (build from master \<4184491f0>)
+- Vcpkg 2021 (build from master \<3afbc7b28>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -68,7 +67,7 @@
 - 7-Zip 17.04
 - aria2 1.36.0
 - azcopy 10.13.0
-- bazel 4.2.2
+- bazel 5.0.0
 - bazelisk 1.11.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.81.0
@@ -91,19 +90,19 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.1
 - Switchaudio-osx 1.1.0
-- zstd 1.5.1
+- zstd 1.5.2
 
 ### Tools
 - Aliyun CLI 3.0.104
 - App Center CLI 2.10.8
-- AWS CLI 2.4.11
+- AWS CLI 2.4.13
 - AWS SAM CLI 1.37.0
 - AWS Session Manager CLI 1.2.295.0
 - Azure CLI 2.32.0
 - Bicep CLI 0.4.1124
 - Cabal 3.6.2.0
 - Cmake 3.22.1
-- Fastlane 2.200.0
+- Fastlane 2.201.1
 - GHC 9.2.1
 - GHCup 0.1.17.4
 - Jazzy 0.14.1
@@ -113,17 +112,17 @@
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
 ### Linters
-- SwiftLint 0.45.1
+- SwiftLint 0.46.0
 - yamllint 1.26.3
 
 ### Browsers
 - Safari 15.2 (16612.3.6.1.8)
 - SafariDriver 15.2 (16612.3.6.1.8)
-- Google Chrome 97.0.4692.71 
+- Google Chrome 97.0.4692.99 
 - ChromeDriver 97.0.4692.71
-- Microsoft Edge 97.0.1072.62 
-- MSEdgeDriver 97.0.1072.62
-- Mozilla Firefox 96.0.1
+- Microsoft Edge 97.0.1072.69 
+- MSEdgeDriver 97.0.1072.69
+- Mozilla Firefox 96.0.2
 - geckodriver 0.30.0
 - Selenium server 4.1.1
 
@@ -138,7 +137,7 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.312+7 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.13+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 11.0.14+9           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.1+12           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Cached Tools
@@ -174,8 +173,8 @@
 
 ### Rust Tools
 - Cargo 1.58.0
-- Rust 1.58.0
-- Rustdoc 1.58.0
+- Rust 1.58.1
+- Rustdoc 1.58.1
 - Rustup 1.24.3
 
 #### Packages
@@ -205,14 +204,14 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.16.2
+- 8.10.17.2
 
 #### Xamarin bundles
 | symlink           | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
 | ----------------- | ------------ | ----------- | ----------- | --------------- |
-| 6_12_12           | 6.12         | 15.4        | 8.4         | 12.0            |
+| 6_12_12 (default) | 6.12         | 15.4        | 8.4         | 12.0            |
 | 6_12_11           | 6.12         | 15.2        | 8.2         | 12.0            |
-| 6_12_10 (default) | 6.12         | 15.0        | 7.14        | 11.3            |
+| 6_12_10           | 6.12         | 15.0        | 7.14        | 11.3            |
 | 6_12_9            | 6.12         | 14.20       | 7.14        | 11.3            |
 | 6_12_8            | 6.12         | 14.16       | 7.10        | 11.2            |
 | 6_12_7            | 6.12         | 14.14       | 7.8         | 11.2            |
@@ -228,15 +227,15 @@
 - NUnit 3.6.1
 
 ### Xcode
-| Version        | Build    | Path                           |
-| -------------- | -------- | ------------------------------ |
-| 13.2.1         | 13C100   | /Applications/Xcode_13.2.1.app |
-| 13.2           | 13C90    | /Applications/Xcode_13.2.app   |
-| 13.1 (default) | 13A1030d | /Applications/Xcode_13.1.app   |
-| 13.0           | 13A233   | /Applications/Xcode_13.0.app   |
-| 12.5.1         | 12E507   | /Applications/Xcode_12.5.1.app |
-| 12.4           | 12D4e    | /Applications/Xcode_12.4.app   |
-| 11.7           | 11E801a  | /Applications/Xcode_11.7.app   |
+| Version          | Build    | Path                           |
+| ---------------- | -------- | ------------------------------ |
+| 13.2.1 (default) | 13C100   | /Applications/Xcode_13.2.1.app |
+| 13.2             | 13C90    | /Applications/Xcode_13.2.app   |
+| 13.1             | 13A1030d | /Applications/Xcode_13.1.app   |
+| 13.0             | 13A233   | /Applications/Xcode_13.0.app   |
+| 12.5.1           | 12E507   | /Applications/Xcode_12.5.1.app |
+| 12.4             | 12D4e    | /Applications/Xcode_12.4.app   |
+| 11.7             | 11E801a  | /Applications/Xcode_11.7.app   |
 
 #### Xcode Support Tools
 - xcpretty 0.3.0
