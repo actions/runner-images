@@ -7,7 +7,7 @@ param(
     [String] [Parameter (Mandatory=$true)] $ResourceGroup,
     [String] [Parameter (Mandatory=$true)] $StorageAccount,
     [String] [Parameter (Mandatory=$true)] $SubscriptionId,
-    [String] [Parameter (Mandatory=$true)] $TenantId,
+    [String] [Parameter (Mandatory=$true)] $TenantId
 )
 
 if (-not (Test-Path $TemplatePath))
