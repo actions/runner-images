@@ -292,7 +292,7 @@ function Get-VisualCPPComponents {
 }
 
 function Get-DacFxVersion {
-    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\150\DAC\bin\sqlpackage.exe" /version
+    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\160\DAC\bin\sqlpackage.exe" /version
     return "DacFx $dacfxversion"
 }
 
