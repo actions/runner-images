@@ -105,7 +105,7 @@ Describe "Go" {
     }
 }
 
-Describe "GraalVM" -Skip:($os.IsMonterey) {
+Describe "GraalVM" {
     It "graalvm" {
         '$GRAALVM_11_ROOT/bin/java -version' | Should -ReturnZeroExitCode
     }

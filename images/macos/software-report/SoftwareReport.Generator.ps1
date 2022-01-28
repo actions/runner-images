@@ -208,11 +208,9 @@ $markdown += New-MDHeader "Java" -Level 3
 $markdown += Get-JavaVersions | New-MDTable
 $markdown += New-MDNewLine
 
-if ($os.IsLessThanMonterey) {
-    $markdown += New-MDHeader "GraalVM" -Level 3
-    $markdown += Build-GraalVMTable | New-MDTable
-    $markdown += New-MDNewLine
-}
+$markdown += New-MDHeader "GraalVM" -Level 3
+$markdown += Build-GraalVMTable | New-MDTable
+$markdown += New-MDNewLine
 
 # Toolcache
 $markdown += Build-ToolcacheSection
