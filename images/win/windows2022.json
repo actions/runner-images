@@ -57,6 +57,7 @@
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
             "image_sku": "2022-Datacenter",
+            "image_version": "20348.469.220106",
             "communicator": "winrm",
             "winrm_use_ssl": "true",
             "winrm_insecure": "true",
