@@ -2,13 +2,12 @@
 |-|
 | [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 | [windows-latest workflows will use Windows Server 2022](https://github.com/actions/virtual-environments/issues/4856) |
-| [[All OSs] Az PowerShell Module will be upgraded to 7.1.0 on January, 17](https://github.com/actions/virtual-environments/issues/4841) |
 | [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
 ***
 # Microsoft Windows Server 2019 Datacenter
-- OS Version: 10.0.17763 Build 2452
-- Image Version: 20220116.1
+- OS Version: 10.0.17763 Build 2458
+- Image Version: 20220123.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -22,13 +21,13 @@
 - LLVM 13.0.0
 - Node 16.13.2
 - Perl 5.32.1
-- PHP 8.1.1
+- PHP 8.1.2
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 0.11.3
-- Composer 2.2.4
+- Chocolatey 0.12.0
+- Composer 2.2.5
 - Helm 3.7.2
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 8.1.2
@@ -36,7 +35,7 @@
 - pip 21.3.1 (python 3.7)
 - Pipx 1.0.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<bba8794b8>)
+- Vcpkg (build from master \<df40d1c47>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -55,30 +54,30 @@
 - 7zip 21.07
 - aria2 1.36.0
 - azcopy 10.13.0
-- Bazel 4.2.2
+- Bazel 5.0.0
 - Bazelisk 1.11.0
 - Bicep 0.4.1124
 - Cabal 3.6.2.0
 - CMake 3.22.1
-- CodeQL Action Bundle 2.7.3
+- CodeQL Action Bundle 2.7.5
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - Docker-wincred 0.6.4
 - ghc 9.2.1
 - Git 2.34.1
 - Git LFS 3.0.2
-- Google Cloud SDK 368.0.0
+- Google Cloud SDK 369.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.23.1
+- Kubectl 1.23.2
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.1
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.7.8
-- Parcel 2.2.0
+- Parcel 2.2.1
 - Pulumi v3.22.1
 - R 4.1.2
 - Service Fabric SDK 8.2.1363.9590
@@ -89,11 +88,11 @@
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset v3.11.2.4516
 - yamllint 1.26.3
-- zstd 1.5.1
+- zstd 1.5.2
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.104
-- AWS CLI 2.4.11
+- AWS CLI 2.4.13
 - AWS SAM CLI 1.37.0
 - AWS Session Manager CLI 1.2.295.0
 - Azure CLI 2.32.0
@@ -104,8 +103,8 @@
 
 ### Rust Tools
 - Cargo 1.58.0
-- Rust 1.58.0
-- Rustdoc 1.58.0
+- Rust 1.58.1
+- Rustdoc 1.58.1
 - Rustup 1.24.3
 
 #### Packages
@@ -117,11 +116,11 @@
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 97.0.4692.71
+- Google Chrome 97.0.4692.99
 - Chrome Driver 97.0.4692.71
-- Microsoft Edge 97.0.1072.62
-- Microsoft Edge Driver 97.0.1072.62
-- Mozilla Firefox 96.0.1
+- Microsoft Edge 97.0.1072.69
+- Microsoft Edge Driver 97.0.1072.69
+- Mozilla Firefox 96.0.2
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 - Selenium server 4.1.0
@@ -138,7 +137,7 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.312+7 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.13+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 11.0.14+9           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
 | 17.0.1+12           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
@@ -181,7 +180,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 2.7.18  | x64, x86     |
-| 3.5.4   | x64, x86     |
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
@@ -224,9 +222,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 5.0.5.0 | MongoDB     | Running       | Automatic        |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.4.0
+- Azure CosmosDb Emulator 2.14.5.0
 - DacFx 15.0.5282.3
-- MySQL 5.7.36.0
+- MySQL 5.7.37.0
+- SQL OLEDB Driver 18.6.3.0
 - SQLPS 1.0
 
 ### Web Servers
@@ -264,9 +263,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Unreal                                                          | 16.1.28810.153  |
 | Component.Unreal.Android                                                  | 16.1.28810.153  |
 | Component.VSInstallerProjects                                             | 1.0.1           |
-| Component.WixToolset.VisualStudioExtension.Dev16                          | 1.0.0.4         |
-| Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.4         |
-| Component.WixToolset.VisualStudioExtension.Schemas4                       | 1.0.0.4         |
+| Component.WixToolset.VisualStudioExtension.Dev16                          | 1.0.0.18        |
+| Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.18        |
+| Component.WixToolset.VisualStudioExtension.Schemas4                       | 1.0.0.18        |
 | Component.Xamarin                                                         | 16.10.31205.252 |
 | Component.Xamarin.RemotedSimulator                                        | 16.10.31205.252 |
 | Microsoft.Component.Azure.DataLake.Tools                                  | 16.10.31205.252 |
@@ -474,7 +473,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Windows Driver Kit                                                        | 10.0.21381.0    |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.22000.1    |
 | Windows Software Development Kit Extension                                | 10.1.22000.194  |
-| WIX Toolset Studio 2019 Extension                                         | 1.0.0.4         |
+| WIX Toolset Studio 2019 Extension                                         | 1.0.0.18        |
+| WixToolset.WixToolsetVisualStudio2019Extension                            | 1.0.0.18        |
 
 #### Microsoft Visual C++:
 | Name                                         | Architecture | Version     |
@@ -516,6 +516,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 `Location C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX <version> Tools`
 - 4.7.2 4.8
 
+### .NET tools
+- nbgv 3.4.255+06fb9182bf
+
 ### PowerShell Tools
 - PowerShell 7.2.1
 
@@ -536,7 +539,7 @@ All other versions are saved but not installed.
 | ------------------ | ---------------- |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.9.1            |
+| Microsoft.Graph    | 1.9.2            |
 | Pester             | 3.4.0<br>5.3.1   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
@@ -573,10 +576,10 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:734b4d925e1dcd6c60d7a1bc61c67d6d1cb6160fd178954c6d71cd42b335e274  | 2022-01-12 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:197c6b07cf3093847fa6daeb389304c8ae5f9a90484f51fed83c13bb1ea73e19  | 2022-01-12 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:e02e0953f0476a685c0ab485f06a246c32329760f5cfb76d3fc7bdc47633f5d2  | 2022-01-12 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:f19f6870d061a5e630263e5fb716dd1cab4921691ef2fbea05c102544e244979  | 2022-01-07 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:4735f8590820d8741a94524e8ad53921ed0fea0002cc5214f594861ad9ee1f3d  | 2022-01-07 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:04a11344139d5af207a1e9197878475b88560e67c85ecbcd6e8b87d45a8fa98f  | 2022-01-20 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:7ef94f677d6a5d3c075c8206cdea1452a72e95b4fb9c0bd4f4d51df7a6ba166a  | 2022-01-20 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:a4f0c42bae2e533d46ea6a898741cd2b10e11a2c505e8c4ff23329cc3605eb64  | 2022-01-20 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:a608d7e96462ad9de894c98de74ac5c08c4624a40c6332d78d3a38c1939e1f62  | 2022-01-18 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:ab693245cc2f6c018a5718b9ded9eac109629e207907df81991f449d138cd85c  | 2022-01-18 |
 
 
