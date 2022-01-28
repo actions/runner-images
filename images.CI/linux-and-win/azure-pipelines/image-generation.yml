@@ -9,7 +9,7 @@ jobs:
   displayName: Image Generation (${{ parameters.image_type }})
   timeoutInMinutes: 600
   cancelTimeoutInMinutes: 30
-  pool: ci-agent-pool
+  pool: Azure Pipelines
   variables:
   - group: Image Generation Variables
 
