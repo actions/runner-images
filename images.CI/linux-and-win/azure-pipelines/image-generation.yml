@@ -48,10 +48,7 @@ jobs:
                         -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
                         -SubscriptionId $(AZURE_SUBSCRIPTION) `
                         -TenantId $(AZURE_TENANT) `
-                        -Location $(AZURE_LOCATION) `
-                        -VirtualNetworkName $(BUILD_AGENT_VNET_NAME) `
-                        -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
-                        -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME)
+                        -Location $(AZURE_LOCATION)
 
     env:
       PACKER_LOG: 1
