@@ -108,6 +108,16 @@ function InstallAllValidSdks()
     }
 }
 
+function InstallTools()
+{
+    $dotnetTools = (Get-ToolsetContent).dotnet.tools
+
+    ForEach ($dotnetTool in $dotnetTools)
+    {
+        dotnet tool install $($dotnetTool.name) --tool-path "C:\Users\Default\.dotnet\tools" --add-source https://api.nuget.org/v3/index.json | Out-Null
+    }
+}
+
 function RunPostInstallationSteps()
 {
     # Add dotnet to PATH
@@ -129,5 +139,6 @@ function RunPostInstallationSteps()
 
 InstallAllValidSdks
 RunPostInstallationSteps
+InstallTools
 
 Invoke-PesterTests -TestFile "DotnetSDK"

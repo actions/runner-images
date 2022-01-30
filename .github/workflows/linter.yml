@@ -29,6 +29,7 @@ jobs:
           VALIDATE_JSON: true
           VALIDATE_MARKDOWN: true
           DEFAULT_BRANCH: ${{ github.base_ref }}
+          FILTER_REGEX_EXCLUDE: .*images/*/.*-Readme.md
 
       - name: Checking shebang lines in MacOS and Ubuntu releases.
         run: ./images.CI/shebang-linter.ps1

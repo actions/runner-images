@@ -114,9 +114,11 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.5.0"
+                "7.1.0"
             ],
-            "zip_versions": []
+            "zip_versions": [
+                "6.6.0"
+            ]
         }
     ],
     "java": {
@@ -175,6 +177,7 @@
             "Component.UnityEngine.x64",
             "Component.Unreal.Android",
             "Microsoft.Component.VC.Runtime.UCRTSDK",
+            "Microsoft.Net.Component.4.7.TargetingPack",
             "Microsoft.Net.Component.4.7.2.TargetingPack",
             "Microsoft.VisualStudio.Component.AspNet45",
             "Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools",
@@ -187,9 +190,11 @@
             "Microsoft.VisualStudio.Component.TeamOffice",
             "Microsoft.VisualStudio.Component.TestTools.CodedUITest",
             "Microsoft.VisualStudio.Component.TestTools.WebLoadTest",
+            "Microsoft.VisualStudio.Component.UWP.VC.ARM64",
             "Microsoft.VisualStudio.Component.VC.CLI.Support",
             "Microsoft.VisualStudio.Component.VC.CMake.Project",
             "Microsoft.VisualStudio.Component.VC.DiagnosticTools",
+            "Microsoft.VisualStudio.Component.VC.Llvm.Clang",
             "Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre",
@@ -200,6 +205,7 @@
             "Microsoft.VisualStudio.Component.VC.ATL.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64EC",
+            "Microsoft.VisualStudio.Component.VC.Modules.x86.x64",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64EC",
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64",
@@ -220,6 +226,7 @@
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
+            "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
             "Microsoft.VisualStudio.Workload.Azure",
             "Microsoft.VisualStudio.Workload.Data",
@@ -239,7 +246,10 @@
             "Component.MDD.Linux",
             "wasm.tools"
         ],
-        "vsix": []
+        "vsix": [
+            "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects",
+            "WixToolset.WixToolsetVisualStudio2022Extension"
+        ]
     },
     "docker": {
         "images": [
@@ -265,13 +275,17 @@
             { "name": "yarn", "test": "yarn --version" },
             { "name": "newman", "test": "newman --version" },
             { "name": "lerna", "test": "lerna --version" },
-            { "name": "gulp-cli", "test": "gulp --version" }
+            { "name": "gulp-cli", "test": "gulp --version" },
+            { "name": "grunt-cli", "test": "grunt --version" }
         ]
     },
     "dotnet": {
         "versions": [
             "3.1",
             "5.0"
+        ],
+        "tools": [
+            { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }
         ],
         "warmup": false
     },
@@ -289,6 +303,7 @@
                 "args": [ "--version=1.1.1.20181020" ]
             },
             { "name": "packer" },
+            { "name": "strawberryperl" },
             { "name": "pulumi" },
             { "name": "tortoisesvn" },
             { "name": "swig" },
@@ -307,16 +322,22 @@
         "default": "16"
     },
     "mysql": {
-        "major_version": "8.0",
-        "full_version": "8.0.26"
+        "version": "8.0.26"
     },
     "mongodb": {
         "version": "5.0"
     },
+    "nsis": {
+        "version": "3.08"
+    },
     "php": {
-        "version": "8.0"
+        "version": "8.1"
     },
     "postgresql": {
         "version": "14"
+    },
+    "kotlin": {
+        "version": "latest",
+        "binary_name": "kotlin-compiler"
     }
 }

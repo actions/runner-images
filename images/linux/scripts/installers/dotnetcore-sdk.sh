@@ -11,6 +11,7 @@ source $HELPER_SCRIPTS/os.sh
 # Ubuntu 20 doesn't support EOL versions
 LATEST_DOTNET_PACKAGES=$(get_toolset_value '.dotnet.aptPackages[]')
 DOTNET_VERSIONS=$(get_toolset_value '.dotnet.versions[]')
+DOTNET_TOOLS=$(get_toolset_value '.dotnet.tools[].name')
 
 # Disable telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -31,12 +32,16 @@ for version in ${DOTNET_VERSIONS[@]}; do
     release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
     download_with_retries "${release_url}" "." "${version}.json"
     releases=$(cat "./${version}.json")
-    sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdk.version'))
-    sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdks[]?' | jq '.version'))
+    if [[ $version == "6.0" ]]; then
+        sdks=("${sdks[@]}" $(echo "${releases}" | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))'))
+    else
+        sdks=("${sdks[@]}" $(echo "${releases}" | jq -r '.releases[].sdk.version | select(contains("preview") or contains("rc") | not)'))
+        sdks=("${sdks[@]}" $(echo "${releases}" | jq -r '.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not)'))
+    fi
     rm ./${version}.json
 done
 
-sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -r | uniq -w 5)
+sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -r | uniq -w 5)
 
 extract_dotnet_sdk() {
     local ARCHIVE_NAME="$1"
@@ -66,5 +71,11 @@ setEtcEnvironmentVariable DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1
 setEtcEnvironmentVariable DOTNET_NOLOGO 1
 setEtcEnvironmentVariable DOTNET_MULTILEVEL_LOOKUP 0
 prependEtcEnvironmentPath '$HOME/.dotnet/tools'
+
+# install dotnet tools
+for dotnet_tool in ${DOTNET_TOOLS[@]}; do
+    echo "Installing dotnet tool $dotnet_tool"
+    dotnet tool install $dotnet_tool --tool-path '/etc/skel/.dotnet/tools'
+done
 
 invoke_tests "DotnetSDK"

@@ -17,4 +17,4 @@ jobs:
 - template: image-generation.yml
   parameters:
     image_type: ubuntu1804
-    image_readme_name: Ubuntu1804-README.md
+    image_readme_name: Ubuntu1804-Readme.md

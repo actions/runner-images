@@ -32,10 +32,6 @@ $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
 }
 
 Write-Host "Configuring Xcode versions..."
-if ($os.IsLessThanCatalina) {
-    $latestXcodeVersion = $xcodeVersions | Select-Object -Last 1 -ExpandProperty link
-    Install-XcodeAdditionalPackages -Version $latestXcodeVersion
-}
 $xcodeVersions | ForEach-Object {
     Invoke-XcodeRunFirstLaunch -Version $_.link
 }
@@ -49,6 +45,11 @@ $xcodeVersions | ForEach-Object {
     if ($_."skip-symlink" -ne "true") {
         Build-ProvisionatorSymlink -Version $_.link
     }
+}
+
+Write-Host "Rebuilding Launch Services database ..."
+$xcodeVersions | ForEach-Object {
+    Rebuild-XcodeLaunchServicesDb -Version $_.link
 }
 
 Write-Host "Setting default Xcode to $defaultXcode"

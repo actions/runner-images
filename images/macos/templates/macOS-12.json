@@ -11,6 +11,7 @@
         "output_folder": null,
         "vm_username": null,
         "vm_password": null,
+        "github_api_pat": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
         "image_os": "macos12"
@@ -143,6 +144,9 @@
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
                 "./provision/core/node.sh"
+            ],
+            "environment_vars": [
+                "API_PAT={{user `github_api_pat`}}"
             ]
         },
         {
@@ -165,11 +169,14 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
                 "./provision/core/commonutils.sh",
+                "./provision/core/llvm.sh",
                 "./provision/core/golang.sh",
                 "./provision/core/swiftlint.sh",
                 "./provision/core/openjdk.sh",
+                "./provision/core/php.sh",
                 "./provision/core/aws.sh",
                 "./provision/core/rust.sh",
+                "./provision/core/gcc.sh",
                 "./provision/core/haskell.sh",
                 "./provision/core/stack.sh",
                 "./provision/core/cocoapods.sh",
@@ -181,6 +188,8 @@
                 "./provision/core/nginx.sh",
                 "./provision/core/postgresql.sh",
                 "./provision/core/mongodb.sh",
+                "./provision/core/audiodevice.sh",
+                "./provision/core/vcpkg.sh",
                 "./provision/core/safari.sh",
                 "./provision/core/chrome.sh",
                 "./provision/core/edge.sh",
@@ -188,12 +197,15 @@
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
                 "./provision/core/bicep.sh"
+            ],
+            "environment_vars": [
+                "API_PAT={{user `github_api_pat`}}"
             ]
         },
         {
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
-            "scripts": [ 
+            "scripts": [
                 "./provision/core/toolset.ps1",
                 "./provision/core/configure-toolset.ps1"
             ]

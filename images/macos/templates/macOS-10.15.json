@@ -11,6 +11,7 @@
         "output_folder": null,
         "vm_username": null,
         "vm_password": null,
+        "github_api_pat": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
         "image_os": "macos1015"
@@ -138,6 +139,9 @@
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
                 "./provision/core/node.sh"
+            ],
+            "environment_vars": [
+                "API_PAT={{user `github_api_pat`}}"
             ]
         },
         {
@@ -191,12 +195,15 @@
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
                 "./provision/core/bicep.sh"
+            ],
+            "environment_vars": [
+                "API_PAT={{user `github_api_pat`}}"
             ]
         },
         {
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
-            "scripts": [ 
+            "scripts": [
                 "./provision/core/toolset.ps1",
                 "./provision/core/configure-toolset.ps1"
             ]

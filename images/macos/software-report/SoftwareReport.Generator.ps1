@@ -31,36 +31,26 @@ $markdown += New-MDList -Style Unordered -Lines ("Image Version: {0}" -f $ImageN
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 $languageAndRuntimeList = @(
-    (Get-BashVersion),
-    (Get-MSBuildVersion),
-    (Get-NodeVersion),
-    (Get-NVMVersion),
-    (Get-NVMNodeVersionList),
-    (Get-PerlVersion),
-    (Get-PythonVersion),
-    (Get-Python3Version),
-    (Get-RubyVersion),
-    (Get-DotnetVersionList),
-    (Get-GoVersion),
-    (Get-JuliaVersion),
+    (Get-BashVersion)
+    (Get-MSBuildVersion)
+    (Get-NodeVersion)
+    (Get-NVMVersion)
+    (Get-NVMNodeVersionList)
+    (Get-PerlVersion)
+    (Get-PythonVersion)
+    (Get-Python3Version)
+    (Get-RubyVersion)
+    (Get-DotnetVersionList)
+    (Get-GoVersion)
+    (Get-JuliaVersion)
     (Get-KotlinVersion)
+    (Get-PHPVersion)
+    (Get-ClangLLVMVersion)
+    (Get-GccVersion)
+    (Get-FortranVersion)
 )
 
-if ($os.IsLessThanMonterey) {
-    $languageAndRuntimeList += @(
-        (Get-PHPVersion)
-    )
-}
-
-if ($os.IsLessThanMonterey) {
-    $languageAndRuntimeList += @(
-        (Get-GccVersion)
-        (Get-FortranVersion)
-        (Get-ClangLLVMVersion)
-    )
-}
-
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $languageAndRuntimeList += @(
         (Get-RVersion)
     )
@@ -83,19 +73,14 @@ $packageManagementList = @(
     (Get-YarnVersion),
     (Get-NuGetVersion),
     (Get-RubyGemsVersion),
-    (Get-ComposerVersion)
+    (Get-ComposerVersion),
+    (Get-CarthageVersion),
+    (Get-VcpkgVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $packageManagementList += @(
-        (Get-CarthageVersion),
         (Get-CondaVersion)
-    )
-}
-
-if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
-    $packageManagementList += @(
-        (Get-VcpkgVersion)
     )
 }
 
@@ -139,34 +124,29 @@ $utilitiesList = @(
     (Get-MongodVersion),
     (Get-7zipVersion),
     (Get-BsdtarVersion),
-    (Get-GnuTarVersion)
+    (Get-GnuTarVersion),
+    (Get-GPGVersion),
+    (Get-SwitchAudioOsxVersion),
+    (Get-SoxVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
-        (Get-GPGVersion),
         (Get-HelmVersion)
     )
 }
 
-if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
+if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
         (Get-NewmanVersion)
     )
 }
 
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $utilitiesList += @(
         (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
         (Get-ParallelVersion)
-    )
-}
-
-if ($os.IsLessThanMonterey) {
-    $utilitiesList += @(
-        (Get-SwitchAudioOsxVersion),
-        (Get-SoxVersion)
     )
 }
 
@@ -260,9 +240,8 @@ $markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
 
 # Web Servers
-if ($os.IsHigherThanMojave) {
-    $markdown += Build-WebServersSection
-}
+$markdown += Build-WebServersSection
+
 
 # Xamarin section
 $markdown += New-MDHeader "Xamarin" -Level 3
@@ -297,7 +276,7 @@ $markdown += New-MDNewLine
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
 $androidTable = Build-AndroidTable
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $androidTable += Get-IntelHaxmVersion
 }
 $markdown += $androidTable | New-MDTable
@@ -305,6 +284,14 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-AndroidEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Miscellaneous" -Level 3
+$markdown += New-MDList -Style Unordered -Lines (@(
+    (Get-ZlibVersion),
+    (Get-LibXextVersion),
+    (Get-LibXftVersion)
+    ) | Sort-Object
+)
 
 #
 # Generate systeminfo.txt with information about image (for debug purpose)

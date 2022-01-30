@@ -229,6 +229,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-DACFx.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-MysqlCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-SQLPowerShellTools.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-SQLOLEDBDriver.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-DotnetSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Mingw64.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Haskell.ps1",
@@ -274,6 +275,7 @@
             "type": "powershell",
             "pause_before": "2m",
             "scripts": [
+                "{{ template_dir }}/scripts/Installers/Wait-WindowsUpdatesForInstall.ps1",
                 "{{ template_dir }}/scripts/Tests/RunAll-Tests.ps1"
             ]
         },
@@ -306,6 +308,7 @@
         },
         {
             "type": "powershell",
+            "skip_clean": true,
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Run-NGen.ps1",
                 "{{ template_dir }}/scripts/Installers/Finalize-VM.ps1"

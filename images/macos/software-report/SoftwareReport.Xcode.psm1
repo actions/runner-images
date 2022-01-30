@@ -246,7 +246,7 @@ function Build-XcodeSupportToolsSection {
         )
     }
 
-    if ($os.IsLessThanBigSur) {
+    if ($os.IsCatalina) {
         $xctool = Run-Command "xctool --version"
         $toolList += @(
             "xctool $xctool"

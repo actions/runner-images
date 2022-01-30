@@ -38,6 +38,7 @@ Export-ModuleMember -Function @(
     'Choco-Install'
     'Send-RequestToCocolateyPackages'
     'Get-LatestChocoPackageVersion'
+    'Get-GitHubPackageDownloadUrl'
     'Extract-7Zip'
     'Get-CommandResult'
     'Get-WhichTool'

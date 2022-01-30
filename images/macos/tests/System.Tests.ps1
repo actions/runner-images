@@ -17,7 +17,7 @@ Describe "Certificate" {
     }
 }
 
-Describe "Audio device" -Skip:($os.IsMonterey) {
+Describe "Audio device" {
     It "Sox is installed" {
         "sox --version" | Should -ReturnZeroExitCode
     }
@@ -30,7 +30,7 @@ Describe "Audio device" -Skip:($os.IsMonterey) {
         SwitchAudioSource -c | Should -BeLikeExactly "Soundflower (2ch)"
     }
 
-    It "Audio channel BlackHole 2ch" -Skip:($os.IsLessThanBigSur) {
+    It "Audio channel BlackHole 2ch" -Skip:($os.IsCatalina) {
         SwitchAudioSource -c | Should -BeLikeExactly "BlackHole 2ch"
     }
 }
