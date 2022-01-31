@@ -551,7 +551,7 @@ function Build-PackageManagementEnvironmentTable {
 }
 
 function Get-GraalVMVersion {
-    $version = & "$env:GRAALVM_11_ROOT\java" --version | Select-String -Pattern "GraalVM" | Take-OutputPart -Part 5,6
+    $version = & "$env:GRAALVM_11_ROOT\java" --version | Select-String -Pattern "GraalVM" | Take-Part -Part 5,6
     return $version
 }
 
