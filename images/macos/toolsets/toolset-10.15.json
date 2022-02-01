@@ -227,7 +227,8 @@
             "zstd",
             "zlib",
             "libxext",
-            "libxft"
+            "libxft",
+            "r"
         ],
         "cask_packages": [
             "julia",
