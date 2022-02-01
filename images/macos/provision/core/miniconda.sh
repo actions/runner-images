@@ -6,7 +6,7 @@ chmod +x $MINICONDA_INSTALLER
 sudo $MINICONDA_INSTALLER -b -p /usr/local/miniconda
 
 # Chmod with full permissions recursively to avoid permissions restrictions
-sudo chmod 777 -R /usr/local/miniconda
+sudo chmod -R 777 /usr/local/miniconda
 
 sudo ln -s /usr/local/miniconda/bin/conda /usr/local/bin/conda
 
