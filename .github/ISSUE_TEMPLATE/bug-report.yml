@@ -1,5 +1,5 @@
 name: Bug Report
-description: Submit a bug report. If you have a question please use [the discussions](https://github.com/actions/virtual-environments/discussions) section.
+description: Submit a bug report.
 labels: [bug report, needs triage]
 body:
   - type: textarea
