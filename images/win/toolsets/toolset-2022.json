@@ -183,6 +183,7 @@
             "Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools",
             "Microsoft.VisualStudio.Component.Debugger.JustInTime",
             "Microsoft.VisualStudio.Component.EntityFramework",
+            "Microsoft.VisualStudio.Component.DslTools",
             "Microsoft.VisualStudio.Component.LinqToSql",
             "Microsoft.VisualStudio.Component.SQL.SSDT",
             "Microsoft.VisualStudio.Component.Sharepoint.Tools",
