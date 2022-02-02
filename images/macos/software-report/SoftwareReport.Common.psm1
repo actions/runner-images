@@ -532,11 +532,6 @@ function Get-LibXextVersion {
     return "libXext $libXextVersion"
 }
 
-function Get-RVersion {
-    $rVersion = (brew info r)[0] | Take-Part -Part 2
-    return "R $rVersion"
-}
-
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{

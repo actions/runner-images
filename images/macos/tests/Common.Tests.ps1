@@ -104,9 +104,3 @@ Describe "Go" {
         "go version" | Should -ReturnZeroExitCode
     }
 }
-
-Describe "R" {
-    It "r" {
-        "R --version" | Should -ReturnZeroExitCode
-    }
-}

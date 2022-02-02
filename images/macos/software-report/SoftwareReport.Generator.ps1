@@ -48,13 +48,8 @@ $languageAndRuntimeList = @(
     (Get-ClangLLVMVersion)
     (Get-GccVersion)
     (Get-FortranVersion)
+    (Get-RVersion)
 )
-
-if ($os.IsCatalina) {
-    $languageAndRuntimeList += @(
-        (Get-RVersion)
-    )
-}
 
 # To sort GCC and Gfortran correctly, we need to use natural sort https://gist.github.com/markwragg/e2a9dc05f3464103d6998298fb575d4e#file-sort-natural-ps1
 $toNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
@@ -162,8 +157,7 @@ $toolsList = @(
     (Get-AzureCLIVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMCLIVersion),
-    (Get-AWSSessionManagerCLIVersion),
-    (Get-RVersion)
+    (Get-AWSSessionManagerCLIVersion)
 )
 
 if ($os.IsLessThanMonterey) {
