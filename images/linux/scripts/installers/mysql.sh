@@ -33,8 +33,10 @@ if isUbuntu20 ; then
     mysql_debs=(
         mysql-common*
         mysql-community-client-plugins*
+        mysql-community-client-core*
         mysql-community-client*
         mysql-client*
+        mysql-community-server-core*
         mysql-community-server*
         mysql-server*
         libmysqlclient21*

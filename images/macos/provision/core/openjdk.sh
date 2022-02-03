@@ -79,7 +79,7 @@ done
 
 # Big Sur or newer does not have these versions of Adopt.
 # Also hardcode these versions as they only exist for Adopt
-if is_Less_BigSur; then
+if is_Catalina; then
     for adoptVersionToInstall in 12 13 14; do
         createEnvironmentVariable ${adoptVersionToInstall} "Adopt"
     done

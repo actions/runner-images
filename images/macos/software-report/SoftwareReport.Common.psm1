@@ -517,6 +517,21 @@ function Get-JazzyVersion {
     return "Jazzy $jazzyVersion"
 }
 
+function Get-ZlibVersion {
+	$zlibVersion = (brew info zlib)[0] | Take-Part -Part 2
+	return "Zlib $zlibVersion"
+}
+
+function Get-LibXftVersion {
+    $libXftVersion = (brew info libxft)[0] | Take-Part -Part 2
+    return "libXft $libXftVersion"
+}
+
+function Get-LibXextVersion {
+    $libXextVersion = (brew info libxext)[0] | Take-Part -Part 2
+    return "libXext $libXextVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{
@@ -532,5 +547,20 @@ function Build-PackageManagementEnvironmentTable {
             "Name" = $_.Name
             "Value" = $_.Value
         }
+    }
+}
+
+function Get-GraalVMVersion {
+    $version = & "$env:GRAALVM_11_ROOT\java" --version | Select-String -Pattern "GraalVM" | Take-Part -Part 5,6
+    return $version
+}
+
+function Build-GraalVMTable {
+    $version = Get-GraalVMVersion
+    $envVariables = "GRAALVM_11_ROOT"
+
+    return [PSCustomObject] @{
+        "Version" = $version
+        "Environment variables" = $envVariables
     }
 }

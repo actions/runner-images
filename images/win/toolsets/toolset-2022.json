@@ -114,9 +114,11 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "6.5.0"
+                "7.1.0"
             ],
-            "zip_versions": []
+            "zip_versions": [
+                "6.6.0"
+            ]
         }
     ],
     "java": {
@@ -175,11 +177,13 @@
             "Component.UnityEngine.x64",
             "Component.Unreal.Android",
             "Microsoft.Component.VC.Runtime.UCRTSDK",
+            "Microsoft.Net.Component.4.7.TargetingPack",
             "Microsoft.Net.Component.4.7.2.TargetingPack",
             "Microsoft.VisualStudio.Component.AspNet45",
             "Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools",
             "Microsoft.VisualStudio.Component.Debugger.JustInTime",
             "Microsoft.VisualStudio.Component.EntityFramework",
+            "Microsoft.VisualStudio.Component.DslTools",
             "Microsoft.VisualStudio.Component.LinqToSql",
             "Microsoft.VisualStudio.Component.SQL.SSDT",
             "Microsoft.VisualStudio.Component.Sharepoint.Tools",
@@ -202,6 +206,7 @@
             "Microsoft.VisualStudio.Component.VC.ATL.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64EC",
+            "Microsoft.VisualStudio.Component.VC.Modules.x86.x64",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64EC",
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64",
@@ -240,10 +245,12 @@
             "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
+            "Component.MDD.Linux.GCC.arm",
             "wasm.tools"
         ],
         "vsix": [
-            "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects"
+            "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects",
+            "WixToolset.WixToolsetVisualStudio2022Extension"
         ]
     },
     "docker": {
@@ -279,6 +286,9 @@
             "3.1",
             "5.0"
         ],
+        "tools": [
+            { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }
+        ],
         "warmup": false
     },
     "choco": {
@@ -287,6 +297,7 @@
             { "name": "aria2" },
             { "name": "azcopy10" },
             { "name": "Bicep" },
+            { "name": "innosetup" },
             { "name": "jq" },
             { "name": "llvm" },
             { "name": "NuGet.CommandLine" },
@@ -295,6 +306,7 @@
                 "args": [ "--version=1.1.1.20181020" ]
             },
             { "name": "packer" },
+            { "name": "strawberryperl" },
             { "name": "pulumi" },
             { "name": "tortoisesvn" },
             { "name": "swig" },

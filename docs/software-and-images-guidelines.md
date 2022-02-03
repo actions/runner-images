@@ -18,7 +18,7 @@ In general, these are the guidelines we consider when deciding what to pre-insta
 These are the guidelines we follow in software and images supporting routine:
 - Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life.
 - We support at least 2 latest OS versions (LTS only for Ubuntu) and initiate deprecation process for the oldest one when image usage drops below 5%.
-- Most of the tools are preinstalled in the latest version only.
+- The images generally contain the latest versions of packages installed except for Ubuntu LTS where we rely on the Canonical-provided repositories mostly.
 - Popular tools can have several versions installed side-by-side with the following strategy:
 
 | Tool name | Installation strategy |

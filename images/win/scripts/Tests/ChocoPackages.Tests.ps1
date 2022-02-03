@@ -28,7 +28,7 @@ Describe "GitVersion" -Skip:(Test-IsWin22) {
     }
 }
 
-Describe "InnoSetup" -Skip:(Test-IsWin22) {
+Describe "InnoSetup" {
     It "InnoSetup" {
         (Get-Command -Name iscc).CommandType | Should -BeExactly "Application"
     }
@@ -58,7 +58,7 @@ Describe "Packer" {
     }
 }
 
-Describe "Perl" -Skip:(Test-IsWin22) {
+Describe "Perl" {
     It "Perl" {
        "perl --version" | Should -ReturnZeroExitCode
     }

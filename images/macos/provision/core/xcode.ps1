@@ -32,10 +32,6 @@ $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
 }
 
 Write-Host "Configuring Xcode versions..."
-if ($os.IsLessThanCatalina) {
-    $latestXcodeVersion = $xcodeVersions | Select-Object -Last 1 -ExpandProperty link
-    Install-XcodeAdditionalPackages -Version $latestXcodeVersion
-}
 $xcodeVersions | ForEach-Object {
     Invoke-XcodeRunFirstLaunch -Version $_.link
 }

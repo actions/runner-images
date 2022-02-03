@@ -11,7 +11,7 @@ Describe "MongoDB" {
 Describe "PostgreSQL" {
     It "PostgreSQL Service" {
         "sudo systemctl start postgresql" | Should -ReturnZeroExitCode
-        (Get-CommandResult "pg_isready").Output | Should -Be "/var/run/postgresql:5432 - accepting connections"
+        "pg_isready" | Should -MatchCommandOutput "/var/run/postgresql:5432 - accepting connections"
         "sudo systemctl stop postgresql" | Should -ReturnZeroExitCode
     }
 

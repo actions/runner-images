@@ -50,7 +50,7 @@ $languageAndRuntimeList = @(
     (Get-FortranVersion)
 )
 
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $languageAndRuntimeList += @(
         (Get-RVersion)
     )
@@ -74,18 +74,13 @@ $packageManagementList = @(
     (Get-NuGetVersion),
     (Get-RubyGemsVersion),
     (Get-ComposerVersion),
-    (Get-CarthageVersion)
+    (Get-CarthageVersion),
+    (Get-VcpkgVersion)
 )
 
 if ($os.IsLessThanMonterey) {
     $packageManagementList += @(
         (Get-CondaVersion)
-    )
-}
-
-if ($os.IsHigherThanMojave) {
-    $packageManagementList += @(
-        (Get-VcpkgVersion)
     )
 }
 
@@ -141,13 +136,13 @@ if ($os.IsLessThanMonterey) {
     )
 }
 
-if ($os.IsHigherThanMojave -and $os.IsLessThanMonterey) {
+if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
         (Get-NewmanVersion)
     )
 }
 
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $utilitiesList += @(
         (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
@@ -213,6 +208,10 @@ $markdown += New-MDHeader "Java" -Level 3
 $markdown += Get-JavaVersions | New-MDTable
 $markdown += New-MDNewLine
 
+$markdown += New-MDHeader "GraalVM" -Level 3
+$markdown += Build-GraalVMTable | New-MDTable
+$markdown += New-MDNewLine
+
 # Toolcache
 $markdown += Build-ToolcacheSection
 $markdown += New-MDNewLine
@@ -245,9 +244,8 @@ $markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
 
 # Web Servers
-if ($os.IsHigherThanMojave) {
-    $markdown += Build-WebServersSection
-}
+$markdown += Build-WebServersSection
+
 
 # Xamarin section
 $markdown += New-MDHeader "Xamarin" -Level 3
@@ -282,7 +280,7 @@ $markdown += New-MDNewLine
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
 $androidTable = Build-AndroidTable
-if ($os.IsLessThanBigSur) {
+if ($os.IsCatalina) {
     $androidTable += Get-IntelHaxmVersion
 }
 $markdown += $androidTable | New-MDTable
@@ -290,6 +288,14 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-AndroidEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Miscellaneous" -Level 3
+$markdown += New-MDList -Style Unordered -Lines (@(
+    (Get-ZlibVersion),
+    (Get-LibXextVersion),
+    (Get-LibXftVersion)
+    ) | Sort-Object
+)
 
 #
 # Generate systeminfo.txt with information about image (for debug purpose)

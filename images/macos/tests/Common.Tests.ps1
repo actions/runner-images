@@ -33,7 +33,7 @@ Describe "GCC" {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsMojave) {
+Describe "vcpkg" {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -102,5 +102,15 @@ Describe "Bicep" {
 Describe "Go" {
     It "Go" {
         "go version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "GraalVM" {
+    It "graalvm" {
+        '$GRAALVM_11_ROOT/java -version' | Should -ReturnZeroExitCode
+    }
+
+    It "native-image" {
+        '$GRAALVM_11_ROOT/native-image --version' | Should -ReturnZeroExitCode
     }
 }

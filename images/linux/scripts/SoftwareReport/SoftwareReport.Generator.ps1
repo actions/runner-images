@@ -3,7 +3,9 @@ param (
     $OutputDirectory
 )
 
-$ErrorActionPreference = "Stop"
+$global:ErrorActionPreference = "Stop"
+$global:ErrorView = "NormalView"
+Set-StrictMode -Version Latest
 
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
@@ -36,41 +38,41 @@ $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
 $runtimesList = @(
-        (Get-BashVersion),
-        (Get-CPPVersions),
-        (Get-FortranVersions),
-        (Get-ErlangVersion),
-        (Get-ErlangRebar3Version),
-        (Get-MonoVersion),
-        (Get-MsbuildVersion),
-        (Get-NodeVersion),
-        (Get-PerlVersion),
-        (Get-PythonVersion),
-        (Get-Python3Version),
-        (Get-RubyVersion),
-        (Get-SwiftVersion),
-        (Get-JuliaVersion),
-        (Get-KotlinVersion),
-        (Get-ClangVersions),
-        (Get-ClangFormatVersions)
-        ) 
+    (Get-BashVersion),
+    (Get-CPPVersions),
+    (Get-FortranVersions),
+    (Get-ErlangVersion),
+    (Get-ErlangRebar3Version),
+    (Get-MonoVersion),
+    (Get-MsbuildVersion),
+    (Get-NodeVersion),
+    (Get-PerlVersion),
+    (Get-PythonVersion),
+    (Get-Python3Version),
+    (Get-RubyVersion),
+    (Get-SwiftVersion),
+    (Get-JuliaVersion),
+    (Get-KotlinVersion),
+    (Get-ClangVersions),
+    (Get-ClangFormatVersions)
+)
 
 $markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
 
 $markdown += New-MDHeader "Package Management" -Level 3
 
 $packageManagementList = @(
-        (Get-HomebrewVersion),
-        (Get-CpanVersion),
-        (Get-GemVersion),
-        (Get-MinicondaVersion),
-        (Get-HelmVersion),
-        (Get-NpmVersion),
-        (Get-YarnVersion),
-        (Get-PipxVersion),
-        (Get-PipVersion),
-        (Get-Pip3Version),
-        (Get-VcpkgVersion)
+    (Get-HomebrewVersion),
+    (Get-CpanVersion),
+    (Get-GemVersion),
+    (Get-MinicondaVersion),
+    (Get-HelmVersion),
+    (Get-NpmVersion),
+    (Get-YarnVersion),
+    (Get-PipxVersion),
+    (Get-PipVersion),
+    (Get-Pip3Version),
+    (Get-VcpkgVersion)
 )
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
@@ -228,6 +230,10 @@ $markdown += New-MDList -Style Unordered -Lines @(
     (Get-DotNetCoreSdkVersions)
 )
 
+$markdown += New-MDHeader ".NET tools" -Level 3
+$tools = Get-DotnetTools
+$markdown += New-MDList -Lines $tools -Style Unordered
+
 $markdown += New-MDHeader "Databases" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-PostgreSqlVersion),
@@ -273,4 +279,5 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Installed apt packages" -Level 3
 $markdown += Get-AptPackages | New-MDTable
 
+Test-BlankElement
 $markdown | Out-File -FilePath "${OutputDirectory}/Ubuntu-Readme.md"

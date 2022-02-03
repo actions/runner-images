@@ -111,6 +111,11 @@ function Get-MySQLVersion {
     return "MySQL $mysqlVersion"
 }
 
+function Get-SQLOLEDBDriverVersion {
+    $SQLOLEDBDriverVersion = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSOLEDBSQL' InstalledVersion).InstalledVersion
+    return "SQL OLEDB Driver $SQLOLEDBDriverVersion"
+}
+
 function Get-MercurialVersion {
     ($(hg --version) | Out-String) -match "version (?<version>\d+\.\d+\.?\d*)" | Out-Null
     $mercurialVersion = $Matches.Version
@@ -287,7 +292,7 @@ function Get-VisualCPPComponents {
 }
 
 function Get-DacFxVersion {
-    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\150\DAC\bin\sqlpackage.exe" /version
+    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\160\DAC\bin\sqlpackage.exe" /version
     return "DacFx $dacfxversion"
 }
 

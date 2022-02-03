@@ -1,6 +1,7 @@
 $dotnetVersions = (Get-ToolsetContent).dotnet.versions
+$dotnetTools = (Get-ToolsetContent).dotnet.tools
 
-Describe "Dotnet SDK" {
+Describe "Dotnet SDK and tools" {
 
     Context "Default" {
         It "Default Dotnet SDK is available" {
@@ -19,6 +20,15 @@ Describe "Dotnet SDK" {
             It "Runtime $version is available" -TestCases $dotnet {
                 (dotnet --list-runtimes | Where-Object { $_ -match "${dotnetVersion}\.[0-9]*" }).Count | Should -BeGreaterThan 0
             }
+        }
+    }
+
+    Context "Dotnet tools" {
+        $env:Path += ";C:\Users\Default\.dotnet\tools"
+        $testCases = $dotnetTools | ForEach-Object { @{ ToolName = $_.name; TestInstance = $_.test }}
+
+        It "<ToolName> is available" -TestCases $testCases {
+            "$TestInstance" | Should -ReturnZeroExitCode
         }
     }
 }
