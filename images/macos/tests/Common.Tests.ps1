@@ -104,3 +104,13 @@ Describe "Go" {
         "go version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "GraalVM" {
+    It "graalvm" {
+        '$GRAALVM_11_ROOT/java -version' | Should -ReturnZeroExitCode
+    }
+
+    It "native-image" {
+        '$GRAALVM_11_ROOT/native-image --version' | Should -ReturnZeroExitCode
+    }
+}
