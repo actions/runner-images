@@ -7,14 +7,14 @@
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2458
-- Image Version: 20220123.1
+- Image Version: 20220131.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
 
 ## Installed Software
 ### Language and Runtime
-- Bash 4.4.23(1)-release
+- Bash 4.4.23(2)-release
 - Go 1.15.15
 - Julia 1.7.1
 - Kotlin 1.6.10
@@ -26,16 +26,16 @@
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 0.12.0
+- Chocolatey 0.12.1
 - Composer 2.2.5
 - Helm 3.7.2
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 8.1.2
 - NuGet 6.0.0.280
-- pip 21.3.1 (python 3.7)
+- pip 22.0.2 (python 3.7)
 - Pipx 1.0.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<df40d1c47>)
+- Vcpkg (build from master \<8518284c1>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -58,19 +58,19 @@
 - Bazelisk 1.11.0
 - Bicep 0.4.1124
 - Cabal 3.6.2.0
-- CMake 3.22.1
-- CodeQL Action Bundle 2.7.5
+- CMake 3.22.2
+- CodeQL Action Bundle 2.7.6
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - Docker-wincred 0.6.4
 - ghc 9.2.1
-- Git 2.34.1
+- Git 2.35.1
 - Git LFS 3.0.2
-- Google Cloud SDK 369.0.0
+- Google Cloud SDK 370.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.23.2
+- Kubectl 1.23.3
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.1
@@ -78,7 +78,7 @@
 - OpenSSL 1.1.1
 - Packer 1.7.8
 - Parcel 2.2.1
-- Pulumi v3.22.1
+- Pulumi v3.23.0
 - R 4.1.2
 - Service Fabric SDK 8.2.1363.9590
 - Stack 2.7.3
@@ -91,8 +91,8 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.104
-- AWS CLI 2.4.13
+- Alibaba Cloud CLI 3.0.107
+- AWS CLI 2.4.15
 - AWS SAM CLI 1.37.0
 - AWS Session Manager CLI 1.2.295.0
 - Azure CLI 2.32.0
@@ -118,9 +118,9 @@
 ### Browsers and webdrivers
 - Google Chrome 97.0.4692.99
 - Chrome Driver 97.0.4692.71
-- Microsoft Edge 97.0.1072.69
-- Microsoft Edge Driver 97.0.1072.69
-- Mozilla Firefox 96.0.2
+- Microsoft Edge 97.0.1072.76
+- Microsoft Edge Driver 97.0.1072.76
+- Mozilla Firefox 96.0.3
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 - Selenium server 4.1.0
@@ -136,10 +136,10 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.312+7 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 8.0.322+6 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.14+9           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
-| 17.0.1+12           | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 17.0.2+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -219,11 +219,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version | ServiceName | ServiceStatus | ServiceStartType |
 | ------- | ----------- | ------------- | ---------------- |
-| 5.0.5.0 | MongoDB     | Running       | Automatic        |
+| 5.0.6.0 | MongoDB     | Running       | Automatic        |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.5.0
-- DacFx 15.0.5282.3
+- DacFx 16.0.5400.1
 - MySQL 5.7.37.0
 - SQL OLEDB Driver 18.6.3.0
 - SQLPS 1.0
@@ -232,7 +232,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.52  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.21.5  | C:\tools\nginx-1.21.5\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.21.6  | C:\tools\nginx-1.21.6\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
@@ -262,7 +262,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.UnityEngine.x64                                                 | 16.10.31205.252 |
 | Component.Unreal                                                          | 16.1.28810.153  |
 | Component.Unreal.Android                                                  | 16.1.28810.153  |
-| Component.VSInstallerProjects                                             | 1.0.1           |
+| Component.VSInstallerProjects                                             | 1.0.2           |
 | Component.WixToolset.VisualStudioExtension.Dev16                          | 1.0.0.18        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.18        |
 | Component.WixToolset.VisualStudioExtension.Schemas4                       | 1.0.0.18        |
@@ -469,7 +469,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ProBITools.MicrosoftAnalysisServicesModelingProjects                      | 2.9.18          |
 | ProBITools.MicrosoftReportProjectsforVisualStudio                         | 2.6.11          |
 | SSIS.SqlServerIntegrationServicesProjects                                 | 3.15            |
-| VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.1           |
+| VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.2           |
 | Windows Driver Kit                                                        | 10.0.21381.0    |
 | Windows Driver Kit Visual Studio Extension                                | 10.1.22000.1    |
 | Windows Software Development Kit Extension                                | 10.1.22000.194  |
@@ -553,7 +553,7 @@ All other versions are saved but not installed.
 | Android Command Line Tools | 4.0                                                                                                                                                                                                                                                                                                              |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0        |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
-| Android SDK Platform-Tools | 31.0.3                                                                                                                                                                                                                                                                                                           |
+| Android SDK Platform-Tools | 32.0.0                                                                                                                                                                                                                                                                                                           |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                           |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                           |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                                                                 |
