@@ -49,6 +49,7 @@ function Select-DataStore {
         [string]$VMName,
         [string]$TagCategory,
         [string]$TemplateDatastore = "ds-local-Datastore-*",
+        [string]$Cluster,
         [int]$ThresholdInGb = 400,
         [int]$VMCount = 2,
         [int]$Retries = 5
@@ -111,4 +112,4 @@ function Select-DataStore {
 Connect-VCServer -VIServer $VIServer -VIUserName $VIUserName -VIPassword $VIPassword
 
 # Get a target datastore for current deployment
-Select-DataStore -VMName $VMName -TagCategory $TagCategory
+Select-DataStore -VMName $VMName -Cluster $Cluster -TagCategory $TagCategory
