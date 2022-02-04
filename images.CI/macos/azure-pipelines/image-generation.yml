@@ -55,7 +55,7 @@ jobs:
       arguments: -VMName "$(VirtualMachineName)" `
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
-                 -VIPassword '$(vcenter-password-v2)' `
+                 -VIPassword ''$(vcenter-password-v2)'' `
                  -Cluster "$(vcenter-cluster-v2)"
 
   - pwsh: |
