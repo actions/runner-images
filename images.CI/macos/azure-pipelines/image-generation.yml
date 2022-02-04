@@ -74,6 +74,7 @@ jobs:
         -var="output_folder=$(output-folder)" `
         -var="vm_username=$(vm-username)" `
         -var="vm_password=$(vm-password)" `
+        -var="github_api_pat=$(github_api_pat)" `
         -var="build_id=$(VirtualMachineName)" `
         -var="baseimage_name=${{ parameters.base_image_name }}" `
         -var="xcode_install_user=$(xcode-installation-user)" `
