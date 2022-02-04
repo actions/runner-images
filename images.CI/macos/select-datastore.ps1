@@ -36,7 +36,9 @@ param(
     [ValidateNotNullOrEmpty()]
     [string]$VIPassword,
 
-    [string]$TagCategory = "Busy"
+    [string]$TagCategory = "Busy",
+
+    [string]$Cluster
 )
 
 # Import helpers module
@@ -57,8 +59,9 @@ function Select-DataStore {
     # 3. Choose a datastore with the minimal VM count < 2
 
     Write-Host "Start Datastore selection process..."
-    $allDatastores = Get-Datastore -Name $templateDatastore | Where-Object { $_.State -eq "Available" }
-    $availableDatastores = $allDatastores `
+    $clusterHosts = Get-VMHost | Where-Object {(Get-cluster -VMHost $_) -like $Cluster }
+    $availableClusterDatastores = $ClusterHosts | ForEach-Object {Get-Datastore -Name "*$_" | Where-Object -Property State -eq "Available"}
+    $availableDatastores = $availableClusterDatastores `
     | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } `
     | Where-Object {
         $vmOnDatastore = @((Get-ChildItem -Path $_.DatastoreBrowserPath).Name -notmatch "^\.").Count
