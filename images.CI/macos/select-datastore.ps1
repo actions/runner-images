@@ -105,7 +105,7 @@ function Select-DataStore {
     }
 
     Write-Host "Datastore select failed, $retries left"
-    Select-DataStore -VMName $VMName -TagCategory $TagCategory -Retries $retries
+    Select-DataStore -VMName $VMName -Cluster $Cluster -TagCategory $TagCategory -Retries $retries
 }
 
 # Connection to a vCenter Server system
