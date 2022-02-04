@@ -56,7 +56,7 @@ jobs:
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
                  -VIPassword '$(vcenter-password-v2)' `
-                 -Cluster "$(vcenter-cluster-v2)"
+                 -Cluster "$(esxi-cluster-v2)"
 
   - pwsh: |
       $SensitiveData = @(
@@ -132,7 +132,7 @@ jobs:
                  -TargetDataStore "${{ parameters.target_datastore }}" `
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
-                 -VIPassword "$(vcenter-password-v2)"
+                 -VIPassword '$(vcenter-password-v2)' `
                  -CpuCount "$(cpu-count)" `
                  -CoresPerSocketCount "$(cores-per-socket-count)" `
                  -Memory "$(memory)"
@@ -146,4 +146,4 @@ jobs:
       arguments: -VMName "$(VirtualMachineName)" `
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
-                 -VIPassword "$(vcenter-password-v2)"
+                 -VIPassword '$(vcenter-password-v2)'
