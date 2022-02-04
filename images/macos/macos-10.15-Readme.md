@@ -1,14 +1,12 @@
 | Announcements |
 |-|
 | [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
-| [[macOS] Default Xcode on Big Sur image will be set to Xcode 13.2.1 on January, 24](https://github.com/actions/virtual-environments/issues/4800) |
 | [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
-| [macOS-latest workflows will use macOS-11](https://github.com/actions/virtual-environments/issues/4060) |
 ***
 # macOS 10.15 info
-- System Version: macOS 10.15.7 (19H1615)
+- System Version: macOS 10.15.7 (19H1713)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220124.1
+- Image Version: 20220201.2
 
 ## Installed Software
 ### Language and Runtime
@@ -28,7 +26,7 @@
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.13.2
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.9 v14.18.3 v16.13.2
+- NVM - Cached node versions: v12.22.10 v14.19.0 v16.13.2
 - Perl 5.34.0
 - PHP 8.1.2
 - Python 2.7.18
@@ -37,11 +35,11 @@
 - Ruby 2.7.5p203
 
 ### Package Management
-- Bundler version 2.3.5
+- Bundler version 2.3.6
 - Carthage 0.38.0
 - CocoaPods 1.11.2
 - Composer 2.2.5
-- Homebrew 3.3.11
+- Homebrew 3.3.13
 - Miniconda 4.10.3
 - NPM 8.1.2
 - NuGet 5.9.0.7134
@@ -49,7 +47,7 @@
 - Pip 21.3.1 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2021 (build from master \<3afbc7b28>)
+- Vcpkg 2021 (build from master \<8f315e852>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -62,7 +60,7 @@
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.4
 - Gradle 7.3.3
-- Sbt 1.6.1
+- Sbt 1.6.2
 
 ### Utilities
 - 7-Zip 17.04
@@ -73,17 +71,17 @@
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.81.0
 - Git LFS: 3.0.2
-- Git: 2.34.1
-- GitHub CLI: 2.4.0
+- Git: 2.35.1
+- GitHub CLI: 2.5.0
 - GNU parallel 20220122
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.2
 - gpg (GnuPG) 2.3.4
-- helm v3.7.2+g663a896
+- helm v3.8.0+gd141386
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v5.0.5
-- mongod v5.0.5
+- mongo v5.0.6
+- mongod v5.0.6
 - Newman 5.3.1
 - OpenSSL 1.1.1m  14 Dec 2021 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1m)`
 - Packer 1.7.8
@@ -97,38 +95,38 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.104
+- Aliyun CLI 3.0.107
 - App Center CLI 2.10.8
-- AWS CLI 2.4.13
+- AWS CLI 2.4.15
 - AWS SAM CLI 1.37.0
 - AWS Session Manager CLI 1.2.295.0
 - Azure CLI 2.32.0
 - Bicep CLI 0.4.1124
 - Cabal 3.6.2.0
-- Cmake 3.22.1
-- Fastlane 2.201.1
+- Cmake 3.22.2
+- Fastlane 2.203.0
 - GHC 9.2.1
 - GHCup 0.1.17.4
 - Jazzy 0.14.1
 - Stack 2.7.3
-- SwiftFormat 0.49.2
+- SwiftFormat 0.49.3
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
-- SwiftLint 0.46.0
+- SwiftLint 0.46.2
 - yamllint 1.26.3
 
 ### Browsers
-- Safari 15.2 (15612.3.6.1.8)
-- SafariDriver 15.2 (15612.3.6.1.8)
-- Google Chrome 97.0.4692.99 
+- Safari 15.3 (15612.4.9.1.7)
+- SafariDriver 15.3 (15612.4.9.1.7)
+- Google Chrome 98.0.4758.80 
 - ChromeDriver 97.0.4692.71
-- Microsoft Edge 97.0.1072.69 
-- MSEdgeDriver 97.0.1072.69
-- Mozilla Firefox 96.0.2
+- Microsoft Edge 97.0.1072.76 
+- MSEdgeDriver 97.0.1072.76
+- Mozilla Firefox 96.0.3
 - geckodriver 0.30.0
-- Selenium server 4.1.1
+- Selenium server 4.1.2
 
 #### Environment variables
 | Name            | Value                                         |
@@ -140,12 +138,12 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.312+7 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 8.0.322+6 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.14+9           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 12.0.2+10.3         | Adopt OpenJDK   | JAVA_HOME_12_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
 | 14.0.2+12           | Adopt OpenJDK   | JAVA_HOME_14_X64     |
-| 17.0.1+12           | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 17.0.2+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Cached Tools
 #### Ruby
@@ -171,7 +169,7 @@
 
 #### Node.js
 - 12.22.9
-- 14.18.3
+- 14.19.0
 - 16.13.2
 
 #### Go
@@ -210,7 +208,7 @@
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.52  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.21.5  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| nginx | 1.21.6  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
@@ -353,10 +351,10 @@
 | Package Name               | Version                                                                                                                                                                                                                                   |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 4.0                                                                                                                                                                                                                                       |
-| Android Emulator           | 31.1.4                                                                                                                                                                                                                                    |
+| Android Emulator           | 31.2.6                                                                                                                                                                                                                                    |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                        |
-| Android SDK Platform-Tools | 31.0.3                                                                                                                                                                                                                                    |
+| Android SDK Platform-Tools | 32.0.0                                                                                                                                                                                                                                    |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                    |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                          |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                  |
