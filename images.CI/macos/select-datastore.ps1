@@ -59,8 +59,8 @@ function Select-DataStore {
     # 3. Choose a datastore with the minimal VM count < 2
 
     Write-Host "Start Datastore selection process..."
-    $clusterHosts = Get-VMHost | Where-Object {(Get-cluster -VMHost $_) -like $Cluster }
-    $availableClusterDatastores = $ClusterHosts | ForEach-Object {Get-Datastore -Name "*$_" | Where-Object -Property State -eq "Available"}
+    $clusterHosts = Get-Cluster -Name $Cluster | Get-VMHost
+    $availableClusterDatastores = $clusterHosts | Get-Datastore -Name $TemplateDatastore | Where-Object -Property State -eq "Available"
     $availableDatastores = $availableClusterDatastores `
     | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } `
     | Where-Object {
