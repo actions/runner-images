@@ -532,6 +532,11 @@ function Get-LibXextVersion {
     return "libXext $libXextVersion"
 }
 
+function Get-TclTkVersion {
+    $tcltkVersion = (brew info tcl-tk)[0] | Take-Part -Part
+    return "Tcl/Tk $tcltkVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{

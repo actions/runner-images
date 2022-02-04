@@ -194,7 +194,8 @@
             "zstd",
             "zlib",
             "libxext",
-            "libxft"
+            "libxft",
+            "tcl-tk"
         ],
         "cask_packages": [
             "julia"
