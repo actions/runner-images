@@ -533,7 +533,7 @@ function Get-LibXextVersion {
 }
 
 function Get-TclTkVersion {
-    $tcltkVersion = (brew info tcl-tk)[0] | Take-Part -Part
+    $tcltkVersion = (brew info tcl-tk)[0] | Take-Part -Part 2
     return "Tcl/Tk $tcltkVersion"
 }
 
