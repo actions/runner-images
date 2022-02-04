@@ -244,6 +244,12 @@ $markdown += New-MDHeader "Microsoft Visual C++:" -Level 4
 $markdown += Get-VisualCPPComponents | New-MDTable
 $markdown += New-MDNewLine
 
+$markdown += New-MDHeader "Additional Windows SDKs" -Level 4
+$sdk = Get-WindowsSDKs
+$markdown += "``Location $($sdk.Path)``"
+$markdown += New-MDNewLine
+$markdown += New-MDList -Lines $sdk.Versions -Style Unordered
+
 $markdown += New-MDHeader ".NET Core SDK" -Level 3
 $sdk = Get-DotnetSdks
 $markdown += "``Location $($sdk.Path)``"
