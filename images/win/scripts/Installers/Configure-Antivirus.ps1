@@ -10,14 +10,17 @@ Set-MpPreference -DisableIOAVProtection $true
 Set-MpPreference -DisablePrivacyMode $true
 Set-MpPreference -DisableScanningNetworkFiles $true
 Set-MpPreference -DisableScriptScanning $true
-Set-MpPreference -EnableControlledFolderAccess Disable
-Set-MpPreference -EnableNetworkProtection Disabled
 Set-MpPreference -MAPSReporting 0
 Set-MpPreference -PUAProtection 0
 Set-MpPreference -SignatureDisableUpdateOnStartupWithoutEngine $true
 Set-MpPreference -SubmitSamplesConsent 2
 Set-MpPreference -ScanAvgCPULoadFactor 5 -ExclusionPath "D:\", "C:\"
 Set-MpPreference -DisableRealtimeMonitoring $true
+
+if (-not (Test-IsWin16)) {
+    Set-MpPreference -EnableControlledFolderAccess Disable
+    Set-MpPreference -EnableNetworkProtection Disabled
+}
 
 Write-Host "Disable Windows Defender scheduled tasks"
 Get-ScheduledTask -TaskPath '\Microsoft\Windows\Windows Defender\' | Disable-ScheduledTask
