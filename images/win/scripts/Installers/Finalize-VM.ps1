@@ -36,4 +36,107 @@ cmd /c "npm cache clean --force 2>&1" | Out-Null
 # see https://github.com/actions/virtual-environments/issues/1704
 cmd /c "icacls $env:SystemRoot\Temp /grant Users:f /t /c /q 2>&1" | Out-Null
 
+# Registry settings
+$registrySettings = @(
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"; Name = "AUOptions"; Value = 1; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"; Name = "NoAutoUpdate"; Value = 1; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"; Name = "DoNotConnectToWindowsUpdateInternetLocations"; Value = 1; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"; Name = "DisableWindowsUpdateAccess"; Value = 1; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata"; Name = "PreventDeviceMetadataFromNetwork"; Value = 1; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection"; Name = "AllowTelemetry"; Value = 0; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\SQMClient\Windows"; Name = "CEIPEnable"; Value = 0; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat"; Name = "AITEnable"; Value = 0; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat"; Name = "DisableUAR"; Value = 1; PropertyType = "DWORD"}
+    @{Path = "HKLM:\Software\Policies\Microsoft\Windows\DataCollection"; Name = "AllowTelemetry"; Value = 0; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\DataCollection"; Name = "AllowTelemetry"; Value = 0; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance"; Name = "MaintenanceDisabled"; Value = 1; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\MRT"; Name = "DontOfferThroughWUAU"; Value = 1; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\MRT"; Name = "DontReportInfectionInformation"; Value = 1; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"; Name = "AllowCortana"; Value = 0; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SYSTEM\CurrentControlSet\Control"; Name = "ServicesPipeTimeout"; Value = 120000; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener"; Name = "Start"; Value = 0; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\SQMLogger"; Name = "Start"; Value = 0; PropertyType = "DWORD"}
+)
+
+$registrySettings | ForEach-Object {
+    $regPath = $PSItem.Path
+    New-ItemPath -Path $regPath
+    New-ItemProperty @PSItem -Force -ErrorAction Ignore
+}
+
+# Disable Template Services / User Services added by Desktop Experience
+$regUserServicesToDisables = @(
+    "HKLM:\SYSTEM\CurrentControlSet\Services\CDPUserSvc"
+    "HKLM:\SYSTEM\CurrentControlSet\Services\OneSyncSvc"
+    "HKLM:\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc"
+    "HKLM:\SYSTEM\CurrentControlSet\Services\UnistoreSvc"
+    "HKLM:\SYSTEM\CurrentControlSet\Services\UserDataSvc"
+    "HKLM:\SYSTEM\CurrentControlSet\Services\WpnUserService"
+)
+
+$regUserServicesToDisables | ForEach-Object {
+    $regPath = $_
+    New-ItemPath -Path $regPath
+    New-ItemProperty -Path $regPath -Name "Start" -Value 4 -PropertyType DWORD -Force -ErrorAction Ignore
+    New-ItemProperty -Path $regPath -Name "UserServiceFlags" -Value 0 -PropertyType DWORD -Force -ErrorAction Ignore
+}
+
+
+# Disabled services
+$servicesToDisable = @(
+    "wuauserv"
+    "DiagTrack"
+    "dmwappushservice"
+    "PcaSvc"
+    "SysMain"
+    "gupdate"
+    "gupdatem"
+)
+
+$servicesToDisable | ForEach-Object {
+    Set-Service -Name $_ -StartupType Disabled -ErrorAction Ignore
+}
+
+# Disable scheduled tasks
+$allTasksInTaskPath = @(
+    "\Microsoft\Azure\Security\"
+    "\Microsoft\VisualStudio\"
+    "\Microsoft\VisualStudio\Updates\"
+    "\Microsoft\Windows\Application Experience\"
+    "\Microsoft\Windows\ApplicationData\"
+    "\Microsoft\Windows\Autochk\"
+    "\Microsoft\Windows\Chkdsk\"
+    "\Microsoft\Windows\Customer Experience Improvement Program\"
+    "\Microsoft\Windows\Data Integrity Scan\"
+    "\Microsoft\Windows\Defrag\"
+    "\Microsoft\Windows\Diagnosis\"
+    "\Microsoft\Windows\DiskCleanup\"
+    "\Microsoft\Windows\DiskDiagnostic\"
+    "\Microsoft\Windows\maintenance\"
+    "\Microsoft\Windows\PI\"
+    "\Microsoft\Windows\Power Efficiency Diagnostics\"
+    "\Microsoft\Windows\Server Manager\"
+    "\Microsoft\Windows\Speech\"
+    "\Microsoft\Windows\UpdateOrchestrator\"
+    "\Microsoft\Windows\Windows Error Reporting\"
+    "\Microsoft\Windows\WindowsUpdate\"
+    "\Microsoft\XblGameSave\"
+)
+
+$allTasksInTaskPath | ForEach-Object {
+    Get-ScheduledTask -TaskPath $_ -ErrorAction Ignore | Disable-ScheduledTask -ErrorAction Ignore
+}
+
+$disableTaskNames = @(
+    @{TaskPath = "\Microsoft\Windows\.NET Framework\"; TaskName = ".NET Framework NGEN v4.0.30319"}
+    @{TaskPath = "\Microsoft\Windows\.NET Framework\"; TaskName = ".NET Framework NGEN v4.0.30319 64"}
+    @{TaskPath = "\Microsoft\Windows\AppID\"; TaskName = "SmartScreenSpecific"}
+    @{TaskPath = "\"; TaskName = "GoogleUpdateTaskMachineCore"}
+    @{TaskPath = "\"; TaskName = "GoogleUpdateTaskMachineUA"}
+)
+
+$disableTaskNames | ForEach-Object {
+    Disable-ScheduledTask @PSItem -ErrorAction Ignore
+}
+
 Write-Host "Finalize-VM.ps1 - completed"
