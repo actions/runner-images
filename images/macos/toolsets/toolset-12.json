@@ -111,6 +111,7 @@
             "zlib",
             "libxext",
             "libxft",
+            "tcl-tk",
             "r"
         ],
         "cask_packages": [

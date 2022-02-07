@@ -288,7 +288,8 @@ $markdown += New-MDHeader "Miscellaneous" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-ZlibVersion),
     (Get-LibXextVersion),
-    (Get-LibXftVersion)
+    (Get-LibXftVersion),
+    (Get-TclTkVersion)
     ) | Sort-Object
 )
 
