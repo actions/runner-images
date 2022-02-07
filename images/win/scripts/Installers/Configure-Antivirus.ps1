@@ -23,7 +23,7 @@ if (-not (Test-IsWin16)) {
 }
 
 Write-Host "Disable Windows Defender scheduled tasks"
-Get-ScheduledTask -TaskPath '\Microsoft\Windows\Windows Defender\' | Disable-ScheduledTask
+Get-ScheduledTask -TaskPath '\Microsoft\Windows\Windows Defender\' | Disable-ScheduledTask | Out-Null
 
 # https://github.com/actions/virtual-environments/issues/4277
 # https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/microsoft-defender-antivirus-compatibility?view=o365-worldwide

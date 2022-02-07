@@ -62,7 +62,7 @@ $registrySettings | ForEach-Object {
     $regPath = $PSItem.Path
     New-ItemPath -Path $regPath
     New-ItemProperty @PSItem -Force -ErrorAction Ignore
-}
+} | Out-Null
 
 # Disable Template Services / User Services added by Desktop Experience
 $regUserServicesToDisables = @(
@@ -79,7 +79,7 @@ $regUserServicesToDisables | ForEach-Object {
     New-ItemPath -Path $regPath
     New-ItemProperty -Path $regPath -Name "Start" -Value 4 -PropertyType DWORD -Force -ErrorAction Ignore
     New-ItemProperty -Path $regPath -Name "UserServiceFlags" -Value 0 -PropertyType DWORD -Force -ErrorAction Ignore
-}
+} | Out-Null
 
 
 # Disabled services
@@ -95,7 +95,7 @@ $servicesToDisable = @(
 
 $servicesToDisable | ForEach-Object {
     Set-Service -Name $_ -StartupType Disabled -ErrorAction Ignore
-}
+} | Out-Null
 
 # Disable scheduled tasks
 $allTasksInTaskPath = @(
@@ -125,7 +125,7 @@ $allTasksInTaskPath = @(
 
 $allTasksInTaskPath | ForEach-Object {
     Get-ScheduledTask -TaskPath $_ -ErrorAction Ignore | Disable-ScheduledTask -ErrorAction Ignore
-}
+} | Out-Null
 
 $disableTaskNames = @(
     @{TaskPath = "\Microsoft\Windows\.NET Framework\"; TaskName = ".NET Framework NGEN v4.0.30319"}
@@ -137,6 +137,6 @@ $disableTaskNames = @(
 
 $disableTaskNames | ForEach-Object {
     Disable-ScheduledTask @PSItem -ErrorAction Ignore
-}
+} | Out-Null
 
 Write-Host "Finalize-VM.ps1 - completed"
