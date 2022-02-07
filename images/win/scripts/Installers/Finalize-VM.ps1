@@ -99,6 +99,7 @@ $servicesToDisable | ForEach-Object {
 
 # Disable scheduled tasks
 $allTasksInTaskPath = @(
+    "\"
     "\Microsoft\Azure\Security\"
     "\Microsoft\VisualStudio\"
     "\Microsoft\VisualStudio\Updates\"
@@ -112,7 +113,7 @@ $allTasksInTaskPath = @(
     "\Microsoft\Windows\Diagnosis\"
     "\Microsoft\Windows\DiskCleanup\"
     "\Microsoft\Windows\DiskDiagnostic\"
-    "\Microsoft\Windows\maintenance\"
+    "\Microsoft\Windows\Maintenance\"
     "\Microsoft\Windows\PI\"
     "\Microsoft\Windows\Power Efficiency Diagnostics\"
     "\Microsoft\Windows\Server Manager\"
@@ -131,8 +132,6 @@ $disableTaskNames = @(
     @{TaskPath = "\Microsoft\Windows\.NET Framework\"; TaskName = ".NET Framework NGEN v4.0.30319"}
     @{TaskPath = "\Microsoft\Windows\.NET Framework\"; TaskName = ".NET Framework NGEN v4.0.30319 64"}
     @{TaskPath = "\Microsoft\Windows\AppID\"; TaskName = "SmartScreenSpecific"}
-    @{TaskPath = "\"; TaskName = "GoogleUpdateTaskMachineCore"}
-    @{TaskPath = "\"; TaskName = "GoogleUpdateTaskMachineUA"}
 )
 
 $disableTaskNames | ForEach-Object {
