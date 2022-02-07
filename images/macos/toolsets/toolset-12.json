@@ -110,7 +110,9 @@
             "gmp",
             "zlib",
             "libxext",
-            "libxft"
+            "libxft",
+            "tcl-tk",
+            "r"
         ],
         "cask_packages": [
             "julia"

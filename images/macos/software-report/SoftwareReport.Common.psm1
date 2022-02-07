@@ -532,6 +532,11 @@ function Get-LibXextVersion {
     return "libXext $libXextVersion"
 }
 
+function Get-TclTkVersion {
+    $tcltkVersion = (brew info tcl-tk)[0] | Take-Part -Part 2
+    return "Tcl/Tk $tcltkVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{
@@ -547,5 +552,20 @@ function Build-PackageManagementEnvironmentTable {
             "Name" = $_.Name
             "Value" = $_.Value
         }
+    }
+}
+
+function Get-GraalVMVersion {
+    $version = & "$env:GRAALVM_11_ROOT\java" --version | Select-String -Pattern "GraalVM" | Take-Part -Part 5,6
+    return $version
+}
+
+function Build-GraalVMTable {
+    $version = Get-GraalVMVersion
+    $envVariables = "GRAALVM_11_ROOT"
+
+    return [PSCustomObject] @{
+        "Version" = $version
+        "Environment variables" = $envVariables
     }
 }

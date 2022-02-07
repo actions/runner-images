@@ -183,6 +183,7 @@
             "Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools",
             "Microsoft.VisualStudio.Component.Debugger.JustInTime",
             "Microsoft.VisualStudio.Component.EntityFramework",
+            "Microsoft.VisualStudio.Component.DslTools",
             "Microsoft.VisualStudio.Component.LinqToSql",
             "Microsoft.VisualStudio.Component.SQL.SSDT",
             "Microsoft.VisualStudio.Component.Sharepoint.Tools",
@@ -227,6 +228,7 @@
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
             "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
+            "Microsoft.VisualStudio.ComponentGroup.UWP.VC.v142",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
             "Microsoft.VisualStudio.Workload.Azure",
             "Microsoft.VisualStudio.Workload.Data",
@@ -244,6 +246,7 @@
             "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
+            "Component.MDD.Linux.GCC.arm",
             "wasm.tools"
         ],
         "vsix": [
@@ -295,6 +298,7 @@
             { "name": "aria2" },
             { "name": "azcopy10" },
             { "name": "Bicep" },
+            { "name": "innosetup" },
             { "name": "jq" },
             { "name": "llvm" },
             { "name": "NuGet.CommandLine" },

@@ -31,7 +31,8 @@
             "vm_name": "{{user `build_id`}}",
             "ssh_username": "{{user `vm_username`}}",
             "ssh_password": "{{user `vm_password`}}",
-            "CPUs": "10",
+            "CPUs": "5",
+            "cpu_cores": "5",
             "RAM": "24576",
             "NestedHV": "true",
             "shutdown_timeout": "15m"
@@ -194,7 +195,8 @@
                 "./provision/core/xcode-postbuild.sh",
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
-                "./provision/core/bicep.sh"
+                "./provision/core/bicep.sh",
+                "./provision/core/graalvm.sh"
             ],
             "environment_vars": [
                 "API_PAT={{user `github_api_pat`}}"
