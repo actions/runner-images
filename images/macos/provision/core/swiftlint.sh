@@ -2,7 +2,7 @@
 source ~/utils/utils.sh
 
 echo "Install SwiftLint"
-swiftlintUrl=$(curl -H "Authorization: token $API_PAT" -s "https://api.github.com/repos/realm/SwiftLint/releases/latest" | jq -r '.assets[].browser_download_url | select(contains("portable_swiftlint.zip"))')
+swiftlintUrl=$(get_github_package_download_url "realm" "SwiftLint" "contains(\"portable_swiftlint.zip\")" "latest" "$API_PAT")
 download_with_retries $swiftlintUrl "/tmp" "portable_swiftlint.zip"
 unzip -q "/tmp/portable_swiftlint.zip" -d /usr/local/bin
 # Remove the LICENSE file that comes along with the binary and the downloaded archive

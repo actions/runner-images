@@ -2,8 +2,7 @@
 source ~/utils/utils.sh
 
 echo Installing PowerShell...
-psRelease=$(curl -H "Authorization: token $API_PAT" -s "https://api.github.com/repos/PowerShell/PowerShell/releases/latest")
-psDownloadUrl=$(echo $psRelease | jq -r '.assets[].browser_download_url | select(contains("osx-x64.pkg"))' | head -n 1)
+psDownloadUrl=$(get_github_package_download_url "PowerShell" "PowerShell" "contains(\"osx-x64.pkg\")" "latest" "$API_PAT")
 download_with_retries $psDownloadUrl "/tmp" "powershell.pkg"
 
 # Work around the issue on macOS Big Sur 11.5 or higher for possible error message ("can't be opened because Apple cannot check it for malicious software") when installing the package
