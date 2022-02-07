@@ -7,7 +7,7 @@ source $HELPER_SCRIPTS/etc-environment.sh
 GRAALVM_ROOT=/usr/local/graalvm
 export GRAALVM_11_ROOT=$GRAALVM_ROOT/graalvm-ce-java11*
 
-downloadUrl=$(get_github_package_download_url "graalvm" "graalvm-ce-builds" "contains(\"graalvm-ce-java11-linux-amd64\") and endswith(\"tar.gz\")")
+downloadUrl=$(get_github_package_download_url "graalvm/graalvm-ce-builds" "contains(\"graalvm-ce-java11-linux-amd64\") and endswith(\"tar.gz\")")
 download_with_retries "$downloadUrl" "/tmp" "graalvm-archive.tar.gz"
 mkdir $GRAALVM_ROOT
 tar -xzf "/tmp/graalvm-archive.tar.gz" -C $GRAALVM_ROOT

@@ -16,7 +16,7 @@ apt-get update
 apt-get install -y --no-install-recommends esl-erlang
 
 # Install rebar3
-rebar3DownloadUrl=$(get_github_package_download_url "erlang" "rebar3" "endswith(\"rebar3\")")
+rebar3DownloadUrl=$(get_github_package_download_url "erlang/rebar3" "endswith(\"rebar3\")")
 download_with_retries $rebar3DownloadUrl "/tmp"
 mv /tmp/rebar3 /usr/local/bin/rebar3
 chmod +x /usr/local/bin/rebar3

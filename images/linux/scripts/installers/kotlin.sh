@@ -7,7 +7,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 KOTLIN_ROOT="/usr/share"
-downloadUrl=$(get_github_package_download_url "JetBrains" "kotlin" "contains(\"kotlin-compiler\")")
+downloadUrl=$(get_github_package_download_url "JetBrains/kotlin" "contains(\"kotlin-compiler\")")
 download_with_retries "$downloadUrl" "/tmp"
 
 unzip -qq /tmp/kotlin-compiler*.zip -d $KOTLIN_ROOT

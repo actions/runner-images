@@ -68,13 +68,12 @@ get_toolset_value() {
 }
 
 get_github_package_download_url() {
-    local REPO_OWNER=$1
-    local REPO_NAME=$2
-    local FILTER=$3
-    local VERSION=$4
+    local REPO_ORG=$1
+    local FILTER=$2
+    local VERSION=$3
     local SEARCH_IN_COUNT="100"
 
-    json=$(curl -s "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=${SEARCH_IN_COUNT}")
+    json=$(curl -s "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
 
     if [ -n "$VERSION" ]; then
         tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "\w*${VERSION}" | tail -1)

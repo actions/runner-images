@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Install KIND
-URL=$(get_github_package_download_url "kubernetes-sigs" "kind" "contains(\"kind-linux-amd64\")")
+URL=$(get_github_package_download_url "kubernetes-sigs/kind" "contains(\"kind-linux-amd64\")")
 curl -L -o /usr/local/bin/kind $URL
 chmod +x /usr/local/bin/kind
 

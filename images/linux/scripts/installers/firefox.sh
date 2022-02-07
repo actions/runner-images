@@ -15,7 +15,7 @@ apt-get install -y firefox
 echo 'pref("intl.locale.requested","en_US");' >> "/usr/lib/firefox/browser/defaults/preferences/syspref.js"
 
 # Download and unpack latest release of geckodriver
-downloadUrl=$(get_github_package_download_url "mozilla" "geckodriver" "test(\"linux64.tar.gz$\")")
+downloadUrl=$(get_github_package_download_url "mozilla/geckodriver" "test(\"linux64.tar.gz$\")")
 echo "Downloading geckodriver $downloadUrl"
 download_with_retries "$downloadUrl" "/tmp" geckodriver.tar.gz
 
