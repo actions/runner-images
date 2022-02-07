@@ -191,7 +191,8 @@ build {
                 "./provision/core/firefox.sh",
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
-                "./provision/core/bicep.sh"
+                "./provision/core/bicep.sh",
+                "./provision/core/graalvm.sh"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
