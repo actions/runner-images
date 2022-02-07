@@ -31,7 +31,8 @@
             "vm_name": "{{user `build_id`}}",
             "ssh_username": "{{user `vm_username`}}",
             "ssh_password": "{{user `vm_password`}}",
-            "CPUs": "10",
+            "CPUs": "5",
+            "cpu_cores": "5",
             "RAM": "24576",
             "NestedHV": "true",
             "shutdown_timeout": "15m"

@@ -150,7 +150,7 @@ Describe "xctool" -Skip:($os.IsHigherThanCatalina) {
     }
 }
 
-Describe "R" -Skip:($os.IsHigherThanCatalina) {
+Describe "R" {
     It "R" {
         "R --version" | Should -ReturnZeroExitCode
     }
