@@ -44,4 +44,12 @@ if (Test-IsWin19) {
 	Install-Binary -Url $sdkUrl -Name $sdkFileName -ArgumentList $argumentList
 }
 
+if (Test-IsWin22) {
+    # Install Windows 10 SDK version 10.0.17763
+    $sdkUrl = "https://go.microsoft.com/fwlink/p/?LinkID=2033908"
+    $sdkFileName = "sdksetup17763.exe"
+    $argumentList = ("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64")
+    Install-Binary -Url $sdkUrl -Name $sdkFileName -ArgumentList $argumentList
+}
+
 Invoke-PesterTests -TestFile "VisualStudio"
