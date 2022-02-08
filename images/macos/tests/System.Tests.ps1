@@ -15,6 +15,12 @@ Describe "Certificate" {
         $certs = security find-certificate -a -c Worldwide -p -Z | Out-String
         $certs | Should -Match $sha1Hash
     }
+
+    It "Developer ID Certification Authority[expired: 2031-09] is installed" {
+        $sha1Hash = "5B45F61068B29FCC8FFFF1A7E99B78DA9E9C4635"
+        $certs = security find-certificate -a -c "Developer ID" -p -Z | Out-String
+        $certs | Should -Match $sha1Hash
+    }
 }
 
 Describe "Audio device" {
