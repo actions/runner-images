@@ -131,6 +131,7 @@
             "scripts": [
                 "./provision/core/xcode-clt.sh",
                 "./provision/core/homebrew.sh",
+                "./provision/core/open_windows_check.sh",
                 "./provision/core/powershell.sh",
                 "./provision/core/dotnet.sh",
                 "./provision/core/python.sh",
@@ -139,8 +140,7 @@
                 "./provision/core/ruby.sh",
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
-                "./provision/core/node.sh",
-                "./provision/core/open_windows_check.sh"
+                "./provision/core/node.sh"
             ],
             "environment_vars": [
                 "API_PAT={{user `github_api_pat`}}"
