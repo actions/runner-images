@@ -134,6 +134,7 @@ build {
   provisioner "shell" {
     pause_before = "30s"
     scripts = [
+      "./provision/core/open_windows_check.sh",
       "./provision/core/homebrew.sh",
       "./provision/core/powershell.sh",
       "./provision/core/dotnet.sh",
