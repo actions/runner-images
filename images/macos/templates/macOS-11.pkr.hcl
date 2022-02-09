@@ -134,7 +134,6 @@ build {
   provisioner "shell" {
     pause_before = "30s"
     scripts = [
-      "./provision/core/open_windows_check.sh",
       "./provision/core/homebrew.sh",
       "./provision/core/powershell.sh",
       "./provision/core/dotnet.sh",
@@ -144,7 +143,8 @@ build {
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
-      "./provision/core/node.sh"
+      "./provision/core/node.sh",
+      "./provision/core/open_windows_check.sh"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }

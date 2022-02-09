@@ -129,7 +129,6 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "pause_before": "30s",
             "scripts": [
-                "./provision/core/open_windows_check.sh",
                 "./provision/core/xcode-clt.sh",
                 "./provision/core/homebrew.sh",
                 "./provision/core/powershell.sh",
@@ -140,7 +139,8 @@
                 "./provision/core/ruby.sh",
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
-                "./provision/core/node.sh"
+                "./provision/core/node.sh",
+                "./provision/core/open_windows_check.sh"
             ],
             "environment_vars": [
                 "API_PAT={{user `github_api_pat`}}"
