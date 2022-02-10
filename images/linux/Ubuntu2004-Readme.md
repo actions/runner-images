@@ -2,11 +2,10 @@
 |-|
 | [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 | [[Ubuntu] Issue with libstdc++ cannot allocate memory in static TLS block](https://github.com/actions/virtual-environments/issues/4799) |
-| [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
 ***
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.11.0-1028-azure
-- Image Version: 20220131.1
+- Image Version: 20220207.1
 
 ## Installed Software
 ### Language and Runtime
@@ -31,14 +30,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.8.0
-- Homebrew 3.3.13
+- Homebrew 3.3.14
 - Miniconda 4.10.3
 - Npm 8.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.0.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<2b543e52d>)
+- Vcpkg  (build from master \<d2b22891a>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -63,23 +62,23 @@
 - Bicep 0.4.1124
 - Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.22.2
-- CodeQL Action Bundle 2.7.6
+- CodeQL Action Bundle 2.8.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.2.3+azure-1
 - Docker-Buildx 0.7.1
 - Docker-Moby Client 20.10.11+azure-3
 - Docker-Moby Server 20.10.11+azure-3
-- Fastlane 2.203.0
+- Fastlane 2.204.2
 - Git 2.35.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.0.2 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.146.0
+- HHVM (HipHop VM) 4.147.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.23.3
-- Kustomize 4.4.1
+- Kustomize 4.5.1
 - Leiningen 2.9.8
 - MediaInfo 19.09
 - Mercurial 5.3.1
@@ -88,32 +87,32 @@
 - Newman 5.3.1
 - nvm 0.39.1
 - OpenSSL 1.1.1f  31 Mar 2020
-- Packer 1.7.9
+- Packer 1.7.10
 - Parcel 2.2.1
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.23.2
+- Pulumi 3.24.1
 - R 4.1.2
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.1.4
+- Terraform 1.1.5
 - yamllint 1.26.3
-- yq 4.18.1
+- yq 4.19.1
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.107
-- AWS CLI 2.4.15
+- AWS CLI 2.4.16
 - AWS CLI Session manager plugin 1.2.295.0
 - AWS SAM CLI 1.37.0
 - Azure CLI (azure-cli) 2.32.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
-- Azure CLI (azure-devops) 0.22.0
-- GitHub CLI 2.4.0
+- Azure CLI (azure-devops) 0.23.0
+- GitHub CLI 2.5.0
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 8.15.1
-- OpenShift CLI 4.9.17
+- Netlify CLI 8.18.1
+- OpenShift CLI 4.9.18
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
@@ -121,8 +120,8 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.312+7           | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.13+8 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.1+12           | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 11.0.14+9 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.2+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version     | Environment variables |
@@ -133,7 +132,7 @@
 | Tool     | Version             |
 | -------- | ------------------- |
 | PHP      | 7.4.27 8.0.15 8.1.2 |
-| Composer | 2.2.5               |
+| Composer | 2.2.6               |
 | PHPUnit  | 8.5.23              |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -159,11 +158,11 @@
 - Rustfmt 1.4.38
 
 ### Browsers and Drivers
-- Google Chrome 97.0.4692.99
-- ChromeDriver 97.0.4692.71
+- Google Chrome 98.0.4758.80
+- ChromeDriver 98.0.4758.80
 - Mozilla Firefox 96.0
 - Geckodriver 0.30.0
-- Chromium 97.0.4692.0
+- Chromium 98.0.4758.0
 - Selenium server 4.1.0
 
 #### Environment variables
@@ -202,8 +201,8 @@
 - 1.17.6
 
 #### Node.js
-- 12.22.9
-- 14.18.3
+- 12.22.10
+- 14.19.0
 - 16.13.2
 
 #### PyPy
@@ -257,7 +256,7 @@
 | Package Name               | Version                                                                                                                                      |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 4.0                                                                                                                                          |
-| Android Emulator           | 31.2.6                                                                                                                                       |
+| Android Emulator           | 31.2.8                                                                                                                                       |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platform-Tools | 32.0.0                                                                                                                                       |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
@@ -291,15 +290,15 @@
 | debian:11               | sha256:fb45fd4e25abe55a656ca69a7bef70e62099b8bb42a279a5e0ea4ae1ab410e0d  | 2022-01-26 |
 | debian:9                | sha256:4bb600434787c903886fe33526d19ff33114a33b433a4a4cdbdf9b8543f1ab5d  | 2022-01-26 |
 | moby/buildkit:latest    | sha256:d6c89b7085b106301645ddcc77cf64eb7b705ab507b72d52d130ac33f1300417  | 2021-11-18 |
-| node:12                 | sha256:07ae688134d80b6359311641cc6fff6947108213367f7f3e0002a829464700dc  | 2022-01-27 |
-| node:12-alpine          | sha256:c3e7817c8fd124f1597cd66124d247db8e138e8ef311ba085b7104d900129d0b  | 2022-01-12 |
-| node:14                 | sha256:252f6cef16c7f9abde7c10c983c02d6db8638c8caf559865a5958339b6575059  | 2022-01-27 |
-| node:14-alpine          | sha256:a9b200d25469261a4cccde176db08ec9f0b5799fa4220d8edfe57e69684c6dad  | 2022-01-11 |
+| node:12                 | sha256:7e1786920f4ebd88f8cc2dc9906f3c85ac78674cb29dcced535ff150a96f0873  | 2022-02-04 |
+| node:12-alpine          | sha256:dfa564312367b1a8fca8db7ae4bae102b28e68b39ebcb7b17022c938f105846b  | 2022-02-04 |
+| node:14                 | sha256:b2c75df8c9706156c38b4f1f678d00e11cb2bfda09fc4ab6e36ec17ac9163865  | 2022-02-02 |
+| node:14-alpine          | sha256:9a2aa545388a135b496bd55cef2be920b96c4526c99c140170e05a8de3fce653  | 2022-02-02 |
 | node:16                 | sha256:2033f4cc18f9d8b5d0baa7f276aaeffd202e1a2c6fe9af408af05a34fe68cbfb  | 2022-01-27 |
 | node:16-alpine          | sha256:2f50f4a428f8b5280817c9d4d896dbee03f072e93f4e0c70b90cc84bd1fcfe0d  | 2022-01-12 |
 | ubuntu:16.04            | sha256:0f71fa8d4d2d4292c3c617fda2b36f6dabe5c8b6e34c3dc5b0d17d4e704bd39c  | 2021-08-31 |
-| ubuntu:18.04            | sha256:37b7471c1945a2a12e5a57488ee4e3e216a8369d0b9ee1ec2e41db9c2c1e3d22  | 2022-01-07 |
-| ubuntu:20.04            | sha256:b5a61709a9a44284d88fb12e5c48db0409cfad5b69d4ff8224077c57302df9cf  | 2022-01-07 |
+| ubuntu:18.04            | sha256:c2aa13782650aa7ade424b12008128b60034c795f25456e8eb552d0a0f447cad  | 2022-02-02 |
+| ubuntu:20.04            | sha256:669e010b58baf5beb2836b253c1fd5768333f0d1dbcb834f7c07a4dc93f474be  | 2022-02-02 |
 
 ### Installed apt packages
 | Name                   | Version                           |
