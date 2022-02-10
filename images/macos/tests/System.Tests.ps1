@@ -15,6 +15,12 @@ Describe "Certificate" {
         $certs = security find-certificate -a -c Worldwide -p -Z | Out-String
         $certs | Should -Match $sha1Hash
     }
+
+    It "Developer ID Certification Authority[expired: 2031-09] is installed" {
+        $sha1Hash = "5B45F61068B29FCC8FFFF1A7E99B78DA9E9C4635"
+        $certs = security find-certificate -a -c "Developer ID" -p -Z | Out-String
+        $certs | Should -Match $sha1Hash
+    }
 }
 
 Describe "Audio device" {
@@ -38,5 +44,13 @@ Describe "Audio device" {
 Describe "Screen Resolution" {
     It "Screen Resolution" {
         system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885|1920 x 1080"
+    }
+}
+
+Describe "Open windows" {
+    It "Opened windows not found" {
+        $cmd = "osascript -e 'tell application \""System Events\"" to get every window of (every process whose class of windows contains window)'"
+        $openWindows = bash -c $cmd
+        $openWindows.Split(",").Trim() | Where-Object { $_ -notmatch "NotificationCenter" } | Should -BeNullOrEmpty
     }
 }
