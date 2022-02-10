@@ -422,6 +422,11 @@ function Get-AzureCLIVersion {
     return "Azure CLI $azureCLIVersion"
 }
 
+function Get-AzureDevopsVersion {
+    $azdevopsVersion = (az version | ConvertFrom-Json).extensions.'azure-devops'
+    return "Azure CLI (azure-devops) $azdevopsVersion"
+}
+
 function Get-AWSCLIVersion {
     $awsVersion = Run-Command "aws --version" | Take-Part -Part 0 | Take-Part -Delimiter "/" -Part 1
     return "AWS CLI $awsVersion"

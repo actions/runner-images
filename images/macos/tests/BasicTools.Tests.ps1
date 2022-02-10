@@ -6,6 +6,12 @@ Describe "Azure CLI" {
     }
 }
 
+Describe "Azure DevOps CLI" {
+    It "az devops" {
+        "az devops -h" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Carthage" {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
