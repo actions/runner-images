@@ -51,6 +51,6 @@ Describe "Open windows" {
     It "Opened windows not found" {
         $cmd = "osascript -e 'tell application \""System Events\"" to get every window of (every process whose class of windows contains window)'"
         $openWindows = bash -c $cmd
-        $openWindows.Trim() | Should -BeNullOrEmpty
+        $openWindows.Split(",").Trim() -notmatch "NotificationCenter" | Should -BeNullOrEmpty
     }
 }

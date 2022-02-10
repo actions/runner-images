@@ -8,8 +8,12 @@ if [ -n "${openwindows}" ]; then
 fi
 
 for window in "${windowslist[@]}"; do
-    echo " - ${window}" | xargs
-    scripterror=true
+    if [[ $window =~ "NotificationCenter" ]]; then
+        echo "[Warning] $window"
+    else
+        echo " - ${window}" | xargs
+        scripterror=true
+    fi
 done
 
 if [ "${scripterror}" = true ]; then
