@@ -16,9 +16,7 @@ apt-get update
 apt-get install -y --no-install-recommends esl-erlang
 
 # Install rebar3
-json=$(curl -sL "https://api.github.com/repos/erlang/rebar3/releases")
-rebar3Version=$(echo $json | jq -r '.[] | select(.tag_name | contains("-") | not).tag_name' | sort -V | tail -n1)
-rebar3DownloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"$rebar3Version\").assets[].browser_download_url")
+rebar3DownloadUrl=$(get_github_package_download_url "erlang/rebar3" "endswith(\"rebar3\")")
 download_with_retries $rebar3DownloadUrl "/tmp"
 mv /tmp/rebar3 /usr/local/bin/rebar3
 chmod +x /usr/local/bin/rebar3
