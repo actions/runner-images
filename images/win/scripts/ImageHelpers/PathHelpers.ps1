@@ -134,3 +134,13 @@ function Add-DefaultPathItem {
     Set-DefaultPath -NewPath $newPath
     Disconnect-Hive
 }
+
+function New-ItemPath {
+    param (
+        [string]$Path
+    )
+
+    if (-not (Test-Path $Path)) {
+        New-Item -Path $Path -Force -ErrorAction Ignore | Out-Null
+    }
+}
