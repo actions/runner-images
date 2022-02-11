@@ -155,6 +155,7 @@ $toolsList = @(
     (Get-CmakeVersion),
     (Get-AppCenterCLIVersion),
     (Get-AzureCLIVersion),
+    (Get-AzureDevopsVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMCLIVersion),
     (Get-AWSSessionManagerCLIVersion)
