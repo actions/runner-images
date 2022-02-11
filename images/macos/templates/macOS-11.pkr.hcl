@@ -99,6 +99,7 @@ build {
   provisioner "shell" {
     scripts = [
       "./provision/configuration/configure-tccdb-macos11.sh",
+      "./provision/core/open_windows_check.sh",
       "./provision/configuration/add-network-interface-detection.sh",
       "./provision/configuration/autologin.sh",
       "./provision/configuration/disable-auto-updates.sh",

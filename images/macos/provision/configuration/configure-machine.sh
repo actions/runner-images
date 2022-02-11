@@ -12,6 +12,11 @@ sudo rm -f /var/vm/sleepimage
 # Disable App Nap System Wide
 defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
 
+# Disable Keyboard Setup Assistant window
+if [ -d "/Library/Application Support/Veertu" ]; then
+    sudo defaults write /Library/Preferences/com.apple.keyboardtype "keyboardtype" -dict-add "3-7582-0" -int 40
+fi
+
 # Change screen resolution to the maximum supported for 4Mb video memory
 if [ -d "/Library/Application Support/VMware Tools" ]; then
     sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885

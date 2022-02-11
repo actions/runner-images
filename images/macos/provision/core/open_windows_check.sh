@@ -17,5 +17,6 @@ for window in "${windowslist[@]}"; do
 done
 
 if [ "${scripterror}" = true ]; then
+    sleep 3600
     exit 1
 fi
