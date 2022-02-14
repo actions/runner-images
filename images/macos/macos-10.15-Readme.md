@@ -5,11 +5,11 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1713)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220207.1
+- Image Version: 20220213.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.416 5.0.102 5.0.202 5.0.302 5.0.404
+- .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.416 5.0.102 5.0.202 5.0.302 5.0.405
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is default
 - Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
@@ -20,12 +20,12 @@
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
 - Go 1.15.15
-- julia 1.7.1
+- julia 1.7.2
 - Kotlin 1.6.10-release-923
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.13.2
+- Node.js v16.14.0
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.10 v14.19.0 v16.13.2
+- NVM - Cached node versions: v12.22.10 v14.19.0 v16.14.0
 - Perl 5.34.0
 - PHP 8.1.2
 - Python 2.7.18
@@ -34,19 +34,19 @@
 - Ruby 2.7.5p203
 
 ### Package Management
-- Bundler version 2.3.6
+- Bundler version 2.3.7
 - Carthage 0.38.0
 - CocoaPods 1.11.2
 - Composer 2.2.6
 - Homebrew 3.3.14
 - Miniconda 4.10.3
-- NPM 8.1.2
+- NPM 8.3.1
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
 - Pip 21.3.1 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<d2b22891a>)
+- Vcpkg 2022 (build from master \<8dbd66f5a>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -58,7 +58,7 @@
 ### Project Management
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.4
-- Gradle 7.3.3
+- Gradle 7.4
 - Sbt 1.6.2
 
 ### Utilities
@@ -84,8 +84,8 @@
 - Newman 5.3.1
 - OpenSSL 1.1.1m  14 Dec 2021 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1m)`
 - Packer 1.7.10
-- PostgreSQL 14.1
-- psql (PostgreSQL) 14.1
+- PostgreSQL 14.2
+- psql (PostgreSQL) 14.2
 - Sox 14.4.2
 - Subversion (SVN) 1.14.1
 - Switchaudio-osx 1.1.0
@@ -96,19 +96,20 @@
 ### Tools
 - Aliyun CLI 3.0.107
 - App Center CLI 2.10.8
-- AWS CLI 2.4.16
+- AWS CLI 2.4.18
 - AWS SAM CLI 1.37.0
 - AWS Session Manager CLI 1.2.295.0
-- Azure CLI 2.32.0
-- Bicep CLI 0.4.1124
+- Azure CLI (azure-devops) 0.23.0
+- Azure CLI 2.33.0
+- Bicep CLI 0.4.1272
 - Cabal 3.6.2.0
 - Cmake 3.22.2
-- Fastlane 2.204.2
+- Fastlane 2.204.3
 - GHC 9.2.1
 - GHCup 0.1.17.4
 - Jazzy 0.14.1
 - Stack 2.7.3
-- SwiftFormat 0.49.3
+- SwiftFormat 0.49.4
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -117,13 +118,13 @@
 - yamllint 1.26.3
 
 ### Browsers
-- Safari 15.3 (15612.4.9.1.7)
-- SafariDriver 15.3 (15612.4.9.1.7)
+- Safari 15.3 (15612.4.9.1.8)
+- SafariDriver 15.3 (15612.4.9.1.8)
 - Google Chrome 98.0.4758.80 
 - ChromeDriver 98.0.4758.80
-- Microsoft Edge 98.0.1108.43 
-- MSEdgeDriver 98.0.1108.43
-- Mozilla Firefox 96.0.3
+- Microsoft Edge 98.0.1108.51 
+- MSEdgeDriver 98.0.1108.51
+- Mozilla Firefox 97.0
 - geckodriver 0.30.0
 - Selenium server 4.1.2
 
@@ -138,7 +139,7 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.322+6 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.14+9           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 11.0.14+101         | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 12.0.2+10.3         | Adopt OpenJDK   | JAVA_HOME_12_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
 | 14.0.2+12           | Adopt OpenJDK   | JAVA_HOME_14_X64     |
@@ -174,14 +175,14 @@
 #### Node.js
 - 12.22.10
 - 14.19.0
-- 16.13.2
+- 16.14.0
 
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.13 | x64          | GOROOT_1_16_X64      |
-| 1.17.6  | x64          | GOROOT_1_17_X64      |
+| 1.16.14 | x64          | GOROOT_1_16_X64      |
+| 1.17.7  | x64          | GOROOT_1_17_X64      |
 
 ### Rust Tools
 - Cargo 1.58.0
@@ -216,7 +217,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.17.2
+- 8.10.18.11
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
