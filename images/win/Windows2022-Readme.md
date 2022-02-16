@@ -487,6 +487,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
+| AWSPowershell      | 4.1.15.0         |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.2            |

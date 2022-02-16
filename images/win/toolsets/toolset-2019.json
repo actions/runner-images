@@ -86,7 +86,8 @@
         {"name": "PSWindowsUpdate"},
         {"name": "SqlServer"},
         {"name": "VSSetup"},
-        {"name": "Microsoft.Graph"}
+        {"name": "Microsoft.Graph"},
+        {"name": "AWSPowershell"}
     ],
     "azureModules": [
         {
