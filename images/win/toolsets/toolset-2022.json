@@ -211,6 +211,8 @@
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64EC",
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64",
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.v141.ARM.Spectre",
+            "Microsoft.VisualStudio.Component.VC.v141.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.MFC",
             "Microsoft.VisualStudio.Component.VC.v141.MFC.Spectre",
             "Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM",

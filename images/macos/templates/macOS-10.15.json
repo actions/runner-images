@@ -131,6 +131,7 @@
             "scripts": [
                 "./provision/core/xcode-clt.sh",
                 "./provision/core/homebrew.sh",
+                "./provision/core/open_windows_check.sh",
                 "./provision/core/powershell.sh",
                 "./provision/core/dotnet.sh",
                 "./provision/core/python.sh",
