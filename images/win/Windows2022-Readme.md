@@ -2,12 +2,11 @@
 |-|
 | [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 | [windows-latest workflows will use Windows Server 2022](https://github.com/actions/virtual-environments/issues/4856) |
-| [[All OSs] Python version 3.5 will be removed from the images on January 24, 2022](https://github.com/actions/virtual-environments/issues/4744) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 473
-- Image Version: 20220131.1
+- Image Version: 20220207.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -16,26 +15,26 @@
 ### Language and Runtime
 - Bash 4.4.23(2)-release
 - Go 1.16.13
-- Julia 1.7.1
+- Julia 1.7.2
 - Kotlin 1.6.10
 - LLVM 13.0.0
 - Node 16.13.2
 - Perl 5.32.1
 - PHP 8.1.2
-- Python 3.9.9
+- Python 3.9.10
 - Ruby 3.0.3p157
 
 ### Package Management
 - Chocolatey 0.12.1
-- Composer 2.2.5
+- Composer 2.2.6
 - Helm 3.7.2
 - Miniconda 4.10.3 (pre-installed on the image but not added to PATH)
 - NPM 8.1.2
 - NuGet 6.0.0.280
-- pip 22.0.2 (python 3.9)
+- pip 22.0.3 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.32
-- Vcpkg (build from master \<8518284c1>)
+- Vcpkg (build from master \<afb2279ad>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -47,7 +46,7 @@
 - Ant 1.10.12
 - Gradle 7.3
 - Maven 3.8.4
-- sbt 1.6.1
+- sbt 1.6.2
 
 ### Tools
 - 7zip 21.07
@@ -58,13 +57,14 @@
 - Bicep 0.4.1124
 - Cabal 3.6.2.0
 - CMake 3.22.2
-- CodeQL Action Bundle 2.7.6
+- CodeQL Action Bundle 2.8.0
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - Docker-wincred 0.6.4
 - ghc 9.2.1
 - Git 2.35.1
 - Git LFS 3.0.2
+- InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.23.3
@@ -74,7 +74,7 @@
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.7.8
-- Pulumi v3.23.0
+- Pulumi v3.24.1
 - R 4.1.2
 - Service Fabric SDK 8.2.1363.9590
 - Stack 2.7.3
@@ -88,12 +88,12 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.107
-- AWS CLI 2.4.15
+- AWS CLI 2.4.16
 - AWS SAM CLI 1.37.0
 - AWS Session Manager CLI 1.2.295.0
-- Azure CLI 2.32.0
-- Azure DevOps CLI extension 0.22.0
-- GitHub CLI 2.4.0
+- Azure CLI 2.33.0
+- Azure DevOps CLI extension 0.23.0
+- GitHub CLI 2.5.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -111,10 +111,10 @@
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 97.0.4692.99
-- Chrome Driver 97.0.4692.71
-- Microsoft Edge 97.0.1072.76
-- Microsoft Edge Driver 97.0.1072.76
+- Google Chrome 98.0.4758.80
+- Chrome Driver 98.0.4758.80
+- Microsoft Edge 98.0.1108.43
+- Microsoft Edge Driver 98.0.1108.43
 - Mozilla Firefox 96.0.3
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
@@ -163,8 +163,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
-| 12.22.9 | x64          |
-| 14.18.3 | x64          |
+| 12.22.10 | x64          |
+| 14.19.0 | x64          |
 | 16.13.2 | x64          |
 
 #### Python
@@ -172,8 +172,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 3.7.9   | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.9 (Default) | x64, x86     |
-| 3.10.1  | x64, x86     |
+| 3.9.10 (Default) | x64, x86     |
+| 3.10.2  | x64, x86     |
 
 #### Ruby
 | Version | Architecture |
@@ -234,11 +234,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Linux.CMake                                                     | 17.0.31804.368 |
 | Component.MDD.Android                                                     | 17.0.31804.368 |
 | Component.MDD.Linux                                                       | 17.0.31804.368 |
+| Component.MDD.Linux.GCC.arm                                               | 17.0.31804.368 |
 | Component.Microsoft.VisualStudio.LiveShare.2022                           | 1.0.4647       |
 | Component.Microsoft.VisualStudio.RazorExtension                           | 17.0.31804.368 |
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 17.0.31804.368 |
 | Component.Microsoft.Web.LibraryManager                                    | 17.0.31804.368 |
 | Component.Microsoft.WebTools.BrowserLink.WebLivePreview                   | 17.0.31.12604  |
+| Component.Microsoft.Windows.CppWinRT                                      | 2.0.210806.1   |
 | Component.OpenJDK                                                         | 17.0.31804.368 |
 | Component.UnityEngine.x64                                                 | 17.0.31804.368 |
 | Component.Unreal                                                          | 17.0.31804.368 |
@@ -295,6 +297,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.DiagnosticTools                          | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.DockerTools                              | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.DotNetModelBuilder                       | 17.0.31804.368 |
+| Microsoft.VisualStudio.Component.DslTools                                 | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.EntityFramework                          | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.FSharp                                   | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.FSharp.Desktop                           | 17.0.31804.368 |
@@ -349,6 +352,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre                        | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.VC.CLI.Support                           | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.VC.CMake.Project                         | 17.0.31804.368 |
+| Microsoft.VisualStudio.Component.VC.CoreBuildTools                        | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.VC.CoreIde                               | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.VC.DiagnosticTools                       | 17.0.31804.368 |
 | Microsoft.VisualStudio.Component.VC.Llvm.Clang                            | 17.0.31804.368 |
@@ -392,7 +396,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang            | 17.0.31804.368 |
 | Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard              | 17.0.31804.368 |
 | Microsoft.VisualStudio.ComponentGroup.UWP.Support                         | 17.0.31804.368 |
+| Microsoft.VisualStudio.ComponentGroup.UWP.VC.v142                         | 17.0.31804.368 |
 | Microsoft.VisualStudio.ComponentGroup.UWP.Xamarin                         | 17.0.31804.368 |
+| Microsoft.VisualStudio.ComponentGroup.VC.Tools.142.x86.x64                | 17.0.31821.396 |
 | Microsoft.VisualStudio.ComponentGroup.VisualStudioExtension.Prerequisites | 17.0.31804.368 |
 | Microsoft.VisualStudio.ComponentGroup.Web                                 | 17.0.31804.368 |
 | Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 17.0.31804.368 |
@@ -433,6 +439,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.30.30708 |
 | Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.30.30708 |
 | Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.30.30708 |
+
+#### Installed Windows SDKs
+`Location C:\Program Files (x86)\Windows Kits\10\Extension SDKs\WindowsDesktop`
+- 10.0.17763.0
+- 10.0.19041.0
+- 10.0.20348.0
+- 10.0.22000.0
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
@@ -488,7 +501,7 @@ All other versions are saved but not installed.
 | Package Name               | Version                                                                                                                                      |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 4.0                                                                                                                                          |
-| Android Emulator           | 31.2.6                                                                                                                                       |
+| Android Emulator           | 31.2.8                                                                                                                                       |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
 | Android SDK Platform-Tools | 32.0.0                                                                                                                                       |
