@@ -89,7 +89,7 @@ function Get-DockerBuildxVersion {
 }
 
 function Get-GitVersion {
-    $gitVersion = Run-Command "git --version" | Take-OutputPart -Part -1
+    $gitVersion = git --version | Take-OutputPart -Part -1
     $aptSourceRepo = Get-AptSourceRepository -PackageName "git-core"
     return "Git $gitVersion (apt source repository: $aptSourceRepo)"
 }

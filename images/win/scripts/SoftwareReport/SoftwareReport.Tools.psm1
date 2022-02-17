@@ -67,7 +67,7 @@ function Get-DockerWincredVersion {
 }
 
 function Get-GitVersion {
-    $gitVersion = Run-Command "git --version" | Take-Part -Part -1
+    $gitVersion = git --version | Take-Part -Part -1
     return "Git $gitVersion"
 }
 
