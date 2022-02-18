@@ -67,8 +67,7 @@ function Get-DockerWincredVersion {
 }
 
 function Get-GitVersion {
-    $(git version) -match "git version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $gitVersion = $Matches.Version
+    $gitVersion = git --version | Take-Part -Part -1
     return "Git $gitVersion"
 }
 
