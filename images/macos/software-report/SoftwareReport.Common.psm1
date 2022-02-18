@@ -267,7 +267,7 @@ function Get-CurlVersion {
 
 function Get-GitVersion {
     $gitVersion = Run-Command "git --version" | Take-Part -Part -1
-    return "Git: $gitVersion"
+    return "Git $gitVersion"
 }
 
 function Get-GitLFSVersion {
