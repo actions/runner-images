@@ -5,7 +5,7 @@
 ***
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.11.0-1028-azure
-- Image Version: 20220207.1
+- Image Version: 20220213.1
 
 ## Installed Software
 ### Language and Runtime
@@ -16,28 +16,28 @@
 - Erlang rebar3 3.18.0
 - GNU C++ 9.3.0, 10.3.0
 - GNU Fortran 9.3.0, 10.3.0
-- Julia 1.7.1
-- Kotlin 1.6.0-release-798
+- Julia 1.7.2
+- Kotlin 1.6.10-release-923
 - Mono 6.12.0.122 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.6.0.15201 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node 16.13.2
+- Node 16.14.0
 - Perl 5.30.0
 - Python 3.8.10
 - Python3 3.8.10
 - Ruby 2.7.0p0
-- Swift 5.5.2
+- Swift 5.5.3
 
 ### Package Management
 - cpan 1.64
 - Helm 3.8.0
 - Homebrew 3.3.14
 - Miniconda 4.10.3
-- Npm 8.1.2
+- Npm 8.3.1
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.0.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<d2b22891a>)
+- Vcpkg  (build from master \<8dbd66f5a>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -48,7 +48,7 @@
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 7.3.3
+- Gradle 7.4
 - Lerna 4.0.0
 - Maven 3.8.4
 - Sbt 1.6.2
@@ -59,7 +59,7 @@
 - AzCopy 10.13.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.0.0
 - Bazelisk 1.11.0
-- Bicep 0.4.1124
+- Bicep 0.4.1272
 - Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.22.2
 - CodeQL Action Bundle 2.8.0
@@ -68,17 +68,17 @@
 - Docker-Buildx 0.7.1
 - Docker-Moby Client 20.10.11+azure-3
 - Docker-Moby Server 20.10.11+azure-3
-- Fastlane 2.204.2
+- Fastlane 2.204.3
 - Git 2.35.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.0.2 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.147.0
+- HHVM (HipHop VM) 4.148.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.23.3
-- Kustomize 4.5.1
+- Kustomize 4.5.2
 - Leiningen 2.9.8
 - MediaInfo 19.09
 - Mercurial 5.3.1
@@ -88,7 +88,7 @@
 - nvm 0.39.1
 - OpenSSL 1.1.1f  31 Mar 2020
 - Packer 1.7.10
-- Parcel 2.2.1
+- Parcel 2.3.1
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Pulumi 3.24.1
@@ -103,25 +103,25 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.107
-- AWS CLI 2.4.16
+- AWS CLI 2.4.18
 - AWS CLI Session manager plugin 1.2.295.0
 - AWS SAM CLI 1.37.0
-- Azure CLI (azure-cli) 2.32.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- Azure CLI (azure-cli) 2.33.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.23.0
 - GitHub CLI 2.5.0
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 8.18.1
-- OpenShift CLI 4.9.18
+- Netlify CLI 9.4.0
+- OpenShift CLI 4.9.19
 - ORAS CLI 0.12.0
 - Vercel CLI 23.1.2
 
 ### Java
-| Version             | Vendor          | Environment Variable |
-| ------------------- | --------------- | -------------------- |
-| 8.0.312+7           | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.14+9 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.2+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| Version               | Vendor          | Environment Variable |
+| --------------------- | --------------- | -------------------- |
+| 8.0.322+6             | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.14.1+1 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.2+8              | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version     | Environment variables |
@@ -173,14 +173,14 @@
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Core SDK
-- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.416 5.0.104 5.0.210 5.0.303 5.0.404 6.0.101
+- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.416 5.0.104 5.0.211 5.0.303 5.0.405 6.0.102
 
 ### .NET tools
 - nbgv 3.4.255+06fb9182bf
 
 ### Databases
 - MongoDB 5.0.6 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
-- PostgreSQL 14.1 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
+- PostgreSQL 14.2 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - sqlite3 3.31.1
 
 #### MySQL
@@ -197,13 +197,13 @@
 ### Cached Tools
 #### Go
 - 1.15.15
-- 1.16.13
-- 1.17.6
+- 1.16.14
+- 1.17.7
 
 #### Node.js
 - 12.22.10
 - 14.19.0
-- 16.13.2
+- 16.14.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.6]
@@ -229,8 +229,8 @@
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.15/x64 | x64          |
-| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.13/x64 | x64          |
-| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.6/x64  | x64          |
+| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.14/x64 | x64          |
+| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.7/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.2.1
@@ -294,8 +294,8 @@
 | node:12-alpine          | sha256:dfa564312367b1a8fca8db7ae4bae102b28e68b39ebcb7b17022c938f105846b  | 2022-02-04 |
 | node:14                 | sha256:b2c75df8c9706156c38b4f1f678d00e11cb2bfda09fc4ab6e36ec17ac9163865  | 2022-02-02 |
 | node:14-alpine          | sha256:9a2aa545388a135b496bd55cef2be920b96c4526c99c140170e05a8de3fce653  | 2022-02-02 |
-| node:16                 | sha256:2033f4cc18f9d8b5d0baa7f276aaeffd202e1a2c6fe9af408af05a34fe68cbfb  | 2022-01-27 |
-| node:16-alpine          | sha256:2f50f4a428f8b5280817c9d4d896dbee03f072e93f4e0c70b90cc84bd1fcfe0d  | 2022-01-12 |
+| node:16                 | sha256:fd86131ddf8e0faa8ba7a3e49b6bf571745946e663e4065f3bff0a07204c1dde  | 2022-02-09 |
+| node:16-alpine          | sha256:2c6c59cf4d34d4f937ddfcf33bab9d8bbad8658d1b9de7b97622566a52167f2b  | 2022-02-09 |
 | ubuntu:16.04            | sha256:0f71fa8d4d2d4292c3c617fda2b36f6dabe5c8b6e34c3dc5b0d17d4e704bd39c  | 2021-08-31 |
 | ubuntu:18.04            | sha256:c2aa13782650aa7ade424b12008128b60034c795f25456e8eb552d0a0f447cad  | 2022-02-02 |
 | ubuntu:20.04            | sha256:669e010b58baf5beb2836b253c1fd5768333f0d1dbcb834f7c07a4dc93f474be  | 2022-02-02 |
@@ -330,7 +330,7 @@
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
 | libcurl4               | 7.68.0-1ubuntu2.7                 |
-| libgbm-dev             | 21.0.3-0ubuntu0.3\~20.04.5        |
+| libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.1        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6build1                  |
 | libgtk-3-0             | 3.24.20-0ubuntu1                  |
