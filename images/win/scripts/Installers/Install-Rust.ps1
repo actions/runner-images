@@ -13,6 +13,8 @@ $rustupPath = Start-DownloadWithRetry -Url "https://win.rustup.rs/x86_64" -Name 
 
 # Install Rust by running rustup-init.exe (disabling the confirmation prompt with -y)
 & $rustupPath -y --default-toolchain=stable --profile=minimal
+# Add i686 target for building 32-bit binaries
+rustup target add i686-pc-windows-msvc
 
 # Add %USERPROFILE%\.cargo\bin to USER PATH
 Add-DefaultPathItem "%USERPROFILE%\.cargo\bin"
