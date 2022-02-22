@@ -53,6 +53,10 @@ Describe "Haskell" {
         $env:CABAL_DIR | Should -Not -Exist
     }
 
+    It "CABAL_DIR environment variable exists" {
+        Get-EnvironmentVariable CABAL_DIR | Should -BeExactly "C:\cabal"
+    }
+
     It "ghcup is installed" {
         "ghcup --version" | Should -ReturnZeroExitCode
     }
