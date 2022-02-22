@@ -49,9 +49,8 @@ Describe "Haskell" {
         "cabal --version" | Should -ReturnZeroExitCode
     }
 
-    It "cabal config was modified and exists" {
-        $env:CABAL_DIR | Should -Exist
-        "cabal user-config diff" | Should -ReturnZeroExitCode
+    It "cabal folder does not exist" {
+        $env:CABAL_DIR | Should -Not -Exist
     }
 
     It "ghcup is installed" {
