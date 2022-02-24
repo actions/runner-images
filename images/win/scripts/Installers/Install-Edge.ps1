@@ -20,20 +20,13 @@ Write-Host "Get the Microsoft Edge WebDriver version..."
 $RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
 $EdgePath = (Get-ItemProperty "$RegistryPath\msedge.exe").'(default)'
 [version]$EdgeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($EdgePath).ProductVersion
-$EdgeDriverVersionUrl = "https://msedgedriver.azureedge.net/LATEST_RELEASE_$($EdgeVersion.Major)"
+$EdgeDriverVersionUrl = "https://msedgedriver.azureedge.net/LATEST_RELEASE_$($EdgeVersion.Major)_WINDOWS"
 
 $EdgeDriverVersionFile = Start-DownloadWithRetry -Url $EdgeDriverVersionUrl -Name "versioninfo.txt" -DownloadPath $EdgeDriverPath
 
 Write-Host "Download Microsoft Edge WebDriver..."
 $EdgeDriverLatestVersion = Get-Content -Path $EdgeDriverVersionFile
 $EdgeDriverArchName = "edgedriver_win64.zip"
-
-# A temporary workaround to install the previous driver version because 98.0.1108.51 for win64 doesn't exist
-if ($EdgeDriverLatestVersion -eq "98.0.1108.51")
-{
-    $EdgeDriverLatestVersion = "98.0.1108.50"
-    Set-Content -Path "${EdgeDriverPath}\versioninfo.txt" -Value $EdgeDriverLatestVersion
-}
 
 $EdgeDriverDownloadUrl = "https://msedgedriver.azureedge.net/${EdgeDriverLatestVersion}/${EdgeDriverArchName}"
 
