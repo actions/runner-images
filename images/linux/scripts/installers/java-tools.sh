@@ -61,7 +61,7 @@ installOpenJDK() {
     if [[ ${VENDOR_NAME} == "Temurin-Hotspot" ]]; then
         apt-get -y install temurin-${JAVA_VERSION}-jdk=\*
         javaVersionPath="/usr/lib/jvm/temurin-${JAVA_VERSION}-jdk-amd64"
-   elif [[ ${VENDOR_NAME} == "Adopt" ]]; then
+    elif [[ ${VENDOR_NAME} == "Adopt" ]]; then
         apt-get -y install adoptopenjdk-${JAVA_VERSION}-hotspot=\*
         javaVersionPath="/usr/lib/jvm/adoptopenjdk-${JAVA_VERSION}-hotspot-amd64"
     else
