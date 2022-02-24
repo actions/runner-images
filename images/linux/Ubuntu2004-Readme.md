@@ -5,7 +5,7 @@
 ***
 # Ubuntu 20.04.3 LTS
 - Linux kernel version: 5.11.0-1028-azure
-- Image Version: 20220213.1
+- Image Version: 20220220.1
 
 ## Installed Software
 ### Language and Runtime
@@ -30,14 +30,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.8.0
-- Homebrew 3.3.14
-- Miniconda 4.10.3
+- Homebrew 3.3.15
+- Miniconda 4.11.0
 - Npm 8.3.1
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.0.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<8dbd66f5a>)
+- Vcpkg  (build from master \<5cf60186a>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -62,7 +62,7 @@
 - Bicep 0.4.1272
 - Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.22.2
-- CodeQL Action Bundle 2.8.0
+- CodeQL Action Bundle 2.8.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.2.3+azure-1
 - Docker-Buildx 0.7.1
@@ -70,14 +70,14 @@
 - Docker-Moby Server 20.10.11+azure-3
 - Fastlane 2.204.3
 - Git 2.35.1 (apt source repository: ppa:git-core/ppa)
-- Git LFS 3.0.2 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
+- Git LFS 3.1.2 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.148.0
+- HHVM (HipHop VM) 4.149.0
 - jq 1.6
 - Kind 0.11.1
-- Kubectl 1.23.3
+- Kubectl 1.23.4
 - Kustomize 4.5.2
 - Leiningen 2.9.8
 - MediaInfo 19.09
@@ -88,7 +88,7 @@
 - nvm 0.39.1
 - OpenSSL 1.1.1f  31 Mar 2020
 - Packer 1.7.10
-- Parcel 2.3.1
+- Parcel 2.3.2
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Pulumi 3.24.1
@@ -96,25 +96,25 @@
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.1.5
+- Terraform 1.1.6
 - yamllint 1.26.3
-- yq 4.19.1
+- yq 4.20.2
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.107
-- AWS CLI 2.4.18
+- Alibaba Cloud CLI 3.0.109
+- AWS CLI 2.4.19
 - AWS CLI Session manager plugin 1.2.295.0
-- AWS SAM CLI 1.37.0
-- Azure CLI (azure-cli) 2.33.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- AWS SAM CLI 1.38.1
+- Azure CLI (azure-cli) 2.33.1 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.23.0
-- GitHub CLI 2.5.0
+- GitHub CLI 2.5.1
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 9.4.0
-- OpenShift CLI 4.9.19
+- Netlify CLI 9.6.5
+- OpenShift CLI 4.9.21
 - ORAS CLI 0.12.0
-- Vercel CLI 23.1.2
+- Vercel CLI 24.0.0
 
 ### Java
 | Version               | Vendor          | Environment Variable |
@@ -131,7 +131,7 @@
 ### PHP
 | Tool     | Version             |
 | -------- | ------------------- |
-| PHP      | 7.4.27 8.0.15 8.1.2 |
+| PHP      | 7.4.28 8.0.15 8.1.2 |
 | Composer | 2.2.6               |
 | PHPUnit  | 8.5.23              |
 ```
@@ -158,9 +158,9 @@
 - Rustfmt 1.4.38
 
 ### Browsers and Drivers
-- Google Chrome 98.0.4758.80
-- ChromeDriver 98.0.4758.80
-- Mozilla Firefox 96.0
+- Google Chrome 98.0.4758.102
+- ChromeDriver 98.0.4758.102
+- Mozilla Firefox 97.0
 - Geckodriver 0.30.0
 - Chromium 98.0.4758.0
 - Selenium server 4.1.0
@@ -173,16 +173,22 @@
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Core SDK
-- 2.1.302 2.1.403 2.1.526 2.1.617 2.1.701 2.1.818 3.1.120 3.1.202 3.1.302 3.1.416 5.0.104 5.0.211 5.0.303 5.0.405 6.0.102
+- 3.1.120 3.1.202 3.1.302 3.1.416 5.0.104 5.0.211 5.0.303 5.0.405 6.0.200
 
 ### .NET tools
 - nbgv 3.4.255+06fb9182bf
 
 ### Databases
 - MongoDB 5.0.6 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
-- PostgreSQL 14.2 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - sqlite3 3.31.1
 
+#### PostgreSQL
+- PostgreSQL 14.2 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
+- PostgreSQL Server (user:postgres)
+
+```
+    PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
+```
 #### MySQL
 - MySQL 8.0.26
 - MySQL Server (user:root password:root)
@@ -191,7 +197,7 @@
     MySQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
 ```
 #### MS SQL Server Client Tools
-- sqlcmd 17.8.0001.1
+- sqlcmd 17.9.0001.1
 - SqlPackage 16.0.5400.1
 
 ### Cached Tools
@@ -206,10 +212,10 @@
 - 16.14.0
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.6]
+- 2.7.18 [PyPy 7.3.8]
 - 3.6.12 [PyPy 7.3.3]
-- 3.7.12 [PyPy 7.3.7]
-- 3.8.12 [PyPy 7.3.7]
+- 3.7.12 [PyPy 7.3.8]
+- 3.8.12 [PyPy 7.3.8]
 
 #### Python
 - 2.7.18
