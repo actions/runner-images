@@ -3,7 +3,7 @@
 source ~/utils/utils.sh
 
 # Close all finder windows because they can interfere with UI tests
-osascript -e 'tell application "Finder" to close windows'
+close_finder_window
 
 if is_Catalina; then
     # Ignore available updates to prevent system pop-ups
