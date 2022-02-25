@@ -3,13 +3,13 @@
 | [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 ***
 # macOS 10.15 info
-- System Version: macOS 10.15.7 (19H1713)
+- System Version: macOS 10.15.7 (19H1715)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220213.1
+- Image Version: 20220219.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 2.1.302 2.1.403 2.1.507 2.1.607 2.1.701 2.1.818 3.1.101 3.1.201 3.1.302 3.1.416 5.0.102 5.0.202 5.0.302 5.0.405
+- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.416 5.0.102 5.0.202 5.0.302 5.0.405
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is default
 - Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
@@ -27,7 +27,7 @@
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.10 v14.19.0 v16.14.0
 - Perl 5.34.0
-- PHP 8.1.2
+- PHP 8.1.3
 - Python 2.7.18
 - Python 3.9.10
 - R 4.1.2
@@ -38,15 +38,15 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.2
 - Composer 2.2.6
-- Homebrew 3.3.14
-- Miniconda 4.10.3
+- Homebrew 3.3.15
+- Miniconda 4.11.0
 - NPM 8.3.1
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
 - Pip 21.3.1 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<8dbd66f5a>)
+- Vcpkg 2022 (build from master \<5cf60186a>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -69,9 +69,9 @@
 - bazelisk 1.11.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.81.0
-- Git LFS: 3.0.2
-- Git: 2.35.1
-- GitHub CLI: 2.5.0
+- Git 2.35.1
+- Git LFS: 3.1.2
+- GitHub CLI: 2.5.1
 - GNU parallel 20220122
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.2
@@ -94,13 +94,13 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.107
+- Aliyun CLI 3.0.109
 - App Center CLI 2.10.8
-- AWS CLI 2.4.18
-- AWS SAM CLI 1.37.0
+- AWS CLI 2.4.19
+- AWS SAM CLI 1.38.1
 - AWS Session Manager CLI 1.2.295.0
 - Azure CLI (azure-devops) 0.23.0
-- Azure CLI 2.33.0
+- Azure CLI 2.33.1
 - Bicep CLI 0.4.1272
 - Cabal 3.6.2.0
 - Cmake 3.22.2
@@ -120,20 +120,20 @@
 ### Browsers
 - Safari 15.3 (15612.4.9.1.8)
 - SafariDriver 15.3 (15612.4.9.1.8)
-- Google Chrome 98.0.4758.80 
-- ChromeDriver 98.0.4758.80
-- Microsoft Edge 98.0.1108.51 
-- MSEdgeDriver 98.0.1108.51
-- Mozilla Firefox 97.0
+- Google Chrome 98.0.4758.102 
+- ChromeDriver 98.0.4758.102
+- Microsoft Edge 98.0.1108.56 
+- MSEdgeDriver 98.0.1108.56
+- Mozilla Firefox 97.0.1
 - geckodriver 0.30.0
 - Selenium server 4.1.2
 
 #### Environment variables
-| Name            | Value                                         |
-| --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/98.0.4758.80 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
-| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
+| Name            | Value                                          |
+| --------------- | ---------------------------------------------- |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/98.0.4758.102 |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
+| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -217,7 +217,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.18.11
+- 8.10.19.2
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
