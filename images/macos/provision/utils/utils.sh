@@ -71,6 +71,14 @@ is_Less_Monterey() {
     fi
 }
 
+is_Veertu() {
+    if [ -d "/Library/Application Support/Veertu" ]; then
+        true
+    else
+        false
+    fi
+}
+
 get_toolset_path() {
     echo "$HOME/image-generation/toolset.json"
 }
@@ -192,4 +200,9 @@ get_github_package_download_url() {
     downloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
 
     echo $downloadUrl
+}
+
+# Close all finder windows because they can interfere with UI tests
+close_finder_window() {
+    osascript -e 'tell application "Finder" to close windows'
 }

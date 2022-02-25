@@ -98,6 +98,7 @@ build {
   }
   provisioner "shell" {
     scripts = [
+      "./provision/core/xcode-clt.sh",
       "./provision/configuration/configure-tccdb-macos11.sh",
       "./provision/configuration/add-network-interface-detection.sh",
       "./provision/configuration/autologin.sh",
@@ -117,7 +118,6 @@ build {
     scripts = [
       "./provision/configuration/preimagedata.sh",
       "./provision/configuration/configure-ssh.sh",
-      "./provision/core/xcode-clt.sh",
       "./provision/configuration/configure-machine.sh"
     ]
     environment_vars = [
