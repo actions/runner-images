@@ -13,7 +13,7 @@ sudo rm -f /var/vm/sleepimage
 defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
 
 # Disable Keyboard Setup Assistant window
-if [ -d "/Library/Application Support/Veertu" ]; then
+if is_Veertu; then
     sudo defaults write /Library/Preferences/com.apple.keyboardtype "keyboardtype" -dict-add "3-7582-0" -int 40
 fi
 
