@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 | [windows-latest workflows will use Windows Server 2022](https://github.com/actions/virtual-environments/issues/4856) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 524
-- Image Version: 20220220.1
+- Image Version: 20220227.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -26,7 +25,7 @@
 
 ### Package Management
 - Chocolatey 0.12.1
-- Composer 2.2.6
+- Composer 2.2.7
 - Helm 3.8.0
 - Miniconda 4.11.0 (pre-installed on the image but not added to PATH)
 - NPM 8.3.1
@@ -34,7 +33,7 @@
 - pip 22.0.3 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.32
-- Vcpkg (build from master \<5cf60186a>)
+- Vcpkg (build from master \<1b1ae50e1>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -74,7 +73,7 @@
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.7.10
-- Pulumi v3.24.1
+- Pulumi v3.25.0
 - R 4.1.2
 - Service Fabric SDK 8.2.1486.9590
 - Stack 2.7.3
@@ -88,8 +87,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.109
-- AWS CLI 2.4.19
-- AWS SAM CLI 1.38.1
+- AWS CLI 2.4.21
+- AWS SAM CLI 1.40.0
 - AWS Session Manager CLI 1.2.295.0
 - Azure CLI 2.33.1
 - Azure DevOps CLI extension 0.23.0
@@ -97,9 +96,9 @@
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.58.0
-- Rust 1.58.1
-- Rustdoc 1.58.1
+- Cargo 1.59.0
+- Rust 1.59.0
+- Rustdoc 1.59.0
 - Rustup 1.24.3
 
 #### Packages
@@ -107,14 +106,14 @@
 - cargo-audit 0.16.0
 - cargo-outdated v0.10.2
 - cbindgen 0.20.0
-- Clippy 0.1.58
+- Clippy 0.1.59
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
 - Google Chrome 98.0.4758.102
 - Chrome Driver 98.0.4758.102
-- Microsoft Edge 98.0.1108.56
-- Microsoft Edge Driver 98.0.1108.56
+- Microsoft Edge 98.0.1108.62
+- Microsoft Edge Driver 98.0.1108.62
 - Mozilla Firefox 97.0.1
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
@@ -187,6 +186,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.7.18         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
 | 3.7.12         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
 | 3.8.12         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
+| 3.9.10         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
 
 ### Databases
 #### PostgreSQL
@@ -493,7 +493,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.27.0         |
+| AWSPowerShell      | 4.1.32           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.2            |
@@ -511,7 +511,7 @@ All other versions are saved but not installed.
 | Android Emulator           | 31.2.8                                                                                                                                       |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
-| Android SDK Platform-Tools | 32.0.0                                                                                                                                       |
+| Android SDK Platform-Tools | 33.0.0                                                                                                                                       |
 | Android Support Repository | 47.0.0                                                                                                                                       |
 | CMake                      | 3.18.1                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                           |
