@@ -1,11 +1,10 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 | [[Ubuntu] Issue with libstdc++ cannot allocate memory in static TLS block](https://github.com/actions/virtual-environments/issues/4799) |
 ***
-# Ubuntu 20.04.3 LTS
+# Ubuntu 20.04.4 LTS
 - Linux kernel version: 5.11.0-1028-azure
-- Image Version: 20220220.1
+- Image Version: 20220227.1
 
 ## Installed Software
 ### Language and Runtime
@@ -30,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.8.0
-- Homebrew 3.3.15
+- Homebrew 3.3.16
 - Miniconda 4.11.0
 - Npm 8.3.1
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.0.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<5cf60186a>)
+- Vcpkg  (build from master \<1b1ae50e1>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -74,7 +73,7 @@
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.149.0
+- HHVM (HipHop VM) 4.150.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.23.4
@@ -82,7 +81,7 @@
 - Leiningen 2.9.8
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.25.1
+- Minikube 1.25.2
 - n 8.0.2
 - Newman 5.3.1
 - nvm 0.39.1
@@ -91,37 +90,37 @@
 - Parcel 2.3.2
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.24.1
+- Pulumi 3.25.0
 - R 4.1.2
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
 - Terraform 1.1.6
 - yamllint 1.26.3
-- yq 4.20.2
+- yq 4.21.1
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.109
-- AWS CLI 2.4.19
+- AWS CLI 2.4.21
 - AWS CLI Session manager plugin 1.2.295.0
-- AWS SAM CLI 1.38.1
+- AWS SAM CLI 1.40.0
 - Azure CLI (azure-cli) 2.33.1 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.23.0
 - GitHub CLI 2.5.1
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 9.6.5
-- OpenShift CLI 4.9.21
+- Netlify CLI 9.8.3
+- OpenShift CLI 4.9.22
 - ORAS CLI 0.12.0
 - Vercel CLI 24.0.0
 
 ### Java
-| Version               | Vendor          | Environment Variable |
-| --------------------- | --------------- | -------------------- |
-| 8.0.322+6             | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.14.1+1 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.2+8              | Eclipse Temurin | JAVA_HOME_17_X64     |
+| Version             | Vendor          | Environment Variable |
+| ------------------- | --------------- | -------------------- |
+| 8.0.322+6           | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.14+1 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.2+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version     | Environment variables |
@@ -131,8 +130,8 @@
 ### PHP
 | Tool     | Version             |
 | -------- | ------------------- |
-| PHP      | 7.4.28 8.0.15 8.1.2 |
-| Composer | 2.2.6               |
+| PHP      | 7.4.28 8.0.16 8.1.3 |
+| Composer | 2.2.7               |
 | PHPUnit  | 8.5.23              |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -140,19 +139,19 @@
 ### Haskell
 - Cabal 3.6.2.0
 - GHC 9.2.1
-- GHCup 0.1.17.4
+- GHCup 0.1.17.5
 - Stack 2.7.3
 
 ### Rust Tools
-- Cargo 1.58.0
-- Rust 1.58.1
-- Rustdoc 1.58.1
+- Cargo 1.59.0
+- Rust 1.59.0
+- Rustdoc 1.59.0
 - Rustup 1.24.3
 
 #### Packages
 - Bindgen 0.59.2
 - Cargo audit 0.16.0
-- Cargo clippy 0.1.58
+- Cargo clippy 0.1.59
 - Cargo outdated 0.10.2
 - Cbindgen 0.20.0
 - Rustfmt 1.4.38
@@ -216,6 +215,7 @@
 - 3.6.12 [PyPy 7.3.3]
 - 3.7.12 [PyPy 7.3.8]
 - 3.8.12 [PyPy 7.3.8]
+- 3.9.10 [PyPy 7.3.8]
 
 #### Python
 - 2.7.18
@@ -264,7 +264,7 @@
 | Android Command Line Tools | 4.0                                                                                                                                          |
 | Android Emulator           | 31.2.8                                                                                                                                       |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platform-Tools | 32.0.0                                                                                                                                       |
+| Android SDK Platform-Tools | 33.0.0                                                                                                                                       |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
 | Android SDK Tools          | 26.1.1                                                                                                                                       |
 | Android Support Repository | 47.0.0                                                                                                                                       |
