@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 | [windows-latest workflows will use Windows Server 2022](https://github.com/actions/virtual-environments/issues/4856) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
 ***
 # Microsoft Windows Server 2016 Datacenter
 - OS Version: 10.0.14393 Build 4946
-- Image Version: 20220223.1
+- Image Version: 20220227.1
 
 ## Installed Software
 ### Language and Runtime
@@ -23,7 +22,7 @@
 
 ### Package Management
 - Chocolatey 0.12.1
-- Composer 2.2.6
+- Composer 2.2.7
 - Helm 3.8.0
 - Miniconda 4.11.0 (pre-installed on the image but not added to PATH)
 - NPM 8.3.1
@@ -31,7 +30,7 @@
 - pip 22.0.3 (python 3.7)
 - Pipx 1.0.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<7249fa4d6>)
+- Vcpkg (build from master \<1b1ae50e1>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -74,7 +73,7 @@
 - OpenSSL 1.1.1
 - Packer 1.7.10
 - Parcel 2.3.2
-- Pulumi v3.24.1
+- Pulumi v3.25.0
 - R 4.1.2
 - Service Fabric SDK 8.2.1486.9590
 - Stack 2.7.3
@@ -88,8 +87,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.109
-- AWS CLI 2.4.20
-- AWS SAM CLI 1.39.0
+- AWS CLI 2.4.21
+- AWS SAM CLI 1.40.0
 - AWS Session Manager CLI 1.2.295.0
 - Azure CLI 2.33.1
 - Azure DevOps CLI extension 0.23.0
@@ -98,9 +97,9 @@
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.58.0
-- Rust 1.58.1
-- Rustdoc 1.58.1
+- Cargo 1.59.0
+- Rust 1.59.0
+- Rustdoc 1.59.0
 - Rustup 1.24.3
 
 #### Packages
@@ -108,14 +107,14 @@
 - cargo-audit 0.16.0
 - cargo-outdated v0.10.2
 - cbindgen 0.20.0
-- Clippy 0.1.58
+- Clippy 0.1.59
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
 - Google Chrome 98.0.4758.102
 - Chrome Driver 98.0.4758.102
-- Microsoft Edge 98.0.1108.56
-- Microsoft Edge Driver 98.0.1108.56
+- Microsoft Edge 98.0.1108.62
+- Microsoft Edge Driver 98.0.1108.62
 - Mozilla Firefox 97.0.1
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
@@ -194,6 +193,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
 | 3.7.12         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
 | 3.8.12         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
+| 3.9.10         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
 
 ### Databases
 #### PostgreSQL
@@ -548,7 +548,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.29.0         |
+| AWSPowerShell      | 4.1.32           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.2            |
