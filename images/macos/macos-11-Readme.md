@@ -1,11 +1,7 @@
-| Announcements |
-|-|
-| [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
-***
 # macOS 11.6 info
 - System Version: macOS 11.6.4 (20G417)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220220.1
+- Image Version: 20220227.1
 
 ## Installed Software
 ### Language and Runtime
@@ -34,11 +30,11 @@
 - Ruby 2.7.5p203
 
 ### Package Management
-- Bundler version 2.3.7
+- Bundler version 2.3.8
 - Carthage 0.38.0
 - CocoaPods 1.11.2
-- Composer 2.2.6
-- Homebrew 3.3.15
+- Composer 2.2.7
+- Homebrew 3.3.16
 - Miniconda 4.11.0
 - NPM 8.3.1
 - NuGet 5.9.0.7134
@@ -46,7 +42,7 @@
 - Pip 21.3.1 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<5cf60186a>)
+- Vcpkg 2022 (build from master \<1b1ae50e1>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -73,7 +69,7 @@
 - Git LFS: 3.1.2
 - GitHub CLI: 2.5.1
 - GNU Tar 1.34 - available by 'gtar' alias
-- GNU Wget 1.21.2
+- GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.4
 - helm v3.8.0+gd141386
 - Hub CLI: 2.14.2
@@ -93,8 +89,8 @@
 ### Tools
 - Aliyun CLI 3.0.109
 - App Center CLI 2.10.8
-- AWS CLI 2.4.19
-- AWS SAM CLI 1.38.1
+- AWS CLI 2.4.21
+- AWS SAM CLI 1.40.0
 - AWS Session Manager CLI 1.2.295.0
 - Azure CLI (azure-devops) 0.23.0
 - Azure CLI 2.33.1
@@ -103,7 +99,7 @@
 - Cmake 3.22.2
 - Fastlane 2.204.3
 - GHC 9.2.1
-- GHCup 0.1.17.4
+- GHCup v0.1.17.5
 - Jazzy 0.14.1
 - Stack 2.7.3
 - SwiftFormat 0.49.4
@@ -111,7 +107,7 @@
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
 ### Linters
-- SwiftLint 0.46.2
+- SwiftLint 0.46.3
 - yamllint 1.26.3
 
 ### Browsers
@@ -162,6 +158,7 @@
 - 2.7.18 [PyPy 7.3.8]
 - 3.7.12 [PyPy 7.3.8]
 - 3.8.12 [PyPy 7.3.8]
+- 3.9.10 [PyPy 7.3.8]
 
 #### Node.js
 - 12.22.10
@@ -176,9 +173,9 @@
 | 1.17.7  | x64          | GOROOT_1_17_X64      |
 
 ### Rust Tools
-- Cargo 1.58.0
-- Rust 1.58.1
-- Rustdoc 1.58.1
+- Cargo 1.59.0
+- Rust 1.59.0
+- Rustdoc 1.59.0
 - Rustup 1.24.3
 
 #### Packages
@@ -186,7 +183,7 @@
 - Cargo-audit 0.16.0
 - Cargo-outdated v0.10.2
 - Cbindgen 0.20.0
-- Clippy 0.1.58
+- Clippy 0.1.59
 - Rustfmt 1.4.38-stable
 
 ### PowerShell Tools
@@ -318,7 +315,7 @@
 | Android Emulator           | 31.2.8                                                                                                                                       |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
-| Android SDK Platform-Tools | 32.0.0                                                                                                                                       |
+| Android SDK Platform-Tools | 33.0.0                                                                                                                                       |
 | Android Support Repository | 47.0.0                                                                                                                                       |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                             |
 | Google Play services       | 49                                                                                                                                           |
