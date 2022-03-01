@@ -13,12 +13,10 @@ function Enable-AutoLogon {
         [string] $Password
     )
 
-    $url = "https://raw.githubusercontent.com/actions/virtual-environments/main/images/macos/provision/bootstrap-provisioner/kcpassword.py"
+    $url = "https://raw.githubusercontent.com/actions/virtual-environments/main/images/macos/provision/bootstrap-provisioner/setAutoLogin.sh"
     $script = Invoke-RestMethod -Uri $url
     $base64 = [Convert]::ToBase64String($script.ToCharArray())
-    $kcpassword = "echo $base64 | base64 --decode > ~/kcpassword;sudo python ./kcpassword '${Password}';rm ./kcpassword"
-    $loginwindow = "sudo /usr/bin/defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser '${UserName}';sudo /usr/bin/defaults write /Library/Preferences/com.apple.loginwindow autoLoginUserScreenLocked -bool false"
-    $command = "${kcpassword};$loginwindow"
+    $command = "echo $base64 | base64 --decode > ./setAutoLogin.sh;sudo bash ./setAutoLogin.sh '${UserName}' '${Password}';rm ./setAutoLogin.sh"
     Invoke-SSHPassCommand -HostName $HostName -Command $command
 }
 
