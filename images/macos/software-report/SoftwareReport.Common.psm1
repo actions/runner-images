@@ -307,6 +307,11 @@ function Get-OpenSSLVersion {
     return $opensslVersion
 }
 
+function Get-HtmlqVersion {
+    $htmlqVersion = Run-Command "htmlq --version" | Select-Object -First 1 | Take-Part -Part 1
+    return "htmlq $htmlqVersion"
+}
+
 function Get-JqVersion {
     $jqVersion = Run-Command "jq --version" | Take-Part -Part 1 -Delimiter "-"
     return "jq $jqVersion"

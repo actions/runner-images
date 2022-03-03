@@ -98,6 +98,7 @@ $toolsList = @(
     (Get-GHCVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
+    (Get-HtmlqVersion),
     (Get-InnoSetupVersion),
     (Get-JQVersion),
     (Get-KindVersion),

@@ -118,6 +118,7 @@ $toolsList = @(
     (Get-HerokuVersion),
     (Get-HHVMVersion),
     (Get-SVNVersion),
+    (Get-HtmlqVersion),
     (Get-JqVersion),
     (Get-YqVersion),
     (Get-KindVersion),

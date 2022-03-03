@@ -194,6 +194,11 @@ function Get-TerraformVersion {
     return (terraform version | Select-String "^Terraform").Line.Replace('v','')
 }
 
+function Get-HtmlqVersion {
+    $htmlqVersion = htmlq --version | Take-OutputPart -Part 1
+    return "htmlq $htmlqVersion"
+}
+
 function Get-JqVersion {
     $jqVersion = jq --version | Take-OutputPart -Part 1 -Delimiter "-"
     return "jq $jqVersion"

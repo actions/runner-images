@@ -107,6 +107,7 @@ $utilitiesList = @(
     (Get-SVNVersion),
     (Get-PackerVersion),
     (Get-OpenSSLVersion),
+    (Get-HtmlqVersion),
     (Get-JqVersion),
     (Get-PostgresClientVersion),
     (Get-PostgresServerVersion),

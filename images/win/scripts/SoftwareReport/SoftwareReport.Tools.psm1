@@ -81,6 +81,12 @@ function Get-InnoSetupVersion {
     return $(choco list --local-only innosetup) | Select-String -Pattern "InnoSetup"
 }
 
+function Get-HtmlqVersion {
+    (htmlq --version | Out-String) -match "(?<version>(\d+\.){1,}\d+)" | Out-Null
+    $htmlqVersion = $Matches.Version
+    return "htqml $htmlqVersion"
+}
+
 function Get-JQVersion {
     $jqVersion = ($(jq --version) -Split "jq-")[1]
     return "jq $jqVersion"
