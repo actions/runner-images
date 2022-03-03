@@ -17,7 +17,7 @@ source $CARGO_HOME/env
 
 # Install common tools
 rustup component add rustfmt clippy
-cargo install --locked bindgen cbindgen cargo-audit cargo-outdated
+cargo install --locked bindgen cbindgen cargo-audit cargo-outdated htmlq
 
 # Cleanup Cargo cache
 rm -rf ${CARGO_HOME}/registry/*
