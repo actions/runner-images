@@ -11,6 +11,7 @@ Describe "Rust" {
         @{ToolName = "cargo"; binPath = "C:\Users\Default\.cargo\bin\cargo.exe"}
         @{ToolName = "cargo audit"; binPath = "C:\Users\Default\.cargo\bin\cargo-audit.exe"}
         @{ToolName = "cargo outdated"; binPath = "C:\Users\Default\.cargo\bin\cargo-outdated.exe"}
+        @{ToolName = "htmlq"; binPath = "C:\Users\Default\.cargo\bin\htmlq.exe"}
     )
 
     $rustEnvNotExists = @(

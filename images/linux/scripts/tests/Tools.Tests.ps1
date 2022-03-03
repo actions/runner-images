@@ -62,6 +62,10 @@ Describe "Rust" {
         It "Cargo outdated" {
             "cargo outdated --version" | Should -ReturnZeroExitCode
         }
+
+        It "Htmlq" {
+            "htmlq --version" | Should -ReturnZeroExitCode
+        }
     }
 }
 Describe "Docker" {

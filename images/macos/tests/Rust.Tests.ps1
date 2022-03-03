@@ -10,7 +10,7 @@ Describe "Rust" {
             "rustc --version" | Should -ReturnZeroExitCode
         }
     }
-    
+
     Context "Cargo" {
         It "Cargo is installed" {
             "cargo --version" | Should -ReturnZeroExitCode
@@ -32,6 +32,10 @@ Describe "Rust" {
 
         It "Cargo outdated" {
             "cargo outdated --version" | Should -ReturnZeroExitCode
+        }
+
+        It "Htmlq" {
+            "htmlq --version" | Should -ReturnZeroExitCode
         }
     }
 }
