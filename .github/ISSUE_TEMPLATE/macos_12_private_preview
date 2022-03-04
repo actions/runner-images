@@ -1,0 +1,41 @@
+name: MacOS 12 (Monterey) Private Beta Access Request Form
+description: Request access to the private beta!
+title: " MacOS 12 (Monterey) Private Beta Access Request Form"
+labels: ["triage,private-preview"]
+assignees:
+  - steve-glass
+body:
+  - type: checkboxes
+    id: GH-plan
+    attributes:
+      label: What plan are you on
+      options:
+        - label: 'Free'
+        - label: 'Team'
+        - label: 'Enterprise'
+    validations:
+      required: true
+
+  - type: input
+    id: GHorg-name
+    attributes:
+      label: What is the customer's GitHub organization name?
+      placeholder: Customer's GitHub organization name
+    validations:
+      required: true
+   
+    - type: input
+    id: contact-name
+    attributes:
+      label: Requestor name
+      placeholder: Requestor first and last name
+    validations:
+      required: true
+    
+    - type: input
+    id: req-email
+    attributes:
+      label: Email Address
+      placeholder: email address for contact and support
+    validations:
+      required: true
