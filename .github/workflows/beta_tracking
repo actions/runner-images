@@ -1,0 +1,48 @@
+name: Add new macOS 12 beta tester
+on:
+  issues:
+    types: [opened, reopened]
+  
+jobs:
+  add_issue_to_project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get project data
+        if: ${{ contains(github.event.issue.labels.*.name, 'private-preview') }}
+        env:
+          GITHUB_TOKEN: ${{secrets.FLAMINGOLEGS_PAT}}
+          ORGANIZATION: github
+          PROJECT_NUMBER: 4775
+        run: |
+          gh api graphql --header 'GraphQL-Features: projects_next_graphql' -f query='
+            query($org: String!, $number: Int!) {
+              organization(login: $org){
+                projectNext(number: $number) {
+                  id
+                  fields(first:20) {
+                    nodes {
+                      id
+                      name
+                      settings
+                    }
+                  }
+                }
+              }
+            }' -f org=$ORGANIZATION -F number=$PROJECT_NUMBER > project_data.json
+          echo 'PROJECT_ID='$(jq '.data.organization.projectNext.id' project_data.json) >> $GITHUB_ENV
+        
+      - name: Add new issue to project
+        env:
+          GITHUB_TOKEN: ${{secrets.FLAMINGOLEGS_PAT}}
+          ISSUE_ID: ${{ github.event.issue.node_id }}
+        run: |
+          item_id="$( gh api graphql --header 'GraphQL-Features: projects_next_graphql' -f query='
+            mutation($project:ID!, $issue:ID!) {
+              addProjectNextItem(input: {projectId: $project, contentId: $issue}) {
+                projectNextItem {
+                  id
+                }
+              }
+            }' -f project=$PROJECT_ID -f issue=$ISSUE_ID --jq '.data.addProjectNextItem.projectNextItem.id')"
+          
+          echo 'ITEM_ID='$item_id >> $GITHUB_ENV
