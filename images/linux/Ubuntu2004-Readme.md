@@ -1,11 +1,10 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 | [[Ubuntu] Issue with libstdc++ cannot allocate memory in static TLS block](https://github.com/actions/virtual-environments/issues/4799) |
 ***
-# Ubuntu 20.04.3 LTS
-- Linux kernel version: 5.11.0-1028-azure
-- Image Version: 20220220.1
+# Ubuntu 20.04.4 LTS
+- Linux kernel version: 5.13.0-1014-azure
+- Image Version: 20220306.1
 
 ## Installed Software
 ### Language and Runtime
@@ -30,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.8.0
-- Homebrew 3.3.15
+- Homebrew 3.4.0
 - Miniconda 4.11.0
 - Npm 8.3.1
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.0.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<5cf60186a>)
+- Vcpkg  (build from master \<bd602277b>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -54,14 +53,14 @@
 - Sbt 1.6.2
 
 ### Tools
-- Ansible 2.12.2
+- Ansible 2.12.3
 - apt-fast 1.9.12
-- AzCopy 10.13.0 (available by `azcopy` and `azcopy10` aliases)
+- AzCopy 10.14.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.0.0
 - Bazelisk 1.11.0
 - Bicep 0.4.1272
 - Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- CMake 3.22.2
+- CMake 3.22.3
 - CodeQL Action Bundle 2.8.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.2.3+azure-1
@@ -74,7 +73,7 @@
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.59.2
-- HHVM (HipHop VM) 4.149.0
+- HHVM (HipHop VM) 4.151.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.23.4
@@ -82,46 +81,46 @@
 - Leiningen 2.9.8
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.25.1
+- Minikube 1.25.2
 - n 8.0.2
-- Newman 5.3.1
+- Newman 5.3.2
 - nvm 0.39.1
 - OpenSSL 1.1.1f  31 Mar 2020
-- Packer 1.7.10
+- Packer 1.8.0
 - Parcel 2.3.2
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.24.1
+- Pulumi 3.25.1
 - R 4.1.2
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.1.6
+- Terraform 1.1.7
 - yamllint 1.26.3
-- yq 4.20.2
+- yq 4.21.1
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.109
-- AWS CLI 2.4.19
+- Alibaba Cloud CLI 3.0.110
+- AWS CLI 2.4.23
 - AWS CLI Session manager plugin 1.2.295.0
-- AWS SAM CLI 1.38.1
-- Azure CLI (azure-cli) 2.33.1 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- AWS SAM CLI 1.40.1
+- Azure CLI (azure-cli) 2.34.1 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.23.0
-- GitHub CLI 2.5.1
+- GitHub CLI 2.5.2
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 9.6.5
-- OpenShift CLI 4.9.21
+- Netlify CLI 9.12.3
+- OpenShift CLI 4.9.23
 - ORAS CLI 0.12.0
 - Vercel CLI 24.0.0
 
 ### Java
-| Version               | Vendor          | Environment Variable |
-| --------------------- | --------------- | -------------------- |
-| 8.0.322+6             | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.14.1+1 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.2+8              | Eclipse Temurin | JAVA_HOME_17_X64     |
+| Version             | Vendor          | Environment Variable |
+| ------------------- | --------------- | -------------------- |
+| 8.0.322+6           | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.14+1 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.2+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version     | Environment variables |
@@ -131,38 +130,38 @@
 ### PHP
 | Tool     | Version             |
 | -------- | ------------------- |
-| PHP      | 7.4.28 8.0.15 8.1.2 |
-| Composer | 2.2.6               |
-| PHPUnit  | 8.5.23              |
+| PHP      | 7.4.28 8.0.16 8.1.3 |
+| Composer | 2.2.7               |
+| PHPUnit  | 8.5.24              |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 ### Haskell
 - Cabal 3.6.2.0
 - GHC 9.2.1
-- GHCup 0.1.17.4
-- Stack 2.7.3
+- GHCup 0.1.17.5
+- Stack 2.7.5
 
 ### Rust Tools
-- Cargo 1.58.0
-- Rust 1.58.1
-- Rustdoc 1.58.1
+- Cargo 1.59.0
+- Rust 1.59.0
+- Rustdoc 1.59.0
 - Rustup 1.24.3
 
 #### Packages
 - Bindgen 0.59.2
 - Cargo audit 0.16.0
-- Cargo clippy 0.1.58
-- Cargo outdated 0.10.2
+- Cargo clippy 0.1.59
+- Cargo outdated 
 - Cbindgen 0.20.0
 - Rustfmt 1.4.38
 
 ### Browsers and Drivers
-- Google Chrome 98.0.4758.102
-- ChromeDriver 98.0.4758.102
-- Mozilla Firefox 97.0
+- Google Chrome 99.0.4844.51
+- ChromeDriver 99.0.4844.51
+- Mozilla Firefox 97.0.2
 - Geckodriver 0.30.0
-- Chromium 98.0.4758.0
+- Chromium 99.0.4844.0
 - Selenium server 4.1.0
 
 #### Environment variables
@@ -216,6 +215,7 @@
 - 3.6.12 [PyPy 7.3.3]
 - 3.7.12 [PyPy 7.3.8]
 - 3.8.12 [PyPy 7.3.8]
+- 3.9.10 [PyPy 7.3.8]
 
 #### Python
 - 2.7.18
@@ -264,7 +264,7 @@
 | Android Command Line Tools | 4.0                                                                                                                                          |
 | Android Emulator           | 31.2.8                                                                                                                                       |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platform-Tools | 32.0.0                                                                                                                                       |
+| Android SDK Platform-Tools | 33.0.0                                                                                                                                       |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
 | Android SDK Tools          | 26.1.1                                                                                                                                       |
 | Android Support Repository | 47.0.0                                                                                                                                       |
@@ -289,22 +289,22 @@
 | alpine:3.12             | sha256:d9459083f962de6bd980ae6a05be2a4cf670df6a1d898157bceb420342bec280  | 2021-11-12 |
 | alpine:3.13             | sha256:026f721af4cf2843e07bba648e158fb35ecc876d822130633cc49f707f0fc88c  | 2021-11-12 |
 | alpine:3.14             | sha256:635f0aa53d99017b38d1a0aa5b2082f7812b03e3cdb299103fe77b5c8a07f1d2  | 2021-11-12 |
-| buildpack-deps:bullseye | sha256:159126fd9e3b05c16a9cc4c2655e4a447effd7892e62b74b933e4a6cb370138e  | 2022-01-26 |
-| buildpack-deps:buster   | sha256:64b00dac65b9ed4db078361a816e24e888e6ae926e43524b79f6fba424e8b6c8  | 2022-01-26 |
-| buildpack-deps:stretch  | sha256:3004c958ffa89199f04e8735d583c42ee3885c9c77daa4134930fe68eeee59c4  | 2022-01-26 |
-| debian:10               | sha256:fde7a280413ec0122bd3a14dc76ba152f89cae999f3b8efe8784100df3640763  | 2022-01-26 |
-| debian:11               | sha256:fb45fd4e25abe55a656ca69a7bef70e62099b8bb42a279a5e0ea4ae1ab410e0d  | 2022-01-26 |
-| debian:9                | sha256:4bb600434787c903886fe33526d19ff33114a33b433a4a4cdbdf9b8543f1ab5d  | 2022-01-26 |
+| buildpack-deps:bullseye | sha256:b0410921e9d888bd213492157e876988dfd2c4fe2724d63a2f6120381ac1881c  | 2022-03-01 |
+| buildpack-deps:buster   | sha256:4b80c38e9bef63839e3d36de8419fb46e126b7b19b8f45b7b2cade51d193465e  | 2022-03-01 |
+| buildpack-deps:stretch  | sha256:bf54440111c18564fd89db7f98a0c09b14af25a699d72e19752ab7ca6933a34f  | 2022-03-01 |
+| debian:10               | sha256:fd510d85d7e0691ca551fe08e8a2516a86c7f24601a940a299b5fe5cdd22c03a  | 2022-03-01 |
+| debian:11               | sha256:10b622c6cf6daa0a295be74c0e412ed20e10f91ae4c6f3ce6ff0c9c04f77cbf6  | 2022-03-01 |
+| debian:9                | sha256:54f2c31487af733ad08e62af6a77ccddcbc8895857edc54768ba0020991950f9  | 2022-03-01 |
 | moby/buildkit:latest    | sha256:d6c89b7085b106301645ddcc77cf64eb7b705ab507b72d52d130ac33f1300417  | 2021-11-18 |
-| node:12                 | sha256:7e1786920f4ebd88f8cc2dc9906f3c85ac78674cb29dcced535ff150a96f0873  | 2022-02-04 |
+| node:12                 | sha256:cc4adb82efc04b74b9f96326e682ad04be2df84d23e40609802eb6d6c207abde  | 2022-03-02 |
 | node:12-alpine          | sha256:dfa564312367b1a8fca8db7ae4bae102b28e68b39ebcb7b17022c938f105846b  | 2022-02-04 |
-| node:14                 | sha256:b2c75df8c9706156c38b4f1f678d00e11cb2bfda09fc4ab6e36ec17ac9163865  | 2022-02-02 |
+| node:14                 | sha256:d3f3c5105b1defedbdd7a8c6a4184d11e65f246d0dfd798e6f0fabc4b5326d46  | 2022-03-02 |
 | node:14-alpine          | sha256:9a2aa545388a135b496bd55cef2be920b96c4526c99c140170e05a8de3fce653  | 2022-02-02 |
-| node:16                 | sha256:fd86131ddf8e0faa8ba7a3e49b6bf571745946e663e4065f3bff0a07204c1dde  | 2022-02-09 |
+| node:16                 | sha256:61b6cc81ecc3f94f614dca6bfdc5262d15a6618f7aabfbfc6f9f05c935ee753c  | 2022-03-02 |
 | node:16-alpine          | sha256:2c6c59cf4d34d4f937ddfcf33bab9d8bbad8658d1b9de7b97622566a52167f2b  | 2022-02-09 |
 | ubuntu:16.04            | sha256:0f71fa8d4d2d4292c3c617fda2b36f6dabe5c8b6e34c3dc5b0d17d4e704bd39c  | 2021-08-31 |
-| ubuntu:18.04            | sha256:c2aa13782650aa7ade424b12008128b60034c795f25456e8eb552d0a0f447cad  | 2022-02-02 |
-| ubuntu:20.04            | sha256:669e010b58baf5beb2836b253c1fd5768333f0d1dbcb834f7c07a4dc93f474be  | 2022-02-02 |
+| ubuntu:18.04            | sha256:42cd9143b6060261187a72716906187294b8b66653b50d70bc7a90ccade5c984  | 2022-03-03 |
+| ubuntu:20.04            | sha256:8ae9bafbb64f63a50caab98fd3a5e37b3eb837a3e0780b78e5218e63193961f9  | 2022-03-03 |
 
 ### Installed apt packages
 | Name                   | Version                           |
@@ -339,7 +339,7 @@
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.1        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6build1                  |
-| libgtk-3-0             | 3.24.20-0ubuntu1                  |
+| libgtk-3-0             | 3.24.20-0ubuntu1.1                |
 | libmagic-dev           | 1:5.38-4                          |
 | libmagickcore-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.4    |
 | libmagickwand-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.4    |
@@ -348,7 +348,7 @@
 | libunwind8             | 1.2.1-9build1                     |
 | libxkbfile-dev         | 1:1.1.0-1                         |
 | libxss1                | 1:1.2.3-1                         |
-| locales                | 2.31-0ubuntu9.2                   |
+| locales                | 2.31-0ubuntu9.7                   |
 | m4                     | 1.4.18-4                          |
 | mediainfo              | 19.09-1build1                     |
 | mercurial              | 5.3.1-1ubuntu1                    |
