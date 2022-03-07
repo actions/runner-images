@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 2.1 will be removed from the images on February, 21](https://github.com/actions/virtual-environments/issues/4871) |
 | [windows-latest workflows will use Windows Server 2022](https://github.com/actions/virtual-environments/issues/4856) |
 | [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2565
-- Image Version: 20220223.1
+- Image Version: 20220306.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -26,7 +25,7 @@
 
 ### Package Management
 - Chocolatey 0.12.1
-- Composer 2.2.6
+- Composer 2.2.7
 - Helm 3.8.0
 - Miniconda 4.11.0 (pre-installed on the image but not added to PATH)
 - NPM 8.3.1
@@ -34,7 +33,7 @@
 - pip 22.0.3 (python 3.7)
 - Pipx 1.0.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<7249fa4d6>)
+- Vcpkg (build from master \<bd602277b>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -45,19 +44,19 @@
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 7.3
+- Gradle 7.4
 - Maven 3.8.4
 - sbt 1.6.2
 
 ### Tools
 - 7zip 21.07
 - aria2 1.36.0
-- azcopy 10.13.0
+- azcopy 10.14.0
 - Bazel 5.0.0
 - Bazelisk 1.11.0
 - Bicep 0.4.1272
 - Cabal 3.6.2.0
-- CMake 3.22.2
+- CMake 3.22.3
 - CodeQL Action Bundle 2.8.1
 - Docker 20.10.7
 - Docker-compose 1.29.2
@@ -65,61 +64,61 @@
 - ghc 9.2.1
 - Git 2.35.1.windows.2
 - Git LFS 3.0.2
-- Google Cloud SDK 374.0.0
+- Google Cloud SDK 375.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.11.1
 - Kubectl 1.23.4
 - Mercurial 5.0
 - Mingw-w64 8.1.0
-- Newman 5.3.1
+- Newman 5.3.2
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.7.10
 - Parcel 2.3.2
-- Pulumi v3.24.1
+- Pulumi v3.25.1
 - R 4.1.2
 - Service Fabric SDK 8.2.1486.9590
-- Stack 2.7.3
+- Stack 2.7.5
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
-- VSWhere 2.8.4
+- VSWhere 3.0.1
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset v3.11.2.4516
 - yamllint 1.26.3
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.109
-- AWS CLI 2.4.20
-- AWS SAM CLI 1.39.0
+- Alibaba Cloud CLI 3.0.110
+- AWS CLI 2.4.23
+- AWS SAM CLI 1.40.1
 - AWS Session Manager CLI 1.2.295.0
-- Azure CLI 2.33.1
+- Azure CLI 2.34.1
 - Azure DevOps CLI extension 0.23.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.5.1
+- GitHub CLI 2.5.2
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.58.0
-- Rust 1.58.1
-- Rustdoc 1.58.1
+- Cargo 1.59.0
+- Rust 1.59.0
+- Rustdoc 1.59.0
 - Rustup 1.24.3
 
 #### Packages
 - bindgen 0.59.2
 - cargo-audit 0.16.0
-- cargo-outdated v0.10.2
+- cargo-outdated 0.11.0
 - cbindgen 0.20.0
-- Clippy 0.1.58
+- Clippy 0.1.59
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 98.0.4758.102
-- Chrome Driver 98.0.4758.102
-- Microsoft Edge 98.0.1108.56
-- Microsoft Edge Driver 98.0.1108.56
-- Mozilla Firefox 97.0.1
+- Google Chrome 99.0.4844.51
+- Chrome Driver 99.0.4844.51
+- Microsoft Edge 99.0.1150.30
+- Microsoft Edge Driver 99.0.1150.30
+- Mozilla Firefox 97.0.2
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 - Selenium server 4.1.0
@@ -201,6 +200,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
 | 3.7.12         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
 | 3.8.12         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
+| 3.9.10         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
 
 ### Databases
 #### PostgreSQL
@@ -544,7 +544,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.29.0         |
+| AWSPowerShell      | 4.1.37           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.2            |
