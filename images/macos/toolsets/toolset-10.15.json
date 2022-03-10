@@ -289,7 +289,6 @@
             "platform" : "darwin",
             "variable_template" : "GOROOT_{0}_{1}_X64",
             "versions": [
-                "1.15.*",
                 "1.16.*",
                 "1.17.*"
             ]
@@ -331,7 +330,7 @@
         ]
     },
     "go": {
-        "default": "1.15"
+        "default": "1.16"
     },
     "node": {
         "default": "16",
