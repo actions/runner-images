@@ -6,14 +6,13 @@ on:
 
 
 jobs:
-  Merge_pull_request:
+  Merge_pull_request: true
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0
-
+        fetch-depth: 100
     - name: Resolve possible conflicts ${{ github.event.client_payload.ReleaseBranchName }} with main
       run: |
         git config --global user.email "no-reply@github.com"
@@ -44,7 +43,7 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: ${{ github.event.client_payload.PullRequestNumber }},
-            merge_method: "squash"
+            merge_method: "fetch"
           })
 
     - name: Delete docs branch ${{ github.event.client_payload.ReleaseBranchName }}-docs
@@ -53,7 +52,7 @@ jobs:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
           github.git.deleteRef({
-            owner: context.repo.owner,
+            owner: context.repo.owner,shutch748:master
             repo: context.repo.repo,
             ref: "heads/${{ github.event.client_payload.ReleaseBranchName }}-docs"
           })
