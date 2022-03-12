@@ -29,7 +29,7 @@
 - Helm 3.8.0
 - Miniconda 4.11.0 (pre-installed on the image but not added to PATH)
 - NPM 8.3.1
-- NuGet 6.1.0.106
+- NuGet 6.1.0.1066
 - pip 22.0.3 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.32
@@ -538,4 +538,5 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:8aa115e244add588e9a71a38d302e8fc801f2e986be83a58d5e015e4cba8f613  | 2022-02-01 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:720729320e08bdf14b6bc16444be6a3b74a457bd0584fee5124e6073e9f8f1cf  | 2022-02-01 |
 
+belongs to email:shutcheson748@gmail.com username:Shutch748:master
 
