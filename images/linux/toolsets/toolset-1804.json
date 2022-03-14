@@ -82,7 +82,7 @@
                 "versions": [ "8", "11", "12" ]
             }
         ],
-        "maven": "3.8.4"
+        "maven": "3.8.5"
     },
     "android": {
         "platform_min_version": "23",
