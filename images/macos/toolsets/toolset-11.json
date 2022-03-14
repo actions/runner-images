@@ -300,7 +300,7 @@
         ]
     },
     "go": {
-        "default": "1.16"
+        "default": "1.15"
     },
     "node": {
         "default": "16",
