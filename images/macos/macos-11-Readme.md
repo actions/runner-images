@@ -19,7 +19,7 @@
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
-- Go 1.15.15
+- Go 1.16.14
 - julia 1.7.2
 - Kotlin 1.6.10-release-923
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
@@ -171,8 +171,8 @@
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.14 | x64          | GOROOT_1_16_X64      |
+| 1.15.15 | x64          | GOROOT_1_15_X64      |
+| 1.16.14 (Default) | x64          | GOROOT_1_16_X64      |
 | 1.17.7  | x64          | GOROOT_1_17_X64      |
 
 ### Rust Tools
