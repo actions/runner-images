@@ -3,8 +3,8 @@
 | [[Ubuntu] Issue with libstdc++ cannot allocate memory in static TLS block](https://github.com/actions/virtual-environments/issues/4799) |
 ***
 # Ubuntu 18.04.6 LTS
-- Linux kernel version: 5.4.0-1070-azure
-- Image Version: 20220306.1
+- Linux kernel version: 5.4.0-1072-azure
+- Image Version: 20220316.1
 
 ## Installed Software
 ### Language and Runtime
@@ -19,24 +19,24 @@
 - Kotlin 1.6.10-release-923
 - Mono 6.12.0.122 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-bionic main)
 - MSBuild 16.6.0.15201 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node 16.14.0
+- Node 16.14.1
 - Perl 5.26.1
 - Python 2.7.17
 - Python3 3.6.9
 - Ruby 2.5.1p57
-- Swift 5.5.3
+- Swift 5.6
 
 ### Package Management
 - cpan 1.64
-- Helm 3.8.0
-- Homebrew 3.4.0
+- Helm 3.8.1
+- Homebrew 3.4.2
 - Miniconda 4.11.0
-- Npm 8.3.1
+- Npm 8.5.0
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 1.0.0
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<bd602277b>)
+- Vcpkg  (build from master \<8522c65ea>)
 - Yarn 1.22.17
 
 #### Environment variables
@@ -47,20 +47,20 @@
 
 ### Project Management
 - Ant 1.10.5
-- Gradle 7.4
-- Maven 3.8.4
+- Gradle 7.4.1
+- Maven 3.8.5
 - Sbt 1.6.2
 
 ### Tools
 - Ansible 2.11.9
 - apt-fast 1.9.12
-- AzCopy 10.14.0 (available by `azcopy` and `azcopy10` aliases)
+- AzCopy 10.14.1 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.0.0
 - Bazelisk 1.11.0
-- Bicep 0.4.1272
+- Bicep 0.4.1318
 - Buildah 1.19.6 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.22.3
-- CodeQL Action Bundle 2.8.1
+- CodeQL Action Bundle 2.8.3
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.2.3+azure-1
 - Docker-Buildx 0.7.1
@@ -70,10 +70,10 @@
 - Git LFS 3.1.2 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.3.1
 - Haveged 1.9.1
-- Heroku 7.59.2
-- HHVM (HipHop VM) 4.151.0
+- Heroku 7.59.4
+- HHVM (HipHop VM) 4.153.0
 - jq 1.5
-- Kind 0.11.1
+- Kind 0.12.0
 - Kubectl 1.23.4
 - Kustomize 4.5.2
 - Leiningen 2.9.8
@@ -88,28 +88,28 @@
 - Parcel 2.3.2
 - PhantomJS 2.1.1
 - Podman 3.0.1 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.25.1
+- Pulumi 3.26.1
 - R 4.1.2
 - Skopeo 1.2.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.9.7
 - Terraform 1.1.7
 - yamllint 1.26.3
-- yq 4.21.1
+- yq 4.22.1
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.110
-- AWS CLI 1.22.68
+- Alibaba Cloud CLI 3.0.112
+- AWS CLI 1.22.76
 - AWS CLI Session manager plugin 1.2.295.0
 - AWS SAM CLI 1.40.1
 - Azure CLI (azure-cli) 2.34.1 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.23.0
-- GitHub CLI 2.5.2
+- GitHub CLI 2.6.0
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 9.12.3
-- OpenShift CLI 4.9.23
+- Netlify CLI 9.13.2
+- OpenShift CLI 4.10.4
 - ORAS CLI 0.12.0
 - Vercel CLI 24.0.0
 
@@ -125,14 +125,14 @@
 | Tool     | Version                                  |
 | -------- | ---------------------------------------- |
 | PHP      | 7.1.33 7.2.34 7.3.33 7.4.28 8.0.16 8.1.3 |
-| Composer | 2.2.7                                    |
-| PHPUnit  | 8.5.24                                   |
+| Composer | 2.2.9                                    |
+| PHPUnit  | 8.5.25                                   |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 ### Haskell
 - Cabal 3.6.2.0
-- GHC 9.2.1
+- GHC 9.2.2
 - GHCup 0.1.17.5
 - Stack 2.7.5
 
@@ -151,9 +151,9 @@
 - Rustfmt 1.4.38
 
 ### Browsers and Drivers
-- Google Chrome 99.0.4844.51
+- Google Chrome 99.0.4844.74
 - ChromeDriver 99.0.4844.51
-- Mozilla Firefox 97.0.2
+- Mozilla Firefox 98.0
 - Geckodriver 0.30.0
 - Chromium 99.0.4844.0
 - Selenium server 4.1.0
@@ -166,7 +166,7 @@
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Core SDK
-- 3.1.120 3.1.202 3.1.302 3.1.416 5.0.104 5.0.211 5.0.303 5.0.405 6.0.200
+- 3.1.120 3.1.202 3.1.302 3.1.417 5.0.104 5.0.212 5.0.303 5.0.406 6.0.201
 
 ### .NET tools
 - nbgv 3.4.255+06fb9182bf
@@ -196,8 +196,8 @@
 ### Cached Tools
 #### Go
 - 1.15.15
-- 1.16.14
-- 1.17.7
+- 1.16.15
+- 1.17.8
 
 #### Node.js
 - 12.22.10
@@ -228,11 +228,11 @@
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.15/x64 | x64          |
-| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.14/x64 | x64          |
-| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.7/x64  | x64          |
+| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.15/x64 | x64          |
+| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.8/x64  | x64          |
 
 ### PowerShell Tools
-- PowerShell 7.2.1
+- PowerShell 7.2.2
 
 #### PowerShell Modules
 | Module     | Version |
@@ -287,7 +287,7 @@
 | debian:10               | sha256:fd510d85d7e0691ca551fe08e8a2516a86c7f24601a940a299b5fe5cdd22c03a  | 2022-03-01 |
 | debian:11               | sha256:10b622c6cf6daa0a295be74c0e412ed20e10f91ae4c6f3ce6ff0c9c04f77cbf6  | 2022-03-01 |
 | debian:9                | sha256:54f2c31487af733ad08e62af6a77ccddcbc8895857edc54768ba0020991950f9  | 2022-03-01 |
-| moby/buildkit:latest    | sha256:d6c89b7085b106301645ddcc77cf64eb7b705ab507b72d52d130ac33f1300417  | 2021-11-18 |
+| moby/buildkit:latest    | sha256:c2aeafaed434edfde90706b5cf9a56935c389192858d1090e17a1440a6e96482  | 2022-03-09 |
 | node:12                 | sha256:cc4adb82efc04b74b9f96326e682ad04be2df84d23e40609802eb6d6c207abde  | 2022-03-02 |
 | node:12-alpine          | sha256:dfa564312367b1a8fca8db7ae4bae102b28e68b39ebcb7b17022c938f105846b  | 2022-02-04 |
 | node:14                 | sha256:d3f3c5105b1defedbdd7a8c6a4184d11e65f246d0dfd798e6f0fabc4b5326d46  | 2022-03-02 |
