@@ -50,7 +50,7 @@
 - Ant 1.10.7
 - Gradle 7.4
 - Lerna 4.0.0
-- Maven 3.8.4
+- Maven 3.8.5
 - Sbt 1.6.2
 
 ### Tools
