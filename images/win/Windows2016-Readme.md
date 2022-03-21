@@ -11,7 +11,7 @@
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(2)-release
-- Go 1.17.8
+- Go 1.15.15
 - Julia 1.7.2
 - Kotlin 1.6.10
 - LLVM 13.0.1
@@ -157,10 +157,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.15.15 | x64          | GOROOT_1_15_X64      |
-| 1.16.15 | x64          | GOROOT_1_16_X64      |
-| 1.17.8 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.0  | x64          | GOROOT_1_18_X64      |
+| 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
+| 1.16.14 | x64          | GOROOT_1_16_X64      |
+| 1.17.7  | x64          | GOROOT_1_17_X64      |
 
 #### Node
 | Version | Architecture |
