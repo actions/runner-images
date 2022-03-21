@@ -156,8 +156,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.15.15 | x64          | GOROOT_1_15_X64      |
-| 1.16.14 (Default) | x64          | GOROOT_1_16_X64      |
-| 1.17.7  | x64          | GOROOT_1_17_X64      |
+| 1.16.15 | x64          | GOROOT_1_16_X64      |
+| 1.17.8 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.18.0  | x64          | GOROOT_1_18_X64      |
 
 #### Node
 | Version | Architecture |
