@@ -27,13 +27,13 @@ def kcpassword(passwd):
             passwd[j] = passwd[j] ^ key[ki]
             ki += 1
 
-    passwd = [chr(x) for x in passwd]
-    return "".join(passwd)
+    return bytearray(passwd)
 
 if __name__ == "__main__":
     passwd = kcpassword(sys.argv[1])
     fd = os.open('/etc/kcpassword', os.O_WRONLY | os.O_CREAT, 0o600)
-    file = os.fdopen(fd, 'w')
+    file = os.fdopen(fd, 'wb')
+    file.truncate(0)
     file.write(passwd)
     file.close()
 
