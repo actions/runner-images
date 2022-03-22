@@ -543,8 +543,8 @@ function Get-TclTkVersion {
 }
 
 function Get-YqVersion {
-    $yqVersion = Run-Command "yq --version" | Take-Part -Part 3
-    return "YQ $yqVersion"
+    $yqVersion = Run-Command "yq --version"
+    return "$yqVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {
