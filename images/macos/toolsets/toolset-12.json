@@ -119,7 +119,8 @@
             "libxext",
             "libxft",
             "tcl-tk",
-            "r"
+            "r",
+            "yq"
         ],
         "cask_packages": [
             "julia"
