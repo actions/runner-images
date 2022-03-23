@@ -8,7 +8,6 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Install Alibaba Cloud CLI
-
 downloadUrl="https://aliyuncli.alicdn.com/aliyun-cli-linux-latest-amd64.tgz"
 download_with_retries $downloadUrl "/tmp"
 tar xzf /tmp/aliyun-cli-linux-*-amd64.tgz
