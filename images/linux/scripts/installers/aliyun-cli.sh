@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Install Alibaba Cloud CLI
-# added 3rd argument as workaround "v3.0.112"
+# Hardcode the version until 3.0.113 or newer is properly released https://github.com/aliyun/aliyun-cli/issues/414
 downloadUrl=$(get_github_package_download_url "aliyun/aliyun-cli" "contains(\"aliyun-cli-linux\") and endswith(\"amd64.tgz\")" "v3.0.112")
 download_with_retries $downloadUrl "/tmp"
 tar xzf /tmp/aliyun-cli-linux-*-amd64.tgz
