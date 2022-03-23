@@ -542,6 +542,11 @@ function Get-TclTkVersion {
     return "Tcl/Tk $tcltkVersion"
 }
 
+function Get-YqVersion {
+    $yqVersion = Run-Command "yq --version"
+    return "$yqVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{
