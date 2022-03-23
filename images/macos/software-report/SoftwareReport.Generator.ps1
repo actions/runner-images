@@ -122,7 +122,8 @@ $utilitiesList = @(
     (Get-GnuTarVersion),
     (Get-GPGVersion),
     (Get-SwitchAudioOsxVersion),
-    (Get-SoxVersion)
+    (Get-SoxVersion),
+    (Get-YqVersion)
 )
 
 if ($os.IsLessThanMonterey) {
