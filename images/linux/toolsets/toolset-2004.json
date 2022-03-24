@@ -109,6 +109,7 @@
     },
     "powershellModules": [
         {"name": "MarkdownPS"},
+        {"name": "Microsoft.Graph"},
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
     ],

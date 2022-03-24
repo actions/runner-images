@@ -14,12 +14,18 @@ function GetChromiumRevision {
     URL="https://omahaproxy.appspot.com/deps.json?version=${CHROME_VERSION}"
     REVISION=$(curl -s $URL | jq -r '.chromium_base_position')
 
+    # Google chrome 99.0.4844.82 based on the 1060 chromium revision, but there is chromium release with such number, use the previous release for that case
+    # https://github.com/actions/virtual-environments/issues/5256
+    if [ $REVISION -eq "1060" ]; then
+        REVISION="961656"
+    fi
     # Take the first part of the revision variable to search not only for a specific version,
     # but also for similar ones, so that we can get a previous one if the required revision is not found
     FIRST_PART_OF_REVISION=${REVISION:0:${#REVISION}/2}
     FIRST_PART_OF_PREVIOUS_REVISION=$(expr $FIRST_PART_OF_REVISION - 1)
     URL="https://www.googleapis.com/storage/v1/b/chromium-browser-snapshots/o?delimiter=/&prefix=Linux_x64"
-    VERSIONS=$((curl -s $URL/${FIRST_PART_OF_REVISION} | jq -r '.prefixes[]' && curl -s $URL/${FIRST_PART_OF_PREVIOUS_REVISION} | jq -r '.prefixes[]') | cut -d "/" -f 2 | sort --version-sort)
+    # Revision can include a hash instead of a number. Need to filter it out https://github.com/actions/virtual-environments/issues/5256
+    VERSIONS=$((curl -s $URL/${FIRST_PART_OF_REVISION} | jq -r '.prefixes[]' && curl -s $URL/${FIRST_PART_OF_PREVIOUS_REVISION} | jq -r '.prefixes[]') | grep -E "Linux_x64\/[0-9]+\/"| cut -d "/" -f 2 | sort --version-sort)
 
     # If required Chromium revision is not found in the list
     # we should have to decrement the revision number until we find one.
@@ -27,7 +33,7 @@ function GetChromiumRevision {
     # https://www.chromium.org/getting-involved/download-chromium
     RIGHT_REVISION=$(echo $VERSIONS | cut -f 1 -d " ")
     for version in $VERSIONS; do
-        if [ $REVISION -lt  $version ]; then
+        if [ $REVISION -lt $version ]; then
             echo $RIGHT_REVISION
             return
         fi
