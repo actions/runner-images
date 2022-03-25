@@ -111,6 +111,7 @@
     },
     "powershellModules": [
         {"name": "MarkdownPS"},
+        {"name": "Microsoft.Graph"},
         {"name": "Pester"}
     ],
     "azureModules": [
