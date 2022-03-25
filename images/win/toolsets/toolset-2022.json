@@ -305,7 +305,6 @@
             { "name": "Bicep" },
             { "name": "innosetup" },
             { "name": "jq" },
-            { "name": "llvm" },
             { "name": "NuGet.CommandLine" },
             {
                 "name": "openssl.light",
@@ -338,6 +337,9 @@
     },
     "nsis": {
         "version": "3.08"
+    },
+    "llvm": {
+        "version": "13"
     },
     "php": {
         "version": "8.1"
