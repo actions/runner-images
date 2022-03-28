@@ -181,3 +181,9 @@ Describe "sbt" {
         "sbt -version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "yq" {
+    It "yq" {
+        "yq --version" | Should -ReturnZeroExitCode
+    }
+}

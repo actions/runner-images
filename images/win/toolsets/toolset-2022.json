@@ -65,7 +65,8 @@
             "versions": [
                 "1.15.*",
                 "1.16.*",
-                "1.17.*"
+                "1.17.*",
+                "1.18.*"
             ],
             "default": "1.16.*"
         }
@@ -211,6 +212,7 @@
             "Microsoft.VisualStudio.Component.VC.Modules.x86.x64",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64EC",
+            "Microsoft.VisualStudio.Component.VC.Redist.MSM",
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64",
             "Microsoft.VisualStudio.Component.VC.v141.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.v141.ARM.Spectre",
@@ -304,7 +306,6 @@
             { "name": "Bicep" },
             { "name": "innosetup" },
             { "name": "jq" },
-            { "name": "llvm" },
             { "name": "NuGet.CommandLine" },
             {
                 "name": "openssl.light",
@@ -337,6 +338,9 @@
     },
     "nsis": {
         "version": "3.08"
+    },
+    "llvm": {
+        "version": "13"
     },
     "php": {
         "version": "8.1"
