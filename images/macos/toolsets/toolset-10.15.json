@@ -228,7 +228,8 @@
             "zlib",
             "libxext",
             "libxft",
-            "tcl-tk"
+            "tcl-tk",
+            "yq"
         ],
         "cask_packages": [
             "julia",
@@ -291,7 +292,8 @@
             "versions": [
                 "1.15.*",
                 "1.16.*",
-                "1.17.*"
+                "1.17.*",
+                "1.18.*"
             ]
         },
         {
