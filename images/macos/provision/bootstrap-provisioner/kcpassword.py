@@ -18,7 +18,9 @@ def kcpassword(passwd):
     passwd = [ord(x) for x in list(passwd)]
     # pad passwd length out to an even multiple of key length
     r = len(passwd) % key_len
-    if (r > 0):
+    if len(passwd) == 11:
+        passwd += [0]
+    elif (r > 0):
         passwd = passwd + [0] * (key_len - r)
 
     for n in range(0, len(passwd), len(key)):

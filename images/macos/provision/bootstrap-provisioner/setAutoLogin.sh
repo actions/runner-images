@@ -25,7 +25,9 @@ function kcpasswordEncode {
     #get padding by subtraction if under 11
     local r=$(( ${#thisStringHex_array[@]} % 11 ))
     local padding=0
-    if [ $r -gt 0 ]; then
+    if [ ${#thisStringHex_array[@]} -eq 11 ];
+        local padding=1
+    elif [ $r -gt 0 ]; then
         local padding=$(( 11 - $r ))
     fi
 
