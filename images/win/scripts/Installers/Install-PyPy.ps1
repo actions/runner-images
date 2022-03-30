@@ -52,6 +52,14 @@ function Install-PyPy
             cmd.exe /c "cd /d $pypyArchPath && mklink python.exe $pypyName && python.exe -m ensurepip && python.exe -m pip install --upgrade pip"
         }
 
+        # Create pip.exe if missing
+        $pipPath = Join-Path -Path $pypyArchPath -ChildPath "Scripts/pip.exe"
+        if (-not (Test-Path $pipPath))
+        {
+            $pip3Path = Join-Path -Path $pypyArchPath -ChildPath "Scripts/pip3.exe"
+            Copy-Item -Path $pip3Path -Destination $pipPath 
+        }
+
         if ($LASTEXITCODE -ne 0)
         {
             Throw "Error happened during PyPy installation"
