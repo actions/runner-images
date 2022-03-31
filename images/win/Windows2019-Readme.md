@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [[All OSs] Go versions less than 1.16 will be removed on April, 11](https://github.com/actions/virtual-environments/issues/5280) |
 | [windows-latest workflows will use Windows Server 2022](https://github.com/actions/virtual-environments/issues/4856) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2686
-- Image Version: 20220316.1
+- Image Version: 20220330.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -16,15 +17,15 @@
 - Julia 1.7.2
 - Kotlin 1.6.10
 - LLVM 13.0.1
-- Node 16.14.1
+- Node 16.14.2
 - Perl 5.32.1
 - PHP 8.1.4
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 0.12.1
-- Composer 2.2.9
+- Chocolatey 1.1.0
+- Composer 2.3.2
 - Helm 3.8.0
 - Miniconda 4.11.0 (pre-installed on the image but not added to PATH)
 - NPM 8.5.0
@@ -32,8 +33,8 @@
 - pip 22.0.4 (python 3.7)
 - Pipx 1.0.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<6b6f5a82d>)
-- Yarn 1.22.17
+- Vcpkg (build from master \<9d9a6f486>)
+- Yarn 1.22.18
 
 #### Environment variables
 | Name                    | Value        |
@@ -51,31 +52,31 @@
 - 7zip 21.07
 - aria2 1.36.0
 - azcopy 10.14.1
-- Bazel 5.0.0
+- Bazel 5.1.0
 - Bazelisk 1.11.0
 - Bicep 0.4.1318
 - Cabal 3.6.2.0
-- CMake 3.22.3
-- CodeQL Action Bundle 2.8.3
+- CMake 3.23.0
+- CodeQL Action Bundle 2.8.4
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - Docker-wincred 0.6.4
 - ghc 9.2.2
 - Git 2.35.1.windows.2
 - Git LFS 3.0.2
-- Google Cloud SDK 377.0.0
+- Google Cloud SDK 379.0.0
 - InnoSetup 6.2.0
 - jq 1.6
 - Kind 0.12.0
-- Kubectl 1.23.4
+- Kubectl 1.23.5
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.2
 - NSIS v3.08
 - OpenSSL 1.1.1
-- Packer 1.7.10
-- Parcel 2.3.2
-- Pulumi v3.26.1
+- Packer 1.8.0
+- Parcel 2.4.0
+- Pulumi v3.27.0
 - R 4.1.3
 - Service Fabric SDK 8.2.1571.9590
 - Stack 2.7.5
@@ -88,14 +89,14 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.112
-- AWS CLI 2.4.25
-- AWS SAM CLI 1.40.1
+- Alibaba Cloud CLI 3.0.114
+- AWS CLI 2.5.0
+- AWS SAM CLI 1.43.0
 - AWS Session Manager CLI 1.2.295.0
 - Azure CLI 2.34.1
-- Azure DevOps CLI extension 0.23.0
+- Azure DevOps CLI extension 0.25.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.6.0
+- GitHub CLI 2.7.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -108,16 +109,16 @@
 - bindgen 0.59.2
 - cargo-audit 0.16.0
 - cargo-outdated 0.11.0
-- cbindgen 0.20.0
+- cbindgen 0.21.0
 - Clippy 0.1.59
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 99.0.4844.74
-- Chrome Driver 99.0.4844.51
-- Microsoft Edge 99.0.1150.39
-- Microsoft Edge Driver 99.0.1150.39
-- Mozilla Firefox 98.0.1
+- Google Chrome 100.0.4896.60
+- Chrome Driver 100.0.4896.60
+- Microsoft Edge 99.0.1150.55
+- Microsoft Edge Driver 99.0.1150.55
+- Mozilla Firefox 98.0.2
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 - Selenium server 4.1.0
@@ -165,13 +166,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
 | 1.17.8  | x64          | GOROOT_1_17_X64      |
+| 1.18.0  | x64          | GOROOT_1_18_X64      |
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
-| 12.22.10 | x64          |
-| 14.19.0 | x64          |
-| 16.14.0 | x64          |
+| 12.22.11 | x64          |
+| 14.19.1 | x64          |
+| 16.14.2 | x64          |
 
 #### Python
 | Version | Architecture |
@@ -180,8 +182,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.10  | x64, x86     |
-| 3.10.2  | x64, x86     |
+| 3.9.12  | x64, x86     |
+| 3.10.4  | x64, x86     |
 
 #### Ruby
 | Version | Architecture |
@@ -195,11 +197,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### PyPy
 | Python Version | PyPy Version |
 | -------------- | ------------ |
-| 2.7.18         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
+| 2.7.18         | PyPy 7.3.9 with MSC v.1929 64 bit (AMD64) |
 | 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
-| 3.7.12         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
-| 3.8.12         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
-| 3.9.10         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
+| 3.7.13         | PyPy 7.3.9 with MSC v.1929 64 bit (AMD64) |
+| 3.8.12         | PyPy 7.3.9 with MSC v.1929 64 bit (AMD64) |
+| 3.9.10         | PyPy 7.3.9 with MSC v.1929 64 bit (AMD64) |
 
 ### Databases
 #### PostgreSQL
@@ -526,7 +528,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.4.255+06fb9182bf
 
 ### PowerShell Tools
-- PowerShell 7.2.1
+- PowerShell 7.2.2
 
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                                        | Path                           |
@@ -543,7 +545,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.44           |
+| AWSPowerShell      | 4.1.53           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.3            |
@@ -560,7 +562,7 @@ All other versions are saved but not installed.
 | Android Command Line Tools | 4.0                                                                                                                                                                                                                                                                                                              |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0        |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
-| Android SDK Platform-Tools | 33.0.0                                                                                                                                                                                                                                                                                                           |
+| Android SDK Platform-Tools | 33.0.1                                                                                                                                                                                                                                                                                                           |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                           |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                           |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                                                                 |
