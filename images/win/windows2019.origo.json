@@ -241,27 +241,27 @@
                 "{{ template_dir }}/scripts/Installers/Wait-WindowsUpdatesForInstall.ps1"
             ]
         },
-        {
-            "type": "powershell",
-            "inline": [
-                "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
-            ],
-            "environment_vars": [
-                "IMAGE_VERSION={{user `image_version`}}"
-            ]
-        },
-        {
-            "type": "powershell",
-            "inline": [
-                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\InstalledSoftware.md not found' }"
-            ]
-        },
-        {
-            "type": "file",
-            "source": "C:\\InstalledSoftware.md",
-            "destination": "{{ template_dir }}/Windows2019-Readme.md",
-            "direction": "download"
-        },
+        // {
+        //     "type": "powershell",
+        //     "inline": [
+        //         "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
+        //     ],
+        //     "environment_vars": [
+        //         "IMAGE_VERSION={{user `image_version`}}"
+        //     ]
+        // },
+        // {
+        //     "type": "powershell",
+        //     "inline": [
+        //         "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\InstalledSoftware.md not found' }"
+        //     ]
+        // },
+        // {
+        //     "type": "file",
+        //     "source": "C:\\InstalledSoftware.md",
+        //     "destination": "{{ template_dir }}/Windows2019-Readme.md",
+        //     "direction": "download"
+        // },
         {
             "type": "powershell",
             "skip_clean": true,
