@@ -21,7 +21,7 @@ Describe "PHP" {
     }
 
     It "Composer 2.2.9 on Ubuntu Server 18" -Skip:(-not (Test-IsUbuntu18)) {
-        "composer --version" | Should -Match "2.2.9"
+        composer --version | Should -Match "2.2.9"
     }
 
     It "Pear" {
