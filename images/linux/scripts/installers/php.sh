@@ -105,7 +105,6 @@ fi
 sudo mv composer.phar /usr/bin/composer
 php -r "unlink('composer-setup.php');"
 
-
 # Add composer bin folder to path
 prependEtcEnvironmentPath '$HOME/.config/composer/vendor/bin'
 
