@@ -236,8 +236,7 @@ function Get-PHPVersions {
 }
 
 function Get-ComposerVersion {
-    $(composer --version) -match "Composer version (?<version>\d+\.\d+\.\d+)\s" | Out-Null
-    return $Matches.version
+    composer --version | Take-OutputPart -Part 0,1
 }
 
 function Get-PHPUnitVersion {
