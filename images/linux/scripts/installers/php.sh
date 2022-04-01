@@ -96,7 +96,12 @@ apt-get install -y --no-install-recommends snmp
 # Install composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === file_get_contents('https://composer.github.io/installer.sig')) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
+# Composer 2.3 increased the required PHP version to >=7.2.5 and thus stop supporting PHP 5.3.2 - 7.2.4
+if isUbuntu18; then
+    php composer-setup.php --version=2.2.9
+else
+    php composer-setup.php
+fi
 sudo mv composer.phar /usr/bin/composer
 php -r "unlink('composer-setup.php');"
 

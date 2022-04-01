@@ -236,8 +236,14 @@ function Get-PHPVersions {
 }
 
 function Get-ComposerVersion {
-    $(composer --version) -match "Composer version (?<version>\d+\.\d+\.\d+)\s" | Out-Null
-    return $Matches.version
+    $rawVersion = composer --version
+    if (Test-IsUbuntu18) {
+        $rawVersion -match "Composer version (?<version>\d+\.\d+\.\d+)\s" | Out-Null
+        $composerVersion = $Matches.version
+    } else {
+        $composerVersion = $rawVersion | Take-OutputPart -Part 1
+    }
+    return $composerVersion
 }
 
 function Get-PHPUnitVersion {
