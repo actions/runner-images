@@ -36,11 +36,4 @@ Describe "MySQL" {
         "sudo mysql -vvv -e 'DROP DATABASE smoke_test' -uroot -proot" | Should -ReturnZeroExitCode
         "sudo systemctl stop mysql" | Should -ReturnZeroExitCode
     }
-
-    It "MySQL sysVinit script works" {
-        sudo /etc/init.d/mysql start | Out-Null
-        systemctl is-active mysql | Should -Be "active"
-        sudo /etc/init.d/mysql stop | Out-Null
-        systemctl is-active mysql | Should -Be "inactive"
-    }
 }
