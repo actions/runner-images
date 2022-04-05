@@ -22,7 +22,6 @@
         "agent_tools_directory": "C:\\hostedtoolcache\\windows",
         "install_user": "installer",
         "install_password": null,
-        "capture_name_prefix": "packer",
         "image_os": "win19"
     },
     "sensitive-variables": [
@@ -47,13 +46,18 @@
             "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
             "managed_image_name": "origoimages",
             "managed_image_resource_group_name": "{{user `resource_group`}}",
+            
+            "gallery_resource_group": "{{env `gallery_resource_group`}}",
+            "gallery_name": "{{env `gallery_name`}}",
+            "gallery_image_name": "{{env `gallery_image_name`}}",
+            "gallery_image_version": "{{env `gallery_image_version`}}",
+
             "virtual_network_name": "{{user `virtual_network_name`}}",
             "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",
             "virtual_network_subnet_name": "{{user `virtual_network_subnet_name`}}",
             "private_virtual_network_with_public_ip": "{{user `private_virtual_network_with_public_ip`}}",
             "allowed_inbound_ip_addresses": "{{user `allowed_inbound_ip_addresses`}}",
             "os_type": "Windows",
-            "image_url": "https://hldevopspacker.blob.core.windows.net/system/Microsoft.Compute/Images/images/61433-osDisk.2742fa2c-dac2-45cb-83c8-55f5923e4a9c.vhd",
             "communicator": "winrm",
             "winrm_use_ssl": "true",
             "winrm_insecure": "true",

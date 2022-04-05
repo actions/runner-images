@@ -53,6 +53,8 @@
             "allowed_inbound_ip_addresses": "{{user `allowed_inbound_ip_addresses`}}",
             "os_type": "Windows",
             "image_url": "https://hldevopspacker.blob.core.windows.net/system/Microsoft.Compute/Images/images/61433-osDisk.2742fa2c-dac2-45cb-83c8-55f5923e4a9c.vhd",
+            "custom_managed_image_name": "origotemplate",
+            "custom_managed_image_resource_group_name": "{{user `build_resource_group_name`}}",
             "communicator": "winrm",
             "winrm_use_ssl": "true",
             "winrm_insecure": "true",
