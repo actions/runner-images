@@ -19,6 +19,9 @@ Add-DefaultPathItem "%USERPROFILE%\.cargo\bin"
 # Add Rust binaries to the path
 $env:Path += ";$env:CARGO_HOME\bin"
 
+# Add i686 target for building 32-bit binaries
+rustup target add i686-pc-windows-msvc
+
 # Install common tools
 rustup component add rustfmt clippy
 cargo install --locked bindgen cbindgen cargo-audit cargo-outdated

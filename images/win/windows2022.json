@@ -255,7 +255,8 @@
                 "{{ template_dir }}/scripts/Installers/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-GDIProcessHandleQuota.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1",
-                "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1"
+                "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-LLVM.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
@@ -317,7 +318,7 @@
             "type": "powershell",
             "inline": [
                 "if( Test-Path $Env:SystemRoot\\System32\\Sysprep\\unattend.xml ){ rm $Env:SystemRoot\\System32\\Sysprep\\unattend.xml -Force}",
-                "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
+                "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /mode:vm /quiet /quit",
                 "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }"
             ]
         }

@@ -236,12 +236,12 @@ $markdown += New-MDList -Lines $tools -Style Unordered
 
 $markdown += New-MDHeader "Databases" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-PostgreSqlVersion),
     (Get-MongoDbVersion),
     (Get-SqliteVersion)
     ) | Sort-Object
 )
 
+$markdown += Build-PostgreSqlSection
 $markdown += Build-MySQLSection
 $markdown += Build-MSSQLToolsSection
 

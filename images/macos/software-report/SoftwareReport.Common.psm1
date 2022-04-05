@@ -266,8 +266,8 @@ function Get-CurlVersion {
 }
 
 function Get-GitVersion {
-    $gitVersion = Run-Command "git --version" | Take-Part -Part 2
-    return "Git: $gitVersion"
+    $gitVersion = Run-Command "git --version" | Take-Part -Part -1
+    return "Git $gitVersion"
 }
 
 function Get-GitLFSVersion {
@@ -422,6 +422,11 @@ function Get-AzureCLIVersion {
     return "Azure CLI $azureCLIVersion"
 }
 
+function Get-AzureDevopsVersion {
+    $azdevopsVersion = (az version | ConvertFrom-Json).extensions.'azure-devops'
+    return "Azure CLI (azure-devops) $azdevopsVersion"
+}
+
 function Get-AWSCLIVersion {
     $awsVersion = Run-Command "aws --version" | Take-Part -Part 0 | Take-Part -Delimiter "/" -Part 1
     return "AWS CLI $awsVersion"
@@ -530,6 +535,16 @@ function Get-LibXftVersion {
 function Get-LibXextVersion {
     $libXextVersion = (brew info libxext)[0] | Take-Part -Part 2
     return "libXext $libXextVersion"
+}
+
+function Get-TclTkVersion {
+    $tcltkVersion = (brew info tcl-tk)[0] | Take-Part -Part 2
+    return "Tcl/Tk $tcltkVersion"
+}
+
+function Get-YqVersion {
+    $yqVersion = Run-Command "yq --version"
+    return "$yqVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {

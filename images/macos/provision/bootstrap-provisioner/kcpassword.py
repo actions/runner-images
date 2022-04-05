@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Port of Gavin Brock's Perl kcpassword generator to Python, by Tom Taylor
 # <tom@tomtaylor.co.uk>.
@@ -18,7 +18,9 @@ def kcpassword(passwd):
     passwd = [ord(x) for x in list(passwd)]
     # pad passwd length out to an even multiple of key length
     r = len(passwd) % key_len
-    if (r > 0):
+    if len(passwd) == 11:
+        passwd += [0]
+    elif (r > 0):
         passwd = passwd + [0] * (key_len - r)
 
     for n in range(0, len(passwd), len(key)):
@@ -27,13 +29,13 @@ def kcpassword(passwd):
             passwd[j] = passwd[j] ^ key[ki]
             ki += 1
 
-    passwd = [chr(x) for x in passwd]
-    return "".join(passwd)
+    return bytearray(passwd)
 
 if __name__ == "__main__":
     passwd = kcpassword(sys.argv[1])
     fd = os.open('/etc/kcpassword', os.O_WRONLY | os.O_CREAT, 0o600)
-    file = os.fdopen(fd, 'w')
+    file = os.fdopen(fd, 'wb')
+    file.truncate(0)
     file.write(passwd)
     file.close()
 

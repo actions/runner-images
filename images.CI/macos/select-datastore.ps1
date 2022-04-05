@@ -36,7 +36,9 @@ param(
     [ValidateNotNullOrEmpty()]
     [string]$VIPassword,
 
-    [string]$TagCategory = "Busy"
+    [string]$TagCategory = "Busy",
+
+    [string]$Cluster
 )
 
 # Import helpers module
@@ -47,6 +49,7 @@ function Select-DataStore {
         [string]$VMName,
         [string]$TagCategory,
         [string]$TemplateDatastore = "ds-local-Datastore-*",
+        [string]$Cluster,
         [int]$ThresholdInGb = 400,
         [int]$VMCount = 2,
         [int]$Retries = 5
@@ -57,8 +60,9 @@ function Select-DataStore {
     # 3. Choose a datastore with the minimal VM count < 2
 
     Write-Host "Start Datastore selection process..."
-    $allDatastores = Get-Datastore -Name $templateDatastore | Where-Object { $_.State -eq "Available" }
-    $availableDatastores = $allDatastores `
+    $clusterHosts = Get-Cluster -Name $Cluster | Get-VMHost
+    $availableClusterDatastores = $clusterHosts | Get-Datastore -Name $TemplateDatastore | Where-Object -Property State -eq "Available"
+    $availableDatastores = $availableClusterDatastores `
     | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } `
     | Where-Object {
         $vmOnDatastore = @((Get-ChildItem -Path $_.DatastoreBrowserPath).Name -notmatch "^\.").Count
@@ -101,11 +105,11 @@ function Select-DataStore {
     }
 
     Write-Host "Datastore select failed, $retries left"
-    Select-DataStore -VMName $VMName -TagCategory $TagCategory -Retries $retries
+    Select-DataStore -VMName $VMName -Cluster $Cluster -TagCategory $TagCategory -Retries $retries
 }
 
 # Connection to a vCenter Server system
 Connect-VCServer -VIServer $VIServer -VIUserName $VIUserName -VIPassword $VIPassword
 
 # Get a target datastore for current deployment
-Select-DataStore -VMName $VMName -TagCategory $TagCategory
+Select-DataStore -VMName $VMName -Cluster $Cluster -TagCategory $TagCategory

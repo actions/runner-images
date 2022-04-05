@@ -55,7 +55,8 @@ jobs:
       arguments: -VMName "$(VirtualMachineName)" `
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
-                 -VIPassword "$(vcenter-password-v2)"
+                 -VIPassword '$(vcenter-password-v2)' `
+                 -Cluster "$(esxi-cluster-v2)"
 
   - pwsh: |
       $SensitiveData = @(
@@ -66,13 +67,14 @@ jobs:
       packer build -on-error=abort `
         -var="vcenter_server=$(vcenter-server-v2)" `
         -var="vcenter_username=$(vcenter-username-v2)" `
-        -var="vcenter_password=$(vcenter-password-v2)" `
+        -var='vcenter_password=$(vcenter-password-v2)' `
         -var="vcenter_datacenter=$(vcenter-datacenter-v2)" `
         -var="cluster_or_esxi_host=$(esxi-cluster-v2)" `
         -var="esxi_datastore=$(buildDatastore)" `
         -var="output_folder=$(output-folder)" `
         -var="vm_username=$(vm-username)" `
         -var="vm_password=$(vm-password)" `
+        -var="github_api_pat=$(github_api_pat)" `
         -var="build_id=$(VirtualMachineName)" `
         -var="baseimage_name=${{ parameters.base_image_name }}" `
         -var="xcode_install_user=$(xcode-installation-user)" `
@@ -130,7 +132,7 @@ jobs:
                  -TargetDataStore "${{ parameters.target_datastore }}" `
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
-                 -VIPassword "$(vcenter-password-v2)"
+                 -VIPassword '$(vcenter-password-v2)' `
                  -CpuCount "$(cpu-count)" `
                  -CoresPerSocketCount "$(cores-per-socket-count)" `
                  -Memory "$(memory)"
@@ -144,4 +146,4 @@ jobs:
       arguments: -VMName "$(VirtualMachineName)" `
                  -VIServer "$(vcenter-server-v2)" `
                  -VIUserName "$(vcenter-username-v2)" `
-                 -VIPassword "$(vcenter-password-v2)"
+                 -VIPassword '$(vcenter-password-v2)'

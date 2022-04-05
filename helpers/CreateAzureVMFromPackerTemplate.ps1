@@ -72,5 +72,5 @@ Function CreateAzureVMFromPackerTemplate {
     Write-Host "`nCreating the VM"
     az group deployment create -g $ResourceGroupName -n $VirtualMachineName --subscription $subscriptionId --template-file $templateFilePath --parameters vmSize=$vmSize vmName=$VirtualMachineName adminUserName=$AdminUsername adminPassword=$AdminPassword networkInterfaceId=$networkId
     
-    Write-Host "`nCreated in $(ResourceGroupName):`n  vnet $(vnetName)`n  subnet $(subnetName)`n  nic $(nicName)`n  publicip $(publicIpName)`n  vm $(VirtualMachineName)"
+    Write-Host "`nCreated in ${ResourceGroupName}:`n  vnet ${vnetName}`n  subnet ${subnetName}`n  nic ${nicName}`n  publicip ${publicIpName}`n  vm ${VirtualMachineName}"
 }
