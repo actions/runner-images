@@ -44,7 +44,7 @@
             
             "shared_image_gallery": {
                 "subscription": "{{user `subscription_id`}}",
-                 "resource_group": "{{user `build_resource_group_name`}}",
+                 "resource_group": "DevOps-PackerResources",
                  "gallery_name": "origoimages",
                  "image_name": "2019base",
                  "image_version": "1.0.0"
@@ -54,7 +54,7 @@
          "managed_image_resource_group_name": "{{user `resource_group`}}",
 
            "shared_image_gallery_destination": {
-              "resource_group": "{{user `build_resource_group_name`}}",
+              "resource_group": "DevOps-PackerResources",
               "gallery_name": "origoimages",
               "image_name": "2019base",
               "image_version": "1.0.1",
