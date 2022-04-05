@@ -44,14 +44,22 @@
             "storage_account": "{{user `storage_account`}}",
             "build_resource_group_name": "{{user `build_resource_group_name`}}",
             "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
-            "managed_image_name": "origoimages",
-            "managed_image_resource_group_name": "{{user `resource_group`}}",
-            
-            "gallery_resource_group": "{{env `gallery_resource_group`}}",
-            "gallery_name": "{{env `gallery_name`}}",
-            "gallery_image_name": "{{env `gallery_image_name`}}",
-            "gallery_image_version": "{{env `gallery_image_version`}}",
 
+            "shared_image_gallery": {
+                "subscription": "{{user `subscription_id`}}",
+                 "resource_group": "{{user `build_resource_group_name`}}",
+                 "gallery_name": "origoimages",
+                 "image_name": "2019base",
+                 "image_version": "1.0.0"
+         },
+         
+           "shared_image_gallery_destination": {
+              "resource_group": "{{user `build_resource_group_name`}}",
+              "gallery_name": "origoimages",
+              "image_name": "2019base",
+              "image_version": "1.0.1",
+              "replication_regions": ["{{user `location`}}"]
+         },
             "virtual_network_name": "{{user `virtual_network_name`}}",
             "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",
             "virtual_network_subnet_name": "{{user `virtual_network_subnet_name`}}",
