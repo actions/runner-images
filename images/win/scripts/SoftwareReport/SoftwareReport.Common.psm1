@@ -158,7 +158,7 @@ function Get-CondaVersion {
 }
 
 function Get-ComposerVersion {
-    composer --version | Take-Part -Part 0,1
+    composer --version | Take-Part -Part 0,2
 }
 
 function Get-NugetVersion {

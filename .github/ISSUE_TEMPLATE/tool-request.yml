@@ -55,7 +55,7 @@ body:
         - label: Ubuntu 20.04
         - label: macOS 10.15
         - label: macOS 11
-        - label: Windows Server 2016
+        - label: macOS 12
         - label: Windows Server 2019
         - label: Windows Server 2022
     validations:
