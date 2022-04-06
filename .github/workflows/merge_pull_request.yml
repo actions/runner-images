@@ -11,8 +11,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      with: sudo 
+        fetch-depth: true 
 
     - name: Resolve possible conflicts ${{ github.event.client_payload.ReleaseBranchName }} with main
       run: |
@@ -25,7 +25,7 @@ jobs:
 
     - name: Approve pull request by GitHub-Actions bot
       uses: actions/github-script@v2
-      with:
+      with: sudo
         github-token: ${{secrets.PRAPPROVAL_SECRET}}
         script: |
           github.pulls.createReview({
@@ -50,7 +50,7 @@ jobs:
     - name: Delete docs branch ${{ github.event.client_payload.ReleaseBranchName }}-docs
       uses: actions/github-script@v2
       with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
+        github-token: ${{secrets.GITHUB_TOKEN}} {{
         script: |
           github.git.deleteRef({
             owner: context.repo.owner,
