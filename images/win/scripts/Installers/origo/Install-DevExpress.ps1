@@ -2,6 +2,12 @@
 ##  File:  Install-DevExpress.ps1
 ##  Desc:  Installs DevExpress
 ################################################################################
+$installerVersion = $env:DEVEXPRESS_VERSION
+$installerAccountName = $env:INSTALLER_ACCOUNT_NAME
+$installerContainerName = $env:INSTALLER_CONTAINER_NAME
+$installerSASToken = $env:INSTALLER_SAS_TOKEN
+$devexpressUser = $env:DEVEXPRESS_USER
+$devexpressPass = $env:DEVEXPRESS_PASS
 
 function Install-DevExpressVersion
 {
@@ -129,3 +135,19 @@ function Install-DevExpressVersion
       -Name "${fileName}.exe" `
       -ArgumentList $ArgumentList
 }
+
+"Installer storage account"
+"  Account name: ${installerAccountName}"
+"  Container name: ${installerContainerName}"
+"  SAS token: ${installerSASToken}"
+"DevExpress"
+"Installer version: ${installerVersion}"
+"  DevExpress user: ${devexpressUser}"
+
+Install-DevExpressVersion `
+    -installerVersion $installerVersion `
+    -installerAccountName $installerAccountName `
+    -installerContainerName $installerContainerName `
+    -installerSASToken $installerSASToken  `
+    -devexpressUser $devexpressUser  `
+    -devexpressPass $devexpressPass 

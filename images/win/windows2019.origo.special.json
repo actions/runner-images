@@ -139,6 +139,22 @@
         },
         {
             "type": "powershell",
+            "environment_vars": [
+                "INSTALLER_ACCOUNT_NAME={{user `installer_account_name`}}",
+                "INSTALLER_CONTAINER_NAME={{user `installer_container_name`}}",
+                "INSTALLER_SAS_TOKEN={{user `installer_sas_token`}}",
+                "DEVEXPRESS_VERSION={{user `devexpress_version`}}",
+                "DEVEXPRESS_USER={{user `devexpress_user`}}",
+                "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
+            ],
+            "scripts": [
+                "{{ template_dir }}/scripts/Installers/origo/Install-DevExpress.ps1"
+            ],
+            "execution_policy": "unrestricted"
+        },
+
+        {
+            "type": "powershell",
             "inline": [
                 "if( Test-Path $Env:SystemRoot\\System32\\Sysprep\\unattend.xml ){ rm $Env:SystemRoot\\System32\\Sysprep\\unattend.xml -Force}",
                 "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
