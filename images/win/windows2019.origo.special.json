@@ -89,8 +89,8 @@
         },
         {
             "type": "file",
-            "source": "{{ template_dir }}/scripts/Installers",
-            "destination": "{{user `devexpress_installfolder`}}"
+            "source": "{{ template_dir }}/scripts/Installers/origo/Install-DevExpress.ps1",
+            "destination": "{{user `devexpress_installfolder`}}\\Install-DevExpress.ps1"
         },
         {
             "type": "windows-shell",
