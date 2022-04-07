@@ -58,7 +58,7 @@
                  "image_version": "1.0.1"
          },
 
-         "managed_image_name": "origoimage2",
+         "managed_image_name": "origoimagedevexpressimage",
          "managed_image_resource_group_name": "{{user `resource_group`}}",
 
            "shared_image_gallery_destination": {
@@ -118,15 +118,18 @@
                 "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
               ],
             "inline": [
-                "if( Test-Path {{user `devexpress_installfolder`}}/Install-DevExpress.ps1 ){ Import-Module -Path {{user `devexpress_installfolder`}}/Install-DevExpress.ps1 -Verbose -Force}",
-                "else{Write-Output \"Template_dir not found\"} ",
-                "Get-ChildItem -Path {{user `devexpress_installfolder`}}",
                 "$installerVersion = $env:DEVEXPRESS_VERSION",
                 "$installerAccountName = $env:INSTALLER_ACCOUNT_NAME",
                 "$installerContainerName = $env:INSTALLER_CONTAINER_NAME",
                 "$installerSASToken = $env:INSTALLER_SAS_TOKEN",
                 "$devexpressUser = $env:DEVEXPRESS_USER",
                 "$devexpressPass = $env:DEVEXPRESS_PASS",
+                "Set-Location C:\\devexpress_installfolder\\",
+                ". .\\Install-DevExpress.ps1",
+                "if( (Get-ChildItem -Path Function:\\Install-DevExpressVersion).Name -eq 'Install-DevExpressVersion'){ Write-Output 'SUCESS'}",
+                "else{Write-Output \"Function not found\"} ",
+                "Get-ChildItem -Path {{user `devexpress_installfolder`}}",
+                "Write-Output \"Install-DevExpressVersion -installerVersion $installerVersion -installerAccountName $installerAccountName -installerContainerName $installerContainerName -installerSASToken $installerSASToken -devexpressUser $devexpressUser -devexpressPass $devexpressPass\"",
                 "Write-Output \"Value of parameters TEST:\"",
                 "Write-Output \"The DEVEXPRESS_VERSION:        $Env:DEVEXPRESS_VERSION\"",
                 "Write-Output \"The INSTALLER_ACCOUNT_NAME:    $Env:INSTALLER_ACCOUNT_NAME\"",
