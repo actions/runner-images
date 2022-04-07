@@ -26,6 +26,7 @@
         "installer_account_name": "{{env `INSTALLER_ACCOUNT_NAME`}}",
         "installer_container_name": "{{env `INSTALLER_CONTAINER_NAME`}}",
         "installer_sas_token": "{{env `INSTALLER_SAS_TOKEN`}}",
+        "devexpress_installfolder": "C:\\devexpress_installfolder",
         "devexpress_version": "{{env `DEVEXPRESS_VERSION`}}",
         "devexpress_user": "{{env `DEVEXPRESS_USER`}}",
         "devexpress_pass": "{{env `DEVEXPRESS_PASS`}}"
@@ -81,6 +82,17 @@
     ],
     "provisioners": [
         {
+            "type": "powershell",
+            "inline": [
+                "New-Item -Path {{user `devexpress_installfolder`}} -ItemType Directory -Force"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "{{ template_dir }}/scripts/Installers",
+            "destination": "{{user `devexpress_installfolder`}}"
+        },
+        {
             "type": "windows-shell",
             "inline": [
                 "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y",
@@ -106,8 +118,9 @@
                 "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
               ],
             "inline": [
-                "if( Test-Path {{ template_dir }}/scripts/Installers/Install-DevExpress.ps1 ){ Import-Module -Path {{ template_dir }}/scripts/Installers/Install-DevExpress.ps1 -Verbose -Force}",
+                "if( Test-Path {{user `devexpress_installfolder`}}/Install-DevExpress.ps1 ){ Import-Module -Path {{user `devexpress_installfolder`}}/Install-DevExpress.ps1 -Verbose -Force}",
                 "else{Write-Output \"Template_dir not found\"} ",
+                "Get-ChildItem -Path {{user `devexpress_installfolder`}}",
                 "$installerVersion = $env:DEVEXPRESS_VERSION",
                 "$installerAccountName = $env:INSTALLER_ACCOUNT_NAME",
                 "$installerContainerName = $env:INSTALLER_CONTAINER_NAME",
