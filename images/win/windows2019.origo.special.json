@@ -22,7 +22,14 @@
         "agent_tools_directory": "C:\\hostedtoolcache\\windows",
         "install_user": "installer",
         "install_password": null,
-        "image_os": "win19"
+        "image_os": "win19",
+        "installer_account_name": "{{env `INSTALLER_ACCOUNT_NAME`}}",
+        "installer_container_name": "{{env `INSTALLER_CONTAINER_NAME`}}",
+        "installer_sas_token": "{{env `INSTALLER_SAS_TOKEN`}}",
+        "devexpress_version": "{{env `DEVEXPRESS_VERSION`}}",
+        "devexpress_user": "{{env `DEVEXPRESS_USER`}}",
+        "devexpress_pass": "{{env `DEVEXPRESS_PASS`}}"
+
     },
     "sensitive-variables": [
         "install_password",
@@ -75,12 +82,32 @@
     "provisioners": [
         {
             "type": "powershell",
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/Install-DevExpress.ps1"
-            ],
+            "environment_vars": [
+                "INSTALLER_ACCOUNT_NAME={{user `installer_account_name`}}",
+                "INSTALLER_CONTAINER_NAME={{user `installer_container_name`}}",
+                "INSTALLER_SAS_TOKEN={{user `installer_sas_token`}}",
+                "DEVEXPRESS_VERSION={{user `devexpress_version`}}",
+                "DEVEXPRESS_USER={{user `devexpress_user`}}",
+                "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
+              ],
             "elevated_user": "{{user `install_user`}}",
-            "elevated_password": "{{user `install_password`}}"
-        },
+            "elevated_password": "{{user `install_password`}}",
+            "inline": [
+                "if( Test-Path {{ template_dir }}/scripts/Installers/Install-DevExpress.ps1 ){ Import-Module -Path {{ template_dir }}/scripts/Installers/Install-DevExpress.ps1 -Verbose -Force}",
+                "else{Write-Output \"Template_dir not found\"} ",
+                "$installerVersion = $env:DEVEXPRESS_VERSION",
+                "$installerAccountName = $env:INSTALLER_ACCOUNT_NAME",
+                "$installerContainerName = $env:INSTALLER_CONTAINER_NAME",
+                "$installerSASToken = $env:INSTALLER_SAS_TOKEN",
+                "$devexpressUser = $env:DEVEXPRESS_USER",
+                "$devexpressPass = $env:DEVEXPRESS_PASS",
+                "Write-Output \"Value of parameters TEST:\"",
+                "Write-Output \"The DEVEXPRESS_VERSION:        $Env:DEVEXPRESS_VERSION\"",
+                "Write-Output \"The INSTALLER_ACCOUNT_NAME:    $Env:INSTALLER_ACCOUNT_NAME\"",
+                "Write-Output \"The INSTALLER_CONTAINER_NAME:  $Env:INSTALLER_CONTAINER_NAME\"",
+                "Write-Output \"The DEVEXPRESS_USER:           $devexpressUser\""
+              ]
+            },
         {
             "type": "powershell",
             "inline": [
