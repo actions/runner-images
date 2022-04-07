@@ -130,6 +130,8 @@
     ],
     "apt": {
         "common_packages": [
+            "autoconf",
+            "automake",
             "build-essential",
             "dbus",
             "dnsutils",
@@ -153,6 +155,7 @@
             "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
+            "libtool",
             "libunwind8",
             "libxkbfile-dev",
             "libxss1",
