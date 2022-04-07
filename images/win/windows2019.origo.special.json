@@ -81,6 +81,21 @@
     ],
     "provisioners": [
         {
+            "type": "windows-shell",
+            "inline": [
+                "net user {{user `install_user`}} {{user `install_password`}} /add /passwordchg:no /passwordreq:yes /active:yes /Y",
+                "net localgroup Administrators {{user `install_user`}} /add",
+                "winrm set winrm/config/service/auth @{Basic=\"true\"}",
+                "winrm get winrm/config/service/auth"
+            ]
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "if (-not ((net localgroup Administrators) -contains '{{user `install_user`}}')) { exit 1 }"
+            ]
+        },
+        {
             "type": "powershell",
             "environment_vars": [
                 "INSTALLER_ACCOUNT_NAME={{user `installer_account_name`}}",
@@ -107,7 +122,7 @@
                 "Write-Output \"The INSTALLER_CONTAINER_NAME:  $Env:INSTALLER_CONTAINER_NAME\"",
                 "Write-Output \"The DEVEXPRESS_USER:           $devexpressUser\""
               ]
-            },
+        },
         {
             "type": "powershell",
             "inline": [
