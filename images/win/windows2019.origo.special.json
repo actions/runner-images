@@ -50,7 +50,7 @@
                  "image_version": "1.0.1"
          },
 
-         "managed_image_name": "origoimage",
+         "managed_image_name": "origoimage2",
          "managed_image_resource_group_name": "{{user `resource_group`}}",
 
            "shared_image_gallery_destination": {
