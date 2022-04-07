@@ -47,7 +47,7 @@
                  "resource_group": "DevOps-PackerResources",
                  "gallery_name": "origoimages",
                  "image_name": "2019base",
-                 "image_version": "1.0.0"
+                 "image_version": "1.0.1"
          },
 
          "managed_image_name": "origoimage",
@@ -57,7 +57,7 @@
               "resource_group": "DevOps-PackerResources",
               "gallery_name": "origoimages",
               "image_name": "2019base",
-              "image_version": "1.0.1",
+              "image_version": "1.0.2",
               "replication_regions": ["{{user `location`}}"]
          },
             "virtual_network_name": "{{user `virtual_network_name`}}",
@@ -73,6 +73,14 @@
         }
     ],
     "provisioners": [
+        {
+            "type": "powershell",
+            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-DevExpress.ps1"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
+        },
         {
             "type": "powershell",
             "inline": [
