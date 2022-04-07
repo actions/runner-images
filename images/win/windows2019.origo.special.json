@@ -105,8 +105,6 @@
                 "DEVEXPRESS_USER={{user `devexpress_user`}}",
                 "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
               ],
-            "elevated_user": "{{user `install_user`}}",
-            "elevated_password": "{{user `install_password`}}",
             "inline": [
                 "if( Test-Path {{ template_dir }}/scripts/Installers/Install-DevExpress.ps1 ){ Import-Module -Path {{ template_dir }}/scripts/Installers/Install-DevExpress.ps1 -Verbose -Force}",
                 "else{Write-Output \"Template_dir not found\"} ",
