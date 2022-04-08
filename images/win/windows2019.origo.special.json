@@ -26,7 +26,6 @@
         "installer_account_name": "{{env `INSTALLER_ACCOUNT_NAME`}}",
         "installer_container_name": "{{env `INSTALLER_CONTAINER_NAME`}}",
         "installer_sas_token": "{{env `INSTALLER_SAS_TOKEN`}}",
-        "devexpress_installfolder": "C:\\devexpress_installfolder",
         "devexpress_version": "{{env `DEVEXPRESS_VERSION`}}",
         "devexpress_user": "{{env `DEVEXPRESS_USER`}}",
         "devexpress_pass": "{{env `DEVEXPRESS_PASS`}}"
@@ -60,7 +59,6 @@
 
          "managed_image_name": "origoimagedevexpressimage",
          "managed_image_resource_group_name": "{{user `resource_group`}}",
-
            "shared_image_gallery_destination": {
               "resource_group": "DevOps-PackerResources",
               "gallery_name": "origoimages",
@@ -81,17 +79,6 @@
         }
     ],
     "provisioners": [
-        {
-            "type": "powershell",
-            "inline": [
-                "New-Item -Path {{user `devexpress_installfolder`}} -ItemType Directory -Force"
-            ]
-        },
-        {
-            "type": "file",
-            "source": "{{ template_dir }}/scripts/Installers/origo/Install-DevExpress.ps1",
-            "destination": "{{user `devexpress_installfolder`}}\\Install-DevExpress.ps1"
-        },
         {
             "type": "windows-shell",
             "inline": [
@@ -116,43 +103,12 @@
                 "DEVEXPRESS_VERSION={{user `devexpress_version`}}",
                 "DEVEXPRESS_USER={{user `devexpress_user`}}",
                 "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
-              ],
-            "inline": [
-                "$installerVersion = $env:DEVEXPRESS_VERSION",
-                "$installerAccountName = $env:INSTALLER_ACCOUNT_NAME",
-                "$installerContainerName = $env:INSTALLER_CONTAINER_NAME",
-                "$installerSASToken = $env:INSTALLER_SAS_TOKEN",
-                "$devexpressUser = $env:DEVEXPRESS_USER",
-                "$devexpressPass = $env:DEVEXPRESS_PASS",
-                "Set-Location C:\\devexpress_installfolder\\",
-                ". .\\Install-DevExpress.ps1",
-                "if( (Get-ChildItem -Path Function:\\Install-DevExpressVersion).Name -eq 'Install-DevExpressVersion'){ Write-Output 'SUCESS'}",
-                "else{Write-Output \"Function not found\"} ",
-                "Get-ChildItem -Path {{user `devexpress_installfolder`}}",
-                "Write-Output \"Install-DevExpressVersion -installerVersion $installerVersion -installerAccountName $installerAccountName -installerContainerName $installerContainerName -installerSASToken $installerSASToken -devexpressUser $devexpressUser -devexpressPass $devexpressPass\"",
-                "Write-Output \"Value of parameters TEST:\"",
-                "Write-Output \"The DEVEXPRESS_VERSION:        $Env:DEVEXPRESS_VERSION\"",
-                "Write-Output \"The INSTALLER_ACCOUNT_NAME:    $Env:INSTALLER_ACCOUNT_NAME\"",
-                "Write-Output \"The INSTALLER_CONTAINER_NAME:  $Env:INSTALLER_CONTAINER_NAME\"",
-                "Write-Output \"The DEVEXPRESS_USER:           $devexpressUser\""
-              ]
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "INSTALLER_ACCOUNT_NAME={{user `installer_account_name`}}",
-                "INSTALLER_CONTAINER_NAME={{user `installer_container_name`}}",
-                "INSTALLER_SAS_TOKEN={{user `installer_sas_token`}}",
-                "DEVEXPRESS_VERSION={{user `devexpress_version`}}",
-                "DEVEXPRESS_USER={{user `devexpress_user`}}",
-                "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
             ],
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/origo/Install-DevExpress.ps1"
             ],
             "execution_policy": "unrestricted"
         },
-
         {
             "type": "powershell",
             "inline": [
