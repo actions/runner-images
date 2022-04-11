@@ -1,37 +1,36 @@
 | Announcements |
 |-|
-| [windows-latest workflows will use Windows Server 2022](https://github.com/actions/virtual-environments/issues/4856) |
-| [Windows-2016 environment will be removed on March 15, 2022](https://github.com/actions/virtual-environments/issues/4312) |
+| [[All OSs] Go versions less than 1.16 will be removed and the default will be set to 1.17 on April, 11](https://github.com/actions/virtual-environments/issues/5280) |
 ***
 # Microsoft Windows Server 2016 Datacenter
-- OS Version: 10.0.14393 Build 4946
-- Image Version: 20220306.1
+- OS Version: 10.0.14393 Build 5006
+- Image Version: 20220410.1
 
 ## Installed Software
 ### Language and Runtime
 - Bash 4.4.23(2)-release
-- Go 1.15.15
+- Go 1.17.8
 - Julia 1.7.2
-- Kotlin 1.6.10
+- Kotlin 1.6.20
 - LLVM 13.0.1
-- Node 16.14.0
+- Node 16.14.2
 - Perl 5.32.1
-- PHP 8.1.3
+- PHP 8.1.4
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 0.12.1
-- Composer 2.2.7
+- Chocolatey 1.1.0
+- Composer 2.3.4
 - Helm 3.8.0
 - Miniconda 4.11.0 (pre-installed on the image but not added to PATH)
-- NPM 8.3.1
+- NPM 8.5.0
 - NuGet 6.1.0.106
-- pip 22.0.3 (python 3.7)
+- pip 22.0.4 (python 3.7)
 - Pipx 1.0.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<bd602277b>)
-- Yarn 1.22.17
+- Vcpkg (build from master \<f6af75acc>)
+- Yarn 1.22.18
 
 #### Environment variables
 | Name                    | Value        |
@@ -42,40 +41,40 @@
 ### Project Management
 - Ant 1.10.12
 - Gradle 7.4
-- Maven 3.8.4
+- Maven 3.8.5
 - sbt 1.6.2
 
 ### Tools
 - 7zip 21.07
 - aria2 1.36.0
-- azcopy 10.14.0
-- Bazel 5.0.0
+- azcopy 10.14.1
+- Bazel 5.1.1
 - Bazelisk 1.11.0
-- Bicep 0.4.1272
+- Bicep 0.5.6
 - Cabal 3.6.2.0
-- CMake 3.22.3
-- CodeQL Action Bundle 2.8.1
+- CMake 3.23.0
+- CodeQL Action Bundle 2.8.5
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - Docker-wincred 0.6.4
-- ghc 9.2.1
+- ghc 9.2.2
 - Git 2.35.1.windows.2
 - Git LFS 3.0.2
-- Google Cloud SDK 375.0.0
+- Google Cloud SDK 380.0.0
 - InnoSetup 6.2.0
 - jq 1.6
-- Kind 0.11.1
-- Kubectl 1.23.4
+- Kind 0.12.0
+- Kubectl 1.23.5
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.2
 - NSIS v3.08
 - OpenSSL 1.1.1
-- Packer 1.7.10
-- Parcel 2.3.2
-- Pulumi v3.25.1
-- R 4.1.2
-- Service Fabric SDK 8.2.1486.9590
+- Packer 1.8.0
+- Parcel 2.4.1
+- Pulumi v3.28.0
+- R 4.1.3
+- Service Fabric SDK 8.2.1571.9590
 - Stack 2.7.5
 - Subversion (SVN) 1.14.1
 - Swig 4.0.2
@@ -86,36 +85,36 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.110
-- AWS CLI 2.4.23
-- AWS SAM CLI 1.40.1
-- AWS Session Manager CLI 1.2.295.0
-- Azure CLI 2.34.1
-- Azure DevOps CLI extension 0.23.0
+- Alibaba Cloud CLI 3.0.115
+- AWS CLI 2.5.4
+- AWS SAM CLI 1.46.0
+- AWS Session Manager CLI 1.2.312.0
+- Azure CLI 2.35.0
+- Azure DevOps CLI extension 0.25.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.5.2
+- GitHub CLI 2.7.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.59.0
-- Rust 1.59.0
-- Rustdoc 1.59.0
+- Cargo 1.60.0
+- Rust 1.60.0
+- Rustdoc 1.60.0
 - Rustup 1.24.3
 
 #### Packages
 - bindgen 0.59.2
 - cargo-audit 0.16.0
 - cargo-outdated 0.11.0
-- cbindgen 0.20.0
-- Clippy 0.1.59
+- cbindgen 0.21.0
+- Clippy 0.1.60
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 99.0.4844.51
-- Chrome Driver 99.0.4844.51
-- Microsoft Edge 99.0.1150.30
-- Microsoft Edge Driver 99.0.1150.30
-- Mozilla Firefox 97.0.2
+- Google Chrome 100.0.4896.75
+- Chrome Driver 100.0.4896.60
+- Microsoft Edge 100.0.1185.36
+- Microsoft Edge Driver 100.0.1185.36
+- Mozilla Firefox 99.0
 - Gecko Driver 0.30.0
 - IE Driver 3.150.1.1
 - Selenium server 4.1.0
@@ -156,16 +155,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
-| 1.16.14 | x64          | GOROOT_1_16_X64      |
-| 1.17.7  | x64          | GOROOT_1_17_X64      |
+| 1.16.15 | x64          | GOROOT_1_16_X64      |
+| 1.17.8 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.18.0  | x64          | GOROOT_1_18_X64      |
 
 #### Node
 | Version | Architecture |
 | ------- | ------------ |
-| 12.22.10 | x64          |
-| 14.19.0 | x64          |
-| 16.14.0 | x64          |
+| 12.22.12 | x64          |
+| 14.19.1 | x64          |
+| 16.14.2 | x64          |
 
 #### Python
 | Version | Architecture |
@@ -174,8 +173,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.10  | x64, x86     |
-| 3.10.2  | x64          |
+| 3.9.12  | x64, x86     |
+| 3.10.4  | x64          |
 
 #### Ruby
 | Version | Architecture |
@@ -189,11 +188,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### PyPy
 | Python Version | PyPy Version |
 | -------------- | ------------ |
-| 2.7.18         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
+| 2.7.18         | PyPy 7.3.9 with MSC v.1929 64 bit (AMD64) |
 | 3.6.12         | PyPy 7.3.3 with MSC v.1927 32 bit |
-| 3.7.12         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
-| 3.8.12         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
-| 3.9.10         | PyPy 7.3.8 with MSC v.1929 64 bit (AMD64) |
+| 3.7.13         | PyPy 7.3.9 with MSC v.1929 64 bit (AMD64) |
+| 3.8.12         | PyPy 7.3.9 with MSC v.1929 64 bit (AMD64) |
+| 3.9.10         | PyPy 7.3.9 with MSC v.1929 64 bit (AMD64) |
 
 ### Databases
 #### PostgreSQL
@@ -214,7 +213,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 5.0.6.0 | MongoDB     | Running       | Automatic        |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.5.0
+- Azure CosmosDb Emulator 2.14.6.0
 - DacFx 16.0.5400.1
 - MySQL 5.7.37.0
 - SQLPS 1.0
@@ -222,13 +221,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
-| Apache | 2.4.52  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
+| Apache | 2.4.53  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
 | Nginx  | 1.21.6  | C:\tools\nginx-1.21.6\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2017
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2017 | 15.9.28307.1800 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
+| Visual Studio Enterprise 2017 | 15.9.28307.1831 | C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version          |
@@ -507,20 +506,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 1.1.14 2.1.526 3.1.120 3.1.202 3.1.302 3.1.416 5.0.104 5.0.211 5.0.303 5.0.405
+- 1.1.14 2.1.526 3.1.120 3.1.202 3.1.302 3.1.417 5.0.104 5.0.212 5.0.303 5.0.406
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All`
 - 2.1.30
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 2.1.30 3.1.4 3.1.6 3.1.20 3.1.22 5.0.4 5.0.9 5.0.14
+- 2.1.30 3.1.4 3.1.6 3.1.20 3.1.23 5.0.4 5.0.9 5.0.15
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 1.0.16 1.1.13 2.1.30 3.1.4 3.1.6 3.1.20 3.1.22 5.0.4 5.0.9 5.0.14
+- 1.0.16 1.1.13 2.1.30 3.1.4 3.1.6 3.1.20 3.1.23 5.0.4 5.0.9 5.0.15
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.4 3.1.6 3.1.20 3.1.22 5.0.4 5.0.9 5.0.14
+- 3.1.4 3.1.6 3.1.20 3.1.23 5.0.4 5.0.9 5.0.15
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -531,7 +530,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.4.255+06fb9182bf
 
 ### PowerShell Tools
-- PowerShell 7.2.1
+- PowerShell 7.2.2
 
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                                        | Path                           |
@@ -548,10 +547,10 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.37           |
+| AWSPowerShell      | 4.1.61           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.9.2            |
+| Microsoft.Graph    | 1.9.3            |
 | Pester             | 3.4.0<br>5.3.1   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
@@ -565,7 +564,7 @@ All other versions are saved but not installed.
 | Android Command Line Tools | 4.0                                                                                                                                                                                                                                                                                                              |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0        |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
-| Android SDK Platform-Tools | 33.0.0                                                                                                                                                                                                                                                                                                           |
+| Android SDK Platform-Tools | 33.0.1                                                                                                                                                                                                                                                                                                           |
 | Android SDK Tools          | 25.2.5                                                                                                                                                                                                                                                                                                           |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                           |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                                                                 |
@@ -588,10 +587,10 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:b9e3d42db02f6ea7ac05eb244e5c588076997e92513b88a46b0a0bfd04a5b8e1  | 2022-02-08 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:ca99697a9354bbe9045512201be313167c74e65d6d6d2fe68d60f37629b3becc  | 2022-02-08 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:88439200c6701c2654ea0b5abc61f17df59966b0c27209137da8db4426dcbdec  | 2022-02-16 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2016  | sha256:9310b750d191eae983c329cb3ca3b27fdfd7f79b797a3afded6663269367e4f0  | 2022-03-08 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2016 | sha256:df4a6f3c37233e4e2f14b84da2f3c89ce36be40fb76b5a4810fbe3907fb55f5e  | 2022-03-08 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2016     | sha256:1b3e9aa27979f83f90ce00aed8ef803cf595f036e093c34a8c570291a01466ff  | 2022-03-08 |
 | mcr.microsoft.com/windows/nanoserver:10.0.14393.953                       | sha256:fc60bd5ae0e61b334ce1cf1bcbf20c10c36b4c5482a01da319c9c989f9e6e268  | 2017-03-08 |
-| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:fad7ed8aa70fd6748bc814dc872a431c34136bdded9476386a5ff2e73d6ba9f0  | 2022-02-02 |
+| mcr.microsoft.com/windows/servercore:ltsc2016                             | sha256:aebdaff25c87f401085d667bec0b2e3211cd857eed1d02066062f69b2350c5eb  | 2022-03-05 |
 
 
