@@ -125,8 +125,8 @@ function Install-DevExpressVersion
         }
     }
 
-    $fileName = "DevExpressComponentsBundleSetup-${installerVersion}"
-
+    $fileName = "DevExpressComponentsBundle-${installerVersion}"
+    Write-Output "FileName is $fileName"
     # https://docs.devexpress.com/GeneralInformation/15656/installation/install-devexpress-net-products/silent-install-mode
     #$sasToken = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($installerSASToken))
     $ArgumentList = "/Q", "/EMAIL:${devexpressUser}", "/PASSWORD:${devexpressPass}", "/EULA:accept", "`"Windows Forms:True`"","`"WPF Components:True`"","`"XtraReports:True`"","`"ASP.NET:True`""
