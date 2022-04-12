@@ -83,7 +83,7 @@ function Get-NodeVersion {
 }
 
 function Get-OpensslVersion {
-    return $(openssl version)
+    return "OpenSSL $(dpkg-query -W -f '${Version}' openssl)"
 }
 
 function Get-PerlVersion {
