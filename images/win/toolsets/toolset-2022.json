@@ -6,7 +6,8 @@
             "platform" : "win32",
             "versions": [
                 "2.7",
-                "3.0"
+                "3.0",
+                "3.1"
             ],
             "default": "3.0"
         },
@@ -257,8 +258,7 @@
         ],
         "vsix": [
             "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects",
-            "WixToolset.WixToolsetVisualStudio2022Extension",
-            "ProBITools.MicrosoftReportProjectsforVisualStudio2022"
+            "WixToolset.WixToolsetVisualStudio2022Extension"
         ]
     },
     "docker": {
