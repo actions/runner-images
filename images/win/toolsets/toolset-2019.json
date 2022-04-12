@@ -71,12 +71,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.15.*",
                 "1.16.*",
                 "1.17.*",
                 "1.18.*"
             ],
-            "default": "1.15.*"
+            "default": "1.17.*"
         }
     ],
     "powershellModules": [
@@ -125,7 +124,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "7.1.0"
+                "7.3.2"
             ],
             "zip_versions": [
                 "1.0.0",

@@ -42,12 +42,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.15.*",
                 "1.16.*",
                 "1.17.*",
                 "1.18.*"
             ],
-            "default": "1.15.*"
+            "default": "1.17.*"
         },
         {
             "name": "Ruby",
@@ -132,6 +131,8 @@
     ],
     "apt": {
         "common_packages": [
+            "autoconf",
+            "automake",
             "build-essential",
             "dbus",
             "dnsutils",
@@ -154,6 +155,7 @@
             "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
+            "libtool",
             "libunwind8",
             "libxkbfile-dev",
             "libxss1",

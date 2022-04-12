@@ -1,14 +1,19 @@
+| Announcements |
+|-|
+| [[macOS] Default Xcode on Monterey image will be set to Xcode 13.3 on April, 11](https://github.com/actions/virtual-environments/issues/5328) |
+| [[All OSs] Go versions less than 1.16 will be removed on April, 11](https://github.com/actions/virtual-environments/issues/5280) |
+***
 # macOS 12.3 info
-- System Version: macOS 12.3 (21E230)
+- System Version: macOS 12.3.1 (21E258)
 - Kernel Version: Darwin 21.4.0
-- Image Version: 20220323.2
+- Image Version: 20220403.1
 
 ## Installed Software
 ### Language and Runtime
 - .NET SDK 3.1.101 3.1.201 3.1.302 3.1.417 5.0.102 5.0.202 5.0.302 5.0.406
 - Bash 3.2.57(1)-release
-- Clang/LLVM 13.0.0 is default
 - Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
+- Clang/LLVM 13.1.6 is default
 - gcc-11 (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gcc-11` alias
 - GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
 - Go 1.17.8
@@ -21,42 +26,42 @@
 - Perl 5.34.0
 - PHP 8.1.4
 - Python 2.7.18
-- Python 3.9.10
+- Python 3.9.12
 - R 4.1.3
 - Ruby 3.0.3p157
 
 ### Package Management
-- Bundler version 2.3.9
+- Bundler version 2.3.10
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.2.9
-- Homebrew 3.4.3
+- Composer 2.3.3
+- Homebrew 3.4.4
 - NPM 8.5.0
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
-- Pip 21.3.1 (python 3.9)
+- Pip 22.0.4 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<ee2fa5303>)
+- Vcpkg 2022 (build from master \<01d6f6ff1>)
 - Yarn 1.22.18
 
 ### Project Management
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.5
-- Gradle 7.4.1
+- Gradle 7.4.2
 - Sbt 1.6.2
 
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
 - azcopy 10.14.1
-- bazel 5.0.0
+- bazel 5.1.0
 - bazelisk 1.11.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 7.82.0
 - Git 2.35.1
 - Git LFS: 3.1.2
-- GitHub CLI: 2.6.0
+- GitHub CLI: 2.7.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.4
@@ -71,19 +76,20 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.1
 - Switchaudio-osx 1.1.0
+- yq (https://github.com/mikefarah/yq/) version 4.24.2
 - zstd 1.5.2
 
 ### Tools
 - App Center CLI command
-- AWS CLI 2.4.28
-- AWS SAM CLI 1.41.0
+- AWS CLI 2.5.2
+- AWS SAM CLI 1.43.0
 - AWS Session Manager CLI 1.2.295.0
-- Azure CLI (azure-devops) 0.24.0
+- Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.34.1
-- Bicep CLI 0.4.1272
+- Bicep CLI 0.4.1318
 - Cabal 3.6.2.0
-- Cmake 3.22.3
-- Fastlane 2.205.0
+- Cmake 3.23.0
+- Fastlane 2.205.1
 - GHC 9.2.2
 - GHCup v0.1.17.6
 - Jazzy 0.14.2
@@ -96,22 +102,22 @@
 - yamllint 1.26.3
 
 ### Browsers
-- Safari 15.4 (17613.1.17.1.6)
-- SafariDriver 15.4 (17613.1.17.1.6)
-- Google Chrome 99.0.4844.83 
-- ChromeDriver 99.0.4844.51
-- Microsoft Edge 99.0.1150.46 
-- MSEdgeDriver 99.0.1150.46
-- Mozilla Firefox 98.0.1
+- Safari 15.4 (17613.1.17.1.13)
+- SafariDriver 15.4 (17613.1.17.1.13)
+- Google Chrome 100.0.4896.60 
+- ChromeDriver 100.0.4896.60
+- Microsoft Edge 100.0.1185.29 
+- MSEdgeDriver 100.0.1185.29
+- Mozilla Firefox 98.0.2
 - geckodriver 0.30.0
-- Selenium server 4.1.2
+- Selenium server 4.1.3
 
 #### Environment variables
-| Name            | Value                                         |
-| --------------- | --------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/99.0.4844.51 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver                  |
-| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                |
+| Name            | Value                                          |
+| --------------- | ---------------------------------------------- |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/100.0.4896.60 |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
+| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -133,14 +139,14 @@
 #### Python
 - 3.7.12
 - 3.8.12
-- 3.9.11
-- 3.10.3
+- 3.9.12
+- 3.10.4
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.8]
-- 3.7.12 [PyPy 7.3.8]
-- 3.8.12 [PyPy 7.3.8]
-- 3.9.10 [PyPy 7.3.8]
+- 2.7.18 [PyPy 7.3.9]
+- 3.7.13 [PyPy 7.3.9]
+- 3.8.13 [PyPy 7.3.9]
+- 3.9.12 [PyPy 7.3.9]
 
 #### Node.js
 - 12.22.11
@@ -153,6 +159,7 @@
 | 1.15.15 | x64          | GOROOT_1_15_X64      |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
 | 1.17.8 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.18.0  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
 - Cargo 1.59.0
@@ -164,7 +171,7 @@
 - Bindgen 0.59.2
 - Cargo-audit 0.16.0
 - Cargo-outdated 0.11.0
-- Cbindgen 0.20.0
+- Cbindgen 0.21.0
 - Clippy 0.1.59
 - Rustfmt 1.4.38-stable
 
@@ -192,8 +199,9 @@
 #### Xamarin bundles
 | symlink           | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
 | ----------------- | ------------ | ----------- | ----------- | --------------- |
+| 6_12_14 (default) | 6.12         | 15.8        | 8.8         | 12.0            |
 | 6_12_13           | 6.12         | 15.6        | 8.6         | 12.0            |
-| 6_12_12 (default) | 6.12         | 15.4        | 8.4         | 12.0            |
+| 6_12_12           | 6.12         | 15.4        | 8.4         | 12.0            |
 | 6_12_11           | 6.12         | 15.2        | 8.2         | 12.0            |
 | 6_12_10           | 6.12         | 15.0        | 7.14        | 11.3            |
 
@@ -201,12 +209,12 @@
 - NUnit 3.6.1
 
 ### Xcode
-| Version          | Build    | Path                           |
-| ---------------- | -------- | ------------------------------ |
-| 13.3             | 13E113   | /Applications/Xcode_13.3.app   |
-| 13.2.1 (default) | 13C100   | /Applications/Xcode_13.2.1.app |
-| 13.2             | 13C90    | /Applications/Xcode_13.2.app   |
-| 13.1             | 13A1030d | /Applications/Xcode_13.1.app   |
+| Version        | Build    | Path                           |
+| -------------- | -------- | ------------------------------ |
+| 13.3 (default) | 13E113   | /Applications/Xcode_13.3.app   |
+| 13.2.1         | 13C100   | /Applications/Xcode_13.2.1.app |
+| 13.2           | 13C90    | /Applications/Xcode_13.2.app   |
+| 13.1           | 13A1030d | /Applications/Xcode_13.1.app   |
 
 #### Xcode Support Tools
 - xcpretty 0.3.0
@@ -257,7 +265,7 @@
 | Package Name               | Version                                                                                                                                      |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 4.0                                                                                                                                          |
-| Android Emulator           | 31.2.8                                                                                                                                       |
+| Android Emulator           | 31.2.9                                                                                                                                       |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
 | Android SDK Platform-Tools | 33.0.1                                                                                                                                       |
