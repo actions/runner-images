@@ -4,8 +4,16 @@
 ################################################################################
 
 #$toolset = Get-ToolsetContent
-#$toolset = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
-$toolset = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolsetVS.json" -Raw | ConvertFrom-Json
+$toolset = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolsetVS.json"
+if (Test-Path -Path $toolset) {
+	Write-Host "Found env variable"
+	$toolset = Get-Content -Path $toolset -Raw | ConvertFrom-Json
+}
+else {
+	Write-Host "Not finding env variable"
+	$toolset = Get-Content -Path "C:\image\toolsetVS.json" -Raw | ConvertFrom-Json
+}
+#$toolset = Get-Content -Path "C:\image\toolsetVS.json" -Raw | ConvertFrom-Json
 #$toolset = Get-Content -Path "C:\_git\Devops\virtual-environment-origo\images\win\toolsets\toolset-2019-VS.json" -Raw | ConvertFrom-Json
 #Get-Content $toolset -Raw | ConvertFrom-Json
 
