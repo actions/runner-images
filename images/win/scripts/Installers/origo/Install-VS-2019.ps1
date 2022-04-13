@@ -4,10 +4,12 @@
 ################################################################################
 
 #$toolset = Get-ToolsetContent
-$toolset = Get-Content -Path "C:\image\toolsetVS.json" -Raw | ConvertFrom-Json
-if (-not (Test-Path -Path $toolset)) {
-    Write-Host "toolsetVS.json not found"
+if (-not (Test-Path -Path "C:\image\toolsetVS.json")) {
+	Write-Host "toolsetVS.json not found"
     exit 1
+}
+else {
+	$toolset = Get-Content -Path "C:\image\toolsetVS.json" -Raw | ConvertFrom-Json
 }
 
 $requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
