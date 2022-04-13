@@ -18,7 +18,7 @@
         "imagedata_file": "C:\\imagedata.json",
         "helper_script_folder": "C:\\Program Files\\WindowsPowerShell\\Modules\\",
         "agent_tools_directory": "C:\\hostedtoolcache\\windows",
-        "install_user": "installer",
+        "install_user": "installerorigo",
         "install_password": null,
         "image_version": "latest",
         "image_os": "win22",
@@ -101,48 +101,26 @@
         },
         {
             "type": "powershell",
-            "environment_vars": [
-                "INSTALLER_ACCOUNT_NAME={{user `installer_account_name`}}",
-                "INSTALLER_CONTAINER_NAME={{user `installer_container_name`}}",
-                "INSTALLER_SAS_TOKEN={{user `installer_sas_token`}}",
-                "DEVEXPRESS_VERSION={{user `devexpress_version`}}",
-                "DEVEXPRESS_USER={{user `devexpress_user`}}",
-                "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
-            ],
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/origo/Install-DevExpress.ps1"
-            ],
-            "execution_policy": "unrestricted"
+            "inline": [
+                "if (-not (Test-Path -Path {{user `image_folder`}})){New-Item -Path {{user `image_folder`}} -ItemType Directory -Force}"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolsets/toolset-2019-VS.json",
+            "destination": "{{user `image_folder`}}\\toolsetVS.json"
         },
         {
             "type": "powershell",
-            "environment_vars": [
-                "INSTALLER_ACCOUNT_NAME={{user `installer_account_name`}}",
-                "INSTALLER_CONTAINER_NAME={{user `installer_container_name`}}",
-                "INSTALLER_SAS_TOKEN={{user `installer_sas_token`}}",
-                "DEVEXPRESS_VERSION=20.2.6",
-                "DEVEXPRESS_USER={{user `devexpress_user`}}",
-                "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
+            "valid_exit_codes": [
+                0,
+                3010
             ],
             "scripts": [
-                "{{ template_dir }}/scripts/Installers/origo/Install-DevExpress.ps1"
+                "{{ template_dir }}/scripts/Installers/origo/Install-VS-2019.ps1"
             ],
-            "execution_policy": "unrestricted"
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "INSTALLER_ACCOUNT_NAME={{user `installer_account_name`}}",
-                "INSTALLER_CONTAINER_NAME={{user `installer_container_name`}}",
-                "INSTALLER_SAS_TOKEN={{user `installer_sas_token`}}",
-                "DEVEXPRESS_VERSION=17.2.11",
-                "DEVEXPRESS_USER={{user `devexpress_user`}}",
-                "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
-            ],
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/origo/Install-DevExpress.ps1"
-            ],
-            "execution_policy": "unrestricted"
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
         },
         {
             "type": "powershell",
