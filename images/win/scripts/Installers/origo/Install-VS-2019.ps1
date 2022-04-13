@@ -4,18 +4,11 @@
 ################################################################################
 
 #$toolset = Get-ToolsetContent
-$toolset = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolsetVS.json"
-if (Test-Path -Path $toolset) {
-	Write-Host "Found env variable"
-	$toolset = Get-Content -Path $toolset -Raw | ConvertFrom-Json
+$toolset = Get-Content -Path "C:\image\toolsetVS.json" -Raw | ConvertFrom-Json
+if (-not (Test-Path -Path $toolset)) {
+    Write-Host "toolsetVS.json not found"
+    exit 1
 }
-else {
-	Write-Host "Not finding env variable"
-	$toolset = Get-Content -Path "C:\image\toolsetVS.json" -Raw | ConvertFrom-Json
-}
-#$toolset = Get-Content -Path "C:\image\toolsetVS.json" -Raw | ConvertFrom-Json
-#$toolset = Get-Content -Path "C:\_git\Devops\virtual-environment-origo\images\win\toolsets\toolset-2019-VS.json" -Raw | ConvertFrom-Json
-#Get-Content $toolset -Raw | ConvertFrom-Json
 
 $requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
 $workLoads = @(
@@ -29,6 +22,11 @@ $releaseInPath = $toolset.visualStudio.edition
 $subVersion = $toolset.visualStudio.subversion
 $channel = $toolset.visualStudio.channel
 $bootstrapperUrl = "https://aka.ms/vs/${subVersion}/${channel}/vs_${releaseInPath}.exe"
+
+if((Get-ChildItem -Path Function:\Install-VisualStudio).Name -eq 'Install-VisualStudio'){
+	Write-Host "Function not found"
+    exit 1
+}
 
 # Install VS
 Install-VisualStudio -BootstrapperUrl $bootstrapperUrl -WorkLoads $workLoadsArgument
