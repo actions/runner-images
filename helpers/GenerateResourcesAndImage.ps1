@@ -195,7 +195,9 @@ Function GenerateResourcesAndImage {
     
     
     # Storage Account Name can only be 24 characters long
-    $storageAccountName = $storageAccountName.Substring(0, 24)
+    if ($storageAccountName.Length -gt 24){
+        $storageAccountName = $storageAccountName.Substring(0, 24)
+    }
 
     New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly
 
