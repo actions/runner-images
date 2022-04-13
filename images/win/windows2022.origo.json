@@ -23,6 +23,7 @@
         "image_version": "latest",
         "image_os": "win22",
         "managed_image_name": "{{env `managed_image_name`}}",
+        "managed_image_resource_group_name": "{{env `managed_image_resource_group_name`}}",
         "gallery_resource_group": "{{env `gallery_resource_group`}}",
         "gallery_name": "{{env `gallery_name`}}",
         "gallery_image_name": "{{env `gallery_image_name`}}",
@@ -46,7 +47,7 @@
             "build_resource_group_name": "{{user `build_resource_group_name`}}",
             "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
             "managed_image_name": "{{user `managed_image_name`}}",
-            "managed_image_resource_group_name": "{{user `resource_group`}}",
+            "managed_image_resource_group_name": "{{user `managed_image_resource_group_name`}}",
             "shared_image_gallery_destination": {
                 "subscription": "{{user `subscription_id`}}",
                  "resource_group": "{{user `gallery_resource_group`}}",
