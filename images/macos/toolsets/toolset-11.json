@@ -167,12 +167,7 @@
         }
     },
     "powershellModules": [
-        {
-            "name": "Az",
-            "versions": [
-                "7.1.0"
-            ]
-        },
+        {"name": "Az"},
         {"name": "MarkdownPS"},
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
@@ -279,7 +274,8 @@
                 "2.5.*",
                 "2.6.*",
                 "2.7.*",
-                "3.0.*"
+                "3.0.*",
+                "3.1.*"
             ]
         }
     ],
