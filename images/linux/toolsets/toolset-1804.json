@@ -42,12 +42,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.15.*",
                 "1.16.*",
                 "1.17.*",
                 "1.18.*"
             ],
-            "default": "1.15.*"
+            "default": "1.17.*"
         },
         {
             "name": "Ruby",
@@ -58,7 +57,8 @@
                 "2.5.*",
                 "2.6.*",
                 "2.7.*",
-                "3.0.*"
+                "3.0.*",
+                "3.1.*"
             ]
         },
         {
@@ -132,6 +132,8 @@
     ],
     "apt": {
         "common_packages": [
+            "autoconf",
+            "automake",
             "build-essential",
             "dbus",
             "dnsutils",
@@ -154,6 +156,7 @@
             "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
+            "libtool",
             "libunwind8",
             "libxkbfile-dev",
             "libxss1",
@@ -282,7 +285,6 @@
     },
     "php": {
         "versions": [
-            "7.1",
             "7.2",
             "7.3",
             "7.4",
