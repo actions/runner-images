@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[macOS] Default Xcode on Monterey image will be set to Xcode 13.3 on April, 11](https://github.com/actions/virtual-environments/issues/5328) |
-| [[All OSs] Go versions less than 1.16 will be removed on April, 11](https://github.com/actions/virtual-environments/issues/5280) |
+| [[All OSs] Go versions less than 1.16 will be removed and the default will be set to 1.17 on April, 11](https://github.com/actions/virtual-environments/issues/5280) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1824)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220403.1
+- Image Version: 20220408.1
 
 ## Installed Software
 ### Language and Runtime
@@ -20,13 +19,13 @@
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
-- Go 1.15.15
+- Go 1.17.8
 - julia 1.7.2
-- Kotlin 1.6.10-release-923
+- Kotlin 1.6.20-release-275
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.14.2
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.11 v14.19.1 v16.14.2
+- NVM - Cached node versions: v12.22.12 v14.19.1 v16.14.2
 - Perl 5.34.0
 - PHP 8.1.4
 - Python 2.7.18
@@ -35,11 +34,11 @@
 - Ruby 2.7.5p203
 
 ### Package Management
-- Bundler version 2.3.10
+- Bundler version 2.3.11
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.3.3
-- Homebrew 3.4.4
+- Composer 2.3.4
+- Homebrew 3.4.5
 - Miniconda 4.11.0
 - NPM 8.5.0
 - NuGet 5.9.0.7134
@@ -47,7 +46,7 @@
 - Pip 22.0.4 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<01d6f6ff1>)
+- Vcpkg 2022 (build from master \<bd1ef2df4>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -66,7 +65,7 @@
 - 7-Zip 17.04
 - aria2 1.36.0
 - azcopy 10.14.1
-- bazel 5.1.0
+- bazel 5.1.1
 - bazelisk 1.11.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.82.0
@@ -96,14 +95,14 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.113
-- App Center CLI 2.10.8
-- AWS CLI 2.5.2
-- AWS SAM CLI 1.43.0
-- AWS Session Manager CLI 1.2.295.0
+- Aliyun CLI 3.0.115
+- App Center CLI 2.10.9
+- AWS CLI 2.5.4
+- AWS SAM CLI 1.46.0
+- AWS Session Manager CLI 1.2.312.0
 - Azure CLI (azure-devops) 0.25.0
-- Azure CLI 2.34.1
-- Bicep CLI 0.4.1318
+- Azure CLI 2.35.0
+- Bicep CLI 0.5.6
 - Cabal 3.6.2.0
 - Cmake 3.23.0
 - Fastlane 2.205.1
@@ -111,7 +110,7 @@
 - GHCup v0.1.17.6
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.6
+- SwiftFormat 0.49.7
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -120,13 +119,13 @@
 - yamllint 1.26.3
 
 ### Browsers
-- Safari 15.4 (15613.1.17.1.11)
-- SafariDriver 15.4 (15613.1.17.1.11)
-- Google Chrome 100.0.4896.60 
+- Safari 15.4 (15613.1.17.1.13)
+- SafariDriver 15.4 (15613.1.17.1.13)
+- Google Chrome 100.0.4896.75 
 - ChromeDriver 100.0.4896.60
-- Microsoft Edge 100.0.1185.29 
-- MSEdgeDriver 100.0.1185.29
-- Mozilla Firefox 98.0.2
+- Microsoft Edge 100.0.1185.36 
+- MSEdgeDriver 100.0.1185.36
+- Mozilla Firefox 99.0
 - geckodriver 0.30.0
 - Selenium server 4.1.3
 
@@ -176,22 +175,21 @@
 - 3.9.12 [PyPy 7.3.9]
 
 #### Node.js
-- 12.22.11
+- 12.22.12
 - 14.19.1
 - 16.14.2
 
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.15.15 (Default) | x64          | GOROOT_1_15_X64      |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
-| 1.17.8  | x64          | GOROOT_1_17_X64      |
+| 1.17.8 (Default) | x64          | GOROOT_1_17_X64      |
 | 1.18.0  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
-- Cargo 1.59.0
-- Rust 1.59.0
-- Rustdoc 1.59.0
+- Cargo 1.60.0
+- Rust 1.60.0
+- Rustdoc 1.60.0
 - Rustup 1.24.3
 
 #### Packages
@@ -199,7 +197,7 @@
 - Cargo-audit 0.16.0
 - Cargo-outdated 0.11.0
 - Cbindgen 0.21.0
-- Clippy 0.1.59
+- Clippy 0.1.60
 - Rustfmt 1.4.38-stable
 
 ### PowerShell Tools
