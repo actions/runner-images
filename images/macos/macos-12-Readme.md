@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[macOS] Default Xcode on Monterey image will be set to Xcode 13.3 on April, 11](https://github.com/actions/virtual-environments/issues/5328) |
-| [[All OSs] Go versions less than 1.16 will be removed on April, 11](https://github.com/actions/virtual-environments/issues/5280) |
+| [[All OSs] Go versions less than 1.16 will be removed and the default will be set to 1.17 on April, 11](https://github.com/actions/virtual-environments/issues/5280) |
 ***
 # macOS 12.3 info
 - System Version: macOS 12.3.1 (21E258)
 - Kernel Version: Darwin 21.4.0
-- Image Version: 20220403.1
+- Image Version: 20220412.1
 
 ## Installed Software
 ### Language and Runtime
@@ -18,11 +17,11 @@
 - GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
 - Go 1.17.8
 - julia 1.7.2
-- Kotlin 1.6.10-release-923
+- Kotlin 1.6.20-release-275
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.14.2
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.11 v14.19.1 v16.14.2
+- NVM - Cached node versions: v12.22.12 v14.19.1 v16.14.2
 - Perl 5.34.0
 - PHP 8.1.4
 - Python 2.7.18
@@ -31,18 +30,18 @@
 - Ruby 3.0.3p157
 
 ### Package Management
-- Bundler version 2.3.10
+- Bundler version 2.3.11
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.3.3
-- Homebrew 3.4.4
+- Composer 2.3.4
+- Homebrew 3.4.6
 - NPM 8.5.0
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
 - Pip 22.0.4 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<01d6f6ff1>)
+- Vcpkg 2022 (build from master \<4415a0f31>)
 - Yarn 1.22.18
 
 ### Project Management
@@ -55,7 +54,7 @@
 - 7-Zip 17.04
 - aria2 1.36.0
 - azcopy 10.14.1
-- bazel 5.1.0
+- bazel 5.1.1
 - bazelisk 1.11.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 7.82.0
@@ -81,12 +80,12 @@
 
 ### Tools
 - App Center CLI command
-- AWS CLI 2.5.2
-- AWS SAM CLI 1.43.0
-- AWS Session Manager CLI 1.2.295.0
+- AWS CLI 2.5.4
+- AWS SAM CLI 1.46.0
+- AWS Session Manager CLI 1.2.312.0
 - Azure CLI (azure-devops) 0.25.0
-- Azure CLI 2.34.1
-- Bicep CLI 0.4.1318
+- Azure CLI 2.35.0
+- Bicep CLI 0.5.6
 - Cabal 3.6.2.0
 - Cmake 3.23.0
 - Fastlane 2.205.1
@@ -95,7 +94,7 @@
 - Jazzy 0.14.2
 - Stack 2.7.5
 - Swig 4.0.2
-- Xcode Command Line Tools 13.3.0.0.1.1645755326
+- Xcode Command Line Tools 13.3.1.0.1.1648687083
 
 ### Linters
 - SwiftLint 0.47.0
@@ -104,11 +103,11 @@
 ### Browsers
 - Safari 15.4 (17613.1.17.1.13)
 - SafariDriver 15.4 (17613.1.17.1.13)
-- Google Chrome 100.0.4896.60 
+- Google Chrome 100.0.4896.88 
 - ChromeDriver 100.0.4896.60
-- Microsoft Edge 100.0.1185.29 
-- MSEdgeDriver 100.0.1185.29
-- Mozilla Firefox 98.0.2
+- Microsoft Edge 100.0.1185.39 
+- MSEdgeDriver 100.0.1185.39
+- Mozilla Firefox 99.0
 - geckodriver 0.30.0
 - Selenium server 4.1.3
 
@@ -149,22 +148,21 @@
 - 3.9.12 [PyPy 7.3.9]
 
 #### Node.js
-- 12.22.11
+- 12.22.12
 - 14.19.1
 - 16.14.2
 
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.15.15 | x64          | GOROOT_1_15_X64      |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
 | 1.17.8 (Default) | x64          | GOROOT_1_17_X64      |
 | 1.18.0  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
-- Cargo 1.59.0
-- Rust 1.59.0
-- Rustdoc 1.59.0
+- Cargo 1.60.0
+- Rust 1.60.0
+- Rustdoc 1.60.0
 - Rustup 1.24.3
 
 #### Packages
@@ -172,7 +170,7 @@
 - Cargo-audit 0.16.0
 - Cargo-outdated 0.11.0
 - Cbindgen 0.21.0
-- Clippy 0.1.59
+- Clippy 0.1.60
 - Rustfmt 1.4.38-stable
 
 ### PowerShell Tools
@@ -181,7 +179,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 7.3.2   |
+| Az               | 7.4.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.1   |
 | PSScriptAnalyzer | 1.20.0  |
@@ -211,6 +209,7 @@
 ### Xcode
 | Version        | Build    | Path                           |
 | -------------- | -------- | ------------------------------ |
+| 13.3.1         | 13E500a  | /Applications/Xcode_13.3.1.app |
 | 13.3 (default) | 13E113   | /Applications/Xcode_13.3.app   |
 | 13.2.1         | 13C100   | /Applications/Xcode_13.2.1.app |
 | 13.2           | 13C90    | /Applications/Xcode_13.2.app   |
@@ -225,41 +224,41 @@
 | ----------------------- | -------------------- | ------------- |
 | macOS 12.0              | macosx12.0           | 13.1          |
 | macOS 12.1              | macosx12.1           | 13.2, 13.2.1  |
-| macOS 12.3              | macosx12.3           | 13.3          |
+| macOS 12.3              | macosx12.3           | 13.3, 13.3.1  |
 | iOS 15.0                | iphoneos15.0         | 13.1          |
 | iOS 15.2                | iphoneos15.2         | 13.2, 13.2.1  |
-| iOS 15.4                | iphoneos15.4         | 13.3          |
+| iOS 15.4                | iphoneos15.4         | 13.3, 13.3.1  |
 | Simulator - iOS 15.0    | iphonesimulator15.0  | 13.1          |
 | Simulator - iOS 15.2    | iphonesimulator15.2  | 13.2, 13.2.1  |
-| Simulator - iOS 15.4    | iphonesimulator15.4  | 13.3          |
+| Simulator - iOS 15.4    | iphonesimulator15.4  | 13.3, 13.3.1  |
 | tvOS 15.0               | appletvos15.0        | 13.1          |
 | tvOS 15.2               | appletvos15.2        | 13.2, 13.2.1  |
-| tvOS 15.4               | appletvos15.4        | 13.3          |
+| tvOS 15.4               | appletvos15.4        | 13.3, 13.3.1  |
 | Simulator - tvOS 15.0   | appletvsimulator15.0 | 13.1          |
 | Simulator - tvOS 15.2   | appletvsimulator15.2 | 13.2, 13.2.1  |
-| Simulator - tvOS 15.4   | appletvsimulator15.4 | 13.3          |
+| Simulator - tvOS 15.4   | appletvsimulator15.4 | 13.3, 13.3.1  |
 | watchOS 8.0             | watchos8.0           | 13.1          |
 | watchOS 8.3             | watchos8.3           | 13.2, 13.2.1  |
-| watchOS 8.5             | watchos8.5           | 13.3          |
+| watchOS 8.5             | watchos8.5           | 13.3, 13.3.1  |
 | Simulator - watchOS 8.0 | watchsimulator8.0    | 13.1          |
 | Simulator - watchOS 8.3 | watchsimulator8.3    | 13.2, 13.2.1  |
-| Simulator - watchOS 8.5 | watchsimulator8.5    | 13.3          |
+| Simulator - watchOS 8.5 | watchsimulator8.5    | 13.3, 13.3.1  |
 | DriverKit 21.0.1        | driverkit21.0.1      | 13.1          |
 | DriverKit 21.2          | driverkit21.2        | 13.2, 13.2.1  |
-| DriverKit 21.4          | driverkit21.4        | 13.3          |
+| DriverKit 21.4          | driverkit21.4        | 13.3, 13.3.1  |
 
 #### Installed Simulators
 | OS          | Xcode Version  | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ----------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iOS 15.0    | 13.1           | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch)                                                            |
 | iOS 15.2    | 13.2<br>13.2.1 | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch)                                                            |
-| iOS 15.4    | 13.3           | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch) |
+| iOS 15.4    | 13.3<br>13.3.1 | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch) |
 | tvOS 15.0   | 13.1           | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | tvOS 15.2   | 13.2<br>13.2.1 | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| tvOS 15.4   | 13.3           | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| tvOS 15.4   | 13.3<br>13.3.1 | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | watchOS 8.0 | 13.1           | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                    |
 | watchOS 8.3 | 13.2<br>13.2.1 | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                    |
-| watchOS 8.5 | 13.3           | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                    |
+| watchOS 8.5 | 13.3<br>13.3.1 | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                    |
 
 ### Android
 | Package Name               | Version                                                                                                                                      |
