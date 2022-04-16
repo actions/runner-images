@@ -44,11 +44,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.15.*",
                 "1.16.*",
-                "1.17.*"
+                "1.17.*",
+                "1.18.*"
             ],
-            "default": "1.15.*"
+            "default": "1.17.*"
         },
         {
             "name": "Ruby",
@@ -58,7 +58,8 @@
                 "2.5.*",
                 "2.6.*",
                 "2.7.*",
-                "3.0.*"
+                "3.0.*",
+                "3.1.*"
             ]
         },
         {
@@ -83,7 +84,7 @@
                 "versions": [ "8", "11" ]
             }
         ],
-        "maven": "3.8.4"
+        "maven": "3.8.5"
     },
     "android": {
         "platform_min_version": "27",
@@ -108,6 +109,7 @@
     },
     "powershellModules": [
         {"name": "MarkdownPS"},
+        {"name": "Microsoft.Graph"},
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
     ],
@@ -128,6 +130,8 @@
     ],
     "apt": {
         "common_packages": [
+            "autoconf",
+            "automake",
             "build-essential",
             "dbus",
             "dnsutils",
@@ -151,6 +155,7 @@
             "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
+            "libtool",
             "libunwind8",
             "libxkbfile-dev",
             "libxss1",

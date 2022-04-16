@@ -64,9 +64,11 @@ for version in $php_versions; do
         php$version-zip \
         php$version-zmq
 
-    if [[ $version == "5.6" || $version == "7.0" || $version == "7.1" ]]; then
-        apt-get install -y --no-install-recommends php$version-mcrypt php$version-recode
-    fi
+        apt-get install -y --no-install-recommends php$version-pcov
+
+        # Disable PCOV, as Xdebug is enabled by default
+        # https://github.com/krakjoe/pcov#interoperability
+        phpdismod -v $version pcov
 
     if [[ $version == "7.2" || $version == "7.3" ]]; then
         apt-get install -y --no-install-recommends php$version-recode
@@ -74,18 +76,6 @@ for version in $php_versions; do
 
     if [[ $version != "8.0" && $version != "8.1" ]]; then
         apt-get install -y --no-install-recommends php$version-xmlrpc php$version-json
-    fi
-
-    if [[ $version != "5.6" && $version != "7.0" ]]; then
-        apt-get install -y --no-install-recommends php$version-pcov
-
-        # Disable PCOV, as Xdebug is enabled by default
-        # https://github.com/krakjoe/pcov#interoperability
-        phpdismod -v $version pcov
-    fi
-
-    if [[ $version = "7.0" || $version = "7.1" ]]; then
-        apt-get install -y --no-install-recommends php$version-sodium
     fi
 done
 

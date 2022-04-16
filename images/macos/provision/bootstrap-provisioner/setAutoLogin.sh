@@ -22,15 +22,13 @@ function kcpasswordEncode {
     #converted to hex representation with spaces
     local thisStringHex_array=( $(echo -n "${thisString}" | xxd -p -u | sed 's/../& /g') )
 
-    #get padding by subtraction if under 12
-    if [ "${#thisStringHex_array[@]}" -lt 12 ]; then
-        local padding=$(( 12 -  ${#thisStringHex_array[@]} ))
-    #get padding by subtracting remainder of modulo 12 if over 12
-    elif [ "$(( ${#thisStringHex_array[@]} % 12 ))" -ne 0 ]; then
-        local padding=$(( (12 - ${#thisStringHex_array[@]} % 12) ))
-    #otherwise even multiples of 12 still need 12 padding
-    else
-        local padding=12
+    #get padding by subtraction if under 11
+    local r=$(( ${#thisStringHex_array[@]} % 11 ))
+    local padding=0
+    if [ ${#thisStringHex_array[@]} -eq 11 ]; then
+        local padding=1
+    elif [ $r -gt 0 ]; then
+        local padding=$(( 11 - $r ))
     fi
 
     #cycle through each element of the array + padding
@@ -44,7 +42,7 @@ function kcpasswordEncode {
         #use $(( shell Aritmethic )) to ^ XOR the two 0x## values (extra padding is 0x00) 
         #take decimal value and printf convert to two char hex value
         #use xxd to convert hex to actual value and append to the encodedString variable
-        local encodedString+=$(printf "%02X" "$(( 0x${charHex_cipher} ^ 0x${charHex:-00} ))" | xxd -r -p)
+        local encodedString+=$(printf "%02X" "$(( 0x${charHex_cipher} ^ 0x${charHex:-00} ))")
     done
 
     #return the string without a newline
@@ -52,7 +50,7 @@ function kcpasswordEncode {
 }
 
 #encode password and write file
-kcpasswordEncode "${PW}" > /etc/kcpassword
+kcpasswordEncode "${PW}" | xxd -r -p > /etc/kcpassword
 
 #ensure ownership and permissions (600)
 chown root:wheel /etc/kcpassword
