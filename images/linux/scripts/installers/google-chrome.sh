@@ -14,10 +14,17 @@ function GetChromiumRevision {
     URL="https://omahaproxy.appspot.com/deps.json?version=${CHROME_VERSION}"
     REVISION=$(curl -s $URL | jq -r '.chromium_base_position')
 
-    # Google chrome 99.0.4844.82 based on the 1060 chromium revision, but there is chromium release with such number, use the previous release for that case
-    # https://github.com/actions/virtual-environments/issues/5256
-    if [ $REVISION -eq "1060" ]; then
-        REVISION="961656"
+    # Some Google Chrome versions are based on Chromium revisions for which a (usually very old) Chromium release with the same number exist. So far this has heppened with 4 digits long Chromium revisions.
+    # Use the previous Chromium release when this happens to avoid downloading and installing very old Chromium releases that would break image build because of incompatibilities.
+    # First reported with: https://github.com/actions/virtual-environments/issues/5256
+    if [ ${#REVISION} -eq 4 ]; then
+      CURRENT_REVISIONS=$(curl -s "https://omahaproxy.appspot.com/all?csv=1")
+      while IFS="," read -r os channel current_version previous_version current_reldate previous_reldate branch_base_commit branch_base_position branch_commit true_branch v8_version changelog
+      do
+        PREVIOUS_VERSION="$previous_version"
+        URL="https://omahaproxy.appspot.com/deps.json?version=${PREVIOUS_VERSION}"
+        REVISION=$(curl -s $URL | jq -r '.chromium_base_position')
+      done < <(echo "$CURRENT_REVISIONS" | grep "linux" | grep "stable")
     fi
     # Take the first part of the revision variable to search not only for a specific version,
     # but also for similar ones, so that we can get a previous one if the required revision is not found
