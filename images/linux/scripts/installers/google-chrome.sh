@@ -19,7 +19,9 @@ function GetChromiumRevision {
     # First reported with: https://github.com/actions/virtual-environments/issues/5256
     if [ ${#REVISION} -eq 4 ]; then
       CURRENT_REVISIONS=$(curl -s "https://omahaproxy.appspot.com/all.json?os=linux&channel=stable")
-      REVISION=$(echo "$CURRENT_REVISIONS" | jq -r '.[].versions[].previous_version')
+      PREVIOUS_VERSION=$(echo "$CURRENT_REVISIONS" | jq -r '.[].versions[].previous_version')
+      URL="https://omahaproxy.appspot.com/deps.json?version=${PREVIOUS_VERSION}"
+      REVISION=$(curl -s $URL | jq -r '.chromium_base_position')
     fi
     # Take the first part of the revision variable to search not only for a specific version,
     # but also for similar ones, so that we can get a previous one if the required revision is not found
