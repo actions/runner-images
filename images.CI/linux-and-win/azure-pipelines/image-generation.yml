@@ -87,6 +87,7 @@ jobs:
 
   - task: PowerShell@2
     displayName: 'Clean up resources'
+    condition: always()
     inputs:
       targetType: filePath
       filePath: ./images.CI/linux-and-win/cleanup.ps1
