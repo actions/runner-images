@@ -87,8 +87,8 @@ EOF
     sleep 10
 done
 
-    # close all terminals
-    killall "Terminal"
+    # close terminal windows
+    osascript -e 'tell application "Terminal" to close windows'
 
     # test enable-automationmode-without-authentication
     if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
