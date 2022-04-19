@@ -186,7 +186,7 @@ function Start-DownloadWithRetry
 
     $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
     $downloadStartTime = Get-Date
-    
+
     # Default retry logic for the package.
     while ($Retries -gt 0)
     {
@@ -225,11 +225,32 @@ function Get-VsixExtenstionFromMarketplace {
     Param
     (
         [string] $ExtensionMarketPlaceName,
-        [string] $MarketplaceUri = "https://marketplace.visualstudio.com/items?itemName="
+        [string] $MarketplaceUri = "https://marketplace.visualstudio.com/items?itemName=",
+        [int] $Retries = 20
     )
 
     $extensionUri = $MarketplaceUri + $ExtensionMarketPlaceName
-    $request = Invoke-WebRequest -Uri $extensionUri -UseBasicParsing
+    while ($Retries -gt 0)
+    {
+        try
+        {
+            $request = Invoke-WebRequest -Uri $extensionUri -UseBasicParsing
+        }
+        catch
+        {
+            Write-Host "There is an error encountered during the request:`n $_"
+
+            if ($Retries -eq 0)
+            {
+                Write-Host "All the retries are exhausted. Please try later or check that the URL is correct: $Url"
+                exit 1
+            }
+
+            Write-Host "Waiting 30 seconds before retrying. Retries left: $Retries"
+            Start-Sleep -Seconds 30
+        }
+    }
+
     $request -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
     $extensionName = $Matches.extensionname
     $request -match 'VsixId":"(?<vsixid>[^"]*)' | Out-Null
@@ -274,12 +295,12 @@ function Install-VsixExtension
     try
     {
         $installPath = ${env:ProgramFiles(x86)}
-        
+
         if (Test-IsWin22)
         {
             $installPath = ${env:ProgramFiles}
         }
-        
+
         #There are 2 types of packages at the moment - exe and vsix
         if ($Name -match "vsix")
         {
