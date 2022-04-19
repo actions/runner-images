@@ -75,6 +75,8 @@ osascript <<EOF
     end tell
     tell application "Terminal" to quit
 EOF
+automationmodetool
+sleep 3600
 fi
 
 # Create symlink for tests running
