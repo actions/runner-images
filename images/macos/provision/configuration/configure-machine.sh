@@ -63,6 +63,8 @@ rm -f ./add-certificate
 
 # enable-automationmode-without-authentication
 if is_Monterey; then
+retry=10
+while [ $retry -gt 0 ]; do
 osascript <<EOF
     tell application "Terminal"
         activate
@@ -74,7 +76,15 @@ osascript <<EOF
         end tell
     end tell
     tell application "Terminal" to quit
-EOF
+EOF && break
+
+    retry=$((retry-1))
+    if [ $retry -eq 0 ]; then
+        echo "No retry attempts left"
+        exit 1
+    fi
+    sleep 10
+done
 automationmodetool
 sleep 3600
 fi
