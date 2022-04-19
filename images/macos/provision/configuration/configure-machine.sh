@@ -75,6 +75,7 @@ osascript <<EOF
             keystroke return
         end tell
     end tell
+    delay 5
     tell application "Terminal" to quit
 EOF
 } && break
@@ -86,8 +87,11 @@ EOF
     fi
     sleep 10
 done
-automationmodetool
-sleep 3600
+
+    if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
+        echo "Failed to enable enable-automationmode-without-authentication option"
+        exit 1
+    fi
 fi
 
 # Create symlink for tests running
