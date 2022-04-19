@@ -76,7 +76,6 @@ osascript <<EOF
         end tell
     end tell
     delay 5
-    tell application "Terminal" to quit
 EOF
 } && break
 
@@ -88,6 +87,10 @@ EOF
     sleep 10
 done
 
+    # close all terminals
+    killall "Terminal"
+
+    # test enable-automationmode-without-authentication
     if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
         echo "Failed to enable enable-automationmode-without-authentication option"
         exit 1
