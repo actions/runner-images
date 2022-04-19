@@ -60,6 +60,23 @@ done
 
 rm -f ./add-certificate
 
+
+# enable-automationmode-without-authentication
+if is_Monterey; then
+osascript <<EOF
+    tell application "Terminal"
+        activate
+        do script "automationmodetool enable-automationmode-without-authentication"
+        delay 2
+        tell application "System Events"
+            keystroke "${PASSWORD}"
+            keystroke return
+        end tell
+    end tell
+    tell application "Terminal" to quit
+EOF
+fi
+
 # Create symlink for tests running
 if [ ! -d "/usr/local/bin" ];then
     sudo mkdir -p -m 775 /usr/local/bin
