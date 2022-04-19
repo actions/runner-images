@@ -76,8 +76,13 @@ osascript <<EOF
         end tell
     end tell
     delay 5
-    tell application "Terminal" to close windows
-    delay 5
+    tell application "Terminal"
+    quit
+        tell application "System Events"
+            keystroke return
+        end tell
+    end tell
+    delay 1
 EOF
 } && break
 
