@@ -74,10 +74,8 @@ osascript <<EOF
             keystroke "${PASSWORD}"
             keystroke return
         end tell
-        delay 5
-        quit
     end tell
-    delay 2
+    delay 5
 EOF
 } && break
 
@@ -89,16 +87,9 @@ EOF
     sleep 10
 done
 
-# close terminal windows
-osascript <<EOF
-    tell application "Terminal"
-    quit
-        tell application "System Events"
-            keystroke return
-        end tell
-    end tell
-    delay 1
-EOF
+    term_service=$(launchctl list | grep -i terminal | cut -f3)
+    echo "Close terminal windows: gui/501/${term_service}"
+    launchctl bootout gui/501/${term_service} && sleep 5
 
     # test enable-automationmode-without-authentication
     if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
