@@ -121,7 +121,8 @@
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `build_id`}}",
-                "IMAGE_OS={{user `image_os`}}"
+                "IMAGE_OS={{user `image_os`}}",
+                "PASSWORD={{user `vm_password`}}"
             ]
         },
         {
