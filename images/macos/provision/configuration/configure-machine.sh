@@ -74,15 +74,10 @@ osascript <<EOF
             keystroke "${PASSWORD}"
             keystroke return
         end tell
+        delay 5
+        quit
     end tell
-    delay 5
-    tell application "Terminal"
-    quit
-        tell application "System Events"
-            keystroke return
-        end tell
-    end tell
-    delay 1
+    delay 2
 EOF
 } && break
 
@@ -93,6 +88,17 @@ EOF
     fi
     sleep 10
 done
+
+# close terminal windows
+osascript <<EOF
+    tell application "Terminal"
+    quit
+        tell application "System Events"
+            keystroke return
+        end tell
+    end tell
+    delay 1
+EOF
 
     # test enable-automationmode-without-authentication
     if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
