@@ -225,32 +225,11 @@ function Get-VsixExtenstionFromMarketplace {
     Param
     (
         [string] $ExtensionMarketPlaceName,
-        [string] $MarketplaceUri = "https://marketplace.visualstudio.com/items?itemName=",
-        [int] $Retries = 20
+        [string] $MarketplaceUri = "https://marketplace.visualstudio.com/items?itemName="
     )
 
     $extensionUri = $MarketplaceUri + $ExtensionMarketPlaceName
-    while ($Retries -gt 0)
-    {
-        try
-        {
-            $request = Invoke-WebRequest -Uri $extensionUri -UseBasicParsing
-        }
-        catch
-        {
-            Write-Host "There is an error encountered during the request:`n $_"
-
-            if ($Retries -eq 0)
-            {
-                Write-Host "All the retries are exhausted. Please try later or check that the URL is correct: $Url"
-                exit 1
-            }
-
-            Write-Host "Waiting 30 seconds before retrying. Retries left: $Retries"
-            Start-Sleep -Seconds 30
-        }
-    }
-
+    $request = Invoke-SBWithRetry -Command { Invoke-WebRequest -Uri $extensionUri -UseBasicParsing } -RetryCount 20 -RetryIntervalSeconds 30
     $request -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
     $extensionName = $Matches.extensionname
     $request -match 'VsixId":"(?<vsixid>[^"]*)' | Out-Null
@@ -602,8 +581,8 @@ function Get-GitHubPackageDownloadUrl {
         [int]$SearchInCount = 100
     )
 
-    if ($Version -eq "latest") { 
-        $Version = "*" 
+    if ($Version -eq "latest") {
+        $Version = "*"
     }
     $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
     $versionToDownload = ($json.Where{ $_.prerelease -eq $IsPrerelease }.tag_name |
