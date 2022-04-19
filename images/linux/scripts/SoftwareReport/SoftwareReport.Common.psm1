@@ -83,7 +83,7 @@ function Get-NodeVersion {
 }
 
 function Get-OpensslVersion {
-    return $(openssl version)
+    return "OpenSSL $(dpkg-query -W -f '${Version}' openssl)"
 }
 
 function Get-PerlVersion {
@@ -236,8 +236,8 @@ function Get-PHPVersions {
 }
 
 function Get-ComposerVersion {
-    $(composer --version) -match "Composer version (?<version>\d+\.\d+\.\d+)\s" | Out-Null
-    return $Matches.version
+    $composerVersion = (composer --version) -replace " version" | Take-OutputPart -Part 1
+    return $composerVersion
 }
 
 function Get-PHPUnitVersion {

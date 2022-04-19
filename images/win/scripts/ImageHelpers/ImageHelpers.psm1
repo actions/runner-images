@@ -53,4 +53,5 @@ Export-ModuleMember -Function @(
     'Get-VisualStudioInstance'
     'Get-VisualStudioComponents'
     'Get-WindowsUpdatesHistory'
+    'New-ItemPath'
 )

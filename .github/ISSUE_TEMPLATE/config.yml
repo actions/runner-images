@@ -1,1 +1,6 @@
 blank_issues_enabled: false
+
+contact_links:
+  - name: Get help in GitHub Discussions
+    url: https://github.com/actions/virtual-environments/discussions
+    about: Have a question? Feel free to ask in the virtual-environments GitHub Discussions!

@@ -89,3 +89,11 @@ function Get-VisualStudioExtensions {
         [PSCustomObject]$_
     } | Select-Object Package, Version | Sort-Object Package
 }
+
+function Get-WindowsSDKs {
+    $path = "${env:ProgramFiles(x86)}\Windows Kits\10\Extension SDKs\WindowsDesktop"
+    return [PSCustomObject]@{
+        Path = $path
+        Versions = $(Get-ChildItem $path).Name
+    }
+}

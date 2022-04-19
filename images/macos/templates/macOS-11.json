@@ -11,6 +11,7 @@
         "output_folder": null,
         "vm_username": null,
         "vm_password": null,
+        "github_api_pat": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
         "image_os": "macos11"
@@ -30,7 +31,8 @@
             "vm_name": "{{user `build_id`}}",
             "ssh_username": "{{user `vm_username`}}",
             "ssh_password": "{{user `vm_password`}}",
-            "CPUs": "10",
+            "CPUs": "5",
+            "cpu_cores": "5",
             "RAM": "24576",
             "NestedHV": "true",
             "shutdown_timeout": "15m"
@@ -95,6 +97,7 @@
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
             "scripts": [
+                "./provision/core/xcode-clt.sh",
                 "./provision/configuration/add-network-interface-detection.sh",
                 "./provision/configuration/autologin.sh",
                 "./provision/configuration/disable-auto-updates.sh",
@@ -114,7 +117,6 @@
             "scripts": [
                 "./provision/configuration/preimagedata.sh",
                 "./provision/configuration/configure-ssh.sh",
-                "./provision/core/xcode-clt.sh",
                 "./provision/configuration/configure-machine.sh"
             ],
             "environment_vars": [
@@ -134,6 +136,7 @@
             "pause_before": "30s",
             "scripts": [
                 "./provision/core/homebrew.sh",
+                "./provision/core/open_windows_check.sh",
                 "./provision/core/powershell.sh",
                 "./provision/core/dotnet.sh",
                 "./provision/core/python.sh",
@@ -143,6 +146,9 @@
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
                 "./provision/core/node.sh"
+            ],
+            "environment_vars": [
+                "API_PAT={{user `github_api_pat`}}"
             ]
         },
         {
@@ -193,7 +199,11 @@
                 "./provision/core/firefox.sh",
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
-                "./provision/core/bicep.sh"
+                "./provision/core/bicep.sh",
+                "./provision/core/graalvm.sh"
+            ],
+            "environment_vars": [
+                "API_PAT={{user `github_api_pat`}}"
             ]
         },
         {

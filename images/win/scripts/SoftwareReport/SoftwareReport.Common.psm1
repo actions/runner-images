@@ -158,9 +158,7 @@ function Get-CondaVersion {
 }
 
 function Get-ComposerVersion {
-    ($(composer --version)) -match "Composer version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $composerVersion = $Matches.Version
-    return "Composer $composerVersion"
+    composer --version | Take-Part -Part 0,2
 }
 
 function Get-NugetVersion {
@@ -201,7 +199,7 @@ function Get-DotnetSdks {
 }
 
 function Get-DotnetTools {
-    $env:Path += ";C:\Users\Default.dotnet\tools"
+    $env:Path += ";C:\Users\Default\.dotnet\tools"
     $dotnetTools = (Get-ToolsetContent).dotnet.tools
 
     $toolsList = @()

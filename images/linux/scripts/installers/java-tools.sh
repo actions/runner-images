@@ -76,6 +76,10 @@ installOpenJDK() {
     # If there is no semver in java release, then extract java version from -fullversion
     [[ -z ${fullJavaVersion} ]] && fullJavaVersion=$(${javaVersionPath}/bin/java -fullversion 2>&1 | tr -d "\"" | tr "+" "-" | awk '{print $4}')
 
+    # Convert non valid semver like 11.0.14.1-9 -> 11.0.14-9
+    # https://github.com/adoptium/temurin-build/issues/2248
+    [[ ${fullJavaVersion} =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ ]] && fullJavaVersion=$(echo $fullJavaVersion | sed -E 's/\.[0-9]+-/-/')
+
     javaToolcacheVersionPath="${JAVA_TOOLCACHE_PATH}/${fullJavaVersion}"
     mkdir -p "${javaToolcacheVersionPath}"
 

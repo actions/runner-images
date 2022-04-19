@@ -215,13 +215,19 @@ $markdown += New-MDHeader "Databases" -Level 3
 $markdown += Build-DatabasesMarkdown
 
 $markdown += New-MDHeader "Database tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
+$databaseTools = @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
     (Get-MySQLVersion),
     (Get-SQLPSVersion)
-    ) | Sort-Object
 )
+
+if (-not (Test-IsWin16))
+{
+    $databaseTools += Get-SQLOLEDBDriverVersion
+}
+
+$markdown += New-MDList -Style Unordered -Lines ($databaseTools | Sort-Object)
 
 $markdown += Build-WebServersSection
 
@@ -237,6 +243,12 @@ $markdown += New-MDNewLine
 $markdown += New-MDHeader "Microsoft Visual C++:" -Level 4
 $markdown += Get-VisualCPPComponents | New-MDTable
 $markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Installed Windows SDKs" -Level 4
+$sdk = Get-WindowsSDKs
+$markdown += "``Location $($sdk.Path)``"
+$markdown += New-MDNewLine
+$markdown += New-MDList -Lines $sdk.Versions -Style Unordered
 
 $markdown += New-MDHeader ".NET Core SDK" -Level 3
 $sdk = Get-DotnetSdks

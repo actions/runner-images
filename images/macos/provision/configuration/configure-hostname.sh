@@ -4,7 +4,7 @@
 tee -a /usr/local/bin/change_hostname.sh > /dev/null <<\EOF
 #!/bin/bash -e -o pipefail
 
-name="Mac-$(python -c 'from time import time; print int(round(time() * 1000))')"
+name="Mac-$(python3 -c 'from time import time; print(int(round(time() * 1000)))')"
 scutil --set HostName "${name}.local"
 scutil --set LocalHostName $name
 scutil --set ComputerName "${name}.local"

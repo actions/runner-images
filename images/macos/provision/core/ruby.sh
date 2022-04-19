@@ -10,7 +10,8 @@ echo "GEM_PATH=$GEM_PATH" >> "$HOME/.bashrc"
 echo 'export PATH="$GEM_PATH:/usr/local/opt/ruby@'${DEFAULT_RUBY_VERSION}'/bin:$PATH"'  >> "$HOME/.bashrc"
 
 echo "Install Ruby from toolset..."
-PACKAGE_TAR_NAMES=$(curl -s "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
+[ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
+PACKAGE_TAR_NAMES=$(curl "${authString[@]}" -s "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
 TOOLSET_VERSIONS=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .versions[]')
 RUBY_PATH="$AGENT_TOOLSDIRECTORY/Ruby"
 

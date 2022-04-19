@@ -8,16 +8,4 @@ Describe "Wix" {
     It "Wix Toolset version from registry" {
       $version | Should -Not -BeNullOrEmpty
     }
-
-    It "Wix Toolset version from system" -Skip:(Test-IsWin22) {
-      if (Test-IsWin19)
-      {
-        $exVersion = Get-VSExtensionVersion -packageName "WixToolset.VisualStudioExtension.Dev16"
-      }
-      else
-      {
-        $exVersion = Get-VSExtensionVersion -packageName "WixToolset.VisualStudioExtension.Dev15"
-      }
-      $exVersion | Should -Not -BeNullOrEmpty
-    }
 }

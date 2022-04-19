@@ -6,6 +6,12 @@ Describe "Azure CLI" {
     }
 }
 
+Describe "Azure DevOps CLI" {
+    It "az devops" {
+        "az devops -h" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Carthage" {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
@@ -150,7 +156,7 @@ Describe "xctool" -Skip:($os.IsHigherThanCatalina) {
     }
 }
 
-Describe "R" -Skip:($os.IsHigherThanCatalina) {
+Describe "R" {
     It "R" {
         "R --version" | Should -ReturnZeroExitCode
     }
@@ -173,5 +179,11 @@ Describe "Kotlin" {
 Describe "sbt" {
     It "sbt" {
         "sbt -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "yq" {
+    It "yq" {
+        "yq --version" | Should -ReturnZeroExitCode
     }
 }
