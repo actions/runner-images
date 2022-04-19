@@ -76,6 +76,8 @@ osascript <<EOF
         end tell
     end tell
     delay 5
+    tell application "Terminal" to close windows
+    delay 5
 EOF
 } && break
 
@@ -86,9 +88,6 @@ EOF
     fi
     sleep 10
 done
-
-    # close terminal windows
-    osascript -e 'tell application "Terminal" to close windows'
 
     # test enable-automationmode-without-authentication
     if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
