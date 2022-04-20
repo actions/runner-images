@@ -1,15 +1,11 @@
-| Announcements |
-|-|
-| [[All OSs] Go versions less than 1.16 will be removed and the default will be set to 1.17 on April, 11](https://github.com/actions/virtual-environments/issues/5280) |
-***
 # macOS 11.6 info
 - System Version: macOS 11.6.5 (20G527)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220410.1
+- Image Version: 20220419.3
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.417 5.0.102 5.0.202 5.0.302 5.0.406
+- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.418 5.0.102 5.0.202 5.0.302 5.0.407
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0 is default
 - Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
@@ -19,26 +15,26 @@
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
-- Go 1.17.8
+- Go 1.17.9
 - julia 1.7.2
 - Kotlin 1.6.20-release-275
-- MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
+- MSBuild 16.10.1.17201 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.14.2
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.12 v14.19.1 v16.14.2
 - Perl 5.34.0
-- PHP 8.1.4
+- PHP 8.1.5
 - Python 2.7.18
 - Python 3.9.12
 - R 4.1.3
-- Ruby 2.7.5p203
+- Ruby 2.7.6p219
 
 ### Package Management
 - Bundler version 2.3.11
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.3.4
-- Homebrew 3.4.5
+- Composer 2.3.5
+- Homebrew 3.4.7
 - Miniconda 4.11.0
 - NPM 8.5.0
 - NuGet 5.9.0.7134
@@ -46,7 +42,7 @@
 - Pip 22.0.4 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<f6af75acc>)
+- Vcpkg 2022 (build from master \<c37cc7836>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -71,37 +67,37 @@
 - Curl 7.82.0
 - Git 2.35.1
 - Git LFS: 3.1.2
-- GitHub CLI: 2.7.0
+- GitHub CLI: 2.8.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.4
-- helm v3.8.1+g5cb9af4
+- helm v3.8.2+g6e3701e
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v5.0.6
-- mongod v5.0.6
+- mongo v5.0.7
+- mongod v5.0.7
 - Newman 5.3.2
 - OpenSSL 1.1.1n  15 Mar 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1n)`
 - Packer 1.8.0
 - PostgreSQL 14.2
 - psql (PostgreSQL) 14.2
 - Sox 14.4.2
-- Subversion (SVN) 1.14.1
+- Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- yq (https://github.com/mikefarah/yq/) version 4.24.2
+- yq (https://github.com/mikefarah/yq/) version 4.24.5
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.115
-- App Center CLI 2.10.9
-- AWS CLI 2.5.4
+- Aliyun CLI 3.0.117
+- App Center CLI 2.10.10
+- AWS CLI 2.5.6
 - AWS SAM CLI 1.46.0
 - AWS Session Manager CLI 1.2.312.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.35.0
 - Bicep CLI 0.5.6
 - Cabal 3.6.2.0
-- Cmake 3.23.0
+- Cmake 3.23.1
 - Fastlane 2.205.1
 - GHC 9.2.2
 - GHCup v0.1.17.6
@@ -118,12 +114,12 @@
 ### Browsers
 - Safari 15.4 (16613.1.17.1.13)
 - SafariDriver 15.4 (16613.1.17.1.13)
-- Google Chrome 100.0.4896.75 
+- Google Chrome 100.0.4896.127 
 - ChromeDriver 100.0.4896.60
-- Microsoft Edge 100.0.1185.36 
-- MSEdgeDriver 100.0.1185.36
-- Mozilla Firefox 99.0
-- geckodriver 0.30.0
+- Microsoft Edge 100.0.1185.44 
+- MSEdgeDriver 100.0.1185.44
+- Mozilla Firefox 99.0.1
+- geckodriver 0.31.0
 - Selenium server 4.1.3
 
 #### Environment variables
@@ -149,9 +145,10 @@
 #### Ruby
 - 2.4.10
 - 2.5.9
-- 2.6.9
-- 2.7.5
-- 3.0.3
+- 2.6.10
+- 2.7.6
+- 3.0.4
+- 3.1.2
 
 #### Python
 - 3.7.12
@@ -174,8 +171,8 @@
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
-| 1.17.8 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.0  | x64          | GOROOT_1_18_X64      |
+| 1.17.9 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.18.1  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
 - Cargo 1.60.0
@@ -186,8 +183,8 @@
 #### Packages
 - Bindgen 0.59.2
 - Cargo-audit 0.16.0
-- Cargo-outdated 0.11.0
-- Cbindgen 0.21.0
+- Cargo-outdated 0.11.1
+- Cbindgen 0.22.0
 - Clippy 0.1.60
 - Rustfmt 1.4.38-stable
 
@@ -197,7 +194,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 7.1.0   |
+| Az               | 7.4.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.1   |
 | PSScriptAnalyzer | 1.20.0  |
@@ -205,16 +202,17 @@
 ### Web Servers
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | -------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.53   | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| httpd | 2.4.53_1 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
 | nginx | 1.21.6_1 | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.21.4
+- 8.10.22.11
 
 #### Xamarin bundles
 | symlink           | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
 | ----------------- | ------------ | ----------- | ----------- | --------------- |
+| 6_12_15           | 6.12         | 15.8        | 8.8         | 12.2            |
 | 6_12_14           | 6.12         | 15.8        | 8.8         | 12.0            |
 | 6_12_13           | 6.12         | 15.6        | 8.6         | 12.0            |
 | 6_12_12 (default) | 6.12         | 15.4        | 8.4         | 12.0            |
