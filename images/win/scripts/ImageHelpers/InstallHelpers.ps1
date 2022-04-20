@@ -186,7 +186,7 @@ function Start-DownloadWithRetry
 
     $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
     $downloadStartTime = Get-Date
-    
+
     # Default retry logic for the package.
     while ($Retries -gt 0)
     {
@@ -229,7 +229,7 @@ function Get-VsixExtenstionFromMarketplace {
     )
 
     $extensionUri = $MarketplaceUri + $ExtensionMarketPlaceName
-    $request = Invoke-WebRequest -Uri $extensionUri -UseBasicParsing
+    $request = Invoke-SBWithRetry -Command { Invoke-WebRequest -Uri $extensionUri -UseBasicParsing } -RetryCount 20 -RetryIntervalSeconds 30
     $request -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
     $extensionName = $Matches.extensionname
     $request -match 'VsixId":"(?<vsixid>[^"]*)' | Out-Null
@@ -274,12 +274,12 @@ function Install-VsixExtension
     try
     {
         $installPath = ${env:ProgramFiles(x86)}
-        
+
         if (Test-IsWin22)
         {
             $installPath = ${env:ProgramFiles}
         }
-        
+
         #There are 2 types of packages at the moment - exe and vsix
         if ($Name -match "vsix")
         {
@@ -581,8 +581,8 @@ function Get-GitHubPackageDownloadUrl {
         [int]$SearchInCount = 100
     )
 
-    if ($Version -eq "latest") { 
-        $Version = "*" 
+    if ($Version -eq "latest") {
+        $Version = "*"
     }
     $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
     $versionToDownload = ($json.Where{ $_.prerelease -eq $IsPrerelease }.tag_name |
