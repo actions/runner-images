@@ -49,7 +49,7 @@
             "virtual_network_subnet_name": "{{user `virtual_network_subnet_name`}}",
             "private_virtual_network_with_public_ip": "{{user `private_virtual_network_with_public_ip`}}",
             "allowed_inbound_ip_addresses": "{{user `allowed_inbound_ip_addresses`}}",
-            "ssh_key_exchange_algorithms": ["curve25519-sha256@libssh.org"],
+            "user_data_file": "./images/linux/scripts/base/configure-legacy-ssh.sh",
             "os_type": "Linux",
             "image_publisher": "canonical",
             "image_offer": "0001-com-ubuntu-server-jammy-daily",
