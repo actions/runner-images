@@ -20,3 +20,7 @@ make install
 wget https://github.com/PowerShell/PowerShell/releases/download/v7.2.2/powershell_7.2.2-1.deb_amd64.deb
 dpkg --ignore-depends=libssl1.1 -i powershell_7.2.2-1.deb_amd64.deb
 rm -rf powershell_7.2.2-1.deb_amd64.deb
+
+# Create symlinks
+ln -s /usr/local/ssl/lib/libssl.so.1.1 /lib/libssl.so.1.0.0
+ln -s /usr/local/ssl/lib/libcrypto.so.1.1 /lib/libcrypto.so.1.0.0
