@@ -26,7 +26,7 @@ if isUbuntu22; then
     # make dummy deb pkg
     equivs-control libssl1.1.control
     sed -i 's/<package name; defaults to equivs-dummy>/libssl1.1/g' libssl1.1.control
-    equivs-build libssl1.1.controll
+    equivs-build libssl1.1.control
     dpkg -i libssl1.1_1.0_all.deb
 
     # Install Powershell
