@@ -1,4 +1,4 @@
 #!/bin/sh
 # https://github.com/hashicorp/packer/issues/11656
 echo PubkeyAcceptedKeyTypes=+ssh-rsa >> /etc/ssh/sshd_config
-service ssh reload
+systemctl reload sshd.service

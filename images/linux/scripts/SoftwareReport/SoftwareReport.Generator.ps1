@@ -50,12 +50,17 @@ $runtimesList = @(
     (Get-PythonVersion),
     (Get-Python3Version),
     (Get-RubyVersion),
-    (Get-SwiftVersion),
     (Get-JuliaVersion),
     (Get-KotlinVersion),
     (Get-ClangVersions),
     (Get-ClangFormatVersions)
 )
+
+if ((Test-IsUbuntu18) -or (Test-IsUbunt20)) {
+    $runtimesList += @(
+        (Get-LernaVersion)
+    )
+}
 
 $markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
 
@@ -88,7 +93,7 @@ $projectManagementList = @(
     (Get-SbtVersion)
 )
 
-if (Test-IsUbuntu20) {
+if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $projectManagementList += @(
         (Get-LernaVersion)
     )
@@ -144,7 +149,7 @@ $toolsList = @(
     (Get-ZstdVersion)
 )
 
-if (Test-IsUbuntu20) {
+if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $toolsList += (Get-FastlaneVersion)
 }
 
@@ -172,7 +177,7 @@ $markdown += New-MDHeader "Java" -Level 3
 $markdown += Get-JavaVersions | New-MDTable
 $markdown += New-MDNewLine
 
-if (Test-IsUbuntu20) {
+if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $markdown += New-MDHeader "GraalVM" -Level 3
     $markdown += Build-GraalVMTable | New-MDTable
     $markdown += New-MDNewLine

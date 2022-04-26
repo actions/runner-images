@@ -103,7 +103,7 @@ mv phpunit /usr/local/bin/phpunit
 
 # ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
 # see https://github.com/actions/virtual-environments/issues/1084
-if isUbuntu20 ; then
+if isUbuntu20 || isUbuntu22; then
   rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
   apt-get update
 fi
