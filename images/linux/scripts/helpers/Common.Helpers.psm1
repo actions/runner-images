@@ -46,6 +46,10 @@ function Test-IsUbuntu20 {
     return (lsb_release -rs) -eq "20.04"
 }
 
+function Test-IsUbuntu22 {
+    return (lsb_release -rs) -eq "22.04"
+}
+
 function Get-ToolsetContent {
     $toolset = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
     Get-Content $toolset -Raw | ConvertFrom-Json
