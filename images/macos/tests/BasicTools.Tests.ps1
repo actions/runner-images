@@ -187,3 +187,9 @@ Describe "yq" {
         "yq --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "imagemagick" {
+    It "imagemagick" {
+        "magick -version" | Should -ReturnZeroExitCode
+    }
+}
