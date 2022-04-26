@@ -127,7 +127,6 @@ $toolsList = @(
     (Get-KindVersion),
     (Get-KubectlVersion),
     (Get-KustomizeVersion),
-    (Get-LeiningenVersion),
     (Get-MediainfoVersion),
     (Get-HGVersion),
     (Get-MinikubeVersion),
@@ -150,6 +149,7 @@ $toolsList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $toolsList += @(
+        (Get-LeiningenVersion),
         (Get-HHVMVersion)
     )
 }

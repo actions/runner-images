@@ -292,7 +292,7 @@ Describe "Kubernetes tools" {
     }
 }
 
-Describe "Leiningen" {
+Describe "Leiningen" -Skip:(Test-IsUbuntu22) {
     It "leiningen" {
         "lein --version" | Should -ReturnZeroExitCode
     }
