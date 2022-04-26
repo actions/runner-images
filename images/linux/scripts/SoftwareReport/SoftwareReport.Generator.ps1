@@ -58,7 +58,7 @@ $runtimesList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbunt20)) {
     $runtimesList += @(
-        (Get-LernaVersion)
+        (Get-SwiftVersion)
     )
 }
 
