@@ -200,7 +200,7 @@ Describe "Sbt" {
     }
 }
 
-Describe "Selenium" {
+Describe "Selenium" -Skip:(Test-IsUbuntu22) {
     It "Selenium is installed" {
         $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
         $seleniumPath = Join-Path "/usr/share/java" "$seleniumBinaryName.jar"

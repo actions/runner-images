@@ -178,9 +178,11 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     ) | Sort-Object
 )
 
-$markdown += New-MDHeader "Java" -Level 3
-$markdown += Get-JavaVersions | New-MDTable
-$markdown += New-MDNewLine
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $markdown += New-MDHeader "Java" -Level 3
+    $markdown += Get-JavaVersions | New-MDTable
+    $markdown += New-MDNewLine
+}
 
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $markdown += New-MDHeader "GraalVM" -Level 3
@@ -225,12 +227,12 @@ $browsersAndDriversList = @(
     (Get-ChromeVersion),
     (Get-ChromeDriverVersion),
     (Get-GeckodriverVersion),
-    (Get-ChromiumVersion),
-    (Get-SeleniumVersion)
+    (Get-ChromiumVersion)
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $toolsList += @(
+        (Get-SeleniumVersion),
         (Get-FirefoxVersion)
     )
 }
@@ -250,11 +252,17 @@ $tools = Get-DotnetTools
 $markdown += New-MDList -Lines $tools -Style Unordered
 
 $markdown += New-MDHeader "Databases" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-MongoDbVersion),
+$databaseLists = @(
     (Get-SqliteVersion)
-    ) | Sort-Object
 )
+
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $databaseLists += @(
+        (Get-MongoDbVersion)
+    )
+}
+
+$markdown += New-MDList -Style Unordered -Lines ( $databaseLists | Sort-Object )
 
 $markdown += Build-PostgreSqlSection
 $markdown += Build-MySQLSection
@@ -280,12 +288,14 @@ $markdown += New-MDList -Style Unordered -Lines @(
 
 $markdown += Build-WebServersSection
 
-$markdown += New-MDHeader "Android" -Level 3
-$markdown += Build-AndroidTable | New-MDTable
-$markdown += New-MDNewLine
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-AndroidEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $markdown += New-MDHeader "Android" -Level 3
+    $markdown += Build-AndroidTable | New-MDTable
+    $markdown += New-MDNewLine
+    $markdown += New-MDHeader "Environment variables" -Level 4
+    $markdown += Build-AndroidEnvironmentTable | New-MDTable
+    $markdown += New-MDNewLine
+}
 
 $markdown += New-MDHeader "Cached Docker images" -Level 3
 $markdown += Get-CachedDockerImagesTableData | New-MDTable
