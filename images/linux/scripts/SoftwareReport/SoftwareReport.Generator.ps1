@@ -48,13 +48,13 @@ $runtimesList = @(
     (Get-Python3Version),
     (Get-RubyVersion),
     (Get-JuliaVersion),
-    (Get-KotlinVersion),
     (Get-ClangVersions),
     (Get-ClangFormatVersions)
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbunt20)) {
     $runtimesList += @(
+        (Get-KotlinVersion),
         (Get-MonoVersion),
         (Get-ErlangVersion),
         (Get-ErlangRebar3Version),

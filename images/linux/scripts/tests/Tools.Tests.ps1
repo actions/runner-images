@@ -391,7 +391,7 @@ Describe "yq" {
     }
 }
 
-Describe "Kotlin" {
+Describe "Kotlin" -Skip:(Test-IsUbuntu22) {
     It "kapt" {
         "kapt -version"| Should -ReturnZeroExitCode
     }
