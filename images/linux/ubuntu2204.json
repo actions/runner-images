@@ -121,7 +121,7 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/toolsets/toolset-2004.json",
+            "source": "{{template_dir}}/toolsets/toolset-2204.json",
             "destination": "{{user `installer_script_folder`}}/toolset.json"
         },
         {
