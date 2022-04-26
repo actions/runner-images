@@ -19,3 +19,4 @@ make install
 #apt-get install -y powershell
 wget https://github.com/PowerShell/PowerShell/releases/download/v7.2.2/powershell_7.2.2-1.deb_amd64.deb
 dpkg --ignore-depends=libssl1.1 -i powershell_7.2.2-1.deb_amd64.deb
+rm -rf powershell_7.2.2-1.deb_amd64.deb
