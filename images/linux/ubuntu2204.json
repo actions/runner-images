@@ -339,7 +339,7 @@
         {
             "type": "file",
             "source": "{{user `image_folder`}}/Ubuntu-Readme.md",
-            "destination": "{{template_dir}}/Ubuntu2004-Readme.md",
+            "destination": "{{template_dir}}/Ubuntu2204-Readme.md",
             "direction": "download"
         },
         {
@@ -365,14 +365,14 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/config/ubuntu2004.conf",
+            "source": "{{template_dir}}/config/ubuntu2204.conf",
             "destination": "/tmp/"
         },
         {
             "type": "shell",
             "inline": [
                 "mkdir -p /etc/vsts",
-                "cp /tmp/ubuntu2004.conf /etc/vsts/machine_instance.conf"
+                "cp /tmp/ubuntu2204.conf /etc/vsts/machine_instance.conf"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
