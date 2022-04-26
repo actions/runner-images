@@ -1,60 +1,6 @@
 {
     "toolcache": [
         {
-            "name": "Python",
-            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
-            "platform" : "linux",
-            "platform_version": "20.04",
-            "arch": "x64",
-            "versions": [
-                "3.7.*",
-                "3.8.*",
-                "3.9.*",
-                "3.10.*"
-            ]
-        },
-        {
-            "name": "PyPy",
-            "arch": "x64",
-            "platform" : "linux",
-            "versions": [
-                "3.7",
-                "3.8",
-                "3.9"
-            ]
-        },
-        {
-            "name": "node",
-            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
-            "platform" : "linux",
-            "arch": "x64",
-            "versions": [
-                "14.*",
-                "16.*"
-            ]
-        },
-        {
-            "name": "go",
-            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
-            "arch": "x64",
-            "platform" : "linux",
-            "versions": [
-                "1.17.*",
-                "1.18.*"
-            ],
-            "default": "1.17.*"
-        },
-        {
-            "name": "Ruby",
-            "platform_version": "20.04",
-            "arch": "x64",
-            "versions": [
-                "2.7.*",
-                "3.0.*",
-                "3.1.*"
-            ]
-        },
-        {
             "name": "CodeQL",
             "platform" : "linux",
             "arch": "x64",

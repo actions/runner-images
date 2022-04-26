@@ -41,8 +41,6 @@ $runtimesList = @(
     (Get-BashVersion),
     (Get-CPPVersions),
     (Get-FortranVersions),
-    (Get-ErlangVersion),
-    (Get-ErlangRebar3Version),
     (Get-MonoVersion),
     (Get-MsbuildVersion),
     (Get-NodeVersion),
@@ -58,6 +56,8 @@ $runtimesList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbunt20)) {
     $runtimesList += @(
+        (Get-ErlangVersion),
+        (Get-ErlangRebar3Version),
         (Get-SwiftVersion)
     )
 }

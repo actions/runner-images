@@ -126,7 +126,7 @@ Describe "Cmake" {
     }
 }
 
-Describe "erlang" {
+Describe "erlang" -Skip:(Test-IsUbuntu20) {
     $testCases = @("erl -version", "erlc -v", "rebar3 -v") | ForEach-Object { @{ErlangCommand = $_} }
 
     It "erlang <ErlangCommand>" -TestCases $testCases {
