@@ -266,7 +266,9 @@ $markdown += New-MDList -Style Unordered -Lines ( $databaseLists | Sort-Object )
 
 $markdown += Build-PostgreSqlSection
 $markdown += Build-MySQLSection
-$markdown += Build-MSSQLToolsSection
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $markdown += Build-MSSQLToolsSection
+}
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection

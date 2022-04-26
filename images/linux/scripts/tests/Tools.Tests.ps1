@@ -176,7 +176,7 @@ Describe "Mono" -Skip:(Test-IsUbuntu22) {
     }
 }
 
-Describe "MSSQLCommandLineTools" {
+Describe "MSSQLCommandLineTools" -Skip:(Test-IsUbuntu22) {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
     }
