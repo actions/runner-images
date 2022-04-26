@@ -41,7 +41,6 @@ $runtimesList = @(
     (Get-BashVersion),
     (Get-CPPVersions),
     (Get-FortranVersions),
-    (Get-MonoVersion),
     (Get-MsbuildVersion),
     (Get-NodeVersion),
     (Get-PerlVersion),
@@ -56,6 +55,7 @@ $runtimesList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbunt20)) {
     $runtimesList += @(
+        (Get-MonoVersion),
         (Get-ErlangVersion),
         (Get-ErlangRebar3Version),
         (Get-SwiftVersion)
@@ -121,7 +121,6 @@ $toolsList = @(
     (Get-GitFTPVersion),
     (Get-HavegedVersion),
     (Get-HerokuVersion),
-    (Get-HHVMVersion),
     (Get-SVNVersion),
     (Get-JqVersion),
     (Get-YqVersion),
@@ -148,6 +147,12 @@ $toolsList = @(
     (Get-YamllintVersion),
     (Get-ZstdVersion)
 )
+
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $toolsList += @(
+        (Get-HHVMVersion)
+    )
+}
 
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $toolsList += (Get-FastlaneVersion)

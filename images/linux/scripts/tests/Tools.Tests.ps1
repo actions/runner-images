@@ -126,7 +126,7 @@ Describe "Cmake" {
     }
 }
 
-Describe "erlang" -Skip:(Test-IsUbuntu20) {
+Describe "erlang" -Skip:(Test-IsUbuntu22) {
     $testCases = @("erl -version", "erlc -v", "rebar3 -v") | ForEach-Object { @{ErlangCommand = $_} }
 
     It "erlang <ErlangCommand>" -TestCases $testCases {
@@ -162,7 +162,7 @@ Describe "gfortran" {
     }
 }
 
-Describe "Mono" {
+Describe "Mono" -Skip:(Test-IsUbuntu22) {
     It "mono" {
         "mono --version" | Should -ReturnZeroExitCode
     }
@@ -244,7 +244,7 @@ Describe "Heroku" {
     }
 }
 
-Describe "HHVM" {
+Describe "HHVM" -Skip:(Test-IsUbuntu22) {
     It "hhvm" {
         "hhvm --version" | Should -ReturnZeroExitCode
     }

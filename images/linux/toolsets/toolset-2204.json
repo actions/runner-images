@@ -1,6 +1,16 @@
 {
     "toolcache": [
         {
+            "name": "PyPy",
+            "arch": "x64",
+            "platform" : "linux",
+            "versions": [
+                "3.7",
+                "3.8",
+                "3.9"
+            ]
+        },
+        {
             "name": "CodeQL",
             "platform" : "linux",
             "arch": "x64",
@@ -52,7 +62,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "7.1.0"
+                "7.3.2"
             ],
             "zip_versions": [
             ]
