@@ -41,7 +41,6 @@ $runtimesList = @(
     (Get-BashVersion),
     (Get-CPPVersions),
     (Get-FortranVersions),
-    (Get-MsbuildVersion),
     (Get-NodeVersion),
     (Get-PerlVersion),
     (Get-PythonVersion),
@@ -54,6 +53,7 @@ $runtimesList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbunt20)) {
     $runtimesList += @(
+        (Get-MsbuildVersion),
         (Get-KotlinVersion),
         (Get-MonoVersion),
         (Get-ErlangVersion),
@@ -86,12 +86,14 @@ $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Project Management" -Level 3
-$projectManagementList = @(
-    (Get-AntVersion),
-    (Get-GradleVersion),
-    (Get-MavenVersion),
-    (Get-SbtVersion)
-)
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $projectManagementList = @(
+        (Get-AntVersion),
+        (Get-GradleVersion),
+        (Get-MavenVersion),
+        (Get-SbtVersion)
+    )
+}
 
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $projectManagementList += @(
@@ -108,7 +110,6 @@ $toolsList = @(
     (Get-BazelVersion),
     (Get-BazeliskVersion),
     (Get-BicepVersion),
-    (Get-BuildahVersion),
     (Get-CodeQLBundleVersion),
     (Get-CMakeVersion),
     (Get-DockerMobyClientVersion),
@@ -136,10 +137,8 @@ $toolsList = @(
     (Get-OpensslVersion),
     (Get-PackerVersion),
     (Get-ParcelVersion),
-    (Get-PodManVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
-    (Get-SkopeoVersion),
     (Get-SphinxVersion),
     (Get-TerraformVersion),
     (Get-YamllintVersion),
@@ -148,9 +147,12 @@ $toolsList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $toolsList += @(
+        (Get-BuildahVersion),
         (Get-PhantomJSVersion),
         (Get-LeiningenVersion),
-        (Get-HHVMVersion)
+        (Get-HHVMVersion),
+        (Get-PodManVersion),
+        (Get-SkopeoVersion)
     )
 }
 
@@ -226,14 +228,14 @@ $markdown += New-MDHeader "Browsers and Drivers" -Level 3
 $browsersAndDriversList = @(
     (Get-ChromeVersion),
     (Get-ChromeDriverVersion),
-    (Get-GeckodriverVersion),
     (Get-ChromiumVersion)
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $toolsList += @(
         (Get-SeleniumVersion),
-        (Get-FirefoxVersion)
+        (Get-FirefoxVersion),
+        (Get-GeckodriverVersion)
     )
 }
 

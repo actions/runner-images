@@ -11,6 +11,17 @@
             ]
         },
         {
+            "name": "go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "linux",
+            "versions": [
+                "1.17.*",
+                "1.18.*"
+            ],
+            "default": "1.18.*"
+        },
+        {
             "name": "CodeQL",
             "platform" : "linux",
             "arch": "x64",
