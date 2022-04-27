@@ -136,7 +136,6 @@ $toolsList = @(
     (Get-OpensslVersion),
     (Get-PackerVersion),
     (Get-ParcelVersion),
-    (Get-PhantomJSVersion),
     (Get-PodManVersion),
     (Get-PulumiVersion),
     (Get-RVersion),
@@ -149,6 +148,7 @@ $toolsList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $toolsList += @(
+        (Get-PhantomJSVersion),
         (Get-LeiningenVersion),
         (Get-HHVMVersion)
     )
