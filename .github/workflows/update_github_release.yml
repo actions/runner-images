@@ -1,8 +1,8 @@
-name: Update release
+name: Update github release
 
 on:
   repository_dispatch:
-    types: [update-github-release]
+    types: update-github-release
 
 
 jobs:
