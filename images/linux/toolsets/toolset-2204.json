@@ -99,6 +99,7 @@
             "libunwind8",
             "libxkbfile-dev",
             "libxss1",
+            "libssl-dev",
             "locales",
             "mercurial",
             "openssh-client",

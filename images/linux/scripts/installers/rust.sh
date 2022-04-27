@@ -20,7 +20,7 @@ source $CARGO_HOME/env
 rustup component add rustfmt clippy
 
 if isUbuntu22; then
-    cargo install --locked bindgen cbindgen
+    cargo install bindgen cbindgen cargo-audit cargo-outdated
 else
     cargo install --locked bindgen cbindgen cargo-audit cargo-outdated
 fi
