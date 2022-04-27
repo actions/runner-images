@@ -86,8 +86,9 @@ $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Project Management" -Level 3
+$projectManagementList = @()
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $projectManagementList = @(
+    $projectManagementList += @(
         (Get-AntVersion),
         (Get-GradleVersion),
         (Get-MavenVersion),
