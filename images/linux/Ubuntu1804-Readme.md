@@ -316,7 +316,7 @@
 | dbus              | 1.12.2-1ubuntu1.2                 |
 | dnsutils          | 1:9.11.3+dfsg-1ubuntu1.17         |
 | dpkg              | 1.19.0.5ubuntu2.3                 |
-| fakeroot          | 1.22-2ubuntu1                     |
+| rakeroot          | 1.22-2ubuntu1                     |
 | file              | 1:5.32-2ubuntu0.4                 |
 | flex              | 2.6.4-6                           |
 | ftp               | 0.17-34                           |
