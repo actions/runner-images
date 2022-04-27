@@ -51,7 +51,7 @@ $runtimesList = @(
     (Get-ClangFormatVersions)
 )
 
-if ((Test-IsUbuntu18) -or (Test-IsUbunt20)) {
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $runtimesList += @(
         (Get-MsbuildVersion),
         (Get-KotlinVersion),
