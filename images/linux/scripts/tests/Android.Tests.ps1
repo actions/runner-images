@@ -1,4 +1,6 @@
-Describe "Android" -Skip:(Test-IsUbuntu22) {
+Describe "Android" {
+    if (Test-IsUbuntu22) { return }
+
     $androidSdkManagerPackages = Get-AndroidPackages
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
