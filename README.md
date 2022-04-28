@@ -12,6 +12,7 @@ For general questions about using the virtual environments or writing your Actio
 | --------------------|---------------------|--------------------|---------------------|
 | Ubuntu 20.04 | `ubuntu-latest` or `ubuntu-20.04` | [ubuntu-20.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
 | Ubuntu 18.04 | `ubuntu-18.04` | [ubuntu-18.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
+| macOS 12 | `macos-12`| [macOS-12] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&redirect=1)
 | macOS 11 | `macos-latest` or `macos-11`| [macOS-11] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
 | macOS 10.15 | `macos-10.15` | [macOS-10.15] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&redirect=1) |
@@ -52,6 +53,7 @@ You can also track upcoming changes using the [awaiting-deployment](https://gith
 [windows-2019]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
 [windows-2016]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
 [macOS-11]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11-Readme.md
+[macOS-12]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-12-Readme.md
 [macOS-10.15]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
