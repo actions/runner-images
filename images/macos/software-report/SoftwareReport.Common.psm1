@@ -548,7 +548,7 @@ function Get-YqVersion {
 }
 
 function Get-ImageMagickVersion {
-    $imagemagickVersion = Run-Command "magick -version | head -n 1 | cut -d" " -f 2,3"
+    $imagemagickVersion = Run-Command "magick --version" | Select-Object -First 1 | Take-Part -Part 1,2
     return "$imagemagickVersion"
 }
 
