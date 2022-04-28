@@ -39,8 +39,6 @@ Describe "Android" -Skip:(Test-IsUbuntu22) {
         )
 
         $androidPackages = $androidPackages | ForEach-Object { $_ }
-        $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
-        $defaultNdkTestCase = @{ NdkDefaultFullVersion = $ndkDefaultFullVersion }
     }
 
     Context "SDKManagers" {
@@ -61,7 +59,11 @@ Describe "Android" -Skip:(Test-IsUbuntu22) {
     }
 
     Context "Packages" {
+        $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
+        $defaultNdkTestCase = @{ NdkDefaultFullVersion = $ndkDefaultFullVersion }
+
         It "<PackageName>" -TestCases $testCases {
+            param ([string] $PackageName)
             Validate-AndroidPackage $PackageName
         }
 
