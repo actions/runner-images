@@ -7,6 +7,9 @@
 # Temporary hardcode version 2.35.1 due to the issue with the actions\checkout https://github.com/actions/checkout/issues/760
 Choco-Install -PackageName git -ArgumentList '--version', "2.35.1.2", '--installargs="/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /o:PathOption=CmdTools /o:BashTerminalOption=ConHost /o:EnableSymlinks=Enabled /COMPONENTS=gitlfs"'
 
+echo "[safe]
+            directory = *" >> 'C:\Program Files\Git\etc\gitconfig'
+
 # Install hub
 Choco-Install -PackageName hub
 
