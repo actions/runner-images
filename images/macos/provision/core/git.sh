@@ -2,7 +2,11 @@
 source ~/utils/utils.sh
 
 echo Installing Git...
-brew_smart_install "git"
+# Temporary hardcode version 2.35.1 due to the issue with the actions\checkout https://github.com/actions/checkout/issues/76
+brew tap-new local/git
+brew extract --version=2.35.1 git local/git
+brew install git@2.35.1
+brew untap -f local/homebrew-git
 
 echo Installing Git LFS
 brew_smart_install "git-lfs"

@@ -60,6 +60,44 @@ done
 
 rm -f ./add-certificate
 
+# enable-automationmode-without-authentication
+if is_Monterey; then
+retry=10
+while [ $retry -gt 0 ]; do
+{
+osascript <<EOF
+    tell application "Terminal"
+        activate
+        do script "automationmodetool enable-automationmode-without-authentication"
+        delay 2
+        tell application "System Events"
+            keystroke "${PASSWORD}"
+            keystroke return
+        end tell
+    end tell
+    delay 5
+EOF
+} && break
+
+    retry=$((retry-1))
+    if [ $retry -eq 0 ]; then
+        echo "No retry attempts left"
+        exit 1
+    fi
+    sleep 10
+done
+
+    term_service=$(launchctl list | grep -i terminal | cut -f3)
+    echo "Close terminal windows: gui/501/${term_service}"
+    launchctl bootout gui/501/${term_service} && sleep 5
+
+    # test enable-automationmode-without-authentication
+    if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
+        echo "Failed to enable enable-automationmode-without-authentication option"
+        exit 1
+    fi
+fi
+
 # Create symlink for tests running
 if [ ! -d "/usr/local/bin" ];then
     sudo mkdir -p -m 775 /usr/local/bin
