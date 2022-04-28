@@ -8,6 +8,11 @@ brew extract --version=2.35.1 git local/git
 brew install git@2.35.1
 brew untap -f local/homebrew-git
 
+cat <<EOF >> /etc/gitconfig
+[safe]
+        directory = *
+EOF
+
 echo Installing Git LFS
 brew_smart_install "git-lfs"
 
