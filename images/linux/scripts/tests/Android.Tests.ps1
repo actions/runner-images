@@ -27,8 +27,7 @@ Describe "Android" -Skip:(Test-IsUbuntu22) {
         $platformsInstalled = $platformVersionsList | Where-Object { [int]$_ -ge $platformMinVersion } | ForEach-Object { "platforms/android-${_}" }
 
         $buildToolsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', ''
-        $buildTools = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}$"} | Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object -Unique |
-        ForEach-Object { "build-tools/${_}" }
+        $buildTools = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}$"} | Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object -Unique | ForEach-Object { "build-tools/${_}" }
 
         $androidPackages = @(
             $platformsInstalled,
@@ -40,6 +39,8 @@ Describe "Android" -Skip:(Test-IsUbuntu22) {
         )
 
         $androidPackages = $androidPackages | ForEach-Object { $_ }
+        $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
+        $defaultNdkTestCase = @{ NdkDefaultFullVersion = $ndkDefaultFullVersion }
     }
 
     Context "SDKManagers" {
@@ -60,11 +61,7 @@ Describe "Android" -Skip:(Test-IsUbuntu22) {
     }
 
     Context "Packages" {
-        $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
-        $defaultNdkTestCase = @{ NdkDefaultFullVersion = $ndkDefaultFullVersion }
-
         It "<PackageName>" -TestCases $testCases {
-            param ([string] $PackageName)
             Validate-AndroidPackage $PackageName
         }
 
