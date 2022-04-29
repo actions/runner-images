@@ -233,10 +233,10 @@ $browsersAndDriversList = @(
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $toolsList += @(
-        (Get-SeleniumVersion),
+    $browsersAndDriversList += @(
         (Get-FirefoxVersion),
-        (Get-GeckodriverVersion)
+        (Get-GeckodriverVersion),
+        (Get-SeleniumVersion)
     )
 }
 
