@@ -284,7 +284,7 @@ function Get-GHCVersion {
 }
 
 function Get-GHCupVersion {
-    $(ghcup --version) -match "version v(?<version>\d+(\.\d+){2,})" | Out-Null
+    $(ghcup --version) -match "version (?<version>\d+(\.\d+){2,})" | Out-Null
     $ghcVersion = $Matches.version
     return "GHCup $ghcVersion"
 }
