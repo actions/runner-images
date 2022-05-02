@@ -135,7 +135,8 @@
             "libxft",
             "tcl-tk",
             "r",
-            "yq"
+            "yq",
+            "imagemagick"
         ],
         "cask_packages": [
             "julia"

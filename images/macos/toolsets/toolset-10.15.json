@@ -224,7 +224,8 @@
             "libxext",
             "libxft",
             "tcl-tk",
-            "yq"
+            "yq",
+            "imagemagick"
         ],
         "cask_packages": [
             "julia",

@@ -123,7 +123,8 @@ $utilitiesList = @(
     (Get-GPGVersion),
     (Get-SwitchAudioOsxVersion),
     (Get-SoxVersion),
-    (Get-YqVersion)
+    (Get-YqVersion),
+    (Get-ImageMagickVersion)
 )
 
 if ($os.IsLessThanMonterey) {

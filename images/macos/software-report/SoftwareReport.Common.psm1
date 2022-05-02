@@ -547,6 +547,11 @@ function Get-YqVersion {
     return "$yqVersion"
 }
 
+function Get-ImageMagickVersion {
+    $imagemagickVersion = Run-Command "magick --version" | Select-Object -First 1 | Take-Part -Part 1,2
+    return "$imagemagickVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{
