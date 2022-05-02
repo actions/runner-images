@@ -127,7 +127,7 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [bool] $EnableHttpsTrafficOnly = $False,
         [Parameter(Mandatory = $False)]
-        [Hashtable] $tags = $False
+        [Hashtable] $tags
     )
 
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
@@ -266,6 +266,14 @@ Function GenerateResourcesAndImage {
     if ($RestrictToAgentIpAddress -eq $true) {
         $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
         Write-Host "Restricting access to packer generated VM to agent IP Address: $AgentIp"
+    }
+
+    if ($tags) {
+        $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
+        $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
+        $packer_script.builders | Add-Member -Name "azure_tags" -Value $ARM_TAGS -MemberType NoteProperty
+        $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
+        $builderScriptPath = $builderScriptPath_temp
     }
 
     & $packerBinary build -on-error=ask `
