@@ -187,8 +187,8 @@ Function GenerateResourcesAndImage {
     }
 
     # This script should follow the recommended naming conventions for azure resources
-    $storageAccountName = if ($ResourceGroupName.EndsWith("-rg")) {
-        $ResourceGroupName.Substring(0, $ResourceGroupName.Length - 3)
+    $storageAccountName = if($ResourceGroupName.EndsWith("-rg")) {
+        $ResourceGroupName.Substring(0, $ResourceGroupName.Length -3)
     } else { $ResourceGroupName }
 
     # Resource group names may contain special characters, that are not allowed in the storage account name
@@ -226,7 +226,7 @@ Function GenerateResourcesAndImage {
         if ('Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential' -as [type]) {
             $credentials = [Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential]@{
                 StartDateTime = $startDate
-                EndDateTime   = $endDate
+                EndDateTime = $endDate
             }
             $sp = New-AzADServicePrincipal -DisplayName $spDisplayName
             $appCred = New-AzADAppCredential -ApplicationId $sp.AppId -PasswordCredentials $credentials
