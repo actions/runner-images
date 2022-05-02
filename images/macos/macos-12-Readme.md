@@ -1,7 +1,12 @@
+| Announcements |
+|-|
+| [[macOS] Xcode versions 13.2 & 13.3 will be removed, 13.3.1 will be set as the default one on May, 16](https://github.com/actions/virtual-environments/issues/5463) |
+| [macOS 12 (Monterey) is available as a public beta in GitHub Actions](https://github.com/actions/virtual-environments/issues/5446) |
+***
 # macOS 12.3 info
 - System Version: macOS 12.3.1 (21E258)
 - Kernel Version: Darwin 21.4.0
-- Image Version: 20220425.3
+- Image Version: 20220429.1
 
 ## Installed Software
 ### Language and Runtime
@@ -9,15 +14,15 @@
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 13.1.6 is default
-- gcc-11 (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gcc-11` alias
-- GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
+- gcc-11 (Homebrew GCC 11.3.0) 11.3.0 - available by `gcc-11` alias
+- GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
 - Go 1.17.9
 - julia 1.7.2
 - Kotlin 1.6.21-release-334
 - MSBuild 16.10.1.17201 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.14.2
+- Node.js v16.15.0
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.12 v14.19.1 v16.14.2
+- NVM - Cached node versions: v12.22.12 v14.19.1 v16.15.0
 - Perl 5.34.0
 - PHP 8.1.5
 - Python 2.7.18
@@ -30,14 +35,14 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.3.5
-- Homebrew 3.4.8
-- NPM 8.5.0
+- Homebrew 3.4.9
+- NPM 8.5.5
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
 - Pip 22.0.4 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<94c728df6>)
+- Vcpkg 2022 (build from master \<c8a56fdc1>)
 - Yarn 1.22.18
 
 ### Project Management
@@ -53,10 +58,10 @@
 - bazel 5.1.1
 - bazelisk 1.11.0
 - bsdtar 3.5.1 - available by 'tar' alias
-- Curl 7.82.0
+- Curl 7.83.0
 - Git 2.35.1
 - Git LFS: 3.1.4
-- GitHub CLI: 2.8.0
+- GitHub CLI: 2.9.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.6
@@ -71,13 +76,13 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- yq (https://github.com/mikefarah/yq/) version 4.24.5
+- yq (https://github.com/mikefarah/yq/) version 4.25.1
 - zstd 1.5.2
 
 ### Tools
 - App Center CLI command
-- AWS CLI 2.5.8
-- AWS SAM CLI 1.46.0
+- AWS CLI 2.6.1
+- AWS SAM CLI 1.47.0
 - AWS Session Manager CLI 1.2.312.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.36.0
@@ -99,18 +104,18 @@
 ### Browsers
 - Safari 15.4 (17613.1.17.1.13)
 - SafariDriver 15.4 (17613.1.17.1.13)
-- Google Chrome 100.0.4896.127 
-- ChromeDriver 100.0.4896.60
-- Microsoft Edge 100.0.1185.50 
-- MSEdgeDriver 100.0.1185.50
+- Google Chrome 101.0.4951.41 
+- ChromeDriver 101.0.4951.41
+- Microsoft Edge 101.0.1210.32 
+- MSEdgeDriver 101.0.1210.32
 - Mozilla Firefox 99.0.1
 - geckodriver 0.31.0
-- Selenium server 4.1.3
+- Selenium server 4.1.4
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/100.0.4896.60 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/101.0.4951.41 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -118,13 +123,13 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.322+6 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.14+101         | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 11.0.15+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.3+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
-| Version     | Environment variables |
-| ----------- | --------------------- |
-| CE 22.0.0.2 | GRAALVM_11_ROOT       |
+| Version   | Environment variables |
+| --------- | --------------------- |
+| CE 22.1.0 | GRAALVM_11_ROOT       |
 
 ### Cached Tools
 #### Ruby
@@ -133,7 +138,7 @@
 - 3.1.2
 
 #### Python
-- 3.7.12
+- 3.7.13
 - 3.8.12
 - 3.9.12
 - 3.10.4
@@ -147,7 +152,7 @@
 #### Node.js
 - 12.22.12
 - 14.19.1
-- 16.14.2
+- 16.15.0
 
 #### Go
 | Version | Architecture | Environment Variable |
@@ -171,20 +176,20 @@
 - Rustfmt 1.4.38-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.2
+- PowerShell 7.2.3
 
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
 | Az               | 7.5.0   |
 | MarkdownPS       | 1.9     |
-| Pester           | 5.3.2   |
+| Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.20.0  |
 
 ### Web Servers
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | -------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.53_1 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| httpd | 2.4.53_2 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
 | nginx | 1.21.6_1 | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
@@ -286,7 +291,7 @@
 - libXext 1.3.4
 - libXft 2.3.4
 - Tcl/Tk 8.6.12
-- Zlib 1.2.11
+- Zlib 1.2.12
 
 
 
