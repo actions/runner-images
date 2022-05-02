@@ -125,17 +125,19 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [bool] $AllowBlobPublicAccess = $False,
         [Parameter(Mandatory = $False)]
-        [bool] $EnableHttpsTrafficOnly = $False
+        [bool] $EnableHttpsTrafficOnly = $False,
+        [Parameter(Mandatory = $False)]
+        [Hashtable] $tags = $False
     )
 
     $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
     $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
 
-    if ([string]::IsNullOrEmpty($AzureClientId))
-    {
+    if ([string]::IsNullOrEmpty($AzureClientId)) {
         Connect-AzAccount
-    } else {
+    }
+    else {
         $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
         $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
         Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
@@ -153,11 +155,12 @@ Function GenerateResourcesAndImage {
     }
 
     if ($alreadyExists) {
-        if($Force -eq $true) {
+        if ($Force -eq $true) {
             # Cleanup the resource group if it already exitsted before
             Remove-AzResourceGroup -Name $ResourceGroupName -Force
-            New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
-        } else {
+            New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation -Tag $tags
+        }
+        else {
             $title = "Delete Resource Group"
             $message = "The resource group you specified already exists. Do you want to clean it up?"
 
@@ -173,21 +176,22 @@ Function GenerateResourcesAndImage {
             $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no, $stop)
             $result = $host.ui.PromptForChoice($title, $message, $options, 0)
 
-            switch ($result)
-            {
-                0 { Remove-AzResourceGroup -Name $ResourceGroupName -Force; New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation }
+            switch ($result) {
+                0 { Remove-AzResourceGroup -Name $ResourceGroupName -Force; New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation -Tag $tags }
                 1 { <# Do nothing #> }
                 2 { exit }
             }
         }
-    } else {
-        New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
+    }
+    else {
+        New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation -Tag $tags
     }
 
     # This script should follow the recommended naming conventions for azure resources
-    $storageAccountName = if($ResourceGroupName.EndsWith("-rg")) {
-        $ResourceGroupName.Substring(0, $ResourceGroupName.Length -3)
-    } else { $ResourceGroupName }
+    $storageAccountName = if ($ResourceGroupName.EndsWith("-rg")) {
+        $ResourceGroupName.Substring(0, $ResourceGroupName.Length - 3)
+    }
+    else { $ResourceGroupName }
 
     # Resource group names may contain special characters, that are not allowed in the storage account name
     $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
@@ -195,11 +199,11 @@ Function GenerateResourcesAndImage {
     
     
     # Storage Account Name can only be 24 characters long
-    if ($storageAccountName.Length -gt 24){
+    if ($storageAccountName.Length -gt 24) {
         $storageAccountName = $storageAccountName.Substring(0, 24)
     }
 
-    New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly
+    New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly -Tag $tags
 
     if ([string]::IsNullOrEmpty($AzureClientId)) {
         # Interactive authentication: A service principal is created during runtime.
@@ -210,13 +214,13 @@ Function GenerateResourcesAndImage {
         if ('Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential' -as [type]) {
             $credentials = [Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential]@{
                 StartDate = $startDate
-                EndDate = $endDate
-                Password = $ServicePrincipalClientSecret
+                EndDate   = $endDate
+                Password  = $ServicePrincipalClientSecret
             }
             $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
             $spClientId = $sp.ApplicationId
             $azRoleParam = @{
-                RoleDefinitionName = "Contributor"
+                RoleDefinitionName   = "Contributor"
                 ServicePrincipalName = $spClientId
             }
         }
@@ -224,14 +228,14 @@ Function GenerateResourcesAndImage {
         if ('Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential' -as [type]) {
             $credentials = [Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential]@{
                 StartDateTime = $startDate
-                EndDateTime = $endDate
+                EndDateTime   = $endDate
             }
             $sp = New-AzADServicePrincipal -DisplayName $spDisplayName
             $appCred = New-AzADAppCredential -ApplicationId $sp.AppId -PasswordCredentials $credentials
             $spClientId = $sp.AppId
             $azRoleParam = @{
                 RoleDefinitionName = "Contributor"
-                PrincipalId = $sp.Id
+                PrincipalId        = $sp.Id
             }
             $ServicePrincipalClientSecret = $appCred.SecretText
         }
@@ -242,7 +246,8 @@ Function GenerateResourcesAndImage {
         $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
         $tenantId = $sub.TenantId
         # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
-    } else {
+    }
+    else {
         # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
         # is used for all authentication purposes.
         $spClientId = $AzureClientId
@@ -258,7 +263,7 @@ Function GenerateResourcesAndImage {
         throw "'packer' binary is not found on PATH"
     }
 
-    if($RestrictToAgentIpAddress -eq $true) {
+    if ($RestrictToAgentIpAddress -eq $true) {
         $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
         Write-Host "Restricting access to packer generated VM to agent IP Address: $AgentIp"
     }
