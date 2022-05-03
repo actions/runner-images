@@ -78,8 +78,6 @@ As extra options, you can add more params for permit to add Azure Tags on resour
 GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "myTestResourceGroup" -ImageGenerationRepositoryRoot "$pwd" -ImageType Ubuntu1804 -AzureLocation "East US" -EnableHttpsTrafficOnly $true -tags @{dept="devops";env="prod"}
 ```
 
-
-
 *Please, check synopsis of `GenerateResourcesAndImage` for details about non-mandatory parameters.*
 
 #### Generated VM Deployment
