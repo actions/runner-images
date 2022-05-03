@@ -1,3 +1,36 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@alex-3sr 
+actions
+/
+virtual-environments
+Public
+Code
+Issues
+24
+Pull requests
+9
+Discussions
+Actions
+Projects
+Wiki
+Security
+Insights
+virtual-environments/docs/create-image-and-azure-resources.md
+@al-cheb
+al-cheb [Packer] Add info about build_resource_group_name option (#4900)
+…
+Latest commit 7ef06a9 on Jan 19
+ History
+ 6 contributors
+@miketimofeev@Darleev@al-cheb@MariuszFerdyn@AlenaSviridenko@dibir-magomedsaygitov
+177 lines (133 sloc)  12.9 KB
+   
 # Virtual-Environments
 The virtual-environments project uses [Packer](https://www.packer.io/) to generate disk images for the following platforms: Windows 2016/2019/2022, Ubuntu 18.04/20.04. 
 Each image is configured through a JSON template that Packer understands and which specifies where to build the image (Azure in this case), and what scripts to run to install software and prepare the disk.
@@ -18,7 +51,6 @@ After successful image generation, a snapshot of the temporary VM will be conver
 > To connect to a temporary VM packer uses WinRM or SSH connections on public IP interfaces.
 If you use a build agent located in an Azure subscription, please make sure that HTTPS/SSH ports are allowed for incoming/outgoing connections.
 In case of firewall restrictions, prohibiting connections from public addresses, private virtual network resources can be deployed and passed as arguments to the packer. This approach allows virtual machines to use private connections inside VLAN.
-
 ### Service principal
 Packer uses Service Principal to authorize in Azure infrastructure. To setup image-generation CI or use packer manually — SP with full read-write permissions for selected Azure subscription needed.
 Detailed instruction can be found in [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
@@ -52,9 +84,7 @@ Import [GenerateResourcesAndImage](../helpers/GenerateResourcesAndImage.ps1) scr
 
 ```
 Set-Location C:\virtual-environments
-
 Import-Module .\helpers\GenerateResourcesAndImage.ps1
-
 GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "myTestResourceGroup" -ImageGenerationRepositoryRoot "$pwd" -ImageType Ubuntu1804 -AzureLocation "East US"
 ```
 Where:
@@ -85,9 +115,7 @@ After the successful image generation, Virtual Machine can be created from the g
 
 ```
 Set-Location C:\virtual-environments
-
 Import-Module .\helpers\CreateAzureVMFromPackerTemplate.ps1
-
 CreateAzureVMFromPackerTemplate -SubscriptionId {YourSubscriptionId}  -ResourceGroupName {ResourceGroupName} -TemplateFile "C:\BuildVmImages\temporaryTemplate.json" -VirtualMachineName "testvm1" -AdminUsername "shady1" -AdminPassword "SomeSecurePassword1" -AzureLocation "eastus"
 ```
 Where:
@@ -143,7 +171,6 @@ Generated tool versions and details can be found in related projects:
 ### Post-generation scripts
 
 > :warning: These scripts are intended to run on a VM deployed in Azure
-
 The user, created during the image generation, does not exist in the result VHD hence some configuration files related to the user's home directory need to be changed as well as the file permissions for some directories. Scripts for that are located in the `post-generation` folder in the repository:
 - Windows: https://github.com/actions/virtual-environments/tree/main/images/win/post-generation
 - Linux: https://github.com/actions/virtual-environments/tree/main/images/linux/post-generation
@@ -181,3 +208,15 @@ The scripts are copied to the VHD during the image generation process to the fol
 - **Msys2FirstLaunch.ps1** - initializes bash user profile in MSYS2
 - **RustJunction.ps1** - creates Rust junction points to cargo and rustup folders
 - **VSConfiguration.ps1** - performs initial Visual Studio configuration
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
