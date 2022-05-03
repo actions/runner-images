@@ -201,7 +201,11 @@ Function GenerateResourcesAndImage {
         $storageAccountName = $storageAccountName.Substring(0, 24)
     }
 
-    New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly -Tag $tags
+    if ($tags) {
+        New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly -Tag $tags
+    } else {
+        New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly
+    }
 
     if ([string]::IsNullOrEmpty($AzureClientId)) {
         # Interactive authentication: A service principal is created during runtime.
