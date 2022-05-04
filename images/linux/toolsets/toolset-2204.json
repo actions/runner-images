@@ -24,6 +24,16 @@
             ]
         },
         {
+            "name": "node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": [
+                "14.*",
+                "16.*"
+            ]
+        },
+        {
             "name": "go",
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
             "arch": "x64",
