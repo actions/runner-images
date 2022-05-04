@@ -72,7 +72,7 @@
 - HHVM (HipHop VM) 4.159.0
 - jq 1.6
 - Kind 0.12.0
-- Kubectl 4.5.4
+- Kubectl 1.24.0
 - Kustomize 4.5.4
 - Leiningen 2.9.8
 - MediaInfo 19.09
