@@ -45,6 +45,14 @@
             "default": "1.18.*"
         },
         {
+            "name": "Ruby",
+            "platform_version": "22.04",
+            "arch": "x64",
+            "versions": [
+                "3.1.*"
+            ]
+        },
+        {
             "name": "CodeQL",
             "platform" : "linux",
             "arch": "x64",
