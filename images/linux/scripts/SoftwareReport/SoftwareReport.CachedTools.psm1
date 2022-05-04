@@ -55,10 +55,10 @@ function Build-CachedToolsSection {
     $output += New-MDHeader "PyPy" -Level 4
     $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
 
-    if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-        $output += New-MDHeader "Python" -Level 4
-        $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
+    $output += New-MDHeader "Python" -Level 4
+    $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
 
+    if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
         $output += New-MDHeader "Ruby" -Level 4
         $output += New-MDList -Lines (Get-ToolcacheRubyVersions) -Style Unordered
     }
