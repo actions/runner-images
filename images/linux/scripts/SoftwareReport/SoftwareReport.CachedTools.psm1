@@ -47,10 +47,8 @@ function Build-CachedToolsSection {
     $output += New-MDHeader "Go" -Level 4
     $output += New-MDList -Lines (Get-ToolcacheGoVersions) -Style Unordered
 
-    if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-        $output += New-MDHeader "Node.js" -Level 4
-        $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
-    }
+    $output += New-MDHeader "Node.js" -Level 4
+    $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
 
     $output += New-MDHeader "PyPy" -Level 4
     $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
