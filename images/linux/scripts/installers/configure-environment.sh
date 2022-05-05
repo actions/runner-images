@@ -42,4 +42,5 @@ if [[ -f "/etc/fwupd/daemon.conf" ]]; then
 fi
 
 # Disable to load providers
+# https://github.com/microsoft/azure-pipelines-agent/issues/3834
 sed -i 's/openssl_conf = openssl_init/#openssl_conf = openssl_init/g' /etc/ssl/openssl.cnf
