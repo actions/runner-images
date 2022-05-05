@@ -87,8 +87,7 @@ function Get-JQVersion {
 }
 
 function Get-KubectlVersion {
-    $(kubectl version --client=true --short=true) -match "Client Version: v(?<version>.+)" | Out-Null
-    $kubectlVersion = $Matches.Version
+    $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v','')
     return "Kubectl $kubectlVersion"
 }
 
