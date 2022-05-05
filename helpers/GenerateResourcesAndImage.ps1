@@ -18,7 +18,7 @@ Function Get-PackerTemplatePath {
     )
 
     switch ($ImageType) {
-        ([ImageType]::Windows2016) {
+        ([ImageType]::Windows2022) {
             $relativeTemplatePath = Join-Path "win" "windows2016.json"
         }
         ([ImageType]::Windows2019) {
