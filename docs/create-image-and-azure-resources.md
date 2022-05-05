@@ -61,7 +61,7 @@ Where:
 - `SubscriptionId` - The Azure subscription Id where resources will be created.
 - `ResourceGroupName` - The Azure resource group name where the Azure resources will be created.
 - `ImageGenerationRepositoryRoot` - The root path of the image generation repository source.
-- `ImageType` - The type of the image being generated. Valid options are: "Windows2016", "Windows2019", "Windows2022", "Ubuntu1804", "Ubuntu2004".
+- `ImageType` - The type of the image being generated. Valid options are: "Windows2016", "Windows2019", "Windows2022", "Ubuntu1804", "Ubuntu2004", "Ubuntu2204".
 - `AzureLocation` - The location of the resources being created in Azure. For example "East US".
 
 The function automatically creates all required Azure resources and kicks off packer image generation for the selected image type.

@@ -6,6 +6,7 @@ enum ImageType {
     Windows2022 = 2
     Ubuntu1804 = 3
     Ubuntu2004 = 4
+    Ubuntu2204 = 5
 }
 
 Function Get-PackerTemplatePath {
@@ -31,6 +32,9 @@ Function Get-PackerTemplatePath {
         }
         ([ImageType]::Ubuntu2004) {
             $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
+        }
+        ([ImageType]::Ubuntu2204) {
+            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.json"
         }
         default { throw "Unknown type of image" }
     }
