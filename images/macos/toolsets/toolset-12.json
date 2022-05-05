@@ -127,6 +127,7 @@
             "perl",
             "sbt",
             "subversion",
+            "swiftformat",
             "swig",
             "zstd",
             "gmp",
