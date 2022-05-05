@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 643
-- Image Version: 20220426.1
+- Image Version: 20220503.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -32,7 +32,7 @@
 - pip 22.0.4 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<9f643818c>)
+- Vcpkg (build from master \<b98afc9f1>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -55,7 +55,7 @@
 - Bicep 0.5.6
 - Cabal 3.6.2.0
 - CMake 3.23.1
-- CodeQL Action Bundle 2.8.5
+- CodeQL Action Bundle 2.9.0
 - Docker 20.10.7
 - Docker-compose 1.29.2
 - Docker-wincred 0.6.4
@@ -72,13 +72,13 @@
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.8.0
-- Pulumi v3.30.0
+- Pulumi v3.31.0
 - R 4.2.0
 - Service Fabric SDK 9.0.1017.9590
 - Stack 2.7.5
 - Subversion (SVN) 1.14.2
 - Swig 4.0.2
-- VSWhere 3.0.1
+- VSWhere 3.0.2
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset v3.11.2.4516
 - yamllint 1.26.3
@@ -86,8 +86,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.118
-- AWS CLI 2.5.8
-- AWS SAM CLI 1.46.0
+- AWS CLI 2.6.1
+- AWS SAM CLI 1.48.0
 - AWS Session Manager CLI 1.2.312.0
 - Azure CLI 2.36.0
 - Azure DevOps CLI extension 0.25.0
@@ -109,11 +109,11 @@
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 101.0.4951.41
-- Chrome Driver 101.0.4951.15
-- Microsoft Edge 100.0.1185.50
-- Microsoft Edge Driver 100.0.1185.50
-- Mozilla Firefox 99.0.1
+- Google Chrome 101.0.4951.54
+- Chrome Driver 101.0.4951.41
+- Microsoft Edge 101.0.1210.32
+- Microsoft Edge Driver 101.0.1210.32
+- Mozilla Firefox 100.0
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.1.0
@@ -163,7 +163,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 12.22.12 | x64          |
 | 14.19.1 | x64          |
-| 16.14.2 | x64          |
+| 16.15.0 | x64          |
 
 #### Python
 | Version | Architecture |
@@ -478,10 +478,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.8
 
 ### .NET tools
-- nbgv 3.4.255+06fb9182bf
+- nbgv 3.5.103+351d94e36c
 
 ### PowerShell Tools
-- PowerShell 7.2.2
+- PowerShell 7.2.3
 
 #### Azure Powershell Modules
 | Module  | Version                                                                         | Path                           |
@@ -498,11 +498,11 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.71           |
+| AWSPowerShell      | 4.1.76           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.5            |
-| Pester             | 3.4.0<br>5.3.2   |
+| Pester             | 3.4.0<br>5.3.3   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
 | PSWindowsUpdate    | 2.2.0.3          |
