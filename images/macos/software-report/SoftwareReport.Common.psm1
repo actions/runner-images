@@ -448,7 +448,7 @@ function Get-AliyunCLIVersion {
 }
 
 function Get-GHCupVersion {
-    $ghcUpVersion = Run-Command "ghcup --version" | Take-Part -Part 5
+    $ghcUpVersion = (Run-Command "ghcup --version" | Take-Part -Part 5).Replace('v','')
     return "GHCup $ghcUpVersion"
 }
 
