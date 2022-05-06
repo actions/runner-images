@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/os.sh
+
 # Set ImageVersion and ImageOS env variables
 echo ImageVersion=$IMAGE_VERSION | tee -a /etc/environment
 echo ImageOS=$IMAGE_OS | tee -a /etc/environment
@@ -43,4 +46,6 @@ fi
 
 # Disable to load providers
 # https://github.com/microsoft/azure-pipelines-agent/issues/3834
-sed -i 's/openssl_conf = openssl_init/#openssl_conf = openssl_init/g' /etc/ssl/openssl.cnf
+if isUbuntu22; then
+    sed -i 's/openssl_conf = openssl_init/#openssl_conf = openssl_init/g' /etc/ssl/openssl.cnf
+fi
