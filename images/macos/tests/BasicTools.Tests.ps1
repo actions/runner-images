@@ -30,7 +30,7 @@ Describe "Subversion" {
     }
 }
 
-Describe "SwiftFormat" -Skip:($os.IsMonterey) {
+Describe "SwiftFormat" {
     It "SwiftFormat" {
         "swiftformat --version" | Should -ReturnZeroExitCode
     }
