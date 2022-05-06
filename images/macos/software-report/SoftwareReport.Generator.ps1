@@ -176,14 +176,9 @@ $toolsList += @(
     (Get-GHCupVersion),
     (Get-GHCVersion),
     (Get-CabalVersion),
-    (Get-StackVersion)
+    (Get-StackVersion),
+    (Get-SwiftFormatVersion)
 )
-
-if($os.IsLessThanMonterey) {
-    $toolsList += @(
-        (Get-SwiftFormatVersion)
-    )
-}
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 

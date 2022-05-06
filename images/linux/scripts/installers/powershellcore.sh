@@ -10,8 +10,8 @@ source $HELPER_SCRIPTS/install.sh
 
 if isUbuntu22; then
     # Install libssl1.1
-    download_with_retries "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb" "/tmp"
-    dpkg -i /tmp/libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb
+    download_with_retries "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1ubuntu1.3_amd64.deb" "/tmp"
+    dpkg -i /tmp/libssl1.1_1.1.1l-1ubuntu1.3_amd64.deb
 
     # Install Powershell
     download_with_retries "https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/powershell-lts_7.2.3-1.deb_amd64.deb" "/tmp"
