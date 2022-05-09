@@ -1,6 +1,10 @@
+| Announcements |
+|-|
+| [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
+***
 # Ubuntu 20.04.4 LTS
 - Linux kernel version: 5.13.0-1022-azure
-- Image Version: 20220503.1
+- Image Version: 20220508.1
 
 ## Installed Software
 ### Language and Runtime
@@ -32,7 +36,7 @@
 - Pip3 20.0.2
 - Pipx 1.0.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<b98afc9f1>)
+- Vcpkg  (build from master \<a5d6d1451>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -64,7 +68,7 @@
 - Docker-Moby Client 20.10.14+azure-1
 - Docker-Moby Server 20.10.14+azure-1
 - Fastlane 2.205.2
-- Git 2.36.0 (apt source repository: ppa:git-core/ppa)
+- Git 2.36.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.1.4 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
@@ -81,12 +85,12 @@
 - n 8.2.0
 - Newman 5.3.2
 - nvm 0.39.1
-- OpenSSL 1.1.1f-1ubuntu2.12
+- OpenSSL 1.1.1f-1ubuntu2.13
 - Packer 1.8.0
 - Parcel 2.5.0
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.31.0
+- Pulumi 3.32.1
 - R 4.2.0
 - Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
@@ -98,15 +102,15 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.118
-- AWS CLI 2.6.1
+- AWS CLI 2.6.3
 - AWS CLI Session manager plugin 1.2.312.0
-- AWS SAM CLI 1.47.0
+- AWS SAM CLI 1.48.0
 - Azure CLI (azure-cli) 2.36.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.9.0
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 10.1.0
+- Netlify CLI 10.3.0
 - OpenShift CLI 4.10.12
 - ORAS CLI 0.12.0
 - Vercel CLI 24.2.0
@@ -114,7 +118,7 @@
 ### Java
 | Version              | Vendor          | Environment Variable |
 | -------------------- | --------------- | -------------------- |
-| 8.0.322+6            | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 8.0.332+9            | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.15+10 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.3+7             | Eclipse Temurin | JAVA_HOME_17_X64     |
 
@@ -185,7 +189,7 @@
     PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
 ```
 #### MySQL
-- MySQL 8.0.29-0ubuntu0.20.04.2
+- MySQL 8.0.29-0ubuntu0.20.04.3
 - MySQL Server (user:root password:root)
 
 ```
@@ -203,7 +207,7 @@
 
 #### Node.js
 - 12.22.12
-- 14.19.1
+- 14.19.2
 - 16.15.0
 
 #### PyPy
@@ -242,7 +246,7 @@
 | Module           | Version |
 | ---------------- | ------- |
 | MarkdownPS       | 1.9     |
-| Microsoft.Graph  | 1.9.5   |
+| Microsoft.Graph  | 1.9.6   |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.20.0  |
 
@@ -293,7 +297,7 @@
 | debian:10               | sha256:ebe4b9831fb22dfa778de4ffcb8ea0ad69b5d782d4e86cab14cc1fded5d8e761  | 2022-04-20 |
 | debian:11               | sha256:6846593d7d8613e5dcc68c8f7d8b8e3179c7f3397b84a47c5b2ce989ef1075a0  | 2022-04-20 |
 | debian:9                | sha256:cebe6e1c30384958d471467e231f740e8f0fd92cbfd2a435a186e9bada3aee1c  | 2022-04-20 |
-| moby/buildkit:latest    | sha256:3fbc9b9d9a74ab650eea43610ed880e51cdc05282d61f83c2e0a3b2e9ed3a344  | 2022-04-27 |
+| moby/buildkit:latest    | sha256:0dc312b04eac1b44cd2cad566deb1e886c753109208affbbec8384f381ff7f38  | 2022-05-06 |
 | node:12                 | sha256:01627afeb110b3054ba4a1405541ca095c8bfca1cb6f2be9479c767a2711879e  | 2022-04-20 |
 | node:12-alpine          | sha256:d4b15b3d48f42059a15bd659be60afe21762aae9d6cbea6f124440895c27db68  | 2022-04-11 |
 | node:14                 | sha256:2f39686f6d0b2687550659367fa11f56018a0f782b7e30f1a0ea56b11dece124  | 2022-04-20 |
@@ -344,7 +348,7 @@
 | libmagickcore-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.4    |
 | libmagickwand-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.4    |
 | libsecret-1-dev        | 0.20.4-0ubuntu1                   |
-| libsqlite3-dev         | 3.31.1-4ubuntu0.2                 |
+| libsqlite3-dev         | 3.31.1-4ubuntu0.3                 |
 | libtool                | 2.4.6-14                          |
 | libunwind8             | 1.2.1-9build1                     |
 | libxkbfile-dev         | 1:1.1.0-1                         |
@@ -368,7 +372,7 @@
 | rsync                  | 3.1.3-8ubuntu0.3                  |
 | shellcheck             | 0.7.0-2build2                     |
 | sphinxsearch           | 2.2.11-2ubuntu2                   |
-| sqlite3                | 3.31.1-4ubuntu0.2                 |
+| sqlite3                | 3.31.1-4ubuntu0.3                 |
 | ssh                    | 1:8.2p1-4ubuntu0.4                |
 | sshpass                | 1.06-1                            |
 | subversion             | 1.13.0-3ubuntu0.1                 |
@@ -387,4 +391,5 @@
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
+
 
