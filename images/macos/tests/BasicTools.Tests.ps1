@@ -30,7 +30,7 @@ Describe "Subversion" {
     }
 }
 
-Describe "SwiftFormat" {
+Describe "SwiftFormat" -Skip:($os.IsMonterey) {
     It "SwiftFormat" {
         "swiftformat --version" | Should -ReturnZeroExitCode
     }
@@ -185,11 +185,5 @@ Describe "sbt" {
 Describe "yq" {
     It "yq" {
         "yq --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "imagemagick" {
-    It "imagemagick" {
-        "magick -version" | Should -ReturnZeroExitCode
     }
 }

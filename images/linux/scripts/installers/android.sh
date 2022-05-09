@@ -102,7 +102,7 @@ filter_components_by_version $minimumBuildToolVersion "${availableBuildTools[@]}
 echo "y" | $SDKMANAGER ${components[@]}
 
 # Old skdmanager from sdk tools doesn't work with Java > 8, set version 8 explicitly
-if isUbuntu20 || isUbuntu22; then
+if isUbuntu20; then
     sed -i "2i export JAVA_HOME=${JAVA_HOME_8_X64}" ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager
 fi
 

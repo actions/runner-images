@@ -46,10 +46,6 @@ function Test-IsUbuntu20 {
     return (lsb_release -rs) -eq "20.04"
 }
 
-function Test-IsUbuntu22 {
-    return (lsb_release -rs) -eq "22.04"
-}
-
 function Get-ToolsetContent {
     $toolset = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
     Get-Content $toolset -Raw | ConvertFrom-Json
@@ -73,7 +69,7 @@ function Get-ToolsetValue {
 
 function Get-AndroidPackages {
     $androidSDKManagerPath = "/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager"
-    $androidPackages = & $androidSDKManagerPath --list --verbose 2>&1
+    $androidPackages = & $androidSDKManagerPath --list --verbose
     return $androidPackages
 }
 

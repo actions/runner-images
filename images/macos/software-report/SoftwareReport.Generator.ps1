@@ -123,8 +123,7 @@ $utilitiesList = @(
     (Get-GPGVersion),
     (Get-SwitchAudioOsxVersion),
     (Get-SoxVersion),
-    (Get-YqVersion),
-    (Get-ImageMagickVersion)
+    (Get-YqVersion)
 )
 
 if ($os.IsLessThanMonterey) {
@@ -176,9 +175,14 @@ $toolsList += @(
     (Get-GHCupVersion),
     (Get-GHCVersion),
     (Get-CabalVersion),
-    (Get-StackVersion),
-    (Get-SwiftFormatVersion)
+    (Get-StackVersion)
 )
+
+if($os.IsLessThanMonterey) {
+    $toolsList += @(
+        (Get-SwiftFormatVersion)
+    )
+}
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 

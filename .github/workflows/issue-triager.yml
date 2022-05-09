@@ -1,0 +1,78 @@
+# Adapted from: https://github.com/microsoft/azure-pipelines-tasks/blob/master/.github/workflows/blank.yml
+# This action labels and assigns newly opened issues
+
+name: Issue triager
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  label:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - uses: damccorm/tag-ur-it@master
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: "./triage-rules.yml"
+
+    - uses: actions/github-script@v4
+      id: check-if-spammy
+      name: Check if new issue is spammy
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        result-encoding: string
+        script: |
+          const issue = context.payload.issue;
+          const minTitleLength = 2;
+          const titleLength = issue.title.trim().split(' ').length;
+          const isEmptyToolRequest = !!(issue.title.includes('[tool name]') && issue.body.includes('Tool name: <!--- Name -->'));
+
+          if (isEmptyToolRequest || titleLength < minTitleLength) {
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: "This issue appears to have been opened accidentally. I'm going to close it now, but feel free to open a new issue or ask any questions in discussions!"
+            });
+
+            await github.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['Invalid'],
+              issue_number: issue.number,
+              state: 'closed'
+            });
+
+            return true;
+          }
+
+          return false;
+
+    - if: ${{ steps.check-if-spammy.outputs.result == 'false' }}
+      uses: actions/github-script@v4
+      name: Assign labels to issue
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          const issueLabels = await github.issues.listLabelsOnIssue({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          });
+
+          const isAnnouncement = issueLabels.data && issueLabels.data
+            .map(label => label.name)
+            .includes('Announcement');
+
+          if (!isAnnouncement) {
+            github.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['needs triage']
+            })
+          }

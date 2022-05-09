@@ -99,12 +99,6 @@ build {
   provisioner "shell" {
     scripts = [
       "./provision/core/xcode-clt.sh",
-      "./provision/core/homebrew.sh"
-    ]
-    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
-  }
-  provisioner "shell" {
-    scripts = [
       "./provision/configuration/configure-tccdb-macos11.sh",
       "./provision/configuration/add-network-interface-detection.sh",
       "./provision/configuration/autologin.sh",
@@ -140,6 +134,7 @@ build {
   provisioner "shell" {
     pause_before = "30s"
     scripts = [
+      "./provision/core/homebrew.sh",
       "./provision/core/open_windows_check.sh",
       "./provision/core/powershell.sh",
       "./provision/core/dotnet.sh",

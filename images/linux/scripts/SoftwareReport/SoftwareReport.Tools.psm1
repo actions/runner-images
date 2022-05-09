@@ -142,7 +142,7 @@ function Get-KindVersion {
 }
 
 function Get-KubectlVersion {
-    $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v','')
+    $kubectlVersion = kubectl version --client --short | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
     return "Kubectl $kubectlVersion"
 }
 
