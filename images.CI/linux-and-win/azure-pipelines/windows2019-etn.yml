@@ -1,0 +1,7 @@
+name: MS_WIN_2019_$(Date:yyyyMMdd)$(Rev:_r)
+
+jobs:
+- template: image-generation-etn.yml
+  parameters:
+    image_type: windows2019
+    image_readme_name: Windows2019-Readme.md

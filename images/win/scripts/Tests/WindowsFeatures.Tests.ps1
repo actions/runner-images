@@ -15,10 +15,11 @@ Describe "WindowsFeatures" {
     }
 }
 
+#This needs to be set much smaller to stay within the VM size we are running.
 Describe "DiskSpace" {
     It "The image has enough disk space"{
         $availableSpaceMB =  [math]::Round((Get-PSDrive -Name C).Free / 1MB)
-        $minimumFreeSpaceMB = 18 * 1024
+        $minimumFreeSpaceMB = 3 * 1024
 
         $availableSpaceMB | Should -BeGreaterThan $minimumFreeSpaceMB
     }
