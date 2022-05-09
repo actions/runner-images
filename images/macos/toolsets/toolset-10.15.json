@@ -182,7 +182,12 @@
         }
     },
     "powershellModules": [
-        {"name": "Az"},
+        {
+            "name": "Az",
+            "versions": [
+                "7.1.0"
+            ]
+        },
         {"name": "MarkdownPS"},
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
@@ -224,8 +229,7 @@
             "libxext",
             "libxft",
             "tcl-tk",
-            "yq",
-            "imagemagick"
+            "yq"
         ],
         "cask_packages": [
             "julia",
@@ -286,6 +290,7 @@
             "platform" : "darwin",
             "variable_template" : "GOROOT_{0}_{1}_X64",
             "versions": [
+                "1.15.*",
                 "1.16.*",
                 "1.17.*",
                 "1.18.*"
@@ -328,7 +333,7 @@
         ]
     },
     "go": {
-        "default": "1.17"
+        "default": "1.15"
     },
     "node": {
         "default": "16",

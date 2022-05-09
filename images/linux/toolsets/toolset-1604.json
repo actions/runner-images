@@ -1,0 +1,302 @@
+{
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "platform" : "linux",
+            "platform_version": "16.04",
+            "arch": "x64",
+            "versions": [
+                "2.7.*",
+                "3.5.*",
+                "3.6.*",
+                "3.7.*",
+                "3.8.*",
+                "3.9.*"
+            ]
+        },
+        {
+            "name": "PyPy",
+            "arch": "x64",
+            "platform" : "linux",
+            "versions": [
+                "2.7",
+                "3.6"
+            ]
+        },
+        {
+            "name": "node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": [
+                "10.*",
+                "12.*",
+                "14.*"
+            ]
+        },
+        {
+            "name": "go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "linux",
+            "versions": [
+                "1.13.*",
+                "1.14.*",
+                "1.15.*",
+                "1.16.*",
+                "1.17.*"
+            ],
+            "default": "1.15.*"
+        },
+        {
+            "name": "Ruby",
+            "platform_version": "16.04",
+            "arch": "x64",
+            "versions": [
+                "2.4.*",
+                "2.5.*",
+                "2.6.*",
+                "2.7.*",
+                "3.0.*"
+            ]
+        },
+        {
+            "name": "CodeQL",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": [
+                "*"
+            ]
+        }
+    ],
+    "java": {
+        "default": "8",
+        "versions": [
+            "8", "11", "12"
+        ]
+    },
+    "android": {
+        "platform_min_version": "23",
+        "build_tools_min_version": "23.0.1",
+        "extra_list": [
+            "android;m2repository",
+            "google;m2repository",
+            "google;google_play_services",
+            "m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2",
+            "m2repository;com;android;support;constraint;constraint-layout-solver;1.0.1",
+            "m2repository;com;android;support;constraint;constraint-layout;1.0.2",
+            "m2repository;com;android;support;constraint;constraint-layout;1.0.1"
+        ],
+        "addon_list": [
+            "addon-google_apis-google-24",
+            "addon-google_apis-google-23",
+            "addon-google_apis-google-22",
+            "addon-google_apis-google-21"
+        ],
+        "additional_tools": [
+            "cmake;3.10.2.4988404",
+            "cmake;3.18.1",
+            "platform-tools"
+        ],
+        "ndk": {
+            "lts": "21"
+        }
+    },
+    "powershellModules": [
+        {"name": "MarkdownPS"},
+        {"name": "Pester"}
+    ],
+    "azureModules": [
+        {
+            "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
+            "versions": [
+                "5.7.0"
+            ],
+            "zip_versions": [
+                "3.1.0",
+                "4.4.0"
+            ]
+        }
+    ],
+    "apt": {
+        "common_packages": [
+            "build-essential",
+            "dbus",
+            "dnsutils",
+            "dpkg",
+            "fakeroot",
+            "gnupg2",
+            "imagemagick",
+            "iproute2",
+            "iputils-ping",
+            "lib32z1",
+            "libc++abi-dev",
+            "libc++-dev",
+            "libcurl3",
+            "libgbm-dev",
+            "libgconf-2-4",
+            "libgsl-dev",
+            "libgtk-3-0",
+            "libicu55",
+            "libmagic-dev",
+            "libmagickcore-dev",
+            "libmagickwand-dev",
+            "libsecret-1-dev",
+            "libsqlite3-dev",
+            "libunwind8",
+            "libxkbfile-dev",
+            "libxss1",
+            "locales",
+            "openssh-client",
+            "p7zip-rar",
+            "p7zip",
+            "pkg-config",
+            "python-setuptools",
+            "rpm",
+            "texinfo",
+            "tk",
+            "tzdata",
+            "upx",
+            "xorriso",
+            "xvfb",
+            "xz-utils",
+            "zsync"
+        ],
+        "cmd_packages": [
+            "binutils",
+            "bison",
+            "brotli",
+            "bzip2",
+            "coreutils",
+            "curl",
+            "file",
+            "flex",
+            "ftp",
+            "haveged",
+            "jq",
+            "m4",
+            "mediainfo",
+            "netcat",
+            "net-tools",
+            "p7zip-full",
+            "parallel",
+            "pass",
+            "patchelf",
+            "pollinate",
+            "rsync",
+            "shellcheck",
+            "sphinxsearch",
+            "sqlite3",
+            "ssh",
+            "sshpass",
+            "subversion",
+            "sudo",
+            "swig",
+            "telnet",
+            "time",
+            "unzip",
+            "wget",
+            "yamllint",
+            "zip"
+        ]
+    },
+    "brew": [
+        {"name": "zstd"}
+    ],
+    "docker": {
+        "images": [
+            "alpine:3.11",
+            "alpine:3.12",
+            "alpine:3.13",
+            "buildpack-deps:stretch",
+            "buildpack-deps:buster",
+            "debian:9",
+            "debian:10",
+            "node:10",
+            "node:12",
+            "node:14",
+            "node:10-alpine",
+            "node:12-alpine",
+            "node:14-alpine",
+            "ubuntu:16.04",
+            "ubuntu:18.04",
+            "ubuntu:20.04"
+        ]
+    },
+    "dotnet": {
+        "aptPackages": [
+            "dotnet-sdk-3.1",
+            "dotnet-sdk-5.0"
+        ],
+        "versions": [
+            "2.1",
+            "3.1",
+            "5.0"
+        ]
+    },
+    "clang": {
+        "versions": [
+            "9"
+        ],
+        "default_version": "9"
+    },
+    "gcc": {
+        "versions": [
+            "g++-9"
+        ]
+    },
+    "gfortran": {
+        "versions": [
+            "gfortran-9"
+        ]
+    },
+    "rubygems": [],
+    "node_modules": [
+        {
+            "name": "grunt",
+            "command": "grunt"
+        },
+        {
+            "name": "gulp",
+            "command": "gulp"
+        },
+        {
+            "name": "n",
+            "command": "n"
+        },
+        {
+            "name": "parcel-bundler",
+            "command": "parcel"
+        },
+        {
+            "name": "typescript",
+            "command": "tsc"
+        },
+        {
+            "name": "newman",
+            "command": "newman"
+        },
+        {
+            "name": "vercel",
+            "command": "vercel"
+        },
+        {
+            "name": "webpack",
+            "command": "webpack"
+        },
+        {
+            "name": "webpack-cli",
+            "command": "webpack-cli"
+        },
+        {
+            "name": "netlify-cli",
+            "command": "netlify"
+        },
+        {
+            "name": "yarn",
+            "command": "yarn"
+        }
+    ]
+}

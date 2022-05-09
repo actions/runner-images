@@ -42,11 +42,12 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
+                "1.15.*",
                 "1.16.*",
                 "1.17.*",
                 "1.18.*"
             ],
-            "default": "1.17.*"
+            "default": "1.15.*"
         },
         {
             "name": "Ruby",
@@ -57,8 +58,7 @@
                 "2.5.*",
                 "2.6.*",
                 "2.7.*",
-                "3.0.*",
-                "3.1.*"
+                "3.0.*"
             ]
         },
         {
@@ -120,7 +120,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "7.3.2"
+                "7.1.0"
             ],
             "zip_versions": [
                 "3.1.0",
@@ -132,8 +132,6 @@
     ],
     "apt": {
         "common_packages": [
-            "autoconf",
-            "automake",
             "build-essential",
             "dbus",
             "dnsutils",
@@ -156,7 +154,6 @@
             "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
-            "libtool",
             "libunwind8",
             "libxkbfile-dev",
             "libxss1",
@@ -285,6 +282,7 @@
     },
     "php": {
         "versions": [
+            "7.1",
             "7.2",
             "7.3",
             "7.4",

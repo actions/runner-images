@@ -6,7 +6,6 @@ enum ImageType {
     Windows2022 = 2
     Ubuntu1804 = 3
     Ubuntu2004 = 4
-    Ubuntu2204 = 5
 }
 
 Function Get-PackerTemplatePath {
@@ -32,9 +31,6 @@ Function Get-PackerTemplatePath {
         }
         ([ImageType]::Ubuntu2004) {
             $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
-        }
-        ([ImageType]::Ubuntu2204) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.json"
         }
         default { throw "Unknown type of image" }
     }
@@ -196,12 +192,6 @@ Function GenerateResourcesAndImage {
     # Resource group names may contain special characters, that are not allowed in the storage account name
     $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
     $storageAccountName += "001"
-    
-    
-    # Storage Account Name can only be 24 characters long
-    if ($storageAccountName.Length -gt 24){
-        $storageAccountName = $storageAccountName.Substring(0, 24)
-    }
 
     New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly
 
