@@ -11,7 +11,7 @@ Write-Host "Install-Package Docker"
 Install-Package -Name docker -ProviderName DockerMsftProvider -RequiredVersion 20.10.7 -Force
 Start-Service docker
 
-Write-Host "Install-Package Docker-Compose"
+Write-Host "Install-Package Docker-Compose v1"
 Choco-Install -PackageName docker-compose
 
 Write-Host "Install-Package Docker-Compose v2"
