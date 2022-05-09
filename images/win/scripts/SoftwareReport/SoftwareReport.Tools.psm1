@@ -56,9 +56,14 @@ function Get-DockerVersion {
 }
 
 function Get-DockerComposeVersion {
-    $(docker-compose --version) -match "docker-compose version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $dockerComposeVersion = $Matches.Version
-    return "Docker-compose $dockerComposeVersion"
+    $dockerComposeVersion = docker-compose version --short
+    return "Docker Compose v1 $dockerComposeVersion"
+}
+
+
+function Get-DockerComposeVersionV2 {
+    $dockerComposeVersion = docker compose version --short
+    return "Docker Compose v2 $dockerComposeVersion"
 }
 
 function Get-DockerWincredVersion {

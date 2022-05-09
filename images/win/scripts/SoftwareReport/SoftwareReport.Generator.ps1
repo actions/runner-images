@@ -94,6 +94,7 @@ $toolsList = @(
     (Get-CodeQLBundleVersion),
     (Get-DockerVersion),
     (Get-DockerComposeVersion),
+    (Get-DockerComposeVersionV2),
     (Get-DockerWincredVersion),
     (Get-GHCVersion),
     (Get-GitVersion),

@@ -14,6 +14,10 @@ Start-Service docker
 Write-Host "Install-Package Docker-Compose"
 Choco-Install -PackageName docker-compose
 
+Write-Host "Install-Package Docker-Compose v2"
+$dockerComposev2Url = "https://github.com/docker/compose/releases/latest/download/docker-compose-windows-x86_64.exe"
+Start-DownloadWithRetry -Url $dockerComposev2Url -Name docker-compose.exe -DownloadPath "C:\Program Files\Docker\cli-plugins"
+
 Write-Host "Install docker-wincred"
 $dockerCredLatestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/docker/docker-credential-helpers/releases/latest"
 $dockerCredDownloadUrl = $dockerCredLatestRelease.assets.browser_download_url -match "docker-credential-wincred-.+\.zip" | Select-Object -First 1
