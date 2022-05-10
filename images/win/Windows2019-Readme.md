@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2803
-- Image Version: 20220503.1
+- Image Version: 20220509.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -32,7 +32,7 @@
 - pip 22.0.4 (python 3.7)
 - Pipx 1.0.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<b98afc9f1>)
+- Vcpkg (build from master \<0d7603c4e>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -53,7 +53,7 @@
 - azcopy 10.14.1
 - Bazel 5.1.1
 - Bazelisk 1.11.0
-- Bicep 0.5.6
+- Bicep 0.6.1
 - Cabal 3.6.2.0
 - CMake 3.23.1
 - CodeQL Action Bundle 2.9.0
@@ -63,11 +63,11 @@
 - ghc 9.2.2
 - Git 2.35.1.windows.2
 - Git LFS 3.0.2
-- Google Cloud SDK 384.0.0
+- Google Cloud SDK 384.0.1
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.12.0
-- Kubectl 1.23.6
+- Kubectl 1.24.0
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.2
@@ -75,7 +75,7 @@
 - OpenSSL 1.1.1
 - Packer 1.8.0
 - Parcel 2.5.0
-- Pulumi v3.31.0
+- Pulumi v3.32.1
 - R 4.2.0
 - Service Fabric SDK 9.0.1017.9590
 - Stack 2.7.5
@@ -89,8 +89,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.118
-- AWS CLI 2.6.1
-- AWS SAM CLI 1.48.0
+- AWS CLI 2.6.3
+- AWS SAM CLI 1.49.0
 - AWS Session Manager CLI 1.2.312.0
 - Azure CLI 2.36.0
 - Azure DevOps CLI extension 0.25.0
@@ -115,8 +115,8 @@
 ### Browsers and webdrivers
 - Google Chrome 101.0.4951.54
 - Chrome Driver 101.0.4951.41
-- Microsoft Edge 101.0.1210.32
-- Microsoft Edge Driver 101.0.1210.32
+- Microsoft Edge 101.0.1210.39
+- Microsoft Edge Driver 101.0.1210.39
 - Mozilla Firefox 100.0
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
@@ -133,7 +133,7 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.322+6 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 8.0.332+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.15+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
 | 17.0.3+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
@@ -170,7 +170,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 12.22.12 | x64          |
-| 14.19.1 | x64          |
+| 14.19.2 | x64          |
 | 16.15.0 | x64          |
 
 #### Python
@@ -544,10 +544,10 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.76           |
+| AWSPowerShell      | 4.1.80           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.9.5            |
+| Microsoft.Graph    | 1.9.6            |
 | Pester             | 3.4.0<br>5.3.3   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
