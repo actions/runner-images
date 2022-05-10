@@ -4,10 +4,7 @@ source ~/utils/utils.sh
 echo Installing Git...
 brew_smart_install "git"
 
-cat <<EOF >> /etc/gitconfig
-[safe]
-        directory = *
-EOF
+git config --global --add safe.directory "*"
 
 echo Installing Git LFS
 brew_smart_install "git-lfs"
