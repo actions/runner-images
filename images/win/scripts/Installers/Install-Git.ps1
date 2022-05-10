@@ -6,8 +6,10 @@
 # Install git
 Choco-Install -PackageName git -ArgumentList '--installargs="/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /o:PathOption=CmdTools /o:BashTerminalOption=ConHost /o:EnableSymlinks=Enabled /COMPONENTS=gitlfs"'
 
-echo "[safe]
-            directory = *" >> 'C:\Program Files\Git\etc\gitconfig'
+Add-Content -Path "C:\Program Files\Git\etc\gitconfig" -Value "
+[safe]
+    directory = *
+"
 
 # Install hub
 Choco-Install -PackageName hub
