@@ -24,6 +24,11 @@ variable "client_secret" {
   sensitive = true
 }
 
+variable "commit_url" {
+  type      = string
+  default   = ""
+}
+
 variable "dockerhub_login" {
   type    = string
   default = "${env("DOCKERHUB_LOGIN")}"
