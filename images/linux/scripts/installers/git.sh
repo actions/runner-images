@@ -45,7 +45,7 @@ tar xzf "$tmp_hub"/hub-linux-amd64-*.tgz --strip-components 1 -C "$tmp_hub"
 mv "$tmp_hub"/bin/hub /usr/local/bin
 
 # Add well-known SSH host keys to known_hosts
-ssh-keyscan -t rsa github.com >> /etc/ssh/ssh_known_hosts
+ssh-keyscan -t rsa,ecdsa,ed25519 github.com >> /etc/ssh/ssh_known_hosts
 ssh-keyscan -t rsa ssh.dev.azure.com >> /etc/ssh/ssh_known_hosts
 
 invoke_tests "Tools" "Git"
