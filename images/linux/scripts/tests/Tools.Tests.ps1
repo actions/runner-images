@@ -126,7 +126,7 @@ Describe "Cmake" {
     }
 }
 
-Describe "erlang" {
+Describe "erlang" -Skip:(Test-IsUbuntu22) {
     $testCases = @("erl -version", "erlc -v", "rebar3 -v") | ForEach-Object { @{ErlangCommand = $_} }
 
     It "erlang <ErlangCommand>" -TestCases $testCases {
@@ -162,7 +162,7 @@ Describe "gfortran" {
     }
 }
 
-Describe "Mono" {
+Describe "Mono" -Skip:(Test-IsUbuntu22) {
     It "mono" {
         "mono --version" | Should -ReturnZeroExitCode
     }
@@ -176,7 +176,7 @@ Describe "Mono" {
     }
 }
 
-Describe "MSSQLCommandLineTools" {
+Describe "MSSQLCommandLineTools" -Skip:(Test-IsUbuntu22) {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
     }
@@ -200,7 +200,7 @@ Describe "Sbt" {
     }
 }
 
-Describe "Selenium" {
+Describe "Selenium" -Skip:(Test-IsUbuntu22) {
     It "Selenium is installed" {
         $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
         $seleniumPath = Join-Path "/usr/share/java" "$seleniumBinaryName.jar"
@@ -244,7 +244,7 @@ Describe "Heroku" {
     }
 }
 
-Describe "HHVM" {
+Describe "HHVM" -Skip:(Test-IsUbuntu22) {
     It "hhvm" {
         "hhvm --version" | Should -ReturnZeroExitCode
     }
@@ -292,7 +292,7 @@ Describe "Kubernetes tools" {
     }
 }
 
-Describe "Leiningen" {
+Describe "Leiningen" -Skip:(Test-IsUbuntu22) {
     It "leiningen" {
         "lein --version" | Should -ReturnZeroExitCode
     }
@@ -316,13 +316,13 @@ Describe "Pulumi" {
     }
 }
 
-Describe "Phantomjs" {
+Describe "Phantomjs" -Skip:(Test-IsUbuntu22) {
     It "phantomjs" {
         "phantomjs --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "GraalVM" -Skip:(-not (Test-IsUbuntu20)) {
+Describe "GraalVM" -Skip:(Test-IsUbuntu18) {
     It "graalvm" {
         '$GRAALVM_11_ROOT/bin/java -version' | Should -ReturnZeroExitCode
     }
@@ -332,7 +332,7 @@ Describe "GraalVM" -Skip:(-not (Test-IsUbuntu20)) {
     }
 }
 
-Describe "Containers" {
+Describe "Containers" -Skip:(Test-IsUbuntu22) {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {
@@ -391,7 +391,7 @@ Describe "yq" {
     }
 }
 
-Describe "Kotlin" {
+Describe "Kotlin" -Skip:(Test-IsUbuntu22) {
     It "kapt" {
         "kapt -version"| Should -ReturnZeroExitCode
     }

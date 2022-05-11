@@ -1,52 +1,53 @@
 | Announcements |
 |-|
-| [[All OSs] Go versions less than 1.16 will be removed and the default will be set to 1.17 on April, 11](https://github.com/actions/virtual-environments/issues/5280) |
+| [[macOS] Xcode versions 13.2 & 13.3 will be removed, 13.3.1 will be set as the default one on May, 16](https://github.com/actions/virtual-environments/issues/5463) |
+| [macOS 12 (Monterey) is available as a public beta in GitHub Actions](https://github.com/actions/virtual-environments/issues/5446) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1824)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220408.1
+- Image Version: 20220501.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.417 5.0.102 5.0.202 5.0.302 5.0.406
+- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.418 5.0.102 5.0.202 5.0.302 5.0.407
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is default
 - Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
 - gcc-9 (Homebrew GCC 9.4.0) 9.4.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
-- gcc-11 (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gcc-11` alias
+- gcc-11 (Homebrew GCC 11.3.0) 11.3.0 - available by `gcc-11` alias
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
-- GNU Fortran (Homebrew GCC 11.2.0_3) 11.2.0 - available by `gfortran-11` alias
-- Go 1.17.8
+- GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
+- Go 1.17.9
 - julia 1.7.2
-- Kotlin 1.6.20-release-275
+- Kotlin 1.6.21-release-334
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.14.2
+- Node.js v16.15.0
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.12 v14.19.1 v16.14.2
+- NVM - Cached node versions: v12.22.12 v14.19.1 v16.15.0
 - Perl 5.34.0
-- PHP 8.1.4
+- PHP 8.1.5
 - Python 2.7.18
 - Python 3.9.12
-- R 4.1.3
-- Ruby 2.7.5p203
+- R 4.2.0
+- Ruby 2.7.6p219
 
 ### Package Management
-- Bundler version 2.3.11
+- Bundler version 2.3.12
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.3.4
-- Homebrew 3.4.5
+- Composer 2.3.5
+- Homebrew 3.4.9
 - Miniconda 4.11.0
-- NPM 8.5.0
+- NPM 8.5.5
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
 - Pip 22.0.4 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<bd1ef2df4>)
+- Vcpkg 2022 (build from master \<c8a56fdc1>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -68,46 +69,46 @@
 - bazel 5.1.1
 - bazelisk 1.11.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.82.0
+- Curl 7.83.0
 - Git 2.35.1
-- Git LFS: 3.1.2
-- GitHub CLI: 2.7.0
-- GNU parallel 20220322
+- Git LFS: 3.1.4
+- GitHub CLI: 2.9.0
+- GNU parallel 20220422
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
-- gpg (GnuPG) 2.3.4
-- helm v3.8.1+g5cb9af4
+- gpg (GnuPG) 2.3.6
+- helm v3.8.2+g6e3701e
 - Hub CLI: 2.14.2
 - jq 1.6
-- mongo v5.0.6
-- mongod v5.0.6
+- mongo v5.0.7
+- mongod v5.0.7
 - Newman 5.3.2
 - OpenSSL 1.1.1n  15 Mar 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1n)`
 - Packer 1.8.0
 - PostgreSQL 14.2
 - psql (PostgreSQL) 14.2
 - Sox 14.4.2
-- Subversion (SVN) 1.14.1
+- Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
 - Vagrant 2.2.19
-- virtualbox 6.1.32r149290
-- yq (https://github.com/mikefarah/yq/) version 4.24.2
+- virtualbox 6.1.34r150636
+- yq (https://github.com/mikefarah/yq/) version 4.25.1
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.115
-- App Center CLI 2.10.9
-- AWS CLI 2.5.4
-- AWS SAM CLI 1.46.0
+- Aliyun CLI 3.0.117
+- App Center CLI 2.10.10
+- AWS CLI 2.6.1
+- AWS SAM CLI 1.47.0
 - AWS Session Manager CLI 1.2.312.0
 - Azure CLI (azure-devops) 0.25.0
-- Azure CLI 2.35.0
+- Azure CLI 2.36.0
 - Bicep CLI 0.5.6
 - Cabal 3.6.2.0
-- Cmake 3.23.0
-- Fastlane 2.205.1
+- Cmake 3.23.1
+- Fastlane 2.205.2
 - GHC 9.2.2
-- GHCup v0.1.17.6
+- GHCup v0.1.17.7
 - Jazzy 0.14.2
 - Stack 2.7.5
 - SwiftFormat 0.49.7
@@ -115,24 +116,24 @@
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
-- SwiftLint 0.47.0
+- SwiftLint 0.47.1
 - yamllint 1.26.3
 
 ### Browsers
 - Safari 15.4 (15613.1.17.1.13)
 - SafariDriver 15.4 (15613.1.17.1.13)
-- Google Chrome 100.0.4896.75 
-- ChromeDriver 100.0.4896.60
-- Microsoft Edge 100.0.1185.36 
-- MSEdgeDriver 100.0.1185.36
-- Mozilla Firefox 99.0
-- geckodriver 0.30.0
-- Selenium server 4.1.3
+- Google Chrome 101.0.4951.41 
+- ChromeDriver 101.0.4951.41
+- Microsoft Edge 101.0.1210.32 
+- MSEdgeDriver 101.0.1210.32
+- Mozilla Firefox 99.0.1
+- geckodriver 0.31.0
+- Selenium server 4.1.4
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/100.0.4896.60 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/101.0.4951.41 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -140,29 +141,29 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.322+6 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.14+101         | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 11.0.15+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 12.0.2+10.3         | Adopt OpenJDK   | JAVA_HOME_12_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
 | 14.0.2+12           | Adopt OpenJDK   | JAVA_HOME_14_X64     |
-| 17.0.2+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 17.0.3+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
-| Version     | Environment variables |
-| ----------- | --------------------- |
-| CE 22.0.0.2 | GRAALVM_11_ROOT       |
+| Version   | Environment variables |
+| --------- | --------------------- |
+| CE 22.1.0 | GRAALVM_11_ROOT       |
 
 ### Cached Tools
 #### Ruby
 - 2.4.10
 - 2.5.9
-- 2.6.9
-- 2.7.5
-- 3.0.3
+- 2.6.10
+- 2.7.6
+- 3.0.4
 
 #### Python
 - 2.7.18
 - 3.6.15
-- 3.7.12
+- 3.7.13
 - 3.8.12
 - 3.9.12
 - 3.10.4
@@ -177,14 +178,14 @@
 #### Node.js
 - 12.22.12
 - 14.19.1
-- 16.14.2
+- 16.15.0
 
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
-| 1.17.8 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.0  | x64          | GOROOT_1_18_X64      |
+| 1.17.9 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.18.1  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
 - Cargo 1.60.0
@@ -195,31 +196,31 @@
 #### Packages
 - Bindgen 0.59.2
 - Cargo-audit 0.16.0
-- Cargo-outdated 0.11.0
-- Cbindgen 0.21.0
+- Cargo-outdated 0.11.1
+- Cbindgen 0.23.0
 - Clippy 0.1.60
 - Rustfmt 1.4.38-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.2
+- PowerShell 7.2.3
 
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 7.1.0   |
+| Az               | 7.5.0   |
 | MarkdownPS       | 1.9     |
-| Pester           | 5.3.1   |
+| Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.20.0  |
 
 ### Web Servers
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | -------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.53   | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| httpd | 2.4.53_2 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
 | nginx | 1.21.6_1 | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.21.4
+- 8.10.22.11
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -358,7 +359,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                   |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 4.0                                                                                                                                                                                                                                       |
-| Android Emulator           | 31.2.9                                                                                                                                                                                                                                    |
+| Android Emulator           | 31.2.10                                                                                                                                                                                                                                   |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                                        |
 | Android SDK Platform-Tools | 33.0.1                                                                                                                                                                                                                                    |
@@ -385,7 +386,7 @@
 - libXext 1.3.4
 - libXft 2.3.4
 - Tcl/Tk 8.6.12
-- Zlib 1.2.11
+- Zlib 1.2.12
 
 
 

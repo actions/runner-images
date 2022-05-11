@@ -4,11 +4,9 @@
             "name": "Python",
             "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
             "platform" : "linux",
-            "platform_version": "20.04",
+            "platform_version": "22.04",
             "arch": "x64",
             "versions": [
-                "2.7.*",
-                "3.6.*",
                 "3.7.*",
                 "3.8.*",
                 "3.9.*",
@@ -20,8 +18,6 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "2.7",
-                "3.6",
                 "3.7",
                 "3.8",
                 "3.9"
@@ -33,7 +29,6 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "12.*",
                 "14.*",
                 "16.*"
             ]
@@ -44,21 +39,16 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.16.*",
                 "1.17.*",
                 "1.18.*"
             ],
-            "default": "1.17.*"
+            "default": "1.18.*"
         },
         {
             "name": "Ruby",
-            "platform_version": "20.04",
+            "platform_version": "22.04",
             "arch": "x64",
             "versions": [
-                "2.5.*",
-                "2.6.*",
-                "2.7.*",
-                "3.0.*",
                 "3.1.*"
             ]
         },
@@ -78,10 +68,6 @@
             {
                 "name": "Temurin-Hotspot",
                 "versions": [ "8", "11", "17" ]
-            },
-            {
-                "name": "Adopt",
-                "versions": [ "8", "11" ]
             }
         ],
         "maven": "3.8.5"
@@ -121,10 +107,6 @@
                 "7.3.2"
             ],
             "zip_versions": [
-                "3.1.0",
-                "4.4.0",
-                "5.9.0",
-                "6.6.0"
             ]
         }
     ],
@@ -159,6 +141,7 @@
             "libunwind8",
             "libxkbfile-dev",
             "libxss1",
+            "libssl-dev",
             "locales",
             "mercurial",
             "openssh-client",
@@ -219,25 +202,20 @@
     ],
     "docker": {
         "images": [
-            "alpine:3.12",
-            "alpine:3.13",
             "alpine:3.14",
-            "buildpack-deps:stretch",
+            "alpine:3.15",
             "buildpack-deps:buster",
             "buildpack-deps:bullseye",
-            "debian:9",
             "debian:10",
             "debian:11",
             "moby/buildkit:latest",
-            "node:12",
             "node:14",
             "node:16",
-            "node:12-alpine",
             "node:14-alpine",
             "node:16-alpine",
-            "ubuntu:16.04",
             "ubuntu:18.04",
-            "ubuntu:20.04"
+            "ubuntu:20.04",
+            "ubuntu:22.04"
         ]
     },
     "pipx": [
@@ -252,13 +230,9 @@
     ],
     "dotnet": {
         "aptPackages": [
-            "dotnet-sdk-3.1",
-            "dotnet-sdk-5.0",
             "dotnet-sdk-6.0"
         ],
         "versions": [
-            "3.1",
-            "5.0",
             "6.0"
         ],
         "tools": [
@@ -267,7 +241,6 @@
     },
     "clang": {
         "versions": [
-            "10",
             "11",
             "12"
         ],
@@ -287,8 +260,6 @@
     },
     "php": {
         "versions": [
-            "7.4",
-            "8.0",
             "8.1"
         ]
     },

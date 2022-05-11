@@ -54,3 +54,9 @@ Describe "Open windows" {
         $openWindows.Split(",").Trim() | Where-Object { $_ -notmatch "NotificationCenter" } | Should -BeNullOrEmpty
     }
 }
+
+Describe "AutomationModeTool" {
+    It "Does not require user authentication" -Skip:(-not $os.IsMonterey) {
+        automationmodetool | Out-String | Should -Match "DOES NOT REQUIRE"
+    }
+}

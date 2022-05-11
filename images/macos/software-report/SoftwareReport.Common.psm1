@@ -448,7 +448,7 @@ function Get-AliyunCLIVersion {
 }
 
 function Get-GHCupVersion {
-    $ghcUpVersion = Run-Command "ghcup --version" | Take-Part -Part 5
+    $ghcUpVersion = (Run-Command "ghcup --version" | Take-Part -Part 5).Replace('v','')
     return "GHCup $ghcUpVersion"
 }
 
@@ -545,6 +545,11 @@ function Get-TclTkVersion {
 function Get-YqVersion {
     $yqVersion = Run-Command "yq --version"
     return "$yqVersion"
+}
+
+function Get-ImageMagickVersion {
+    $imagemagickVersion = Run-Command "magick --version" | Select-Object -First 1 | Take-Part -Part 1,2
+    return "$imagemagickVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {
