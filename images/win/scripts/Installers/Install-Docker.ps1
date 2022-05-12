@@ -11,8 +11,12 @@ Write-Host "Install-Package Docker"
 Install-Package -Name docker -ProviderName DockerMsftProvider -RequiredVersion 20.10.7 -Force
 Start-Service docker
 
-Write-Host "Install-Package Docker-Compose"
+Write-Host "Install-Package Docker-Compose v1"
 Choco-Install -PackageName docker-compose
+
+Write-Host "Install-Package Docker-Compose v2"
+$dockerComposev2Url = "https://github.com/docker/compose/releases/latest/download/docker-compose-windows-x86_64.exe"
+Start-DownloadWithRetry -Url $dockerComposev2Url -Name docker-compose.exe -DownloadPath "C:\Program Files\Docker\cli-plugins"
 
 Write-Host "Install docker-wincred"
 $dockerCredLatestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/docker/docker-credential-helpers/releases/latest"
