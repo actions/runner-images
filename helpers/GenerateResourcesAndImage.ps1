@@ -152,6 +152,7 @@ Function GenerateResourcesAndImage {
                 # Cleanup the resource group if it already exitsted before
                 Remove-AzResourceGroup -Name $ResourceGroupName -Force
                 New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation -Tag $tags
+
             } else {
                 $title = "Delete Resource Group"
                 $message = "The resource group you specified already exists. Do you want to clean it up?"

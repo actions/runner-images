@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/os.sh
+
 # Set ImageVersion and ImageOS env variables
 echo ImageVersion=$IMAGE_VERSION | tee -a /etc/environment
 echo ImageOS=$IMAGE_OS | tee -a /etc/environment
@@ -39,4 +42,10 @@ sed -i 's/ENABLED=1/ENABLED=0/g' /etc/default/motd-news
 if [[ -f "/etc/fwupd/daemon.conf" ]]; then
     sed -i 's/UpdateMotd=true/UpdateMotd=false/g' /etc/fwupd/daemon.conf
     systemctl mask fwupd-refresh.timer
+fi
+
+# Disable to load providers
+# https://github.com/microsoft/azure-pipelines-agent/issues/3834
+if isUbuntu22; then
+    sed -i 's/openssl_conf = openssl_init/#openssl_conf = openssl_init/g' /etc/ssl/openssl.cnf
 fi
