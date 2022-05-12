@@ -27,7 +27,7 @@ Detailed instruction can be found in [Azure documentation](https://docs.microsof
 #### How to prepare Windows build agent
 Local machine or [Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli) can be used as a build agent.
 
-Download `packer` from https://www.packer.io/downloads, or install it via Chocolately.
+Download `packer` from https://www.packer.io/downloads, or install it via [Chocolatey](https://chocolatey.org/):
 ```
 choco install packer
 ```
