@@ -72,6 +72,12 @@ For optional authentication via service principal make sure to provide the follo
 GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "myTestResourceGroup" -ImageGenerationRepositoryRoot "$pwd" -ImageType Ubuntu1804 -AzureLocation "East US" -AzureClientId {AADApplicationID} -AzureClientSecret {AADApplicationSecret} -AzureTenantId {AADTenantID}
 ```
 
+As extra options, you can add more params for permit to add Azure Tags on resources and enable https for Storage Account. It could be helpful on some tenants with hardenning policy. Params are — `EnableHttpsTrafficOnly` (Boolean) and `tags` (HashTable), so the whole command will be:
+
+```
+GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "myTestResourceGroup" -ImageGenerationRepositoryRoot "$pwd" -ImageType Ubuntu1804 -AzureLocation "East US" -EnableHttpsTrafficOnly $true -tags @{dept="devops";env="prod"}
+```
+
 *Please, check synopsis of `GenerateResourcesAndImage` for details about non-mandatory parameters.*
 
 #### Generated VM Deployment
