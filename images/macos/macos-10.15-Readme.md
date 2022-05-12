@@ -1,7 +1,7 @@
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1824)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220322.1
+- Image Version: 20220508.1
 
 ## Installed Software
 ### Language and Runtime
@@ -21,7 +21,7 @@
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.14.2
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.11 v14.19.1 v16.14.2
+- NVM - Cached node versions: v12.22.12 v14.19.2 v16.15.0
 - Perl 5.34.0
 - PHP 8.1.4
 - Python 2.7.18
@@ -30,11 +30,11 @@
 - Ruby 2.7.5p203
 
 ### Package Management
-- Bundler version 2.3.9
+- Bundler version 2.3.13
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.2.9
-- Homebrew 3.4.3
+- Composer 2.3.5
+- Homebrew 3.4.10
 - Miniconda 4.11.0
 - NPM 8.5.0
 - NuGet 5.9.0.7134
@@ -42,7 +42,7 @@
 - Pip 21.3.1 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<6065e5175>)
+- Vcpkg 2022 (build from master \<a5d6d1451>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -74,11 +74,12 @@
 - gpg (GnuPG) 2.3.4
 - helm v3.8.1+g5cb9af4
 - Hub CLI: 2.14.2
+- ImageMagick 7.1.0-32
 - jq 1.6
 - mongo v5.0.6
 - mongod v5.0.6
 - Newman 5.3.2
-- OpenSSL 1.1.1n  15 Mar 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1n)`
+- OpenSSL 1.1.1o  3 May 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1o)`
 - Packer 1.8.0
 - PostgreSQL 14.2
 - psql (PostgreSQL) 14.2
@@ -90,22 +91,22 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.112
-- App Center CLI 2.10.8
-- AWS CLI 2.4.27
-- AWS SAM CLI 1.41.0
-- AWS Session Manager CLI 1.2.295.0
-- Azure CLI (azure-devops) 0.24.0
-- Azure CLI 2.34.1
-- Bicep CLI 0.4.1272
+- Aliyun CLI 3.0.117
+- App Center CLI 2.10.10
+- AWS CLI 2.6.3
+- AWS SAM CLI 1.48.0
+- AWS Session Manager CLI 1.2.312.0
+- Azure CLI (azure-devops) 0.25.0
+- Azure CLI 2.36.0
+- Bicep CLI 0.6.1
 - Cabal 3.6.2.0
 - Cmake 3.22.3
 - Fastlane 2.205.0
 - GHC 9.2.2
-- GHCup v0.1.17.6
+- GHCup 0.1.17.7
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.6
+- SwiftFormat 0.49.8
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -114,15 +115,15 @@
 - yamllint 1.26.3
 
 ### Browsers
-- Safari 15.4 (15613.1.17.1.11)
-- SafariDriver 15.4 (15613.1.17.1.11)
-- Google Chrome 99.0.4844.83 
-- ChromeDriver 99.0.4844.51
-- Microsoft Edge 99.0.1150.46 
-- MSEdgeDriver 99.0.1150.46
-- Mozilla Firefox 98.0.1
-- geckodriver 0.30.0
-- Selenium server 4.1.2
+- Safari 15.4 (15613.1.17.1.13)
+- SafariDriver 15.4 (15613.1.17.1.13)
+- Google Chrome 101.0.4951.54 
+- ChromeDriver 101.0.4951.41
+- Microsoft Edge 101.0.1210.39 
+- MSEdgeDriver 101.0.1210.39
+- Mozilla Firefox 100.0
+- geckodriver 0.31.0
+- Selenium server 4.1.4
 
 #### Environment variables
 | Name            | Value                                         |
@@ -134,8 +135,8 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.322+6 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.14+101         | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 8.0.332+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.15+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 12.0.2+10.3         | Adopt OpenJDK   | JAVA_HOME_12_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
 | 14.0.2+12           | Adopt OpenJDK   | JAVA_HOME_14_X64     |
@@ -170,9 +171,9 @@
 - 3.9.10 [PyPy 7.3.8]
 
 #### Node.js
-- 12.22.11
-- 14.19.1
-- 16.14.2
+- 12.22.12
+- 14.19.2
+- 16.15.0
 
 #### Go
 | Version | Architecture | Environment Variable |
