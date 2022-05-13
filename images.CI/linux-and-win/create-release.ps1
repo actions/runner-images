@@ -26,6 +26,7 @@ $headers = @{
     Authorization = "Basic ${base64AuthInfo}"
 }
 
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 -bor [Net.SecurityProtocolType]::Tls13
 $NewRelease = Invoke-RestMethod $URL -Body $Body -Method "POST" -Headers $headers -ContentType "application/json"
 
 Write-Host "Created release: $($NewRelease._links.web.href)"

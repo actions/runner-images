@@ -31,7 +31,7 @@ function Get-BicepVersion {
 }
 
 function Get-RVersion {
-    ($(cmd /c "Rscript --version 2>&1")  | Out-String) -match  "R scripting front-end version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    ($(cmd /c "Rscript --version 2>&1") | Out-String) -match "Rscript .* version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $rVersion = $Matches.Version
     return "R $rVersion"
 }
@@ -91,8 +91,7 @@ function Get-JQVersion {
 }
 
 function Get-KubectlVersion {
-    $(kubectl version --client=true --short=true) -match "Client Version: v(?<version>.+)" | Out-Null
-    $kubectlVersion = $Matches.Version
+    $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v','')
     return "Kubectl $kubectlVersion"
 }
 
