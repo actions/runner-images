@@ -206,7 +206,7 @@ Describe "Sbt" {
     }
 }
 
-Describe "Selenium" {
+Describe "Selenium" -Skip:(Test-IsUbuntu22) {
     It "Selenium is installed" {
         $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
         $seleniumPath = Join-Path "/usr/share/java" "$seleniumBinaryName.jar"
@@ -298,7 +298,7 @@ Describe "Kubernetes tools" {
     }
 }
 
-Describe "Leiningen" {
+Describe "Leiningen" -Skip:(Test-IsUbuntu22) {
     It "leiningen" {
         "lein --version" | Should -ReturnZeroExitCode
     }
@@ -338,7 +338,7 @@ Describe "GraalVM" -Skip:(Test-IsUbuntu18) {
     }
 }
 
-Describe "Containers" {
+Describe "Containers" -Skip:(Test-IsUbuntu22) {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {
@@ -397,7 +397,7 @@ Describe "yq" {
     }
 }
 
-Describe "Kotlin" {
+Describe "Kotlin" -Skip:(Test-IsUbuntu22) {
     It "kapt" {
         "kapt -version"| Should -ReturnZeroExitCode
     }
