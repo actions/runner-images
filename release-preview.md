@@ -1,7 +1,32 @@
-# Microsoft Windows Server 2019 Datacenter
+# 🖥️ Actions Runner Image: Windows Server 2019 
 - OS Version: 10.0.17763 Build 2928
 - Image Version: 20220511.2
-## Installed Software
+## 📣 What's changed?
+### Added ➕
+| Name/Version             | Notes          | 
+| ------------------- | --------------- | 
+| Eclipse Temurin 8.0.332+9 (default) |  |
+|Go 1.17.10|Language and Runtime|
+### Updated
+| Previous Version (20220426)             | New Version (20220503)          | Notes |
+| ------------------- | --------------- | -------------------- |
+| Eclipse Temurin 8.0.332+9 (default) | Eclipse Temurin 8.0.332+9 (default) |      |
+### Deleted ➖
+| Name/Version             | Notes          | 
+| ------------------- | --------------- | 
+| 8.0.332+9 (default) | Eclipse Temurin | 
+
+
+
+
+
+
+
+
+
+
+
+
 ### Language and Runtime
 - Go 1.17.10
 ### Package Management
