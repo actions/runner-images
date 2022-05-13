@@ -70,12 +70,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.15.*",
                 "1.16.*",
                 "1.17.*",
                 "1.18.*"
             ],
-            "default": "1.15.*"
+            "default": "1.17.*"
         }
     ],
     "powershellModules": [

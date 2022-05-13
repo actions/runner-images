@@ -1,4 +1,4 @@
-Describe "MongoDB" {
+Describe "MongoDB" -Skip:(Test-IsUbuntu22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "mongo" }
         @{ ToolName = "mongod" }

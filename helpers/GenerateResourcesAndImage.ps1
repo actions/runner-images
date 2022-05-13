@@ -6,6 +6,7 @@ enum ImageType {
     Windows2022 = 2
     Ubuntu1804 = 3
     Ubuntu2004 = 4
+    Ubuntu2204 = 5
 }
 
 Function Get-PackerTemplatePath {
@@ -31,6 +32,9 @@ Function Get-PackerTemplatePath {
         }
         ([ImageType]::Ubuntu2004) {
             $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
+        }
+        ([ImageType]::Ubuntu2204) {
+            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.json"
         }
         default { throw "Unknown type of image" }
     }
@@ -299,89 +303,4 @@ Function GenerateResourcesAndImage {
             }
         }
     }
-
-    # This script should follow the recommended naming conventions for azure resources
-    $storageAccountName = if($ResourceGroupName.EndsWith("-rg")) {
-        $ResourceGroupName.Substring(0, $ResourceGroupName.Length -3)
-    } else { $ResourceGroupName }
-
-    # Resource group names may contain special characters, that are not allowed in the storage account name
-    $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
-    $storageAccountName += "001"
-
-    New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly
-
-    if ([string]::IsNullOrEmpty($AzureClientId)) {
-        # Interactive authentication: A service principal is created during runtime.
-        $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
-        $startDate = Get-Date
-        $endDate = $startDate.AddYears(1)
-
-        if ('Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential' -as [type]) {
-            $credentials = [Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential]@{
-                StartDate = $startDate
-                EndDate = $endDate
-                Password = $ServicePrincipalClientSecret
-            }
-            $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
-            $spClientId = $sp.ApplicationId
-            $azRoleParam = @{
-                RoleDefinitionName = "Contributor"
-                ServicePrincipalName = $spClientId
-            }
-        }
-
-        if ('Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential' -as [type]) {
-            $credentials = [Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential]@{
-                StartDateTime = $startDate
-                EndDateTime = $endDate
-            }
-            $sp = New-AzADServicePrincipal -DisplayName $spDisplayName
-            $appCred = New-AzADAppCredential -ApplicationId $sp.AppId -PasswordCredentials $credentials
-            $spClientId = $sp.AppId
-            $azRoleParam = @{
-                RoleDefinitionName = "Contributor"
-                PrincipalId = $sp.Id
-            }
-            $ServicePrincipalClientSecret = $appCred.SecretText
-        }
-
-        Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-        New-AzRoleAssignment @azRoleParam
-        Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-        $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
-        $tenantId = $sub.TenantId
-        # "", "Note this variable-setting script for running Packer with these Azure resources in the future:", "==============================================================================================", "`$spClientId = `"$spClientId`"", "`$ServicePrincipalClientSecret = `"$ServicePrincipalClientSecret`"", "`$SubscriptionId = `"$SubscriptionId`"", "`$tenantId = `"$tenantId`"", "`$spObjectId = `"$spObjectId`"", "`$AzureLocation = `"$AzureLocation`"", "`$ResourceGroupName = `"$ResourceGroupName`"", "`$storageAccountName = `"$storageAccountName`"", "`$install_password = `"$install_password`"", ""
-    } else {
-        # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
-        # is used for all authentication purposes.
-        $spClientId = $AzureClientId
-        $credentials = $AzureAppCred
-        $ServicePrincipalClientSecret = $AzureClientSecret
-        $tenantId = $AzureTenantId
-    }
-
-    Get-LatestCommit -ErrorAction SilentlyContinue
-
-    $packerBinary = Get-Command "packer"
-    if (-not ($packerBinary)) {
-        throw "'packer' binary is not found on PATH"
-    }
-
-    if($RestrictToAgentIpAddress -eq $true) {
-        $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
-        Write-Host "Restricting access to packer generated VM to agent IP Address: $AgentIp"
-    }
-
-    & $packerBinary build -on-error=ask `
-        -var "client_id=$($spClientId)" `
-        -var "client_secret=$($ServicePrincipalClientSecret)" `
-        -var "subscription_id=$($SubscriptionId)" `
-        -var "tenant_id=$($tenantId)" `
-        -var "location=$($AzureLocation)" `
-        -var "resource_group=$($ResourceGroupName)" `
-        -var "storage_account=$($storageAccountName)" `
-        -var "install_password=$($InstallPassword)" `
-        -var "allowed_inbound_ip_addresses=$($AgentIp)" `
-        $builderScriptPath
 }

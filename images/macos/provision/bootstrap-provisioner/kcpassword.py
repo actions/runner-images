@@ -9,7 +9,7 @@
 import sys
 import os
 
-def kcpassword(passwd):
+def encode_data(passwd):
     # The magic 11 bytes - these are just repeated
     # 0x7D 0x89 0x52 0x23 0xD2 0xBC 0xDD 0xEA 0xA3 0xB9 0x1F
     key = [125,137,82,35,210,188,221,234,163,185,31]
@@ -32,11 +32,11 @@ def kcpassword(passwd):
     return bytearray(passwd)
 
 if __name__ == "__main__":
-    passwd = kcpassword(sys.argv[1])
+    runner_pwd_encoded = encode_data(sys.argv[1])
     fd = os.open('/etc/kcpassword', os.O_WRONLY | os.O_CREAT, 0o600)
     file = os.fdopen(fd, 'wb')
     file.truncate(0)
-    file.write(passwd)
+    file.write(runner_pwd_encoded)
     file.close()
 
 """
