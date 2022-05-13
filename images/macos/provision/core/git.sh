@@ -6,11 +6,6 @@ brew_smart_install "git"
 
 git config --global --add safe.directory "*"
 
-cat <<EOF >> /etc/gitconfig
-[safe]
-        directory = *
-EOF
-
 echo Installing Git LFS
 brew_smart_install "git-lfs"
 
