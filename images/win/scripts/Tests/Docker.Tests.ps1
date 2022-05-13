@@ -10,6 +10,10 @@ Describe "Docker" {
         "docker-credential-wincred version" | Should -ReturnZeroExitCode
     }
 
+    It "docker compose v2" {
+        "docker compose version" | Should -ReturnZeroExitCode
+    }
+
     It "docker service is up" {
         "docker images" | Should -ReturnZeroExitCode
     }

@@ -27,7 +27,7 @@ Detailed instruction can be found in [Azure documentation](https://docs.microsof
 #### How to prepare Windows build agent
 Local machine or [Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli) can be used as a build agent.
 
-Download `packer` from https://www.packer.io/downloads, or install it via Chocolately.
+Download `packer` from https://www.packer.io/downloads, or install it via [Chocolatey](https://chocolatey.org/):
 ```
 choco install packer
 ```
@@ -61,7 +61,7 @@ Where:
 - `SubscriptionId` - The Azure subscription Id where resources will be created.
 - `ResourceGroupName` - The Azure resource group name where the Azure resources will be created.
 - `ImageGenerationRepositoryRoot` - The root path of the image generation repository source.
-- `ImageType` - The type of the image being generated. Valid options are: "Windows2016", "Windows2019", "Windows2022", "Ubuntu1804", "Ubuntu2004".
+- `ImageType` - The type of the image being generated. Valid options are: "Windows2016", "Windows2019", "Windows2022", "Ubuntu1804", "Ubuntu2004", "Ubuntu2204".
 - `AzureLocation` - The location of the resources being created in Azure. For example "East US".
 
 The function automatically creates all required Azure resources and kicks off packer image generation for the selected image type.
@@ -70,6 +70,12 @@ For optional authentication via service principal make sure to provide the follo
 
 ```
 GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "myTestResourceGroup" -ImageGenerationRepositoryRoot "$pwd" -ImageType Ubuntu1804 -AzureLocation "East US" -AzureClientId {AADApplicationID} -AzureClientSecret {AADApplicationSecret} -AzureTenantId {AADTenantID}
+```
+
+As extra options, you can add more params for permit to add Azure Tags on resources and enable https for Storage Account. It could be helpful on some tenants with hardenning policy. Params are — `EnableHttpsTrafficOnly` (Boolean) and `tags` (HashTable), so the whole command will be:
+
+```
+GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "myTestResourceGroup" -ImageGenerationRepositoryRoot "$pwd" -ImageType Ubuntu1804 -AzureLocation "East US" -EnableHttpsTrafficOnly $true -tags @{dept="devops";env="prod"}
 ```
 
 *Please, check synopsis of `GenerateResourcesAndImage` for details about non-mandatory parameters.*

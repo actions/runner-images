@@ -103,8 +103,7 @@ Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
 
 Describe "NET48" {
     It "NET48" {
-        $netPath = (Get-DotnetFrameworkTools).Path.Split("<")[0]
-        ${netPath} + "4.8 Tools" | Should -Exist
+        (Get-DotnetFrameworkTools).Versions | Should -Contain "4.8"
     }
 }
 
