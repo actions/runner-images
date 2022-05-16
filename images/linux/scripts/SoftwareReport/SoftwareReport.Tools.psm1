@@ -88,6 +88,11 @@ function Get-DockerBuildxVersion {
     return "Docker-Buildx $buildxVersion"
 }
 
+function Get-DockerAmazonECRCredHelperVersion {
+    $ecrVersion = docker-credential-ecr-login -v | Select-String "Version:" | Take-OutputPart -Part 1
+    return "Docker Amazon ECR Credential Helper $ecrVersion"
+}
+
 function Get-GitVersion {
     $gitVersion = git --version | Take-OutputPart -Part -1
     $aptSourceRepo = Get-AptSourceRepository -PackageName "git-core"
