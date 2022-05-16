@@ -129,7 +129,7 @@
 - Bindgen 0.59.2
 - Cargo audit 0.16.0
 - Cargo clippy 0.1.60
-- Cargo outdated 
+- Cargo outdated 0.11.1
 - Cbindgen 0.23.0
 - Rustfmt 1.4.38
 
