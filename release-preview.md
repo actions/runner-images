@@ -23,3 +23,4 @@
 | Visual Studio Enterprise 2019 16.11.32428.217 |  | 
 
 
+<br>For a comprehensive list of software installed on this image please click [here](https://github.com/actions/virtual-environments/blob/win19/20220511.2/images/win/Windows2019-Readme.md)
