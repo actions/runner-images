@@ -26,7 +26,7 @@ function Get-CargoAuditVersion {
 }
 
 function Get-CargoOutdatedVersion {
-    $cargoOutdatedVersion = $(cargo outdated --version) | Take-OutputPart -Part 1 -Delimiter "v"
+    $cargoOutdatedVersion = $(cargo outdated --version) | Take-OutputPart -Part 1
     return "Cargo outdated $cargoOutdatedVersion"
 }
 
