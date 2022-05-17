@@ -242,8 +242,10 @@ $markdown += Build-WebServersSection
 
 # Xamarin section
 $markdown += New-MDHeader "Xamarin" -Level 3
-$markdown += New-MDHeader "Visual Studio for Mac" -Level 4
-$markdown += New-MDList -Lines @(Get-VSMacVersion) -Style Unordered
+$markdown += New-MDHeader "Visual Studio for Mac 2019" -Level 4
+$markdown += New-MDList -Lines @(Get-VSMac2019Version) -Style Unordered
+$markdown += New-MDHeader "Visual Studio for Mac 2022" -Level 4
+$markdown += New-MDList -Lines @(Get-VSMac2022Version) -Style Unordered
 
 $markdown += New-MDHeader "Xamarin bundles" -Level 4
 $markdown += Build-XamarinTable | New-MDTable
