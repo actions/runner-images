@@ -10,7 +10,7 @@
     },
     "xamarin": {
         "vsmac": "latest",
-        "vsmac_preview": "latest",
+        "vsmac_preview": "preview",
         "mono-versions": [
             "6.12.0.174"
         ],
