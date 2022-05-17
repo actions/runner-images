@@ -35,9 +35,11 @@ install_vsmac() {
     sudo rm -rf "$TMPMOUNT"
 }
 
-echo "Installing Visual Studio 2022 for Mac Preview"
 VSMAC_VERSION_PREVIEW=$(get_toolset_value '.xamarin.vsmac_preview')
-install_vsmac $VSMAC_VERSION_PREVIEW
+if [ VSMAC_VERSION_PREVIEW != "null" ];then
+    echo "Installing Visual Studio 2022 for Mac Preview"
+    install_vsmac $VSMAC_VERSION_PREVIEW
+fi
 
 echo "Installing Visual Studio 2019 for Mac Stable"
 VSMAC_VERSION_STABLE=$(get_toolset_value '.xamarin.vsmac')

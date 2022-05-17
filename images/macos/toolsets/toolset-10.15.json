@@ -19,7 +19,6 @@
     },
     "xamarin": {
         "vsmac": "latest",
-        "vsmac_preview": "latest",
         "mono-versions": [
             "6.12.0.162", "6.10.0.106", "6.8.0.123", "6.6.0.166", "6.4.0.208"
         ],
