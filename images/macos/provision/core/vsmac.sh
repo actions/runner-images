@@ -36,7 +36,7 @@ install_vsmac() {
 }
 
 VSMAC_VERSION_PREVIEW=$(get_toolset_value '.xamarin.vsmac_preview')
-if [ VSMAC_VERSION_PREVIEW != "null" ];then
+if [ $VSMAC_VERSION_PREVIEW != "null" ];then
     echo "Installing Visual Studio 2022 for Mac Preview"
     install_vsmac $VSMAC_VERSION_PREVIEW
 fi
