@@ -13,7 +13,7 @@ if isUbuntu22; then
     # Install libssl1.1
     download_with_retries "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1ubuntu1.3_amd64.deb" "/tmp"
     dpkg -i /tmp/libssl1.1_1.1.1l-1ubuntu1.3_amd64.deb
-else
+fi
 
 # Install SqlPackage
 download_with_retries "https://aka.ms/sqlpackage-linux" "." "sqlpackage.zip"
