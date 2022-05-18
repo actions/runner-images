@@ -85,6 +85,13 @@ Describe "VSMac" {
         $vsPath | Should -Exist
         $vstoolPath | Should -Exist
     }
+
+    It "VS4Mac Preview is installed" -Skip:(-not $os.IsMonterey) {
+        $vsPath = "/Applications/Visual Studio Preview.app"
+        $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
+        $vsPath | Should -Exist
+        $vstoolPath | Should -Exist
+    }
 }
 
 Describe "Swig" {

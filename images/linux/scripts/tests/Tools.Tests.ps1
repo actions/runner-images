@@ -77,6 +77,10 @@ Describe "Docker" {
         "docker compose" | Should -ReturnZeroExitCode
     }
 
+    It "docker-credential-ecr-login" {
+        "docker-credential-ecr-login -v" | Should -ReturnZeroExitCode
+    }
+
     Context "docker images" {
         $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 

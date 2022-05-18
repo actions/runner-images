@@ -118,6 +118,7 @@ $toolsList = @(
     (Get-DockerComposeV1Version),
     (Get-DockerComposeV2Version),
     (Get-DockerBuildxVersion),
+    (Get-DockerAmazonECRCredHelperVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GitFTPVersion),
