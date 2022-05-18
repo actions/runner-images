@@ -2,9 +2,12 @@
 ##  File:  Install-Git.ps1
 ##  Desc:  Install Git for Windows
 ################################################################################
+Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 
 # Install git
 Choco-Install -PackageName git -ArgumentList '--installargs="/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /o:PathOption=CmdTools /o:BashTerminalOption=ConHost /o:EnableSymlinks=Enabled /COMPONENTS=gitlfs"'
+
+Update-SessionEnvironment
 
 git config --system --add safe.directory "*"
 
