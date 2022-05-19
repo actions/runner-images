@@ -10,6 +10,7 @@ For general questions about using the virtual environments or writing your Actio
 ## Available Environments
 | Environment | YAML Label | Included Software | Latest Release & Rollout Progress |
 | --------------------|---------------------|--------------------|---------------------|
+| Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
 | Ubuntu 20.04 | `ubuntu-latest` or `ubuntu-20.04` | [ubuntu-20.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
 | Ubuntu 18.04 | `ubuntu-18.04` | [ubuntu-18.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
 | macOS 12 | `macos-12`| [macOS-12] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&redirect=1)
