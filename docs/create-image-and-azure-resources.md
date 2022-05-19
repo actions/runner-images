@@ -110,7 +110,8 @@ The Packer template includes `variables` section containing user variables used 
 - `build_resource_group_name` - Specify an existing resource group to run the build in it. By default, a temporary resource group will be created and destroyed as part of the build. If you do not have permission to do so, use build_resource_group_name to specify an existing resource group to run the build in it.
 - `client_id` - The application ID of the AAD Service Principal. Requires `client_secret`.
 - `object_id` - The object ID for the AAD SP. Will be derived from the oAuth token if empty.
-- `client_secret` - A password/secret registered for the AAD SP.
+- `client_secret` - The password or secret for your service principal.
+- `client_cert_path` - The location of a PEM file containing a certificate and private key for service principal.
 - `subscription_id` - The subscription to use.
 - `tenant_id` - The Active Directory tenant identifier with which your `client_id` and `subscription_id` are associated. If not specified, `tenant_id` will be looked up using `subscription_id`.
 - `resource_group` - Resource group under which the final artifact will be stored.
