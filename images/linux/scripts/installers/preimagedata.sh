@@ -5,8 +5,8 @@ image_version=$IMAGE_VERSION
 os_name=$(lsb_release -ds | sed "s/ /\\\n/g")
 os_version=$(lsb_release -rs)
 image_label="ubuntu-${os_version}"
-version_major=$(echo ${os_version} | cut -d "." -f 1)
-version_wo_dot=$(echo ${os_version} | tr -d ".")
+version_major=${os_version/.*/}
+version_wo_dot=${os_version/./}
 github_url="https://github.com/actions/virtual-environments/blob"
 
 software_url="${github_url}/ubuntu${version_major}/${image_version}/images/linux/Ubuntu${version_wo_dot}-Readme.md"
