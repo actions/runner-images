@@ -4,7 +4,7 @@
 ***
 # Ubuntu 18.04.6 LTS
 - Linux kernel version: 5.4.0-1078-azure
-- Image Version: 20220511.2
+- Image Version: 20220515.1
 
 ## Installed Software
 ### Language and Runtime
@@ -36,7 +36,7 @@
 - Pip3 9.0.1
 - Pipx 1.0.0
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<0a1420dc4>)
+- Vcpkg  (build from master \<0cf5b4305>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -54,13 +54,13 @@
 ### Tools
 - Ansible 2.11.11
 - apt-fast 1.9.12
-- AzCopy 10.14.1 (available by `azcopy` and `azcopy10` aliases)
+- AzCopy 10.15.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.1.1
 - Bazelisk 1.11.0
-- Bicep 0.6.1
+- Bicep 0.6.18
 - Buildah 1.19.6 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.23.1
-- CodeQL Action Bundle 2.9.0
+- CodeQL Action Bundle 2.9.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.4.1+azure-1
 - Docker-Buildx 0.8.2
@@ -71,7 +71,7 @@
 - Git-ftp 1.3.1
 - Haveged 1.9.1
 - Heroku 7.60.2
-- HHVM (HipHop VM) 4.159.0
+- HHVM (HipHop VM) 4.160.0
 - jq 1.5
 - Kind 0.13.0
 - Kubectl 1.24.0
@@ -100,18 +100,18 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.119
-- AWS CLI 1.23.11
+- AWS CLI 1.24.0
 - AWS CLI Session manager plugin 1.2.312.0
-- AWS SAM CLI 1.49.0
+- AWS SAM CLI 1.50.0
 - Azure CLI (azure-cli) 2.36.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.10.1
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 10.3.0
-- OpenShift CLI 4.10.12
+- Netlify CLI 10.3.1
+- OpenShift CLI 4.10.13
 - ORAS CLI 0.12.0
-- Vercel CLI 24.2.1
+- Vercel CLI 24.2.3
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -133,7 +133,7 @@
 ### Haskell
 - Cabal 3.6.2.0
 - GHC 9.2.2
-- GHCup 0.1.17.7
+- GHCup 0.1.17.8
 - Stack 2.7.5
 
 ### Rust Tools
@@ -154,7 +154,7 @@
 - Google Chrome 101.0.4951.64
 - ChromeDriver 101.0.4951.41
 - Chromium 101.0.4951.0
-- Mozilla Firefox 99.0
+- Mozilla Firefox 100.0
 - Geckodriver 0.31.0
 - Selenium server 4.1.0
 
@@ -176,7 +176,7 @@
 - sqlite3 3.22.0
 
 #### PostgreSQL
-- PostgreSQL 14.2 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
+- PostgreSQL 14.3 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - PostgreSQL Server (user:postgres)
 
 ```
@@ -292,9 +292,9 @@
 | moby/buildkit:latest    | sha256:0dc312b04eac1b44cd2cad566deb1e886c753109208affbbec8384f381ff7f38  | 2022-05-06 |
 | node:12                 | sha256:01627afeb110b3054ba4a1405541ca095c8bfca1cb6f2be9479c767a2711879e  | 2022-04-20 |
 | node:12-alpine          | sha256:d4b15b3d48f42059a15bd659be60afe21762aae9d6cbea6f124440895c27db68  | 2022-04-11 |
-| node:14                 | sha256:3a01c30e387a7a94184a9a34a977474aaa1a1be8c5be0d94ff0590d57b3503ed  | 2022-05-11 |
+| node:14                 | sha256:61168c39af89331ffaa6ba41c2a44f4d5132a857a6034175f994948b5798b588  | 2022-05-11 |
 | node:14-alpine          | sha256:8845b4f88f64f8c56a39236648ba22946e806a6153c10911f77b70e5a2edb4ca  | 2022-04-05 |
-| node:16                 | sha256:a7e2fb81f46803cb0db58759465754a4d313eff5747c15360f684a0902f22fb1  | 2022-05-11 |
+| node:16                 | sha256:1817bb941c9a30fe2a6d75ff8675a8f6def408efe3d3ff43dbb006e2b534fa14  | 2022-05-11 |
 | node:16-alpine          | sha256:1a9a71ea86aad332aa7740316d4111ee1bd4e890df47d3b5eff3e5bded3b3d10  | 2022-04-27 |
 | ubuntu:16.04            | sha256:20858ebbc96215d6c3c574f781133ebffdc7c18d98af4f294cc4c04871a6fe61  | 2021-08-31 |
 | ubuntu:18.04            | sha256:d21b6ba9e19feffa328cb3864316e6918e30acfd55e285b5d3df1d8ca3c7fd3f  | 2022-04-29 |
@@ -312,7 +312,7 @@
 | build-essential   | 12.4ubuntu1                       |
 | bzip2             | 1.0.6-8.1ubuntu0.2                |
 | coreutils         | 8.28-1ubuntu1                     |
-| curl              | 7.58.0-2ubuntu3.17                |
+| curl              | 7.58.0-2ubuntu3.18                |
 | dbus              | 1.12.2-1ubuntu1.3                 |
 | dnsutils          | 1:9.11.3+dfsg-1ubuntu1.17         |
 | dpkg              | 1.19.0.5ubuntu2.3                 |
@@ -329,7 +329,7 @@
 | lib32z1           | 1:1.2.11.dfsg-0ubuntu2.1          |
 | libc++-dev        | 6.0-2                             |
 | libc++abi-dev     | 6.0-2                             |
-| libcurl3          | 7.58.0-2ubuntu3.17                |
+| libcurl3          | 7.58.0-2ubuntu3.18                |
 | libgbm-dev        | 20.0.8-0ubuntu1\~18.04.1          |
 | libgconf-2-4      | 3.2.6-4ubuntu1                    |
 | libgsl-dev        | 2.4+dfsg-6                        |
@@ -349,7 +349,7 @@
 | mercurial         | 4.5.3-1ubuntu2.2                  |
 | net-tools         | 1.60+git20161116.90da8a0-1ubuntu1 |
 | netcat            | 1.10-41.1                         |
-| openssh-client    | 1:7.6p1-4ubuntu0.6                |
+| openssh-client    | 1:7.6p1-4ubuntu0.7                |
 | p7zip-full        | 16.02+dfsg-6                      |
 | p7zip-rar         | 16.02-2                           |
 | parallel          | 20161222-1                        |
@@ -363,7 +363,7 @@
 | shellcheck        | 0.4.6-1                           |
 | sphinxsearch      | 2.2.11-2                          |
 | sqlite3           | 3.22.0-1ubuntu0.5                 |
-| ssh               | 1:7.6p1-4ubuntu0.6                |
+| ssh               | 1:7.6p1-4ubuntu0.7                |
 | sshpass           | 1.06-1                            |
 | subversion        | 1.9.7-4ubuntu1                    |
 | sudo              | 1.8.21p2-3ubuntu1.4               |
