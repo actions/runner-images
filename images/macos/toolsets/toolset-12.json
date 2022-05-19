@@ -114,7 +114,9 @@
         { "name": "PSScriptAnalyzer" }
     ],
     "npm": {
-        "global_packages": []
+        "global_packages": [
+            { "name": "appcenter-cli", "test": "appcenter --version" }
+        ]
     },
     "brew": {
         "common_packages": [
