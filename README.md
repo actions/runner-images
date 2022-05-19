@@ -48,6 +48,7 @@ we pin the tool to specific version(s).
 * **Regular Weekly Rhythm** can be followed by watching [Releases](https://github.com/actions/virtual-environments/releases). Pre-release is created when deployment is started. As soon as deployment is finished, it is converted to release.
 You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/virtual-environments/labels/awaiting-deployment) label.
 
+[ubuntu-22.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2204-Readme.md
 [ubuntu-20.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-Readme.md
 [ubuntu-18.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-Readme.md
 [windows-2022]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2022-Readme.md
