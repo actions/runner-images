@@ -20,8 +20,7 @@ Describe "Rust" {
         $env:RUSTUP_HOME = "/etc/skel/.rustup"
         $env:CARGO_HOME = "/etc/skel/.cargo"
     }
-    
-   
+
     It "Rustup is installed" {
         "rustup --version" | Should -ReturnZeroExitCode
     }
@@ -121,7 +120,7 @@ Describe "clang" {
 
         "clang-$ClangVersion --version" | Should -ReturnZeroExitCode
         "clang++-$ClangVersion --version" | Should -ReturnZeroExitCode
-    }   
+    }
 }
 
 Describe "Cmake" {
@@ -336,7 +335,7 @@ Describe "GraalVM" -Skip:(Test-IsUbuntu18) {
     }
 }
 
-Describe "Containers" -Skip:(Test-IsUbuntu22) {
+Describe "Containers" -Skip:(-not (Test-IsUbuntu22)) {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {
@@ -345,7 +344,7 @@ Describe "Containers" -Skip:(Test-IsUbuntu22) {
         )
 
         "$ContainerCommand -v" | Should -ReturnZeroExitCode
-    }   
+    }
 }
 
 Describe "nvm" {

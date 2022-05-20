@@ -149,10 +149,14 @@ $toolsList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $toolsList += @(
-        (Get-BuildahVersion),
         (Get-PhantomJSVersion),
         (Get-LeiningenVersion),
-        (Get-HHVMVersion),
+        (Get-HHVMVersion)
+    )
+}
+if (Test-IsUbuntu22) {
+    $toolsList += @(
+        (Get-BuildahVersion),
         (Get-PodManVersion),
         (Get-SkopeoVersion)
     )

@@ -42,20 +42,17 @@ function Get-CodeQLBundleVersion {
 
 function Get-PodManVersion {
     $podmanVersion = podman --version | Take-OutputPart -Part 2
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
-    return "Podman $podmanVersion (apt source repository: $aptSourceRepo)"
+    return "Podman $podmanVersion"
 }
 
 function Get-BuildahVersion {
     $buildahVersion = buildah --version | Take-OutputPart -Part 2
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
-    return "Buildah $buildahVersion (apt source repository: $aptSourceRepo)"
+    return "Buildah $buildahVersion"
 }
 
 function Get-SkopeoVersion {
     $skopeoVersion = skopeo --version | Take-OutputPart -Part 2
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
-    return "Skopeo $skopeoVersion (apt source repository: $aptSourceRepo)"
+    return "Skopeo $skopeoVersion"
 }
 
 function Get-CMakeVersion {
