@@ -17,7 +17,8 @@ This repository contains the source used to create the [runner images](https://h
 | --------------------|---------------------|--------------------|---------------------|
 | Ubuntu 20.04 | `ubuntu-latest` or `ubuntu-20.04` | [ubuntu-20.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
 | Ubuntu 18.04 | `ubuntu-18.04` | [ubuntu-18.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
-| macOS 11 | `macos-latest` or `macos-11`| [macOS-11] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
+| macOS 11 | `macos-latest` or `macos-11`| [macOS-11] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)<img width="429" alt="Screen Shot 2022-05-20 at 2 24 31 PM" src="https://user-images.githubusercontent.com/56982181/169613211-9984284a-d376-432d-ae39-87ff7aab6420.png">
+
 | macOS 10.15 | `macos-10.15` | [macOS-10.15] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&redirect=1) |
 | Windows Server 2019 | `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
@@ -40,13 +41,27 @@ The purpose of a Beta is to collect feedback on an image before it is released t
 A GA (General Availability) image has been through a Beta period and is deemed ready for general use. Images are updated on a weekly cadence. In order to be moved to GA the image must meet the following criteria: 1- Has been through a Beta period (public or private) 2- Most major software we install on the image has a compatible version for the underlying OS and 3- All major bugs reported during the Beta period have been addressed. This image type falls under the customer [SLA](https://github.com/customer-terms/github-online-services-sla) for actions. GA images are eventually deprecated according to our guidelines as we only support the latest 2 versions of an OS. 
 
 ## Image Releases
+Find the latest releases for this repository: [Releases](https://github.com/actions/virtual-environments/releases)
+
+Subscribe to the releases coming out of this repository: 
+  - Steps:
+     - Click on the “Watch” button from the repo’s homepage 
+     - Select the “Custom” option 
+     - Check “Releases” 
+
+
+<img width="406" alt="Screen Shot 2022-05-20 at 2 22 35 PM" src="https://user-images.githubusercontent.com/56982181/169612371-22b9c938-84f4-4e91-8a32-bb0bf9585592.png"><img width="406" alt="Screen Shot 2022-05-20 at 2 24 31 PM" src="https://user-images.githubusercontent.com/56982181/169613306-046555d7-efd0-4b74-8f75-9664addb04b8.png">
+
+
 *Cadence*
+
 We typically deploy weekly updates to the software on the runner images.
 
+
 *Following Along*
-
-
-* **High Impact Changes** (ex. breaking changes, new or deprecated images) will be posted to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).
+* **High Impact Changes** 
+  * Types: breaking changes, GA or deprecated images 
+  * Where to find these: will be posted to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).
 * **Low Impact Changes** will be pinned in this repository and marked with the [Announcement](https://github.com/actions/virtual-environments/labels/Announcement) label.
 * **Regular Weekly Rhythm** can be followed by watching [Releases](https://github.com/actions/virtual-environments/releases). A pre-release is created when deployment is started. As soon as deployment is finished, it is converted to a release.
 You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/virtual-environments/labels/awaiting-deployment) label.
