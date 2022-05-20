@@ -276,6 +276,7 @@ build {
                         "${path.root}/scripts/installers/clang.sh",
                         "${path.root}/scripts/installers/cmake.sh",
                         "${path.root}/scripts/installers/codeql-bundle.sh",
+                        "${path.root}/scripts/installers/containers.sh",
                         "${path.root}/scripts/installers/dotnetcore-sdk.sh",
                         "${path.root}/scripts/installers/gcc.sh",
                         "${path.root}/scripts/installers/gfortran.sh",
