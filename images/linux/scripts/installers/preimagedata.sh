@@ -3,18 +3,14 @@
 imagedata_file=$IMAGEDATA_FILE
 image_version=$IMAGE_VERSION
 os_name=$(lsb_release -ds | sed "s/ /\\\n/g")
-image_label="ubuntu-$(lsb_release -rs)"
+os_version=$(lsb_release -rs)
+image_label="ubuntu-${os_version}"
+version_major=${os_version/.*/}
+version_wo_dot=${os_version/./}
 github_url="https://github.com/actions/virtual-environments/blob"
 
-if [[ "$image_label" =~ "ubuntu-20" ]]; then
-    software_url="${github_url}/ubuntu20/${image_version}/images/linux/Ubuntu2004-Readme.md"
-    releaseUrl="https://github.com/actions/virtual-environments/releases/tag/ubuntu20%2F${image_version}"
-fi
-
-if [[ "$image_label" =~ "ubuntu-18" ]]; then
-    software_url="${github_url}/ubuntu18/${image_version}/images/linux/Ubuntu1804-Readme.md"
-    releaseUrl="https://github.com/actions/virtual-environments/releases/tag/ubuntu18%2F${image_version}"
-fi
+software_url="${github_url}/ubuntu${version_major}/${image_version}/images/linux/Ubuntu${version_wo_dot}-Readme.md"
+releaseUrl="https://github.com/actions/virtual-environments/releases/tag/ubuntu${version_major}%2F${image_version}"
 
 cat <<EOF > $imagedata_file
 [

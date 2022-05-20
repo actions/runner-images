@@ -2,6 +2,7 @@
     "variables": {
         "client_id": "{{env `ARM_CLIENT_ID`}}",
         "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
+        "client_cert_path": "{{env `ARM_CLIENT_CERT_PATH`}}",
         "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
         "tenant_id": "{{env `ARM_TENANT_ID`}}",
         "resource_group": "{{env `ARM_RESOURCE_GROUP`}}",
@@ -34,6 +35,7 @@
             "type": "azure-arm",
             "client_id": "{{user `client_id`}}",
             "client_secret": "{{user `client_secret`}}",
+            "client_cert_path": "{{user `client_cert_path`}}",
             "subscription_id": "{{user `subscription_id`}}",
             "tenant_id": "{{user `tenant_id`}}",
             "location": "{{user `location`}}",

@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2928
-- Image Version: 20220511.2
+- Image Version: 20220515.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -18,7 +18,7 @@
 - LLVM 13.0.1
 - Node 16.14.2
 - Perl 5.32.1
-- PHP 8.1.5
+- PHP 8.1.6
 - Python 3.7.9
 - Ruby 2.5.9p229
 
@@ -28,11 +28,11 @@
 - Helm 3.8.2
 - Miniconda 4.11.0 (pre-installed on the image but not added to PATH)
 - NPM 8.5.0
-- NuGet 6.1.0.106
-- pip 22.0.4 (python 3.7)
+- NuGet 6.2.0.146
+- pip 22.1 (python 3.7)
 - Pipx 1.0.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<0a1420dc4>)
+- Vcpkg (build from master \<0cf5b4305>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -50,10 +50,10 @@
 ### Tools
 - 7zip 21.07
 - aria2 1.36.0
-- azcopy 10.14.1
+- azcopy 10.15.0
 - Bazel 5.1.1
 - Bazelisk 1.11.0
-- Bicep 0.6.1
+- Bicep 0.6.18
 - Cabal 3.6.2.0
 - CMake 3.23.1
 - CodeQL Action Bundle 2.9.1
@@ -90,8 +90,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.119
-- AWS CLI 2.6.3
-- AWS SAM CLI 1.49.0
+- AWS CLI 2.7.0
+- AWS SAM CLI 1.50.0
 - AWS Session Manager CLI 1.2.312.0
 - Azure CLI 2.36.0
 - Azure DevOps CLI extension 0.25.0
@@ -114,10 +114,10 @@
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 101.0.4951.64
+- Google Chrome 101.0.4951.67
 - Chrome Driver 101.0.4951.41
-- Microsoft Edge 101.0.1210.39
-- Microsoft Edge Driver 101.0.1210.39
+- Microsoft Edge 101.0.1210.47
+- Microsoft Edge Driver 101.0.1210.47
 - Mozilla Firefox 100.0
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
@@ -208,7 +208,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-14                                                                                                                    |
-| Version              | 14.2                                                                                                                                 |
+| Version              | 14.3                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -521,8 +521,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Framework
 `Type: Developer Pack`
-`Location C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX <version> Tools`
-- 4.7.2 4.8
+`Location: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX <version> Tools`
+- 4.7.2
+- 4.8
 
 ### .NET tools
 - nbgv 3.5.104+d0b7c362ff
@@ -545,7 +546,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.82           |
+| AWSPowerShell      | 4.1.85           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.6            |
@@ -585,9 +586,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:8962b347e0df025ee5a887e5b23e305a80384e174ba1a3165e94a8b17f49390f  | 2022-04-12 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:60a315c1e051420094c58a2fb1959b421348ae809f8d37f7147b8800baac4500  | 2022-04-12 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:d91ffeee472a34f8d7ff717fef54422be2ad87e59478c2e507c59eed8aaaa02e  | 2022-04-12 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:a108b8cd955bc84813eda0aab41d514887ef0b4a2e2bbbca6965ec09d4da2c0c  | 2022-05-11 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:9e0351236b319aba13cfec412d94df47cf4220cc909cdef6bb0aaaf31f2fb741  | 2022-05-11 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:fa53215891bfa80f70d5266f08942dd6e83a7b61f3701b700b19b4aba2dc1060  | 2022-05-11 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:fb16d42712f3599c849723d365a7ddc5fb95e8bf1674d97e9f9cbcb726e7525d  | 2022-05-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:b474e47f6f8bdb110068684ab8cebbadb5806e641fe6dba0169555981f6520ef  | 2022-05-05 |
 

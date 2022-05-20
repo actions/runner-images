@@ -1,7 +1,12 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
-function Get-VSMacVersion {
+function Get-VSMac2019Version {
     $plistPath = "/Applications/Visual Studio.app/Contents/Info.plist"
+    return Run-Command "/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' '$plistPath'"
+}
+
+function Get-VSMac2022Version {
+    $plistPath = "/Applications/Visual Studio Preview.app/Contents/Info.plist"
     return Run-Command "/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' '$plistPath'"
 }
 
