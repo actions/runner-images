@@ -1,16 +1,16 @@
 | Announcements |
 |-|
 | [[macOS] Xcode versions 13.2 & 13.3 will be removed, 13.3.1 will be set as the default one on May, 16](https://github.com/actions/virtual-environments/issues/5463) |
-| [macOS 12 (Monterey) is available as a public beta in GitHub Actions](https://github.com/actions/virtual-environments/issues/5446) |
+| [macOS 12 (Monterey) is available as a public beta in GitHub Actions and Azure DevOps](https://github.com/actions/virtual-environments/issues/5446) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1824)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220508.1
+- Image Version: 20220515.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.418 5.0.102 5.0.202 5.0.302 5.0.407
+- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.419 5.0.102 5.0.202 5.0.302 5.0.408
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is default
 - Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
@@ -20,7 +20,7 @@
 - GNU Fortran (Homebrew GCC 9.4.0) 9.4.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
-- Go 1.17.9
+- Go 1.17.10
 - julia 1.7.2
 - Kotlin 1.6.21-release-334
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
@@ -28,7 +28,7 @@
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.12 v14.19.2 v16.15.0
 - Perl 5.34.0
-- PHP 8.1.5
+- PHP 8.1.6
 - Python 2.7.18
 - Python 3.9.12
 - R 4.2.0
@@ -39,7 +39,7 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.3.5
-- Homebrew 3.4.10
+- Homebrew 3.4.11
 - Miniconda 4.11.0
 - NPM 8.5.5
 - NuGet 5.9.0.7134
@@ -47,8 +47,8 @@
 - Pip 22.0.4 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<a5d6d1451>)
-- Yarn 1.22.18
+- Vcpkg 2022 (build from master \<0cf5b4305>)
+- Yarn 1.22.19
 
 #### Environment variables
 | Name                    | Value                  |
@@ -65,29 +65,29 @@
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
-- azcopy 10.14.1
+- azcopy 10.15.0
 - bazel 5.1.1
 - bazelisk 1.11.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.83.0
-- Git 2.35.1
+- Curl 7.83.1
+- Git 2.36.1
 - Git LFS: 3.1.4
-- GitHub CLI: 2.9.0
+- GitHub CLI: 2.10.1
 - GNU parallel 20220422
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.6
 - helm v3.8.2+g6e3701e
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-32
+- ImageMagick 7.1.0-33
 - jq 1.6
 - mongo v5.0.7
 - mongod v5.0.7
 - Newman 5.3.2
 - OpenSSL 1.1.1o  3 May 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1o)`
 - Packer 1.8.0
-- PostgreSQL 14.2
-- psql (PostgreSQL) 14.2
+- PostgreSQL 14.3
+- psql (PostgreSQL) 14.3
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
@@ -97,19 +97,19 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.117
+- Aliyun CLI 3.0.119
 - App Center CLI 2.10.10
-- AWS CLI 2.6.3
-- AWS SAM CLI 1.48.0
+- AWS CLI 2.7.0
+- AWS SAM CLI 1.50.0
 - AWS Session Manager CLI 1.2.312.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.36.0
-- Bicep CLI 0.6.1
+- Bicep CLI 0.6.18
 - Cabal 3.6.2.0
 - Cmake 3.23.1
 - Fastlane 2.205.2
 - GHC 9.2.2
-- GHCup 0.1.17.7
+- GHCup 0.1.17.8
 - Jazzy 0.14.2
 - Stack 2.7.5
 - SwiftFormat 0.49.8
@@ -123,10 +123,10 @@
 ### Browsers
 - Safari 15.4 (15613.1.17.1.13)
 - SafariDriver 15.4 (15613.1.17.1.13)
-- Google Chrome 101.0.4951.54 
+- Google Chrome 101.0.4951.64 
 - ChromeDriver 101.0.4951.41
-- Microsoft Edge 101.0.1210.39 
-- MSEdgeDriver 101.0.1210.39
+- Microsoft Edge 101.0.1210.47 
+- MSEdgeDriver 101.0.1210.47
 - Mozilla Firefox 100.0
 - geckodriver 0.31.0
 - Selenium server 4.1.4
@@ -185,8 +185,8 @@
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
-| 1.17.9 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.1  | x64          | GOROOT_1_18_X64      |
+| 1.17.10 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.18.2  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
 - Cargo 1.60.0
@@ -221,7 +221,7 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-- 8.10.22.11
+- 8.10.23.7
 
 #### Xamarin bundles
 | symlink          | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
