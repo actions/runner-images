@@ -34,7 +34,7 @@ Function Get-PackerTemplatePath {
             $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
         }
         ([ImageType]::Ubuntu2204) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.json"
+            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.pkr.hcl"
         }
         default { throw "Unknown type of image" }
     }
