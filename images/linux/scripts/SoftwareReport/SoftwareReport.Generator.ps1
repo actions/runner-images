@@ -48,7 +48,8 @@ $runtimesList = @(
     (Get-RubyVersion),
     (Get-JuliaVersion),
     (Get-ClangVersions),
-    (Get-ClangFormatVersions)
+    (Get-ClangFormatVersions),
+    (Get-ClangTidyVersions)
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
