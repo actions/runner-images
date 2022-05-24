@@ -119,7 +119,7 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [bool] $EnableHttpsTrafficOnly = $False,
         [Parameter(Mandatory = $False)]
-        [Hashtable] $tags
+        [hashtable] $Tags
     )
 
     try {
@@ -260,15 +260,19 @@ Function GenerateResourcesAndImage {
             throw "'packer' binary is not found on PATH"
         }
 
-        if($RestrictToAgentIpAddress -eq $true) {
+        if($RestrictToAgentIpAddress) {
             $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
             Write-Host "Restricting access to packer generated VM to agent IP Address: $AgentIp"
         }
         
-        if ($tags) {
+        if ($builderScriptPath.Contains("pkr.hcl")) {
+            $AgentIp = '[ \"{0}\" ]' -f $AgentIp
+        }
+
+        if ($Tags) {
             $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
             $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
-            $packer_script.builders | Add-Member -Name "azure_tags" -Value $tags -MemberType NoteProperty
+            $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
             $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
             $builderScriptPath = $builderScriptPath_temp
         }
