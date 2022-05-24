@@ -1,5 +1,6 @@
 
 variable "allowed_inbound_ip_addresses" {
+  type    = list(string)
   default = []
 }
 
