@@ -27,16 +27,15 @@ function Get-EnvironmentVariable($variable) {
 # It can be used for OS-specific tests
 function Get-OSVersion {
     $osVersion = [Environment]::OSVersion
-    $osVersionMajor = $osVersion.Version.ToString(1)
     $osVersionMajorMinor = $osVersion.Version.ToString(2)
     return [PSCustomObject]@{
         Version = $osVersion.Version
         Platform = $osVersion.Platform
         IsCatalina = $osVersionMajorMinor -eq "10.15"
-        IsBigSur = $osVersionMajor -eq "11"
-        IsMonterey = $osVersionMajor -eq "12"
-        IsLessThanMonterey = $osVersionMajor -lt "12"
-        IsHigherThanCatalina = $osVersionMajor -ge "11"
+        IsBigSur = $osVersion.Version.Major -eq "11"
+        IsMonterey = $osVersion.Version.Major -eq "12"
+        IsLessThanMonterey = $osVersion.Version.Major -lt "12"
+        IsHigherThanCatalina = $osVersion.Version.Major -ge "11"
     }
 }
 
