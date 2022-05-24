@@ -260,7 +260,7 @@ Function GenerateResourcesAndImage {
             throw "'packer' binary is not found on PATH"
         }
 
-        if($RestrictToAgentIpAddress) {
+        if ($RestrictToAgentIpAddress) {
             $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
             Write-Host "Restricting access to packer generated VM to agent IP Address: $AgentIp"
         }
