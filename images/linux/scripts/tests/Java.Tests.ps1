@@ -1,6 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameChecking
 
-Describe "Java" -Skip:(Test-IsUbuntu22) {
+Describe "Java" {
     $toolsetJava = (Get-ToolsetContent).java
     $defaultVersion = $toolsetJava.default
     $defaultVendor = $toolsetJava.default_vendor
@@ -50,7 +50,7 @@ Describe "Java" -Skip:(Test-IsUbuntu22) {
       "`"$javaPath`" -version" | Should -MatchCommandOutput ([regex]::Escape("openjdk version `"${Version}."))
     }
 
-    It "Java Adopt <Version>" -TestCases $adoptJdkVersions {
+    It "Java Adopt <Version>" -TestCases $adoptJdkVersions -Skip:(Test-IsUbuntu22) {
         $javaPath = Join-Path (Get-ChildItem ${env:AGENT_TOOLSDIRECTORY}\Java_Adopt_jdk\${Version}*) "x64\bin\java"
         "`"$javaPath`" -version" | Should -ReturnZeroExitCode
 
