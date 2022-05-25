@@ -200,6 +200,7 @@
                 "{{template_dir}}/scripts/installers/swift.sh",
                 "{{template_dir}}/scripts/installers/cmake.sh",
                 "{{template_dir}}/scripts/installers/codeql-bundle.sh",
+                "{{template_dir}}/scripts/installers/containers.sh",
                 "{{template_dir}}/scripts/installers/dotnetcore-sdk.sh",
                 "{{template_dir}}/scripts/installers/erlang.sh",
                 "{{template_dir}}/scripts/installers/firefox.sh",
