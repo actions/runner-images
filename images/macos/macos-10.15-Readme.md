@@ -197,7 +197,7 @@
 
 #### Packages
 - Bindgen 0.59.2
-- Cargo-audit 
+- Cargo-audit 0.17.0
 - Cargo-outdated 0.11.1
 - Cbindgen 0.23.0
 - Clippy 0.1.61
