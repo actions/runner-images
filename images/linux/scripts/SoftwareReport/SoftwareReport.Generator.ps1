@@ -187,11 +187,9 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     ) | Sort-Object
 )
 
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $markdown += New-MDHeader "Java" -Level 3
-    $markdown += Get-JavaVersions | New-MDTable
-    $markdown += New-MDNewLine
-}
+$markdown += New-MDHeader "Java" -Level 3
+$markdown += Get-JavaVersions | New-MDTable
+$markdown += New-MDNewLine
 
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $markdown += New-MDHeader "GraalVM" -Level 3
