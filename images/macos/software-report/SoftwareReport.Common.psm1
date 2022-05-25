@@ -64,7 +64,7 @@ function Get-Cargooutdated {
 }
 
 function Get-Cargoaudit {
-    $cargoAuditVersion = Run-Command "cargo audit --version" | Take-Part -Part 1
+    $cargoAuditVersion = Run-Command "cargo-audit --version" | Take-Part -Part 1
     return "Cargo-audit $cargoAuditVersion"
 }
 
