@@ -121,3 +121,9 @@ Describe "GraalVM" {
         '$GRAALVM_11_ROOT/native-image --version' | Should -ReturnZeroExitCode
     }
 }
+
+Describe "VirtualBox" -Skip:($os.IsBigSur) {
+    It "Check kext kernel modules" {
+        kextstat | Out-String | Should -Match "org.virtualbox.kext"
+    }
+}

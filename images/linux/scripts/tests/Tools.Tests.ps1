@@ -338,7 +338,7 @@ Describe "GraalVM" -Skip:(Test-IsUbuntu18) {
     }
 }
 
-Describe "Containers" -Skip:(-not (Test-IsUbuntu22)) {
+Describe "Containers" {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {
