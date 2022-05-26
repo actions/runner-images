@@ -49,13 +49,13 @@ $runtimesList = @(
     (Get-JuliaVersion),
     (Get-ClangVersions),
     (Get-ClangFormatVersions),
-    (Get-ClangTidyVersions)
+    (Get-ClangTidyVersions),
+    (Get-KotlinVersion)
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $runtimesList += @(
         (Get-MsbuildVersion),
-        (Get-KotlinVersion),
         (Get-MonoVersion),
         (Get-ErlangVersion),
         (Get-ErlangRebar3Version),
@@ -229,14 +229,14 @@ $markdown += New-MDHeader "Browsers and Drivers" -Level 3
 $browsersAndDriversList = @(
     (Get-ChromeVersion),
     (Get-ChromeDriverVersion),
-    (Get-ChromiumVersion)
+    (Get-ChromiumVersion),
+    (Get-SeleniumVersion)
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $browsersAndDriversList += @(
         (Get-FirefoxVersion),
-        (Get-GeckodriverVersion),
-        (Get-SeleniumVersion)
+        (Get-GeckodriverVersion)
     )
 }
 

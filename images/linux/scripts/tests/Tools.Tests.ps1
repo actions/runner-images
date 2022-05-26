@@ -206,7 +206,7 @@ Describe "Sbt" {
     }
 }
 
-Describe "Selenium" -Skip:(Test-IsUbuntu22) {
+Describe "Selenium" {
     It "Selenium is installed" {
         $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
         $seleniumPath = Join-Path "/usr/share/java" "$seleniumBinaryName.jar"
@@ -397,7 +397,7 @@ Describe "yq" {
     }
 }
 
-Describe "Kotlin" -Skip:(Test-IsUbuntu22) {
+Describe "Kotlin" {
     It "kapt" {
         "kapt -version"| Should -ReturnZeroExitCode
     }
