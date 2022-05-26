@@ -5,14 +5,16 @@ function Build-VSMacTable {
     $defaultVSMacVersion = Get-ToolsetValue "xamarin.vsmac.default"
 
     $vsMacVersions | ForEach-Object {
+        $isDefault = $_ -eq $defaultVSMacVersion
         $vsPath = "/Applications/Visual Studio $_.app"
-        if ($_ -eq $defaultVSMacVersion) {
+        if ($isDefault) {
             $vsPath = "/Applications/Visual Studio.app"
         }
 
         $plistPath = "$vsPath/Contents/Info.plist"
         $build = Run-Command "/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' '$plistPath'"
-        $defaultPostfix = ( $_ -eq $defaultVSMacVersion ) ? " (default)" : ""
+        $defaultPostfix = $isDefault ? " (default)" : ""
+
         [PSCustomObject] @{
             "Version" = $_ + $defaultPostfix
             "Build" = $build
