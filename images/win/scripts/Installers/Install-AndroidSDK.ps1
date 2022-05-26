@@ -3,8 +3,21 @@
 ##  Desc:  Install and update Android SDK and tools
 ################################################################################
 
-# install command-line tools
-$cmdlineToolsUrl = "https://dl.google.com/android/repository/commandlinetools-win-7302050_latest.zip"
+# install latest command-line tools
+$cmdlineToolsVersion = Get-ToolsetValue "android.cmdline-tools"
+if ($cmdlineToolVersion -eq "latest") {
+    $googlePkgs = Invoke-RestMethod "https://dl.google.com/android/repository/repository2-1.xml"
+    $cmdlineToolsVersion = $googlePkgs.SelectSingleNode(
+        "//remotePackage[@path='cmdline-tools;latest']/archives/archive/complete/url[starts-with(text(), 'commandlinetools-win-')]"
+    ).'#text'
+
+    if (-not $cmdlineToolsLatestVersion) {
+        Write-Host "Failed to parse latest command-line tools version"
+        exit 1
+    }
+}
+
+$cmdlineToolsUrl = "https://dl.google.com/android/repository/${cmdlineToolsVersion}"
 $cmdlineToolsArchPath = Start-DownloadWithRetry -Url $cmdlineToolsUrl -Name "cmdline-tools.zip"
 $sdkInstallRoot = "C:\Program Files (x86)\Android\android-sdk"
 $sdkRoot = "C:\Android\android-sdk"
