@@ -1,5 +1,6 @@
 
 variable "allowed_inbound_ip_addresses" {
+  type    = list(string)
   default = []
 }
 
@@ -286,6 +287,7 @@ build {
                         "${path.root}/scripts/installers/google-cloud-sdk.sh",
                         "${path.root}/scripts/installers/haskell.sh",
                         "${path.root}/scripts/installers/heroku.sh",
+                        "${path.root}/scripts/installers/java-tools.sh",
                         "${path.root}/scripts/installers/kubernetes-tools.sh",
                         "${path.root}/scripts/installers/oc.sh",
                         "${path.root}/scripts/installers/miniconda.sh",

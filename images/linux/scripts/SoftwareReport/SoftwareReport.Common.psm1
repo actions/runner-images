@@ -24,14 +24,15 @@ function Get-ClangToolVersions {
     param (
         [Parameter(Mandatory = $true)]
         [string] $ToolName,
+        [string] $VersionLineMatcher = "${ToolName} version",
         [string] $VersionPattern = "\d+\.\d+\.\d+)-"
     )
 
     $result = Get-CommandResult "apt list --installed" -Multiline
     $toolVersions = $result.Output | Where-Object { $_ -match "^${ToolName}-\d+"} | ForEach-Object {
         $clangCommand = ($_ -Split "/")[0]
-        Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "${ToolName} version" } | ForEach-Object {
-            $_ -match "${ToolName} version (?<version>${VersionPattern}" | Out-Null
+        Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "${VersionLineMatcher}" } | ForEach-Object {
+            $_ -match "${VersionLineMatcher} (?<version>${VersionPattern}" | Out-Null
             $Matches.version
             }
         } | Sort-Object {[Version]$_}
@@ -41,12 +42,17 @@ function Get-ClangToolVersions {
 
 function Get-ClangVersions {
     $clangVersions = Get-ClangToolVersions -ToolName "clang"
-    return "Clang " + $clangVersions
+    return "Clang $clangVersions"
 }
 
 function Get-ClangFormatVersions {
     $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
-    return "Clang-format " + $clangFormatVersions
+    return "Clang-format $clangFormatVersions"
+}
+
+function Get-ClangTidyVersions {
+    $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-tidy" -VersionLineMatcher "LLVM version" -VersionPattern "\d+\.\d+\.\d+)"
+    return "Clang-tidy $clangFormatVersions"
 }
 
 

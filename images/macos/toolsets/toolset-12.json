@@ -149,7 +149,8 @@
             "imagemagick"
         ],
         "cask_packages": [
-            "julia"
+            "julia",
+            "virtualbox"
         ]
     },
     "gcc": {

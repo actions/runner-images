@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [[Ubuntu] Container tools (buildah, podman, skopeo) will be removed from Ubuntu 18 & 20 images](https://github.com/actions/virtual-environments/issues/5578) |
 | [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
 # Ubuntu 22.04 LTS
 - Linux kernel version: 5.15.0-1005-azure
-- Image Version: 20220515.1
+- Image Version: 20220522.1
 
 ## Installed Software
 ### Language and Runtime
@@ -22,15 +23,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.8.2
+- Helm 3.9.0
 - Homebrew 3.4.11
-- Miniconda 4.11.0
+- Miniconda 4.12.0
 - Npm 8.5.5
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.0.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<0cf5b4305>)
+- Vcpkg  (build from master \<314018fef>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -49,45 +50,49 @@
 - Bazel 5.1.1
 - Bazelisk 1.11.0
 - Bicep 0.6.18
+- Buildah 1.23.1
 - CMake 3.23.1
-- CodeQL Action Bundle 2.9.1
+- CodeQL Action Bundle 2.9.2
+- Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.4.1+azure-1
 - Docker-Buildx 0.8.2
 - Docker-Moby Client 20.10.15+azure-1
-- Docker-Moby Server 20.10.15+azure-2
-- Fastlane 2.205.2
+- Docker-Moby Server 20.10.16+azure-2
+- Fastlane 2.206.1
 - Git 2.36.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.1.4 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - Heroku 7.60.2
 - jq 1.6
-- Kind 0.13.0
+- Kind 0.14.0
 - Kubectl 1.24.0
-- Kustomize 4.5.4
+- Kustomize 4.5.5
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.25.2
 - n 8.2.0
 - Newman 5.3.2
 - nvm 0.39.1
-- OpenSSL 3.0.2-0ubuntu1.1
+- OpenSSL 3.0.2-0ubuntu1.2
 - Packer 1.8.0
 - Parcel 2.5.0
-- Pulumi 3.32.1
+- Podman 3.4.4
+- Pulumi 3.33.1
 - R 4.2.0
+- Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.1.9
+- Terraform 1.2.0
 - yamllint 1.26.3
 - yq 4.25.1
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.119
-- AWS CLI 2.7.0
-- AWS CLI Session manager plugin 1.2.312.0
+- Alibaba Cloud CLI 3.0.120
+- AWS CLI 2.7.2
+- AWS CLI Session manager plugin 1.2.323.0
 - AWS SAM CLI 1.50.0
 - Azure CLI (azure-cli) 2.36.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
@@ -95,9 +100,9 @@
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
 - Netlify CLI 10.3.1
-- OpenShift CLI 4.10.13
+- OpenShift CLI 4.10.14
 - ORAS CLI 0.12.0
-- Vercel CLI 24.2.3
+- Vercel CLI 24.2.4
 
 ### GraalVM
 | Version   | Environment variables |
@@ -107,7 +112,7 @@
 ### PHP
 | Tool     | Version |
 | -------- | ------- |
-| PHP      | 8.1.5   |
+| PHP      | 8.1.6   |
 | Composer | 2.3.5   |
 | PHPUnit  | 8.5.26  |
 ```
@@ -120,15 +125,15 @@
 - Stack 2.7.5
 
 ### Rust Tools
-- Cargo 1.60.0
-- Rust 1.60.0
-- Rustdoc 1.60.0
+- Cargo 1.61.0
+- Rust 1.61.0
+- Rustdoc 1.61.0
 - Rustup 1.24.3
 
 #### Packages
 - Bindgen 0.59.2
 - Cargo audit 0.16.0
-- Cargo clippy 0.1.60
+- Cargo clippy 0.1.61
 - Cargo outdated 0.11.1
 - Cbindgen 0.23.0
 - Rustfmt 1.4.38
@@ -149,7 +154,7 @@
 - 6.0.300
 
 ### .NET tools
-- nbgv 3.5.104+d0b7c362ff
+- nbgv 3.5.107+6463ef6068
 
 ### Databases
 - sqlite3 3.37.2
@@ -174,7 +179,7 @@
 - 1.18.2
 
 #### Node.js
-- 14.19.2
+- 14.19.3
 - 16.15.0
 
 #### PyPy
@@ -185,7 +190,7 @@
 #### Python
 - 3.7.13
 - 3.8.12
-- 3.9.12
+- 3.9.13
 - 3.10.4
 
 #### Ruby
@@ -198,7 +203,7 @@
 | GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.2/x64  | x64          |
 
 ### PowerShell Tools
-- PowerShell 7.2.3
+- PowerShell 7.2.4
 
 #### PowerShell Modules
 | Module           | Version |
@@ -227,8 +232,8 @@
 | debian:10               | sha256:405f48fbb359190809bd91aac79c3f6c346c1e79878c839351c6a817db5e9fc4  | 2022-05-11 |
 | debian:11               | sha256:6137c67e2009e881526386c42ba99b3657e4f92f546814a33d35b14e60579777  | 2022-05-11 |
 | moby/buildkit:latest    | sha256:0dc312b04eac1b44cd2cad566deb1e886c753109208affbbec8384f381ff7f38  | 2022-05-06 |
-| node:14                 | sha256:61168c39af89331ffaa6ba41c2a44f4d5132a857a6034175f994948b5798b588  | 2022-05-11 |
-| node:14-alpine          | sha256:8845b4f88f64f8c56a39236648ba22946e806a6153c10911f77b70e5a2edb4ca  | 2022-04-05 |
+| node:14                 | sha256:42353ba2f129758dd5df19c6bcc3107d519436585467b231883b07f21336a484  | 2022-05-18 |
+| node:14-alpine          | sha256:c9b8829068199346e2a9ae46f870bbb82ce44de6580321300bf3945d00dee0f1  | 2022-05-18 |
 | node:16                 | sha256:1817bb941c9a30fe2a6d75ff8675a8f6def408efe3d3ff43dbb006e2b534fa14  | 2022-05-11 |
 | node:16-alpine          | sha256:1a9a71ea86aad332aa7740316d4111ee1bd4e890df47d3b5eff3e5bded3b3d10  | 2022-04-27 |
 | ubuntu:18.04            | sha256:d21b6ba9e19feffa328cb3864316e6918e30acfd55e285b5d3df1d8ca3c7fd3f  | 2022-04-29 |
@@ -250,7 +255,7 @@
 | coreutils              | 8.32-4.1ubuntu1                   |
 | curl                   | 7.81.0-1ubuntu1.2                 |
 | dbus                   | 1.12.20-2ubuntu4                  |
-| dnsutils               | 1:9.18.1-1ubuntu1                 |
+| dnsutils               | 1:9.18.1-1ubuntu1.1               |
 | dpkg                   | 1.21.1ubuntu2                     |
 | fakeroot               | 1.28-1ubuntu1                     |
 | file                   | 1:5.41-3                          |
@@ -276,7 +281,7 @@
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3build2        |
 | libsecret-1-dev        | 0.20.5-2                          |
 | libsqlite3-dev         | 3.37.2-2                          |
-| libssl-dev             | 3.0.2-0ubuntu1.1                  |
+| libssl-dev             | 3.0.2-0ubuntu1.2                  |
 | libtool                | 2.4.6-15build2                    |
 | libunwind8             | 1.3.2-2build2                     |
 | libxkbfile-dev         | 1:1.1.0-1build3                   |

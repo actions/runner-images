@@ -120,6 +120,9 @@ Describe "clang" {
 
         "clang-$ClangVersion --version" | Should -ReturnZeroExitCode
         "clang++-$ClangVersion --version" | Should -ReturnZeroExitCode
+        "clang-format-$ClangVersion --version" | Should -ReturnZeroExitCode
+        "clang-tidy-$ClangVersion --version" | Should -ReturnZeroExitCode
+        "run-clang-tidy-$ClangVersion --help" | Should -ReturnZeroExitCode
     }
 }
 
@@ -335,7 +338,7 @@ Describe "GraalVM" -Skip:(Test-IsUbuntu18) {
     }
 }
 
-Describe "Containers" -Skip:(-not (Test-IsUbuntu22)) {
+Describe "Containers" {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {
