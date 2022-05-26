@@ -120,6 +120,9 @@ $toolsList = @(
     (Get-DockerComposeV2Version),
     (Get-DockerBuildxVersion),
     (Get-DockerAmazonECRCredHelperVersion),
+    (Get-BuildahVersion),
+    (Get-PodManVersion),
+    (Get-SkopeoVersion),
     (Get-GitVersion),
     (Get-GitLFSVersion),
     (Get-GitFTPVersion),
@@ -155,13 +158,6 @@ if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
         (Get-HHVMVersion)
     )
 }
-if (Test-IsUbuntu22) {
-    $toolsList += @(
-        (Get-BuildahVersion),
-        (Get-PodManVersion),
-        (Get-SkopeoVersion)
-    )
-}
 
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $toolsList += (Get-FastlaneVersion)
@@ -187,11 +183,9 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     ) | Sort-Object
 )
 
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $markdown += New-MDHeader "Java" -Level 3
-    $markdown += Get-JavaVersions | New-MDTable
-    $markdown += New-MDNewLine
-}
+$markdown += New-MDHeader "Java" -Level 3
+$markdown += Get-JavaVersions | New-MDTable
+$markdown += New-MDNewLine
 
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $markdown += New-MDHeader "GraalVM" -Level 3
