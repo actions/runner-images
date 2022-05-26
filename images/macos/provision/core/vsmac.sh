@@ -4,14 +4,18 @@ source ~/utils/xamarin-utils.sh
 
 install_vsmac() {
     local VSMAC_VERSION=$1
-    if [ $VSMAC_VERSION == "latest" ]; then
+    local VSMAC_DEFAULT=$2
+    if [ $VSMAC_VERSION == "2019" ]; then
         VSMAC_DOWNLOAD_URL=$(curl -sL "https://aka.ms/manifest/stable" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
+    elif [ $VSMAC_VERSION == "2022" ]; then
+        VSMAC_DOWNLOAD_URL=$(curl -sL "https://aka.ms/manifest/stable-2022" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
     elif [ $VSMAC_VERSION == "preview" ]; then
         VSMAC_DOWNLOAD_URL=$(curl -sL "https://aka.ms/manifest/preview" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
     else
         VSMAC_DOWNLOAD_URL=$(buildVSMacDownloadUrl $VSMAC_VERSION)
     fi
 
+    echo "Installing Visual Studio ${VSMAC_VERSION} for Mac"
     TMPMOUNT=`/usr/bin/mktemp -d /tmp/visualstudio.XXXX`
     TMPMOUNT_DOWNLOADS="$TMPMOUNT/downloads"
     mkdir $TMPMOUNT_DOWNLOADS
@@ -26,8 +30,8 @@ install_vsmac() {
     pushd $TMPMOUNT
     tar cf - "./Visual Studio.app" | tar xf - -C /Applications/
 
-    if [ $VSMAC_VERSION == "preview" ]; then
-        mv "/Applications/Visual Studio.app" "/Applications/Visual Studio Preview.app"
+    if [ $VSMAC_VERSION != $VSMAC_DEFAULT ]; then
+        mv "/Applications/Visual Studio.app" "/Applications/Visual Studio ${VSMAC_VERSION}.app"
     fi
 
     popd
@@ -35,14 +39,11 @@ install_vsmac() {
     sudo rm -rf "$TMPMOUNT"
 }
 
-VSMAC_VERSION_PREVIEW=$(get_toolset_value '.xamarin.vsmac_preview')
-if [ $VSMAC_VERSION_PREVIEW != "null" ];then
-    echo "Installing Visual Studio 2022 for Mac Preview"
-    install_vsmac $VSMAC_VERSION_PREVIEW
-fi
+VSMAC_VERSIONS=($(get_toolset_value '.xamarin.vsmac.versions[]'))
+DEFAULT_VSMAC_VERSION=$(get_toolset_value '.xamarin.vsmac.default')
 
-echo "Installing Visual Studio 2019 for Mac Stable"
-VSMAC_VERSION_STABLE=$(get_toolset_value '.xamarin.vsmac')
-install_vsmac $VSMAC_VERSION_STABLE
+for VERSION in "${VSMAC_VERSIONS[@]}"; do
+    install_vsmac $VERSION $DEFAULT_VSMAC_VERSION
+done
 
 invoke_tests "Common" "VSMac"
