@@ -128,6 +128,7 @@ $toolsList = @(
     (Get-GitFTPVersion),
     (Get-HavegedVersion),
     (Get-HerokuVersion),
+    (Get-LeiningenVersion),
     (Get-SVNVersion),
     (Get-JqVersion),
     (Get-YqVersion),
@@ -154,7 +155,6 @@ $toolsList = @(
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $toolsList += @(
         (Get-PhantomJSVersion),
-        (Get-LeiningenVersion),
         (Get-HHVMVersion)
     )
 }
@@ -293,14 +293,12 @@ $markdown += New-MDList -Style Unordered -Lines @(
 
 $markdown += Build-WebServersSection
 
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $markdown += New-MDHeader "Android" -Level 3
-    $markdown += Build-AndroidTable | New-MDTable
-    $markdown += New-MDNewLine
-    $markdown += New-MDHeader "Environment variables" -Level 4
-    $markdown += Build-AndroidEnvironmentTable | New-MDTable
-    $markdown += New-MDNewLine
-}
+$markdown += New-MDHeader "Android" -Level 3
+$markdown += Build-AndroidTable | New-MDTable
+$markdown += New-MDNewLine
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-AndroidEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Cached Docker images" -Level 3
 $markdown += Get-CachedDockerImagesTableData | New-MDTable
