@@ -108,22 +108,43 @@ In general, these are the guidelines we follow when deciding what to pre-install
 - For general questions about using the runner images or writing your Actions workflow, please open requests in the [GitHub Actions Community Forum](https://github.community/c/github-actions/41).
 
 ## FAQs
-***What images are available for GitHub Actions and Azure DevOps?***
+<details>
+   <summary><b><i>What images are available for GitHub Actions and Azure DevOps?</b></i></summary>
+  
 The availability of images for GitHub Actions and Azure DevOps is different. See documentation for more details:
 - [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources)
 - [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#software)
+</details>
 
-***What image version is used in my build?*** Usually, image deployment takes 3-4 days, and documentation in the `main` branch is only updated when deployment is finished. To find out which image version and what software versions are used in a specific build, see `Set up job` (GitHub Actions) or `Initialize job` (Azure DevOps) step log.
+<details>
+   <summary><b><i>What image version is used in my build?</b></i></summary>
+   
+   Usually, image deployment takes 3-4 days, and documentation in the `main` branch is only updated when deployment is finished. To find out which image version and what software versions are used in a specific build, see `Set up job` (GitHub Actions) or `Initialize job` (Azure DevOps) step log.
 <img width="1440" alt="actions-runner-image" src="https://user-images.githubusercontent.com/56982181/169595536-91a8a79b-d5e0-47d1-a736-510cff6cfb83.png">
+</details>
 
-***Looking for other Linux distributions?*** We do not plan to offer other Linux distributions. We recommend using Docker if you'd like to build using other distributions with the hosted runner images. Alternatively, you can leverage [self-hosted runners] and fully customize your VM image to your needs.
+<details>
+   <summary><b><i>Looking for other Linux distributions?</b></i></summary>
+   
+   We do not plan to offer other Linux distributions. We recommend using Docker if you'd like to build using other distributions with the hosted runner images. Alternatively, you can leverage [self-hosted runners] and fully customize your VM image to your needs.
+</details>
 
-***How do I contribute to the macOS source?*** macOS source lives in this repository and is available for everyone. However, macOS image-generation CI doesn't support external contributions yet so we are not able to accept pull-requests for now.
-We are in the process of preparing macOS CI to accept contributions. Until then, we appreciate your patience and ask you to continue to make tool requests by filing issues.
+<details>
+   <summary><b><i>How do I contribute to the macOS source?</b></i></summary>
+   
+   macOS source lives in this repository and is available for everyone. However, macOS image-generation CI doesn't support external contributions yet so we are not able to accept pull-requests for now.
 
-***How does GitHub determine what tools are installed on the images?***
-For some tools, we always install the latest at the time of the deployment; for others,
-we pin the tool to specific version(s). ( needs more details)
+   We are in the process of preparing macOS CI to accept contributions. Until then, we appreciate your patience and ask you to continue to make tool requests by filing issues.
+</details>
 
-***How do I request that a new tool be pre-installed on the image?***
+
+<details>
+   <summary><b><i>How does GitHub determine what tools are installed on the images?</b></i></summary>
+   
+For some tools, we always install the latest at the time of the deployment; for others, we pin the tool to specific version(s). For more details please see the [Preinstallation Policy](#preinstallation-policy)
+</details>
+
+<details>
+   <summary><b><i>How do I request that a new tool be pre-installed on the image?</b></i></summary>
 Please create an issue and get an approval from us to add this tool to the image before creating the pull request.
+</details>
