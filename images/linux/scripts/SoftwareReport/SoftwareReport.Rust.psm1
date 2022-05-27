@@ -21,7 +21,7 @@ function Get-CargoVersion {
 }
 
 function Get-CargoAuditVersion {
-    $cargoAuditVersion = $(cargo audit --version) | Take-OutputPart -Part 1
+    $cargoAuditVersion = $(cargo-audit --version) | Take-OutputPart -Part 1
     return "Cargo audit $cargoAuditVersion"
 }
 

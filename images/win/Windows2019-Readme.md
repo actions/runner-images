@@ -1,17 +1,18 @@
 | Announcements |
 |-|
+| [[all OSs] Android NDK 22 will be replaced in favor of 24, version 23 will be set as the default one](https://github.com/actions/virtual-environments/issues/5595) |
 | [[Azure DevOps] Windows-2016 environment removal postponed until June 30, 2022](https://github.com/actions/virtual-environments/issues/5403) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2928
-- Image Version: 20220515.1
+- Image Version: 20220522.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
 
 ## Installed Software
 ### Language and Runtime
-- Bash 4.4.23(2)-release
+- Bash 4.4.23(1)-release
 - Go 1.17.10
 - Julia 1.7.2
 - Kotlin 1.6.21
@@ -26,13 +27,13 @@
 - Chocolatey 1.1.0
 - Composer 2.3.5
 - Helm 3.8.2
-- Miniconda 4.11.0 (pre-installed on the image but not added to PATH)
+- Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
 - NPM 8.5.0
 - NuGet 6.2.0.146
-- pip 22.1 (python 3.7)
+- pip 22.1.1 (python 3.7)
 - Pipx 1.0.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<0cf5b4305>)
+- Vcpkg (build from master \<314018fef>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -56,18 +57,18 @@
 - Bicep 0.6.18
 - Cabal 3.6.2.0
 - CMake 3.23.1
-- CodeQL Action Bundle 2.9.1
+- CodeQL Action Bundle 2.9.2
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.5.0
+- Docker Compose v2 2.5.1
 - Docker-wincred 0.6.4
 - ghc 9.2.2
-- Git 2.35.1.windows.2
-- Git LFS 3.0.2
-- Google Cloud SDK 385.0.0
+- Git 2.36.0.windows.1
+- Git LFS 3.1.4
+- Google Cloud SDK 386.0.0
 - InnoSetup 6.2.1
 - jq 1.6
-- Kind 0.13.0
+- Kind 0.14.0
 - Kubectl 1.24.0
 - Mercurial 5.0
 - Mingw-w64 8.1.0
@@ -76,7 +77,7 @@
 - OpenSSL 1.1.1
 - Packer 1.8.0
 - Parcel 2.5.0
-- Pulumi v3.32.1
+- Pulumi v3.33.1
 - R 4.2.0
 - Service Fabric SDK 9.0.1017.9590
 - Stack 2.7.5
@@ -89,10 +90,10 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.119
-- AWS CLI 2.7.0
+- Alibaba Cloud CLI 3.0.120
+- AWS CLI 2.7.2
 - AWS SAM CLI 1.50.0
-- AWS Session Manager CLI 1.2.312.0
+- AWS Session Manager CLI 1.2.323.0
 - Azure CLI 2.36.0
 - Azure DevOps CLI extension 0.25.0
 - Cloud Foundry CLI 6.53.0
@@ -100,9 +101,9 @@
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.60.0
-- Rust 1.60.0
-- Rustdoc 1.60.0
+- Cargo 1.61.0
+- Rust 1.61.0
+- Rustdoc 1.61.0
 - Rustup 1.24.3
 
 #### Packages
@@ -110,15 +111,15 @@
 - cargo-audit 0.16.0
 - cargo-outdated 0.11.1
 - cbindgen 0.23.0
-- Clippy 0.1.60
+- Clippy 0.1.61
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
 - Google Chrome 101.0.4951.67
 - Chrome Driver 101.0.4951.41
-- Microsoft Edge 101.0.1210.47
-- Microsoft Edge Driver 101.0.1210.47
-- Mozilla Firefox 100.0
+- Microsoft Edge 101.0.1210.53
+- Microsoft Edge Driver 101.0.1210.53
+- Mozilla Firefox 100.0.2
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.1.0
@@ -171,7 +172,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 12.22.12 | x64          |
-| 14.19.2 | x64          |
+| 14.19.3 | x64          |
 | 16.15.0 | x64          |
 
 #### Python
@@ -181,7 +182,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.6.8   | x64, x86     |
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.12  | x64, x86     |
+| 3.9.13  | x64, x86     |
 | 3.10.4  | x64, x86     |
 
 #### Ruby
@@ -237,12 +238,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.11.32428.217 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Visual Studio Enterprise 2019 | 16.11.32510.428 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.11.32425.466 |
+| Component.Android.NDK.R16B                                                | 16.11.32510.428 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -526,10 +527,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.8
 
 ### .NET tools
-- nbgv 3.5.104+d0b7c362ff
+- nbgv 3.5.107+6463ef6068
 
 ### PowerShell Tools
-- PowerShell 7.2.3
+- PowerShell 7.2.4
 
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                                        | Path                           |
@@ -546,7 +547,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.85           |
+| AWSPowerShell      | 4.1.90           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.6            |

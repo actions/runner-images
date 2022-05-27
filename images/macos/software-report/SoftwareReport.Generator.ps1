@@ -141,9 +141,14 @@ if ($os.IsLessThanMonterey) {
 
 if ($os.IsCatalina) {
     $utilitiesList += @(
-        (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
         (Get-ParallelVersion)
+    )
+}
+
+if (-not $os.IsBigSur) {
+    $utilitiesList += @(
+        (Get-VirtualBoxVersion)
     )
 }
 
@@ -242,12 +247,9 @@ $markdown += Build-WebServersSection
 
 # Xamarin section
 $markdown += New-MDHeader "Xamarin" -Level 3
-$markdown += New-MDHeader "Visual Studio 2019 for Mac" -Level 4
-$markdown += New-MDList -Lines @(Get-VSMac2019Version) -Style Unordered
-if ($os.IsMonterey) {
-    $markdown += New-MDHeader "Visual Studio 2022 for Mac" -Level 4
-    $markdown += New-MDList -Lines @(Get-VSMac2022Version) -Style Unordered
-}
+$markdown += New-MDHeader "Visual Studio for Mac" -Level 4
+$markdown += Build-VSMacTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Xamarin bundles" -Level 4
 $markdown += Build-XamarinTable | New-MDTable

@@ -79,15 +79,26 @@ Describe "CocoaPods" {
 }
 
 Describe "VSMac" {
-    It "VS4Mac is installed" {
-        $vsPath = "/Applications/Visual Studio.app"
+    $vsMacVersions = Get-ToolsetValue "xamarin.vsmac.versions"
+    $defaultVSMacVersion = Get-ToolsetValue "xamarin.vsmac.default"
+
+    $testCases = $vsMacVersions | ForEach-Object {
+        $vsPath = "/Applications/Visual Studio $_.app"
+        if ($_ -eq $defaultVSMacVersion) {
+            $vsPath = "/Applications/Visual Studio.app"
+        }
+
+        @{ vsversion = $_ ; vspath = $vsPath }
+    }
+
+    It "Visual Studio <vsversion> for Mac is installed" -TestCases $testCases {
         $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
         $vsPath | Should -Exist
         $vstoolPath | Should -Exist
     }
 
-    It "VS4Mac Preview is installed" -Skip:(-not $os.IsMonterey) {
-        $vsPath = "/Applications/Visual Studio Preview.app"
+    It "Visual Studio $defaultVSMacVersion for Mac is default" {
+        $vsPath = "/Applications/Visual Studio.app"
         $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
         $vsPath | Should -Exist
         $vstoolPath | Should -Exist
@@ -119,5 +130,11 @@ Describe "GraalVM" {
 
     It "native-image" {
         '$GRAALVM_11_ROOT/native-image --version' | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "VirtualBox" -Skip:($os.IsBigSur) {
+    It "Check kext kernel modules" {
+        kextstat | Out-String | Should -Match "org.virtualbox.kext"
     }
 }

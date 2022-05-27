@@ -9,8 +9,10 @@
         ]
     },
     "xamarin": {
-        "vsmac": "latest",
-        "vsmac_preview": "preview",
+        "vsmac": {
+            "default": "2022",
+            "versions": [ "2019", "2022" ]
+        },
         "mono-versions": [
             "6.12.0.174"
         ],
@@ -149,7 +151,8 @@
             "imagemagick"
         ],
         "cask_packages": [
-            "julia"
+            "julia",
+            "virtualbox"
         ]
     },
     "gcc": {
