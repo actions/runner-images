@@ -60,7 +60,7 @@ function Get-CbindgenVersion {
 }
 
 function Get-CargoAuditVersion {
-    return cargo audit --version
+    return cargo-audit --version
 }
 
 function Get-CargoOutdatedVersion {
