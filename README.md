@@ -4,9 +4,9 @@
 - [Available Images](#available-images)
 - [Image Definitions](#image-definitions)
 - [Image Releases](#image-releases)
-- [Software and Image guidelines]
+- [Software and Image guidelines](#software-and-image-guidelines)
 - [How to interact with this Repo]
-- [FAQs]
+- [FAQs](#faqs)
 
 
 ## About
@@ -56,8 +56,44 @@ A GA (General Availability) image has been through a Beta period and is deemed r
 
 
 
-## Software and image guidelines
-To learn more about tools and images support policy, see the [guidelines](./docs/software-and-images-guidelines.md).
+## Software and Image Guidelines
+
+### Support Policy
+These are the guidelines we follow in software and images supporting routine:
+- Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life.
+- We support at least the 2 latest OS versions. We begin the deprecation process of the oldest image label once a new OS version has been released.
+- The images generally contain the latest versions of packages installed except for Ubuntu LTS where we rely on the Canonical-provided repositories mostly.
+- Popular tools can have several versions installed side-by-side with the following strategy:
+
+| Tool name | Installation strategy |
+|-----------|-----------------------|
+| Docker images | not more than 3 latest LTS OS\tool versions. New images or new versions of current images are added using the standard tool request process |
+| Java      | all LTS versions |
+| Node.js   | 3 latest LTS versions |
+| Go        | 3 latest minor versions |
+| Python <br/> Ruby | 5 most popular `major.minor` versions |
+| PyPy      | 3 most popular `major.minor` versions |
+| .NET Core | 2 latest LTS versions and 1 latest version. For each feature version only latest patch is installed |
+| GCC <br/> GNU Fortran <br/> Clang <br/> GNU C++ | 3 latest major versions |
+| Android NDK | 1 latest non-LTS, 2 latest LTS versions |
+| Xcode     | - all OS compatible versions side-by-side <br/> - for beta, GM versions - latest beta only <br/> - old patch versions are deprecated in 3 months |
+
+### Deprecation Policy
+
+### Preinstallation Policy
+In general, these are the guidelines we follow when deciding what to pre-install:
+
+- Tools and ecosystems that are broadly popular and widely-used will be given priority.
+- Recent versions of tools will be given priority over older versions.
+- Tools and versions that are deprecated or have reached end-of-life will not be added.
+- MIT, Apache, and GNU licenses are ok, anything else we'll have to check with legal.
+- If a tool can be installed during the build, we will evaluate how much time is saved
+ and how much space is used by having the tool pre-installed.
+- If a tool requires the support of more than one version, we will consider the cost of this maintenance.
+
+### Default Version Update Policy 
+- In general, once a new version is installed on the image, we announce the default version update 2 weeks prior to deploying it to give time to adapt to upcoming changes.
+- For potentially dangerous updates, we can extend the timeline up to 1 month between the announcement and deployment.
 
 ## How to interact with this repo
 - To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/virtual-environments/issues/new/choose)
@@ -82,3 +118,6 @@ We are in the process of preparing macOS CI to accept contributions. Until then,
 ***How do GitHub determine what tools are installed on the images?***
 For some tools, we always install the latest at the time of the deployment; for others,
 we pin the tool to specific version(s). ( needs more details)
+
+***How do I request that a new tool be pre-installed on the image?***
+Please, create an issue and get an approval from us to add this tool to the image before creating the pull request.
