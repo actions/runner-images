@@ -8,7 +8,7 @@ $androidToolset = (Get-ToolsetContent).android
 
 # install latest command-line tools
 $cmdlineToolsVersion = $androidToolset."cmdline-tools"
-if ($cmdlineToolVersion -eq "latest") {
+if ($cmdlineToolsVersion -eq "latest") {
     $googlePkgs = Invoke-RestMethod "https://dl.google.com/android/repository/repository2-1.xml"
     $cmdlineToolsVersion = $googlePkgs.SelectSingleNode(
         "//remotePackage[@path='cmdline-tools;latest']/archives/archive/complete/url[starts-with(text(), 'commandlinetools-win-')]"
