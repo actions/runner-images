@@ -5,7 +5,7 @@
 - [Image Definitions](#image-definitions)
 - [Image Releases](#image-releases)
 - [Software and Image guidelines](#software-and-image-guidelines)
-- [How to interact with this Repo]
+- [How to Interact with the Repo](#how-to-interact-with-the-repo)
 - [FAQs](#faqs)
 
 
@@ -59,8 +59,7 @@ A GA (General Availability) image has been through a Beta period and is deemed r
 ## Software and Image Guidelines
 
 ### Support Policy
-These are the guidelines we follow in software and images supporting routine:
-- Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life.
+- Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life
 - We support at least the 2 latest OS versions. We begin the deprecation process of the oldest image label once a new OS version has been released.
 - The images generally contain the latest versions of packages installed except for Ubuntu LTS where we rely on the Canonical-provided repositories mostly.
 - Popular tools can have several versions installed side-by-side with the following strategy:
@@ -78,28 +77,31 @@ These are the guidelines we follow in software and images supporting routine:
 | Android NDK | 1 latest non-LTS, 2 latest LTS versions |
 | Xcode     | - all OS compatible versions side-by-side <br/> - for beta, GM versions - latest beta only <br/> - old patch versions are deprecated in 3 months |
 
-### Deprecation Policy
+### Image Deprecation Policy
+- Images begin the deprecation process of the oldest image label once a new OS version has been released.
+- Deprecation process begins with an announcement that sets a date for deprecation
+- As it gets closer to the date, GitHub begins doing scheduled brownouts of the image
+- DUring this time there will be an Announcement pinned in the repo to remind users of the deprecation.
+- Finally GitHub will deprecate the image and it will no longer be available
 
 ### Preinstallation Policy
-In general, these are the guidelines we follow when deciding what to pre-install:
+In general, these are the guidelines we follow when deciding what to pre-install on our images:
 
-- Tools and ecosystems that are broadly popular and widely-used will be given priority.
-- Recent versions of tools will be given priority over older versions.
-- Tools and versions that are deprecated or have reached end-of-life will not be added.
-- MIT, Apache, and GNU licenses are ok, anything else we'll have to check with legal.
-- If a tool can be installed during the build, we will evaluate how much time is saved
- and how much space is used by having the tool pre-installed.
-- If a tool requires the support of more than one version, we will consider the cost of this maintenance.
+- Popularity: widely-used tools and ecosystems will be given priority.
+- Latest Technology: recent versions of tools will be given priority.
+- Deprecation: end-of-life tools and versions will not be added.
+- Licensing: MIT, Apache, or GNU licenses are allowed.
+- Time & Space on the Image: we will evaluate how much time is saved and how much space is used by having the tool pre-installed.
+- Support: If a tool requires the support of more than one version, we will consider the cost of this maintenance.
 
 ### Default Version Update Policy 
-- In general, once a new version is installed on the image, we announce the default version update 2 weeks prior to deploying it to give time to adapt to upcoming changes.
-- For potentially dangerous updates, we can extend the timeline up to 1 month between the announcement and deployment.
+- In general, once a new version is installed on the image, we announce the default version update 2 weeks prior to deploying it.
+- For potentially dangerous updates, we may extend the timeline up to 1 month between the announcement and deployment.
 
-## How to interact with this repo
-- To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/virtual-environments/issues/new/choose)
-- If you want to share your thoughts about image configuration, installed software, or bring some idea, please, create a new topic in a [discussions section](https://github.com/actions/virtual-environments/discussions) for a corresponding category. Before making a new discussion please make sure no similar topics were created earlier.
-
-For general questions about using the runner images or writing your Actions workflow, please open requests in the [GitHub Actions Community Forum](https://github.community/c/github-actions/41).
+## How to Interact with the Repo
+- **Issues**: To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/virtual-environments/issues/new/choose)
+- **Discussions**: If you want to share your thoughts about image configuration, installed software, or bring a new idea, please create a new topic in a [discussion](https://github.com/actions/virtual-environments/discussions) for a corresponding category. Before making a new discussion please make sure no similar topics were created earlier.
+- For general questions about using the runner images or writing your Actions workflow, please open requests in the [GitHub Actions Community Forum](https://github.community/c/github-actions/41).
 
 ## FAQs
 ***What images are available for GitHub Actions and Azure DevOps?***
@@ -115,9 +117,9 @@ The availability of images for GitHub Actions and Azure DevOps is different. See
 ***How do I contribute to the macOS source?*** macOS source lives in this repository and is available for everyone. However, macOS image-generation CI doesn't support external contributions yet so we are not able to accept pull-requests for now.
 We are in the process of preparing macOS CI to accept contributions. Until then, we appreciate your patience and ask you to continue to make tool requests by filing issues.
 
-***How do GitHub determine what tools are installed on the images?***
+***How does GitHub determine what tools are installed on the images?***
 For some tools, we always install the latest at the time of the deployment; for others,
 we pin the tool to specific version(s). ( needs more details)
 
 ***How do I request that a new tool be pre-installed on the image?***
-Please, create an issue and get an approval from us to add this tool to the image before creating the pull request.
+Please create an issue and get an approval from us to add this tool to the image before creating the pull request.
