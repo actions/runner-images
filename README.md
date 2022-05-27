@@ -4,7 +4,7 @@
 - [Available Images](#available-images)
 - [Image Definitions](#image-definitions)
 - [Image Releases](#image-releases)
-- [Software and Image guidelines](#software-and-image-guidelines)
+- [Software and Image Support](#software-and-image-support)
 - [How to Interact with the Repo](#how-to-interact-with-the-repo)
 - [FAQs](#faqs)
 
@@ -60,7 +60,7 @@ A GA (General Availability) image has been through a Beta period and is deemed r
 
 
 
-## Software and Image Guidelines
+## Software and Image Support
 
 ### Support Policy
 - Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life
