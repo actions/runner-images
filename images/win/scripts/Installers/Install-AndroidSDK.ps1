@@ -14,7 +14,7 @@ if ($cmdlineToolsVersion -eq "latest") {
         "//remotePackage[@path='cmdline-tools;latest']/archives/archive/complete/url[starts-with(text(), 'commandlinetools-win-')]"
     ).'#text'
 
-    if (-not $cmdlineToolsLatestVersion) {
+    if (-not $cmdlineToolsVersion) {
         Write-Host "Failed to parse latest command-line tools version"
         exit 1
     }
