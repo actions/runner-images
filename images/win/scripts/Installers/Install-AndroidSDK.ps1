@@ -3,8 +3,11 @@
 ##  Desc:  Install and update Android SDK and tools
 ################################################################################
 
+# get packages to install from the toolset
+$androidToolset = (Get-ToolsetContent).android
+
 # install latest command-line tools
-$cmdlineToolsVersion = Get-ToolsetValue "android.cmdline-tools"
+$cmdlineToolsVersion = $androidToolset."cmdline-tools"
 if ($cmdlineToolVersion -eq "latest") {
     $googlePkgs = Invoke-RestMethod "https://dl.google.com/android/repository/repository2-1.xml"
     $cmdlineToolsVersion = $googlePkgs.SelectSingleNode(
@@ -62,9 +65,6 @@ if (Test-Path $platformToolsPath)
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                 -AndroidSDKRootPath $sdkRoot `
                 -AndroidPackages "platform-tools"
-
-# get packages to install from the toolset
-$androidToolset = (Get-ToolsetContent).android
 
 # get packages info
 $androidPackages = Get-AndroidPackages -AndroidSDKManagerPath $sdkManager
