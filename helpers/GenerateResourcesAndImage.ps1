@@ -88,6 +88,8 @@ Function GenerateResourcesAndImage {
         
         .PARAMETER AllowBlobPublicAccess
             The Azure storage account will be created with this option.
+        .PARAMETER OnErrorCleanup
+            If an error occurs during packager image generation, do not prompt and clean up resources automatically.
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1804 -AzureLocation "East US"
     #>
@@ -118,6 +120,8 @@ Function GenerateResourcesAndImage {
         [bool] $AllowBlobPublicAccess = $False,
         [Parameter(Mandatory = $False)]
         [bool] $EnableHttpsTrafficOnly = $False,
+        [Parameter(Mandatory = $False)]
+        [Switch] $OnErrorCleanup,
         [Parameter(Mandatory = $False)]
         [hashtable] $Tags
     )
@@ -281,7 +285,12 @@ Function GenerateResourcesAndImage {
             $builderScriptPath = $builderScriptPath_temp
         }
 
-        & $packerBinary build -on-error=ask `
+        $onError = "ask"
+        if ($OnErrorCleanup) {
+          $onError = "cleanup"
+        }
+
+        & $packerBinary build -on-error=$($onError) `
             -var "client_id=$($spClientId)" `
             -var "client_secret=$($ServicePrincipalClientSecret)" `
             -var "subscription_id=$($SubscriptionId)" `
