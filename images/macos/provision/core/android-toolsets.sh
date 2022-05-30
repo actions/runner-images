@@ -35,8 +35,8 @@ ANDROID_NDK_MAJOR_VERSIONS=($(get_toolset_value '.android.ndk."versions"[]'))
 ANDROID_NDK_MAJOR_DEFAULT=$(get_toolset_value '.android.ndk.default')
 ANDROID_NDK_MAJOR_LATEST=$(get_toolset_value '.android.ndk."versions"[-1]')
 # Get the latest command line tools from https://developer.android.com/studio#cmdline-tools
-ANDROID_CMDLINE_TOOL_VERSION=$(get_toolset_value '.android."cmdline-tools"')
-if [[ $ANDROID_CMDLINE_TOOL_VERSION == "latest" ]]; then
+cmdlineToolsVersion=$(get_toolset_value '.android."cmdline-tools"')
+if [[ $cmdlineToolsVersion == "latest" ]]; then
     repositoryXmlUrl="https://dl.google.com/android/repository/repository2-1.xml"
     download_with_retries $repositoryXmlUrl "/tmp" "repository2-1.xml"
     cmdlineToolsVersion=$(
@@ -51,7 +51,7 @@ if [[ $ANDROID_CMDLINE_TOOL_VERSION == "latest" ]]; then
     fi
 fi
 
-ANDROID_OSX_SDK_URL="https://dl.google.com/android/repository/${ANDROID_CMDLINE_TOOL_VERSION}"
+ANDROID_OSX_SDK_URL="https://dl.google.com/android/repository/${cmdlineToolsVersion}"
 ANDROID_HOME=$HOME/Library/Android/sdk
 ANDROID_OSX_SDK_FILE=tools-macosx.zip
 
