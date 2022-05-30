@@ -22,7 +22,7 @@ if (-not (Test-Path $TemplatePath))
 # Set Image repository path env variable, this is a workaround for Ubuntu 22.04 until this is fixed https://github.com/hashicorp/packer/issues/11733
 $env:ImageRepositoryPath = "."
 
-$Image = [io.path]::GetFileNameWithoutExtension($TemplatePath)
+$Image = [io.path]::GetFileName($TemplatePath).Split(".")[0]
 $TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 

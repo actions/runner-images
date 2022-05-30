@@ -87,9 +87,9 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "default": "21",
+            "default": "23",
             "versions": [
-                "21", "22", "23"
+                "21", "23", "24"
             ]
         }
     },
@@ -241,10 +241,11 @@
     },
     "clang": {
         "versions": [
-            "11",
-            "12"
+            "12",
+            "13",
+            "14"
         ],
-        "default_version": "11"
+        "default_version": "14"
     },
     "gcc": {
         "versions": [

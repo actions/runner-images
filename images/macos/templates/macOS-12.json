@@ -152,10 +152,12 @@
                 "./provision/core/ruby.sh",
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
-                "./provision/core/node.sh"
+                "./provision/core/node.sh",
+                "./provision/core/commonutils.sh"
             ],
             "environment_vars": [
-                "API_PAT={{user `github_api_pat`}}"
+                "API_PAT={{user `github_api_pat`}}",
+                "USER_PASSWORD={{user `vm_password`}}"
             ]
         },
         {
@@ -177,7 +179,6 @@
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
-                "./provision/core/commonutils.sh",
                 "./provision/core/llvm.sh",
                 "./provision/core/golang.sh",
                 "./provision/core/swiftlint.sh",

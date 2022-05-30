@@ -34,7 +34,7 @@ Function Get-PackerTemplatePath {
             $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
         }
         ([ImageType]::Ubuntu2204) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.json"
+            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.pkr.hcl"
         }
         default { throw "Unknown type of image" }
     }
@@ -62,44 +62,32 @@ Function GenerateResourcesAndImage {
     <#
         .SYNOPSIS
             A helper function to help generate an image.
-
         .DESCRIPTION
             Creates Azure resources and kicks off a packer image generation for the selected image type.
-
         .PARAMETER SubscriptionId
             The Azure subscription Id where resources will be created.
-
         .PARAMETER ResourceGroupName
             The Azure resource group name where the Azure resources will be created.
-
         .PARAMETER ImageGenerationRepositoryRoot
             The root path of the image generation repository source.
-
         .PARAMETER ImageType
             The type of the image being generated. Valid options are: {"Windows2016", "Windows2019", "Windows2022", "Ubuntu1804", "Ubuntu2004"}.
-
         .PARAMETER AzureLocation
             The location of the resources being created in Azure. For example "East US".
-
         .PARAMETER Force
             Delete the resource group if it exists without user confirmation.
-
         .PARAMETER AzureClientId
             Client id needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
-
         .PARAMETER AzureClientSecret
             Client secret needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
-
         .PARAMETER AzureTenantId
             Tenant needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
-
         .PARAMETER RestrictToAgentIpAddress
             If set, access to the VM used by packer to generate the image is restricted to the public IP address this script is run from. 
             This parameter cannot be used in combination with the virtual_network_name packer parameter.
         
         .PARAMETER AllowBlobPublicAccess
             The Azure storage account will be created with this option.
-
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1804 -AzureLocation "East US"
     #>
@@ -129,7 +117,9 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [bool] $AllowBlobPublicAccess = $False,
         [Parameter(Mandatory = $False)]
-        [bool] $EnableHttpsTrafficOnly = $False
+        [bool] $EnableHttpsTrafficOnly = $False,
+        [Parameter(Mandatory = $False)]
+        [hashtable] $Tags
     )
 
     try {
@@ -161,7 +151,8 @@ Function GenerateResourcesAndImage {
             if($Force -eq $true) {
                 # Cleanup the resource group if it already exitsted before
                 Remove-AzResourceGroup -Name $ResourceGroupName -Force
-                New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
+                New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation -Tag $tags
+
             } else {
                 $title = "Delete Resource Group"
                 $message = "The resource group you specified already exists. Do you want to clean it up?"
@@ -180,13 +171,13 @@ Function GenerateResourcesAndImage {
 
                 switch ($result)
                 {
-                    0 { Remove-AzResourceGroup -Name $ResourceGroupName -Force; New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation }
+                    0 { Remove-AzResourceGroup -Name $ResourceGroupName -Force; New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation  -Tag $tags }
                     1 { <# Do nothing #> }
                     2 { exit }
                 }
             }
         } else {
-            New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation
+            New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation -Tag $tags
         }
 
         # This script should follow the recommended naming conventions for azure resources
@@ -204,7 +195,11 @@ Function GenerateResourcesAndImage {
             $storageAccountName = $storageAccountName.Substring(0, 24)
         }
 
-        New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly
+        if ($tags) {
+            New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly -Tag $tags
+        } else {
+            New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly
+        }
 
         if ([string]::IsNullOrEmpty($AzureClientId)) {
             # Interactive authentication: A service principal is created during runtime.
@@ -265,9 +260,25 @@ Function GenerateResourcesAndImage {
             throw "'packer' binary is not found on PATH"
         }
 
-        if($RestrictToAgentIpAddress -eq $true) {
+        if ($RestrictToAgentIpAddress) {
             $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
             Write-Host "Restricting access to packer generated VM to agent IP Address: $AgentIp"
+        }
+        
+        if ($builderScriptPath.Contains("pkr.hcl")) {
+            if ($AgentIp) {
+                $AgentIp = '[ \"{0}\" ]' -f $AgentIp
+            } else {
+                $AgentIp = "[]"
+            }
+        }
+
+        if ($Tags) {
+            $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
+            $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
+            $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
+            $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
+            $builderScriptPath = $builderScriptPath_temp
         }
 
         & $packerBinary build -on-error=ask `
