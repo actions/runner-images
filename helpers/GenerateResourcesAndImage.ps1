@@ -286,7 +286,7 @@ Function GenerateResourcesAndImage {
             $builderScriptPath = $builderScriptPath_temp
         }
 
-        & $packerBinary build -on-error=$($OnError) `
+        & $packerBinary build -on-error="$($OnError)" `
             -var "client_id=$($spClientId)" `
             -var "client_secret=$($ServicePrincipalClientSecret)" `
             -var "subscription_id=$($SubscriptionId)" `
