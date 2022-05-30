@@ -121,7 +121,8 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [bool] $EnableHttpsTrafficOnly = $False,
         [Parameter(Mandatory = $False)]
-        [Switch] $OnErrorCleanup,
+        [ValidateSet("abort","ask","cleanup","run-cleanup-provisioner")]
+        [string] $OnErrorCleanup = "ask",
         [Parameter(Mandatory = $False)]
         [hashtable] $Tags
     )
