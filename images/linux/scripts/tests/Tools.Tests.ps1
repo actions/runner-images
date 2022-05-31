@@ -20,8 +20,7 @@ Describe "Rust" {
         $env:RUSTUP_HOME = "/etc/skel/.rustup"
         $env:CARGO_HOME = "/etc/skel/.cargo"
     }
-    
-   
+
     It "Rustup is installed" {
         "rustup --version" | Should -ReturnZeroExitCode
     }
@@ -77,6 +76,10 @@ Describe "Docker" {
         "docker compose" | Should -ReturnZeroExitCode
     }
 
+    It "docker-credential-ecr-login" {
+        "docker-credential-ecr-login -v" | Should -ReturnZeroExitCode
+    }
+
     Context "docker images" {
         $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 
@@ -117,7 +120,10 @@ Describe "clang" {
 
         "clang-$ClangVersion --version" | Should -ReturnZeroExitCode
         "clang++-$ClangVersion --version" | Should -ReturnZeroExitCode
-    }   
+        "clang-format-$ClangVersion --version" | Should -ReturnZeroExitCode
+        "clang-tidy-$ClangVersion --version" | Should -ReturnZeroExitCode
+        "run-clang-tidy-$ClangVersion --help" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "Cmake" {
@@ -200,7 +206,7 @@ Describe "Sbt" {
     }
 }
 
-Describe "Selenium" -Skip:(Test-IsUbuntu22) {
+Describe "Selenium" {
     It "Selenium is installed" {
         $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
         $seleniumPath = Join-Path "/usr/share/java" "$seleniumBinaryName.jar"
@@ -292,7 +298,7 @@ Describe "Kubernetes tools" {
     }
 }
 
-Describe "Leiningen" -Skip:(Test-IsUbuntu22) {
+Describe "Leiningen" {
     It "leiningen" {
         "lein --version" | Should -ReturnZeroExitCode
     }
@@ -332,7 +338,7 @@ Describe "GraalVM" -Skip:(Test-IsUbuntu18) {
     }
 }
 
-Describe "Containers" -Skip:(Test-IsUbuntu22) {
+Describe "Containers" {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {
@@ -341,7 +347,7 @@ Describe "Containers" -Skip:(Test-IsUbuntu22) {
         )
 
         "$ContainerCommand -v" | Should -ReturnZeroExitCode
-    }   
+    }
 }
 
 Describe "nvm" {
@@ -391,7 +397,7 @@ Describe "yq" {
     }
 }
 
-Describe "Kotlin" -Skip:(Test-IsUbuntu22) {
+Describe "Kotlin" {
     It "kapt" {
         "kapt -version"| Should -ReturnZeroExitCode
     }

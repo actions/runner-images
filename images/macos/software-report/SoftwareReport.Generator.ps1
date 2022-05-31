@@ -141,9 +141,14 @@ if ($os.IsLessThanMonterey) {
 
 if ($os.IsCatalina) {
     $utilitiesList += @(
-        (Get-VirtualBoxVersion),
         (Get-VagrantVersion),
         (Get-ParallelVersion)
+    )
+}
+
+if (-not $os.IsBigSur) {
+    $utilitiesList += @(
+        (Get-VirtualBoxVersion)
     )
 }
 
@@ -176,14 +181,9 @@ $toolsList += @(
     (Get-GHCupVersion),
     (Get-GHCVersion),
     (Get-CabalVersion),
-    (Get-StackVersion)
+    (Get-StackVersion),
+    (Get-SwiftFormatVersion)
 )
-
-if($os.IsLessThanMonterey) {
-    $toolsList += @(
-        (Get-SwiftFormatVersion)
-    )
-}
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 
@@ -248,7 +248,8 @@ $markdown += Build-WebServersSection
 # Xamarin section
 $markdown += New-MDHeader "Xamarin" -Level 3
 $markdown += New-MDHeader "Visual Studio for Mac" -Level 4
-$markdown += New-MDList -Lines @(Get-VSMacVersion) -Style Unordered
+$markdown += Build-VSMacTable | New-MDTable
+$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Xamarin bundles" -Level 4
 $markdown += Build-XamarinTable | New-MDTable

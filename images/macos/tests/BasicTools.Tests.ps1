@@ -30,7 +30,7 @@ Describe "Subversion" {
     }
 }
 
-Describe "SwiftFormat" -Skip:($os.IsMonterey) {
+Describe "SwiftFormat" {
     It "SwiftFormat" {
         "swiftformat --version" | Should -ReturnZeroExitCode
     }
@@ -144,7 +144,7 @@ Describe "vagrant" -Skip:($os.IsHigherThanCatalina) {
     }
 }
 
-Describe "virtualbox" -Skip:($os.IsHigherThanCatalina) {
+Describe "virtualbox" -Skip:($os.IsBigSur) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
