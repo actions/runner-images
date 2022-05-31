@@ -243,7 +243,7 @@ function Get-VsixExtenstionFromMarketplace {
     if ($ExtensionMarketPlaceName -eq "ProBITools.MicrosoftReportProjectsforVisualStudio2022")
     {
         $fileName = "Microsoft.DataTools.ReportingServices.vsix"
-        $downloadUri = "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ProBITools/vsextensions/MicrosoftReportProjectsforVisualStudio2022/3.0.1/vspackage"
+        $downloadUri = "https://download.microsoft.com/download/b/b/5/bb57be7e-ae72-4fc0-b528-d0ec224997bd/Microsoft.DataTools.ReportingServices.vsix"
     }
 
     return [PSCustomObject] @{
