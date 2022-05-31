@@ -21,12 +21,12 @@ function Get-CargoVersion {
 }
 
 function Get-CargoAuditVersion {
-    $cargoAuditVersion = $(cargo audit --version) | Take-OutputPart -Part 1
+    $cargoAuditVersion = $(cargo-audit --version) | Take-OutputPart -Part 1
     return "Cargo audit $cargoAuditVersion"
 }
 
 function Get-CargoOutdatedVersion {
-    $cargoOutdatedVersion = $(cargo outdated --version) | Take-OutputPart -Part 1 -Delimiter "v"
+    $cargoOutdatedVersion = cargo outdated --version | Take-OutputPart -Part 1
     return "Cargo outdated $cargoOutdatedVersion"
 }
 

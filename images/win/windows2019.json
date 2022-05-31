@@ -2,6 +2,7 @@
     "variables": {
         "client_id": "{{env `ARM_CLIENT_ID`}}",
         "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
+        "client_cert_path": "{{env `ARM_CLIENT_CERT_PATH`}}",
         "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
         "tenant_id": "{{env `ARM_TENANT_ID`}}",
         "object_id": "{{env `ARM_OBJECT_ID`}}",
@@ -36,6 +37,7 @@
             "type": "azure-arm",
             "client_id": "{{user `client_id`}}",
             "client_secret": "{{user `client_secret`}}",
+            "client_cert_path": "{{user `client_cert_path`}}",
             "subscription_id": "{{user `subscription_id`}}",
             "object_id": "{{user `object_id`}}",
             "tenant_id": "{{user `tenant_id`}}",
@@ -176,7 +178,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-Vsix.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CommonUtils.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Kotlin.ps1"
@@ -206,6 +207,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-PyPy.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AndroidSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Pipx.ps1",
