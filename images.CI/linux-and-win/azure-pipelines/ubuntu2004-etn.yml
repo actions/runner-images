@@ -1,0 +1,8 @@
+
+name: MS_UBUNTU_2004_$(Date:yyyyMMdd)$(Rev:_r)
+
+jobs:
+- template: image-generation-etn.yml
+  parameters:
+    image_type: ubuntu2004
+    image_readme_name: Ubuntu2004-README.md
