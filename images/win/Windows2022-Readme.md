@@ -4,35 +4,35 @@
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 707
-- Image Version: 20220511.2
+- Image Version: 20220522.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
 
 ## Installed Software
 ### Language and Runtime
-- Bash 4.4.23(2)-release
+- Bash 4.4.23(1)-release
 - Go 1.17.10
 - Julia 1.7.2
 - Kotlin 1.6.21
 - LLVM 13.0.1
 - Node 16.14.2
 - Perl 5.32.1
-- PHP 8.1.5
-- Python 3.9.12
+- PHP 8.1.6
+- Python 3.9.13
 - Ruby 3.0.4p208
 
 ### Package Management
 - Chocolatey 1.1.0
 - Composer 2.3.5
 - Helm 3.8.2
-- Miniconda 4.11.0 (pre-installed on the image but not added to PATH)
+- Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
 - NPM 8.5.0
-- NuGet 6.1.0.106
-- pip 22.0.4 (python 3.9)
+- NuGet 6.2.0.146
+- pip 22.1.1 (python 3.9)
 - Pipx 1.0.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<0a1420dc4>)
+- Vcpkg (build from master \<314018fef>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -49,23 +49,23 @@
 ### Tools
 - 7zip 21.07
 - aria2 1.36.0
-- azcopy 10.14.1
+- azcopy 10.15.0
 - Bazel 5.1.1
 - Bazelisk 1.11.0
-- Bicep 0.6.1
+- Bicep 0.6.18
 - Cabal 3.6.2.0
 - CMake 3.23.1
-- CodeQL Action Bundle 2.9.1
+- CodeQL Action Bundle 2.9.2
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.5.0
+- Docker Compose v2 2.5.1
 - Docker-wincred 0.6.4
 - ghc 9.2.2
-- Git 2.35.1.windows.2
-- Git LFS 3.0.2
+- Git 2.36.0.windows.1
+- Git LFS 3.1.4
 - InnoSetup 6.2.1
 - jq 1.6
-- Kind 0.13.0
+- Kind 0.14.0
 - Kubectl 1.24.0
 - Mercurial 5.0
 - Mingw-w64 8.1.0
@@ -73,7 +73,7 @@
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.8.0
-- Pulumi v3.32.1
+- Pulumi v3.33.1
 - R 4.2.0
 - Service Fabric SDK 9.0.1017.9590
 - Stack 2.7.5
@@ -86,19 +86,19 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.119
-- AWS CLI 2.6.3
-- AWS SAM CLI 1.49.0
-- AWS Session Manager CLI 1.2.312.0
+- Alibaba Cloud CLI 3.0.120
+- AWS CLI 2.7.2
+- AWS SAM CLI 1.50.0
+- AWS Session Manager CLI 1.2.323.0
 - Azure CLI 2.36.0
 - Azure DevOps CLI extension 0.25.0
 - GitHub CLI 2.10.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.60.0
-- Rust 1.60.0
-- Rustdoc 1.60.0
+- Cargo 1.61.0
+- Rust 1.61.0
+- Rustdoc 1.61.0
 - Rustup 1.24.3
 
 #### Packages
@@ -106,15 +106,15 @@
 - cargo-audit 0.16.0
 - cargo-outdated 0.11.1
 - cbindgen 0.23.0
-- Clippy 0.1.60
+- Clippy 0.1.61
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 101.0.4951.64
+- Google Chrome 101.0.4951.67
 - Chrome Driver 101.0.4951.41
-- Microsoft Edge 101.0.1210.39
-- Microsoft Edge Driver 101.0.1210.39
-- Mozilla Firefox 100.0
+- Microsoft Edge 101.0.1210.53
+- Microsoft Edge Driver 101.0.1210.53
+- Mozilla Firefox 100.0.2
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.1.0
@@ -163,7 +163,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 12.22.12 | x64          |
-| 14.19.2 | x64          |
+| 14.19.3 | x64          |
 | 16.15.0 | x64          |
 
 #### Python
@@ -171,7 +171,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 3.7.9   | x64, x86     |
 | 3.8.10  | x64, x86     |
-| 3.9.12 (Default) | x64, x86     |
+| 3.9.13 (Default) | x64, x86     |
 | 3.10.4  | x64, x86     |
 
 #### Ruby
@@ -194,7 +194,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-14                                                                                                                    |
-| Version              | 14.2                                                                                                                                 |
+| Version              | 14.3                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -221,9 +221,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.21.6  | C:\tools\nginx-1.21.6\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version        | Path                                                     |
-| ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.2.32505.173 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version       | Path                                                     |
+| ----------------------------- | ------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.2.32516.85 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version        |
@@ -352,7 +352,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.ASAN                                  | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.ATL                                   | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.ATL.ARM                               | 17.2.32408.312 |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM.Spectre                       | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.ATL.ARM64                             | 17.2.32408.312 |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre                     | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.ATL.ARM64EC                           | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.ATL.Spectre                           | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.ATLMFC                                | 17.2.32408.312 |
@@ -365,12 +367,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.Llvm.Clang                            | 17.2.32422.2   |
 | Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset                     | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.MFC.ARM                               | 17.2.32408.312 |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM.Spectre                       | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.MFC.ARM64                             | 17.2.32408.312 |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre                     | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.MFC.ARM64EC                           | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.Modules.x86.x64                       | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.Redist.14.Latest                      | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.Redist.MSM                            | 17.2.32408.312 |
+| Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre                  | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre                | 17.2.32408.312 |
+| Microsoft.VisualStudio.Component.VC.Runtimes.ARM64EC.Spectre              | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre              | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest               | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest              | 17.2.32408.312 |
@@ -475,14 +481,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Framework
 `Type: Developer Pack`
-`Location C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX <version> Tools`
+`Location: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX <version> Tools`
 - 4.8
 
 ### .NET tools
-- nbgv 3.5.104+d0b7c362ff
+- nbgv 3.5.107+6463ef6068
 
 ### PowerShell Tools
-- PowerShell 7.2.3
+- PowerShell 7.2.4
 
 #### Azure Powershell Modules
 | Module  | Version                                                                         | Path                           |
@@ -499,7 +505,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.82           |
+| AWSPowerShell      | 4.1.90           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.6            |
@@ -538,9 +544,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:dfa767f6e419df8d9957173b1c48a6b3916b97e18ae40b0084ee47243f913a60  | 2022-04-12 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:c9166ab07f16f0b35225354b00b9a589ca45fbd604da7beb26ac6869728eac6e  | 2022-04-12 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:3cf54a7662ebc23c1198b97d1d38c05eae346a1a16b634db5ddd7db6a12127a5  | 2022-04-12 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:1182bfe22daba321fccb5caf93bfedc912c817a91d4c9aa5b45ea3823cb7a5c0  | 2022-05-11 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:9bba2824988fa141d187315336055c068dadae6b84e86fb5d13291fd2245a8dd  | 2022-05-11 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:f3dcc7d94e1631213f2349851f3415d8850d45ebd411e4ca68a0a5fa73ebffe8  | 2022-05-11 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:f677b64d44434c6850f075630c3a7b3f9be284d32003c2cc6ea93130f619152f  | 2022-05-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:93373be6f6c576ef3f778b9d5e7b54231975bb6876a07d90c4e4599a29a65d54  | 2022-05-05 |
 

@@ -1,5 +1,6 @@
 
 variable "allowed_inbound_ip_addresses" {
+  type    = list(string)
   default = []
 }
 
@@ -22,6 +23,11 @@ variable "client_secret" {
   type      = string
   default   = "${env("ARM_CLIENT_SECRET")}"
   sensitive = true
+}
+
+variable "client_cert_path" {
+  type      = string
+  default   = "${env("ARM_CLIENT_CERT_PATH")}"
 }
 
 variable "commit_url" {
@@ -146,6 +152,7 @@ source "azure-arm" "build_vhd" {
   capture_name_prefix                    = "${var.capture_name_prefix}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
+  client_cert_path                       = "${var.client_cert_path}"
   image_offer                            = "0001-com-ubuntu-server-jammy"
   image_publisher                        = "canonical"
   image_sku                              = "22_04-lts"
@@ -270,6 +277,7 @@ build {
                         "${path.root}/scripts/installers/clang.sh",
                         "${path.root}/scripts/installers/cmake.sh",
                         "${path.root}/scripts/installers/codeql-bundle.sh",
+                        "${path.root}/scripts/installers/containers.sh",
                         "${path.root}/scripts/installers/dotnetcore-sdk.sh",
                         "${path.root}/scripts/installers/gcc.sh",
                         "${path.root}/scripts/installers/gfortran.sh",
@@ -279,9 +287,12 @@ build {
                         "${path.root}/scripts/installers/google-cloud-sdk.sh",
                         "${path.root}/scripts/installers/haskell.sh",
                         "${path.root}/scripts/installers/heroku.sh",
+                        "${path.root}/scripts/installers/java-tools.sh",
                         "${path.root}/scripts/installers/kubernetes-tools.sh",
                         "${path.root}/scripts/installers/oc.sh",
+                        "${path.root}/scripts/installers/leiningen.sh",
                         "${path.root}/scripts/installers/miniconda.sh",
+                        "${path.root}/scripts/installers/kotlin.sh",
                         "${path.root}/scripts/installers/mysql.sh",
                         "${path.root}/scripts/installers/sqlpackage.sh",
                         "${path.root}/scripts/installers/nginx.sh",
@@ -297,11 +308,13 @@ build {
                         "${path.root}/scripts/installers/rust.sh",
                         "${path.root}/scripts/installers/julia.sh",
                         "${path.root}/scripts/installers/sbt.sh",
+                        "${path.root}/scripts/installers/selenium.sh",
                         "${path.root}/scripts/installers/terraform.sh",
                         "${path.root}/scripts/installers/packer.sh",
                         "${path.root}/scripts/installers/vcpkg.sh",
                         "${path.root}/scripts/installers/dpkg-config.sh",
                         "${path.root}/scripts/installers/yq.sh",
+                        "${path.root}/scripts/installers/android.sh",
                         "${path.root}/scripts/installers/pypy.sh",
                         "${path.root}/scripts/installers/python.sh",
                         "${path.root}/scripts/installers/graalvm.sh"

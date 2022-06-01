@@ -139,6 +139,7 @@
         ]
     },
     "android": {
+        "cmdline-tools": "latest",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra_list": [
@@ -200,14 +201,18 @@
             "Microsoft.VisualStudio.Component.VC.DiagnosticTools",
             "Microsoft.VisualStudio.Component.VC.Llvm.Clang",
             "Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset",
+            "Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64EC.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM",
+            "Microsoft.VisualStudio.Component.VC.MFC.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATL.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64",
+            "Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64EC",
             "Microsoft.VisualStudio.Component.VC.Modules.x86.x64",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64",
