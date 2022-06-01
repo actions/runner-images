@@ -1,6 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameChecking
 
-Describe "Java" -Skip:(Test-IsUbuntu22) {
+Describe "Java" {
     $toolsetJava = (Get-ToolsetContent).java
     $defaultVersion = $toolsetJava.default
     $defaultVendor = $toolsetJava.default_vendor
