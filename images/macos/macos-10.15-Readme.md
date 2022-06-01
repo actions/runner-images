@@ -127,7 +127,7 @@
 - Google Chrome 102.0.5005.61 
 - ChromeDriver 102.0.5005.61
 - Microsoft Edge 102.0.1245.30 
-- Microsoft Edge
+- Microsoft Edge WebDriver 102.0.1245.2
 - Mozilla Firefox 101.0
 - geckodriver 0.31.0
 - Selenium server 4.2.0
