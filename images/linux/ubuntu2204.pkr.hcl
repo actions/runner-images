@@ -60,11 +60,6 @@ variable "image_os" {
   default = "ubuntu22"
 }
 
-variable "image_repository_path" {
-  type    = string
-  default = "${env("IMAGEREPOSITORYPATH")}"
-}
-
 variable "image_version" {
   type    = string
   default = "dev"
@@ -165,7 +160,6 @@ source "azure-arm" "build_vhd" {
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
   tenant_id                              = "${var.tenant_id}"
-  user_data_file                         = "${var.image_repository_path}/images/linux/scripts/base/configure-legacy-ssh.sh"
   virtual_network_name                   = "${var.virtual_network_name}"
   virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
   virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
@@ -313,8 +307,8 @@ build {
                         "${path.root}/scripts/installers/packer.sh",
                         "${path.root}/scripts/installers/vcpkg.sh",
                         "${path.root}/scripts/installers/dpkg-config.sh",
-                        "${path.root}/scripts/installers/android.sh",
                         "${path.root}/scripts/installers/yq.sh",
+                        "${path.root}/scripts/installers/android.sh",
                         "${path.root}/scripts/installers/pypy.sh",
                         "${path.root}/scripts/installers/python.sh",
                         "${path.root}/scripts/installers/graalvm.sh"

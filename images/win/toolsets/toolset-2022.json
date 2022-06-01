@@ -139,6 +139,7 @@
         ]
     },
     "android": {
+        "cmdline-tools": "latest",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra_list": [
@@ -265,7 +266,8 @@
         ],
         "vsix": [
             "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects",
-            "WixToolset.WixToolsetVisualStudio2022Extension"
+            "WixToolset.WixToolsetVisualStudio2022Extension",
+            "ProBITools.MicrosoftReportProjectsforVisualStudio2022"
         ]
     },
     "docker": {
