@@ -40,7 +40,7 @@ function Get-EdgeVersion {
 }
 
 function Get-EdgeDriverVersion {
-    return Run-Command "msedgedriver --version" | Take-Part -Part 0,1
+    return Run-Command "msedgedriver --version" | Take-Part -Part 0,1,2,3
 }
 
 function Get-FirefoxVersion {
