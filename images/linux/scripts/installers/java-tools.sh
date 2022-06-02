@@ -38,9 +38,11 @@ createJavaEnvironmentalVariable() {
 }
 
 enableRepositories() {
-    # Add Adopt PPA
-    wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
-    add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+    if isUbuntu18 || isUbuntu20; then
+        # Add Adopt PPA
+        wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
+        add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+    fi
 
     # Add Addoptium PPA
     wget -qO - "https://packages.adoptium.net/artifactory/api/gpg/key/public" | apt-key add -

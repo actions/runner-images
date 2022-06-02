@@ -10,8 +10,9 @@ source $HELPER_SCRIPTS/install.sh
 
 # Install the AWS CLI v1 Ubuntu18 and AWS CLI v2 on Ubuntu20, Ubuntu22
 # The installation should be run after python3 is installed as aws-cli V1 dropped python2 support
+# 1.25.0+ Dropped support for Python 3.6 - https://github.com/aws/aws-cli/blob/develop/CHANGELOG.rst
 if isUbuntu18 ; then
-    download_with_retries "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" "/tmp" "awscli-bundle.zip"
+    download_with_retries "https://s3.amazonaws.com/aws-cli/awscli-bundle-1.24.10.zip" "/tmp" "awscli-bundle.zip"
     unzip -qq /tmp/awscli-bundle.zip -d /tmp
     python3 /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 else
