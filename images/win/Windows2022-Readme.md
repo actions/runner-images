@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [[all OSs] Android NDK 22 will be replaced in favor of 24, version 23 will be set as the default one on June, 6](https://github.com/actions/virtual-environments/issues/5595) |
 | [[Azure DevOps] Windows-2016 environment removal postponed until June 30, 2022](https://github.com/actions/virtual-environments/issues/5403) |
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 707
-- Image Version: 20220522.1
+- Image Version: 20220529.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -13,7 +14,7 @@
 ### Language and Runtime
 - Bash 4.4.23(1)-release
 - Go 1.17.10
-- Julia 1.7.2
+- Julia 1.7.3
 - Kotlin 1.6.21
 - LLVM 13.0.1
 - Node 16.14.2
@@ -30,9 +31,9 @@
 - NPM 8.5.0
 - NuGet 6.2.0.146
 - pip 22.1.1 (python 3.9)
-- Pipx 1.0.0
+- Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<314018fef>)
+- Vcpkg (build from master \<d953973cf>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -54,26 +55,26 @@
 - Bazelisk 1.11.0
 - Bicep 0.6.18
 - Cabal 3.6.2.0
-- CMake 3.23.1
+- CMake 3.23.2
 - CodeQL Action Bundle 2.9.2
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.5.1
 - Docker-wincred 0.6.4
-- ghc 9.2.2
+- ghc 9.2.3
 - Git 2.36.0.windows.1
 - Git LFS 3.1.4
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.14.0
-- Kubectl 1.24.0
+- Kubectl 1.24.1
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.2
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.8.0
-- Pulumi v3.33.1
+- Pulumi v3.33.2
 - R 4.2.0
 - Service Fabric SDK 9.0.1017.9590
 - Stack 2.7.5
@@ -86,13 +87,13 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.120
-- AWS CLI 2.7.2
+- Alibaba Cloud CLI 3.0.121
+- AWS CLI 2.7.4
 - AWS SAM CLI 1.50.0
-- AWS Session Manager CLI 1.2.323.0
-- Azure CLI 2.36.0
+- AWS Session Manager CLI 1.2.331.0
+- Azure CLI 2.37.0
 - Azure DevOps CLI extension 0.25.0
-- GitHub CLI 2.10.1
+- GitHub CLI 2.11.3
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -103,21 +104,21 @@
 
 #### Packages
 - bindgen 0.59.2
-- cargo-audit 0.16.0
+- cargo-audit 0.17.0
 - cargo-outdated 0.11.1
 - cbindgen 0.23.0
 - Clippy 0.1.61
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 101.0.4951.67
-- Chrome Driver 101.0.4951.41
+- Google Chrome 102.0.5005.63
+- Chrome Driver 102.0.5005.61
 - Microsoft Edge 101.0.1210.53
 - Microsoft Edge Driver 101.0.1210.53
 - Mozilla Firefox 100.0.2
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
-- Selenium server 4.1.0
+- Selenium server 4.2.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -209,7 +210,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.7.0
-- DacFx 16.0.5400.1
+- DacFx 16.0.6161.0
 - MySQL 8.0.29.0
 - SQL OLEDB Driver 18.6.3.0
 - SQLPS 1.0
@@ -221,9 +222,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.21.6  | C:\tools\nginx-1.21.6\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version       | Path                                                     |
-| ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.2.32516.85 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version        | Path                                                     |
+| ----------------------------- | -------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.2.32519.379 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version        |
@@ -505,7 +506,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.90           |
+| AWSPowerShell      | 4.1.95           |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.6            |
@@ -523,12 +524,12 @@ All other versions are saved but not installed.
 | Android Emulator           | 31.2.10                                                                                                                                      |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
-| Android SDK Platform-Tools | 33.0.1                                                                                                                                       |
+| Android SDK Platform-Tools | 33.0.2                                                                                                                                       |
 | Android Support Repository | 47.0.0                                                                                                                                       |
 | CMake                      | 3.18.1                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                           |
 | Google Repository          | 58                                                                                                                                           |
-| NDK                        | 21.4.7075529 (default)<br>22.1.7171670<br>23.1.7779620                                                                                       |
+| NDK                        | 21.4.7075529 (default)<br>22.1.7171670<br>23.2.8568313                                                                                       |
 | SDK Patch Applier v4       | 1                                                                                                                                            |
 
 #### Environment variables
@@ -536,7 +537,7 @@ All other versions are saved but not installed.
 | ----------------------- | ---------------------------------------------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                                                       |
 | ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\23.1.7779620                                      |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\23.2.8568313                                      |
 | ANDROID_NDK_PATH        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\21.4.7075529 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                                                       |
