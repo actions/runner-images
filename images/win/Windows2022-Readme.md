@@ -95,6 +95,7 @@
 - Azure DevOps CLI extension 0.25.0
 - GitHub CLI 2.11.3
 - Hub CLI 2.14.2
+- UiPath CLI 1.0.7985.19721
 
 ### Rust Tools
 - Cargo 1.61.0
