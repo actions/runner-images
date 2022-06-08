@@ -106,4 +106,5 @@ fi
 chmod +x $HOME/utils/invoke-tests.sh
 sudo ln -s $HOME/utils/invoke-tests.sh /usr/local/bin/invoke_tests
 
+# Disable the App Library for fix overloaded cpu 
 plutil -replace SuggestionsAppLibraryEnabled -bool NO $HOME/Library/Developer/CoreSimulator/Devices/device_set.plist
