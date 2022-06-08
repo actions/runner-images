@@ -106,4 +106,4 @@ fi
 chmod +x $HOME/utils/invoke-tests.sh
 sudo ln -s $HOME/utils/invoke-tests.sh /usr/local/bin/invoke_tests
 
-plutil -replace SuggestionsAppLibraryEnabled -bool NO /Users/runner/Library/Developer/CoreSimulator/Devices/device_set.plist
+plutil -replace SuggestionsAppLibraryEnabled -bool NO $HOME/Library/Developer/CoreSimulator/Devices/device_set.plist
