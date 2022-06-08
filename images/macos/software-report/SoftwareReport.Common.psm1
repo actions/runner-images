@@ -64,7 +64,7 @@ function Get-Cargooutdated {
 }
 
 function Get-Cargoaudit {
-    $cargoAuditVersion = Run-Command "cargo audit --version" | Take-Part -Part 1
+    $cargoAuditVersion = Run-Command "cargo-audit --version" | Take-Part -Part 1
     return "Cargo-audit $cargoAuditVersion"
 }
 
@@ -389,7 +389,7 @@ function Get-NewmanVersion {
 
 function Get-VirtualBoxVersion {
     $virtualBox = Run-Command "vboxmanage -v"
-    return "virtualbox $virtualBox"
+    return "VirtualBox $virtualBox"
 }
 
 function Get-VagrantVersion {

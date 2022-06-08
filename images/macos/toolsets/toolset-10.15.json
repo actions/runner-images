@@ -18,7 +18,10 @@
         ]
     },
     "xamarin": {
-        "vsmac": "latest",
+        "vsmac": {
+            "default": "2019",
+            "versions": [ "2019" ]
+        },
         "mono-versions": [
             "6.12.0.162", "6.10.0.106", "6.8.0.123", "6.6.0.166", "6.4.0.208"
         ],
@@ -162,6 +165,7 @@
         ]
     },
     "android": {
+        "cmdline-tools": "latest",
         "platform_min_version": "24",
         "build_tools_min_version": "24.0.0",
         "extra-list": [
@@ -175,9 +179,9 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "default": "21",
+            "default": "23",
             "versions": [
-                "21", "22", "23"
+                "21", "23", "24"
             ]
         }
     },

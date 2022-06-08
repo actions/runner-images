@@ -50,8 +50,24 @@ mkdir -p ${ANDROID_SDK_ROOT}
 
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
+cmdlineToolsVersion=$(get_toolset_value '.android."cmdline-tools"')
+if [[ $cmdlineToolsVersion == "latest" ]]; then
+    repositoryXmlUrl="https://dl.google.com/android/repository/repository2-1.xml"
+    download_with_retries $repositoryXmlUrl "/tmp" "repository2-1.xml"
+    cmdlineToolsVersion=$(
+      yq -p=xml \
+      '.sdk-repository.remotePackage[] | select(."+path" == "cmdline-tools;latest").archives.archive[].complete.url | select(contains("commandlinetools-linux"))' \
+      /tmp/repository2-1.xml
+    )
+
+    if [[ -z $cmdlineToolsVersion ]]; then
+        echo "Failed to parse latest command-line tools version"
+        exit 1
+    fi
+fi
+
 cmdlineTools="android-cmdline-tools.zip"
-download_with_retries https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip "." $cmdlineTools
+download_with_retries "https://dl.google.com/android/repository/${cmdlineToolsVersion}" "." $cmdlineTools
 unzip -qq $cmdlineTools -d ${ANDROID_SDK_ROOT}/cmdline-tools
 # Command line tools need to be placed in ${ANDROID_SDK_ROOT}/sdk/cmdline-tools/latest to determine SDK root
 mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/latest

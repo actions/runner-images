@@ -34,7 +34,7 @@ Function Get-PackerTemplatePath {
             $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
         }
         ([ImageType]::Ubuntu2204) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.json"
+            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.pkr.hcl"
         }
         default { throw "Unknown type of image" }
     }
@@ -88,6 +88,8 @@ Function GenerateResourcesAndImage {
         
         .PARAMETER AllowBlobPublicAccess
             The Azure storage account will be created with this option.
+        .PARAMETER OnError
+            Specify how packer handles an error during image creation.
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1804 -AzureLocation "East US"
     #>
@@ -119,7 +121,10 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [bool] $EnableHttpsTrafficOnly = $False,
         [Parameter(Mandatory = $False)]
-        [Hashtable] $tags
+        [ValidateSet("abort","ask","cleanup","run-cleanup-provisioner")]
+        [string] $OnError = "ask",
+        [Parameter(Mandatory = $False)]
+        [hashtable] $Tags
     )
 
     try {
@@ -260,20 +265,28 @@ Function GenerateResourcesAndImage {
             throw "'packer' binary is not found on PATH"
         }
 
-        if($RestrictToAgentIpAddress -eq $true) {
+        if ($RestrictToAgentIpAddress) {
             $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
             Write-Host "Restricting access to packer generated VM to agent IP Address: $AgentIp"
         }
         
-        if ($tags) {
+        if ($builderScriptPath.Contains("pkr.hcl")) {
+            if ($AgentIp) {
+                $AgentIp = '[ \"{0}\" ]' -f $AgentIp
+            } else {
+                $AgentIp = "[]"
+            }
+        }
+
+        if ($Tags) {
             $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
             $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
-            $packer_script.builders | Add-Member -Name "azure_tags" -Value $tags -MemberType NoteProperty
+            $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
             $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
             $builderScriptPath = $builderScriptPath_temp
         }
 
-        & $packerBinary build -on-error=ask `
+        & $packerBinary build -on-error="$($OnError)" `
             -var "client_id=$($spClientId)" `
             -var "client_secret=$($ServicePrincipalClientSecret)" `
             -var "subscription_id=$($SubscriptionId)" `

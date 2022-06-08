@@ -4,10 +4,13 @@
 ##  Desc:  Installs terraform
 ################################################################################
 
+source $HELPER_SCRIPTS/install.sh
+
 # Install Terraform
-TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version)
-curl -LO "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
-unzip -qq "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -d /usr/local/bin
-rm -f "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+URL=$(curl -s https://api.releases.hashicorp.com/v1/releases/terraform/latest | jq -r '.builds[] | select((.arch=="amd64") and (.os=="linux")).url')
+ZIP_NAME="terraform_linux_amd64.zip"
+download_with_retries "${URL}" "/tmp" "${ZIP_NAME}"
+unzip -qq "/tmp/${ZIP_NAME}" -d /usr/local/bin
+rm -f "/tmp/${ZIP_NAME}"
 
 invoke_tests "Tools" "Terraform"

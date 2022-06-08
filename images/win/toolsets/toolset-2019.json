@@ -159,6 +159,7 @@
         ]
     },
     "android": {
+        "cmdline-tools": "latest",
         "platform_min_version": "19",
         "build_tools_min_version": "19.1.0",
         "extra_list": [
@@ -182,9 +183,9 @@
             "patcher;v4"
         ],
         "ndk": {
-            "default": "21",
+            "default": "23",
             "versions": [
-                "21", "22", "23"
+                "21", "23", "24"
             ]
         }
     },

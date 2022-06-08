@@ -4,7 +4,14 @@
 ################################################################################
 
 # Requires Windows SDK with the same version number as the WDK
-if (Test-IsWin19)
+if (Test-IsWin22)
+{
+    $winSdkUrl = "https://go.microsoft.com/fwlink/p/?linkid=2196241"
+    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2196230"
+    $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2022\*\WDK.vsix"
+    $VSver = "2022"
+}
+elseif (Test-IsWin19)
 {
     $winSdkUrl = "https://go.microsoft.com/fwlink/?linkid=2173743"
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2166289"
@@ -20,7 +27,7 @@ elseif (Test-IsWin16)
 }
 else
 {
-    throw "Invalid version of Visual Studio is found. Either 2017 or 2019 are required"
+    throw "Invalid version of Visual Studio is found. Either 2017,2019 or 2022 are required"
 }
 
 $argumentList = ("/features", "+", "/quiet")
@@ -32,6 +39,7 @@ Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList $argumentLi
 Install-Binary -Url $wdkUrl -Name "wdksetup.exe" -ArgumentList $argumentList
 
 # Need to install the VSIX to get the build targets when running VSBuild
+$FilePath = Resolve-Path -Path $FilePath
 Install-VsixExtension -FilePath $FilePath -Name "WDK.vsix" -VSversion $VSver -InstallOnly
 
 Invoke-PesterTests -TestFile "WDK"
