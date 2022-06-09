@@ -10,6 +10,6 @@ source $HELPER_SCRIPTS/install.sh
 npm install -g @bazel/bazelisk
 
 # run bazelisk once in order to instal /usr/local/bin/bazel binary
-bazelisk
+sudo -u $SUDO_USER bazel version
 
 invoke_tests "Tools" "Bazel"
