@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Ubuntu] AWS CLI on Ubuntu18 image will be upgraded to V2 on June 20](https://github.com/actions/virtual-environments/issues/5679) |
 | [[all OSs] Android NDK 22 will be replaced in favor of 24, version 23 will be set as the default one on June, 6](https://github.com/actions/virtual-environments/issues/5595) |
 | [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
 # Ubuntu 20.04.4 LTS
 - Linux kernel version: 5.13.0-1025-azure
-- Image Version: 20220529.1
+- Image Version: 20220605.1
 
 ## Installed Software
 ### Language and Runtime
@@ -21,7 +22,7 @@
 - Kotlin 1.6.21-release-334
 - Mono 6.12.0.179 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.10.1.31701 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node 16.15.0
+- Node 16.15.1
 - Perl 5.30.0
 - Python 3.8.10
 - Python3 3.8.10
@@ -33,12 +34,12 @@
 - Helm 3.9.0
 - Homebrew 3.4.11
 - Miniconda 4.12.0
-- Npm 8.5.5
+- Npm 8.11.0
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<d953973cf>)
+- Vcpkg  (build from master \<faed44dfa>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -63,7 +64,7 @@
 - Bicep 0.6.18
 - Buildah 1.22.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.23.2
-- CodeQL Action Bundle 2.9.2
+- CodeQL Action Bundle 2.9.3
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.4.1+azure-1
@@ -76,7 +77,7 @@
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.60.2
-- HHVM (HipHop VM) 4.160.0
+- HHVM (HipHop VM) 4.161.0
 - jq 1.6
 - Kind 0.14.0
 - Kubectl 1.24.1
@@ -98,25 +99,25 @@
 - Skopeo 1.5.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.2.1
+- Terraform 1.2.2
 - yamllint 1.26.3
 - yq 4.25.2
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.121
-- AWS CLI 2.7.4
+- AWS CLI 2.7.6
 - AWS CLI Session manager plugin 1.2.331.0
-- AWS SAM CLI 1.50.0
+- AWS SAM CLI 1.51.0
 - Azure CLI (azure-cli) 2.37.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.11.3
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 10.3.3
-- OpenShift CLI 4.10.15
+- Netlify CLI 10.4.0
+- OpenShift CLI 4.10.16
 - ORAS CLI 0.12.0
-- Vercel CLI 24.2.4
+- Vercel CLI 25.0.0
 
 ### Java
 | Version              | Vendor          | Environment Variable |
@@ -131,11 +132,11 @@
 | CE 22.1.0 | GRAALVM_11_ROOT       |
 
 ### PHP
-| Tool     | Version       |
-| -------- | ------------- |
+| Tool     | Version             |
+| -------- | ------------------- |
 | PHP      | 7.4.29 8.0.19 8.1.6 |
-| Composer | 2.3.5         |
-| PHPUnit  | 8.5.26        |
+| Composer | 2.3.6               |
+| PHPUnit  | 8.5.26              |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -152,7 +153,7 @@
 - Rustup 1.24.3
 
 #### Packages
-- Bindgen 0.59.2
+- Bindgen 0.60.0
 - Cargo audit 0.17.0
 - Cargo clippy 0.1.61
 - Cargo outdated 0.11.1
@@ -181,7 +182,7 @@
 - nbgv 3.5.107+6463ef6068
 
 ### Databases
-- MongoDB 5.0.8 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
+- MongoDB 5.0.9 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
 - sqlite3 3.31.1
 
 #### PostgreSQL
@@ -205,13 +206,13 @@
 ### Cached Tools
 #### Go
 - 1.16.15
-- 1.17.10
-- 1.18.2
+- 1.17.11
+- 1.18.3
 
 #### Node.js
 - 12.22.12
 - 14.19.3
-- 16.15.0
+- 16.15.1
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -239,8 +240,8 @@
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.15/x64 | x64          |
-| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.10/x64 | x64          |
-| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.2/x64  | x64          |
+| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.11/x64 | x64          |
+| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.3/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.2.4
@@ -266,7 +267,7 @@
 ### Android
 | Package Name               | Version                                                                                                                                      |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 4.0                                                                                                                                          |
+| Android Command Line Tools | 7.0                                                                                                                                          |
 | Android Emulator           | 31.2.10                                                                                                                                      |
 | Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platform-Tools | 33.0.2                                                                                                                                       |
@@ -276,16 +277,16 @@
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                             |
 | Google Play services       | 49                                                                                                                                           |
 | Google Repository          | 58                                                                                                                                           |
-| NDK                        | 21.4.7075529 (default)<br>22.1.7171670<br>23.2.8568313                                                                                       |
+| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                       |
 | SDK Patch Applier v4       | 1                                                                                                                                            |
 
 #### Environment variables
 | Name                    | Value                                                                                |
 | ----------------------- | ------------------------------------------------------------------------------------ |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                                                           |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk-bundle -> /usr/local/lib/android/sdk/ndk/21.4.7075529 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/23.2.8568313                                          |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk-bundle -> /usr/local/lib/android/sdk/ndk/21.4.7075529 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk-bundle -> /usr/local/lib/android/sdk/ndk/23.2.8568313 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/24.0.8215888                                          |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk-bundle -> /usr/local/lib/android/sdk/ndk/23.2.8568313 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                                                           |
 
 ### Cached Docker images
