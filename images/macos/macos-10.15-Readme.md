@@ -1,13 +1,12 @@
 | Announcements |
 |-|
-| [[macOS] Default Visual studio for mac will be changed to version 2022 for macOS 11&12 on May, 30](https://github.com/actions/virtual-environments/issues/5601) |
 | [[all OSs] Android NDK 22 will be replaced in favor of 24, version 23 will be set as the default one on June, 6](https://github.com/actions/virtual-environments/issues/5595) |
 | [macOS 12 (Monterey) is available as a public beta in GitHub Actions and Azure DevOps](https://github.com/actions/virtual-environments/issues/5446) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1922)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220531.1
+- Image Version: 20220605.1
 
 ## Installed Software
 ### Language and Runtime
@@ -21,13 +20,13 @@
 - GNU Fortran (Homebrew GCC 9.5.0) 9.5.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.3.0_1) 11.3.0 - available by `gfortran-11` alias
-- Go 1.17.10
+- Go 1.17.11
 - julia 1.7.3
 - Kotlin 1.6.21-release-334
 - MSBuild 16.10.1.58001 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.15.0
+- Node.js v16.15.1
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.12 v14.19.3 v16.15.0
+- NVM - Cached node versions: v12.22.12 v14.19.3 v16.15.1
 - Perl 5.34.0
 - PHP 8.1.6
 - Python 2.7.18
@@ -36,19 +35,19 @@
 - Ruby 2.7.6p219
 
 ### Package Management
-- Bundler version 2.3.14
+- Bundler version 2.3.15
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.3.5
+- Composer 2.3.6
 - Homebrew 3.4.11
 - Miniconda 4.12.0
-- NPM 8.5.5
+- NPM 8.11.0
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
 - Pip 22.1.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<f78f4440d>)
+- Vcpkg 2022 (build from master \<faed44dfa>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -80,7 +79,7 @@
 - gpg (GnuPG) 2.3.6
 - helm v3.9.0+g7ceeda6
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-33
+- ImageMagick 7.1.0-36
 - jq 1.6
 - mongo v5.0.7
 - mongod v5.0.7
@@ -100,7 +99,7 @@
 ### Tools
 - Aliyun CLI 3.0.121
 - App Center CLI 2.10.10
-- AWS CLI 2.7.4
+- AWS CLI 2.7.6
 - AWS SAM CLI 1.51.0
 - AWS Session Manager CLI 1.2.331.0
 - Azure CLI (azure-devops) 0.25.0
@@ -126,8 +125,8 @@
 - SafariDriver 15.5 (15613.2.7.1.9)
 - Google Chrome 102.0.5005.61 
 - ChromeDriver 102.0.5005.61
-- Microsoft Edge 102.0.1245.30 
-- Microsoft Edge WebDriver 102.0.1245.2
+- Microsoft Edge 102.0.1245.33 
+- Microsoft Edge WebDriver 102.0.1245.33
 - Mozilla Firefox 101.0
 - geckodriver 0.31.0
 - Selenium server 4.2.0
@@ -180,14 +179,14 @@
 #### Node.js
 - 12.22.12
 - 14.19.3
-- 16.15.0
+- 16.15.1
 
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
-| 1.17.10 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.2  | x64          | GOROOT_1_18_X64      |
+| 1.17.11 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.18.3  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
 - Cargo 1.61.0
@@ -196,7 +195,7 @@
 - Rustup 1.24.3
 
 #### Packages
-- Bindgen 0.59.2
+- Bindgen 0.60.0
 - Cargo-audit 0.17.0
 - Cargo-outdated 0.11.1
 - Cbindgen 0.23.0
@@ -372,7 +371,7 @@
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                  |
 | Google Play services       | 49                                                                                                                                                                                                                                        |
 | Google Repository          | 58                                                                                                                                                                                                                                        |
-| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.4.7075529 (default)<br>22.1.7171670<br>23.2.8568313                                                                                                                                                    |
+| NDK                        | 15.2.4203891<br>18.1.5063045<br>21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                                                                                    |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                         |
 | Intel HAXM                 | 7.6.5                                                                                                                                                                                                                                     |
 
@@ -381,9 +380,9 @@
 | ----------------------- | -------------------------------------------------------------------------------------------------- |
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                                                                  |
 | ANDROID_NDK_18R_PATH    | /Users/runner/Library/Android/sdk/ndk/18.1.5063045                                                 |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/21.4.7075529 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/23.2.8568313                                                 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/21.4.7075529 |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/23.2.8568313 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/24.0.8215888                                                 |
+| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/23.2.8568313 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                                                                  |
 
 ### Miscellaneous
