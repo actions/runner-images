@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Ubuntu] AWS CLI on Ubuntu18 image will be upgraded to V2 on June 20](https://github.com/actions/virtual-environments/issues/5679) |
 | [[all OSs] Android NDK 22 will be replaced in favor of 24, version 23 will be set as the default one on June, 6](https://github.com/actions/virtual-environments/issues/5595) |
 | [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
 # Ubuntu 22.04 LTS
-- Linux kernel version: 5.15.0-1007-azure
-- Image Version: 20220601.2
+- Linux kernel version: 5.15.0-1008-azure
+- Image Version: 20220605.1
 
 ## Installed Software
 ### Language and Runtime
@@ -17,7 +18,7 @@
 - GNU Fortran 9.4.0, 10.3.0, 11.2.0
 - Julia 1.7.3
 - Kotlin 1.6.21-release-334
-- Node 16.15.0
+- Node 16.15.1
 - Perl 5.34.0
 - Python 3.10.4
 - Python3 3.10.4
@@ -28,12 +29,12 @@
 - Helm 3.9.0
 - Homebrew 3.4.11
 - Miniconda 4.12.0
-- Npm 8.5.5
+- Npm 8.11.0
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<f78f4440d>)
+- Vcpkg  (build from master \<faed44dfa>)
 - Yarn 1.22.18
 
 #### Environment variables
@@ -54,7 +55,7 @@
 - Bicep 0.6.18
 - Buildah 1.23.1
 - CMake 3.23.2
-- CodeQL Action Bundle 2.9.2
+- CodeQL Action Bundle 2.9.3
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.4.1+azure-1
@@ -87,14 +88,14 @@
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.2.1
+- Terraform 1.2.2
 - yamllint 1.26.3
 - yq 4.25.2
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.121
-- AWS CLI 2.7.4
+- AWS CLI 2.7.6
 - AWS CLI Session manager plugin 1.2.331.0
 - AWS SAM CLI 1.51.0
 - Azure CLI (azure-cli) 2.37.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
@@ -103,9 +104,9 @@
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
 - Netlify CLI 10.4.0
-- OpenShift CLI 4.10.15
+- OpenShift CLI 4.10.16
 - ORAS CLI 0.12.0
-- Vercel CLI 24.2.5
+- Vercel CLI 25.0.0
 
 ### Java
 | Version              | Vendor          | Environment Variable |
@@ -123,7 +124,7 @@
 | Tool     | Version |
 | -------- | ------- |
 | PHP      | 8.1.6   |
-| Composer | 2.3.5   |
+| Composer | 2.3.6   |
 | PHPUnit  | 8.5.26  |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -141,7 +142,7 @@
 - Rustup 1.24.3
 
 #### Packages
-- Bindgen 0.59.2
+- Bindgen 0.60.0
 - Cargo audit 0.17.0
 - Cargo clippy 0.1.61
 - Cargo outdated 0.11.1
@@ -186,12 +187,12 @@
 ```
 ### Cached Tools
 #### Go
-- 1.17.10
-- 1.18.2
+- 1.17.11
+- 1.18.3
 
 #### Node.js
 - 14.19.3
-- 16.15.0
+- 16.15.1
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -210,8 +211,8 @@
 #### Environment variables
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
-| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.10/x64 | x64          |
-| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.2/x64  | x64          |
+| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.11/x64 | x64          |
+| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.3/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.2.4
