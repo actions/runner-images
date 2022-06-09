@@ -1,8 +1,6 @@
-Describe "WDK" {
+Describe "WDK" -Skip:(Test-IsWin22) {
     It "WDK exists" {
-      $regKey = "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
-      $installedApplications = Get-ItemProperty -Path $regKey
-      $WDKVersion = $installedApplications | Where-Object DisplayName -eq 'Windows Driver Kit' | Select-Object -First 1 -ExpandProperty DisplayVersion
+      $WDKVersion = (Get-CimInstance -ClassName Win32_Product -Filter "Name = 'Windows Driver Kit'").Version
       $WDKVersion| Should -Not -BeNullOrEmpty
     }
 
