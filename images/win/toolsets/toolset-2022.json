@@ -159,6 +159,9 @@
             ]
         }
     },
+    "mingw": {
+	"version": "11.2.0.07112021"
+    },
     "MsysPackages": {
         "msys2": [],
         "mingw": []
