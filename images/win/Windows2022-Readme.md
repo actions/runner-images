@@ -1,11 +1,10 @@
 | Announcements |
 |-|
-| [[all OSs] Android NDK 22 will be replaced in favor of 24, version 23 will be set as the default one on June, 6](https://github.com/actions/virtual-environments/issues/5595) |
 | [[Azure DevOps] Windows-2016 environment removal postponed until June 30, 2022](https://github.com/actions/virtual-environments/issues/5403) |
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 707
-- Image Version: 20220607.3
+- Image Version: 20220612.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -15,7 +14,7 @@
 - Bash 4.4.23(1)-release
 - Go 1.17.11
 - Julia 1.7.3
-- Kotlin 1.6.21
+- Kotlin 1.7.0
 - LLVM 13.0.1
 - Node 16.15.1
 - Perl 5.32.1
@@ -33,7 +32,7 @@
 - pip 22.1.2 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<a15782fee>)
+- Vcpkg (build from master \<8e1f46de1>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -44,7 +43,7 @@
 ### Project Management
 - Ant 1.10.12
 - Gradle 7.4
-- Maven 3.8.5
+- Maven 3.8.6
 - sbt 1.6.2
 
 ### Tools
@@ -74,7 +73,7 @@
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.8.0
-- Pulumi v3.34.0
+- Pulumi v3.34.1
 - R 4.2.0
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.7.5
@@ -88,12 +87,12 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.121
-- AWS CLI 2.7.6
-- AWS SAM CLI 1.51.0
+- AWS CLI 2.7.7
+- AWS SAM CLI 1.52.0
 - AWS Session Manager CLI 1.2.331.0
 - Azure CLI 2.37.0
 - Azure DevOps CLI extension 0.25.0
-- GitHub CLI 2.12.0
+- GitHub CLI 2.12.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -106,16 +105,16 @@
 - bindgen 0.60.1
 - cargo-audit 0.17.0
 - cargo-outdated 0.11.1
-- cbindgen 0.24.2
+- cbindgen 0.24.3
 - Clippy 0.1.61
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 102.0.5005.63
+- Google Chrome 102.0.5005.115
 - Chrome Driver 102.0.5005.61
-- Microsoft Edge 102.0.1245.33
-- Microsoft Edge Driver 102.0.1245.33
-- Mozilla Firefox 101.0
+- Microsoft Edge 102.0.1245.39
+- Microsoft Edge Driver 102.0.1245.39
+- Mozilla Firefox 101.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.2.0
@@ -507,7 +506,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.100          |
+| AWSPowerShell      | 4.1.103          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.6            |
@@ -519,19 +518,19 @@ All other versions are saved but not installed.
 | VSSetup            | 2.2.16           |
 
 ### Android
-| Package Name               | Version                                                                                                                                      |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 7.0                                                                                                                                          |
-| Android Emulator           | 31.2.10                                                                                                                                      |
-| Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
-| Android SDK Platform-Tools | 33.0.2                                                                                                                                       |
-| Android Support Repository | 47.0.0                                                                                                                                       |
-| CMake                      | 3.18.1                                                                                                                                       |
-| Google Play services       | 49                                                                                                                                           |
-| Google Repository          | 58                                                                                                                                           |
-| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                       |
-| SDK Patch Applier v4       | 1                                                                                                                                            |
+| Package Name               | Version                                                                                                                                                |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Android Command Line Tools | 7.0                                                                                                                                                    |
+| Android Emulator           | 31.2.10                                                                                                                                                |
+| Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
+| Android SDK Platforms      | android-33 (rev 1)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
+| Android SDK Platform-Tools | 33.0.2                                                                                                                                                 |
+| Android Support Repository | 47.0.0                                                                                                                                                 |
+| CMake                      | 3.18.1                                                                                                                                                 |
+| Google Play services       | 49                                                                                                                                                     |
+| Google Repository          | 58                                                                                                                                                     |
+| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                                 |
+| SDK Patch Applier v4       | 1                                                                                                                                                      |
 
 #### Environment variables
 | Name                    | Value                                                                        |
