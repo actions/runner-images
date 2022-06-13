@@ -594,7 +594,8 @@ function Get-GitHubPackageDownloadUrl {
     $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
     $tags = $json.Where{ $_.prerelease -eq $IsPrerelease -and $_.assets }.tag_name
     $versionToDownload = $tags |
-            Where-Object { $_ -match "\d+.\d+.\d+" } |
+            Select-String -Pattern "\d+.\d+.\d+" |
+            ForEach-Object { $_.Matches.Value } |
             Where-Object { $_ -like "$Version.*" -or $_ -eq $Version } |
             Sort-Object { [version]$_ } |
             Select-Object -Last 1
