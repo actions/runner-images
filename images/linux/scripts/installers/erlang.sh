@@ -8,20 +8,21 @@
 source $HELPER_SCRIPTS/install.sh
 
 source_list=/etc/apt/sources.list.d/eslerlang.list
+source_key=/usr/share/keyrings/eslerlang.gpg
 
 # Install Erlang
-echo "deb https://binaries.erlang-solutions.com/debian $(lsb_release -cs) contrib" > $source_list
-wget -q -O - https://binaries.erlang-solutions.com/debian/erlang_solutions.asc | apt-key add -
+wget -q -O - https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | gpg --dearmor > $source_key
+echo "deb [signed-by=$source_key]  https://packages.erlang-solutions.com/ubuntu $(lsb_release -cs) contrib" > $source_list
 apt-get update
 apt-get install -y --no-install-recommends esl-erlang
 
 # Install rebar3
-rebar3DownloadUrl=$(get_github_package_download_url "erlang/rebar3" "endswith(\"rebar3\")")
-download_with_retries $rebar3DownloadUrl "/tmp"
-mv /tmp/rebar3 /usr/local/bin/rebar3
+rebar3_url="https://github.com/erlang/rebar3/releases/latest/download/rebar3"
+download_with_retries $rebar3_url "/usr/local/bin" "rebar3"
 chmod +x /usr/local/bin/rebar3
 
 # Clean up source list
 rm $source_list
+rm $source_key
 
 invoke_tests "Tools" "erlang"
