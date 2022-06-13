@@ -244,13 +244,13 @@ $markdown += New-MDHeader "Xamarin" -Level 3
 $markdown += New-MDHeader "Visual Studio for Mac" -Level 4
 $markdown += Build-VSMacTable | New-MDTable
 $markdown += New-MDNewLine
-if (-not $os.Catalina) {
+if (-not $os.IsCatalina) {
 $markdown += New-MDHeader "Notes:" -Level 5
 $reportVS = @'
 ```
 To use Visual Studio 2019 by default rename the app:
-mv "/Applications/Visual Studio.app" "/Applications/Visual Studio 2022.app"
-mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
+mv '/Applications/Visual Studio.app' '/Applications/Visual Studio 2022.app'
+mv '/Applications/Visual Studio 2019.app' '/Applications/Visual Studio.app'
 ```
 '@
 $markdown += New-MDParagraph -Lines $reportVS
