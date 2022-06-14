@@ -69,7 +69,7 @@
 - Kind 0.14.0
 - Kubectl 1.24.1
 - Mercurial 5.0
-- Mingw-w64 11.2.0-07112021 
+- Mingw-w64 8.1.0
 - Newman 5.3.2
 - NSIS v3.08
 - OpenSSL 1.1.1
