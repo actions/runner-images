@@ -590,12 +590,20 @@ function Get-GitHubPackageDownloadUrl {
     if ($Version -eq "latest") {
         $Version = "*"
     }
+
     $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
-    $versionToDownload = ($json.Where{ $_.prerelease -eq $IsPrerelease }.tag_name |
-        Select-String -Pattern "\d+.\d+.\d+").Matches.Value |
-            Where-Object {$_ -Like "${Version}.*" -or $_ -eq ${Version}} |
-            Sort-Object {[version]$_} |
+    $tags = $json.Where{ $_.prerelease -eq $IsPrerelease -and $_.assets }.tag_name
+    $versionToDownload = $tags |
+            Select-String -Pattern "\d+.\d+.\d+" |
+            ForEach-Object { $_.Matches.Value } |
+            Where-Object { $_ -like "$Version.*" -or $_ -eq $Version } |
+            Sort-Object { [version]$_ } |
             Select-Object -Last 1
+
+    if (-not $versionToDownload) {
+        Write-Host "Failed to get a tag name from ${RepoOwner}/${RepoName} releases"
+        exit 1
+    }
 
     $UrlFilter = $UrlFilter -replace "{BinaryName}",$BinaryName -replace "{Version}",$versionToDownload
     $downloadUrl = $json.assets.browser_download_url -like $UrlFilter
