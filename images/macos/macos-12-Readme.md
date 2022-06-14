@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[all OSs] Android NDK 22 will be replaced in favor of 24, version 23 will be set as the default one on June, 6](https://github.com/actions/virtual-environments/issues/5595) |
 | [macOS 12 (Monterey) is available as a public beta in GitHub Actions and Azure DevOps](https://github.com/actions/virtual-environments/issues/5446) |
 ***
 # macOS 12.4 info
 - System Version: macOS 12.4 (21F79)
 - Kernel Version: Darwin 21.5.0
-- Image Version: 20220605.1
+- Image Version: 20220613.1
 
 ## Installed Software
 ### Language and Runtime
@@ -18,13 +17,13 @@
 - GNU Fortran (Homebrew GCC 11.3.0_1) 11.3.0 - available by `gfortran-11` alias
 - Go 1.17.11
 - julia 1.7.3
-- Kotlin 1.6.21-release-334
+- Kotlin 1.7.0-release-281
 - MSBuild 16.10.1.17201 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.15.1
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.12 v14.19.3 v16.15.1
 - Perl 5.34.0
-- PHP 8.1.6
+- PHP 8.1.7
 - Python 2.7.18
 - Python 3.9.13
 - R 4.2.0
@@ -34,20 +33,27 @@
 - Bundler version 2.3.15
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.3.6
-- Homebrew 3.4.11
+- Composer 2.3.7
+- Homebrew 3.5.2
+- Miniconda 4.12.0
 - NPM 8.11.0
 - NuGet 5.9.0.7134
 - Pip 20.3.4 (python 2.7)
 - Pip 22.1.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<faed44dfa>)
+- Vcpkg 2022 (build from master \<8e1f46de1>)
 - Yarn 1.22.19
+
+#### Environment variables
+| Name                    | Value                  |
+| ----------------------- | ---------------------- |
+| CONDA                   | /usr/local/miniconda   |
+| VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
 - Apache Ant(TM) 1.10.12
-- Apache Maven 3.8.5
+- Apache Maven 3.8.6
 - Gradle 7.4.2
 - Sbt 1.6.2
 
@@ -55,18 +61,18 @@
 - 7-Zip 17.04
 - aria2 1.36.0
 - azcopy 10.15.0
-- bazel 5.1.1
+- bazel 5.2.0
 - bazelisk 1.11.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 7.83.1
 - Git 2.36.1
 - Git LFS: 3.2.0
-- GitHub CLI: 2.11.3
+- GitHub CLI: 2.12.1
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.6
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-36
+- ImageMagick 7.1.0-37
 - jq 1.6
 - mongo v5.0.7
 - mongod v5.0.7
@@ -83,8 +89,8 @@
 
 ### Tools
 - App Center CLI 2.10.10
-- AWS CLI 2.7.6
-- AWS SAM CLI 1.51.0
+- AWS CLI 2.7.7
+- AWS SAM CLI 1.52.0
 - AWS Session Manager CLI 1.2.331.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.37.0
@@ -107,11 +113,11 @@
 ### Browsers
 - Safari 15.5 (17613.2.7.1.8)
 - SafariDriver 15.5 (17613.2.7.1.8)
-- Google Chrome 102.0.5005.61 
+- Google Chrome 102.0.5005.115 
 - ChromeDriver 102.0.5005.61
-- Microsoft Edge 102.0.1245.33 
-- Microsoft Edge WebDriver 102.0.1245.33
-- Mozilla Firefox 101.0
+- Microsoft Edge 102.0.1245.39 
+- Microsoft Edge WebDriver 102.0.1245.39
+- Mozilla Firefox 101.0.1
 - geckodriver 0.31.0
 - Selenium server 4.2.0
 
@@ -144,7 +150,7 @@
 - 3.7.13
 - 3.8.12
 - 3.9.13
-- 3.10.4
+- 3.10.5
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -171,10 +177,10 @@
 - Rustup 1.24.3
 
 #### Packages
-- Bindgen 0.60.0
+- Bindgen 0.60.1
 - Cargo-audit 0.17.0
 - Cargo-outdated 0.11.1
-- Cbindgen 0.23.0
+- Cbindgen 0.24.3
 - Clippy 0.1.61
 - Rustfmt 1.4.38-stable
 
@@ -192,7 +198,7 @@
 ### Web Servers
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | -------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.53_2 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| httpd | 2.4.54   | /usr/local/etc/httpd/httpd.conf | none          | 80         |
 | nginx | 1.21.6_1 | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
@@ -200,7 +206,14 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.23.7 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.0.1.72 | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.0.2.8  | /Applications/Visual Studio.app      |
+
+##### Notes:
+```
+To use Visual Studio 2019 by default rename the app:
+mv '/Applications/Visual Studio.app' '/Applications/Visual Studio 2022.app'
+mv '/Applications/Visual Studio 2019.app' '/Applications/Visual Studio.app'
+```
 
 #### Xamarin bundles
 | symlink           | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
@@ -219,6 +232,7 @@
 ### Xcode
 | Version          | Build    | Path                           |
 | ---------------- | -------- | ------------------------------ |
+| 14.0 (beta)      | 14A5228q | /Applications/Xcode_14.0.app   |
 | 13.4.1           | 13F100   | /Applications/Xcode_13.4.1.app |
 | 13.4             | 13F17a   | /Applications/Xcode_13.4.app   |
 | 13.3.1 (default) | 13E500a  | /Applications/Xcode_13.3.1.app |
@@ -235,29 +249,37 @@
 | macOS 12.0              | macosx12.0           | 13.1                 |
 | macOS 12.1              | macosx12.1           | 13.2.1               |
 | macOS 12.3              | macosx12.3           | 13.3.1, 13.4, 13.4.1 |
+| macOS 13.0              | macosx13.0           | 14.0                 |
 | iOS 15.0                | iphoneos15.0         | 13.1                 |
 | iOS 15.2                | iphoneos15.2         | 13.2.1               |
 | iOS 15.4                | iphoneos15.4         | 13.3.1               |
 | iOS 15.5                | iphoneos15.5         | 13.4, 13.4.1         |
+| iOS 16.0                | iphoneos16.0         | 14.0                 |
 | Simulator - iOS 15.0    | iphonesimulator15.0  | 13.1                 |
 | Simulator - iOS 15.2    | iphonesimulator15.2  | 13.2.1               |
 | Simulator - iOS 15.4    | iphonesimulator15.4  | 13.3.1               |
 | Simulator - iOS 15.5    | iphonesimulator15.5  | 13.4, 13.4.1         |
+| Simulator - iOS 16.0    | iphonesimulator16.0  | 14.0                 |
 | tvOS 15.0               | appletvos15.0        | 13.1                 |
 | tvOS 15.2               | appletvos15.2        | 13.2.1               |
 | tvOS 15.4               | appletvos15.4        | 13.3.1, 13.4, 13.4.1 |
+| tvOS 16.0               | appletvos16.0        | 14.0                 |
 | Simulator - tvOS 15.0   | appletvsimulator15.0 | 13.1                 |
 | Simulator - tvOS 15.2   | appletvsimulator15.2 | 13.2.1               |
 | Simulator - tvOS 15.4   | appletvsimulator15.4 | 13.3.1, 13.4, 13.4.1 |
+| Simulator - tvOS 16.0   | appletvsimulator16.0 | 14.0                 |
 | watchOS 8.0             | watchos8.0           | 13.1                 |
 | watchOS 8.3             | watchos8.3           | 13.2.1               |
 | watchOS 8.5             | watchos8.5           | 13.3.1, 13.4, 13.4.1 |
+| watchOS 9.0             | watchos9.0           | 14.0                 |
 | Simulator - watchOS 8.0 | watchsimulator8.0    | 13.1                 |
 | Simulator - watchOS 8.3 | watchsimulator8.3    | 13.2.1               |
 | Simulator - watchOS 8.5 | watchsimulator8.5    | 13.3.1, 13.4, 13.4.1 |
+| Simulator - watchOS 9.0 | watchsimulator9.0    | 14.0                 |
 | DriverKit 21.0.1        | driverkit21.0.1      | 13.1                 |
 | DriverKit 21.2          | driverkit21.2        | 13.2.1               |
 | DriverKit 21.4          | driverkit21.4        | 13.3.1, 13.4, 13.4.1 |
+| DriverKit 22.0          | driverkit22.0        | 14.0                 |
 
 #### Installed Simulators
 | OS          | Xcode Version            | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -266,6 +288,7 @@
 | iOS 15.2    | 13.2.1                   | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch)                                                            |
 | iOS 15.4    | 13.3.1                   | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch) |
 | iOS 15.5    | 13.4<br>13.4.1           | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch) |
+| iOS 16.0    | 14.0                     | iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch)                                |
 | tvOS 15.0   | 13.1                     | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | tvOS 15.2   | 13.2.1                   | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | tvOS 15.4   | 13.3.1<br>13.4<br>13.4.1 | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -274,19 +297,19 @@
 | watchOS 8.5 | 13.3.1<br>13.4<br>13.4.1 | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                    |
 
 ### Android
-| Package Name               | Version                                                                                                                                      |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 7.0                                                                                                                                          |
-| Android Emulator           | 31.2.10                                                                                                                                      |
-| Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
-| Android SDK Platform-Tools | 33.0.2                                                                                                                                       |
-| Android Support Repository | 47.0.0                                                                                                                                       |
-| CMake                      | 3.18.1                                                                                                                                       |
-| Google Play services       | 49                                                                                                                                           |
-| Google Repository          | 58                                                                                                                                           |
-| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                       |
-| SDK Patch Applier v4       | 1                                                                                                                                            |
+| Package Name               | Version                                                                                                                                                |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Android Command Line Tools | 7.0                                                                                                                                                    |
+| Android Emulator           | 31.2.10                                                                                                                                                |
+| Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
+| Android SDK Platforms      | android-33 (rev 1)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
+| Android SDK Platform-Tools | 33.0.2                                                                                                                                                 |
+| Android Support Repository | 47.0.0                                                                                                                                                 |
+| CMake                      | 3.18.1                                                                                                                                                 |
+| Google Play services       | 49                                                                                                                                                     |
+| Google Repository          | 58                                                                                                                                                     |
+| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                                 |
+| SDK Patch Applier v4       | 1                                                                                                                                                      |
 
 #### Environment variables
 | Name                    | Value                                                                                              |
