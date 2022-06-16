@@ -1,7 +1,7 @@
 ################################################################################
 ##  File:  Install-Docker.ps1
 ##  Desc:  Install Docker.
-##         Must be an independent step becuase it requires a restart before we
+##         Must be an independent step because it requires a restart before we
 ##         can continue.
 ################################################################################
 

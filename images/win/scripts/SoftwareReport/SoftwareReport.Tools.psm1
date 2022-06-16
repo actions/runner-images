@@ -102,7 +102,7 @@ function Get-KindVersion {
 }
 
 function Get-MinGWVersion {
-    (gcc --version | Select-String -Pattern "MinGW-W64 project") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    (gcc --version | Select-String -Pattern "MinGW-W64") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $mingwVersion = $Matches.Version
     return "Mingw-w64 $mingwVersion"
 }
