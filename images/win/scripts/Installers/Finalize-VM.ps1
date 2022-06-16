@@ -6,6 +6,13 @@
 Write-Host "Cleanup WinSxS"
 Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
 
+# Sets the default install version to v1 for new distributions
+# https://github.com/actions/virtual-environments/issues/5760
+if (Test-IsWin22) {
+    Write-Host "Sets the default install version to v1 for new distributions"
+    Add-DefaultItem -DefaultVariable "DefaultVersion" -Value 1 -Name "DEFAULT\Software\Microsoft\Windows\CurrentVersion\Lxss" -Kind "DWord"
+}
+
 Write-Host "Clean up various directories"
 @(
     "$env:SystemDrive\Recovery",
