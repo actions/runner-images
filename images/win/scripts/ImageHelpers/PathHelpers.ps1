@@ -145,6 +145,11 @@ function Add-DefaultItem {
     )
 
     Connect-Hive
+    $regPath = Join-Path "HKLM:\" $Name
+    if (-not (Test-Path $Name)) {
+        Write-Host "Creating $regPath key"
+        New-Item -Path $regPath -Force | Out-Null
+    }
     Set-DefaultVariable -DefaultVariable $DefaultVariable -Value $Value -Name $Name -Kind $Kind -Writable $Writable
     Disconnect-Hive
 }
