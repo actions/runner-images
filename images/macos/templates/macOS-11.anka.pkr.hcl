@@ -22,6 +22,7 @@ variable "vm_password" {
 
 variable "github_api_pat" {
   type = string
+  default = ""
 }
 
 variable "xcode_install_user" {
