@@ -1,11 +1,10 @@
 | Announcements |
 |-|
-| [[all OSs] Android NDK 22 will be replaced in favor of 24, version 23 will be set as the default one on June, 6](https://github.com/actions/virtual-environments/issues/5595) |
 | [[Azure DevOps] Windows-2016 environment removal postponed until June 30, 2022](https://github.com/actions/virtual-environments/issues/5403) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 2928
-- Image Version: 20220606.1
+- Image Version: 20220614.0
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -15,11 +14,11 @@
 - Bash 4.4.23(1)-release
 - Go 1.17.11
 - Julia 1.7.3
-- Kotlin 1.6.21
+- Kotlin 1.7.0
 - LLVM 13.0.1
 - Node 16.15.1
 - Perl 5.32.1
-- PHP 8.1.6
+- PHP 8.1.7
 - Python 3.7.9
 - Ruby 2.5.9p229
 
@@ -29,12 +28,12 @@
 - Helm 3.8.2
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
 - NPM 8.11.0
-- NuGet 6.2.0.146
+- NuGet 6.2.1.2
 - pip 22.1.2 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<203f5f3be>)
-- Yarn 1.22.18
+- Vcpkg (build from master \<06acb79f7>)
+- Yarn 1.22.19
 
 #### Environment variables
 | Name                    | Value        |
@@ -45,16 +44,16 @@
 ### Project Management
 - Ant 1.10.12
 - Gradle 7.4
-- Maven 3.8.5
+- Maven 3.8.6
 - sbt 1.6.2
 
 ### Tools
 - 7zip 21.07
 - aria2 1.36.0
 - azcopy 10.15.0
-- Bazel 5.1.1
+- Bazel 5.2.0
 - Bazelisk 1.11.0
-- Bicep 0.6.18
+- Bicep 0.7.4
 - Cabal 3.6.2.0
 - CMake 3.23.2
 - CodeQL Action Bundle 2.9.3
@@ -63,9 +62,9 @@
 - Docker Compose v2 2.6.0
 - Docker-wincred 0.6.4
 - ghc 9.2.3
-- Git 2.36.0.windows.1
+- Git 2.36.1.windows.1
 - Git LFS 3.1.4
-- Google Cloud SDK 388.0.0
+- Google Cloud SDK 390.0.0
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.14.0
@@ -77,7 +76,7 @@
 - OpenSSL 1.1.1
 - Packer 1.8.0
 - Parcel 2.6.0
-- Pulumi v3.33.2
+- Pulumi v3.34.1
 - R 4.2.0
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.7.5
@@ -91,13 +90,13 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.121
-- AWS CLI 2.7.6
-- AWS SAM CLI 1.51.0
+- AWS CLI 2.7.7
+- AWS SAM CLI 1.52.0
 - AWS Session Manager CLI 1.2.331.0
 - Azure CLI 2.37.0
 - Azure DevOps CLI extension 0.25.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.11.3
+- GitHub CLI 2.12.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -110,16 +109,16 @@
 - bindgen 0.60.1
 - cargo-audit 0.17.0
 - cargo-outdated 0.11.1
-- cbindgen 0.23.0
+- cbindgen 0.24.3
 - Clippy 0.1.61
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 102.0.5005.63
+- Google Chrome 102.0.5005.115
 - Chrome Driver 102.0.5005.61
-- Microsoft Edge 102.0.1245.33
-- Microsoft Edge Driver 102.0.1245.33
-- Mozilla Firefox 101.0
+- Microsoft Edge 102.0.1245.41
+- Microsoft Edge Driver 102.0.1245.41
+- Mozilla Firefox 101.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.2.0
@@ -183,7 +182,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
 | 3.9.13  | x64, x86     |
-| 3.10.4  | x64, x86     |
+| 3.10.5  | x64, x86     |
 
 #### Ruby
 | Version | Architecture |
@@ -238,12 +237,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.11.32510.428 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Visual Studio Enterprise 2019 | 16.11.32602.291 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.11.32510.428 |
+| Component.Android.NDK.R16B                                                | 16.11.32601.460 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -298,9 +297,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 16.3.29207.166  |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 16.0.28516.191  |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 16.10.31303.231 |
-| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.11.32428.217 |
-| Microsoft.NetCore.Component.Runtime.5.0                                   | 16.11.32428.217 |
-| Microsoft.NetCore.Component.SDK                                           | 16.11.32428.217 |
+| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.11.32602.291 |
+| Microsoft.NetCore.Component.Runtime.6.0                                   | 16.11.32602.291 |
+| Microsoft.NetCore.Component.SDK                                           | 16.11.32602.291 |
 | Microsoft.NetCore.Component.Web                                           | 16.10.31303.231 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 16.5.29515.121  |
 | Microsoft.VisualStudio.Component.AspNet45                                 | 16.10.31205.252 |
@@ -508,17 +507,17 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 3.1.120 3.1.202 3.1.302 3.1.419 5.0.104 5.0.214 5.0.303 5.0.408
+- 3.1.120 3.1.202 3.1.302 3.1.420 5.0.104 5.0.214 5.0.303 5.0.408 5.0.409
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 3.1.4 3.1.6 3.1.20 3.1.25 5.0.4 5.0.9 5.0.17
+- 3.1.4 3.1.6 3.1.20 3.1.26 5.0.4 5.0.9 5.0.17 6.0.6
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 3.1.4 3.1.6 3.1.20 3.1.25 5.0.4 5.0.9 5.0.17
+- 3.1.4 3.1.6 3.1.20 3.1.26 5.0.4 5.0.9 5.0.17 6.0.6
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.4 3.1.6 3.1.20 3.1.25 5.0.4 5.0.9 5.0.17
+- 3.1.4 3.1.6 3.1.20 3.1.26 5.0.4 5.0.9 5.0.17 6.0.6
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -547,7 +546,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.98           |
+| AWSPowerShell      | 4.1.104          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.6            |
@@ -559,20 +558,20 @@ All other versions are saved but not installed.
 | VSSetup            | 2.2.16           |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                                                                                                          |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 7.0                                                                                                                                                                                                                                                                                                              |
-| Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0        |
-| Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
-| Android SDK Platform-Tools | 33.0.2                                                                                                                                                                                                                                                                                                           |
-| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                           |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                           |
-| CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                                                                 |
-| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                         |
-| Google Play services       | 49                                                                                                                                                                                                                                                                                                               |
-| Google Repository          | 58                                                                                                                                                                                                                                                                                                               |
-| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                                                                                                                                                                                           |
-| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                                                |
+| Package Name               | Version                                                                                                                                                                                                                                                                                                                                |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 7.0                                                                                                                                                                                                                                                                                                                                    |
+| Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0                    |
+| Android SDK Platforms      | android-33 (rev 1)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
+| Android SDK Platform-Tools | 33.0.2                                                                                                                                                                                                                                                                                                                                 |
+| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                 |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                 |
+| CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                                                                                       |
+| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                                               |
+| Google Play services       | 49                                                                                                                                                                                                                                                                                                                                     |
+| Google Repository          | 58                                                                                                                                                                                                                                                                                                                                     |
+| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                                                                                                                                                                                                                 |
+| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                                                                      |
 
 #### Environment variables
 | Name                    | Value                                                                        |
@@ -590,7 +589,7 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:a108b8cd955bc84813eda0aab41d514887ef0b4a2e2bbbca6965ec09d4da2c0c  | 2022-05-11 |
 | mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:9e0351236b319aba13cfec412d94df47cf4220cc909cdef6bb0aaaf31f2fb741  | 2022-05-11 |
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:fa53215891bfa80f70d5266f08942dd6e83a7b61f3701b700b19b4aba2dc1060  | 2022-05-11 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:fb16d42712f3599c849723d365a7ddc5fb95e8bf1674d97e9f9cbcb726e7525d  | 2022-05-05 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:b474e47f6f8bdb110068684ab8cebbadb5806e641fe6dba0169555981f6520ef  | 2022-05-05 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:1e03529d89a3ebab534c024b69dcc050757b285622aaecfe8d5d35e26fee50ac  | 2022-06-09 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:e100aa542181a34add63bc38125ad57da16a7d1722dd965a888fde1b8d8c67bb  | 2022-06-09 |
 
 
