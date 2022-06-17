@@ -73,7 +73,8 @@ build {
       "./provision/assets",
       "./tests",
       "./software-report",
-      "./helpers" ]
+      "./helpers" 
+    ]
   }
   provisioner "file" {
     destination = "image-generation/add-certificate.swift"
