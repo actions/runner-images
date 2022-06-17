@@ -36,12 +36,12 @@ variable "xcode_install_password" {
 
 variable "vcpu_count" {
   type = string
-  default = "5"
+  default = "6"
 }
 
 variable "ram_size" {
   type = string
-  default = "12G"
+  default = "24G"
 }
 
 variable "image_os" {
