@@ -145,6 +145,8 @@
             "libssl-dev",
             "locales",
             "mercurial",
+            "musl-dev",
+            "musl-tools",
             "openssh-client",
             "p7zip-rar",
             "pkg-config",
