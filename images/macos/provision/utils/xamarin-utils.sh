@@ -22,6 +22,10 @@ buildMonoDownloadUrl() {
   echo "https://dl.xamarin.com/MonoFrameworkMDK/Macx86/MonoFramework-MDK-${1}.macos10.xamarin.universal.pkg"
 }
 
+buildMonoDownloadUrl6.12.0.182() {
+  echo "https://download.mono-project.com/archive/6.12.0/macos-10-universal/MonoFramework-MDK-${1}.macos10.xamarin.universal.pkg"
+}
+
 buildXamariniIOSDownloadUrl() {
   echo "https://dl.xamarin.com/MonoTouch/Mac/xamarin.ios-${1}.pkg"
 }
@@ -40,7 +44,7 @@ installMono() {
   echo "Installing Mono ${VERSION}..."
   local MONO_FOLDER_NAME=$(echo $VERSION | cut -d. -f 1,2,3)
   local SHORT_VERSION=$(echo $VERSION | cut -d. -f 1,2)
-  local PKG_URL=$(buildMonoDownloadUrl $VERSION)
+  local PKG_URL=$(buildMonoDownloadUrl6.12.0.182 $VERSION)
   downloadAndInstallPKG $PKG_URL
 
   echo "Installing nunit3-console for Mono "$VERSION
