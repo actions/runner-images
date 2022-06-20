@@ -17,6 +17,7 @@ Export-ModuleMember -Function @(
     'Set-DefaultPath'
     'Add-MachinePathItem'
     'Add-DefaultPathItem'
+    'Add-DefaultItem'
     'Get-SystemVariable'
     'Get-DefaultVariable'
     'Set-SystemVariable'
