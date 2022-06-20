@@ -64,15 +64,17 @@ build {
     "source.veertu-anka-vm-clone.template"
   ]
   provisioner "shell" {
-    inline = "mkdir ~/image-generation"
+    inline = [
+      "mkdir ~/image-generation"
+    ]
   }
   provisioner "file" {
-    destination = "~/image-generation/"
-    source = [ 
+    destination = "image-generation/"
+    sources = [
       "./provision/assets",
       "./tests",
       "./software-report",
-      "./helpers" 
+      "./helpers"
     ]
   }
   provisioner "file" {
@@ -135,7 +137,7 @@ build {
   }
   provisioner "shell" {
     script  = "./provision/core/reboot.sh"
-    execute_command = execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
     expect_disconnect = true
   }
   provisioner "shell" {
@@ -218,7 +220,7 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
   provisioner "shell" {
-    scripts = "./provision/core/delete-duplicate-sims.rb"
+    script = "./provision/core/delete-duplicate-sims.rb"
     execute_command = "source $HOME/.bash_profile; ruby {{ .Path }}"
   }
   provisioner "shell" {
