@@ -100,7 +100,7 @@ build {
   }
   provisioner "file" {
     destination = "bootstrap"
-    source = "./provision/bootstrap-provisioner"
+    source = "./provision/bootstrap-provisioner/"
   }
   provisioner "file" {
     destination = "image-generation/toolset.json"
