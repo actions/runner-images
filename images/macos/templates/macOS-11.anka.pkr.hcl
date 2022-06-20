@@ -70,11 +70,11 @@ build {
   }
   provisioner "file" {
     destination = "image-generation/"
-    sources = [ 
+    sources = [
       "./provision/assets",
       "./tests",
       "./software-report",
-      "./helpers" 
+      "./helpers"
     ]
   }
   provisioner "file" {
@@ -213,7 +213,10 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
-    script = "./provision/core/toolset.ps1"
+    scripts = [
+      "./provision/core/toolset.ps1",
+      "./provision/core/configure-toolset.ps1"
+    ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
   provisioner "shell" {
