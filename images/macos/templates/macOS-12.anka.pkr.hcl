@@ -47,7 +47,7 @@ variable "ram_size" {
 
 variable "image_os" {
   type = string
-  default = "macos11"
+  default = "macos12"
 }
 
 source "veertu-anka-vm-clone" "template" {
@@ -64,13 +64,11 @@ build {
     "source.veertu-anka-vm-clone.template"
   ]
   provisioner "shell" {
-    inline = [
-      "mkdir ~/image-generation"
-    ]
+    inline = "mkdir ~/image-generation"
   }
   provisioner "file" {
-    destination = "image-generation/"
-    sources = [ 
+    destination = "~/image-generation/"
+    source = [ 
       "./provision/assets",
       "./tests",
       "./software-report",
@@ -100,18 +98,18 @@ build {
   }
   provisioner "file" {
     destination = "bootstrap"
-    source = "./provision/bootstrap-provisioner/"
+    source = "./provision/bootstrap-provisioner"
   }
   provisioner "file" {
     destination = "image-generation/toolset.json"
-    source = "./toolsets/toolset-11.json"
+    source = "./toolsets/toolset-12.json"
   }
   provisioner "shell" {
     scripts = [
       "./provision/core/xcode-clt.sh",
       "./provision/core/homebrew.sh"
     ]
-    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
     scripts = [
@@ -136,8 +134,8 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
-    script = "./provision/core/reboot.sh"
-    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
+    script  = "./provision/core/reboot.sh"
+    execute_command = execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
     expect_disconnect = true
   }
   provisioner "shell" {
@@ -153,7 +151,7 @@ build {
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
       "./provision/core/node.sh",
-      "./provision/core/commonutils.sh",
+      "./provision/core/commonutils.sh"
     ]
     environment_vars = [
       "API_PAT=${var.github_api_pat}",
@@ -213,11 +211,14 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
-    script = "./provision/core/toolset.ps1"
+    scripts = [
+      "./provision/core/toolset.ps1",
+      "./provision/core/configure-toolset.ps1"
+    ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
   provisioner "shell" {
-    script = "./provision/core/delete-duplicate-sims.rb"
+    scripts = "./provision/core/delete-duplicate-sims.rb"
     execute_command = "source $HOME/.bash_profile; ruby {{ .Path }}"
   }
   provisioner "shell" {
@@ -230,7 +231,7 @@ build {
   provisioner "file" {
     destination = "../image-output/"
     direction = "download"
-    source = "./image-generation/output/"
+    source = "./image-generation/output/*"
   }
   provisioner "shell" {
     scripts = [
