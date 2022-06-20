@@ -106,8 +106,8 @@
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.121
 - AWS CLI 2.7.7
-- AWS CLI Session manager plugin 1.2.331.0
-- AWS SAM CLI 1.52.0
+- AWS CLI Session manager plugin 2.0
+- AWS SAM CLI 2.0
 - Azure CLI (azure-cli) 2.37.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.12.1
