@@ -47,7 +47,6 @@ installMono() {
   local PKG_URL=$(buildMonoDownloadUrl $VERSION)
   downloadAndInstallPKG $PKG_URL
 
-
   echo "Installing nunit3-console for Mono "$VERSION
   installNunitConsole $MONO_FOLDER_NAME
 
