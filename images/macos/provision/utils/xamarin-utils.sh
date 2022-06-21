@@ -44,7 +44,7 @@ installMono() {
   echo "Installing Mono ${VERSION}..."
   local MONO_FOLDER_NAME=$(echo $VERSION | cut -d. -f 1,2,3)
   local SHORT_VERSION=$(echo $VERSION | cut -d. -f 1,2)
-  local PKG_URL=$(buildMonoDownloadUr $VERSION)
+  local PKG_URL=$(buildMonoDownloadUrl $VERSION)
   downloadAndInstallPKG $PKG_URL
 
 
