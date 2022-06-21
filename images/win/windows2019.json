@@ -23,6 +23,7 @@
         "agent_tools_directory": "C:\\hostedtoolcache\\windows",
         "install_user": "installer",
         "install_password": null,
+        "capture_container_name": "images",
         "capture_name_prefix": "packer",
         "image_version": "dev",
         "image_os": "win19"
@@ -48,7 +49,7 @@
             "storage_account": "{{user `storage_account`}}",
             "build_resource_group_name": "{{user `build_resource_group_name`}}",
             "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
-            "capture_container_name": "images",
+            "capture_container_name": "{{user `capture_container_name`}}",
             "capture_name_prefix": "{{user `capture_name_prefix`}}",
             "virtual_network_name": "{{user `virtual_network_name`}}",
             "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",

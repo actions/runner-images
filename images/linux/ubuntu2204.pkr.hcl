@@ -9,6 +9,11 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
+variable "capture_container_name" {
+  type    = string
+  default = "images"
+}
+
 variable "capture_name_prefix" {
   type    = string
   default = "packer"
@@ -143,7 +148,7 @@ variable "vm_size" {
 source "azure-arm" "build_vhd" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
-  capture_container_name                 = "images"
+  capture_container_name                 = "${var.capture_container_name}"
   capture_name_prefix                    = "${var.capture_name_prefix}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
