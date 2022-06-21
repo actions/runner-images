@@ -90,6 +90,16 @@ variable "location" {
   default = "${env("ARM_RESOURCE_LOCATION")}"
 }
 
+variable "managed_image_name" {
+  type    = string
+  default = ""
+}
+
+variable "managed_image_resource_group_name" {
+  type    = string
+  default = ""
+}
+
 variable "private_virtual_network_with_public_ip" {
   type    = bool
   default = false
@@ -157,6 +167,8 @@ source "azure-arm" "build_vhd" {
   image_publisher                        = "canonical"
   image_sku                              = "22_04-lts"
   location                               = "${var.location}"
+  managed_image_name                     = "${var.managed_image_name}"
+  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   os_disk_size_gb                        = "86"
   os_type                                = "Linux"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"

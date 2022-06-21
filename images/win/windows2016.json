@@ -26,6 +26,8 @@
         "install_password": null,
         "capture_container_name": "images",
         "capture_name_prefix": "packer",
+        "managed_image_name": "",
+        "managed_image_resource_group_name": "",
         "image_version": "dev",
         "image_os": "win16"
     },
@@ -52,6 +54,8 @@
             "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
             "capture_container_name": "{{user `capture_container_name`}}",
             "capture_name_prefix": "{{user `capture_name_prefix`}}",
+            "managed_image_name": "{{user `managed_image_name`}}",
+            "managed_image_resource_group_name": "{{user `managed_image_resource_group_name`}}",
             "virtual_network_name": "{{user `virtual_network_name`}}",
             "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",
             "virtual_network_subnet_name": "{{user `virtual_network_subnet_name`}}",
