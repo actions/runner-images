@@ -28,7 +28,13 @@
         "managed_image_name": "",
         "managed_image_resource_group_name": "",
         "image_version": "dev",
-        "image_os": "win19"
+        "image_os": "win19",
+        "sig_destination_resource_group": "",
+        "sig_destination_gallery_name": "",
+        "sig_destination_image_name": "",
+        "sig_destination_image_version": "",
+        "sig_destination_replication_regions": "",
+        "sig_destination_storage_account_type": "Standard_LRS"
     },
     "sensitive-variables": [
         "install_password",
@@ -67,7 +73,17 @@
             "communicator": "winrm",
             "winrm_use_ssl": "true",
             "winrm_insecure": "true",
-            "winrm_username": "packer"
+            "winrm_username": "packer",
+
+            "shared_image_gallery_destination": {
+                "subscription": "{{user `subscription_id`}}",
+                "resource_group": "{{user `sig_destination_resource_group`}}",
+                "gallery_name": "{{user `sig_destination_gallery_name`}}",
+                "image_name": "{{user `sig_destination_image_name`}}",
+                "image_version": "{{user `sig_destination_image_version`}}",
+                "replication_regions": "{{user `sig_destination_replication_regions`}}",
+                "storage_account_type": "{{user `sig_destination_storage_account_type`}}"
+            }
         }
     ],
     "provisioners": [

@@ -155,6 +155,36 @@ variable "vm_size" {
   default = "Standard_D4s_v4"
 }
 
+variable "sig_destination_resource_group" {
+  type    = string
+  default = ""
+}
+
+variable "sig_destination_gallery_name" {
+  type    = string
+  default = ""
+}
+
+variable "sig_destination_image_name" {
+  type    = string
+  default = ""
+}
+
+variable "sig_destination_image_version" {
+  type    = string
+  default = ""
+}
+
+variable "sig_destination_replication_regions" {
+  type    = list(string)
+  default = []
+}
+
+variable sig_destination_storage_account_type {
+  type    = string
+  default = "Standard_LRS"
+}
+
 source "azure-arm" "build_vhd" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
@@ -181,6 +211,16 @@ source "azure-arm" "build_vhd" {
   virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
   virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
   vm_size                                = "${var.vm_size}"
+
+  shared_image_gallery_destination {
+    subscription         = "${var.subscription_id}"
+    resource_group       = "${var.sig_destination_resource_group}"
+    gallery_name         = "${var.sig_destination_gallery_name}"
+    image_name           = "${var.sig_destination_image_name}"
+    image_version        = "${var.sig_destination_image_version}"
+    replication_regions  = "${var.sig_destination_replication_regions}"
+    storage_account_type = "${var.sig_destination_storage_account_type}"
+  }
 }
 
 build {
