@@ -123,17 +123,24 @@ build {
       "./provision/configuration/ntpconf.sh",
       "./provision/configuration/max-files.sh",
       "./provision/configuration/shell-change.sh",
+    ]
+    environment_vars = [
+      "PASSWORD=${var.vm_password}",
+      "USERNAME=${var.vm_username}"
+    ]
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
+  }
+  provisioner "shell" {
+    scripts = [
       "./provision/configuration/preimagedata.sh",
       "./provision/configuration/configure-ssh.sh",
       "./provision/configuration/configure-machine.sh"
     ]
     environment_vars = [
       "IMAGE_VERSION=${var.build_id}",
-      "IMAGE_OS=${var.image_os}",
-      "PASSWORD=${var.vm_password}",
-      "USERNAME=${var.vm_username}"
+      "IMAGE_OS=${var.image_os}"
     ]
-    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
     script = "./provision/core/reboot.sh"
