@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 768
-- Image Version: 20220614.0
+- Image Version: 20220619.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -32,7 +32,7 @@
 - pip 22.1.2 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<06acb79f7>)
+- Vcpkg (build from master \<b49b2bdf2>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -51,7 +51,7 @@
 - aria2 1.36.0
 - azcopy 10.15.0
 - Bazel 5.2.0
-- Bazelisk 1.11.0
+- Bazelisk 1.12.0
 - Bicep 0.7.4
 - Cabal 3.6.2.0
 - CMake 3.23.2
@@ -68,7 +68,7 @@
 - Kind 0.14.0
 - Kubectl 1.24.1
 - Mercurial 5.0
-- Mingw-w64 8.1.0
+- Mingw-w64 11.2.0
 - Newman 5.3.2
 - NSIS v3.08
 - OpenSSL 1.1.1
@@ -86,10 +86,10 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.121
-- AWS CLI 2.7.7
+- Alibaba Cloud CLI 3.0.122
+- AWS CLI 2.7.9
 - AWS SAM CLI 1.52.0
-- AWS Session Manager CLI 1.2.331.0
+- AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.37.0
 - Azure DevOps CLI extension 0.25.0
 - GitHub CLI 2.12.1
@@ -112,8 +112,8 @@
 ### Browsers and webdrivers
 - Google Chrome 102.0.5005.115
 - Chrome Driver 102.0.5005.61
-- Microsoft Edge 102.0.1245.39
-- Microsoft Edge Driver 102.0.1245.41
+- Microsoft Edge 102.0.1245.44
+- Microsoft Edge Driver 102.0.1245.44
 - Mozilla Firefox 101.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
@@ -194,7 +194,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-14                                                                                                                    |
-| Version              | 14.3                                                                                                                                 |
+| Version              | 14.4                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -402,6 +402,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Windows10SDK.19041                       | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.Windows10SDK.20348                       | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.Windows11SDK.22000                       | 17.2.32408.312 |
+| Microsoft.VisualStudio.Component.Windows11SDK.22621                       | 17.2.32526.322 |
 | Microsoft.VisualStudio.Component.Workflow                                 | 17.2.32408.312 |
 | Microsoft.VisualStudio.Component.WslDebugging                             | 17.2.32408.312 |
 | Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Native            | 17.2.32408.312 |
@@ -465,6 +466,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.19041.0
 - 10.0.20348.0
 - 10.0.22000.0
+- 10.0.22621.0
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
@@ -472,10 +474,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 3.1.4 3.1.6 3.1.20 3.1.25 3.1.26 5.0.4 5.0.9 5.0.17 6.0.6
+- 3.1.4 3.1.6 3.1.20 3.1.26 5.0.4 5.0.9 5.0.17 6.0.6
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 3.1.4 3.1.6 3.1.20 3.1.25 3.1.26 5.0.4 5.0.9 5.0.17 6.0.6
+- 3.1.4 3.1.6 3.1.20 3.1.26 5.0.4 5.0.9 5.0.17 6.0.6
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
 - 3.1.4 3.1.6 3.1.20 3.1.26 5.0.4 5.0.9 5.0.17 6.0.6
@@ -506,7 +508,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.104          |
+| AWSPowerShell      | 4.1.108          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.9.6            |
@@ -545,9 +547,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:1182bfe22daba321fccb5caf93bfedc912c817a91d4c9aa5b45ea3823cb7a5c0  | 2022-05-11 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:9bba2824988fa141d187315336055c068dadae6b84e86fb5d13291fd2245a8dd  | 2022-05-11 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:f3dcc7d94e1631213f2349851f3415d8850d45ebd411e4ca68a0a5fa73ebffe8  | 2022-05-11 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:31c66a698116346470a864eb3f58698a422e99e688a0b1b51fb178e2541ddc47  | 2022-06-14 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:486be6bcb80ad5bae9854f7a022601fd93cf58b7b26fbdc70ca8533b88852ac7  | 2022-06-14 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:6c490f4528cb625c60aa119669830639ae3988c3c23dfb2f94a4ef19df2eb606  | 2022-06-14 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:5f36a555eeb0151d5c00c14b01c3d39d9e5dffc36e5b2039cfa6041b6dac2480  | 2022-06-09 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:b2162caa6da208d9dc10c99e18ee04aadcc4429b219cb316ea404fa9c4de53d1  | 2022-06-09 |
 
