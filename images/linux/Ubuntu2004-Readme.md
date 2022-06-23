@@ -4,8 +4,8 @@
 | [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
 # Ubuntu 20.04.4 LTS
-- Linux kernel version: 5.13.0-1029-azure
-- Image Version: 20220614.0
+- Linux kernel version: 5.13.0-1031-azure
+- Image Version: 20220619.1
 
 ## Installed Software
 ### Language and Runtime
@@ -14,12 +14,12 @@
 - Clang-format 10.0.0, 11.0.0, 12.0.0
 - Clang-tidy 10.0.0, 11.0.0, 12.0.0
 - Erlang 25.0.1 (Eshell 13.0.1)
-- Erlang rebar3 3.18.0
+- Erlang rebar3 3.19.0
 - GNU C++ 9.4.0, 10.3.0
 - GNU Fortran 9.4.0, 10.3.0
 - Julia 1.7.3
 - Kotlin 1.7.0-release-281
-- Mono 6.12.0.179 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
+- Mono 6.12.0.182 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.10.1.31701 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node 16.15.1
 - Perl 5.30.0
@@ -38,7 +38,7 @@
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<06acb79f7>)
+- Vcpkg  (build from master \<b49b2bdf2>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -50,7 +50,7 @@
 ### Project Management
 - Ant 1.10.7
 - Gradle 7.4.2
-- Lerna 5.1.2
+- Lerna 5.1.4
 - Maven 3.8.6
 - Sbt 1.6.2
 
@@ -59,17 +59,17 @@
 - apt-fast 1.9.12
 - AzCopy 10.15.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.2.0
-- Bazelisk 1.11.0
+- Bazelisk 1.12.0
 - Bicep 0.7.4
 - Buildah 1.22.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.23.2
 - CodeQL Action Bundle 2.9.3
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.4.1+azure-1
+- Docker Compose v2 2.6.0+azure-1
 - Docker-Buildx 0.8.2
-- Docker-Moby Client 20.10.16+azure-3
-- Docker-Moby Server 20.10.16+azure-2
+- Docker-Moby Client 20.10.17+azure-1
+- Docker-Moby Server 20.10.17+azure-1
 - Fastlane 2.206.2
 - Git 2.36.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
@@ -79,7 +79,7 @@
 - HHVM (HipHop VM) 4.162.0
 - jq 1.6
 - Kind 0.14.0
-- Kubectl 1.24.1
+- Kubectl 1.24.2
 - Kustomize 4.5.5
 - Leiningen 2.9.8
 - MediaInfo 19.09
@@ -90,7 +90,7 @@
 - nvm 0.39.1
 - OpenSSL 1.1.1f-1ubuntu2.13
 - Packer 1.8.1
-- Parcel 2.6.0
+- Parcel 2.6.1
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Pulumi 3.34.1
@@ -98,15 +98,15 @@
 - Skopeo 1.5.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.2.2
+- Terraform 1.2.3
 - yamllint 1.26.3
 - yq 4.25.2
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.121
-- AWS CLI 2.7.7
-- AWS CLI Session manager plugin 1.2.331.0
+- Alibaba Cloud CLI 3.0.122
+- AWS CLI 2.7.9
+- AWS CLI Session manager plugin 1.2.339.0
 - AWS SAM CLI 1.52.0
 - Azure CLI (azure-cli) 2.37.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
@@ -135,7 +135,7 @@
 | -------- | ------------------- |
 | PHP      | 7.4.30 8.0.20 8.1.7 |
 | Composer | 2.3.7               |
-| PHPUnit  | 8.5.26              |
+| PHPUnit  | 8.5.27              |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -185,7 +185,7 @@
 - sqlite3 3.31.1
 
 #### PostgreSQL
-- PostgreSQL 14.3 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
+- PostgreSQL 14.4 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - PostgreSQL Server (user:postgres)
 
 ```
