@@ -4,8 +4,8 @@
 | [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
 # Ubuntu 22.04 LTS
-- Linux kernel version: 5.15.0-1010-azure
-- Image Version: 20220614.0
+- Linux kernel version: 5.15.0-1012-azure
+- Image Version: 20220619.1
 
 ## Installed Software
 ### Language and Runtime
@@ -33,7 +33,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<06acb79f7>)
+- Vcpkg  (build from master \<b49b2bdf2>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -43,14 +43,14 @@
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
-- Lerna 5.1.2
+- Lerna 5.1.4
 
 ### Tools
 - Ansible 2.12.6
 - apt-fast 1.9.12
 - AzCopy 10.15.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.2.0
-- Bazelisk 1.11.0
+- Bazelisk 1.12.0
 - Bicep 0.7.4
 - Buildah 1.23.1
 - CMake 3.23.2
@@ -69,7 +69,7 @@
 - Heroku 7.60.2
 - jq 1.6
 - Kind 0.14.0
-- Kubectl 1.24.1
+- Kubectl 1.24.2
 - Kustomize 4.5.5
 - Leiningen 2.9.8
 - MediaInfo 21.09
@@ -80,22 +80,22 @@
 - nvm 0.39.1
 - OpenSSL 3.0.2-0ubuntu1.2
 - Packer 1.8.1
-- Parcel 2.6.0
+- Parcel 2.6.1
 - Podman 3.4.4
 - Pulumi 3.34.1
 - R 4.2.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.2.2
+- Terraform 1.2.3
 - yamllint 1.26.3
 - yq 4.25.2
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.121
-- AWS CLI 2.7.7
-- AWS CLI Session manager plugin 1.2.331.0
+- Alibaba Cloud CLI 3.0.122
+- AWS CLI 2.7.9
+- AWS CLI Session manager plugin 1.2.339.0
 - AWS SAM CLI 1.52.0
 - Azure CLI (azure-cli) 2.37.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
@@ -124,7 +124,7 @@
 | -------- | ------- |
 | PHP      | 8.1.7   |
 | Composer | 2.3.7   |
-| PHPUnit  | 8.5.26  |
+| PHPUnit  | 8.5.27  |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -171,7 +171,7 @@
 - sqlite3 3.37.2
 
 #### PostgreSQL
-- PostgreSQL 14.3 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
+- PostgreSQL 14.4 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - PostgreSQL Server (user:postgres)
 
 ```
