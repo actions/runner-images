@@ -1,7 +1,7 @@
 # macOS 12.4 info
 - System Version: macOS 12.4 (21F79)
 - Kernel Version: Darwin 21.5.0
-- Image Version: 20220615.1
+- Image Version: 20220622.2
 
 ## Installed Software
 ### Language and Runtime
@@ -9,8 +9,8 @@
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 13.1.6 is default
-- gcc-11 (Homebrew GCC 11.3.0_1) 11.3.0 - available by `gcc-11` alias
-- GNU Fortran (Homebrew GCC 11.3.0_1) 11.3.0 - available by `gfortran-11` alias
+- gcc-11 (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gcc-11` alias
+- GNU Fortran (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gfortran-11` alias
 - Go 1.17.11
 - julia 1.7.3
 - Kotlin 1.7.0-release-281
@@ -26,7 +26,7 @@
 - Ruby 3.0.4p208
 
 ### Package Management
-- Bundler version 2.3.15
+- Bundler version 2.3.16
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.3.7
@@ -38,7 +38,7 @@
 - Pip 22.1.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<06acb79f7>)
+- Vcpkg 2022 (build from master \<5241c59aa>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -58,7 +58,7 @@
 - aria2 1.36.0
 - azcopy 10.15.0
 - bazel 5.2.0
-- bazelisk 1.11.0
+- bazelisk 1.12.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 7.83.1
 - Git 2.36.1
@@ -68,14 +68,14 @@
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.6
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-37
+- ImageMagick 7.1.0-39
 - jq 1.6
 - mongo v5.0.7
 - mongod v5.0.7
 - OpenSSL 1.1.1o  3 May 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1o)`
-- Packer 1.8.1
-- PostgreSQL 14.3
-- psql (PostgreSQL) 14.3
+- Packer 1.8.2
+- PostgreSQL 14.4
+- psql (PostgreSQL) 14.4
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
@@ -85,9 +85,9 @@
 
 ### Tools
 - App Center CLI 2.10.10
-- AWS CLI 2.7.7
+- AWS CLI 2.7.9
 - AWS SAM CLI 1.52.0
-- AWS Session Manager CLI 1.2.331.0
+- AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.37.0
 - Bicep CLI 0.7.4
@@ -98,7 +98,7 @@
 - GHCup 0.1.17.8
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.9
+- SwiftFormat 0.49.10
 - Swig 4.0.2
 - Xcode Command Line Tools 13.4.0.0.1.1651278267
 
@@ -109,10 +109,10 @@
 ### Browsers
 - Safari 15.5 (17613.2.7.1.8)
 - SafariDriver 15.5 (17613.2.7.1.8)
-- Google Chrome 102.0.5005.115 
+- Google Chrome 103.0.5060.53 
 - ChromeDriver 102.0.5005.61
-- Microsoft Edge 102.0.1245.41 
-- Microsoft Edge WebDriver 102.0.1245.41
+- Microsoft Edge 102.0.1245.44 
+- Microsoft Edge WebDriver 102.0.1245.44
 - Mozilla Firefox 101.0.1
 - geckodriver 0.31.0
 - Selenium server 4.2.0
@@ -144,7 +144,7 @@
 
 #### Python
 - 3.7.13
-- 3.8.12
+- 3.8.13
 - 3.9.13
 - 3.10.5
 
@@ -181,7 +181,7 @@
 - Rustfmt 1.4.38-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.4
+- PowerShell 7.2.5
 
 #### PowerShell Modules
 | Module           | Version |
@@ -192,17 +192,17 @@
 | PSScriptAnalyzer | 1.20.0  |
 
 ### Web Servers
-| Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
-| ----- | -------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.54   | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.21.6_1 | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
+| ----- | ------- | ------------------------------- | ------------- | ---------- |
+| httpd | 2.4.54  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| nginx | 1.23.0  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-| Version        | Build      | Path                                 |
-| -------------- | ---------- | ------------------------------------ |
-| 2019           | 8.10.24.14 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.0.3.21  | /Applications/Visual Studio.app      |
+| Version        | Build     | Path                                 |
+| -------------- | --------- | ------------------------------------ |
+| 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
+| 2022 (default) | 17.0.4.23 | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
@@ -214,6 +214,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 #### Xamarin bundles
 | symlink           | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
 | ----------------- | ------------ | ----------- | ----------- | --------------- |
+| 6_12_17           | 6.12         | 15.10       | 8.10        | 12.2            |
 | 6_12_16 (default) | 6.12         | 15.8        | 8.8         | 12.2            |
 | 6_12_15           | 6.12         | 15.8        | 8.8         | 12.1            |
 | 6_12_14           | 6.12         | 15.8        | 8.8         | 12.0            |
