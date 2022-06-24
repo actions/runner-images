@@ -206,85 +206,13 @@
 
 ##### Notes:
 ```
-To use Visual Studio 2019 by default rename the app:
-mv "/Applications/Visual Studio.app" "/Applications/Visual Studio 2022.app"
-mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
-```
-
-#### Xamarin bundles
-| symlink           | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
-| ----------------- | ------------ | ----------- | ----------- | --------------- |
-| 6_12_16 (default) | 6.12         | 15.8        | 8.8         | 12.2            |
-| 6_12_15           | 6.12         | 15.8        | 8.8         | 12.1            |
-| 6_12_14           | 6.12         | 15.8        | 8.8         | 12.0            |
-| 6_12_13           | 6.12         | 15.6        | 8.6         | 12.0            |
-| 6_12_12           | 6.12         | 15.4        | 8.4         | 12.0            |
-| 6_12_11           | 6.12         | 15.2        | 8.2         | 12.0            |
-| 6_12_10           | 6.12         | 15.0        | 7.14        | 11.3            |
-
-#### Unit Test Framework
-- NUnit 3.6.1
-
-### Xcode
-| Version          | Build    | Path                           |
-| ---------------- | -------- | ------------------------------ |
-| 13.4.1           | 13F100   | /Applications/Xcode_13.4.1.app |
-| 13.4             | 13F17a   | /Applications/Xcode_13.4.app   |
-| 13.3.1 (default) | 13E500a  | /Applications/Xcode_13.3.1.app |
-| 13.2.1           | 13C100   | /Applications/Xcode_13.2.1.app |
-| 13.1             | 13A1030d | /Applications/Xcode_13.1.app   |
-
-#### Xcode Support Tools
-- xcpretty 0.3.0
-- xcversion 2.8.0
-
-#### Installed SDKs
-| SDK                     | SDK Name             | Xcode Version        |
-| ----------------------- | -------------------- | -------------------- |
-| macOS 12.0              | macosx12.0           | 13.1                 |
-| macOS 12.1              | macosx12.1           | 13.2.1               |
-| macOS 12.3              | macosx12.3           | 13.3.1, 13.4, 13.4.1 |
-| iOS 15.0                | iphoneos15.0         | 13.1                 |
-| iOS 15.2                | iphoneos15.2         | 13.2.1               |
-| iOS 15.4                | iphoneos15.4         | 13.3.1               |
-| iOS 15.5                | iphoneos15.5         | 13.4, 13.4.1         |
-| Simulator - iOS 15.0    | iphonesimulator15.0  | 13.1                 |
-| Simulator - iOS 15.2    | iphonesimulator15.2  | 13.2.1               |
-| Simulator - iOS 15.4    | iphonesimulator15.4  | 13.3.1               |
-| Simulator - iOS 15.5    | iphonesimulator15.5  | 13.4, 13.4.1         |
-| tvOS 15.0               | appletvos15.0        | 13.1                 |
-| tvOS 15.2               | appletvos15.2        | 13.2.1               |
-| tvOS 15.4               | appletvos15.4        | 13.3.1, 13.4, 13.4.1 |
-| Simulator - tvOS 15.0   | appletvsimulator15.0 | 13.1                 |
-| Simulator - tvOS 15.2   | appletvsimulator15.2 | 13.2.1               |
-| Simulator - tvOS 15.4   | appletvsimulator15.4 | 13.3.1, 13.4, 13.4.1 |
-| watchOS 8.0             | watchos8.0           | 13.1                 |
-| watchOS 8.3             | watchos8.3           | 13.2.1               |
-| watchOS 8.5             | watchos8.5           | 13.3.1, 13.4, 13.4.1 |
-| Simulator - watchOS 8.0 | watchsimulator8.0    | 13.1                 |
-| Simulator - watchOS 8.3 | watchsimulator8.3    | 13.2.1               |
-| Simulator - watchOS 8.5 | watchsimulator8.5    | 13.3.1, 13.4, 13.4.1 |
-| DriverKit 21.0.1        | driverkit21.0.1      | 13.1                 |
-| DriverKit 21.2          | driverkit21.2        | 13.2.1               |
-| DriverKit 21.4          | driverkit21.4        | 13.3.1, 13.4, 13.4.1 |
-
-#### Installed Simulators
-| OS          | Xcode Version            | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ----------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS 15.0    | 13.1                     | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch)                                                            |
-| iOS 15.2    | 13.2.1                   | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch)                                                            |
-| iOS 15.4    | 13.3.1                   | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch) |
-| iOS 15.5    | 13.4<br>13.4.1           | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch) |
-| tvOS 15.0   | 13.1                     | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| tvOS 15.2   | 13.2.1                   | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| tvOS 15.4   | 13.3.1<br>13.4<br>13.4.1 | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| watchOS 8.0 | 13.1                     | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                    |
-| watchOS 8.3 | 13.2.1                   | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                    |
-| watchOS 8.5 | 13.3.1<br>13.4<br>13.4.1 | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                    |
-
+To use Visual Studio 2019 by default rename the app: "/
+Applications/Visual Studio.app" "/Applications/Visual Studio 2022.ap"/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
+```                                                                                                                                                                                                                                                                                                                                                    | 
 ### Android
 | Package Name               | Version                                                                                                                                                |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
 | Android Command Line Tools | 7.0                                                                                                                                                    |
 | Android Emulator           | 31.2.10                                                                                                                                                |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
@@ -294,15 +222,16 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | CMake                      | 3.18.1                                                                                                                                                 |
 | Google Play services       | 49                                                                                                                                                     |
 | Google Repository          | 58                                                                                                                                                     |
-| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                                 |
-| SDK Patch Applier v4       | 1                                                                                                                                                      |
+| NDK 31                     | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                                 |
+| SDK 31                     | 1                                                                                                                                                  |
 
 #### Environment variables
 | Name                    | Value                                                                                              |
 | ----------------------- | -------------------------------------------------------------------------------------------------- |
-| ANDROID_HOME            | /Users/runner/Library/Android/sdk                                                                  |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/23.2.8568313 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/24.0.8215888                                                 |
+| ANDROID_13_HOME         | /Users/runner/Library/Android/sdk31
+| Android​_OS_15_HOME      | /Users/runner/Library/Android/sdk31
+| ANDROID_NDK_33_HOME     | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/23.2.8568313 |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/24.0.8215888                                                 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/23.2.8568313 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                                                                  |
 
