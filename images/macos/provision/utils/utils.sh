@@ -127,7 +127,7 @@ should_build_from_source() {
 
     # No need to build from source if a bottle is disabled
     # Use the simple 'brew install' command to download a package
-    if $bottle_disabled; then
+    if [[ $bottle_disabled == "true" ]]; then
         echo "false"
         return
     fi

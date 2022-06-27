@@ -1,7 +1,7 @@
 # macOS 11.6 info
 - System Version: macOS 11.6.6 (20G624)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220614.2
+- Image Version: 20220622.7
 
 ## Installed Software
 ### Language and Runtime
@@ -11,10 +11,10 @@
 - Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
 - gcc-9 (Homebrew GCC 9.5.0) 9.5.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
-- gcc-11 (Homebrew GCC 11.3.0_1) 11.3.0 - available by `gcc-11` alias
+- gcc-11 (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gcc-11` alias
 - GNU Fortran (Homebrew GCC 9.5.0) 9.5.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.3.0) 10.3.0 - available by `gfortran-10` alias
-- GNU Fortran (Homebrew GCC 11.3.0_1) 11.3.0 - available by `gfortran-11` alias
+- GNU Fortran (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gfortran-11` alias
 - Go 1.17.11
 - julia 1.7.3
 - Kotlin 1.7.0-release-281
@@ -30,7 +30,7 @@
 - Ruby 2.7.6p219
 
 ### Package Management
-- Bundler version 2.3.15
+- Bundler version 2.3.16
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.3.7
@@ -42,7 +42,7 @@
 - Pip 22.1.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<06acb79f7>)
+- Vcpkg 2022 (build from master \<b0ea874c7>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -62,7 +62,7 @@
 - aria2 1.36.0
 - azcopy 10.15.0
 - bazel 5.2.0
-- bazelisk 1.11.0
+- bazelisk 1.12.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.83.1
 - Git 2.36.1
@@ -73,15 +73,15 @@
 - gpg (GnuPG) 2.3.6
 - helm v3.9.0+g7ceeda6
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-37
+- ImageMagick 7.1.0-39
 - jq 1.6
 - mongo v5.0.7
 - mongod v5.0.7
 - Newman 5.3.2
 - OpenSSL 1.1.1o  3 May 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1o)`
-- Packer 1.8.1
-- PostgreSQL 14.3
-- psql (PostgreSQL) 14.3
+- Packer 1.8.2
+- PostgreSQL 14.4
+- psql (PostgreSQL) 14.4
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
@@ -89,11 +89,11 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.121
+- Aliyun CLI 3.0.123
 - App Center CLI 2.10.10
-- AWS CLI 2.7.7
+- AWS CLI 2.7.9
 - AWS SAM CLI 1.52.0
-- AWS Session Manager CLI 1.2.331.0
+- AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.37.0
 - Bicep CLI 0.7.4
@@ -104,7 +104,7 @@
 - GHCup 0.1.17.8
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.9
+- SwiftFormat 0.49.10
 - Swig 4.0.2
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -115,10 +115,10 @@
 ### Browsers
 - Safari 15.5 (16613.2.7.1.9)
 - SafariDriver 15.5 (16613.2.7.1.9)
-- Google Chrome 102.0.5005.115 
-- ChromeDriver 102.0.5005.61
-- Microsoft Edge 102.0.1245.41 
-- Microsoft Edge WebDriver 102.0.1245.41
+- Google Chrome 103.0.5060.53 
+- ChromeDriver 103.0.5060.53
+- Microsoft Edge 102.0.1245.44 
+- Microsoft Edge WebDriver 102.0.1245.44
 - Mozilla Firefox 101.0.1
 - geckodriver 0.31.0
 - Selenium server 4.2.0
@@ -126,7 +126,7 @@
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/102.0.5005.61 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/103.0.5060.53 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -153,7 +153,7 @@
 
 #### Python
 - 3.7.13
-- 3.8.12
+- 3.8.13
 - 3.9.13
 - 3.10.5
 
@@ -190,7 +190,7 @@
 - Rustfmt 1.4.38-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.4
+- PowerShell 7.2.5
 
 #### PowerShell Modules
 | Module           | Version |
@@ -201,17 +201,17 @@
 | PSScriptAnalyzer | 1.20.0  |
 
 ### Web Servers
-| Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
-| ----- | -------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.54   | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.21.6_1 | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
+| ----- | ------- | ------------------------------- | ------------- | ---------- |
+| httpd | 2.4.54  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| nginx | 1.23.0  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
-| Version        | Build      | Path                                 |
-| -------------- | ---------- | ------------------------------------ |
-| 2019           | 8.10.24.14 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.0.3.21  | /Applications/Visual Studio.app      |
+| Version        | Build     | Path                                 |
+| -------------- | --------- | ------------------------------------ |
+| 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
+| 2022 (default) | 17.0.4.23 | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
