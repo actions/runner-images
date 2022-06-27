@@ -8,9 +8,9 @@ param(
     [String] [Parameter (Mandatory=$true)] $StorageAccount,
     [String] [Parameter (Mandatory=$true)] $SubscriptionId,
     [String] [Parameter (Mandatory=$true)] $TenantId,
-    [String] [Parameter (Mandatory=$true)] $VirtualNetworkName,
-    [String] [Parameter (Mandatory=$true)] $VirtualNetworkRG,
-    [String] [Parameter (Mandatory=$true)] $VirtualNetworkSubnet
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet
 )
 
 if (-not (Test-Path $TemplatePath))
