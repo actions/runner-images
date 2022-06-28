@@ -1,13 +1,13 @@
 # macOS 12.4 info
 - System Version: macOS 12.4 (21F79)
 - Kernel Version: Darwin 21.5.0
-- Image Version: 20220622.2
+- Image Version: 20220627.3
 
 ## Installed Software
 ### Language and Runtime
 - .NET SDK 3.1.101 3.1.201 3.1.302 3.1.420 5.0.102 5.0.202 5.0.302 5.0.408
 - Bash 3.2.57(1)-release
-- Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
+- Clang/LLVM 13.1.6 is available on `'$(brew --prefix llvm)/bin/clang'`
 - Clang/LLVM 13.1.6 is default
 - gcc-11 (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gcc-11` alias
 - GNU Fortran (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gfortran-11` alias
@@ -22,7 +22,7 @@
 - PHP 8.1.7
 - Python 2.7.18
 - Python 3.9.13
-- R 4.2.0
+- R 4.2.1
 - Ruby 3.0.4p208
 
 ### Package Management
@@ -38,7 +38,7 @@
 - Pip 22.1.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<5241c59aa>)
+- Vcpkg 2022 (build from master \<320059c01>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -60,10 +60,10 @@
 - bazel 5.2.0
 - bazelisk 1.12.0
 - bsdtar 3.5.1 - available by 'tar' alias
-- Curl 7.83.1
+- Curl 7.84.0
 - Git 2.36.1
 - Git LFS: 3.2.0
-- GitHub CLI: 2.12.1
+- GitHub CLI: 2.13.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.6
@@ -72,7 +72,7 @@
 - jq 1.6
 - mongo v5.0.7
 - mongod v5.0.7
-- OpenSSL 1.1.1o  3 May 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1o)`
+- OpenSSL 1.1.1p  21 Jun 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1p)`
 - Packer 1.8.2
 - PostgreSQL 14.4
 - psql (PostgreSQL) 14.4
@@ -80,12 +80,12 @@
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
 - VirtualBox 6.1.34r150636
-- yq (https://github.com/mikefarah/yq/) version 4.25.2
+- yq (https://github.com/mikefarah/yq/) version 4.25.3
 - zstd 1.5.2
 
 ### Tools
 - App Center CLI 2.10.10
-- AWS CLI 2.7.9
+- AWS CLI 2.7.11
 - AWS SAM CLI 1.52.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
@@ -98,7 +98,7 @@
 - GHCup 0.1.17.8
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.10
+- SwiftFormat 0.49.11
 - Swig 4.0.2
 - Xcode Command Line Tools 13.4.0.0.1.1651278267
 
@@ -110,17 +110,17 @@
 - Safari 15.5 (17613.2.7.1.8)
 - SafariDriver 15.5 (17613.2.7.1.8)
 - Google Chrome 103.0.5060.53 
-- ChromeDriver 102.0.5005.61
-- Microsoft Edge 102.0.1245.44 
-- Microsoft Edge WebDriver 102.0.1245.44
+- ChromeDriver 103.0.5060.53
+- Microsoft Edge 103.0.1264.37 
+- Microsoft Edge WebDriver 103.0.1264.37
 - Mozilla Firefox 101.0.1
 - geckodriver 0.31.0
-- Selenium server 4.2.0
+- Selenium server 4.3.0
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/102.0.5005.61 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/103.0.5060.53 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
