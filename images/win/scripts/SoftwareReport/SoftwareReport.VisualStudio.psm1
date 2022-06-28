@@ -75,7 +75,14 @@ function Get-VisualStudioExtensions {
             @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
         )
     }
-    
+
+    if (Test-IsWin22) {
+        # WDK
+        $wdkExtensionVersion = Get-WDKVersion
+        $wdkPackages = @(
+            @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
+        )
+    }
 
     $extensions = @(
         $vsixs
