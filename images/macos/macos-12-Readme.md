@@ -7,7 +7,7 @@
 ### Language and Runtime
 - .NET SDK 3.1.101 3.1.201 3.1.302 3.1.420 5.0.102 5.0.202 5.0.302 5.0.408
 - Bash 3.2.57(1)-release
-- Clang/LLVM 13.1.6 is available on `'$(brew --prefix llvm)/bin/clang'`
+- Clang/LLVM 13.1.6 is available on `'$(brew --prefix llvm@13)/bin/clang'`
 - Clang/LLVM 13.1.6 is default
 - gcc-11 (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gcc-11` alias
 - GNU Fortran (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gfortran-11` alias
