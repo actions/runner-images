@@ -54,9 +54,9 @@ function Get-VisualStudioExtensions {
 
     # SDK
     if (Test-IsWin19) {
-        $sdkPackageVersion = Get-SDKVersion
+        $sdkVersion = Get-SDKVersion
         $sdkPackages = @(
-            @{Package = 'Windows Software Development Kit Extension'; Version = $sdkPackageVersion}
+            @{Package = 'Windows Software Development Kit'; Version = $sdkVersion}
         )
     }
 
@@ -68,19 +68,19 @@ function Get-VisualStudioExtensions {
         )
 
         # WDK
-        $wdkPackageVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
-        $wdkExtensionVersion = Get-WDKVersion
+        $wdkVersion = Get-WDKVersion
+        $wdkExtensionVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
         $wdkPackages = @(
-            @{Package = 'Windows Driver Kit'; Version = $wdkPackageVersion}
+            @{Package = 'Windows Driver Kit'; Version = $wdkVersion}
             @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
         )
     }
 
     if (Test-IsWin22) {
         # WDK
-        $wdkExtensionVersion = Get-WDKVersion
+        $wdkVersion = Get-WDKVersion
         $wdkPackages = @(
-            @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
+            @{Package = 'Windows Driver Kit'; Version = $wdkVersion}
         )
     }
 
