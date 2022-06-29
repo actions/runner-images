@@ -11,8 +11,8 @@ source $HELPER_SCRIPTS/install.sh
 REPO_URL="https://apt.postgresql.org/pub/repos/apt/"
 
 # Preparing repo for PostgreSQL
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-echo "deb $REPO_URL $(getOSVersionLabel)-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
+wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor > /usr/share/keyrings/postgresql.gpg
+echo "deb [signed-by=/usr/share/keyrings/postgresql.gpg] $REPO_URL $(getOSVersionLabel)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 # Fetch PostgreSQL version to install from the toolset
 toolsetVersion=$(get_toolset_value '.postgresql.version')
@@ -30,6 +30,7 @@ systemctl is-active --quiet postgresql.service && systemctl stop postgresql.serv
 systemctl disable postgresql.service
 
 rm /etc/apt/sources.list.d/pgdg.list
+rm /usr/share/keyrings/postgresql.gpg
 
 echo "postgresql $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
 

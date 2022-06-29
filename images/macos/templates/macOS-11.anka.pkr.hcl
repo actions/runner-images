@@ -20,6 +20,11 @@ variable "vm_password" {
   sensitive = true
 }
 
+variable "github_api_pat" {
+  type = string
+  default = ""
+}
+
 variable "xcode_install_user" {
   type = string
   sensitive = true
@@ -32,12 +37,12 @@ variable "xcode_install_password" {
 
 variable "vcpu_count" {
   type = string
-  default = "5"
+  default = "6"
 }
 
 variable "ram_size" {
   type = string
-  default = "12G"
+  default = "24G"
 }
 
 variable "image_os" {
@@ -56,7 +61,7 @@ source "veertu-anka-vm-clone" "template" {
 
 build {
   sources = [
-    "source.veertu-anka-vm-clone.template",
+    "source.veertu-anka-vm-clone.template"
   ]
   provisioner "shell" {
     inline = [
@@ -65,7 +70,12 @@ build {
   }
   provisioner "file" {
     destination = "image-generation/"
-    sources = [ "./provision/assets", "./tests", "./software-report", "./helpers" ]
+    sources = [
+      "./provision/assets",
+      "./tests",
+      "./software-report",
+      "./helpers"
+    ]
   }
   provisioner "file" {
     destination = "image-generation/add-certificate.swift"
@@ -105,14 +115,14 @@ build {
   }
   provisioner "shell" {
     scripts = [
-      "./provision/configuration/configure-tccdb-macos11.sh",
+      "./provision/configuration/configure-tccdb-macos.sh",
       "./provision/configuration/add-network-interface-detection.sh",
       "./provision/configuration/autologin.sh",
       "./provision/configuration/disable-auto-updates.sh",
       "./provision/configuration/screensaver-off.sh",
       "./provision/configuration/ntpconf.sh",
       "./provision/configuration/max-files.sh",
-      "./provision/configuration/shell-change.sh"
+      "./provision/configuration/shell-change.sh",
     ]
     environment_vars = [
       "PASSWORD=${var.vm_password}",
@@ -149,7 +159,12 @@ build {
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
-      "./provision/core/node.sh"
+      "./provision/core/node.sh",
+      "./provision/core/commonutils.sh",
+    ]
+    environment_vars = [
+      "API_PAT=${var.github_api_pat}",
+      "USER_PASSWORD=${var.vm_password}"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
@@ -168,42 +183,47 @@ build {
   }
   provisioner "shell" {
     scripts = [
-                "./provision/core/commonutils.sh",
-                "./provision/core/llvm.sh",
-                "./provision/core/golang.sh",
-                "./provision/core/swiftlint.sh",
-                "./provision/core/openjdk.sh",
-                "./provision/core/php.sh",
-                "./provision/core/aws.sh",
-                "./provision/core/rust.sh",
-                "./provision/core/gcc.sh",
-                "./provision/core/haskell.sh",
-                "./provision/core/stack.sh",
-                "./provision/core/cocoapods.sh",
-                "./provision/core/android-toolsets.sh",
-                "./provision/core/xamarin.sh",
-                "./provision/core/vsmac.sh",
-                "./provision/core/nvm.sh",
-                "./provision/core/apache.sh",
-                "./provision/core/nginx.sh",
-                "./provision/core/postgresql.sh",
-                "./provision/core/mongodb.sh",
-                "./provision/core/audiodevice.sh",
-                "./provision/core/vcpkg.sh",
-                "./provision/core/miniconda.sh",
-                "./provision/core/safari.sh",
-                "./provision/core/chrome.sh",
-                "./provision/core/edge.sh",
-                "./provision/core/firefox.sh",
-                "./provision/core/pypy.sh",
-                "./provision/core/pipx-packages.sh",
-                "./provision/core/bicep.sh",
-                "./provision/core/graalvm.sh"
+      "./provision/core/llvm.sh",
+      "./provision/core/golang.sh",
+      "./provision/core/swiftlint.sh",
+      "./provision/core/openjdk.sh",
+      "./provision/core/php.sh",
+      "./provision/core/aws.sh",
+      "./provision/core/rust.sh",
+      "./provision/core/gcc.sh",
+      "./provision/core/haskell.sh",
+      "./provision/core/stack.sh",
+      "./provision/core/cocoapods.sh",
+      "./provision/core/android-toolsets.sh",
+      "./provision/core/xamarin.sh",
+      "./provision/core/vsmac.sh",
+      "./provision/core/nvm.sh",
+      "./provision/core/apache.sh",
+      "./provision/core/nginx.sh",
+      "./provision/core/postgresql.sh",
+      "./provision/core/mongodb.sh",
+      "./provision/core/audiodevice.sh",
+      "./provision/core/vcpkg.sh",
+      "./provision/core/miniconda.sh",
+      "./provision/core/safari.sh",
+      "./provision/core/chrome.sh",
+      "./provision/core/edge.sh",
+      "./provision/core/firefox.sh",
+      "./provision/core/pypy.sh",
+      "./provision/core/pipx-packages.sh",
+      "./provision/core/bicep.sh",
+      "./provision/core/graalvm.sh"
+    ]
+    environment_vars = [
+      "API_PAT=${var.github_api_pat}"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
-    script = "./provision/core/toolset.ps1"
+    scripts = [
+      "./provision/core/toolset.ps1",
+      "./provision/core/configure-toolset.ps1"
+    ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
   provisioner "shell" {

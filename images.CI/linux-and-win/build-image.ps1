@@ -8,9 +8,9 @@ param(
     [String] [Parameter (Mandatory=$true)] $StorageAccount,
     [String] [Parameter (Mandatory=$true)] $SubscriptionId,
     [String] [Parameter (Mandatory=$true)] $TenantId,
-    [String] [Parameter (Mandatory=$true)] $VirtualNetworkName,
-    [String] [Parameter (Mandatory=$true)] $VirtualNetworkRG,
-    [String] [Parameter (Mandatory=$true)] $VirtualNetworkSubnet
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet
 )
 
 if (-not (Test-Path $TemplatePath))
@@ -18,9 +18,6 @@ if (-not (Test-Path $TemplatePath))
     Write-Error "'-TemplatePath' parameter is not valid. You have to specify correct Template Path"
     exit 1
 }
-
-# Set Image repository path env variable, this is a workaround for Ubuntu 22.04 until this is fixed https://github.com/hashicorp/packer/issues/11733
-$env:ImageRepositoryPath = "."
 
 $Image = [io.path]::GetFileName($TemplatePath).Split(".")[0]
 $TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"

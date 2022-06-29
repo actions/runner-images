@@ -39,6 +39,7 @@ $markdown += New-MDHeader "Language and Runtime" -Level 3
 
 $runtimesList = @(
     (Get-BashVersion),
+    (Get-DashVersion),
     (Get-CPPVersions),
     (Get-FortranVersions),
     (Get-NodeVersion),

@@ -153,11 +153,14 @@
             "patcher;v4"
         ],
         "ndk": {
-            "default": "21",
+            "default": "23",
             "versions": [
-                "21", "22", "23"
+                "21", "23", "24"
             ]
         }
+    },
+    "mingw": {
+	"version": "11.2.0.07112021"
     },
     "MsysPackages": {
         "msys2": [],
@@ -239,6 +242,7 @@
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
             "Microsoft.VisualStudio.Component.Windows10SDK.20348",
             "Microsoft.VisualStudio.Component.Windows11SDK.22000",
+            "Microsoft.VisualStudio.Component.Windows11SDK.22621",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
@@ -266,7 +270,8 @@
         ],
         "vsix": [
             "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects",
-            "WixToolset.WixToolsetVisualStudio2022Extension"
+            "WixToolset.WixToolsetVisualStudio2022Extension",
+            "ProBITools.MicrosoftReportProjectsforVisualStudio2022"
         ]
     },
     "docker": {

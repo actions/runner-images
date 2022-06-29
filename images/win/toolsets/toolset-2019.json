@@ -183,11 +183,14 @@
             "patcher;v4"
         ],
         "ndk": {
-            "default": "21",
+            "default": "23",
             "versions": [
-                "21", "22", "23"
+                "21", "23", "24"
             ]
         }
+    },
+    "mingw": {
+	"version": "8.1.0"
     },
     "MsysPackages": {
         "msys2": [

@@ -78,10 +78,13 @@ get_github_package_download_url() {
     if [ -n "$VERSION" ]; then
         tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "\w*${VERSION}" | tail -1)
     else
-        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | tail -1)
-    fi    
+        tagName=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0)).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | tail -1)
+    fi
 
     downloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
-
+    if [ -z "$downloadUrl" ]; then
+        echo "Failed to parse a download url for the '${tagName}' tag using '${FILTER}' filter"
+        exit 1
+    fi
     echo $downloadUrl
 }

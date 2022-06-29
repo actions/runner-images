@@ -83,7 +83,7 @@
                 "versions": [ "8", "11", "12" ]
             }
         ],
-        "maven": "3.8.5"
+        "maven": "3.8.6"
     },
     "android": {
         "cmdline-tools": "latest",
@@ -105,9 +105,9 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "default": "21",
+            "default": "23",
             "versions": [
-                "21", "23"
+                "21", "23", "24"
             ]
         }
     },
