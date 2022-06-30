@@ -29,6 +29,11 @@ function Get-SeleniumVersion {
     return "Selenium server $fullSeleniumVersion"
 }
 
+function Get-EdgeVersion {
+    $edgeVersion = microsoft-edge --version
+    return $edgeVersion
+}
+
 function Build-BrowserWebdriversEnvironmentTable {
     return @(
         @{

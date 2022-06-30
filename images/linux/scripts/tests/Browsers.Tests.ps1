@@ -23,3 +23,9 @@ Describe "Chromium" {
         "chromium-browser --version" | Should -ReturnZeroExitCode
     }
 } 
+
+Describe "Edge" {
+    It "Edge" {
+        "microsoft-edge --version" | Should -ReturnZeroExitCode
+    }
+} 
