@@ -1,14 +1,19 @@
+| Announcements |
+|-|
+| [[macOS] Default Xcode on Monterey image will be set to Xcode 13.4.1 on July, 11](https://github.com/actions/virtual-environments/issues/5836) |
+| [[Windows, macOS] LLVM will be updated to version 14 on July, 11](https://github.com/actions/virtual-environments/issues/5835) |
+***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H1922)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220622.2
+- Image Version: 20220627.1
 
 ## Installed Software
 ### Language and Runtime
 - .NET SDK 3.1.101 3.1.201 3.1.302 3.1.420 5.0.102 5.0.202 5.0.302 5.0.408
 - Bash 3.2.57(1)-release
+- Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm@13)/bin/clang'`
 - Clang/LLVM 12.0.0 is default
-- Clang/LLVM 13.0.1 is available on `'$(brew --prefix llvm)/bin/clang'`
 - gcc-9 (Homebrew GCC 9.5.0) 9.5.0 - available by `gcc-9` alias
 - gcc-10 (Homebrew GCC 10.3.0) 10.3.0 - available by `gcc-10` alias
 - gcc-11 (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gcc-11` alias
@@ -26,7 +31,7 @@
 - PHP 8.1.7
 - Python 2.7.18
 - Python 3.9.13
-- R 4.2.0
+- R 4.2.1
 - Ruby 2.7.6p219
 
 ### Package Management
@@ -42,7 +47,7 @@
 - Pip 22.1.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<5241c59aa>)
+- Vcpkg 2022 (build from master \<feecd1fb4>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -64,11 +69,11 @@
 - bazel 5.2.0
 - bazelisk 1.12.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.83.1
+- Curl 7.84.0
 - Git 2.36.1
 - Git LFS: 3.2.0
-- GitHub CLI: 2.12.1
-- GNU parallel 20220522
+- GitHub CLI: 2.13.0
+- GNU parallel 20220622
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.6
@@ -79,7 +84,7 @@
 - mongo v5.0.7
 - mongod v5.0.7
 - Newman 5.3.2
-- OpenSSL 1.1.1o  3 May 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1o)`
+- OpenSSL 1.1.1p  21 Jun 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1p)`
 - Packer 1.8.2
 - PostgreSQL 14.4
 - psql (PostgreSQL) 14.4
@@ -88,13 +93,13 @@
 - Switchaudio-osx 1.1.0
 - Vagrant 2.2.19
 - VirtualBox 6.1.34r150636
-- yq (https://github.com/mikefarah/yq/) version 4.25.2
+- yq (https://github.com/mikefarah/yq/) version 4.25.3
 - zstd 1.5.2
 
 ### Tools
 - Aliyun CLI 3.0.123
 - App Center CLI 2.10.10
-- AWS CLI 2.7.9
+- AWS CLI 2.7.11
 - AWS SAM CLI 1.52.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
@@ -107,7 +112,7 @@
 - GHCup 0.1.17.8
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.10
+- SwiftFormat 0.49.11
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -120,11 +125,11 @@
 - SafariDriver 15.5 (15613.2.7.1.9)
 - Google Chrome 103.0.5060.53 
 - ChromeDriver 103.0.5060.53
-- Microsoft Edge 102.0.1245.44 
-- Microsoft Edge WebDriver 102.0.1245.44
+- Microsoft Edge 103.0.1264.37 
+- Microsoft Edge WebDriver 103.0.1264.37
 - Mozilla Firefox 101.0.1
 - geckodriver 0.31.0
-- Selenium server 4.2.0
+- Selenium server 4.3.0
 
 #### Environment variables
 | Name            | Value                                          |
