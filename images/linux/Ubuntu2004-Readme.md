@@ -1,11 +1,10 @@
 | Announcements |
 |-|
-| [[Ubuntu] AWS CLI on Ubuntu18 image will be upgraded to V2 on June 20](https://github.com/actions/virtual-environments/issues/5679) |
 | [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
 # Ubuntu 20.04.4 LTS
 - Linux kernel version: 5.13.0-1031-azure
-- Image Version: 20220619.1
+- Image Version: 20220626.1
 
 ## Installed Software
 ### Language and Runtime
@@ -13,7 +12,8 @@
 - Clang 10.0.0, 11.0.0, 12.0.0
 - Clang-format 10.0.0, 11.0.0, 12.0.0
 - Clang-tidy 10.0.0, 11.0.0, 12.0.0
-- Erlang 25.0.1 (Eshell 13.0.1)
+- Dash 0.5.10.2-6
+- Erlang 25.0.2 (Eshell 13.0.2)
 - Erlang rebar3 3.19.0
 - GNU C++ 9.4.0, 10.3.0
 - GNU Fortran 9.4.0, 10.3.0
@@ -26,7 +26,7 @@
 - Python 3.8.10
 - Python3 3.8.10
 - Ruby 2.7.0p0
-- Swift 5.6.1
+- Swift 5.6.2
 
 ### Package Management
 - cpan 1.64
@@ -38,7 +38,7 @@
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<b49b2bdf2>)
+- Vcpkg  (build from master \<c168ce4e7>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -50,12 +50,12 @@
 ### Project Management
 - Ant 1.10.7
 - Gradle 7.4.2
-- Lerna 5.1.4
+- Lerna 5.1.6
 - Maven 3.8.6
 - Sbt 1.6.2
 
 ### Tools
-- Ansible 2.12.6
+- Ansible 2.13.1
 - apt-fast 1.9.12
 - AzCopy 10.15.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.2.0
@@ -63,7 +63,7 @@
 - Bicep 0.7.4
 - Buildah 1.22.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.23.2
-- CodeQL Action Bundle 2.9.3
+- CodeQL Action Bundle 2.9.4
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.6.0+azure-1
@@ -76,7 +76,7 @@
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.60.2
-- HHVM (HipHop VM) 4.162.0
+- HHVM (HipHop VM) 4.163.0
 - jq 1.6
 - Kind 0.14.0
 - Kubectl 1.24.2
@@ -84,36 +84,36 @@
 - Leiningen 2.9.8
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.25.2
+- Minikube 1.26.0
 - n 8.2.0
 - Newman 5.3.2
 - nvm 0.39.1
-- OpenSSL 1.1.1f-1ubuntu2.13
-- Packer 1.8.1
-- Parcel 2.6.1
+- OpenSSL 1.1.1f-1ubuntu2.15
+- Packer 1.8.2
+- Parcel 2.6.2
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.34.1
+- Pulumi 3.35.1
 - R 4.2.0
 - Skopeo 1.5.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
 - Terraform 1.2.3
 - yamllint 1.26.3
-- yq 4.25.2
+- yq 4.25.3
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.122
-- AWS CLI 2.7.9
+- Alibaba Cloud CLI 3.0.124
+- AWS CLI 2.7.11
 - AWS CLI Session manager plugin 1.2.339.0
 - AWS SAM CLI 1.52.0
 - Azure CLI (azure-cli) 2.37.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
-- GitHub CLI 2.12.1
+- GitHub CLI 2.13.0
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 10.5.1
+- Netlify CLI 10.6.2
 - OpenShift CLI 4.10.18
 - ORAS CLI 0.12.0
 - Vercel CLI 25.1.0
@@ -160,10 +160,10 @@
 - Rustfmt 1.4.38
 
 ### Browsers and Drivers
-- Google Chrome 102.0.5005.115
-- ChromeDriver 102.0.5005.61
-- Chromium 102.0.5005.0
-- Selenium server 4.2.0
+- Google Chrome 103.0.5060.53
+- ChromeDriver 103.0.5060.53
+- Chromium 103.0.5060.0
+- Selenium server 4.3.0
 - Mozilla Firefox 101.0.1
 - Geckodriver 0.31.0
 
@@ -224,7 +224,7 @@
 - 2.7.18
 - 3.6.15
 - 3.7.13
-- 3.8.12
+- 3.8.13
 - 3.9.13
 - 3.10.5
 
@@ -243,13 +243,13 @@
 | GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.3/x64  | x64          |
 
 ### PowerShell Tools
-- PowerShell 7.2.4
+- PowerShell 7.2.5
 
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
 | MarkdownPS       | 1.9     |
-| Microsoft.Graph  | 1.9.6   |
+| Microsoft.Graph  | 1.10.0  |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.20.0  |
 
@@ -294,18 +294,18 @@
 | alpine:3.12             | sha256:c75ac27b49326926b803b9ed43bf088bc220d22556de1bc5f72d742c91398f69  | 2022-04-05 |
 | alpine:3.13             | sha256:ccf92aa53bc6c3b25be2ad0cce80baec1778f007f7e076b0ffbd1b225d0b3a9b  | 2022-04-05 |
 | alpine:3.14             | sha256:06b5d462c92fc39303e6363c65e074559f8d6b1363250027ed5053557e3398c5  | 2022-04-05 |
-| buildpack-deps:bullseye | sha256:898c2264db514062f89391a9ae58e25bfcaa94d9fed04abf789a4abb53ee2fd6  | 2022-05-28 |
-| buildpack-deps:buster   | sha256:3a56627334c11ff56aa16fa7c8922cfc17d506fe41f9155e350b1e02edb0e77d  | 2022-05-28 |
-| buildpack-deps:stretch  | sha256:a87bd91f037696862c341a73f6607cfb5d462ffcec16de34f59bab0f21b61868  | 2022-05-28 |
-| debian:10               | sha256:e5b41ae2b4cf0d04b80cd2f89724e9cfc09e334ac64f188b9808929c748af526  | 2022-05-28 |
-| debian:11               | sha256:3f1d6c17773a45c97bd8f158d665c9709d7b29ed7917ac934086ad96f92e4510  | 2022-05-28 |
-| debian:9                | sha256:22cb208880101b9a665332a9360ba4c5c021e3ed2f791638369e9a9418dac981  | 2022-05-28 |
+| buildpack-deps:bullseye | sha256:7a78a5f716dd32b0eb89876f8c5cf5e443781a44b7fe12619e897bad9a642e14  | 2022-06-23 |
+| buildpack-deps:buster   | sha256:7f9a157d07e0a81a4e3130ce1490142b208155e09d1c3459b4213a5779e87546  | 2022-06-23 |
+| buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
+| debian:10               | sha256:9740683722a2a8aa497a5b23e4bc229fcf8b8991e26d3935540c7704ff24012e  | 2022-06-23 |
+| debian:11               | sha256:859ea45db307402ee024b153c7a63ad4888eb4751921abbef68679fc73c4c739  | 2022-06-23 |
+| debian:9                | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest    | sha256:0dc312b04eac1b44cd2cad566deb1e886c753109208affbbec8384f381ff7f38  | 2022-05-06 |
 | node:12                 | sha256:01627afeb110b3054ba4a1405541ca095c8bfca1cb6f2be9479c767a2711879e  | 2022-04-20 |
 | node:12-alpine          | sha256:d4b15b3d48f42059a15bd659be60afe21762aae9d6cbea6f124440895c27db68  | 2022-04-11 |
-| node:14                 | sha256:3324c688c0e98888f8938509f35356acf69a3e1f9f385d85f7e6086b137c17e3  | 2022-05-28 |
+| node:14                 | sha256:ce156f9b2e9dbe73139cf0619a71188960e6c9eaba0ff832a5dfa0febf9eee27  | 2022-06-23 |
 | node:14-alpine          | sha256:6b87d16e4ce20cacd6f1f662f66c821e4c3c41c2903daeace52d818ec3f4bbdd  | 2022-06-07 |
-| node:16                 | sha256:6155ff062c403e99c1da7c317710c5c838c1e060f526d98baea6ee921ca61729  | 2022-06-06 |
+| node:16                 | sha256:a13d2d2aec7f0dae18a52ca4d38b592e45a45cc4456ffab82e5ff10d8a53d042  | 2022-06-23 |
 | node:16-alpine          | sha256:c785e617c8d7015190c0d41af52cc69be8a16e3d9eb7cb21f0bb58bcfca14d6b  | 2022-06-07 |
 | ubuntu:16.04            | sha256:20858ebbc96215d6c3c574f781133ebffdc7c18d98af4f294cc4c04871a6fe61  | 2021-08-31 |
 | ubuntu:18.04            | sha256:478caf1bec1afd54a58435ec681c8755883b7eb843a8630091890130b15a79af  | 2022-06-06 |

@@ -19,11 +19,7 @@ buildVSMacDownloadUrl() {
 }
 
 buildMonoDownloadUrl() {
-if [[ $1 -eq 6.12.0.182 ]]; then 
-    echo "https://download.mono-project.com/archive/6.12.0/macos-10-universal/MonoFramework-MDK-${1}.macos10.xamarin.universal.pkg"
-else
-    echo "https://dl.xamarin.com/MonoFrameworkMDK/Macx86/MonoFramework-MDK-${1}.macos10.xamarin.universal.pkg"    
-fi
+    echo "https://dl.xamarin.com/MonoFrameworkMDK/Macx86/MonoFramework-MDK-${1}.macos10.xamarin.universal.pkg"
 }
 
 buildXamariniIOSDownloadUrl() {
