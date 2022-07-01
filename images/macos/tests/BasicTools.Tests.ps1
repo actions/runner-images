@@ -138,7 +138,7 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsHigherThanCatalina) {
+Describe "vagrant" -Skip:($os.IsBigSur) {
     It "vagrant" {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
