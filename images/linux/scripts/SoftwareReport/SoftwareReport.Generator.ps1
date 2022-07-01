@@ -231,7 +231,8 @@ $browsersAndDriversList = @(
     (Get-ChromeVersion),
     (Get-ChromeDriverVersion),
     (Get-ChromiumVersion),
-    (Get-SeleniumVersion)
+    (Get-SeleniumVersion),
+    (Get-EdgeVersion)
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
