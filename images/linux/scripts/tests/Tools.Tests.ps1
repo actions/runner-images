@@ -422,3 +422,9 @@ Describe "Kotlin" {
         "kotlin-dce-js -version"| Should -ReturnZeroExitCode
     }
 }
+
+Describe "Tfsec" {
+    It "tfsec" {
+        "tfsec --version" | Should -ReturnZeroExitCode
+    }
+}

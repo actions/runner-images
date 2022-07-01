@@ -303,3 +303,7 @@ function Get-SwigVersion {
     $swigVersion = $Matches.Version
     return "Swig $swigVersion"
 }
+
+function Get-TfsecVersion {
+    return "Tfsec $(tfsec --version).replace('v','')"
+}

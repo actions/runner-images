@@ -306,3 +306,7 @@ function Get-YqVersion {
     $yqVersion = ($(yq -V) -Split " ")[-1]
     return "yq $yqVersion"
 }
+
+function Get-TfsecVersion {
+    return "Tfsec $(tfsec --version).replace('v','')"
+}
