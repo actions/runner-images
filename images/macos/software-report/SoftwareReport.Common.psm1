@@ -96,7 +96,8 @@ function Get-FortranVersion {
 }
 
 function Get-ClangLLVMVersion {
-    $locationsList = @("$((Get-Command clang).Source)", '$(brew --prefix llvm)/bin/clang')
+    $toolsetVersion = '$(brew --prefix llvm@{0})/bin/clang' -f (Get-ToolsetValue 'llvm.version')
+    $locationsList = @("$((Get-Command clang).Source)", $toolsetVersion)
     $locationsList | Foreach-Object {
         (Run-Command "${_} --version" | Out-String) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
         $version = $Matches.version
