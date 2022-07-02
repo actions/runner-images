@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 768
-- Image Version: 20220619.1
+- Image Version: 20220626.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -32,7 +32,7 @@
 - pip 22.1.2 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<b49b2bdf2>)
+- Vcpkg (build from master \<c168ce4e7>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -47,7 +47,7 @@
 - sbt 1.6.2
 
 ### Tools
-- 7zip 21.07
+- 7zip 22.00
 - aria2 1.36.0
 - azcopy 10.15.0
 - Bazel 5.2.0
@@ -55,10 +55,10 @@
 - Bicep 0.7.4
 - Cabal 3.6.2.0
 - CMake 3.23.2
-- CodeQL Action Bundle 2.9.3
+- CodeQL Action Bundle 2.9.4
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.6.0
+- Docker Compose v2 2.6.1
 - Docker-wincred 0.6.4
 - ghc 9.2.3
 - Git 2.36.1.windows.1
@@ -72,9 +72,9 @@
 - Newman 5.3.2
 - NSIS v3.08
 - OpenSSL 1.1.1
-- Packer 1.8.0
-- Pulumi v3.34.1
-- R 4.2.0
+- Packer 1.8.1
+- Pulumi v3.35.1
+- R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.7.5
 - Subversion (SVN) 1.14.2
@@ -86,13 +86,13 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.122
-- AWS CLI 2.7.9
+- Alibaba Cloud CLI 3.0.124
+- AWS CLI 2.7.11
 - AWS SAM CLI 1.52.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.37.0
 - Azure DevOps CLI extension 0.25.0
-- GitHub CLI 2.12.1
+- GitHub CLI 2.13.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -110,14 +110,14 @@
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 102.0.5005.115
-- Chrome Driver 102.0.5005.61
-- Microsoft Edge 102.0.1245.44
-- Microsoft Edge Driver 102.0.1245.44
+- Google Chrome 103.0.5060.53
+- Chrome Driver 103.0.5060.53
+- Microsoft Edge 103.0.1264.37
+- Microsoft Edge Driver 103.0.1264.37
 - Mozilla Firefox 101.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
-- Selenium server 4.2.0
+- Selenium server 4.3.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -218,12 +218,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.53  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.21.6  | C:\tools\nginx-1.21.6\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.23.0  | C:\tools\nginx-1.23.0\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
 | ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.2.32602.215 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.2.32616.157 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version        |
@@ -453,12 +453,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2012 Minimum Runtime    | x64          | 11.0.61030  |
 | Microsoft Visual C++ 2013 Additional Runtime | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
-| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.32.31326 |
-| Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.32.31326 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.32.31326 |
-| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.32.31326 |
-| Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.32.31326 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.32.31326 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.32.31332 |
+| Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.32.31332 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.32.31332 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.32.31332 |
+| Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.32.31332 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.32.31332 |
 
 #### Installed Windows SDKs
 `Location C:\Program Files (x86)\Windows Kits\10\Extension SDKs\WindowsDesktop`
@@ -491,7 +491,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.5.107+6463ef6068
 
 ### PowerShell Tools
-- PowerShell 7.2.4
+- PowerShell 7.2.5
 
 #### Azure Powershell Modules
 | Module  | Version                                                                         | Path                           |
@@ -508,10 +508,10 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.108          |
+| AWSPowerShell      | 4.1.113          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.9.6            |
+| Microsoft.Graph    | 1.10.0           |
 | Pester             | 3.4.0<br>5.3.3   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
