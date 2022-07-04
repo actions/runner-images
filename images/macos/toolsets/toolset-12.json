@@ -161,6 +161,7 @@
         ],
         "cask_packages": [
             "julia",
+            "vagrant",
             "virtualbox"
         ]
     },
