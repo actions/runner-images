@@ -5,7 +5,7 @@
 
 echo "Enabling automatic GUI login for the '$USERNAME' user.."
 
-python $HOME/bootstrap/kcpassword.py "$PASSWORD"
+python3 $HOME/bootstrap/kcpassword.py "$PASSWORD"
 
 /usr/bin/defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser "$USERNAME"
 

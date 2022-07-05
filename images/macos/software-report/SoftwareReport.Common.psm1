@@ -64,7 +64,7 @@ function Get-Cargooutdated {
 }
 
 function Get-Cargoaudit {
-    $cargoAuditVersion = Run-Command "cargo audit --version" | Take-Part -Part 1
+    $cargoAuditVersion = Run-Command "cargo-audit --version" | Take-Part -Part 1
     return "Cargo-audit $cargoAuditVersion"
 }
 
@@ -96,7 +96,8 @@ function Get-FortranVersion {
 }
 
 function Get-ClangLLVMVersion {
-    $locationsList = @("$((Get-Command clang).Source)", '$(brew --prefix llvm)/bin/clang')
+    $toolsetVersion = '$(brew --prefix llvm@{0})/bin/clang' -f (Get-ToolsetValue 'llvm.version')
+    $locationsList = @("$((Get-Command clang).Source)", $toolsetVersion)
     $locationsList | Foreach-Object {
         (Run-Command "${_} --version" | Out-String) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
         $version = $Matches.version
@@ -266,8 +267,8 @@ function Get-CurlVersion {
 }
 
 function Get-GitVersion {
-    $gitVersion = Run-Command "git --version" | Take-Part -Part 2
-    return "Git: $gitVersion"
+    $gitVersion = Run-Command "git --version" | Take-Part -Part -1
+    return "Git $gitVersion"
 }
 
 function Get-GitLFSVersion {
@@ -389,7 +390,7 @@ function Get-NewmanVersion {
 
 function Get-VirtualBoxVersion {
     $virtualBox = Run-Command "vboxmanage -v"
-    return "virtualbox $virtualBox"
+    return "VirtualBox $virtualBox"
 }
 
 function Get-VagrantVersion {
@@ -422,6 +423,11 @@ function Get-AzureCLIVersion {
     return "Azure CLI $azureCLIVersion"
 }
 
+function Get-AzureDevopsVersion {
+    $azdevopsVersion = (az version | ConvertFrom-Json).extensions.'azure-devops'
+    return "Azure CLI (azure-devops) $azdevopsVersion"
+}
+
 function Get-AWSCLIVersion {
     $awsVersion = Run-Command "aws --version" | Take-Part -Part 0 | Take-Part -Delimiter "/" -Part 1
     return "AWS CLI $awsVersion"
@@ -443,7 +449,7 @@ function Get-AliyunCLIVersion {
 }
 
 function Get-GHCupVersion {
-    $ghcUpVersion = Run-Command "ghcup --version" | Take-Part -Part 5
+    $ghcUpVersion = (Run-Command "ghcup --version" | Take-Part -Part 5).Replace('v','')
     return "GHCup $ghcUpVersion"
 }
 
@@ -532,6 +538,21 @@ function Get-LibXextVersion {
     return "libXext $libXextVersion"
 }
 
+function Get-TclTkVersion {
+    $tcltkVersion = (brew info tcl-tk)[0] | Take-Part -Part 2
+    return "Tcl/Tk $tcltkVersion"
+}
+
+function Get-YqVersion {
+    $yqVersion = Run-Command "yq --version"
+    return "$yqVersion"
+}
+
+function Get-ImageMagickVersion {
+    $imagemagickVersion = Run-Command "magick --version" | Select-Object -First 1 | Take-Part -Part 1,2
+    return "$imagemagickVersion"
+}
+
 function Build-PackageManagementEnvironmentTable {
     return @(
         @{
@@ -547,5 +568,20 @@ function Build-PackageManagementEnvironmentTable {
             "Name" = $_.Name
             "Value" = $_.Value
         }
+    }
+}
+
+function Get-GraalVMVersion {
+    $version = & "$env:GRAALVM_11_ROOT\java" --version | Select-String -Pattern "GraalVM" | Take-Part -Part 5,6
+    return $version
+}
+
+function Build-GraalVMTable {
+    $version = Get-GraalVMVersion
+    $envVariables = "GRAALVM_11_ROOT"
+
+    return [PSCustomObject] @{
+        "Version" = $version
+        "Environment variables" = $envVariables
     }
 }

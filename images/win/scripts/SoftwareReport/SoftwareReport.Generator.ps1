@@ -94,6 +94,7 @@ $toolsList = @(
     (Get-CodeQLBundleVersion),
     (Get-DockerVersion),
     (Get-DockerComposeVersion),
+    (Get-DockerComposeVersionV2),
     (Get-DockerWincredVersion),
     (Get-GHCVersion),
     (Get-GitVersion),
@@ -244,6 +245,12 @@ $markdown += New-MDHeader "Microsoft Visual C++:" -Level 4
 $markdown += Get-VisualCPPComponents | New-MDTable
 $markdown += New-MDNewLine
 
+$markdown += New-MDHeader "Installed Windows SDKs" -Level 4
+$sdk = Get-WindowsSDKs
+$markdown += "``Location $($sdk.Path)``"
+$markdown += New-MDNewLine
+$markdown += New-MDList -Lines $sdk.Versions -Style Unordered
+
 $markdown += New-MDHeader ".NET Core SDK" -Level 3
 $sdk = Get-DotnetSdks
 $markdown += "``Location $($sdk.Path)``"
@@ -260,12 +267,15 @@ Get-DotnetRuntimes | Foreach-Object {
 }
 
 $markdown += New-MDHeader ".NET Framework" -Level 3
-$frameworks = Get-DotnetFrameworkTools
 $markdown += "``Type: Developer Pack``"
 $markdown += New-MDNewLine
-$markdown += "``Location $($frameworks.Path)``"
-$markdown += New-MDNewLine
-$markdown += New-MDList -Lines $frameworks.Versions -Style Unordered
+Get-DotnetFrameworkTools | Foreach-Object {
+    $path = $_.Path
+    $versions = $_.Versions
+    $markdown += "``Location: $path``"
+    $markdown += New-MDNewLine
+    $markdown += New-MDList -Lines $versions -Style Unordered
+}
 
 $markdown += New-MDHeader ".NET tools" -Level 3
 $tools = Get-DotnetTools

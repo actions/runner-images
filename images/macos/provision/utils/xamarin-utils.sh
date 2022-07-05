@@ -19,7 +19,7 @@ buildVSMacDownloadUrl() {
 }
 
 buildMonoDownloadUrl() {
-  echo "https://dl.xamarin.com/MonoFrameworkMDK/Macx86/MonoFramework-MDK-${1}.macos10.xamarin.universal.pkg"
+    echo "https://dl.xamarin.com/MonoFrameworkMDK/Macx86/MonoFramework-MDK-${1}.macos10.xamarin.universal.pkg"
 }
 
 buildXamariniIOSDownloadUrl() {

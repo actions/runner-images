@@ -50,7 +50,7 @@ Describe "Java" {
       "`"$javaPath`" -version" | Should -MatchCommandOutput ([regex]::Escape("openjdk version `"${Version}."))
     }
 
-    It "Java Adopt <Version>" -TestCases $adoptJdkVersions {
+    It "Java Adopt <Version>" -TestCases $adoptJdkVersions -Skip:(Test-IsUbuntu22) {
         $javaPath = Join-Path (Get-ChildItem ${env:AGENT_TOOLSDIRECTORY}\Java_Adopt_jdk\${Version}*) "x64\bin\java"
         "`"$javaPath`" -version" | Should -ReturnZeroExitCode
 

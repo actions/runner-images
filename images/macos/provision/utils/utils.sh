@@ -71,6 +71,14 @@ is_Less_Monterey() {
     fi
 }
 
+is_Veertu() {
+    if [ -d "/Library/Application Support/Veertu" ]; then
+        true
+    else
+        false
+    fi
+}
+
 get_toolset_path() {
     echo "$HOME/image-generation/toolset.json"
 }
@@ -119,7 +127,7 @@ should_build_from_source() {
 
     # No need to build from source if a bottle is disabled
     # Use the simple 'brew install' command to download a package
-    if $bottle_disabled; then
+    if [[ $bottle_disabled == "true" ]]; then
         echo "false"
         return
     fi
@@ -170,4 +178,34 @@ configure_user_tccdb () {
     local dbPath="$HOME/Library/Application Support/com.apple.TCC/TCC.db"
     local sqlQuery="INSERT OR IGNORE INTO access VALUES($values);"
     sqlite3 "$dbPath" "$sqlQuery"
+}
+
+get_github_package_download_url() {
+    local REPO_ORG=$1
+    local FILTER=$2
+    local VERSION=$3
+    local API_PAT=$4
+    local SEARCH_IN_COUNT="100"
+
+    [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
+
+    json=$(curl "${authString[@]}" -s "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
+
+    if [[ "$VERSION" == "latest" ]]; then
+        tagName=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0)).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | tail -1)
+    else
+        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | egrep "\w*${VERSION}" | tail -1)
+    fi
+
+    downloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
+    if [ -z "$downloadUrl" ]; then
+        echo "Failed to parse a download url for the '${tagName}' tag using '${FILTER}' filter"
+        exit 1
+    fi
+    echo $downloadUrl
+}
+
+# Close all finder windows because they can interfere with UI tests
+close_finder_window() {
+    osascript -e 'tell application "Finder" to close windows'
 }

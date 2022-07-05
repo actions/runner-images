@@ -17,6 +17,7 @@ Export-ModuleMember -Function @(
     'Set-DefaultPath'
     'Add-MachinePathItem'
     'Add-DefaultPathItem'
+    'Add-DefaultItem'
     'Get-SystemVariable'
     'Get-DefaultVariable'
     'Set-SystemVariable'
@@ -53,4 +54,5 @@ Export-ModuleMember -Function @(
     'Get-VisualStudioInstance'
     'Get-VisualStudioComponents'
     'Get-WindowsUpdatesHistory'
+    'New-ItemPath'
 )

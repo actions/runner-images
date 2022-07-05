@@ -24,7 +24,7 @@ Describe "Dotnet SDK and tools" {
     }
 
     Context "Dotnet tools" {
-        $env:Path += ";C:\Users\Default.dotnet\tools"
+        $env:Path += ";C:\Users\Default\.dotnet\tools"
         $testCases = $dotnetTools | ForEach-Object { @{ ToolName = $_.name; TestInstance = $_.test }}
 
         It "<ToolName> is available" -TestCases $testCases {

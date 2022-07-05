@@ -1,28 +1,68 @@
 {
     "xcode": {
-        "default": "13.2.1",
+        "default": "13.3.1",
         "versions": [
-            { "link": "13.2.1", "version": "13.2.1" },
-            { "link": "13.2", "version": "13.2.0" },
+            { "link": "13.4.1", "version": "13.4.1" },
+            { "link": "13.4", "version": "13.4.0" },
+            { "link": "13.3.1", "version": "13.3.1", "symlinks": ["13.3"] },
+            { "link": "13.2.1", "version": "13.2.1", "symlinks": ["13.2"] },
             { "link": "13.1", "version": "13.1.0" }
         ]
     },
     "xamarin": {
-        "vsmac": "latest",
+        "vsmac": {
+            "default": "2022",
+            "versions": [ "2019", "2022" ]
+        },
         "mono-versions": [
-            "6.12.0.162"
+            "6.12.0.182"
         ],
         "ios-versions": [
-            "15.4.0.0", "15.2.0.17", "15.0.0.6"
+            "15.10.0.5", "15.8.0.3", "15.6.0.3", "15.4.0.0", "15.2.0.17", "15.0.0.6"
         ],
         "mac-versions": [
-            "8.4.0.0", "8.2.0.17", "7.14.0.27"
+            "8.10.0.5", "8.8.0.3", "8.6.0.3", "8.4.0.0", "8.2.0.17", "7.14.0.27"
         ],
         "android-versions": [
-            "12.0.0.3", "11.3.0.4"
+            "12.2.8.3", "12.1.0.2", "12.0.0.3", "11.3.0.4"
         ],
-        "bundle-default": "6_12_12",
+        "bundle-default": "6_12_16",
         "bundles": [
+            {
+                "symlink": "6_12_17",
+                "mono":"6.12",
+                "ios": "15.10",
+                "mac": "8.10",
+                "android": "12.2"
+            },
+            {
+                "symlink": "6_12_16",
+                "mono":"6.12",
+                "ios": "15.8",
+                "mac": "8.8",
+                "android": "12.2"
+            },
+            {
+                "symlink": "6_12_15",
+                "mono":"6.12",
+                "ios": "15.8",
+                "mac": "8.8",
+                "android": "12.1"
+            },
+            {
+                "symlink": "6_12_14",
+                "mono":"6.12",
+                "ios": "15.8",
+                "mac": "8.8",
+                "android": "12.0"
+            },
+            {
+                "symlink": "6_12_13",
+                "mono":"6.12",
+                "ios": "15.6",
+                "mac": "8.6",
+                "android": "12.0"
+            },
             {
                 "symlink": "6_12_12",
                 "mono":"6.12",
@@ -61,6 +101,7 @@
         ]
     },
     "android": {
+        "cmdline-tools": "latest",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra-list": [
@@ -71,9 +112,9 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "default": "21",
+            "default": "23",
             "versions": [
-                "21", "22", "23"
+                "21", "23", "24"
             ]
         }
     },
@@ -84,7 +125,9 @@
         { "name": "PSScriptAnalyzer" }
     ],
     "npm": {
-        "global_packages": []
+        "global_packages": [
+            { "name": "appcenter-cli", "test": "appcenter --version" }
+        ]
     },
     "brew": {
         "common_packages": [
@@ -104,15 +147,22 @@
             "perl",
             "sbt",
             "subversion",
+            "swiftformat",
             "swig",
             "zstd",
             "gmp",
             "zlib",
             "libxext",
-            "libxft"
+            "libxft",
+            "tcl-tk",
+            "r",
+            "yq",
+            "imagemagick"
         ],
         "cask_packages": [
-            "julia"
+            "julia",
+            "vagrant",
+            "virtualbox"
         ]
     },
     "gcc": {
@@ -140,7 +190,8 @@
             "versions": [
                 "2.7",
                 "3.7",
-                "3.8"
+                "3.8",
+                "3.9"
             ]
         },
         {
@@ -161,9 +212,9 @@
             "platform" : "darwin",
             "variable_template" : "GOROOT_{0}_{1}_X64",
             "versions": [
-                "1.15.*",
                 "1.16.*",
-                "1.17.*"
+                "1.17.*",
+                "1.18.*"
             ]
         },
         {
@@ -171,7 +222,8 @@
             "arch": "x64",
             "versions": [
                 "2.7.*",
-                "3.0.*"
+                "3.0.*",
+                "3.1.*"
             ]
         }
     ],

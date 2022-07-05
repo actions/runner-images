@@ -31,7 +31,7 @@ function Get-BicepVersion {
 }
 
 function Get-RVersion {
-    ($(cmd /c "Rscript --version 2>&1")  | Out-String) -match  "R scripting front-end version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    ($(cmd /c "Rscript --version 2>&1") | Out-String) -match "Rscript .* version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $rVersion = $Matches.Version
     return "R $rVersion"
 }
@@ -56,9 +56,13 @@ function Get-DockerVersion {
 }
 
 function Get-DockerComposeVersion {
-    $(docker-compose --version) -match "docker-compose version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $dockerComposeVersion = $Matches.Version
-    return "Docker-compose $dockerComposeVersion"
+    $dockerComposeVersion = docker-compose version --short
+    return "Docker Compose v1 $dockerComposeVersion"
+}
+
+function Get-DockerComposeVersionV2 {
+    $dockerComposeVersion = docker compose version --short
+    return "Docker Compose v2 $dockerComposeVersion"
 }
 
 function Get-DockerWincredVersion {
@@ -67,8 +71,7 @@ function Get-DockerWincredVersion {
 }
 
 function Get-GitVersion {
-    $(git version) -match "git version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $gitVersion = $Matches.Version
+    $gitVersion = git --version | Take-Part -Part -1
     return "Git $gitVersion"
 }
 
@@ -88,8 +91,7 @@ function Get-JQVersion {
 }
 
 function Get-KubectlVersion {
-    $(kubectl version --client=true --short=true) -match "Client Version: v(?<version>.+)" | Out-Null
-    $kubectlVersion = $Matches.Version
+    $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v','')
     return "Kubectl $kubectlVersion"
 }
 
@@ -100,7 +102,7 @@ function Get-KindVersion {
 }
 
 function Get-MinGWVersion {
-    (gcc --version | Select-String -Pattern "MinGW-W64 project") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    (gcc --version | Select-String -Pattern "MinGW-W64") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $mingwVersion = $Matches.Version
     return "Mingw-w64 $mingwVersion"
 }
@@ -292,7 +294,7 @@ function Get-VisualCPPComponents {
 }
 
 function Get-DacFxVersion {
-    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\150\DAC\bin\sqlpackage.exe" /version
+    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\160\DAC\bin\sqlpackage.exe" /version
     return "DacFx $dacfxversion"
 }
 

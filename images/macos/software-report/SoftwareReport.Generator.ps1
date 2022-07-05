@@ -48,13 +48,8 @@ $languageAndRuntimeList = @(
     (Get-ClangLLVMVersion)
     (Get-GccVersion)
     (Get-FortranVersion)
+    (Get-RVersion)
 )
-
-if ($os.IsCatalina) {
-    $languageAndRuntimeList += @(
-        (Get-RVersion)
-    )
-}
 
 # To sort GCC and Gfortran correctly, we need to use natural sort https://gist.github.com/markwragg/e2a9dc05f3464103d6998298fb575d4e#file-sort-natural-ps1
 $toNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
@@ -68,6 +63,7 @@ $packageManagementList = @(
     (Get-PipxVersion),
     (Get-BundlerVersion),
     (Get-CocoaPodsVersion),
+    (Get-CondaVersion),
     (Get-HomebrewVersion),
     (Get-NPMVersion),
     (Get-YarnVersion),
@@ -78,18 +74,11 @@ $packageManagementList = @(
     (Get-VcpkgVersion)
 )
 
-if ($os.IsLessThanMonterey) {
-    $packageManagementList += @(
-        (Get-CondaVersion)
-    )
-}
-
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
-if ($os.IsLessThanMonterey) {
-    $markdown += New-MDHeader "Environment variables" -Level 4
-    $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
-    $markdown += New-MDNewLine
-}
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
+
 # Project Management
 $markdown += New-MDHeader "Project Management" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
@@ -127,7 +116,9 @@ $utilitiesList = @(
     (Get-GnuTarVersion),
     (Get-GPGVersion),
     (Get-SwitchAudioOsxVersion),
-    (Get-SoxVersion)
+    (Get-SoxVersion),
+    (Get-YqVersion),
+    (Get-ImageMagickVersion)
 )
 
 if ($os.IsLessThanMonterey) {
@@ -144,9 +135,14 @@ if ($os.IsLessThanMonterey) {
 
 if ($os.IsCatalina) {
     $utilitiesList += @(
-        (Get-VirtualBoxVersion),
-        (Get-VagrantVersion),
         (Get-ParallelVersion)
+    )
+}
+
+if (-not $os.IsBigSur) {
+    $utilitiesList += @(
+        (Get-VagrantVersion),
+        (Get-VirtualBoxVersion)
     )
 }
 
@@ -160,6 +156,7 @@ $toolsList = @(
     (Get-CmakeVersion),
     (Get-AppCenterCLIVersion),
     (Get-AzureCLIVersion),
+    (Get-AzureDevopsVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMCLIVersion),
     (Get-AWSSessionManagerCLIVersion)
@@ -178,14 +175,9 @@ $toolsList += @(
     (Get-GHCupVersion),
     (Get-GHCVersion),
     (Get-CabalVersion),
-    (Get-StackVersion)
+    (Get-StackVersion),
+    (Get-SwiftFormatVersion)
 )
-
-if($os.IsLessThanMonterey) {
-    $toolsList += @(
-        (Get-SwiftFormatVersion)
-    )
-}
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 
@@ -206,6 +198,10 @@ $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Java" -Level 3
 $markdown += Get-JavaVersions | New-MDTable
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "GraalVM" -Level 3
+$markdown += Build-GraalVMTable | New-MDTable
 $markdown += New-MDNewLine
 
 # Toolcache
@@ -246,7 +242,19 @@ $markdown += Build-WebServersSection
 # Xamarin section
 $markdown += New-MDHeader "Xamarin" -Level 3
 $markdown += New-MDHeader "Visual Studio for Mac" -Level 4
-$markdown += New-MDList -Lines @(Get-VSMacVersion) -Style Unordered
+$markdown += Build-VSMacTable | New-MDTable
+$markdown += New-MDNewLine
+if (-not $os.IsCatalina) {
+$markdown += New-MDHeader "Notes:" -Level 5
+$reportVS = @'
+```
+To use Visual Studio 2019 by default rename the app:
+mv "/Applications/Visual Studio.app" "/Applications/Visual Studio 2022.app"
+mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
+```
+'@
+$markdown += New-MDParagraph -Lines $reportVS
+}
 
 $markdown += New-MDHeader "Xamarin bundles" -Level 4
 $markdown += Build-XamarinTable | New-MDTable
@@ -289,7 +297,8 @@ $markdown += New-MDHeader "Miscellaneous" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-ZlibVersion),
     (Get-LibXextVersion),
-    (Get-LibXftVersion)
+    (Get-LibXftVersion),
+    (Get-TclTkVersion)
     ) | Sort-Object
 )
 

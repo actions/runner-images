@@ -28,17 +28,22 @@ body:
       required: true
   - type: checkboxes
     attributes:
+      label: Platforms affected
+      options:
+        - label: Azure DevOps
+        - label: GitHub Actions
+  - type: checkboxes
+    attributes:
       label: Virtual environments affected
       options:
         - label: Ubuntu 18.04
         - label: Ubuntu 20.04
+        - label: Ubuntu 22.04
         - label: macOS 10.15
         - label: macOS 11
-        - label: Windows Server 2016
+        - label: macOS 12
         - label: Windows Server 2019
         - label: Windows Server 2022
-    validations:
-      required: true
   - type: textarea
     attributes:
       label: Mitigation ways

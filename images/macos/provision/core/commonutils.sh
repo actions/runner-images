@@ -16,8 +16,17 @@ for package in $cask_packages; do
     brew install --cask $package
 done
 
+# Execute AppleScript to change security preferences for virtualbox
+# System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
+if is_Monterey; then
+    osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
+fi
+
 # Invoke bazel to download bazel version via bazelisk
 bazel
+
+# Install Azure DevOps extension for Azure Command Line Interface
+az extension add -n azure-devops
 
 # Workaround https://github.com/actions/virtual-environments/issues/4931
 # by making Tcl/Tk paths the same on macOS 10.15 and macOS 11
