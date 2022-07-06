@@ -111,7 +111,7 @@ build {
       "./provision/core/xcode-clt.sh",
       "./provision/core/homebrew.sh"
     ]
-     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
     scripts = [
@@ -241,7 +241,7 @@ build {
   provisioner "file" {
     destination = "../image-output/"
     direction = "download"
-    source = "./image-generation/output/*"
+    source = "./image-generation/output/"
   }
   provisioner "shell" {
     scripts = [
