@@ -204,6 +204,7 @@
                 "{{template_dir}}/scripts/installers/dotnetcore-sdk.sh",
                 "{{template_dir}}/scripts/installers/erlang.sh",
                 "{{template_dir}}/scripts/installers/firefox.sh",
+                "{{template_dir}}/scripts/installers/microsoft-edge.sh",
                 "{{template_dir}}/scripts/installers/gcc.sh",
                 "{{template_dir}}/scripts/installers/gfortran.sh",
                 "{{template_dir}}/scripts/installers/git.sh",

@@ -23,6 +23,12 @@ function Get-ChromiumVersion {
     return $chromiumVersion
 }
 
+function Get-EdgeVersion {
+    $edgeVersion = (microsoft-edge --version).trim()
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "microsoft-edge"
+    return "$edgeVersion (apt source repository: $aptSourceRepo)"
+}
+
 function Get-SeleniumVersion {
     $seleniumBinaryName = Get-ToolsetValue "selenium.binary_name"
     $fullSeleniumVersion = (Get-ChildItem "/usr/share/java/${seleniumBinaryName}-*").Name -replace "${seleniumBinaryName}-"
