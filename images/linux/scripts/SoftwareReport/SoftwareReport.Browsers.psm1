@@ -30,7 +30,7 @@ function Get-EdgeVersion {
 }
 
 function Get-EdgeDriverVersion {
-    $edgeDriverVersion = msedgedriver --version | Take-OutputPart -Part 1,2,3
+    $edgeDriverVersion = msedgedriver --version | Take-OutputPart -Part 0,1,2,3
     return $edgeDriverVersion
 }
 
