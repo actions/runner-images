@@ -22,6 +22,10 @@ Describe "Edge" {
     It "Edge" {
         "microsoft-edge --version" | Should -ReturnZeroExitCode
     }
+
+    It "Edge Driver" {
+        "msedgedriver --version" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "Chromium" {

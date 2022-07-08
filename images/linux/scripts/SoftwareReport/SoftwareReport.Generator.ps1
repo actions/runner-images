@@ -232,6 +232,7 @@ $browsersAndDriversList = @(
     (Get-ChromeDriverVersion),
     (Get-ChromiumVersion),
     (Get-EdgeVersion),
+    (Get-EdgeDriverVersion),
     (Get-SeleniumVersion)
 )
 
