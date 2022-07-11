@@ -282,12 +282,12 @@ function Get-VisualCPPComponents {
         "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
     )
     $vcpp = Get-ItemProperty -Path $regKeys | Where-Object DisplayName -like "Microsoft Visual C++*"
-    $vcpp | Sort-Object Name, Version | ForEach-Object {
-        $isMatch = $_.Name -match "^(?<Name>Microsoft Visual C\+\+ \d{4})\s+(?<Arch>\w{3})\s+(?<Ext>.+)\s+-"
+    $vcpp | Sort-Object DisplayName, DisplayVersion | ForEach-Object {
+        $isMatch = $_.DisplayName -match "^(?<Name>Microsoft Visual C\+\+ \d{4})\s+(?<Arch>\w{3})\s+(?<Ext>.+)\s+-"
         if ($isMatch) {
             $name = '{0} {1}' -f $matches["Name"], $matches["Ext"]
             $arch = $matches["Arch"].ToLower()
-            $version = $_.Version
+            $version = $_.DisplayVersion
             [PSCustomObject]@{
                 Name = $name
                 Architecture = $arch
