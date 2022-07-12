@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
 | [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
 # Ubuntu 18.04.6 LTS
 - Linux kernel version: 5.4.0-1085-azure
-- Image Version: 20220626.1
+- Image Version: 20220710.1
 
 ## Installed Software
 ### Language and Runtime
@@ -18,10 +19,10 @@
 - GNU C++ 7.5.0, 9.4.0, 10.3.0
 - GNU Fortran 7.5.0, 9.4.0, 10.3.0
 - Julia 1.7.3
-- Kotlin 1.7.0-release-281
+- Kotlin 1.7.10-release-333
 - Mono 6.12.0.182 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-bionic main)
 - MSBuild 16.10.1.31701 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node 16.15.1
+- Node 16.16.0
 - Perl 5.26.1
 - Python 2.7.17
 - Python3 3.6.9
@@ -31,14 +32,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.9.0
-- Homebrew 3.5.2
+- Homebrew 3.5.4
 - Miniconda 4.12.0
 - Npm 8.11.0
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 1.0.0
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<c168ce4e7>)
+- Vcpkg  (build from master \<98f8d00e8>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -51,7 +52,7 @@
 - Ant 1.10.5
 - Gradle 7.4.2
 - Maven 3.8.6
-- Sbt 1.6.2
+- Sbt 1.7.0
 
 ### Tools
 - Ansible 2.11.12
@@ -59,22 +60,22 @@
 - AzCopy 10.15.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.2.0
 - Bazelisk 1.12.0
-- Bicep 0.7.4
+- Bicep 0.8.9
 - Buildah 1.22.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.23.2
-- CodeQL Action Bundle 2.9.4
+- CodeQL Action Bundle 2.10.0
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.6.0+azure-1
+- Docker Compose v2 2.6.1+azure-1
 - Docker-Buildx 0.8.2
 - Docker-Moby Client 20.10.17+azure-1
 - Docker-Moby Server 20.10.17+azure-1
-- Git 2.36.1 (apt source repository: ppa:git-core/ppa)
+- Git 2.37.0 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.3.1
 - Haveged 1.9.1
 - Heroku 7.60.2
-- HHVM (HipHop VM) 4.163.0
+- HHVM (HipHop VM) 4.164.0
 - jq 1.5
 - Kind 0.14.0
 - Kubectl 1.24.2
@@ -86,35 +87,35 @@
 - n 8.2.0
 - Newman 5.3.2
 - nvm 0.39.1
-- OpenSSL 1.1.1-1ubuntu2.1~18.04.19
+- OpenSSL 1.1.1-1ubuntu2.1~18.04.20
 - Packer 1.8.2
 - Parcel 2.6.2
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.35.1
+- Pulumi 3.35.3
 - R 4.2.0
 - Skopeo 1.5.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.9.7
-- Terraform 1.2.3
-- yamllint 1.26.3
+- Terraform 1.2.4
+- yamllint 1.27.1
 - yq 4.25.3
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.11
+- AWS CLI 2.7.14
 - AWS CLI Session manager plugin 1.2.339.0
-- AWS SAM CLI 1.52.0
-- Azure CLI (azure-cli) 2.37.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- AWS SAM CLI 1.53.0
+- Azure CLI (azure-cli) 2.38.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.13.0
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 10.6.2
-- OpenShift CLI 4.10.18
-- ORAS CLI 0.12.0
-- Vercel CLI 25.1.0
+- Netlify CLI 10.7.1
+- OpenShift CLI 4.10.21
+- ORAS CLI 0.13.0
+- Vercel CLI 27.0.1
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -128,7 +129,7 @@
 | Tool     | Version                           |
 | -------- | --------------------------------- |
 | PHP      | 7.2.34 7.3.33 7.4.30 8.0.20 8.1.7 |
-| Composer | 2.3.7                             |
+| Composer | 2.3.9                             |
 | PHPUnit  | 8.5.27                            |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -140,31 +141,34 @@
 - Stack 2.7.5
 
 ### Rust Tools
-- Cargo 1.61.0
-- Rust 1.61.0
-- Rustdoc 1.61.0
+- Cargo 1.62.0
+- Rust 1.62.0
+- Rustdoc 1.62.0
 - Rustup 1.24.3
 
 #### Packages
 - Bindgen 0.60.1
 - Cargo audit 0.17.0
-- Cargo clippy 0.1.61
+- Cargo clippy 0.1.62
 - Cargo outdated 0.11.1
 - Cbindgen 0.24.3
 - Rustfmt 1.4.38
 
 ### Browsers and Drivers
-- Google Chrome 103.0.5060.53
+- Google Chrome 103.0.5060.114
 - ChromeDriver 103.0.5060.53
 - Chromium 103.0.5060.0
+- Microsoft Edge 103.0.1264.51 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 103.0.1264.51
 - Selenium server 4.3.0
-- Mozilla Firefox 101.0.1
+- Mozilla Firefox 102.0
 - Geckodriver 0.31.0
 
 #### Environment variables
 | Name              | Value                               |
 | ----------------- | ----------------------------------- |
 | CHROMEWEBDRIVER   | /usr/local/share/chrome_driver      |
+| EDGEWEBDRIVER     | /usr/local/share/edge_driver        |
 | GECKOWEBDRIVER    | /usr/local/share/gecko_driver       |
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
@@ -193,7 +197,7 @@
     MySQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
 ```
 #### MS SQL Server Client Tools
-- sqlcmd 17.9.0001.1
+- sqlcmd 17.10.0001.1
 - SqlPackage 16.0.6161.0
 
 ### Cached Tools
@@ -204,8 +208,8 @@
 
 #### Node.js
 - 12.22.12
-- 14.19.3
-- 16.15.1
+- 14.20.0
+- 16.16.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -246,7 +250,7 @@
 | Pester          | 5.3.3   |
 
 #### Az PowerShell Modules
-- 7.3.2 3.1.0.zip 4.4.0.zip 5.9.0.zip 6.6.0.zip
+- 7.5.0 3.1.0.zip 4.4.0.zip 5.9.0.zip 6.6.0.zip
 
 ### Web Servers
 | Name    | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -295,10 +299,10 @@
 | moby/buildkit:latest    | sha256:0dc312b04eac1b44cd2cad566deb1e886c753109208affbbec8384f381ff7f38  | 2022-05-06 |
 | node:12                 | sha256:01627afeb110b3054ba4a1405541ca095c8bfca1cb6f2be9479c767a2711879e  | 2022-04-20 |
 | node:12-alpine          | sha256:d4b15b3d48f42059a15bd659be60afe21762aae9d6cbea6f124440895c27db68  | 2022-04-11 |
-| node:14                 | sha256:ce156f9b2e9dbe73139cf0619a71188960e6c9eaba0ff832a5dfa0febf9eee27  | 2022-06-23 |
-| node:14-alpine          | sha256:6b87d16e4ce20cacd6f1f662f66c821e4c3c41c2903daeace52d818ec3f4bbdd  | 2022-06-07 |
-| node:16                 | sha256:a13d2d2aec7f0dae18a52ca4d38b592e45a45cc4456ffab82e5ff10d8a53d042  | 2022-06-23 |
-| node:16-alpine          | sha256:c785e617c8d7015190c0d41af52cc69be8a16e3d9eb7cb21f0bb58bcfca14d6b  | 2022-06-07 |
+| node:14                 | sha256:0c571044148fd772bbc03fd42d293939ce3e39d7aa1e095dd87c33ce89796829  | 2022-07-08 |
+| node:14-alpine          | sha256:2af507df45e7c0a46c6b3001ce0dbc6924f7b39864d442045f781361a1971975  | 2022-07-08 |
+| node:16                 | sha256:8951351b7c6a2f8ff9ec25eccc087d37a8aeccf9bf911888ff13c76223467466  | 2022-07-08 |
+| node:16-alpine          | sha256:554142f9a6367f1fbd776a1b2048fab3a2cc7aa477d7fe9c00ce0f110aa45716  | 2022-07-08 |
 | ubuntu:16.04            | sha256:20858ebbc96215d6c3c574f781133ebffdc7c18d98af4f294cc4c04871a6fe61  | 2021-08-31 |
 | ubuntu:18.04            | sha256:478caf1bec1afd54a58435ec681c8755883b7eb843a8630091890130b15a79af  | 2022-06-06 |
 | ubuntu:20.04            | sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180dc19  | 2022-06-06 |
@@ -315,7 +319,7 @@
 | build-essential   | 12.4ubuntu1                       |
 | bzip2             | 1.0.6-8.1ubuntu0.2                |
 | coreutils         | 8.28-1ubuntu1                     |
-| curl              | 7.58.0-2ubuntu3.18                |
+| curl              | 7.58.0-2ubuntu3.19                |
 | dbus              | 1.12.2-1ubuntu1.3                 |
 | dnsutils          | 1:9.11.3+dfsg-1ubuntu1.17         |
 | dpkg              | 1.19.0.5ubuntu2.4                 |
@@ -323,7 +327,7 @@
 | file              | 1:5.32-2ubuntu0.4                 |
 | flex              | 2.6.4-6                           |
 | ftp               | 0.17-34                           |
-| gnupg2            | 2.2.4-1ubuntu1.5                  |
+| gnupg2            | 2.2.4-1ubuntu1.6                  |
 | haveged           | 1.9.1-6                           |
 | imagemagick       | 8:6.9.7.4+dfsg-16ubuntu6.13       |
 | iproute2          | 4.15.0-2ubuntu1.3                 |
@@ -332,7 +336,7 @@
 | lib32z1           | 1:1.2.11.dfsg-0ubuntu2.1          |
 | libc++-dev        | 6.0-2                             |
 | libc++abi-dev     | 6.0-2                             |
-| libcurl3          | 7.58.0-2ubuntu3.18                |
+| libcurl3          | 7.58.0-2ubuntu3.19                |
 | libgbm-dev        | 20.0.8-0ubuntu1\~18.04.1          |
 | libgconf-2-4      | 3.2.6-4ubuntu1                    |
 | libgsl-dev        | 2.4+dfsg-6                        |

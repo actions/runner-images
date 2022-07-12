@@ -197,7 +197,14 @@ function Wait-AnkaVMIPAddress {
         [int] $Seconds = 60
     )
 
-    $condition = { Get-AnkaVMIPAddress -VMName $VMName }
+    $condition = {
+        $vmStatus = Get-AnkaVMStatus -VMName $VMName
+        if ($vmStatus -eq "failed") {
+            Write-Host "`t    [-] $VMName is in failed status"
+            exit 1
+        }
+        Get-AnkaVMIPAddress -VMName $VMName
+    }
     $null = Invoke-WithRetry -BreakCondition $condition -RetryCount $RetryCount -Seconds $Seconds
 }
 
