@@ -1,10 +1,12 @@
 | Announcements |
 |-|
+| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
+| [[Windows, macOS] LLVM will be updated to version 14 on July, 11](https://github.com/actions/virtual-environments/issues/5835) |
 | [[Azure DevOps] Windows-2016 environment removal postponed until June 30, 2022](https://github.com/actions/virtual-environments/issues/5403) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 3046
-- Image Version: 20220626.1
+- Image Version: 20220710.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -14,17 +16,17 @@
 - Bash 4.4.23(1)-release
 - Go 1.17.11
 - Julia 1.7.3
-- Kotlin 1.7.0
-- LLVM 13.0.1
-- Node 16.15.1
+- Kotlin 1.7.10
+- LLVM 14.0.6
+- Node 16.16.0
 - Perl 5.32.1
-- PHP 8.1.7
+- PHP 8.1.8
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
 - Chocolatey 1.1.0
-- Composer 2.3.7
+- Composer 2.3.9
 - Helm 3.8.2
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
 - NPM 8.11.0
@@ -32,7 +34,7 @@
 - pip 22.1.2 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<c168ce4e7>)
+- Vcpkg (build from master \<98f8d00e8>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -53,18 +55,18 @@
 - azcopy 10.15.0
 - Bazel 5.2.0
 - Bazelisk 1.12.0
-- Bicep 0.7.4
+- Bicep 0.8.9
 - Cabal 3.6.2.0
 - CMake 3.23.2
-- CodeQL Action Bundle 2.9.4
+- CodeQL Action Bundle 2.10.0
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.6.1
 - Docker-wincred 0.6.4
 - ghc 9.2.3
-- Git 2.36.1.windows.1
-- Git LFS 3.1.4
-- Google Cloud SDK 391.0.0
+- Git 2.37.0.windows.1
+- Git LFS 3.2.0
+- Google Cloud SDK 392.0.0
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.14.0
@@ -74,9 +76,9 @@
 - Newman 5.3.2
 - NSIS v3.08
 - OpenSSL 1.1.1
-- Packer 1.8.1
+- Packer 1.8.2
 - Parcel 2.6.2
-- Pulumi v3.35.1
+- Pulumi v3.35.3
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.7.5
@@ -85,24 +87,24 @@
 - VSWhere 3.0.3
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset v3.11.2.4516
-- yamllint 1.26.3
+- yamllint 1.27.1
 - zstd 1.5.2
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.11
-- AWS SAM CLI 1.52.0
+- AWS CLI 2.7.14
+- AWS SAM CLI 1.53.0
 - AWS Session Manager CLI 1.2.339.0
-- Azure CLI 2.37.0
+- Azure CLI 2.38.0
 - Azure DevOps CLI extension 0.25.0
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 2.13.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.61.0
-- Rust 1.61.0
-- Rustdoc 1.61.0
+- Cargo 1.62.0
+- Rust 1.62.0
+- Rustdoc 1.62.0
 - Rustup 1.24.3
 
 #### Packages
@@ -110,15 +112,15 @@
 - cargo-audit 0.17.0
 - cargo-outdated 0.11.1
 - cbindgen 0.24.3
-- Clippy 0.1.61
+- Clippy 0.1.62
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 103.0.5060.53
+- Google Chrome 103.0.5060.114
 - Chrome Driver 103.0.5060.53
-- Microsoft Edge 103.0.1264.37
-- Microsoft Edge Driver 103.0.1264.37
-- Mozilla Firefox 101.0.1
+- Microsoft Edge 103.0.1264.49
+- Microsoft Edge Driver 103.0.1264.49
+- Mozilla Firefox 102.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.3.0
@@ -171,8 +173,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 12.22.12 | x64          |
-| 14.19.3 | x64          |
-| 16.15.1 | x64          |
+| 14.20.0 | x64          |
+| 16.16.0 | x64          |
 
 #### Python
 | Version | Architecture |
@@ -222,7 +224,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 5.0.9.0 | MongoDB     | Running       | Automatic        |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.7.0
+- Azure CosmosDb Emulator 2.14.9.0
 - DacFx 16.0.6161.0
 - MySQL 5.7.38.0
 - SQL OLEDB Driver 18.6.3.0
@@ -231,7 +233,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
-| Apache | 2.4.53  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
+| Apache | 2.4.54  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
 | Nginx  | 1.23.0  | C:\tools\nginx-1.23.0\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
@@ -470,9 +472,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ProBITools.MicrosoftReportProjectsforVisualStudio                         | 2.6.11          |
 | SSIS.SqlServerIntegrationServicesProjects                                 | 4.0             |
 | VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.2           |
-| Windows Driver Kit                                                        | 10.0.21381.0    |
-| Windows Driver Kit Visual Studio Extension                                | 10.1.22000.1    |
-| Windows Software Development Kit Extension                                | 10.1.22000.194  |
+| Windows Driver Kit                                                        | 10.1.22000.1    |
+| Windows Driver Kit Visual Studio Extension                                | 10.0.21381.0    |
+| Windows Software Development Kit                                          | 10.1.22000.194  |
 | WIX Toolset Studio 2019 Extension                                         | 1.0.0.18        |
 | WixToolset.WixToolsetVisualStudio2019Extension                            | 1.0.0.18        |
 
@@ -489,10 +491,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.29.30139 |
 | Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.29.30139 |
-| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.32.31326 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.32.31326 |
-| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.32.31326 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.32.31326 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.32.31332 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.32.31332 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.32.31332 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.32.31332 |
 
 #### Installed Windows SDKs
 `Location C:\Program Files (x86)\Windows Kits\10\Extension SDKs\WindowsDesktop`
@@ -534,7 +536,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                                        | Path                           |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
-| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.9.0.zip<br>6.6.0.zip<br>7.3.2 | C:\Modules\az_\<version\>      |
+| Az      | 1.0.0.zip<br>1.6.0.zip<br>2.3.2.zip<br>2.6.0.zip<br>3.1.0.zip<br>3.5.0.zip<br>3.8.0.zip<br>4.3.0.zip<br>4.4.0.zip<br>4.7.0.zip<br>5.5.0.zip<br>5.9.0.zip<br>6.6.0.zip<br>7.5.0 | C:\Modules\az_\<version\>      |
 | Azure   | 2.1.0 [Installed]<br>3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>5.3.0                                                                                                              | C:\Modules\azure_\<version\>   |
 | AzureRM | 2.1.0 [Installed]<br>3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>6.7.0.zip<br>6.13.1                                                                                                | C:\Modules\azurerm_\<version\> |
 ```
@@ -546,7 +548,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.113          |
+| AWSPowerShell      | 4.1.122          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.10.0           |
