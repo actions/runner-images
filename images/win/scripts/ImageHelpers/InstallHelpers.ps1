@@ -240,10 +240,15 @@ function Get-VsixExtenstionFromMarketplace {
     $fileName = $Matches.filename
     $downloadUri = $assetUri + "/" + $fileName
     # ProBITools.MicrosoftReportProjectsforVisualStudio2022 has different URL https://github.com/actions/virtual-environments/issues/5340
-    if ($ExtensionMarketPlaceName -eq "ProBITools.MicrosoftReportProjectsforVisualStudio2022")
-    {
-        $fileName = "Microsoft.DataTools.ReportingServices.vsix"
-        $downloadUri = "https://download.microsoft.com/download/b/b/5/bb57be7e-ae72-4fc0-b528-d0ec224997bd/Microsoft.DataTools.ReportingServices.vsix"
+    switch ($ExtensionMarketPlaceName) {
+        "ProBITools.MicrosoftReportProjectsforVisualStudio2022" {
+            $fileName = "Microsoft.DataTools.ReportingServices.vsix"
+            $downloadUri = "https://download.microsoft.com/download/b/b/5/bb57be7e-ae72-4fc0-b528-d0ec224997bd/Microsoft.DataTools.ReportingServices.vsix"
+        }
+        "ProBITools.MicrosoftAnalysisServicesModelingProjects2022" {
+            $fileName = "Microsoft.DataTools.AnalysisServices.vsix"
+            $downloadUri = "https://download.microsoft.com/download/b/b/e/bbe90a41-d7c0-432b-9866-89f698405683/Microsoft.DataTools.AnalysisServices.vsix"
+        }
     }
 
     return [PSCustomObject] @{
