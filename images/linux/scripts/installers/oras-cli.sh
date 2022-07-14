@@ -6,7 +6,7 @@
 
 source $HELPER_SCRIPTS/install.sh
 
-# Determine latest ORAS CLI version
+# Download ORAS CLI version 0.12 since it is the version compatible with GHCR
 ORAS_CLI_DOWNLOAD_URL=$(get_github_package_download_url "oras-project/oras" "endswith(\"linux_amd64.tar.gz\")" "0.12.0")
 ORAS_CLI_ARCHIVE=$(basename $ORAS_CLI_DOWNLOAD_URL)
 
