@@ -276,8 +276,7 @@
         "vsix": [
             "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects",
             "WixToolset.WixToolsetVisualStudio2022Extension",
-            "ProBITools.MicrosoftReportProjectsforVisualStudio2022",
-            "ProBITools.MicrosoftAnalysisServicesModelingProjects2022"
+            "ProBITools.MicrosoftReportProjectsforVisualStudio2022"
         ]
     },
     "docker": {
