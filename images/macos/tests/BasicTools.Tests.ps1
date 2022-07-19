@@ -30,7 +30,7 @@ Describe "Subversion" {
     }
 }
 
-Describe "SwiftFormat" -Skip:($os.IsMonterey) {
+Describe "SwiftFormat" {
     It "SwiftFormat" {
         "swiftformat --version" | Should -ReturnZeroExitCode
     }
@@ -138,13 +138,13 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsHigherThanCatalina) {
+Describe "vagrant" -Skip:($os.IsBigSur) {
     It "vagrant" {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "virtualbox" -Skip:($os.IsHigherThanCatalina) {
+Describe "virtualbox" -Skip:($os.IsBigSur) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
@@ -185,5 +185,11 @@ Describe "sbt" {
 Describe "yq" {
     It "yq" {
         "yq --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "imagemagick" {
+    It "imagemagick" {
+        "magick -version" | Should -ReturnZeroExitCode
     }
 }

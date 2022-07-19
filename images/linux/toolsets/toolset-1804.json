@@ -83,9 +83,10 @@
                 "versions": [ "8", "11", "12" ]
             }
         ],
-        "maven": "3.8.5"
+        "maven": "3.8.6"
     },
     "android": {
+        "cmdline-tools": "latest",
         "platform_min_version": "23",
         "build_tools_min_version": "23.0.1",
         "extra_list": [
@@ -104,9 +105,8 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "default": "21",
             "versions": [
-                "21", "23"
+                "21", "23", "24"
             ]
         }
     },
@@ -120,7 +120,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "7.3.2"
+                "7.5.0"
             ],
             "zip_versions": [
                 "3.1.0",

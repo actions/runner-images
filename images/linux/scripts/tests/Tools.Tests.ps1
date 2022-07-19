@@ -20,8 +20,7 @@ Describe "Rust" {
         $env:RUSTUP_HOME = "/etc/skel/.rustup"
         $env:CARGO_HOME = "/etc/skel/.cargo"
     }
-    
-   
+
     It "Rustup is installed" {
         "rustup --version" | Should -ReturnZeroExitCode
     }
@@ -77,6 +76,10 @@ Describe "Docker" {
         "docker compose" | Should -ReturnZeroExitCode
     }
 
+    It "docker-credential-ecr-login" {
+        "docker-credential-ecr-login -v" | Should -ReturnZeroExitCode
+    }
+
     Context "docker images" {
         $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 
@@ -117,7 +120,10 @@ Describe "clang" {
 
         "clang-$ClangVersion --version" | Should -ReturnZeroExitCode
         "clang++-$ClangVersion --version" | Should -ReturnZeroExitCode
-    }   
+        "clang-format-$ClangVersion --version" | Should -ReturnZeroExitCode
+        "clang-tidy-$ClangVersion --version" | Should -ReturnZeroExitCode
+        "run-clang-tidy-$ClangVersion --help" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "Cmake" {
@@ -126,7 +132,7 @@ Describe "Cmake" {
     }
 }
 
-Describe "erlang" {
+Describe "erlang" -Skip:(Test-IsUbuntu22) {
     $testCases = @("erl -version", "erlc -v", "rebar3 -v") | ForEach-Object { @{ErlangCommand = $_} }
 
     It "erlang <ErlangCommand>" -TestCases $testCases {
@@ -162,7 +168,7 @@ Describe "gfortran" {
     }
 }
 
-Describe "Mono" {
+Describe "Mono" -Skip:(Test-IsUbuntu22) {
     It "mono" {
         "mono --version" | Should -ReturnZeroExitCode
     }
@@ -176,7 +182,7 @@ Describe "Mono" {
     }
 }
 
-Describe "MSSQLCommandLineTools" {
+Describe "MSSQLCommandLineTools" -Skip:(Test-IsUbuntu22) {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
     }
@@ -244,7 +250,7 @@ Describe "Heroku" {
     }
 }
 
-Describe "HHVM" {
+Describe "HHVM" -Skip:(Test-IsUbuntu22) {
     It "hhvm" {
         "hhvm --version" | Should -ReturnZeroExitCode
     }
@@ -316,13 +322,13 @@ Describe "Pulumi" {
     }
 }
 
-Describe "Phantomjs" {
+Describe "Phantomjs" -Skip:(Test-IsUbuntu22) {
     It "phantomjs" {
         "phantomjs --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "GraalVM" -Skip:(-not (Test-IsUbuntu20)) {
+Describe "GraalVM" -Skip:(Test-IsUbuntu18) {
     It "graalvm" {
         '$GRAALVM_11_ROOT/bin/java -version' | Should -ReturnZeroExitCode
     }
@@ -341,7 +347,7 @@ Describe "Containers" {
         )
 
         "$ContainerCommand -v" | Should -ReturnZeroExitCode
-    }   
+    }
 }
 
 Describe "nvm" {

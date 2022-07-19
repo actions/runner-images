@@ -125,7 +125,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "7.3.2"
+                "7.5.0"
             ],
             "zip_versions": [
                 "1.0.0",
@@ -159,6 +159,7 @@
         ]
     },
     "android": {
+        "cmdline-tools": "latest",
         "platform_min_version": "19",
         "build_tools_min_version": "19.1.0",
         "extra_list": [
@@ -182,11 +183,14 @@
             "patcher;v4"
         ],
         "ndk": {
-            "default": "21",
+            "default": "23",
             "versions": [
-                "21", "22", "23"
+                "21", "23", "24"
             ]
         }
+    },
+    "mingw": {
+	"version": "8.1.0"
     },
     "MsysPackages": {
         "msys2": [
@@ -474,7 +478,7 @@
         "version": "8.1"
     },
     "llvm": {
-        "version": "13"
+        "version": "14"
     },
     "postgresql": {
         "version": "14"

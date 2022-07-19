@@ -10,17 +10,22 @@ body:
       required: true
   - type: checkboxes
     attributes:
+      label: Platforms affected
+      options:
+        - label: Azure DevOps
+        - label: GitHub Actions
+  - type: checkboxes
+    attributes:
       label: Virtual environments affected
       options:
         - label: Ubuntu 18.04
         - label: Ubuntu 20.04
+        - label: Ubuntu 22.04
         - label: macOS 10.15
         - label: macOS 11
         - label: macOS 12
         - label: Windows Server 2019
         - label: Windows Server 2022
-    validations:
-      required: true
   - type: textarea
     attributes:
       label: Image version and build link
@@ -36,14 +41,20 @@ body:
     attributes:
       label: Is it regression?
       description: If yes, please, provide the latest image version where the issue didn't persist, and a link to the latest successful build.
+    validations:
+        required: true
   - type: textarea
     attributes:
       label: Expected behavior
       description: A description of what you expected to happen.
+    validations:
+        required: true
   - type: textarea
     attributes:
       label: Actual behavior
       description: A description of what is actually happening.
+    validations:
+        required: true
   - type: textarea
     attributes:
       label: Repro steps

@@ -3,8 +3,24 @@
 ##  Desc:  Install and update Android SDK and tools
 ################################################################################
 
-# install command-line tools
-$cmdlineToolsUrl = "https://dl.google.com/android/repository/commandlinetools-win-7302050_latest.zip"
+# get packages to install from the toolset
+$androidToolset = (Get-ToolsetContent).android
+
+# install latest command-line tools
+$cmdlineToolsVersion = $androidToolset."cmdline-tools"
+if ($cmdlineToolsVersion -eq "latest") {
+    $googlePkgs = Invoke-RestMethod "https://dl.google.com/android/repository/repository2-1.xml"
+    $cmdlineToolsVersion = $googlePkgs.SelectSingleNode(
+        "//remotePackage[@path='cmdline-tools;latest']/archives/archive/complete/url[starts-with(text(), 'commandlinetools-win-')]"
+    ).'#text'
+
+    if (-not $cmdlineToolsVersion) {
+        Write-Host "Failed to parse latest command-line tools version"
+        exit 1
+    }
+}
+
+$cmdlineToolsUrl = "https://dl.google.com/android/repository/${cmdlineToolsVersion}"
 $cmdlineToolsArchPath = Start-DownloadWithRetry -Url $cmdlineToolsUrl -Name "cmdline-tools.zip"
 $sdkInstallRoot = "C:\Program Files (x86)\Android\android-sdk"
 $sdkRoot = "C:\Android\android-sdk"
@@ -49,9 +65,6 @@ if (Test-Path $platformToolsPath)
 Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                 -AndroidSDKRootPath $sdkRoot `
                 -AndroidPackages "platform-tools"
-
-# get packages to install from the toolset
-$androidToolset = (Get-ToolsetContent).android
 
 # get packages info
 $androidPackages = Get-AndroidPackages -AndroidSDKManagerPath $sdkManager

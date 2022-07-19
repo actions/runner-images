@@ -64,7 +64,7 @@ function Get-Cargooutdated {
 }
 
 function Get-Cargoaudit {
-    $cargoAuditVersion = Run-Command "cargo audit --version" | Take-Part -Part 1
+    $cargoAuditVersion = Run-Command "cargo-audit --version" | Take-Part -Part 1
     return "Cargo-audit $cargoAuditVersion"
 }
 
@@ -96,7 +96,8 @@ function Get-FortranVersion {
 }
 
 function Get-ClangLLVMVersion {
-    $locationsList = @("$((Get-Command clang).Source)", '$(brew --prefix llvm)/bin/clang')
+    $toolsetVersion = '$(brew --prefix llvm@{0})/bin/clang' -f (Get-ToolsetValue 'llvm.version')
+    $locationsList = @("$((Get-Command clang).Source)", $toolsetVersion)
     $locationsList | Foreach-Object {
         (Run-Command "${_} --version" | Out-String) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
         $version = $Matches.version
@@ -389,7 +390,7 @@ function Get-NewmanVersion {
 
 function Get-VirtualBoxVersion {
     $virtualBox = Run-Command "vboxmanage -v"
-    return "virtualbox $virtualBox"
+    return "VirtualBox $virtualBox"
 }
 
 function Get-VagrantVersion {
@@ -448,7 +449,7 @@ function Get-AliyunCLIVersion {
 }
 
 function Get-GHCupVersion {
-    $ghcUpVersion = Run-Command "ghcup --version" | Take-Part -Part 5
+    $ghcUpVersion = (Run-Command "ghcup --version" | Take-Part -Part 5).Replace('v','')
     return "GHCup $ghcUpVersion"
 }
 
@@ -545,6 +546,11 @@ function Get-TclTkVersion {
 function Get-YqVersion {
     $yqVersion = Run-Command "yq --version"
     return "$yqVersion"
+}
+
+function Get-ImageMagickVersion {
+    $imagemagickVersion = Run-Command "magick --version" | Select-Object -First 1 | Take-Part -Part 1,2
+    return "$imagemagickVersion"
 }
 
 function Build-PackageManagementEnvironmentTable {

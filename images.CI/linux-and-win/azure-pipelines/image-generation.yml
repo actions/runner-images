@@ -31,7 +31,10 @@ jobs:
         $ImageType = "${{ parameters.image_type }}"
         $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "win" }
         $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
-        $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
+        $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.pkr.hcl"
+        if ( -not (Test-Path $TemplatePath) ) {
+            $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
+        }
         Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
 

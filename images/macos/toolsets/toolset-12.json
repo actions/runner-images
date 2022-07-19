@@ -1,36 +1,53 @@
 {
     "xcode": {
-        "default": "13.3",
+        "default": "13.4.1",
         "versions": [
-            { "link": "13.3.1", "version": "13.3.1" },
-            { "link": "13.3", "version": "13.3.0" },
-            { "link": "13.2.1", "version": "13.2.1" },
-            { "link": "13.2", "version": "13.2.0" },
+            { "link": "13.4.1", "version": "13.4.1" },
+            { "link": "13.4", "version": "13.4.0" },
+            { "link": "13.3.1", "version": "13.3.1", "symlinks": ["13.3"] },
+            { "link": "13.2.1", "version": "13.2.1", "symlinks": ["13.2"] },
             { "link": "13.1", "version": "13.1.0" }
         ]
     },
     "xamarin": {
-        "vsmac": "latest",
+        "vsmac": {
+            "default": "2022",
+            "versions": [ "2019", "2022" ]
+        },
         "mono-versions": [
-            "6.12.0.174"
+            "6.12.0.182"
         ],
         "ios-versions": [
-            "15.8.0.3", "15.6.0.3", "15.4.0.0", "15.2.0.17", "15.0.0.6"
+            "15.10.0.5", "15.8.0.3", "15.6.0.3", "15.4.0.0", "15.2.0.17", "15.0.0.6"
         ],
         "mac-versions": [
-            "8.8.0.3", "8.6.0.3", "8.4.0.0", "8.2.0.17", "7.14.0.27"
+            "8.10.0.5", "8.8.0.3", "8.6.0.3", "8.4.0.0", "8.2.0.17", "7.14.0.27"
         ],
         "android-versions": [
-            "12.2.4.3", "12.0.0.3", "11.3.0.4"
+            "12.2.8.3", "12.1.0.2", "12.0.0.3", "11.3.0.4"
         ],
-        "bundle-default": "6_12_15",
+        "bundle-default": "6_12_17",
         "bundles": [
+            {
+                "symlink": "6_12_17",
+                "mono":"6.12",
+                "ios": "15.10",
+                "mac": "8.10",
+                "android": "12.2"
+            },
+            {
+                "symlink": "6_12_16",
+                "mono":"6.12",
+                "ios": "15.8",
+                "mac": "8.8",
+                "android": "12.2"
+            },
             {
                 "symlink": "6_12_15",
                 "mono":"6.12",
                 "ios": "15.8",
                 "mac": "8.8",
-                "android": "12.2"
+                "android": "12.1"
             },
             {
                 "symlink": "6_12_14",
@@ -84,6 +101,7 @@
         ]
     },
     "android": {
+        "cmdline-tools": "latest",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra-list": [
@@ -94,9 +112,9 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "default": "21",
+            "default": "23",
             "versions": [
-                "21", "22", "23"
+                "21", "23", "24"
             ]
         }
     },
@@ -107,7 +125,9 @@
         { "name": "PSScriptAnalyzer" }
     ],
     "npm": {
-        "global_packages": []
+        "global_packages": [
+            { "name": "appcenter-cli", "test": "appcenter --version" }
+        ]
     },
     "brew": {
         "common_packages": [
@@ -127,6 +147,7 @@
             "perl",
             "sbt",
             "subversion",
+            "swiftformat",
             "swig",
             "zstd",
             "gmp",
@@ -135,10 +156,13 @@
             "libxft",
             "tcl-tk",
             "r",
-            "yq"
+            "yq",
+            "imagemagick"
         ],
         "cask_packages": [
-            "julia"
+            "julia",
+            "vagrant",
+            "virtualbox"
         ]
     },
     "gcc": {
@@ -212,7 +236,8 @@
     "dotnet": {
         "versions": [
             "3.1",
-            "5.0"
+            "5.0",
+            "6.0"
         ]
     },
     "ruby": {
@@ -238,7 +263,7 @@
         ]
     },
     "llvm": {
-        "version": "13"
+        "version": "14"
     },
     "php": {
         "version": "8.1"

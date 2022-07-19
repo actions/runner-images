@@ -90,9 +90,17 @@
         },
         {
             "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
+            "pause_before": "30s",
             "scripts": [
                 "./provision/core/xcode-clt.sh",
+                "./provision/core/homebrew.sh"
+            ]
+        },
+        {
+            "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
+            "scripts": [
                 "./provision/configuration/add-network-interface-detection.sh",
                 "./provision/configuration/autologin.sh",
                 "./provision/configuration/disable-auto-updates.sh",
@@ -130,7 +138,6 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "pause_before": "30s",
             "scripts": [
-                "./provision/core/homebrew.sh",
                 "./provision/core/open_windows_check.sh",
                 "./provision/core/powershell.sh",
                 "./provision/core/dotnet.sh",

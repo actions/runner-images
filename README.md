@@ -1,3 +1,4 @@
+
 # GitHub Actions Runner Images
 **Table of Contents**
 - [About](#about)
@@ -9,16 +10,19 @@
 - [FAQs](#faqs)
 
 
+
 ## About
 This repository contains the source used to create the [runner images](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners) for GitHub Actions hosted runners, as well as the VM images of [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines. To build a VM machine from this repo's source, see the [instructions](docs/create-image-and-azure-resources.md).
 
 ## Available Images
 | Image | YAML Label | Included Software | Rollout Progress of Latest Image Release |
 | --------------------|---------------------|--------------------|---------------------|
+| Ubuntu 22.04 <sup>beta</sup> | `ubuntu-22.04` | [ubuntu-22.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
 | Ubuntu 20.04 | `ubuntu-latest` or `ubuntu-20.04` | [ubuntu-20.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
 | Ubuntu 18.04 | `ubuntu-18.04` | [ubuntu-18.04] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
+| macOS 12 | `macos-12`| [macOS-12] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&redirect=1)
 | macOS 11 | `macos-latest` or `macos-11`| [macOS-11] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
-| macOS 10.15 | `macos-10.15` | [macOS-10.15] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
+| macOS 10.15 <sup>deprecated</sup> | `macos-10.15` | [macOS-10.15] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&redirect=1) |
 | Windows Server 2019 | `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 | Windows Server 2016 | `windows-2016` | [windows-2016] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
@@ -27,12 +31,14 @@ This repository contains the source used to create the [runner images](https://h
 - In general the `-latest` label is used for the latest OS image version that is in GA
 - Before moving the`-latest` label to a new OS version we will announce the change and give sufficient lead time for users to update their workflows
 
+[ubuntu-22.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2204-Readme.md
 [ubuntu-20.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-Readme.md
 [ubuntu-18.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-Readme.md
 [windows-2022]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2022-Readme.md
 [windows-2019]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
 [windows-2016]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
 [macOS-11]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11-Readme.md
+[macOS-12]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-12-Readme.md
 [macOS-10.15]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 

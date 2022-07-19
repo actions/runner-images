@@ -95,9 +95,16 @@
         },
         {
             "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
                 "./provision/core/xcode-clt.sh",
+                "./provision/core/homebrew.sh"
+            ]
+        },
+        {
+            "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
+            "scripts": [
                 "./provision/configuration/add-network-interface-detection.sh",
                 "./provision/configuration/autologin.sh",
                 "./provision/configuration/disable-auto-updates.sh",
@@ -136,7 +143,6 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "pause_before": "30s",
             "scripts": [
-                "./provision/core/homebrew.sh",
                 "./provision/core/open_windows_check.sh",
                 "./provision/core/powershell.sh",
                 "./provision/core/dotnet.sh",
@@ -146,10 +152,12 @@
                 "./provision/core/ruby.sh",
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
-                "./provision/core/node.sh"
+                "./provision/core/node.sh",
+                "./provision/core/commonutils.sh"
             ],
             "environment_vars": [
-                "API_PAT={{user `github_api_pat`}}"
+                "API_PAT={{user `github_api_pat`}}",
+                "USER_PASSWORD={{user `vm_password`}}"
             ]
         },
         {
@@ -171,7 +179,6 @@
             "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "scripts": [
-                "./provision/core/commonutils.sh",
                 "./provision/core/llvm.sh",
                 "./provision/core/golang.sh",
                 "./provision/core/swiftlint.sh",
@@ -193,6 +200,7 @@
                 "./provision/core/mongodb.sh",
                 "./provision/core/audiodevice.sh",
                 "./provision/core/vcpkg.sh",
+                "./provision/core/miniconda.sh",
                 "./provision/core/safari.sh",
                 "./provision/core/chrome.sh",
                 "./provision/core/edge.sh",

@@ -42,20 +42,29 @@ function Get-CodeQLBundleVersion {
 
 function Get-PodManVersion {
     $podmanVersion = podman --version | Take-OutputPart -Part 2
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
-    return "Podman $podmanVersion (apt source repository: $aptSourceRepo)"
+    if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+        $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
+        return "Podman $podmanVersion (apt source repository: $aptSourceRepo)"
+    }
+    return "Podman $podmanVersion"
 }
 
 function Get-BuildahVersion {
     $buildahVersion = buildah --version | Take-OutputPart -Part 2
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
-    return "Buildah $buildahVersion (apt source repository: $aptSourceRepo)"
+    if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+        $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
+        return "Buildah $buildahVersion (apt source repository: $aptSourceRepo)"
+    }
+    return "Buildah $buildahVersion"
 }
 
 function Get-SkopeoVersion {
     $skopeoVersion = skopeo --version | Take-OutputPart -Part 2
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
-    return "Skopeo $skopeoVersion (apt source repository: $aptSourceRepo)"
+    if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+        $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
+        return "Skopeo $skopeoVersion (apt source repository: $aptSourceRepo)"
+    }
+    return "Skopeo $skopeoVersion"
 }
 
 function Get-CMakeVersion {
@@ -86,6 +95,11 @@ function Get-DockerMobyServerVersion {
 function Get-DockerBuildxVersion {
     $buildxVersion = docker buildx version  | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "+"
     return "Docker-Buildx $buildxVersion"
+}
+
+function Get-DockerAmazonECRCredHelperVersion {
+    $ecrVersion = docker-credential-ecr-login -v | Select-String "Version:" | Take-OutputPart -Part 1
+    return "Docker Amazon ECR Credential Helper $ecrVersion"
 }
 
 function Get-GitVersion {
@@ -142,7 +156,7 @@ function Get-KindVersion {
 }
 
 function Get-KubectlVersion {
-    $kubectlVersion = kubectl version --client --short | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
+    $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v','')
     return "Kubectl $kubectlVersion"
 }
 
