@@ -1,17 +1,18 @@
 | Announcements |
 |-|
+| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
 | [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
-| [[macOS] Default Xcode on Monterey image will be set to Xcode 13.4.1 on July, 11](https://github.com/actions/virtual-environments/issues/5836) |
 | [[Windows, macOS] LLVM will be updated to version 14 on July, 11](https://github.com/actions/virtual-environments/issues/5835) |
+| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/virtual-environments/issues/5583) |
 ***
 # macOS 11.6 info
 - System Version: macOS 11.6.7 (20G630)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220710.1
+- Image Version: 20220719.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.420 5.0.102 5.0.202 5.0.302 5.0.408
+- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.421 5.0.102 5.0.202 5.0.302 5.0.408 6.0.302
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0 is default
 - Clang/LLVM 14.0.6 is available on `'$(brew --prefix llvm@14)/bin/clang'`
@@ -21,7 +22,7 @@
 - GNU Fortran (Homebrew GCC 9.5.0) 9.5.0 - available by `gfortran-9` alias
 - GNU Fortran (Homebrew GCC 10.4.0) 10.4.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gfortran-11` alias
-- Go 1.17.11
+- Go 1.17.12
 - julia 1.7.3
 - Kotlin 1.7.10-release-333
 - MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
@@ -36,19 +37,19 @@
 - Ruby 2.7.6p219
 
 ### Package Management
-- Bundler version 2.3.17
+- Bundler version 2.3.18
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.3.9
-- Homebrew 3.5.4
+- Composer 2.3.10
+- Homebrew 3.5.5
 - Miniconda 4.12.0
 - NPM 8.11.0
 - NuGet 6.2.1.2
 - Pip 20.3.4 (python 2.7)
 - Pip 22.1.1 (python 3.9)
 - Pipx 1.1.0
-- RubyGems 3.2.33
-- Vcpkg 2022 (build from master \<98f8d00e8>)
+- RubyGems 3.3.18
+- Vcpkg 2022 (build from master \<8ff168270>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -60,8 +61,8 @@
 ### Project Management
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.6
-- Gradle 7.4.2
-- Sbt 1.6.2
+- Gradle 7.5
+- Sbt 1.7.1
 
 ### Utilities
 - 7-Zip 17.04
@@ -71,13 +72,13 @@
 - bazelisk 1.12.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.84.0
-- Git 2.37.0
+- Git 2.37.1
 - Git LFS: 3.2.0
-- GitHub CLI: 2.13.0
+- GitHub CLI: 2.14.2
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
-- gpg (GnuPG) 2.3.6
-- helm v3.9.0+g7ceeda6
+- gpg (GnuPG) 2.3.7
+- helm v3.9.1+ga7c043a
 - Hub CLI: 2.14.2
 - ImageMagick 7.1.0-43
 - jq 1.6
@@ -91,13 +92,13 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- yq (https://github.com/mikefarah/yq/) version 4.25.3
+- yq (https://github.com/mikefarah/yq/) version 4.26.1
 - zstd 1.5.2
 
 ### Tools
 - Aliyun CLI 3.0.123
 - App Center CLI 2.10.10
-- AWS CLI 2.7.14
+- AWS CLI 2.7.16
 - AWS SAM CLI 1.53.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
@@ -105,12 +106,12 @@
 - Bicep CLI 0.8.9
 - Cabal 3.6.2.0
 - Cmake 3.23.2
-- Fastlane 2.207.0
+- Fastlane 2.208.0
 - GHC 9.2.3
 - GHCup 0.1.17.8
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.11
+- SwiftFormat 0.49.13
 - Swig 4.0.2
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -121,10 +122,10 @@
 ### Browsers
 - Safari 15.5 (16613.2.7.1.9)
 - SafariDriver 15.5 (16613.2.7.1.9)
-- Google Chrome 103.0.5060.114 
+- Google Chrome 103.0.5060.134 
 - ChromeDriver 103.0.5060.53
-- Microsoft Edge 103.0.1264.51 
-- Microsoft Edge WebDriver 103.0.1264.51
+- Microsoft Edge 103.0.1264.62 
+- Microsoft Edge WebDriver 103.0.1264.62
 - Mozilla Firefox 102.0.1
 - geckodriver 0.31.0
 - Selenium server 4.3.0
@@ -178,14 +179,14 @@
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
-| 1.17.11 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.3  | x64          | GOROOT_1_18_X64      |
+| 1.17.12 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.18.4  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
-- Cargo 1.62.0
-- Rust 1.62.0
-- Rustdoc 1.62.0
-- Rustup 1.24.3
+- Cargo 1.62.1
+- Rust 1.62.1
+- Rustdoc 1.62.1
+- Rustup 1.25.1
 
 #### Packages
 - Bindgen 0.60.1
@@ -217,7 +218,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.0.5.6  | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.0.6.4  | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
@@ -262,7 +263,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 
 #### Xcode Support Tools
 - xcpretty 0.3.0
-- xcversion 2.8.0
+- xcversion 2.8.1
 - Nomad CLI 0.0.2
 - Nomad shenzhen CLI 0.14.3
 
@@ -335,7 +336,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Android Command Line Tools | 7.0                                                                                                                                                    |
 | Android Emulator           | 31.2.10                                                                                                                                                |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platforms      | android-33 (rev 1)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
+| Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 33.0.2                                                                                                                                                 |
 | Android Support Repository | 47.0.0                                                                                                                                                 |
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                                       |
