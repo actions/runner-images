@@ -247,7 +247,7 @@ function Get-VsixExtenstionFromMarketplace {
         }
         "ProBITools.MicrosoftAnalysisServicesModelingProjects2022" {
             $fileName = "Microsoft.DataTools.AnalysisServices.vsix"
-            $downloadUri = "https://download.microsoft.com/download/b/b/e/bbe90a41-d7c0-432b-9866-89f698405683/Microsoft.DataTools.AnalysisServices.vsix"
+            $downloadUri = "https://download.microsoft.com/download/c/8/9/c896a7f2-d0fd-45ac-90e6-ff61f67523cb/Microsoft.DataTools.AnalysisServices.vsix"
         }
     }
 
