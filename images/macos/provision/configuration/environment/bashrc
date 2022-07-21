@@ -4,8 +4,6 @@ export LANG=en_US.UTF-8
 
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 export ANDROID_SDK_ROOT=${HOME}/Library/Android/sdk
-export ANDROID_NDK_HOME=${ANDROID_HOME}/ndk-bundle
-export ANDROID_NDK_ROOT=${ANDROID_HOME}/ndk-bundle
 
 export VM_ASSETS=/usr/local/opt/$USER/scripts
 
@@ -16,7 +14,7 @@ export AGENT_TOOLSDIRECTORY=$HOME/hostedtoolcache
 export RUNNER_TOOL_CACHE=$HOME/hostedtoolcache
 
 export PATH=/Library/Frameworks/Mono.framework/Versions/Current/Commands:$PATH
-export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:$PATH
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:~/bin:~/.yarn/bin:$PATH
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH=$HOME/.cargo/bin:$PATH
