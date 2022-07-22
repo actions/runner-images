@@ -94,13 +94,13 @@ function Build-AndroidTable {
 }
 
 function Build-AndroidEnvironmentTable {
-    $androidVersions = Get-Item env:ANDROID_*	
+    $androidVersions = Get-Item env:ANDROID_*
 
-    $shoulddResolveLink = 'ANDROID_NDK_PATH', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
+    $shoulddResolveLink = 'ANDROID_NDK_LATEST_HOME'
     return $androidVersions | Sort-Object -Property Name | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
-            "Value" = if ($shoulddResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else {$_.Value}
+            "Value" = if ($shoulddResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else { $_.Value }
         }
     }
 }
@@ -175,23 +175,9 @@ function Get-AndroidGoogleAPIsVersions {
 }
 
 function Get-AndroidNDKVersions {
-    $os = Get-OSVersion
-
-    if ($os.IsCatalina) {
-        # Hardcode NDK 15 as a separate case since it is installed manually without sdk-manager (to none default location)
-        $versions = @()
-        $versions += "15.2.4203891"
-    }
-
     $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
     $versions += Get-ChildItem -Path $ndkFolderPath -Name
-    $ndkDefaultVersion = Get-ToolsetValue "android.ndk.default"
-    $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultVersion.*" -Name | Select-Object -Last 1
-
-    return ($versions | ForEach-Object {
-        $defaultPostfix = ( $_ -eq $ndkDefaultFullVersion ) ? " (default)" : ""
-        $_ + $defaultPostfix
-    } | Join-String -Separator "<br>")
+    return ($versions | Join-String -Separator "<br>")
 }
 
 function Get-IntelHaxmVersion {
