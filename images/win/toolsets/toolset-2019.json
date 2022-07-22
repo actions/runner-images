@@ -183,7 +183,6 @@
             "patcher;v4"
         ],
         "ndk": {
-            "default": "25",
             "versions": [
                 "23", "24", "25"
             ]
