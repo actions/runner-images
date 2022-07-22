@@ -300,6 +300,7 @@
     },
     "docker": {
         "images": [
+            "mcr.microsoft.com/windows/server:ltsc2022",
             "mcr.microsoft.com/windows/servercore:ltsc2022",
             "mcr.microsoft.com/windows/nanoserver:ltsc2022",
             "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022",
