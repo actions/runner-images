@@ -55,6 +55,11 @@ variable "helper_script_folder" {
   default = "/imagegeneration/helpers"
 }
 
+variable "files_folder" {
+  type    = string
+  default = "/imagegeneration/files"
+}
+
 variable "image_folder" {
   type    = string
   default = "/imagegeneration"
@@ -145,42 +150,16 @@ variable "vm_size" {
   default = "Standard_D4s_v4"
 }
 
-source "azure-arm" "build_vhd" {
-  allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
-  build_resource_group_name              = "${var.build_resource_group_name}"
-  capture_container_name                 = "images"
-  capture_name_prefix                    = "${var.capture_name_prefix}"
-  client_id                              = "${var.client_id}"
-  client_secret                          = "${var.client_secret}"
-  client_cert_path                       = "${var.client_cert_path}"
-  image_offer                            = "0001-com-ubuntu-server-jammy"
-  image_publisher                        = "canonical"
-  image_sku                              = "22_04-lts"
-  location                               = "${var.location}"
-  os_disk_size_gb                        = "86"
-  os_type                                = "Linux"
-  private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
-  resource_group_name                    = "${var.resource_group}"
-  storage_account                        = "${var.storage_account}"
-  subscription_id                        = "${var.subscription_id}"
-  temp_resource_group_name               = "${var.temp_resource_group_name}"
-  tenant_id                              = "${var.tenant_id}"
-  virtual_network_name                   = "${var.virtual_network_name}"
-  virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
-  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
-  vm_size                                = "${var.vm_size}"
-
-  dynamic "azure_tag" {
-    for_each = var.azure_tag
-    content {
-      name = azure_tag.key
-      value = azure_tag.value
-    }
-  }
+source "proxmox-clone" "runner" {
+  proxmox_url = "https://mevanwi.srv.lan.wiztivi.com:8006/api2/json"
+  user = "zcarde@lan.wiztivi.com!gh_runner"
+  token = "72615aa1-23c5-4448-b53e-7eaa4ebb9063"
+  node = ""
+  clone_vm = ""
 }
 
 build {
-  sources = ["source.azure-arm.build_vhd"]
+  sources = ["source.proxmox-clone.runner"]
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
@@ -209,14 +188,24 @@ build {
     script          = "${path.root}/scripts/base/limits.sh"
   }
 
+  provisioner "shell" {
+    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    script          = "${path.root}/scripts/base/users.sh"
+  }
+
   provisioner "file" {
-    destination = "${var.helper_script_folder}"
+    destination = "${var.image_folder}"
     source      = "${path.root}/scripts/helpers"
   }
 
   provisioner "file" {
-    destination = "${var.installer_script_folder}"
+    destination = "${var.image_folder}"
     source      = "${path.root}/scripts/installers"
+  }
+
+  provisioner "file" {
+    destination = "${var.files_folder}"
+    source      = "${path.root}/files/ubuntu2204/"
   }
 
   provisioner "file" {
@@ -270,7 +259,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive"]
+    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive", "FILES_PATH=${var.files_folder}/ubuntu2204"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
                         "${path.root}/scripts/installers/azcopy.sh",
@@ -326,7 +315,9 @@ build {
                         "${path.root}/scripts/installers/android.sh",
                         "${path.root}/scripts/installers/pypy.sh",
                         "${path.root}/scripts/installers/python.sh",
-                        "${path.root}/scripts/installers/graalvm.sh"
+                        "${path.root}/scripts/installers/graalvm.sh",
+                        "${path.root}/scripts/installers/tizen-cli.sh",
+                        "${path.root}/scripts/installers/webos-cli.sh"
                         ]
   }
 
@@ -405,7 +396,7 @@ build {
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["sleep 30", "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"]
+    inline          = ["sleep 30"]
   }
 
 }
