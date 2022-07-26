@@ -42,6 +42,8 @@ $runtimesList = @(
     (Get-DashVersion),
     (Get-CPPVersions),
     (Get-FortranVersions),
+    (Get-MsbuildVersion),
+    (Get-MonoVersion),
     (Get-NodeVersion),
     (Get-PerlVersion),
     (Get-PythonVersion),
@@ -56,8 +58,6 @@ $runtimesList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $runtimesList += @(
-        (Get-MsbuildVersion),
-        (Get-MonoVersion),
         (Get-ErlangVersion),
         (Get-ErlangRebar3Version),
         (Get-SwiftVersion)
@@ -73,6 +73,7 @@ $packageManagementList = @(
     (Get-CpanVersion),
     (Get-GemVersion),
     (Get-MinicondaVersion),
+    (Get-NuGetVersion),
     (Get-HelmVersion),
     (Get-NpmVersion),
     (Get-YarnVersion),

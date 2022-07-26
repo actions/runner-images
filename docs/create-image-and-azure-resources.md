@@ -27,9 +27,14 @@ Detailed instruction can be found in [Azure documentation](https://docs.microsof
 #### How to prepare Windows build agent
 Local machine or [Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli) can be used as a build agent.
 
-Download `packer` from https://www.packer.io/downloads, or install it via [Chocolatey](https://chocolatey.org/):
+Download & install `packer` from https://www.packer.io/downloads, or install it via [Chocolatey](https://chocolatey.org/):
 ```
 choco install packer
+```
+
+Download & install `git` from https://github.com/git-for-windows/git/releases, or install it via [Chocolatey](https://chocolatey.org/):
+```
+choco install git -params '"/GitAndUnixToolsOnPath"'
 ```
 
 Install the Azure Az PowerShell module - https://docs.microsoft.com/en-us/powershell/azure/install-az-ps.
