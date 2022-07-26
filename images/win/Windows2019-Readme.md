@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Windows] mongo service will be disabled by default on August, 8th](https://github.com/actions/virtual-environments/issues/5949) |
+| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
 | [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
-| [[Windows, macOS] LLVM will be updated to version 14 on July, 11](https://github.com/actions/virtual-environments/issues/5835) |
-| [[Azure DevOps] Windows-2016 environment removal postponed until July 22, 2022](https://github.com/actions/virtual-environments/issues/5403) |
+| [[Azure DevOps] Windows-2016 environment removal postponed until July 31, 2022](https://github.com/actions/virtual-environments/issues/5403) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 3165
-- Image Version: 20220717.1
+- Image Version: 20220724.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -27,14 +28,14 @@
 ### Package Management
 - Chocolatey 1.1.0
 - Composer 2.3.10
-- Helm 3.9.0
+- Helm 3.9.1
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
 - NPM 8.11.0
 - NuGet 6.2.1.2
-- pip 22.1.2 (python 3.7)
+- pip 22.2 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<68b7fec22>)
+- Vcpkg (build from master \<f93ba152d>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -52,7 +53,7 @@
 ### Tools
 - 7zip 22.01
 - aria2 1.36.0
-- azcopy 10.15.0
+- azcopy 10.16.0
 - Bazel 5.2.0
 - Bazelisk 1.12.0
 - Bicep 0.8.9
@@ -61,12 +62,12 @@
 - CodeQL Action Bundle 2.10.0
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.6.1
+- Docker Compose v2 2.7.0
 - Docker-wincred 0.6.4
 - ghc 9.2.3
 - Git 2.37.1.windows.1
 - Git LFS 3.2.0
-- Google Cloud SDK 393.0.0
+- Google Cloud SDK 394.0.0
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.14.0
@@ -92,7 +93,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.16
+- AWS CLI 2.7.18
 - AWS SAM CLI 1.53.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.38.0
@@ -102,9 +103,9 @@
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.62.0
-- Rust 1.62.0
-- Rustdoc 1.62.0
+- Cargo 1.62.1
+- Rust 1.62.1
+- Rustdoc 1.62.1
 - Rustup 1.25.1
 
 #### Packages
@@ -116,10 +117,10 @@
 - Rustfmt 1.4.38
 
 ### Browsers and webdrivers
-- Google Chrome 103.0.5060.114
-- Chrome Driver 103.0.5060.53
-- Microsoft Edge 103.0.1264.62
-- Microsoft Edge Driver 103.0.1264.62
+- Google Chrome 103.0.5060.134
+- Chrome Driver 103.0.5060.134
+- Microsoft Edge 103.0.1264.71
+- Microsoft Edge Driver 103.0.1264.71
 - Mozilla Firefox 102.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
@@ -137,9 +138,9 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.332+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.15+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 11.0.16+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
-| 17.0.3+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 17.0.4+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -234,7 +235,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.54  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.23.0  | C:\tools\nginx-1.23.0\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.23.1  | C:\tools\nginx-1.23.1\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
@@ -548,7 +549,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.127          |
+| AWSPowerShell      | 4.1.132          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.10.0           |
@@ -572,18 +573,15 @@ All other versions are saved but not installed.
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                                               |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                     |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                     |
-| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                                                                                                                                                                                                                 |
+| NDK                        | 21.4.7075529<br>23.2.8568313<br>24.0.8215888                                                                                                                                                                                                                                                                                           |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                                                                      |
 
 #### Environment variables
-| Name                    | Value                                                                        |
-| ----------------------- | ---------------------------------------------------------------------------- |
-| ANDROID_HOME            | C:\Android\android-sdk                                                       |
-| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\23.2.8568313 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\24.0.8215888                                      |
-| ANDROID_NDK_PATH        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\23.2.8568313 |
-| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk-bundle -> C:\Android\android-sdk\ndk\23.2.8568313 |
-| ANDROID_SDK_ROOT        | C:\Android\android-sdk                                                       |
+| Name                    | Value                                   |
+| ----------------------- | --------------------------------------- |
+| ANDROID_HOME            | C:\Android\android-sdk                  |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\24.0.8215888 |
+| ANDROID_SDK_ROOT        | C:\Android\android-sdk                  |
 
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
