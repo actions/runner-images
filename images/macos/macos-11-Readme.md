@@ -2,13 +2,12 @@
 |-|
 | [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
 | [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
-| [[Windows, macOS] LLVM will be updated to version 14 on July, 11](https://github.com/actions/virtual-environments/issues/5835) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/virtual-environments/issues/5583) |
 ***
 # macOS 11.6 info
-- System Version: macOS 11.6.7 (20G630)
+- System Version: macOS 11.6.8 (20G730)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220719.1
+- Image Version: 20220724.1
 
 ## Installed Software
 ### Language and Runtime
@@ -41,7 +40,7 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.3.10
-- Homebrew 3.5.5
+- Homebrew 3.5.6
 - Miniconda 4.12.0
 - NPM 8.11.0
 - NuGet 6.2.1.2
@@ -49,7 +48,7 @@
 - Pip 22.1.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.3.18
-- Vcpkg 2022 (build from master \<8ff168270>)
+- Vcpkg 2022 (build from master \<f93ba152d>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -67,7 +66,7 @@
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
-- azcopy 10.15.0
+- azcopy 10.16.0
 - bazel 5.2.0
 - bazelisk 1.12.0
 - bsdtar 3.3.2 - available by 'tar' alias
@@ -78,7 +77,7 @@
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.7
-- helm v3.9.1+ga7c043a
+- helm v3.9.2+g1addefb
 - Hub CLI: 2.14.2
 - ImageMagick 7.1.0-43
 - jq 1.6
@@ -98,7 +97,7 @@
 ### Tools
 - Aliyun CLI 3.0.123
 - App Center CLI 2.10.10
-- AWS CLI 2.7.16
+- AWS CLI 2.7.18
 - AWS SAM CLI 1.53.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
@@ -120,28 +119,28 @@
 - yamllint 1.27.1
 
 ### Browsers
-- Safari 15.5 (16613.2.7.1.9)
-- SafariDriver 15.5 (16613.2.7.1.9)
+- Safari 15.6 (16613.3.9.1.7)
+- SafariDriver 15.6 (16613.3.9.1.7)
 - Google Chrome 103.0.5060.134 
-- ChromeDriver 103.0.5060.53
-- Microsoft Edge 103.0.1264.62 
-- Microsoft Edge WebDriver 103.0.1264.62
+- ChromeDriver 103.0.5060.134
+- Microsoft Edge 103.0.1264.71 
+- Microsoft Edge WebDriver 103.0.1264.71
 - Mozilla Firefox 102.0.1
 - geckodriver 0.31.0
 - Selenium server 4.3.0
 
 #### Environment variables
-| Name            | Value                                          |
-| --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/103.0.5060.53 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
-| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
+| Name            | Value                                           |
+| --------------- | ----------------------------------------------- |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/103.0.5060.134 |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver                    |
+| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                  |
 
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.332+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.15+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 11.0.16+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.3+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
@@ -211,7 +210,7 @@
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.54  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.23.0  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| nginx | 1.23.1  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
@@ -342,17 +341,15 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                                     |
 | Google Repository          | 58                                                                                                                                                     |
-| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                                 |
+| NDK                        | 21.4.7075529<br>23.2.8568313<br>24.0.8215888                                                                                                           |
 | SDK Patch Applier v4       | 1                                                                                                                                                      |
 
 #### Environment variables
-| Name                    | Value                                                                                              |
-| ----------------------- | -------------------------------------------------------------------------------------------------- |
-| ANDROID_HOME            | /Users/runner/Library/Android/sdk                                                                  |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/23.2.8568313 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/24.0.8215888                                                 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk-bundle -> /Users/runner/Library/Android/sdk/ndk/23.2.8568313 |
-| ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                                                                  |
+| Name                    | Value                                              |
+| ----------------------- | -------------------------------------------------- |
+| ANDROID_HOME            | /Users/runner/Library/Android/sdk                  |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/24.0.8215888 |
+| ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                  |
 
 ### Miscellaneous
 - libXext 1.3.4
