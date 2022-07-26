@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
 | [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
 | [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
 # Ubuntu 20.04.4 LTS
 - Linux kernel version: 5.15.0-1014-azure
-- Image Version: 20220717.1
+- Image Version: 20220724.1
 
 ## Installed Software
 ### Language and Runtime
@@ -14,7 +15,7 @@
 - Clang-format 10.0.0, 11.0.0, 12.0.0
 - Clang-tidy 10.0.0, 11.0.0, 12.0.0
 - Dash 0.5.10.2-6
-- Erlang 25.0.2 (Eshell 13.0.2)
+- Erlang 25.0.3 (Eshell 13.0.3)
 - Erlang rebar3 3.19.0
 - GNU C++ 9.4.0, 10.3.0
 - GNU Fortran 9.4.0, 10.3.0
@@ -31,15 +32,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.9.1
-- Homebrew 3.5.4
+- Helm 3.9.2
+- Homebrew 3.5.6
 - Miniconda 4.12.0
 - Npm 8.11.0
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<68b7fec22>)
+- Vcpkg  (build from master \<f93ba152d>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -51,14 +52,14 @@
 ### Project Management
 - Ant 1.10.7
 - Gradle 7.5
-- Lerna 5.1.8
+- Lerna 5.2.0
 - Maven 3.8.6
 - Sbt 1.7.1
 
 ### Tools
-- Ansible 2.13.1
+- Ansible 2.13.2
 - apt-fast 1.9.12
-- AzCopy 10.15.0 (available by `azcopy` and `azcopy10` aliases)
+- AzCopy 10.16.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.2.0
 - Bazelisk 1.12.0
 - Bicep 0.8.9
@@ -71,7 +72,7 @@
 - Docker-Buildx 0.8.2
 - Docker-Moby Client 20.10.17+azure-1
 - Docker-Moby Server 20.10.17+azure-1
-- Fastlane 2.207.0
+- Fastlane 2.208.0
 - Git 2.37.1 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
@@ -106,7 +107,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.16
+- AWS CLI 2.7.18
 - AWS CLI Session manager plugin 1.2.339.0
 - AWS SAM CLI 1.53.0
 - Azure CLI (azure-cli) 2.38.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
@@ -114,10 +115,10 @@
 - GitHub CLI 2.14.2
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 10.10.0
-- OpenShift CLI 4.10.22
+- Netlify CLI 10.11.1
+- OpenShift CLI 4.10.23
 - ORAS CLI 0.13.0
-- Vercel CLI 27.1.5
+- Vercel CLI 27.2.0
 
 ### Java
 | Version              | Vendor          | Environment Variable |
@@ -147,9 +148,9 @@
 - Stack 2.7.5
 
 ### Rust Tools
-- Cargo 1.62.0
-- Rust 1.62.0
-- Rustdoc 1.62.0
+- Cargo 1.62.1
+- Rust 1.62.1
+- Rustdoc 1.62.1
 - Rustup 1.25.1
 
 #### Packages
@@ -161,11 +162,11 @@
 - Rustfmt 1.4.38
 
 ### Browsers and Drivers
-- Google Chrome 103.0.5060.114
-- ChromeDriver 103.0.5060.53
+- Google Chrome 103.0.5060.134
+- ChromeDriver 103.0.5060.134
 - Chromium 103.0.5060.0
-- Microsoft Edge 103.0.1264.62 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 103.0.1264.62
+- Microsoft Edge 103.0.1264.71 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 103.0.1264.71
 - Selenium server 4.3.0
 - Mozilla Firefox 102.0
 - Geckodriver 0.31.0
@@ -280,24 +281,22 @@
 | CMake                      | 3.10.2<br>3.18.1                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                                     |
 | Google Repository          | 58                                                                                                                                                     |
-| NDK                        | 21.4.7075529<br>23.2.8568313 (default)<br>24.0.8215888                                                                                                 |
+| NDK                        | 21.4.7075529<br>23.2.8568313<br>24.0.8215888                                                                                                           |
 | SDK Patch Applier v4       | 1                                                                                                                                                      |
 
 #### Environment variables
-| Name                    | Value                                                                                |
-| ----------------------- | ------------------------------------------------------------------------------------ |
-| ANDROID_HOME            | /usr/local/lib/android/sdk                                                           |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk-bundle -> /usr/local/lib/android/sdk/ndk/23.2.8568313 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/24.0.8215888                                          |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk-bundle -> /usr/local/lib/android/sdk/ndk/23.2.8568313 |
-| ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                                                           |
+| Name                    | Value                                       |
+| ----------------------- | ------------------------------------------- |
+| ANDROID_HOME            | /usr/local/lib/android/sdk                  |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/24.0.8215888 |
+| ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                  |
 
 ### Cached Docker images
 | Repository:Tag          | Digest                                                                   | Created    |
 | ----------------------- | ------------------------------------------------------------------------ | ---------- |
 | alpine:3.12             | sha256:c75ac27b49326926b803b9ed43bf088bc220d22556de1bc5f72d742c91398f69  | 2022-04-05 |
-| alpine:3.13             | sha256:ccf92aa53bc6c3b25be2ad0cce80baec1778f007f7e076b0ffbd1b225d0b3a9b  | 2022-04-05 |
-| alpine:3.14             | sha256:06b5d462c92fc39303e6363c65e074559f8d6b1363250027ed5053557e3398c5  | 2022-04-05 |
+| alpine:3.13             | sha256:7769c38ce671534a0ddbf98633f17edbbd4a4e99cbc77ef42f9f7b78b6a1c6c2  | 2022-07-19 |
+| alpine:3.14             | sha256:43eb8f0d8215d8661f745f3d88563c026614d843b668b233bbe1666b6d026f61  | 2022-07-19 |
 | buildpack-deps:bullseye | sha256:4cbb6d56f192ea1868bdbc441269d0343c90b201c973931aaa6722300118d463  | 2022-07-12 |
 | buildpack-deps:buster   | sha256:3ab2863d37b2d037440b4a153a8fb3c79e935030fd47cef21b698688ce72f66e  | 2022-07-12 |
 | buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
@@ -308,9 +307,9 @@
 | node:12                 | sha256:01627afeb110b3054ba4a1405541ca095c8bfca1cb6f2be9479c767a2711879e  | 2022-04-20 |
 | node:12-alpine          | sha256:d4b15b3d48f42059a15bd659be60afe21762aae9d6cbea6f124440895c27db68  | 2022-04-11 |
 | node:14                 | sha256:a086a11f7780399837ea0465ac8a8e8f14f2b66fe5a110fe0c24644d53a103c5  | 2022-07-12 |
-| node:14-alpine          | sha256:2af507df45e7c0a46c6b3001ce0dbc6924f7b39864d442045f781361a1971975  | 2022-07-08 |
+| node:14-alpine          | sha256:06bc5a651beb7db09a66ceb99a1d19275810d5c9dca8fb9e1ad6d69355a2f42e  | 2022-07-18 |
 | node:16                 | sha256:2e1b4542d4a06e0e0442dc38af1f4828760aecc9db2b95e7df87f573640d98cd  | 2022-07-12 |
-| node:16-alpine          | sha256:554142f9a6367f1fbd776a1b2048fab3a2cc7aa477d7fe9c00ce0f110aa45716  | 2022-07-08 |
+| node:16-alpine          | sha256:da32af0cf608622b1550678b2552b7d997def7d0ada00e0eca0166ed2ea42186  | 2022-07-18 |
 | ubuntu:16.04            | sha256:20858ebbc96215d6c3c574f781133ebffdc7c18d98af4f294cc4c04871a6fe61  | 2021-08-31 |
 | ubuntu:18.04            | sha256:478caf1bec1afd54a58435ec681c8755883b7eb843a8630091890130b15a79af  | 2022-06-06 |
 | ubuntu:20.04            | sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180dc19  | 2022-06-06 |
