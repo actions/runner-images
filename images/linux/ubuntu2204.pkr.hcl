@@ -31,13 +31,13 @@ variable "client_secret" {
 }
 
 variable "client_cert_path" {
-  type      = string
-  default   = "${env("ARM_CLIENT_CERT_PATH")}"
+  type    = string
+  default = "${env("ARM_CLIENT_CERT_PATH")}"
 }
 
 variable "commit_url" {
-  type      = string
-  default   = ""
+  type    = string
+  default = ""
 }
 
 variable "dockerhub_login" {
@@ -86,7 +86,7 @@ variable "installer_script_folder" {
 }
 
 variable "install_password" {
-  type  = string
+  type    = string
   default = ""
 }
 
@@ -150,16 +150,49 @@ variable "vm_size" {
   default = "Standard_D4s_v4"
 }
 
-source "proxmox-clone" "runner" {
+source "proxmox-iso" "runner" {
   proxmox_url = "https://mevanwi.srv.lan.wiztivi.com:8006/api2/json"
-  user = "zcarde@lan.wiztivi.com!gh_runner"
-  token = "72615aa1-23c5-4448-b53e-7eaa4ebb9063"
-  node = ""
-  clone_vm = ""
+  username    = "zcarde@lan.wiztivi.com!gh_runner"
+  token       = "72615aa1-23c5-4448-b53e-7eaa4ebb9063"
+  node        = "goustan"
+  iso_file    = "local:iso/ubuntu-22.04-live-server-amd64.iso"
+  vm_name     = "gh-runner-build"
+
+  // optional
+  memory  = 4096
+  cores   = 2
+  sockets = 1
+
+  disks {
+    type              = "scsi"
+    disk_size         = "30G"
+    storage_pool      = "local-lvm"
+    storage_pool_type = "lvm-thin"
+    format            = "raw"
+  }
+  network_adapters {
+    bridge = "vmbr0"
+  }
+
+  http_directory = "images/linux/http-2204"
+  unmount_iso    = true
+  boot_wait      = "5s"
+  boot_command   = [
+    "c",
+    "linux /casper/vmlinuz --- autoinstall ds='nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/' ",
+    "<enter><wait>",
+    "initrd /casper/initrd ---",
+    "<enter><wait>",
+    "boot<enter>"
+  ]
+
+  ssh_username = "root"
+  ssh_password = "root"
+  ssh_timeout  = "20m"
 }
 
 build {
-  sources = ["source.proxmox-clone.runner"]
+  sources = ["source.proxmox-iso.runner"]
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
@@ -235,7 +268,9 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${var.image_os}", "HELPER_SCRIPTS=${var.helper_script_folder}"]
+    environment_vars = [
+      "IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${var.image_os}", "HELPER_SCRIPTS=${var.helper_script_folder}"
+    ]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/scripts/installers/configure-environment.sh"]
   }
@@ -243,98 +278,122 @@ build {
   provisioner "shell" {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/scripts/installers/complete-snap-setup.sh", "${path.root}/scripts/installers/powershellcore.sh"]
+    scripts          = [
+      "${path.root}/scripts/installers/complete-snap-setup.sh", "${path.root}/scripts/installers/powershellcore.sh"
+    ]
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
+    environment_vars = [
+      "HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"
+    ]
     execute_command  = "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
-    scripts          = ["${path.root}/scripts/installers/Install-PowerShellModules.ps1", "${path.root}/scripts/installers/Install-AzureModules.ps1"]
+    scripts          = [
+      "${path.root}/scripts/installers/Install-PowerShellModules.ps1",
+      "${path.root}/scripts/installers/Install-AzureModules.ps1"
+    ]
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DOCKERHUB_LOGIN=${var.dockerhub_login}", "DOCKERHUB_PASSWORD=${var.dockerhub_password}"]
-    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/scripts/installers/docker-compose.sh", "${path.root}/scripts/installers/docker-moby.sh"]
-  }
-
-  provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive", "FILES_PATH=${var.files_folder}/ubuntu2204"]
+    environment_vars = [
+      "HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}",
+      "DOCKERHUB_LOGIN=${var.dockerhub_login}", "DOCKERHUB_PASSWORD=${var.dockerhub_password}"
+    ]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/scripts/installers/azcopy.sh",
-                        "${path.root}/scripts/installers/azure-cli.sh",
-                        "${path.root}/scripts/installers/azure-devops-cli.sh",
-                        "${path.root}/scripts/installers/basic.sh",
-                        "${path.root}/scripts/installers/bicep.sh",
-                        "${path.root}/scripts/installers/aliyun-cli.sh",
-                        "${path.root}/scripts/installers/apache.sh",
-                        "${path.root}/scripts/installers/aws.sh",
-                        "${path.root}/scripts/installers/clang.sh",
-                        "${path.root}/scripts/installers/cmake.sh",
-                        "${path.root}/scripts/installers/codeql-bundle.sh",
-                        "${path.root}/scripts/installers/containers.sh",
-                        "${path.root}/scripts/installers/dotnetcore-sdk.sh",
-                        "${path.root}/scripts/installers/microsoft-edge.sh",
-                        "${path.root}/scripts/installers/gcc.sh",
-                        "${path.root}/scripts/installers/gfortran.sh",
-                        "${path.root}/scripts/installers/git.sh",
-                        "${path.root}/scripts/installers/github-cli.sh",
-                        "${path.root}/scripts/installers/google-chrome.sh",
-                        "${path.root}/scripts/installers/google-cloud-sdk.sh",
-                        "${path.root}/scripts/installers/haskell.sh",
-                        "${path.root}/scripts/installers/heroku.sh",
-                        "${path.root}/scripts/installers/java-tools.sh",
-                        "${path.root}/scripts/installers/kubernetes-tools.sh",
-                        "${path.root}/scripts/installers/oc.sh",
-                        "${path.root}/scripts/installers/leiningen.sh",
-                        "${path.root}/scripts/installers/miniconda.sh",
-                        "${path.root}/scripts/installers/mono.sh",
-                        "${path.root}/scripts/installers/kotlin.sh",
-                        "${path.root}/scripts/installers/mysql.sh",
-                        "${path.root}/scripts/installers/sqlpackage.sh",
-                        "${path.root}/scripts/installers/nginx.sh",
-                        "${path.root}/scripts/installers/nvm.sh",
-                        "${path.root}/scripts/installers/nodejs.sh",
-                        "${path.root}/scripts/installers/bazel.sh",
-                        "${path.root}/scripts/installers/oras-cli.sh",
-                        "${path.root}/scripts/installers/php.sh",
-                        "${path.root}/scripts/installers/postgresql.sh",
-                        "${path.root}/scripts/installers/pulumi.sh",
-                        "${path.root}/scripts/installers/ruby.sh",
-                        "${path.root}/scripts/installers/r.sh",
-                        "${path.root}/scripts/installers/rust.sh",
-                        "${path.root}/scripts/installers/julia.sh",
-                        "${path.root}/scripts/installers/sbt.sh",
-                        "${path.root}/scripts/installers/selenium.sh",
-                        "${path.root}/scripts/installers/terraform.sh",
-                        "${path.root}/scripts/installers/packer.sh",
-                        "${path.root}/scripts/installers/vcpkg.sh",
-                        "${path.root}/scripts/installers/dpkg-config.sh",
-                        "${path.root}/scripts/installers/yq.sh",
-                        "${path.root}/scripts/installers/android.sh",
-                        "${path.root}/scripts/installers/pypy.sh",
-                        "${path.root}/scripts/installers/python.sh",
-                        "${path.root}/scripts/installers/graalvm.sh",
-                        "${path.root}/scripts/installers/tizen-cli.sh",
-                        "${path.root}/scripts/installers/webos-cli.sh"
-                        ]
+      "${path.root}/scripts/installers/docker-compose.sh", "${path.root}/scripts/installers/docker-moby.sh"
+    ]
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
+    environment_vars = [
+      "HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}",
+      "DEBIAN_FRONTEND=noninteractive", "FILES_PATH=${var.files_folder}/ubuntu2204"
+    ]
+    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    scripts          = [
+      "${path.root}/scripts/installers/azcopy.sh",
+      "${path.root}/scripts/installers/azure-cli.sh",
+      "${path.root}/scripts/installers/azure-devops-cli.sh",
+      "${path.root}/scripts/installers/basic.sh",
+      "${path.root}/scripts/installers/bicep.sh",
+      "${path.root}/scripts/installers/aliyun-cli.sh",
+      "${path.root}/scripts/installers/apache.sh",
+      "${path.root}/scripts/installers/aws.sh",
+      "${path.root}/scripts/installers/clang.sh",
+      "${path.root}/scripts/installers/cmake.sh",
+      "${path.root}/scripts/installers/codeql-bundle.sh",
+      "${path.root}/scripts/installers/containers.sh",
+      "${path.root}/scripts/installers/dotnetcore-sdk.sh",
+      "${path.root}/scripts/installers/microsoft-edge.sh",
+      "${path.root}/scripts/installers/gcc.sh",
+      "${path.root}/scripts/installers/gfortran.sh",
+      "${path.root}/scripts/installers/git.sh",
+      "${path.root}/scripts/installers/github-cli.sh",
+      "${path.root}/scripts/installers/google-chrome.sh",
+      "${path.root}/scripts/installers/google-cloud-sdk.sh",
+      "${path.root}/scripts/installers/haskell.sh",
+      "${path.root}/scripts/installers/heroku.sh",
+      "${path.root}/scripts/installers/java-tools.sh",
+      "${path.root}/scripts/installers/kubernetes-tools.sh",
+      "${path.root}/scripts/installers/oc.sh",
+      "${path.root}/scripts/installers/leiningen.sh",
+      "${path.root}/scripts/installers/miniconda.sh",
+      "${path.root}/scripts/installers/mono.sh",
+      "${path.root}/scripts/installers/kotlin.sh",
+      "${path.root}/scripts/installers/mysql.sh",
+      "${path.root}/scripts/installers/sqlpackage.sh",
+      "${path.root}/scripts/installers/nginx.sh",
+      "${path.root}/scripts/installers/nvm.sh",
+      "${path.root}/scripts/installers/nodejs.sh",
+      "${path.root}/scripts/installers/bazel.sh",
+      "${path.root}/scripts/installers/oras-cli.sh",
+      "${path.root}/scripts/installers/php.sh",
+      "${path.root}/scripts/installers/postgresql.sh",
+      "${path.root}/scripts/installers/pulumi.sh",
+      "${path.root}/scripts/installers/ruby.sh",
+      "${path.root}/scripts/installers/r.sh",
+      "${path.root}/scripts/installers/rust.sh",
+      "${path.root}/scripts/installers/julia.sh",
+      "${path.root}/scripts/installers/sbt.sh",
+      "${path.root}/scripts/installers/selenium.sh",
+      "${path.root}/scripts/installers/terraform.sh",
+      "${path.root}/scripts/installers/packer.sh",
+      "${path.root}/scripts/installers/vcpkg.sh",
+      "${path.root}/scripts/installers/dpkg-config.sh",
+      "${path.root}/scripts/installers/yq.sh",
+      "${path.root}/scripts/installers/android.sh",
+      "${path.root}/scripts/installers/pypy.sh",
+      "${path.root}/scripts/installers/python.sh",
+      "${path.root}/scripts/installers/graalvm.sh",
+      "${path.root}/scripts/installers/tizen-cli.sh",
+      "${path.root}/scripts/installers/webos-cli.sh"
+    ]
+  }
+
+  provisioner "shell" {
+    environment_vars = [
+      "HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"
+    ]
     execute_command  = "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
-    scripts          = ["${path.root}/scripts/installers/Install-Toolset.ps1", "${path.root}/scripts/installers/Configure-Toolset.ps1"]
+    scripts          = [
+      "${path.root}/scripts/installers/Install-Toolset.ps1", "${path.root}/scripts/installers/Configure-Toolset.ps1"
+    ]
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
+    environment_vars = [
+      "HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"
+    ]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/scripts/installers/pipx-packages.sh"]
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "DEBIAN_FRONTEND=noninteractive", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
+    environment_vars = [
+      "HELPER_SCRIPTS=${var.helper_script_folder}", "DEBIAN_FRONTEND=noninteractive",
+      "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"
+    ]
     execute_command  = "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/scripts/installers/homebrew.sh"]
   }
@@ -364,7 +423,10 @@ build {
 
   provisioner "shell" {
     environment_vars = ["IMAGE_VERSION=${var.image_version}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
-    inline           = ["pwsh -File ${var.image_folder}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory ${var.image_folder}", "pwsh -File ${var.image_folder}/tests/RunAll-Tests.ps1 -OutputDirectory ${var.image_folder}"]
+    inline           = [
+      "pwsh -File ${var.image_folder}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory ${var.image_folder}",
+      "pwsh -File ${var.image_folder}/tests/RunAll-Tests.ps1 -OutputDirectory ${var.image_folder}"
+    ]
   }
 
   provisioner "file" {
@@ -374,7 +436,10 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPT_FOLDER=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "IMAGE_FOLDER=${var.image_folder}"]
+    environment_vars = [
+      "HELPER_SCRIPT_FOLDER=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}",
+      "IMAGE_FOLDER=${var.image_folder}"
+    ]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/scripts/installers/post-deployment.sh"]
   }
@@ -398,5 +463,4 @@ build {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     inline          = ["sleep 30"]
   }
-
 }
