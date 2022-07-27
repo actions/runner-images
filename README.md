@@ -70,7 +70,7 @@ A GA (General Availability) image has been through a Beta period and is deemed r
 
 ### Support Policy
 - Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life
-- We support the 2 latest OS versions. We begin the deprecation process of the oldest image label once a new OS version has been released to GA.
+- We support(at maximum) 2 GA images and 1 beta image at a time. We begin the deprecation process of the oldest image label once the newest OS image label has been released to GA.
 - The images generally contain the latest versions of packages installed except for Ubuntu LTS where we rely on the Canonical-provided repositories mostly.
 - Popular tools can have several versions installed side-by-side with the following strategy:
 
