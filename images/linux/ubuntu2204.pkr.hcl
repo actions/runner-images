@@ -4,6 +4,11 @@ variable "allowed_inbound_ip_addresses" {
   default = []
 }
 
+variable "azure_tag" {
+  type    = map(string)
+  default = {}
+}
+
 variable "build_resource_group_name" {
   type    = string
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
@@ -164,6 +169,14 @@ source "azure-arm" "build_vhd" {
   virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
   virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
   vm_size                                = "${var.vm_size}"
+
+  dynamic "azure_tag" {
+    for_each = var.azure_tag
+    content {
+      name = azure_tag.key
+      value = azure_tag.value
+    }
+  }
 }
 
 build {
@@ -287,6 +300,7 @@ build {
                         "${path.root}/scripts/installers/oc.sh",
                         "${path.root}/scripts/installers/leiningen.sh",
                         "${path.root}/scripts/installers/miniconda.sh",
+                        "${path.root}/scripts/installers/mono.sh",
                         "${path.root}/scripts/installers/kotlin.sh",
                         "${path.root}/scripts/installers/mysql.sh",
                         "${path.root}/scripts/installers/sqlpackage.sh",
