@@ -164,8 +164,14 @@ function Get-AndroidNdkVersions {
         [object] $PackageInfo
     )
 
+    $ndkDefaultFullVersion = Get-ChildItem $env:ANDROID_NDK_HOME -Name
+
     $versions = $packageInfo | Where-Object { $_ -Match "ndk;" } | ForEach-Object {
-        (Split-TableRowByColumns $_)[1]
+        $version = (Split-TableRowByColumns $_)[1]
+        if ($version -eq $ndkDefaultFullVersion) {
+            $version += " (default)"
+        }
+        $version
     }
     return ($versions -Join "<br>")
 }
@@ -173,7 +179,7 @@ function Get-AndroidNdkVersions {
 function Build-AndroidEnvironmentTable {
     $androidVersions = Get-Item env:ANDROID_*
 
-    $shoulddResolveLink = 'ANDROID_NDK_LATEST_HOME'
+    $shoulddResolveLink = 'ANDROID_NDK', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
     return $androidVersions | Sort-Object -Property Name | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
