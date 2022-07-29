@@ -32,6 +32,7 @@ ANDROID_EXTRA_LIST=($(get_toolset_value '.android."extra-list"[]'))
 ANDROID_ADDON_LIST=($(get_toolset_value '.android."addon-list"[]'))
 ANDROID_ADDITIONAL_TOOLS=($(get_toolset_value '.android."additional-tools"[]'))
 ANDROID_NDK_MAJOR_VERSIONS=($(get_toolset_value '.android.ndk."versions"[]'))
+ANDROID_NDK_MAJOR_DEFAULT=$(get_toolset_value '.android.ndk.default')
 ANDROID_NDK_MAJOR_LATEST=$(get_toolset_value '.android.ndk."versions"[-1]')
 # Get the latest command line tools from https://developer.android.com/studio#cmdline-tools
 cmdlineToolsVersion=$(get_toolset_value '.android."cmdline-tools"')
@@ -81,8 +82,14 @@ do
     echo y | $SDKMANAGER "ndk;$ndk_full_version"
 done
 
+ndkDefault=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
+ANDROID_NDK_HOME=$ANDROID_HOME/ndk/$ndkDefault
 ndkLatest=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
 ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ndkLatest
+# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_LATEST_HOME variables should be set as many customer builds depend on them https://github.com/actions/virtual-environments/issues/5879
+echo "export ANDROID_NDK=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
+echo "export ANDROID_NDK_HOME=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
+echo "export ANDROID_NDK_ROOT=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
 echo "export ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> "${HOME}/.bashrc"
 
 availablePlatforms=($($SDKMANAGER --list | grep "platforms;android-[0-9]" | cut -d"|" -f 1 | sort -u))
