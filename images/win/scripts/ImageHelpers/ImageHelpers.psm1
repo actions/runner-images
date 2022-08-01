@@ -35,7 +35,6 @@ Export-ModuleMember -Function @(
     'Get-WinVersion'
     'Test-IsWin22'
     'Test-IsWin19'
-    'Test-IsWin16'
     'Choco-Install'
     'Send-RequestToCocolateyPackages'
     'Get-LatestChocoPackageVersion'

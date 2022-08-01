@@ -32,13 +32,13 @@ Here are a few things you can do that will increase the likelihood of your pull 
 ### General rules
 - For every new tool add validation scripts and update software report script to make sure that it is included to documentation
 - If the tool is available in other platforms (macOS, Windows, Linux), make sure you include it in as many as possible.
-- If installing a few versions of the tool, consider putting the list of versions in the corresponding `toolset.json` file. It will help other customers to configure their builds flexibly. See [toolset-windows-2016.json](images/win/toolsets/toolset-2019.json) as example.
+- If installing a few versions of the tool, consider putting the list of versions in the corresponding `toolset.json` file. It will help other customers to configure their builds flexibly. See [toolset-windows-2019.json](images/win/toolsets/toolset-2019.json) as example.
 - Use consistent naming across all files
 - Validation scripts should be simple and shouldn't change image content
 
 ### Windows
 - Add a script that will install the tool and put the script in the `scripts/Installers` folder.  
-There are a bunch of helper functions that could simplify your code: `Choco-Install`, `Install-Binary`, `Install-VsixExtension`, `Start-DownloadWithRetry`, `Test-IsWin16`, `Test-IsWin19` (find the full list of helpers in [ImageHelpers.psm1](images/win/scripts/ImageHelpers/ImageHelpers.psm1)).
+There are a bunch of helper functions that could simplify your code: `Choco-Install`, `Install-Binary`, `Install-VsixExtension`, `Start-DownloadWithRetry`, `Test-IsWin19`, `Test-IsWin22` (find the full list of helpers in [ImageHelpers.psm1](images/win/scripts/ImageHelpers/ImageHelpers.psm1)).
 - Add a script that will validate the tool installation and put the script in the `scripts/Tests` folder.  
 We use [Pester v5](https://github.com/pester/pester) for validation scripts. If the tests for the tool are complex enough, create a separate `*.Tests.ps1`. Otherwise, use `Tools.Tests.ps1` for simple tests.  
 Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at the end of the installation script to make sure that your tests will be run.
