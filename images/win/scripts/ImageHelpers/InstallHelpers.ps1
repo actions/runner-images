@@ -249,6 +249,11 @@ function Get-VsixExtenstionFromMarketplace {
             $fileName = "Microsoft.DataTools.AnalysisServices.vsix"
             $downloadUri = "https://download.microsoft.com/download/c/8/9/c896a7f2-d0fd-45ac-90e6-ff61f67523cb/Microsoft.DataTools.AnalysisServices.vsix"
         }
+        # Starting from version 4.1 SqlServerIntegrationServicesProjects extension is distributed as exe file
+        "SSIS.SqlServerIntegrationServicesProjects" {
+            $fileName = "Microsoft.DataTools.IntegrationServices.exe"
+            $downloadUri = $assetUri + "/" + $fileName
+        }
     }
 
     return [PSCustomObject] @{
@@ -429,11 +434,6 @@ function Test-IsWin22
 function Test-IsWin19
 {
     (Get-WinVersion) -match "2019"
-}
-
-function Test-IsWin16
-{
-    (Get-WinVersion) -match "2016"
 }
 
 function Extract-7Zip {

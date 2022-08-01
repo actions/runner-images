@@ -109,6 +109,7 @@ Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
 
 # NDKs
 $ndkMajorVersions = $androidToolset.ndk.versions
+$ndkDefaultMajorVersion = $androidToolset.ndk.default
 $ndkLatestMajorVersion = $ndkMajorVersions | Select-Object -Last 1
 
 $androidNDKs = $ndkMajorVersions | Foreach-Object {
@@ -120,10 +121,16 @@ Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
                 -AndroidPackages $androidNDKs
 
 $ndkLatestVersion = ($androidNDKs | Where-Object { $_ -match "ndk;$ndkLatestMajorVersion" }).Split(';')[1]
+$ndkDefaultVersion = ($androidNDKs | Where-Object { $_ -match "ndk;$ndkDefaultMajorVersion" }).Split(';')[1]
+$ndkRoot = "$sdkRoot\ndk\$ndkDefaultVersion"
 
 # Create env variables
 setx ANDROID_HOME $sdkRoot /M
 setx ANDROID_SDK_ROOT $sdkRoot /M
+# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_LATEST_HOME variables should be set as many customer builds depend on them https://github.com/actions/virtual-environments/issues/5879
+setx ANDROID_NDK $ndkRoot /M
+setx ANDROID_NDK_HOME $ndkRoot /M
+setx ANDROID_NDK_ROOT $ndkRoot /M
 
 $ndkLatestPath = "$sdkRoot\ndk\$ndkLatestVersion"
 if (Test-Path $ndkLatestPath) {

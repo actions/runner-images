@@ -84,6 +84,7 @@ extras=$(get_toolset_value '.android.extra_list[]|"extras;" + .')
 addons=$(get_toolset_value '.android.addon_list[]|"add-ons;" + .')
 additional=$(get_toolset_value '.android.additional_tools[]')
 ANDROID_NDK_MAJOR_VERSIONS=($(get_toolset_value '.android.ndk.versions[]'))
+ANDROID_NDK_MAJOR_DEFAULT=$(get_toolset_value '.android.ndk.default')
 
 components=("${extras[@]}" "${addons[@]}" "${additional[@]}")
 for ndk_version in "${ANDROID_NDK_MAJOR_VERSIONS[@]}"
@@ -93,7 +94,13 @@ do
 done
 
 ANDROID_NDK_MAJOR_LATEST=(${ANDROID_NDK_MAJOR_VERSIONS[-1]})
+ndkDefaultFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
 ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
+ANDROID_NDK="$ANDROID_SDK_ROOT/ndk/$ndkDefaultFullVersion"
+# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_LATEST_HOME variables should be set as many customer builds depend on them https://github.com/actions/virtual-environments/issues/5879
+echo "ANDROID_NDK=${ANDROID_NDK}" | tee -a /etc/environment
+echo "ANDROID_NDK_HOME=${ANDROID_NDK}" | tee -a /etc/environment
+echo "ANDROID_NDK_ROOT=${ANDROID_NDK}" | tee -a /etc/environment
 echo "ANDROID_NDK_LATEST_HOME=$ANDROID_SDK_ROOT/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
 
 availablePlatforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-[0-9]" | cut -d"|" -f 1))

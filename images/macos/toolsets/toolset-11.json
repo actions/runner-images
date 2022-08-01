@@ -174,9 +174,11 @@
         "addon-list": [],
         "additional-tools": [
             "cmake;3.10.2.4988404",
-            "cmake;3.18.1"
+            "cmake;3.18.1",
+            "cmake;3.22.1"
         ],
         "ndk": {
+            "default": "25",
             "versions": [
                 "23", "24", "25"
             ]
