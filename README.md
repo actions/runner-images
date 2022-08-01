@@ -19,7 +19,6 @@ For general questions about using the virtual environments or writing your Actio
 | macOS 10.15 <sup>deprecated</sup> | `macos-10.15` | [macOS-10.15] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&redirect=1) |
 | Windows Server 2019 | `windows-2019` | [windows-2019] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
-| Windows Server 2016 | `windows-2016` | [windows-2016] | [![](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2016&redirect=1)
 
 <b>Note:</b> Beta and Preview images are provided "as-is", "with all faults" and "as available" and are excluded from the service level agreement and warranty. Beta and Preview images may not be covered by customer support.
 
@@ -54,7 +53,6 @@ You can also track upcoming changes using the [awaiting-deployment](https://gith
 [ubuntu-18.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-Readme.md
 [windows-2022]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2022-Readme.md
 [windows-2019]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
-[windows-2016]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
 [macOS-11]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11-Readme.md
 [macOS-12]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-12-Readme.md
 [macOS-10.15]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
