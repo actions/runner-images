@@ -50,7 +50,7 @@ Customers choosing to use Beta images are encouraged to provide feedback in the 
 
 ### GA:
 A GA (General Availability) image has been through a Beta period and is deemed ready for general use. Images are updated on a weekly cadence. In order to be moved to
-GA the image must meet the following criteria: 1- Has been through a Beta period (public or private) 2- Most major software we install on the image has a compatible 
+GA the image must meet the following criteria: 1- Has been through a Beta period (public or private) 2- Most major software we install on the image has a compatible
 version for the underlying OS and 3- All major bugs reported during the Beta period have been addressed. This image type falls under the customer [SLA](https://github.com/customer-terms/github-online-services-sla) for actions. GA images are eventually deprecated according to our guidelines as we only support the
 latest 2 versions of an OS.
 
@@ -59,9 +59,9 @@ latest 2 versions of an OS.
 
 1. Find the latest releases for this repository [here.](https://github.com/actions/virtual-environments/releases)
 2. Subscribe to the releases coming out of this repository, instructions [here.](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#configuring-your-watch-settings-for-an-individual-repository)
-3. Upcoming changes: A pre-release is created when deployment is started. As soon as deployment is finished, it is converted to a release. If you have subscribed to releases, you will get notified of pre-releases as well. 
+3. Upcoming changes: A pre-release is created when deployment is started. As soon as deployment is finished, it is converted to a release. If you have subscribed to releases, you will get notified of pre-releases as well.
    - You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/virtual-environments/labels/awaiting-deployment) label.
-4. For high impact changes, we will post these in advance to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog). 
+4. For high impact changes, we will post these in advance to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).
    - Ex: breaking changes, GA or deprecation of images
 5. You can also view notable upcoming changes by viewing the [Announcement](https://github.com/actions/virtual-environments/labels/Announcement) label.
 
@@ -142,7 +142,7 @@ We do not plan to offer other Linux distributions. We recommend using Docker if 
 
 <details>
    <summary><b><i>How do I contribute to the macOS source?</b></i></summary>
-   
+
 macOS source lives in this repository and is available for everyone. However, macOS image-generation CI doesn't support external contributions yet so we are not able to accept pull-requests for now.
 
 We are in the process of preparing macOS CI to accept contributions. Until then, we appreciate your patience and ask you to continue to make tool requests by filing issues.
@@ -151,7 +151,7 @@ We are in the process of preparing macOS CI to accept contributions. Until then,
 
 <details>
    <summary><b><i>How does GitHub determine what tools are installed on the images?</b></i></summary>
-   
+
 For some tools, we always install the latest at the time of the deployment; for others, we pin the tool to specific version(s). For more details please see the [Preinstallation Policy](#preinstallation-policy)
 </details>
 
