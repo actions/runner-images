@@ -19,12 +19,10 @@ $avPreference = @(
     @{DisableRealtimeMonitoring = $true}
 )
 
-if (-not (Test-IsWin16)) {
-    $avPreference += @(
-        @{EnableControlledFolderAccess = "Disable"}
-        @{EnableNetworkProtection = "Disabled"}
-    )
-}
+$avPreference += @(
+    @{EnableControlledFolderAccess = "Disable"}
+    @{EnableNetworkProtection = "Disabled"}
+)
 
 $avPreference | Foreach-Object {
     $avParams = $_
