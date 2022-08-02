@@ -436,11 +436,6 @@ function Test-IsWin19
     (Get-WinVersion) -match "2019"
 }
 
-function Test-IsWin16
-{
-    (Get-WinVersion) -match "2016"
-}
-
 function Extract-7Zip {
     Param
     (

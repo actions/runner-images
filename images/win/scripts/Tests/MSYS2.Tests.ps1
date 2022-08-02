@@ -16,7 +16,7 @@ Describe "MSYS2 packages" {
         @{ ToolName = "bash.exe" }
     )
 
-    if ((Test-IsWin16) -or (Test-IsWin19)) {
+    if (Test-IsWin19) {
         $TestCases += @(
             @{ ToolName = "tar.exe" }
             @{ ToolName = "make.exe" }
