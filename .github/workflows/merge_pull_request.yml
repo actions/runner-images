@@ -46,14 +46,3 @@ jobs:
             pull_number: ${{ github.event.client_payload.PullRequestNumber }},
             merge_method: "squash"
           })
-
-    - name: Delete docs branch ${{ github.event.client_payload.ReleaseBranchName }}-docs
-      uses: actions/github-script@v2
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          github.git.deleteRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: "heads/${{ github.event.client_payload.ReleaseBranchName }}-docs"
-          })
