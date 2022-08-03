@@ -77,14 +77,14 @@ function Get-MacOSInstaller {
         Write-Host "`t[*] The 'DownloadLatestVersion' flag is set. Latest macOS version is '$MacOSVersion' now"
     }
 
-    $macOSName = $availableVersions.Where{ $MacOSVersion -eq $_.OSVersion }.OSName
+    $macOSName = $availableVersions.Where{ $MacOSVersion -eq $_.OSVersion }.OSName.Split(" ")[1]
     if (-not $macOSName) {
         Write-Host "`t[x] Requested macOS '$MacOSVersion' version not found in the list of available installers. Available versions are:`n$($availableVersions.OSVersion)"
         Write-Host "`t[x] Make sure to pass '-BetaSearch `$true' if you need a beta version installer"
         exit 1
     }
 
-    $installerPathPattern = "/Applications/Install*${macOSName}.app"
+    $installerPathPattern = "/Applications/Install macOS ${macOSName}*.app"
     if (Test-Path $installerPathPattern) {
         $previousInstallerPath = Get-Item -Path $installerPathPattern
         Write-Host "`t[*] Removing '$previousInstallerPath' installation app before downloading the new one"
@@ -104,6 +104,10 @@ function Get-MacOSInstaller {
     }
 
     $installerPath = (Get-Item -Path $installerPathPattern).FullName
+    if (-not $installerPath) {
+        Write-Host "`t[x] Path not found using '$installerPathPattern'"
+        exit 1
+    }
     Write-Host "`t[*] Installer successfully downloaded to '$installerPath'"
 
     $installerPath
