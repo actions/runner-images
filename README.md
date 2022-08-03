@@ -12,16 +12,17 @@
 
 
 ## About
-This repository contains the source used to create the [runner images](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners) for
+This repository contains the source code used to create the [runner images](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners) for
+
 GitHub Actions hosted runners, as well as the VM images of [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent)
 used for Azure Pipelines. To build a VM machine from this repo's source, see the [instructions](docs/create-image-and-azure-resources.md).
 
 ## Available Images
 | Image | YAML Label | Included Software | Rollout Progress of Latest Image Release |
 | --------------------|---------------------|--------------------|---------------------|
-| Ubuntu 22.04 <sup>beta</sup> | `ubuntu-22.04` | [ubuntu-22.04] | [![status22](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
+| Ubuntu 22.04 | `ubuntu-22.04` | [ubuntu-22.04] | [![status22](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
 | Ubuntu 20.04 | `ubuntu-latest` or `ubuntu-20.04` | [ubuntu-20.04] | [![status20](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
-| Ubuntu 18.04 | `ubuntu-18.04` | [ubuntu-18.04] | [![status18](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
+| Ubuntu 18.04 <sup>deprecated</sup>  | `ubuntu-18.04` | [ubuntu-18.04] | [![status18](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
 | macOS 12 | `macos-12`| [macOS-12] | [![statusumac12](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&redirect=1)
 | macOS 11 | `macos-latest` or `macos-11`| [macOS-11] | [![statusmac11](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
 | macOS 10.15 <sup>deprecated</sup> | `macos-10.15` | [macOS-10.15] | [![statusmac10](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
@@ -69,8 +70,6 @@ latest 2 versions of an OS.
 
 - We typically deploy weekly updates to the software on the runner images.
 
-
-
 ## Software and Image Support
 
 ### Support Policy
@@ -96,7 +95,7 @@ latest 2 versions of an OS.
 - Images begin the deprecation process of the oldest image label once a new GA OS version has been released.
 - Deprecation process begins with an announcement that sets a date for deprecation
 - As it gets closer to the date, GitHub begins doing scheduled brownouts of the image
-- DUring this time there will be an Announcement pinned in the repo to remind users of the deprecation.
+- During this time there will be an Announcement pinned in the repo to remind users of the deprecation.
 - Finally GitHub will deprecate the image and it will no longer be available
 
 ### Preinstallation Policy
@@ -130,7 +129,7 @@ The availability of images for GitHub Actions and Azure DevOps is different. See
 <details>
    <summary><b><i>What image version is used in my build?</b></i></summary>
 
-Usually, image deployment takes 3-4 days, and documentation in the `main` branch is only updated when deployment is finished. To find out which image version and what software versions are used in a specific build, see `Set up job` (GitHub Actions) or `Initialize job` (Azure DevOps) step log.
+Usually, image deployment takes 2-3 days, and documentation in the `main` branch is only updated when deployment is finished. To find out which image version and what software versions are used in a specific build, see `Set up job` (GitHub Actions) or `Initialize job` (Azure DevOps) step log.
 <img width="1440" alt="actions-runner-image" src="https://user-images.githubusercontent.com/56982181/169595536-91a8a79b-d5e0-47d1-a736-510cff6cfb83.png">
 </details>
 
