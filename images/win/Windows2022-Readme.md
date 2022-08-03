@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/virtual-environments/issues/5967) |
 | [[Windows] mongo service will be disabled by default on August, 8th](https://github.com/actions/virtual-environments/issues/5949) |
 | [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
 | [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
@@ -7,7 +8,7 @@
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 825
-- Image Version: 20220724.1
+- Image Version: 20220731.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -28,14 +29,14 @@
 ### Package Management
 - Chocolatey 1.1.0
 - Composer 2.3.10
-- Helm 3.9.1
+- Helm 3.9.2
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
 - NPM 8.11.0
 - NuGet 6.2.1.2
-- pip 22.2 (python 3.9)
+- pip 22.2.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<f93ba152d>)
+- Vcpkg (build from master \<66045de4d>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,11 +58,11 @@
 - Bazelisk 1.12.0
 - Bicep 0.8.9
 - Cabal 3.6.2.0
-- CMake 3.23.2
-- CodeQL Action Bundle 2.10.0
+- CMake 3.23.3
+- CodeQL Action Bundle 2.10.1
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.7.0
+- Docker Compose v2 2.8.0
 - Docker-wincred 0.6.4
 - ghc 9.2.3
 - Git 2.37.1.windows.1
@@ -76,7 +77,7 @@
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.8.2
-- Pulumi v3.36.0
+- Pulumi v3.37.1
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.7.5
@@ -90,12 +91,12 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.18
+- AWS CLI 2.7.20
 - AWS SAM CLI 1.53.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.38.0
 - Azure DevOps CLI extension 0.25.0
-- GitHub CLI 2.14.2
+- GitHub CLI 2.14.3
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -115,9 +116,9 @@
 ### Browsers and webdrivers
 - Google Chrome 103.0.5060.134
 - Chrome Driver 103.0.5060.134
-- Microsoft Edge 103.0.1264.71
-- Microsoft Edge Driver 103.0.1264.71
-- Mozilla Firefox 102.0.1
+- Microsoft Edge 103.0.1264.77
+- Microsoft Edge Driver 103.0.1264.77
+- Mozilla Firefox 103.0
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.3.0
@@ -133,7 +134,7 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.332+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 8.0.342+7 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.16+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.4+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
@@ -206,14 +207,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Password             | root                                                                                                                                 |
 
 #### MongoDB
-| Version | ServiceName | ServiceStatus | ServiceStartType |
-| ------- | ----------- | ------------- | ---------------- |
-| 5.0.9.0 | MongoDB     | Running       | Automatic        |
+| Version  | ServiceName | ServiceStatus | ServiceStartType |
+| -------- | ----------- | ------------- | ---------------- |
+| 5.0.10.0 | MongoDB     | Running       | Automatic        |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.9.0
 - DacFx 16.0.6161.0
-- MySQL 8.0.29.0
+- MySQL 8.0.30.0
 - SQL OLEDB Driver 18.6.3.0
 - SQLPS 1.0
 
@@ -535,7 +536,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.132          |
+| AWSPowerShell      | 4.1.137          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.10.0           |
@@ -555,17 +556,20 @@ All other versions are saved but not installed.
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 33.0.2                                                                                                                                                 |
 | Android Support Repository | 47.0.0                                                                                                                                                 |
-| CMake                      | 3.18.1                                                                                                                                                 |
+| CMake                      | 3.18.1<br>3.22.1                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                                     |
 | Google Repository          | 58                                                                                                                                                     |
-| NDK                        | 21.4.7075529<br>23.2.8568313<br>24.0.8215888                                                                                                           |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.0.8775105                                                                                                           |
 | SDK Patch Applier v4       | 1                                                                                                                                                      |
 
 #### Environment variables
 | Name                    | Value                                   |
 | ----------------------- | --------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                  |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\24.0.8215888 |
+| ANDROID_NDK             | C:\Android\android-sdk\ndk\25.0.8775105 |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\25.0.8775105 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\25.0.8775105 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\25.0.8775105 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                  |
 
 ### Cached Docker images

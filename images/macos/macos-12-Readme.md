@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/virtual-environments/issues/5967) |
 | [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
 | [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/virtual-environments/issues/5583) |
@@ -7,7 +8,7 @@
 # macOS 12.5 info
 - System Version: macOS 12.5 (21G72)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20220724.1
+- Image Version: 20220801.1
 
 ## Installed Software
 ### Language and Runtime
@@ -32,7 +33,7 @@
 - Ruby 3.0.4p208
 
 ### Package Management
-- Bundler version 2.3.18
+- Bundler version 2.3.19
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.3.10
@@ -43,8 +44,8 @@
 - Pip 20.3.4 (python 2.7)
 - Pip 22.1.1 (python 3.9)
 - Pipx 1.1.0
-- RubyGems 3.3.18
-- Vcpkg 2022 (build from master \<f93ba152d>)
+- RubyGems 3.3.19
+- Vcpkg 2022 (build from master \<66045de4d>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -69,12 +70,12 @@
 - Curl 7.84.0
 - Git 2.37.1
 - Git LFS: 3.2.0
-- GitHub CLI: 2.14.2
+- GitHub CLI: 2.14.3
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.7
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-43
+- ImageMagick 7.1.0-44
 - jq 1.6
 - mongo v5.0.7
 - mongod v5.0.7
@@ -87,22 +88,22 @@
 - Switchaudio-osx 1.1.0
 - Vagrant 2.2.19
 - VirtualBox 6.1.36r152435
-- yq (https://github.com/mikefarah/yq/) version 4.26.1
+- yq (https://github.com/mikefarah/yq/) version 4.27.1
 - zstd 1.5.2
 
 ### Tools
 - App Center CLI 2.10.10
-- AWS CLI 2.7.18
+- AWS CLI 2.7.20
 - AWS SAM CLI 1.53.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.38.0
 - Bicep CLI 0.8.9
 - Cabal 3.6.2.0
-- Cmake 3.23.2
+- Cmake 3.23.3
 - Fastlane 2.208.0
-- GHC 9.2.3
-- GHCup 0.1.17.8
+- GHC 9.2.4
+- GHCup 0.1.18.0
 - Jazzy 0.14.2
 - Stack 2.7.5
 - SwiftFormat 0.49.13
@@ -110,7 +111,7 @@
 - Xcode Command Line Tools 13.4.0.0.1.1651278267
 
 ### Linters
-- SwiftLint 0.47.1
+- SwiftLint 0.48.0
 - yamllint 1.27.1
 
 ### Browsers
@@ -118,9 +119,9 @@
 - SafariDriver 15.6 (17613.3.9.1.5)
 - Google Chrome 103.0.5060.134 
 - ChromeDriver 103.0.5060.134
-- Microsoft Edge 103.0.1264.71 
-- Microsoft Edge WebDriver 103.0.1264.71
-- Mozilla Firefox 102.0.1
+- Microsoft Edge 103.0.1264.77 
+- Microsoft Edge WebDriver 103.0.1264.77
+- Mozilla Firefox 103.0
 - geckodriver 0.31.0
 - Selenium server 4.3.0
 
@@ -136,12 +137,12 @@
 | ------------------- | --------------- | -------------------- |
 | 8.0.332+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.16+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.3+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 17.0.4+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version   | Environment variables |
 | --------- | --------------------- |
-| CE 22.1.0 | GRAALVM_11_ROOT       |
+| CE 22.2.0 | GRAALVM_11_ROOT       |
 
 ### Cached Tools
 #### Ruby
@@ -209,7 +210,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.0.6.4  | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.0.7.7  | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
@@ -299,17 +300,20 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 33.0.2                                                                                                                                                 |
 | Android Support Repository | 47.0.0                                                                                                                                                 |
-| CMake                      | 3.18.1                                                                                                                                                 |
+| CMake                      | 3.18.1<br>3.22.1                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                                     |
 | Google Repository          | 58                                                                                                                                                     |
-| NDK                        | 21.4.7075529<br>23.2.8568313<br>24.0.8215888                                                                                                           |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.0.8775105 (default)                                                                                                 |
 | SDK Patch Applier v4       | 1                                                                                                                                                      |
 
 #### Environment variables
 | Name                    | Value                                              |
 | ----------------------- | -------------------------------------------------- |
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                  |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/24.0.8215888 |
+| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/25.0.8775105 |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/25.0.8775105 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/25.0.8775105 |
+| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/25.0.8775105 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                  |
 
 ### Miscellaneous
