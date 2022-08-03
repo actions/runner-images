@@ -49,8 +49,13 @@ Customers choosing to use Beta images are encouraged to provide feedback in the 
 
 ### GA:
 A GA (General Availability) image has been through a Beta period and is deemed ready for general use. Images are updated on a weekly cadence. In order to be moved to
-GA the image must meet the following criteria: 1- Has been through a Beta period (public or private) 2- Most major software we install on the image has a compatible
-version for the underlying OS and 3- All major bugs reported during the Beta period have been addressed. This image type falls under the customer [SLA](https://github.com/customer-terms/github-online-services-sla) for actions. GA images are eventually deprecated according to our guidelines as we only support the
+GA the image must meet the following criteria: 
+1. Has been through a Beta period (public or private) 
+2. Most major software we install on the image has a compatible
+version for the underlying OS and 
+3. All major bugs reported during the Beta period have been addressed. 
+
+This image type falls under the customer [SLA](https://github.com/customer-terms/github-online-services-sla) for actions. GA images are eventually deprecated according to our guidelines as we only support the
 latest 2 versions of an OS.
 
 ## Image Releases
