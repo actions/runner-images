@@ -63,7 +63,8 @@ latest 2 versions of an OS.
 
 1. Find the latest releases for this repository [here.](https://github.com/actions/virtual-environments/releases)
 2. Subscribe to the releases coming out of this repository, instructions [here.](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#configuring-your-watch-settings-for-an-individual-repository)
-3. Upcoming changes: A pre-release is created when deployment is started. As soon as deployment is finished, it is converted to a release. If you have subscribed to releases, you will get notified of pre-releases as well.
+3. Upcoming changes: A pre-release is created when the deployment of an image has started. As soon as the deployment is finished, the pre-release is converted to a release. If you have subscribed to releases, you will get notified of pre-releases as well.
+
    - You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/virtual-environments/labels/awaiting-deployment) label.
 4. For high impact changes, we will post these in advance to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).
    - Ex: breaking changes, GA or deprecation of images
@@ -77,8 +78,9 @@ latest 2 versions of an OS.
 
 ### Support Policy
 - Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life
-- We support(at maximum) 2 GA images and 1 beta image at a time. We begin the deprecation process of the oldest image label once the newest OS image label has been released to GA.
-- The images generally contain the latest versions of packages installed except for Ubuntu LTS where we rely on the Canonical-provided repositories mostly.
+- We support (at maximum) 2 GA images and 1 beta image at a time. We begin the deprecation process of the oldest image label once the newest OS image label has been released to GA.
+- The images generally contain the latest versions of packages installed except for Ubuntu LTS where we mostly rely on the Canonical-provided repositories.
+
 - Popular tools can have several versions installed side-by-side with the following strategy:
 
 | Tool name | Installation strategy |
