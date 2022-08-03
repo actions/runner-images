@@ -40,10 +40,9 @@
             "platform" : "linux",
             "versions": [
                 "1.17.*",
-                "1.18.*",
-                "1.19.*"
+                "1.18.*"
             ],
-            "default": "1.19.*"
+            "default": "1.18.*"
         },
         {
             "name": "Ruby",
