@@ -1,12 +1,14 @@
 | Announcements |
 |-|
+| [Ubuntu 22.04 is generally available starting from August, 8](https://github.com/actions/virtual-environments/issues/5998) |
+| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/virtual-environments/issues/5967) |
 | [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
 | [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
 | [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
 # Ubuntu 18.04.6 LTS
 - Linux kernel version: 5.4.0-1086-azure
-- Image Version: 20220724.1
+- Image Version: 20220729.1
 
 ## Installed Software
 ### Language and Runtime
@@ -36,11 +38,12 @@
 - Homebrew 3.5.6
 - Miniconda 4.12.0
 - Npm 8.11.0
+- NuGet 6.2.1.2
 - Pip 9.0.1
 - Pip3 9.0.1
 - Pipx 1.0.0
 - RubyGems 2.7.6
-- Vcpkg  (build from master \<f93ba152d>)
+- Vcpkg  (build from master \<281d2f2dc>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -63,8 +66,8 @@
 - Bazelisk 1.12.0
 - Bicep 0.8.9
 - Buildah 1.22.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- CMake 3.23.2
-- CodeQL Action Bundle 2.10.0
+- CMake 3.23.3
+- CodeQL Action Bundle 2.10.1
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.6.1+azure-1
@@ -80,7 +83,7 @@
 - jq 1.5
 - Kind 0.14.0
 - Kubectl 1.24.3
-- Kustomize 4.5.5
+- Kustomize 4.5.6
 - Leiningen 2.9.8
 - MediaInfo 17.12
 - Mercurial 4.5.3
@@ -93,51 +96,51 @@
 - Parcel 2.6.2
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.36.0
+- Pulumi 3.37.1
 - R 4.2.0
 - Skopeo 1.5.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.9.7
-- Terraform 1.2.5
+- Terraform 1.2.6
 - yamllint 1.27.1
 - yq 4.26.1
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.18
+- AWS CLI 2.7.20
 - AWS CLI Session manager plugin 1.2.339.0
 - AWS SAM CLI 1.53.0
 - Azure CLI (azure-cli) 2.38.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
-- GitHub CLI 2.14.2
+- GitHub CLI 2.14.3
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 10.11.1
-- OpenShift CLI 4.10.23
+- Netlify CLI 10.13.0
+- OpenShift CLI 4.10.24
 - ORAS CLI 0.13.0
-- Vercel CLI 27.2.0
+- Vercel CLI 27.3.3
 
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.332+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.15+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 11.0.16+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 12.0.2+10           | Adopt OpenJDK   | JAVA_HOME_12_X64     |
-| 17.0.3+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 17.0.4+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### PHP
 | Tool     | Version                           |
 | -------- | --------------------------------- |
 | PHP      | 7.2.34 7.3.33 7.4.30 8.0.21 8.1.8 |
 | Composer | 2.3.10                            |
-| PHPUnit  | 8.5.27                            |
+| PHPUnit  | 8.5.28                            |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 ### Haskell
 - Cabal 3.6.2.0
-- GHC 9.2.3
+- GHC 9.2.4
 - GHCup 0.1.17.8
 - Stack 2.7.5
 
@@ -159,10 +162,10 @@
 - Google Chrome 103.0.5060.134
 - ChromeDriver 103.0.5060.134
 - Chromium 103.0.5060.0
-- Microsoft Edge 103.0.1264.71 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 103.0.1264.71
+- Microsoft Edge 103.0.1264.77 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 103.0.1264.77
 - Selenium server 4.3.0
-- Mozilla Firefox 102.0
+- Mozilla Firefox 103.0
 - Geckodriver 0.31.0
 
 #### Environment variables
@@ -180,7 +183,7 @@
 - nbgv 3.5.108+6e793d63d3
 
 ### Databases
-- MongoDB 5.0.9 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
+- MongoDB 5.0.10 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
 - sqlite3 3.22.0
 
 #### PostgreSQL
@@ -191,7 +194,7 @@
     PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
 ```
 #### MySQL
-- MySQL 5.7.38
+- MySQL 5.7.39
 - MySQL Server (user:root password:root)
 
 ```
@@ -269,18 +272,21 @@
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)                              |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                      |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                      |
-| CMake                      | 3.10.2<br>3.18.1                                                                                                                                                                                                                                                            |
+| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                  |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                    |
 | Google Play services       | 49                                                                                                                                                                                                                                                                          |
 | Google Repository          | 58                                                                                                                                                                                                                                                                          |
-| NDK                        | 21.4.7075529<br>23.2.8568313<br>24.0.8215888                                                                                                                                                                                                                                |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.0.8775105 (default)                                                                                                                                                                                                                      |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                           |
 
 #### Environment variables
 | Name                    | Value                                       |
 | ----------------------- | ------------------------------------------- |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                  |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/24.0.8215888 |
+| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/25.0.8775105 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/25.0.8775105 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/25.0.8775105 |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/25.0.8775105 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                  |
 
 ### Cached Docker images
@@ -289,8 +295,8 @@
 | alpine:3.12             | sha256:c75ac27b49326926b803b9ed43bf088bc220d22556de1bc5f72d742c91398f69  | 2022-04-05 |
 | alpine:3.13             | sha256:7769c38ce671534a0ddbf98633f17edbbd4a4e99cbc77ef42f9f7b78b6a1c6c2  | 2022-07-19 |
 | alpine:3.14             | sha256:43eb8f0d8215d8661f745f3d88563c026614d843b668b233bbe1666b6d026f61  | 2022-07-19 |
-| buildpack-deps:bullseye | sha256:4cbb6d56f192ea1868bdbc441269d0343c90b201c973931aaa6722300118d463  | 2022-07-12 |
-| buildpack-deps:buster   | sha256:3ab2863d37b2d037440b4a153a8fb3c79e935030fd47cef21b698688ce72f66e  | 2022-07-12 |
+| buildpack-deps:bullseye | sha256:025c1b80248fb37b1f5250aba9e578e1dc24066912d94d3fa37c21bf8ee98b30  | 2022-07-12 |
+| buildpack-deps:buster   | sha256:0adb423c3161e19606330068d8d3d7710f1bb1b2233e6964ba329c79a96babb2  | 2022-07-12 |
 | buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
 | debian:10               | sha256:0685c900f6e691bdda6980c0ed0779d20183bc58770059b64adb56cb8a3129f0  | 2022-07-12 |
 | debian:11               | sha256:2ce44bbc00a79113c296d9d25524e15d423b23303fdbbe20190d2f96e0aeb251  | 2022-07-12 |
@@ -298,10 +304,10 @@
 | moby/buildkit:latest    | sha256:0dc312b04eac1b44cd2cad566deb1e886c753109208affbbec8384f381ff7f38  | 2022-05-06 |
 | node:12                 | sha256:01627afeb110b3054ba4a1405541ca095c8bfca1cb6f2be9479c767a2711879e  | 2022-04-20 |
 | node:12-alpine          | sha256:d4b15b3d48f42059a15bd659be60afe21762aae9d6cbea6f124440895c27db68  | 2022-04-11 |
-| node:14                 | sha256:a086a11f7780399837ea0465ac8a8e8f14f2b66fe5a110fe0c24644d53a103c5  | 2022-07-12 |
-| node:14-alpine          | sha256:06bc5a651beb7db09a66ceb99a1d19275810d5c9dca8fb9e1ad6d69355a2f42e  | 2022-07-18 |
-| node:16                 | sha256:2e1b4542d4a06e0e0442dc38af1f4828760aecc9db2b95e7df87f573640d98cd  | 2022-07-12 |
-| node:16-alpine          | sha256:da32af0cf608622b1550678b2552b7d997def7d0ada00e0eca0166ed2ea42186  | 2022-07-18 |
+| node:14                 | sha256:8ae0e9298b6098f6641e35d0488477381f86fce04993a3f8060a7657db8fb928  | 2022-07-12 |
+| node:14-alpine          | sha256:e22ee6a906e823dc592d6022a3f520676575b50320fe2c3916c88acb16f471ce  | 2022-07-18 |
+| node:16                 | sha256:4e85818bd0d023d4f9025730dc0640d3d8269e3d1a84ce6365eca8fbad7a3ee9  | 2022-07-12 |
+| node:16-alpine          | sha256:aadb411a5d398d2141f36a61f469ab91b971e43988d6c74aa5204986e5fe18a1  | 2022-07-18 |
 | ubuntu:16.04            | sha256:20858ebbc96215d6c3c574f781133ebffdc7c18d98af4f294cc4c04871a6fe61  | 2021-08-31 |
 | ubuntu:18.04            | sha256:478caf1bec1afd54a58435ec681c8755883b7eb843a8630091890130b15a79af  | 2022-06-06 |
 | ubuntu:20.04            | sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180dc19  | 2022-06-06 |

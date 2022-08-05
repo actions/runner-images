@@ -86,7 +86,7 @@ ndkDefault=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
 ANDROID_NDK_HOME=$ANDROID_HOME/ndk/$ndkDefault
 ndkLatest=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
 ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ndkLatest
-# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_LATEST_HOME variables should be set as many customer builds depend on them https://github.com/actions/virtual-environments/issues/5879
+# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/virtual-environments/issues/5879
 echo "export ANDROID_NDK=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
 echo "export ANDROID_NDK_HOME=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
 echo "export ANDROID_NDK_ROOT=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
