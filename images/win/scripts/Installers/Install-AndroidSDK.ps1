@@ -127,7 +127,7 @@ $ndkRoot = "$sdkRoot\ndk\$ndkDefaultVersion"
 # Create env variables
 setx ANDROID_HOME $sdkRoot /M
 setx ANDROID_SDK_ROOT $sdkRoot /M
-# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_LATEST_HOME variables should be set as many customer builds depend on them https://github.com/actions/virtual-environments/issues/5879
+# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/virtual-environments/issues/5879
 setx ANDROID_NDK $ndkRoot /M
 setx ANDROID_NDK_HOME $ndkRoot /M
 setx ANDROID_NDK_ROOT $ndkRoot /M
