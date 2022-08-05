@@ -1,6 +1,8 @@
 
 # GitHub Actions Runner Images
+
 **Table of Contents**
+
 - [About](#about)
 - [Available Images](#available-images)
 - [Image Definitions](#image-definitions)
@@ -9,13 +11,13 @@
 - [How to Interact with the Repo](#how-to-interact-with-the-repo)
 - [FAQs](#faqs)
 
-
-
 ## About
+
 This repository contains the source code used to create the VM images for [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners)used for Actions, as well as for [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines.
 To build a VM machine from this repo's source, see the [instructions](docs/create-image-and-azure-resources.md).
 
 ## Available Images
+
 | Image | YAML Label | Included Software | Rollout Progress of Latest Image Release |
 | --------------------|---------------------|--------------------|---------------------|
 | Ubuntu 22.04 | `ubuntu-22.04` | [ubuntu-22.04] | [![status22](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
@@ -28,6 +30,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | Windows Server 2019 | `windows-2019` | [windows-2019] | [![statuswin19](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 
 ### Label scheme
+
 - In general the `-latest` label is used for the latest OS image version that is GA
 - Before moving the`-latest` label to a new OS version we will announce the change and give sufficient lead time for users to update their workflows
 
@@ -42,23 +45,28 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
 ## Image Definitions
-### Beta:
+
+### Beta
+
 The purpose of a Beta is to collect feedback on an image before it is released to GA. The goal of a Beta is to identify and fix any potential issues that exist on that
 image. Images are updated on a weekly cadence. Any workflows that run on a beta image do not fall under the customer [SLA](https://github.com/customer-terms/github-online-services-sla) in place for Actions.
 Customers choosing to use Beta images are encouraged to provide feedback in the runner-images repo by creating an issue. A Beta may take on different availability, i.e. public vs private.
 
-### GA:
+### GA
+
 A GA (General Availability) image has been through a Beta period and is deemed ready for general use. Images are updated on a weekly cadence. In order to be moved to
-GA the image must meet the following criteria: 
-1. Has been through a Beta period (public or private) 
+GA the image must meet the following criteria:
+
+1. Has been through a Beta period (public or private)
 2. Most major software we install on the image has a compatible
-version for the underlying OS and 
-3. All major bugs reported during the Beta period have been addressed. 
+version for the underlying OS and
+3. All major bugs reported during the Beta period have been addressed.
 
 This image type falls under the customer [SLA](https://github.com/customer-terms/github-online-services-sla) for actions. GA images are eventually deprecated according to our guidelines as we only support the
 latest 2 versions of an OS.
 
 ## Image Releases
+
 *How to best follow along with changes*
 
 1. Find the latest releases for this repository [here.](https://github.com/actions/virtual-environments/releases)
@@ -77,6 +85,7 @@ latest 2 versions of an OS.
 ## Software and Image Support
 
 ### Support Policy
+
 - Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life
 - We support (at maximum) 2 GA images and 1 beta image at a time. We begin the deprecation process of the oldest image label once the newest OS image label has been released to GA.
 - The images generally contain the latest versions of packages installed except for Ubuntu LTS where we mostly rely on the Canonical-provided repositories.
@@ -97,6 +106,7 @@ latest 2 versions of an OS.
 | Xcode     | - all OS compatible versions side-by-side <br/> - for beta, GM versions - latest beta only <br/> - old patch versions are deprecated in 3 months |
 
 ### Image Deprecation Policy
+
 - Images begin the deprecation process of the oldest image label once a new GA OS version has been released.
 - Deprecation process begins with an announcement that sets a date for deprecation
 - As it gets closer to the date, GitHub begins doing scheduled brownouts of the image
@@ -104,6 +114,7 @@ latest 2 versions of an OS.
 - Finally GitHub will deprecate the image and it will no longer be available
 
 ### Preinstallation Policy
+
 In general, these are the guidelines we follow when deciding what to pre-install on our images:
 
 - Popularity: widely-used tools and ecosystems will be given priority.
@@ -114,15 +125,18 @@ In general, these are the guidelines we follow when deciding what to pre-install
 - Support: If a tool requires the support of more than one version, we will consider the cost of this maintenance.
 
 ### Default Version Update Policy
+
 - In general, once a new version is installed on the image, we announce the default version update 2 weeks prior to deploying it.
 - For potentially dangerous updates, we may extend the timeline up to 1 month between the announcement and deployment.
 
 ## How to Interact with the Repo
+
 - **Issues**: To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/virtual-environments/issues/new/choose)
 - **Discussions**: If you want to share your thoughts about image configuration, installed software, or bring a new idea, please create a new topic in a [discussion](https://github.com/actions/virtual-environments/discussions) for a corresponding category. Before making a new discussion please make sure no similar topics were created earlier.
 - For general questions about using the runner images or writing your Actions workflow, please open requests in the [GitHub Actions Community Forum](https://github.community/c/github-actions/41).
 
 ## FAQs
+
 <details>
    <summary><b><i>What images are available for GitHub Actions and Azure DevOps?</b></i></summary>
 
@@ -151,7 +165,6 @@ macOS source lives in this repository and is available for everyone. However, ma
 
 We are in the process of preparing macOS CI to accept contributions. Until then, we appreciate your patience and ask you to continue to make tool requests by filing issues.
 </details>
-
 
 <details>
    <summary><b><i>How does GitHub determine what tools are installed on the images?</b></i></summary>
