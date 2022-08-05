@@ -10,7 +10,7 @@ Describe "MongoDB" {
     }
 
     Context "Service" {
-        $mongoService = Get-Service -Name mongodb
+        $mongoService = Get-Service -Name mongodb -ErrorAction Ignore
         $mongoServiceTests = @{
             Name = $mongoService.Name
             Status = $mongoService.Status
