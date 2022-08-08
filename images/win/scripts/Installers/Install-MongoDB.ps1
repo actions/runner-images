@@ -14,6 +14,10 @@ $mongoPath = (Get-CimInstance Win32_Service -Filter "Name LIKE '$mongodbService'
 $mongoBin = Split-Path -Path $mongoPath.split('"')[1]
 Add-MachinePathItem "$mongoBin"
 
+# Wait for mongodb service running
+$svc = Get-Service $mongodbService
+$svc.WaitForStatus('Running','00:01:00')
+
 # Stop and disable mongodb service
 Stop-Service -Name $mongodbService
 Set-Service $mongodbService -StartupType Disabled
