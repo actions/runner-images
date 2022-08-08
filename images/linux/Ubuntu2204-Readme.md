@@ -1,13 +1,14 @@
 | Announcements |
 |-|
+| [[All OSs] Go version 1.16 will be removed on August, 15th](https://github.com/actions/virtual-environments/issues/6024) |
+| [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by 12/1/22](https://github.com/actions/virtual-environments/issues/6002) |
+| [Ubuntu 22.04 is generally available starting from August, 8](https://github.com/actions/virtual-environments/issues/5998) |
 | ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/virtual-environments/issues/5967) |
 | [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
-| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
-| [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
-# Ubuntu 22.04 LTS
+# Ubuntu 22.04.1 LTS
 - Linux kernel version: 5.15.0-1014-azure
-- Image Version: 20220731.1
+- Image Version: 20220807.1
 
 ## Installed Software
 ### Language and Runtime
@@ -31,7 +32,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.9.2
-- Homebrew 3.5.6
+- Homebrew 3.5.8
 - Miniconda 4.12.0
 - Npm 8.11.0
 - NuGet 6.2.1.2
@@ -39,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<66045de4d>)
+- Vcpkg  (build from master \<9b22b40c6>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,13 +58,13 @@
 - AzCopy 10.16.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.2.0
 - Bazelisk 1.12.0
-- Bicep 0.8.9
+- Bicep 0.9.1
 - Buildah 1.23.1
-- CMake 3.23.3
-- CodeQL Action Bundle 2.10.1
+- CMake 3.24.0
+- CodeQL Action Bundle 2.10.2
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.6.1+azure-1
+- Docker Compose v2 2.9.0+azure-1
 - Docker-Buildx 0.8.2
 - Docker-Moby Client 20.10.17+azure-1
 - Docker-Moby Server 20.10.17+azure-1
@@ -72,21 +73,21 @@
 - Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 7.60.2
+- Heroku 7.62.0
 - jq 1.6
 - Kind 0.14.0
 - Kubectl 1.24.3
-- Kustomize 4.5.6
-- Leiningen 2.9.8
+- Kustomize 4.5.7
+- Leiningen 2.9.9
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.26.0
+- Minikube 1.26.1
 - n 9.0.0
 - Newman 5.3.2
 - nvm 0.39.1
 - OpenSSL 3.0.2-0ubuntu1.6
-- Packer 1.8.2
-- Parcel 2.6.2
+- Packer 1.8.3
+- Parcel 2.7.0
 - Podman 3.4.4
 - Pulumi 3.37.2
 - R 4.2.1
@@ -95,23 +96,23 @@
 - SVN 1.14.1
 - Terraform 1.2.6
 - yamllint 1.27.1
-- yq 4.26.1
+- yq 4.27.2
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.20
+- AWS CLI 2.7.21
 - AWS CLI Session manager plugin 1.2.339.0
 - AWS SAM CLI 1.53.0
-- Azure CLI (azure-cli) 2.38.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- Azure CLI (azure-cli) 2.39.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.14.3
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 10.13.0
-- OpenShift CLI 4.10.24
+- Netlify CLI 10.15.0
+- OpenShift CLI 4.10.25
 - ORAS CLI 0.13.0
-- Vercel CLI 27.3.3
+- Vercel CLI 27.3.7
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -155,11 +156,11 @@
 - Rustfmt 1.4.38
 
 ### Browsers and Drivers
-- Google Chrome 103.0.5060.134
-- ChromeDriver 103.0.5060.134
-- Chromium 103.0.5060.0
-- Microsoft Edge 103.0.1264.77 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 103.0.1264.77
+- Google Chrome 104.0.5112.79
+- ChromeDriver 104.0.5112.79
+- Chromium 104.0.5112.0
+- Microsoft Edge 104.0.1293.47 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 104.0.1293.47
 - Selenium server 4.3.0
 
 #### Environment variables
@@ -174,7 +175,7 @@
 - 6.0.302
 
 ### .NET tools
-- nbgv 3.5.108+6e793d63d3
+- nbgv 3.5.109+bdfbd7dea6
 
 ### Databases
 - sqlite3 3.37.2
@@ -195,8 +196,9 @@
 ```
 ### Cached Tools
 #### Go
-- 1.17.12
-- 1.18.4
+- 1.17.13
+- 1.18.5
+- 1.19.0
 
 #### Node.js
 - 14.20.0
@@ -211,7 +213,7 @@
 - 3.7.13
 - 3.8.13
 - 3.9.13
-- 3.10.5
+- 3.10.6
 
 #### Ruby
 - 3.1.2
@@ -219,8 +221,9 @@
 #### Environment variables
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
-| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.12/x64 | x64          |
-| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.4/x64  | x64          |
+| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.13/x64 | x64          |
+| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.5/x64  | x64          |
+| GOROOT_1_19_X64 | /opt/hostedtoolcache/go/1.19.0/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.2.5
@@ -229,7 +232,7 @@
 | Module           | Version |
 | ---------------- | ------- |
 | MarkdownPS       | 1.9     |
-| Microsoft.Graph  | 1.10.0  |
+| Microsoft.Graph  | 1.11.0  |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.20.0  |
 
@@ -273,18 +276,18 @@
 | ----------------------- | ------------------------------------------------------------------------ | ---------- |
 | alpine:3.14             | sha256:43eb8f0d8215d8661f745f3d88563c026614d843b668b233bbe1666b6d026f61  | 2022-07-19 |
 | alpine:3.15             | sha256:0483110c51a764abe175a8cefb941541ca0bc0f628ce418d3a660338abf4622a  | 2022-07-19 |
-| buildpack-deps:bullseye | sha256:025c1b80248fb37b1f5250aba9e578e1dc24066912d94d3fa37c21bf8ee98b30  | 2022-07-12 |
-| buildpack-deps:buster   | sha256:0adb423c3161e19606330068d8d3d7710f1bb1b2233e6964ba329c79a96babb2  | 2022-07-12 |
-| debian:10               | sha256:0685c900f6e691bdda6980c0ed0779d20183bc58770059b64adb56cb8a3129f0  | 2022-07-12 |
-| debian:11               | sha256:2ce44bbc00a79113c296d9d25524e15d423b23303fdbbe20190d2f96e0aeb251  | 2022-07-12 |
+| buildpack-deps:bullseye | sha256:d6974da710854c9c38d49666bd682abd99ef7aacdb92344d42a00f723e63cdb1  | 2022-08-02 |
+| buildpack-deps:buster   | sha256:9d806f4d80f19e3fd315bbe2ca1aa59a6c1ad18aff7b3d9696b407572608d61e  | 2022-08-02 |
+| debian:10               | sha256:fb9654aac57319592f1d51497c62001e7033eddf059355408a0b53f7c71f8d5f  | 2022-08-02 |
+| debian:11               | sha256:82bab30ed448b8e2509aabe21f40f0607d905b7fd0dec72802627a20274eba55  | 2022-08-02 |
 | moby/buildkit:latest    | sha256:0dc312b04eac1b44cd2cad566deb1e886c753109208affbbec8384f381ff7f38  | 2022-05-06 |
-| node:14                 | sha256:8ae0e9298b6098f6641e35d0488477381f86fce04993a3f8060a7657db8fb928  | 2022-07-12 |
+| node:14                 | sha256:7e1eabbcd7cbd0fdc296bc00fb2c80943ed0499c4ca3a148c83944708574dcf6  | 2022-08-02 |
 | node:14-alpine          | sha256:e22ee6a906e823dc592d6022a3f520676575b50320fe2c3916c88acb16f471ce  | 2022-07-18 |
-| node:16                 | sha256:4e85818bd0d023d4f9025730dc0640d3d8269e3d1a84ce6365eca8fbad7a3ee9  | 2022-07-12 |
+| node:16                 | sha256:1ed1e17ccabb09038cfb8a965337ebcda51ef9e9d32082164c502d44d9731a02  | 2022-08-02 |
 | node:16-alpine          | sha256:1908564153449b1c46b329e6ce2307e226bc566294f822f11c5a8bcef4eeaad7  | 2022-07-18 |
-| ubuntu:18.04            | sha256:478caf1bec1afd54a58435ec681c8755883b7eb843a8630091890130b15a79af  | 2022-06-06 |
-| ubuntu:20.04            | sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180dc19  | 2022-06-06 |
-| ubuntu:22.04            | sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac  | 2022-06-06 |
+| ubuntu:18.04            | sha256:eb1392bbdde63147bc2b4ff1a4053dcfe6d15e4dfd3cce29e9b9f52a4f88bc74  | 2022-08-02 |
+| ubuntu:20.04            | sha256:af5efa9c28de78b754777af9b4d850112cad01899a5d37d2617bb94dc63a49aa  | 2022-08-02 |
+| ubuntu:22.04            | sha256:34fea4f31bf187bc915536831fd0afc9d214755bf700b5cdb1336c82516d154e  | 2022-08-02 |
 
 ### Installed apt packages
 | Name                   | Version                           |
@@ -318,7 +321,7 @@
 | libc++-dev             | 1:14.0-55\~exp2                   |
 | libc++abi-dev          | 1:14.0-55\~exp2                   |
 | libcurl4               | 7.81.0-1ubuntu1.3                 |
-| libgbm-dev             | 22.0.1-1ubuntu2.1                 |
+| libgbm-dev             | 22.0.5-0ubuntu0.1                 |
 | libgconf-2-4           | 3.2.6-7ubuntu2                    |
 | libgsl-dev             | 2.7.1+dfsg-3                      |
 | libgtk-3-0             | 3.24.33-1ubuntu2                  |
