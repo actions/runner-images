@@ -74,7 +74,7 @@ function Install-JavaJDK {
     $downloadUrl = $asset.binary.package.link
     $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))
 
-    # We have to replace '+' sign in the version to '-' due to the issue with incorrect path in Android builds https://github.com/actions/virtual-environments/issues/3014
+    # We have to replace '+' sign in the version to '-' due to the issue with incorrect path in Android builds https://github.com/actions/runner-images/issues/3014
     $fullJavaVersion = $asset.version.semver -replace '\+', '-'
     # Create directories in toolcache path
     $javaToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_${VendorName}_jdk"

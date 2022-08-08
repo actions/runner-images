@@ -1,9 +1,9 @@
 | Announcements |
 |-|
-| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/virtual-environments/issues/5967) |
-| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
-| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
-| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/virtual-environments/issues/5583) |
+| ['runner-images' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/runner-images/issues/5967) |
+| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/runner-images/issues/5930) |
+| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/runner-images/issues/5879) |
+| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 12.5 info
 - System Version: macOS 12.5 (21G72)

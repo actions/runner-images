@@ -32,7 +32,7 @@ EOF
 apt-get purge unattended-upgrades
 
 # Need to limit arch for default apt repos due to 
-# https://github.com/actions/virtual-environments/issues/1961
+# https://github.com/actions/runner-images/issues/1961
 sed -i'' -E 's/^deb http:\/\/(azure.archive|security).ubuntu.com/deb [arch=amd64,i386] http:\/\/\1.ubuntu.com/' /etc/apt/sources.list
 
 echo 'APT sources limited to the actual architectures'
