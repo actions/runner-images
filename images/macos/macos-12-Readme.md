@@ -1,14 +1,14 @@
 | Announcements |
 |-|
-| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/virtual-environments/issues/5967) |
-| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
-| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
-| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/virtual-environments/issues/5583) |
+| [[All OSs] Go version 1.16 will be removed on August, 15th](https://github.com/actions/runner-images/issues/6024) |
+| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/runner-images/issues/5967) |
+| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/runner-images/issues/5930) |
+| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 12.5 info
 - System Version: macOS 12.5 (21G72)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20220801.1
+- Image Version: 20220807.1
 
 ## Installed Software
 ### Language and Runtime
@@ -16,9 +16,9 @@
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.1.6 is default
 - Clang/LLVM 14.0.6 is available on `'$(brew --prefix llvm@14)/bin/clang'`
-- gcc-11 (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gcc-11` alias
-- GNU Fortran (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gfortran-11` alias
-- Go 1.17.12
+- gcc-11 (Homebrew GCC 11.3.0) 11.3.0 - available by `gcc-11` alias
+- GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
+- Go 1.17.13
 - julia 1.7.3
 - Kotlin 1.7.10-release-333
 - MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
@@ -26,7 +26,7 @@
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.12 v14.20.0 v16.16.0
 - Perl 5.34.0
-- PHP 8.1.8
+- PHP 8.1.9
 - Python 2.7.18
 - Python 3.9.13
 - R 4.2.1
@@ -37,15 +37,15 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.3.10
-- Homebrew 3.5.6
+- Homebrew 3.5.8
 - Miniconda 4.12.0
 - NPM 8.11.0
 - NuGet 6.2.1.2
 - Pip 20.3.4 (python 2.7)
-- Pip 22.1.1 (python 3.9)
+- Pip 22.2.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.3.19
-- Vcpkg 2022 (build from master \<66045de4d>)
+- Vcpkg 2022 (build from master \<75260879e>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,7 +57,7 @@
 ### Project Management
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.6
-- Gradle 7.5
+- Gradle 7.5.1
 - Sbt 1.7.1
 
 ### Utilities
@@ -75,12 +75,12 @@
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.7
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-44
+- ImageMagick 7.1.0-45
 - jq 1.6
-- mongo v5.0.7
-- mongod v5.0.7
+- mongo v5.0.10
+- mongod v5.0.10
 - OpenSSL 1.1.1q  5 Jul 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1q)`
-- Packer 1.8.2
+- Packer 1.8.3
 - PostgreSQL 14.4
 - psql (PostgreSQL) 14.4
 - Sox 14.4.2
@@ -88,25 +88,25 @@
 - Switchaudio-osx 1.1.0
 - Vagrant 2.2.19
 - VirtualBox 6.1.36r152435
-- yq (https://github.com/mikefarah/yq/) version 4.27.1
+- yq (https://github.com/mikefarah/yq/) version 4.27.2
 - zstd 1.5.2
 
 ### Tools
 - App Center CLI 2.10.10
-- AWS CLI 2.7.20
+- AWS CLI 2.7.21
 - AWS SAM CLI 1.53.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
-- Azure CLI 2.38.0
-- Bicep CLI 0.8.9
+- Azure CLI 2.39.0
+- Bicep CLI 0.9.1
 - Cabal 3.6.2.0
-- Cmake 3.23.3
+- Cmake 3.24.0
 - Fastlane 2.208.0
 - GHC 9.2.4
 - GHCup 0.1.18.0
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.13
+- SwiftFormat 0.49.14
 - Swig 4.0.2
 - Xcode Command Line Tools 13.4.0.0.1.1651278267
 
@@ -117,20 +117,20 @@
 ### Browsers
 - Safari 15.6 (17613.3.9.1.5)
 - SafariDriver 15.6 (17613.3.9.1.5)
-- Google Chrome 103.0.5060.134 
-- ChromeDriver 103.0.5060.134
-- Microsoft Edge 103.0.1264.77 
-- Microsoft Edge WebDriver 103.0.1264.77
-- Mozilla Firefox 103.0
+- Google Chrome 104.0.5112.79 
+- ChromeDriver 104.0.5112.79
+- Microsoft Edge 104.0.1293.47 
+- Microsoft Edge WebDriver 104.0.1293.47
+- Mozilla Firefox 103.0.1
 - geckodriver 0.31.0
 - Selenium server 4.3.0
 
 #### Environment variables
-| Name            | Value                                           |
-| --------------- | ----------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/103.0.5060.134 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver                    |
-| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                  |
+| Name            | Value                                          |
+| --------------- | ---------------------------------------------- |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/104.0.5112.79 |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
+| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -154,7 +154,7 @@
 - 3.7.13
 - 3.8.13
 - 3.9.13
-- 3.10.5
+- 3.10.6
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -171,8 +171,9 @@
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
-| 1.17.12 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.4  | x64          | GOROOT_1_18_X64      |
+| 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.18.5  | x64          | GOROOT_1_18_X64      |
+| 1.19.0  | x64          | GOROOT_1_19_X64      |
 
 ### Rust Tools
 - Cargo 1.62.1
@@ -194,7 +195,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 8.1.0   |
+| Az               | 8.2.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.20.0  |
