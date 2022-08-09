@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| [Ubuntu 22.04 is generally available starting from August, 8](https://github.com/actions/runner-images/issues/5998) |
-| ['runner-images' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/runner-images/issues/5967) |
-| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/runner-images/issues/5930) |
-| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/runner-images/issues/5879) |
-| [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/runner-images/issues/5490) |
+| [Ubuntu 22.04 is generally available starting from August, 8](https://github.com/actions/virtual-environments/issues/5998) |
+| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/virtual-environments/issues/5967) |
+| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
+| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
+| [(Public Beta) Ubuntu 22.04 is now available](https://github.com/actions/virtual-environments/issues/5490) |
 ***
 # Ubuntu 20.04.4 LTS
 - Linux kernel version: 5.15.0-1014-azure

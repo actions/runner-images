@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| ['runner-images' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/runner-images/issues/5967) |
-| [[Windows] mongo service will be disabled by default on August, 8th](https://github.com/actions/runner-images/issues/5949) |
-| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/runner-images/issues/5930) |
-| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/runner-images/issues/5879) |
-| [[Azure DevOps] Windows-2016 environment removal postponed until July 31, 2022](https://github.com/actions/runner-images/issues/5403) |
+| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/virtual-environments/issues/5967) |
+| [[Windows] mongo service will be disabled by default on August, 8th](https://github.com/actions/virtual-environments/issues/5949) |
+| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
+| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
+| [[Azure DevOps] Windows-2016 environment removal postponed until July 31, 2022](https://github.com/actions/virtual-environments/issues/5403) |
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 3165
