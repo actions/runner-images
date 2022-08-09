@@ -66,7 +66,8 @@
             "versions": [
                 "1.16.*",
                 "1.17.*",
-                "1.18.*"
+                "1.18.*",
+                "1.19.*"
             ],
             "default": "1.17.*"
         }
@@ -150,12 +151,13 @@
         "addon_list": [],
         "additional_tools": [
             "cmake;3.18.1",
+            "cmake;3.22.1",
             "patcher;v4"
         ],
         "ndk": {
-            "default": "23",
+            "default": "25",
             "versions": [
-                "21", "23", "24"
+                "23", "24", "25"
             ]
         }
     },
@@ -180,6 +182,7 @@
         "edition" : "Enterprise",
         "channel": "release",
         "workloads": [
+            "Component.Dotfuscator",
             "Component.Linux.CMake",
             "Component.UnityEngine.x64",
             "Component.Unreal.Android",
@@ -242,6 +245,24 @@
             "Microsoft.VisualStudio.Component.VC.14.29.16.11.ATL.Spectre",
             "Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC",
             "Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.ARM",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.ARM.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.ARM64",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.ARM64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.x86.x64",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.x86.x64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL.ARM",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL.ARM.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL.ARM64",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL.ARM64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC.ARM",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC.ARM.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC.ARM64",
+            "Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATLMFC",
             "Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
