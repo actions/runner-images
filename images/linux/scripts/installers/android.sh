@@ -97,7 +97,7 @@ ANDROID_NDK_MAJOR_LATEST=(${ANDROID_NDK_MAJOR_VERSIONS[-1]})
 ndkDefaultFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
 ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
 ANDROID_NDK="$ANDROID_SDK_ROOT/ndk/$ndkDefaultFullVersion"
-# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/virtual-environments/issues/5879
+# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/runner-images/issues/5879
 echo "ANDROID_NDK=${ANDROID_NDK}" | tee -a /etc/environment
 echo "ANDROID_NDK_HOME=${ANDROID_NDK}" | tee -a /etc/environment
 echo "ANDROID_NDK_ROOT=${ANDROID_NDK}" | tee -a /etc/environment
