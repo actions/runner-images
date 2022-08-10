@@ -16,7 +16,7 @@ function GetChromiumRevision {
 
     # Some Google Chrome versions are based on Chromium revisions for which a (usually very old) Chromium release with the same number exist. So far this has heppened with 4 digits long Chromium revisions (1060, 1086).
     # Use the previous Chromium release when this happens to avoid downloading and installing very old Chromium releases that would break image build because of incompatibilities.
-    # First reported with: https://github.com/actions/virtual-environments/issues/5256
+    # First reported with: https://github.com/actions/runner-images/issues/5256
     if [ ${#REVISION} -eq 4 ]; then
       CURRENT_REVISIONS=$(curl -s "https://omahaproxy.appspot.com/all.json?os=linux&channel=stable")
       PREVIOUS_VERSION=$(echo "$CURRENT_REVISIONS" | jq -r '.[].versions[].previous_version')
@@ -28,7 +28,7 @@ function GetChromiumRevision {
     FIRST_PART_OF_REVISION=${REVISION:0:${#REVISION}/2}
     FIRST_PART_OF_PREVIOUS_REVISION=$(expr $FIRST_PART_OF_REVISION - 1)
     URL="https://www.googleapis.com/storage/v1/b/chromium-browser-snapshots/o?delimiter=/&prefix=Linux_x64"
-    # Revision can include a hash instead of a number. Need to filter it out https://github.com/actions/virtual-environments/issues/5256
+    # Revision can include a hash instead of a number. Need to filter it out https://github.com/actions/runner-images/issues/5256
     VERSIONS=$((curl -s $URL/${FIRST_PART_OF_REVISION} | jq -r '.prefixes[]' && curl -s $URL/${FIRST_PART_OF_PREVIOUS_REVISION} | jq -r '.prefixes[]') | grep -E "Linux_x64\/[0-9]+\/"| cut -d "/" -f 2 | sort --version-sort)
 
     # If required Chromium revision is not found in the list

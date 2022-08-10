@@ -7,7 +7,7 @@ for gccVersion in $gccVersions; do
     brew_smart_install "gcc@${gccVersion}"
 done
 
-# Delete default gfortran link if it exists https://github.com/actions/virtual-environments/issues/1280
+# Delete default gfortran link if it exists https://github.com/actions/runner-images/issues/1280
 gfortranPath=$(which gfortran)
 if [ $gfortranPath ]; then
     rm $gfortranPath

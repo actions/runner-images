@@ -13,7 +13,7 @@ function Enable-AutoLogon {
         [string] $Password
     )
 
-    $url = "https://raw.githubusercontent.com/actions/virtual-environments/main/images/macos/provision/bootstrap-provisioner/setAutoLogin.sh"
+    $url = "https://raw.githubusercontent.com/actions/runner-images/main/images/macos/provision/bootstrap-provisioner/setAutoLogin.sh"
     $script = Invoke-RestMethod -Uri $url
     $base64 = [Convert]::ToBase64String($script.ToCharArray())
     $command = "echo $base64 | base64 --decode > ./setAutoLogin.sh;sudo bash ./setAutoLogin.sh '${UserName}' '${Password}';rm ./setAutoLogin.sh"
