@@ -1,4 +1,4 @@
-# Virtual-Environments
+# GitHub Actions Runner Images
 The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for the following platforms: Windows 2019/2022, Ubuntu 18.04/20.04/22.04. 
 Each image is configured through a JSON template that Packer understands and which specifies where to build the image (Azure in this case), and what scripts to run to install software and prepare the disk.
 The Packer process initializes a connection to Azure subscription via Azure CLI, and automatically creates the temporary Azure resources required to build the source VM(temporary resource group, network interfaces, and VM from the "clean" image specified in the template). 
@@ -47,7 +47,7 @@ Install Azure CLI - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
 ```
 
-Download Virtual-Environments repository.
+Download Runner Images repository.
 ```
 Set-Location c:\
 git clone https://github.com/actions/runner-images.git
