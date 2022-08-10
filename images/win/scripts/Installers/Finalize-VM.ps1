@@ -7,7 +7,7 @@ Write-Host "Cleanup WinSxS"
 Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
 
 # Sets the default install version to v1 for new distributions
-# https://github.com/actions/virtual-environments/issues/5760
+# https://github.com/actions/runner-images/issues/5760
 if (Test-IsWin22) {
     Write-Host "Sets the default install version to v1 for new distributions"
     Add-DefaultItem -DefaultVariable "DefaultVersion" -Value 1 -Name "DEFAULT\Software\Microsoft\Windows\CurrentVersion\Lxss" -Kind "DWord"
@@ -40,7 +40,7 @@ cmd /c "yarn cache clean 2>&1" | Out-Null
 cmd /c "npm cache clean --force 2>&1" | Out-Null
 
 # allow msi to write to temp folder
-# see https://github.com/actions/virtual-environments/issues/1704
+# see https://github.com/actions/runner-images/issues/1704
 cmd /c "icacls $env:SystemRoot\Temp /grant Users:f /t /c /q 2>&1" | Out-Null
 
 # Registry settings

@@ -7,10 +7,10 @@ os_version=$(lsb_release -rs)
 image_label="ubuntu-${os_version}"
 version_major=${os_version/.*/}
 version_wo_dot=${os_version/./}
-github_url="https://github.com/actions/virtual-environments/blob"
+github_url="https://github.com/actions/runner-images/blob"
 
 software_url="${github_url}/ubuntu${version_major}/${image_version}/images/linux/Ubuntu${version_wo_dot}-Readme.md"
-releaseUrl="https://github.com/actions/virtual-environments/releases/tag/ubuntu${version_major}%2F${image_version}"
+releaseUrl="https://github.com/actions/runner-images/releases/tag/ubuntu${version_major}%2F${image_version}"
 
 cat <<EOF > $imagedata_file
 [

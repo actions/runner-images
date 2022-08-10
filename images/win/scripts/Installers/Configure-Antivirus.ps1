@@ -32,7 +32,7 @@ $avPreference | Foreach-Object {
 Write-Host "Disable Windows Defender scheduled tasks"
 Get-ScheduledTask -TaskPath '\Microsoft\Windows\Windows Defender\' | Disable-ScheduledTask | Out-Null
 
-# https://github.com/actions/virtual-environments/issues/4277
+# https://github.com/actions/runner-images/issues/4277
 # https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/microsoft-defender-antivirus-compatibility?view=o365-worldwide
 $atpRegPath = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows Advanced Threat Protection'
 if (Test-Path $atpRegPath) {
