@@ -280,7 +280,6 @@
             "platform" : "darwin",
             "variable_template" : "GOROOT_{0}_{1}_X64",
             "versions": [
-                "1.16.*",
                 "1.17.*",
                 "1.18.*",
                 "1.19.*"
