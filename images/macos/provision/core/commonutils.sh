@@ -44,7 +44,7 @@ bazel
 # Install Azure DevOps extension for Azure Command Line Interface
 az extension add -n azure-devops
 
-# Workaround https://github.com/actions/virtual-environments/issues/4931
+# Workaround https://github.com/actions/runner-images/issues/4931
 # by making Tcl/Tk paths the same on macOS 10.15 and macOS 11
 if is_BigSur; then
     version=$(brew info tcl-tk --json | jq -r '.[].installed[].version')

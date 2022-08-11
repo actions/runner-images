@@ -1,14 +1,14 @@
 | Announcements |
 |-|
-| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/virtual-environments/issues/5967) |
-| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
-| [[all OSs] Android ndk-bundle along with old NDK versions will be deprecated on July, 24](https://github.com/actions/virtual-environments/issues/5879) |
-| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/virtual-environments/issues/5583) |
+| [[All OSs] Go version 1.16 will be removed on August, 15th](https://github.com/actions/runner-images/issues/6024) |
+| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/runner-images/issues/5967) |
+| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/runner-images/issues/5930) |
+| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 12.5 info
 - System Version: macOS 12.5 (21G72)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20220801.1
+- Image Version: 20220809.1
 
 ## Installed Software
 ### Language and Runtime
@@ -16,9 +16,9 @@
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.1.6 is default
 - Clang/LLVM 14.0.6 is available on `'$(brew --prefix llvm@14)/bin/clang'`
-- gcc-11 (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gcc-11` alias
-- GNU Fortran (Homebrew GCC 11.3.0_2) 11.3.0 - available by `gfortran-11` alias
-- Go 1.17.12
+- gcc-11 (Homebrew GCC 11.3.0) 11.3.0 - available by `gcc-11` alias
+- GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
+- Go 1.17.13
 - julia 1.7.3
 - Kotlin 1.7.10-release-333
 - MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
@@ -26,7 +26,7 @@
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.12 v14.20.0 v16.16.0
 - Perl 5.34.0
-- PHP 8.1.8
+- PHP 8.1.9
 - Python 2.7.18
 - Python 3.9.13
 - R 4.2.1
@@ -37,15 +37,15 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.3.10
-- Homebrew 3.5.6
+- Homebrew 3.5.8
 - Miniconda 4.12.0
 - NPM 8.11.0
 - NuGet 6.2.1.2
 - Pip 20.3.4 (python 2.7)
-- Pip 22.1.1 (python 3.9)
+- Pip 22.2.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.3.19
-- Vcpkg 2022 (build from master \<66045de4d>)
+- Vcpkg 2022 (build from master \<a0454d6e1>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,7 +57,7 @@
 ### Project Management
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.6
-- Gradle 7.5
+- Gradle 7.5.1
 - Sbt 1.7.1
 
 ### Utilities
@@ -75,12 +75,12 @@
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.7
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-44
+- ImageMagick 7.1.0-45
 - jq 1.6
-- mongo v5.0.7
-- mongod v5.0.7
+- mongo v5.0.10
+- mongod v5.0.10
 - OpenSSL 1.1.1q  5 Jul 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1q)`
-- Packer 1.8.2
+- Packer 1.8.3
 - PostgreSQL 14.4
 - psql (PostgreSQL) 14.4
 - Sox 14.4.2
@@ -88,25 +88,25 @@
 - Switchaudio-osx 1.1.0
 - Vagrant 2.2.19
 - VirtualBox 6.1.36r152435
-- yq (https://github.com/mikefarah/yq/) version 4.27.1
+- yq (https://github.com/mikefarah/yq/) version 4.27.2
 - zstd 1.5.2
 
 ### Tools
-- App Center CLI 2.10.10
-- AWS CLI 2.7.20
+- App Center CLI 2.11.0
+- AWS CLI 2.7.21
 - AWS SAM CLI 1.53.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
-- Azure CLI 2.38.0
-- Bicep CLI 0.8.9
+- Azure CLI 2.39.0
+- Bicep CLI 0.9.1
 - Cabal 3.6.2.0
-- Cmake 3.23.3
+- Cmake 3.24.0
 - Fastlane 2.208.0
-- GHC 9.2.4
+- GHC 9.4.1
 - GHCup 0.1.18.0
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.13
+- SwiftFormat 0.49.14
 - Swig 4.0.2
 - Xcode Command Line Tools 13.4.0.0.1.1651278267
 
@@ -117,25 +117,25 @@
 ### Browsers
 - Safari 15.6 (17613.3.9.1.5)
 - SafariDriver 15.6 (17613.3.9.1.5)
-- Google Chrome 103.0.5060.134 
-- ChromeDriver 103.0.5060.134
-- Microsoft Edge 103.0.1264.77 
-- Microsoft Edge WebDriver 103.0.1264.77
-- Mozilla Firefox 103.0
+- Google Chrome 104.0.5112.79 
+- ChromeDriver 104.0.5112.79
+- Microsoft Edge 104.0.1293.47 
+- Microsoft Edge WebDriver 104.0.1293.47
+- Mozilla Firefox 103.0.1
 - geckodriver 0.31.0
 - Selenium server 4.3.0
 
 #### Environment variables
-| Name            | Value                                           |
-| --------------- | ----------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/103.0.5060.134 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver                    |
-| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                  |
+| Name            | Value                                          |
+| --------------- | ---------------------------------------------- |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/104.0.5112.79 |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
+| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.332+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 8.0.345+1 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.16+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.4+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
@@ -154,7 +154,7 @@
 - 3.7.13
 - 3.8.13
 - 3.9.13
-- 3.10.5
+- 3.10.6
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -171,8 +171,9 @@
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
-| 1.17.12 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.4  | x64          | GOROOT_1_18_X64      |
+| 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.18.5  | x64          | GOROOT_1_18_X64      |
+| 1.19.0  | x64          | GOROOT_1_19_X64      |
 
 ### Rust Tools
 - Cargo 1.62.1
@@ -194,7 +195,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 8.1.0   |
+| Az               | 8.2.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.20.0  |
@@ -237,6 +238,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 ### Xcode
 | Version          | Build    | Path                           |
 | ---------------- | -------- | ------------------------------ |
+| 14.0 (beta)      | 14A5294e | /Applications/Xcode_14.0.app   |
 | 13.4.1 (default) | 13F100   | /Applications/Xcode_13.4.1.app |
 | 13.4             | 13F17a   | /Applications/Xcode_13.4.app   |
 | 13.3.1           | 13E500a  | /Applications/Xcode_13.3.1.app |
@@ -253,29 +255,37 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | macOS 12.0              | macosx12.0           | 13.1                 |
 | macOS 12.1              | macosx12.1           | 13.2.1               |
 | macOS 12.3              | macosx12.3           | 13.3.1, 13.4, 13.4.1 |
+| macOS 13.0              | macosx13.0           | 14.0                 |
 | iOS 15.0                | iphoneos15.0         | 13.1                 |
 | iOS 15.2                | iphoneos15.2         | 13.2.1               |
 | iOS 15.4                | iphoneos15.4         | 13.3.1               |
 | iOS 15.5                | iphoneos15.5         | 13.4, 13.4.1         |
+| iOS 16.0                | iphoneos16.0         | 14.0                 |
 | Simulator - iOS 15.0    | iphonesimulator15.0  | 13.1                 |
 | Simulator - iOS 15.2    | iphonesimulator15.2  | 13.2.1               |
 | Simulator - iOS 15.4    | iphonesimulator15.4  | 13.3.1               |
 | Simulator - iOS 15.5    | iphonesimulator15.5  | 13.4, 13.4.1         |
+| Simulator - iOS 16.0    | iphonesimulator16.0  | 14.0                 |
 | tvOS 15.0               | appletvos15.0        | 13.1                 |
 | tvOS 15.2               | appletvos15.2        | 13.2.1               |
 | tvOS 15.4               | appletvos15.4        | 13.3.1, 13.4, 13.4.1 |
+| tvOS 16.0               | appletvos16.0        | 14.0                 |
 | Simulator - tvOS 15.0   | appletvsimulator15.0 | 13.1                 |
 | Simulator - tvOS 15.2   | appletvsimulator15.2 | 13.2.1               |
 | Simulator - tvOS 15.4   | appletvsimulator15.4 | 13.3.1, 13.4, 13.4.1 |
+| Simulator - tvOS 16.0   | appletvsimulator16.0 | 14.0                 |
 | watchOS 8.0             | watchos8.0           | 13.1                 |
 | watchOS 8.3             | watchos8.3           | 13.2.1               |
 | watchOS 8.5             | watchos8.5           | 13.3.1, 13.4, 13.4.1 |
+| watchOS 9.0             | watchos9.0           | 14.0                 |
 | Simulator - watchOS 8.0 | watchsimulator8.0    | 13.1                 |
 | Simulator - watchOS 8.3 | watchsimulator8.3    | 13.2.1               |
 | Simulator - watchOS 8.5 | watchsimulator8.5    | 13.3.1, 13.4, 13.4.1 |
+| Simulator - watchOS 9.0 | watchsimulator9.0    | 14.0                 |
 | DriverKit 21.0.1        | driverkit21.0.1      | 13.1                 |
 | DriverKit 21.2          | driverkit21.2        | 13.2.1               |
 | DriverKit 21.4          | driverkit21.4        | 13.3.1, 13.4, 13.4.1 |
+| DriverKit 22.0          | driverkit22.0        | 14.0                 |
 
 #### Installed Simulators
 | OS          | Xcode Version            | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -284,6 +294,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | iOS 15.2    | 13.2.1                   | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch)                                                            |
 | iOS 15.4    | 13.3.1                   | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch) |
 | iOS 15.5    | 13.4<br>13.4.1           | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch) |
+| iOS 16.0    | 14.0                     | iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch)                                |
 | tvOS 15.0   | 13.1                     | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | tvOS 15.2   | 13.2.1                   | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | tvOS 15.4   | 13.3.1<br>13.4<br>13.4.1 | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |

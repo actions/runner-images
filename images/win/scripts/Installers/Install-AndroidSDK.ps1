@@ -32,7 +32,7 @@ Invoke-SBWithRetry -Command {
     Rename-Item "${sdkInstallRoot}\cmdline-tools\cmdline-tools" "latest" -ErrorAction Stop
 }
 
-# ANDROID_NDK_PATH/HOME should not contain spaces. Otherwise, the script ndk-build.cmd gives an error https://github.com/actions/virtual-environments/issues/1122
+# ANDROID_NDK_PATH/HOME should not contain spaces. Otherwise, the script ndk-build.cmd gives an error https://github.com/actions/runner-images/issues/1122
 # create "C:\Android" directory and a hardlink inside pointed to sdk in Program Files
 New-Item -Path "C:\Android" -ItemType Directory
 New-Item -Path "$sdkRoot" -ItemType SymbolicLink -Value "$sdkInstallRoot"
@@ -127,7 +127,7 @@ $ndkRoot = "$sdkRoot\ndk\$ndkDefaultVersion"
 # Create env variables
 setx ANDROID_HOME $sdkRoot /M
 setx ANDROID_SDK_ROOT $sdkRoot /M
-# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/virtual-environments/issues/5879
+# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/runner-images/issues/5879
 setx ANDROID_NDK $ndkRoot /M
 setx ANDROID_NDK_HOME $ndkRoot /M
 setx ANDROID_NDK_ROOT $ndkRoot /M

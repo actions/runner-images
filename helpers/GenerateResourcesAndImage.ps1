@@ -87,7 +87,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER OnError
             Specify how packer handles an error during image creation.
         .EXAMPLE
-            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\virtual-environments" -ImageType Ubuntu1804 -AzureLocation "East US"
+            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu1804 -AzureLocation "East US"
     #>
     param (
         [Parameter(Mandatory = $True)]

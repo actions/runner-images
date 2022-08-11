@@ -13,7 +13,7 @@
 
 ## About
 
-This repository contains the source code used to create the VM images for [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners)used for Actions, as well as for [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines.
+This repository contains the source code used to create the VM images for [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) used for Actions, as well as for [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines.
 To build a VM machine from this repo's source, see the [instructions](docs/create-image-and-azure-resources.md).
 
 ## Available Images
@@ -34,14 +34,14 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 - In general the `-latest` label is used for the latest OS image version that is GA
 - Before moving the`-latest` label to a new OS version we will announce the change and give sufficient lead time for users to update their workflows
 
-[ubuntu-22.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2204-Readme.md
-[ubuntu-20.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-Readme.md
-[ubuntu-18.04]: https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-Readme.md
-[windows-2022]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2022-Readme.md
-[windows-2019]: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
-[macOS-11]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11-Readme.md
-[macOS-12]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-12-Readme.md
-[macOS-10.15]: https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
+[ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md
+[ubuntu-20.04]: https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2004-Readme.md
+[ubuntu-18.04]: https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu1804-Readme.md
+[windows-2022]: https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
+[windows-2019]: https://github.com/actions/runner-images/blob/main/images/win/Windows2019-Readme.md
+[macOS-11]: https://github.com/actions/runner-images/blob/main/images/macos/macos-11-Readme.md
+[macOS-12]: https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
+[macOS-10.15]: https://github.com/actions/runner-images/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
 ## Image Definitions
@@ -69,14 +69,14 @@ latest 2 versions of an OS.
 
 *How to best follow along with changes*
 
-1. Find the latest releases for this repository [here.](https://github.com/actions/virtual-environments/releases)
+1. Find the latest releases for this repository [here.](https://github.com/actions/runner-images/releases)
 2. Subscribe to the releases coming out of this repository, instructions [here.](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#configuring-your-watch-settings-for-an-individual-repository)
 3. Upcoming changes: A pre-release is created when the deployment of an image has started. As soon as the deployment is finished, the pre-release is converted to a release. If you have subscribed to releases, you will get notified of pre-releases as well.
 
-   - You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/virtual-environments/labels/awaiting-deployment) label.
+   - You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/runner-images/labels/awaiting-deployment) label.
 4. For high impact changes, we will post these in advance to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).
    - Ex: breaking changes, GA or deprecation of images
-5. You can also view notable upcoming changes by viewing the [Announcement](https://github.com/actions/virtual-environments/labels/Announcement) label.
+5. You can also view notable upcoming changes by viewing the [Announcement](https://github.com/actions/runner-images/labels/Announcement) label.
 
 *Cadence*
 
@@ -131,8 +131,8 @@ In general, these are the guidelines we follow when deciding what to pre-install
 
 ## How to Interact with the Repo
 
-- **Issues**: To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/virtual-environments/issues/new/choose)
-- **Discussions**: If you want to share your thoughts about image configuration, installed software, or bring a new idea, please create a new topic in a [discussion](https://github.com/actions/virtual-environments/discussions) for a corresponding category. Before making a new discussion please make sure no similar topics were created earlier.
+- **Issues**: To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/runner-images/issues/new/choose)
+- **Discussions**: If you want to share your thoughts about image configuration, installed software, or bring a new idea, please create a new topic in a [discussion](https://github.com/actions/runner-images/discussions) for a corresponding category. Before making a new discussion please make sure no similar topics were created earlier.
 - For general questions about using the runner images or writing your Actions workflow, please open requests in the [GitHub Actions Community Forum](https://github.community/c/github-actions/41).
 
 ## FAQs
@@ -140,7 +140,7 @@ In general, these are the guidelines we follow when deciding what to pre-install
 <details>
    <summary><b><i>What images are available for GitHub Actions and Azure DevOps?</b></i></summary>
 
-The availability of images for GitHub Actions and Azure DevOps is the same. However, deprecation polciies may differ. See documentation for more details:
+The availability of images for GitHub Actions and Azure DevOps is the same. However, deprecation policies may differ. See documentation for more details:
 - [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources)
 - [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#software)
 </details>
