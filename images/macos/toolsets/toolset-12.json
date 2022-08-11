@@ -178,7 +178,8 @@
         "cask_packages": [
             "julia",
             "vagrant",
-            "virtualbox"
+            "virtualbox",
+            "codeql"
         ]
     },
     "gcc": {
