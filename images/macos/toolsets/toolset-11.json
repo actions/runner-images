@@ -228,8 +228,7 @@
             "imagemagick"
         ],
         "cask_packages": [
-            "julia",
-            "codeql"
+            "julia"
         ]
     },
     "gcc": {

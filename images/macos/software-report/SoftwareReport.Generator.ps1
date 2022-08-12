@@ -159,8 +159,7 @@ $toolsList = @(
     (Get-AzureDevopsVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMCLIVersion),
-    (Get-AWSSessionManagerCLIVersion),
-    (Get-CodeQLVersion)
+    (Get-AWSSessionManagerCLIVersion)
 )
 
 if ($os.IsLessThanMonterey) {

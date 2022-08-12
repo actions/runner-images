@@ -138,9 +138,3 @@ Describe "VirtualBox" -Skip:($os.IsBigSur) {
         kextstat | Out-String | Should -Match "org.virtualbox.kext"
     }
 }
-
-Describe "codeql" {
-    It "codeql" {
-        "codeql version" | Should -ReturnZeroExitCode
-    }
-}

@@ -585,8 +585,3 @@ function Build-GraalVMTable {
         "Environment variables" = $envVariables
     }
 }
-
-function Get-CodeQLVersion {
-    $codeqlVersion = Run-Command "codeql version --quiet"
-    return "$codeqlVersion"
-}
