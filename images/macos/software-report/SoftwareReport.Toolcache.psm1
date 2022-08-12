@@ -44,6 +44,14 @@ function Get-ToolcacheGoTable {
     return $Content
 }
 
+function Get-CodeQLBundleVersion {
+    $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+    $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
+    $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+    $CodeQLVersion = & $CodeQLPath version --quiet
+    return "CodeQL Action Bundle $CodeQLVersion"
+}
+
 function Build-ToolcacheSection { 
     $output = ""
     $output += New-MDHeader "Cached Tools" -Level 3
@@ -57,6 +65,8 @@ function Build-ToolcacheSection {
     $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
     $output += New-MDHeader "Go" -Level 4
     $output += Get-ToolcacheGoTable
+    $output += New-MDHeader "CodeQL" -Level 4  
+    $output += New-MDList -Lines (Get-CodeQLBundleVersion) -Style Unordered
 
     return $output
 }

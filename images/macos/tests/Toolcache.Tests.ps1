@@ -228,4 +228,41 @@ Describe "Toolcache" {
             }
         }
     }
+
+    Context "CodeQL" {
+        $codeqlDirectory = Join-Path $toolcacheDirectory "codeql"
+        $codeqlPackage = $packages | Where-Object { $_.ToolName -eq "codeql" } | Select-Object -First 1
+        $testCase = @{ CodeqlDirectory = $codeqlDirectory }
+
+        It "Toolcache directory exists" -TestCases $testCase {
+            param ( [string] $CodeqlDirectory )
+
+            $CodeqlDirectory | Should -Exist
+        }
+
+        It "Toolcache directory contains at least one version of CodeQL" -TestCases $testCase {
+            param ( [string] $CodeqlDirectory )
+
+            (Get-ChildItem -Path $CodeqlDirectory -Directory).Count | Should -BeGreaterThan 0
+        }
+
+        $codeqlPackage.Versions | Where-Object { $_ } | ForEach-Object {
+            Context "$_" {
+                $versionDirectory = Get-ChildItem -Path $codeqlDirectory -Directory -Filter "$_*" | Select-Object -First 1
+                $codeqlBinPath = Join-Path $versionDirectory.FullName $codeqlPackage.Arch "codeql" "codeql"
+                $testCase = @{ CodeqlVersion = $_; CodeqlBinPath = $codeqlBinPath }
+
+                It "Version Codeql" -TestCases $testCase {
+                    param (
+                        [string] $CodeqlVersion,
+                        [string] $CodeqlBinPath
+                    )
+
+                    $result = Get-CommandResult "$CodeqlBinPath version"
+                    $result.Output | Should -BeLike "*$CodeqlVersion*"
+                    $result.ExitCode | Should -Be 0
+                }
+            }
+        }
+    }
 }

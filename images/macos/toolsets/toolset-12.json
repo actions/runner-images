@@ -241,6 +241,14 @@
                 "3.0.*",
                 "3.1.*"
             ]
+        },
+        {
+            "name": "CodeQL",
+            "arch": "x64",
+            "platform" : "darwin",
+            "versions": [
+                "*"
+            ]
         }
     ],
     "pipx": [
