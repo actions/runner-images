@@ -585,3 +585,11 @@ function Build-GraalVMTable {
         "Environment variables" = $envVariables
     }
 }
+
+function Get-CodeQLBundleVersion {
+    $CodeQLVersionWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+    $CodeQLVersionPath = Get-ChildItem $CodeQLVersionWildcard | Select-Object -First 1 -Expand FullName
+    $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+    $CodeQLVersion = & $CodeQLPath version --quiet
+    return "CodeQL Action Bundle $CodeQLVersion"
+}

@@ -299,11 +299,7 @@
         },
         {
             "name": "CodeQL",
-            "arch": "x64",
-            "platform" : "darwin",
-            "versions": [
-                "*"
-            ]
+            "arch": "x64"
         }
     ],
     "pipx": [
