@@ -19,7 +19,7 @@ cat <<EOF > $imagedata_file
     "detail": "${os_name}"
   },
   {
-    "group": "Runner Image",
+    "group": "Image",
     "detail": "Label: ${image_label}\nVersion: ${image_version}\nIncluded Software: ${software_url}\nImage Release: ${releaseUrl}"
   }
 ]
