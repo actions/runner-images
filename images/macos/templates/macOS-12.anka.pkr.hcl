@@ -213,7 +213,8 @@ build {
       "./provision/core/pypy.sh",
       "./provision/core/pipx-packages.sh",
       "./provision/core/bicep.sh",
-      "./provision/core/graalvm.sh"
+      "./provision/core/graalvm.sh",
+      "./provision/core/codeql-bundle.sh"
     ]
     environment_vars = [
       "API_PAT=${var.github_api_pat}"
