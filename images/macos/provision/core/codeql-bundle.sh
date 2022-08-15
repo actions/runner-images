@@ -13,7 +13,7 @@ codeqlArchive="/tmp/codeql-bundle.tar.gz"
 codeqlToolcachePath="$AGENT_TOOLSDIRECTORY/codeql/$codeql_bundle_version/x64"
 mkdir -p $codeqlToolcachePath
 
-echo "Unzip CodeQL archive..."
+echo "Unpacking the downloaded CodeQL bundle archive..."
 tar -xzf $codeqlArchive -C $codeqlToolcachePath
 
 # Touch a special file that indicates to the CodeQL Action that this bundle was baked-in to the hosted runner images.
