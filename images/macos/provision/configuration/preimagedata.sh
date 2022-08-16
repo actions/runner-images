@@ -25,8 +25,8 @@ cat <<EOF > $imagedata_file
         "detail": "${os_name}\n${os_version}\n${os_build}"
       },
       {
-        "group": "Virtual Environment",
-        "detail": "Environment: ${image_label}\nVersion: ${image_version}\nIncluded Software: ${software_url}\nImage Release: ${releaseUrl}"
+        "group": "Runner Image",
+        "detail": "Image: ${image_label}\nVersion: ${image_version}\nIncluded Software: ${software_url}\nImage Release: ${releaseUrl}"
       }
     ]
 EOF

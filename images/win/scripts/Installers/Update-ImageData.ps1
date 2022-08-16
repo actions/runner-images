@@ -26,8 +26,8 @@ $json = @"
     "detail": "${osName}\n${osVersion}\n${osEdition}"
   },
   {
-    "group": "Virtual Environment",
-    "detail": "Environment: ${imageLabel}\nVersion: ${imageVersion}\nIncluded Software: ${softwareUrl}\nImage Release: ${releaseUrl}"
+    "group": "Runner Image",
+    "detail": "Image: ${imageLabel}\nVersion: ${imageVersion}\nIncluded Software: ${softwareUrl}\nImage Release: ${releaseUrl}"
   }
 ]
 "@
