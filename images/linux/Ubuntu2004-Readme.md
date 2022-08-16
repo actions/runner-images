@@ -117,7 +117,7 @@
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
 - Netlify CLI 10.17.4
-- OpenShift CLI v4.5.4
+- OpenShift CLI 4.11.0
 - ORAS CLI 0.13.0
 - Vercel CLI 28.0.1
 
