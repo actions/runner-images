@@ -321,8 +321,12 @@
         },
         {
             "type": "shell",
+            "max_retries": 3,
+            "start_retry_timeout": "2m",
             "inline": [
+                "pwsh -Command Write-Host Running SoftwareReport.Generator.ps1 script",
                 "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}",
+                "pwsh -Command Write-Host Running RunAll-Tests.ps1 script",
                 "pwsh -File {{user `image_folder`}}/tests/RunAll-Tests.ps1 -OutputDirectory {{user `image_folder`}}"
             ],
             "environment_vars": [

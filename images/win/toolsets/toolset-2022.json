@@ -185,6 +185,7 @@
             "Component.Linux.CMake",
             "Component.UnityEngine.x64",
             "Component.Unreal.Android",
+            "Component.Xamarin",
             "Microsoft.Component.VC.Runtime.UCRTSDK",
             "Microsoft.Net.Component.4.7.TargetingPack",
             "Microsoft.Net.Component.4.7.2.TargetingPack",
