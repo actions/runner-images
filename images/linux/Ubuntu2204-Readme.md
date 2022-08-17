@@ -1,14 +1,10 @@
 | Announcements |
 |-|
-| [[All OSs] Go version 1.16 will be removed on August, 15th](https://github.com/actions/virtual-environments/issues/6024) |
-| [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by 12/1/22](https://github.com/actions/virtual-environments/issues/6002) |
-| [Ubuntu 22.04 is generally available starting from August, 8](https://github.com/actions/virtual-environments/issues/5998) |
-| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/virtual-environments/issues/5967) |
-| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/virtual-environments/issues/5930) |
+| [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by 12/1/22](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 22.04.1 LTS
-- Linux kernel version: 5.15.0-1014-azure
-- Image Version: 20220807.1
+- Linux kernel version: 5.15.0-1017-azure
+- Image Version: 20220815.3
 
 ## Installed Software
 ### Language and Runtime
@@ -23,7 +19,7 @@
 - Kotlin 1.7.10-release-333
 - Mono 6.12.0.182 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.10.1.31701 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node 16.16.0
+- Node 16.17.0
 - Perl 5.34.0
 - Python 3.10.4
 - Python3 3.10.4
@@ -31,16 +27,16 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.9.2
-- Homebrew 3.5.8
+- Helm 3.9.3
+- Homebrew 3.5.9
 - Miniconda 4.12.0
-- Npm 8.11.0
+- Npm 8.15.0
 - NuGet 6.2.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<9b22b40c6>)
+- Vcpkg  (build from master \<acc3bcf76>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -50,10 +46,10 @@
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
-- Lerna 5.3.0
+- Lerna 5.4.2
 
 ### Tools
-- Ansible 2.13.2
+- Ansible 2.13.3
 - apt-fast 1.9.12
 - AzCopy 10.16.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.2.0
@@ -68,8 +64,8 @@
 - Docker-Buildx 0.8.2
 - Docker-Moby Client 20.10.17+azure-1
 - Docker-Moby Server 20.10.17+azure-1
-- Fastlane 2.208.0
-- Git 2.37.1 (apt source repository: ppa:git-core/ppa)
+- Fastlane 2.209.0
+- Git 2.37.2 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.14
@@ -78,7 +74,7 @@
 - Kind 0.14.0
 - Kubectl 1.24.3
 - Kustomize 4.5.7
-- Leiningen 2.9.9
+- Leiningen 2.9.10
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.26.1
@@ -94,30 +90,30 @@
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.2.6
+- Terraform 1.2.7
 - yamllint 1.27.1
 - yq 4.27.2
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.21
+- AWS CLI 2.7.23
 - AWS CLI Session manager plugin 1.2.339.0
-- AWS SAM CLI 1.53.0
+- AWS SAM CLI 1.54.0
 - Azure CLI (azure-cli) 2.39.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
-- GitHub CLI 2.14.3
+- GitHub CLI 2.14.4
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 10.15.0
-- OpenShift CLI 4.10.25
+- Netlify CLI 10.17.7
+- OpenShift CLI 4.11.0
 - ORAS CLI 0.13.0
-- Vercel CLI 27.3.7
+- Vercel CLI 28.0.2
 
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.332+9           | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 8.0.345+1           | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.16+8 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.4+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
@@ -129,7 +125,7 @@
 ### PHP
 | Tool     | Version |
 | -------- | ------- |
-| PHP      | 8.1.8   |
+| PHP      | 8.1.9   |
 | Composer | 2.3.10  |
 | PHPUnit  | 8.5.28  |
 ```
@@ -137,31 +133,31 @@
 ```
 ### Haskell
 - Cabal 3.6.2.0
-- GHC 9.2.4
+- GHC 9.4.1
 - GHCup 0.1.18.0
 - Stack 2.7.5
 
 ### Rust Tools
-- Cargo 1.62.1
-- Rust 1.62.1
-- Rustdoc 1.62.1
+- Cargo 1.63.0
+- Rust 1.63.0
+- Rustdoc 1.63.0
 - Rustup 1.25.1
 
 #### Packages
 - Bindgen 0.60.1
 - Cargo audit 0.17.0
-- Cargo clippy 0.1.62
+- Cargo clippy 0.1.63
 - Cargo outdated 0.11.1
 - Cbindgen 0.24.3
-- Rustfmt 1.4.38
+- Rustfmt 1.5.1
 
 ### Browsers and Drivers
 - Google Chrome 104.0.5112.79
 - ChromeDriver 104.0.5112.79
 - Chromium 104.0.5112.0
-- Microsoft Edge 104.0.1293.47 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 104.0.1293.47
-- Selenium server 4.3.0
+- Microsoft Edge 104.0.1293.54 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 104.0.1293.54
+- Selenium server 4.4.0
 
 #### Environment variables
 | Name              | Value                               |
@@ -172,7 +168,7 @@
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Core SDK
-- 6.0.302
+- 6.0.400
 
 ### .NET tools
 - nbgv 3.5.109+bdfbd7dea6
@@ -181,7 +177,7 @@
 - sqlite3 3.37.2
 
 #### PostgreSQL
-- PostgreSQL 14.4 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
+- PostgreSQL 14.5 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - PostgreSQL Server (user:postgres)
 
 ```
@@ -226,7 +222,7 @@
 | GOROOT_1_19_X64 | /opt/hostedtoolcache/go/1.19.0/x64  | x64          |
 
 ### PowerShell Tools
-- PowerShell 7.2.5
+- PowerShell 7.2.6
 
 #### PowerShell Modules
 | Module           | Version |
@@ -249,7 +245,7 @@
 | Package Name               | Version                                                                                                                                                |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 7.0                                                                                                                                                    |
-| Android Emulator           | 31.2.10                                                                                                                                                |
+| Android Emulator           | 31.3.10                                                                                                                                                |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platform-Tools | 33.0.2                                                                                                                                                 |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
@@ -274,17 +270,17 @@
 ### Cached Docker images
 | Repository:Tag          | Digest                                                                   | Created    |
 | ----------------------- | ------------------------------------------------------------------------ | ---------- |
-| alpine:3.14             | sha256:43eb8f0d8215d8661f745f3d88563c026614d843b668b233bbe1666b6d026f61  | 2022-07-19 |
-| alpine:3.15             | sha256:0483110c51a764abe175a8cefb941541ca0bc0f628ce418d3a660338abf4622a  | 2022-07-19 |
+| alpine:3.14             | sha256:1ab24b3b99320975cca71716a7475a65d263d0b6b604d9d14ce08f7a3f67595c  | 2022-08-09 |
+| alpine:3.15             | sha256:69463fdff1f025c908939e86d4714b4d5518776954ca627cbeff4c74bcea5b22  | 2022-08-09 |
 | buildpack-deps:bullseye | sha256:d6974da710854c9c38d49666bd682abd99ef7aacdb92344d42a00f723e63cdb1  | 2022-08-02 |
 | buildpack-deps:buster   | sha256:9d806f4d80f19e3fd315bbe2ca1aa59a6c1ad18aff7b3d9696b407572608d61e  | 2022-08-02 |
 | debian:10               | sha256:fb9654aac57319592f1d51497c62001e7033eddf059355408a0b53f7c71f8d5f  | 2022-08-02 |
 | debian:11               | sha256:82bab30ed448b8e2509aabe21f40f0607d905b7fd0dec72802627a20274eba55  | 2022-08-02 |
 | moby/buildkit:latest    | sha256:0dc312b04eac1b44cd2cad566deb1e886c753109208affbbec8384f381ff7f38  | 2022-05-06 |
 | node:14                 | sha256:7e1eabbcd7cbd0fdc296bc00fb2c80943ed0499c4ca3a148c83944708574dcf6  | 2022-08-02 |
-| node:14-alpine          | sha256:e22ee6a906e823dc592d6022a3f520676575b50320fe2c3916c88acb16f471ce  | 2022-07-18 |
+| node:14-alpine          | sha256:4aff4ba0da347e51561587eba037a38db4eaa70e1a6c8334d66779fe963d5be7  | 2022-08-09 |
 | node:16                 | sha256:1ed1e17ccabb09038cfb8a965337ebcda51ef9e9d32082164c502d44d9731a02  | 2022-08-02 |
-| node:16-alpine          | sha256:1908564153449b1c46b329e6ce2307e226bc566294f822f11c5a8bcef4eeaad7  | 2022-07-18 |
+| node:16-alpine          | sha256:1c8769a8c9ed57817ef07162744a3722421333a438185c560aa42a9a1fc6ea23  | 2022-08-09 |
 | ubuntu:18.04            | sha256:eb1392bbdde63147bc2b4ff1a4053dcfe6d15e4dfd3cce29e9b9f52a4f88bc74  | 2022-08-02 |
 | ubuntu:20.04            | sha256:af5efa9c28de78b754777af9b4d850112cad01899a5d37d2617bb94dc63a49aa  | 2022-08-02 |
 | ubuntu:22.04            | sha256:34fea4f31bf187bc915536831fd0afc9d214755bf700b5cdb1336c82516d154e  | 2022-08-02 |
