@@ -1,12 +1,6 @@
-| Announcements |
-|-|
-| [[All OSs] Go version 1.16 will be removed on August, 15th](https://github.com/actions/runner-images/issues/6024) |
-| [[Windows] mongo service will be disabled by default on August, 8th](https://github.com/actions/runner-images/issues/5949) |
-| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/runner-images/issues/5930) |
-***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 887
-- Image Version: 20220814.1
+- Image Version: 20220816.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -18,7 +12,7 @@
 - Julia 1.7.3
 - Kotlin 1.7.10
 - LLVM 14.0.6
-- Node 16.16.0
+- Node 16.17.0
 - Perl 5.32.1
 - PHP 8.1.9
 - Python 3.9.13
@@ -26,15 +20,15 @@
 
 ### Package Management
 - Chocolatey 1.1.0
-- Composer 2.3.10
+- Composer 2.4.0
 - Helm 3.9.2
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
-- NPM 8.11.0
+- NPM 8.15.0
 - NuGet 6.3.0.131
 - pip 22.2.2 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<d293ac220>)
+- Vcpkg (build from master \<23cc58477>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -53,7 +47,7 @@
 - aria2 1.36.0
 - azcopy 10.16.0
 - Bazel 5.2.0
-- Bazelisk 1.12.0
+- Bazelisk 1.12.1
 - Bicep 0.9.1
 - Cabal 3.8.1.0
 - CMake 3.24.0
@@ -90,7 +84,7 @@
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
 - AWS CLI 2.7.22
-- AWS SAM CLI 1.53.0
+- AWS SAM CLI 1.54.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.39.0
 - Azure DevOps CLI extension 0.25.0
@@ -112,7 +106,7 @@
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
-- Google Chrome 104.0.5112.81
+- Google Chrome 104.0.5112.102
 - Chrome Driver 104.0.5112.79
 - Microsoft Edge 104.0.1293.54
 - Microsoft Edge Driver 104.0.1293.54
@@ -225,7 +219,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
 | ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.3.32804.467 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.3.32811.315 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version        |
@@ -254,6 +248,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.18       |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.18       |
 | Component.WixToolset.VisualStudioExtension.Schemas4                       | 1.0.0.18       |
+| Component.Xamarin                                                         | 17.3.32708.82  |
 | Component.Xamarin.RemotedSimulator                                        | 17.3.32708.82  |
 | ios                                                                       | 15.4.446.446   |
 | maccatalyst                                                               | 15.4.446.446   |
@@ -562,7 +557,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.146          |
+| AWSPowerShell      | 4.1.147          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.11.0           |
@@ -606,5 +601,4 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:edc6558e8cd6f306854517048ef11a05129d3097f1e9f61b48c906ddc0d478cc  | 2022-08-09 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:5f57ddc9a47d079398506a7613c8a3cb8b5bf3f97040f590871b61a15bd5a36a  | 2022-08-06 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:35c3cb29ef2c9f05e36070d04c79d7fc861c035fa5df2df64ae607a276db42c6  | 2022-08-06 |
-
 
