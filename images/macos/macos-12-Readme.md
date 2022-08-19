@@ -1,18 +1,15 @@
 | Announcements |
 |-|
-| [[All OSs] Go version 1.16 will be removed on August, 15th](https://github.com/actions/runner-images/issues/6024) |
-| ['virtual-environments' repository name will be changed to 'runner-images' on August, 8th](https://github.com/actions/runner-images/issues/5967) |
-| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/runner-images/issues/5930) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 12.5 info
 - System Version: macOS 12.5 (21G72)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20220809.1
+- Image Version: 20220815.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.421 5.0.102 5.0.202 5.0.302 5.0.408 6.0.302
+- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.422 5.0.102 5.0.202 5.0.302 5.0.408 6.0.400
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.1.6 is default
 - Clang/LLVM 14.0.6 is available on `'$(brew --prefix llvm@14)/bin/clang'`
@@ -28,24 +25,24 @@
 - Perl 5.34.0
 - PHP 8.1.9
 - Python 2.7.18
-- Python 3.9.13
+- Python 3.10.6
 - R 4.2.1
 - Ruby 3.0.4p208
 
 ### Package Management
-- Bundler version 2.3.19
+- Bundler version 2.3.20
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.3.10
-- Homebrew 3.5.8
+- Homebrew 3.5.9
 - Miniconda 4.12.0
 - NPM 8.11.0
 - NuGet 6.2.1.2
 - Pip 20.3.4 (python 2.7)
-- Pip 22.2.1 (python 3.9)
+- Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
-- RubyGems 3.3.19
-- Vcpkg 2022 (build from master \<a0454d6e1>)
+- RubyGems 3.3.20
+- Vcpkg 2022 (build from master \<acc3bcf76>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -68,9 +65,9 @@
 - bazelisk 1.12.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 7.84.0
-- Git 2.37.1
+- Git 2.37.2
 - Git LFS: 3.2.0
-- GitHub CLI: 2.14.3
+- GitHub CLI: 2.14.4
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.7
@@ -86,27 +83,28 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- Vagrant 2.2.19
+- Vagrant 2.3.0
 - VirtualBox 6.1.36r152435
 - yq (https://github.com/mikefarah/yq/) version 4.27.2
 - zstd 1.5.2
 
 ### Tools
 - App Center CLI 2.11.0
-- AWS CLI 2.7.21
-- AWS SAM CLI 1.53.0
+- AWS CLI 2.7.23
+- AWS SAM CLI 1.54.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.39.0
 - Bicep CLI 0.9.1
 - Cabal 3.6.2.0
 - Cmake 3.24.0
-- Fastlane 2.208.0
+- CodeQL Action Bundle 2.10.2
+- Fastlane 2.209.0
 - GHC 9.4.1
 - GHCup 0.1.18.0
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.14
+- SwiftFormat 0.49.16
 - Swig 4.0.2
 - Xcode Command Line Tools 13.4.0.0.1.1651278267
 
@@ -119,11 +117,11 @@
 - SafariDriver 15.6 (17613.3.9.1.5)
 - Google Chrome 104.0.5112.79 
 - ChromeDriver 104.0.5112.79
-- Microsoft Edge 104.0.1293.47 
-- Microsoft Edge WebDriver 104.0.1293.47
-- Mozilla Firefox 103.0.1
+- Microsoft Edge 104.0.1293.54 
+- Microsoft Edge WebDriver 104.0.1293.54
+- Mozilla Firefox 103.0.2
 - geckodriver 0.31.0
-- Selenium server 4.3.0
+- Selenium server 4.4.0
 
 #### Environment variables
 | Name            | Value                                          |
@@ -170,15 +168,14 @@
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
-| 1.16.15 | x64          | GOROOT_1_16_X64      |
 | 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
 | 1.18.5  | x64          | GOROOT_1_18_X64      |
 | 1.19.0  | x64          | GOROOT_1_19_X64      |
 
 ### Rust Tools
-- Cargo 1.62.1
-- Rust 1.62.1
-- Rustdoc 1.62.1
+- Cargo 1.63.0
+- Rust 1.63.0
+- Rustdoc 1.63.0
 - Rustup 1.25.1
 
 #### Packages
@@ -186,11 +183,11 @@
 - Cargo-audit 0.17.0
 - Cargo-outdated 0.11.1
 - Cbindgen 0.24.3
-- Clippy 0.1.62
-- Rustfmt 1.4.38-stable
+- Clippy 0.1.63
+- Rustfmt 1.5.1-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.5
+- PowerShell 7.2.6
 
 #### PowerShell Modules
 | Module           | Version |
@@ -208,10 +205,10 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-| Version        | Build     | Path                                 |
-| -------------- | --------- | ------------------------------------ |
-| 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.0.7.7  | /Applications/Visual Studio.app      |
+| Version        | Build       | Path                                 |
+| -------------- | ----------- | ------------------------------------ |
+| 2019           | 8.10.25.2   | /Applications/Visual Studio 2019.app |
+| 2022 (default) | 17.3.0.2102 | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
@@ -223,7 +220,9 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 #### Xamarin bundles
 | symlink           | Xamarin.Mono | Xamarin.iOS | Xamarin.Mac | Xamarin.Android |
 | ----------------- | ------------ | ----------- | ----------- | --------------- |
-| 6_12_17 (default) | 6.12         | 15.10       | 8.10        | 12.2            |
+| 6_12_19 (default) | 6.12         | 15.12       | 8.12        | 13.0            |
+| 6_12_18           | 6.12         | 15.10       | 8.10        | 12.3            |
+| 6_12_17           | 6.12         | 15.10       | 8.10        | 12.2            |
 | 6_12_16           | 6.12         | 15.8        | 8.8         | 12.2            |
 | 6_12_15           | 6.12         | 15.8        | 8.8         | 12.1            |
 | 6_12_14           | 6.12         | 15.8        | 8.8         | 12.0            |
@@ -306,7 +305,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 7.0                                                                                                                                                    |
-| Android Emulator           | 31.2.10                                                                                                                                                |
+| Android Emulator           | 31.3.10                                                                                                                                                |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 33.0.2                                                                                                                                                 |
