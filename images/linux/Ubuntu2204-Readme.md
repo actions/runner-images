@@ -4,7 +4,7 @@
 ***
 # Ubuntu 22.04.1 LTS
 - Linux kernel version: 5.15.0-1017-azure
-- Image Version: 20220815.3
+- Image Version: 20220821.1
 
 ## Installed Software
 ### Language and Runtime
@@ -15,7 +15,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++ 9.4.0, 10.3.0, 11.2.0
 - GNU Fortran 9.4.0, 10.3.0, 11.2.0
-- Julia 1.7.3
+- Julia 1.8.0
 - Kotlin 1.7.10-release-333
 - Mono 6.12.0.182 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.10.1.31701 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
@@ -36,7 +36,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<acc3bcf76>)
+- Vcpkg  (build from master \<9259a0719>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -46,22 +46,22 @@
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
-- Lerna 5.4.2
+- Lerna 5.4.3
 
 ### Tools
 - Ansible 2.13.3
 - apt-fast 1.9.12
 - AzCopy 10.16.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.2.0
-- Bazelisk 1.12.0
+- Bazelisk 1.12.1
 - Bicep 0.9.1
 - Buildah 1.23.1
-- CMake 3.24.0
-- CodeQL Action Bundle 2.10.2
+- CMake 3.24.1
+- CodeQL Action Bundle 2.10.3
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.9.0+azure-1
-- Docker-Buildx 0.8.2
+- Docker-Buildx 0.9.0
 - Docker-Moby Client 20.10.17+azure-1
 - Docker-Moby Server 20.10.17+azure-1
 - Fastlane 2.209.0
@@ -72,7 +72,7 @@
 - Heroku 7.62.0
 - jq 1.6
 - Kind 0.14.0
-- Kubectl 1.24.3
+- Kubectl 1.24.4
 - Kustomize 4.5.7
 - Leiningen 2.9.10
 - MediaInfo 21.09
@@ -85,7 +85,7 @@
 - Packer 1.8.3
 - Parcel 2.7.0
 - Podman 3.4.4
-- Pulumi 3.37.2
+- Pulumi 3.38.0
 - R 4.2.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -97,18 +97,18 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.23
+- AWS CLI 2.7.25
 - AWS CLI Session manager plugin 1.2.339.0
-- AWS SAM CLI 1.54.0
+- AWS SAM CLI 1.55.0
 - Azure CLI (azure-cli) 2.39.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.14.4
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 10.17.7
+- Netlify CLI 11.3.0
 - OpenShift CLI 4.11.0
 - ORAS CLI 0.13.0
-- Vercel CLI 28.0.2
+- Vercel CLI 28.1.0
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -126,7 +126,7 @@
 | Tool     | Version |
 | -------- | ------- |
 | PHP      | 8.1.9   |
-| Composer | 2.3.10  |
+| Composer | 2.4.1   |
 | PHPUnit  | 8.5.28  |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -152,11 +152,11 @@
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 104.0.5112.79
+- Google Chrome 104.0.5112.101
 - ChromeDriver 104.0.5112.79
 - Chromium 104.0.5112.0
-- Microsoft Edge 104.0.1293.54 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 104.0.1293.54
+- Microsoft Edge 104.0.1293.63 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 104.0.1293.63
 - Selenium server 4.4.0
 
 #### Environment variables
@@ -279,8 +279,8 @@
 | moby/buildkit:latest    | sha256:0dc312b04eac1b44cd2cad566deb1e886c753109208affbbec8384f381ff7f38  | 2022-05-06 |
 | node:14                 | sha256:7e1eabbcd7cbd0fdc296bc00fb2c80943ed0499c4ca3a148c83944708574dcf6  | 2022-08-02 |
 | node:14-alpine          | sha256:4aff4ba0da347e51561587eba037a38db4eaa70e1a6c8334d66779fe963d5be7  | 2022-08-09 |
-| node:16                 | sha256:1ed1e17ccabb09038cfb8a965337ebcda51ef9e9d32082164c502d44d9731a02  | 2022-08-02 |
-| node:16-alpine          | sha256:1c8769a8c9ed57817ef07162744a3722421333a438185c560aa42a9a1fc6ea23  | 2022-08-09 |
+| node:16                 | sha256:bf1609ac718dda03940e2be4deae1704fb77cd6de2bed8bf91d4bbbc9e88b497  | 2022-08-16 |
+| node:16-alpine          | sha256:2c405ed42fc0fd6aacbe5730042640450e5ec030bada7617beac88f742b6997b  | 2022-08-16 |
 | ubuntu:18.04            | sha256:eb1392bbdde63147bc2b4ff1a4053dcfe6d15e4dfd3cce29e9b9f52a4f88bc74  | 2022-08-02 |
 | ubuntu:20.04            | sha256:af5efa9c28de78b754777af9b4d850112cad01899a5d37d2617bb94dc63a49aa  | 2022-08-02 |
 | ubuntu:22.04            | sha256:34fea4f31bf187bc915536831fd0afc9d214755bf700b5cdb1336c82516d154e  | 2022-08-02 |
