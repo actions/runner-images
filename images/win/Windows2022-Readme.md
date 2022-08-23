@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 887
-- Image Version: 20220816.1
+- Image Version: 20220821.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -9,7 +9,7 @@
 ### Language and Runtime
 - Bash 5.1.16(1)-release
 - Go 1.17.13
-- Julia 1.7.3
+- Julia 1.8.0
 - Kotlin 1.7.10
 - LLVM 14.0.6
 - Node 16.17.0
@@ -20,7 +20,7 @@
 
 ### Package Management
 - Chocolatey 1.1.0
-- Composer 2.4.0
+- Composer 2.4.1
 - Helm 3.9.2
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
 - NPM 8.15.0
@@ -28,7 +28,7 @@
 - pip 22.2.2 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<23cc58477>)
+- Vcpkg (build from master \<9259a0719>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -50,11 +50,11 @@
 - Bazelisk 1.12.1
 - Bicep 0.9.1
 - Cabal 3.8.1.0
-- CMake 3.24.0
-- CodeQL Action Bundle 2.10.2
+- CMake 3.24.1
+- CodeQL Action Bundle 2.10.3
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.9.0
+- Docker Compose v2 2.10.0
 - Docker-wincred 0.6.4
 - ghc 9.4.1
 - Git 2.37.2.windows.2
@@ -62,14 +62,14 @@
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.14.0
-- Kubectl 1.24.3
+- Kubectl 1.24.4
 - Mercurial 5.0
 - Mingw-w64 11.2.0
 - Newman 5.3.2
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.8.2
-- Pulumi v3.37.2
+- Pulumi v3.38.0
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.7.5
@@ -83,8 +83,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.22
-- AWS SAM CLI 1.54.0
+- AWS CLI 2.7.25
+- AWS SAM CLI 1.55.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.39.0
 - Azure DevOps CLI extension 0.25.0
@@ -108,8 +108,8 @@
 ### Browsers and webdrivers
 - Google Chrome 104.0.5112.102
 - Chrome Driver 104.0.5112.79
-- Microsoft Edge 104.0.1293.54
-- Microsoft Edge Driver 104.0.1293.54
+- Microsoft Edge 104.0.1293.63
+- Microsoft Edge Driver 104.0.1293.63
 - Mozilla Firefox 103.0.2
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
@@ -127,7 +127,7 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.345+1 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.16+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 11.0.16+101         | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.4+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Shells
@@ -201,7 +201,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.10.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.11.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.9.0
@@ -368,24 +368,24 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.Spectre               | 17.3.32708.82  |
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64                   | 17.3.32708.82  |
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64.Spectre           | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.ARM                        | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.ARM.Spectre                | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.ARM64                      | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.ARM64.Spectre              | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL                        | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL.ARM                    | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL.ARM.Spectre            | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL.ARM64                  | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL.ARM64.Spectre          | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.ATL.Spectre                | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC                        | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC.ARM                    | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC.ARM.Spectre            | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC.ARM64                  | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC.ARM64.Spectre          | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.MFC.Spectre                | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.x86.x64                    | 17.3.32708.82  |
-| Microsoft.VisualStudio.Component.VC.14.32.17.2.x86.x64.Spectre            | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.ARM                        | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.ARM.Spectre                | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.ARM64                      | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.ARM64.Spectre              | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.ATL                        | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.ATL.ARM                    | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.ATL.ARM.Spectre            | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.ATL.ARM64                  | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.ATL.ARM64.Spectre          | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.ATL.Spectre                | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.MFC                        | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.MFC.ARM                    | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.MFC.ARM.Spectre            | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.MFC.ARM64                  | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.MFC.ARM64.Spectre          | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.MFC.Spectre                | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.x86.x64                    | 17.3.32708.82  |
+| Microsoft.VisualStudio.Component.VC.14.33.17.3.x86.x64.Spectre            | 17.3.32708.82  |
 | Microsoft.VisualStudio.Component.VC.ASAN                                  | 17.3.32708.82  |
 | Microsoft.VisualStudio.Component.VC.ATL                                   | 17.3.32708.82  |
 | Microsoft.VisualStudio.Component.VC.ATL.ARM                               | 17.3.32708.82  |
@@ -492,7 +492,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ProBITools.MicrosoftAnalysisServicesModelingProjects2022                  | 3.0.4          |
 | ProBITools.MicrosoftReportProjectsforVisualStudio2022                     | 3.0.1          |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 2.0.0          |
-| Windows Driver Kit                                                        | 10.1.22621.1   |
+| Windows Driver Kit                                                        | 10.1.22621.382 |
 | WixToolset.WixToolsetVisualStudio2022Extension                            | 1.0.0.18       |
 
 #### Microsoft Visual C++:
@@ -557,7 +557,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.147          |
+| AWSPowerShell      | 4.1.151          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.11.0           |
