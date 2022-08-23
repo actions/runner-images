@@ -150,12 +150,6 @@ Describe "virtualbox" -Skip:($os.IsBigSur) {
     }
 }
 
-Describe "xctool" -Skip:($os.IsHigherThanCatalina) {
-    It "xctool" {
-        "xctool --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "R" {
     It "R" {
         "R --version" | Should -ReturnZeroExitCode
