@@ -159,9 +159,14 @@ $toolsList = @(
     (Get-AzureDevopsVersion),
     (Get-AWSCLIVersion),
     (Get-AWSSAMCLIVersion),
-    (Get-AWSSessionManagerCLIVersion),
-    (Get-CodeQLBundleVersion)
+    (Get-AWSSessionManagerCLIVersion)
 )
+
+if (-not $os.IsCatalina) {
+    $toolsList += @(
+        (Get-CodeQLBundleVersion)
+    )
+}
 
 if ($os.IsLessThanMonterey) {
     $toolsList += @(
