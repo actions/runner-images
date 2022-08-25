@@ -171,7 +171,13 @@
             "elevated_password": "{{user `install_password`}}"
         },
         {
+            "type": "windows-restart",
+            "check_registry": true,
+            "restart_timeout": "10m"
+        },
+        {
             "type": "powershell",
+            "pause_before": "2m",
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-Wix.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-WDK.ps1",
