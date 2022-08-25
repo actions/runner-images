@@ -327,10 +327,10 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                  |
 
 ### Miscellaneous
-- libXext stable
-- libXft stable
-- Tcl/Tk stable
-- Zlib stable
+- libXext 1.3.4
+- libXft 2.3.4
+- Tcl/Tk 8.6.12_1
+- Zlib 1.2.12
 
 
 
