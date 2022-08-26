@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/runner-images/issues/5930) |
-| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 8/30/22 in GitHub and by 9/30/22 in ADO](https://github.com/actions/runner-images/issues/5583) |
+| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 11.6 info
 - System Version: macOS 11.6.8 (20G730)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220815.1
+- Image Version: 20220822.4
 
 ## Installed Software
 ### Language and Runtime
@@ -21,12 +20,12 @@
 - GNU Fortran (Homebrew GCC 10.4.0) 10.4.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
 - Go 1.17.13
-- julia 1.7.3
+- julia 1.8.0
 - Kotlin 1.7.10-release-333
 - MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.16.0
+- Node.js v16.17.0
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.12 v14.20.0 v16.16.0
+- NVM - Cached node versions: v12.22.12 v14.20.0 v16.17.0
 - Perl 5.34.0
 - PHP 8.1.9
 - Python 2.7.18
@@ -38,16 +37,16 @@
 - Bundler version 2.3.20
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.3.10
+- Composer 2.4.1
 - Homebrew 3.5.9
 - Miniconda 4.12.0
-- NPM 8.11.0
+- NPM 8.15.0
 - NuGet 6.2.1.2
 - Pip 20.3.4 (python 2.7)
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
 - RubyGems 3.3.20
-- Vcpkg 2022 (build from master \<acc3bcf76>)
+- Vcpkg 2022 (build from master \<9259a0719>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -67,7 +66,7 @@
 - aria2 1.36.0
 - azcopy 10.16.0
 - bazel 5.2.0
-- bazelisk 1.12.0
+- bazelisk 1.12.2
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.84.0
 - Git 2.37.2
@@ -78,15 +77,15 @@
 - gpg (GnuPG) 2.3.7
 - helm v3.9.3+g414ff28
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-45
+- ImageMagick 7.1.0-46
 - jq 1.6
 - mongo v5.0.10
 - mongod v5.0.10
 - Newman 5.3.2
 - OpenSSL 1.1.1q  5 Jul 2022 `(/usr/local/opt/openssl@1.1 -> ../Cellar/openssl@1.1/1.1.1q)`
 - Packer 1.8.3
-- PostgreSQL 14.4
-- psql (PostgreSQL) 14.4
+- PostgreSQL 14.5
+- psql (PostgreSQL) 14.5
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
@@ -94,23 +93,23 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.124
+- Aliyun CLI 3.0.125
 - App Center CLI 2.11.0
-- AWS CLI 2.7.23
-- AWS SAM CLI 1.54.0
+- AWS CLI 2.7.25
+- AWS SAM CLI 1.55.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.39.0
 - Bicep CLI 0.9.1
 - Cabal 3.6.2.0
-- Cmake 3.24.0
-- CodeQL Action Bundle 2.10.2
+- Cmake 3.24.1
+- CodeQL Action Bundle 2.10.3
 - Fastlane 2.209.0
 - GHC 9.4.1
 - GHCup 0.1.18.0
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.16
+- SwiftFormat 0.49.17
 - Swig 4.0.2
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -119,12 +118,12 @@
 - yamllint 1.27.1
 
 ### Browsers
-- Safari 15.6 (16613.3.9.1.7)
-- SafariDriver 15.6 (16613.3.9.1.7)
-- Google Chrome 104.0.5112.79 
+- Safari 15.6.1 (16613.3.9.1.16)
+- SafariDriver 15.6.1 (16613.3.9.1.16)
+- Google Chrome 104.0.5112.101 
 - ChromeDriver 104.0.5112.79
-- Microsoft Edge 104.0.1293.54 
-- Microsoft Edge WebDriver 104.0.1293.54
+- Microsoft Edge 104.0.1293.63 
+- Microsoft Edge WebDriver 104.0.1293.63
 - Mozilla Firefox 103.0.2
 - geckodriver 0.31.0
 - Selenium server 4.4.0
@@ -172,7 +171,7 @@
 #### Node.js
 - 12.22.12
 - 14.20.0
-- 16.16.0
+- 16.17.0
 
 #### Go
 | Version | Architecture | Environment Variable |
@@ -214,10 +213,10 @@
 
 ### Xamarin
 #### Visual Studio for Mac
-| Version        | Build       | Path                                 |
-| -------------- | ----------- | ------------------------------------ |
-| 2019           | 8.10.25.2   | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.3.0.2102 | /Applications/Visual Studio.app      |
+| Version        | Build      | Path                                 |
+| -------------- | ---------- | ------------------------------------ |
+| 2019           | 8.10.25.2  | /Applications/Visual Studio 2019.app |
+| 2022 (default) | 17.3.1.411 | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
