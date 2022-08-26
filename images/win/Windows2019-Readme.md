@@ -1,12 +1,6 @@
-| Announcements |
-|-|
-| [[All OSs] Go version 1.16 will be removed on August, 15th](https://github.com/actions/runner-images/issues/6024) |
-| [[Windows] mongo service will be disabled by default on August, 8th](https://github.com/actions/runner-images/issues/5949) |
-| [[all OSs] Android NDK 21 will be replaced in favor of 25 on August, 1st](https://github.com/actions/runner-images/issues/5930) |
-***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 3287
-- Image Version: 20220814.1
+- Image Version: 20220821.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -15,10 +9,10 @@
 ### Language and Runtime
 - Bash 5.1.16(1)-release
 - Go 1.17.13
-- Julia 1.7.3
+- Julia 1.8.0
 - Kotlin 1.7.10
 - LLVM 14.0.6
-- Node 16.16.0
+- Node 16.17.0
 - Perl 5.32.1
 - PHP 8.1.9
 - Python 3.7.9
@@ -26,15 +20,15 @@
 
 ### Package Management
 - Chocolatey 1.1.0
-- Composer 2.3.10
+- Composer 2.4.1
 - Helm 3.9.2
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
-- NPM 8.11.0
+- NPM 8.15.0
 - NuGet 6.3.0.131
 - pip 22.2.2 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<d293ac220>)
+- Vcpkg (build from master \<9259a0719>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -54,23 +48,23 @@
 - aria2 1.36.0
 - azcopy 10.16.0
 - Bazel 5.2.0
-- Bazelisk 1.12.0
+- Bazelisk 1.12.1
 - Bicep 0.9.1
 - Cabal 3.8.1.0
-- CMake 3.24.0
-- CodeQL Action Bundle 2.10.2
+- CMake 3.24.1
+- CodeQL Action Bundle 2.10.3
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.9.0
+- Docker Compose v2 2.10.0
 - Docker-wincred 0.6.4
 - ghc 9.4.1
 - Git 2.37.2.windows.2
 - Git LFS 3.2.0
-- Google Cloud SDK 397.0.0
+- Google Cloud SDK 398.0.0
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.14.0
-- Kubectl 1.24.3
+- Kubectl 1.24.4
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.2
@@ -78,7 +72,7 @@
 - OpenSSL 1.1.1
 - Packer 1.8.2
 - Parcel 2.7.0
-- Pulumi v3.37.2
+- Pulumi v3.38.0
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.7.5
@@ -92,8 +86,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.22
-- AWS SAM CLI 1.53.0
+- AWS CLI 2.7.25
+- AWS SAM CLI 1.55.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.39.0
 - Azure DevOps CLI extension 0.25.0
@@ -116,10 +110,10 @@
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
-- Google Chrome 104.0.5112.81
+- Google Chrome 104.0.5112.102
 - Chrome Driver 104.0.5112.79
-- Microsoft Edge 104.0.1293.54
-- Microsoft Edge Driver 104.0.1293.54
+- Microsoft Edge 104.0.1293.63
+- Microsoft Edge Driver 104.0.1293.63
 - Mozilla Firefox 103.0.2
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
@@ -137,7 +131,7 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.345+1 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.16+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 11.0.16+101         | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
 | 17.0.4+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
@@ -221,7 +215,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.10.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.11.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.9.0
@@ -398,6 +392,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest              | 16.0.28517.75   |
 | Microsoft.VisualStudio.Component.VC.Tools.ARM                             | 16.11.32406.258 |
 | Microsoft.VisualStudio.Component.VC.Tools.ARM64                           | 16.11.32406.258 |
+| Microsoft.VisualStudio.Component.VC.Tools.ARM64EC                         | 16.10.31205.252 |
 | Microsoft.VisualStudio.Component.VC.Tools.x86.x64                         | 16.11.32406.258 |
 | Microsoft.VisualStudio.Component.VC.v141.ARM                              | 16.10.31205.252 |
 | Microsoft.VisualStudio.Component.VC.v141.ARM.Spectre                      | 16.5.29515.121  |
@@ -548,7 +543,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.146          |
+| AWSPowerShell      | 4.1.151          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.11.0           |
@@ -593,5 +588,4 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:c23dbc9c62503882128ca76917c074bf9f84a490195d76ef0f45a49091fca399  | 2022-08-09 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:c827903a303cb7a76214adb4376e462a241b3cd763cb88655cd901c5a0e867a0  | 2022-08-06 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:8ca3aaeb91e7715a98a0769dc62ed69212aac3e0bbee12ffd13b5e36d992d127  | 2022-08-06 |
-
 

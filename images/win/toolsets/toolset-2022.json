@@ -189,6 +189,8 @@
             "Microsoft.Component.VC.Runtime.UCRTSDK",
             "Microsoft.Net.Component.4.7.TargetingPack",
             "Microsoft.Net.Component.4.7.2.TargetingPack",
+            "Microsoft.Net.Component.4.8.1.SDK",
+            "Microsoft.Net.Component.4.8.1.TargetingPack",
             "Microsoft.VisualStudio.Component.AspNet45",
             "Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools",
             "Microsoft.VisualStudio.Component.Debugger.JustInTime",
