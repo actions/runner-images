@@ -12,8 +12,8 @@ Describe "PostgreSQL" {
     It "PostgreSQL version should correspond to the version in the toolset" {
         $toolsetVersion = Get-ToolsetValue 'postgresql.version'
         # Client version
-        (psql --version).split()[-1] | Should -BeLike "$toolsetVersion*"
+        (psql --version).split()[-2] | Should -BeLike "$toolsetVersion*"
         # Server version
-        (pg_config --version).split()[-1] | Should -BeLike "$toolsetVersion*"
+        (pg_config --version).split()[-2] | Should -BeLike "$toolsetVersion*"
     }
 }
