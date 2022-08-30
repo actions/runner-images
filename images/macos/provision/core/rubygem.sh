@@ -12,4 +12,7 @@ if [ -n "$gemsToInstall" ]; then
     done
 fi
 
+# Temporary uninstall public_suffix 5.0 gem as Cocoapods is not compatible with it yet https://github.com/actions/runner-images/issues/6149
+gem uninstall public_suffix -v 5.0.0
+
 invoke_tests "RubyGem"
