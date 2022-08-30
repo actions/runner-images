@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by 12/1/22](https://github.com/actions/runner-images/issues/6002) |
+| [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by TBD](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 20.04.4 LTS
 - Linux kernel version: 5.15.0-1017-azure
-- Image Version: 20220821.1
+- Image Version: 20220828.1
 
 ## Installed Software
 ### Language and Runtime
@@ -13,7 +13,7 @@
 - Clang-format 10.0.0, 11.0.0, 12.0.0
 - Clang-tidy 10.0.0, 11.0.0, 12.0.0
 - Dash 0.5.10.2-6
-- Erlang 25.0.3 (Eshell 13.0.3)
+- Erlang 25.0.4 (Eshell 13.0.4)
 - Erlang rebar3 3.19.0
 - GNU C++ 9.4.0, 10.3.0
 - GNU Fortran 9.4.0, 10.3.0
@@ -30,8 +30,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.9.3
-- Homebrew 3.5.9
+- Helm 3.9.4
+- Homebrew 3.5.10
 - Miniconda 4.12.0
 - Npm 8.15.0
 - NuGet 6.2.1.2
@@ -39,7 +39,7 @@
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<9259a0719>)
+- Vcpkg  (build from master \<e85b5bb95>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -59,7 +59,7 @@
 - Ansible 2.13.3
 - apt-fast 1.9.12
 - AzCopy 10.16.0 (available by `azcopy` and `azcopy10` aliases)
-- Bazel 5.2.0
+- Bazel 5.3.0
 - Bazelisk 1.12.1
 - Bicep 0.9.1
 - Buildah 1.22.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
@@ -67,20 +67,20 @@
 - CodeQL Action Bundle 2.10.3
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.9.0+azure-1
-- Docker-Buildx 0.9.0
+- Docker Compose v2 2.10.1+azure-1
+- Docker-Buildx 0.9.1
 - Docker-Moby Client 20.10.17+azure-1
-- Docker-Moby Server 20.10.17+azure-1
-- Fastlane 2.209.0
+- Docker-Moby Server 20.10.17+azure-3
+- Fastlane 2.209.1
 - Git 2.37.2 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.62.0
-- HHVM (HipHop VM) 4.166.0
+- HHVM (HipHop VM) 4.167.0
 - jq 1.6
 - Kind 0.14.0
-- Kubectl 1.24.4
+- Kubectl 1.25.0
 - Kustomize 4.5.7
 - Leiningen 2.9.10
 - MediaInfo 19.09
@@ -99,32 +99,32 @@
 - Skopeo 1.5.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.2.7
+- Terraform 1.2.8
 - yamllint 1.27.1
 - yq 4.27.2
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.25
+- Alibaba Cloud CLI 3.0.125
+- AWS CLI 2.7.27
 - AWS CLI Session manager plugin 1.2.339.0
 - AWS SAM CLI 1.55.0
 - Azure CLI (azure-cli) 2.39.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
-- GitHub CLI 2.14.4
+- GitHub CLI 2.14.7
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 11.3.0
-- OpenShift CLI 4.11.0
-- ORAS CLI 0.13.0
-- Vercel CLI 28.1.0
+- Netlify CLI 11.5.0
+- OpenShift CLI 4.11.1
+- ORAS CLI 0.14.0
+- Vercel CLI 28.2.0
 
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.345+1           | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.16+8 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.4+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 11.0.16+1 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.4+1            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version   | Environment variables |
@@ -136,13 +136,13 @@
 | -------- | ------------------- |
 | PHP      | 7.4.30 8.0.22 8.1.9 |
 | Composer | 2.4.1               |
-| PHPUnit  | 8.5.28              |
+| PHPUnit  | 8.5.29              |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 ### Haskell
 - Cabal 3.6.2.0
-- GHC 9.4.1
+- GHC 9.4.2
 - GHCup 0.1.18.0
 - Stack 2.7.5
 
@@ -164,10 +164,10 @@
 - Google Chrome 104.0.5112.101
 - ChromeDriver 104.0.5112.79
 - Chromium 104.0.5112.0
-- Microsoft Edge 104.0.1293.63 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 104.0.1293.63
+- Microsoft Edge 104.0.1293.70 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 104.0.1293.70
 - Selenium server 4.4.0
-- Mozilla Firefox 103.0
+- Mozilla Firefox 104.0
 - Geckodriver 0.31.0
 
 #### Environment variables
@@ -215,7 +215,7 @@
 #### Node.js
 - 12.22.12
 - 14.20.0
-- 16.16.0
+- 16.17.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -253,7 +253,7 @@
 | Module           | Version |
 | ---------------- | ------- |
 | MarkdownPS       | 1.9     |
-| Microsoft.Graph  | 1.11.0  |
+| Microsoft.Graph  | 1.11.1  |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.20.0  |
 
@@ -273,24 +273,24 @@
 | Android Command Line Tools | 7.0                                                                                                                                                    |
 | Android Emulator           | 31.3.10                                                                                                                                                |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platform-Tools | 33.0.2                                                                                                                                                 |
+| Android SDK Platform-Tools | 33.0.3                                                                                                                                                 |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Tools          | 26.1.1                                                                                                                                                 |
 | Android Support Repository | 47.0.0                                                                                                                                                 |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                             |
 | Google Play services       | 49                                                                                                                                                     |
 | Google Repository          | 58                                                                                                                                                     |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.0.8775105 (default)                                                                                                 |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.1.8937393 (default)                                                                                                 |
 | SDK Patch Applier v4       | 1                                                                                                                                                      |
 
 #### Environment variables
 | Name                    | Value                                       |
 | ----------------------- | ------------------------------------------- |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                  |
-| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/25.0.8775105 |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/25.0.8775105 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/25.0.8775105 |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/25.0.8775105 |
+| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/25.1.8937393 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/25.1.8937393 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/25.1.8937393 |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/25.1.8937393 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                  |
 
 ### Cached Docker images
@@ -299,18 +299,18 @@
 | alpine:3.12             | sha256:c75ac27b49326926b803b9ed43bf088bc220d22556de1bc5f72d742c91398f69  | 2022-04-05 |
 | alpine:3.13             | sha256:100448e45467d4f3838fc8d95faab2965e22711b6edf67bbd8ec9c07f612b553  | 2022-08-09 |
 | alpine:3.14             | sha256:1ab24b3b99320975cca71716a7475a65d263d0b6b604d9d14ce08f7a3f67595c  | 2022-08-09 |
-| buildpack-deps:bullseye | sha256:d6974da710854c9c38d49666bd682abd99ef7aacdb92344d42a00f723e63cdb1  | 2022-08-02 |
-| buildpack-deps:buster   | sha256:9d806f4d80f19e3fd315bbe2ca1aa59a6c1ad18aff7b3d9696b407572608d61e  | 2022-08-02 |
+| buildpack-deps:bullseye | sha256:872ba70b0805b817db42d9ea75f066b5fe2be82d04d0dab69e41810edd9aa3f9  | 2022-08-23 |
+| buildpack-deps:buster   | sha256:d73ba7863f3958cade1ef32f7620c3751ba5cd9653ff382a1b222ec17906884e  | 2022-08-23 |
 | buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
-| debian:10               | sha256:fb9654aac57319592f1d51497c62001e7033eddf059355408a0b53f7c71f8d5f  | 2022-08-02 |
-| debian:11               | sha256:82bab30ed448b8e2509aabe21f40f0607d905b7fd0dec72802627a20274eba55  | 2022-08-02 |
+| debian:10               | sha256:fa8155031d12cd165c237e0b38688cade32912e990ffe21f9e31968d9a04da38  | 2022-08-23 |
+| debian:11               | sha256:d52921d97310d0bd48dab928548ef539d5c88c743165754c57cfad003031386c  | 2022-08-23 |
 | debian:9                | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest    | sha256:0dc312b04eac1b44cd2cad566deb1e886c753109208affbbec8384f381ff7f38  | 2022-05-06 |
+| moby/buildkit:latest    | sha256:67c9251f9f2e103e1ee489b6cead518b6d82607ef485d3f1505fc4095a55ebeb  | 2022-08-22 |
 | node:12                 | sha256:01627afeb110b3054ba4a1405541ca095c8bfca1cb6f2be9479c767a2711879e  | 2022-04-20 |
 | node:12-alpine          | sha256:d4b15b3d48f42059a15bd659be60afe21762aae9d6cbea6f124440895c27db68  | 2022-04-11 |
-| node:14                 | sha256:7e1eabbcd7cbd0fdc296bc00fb2c80943ed0499c4ca3a148c83944708574dcf6  | 2022-08-02 |
+| node:14                 | sha256:48ad857f33fb03f542133b1e0d3524b1fcf596fce29e212cd9b7abd22d3d9188  | 2022-08-23 |
 | node:14-alpine          | sha256:4aff4ba0da347e51561587eba037a38db4eaa70e1a6c8334d66779fe963d5be7  | 2022-08-09 |
-| node:16                 | sha256:bf1609ac718dda03940e2be4deae1704fb77cd6de2bed8bf91d4bbbc9e88b497  | 2022-08-16 |
+| node:16                 | sha256:0c672d547405fe64808ea28b49c5772b1026f81b3b716ff44c10c96abf177d6a  | 2022-08-23 |
 | node:16-alpine          | sha256:2c405ed42fc0fd6aacbe5730042640450e5ec030bada7617beac88f742b6997b  | 2022-08-16 |
 | ubuntu:16.04            | sha256:91bd29a464fdabfcf44e29e1f2a5f213c6dfa750b6290e40dd6998ac79da3c41  | 2021-08-31 |
 | ubuntu:18.04            | sha256:eb1392bbdde63147bc2b4ff1a4053dcfe6d15e4dfd3cce29e9b9f52a4f88bc74  | 2022-08-02 |
