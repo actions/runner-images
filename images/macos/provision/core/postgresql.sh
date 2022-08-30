@@ -27,6 +27,7 @@ while [ $i -gt 0 ]; do
 done
 
 # Stop PostgreSQL
-brew services stop postgresql
+postgreService=$(brew services list | grep -oe "postgresql\S*")
+brew services stop $postgreService
 
 invoke_tests "Databases" "PostgreSQL"
