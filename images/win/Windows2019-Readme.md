@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 3287
-- Image Version: 20220821.1
+- Image Version: 20220828.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -21,14 +21,14 @@
 ### Package Management
 - Chocolatey 1.1.0
 - Composer 2.4.1
-- Helm 3.9.2
+- Helm 3.9.3
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
 - NPM 8.15.0
 - NuGet 6.3.0.131
 - pip 22.2.2 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<9259a0719>)
+- Vcpkg (build from master \<e85b5bb95>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -47,7 +47,7 @@
 - 7zip 22.01
 - aria2 1.36.0
 - azcopy 10.16.0
-- Bazel 5.2.0
+- Bazel 5.3.0
 - Bazelisk 1.12.1
 - Bicep 0.9.1
 - Cabal 3.8.1.0
@@ -55,16 +55,16 @@
 - CodeQL Action Bundle 2.10.3
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.10.0
+- Docker Compose v2 2.10.2
 - Docker-wincred 0.6.4
-- ghc 9.4.1
+- ghc 9.4.2
 - Git 2.37.2.windows.2
 - Git LFS 3.2.0
-- Google Cloud SDK 398.0.0
+- Google Cloud SDK 399.0.0
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.14.0
-- Kubectl 1.24.4
+- Kubectl 1.25.0
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.2
@@ -85,14 +85,14 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.124
-- AWS CLI 2.7.25
+- Alibaba Cloud CLI 3.0.125
+- AWS CLI 2.7.26
 - AWS SAM CLI 1.55.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.39.0
 - Azure DevOps CLI extension 0.25.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.14.4
+- GitHub CLI 2.14.7
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -112,9 +112,9 @@
 ### Browsers and webdrivers
 - Google Chrome 104.0.5112.102
 - Chrome Driver 104.0.5112.79
-- Microsoft Edge 104.0.1293.63
-- Microsoft Edge Driver 104.0.1293.63
-- Mozilla Firefox 103.0.2
+- Microsoft Edge 104.0.1293.70
+- Microsoft Edge Driver 104.0.1293.70
+- Mozilla Firefox 104.0
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.4.0
@@ -133,7 +133,7 @@
 | 8.0.345+1 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.16+101         | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
-| 17.0.4+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 17.0.4+101          | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -168,7 +168,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 12.22.12 | x64          |
 | 14.20.0 | x64          |
-| 16.16.0 | x64          |
+| 16.17.0 | x64          |
 
 #### Python
 | Version | Architecture |
@@ -543,10 +543,10 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.151          |
+| AWSPowerShell      | 4.1.156          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.11.0           |
+| Microsoft.Graph    | 1.11.1           |
 | Pester             | 3.4.0<br>5.3.3   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.20.0           |
@@ -560,24 +560,24 @@ All other versions are saved but not installed.
 | Android Command Line Tools | 7.0                                                                                                                                                                                                                                                                                                                                    |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0                    |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
-| Android SDK Platform-Tools | 33.0.2                                                                                                                                                                                                                                                                                                                                 |
+| Android SDK Platform-Tools | 33.0.3                                                                                                                                                                                                                                                                                                                                 |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                 |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                 |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                                                                             |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                                               |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                     |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                     |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.0.8775105                                                                                                                                                                                                                                                                                           |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.1.8937393                                                                                                                                                                                                                                                                                           |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                                                                                                      |
 
 #### Environment variables
 | Name                    | Value                                   |
 | ----------------------- | --------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                  |
-| ANDROID_NDK             | C:\Android\android-sdk\ndk\25.0.8775105 |
-| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\25.0.8775105 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\25.0.8775105 |
-| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\25.0.8775105 |
+| ANDROID_NDK             | C:\Android\android-sdk\ndk\25.1.8937393 |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\25.1.8937393 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\25.1.8937393 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\25.1.8937393 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                  |
 
 ### Cached Docker images
