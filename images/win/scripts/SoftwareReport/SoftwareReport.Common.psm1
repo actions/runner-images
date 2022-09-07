@@ -347,9 +347,7 @@ function Build-PackageManagementEnvironmentTable {
         @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
-        }
-    )
-    $envVariables += @(
+        },
         @{
             "Name" = "VCPKG_ROOT"
             "Value" = $env:VCPKG_ROOT
