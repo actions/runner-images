@@ -5,10 +5,8 @@
 ################################################################################
 
 # Set env variables for vcpkg
-VCPKG_INSTALLATION_ROOT=/usr/local/share/vcpkg
-echo "VCPKG_INSTALLATION_ROOT=${VCPKG_INSTALLATION_ROOT}" | tee -a /etc/environment
-
 VCPKG_ROOT=/usr/local/share/vcpkg
+echo "VCPKG_INSTALLATION_ROOT=${VCPKG_ROOT}" | tee -a /etc/environment
 echo "VCPKG_ROOT=${VCPKG_ROOT}" | tee -a /etc/environment
 
 # Install vcpkg
