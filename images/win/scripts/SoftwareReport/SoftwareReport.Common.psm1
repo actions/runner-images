@@ -349,6 +349,12 @@ function Build-PackageManagementEnvironmentTable {
             "Value" = $env:VCPKG_INSTALLATION_ROOT
         }
     )
+    $envVariables += @(
+        @{
+            "Name" = "VCPKG_ROOT"
+            "Value" = $env:VCPKG_ROOT
+        }
+    )
     if (Test-IsWin19) {
         $envVariables += @(
             @{
