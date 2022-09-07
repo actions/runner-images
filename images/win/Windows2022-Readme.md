@@ -1,6 +1,10 @@
+| Announcements |
+|-|
+| [[Windows] Docker EE will be replaced with Docker CE / Moby on September, 19](https://github.com/actions/runner-images/issues/6181) |
+***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 887
-- Image Version: 20220828.1
+- Image Version: 20220905.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -14,7 +18,7 @@
 - LLVM 14.0.6
 - Node 16.17.0
 - Perl 5.32.1
-- PHP 8.1.9
+- PHP 8.1.10
 - Python 3.9.13
 - Ruby 3.0.4p208
 
@@ -28,7 +32,7 @@
 - pip 22.2.2 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<e85b5bb95>)
+- Vcpkg (build from master \<927006b24>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -51,17 +55,17 @@
 - Bicep 0.9.1
 - Cabal 3.8.1.0
 - CMake 3.24.1
-- CodeQL Action Bundle 2.10.3
+- CodeQL Action Bundle 2.10.4
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.10.2
 - Docker-wincred 0.6.4
 - ghc 9.4.2
-- Git 2.37.2.windows.2
+- Git 2.37.3.windows.1
 - Git LFS 3.2.0
 - InnoSetup 6.2.1
 - jq 1.6
-- Kind 0.14.0
+- Kind 0.15.0
 - Kubectl 1.25.0
 - Mercurial 5.0
 - Mingw-w64 11.2.0
@@ -69,7 +73,7 @@
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.8.2
-- Pulumi v3.38.0
+- Pulumi v3.39.1
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.7.5
@@ -83,8 +87,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.125
-- AWS CLI 2.7.26
-- AWS SAM CLI 1.55.0
+- AWS CLI 2.7.29
+- AWS SAM CLI 1.56.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.39.0
 - Azure DevOps CLI extension 0.25.0
@@ -106,11 +110,11 @@
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
-- Google Chrome 104.0.5112.102
-- Chrome Driver 104.0.5112.79
-- Microsoft Edge 104.0.1293.70
-- Microsoft Edge Driver 104.0.1293.70
-- Mozilla Firefox 104.0
+- Google Chrome 105.0.5195.102
+- Chrome Driver 105.0.5195.52
+- Microsoft Edge 105.0.1343.27
+- Microsoft Edge Driver 105.0.1343.27
+- Mozilla Firefox 104.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.4.0
@@ -219,7 +223,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
 | ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.3.32819.101 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.3.32825.248 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version        |
@@ -560,7 +564,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.156          |
+| AWSPowerShell      | 4.1.161          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.11.1           |
@@ -604,4 +608,5 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:edc6558e8cd6f306854517048ef11a05129d3097f1e9f61b48c906ddc0d478cc  | 2022-08-09 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:5f57ddc9a47d079398506a7613c8a3cb8b5bf3f97040f590871b61a15bd5a36a  | 2022-08-06 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:35c3cb29ef2c9f05e36070d04c79d7fc861c035fa5df2df64ae607a276db42c6  | 2022-08-06 |
+
 

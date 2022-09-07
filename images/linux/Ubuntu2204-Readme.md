@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by TBD](https://github.com/actions/runner-images/issues/6002) |
+| [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by 4/1/2023](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 22.04.1 LTS
 - Linux kernel version: 5.15.0-1017-azure
-- Image Version: 20220828.1
+- Image Version: 20220905.1
 
 ## Installed Software
 ### Language and Runtime
@@ -36,7 +36,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<e85b5bb95>)
+- Vcpkg  (build from master \<927006b24>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -46,7 +46,7 @@
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
-- Lerna 5.4.3
+- Lerna 5.5.0
 
 ### Tools
 - Ansible 2.13.3
@@ -57,21 +57,21 @@
 - Bicep 0.9.1
 - Buildah 1.23.1
 - CMake 3.24.1
-- CodeQL Action Bundle 2.10.3
+- CodeQL Action Bundle 2.10.4
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.10.1+azure-1
+- Docker Compose v2 2.10.2+azure-1
 - Docker-Buildx 0.9.1
 - Docker-Moby Client 20.10.17+azure-1
 - Docker-Moby Server 20.10.17+azure-3
 - Fastlane 2.209.1
-- Git 2.37.2 (apt source repository: ppa:git-core/ppa)
+- Git 2.37.3 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 7.62.0
+- Heroku 7.63.0
 - jq 1.6
-- Kind 0.14.0
+- Kind 0.15.0
 - Kubectl 1.25.0
 - Kustomize 4.5.7
 - Leiningen 2.9.10
@@ -85,30 +85,30 @@
 - Packer 1.8.3
 - Parcel 2.7.0
 - Podman 3.4.4
-- Pulumi 3.38.0
+- Pulumi 3.39.1
 - R 4.2.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
 - Terraform 1.2.8
 - yamllint 1.27.1
-- yq 4.27.2
+- yq 4.27.3
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.125
-- AWS CLI 2.7.27
+- AWS CLI 2.7.29
 - AWS CLI Session manager plugin 1.2.339.0
-- AWS SAM CLI 1.55.0
+- AWS SAM CLI 1.56.0
 - Azure CLI (azure-cli) 2.39.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.14.7
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 11.5.0
+- Netlify CLI 11.5.1
 - OpenShift CLI 4.11.1
-- ORAS CLI 0.14.0
-- Vercel CLI 28.2.0
+- ORAS CLI 0.14.1
+- Vercel CLI 28.2.2
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -152,11 +152,11 @@
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 104.0.5112.101
-- ChromeDriver 104.0.5112.79
-- Chromium 104.0.5112.0
-- Microsoft Edge 104.0.1293.70 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 104.0.1293.70
+- Google Chrome 105.0.5195.102
+- ChromeDriver 105.0.5195.52
+- Chromium 105.0.5177.0
+- Microsoft Edge 105.0.1343.27 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 105.0.1343.27
 - Selenium server 4.4.0
 
 #### Environment variables
@@ -285,9 +285,9 @@
 | node:14-alpine          | sha256:4aff4ba0da347e51561587eba037a38db4eaa70e1a6c8334d66779fe963d5be7  | 2022-08-09 |
 | node:16                 | sha256:0c672d547405fe64808ea28b49c5772b1026f81b3b716ff44c10c96abf177d6a  | 2022-08-23 |
 | node:16-alpine          | sha256:2c405ed42fc0fd6aacbe5730042640450e5ec030bada7617beac88f742b6997b  | 2022-08-16 |
-| ubuntu:18.04            | sha256:eb1392bbdde63147bc2b4ff1a4053dcfe6d15e4dfd3cce29e9b9f52a4f88bc74  | 2022-08-02 |
-| ubuntu:20.04            | sha256:af5efa9c28de78b754777af9b4d850112cad01899a5d37d2617bb94dc63a49aa  | 2022-08-02 |
-| ubuntu:22.04            | sha256:34fea4f31bf187bc915536831fd0afc9d214755bf700b5cdb1336c82516d154e  | 2022-08-02 |
+| ubuntu:18.04            | sha256:3aa2ccb021969aadb28381fee1b247422e845b176e241cd1540c4b6831e000bb  | 2022-09-01 |
+| ubuntu:20.04            | sha256:35ab2bf57814e9ff49e365efd5a5935b6915eede5c7f8581e9e1b85e0eecbe16  | 2022-09-01 |
+| ubuntu:22.04            | sha256:20fa2d7bb4de7723f542be5923b06c4d704370f0390e4ae9e1c833c8785644c1  | 2022-09-01 |
 
 ### Installed apt packages
 | Name                   | Version                           |
@@ -302,7 +302,7 @@
 | build-essential        | 12.9ubuntu3                       |
 | bzip2                  | 1.0.8-5build1                     |
 | coreutils              | 8.32-4.1ubuntu1                   |
-| curl                   | 7.81.0-1ubuntu1.3                 |
+| curl                   | 7.81.0-1ubuntu1.4                 |
 | dbus                   | 1.12.20-2ubuntu4                  |
 | dnsutils               | 1:9.18.1-1ubuntu1.1               |
 | dpkg                   | 1.21.1ubuntu2.1                   |
@@ -320,7 +320,7 @@
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9            |
 | libc++-dev             | 1:14.0-55\~exp2                   |
 | libc++abi-dev          | 1:14.0-55\~exp2                   |
-| libcurl4               | 7.81.0-1ubuntu1.3                 |
+| libcurl4               | 7.81.0-1ubuntu1.4                 |
 | libgbm-dev             | 22.0.5-0ubuntu0.1                 |
 | libgconf-2-4           | 3.2.6-7ubuntu2                    |
 | libgsl-dev             | 2.7.1+dfsg-3                      |
@@ -364,7 +364,7 @@
 | texinfo                | 6.8-4build1                       |
 | time                   | 1.9-0.1build2                     |
 | tk                     | 8.6.11+1build2                    |
-| tzdata                 | 2022a-0ubuntu1                    |
+| tzdata                 | 2022c-0ubuntu0.22.04.0            |
 | unzip                  | 6.0-26ubuntu3                     |
 | upx                    | 3.96-3                            |
 | wget                   | 1.21.2-2ubuntu1                   |
