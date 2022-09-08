@@ -6,7 +6,7 @@ Describe "WDK" {
     $WDKVersion | Should -Not -BeNullOrEmpty
   }
 
-  It "Windows Driver Kit VSIX extension" -Skip:(Test-IsWin22) {
+  It "Windows Driver Kit VSIX extension" {
     $version = Get-VSExtensionVersion -packageName "Microsoft.Windows.DriverKit"
     $version | Should -Not -BeNullOrEmpty
   }

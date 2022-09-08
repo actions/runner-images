@@ -38,45 +38,24 @@ function Get-VisualStudioExtensions {
         }
     }
 
-
     # SDK
-    if (Test-IsWin19) {
-        $sdkVersion = Get-SDKVersion
-        $sdkPackages = @(
-            @{Package = 'Windows Software Development Kit'; Version = $sdkVersion}
-        )
-    }
+    $sdkVersion = Get-SDKVersion
+    $sdkPackages = @(
+        @{Package = 'Windows Software Development Kit'; Version = $sdkVersion}
+    )
 
-    if (Test-IsWin19) {
-        # Wix
-        $vs = (Get-VisualStudioVersion).Name.Split()[-1]
-        $wixExtensionVersion = ($vsPackages | Where-Object {$_.Id -match 'WixToolset.VisualStudioExtension.Dev' -and $_.type -eq 'vsix'}).Version
-        $wixPackages = @(
-            @{Package = "WIX Toolset Studio $vs Extension"; Version = $wixExtensionVersion}
-        )
-
-        # WDK
-        $wdkVersion = Get-WDKVersion
-        $wdkExtensionVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
-        $wdkPackages = @(
-            @{Package = 'Windows Driver Kit'; Version = $wdkVersion}
-            @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
-        )
-    }
-
-    if (Test-IsWin22) {
-        # WDK
-        $wdkVersion = Get-WDKVersion
-        $wdkPackages = @(
-            @{Package = 'Windows Driver Kit'; Version = $wdkVersion}
-        )
-    }
+    # WDK
+    $wdkVersion = Get-WDKVersion
+    $wdkExtensionVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
+    $wdkPackages = @(
+        @{Package = 'Windows Driver Kit'; Version = $wdkVersion}
+        @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
+    )
 
     $extensions = @(
         $vsixs
         $ssdtPackages
         $sdkPackages
-        $wixPackages
         $wdkPackages
     )
 
