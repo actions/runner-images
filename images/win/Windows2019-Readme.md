@@ -1,6 +1,10 @@
+| Announcements |
+|-|
+| [[Windows] Docker EE will be replaced with Docker CE / Moby on September, 19](https://github.com/actions/runner-images/issues/6181) |
+***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 3287
-- Image Version: 20220828.1
+- Image Version: 20220905.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -14,7 +18,7 @@
 - LLVM 14.0.6
 - Node 16.17.0
 - Perl 5.32.1
-- PHP 8.1.9
+- PHP 8.1.10
 - Python 3.7.9
 - Ruby 2.5.9p229
 
@@ -28,7 +32,7 @@
 - pip 22.2.2 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<e85b5bb95>)
+- Vcpkg (build from master \<927006b24>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -52,18 +56,18 @@
 - Bicep 0.9.1
 - Cabal 3.8.1.0
 - CMake 3.24.1
-- CodeQL Action Bundle 2.10.3
+- CodeQL Action Bundle 2.10.4
 - Docker 20.10.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.10.2
 - Docker-wincred 0.6.4
 - ghc 9.4.2
-- Git 2.37.2.windows.2
+- Git 2.37.3.windows.1
 - Git LFS 3.2.0
-- Google Cloud SDK 399.0.0
+- Google Cloud SDK 400.0.0
 - InnoSetup 6.2.1
 - jq 1.6
-- Kind 0.14.0
+- Kind 0.15.0
 - Kubectl 1.25.0
 - Mercurial 5.0
 - Mingw-w64 8.1.0
@@ -72,7 +76,7 @@
 - OpenSSL 1.1.1
 - Packer 1.8.2
 - Parcel 2.7.0
-- Pulumi v3.38.0
+- Pulumi v3.39.1
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.7.5
@@ -86,8 +90,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.125
-- AWS CLI 2.7.26
-- AWS SAM CLI 1.55.0
+- AWS CLI 2.7.29
+- AWS SAM CLI 1.56.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.39.0
 - Azure DevOps CLI extension 0.25.0
@@ -110,11 +114,11 @@
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
-- Google Chrome 104.0.5112.102
-- Chrome Driver 104.0.5112.79
-- Microsoft Edge 104.0.1293.70
-- Microsoft Edge Driver 104.0.1293.70
-- Mozilla Firefox 104.0
+- Google Chrome 105.0.5195.102
+- Chrome Driver 105.0.5195.52
+- Microsoft Edge 105.0.1343.27
+- Microsoft Edge Driver 105.0.1343.27
+- Mozilla Firefox 104.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.4.0
@@ -469,7 +473,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.2           |
 | Windows Driver Kit                                                        | 10.1.22000.1    |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.21381.0    |
-| Windows Software Development Kit                                          | 10.1.22000.832  |
+| Windows Software Development Kit                                          | 10.1.22621.1    |
 | WIX Toolset Studio 2019 Extension                                         | 1.0.0.18        |
 | WixToolset.WixToolsetVisualStudio2019Extension                            | 1.0.0.18        |
 
@@ -501,6 +505,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.19041.0
 - 10.0.20348.0
 - 10.0.22000.0
+- 10.0.22621.0
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
@@ -543,7 +548,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.156          |
+| AWSPowerShell      | 4.1.161          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.11.1           |
@@ -588,4 +593,5 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:c23dbc9c62503882128ca76917c074bf9f84a490195d76ef0f45a49091fca399  | 2022-08-09 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:c827903a303cb7a76214adb4376e462a241b3cd763cb88655cd901c5a0e867a0  | 2022-08-06 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:8ca3aaeb91e7715a98a0769dc62ed69212aac3e0bbee12ffd13b5e36d992d127  | 2022-08-06 |
+
 

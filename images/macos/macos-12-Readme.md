@@ -5,7 +5,7 @@
 # macOS 12.5 info
 - System Version: macOS 12.5.1 (21G83)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20220829.1
+- Image Version: 20220904.1
 
 ## Installed Software
 ### Language and Runtime
@@ -23,7 +23,7 @@
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.12 v14.20.0 v16.17.0
 - Perl 5.34.0
-- PHP 8.1.9
+- PHP 8.1.10
 - Python 2.7.18
 - Python 3.10.6
 - R 4.2.1
@@ -42,7 +42,7 @@
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
 - RubyGems 3.3.21
-- Vcpkg 2022 (build from master \<8a991b8d8>)
+- Vcpkg 2022 (build from master \<927006b24>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -62,10 +62,10 @@
 - aria2 1.36.0
 - azcopy 10.16.0
 - bazel 5.3.0
-- bazelisk 1.12.2
+- bazelisk 1.13.0
 - bsdtar 3.5.1 - available by 'tar' alias
-- Curl 7.84.0
-- Git 2.37.2
+- Curl 7.85.0
+- Git 2.37.3
 - Git LFS: 3.2.0
 - GitHub CLI: 2.14.7
 - GNU Tar 1.34 - available by 'gtar' alias
@@ -84,49 +84,49 @@
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
 - Vagrant 2.3.0
-- VirtualBox 6.1.36r152435
+- VirtualBox 6.1.38r153438
 - yq (https://github.com/mikefarah/yq/) version 4.27.3
 - zstd 1.5.2
 
 ### Tools
 - App Center CLI 2.11.0
-- AWS CLI 2.7.27
-- AWS SAM CLI 1.55.0
+- AWS CLI 2.7.29
+- AWS SAM CLI 1.56.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.39.0
 - Bicep CLI 0.9.1
 - Cabal 3.6.2.0
 - Cmake 3.24.1
-- CodeQL Action Bundle 2.10.3
+- CodeQL Action Bundle 2.10.4
 - Fastlane 2.209.1
 - GHC 9.4.2
 - GHCup 0.1.18.0
 - Jazzy 0.14.2
 - Stack 2.7.5
-- SwiftFormat 0.49.17
+- SwiftFormat 0.49.18
 - Swig 4.0.2
 - Xcode Command Line Tools 13.4.0.0.1.1651278267
 
 ### Linters
-- SwiftLint 0.49.0
+- SwiftLint 0.49.1
 - yamllint 1.27.1
 
 ### Browsers
 - Safari 15.6.1 (17613.3.9.1.16)
 - SafariDriver 15.6.1 (17613.3.9.1.16)
-- Google Chrome 104.0.5112.101 
-- ChromeDriver 104.0.5112.79
-- Microsoft Edge 104.0.1293.70 
-- Microsoft Edge WebDriver 104.0.1293.70
-- Mozilla Firefox 104.0
+- Google Chrome 105.0.5195.102 
+- ChromeDriver 105.0.5195.52
+- Microsoft Edge 105.0.1343.27 
+- Microsoft Edge WebDriver 105.0.1343.27
+- Mozilla Firefox 104.0.1
 - geckodriver 0.31.0
 - Selenium server 4.4.0
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/104.0.5112.79 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/105.0.5195.52 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -208,7 +208,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.3.2.24 | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.3.3.10 | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
