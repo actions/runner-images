@@ -164,6 +164,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-CbindgenVersion),
     "Rustfmt $(Get-RustfmtVersion)",
     "Clippy $(Get-RustClippyVersion)"
+    (Get-SccacheVersion),
     ) | Sort-Object
 )
 

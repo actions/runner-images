@@ -222,7 +222,8 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-CargoOutdatedVersion),
     (Get-CargoClippyVersion),
     (Get-CbindgenVersion),
-    (Get-RustfmtVersion)
+    (Get-RustfmtVersion),
+    (Get-SccacheVersion)
     ) | Sort-Object
 )
 

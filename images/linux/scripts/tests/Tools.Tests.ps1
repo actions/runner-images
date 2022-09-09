@@ -62,6 +62,10 @@ Describe "Rust" {
             "cargo outdated --version" | Should -ReturnZeroExitCode
         }
     }
+
+    It "Sccache is installed" {
+        "sccache --version" | Should -ReturnZeroExitCode
+    }
 }
 Describe "Docker" {
     It "docker" {

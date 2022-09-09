@@ -67,6 +67,10 @@ function Get-CargoOutdatedVersion {
     return cargo outdated --version
 }
 
+function Get-SccacheVersion {
+    return sccache --version
+}
+
 function Get-PythonVersion {
     return & python --version
 }

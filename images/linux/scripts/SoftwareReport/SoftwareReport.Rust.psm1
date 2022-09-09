@@ -54,3 +54,8 @@ function Get-RustfmtVersion {
     $rustfmtVersion = $(rustfmt --version) | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
     return "Rustfmt $rustfmtVersion"
 }
+
+function Get-SccacheVersion {
+    $sccacheVersion = sccache --version | Take-OutputPart -Part 1
+    return "Sccache $sccacheVersion"
+}

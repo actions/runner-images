@@ -34,4 +34,10 @@ Describe "Rust" {
             "cargo outdated --version" | Should -ReturnZeroExitCode
         }
     }
+
+    Context "Sccache" {
+        It "Sccache is installed" {
+            "sccache --version" | Should -ReturnZeroExitCode
+        }
+    }
 }

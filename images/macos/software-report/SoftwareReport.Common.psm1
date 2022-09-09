@@ -73,6 +73,11 @@ function Get-RustupVersion {
     return "Rustup ${rustupVersion}"
 }
 
+function Get-SccacheVersion {
+    $sccacheVersion = Run-Command "sccache --version" | Take-Part -Part 1
+    return "Sccache $sccacheVersion"
+}
+
 function Get-VcpkgVersion {
     $vcpkgVersion = Run-Command "vcpkg version" | Select-Object -First 1 | Take-Part -Part 5 | Take-Part -Part 0 -Delimiter "-"
     $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
