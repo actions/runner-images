@@ -149,6 +149,7 @@
 - Rust 1.62.1
 - Rustdoc 1.62.1
 - Rustup 1.25.1
+- Sccache 0.3.0
 
 #### Packages
 - Bindgen 0.60.1
