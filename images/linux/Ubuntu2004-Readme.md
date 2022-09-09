@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by TBD](https://github.com/actions/runner-images/issues/6002) |
+| [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by 4/1/2023](https://github.com/actions/runner-images/issues/6002) |
 ***
-# Ubuntu 20.04.4 LTS
-- Linux kernel version: 5.15.0-1017-azure
-- Image Version: 20220828.1
+# Ubuntu 20.04.5 LTS
+- Linux kernel version: 5.15.0-1019-azure
+- Image Version: 20220905.1
 
 ## Installed Software
 ### Language and Runtime
@@ -26,7 +26,7 @@
 - Python 3.8.10
 - Python3 3.8.10
 - Ruby 2.7.0p0
-- Swift 5.6.2
+- Swift 5.6.3
 
 ### Package Management
 - cpan 1.64
@@ -39,7 +39,7 @@
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<e85b5bb95>)
+- Vcpkg  (build from master \<927006b24>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -51,7 +51,7 @@
 ### Project Management
 - Ant 1.10.7
 - Gradle 7.5.1
-- Lerna 5.4.3
+- Lerna 5.5.0
 - Maven 3.8.6
 - Sbt 1.7.1
 
@@ -64,22 +64,22 @@
 - Bicep 0.9.1
 - Buildah 1.22.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - CMake 3.24.1
-- CodeQL Action Bundle 2.10.3
+- CodeQL Action Bundle 2.10.4
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.10.1+azure-1
+- Docker Compose v2 2.10.2+azure-1
 - Docker-Buildx 0.9.1
 - Docker-Moby Client 20.10.17+azure-1
 - Docker-Moby Server 20.10.17+azure-3
 - Fastlane 2.209.1
-- Git 2.37.2 (apt source repository: ppa:git-core/ppa)
+- Git 2.37.3 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 7.62.0
+- Heroku 7.63.0
 - HHVM (HipHop VM) 4.167.0
 - jq 1.6
-- Kind 0.14.0
+- Kind 0.15.0
 - Kubectl 1.25.0
 - Kustomize 4.5.7
 - Leiningen 2.9.10
@@ -94,30 +94,30 @@
 - Parcel 2.7.0
 - PhantomJS 2.1.1
 - Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.38.0
+- Pulumi 3.39.1
 - R 4.2.1
 - Skopeo 1.5.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
 - Terraform 1.2.8
 - yamllint 1.27.1
-- yq 4.27.2
+- yq 4.27.3
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.125
-- AWS CLI 2.7.27
+- AWS CLI 2.7.29
 - AWS CLI Session manager plugin 1.2.339.0
-- AWS SAM CLI 1.55.0
+- AWS SAM CLI 1.56.0
 - Azure CLI (azure-cli) 2.39.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.14.7
 - Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 11.5.0
+- Netlify CLI 11.5.1
 - OpenShift CLI 4.11.1
-- ORAS CLI 0.14.0
-- Vercel CLI 28.2.0
+- ORAS CLI 0.14.1
+- Vercel CLI 28.2.2
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -161,11 +161,11 @@
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 104.0.5112.101
-- ChromeDriver 104.0.5112.79
-- Chromium 104.0.5112.0
-- Microsoft Edge 104.0.1293.70 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 104.0.1293.70
+- Google Chrome 105.0.5195.102
+- ChromeDriver 105.0.5195.52
+- Chromium 105.0.5177.0
+- Microsoft Edge 105.0.1343.27 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 105.0.1343.27
 - Selenium server 4.4.0
 - Mozilla Firefox 104.0
 - Geckodriver 0.31.0
@@ -313,8 +313,8 @@
 | node:16                 | sha256:0c672d547405fe64808ea28b49c5772b1026f81b3b716ff44c10c96abf177d6a  | 2022-08-23 |
 | node:16-alpine          | sha256:2c405ed42fc0fd6aacbe5730042640450e5ec030bada7617beac88f742b6997b  | 2022-08-16 |
 | ubuntu:16.04            | sha256:91bd29a464fdabfcf44e29e1f2a5f213c6dfa750b6290e40dd6998ac79da3c41  | 2021-08-31 |
-| ubuntu:18.04            | sha256:eb1392bbdde63147bc2b4ff1a4053dcfe6d15e4dfd3cce29e9b9f52a4f88bc74  | 2022-08-02 |
-| ubuntu:20.04            | sha256:af5efa9c28de78b754777af9b4d850112cad01899a5d37d2617bb94dc63a49aa  | 2022-08-02 |
+| ubuntu:18.04            | sha256:3aa2ccb021969aadb28381fee1b247422e845b176e241cd1540c4b6831e000bb  | 2022-09-01 |
+| ubuntu:20.04            | sha256:35ab2bf57814e9ff49e365efd5a5935b6915eede5c7f8581e9e1b85e0eecbe16  | 2022-09-01 |
 
 ### Installed apt packages
 | Name                   | Version                           |
@@ -329,7 +329,7 @@
 | build-essential        | 12.8ubuntu1.1                     |
 | bzip2                  | 1.0.8-2                           |
 | coreutils              | 8.30-3ubuntu2                     |
-| curl                   | 7.68.0-1ubuntu2.12                |
+| curl                   | 7.68.0-1ubuntu2.13                |
 | dbus                   | 1.12.16-2ubuntu2.2                |
 | dnsutils               | 1:9.16.1-0ubuntu2.10              |
 | dpkg                   | 1.19.7ubuntu3.2                   |
@@ -347,7 +347,7 @@
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu1.3          |
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
-| libcurl4               | 7.68.0-1ubuntu2.12                |
+| libcurl4               | 7.68.0-1ubuntu2.13                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6build1                  |
@@ -390,7 +390,7 @@
 | texinfo                | 6.7.0.dfsg.2-5                    |
 | time                   | 1.7-25.1build1                    |
 | tk                     | 8.6.9+1                           |
-| tzdata                 | 2022a-0ubuntu0.20.04              |
+| tzdata                 | 2022c-0ubuntu0.20.04.0            |
 | unzip                  | 6.0-25ubuntu1                     |
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2                   |
