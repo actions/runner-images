@@ -122,7 +122,7 @@ function Test-BlankElement {
 
     $splitByLines = $Markdown.Split("`n")
     # Validate entry without version
-    $blankVersions = $splitByLines -match "^-" -notmatch "(OS|Image) Version|WSL|Vcpkg|\d\." | Out-String
+    $blankVersions = $splitByLines -match "^-" -notmatch "(OS|Image) Version|WSL|Vcpkg|Docker|\d\." | Out-String
 
     # Validate tables with blank rows
     $blankRows = ""
