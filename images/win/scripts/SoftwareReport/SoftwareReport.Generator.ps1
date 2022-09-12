@@ -139,6 +139,7 @@ $cliTools = @(
     (Get-AzureDevopsExtVersion),
     (Get-GHVersion),
     (Get-HubVersion)
+    (Get-EksctlVersion)
 )
 if (Test-IsWin19) {
     $cliTools += @(
