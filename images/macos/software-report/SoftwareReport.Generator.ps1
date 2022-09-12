@@ -160,6 +160,7 @@ $toolsList = @(
     (Get-AWSCLIVersion),
     (Get-AWSSAMCLIVersion),
     (Get-AWSSessionManagerCLIVersion)
+    (Get-EksctlVersion)
 )
 
 if (-not $os.IsCatalina) {
