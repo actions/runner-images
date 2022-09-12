@@ -182,6 +182,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-OCCliVersion),
     (Get-ORASCliVersion),
     (Get-VerselCliversion)
+    (Get-EksctlVersion)
     ) | Sort-Object
 )
 
