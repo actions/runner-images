@@ -147,15 +147,19 @@ Describe "Stack" {
 
 Describe "Vcpkg" {
     It "vcpkg" {
-      "vcpkg version" | Should -ReturnZeroExitCode
+        "vcpkg version" | Should -ReturnZeroExitCode
     }
 
     It "env variable VCPKG_INSTALLATION_ROOT is set" {
-      $env:VCPKG_INSTALLATION_ROOT | Should -Not -BeNullOrEmpty
+        $env:VCPKG_INSTALLATION_ROOT | Should -Not -BeNullOrEmpty
     }
 
-    It "VCPKG_INSTALLATION_ROOT directory" {
-        $env:VCPKG_INSTALLATION_ROOT | Should -Exist
+    It "env variable VCPKG_ROOT is set" {
+        $env:VCPKG_ROOT | Should -Not -BeNullOrEmpty
+    }
+  
+    It "VCPKG_ROOT directory" {
+        $env:VCPKG_ROOT | Should -Exist
     }
 }
 

@@ -3,6 +3,7 @@
         "default": "13.4.1",
         "versions": [
             { "link": "14.0", "version": "14.0.0" },
+            { "link": "14.0_beta", "version": "14 beta 6", "skip-symlink": "true"},
             { "link": "13.4.1", "version": "13.4.1" },
             { "link": "13.4", "version": "13.4.0" },
             { "link": "13.3.1", "version": "13.3.1", "symlinks": ["13.3"] },
