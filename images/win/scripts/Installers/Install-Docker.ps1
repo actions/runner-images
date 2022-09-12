@@ -7,8 +7,7 @@
 
 Write-Host "Install Docker CE"
 $instScriptUrl = "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1"
-$instScriptPath = "$env:TEMP\install-docker-ce.ps1"
-Invoke-WebRequest -UseBasicParsing $instScriptUrl -o $instScriptPath
+$instScriptPath = Start-DownloadWithRetry -Url $instScriptUrl -Name "install-docker-ce.ps1"
 & $instScriptPath
 
 Write-Host "Install-Package Docker-Compose v1"
