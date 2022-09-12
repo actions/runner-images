@@ -306,3 +306,8 @@ function Get-YqVersion {
     $yqVersion = ($(yq -V) -Split " ")[-1]
     return "yq $yqVersion"
 }
+
+function Get-EksctlVersion {
+    $eksctlversion = eksctl version
+    return $eksctlversion
+}
