@@ -34,7 +34,7 @@ body:
         - label: GitHub Actions
   - type: checkboxes
     attributes:
-      label: Virtual environments affected
+      label: Runner images affected
       options:
         - label: Ubuntu 18.04
         - label: Ubuntu 20.04
