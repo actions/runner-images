@@ -3,8 +3,8 @@
 | [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by 4/1/2023](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 22.04.1 LTS
-- Linux kernel version: 5.15.0-1017-azure
-- Image Version: 20220905.1
+- Linux kernel version: 5.15.0-1019-azure
+- Image Version: 20220912.1
 
 ## Installed Software
 ### Language and Runtime
@@ -15,7 +15,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++ 9.4.0, 10.3.0, 11.2.0
 - GNU Fortran 9.4.0, 10.3.0, 11.2.0
-- Julia 1.8.0
+- Julia 1.8.1
 - Kotlin 1.7.10-release-333
 - Mono 6.12.0.182 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.10.1.31701 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
@@ -28,7 +28,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.9.4
-- Homebrew 3.5.10
+- Homebrew 3.6.1
 - Miniconda 4.12.0
 - Npm 8.15.0
 - NuGet 6.2.1.2
@@ -36,7 +36,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<927006b24>)
+- Vcpkg  (build from master \<23905f6f8>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -44,17 +44,18 @@
 | ----------------------- | ---------------------- |
 | CONDA                   | /usr/share/miniconda   |
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
+| VCPKG_ROOT              | /usr/local/share/vcpkg |
 
 ### Project Management
-- Lerna 5.5.0
+- Lerna 5.5.1
 
 ### Tools
-- Ansible 2.13.3
+- Ansible 2.13.4
 - apt-fast 1.9.12
 - AzCopy 10.16.0 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.3.0
-- Bazelisk 1.12.1
-- Bicep 0.9.1
+- Bazelisk 1.13.2
+- Bicep 0.10.13
 - Buildah 1.23.1
 - CMake 3.24.1
 - CodeQL Action Bundle 2.10.4
@@ -85,30 +86,30 @@
 - Packer 1.8.3
 - Parcel 2.7.0
 - Podman 3.4.4
-- Pulumi 3.39.1
+- Pulumi 3.39.3
 - R 4.2.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.2.8
-- yamllint 1.27.1
-- yq 4.27.3
+- Terraform 1.2.9
+- yamllint 1.28.0
+- yq 4.27.5
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.125
-- AWS CLI 2.7.29
+- AWS CLI 2.7.31
 - AWS CLI Session manager plugin 1.2.339.0
-- AWS SAM CLI 1.56.0
-- Azure CLI (azure-cli) 2.39.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- AWS SAM CLI 1.56.1
+- Azure CLI (azure-cli) 2.40.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
-- GitHub CLI 2.14.7
-- Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- GitHub CLI 2.15.0
+- Google Cloud SDK 401.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 11.5.1
-- OpenShift CLI 4.11.1
+- Netlify CLI 11.7.1
+- OpenShift CLI 4.11.4
 - ORAS CLI 0.14.1
-- Vercel CLI 28.2.2
+- Vercel CLI 28.2.5
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -155,8 +156,8 @@
 - Google Chrome 105.0.5195.102
 - ChromeDriver 105.0.5195.52
 - Chromium 105.0.5177.0
-- Microsoft Edge 105.0.1343.27 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 105.0.1343.27
+- Microsoft Edge 105.0.1343.33 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 105.0.1343.34
 - Selenium server 4.4.0
 
 #### Environment variables
@@ -197,8 +198,8 @@
 ### Cached Tools
 #### Go
 - 1.17.13
-- 1.18.5
-- 1.19.0
+- 1.18.6
+- 1.19.1
 
 #### Node.js
 - 14.20.0
@@ -210,10 +211,10 @@
 - 3.9.12 [PyPy 7.3.9]
 
 #### Python
-- 3.7.13
-- 3.8.13
-- 3.9.13
-- 3.10.6
+- 3.7.14
+- 3.8.14
+- 3.9.14
+- 3.10.7
 
 #### Ruby
 - 3.1.2
@@ -222,8 +223,8 @@
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.13/x64 | x64          |
-| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.5/x64  | x64          |
-| GOROOT_1_19_X64 | /opt/hostedtoolcache/go/1.19.0/x64  | x64          |
+| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.6/x64  | x64          |
+| GOROOT_1_19_X64 | /opt/hostedtoolcache/go/1.19.1/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.2.6
@@ -285,7 +286,7 @@
 | node:14-alpine          | sha256:4aff4ba0da347e51561587eba037a38db4eaa70e1a6c8334d66779fe963d5be7  | 2022-08-09 |
 | node:16                 | sha256:0c672d547405fe64808ea28b49c5772b1026f81b3b716ff44c10c96abf177d6a  | 2022-08-23 |
 | node:16-alpine          | sha256:2c405ed42fc0fd6aacbe5730042640450e5ec030bada7617beac88f742b6997b  | 2022-08-16 |
-| ubuntu:18.04            | sha256:3aa2ccb021969aadb28381fee1b247422e845b176e241cd1540c4b6831e000bb  | 2022-09-01 |
+| ubuntu:18.04            | sha256:6fec50623d6d37b7f3c14c5b6fc36c73fd04aa8173d59d54dba00da0e7ac50ee  | 2022-09-06 |
 | ubuntu:20.04            | sha256:35ab2bf57814e9ff49e365efd5a5935b6915eede5c7f8581e9e1b85e0eecbe16  | 2022-09-01 |
 | ubuntu:22.04            | sha256:20fa2d7bb4de7723f542be5923b06c4d704370f0390e4ae9e1c833c8785644c1  | 2022-09-01 |
 
@@ -317,7 +318,7 @@
 | iproute2               | 5.15.0-1ubuntu2                   |
 | iputils-ping           | 3:20211215-1                      |
 | jq                     | 1.6-2.1ubuntu3                    |
-| lib32z1                | 1:1.2.11.dfsg-2ubuntu9            |
+| lib32z1                | 1:1.2.11.dfsg-2ubuntu9.1          |
 | libc++-dev             | 1:14.0-55\~exp2                   |
 | libc++abi-dev          | 1:14.0-55\~exp2                   |
 | libcurl4               | 7.81.0-1ubuntu1.4                 |
