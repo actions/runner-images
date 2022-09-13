@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 3287
-- Image Version: 20220905.1
+- Image Version: 20220911.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -13,7 +13,7 @@
 ### Language and Runtime
 - Bash 5.1.16(1)-release
 - Go 1.17.13
-- Julia 1.8.0
+- Julia 1.8.1
 - Kotlin 1.7.10
 - LLVM 14.0.6
 - Node 16.17.0
@@ -25,20 +25,21 @@
 ### Package Management
 - Chocolatey 1.1.0
 - Composer 2.4.1
-- Helm 3.9.3
+- Helm 3.9.4
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
 - NPM 8.15.0
 - NuGet 6.3.0.131
 - pip 22.2.2 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<927006b24>)
+- Vcpkg (build from master \<8e3595fad>)
 - Yarn 1.22.19
 
 #### Environment variables
 | Name                    | Value        |
 | ----------------------- | ------------ |
 | VCPKG_INSTALLATION_ROOT | C:\vcpkg     |
+| VCPKG_ROOT              | C:\vcpkg     |
 | CONDA                   | C:\Miniconda |
 
 ### Project Management
@@ -52,8 +53,8 @@
 - aria2 1.36.0
 - azcopy 10.16.0
 - Bazel 5.3.0
-- Bazelisk 1.12.1
-- Bicep 0.9.1
+- Bazelisk 1.13.2
+- Bicep 0.10.13
 - Cabal 3.8.1.0
 - CMake 3.24.1
 - CodeQL Action Bundle 2.10.4
@@ -64,7 +65,7 @@
 - ghc 9.4.2
 - Git 2.37.3.windows.1
 - Git LFS 3.2.0
-- Google Cloud SDK 400.0.0
+- Google Cloud SDK 401.0.0
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.15.0
@@ -76,7 +77,7 @@
 - OpenSSL 1.1.1
 - Packer 1.8.2
 - Parcel 2.7.0
-- Pulumi v3.39.1
+- Pulumi v3.39.3
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.7.5
@@ -90,13 +91,13 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.125
-- AWS CLI 2.7.29
-- AWS SAM CLI 1.56.0
+- AWS CLI 2.7.31
+- AWS SAM CLI 1.56.1
 - AWS Session Manager CLI 1.2.339.0
-- Azure CLI 2.39.0
+- Azure CLI 2.40.0
 - Azure DevOps CLI extension 0.25.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.14.7
+- GitHub CLI 2.15.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -116,9 +117,9 @@
 ### Browsers and webdrivers
 - Google Chrome 105.0.5195.102
 - Chrome Driver 105.0.5195.52
-- Microsoft Edge 105.0.1343.27
-- Microsoft Edge Driver 105.0.1343.27
-- Mozilla Firefox 104.0.1
+- Microsoft Edge 105.0.1343.33
+- Microsoft Edge Driver 105.0.1343.34
+- Mozilla Firefox 104.0.2
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.4.0
@@ -164,8 +165,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.5  | x64          | GOROOT_1_18_X64      |
-| 1.19.0  | x64          | GOROOT_1_19_X64      |
+| 1.18.6  | x64          | GOROOT_1_18_X64      |
+| 1.19.1  | x64          | GOROOT_1_19_X64      |
 
 #### Node
 | Version | Architecture |
@@ -182,7 +183,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.7.9 (Default) | x64, x86     |
 | 3.8.10  | x64, x86     |
 | 3.9.13  | x64, x86     |
-| 3.10.6  | x64, x86     |
+| 3.10.7  | x64, x86     |
 
 #### Ruby
 | Version | Architecture |
@@ -219,7 +220,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.11.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.12.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.9.0
@@ -469,12 +470,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ms-biztalk.BizTalk                                                        | 3.13.2.0        |
 | ProBITools.MicrosoftAnalysisServicesModelingProjects                      | 2.9.18          |
 | ProBITools.MicrosoftReportProjectsforVisualStudio                         | 2.6.11          |
-| SSIS.SqlServerIntegrationServicesProjects                                 | 4.1             |
+| SSIS.SqlServerIntegrationServicesProjects                                 | 4.2             |
 | VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.2           |
 | Windows Driver Kit                                                        | 10.1.22000.1    |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.21381.0    |
 | Windows Software Development Kit                                          | 10.1.22621.1    |
-| WIX Toolset Studio 2019 Extension                                         | 1.0.0.18        |
 | WixToolset.WixToolsetVisualStudio2019Extension                            | 1.0.0.18        |
 
 #### Microsoft Visual C++:
@@ -548,7 +548,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.161          |
+| AWSPowerShell      | 4.1.165          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.11.1           |
