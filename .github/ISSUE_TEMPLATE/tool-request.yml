@@ -55,7 +55,7 @@ body:
         - label: GitHub Actions
   - type: checkboxes
     attributes:
-      label: Virtual environments where you need the tool
+      label: Runner images where you need the tool
       options:
         - label: Ubuntu 18.04
         - label: Ubuntu 20.04

@@ -257,16 +257,22 @@ Describe "HHVM" -Skip:(Test-IsUbuntu22) {
 }
 
 Describe "Homebrew" {
+    $brewToolset = (Get-ToolsetContent).brew
+    $testCases = $brewToolset | ForEach-Object { @{brewName = $_.name; brewCommand = $_.command} }
+
     It "homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
     }
 
-    Context "Packages" {
-        $testCases = (Get-ToolsetContent).brew | ForEach-Object { @{ ToolName = $_.name } }
+    It "zstd has /usr/local/bin symlink" {
+        "/usr/local/bin/zstd" | Should -Exist
+    }
 
-        It "<ToolName>" -TestCases $testCases {
-           "$ToolName --version" | Should -Not -BeNullOrEmpty
-        }
+    It "homebrew package <brewName>" -TestCases $testCases {
+        $brewPrefix = brew --prefix $brewName
+        $brewPackage = Join-Path $brewPrefix "bin" $brewCommand
+
+        "$brewPackage --version" | Should -ReturnZeroExitCode
     }
 }
 
