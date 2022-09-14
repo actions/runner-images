@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.0 on September, 26](https://github.com/actions/runner-images/issues/6225) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
-# macOS 11.6 info
-- System Version: macOS 11.6.8 (20G730)
+# macOS 11.7 info
+- System Version: macOS 11.7 (20G817)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220906.1
+- Image Version: 20220912.1
 
 ## Installed Software
 ### Language and Runtime
@@ -20,7 +21,7 @@
 - GNU Fortran (Homebrew GCC 10.4.0) 10.4.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
 - Go 1.17.13
-- julia 1.8.0
+- julia 1.8.1
 - Kotlin 1.7.10-release-333
 - MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.17.0
@@ -34,19 +35,19 @@
 - Ruby 2.7.6p219
 
 ### Package Management
-- Bundler version 2.3.21
+- Bundler version 2.3.22
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.4.1
-- Homebrew 3.5.10
+- Homebrew 3.6.1
 - Miniconda 4.12.0
 - NPM 8.15.0
 - NuGet 6.2.1.2
 - Pip 20.3.4 (python 2.7)
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
-- RubyGems 3.3.21
-- Vcpkg 2022 (build from master \<927006b24>)
+- RubyGems 3.3.22
+- Vcpkg 2022 (build from master \<23905f6f8>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -54,6 +55,7 @@
 | ----------------------- | ---------------------- |
 | CONDA                   | /usr/local/miniconda   |
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
+| VCPKG_ROOT              | /usr/local/share/vcpkg |
 
 ### Project Management
 - Apache Ant(TM) 1.10.12
@@ -66,12 +68,12 @@
 - aria2 1.36.0
 - azcopy 10.16.0
 - bazel 5.3.0
-- bazelisk 1.13.1
+- bazelisk 1.14.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.85.0
 - Git 2.37.3
 - Git LFS: 3.2.0
-- GitHub CLI: 2.14.7
+- GitHub CLI: 2.15.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.7
@@ -89,25 +91,25 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- yq (https://github.com/mikefarah/yq/) version 4.27.3
+- yq (https://github.com/mikefarah/yq/) version 4.27.5
 - zstd 1.5.2
 
 ### Tools
 - Aliyun CLI 3.0.125
 - App Center CLI 2.11.0
-- AWS CLI 2.7.29
-- AWS SAM CLI 1.56.0
+- AWS CLI 2.7.31
+- AWS SAM CLI 1.56.1
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.40.0
-- Bicep CLI 0.9.1
+- Bicep CLI 0.10.13
 - Cabal 3.6.2.0
 - Cmake 3.24.1
 - CodeQL Action Bundle 2.10.4
 - Fastlane 2.209.1
 - GHC 9.4.2
 - GHCup 0.1.18.0
-- Jazzy 0.14.2
+- Jazzy 0.14.3
 - Stack 2.7.5
 - SwiftFormat 0.49.18
 - Swig 4.0.2
@@ -115,16 +117,16 @@
 
 ### Linters
 - SwiftLint 0.48.0
-- yamllint 1.27.1
+- yamllint 1.28.0
 
 ### Browsers
-- Safari 15.6.1 (16613.3.9.1.16)
-- SafariDriver 15.6.1 (16613.3.9.1.16)
+- Safari 16.0 (16614.1.25.9.10)
+- SafariDriver 16.0 (16614.1.25.9.10)
 - Google Chrome 105.0.5195.102 
 - ChromeDriver 105.0.5195.52
-- Microsoft Edge 105.0.1343.27 
-- Microsoft Edge WebDriver 105.0.1343.27
-- Mozilla Firefox 104.0.1
+- Microsoft Edge 105.0.1343.33 
+- Microsoft Edge WebDriver 105.0.1343.34
+- Mozilla Firefox 104.0.2
 - geckodriver 0.31.0
 - Selenium server 4.4.0
 
@@ -157,10 +159,10 @@
 - 3.1.2
 
 #### Python
-- 3.7.13
-- 3.8.13
-- 3.9.13
-- 3.10.6
+- 3.7.14
+- 3.8.14
+- 3.9.14
+- 3.10.7
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -177,8 +179,8 @@
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.5  | x64          | GOROOT_1_18_X64      |
-| 1.19.0  | x64          | GOROOT_1_19_X64      |
+| 1.18.6  | x64          | GOROOT_1_18_X64      |
+| 1.19.1  | x64          | GOROOT_1_19_X64      |
 
 ### Rust Tools
 - Cargo 1.63.0
@@ -216,7 +218,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.3.3.10 | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.3.4.4  | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
@@ -355,7 +357,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 
 ### Miscellaneous
 - libXext 1.3.4
-- libXft 2.3.4
+- libXft 2.3.6
 - Tcl/Tk 8.6.12_1
 - Zlib 1.2.12
 
