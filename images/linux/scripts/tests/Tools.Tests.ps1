@@ -261,7 +261,7 @@ Describe "Homebrew" {
     $testCases = $brewToolset | ForEach-Object { @{brewName = $_.name; brewCommand = $_.command} }
 
     It "homebrew" {
-        "brew --version" | Should -ReturnZeroExitCode
+        "/home/linuxbrew/.linuxbrew/bin/brew --version" | Should -ReturnZeroExitCode
     }
 
     It "zstd has /usr/local/bin symlink" {
@@ -269,7 +269,7 @@ Describe "Homebrew" {
     }
 
     It "homebrew package <brewName>" -TestCases $testCases {
-        $brewPrefix = brew --prefix $brewName
+        $brewPrefix = /home/linuxbrew/.linuxbrew/bin/brew --prefix $brewName
         $brewPackage = Join-Path $brewPrefix "bin" $brewCommand
 
         "$brewPackage --version" | Should -ReturnZeroExitCode
