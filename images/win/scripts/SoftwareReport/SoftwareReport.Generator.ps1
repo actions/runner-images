@@ -119,7 +119,8 @@ $toolsList = @(
     (Get-WinAppDriver),
     (Get-WixVersion),
     (Get-ZstdVersion),
-    (Get-YAMLLintVersion)
+    (Get-YAMLLintVersion),
+    (Get-ImageMagickVersion)
 )
 if (Test-IsWin19) {
     $toolsList += @(

@@ -461,7 +461,8 @@
             {
                 "name": "cmake.install",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
-            }
+            },
+            { "name": "imagemagick" }
         ]
     },
     "node": {
