@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.0 on September, 26](https://github.com/actions/runner-images/issues/6225) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H2026)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220829.1
+- Image Version: 20220912.1
 
 ## Installed Software
 ### Language and Runtime
@@ -20,33 +21,33 @@
 - GNU Fortran (Homebrew GCC 10.4.0) 10.4.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
 - Go 1.17.13
-- julia 1.8.0
+- julia 1.8.1
 - Kotlin 1.7.10-release-333
 - MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.17.0
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.12 v14.20.0 v16.17.0
 - Perl 5.34.0
-- PHP 8.1.9
+- PHP 8.1.10
 - Python 2.7.18
 - Python 3.10.6
 - R 4.2.1
 - Ruby 2.7.6p219
 
 ### Package Management
-- Bundler version 2.3.21
+- Bundler version 2.3.22
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.4.1
-- Homebrew 3.5.10
+- Homebrew 3.6.1
 - Miniconda 4.12.0
 - NPM 8.15.0
 - NuGet 6.2.1.2
 - Pip 20.3.4 (python 2.7)
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
-- RubyGems 3.3.21
-- Vcpkg 2022 (build from master \<ed0279d48>)
+- RubyGems 3.3.22
+- Vcpkg 2022 (build from master \<23905f6f8>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -54,6 +55,7 @@
 | ----------------------- | ---------------------- |
 | CONDA                   | /usr/local/miniconda   |
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
+| VCPKG_ROOT              | /usr/local/share/vcpkg |
 
 ### Project Management
 - Apache Ant(TM) 1.10.12
@@ -66,12 +68,12 @@
 - aria2 1.36.0
 - azcopy 10.16.0
 - bazel 5.3.0
-- bazelisk 1.12.2
+- bazelisk 1.14.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.84.0
-- Git 2.37.2
+- Curl 7.85.0
+- Git 2.37.3
 - Git LFS: 3.2.0
-- GitHub CLI: 2.14.7
+- GitHub CLI: 2.15.0
 - GNU parallel 20220822
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
@@ -91,49 +93,49 @@
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
 - Vagrant 2.3.0
-- VirtualBox 6.1.36r152435
-- yq (https://github.com/mikefarah/yq/) version 4.27.3
+- VirtualBox 6.1.38r153438
+- yq (https://github.com/mikefarah/yq/) version 4.27.5
 - zstd 1.5.2
 
 ### Tools
 - Aliyun CLI 3.0.125
 - App Center CLI 2.11.0
-- AWS CLI 2.7.27
-- AWS SAM CLI 1.55.0
+- AWS CLI 2.7.31
+- AWS SAM CLI 1.56.1
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
-- Azure CLI 2.39.0
-- Bicep CLI 0.9.1
+- Azure CLI 2.40.0
+- Bicep CLI 0.10.13
 - Cabal 3.6.2.0
 - Cmake 3.24.1
 - Fastlane 2.209.1
 - GHC 9.4.2
 - GHCup 0.1.18.0
-- Jazzy 0.14.2
+- Jazzy 0.14.3
 - Stack 2.7.5
-- SwiftFormat 0.49.17
+- SwiftFormat 0.49.18
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
 ### Linters
 - SwiftLint 0.48.0
-- yamllint 1.27.1
+- yamllint 1.28.0
 
 ### Browsers
 - Safari 15.6.1 (15613.3.9.1.16)
 - SafariDriver 15.6.1 (15613.3.9.1.16)
-- Google Chrome 104.0.5112.101 
-- ChromeDriver 104.0.5112.79
-- Microsoft Edge 104.0.1293.70 
-- Microsoft Edge WebDriver 104.0.1293.70
-- Mozilla Firefox 104.0
+- Google Chrome 105.0.5195.102 
+- ChromeDriver 105.0.5195.52
+- Microsoft Edge 105.0.1343.33 
+- Microsoft Edge WebDriver 105.0.1343.34
+- Mozilla Firefox 104.0.2
 - geckodriver 0.31.0
 - Selenium server 4.4.0
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/104.0.5112.79 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/105.0.5195.52 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -163,10 +165,10 @@
 #### Python
 - 2.7.18
 - 3.6.15
-- 3.7.13
-- 3.8.13
-- 3.9.13
-- 3.10.6
+- 3.7.14
+- 3.8.14
+- 3.9.14
+- 3.10.7
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -185,7 +187,7 @@
 | ------- | ------------ | -------------------- |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
 | 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.5  | x64          | GOROOT_1_18_X64      |
+| 1.18.6  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
 - Cargo 1.63.0
@@ -207,7 +209,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 8.2.0   |
+| Az               | 8.3.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.20.0  |
@@ -385,7 +387,7 @@
 
 ### Miscellaneous
 - libXext 1.3.4
-- libXft 2.3.4
+- libXft 2.3.6
 - Tcl/Tk 8.6.12_1
 - Zlib 1.2.12
 
