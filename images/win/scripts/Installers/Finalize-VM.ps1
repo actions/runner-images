@@ -78,7 +78,6 @@ $regUserServicesToDisables = @(
     "HKLM:\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc"
     "HKLM:\SYSTEM\CurrentControlSet\Services\UnistoreSvc"
     "HKLM:\SYSTEM\CurrentControlSet\Services\UserDataSvc"
-    "HKLM:\SYSTEM\CurrentControlSet\Services\WpnUserService"
 )
 
 $regUserServicesToDisables | ForEach-Object {
