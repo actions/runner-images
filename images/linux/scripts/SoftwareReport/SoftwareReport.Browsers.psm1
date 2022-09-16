@@ -23,6 +23,17 @@ function Get-ChromiumVersion {
     return $chromiumVersion
 }
 
+function Get-EdgeVersion {
+    $edgeVersion = (microsoft-edge --version).trim()
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "microsoft-edge"
+    return "$edgeVersion (apt source repository: $aptSourceRepo)"
+}
+
+function Get-EdgeDriverVersion {
+    $edgeDriverVersion = msedgedriver --version | Take-OutputPart -Part 0,1,2,3
+    return $edgeDriverVersion
+}
+
 function Get-SeleniumVersion {
     $seleniumBinaryName = Get-ToolsetValue "selenium.binary_name"
     $fullSeleniumVersion = (Get-ChildItem "/usr/share/java/${seleniumBinaryName}-*").Name -replace "${seleniumBinaryName}-"
@@ -34,6 +45,10 @@ function Build-BrowserWebdriversEnvironmentTable {
         @{
             "Name" = "CHROMEWEBDRIVER"
             "Value" = $env:CHROMEWEBDRIVER
+        },
+        @{
+            "Name" = "EDGEWEBDRIVER"
+            "Value" = $env:EDGEWEBDRIVER
         },
         @{
             "Name" = "GECKOWEBDRIVER"

@@ -4,34 +4,32 @@
 ################################################################################
 
 # Requires Windows SDK with the same version number as the WDK
-if (Test-IsWin19)
-{
+if (Test-IsWin22) {
+    # SDK available through Visual Studio
+    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2196230"
+    $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2022\*\WDK.vsix"
+    $VSver = "2022"
+} elseif (Test-IsWin19) {
     $winSdkUrl = "https://go.microsoft.com/fwlink/?linkid=2173743"
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2166289"
     $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"
     $VSver = "2019"
-}
-elseif (Test-IsWin16)
-{
-    $winSdkUrl = "https://go.microsoft.com/fwlink/p/?LinkID=2023014"
-    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2026156"
-    $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\WDK.vsix"
-    $VSver = "2017"
-}
-else
-{
-    throw "Invalid version of Visual Studio is found. Either 2017 or 2019 are required"
+} else {
+    throw "Invalid version of Visual Studio is found. Either 2019 or 2022 are required"
 }
 
 $argumentList = ("/features", "+", "/quiet")
 
-# `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
-Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList $argumentList
+if (Test-IsWin19) {
+    # `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
+    Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList $argumentList
+}
 
 # `wdksetup.exe /features + /quiet` installs all features without showing the GUI
 Install-Binary -Url $wdkUrl -Name "wdksetup.exe" -ArgumentList $argumentList
 
 # Need to install the VSIX to get the build targets when running VSBuild
+$FilePath = Resolve-Path -Path $FilePath
 Install-VsixExtension -FilePath $FilePath -Name "WDK.vsix" -VSversion $VSver -InstallOnly
 
 Invoke-PesterTests -TestFile "WDK"

@@ -58,7 +58,7 @@ Describe "AzCopy" {
     }
 }
 
-Describe "Miniconda" -Skip:($os.IsMonterey) {
+Describe "Miniconda" {
     It "Conda" {
         Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
         $condaBinPath = Join-Path $env:CONDA "bin" "conda"
@@ -136,5 +136,17 @@ Describe "GraalVM" {
 Describe "VirtualBox" -Skip:($os.IsBigSur) {
     It "Check kext kernel modules" {
         kextstat | Out-String | Should -Match "org.virtualbox.kext"
+    }
+}
+
+Describe "CodeQL" -Skip:($os.IsCatalina) {
+    It "codeql" {
+        $CodeQLVersionWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $CodeQLVersionPath = Get-ChildItem $CodeQLVersionWildcard | Select-Object -First 1 -Expand FullName
+        $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+        "$CodeQLPath version --quiet" | Should -ReturnZeroExitCode
+
+        $CodeQLPacksPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
+        $CodeQLPacksPath | Should -Exist
     }
 }

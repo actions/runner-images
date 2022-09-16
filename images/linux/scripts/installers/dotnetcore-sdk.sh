@@ -16,6 +16,19 @@ DOTNET_TOOLS=$(get_toolset_value '.dotnet.tools[].name')
 # Disable telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+# There is a versions conflict, that leads to
+# Microsoft <-> Canonical repos dependencies mix up.
+# Give Microsoft's repo higher priority to avoid collisions.
+# See: https://github.com/dotnet/core/issues/7699
+
+cat << EOF > /etc/apt/preferences.d/dotnet
+Package: *net*
+Pin: origin packages.microsoft.com
+Pin-Priority: 1001
+EOF
+
+apt-get update
+
 for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
     echo "Determing if .NET Core ($latest_package) is installed"
     if ! IsPackageInstalled $latest_package; then
@@ -25,6 +38,10 @@ for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
         echo ".NET Core ($latest_package) is already installed"
     fi
 done
+
+rm /etc/apt/preferences.d/dotnet
+
+apt-get update
 
 # Get list of all released SDKs from channels which are not end-of-life or preview
 sdks=()

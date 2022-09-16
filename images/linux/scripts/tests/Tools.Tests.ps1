@@ -168,7 +168,7 @@ Describe "gfortran" {
     }
 }
 
-Describe "Mono" -Skip:(Test-IsUbuntu22) {
+Describe "Mono" {
     It "mono" {
         "mono --version" | Should -ReturnZeroExitCode
     }
@@ -182,7 +182,7 @@ Describe "Mono" -Skip:(Test-IsUbuntu22) {
     }
 }
 
-Describe "MSSQLCommandLineTools" -Skip:(Test-IsUbuntu22) {
+Describe "MSSQLCommandLineTools" {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
     }

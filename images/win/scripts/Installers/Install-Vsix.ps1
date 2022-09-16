@@ -12,9 +12,14 @@ if (-not $vsixPackagesList) {
 
 $vsVersion = $toolset.visualStudio.Version
 $vsixPackagesList | ForEach-Object {
-    # Retrieve cdn endpoint to avoid HTTP error 429 https://github.com/actions/virtual-environments/issues/3074
+    # Retrieve cdn endpoint to avoid HTTP error 429 https://github.com/actions/runner-images/issues/3074
     $vsixPackage = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
-    Install-VsixExtension -Url $vsixPackage.DownloadUri -Name $vsixPackage.FileName -VSversion $vsVersion
+    if ($vsixPackage.FileName.EndsWith(".vsix")) {
+        Install-VsixExtension -Url $vsixPackage.DownloadUri -Name $vsixPackage.FileName -VSversion $vsVersion
+    } else {
+        $argumentList = ('/install', '/quiet', '/norestart')
+        Install-Binary -Url $vsixPackage.DownloadUri -Name $vsixPackage.FileName -ArgumentList $argumentList
+    }
 }
 
 Invoke-PesterTests -TestFile "Vsix"

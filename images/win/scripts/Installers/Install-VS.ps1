@@ -42,6 +42,12 @@ if (Test-IsWin19) {
 	$sdkFileName = "sdksetup14393.exe"
 	$argumentList = ("/q", "/norestart", "/ceip off", "/features OptionId.WindowsSoftwareDevelopmentKit")
 	Install-Binary -Url $sdkUrl -Name $sdkFileName -ArgumentList $argumentList
+
+	# Install Windows 11 SDK version 10.0.22621.0
+        $sdkUrl = "https://go.microsoft.com/fwlink/p/?linkid=2196241"
+        $sdkFileName = "sdksetup22621.exe"
+        $argumentList = ("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64")
+        Install-Binary -Url $sdkUrl -Name $sdkFileName -ArgumentList $argumentList
 }
 
 if (Test-IsWin22) {

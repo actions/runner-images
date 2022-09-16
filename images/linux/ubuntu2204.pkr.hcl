@@ -4,6 +4,11 @@ variable "allowed_inbound_ip_addresses" {
   default = []
 }
 
+variable "azure_tag" {
+  type    = map(string)
+  default = {}
+}
+
 variable "build_resource_group_name" {
   type    = string
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
@@ -58,11 +63,6 @@ variable "image_folder" {
 variable "image_os" {
   type    = string
   default = "ubuntu22"
-}
-
-variable "image_repository_path" {
-  type    = string
-  default = "${env("IMAGEREPOSITORYPATH")}"
 }
 
 variable "image_version" {
@@ -165,11 +165,18 @@ source "azure-arm" "build_vhd" {
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
   tenant_id                              = "${var.tenant_id}"
-  user_data_file                         = "${var.image_repository_path}/images/linux/scripts/base/configure-legacy-ssh.sh"
   virtual_network_name                   = "${var.virtual_network_name}"
   virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
   virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
   vm_size                                = "${var.vm_size}"
+
+  dynamic "azure_tag" {
+    for_each = var.azure_tag
+    content {
+      name = azure_tag.key
+      value = azure_tag.value
+    }
+  }
 }
 
 build {
@@ -279,6 +286,7 @@ build {
                         "${path.root}/scripts/installers/codeql-bundle.sh",
                         "${path.root}/scripts/installers/containers.sh",
                         "${path.root}/scripts/installers/dotnetcore-sdk.sh",
+                        "${path.root}/scripts/installers/microsoft-edge.sh",
                         "${path.root}/scripts/installers/gcc.sh",
                         "${path.root}/scripts/installers/gfortran.sh",
                         "${path.root}/scripts/installers/git.sh",
@@ -292,8 +300,10 @@ build {
                         "${path.root}/scripts/installers/oc.sh",
                         "${path.root}/scripts/installers/leiningen.sh",
                         "${path.root}/scripts/installers/miniconda.sh",
+                        "${path.root}/scripts/installers/mono.sh",
                         "${path.root}/scripts/installers/kotlin.sh",
                         "${path.root}/scripts/installers/mysql.sh",
+                        "${path.root}/scripts/installers/mssql-cmd-tools.sh",
                         "${path.root}/scripts/installers/sqlpackage.sh",
                         "${path.root}/scripts/installers/nginx.sh",
                         "${path.root}/scripts/installers/nvm.sh",

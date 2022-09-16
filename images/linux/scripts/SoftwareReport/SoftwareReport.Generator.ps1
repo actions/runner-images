@@ -39,8 +39,11 @@ $markdown += New-MDHeader "Language and Runtime" -Level 3
 
 $runtimesList = @(
     (Get-BashVersion),
+    (Get-DashVersion),
     (Get-CPPVersions),
     (Get-FortranVersions),
+    (Get-MsbuildVersion),
+    (Get-MonoVersion),
     (Get-NodeVersion),
     (Get-PerlVersion),
     (Get-PythonVersion),
@@ -55,8 +58,6 @@ $runtimesList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $runtimesList += @(
-        (Get-MsbuildVersion),
-        (Get-MonoVersion),
         (Get-ErlangVersion),
         (Get-ErlangRebar3Version),
         (Get-SwiftVersion)
@@ -72,6 +73,7 @@ $packageManagementList = @(
     (Get-CpanVersion),
     (Get-GemVersion),
     (Get-MinicondaVersion),
+    (Get-NuGetVersion),
     (Get-HelmVersion),
     (Get-NpmVersion),
     (Get-YarnVersion),
@@ -230,6 +232,8 @@ $browsersAndDriversList = @(
     (Get-ChromeVersion),
     (Get-ChromeDriverVersion),
     (Get-ChromiumVersion),
+    (Get-EdgeVersion),
+    (Get-EdgeDriverVersion),
     (Get-SeleniumVersion)
 )
 
@@ -269,9 +273,7 @@ $markdown += New-MDList -Style Unordered -Lines ( $databaseLists | Sort-Object )
 
 $markdown += Build-PostgreSqlSection
 $markdown += Build-MySQLSection
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $markdown += Build-MSSQLToolsSection
-}
+$markdown += Build-MSSQLToolsSection
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection

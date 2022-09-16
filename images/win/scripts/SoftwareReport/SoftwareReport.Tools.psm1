@@ -102,7 +102,7 @@ function Get-KindVersion {
 }
 
 function Get-MinGWVersion {
-    (gcc --version | Select-String -Pattern "MinGW-W64 project") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    (gcc --version | Select-String -Pattern "MinGW-W64") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $mingwVersion = $Matches.Version
     return "Mingw-w64 $mingwVersion"
 }
@@ -277,13 +277,17 @@ function Get-GHVersion {
 }
 
 function Get-VisualCPPComponents {
-    $vcpp = Get-CimInstance -ClassName Win32_Product -Filter "Name LIKE 'Microsoft Visual C++%'"
-    $vcpp | Sort-Object Name, Version | ForEach-Object {
-        $isMatch = $_.Name -match "^(?<Name>Microsoft Visual C\+\+ \d{4})\s+(?<Arch>\w{3})\s+(?<Ext>.+)\s+-"
+    $regKeys = @(
+        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*"
+        "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
+    )
+    $vcpp = Get-ItemProperty -Path $regKeys | Where-Object DisplayName -like "Microsoft Visual C++*"
+    $vcpp | Sort-Object DisplayName, DisplayVersion | ForEach-Object {
+        $isMatch = $_.DisplayName -match "^(?<Name>Microsoft Visual C\+\+ \d{4})\s+(?<Arch>\w{3})\s+(?<Ext>.+)\s+-"
         if ($isMatch) {
             $name = '{0} {1}' -f $matches["Name"], $matches["Ext"]
             $arch = $matches["Arch"].ToLower()
-            $version = $_.Version
+            $version = $_.DisplayVersion
             [PSCustomObject]@{
                 Name = $name
                 Architecture = $arch
@@ -302,4 +306,10 @@ function Get-SwigVersion {
     (swig -version | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $swigVersion = $Matches.Version
     return "Swig $swigVersion"
+}
+
+function Get-ImageMagickVersion {
+    (magick -version | Select-String -Pattern "Version") -match "(?<version>\d+\.\d+\.\d+-\d+)" | Out-Null
+    $magickVersion = $Matches.Version
+    return "ImageMagick $magickVersion"
 }

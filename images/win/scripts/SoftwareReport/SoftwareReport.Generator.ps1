@@ -119,9 +119,10 @@ $toolsList = @(
     (Get-WinAppDriver),
     (Get-WixVersion),
     (Get-ZstdVersion),
-    (Get-YAMLLintVersion)
+    (Get-YAMLLintVersion),
+    (Get-ImageMagickVersion)
 )
-if ((Test-IsWin16) -or (Test-IsWin19)) {
+if (Test-IsWin19) {
     $toolsList += @(
         (Get-GoogleCloudSDKVersion),
         (Get-ParcelVersion)
@@ -140,7 +141,7 @@ $cliTools = @(
     (Get-GHVersion),
     (Get-HubVersion)
 )
-if ((Test-IsWin16) -or (Test-IsWin19)) {
+if (Test-IsWin19) {
     $cliTools += @(
         (Get-CloudFoundryVersion)
     )
@@ -220,13 +221,9 @@ $databaseTools = @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
     (Get-MySQLVersion),
-    (Get-SQLPSVersion)
+    (Get-SQLPSVersion),
+    (Get-SQLOLEDBDriverVersion)
 )
-
-if (-not (Test-IsWin16))
-{
-    $databaseTools += Get-SQLOLEDBDriverVersion
-}
 
 $markdown += New-MDList -Style Unordered -Lines ($databaseTools | Sort-Object)
 

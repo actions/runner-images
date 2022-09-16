@@ -36,9 +36,11 @@ param(
     [ValidateNotNullOrEmpty()]
     [string]$VIPassword,
 
-    [string]$TagCategory = "Busy",
+    [Parameter(Mandatory)]
+    [ValidateNotNullOrEmpty()]
+    [string]$Cluster,
 
-    [string]$Cluster
+    [string]$TagCategory = "Busy"
 )
 
 # Import helpers module
