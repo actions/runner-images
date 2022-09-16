@@ -81,13 +81,15 @@ do
     ndk_full_version=$(get_full_ndk_version $ndk_version)
     echo y | $SDKMANAGER "ndk;$ndk_full_version"
 done
-# This changes were added due to incompatibility with android ndk-bundle (ndk;22.0.7026061).
-# Link issue virtual-environments: https://github.com/actions/virtual-environments/issues/2481
-# Link issue xamarin-android: https://github.com/xamarin/xamarin-android/issues/5526
+
 ndkDefault=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
+ANDROID_NDK_HOME=$ANDROID_HOME/ndk/$ndkDefault
 ndkLatest=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
-ln -s $ANDROID_HOME/ndk/$ndkDefault $ANDROID_HOME/ndk-bundle
 ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ndkLatest
+# ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/runner-images/issues/5879
+echo "export ANDROID_NDK=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
+echo "export ANDROID_NDK_HOME=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
+echo "export ANDROID_NDK_ROOT=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
 echo "export ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> "${HOME}/.bashrc"
 
 availablePlatforms=($($SDKMANAGER --list | grep "platforms;android-[0-9]" | cut -d"|" -f 1 | sort -u))
@@ -125,18 +127,5 @@ do
     echo "Installing additional tool $tool_name ..."
     echo y | $SDKMANAGER "$tool_name"
 done
-
-popd
-
-echo "Installing ProGuard-5..."
-PROGUARD_LOCATION="https://github.com/Guardsquare/proguard/archive/proguard5.3.3.tar.gz"
-pushd $ANDROID_HOME
-cd tools
-mv proguard proguard4
-mkdir proguard && cd proguard
-curl -L -o proguard5.tgz $PROGUARD_LOCATION
-tar xzf proguard5.tgz --strip 1 && rm -f proguard5.tgz
-cp ../proguard4/proguard-*.txt . # Copy the Proguard Android definitions from the previous version
-popd
 
 invoke_tests "Android"

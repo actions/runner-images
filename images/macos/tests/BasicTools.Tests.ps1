@@ -138,7 +138,7 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsHigherThanCatalina) {
+Describe "vagrant" -Skip:($os.IsBigSur) {
     It "vagrant" {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
@@ -147,12 +147,6 @@ Describe "vagrant" -Skip:($os.IsHigherThanCatalina) {
 Describe "virtualbox" -Skip:($os.IsBigSur) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "xctool" -Skip:($os.IsHigherThanCatalina) {
-    It "xctool" {
-        "xctool --version" | Should -ReturnZeroExitCode
     }
 }
 

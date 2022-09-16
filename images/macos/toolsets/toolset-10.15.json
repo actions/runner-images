@@ -179,9 +179,9 @@
             "cmake;3.18.1"
         ],
         "ndk": {
-            "default": "23",
+            "default": "25",
             "versions": [
-                "21", "23", "24"
+                "23", "24", "25"
             ]
         }
     },
@@ -204,7 +204,6 @@
             "ant",
             "aria2",
             "azure-cli",
-            "bats",
             "bazelisk",
             "carthage",
             "cmake",
@@ -222,7 +221,6 @@
             "subversion",
             "swiftformat",
             "swig",
-            "xctool",
             "zstd",
             "zlib",
             "libxext",
@@ -343,7 +341,7 @@
         ]
     },
     "llvm": {
-        "version": "13"
+        "version": "14"
     },
     "php": {
         "version": "8.1"

@@ -9,7 +9,7 @@ function Get-JavaVersions {
     return $javaVersions | Sort-Object $sortRules | ForEach-Object {
         $javaPath = $_.Value
         # Take semver from the java path
-        # The path contains '-' sign in the version number instead of '+' due to the following issue, need to substitute it back https://github.com/actions/virtual-environments/issues/3014
+        # The path contains '-' sign in the version number instead of '+' due to the following issue, need to substitute it back https://github.com/actions/runner-images/issues/3014
         $versionInPath = (Split-Path $javaPath) -replace "\w:\\.*\\"
         $version = $versionInPath -replace '-', '+'
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""

@@ -103,3 +103,9 @@ Describe "CMake" {
         "cmake --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "ImageMagick" {
+    It "ImageMagick" {
+        "magick -version" | Should -ReturnZeroExitCode
+    }
+}

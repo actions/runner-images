@@ -111,7 +111,7 @@ build {
       "./provision/core/xcode-clt.sh",
       "./provision/core/homebrew.sh"
     ]
-     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
     scripts = [
@@ -213,7 +213,8 @@ build {
       "./provision/core/pypy.sh",
       "./provision/core/pipx-packages.sh",
       "./provision/core/bicep.sh",
-      "./provision/core/graalvm.sh"
+      "./provision/core/graalvm.sh",
+      "./provision/core/codeql-bundle.sh"
     ]
     environment_vars = [
       "API_PAT=${var.github_api_pat}"
@@ -241,7 +242,7 @@ build {
   provisioner "file" {
     destination = "../image-output/"
     direction = "download"
-    source = "./image-generation/output/*"
+    source = "./image-generation/output/"
   }
   provisioner "shell" {
     scripts = [

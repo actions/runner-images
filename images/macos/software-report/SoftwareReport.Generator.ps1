@@ -135,13 +135,13 @@ if ($os.IsLessThanMonterey) {
 
 if ($os.IsCatalina) {
     $utilitiesList += @(
-        (Get-VagrantVersion),
         (Get-ParallelVersion)
     )
 }
 
 if (-not $os.IsBigSur) {
     $utilitiesList += @(
+        (Get-VagrantVersion),
         (Get-VirtualBoxVersion)
     )
 }
@@ -161,6 +161,12 @@ $toolsList = @(
     (Get-AWSSAMCLIVersion),
     (Get-AWSSessionManagerCLIVersion)
 )
+
+if (-not $os.IsCatalina) {
+    $toolsList += @(
+        (Get-CodeQLBundleVersion)
+    )
+}
 
 if ($os.IsLessThanMonterey) {
     $toolsList += @(

@@ -239,11 +239,21 @@ function Get-VsixExtenstionFromMarketplace {
     $request -match 'Microsoft\.VisualStudio\.Services\.Payload\.FileName":"(?<filename>[^"]*)' | Out-Null
     $fileName = $Matches.filename
     $downloadUri = $assetUri + "/" + $fileName
-    # ProBITools.MicrosoftReportProjectsforVisualStudio2022 has different URL https://github.com/actions/virtual-environments/issues/5340
-    if ($ExtensionMarketPlaceName -eq "ProBITools.MicrosoftReportProjectsforVisualStudio2022")
-    {
-        $fileName = "Microsoft.DataTools.ReportingServices.vsix"
-        $downloadUri = "https://download.microsoft.com/download/b/b/5/bb57be7e-ae72-4fc0-b528-d0ec224997bd/Microsoft.DataTools.ReportingServices.vsix"
+    # ProBITools.MicrosoftReportProjectsforVisualStudio2022 has different URL https://github.com/actions/runner-images/issues/5340
+    switch ($ExtensionMarketPlaceName) {
+        "ProBITools.MicrosoftReportProjectsforVisualStudio2022" {
+            $fileName = "Microsoft.DataTools.ReportingServices.vsix"
+            $downloadUri = "https://download.microsoft.com/download/b/b/5/bb57be7e-ae72-4fc0-b528-d0ec224997bd/Microsoft.DataTools.ReportingServices.vsix"
+        }
+        "ProBITools.MicrosoftAnalysisServicesModelingProjects2022" {
+            $fileName = "Microsoft.DataTools.AnalysisServices.vsix"
+            $downloadUri = "https://download.microsoft.com/download/c/8/9/c896a7f2-d0fd-45ac-90e6-ff61f67523cb/Microsoft.DataTools.AnalysisServices.vsix"
+        }
+        # Starting from version 4.1 SqlServerIntegrationServicesProjects extension is distributed as exe file
+        "SSIS.SqlServerIntegrationServicesProjects" {
+            $fileName = "Microsoft.DataTools.IntegrationServices.exe"
+            $downloadUri = $assetUri + "/" + $fileName
+        }
     }
 
     return [PSCustomObject] @{
@@ -424,11 +434,6 @@ function Test-IsWin22
 function Test-IsWin19
 {
     (Get-WinVersion) -match "2019"
-}
-
-function Test-IsWin16
-{
-    (Get-WinVersion) -match "2016"
 }
 
 function Extract-7Zip {

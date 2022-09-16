@@ -1,5 +1,5 @@
-# Virtual-Environments
-The virtual-environments project uses [Packer](https://www.packer.io/) to generate disk images for the following platforms: Windows 2016/2019/2022, Ubuntu 18.04/20.04. 
+# GitHub Actions Runner Images
+The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for the following platforms: Windows 2019/2022, Ubuntu 18.04/20.04/22.04. 
 Each image is configured through a JSON template that Packer understands and which specifies where to build the image (Azure in this case), and what scripts to run to install software and prepare the disk.
 The Packer process initializes a connection to Azure subscription via Azure CLI, and automatically creates the temporary Azure resources required to build the source VM(temporary resource group, network interfaces, and VM from the "clean" image specified in the template). 
 If the VM deployment succeeds, the build agent connects to the VM and starts to execute installation steps from the JSON template.
@@ -27,9 +27,14 @@ Detailed instruction can be found in [Azure documentation](https://docs.microsof
 #### How to prepare Windows build agent
 Local machine or [Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli) can be used as a build agent.
 
-Download `packer` from https://www.packer.io/downloads, or install it via [Chocolatey](https://chocolatey.org/):
+Download & install `packer` from https://www.packer.io/downloads, or install it via [Chocolatey](https://chocolatey.org/):
 ```
 choco install packer
+```
+
+Download & install `git` from https://github.com/git-for-windows/git/releases, or install it via [Chocolatey](https://chocolatey.org/):
+```
+choco install git -params '"/GitAndUnixToolsOnPath"'
 ```
 
 Install the Azure Az PowerShell module - https://docs.microsoft.com/en-us/powershell/azure/install-az-ps.
@@ -42,16 +47,16 @@ Install Azure CLI - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
 ```
 
-Download Virtual-Environments repository.
+Download Runner Images repository.
 ```
 Set-Location c:\
-git clone https://github.com/actions/virtual-environments.git
+git clone https://github.com/actions/runner-images.git
 ```
 
 Import [GenerateResourcesAndImage](../helpers/GenerateResourcesAndImage.ps1) script from `/helpers` folder, and run `GenerateResourcesAndImage` function via Powershell.
 
 ```
-Set-Location C:\virtual-environments
+Set-Location C:\runner-images
 
 Import-Module .\helpers\GenerateResourcesAndImage.ps1
 
@@ -61,7 +66,7 @@ Where:
 - `SubscriptionId` - The Azure subscription Id where resources will be created.
 - `ResourceGroupName` - The Azure resource group name where the Azure resources will be created.
 - `ImageGenerationRepositoryRoot` - The root path of the image generation repository source.
-- `ImageType` - The type of the image being generated. Valid options are: "Windows2016", "Windows2019", "Windows2022", "Ubuntu1804", "Ubuntu2004", "Ubuntu2204".
+- `ImageType` - The type of the image being generated. Valid options are: "Windows2019", "Windows2022", "Ubuntu1804", "Ubuntu2004", "Ubuntu2204".
 - `AzureLocation` - The location of the resources being created in Azure. For example "East US".
 
 The function automatically creates all required Azure resources and kicks off packer image generation for the selected image type.
@@ -84,7 +89,7 @@ GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupNam
 After the successful image generation, Virtual Machine can be created from the generated VHD using [CreateAzureVMFromPackerTemplate](../helpers/CreateAzureVMFromPackerTemplate.ps1) script.
 
 ```
-Set-Location C:\virtual-environments
+Set-Location C:\runner-images
 
 Import-Module .\helpers\CreateAzureVMFromPackerTemplate.ps1
 
@@ -146,8 +151,8 @@ Generated tool versions and details can be found in related projects:
 > :warning: These scripts are intended to run on a VM deployed in Azure
 
 The user, created during the image generation, does not exist in the result VHD hence some configuration files related to the user's home directory need to be changed as well as the file permissions for some directories. Scripts for that are located in the `post-generation` folder in the repository:
-- Windows: https://github.com/actions/virtual-environments/tree/main/images/win/post-generation
-- Linux: https://github.com/actions/virtual-environments/tree/main/images/linux/post-generation
+- Windows: https://github.com/actions/runner-images/tree/main/images/win/post-generation
+- Linux: https://github.com/actions/runner-images/tree/main/images/linux/post-generation
 
 **Note:** The default user for Linux should have `sudo privileges`.
 
@@ -172,7 +177,7 @@ The scripts are copied to the VHD during the image generation process to the fol
 - **cleanup-logs.sh** - removes all build process logs from the machine
 - **environment-variables.sh** - replaces `$HOME` with the default user's home directory for environmental variables related to the default user home directory
 - **homebrew-permissions.sh** - Resets homebrew repository directory by running `git reset --hard` to make the working tree clean after chmoding /home and changes the repository directory owner to the current user
-- **rust-permissions.sh** - fixes permissions for the Rust folder. Detailed issue explanation is provided in [virtual-environments/issues/572](https://github.com/actions/virtual-environments/issues/572).
+- **rust-permissions.sh** - fixes permissions for the Rust folder. Detailed issue explanation is provided in [runner-images/issues/572](https://github.com/actions/runner-images/issues/572).
 
 ##### Windows
 

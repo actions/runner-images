@@ -347,9 +347,13 @@ function Build-PackageManagementEnvironmentTable {
         @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
+        },
+        @{
+            "Name" = "VCPKG_ROOT"
+            "Value" = $env:VCPKG_ROOT
         }
     )
-    if ((Test-IsWin16) -or (Test-IsWin19)) {
+    if (Test-IsWin19) {
         $envVariables += @(
             @{
                 "Name" = "CONDA"

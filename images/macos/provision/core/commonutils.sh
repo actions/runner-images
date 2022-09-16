@@ -19,6 +19,22 @@ done
 # Execute AppleScript to change security preferences for virtualbox
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
 if is_Monterey; then
+    if is_Veertu; then
+        retry=10
+        while [ $retry -gt 0 ]; do
+            {
+                osascript -e 'tell application "System Events" to get application processes where visible is true'
+            } && break
+
+            retry=$((retry-1))
+            if [ $retry -eq 0 ]; then
+                echo "No retry attempts left"
+                exit 1
+            fi
+            sleep 10
+        done
+    fi
+
     osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
 fi
 
@@ -28,7 +44,7 @@ bazel
 # Install Azure DevOps extension for Azure Command Line Interface
 az extension add -n azure-devops
 
-# Workaround https://github.com/actions/virtual-environments/issues/4931
+# Workaround https://github.com/actions/runner-images/issues/4931
 # by making Tcl/Tk paths the same on macOS 10.15 and macOS 11
 if is_BigSur; then
     version=$(brew info tcl-tk --json | jq -r '.[].installed[].version')

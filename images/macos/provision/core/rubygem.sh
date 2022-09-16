@@ -1,9 +1,8 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
-# Temporarily downgrade RubyGems version to 3.2.33 due to issue with RubyGems 3.3.3 (https://github.com/actions/virtual-environments-internal/issues/3162)
 echo Updating RubyGems...
-gem update --system 3.2.33
+gem update --system
 
 gemsToInstall=$(get_toolset_value '.ruby.rubygems | .[]')
 if [ -n "$gemsToInstall" ]; then
@@ -12,5 +11,8 @@ if [ -n "$gemsToInstall" ]; then
         gem install $gem
     done
 fi
+
+# Temporary uninstall public_suffix 5.0 gem as Cocoapods is not compatible with it yet https://github.com/actions/runner-images/issues/6149
+gem uninstall public_suffix -v 5.0.0
 
 invoke_tests "RubyGem"

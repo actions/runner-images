@@ -88,6 +88,11 @@ function Get-MsbuildVersion {
     return "MSBuild $msbuildVersion (from $msbuildPath)"
 }
 
+function Get-NuGetVersion {
+    $nugetVersion = nuget help | Select-Object -First 1 | Take-OutputPart -Part 2
+    return "NuGet $nugetVersion"
+}
+
 function Get-NodeVersion {
     $nodeVersion = $(node --version).Substring(1)
     return "Node $nodeVersion"
@@ -424,6 +429,10 @@ function Build-PackageManagementEnvironmentTable {
         @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
+        },
+        @{
+            "Name" = "VCPKG_ROOT"
+            "Value" = $env:VCPKG_ROOT
         }
     ) | ForEach-Object {
         [PSCustomObject] @{

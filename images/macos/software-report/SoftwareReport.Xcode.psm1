@@ -246,13 +246,6 @@ function Build-XcodeSupportToolsSection {
         )
     }
 
-    if ($os.IsCatalina) {
-        $xctool = Run-Command "xctool --version"
-        $toolList += @(
-            "xctool $xctool"
-        )
-    }
-
     $output = ""
     $output += New-MDHeader "Xcode Support Tools" -Level 4
     $output += New-MDList -Style Unordered -Lines $toolList

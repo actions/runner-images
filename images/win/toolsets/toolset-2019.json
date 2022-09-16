@@ -72,9 +72,9 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.16.*",
                 "1.17.*",
-                "1.18.*"
+                "1.18.*",
+                "1.19.*"
             ],
             "default": "1.17.*"
         }
@@ -125,7 +125,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "7.3.2"
+                "7.5.0"
             ],
             "zip_versions": [
                 "1.0.0",
@@ -180,12 +180,13 @@
         "additional_tools": [
             "cmake;3.10.2.4988404",
             "cmake;3.18.1",
+            "cmake;3.22.1",
             "patcher;v4"
         ],
         "ndk": {
-            "default": "23",
+            "default": "25",
             "versions": [
-                "21", "23", "24"
+                "23", "24", "25"
             ]
         }
     },
@@ -323,6 +324,7 @@
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.Modules.x86.x64",
+            "Microsoft.VisualStudio.Component.VC.Tools.ARM64EC",
             "Microsoft.VisualStudio.Component.VC.Redist.MSM",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
@@ -459,7 +461,8 @@
             {
                 "name": "cmake.install",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
-            }
+            },
+            { "name": "imagemagick" }
         ]
     },
     "node": {
@@ -478,7 +481,7 @@
         "version": "8.1"
     },
     "llvm": {
-        "version": "13"
+        "version": "14"
     },
     "postgresql": {
         "version": "14"

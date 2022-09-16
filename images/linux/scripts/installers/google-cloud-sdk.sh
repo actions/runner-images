@@ -10,8 +10,7 @@ REPO_URL="https://packages.cloud.google.com/apt"
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] $REPO_URL cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list
 wget -q https://packages.cloud.google.com/apt/doc/apt-key.gpg -O /usr/share/keyrings/cloud.google.gpg
 apt-get update -y
-# temporary downgrade google-cloud-sdk as python component has linking bugs
-apt-get install -y google-cloud-sdk=369.0.0-0
+apt-get install -y google-cloud-sdk
 
 # remove apt
 rm /etc/apt/sources.list.d/google-cloud-sdk.list
