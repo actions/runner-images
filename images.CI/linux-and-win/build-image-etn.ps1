@@ -20,7 +20,7 @@ if (-not (Test-Path $TemplatePath))
     exit 1
 }
 
-$Image = [io.path]::GetFileNameWithoutExtension($TemplatePath)
+$Image = [io.path]::GetFileName($TemplatePath).Split(".")[0]
 $TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 
