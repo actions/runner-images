@@ -307,3 +307,9 @@ function Get-SwigVersion {
     $swigVersion = $Matches.Version
     return "Swig $swigVersion"
 }
+
+function Get-ImageMagickVersion {
+    (magick -version | Select-String -Pattern "Version") -match "(?<version>\d+\.\d+\.\d+-\d+)" | Out-Null
+    $magickVersion = $Matches.Version
+    return "ImageMagick $magickVersion"
+}
