@@ -1,4 +1,8 @@
 #!/bin/bash -e
+################################################################################
+##  File:  graalvm.sh
+##  Desc:  Installs GraalVM
+################################################################################
 
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
