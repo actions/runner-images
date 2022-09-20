@@ -1,4 +1,8 @@
 #!/bin/bash -e
+################################################################################
+##  File:  yq.sh
+##  Desc:  Installs YQ
+################################################################################
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
