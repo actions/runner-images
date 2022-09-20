@@ -4,7 +4,7 @@
 ***
 # Ubuntu 22.04.1 LTS
 - Linux kernel version: 5.15.0-1019-azure
-- Image Version: 20220912.1
+- Image Version: 20220919.1
 
 ## Installed Software
 ### Language and Runtime
@@ -28,7 +28,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.9.4
-- Homebrew 3.6.1
+- Homebrew 3.6.2
 - Miniconda 4.12.0
 - Npm 8.15.0
 - NuGet 6.2.1.2
@@ -36,7 +36,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<23905f6f8>)
+- Vcpkg  (build from master \<4340582bc>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -53,32 +53,32 @@
 - Ansible 2.13.4
 - apt-fast 1.9.12
 - AzCopy 10.16.0 (available by `azcopy` and `azcopy10` aliases)
-- Bazel 5.3.0
+- Bazel 5.3.1
 - Bazelisk 1.13.2
-- Bicep 0.10.13
+- Bicep 0.10.61
 - Buildah 1.23.1
-- CMake 3.24.1
-- CodeQL Action Bundle 2.10.4
+- CMake 3.24.2
+- CodeQL Action Bundle 2.10.5
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.10.2+azure-1
+- Docker Compose v2 2.11.0+azure-1
 - Docker-Buildx 0.9.1
-- Docker-Moby Client 20.10.17+azure-1
-- Docker-Moby Server 20.10.17+azure-3
-- Fastlane 2.209.1
+- Docker-Moby Client 20.10.18+azure-1
+- Docker-Moby Server 20.10.18+azure-1
+- Fastlane 2.210.0
 - Git 2.37.3 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 7.63.0
+- Heroku 7.63.4
 - jq 1.6
 - Kind 0.15.0
-- Kubectl 1.25.0
+- Kubectl 1.25.1
 - Kustomize 4.5.7
 - Leiningen 2.9.10
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.26.1
+- Minikube 1.27.0
 - n 9.0.0
 - Newman 5.3.2
 - nvm 0.39.1
@@ -86,7 +86,7 @@
 - Packer 1.8.3
 - Parcel 2.7.0
 - Podman 3.4.4
-- Pulumi 3.39.3
+- Pulumi 3.40.0
 - R 4.2.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -98,18 +98,18 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.125
-- AWS CLI 2.7.31
+- AWS CLI 2.7.33
 - AWS CLI Session manager plugin 1.2.339.0
-- AWS SAM CLI 1.56.1
+- AWS SAM CLI 1.57.0
 - Azure CLI (azure-cli) 2.40.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.15.0
-- Google Cloud SDK 401.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 402.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 11.7.1
+- Netlify CLI 11.8.0
 - OpenShift CLI 4.11.4
 - ORAS CLI 0.14.1
-- Vercel CLI 28.2.5
+- Vercel CLI 28.3.0
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -126,8 +126,8 @@
 ### PHP
 | Tool     | Version |
 | -------- | ------- |
-| PHP      | 8.1.9   |
-| Composer | 2.4.1   |
+| PHP      | 8.1.10  |
+| Composer | 2.4.2   |
 | PHPUnit  | 8.5.29  |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -136,7 +136,7 @@
 - Cabal 3.6.2.0
 - GHC 9.4.2
 - GHCup 0.1.18.0
-- Stack 2.7.5
+- Stack 2.9.1
 
 ### Rust Tools
 - Cargo 1.63.0
@@ -153,11 +153,11 @@
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 105.0.5195.102
+- Google Chrome 105.0.5195.125
 - ChromeDriver 105.0.5195.52
 - Chromium 105.0.5177.0
-- Microsoft Edge 105.0.1343.33 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 105.0.1343.34
+- Microsoft Edge 105.0.1343.42 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 105.0.1343.42
 - Selenium server 4.4.0
 
 #### Environment variables
@@ -169,7 +169,7 @@
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Core SDK
-- 6.0.400
+- 6.0.401
 
 ### .NET tools
 - nbgv 3.5.109+bdfbd7dea6
@@ -277,14 +277,14 @@
 | ----------------------- | ------------------------------------------------------------------------ | ---------- |
 | alpine:3.14             | sha256:1ab24b3b99320975cca71716a7475a65d263d0b6b604d9d14ce08f7a3f67595c  | 2022-08-09 |
 | alpine:3.15             | sha256:69463fdff1f025c908939e86d4714b4d5518776954ca627cbeff4c74bcea5b22  | 2022-08-09 |
-| buildpack-deps:bullseye | sha256:872ba70b0805b817db42d9ea75f066b5fe2be82d04d0dab69e41810edd9aa3f9  | 2022-08-23 |
-| buildpack-deps:buster   | sha256:d73ba7863f3958cade1ef32f7620c3751ba5cd9653ff382a1b222ec17906884e  | 2022-08-23 |
-| debian:10               | sha256:fa8155031d12cd165c237e0b38688cade32912e990ffe21f9e31968d9a04da38  | 2022-08-23 |
-| debian:11               | sha256:d52921d97310d0bd48dab928548ef539d5c88c743165754c57cfad003031386c  | 2022-08-23 |
+| buildpack-deps:bullseye | sha256:19683807e2587d777766573697f9488b0c88677ee06313e69197fbaa42e80319  | 2022-09-13 |
+| buildpack-deps:buster   | sha256:caa4ae706b59e2ca4b7786a44a08617447f81b516507a70a4ca43665b479c4e3  | 2022-09-13 |
+| debian:10               | sha256:2f35b84014a5389e2a940113c51586bc067a05040ba181dee92c5a9fa9b15dcb  | 2022-09-13 |
+| debian:11               | sha256:3e82b1af33607aebaeb3641b75d6e80fd28d36e17993ef13708e9493e30e8ff9  | 2022-09-13 |
 | moby/buildkit:latest    | sha256:67c9251f9f2e103e1ee489b6cead518b6d82607ef485d3f1505fc4095a55ebeb  | 2022-08-22 |
-| node:14                 | sha256:48ad857f33fb03f542133b1e0d3524b1fcf596fce29e212cd9b7abd22d3d9188  | 2022-08-23 |
+| node:14                 | sha256:6adfb0c2a9db12a06893974bb140493a7482e2b3df59c058590594ceecd0c99b  | 2022-09-13 |
 | node:14-alpine          | sha256:4aff4ba0da347e51561587eba037a38db4eaa70e1a6c8334d66779fe963d5be7  | 2022-08-09 |
-| node:16                 | sha256:0c672d547405fe64808ea28b49c5772b1026f81b3b716ff44c10c96abf177d6a  | 2022-08-23 |
+| node:16                 | sha256:a5d9200d3b8c17f0f3d7717034a9c215015b7aae70cb2a9d5e5dae7ff8aa6ca8  | 2022-09-13 |
 | node:16-alpine          | sha256:2c405ed42fc0fd6aacbe5730042640450e5ec030bada7617beac88f742b6997b  | 2022-08-16 |
 | ubuntu:18.04            | sha256:6fec50623d6d37b7f3c14c5b6fc36c73fd04aa8173d59d54dba00da0e7ac50ee  | 2022-09-06 |
 | ubuntu:20.04            | sha256:35ab2bf57814e9ff49e365efd5a5935b6915eede5c7f8581e9e1b85e0eecbe16  | 2022-09-01 |
