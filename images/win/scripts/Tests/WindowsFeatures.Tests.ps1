@@ -72,7 +72,7 @@ Describe "Windows Updates" {
     It "<Title>" -TestCases $testCases {
         $expect = "Successful"
         if ( $Title -match "Microsoft Defender Antivirus" ) {
-            $expect = "Successful", "Failure"
+            $expect = "Successful", "Failure", "InProgress"
         }
 
         $Status | Should -BeIn $expect
