@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "13.4.1",
+        "default": "14.0.1",
         "versions": [
             { "link": "14.1", "version": "14.1.0"},
             { "link": "14.0.1", "version": "14.0.1" },
