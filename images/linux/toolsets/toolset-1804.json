@@ -217,7 +217,14 @@
         ]
     },
     "brew": [
-        {"name": "zstd"}
+        {
+            "name": "gcc@12",
+            "command": "gcc-12"
+        },
+        {
+            "name": "zstd",
+            "command": "zstd"
+        }
     ],
     "docker": {
         "images": [
