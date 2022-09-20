@@ -18,7 +18,7 @@ Describe "WindowsFeatures" {
 Describe "DiskSpace" {
     It "The image has enough disk space"{
         $availableSpaceMB =  [math]::Round((Get-PSDrive -Name C).Free / 1MB)
-        $minimumFreeSpaceMB = 5 * 1024
+        $minimumFreeSpaceMB = 18 * 1024
 
         $availableSpaceMB | Should -BeGreaterThan $minimumFreeSpaceMB
     }
@@ -72,7 +72,7 @@ Describe "Windows Updates" {
     It "<Title>" -TestCases $testCases {
         $expect = "Successful"
         if ( $Title -match "Microsoft Defender Antivirus" ) {
-            $expect = "Successful", "Failure"
+            $expect = "Successful", "Failure", "InProgress"
         }
 
         $Status | Should -BeIn $expect
