@@ -43,4 +43,10 @@ for package in $brew_packages; do
     fi
 done
 
+gfortran=$(brew --prefix)/bin/gfortran
+# Remove gfortran symlink, not to conflict with system gfortran
+if [[ -e $gfortran ]]; then
+    rm $gfortran
+fi
+
 invoke_tests "Tools" "Homebrew"
