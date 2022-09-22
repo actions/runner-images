@@ -213,7 +213,8 @@ build {
       "./provision/core/pipx-packages.sh",
       "./provision/core/bicep.sh",
       "./provision/core/graalvm.sh",
-      "./provision/core/codeql-bundle.sh"
+      "./provision/core/codeql-bundle.sh",
+      "./provision/core/colima.sh"
     ]
     environment_vars = [
       "API_PAT=${var.github_api_pat}"

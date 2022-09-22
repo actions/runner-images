@@ -597,3 +597,8 @@ function Get-CodeQLBundleVersion {
     $CodeQLVersion = & $CodeQLPath version --quiet
     return "CodeQL Action Bundle $CodeQLVersion"
 }
+
+function Get-ColimaVersion {
+    $colimaVersion = Run-Command "colima version" | Select-String "colima version" | Take-Part -Part 2
+    return "Colima $colimaVersion"
+}
