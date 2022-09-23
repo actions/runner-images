@@ -38,18 +38,24 @@ createJavaEnvironmentalVariable() {
 }
 
 enableRepositories() {
-    # Add Adopt PPA
-    wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
-    add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+
+osLabel=$(getOSVersionLabel)
+
+    if isUbuntu18 || isUbuntu20; then
+        # Add Adopt PPA
+        wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adopt.gpg
+        echo "deb [signed-by=/usr/share/keyrings/adopt.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ $osLabel main" > /etc/apt/sources.list.d/adopt.list
+    fi
 
     # Add Addoptium PPA
-    wget -qO - "https://packages.adoptium.net/artifactory/api/gpg/key/public" | apt-key add -
-    add-apt-repository --yes https://packages.adoptium.net/artifactory/deb/
+    # apt-key is deprecated, dearmor and add manually
+    wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adoptium.gpg
+    echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ $osLabel main" > /etc/apt/sources.list.d/adoptium.list
 
     if isUbuntu18 ; then
         # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
-        apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
-        apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
+        wget -qO - https://www.azul.com/wp-content/uploads/2021/05/0xB1998361219BD9C9.txt | gpg --dearmor > /usr/share/keyrings/zulu.gpg
+        echo "deb [signed-by=/usr/share/keyrings/zulu.gpg] https://repos.azul.com/azure-only/zulu/apt stable main" > /etc/apt/sources.list.d/zulu.list
     fi
 }
 
@@ -149,6 +155,14 @@ download_with_retries ${gradleDownloadUrl} "/tmp" "gradleLatest.zip"
 unzip -qq -d /usr/share /tmp/gradleLatest.zip
 ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=$(find /usr/share -depth -maxdepth 1 -name "gradle*")" | tee -a /etc/environment
+
+# Delete java repositories and keys
+rm -f /etc/apt/sources.list.d/adopt.list
+rm -f /etc/apt/sources.list.d/adoptium.list
+rm -f /etc/apt/sources.list.d/zulu.list
+rm -f /usr/share/keyrings/adopt.gpg
+rm -f /usr/share/keyrings/adoptium.gpg
+rm -f /usr/share/keyrings/zulu.gpg
 
 reloadEtcEnvironment
 invoke_tests "Java"

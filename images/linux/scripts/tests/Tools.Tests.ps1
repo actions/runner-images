@@ -168,7 +168,7 @@ Describe "gfortran" {
     }
 }
 
-Describe "Mono" -Skip:(Test-IsUbuntu22) {
+Describe "Mono" {
     It "mono" {
         "mono --version" | Should -ReturnZeroExitCode
     }
@@ -182,7 +182,7 @@ Describe "Mono" -Skip:(Test-IsUbuntu22) {
     }
 }
 
-Describe "MSSQLCommandLineTools" -Skip:(Test-IsUbuntu22) {
+Describe "MSSQLCommandLineTools" {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
     }
@@ -257,16 +257,22 @@ Describe "HHVM" -Skip:(Test-IsUbuntu22) {
 }
 
 Describe "Homebrew" {
+    $brewToolset = (Get-ToolsetContent).brew
+    $testCases = $brewToolset | ForEach-Object { @{brewName = $_.name; brewCommand = $_.command} }
+
     It "homebrew" {
-        "brew --version" | Should -ReturnZeroExitCode
+        "/home/linuxbrew/.linuxbrew/bin/brew --version" | Should -ReturnZeroExitCode
     }
 
-    Context "Packages" {
-        $testCases = (Get-ToolsetContent).brew | ForEach-Object { @{ ToolName = $_.name } }
+    It "zstd has /usr/local/bin symlink" {
+        "/usr/local/bin/zstd" | Should -Exist
+    }
 
-        It "<ToolName>" -TestCases $testCases {
-           "$ToolName --version" | Should -Not -BeNullOrEmpty
-        }
+    It "homebrew package <brewName>" -TestCases $testCases {
+        $brewPrefix = /home/linuxbrew/.linuxbrew/bin/brew --prefix $brewName
+        $brewPackage = Join-Path $brewPrefix "bin" $brewCommand
+
+        "$brewPackage --version" | Should -ReturnZeroExitCode
     }
 }
 

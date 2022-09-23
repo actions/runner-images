@@ -83,7 +83,7 @@
                 "versions": [ "8", "11", "12" ]
             }
         ],
-        "maven": "3.8.5"
+        "maven": "3.8.6"
     },
     "android": {
         "cmdline-tools": "latest",
@@ -102,12 +102,13 @@
         ],
         "additional_tools": [
             "cmake;3.10.2.4988404",
-            "cmake;3.18.1"
+            "cmake;3.18.1",
+            "cmake;3.22.1"
         ],
         "ndk": {
-            "default": "21",
+            "default": "25",
             "versions": [
-                "21", "23"
+                "23", "24", "25"
             ]
         }
     },
@@ -121,7 +122,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "7.3.2"
+                "7.5.0"
             ],
             "zip_versions": [
                 "3.1.0",
@@ -216,7 +217,14 @@
         ]
     },
     "brew": [
-        {"name": "zstd"}
+        {
+            "name": "gcc@12",
+            "command": "gcc-12"
+        },
+        {
+            "name": "zstd",
+            "command": "zstd"
+        }
     ],
     "docker": {
         "images": [

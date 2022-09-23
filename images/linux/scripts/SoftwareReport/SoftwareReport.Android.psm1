@@ -166,9 +166,9 @@ function Get-AndroidNDKVersions {
 }
 
 function Build-AndroidEnvironmentTable {
-    $androidVersions = Get-Item env:ANDROID_*	
+    $androidVersions = Get-Item env:ANDROID_*
 
-    $shouldResolveLink = 'ANDROID_NDK_PATH', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
+    $shouldResolveLink = 'ANDROID_NDK', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
     return $androidVersions | Sort-Object -Property Name | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name

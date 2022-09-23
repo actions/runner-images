@@ -87,6 +87,7 @@ EOF
     sleep 10
 done
 
+    echo "Getting terminal windows"
     term_service=$(launchctl list | grep -i terminal | cut -f3)
     echo "Close terminal windows: gui/501/${term_service}"
     launchctl bootout gui/501/${term_service} && sleep 5

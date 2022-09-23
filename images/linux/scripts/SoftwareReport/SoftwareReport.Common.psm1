@@ -3,6 +3,11 @@ function Get-BashVersion {
     return "Bash $version"
 }
 
+function Get-DashVersion {
+    $version = dpkg-query -W -f '${Version}' dash
+    return "Dash $version"
+}
+
 function Get-CPPVersions {
     $result = Get-CommandResult "apt list --installed" -Multiline
     $cppVersions = $result.Output | Where-Object { $_ -match "g\+\+-\d+"} | ForEach-Object {
@@ -83,6 +88,11 @@ function Get-MsbuildVersion {
     return "MSBuild $msbuildVersion (from $msbuildPath)"
 }
 
+function Get-NuGetVersion {
+    $nugetVersion = nuget help | Select-Object -First 1 | Take-OutputPart -Part 2
+    return "NuGet $nugetVersion"
+}
+
 function Get-NodeVersion {
     $nodeVersion = $(node --version).Substring(1)
     return "Node $nodeVersion"
@@ -139,7 +149,7 @@ function Get-LernaVersion {
 }
 
 function Get-HomebrewVersion {
-    $result = Get-CommandResult "brew -v"
+    $result = Get-CommandResult "/home/linuxbrew/.linuxbrew/bin/brew -v"
     $result.Output -match "Homebrew (?<version>\d+\.\d+\.\d+)" | Out-Null
     $version = $Matches.version
     return "Homebrew $version"
@@ -419,6 +429,10 @@ function Build-PackageManagementEnvironmentTable {
         @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
+        },
+        @{
+            "Name" = "VCPKG_ROOT"
+            "Value" = $env:VCPKG_ROOT
         }
     ) | ForEach-Object {
         [PSCustomObject] @{

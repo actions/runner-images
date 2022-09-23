@@ -51,7 +51,7 @@ Describe "GDIProcessHandleQuota" {
     }
 }
 
-Describe "Test Signed Drivers" -Skip:(Test-IsWin16) {
+Describe "Test Signed Drivers" {
     It "bcdedit testsigning should be Yes"{
         "$(bcdedit)" | Should -Match "testsigning\s+Yes"
     }
@@ -72,7 +72,7 @@ Describe "Windows Updates" {
     It "<Title>" -TestCases $testCases {
         $expect = "Successful"
         if ( $Title -match "Microsoft Defender Antivirus" ) {
-            $expect = "Successful", "Failure"
+            $expect = "Successful", "Failure", "InProgress"
         }
 
         $Status | Should -BeIn $expect

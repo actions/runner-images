@@ -18,8 +18,18 @@ Describe "Chrome" {
     }
 }
 
+Describe "Edge" {
+    It "Edge" {
+        "microsoft-edge --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Edge Driver" {
+        "msedgedriver --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Chromium" {
     It "Chromium" {
         "chromium-browser --version" | Should -ReturnZeroExitCode
     }
-} 
+}

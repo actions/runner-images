@@ -10,7 +10,13 @@ body:
       required: true
   - type: checkboxes
     attributes:
-      label: Virtual environments affected
+      label: Platforms affected
+      options:
+        - label: Azure DevOps
+        - label: GitHub Actions
+  - type: checkboxes
+    attributes:
+      label: Runner images affected
       options:
         - label: Ubuntu 18.04
         - label: Ubuntu 20.04
@@ -20,15 +26,13 @@ body:
         - label: macOS 12
         - label: Windows Server 2019
         - label: Windows Server 2022
-    validations:
-      required: true
   - type: textarea
     attributes:
       label: Image version and build link
       description: |
         Image version where you are experiencing the issue. Where to find image version in build logs:
-        1. For GitHub Actions, under "Set up job" -> "Virtual Environment" -> "Version".
-        2. For Azure DevOps, under "Initialize job" -> "Virtual Environment" -> "Version".
+        1. For GitHub Actions, under "Set up job" -> "Runner Image" -> "Version".
+        2. For Azure DevOps, under "Initialize job" -> "Runner Image" -> "Version".
 
         If you have a public example, please, provide a link to the failed build.
     validations:
@@ -37,14 +41,20 @@ body:
     attributes:
       label: Is it regression?
       description: If yes, please, provide the latest image version where the issue didn't persist, and a link to the latest successful build.
+    validations:
+        required: true
   - type: textarea
     attributes:
       label: Expected behavior
       description: A description of what you expected to happen.
+    validations:
+        required: true
   - type: textarea
     attributes:
       label: Actual behavior
       description: A description of what is actually happening.
+    validations:
+        required: true
   - type: textarea
     attributes:
       label: Repro steps

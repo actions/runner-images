@@ -82,4 +82,8 @@ PREFERENCES_XAMARIN_DIR="${HOME}/Library/Preferences/Xamarin"
 mkdir -p $PREFERENCES_XAMARIN_DIR
 /usr/libexec/PlistBuddy -c "add :AppleSdkRoot string /Applications/Xcode_${DEFAULT_XCODE_VERSION}.app" $PREFERENCES_XAMARIN_DIR/Settings.plist
 
+# Temporary workaround to recreate nuget.config file with a correct feed https://github.com/actions/runner-images/issues/5768
+rm -rf $HOME/.config/NuGet/NuGet.Config
+nuget config
+
 invoke_tests "Xamarin"

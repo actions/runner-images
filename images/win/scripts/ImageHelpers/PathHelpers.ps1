@@ -75,7 +75,7 @@ function Set-DefaultVariable {
 
     $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($Name, $Writable)
     $key.SetValue($DefaultVariable, $Value, $Kind)
-    Get-DefaultVariable $DefaultVariable
+    Get-DefaultVariable -DefaultVariable $DefaultVariable -Name $Name
     $key.Handle.Close()
     [System.GC]::Collect()
 }
@@ -132,6 +132,25 @@ function Add-DefaultPathItem {
     $currentPath = Get-DefaultPath
     $newPath = $PathItem + ';' + $currentPath
     Set-DefaultPath -NewPath $newPath
+    Disconnect-Hive
+}
+
+function Add-DefaultItem {
+    param(
+        [string]$DefaultVariable,
+        [string]$Value,
+        [string]$Name = "DEFAULT\Environment",
+        [string]$Kind = "ExpandString",
+        [bool]$Writable = $true
+    )
+
+    Connect-Hive
+    $regPath = Join-Path "HKLM:\" $Name
+    if (-not (Test-Path $Name)) {
+        Write-Host "Creating $regPath key"
+        New-Item -Path $regPath -Force | Out-Null
+    }
+    Set-DefaultVariable -DefaultVariable $DefaultVariable -Value $Value -Name $Name -Kind $Kind -Writable $Writable
     Disconnect-Hive
 }
 

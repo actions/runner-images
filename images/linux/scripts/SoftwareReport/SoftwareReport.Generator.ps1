@@ -39,8 +39,11 @@ $markdown += New-MDHeader "Language and Runtime" -Level 3
 
 $runtimesList = @(
     (Get-BashVersion),
+    (Get-DashVersion),
     (Get-CPPVersions),
     (Get-FortranVersions),
+    (Get-MsbuildVersion),
+    (Get-MonoVersion),
     (Get-NodeVersion),
     (Get-PerlVersion),
     (Get-PythonVersion),
@@ -55,8 +58,6 @@ $runtimesList = @(
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $runtimesList += @(
-        (Get-MsbuildVersion),
-        (Get-MonoVersion),
         (Get-ErlangVersion),
         (Get-ErlangRebar3Version),
         (Get-SwiftVersion)
@@ -72,6 +73,7 @@ $packageManagementList = @(
     (Get-CpanVersion),
     (Get-GemVersion),
     (Get-MinicondaVersion),
+    (Get-NuGetVersion),
     (Get-HelmVersion),
     (Get-NpmVersion),
     (Get-YarnVersion),
@@ -82,6 +84,18 @@ $packageManagementList = @(
 )
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
+
+$markdown += New-MDHeader "Notes:" -Level 5
+$reportHomebrew = @'
+```
+Location: /home/linuxbrew
+Note: Homebrew is pre-installed on image but not added to PATH.
+run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" command
+to accomplish this.
+```
+'@
+$markdown += New-MDParagraph -Lines $reportHomebrew
+
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
@@ -230,6 +244,8 @@ $browsersAndDriversList = @(
     (Get-ChromeVersion),
     (Get-ChromeDriverVersion),
     (Get-ChromiumVersion),
+    (Get-EdgeVersion),
+    (Get-EdgeDriverVersion),
     (Get-SeleniumVersion)
 )
 
@@ -269,9 +285,7 @@ $markdown += New-MDList -Style Unordered -Lines ( $databaseLists | Sort-Object )
 
 $markdown += Build-PostgreSqlSection
 $markdown += Build-MySQLSection
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $markdown += Build-MSSQLToolsSection
-}
+$markdown += Build-MSSQLToolsSection
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection

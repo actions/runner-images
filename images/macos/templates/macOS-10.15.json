@@ -186,7 +186,6 @@
                 "./provision/core/cocoapods.sh",
                 "./provision/core/android-toolsets.sh",
                 "./provision/core/xamarin.sh",
-                "./provision/core/xamarin-android-ndk.sh",
                 "./provision/core/vsmac.sh",
                 "./provision/core/nvm.sh",
                 "./provision/core/apache.sh",
