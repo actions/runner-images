@@ -90,7 +90,7 @@ $reportHomebrew = @'
 ```
 Location: /home/linuxbrew
 Note: Homebrew is pre-installed on image but not added to PATH.
-run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv) command
+run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" command
 to accomplish this.
 ```
 '@
