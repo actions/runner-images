@@ -203,8 +203,7 @@
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
                 "./provision/core/bicep.sh",
-                "./provision/core/graalvm.sh",
-                "./provision/core/colima.sh"
+                "./provision/core/graalvm.sh"
             ],
             "environment_vars": [
                 "API_PAT={{user `github_api_pat`}}"
