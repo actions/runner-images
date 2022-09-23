@@ -1,6 +1,6 @@
 | Announcements |
 |-|
-| [[Ubuntu] homebrew will be removed from ](https://github.com/actions/runner-images/issues/6283) |
+| [[Ubuntu] homebrew will be removed from $PATH](https://github.com/actions/runner-images/issues/6283) |
 | [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by 4/1/2023](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 20.04.5 LTS
