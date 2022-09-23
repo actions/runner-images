@@ -1,16 +1,16 @@
 | Announcements |
 |-|
-| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.0 on September, 26](https://github.com/actions/runner-images/issues/6225) |
+| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.0.1 on September, 26](https://github.com/actions/runner-images/issues/6225) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 11.7 info
 - System Version: macOS 11.7 (20G817)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220912.1
+- Image Version: 20220918.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.422 5.0.102 5.0.202 5.0.302 5.0.408 6.0.400
+- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.423 5.0.102 5.0.202 5.0.302 5.0.408 6.0.401
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0 is default
 - Clang/LLVM 14.0.6 is available on `'$(brew --prefix llvm@14)/bin/clang'`
@@ -38,7 +38,7 @@
 - Bundler version 2.3.22
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.4.1
+- Composer 2.4.2
 - Homebrew 3.6.1
 - Miniconda 4.12.0
 - NPM 8.15.0
@@ -47,7 +47,7 @@
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
 - RubyGems 3.3.22
-- Vcpkg 2022 (build from master \<23905f6f8>)
+- Vcpkg 2022 (build from master \<01b29f6d8>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -79,7 +79,7 @@
 - gpg (GnuPG) 2.3.7
 - helm v3.9.4+gdbc6d8e
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-47
+- ImageMagick 7.1.0-48
 - jq 1.6
 - mongo v5.0.11
 - mongod v5.0.11
@@ -97,16 +97,16 @@
 ### Tools
 - Aliyun CLI 3.0.125
 - App Center CLI 2.11.0
-- AWS CLI 2.7.31
+- AWS CLI 2.7.33
 - AWS SAM CLI 1.56.1
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.40.0
-- Bicep CLI 0.10.13
+- Bicep CLI 0.10.61
 - Cabal 3.6.2.0
-- Cmake 3.24.1
-- CodeQL Action Bundle 2.10.4
-- Fastlane 2.209.1
+- Cmake 3.24.2
+- CodeQL Action Bundle 2.10.5
+- Fastlane 2.210.0
 - GHC 9.4.2
 - GHCup 0.1.18.0
 - Jazzy 0.14.3
@@ -122,10 +122,10 @@
 ### Browsers
 - Safari 16.0 (16614.1.25.9.10)
 - SafariDriver 16.0 (16614.1.25.9.10)
-- Google Chrome 105.0.5195.102 
+- Google Chrome 105.0.5195.125 
 - ChromeDriver 105.0.5195.52
-- Microsoft Edge 105.0.1343.33 
-- Microsoft Edge WebDriver 105.0.1343.34
+- Microsoft Edge 105.0.1343.42 
+- Microsoft Edge WebDriver 105.0.1343.42
 - Mozilla Firefox 104.0.2
 - geckodriver 0.31.0
 - Selenium server 4.4.0
@@ -218,7 +218,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.3.4.4  | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.3.5.0  | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
@@ -359,7 +359,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 - libXext 1.3.4
 - libXft 2.3.6
 - Tcl/Tk 8.6.12_1
-- Zlib 1.2.12
+- Zlib 1.2.12_1
 
 
 

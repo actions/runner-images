@@ -84,6 +84,18 @@ $packageManagementList = @(
 )
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
+
+$markdown += New-MDHeader "Notes:" -Level 5
+$reportHomebrew = @'
+```
+Location: /home/linuxbrew
+Note: Homebrew is pre-installed on image but not added to PATH.
+run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" command
+to accomplish this.
+```
+'@
+$markdown += New-MDParagraph -Lines $reportHomebrew
+
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
