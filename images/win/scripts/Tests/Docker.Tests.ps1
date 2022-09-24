@@ -17,6 +17,10 @@ Describe "Docker" {
     It "docker service is up" {
         "docker images" | Should -ReturnZeroExitCode
     }
+
+    It "docker symlink" {
+        "C:\Windows\SysWOW64\docker.exe ps" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "DockerImages" {
