@@ -67,24 +67,20 @@ installOpenJDK() {
     if [[ ${VENDOR_NAME} == "Temurin-Hotspot" ]]; then
         apt-get -y install temurin-${JAVA_VERSION}-jdk=\*
         javaVersionPath="/usr/lib/jvm/temurin-${JAVA_VERSION}-jdk-amd64"
+        assetUrl=$(curl -s "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
     elif [[ ${VENDOR_NAME} == "Adopt" ]]; then
         apt-get -y install adoptopenjdk-${JAVA_VERSION}-hotspot=\*
         javaVersionPath="/usr/lib/jvm/adoptopenjdk-${JAVA_VERSION}-hotspot-amd64"
+        assetUrl=$(curl -s "https://api.adoptopenjdk.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
     else
         echo "${VENDOR_NAME} is invalid, valid names are: Temurin-Hotspot and Adopt"
         exit 1
     fi
 
+    asset=$(echo ${assetUrl} | jq -r '.[] | select(.binary.os=="linux" and .binary.image_type=="jdk" and .binary.architecture=="x64")')
+    fullJavaVersion=$(echo ${asset} | jq -r '.version.semver' | tr '+' '-')
+
     JAVA_TOOLCACHE_PATH="${AGENT_TOOLSDIRECTORY}/Java_${VENDOR_NAME}_jdk"
-
-    fullJavaVersion=$(cat "${javaVersionPath}/release" | grep "^SEMANTIC" | cut -d "=" -f 2 | tr -d "\"" | tr "+" "-")
-
-    # If there is no semver in java release, then extract java version from -fullversion
-    [[ -z ${fullJavaVersion} ]] && fullJavaVersion=$(${javaVersionPath}/bin/java -fullversion 2>&1 | tr -d "\"" | tr "+" "-" | awk '{print $4}')
-
-    # Convert non valid semver like 11.0.14.1-9 -> 11.0.14-9
-    # https://github.com/adoptium/temurin-build/issues/2248
-    [[ ${fullJavaVersion} =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ ]] && fullJavaVersion=$(echo $fullJavaVersion | sed -E 's/\.[0-9]+-/-/')
 
     javaToolcacheVersionPath="${JAVA_TOOLCACHE_PATH}/${fullJavaVersion}"
     mkdir -p "${javaToolcacheVersionPath}"

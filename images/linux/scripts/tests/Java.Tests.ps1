@@ -59,4 +59,41 @@ Describe "Java" {
         }
        "`"$javaPath`" -version" | Should -MatchCommandOutput ([regex]::Escape("openjdk version `"${Version}."))
     }
+
+    It "Java <Version> fullversion matches with API" -TestCases $jdkVersions {
+        $javaVariableValue = Get-EnvironmentVariable "JAVA_HOME_${Version}_X64"
+        $javaPath = Join-Path $javaVariableValue "bin/java"
+
+        $fullVersionOutput = (Get-CommandResult "$javaPath -fullversion").Output
+        $fullVersion = [regex]::Matches($fullVersionOutput, '((?<=\").*(?=\"))').Value
+
+        $assetUrlTimurin = Invoke-RestMethod -Uri "https://api.adoptium.net/v3/assets/latest/${Version}/hotspot"
+        $timurinApiReq = $assetUrlTimurin |  Where-Object {
+            $_.binary.os -eq "linux" `
+            -and $_.binary.image_type -eq "jdk" `
+            -and $_.binary.architecture -eq "x64"
+
+        }
+
+        $apiFullVersion = $timurinApiReq.version.openjdk_version
+
+        $fullVersion | Should -BeExactly $apiFullVersion
+    }
+
+    It "Java Adopt <Version> fullversion matches with API" -TestCases $adoptJdkVersions -Skip:(Test-IsUbuntu22) {
+        $javaPath = Join-Path (Get-ChildItem ${env:AGENT_TOOLSDIRECTORY}\Java_Adopt_jdk\${Version}*) "x64\bin\java"
+        $fullVersionOutput = (Get-CommandResult "$javaPath -fullversion").Output
+        $fullVersion = [regex]::Matches($fullVersionOutput, '((?<=\").*(?=\"))').Value
+
+        $assetUrlAdopt = Invoke-RestMethod -Uri "https://api.adoptopenjdk.net/v3/assets/latest/${Version}/hotspot"
+        $adoptApiReq = $assetUrlAdopt |  Where-Object {
+            $_.binary.os -eq "linux" `
+            -and $_.binary.image_type -eq "jdk" `
+            -and $_.binary.architecture -eq "x64"
+    }
+
+        $apiFullVersion = $adoptApiReq.version.openjdk_version
+
+        $fullVersion | Should -BeExactly $apiFullVersion
+    }
 }
