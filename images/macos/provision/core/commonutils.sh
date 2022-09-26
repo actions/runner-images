@@ -16,7 +16,12 @@ for package in $cask_packages; do
     brew install --cask $package
 done
 
-# Execute AppleScript to change security preferences for virtualbox
+# Load "Parallels International GmbH"
+if is_Monterey; then
+    sudo kextload /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.9/prl_hypervisor.kext || true
+fi
+
+# Execute AppleScript to change security preferences
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
 if is_Monterey; then
     if is_Veertu; then
@@ -36,6 +41,26 @@ if is_Monterey; then
     fi
 
     osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
+fi
+
+# Validate "Parallels International GmbH" kext
+if is_Monterey; then
+    dbName="/var/db/SystemPolicyConfiguration/KextPolicy"
+    dbQuery="SELECT * FROM kext_policy WHERE bundle_id LIKE 'com.parallels.kext.%';"
+    kext=$(sudo sqlite3 $dbName "$dbQuery")
+
+    if [ -z "$kext" ]; then
+        echo "Parallels International GmbH not found"
+        exit 1
+    fi
+
+    # Create env variable
+    url=$(brew info --json=v2 --installed | jq -r '.casks[] | select(.name[] == "Parallels Desktop").url')
+    if [ -z "$url" ]; then
+        echo "Unable to parse url for Parallels Desktop cask"
+        exit 1
+    fi
+    echo "export PARALLELS_DMG_URL=$url" >> "${HOME}/.bashrc"
 fi
 
 # Invoke bazel to download bazel version via bazelisk

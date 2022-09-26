@@ -575,6 +575,20 @@ function Build-PackageManagementEnvironmentTable {
     }
 }
 
+function Build-MiscellaneousEnvironmentTable {
+    return @(
+        @{
+            "Name" = "PARALLELS_DMG_URL"
+            "Value" = $env:PARALLELS_DMG_URL
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
+}
+
 function Get-GraalVMVersion {
     $version = & "$env:GRAALVM_11_ROOT\java" --version | Select-String -Pattern "GraalVM" | Take-Part -Part 5,6
     return $version
