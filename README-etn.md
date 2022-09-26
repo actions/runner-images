@@ -14,7 +14,7 @@ There are some other files that have also been modified to support our process. 
 * images.CI\linux-and-win\azure-pipelines\windows2019.yml -> windows2019-etn.yml
 * images.CI\linux-and-win\azure-pipelines\image-generation.yml -> image-generation-etn.yml
 * images.CI\linux-and-win\build-image.ps1 -> build-image-etn.ps1
-Note: * images/win/scripts/Tests/WindowsFeatures.Tests.ps1: On line 21 keep $minimumFreeSpaceMB = 5 * 1024 to have $availableSpaceMB greater than $minimumFreeSpaceMB
+* Note: images/win/scripts/Tests/WindowsFeatures.Tests.ps1: On line 21 keep $minimumFreeSpaceMB = 5 * 1024 to have $availableSpaceMB greater than $minimumFreeSpaceMB
 
 It would be great to eliminate the need for our modified process, but the process MS is using doesn't create images, it just create VM disk.  Hopefully MS will eventually update their process to use images someday.  It is worth taking some time to see if there is a better way to do this that doesn't have any manual steps.
 
