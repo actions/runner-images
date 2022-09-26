@@ -10,6 +10,11 @@ $instScriptUrl = "https://raw.githubusercontent.com/microsoft/Windows-Containers
 $instScriptPath = Start-DownloadWithRetry -Url $instScriptUrl -Name "install-docker-ce.ps1"
 & $instScriptPath
 
+# Fix AZ CLI DOCKER_COMMAND_ERROR
+# cli.azure.cli.command_modules.acr.custom: Could not run 'docker.exe' command.
+# https://github.com/Azure/azure-cli/issues/18766
+New-Item -ItemType SymbolicLink -Path "C:\Windows\SysWOW64\docker.exe" -Target "C:\Windows\System32\docker.exe"
+
 Write-Host "Install-Package Docker-Compose v1"
 Choco-Install -PackageName docker-compose
 
@@ -21,9 +26,8 @@ Start-DownloadWithRetry -Url $dockerComposev2Url -Name docker-compose.exe -Downl
 
 Write-Host "Install docker-wincred"
 $dockerCredLatestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/docker/docker-credential-helpers/releases/latest"
-$dockerCredDownloadUrl = $dockerCredLatestRelease.assets.browser_download_url -match "docker-credential-wincred-.+\.zip" | Select-Object -First 1
-$dockerCredArchive = Start-DownloadWithRetry -Url $dockerCredDownloadUrl
-Expand-Archive -Path $dockerCredArchive -DestinationPath "C:\Windows\System32"
+$dockerCredDownloadUrl = $dockerCredLatestRelease.assets.browser_download_url -match "docker-credential-wincred-.+\.exe" | Select-Object -First 1
+Start-DownloadWithRetry -Url $dockerCredDownloadUrl -DownloadPath "C:\Windows\System32" -Name "docker-credential-wincred.exe"
 
 Write-Host "Download docker images"
 $dockerImages = (Get-ToolsetContent).docker.images
