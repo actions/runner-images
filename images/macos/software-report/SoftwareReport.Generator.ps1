@@ -309,7 +309,6 @@ $markdown += New-MDList -Style Unordered -Lines (@(
 )
 
 if ($os.IsMonterey) {
-$markdown += New-MDNewLine
 $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-MiscellaneousEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
