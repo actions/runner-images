@@ -1,10 +1,6 @@
-| Announcements |
-|-|
-| [[Windows] Docker EE will be replaced with Docker CE / Moby on September, 19](https://github.com/actions/runner-images/issues/6181) |
-***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 1006
-- Image Version: 20220919.1
+- Image Version: 20220925.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -16,7 +12,7 @@
 - Julia 1.8.1
 - Kotlin 1.7.10
 - LLVM 14.0.6
-- Node 16.17.0
+- Node 16.17.1
 - Perl 5.32.1
 - PHP 8.1.10
 - Python 3.9.13
@@ -32,7 +28,7 @@
 - pip 22.2.2 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<4340582bc>)
+- Vcpkg (build from master \<57d3194e7>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -58,17 +54,17 @@
 - CMake 3.24.2
 - CodeQL Action Bundle 2.10.5
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.11.0
+- Docker Compose v2 2.11.1
 - Docker master-dockerproject-2022-03-26
-- Docker-wincred 0.6.4
+- Docker-wincred 0.7.0
 - ghc 9.4.2
 - Git 2.37.3.windows.1
 - Git LFS 3.2.0
-- ImageMagick 7.1.0-48
+- ImageMagick 7.1.0-49
 - InnoSetup 6.2.1
 - jq 1.6
-- Kind 0.15.0
-- Kubectl 1.25.1
+- Kind 0.16.0
+- Kubectl 1.25.2
 - Mercurial 5.0
 - Mingw-w64 11.2.0
 - Newman 5.3.2
@@ -88,19 +84,19 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.125
-- AWS CLI 2.7.33
+- Alibaba Cloud CLI 3.0.127
+- AWS CLI 2.7.35
 - AWS SAM CLI 1.57.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.40.0
 - Azure DevOps CLI extension 0.25.0
-- GitHub CLI 2.15.0
+- GitHub CLI 2.16.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.63.0
-- Rust 1.63.0
-- Rustdoc 1.63.0
+- Cargo 1.64.0
+- Rust 1.64.0
+- Rustdoc 1.64.0
 - Rustup 1.25.1
 
 #### Packages
@@ -108,15 +104,15 @@
 - cargo-audit 0.17.0
 - cargo-outdated 0.11.1
 - cbindgen 0.24.3
-- Clippy 0.1.63
+- Clippy 0.1.64
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
 - Google Chrome 105.0.5195.127
 - Chrome Driver 105.0.5195.52
-- Microsoft Edge 105.0.1343.42
-- Microsoft Edge Driver 105.0.1343.42
-- Mozilla Firefox 104.0.2
+- Microsoft Edge 105.0.1343.50
+- Microsoft Edge Driver 105.0.1343.50
+- Mozilla Firefox 105.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.4.0
@@ -165,8 +161,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 12.22.12 | x64          |
-| 14.20.0 | x64          |
-| 16.17.0 | x64          |
+| 14.20.1 | x64          |
+| 16.17.1 | x64          |
 
 #### Python
 | Version | Architecture |
@@ -211,7 +207,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.9.0
-- DacFx 16.0.6161.0
+- DacFx 16.0.6296.0
 - MySQL 8.0.30.0
 - SQL OLEDB Driver 18.6.3.0
 - SQLPS 1.0
@@ -551,7 +547,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.8.1
 
 ### .NET tools
-- nbgv 3.5.109+bdfbd7dea6
+- nbgv 3.5.113+a908c6d9d2
 
 ### PowerShell Tools
 - PowerShell 7.2.6
@@ -571,7 +567,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.170          |
+| AWSPowerShell      | 4.1.175          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.11.1           |
@@ -586,7 +582,7 @@ All other versions are saved but not installed.
 | Package Name               | Version                                                                                                                                                |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 7.0                                                                                                                                                    |
-| Android Emulator           | 31.3.10                                                                                                                                                |
+| Android Emulator           | 31.3.11                                                                                                                                                |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 33.0.3                                                                                                                                                 |
@@ -615,5 +611,4 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:0fc848adcb5dae2b733bb39b2a0485c5a08f8c338309b48d85cfe0909492874f  | 2022-09-13 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:ac76db222126ed259f8ac1ed42e7e4564509ea869ae535e3faae866c01cd7755  | 2022-09-08 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:2846453bcfaee661d563e29d6513191dccf7280bb826b2da9d6e7226fba2db94  | 2022-09-08 |
-
 
