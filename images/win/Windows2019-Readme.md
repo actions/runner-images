@@ -1,10 +1,6 @@
-| Announcements |
-|-|
-| [[Windows] Docker EE will be replaced with Docker CE / Moby on September, 19](https://github.com/actions/runner-images/issues/6181) |
-***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 3406
-- Image Version: 20220918.1
+- Image Version: 20220925.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -16,7 +12,7 @@
 - Julia 1.8.1
 - Kotlin 1.7.10
 - LLVM 14.0.6
-- Node 16.17.0
+- Node 16.17.1
 - Perl 5.32.1
 - PHP 8.1.10
 - Python 3.7.9
@@ -32,7 +28,7 @@
 - pip 22.2.2 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<01b29f6d8>)
+- Vcpkg (build from master \<57d3194e7>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -44,7 +40,7 @@
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 7.4
+- Gradle 7.5
 - Maven 3.8.6
 - sbt 1.7.1
 
@@ -52,25 +48,25 @@
 - 7zip 22.01
 - aria2 1.36.0
 - azcopy 10.16.0
-- Bazel 5.3.0
+- Bazel 5.3.1
 - Bazelisk 1.13.2
 - Bicep 0.10.61
 - Cabal 3.8.1.0
 - CMake 3.24.2
 - CodeQL Action Bundle 2.10.5
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.11.0
+- Docker Compose v2 2.11.1
 - Docker master-dockerproject-2022-03-26
-- Docker-wincred 0.6.4
+- Docker-wincred 0.7.0
 - ghc 9.4.2
 - Git 2.37.3.windows.1
 - Git LFS 3.2.0
-- Google Cloud SDK 402.0.0
-- ImageMagick 7.1.0-48
+- Google Cloud SDK 403.0.0
+- ImageMagick 7.1.0-49
 - InnoSetup 6.2.1
 - jq 1.6
-- Kind 0.15.0
-- Kubectl 1.25.1
+- Kind 0.16.0
+- Kubectl 1.25.2
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.2
@@ -78,10 +74,10 @@
 - OpenSSL 1.1.1
 - Packer 1.8.2
 - Parcel 2.7.0
-- Pulumi v3.40.0
+- Pulumi v3.40.1
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
-- Stack 2.7.5
+- Stack 2.9.1
 - Subversion (SVN) 1.14.2
 - Swig 4.0.2
 - VSWhere 3.0.3
@@ -91,20 +87,20 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.125
-- AWS CLI 2.7.33
-- AWS SAM CLI 1.56.1
+- Alibaba Cloud CLI 3.0.127
+- AWS CLI 2.7.35
+- AWS SAM CLI 1.57.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.40.0
 - Azure DevOps CLI extension 0.25.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.15.0
+- GitHub CLI 2.16.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.63.0
-- Rust 1.63.0
-- Rustdoc 1.63.0
+- Cargo 1.64.0
+- Rust 1.64.0
+- Rustdoc 1.64.0
 - Rustup 1.25.1
 
 #### Packages
@@ -112,15 +108,15 @@
 - cargo-audit 0.17.0
 - cargo-outdated 0.11.1
 - cbindgen 0.24.3
-- Clippy 0.1.63
+- Clippy 0.1.64
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
 - Google Chrome 105.0.5195.127
 - Chrome Driver 105.0.5195.52
-- Microsoft Edge 105.0.1343.42
-- Microsoft Edge Driver 105.0.1343.42
-- Mozilla Firefox 104.0.2
+- Microsoft Edge 105.0.1343.50
+- Microsoft Edge Driver 105.0.1343.50
+- Mozilla Firefox 105.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.4.0
@@ -173,8 +169,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture |
 | ------- | ------------ |
 | 12.22.12 | x64          |
-| 14.20.0 | x64          |
-| 16.17.0 | x64          |
+| 14.20.1 | x64          |
+| 16.17.1 | x64          |
 
 #### Python
 | Version | Architecture |
@@ -225,7 +221,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.9.0
-- DacFx 16.0.6161.0
+- DacFx 16.0.6296.0
 - MySQL 5.7.39.0
 - SQL OLEDB Driver 18.6.3.0
 - SQLPS 1.0
@@ -529,7 +525,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.8
 
 ### .NET tools
-- nbgv 3.5.109+bdfbd7dea6
+- nbgv 3.5.113+a908c6d9d2
 
 ### PowerShell Tools
 - PowerShell 7.2.6
@@ -549,7 +545,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.170          |
+| AWSPowerShell      | 4.1.175          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.11.1           |
@@ -594,5 +590,4 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:9d1fde4186c74ad261923c583ddb6102e940cbb3929ce1d1bc0d245e745d61a3  | 2022-09-13 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:92455b285ba046b1aecfd9ab598023c31bbea59149fcb7c02e4427abcbf44d37  | 2022-09-09 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:7450aeee8739b486e1493c44014e9c211cea8391aae7ec25416584b8f4301938  | 2022-09-09 |
-
 
