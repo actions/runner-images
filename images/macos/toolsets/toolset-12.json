@@ -155,6 +155,7 @@
             "bazelisk",
             "carthage",
             "cmake",
+            "colima",
             "gh",
             "gnupg",
             "gnu-tar",
@@ -180,7 +181,8 @@
         "cask_packages": [
             "julia",
             "vagrant",
-            "virtualbox"
+            "virtualbox",
+            "parallels"
         ]
     },
     "gcc": {

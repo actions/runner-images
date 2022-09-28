@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [[Ubuntu] homebrew will be removed from $PATH](https://github.com/actions/runner-images/issues/6283) |
 | [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by 4/1/2023](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 22.04.1 LTS
-- Linux kernel version: 5.15.0-1019-azure
-- Image Version: 20220919.1
+- Linux kernel version: 5.15.0-1020-azure
+- Image Version: 20220925.1
 
 ## Installed Software
 ### Language and Runtime
@@ -19,15 +20,15 @@
 - Kotlin 1.7.10-release-333
 - Mono 6.12.0.182 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.10.1.31701 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node 16.17.0
+- Node 16.17.1
 - Perl 5.34.0
-- Python 3.10.4
-- Python3 3.10.4
+- Python 3.10.6
+- Python3 3.10.6
 - Ruby 3.0.2p107
 
 ### Package Management
 - cpan 1.64
-- Helm 3.9.4
+- Helm 3.10.0
 - Homebrew 3.6.2
 - Miniconda 4.12.0
 - Npm 8.15.0
@@ -36,8 +37,16 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<4340582bc>)
+- Vcpkg  (build from master \<57d3194e7>)
 - Yarn 1.22.19
+
+##### Notes:
+```
+Location: /home/linuxbrew
+Note: Homebrew is pre-installed on image but not added to PATH.
+run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" command
+to accomplish this.
+```
 
 #### Environment variables
 | Name                    | Value                  |
@@ -47,7 +56,7 @@
 | VCPKG_ROOT              | /usr/local/share/vcpkg |
 
 ### Project Management
-- Lerna 5.5.1
+- Lerna 5.5.2
 
 ### Tools
 - Ansible 2.13.4
@@ -61,19 +70,19 @@
 - CodeQL Action Bundle 2.10.5
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.11.0+azure-1
+- Docker Compose v2 2.11.1+azure-1
 - Docker-Buildx 0.9.1
 - Docker-Moby Client 20.10.18+azure-1
 - Docker-Moby Server 20.10.18+azure-1
-- Fastlane 2.210.0
+- Fastlane 2.210.1
 - Git 2.37.3 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - Heroku 7.63.4
 - jq 1.6
-- Kind 0.15.0
-- Kubectl 1.25.1
+- Kind 0.16.0
+- Kubectl 1.25.2
 - Kustomize 4.5.7
 - Leiningen 2.9.10
 - MediaInfo 21.09
@@ -86,30 +95,30 @@
 - Packer 1.8.3
 - Parcel 2.7.0
 - Podman 3.4.4
-- Pulumi 3.40.0
+- Pulumi 3.40.1
 - R 4.2.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.2.9
+- Terraform 1.3.0
 - yamllint 1.28.0
 - yq 4.27.5
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.125
-- AWS CLI 2.7.33
+- Alibaba Cloud CLI 3.0.127
+- AWS CLI 2.7.35
 - AWS CLI Session manager plugin 1.2.339.0
 - AWS SAM CLI 1.57.0
 - Azure CLI (azure-cli) 2.40.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
-- GitHub CLI 2.15.0
-- Google Cloud SDK 402.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- GitHub CLI 2.16.0
+- Google Cloud SDK 403.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 11.8.0
-- OpenShift CLI 4.11.4
+- Netlify CLI 11.8.3
+- OpenShift CLI 4.11.5
 - ORAS CLI 0.14.1
-- Vercel CLI 28.3.0
+- Vercel CLI 28.4.2
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -128,7 +137,7 @@
 | -------- | ------- |
 | PHP      | 8.1.10  |
 | Composer | 2.4.2   |
-| PHPUnit  | 8.5.29  |
+| PHPUnit  | 8.5.30  |
 ```
     Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -139,15 +148,15 @@
 - Stack 2.9.1
 
 ### Rust Tools
-- Cargo 1.63.0
-- Rust 1.63.0
-- Rustdoc 1.63.0
+- Cargo 1.64.0
+- Rust 1.64.0
+- Rustdoc 1.64.0
 - Rustup 1.25.1
 
 #### Packages
 - Bindgen 0.60.1
 - Cargo audit 0.17.0
-- Cargo clippy 0.1.63
+- Cargo clippy 0.1.64
 - Cargo outdated 0.11.1
 - Cbindgen 0.24.3
 - Rustfmt 1.5.1
@@ -156,8 +165,8 @@
 - Google Chrome 105.0.5195.125
 - ChromeDriver 105.0.5195.52
 - Chromium 105.0.5177.0
-- Microsoft Edge 105.0.1343.42 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 105.0.1343.42
+- Microsoft Edge 105.0.1343.50 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 105.0.1343.50
 - Selenium server 4.4.0
 
 #### Environment variables
@@ -172,7 +181,7 @@
 - 6.0.401
 
 ### .NET tools
-- nbgv 3.5.109+bdfbd7dea6
+- nbgv 3.5.113+a908c6d9d2
 
 ### Databases
 - sqlite3 3.37.2
@@ -193,7 +202,7 @@
 ```
 #### MS SQL Server Client Tools
 - sqlcmd 17.10.0001.1
-- SqlPackage 16.0.6161.0
+- SqlPackage 16.0.6296.0
 
 ### Cached Tools
 #### Go
@@ -202,8 +211,8 @@
 - 1.19.1
 
 #### Node.js
-- 14.20.0
-- 16.17.0
+- 14.20.1
+- 16.17.1
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -250,7 +259,7 @@
 | Package Name               | Version                                                                                                                                                |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 7.0                                                                                                                                                    |
-| Android Emulator           | 31.3.10                                                                                                                                                |
+| Android Emulator           | 31.3.11                                                                                                                                                |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platform-Tools | 33.0.3                                                                                                                                                 |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
@@ -305,7 +314,7 @@
 | coreutils              | 8.32-4.1ubuntu1                   |
 | curl                   | 7.81.0-1ubuntu1.4                 |
 | dbus                   | 1.12.20-2ubuntu4                  |
-| dnsutils               | 1:9.18.1-1ubuntu1.1               |
+| dnsutils               | 1:9.18.1-1ubuntu1.2               |
 | dpkg                   | 1.21.1ubuntu2.1                   |
 | fakeroot               | 1.28-1ubuntu1                     |
 | file                   | 1:5.41-3                          |

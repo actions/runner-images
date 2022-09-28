@@ -205,6 +205,7 @@
             "bazelisk",
             "carthage",
             "cmake",
+            "colima",
             "gh",
             "gnupg",
             "gnu-tar",
