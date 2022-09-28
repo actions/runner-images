@@ -150,3 +150,9 @@ Describe "CodeQL" -Skip:($os.IsCatalina) {
         $CodeQLPacksPath | Should -Exist
     }
 }
+
+Describe "Colima" {
+    It "Colima" {
+        "colima version" | Should -ReturnZeroExitCode
+    }
+}

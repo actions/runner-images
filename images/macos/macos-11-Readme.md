@@ -6,7 +6,7 @@
 # macOS 11.7 info
 - System Version: macOS 11.7 (20G817)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220918.1
+- Image Version: 20220925.1
 
 ## Installed Software
 ### Language and Runtime
@@ -24,9 +24,9 @@
 - julia 1.8.1
 - Kotlin 1.7.10-release-333
 - MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.17.0
+- Node.js v16.17.1
 - NVM 0.39.1
-- NVM - Cached node versions: v12.22.12 v14.20.0 v16.17.0
+- NVM - Cached node versions: v12.22.12 v14.20.1 v16.17.1
 - Perl 5.34.0
 - PHP 8.1.10
 - Python 2.7.18
@@ -39,7 +39,7 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.4.2
-- Homebrew 3.6.1
+- Homebrew 3.6.2
 - Miniconda 4.12.0
 - NPM 8.15.0
 - NuGet 6.2.1.2
@@ -47,7 +47,7 @@
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
 - RubyGems 3.3.22
-- Vcpkg 2022 (build from master \<01b29f6d8>)
+- Vcpkg 2022 (build from master \<57d3194e7>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -67,19 +67,19 @@
 - 7-Zip 17.04
 - aria2 1.36.0
 - azcopy 10.16.0
-- bazel 5.3.0
+- bazel 5.3.1
 - bazelisk 1.14.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.85.0
 - Git 2.37.3
 - Git LFS: 3.2.0
-- GitHub CLI: 2.15.0
+- GitHub CLI: 2.16.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.7
-- helm v3.9.4+gdbc6d8e
+- helm v3.10.0+gce66412
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-48
+- ImageMagick 7.1.0-49
 - jq 1.6
 - mongo v5.0.11
 - mongod v5.0.11
@@ -95,10 +95,10 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.125
+- Aliyun CLI 3.0.127
 - App Center CLI 2.11.0
-- AWS CLI 2.7.33
-- AWS SAM CLI 1.56.1
+- AWS CLI 2.7.35
+- AWS SAM CLI 1.57.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.40.0
@@ -106,11 +106,11 @@
 - Cabal 3.6.2.0
 - Cmake 3.24.2
 - CodeQL Action Bundle 2.10.5
-- Fastlane 2.210.0
+- Fastlane 2.210.1
 - GHC 9.4.2
 - GHCup 0.1.18.0
 - Jazzy 0.14.3
-- Stack 2.7.5
+- Stack 2.9.1
 - SwiftFormat 0.49.18
 - Swig 4.0.2
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
@@ -124,9 +124,9 @@
 - SafariDriver 16.0 (16614.1.25.9.10)
 - Google Chrome 105.0.5195.125 
 - ChromeDriver 105.0.5195.52
-- Microsoft Edge 105.0.1343.42 
-- Microsoft Edge WebDriver 105.0.1343.42
-- Mozilla Firefox 104.0.2
+- Microsoft Edge 105.0.1343.50 
+- Microsoft Edge WebDriver 105.0.1343.50
+- Mozilla Firefox 105.0.1
 - geckodriver 0.31.0
 - Selenium server 4.4.0
 
@@ -172,8 +172,8 @@
 
 #### Node.js
 - 12.22.12
-- 14.20.0
-- 16.17.0
+- 14.20.1
+- 16.17.1
 
 #### Go
 | Version | Architecture | Environment Variable |
@@ -183,9 +183,9 @@
 | 1.19.1  | x64          | GOROOT_1_19_X64      |
 
 ### Rust Tools
-- Cargo 1.63.0
-- Rust 1.63.0
-- Rustdoc 1.63.0
+- Cargo 1.64.0
+- Rust 1.64.0
+- Rustdoc 1.64.0
 - Rustup 1.25.1
 
 #### Packages
@@ -193,7 +193,7 @@
 - Cargo-audit 0.17.0
 - Cargo-outdated 0.11.1
 - Cbindgen 0.24.3
-- Clippy 0.1.63
+- Clippy 0.1.64
 - Rustfmt 1.5.1-stable
 
 ### PowerShell Tools
@@ -334,7 +334,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 7.0                                                                                                                                                    |
-| Android Emulator           | 31.3.10                                                                                                                                                |
+| Android Emulator           | 31.3.11                                                                                                                                                |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 33.0.3                                                                                                                                                 |

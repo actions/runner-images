@@ -181,9 +181,7 @@ The scripts are copied to the VHD during the image generation process to the fol
 
 ##### Windows
 
-- **Choco.ps1** - contains dummy command to cleanup orphaned packages to avoid initial delay for future choco commands
-- **Dotnet.ps1** - adds `$env:USERPROFILE\.dotnet\tools` directory to the PATH
+- **GenerateIISExpressCertificate.ps1** - generates and imports a certificate to run applications with IIS Express through HTTPS
 - **InternetExplorerConfiguration** - turns off the Internet Explorer Enhanced Security feature
 - **Msys2FirstLaunch.ps1** - initializes bash user profile in MSYS2
-- **RustJunction.ps1** - creates Rust junction points to cargo and rustup folders
 - **VSConfiguration.ps1** - performs initial Visual Studio configuration

@@ -575,6 +575,20 @@ function Build-PackageManagementEnvironmentTable {
     }
 }
 
+function Build-MiscellaneousEnvironmentTable {
+    return @(
+        @{
+            "Name" = "PARALLELS_DMG_URL"
+            "Value" = $env:PARALLELS_DMG_URL
+        }
+    ) | ForEach-Object {
+        [PSCustomObject] @{
+            "Name" = $_.Name
+            "Value" = $_.Value
+        }
+    }
+}
+
 function Get-GraalVMVersion {
     $version = & "$env:GRAALVM_11_ROOT\java" --version | Select-String -Pattern "GraalVM" | Take-Part -Part 5,6
     return $version
@@ -596,4 +610,9 @@ function Get-CodeQLBundleVersion {
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
     $CodeQLVersion = & $CodeQLPath version --quiet
     return "CodeQL Action Bundle $CodeQLVersion"
+}
+
+function Get-ColimaVersion {
+    $colimaVersion = Run-Command "colima version" | Select-String "colima version" | Take-Part -Part 2
+    return "Colima $colimaVersion"
 }
