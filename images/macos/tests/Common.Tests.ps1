@@ -151,7 +151,7 @@ Describe "CodeQL" -Skip:($os.IsCatalina) {
     }
 }
 
-Describe "Colima" {
+Describe "Colima" -Skip:($os.IsCatalina) {
     It "Colima" {
         "colima version" | Should -ReturnZeroExitCode
     }
