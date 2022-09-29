@@ -1,0 +1,19 @@
+name: Build runner image
+
+jobs:
+  build-runner-image:
+    name: Build runner image
+    runs-on: "[\"windows-latest\"]"
+    defaults:
+      run:
+        shell: pwsh
+    strategy:
+      matrix:
+        machine-type: "[\"windows-latest\"]"
+        timeout-minutes:
+        - 360
+    timeout-minutes: 360
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: "recursive"
