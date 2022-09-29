@@ -45,6 +45,10 @@ fi
 
 # Validate "Parallels International GmbH" kext
 if is_Monterey; then
+    echo "Closing System Preferences window if it is still opened"
+    killall "System Preferences" || true
+
+    echo "Checking parallels kexts"
     dbName="/var/db/SystemPolicyConfiguration/KextPolicy"
     dbQuery="SELECT * FROM kext_policy WHERE bundle_id LIKE 'com.parallels.kext.%';"
     kext=$(sudo sqlite3 $dbName "$dbQuery")
