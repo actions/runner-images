@@ -1,5 +1,11 @@
 name: Build runner image
 
+on:
+  workflow_call:
+    secrets:
+      ACTIONS_RUNNER_BUILDER_AZURE_SERVICE_PRINCIPAL:
+        required: true
+
 jobs:
   build-runner-image:
     name: Build runner image
