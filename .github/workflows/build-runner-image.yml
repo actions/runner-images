@@ -1,7 +1,7 @@
 name: Build runner image
 
 on:
-  workflow_call:
+  workflow_dispatch:
     secrets:
       ACTIONS_RUNNER_BUILDER_AZURE_SERVICE_PRINCIPAL:
         required: true
