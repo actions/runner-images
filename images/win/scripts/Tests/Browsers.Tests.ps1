@@ -50,7 +50,7 @@ Describe "Chrome" {
 
         It "Chrome and Chrome Driver major versions are the same" {
             $chromeMajor = (Get-Item $chromePath).VersionInfo.ProductVersion.Split(".")[0]
-            $chromeDriverMajor = (& $env:ChromeWebDriver\chromedriver.exe --version).Trim("ChromeDriver ").Split(".")[0]
+            $chromeDriverMajor = (Get-Content $env:ChromeWebDriver\versioninfo.txt).Split(".")[0]
             $chromeMajor | Should -BeExactly $chromeDriverMajor
         }
     }
