@@ -1,11 +1,12 @@
 | Announcements |
 |-|
-| [[Ubuntu] homebrew will be removed from $PATH](https://github.com/actions/runner-images/issues/6283) |
+| [Third party PHP repository will be removed from the Ubuntu 22.04 image](https://github.com/actions/runner-images/issues/6331) |
+| [[Ubuntu] homebrew will be removed from ](https://github.com/actions/runner-images/issues/6283) |
 | [The Ubuntu 18.04 Actions runner image will begin deprecation on 8/8/22 and will be fully unsupported by 4/1/2023](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 22.04.1 LTS
 - Linux kernel version: 5.15.0-1020-azure
-- Image Version: 20220925.1
+- Image Version: 20221002.2
 
 ## Installed Software
 ### Language and Runtime
@@ -16,8 +17,8 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++ 9.4.0, 10.3.0, 11.2.0
 - GNU Fortran 9.4.0, 10.3.0, 11.2.0
-- Julia 1.8.1
-- Kotlin 1.7.10-release-333
+- Julia 1.8.2
+- Kotlin 1.7.20-release-201
 - Mono 6.12.0.182 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.10.1.31701 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node 16.17.1
@@ -29,7 +30,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.10.0
-- Homebrew 3.6.2
+- Homebrew 3.6.3
 - Miniconda 4.12.0
 - Npm 8.15.0
 - NuGet 6.2.1.2
@@ -37,7 +38,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<57d3194e7>)
+- Vcpkg  (build from master \<5f1441730>)
 - Yarn 1.22.19
 
 ##### Notes:
@@ -56,7 +57,7 @@ to accomplish this.
 | VCPKG_ROOT              | /usr/local/share/vcpkg |
 
 ### Project Management
-- Lerna 5.5.2
+- Lerna 5.5.4
 
 ### Tools
 - Ansible 2.13.4
@@ -67,10 +68,10 @@ to accomplish this.
 - Bicep 0.10.61
 - Buildah 1.23.1
 - CMake 3.24.2
-- CodeQL Action Bundle 2.10.5
+- CodeQL Action Bundle 2.11.0
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.11.1+azure-1
+- Docker Compose v2 2.11.2+azure-1
 - Docker-Buildx 0.9.1
 - Docker-Moby Client 20.10.18+azure-1
 - Docker-Moby Server 20.10.18+azure-1
@@ -95,30 +96,30 @@ to accomplish this.
 - Packer 1.8.3
 - Parcel 2.7.0
 - Podman 3.4.4
-- Pulumi 3.40.1
+- Pulumi 3.40.2
 - R 4.2.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.3.0
+- Terraform 1.3.1
 - yamllint 1.28.0
 - yq 4.27.5
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.127
-- AWS CLI 2.7.35
+- AWS CLI 2.8.0
 - AWS CLI Session manager plugin 1.2.339.0
-- AWS SAM CLI 1.57.0
+- AWS SAM CLI 1.58.0
 - Azure CLI (azure-cli) 2.40.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
-- GitHub CLI 2.16.0
-- Google Cloud SDK 403.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- GitHub CLI 2.16.1
+- Google Cloud SDK 404.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 11.8.3
-- OpenShift CLI 4.11.5
-- ORAS CLI 0.14.1
-- Vercel CLI 28.4.2
+- Netlify CLI 12.0.2
+- OpenShift CLI 4.11.6
+- ORAS CLI 0.15.0
+- Vercel CLI 28.4.5
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -135,7 +136,7 @@ to accomplish this.
 ### PHP
 | Tool     | Version |
 | -------- | ------- |
-| PHP      | 8.1.10  |
+| PHP      | 8.1.11  |
 | Composer | 2.4.2   |
 | PHPUnit  | 8.5.30  |
 ```
@@ -162,12 +163,12 @@ to accomplish this.
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 105.0.5195.125
-- ChromeDriver 105.0.5195.52
-- Chromium 105.0.5177.0
-- Microsoft Edge 105.0.1343.50 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 105.0.1343.50
-- Selenium server 4.4.0
+- Google Chrome 106.0.5249.91
+- ChromeDriver 106.0.5249.61
+- Chromium 106.0.5235.0
+- Microsoft Edge 105.0.1343.53 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 105.0.1343.53
+- Selenium server 4.5.0
 
 #### Environment variables
 | Name              | Value                               |
@@ -242,9 +243,9 @@ to accomplish this.
 | Module           | Version |
 | ---------------- | ------- |
 | MarkdownPS       | 1.9     |
-| Microsoft.Graph  | 1.11.1  |
+| Microsoft.Graph  | 1.12.2  |
 | Pester           | 5.3.3   |
-| PSScriptAnalyzer | 1.20.0  |
+| PSScriptAnalyzer | 1.21.0  |
 
 #### Az PowerShell Modules
 - 7.5.0
@@ -291,10 +292,10 @@ to accomplish this.
 | debian:10               | sha256:2f35b84014a5389e2a940113c51586bc067a05040ba181dee92c5a9fa9b15dcb  | 2022-09-13 |
 | debian:11               | sha256:3e82b1af33607aebaeb3641b75d6e80fd28d36e17993ef13708e9493e30e8ff9  | 2022-09-13 |
 | moby/buildkit:latest    | sha256:67c9251f9f2e103e1ee489b6cead518b6d82607ef485d3f1505fc4095a55ebeb  | 2022-08-22 |
-| node:14                 | sha256:6adfb0c2a9db12a06893974bb140493a7482e2b3df59c058590594ceecd0c99b  | 2022-09-13 |
-| node:14-alpine          | sha256:4aff4ba0da347e51561587eba037a38db4eaa70e1a6c8334d66779fe963d5be7  | 2022-08-09 |
-| node:16                 | sha256:a5d9200d3b8c17f0f3d7717034a9c215015b7aae70cb2a9d5e5dae7ff8aa6ca8  | 2022-09-13 |
-| node:16-alpine          | sha256:2c405ed42fc0fd6aacbe5730042640450e5ec030bada7617beac88f742b6997b  | 2022-08-16 |
+| node:14                 | sha256:500c729bf9b75de8aee647d70b68dc16eb14991d74bbf033c5ffdb667bbef704  | 2022-09-26 |
+| node:14-alpine          | sha256:0a37794193aa27ba8af16a2da0998a3e0c551fcc4ebec2ce95b1615032daf820  | 2022-09-26 |
+| node:16                 | sha256:5968f50bda8ea8bdc65fd4208de287bbb25ca3ba81649494b1b6cf4b9203695e  | 2022-09-26 |
+| node:16-alpine          | sha256:88d9d8da697877a4a771a40e5cbc10a12c2ad959e82f3b0f36ef35635e17f693  | 2022-09-26 |
 | ubuntu:18.04            | sha256:6fec50623d6d37b7f3c14c5b6fc36c73fd04aa8173d59d54dba00da0e7ac50ee  | 2022-09-06 |
 | ubuntu:20.04            | sha256:35ab2bf57814e9ff49e365efd5a5935b6915eede5c7f8581e9e1b85e0eecbe16  | 2022-09-01 |
 | ubuntu:22.04            | sha256:20fa2d7bb4de7723f542be5923b06c4d704370f0390e4ae9e1c833c8785644c1  | 2022-09-01 |
