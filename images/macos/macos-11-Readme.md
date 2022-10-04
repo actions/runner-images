@@ -1,12 +1,12 @@
 | Announcements |
 |-|
-| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.0.1 on September, 26](https://github.com/actions/runner-images/issues/6225) |
+| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.0.1 on October, 3](https://github.com/actions/runner-images/issues/6225) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 11.7 info
 - System Version: macOS 11.7 (20G817)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20220925.1
+- Image Version: 20221002.2
 
 ## Installed Software
 ### Language and Runtime
@@ -21,16 +21,16 @@
 - GNU Fortran (Homebrew GCC 10.4.0) 10.4.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
 - Go 1.17.13
-- julia 1.8.1
-- Kotlin 1.7.10-release-333
+- julia 1.8.2
+- Kotlin 1.7.20-release-201
 - MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.17.1
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.12 v14.20.1 v16.17.1
 - Perl 5.34.0
-- PHP 8.1.10
+- PHP 8.1.11
 - Python 2.7.18
-- Python 3.10.6
+- Python 3.10.7
 - R 4.2.1
 - Ruby 2.7.6p219
 
@@ -39,7 +39,7 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.4.2
-- Homebrew 3.6.2
+- Homebrew 3.6.3
 - Miniconda 4.12.0
 - NPM 8.15.0
 - NuGet 6.2.1.2
@@ -47,7 +47,7 @@
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
 - RubyGems 3.3.22
-- Vcpkg 2022 (build from master \<57d3194e7>)
+- Vcpkg 2022 (build from master \<5f1441730>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -73,7 +73,7 @@
 - Curl 7.85.0
 - Git 2.37.3
 - Git LFS: 3.2.0
-- GitHub CLI: 2.16.0
+- GitHub CLI: 2.16.1
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.7
@@ -97,21 +97,22 @@
 ### Tools
 - Aliyun CLI 3.0.127
 - App Center CLI 2.11.0
-- AWS CLI 2.7.35
-- AWS SAM CLI 1.57.0
+- AWS CLI 2.8.0
+- AWS SAM CLI 1.58.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.40.0
 - Bicep CLI 0.10.61
 - Cabal 3.6.2.0
 - Cmake 3.24.2
-- CodeQL Action Bundle 2.10.5
+- CodeQL Action Bundle 2.11.0
+- Colima 0.4.5
 - Fastlane 2.210.1
 - GHC 9.4.2
 - GHCup 0.1.18.0
 - Jazzy 0.14.3
 - Stack 2.9.1
-- SwiftFormat 0.49.18
+- SwiftFormat 0.50.0
 - Swig 4.0.2
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -122,18 +123,18 @@
 ### Browsers
 - Safari 16.0 (16614.1.25.9.10)
 - SafariDriver 16.0 (16614.1.25.9.10)
-- Google Chrome 105.0.5195.125 
-- ChromeDriver 105.0.5195.52
-- Microsoft Edge 105.0.1343.50 
-- Microsoft Edge WebDriver 105.0.1343.50
+- Google Chrome 106.0.5249.91 
+- ChromeDriver 106.0.5249.61
+- Microsoft Edge 105.0.1343.53 
+- Microsoft Edge WebDriver 105.0.1343.53
 - Mozilla Firefox 105.0.1
 - geckodriver 0.31.0
-- Selenium server 4.4.0
+- Selenium server 4.5.0
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/105.0.5195.52 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/106.0.5249.61 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -205,7 +206,7 @@
 | Az               | 8.3.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.3   |
-| PSScriptAnalyzer | 1.20.0  |
+| PSScriptAnalyzer | 1.21.0  |
 
 ### Web Servers
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
@@ -218,7 +219,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.3.5.0  | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.3.6.20 | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
