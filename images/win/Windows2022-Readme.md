@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 1006
-- Image Version: 20220925.1
+- Image Version: 20221002.2
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -9,12 +9,12 @@
 ### Language and Runtime
 - Bash 5.1.16(1)-release
 - Go 1.17.13
-- Julia 1.8.1
-- Kotlin 1.7.10
+- Julia 1.8.2
+- Kotlin 1.7.20
 - LLVM 14.0.6
 - Node 16.17.1
 - Perl 5.32.1
-- PHP 8.1.10
+- PHP 8.1.11
 - Python 3.9.13
 - Ruby 3.0.4p208
 
@@ -28,7 +28,7 @@
 - pip 22.2.2 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<57d3194e7>)
+- Vcpkg (build from master \<5f1441730>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -52,9 +52,9 @@
 - Bicep 0.10.61
 - Cabal 3.8.1.0
 - CMake 3.24.2
-- CodeQL Action Bundle 2.10.5
+- CodeQL Action Bundle 2.11.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.11.1
+- Docker Compose v2 2.11.2
 - Docker master-dockerproject-2022-03-26
 - Docker-wincred 0.7.0
 - ghc 9.4.2
@@ -71,7 +71,7 @@
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.8.2
-- Pulumi v3.40.1
+- Pulumi v3.40.2
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.9.1
@@ -85,12 +85,12 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.127
-- AWS CLI 2.7.35
-- AWS SAM CLI 1.57.0
+- AWS CLI 2.8.0
+- AWS SAM CLI 1.58.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI 2.40.0
 - Azure DevOps CLI extension 0.25.0
-- GitHub CLI 2.16.0
+- GitHub CLI 2.16.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -108,14 +108,14 @@
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
-- Google Chrome 105.0.5195.127
-- Chrome Driver 105.0.5195.52
-- Microsoft Edge 105.0.1343.50
-- Microsoft Edge Driver 105.0.1343.50
+- Google Chrome 106.0.5249.91
+- Chrome Driver 106.0.5249.61
+- Microsoft Edge 105.0.1343.53
+- Microsoft Edge Driver 105.0.1343.53
 - Mozilla Firefox 105.0.1
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
-- Selenium server 4.4.0
+- Selenium server 4.5.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -203,7 +203,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.12.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.13.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.9.0
@@ -221,7 +221,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
 | ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.3.32901.215 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.3.32922.545 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version        |
@@ -255,12 +255,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Xamarin.RemotedSimulator                                        | 17.3.32708.82  |
 | ios                                                                       | 15.4.446.446   |
 | maccatalyst                                                               | 15.4.446.446   |
-| maui.android                                                              | 6.0.486.0      |
-| maui.blazor                                                               | 6.0.486.0      |
-| maui.core                                                                 | 6.0.486.0      |
-| maui.ios                                                                  | 6.0.486.0      |
-| maui.maccatalyst                                                          | 6.0.486.0      |
-| maui.windows                                                              | 6.0.486.0      |
+| maui.android                                                              | 6.0.536.0      |
+| maui.blazor                                                               | 6.0.536.0      |
+| maui.core                                                                 | 6.0.536.0      |
+| maui.ios                                                                  | 6.0.536.0      |
+| maui.maccatalyst                                                          | 6.0.536.0      |
+| maui.windows                                                              | 6.0.536.0      |
 | Microsoft.Component.Azure.DataLake.Tools                                  | 17.3.32708.82  |
 | Microsoft.Component.ClickOnce                                             | 17.3.32708.82  |
 | Microsoft.Component.CodeAnalysis.SDK                                      | 17.3.32708.82  |
@@ -461,7 +461,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.ComponentGroup.Maui.Shared                         | 17.3.32708.82  |
 | Microsoft.VisualStudio.ComponentGroup.Maui.Windows                        | 17.3.32708.82  |
 | Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging                      | 17.3.32708.82  |
-| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core                  | 17.3.32708.82  |
+| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core                  | 17.3.32921.402 |
 | Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang            | 17.3.32714.208 |
 | Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard              | 17.3.32708.82  |
 | Microsoft.VisualStudio.ComponentGroup.UWP.Support                         | 17.3.32708.82  |
@@ -567,13 +567,13 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.175          |
+| AWSPowerShell      | 4.1.179          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.11.1           |
+| Microsoft.Graph    | 1.12.2           |
 | Pester             | 3.4.0<br>5.3.3   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
-| PSScriptAnalyzer   | 1.20.0           |
+| PSScriptAnalyzer   | 1.21.0           |
 | PSWindowsUpdate    | 2.2.0.3          |
 | SqlServer          | 21.1.18256       |
 | VSSetup            | 2.2.16           |
