@@ -210,6 +210,7 @@
         "images": [
             "alpine:3.14",
             "alpine:3.15",
+            "alpine:3.16",
             "buildpack-deps:buster",
             "buildpack-deps:bullseye",
             "debian:10",
