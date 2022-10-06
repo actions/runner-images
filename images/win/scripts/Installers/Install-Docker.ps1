@@ -20,7 +20,7 @@ if (-not $mobyRelease) {
 }
 $mobyReleaseUrl = $dockerceUrl + $mobyRelease
 $mobyArchivePath = Start-DownloadWithRetry -Url $mobyReleaseUrl -Name $mobyRelease
-Extract-7Zip -Path $mobyArchivePath -DestinationPath $env:TEMP
+Expand-Archive -Path $mobyArchivePath -DestinationPath $env:TEMP
 $dockerPath = "$env:TEMP\docker\docker.exe"
 $dockerdPath = "$env:TEMP\docker\dockerd.exe"
 
