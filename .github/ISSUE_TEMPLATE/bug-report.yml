@@ -13,7 +13,8 @@ body:
       label: Platforms affected
       options:
         - label: Azure DevOps
-        - label: GitHub Actions
+        - label: GitHub Actions - Standard Runners
+        - label: GitHub Actions - Larger Runners
   - type: checkboxes
     attributes:
       label: Runner images affected
