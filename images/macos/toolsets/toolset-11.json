@@ -303,6 +303,10 @@
         {
             "package": "yamllint",
             "cmd": "yamllint --version"
+        },
+        {
+            "package": "hatch",
+            "cmd": "hatch --version"
         }
     ],
     "dotnet": {
