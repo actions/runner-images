@@ -257,6 +257,10 @@
         {
             "package": "ansible-core",
             "cmd": "ansible"
+        },
+        {
+            "package": "hatch",
+            "cmd": "hatch --version"
         }
     ],
     "dotnet": {
