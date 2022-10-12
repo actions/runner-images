@@ -169,6 +169,7 @@
             "pkg-config",
             "python-setuptools",
             "rpm",
+            "tar",
             "texinfo",
             "tk",
             "tzdata",
