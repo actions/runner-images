@@ -152,6 +152,7 @@
             "pkg-config",
             "python-is-python3",
             "rpm",
+            "tar",
             "texinfo",
             "tk",
             "tzdata",
