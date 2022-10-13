@@ -282,6 +282,7 @@ build {
                         "${path.root}/scripts/installers/apache.sh",
                         "${path.root}/scripts/installers/aws.sh",
                         "${path.root}/scripts/installers/clang.sh",
+                        "${path.root}/scripts/installers/swift.sh",
                         "${path.root}/scripts/installers/cmake.sh",
                         "${path.root}/scripts/installers/codeql-bundle.sh",
                         "${path.root}/scripts/installers/containers.sh",
