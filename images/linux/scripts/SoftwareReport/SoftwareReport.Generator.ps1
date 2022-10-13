@@ -53,14 +53,14 @@ $runtimesList = @(
     (Get-ClangVersions),
     (Get-ClangFormatVersions),
     (Get-ClangTidyVersions),
-    (Get-KotlinVersion)
+    (Get-KotlinVersion),
+    (Get-SwiftVersion)
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $runtimesList += @(
         (Get-ErlangVersion),
-        (Get-ErlangRebar3Version),
-        (Get-SwiftVersion)
+        (Get-ErlangRebar3Version)
     )
 }
 
