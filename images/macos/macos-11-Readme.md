@@ -1,12 +1,13 @@
 | Announcements |
 |-|
-| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.0.1 on October, 3](https://github.com/actions/runner-images/issues/6225) |
+| [macOS-latest workflows will use macOS-12](https://github.com/actions/runner-images/issues/6384) |
+| [[all OSs] The VCPKG_ROOT variable will be removed from runner images](https://github.com/actions/runner-images/issues/6376) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 11.7 info
 - System Version: macOS 11.7 (20G817)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20221002.2
+- Image Version: 20221010.1
 
 ## Installed Software
 ### Language and Runtime
@@ -27,7 +28,7 @@
 - Node.js v16.17.1
 - NVM 0.39.1
 - NVM - Cached node versions: v12.22.12 v14.20.1 v16.17.1
-- Perl 5.34.0
+- Perl 5.36.0
 - PHP 8.1.11
 - Python 2.7.18
 - Python 3.10.7
@@ -35,19 +36,19 @@
 - Ruby 2.7.6p219
 
 ### Package Management
-- Bundler version 2.3.22
+- Bundler version 2.3.23
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.4.2
-- Homebrew 3.6.3
+- Homebrew 3.6.5
 - Miniconda 4.12.0
 - NPM 8.15.0
 - NuGet 6.2.1.2
 - Pip 20.3.4 (python 2.7)
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
-- RubyGems 3.3.22
-- Vcpkg 2022 (build from master \<5f1441730>)
+- RubyGems 3.3.23
+- Vcpkg 2022 (build from master \<42cc830d8>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -61,25 +62,25 @@
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.6
 - Gradle 7.5.1
-- Sbt 1.7.1
+- Sbt 1.7.2
 
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
-- azcopy 10.16.0
+- azcopy 10.16.1
 - bazel 5.3.1
 - bazelisk 1.14.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.85.0
-- Git 2.37.3
+- Git 2.38.0
 - Git LFS: 3.2.0
-- GitHub CLI: 2.16.1
+- GitHub CLI: 2.17.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.7
 - helm v3.10.0+gce66412
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-49
+- ImageMagick 7.1.0-50
 - jq 1.6
 - mongo v5.0.11
 - mongod v5.0.11
@@ -91,28 +92,28 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- yq (https://github.com/mikefarah/yq/) version 4.27.5
+- yq (https://github.com/mikefarah/yq/) version 4.28.1
 - zstd 1.5.2
 
 ### Tools
 - Aliyun CLI 3.0.127
 - App Center CLI 2.11.0
-- AWS CLI 2.8.0
-- AWS SAM CLI 1.58.0
+- AWS CLI 2.8.2
+- AWS SAM CLI 1.59.0
 - AWS Session Manager CLI 1.2.339.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.40.0
-- Bicep CLI 0.10.61
+- Bicep CLI 0.11.1
 - Cabal 3.6.2.0
 - Cmake 3.24.2
 - CodeQL Action Bundle 2.11.0
-- Colima 0.4.5
+- Colima 0.4.6
 - Fastlane 2.210.1
 - GHC 9.4.2
 - GHCup 0.1.18.0
 - Jazzy 0.14.3
 - Stack 2.9.1
-- SwiftFormat 0.50.0
+- SwiftFormat 0.50.1
 - Swig 4.0.2
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -123,11 +124,11 @@
 ### Browsers
 - Safari 16.0 (16614.1.25.9.10)
 - SafariDriver 16.0 (16614.1.25.9.10)
-- Google Chrome 106.0.5249.91 
+- Google Chrome 106.0.5249.103 
 - ChromeDriver 106.0.5249.61
-- Microsoft Edge 105.0.1343.53 
-- Microsoft Edge WebDriver 105.0.1343.53
-- Mozilla Firefox 105.0.1
+- Microsoft Edge 106.0.1370.37 
+- Microsoft Edge WebDriver 106.0.1370.42
+- Mozilla Firefox 105.0.3
 - geckodriver 0.31.0
 - Selenium server 4.5.0
 
@@ -180,8 +181,8 @@
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.6  | x64          | GOROOT_1_18_X64      |
-| 1.19.1  | x64          | GOROOT_1_19_X64      |
+| 1.18.7  | x64          | GOROOT_1_18_X64      |
+| 1.19.2  | x64          | GOROOT_1_19_X64      |
 
 ### Rust Tools
 - Cargo 1.64.0
@@ -191,7 +192,7 @@
 
 #### Packages
 - Bindgen 0.60.1
-- Cargo-audit 0.17.0
+- Cargo-audit 0.17.2
 - Cargo-outdated 0.11.1
 - Cbindgen 0.24.3
 - Clippy 0.1.64
@@ -335,7 +336,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 7.0                                                                                                                                                    |
-| Android Emulator           | 31.3.11                                                                                                                                                |
+| Android Emulator           | 31.3.12                                                                                                                                                |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 33.0.3                                                                                                                                                 |
