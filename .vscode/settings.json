@@ -1,3 +1,4 @@
 {
-    "files.trimTrailingWhitespace": false
+    "files.trimTrailingWhitespace": false,
+    "deepscan.enable": true
 }
