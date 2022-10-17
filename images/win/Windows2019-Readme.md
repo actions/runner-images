@@ -1,6 +1,10 @@
+| Announcements |
+|-|
+| [[all OSs] The VCPKG_ROOT variable will be removed from runner images](https://github.com/actions/runner-images/issues/6376) |
+***
 # Microsoft Windows Server 2019 Datacenter
-- OS Version: 10.0.17763 Build 3406
-- Image Version: 20221002.2
+- OS Version: 10.0.17763 Build 3532
+- Image Version: 20221012.3
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -12,7 +16,7 @@
 - Julia 1.8.2
 - Kotlin 1.7.20
 - LLVM 14.0.6
-- Node 16.17.1
+- Node 16.18.0
 - Perl 5.32.1
 - PHP 8.1.11
 - Python 3.7.9
@@ -21,14 +25,14 @@
 ### Package Management
 - Chocolatey 1.1.0
 - Composer 2.4.2
-- Helm 3.9.4
+- Helm 3.10.0
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
-- NPM 8.15.0
-- NuGet 6.3.0.131
+- NPM 8.19.2
+- NuGet 6.3.1.1
 - pip 22.2.2 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<5f1441730>)
+- Vcpkg (build from master \<680071397>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -42,27 +46,27 @@
 - Ant 1.10.12
 - Gradle 7.5
 - Maven 3.8.6
-- sbt 1.7.1
+- sbt 1.7.2
 
 ### Tools
 - 7zip 22.01
 - aria2 1.36.0
-- azcopy 10.16.0
+- azcopy 10.16.1
 - Bazel 5.3.1
 - Bazelisk 1.13.2
 - Bicep 0.10.61
 - Cabal 3.8.1.0
 - CMake 3.24.2
 - CodeQL Action Bundle 2.11.0
+- Docker 20.10.18
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.11.2
-- Docker master-dockerproject-2022-03-26
 - Docker-wincred 0.7.0
 - ghc 9.4.2
 - Git 2.37.3.windows.1
 - Git LFS 3.2.0
-- Google Cloud SDK 404.0.0
-- ImageMagick 7.1.0-49
+- Google Cloud SDK 405.0.0
+- ImageMagick 7.1.0-50
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.16.0
@@ -74,7 +78,7 @@
 - OpenSSL 1.1.1
 - Packer 1.8.2
 - Parcel 2.7.0
-- Pulumi v3.40.2
+- Pulumi v3.42.0
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.9.1
@@ -87,14 +91,14 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.127
-- AWS CLI 2.8.0
-- AWS SAM CLI 1.58.0
+- Alibaba Cloud CLI 3.0.130
+- AWS CLI 2.8.2
+- AWS SAM CLI 1.59.0
 - AWS Session Manager CLI 1.2.339.0
-- Azure CLI 2.40.0
+- Azure CLI 2.41.0
 - Azure DevOps CLI extension 0.25.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.16.1
+- GitHub CLI 2.17.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -105,18 +109,18 @@
 
 #### Packages
 - bindgen 0.60.1
-- cargo-audit 0.17.0
+- cargo-audit 0.17.2
 - cargo-outdated 0.11.1
 - cbindgen 0.24.3
 - Clippy 0.1.64
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
-- Google Chrome 106.0.5249.91
+- Google Chrome 106.0.5249.119
 - Chrome Driver 106.0.5249.61
-- Microsoft Edge 105.0.1343.53
-- Microsoft Edge Driver 105.0.1343.53
-- Mozilla Firefox 105.0.1
+- Microsoft Edge 106.0.1370.42
+- Microsoft Edge Driver 106.0.1370.42
+- Mozilla Firefox 105.0.3
 - Gecko Driver 0.31.0
 - IE Driver 3.150.1.1
 - Selenium server 4.5.0
@@ -162,8 +166,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.6  | x64          | GOROOT_1_18_X64      |
-| 1.19.1  | x64          | GOROOT_1_19_X64      |
+| 1.18.7  | x64          | GOROOT_1_18_X64      |
+| 1.19.2  | x64          | GOROOT_1_19_X64      |
 
 #### Node
 | Version | Architecture |
@@ -222,7 +226,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Database tools
 - Azure CosmosDb Emulator 2.14.9.0
 - DacFx 16.0.6296.0
-- MySQL 5.7.39.0
+- MySQL 5.7.40.0
 - SQL OLEDB Driver 18.6.3.0
 - SQLPS 1.0
 
@@ -233,14 +237,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.23.1  | C:\tools\nginx-1.23.1\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
-| Name                          | Version        | Path                                                           |
-| ----------------------------- | -------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.11.32901.82 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Name                          | Version         | Path                                                           |
+| ----------------------------- | --------------- | -------------------------------------------------------------- |
+| Visual Studio Enterprise 2019 | 16.11.32929.386 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.11.32830.301 |
+| Component.Android.NDK.R16B                                                | 16.11.32926.322 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -295,9 +299,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 16.3.29207.166  |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 16.0.28516.191  |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 16.10.31303.231 |
-| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.11.32901.82  |
-| Microsoft.NetCore.Component.Runtime.6.0                                   | 16.11.32901.82  |
-| Microsoft.NetCore.Component.SDK                                           | 16.11.32901.82  |
+| Microsoft.NetCore.Component.Runtime.3.1                                   | 16.11.32929.268 |
+| Microsoft.NetCore.Component.Runtime.6.0                                   | 16.11.32929.268 |
+| Microsoft.NetCore.Component.SDK                                           | 16.11.32929.268 |
 | Microsoft.NetCore.Component.Web                                           | 16.10.31303.231 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 16.5.29515.121  |
 | Microsoft.VisualStudio.Component.AspNet45                                 | 16.10.31205.252 |
@@ -506,17 +510,17 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### .NET Core SDK
 `Location C:\Program Files\dotnet\sdk`
-- 3.1.120 3.1.202 3.1.302 3.1.423 5.0.104 5.0.214 5.0.303 5.0.408 5.0.412
+- 3.1.120 3.1.202 3.1.302 3.1.424 5.0.104 5.0.214 5.0.303 5.0.408 5.0.413
 
 ### .NET Core Runtime
 `Location: C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App`
-- 3.1.4 3.1.6 3.1.20 3.1.29 5.0.4 5.0.9 5.0.17 6.0.9
+- 3.1.4 3.1.6 3.1.20 3.1.30 5.0.4 5.0.9 5.0.17 6.0.10
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App`
-- 3.1.4 3.1.6 3.1.20 3.1.29 5.0.4 5.0.9 5.0.17 6.0.9
+- 3.1.4 3.1.6 3.1.20 3.1.30 5.0.4 5.0.9 5.0.17 6.0.10
 
 `Location: C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App`
-- 3.1.4 3.1.6 3.1.20 3.1.29 5.0.4 5.0.9 5.0.17 6.0.9
+- 3.1.4 3.1.6 3.1.20 3.1.30 5.0.4 5.0.9 5.0.17 6.0.10
 
 ### .NET Framework
 `Type: Developer Pack`
@@ -545,10 +549,10 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.179          |
+| AWSPowerShell      | 4.1.184          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.12.2           |
+| Microsoft.Graph    | 1.13.0           |
 | Pester             | 3.4.0<br>5.3.3   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.21.0           |
@@ -585,9 +589,10 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:7501f0b0b539d4a4d2da522e9981fd72bda1fa420cd95e69e1da7f9f8e407219  | 2022-09-13 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:18d9698bb0b80472d8993fc1fbd08e102982934ba80b19eef4a869537b83251d  | 2022-09-13 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:9d1fde4186c74ad261923c583ddb6102e940cbb3929ce1d1bc0d245e745d61a3  | 2022-09-13 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:92455b285ba046b1aecfd9ab598023c31bbea59149fcb7c02e4427abcbf44d37  | 2022-09-09 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:7450aeee8739b486e1493c44014e9c211cea8391aae7ec25416584b8f4301938  | 2022-09-09 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:10facc49b131429645c11904b21194d19ff284a85d8b43db2d6935ef1b12d402  | 2022-10-11 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:8b2eca1a2e745d84a20a135f00afc55075c58041b5a14a2a039a3b40ab841356  | 2022-10-11 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:ab5334a93a6c7d669666ee1988f8054ef7ba068df536ec8e81eda01247b6038d  | 2022-10-11 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:95dc925380113306e1aee00aa406d82949061d8ad97f5e96b54ec61df40fb0bb  | 2022-10-08 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:d365ab93a48e9b6fcf2d7db6474fbe78c5e725a2768b3ec1388600a078bd3177  | 2022-10-08 |
+
 
