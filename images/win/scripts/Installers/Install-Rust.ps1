@@ -24,7 +24,7 @@ rustup target add i686-pc-windows-msvc
 
 # Install common tools
 rustup component add rustfmt clippy
-cargo install --locked bindgen cbindgen cargo-audit cargo-outdated
+cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
 
 # Cleanup Cargo crates cache
 Remove-Item "${env:CARGO_HOME}\registry\*" -Recurse -Force
