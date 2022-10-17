@@ -6,11 +6,13 @@ Describe "Rust" {
     }
 
     $rustTools = @(
-        @{ToolName = "rustup"; binPath = "C:\Users\Default\.cargo\bin\rustup.exe"}
-        @{ToolName = "rustc"; binPath = "C:\Users\Default\.cargo\bin\rustc.exe"}
-        @{ToolName = "cargo"; binPath = "C:\Users\Default\.cargo\bin\cargo.exe"}
-        @{ToolName = "cargo audit"; binPath = "C:\Users\Default\.cargo\bin\cargo-audit.exe"}
-        @{ToolName = "cargo outdated"; binPath = "C:\Users\Default\.cargo\bin\cargo-outdated.exe"}
+        @{ToolName = "rustup"; binPath = "$env:CARGO_HOME\bin\rustup.exe"}
+        @{ToolName = "rustc"; binPath = "$env:CARGO_HOME\bin\rustc.exe"}
+        @{ToolName = "bindgen.exe"; binPath = "$env:CARGO_HOME\bin\bindgen.exe"}
+        @{ToolName = "cbindgen.exe"; binPath = "$env:CARGO_HOME\bin\cbindgen.exe"}
+        @{ToolName = "cargo"; binPath = "$env:CARGO_HOME\bin\cargo.exe"}
+        @{ToolName = "cargo audit"; binPath = "$env:CARGO_HOME\bin\cargo-audit.exe"}
+        @{ToolName = "cargo outdated"; binPath = "$env:CARGO_HOME\bin\cargo-outdated.exe"}
     )
 
     $rustEnvNotExists = @(
