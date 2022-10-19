@@ -196,23 +196,32 @@ to accomplish this.
 - nbgv 3.5.113+a908c6d9d2
 
 ### Databases
-- MongoDB 5.0.13 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
 - sqlite3 3.31.1
+
+#### MongoDB
+- MongoDB 5.0.13 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
+- MongoDB Server (no access control)
+- MongoDB service is disabled by default. Use the following command as a part of your job to start the service:
+```
+sudo systemctl start mongod.service
+```
 
 #### PostgreSQL
 - PostgreSQL 14.5 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
 - PostgreSQL Server (user:postgres)
+- PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service:
+```
+sudo systemctl start postgresql.service
+```
 
-```
-    PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
-```
 #### MySQL
 - MySQL 8.0.30-0ubuntu0.20.04.2
 - MySQL Server (user:root password:root)
+- MySQL service is disabled by default. Use the following command as a part of your job to start the service:
+```
+sudo systemctl start mysql.service
+```
 
-```
-    MySQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
-```
 #### MS SQL Server Client Tools
 - sqlcmd 17.10.0001.1
 - SqlPackage 16.0.6296.0
