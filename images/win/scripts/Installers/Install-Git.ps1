@@ -8,7 +8,7 @@ Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 $gitReleases = Invoke-RestMethod "https://api.github.com/repos/git-for-windows/git/releases/latest"
 [string]$downloadUrl = $gitReleases.assets.browser_download_url -match "Git-.+-64-bit.exe"
 
-$installerFile = "Git-64-bit.exe"
+$installerFile = Split-Path $downloadUrl -Leaf
 Install-Binary  -Url $downloadUrl `
                 -Name $installerFile `
                 -ArgumentList (
