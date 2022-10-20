@@ -94,7 +94,7 @@
 - Switchaudio-osx 1.1.0
 - Vagrant 2.3.0
 - VirtualBox 6.1.38r153438
-- yq (https://github.com/mikefarah/yq/) version 4.27.5
+- yq (version 4.27.5
 - zstd 1.5.2
 
 ### Tools
@@ -186,7 +186,7 @@
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
-| 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
+| 1.17.13 (Default)      | x64                  | GOROOT_1_17_X64      |
 | 1.18.6  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
@@ -390,6 +390,3 @@
 - libXft 2.3.6
 - Tcl/Tk 8.6.12_1
 - Zlib 1.2.12
-
-
-
