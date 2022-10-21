@@ -182,9 +182,14 @@ $toolsList += @(
     (Get-GHCVersion),
     (Get-CabalVersion),
     (Get-StackVersion),
-    (Get-SwiftFormatVersion),
-    (Get-ColimaVersion)
+    (Get-SwiftFormatVersion)
 )
+
+if (-not $os.IsCatalina) {
+    $toolsList += @(
+        (Get-ColimaVersion)
+    )
+}
 
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 
