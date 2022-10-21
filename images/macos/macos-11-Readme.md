@@ -7,11 +7,11 @@
 # macOS 11.7 info
 - System Version: macOS 11.7 (20G817)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20221010.1
+- Image Version: 20221018.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.423 5.0.102 5.0.202 5.0.302 5.0.408 6.0.401
+- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.424 5.0.102 5.0.202 5.0.302 5.0.408 6.0.402
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0 is default
 - Clang/LLVM 14.0.6 is available on `'$(brew --prefix llvm@14)/bin/clang'`
@@ -25,30 +25,30 @@
 - julia 1.8.2
 - Kotlin 1.7.20-release-201
 - MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.17.1
-- NVM 0.39.1
-- NVM - Cached node versions: v12.22.12 v14.20.1 v16.17.1
+- Node.js v16.18.0
+- NVM 0.39.2
+- NVM - Cached node versions: v12.22.12 v14.20.1 v16.18.0
 - Perl 5.36.0
 - PHP 8.1.11
 - Python 2.7.18
-- Python 3.10.7
+- Python 3.10.8
 - R 4.2.1
 - Ruby 2.7.6p219
 
 ### Package Management
-- Bundler version 2.3.23
+- Bundler version 2.3.24
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.4.2
-- Homebrew 3.6.5
+- Composer 2.4.3
+- Homebrew 3.6.6
 - Miniconda 4.12.0
-- NPM 8.15.0
+- NPM 8.19.2
 - NuGet 6.2.1.2
 - Pip 20.3.4 (python 2.7)
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
-- RubyGems 3.3.23
-- Vcpkg 2022 (build from master \<42cc830d8>)
+- RubyGems 3.3.24
+- Vcpkg 2022 (build from master \<f4b262b25>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -72,15 +72,15 @@
 - bazelisk 1.14.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.85.0
-- Git 2.38.0
+- Git 2.38.1
 - Git LFS: 3.2.0
-- GitHub CLI: 2.17.0
+- GitHub CLI: 2.18.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
-- gpg (GnuPG) 2.3.7
-- helm v3.10.0+gce66412
+- gpg (GnuPG) 2.3.8
+- helm v3.10.1+g9f88ccb
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-50
+- ImageMagick 7.1.0-51
 - jq 1.6
 - mongo v5.0.11
 - mongod v5.0.11
@@ -96,24 +96,24 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.127
+- Aliyun CLI 3.0.131
 - App Center CLI 2.11.0
-- AWS CLI 2.8.2
-- AWS SAM CLI 1.59.0
-- AWS Session Manager CLI 1.2.339.0
+- AWS CLI 2.8.3
+- AWS SAM CLI 1.60.0
+- AWS Session Manager CLI 1.2.398.0
 - Azure CLI (azure-devops) 0.25.0
-- Azure CLI 2.40.0
+- Azure CLI 2.41.0
 - Bicep CLI 0.11.1
 - Cabal 3.6.2.0
 - Cmake 3.24.2
-- CodeQL Action Bundle 2.11.0
+- CodeQL Action Bundle 2.11.1
 - Colima 0.4.6
 - Fastlane 2.210.1
 - GHC 9.4.2
 - GHCup 0.1.18.0
 - Jazzy 0.14.3
 - Stack 2.9.1
-- SwiftFormat 0.50.1
+- SwiftFormat 0.50.2
 - Swig 4.0.2
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -124,12 +124,12 @@
 ### Browsers
 - Safari 16.0 (16614.1.25.9.10)
 - SafariDriver 16.0 (16614.1.25.9.10)
-- Google Chrome 106.0.5249.103 
+- Google Chrome 106.0.5249.119 
 - ChromeDriver 106.0.5249.61
-- Microsoft Edge 106.0.1370.37 
-- Microsoft Edge WebDriver 106.0.1370.42
+- Microsoft Edge 106.0.1370.47 
+- Microsoft Edge WebDriver 106.0.1370.47
 - Mozilla Firefox 105.0.3
-- geckodriver 0.31.0
+- geckodriver 0.32.0
 - Selenium server 4.5.0
 
 #### Environment variables
@@ -161,10 +161,10 @@
 - 3.1.2
 
 #### Python
-- 3.7.14
+- 3.7.15
 - 3.8.14
 - 3.9.14
-- 3.10.7
+- 3.10.8
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -191,7 +191,7 @@
 - Rustup 1.25.1
 
 #### Packages
-- Bindgen 0.60.1
+- Bindgen 0.61.0
 - Cargo-audit 0.17.2
 - Cargo-outdated 0.11.1
 - Cbindgen 0.24.3
@@ -204,7 +204,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 8.3.0   |
+| Az               | 9.0.1   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.21.0  |
@@ -220,7 +220,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.3.6.20 | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.3.8.5  | /Applications/Visual Studio.app      |
 
 ##### Notes:
 ```
@@ -361,7 +361,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 - libXext 1.3.4
 - libXft 2.3.6
 - Tcl/Tk 8.6.12_1
-- Zlib 1.2.12_1
+- Zlib 1.2.13
 
 
 
