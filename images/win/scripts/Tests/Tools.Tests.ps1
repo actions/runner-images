@@ -153,9 +153,13 @@ Describe "Vcpkg" {
     It "env variable VCPKG_INSTALLATION_ROOT is set" {
         $env:VCPKG_INSTALLATION_ROOT | Should -Not -BeNullOrEmpty
     }
+
+    It "env variable VCPKG_ROOT is set" {
+        $env:VCPKG_ROOT | Should -Not -BeNullOrEmpty
+    }
   
-    It "VCPKG_INSTALLATION_ROOT directory" {
-        $env:VCPKG_INSTALLATION_ROOT | Should -Exist
+    It "VCPKG_ROOT directory" {
+        $env:VCPKG_ROOT | Should -Exist
     }
 }
 
