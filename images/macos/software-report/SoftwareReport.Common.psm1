@@ -562,10 +562,6 @@ function Build-PackageManagementEnvironmentTable {
         @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
-        },
-        @{
-            "Name" = "VCPKG_ROOT"
-            "Value" = $env:VCPKG_ROOT
         }
     ) | ForEach-Object {
         [PSCustomObject] @{
