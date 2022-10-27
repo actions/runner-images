@@ -7,7 +7,7 @@
 # macOS 11.7 info
 - System Version: macOS 11.7 (20G817)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20221018.1
+- Image Version: 20221023.1
 
 ## Installed Software
 ### Language and Runtime
@@ -24,7 +24,7 @@
 - Go 1.17.13
 - julia 1.8.2
 - Kotlin 1.7.20-release-201
-- MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
+- MSBuild 16.10.1.51301 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.18.0
 - NVM 0.39.2
 - NVM - Cached node versions: v12.22.12 v14.20.1 v16.18.0
@@ -43,12 +43,12 @@
 - Homebrew 3.6.6
 - Miniconda 4.12.0
 - NPM 8.19.2
-- NuGet 6.2.1.2
+- NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
 - RubyGems 3.3.24
-- Vcpkg 2022 (build from master \<f4b262b25>)
+- Vcpkg 2022 (build from master \<934a99dc1>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -68,13 +68,13 @@
 - 7-Zip 17.04
 - aria2 1.36.0
 - azcopy 10.16.1
-- bazel 5.3.1
+- bazel 5.3.2
 - bazelisk 1.14.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.85.0
 - Git 2.38.1
 - Git LFS: 3.2.0
-- GitHub CLI: 2.18.0
+- GitHub CLI: 2.18.1
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.8
@@ -92,13 +92,13 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- yq (https://github.com/mikefarah/yq/) version 4.28.1
+- yq (https://github.com/mikefarah/yq/) version 4.28.2
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.131
+- Aliyun CLI 3.0.132
 - App Center CLI 2.11.0
-- AWS CLI 2.8.3
+- AWS CLI 2.8.5
 - AWS SAM CLI 1.60.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI (azure-devops) 0.25.0
@@ -113,7 +113,7 @@
 - GHCup 0.1.18.0
 - Jazzy 0.14.3
 - Stack 2.9.1
-- SwiftFormat 0.50.2
+- SwiftFormat 0.50.3
 - Swig 4.0.2
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -126,9 +126,9 @@
 - SafariDriver 16.0 (16614.1.25.9.10)
 - Google Chrome 106.0.5249.119 
 - ChromeDriver 106.0.5249.61
-- Microsoft Edge 106.0.1370.47 
-- Microsoft Edge WebDriver 106.0.1370.47
-- Mozilla Firefox 105.0.3
+- Microsoft Edge 106.0.1370.52 
+- Microsoft Edge WebDriver 106.0.1370.52
+- Mozilla Firefox 106.0.1
 - geckodriver 0.32.0
 - Selenium server 4.5.0
 
@@ -199,7 +199,7 @@
 - Rustfmt 1.5.1-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.6
+- PowerShell 7.2.7
 
 #### PowerShell Modules
 | Module           | Version |
@@ -213,7 +213,7 @@
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | -------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.54_1 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.23.1   | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| nginx | 1.23.2   | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 #### Visual Studio for Mac
