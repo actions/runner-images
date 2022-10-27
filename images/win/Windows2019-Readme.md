@@ -4,7 +4,7 @@
 ***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 3534
-- Image Version: 20221019.1
+- Image Version: 20221024.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -23,7 +23,7 @@
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 1.1.0
+- Chocolatey 1.2.0
 - Composer 2.4.3
 - Helm 3.10.0
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
@@ -32,7 +32,7 @@
 - pip 22.3 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<94ce0dab5>)
+- Vcpkg (build from master \<7ad236f60>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -60,13 +60,13 @@
 - CodeQL Action Bundle 2.11.1
 - Docker 20.10.20
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.12.0
+- Docker Compose v2 2.12.2
 - Docker-wincred 0.7.0
 - ghc 9.4.2
 - Git 2.38.1.windows.1
 - Git LFS 3.2.0
 - Google Cloud SDK 406.0.0
-- ImageMagick 7.1.0-50
+- ImageMagick 7.1.0-51
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.16.0
@@ -92,13 +92,13 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.132
-- AWS CLI 2.8.3
+- AWS CLI 2.8.5
 - AWS SAM CLI 1.60.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.41.0
 - Azure DevOps CLI extension 0.25.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.18.0
+- GitHub CLI 2.18.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -118,9 +118,9 @@
 ### Browsers and webdrivers
 - Google Chrome 106.0.5249.119
 - Chrome Driver 106.0.5249.61
-- Microsoft Edge 106.0.1370.47
-- Microsoft Edge Driver 106.0.1370.47
-- Mozilla Firefox 106.0
+- Microsoft Edge 106.0.1370.52
+- Microsoft Edge Driver 106.0.1370.52
+- Mozilla Firefox 106.0.1
 - Gecko Driver 0.32.0
 - IE Driver 3.150.1.1
 - Selenium server 4.5.0
@@ -234,7 +234,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.54  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.23.1  | C:\tools\nginx-1.23.1\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.23.2  | C:\tools\nginx-1.23.2\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
@@ -529,10 +529,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 4.8
 
 ### .NET tools
-- nbgv 3.5.113+a908c6d9d2
+- nbgv 3.5.119+5d25f54fec
 
 ### PowerShell Tools
-- PowerShell 7.2.6
+- PowerShell 7.2.7
 
 #### Azure Powershell Modules
 | Module  | Version                                                                                                                                                                        | Path                           |
@@ -549,7 +549,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.188          |
+| AWSPowerShell      | 4.1.191          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.13.0           |
