@@ -9,9 +9,12 @@ source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
-# add repository
-apt-add-repository ppa:ondrej/php -y
-apt-get update
+# add repository for old Ubuntu images
+# details in thread: https://github.com/actions/runner-images/issues/6331
+if isUbuntu18 || isUbuntu20; then
+    apt-add-repository ppa:ondrej/php -y
+    apt-get update
+fi
 
 # Install PHP
 php_versions=$(get_toolset_value '.php.versions[]')
@@ -103,7 +106,7 @@ mv phpunit /usr/local/bin/phpunit
 
 # ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
 # see https://github.com/actions/runner-images/issues/1084
-if isUbuntu20 || isUbuntu22; then
+if isUbuntu20; then
   rm /etc/apt/sources.list.d/ondrej-*.list
   apt-get update
 fi
