@@ -109,7 +109,6 @@
 - Bicep CLI 0.11.1
 - Cabal 3.6.2.0
 - Cmake 3.24.2
-- Colima 
 - Fastlane 2.210.1
 - GHC 9.4.2
 - GHCup 0.1.18.0
