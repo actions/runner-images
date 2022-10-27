@@ -10,7 +10,7 @@ Describe "WindowsFeatures" {
         }
     }
 
-    it "Check WSL is on path" -Skip:(-not (Test-IsWin19)) {
+    it "Check WSL is on path" {
         (Get-Command -Name 'wsl') | Should -BeTrue
     }
 }
