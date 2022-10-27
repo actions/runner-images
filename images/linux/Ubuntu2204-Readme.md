@@ -8,7 +8,7 @@
 ***
 # Ubuntu 22.04.1 LTS
 - Linux kernel version: 5.15.0-1022-azure
-- Image Version: 20221018.2
+- Image Version: 20221024.1
 
 ## Installed Software
 ### Language and Runtime
@@ -33,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.10.1
-- Homebrew 3.6.6
+- Homebrew 3.6.7
 - Miniconda 4.12.0
 - Npm 8.19.2
 - NuGet 6.3.1.1
@@ -41,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<ce99c947b>)
+- Vcpkg  (build from master \<6118e6b13>)
 - Yarn 1.22.19
 
 ##### Notes:
@@ -66,7 +66,7 @@ to accomplish this.
 - Ansible 2.13.5
 - apt-fast 1.9.12
 - AzCopy 10.16.1 (available by `azcopy` and `azcopy10` aliases)
-- Bazel 5.3.1
+- Bazel 5.3.2
 - Bazelisk 1.13.2
 - Bicep 0.11.1
 - Buildah 1.23.1
@@ -104,19 +104,19 @@ to accomplish this.
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.3.2
+- Terraform 1.3.3
 - yamllint 1.28.0
 - yq 4.28.2
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.132
-- AWS CLI 2.8.3
+- AWS CLI 2.8.5
 - AWS CLI Session manager plugin 1.2.398.0
 - AWS SAM CLI 1.60.0
 - Azure CLI (azure-cli) 2.41.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
-- GitHub CLI 2.18.0
+- GitHub CLI 2.18.1
 - Google Cloud SDK 406.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
 - Netlify CLI 12.0.11
@@ -169,8 +169,8 @@ to accomplish this.
 - Google Chrome 106.0.5249.119
 - ChromeDriver 106.0.5249.61
 - Chromium 106.0.5235.0
-- Microsoft Edge 106.0.1370.47 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 106.0.1370.47
+- Microsoft Edge 106.0.1370.52 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 106.0.1370.52
 - Selenium server 4.5.0
 
 #### Environment variables
@@ -185,7 +185,7 @@ to accomplish this.
 - 6.0.402
 
 ### .NET tools
-- nbgv 3.5.113+a908c6d9d2
+- nbgv 3.5.119+5d25f54fec
 
 ### Databases
 - sqlite3 3.37.2
@@ -198,7 +198,7 @@ to accomplish this.
     PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
 ```
 #### MySQL
-- MySQL 8.0.30-0ubuntu0.22.04.1
+- MySQL 8.0.31-0ubuntu0.22.04.1
 - MySQL Server (user:root password:root)
 
 ```
@@ -240,7 +240,7 @@ to accomplish this.
 | GOROOT_1_19_X64 | /opt/hostedtoolcache/go/1.19.2/x64  | x64          |
 
 ### PowerShell Tools
-- PowerShell 7.2.6
+- PowerShell 7.2.7
 
 #### PowerShell Modules
 | Module           | Version |
