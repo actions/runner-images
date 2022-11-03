@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [[all OSs] Nodejs 12.x will be removed from the images on November, 14](https://github.com/actions/runner-images/issues/6482) |
 | [[all OSs] The VCPKG_ROOT variable will be removed from runner images](https://github.com/actions/runner-images/issues/6376) |
 ***
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 1129
-- Image Version: 20221024.1
+- Image Version: 20221027.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -18,13 +19,13 @@
 - LLVM 14.0.6
 - Node 16.18.0
 - Perl 5.32.1
-- PHP 8.1.11
+- PHP 8.1.12
 - Python 3.9.13
 - Ruby 3.0.4p208
 
 ### Package Management
 - Chocolatey 1.2.0
-- Composer 2.4.3
+- Composer 2.4.4
 - Helm 3.10.0
 - Miniconda 4.12.0 (pre-installed on the image but not added to PATH)
 - NPM 8.19.2
@@ -32,14 +33,13 @@
 - pip 22.3 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<7ad236f60>)
+- Vcpkg (build from master \<48cc0c71e>)
 - Yarn 1.22.19
 
 #### Environment variables
 | Name                    | Value    |
 | ----------------------- | -------- |
 | VCPKG_INSTALLATION_ROOT | C:\vcpkg |
-| VCPKG_ROOT              | C:\vcpkg |
 
 ### Project Management
 - Ant 1.10.12
@@ -56,8 +56,8 @@
 - Bicep 0.11.1
 - Cabal 3.8.1.0
 - CMake 3.24.2
-- CodeQL Action Bundle 2.11.1
-- Docker 20.10.20
+- CodeQL Action Bundle 2.11.2
+- Docker 20.10.21
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.12.2
 - Docker-wincred 0.7.0
@@ -67,7 +67,7 @@
 - ImageMagick 7.1.0-51
 - InnoSetup 6.2.1
 - jq 1.6
-- Kind 0.16.0
+- Kind 0.17.0
 - Kubectl 1.25.3
 - Mercurial 5.0
 - Mingw-w64 11.2.0
@@ -75,7 +75,7 @@
 - NSIS v3.08
 - OpenSSL 1.1.1
 - Packer 1.8.2
-- Pulumi v3.43.1
+- Pulumi v3.44.2
 - R 4.2.1
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.9.1
@@ -88,9 +88,9 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.132
-- AWS CLI 2.8.5
-- AWS SAM CLI 1.60.0
+- Alibaba Cloud CLI 3.0.134
+- AWS CLI 2.8.6
+- AWS SAM CLI 1.61.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.41.0
 - Azure DevOps CLI extension 0.25.0
@@ -112,11 +112,11 @@
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
-- Google Chrome 106.0.5249.119
-- Chrome Driver 106.0.5249.61
+- Google Chrome 107.0.5304.88
+- Chrome Driver 107.0.5304.62
 - Microsoft Edge 106.0.1370.52
 - Microsoft Edge Driver 106.0.1370.52
-- Mozilla Firefox 106.0.1
+- Mozilla Firefox 106.0.2
 - Gecko Driver 0.32.0
 - IE Driver 3.150.1.1
 - Selenium server 4.5.0
@@ -133,8 +133,8 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.345+1 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.16+101         | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.4+101          | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 11.0.17+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.5+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -166,7 +166,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ------- | ------------ |
 | 12.22.12 | x64          |
 | 14.20.1 | x64          |
-| 16.17.1 | x64          |
+| 16.18.0 | x64          |
+| 18.12.0 | x64          |
 
 #### Python
 | Version | Architecture |
@@ -175,6 +176,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 3.8.10  | x64, x86     |
 | 3.9.13 (Default) | x64, x86     |
 | 3.10.8  | x64, x86     |
+| 3.11.0  | x64, x86     |
 
 #### Ruby
 | Version | Architecture |
@@ -571,10 +573,10 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.191          |
+| AWSPowerShell      | 4.1.194          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.13.0           |
+| Microsoft.Graph    | 1.14.0           |
 | Pester             | 3.4.0<br>5.3.3   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.21.0           |
