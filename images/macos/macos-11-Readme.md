@@ -1,13 +1,14 @@
 | Announcements |
 |-|
+| [[all OSs] Nodejs 12.x will be removed from the images on November, 14](https://github.com/actions/runner-images/issues/6482) |
 | [macOS-latest workflows will use macOS-12](https://github.com/actions/runner-images/issues/6384) |
 | [[all OSs] The VCPKG_ROOT variable will be removed from runner images](https://github.com/actions/runner-images/issues/6376) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 11.7 info
-- System Version: macOS 11.7 (20G817)
+- System Version: macOS 11.7.1 (20G918)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20221023.1
+- Image Version: 20221028.1
 
 ## Installed Software
 ### Language and Runtime
@@ -27,11 +28,11 @@
 - MSBuild 16.10.1.51301 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node.js v16.18.0
 - NVM 0.39.2
-- NVM - Cached node versions: v12.22.12 v14.20.1 v16.18.0
+- NVM - Cached node versions: v12.22.12 v14.20.1 v16.18.0 v18.12.0
 - Perl 5.36.0
 - PHP 8.1.11
 - Python 2.7.18
-- Python 3.10.8
+- Python 3.11.0
 - R 4.2.1
 - Ruby 2.7.6p219
 
@@ -39,16 +40,16 @@
 - Bundler version 2.3.24
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.4.3
-- Homebrew 3.6.6
+- Composer 2.4.4
+- Homebrew 3.6.7
 - Miniconda 4.12.0
 - NPM 8.19.2
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip 22.2.2 (python 3.10)
+- Pip 22.3 (python 3.11)
 - Pipx 1.1.0
 - RubyGems 3.3.24
-- Vcpkg 2022 (build from master \<934a99dc1>)
+- Vcpkg 2022 (build from master \<05fda317e>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -56,7 +57,6 @@
 | ----------------------- | ---------------------- |
 | CONDA                   | /usr/local/miniconda   |
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
-| VCPKG_ROOT              | /usr/local/share/vcpkg |
 
 ### Project Management
 - Apache Ant(TM) 1.10.12
@@ -71,7 +71,7 @@
 - bazel 5.3.2
 - bazelisk 1.14.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.85.0
+- Curl 7.86.0
 - Git 2.38.1
 - Git LFS: 3.2.0
 - GitHub CLI: 2.18.1
@@ -96,17 +96,17 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.132
+- Aliyun CLI 3.0.134
 - App Center CLI 2.11.0
-- AWS CLI 2.8.5
-- AWS SAM CLI 1.60.0
+- AWS CLI 2.8.7
+- AWS SAM CLI 1.61.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.41.0
 - Bicep CLI 0.11.1
 - Cabal 3.6.2.0
 - Cmake 3.24.2
-- CodeQL Action Bundle 2.11.1
+- CodeQL Action Bundle 2.11.2
 - Colima 0.4.6
 - Fastlane 2.210.1
 - GHC 9.4.2
@@ -122,20 +122,20 @@
 - yamllint 1.28.0
 
 ### Browsers
-- Safari 16.0 (16614.1.25.9.10)
-- SafariDriver 16.0 (16614.1.25.9.10)
-- Google Chrome 106.0.5249.119 
-- ChromeDriver 106.0.5249.61
-- Microsoft Edge 106.0.1370.52 
-- Microsoft Edge WebDriver 106.0.1370.52
-- Mozilla Firefox 106.0.1
+- Safari 16.1 (16614.2.9.1.13)
+- SafariDriver 16.1 (16614.2.9.1.13)
+- Google Chrome 107.0.5304.87 
+- ChromeDriver 107.0.5304.62
+- Microsoft Edge 107.0.1418.24 
+- Microsoft Edge WebDriver 107.0.1418.23
+- Mozilla Firefox 106.0.2
 - geckodriver 0.32.0
 - Selenium server 4.5.0
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/106.0.5249.61 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/107.0.5304.62 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -143,13 +143,13 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.345+1 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.16+101         | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.4+101          | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 11.0.17+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.5+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version   | Environment variables |
 | --------- | --------------------- |
-| CE 22.2.0 | GRAALVM_11_ROOT       |
+| CE 22.3.0 | GRAALVM_11_ROOT       |
 
 ### Cached Tools
 #### Ruby
@@ -165,6 +165,7 @@
 - 3.8.14
 - 3.9.14
 - 3.10.8
+- 3.11.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -175,7 +176,8 @@
 #### Node.js
 - 12.22.12
 - 14.20.1
-- 16.17.1
+- 16.18.0
+- 18.12.0
 
 #### Go
 | Version | Architecture | Environment Variable |
@@ -336,7 +338,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 7.0                                                                                                                                                    |
-| Android Emulator           | 31.3.12                                                                                                                                                |
+| Android Emulator           | 31.3.13                                                                                                                                                |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 33.0.3                                                                                                                                                 |
