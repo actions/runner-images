@@ -29,3 +29,5 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 export BOOTSTRAP_HASKELL_NONINTERACTIVE=1
 export BOOTSTRAP_HASKELL_INSTALL_NO_STACK_HOOK=1
+
+export PATH=/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH
