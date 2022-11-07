@@ -1,3 +1,5 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 param (
     [Parameter(Mandatory)][string]
     $OutputDirectory,
@@ -23,238 +25,246 @@ Import-Module "$PSScriptRoot/../helpers/Xcode.Helpers.psm1"
 $os = Get-OSVersion
 
 $markdown = ""
+$archive = [ArchiveItems]::New()
 
 # OS info
-$markdown += Build-OSInfoSection
-$markdown += New-MDList -Style Unordered -Lines ("Image Version: {0}" -f $ImageName.Split('_')[1])
+$markdown += Build-OSInfoSection $archive
+$markdown += New-MDList -Style Unordered -Lines $archive.Add(("Image Version: {0}" -f $ImageName.Split('_')[1]), "ImageVersion")
 # Software report
-$markdown += New-MDHeader "Installed Software" -Level 2
-$markdown += New-MDHeader "Language and Runtime" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Installed Software", 2) -Level 2
+$markdown += New-MDHeader $archive.SetHeader("Language and Runtime", 3) -Level 3
 $languageAndRuntimeList = @(
-    (Get-BashVersion)
-    (Get-MSBuildVersion)
-    (Get-NodeVersion)
-    (Get-NVMVersion)
-    (Get-NVMNodeVersionList)
-    (Get-PerlVersion)
-    (Get-PythonVersion)
-    (Get-Python3Version)
-    (Get-RubyVersion)
-    (Get-DotnetVersionList)
-    (Get-GoVersion)
-    (Get-JuliaVersion)
-    (Get-KotlinVersion)
-    (Get-PHPVersion)
-    (Get-ClangLLVMVersion)
-    (Get-GccVersion)
-    (Get-FortranVersion)
-    (Get-RVersion)
+    ((Get-BashVersion), "Bash"),
+    ((Get-MSBuildVersion), "MSBuild"),
+    ((Get-NodeVersion), "Node"),
+    ((Get-NVMVersion), "NVM"),
+    ((Get-NVMNodeVersionList), "NVMNode"),
+    ((Get-PerlVersion), "Perl"),
+    ((Get-PythonVersion), "Python"),
+    ((Get-Python3Version), "Python3"),
+    ((Get-RubyVersion), "Ruby"),
+    ((Get-DotnetVersionList), "DotnetList"),
+    ((Get-GoVersion), "Go"),
+    ((Get-JuliaVersion), "Julia"),
+    ((Get-KotlinVersion), "Kotlin"),
+    ((Get-PHPVersion), "PHP"),
+    ((Get-ClangLLVMVersion), "ClangLLVM"),
+    ((Get-GccVersion), "Gcc"),
+    ((Get-FortranVersion), "Fortran"),
+    ((Get-RVersion), "R")
 )
-
+$languageAndRuntimeTitlesList = $languageAndRuntimeList | ForEach-Object {$archive.Add($_)}
 # To sort GCC and Gfortran correctly, we need to use natural sort https://gist.github.com/markwragg/e2a9dc05f3464103d6998298fb575d4e#file-sort-natural-ps1
 $toNatural = { [regex]::Replace($_, '\d+', { $args[0].Value.PadLeft(20) }) }
-$markdown += New-MDList -Style Unordered -Lines ($languageAndRuntimeList | Sort-Object $toNatural)
+$markdown += New-MDList -Style Unordered -Lines ($languageAndRuntimeTitlesList | Sort-Object $toNatural)
 
 # Package Management
-$markdown += New-MDHeader "Package Management" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Package Management", 3) -Level 3
 $packageManagementList = @(
-    (Get-PipVersion -Version 2),
-    (Get-PipVersion -Version 3),
-    (Get-PipxVersion),
-    (Get-BundlerVersion),
-    (Get-CocoaPodsVersion),
-    (Get-CondaVersion),
-    (Get-HomebrewVersion),
-    (Get-NPMVersion),
-    (Get-YarnVersion),
-    (Get-NuGetVersion),
-    (Get-RubyGemsVersion),
-    (Get-ComposerVersion),
-    (Get-CarthageVersion),
-    (Get-VcpkgVersion)
+    ((Get-PipVersion -Version 2), "PipV2"),
+    ((Get-PipVersion -Version 3), "PipV3"),
+    ((Get-PipxVersion), "Pipx"),
+    ((Get-BundlerVersion), "Bundler"),
+    ((Get-CocoaPodsVersion), "CocoaPods"),
+    ((Get-CondaVersion), "Conda"),
+    ((Get-HomebrewVersion), "Homebrew"),
+    ((Get-NPMVersion), "NPM"),
+    ((Get-YarnVersion), "Yarn"),
+    ((Get-NuGetVersion), "NuGet"),
+    ((Get-RubyGemsVersion), "RubyGems"),
+    ((Get-ComposerVersion), "Composer"),
+    ((Get-CarthageVersion), "Carthage"),
+    ((Get-VcpkgVersion), "Vcpkg")
 )
 
-$markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+$packageManagementTitlesList = $packageManagementList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($packageManagementTitlesList | Sort-Object)
+$markdown += New-MDHeader $archive.SetHeader("Environment variables", 4) -Level 4
+$markdown += Build-PackageManagementEnvironmentTable $archive | New-MDTable
 $markdown += New-MDNewLine
 
 # Project Management
-$markdown += New-MDHeader "Project Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-MavenVersion),
-    (Get-GradleVersion),
-    (Get-ApacheAntVersion),
-    (Get-SbtVersion)
-    ) | Sort-Object
+$markdown += New-MDHeader $archive.SetHeader("Project Management", 3) -Level 3
+$projectManagementList = @(
+    ((Get-MavenVersion), "Maven"),
+    ((Get-GradleVersion), "Gradle"),
+    ((Get-ApacheAntVersion), "Apache"),
+    ((Get-SbtVersion), "Sbt")
 )
+$projectManagementTitlesList = $projectManagementList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($projectManagementTitlesList | Sort-Object)
 
 # Utilities
-$markdown += New-MDHeader "Utilities" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Utilities", 3) -Level 3
 $utilitiesList = @(
-    (Get-CurlVersion),
-    (Get-GitVersion),
-    (Get-GitLFSVersion),
-    (Get-GitHubCLIVersion),
-    (Get-HubVersion),
-    (Get-WgetVersion),
-    (Get-SVNVersion),
-    (Get-PackerVersion),
-    (Get-OpenSSLVersion),
-    (Get-JqVersion),
-    (Get-PostgresClientVersion),
-    (Get-PostgresServerVersion),
-    (Get-Aria2Version),
-    (Get-AzcopyVersion),
-    (Get-ZstdVersion),
-    (Get-BazelVersion),
-    (Get-BazeliskVersion),
-    (Get-MongoVersion),
-    (Get-MongodVersion),
-    (Get-7zipVersion),
-    (Get-BsdtarVersion),
-    (Get-GnuTarVersion),
-    (Get-GPGVersion),
-    (Get-SwitchAudioOsxVersion),
-    (Get-SoxVersion),
-    (Get-YqVersion),
-    (Get-ImageMagickVersion)
+    ((Get-CurlVersion), "Curl"),
+    ((Get-GitVersion), "Git"),
+    ((Get-GitLFSVersion), "GitLFS"),
+    ((Get-GitHubCLIVersion), "GitHubCLI"),
+    ((Get-HubVersion), "Hub"),
+    ((Get-WgetVersion), "Wget"),
+    ((Get-SVNVersion), "SVN"),
+    ((Get-PackerVersion), "Packer"),
+    ((Get-OpenSSLVersion), "OpenSSL"),
+    ((Get-JqVersion), "Jq"),
+    ((Get-PostgresClientVersion), "PostgresClient"),
+    ((Get-PostgresServerVersion), "PostgresServer"),
+    ((Get-Aria2Version), "Aria"),
+    ((Get-AzcopyVersion), "Azcopy"),
+    ((Get-ZstdVersion), "Zstd"),
+    ((Get-BazelVersion), "Bazel"),
+    ((Get-BazeliskVersion), "Bazelisk"),
+    ((Get-MongoVersion), "Mongo"),
+    ((Get-MongodVersion), "Mongod"),
+    ((Get-7zipVersion), "7zip"),
+    ((Get-BsdtarVersion), "Bsdtar"),
+    ((Get-GnuTarVersion), "GnuTar"),
+    ((Get-GPGVersion), "GPG"),
+    ((Get-SwitchAudioOsxVersion), "SwitchAudioOsx"),
+    ((Get-SoxVersion), "Sox"),
+    ((Get-YqVersion), "Yq"),
+    ((Get-ImageMagickVersion), "ImageMagick")
 )
 
 if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
-        (Get-HelmVersion)
+        ,((Get-HelmVersion), "Helm")
     )
 }
 
 if ($os.IsLessThanMonterey) {
     $utilitiesList += @(
-        (Get-NewmanVersion)
+        ,((Get-NewmanVersion), "Newman")
     )
 }
 
 if ($os.IsCatalina) {
     $utilitiesList += @(
-        (Get-ParallelVersion)
+        ,((Get-ParallelVersion), "Parallel")
     )
 }
 
 if (-not $os.IsBigSur) {
     $utilitiesList += @(
-        (Get-VagrantVersion),
-        (Get-VirtualBoxVersion)
+        ((Get-VagrantVersion), "Vagrant"),
+        ((Get-VirtualBoxVersion), "VirtualBox")
     )
 }
 
-$markdown += New-MDList -Style Unordered -Lines ($utilitiesList | Sort-Object)
+$utilitiesTitlesList = $utilitiesList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($utilitiesTitlesList | Sort-Object)
 
 # Tools
-$markdown += New-MDHeader "Tools" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Tools", 3) -Level 3
 $toolsList = @(
-    (Get-JazzyVersion),
-    (Get-FastlaneVersion),
-    (Get-CmakeVersion),
-    (Get-AppCenterCLIVersion),
-    (Get-AzureCLIVersion),
-    (Get-AzureDevopsVersion),
-    (Get-AWSCLIVersion),
-    (Get-AWSSAMCLIVersion),
-    (Get-AWSSessionManagerCLIVersion)
+    ((Get-JazzyVersion), "Jazzy"),
+    ((Get-FastlaneVersion), "Fastlane"),
+    ((Get-CmakeVersion), "Cmake"),
+    ((Get-AppCenterCLIVersion), "AppCenterCLI"),
+    ((Get-AzureCLIVersion), "AzureCLI"),
+    ((Get-AzureDevopsVersion), "AzureDevops"),
+    ((Get-AWSCLIVersion), "AWSCLI"),
+    ((Get-AWSSAMCLIVersion), "AWSSAMCLI"),
+    ((Get-AWSSessionManagerCLIVersion), "AWSSessionManagerCLI")
 )
 
 if (-not $os.IsCatalina) {
     $toolsList += @(
-        (Get-CodeQLBundleVersion)
+        ,((Get-CodeQLBundleVersion), "CodeQLBundle")
     )
 }
 
 if ($os.IsLessThanMonterey) {
     $toolsList += @(
-        (Get-AliyunCLIVersion)
+        ,((Get-AliyunCLIVersion), "AliyunCLI")
     )
 }
 
 $toolsList += @(
-    (Get-XcodeCommandLineToolsVersion),
-    (Get-SwigVersion),
-    (Get-BicepVersion),
-    (Get-GHCupVersion),
-    (Get-GHCVersion),
-    (Get-CabalVersion),
-    (Get-StackVersion),
-    (Get-SwiftFormatVersion)
+    ((Get-XcodeCommandLineToolsVersion), "XcodeCommandLineTools"),
+    ((Get-SwigVersion), "Swig"),
+    ((Get-BicepVersion), "Bicep"),
+    ((Get-GHCupVersion), "GHCup"),
+    ((Get-GHCVersion), "GHC"),
+    ((Get-CabalVersion), "Cabal"),
+    ((Get-StackVersion), "Stack"),
+    ((Get-SwiftFormatVersion), "SwiftFormat")
 )
 
 if (-not $os.IsCatalina) {
     $toolsList += @(
-        (Get-ColimaVersion)
+        ,((Get-ColimaVersion), "Colima")
     )
 }
 
-$markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
+$toolsTitlesList = $toolsList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($toolsTitlesList | Sort-Object)
 
 # Linters
-$markdown += New-MDHeader "Linters" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Linters", 3) -Level 3
 $lintersList = @(
-    (Get-YamllintVersion),
-    (Get-SwiftLintVersion)
+    ((Get-YamllintVersion), "Yamllint"),
+    ((Get-SwiftLintVersion), "Swift")
 )
 
-$markdown += New-MDList -Style Unordered -Lines ($lintersList | Sort-Object)
+$lintersTitlesList = $lintersList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($lintersTitlesList | Sort-Object)
 
-$markdown += New-MDHeader "Browsers" -Level 3
-$markdown += Get-BrowserSection
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("Browsers", 3) -Level 3
+$markdown += Get-BrowserSection $archive
+$markdown += New-MDHeader $archive.SetHeader("Environment variables", 4) -Level 4
+$markdown += Build-BrowserWebdriversEnvironmentTable $archive | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "Java" -Level 3
-$markdown += Get-JavaVersions | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("Java", 3) -Level 3
+$markdown += Get-JavaVersions $archive | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "GraalVM" -Level 3
-$markdown += Build-GraalVMTable | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("GraalVM", 3) -Level 3
+$markdown += Build-GraalVMTable $archive | New-MDTable
 $markdown += New-MDNewLine
 
 # Toolcache
-$markdown += Build-ToolcacheSection
+$markdown += Build-ToolcacheSection $archive
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "Rust Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-RustVersion),
-    (Get-RustupVersion),
-    (Get-RustdocVersion),
-    (Get-RustCargoVersion)
-    ) | Sort-Object
+$markdown += New-MDHeader $archive.SetHeader("Rust Tools", 3) -Level 3
+$rustToolsList = @(
+    ((Get-RustVersion), "Rust"),
+    ((Get-RustupVersion), "Rustup"),
+    ((Get-RustdocVersion), "Rustdoc"),
+    ((Get-RustCargoVersion), "RustCargo")
 )
+$rustToolsTitlesList = $rustToolsList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($rustToolsTitlesList | Sort-Object)
 
-$markdown += New-MDHeader "Packages" -Level 4
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-Bindgen),
-    (Get-Cbindgen),
-    (Get-Cargooutdated),
-    (Get-Cargoaudit),
-    (Get-RustfmtVersion),
-    (Get-RustClippyVersion)
-    ) | Sort-Object
+$markdown += New-MDHeader $archive.SetHeader("Packages", 4) -Level 4
+$packagesList = @(
+    ((Get-Bindgen), "Bindgen"),
+    ((Get-Cbindgen), "Cbindgen"),
+    ((Get-Cargooutdated), "CargoOutdated"),
+    ((Get-Cargoaudit), "CargoAudit"),
+    ((Get-RustfmtVersion), "Rustfmt"),
+    ((Get-RustClippyVersion), "RustClippy")
 )
+$packagesTitlesList = $packagesList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($packagesTitlesList | Sort-Object)
 
-$markdown += New-MDHeader "PowerShell Tools" -Level 3
-$markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
+$markdown += New-MDHeader $archive.SetHeader("PowerShell Tools", 3) -Level 3
+$markdown += New-MDList -Lines $archive.Add((Get-PowershellVersion), "PowerShell") -Style Unordered
 
-$markdown += New-MDHeader "PowerShell Modules" -Level 4
-$markdown += Get-PowerShellModules | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("PowerShell Modules", 4) -Level 4
+$markdown += Get-PowerShellModules $archive | New-MDTable
 $markdown += New-MDNewLine
 
 # Web Servers
-$markdown += Build-WebServersSection
+$markdown += Build-WebServersSection $archive
 
 
 # Xamarin section
-$markdown += New-MDHeader "Xamarin" -Level 3
-$markdown += New-MDHeader "Visual Studio for Mac" -Level 4
-$markdown += Build-VSMacTable | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("Xamarin", 3) -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Visual Studio for Mac", 4) -Level 4
+$markdown += Build-VSMacTable $archive | New-MDTable
 $markdown += New-MDNewLine
 if (-not $os.IsCatalina) {
 $markdown += New-MDHeader "Notes:" -Level 5
@@ -268,55 +278,66 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 $markdown += New-MDParagraph -Lines $reportVS
 }
 
-$markdown += New-MDHeader "Xamarin bundles" -Level 4
-$markdown += Build-XamarinTable | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("Xamarin bundles", 4) -Level 4
+$markdown += Build-XamarinTable $archive | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "Unit Test Framework" -Level 4
-$markdown += New-MDList -Lines @(Get-NUnitVersion) -Style Unordered
+$markdown += New-MDHeader $archive.SetHeader("Unit Test Framework", 4) -Level 4
+$markdown += New-MDList -Lines @($archive.Add((Get-NUnitVersion), "NUnit")) -Style Unordered
 
 # First run doesn't provide full data about devices and runtimes
 Get-XcodeInfoList | Out-Null
 # Xcode section
 $xcodeInfo = Get-XcodeInfoList
-$markdown += New-MDHeader "Xcode" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Xcode", 3) -Level 3
 $markdown += Build-XcodeTable $xcodeInfo | New-MDTable
+Build-XcodeTable $xcodeInfo | ForEach-Object { 
+    $id = $_.Version
+    if ($id -match '^\d{1,2}\.\d{1,2}') {
+        $id = $matches[0]
+    }
+    $archive.Add("$($_.Version)|$($_.Build)|$($_.Path)", $id)
+} | Out-Null
 $markdown += New-MDNewLine
 
-$markdown += Build-XcodeSupportToolsSection
+$markdown += Build-XcodeSupportToolsSection $archive
 
-$markdown += New-MDHeader "Installed SDKs" -Level 4
+$markdown += New-MDHeader $archive.SetHeader("Installed SDKs", 4) -Level 4
 $markdown += Build-XcodeSDKTable $xcodeInfo | New-MDTable
+Build-XcodeSDKTable $xcodeInfo | ForEach-Object { $archive.Add("$($_.SDK)|$($_."SDK Name")|$($_."Xcode Version")", "InstalledSDK_$($_."SDK Name")") } | Out-Null
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "Installed Simulators" -Level 4
+$markdown += New-MDHeader $archive.SetHeader("Installed Simulators", 4) -Level 4
 $markdown += Build-XcodeSimulatorsTable $xcodeInfo | New-MDTable
+Build-XcodeSimulatorsTable $xcodeInfo | ForEach-Object { $archive.Add("$($_.OS)|$($_."Xcode Version")|$($_.Simulators)", "InstalledSimulators_$($_.OS)".Replace(" ", "_")) } | Out-Null
 $markdown += New-MDNewLine
 
 # Android section
-$markdown += New-MDHeader "Android" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Android", 3) -Level 3
 $androidTable = Build-AndroidTable
 if ($os.IsCatalina) {
     $androidTable += Get-IntelHaxmVersion
 }
 $markdown += $androidTable | New-MDTable
+$androidTable | ForEach-Object { $archive.Add("$($_."Package Name")|$($_.Version)", "Android_$($_."Package Name")".Replace(" ", "_")) } | Out-Null
 $markdown += New-MDNewLine
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-AndroidEnvironmentTable | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("Environment variables", 4) -Level 4
+$markdown += Build-AndroidEnvironmentTable $archive | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "Miscellaneous" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-ZlibVersion),
-    (Get-LibXextVersion),
-    (Get-LibXftVersion),
-    (Get-TclTkVersion)
-    ) | Sort-Object
+$markdown += New-MDHeader $archive.SetHeader("Miscellaneous", 3) -Level 3
+$miscellaneousList = @(
+    ((Get-ZlibVersion), "Zlib"),
+    ((Get-LibXextVersion), "LibXext"),
+    ((Get-LibXftVersion), "LibXft"),
+    ((Get-TclTkVersion), "TclTk")
 )
+$miscellaneousTitlesList = $miscellaneousList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines $miscellaneousTitlesList
 
 if ($os.IsMonterey) {
 $markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-MiscellaneousEnvironmentTable | New-MDTable
+$markdown += Build-MiscellaneousEnvironmentTable $archive | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Notes:" -Level 5
@@ -347,3 +368,4 @@ if (-not (Test-Path $OutputDirectory)) { New-Item -Path $OutputDirectory -ItemTy
 Write-Host $markdownExtended
 $systemInfo | Out-File -FilePath "${OutputDirectory}/systeminfo.txt" -Encoding UTF8NoBOM
 $markdown | Out-File -FilePath "${OutputDirectory}/systeminfo.md" -Encoding UTF8NoBOM
+$archive.ToJsonGrouped() | Out-File -FilePath "${OutputDirectory}/systeminfo-archive-grouped.json" -Encoding UTF8NoBOM

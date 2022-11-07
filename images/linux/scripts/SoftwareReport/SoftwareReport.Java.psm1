@@ -1,4 +1,10 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 function Get-JavaVersions {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $javaToolcacheVersions = Get-ChildItem $env:AGENT_TOOLSDIRECTORY/Java*/* -Directory | Sort-Object { [int]$_.Name.Split(".")[0] }
 
     $existingVersions = $javaToolcacheVersions | ForEach-Object {
@@ -18,5 +24,8 @@ function Get-JavaVersions {
     }
     # Return all the vendors which are not Adopt, also look for version 12 of Adopt (Eclipse Temurin does not have this version)
     $versionsToReturn = $existingVersions | Where-Object {$_.Vendor -notlike "Adopt*" -or $_.Version.Split(".")[0] -eq 12}
+
+    $versionsToReturn | ForEach-Object { $Archive.Add("$($_.Version)|$($_.Vendor)|$($_."Environment Variable")", "Java_$($_."Environment Variable")") } | Out-Null
+
     return $versionsToReturn
 }

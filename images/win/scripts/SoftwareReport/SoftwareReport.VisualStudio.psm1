@@ -1,10 +1,19 @@
+using module ./SoftwareReport.Helpers.psm1
+
 function Get-VisualStudioVersion {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $vsInstance = Get-VisualStudioInstance
-    [PSCustomObject]@{
+    $content = [PSCustomObject]@{
         Name = $vsInstance.DisplayName
         Version = $vsInstance.InstallationVersion
         Path = $vsInstance.InstallationPath
     }
+    $Archive.SetHeader($content.Name, 3) | Out-Null
+    $Archive.Add("$($content.Name)|$($content.Version)|$($content.Path)", ($content.Name).Replace(" ", "")) | Out-Null
+    return $content
 }
 
 function Get-SDKVersion {
@@ -59,9 +68,12 @@ function Get-VisualStudioExtensions {
         $wdkPackages
     )
 
-    $extensions | Foreach-Object {
+    $output = $extensions | Foreach-Object {
         [PSCustomObject]$_
     } | Select-Object Package, Version | Sort-Object Package
+    $output | ForEach-Object { $Archive.Add("$($_.Package)|$($_.Version)", "VisualStudio_$($_.Package)".Replace(" ", "")) } | Out-Null
+
+    return $output
 }
 
 function Get-WindowsSDKs {

@@ -1,3 +1,5 @@
+using module ./SoftwareReport.Helpers.psm1
+
 function Get-ApachePath {
     return Join-Path "C:\tools\" (Get-Item C:\tools\apache*).Name
 }
@@ -53,12 +55,20 @@ function Get-NginxMarkdown
 }
 
 function Build-WebServersSection {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $output = ""
-    $output += New-MDHeader "Web Servers" -Level 3
-    $output += @(
+    $output += New-MDHeader $Archive.SetHeader("Web Servers", 3) -Level 3
+    $webServers = @(
     (Get-ApacheMarkdown),
     (Get-NginxMarkdown)
-    ) | Sort-Object Name | New-MDTable
+    )
+    $webServers | ForEach-Object {
+        $Archive.Add("$($_.Name)|$($_.Version)|$($_.ConfigFile)|$($_.ServiceName)|$($_.ServiceStatus)|$($_.ListenPort)", "WebServers_$($_.Name)") | Out-Null
+    }
+    $output += $webServers | Sort-Object Name | New-MDTable
 
     $output += New-MDNewLine
     return $output

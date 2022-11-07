@@ -1,10 +1,16 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 function Build-VSMacTable {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $vsMacVersions = Get-ToolsetValue "xamarin.vsmac.versions"
     $defaultVSMacVersion = Get-ToolsetValue "xamarin.vsmac.default"
 
-    $vsMacVersions | ForEach-Object {
+    $output = $vsMacVersions | ForEach-Object {
         $isDefault = $_ -eq $defaultVSMacVersion
         $vsPath = "/Applications/Visual Studio $_.app"
         if ($isDefault) {
@@ -21,6 +27,10 @@ function Build-VSMacTable {
             "Path" = $vsPath
         }
     }
+
+    $output | ForEach-Object { $Archive.Add("$($_.Version)|$($_.Build)|$($_.Path)", "VisualStudioForMac_$($_.Version)") } | Out-Null
+
+    return $output
 }
 
 function Get-NUnitVersion {
@@ -29,13 +39,17 @@ function Get-NUnitVersion {
 }
 
 function Build-XamarinTable {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $xamarinBundles = Get-ToolsetValue "xamarin.bundles"
     $defaultSymlink = Get-ToolsetValue "xamarin.bundle-default"
     if ($defaultSymlink -eq "latest") {
         $defaultSymlink = $xamarinBundles[0].symlink
     }
 
-    return $xamarinBundles | ForEach-Object {
+    $output = $xamarinBundles | ForEach-Object {
         $defaultPostfix = ($_.symlink -eq $defaultSymlink ) ? " (default)" : ""
         [PSCustomObject] @{
             "symlink" = $_.symlink + $defaultPostfix 
@@ -45,4 +59,15 @@ function Build-XamarinTable {
             "Xamarin.Android" = $_.android
         }
     }
+
+    $output | ForEach-Object {
+        $id = $_.symlink
+        $title = "$($_.symlink)|Mono: $($_."Xamarin.Mono")|iOS: $($_."Xamarin.iOS")|Mac: $($_."Xamarin.Mac")|Android: $($_."Xamarin.Android")"
+        if ($id -match '^\d{1,2}_\d{1,2}_\d{1,2}') {
+            $id = $matches[0]
+        }
+        $Archive.Add($title, "XamarinBundle_$id") | Out-Null
+    } | Out-Null
+
+    return $output
 }

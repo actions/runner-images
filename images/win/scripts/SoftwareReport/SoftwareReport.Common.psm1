@@ -1,3 +1,5 @@
+using module ./SoftwareReport.Helpers.psm1
+
 function Initialize-RustEnvironment {
     $env:RUSTUP_HOME = "C:\Users\Default\.rustup"
     $env:CARGO_HOME = "C:\Users\Default\.cargo"
@@ -199,13 +201,19 @@ function Get-DotnetSdks {
 }
 
 function Get-DotnetTools {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $env:Path += ";C:\Users\Default\.dotnet\tools"
     $dotnetTools = (Get-ToolsetContent).dotnet.tools
 
     $toolsList = @()
 
     foreach  ($dotnetTool in $dotnetTools) {
-        $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
+        $toolTitle += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
+        $toolsList += $toolTitle
+        $Archive.Add($toolTitle, "NET_Tools_$($dotnetTool.name)") | Out-Null
     }
     return $toolsList
 }
@@ -237,6 +245,10 @@ function Get-DotnetFrameworkTools {
 }
 
 function Get-PowerShellAzureModules {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     # Module names
     $names = @{
         'az' = 'Az'
@@ -270,10 +282,15 @@ function Get-PowerShellAzureModules {
             Version = $moduleVersions
             Path = $modulePath
         }
+        $Archive.Add("$moduleName|$moduleVersions|$modulePath", "AzurePowershellModule_$moduleName") | Out-Null
     }
 }
 
 function Get-PowerShellModules {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $modules = (Get-ToolsetContent).powershellModules.name
 
     $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
@@ -285,6 +302,7 @@ function Get-PowerShellModules {
             Module = $moduleName
             Version = $moduleVersions
         }
+        $Archive.Add("$moduleName|$moduleVersions", "PowershellModule_$moduleName") | Out-Null
     }
 }
 
@@ -309,6 +327,10 @@ function Get-CachedDockerImagesTableData {
 }
 
 function Get-ShellTarget {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $shells = Get-ChildItem C:\shells -File | Select-Object Name, @{n="Target";e={
         if ($_.Name -eq "msys2bash.cmd") {
             "C:\msys64\usr\bin\bash.exe"
@@ -316,6 +338,7 @@ function Get-ShellTarget {
             @($_.Target)[0]
         }
     }} | Sort-Object Name
+    $shells | ForEach-Object { $Archive.Add("$($_.Name)|$($_.Target)", "Shell_$($_.Name)") } | Out-Null
     $shells | New-MDTable -Columns ([ordered]@{Name = "left"; Target = "left";})
 }
 
@@ -343,6 +366,10 @@ function Get-PipxVersion {
 }
 
 function Build-PackageManagementEnvironmentTable {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $envVariables = @(
         @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
@@ -362,5 +389,6 @@ function Build-PackageManagementEnvironmentTable {
             "Name" = $_.Name
             "Value" = $_.Value
         }
+        $Archive.Add("$($_.Name)|$($_.Value)", "Env_$($_.Name)") | Out-Null
     }
 }

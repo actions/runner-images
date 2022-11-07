@@ -1,3 +1,5 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 function Get-ChromeVersion {
     $googleChromeVersion = google-chrome --version | Take-OutputPart -Part 2
     return "Google Chrome $googleChromeVersion"
@@ -41,6 +43,10 @@ function Get-SeleniumVersion {
 }
 
 function Build-BrowserWebdriversEnvironmentTable {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     return @(
         @{
             "Name" = "CHROMEWEBDRIVER"
@@ -63,5 +69,6 @@ function Build-BrowserWebdriversEnvironmentTable {
             "Name" = $_.Name
             "Value" = $_.Value
         }
+        $Archive.Add("$($_.Name)|$($_.Value)", "Env_$($_.Name)") | Out-Null
     }
 }

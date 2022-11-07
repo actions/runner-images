@@ -1,3 +1,5 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 function Get-BashVersion {
     $version = bash -c 'echo ${BASH_VERSION}'
     return "Bash $version"
@@ -262,6 +264,10 @@ function Get-PHPUnitVersion {
 }
 
 function Build-PHPTable {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $php = @{
         "Tool" = "PHP"
         "Version" = "$(Get-PHPVersions -Join '<br>')"
@@ -274,18 +280,26 @@ function Build-PHPTable {
         "Tool" = "PHPUnit"
         "Version" = Get-PHPUnitVersion
     }
-    return @($php, $composer, $phpunit) | ForEach-Object {
+    $output = @($php, $composer, $phpunit) | ForEach-Object {
         [PSCustomObject] @{
             "Tool" = $_.Tool
             "Version" = $_.Version
         }
     }
+
+    $output | ForEach-Object { $Archive.Add("$($_.Tool)|$($_.Version)", "PHP_$($_.Tool)") } | Out-Null
+
+    return $output
 }
 
 function Build-PHPSection {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $output = ""
-    $output += New-MDHeader "PHP" -Level 3
-    $output += Build-PHPTable | New-MDTable
+    $output += New-MDHeader $Archive.SetHeader("PHP", 3) -Level 3
+    $output += Build-PHPTable $Archive | New-MDTable
     $output += New-MDCode -Lines @(
         "Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled."
     )
@@ -327,10 +341,14 @@ function Get-AzModuleVersions {
 }
 
 function Get-PowerShellModules {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $modules = (Get-ToolsetContent).powershellModules.name
 
     $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
-    $psModules | ForEach-Object {
+    $output = $psModules | ForEach-Object {
         $moduleName = $_.Name
         $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
 
@@ -339,6 +357,10 @@ function Get-PowerShellModules {
             Version = $moduleVersions
         }
     }
+
+    $output | ForEach-Object { $Archive.Add("$($_.Module)|$($_.Version)", "PowerShellModules_$($_.Module)") } | Out-Null
+
+    return $output
 }
 
 function Get-DotNetCoreSdkVersions {
@@ -348,6 +370,10 @@ function Get-DotNetCoreSdkVersions {
 }
 
 function Get-DotnetTools {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $env:PATH = "/etc/skel/.dotnet/tools:$($env:PATH)"
 
     $dotnetTools = (Get-ToolsetContent).dotnet.tools
@@ -355,7 +381,9 @@ function Get-DotnetTools {
     $toolsList = @()
 
     ForEach ($dotnetTool in $dotnetTools) {
-        $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
+        $toolsTitle += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
+        $toolsList += $toolsTitle
+        $Archive.Add($toolsTitle, "NET_Tools_$($dotnetTool.name)") | Out-Null
     }
 
     return $toolsList
@@ -368,8 +396,12 @@ function Get-CachedDockerImages {
 }
 
 function Get-CachedDockerImagesTableData {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $allImages = sudo docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}"
-    $allImages.Split("*") | Where-Object { $_ } | ForEach-Object {
+    $output = $allImages.Split("*") | Where-Object { $_ } | ForEach-Object {
         $parts = $_.Split("|")
         [PSCustomObject] @{
             "Repository:Tag" = $parts[0]
@@ -377,9 +409,17 @@ function Get-CachedDockerImagesTableData {
             "Created" = $parts[2].split(' ')[0]
         }
     } | Sort-Object -Property "Repository:Tag"
+
+    $output | ForEach-Object { $archive.Add("$($_."Repository:Tag")|$($_.Digest)|$($_.Created)", "CachedDockerImage_$($_."Repository:Tag")") } | Out-Null
+
+    return $output
 }
 
 function Get-AptPackages {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $apt = (Get-ToolsetContent).Apt
     $output = @()
     ForEach ($pkg in ($apt.common_packages + $apt.cmd_packages)) {
@@ -395,6 +435,9 @@ function Get-AptPackages {
             Version = $version
         }
     }
+
+    ($output | Sort-Object Name) | ForEach-Object { $archive.Add("$($_.Name)|$($_.Version)", "InstalledAptPackage_$($_.Name)") } | Out-Null
+
     return ($output | Sort-Object Name)
 }
 
@@ -411,16 +454,28 @@ function Get-GraalVMVersion {
 }
 
 function Build-GraalVMTable {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $version = Get-GraalVMVersion
     $envVariables = "GRAALVM_11_ROOT"
 
-    return [PSCustomObject] @{
+    $output = [PSCustomObject] @{
         "Version" = $version
         "Environment variables" = $envVariables
     }
+
+    $Archive.Add("$($_.Version)|$($_."Environment variables")", "Env_$($_."Environment variables")") | Out-Null
+
+    return $output
 }
 
 function Build-PackageManagementEnvironmentTable {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     return @(
         @{
             "Name" = "CONDA"
@@ -435,5 +490,6 @@ function Build-PackageManagementEnvironmentTable {
             "Name" = $_.Name
             "Value" = $_.Value
         }
+        $Archive.Add("$($_.Name)|$($_.Value)", "Env_$($_.Name)") | Out-Null
     }
 }

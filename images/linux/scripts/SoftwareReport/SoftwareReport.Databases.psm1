@@ -1,3 +1,5 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 function Get-PostgreSqlVersion {
     $postgreSQLVersion = psql --version | Take-OutputPart -Part 2
     $aptSourceRepo = Get-AptSourceRepository -PackageName "postgresql"
@@ -34,12 +36,16 @@ function Get-SqlPackageVersion {
 }
 
 function Build-PostgreSqlSection {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $output = ""
 
-    $output += New-MDHeader "PostgreSQL" -Level 4
+    $output += New-MDHeader $Archive.SetHeader("PostgreSQL", 4) -Level 4
     $output += New-MDList -Style Unordered -Lines @(
-        (Get-PostgreSqlVersion ),
-        "PostgreSQL Server (user:postgres)"
+        $Archive.Add((Get-PostgreSqlVersion), "PostgreSql"),
+        $Archive.Add("PostgreSQL Server (user:postgres)", "PostgreSqlServer")
     )
     $output += New-MDCode -Lines @(
         "PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'"
@@ -49,12 +55,16 @@ function Build-PostgreSqlSection {
 }
 
 function Build-MySQLSection {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $output = ""
 
-    $output += New-MDHeader "MySQL" -Level 4
+    $output += New-MDHeader $Archive.SetHeader("MySQL", 4) -Level 4
     $output += New-MDList -Style Unordered -Lines @(
-        (Get-MySQLVersion ),
-        "MySQL Server (user:root password:root)"
+        $Archive.Add((Get-MySQLVersion), "MySql"),
+        $Archive.Add("MySQL Server (user:root password:root)", "MySqlServer")
     )
     $output += New-MDCode -Lines @(
         "MySQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'"
@@ -64,12 +74,16 @@ function Build-MySQLSection {
 }
 
 function Build-MSSQLToolsSection {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $output = ""
 
-    $output += New-MDHeader "MS SQL Server Client Tools" -Level 4
+    $output += New-MDHeader $Archive.SetHeader("MS SQL Server Client Tools", 4) -Level 4
     $output += New-MDList -Style Unordered -Lines @(
-        (Get-SQLCmdVersion),
-        (Get-SqlPackageVersion)
+        $Archive.Add((Get-SQLCmdVersion), "SqlCmd"),
+        $Archive.Add((Get-SqlPackageVersion), "SqlPackage")
     )
 
     return $output

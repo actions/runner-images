@@ -1,4 +1,10 @@
+using module ./SoftwareReport.Helpers.psm1
+
 function Get-JavaVersions {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $defaultJavaPath = $env:JAVA_HOME
     $javaVersions = Get-Item env:JAVA_HOME_*_X64
     $sortRules = @{
@@ -6,7 +12,7 @@ function Get-JavaVersions {
         Descending = $false
     }
 
-    return $javaVersions | Sort-Object $sortRules | ForEach-Object {
+    $output = $javaVersions | Sort-Object $sortRules | ForEach-Object {
         $javaPath = $_.Value
         # Take semver from the java path
         # The path contains '-' sign in the version number instead of '+' due to the following issue, need to substitute it back https://github.com/actions/runner-images/issues/3014
@@ -21,4 +27,8 @@ function Get-JavaVersions {
             "Environment Variable" = $_.Name
         }
     }
+
+    $output | ForEach-Object { $Archive.Add("$($_.Version)|$($_.Vendor)|$($_."Environment Variable")", "Java_$($_."Environment Variable")") } | Out-Null
+
+    return $output
 }

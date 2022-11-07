@@ -1,4 +1,10 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 function Get-JavaVersions {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $defaultJavaPath = (Get-Item env:JAVA_HOME).value
     $javaVersions = Get-Item env:JAVA_HOME_*_X64
     $sortRules = @{
@@ -6,7 +12,7 @@ function Get-JavaVersions {
         Descending = $false
     }
 
-    return $javaVersions | Sort-Object $sortRules | ForEach-Object {
+    $output = $javaVersions | Sort-Object $sortRules | ForEach-Object {
         $javaPath = $_.Value
         # Take semver from the java path
         $version = $javaPath.split('/')[5]
@@ -20,4 +26,8 @@ function Get-JavaVersions {
             "Environment Variable" = $_.Name
         }
     }
+
+    $output | ForEach-Object { $Archive.Add("$($_.Version)|$($_.Vendor)|$($_."Environment Variable")", "Java_$($_."Environment Variable")") } | Out-Null
+
+    return $output
 }

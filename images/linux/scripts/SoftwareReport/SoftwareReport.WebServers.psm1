@@ -1,3 +1,5 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 function Get-ApacheVersion {
     $name = "apache2"
     $port = 80
@@ -44,6 +46,10 @@ function Get-Xsp4Version {
 }
 
 function Build-WebServersSection {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $servers = @(
         (Get-ApacheVersion),
         (Get-NginxVersion)
@@ -53,9 +59,11 @@ function Build-WebServersSection {
     }
 
     $output = ""
-    $output += New-MDHeader "Web Servers" -Level 3
+    $output += New-MDHeader $Archive.SetHeader("Web Servers", 3) -Level 3
     $output += $servers | Sort-Object Name | New-MDTable
     $output += New-MDNewLine
+
+    $servers | ForEach-Object { $Archive.Add("$($_.Name)|$($_.Version)|$($_.ConfigFile)|$($_.ServiceStatus)|$($_.ListenPort)", "WebServers_$($_.Name)") } | Out-Null
 
     return $output
 }

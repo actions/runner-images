@@ -313,6 +313,12 @@
             "direction": "download"
         },
         {
+            "type": "file",
+            "source": "C:\\InstalledSoftware-Archive-Grouped.json",
+            "destination": "{{ template_dir }}/Windows2022-Archive-Grouped.json",
+            "direction": "download"
+        },
+        {
             "type": "powershell",
             "skip_clean": true,
             "scripts": [

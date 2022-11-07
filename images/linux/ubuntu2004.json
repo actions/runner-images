@@ -341,6 +341,12 @@
             "direction": "download"
         },
         {
+            "type": "file",
+            "source": "{{user `image_folder`}}/Ubuntu-Archive-Grouped.json",
+            "destination": "{{template_dir}}/Ubuntu2004-Archive-Grouped.json",
+            "direction": "download"
+        },
+        {
             "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/installers/post-deployment.sh"

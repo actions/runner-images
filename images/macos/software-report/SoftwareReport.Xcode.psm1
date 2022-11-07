@@ -1,3 +1,5 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Xcode.Helpers.psm1"
 
@@ -226,12 +228,16 @@ function Build-XcodeSimulatorsTable {
 }
 
 function Build-XcodeSupportToolsSection {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $xcpretty = Run-Command "xcpretty --version"
     $xcversion = Run-Command "xcversion --version" | Select-String "^[0-9]"
 
     $toolList = @(
-        "xcpretty $xcpretty",
-        "xcversion $xcversion"
+        ("xcpretty $xcpretty", "xcpretty"),
+        ("xcversion $xcversion", "xcversion")
     )
 
     $nomadOutput = Run-Command "gem list nomad-cli"
@@ -241,13 +247,14 @@ function Build-XcodeSupportToolsSection {
 
     if ($os.IsLessThanMonterey) {
         $toolList += @(
-            "Nomad CLI $nomadCLI",
-            "Nomad shenzhen CLI $nomadShenzhen"
+            ("Nomad CLI $nomadCLI", "NomadCLI"),
+            ("Nomad shenzhen CLI $nomadShenzhen", "NomadShenzenCLI")
         )
     }
 
     $output = ""
-    $output += New-MDHeader "Xcode Support Tools" -Level 4
-    $output += New-MDList -Style Unordered -Lines $toolList
+    $output += New-MDHeader $Archive.SetHeader("Xcode Support Tools", 4) -Level 4
+    $toolTitlesList = $toolList | ForEach-Object { $Archive.Add($_) }
+    $output += New-MDList -Style Unordered -Lines $toolTitlesList
     return $output
 }

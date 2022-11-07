@@ -1,15 +1,24 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 function Get-BrowserSection {
-    return New-MDList -Style Unordered -Lines @(
-        (Get-SafariVersion),
-        (Get-SafariDriverVersion),
-        (Get-ChromeVersion),
-        (Get-ChromeDriverVersion),
-        (Get-EdgeVersion),
-        (Get-EdgeDriverVersion),
-        (Get-FirefoxVersion),
-        (Get-GeckodriverVersion),
-        (Get-SeleniumVersion)
+    param (
+        [ArchiveItems] $Archive
     )
+
+    $output = @(
+        ((Get-SafariVersion), "Safari"),
+        ((Get-SafariDriverVersion), "SafariDriver"),
+        ((Get-ChromeVersion), "Chrome"),
+        ((Get-ChromeDriverVersion), "ChromeDriver"),
+        ((Get-EdgeVersion), "Edge"),
+        ((Get-EdgeDriverVersion), "EdgeDriver"),
+        ((Get-FirefoxVersion), "Firefox"),
+        ((Get-GeckodriverVersion), "GeckoDriver"),
+        ((Get-SeleniumVersion), "Selenium")
+    )
+    $outputTitles = $output | ForEach-Object {$archive.Add($_)}
+
+    return New-MDList -Style Unordered -Lines $outputTitles
 }
 
 function Get-SafariVersion {
@@ -58,6 +67,10 @@ function Get-SeleniumVersion {
 }
 
 function Build-BrowserWebdriversEnvironmentTable {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     return @(
         @{
             "Name" = "CHROMEWEBDRIVER"
@@ -76,5 +89,6 @@ function Build-BrowserWebdriversEnvironmentTable {
             "Name" = $_.Name
             "Value" = $_.Value
         }
+        $Archive.Add("$($_.Name)|$($_.Value)", "Env_$($_.Name)") | Out-Null
     }
 }

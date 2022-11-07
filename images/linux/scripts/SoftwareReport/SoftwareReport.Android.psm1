@@ -1,3 +1,5 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 function Split-TableRowByColumns {
     param(
         [string] $Row
@@ -22,8 +24,12 @@ function Get-AndroidInstalledPackages {
 
 
 function Build-AndroidTable {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $packageInfo = Get-AndroidInstalledPackages
-    return @(
+    $output = @(
         @{
             "Package" = "Android Command Line Tools"
             "Version" = Get-AndroidCommandLineToolsVersion
@@ -82,6 +88,10 @@ function Build-AndroidTable {
             "Version" = $_.Version
         }
     }
+
+    $output | ForEach-Object { $Archive.Add("$($_."Package Name")|$($_.Version)", "Android_$($_."Package Name")".Replace(" ", "")) } | Out-Null
+
+    return $output
 }
 
 function Get-AndroidPackageVersions {
@@ -166,6 +176,10 @@ function Get-AndroidNDKVersions {
 }
 
 function Build-AndroidEnvironmentTable {
+    param (
+        [ArchiveItems] $Archive
+    )
+
     $androidVersions = Get-Item env:ANDROID_*
 
     $shouldResolveLink = 'ANDROID_NDK', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
@@ -175,4 +189,8 @@ function Build-AndroidEnvironmentTable {
             "Value" = if ($shouldResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else {$_.Value}
         }
     }
+
+    $output | ForEach-Object { $Archive.Add("$($_.Name)|$($_.Value)", "Env_$($_.Name)") } | Out-Null
+
+    return $output
 }

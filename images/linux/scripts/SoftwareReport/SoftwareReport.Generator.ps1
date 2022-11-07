@@ -1,3 +1,5 @@
+using module ./../helpers/SoftwareReport.Helpers.psm1
+
 param (
     [Parameter(Mandatory)][string]
     $OutputDirectory
@@ -24,66 +26,69 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -Disabl
 Restore-UserOwner
 
 $markdown = ""
+$archive = [ArchiveItems]::New()
 
 $OSName = Get-OSName
-$markdown += New-MDHeader "$OSName" -Level 1
+$markdown += New-MDHeader $archive.SetHeader("$OSName", 1) -Level 1
 
 $kernelVersion = Get-KernelVersion
 $markdown += New-MDList -Style Unordered -Lines @(
-    "$kernelVersion"
-    "Image Version: $env:IMAGE_VERSION"
+    $archive.Add("$kernelVersion", "KernelVersion")
+    $archive.Add("Image Version: $env:IMAGE_VERSION", "ImageVersion")
 )
 
-$markdown += New-MDHeader "Installed Software" -Level 2
-$markdown += New-MDHeader "Language and Runtime" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Installed Software", 2) -Level 2
+$markdown += New-MDHeader $archive.SetHeader("Language and Runtime", 3) -Level 3
 
 $runtimesList = @(
-    (Get-BashVersion),
-    (Get-DashVersion),
-    (Get-CPPVersions),
-    (Get-FortranVersions),
-    (Get-MsbuildVersion),
-    (Get-MonoVersion),
-    (Get-NodeVersion),
-    (Get-PerlVersion),
-    (Get-PythonVersion),
-    (Get-Python3Version),
-    (Get-RubyVersion),
-    (Get-JuliaVersion),
-    (Get-ClangVersions),
-    (Get-ClangFormatVersions),
-    (Get-ClangTidyVersions),
-    (Get-KotlinVersion),
-    (Get-SwiftVersion)
+    ((Get-BashVersion), "Bash"),
+    ((Get-DashVersion), "Dash"),
+    ((Get-CPPVersions), "CPP"),
+    ((Get-FortranVersions), "Fortran"),
+    ((Get-MsbuildVersion), "Msbuild"),
+    ((Get-MonoVersion), "Mono"),
+    ((Get-NodeVersion), "Node"),
+    ((Get-PerlVersion), "Perl"),
+    ((Get-PythonVersion), "Python"),
+    ((Get-Python3Version), "Python3"),
+    ((Get-RubyVersion), "Ruby"),
+    ((Get-JuliaVersion), "Julia"),
+    ((Get-ClangVersions), "Clang"),
+    ((Get-ClangFormatVersions), "ClangFormat"),
+    ((Get-ClangTidyVersions), "ClangTidy"),
+    ((Get-KotlinVersion), "Kotlin"),
+    ((Get-SwiftVersion), "Swift")
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $runtimesList += @(
-        (Get-ErlangVersion),
-        (Get-ErlangRebar3Version)
+        ((Get-ErlangVersion), "Erlang"),
+        ((Get-ErlangRebar3Version), "ErlangRebar3")
     )
 }
 
-$markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
+$runtimesTitlesList = $runtimesList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($runtimesTitlesList | Sort-Object)
 
-$markdown += New-MDHeader "Package Management" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Package Management", 3) -Level 3
 
 $packageManagementList = @(
-    (Get-HomebrewVersion),
-    (Get-CpanVersion),
-    (Get-GemVersion),
-    (Get-MinicondaVersion),
-    (Get-NuGetVersion),
-    (Get-HelmVersion),
-    (Get-NpmVersion),
-    (Get-YarnVersion),
-    (Get-PipxVersion),
-    (Get-PipVersion),
-    (Get-Pip3Version),
-    (Get-VcpkgVersion)
+    ((Get-HomebrewVersion), "Homebrew"),
+    ((Get-CpanVersion), "Cpan"),
+    ((Get-GemVersion), "Gem"),
+    ((Get-MinicondaVersion), "Miniconda"),
+    ((Get-NuGetVersion), "NuGet"),
+    ((Get-HelmVersion), "Helm"),
+    ((Get-NpmVersion), "Npm"),
+    ((Get-YarnVersion), "Yarn"),
+    ((Get-PipxVersion), "Pipx"),
+    ((Get-PipVersion), "Pip"),
+    ((Get-Pip3Version), "Pip3"),
+    ((Get-VcpkgVersion), "Vcpkg")
 )
 
-$markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
+$packageManagementTitlesList = $packageManagementList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($packageManagementTitlesList | Sort-Object)
 
 $markdown += New-MDHeader "Notes:" -Level 5
 $reportHomebrew = @'
@@ -96,230 +101,243 @@ to accomplish this.
 '@
 $markdown += New-MDParagraph -Lines $reportHomebrew
 
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("Environment variables", 4) -Level 4
+$markdown += Build-PackageManagementEnvironmentTable $archive | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "Project Management" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Project Management", 3) -Level 3
 $projectManagementList = @()
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $projectManagementList += @(
-        (Get-AntVersion),
-        (Get-GradleVersion),
-        (Get-MavenVersion),
-        (Get-SbtVersion)
+        ((Get-AntVersion), "Ant"),
+        ((Get-GradleVersion), "Gradle"),
+        ((Get-MavenVersion), "Maven"),
+        ((Get-SbtVersion), "Sbt")
     )
 }
 
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $projectManagementList += @(
-        (Get-LernaVersion)
+        ,((Get-LernaVersion), "Lerna")
     )
 }
-$markdown += New-MDList -Style Unordered -Lines ($projectManagementList | Sort-Object)
+$projectManagementTitlesList = $projectManagementList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($projectManagementTitlesList | Sort-Object)
 
-$markdown += New-MDHeader "Tools" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Tools", 3) -Level 3
 $toolsList = @(
-    (Get-AnsibleVersion),
-    (Get-AptFastVersion),
-    (Get-AzCopyVersion),
-    (Get-BazelVersion),
-    (Get-BazeliskVersion),
-    (Get-BicepVersion),
-    (Get-CodeQLBundleVersion),
-    (Get-CMakeVersion),
-    (Get-DockerMobyClientVersion),
-    (Get-DockerMobyServerVersion),
-    (Get-DockerComposeV1Version),
-    (Get-DockerComposeV2Version),
-    (Get-DockerBuildxVersion),
-    (Get-DockerAmazonECRCredHelperVersion),
-    (Get-BuildahVersion),
-    (Get-PodManVersion),
-    (Get-SkopeoVersion),
-    (Get-GitVersion),
-    (Get-GitLFSVersion),
-    (Get-GitFTPVersion),
-    (Get-HavegedVersion),
-    (Get-HerokuVersion),
-    (Get-LeiningenVersion),
-    (Get-SVNVersion),
-    (Get-JqVersion),
-    (Get-YqVersion),
-    (Get-KindVersion),
-    (Get-KubectlVersion),
-    (Get-KustomizeVersion),
-    (Get-MediainfoVersion),
-    (Get-HGVersion),
-    (Get-MinikubeVersion),
-    (Get-NewmanVersion),
-    (Get-NVersion),
-    (Get-NvmVersion),
-    (Get-OpensslVersion),
-    (Get-PackerVersion),
-    (Get-ParcelVersion),
-    (Get-PulumiVersion),
-    (Get-RVersion),
-    (Get-SphinxVersion),
-    (Get-TerraformVersion),
-    (Get-YamllintVersion),
-    (Get-ZstdVersion)
+    ((Get-AnsibleVersion), "Ansible"),
+    ((Get-AptFastVersion), "AptFast"),
+    ((Get-AzCopyVersion), "AzCopy"),
+    ((Get-BazelVersion), "Bazel"),
+    ((Get-BazeliskVersion), "Bazelisk"),
+    ((Get-BicepVersion), "Bicep"),
+    ((Get-CodeQLBundleVersion), "CodeQL"),
+    ((Get-CMakeVersion), "CMake"),
+    ((Get-DockerMobyClientVersion), "DockerMobyClient"),
+    ((Get-DockerMobyServerVersion), "DockerMobyServer"),
+    ((Get-DockerComposeV1Version), "DockerComposeV1"),
+    ((Get-DockerComposeV2Version), "DockerComposeV2"),
+    ((Get-DockerBuildxVersion), "DockerBuildx"),
+    ((Get-DockerAmazonECRCredHelperVersion), "DockerAmazonECRCredHelper"),
+    ((Get-BuildahVersion), "Buildah"),
+    ((Get-PodManVersion), "PodMan"),
+    ((Get-SkopeoVersion), "Skopeo"),
+    ((Get-GitVersion), "Git"),
+    ((Get-GitLFSVersion), "GitLFS"),
+    ((Get-GitFTPVersion), "GitFTP"),
+    ((Get-HavegedVersion), "Haveged"),
+    ((Get-HerokuVersion), "Heroku"),
+    ((Get-LeiningenVersion), "Leiningen"),
+    ((Get-SVNVersion), "SVN"),
+    ((Get-JqVersion), "Jq"),
+    ((Get-YqVersion), "Yq"),
+    ((Get-KindVersion), "Kind"),
+    ((Get-KubectlVersion), "Kubectl"),
+    ((Get-KustomizeVersion), "Kustomize"),
+    ((Get-MediainfoVersion), "Mediainfo"),
+    ((Get-HGVersion), "HG"),
+    ((Get-MinikubeVersion), "Minikube"),
+    ((Get-NewmanVersion), "Newman"),
+    ((Get-NVersion), "NV"),
+    ((Get-NvmVersion), "Nvm"),
+    ((Get-OpensslVersion), "Openssl"),
+    ((Get-PackerVersion), "Packer"),
+    ((Get-ParcelVersion), "Parcel"),
+    ((Get-PulumiVersion), "Pulumi"),
+    ((Get-RVersion), "RVersion"),
+    ((Get-SphinxVersion), "Sphinx"),
+    ((Get-TerraformVersion), "Terraform"),
+    ((Get-YamllintVersion), "Yamllint"),
+    ((Get-ZstdVersion), "Zstd")
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $toolsList += @(
-        (Get-PhantomJSVersion),
-        (Get-HHVMVersion)
+        ((Get-PhantomJSVersion), "PhantomJS"),
+        ((Get-HHVMVersion), "HHVM")
     )
 }
 
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $toolsList += (Get-FastlaneVersion)
+    $toolsList += ,((Get-FastlaneVersion), "Fastlane")
 }
 
-$markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
+$toolsTitlesList = $toolsList | ForEach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($toolsTitlesList | Sort-Object)
 
-$markdown += New-MDHeader "CLI Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-AlibabaCloudCliVersion),
-    (Get-AWSCliVersion),
-    (Get-AWSCliSessionManagerPluginVersion),
-    (Get-AWSSAMVersion),
-    (Get-AzureCliVersion),
-    (Get-AzureDevopsVersion),
-    (Get-GitHubCliVersion),
-    (Get-GoogleCloudSDKVersion),
-    (Get-HubCliVersion),
-    (Get-NetlifyCliVersion),
-    (Get-OCCliVersion),
-    (Get-ORASCliVersion),
-    (Get-VerselCliversion)
-    ) | Sort-Object
+$markdown += New-MDHeader $archive.SetHeader("CLI Tools", 3) -Level 3
+$cliToolsList = @(
+    ((Get-AlibabaCloudCliVersion), "AlibabaCloudCli"),
+    ((Get-AWSCliVersion), "AWSCli"),
+    ((Get-AWSCliSessionManagerPluginVersion), "AWSCliSessionManagerPlugin"),
+    ((Get-AWSSAMVersion), "AWSSAMV"),
+    ((Get-AzureCliVersion), "AzureCli"),
+    ((Get-AzureDevopsVersion), "AzureDevops"),
+    ((Get-GitHubCliVersion), "GitHubCli"),
+    ((Get-GoogleCloudSDKVersion), "GoogleCloudSDK"),
+    ((Get-HubCliVersion), "HubCli"),
+    ((Get-NetlifyCliVersion), "NetlifyCli"),
+    ((Get-OCCliVersion), "OCCli"),
+    ((Get-ORASCliVersion), "ORASCli"),
+    ((Get-VerselCliversion), "VerselCli")
 )
 
-$markdown += New-MDHeader "Java" -Level 3
-$markdown += Get-JavaVersions | New-MDTable
+$cliToolsTitlesList = $cliToolsList | Foreach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($cliToolsTitlesList | Sort-Object)
+
+$markdown += New-MDHeader $archive.SetHeader("Java", 3) -Level 3
+$markdown += Get-JavaVersions $archive | New-MDTable
 $markdown += New-MDNewLine
 
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $markdown += New-MDHeader "GraalVM" -Level 3
-    $markdown += Build-GraalVMTable | New-MDTable
+    $markdown += New-MDHeader $archive.SetHeader("GraalVM", 3) -Level 3
+    $markdown += Build-GraalVMTable $archive | New-MDTable
     $markdown += New-MDNewLine
 }
 
-$markdown += Build-PHPSection
+$markdown += Build-PHPSection $archive
 
-$markdown += New-MDHeader "Haskell" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-GHCVersion),
-    (Get-GHCupVersion),
-    (Get-CabalVersion),
-    (Get-StackVersion)
-    ) | Sort-Object
+$markdown += New-MDHeader $archive.SetHeader("Haskell", 3) -Level 3
+$haskellList = @(
+    ((Get-GHCVersion), "GHC"),
+    ((Get-GHCupVersion), "GHCup"),
+    ((Get-CabalVersion), "Cabal"),
+    ((Get-StackVersion), "Stack")
 )
 
-$markdown += New-MDHeader "Rust Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-RustVersion),
-    (Get-RustupVersion),
-    (Get-RustdocVersion),
-    (Get-CargoVersion)
-    ) | Sort-Object
+$haskellTitlesList = $haskellList | Foreach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($haskellTitlesList | Sort-Object)
+
+$markdown += New-MDHeader $archive.SetHeader("Rust Tools", 3) -Level 3
+$rustToolsList = @(
+    ((Get-RustVersion), "Rust"),
+    ((Get-RustupVersion), "Rustup"),
+    ((Get-RustdocVersion), "Rustdoc"),
+    ((Get-CargoVersion), "Cargo")
 )
 
-$markdown += New-MDHeader "Packages" -Level 4
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-BindgenVersion),
-    (Get-CargoAuditVersion),
-    (Get-CargoOutdatedVersion),
-    (Get-CargoClippyVersion),
-    (Get-CbindgenVersion),
-    (Get-RustfmtVersion)
-    ) | Sort-Object
+$rustToolsTitlesList = $rustToolsList | Foreach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($rustToolsTitlesList | Sort-Object)
+
+$markdown += New-MDHeader $archive.SetHeader("Packages", 4) -Level 4
+$packagesList = @(
+    ((Get-BindgenVersion), "Bindgen"),
+    ((Get-CargoAuditVersion), "CargoAudit"),
+    ((Get-CargoOutdatedVersion), "CargoOutdated"),
+    ((Get-CargoClippyVersion), "CargoClippy"),
+    ((Get-CbindgenVersion), "Cbindgen"),
+    ((Get-RustfmtVersion), "Rustfmt")
 )
 
-$markdown += New-MDHeader "Browsers and Drivers" -Level 3
+$packagesToolsList = $packagesList | Foreach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ($packagesToolsList | Sort-Object)
+
+$markdown += New-MDHeader $archive.SetHeader("Browsers and Drivers", 3) -Level 3
 
 $browsersAndDriversList = @(
-    (Get-ChromeVersion),
-    (Get-ChromeDriverVersion),
-    (Get-ChromiumVersion),
-    (Get-EdgeVersion),
-    (Get-EdgeDriverVersion),
-    (Get-SeleniumVersion)
+    ((Get-ChromeVersion), "Chrome"),
+    ((Get-ChromeDriverVersion), "ChromeDriver"),
+    ((Get-ChromiumVersion), "Chromium"),
+    ((Get-EdgeVersion), "Edge"),
+    ((Get-EdgeDriverVersion), "Edgedriver"),
+    ((Get-SeleniumVersion), "Selenium")
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $browsersAndDriversList += @(
-        (Get-FirefoxVersion),
-        (Get-GeckodriverVersion)
+        ((Get-FirefoxVersion), "Firefox"),
+        ((Get-GeckodriverVersion), "Geckodriver")
     )
 }
 
-$markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
+$browsersAndDriversTitlesList = $browsersAndDriversList | Foreach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines $browsersAndDriversTitlesList
+$markdown += New-MDHeader $archive.SetHeader("Environment variables", 4) -Level 4
+$markdown += Build-BrowserWebdriversEnvironmentTable $archive | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader ".NET Core SDK" -Level 3
+$markdown += New-MDHeader $archive.SetHeader(".NET Core SDK", 3) -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
-    (Get-DotNetCoreSdkVersions)
+    $archive.Add((Get-DotNetCoreSdkVersions), "DotNetCoreSdk")
 )
 
-$markdown += New-MDHeader ".NET tools" -Level 3
-$tools = Get-DotnetTools
+$markdown += New-MDHeader $archive.SetHeader(".NET tools", 3) -Level 3
+$tools = Get-DotnetTools $archive
 $markdown += New-MDList -Lines $tools -Style Unordered
 
-$markdown += New-MDHeader "Databases" -Level 3
+$markdown += New-MDHeader $archive.SetHeader("Databases", 3) -Level 3
 $databaseLists = @(
-    (Get-SqliteVersion)
+    ,((Get-SqliteVersion), "Sqlite")
 )
 
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
     $databaseLists += @(
-        (Get-MongoDbVersion)
+        ,((Get-MongoDbVersion), "MongoDb")
     )
 }
 
-$markdown += New-MDList -Style Unordered -Lines ( $databaseLists | Sort-Object )
+$databaseTitlesLists = $databaseLists | Foreach-Object {$archive.Add($_)}
+$markdown += New-MDList -Style Unordered -Lines ( $databaseTitlesLists | Sort-Object )
 
-$markdown += Build-PostgreSqlSection
-$markdown += Build-MySQLSection
-$markdown += Build-MSSQLToolsSection
+$markdown += Build-PostgreSqlSection $archive
+$markdown += Build-MySQLSection $archive
+$markdown += Build-MSSQLToolsSection $archive
 
-$markdown += New-MDHeader "Cached Tools" -Level 3
-$markdown += Build-CachedToolsSection
+$markdown += New-MDHeader $archive.SetHeader("Cached Tools", 3) -Level 3
+$markdown += Build-CachedToolsSection $archive
 
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-GoEnvironmentTable | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("Environment variables", 4) -Level 4
+$markdown += Build-GoEnvironmentTable $archive | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "PowerShell Tools" -Level 3
-$markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
+$markdown += New-MDHeader $archive.SetHeader("PowerShell Tools", 3) -Level 3
+$markdown += New-MDList -Lines ($archive.Add((Get-PowershellVersion), "PowerShellTools")) -Style Unordered
 
-$markdown += New-MDHeader "PowerShell Modules" -Level 4
-$markdown += Get-PowerShellModules | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("PowerShell Modules", 4) -Level 4
+$markdown += Get-PowerShellModules $archive | New-MDTable
 $markdown += New-MDNewLine
-$markdown += New-MDHeader "Az PowerShell Modules" -Level 4
+$markdown += New-MDHeader $archive.SetHeader("Az PowerShell Modules", 4) -Level 4
 $markdown += New-MDList -Style Unordered -Lines @(
-    (Get-AzModuleVersions)
+    $archive.Add((Get-AzModuleVersions), "AzPowerShellModules")
 )
 
-$markdown += Build-WebServersSection
+$markdown += Build-WebServersSection $archive
 
-$markdown += New-MDHeader "Android" -Level 3
-$markdown += Build-AndroidTable | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("Android", 3) -Level 3
+$markdown += Build-AndroidTable $archive | New-MDTable
 $markdown += New-MDNewLine
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-AndroidEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Cached Docker images" -Level 3
-$markdown += Get-CachedDockerImagesTableData | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("Environment variables", 4) -Level 4
+$markdown += Build-AndroidEnvironmentTable $archive | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader "Installed apt packages" -Level 3
-$markdown += Get-AptPackages | New-MDTable
+$markdown += New-MDHeader $archive.SetHeader("Cached Docker images", 3) -Level 3
+$markdown += Get-CachedDockerImagesTableData $archive | New-MDTable
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader $archive.SetHeader("Installed apt packages", 3) -Level 3
+$markdown += Get-AptPackages $archive | New-MDTable
 
 Test-BlankElement
 $markdown | Out-File -FilePath "${OutputDirectory}/Ubuntu-Readme.md"
+$archive.ToJsonGrouped() | Out-File "${OutputDirectory}/Ubuntu-Archive-Grouped.json"
