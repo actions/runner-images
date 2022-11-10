@@ -1,5 +1,3 @@
-using module ./SoftwareReport.Helpers.psm1
-
 function Get-Aria2Version {
     (aria2c -v | Out-String) -match "(?<version>(\d+\.){1,}\d+)" | Out-Null
     $aria2Version = $Matches.Version

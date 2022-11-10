@@ -1,10 +1,9 @@
-using module ./SoftwareReport.Helpers.psm1
-
 $global:ErrorActionPreference = "Stop"
 $global:ProgressPreference = "SilentlyContinue"
 $ErrorView = "NormalView"
 Set-StrictMode -Version Latest
 
+. (Join-Path $PSScriptRoot "SoftwareReport.ArchiveItem.ps1")
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking

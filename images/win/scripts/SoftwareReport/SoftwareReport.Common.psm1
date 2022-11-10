@@ -1,5 +1,3 @@
-using module ./SoftwareReport.Helpers.psm1
-
 function Initialize-RustEnvironment {
     $env:RUSTUP_HOME = "C:\Users\Default\.rustup"
     $env:CARGO_HOME = "C:\Users\Default\.cargo"

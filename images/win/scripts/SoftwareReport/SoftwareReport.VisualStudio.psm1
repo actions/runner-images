@@ -1,5 +1,3 @@
-using module ./SoftwareReport.Helpers.psm1
-
 function Get-VisualStudioVersion {
     param (
         [ArchiveItems] $Archive
