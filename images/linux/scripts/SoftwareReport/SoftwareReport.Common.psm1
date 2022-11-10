@@ -1,5 +1,3 @@
-using module ./../helpers/SoftwareReport.Helpers.psm1
-
 function Get-BashVersion {
     $version = bash -c 'echo ${BASH_VERSION}'
     return "Bash $version"

@@ -1,5 +1,3 @@
-using module ./../helpers/SoftwareReport.Helpers.psm1
-
 param (
     [Parameter(Mandatory)][string]
     $OutputDirectory
@@ -9,6 +7,7 @@ $global:ErrorActionPreference = "Stop"
 $global:ErrorView = "NormalView"
 Set-StrictMode -Version Latest
 
+. (Join-Path $PSScriptRoot "SoftwareReport.ArchiveItem.ps1")
 Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking

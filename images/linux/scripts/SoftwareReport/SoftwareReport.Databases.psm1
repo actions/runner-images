@@ -1,5 +1,3 @@
-using module ./../helpers/SoftwareReport.Helpers.psm1
-
 function Get-PostgreSqlVersion {
     $postgreSQLVersion = psql --version | Take-OutputPart -Part 2
     $aptSourceRepo = Get-AptSourceRepository -PackageName "postgresql"

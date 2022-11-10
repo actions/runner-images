@@ -1,5 +1,3 @@
-using module ./../helpers/SoftwareReport.Helpers.psm1
-
 function Get-ApacheVersion {
     $name = "apache2"
     $port = 80
