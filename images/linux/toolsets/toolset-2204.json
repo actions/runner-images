@@ -242,10 +242,12 @@
     ],
     "dotnet": {
         "aptPackages": [
-            "dotnet-sdk-6.0"
+            "dotnet-sdk-6.0",
+            "dotnet-sdk-7.0"
         ],
         "versions": [
-            "6.0"
+            "6.0",
+            "7.0"
         ],
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion" : "nbgv --version" }
