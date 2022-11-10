@@ -1,5 +1,3 @@
-using module ./../helpers/SoftwareReport.Helpers.psm1
-
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 function Build-VSMacTable {

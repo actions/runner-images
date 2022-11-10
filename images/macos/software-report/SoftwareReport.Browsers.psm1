@@ -1,5 +1,3 @@
-using module ./../helpers/SoftwareReport.Helpers.psm1
-
 function Get-BrowserSection {
     param (
         [ArchiveItems] $Archive
