@@ -6,7 +6,7 @@ param (
 
 $ErrorActionPreference = "Stop"
 
-. (Join-Path "$PSScriptRoot/SoftwareReport.ArchiveItem.ps1")
+. ("$PSScriptRoot/SoftwareReport.ArchiveItem.ps1")
 Import-Module MarkdownPS
 Import-Module "$PSScriptRoot/SoftwareReport.Common.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Xcode.psm1" -DisableNameChecking
