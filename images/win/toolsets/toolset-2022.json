@@ -55,7 +55,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "12.*",
                 "14.*",
                 "16.*",
                 "18.*"
@@ -224,12 +223,8 @@
             "Microsoft.VisualStudio.Component.VC.MFC.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATL.ARM64",
             "Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.ATL.ARM64EC",
-            "Microsoft.VisualStudio.Component.VC.ATL.ARM64EC.Spectre",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.MFC.ARM64EC",
-            "Microsoft.VisualStudio.Component.VC.MFC.ARM64EC.Spectre",
             "Microsoft.VisualStudio.Component.VC.Modules.x86.x64",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64EC",
