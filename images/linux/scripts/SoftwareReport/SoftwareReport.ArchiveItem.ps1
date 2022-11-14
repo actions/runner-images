@@ -9,15 +9,16 @@ class ArchiveItems {
     hidden [string[]] $activeHeaders
 
     ArchiveItems() {
+        $maxHeadersLevel = 5
         $this.items = New-Object System.Collections.ArrayList
-        $this.activeHeaders = New-Object string[] 5
+        $this.activeHeaders = New-Object string[] $maxHeadersLevel
     }
 
     [string] Add($Title, $Id) {
         $item = [ArchiveItem]::New()
         $item.Id = $Id
         $item.Title = $Title
-        $item.Headers = $this.activeHeaders | ForEach-Object { $_ } | Where-Object { $_.Length -ge 1 }
+        $item.Headers = $this.activeHeaders | Where-Object { $_.Length -ge 1 }
         $this.items.Add($item) | Out-Null
 
         return $Title
@@ -29,7 +30,7 @@ class ArchiveItems {
 
     [string] SetHeader($Name, $Level) {
         if ($Level -lt 1 -or $Level -gt $this.activeHeaders.Length) {
-            Write-Warning"[!] [ArchiveItems] Header level must be 1..5"
+            Write-Warning"[!] [ArchiveItems] Header level must be 1..$maxHeadersLevel"
             return $Name
         }
 
@@ -40,23 +41,8 @@ class ArchiveItems {
         return $Name
     }
 
-    [string] ToJson() {
-        $final = @()
-        foreach ($item in $this.items) {
-            $headersLevel = $item.Headers.Count
-            $headers = $headersLevel -ge 4 ? @($item.Headers[$headersLevel-2], $item.Headers[$headersLevel-1]) : @($item.Headers[$headersLevel-1])
-
-            $final += [PSCustomObject]@{
-                Id = $item.Id
-                Title = $item.Title
-                Headers = $headers
-            }
-        }
-        return ConvertTo-Json $final -Depth 10
-    }
-
     [string] ToJsonGrouped() {
-        [string[]] $lastHeaders = ($this.items[0]).Headers
+        [string[]] $lastHeaders = $this.items[0].Headers
         [string] $headersPath = ""
         $final = @()
         $groupItems = @()

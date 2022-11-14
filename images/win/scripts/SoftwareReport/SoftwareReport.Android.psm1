@@ -92,9 +92,17 @@ function Build-AndroidTable {
         }
     }
 
-    $output | ForEach-Object { $Archive.Add("$($_."Package Name")|$($_.Version)", "Android_$($_."Package Name")".Replace(" ", "")) } | Out-Null
-
+    Add-AndroidTableToArchive $output $Archive
     return $output
+}
+
+function Add-AndroidTableToArchive {
+    param (
+        [object] $AndroidTableOutput,
+        [ArchiveItems] $Archive
+    )
+    
+    $AndroidTableOutput | ForEach-Object { $Archive.Add("$($_."Package Name")|$($_.Version)", "Android_$($_."Package Name")".Replace(" ", "")) } | Out-Null
 }
 
 function Get-AndroidPackageVersions {

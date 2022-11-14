@@ -5,13 +5,7 @@ function Get-ToolcacheRubyVersions {
 
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Ruby"
     $output = Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
-    $output | ForEach-Object {
-        $id = $_
-        if ($id -match '^\d{1,2}\.\d{1,2}\.') {
-            $id = $matches[0]
-        }
-        $Archive.Add($_, "Ruby_$id") | Out-Null
-    }
+    Add-ToolListToArchive $output "Ruby" $Archive
     
     return $output
 }
@@ -23,13 +17,7 @@ function Get-ToolcachePythonVersions {
 
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Python"
     $output = Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
-    $output | ForEach-Object {
-        $id = $_
-        if ($id -match '^\d{1,2}\.\d{1,2}\.') {
-            $id = $matches[0]
-        }
-        $Archive.Add($_, "Python_$id") | Out-Null
-    }
+    Add-ToolListToArchive $output "Python" $Archive
     
     return $output
 }
@@ -46,13 +34,7 @@ function Get-ToolcachePyPyVersions {
         $pypyVersionOutput -match "^([\d\.]+) \(.+\) \[PyPy ([\d\.]+\S*) .+]$" | Out-Null
         return "{0} [PyPy {1}]" -f $Matches[1], $Matches[2]
     }
-    $output | ForEach-Object {
-        $id = $_
-        if ($id -match '^\d{1,2}\.\d{1,2}\.') {
-            $id = $matches[0]
-        }
-        $Archive.Add($_, "PyPy_$id") | Out-Null
-    }
+    Add-ToolListToArchive $output "PyPy" $Archive
 
     return $output
 }
@@ -64,13 +46,7 @@ function Get-ToolcacheNodeVersions {
 
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "node"
     $output = Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
-    $output | ForEach-Object {
-        $id = $_
-        if ($id -match '^\d{1,2}\.\d{1,2}\.') {
-            $id = $matches[0]
-        }
-        $Archive.Add($_, "NodeJs_$id") | Out-Null
-    }
+    Add-ToolListToArchive $output "NodeJs" $Archive
     
     return $output
 }
@@ -82,15 +58,25 @@ function Get-ToolcacheGoVersions {
 
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "go"
     $output = Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
-    $output | ForEach-Object {
-        $id = $_
-        if ($id -match '^\d{1,2}\.\d{1,2}\.') {
-            $id = $matches[0]
-        }
-        $Archive.Add($_, "Go_$id") | Out-Null
-    }
+    Add-ToolListToArchive $output "Go" $Archive
 
     return $output
+}
+
+function Add-ToolListToArchive {
+    param (
+        [object] $ToolItems,
+        [string] $ArchiveId,
+        [ArchiveItems] $Archive
+    )
+
+    $ToolItems | ForEach-Object {
+        $idSuffix = $_
+        if ($_ -match '^\d{1,2}\.\d{1,2}\.') {
+            $idSuffix = $matches[0]
+        }
+        $Archive.Add($_, "$($ArchiveId)_$($idSuffix)") | Out-Null
+    }
 }
 
 function Build-GoEnvironmentTable {

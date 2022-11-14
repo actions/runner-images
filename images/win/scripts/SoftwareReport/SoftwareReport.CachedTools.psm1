@@ -35,13 +35,7 @@ function Get-NodeMarkdown
     $ToolInstances = Get-CachedToolInstances -Name $Name
     $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{Version = "left"; Architecture = "left"})
 
-    foreach ($instance in $ToolInstances) {
-        $id = $instance.Version
-        if ($instance.Version -match '^\d{1,2}\.\d{1,2}\.') {
-            $id = $matches[0]
-        }
-        $Archive.Add("$($instance.Version)|$($instance.Architecture)", "Node_$id") | Out-Null
-    }
+    Add-ToolTableToArchive $ToolInstances "Node" $Archive
 
     return Build-MarkdownElement -Head $Name -Content $Content
 }
@@ -57,13 +51,7 @@ function Get-PythonMarkdown
     $ToolInstances = Get-CachedToolInstances -Name $Name -VersionCommand "--version"
     $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{Version = "left"; Architecture = "left"})
 
-    foreach ($instance in $ToolInstances) {
-        $id = $instance.Version
-        if ($instance.Version -match '^\d\.\d{1,2}\.') {
-            $id = $matches[0]
-        }
-        $Archive.Add("$($instance.Version)|$($instance.Architecture)", "Python_$id") | Out-Null
-    }
+    Add-ToolTableToArchive $ToolInstances "Python" $Archive
 
     return Build-MarkdownElement -Head $Name -Content $Content
 }
@@ -79,15 +67,25 @@ function Get-RubyMarkdown
     $ToolInstances = Get-CachedToolInstances -Name $Name -VersionCommand "--version"
     $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{Version = "left"; Architecture = "left"})
 
-    foreach ($instance in $ToolInstances) {
-        $id = $instance.Version
-        if ($instance.Version -match '^\d\.\d{1,2}\.') {
-            $id = $matches[0]
-        }
-        $Archive.Add("$($instance.Version)|$($instance.Architecture)", "Ruby_$id") | Out-Null
-    }
+    Add-ToolTableToArchive $ToolInstances "Ruby" $Archive
 
     return Build-MarkdownElement -Head $Name -Content $Content
+}
+
+function Add-ToolTableToArchive {
+    param (
+        [object] $ToolInstances,
+        [string] $ArchiveId,
+        [ArchiveItems] $Archive
+    )
+    
+    foreach ($instance in $ToolInstances) {
+        $idSuffix = $instance.Version
+        if ($instance.Version -match '^\d{1,2}\.\d{1,2}\.') {
+            $idSuffix = $matches[0]
+        }
+        $Archive.Add("$($instance.Version)|$($instance.Architecture)", "$($ArchiveId)_$($idSuffix)") | Out-Null
+    }
 }
 
 function Get-PyPyMarkdown
