@@ -13,6 +13,10 @@ $VersionsList = $LatestMajorMinor | ForEach-Object { $_.Group | Select-Object -F
 # The latest version will be installed as a default
 ForEach ($version in $VersionsList)
 {
+    # 9.4.3 has failed choco builds, replace with 9.4.2 for the time being
+    # See https://community.chocolatey.org/packages/ghc/9.4.3
+    if ($version -eq "9.4.3"){ [version]$version = "9.4.2" }
+
     Write-Host "Installing ghc $version..."
     Choco-Install -PackageName ghc -ArgumentList '--version', $version, '-m'
 }
