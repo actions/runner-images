@@ -7,8 +7,18 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
+FIREFOX_REPO="ppa:mozillateam/ppa"
+
 # Install Firefox
-apt-get install -y firefox
+add-apt-repository $FIREFOX_REPO -y
+apt-get update
+apt-get install --target-release 'o=LP-PPA-mozillateam' -y firefox
+
+# Remove source repo's
+add-apt-repository --remove $FIREFOX_REPO
+
+# Document apt source repo's
+echo "mozillateam $FIREFOX_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
 
 # add to gloabl system preferences for firefox locale en_US, because other browsers have en_US local.
 # Default firefox local is en_GB

@@ -10,7 +10,8 @@ function Get-ChromeDriverVersion {
 
 function Get-FirefoxVersion {
     $firefoxVersion = firefox --version
-    return $firefoxVersion
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "mozillateam"
+    return "$firefoxVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-GeckodriverVersion {

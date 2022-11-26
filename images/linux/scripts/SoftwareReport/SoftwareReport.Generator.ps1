@@ -246,15 +246,10 @@ $browsersAndDriversList = @(
     (Get-ChromiumVersion),
     (Get-EdgeVersion),
     (Get-EdgeDriverVersion),
-    (Get-SeleniumVersion)
+    (Get-SeleniumVersion),
+    (Get-FirefoxVersion),
+    (Get-GeckodriverVersion)
 )
-
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $browsersAndDriversList += @(
-        (Get-FirefoxVersion),
-        (Get-GeckodriverVersion)
-    )
-}
 
 $markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList
 $markdown += New-MDHeader "Environment variables" -Level 4
