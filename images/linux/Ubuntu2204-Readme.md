@@ -1,14 +1,11 @@
 | Announcements |
 |-|
-| [[all OSs] Nodejs 12.x will be removed from the images on November, 14](https://github.com/actions/runner-images/issues/6482) |
 | [Ubuntu-latest workflows will use Ubuntu-22.04](https://github.com/actions/runner-images/issues/6399) |
-| [[all OSs] The VCPKG_ROOT variable will be removed from runner images](https://github.com/actions/runner-images/issues/6376) |
-| [Third party PHP repository will be removed from the Ubuntu 22.04 image](https://github.com/actions/runner-images/issues/6331) |
 | [The Ubuntu 18.04 Actions runner image will begin deprecation on 2022/08/08 and will be fully unsupported by 2023/04/01](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 22.04.1 LTS
 - Linux kernel version: 5.15.0-1023-azure
-- Image Version: 20221119.2
+- Image Version: 20221127.1
 
 ## Installed Software
 ### Language and Runtime
@@ -33,7 +30,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.10.2
-- Homebrew 3.6.11
+- Homebrew 3.6.12
 - Miniconda 4.12.0
 - Npm 8.19.2
 - NuGet 6.3.1.1
@@ -41,7 +38,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<4cb4a5c5d>)
+- Vcpkg  (build from master \<62d01b70d>)
 - Yarn 1.22.19
 
 ##### Notes:
@@ -62,7 +59,7 @@ to accomplish this.
 - Lerna 6.0.3
 
 ### Tools
-- Ansible 2.13.6
+- Ansible 2.14.0
 - apt-fast 1.9.12
 - AzCopy 10.16.2 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.3.2
@@ -70,7 +67,7 @@ to accomplish this.
 - Bicep 0.12.40
 - Buildah 1.23.1
 - CMake 3.25.0
-- CodeQL Action Bundle 2.11.3
+- CodeQL Action Bundle 2.11.4
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.12.2+azure-1
@@ -98,19 +95,19 @@ to accomplish this.
 - Packer 1.8.4
 - Parcel 2.8.0
 - Podman 3.4.4
-- Pulumi 3.47.1
+- Pulumi 3.48.0
 - R 4.2.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
 - Terraform 1.3.5
 - yamllint 1.28.0
-- yq v4.30.4
+- yq v4.30.5
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.135
-- AWS CLI 2.9.0
+- Alibaba Cloud CLI 3.0.139
+- AWS CLI 2.9.1
 - AWS CLI Session manager plugin 1.2.398.0
 - AWS SAM CLI 1.65.0
 - Azure CLI (azure-cli) 2.42.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
@@ -118,10 +115,10 @@ to accomplish this.
 - GitHub CLI 2.20.2
 - Google Cloud SDK 410.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 12.2.4
-- OpenShift CLI 4.11.13
+- Netlify CLI 12.2.7
+- OpenShift CLI 4.11.16
 - ORAS CLI 0.16.0
-- Vercel CLI 28.5.5
+- Vercel CLI 28.5.6
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -157,7 +154,7 @@ to accomplish this.
 - Rustup 1.25.1
 
 #### Packages
-- Bindgen 0.62.0
+- Bindgen 0.63.0
 - Cargo audit 0.17.4
 - Cargo clippy 0.1.65
 - Cargo outdated 0.11.1
@@ -165,19 +162,21 @@ to accomplish this.
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 107.0.5304.110
+- Google Chrome 107.0.5304.121
 - ChromeDriver 107.0.5304.62
 - Chromium 107.0.5288.0
-- Microsoft Edge 107.0.1418.52 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 107.0.1418.52
+- Microsoft Edge 107.0.1418.56 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 107.0.1418.56
 - Selenium server 4.6.0
+- Mozilla Firefox 107.0 (apt source repository: ppa:mozillateam/ppa)
+- Geckodriver 0.32.0
 
 #### Environment variables
 | Name              | Value                               |
 | ----------------- | ----------------------------------- |
 | CHROMEWEBDRIVER   | /usr/local/share/chrome_driver      |
 | EDGEWEBDRIVER     | /usr/local/share/edge_driver        |
-| GECKOWEBDRIVER    |                                     |
+| GECKOWEBDRIVER    | /usr/local/share/gecko_driver       |
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Core SDK
@@ -231,7 +230,7 @@ to accomplish this.
 - 3.11.0
 
 #### Ruby
-- 3.1.2
+- 3.1.3
 
 #### Environment variables
 | Name            | Value                               | Architecture |
@@ -261,20 +260,20 @@ to accomplish this.
 | nginx   | 1.18.0  | /etc/nginx/nginx.conf     | inactive      | 80         |
 
 ### Android
-| Package Name               | Version                                                                                                                                                |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Android Command Line Tools | 8.0                                                                                                                                                    |
-| Android Emulator           | 31.3.13                                                                                                                                                |
-| Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platform-Tools | 33.0.3                                                                                                                                                 |
-| Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Tools          | 26.1.1                                                                                                                                                 |
-| Android Support Repository | 47.0.0                                                                                                                                                 |
-| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                             |
-| Google Play services       | 49                                                                                                                                                     |
-| Google Repository          | 58                                                                                                                                                     |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.1.8937393 (default)                                                                                                 |
-| SDK Patch Applier v4       | 1                                                                                                                                                      |
+| Package Name               | Version                                                                                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 8.0                                                                                                                                                           |
+| Android Emulator           | 31.3.13                                                                                                                                                       |
+| Android SDK Build-tools    | 33.0.0 33.0.1<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
+| Android SDK Platform-Tools | 33.0.3                                                                                                                                                        |
+| Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)        |
+| Android SDK Tools          | 26.1.1                                                                                                                                                        |
+| Android Support Repository | 47.0.0                                                                                                                                                        |
+| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                    |
+| Google Play services       | 49                                                                                                                                                            |
+| Google Repository          | 58                                                                                                                                                            |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.1.8937393 (default)                                                                                                        |
+| SDK Patch Applier v4       | 1                                                                                                                                                             |
 
 #### Environment variables
 | Name                    | Value                                       |
@@ -369,7 +368,7 @@ to accomplish this.
 | pollinate              | 4.33-3ubuntu2                     |
 | python-is-python3      | 3.9.2-2                           |
 | rpm                    | 4.17.0+dfsg1-4build1              |
-| rsync                  | 3.2.3-8ubuntu3                    |
+| rsync                  | 3.2.3-8ubuntu3.1                  |
 | shellcheck             | 0.8.0-2                           |
 | sphinxsearch           | 2.2.11-8                          |
 | sqlite3                | 3.37.2-2ubuntu0.1                 |
@@ -388,7 +387,7 @@ to accomplish this.
 | upx                    | 3.96-3                            |
 | wget                   | 1.21.2-2ubuntu1                   |
 | xorriso                | 1.5.4-2                           |
-| xvfb                   | 2:21.1.3-2ubuntu2.2               |
+| xvfb                   | 2:21.1.3-2ubuntu2.3               |
 | xz-utils               | 5.2.5-2ubuntu1                    |
 | zip                    | 3.0-12build2                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
