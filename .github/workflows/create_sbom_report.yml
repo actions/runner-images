@@ -1,0 +1,119 @@
+name: Create and upload a SBOM to release assets
+# Inherited variables:
+# github.event.client_payload.imageLabel - AzDO image/OS label
+# github.event.client_payload.GHreleaseID - Current release ID
+# github.event.client_payload.imageVersion - AzDO image/OS version "major.minor"
+# 
+# Current SYFT tool issues:
+# macOS (minor): very long cataloging process (https://github.com/anchore/syft/issues/1328), 
+# macOS (major): promt privilegies that blocking process indefinetely (https://github.com/anchore/syft/issues/1367)
+# Windows (major): process fails on some symlinks (https://github.com/anchore/syft/issues/1094)
+on:
+  repository_dispatch:
+    types: [generate-sbom]
+jobs:
+  #Converting image OS variable for the next steps
+  initialize: 
+    strategy:
+      matrix: #Couples AzDO label <-> GHA image spec
+        include:
+          - label: ubuntu22
+            os: ubuntu-22.04
+          - label: ubuntu20
+            os: ubuntu-20.04
+          - label: ubuntu18
+            os: ubuntu-18.04
+          - label: macOS-12
+            os: macos-12
+          - label: macOS-11
+            os: macos-11
+          - label: macOS-10.15
+            os: macos-10.15
+          - label: win22
+            os: windows-2022
+          - label: win19
+            os: windows-2019
+    runs-on: ubuntu-latest
+    steps:
+      - name: Convert image label variable
+        run: if ("${{ github.event.client_payload.imageLabel }}"" -eq "{{ $matrix.label }}"") {echo "current-os=${{ $matrix.os }}" >> $GITHUB_OUTPUT}
+  #Checking image version on available runner
+  version-check:
+    strategy:
+      matrix:
+        include:
+          - os: Windows
+            path: C:\
+          - os: macOS
+            path: /Users/runner/
+          - os: Linux
+            path: /imagegeneration/
+    defaults:
+      run:
+        shell: pwsh
+    needs: initialize
+    runs-on: ${{ needs.initialize.output.current-os }}
+    steps:
+      - name: Available image version check
+        run: |
+          if ("${{ runner.os }}" -eq "${{ matrix.os }}") {
+            if ((Get-Content ${{ matrix.path }}imagedata.json | jq '.[1] | .detail') -match '\d{8}\.+\d') { 
+              if ($Matches[0] -eq ${{ github.event.client_payload.imageLabel }}) {
+                echo "Current runner use ${{ github.event.client_payload.imageLabel }} image version."
+              } else {
+                echo "Error. Current runner image version don't match ${{ github.event.client_payload.imageLabel }} image version."
+                exit 1
+              }
+            } else {
+              echo "Cannot parse image version."
+              exit 1
+            }
+          }
+  #Install and run SYFT, compress SBOM, upload it to release assets
+  create-sbom:
+    strategy:
+      matrix:
+        include:
+          - os: Windows
+            path: D:/syft
+          - os: Linux
+            path: /usr/local/bin
+          - os: macOS
+            path: /usr/local/bin
+    defaults:
+      run:
+        shell: pwsh
+    needs: [initialize, version-check]
+    runs-on: ${{ initialize.output.current-os }}
+    steps:
+      - name: Install SYFT tool
+        run: |
+          echo "Trying to install SYFT tool from oficial sources"
+          if ("${{ runner.os }}" -eq "${{ matrix.os }}") {
+            echo "Installing SYFT for ${{ matrix.os }}"
+            curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ${{ matrix.path }}
+          }
+      - name: Prepare SBOM report
+        run: |
+          if ("${{ runner.os }}" -eq "Windows") {
+            echo "Runnig SYFT tool on Windows on disk C:/"
+            D:/syft/syft dir:C:/ -vv -o spdx-json=SBOM.${{ github.event.client_payload.imageLabel }}.json
+          } elseif ("${{ runner.os }}" -eq "macOS") {
+              echo "Runnig SYFT tool on macOS with exludes"
+              syft dir:/ -vv -o spdx-json=SBOM.${{ github.event.client_payload.imageLabel }}.json --exclude ./Users --exclude ./System/Volumes --exclude ./private
+          } else {
+                echo "Runnig SYFT tool on Ubuntu with default settings"
+                syft dir:/ -vv -o spdx-json=SBOM.${{ github.event.client_payload.imageLabel }}.json
+          }
+          Compress-Archive sbom.${{ github.event.client_payload.imageLabel }}.json sbom.${{ github.event.client_payload.imageLabel }}.json.zip
+          echo "SBOM created successfully!"
+      #Might be changed to softprops/action-gh-release after additional check
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: "https://uploads.github.com/repos/actions/runner-images/releases/${{ github.event.client_payload.GHreleaseID }}/assets{?name,label}"
+          asset_path: ./SBOM.${{ github.event.client_payload.imageLabel }}.json.zip
+          asset_name: SBOM.${{ github.event.client_payload.imageLabel }}.json.zip
+          asset_content_type: application/zip
