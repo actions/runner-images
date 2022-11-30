@@ -1,4 +1,4 @@
-Describe "Firefox" -Skip:(Test-IsUbuntu22) {
+Describe "Firefox" {
     It "Firefox" {
         "sudo -i firefox --version" | Should -ReturnZeroExitCode
     }
