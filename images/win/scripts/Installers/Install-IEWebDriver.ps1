@@ -3,15 +3,9 @@
 ##  Desc:  Install Selenium Web Drivers
 ################################################################################
 
-try {
-    $latestReleaseUrl = "https://selenium-release.storage.googleapis.com/"
-    $latestReleaseInfo = Invoke-RestMethod -Uri $latestReleaseUrl
-    $latestIEVersion = $latestReleaseInfo.ListBucketResult.Contents | Where-Object Key -match "IEDriverServer_x64" | Sort-Object LastModified | Select-Object -ExpandProperty Key -Last 1
-    $ieDriverUrl = -join ($latestReleaseUrl, $latestIEVersion)
-} catch {
-    Write-Error "[!] Failed to get IEDriver version [$latestReleaseUrl]: $_"
-    exit 1
-}
+
+$json = Invoke-RestMethod -Uri "https://api.github.com/repos/SeleniumHQ/selenium/releases?per_page=100"
+$ieDriverUrl = $json.Where{-not $_.prerelease}.assets.browser_download_url | Where-Object { $_ -like "*IEDriverServer_x64_*.zip" } | Select-Object -First 1
 
 # Download IE selenium driver
 try {
