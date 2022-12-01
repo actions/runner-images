@@ -216,9 +216,8 @@
                 "Title": "Environment variables",
                 "Children": {
                   "NodeType": "TableNode",
+                  "Headers": "Name|Value",
                   "Rows": [
-                    "Name|Value",
-                    "-|-",
                     "CONDA|/usr/local/miniconda",
                     "VCPKG_INSTALLATION_ROOT|/usr/local/share/vcpkg"
                   ]
@@ -579,9 +578,8 @@
                 "Title": "Environment variables",
                 "Children": {
                   "NodeType": "TableNode",
+                  "Headers": "Name|Value",
                   "Rows": [
-                    "Name|Value",
-                    "-|-",
                     "CHROMEWEBDRIVER|/usr/local/Caskroom/chromedriver/107.0.5304.62",
                     "EDGEWEBDRIVER|/usr/local/share/edge_driver",
                     "GECKOWEBDRIVER|/usr/local/opt/geckodriver/bin"
@@ -595,9 +593,8 @@
             "Title": "Java",
             "Children": {
               "NodeType": "TableNode",
+              "Headers": "Version|Vendor|Environment Variable",
               "Rows": [
-                "Version|Vendor|Environment Variable",
-                "-|-|-",
                 "8.0.345+1 (default)|Eclipse Temurin|JAVA_HOME_8_X64",
                 "11.0.17+8|Eclipse Temurin|JAVA_HOME_11_X64",
                 "17.0.5+8|Eclipse Temurin|JAVA_HOME_17_X64"
@@ -609,9 +606,8 @@
             "Title": "GraalVM",
             "Children": {
               "NodeType": "TableNode",
+              "Headers": "Version|Environment variables",
               "Rows": [
-                "Version|Environment variables",
-                "-|-",
                 "CE 22.3.0|GRAALVM_11_ROOT"
               ]
             }
@@ -668,9 +664,8 @@
                 "Title": "Go",
                 "Children": {
                   "NodeType": "TableNode",
+                  "Headers": "Version|Architecture|Environment Variable",
                   "Rows": [
-                    "Version|Architecture|Environment Variable",
-                    "-|-|-",
                     "1.17.13 (Default)|x64|GOROOT_1_17_X64",
                     "1.18.8|x64|GOROOT_1_18_X64",
                     "1.19.3|x64|GOROOT_1_19_X64"
@@ -755,9 +750,8 @@
                 "Title": "PowerShell Modules",
                 "Children": {
                   "NodeType": "TableNode",
+                  "Headers": "Module|Version",
                   "Rows": [
-                    "Module|Version",
-                    "-|-",
                     "Az|9.1.0",
                     "MarkdownPS|1.9",
                     "Pester|5.3.3",
@@ -772,9 +766,8 @@
             "Title": "Web Servers",
             "Children": {
               "NodeType": "TableNode",
+              "Headers": "Name|Version|ConfigFile|ServiceStatus|ListenPort",
               "Rows": [
-                "Name|Version|ConfigFile|ServiceStatus|ListenPort",
-                "-|-|-|-|-",
                 "httpd|2.4.54_1|/usr/local/etc/httpd/httpd.conf|none|80",
                 "nginx|1.23.2|/usr/local/etc/nginx/nginx.conf|none|80"
               ]
@@ -790,9 +783,8 @@
                 "Children": [
                   {
                     "NodeType": "TableNode",
+                    "Headers": "Version|Build|Path",
                     "Rows": [
-                      "Version|Build|Path",
-                      "-|-|-",
                       "2019|8.10.25.2|/Applications/Visual Studio 2019.app",
                       "2022 (default)|17.3.8.5|/Applications/Visual Studio.app"
                     ]
@@ -812,9 +804,8 @@
                 "Title": "Xamarin bundles",
                 "Children": {
                   "NodeType": "TableNode",
+                  "Headers": "symlink|Xamarin.Mono|Xamarin.iOS|Xamarin.Mac|Xamarin.Android",
                   "Rows": [
-                    "symlink|Xamarin.Mono|Xamarin.iOS|Xamarin.Mac|Xamarin.Android",
-                    "-|-|-|-|-",
                     "6_12_16|6.12|15.8|8.8|12.2",
                     "6_12_15|6.12|15.8|8.8|12.1",
                     "6_12_14|6.12|15.8|8.8|12.0",
@@ -852,9 +843,8 @@
             "Children": [
               {
                 "NodeType": "TableNode",
+                "Headers": "Version|Build|Path",
                 "Rows": [
-                  "Version|Build|Path",
-                  "-|-|-",
                   "13.2.1 (default)|13C100|/Applications/Xcode_13.2.1.app",
                   "13.1|13A1030d|/Applications/Xcode_13.1.app",
                   "13.0|13A233|/Applications/Xcode_13.0.app",
@@ -894,9 +884,8 @@
                 "Title": "Installed SDKs",
                 "Children": {
                   "NodeType": "TableNode",
+                  "Headers": "SDK|SDK Name|Xcode Version",
                   "Rows": [
-                    "SDK|SDK Name|Xcode Version",
-                    "-|-|-",
                     "macOS 10.15|macosx10.15|11.7",
                     "macOS 11.1|macosx11.1|12.4",
                     "macOS 11.3|macosx11.3|12.5.1, 13.0",
@@ -945,9 +934,8 @@
                 "Title": "Installed Simulators",
                 "Children": {
                   "NodeType": "TableNode",
+                  "Headers": "OS|Xcode Version|Simulators",
                   "Rows": [
-                    "OS|Xcode Version|Simulators",
-                    "-|-|-",
                     "iOS 13.7|11.7|iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (7th generation)<br>iPad Air (3rd generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Pro (9.7-inch)",
                     "iOS 14.4|12.4|iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (7th generation)<br>iPad (8th generation)<br>iPad Air (3rd generation)<br>iPad Air (4th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Pro (9.7-inch)",
                     "iOS 14.5|12.5.1|iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPad (7th generation)<br>iPad (8th generation)<br>iPad Air (3rd generation)<br>iPad Air (4th generation)<br>iPad Pro (11-inch) (2nd generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (4th generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch)",
@@ -974,9 +962,8 @@
             "Children": [
               {
                 "NodeType": "TableNode",
+                "Headers": "Package Name|Version",
                 "Rows": [
-                  "Package Name|Version",
-                  "-|-",
                   "Android Command Line Tools|8.0",
                   "Android Emulator|31.3.13",
                   "Android SDK Build-tools|33.0.0 33.0.1<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3",
@@ -995,9 +982,8 @@
                 "Title": "Environment variables",
                 "Children": {
                   "NodeType": "TableNode",
+                  "Headers": "Name|Value",
                   "Rows": [
-                    "Name|Value",
-                    "-|-",
                     "ANDROID_HOME|/Users/runner/Library/Android/sdk",
                     "ANDROID_NDK|/Users/runner/Library/Android/sdk/ndk/25.1.8937393",
                     "ANDROID_NDK_HOME|/Users/runner/Library/Android/sdk/ndk/25.1.8937393",
