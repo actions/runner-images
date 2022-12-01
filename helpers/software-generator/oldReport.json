@@ -1,7 +1,18 @@
 {
     "NodeType": "HeaderNode",
     "Title": "Ubuntu 22.04.1 LTS",
-    "Children": {
+    "Children": [
+      {
+        "NodeType": "ToolNode",
+        "ToolName": "OS Version:",
+        "Version": "macOS 11.7 (20G817)"
+      },
+      {
+        "NodeType": "ToolNode",
+        "ToolName": "Image Version:",
+        "Version": "20220910.0"
+      },
+      {
       "NodeType": "HeaderNode",
       "Title": "Installed Software",
       "Children": [
@@ -59,11 +70,25 @@
           "Title": "Java",
           "Children": {
             "NodeType": "TableNode",
+            "Headers": "Version|Vendor|Environment Variables",
             "Rows": [
-              "| Version | Vendor | Environment Variables |",
-              "| - | - | - |",
-              "| 8.0.345+1 | Eclipse Temurin | JAVA_HOME_8_X64 |",
-              "| 17.0.4+1 | Eclipse Temurin | JAVA_HOME_17_X64 |"
+              "7.0.0|Eclipse Temurin|JAVA_HOME_7_X64",
+              "8.0.345+1|Eclipse Temurin|JAVA_HOME_8_X64",
+              "17.0.4+1|Eclipse Temurin|JAVA_HOME_17_X64",
+              "18.0.0+5|Eclipse Temurin|JAVA_HOME_18_X64",
+              "19.0.2|Eclipse Temurin|JAVA_HOME_19_X64"
+            ]
+          }
+        },
+        {
+          "NodeType": "HeaderNode",
+          "Title": "Removed tool table",
+          "Children": {
+            "NodeType": "TableNode",
+            "Headers": "AA|BB",
+            "Rows": [
+              "1|2",
+              "3|4",
             ]
           }
         },
@@ -89,4 +114,5 @@
         }
       ]
     }
+  ]
 }

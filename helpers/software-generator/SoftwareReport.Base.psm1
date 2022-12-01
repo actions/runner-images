@@ -58,6 +58,13 @@ class HeaderNode: BaseNode {
     }
 
     [void] AddNode([BaseNode] $node) {
+        if ($node.GetType() -eq [TableNode]) {
+            $existingTableNodesCount = $this.Children.Where({ $_.GetType() -eq [TableNode] }).Count
+            if ($existingTableNodesCount -gt 0) {
+                throw "Having multiple TableNode on the same header level is not supported"
+            }
+        }
+
         $this.Children.Add($node)
     }
 
@@ -76,7 +83,7 @@ class HeaderNode: BaseNode {
     }
 
     [void] AddTableNode([Array] $Table) {
-       $this.AddNode([TableNode]::new($Table))
+       $this.AddNode([TableNode]::FromObjectsArray($Table))
     }
 
     [void] AddNoteNode([String] $Content) {
@@ -222,43 +229,42 @@ class ToolVersionsNode: BaseNode {
 
 # It is a node type to describe tables
 class TableNode: BaseNode {
+    # It is easier to store the table as rendered lines because we will simplify finding differences in rows later
+    [String] $Headers
     [System.Collections.ArrayList] $Rows
 
-    TableNode() {}
-
-    TableNode([Array] $Table) {
-        # It is easier to store the table as rendered lines because we will simplify finding differences in rows later
-        # So we render table right now
-
-        # take column names from the first row in table because all rows that should have the same columns
-        $headers = $Table[0].PSObject.Properties.Name
-
-        $this.Rows = @()
-        $this.Rows.Add($this.ArrayToTableRow($headers))
-        $this.Rows.Add($this.ArrayToTableRow(@("-") * $headers.Count))
-        $Table | ForEach-Object {
-            $this.Rows.Add($this.ArrayToTableRow($_.PSObject.Properties.Value))
-        }
+    TableNode($Headers, $Rows) {
+        $this.Headers = $Headers
+        $this.Rows = $Rows
     }
 
-    hidden [String] ArrayToTableRow([Array] $Values) {
-        return [String]::Join("|", $Values)
+    static [TableNode] FromObjectsArray([Array] $Table) {
+        # take column names from the first row in table because all rows that should have the same columns
+        [String] $tableHeaders = [TableNode]::ArrayToTableRow($Table[0].PSObject.Properties.Name)
+        [System.Collections.ArrayList] $tableRows = @()
+
+        $Table | ForEach-Object {
+            $tableRows.Add([TableNode]::ArrayToTableRow($_.PSObject.Properties.Value))
+        }
+
+        return [TableNode]::new($tableHeaders, $tableRows)
     }
 
     [String] ToMarkdown($level) {
-        $columnsCount = $this.Rows[0].Split("|").Count
-        $maxColumnWidths = @(0) * $columnsCount
+        $maxColumnWidths = $this.Headers.Split("|") | ForEach-Object { $_.Length }
+        $columnsCount = $maxColumnWidths.Count
 
         $this.Rows | ForEach-Object {
-            $row = $_.Split("|")
-            $columnWidths = $row | ForEach-Object { $_.Length }
+            $columnWidths = $_.Split("|") | ForEach-Object { $_.Length }
             for ($colIndex = 0; $colIndex -lt $columnsCount; $colIndex++) {
                 $maxColumnWidths[$colIndex] = [Math]::Max($maxColumnWidths[$colIndex], $columnWidths[$colIndex])
             }
         }
 
+        $delimeterLine = [String]::Join("|", @("-") * $columnsCount)
+
         $sb = [System.Text.StringBuilder]::new()
-        $this.Rows | ForEach-Object {
+        @($this.Headers) + @($delimeterLine) + $this.Rows | ForEach-Object {
             $sb.Append("|")
             $row = $_.Split("|")
             for ($colIndex = 0; $colIndex -lt $columnsCount; $colIndex++) {
@@ -275,14 +281,13 @@ class TableNode: BaseNode {
     [PSCustomObject] ToJsonObject() {
         return [PSCustomObject]@{
             NodeType = $this.GetType().Name
+            Headers = $this.Headers
             Rows = $this.Rows
         }
     }
 
     static [TableNode] FromJsonObject($jsonObj) {
-        $node = [TableNode]::new()
-        $node.Rows = $jsonObj.Rows
-        return $node
+        return [TableNode]::new($jsonObj.Headers, $jsonObj.Rows)
     }
 
     [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
@@ -290,11 +295,34 @@ class TableNode: BaseNode {
             return $false
         }
 
+        # We don't support having multiple TableNode instances on the same header level so such check is fine
         return $true
     }
 
     [Boolean] IsIdenticalTo([BaseNode] $OtherNode) {
-        return $this.IsSimilarTo($OtherNode)
+        if (-not $this.IsSimilarTo($OtherNode)) {
+            return $false
+        }
+
+        if ($this.Headers -ne $OtherNode.Headers) {
+            return $false
+        }
+
+        if ($this.Rows.Count -ne $OtherNode.Rows.Count) {
+            return $false
+        }
+
+        for ($rowIndex = 0; $rowIndex -lt $this.Rows.Count; $rowIndex++) {
+            if ($this.Rows[$rowIndex] -ne $OtherNode.Rows[$rowIndex]) {
+                return $false
+            }
+        }
+
+        return $true
+    }
+
+    hidden static [String] ArrayToTableRow([Array] $Values) {
+        return [String]::Join("|", $Values)
     }
 }
 

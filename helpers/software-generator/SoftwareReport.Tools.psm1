@@ -15,7 +15,7 @@ function Get-ToolcacheGoVersions {
 function Get-JavaVersionsTable {
     $javaNode = [HeaderNode]::new("Java")
 
-    $javaVersions = @("8.0.345+1", "11.0.16+1", "17.0.4+1")
+    $javaVersions = @("7.0.0", "8.0.346+1", "11.0.16+1", "17.0.6+1", "19.0.2")
     $table = $javaVersions | ForEach-Object {
         $javaVersion = $_
         $vendor = "Eclipse Temurin"

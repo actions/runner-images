@@ -8,6 +8,9 @@ $global:ErrorView = "NormalView"
 # Create report
 $softwareReport = [SoftwareReport]::new("Ubuntu 22.04.1 LTS")
 
+$softwareReport.Root.AddToolNode("OS Version:", "macOS 11.7 (20G817)")
+$softwareReport.Root.AddToolNode("Image Version:", "20220918.1")
+
 # Add tools
 $installedSoftware = $softwareReport.Root.AddHeaderNode("Installed Software")
 
@@ -21,6 +24,12 @@ $languagesAndRuntimes.AddToolNode("Swift", $(Get-SwiftVersion))
 $cachedTools = $installedSoftware.AddHeaderNode("Cached Tools")
 $cachedTools.AddNode($(Get-ToolcacheRubyVersions))
 $cachedTools.AddNode($(Get-ToolcacheGoVersions))
+
+$addedTable = $languagesAndRuntimes.AddHeaderNode("Added tool table")
+$addedTable.AddTableNode(@(
+    [PSCustomObject] @{ A = "P1"; B = "P2" },
+    [PSCustomObject] @{ A = "P3"; B = "P4" }
+))
 
 $installedSoftware.AddNode($(Get-JavaVersionsTable))
 
