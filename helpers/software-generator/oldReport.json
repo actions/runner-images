@@ -1,0 +1,92 @@
+{
+    "NodeType": "HeaderNode",
+    "Title": "Ubuntu 22.04.1 LTS",
+    "Children": {
+      "NodeType": "HeaderNode",
+      "Title": "Installed Software",
+      "Children": [
+        {
+          "NodeType": "HeaderNode",
+          "Title": "Language and Runtime",
+          "Children": [
+            {
+              "NodeType": "ToolNode",
+              "ToolName": "Bash",
+              "Version": "5.1.16(1)-release"
+            },
+            {
+              "NodeType": "ToolNode",
+              "ToolName": "Node.js",
+              "Version": "16.17.0"
+            },
+            {
+              "NodeType": "ToolNode",
+              "ToolName": "Swift",
+              "Version": "5.7"
+            },
+            {
+                "NodeType": "ToolNode",
+                "ToolName": "ToolToRemove",
+                "Version": "1.0.0"
+            }
+          ]
+        },
+        {
+          "NodeType": "HeaderNode",
+          "Title": "Cached Tools",
+          "Children": [
+            {
+                "NodeType": "ToolVersionsNode",
+                "ToolName": "Ruby",
+                "Versions": [
+                  "2.7",
+                  "2.8.0"
+                ]
+              },
+              {
+                "NodeType": "ToolVersionsNode",
+                "ToolName": "Go",
+                "Versions": [
+                  "1.17.13",
+                  "1.18.7",
+                  "1.19.2"
+                ]
+              }
+          ]
+        },
+        {
+          "NodeType": "HeaderNode",
+          "Title": "Java",
+          "Children": {
+            "NodeType": "TableNode",
+            "Rows": [
+              "| Version | Vendor | Environment Variables |",
+              "| - | - | - |",
+              "| 8.0.345+1 | Eclipse Temurin | JAVA_HOME_8_X64 |",
+              "| 17.0.4+1 | Eclipse Temurin | JAVA_HOME_17_X64 |"
+            ]
+          }
+        },
+        {
+          "NodeType": "HeaderNode",
+          "Title": "MySQL",
+          "Children": [
+            {
+              "NodeType": "ToolNode",
+              "ToolName": "MySQL",
+              "Version": "8.0.31-0ubuntu0.20.04.1"
+            },
+            {
+              "NodeType": "ToolNode",
+              "ToolName": "MySQL Server",
+              "Version": "8.0.26"
+            },
+            {
+              "NodeType": "NoteNode",
+              "Content": "MySQL service is disabled by default.\nUse the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'"
+            }
+          ]
+        }
+      ]
+    }
+}
