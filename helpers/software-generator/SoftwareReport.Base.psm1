@@ -20,7 +20,7 @@ class SoftwareReport {
     }
 
     [String] ToMarkdown() {
-        return $this.Root.ToMarkdown(1)
+        return $this.Root.ToMarkdown(1).Trim()
     }
 
     # This method is Nodes factory that simplifies parsing different types of notes
@@ -85,13 +85,13 @@ class HeaderNode: BaseNode {
 
     [String] ToMarkdown($level) {
         $sb = [System.Text.StringBuilder]::new()
+        $sb.AppendLine()
         $sb.AppendLine("$("#" * $level) $($this.Title)")
         $this.Children  | ForEach-Object {
             $sb.AppendLine($_.ToMarkdown($level + 1))
         }
 
-        # Preserve only one new line symbol at the end
-        return $sb.ToString().TrimEnd() + "`n"
+        return $sb.ToString().TrimEnd()
     }
 
     [PSCustomObject] ToJsonObject() {
@@ -178,13 +178,13 @@ class ToolVersionsNode: BaseNode {
 
     [String] ToMarkdown($level) {
         $sb = [System.Text.StringBuilder]::new()
+        $sb.AppendLine()
         $sb.AppendLine("$("#" * $level) $($this.ToolName)")
         $this.Versions | ForEach-Object {
             $sb.AppendLine("- $_")
         }
 
-        # Preserve only one new line symbol at the end
-        return $sb.ToString().TrimEnd() + "`n"
+        return $sb.ToString().TrimEnd()
     }
 
     [String] ToString() {
@@ -242,11 +242,34 @@ class TableNode: BaseNode {
     }
 
     hidden [String] ArrayToTableRow([Array] $Values) {
-        return "| " + [String]::Join(" | ", $Values) + " |"
+        return [String]::Join("|", $Values)
     }
 
     [String] ToMarkdown($level) {
-        return $this.Rows -join "`n"
+        $columnsCount = $this.Rows[0].Split("|").Count
+        $maxColumnWidths = @(0) * $columnsCount
+
+        $this.Rows | ForEach-Object {
+            $row = $_.Split("|")
+            $columnWidths = $row | ForEach-Object { $_.Length }
+            for ($colIndex = 0; $colIndex -lt $columnsCount; $colIndex++) {
+                $maxColumnWidths[$colIndex] = [Math]::Max($maxColumnWidths[$colIndex], $columnWidths[$colIndex])
+            }
+        }
+
+        $sb = [System.Text.StringBuilder]::new()
+        $this.Rows | ForEach-Object {
+            $sb.Append("|")
+            $row = $_.Split("|")
+            for ($colIndex = 0; $colIndex -lt $columnsCount; $colIndex++) {
+                $padSymbol = $row[$colIndex] -eq "-" ? "-" : " "
+                $cellContent = $row[$colIndex].PadRight($maxColumnWidths[$colIndex], $padSymbol)
+                $sb.Append(" $($cellContent) |")
+            }
+            $sb.AppendLine()
+        }
+
+        return $sb.ToString().TrimEnd()
     }
 
     [PSCustomObject] ToJsonObject() {

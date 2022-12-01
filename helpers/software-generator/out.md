@@ -1,5 +1,7 @@
 # Ubuntu 22.04.1 LTS
+
 ## Installed Software
+
 ### Language and Runtime
 - Bash 5.1.16(1)-release
 - Node.js 16.18.0
@@ -7,6 +9,7 @@
 - Swift 5.7
 
 ### Cached Tools
+
 #### Ruby
 - 2.7
 - 2.8.1
@@ -18,11 +21,11 @@
 - 1.19.2
 
 ### Java
-| Version | Vendor | Environment Variables |
-| - | - | - |
-| 8.0.345+1 | Eclipse Temurin | JAVA_HOME_8_X64 |
-| 11.0.16+1 | Eclipse Temurin | JAVA_HOME_11_X64 |
-| 17.0.4+1 | Eclipse Temurin | JAVA_HOME_17_X64 |
+| Version   | Vendor          | Environment Variables |
+| --------- | --------------- | --------------------- |
+| 8.0.345+1 | Eclipse Temurin | JAVA_HOME_8_X64       |
+| 11.0.16+1 | Eclipse Temurin | JAVA_HOME_11_X64      |
+| 17.0.4+1  | Eclipse Temurin | JAVA_HOME_17_X64      |
 
 ### MySQL
 - MySQL 8.0.31-0ubuntu0.20.04.1
