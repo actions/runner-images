@@ -49,8 +49,9 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 There are currently two migrations in progress:
 
-* `ubuntu-latest` is being transited to `ubuntu-22.04`, details can be found in the [announcement](https://github.com/actions/runner-images/issues/6399)
-* `macos-latest` is being transited to `macos-12`, details can be found in the [announcement](https://github.com/actions/runner-images/issues/6384)
+* `ubuntu-latest` is currently transitioning to `ubuntu-22.04`. During this time, you may experience some jobs running on either an ubuntu-20.04 or ubuntu-22.04 runner. You can specify `runs-on: ubuntu-20.04` in your workflow if you need the previous version. Details can be found in this [announcement](https://github.com/actions/runner-images/issues/6399).
+* `macos-latest` is currently transitioning to `macos-12`.  During this time, you may experience some jobs running on either a macos-11 or macos-12 runner. You can specify `runs-on: macos-11` in your workflow if you need the previous version. Details can be found in this [announcement](https://github.com/actions/runner-images/issues/6384).
+
 
 ## Image Definitions
 
