@@ -1,11 +1,6 @@
-| Announcements |
-|-|
-| [[all OSs] Nodejs 12.x will be removed from the images on November, 14](https://github.com/actions/runner-images/issues/6482) |
-| [[all OSs] The VCPKG_ROOT variable will be removed from runner images](https://github.com/actions/runner-images/issues/6376) |
-***
 # Microsoft Windows Server 2019 Datacenter
 - OS Version: 10.0.17763 Build 3650
-- Image Version: 20221119.1
+- Image Version: 20221127.1
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -19,7 +14,7 @@
 - LLVM 14.0.6
 - Node 16.18.1
 - Perl 5.32.1
-- PHP 8.1.12
+- PHP 8.1.13
 - Python 3.7.9
 - Ruby 2.5.9p229
 
@@ -33,7 +28,7 @@
 - pip 22.3.1 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from master \<4cb4a5c5d>)
+- Vcpkg (build from master \<62d01b70d>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,10 +52,10 @@
 - Bicep 0.12.40
 - Cabal 3.8.1.0
 - CMake 3.25.0
-- CodeQL Action Bundle 2.11.3
+- CodeQL Action Bundle 2.11.4
 - Docker 20.10.21
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.12.2
+- Docker Compose v2 2.13.0
 - Docker-wincred 0.7.0
 - ghc 9.4.2
 - Git 2.38.1.windows.1
@@ -78,7 +73,7 @@
 - OpenSSL 1.1.1
 - Packer 1.8.4
 - Parcel 2.8.0
-- Pulumi v3.47.1
+- Pulumi v3.48.0
 - R 4.2.2
 - Service Fabric SDK 9.0.1028.9590
 - Stack 2.9.1
@@ -91,8 +86,8 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.135
-- AWS CLI 2.9.0
+- Alibaba Cloud CLI 3.0.139
+- AWS CLI 2.9.1
 - AWS SAM CLI 1.65.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.42.0
@@ -108,7 +103,7 @@
 - Rustup 1.25.1
 
 #### Packages
-- bindgen 0.62.0
+- bindgen 0.63.0
 - cargo-audit 0.17.4
 - cargo-outdated 0.11.1
 - cbindgen 0.24.3
@@ -116,10 +111,10 @@
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
-- Google Chrome 107.0.5304.107
+- Google Chrome 107.0.5304.122
 - Chrome Driver 107.0.5304.62
-- Microsoft Edge 107.0.1418.52
-- Microsoft Edge Driver 107.0.1418.52
+- Microsoft Edge 107.0.1418.56
+- Microsoft Edge Driver 107.0.1418.56
 - Mozilla Firefox 107.0
 - Gecko Driver 0.32.0
 - IE Driver 3.150.1.1
@@ -193,9 +188,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 2.4.10  | x64          |
 | 2.5.9 (Default) | x64          |
 | 2.6.10  | x64          |
-| 2.7.6   | x64          |
-| 3.0.4   | x64          |
-| 3.1.2   | x64          |
+| 2.7.7   | x64          |
+| 3.0.5   | x64          |
+| 3.1.3   | x64          |
 
 #### PyPy
 | Python Version | PyPy Version |
@@ -222,7 +217,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.13.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.14.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.9.0
@@ -549,7 +544,7 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.211          |
+| AWSPowerShell      | 4.1.214          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
 | Microsoft.Graph    | 1.17.0           |
@@ -564,7 +559,7 @@ All other versions are saved but not installed.
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                                                    |
-| Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0                    |
+| Android SDK Build-tools    | 33.0.0 33.0.1<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0             |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
 | Android SDK Platform-Tools | 33.0.3                                                                                                                                                                                                                                                                                                                                 |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                 |
@@ -594,5 +589,4 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:48a48dcd38e570a4f057f58258a92a1c01b210a767c6afd3e89d3eb6ae286384  | 2022-11-08 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:5c9da3bfe1524eab610dfd41c79a0805c080f8307d810d62bba106b5df587698  | 2022-11-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:cbb8b0a709b4e0868cd2e30b1485358197b1021bb0dd4261e36b3af3ca48fd0b  | 2022-11-05 |
-
 
