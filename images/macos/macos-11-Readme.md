@@ -1,14 +1,12 @@
 | Announcements |
 |-|
-| [[all OSs] Nodejs 12.x will be removed from the images on November, 14](https://github.com/actions/runner-images/issues/6482) |
 | [macOS-latest workflows will use macOS-12](https://github.com/actions/runner-images/issues/6384) |
-| [[all OSs] The VCPKG_ROOT variable will be removed from runner images](https://github.com/actions/runner-images/issues/6376) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 11.7 info
 - System Version: macOS 11.7.1 (20G918)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20221121.1
+- Image Version: 20221127.7
 
 ## Installed Software
 ### Language and Runtime
@@ -30,7 +28,7 @@
 - NVM 0.39.2
 - NVM - Cached node versions: v14.21.1 v16.18.1 v18.12.1
 - Perl 5.36.0
-- PHP 8.1.12
+- PHP 8.1.13
 - Python 2.7.18
 - Python 3.11.0
 - R 4.2.2
@@ -49,7 +47,7 @@
 - Pip 22.3.1 (python 3.11)
 - Pipx 1.1.0
 - RubyGems 3.3.26
-- Vcpkg 2022 (build from master \<e819a7d0a>)
+- Vcpkg 2022 (build from master \<62d01b70d>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -61,7 +59,7 @@
 ### Project Management
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.6
-- Gradle 7.5.1
+- Gradle 7.6
 - Sbt 1.8.0
 
 ### Utilities
@@ -96,9 +94,9 @@
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.136
-- App Center CLI 2.11.0
-- AWS CLI 2.9.0
+- Aliyun CLI 3.0.137
+- App Center CLI 2.12.0
+- AWS CLI 2.9.1
 - AWS SAM CLI 1.65.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI (azure-devops) 0.25.0
@@ -106,14 +104,14 @@
 - Bicep CLI 0.12.40
 - Cabal 3.6.2.0
 - Cmake 3.25.0
-- CodeQL Action Bundle 2.11.3
+- CodeQL Action Bundle 2.11.4
 - Colima 0.4.6
 - Fastlane 2.211.0
 - GHC 9.4.3
 - GHCup 0.1.18.0
 - Jazzy 0.14.3
 - Stack 2.9.1
-- SwiftFormat 0.50.3
+- SwiftFormat 0.50.4
 - Swig 4.1.0
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -124,10 +122,10 @@
 ### Browsers
 - Safari 16.1 (16614.2.9.1.13)
 - SafariDriver 16.1 (16614.2.9.1.13)
-- Google Chrome 107.0.5304.110 
+- Google Chrome 107.0.5304.121 
 - ChromeDriver 107.0.5304.62
-- Microsoft Edge 107.0.1418.52 
-- Microsoft Edge WebDriver 107.0.1418.52
+- Microsoft Edge 107.0.1418.56 
+- Microsoft Edge WebDriver 107.0.1418.56
 - Mozilla Firefox 107.0
 - geckodriver 0.32.0
 - Selenium server 4.5.0
@@ -156,9 +154,9 @@
 - 2.4.10
 - 2.5.9
 - 2.6.10
-- 2.7.6
-- 3.0.4
-- 3.1.2
+- 2.7.7
+- 3.0.5
+- 3.1.3
 
 #### Python
 - 3.7.15
@@ -192,7 +190,7 @@
 - Rustup 1.25.1
 
 #### Packages
-- Bindgen 0.62.0
+- Bindgen 0.63.0
 - Cargo-audit 0.17.4
 - Cargo-outdated 0.11.1
 - Cbindgen 0.24.3
@@ -334,19 +332,19 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | watchOS 8.3 | 13.2.1        | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                                                          |
 
 ### Android
-| Package Name               | Version                                                                                                                                                |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Android Command Line Tools | 8.0                                                                                                                                                    |
-| Android Emulator           | 31.3.13                                                                                                                                                |
-| Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Platform-Tools | 33.0.3                                                                                                                                                 |
-| Android Support Repository | 47.0.0                                                                                                                                                 |
-| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                             |
-| Google Play services       | 49                                                                                                                                                     |
-| Google Repository          | 58                                                                                                                                                     |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.1.8937393 (default)                                                                                                 |
-| SDK Patch Applier v4       | 1                                                                                                                                                      |
+| Package Name               | Version                                                                                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 8.0                                                                                                                                                           |
+| Android Emulator           | 31.3.13                                                                                                                                                       |
+| Android SDK Build-tools    | 33.0.0 33.0.1<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
+| Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)        |
+| Android SDK Platform-Tools | 33.0.3                                                                                                                                                        |
+| Android Support Repository | 47.0.0                                                                                                                                                        |
+| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                    |
+| Google Play services       | 49                                                                                                                                                            |
+| Google Repository          | 58                                                                                                                                                            |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.1.8937393 (default)                                                                                                        |
+| SDK Patch Applier v4       | 1                                                                                                                                                             |
 
 #### Environment variables
 | Name                    | Value                                              |
@@ -361,7 +359,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 ### Miscellaneous
 - libXext 1.3.5
 - libXft 2.3.7
-- Tcl/Tk 8.6.12_1
+- Tcl/Tk 8.6.13
 - Zlib 1.2.13
 
 

@@ -1,0 +1,88 @@
+name: Create and upload a SBOM to release assets
+# Inherited variables:
+# github.event.client_payload.imageLabel - AzDO image label
+# github.event.client_payload.GHreleaseID - Current release ID
+# github.event.client_payload.imageVersion - AzDO image version "major.minor"
+# github.event.client_payload.ReleaseBranchName - Necessary to identify workflow run
+# 
+# Current SYFT tool issues:
+# macOS (minor): very long cataloging process (more than 6 hours) (https://github.com/anchore/syft/issues/1328), 
+# macOS (major): prompt privilegies that blocking process indefinetely (https://github.com/anchore/syft/issues/1367)
+on:
+  repository_dispatch:
+    types: [generate-sbom]
+defaults:
+  run:
+    shell: pwsh
+jobs:
+  #Converting image OS variable for the next steps
+  initialize: 
+    runs-on: ubuntu-latest
+    outputs:
+      agent-spec: ${{ steps.converter.outputs.current-os }}
+    steps:
+      - name: Convert image label variable for ${{ github.event.client_payload.ReleaseBranchName }}
+        id: converter
+        run: |
+          $imageLabel = "${{ github.event.client_payload.imageLabel }}"
+          $currentOS = switch ($imageLabel) {
+            'ubuntu22' { "ubuntu-22.04" }
+            'ubuntu20' { "ubuntu-20.04" }
+            'ubuntu18' { "ubuntu-18.04" }
+            'win22' { "windows-2022" }
+            'win19' { "windows-2019" }
+            'macOS-12' { "macos-12" }
+            'macOS-11' { "macos-11" }
+            default {
+              echo "currentOS variable is undefined. Please check imageLabel."
+              exit 1  
+            }
+          }
+          "current-os=$currentOS" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+  #Checking image version on available runner
+  version-check:
+    needs: initialize
+    runs-on: ${{ needs.initialize.output.agent-spec }}
+    steps:
+      - name: Available image version check
+        run: |
+          if ($env:ImageVersion -ne '${{ github.event.client_payload.imageVersion }}') {
+            echo "Error. Current runner $env:ImageVersion image version don't match ${{ github.event.client_payload.imageVersion }}."
+            exit 1
+          }
+  #Install and run SYFT, compress SBOM, upload it to release assets
+  create-sbom:
+    needs: [initialize, version-check]
+    runs-on: ${{ needs.initialize.output.agent-spec }}
+    steps:
+      #Installation section
+      - name: Install SYFT tool on Windows
+        if: ${{ runner.os == 'Windows' }}
+        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b D:/syft
+      - name: Install SYFT tool on Ubuntu or macOS
+        if: ${{ runner.os != 'Windows' }}
+        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+      #Running section. 
+      - name: Run SYFT on Windows
+        if: ${{ runner.os == 'Windows' }}
+        run: D:/syft/syft dir:C:/ -vv -o spdx-json=sbom.json
+      - name: Run SYFT on Ubuntu
+        if: ${{ runner.os == 'Linux' }}
+        run: syft dir:/ -vv -o spdx-json=sbom.json
+      - name: Run SYFT on macOS
+        if: ${{ runner.os == 'macOS' }}
+        run: syft dir:/ -vv -o spdx-json=sbom.json --exclude ./Users --exclude ./System/Volumes --exclude ./private
+      #Preparing artifact (raw SBOM.x.json is too big)
+      - name: Compress SBOM file
+        run: Compress-Archive sbom.json sbom.${{ github.event.client_payload.imageLabel }}.json.zip
+      #Upload release asset action
+      #Might be changed to softprops/action-gh-release after additional check
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: "https://uploads.github.com/repos/actions/runner-images/releases/${{ github.event.client_payload.GHreleaseID }}/assets{?name,label}"
+          asset_path: ./sbom.${{ github.event.client_payload.imageLabel }}.json.zip
+          asset_name: sbom.${{ github.event.client_payload.imageLabel }}.json.zip
+          asset_content_type: application/zip
