@@ -1,5 +1,18 @@
 using module ./SoftwareReport.Base.psm1
 using module ./SoftwareReport.Comparer.psm1
+
+$ErrorActionPreference = "Stop"
+$global:ErrorView = "NormalView"
+
+<#
+. ([ScriptBlock]::Create(@”
+    using module '$PSScriptRoot\SoftwareReport.Base.psm1'
+    using module '$PSScriptRoot\SoftwareReport.Comparer.psm1'
+“@))
+#>
+
+Get-Location
+
 Import-Module $(Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -Force
 
 $ErrorActionPreference = "Stop"
