@@ -35,37 +35,34 @@ function Get-ToolcacheGoTable {
         $Instance."Environment Variable" = "GOROOT_$($Version.major)_$($Version.minor)_X64"
     }
 
-    $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
-        Version = "left";
-        Architecture = "left";
-        "Environment Variable" = "left"
-    })
+    $Content = $ToolInstances | ForEach-Object {
+        return [PSCustomObject]@{
+            Version = $_.Version
+            Architecture = $_.Architecture
+            "Environment Variable" = $_."Environment Variable"
+        }
+    }
 
     return $Content
 }
 
 function Build-ToolcacheSection { 
-    $output = ""
-    $output += New-MDHeader "Cached Tools" -Level 3
-    $output += New-MDHeader "Ruby" -Level 4
-    $output += New-MDList -Lines (Get-ToolcacheRubyVersions) -Style Unordered
-    $output += New-MDHeader "Python" -Level 4
-    $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
-    $output += New-MDHeader "PyPy" -Level 4
-    $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
-    $output += New-MDHeader "Node.js" -Level 4
-    $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
-    $output += New-MDHeader "Go" -Level 4
-    $output += Get-ToolcacheGoTable
-
-    return $output
+    $goToolNode = [HeaderNode]::new("Go")
+    $goToolNode.AddTableNode($(Get-ToolcacheGoTable))
+    return @(
+        [ToolVersionsNode]::new("Ruby", $(Get-ToolcacheRubyVersions))
+        [ToolVersionsNode]::new("Python", $(Get-ToolcachePythonVersions))
+        [ToolVersionsNode]::new("Pypy", $(Get-ToolcachePyPyVersions))
+        [ToolVersionsNode]::new("Node.js", $(Get-ToolcacheNodeVersions))
+        $goToolNode
+    )
 }
 
 function Get-PowerShellModules {
     $modules = (Get-ToolsetValue powershellModules).name
 
     $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
-    $psModules | ForEach-Object {
+    return $psModules | ForEach-Object {
         $moduleName = $_.Name
         $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
 
