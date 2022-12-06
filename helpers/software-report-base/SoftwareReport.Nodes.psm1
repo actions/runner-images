@@ -1,30 +1,12 @@
-class SoftwareReport {
-    [HeaderNode] $Root
+using module ./SoftwareReport.BaseNodes.psm1
 
-    SoftwareReport([String] $Title) {
-        $this.Root = [HeaderNode]::new($Title)
-    }
+#########################################
+### Nodes to describe image software ####
+#########################################
 
-    SoftwareReport([HeaderNode] $Root) {
-        $this.Root = $Root
-    }
-
-    [String] ToJson() {
-        return $this.Root.ToJsonObject() | ConvertTo-Json -Depth 10
-    }
-
-    static [SoftwareReport] FromJson($jsonString) {
-        $jsonObj = $jsonString | ConvertFrom-Json
-        $rootNode = [SoftwareReport]::ParseNodeFromObject($jsonObj)
-        return [SoftwareReport]::new($rootNode)
-    }
-
-    [String] ToMarkdown() {
-        return $this.Root.ToMarkdown(1).Trim()
-    }
-
-    # This method is Nodes factory that simplifies parsing different types of notes
-    # Every node has own logic of parsing and this method just invokes "FromJsonObject" of correct node type
+# NodesFactory is used to simplify parsing different types of notes
+# Every node has own logic of parsing and this method just invokes "FromJsonObject" of correct node type
+class NodesFactory {
     static [BaseNode] ParseNodeFromObject($jsonObj) {
         if ($jsonObj.NodeType -eq [HeaderNode].Name) {
             return [HeaderNode]::FromJsonObject($jsonObj)
@@ -42,12 +24,7 @@ class SoftwareReport {
     }
 }
 
-# class BaseNode doesn't really have any business logic or functionality
-# We just create it to unite all types of Nodes and differ them from "object" type
-class BaseNode {}
-
-# It is a node type to describe headers: "# Node.js"
-# Header has Title and children nodes (HeaderNode is the single node type who has children)
+# Node type to describe headers: "## Installed software"
 class HeaderNode: BaseNode {
     [String] $Title
     [System.Collections.ArrayList] $Children
@@ -57,15 +34,23 @@ class HeaderNode: BaseNode {
         $this.Children = @()
     }
 
+    [Boolean] ShouldBeIncludedToDiff() {
+        return $True
+    }
+
     [void] AddNode([BaseNode] $node) {
-        if ($node.GetType() -eq [TableNode]) {
-            $existingTableNodesCount = $this.Children.Where({ $_.GetType() -eq [TableNode] }).Count
-            if ($existingTableNodesCount -gt 0) {
-                throw "Having multiple TableNode on the same header level is not supported"
-            }
+        $similarNode = $this.FindSimilarChildNode($node)
+        if ($similarNode) {
+            throw "This HeaderNode already contains the similar child node. It is not allowed to add the same node twice.`nFound node: $($similarNode.ToJsonObject() | ConvertTo-Json)`nNew node: $($node.ToJsonObject() | ConvertTo-Json)"
         }
 
         $this.Children.Add($node)
+    }
+
+    [void] AddNodes([Array] $nodes) {
+        $nodes | ForEach-Object {
+            $this.AddNode($_)
+        }
     }
 
     [HeaderNode] AddHeaderNode([String] $Title) {
@@ -81,7 +66,7 @@ class HeaderNode: BaseNode {
     [void] AddToolVersionsNode([String] $ToolName, [Array] $Version) {
         $this.AddNode([ToolVersionsNode]::new($ToolName, $Version))
     }
-
+     
     [void] AddTableNode([Array] $Table) {
        $this.AddNode([TableNode]::FromObjectsArray($Table))
     }
@@ -111,7 +96,7 @@ class HeaderNode: BaseNode {
 
     static [HeaderNode] FromJsonObject($jsonObj) {
         $node = [HeaderNode]::new($jsonObj.Title)
-        $jsonObj.Children | Where-Object { $_ } | ForEach-Object { $node.AddNode([SoftwareReport]::ParseNodeFromObject($_)) }
+        $jsonObj.Children | Where-Object { $_ } | ForEach-Object { $node.AddNode([NodesFactory]::ParseNodeFromObject($_)) }
         return $node
     }
 
@@ -126,15 +111,23 @@ class HeaderNode: BaseNode {
     [Boolean] IsIdenticalTo([BaseNode] $OtherNode) {
         return $this.IsSimilarTo($OtherNode)
     }
+
+    [BaseNode] FindSimilarChildNode([BaseNode] $Find) {
+        foreach ($childNode in $this.Children) {
+            if ($childNode.IsSimilarTo($Find)) {
+                return $childNode
+            }
+        }
+
+        return $null
+    }
 }
 
-# It is a node type to describe the single tool "Bash 5.1.16(1)-release"
-class ToolNode: BaseNode {
-    [String] $ToolName
+# Node type to describe the tool with single version: "Bash 5.1.16"
+class ToolNode: BaseToolNode {
     [String] $Version
 
-    ToolNode([String] $ToolName, [String] $Version) {
-        $this.ToolName = $ToolName
+    ToolNode([String] $ToolName, [String] $Version): base($ToolName) {
         $this.Version = $Version
     }
 
@@ -142,8 +135,8 @@ class ToolNode: BaseNode {
         return "- $($this.ToolName) $($this.Version)"
     }
 
-    [String] ToString() {
-        return "$($this.ToolName) $($this.Version)"
+    [String] GetValue() {
+        return $this.Version
     }
 
     [PSCustomObject] ToJsonObject() {
@@ -157,29 +150,13 @@ class ToolNode: BaseNode {
     static [BaseNode] FromJsonObject($jsonObj) {
         return [ToolNode]::new($jsonObj.ToolName, $jsonObj.Version)
     }
-
-    [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
-        if ($OtherNode.GetType() -ne [ToolNode]) {
-            return $false
-        }
-
-        # Don't compare by Version in SimilarTo method
-        # It is necessary to treat changing of tool version as "ChangedNodes" rather than "RemovedNodes" + "AddedNodes"
-        return $this.ToolName -eq $OtherNode.ToolName
-    }
-
-    [Boolean] IsIdenticalTo([BaseNode] $OtherNode) {
-        return $this.IsSimilarTo($OtherNode) -and $this.Version -eq $OtherNode.Version
-    }
 }
 
-# It is a node type to describe the single tool "Toolcache Node.js 14.17.6 16.2.0 18.2.3"
-class ToolVersionsNode: BaseNode {
-    [String] $ToolName
+# Node type to describe the tool with multiple versions "Toolcache Node.js 14.17.6 16.2.0 18.2.3"
+class ToolVersionsNode: BaseToolNode {
     [Array] $Versions
 
-    ToolVersionsNode([String] $ToolName, [Array] $Versions) {
-        $this.ToolName = $ToolName
+    ToolVersionsNode([String] $ToolName, [Array] $Versions): base($ToolName) {
         $this.Versions = $Versions
     }
 
@@ -194,8 +171,8 @@ class ToolVersionsNode: BaseNode {
         return $sb.ToString().TrimEnd()
     }
 
-    [String] ToString() {
-        return "$($this.ToolName) $($this.Versions -join ', ')"
+    [String] GetValue() {
+        return $this.Versions -join ', '
     }
 
     [PSCustomObject] ToJsonObject() {
@@ -209,27 +186,11 @@ class ToolVersionsNode: BaseNode {
     static [ToolVersionsNode] FromJsonObject($jsonObj) {
         return [ToolVersionsNode]::new($jsonObj.ToolName, $jsonObj.Versions)
     }
-
-    [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
-        if ($OtherNode.GetType() -ne [ToolVersionsNode]) {
-            return $false
-        }
-
-        return $this.ToolName -eq $OtherNode.ToolName
-    }
-
-    [Boolean] IsIdenticalTo([BaseNode] $OtherNode) {
-        if (-not $this.IsSimilarTo($OtherNode)) {
-            return $false
-        }
-
-        return ($this.Versions -join " ") -eq ($OtherNode.Versions -join " ")
-    }
 }
 
-# It is a node type to describe tables
+# Node type to describe tables
 class TableNode: BaseNode {
-    # It is easier to store the table as rendered lines because we will simplify finding differences in rows later
+    # It is easier to store the table as rendered lines because it will simplify finding differences in rows later
     [String] $Headers
     [System.Collections.ArrayList] $Rows
 
@@ -238,8 +199,12 @@ class TableNode: BaseNode {
         $this.Rows = $Rows
     }
 
+    [Boolean] ShouldBeIncludedToDiff() {
+        return $True
+    }
+
     static [TableNode] FromObjectsArray([Array] $Table) {
-        # take column names from the first row in table because all rows that should have the same columns
+        # take column names from the first row in table because we expect all rows to have the same columns
         [String] $tableHeaders = [TableNode]::ArrayToTableRow($Table[0].PSObject.Properties.Name)
         [System.Collections.ArrayList] $tableRows = @()
 
@@ -267,11 +232,13 @@ class TableNode: BaseNode {
         @($this.Headers) + @($delimeterLine) + $this.Rows | ForEach-Object {
             $sb.Append("|")
             $row = $_.Split("|")
+
             for ($colIndex = 0; $colIndex -lt $columnsCount; $colIndex++) {
                 $padSymbol = $row[$colIndex] -eq "-" ? "-" : " "
                 $cellContent = $row[$colIndex].PadRight($maxColumnWidths[$colIndex], $padSymbol)
                 $sb.Append(" $($cellContent) |")
             }
+            
             $sb.AppendLine()
         }
 
@@ -322,6 +289,7 @@ class TableNode: BaseNode {
     }
 
     hidden static [String] ArrayToTableRow([Array] $Values) {
+        # TO-DO: Add validation for the case when $Values contains "|"
         return [String]::Join("|", $Values)
     }
 }
