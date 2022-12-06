@@ -98,13 +98,19 @@ function Get-FortranVersions {
 }
 
 function Get-ClangLLVMVersions {
-    $toolsetVersion = '$(brew --prefix llvm@{0})/bin/clang' -f (Get-ToolsetValue 'llvm.version')
-    $locationsList = @("$((Get-Command clang).Source)", $toolsetVersion)
-    $locationsList | Foreach-Object {
-        (Run-Command "${_} --version" | Out-String) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
-        $version = $Matches.version
-        return [ToolNode]::new("Clang/LLVM$(if(${_} -Match "brew") {" (Homebrew)"})", "$version " + $(if(${_} -Match "brew") {"- available on ```'${_}`'``"} else {"- default"}))
-    }
+    $clangVersionRegex = [Regex]::new("(?<version>\d+\.\d+\.\d+)")
+
+    $defaultClangOutput = Run-Command "clang --version" | Out-String
+    $defaultClangVersion = $clangVersionRegex.Match($defaultClangOutput).Groups['version'].Value
+
+    $homebrewClangPath = '$(brew --prefix llvm@{0})/bin/clang' -f (Get-ToolsetValue 'llvm.version')
+    $homebrewClangOutput = Run-Command "$homebrewClangPath --version" | Out-String
+    $homebrewClangVersion = $clangVersionRegex.Match($homebrewClangOutput).Groups['version'].Value
+
+    return @(
+        [ToolNode]::new("Clang/LLVM", $defaultClangVersion)
+        [ToolNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ```'$homebrewClangPath`'``")
+    )
 }
 
 function Get-NVMVersion {
@@ -555,7 +561,8 @@ function Get-TclTkVersion {
 
 function Get-YqVersion {
     $yqVersion = Run-Command "yq --version"
-    return (($yqVersion -replace "^yq") -replace '\(https.*\)', '').Trim()
+    $yqVersion -match "\d{1,2}\.\d{1,2}\.\d{1,2}" | Out-Null
+    return ($Matches[0])
 }
 
 function Get-ImageMagickVersion {

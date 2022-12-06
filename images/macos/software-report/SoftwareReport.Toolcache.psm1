@@ -52,7 +52,7 @@ function Build-ToolcacheSection {
     return @(
         [ToolVersionsNode]::new("Ruby", $(Get-ToolcacheRubyVersions))
         [ToolVersionsNode]::new("Python", $(Get-ToolcachePythonVersions))
-        [ToolVersionsNode]::new("Pypy", $(Get-ToolcachePyPyVersions))
+        [ToolVersionsNode]::new("PyPy", $(Get-ToolcachePyPyVersions))
         [ToolVersionsNode]::new("Node.js", $(Get-ToolcacheNodeVersions))
         $goToolNode
     )

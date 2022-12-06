@@ -29,10 +29,8 @@ function Get-NginxVersion {
 }
 
 function Build-WebServersSection {
-    $output += @(
+    return @(
         (Get-ApacheVersion),
         (Get-NginxVersion)
     )
-
-    return $output
 }

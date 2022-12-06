@@ -42,7 +42,7 @@ $languageAndRuntime.AddToolNode("Kotlin", $(Get-KotlinVersion))
 $languageAndRuntime.AddToolNode("MSBuild", $(Get-MSBuildVersion))
 $languageAndRuntime.AddToolNode("Node.js", $(Get-NodeVersion))
 $languageAndRuntime.AddToolNode("NVM", $(Get-NVMVersion))
-$languageAndRuntime.AddToolNode("NVM - Cached node versions", $(Get-NVMNodeVersionList))
+$languageAndRuntime.AddToolNode("NVM - Cached node versions:", $(Get-NVMNodeVersionList))
 $languageAndRuntime.AddToolNode("Perl", $(Get-PerlVersion))
 $languageAndRuntime.AddToolNode("PHP", $(Get-PHPVersion))
 $languageAndRuntime.AddToolNode("Python", $(Get-PythonVersion))
@@ -60,7 +60,7 @@ $packageManagement.AddToolNode("Homebrew", $(Get-HomebrewVersion))
 $packageManagement.AddToolNode("Miniconda", $(Get-CondaVersion))
 $packageManagement.AddToolNode("NPM", $(Get-NPMVersion))
 $packageManagement.AddToolNode("NuGet", $(Get-NuGetVersion))
-$packageManagement.AddToolNode("Pip2", $(Get-PipVersion -Version 2))
+$packageManagement.AddToolNode("Pip", $(Get-PipVersion -Version 2))
 $packageManagement.AddToolNode("Pip3", $(Get-PipVersion -Version 3))
 $packageManagement.AddToolNode("Pipx", $(Get-PipxVersion))
 $packageManagement.AddToolNode("RubyGems", $(Get-RubyGemsVersion))
@@ -150,8 +150,8 @@ $tools.AddToolNode("Xcode Command Line Tools", $(Get-XcodeCommandLineToolsVersio
 
 # Linters
 $linters = $installedSoftware.AddHeaderNode("Linters")
-$linters.AddToolNode("Yamllint", $(Get-YamllintVersion))
 $linters.AddToolNode("Swift", $(Get-SwiftLintVersion))
+$linters.AddToolNode("Yamllint", $(Get-YamllintVersion))
 
 # Browsers
 $browsers = $installedSoftware.AddHeaderNode("Browsers")
