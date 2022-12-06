@@ -109,7 +109,7 @@ jobs:
       cat "$(Build.ArtifactStagingDirectory)/systeminfo.md"
     displayName: Print markdown software report
 
-   - bash: |
+  - bash: |
       cat "$(Build.ArtifactStagingDirectory)/systeminfo.json"
     displayName: Print json software report   
 
