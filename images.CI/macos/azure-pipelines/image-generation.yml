@@ -106,7 +106,12 @@ jobs:
     displayName: Prepare artifact
 
   - bash: |
+      echo "Print markdown output"
       cat "$(Build.ArtifactStagingDirectory)/systeminfo.md"
+
+      echo
+      echo "Print json output"
+      cat "$(Build.ArtifactStagingDirectory)/systeminfo.json"
     displayName: Print software report
 
   - task: PublishBuildArtifacts@1
