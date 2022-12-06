@@ -19,6 +19,7 @@ Write-Host "Clean up various directories"
     "$env:SystemRoot\logs",
     "$env:SystemRoot\winsxs\manifestcache",
     "$env:SystemRoot\Temp",
+    "$env:SystemDrive\Users\$env:INSTALL_USER\AppData\Local\Temp",
     "$env:TEMP"
 ) | ForEach-Object {
     if (Test-Path $_) {

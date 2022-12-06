@@ -13,10 +13,24 @@ done
 cask_packages=$(get_toolset_value '.brew.cask_packages[]')
 for package in $cask_packages; do
     echo "Installing $package..."
-    brew install --cask $package
+    if [[ $package == "virtualbox" ]]; then
+        # VirtualBox 7 crashes
+        # macOS host: Dropped all kernel extensions. VirtualBox relies fully on the hypervisor and vmnet frameworks provided by Apple now.
+        vbcask_url="https://raw.githubusercontent.com/Homebrew/homebrew-cask/aa3c55951fc9d687acce43e5c0338f42c1ddff7b/Casks/virtualbox.rb"
+        download_with_retries $vbcask_url
+        brew install ./virtualbox.rb
+        rm ./virtualbox.rb
+    else
+        brew install --cask $package
+    fi
 done
 
-# Execute AppleScript to change security preferences for virtualbox
+# Load "Parallels International GmbH"
+if is_Monterey; then
+    sudo kextload /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.9/prl_hypervisor.kext || true
+fi
+
+# Execute AppleScript to change security preferences
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
 if is_Monterey; then
     if is_Veertu; then
@@ -38,6 +52,30 @@ if is_Monterey; then
     osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
 fi
 
+# Validate "Parallels International GmbH" kext
+if is_Monterey; then
+    echo "Closing System Preferences window if it is still opened"
+    killall "System Preferences" || true
+
+    echo "Checking parallels kexts"
+    dbName="/var/db/SystemPolicyConfiguration/KextPolicy"
+    dbQuery="SELECT * FROM kext_policy WHERE bundle_id LIKE 'com.parallels.kext.%';"
+    kext=$(sudo sqlite3 $dbName "$dbQuery")
+
+    if [ -z "$kext" ]; then
+        echo "Parallels International GmbH not found"
+        exit 1
+    fi
+
+    # Create env variable
+    url=$(brew info --json=v2 --installed | jq -r '.casks[] | select(.name[] == "Parallels Desktop").url')
+    if [ -z "$url" ]; then
+        echo "Unable to parse url for Parallels Desktop cask"
+        exit 1
+    fi
+    echo "export PARALLELS_DMG_URL=$url" >> "${HOME}/.bashrc"
+fi
+
 # Invoke bazel to download bazel version via bazelisk
 bazel
 
@@ -46,7 +84,7 @@ az extension add -n azure-devops
 
 # Workaround https://github.com/actions/runner-images/issues/4931
 # by making Tcl/Tk paths the same on macOS 10.15 and macOS 11
-if is_BigSur; then
+if is_BigSur || is_Monterey; then
     version=$(brew info tcl-tk --json | jq -r '.[].installed[].version')
     ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtcl8.6.dylib /usr/local/lib/libtcl8.6.dylib
     ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtk8.6.dylib /usr/local/lib/libtk8.6.dylib

@@ -1,16 +1,17 @@
 | Announcements |
 |-|
-| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.0 on September, 26](https://github.com/actions/runner-images/issues/6225) |
+| [macOS-latest workflows will use macOS-12](https://github.com/actions/runner-images/issues/6384) |
+| [[all OSs] The VCPKG_ROOT variable will be removed from runner images](https://github.com/actions/runner-images/issues/6376) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 10.15 info
 - System Version: macOS 10.15.7 (19H2026)
 - Kernel Version: Darwin 19.6.0
-- Image Version: 20220912.1
+- Image Version: 20221018.1
 
 ## Installed Software
 ### Language and Runtime
-- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.422 5.0.102 5.0.202 5.0.302 5.0.408
+- .NET SDK 3.1.101 3.1.201 3.1.302 3.1.424 5.0.102 5.0.202 5.0.302 5.0.408
 - Bash 3.2.57(1)-release
 - Clang/LLVM 12.0.0 is default
 - Clang/LLVM 14.0.6 is available on `'$(brew --prefix llvm@14)/bin/clang'`
@@ -21,33 +22,33 @@
 - GNU Fortran (Homebrew GCC 10.4.0) 10.4.0 - available by `gfortran-10` alias
 - GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
 - Go 1.17.13
-- julia 1.8.1
-- Kotlin 1.7.10-release-333
+- julia 1.8.2
+- Kotlin 1.7.20-release-201
 - MSBuild 16.10.1.31401 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.17.0
-- NVM 0.39.1
-- NVM - Cached node versions: v12.22.12 v14.20.0 v16.17.0
-- Perl 5.34.0
-- PHP 8.1.10
+- Node.js v16.18.0
+- NVM 0.39.2
+- NVM - Cached node versions: v12.22.12 v14.20.1 v16.18.0
+- Perl 5.36.0
+- PHP 8.1.11
 - Python 2.7.18
-- Python 3.10.6
+- Python 3.10.8
 - R 4.2.1
 - Ruby 2.7.6p219
 
 ### Package Management
-- Bundler version 2.3.22
+- Bundler version 2.3.24
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.4.1
-- Homebrew 3.6.1
+- Composer 2.4.3
+- Homebrew 3.6.6
 - Miniconda 4.12.0
-- NPM 8.15.0
+- NPM 8.19.2
 - NuGet 6.2.1.2
 - Pip 20.3.4 (python 2.7)
 - Pip 22.2.2 (python 3.10)
 - Pipx 1.1.0
-- RubyGems 3.3.22
-- Vcpkg 2022 (build from master \<23905f6f8>)
+- RubyGems 3.3.24
+- Vcpkg 2022 (build from master \<f4b262b25>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -61,26 +62,26 @@
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.6
 - Gradle 7.5.1
-- Sbt 1.7.1
+- Sbt 1.7.2
 
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
-- azcopy 10.16.0
-- bazel 5.3.0
+- azcopy 10.16.1
+- bazel 5.3.1
 - bazelisk 1.14.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.85.0
-- Git 2.37.3
+- Git 2.38.1
 - Git LFS: 3.2.0
-- GitHub CLI: 2.15.0
-- GNU parallel 20220822
+- GitHub CLI: 2.18.0
+- GNU parallel 20220922
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
-- gpg (GnuPG) 2.3.7
-- helm v3.9.4+gdbc6d8e
+- gpg (GnuPG) 2.3.8
+- helm v3.10.1+g9f88ccb
 - Hub CLI: 2.14.2
-- ImageMagick 7.1.0-47
+- ImageMagick 7.1.0-51
 - jq 1.6
 - mongo v5.0.11
 - mongod v5.0.11
@@ -92,28 +93,28 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- Vagrant 2.3.0
+- Vagrant 2.3.1
 - VirtualBox 6.1.38r153438
-- yq (https://github.com/mikefarah/yq/) version 4.27.5
+- yq (https://github.com/mikefarah/yq/) version 4.28.1
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.125
+- Aliyun CLI 3.0.131
 - App Center CLI 2.11.0
-- AWS CLI 2.7.31
-- AWS SAM CLI 1.56.1
-- AWS Session Manager CLI 1.2.339.0
+- AWS CLI 2.8.3
+- AWS SAM CLI 1.60.0
+- AWS Session Manager CLI 1.2.398.0
 - Azure CLI (azure-devops) 0.25.0
-- Azure CLI 2.40.0
-- Bicep CLI 0.10.13
+- Azure CLI 2.41.0
+- Bicep CLI 0.11.1
 - Cabal 3.6.2.0
-- Cmake 3.24.1
-- Fastlane 2.209.1
+- Cmake 3.24.2
+- Fastlane 2.210.1
 - GHC 9.4.2
 - GHCup 0.1.18.0
 - Jazzy 0.14.3
-- Stack 2.7.5
-- SwiftFormat 0.49.18
+- Stack 2.9.1
+- SwiftFormat 0.50.2
 - Swig 4.0.2
 - Xcode Command Line Tools 12.4.0.0.1.1610135815
 
@@ -124,18 +125,18 @@
 ### Browsers
 - Safari 15.6.1 (15613.3.9.1.16)
 - SafariDriver 15.6.1 (15613.3.9.1.16)
-- Google Chrome 105.0.5195.102 
-- ChromeDriver 105.0.5195.52
-- Microsoft Edge 105.0.1343.33 
-- Microsoft Edge WebDriver 105.0.1343.34
-- Mozilla Firefox 104.0.2
-- geckodriver 0.31.0
-- Selenium server 4.4.0
+- Google Chrome 106.0.5249.119 
+- ChromeDriver 106.0.5249.61
+- Microsoft Edge 106.0.1370.47 
+- Microsoft Edge WebDriver 106.0.1370.47
+- Mozilla Firefox 105.0.3
+- geckodriver 0.32.0
+- Selenium server 4.5.0
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/105.0.5195.52 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/106.0.5249.61 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -165,10 +166,10 @@
 #### Python
 - 2.7.18
 - 3.6.15
-- 3.7.14
+- 3.7.15
 - 3.8.14
 - 3.9.14
-- 3.10.7
+- 3.10.8
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.9]
@@ -179,28 +180,28 @@
 
 #### Node.js
 - 12.22.12
-- 14.20.0
-- 16.17.0
+- 14.20.1
+- 16.17.1
 
 #### Go
 | Version | Architecture | Environment Variable |
 | ------- | ------------ | -------------------- |
 | 1.16.15 | x64          | GOROOT_1_16_X64      |
 | 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.6  | x64          | GOROOT_1_18_X64      |
+| 1.18.7  | x64          | GOROOT_1_18_X64      |
 
 ### Rust Tools
-- Cargo 1.63.0
-- Rust 1.63.0
-- Rustdoc 1.63.0
+- Cargo 1.64.0
+- Rust 1.64.0
+- Rustdoc 1.64.0
 - Rustup 1.25.1
 
 #### Packages
-- Bindgen 0.60.1
-- Cargo-audit 0.17.0
+- Bindgen 0.61.0
+- Cargo-audit 0.17.2
 - Cargo-outdated 0.11.1
 - Cbindgen 0.24.3
-- Clippy 0.1.63
+- Clippy 0.1.64
 - Rustfmt 1.5.1-stable
 
 ### PowerShell Tools
@@ -209,10 +210,10 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 8.3.0   |
+| Az               | 9.0.1   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.3   |
-| PSScriptAnalyzer | 1.20.0  |
+| PSScriptAnalyzer | 1.21.0  |
 
 ### Web Servers
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
@@ -362,7 +363,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                             |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 7.0                                                                                                                                                                                                                                                 |
-| Android Emulator           | 31.3.10                                                                                                                                                                                                                                             |
+| Android Emulator           | 31.3.12                                                                                                                                                                                                                                             |
 | Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3 |
 | Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)                            |
 | Android SDK Platform-Tools | 33.0.3                                                                                                                                                                                                                                              |
@@ -389,7 +390,7 @@
 - libXext 1.3.4
 - libXft 2.3.6
 - Tcl/Tk 8.6.12_1
-- Zlib 1.2.12
+- Zlib 1.2.13
 
 
 

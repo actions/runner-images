@@ -14,6 +14,7 @@ export AGENT_TOOLSDIRECTORY=$HOME/hostedtoolcache
 export RUNNER_TOOL_CACHE=$HOME/hostedtoolcache
 
 export PATH=/Library/Frameworks/Mono.framework/Versions/Current/Commands:$PATH
+export PATH=/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:~/bin:~/.yarn/bin:$PATH
 export PATH="/usr/local/opt/curl/bin:$PATH"
@@ -28,3 +29,4 @@ export HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=3650
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 export BOOTSTRAP_HASKELL_NONINTERACTIVE=1
+export BOOTSTRAP_HASKELL_INSTALL_NO_STACK_HOOK=1

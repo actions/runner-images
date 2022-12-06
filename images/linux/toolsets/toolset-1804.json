@@ -12,7 +12,8 @@
                 "3.7.*",
                 "3.8.*",
                 "3.9.*",
-                "3.10.*"
+                "3.10.*",
+                "3.11.*"
             ]
         },
         {
@@ -31,9 +32,9 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "12.*",
                 "14.*",
-                "16.*"
+                "16.*",
+                "18.*"
             ]
         },
         {
@@ -122,13 +123,14 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "7.5.0"
+                "9.0.1"
             ],
             "zip_versions": [
                 "3.1.0",
                 "4.4.0",
                 "5.9.0",
-                "6.6.0"
+                "6.6.0",
+                "7.5.0"
             ]
         }
     ],
@@ -169,6 +171,7 @@
             "pkg-config",
             "python-setuptools",
             "rpm",
+            "tar",
             "texinfo",
             "tk",
             "tzdata",
@@ -238,12 +241,12 @@
             "debian:10",
             "debian:11",
             "moby/buildkit:latest",
-            "node:12",
             "node:14",
             "node:16",
-            "node:12-alpine",
+            "node:18",
             "node:14-alpine",
             "node:16-alpine",
+            "node:18-alpine",
             "ubuntu:16.04",
             "ubuntu:18.04",
             "ubuntu:20.04"
@@ -360,5 +363,8 @@
     },
     "postgresql": {
         "version": "14"
+    },
+    "pwsh": {
+        "version": "7.2"
     }
 }

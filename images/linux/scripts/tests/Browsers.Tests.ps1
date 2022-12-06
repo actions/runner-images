@@ -1,4 +1,4 @@
-Describe "Firefox" -Skip:(Test-IsUbuntu22) {
+Describe "Firefox" {
     It "Firefox" {
         "sudo -i firefox --version" | Should -ReturnZeroExitCode
     }
@@ -15,6 +15,12 @@ Describe "Chrome" {
 
     It "Chrome Driver" {
         "chromedriver --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Chrome and Chrome Driver major versions are the same" {
+        $chromeMajor = (google-chrome --version).Trim("Google Chrome ").Split(".")[0]
+        $chromeDriverMajor = (chromedriver --version).Trim("ChromeDriver ").Split(".")[0]
+        $chromeMajor | Should -BeExactly $chromeDriverMajor
     }
 }
 

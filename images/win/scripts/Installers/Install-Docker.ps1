@@ -5,10 +5,34 @@
 ##         can continue.
 ################################################################################
 
+Write-Host "Get latest release of Docker CE"
+$mobyLatestReleaseVersion = (Invoke-RestMethod -Uri "https://api.github.com/repos/moby/moby/releases/latest").tag_name.Trim("v")
+$dockerceUrl = "https://download.docker.com/win/static/stable/x86_64/"
+$dockerceBinaries = Invoke-WebRequest -Uri $dockerceUrl -UseBasicParsing
+
+Write-Host "Checking $mobyLatestReleaseVersion version"
+$mobyRelease = $dockerceBinaries.Links.href -match "${mobyLatestReleaseVersion}\.zip" | Select-Object -Last 1
+if (-not $mobyRelease) {
+    Write-Host "Release not found for $mobyLatestRelease version"
+    $versions = [regex]::Matches($dockerceBinaries.Links.href, "docker-(\d+\.\d+\.\d+)\.zip") | Sort-Object {[version]$_.Groups[1].Value}
+    $mobyRelease = $versions | Select-Object -ExpandProperty Value -Last 1
+    Write-Host "Found $mobyRelease"
+}
+$mobyReleaseUrl = $dockerceUrl + $mobyRelease
+$mobyArchivePath = Start-DownloadWithRetry -Url $mobyReleaseUrl -Name $mobyRelease
+Expand-Archive -Path $mobyArchivePath -DestinationPath $env:TEMP
+$dockerPath = "$env:TEMP\docker\docker.exe"
+$dockerdPath = "$env:TEMP\docker\dockerd.exe"
+
 Write-Host "Install Docker CE"
 $instScriptUrl = "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1"
 $instScriptPath = Start-DownloadWithRetry -Url $instScriptUrl -Name "install-docker-ce.ps1"
-& $instScriptPath
+& $instScriptPath -DockerPath $dockerPath -DockerDPath $dockerdPath
+
+# Fix AZ CLI DOCKER_COMMAND_ERROR
+# cli.azure.cli.command_modules.acr.custom: Could not run 'docker.exe' command.
+# https://github.com/Azure/azure-cli/issues/18766
+New-Item -ItemType SymbolicLink -Path "C:\Windows\SysWOW64\docker.exe" -Target "C:\Windows\System32\docker.exe"
 
 Write-Host "Install-Package Docker-Compose v1"
 Choco-Install -PackageName docker-compose
@@ -21,9 +45,8 @@ Start-DownloadWithRetry -Url $dockerComposev2Url -Name docker-compose.exe -Downl
 
 Write-Host "Install docker-wincred"
 $dockerCredLatestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/docker/docker-credential-helpers/releases/latest"
-$dockerCredDownloadUrl = $dockerCredLatestRelease.assets.browser_download_url -match "docker-credential-wincred-.+\.zip" | Select-Object -First 1
-$dockerCredArchive = Start-DownloadWithRetry -Url $dockerCredDownloadUrl
-Expand-Archive -Path $dockerCredArchive -DestinationPath "C:\Windows\System32"
+$dockerCredDownloadUrl = $dockerCredLatestRelease.assets.browser_download_url -match "docker-credential-wincred-.+\.exe" | Select-Object -First 1
+Start-DownloadWithRetry -Url $dockerCredDownloadUrl -DownloadPath "C:\Windows\System32" -Name "docker-credential-wincred.exe"
 
 Write-Host "Download docker images"
 $dockerImages = (Get-ToolsetContent).docker.images

@@ -13,13 +13,20 @@ $VersionsList = $LatestMajorMinor | ForEach-Object { $_.Group | Select-Object -F
 # The latest version will be installed as a default
 ForEach ($version in $VersionsList)
 {
+     # 9.4.3 has failed choco builds, replace with 9.4.2 for the time being
+     # 9.2.5 has failed choco builds, replace with 9.2.4 for the time being
+    if ($version -eq "9.4.3"){ [version]$version = "9.4.2" }
+    if ($version -eq "9.2.5"){ [version]$version = "9.2.4" }
     Write-Host "Installing ghc $version..."
     Choco-Install -PackageName ghc -ArgumentList '--version', $version, '-m'
 }
 
 # Add default version of GHC to path, because choco formula updates path on user level
 $DefaultGhcVersion = $VersionsList | Select-Object -Last 1
-$DefaultGhcShortVersion = ([version]$DefaultGhcVersion).ToString(3)
+# temporary hardcode -------------
+#$DefaultGhcShortVersion = ([version]$DefaultGhcVersion).ToString(3)
+$DefaultGhcShortVersion = "9.4.2"
+#--------------------------------
 $DefaultGhcPath = Join-Path $env:ChocolateyInstall "lib\ghc.$DefaultGhcVersion\tools\ghc-$DefaultGhcShortVersion\bin"
 # Starting from version 9 haskell installation directory is $env:ChocolateyToolsLocation instead of $env:ChocolateyInstall\lib
 if ($DefaultGhcShortVersion -notmatch '^[0-8]\.\d+.*')

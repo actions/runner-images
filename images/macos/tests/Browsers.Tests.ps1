@@ -1,12 +1,21 @@
 Describe "Chrome" {
-    It "Chrome" {
+    BeforeAll {
         $chromeLocation = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    }
+
+    It "Chrome" {
         $chromeLocation | Should -Exist
         "'$chromeLocation' --version" | Should -ReturnZeroExitCode
     }
 
     It "Chrome Driver" {
         "chromedriver --version" | Should -ReturnZeroExitCode
+    }
+
+    It "Chrome and Chrome Driver major versions are the same" {
+        $chromeMajor = (& $chromeLocation --version).Trim("Google Chrome ").Split(".")[0]
+        $chromeDriverMajor = (chromedriver --version).Trim("ChromeDriver ").Split(".")[0]
+        $chromeMajor | Should -BeExactly $chromeDriverMajor
     }
 }
 

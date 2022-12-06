@@ -185,6 +185,12 @@ $toolsList += @(
     (Get-SwiftFormatVersion)
 )
 
+if (-not $os.IsCatalina) {
+    $toolsList += @(
+        (Get-ColimaVersion)
+    )
+}
+
 $markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 
 # Linters
@@ -307,6 +313,21 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-TclTkVersion)
     ) | Sort-Object
 )
+
+if ($os.IsMonterey) {
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-MiscellaneousEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Notes:" -Level 5
+$misc = @'
+```
+If you want to use Parallels Desktop you should download a package from URL stored in
+PARALLELS_DMG_URL environment variable. A system extension is allowed for this version.
+```
+'@
+$markdown += New-MDParagraph -Lines $misc
+}
 
 #
 # Generate systeminfo.txt with information about image (for debug purpose)

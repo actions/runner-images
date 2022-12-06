@@ -317,6 +317,9 @@
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Run-NGen.ps1",
                 "{{ template_dir }}/scripts/Installers/Finalize-VM.ps1"
+            ],
+            "environment_vars": [
+                "INSTALL_USER={{user `install_user`}}"
             ]
         },
         {
