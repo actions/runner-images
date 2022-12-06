@@ -99,31 +99,6 @@ class SoftwareReportComparerReport {
 
         $sb.AppendLine("## :mega: What's changed?")
 
-        #############################
-        ### Render updated items ####
-        #############################
-
-        [ReportDifferenceItem[]] $changedItemsExcludeTables = $ChangedItems | Where-Object { $_.IsBaseToolNode() }
-        if ($changedItemsExcludeTables.Count -gt 0) {
-            $tableItems = $changedItemsExcludeTables | ForEach-Object {
-                [PSCustomObject]@{
-                    "Category" = $this.RenderCategory($_.Headers, $True);
-                    "Tool name" = $this.RenderToolName($_.CurrentReportNode.ToolName);
-                    "Previous ($previousImageVersion)" = $_.PreviousReportNode.GetValue();
-                    "Current ($imageVersion)" = $_.CurrentReportNode.GetValue();
-                }
-            }
-
-            $sb.AppendLine("### Updated")
-            $sb.AppendLine($this.RenderHtmlTable($tableItems, "Category"))
-            $sb.AppendLine()
-        }
-
-        # Render updated tables separately
-        $ChangedItems | Where-Object { $_.IsTableNode() } | ForEach-Object {
-            $sb.AppendLine($this.RenderTableNodesDiff($_))
-        }
-
         ###########################
         ### Render added items ####
         ###########################
@@ -165,6 +140,31 @@ class SoftwareReportComparerReport {
             $sb.AppendLine("### Deleted :heavy_minus_sign:")
             $sb.AppendLine($this.RenderHtmlTable($tableItems, "Category"))
             $sb.AppendLine()
+        }
+
+        #############################
+        ### Render updated items ####
+        #############################
+
+        [ReportDifferenceItem[]] $changedItemsExcludeTables = $ChangedItems | Where-Object { $_.IsBaseToolNode() }
+        if ($changedItemsExcludeTables.Count -gt 0) {
+            $tableItems = $changedItemsExcludeTables | ForEach-Object {
+                [PSCustomObject]@{
+                    "Category" = $this.RenderCategory($_.Headers, $True);
+                    "Tool name" = $this.RenderToolName($_.CurrentReportNode.ToolName);
+                    "Previous ($previousImageVersion)" = $_.PreviousReportNode.GetValue();
+                    "Current ($imageVersion)" = $_.CurrentReportNode.GetValue();
+                }
+            }
+
+            $sb.AppendLine("### Updated")
+            $sb.AppendLine($this.RenderHtmlTable($tableItems, "Category"))
+            $sb.AppendLine()
+        }
+
+        # Render updated tables separately
+        $ChangedItems | Where-Object { $_.IsTableNode() } | ForEach-Object {
+            $sb.AppendLine($this.RenderTableNodesDiff($_))
         }
 
         # Render deleted tables separately
