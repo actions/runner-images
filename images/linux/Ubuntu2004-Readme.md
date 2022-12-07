@@ -5,7 +5,7 @@
 ***
 # Ubuntu 20.04.5 LTS
 - Linux kernel version: 5.15.0-1023-azure
-- Image Version: 20221125.1
+- Image Version: 20221206.1
 
 ## Installed Software
 ### Language and Runtime
@@ -19,7 +19,7 @@
 - GNU C++ 9.4.0, 10.3.0
 - GNU Fortran 9.4.0, 10.3.0
 - Julia 1.8.3
-- Kotlin 1.7.21-release-272
+- Kotlin 1.7.22-release-288
 - Mono 6.12.0.182 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.10.1.31701 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node 16.18.1
@@ -32,7 +32,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.10.2
-- Homebrew 3.6.12
+- Homebrew 3.6.14
 - Miniconda 4.12.0
 - Npm 8.19.2
 - NuGet 6.3.1.1
@@ -40,7 +40,7 @@
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<62d01b70d>)
+- Vcpkg  (build from master \<5d1f18840>)
 - Yarn 1.22.19
 
 ##### Notes:
@@ -60,19 +60,19 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.7
 - Gradle 7.6
-- Lerna 6.0.3
+- Lerna 6.1.0
 - Maven 3.8.6
 - Sbt 1.8.0
 
 ### Tools
-- Ansible 2.13.6
+- Ansible 2.13.7
 - apt-fast 1.9.12
 - AzCopy 10.16.2 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.3.2
 - Bazelisk 1.13.2
-- Bicep 0.12.40
+- Bicep 0.13.1
 - Buildah 1.22.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- CMake 3.25.0
+- CMake 3.25.1
 - CodeQL Action Bundle 2.11.4
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
@@ -82,10 +82,10 @@ to accomplish this.
 - Docker-Moby Server 20.10.21+azure-1
 - Fastlane 2.211.0
 - Git 2.38.1 (apt source repository: ppa:git-core/ppa)
-- Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
+- Git LFS 3.3.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 7.66.4
+- Heroku 7.67.1
 - HHVM (HipHop VM) 4.172.0
 - jq 1.6
 - Kind 0.17.0
@@ -108,25 +108,25 @@ to accomplish this.
 - Skopeo 1.5.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.3.5
+- Terraform 1.3.6
 - yamllint 1.28.0
-- yq v4.30.4
+- yq v4.30.5
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.138
-- AWS CLI 2.9.1
+- Alibaba Cloud CLI 3.0.140
+- AWS CLI 2.9.4
 - AWS CLI Session manager plugin 1.2.398.0
-- AWS SAM CLI 1.65.0
-- Azure CLI (azure-cli) 2.42.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- AWS SAM CLI 1.66.0
+- Azure CLI (azure-cli) 2.43.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.20.2
-- Google Cloud SDK 410.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 411.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 12.2.7
-- OpenShift CLI 4.11.16
+- Netlify CLI 12.2.9
+- OpenShift CLI 4.11.18
 - ORAS CLI 0.16.0
-- Vercel CLI 28.5.6
+- Vercel CLI 28.7.2
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -143,7 +143,7 @@ to accomplish this.
 ### PHP
 | Tool     | Version              |
 | -------- | -------------------- |
-| PHP      | 7.4.33 8.0.25 8.1.12 |
+| PHP      | 7.4.33 8.0.26 8.1.13 |
 | Composer | 2.4.4                |
 | PHPUnit  | 8.5.31               |
 ```
@@ -170,13 +170,13 @@ to accomplish this.
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 107.0.5304.121
-- ChromeDriver 107.0.5304.62
-- Chromium 107.0.5288.0
-- Microsoft Edge 107.0.1418.56 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 107.0.1418.56
-- Selenium server 4.6.0
-- Mozilla Firefox 107.0
+- Google Chrome 108.0.5359.94
+- ChromeDriver 108.0.5359.71
+- Chromium 108.0.5341.0
+- Microsoft Edge 108.0.1462.42 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 108.0.1462.42
+- Selenium server 4.7.0
+- Mozilla Firefox 108.0 (apt source repository: ppa:mozillateam/ppa)
 - Geckodriver 0.32.0
 
 #### Environment variables
@@ -205,7 +205,7 @@ to accomplish this.
     PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
 ```
 #### MySQL
-- MySQL 8.0.31-0ubuntu0.20.04.1
+- MySQL 8.0.31-0ubuntu0.20.04.2
 - MySQL Server (user:root password:root)
 
 ```
@@ -218,8 +218,8 @@ to accomplish this.
 ### Cached Tools
 #### Go
 - 1.17.13
-- 1.18.8
-- 1.19.3
+- 1.18.9
+- 1.19.4
 
 #### Node.js
 - 14.21.1
@@ -227,19 +227,19 @@ to accomplish this.
 - 18.12.1
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.9]
+- 2.7.18 [PyPy 7.3.10]
 - 3.6.12 [PyPy 7.3.3]
 - 3.7.13 [PyPy 7.3.9]
-- 3.8.13 [PyPy 7.3.9]
-- 3.9.12 [PyPy 7.3.9]
+- 3.8.15 [PyPy 7.3.10]
+- 3.9.15 [PyPy 7.3.10]
 
 #### Python
 - 2.7.18
 - 3.6.15
 - 3.7.15
-- 3.8.14
+- 3.8.15
 - 3.9.15
-- 3.10.8
+- 3.10.9
 - 3.11.0
 
 #### Ruby
@@ -253,8 +253,8 @@ to accomplish this.
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.13/x64 | x64          |
-| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.8/x64  | x64          |
-| GOROOT_1_19_X64 | /opt/hostedtoolcache/go/1.19.3/x64  | x64          |
+| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.9/x64  | x64          |
+| GOROOT_1_19_X64 | /opt/hostedtoolcache/go/1.19.4/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.2.7
@@ -263,12 +263,12 @@ to accomplish this.
 | Module           | Version |
 | ---------------- | ------- |
 | MarkdownPS       | 1.9     |
-| Microsoft.Graph  | 1.17.0  |
+| Microsoft.Graph  | 1.18.0  |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.21.0  |
 
 #### Az PowerShell Modules
-- 7.5.0 3.1.0.zip 4.4.0.zip 5.9.0.zip 6.6.0.zip
+- 9.0.1 3.1.0.zip 4.4.0.zip 5.9.0.zip 6.6.0.zip 7.5.0.zip
 
 ### Web Servers
 | Name      | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -309,18 +309,18 @@ to accomplish this.
 | alpine:3.14             | sha256:4c869a63e1b7c0722fed1e402a6466610327c3b83bdddb94bd94fb71da7f638a  | 2022-08-09 |
 | alpine:3.15             | sha256:cf34c62ee8eb3fe8aa24c1fab45d7e9d12768d945c3f5a6fd6a63d901e898479  | 2022-08-09 |
 | alpine:3.16             | sha256:b95359c2505145f16c6aa384f9cc74eeff78eb36d308ca4fd902eeeb0a0b161b  | 2022-11-12 |
-| buildpack-deps:bullseye | sha256:1a263e69ebf256b5f27165d2eb4e667dadad37f42003d53f5ce699b7e7f1b6dc  | 2022-11-15 |
-| buildpack-deps:buster   | sha256:c0804e4d81620d4fdb4965cc462dbca7d901d68968780ff6c6aeed062309ad50  | 2022-11-15 |
+| buildpack-deps:bullseye | sha256:ea5e7737f282e76b594669926ee6222beee0c237b9ba19a2055aa8f4feb83ba2  | 2022-12-06 |
+| buildpack-deps:buster   | sha256:ecb6bd2c510b37b0bcbfaaa043192c293bfba2d9a0f4402abab6a342f186eebc  | 2022-12-06 |
 | buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
-| debian:10               | sha256:6c153b6c1b042fb70140a465e6d7c9c4a6112062afdc843c6a4d9c5bbfe5d0d5  | 2022-11-15 |
-| debian:11               | sha256:3066ef83131c678999ce82e8473e8d017345a30f5573ad3e44f62e5c9c46442b  | 2022-11-15 |
+| debian:10               | sha256:e6fb8b88b411285ac71590459aa8d0a376acc86a3d17adfe45e806f522c54cc3  | 2022-12-06 |
+| debian:11               | sha256:a288aa7ad0e4d443e86843972c25a02f99e9ad6ee589dd764895b2c3f5a8340b  | 2022-12-06 |
 | debian:9                | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest    | sha256:77abd86c9422aaff294bfde1029f03a6ab18ece0105003637cfda1d7fc22299f  | 2022-11-10 |
-| node:14                 | sha256:d82d512aec5de4fac53b92b2aa148948c2e72264d650de9e1570283d4f503dbe  | 2022-11-15 |
+| node:14                 | sha256:f11e8dbf2ff6668927aafd90a804bf6597d8fe53dc16742a234045f7bf647a8c  | 2022-12-06 |
 | node:14-alpine          | sha256:12b14bdfa8c89a1a060c53b5714157085700660b12ab7c50a907a4e19d95b6bf  | 2022-11-12 |
-| node:16                 | sha256:68fc9f749931453d5c8545521b021dd97267e0692471ce15bdec0814ed1f8fc3  | 2022-11-15 |
+| node:16                 | sha256:7f404d09ceb780c51f4fac7592c46b8f21211474aacce25389eb0df06aaa7472  | 2022-12-06 |
 | node:16-alpine          | sha256:15dd66f723aab8b367abc7ac6ed25594ca4653f2ce49ad1505bfbe740ad5190e  | 2022-11-12 |
-| node:18                 | sha256:c47a2c61e635eb4938fcd56a1139b552300624b53e3eca06b5554a577f1842cf  | 2022-11-15 |
+| node:18                 | sha256:9ebe9845301ca70e879f22180dfff496b856bb5f2ec52397462a9f5f903ee654  | 2022-12-06 |
 | node:18-alpine          | sha256:9eff44230b2fdcca57a73b8f908c8029e72d24dd05cac5339c79d3dedf6b208b  | 2022-11-12 |
 | ubuntu:16.04            | sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6  | 2021-08-31 |
 | ubuntu:18.04            | sha256:ca70a834041dd1bf16cc38dfcd24f0888ec4fa431e09f3344f354cf8d1724499  | 2022-10-25 |
@@ -333,7 +333,7 @@ to accomplish this.
 | aria2                  | 1.35.0-1build1                    |
 | autoconf               | 2.69-11.1                         |
 | automake               | 1:1.16.1-4ubuntu6                 |
-| binutils               | 2.34-6ubuntu1.3                   |
+| binutils               | 2.34-6ubuntu1.4                   |
 | bison                  | 2:3.5.1+dfsg-1                    |
 | brotli                 | 1.0.7-6ubuntu0.1                  |
 | build-essential        | 12.8ubuntu1.1                     |
