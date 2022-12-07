@@ -175,6 +175,18 @@ class ToolVersionsNode: BaseToolNode {
         return $this.Versions -join ', '
     }
 
+    [String] RetrieveMainVersion([String] $Version) {
+        # hardcode regex right now and will make it dynamic in future
+        if ($this.ToolName -eq ".NET SDK") {
+            $regex = [regex]::new('^\d+\.\d+\.\d')
+        } elseif ($this.ToolName -in @("Ruby", "Python", "PyPy", "Go")) {
+            $regex = [regex]::new('^\d+\.\d+')
+        } else {
+            $regex = [regex]::new('^\d+')
+        }
+        return $regex.Match($Version).Groups[0].Value
+    }
+
     [PSCustomObject] ToJsonObject() {
         return [PSCustomObject]@{
             NodeType = $this.GetType().Name

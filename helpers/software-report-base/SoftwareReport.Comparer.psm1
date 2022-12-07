@@ -37,7 +37,11 @@ class SoftwareReportComparer {
                     # Nodes are identical, nothing changed, just ignore it
                 } elseif ($sameNodeInPreviousReport) {
                     # Nodes are equal but not identical, so something was changed
-                    $this.ChangedItems.Add([ReportDifferenceItem]::new($sameNodeInPreviousReport, $currentReportNode, $Headers))
+                    if ($CurrentReportNode -is [ToolVersionsNode]) {
+                        $this.CompareToolVersionsNodesInternal($sameNodeInPreviousReport, $currentReportNode, $Headers)
+                    } else {
+                        $this.ChangedItems.Add([ReportDifferenceItem]::new($sameNodeInPreviousReport, $currentReportNode, $Headers))
+                    }
                 } else {
                     # Node was not found in previous report, new node was added
                     $this.AddedItems.Add([ReportDifferenceItem]::new($null, $currentReportNode, $Headers))
@@ -57,6 +61,47 @@ class SoftwareReportComparer {
                     $this.DeletedItems.Add([ReportDifferenceItem]::new($previousReportNode, $null, $Headers))
                 }
             }
+        }
+    }
+
+    hidden [void] CompareToolVersionsNodesInternal([ToolVersionsNode] $PreviousReportNode, [ToolVersionsNode] $CurrentReportNode, [Array] $Headers) {
+        $addedVersions = @()
+        $deletedVersions = @()
+        $changedVersions = @()
+        $CurrentReportNode.Versions | ForEach-Object {
+            $mainVersionPart = $CurrentReportNode.RetrieveMainVersion($_)
+            $similarVersionsInPreviousReport = $PreviousReportNode.Versions | Where-Object { $CurrentReportNode.RetrieveMainVersion($_) -eq $mainVersionPart } | Select-Object -First 1
+            if ($similarVersionsInPreviousReport) {
+                # Version with the same main part existed in previous report
+                if ($_ -eq $similarVersionsInPreviousReport) {
+                    # Versions are identical, nothing changed, just ignore it
+                } else {
+                    # Versions are equal but not identical, so something was updated
+                    $changedVersions += @{ Old = $similarVersionsInPreviousReport; New = $_ }
+                }
+            } else {
+                $addedVersions += $_
+            }
+        }
+
+        $PreviousReportNode.Versions | ForEach-Object {
+            $mainVersionPart = $CurrentReportNode.RetrieveMainVersion($_)
+            [String] $similarVersionsInCurrentReport = $CurrentReportNode.Versions | Where-Object { $CurrentReportNode.RetrieveMainVersion($_) -eq $mainVersionPart } | Select-Object -First 1
+            if ([String]::IsNullOrEmpty($similarVersionsInCurrentReport)) {
+                $deletedVersions += $_
+            }
+        }
+
+        
+
+        if ($addedVersions.Count -gt 0) {
+            $this.AddedItems.Add([ReportDifferenceItem]::new($null, [ToolVersionsNode]::new($CurrentReportNode.ToolName, $addedVersions), $Headers))
+        }
+        if ($deletedVersions.Count -gt 0) {
+            $this.DeletedItems.Add([ReportDifferenceItem]::new([ToolVersionsNode]::new($CurrentReportNode.ToolName, $deletedVersions), $null, $Headers))
+        }
+        if ($changedVersions.Count -gt 0) {
+            $this.ChangedItems.Add([ReportDifferenceItem]::new([ToolVersionsNode]::new($CurrentReportNode.ToolName, $changedVersions.Old), [ToolVersionsNode]::new($CurrentReportNode.ToolName, $changedVersions.New), $Headers))
         }
     }
 
@@ -89,7 +134,7 @@ class SoftwareReportComparerReport {
         ### Render report header ####
         #############################
 
-        $sb.AppendLine("# :desktop_computer: $($rootNode.Title)")
+        $sb.AppendLine("# :desktop_computer: Actions Runner Image: $($rootNode.Title)")
 
         # ToolNodes on root level contains main image description so just copy-paste them to final report
         $rootNode.Children | Where-Object { $_ -is [BaseToolNode] } | ForEach-Object {
@@ -186,7 +231,6 @@ class SoftwareReportComparerReport {
         }
         $sb.AppendLine("  </thead>")
         $sb.AppendLine("  <tbody>")
-
 
         $tableRowSpans = $this.CalculateHtmlTableRowSpan($Table, $RowSpanColumnName)
         for ($rowIndex = 0; $rowIndex -lt $Table.Count; $rowIndex++) {
