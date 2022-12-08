@@ -26,7 +26,7 @@
             "Title": "Language and Runtime",
             "Children": [
               {
-                "NodeType": "ToolVersionsNode",
+                "NodeType": "ToolVersionsListNode",
                 "ToolName": ".NET SDK",
                 "Versions": [
                     "3.1.101",
@@ -96,7 +96,7 @@
                 "Version": "0.39.2"
               },
               {
-                "NodeType": "ToolVersionsNode",
+                "NodeType": "ToolVersionsListNode",
                 "ToolName": "NVM - Cached node versions",
                 "Versions": [
                     "12.22.12",
@@ -612,7 +612,7 @@
             "Title": "Cached Tools",
             "Children": [
               {
-                "NodeType": "ToolVersionsNode",
+                "NodeType": "ToolVersionsListNode",
                 "ToolName": "Ruby",
                 "Versions": [
                   "2.7.6",
@@ -621,7 +621,7 @@
                 ]
               },
               {
-                "NodeType": "ToolVersionsNode",
+                "NodeType": "ToolVersionsListNode",
                 "ToolName": "Python",
                 "Versions": [
                   "3.7.15",
@@ -632,7 +632,7 @@
                 ]
               },
               {
-                "NodeType": "ToolVersionsNode",
+                "NodeType": "ToolVersionsListNode",
                 "ToolName": "Pypy",
                 "Versions": [
                   "2.7.18 [PyPy 7.3.9]",
@@ -642,7 +642,7 @@
                 ]
               },
               {
-                "NodeType": "ToolVersionsNode",
+                "NodeType": "ToolVersionsListNode",
                 "ToolName": "Node.js",
                 "Versions": [
                   "10.0.1",

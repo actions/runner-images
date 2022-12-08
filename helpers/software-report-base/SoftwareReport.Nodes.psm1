@@ -12,8 +12,8 @@ class NodesFactory {
             return [HeaderNode]::FromJsonObject($jsonObj)
         } elseif ($jsonObj.NodeType -eq [ToolNode].Name) {
             return [ToolNode]::FromJsonObject($jsonObj)
-        } elseif ($jsonObj.NodeType -eq [ToolVersionsNode].Name) {
-            return [ToolVersionsNode]::FromJsonObject($jsonObj)
+        } elseif ($jsonObj.NodeType -eq [ToolVersionsListNode].Name) {
+            return [ToolVersionsListNode]::FromJsonObject($jsonObj)
         } elseif ($jsonObj.NodeType -eq [TableNode].Name) {
             return [TableNode]::FromJsonObject($jsonObj)
         } elseif ($jsonObj.NodeType -eq [NoteNode].Name) {
@@ -64,7 +64,7 @@ class HeaderNode: BaseNode {
     }
 
     [void] AddToolVersionsNode([String] $ToolName, [Array] $Version) {
-        $this.AddNode([ToolVersionsNode]::new($ToolName, $Version))
+        $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version))
     }
      
     [void] AddTableNode([Array] $Table) {
@@ -153,14 +153,20 @@ class ToolNode: BaseToolNode {
 }
 
 # Node type to describe the tool with multiple versions "Toolcache Node.js 14.17.6 16.2.0 18.2.3"
-class ToolVersionsNode: BaseToolNode {
+class ToolVersionsListNode: BaseToolNode {
     [Array] $Versions
+    [String] $ListType
 
-    ToolVersionsNode([String] $ToolName, [Array] $Versions): base($ToolName) {
+    ToolVersionsListNode([String] $ToolName, [Array] $Versions, [Boolean] $InlineList): base($ToolName) {
         $this.Versions = $Versions
+        $this.ListType = $InlineList ? "Inline" : "List"
     }
 
     [String] ToMarkdown($level) {
+        if ($this.ListType -eq "Inline") {
+            return "- $($this.ToolName) $($this.Versions -join ', ')"
+        }
+
         $sb = [System.Text.StringBuilder]::new()
         $sb.AppendLine()
         $sb.AppendLine("$("#" * $level) $($this.ToolName)")
@@ -192,11 +198,12 @@ class ToolVersionsNode: BaseToolNode {
             NodeType = $this.GetType().Name
             ToolName = $this.ToolName
             Versions = $this.Versions
+            ListType = $this.ListType
         }
     }
 
-    static [ToolVersionsNode] FromJsonObject($jsonObj) {
-        return [ToolVersionsNode]::new($jsonObj.ToolName, $jsonObj.Versions)
+    static [ToolVersionsListNode] FromJsonObject($jsonObj) {
+        return [ToolVersionsListNode]::new($jsonObj.ToolName, $jsonObj.Versions, $jsonObj.ListType -eq "Inline")
     }
 }
 

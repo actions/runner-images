@@ -37,8 +37,8 @@ class SoftwareReportComparer {
                     # Nodes are identical, nothing changed, just ignore it
                 } elseif ($sameNodeInPreviousReport) {
                     # Nodes are equal but not identical, so something was changed
-                    if ($CurrentReportNode -is [ToolVersionsNode]) {
-                        $this.CompareToolVersionsNodesInternal($sameNodeInPreviousReport, $currentReportNode, $Headers)
+                    if ($CurrentReportNode -is [ToolVersionsListNode]) {
+                        $this.CompareToolVersionsListNodesInternal($sameNodeInPreviousReport, $currentReportNode, $Headers)
                     } else {
                         $this.ChangedItems.Add([ReportDifferenceItem]::new($sameNodeInPreviousReport, $currentReportNode, $Headers))
                     }
@@ -64,7 +64,7 @@ class SoftwareReportComparer {
         }
     }
 
-    hidden [void] CompareToolVersionsNodesInternal([ToolVersionsNode] $PreviousReportNode, [ToolVersionsNode] $CurrentReportNode, [Array] $Headers) {
+    hidden [void] CompareToolVersionsListNodesInternal([ToolVersionsListNode] $PreviousReportNode, [ToolVersionsListNode] $CurrentReportNode, [Array] $Headers) {
         $addedVersions = @()
         $deletedVersions = @()
         $changedVersions = @()
@@ -95,13 +95,13 @@ class SoftwareReportComparer {
         
 
         if ($addedVersions.Count -gt 0) {
-            $this.AddedItems.Add([ReportDifferenceItem]::new($null, [ToolVersionsNode]::new($CurrentReportNode.ToolName, $addedVersions), $Headers))
+            $this.AddedItems.Add([ReportDifferenceItem]::new($null, [ToolVersionsListNode]::new($CurrentReportNode.ToolName, $addedVersions), $Headers))
         }
         if ($deletedVersions.Count -gt 0) {
-            $this.DeletedItems.Add([ReportDifferenceItem]::new([ToolVersionsNode]::new($CurrentReportNode.ToolName, $deletedVersions), $null, $Headers))
+            $this.DeletedItems.Add([ReportDifferenceItem]::new([ToolVersionsListNode]::new($CurrentReportNode.ToolName, $deletedVersions), $null, $Headers))
         }
         if ($changedVersions.Count -gt 0) {
-            $this.ChangedItems.Add([ReportDifferenceItem]::new([ToolVersionsNode]::new($CurrentReportNode.ToolName, $changedVersions.Old), [ToolVersionsNode]::new($CurrentReportNode.ToolName, $changedVersions.New), $Headers))
+            $this.ChangedItems.Add([ReportDifferenceItem]::new([ToolVersionsListNode]::new($CurrentReportNode.ToolName, $changedVersions.Old), [ToolVersionsListNode]::new($CurrentReportNode.ToolName, $changedVersions.New), $Headers))
         }
     }
 
