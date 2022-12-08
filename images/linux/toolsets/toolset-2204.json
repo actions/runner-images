@@ -148,6 +148,7 @@
             "libxss1",
             "libssl-dev",
             "locales",
+            "lz4",
             "mercurial",
             "openssh-client",
             "p7zip-rar",
