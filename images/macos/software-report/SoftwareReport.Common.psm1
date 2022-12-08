@@ -113,7 +113,7 @@ function Get-ClangLLVMVersions {
 
     return @(
         [ToolNode]::new("Clang/LLVM", $defaultClangVersion)
-        [ToolNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ```'$homebrewClangPath`'``")
+        [ToolNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ``$homebrewClangPath``")
     )
 }
 
