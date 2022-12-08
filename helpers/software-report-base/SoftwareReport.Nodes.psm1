@@ -12,8 +12,8 @@ class NodesFactory {
             return [HeaderNode]::FromJsonObject($jsonObj)
         } elseif ($jsonObj.NodeType -eq [ToolNode].Name) {
             return [ToolNode]::FromJsonObject($jsonObj)
-        } elseif ($jsonObj.NodeType -eq [ToolVersionsListNode].Name) {
-            return [ToolVersionsListNode]::FromJsonObject($jsonObj)
+        } elseif ($jsonObj.NodeType -eq [ToolVersionsNode].Name) {
+            return [ToolVersionsNode]::FromJsonObject($jsonObj)
         } elseif ($jsonObj.NodeType -eq [TableNode].Name) {
             return [TableNode]::FromJsonObject($jsonObj)
         } elseif ($jsonObj.NodeType -eq [NoteNode].Name) {
@@ -64,7 +64,7 @@ class HeaderNode: BaseNode {
     }
 
     [void] AddToolVersionsNode([String] $ToolName, [Array] $Version) {
-        $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version))
+        $this.AddNode([ToolVersionsNode]::new($ToolName, $Version))
     }
      
     [void] AddTableNode([Array] $Table) {
@@ -153,13 +153,16 @@ class ToolNode: BaseToolNode {
 }
 
 # Node type to describe the tool with multiple versions "Toolcache Node.js 14.17.6 16.2.0 18.2.3"
-class ToolVersionsListNode: BaseToolNode {
+class ToolVersionsNode: BaseToolNode {
     [Array] $Versions
+    [Regex] $MajorVersionRegex
     [String] $ListType
 
-    ToolVersionsListNode([String] $ToolName, [Array] $Versions, [Boolean] $InlineList): base($ToolName) {
+    ToolVersionsNode([String] $ToolName, [Array] $Versions, [String] $MajorVersionRegex, [Boolean] $InlineList): base($ToolName) {
         $this.Versions = $Versions
+        $this.MajorVersionRegex = [Regex]::new($MajorVersionRegex)
         $this.ListType = $InlineList ? "Inline" : "List"
+        $this.ValidateMajorVersionRegex()
     }
 
     [String] ToMarkdown($level) {
@@ -181,16 +184,13 @@ class ToolVersionsListNode: BaseToolNode {
         return $this.Versions -join ', '
     }
 
-    [String] RetrieveMainVersion([String] $Version) {
-        # hardcode regex right now and will make it dynamic in future
-        if ($this.ToolName -eq ".NET SDK") {
-            $regex = [regex]::new('^\d+\.\d+\.\d')
-        } elseif ($this.ToolName -in @("Ruby", "Python", "PyPy", "Go")) {
-            $regex = [regex]::new('^\d+\.\d+')
-        } else {
-            $regex = [regex]::new('^\d+')
+    [String] ExtractMajorVersion([String] $Version) {
+        $match = $this.MajorVersionRegex.Match($Version)
+        if ($match.Success -ne $True) {
+            throw "Version '$Version' doesn't match regex '$($this.PrimaryVersionRegex)'"
         }
-        return $regex.Match($Version).Groups[0].Value
+
+        return $match.Groups[0].Value
     }
 
     [PSCustomObject] ToJsonObject() {
@@ -198,12 +198,21 @@ class ToolVersionsListNode: BaseToolNode {
             NodeType = $this.GetType().Name
             ToolName = $this.ToolName
             Versions = $this.Versions
+            MajorVersionRegex = $this.MajorVersionRegex.ToString()
             ListType = $this.ListType
         }
     }
 
-    static [ToolVersionsListNode] FromJsonObject($jsonObj) {
-        return [ToolVersionsListNode]::new($jsonObj.ToolName, $jsonObj.Versions, $jsonObj.ListType -eq "Inline")
+    static [ToolVersionsNode] FromJsonObject($jsonObj) {
+        return [ToolVersionsNode]::new($jsonObj.ToolName, $jsonObj.Versions, $jsonObj.MajorVersionRegex, $jsonObj.ListType -eq "Inline")
+    }
+
+    hidden [void] ValidateMajorVersionRegex() {
+        $this.Versions | Group-Object { $this.ExtractMajorVersion($_) } | ForEach-Object {
+            if ($_.Count -gt 1) {
+                throw "Multiple versions from list $($this.GetValue()) return the same result from regex '$($this.MajorVersionRegex)': $($_.Name)"
+            }
+        }
     }
 }
 

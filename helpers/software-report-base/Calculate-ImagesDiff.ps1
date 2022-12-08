@@ -32,7 +32,7 @@ function Read-SoftwareReport {
         [string] $JsonReportPath
     )
 
-    if (-not (Test-Path $JsonReportPath)) { 
+    if (-not (Test-Path $JsonReportPath)) {
         throw "File '$JsonReportPath' does not exist"
     }
 
