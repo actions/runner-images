@@ -4,7 +4,7 @@ function Build-VSMacTable {
     $vsMacVersions = Get-ToolsetValue "xamarin.vsmac.versions"
     $defaultVSMacVersion = Get-ToolsetValue "xamarin.vsmac.default"
 
-    $vsMacVersions | ForEach-Object {
+    return $vsMacVersions | ForEach-Object {
         $isDefault = $_ -eq $defaultVSMacVersion
         $vsPath = "/Applications/Visual Studio $_.app"
         if ($isDefault) {
@@ -25,7 +25,7 @@ function Build-VSMacTable {
 
 function Get-NUnitVersion {
     $version = Run-Command "nunit3-console --version" | Select-Object -First 1 | Take-Part -Part 3
-    return "NUnit ${version}"
+    return $version
 }
 
 function Build-XamarinTable {
