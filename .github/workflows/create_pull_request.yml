@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
@@ -45,5 +45,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: ${{ steps.create-pr.outputs.result }},
-              team_reviewers: ['virtual-environments-akvelon']
+              team_reviewers: ['runner-images-team']
           })

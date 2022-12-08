@@ -37,6 +37,10 @@ Describe "Swift" {
     It "swiftc" {
         "swiftc --version" | Should -ReturnZeroExitCode
     }
+
+    It "libsourcekitd" {
+        "/usr/local/lib/libsourcekitdInProc.so" | Should -Exist
+    }
 }
 
 Describe "PipxPackages" {

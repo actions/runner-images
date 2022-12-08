@@ -6,6 +6,12 @@ Describe "Azure CLI" {
     }
 }
 
+Describe "Azure DevOps CLI" {
+    It "az devops" {
+        "az devops -h" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Carthage" {
     It "Carthage" {
         "carthage version" | Should -ReturnZeroExitCode
@@ -24,7 +30,7 @@ Describe "Subversion" {
     }
 }
 
-Describe "SwiftFormat" -Skip:($os.IsMonterey) {
+Describe "SwiftFormat" {
     It "SwiftFormat" {
         "swiftformat --version" | Should -ReturnZeroExitCode
     }
@@ -132,25 +138,19 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsHigherThanCatalina) {
+Describe "vagrant" -Skip:($os.IsBigSur) {
     It "vagrant" {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "virtualbox" -Skip:($os.IsHigherThanCatalina) {
+Describe "virtualbox" -Skip:($os.IsBigSur) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "xctool" -Skip:($os.IsHigherThanCatalina) {
-    It "xctool" {
-        "xctool --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "R" -Skip:($os.IsHigherThanCatalina) {
+Describe "R" {
     It "R" {
         "R --version" | Should -ReturnZeroExitCode
     }
@@ -173,5 +173,17 @@ Describe "Kotlin" {
 Describe "sbt" {
     It "sbt" {
         "sbt -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "yq" {
+    It "yq" {
+        "yq --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "imagemagick" {
+    It "imagemagick" {
+        "magick -version" | Should -ReturnZeroExitCode
     }
 }

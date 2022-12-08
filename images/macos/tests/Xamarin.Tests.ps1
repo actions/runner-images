@@ -11,7 +11,7 @@ BeforeAll {
         param (
             [string] $Version
         )
-        
+
         $versionParts = $Version.Split(".")
         return [String]::Join(".", $versionParts[0..1])
     }
@@ -90,28 +90,28 @@ Describe "Xamarin.iOS" {
 
             It "is installed" -TestCases $testCase {
                 param ( [string] $VersionFolderPath )
-         
+
                 $xamarinBinPath = Join-Path $VersionFolderPath "bin"
                 $VersionFolderPath | Should -Exist
                 $xamarinBinPath | Should -Exist
             }
-        
+
             It "is available via short link" -TestCases $testCase {
                 param (
                     [string] $XamarinIosVersion,
                     [string] $IosVersionsPath,
                     [string] $VersionFolderPath
                 )
- 
+
                 $shortSymlink = Get-ShortSymlink $XamarinIosVersion # only 'major.minor'
                 $shortSymlinkFolderPath = Join-Path $IosVersionsPath $shortSymlink
                 $shortVersionPath = Join-Path $shortSymlinkFolderPath "VERSION"
                 $fullVersionPath = Join-Path $VersionFolderPath "VERSION"
-        
+
                 Validate-IdenticalFileContent -File1 $shortVersionPath -File2 $fullVersionPath
             }
         }
-    }    
+    }
 }
 
 Describe "Xamarin.Mac" {
@@ -120,7 +120,7 @@ Describe "Xamarin.Mac" {
             $XAMARIN_MAC_VERSIONS_PATH = "/Library/Frameworks/Xamarin.Mac.framework/Versions"
             $versionFolderPath = Join-Path $XAMARIN_MAC_VERSIONS_PATH $_
             $testCase = @{ XamarinMacVersion = $_; VersionFolderPath = $versionFolderPath; MacVersionsPath = $XAMARIN_MAC_VERSIONS_PATH  }
-            
+
             It "is installed" -TestCases $testCase {
                 param ( [string] $VersionFolderPath )
 
@@ -128,7 +128,7 @@ Describe "Xamarin.Mac" {
                 $VersionFolderPath | Should -Exist
                 $xamarinBinPath | Should -Exist
             }
-        
+
             It "is available via short link" -TestCases $testCase {
                 param (
                     [string] $XamarinMacVersion,
@@ -140,7 +140,7 @@ Describe "Xamarin.Mac" {
                 $shortSymlinkFolderPath = Join-Path $MacVersionsPath $shortSymlink
                 $shortVersionPath = Join-Path $shortSymlinkFolderPath "VERSION"
                 $fullVersionPath = Join-Path $VersionFolderPath "VERSION"
-        
+
                 Validate-IdenticalFileContent -File1 $shortVersionPath -File2 $fullVersionPath
             }
         }
@@ -156,35 +156,35 @@ Describe "Xamarin.Android" {
 
             It "is installed" -TestCases $testCase {
                 param ( [string] $VersionFolderPath )
-                
+
                 $xamarinLibPath = Join-Path $VersionFolderPath "lib"
                 $xamarinLibPath | Should -Exist
             }
-        
+
             It "is available via short link" -TestCases $testCase {
                 param (
                     [string] $XamarinAndroidVersion,
                     [string] $AndroidVersionsPath,
                     [string] $VersionFolderPath
                 )
-                
+
                 $shortSymlink = Get-ShortSymlink $XamarinAndroidVersion # only 'major.minor'
                 $shortSymlinkFolderPath = Join-Path $AndroidVersionsPath $shortSymlink
                 $shortVersionPath = Join-Path $shortSymlinkFolderPath "VERSION"
                 $fullVersionPath = Join-Path $VersionFolderPath "VERSION"
-        
+
                 Validate-IdenticalFileContent -File1 $shortVersionPath -File2 $fullVersionPath
             }
-        
+
             It "has correct symlinks" -TestCases $testCase {
                 param ( [string] $VersionFolderPath )
-                
+
                 $xamarinLibPath = Join-Path $VersionFolderPath "lib"
                 Join-Path $xamarinLibPath "xbuild" | Should -Exist
                 Join-Path $xamarinLibPath "xbuild-frameworks" | Should -Exist
-            }   
+            }
         }
-    }       
+    }
 }
 
 Describe "Xamarin Bundles" {
@@ -194,11 +194,11 @@ Describe "Xamarin Bundles" {
         $XAMARIN_MAC_VERSIONS_PATH = "/Library/Frameworks/Xamarin.Mac.framework/Versions"
         $XAMARIN_ANDROID_VERSIONS_PATH = "/Library/Frameworks/Xamarin.Android.framework/Versions"
     }
-    
+
     [array]$XAMARIN_BUNDLES = Get-ToolsetValue "xamarin.bundles"
     $XAMARIN_DEFAULT_BUNDLE = Get-ToolsetValue "xamarin.bundle-default"
     If ($XAMARIN_DEFAULT_BUNDLE -eq "latest") { $XAMARIN_DEFAULT_BUNDLE = $XAMARIN_BUNDLES[0].symlink }
-    
+
     $currentBundle = [PSCustomObject] @{
         symlink = "Current"
         mono = $XAMARIN_DEFAULT_BUNDLE
@@ -220,7 +220,7 @@ Describe "Xamarin Bundles" {
 
     It "Mono symlink <BundleSymlink> exists" -TestCases $allBundles {
         param ( [string] $BundleSymlink )
-        
+
         (Join-Path $MONO_VERSIONS_PATH $BundleSymlink) | Should -Exist
     }
 
@@ -289,5 +289,11 @@ Describe "Xamarin Bundles" {
         $targetVersionPath = Join-Path $XAMARIN_ANDROID_VERSIONS_PATH $BundleSymlink "VERSION"
 
         Validate-IdenticalFileContent -File1 $targetVersionPath -File2 $sourceVersionPath
+    }
+}
+
+Describe "Nuget" {
+    It "Nuget config contains nuget.org feed" {
+        Get-Content $env:HOME/.config/NuGet/NuGet.Config | Out-String | Should -Match "nuget.org"
     }
 }

@@ -28,7 +28,7 @@ Describe "GitVersion" -Skip:(Test-IsWin22) {
     }
 }
 
-Describe "InnoSetup" -Skip:(Test-IsWin22) {
+Describe "InnoSetup" {
     It "InnoSetup" {
         (Get-Command -Name iscc).CommandType | Should -BeExactly "Application"
     }
@@ -101,5 +101,11 @@ Describe "Julia" {
 Describe "CMake" {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "ImageMagick" {
+    It "ImageMagick" {
+        "magick -version" | Should -ReturnZeroExitCode
     }
 }

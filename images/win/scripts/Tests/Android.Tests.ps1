@@ -14,14 +14,12 @@ Describe "Android SDK" {
 
     $platformTestCases = @()
     [int]$platformMinVersion = $androidToolset.platform_min_version
-    $platformListByVersion = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
+    $platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
                     -PrefixPackageName "platforms;" `
                     -MinimumVersion $platformMinVersion `
                     -Delimiter "-" `
                     -Index 1
-    $platformListByName = Get-AndroidPackagesByName -AndroidPackages $androidPackages `
-                    -PrefixPackageName "platforms;" | Where-Object {$_ -match "-\D+$"}
-    $platformList = $platformListByVersion + $platformListByName 
+
     $platformList | ForEach-Object {
         $platformTestCases += @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
     }
@@ -97,12 +95,6 @@ Describe "Android SDK" {
 
         It "NDK <ndkPackage> is installed" -TestCases $ndkPackagesTestCases {
             "$installedPackages" | Should -Match "ndk;$ndkPackage"
-        }
-
-        It "ndk-bundle points to the default NDK version" -TestCases @{ ndkDefaultVersion = $ndkDefaultFullVersion } {
-            $ndkLinkTarget = (Get-Item $env:ANDROID_NDK_HOME).Target
-            $ndkVersion = Split-Path -Path $ndkLinkTarget -Leaf
-            $ndkVersion | Should -BeExactly $ndkDefaultVersion
         }
     }
 }

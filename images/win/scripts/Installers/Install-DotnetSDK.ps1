@@ -53,7 +53,7 @@ function Invoke-Warmup (
 function Fix-ImportPublishProfile (
     $SdkVersion
 ) {
-    if ((Test-IsWin16) -or (Test-IsWin19)) {
+    if (Test-IsWin19) {
         # Fix for issue https://github.com/dotnet/sdk/issues/1276.  This will be fixed in 3.1.
         $sdkTargetsName = "Microsoft.NET.Sdk.ImportPublishProfile.targets"
         $sdkTargetsUrl = "https://raw.githubusercontent.com/dotnet/sdk/82bc30c99f1325dfaa7ad450be96857a4fca2845/src/Tasks/Microsoft.NET.Build.Tasks/targets/${sdkTargetsName}"
@@ -114,7 +114,7 @@ function InstallTools()
 
     ForEach ($dotnetTool in $dotnetTools)
     {
-        dotnet tool install $($dotnetTool.name) --tool-path "C:\Users\Default.dotnet\tools" --add-source https://api.nuget.org/v3/index.json | Out-Null
+        dotnet tool install $($dotnetTool.name) --tool-path "C:\Users\Default\.dotnet\tools" --add-source https://api.nuget.org/v3/index.json | Out-Null
     }
 }
 

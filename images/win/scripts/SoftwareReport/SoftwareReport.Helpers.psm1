@@ -122,7 +122,7 @@ function Test-BlankElement {
 
     $splitByLines = $Markdown.Split("`n")
     # Validate entry without version
-    $blankVersions = $splitByLines -match "^-" -notmatch "(OS|Image) Version|WSL|Vcpkg|\d\." | Out-String
+    $blankVersions = $splitByLines -match "^-" -notmatch "(OS|Image) Version|WSL|Vcpkg|Docker|\d\." | Out-String
 
     # Validate tables with blank rows
     $blankRows = ""
@@ -160,4 +160,16 @@ function Test-BlankElement {
     if ($isReport) {
         exit 1
     }
+}
+
+function Take-Part {
+    param (
+        [Parameter(ValueFromPipeline)]
+        [string] $toolOutput,
+        [string] $Delimiter = " ",
+        [int[]] $Part
+    )
+    $parts = $toolOutput.Split($Delimiter, [System.StringSplitOptions]::RemoveEmptyEntries)
+    $selectedParts = $parts[$Part]
+    return [string]::Join($Delimiter, $selectedParts)
 }

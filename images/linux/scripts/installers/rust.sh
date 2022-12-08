@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
+source $HELPER_SCRIPTS/os.sh
 
 export RUSTUP_HOME=/etc/skel/.rustup
 export CARGO_HOME=/etc/skel/.cargo
@@ -17,7 +18,12 @@ source $CARGO_HOME/env
 
 # Install common tools
 rustup component add rustfmt clippy
-cargo install --locked bindgen cbindgen cargo-audit cargo-outdated
+
+if isUbuntu22; then
+    cargo install bindgen-cli cbindgen cargo-audit cargo-outdated
+else
+    cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
+fi
 
 # Cleanup Cargo cache
 rm -rf ${CARGO_HOME}/registry/*

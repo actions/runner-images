@@ -8,7 +8,8 @@ toolsetVersion=$(get_toolset_value '.postgresql.version')
 brew_smart_install postgresql@$toolsetVersion
 
 # Service PostgreSQL should be started before use
-brew services start postgresql
+postgreService=$(brew services list | grep -oe "postgresql\S*")
+brew services start $postgreService
 
 # Verify PostgreSQL is ready for accept incoming connections
 echo "Check PostgreSQL service is running"
@@ -27,6 +28,6 @@ while [ $i -gt 0 ]; do
 done
 
 # Stop PostgreSQL
-brew services stop postgresql
+brew services stop $postgreService
 
 invoke_tests "Databases" "PostgreSQL"

@@ -31,4 +31,8 @@ Describe "Haskell" {
     It "Stack" {
         "stack --version" | Should -ReturnZeroExitCode
     }
+
+    It "Stack hook is not installed" {
+        "$HOME/.stack/hooks/ghc-install.sh" | Should -Not -Exist
+    }
 }

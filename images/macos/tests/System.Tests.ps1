@@ -15,6 +15,12 @@ Describe "Certificate" {
         $certs = security find-certificate -a -c Worldwide -p -Z | Out-String
         $certs | Should -Match $sha1Hash
     }
+
+    It "Developer ID Certification Authority[expired: 2031-09] is installed" {
+        $sha1Hash = "5B45F61068B29FCC8FFFF1A7E99B78DA9E9C4635"
+        $certs = security find-certificate -a -c "Developer ID" -p -Z | Out-String
+        $certs | Should -Match $sha1Hash
+    }
 }
 
 Describe "Audio device" {
@@ -38,5 +44,20 @@ Describe "Audio device" {
 Describe "Screen Resolution" {
     It "Screen Resolution" {
         system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885|1920 x 1080"
+    }
+}
+
+Describe "Open windows" {
+    It "Opened windows not found" {
+        'tell application id "com.apple.systemevents" to get every window of (every process whose class of windows contains window)' | Tee-Object /tmp/windows.osascript
+        $cmd = "osascript /tmp/windows.osascript"
+        $openWindows = bash -c $cmd
+        $openWindows.Split(",").Trim() | Where-Object { $_ -notmatch "NotificationCenter" } | Should -BeNullOrEmpty
+    }
+}
+
+Describe "AutomationModeTool" {
+    It "Does not require user authentication" -Skip:(-not $os.IsMonterey) {
+        automationmodetool | Out-String | Should -Match "DOES NOT REQUIRE"
     }
 }

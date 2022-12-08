@@ -16,6 +16,19 @@ DOTNET_TOOLS=$(get_toolset_value '.dotnet.tools[].name')
 # Disable telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+# There is a versions conflict, that leads to
+# Microsoft <-> Canonical repos dependencies mix up.
+# Give Microsoft's repo higher priority to avoid collisions.
+# See: https://github.com/dotnet/core/issues/7699
+
+cat << EOF > /etc/apt/preferences.d/dotnet
+Package: *net*
+Pin: origin packages.microsoft.com
+Pin-Priority: 1001
+EOF
+
+apt-get update
+
 for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
     echo "Determing if .NET Core ($latest_package) is installed"
     if ! IsPackageInstalled $latest_package; then
@@ -26,18 +39,26 @@ for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
     fi
 done
 
+rm /etc/apt/preferences.d/dotnet
+
+apt-get update
+
 # Get list of all released SDKs from channels which are not end-of-life or preview
 sdks=()
 for version in ${DOTNET_VERSIONS[@]}; do
     release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
     download_with_retries "${release_url}" "." "${version}.json"
     releases=$(cat "./${version}.json")
-    sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdk.version'))
-    sdks=("${sdks[@]}" $(echo "${releases}" | jq '.releases[]' | jq '.sdks[]?' | jq '.version'))
+    if [[ $version == "6.0" ]]; then
+        sdks=("${sdks[@]}" $(echo "${releases}" | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))'))
+    else
+        sdks=("${sdks[@]}" $(echo "${releases}" | jq -r '.releases[].sdk.version | select(contains("preview") or contains("rc") | not)'))
+        sdks=("${sdks[@]}" $(echo "${releases}" | jq -r '.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not)'))
+    fi
     rm ./${version}.json
 done
 
-sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | grep -v preview | grep -v rc | grep -v display | cut -d\" -f2 | sort -r | uniq -w 5)
+sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -r | uniq -w 5)
 
 extract_dotnet_sdk() {
     local ARCHIVE_NAME="$1"

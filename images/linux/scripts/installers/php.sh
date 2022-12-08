@@ -9,9 +9,12 @@ source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
-# add repository
-apt-add-repository ppa:ondrej/php -y
-apt-get update
+# add repository for old Ubuntu images
+# details in thread: https://github.com/actions/runner-images/issues/6331
+if isUbuntu18 || isUbuntu20; then
+    apt-add-repository ppa:ondrej/php -y
+    apt-get update
+fi
 
 # Install PHP
 php_versions=$(get_toolset_value '.php.versions[]')
@@ -64,9 +67,11 @@ for version in $php_versions; do
         php$version-zip \
         php$version-zmq
 
-    if [[ $version == "5.6" || $version == "7.0" || $version == "7.1" ]]; then
-        apt-get install -y --no-install-recommends php$version-mcrypt php$version-recode
-    fi
+        apt-get install -y --no-install-recommends php$version-pcov
+
+        # Disable PCOV, as Xdebug is enabled by default
+        # https://github.com/krakjoe/pcov#interoperability
+        phpdismod -v $version pcov
 
     if [[ $version == "7.2" || $version == "7.3" ]]; then
         apt-get install -y --no-install-recommends php$version-recode
@@ -74,18 +79,6 @@ for version in $php_versions; do
 
     if [[ $version != "8.0" && $version != "8.1" ]]; then
         apt-get install -y --no-install-recommends php$version-xmlrpc php$version-json
-    fi
-
-    if [[ $version != "5.6" && $version != "7.0" ]]; then
-        apt-get install -y --no-install-recommends php$version-pcov
-
-        # Disable PCOV, as Xdebug is enabled by default
-        # https://github.com/krakjoe/pcov#interoperability
-        phpdismod -v $version pcov
-    fi
-
-    if [[ $version = "7.0" || $version = "7.1" ]]; then
-        apt-get install -y --no-install-recommends php$version-sodium
     fi
 done
 
@@ -112,9 +105,9 @@ chmod +x phpunit
 mv phpunit /usr/local/bin/phpunit
 
 # ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
-# see https://github.com/actions/virtual-environments/issues/1084
-if isUbuntu20 ; then
-  rm /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
+# see https://github.com/actions/runner-images/issues/1084
+if isUbuntu20; then
+  rm /etc/apt/sources.list.d/ondrej-*.list
   apt-get update
 fi
 

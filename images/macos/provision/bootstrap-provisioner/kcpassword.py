@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Port of Gavin Brock's Perl kcpassword generator to Python, by Tom Taylor
 # <tom@tomtaylor.co.uk>.
@@ -9,7 +9,7 @@
 import sys
 import os
 
-def kcpassword(passwd):
+def encode_data(passwd):
     # The magic 11 bytes - these are just repeated
     # 0x7D 0x89 0x52 0x23 0xD2 0xBC 0xDD 0xEA 0xA3 0xB9 0x1F
     key = [125,137,82,35,210,188,221,234,163,185,31]
@@ -18,7 +18,9 @@ def kcpassword(passwd):
     passwd = [ord(x) for x in list(passwd)]
     # pad passwd length out to an even multiple of key length
     r = len(passwd) % key_len
-    if (r > 0):
+    if len(passwd) == 11:
+        passwd += [0]
+    elif (r > 0):
         passwd = passwd + [0] * (key_len - r)
 
     for n in range(0, len(passwd), len(key)):
@@ -27,14 +29,14 @@ def kcpassword(passwd):
             passwd[j] = passwd[j] ^ key[ki]
             ki += 1
 
-    passwd = [chr(x) for x in passwd]
-    return "".join(passwd)
+    return bytearray(passwd)
 
 if __name__ == "__main__":
-    passwd = kcpassword(sys.argv[1])
+    runner_pwd_encoded = encode_data(sys.argv[1])
     fd = os.open('/etc/kcpassword', os.O_WRONLY | os.O_CREAT, 0o600)
-    file = os.fdopen(fd, 'w')
-    file.write(passwd)
+    file = os.fdopen(fd, 'wb')
+    file.truncate(0)
+    file.write(runner_pwd_encoded)
     file.close()
 
 """

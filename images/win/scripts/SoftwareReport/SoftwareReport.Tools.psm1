@@ -31,7 +31,7 @@ function Get-BicepVersion {
 }
 
 function Get-RVersion {
-    ($(cmd /c "Rscript --version 2>&1")  | Out-String) -match  "R scripting front-end version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    ($(cmd /c "Rscript --version 2>&1") | Out-String) -match "Rscript .* version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $rVersion = $Matches.Version
     return "R $rVersion"
 }
@@ -56,19 +56,22 @@ function Get-DockerVersion {
 }
 
 function Get-DockerComposeVersion {
-    $(docker-compose --version) -match "docker-compose version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $dockerComposeVersion = $Matches.Version
-    return "Docker-compose $dockerComposeVersion"
+    $dockerComposeVersion = docker-compose version --short
+    return "Docker Compose v1 $dockerComposeVersion"
+}
+
+function Get-DockerComposeVersionV2 {
+    $dockerComposeVersion = docker compose version --short
+    return "Docker Compose v2 $dockerComposeVersion"
 }
 
 function Get-DockerWincredVersion {
-    $dockerCredVersion = $(docker-credential-wincred version)
+    $dockerCredVersion = docker-credential-wincred version | Take-Part -Part 2 | Take-Part -Part 0 -Delimiter "v"
     return "Docker-wincred $dockerCredVersion"
 }
 
 function Get-GitVersion {
-    $(git version) -match "git version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $gitVersion = $Matches.Version
+    $gitVersion = git --version | Take-Part -Part -1
     return "Git $gitVersion"
 }
 
@@ -88,8 +91,7 @@ function Get-JQVersion {
 }
 
 function Get-KubectlVersion {
-    $(kubectl version --client=true --short=true) -match "Client Version: v(?<version>.+)" | Out-Null
-    $kubectlVersion = $Matches.Version
+    $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v','')
     return "Kubectl $kubectlVersion"
 }
 
@@ -100,7 +102,7 @@ function Get-KindVersion {
 }
 
 function Get-MinGWVersion {
-    (gcc --version | Select-String -Pattern "MinGW-W64 project") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    (gcc --version | Select-String -Pattern "MinGW-W64") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $mingwVersion = $Matches.Version
     return "Mingw-w64 $mingwVersion"
 }
@@ -256,7 +258,7 @@ function Get-StackVersion {
 }
 
 function Get-GoogleCloudSDKVersion {
-    (gcloud --version) -match "Google Cloud SDK"
+    (cmd /c "gcloud --version") -match "Google Cloud SDK"
 }
 
 function Get-ServiceFabricSDKVersion {
@@ -275,13 +277,17 @@ function Get-GHVersion {
 }
 
 function Get-VisualCPPComponents {
-    $vcpp = Get-CimInstance -ClassName Win32_Product -Filter "Name LIKE 'Microsoft Visual C++%'"
-    $vcpp | Sort-Object Name, Version | ForEach-Object {
-        $isMatch = $_.Name -match "^(?<Name>Microsoft Visual C\+\+ \d{4})\s+(?<Arch>\w{3})\s+(?<Ext>.+)\s+-"
+    $regKeys = @(
+        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*"
+        "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
+    )
+    $vcpp = Get-ItemProperty -Path $regKeys | Where-Object DisplayName -like "Microsoft Visual C++*"
+    $vcpp | Sort-Object DisplayName, DisplayVersion | ForEach-Object {
+        $isMatch = $_.DisplayName -match "^(?<Name>Microsoft Visual C\+\+ \d{4})\s+(?<Arch>\w{3})\s+(?<Ext>.+)\s+-"
         if ($isMatch) {
             $name = '{0} {1}' -f $matches["Name"], $matches["Ext"]
             $arch = $matches["Arch"].ToLower()
-            $version = $_.Version
+            $version = $_.DisplayVersion
             [PSCustomObject]@{
                 Name = $name
                 Architecture = $arch
@@ -292,7 +298,7 @@ function Get-VisualCPPComponents {
 }
 
 function Get-DacFxVersion {
-    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\150\DAC\bin\sqlpackage.exe" /version
+    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\160\DAC\bin\sqlpackage.exe" /version
     return "DacFx $dacfxversion"
 }
 
@@ -300,4 +306,10 @@ function Get-SwigVersion {
     (swig -version | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $swigVersion = $Matches.Version
     return "Swig $swigVersion"
+}
+
+function Get-ImageMagickVersion {
+    (magick -version | Select-String -Pattern "Version") -match "(?<version>\d+\.\d+\.\d+-\d+)" | Out-Null
+    $magickVersion = $Matches.Version
+    return "ImageMagick $magickVersion"
 }

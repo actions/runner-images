@@ -8,9 +8,9 @@ param(
     [String] [Parameter (Mandatory=$true)] $StorageAccount,
     [String] [Parameter (Mandatory=$true)] $SubscriptionId,
     [String] [Parameter (Mandatory=$true)] $TenantId,
-    [String] [Parameter (Mandatory=$true)] $VirtualNetworkName,
-    [String] [Parameter (Mandatory=$true)] $VirtualNetworkRG,
-    [String] [Parameter (Mandatory=$true)] $VirtualNetworkSubnet
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet
 )
 
 if (-not (Test-Path $TemplatePath))
@@ -19,7 +19,7 @@ if (-not (Test-Path $TemplatePath))
     exit 1
 }
 
-$Image = [io.path]::GetFileNameWithoutExtension($TemplatePath)
+$Image = [io.path]::GetFileName($TemplatePath).Split(".")[0]
 $TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 
@@ -53,6 +53,7 @@ packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
                 -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
                 -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
                 -var "run_validation_diskspace=$env:RUN_VALIDATION_FLAG" `
+                -color=false `
                 $TemplatePath `
         | Where-Object {
             #Filter sensitive data from Packer logs

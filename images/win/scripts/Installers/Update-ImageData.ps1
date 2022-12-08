@@ -5,22 +5,18 @@ $osEdition = $caption.Substring($caption.LastIndexOf(" ")+1)
 $osVersion = $os.Version
 $imageVersion = $env:IMAGE_VERSION
 $imageDataFile = $env:IMAGEDATA_FILE
-$githubUrl="https://github.com/actions/virtual-environments/blob"
+$githubUrl="https://github.com/actions/runner-images/blob"
 
 if (Test-IsWin22) {
     $imageLabel = "windows-2022"
     $softwareUrl = "${githubUrl}/win22/${imageVersion}/images/win/Windows2022-Readme.md"
-    $releaseUrl="https://github.com/actions/virtual-environments/releases/tag/win22%2F${imageVersion}"
+    $releaseUrl="https://github.com/actions/runner-images/releases/tag/win22%2F${imageVersion}"
 } elseif (Test-IsWin19) {
     $imageLabel = "windows-2019"
     $softwareUrl = "${githubUrl}/win19/${imageVersion}/images/win/Windows2019-Readme.md"
-    $releaseUrl="https://github.com/actions/virtual-environments/releases/tag/win19%2F${imageVersion}"
-} elseif (Test-IsWin16) {
-    $imageLabel = "windows-2016"
-    $softwareUrl = "${githubUrl}/win16/${imageVersion}/images/win/Windows2016-Readme.md"
-    $releaseUrl="https://github.com/actions/virtual-environments/releases/tag/win16%2F${imageVersion}"
+    $releaseUrl="https://github.com/actions/runner-images/releases/tag/win19%2F${imageVersion}"
 } else {
-    throw "Invalid platform version is found. Either Windows Server 2016 or 2019 or 2022 are required"
+    throw "Invalid platform version is found. Either Windows Server 2019 or 2022 are required"
 }
 
 $json = @"
@@ -30,8 +26,8 @@ $json = @"
     "detail": "${osName}\n${osVersion}\n${osEdition}"
   },
   {
-    "group": "Virtual Environment",
-    "detail": "Environment: ${imageLabel}\nVersion: ${imageVersion}\nIncluded Software: ${softwareUrl}\nImage Release: ${releaseUrl}"
+    "group": "Runner Image",
+    "detail": "Image: ${imageLabel}\nVersion: ${imageVersion}\nIncluded Software: ${softwareUrl}\nImage Release: ${releaseUrl}"
   }
 ]
 "@

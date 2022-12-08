@@ -40,8 +40,8 @@ Describe "R" {
 
 Describe "DACFx" {
     It "DACFx" {
-        (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Contains "Microsoft SQL Server Data-Tier Application Framework (x64)" | Should -BeTrue
-        $sqlPackagePath = 'C:\Program Files\Microsoft SQL Server\150\DAC\bin\SqlPackage.exe'
+        (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Contains "Microsoft SQL Server Data-Tier Application Framework" | Should -BeTrue
+        $sqlPackagePath = 'C:\Program Files\Microsoft SQL Server\160\DAC\bin\SqlPackage.exe'
         "${sqlPackagePath}" | Should -Exist
     }
 
@@ -103,8 +103,7 @@ Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
 
 Describe "NET48" {
     It "NET48" {
-        $netPath = (Get-DotnetFrameworkTools).Path.Split("<")[0]
-        ${netPath} + "4.8 Tools" | Should -Exist
+        (Get-DotnetFrameworkTools).Versions | Should -Contain "4.8"
     }
 }
 
@@ -148,11 +147,11 @@ Describe "Stack" {
 
 Describe "Vcpkg" {
     It "vcpkg" {
-      "vcpkg version" | Should -ReturnZeroExitCode
+        "vcpkg version" | Should -ReturnZeroExitCode
     }
 
     It "env variable VCPKG_INSTALLATION_ROOT is set" {
-      $env:VCPKG_INSTALLATION_ROOT | Should -Not -BeNullOrEmpty
+        $env:VCPKG_INSTALLATION_ROOT | Should -Not -BeNullOrEmpty
     }
 
     It "VCPKG_INSTALLATION_ROOT directory" {
@@ -161,16 +160,7 @@ Describe "Vcpkg" {
 }
 
 Describe "VCRedist" -Skip:(Test-IsWin22) {
-    It "vcredist_140" -Skip:(Test-IsWin19) {
-        "C:\Windows\System32\vcruntime140.dll" | Should -Exist
-    }
-
-    It "vcredist_2010_x64" -Skip:(Test-IsWin16) {
-        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
-        "C:\Windows\System32\msvcr100.dll" | Should -Exist
-    }
-
-    It "vcredist_2010_x64" -Skip:(Test-IsWin16) {
+    It "vcredist_2010_x64" {
         "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
         "C:\Windows\System32\msvcr100.dll" | Should -Exist
     }
@@ -202,7 +192,7 @@ Describe "Kotlin" {
     }
 }
 
-Describe "SQL OLEDB Driver" -Skip:(Test-IsWin16) {
+Describe "SQL OLEDB Driver" {
     It "SQL OLEDB Driver" {
         "HKLM:\SOFTWARE\Microsoft\MSOLEDBSQL" | Should -Exist
     }

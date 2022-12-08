@@ -10,7 +10,8 @@ function Get-ChromeDriverVersion {
 
 function Get-FirefoxVersion {
     $firefoxVersion = firefox --version
-    return $firefoxVersion
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "mozillateam"
+    return "$firefoxVersion (apt source repository: $aptSourceRepo)"
 }
 
 function Get-GeckodriverVersion {
@@ -21,6 +22,17 @@ function Get-GeckodriverVersion {
 function Get-ChromiumVersion {
     $chromiumVersion = chromium-browser --version | Take-OutputPart -Part 0,1
     return $chromiumVersion
+}
+
+function Get-EdgeVersion {
+    $edgeVersion = (microsoft-edge --version).trim()
+    $aptSourceRepo = Get-AptSourceRepository -PackageName "microsoft-edge"
+    return "$edgeVersion (apt source repository: $aptSourceRepo)"
+}
+
+function Get-EdgeDriverVersion {
+    $edgeDriverVersion = msedgedriver --version | Take-OutputPart -Part 0,1,2,3
+    return $edgeDriverVersion
 }
 
 function Get-SeleniumVersion {
@@ -34,6 +46,10 @@ function Build-BrowserWebdriversEnvironmentTable {
         @{
             "Name" = "CHROMEWEBDRIVER"
             "Value" = $env:CHROMEWEBDRIVER
+        },
+        @{
+            "Name" = "EDGEWEBDRIVER"
+            "Value" = $env:EDGEWEBDRIVER
         },
         @{
             "Name" = "GECKOWEBDRIVER"

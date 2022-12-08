@@ -16,5 +16,5 @@ pr:
 jobs:
 - template: image-generation.yml
   parameters:
-    image_type: windows2016
-    image_readme_name: Windows2016-Readme.md
+    image_type: ubuntu2204
+    image_readme_name: Ubuntu2204-Readme.md

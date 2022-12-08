@@ -1,13 +1,31 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
-function Get-VSMacVersion {
-    $plistPath = "/Applications/Visual Studio.app/Contents/Info.plist"
-    return Run-Command "/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' '$plistPath'"
+function Build-VSMacTable {
+    $vsMacVersions = Get-ToolsetValue "xamarin.vsmac.versions"
+    $defaultVSMacVersion = Get-ToolsetValue "xamarin.vsmac.default"
+
+    return $vsMacVersions | ForEach-Object {
+        $isDefault = $_ -eq $defaultVSMacVersion
+        $vsPath = "/Applications/Visual Studio $_.app"
+        if ($isDefault) {
+            $vsPath = "/Applications/Visual Studio.app"
+        }
+
+        $plistPath = "$vsPath/Contents/Info.plist"
+        $build = Run-Command "/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' '$plistPath'"
+        $defaultPostfix = $isDefault ? " (default)" : ""
+
+        [PSCustomObject] @{
+            "Version" = $_ + $defaultPostfix
+            "Build" = $build
+            "Path" = $vsPath
+        }
+    }
 }
 
 function Get-NUnitVersion {
     $version = Run-Command "nunit3-console --version" | Select-Object -First 1 | Take-Part -Part 3
-    return "NUnit ${version}"
+    return $version
 }
 
 function Build-XamarinTable {
@@ -28,4 +46,3 @@ function Build-XamarinTable {
         }
     }
 }
-

@@ -1,10 +1,29 @@
 Describe "MongoDB" {
-    It "<ToolName>" -TestCases @(
-        @{ ToolName = "mongo" }
-        @{ ToolName = "mongod" }
-    ) {
-        $toolsetVersion = (Get-ToolsetContent).mongodb.version
-        (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
+    Context "Version" {
+        It "<ToolName>" -TestCases @(
+            @{ ToolName = "mongo" }
+            @{ ToolName = "mongod" }
+        ) {
+            $toolsetVersion = (Get-ToolsetContent).mongodb.version
+            (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
+        }
+    }
+
+    Context "Service" {
+        $mongoService = Get-Service -Name mongodb -ErrorAction Ignore
+        $mongoServiceTests = @{
+            Name = $mongoService.Name
+            Status = $mongoService.Status
+            StartType = $mongoService.StartType
+        }
+
+        It "<Name> service is stopped" -TestCases $mongoServiceTests {
+            $Status | Should -Be "Stopped"
+        }
+
+        It "<Name> service is disabled" -TestCases $mongoServiceTests {
+            $StartType | Should -Be "Disabled"
+        }
     }
 }
 

@@ -6,6 +6,13 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/os.sh
+
+# Install libssl1.1 dependency
+if isUbuntu22; then
+    download_with_retries "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb" "/tmp"
+    dpkg -i /tmp/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
+fi
 
 # Install SqlPackage
 download_with_retries "https://aka.ms/sqlpackage-linux" "." "sqlpackage.zip"

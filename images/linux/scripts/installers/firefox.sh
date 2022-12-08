@@ -7,17 +7,27 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
+FIREFOX_REPO="ppa:mozillateam/ppa"
+
 # Install Firefox
-apt-get install -y firefox
+add-apt-repository $FIREFOX_REPO -y
+apt-get update
+apt-get install --target-release 'o=LP-PPA-mozillateam' -y firefox
+
+# Remove source repo's
+add-apt-repository --remove $FIREFOX_REPO
+
+# Document apt source repo's
+echo "mozillateam $FIREFOX_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
 
 # add to gloabl system preferences for firefox locale en_US, because other browsers have en_US local.
 # Default firefox local is en_GB
 echo 'pref("intl.locale.requested","en_US");' >> "/usr/lib/firefox/browser/defaults/preferences/syspref.js"
 
 # Download and unpack latest release of geckodriver
-URL=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | jq -r '.assets[].browser_download_url | select(test("linux64.tar.gz$"))')
-echo "Downloading geckodriver $URL"
-download_with_retries "$URL" "/tmp" geckodriver.tar.gz
+downloadUrl=$(get_github_package_download_url "mozilla/geckodriver" "test(\"linux64.tar.gz$\")")
+echo "Downloading geckodriver $downloadUrl"
+download_with_retries "$downloadUrl" "/tmp" geckodriver.tar.gz
 
 GECKODRIVER_DIR="/usr/local/share/gecko_driver"
 GECKODRIVER_BIN="$GECKODRIVER_DIR/geckodriver"

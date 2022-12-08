@@ -1,10 +1,17 @@
 #!/bin/bash -e
 ################################################################################
-##  File:  cmake.sh
+##  File:  mono.sh
 ##  Desc:  Installs Mono
 ################################################################################
 
+source $HELPER_SCRIPTS/os.sh
+
 LSB_CODENAME=$(lsb_release -cs)
+
+# There are no packages for Ubuntu 22 in the repo, but developers confirmed that packages from Ubuntu 20 should work
+if isUbuntu22; then
+    LSB_CODENAME="focal"
+fi
 
 # Test to see if the software in question is already installed, if not install it
 # wget "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF" -O out && sudo apt-key add out && rm out
