@@ -193,7 +193,6 @@ class SoftwareReportComparerReport {
         #############################
 
         [ReportDifferenceItem[]] $changedItemsExcludeTables = $ChangedItems | Where-Object { $_.IsBaseToolNode() }
-        # throw $($changedItemsExcludeTables | ConvertTo-Json)
         if ($changedItemsExcludeTables.Count -gt 0) {
             $tableItems = $changedItemsExcludeTables | ForEach-Object {
                 [PSCustomObject]@{

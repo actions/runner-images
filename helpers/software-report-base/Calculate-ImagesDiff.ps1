@@ -20,7 +20,7 @@ Param (
     [Parameter(Mandatory=$true)]
     [string] $OutputFile,
     [Parameter(Mandatory=$false)]
-    [string] $ImageDocsUrl = "https://google.com" # TO-DO
+    [string] $ImageDocsUrl
 )
 
 $ErrorActionPreference = "Stop"
