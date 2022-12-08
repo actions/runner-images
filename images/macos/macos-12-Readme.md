@@ -1,14 +1,12 @@
 | Announcements |
 |-|
-| [[all OSs] Nodejs 12.x will be removed from the images on November, 14](https://github.com/actions/runner-images/issues/6482) |
 | [macOS-latest workflows will use macOS-12](https://github.com/actions/runner-images/issues/6384) |
-| [[all OSs] The VCPKG_ROOT variable will be removed from runner images](https://github.com/actions/runner-images/issues/6376) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 12.6 info
 - System Version: macOS 12.6.1 (21G217)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20221121.1
+- Image Version: 20221204.1
 
 ## Installed Software
 ### Language and Runtime
@@ -26,7 +24,7 @@
 - NVM 0.39.2
 - NVM - Cached node versions: v14.21.1 v16.18.1 v18.12.1
 - Perl 5.36.0
-- PHP 8.1.12
+- PHP 8.1.13
 - Python 2.7.18
 - Python 3.11.0
 - R 4.2.2
@@ -37,7 +35,7 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.4.4
-- Homebrew 3.6.12
+- Homebrew 3.6.13
 - Miniconda 4.12.0
 - NPM 8.19.2
 - NuGet 6.3.1.1
@@ -45,7 +43,7 @@
 - Pip 22.3.1 (python 3.11)
 - Pipx 1.1.0
 - RubyGems 3.3.26
-- Vcpkg 2022 (build from master \<e819a7d0a>)
+- Vcpkg 2022 (build from master \<163fe7bd3>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,7 +55,7 @@
 ### Project Management
 - Apache Ant(TM) 1.10.12
 - Apache Maven 3.8.6
-- Gradle 7.5.1
+- Gradle 7.6
 - Sbt 1.8.0
 
 ### Utilities
@@ -69,7 +67,7 @@
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 7.86.0
 - Git 2.38.1
-- Git LFS: 3.2.0
+- Git LFS: 3.3.0
 - GitHub CLI: 2.20.2
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
@@ -88,49 +86,49 @@
 - Switchaudio-osx 1.1.0
 - Vagrant 2.3.3
 - VirtualBox 6.1.38r153438
-- yq (https://github.com/mikefarah/yq/) version v4.30.4
+- yq (https://github.com/mikefarah/yq/) version v4.30.5
 - zstd 1.5.2
 
 ### Tools
-- App Center CLI 2.11.0
-- AWS CLI 2.9.0
-- AWS SAM CLI 1.65.0
+- App Center CLI 2.12.0
+- AWS CLI 2.9.4
+- AWS SAM CLI 1.66.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI (azure-devops) 0.25.0
 - Azure CLI 2.42.0
 - Bicep CLI 0.12.40
 - Cabal 3.6.2.0
-- Cmake 3.25.0
-- CodeQL Action Bundle 2.11.3
+- Cmake 3.25.1
+- CodeQL Action Bundle 2.11.4
 - Colima 0.4.6
 - Fastlane 2.211.0
 - GHC 9.4.3
 - GHCup 0.1.18.0
 - Jazzy 0.14.3
 - Stack 2.9.1
-- SwiftFormat 0.50.3
-- Swig 4.1.0
+- SwiftFormat 0.50.5
+- Swig 4.1.1
 - Xcode Command Line Tools 14.1.0.0.1.1666437224
 
 ### Linters
-- SwiftLint 0.50.0
+- SwiftLint 0.50.1
 - yamllint 1.28.0
 
 ### Browsers
 - Safari 16.1 (17614.2.9.1.13)
 - SafariDriver 16.1 (17614.2.9.1.13)
-- Google Chrome 107.0.5304.110 
-- ChromeDriver 107.0.5304.62
-- Microsoft Edge 107.0.1418.52 
-- Microsoft Edge WebDriver 107.0.1418.52
-- Mozilla Firefox 107.0
+- Google Chrome 108.0.5359.94 
+- ChromeDriver 108.0.5359.71
+- Microsoft Edge 107.0.1418.68 
+- Microsoft Edge WebDriver 107.0.1418.68
+- Mozilla Firefox 107.0.1
 - geckodriver 0.32.0
 - Selenium server 4.5.0
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/107.0.5304.62 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/108.0.5359.71 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -148,13 +146,13 @@
 
 ### Cached Tools
 #### Ruby
-- 2.7.6
-- 3.0.4
-- 3.1.2
+- 2.7.7
+- 3.0.5
+- 3.1.3
 
 #### Python
 - 3.7.15
-- 3.8.14
+- 3.8.15
 - 3.9.14
 - 3.10.8
 - 3.11.0
@@ -184,7 +182,7 @@
 - Rustup 1.25.1
 
 #### Packages
-- Bindgen 0.62.0
+- Bindgen 0.63.0
 - Cargo-audit 0.17.4
 - Cargo-outdated 0.11.1
 - Cbindgen 0.24.3
@@ -315,26 +313,26 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | tvOS 15.4   | 13.3.1<br>13.4<br>13.4.1                                             | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | tvOS 16.0   | 13.1<br>13.2.1<br>13.3.1<br>13.4<br>13.4.1<br>14.0<br>14.0.1<br>14.1 | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | tvOS 16.1   | 13.1<br>13.2.1<br>13.3.1<br>13.4<br>13.4.1<br>14.0<br>14.0.1<br>14.1 | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| watchOS 8.0 | 13.1                                                                 | Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| watchOS 8.3 | 13.2.1                                                               | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 - 45mm<br>Apple Watch Series 7 (41mm)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| watchOS 8.5 | 13.3.1<br>13.4<br>13.4.1                                             | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 45mm<br>Apple Watch Series 7 (41mm)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| watchOS 9.0 | 13.1<br>13.2.1<br>13.3.1<br>13.4<br>13.4.1<br>14.0<br>14.0.1<br>14.1 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                                                                                                                                                                                                                                                      |
-| watchOS 9.1 | 13.1<br>13.2.1<br>13.3.1<br>13.4<br>13.4.1<br>14.0<br>14.0.1<br>14.1 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                                                                                                                                                                                                                                                                                                |
+| watchOS 8.0 | 13.1                                                                 | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 - 45mm<br>Apple Watch Series 7 (41mm)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| watchOS 8.3 | 13.2.1                                                               | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| watchOS 8.5 | 13.3.1<br>13.4<br>13.4.1                                             | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| watchOS 9.0 | 13.1<br>13.2.1<br>13.3.1<br>13.4<br>13.4.1<br>14.0<br>14.0.1<br>14.1 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                                                                                                                                                                                                                                                                                                |
+| watchOS 9.1 | 13.1<br>13.2.1<br>13.3.1<br>13.4<br>13.4.1<br>14.0<br>14.0.1<br>14.1 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                                                                                                                                                                                                                                                      |
 
 ### Android
-| Package Name               | Version                                                                                                                                                |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Android Command Line Tools | 8.0                                                                                                                                                    |
-| Android Emulator           | 31.3.13                                                                                                                                                |
-| Android SDK Build-tools    | 33.0.0<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Platform-Tools | 33.0.3                                                                                                                                                 |
-| Android Support Repository | 47.0.0                                                                                                                                                 |
-| CMake                      | 3.18.1<br>3.22.1                                                                                                                                       |
-| Google Play services       | 49                                                                                                                                                     |
-| Google Repository          | 58                                                                                                                                                     |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.1.8937393 (default)                                                                                                 |
-| SDK Patch Applier v4       | 1                                                                                                                                                      |
+| Package Name               | Version                                                                                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 8.0                                                                                                                                                           |
+| Android Emulator           | 31.3.13                                                                                                                                                       |
+| Android SDK Build-tools    | 33.0.0 33.0.1<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
+| Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)        |
+| Android SDK Platform-Tools | 33.0.3                                                                                                                                                        |
+| Android Support Repository | 47.0.0                                                                                                                                                        |
+| CMake                      | 3.18.1<br>3.22.1                                                                                                                                              |
+| Google Play services       | 49                                                                                                                                                            |
+| Google Repository          | 58                                                                                                                                                            |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.1.8937393 (default)                                                                                                        |
+| SDK Patch Applier v4       | 1                                                                                                                                                             |
 
 #### Environment variables
 | Name                    | Value                                              |
@@ -349,7 +347,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 ### Miscellaneous
 - libXext 1.3.5
 - libXft 2.3.7
-- Tcl/Tk 8.6.12_1
+- Tcl/Tk 8.6.13
 - Zlib 1.2.13
 
 #### Environment variables

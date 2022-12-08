@@ -22,6 +22,9 @@ $env:Path += ";$env:CARGO_HOME\bin"
 # Add i686 target for building 32-bit binaries
 rustup target add i686-pc-windows-msvc
 
+# Add target for building mingw-w64 binaries
+rustup target add x86_64-pc-windows-gnu
+
 # Install common tools
 rustup component add rustfmt clippy
 cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
