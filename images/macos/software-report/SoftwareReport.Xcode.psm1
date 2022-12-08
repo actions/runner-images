@@ -171,7 +171,7 @@ function Format-XcodeSimulatorName {
     )
 
     $formattedDeviceName = $Device.Replace("ʀ", "R")
-    # Convert "Apple Watch Series 5 (44mm)" -> Apple Watch Series 5 - 44mm" to make all Xcode versions consistent
+    # Convert "Apple Watch Series 5 (44mm)" -> "Apple Watch Series 5 - 44mm" to make all Xcode versions consistent
     $formattedDeviceName = $formattedDeviceName -replace '\((\d+mm)\)', '- $1'
     return $formattedDeviceName
 }

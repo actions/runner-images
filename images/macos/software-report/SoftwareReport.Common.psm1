@@ -80,7 +80,7 @@ function Get-RustupVersion {
 function Get-VcpkgVersion {
     $vcpkgVersion = Run-Command "vcpkg version" | Select-Object -First 1 | Take-Part -Part 5 | Take-Part -Part 0 -Delimiter "-"
     $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
-    return "$vcpkgVersion (build from commit '$commitId')"
+    return "$vcpkgVersion (build from commit $commitId)"
 }
 
 function Get-GccVersions {
