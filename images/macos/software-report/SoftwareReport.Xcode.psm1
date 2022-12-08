@@ -166,8 +166,14 @@ function Build-XcodeSDKTable {
 }
 
 function Format-XcodeSimulatorName {
-    param([Parameter(Mandatory)][string] $Device)
-    return $Device.Replace("ʀ", "R")
+    param(
+        [Parameter(Mandatory)][string] $Device
+    )
+
+    $formattedDeviceName = $Device.Replace("ʀ", "R")
+    # Convert "Apple Watch Series 5 (44mm)" -> Apple Watch Series 5 - 44mm" to make all Xcode versions consistent
+    $formattedDeviceName = $formattedDeviceName -replace '\((\d+mm)\)', '- $1'
+    return $formattedDeviceName
 }
 
 function Build-XcodeSimulatorsTable {
