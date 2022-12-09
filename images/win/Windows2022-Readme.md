@@ -1,6 +1,6 @@
 # Microsoft Windows Server 2022 Datacenter
 - OS Version: 10.0.20348 Build 1249
-- Image Version: 20221127.1
+- Image Version: 20221204.3
 
 ## Enabled windows optional features
 - Windows Subsystem for Linux [WSLv1]
@@ -10,7 +10,7 @@
 - Bash 5.1.16(1)-release
 - Go 1.17.13
 - Julia 1.8.3
-- Kotlin 1.7.21
+- Kotlin 1.7.22
 - LLVM 14.0.6
 - Node 16.18.1
 - Perl 5.32.1
@@ -28,7 +28,7 @@
 - pip 22.3.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from master \<62d01b70d>)
+- Vcpkg (build from master \<163fe7bd3>)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -50,11 +50,11 @@
 - Bazelisk 1.13.2
 - Bicep 0.12.40
 - Cabal 3.8.1.0
-- CMake 3.25.0
+- CMake 3.25.1
 - CodeQL Action Bundle 2.11.4
 - Docker 20.10.21
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.13.0
+- Docker Compose v2 2.14.0
 - Docker-wincred 0.7.0
 - ghc 9.4.2
 - Git 2.38.1.windows.1
@@ -83,9 +83,9 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.139
-- AWS CLI 2.9.1
-- AWS SAM CLI 1.65.0
+- Alibaba Cloud CLI 3.0.140
+- AWS CLI 2.9.4
+- AWS SAM CLI 1.66.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.42.0
 - Azure DevOps CLI extension 0.25.0
@@ -107,14 +107,14 @@
 - Rustfmt 1.5.1
 
 ### Browsers and webdrivers
-- Google Chrome 107.0.5304.122
-- Chrome Driver 107.0.5304.62
-- Microsoft Edge 107.0.1418.56
-- Microsoft Edge Driver 107.0.1418.56
-- Mozilla Firefox 107.0
+- Google Chrome 108.0.5359.95
+- Chrome Driver 108.0.5359.71
+- Microsoft Edge 107.0.1418.62
+- Microsoft Edge Driver 107.0.1418.62
+- Mozilla Firefox 107.0.1
 - Gecko Driver 0.32.0
-- IE Driver 3.150.1.1
-- Selenium server 4.6.0
+- IE Driver 4.7.0.0
+- Selenium server 4.7.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -221,7 +221,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
 | ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.4.33110.190 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.4.33122.133 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions:
 | Package                                                                   | Version        |
@@ -229,7 +229,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | android                                                                   | 33.0.4.0       |
 | Component.Android.Emulator.MDD                                            | 17.4.33006.217 |
 | Component.Android.NDK.R23C                                                | 17.4.33006.217 |
-| Component.Android.SDK.MAUI                                                | 17.4.33006.217 |
+| Component.Android.SDK.MAUI                                                | 17.4.33118.351 |
 | Component.CPython39.x64                                                   | 3.9.7          |
 | Component.Dotfuscator                                                     | 17.4.33006.217 |
 | Component.HAXM.Private                                                    | 17.4.33006.217 |
@@ -330,7 +330,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Graphics                                 | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.Graphics.Tools                           | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.IISExpress                               | 17.4.33006.217 |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 17.4.33027.239 |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 17.4.33121.453 |
 | Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 17.4.33006.217 |
@@ -559,7 +559,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Azure Powershell Modules
 | Module  | Version                                                                         | Path                           |
 | ------- | ------------------------------------------------------------------------------- | ------------------------------ |
-| Az      | 6.6.0.zip<br>7.5.0                                                              | C:\Modules\az_\<version\>      |
+| Az      | 7.5.0.zip<br>9.0.1                                                              | C:\Modules\az_\<version\>      |
 | Azure   | 2.1.0 [Installed]<br>3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>5.3.0               | C:\Modules\azure_\<version\>   |
 | AzureRM | 2.1.0 [Installed]<br>3.8.0.zip<br>4.2.1.zip<br>5.1.1.zip<br>6.7.0.zip<br>6.13.1 | C:\Modules\azurerm_\<version\> |
 ```
@@ -571,10 +571,10 @@ All other versions are saved but not installed.
 #### Powershell Modules
 | Module             | Version          |
 | ------------------ | ---------------- |
-| AWSPowerShell      | 4.1.214          |
+| AWSPowerShell      | 4.1.220          |
 | DockerMsftProvider | 1.0.0.8          |
 | MarkdownPS         | 1.9              |
-| Microsoft.Graph    | 1.17.0           |
+| Microsoft.Graph    | 1.18.0           |
 | Pester             | 3.4.0<br>5.3.3   |
 | PowerShellGet      | 1.0.0.1<br>2.2.5 |
 | PSScriptAnalyzer   | 1.21.0           |
