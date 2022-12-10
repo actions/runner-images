@@ -178,6 +178,7 @@
             "ftp",
             "haveged",
             "jq",
+            "lz4",
             "m4",
             "mediainfo",
             "netcat",
