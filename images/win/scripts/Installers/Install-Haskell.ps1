@@ -3,6 +3,19 @@
 ##  Desc:  Install Haskell for Windows
 ################################################################################
 
+# install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
+Write-Host 'Installing ghcup...'
+$msysPath = "C:\msys64"
+$ghcupPrefix = "C:\"
+$cabalDir = "C:\cabal"
+$bootstrapHaskell = Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing
+Invoke-Command -ScriptBlock ([ScriptBlock]::Create($bootstrapHaskell)) -ArgumentList $false, $true, $true, $false, $true, $false, $false, $ghcupPrefix, "", $msysPath, $cabalDir
+Set-SystemVariable "GHCUP_INSTALL_BASE_PREFIX" $ghcupPrefix
+Set-SystemVariable "GHCUP_MSYS2" $msysPath
+Set-SystemVariable "CABAL_DIR" $cabalDir
+Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
+Add-MachinePathItem "$cabalDir\bin"
+
 # Get 3 latest versions of GHC, use OData query for that since choco search has issues https://github.com/chocolatey/choco/issues/2271
 $ODataQuery = '$filter=(Title eq ''ghc'') and (IsPrerelease eq false)&$orderby=Version desc'
 $Url = "https://community.chocolatey.org/api/v2/Packages()?$ODataQuery"
@@ -18,7 +31,7 @@ ForEach ($version in $VersionsList)
     if ($version -eq "9.4.3"){ [version]$version = "9.4.2" }
     if ($version -eq "9.2.5"){ [version]$version = "9.2.4" }
     Write-Host "Installing ghc $version..."
-    Choco-Install -PackageName ghc -ArgumentList '--version', $version, '-m'
+    ghcup install ghc $version
 }
 
 # Add default version of GHC to path, because choco formula updates path on user level
@@ -37,19 +50,6 @@ if ($DefaultGhcShortVersion -notmatch '^[0-8]\.\d+.*')
 Add-MachinePathItem -PathItem $DefaultGhcPath
 
 Write-Host 'Installing cabal...'
-Choco-Install -PackageName cabal
-
-# install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
-Write-Host 'Installing ghcup...'
-$msysPath = "C:\msys64"
-$ghcupPrefix = "C:\"
-$cabalDir = "C:\cabal"
-$bootstrapHaskell = Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing
-Invoke-Command -ScriptBlock ([ScriptBlock]::Create($bootstrapHaskell)) -ArgumentList $false, $true, $true, $false, $true, $false, $false, $ghcupPrefix, "", $msysPath, $cabalDir
-Set-SystemVariable "GHCUP_INSTALL_BASE_PREFIX" $ghcupPrefix
-Set-SystemVariable "GHCUP_MSYS2" $msysPath
-Set-SystemVariable "CABAL_DIR" $cabalDir
-Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
-Add-MachinePathItem "$cabalDir\bin"
+ghcup install cabal
 
 Invoke-PesterTests -TestFile 'Haskell'
