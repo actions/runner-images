@@ -70,6 +70,11 @@ variable "image_version" {
   default = "dev"
 }
 
+variable "image_sku" {
+  type    = string
+  default = "22_04-lts"
+}
+
 variable "imagedata_file" {
   type    = string
   default = "/imagegeneration/imagedata.json"
@@ -155,7 +160,7 @@ source "azure-arm" "build_vhd" {
   client_cert_path                       = "${var.client_cert_path}"
   image_offer                            = "0001-com-ubuntu-server-jammy"
   image_publisher                        = "canonical"
-  image_sku                              = "22_04-lts"
+  image_sku                              = "${var.image_sku}"
   location                               = "${var.location}"
   os_disk_size_gb                        = "86"
   os_type                                = "Linux"
