@@ -1,0 +1,91 @@
+# Ideally we would use GitHub Actions for this, but since we use self-hosted machines to run image builds
+# we need the following features to use GitHub Actions for Images CI:
+# - https://github.community/t5/GitHub-Actions/Make-secrets-available-to-builds-of-forks/m-p/30678#M508
+# - https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/td-p/31504
+# - https://github.community/t5/GitHub-Actions/Protecting-github-workflows/td-p/30290
+
+jobs:
+- job:
+  displayName: Image Generation (${{ parameters.image_type }})
+  timeoutInMinutes: 600
+  cancelTimeoutInMinutes: 30
+  pool: $(BUILD_POOL)
+  variables:
+  - group: Image Generation Variables
+
+  steps:
+  - task: PowerShell@2
+    displayName: 'Download custom repository'
+    condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/download-repo.ps1
+      arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
+                 -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
+    
+  - task: PowerShell@2
+    displayName: 'Set image template variables'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $ImageType = "${{ parameters.image_type }}"
+        $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "win" }
+        $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
+         $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.pkr.hcl"
+        if ( -not (Test-Path $TemplatePath) ) {
+            $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType-etn.json"
+        }
+        Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
+        Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
+
+  - task: PowerShell@2
+    displayName: 'Build VM'
+    inputs:
+      targetType: filePath
+      filePath: ./images.CI/linux-and-win/build-image-etn.ps1
+      arguments: -ResourcesNamePrefix $(Build.BuildId) `
+                        -ClientId $(CLIENT_ID) `
+                        -ClientSecret $(CLIENT_SECRET) `
+                        -TemplatePath $(TemplatePath) `
+                        -ResourceGroup $(AZURE_RESOURCE_GROUP) `
+                        -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
+                        -SubscriptionId $(AZURE_SUBSCRIPTION) `
+                        -TenantId $(AZURE_TENANT) `
+                        -Location $(AZURE_LOCATION) `
+                        -VirtualNetworkName $(BUILD_AGENT_VNET_NAME) `
+                        -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
+                        -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME) `
+                        -ImageName $(Build.BuildNumber)
+    env:
+      PACKER_LOG: 1
+      PACKER_LOG_PATH: $(Build.ArtifactStagingDirectory)/packer-log.txt
+
+  - task: PowerShell@2
+    displayName: 'Output Readme file content'
+    inputs:
+      targetType: 'inline'
+      script: |
+        Get-Content -Path (Join-Path "$(TemplateDirectoryPath)" "${{ parameters.image_readme_name }}")
+
+  - task: PowerShell@2
+    displayName: 'Print provisioners duration'
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/measure-provisioners-duration.ps1
+      arguments: -PackerLogPath "$(Build.ArtifactStagingDirectory)/packer-log.txt" `
+                        -PrefixToPathTrim "$(TemplateDirectoryPath)" `
+                        -PrintTopNLongest 25
+
+  - task: PowerShell@2
+    displayName: 'Clean up resources'
+    condition: always()
+    inputs:
+      targetType: filePath
+      filePath: ./images.CI/linux-and-win/cleanup.ps1
+      arguments: -ResourcesNamePrefix $(Build.BuildId) `
+                     -Image ${{ parameters.image_type }} `
+                     -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
+                     -SubscriptionId $(AZURE_SUBSCRIPTION) `
+                     -ClientId $(CLIENT_ID) `
+                     -ClientSecret $(CLIENT_SECRET) `
+                     -TenantId $(AZURE_TENANT)
