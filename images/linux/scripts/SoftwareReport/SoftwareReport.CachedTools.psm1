@@ -37,11 +37,11 @@ function Build-CachedToolsSection {
     $output += New-MDHeader "Node.js" -Level 4
     $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
 
-    $output += New-MDHeader "PyPy" -Level 4
-    $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
-
     $output += New-MDHeader "Python" -Level 4
     $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
+
+    $output += New-MDHeader "PyPy" -Level 4
+    $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
 
     $output += New-MDHeader "Ruby" -Level 4
     $output += New-MDList -Lines (Get-ToolcacheRubyVersions) -Style Unordered
