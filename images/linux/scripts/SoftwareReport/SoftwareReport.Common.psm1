@@ -76,13 +76,13 @@ function Get-ErlangRebar3Version {
 
 function Get-MonoVersion {
     $monoVersion = mono --version | Out-String | Take-OutputPart -Part 4
-    return $monoVersion
+    return "Mono $monoVersion"
 }
 
 function Get-MsbuildVersion {
     $msbuildVersion = msbuild -version | Select-Object -Last 1
     $monoVersion = Get-MonoVersion
-    return "MSBuild $msbuildVersion (Mono $monoVersion)"
+    return "MSBuild $msbuildVersion ($monoVersion)"
 }
 
 function Get-NuGetVersion {
