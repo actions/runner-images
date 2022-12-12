@@ -254,12 +254,12 @@ function Get-PowerShellAzureModules {
         $result += "Az (Cached): $($azCachedModules -join ', ')"
     }
 
-    [Array] $azureCachedModules = Get-ChildItem -Path "C:\Modules\azure_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { $_ -eq $defaultAzureModuleVersion ? "$($_) (Default)" : $_ }
+    [Array] $azureCachedModules = Get-ChildItem -Path "C:\Modules\azure_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azureCachedModules.Count -gt 0) {
         $result += "Azure (Cached): $($azureCachedModules -join ', ')"
     }
 
-    [Array] $azurermCachedModules = Get-ChildItem -Path "C:\Modules\azurerm_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { $_ -eq $defaultAzureModuleVersion ? "$($_) (Default)" : $_ }
+    [Array] $azurermCachedModules = Get-ChildItem -Path "C:\Modules\azurerm_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azurermCachedModules.Count -gt 0) {
         $result += "AzureRM: $($azurermCachedModules -join ', ')"
     }
