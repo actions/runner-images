@@ -241,24 +241,21 @@ $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Installed Windows SDKs" -Level 4
 $sdk = Get-WindowsSDKs
-$markdown += "``Location $($sdk.Path)``"
 $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $sdk.Versions -Style Unordered
 
-$markdown += New-MDHeader ".NET Core SDK" -Level 3
+$markdown += New-MDHeader ".NET Core" -Level 3
 $sdk = Get-DotnetSdks
-$markdown += "``Location $($sdk.Path)``"
-$markdown += New-MDNewLine
-$markdown += New-MDList -Lines $sdk.Versions -Style Unordered
+$runtimes = Get-DotnetRuntimes
+$dotnetFrameworkVersions = Get-DotnetFrameworkVersions
 
-$markdown += New-MDHeader ".NET Core Runtime" -Level 3
-Get-DotnetRuntimes | Foreach-Object {
-    $path = $_.Path
-    $versions = $_.Versions
-    $markdown += "``Location: $path``"
-    $markdown += New-MDNewLine
-    $markdown += New-MDList -Lines $versions -Style Unordered
-}
+$markdown += New-MDList -Style Unordered -Lines @(
+    ".NET Core SDK: $($sdk.Versions)",
+    ".NET Framework: $($dotnetFrameworkVersions)"
+    $runtimes | ForEach-Object {
+        "$($_.Runtime): $($_.Versions)"
+    }
+)
 
 $markdown += New-MDHeader ".NET Framework" -Level 3
 $markdown += "``Type: Developer Pack``"
@@ -279,6 +276,10 @@ $markdown += New-MDList -Lines $tools -Style Unordered
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
 $markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
 
+$markdown += New-MDHeader "Powershell Modules" -Level 4
+$markdown += Get-PowerShellModules | New-MDTable
+$markdown += New-MDNewLine
+
 $markdown += New-MDHeader "Azure Powershell Modules" -Level 4
 $markdown += Get-PowerShellAzureModules | New-MDTable
 $reportAzPwsh = @'
@@ -290,9 +291,6 @@ All other versions are saved but not installed.
 '@
 $markdown += New-MDParagraph -Lines $reportAzPwsh
 
-$markdown += New-MDHeader "Powershell Modules" -Level 4
-$markdown += Get-PowerShellModules | New-MDTable
-$markdown += New-MDNewLine
 
 # Android section
 $markdown += New-MDHeader "Android" -Level 3

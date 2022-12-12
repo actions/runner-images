@@ -5,7 +5,7 @@ function Initialize-RustEnvironment {
 }
 
 function Get-OSName {
-    return (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
+    return (Get-CimInstance -ClassName Win32_OperatingSystem).Caption | Take-Part -Part 1,2,3
 }
 
 function Get-OSVersion {
@@ -124,7 +124,7 @@ function Get-ChocoVersion {
 
 function Get-VcpkgVersion {
     $commitId = git -C "C:\vcpkg" rev-parse --short HEAD
-    return "Vcpkg (build from master \<$commitId>)"
+    return "Vcpkg (build from commit $commitId)"
 }
 
 function Get-NPMVersion {
@@ -224,16 +224,9 @@ function Get-DotnetRuntimes {
     }
 }
 
-function Get-DotnetFrameworkTools {
-    $path = "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\*\*\NETFX*"
-    Get-ChildItem -Path $path -Directory | Group-Object {
-        $_.Fullname -Replace " \d+\.\d+(\.\d+)?", " <version>"
-    } | ForEach-Object {
-        [PSCustomObject]@{
-            Versions =  $_.Group.Name | ForEach-Object { $_.Split(" ")[1] }
-            Path = $_.Name
-        }
-    }
+function Get-DotnetFrameworkVersions {
+    $path = "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\*\*\NETFX * Tools"
+    Get-ChildItem -Path $path -Directory | ForEach-Object { $_.Name | Take-Part -Part 1 } -join ' '
 }
 
 function Get-PowerShellAzureModules {
