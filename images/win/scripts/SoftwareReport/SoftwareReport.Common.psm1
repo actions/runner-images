@@ -226,7 +226,8 @@ function Get-DotnetRuntimes {
 
 function Get-DotnetFrameworkVersions {
     $path = "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\*\*\NETFX * Tools"
-    Get-ChildItem -Path $path -Directory | ForEach-Object { $_.Name | Take-Part -Part 1 } -join ' '
+    $versions = Get-ChildItem -Path $path -Directory | ForEach-Object { $_.Name | Take-Part -Part 1 }
+    $versions -join ' '
 }
 
 function Get-PowerShellAzureModules {
