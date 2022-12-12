@@ -35,7 +35,7 @@ class HeaderNode: BaseNode {
     }
 
     [Boolean] ShouldBeIncludedToDiff() {
-        return $True
+        return $true
     }
 
     [void] AddNode([BaseNode] $node) {
@@ -186,7 +186,7 @@ class ToolVersionsNode: BaseToolNode {
 
     [String] ExtractMajorVersion([String] $Version) {
         $match = $this.MajorVersionRegex.Match($Version)
-        if ($match.Success -ne $True) {
+        if ($match.Success -ne $true) {
             throw "Version '$Version' doesn't match regex '$($this.PrimaryVersionRegex)'"
         }
 
@@ -228,7 +228,7 @@ class TableNode: BaseNode {
     }
 
     [Boolean] ShouldBeIncludedToDiff() {
-        return $True
+        return $true
     }
 
     static [TableNode] FromObjectsArray([Array] $Table) {
