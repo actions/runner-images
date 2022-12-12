@@ -4,10 +4,13 @@
 ##  Desc:  Installs AWS CloudWatch Agent
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
+
 # Install AWS CloudWatch Agent
-wget https://s3.amazonaws.com/amazoncloudwatch-agent/debian/amd64/latest/amazon-cloudwatch-agent.deb
-dpkg -i -E ./amazon-cloudwatch-agent.deb
-rm amazon-cloudwatch-agent.deb
+download_with_retries "https://s3.amazonaws.com/amazoncloudwatch-agent/debian/amd64/latest/amazon-cloudwatch-agent.deb" "/tmp" "amazon-cloudwatch-agent.deb"
+apt install /tmp/amazon-cloudwatch-agent.deb
 
 # Validate the installation
 echo "Validate the installation"
