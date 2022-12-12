@@ -1,3 +1,7 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
+$os = Get-OSVersion
+
 function Get-BashVersion {
     $version = bash -c 'echo ${BASH_VERSION}'
     return $version
@@ -76,7 +80,7 @@ function Get-RustupVersion {
 function Get-VcpkgVersion {
     $vcpkgVersion = Run-Command "vcpkg version" | Select-Object -First 1 | Take-Part -Part 5 | Take-Part -Part 0 -Delimiter "-"
     $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
-    return "$vcpkgVersion (build from master \<$commitId>)"
+    return "$vcpkgVersion (build from commit $commitId)"
 }
 
 function Get-GccVersions {
@@ -109,7 +113,7 @@ function Get-ClangLLVMVersions {
 
     return @(
         [ToolNode]::new("Clang/LLVM", $defaultClangVersion)
-        [ToolNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ```'$homebrewClangPath`'``")
+        [ToolNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ``$homebrewClangPath``")
     )
 }
 
@@ -144,8 +148,8 @@ function Get-NVMNodeVersionList {
     $nvmInitCommand = ". ${nvmPath} > /dev/null 2>&1 || true"
     $nodejsVersionsRaw = Run-Command "${nvmInitCommand} && nvm ls"
     $nodeVersions = $nodejsVersionsRaw | ForEach-Object { $_.TrimStart(" ").TrimEnd(" *") } | Where-Object { $_.StartsWith("v") }
-    $result = [string]::Join(" ", $nodeVersions)
-    return $result
+    $formattedNodeVersions = $nodeVersions | ForEach-Object { $_.TrimStart("v") }
+    return [string]::Join(" ", $formattedNodeVersions)
 }
 
 function Build-OSInfoSection {
@@ -156,29 +160,36 @@ function Build-OSInfoSection {
     $fieldsToInclude = @("System Version:", "Kernel Version:")
     $rawSystemInfo = Invoke-Expression "system_profiler SPSoftwareDataType"
     $parsedSystemInfo = $rawSystemInfo | Where-Object { -not ($_ | Select-String -NotMatch $fieldsToInclude) } | ForEach-Object { $_.Trim() }
-    $parsedSystemInfo[0] -match "System Version: macOS (?<version>\d+\.\d+)" | Out-Null
+    if ($os.IsCatalina) {
+        $parsedSystemInfo[0] -match "System Version: macOS (?<version>\d+\.\d+)" | Out-Null
+    } else {
+        $parsedSystemInfo[0] -match "System Version: macOS (?<version>\d+)" | Out-Null
+    }
     $version = $Matches.Version
     $systemVersion = $parsedSystemInfo[0].Replace($fieldsToInclude[0],"").Trim()
     $kernelVersion = $parsedSystemInfo[1].Replace($fieldsToInclude[1],"").Trim()
 
-    $osInfoNode = [HeaderNode]::new("macOS $version info")
+    $osInfoNode = [HeaderNode]::new("macOS $version")
     $osInfoNode.AddToolNode("System Version:", $systemVersion)
     $osInfoNode.AddToolNode("Kernel Version:", $kernelVersion)
     $osInfoNode.AddToolNode("Image Version:", $ImageName.Split('_')[1])
     return $osInfoNode
 }
 
+function Get-MonoVersion {
+    $monoVersion = mono --version | Out-String | Take-Part -Part 4
+    return $monoVersion
+}
+
 function Get-MSBuildVersion {
     $msbuildVersion = msbuild -version | Select-Object -Last 1
-    $result = Select-String -Path (Get-Command msbuild).Source -Pattern "msbuild"
-    $result -match "(?<path>\/\S*\.dll)" | Out-Null
-    $msbuildPath = $Matches.path
-    return "$msbuildVersion (from $msbuildPath)"
+    $monoVersion = Get-MonoVersion
+    return "$msbuildVersion (Mono $monoVersion)"
 }
 
 function Get-NodeVersion {
     $nodeVersion = Run-Command "node --version"
-    return $nodeVersion
+    return $nodeVersion.TrimStart("v")
 }
 
 function Get-PerlVersion {
@@ -213,7 +224,7 @@ function Get-JuliaVersion {
 
 function Get-BundlerVersion {
     $bundlerVersion = Run-Command "bundle --version"
-    return ($bundlerVersion -replace "^Bundler").Trim()
+    return ($bundlerVersion -replace "^Bundler version").Trim()
 }
 
 function Get-CarthageVersion {
