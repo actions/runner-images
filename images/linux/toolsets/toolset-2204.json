@@ -142,6 +142,7 @@
             "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
+            "libyaml-dev",
             "libtool",
             "libunwind8",
             "libxkbfile-dev",
@@ -178,6 +179,7 @@
             "ftp",
             "haveged",
             "jq",
+            "lz4",
             "m4",
             "mediainfo",
             "netcat",
@@ -271,7 +273,8 @@
     "gfortran": {
         "versions": [
             "gfortran-9",
-            "gfortran-10"
+            "gfortran-10",
+            "gfortran-12"
         ]
     },
     "php": {

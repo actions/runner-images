@@ -5,7 +5,7 @@
 ***
 # Ubuntu 20.04.5 LTS
 - Linux kernel version: 5.15.0-1023-azure
-- Image Version: 20221125.1
+- Image Version: 20221204.2
 
 ## Installed Software
 ### Language and Runtime
@@ -19,7 +19,7 @@
 - GNU C++ 9.4.0, 10.3.0
 - GNU Fortran 9.4.0, 10.3.0
 - Julia 1.8.3
-- Kotlin 1.7.21-release-272
+- Kotlin 1.7.22-release-288
 - Mono 6.12.0.182 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
 - MSBuild 16.10.1.31701 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
 - Node 16.18.1
@@ -32,7 +32,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.10.2
-- Homebrew 3.6.12
+- Homebrew 3.6.13
 - Miniconda 4.12.0
 - Npm 8.19.2
 - NuGet 6.3.1.1
@@ -40,7 +40,7 @@
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<62d01b70d>)
+- Vcpkg  (build from master \<163fe7bd3>)
 - Yarn 1.22.19
 
 ##### Notes:
@@ -60,7 +60,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.7
 - Gradle 7.6
-- Lerna 6.0.3
+- Lerna 6.1.0
 - Maven 3.8.6
 - Sbt 1.8.0
 
@@ -72,7 +72,7 @@ to accomplish this.
 - Bazelisk 1.13.2
 - Bicep 0.12.40
 - Buildah 1.22.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- CMake 3.25.0
+- CMake 3.25.1
 - CodeQL Action Bundle 2.11.4
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
@@ -82,10 +82,10 @@ to accomplish this.
 - Docker-Moby Server 20.10.21+azure-1
 - Fastlane 2.211.0
 - Git 2.38.1 (apt source repository: ppa:git-core/ppa)
-- Git LFS 3.2.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
+- Git LFS 3.3.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 7.66.4
+- Heroku 7.67.1
 - HHVM (HipHop VM) 4.172.0
 - jq 1.6
 - Kind 0.17.0
@@ -108,25 +108,25 @@ to accomplish this.
 - Skopeo 1.5.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.3.5
+- Terraform 1.3.6
 - yamllint 1.28.0
-- yq v4.30.4
+- yq v4.30.5
 - zstd 1.5.2 (homebrew)
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.138
-- AWS CLI 2.9.1
+- Alibaba Cloud CLI 3.0.140
+- AWS CLI 2.9.4
 - AWS CLI Session manager plugin 1.2.398.0
-- AWS SAM CLI 1.65.0
+- AWS SAM CLI 1.66.0
 - Azure CLI (azure-cli) 2.42.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.20.2
 - Google Cloud SDK 410.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 12.2.7
-- OpenShift CLI 4.11.16
+- Netlify CLI 12.2.8
+- OpenShift CLI 4.11.17
 - ORAS CLI 0.16.0
-- Vercel CLI 28.5.6
+- Vercel CLI 28.7.2
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -143,7 +143,7 @@ to accomplish this.
 ### PHP
 | Tool     | Version              |
 | -------- | -------------------- |
-| PHP      | 7.4.33 8.0.25 8.1.12 |
+| PHP      | 7.4.33 8.0.26 8.1.13 |
 | Composer | 2.4.4                |
 | PHPUnit  | 8.5.31               |
 ```
@@ -170,13 +170,13 @@ to accomplish this.
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 107.0.5304.121
-- ChromeDriver 107.0.5304.62
-- Chromium 107.0.5288.0
-- Microsoft Edge 107.0.1418.56 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 107.0.1418.56
-- Selenium server 4.6.0
-- Mozilla Firefox 107.0
+- Google Chrome 108.0.5359.94
+- ChromeDriver 108.0.5359.71
+- Chromium 108.0.5341.0
+- Microsoft Edge 107.0.1418.62 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 107.0.1418.62
+- Selenium server 4.7.0
+- Mozilla Firefox 107.0.1 (apt source repository: ppa:mozillateam/ppa)
 - Geckodriver 0.32.0
 
 #### Environment variables
@@ -205,7 +205,7 @@ to accomplish this.
     PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
 ```
 #### MySQL
-- MySQL 8.0.31-0ubuntu0.20.04.1
+- MySQL 8.0.31-0ubuntu0.20.04.2
 - MySQL Server (user:root password:root)
 
 ```
@@ -237,7 +237,7 @@ to accomplish this.
 - 2.7.18
 - 3.6.15
 - 3.7.15
-- 3.8.14
+- 3.8.15
 - 3.9.15
 - 3.10.8
 - 3.11.0
@@ -263,12 +263,12 @@ to accomplish this.
 | Module           | Version |
 | ---------------- | ------- |
 | MarkdownPS       | 1.9     |
-| Microsoft.Graph  | 1.17.0  |
+| Microsoft.Graph  | 1.18.0  |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.21.0  |
 
 #### Az PowerShell Modules
-- 7.5.0 3.1.0.zip 4.4.0.zip 5.9.0.zip 6.6.0.zip
+- 9.0.1 3.1.0.zip 4.4.0.zip 5.9.0.zip 6.6.0.zip 7.5.0.zip
 
 ### Web Servers
 | Name      | Version | ConfigFile                | ServiceStatus | ListenPort |
