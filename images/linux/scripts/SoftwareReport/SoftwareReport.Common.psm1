@@ -255,31 +255,14 @@ function Get-PHPUnitVersion {
     return $Matches.version
 }
 
-function Build-PHPTable {
-    $php = @{
-        "Tool" = "PHP"
-        "Version" = "$(Get-PHPVersions -Join '<br>')"
-    }
-    $composer = @{
-        "Tool" = "Composer"
-        "Version" = Get-ComposerVersion
-    }
-    $phpunit = @{
-        "Tool" = "PHPUnit"
-        "Version" = Get-PHPUnitVersion
-    }
-    return @($php, $composer, $phpunit) | ForEach-Object {
-        [PSCustomObject] @{
-            "Tool" = $_.Tool
-            "Version" = $_.Version
-        }
-    }
-}
-
 function Build-PHPSection {
     $output = ""
-    $output += New-MDHeader "PHP" -Level 3
-    $output += Build-PHPTable | New-MDTable
+    $output += New-MDHeader "PHP Tools" -Level 3
+    $output += New-MDList -Style Unordered -Lines @(
+        "PHP: $(Get-PHPVersions -join ', ')",
+        "Composer $(Get-ComposerVersion)",
+        "PHPUnit $(Get-PHPUnitVersion)"
+    )
     $output += New-MDCode -Lines @(
         "Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled."
     )
@@ -321,18 +304,25 @@ function Get-AzModuleVersions {
 }
 
 function Get-PowerShellModules {
-    $modules = (Get-ToolsetContent).powershellModules.name
+    [Array] $result = @()
 
-    $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
-    $psModules | ForEach-Object {
-        $moduleName = $_.Name
-        $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
-
-        [PSCustomObject]@{
-            Module = $moduleName
-            Version = $moduleVersions
-        }
+    [Array] $azureInstalledModules = Get-ChildItem -Path "/usr/share/az_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] }
+    if ($azureInstalledModules.Count -gt 0) {
+        $result += "Az: $($azureInstalledModules -join ', ')"
     }
+
+    [Array] $azureCachedModules = Get-ChildItem /usr/share/az_*.zip -File | ForEach-Object { $_.Name.Split("_")[1] }
+    if ($azureCachedModules.Count -gt 0) {
+        $result += "Az (Cached): $($azureCachedModules -join ', ')"
+    }
+
+    $result += (Get-ToolsetContent).powershellModules.name | ForEach-Object {
+        $moduleName = $_
+        $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
+        return "$($moduleName): $($moduleVersions -join ', ')"
+    }
+
+    return $result
 }
 
 function Get-DotNetCoreSdkVersions {

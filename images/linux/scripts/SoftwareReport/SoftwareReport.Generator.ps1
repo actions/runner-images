@@ -193,7 +193,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-OCCliVersion),
     (Get-ORASCliVersion),
     (Get-VerselCliversion)
-    ) | Sort-Object
+    )
 )
 
 $markdown += New-MDHeader "Java" -Level 3
@@ -284,20 +284,11 @@ $markdown += Build-MSSQLToolsSection
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection
 
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-GoEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
 $markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
 
 $markdown += New-MDHeader "PowerShell Modules" -Level 4
-$markdown += Get-PowerShellModules | New-MDTable
-$markdown += New-MDNewLine
-$markdown += New-MDHeader "Az PowerShell Modules" -Level 4
-$markdown += New-MDList -Style Unordered -Lines @(
-    (Get-AzModuleVersions)
-)
+$markdown += New-MDList -Lines $(Get-PowerShellModules) -Style Unordered
 
 $markdown += Build-WebServersSection
 
