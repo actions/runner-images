@@ -1,3 +1,6 @@
+using module ./software-report-base/SoftwareReport.psm1
+using module ./software-report-base/SoftwareReport.Nodes.psm1
+
 param (
     [Parameter(Mandatory)][string]
     $OutputDirectory,
@@ -6,7 +9,6 @@ param (
 
 $ErrorActionPreference = "Stop"
 
-. ("$PSScriptRoot/SoftwareReport.Base.ps1")
 Import-Module "$PSScriptRoot/SoftwareReport.Common.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Xcode.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Android.psm1" -DisableNameChecking

@@ -78,6 +78,10 @@ build {
     ]
   }
   provisioner "file" {
+    destination = "image-generation/software-report/"
+    source = "../../helpers/software-report-base"
+  }
+  provisioner "file" {
     destination = "image-generation/add-certificate.swift"
     source = "./provision/configuration/add-certificate.swift"
   }

@@ -60,6 +60,11 @@
         },
         {
             "type": "file",
+            "source": "../../helpers/software-report-base",
+            "destination": "~/image-generation/software-report/"
+        },
+        {
+            "type": "file",
             "source": "./helpers",
             "destination": "~/image-generation/"
         },
