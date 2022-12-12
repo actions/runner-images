@@ -26,9 +26,9 @@ $markdown += New-MDList -Style Unordered -Lines @(
     "Image Version: $env:IMAGE_VERSION"
 )
 
-$markdown += New-MDHeader "Enabled windows optional features" -Level 2
+$markdown += New-MDHeader "Windows features" -Level 2
 $markdown += New-MDList -Style Unordered -Lines @(
-    "Windows Subsystem for Linux [WSLv1]"
+    "Windows Subsystem for Linux (WSLv1): Enabled"
 )
 
 $markdown += New-MDHeader "Installed Software" -Level 2
@@ -165,7 +165,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     ) | Sort-Object
 )
 
-$markdown += New-MDHeader "Browsers and webdrivers" -Level 3
+$markdown += New-MDHeader "Browsers and Drivers" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-BrowserVersion -Browser "chrome"),
     (Get-SeleniumWebDriverVersion -Driver "chrome"),
@@ -208,7 +208,7 @@ if (Test-IsWin19)
 }
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
-$markdown += (Build-CachedToolsMarkdown)
+$markdown += (Build-CachedToolsSection)
 
 $markdown += New-MDHeader "Databases" -Level 3
 $markdown += Build-DatabasesMarkdown
@@ -277,7 +277,7 @@ $markdown += New-MDHeader "PowerShell Tools" -Level 3
 $markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
 
 $markdown += New-MDHeader "Powershell Modules" -Level 4
-$markdown += Get-PowerShellModules | New-MDTable
+$markdown += New-MDList -Lines $(Get-PowerShellModules) -Style Unordered
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Azure Powershell Modules" -Level 4
