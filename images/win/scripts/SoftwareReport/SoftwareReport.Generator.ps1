@@ -278,10 +278,6 @@ $markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
 
 $markdown += New-MDHeader "Powershell Modules" -Level 4
 $markdown += New-MDList -Lines $(Get-PowerShellModules) -Style Unordered
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Azure Powershell Modules" -Level 4
-$markdown += Get-PowerShellAzureModules | New-MDTable
 $reportAzPwsh = @'
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
