@@ -239,12 +239,12 @@ function Get-PowerShellAzureModules {
         $result += "Az: $($azInstalledModules -join ', ')"
     }
 
-    [Array] $azureInstalledModules = Get-ChildItem -Path "C:\Modules\azure_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { $_ -eq $defaultAzureModuleVersion ? "$($_) (Default)" : $_ }
+    [Array] $azureInstalledModules = Get-ChildItem -Path "C:\Modules\azure_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { if ($_ -eq $defaultAzureModuleVersion) { "$($_) (Default)" } else { $_ } }
     if ($azureInstalledModules.Count -gt 0) {
         $result += "Azure: $($azureInstalledModules -join ', ')"
     }
 
-    [Array] $azurermInstalledModules = Get-ChildItem -Path "C:\Modules\azurerm_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { $_ -eq $defaultAzureModuleVersion ? "$($_) (Default)" : $_ }
+    [Array] $azurermInstalledModules = Get-ChildItem -Path "C:\Modules\azurerm_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { if ($_ -eq $defaultAzureModuleVersion) { "$($_) (Default)" } else { $_ } }
     if ($azurermInstalledModules.Count -gt 0) {
         $result += "AzureRM: $($azurermInstalledModules -join ', ')"
     }
