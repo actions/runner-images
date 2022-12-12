@@ -258,7 +258,7 @@ function Get-StackVersion {
 }
 
 function Get-GoogleCloudSDKVersion {
-    (gcloud --version) -match "Google Cloud SDK"
+    (cmd /c "gcloud --version") -match "Google Cloud SDK"
 }
 
 function Get-ServiceFabricSDKVersion {

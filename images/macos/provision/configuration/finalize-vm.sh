@@ -13,8 +13,14 @@ if is_Catalina; then
     fi
 fi
 
+# Remove Parallels Desktop
+# https://github.com/actions/runner-images/issues/6105
+if is_Monterey; then
+    brew uninstall parallels
+fi
+
 # Put documentation to $HOME root
-cp $HOME/image-generation/output/software-report/systeminfo.txt $HOME/image-generation/output/software-report/systeminfo.md $HOME/
+cp $HOME/image-generation/output/software-report/systeminfo.* $HOME/
 
 # Put build vm assets scripts to proper directory
 mkdir -p /usr/local/opt/$USER/scripts

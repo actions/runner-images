@@ -8,6 +8,8 @@ Describe "Rust" {
     $rustTools = @(
         @{ToolName = "rustup"; binPath = "C:\Users\Default\.cargo\bin\rustup.exe"}
         @{ToolName = "rustc"; binPath = "C:\Users\Default\.cargo\bin\rustc.exe"}
+        @{ToolName = "bindgen.exe"; binPath = "C:\Users\Default\.cargo\bin\bindgen.exe"}
+        @{ToolName = "cbindgen.exe"; binPath = "C:\Users\Default\.cargo\bin\cbindgen.exe"}
         @{ToolName = "cargo"; binPath = "C:\Users\Default\.cargo\bin\cargo.exe"}
         @{ToolName = "cargo audit"; binPath = "C:\Users\Default\.cargo\bin\cargo-audit.exe"}
         @{ToolName = "cargo outdated"; binPath = "C:\Users\Default\.cargo\bin\cargo-outdated.exe"}

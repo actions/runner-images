@@ -14,6 +14,13 @@ function GetChromiumRevision {
     URL="https://omahaproxy.appspot.com/deps.json?version=${CHROME_VERSION}"
     REVISION=$(curl -s $URL | jq -r '.chromium_base_position')
 
+    # both 108.0.5359.98 and 108.0.5359.94 return old incorrect revision
+    # nothing to compare with, hardcode temporarily.
+    # see https://github.com/actions/runner-images/issues/6723
+    if [ $REVISION -eq "1016" ]; then
+       REVISION="1054926"
+    fi
+
     # Some Google Chrome versions are based on Chromium revisions for which a (usually very old) Chromium release with the same number exist. So far this has heppened with 4 digits long Chromium revisions (1060, 1086).
     # Use the previous Chromium release when this happens to avoid downloading and installing very old Chromium releases that would break image build because of incompatibilities.
     # First reported with: https://github.com/actions/runner-images/issues/5256

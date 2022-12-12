@@ -4,16 +4,46 @@
 # - https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/td-p/31504
 # - https://github.community/t5/GitHub-Actions/Protecting-github-workflows/td-p/30290
 
+parameters:
+  - name: job_id
+    type: string
+    default: 'generate_image'
+
+  - name: image_type
+    type: string
+
+  - name: image_readme_name
+    type: string
+
+  - name: agent_pool
+    type: object
+    default:
+      name: 'ci-agent-pool'
+
+  - name: variable_group_name
+    type: string
+    default: 'Image Generation Variables'
+
+  - name: create_release
+    type: boolean
+    default: true
+
+  - name: repository_ref
+    type: string
+    default: 'self'
+
 jobs:
-- job:
+- job: ${{ parameters.job_id }}
   displayName: Image Generation (${{ parameters.image_type }})
   timeoutInMinutes: 600
   cancelTimeoutInMinutes: 30
-  pool: ci-agent-pool
+  pool: ${{ parameters.agent_pool }}
   variables:
-  - group: Image Generation Variables
+  - group: ${{ parameters.variable_group_name }}
 
   steps:
+  - checkout: ${{ parameters.repository_ref }}
+
   - task: PowerShell@2
     displayName: 'Download custom repository'
     condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
@@ -76,17 +106,18 @@ jobs:
                         -PrefixToPathTrim "$(TemplateDirectoryPath)" `
                         -PrintTopNLongest 25
 
-  - task: PowerShell@2
-    displayName: 'Create release for VM deployment'
-    inputs:
-      targetType: filePath
-      filePath: ./images.CI/linux-and-win/create-release.ps1
-      arguments: -BuildId $(Build.BuildId) `
-                        -Organization $(RELEASE_TARGET_ORGANIZATION) `
-                        -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
-                        -Project $(RELEASE_TARGET_PROJECT) `
-                        -ImageName ${{ parameters.image_type }} `
-                        -AccessToken $(RELEASE_TARGET_TOKEN)
+  - ${{ if eq(parameters.create_release, true) }}:
+    - task: PowerShell@2
+      displayName: 'Create release for VM deployment'
+      inputs:
+        targetType: filePath
+        filePath: ./images.CI/linux-and-win/create-release.ps1
+        arguments: -BuildId $(Build.BuildId) `
+                          -Organization $(RELEASE_TARGET_ORGANIZATION) `
+                          -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
+                          -Project $(RELEASE_TARGET_PROJECT) `
+                          -ImageName ${{ parameters.image_type }} `
+                          -AccessToken $(RELEASE_TARGET_TOKEN)
 
   - task: PowerShell@2
     displayName: 'Clean up resources'
