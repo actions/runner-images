@@ -33,7 +33,7 @@ $installedSoftware = $softwareReport.Root.AddHeaderNode("Installed Software")
 
 # Language and Runtime
 $languageAndRuntime = $installedSoftware.AddHeaderNode("Language and Runtime")
-$languageAndRuntime.AddToolNode(".NET SDK", $(Get-DotnetVersionList))
+$languageAndRuntime.AddToolVersionsNode(".NET Core SDK", $(Get-DotnetVersionList), '^\d+\.\d+\.\d', $true)
 $languageAndRuntime.AddToolNode("Bash", $(Get-BashVersion))
 $languageAndRuntime.AddNodes($(Get-ClangLLVMVersions))
 $languageAndRuntime.AddNodes($(Get-GccVersions))
@@ -45,7 +45,7 @@ $languageAndRuntime.AddToolNode("Mono", $(Get-MonoVersion))
 $languageAndRuntime.AddToolNode("MSBuild", $(Get-MSBuildVersion))
 $languageAndRuntime.AddToolNode("Node.js", $(Get-NodeVersion))
 $languageAndRuntime.AddToolNode("NVM", $(Get-NVMVersion))
-$languageAndRuntime.AddToolNode("NVM - Cached node versions:", $(Get-NVMNodeVersionList))
+$languageAndRuntime.AddToolVersionsNode("NVM - Cached node versions", $(Get-NVMNodeVersionList), '^\d+', $true)
 $languageAndRuntime.AddToolNode("Perl", $(Get-PerlVersion))
 $languageAndRuntime.AddToolNode("PHP", $(Get-PHPVersion))
 $languageAndRuntime.AddToolNode("Python", $(Get-PythonVersion))
@@ -193,7 +193,7 @@ $powerShell = $installedSoftware.AddHeaderNode("PowerShell Tools")
 $powerShell.AddToolNode("PowerShell", $(Get-PowershellVersion))
 
 $powerShellModules = $powerShell.AddHeaderNode("PowerShell Modules")
-$powerShellModules.AddTableNode($(Get-PowerShellModules))
+$powerShellModules.AddNodes($(Get-PowerShellModules))
 
 # Web Servers
 $webServers = $installedSoftware.AddHeaderNode("Web Servers")

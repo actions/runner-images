@@ -63,8 +63,8 @@ class HeaderNode: BaseNode {
         $this.AddNode([ToolNode]::new($ToolName, $Version))
     }
 
-    [void] AddToolVersionsNode([String] $ToolName, [Array] $Version) {
-        $this.AddNode([ToolVersionsNode]::new($ToolName, $Version))
+    [void] AddToolVersionsNode([String] $ToolName, [Array] $Version, [String] $MajorVersionRegex, [Boolean] $InlineList) {
+        $this.AddNode([ToolVersionsNode]::new($ToolName, $Version, $MajorVersionRegex, $InlineList))
     }
      
     [void] AddTableNode([Array] $Table) {
@@ -167,7 +167,7 @@ class ToolVersionsNode: BaseToolNode {
 
     [String] ToMarkdown($level) {
         if ($this.ListType -eq "Inline") {
-            return "- $($this.ToolName) $($this.Versions -join ', ')"
+            return "- $($this.ToolName): $($this.Versions -join ', ')"
         }
 
         $sb = [System.Text.StringBuilder]::new()

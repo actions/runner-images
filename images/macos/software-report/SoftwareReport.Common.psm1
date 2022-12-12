@@ -9,8 +9,7 @@ function Get-BashVersion {
 
 function Get-DotnetVersionList {
     $sdkRawList = Run-Command "dotnet --list-sdks"
-    $sdkVersionList = $sdkRawList | ForEach-Object { Take-Part $_ -Part 0 }
-    return [string]::Join(" ", $sdkVersionList)
+    return $sdkRawList | ForEach-Object { Take-Part $_ -Part 0 }
 }
 
 function Get-GoVersion {
