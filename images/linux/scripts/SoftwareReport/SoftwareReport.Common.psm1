@@ -76,16 +76,13 @@ function Get-ErlangRebar3Version {
 
 function Get-MonoVersion {
     $monoVersion = mono --version | Out-String | Take-OutputPart -Part 4
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "mono"
-    return "Mono $monoVersion (apt source repository: $aptSourceRepo)"
+    return $monoVersion
 }
 
 function Get-MsbuildVersion {
     $msbuildVersion = msbuild -version | Select-Object -Last 1
-    $result = Select-String -Path (Get-Command msbuild).Source -Pattern "msbuild"
-    $result -match "(?<path>\/\S*\.dll)" | Out-Null
-    $msbuildPath = $Matches.path
-    return "MSBuild $msbuildVersion (from $msbuildPath)"
+    $monoVersion = Get-MonoVersion
+    return "MSBuild $msbuildVersion (Mono $monoVersion)"
 }
 
 function Get-NuGetVersion {
@@ -210,11 +207,8 @@ function Get-Pip3Version {
 }
 
 function Get-VcpkgVersion {
-    $result = Get-CommandResult "vcpkg version"
-    $result.Output -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $vcpkgVersion = $Matches.version
     $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
-    return "Vcpkg $vcpkgVersion (build from master \<$commitId>)"
+    return "Vcpkg (build from commit '$commitId')"
 }
 
 function Get-AntVersion {

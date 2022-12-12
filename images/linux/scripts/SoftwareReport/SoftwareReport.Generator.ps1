@@ -24,13 +24,11 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -Disabl
 Restore-UserOwner
 
 $markdown = ""
+$markdown += New-MDHeader "Ubuntu $(Get-OSVersionShort)" -Level 1
 
-$OSName = Get-OSName
-$markdown += New-MDHeader "$OSName" -Level 1
-
-$kernelVersion = Get-KernelVersion
 $markdown += New-MDList -Style Unordered -Lines @(
-    "$kernelVersion"
+    "OS Version: $(Get-OSVersionFull)"
+    "Kernel Version: $(Get-KernelVersion)"
     "Image Version: $env:IMAGE_VERSION"
 )
 
@@ -42,8 +40,8 @@ $runtimesList = @(
     (Get-DashVersion),
     (Get-CPPVersions),
     (Get-FortranVersions),
-    (Get-MsbuildVersion),
-    (Get-MonoVersion),
+    "MSBuild $(Get-MsbuildVersion)",
+    "Mono $(Get-MonoVersion)",
     (Get-NodeVersion),
     (Get-PerlVersion),
     (Get-PythonVersion),
@@ -85,7 +83,11 @@ $packageManagementList = @(
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
 
-$markdown += New-MDHeader "Notes:" -Level 5
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Homebrew note" -Level 4
 $reportHomebrew = @'
 ```
 Location: /home/linuxbrew
@@ -95,9 +97,6 @@ to accomplish this.
 ```
 '@
 $markdown += New-MDParagraph -Lines $reportHomebrew
-
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Project Management" -Level 3
