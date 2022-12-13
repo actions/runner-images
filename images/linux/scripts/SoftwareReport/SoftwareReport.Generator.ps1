@@ -97,7 +97,6 @@ to accomplish this.
 ```
 '@
 $markdown += New-MDParagraph -Lines $reportHomebrew
-$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Project Management" -Level 3
 $projectManagementList = @()
@@ -255,14 +254,12 @@ $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader ".NET Core SDK" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
-    (Get-DotNetCoreSdkVersions)
+$markdown += New-MDHeader ".NET Core Tools" -Level 3
+$netCoreTools = @(
+    ".NET Core SDKs: $(Get-DotNetCoreSdkVersions)"
 )
-
-$markdown += New-MDHeader ".NET tools" -Level 3
-$tools = Get-DotnetTools
-$markdown += New-MDList -Lines $tools -Style Unordered
+$netCoreTools += Get-DotnetTools
+$markdown += New-MDList -Style Unordered -Lines $netCoreTools
 
 $markdown += New-MDHeader "Databases" -Level 3
 $databaseLists = @(

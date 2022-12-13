@@ -259,7 +259,7 @@ function Build-PHPSection {
     $output = ""
     $output += New-MDHeader "PHP Tools" -Level 3
     $output += New-MDList -Style Unordered -Lines @(
-        "PHP: $(Get-PHPVersions -join ', ')",
+        "PHP: $((Get-PHPVersions) -join ', ')",
         "Composer $(Get-ComposerVersion)",
         "PHPUnit $(Get-PHPUnitVersion)"
     )
@@ -327,7 +327,7 @@ function Get-PowerShellModules {
 
 function Get-DotNetCoreSdkVersions {
     $unsortedDotNetCoreSdkVersion = dotnet --list-sdks list | ForEach-Object { $_ | Take-OutputPart -Part 0 }
-    $dotNetCoreSdkVersion = $unsortedDotNetCoreSdkVersion -join " "
+    $dotNetCoreSdkVersion = $unsortedDotNetCoreSdkVersion -join ", "
     return $dotNetCoreSdkVersion
 }
 
