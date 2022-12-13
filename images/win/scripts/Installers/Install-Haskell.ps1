@@ -26,12 +26,9 @@ $VersionsList = $LatestMajorMinor | ForEach-Object { $_.Group | Select-Object -F
 # The latest version will be installed as a default
 ForEach ($version in $VersionsList)
 {
-     # 9.4.3 has failed choco builds, replace with 9.4.2 for the time being
-     # 9.2.5 has failed choco builds, replace with 9.2.4 for the time being
-    if ($version -eq "9.4.3"){ [version]$version = "9.4.2" }
-    if ($version -eq "9.2.5"){ [version]$version = "9.2.4" }
     Write-Host "Installing ghc $version..."
     ghcup install ghc $version
+    ghcup set ghc $version
 }
 
 # Add default version of GHC to path, because choco formula updates path on user level
