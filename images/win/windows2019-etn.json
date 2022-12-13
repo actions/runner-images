@@ -204,7 +204,6 @@
                 "{{ template_dir }}/scripts/Installers/Install-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Configure-Toolset.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-NodeLts.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-AndroidSDK.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-AzureModules.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Pipx.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PipxPackages.ps1",
@@ -310,6 +309,9 @@
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Run-NGen.ps1",
                 "{{ template_dir }}/scripts/Installers/Finalize-VM.ps1"
+            ],
+            "environment_vars": [
+                "INSTALL_USER={{user `install_user`}}"
             ]
         },
         {
