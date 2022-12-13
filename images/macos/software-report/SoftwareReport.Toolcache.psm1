@@ -28,47 +28,26 @@ function Get-ToolcacheNodeVersions {
     return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
 }
 
-function Get-ToolcacheGoTable {
-    $ToolInstances = Get-CachedToolInstances -Name "Go" -VersionCommand "version"
-    foreach ($Instance in $ToolInstances) {
-        $Version = [System.Version]($Instance.Version -Split(" "))[0]
-        $Instance."Environment Variable" = "GOROOT_$($Version.major)_$($Version.minor)_X64"
-    }
-
-    $Content = $ToolInstances | ForEach-Object {
-        return [PSCustomObject]@{
-            Version = $_.Version
-            Architecture = $_.Architecture
-            "Environment Variable" = $_."Environment Variable"
-        }
-    }
-
-    return $Content
+function Get-ToolcacheGoVersions {
+    $toolcachePath = Join-Path $env:HOME "hostedtoolcache" "Go"
+    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
 }
 
 function Build-ToolcacheSection { 
-    $goToolNode = [HeaderNode]::new("Go")
-    $goToolNode.AddTableNode($(Get-ToolcacheGoTable))
     return @(
-        [ToolVersionsNode]::new("Ruby", $(Get-ToolcacheRubyVersions))
-        [ToolVersionsNode]::new("Python", $(Get-ToolcachePythonVersions))
-        [ToolVersionsNode]::new("PyPy", $(Get-ToolcachePyPyVersions))
-        [ToolVersionsNode]::new("Node.js", $(Get-ToolcacheNodeVersions))
-        $goToolNode
+        [ToolVersionsNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', $false),
+        [ToolVersionsNode]::new("Python", $(Get-ToolcachePythonVersions), '^\d+\.\d+', $false), 
+        [ToolVersionsNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', $false),
+        [ToolVersionsNode]::new("Node.js", $(Get-ToolcacheNodeVersions), '^\d+', $false),
+        [ToolVersionsNode]::new("Go", $(Get-ToolcacheGoVersions), '^\d+\.\d+', $false)
     )
 }
 
 function Get-PowerShellModules {
     $modules = (Get-ToolsetValue powershellModules).name
-
-    $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
-    return $psModules | ForEach-Object {
-        $moduleName = $_.Name
-        $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
-
-        [PSCustomObject]@{
-            Module = $moduleName
-            Version = $moduleVersions
-        }
+    $modules | ForEach-Object {
+        $moduleName = $_
+        $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
+        return [ToolVersionsNode]::new($moduleName, $moduleVersions, '^\d+', $true)
     }
 }
