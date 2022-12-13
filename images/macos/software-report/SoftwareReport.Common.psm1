@@ -147,8 +147,7 @@ function Get-NVMNodeVersionList {
     $nvmInitCommand = ". ${nvmPath} > /dev/null 2>&1 || true"
     $nodejsVersionsRaw = Run-Command "${nvmInitCommand} && nvm ls"
     $nodeVersions = $nodejsVersionsRaw | ForEach-Object { $_.TrimStart(" ").TrimEnd(" *") } | Where-Object { $_.StartsWith("v") }
-    $formattedNodeVersions = $nodeVersions | ForEach-Object { $_.TrimStart("v") }
-    return [string]::Join(" ", $formattedNodeVersions)
+    return $nodeVersions | ForEach-Object { $_.TrimStart("v") }
 }
 
 function Build-OSInfoSection {
@@ -330,7 +329,7 @@ function Get-PackerVersion {
 }
 
 function Get-OpenSSLVersion {
-    $opensslVersion = Get-Item /usr/local/opt/openssl@1.1 | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
+    $opensslVersion = Run-Command "openssl version"
     return ($opensslVersion -replace "^OpenSSL").Trim()
 }
 

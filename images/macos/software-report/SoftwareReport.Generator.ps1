@@ -153,7 +153,7 @@ $tools.AddToolNode("Xcode Command Line Tools", $(Get-XcodeCommandLineToolsVersio
 
 # Linters
 $linters = $installedSoftware.AddHeaderNode("Linters")
-$linters.AddToolNode("Swift", $(Get-SwiftLintVersion))
+$linters.AddToolNode("SwiftLint", $(Get-SwiftLintVersion))
 $linters.AddToolNode("Yamllint", $(Get-YamllintVersion))
 
 # Browsers
