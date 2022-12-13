@@ -1,53 +1,56 @@
 | Announcements |
 |-|
+| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.1 on January, 9](https://github.com/actions/runner-images/issues/6746) |
 | [macOS-latest workflows will use macOS-12](https://github.com/actions/runner-images/issues/6384) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
-# macOS 11.7 info
+# macOS 11
 - System Version: macOS 11.7.1 (20G918)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20221204.1
+- Image Version: 20221211.1
 
 ## Installed Software
+
 ### Language and Runtime
 - .NET SDK 3.1.101 3.1.201 3.1.302 3.1.425 5.0.102 5.0.202 5.0.302 5.0.408 6.0.403 7.0.100
 - Bash 3.2.57(1)-release
-- Clang/LLVM 13.0.0 is default
-- Clang/LLVM 14.0.6 is available on `'$(brew --prefix llvm@14)/bin/clang'`
-- gcc-9 (Homebrew GCC 9.5.0) 9.5.0 - available by `gcc-9` alias
-- gcc-10 (Homebrew GCC 10.4.0) 10.4.0 - available by `gcc-10` alias
-- gcc-11 (Homebrew GCC 11.3.0) 11.3.0 - available by `gcc-11` alias
-- GNU Fortran (Homebrew GCC 9.5.0) 9.5.0 - available by `gfortran-9` alias
-- GNU Fortran (Homebrew GCC 10.4.0) 10.4.0 - available by `gfortran-10` alias
-- GNU Fortran (Homebrew GCC 11.3.0) 11.3.0 - available by `gfortran-11` alias
+- Clang/LLVM 13.0.0
+- Clang/LLVM (Homebrew) 14.0.6 - available on `$(brew --prefix llvm@14)/bin/clang`
+- GCC 9 (Homebrew GCC 9.5.0) - available by `gcc-9` alias
+- GCC 10 (Homebrew GCC 10.4.0) - available by `gcc-10` alias
+- GCC 11 (Homebrew GCC 11.3.0) - available by `gcc-11` alias
+- GNU Fortran 9 (Homebrew GCC 9.5.0) - available by `gfortran-9` alias
+- GNU Fortran 10 (Homebrew GCC 10.4.0) - available by `gfortran-10` alias
+- GNU Fortran 11 (Homebrew GCC 11.3.0) - available by `gfortran-11` alias
 - Go 1.17.13
-- julia 1.8.3
+- Julia 1.8.3
 - Kotlin 1.7.21-release-272
-- MSBuild 16.10.1.51301 (from /Library/Frameworks/Mono.framework/Versions/6.12.0/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node.js v16.18.1
+- Mono 6.12.0.188
+- MSBuild 16.10.1.51301 (Mono 6.12.0.188)
+- Node.js 16.18.1
 - NVM 0.39.2
-- NVM - Cached node versions: v14.21.1 v16.18.1 v18.12.1
+- NVM - Cached node versions: 14.21.1 16.18.1 18.12.1
 - Perl 5.36.0
-- PHP 8.1.13
+- PHP 8.2.0
 - Python 2.7.18
-- Python 3.11.0
+- Python3 3.11.1
 - R 4.2.2
-- Ruby 2.7.6p219
+- Ruby 2.7.7p221
 
 ### Package Management
-- Bundler version 2.3.26
+- Bundler 2.3.26
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.4.4
-- Homebrew 3.6.13
+- Homebrew 3.6.14
 - Miniconda 4.12.0
 - NPM 8.19.2
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip 22.3.1 (python 3.11)
+- Pip3 22.3.1 (python 3.11)
 - Pipx 1.1.0
 - RubyGems 3.3.26
-- Vcpkg 2022 (build from master \<163fe7bd3>)
+- Vcpkg 2022 (build from commit cf1fda544)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,7 +60,7 @@
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
-- Apache Ant(TM) 1.10.12
+- Apache Ant 1.10.12
 - Apache Maven 3.8.6
 - Gradle 7.6
 - Sbt 1.8.0
@@ -70,15 +73,15 @@
 - bazelisk 1.15.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.86.0
-- Git 2.38.1
-- Git LFS: 3.3.0
-- GitHub CLI: 2.20.2
+- Git 2.38.2
+- Git LFS 3.3.0
+- GitHub CLI 2.20.2
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.3.8
 - helm v3.10.2+g50f003e
-- Hub CLI: 2.14.2
-- ImageMagick 7.1.0-52
+- Hub CLI 2.14.2
+- ImageMagick 7.1.0-53
 - jq 1.6
 - mongo v5.0.11
 - mongod v5.0.11
@@ -90,42 +93,42 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- yq (https://github.com/mikefarah/yq/) version v4.30.5
+- yq 4.30.5
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.139
+- Aliyun CLI 3.0.140
 - App Center CLI 2.12.0
-- AWS CLI 2.9.4
+- AWS CLI 2.9.6
 - AWS SAM CLI 1.66.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI (azure-devops) 0.25.0
-- Azure CLI 2.42.0
-- Bicep CLI 0.12.40
+- Azure CLI 2.43.0
+- Bicep CLI 0.13.1
 - Cabal 3.6.2.0
 - Cmake 3.25.1
-- CodeQL Action Bundle 2.11.4
+- CodeQL Action Bundle 2.11.5
 - Colima 0.4.6
 - Fastlane 2.211.0
 - GHC 9.4.3
 - GHCup 0.1.18.0
 - Jazzy 0.14.3
 - Stack 2.9.1
-- SwiftFormat 0.50.5
+- SwiftFormat 0.50.6
 - Swig 4.1.1
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
 ### Linters
-- SwiftLint 0.48.0
-- yamllint 1.28.0
+- Swift 0.48.0
+- Yamllint 1.28.0
 
 ### Browsers
 - Safari 16.1 (16614.2.9.1.13)
 - SafariDriver 16.1 (16614.2.9.1.13)
-- Google Chrome 108.0.5359.94 
+- Google Chrome 108.0.5359.98
 - ChromeDriver 108.0.5359.71
-- Microsoft Edge 107.0.1418.68 
-- Microsoft Edge WebDriver 107.0.1418.68
+- Microsoft Edge 108.0.1462.46
+- Microsoft Edge WebDriver 108.0.1462.46
 - Mozilla Firefox 107.0.1
 - geckodriver 0.32.0
 - Selenium server 4.5.0
@@ -150,6 +153,7 @@
 | CE 22.3.0 | GRAALVM_11_ROOT       |
 
 ### Cached Tools
+
 #### Ruby
 - 2.4.10
 - 2.5.9
@@ -161,15 +165,15 @@
 #### Python
 - 3.7.15
 - 3.8.15
-- 3.9.14
-- 3.10.8
-- 3.11.0
+- 3.9.16
+- 3.10.9
+- 3.11.1
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.9]
+- 2.7.18 [PyPy 7.3.10]
 - 3.7.13 [PyPy 7.3.9]
-- 3.8.13 [PyPy 7.3.9]
-- 3.9.12 [PyPy 7.3.9]
+- 3.8.15 [PyPy 7.3.10]
+- 3.9.15 [PyPy 7.3.10]
 
 #### Node.js
 - 14.21.1
@@ -177,11 +181,11 @@
 - 18.12.1
 
 #### Go
-| Version | Architecture | Environment Variable |
-| ------- | ------------ | -------------------- |
+| Version           | Architecture | Environment Variable |
+| ----------------- | ------------ | -------------------- |
 | 1.17.13 (Default) | x64          | GOROOT_1_17_X64      |
-| 1.18.8  | x64          | GOROOT_1_18_X64      |
-| 1.19.3  | x64          | GOROOT_1_19_X64      |
+| 1.18.9            | x64          | GOROOT_1_18_X64      |
+| 1.19.4            | x64          | GOROOT_1_19_X64      |
 
 ### Rust Tools
 - Cargo 1.65.0
@@ -203,7 +207,7 @@
 #### PowerShell Modules
 | Module           | Version |
 | ---------------- | ------- |
-| Az               | 9.1.1   |
+| Az               | 9.2.0   |
 | MarkdownPS       | 1.9     |
 | Pester           | 5.3.3   |
 | PSScriptAnalyzer | 1.21.0  |
@@ -215,13 +219,14 @@
 | nginx | 1.23.2   | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
-#### Visual Studio for Mac
-| Version        | Build       | Path                                 |
-| -------------- | ----------- | ------------------------------------ |
-| 2019           | 8.10.25.2   | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.4.0.2406 | /Applications/Visual Studio.app      |
 
-##### Notes:
+#### Visual Studio for Mac
+| Version        | Build     | Path                                 |
+| -------------- | --------- | ------------------------------------ |
+| 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
+| 2022 (default) | 17.4.1.28 | /Applications/Visual Studio.app      |
+
+##### Notes
 ```
 To use Visual Studio 2019 by default rename the app:
 mv "/Applications/Visual Studio.app" "/Applications/Visual Studio 2022.app"
@@ -361,6 +366,4 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 - libXft 2.3.7
 - Tcl/Tk 8.6.13
 - Zlib 1.2.13
-
-
 
