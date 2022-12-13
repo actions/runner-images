@@ -244,33 +244,20 @@ $sdk = Get-WindowsSDKs
 $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $sdk.Versions -Style Unordered
 
-$markdown += New-MDHeader ".NET Core" -Level 3
-$sdk = Get-DotnetSdks
-$runtimes = Get-DotnetRuntimes
+$markdown += New-MDHeader ".NET Core Tools" -Level 3
+$dotnetSdk = Get-DotnetSdks
+$dotnetRuntimes = Get-DotnetRuntimes
 $dotnetFrameworkVersions = Get-DotnetFrameworkVersions
+$dotnetTools = Get-DotnetTools
 
 $markdown += New-MDList -Style Unordered -Lines @(
-    ".NET Core SDK: $($sdk.Versions)",
+    ".NET Core SDK: $($dotnetSdk.Versions)",
     ".NET Framework: $($dotnetFrameworkVersions)"
-    $runtimes | ForEach-Object {
+    $dotnetRuntimes | ForEach-Object {
         "$($_.Runtime): $($_.Versions)"
-    }
+    },
+    $dotnetTools
 )
-
-$markdown += New-MDHeader ".NET Framework" -Level 3
-$markdown += "``Type: Developer Pack``"
-$markdown += New-MDNewLine
-Get-DotnetFrameworkTools | Foreach-Object {
-    $path = $_.Path
-    $versions = $_.Versions
-    $markdown += "``Location: $path``"
-    $markdown += New-MDNewLine
-    $markdown += New-MDList -Lines $versions -Style Unordered
-}
-
-$markdown += New-MDHeader ".NET tools" -Level 3
-$tools = Get-DotnetTools
-$markdown += New-MDList -Lines $tools -Style Unordered
 
 # PowerShell Tools
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
