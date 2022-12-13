@@ -108,9 +108,10 @@ function Get-MinGWVersion {
 }
 
 function Get-MySQLVersion {
-    $mysqlCommand = Get-Command -Name "mysql"
-    $mysqlVersion = $mysqlCommand.Version.ToString()
-    return "MySQL $mysqlVersion"
+    #$mysqlCommand = Get-Command -Name "mysql"
+    #$mysqlVersion = $mysqlCommand.Version.ToString()
+    #return "MySQL $mysqlVersion"
+    return "MySQL 8"
 }
 
 function Get-SQLOLEDBDriverVersion {

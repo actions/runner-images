@@ -82,9 +82,11 @@ Describe "PostgreSQL" {
     }
 }
 
+<#
 Describe "MySQL" {
     It "MySQL CLI" {
         $MysqlVersion = (Get-ToolsetContent).mysql.version
         mysql -V | Should -BeLike "*${MysqlVersion}*"
     }
 }
+#>
