@@ -33,10 +33,7 @@ ForEach ($version in $VersionsList)
 
 # Add default version of GHC to path, because choco formula updates path on user level
 $DefaultGhcVersion = $VersionsList | Select-Object -Last 1
-# temporary hardcode -------------
-#$DefaultGhcShortVersion = ([version]$DefaultGhcVersion).ToString(3)
-$DefaultGhcShortVersion = "9.4.2"
-#--------------------------------
+$DefaultGhcShortVersion = ([version]$DefaultGhcVersion).ToString(3)
 $DefaultGhcPath = Join-Path $env:ChocolateyInstall "lib\ghc.$DefaultGhcVersion\tools\ghc-$DefaultGhcShortVersion\bin"
 # Starting from version 9 haskell installation directory is $env:ChocolateyToolsLocation instead of $env:ChocolateyInstall\lib
 if ($DefaultGhcShortVersion -notmatch '^[0-8]\.\d+.*')
