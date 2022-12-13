@@ -1,13 +1,11 @@
 function Get-PostgreSqlVersion {
     $postgreSQLVersion = psql --version | Take-OutputPart -Part 2
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "postgresql"
-    return "PostgreSQL $postgreSQLVersion (apt source repository: $aptSourceRepo)"
+    return "PostgreSQL $postgreSQLVersion"
 }
 
 function Get-MongoDbVersion {
     $mongoDBVersion = mongod --version | Select-Object -First 1 | Take-OutputPart -Part 2 -Delimiter "v"
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "mongodb"
-    return "MongoDB $mongoDBVersion (apt source repository: $aptSourceRepo)"
+    return "MongoDB $mongoDBVersion"
 }
 
 function Get-SqliteVersion {
@@ -38,11 +36,12 @@ function Build-PostgreSqlSection {
 
     $output += New-MDHeader "PostgreSQL" -Level 4
     $output += New-MDList -Style Unordered -Lines @(
-        (Get-PostgreSqlVersion ),
-        "PostgreSQL Server (user:postgres)"
+        (Get-PostgreSqlVersion)
     )
     $output += New-MDCode -Lines @(
-        "PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'"
+        "User: postgres",
+        "PostgreSQL service is disabled by default.",
+        "Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'"
     )
 
     return $output
@@ -53,11 +52,13 @@ function Build-MySQLSection {
 
     $output += New-MDHeader "MySQL" -Level 4
     $output += New-MDList -Style Unordered -Lines @(
-        (Get-MySQLVersion ),
-        "MySQL Server (user:root password:root)"
+        (Get-MySQLVersion )
     )
     $output += New-MDCode -Lines @(
-        "MySQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'"
+        "User: root",
+        "Password: root",
+        "MySQL service is disabled by default.",
+        "Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'"
     )
 
     return $output
