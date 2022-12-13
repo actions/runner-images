@@ -39,7 +39,7 @@ class SoftwareReportComparer {
                     # Nodes are equal but not identical, so something was changed
                     if ($currentReportNode -is [TableNode]) {
                         $this.CompareSimilarTableNodes($sameNodeInPreviousReport, $currentReportNode, $Headers)
-                    } elseif ($currentReportNode -is [ToolVersionsNode]) {
+                    } elseif ($currentReportNode -is [ToolVersionsListNode]) {
                         $this.CompareSimilarToolVersionsListNodes($sameNodeInPreviousReport, $currentReportNode, $Headers)
                     } else {
                         $this.ChangedItems.Add([ReportDifferenceItem]::new($sameNodeInPreviousReport, $currentReportNode, $Headers))
@@ -79,7 +79,7 @@ class SoftwareReportComparer {
         }
     }
 
-    hidden [void] CompareSimilarToolVersionsListNodes([ToolVersionsNode] $PreviousReportNode, [ToolVersionsNode] $CurrentReportNode, [Array] $Headers) {
+    hidden [void] CompareSimilarToolVersionsListNodes([ToolVersionsListNode] $PreviousReportNode, [ToolVersionsListNode] $CurrentReportNode, [Array] $Headers) {
         $previousReportMajorVersions = $PreviousReportNode.Versions | ForEach-Object { $PreviousReportNode.ExtractMajorVersion($_) }
         $currentReportMajorVersion = $CurrentReportNode.Versions | ForEach-Object { $CurrentReportNode.ExtractMajorVersion($_) }
 
@@ -89,15 +89,15 @@ class SoftwareReportComparer {
         $changedCurrentVersions = $CurrentReportNode.Versions | Where-Object { ($CurrentReportNode.ExtractMajorVersion($_) -in $previousReportMajorVersions) -and ($_ -notin $PreviousReportNode.Versions) }
 
         if ($addedVersions.Count -gt 0) {
-            $this.AddedItems.Add([ReportDifferenceItem]::new($null, [ToolVersionsNode]::new($CurrentReportNode.ToolName, $addedVersions, $CurrentReportNode.MajorVersionRegex, $true), $Headers))
+            $this.AddedItems.Add([ReportDifferenceItem]::new($null, [ToolVersionsListNode]::new($CurrentReportNode.ToolName, $addedVersions, $CurrentReportNode.MajorVersionRegex, $true), $Headers))
         }
 
         if ($deletedVersions.Count -gt 0) {
-            $this.DeletedItems.Add([ReportDifferenceItem]::new([ToolVersionsNode]::new($PreviousReportNode.ToolName, $deletedVersions, $PreviousReportNode.MajorVersionRegex, $true), $null, $Headers))
+            $this.DeletedItems.Add([ReportDifferenceItem]::new([ToolVersionsListNode]::new($PreviousReportNode.ToolName, $deletedVersions, $PreviousReportNode.MajorVersionRegex, $true), $null, $Headers))
         }
 
-        $previousChangedNode = ($changedPreviousVersions.Count -gt 0) ? [ToolVersionsNode]::new($PreviousReportNode.ToolName, $changedPreviousVersions, $PreviousReportNode.MajorVersionRegex, $true) : $null
-        $currentChangedNode = ($changedCurrentVersions.Count -gt 0) ? [ToolVersionsNode]::new($CurrentReportNode.ToolName, $changedCurrentVersions, $CurrentReportNode.MajorVersionRegex, $true) : $null
+        $previousChangedNode = ($changedPreviousVersions.Count -gt 0) ? [ToolVersionsListNode]::new($PreviousReportNode.ToolName, $changedPreviousVersions, $PreviousReportNode.MajorVersionRegex, $true) : $null
+        $currentChangedNode = ($changedCurrentVersions.Count -gt 0) ? [ToolVersionsListNode]::new($CurrentReportNode.ToolName, $changedCurrentVersions, $CurrentReportNode.MajorVersionRegex, $true) : $null
         if ($previousChangedNode -and $currentChangedNode) {
             $this.ChangedItems.Add([ReportDifferenceItem]::new($previousChangedNode, $currentChangedNode, $Headers))
         }
@@ -111,7 +111,7 @@ class SoftwareReportComparer {
 
     hidden [Boolean] FilterExcludedNodes([BaseNode] $Node) {
         # We shouldn't show "Image Version" diff because it is already shown in report header
-        if (($Node -is [ToolNode]) -and ($Node.ToolName -eq "Image Version:")) {
+        if (($Node -is [ToolVersionNode]) -and ($Node.ToolName -eq "Image Version:")) {
             return $false
         }
 
@@ -313,7 +313,7 @@ class SoftwareReportComparerReport {
     }
 
     [String] GetImageVersion([SoftwareReport] $Report) {
-        $imageVersionNode = $Report.Root.Children ?? @() | Where-Object { ($_ -is [ToolNode]) -and ($_.ToolName -eq "Image Version:") } | Select-Object -First 1
+        $imageVersionNode = $Report.Root.Children ?? @() | Where-Object { ($_ -is [ToolVersionNode]) -and ($_.ToolName -eq "Image Version:") } | Select-Object -First 1
         return $imageVersionNode.Version ?? "Unknown version"
     }
 }

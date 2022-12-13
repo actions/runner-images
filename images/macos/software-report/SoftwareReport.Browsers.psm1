@@ -1,14 +1,14 @@
 function Build-BrowserSection {
     return @(
-        [ToolNode]::new("Safari", $(Get-SafariVersion))
-        [ToolNode]::new("SafariDriver", $(Get-SafariDriverVersion))
-        [ToolNode]::new("Google Chrome", $(Get-ChromeVersion))
-        [ToolNode]::new("ChromeDriver", $(Get-ChromeDriverVersion))
-        [ToolNode]::new("Microsoft Edge", $(Get-EdgeVersion))
-        [ToolNode]::new("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
-        [ToolNode]::new("Mozilla Firefox", $(Get-FirefoxVersion))
-        [ToolNode]::new("geckodriver", $(Get-GeckodriverVersion))
-        [ToolNode]::new("Selenium server", $(Get-SeleniumVersion))
+        [ToolVersionNode]::new("Safari", $(Get-SafariVersion))
+        [ToolVersionNode]::new("SafariDriver", $(Get-SafariDriverVersion))
+        [ToolVersionNode]::new("Google Chrome", $(Get-ChromeVersion))
+        [ToolVersionNode]::new("ChromeDriver", $(Get-ChromeDriverVersion))
+        [ToolVersionNode]::new("Microsoft Edge", $(Get-EdgeVersion))
+        [ToolVersionNode]::new("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
+        [ToolVersionNode]::new("Mozilla Firefox", $(Get-FirefoxVersion))
+        [ToolVersionNode]::new("geckodriver", $(Get-GeckodriverVersion))
+        [ToolVersionNode]::new("Selenium server", $(Get-SeleniumVersion))
     )
 }
 
@@ -84,7 +84,7 @@ function Build-BrowserWebdriversEnvironmentTable {
         }
     }
 
-    $node.AddTableNode($table)
+    $node.AddTable($table)
 
     return $node
 }

@@ -35,11 +35,11 @@ function Get-ToolcacheGoVersions {
 
 function Build-ToolcacheSection { 
     return @(
-        [ToolVersionsNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', $false),
-        [ToolVersionsNode]::new("Python", $(Get-ToolcachePythonVersions), '^\d+\.\d+', $false), 
-        [ToolVersionsNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', $false),
-        [ToolVersionsNode]::new("Node.js", $(Get-ToolcacheNodeVersions), '^\d+', $false),
-        [ToolVersionsNode]::new("Go", $(Get-ToolcacheGoVersions), '^\d+\.\d+', $false)
+        [ToolVersionsListNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', $false),
+        [ToolVersionsListNode]::new("Python", $(Get-ToolcachePythonVersions), '^\d+\.\d+', $false), 
+        [ToolVersionsListNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', $false),
+        [ToolVersionsListNode]::new("Node.js", $(Get-ToolcacheNodeVersions), '^\d+', $false),
+        [ToolVersionsListNode]::new("Go", $(Get-ToolcacheGoVersions), '^\d+\.\d+', $false)
     )
 }
 
@@ -48,6 +48,6 @@ function Get-PowerShellModules {
     $modules | ForEach-Object {
         $moduleName = $_
         $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
-        return [ToolVersionsNode]::new($moduleName, $moduleVersions, '^\d+', $true)
+        return [ToolVersionsListNode]::new($moduleName, $moduleVersions, '^\d+', $true)
     }
 }
