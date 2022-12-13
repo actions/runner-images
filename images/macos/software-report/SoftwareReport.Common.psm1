@@ -168,7 +168,7 @@ function Build-OSInfoSection {
     $kernelVersion = $parsedSystemInfo[1].Replace($fieldsToInclude[1],"").Trim()
 
     $osInfoNode = [HeaderNode]::new("macOS $version")
-    $osInfoNode.AddToolNode("System Version:", $systemVersion)
+    $osInfoNode.AddToolNode("OS Version:", $systemVersion)
     $osInfoNode.AddToolNode("Kernel Version:", $kernelVersion)
     $osInfoNode.AddToolNode("Image Version:", $ImageName.Split('_')[1])
     return $osInfoNode
