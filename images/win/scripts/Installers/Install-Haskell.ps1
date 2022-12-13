@@ -27,6 +27,7 @@ ForEach ($version in $VersionsList)
 {
     Write-Host "Installing ghc $version..."
     ghcup install ghc $version
+    ghcup set ghc $version
 }
 
 # Add default version of GHC to path
