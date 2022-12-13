@@ -256,7 +256,7 @@ $markdown += New-MDNewLine
 
 $markdown += New-MDHeader ".NET Core Tools" -Level 3
 $netCoreTools = @(
-    ".NET Core SDKs: $(Get-DotNetCoreSdkVersions)"
+    ".NET Core SDK: $(Get-DotNetCoreSdkVersions)"
 )
 $netCoreTools += Get-DotnetTools
 $markdown += New-MDList -Style Unordered -Lines $netCoreTools
