@@ -249,7 +249,7 @@ function Get-PowerShellAzureModules {
         $result += "AzureRM: $($azurermInstalledModules -join ', ')"
     }
 
-    [Array] $azCachedModules = Get-ChildItem -Path "C:\Modules\az_*.zip" File | ForEach-Object { $_.Name.Split("_")[1] }
+    [Array] $azCachedModules = Get-ChildItem -Path "C:\Modules\az_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azCachedModules.Count -gt 0) {
         $result += "Az (Cached): $($azCachedModules -join ', ')"
     }
