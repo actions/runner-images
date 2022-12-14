@@ -10,10 +10,10 @@ class NodesFactory {
     static [BaseNode] ParseNodeFromObject($jsonObj) {
         if ($jsonObj.NodeType -eq [HeaderNode].Name) {
             return [HeaderNode]::FromJsonObject($jsonObj)
-        } elseif ($jsonObj.NodeType -eq [ToolNode].Name) {
-            return [ToolNode]::FromJsonObject($jsonObj)
-        } elseif ($jsonObj.NodeType -eq [ToolVersionsNode].Name) {
-            return [ToolVersionsNode]::FromJsonObject($jsonObj)
+        } elseif ($jsonObj.NodeType -eq [ToolVersionNode].Name) {
+            return [ToolVersionNode]::FromJsonObject($jsonObj)
+        } elseif ($jsonObj.NodeType -eq [ToolVersionsListNode].Name) {
+            return [ToolVersionsListNode]::FromJsonObject($jsonObj)
         } elseif ($jsonObj.NodeType -eq [TableNode].Name) {
             return [TableNode]::FromJsonObject($jsonObj)
         } elseif ($jsonObj.NodeType -eq [NoteNode].Name) {
@@ -53,25 +53,25 @@ class HeaderNode: BaseNode {
         }
     }
 
-    [HeaderNode] AddHeaderNode([String] $Title) {
+    [HeaderNode] AddHeader([String] $Title) {
         $node = [HeaderNode]::new($Title)
         $this.AddNode($node)
         return $node
     }
 
-    [void] AddToolNode([String] $ToolName, [String] $Version) {
-        $this.AddNode([ToolNode]::new($ToolName, $Version))
+    [void] AddToolVersion([String] $ToolName, [String] $Version) {
+        $this.AddNode([ToolVersionNode]::new($ToolName, $Version))
     }
 
-    [void] AddToolVersionsNode([String] $ToolName, [Array] $Version, [String] $MajorVersionRegex, [Boolean] $InlineList) {
-        $this.AddNode([ToolVersionsNode]::new($ToolName, $Version, $MajorVersionRegex, $InlineList))
+    [void] AddToolVersionsList([String] $ToolName, [Array] $Version, [String] $MajorVersionRegex, [Boolean] $InlineList) {
+        $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, $InlineList))
     }
      
-    [void] AddTableNode([Array] $Table) {
+    [void] AddTable([Array] $Table) {
        $this.AddNode([TableNode]::FromObjectsArray($Table))
     }
 
-    [void] AddNoteNode([String] $Content) {
+    [void] AddNote([String] $Content) {
         $this.AddNode([NoteNode]::new($Content))
     }
 
@@ -124,10 +124,10 @@ class HeaderNode: BaseNode {
 }
 
 # Node type to describe the tool with single version: "Bash 5.1.16"
-class ToolNode: BaseToolNode {
+class ToolVersionNode: BaseToolNode {
     [String] $Version
 
-    ToolNode([String] $ToolName, [String] $Version): base($ToolName) {
+    ToolVersionNode([String] $ToolName, [String] $Version): base($ToolName) {
         $this.Version = $Version
     }
 
@@ -148,17 +148,17 @@ class ToolNode: BaseToolNode {
     }
 
     static [BaseNode] FromJsonObject($jsonObj) {
-        return [ToolNode]::new($jsonObj.ToolName, $jsonObj.Version)
+        return [ToolVersionNode]::new($jsonObj.ToolName, $jsonObj.Version)
     }
 }
 
 # Node type to describe the tool with multiple versions "Toolcache Node.js 14.17.6 16.2.0 18.2.3"
-class ToolVersionsNode: BaseToolNode {
+class ToolVersionsListNode: BaseToolNode {
     [Array] $Versions
     [Regex] $MajorVersionRegex
     [String] $ListType
 
-    ToolVersionsNode([String] $ToolName, [Array] $Versions, [String] $MajorVersionRegex, [Boolean] $InlineList): base($ToolName) {
+    ToolVersionsListNode([String] $ToolName, [Array] $Versions, [String] $MajorVersionRegex, [Boolean] $InlineList): base($ToolName) {
         $this.Versions = $Versions
         $this.MajorVersionRegex = [Regex]::new($MajorVersionRegex)
         $this.ListType = $InlineList ? "Inline" : "List"
@@ -203,8 +203,8 @@ class ToolVersionsNode: BaseToolNode {
         }
     }
 
-    static [ToolVersionsNode] FromJsonObject($jsonObj) {
-        return [ToolVersionsNode]::new($jsonObj.ToolName, $jsonObj.Versions, $jsonObj.MajorVersionRegex, $jsonObj.ListType -eq "Inline")
+    static [ToolVersionsListNode] FromJsonObject($jsonObj) {
+        return [ToolVersionsListNode]::new($jsonObj.ToolName, $jsonObj.Versions, $jsonObj.MajorVersionRegex, $jsonObj.ListType -eq "Inline")
     }
 
     hidden [void] ValidateMajorVersionRegex() {
