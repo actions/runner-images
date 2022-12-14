@@ -246,18 +246,17 @@ $markdown += New-MDList -Lines $sdk.Versions -Style Unordered
 
 $markdown += New-MDHeader ".NET Core Tools" -Level 3
 $dotnetSdk = Get-DotnetSdks
-$dotnetRuntimes = Get-DotnetRuntimes
 $dotnetFrameworkVersions = Get-DotnetFrameworkVersions
-$dotnetTools = Get-DotnetTools
-
-$markdown += New-MDList -Style Unordered -Lines @(
+$dotnetTools = @(
     ".NET Core SDK: $($dotnetSdk.Versions)",
     ".NET Framework: $($dotnetFrameworkVersions)"
-    $dotnetRuntimes | ForEach-Object {
-        "$($_.Runtime): $($_.Versions)"
-    },
-    $dotnetTools
 )
+$dotnetTools += Get-DotnetRuntimes | ForEach-Object {
+    "$($_.Runtime): $($_.Versions)"
+}
+$dotnetTools += Get-DotnetTools
+$markdown += New-MDList -Style Unordered -Lines $dotnetTools
+
 
 # PowerShell Tools
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
