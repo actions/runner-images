@@ -190,7 +190,7 @@ function Get-SbtVersion {
 
 function Get-DotnetSdks {
     $sdksRawList = dotnet --list-sdks
-    $sdkVersions = ($sdksRawList | Foreach-Object {$_.Split()[0]}) -join ' '
+    $sdkVersions = ($sdksRawList | Foreach-Object {$_.Split()[0]}) -join ', '
     $sdkPath = $sdksRawList[0].Split(' ', 2)[1] -replace '\[|]'
     [PSCustomObject]@{
         Versions = $sdkVersions
@@ -214,7 +214,7 @@ function Get-DotnetRuntimes {
     $runtimesRawList = dotnet --list-runtimes
     $runtimesRawList | Group-Object {$_.Split()[0]} | ForEach-Object {
         $runtimeName = $_.Name
-        $runtimeVersions = ($_.Group | Foreach-Object {$_.split()[1]}) -join ' '
+        $runtimeVersions = ($_.Group | Foreach-Object {$_.split()[1]}) -join ', '
         $runtimePath = $_.Group[0].Split(' ', 3)[2] -replace '\[|]'
         [PSCustomObject]@{
             "Runtime" = $runtimeName
@@ -227,7 +227,7 @@ function Get-DotnetRuntimes {
 function Get-DotnetFrameworkVersions {
     $path = "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\*\*\NETFX * Tools"
     $versions = Get-ChildItem -Path $path -Directory | ForEach-Object { $_.Name | Take-Part -Part 1 }
-    $versions -join ' '
+    $versions -join ', '
 }
 
 function Get-PowerShellAzureModules {
@@ -272,7 +272,7 @@ function Get-PowerShellModules {
 
     $result += Get-PowerShellAzureModules
 
-    $result += (Get-ToolsetContent).powershellModules.name | ForEach-Object {
+    $result += (Get-ToolsetContent).powershellModules.name | Sort-Object | ForEach-Object {
         $moduleName = $_
         $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
         return "$($moduleName): $($moduleVersions -join ', ')"

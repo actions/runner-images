@@ -3,7 +3,6 @@
 ##  Desc:  Install Mysql CLI
 ################################################################################
 
-<#
 # Installing visual c++ redistibutable package.
 $InstallerName = "vcredist_x64.exe"
 $InstallerURI = "https://download.microsoft.com/download/0/5/6/056dcda9-d667-4e27-8001-8a0c6971d6b1/${InstallerName}"
@@ -38,4 +37,3 @@ Invoke-SBWithRetry -Command {
 Add-MachinePathItem "${MysqlPath}\bin"
 
 Invoke-PesterTests -TestFile "Databases" -TestName "MySQL"
-#>
