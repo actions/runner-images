@@ -87,7 +87,7 @@ function Get-GccVersions {
     $versionList | Foreach-Object {
         $nameVersion = Run-Command "gcc-${_} --version" | Select-Object -First 1
         $version = ($nameVersion -replace "^gcc-${_}").Trim() -replace '\).*$', ')'
-        return [ToolNode]::new("GCC ${_}", "$version - available by ``gcc-${_}`` alias")
+        return [ToolVersionNode]::new("GCC ${_}", "$version - available by ``gcc-${_}`` alias")
     }
 }
 
@@ -96,7 +96,7 @@ function Get-FortranVersions {
     $versionList | Foreach-Object {
         $nameVersion = Run-Command "gfortran-${_} --version" | Select-Object -First 1
         $version = ($nameVersion -replace "^GNU Fortran").Trim() -replace '\).*$', ')'
-        return [ToolNode]::new("GNU Fortran ${_}", "$version - available by ``gfortran-${_}`` alias")
+        return [ToolVersionNode]::new("GNU Fortran ${_}", "$version - available by ``gfortran-${_}`` alias")
     }
 }
 
@@ -111,8 +111,8 @@ function Get-ClangLLVMVersions {
     $homebrewClangVersion = $clangVersionRegex.Match($homebrewClangOutput).Groups['version'].Value
 
     return @(
-        [ToolNode]::new("Clang/LLVM", $defaultClangVersion)
-        [ToolNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ``$homebrewClangPath``")
+        [ToolVersionNode]::new("Clang/LLVM", $defaultClangVersion)
+        [ToolVersionNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ``$homebrewClangPath``")
     )
 }
 
@@ -168,9 +168,9 @@ function Build-OSInfoSection {
     $kernelVersion = $parsedSystemInfo[1].Replace($fieldsToInclude[1],"").Trim()
 
     $osInfoNode = [HeaderNode]::new("macOS $version")
-    $osInfoNode.AddToolNode("OS Version:", $systemVersion)
-    $osInfoNode.AddToolNode("Kernel Version:", $kernelVersion)
-    $osInfoNode.AddToolNode("Image Version:", $ImageName.Split('_')[1])
+    $osInfoNode.AddToolVersion("OS Version:", $systemVersion)
+    $osInfoNode.AddToolVersion("Kernel Version:", $kernelVersion)
+    $osInfoNode.AddToolVersion("Image Version:", $ImageName.Split('_')[1])
     return $osInfoNode
 }
 
@@ -598,7 +598,7 @@ function Build-PackageManagementEnvironmentTable {
         }
     }
 
-    $node.AddTableNode($table)
+    $node.AddTable($table)
 
     return $node
 }
