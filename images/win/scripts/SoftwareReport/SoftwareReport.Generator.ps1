@@ -217,7 +217,7 @@ $markdown += New-MDHeader "Database tools" -Level 3
 $databaseTools = @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
-    (Get-MySQLVersion),
+    #(Get-MySQLVersion),
     (Get-SQLPSVersion),
     (Get-SQLOLEDBDriverVersion)
 )
