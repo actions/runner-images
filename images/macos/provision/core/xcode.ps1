@@ -18,14 +18,9 @@ $os = Get-OSVersion
 [Array]$xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
 [Array]::Reverse($xcodeVersions)
-$threadCount = "5"
 
 Write-Host "Installing Xcode versions..."
-$xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
-    $ErrorActionPreference = "Stop"
-    Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
-    Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
-
+$xcodeVersions | ForEach-Object {
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
     Confirm-XcodeIntegrity -Version $_.link
     Approve-XcodeLicense -Version $_.link
