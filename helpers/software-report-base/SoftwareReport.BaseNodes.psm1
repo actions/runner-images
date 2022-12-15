@@ -5,7 +5,7 @@
 # Abstract base class for all nodes
 class BaseNode {
     [Boolean] ShouldBeIncludedToDiff() {
-        return $False
+        return $false
     }
 
     [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
@@ -26,7 +26,7 @@ class BaseToolNode: BaseNode {
     }
 
     [Boolean] ShouldBeIncludedToDiff() {
-        return $True
+        return $true
     }
 
     [String] GetValue() {
@@ -35,7 +35,7 @@ class BaseToolNode: BaseNode {
 
     [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
         if ($this.GetType() -ne $OtherNode.GetType()) {
-            return $False
+            return $false
         }
 
         return $this.ToolName -eq $OtherNode.ToolName

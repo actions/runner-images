@@ -10,10 +10,10 @@ class NodesFactory {
     static [BaseNode] ParseNodeFromObject($jsonObj) {
         if ($jsonObj.NodeType -eq [HeaderNode].Name) {
             return [HeaderNode]::FromJsonObject($jsonObj)
-        } elseif ($jsonObj.NodeType -eq [ToolNode].Name) {
-            return [ToolNode]::FromJsonObject($jsonObj)
-        } elseif ($jsonObj.NodeType -eq [ToolVersionsNode].Name) {
-            return [ToolVersionsNode]::FromJsonObject($jsonObj)
+        } elseif ($jsonObj.NodeType -eq [ToolVersionNode].Name) {
+            return [ToolVersionNode]::FromJsonObject($jsonObj)
+        } elseif ($jsonObj.NodeType -eq [ToolVersionsListNode].Name) {
+            return [ToolVersionsListNode]::FromJsonObject($jsonObj)
         } elseif ($jsonObj.NodeType -eq [TableNode].Name) {
             return [TableNode]::FromJsonObject($jsonObj)
         } elseif ($jsonObj.NodeType -eq [NoteNode].Name) {
@@ -35,7 +35,7 @@ class HeaderNode: BaseNode {
     }
 
     [Boolean] ShouldBeIncludedToDiff() {
-        return $True
+        return $true
     }
 
     [void] AddNode([BaseNode] $node) {
@@ -53,25 +53,25 @@ class HeaderNode: BaseNode {
         }
     }
 
-    [HeaderNode] AddHeaderNode([String] $Title) {
+    [HeaderNode] AddHeader([String] $Title) {
         $node = [HeaderNode]::new($Title)
         $this.AddNode($node)
         return $node
     }
 
-    [void] AddToolNode([String] $ToolName, [String] $Version) {
-        $this.AddNode([ToolNode]::new($ToolName, $Version))
+    [void] AddToolVersion([String] $ToolName, [String] $Version) {
+        $this.AddNode([ToolVersionNode]::new($ToolName, $Version))
     }
 
-    [void] AddToolVersionsNode([String] $ToolName, [Array] $Version) {
-        $this.AddNode([ToolVersionsNode]::new($ToolName, $Version))
+    [void] AddToolVersionsList([String] $ToolName, [Array] $Version, [String] $MajorVersionRegex, [Boolean] $InlineList) {
+        $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, $InlineList))
     }
      
-    [void] AddTableNode([Array] $Table) {
+    [void] AddTable([Array] $Table) {
        $this.AddNode([TableNode]::FromObjectsArray($Table))
     }
 
-    [void] AddNoteNode([String] $Content) {
+    [void] AddNote([String] $Content) {
         $this.AddNode([NoteNode]::new($Content))
     }
 
@@ -124,10 +124,10 @@ class HeaderNode: BaseNode {
 }
 
 # Node type to describe the tool with single version: "Bash 5.1.16"
-class ToolNode: BaseToolNode {
+class ToolVersionNode: BaseToolNode {
     [String] $Version
 
-    ToolNode([String] $ToolName, [String] $Version): base($ToolName) {
+    ToolVersionNode([String] $ToolName, [String] $Version): base($ToolName) {
         $this.Version = $Version
     }
 
@@ -148,19 +148,28 @@ class ToolNode: BaseToolNode {
     }
 
     static [BaseNode] FromJsonObject($jsonObj) {
-        return [ToolNode]::new($jsonObj.ToolName, $jsonObj.Version)
+        return [ToolVersionNode]::new($jsonObj.ToolName, $jsonObj.Version)
     }
 }
 
 # Node type to describe the tool with multiple versions "Toolcache Node.js 14.17.6 16.2.0 18.2.3"
-class ToolVersionsNode: BaseToolNode {
+class ToolVersionsListNode: BaseToolNode {
     [Array] $Versions
+    [Regex] $MajorVersionRegex
+    [String] $ListType
 
-    ToolVersionsNode([String] $ToolName, [Array] $Versions): base($ToolName) {
+    ToolVersionsListNode([String] $ToolName, [Array] $Versions, [String] $MajorVersionRegex, [Boolean] $InlineList): base($ToolName) {
         $this.Versions = $Versions
+        $this.MajorVersionRegex = [Regex]::new($MajorVersionRegex)
+        $this.ListType = $InlineList ? "Inline" : "List"
+        $this.ValidateMajorVersionRegex()
     }
 
     [String] ToMarkdown($level) {
+        if ($this.ListType -eq "Inline") {
+            return "- $($this.ToolName): $($this.Versions -join ', ')"
+        }
+
         $sb = [System.Text.StringBuilder]::new()
         $sb.AppendLine()
         $sb.AppendLine("$("#" * $level) $($this.ToolName)")
@@ -175,16 +184,35 @@ class ToolVersionsNode: BaseToolNode {
         return $this.Versions -join ', '
     }
 
+    [String] ExtractMajorVersion([String] $Version) {
+        $match = $this.MajorVersionRegex.Match($Version)
+        if ($match.Success -ne $true) {
+            throw "Version '$Version' doesn't match regex '$($this.PrimaryVersionRegex)'"
+        }
+
+        return $match.Groups[0].Value
+    }
+
     [PSCustomObject] ToJsonObject() {
         return [PSCustomObject]@{
             NodeType = $this.GetType().Name
             ToolName = $this.ToolName
             Versions = $this.Versions
+            MajorVersionRegex = $this.MajorVersionRegex.ToString()
+            ListType = $this.ListType
         }
     }
 
-    static [ToolVersionsNode] FromJsonObject($jsonObj) {
-        return [ToolVersionsNode]::new($jsonObj.ToolName, $jsonObj.Versions)
+    static [ToolVersionsListNode] FromJsonObject($jsonObj) {
+        return [ToolVersionsListNode]::new($jsonObj.ToolName, $jsonObj.Versions, $jsonObj.MajorVersionRegex, $jsonObj.ListType -eq "Inline")
+    }
+
+    hidden [void] ValidateMajorVersionRegex() {
+        $this.Versions | Group-Object { $this.ExtractMajorVersion($_) } | ForEach-Object {
+            if ($_.Count -gt 1) {
+                throw "Multiple versions from list $($this.GetValue()) return the same result from regex '$($this.MajorVersionRegex)': $($_.Name)"
+            }
+        }
     }
 }
 
@@ -200,7 +228,7 @@ class TableNode: BaseNode {
     }
 
     [Boolean] ShouldBeIncludedToDiff() {
-        return $True
+        return $true
     }
 
     static [TableNode] FromObjectsArray([Array] $Table) {

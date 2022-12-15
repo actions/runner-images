@@ -9,8 +9,7 @@ function Get-BashVersion {
 
 function Get-DotnetVersionList {
     $sdkRawList = Run-Command "dotnet --list-sdks"
-    $sdkVersionList = $sdkRawList | ForEach-Object { Take-Part $_ -Part 0 }
-    return [string]::Join(" ", $sdkVersionList)
+    return $sdkRawList | ForEach-Object { Take-Part $_ -Part 0 }
 }
 
 function Get-GoVersion {
@@ -88,7 +87,7 @@ function Get-GccVersions {
     $versionList | Foreach-Object {
         $nameVersion = Run-Command "gcc-${_} --version" | Select-Object -First 1
         $version = ($nameVersion -replace "^gcc-${_}").Trim() -replace '\).*$', ')'
-        return [ToolNode]::new("GCC ${_}", "$version - available by ``gcc-${_}`` alias")
+        return [ToolVersionNode]::new("GCC ${_}", "$version - available by ``gcc-${_}`` alias")
     }
 }
 
@@ -97,7 +96,7 @@ function Get-FortranVersions {
     $versionList | Foreach-Object {
         $nameVersion = Run-Command "gfortran-${_} --version" | Select-Object -First 1
         $version = ($nameVersion -replace "^GNU Fortran").Trim() -replace '\).*$', ')'
-        return [ToolNode]::new("GNU Fortran ${_}", "$version - available by ``gfortran-${_}`` alias")
+        return [ToolVersionNode]::new("GNU Fortran ${_}", "$version - available by ``gfortran-${_}`` alias")
     }
 }
 
@@ -112,8 +111,8 @@ function Get-ClangLLVMVersions {
     $homebrewClangVersion = $clangVersionRegex.Match($homebrewClangOutput).Groups['version'].Value
 
     return @(
-        [ToolNode]::new("Clang/LLVM", $defaultClangVersion)
-        [ToolNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ``$homebrewClangPath``")
+        [ToolVersionNode]::new("Clang/LLVM", $defaultClangVersion)
+        [ToolVersionNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ``$homebrewClangPath``")
     )
 }
 
@@ -148,8 +147,7 @@ function Get-NVMNodeVersionList {
     $nvmInitCommand = ". ${nvmPath} > /dev/null 2>&1 || true"
     $nodejsVersionsRaw = Run-Command "${nvmInitCommand} && nvm ls"
     $nodeVersions = $nodejsVersionsRaw | ForEach-Object { $_.TrimStart(" ").TrimEnd(" *") } | Where-Object { $_.StartsWith("v") }
-    $formattedNodeVersions = $nodeVersions | ForEach-Object { $_.TrimStart("v") }
-    return [string]::Join(" ", $formattedNodeVersions)
+    return $nodeVersions | ForEach-Object { $_.TrimStart("v") }
 }
 
 function Build-OSInfoSection {
@@ -170,9 +168,9 @@ function Build-OSInfoSection {
     $kernelVersion = $parsedSystemInfo[1].Replace($fieldsToInclude[1],"").Trim()
 
     $osInfoNode = [HeaderNode]::new("macOS $version")
-    $osInfoNode.AddToolNode("System Version:", $systemVersion)
-    $osInfoNode.AddToolNode("Kernel Version:", $kernelVersion)
-    $osInfoNode.AddToolNode("Image Version:", $ImageName.Split('_')[1])
+    $osInfoNode.AddToolVersion("OS Version:", $systemVersion)
+    $osInfoNode.AddToolVersion("Kernel Version:", $kernelVersion)
+    $osInfoNode.AddToolVersion("Image Version:", $ImageName.Split('_')[1])
     return $osInfoNode
 }
 
@@ -331,7 +329,7 @@ function Get-PackerVersion {
 }
 
 function Get-OpenSSLVersion {
-    $opensslVersion = Get-Item /usr/local/opt/openssl@1.1 | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
+    $opensslVersion = Run-Command "openssl version"
     return ($opensslVersion -replace "^OpenSSL").Trim()
 }
 
@@ -600,7 +598,7 @@ function Build-PackageManagementEnvironmentTable {
         }
     }
 
-    $node.AddTableNode($table)
+    $node.AddTable($table)
 
     return $node
 }

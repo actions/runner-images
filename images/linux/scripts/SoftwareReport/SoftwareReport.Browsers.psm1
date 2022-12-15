@@ -10,8 +10,7 @@ function Get-ChromeDriverVersion {
 
 function Get-FirefoxVersion {
     $firefoxVersion = firefox --version
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "mozillateam"
-    return "$firefoxVersion (apt source repository: $aptSourceRepo)"
+    return "$firefoxVersion"
 }
 
 function Get-GeckodriverVersion {
@@ -26,8 +25,7 @@ function Get-ChromiumVersion {
 
 function Get-EdgeVersion {
     $edgeVersion = (microsoft-edge --version).trim()
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "microsoft-edge"
-    return "$edgeVersion (apt source repository: $aptSourceRepo)"
+    return "$edgeVersion"
 }
 
 function Get-EdgeDriverVersion {
