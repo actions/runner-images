@@ -31,9 +31,6 @@ ForEach ($version in $VersionsList)
 
 # Add default version of GHC to path
 $DefaultGhcVersion = $VersionsList | Select-Object -Last 1
-$DefaultGhcShortVersion = ([version]$DefaultGhcVersion).ToString(3)
-$DefaultGhcPath = Join-Path $env:GHCUP_INSTALL_BASE_PREFIX "ghcup\ghc\$DefaultGhcShortVersion\bin"
-Add-MachinePathItem -PathItem $DefaultGhcPath
 ghcup set ghc $DefaultGhcVersion
 
 Write-Host 'Installing cabal...'
