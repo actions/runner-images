@@ -12,7 +12,7 @@ function Get-AptFastVersion {
 
 function Get-AzCopyVersion {
     $azcopyVersion = azcopy --version | Take-OutputPart -Part 2
-    return "AzCopy $azcopyVersion (available by ``azcopy`` and ``azcopy10`` aliases)"
+    return "AzCopy $azcopyVersion - available by ``azcopy`` and ``azcopy10`` aliases"
 }
 
 function Get-BazelVersion {
@@ -42,28 +42,16 @@ function Get-CodeQLBundleVersion {
 
 function Get-PodManVersion {
     $podmanVersion = podman --version | Take-OutputPart -Part 2
-    if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-        $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
-        return "Podman $podmanVersion (apt source repository: $aptSourceRepo)"
-    }
     return "Podman $podmanVersion"
 }
 
 function Get-BuildahVersion {
     $buildahVersion = buildah --version | Take-OutputPart -Part 2
-    if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-        $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
-        return "Buildah $buildahVersion (apt source repository: $aptSourceRepo)"
-    }
     return "Buildah $buildahVersion"
 }
 
 function Get-SkopeoVersion {
     $skopeoVersion = skopeo --version | Take-OutputPart -Part 2
-    if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-        $aptSourceRepo = Get-AptSourceRepository -PackageName "containers"
-        return "Skopeo $skopeoVersion (apt source repository: $aptSourceRepo)"
-    }
     return "Skopeo $skopeoVersion"
 }
 
@@ -104,15 +92,13 @@ function Get-DockerAmazonECRCredHelperVersion {
 
 function Get-GitVersion {
     $gitVersion = git --version | Take-OutputPart -Part -1
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "git-core"
-    return "Git $gitVersion (apt source repository: $aptSourceRepo)"
+    return "Git $gitVersion"
 }
 
 function Get-GitLFSVersion {
     $result = Get-CommandResult "git-lfs --version"
     $gitlfsversion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "git-lfs"
-    return "Git LFS $gitlfsversion (apt source repository: $aptSourceRepo)"
+    return "Git LFS $gitlfsversion"
 }
 
 function Get-GitFTPVersion {
@@ -121,8 +107,7 @@ function Get-GitFTPVersion {
 }
 
 function Get-GoogleCloudSDKVersion {
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "google-cloud-sdk"
-    return "$(gcloud --version | Select-Object -First 1) (apt source repository: $aptSourceRepo)"
+    return gcloud --version | Select-Object -First 1
 }
 
 function Get-HavegedVersion {
@@ -215,8 +200,7 @@ function Get-JqVersion {
 
 function Get-AzureCliVersion {
     $azcliVersion = (az version | ConvertFrom-Json).'azure-cli'
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "azure-cli"
-    return "Azure CLI (azure-cli) $azcliVersion (installation method: $aptSourceRepo)"
+    return "Azure CLI $azcliVersion"
 }
 
 function Get-AzureDevopsVersion {
@@ -299,7 +283,7 @@ function Get-YamllintVersion {
 
 function Get-ZstdVersion {
     $zstdVersion = zstd --version | Take-OutputPart -Part 1 -Delimiter "v" | Take-OutputPart -Part 0 -Delimiter ","
-    return "zstd $zstdVersion (homebrew)"
+    return "zstd $zstdVersion (Homebrew)"
 }
 
 function Get-YqVersion {

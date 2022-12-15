@@ -5,7 +5,7 @@
 ***
 # Ubuntu 22.04.1 LTS
 - Linux kernel version: 5.15.0-1024-azure
-- Image Version: 20221204.2
+- Image Version: 20221212.1
 
 ## Installed Software
 ### Language and Runtime
@@ -15,7 +15,7 @@
 - Clang-tidy 12.0.1, 13.0.1, 14.0.0
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++ 9.5.0, 10.4.0, 11.3.0, 12.1.0
-- GNU Fortran 9.5.0, 10.4.0, 11.3.0
+- GNU Fortran 9.5.0, 10.4.0, 11.3.0, 12.1.0
 - Julia 1.8.3
 - Kotlin 1.7.22-release-288
 - Mono 6.12.0.182 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
@@ -30,7 +30,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.10.2
-- Homebrew 3.6.13
+- Homebrew 3.6.15
 - Miniconda 4.12.0
 - Npm 8.19.2
 - NuGet 6.3.1.1
@@ -38,7 +38,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg  (build from master \<163fe7bd3>)
+- Vcpkg  (build from master \<796213014>)
 - Yarn 1.22.19
 
 ##### Notes:
@@ -59,32 +59,32 @@ to accomplish this.
 - Lerna 6.1.0
 
 ### Tools
-- Ansible 2.14.0
+- Ansible 2.14.1
 - apt-fast 1.9.12
 - AzCopy 10.16.2 (available by `azcopy` and `azcopy10` aliases)
 - Bazel 5.3.2
 - Bazelisk 1.13.2
-- Bicep 0.12.40
+- Bicep 0.13.1
 - Buildah 1.23.1
 - CMake 3.25.1
-- CodeQL Action Bundle 2.11.4
+- CodeQL Action Bundle 2.11.5
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.12.2+azure-1
+- Docker Compose v2 2.14.0+azure-1
 - Docker-Buildx 0.9.1
-- Docker-Moby Client 20.10.21+azure-1
-- Docker-Moby Server 20.10.21+azure-1
+- Docker-Moby Client 20.10.21+azure-2
+- Docker-Moby Server 20.10.21+azure-2
 - Fastlane 2.211.0
-- Git 2.38.1 (apt source repository: ppa:git-core/ppa)
+- Git 2.38.2 (apt source repository: ppa:git-core/ppa)
 - Git LFS 3.3.0 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - Heroku 7.67.1
 - jq 1.6
 - Kind 0.17.0
-- Kubectl 1.25.4
+- Kubectl 1.26.0
 - Kustomize 4.5.7
-- Leiningen 2.9.10
+- Leiningen 2.10.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.28.0
@@ -93,9 +93,9 @@ to accomplish this.
 - nvm 0.39.2
 - OpenSSL 3.0.2-0ubuntu1.7
 - Packer 1.8.4
-- Parcel 2.8.0
+- Parcel 2.8.1
 - Podman 3.4.4
-- Pulumi 3.48.0
+- Pulumi 3.49.0
 - R 4.2.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -107,18 +107,18 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.140
-- AWS CLI 2.9.4
+- AWS CLI 2.9.6
 - AWS CLI Session manager plugin 1.2.398.0
 - AWS SAM CLI 1.66.0
-- Azure CLI (azure-cli) 2.42.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+- Azure CLI (azure-cli) 2.43.0 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.20.2
-- Google Cloud SDK 410.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Google Cloud SDK 411.0.0 (apt source repository: https://packages.cloud.google.com/apt)
 - Hub CLI 2.14.2
-- Netlify CLI 12.2.8
-- OpenShift CLI 4.11.17
+- Netlify CLI 12.2.10
+- OpenShift CLI 4.11.18
 - ORAS CLI 0.16.0
-- Vercel CLI 28.7.2
+- Vercel CLI 28.8.0
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -162,13 +162,13 @@ to accomplish this.
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 108.0.5359.94
+- Google Chrome 108.0.5359.98
 - ChromeDriver 108.0.5359.71
 - Chromium 108.0.5341.0
-- Microsoft Edge 107.0.1418.62 (apt source repository: https://packages.microsoft.com/repos/edge)
-- Microsoft Edge WebDriver 107.0.1418.62
+- Microsoft Edge 108.0.1462.46 (apt source repository: https://packages.microsoft.com/repos/edge)
+- Microsoft Edge WebDriver 108.0.1462.46
 - Selenium server 4.7.0
-- Mozilla Firefox 107.0.1 (apt source repository: ppa:mozillateam/ppa)
+- Mozilla Firefox 108.0 (apt source repository: ppa:mozillateam/ppa)
 - Geckodriver 0.32.0
 
 #### Environment variables
@@ -209,8 +209,8 @@ to accomplish this.
 ### Cached Tools
 #### Go
 - 1.17.13
-- 1.18.8
-- 1.19.3
+- 1.18.9
+- 1.19.4
 
 #### Node.js
 - 14.21.1
@@ -219,15 +219,15 @@ to accomplish this.
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
-- 3.8.13 [PyPy 7.3.9]
-- 3.9.12 [PyPy 7.3.9]
+- 3.8.15 [PyPy 7.3.10]
+- 3.9.15 [PyPy 7.3.10]
 
 #### Python
 - 3.7.15
 - 3.8.15
-- 3.9.15
-- 3.10.8
-- 3.11.0
+- 3.9.16
+- 3.10.9
+- 3.11.1
 
 #### Ruby
 - 3.1.3
@@ -236,8 +236,8 @@ to accomplish this.
 | Name            | Value                               | Architecture |
 | --------------- | ----------------------------------- | ------------ |
 | GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.13/x64 | x64          |
-| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.8/x64  | x64          |
-| GOROOT_1_19_X64 | /opt/hostedtoolcache/go/1.19.3/x64  | x64          |
+| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.9/x64  | x64          |
+| GOROOT_1_19_X64 | /opt/hostedtoolcache/go/1.19.4/x64  | x64          |
 
 ### PowerShell Tools
 - PowerShell 7.2.7
@@ -291,20 +291,20 @@ to accomplish this.
 | alpine:3.14             | sha256:4c869a63e1b7c0722fed1e402a6466610327c3b83bdddb94bd94fb71da7f638a  | 2022-08-09 |
 | alpine:3.15             | sha256:cf34c62ee8eb3fe8aa24c1fab45d7e9d12768d945c3f5a6fd6a63d901e898479  | 2022-08-09 |
 | alpine:3.16             | sha256:b95359c2505145f16c6aa384f9cc74eeff78eb36d308ca4fd902eeeb0a0b161b  | 2022-11-12 |
-| buildpack-deps:bullseye | sha256:1a263e69ebf256b5f27165d2eb4e667dadad37f42003d53f5ce699b7e7f1b6dc  | 2022-11-15 |
-| buildpack-deps:buster   | sha256:c0804e4d81620d4fdb4965cc462dbca7d901d68968780ff6c6aeed062309ad50  | 2022-11-15 |
-| debian:10               | sha256:6c153b6c1b042fb70140a465e6d7c9c4a6112062afdc843c6a4d9c5bbfe5d0d5  | 2022-11-15 |
-| debian:11               | sha256:3066ef83131c678999ce82e8473e8d017345a30f5573ad3e44f62e5c9c46442b  | 2022-11-15 |
+| buildpack-deps:bullseye | sha256:ea5e7737f282e76b594669926ee6222beee0c237b9ba19a2055aa8f4feb83ba2  | 2022-12-06 |
+| buildpack-deps:buster   | sha256:ecb6bd2c510b37b0bcbfaaa043192c293bfba2d9a0f4402abab6a342f186eebc  | 2022-12-06 |
+| debian:10               | sha256:e6fb8b88b411285ac71590459aa8d0a376acc86a3d17adfe45e806f522c54cc3  | 2022-12-06 |
+| debian:11               | sha256:a288aa7ad0e4d443e86843972c25a02f99e9ad6ee589dd764895b2c3f5a8340b  | 2022-12-06 |
 | moby/buildkit:latest    | sha256:77abd86c9422aaff294bfde1029f03a6ab18ece0105003637cfda1d7fc22299f  | 2022-11-10 |
-| node:14                 | sha256:d82d512aec5de4fac53b92b2aa148948c2e72264d650de9e1570283d4f503dbe  | 2022-11-15 |
-| node:14-alpine          | sha256:12b14bdfa8c89a1a060c53b5714157085700660b12ab7c50a907a4e19d95b6bf  | 2022-11-12 |
-| node:16                 | sha256:68fc9f749931453d5c8545521b021dd97267e0692471ce15bdec0814ed1f8fc3  | 2022-11-15 |
-| node:16-alpine          | sha256:15dd66f723aab8b367abc7ac6ed25594ca4653f2ce49ad1505bfbe740ad5190e  | 2022-11-12 |
-| node:18                 | sha256:c47a2c61e635eb4938fcd56a1139b552300624b53e3eca06b5554a577f1842cf  | 2022-11-15 |
-| node:18-alpine          | sha256:9eff44230b2fdcca57a73b8f908c8029e72d24dd05cac5339c79d3dedf6b208b  | 2022-11-12 |
-| ubuntu:18.04            | sha256:ca70a834041dd1bf16cc38dfcd24f0888ec4fa431e09f3344f354cf8d1724499  | 2022-10-25 |
-| ubuntu:20.04            | sha256:450e066588f42ebe1551f3b1a535034b6aa46cd936fe7f2c6b0d72997ec61dbd  | 2022-10-25 |
-| ubuntu:22.04            | sha256:4b1d0c4a2d2aaf63b37111f34eb9fa89fa1bf53dd6e4ca954d47caebca4005c2  | 2022-11-02 |
+| node:14                 | sha256:f11e8dbf2ff6668927aafd90a804bf6597d8fe53dc16742a234045f7bf647a8c  | 2022-12-06 |
+| node:14-alpine          | sha256:99360847bb6fddff4652433355ad1f3072ff734a3d9c103bb8b26cfa0e2b7046  | 2022-12-12 |
+| node:16                 | sha256:7f404d09ceb780c51f4fac7592c46b8f21211474aacce25389eb0df06aaa7472  | 2022-12-06 |
+| node:16-alpine          | sha256:3265e41b5007254a593a1c3ff8b9b5ea9b943d63a1360a7d8d7d29b33a46a01f  | 2022-12-12 |
+| node:18                 | sha256:9ebe9845301ca70e879f22180dfff496b856bb5f2ec52397462a9f5f903ee654  | 2022-12-06 |
+| node:18-alpine          | sha256:62a6ce21599b3183272e71527c9ce9fae9435195052d358f481eb3d69d3dc6f3  | 2022-12-12 |
+| ubuntu:18.04            | sha256:daf3e62183e8aa9a56878a685ed26f3af3dd8c08c8fd11ef1c167a1aa9bd66a3  | 2022-12-09 |
+| ubuntu:20.04            | sha256:0e0402cd13f68137edb0266e1d2c682f217814420f2d43d300ed8f65479b14fb  | 2022-12-09 |
+| ubuntu:22.04            | sha256:27cb6e6ccef575a4698b66f5de06c7ecd61589132d5a91d098f7f3f9285415a9  | 2022-12-09 |
 
 ### Installed apt packages
 | Name                   | Version                           |
@@ -313,7 +313,7 @@ to accomplish this.
 | aria2                  | 1.36.0-1                          |
 | autoconf               | 2.71-2                            |
 | automake               | 1:1.16.5-1.3                      |
-| binutils               | 2.38-4ubuntu2                     |
+| binutils               | 2.38-4ubuntu2.1                   |
 | bison                  | 2:3.8.2+dfsg-1build1              |
 | brotli                 | 1.0.9-2build6                     |
 | build-essential        | 12.9ubuntu3                       |
@@ -352,7 +352,9 @@ to accomplish this.
 | libunwind8             | 1.3.2-2build2                     |
 | libxkbfile-dev         | 1:1.1.0-1build3                   |
 | libxss1                | 1:1.2.3-1build2                   |
+| libyaml-dev            | 0.2.2-1build2                     |
 | locales                | 2.35-0ubuntu3.1                   |
+| lz4                    | 1.9.3-2build2                     |
 | m4                     | 1.4.18-5ubuntu2                   |
 | mediainfo              | 22.03-1                           |
 | mercurial              | 6.1.1-1ubuntu1                    |
@@ -382,12 +384,12 @@ to accomplish this.
 | texinfo                | 6.8-4build1                       |
 | time                   | 1.9-0.1build2                     |
 | tk                     | 8.6.11+1build2                    |
-| tzdata                 | 2022f-0ubuntu0.22.04.1            |
+| tzdata                 | 2022g-0ubuntu0.22.04.1            |
 | unzip                  | 6.0-26ubuntu3.1                   |
 | upx                    | 3.96-3                            |
 | wget                   | 1.21.2-2ubuntu1                   |
 | xorriso                | 1.5.4-2                           |
-| xvfb                   | 2:21.1.3-2ubuntu2.3               |
+| xvfb                   | 2:21.1.3-2ubuntu2.4               |
 | xz-utils               | 5.2.5-2ubuntu1                    |
 | zip                    | 3.0-12build2                      |
 | zsync                  | 0.6.2-3ubuntu1                    |

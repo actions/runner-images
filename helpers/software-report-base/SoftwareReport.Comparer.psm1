@@ -37,7 +37,13 @@ class SoftwareReportComparer {
                     # Nodes are identical, nothing changed, just ignore it
                 } elseif ($sameNodeInPreviousReport) {
                     # Nodes are equal but not identical, so something was changed
-                    $this.ChangedItems.Add([ReportDifferenceItem]::new($sameNodeInPreviousReport, $currentReportNode, $Headers))
+                    if ($currentReportNode -is [TableNode]) {
+                        $this.CompareSimilarTableNodes($sameNodeInPreviousReport, $currentReportNode, $Headers)
+                    } elseif ($currentReportNode -is [ToolVersionsListNode]) {
+                        $this.CompareSimilarToolVersionsListNodes($sameNodeInPreviousReport, $currentReportNode, $Headers)
+                    } else {
+                        $this.ChangedItems.Add([ReportDifferenceItem]::new($sameNodeInPreviousReport, $currentReportNode, $Headers))
+                    }
                 } else {
                     # Node was not found in previous report, new node was added
                     $this.AddedItems.Add([ReportDifferenceItem]::new($null, $currentReportNode, $Headers))
@@ -60,6 +66,43 @@ class SoftwareReportComparer {
         }
     }
 
+    hidden [void] CompareSimilarTableNodes([TableNode] $PreviousReportNode, [TableNode] $CurrentReportNode, [Array] $Headers) {
+        $addedRows = $CurrentReportNode.Rows | Where-Object { $_ -notin $PreviousReportNode.Rows }
+        $deletedRows = $PreviousReportNode.Rows | Where-Object { $_ -notin $CurrentReportNode.Rows }
+
+        if (($addedRows.Count -gt 0) -and ($deletedRows.Count -eq 0)) {
+            $this.AddedItems.Add([ReportDifferenceItem]::new($PreviousReportNode, $CurrentReportNode, $Headers))
+        } elseif (($deletedRows.Count -gt 0) -and ($addedRows.Count -eq 0)) {
+            $this.DeletedItems.Add([ReportDifferenceItem]::new($PreviousReportNode, $CurrentReportNode, $Headers))
+        } else {
+            $this.ChangedItems.Add([ReportDifferenceItem]::new($PreviousReportNode, $CurrentReportNode, $Headers))
+        }
+    }
+
+    hidden [void] CompareSimilarToolVersionsListNodes([ToolVersionsListNode] $PreviousReportNode, [ToolVersionsListNode] $CurrentReportNode, [Array] $Headers) {
+        $previousReportMajorVersions = $PreviousReportNode.Versions | ForEach-Object { $PreviousReportNode.ExtractMajorVersion($_) }
+        $currentReportMajorVersion = $CurrentReportNode.Versions | ForEach-Object { $CurrentReportNode.ExtractMajorVersion($_) }
+
+        $addedVersions = $CurrentReportNode.Versions | Where-Object { $CurrentReportNode.ExtractMajorVersion($_) -notin $previousReportMajorVersions }
+        $deletedVersions = $PreviousReportNode.Versions | Where-Object { $PreviousReportNode.ExtractMajorVersion($_) -notin $currentReportMajorVersion }
+        $changedPreviousVersions = $PreviousReportNode.Versions | Where-Object { ($PreviousReportNode.ExtractMajorVersion($_) -in $currentReportMajorVersion) -and ($_ -notin $CurrentReportNode.Versions) }
+        $changedCurrentVersions = $CurrentReportNode.Versions | Where-Object { ($CurrentReportNode.ExtractMajorVersion($_) -in $previousReportMajorVersions) -and ($_ -notin $PreviousReportNode.Versions) }
+
+        if ($addedVersions.Count -gt 0) {
+            $this.AddedItems.Add([ReportDifferenceItem]::new($null, [ToolVersionsListNode]::new($CurrentReportNode.ToolName, $addedVersions, $CurrentReportNode.MajorVersionRegex, $true), $Headers))
+        }
+
+        if ($deletedVersions.Count -gt 0) {
+            $this.DeletedItems.Add([ReportDifferenceItem]::new([ToolVersionsListNode]::new($PreviousReportNode.ToolName, $deletedVersions, $PreviousReportNode.MajorVersionRegex, $true), $null, $Headers))
+        }
+
+        $previousChangedNode = ($changedPreviousVersions.Count -gt 0) ? [ToolVersionsListNode]::new($PreviousReportNode.ToolName, $changedPreviousVersions, $PreviousReportNode.MajorVersionRegex, $true) : $null
+        $currentChangedNode = ($changedCurrentVersions.Count -gt 0) ? [ToolVersionsListNode]::new($CurrentReportNode.ToolName, $changedCurrentVersions, $CurrentReportNode.MajorVersionRegex, $true) : $null
+        if ($previousChangedNode -and $currentChangedNode) {
+            $this.ChangedItems.Add([ReportDifferenceItem]::new($previousChangedNode, $currentChangedNode, $Headers))
+        }
+    }
+
     [String] GetMarkdownReport() {
         $reporter = [SoftwareReportComparerReport]::new()
         $report = $reporter.GenerateMarkdownReport($this.CurrentReport, $this.PreviousReport, $this.AddedItems, $this.ChangedItems, $this.DeletedItems)
@@ -68,11 +111,11 @@ class SoftwareReportComparer {
 
     hidden [Boolean] FilterExcludedNodes([BaseNode] $Node) {
         # We shouldn't show "Image Version" diff because it is already shown in report header
-        if (($Node -is [ToolNode]) -and ($Node.ToolName -eq "Image Version:")) {
-            return $False
+        if (($Node -is [ToolVersionNode]) -and ($Node.ToolName -eq "Image Version:")) {
+            return $false
         }
 
-        return $True
+        return $true
     }
 }
 
@@ -89,7 +132,7 @@ class SoftwareReportComparerReport {
         ### Render report header ####
         #############################
 
-        $sb.AppendLine("# :desktop_computer: $($rootNode.Title)")
+        $sb.AppendLine("# :desktop_computer: Actions Runner Image: $($rootNode.Title)")
 
         # ToolNodes on root level contains main image description so just copy-paste them to final report
         $rootNode.Children | Where-Object { $_ -is [BaseToolNode] } | ForEach-Object {
@@ -107,7 +150,7 @@ class SoftwareReportComparerReport {
         if ($addedItemsExcludeTables.Count -gt 0) {
             $tableItems = $addedItemsExcludeTables | ForEach-Object {
                 [PSCustomObject]@{
-                    "Category" = $this.RenderCategory($_.Headers, $True);
+                    "Category" = $this.RenderCategory($_.Headers, $true);
                     "Tool name" = $this.RenderToolName($_.CurrentReportNode.ToolName);
                     "Current ($imageVersion)" = $_.CurrentReportNode.GetValue();
                 }
@@ -115,7 +158,6 @@ class SoftwareReportComparerReport {
 
             $sb.AppendLine("### Added :heavy_plus_sign:")
             $sb.AppendLine($this.RenderHtmlTable($tableItems, "Category"))
-            $sb.AppendLine()
         }
 
         # Render added tables separately
@@ -131,7 +173,7 @@ class SoftwareReportComparerReport {
         if ($deletedItemsExcludeTables.Count -gt 0) {
             $tableItems = $deletedItemsExcludeTables | ForEach-Object {
                 [PSCustomObject]@{
-                    "Category" = $this.RenderCategory($_.Headers, $True);
+                    "Category" = $this.RenderCategory($_.Headers, $true);
                     "Tool name" = $this.RenderToolName($_.PreviousReportNode.ToolName);
                     "Previous ($previousImageVersion)" = $_.PreviousReportNode.GetValue();
                 }
@@ -139,7 +181,11 @@ class SoftwareReportComparerReport {
 
             $sb.AppendLine("### Deleted :heavy_minus_sign:")
             $sb.AppendLine($this.RenderHtmlTable($tableItems, "Category"))
-            $sb.AppendLine()
+        }
+
+        # Render deleted tables separately
+        $DeletedItems | Where-Object { $_.IsTableNode() } | ForEach-Object {
+            $sb.AppendLine($this.RenderTableNodesDiff($_))
         }
 
         #############################
@@ -150,7 +196,7 @@ class SoftwareReportComparerReport {
         if ($changedItemsExcludeTables.Count -gt 0) {
             $tableItems = $changedItemsExcludeTables | ForEach-Object {
                 [PSCustomObject]@{
-                    "Category" = $this.RenderCategory($_.Headers, $True);
+                    "Category" = $this.RenderCategory($_.Headers, $true);
                     "Tool name" = $this.RenderToolName($_.CurrentReportNode.ToolName);
                     "Previous ($previousImageVersion)" = $_.PreviousReportNode.GetValue();
                     "Current ($imageVersion)" = $_.CurrentReportNode.GetValue();
@@ -159,16 +205,10 @@ class SoftwareReportComparerReport {
 
             $sb.AppendLine("### Updated")
             $sb.AppendLine($this.RenderHtmlTable($tableItems, "Category"))
-            $sb.AppendLine()
         }
 
         # Render updated tables separately
         $ChangedItems | Where-Object { $_.IsTableNode() } | ForEach-Object {
-            $sb.AppendLine($this.RenderTableNodesDiff($_))
-        }
-
-        # Render deleted tables separately
-        $DeletedItems | Where-Object { $_.IsTableNode() } | ForEach-Object {
             $sb.AppendLine($this.RenderTableNodesDiff($_))
         }
 
@@ -186,7 +226,6 @@ class SoftwareReportComparerReport {
         }
         $sb.AppendLine("  </thead>")
         $sb.AppendLine("  <tbody>")
-
 
         $tableRowSpans = $this.CalculateHtmlTableRowSpan($Table, $RowSpanColumnName)
         for ($rowIndex = 0; $rowIndex -lt $Table.Count; $rowIndex++) {
@@ -246,7 +285,7 @@ class SoftwareReportComparerReport {
         }
 
         $sb = [System.Text.StringBuilder]::new()
-        $sb.AppendLine("#### $($this.RenderCategory($DiffItem.Headers, $False))")
+        $sb.AppendLine("#### $($this.RenderCategory($DiffItem.Headers, $false))")
         $sb.AppendLine([TableNode]::new($tableHeaders, $tableRows).ToMarkdown(0))
         return $sb.ToString()
     }
@@ -274,7 +313,7 @@ class SoftwareReportComparerReport {
     }
 
     [String] GetImageVersion([SoftwareReport] $Report) {
-        $imageVersionNode = $Report.Root.Children ?? @() | Where-Object { ($_ -is [ToolNode]) -and ($_.ToolName -eq "Image Version:") } | Select-Object -First 1
+        $imageVersionNode = $Report.Root.Children ?? @() | Where-Object { ($_ -is [ToolVersionNode]) -and ($_.ToolName -eq "Image Version:") } | Select-Object -First 1
         return $imageVersionNode.Version ?? "Unknown version"
     }
 }

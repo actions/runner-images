@@ -18,7 +18,9 @@ Param (
     [Parameter(Mandatory=$true)]
     [string] $CurrentJsonReportPath,
     [Parameter(Mandatory=$true)]
-    [string] $OutputFile
+    [string] $OutputFile,
+    [Parameter(Mandatory=$false)]
+    [string] $ImageDocsUrl
 )
 
 $ErrorActionPreference = "Stop"
@@ -45,4 +47,9 @@ $currentReport = Read-SoftwareReport -JsonReportPath $CurrentJsonReportPath
 $comparer = [SoftwareReportComparer]::new($previousReport, $currentReport)
 $comparer.CompareReports()
 $diff = $comparer.GetMarkdownReport()
+
+if ($ImageDocsUrl) {
+    $diff += "`n`n`n For comprehensive list of software installed on this image please click [here]($ImageDocsUrl)."
+}
+
 $diff | Out-File -Path $OutputFile -Encoding utf8NoBOM

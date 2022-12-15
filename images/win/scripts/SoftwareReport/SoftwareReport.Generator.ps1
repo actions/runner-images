@@ -26,9 +26,9 @@ $markdown += New-MDList -Style Unordered -Lines @(
     "Image Version: $env:IMAGE_VERSION"
 )
 
-$markdown += New-MDHeader "Enabled windows optional features" -Level 2
+$markdown += New-MDHeader "Windows features" -Level 2
 $markdown += New-MDList -Style Unordered -Lines @(
-    "Windows Subsystem for Linux [WSLv1]"
+    "Windows Subsystem for Linux (WSLv1): Enabled"
 )
 
 $markdown += New-MDHeader "Installed Software" -Level 2
@@ -165,7 +165,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     ) | Sort-Object
 )
 
-$markdown += New-MDHeader "Browsers and webdrivers" -Level 3
+$markdown += New-MDHeader "Browsers and Drivers" -Level 3
 $markdown += New-MDList -Style Unordered -Lines @(
     (Get-BrowserVersion -Browser "chrome"),
     (Get-SeleniumWebDriverVersion -Driver "chrome"),
@@ -208,7 +208,7 @@ if (Test-IsWin19)
 }
 
 $markdown += New-MDHeader "Cached Tools" -Level 3
-$markdown += (Build-CachedToolsMarkdown)
+$markdown += (Build-CachedToolsSection)
 
 $markdown += New-MDHeader "Databases" -Level 3
 $markdown += Build-DatabasesMarkdown
@@ -241,46 +241,29 @@ $markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Installed Windows SDKs" -Level 4
 $sdk = Get-WindowsSDKs
-$markdown += "``Location $($sdk.Path)``"
 $markdown += New-MDNewLine
 $markdown += New-MDList -Lines $sdk.Versions -Style Unordered
 
-$markdown += New-MDHeader ".NET Core SDK" -Level 3
-$sdk = Get-DotnetSdks
-$markdown += "``Location $($sdk.Path)``"
-$markdown += New-MDNewLine
-$markdown += New-MDList -Lines $sdk.Versions -Style Unordered
-
-$markdown += New-MDHeader ".NET Core Runtime" -Level 3
-Get-DotnetRuntimes | Foreach-Object {
-    $path = $_.Path
-    $versions = $_.Versions
-    $markdown += "``Location: $path``"
-    $markdown += New-MDNewLine
-    $markdown += New-MDList -Lines $versions -Style Unordered
+$markdown += New-MDHeader ".NET Core Tools" -Level 3
+$dotnetSdk = Get-DotnetSdks
+$dotnetFrameworkVersions = Get-DotnetFrameworkVersions
+$dotnetTools = @(
+    ".NET Core SDK: $($dotnetSdk.Versions)",
+    ".NET Framework: $($dotnetFrameworkVersions)"
+)
+$dotnetTools += Get-DotnetRuntimes | ForEach-Object {
+    "$($_.Runtime): $($_.Versions)"
 }
+$dotnetTools += Get-DotnetTools
+$markdown += New-MDList -Style Unordered -Lines $dotnetTools
 
-$markdown += New-MDHeader ".NET Framework" -Level 3
-$markdown += "``Type: Developer Pack``"
-$markdown += New-MDNewLine
-Get-DotnetFrameworkTools | Foreach-Object {
-    $path = $_.Path
-    $versions = $_.Versions
-    $markdown += "``Location: $path``"
-    $markdown += New-MDNewLine
-    $markdown += New-MDList -Lines $versions -Style Unordered
-}
-
-$markdown += New-MDHeader ".NET tools" -Level 3
-$tools = Get-DotnetTools
-$markdown += New-MDList -Lines $tools -Style Unordered
 
 # PowerShell Tools
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
 $markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
 
-$markdown += New-MDHeader "Azure Powershell Modules" -Level 4
-$markdown += Get-PowerShellAzureModules | New-MDTable
+$markdown += New-MDHeader "Powershell Modules" -Level 4
+$markdown += New-MDList -Lines $(Get-PowerShellModules) -Style Unordered
 $reportAzPwsh = @'
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
@@ -290,9 +273,6 @@ All other versions are saved but not installed.
 '@
 $markdown += New-MDParagraph -Lines $reportAzPwsh
 
-$markdown += New-MDHeader "Powershell Modules" -Level 4
-$markdown += Get-PowerShellModules | New-MDTable
-$markdown += New-MDNewLine
 
 # Android section
 $markdown += New-MDHeader "Android" -Level 3
