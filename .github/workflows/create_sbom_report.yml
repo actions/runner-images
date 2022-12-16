@@ -52,7 +52,7 @@ jobs:
       #Upload artifact action
       - uses: actions/upload-artifact@v3
         with:
-          name: sbom-${{ github.event.client_payload.ReleaseBranchName }}
+          name: sbom-${{ github.event.client_payload.agentSpec }}-${{ github.event.client_payload.imageVersion }}
           path: sbom.json.zip
           if-no-files-found: warn
       #Upload release asset action
