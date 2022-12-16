@@ -1,7 +1,7 @@
 name: Create and upload a SBOM to release assets
 # Inherited variables:
 # github.event.client_payload.agentSpec - Current YAML Label
-# github.event.client_payload.ReleaseID - Current release ID
+# github.event.client_payload.test_ReleaseID - Current release ID
 # github.event.client_payload.imageVersion - AzDO image version "major.minor"
 # github.event.client_payload.ReleaseBranchName - Necessary to identify workflow run
 # 
@@ -15,6 +15,16 @@ defaults:
   run:
     shell: pwsh
 jobs:
+  #Temporary job to check how it's going inside event.client_payload
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output of event.client_payload
+        run: |
+          Write-Host "imageVersion is      ${{ github.event.client_payload.imageVersion }}"
+          Write-Host "test_ReleaseID is    ${{ github.event.client_payload.test_ReleaseID }}"
+          Write-Host "agentSpec is         ${{ github.event.client_payload.agentSpec }}"
+          Write-Host "ReleaseBranchName is ${{ github.event.client_payload.ReleaseBranchName }}"
   #Checking image version on available runner
   version-check:
     runs-on: ${{ github.event.client_payload.agentSpec }}
