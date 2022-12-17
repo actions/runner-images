@@ -1,3 +1,6 @@
+using module ./software-report-base/SoftwareReport.psm1
+using module ./software-report-base/SoftwareReport.Nodes.psm1
+
 param (
     [Parameter(Mandatory)][string]
     $OutputDirectory,
@@ -6,7 +9,6 @@ param (
 
 $ErrorActionPreference = "Stop"
 
-. ("$PSScriptRoot/SoftwareReport.Base.ps1")
 Import-Module "$PSScriptRoot/SoftwareReport.Common.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Xcode.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/SoftwareReport.Android.psm1" -DisableNameChecking
@@ -27,180 +29,180 @@ $osInfo = Build-OSInfoSection $ImageName
 
 # Software report
 $softwareReport = [SoftwareReport]::new($osInfo)
-$installedSoftware = $softwareReport.Root.AddHeaderNode("Installed Software")
+$installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
 # Language and Runtime
-$languageAndRuntime = $installedSoftware.AddHeaderNode("Language and Runtime")
-$languageAndRuntime.AddToolNode(".NET SDK", $(Get-DotnetVersionList))
-$languageAndRuntime.AddToolNode("Bash", $(Get-BashVersion))
+$languageAndRuntime = $installedSoftware.AddHeader("Language and Runtime")
+$languageAndRuntime.AddToolVersionsList(".NET Core SDK", $(Get-DotnetVersionList), '^\d+\.\d+\.\d', $true)
+$languageAndRuntime.AddToolVersion("Bash", $(Get-BashVersion))
 $languageAndRuntime.AddNodes($(Get-ClangLLVMVersions))
 $languageAndRuntime.AddNodes($(Get-GccVersions))
 $languageAndRuntime.AddNodes($(Get-FortranVersions))
-$languageAndRuntime.AddToolNode("Go", $(Get-GoVersion))
-$languageAndRuntime.AddToolNode("Julia", $(Get-JuliaVersion))
-$languageAndRuntime.AddToolNode("Kotlin", $(Get-KotlinVersion))
-$languageAndRuntime.AddToolNode("Mono", $(Get-MonoVersion))
-$languageAndRuntime.AddToolNode("MSBuild", $(Get-MSBuildVersion))
-$languageAndRuntime.AddToolNode("Node.js", $(Get-NodeVersion))
-$languageAndRuntime.AddToolNode("NVM", $(Get-NVMVersion))
-$languageAndRuntime.AddToolNode("NVM - Cached node versions:", $(Get-NVMNodeVersionList))
-$languageAndRuntime.AddToolNode("Perl", $(Get-PerlVersion))
-$languageAndRuntime.AddToolNode("PHP", $(Get-PHPVersion))
-$languageAndRuntime.AddToolNode("Python", $(Get-PythonVersion))
-$languageAndRuntime.AddToolNode("Python3", $(Get-Python3Version))
-$languageAndRuntime.AddToolNode("R", $(Get-RVersion))
-$languageAndRuntime.AddToolNode("Ruby", $(Get-RubyVersion))
+$languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
+$languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
+$languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
+$languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
+$languageAndRuntime.AddToolVersion("MSBuild", $(Get-MSBuildVersion))
+$languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
+$languageAndRuntime.AddToolVersion("NVM", $(Get-NVMVersion))
+$languageAndRuntime.AddToolVersionsList("NVM - Cached node versions", $(Get-NVMNodeVersionList), '^\d+', $true)
+$languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
+$languageAndRuntime.AddToolVersion("PHP", $(Get-PHPVersion))
+$languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
+$languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
+$languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
+$languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
 
 # Package Management
-$packageManagement = $installedSoftware.AddHeaderNode("Package Management")
-$packageManagement.AddToolNode("Bundler", $(Get-BundlerVersion))
-$packageManagement.AddToolNode("Carthage", $(Get-CarthageVersion))
-$packageManagement.AddToolNode("CocoaPods", $(Get-CocoaPodsVersion))
-$packageManagement.AddToolNode("Composer", $(Get-ComposerVersion))
-$packageManagement.AddToolNode("Homebrew", $(Get-HomebrewVersion))
-$packageManagement.AddToolNode("Miniconda", $(Get-CondaVersion))
-$packageManagement.AddToolNode("NPM", $(Get-NPMVersion))
-$packageManagement.AddToolNode("NuGet", $(Get-NuGetVersion))
-$packageManagement.AddToolNode("Pip", $(Get-PipVersion -Version 2))
-$packageManagement.AddToolNode("Pip3", $(Get-PipVersion -Version 3))
-$packageManagement.AddToolNode("Pipx", $(Get-PipxVersion))
-$packageManagement.AddToolNode("RubyGems", $(Get-RubyGemsVersion))
-$packageManagement.AddToolNode("Vcpkg", $(Get-VcpkgVersion))
-$packageManagement.AddToolNode("Yarn", $(Get-YarnVersion))
+$packageManagement = $installedSoftware.AddHeader("Package Management")
+$packageManagement.AddToolVersion("Bundler", $(Get-BundlerVersion))
+$packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
+$packageManagement.AddToolVersion("CocoaPods", $(Get-CocoaPodsVersion))
+$packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
+$packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
+$packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
+$packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
+$packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
+$packageManagement.AddToolVersion("Pip", $(Get-PipVersion -Version 2))
+$packageManagement.AddToolVersion("Pip3", $(Get-PipVersion -Version 3))
+$packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
+$packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
+$packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
+$packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
 
 $packageManagement.AddNode($(Build-PackageManagementEnvironmentTable))
 
 # Project Management
-$projectanagement = $installedSoftware.AddHeaderNode("Project Management")
-$projectanagement.AddToolNode("Apache Ant", $(Get-ApacheAntVersion))
-$projectanagement.AddToolNode("Apache Maven", $(Get-MavenVersion))
-$projectanagement.AddToolNode("Gradle", $(Get-GradleVersion))
-$projectanagement.AddToolNode("Sbt", $(Get-SbtVersion))
+$projectanagement = $installedSoftware.AddHeader("Project Management")
+$projectanagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
+$projectanagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
+$projectanagement.AddToolVersion("Gradle", $(Get-GradleVersion))
+$projectanagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 
 # Utilities
-$utilities = $installedSoftware.AddHeaderNode("Utilities")
-$utilities.AddToolNode("7-Zip", $(Get-7zipVersion))
-$utilities.AddToolNode("aria2", $(Get-Aria2Version))
-$utilities.AddToolNode("azcopy", $(Get-AzcopyVersion))
-$utilities.AddToolNode("bazel", $(Get-BazelVersion))
-$utilities.AddToolNode("bazelisk", $(Get-BazeliskVersion))
-$utilities.AddToolNode("bsdtar", $(Get-BsdtarVersion))
-$utilities.AddToolNode("Curl", $(Get-CurlVersion))
-$utilities.AddToolNode("Git", $(Get-GitVersion))
-$utilities.AddToolNode("Git LFS", $(Get-GitLFSVersion))
-$utilities.AddToolNode("GitHub CLI", $(Get-GitHubCLIVersion))
+$utilities = $installedSoftware.AddHeader("Utilities")
+$utilities.AddToolVersion("7-Zip", $(Get-7zipVersion))
+$utilities.AddToolVersion("aria2", $(Get-Aria2Version))
+$utilities.AddToolVersion("azcopy", $(Get-AzcopyVersion))
+$utilities.AddToolVersion("bazel", $(Get-BazelVersion))
+$utilities.AddToolVersion("bazelisk", $(Get-BazeliskVersion))
+$utilities.AddToolVersion("bsdtar", $(Get-BsdtarVersion))
+$utilities.AddToolVersion("Curl", $(Get-CurlVersion))
+$utilities.AddToolVersion("Git", $(Get-GitVersion))
+$utilities.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
+$utilities.AddToolVersion("GitHub CLI", $(Get-GitHubCLIVersion))
 if ($os.IsCatalina) {
-    $utilities.AddToolNode("GNU parallel", $(Get-ParallelVersion))
+    $utilities.AddToolVersion("GNU parallel", $(Get-ParallelVersion))
 }
-$utilities.AddToolNode("GNU Tar", $(Get-GnuTarVersion))
-$utilities.AddToolNode("GNU Wget", $(Get-WgetVersion))
-$utilities.AddToolNode("gpg (GnuPG)", $(Get-GPGVersion))
+$utilities.AddToolVersion("GNU Tar", $(Get-GnuTarVersion))
+$utilities.AddToolVersion("GNU Wget", $(Get-WgetVersion))
+$utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
 if ($os.IsLessThanMonterey) {
-    $utilities.AddToolNode("helm", $(Get-HelmVersion))
+    $utilities.AddToolVersion("helm", $(Get-HelmVersion))
 }
-$utilities.AddToolNode("Hub CLI", $(Get-HubVersion))
-$utilities.AddToolNode("ImageMagick", $(Get-ImageMagickVersion))
-$utilities.AddToolNode("jq", $(Get-JqVersion))
-$utilities.AddToolNode("mongo", $(Get-MongoVersion))
-$utilities.AddToolNode("mongod", $(Get-MongodVersion))
+$utilities.AddToolVersion("Hub CLI", $(Get-HubVersion))
+$utilities.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
+$utilities.AddToolVersion("jq", $(Get-JqVersion))
+$utilities.AddToolVersion("mongo", $(Get-MongoVersion))
+$utilities.AddToolVersion("mongod", $(Get-MongodVersion))
 if ($os.IsLessThanMonterey) {
-    $utilities.AddToolNode("Newman", $(Get-NewmanVersion))
+    $utilities.AddToolVersion("Newman", $(Get-NewmanVersion))
 }
-$utilities.AddToolNode("OpenSSL", $(Get-OpenSSLVersion))
-$utilities.AddToolNode("Packer", $(Get-PackerVersion))
-$utilities.AddToolNode("PostgreSQL", $(Get-PostgresServerVersion))
-$utilities.AddToolNode("psql (PostgreSQL)", $(Get-PostgresClientVersion))
-$utilities.AddToolNode("Sox", $(Get-SoxVersion))
-$utilities.AddToolNode("Subversion (SVN)", $(Get-SVNVersion))
-$utilities.AddToolNode("Switchaudio-osx", $(Get-SwitchAudioOsxVersion))
+$utilities.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
+$utilities.AddToolVersion("Packer", $(Get-PackerVersion))
+$utilities.AddToolVersion("PostgreSQL", $(Get-PostgresServerVersion))
+$utilities.AddToolVersion("psql (PostgreSQL)", $(Get-PostgresClientVersion))
+$utilities.AddToolVersion("Sox", $(Get-SoxVersion))
+$utilities.AddToolVersion("Subversion (SVN)", $(Get-SVNVersion))
+$utilities.AddToolVersion("Switchaudio-osx", $(Get-SwitchAudioOsxVersion))
 if (-not $os.IsBigSur) {
-    $utilities.AddToolNode("Vagrant", $(Get-VagrantVersion))
-    $utilities.AddToolNode("VirtualBox", $(Get-VirtualBoxVersion))
+    $utilities.AddToolVersion("Vagrant", $(Get-VagrantVersion))
+    $utilities.AddToolVersion("VirtualBox", $(Get-VirtualBoxVersion))
 }
-$utilities.AddToolNode("yq", $(Get-YqVersion))
-$utilities.AddToolNode("zstd", $(Get-ZstdVersion))
+$utilities.AddToolVersion("yq", $(Get-YqVersion))
+$utilities.AddToolVersion("zstd", $(Get-ZstdVersion))
 
 # Tools
-$tools = $installedSoftware.AddHeaderNode("Tools")
+$tools = $installedSoftware.AddHeader("Tools")
 if ($os.IsLessThanMonterey) {
-    $tools.AddToolNode("Aliyun CLI", $(Get-AliyunCLIVersion))
+    $tools.AddToolVersion("Aliyun CLI", $(Get-AliyunCLIVersion))
 }
-$tools.AddToolNode("App Center CLI", $(Get-AppCenterCLIVersion))
-$tools.AddToolNode("AWS CLI", $(Get-AWSCLIVersion))
-$tools.AddToolNode("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
-$tools.AddToolNode("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersion))
-$tools.AddToolNode("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
-$tools.AddToolNode("Azure CLI", $(Get-AzureCLIVersion))
-$tools.AddToolNode("Bicep CLI", $(Get-BicepVersion))
-$tools.AddToolNode("Cabal", $(Get-CabalVersion))
-$tools.AddToolNode("Cmake", $(Get-CmakeVersion))
+$tools.AddToolVersion("App Center CLI", $(Get-AppCenterCLIVersion))
+$tools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
+$tools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
+$tools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersion))
+$tools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
+$tools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
+$tools.AddToolVersion("Bicep CLI", $(Get-BicepVersion))
+$tools.AddToolVersion("Cabal", $(Get-CabalVersion))
+$tools.AddToolVersion("Cmake", $(Get-CmakeVersion))
 if (-not $os.IsCatalina) {
-    $tools.AddToolNode("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
+    $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
 }
 if (-not $os.IsCatalina) {
-    $tools.AddToolNode("Colima", $(Get-ColimaVersion))
+    $tools.AddToolVersion("Colima", $(Get-ColimaVersion))
 }
-$tools.AddToolNode("Fastlane", $(Get-FastlaneVersion))
-$tools.AddToolNode("GHC", $(Get-GHCVersion))
-$tools.AddToolNode("GHCup", $(Get-GHCupVersion))
-$tools.AddToolNode("Jazzy", $(Get-JazzyVersion))
-$tools.AddToolNode("Stack", $(Get-StackVersion))
-$tools.AddToolNode("SwiftFormat", $(Get-SwiftFormatVersion))
-$tools.AddToolNode("Swig", $(Get-SwigVersion))
-$tools.AddToolNode("Xcode Command Line Tools", $(Get-XcodeCommandLineToolsVersion))
+$tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
+$tools.AddToolVersion("GHC", $(Get-GHCVersion))
+$tools.AddToolVersion("GHCup", $(Get-GHCupVersion))
+$tools.AddToolVersion("Jazzy", $(Get-JazzyVersion))
+$tools.AddToolVersion("Stack", $(Get-StackVersion))
+$tools.AddToolVersion("SwiftFormat", $(Get-SwiftFormatVersion))
+$tools.AddToolVersion("Swig", $(Get-SwigVersion))
+$tools.AddToolVersion("Xcode Command Line Tools", $(Get-XcodeCommandLineToolsVersion))
 
 # Linters
-$linters = $installedSoftware.AddHeaderNode("Linters")
-$linters.AddToolNode("Swift", $(Get-SwiftLintVersion))
-$linters.AddToolNode("Yamllint", $(Get-YamllintVersion))
+$linters = $installedSoftware.AddHeader("Linters")
+$linters.AddToolVersion("SwiftLint", $(Get-SwiftLintVersion))
+$linters.AddToolVersion("Yamllint", $(Get-YamllintVersion))
 
 # Browsers
-$browsers = $installedSoftware.AddHeaderNode("Browsers")
+$browsers = $installedSoftware.AddHeader("Browsers")
 $browsers.AddNodes($(Build-BrowserSection))
 $browsers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
 
 # Java
-$java = $installedSoftware.AddHeaderNode("Java")
-$java.AddTableNode($(Get-JavaVersions))
+$java = $installedSoftware.AddHeader("Java")
+$java.AddTable($(Get-JavaVersions))
 
 # Graal
-$graalvm = $installedSoftware.AddHeaderNode("GraalVM")
-$graalvm.AddTableNode($(Build-GraalVMTable))
+$graalvm = $installedSoftware.AddHeader("GraalVM")
+$graalvm.AddTable($(Build-GraalVMTable))
 
 # Toolcache
-$toolcache = $installedSoftware.AddHeaderNode("Cached Tools")
+$toolcache = $installedSoftware.AddHeader("Cached Tools")
 $toolcache.AddNodes($(Build-ToolcacheSection))
 
 # Rust
-$rust = $installedSoftware.AddHeaderNode("Rust Tools")
-$rust.AddToolNode("Cargo", $(Get-RustCargoVersion))
-$rust.AddToolNode("Rust", $(Get-RustVersion))
-$rust.AddToolNode("Rustdoc", $(Get-RustdocVersion))
-$rust.AddToolNode("Rustup", $(Get-RustupVersion))
+$rust = $installedSoftware.AddHeader("Rust Tools")
+$rust.AddToolVersion("Cargo", $(Get-RustCargoVersion))
+$rust.AddToolVersion("Rust", $(Get-RustVersion))
+$rust.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
+$rust.AddToolVersion("Rustup", $(Get-RustupVersion))
 
-$rustPackages = $rust.AddHeaderNode("Packages")
-$rustPackages.AddToolNode("Bindgen", $(Get-Bindgen))
-$rustPackages.AddToolNode("Cargo-audit", $(Get-Cargoaudit))
-$rustPackages.AddToolNode("Cargo-outdated", $(Get-Cargooutdated))
-$rustPackages.AddToolNode("Cbindgen", $(Get-Cbindgen))
-$rustPackages.AddToolNode("Clippy", $(Get-RustClippyVersion))
-$rustPackages.AddToolNode("Rustfmt", $(Get-RustfmtVersion))
+$rustPackages = $rust.AddHeader("Packages")
+$rustPackages.AddToolVersion("Bindgen", $(Get-Bindgen))
+$rustPackages.AddToolVersion("Cargo-audit", $(Get-Cargoaudit))
+$rustPackages.AddToolVersion("Cargo-outdated", $(Get-Cargooutdated))
+$rustPackages.AddToolVersion("Cbindgen", $(Get-Cbindgen))
+$rustPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
+$rustPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 
 # PowerShell
-$powerShell = $installedSoftware.AddHeaderNode("PowerShell Tools")
-$powerShell.AddToolNode("PowerShell", $(Get-PowershellVersion))
+$powerShell = $installedSoftware.AddHeader("PowerShell Tools")
+$powerShell.AddToolVersion("PowerShell", $(Get-PowershellVersion))
 
-$powerShellModules = $powerShell.AddHeaderNode("PowerShell Modules")
-$powerShellModules.AddTableNode($(Get-PowerShellModules))
+$powerShellModules = $powerShell.AddHeader("PowerShell Modules")
+$powerShellModules.AddNodes($(Get-PowerShellModules))
 
 # Web Servers
-$webServers = $installedSoftware.AddHeaderNode("Web Servers")
-$webServers.AddTableNode($(Build-WebServersSection))
+$webServers = $installedSoftware.AddHeader("Web Servers")
+$webServers.AddTable($(Build-WebServersSection))
 
 # Xamarin section
-$xamarin = $installedSoftware.AddHeaderNode("Xamarin")
-$vsForMac = $xamarin.AddHeaderNode("Visual Studio for Mac")
-$vsForMac.AddTableNode($(Build-VSMacTable))
+$xamarin = $installedSoftware.AddHeader("Xamarin")
+$vsForMac = $xamarin.AddHeader("Visual Studio for Mac")
+$vsForMac.AddTable($(Build-VSMacTable))
 
 if (-not $os.IsCatalina) {
     $note = 
@@ -209,60 +211,60 @@ To use Visual Studio 2019 by default rename the app:
 mv "/Applications/Visual Studio.app" "/Applications/Visual Studio 2022.app"
 mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 '@
-    $vsForMacNotes = $vsForMac.AddHeaderNode("Notes")
-    $vsForMacNotes.AddNoteNode($note)
+    $vsForMacNotes = $vsForMac.AddHeader("Notes")
+    $vsForMacNotes.AddNote($note)
 }
 
-$xamarinBundles = $xamarin.AddHeaderNode("Xamarin bundles")
-$xamarinBundles.AddTableNode($(Build-XamarinTable))
+$xamarinBundles = $xamarin.AddHeader("Xamarin bundles")
+$xamarinBundles.AddTable($(Build-XamarinTable))
 
-$unitTestFramework = $xamarin.AddHeaderNode("Unit Test Framework")
-$unitTestFramework.AddToolNode("NUnit", $(Get-NUnitVersion))
+$unitTestFramework = $xamarin.AddHeader("Unit Test Framework")
+$unitTestFramework.AddToolVersion("NUnit", $(Get-NUnitVersion))
 
 # Xcode section
-$xcode = $installedSoftware.AddHeaderNode("Xcode")
+$xcode = $installedSoftware.AddHeader("Xcode")
 # First run doesn't provide full data about devices and runtimes
 Get-XcodeInfoList | Out-Null
 
 $xcodeInfo = Get-XcodeInfoList
-$xcode.AddTableNode($(Build-XcodeTable $xcodeInfo))
+$xcode.AddTable($(Build-XcodeTable $xcodeInfo))
 
-$xcodeTools = $xcode.AddHeaderNode("Xcode Support Tools")
+$xcodeTools = $xcode.AddHeader("Xcode Support Tools")
 $xcodeTools.AddNodes($(Build-XcodeSupportToolsSection))
 
-$installedSdks = $xcode.AddHeaderNode("Installed SDKs")
-$installedSdks.AddTableNode($(Build-XcodeSDKTable $xcodeInfo))
+$installedSdks = $xcode.AddHeader("Installed SDKs")
+$installedSdks.AddTable($(Build-XcodeSDKTable $xcodeInfo))
 
-$installedSimulators = $xcode.AddHeaderNode("Installed Simulators")
-$installedSimulators.AddTableNode($(Build-XcodeSimulatorsTable $xcodeInfo))
+$installedSimulators = $xcode.AddHeader("Installed Simulators")
+$installedSimulators.AddTable($(Build-XcodeSimulatorsTable $xcodeInfo))
 
 # Android section
-$android = $installedSoftware.AddHeaderNode("Android")
+$android = $installedSoftware.AddHeader("Android")
 $androidTable = Build-AndroidTable
 if ($os.IsCatalina) {
     $androidTable += Get-IntelHaxmVersion
 }
-$android.AddTableNode($androidTable)
+$android.AddTable($androidTable)
 
-$androidEnv = $android.AddHeaderNode("Environment variables")
-$androidEnv.AddTableNode($(Build-AndroidEnvironmentTable))
+$androidEnv = $android.AddHeader("Environment variables")
+$androidEnv.AddTable($(Build-AndroidEnvironmentTable))
 
-$miscellaneous = $installedSoftware.AddHeaderNode("Miscellaneous")
-$miscellaneous.AddToolNode("libXext", $(Get-LibXextVersion))
-$miscellaneous.AddToolNode("libXft", $(Get-LibXftVersion))
-$miscellaneous.AddToolNode("Tcl/Tk", $(Get-TclTkVersion))
-$miscellaneous.AddToolNode("Zlib", $(Get-ZlibVersion))
+$miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
+$miscellaneous.AddToolVersion("libXext", $(Get-LibXextVersion))
+$miscellaneous.AddToolVersion("libXft", $(Get-LibXftVersion))
+$miscellaneous.AddToolVersion("Tcl/Tk", $(Get-TclTkVersion))
+$miscellaneous.AddToolVersion("Zlib", $(Get-ZlibVersion))
 
 if ($os.IsMonterey) {
-    $miscellaneousEnv = $miscellaneous.AddHeaderNode("Environment variables")
-    $miscellaneousEnv.AddTableNode($(Build-MiscellaneousEnvironmentTable))
+    $miscellaneousEnv = $miscellaneous.AddHeader("Environment variables")
+    $miscellaneousEnv.AddTable($(Build-MiscellaneousEnvironmentTable))
 
     $notes = @'
 If you want to use Parallels Desktop you should download a package from URL stored in
 PARALLELS_DMG_URL environment variable. A system extension is allowed for this version.
 '@
-    $miscellaneousEnvNotes = $miscellaneousEnv.AddHeaderNode("Notes")
-    $miscellaneousEnvNotes.AddNoteNode($notes)
+    $miscellaneousEnvNotes = $miscellaneousEnv.AddHeader("Notes")
+    $miscellaneousEnvNotes.AddNote($notes)
 }
 
 #

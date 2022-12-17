@@ -126,7 +126,7 @@ function Get-MercurialVersion {
 
 function Get-NSISVersion {
     $nsisVersion =  &"c:\Program Files (x86)\NSIS\makensis.exe" "/Version"
-    return "NSIS $nsisVersion"
+    return "NSIS $($nsisVersion.TrimStart('v'))"
 }
 
 function Get-OpenSSLVersion {
@@ -148,7 +148,8 @@ function Get-ParcelVersion {
 }
 
 function Get-PulumiVersion {
-    return "Pulumi $(pulumi version)"
+    $pulumiVersion = $(pulumi version)
+    return "Pulumi $($pulumiVersion.TrimStart('v'))"
 }
 
 function Get-SQLPSVersion {

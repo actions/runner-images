@@ -1,80 +1,51 @@
-function Get-GoMarkdown
-{
-    $Name = "Go"
-    $ToolInstances = Get-CachedToolInstances -Name $Name -VersionCommand "version"
-    foreach ($Instance in $ToolInstances)
-    {
-        $Version = [System.Version]($Instance.Version -Split(" "))[0]
-        $Instance."Environment Variable" = "GOROOT_$($Version.major)_$($Version.minor)_X64"
+function Get-ToolcacheGoVersions {
+    $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Go"
+    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+}
+
+function Get-ToolcacheNodeVersions {
+    $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Node"
+    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+}
+
+function Get-ToolcachePythonVersions {
+    $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Python"
+    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+}
+
+function Get-ToolcacheRubyVersions {
+    $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "Ruby"
+    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+}
+
+function Get-ToolcachePyPyVersions {
+    $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "PyPy"
+    Get-ChildItem -Path $toolcachePath -Name | Sort-Object { [Version] $_ } | ForEach-Object {
+        $pypyRootPath = Join-Path $toolcachePath $_ "x86"
+        [string]$pypyVersionOutput = & "$pypyRootPath\python.exe" -c "import sys;print(sys.version)"
+        $pypyVersionOutput -match "^([\d\.]+) \(.+\) \[PyPy ([\d\.]+\S*) .+]$" | Out-Null
+        return "{0} [PyPy {1}]" -f $Matches[1], $Matches[2]
     }
-
-    $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
-        Version = "left";
-        Architecture = "left";
-        "Environment Variable" = "left"
-    })
-
-    return Build-MarkdownElement -Head $Name -Content $Content
 }
 
-function Get-NodeMarkdown
+function Build-CachedToolsSection
 {
-    $Name = "Node"
-    $ToolInstances = Get-CachedToolInstances -Name $Name
-    $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{Version = "left"; Architecture = "left"})
+    $output = ""
 
-    return Build-MarkdownElement -Head $Name -Content $Content
-}
+    $output += New-MDHeader "Go" -Level 4
+    $output += New-MDList -Lines (Get-ToolcacheGoVersions) -Style Unordered
 
-function Get-PythonMarkdown
-{
-    $Name = "Python"
-    $ToolInstances = Get-CachedToolInstances -Name $Name -VersionCommand "--version"
-    $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{Version = "left"; Architecture = "left"})
+    $output += New-MDHeader "Node.js" -Level 4
+    $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
 
-    return Build-MarkdownElement -Head $Name -Content $Content
-}
+    $output += New-MDHeader "Python" -Level 4
+    $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
 
-function Get-RubyMarkdown
-{
-    $Name = "Ruby"
-    $ToolInstances = Get-CachedToolInstances -Name $Name -VersionCommand "--version"
-    $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{Version = "left"; Architecture = "left"})
+    $output += New-MDHeader "PyPy" -Level 4
+    $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
 
-    return Build-MarkdownElement -Head $Name -Content $Content
-}
+    $output += New-MDHeader "Ruby" -Level 4
+    $output += New-MDList -Lines (Get-ToolcacheRubyVersions) -Style Unordered
 
-function Get-PyPyMarkdown
-{
-    $Name = "PyPy"
-    $ToolInstances = Get-CachedToolInstances -Name $Name
-    foreach ($Instance in $ToolInstances)
-    {
-        $Instance."PyPy Version" = @()
-        $Instance."Python Version" = $Instance.Version
-        foreach ($Arch in $Instance.Architecture_Array)
-        {
-            $pythonExePath = Join-Path $Instance.Path $Arch | Join-Path -ChildPath "python.exe"
-            $Instance."PyPy Version" += (& $pythonExePath -c "import sys;print(sys.version.split('\n')[1])").Trim("[]")
-        }
-    }
-
-    $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
-        "Python Version" = "left";
-        "PyPy Version" = "left"
-    })
-
-    return Build-MarkdownElement -Head $Name -Content $Content
-}
-
-function Build-CachedToolsMarkdown
-{
-    $markdown = ""
-    $markdown += Get-GoMarkdown
-    $markdown += Get-NodeMarkdown
-    $markdown += Get-PythonMarkdown
-    $markdown += Get-RubyMarkdown
-    $markdown += Get-PyPyMarkdown
-
-    return $markdown
+    return $output
 }

@@ -5,7 +5,7 @@ function Initialize-RustEnvironment {
 }
 
 function Get-OSName {
-    return (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
+    return (Get-CimInstance -ClassName Win32_OperatingSystem).Caption | Take-Part -Part 1,2,3
 }
 
 function Get-OSVersion {
@@ -124,7 +124,7 @@ function Get-ChocoVersion {
 
 function Get-VcpkgVersion {
     $commitId = git -C "C:\vcpkg" rev-parse --short HEAD
-    return "Vcpkg (build from master \<$commitId>)"
+    return "Vcpkg (build from commit $commitId)"
 }
 
 function Get-NPMVersion {
@@ -190,7 +190,7 @@ function Get-SbtVersion {
 
 function Get-DotnetSdks {
     $sdksRawList = dotnet --list-sdks
-    $sdkVersions = ($sdksRawList | Foreach-Object {$_.Split()[0]}) -join ' '
+    $sdkVersions = ($sdksRawList | Foreach-Object {$_.Split()[0]}) -join ', '
     $sdkPath = $sdksRawList[0].Split(' ', 2)[1] -replace '\[|]'
     [PSCustomObject]@{
         Versions = $sdkVersions
@@ -214,7 +214,7 @@ function Get-DotnetRuntimes {
     $runtimesRawList = dotnet --list-runtimes
     $runtimesRawList | Group-Object {$_.Split()[0]} | ForEach-Object {
         $runtimeName = $_.Name
-        $runtimeVersions = ($_.Group | Foreach-Object {$_.split()[1]}) -join ' '
+        $runtimeVersions = ($_.Group | Foreach-Object {$_.split()[1]}) -join ', '
         $runtimePath = $_.Group[0].Split(' ', 3)[2] -replace '\[|]'
         [PSCustomObject]@{
             "Runtime" = $runtimeName
@@ -224,68 +224,61 @@ function Get-DotnetRuntimes {
     }
 }
 
-function Get-DotnetFrameworkTools {
-    $path = "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\*\*\NETFX*"
-    Get-ChildItem -Path $path -Directory | Group-Object {
-        $_.Fullname -Replace " \d+\.\d+(\.\d+)?", " <version>"
-    } | ForEach-Object {
-        [PSCustomObject]@{
-            Versions =  $_.Group.Name | ForEach-Object { $_.Split(" ")[1] }
-            Path = $_.Name
-        }
-    }
+function Get-DotnetFrameworkVersions {
+    $path = "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\*\*\NETFX * Tools"
+    $versions = Get-ChildItem -Path $path -Directory | ForEach-Object { $_.Name | Take-Part -Part 1 }
+    $versions -join ', '
 }
 
 function Get-PowerShellAzureModules {
-    # Module names
-    $names = @{
-        'az' = 'Az'
-        'azurerm' = 'AzureRM'
-        'azure' = 'Azure'
+    [Array] $result = @()
+    $defaultAzureModuleVersion = "2.1.0"
+
+    [Array] $azInstalledModules = Get-ChildItem -Path "C:\Modules\az_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] }
+    if ($azInstalledModules.Count -gt 0) {
+        $result += "Az: $($azInstalledModules -join ', ')"
     }
 
-    # Get default module version
-    $defaults = @{
-        'azurerm' = (Get-Module -Name AzureRM -ListAvailable).Version
-        'azure' = (Get-Module -Name Azure -ListAvailable).Version
+    [Array] $azureInstalledModules = Get-ChildItem -Path "C:\Modules\azure_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { if ($_ -eq $defaultAzureModuleVersion) { "$($_) (Default)" } else { $_ } }
+    if ($azureInstalledModules.Count -gt 0) {
+        $result += "Azure: $($azureInstalledModules -join ', ')"
     }
 
-    $modulesPath = "C:\Modules"
-    $modules = Get-ChildItem -Path $modulesPath | Sort-Object Name |  Group-Object {$_.Name.Split('_')[0]}
-    $modules | ForEach-Object {
-        $group = $_.group | Sort-Object {[Version]$_.Name.Split('_')[1].Replace(".zip","")}
-        $moduleName = $names[$_.Name]
-        $moduleVersions = $group | ForEach-Object {$_.Name.Split('_')[1]}
-        $moduleVersions = $moduleVersions -join '<br>'
-        $modulePath = (($group.FullName).Split("_"))[0] + '_\<version\>'
-
-        # set default version
-        $defaultVersion = $defaults[$_.Name]
-        if ($defaultVersion) {
-            $moduleVersions = $moduleVersions.Replace($defaultVersion, "$defaultVersion [Installed]")
-        }
-
-        [PSCustomObject]@{
-            Module = $moduleName
-            Version = $moduleVersions
-            Path = $modulePath
-        }
+    [Array] $azurermInstalledModules = Get-ChildItem -Path "C:\Modules\azurerm_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { if ($_ -eq $defaultAzureModuleVersion) { "$($_) (Default)" } else { $_ } }
+    if ($azurermInstalledModules.Count -gt 0) {
+        $result += "AzureRM: $($azurermInstalledModules -join ', ')"
     }
+
+    [Array] $azCachedModules = Get-ChildItem -Path "C:\Modules\az_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
+    if ($azCachedModules.Count -gt 0) {
+        $result += "Az (Cached): $($azCachedModules -join ', ')"
+    }
+
+    [Array] $azureCachedModules = Get-ChildItem -Path "C:\Modules\azure_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
+    if ($azureCachedModules.Count -gt 0) {
+        $result += "Azure (Cached): $($azureCachedModules -join ', ')"
+    }
+
+    [Array] $azurermCachedModules = Get-ChildItem -Path "C:\Modules\azurerm_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
+    if ($azurermCachedModules.Count -gt 0) {
+        $result += "AzureRM: $($azurermCachedModules -join ', ')"
+    }
+
+    return $result
 }
 
 function Get-PowerShellModules {
-    $modules = (Get-ToolsetContent).powershellModules.name
+    [Array] $result = @()
 
-    $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
-    $psModules | ForEach-Object {
-        $moduleName = $_.Name
-        $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
+    $result += Get-PowerShellAzureModules
 
-        [PSCustomObject]@{
-            Module = $moduleName
-            Version = $moduleVersions
-        }
+    $result += (Get-ToolsetContent).powershellModules.name | Sort-Object | ForEach-Object {
+        $moduleName = $_
+        $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
+        return "$($moduleName): $($moduleVersions -join ', ')"
     }
+
+    return $result
 }
 
 function Get-CachedDockerImages {
@@ -343,24 +336,14 @@ function Get-PipxVersion {
 }
 
 function Build-PackageManagementEnvironmentTable {
-    $envVariables = @(
-        @{
+    return @(
+        [PSCustomObject] @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
+        },
+        [PSCustomObject] @{
+            "Name" = "CONDA"
+            "Value" = $env:CONDA
         }
     )
-    if (Test-IsWin19) {
-        $envVariables += @(
-            @{
-                "Name" = "CONDA"
-                "Value" = $env:CONDA
-            }
-        )
-    }
-    return $envVariables | ForEach-Object {
-        [PSCustomObject] @{
-            "Name" = $_.Name
-            "Value" = $_.Value
-        }
-    }
 }

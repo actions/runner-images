@@ -24,13 +24,11 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -Disabl
 Restore-UserOwner
 
 $markdown = ""
+$markdown += New-MDHeader "Ubuntu $(Get-OSVersionShort)" -Level 1
 
-$OSName = Get-OSName
-$markdown += New-MDHeader "$OSName" -Level 1
-
-$kernelVersion = Get-KernelVersion
 $markdown += New-MDList -Style Unordered -Lines @(
-    "$kernelVersion"
+    "OS Version: $(Get-OSVersionFull)"
+    "Kernel Version: $(Get-KernelVersion)"
     "Image Version: $env:IMAGE_VERSION"
 )
 
@@ -85,7 +83,11 @@ $packageManagementList = @(
 
 $markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
 
-$markdown += New-MDHeader "Notes:" -Level 5
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Homebrew note" -Level 4
 $reportHomebrew = @'
 ```
 Location: /home/linuxbrew
@@ -95,10 +97,6 @@ to accomplish this.
 ```
 '@
 $markdown += New-MDParagraph -Lines $reportHomebrew
-
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
 
 $markdown += New-MDHeader "Project Management" -Level 3
 $projectManagementList = @()
@@ -194,7 +192,7 @@ $markdown += New-MDList -Style Unordered -Lines (@(
     (Get-OCCliVersion),
     (Get-ORASCliVersion),
     (Get-VerselCliversion)
-    ) | Sort-Object
+    )
 )
 
 $markdown += New-MDHeader "Java" -Level 3
@@ -256,14 +254,12 @@ $markdown += New-MDHeader "Environment variables" -Level 4
 $markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
 $markdown += New-MDNewLine
 
-$markdown += New-MDHeader ".NET Core SDK" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
-    (Get-DotNetCoreSdkVersions)
+$markdown += New-MDHeader ".NET Core Tools" -Level 3
+$netCoreTools = @(
+    ".NET Core SDK: $(Get-DotNetCoreSdkVersions)"
 )
-
-$markdown += New-MDHeader ".NET tools" -Level 3
-$tools = Get-DotnetTools
-$markdown += New-MDList -Lines $tools -Style Unordered
+$netCoreTools += Get-DotnetTools
+$markdown += New-MDList -Style Unordered -Lines $netCoreTools
 
 $markdown += New-MDHeader "Databases" -Level 3
 $databaseLists = @(
@@ -285,20 +281,11 @@ $markdown += Build-MSSQLToolsSection
 $markdown += New-MDHeader "Cached Tools" -Level 3
 $markdown += Build-CachedToolsSection
 
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-GoEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
 $markdown += New-MDHeader "PowerShell Tools" -Level 3
 $markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
 
 $markdown += New-MDHeader "PowerShell Modules" -Level 4
-$markdown += Get-PowerShellModules | New-MDTable
-$markdown += New-MDNewLine
-$markdown += New-MDHeader "Az PowerShell Modules" -Level 4
-$markdown += New-MDList -Style Unordered -Lines @(
-    (Get-AzModuleVersions)
-)
+$markdown += New-MDList -Lines $(Get-PowerShellModules) -Style Unordered
 
 $markdown += Build-WebServersSection
 

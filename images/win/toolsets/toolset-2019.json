@@ -482,7 +482,7 @@
         "version": "3.08"
     },
     "php": {
-        "version": "8.1"
+        "version": "8.2"
     },
     "llvm": {
         "version": "14"
