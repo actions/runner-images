@@ -11,7 +11,7 @@ Describe "SoftwareReport.E2E" {
 
             $languagesAndRuntimes = $installedSoftware.AddHeader("Language and Runtime")
             $languagesAndRuntimes.AddToolVersion("Bash", "5.1.16(1)-release")
-            $languagesAndRuntimes.AddToolVersionsInlineList(".NET Core SDK", @("1.2.100", "1.2.200", "3.1.414"), "^\d+\.\d+\.\d")
+            $languagesAndRuntimes.AddToolVersionsListInline(".NET Core SDK", @("1.2.100", "1.2.200", "3.1.414"), "^\d+\.\d+\.\d")
             $languagesAndRuntimes.AddNode([ToolVersionNode]::new("Perl", "5.34.0"))
 
             $cachedTools = $installedSoftware.AddHeader("Cached Tools")

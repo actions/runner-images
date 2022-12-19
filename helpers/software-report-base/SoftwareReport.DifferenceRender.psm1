@@ -2,9 +2,7 @@ using module ./SoftwareReport.psm1
 using module ./SoftwareReport.BaseNodes.psm1
 using module ./SoftwareReport.Nodes.psm1
 
-# SoftwareReportComparerReport is used to render results of SoftwareReportComparer in markdown format
-
-class SoftwareReportComparerReport {
+class SoftwareReportDifferenceRender {
     [String] GenerateMarkdownReport([SoftwareReport] $CurrentReport, [SoftwareReport] $PreviousReport, [ReportDifferenceItem[]] $AddedItems, [ReportDifferenceItem[]] $ChangedItems, [ReportDifferenceItem[]] $DeletedItems) {
         $sb = [System.Text.StringBuilder]::new()
 

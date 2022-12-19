@@ -1,5 +1,5 @@
 using module ../SoftwareReport.Nodes.psm1
-using module ../SoftwareReport.ComparerReport.psm1
+using module ../SoftwareReport.DifferenceRender.psm1
 
 BeforeDiscovery {
     Import-Module $(Join-Path $PSScriptRoot "TestHelpers.psm1") -DisableNameChecking
@@ -7,7 +7,7 @@ BeforeDiscovery {
 
 Describe "ComparerReport.UnitTests" {
     BeforeAll {
-        $script:report = [SoftwareReportComparerReport]::new()
+        $script:report = [SoftwareReportDifferenceRender]::new()
     }
 
     Context "CalculateHtmlTableRowSpan" {

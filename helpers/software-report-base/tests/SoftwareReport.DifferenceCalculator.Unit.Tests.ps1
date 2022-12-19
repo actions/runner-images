@@ -1,5 +1,5 @@
 using module ../SoftwareReport.Nodes.psm1
-using module ../SoftwareReport.Comparer.psm1
+using module ../SoftwareReport.DifferenceCalculator.psm1
 
 BeforeDiscovery {
     Import-Module $(Join-Path $PSScriptRoot "TestHelpers.psm1") -DisableNameChecking
@@ -14,7 +14,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddToolVersion("MyTool1", "2.1.3")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 1
@@ -34,7 +34,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddHeader("MySubHeader").AddToolVersion("MyTool1", "2.1.3")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 1
@@ -55,7 +55,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -75,7 +75,7 @@ Describe "Comparer.UnitTests" {
 
             $nextReport = [HeaderNode]::new("Version 2")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -96,7 +96,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddHeader("MySubheader").AddToolVersion("MyTool1", "2.1.4")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -119,7 +119,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddHeader("MySubheader").AddToolVersion("MyTool1", "2.1.3")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -134,7 +134,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddHeader("MySubheader2").AddToolVersion("MyTool1", "2.1.3")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 1
@@ -171,7 +171,7 @@ Describe "Comparer.UnitTests" {
             $nextReport.AddHeader("MyHeader2")
             $nextReport.AddHeader("MyHeader3")
 
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 1
@@ -208,7 +208,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddToolVersion("MyTool1", "2.1.4")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -233,7 +233,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3"), "^.+")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -248,7 +248,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.4"), "^\d+")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -270,7 +270,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3", "3.1.4"), "^\d+")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 1
@@ -290,7 +290,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("3.1.4"), "^\d+")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -310,7 +310,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("3.2.0"), "^\d+")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -332,7 +332,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3", "3.2.0", "4.0.2", "5.1.0"), "^\d+")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 1
@@ -364,7 +364,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.5.3", "2.6.2", "2.7.5", "2.8.0", "2.9.2", "2.10.3"), "^\d+\.\d+")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 1
@@ -396,7 +396,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.4.9", "2.5.4", "2.6.0", "2.7.5", "2.8.2"), "^\d+\.\d+\.\d+")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 1
@@ -423,7 +423,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value", @("A1|A2", "B1|B2", "C1|C2", "D1|D2")))
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 1
@@ -445,7 +445,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value", @("C1|C2", "D1|D2")))
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -467,7 +467,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value", @("A1|A2", "B3|B4")))
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -489,7 +489,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value", @("A1|A2", "B3|B4", "C1|C2")))
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -511,7 +511,7 @@ Describe "Comparer.UnitTests" {
             $nextReport = [HeaderNode]::new("Version 2")
             $nextReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value", @("A1|A2", "B3|B4")))
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
 
             $comparer.AddedItems | Should -HaveCount 0
@@ -537,7 +537,7 @@ Describe "Comparer.UnitTests" {
             $nextReport.AddNote("MySecondNote")
             $nextReport.AddHeader("MySecondHeader").AddNote("MySecondSubNote")
             
-            $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
             $comparer.CompareReports()
     
             $comparer.AddedItems | Should -HaveCount 0

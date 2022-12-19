@@ -454,7 +454,7 @@ Good Bye world
             It "Similar ToolVersionsListNode on the same header" {
                 $node = [HeaderNode]::new("MyHeader")
                 $node.AddToolVersionsList("MyTool", @("2.1.3", "3.0.0"), "^\d+")
-                $node.AddToolVersionsInlineList("MyTool2", @("2.1.3", "3.0.0"), "^\d+")
+                $node.AddToolVersionsListInline("MyTool2", @("2.1.3", "3.0.0"), "^\d+")
                 { $node.AddToolVersionsList("MyTool", @("2.1.3", "3.0.0"), "^\d+") } | Should -Throw "This HeaderNode already contains the similar child node. It is not allowed to add the same node twice.*"
             }
 

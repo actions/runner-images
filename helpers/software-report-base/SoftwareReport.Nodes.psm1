@@ -73,7 +73,7 @@ class HeaderNode: BaseNode {
         $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, "List"))
     }
 
-    [void] AddToolVersionsInlineList([String] $ToolName, [String[]] $Version, [String] $MajorVersionRegex) {
+    [void] AddToolVersionsListInline([String] $ToolName, [String[]] $Version, [String] $MajorVersionRegex) {
         $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, "Inline"))
     }
      

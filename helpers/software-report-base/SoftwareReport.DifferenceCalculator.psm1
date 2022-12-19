@@ -1,10 +1,9 @@
 using module ./SoftwareReport.psm1
 using module ./SoftwareReport.BaseNodes.psm1
 using module ./SoftwareReport.Nodes.psm1
-using module ./SoftwareReport.ComparerReport.psm1
+using module ./SoftwareReport.DifferenceRender.psm1
 
-# SoftwareReportComparer is used to calculate differences between two SoftwareReport objects
-class SoftwareReportComparer {
+class SoftwareReportDifferenceCalculator {
     [ValidateNotNullOrEmpty()]
     hidden [SoftwareReport] $PreviousReport
     [ValidateNotNullOrEmpty()]
@@ -14,7 +13,7 @@ class SoftwareReportComparer {
     hidden [Collections.Generic.List[ReportDifferenceItem]] $ChangedItems
     hidden [Collections.Generic.List[ReportDifferenceItem]] $DeletedItems
 
-    SoftwareReportComparer([SoftwareReport] $PreviousReport, [SoftwareReport] $CurrentReport) {
+    SoftwareReportDifferenceCalculator([SoftwareReport] $PreviousReport, [SoftwareReport] $CurrentReport) {
         $this.PreviousReport = $PreviousReport
         $this.CurrentReport = $CurrentReport
     }
@@ -106,7 +105,7 @@ class SoftwareReportComparer {
     }
 
     [String] GetMarkdownReport() {
-        $reporter = [SoftwareReportComparerReport]::new()
+        $reporter = [SoftwareReportDifferenceRender]::new()
         $report = $reporter.GenerateMarkdownReport($this.CurrentReport, $this.PreviousReport, $this.AddedItems, $this.ChangedItems, $this.DeletedItems)
         return $report
     }

@@ -1,5 +1,5 @@
 using module ../SoftwareReport.psm1
-using module ../SoftwareReport.Comparer.psm1
+using module ../SoftwareReport.DifferenceCalculator.psm1
 
 Describe "Comparer.E2E" {
     It "Some tools are updated" {
@@ -24,7 +24,7 @@ Describe "Comparer.E2E" {
       $nextTools.AddToolVersionsList("ToolWillBeUpdated3", @("14.2.0", "15.5.1"), "^\d+")
 
       # Compare reports
-      $comparer = [SoftwareReportComparer]::new($prevSoftwareReport, $nextSoftwareReport)
+      $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
       $comparer.CompareReports()
       $comparer.GetMarkdownReport() | Should -BeExactly @'
 # :desktop_computer: Actions Runner Image: macOS 11
@@ -75,7 +75,7 @@ Describe "Comparer.E2E" {
 
         $prevLanguagesAndRuntimes = $prevInstalledSoftware.AddHeader("Language and Runtime")
         $prevLanguagesAndRuntimes.AddToolVersion("ToolWillBeRemoved", "5.1.16(1)-release")
-        $prevLanguagesAndRuntimes.AddToolVersionsInlineList("ToolWithMultipleVersions3", @("1.2.100", "1.2.200", "1.3.500", "1.4.100", "1.4.200"), "^\d+\.\d+\.\d")
+        $prevLanguagesAndRuntimes.AddToolVersionsListInline("ToolWithMultipleVersions3", @("1.2.100", "1.2.200", "1.3.500", "1.4.100", "1.4.200"), "^\d+\.\d+\.\d")
         $prevLanguagesAndRuntimes.AddToolVersion("ToolWithoutChanges", "5.34.0")
         $prevLanguagesAndRuntimes.AddToolVersion("ToolWillBeUpdated", "8.1.0")
 
@@ -95,7 +95,7 @@ Describe "Comparer.E2E" {
 
         $nextLanguagesAndRuntimes = $nextInstalledSoftware.AddHeader("Language and Runtime")
         $nextLanguagesAndRuntimes.AddToolVersion("ToolWillBeAdded", "16.18.0")
-        $nextLanguagesAndRuntimes.AddToolVersionsInlineList("ToolWithMultipleVersions3", @("1.2.200", "1.3.515", "1.4.100", "1.4.200", "1.5.800"), "^\d+\.\d+\.\d")
+        $nextLanguagesAndRuntimes.AddToolVersionsListInline("ToolWithMultipleVersions3", @("1.2.200", "1.3.515", "1.4.100", "1.4.200", "1.5.800"), "^\d+\.\d+\.\d")
         $nextLanguagesAndRuntimes.AddToolVersion("ToolWithoutChanges", "5.34.0")
         $nextLanguagesAndRuntimes.AddToolVersion("ToolWillBeUpdated", "8.3.0")
 
@@ -108,7 +108,7 @@ Describe "Comparer.E2E" {
         $nextSQLSection.AddNote("Second Note")
 
         # Compare reports
-        $comparer = [SoftwareReportComparer]::new($prevSoftwareReport, $nextSoftwareReport)
+        $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
         $comparer.CompareReports()
         $comparer.GetMarkdownReport() | Should -BeExactly @'
 # :desktop_computer: Actions Runner Image: macOS 11
@@ -227,7 +227,7 @@ Describe "Comparer.E2E" {
       $nextInstalledSoftware.AddHeader("Header2").AddToolVersion("ToolWillBeMovedToAnotherHeader", "3.0.0")
 
       # Compare reports
-      $comparer = [SoftwareReportComparer]::new($prevSoftwareReport, $nextSoftwareReport)
+      $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
       $comparer.CompareReports()
       $comparer.GetMarkdownReport() | Should -BeExactly @'
 # :desktop_computer: Actions Runner Image: macOS 11
@@ -316,7 +316,7 @@ Describe "Comparer.E2E" {
       ))
 
       # Compare reports
-      $comparer = [SoftwareReportComparer]::new($prevSoftwareReport, $nextSoftwareReport)
+      $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
       $comparer.CompareReports()
       $comparer.GetMarkdownReport() | Should -BeExactly @'
 # :desktop_computer: Actions Runner Image: macOS 11
@@ -437,7 +437,7 @@ Describe "Comparer.E2E" {
       ))
 
       # Compare reports
-      $comparer = [SoftwareReportComparer]::new($prevSoftwareReport, $nextSoftwareReport)
+      $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
       $comparer.CompareReports()
       # throw $comparer.GetMarkdownReport()
       $comparer.GetMarkdownReport() | Should -BeExactly @'

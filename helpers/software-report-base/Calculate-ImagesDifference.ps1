@@ -1,5 +1,5 @@
 using module ./SoftwareReport.psm1
-using module ./SoftwareReport.Comparer.psm1
+using module ./SoftwareReport.DifferenceCalculator.psm1
 
 <#
 .SYNOPSIS
@@ -50,7 +50,7 @@ function Read-SoftwareReport {
 $previousReport = Read-SoftwareReport -JsonReportPath $PreviousJsonReportPath
 $currentReport = Read-SoftwareReport -JsonReportPath $CurrentJsonReportPath
 
-$comparer = [SoftwareReportComparer]::new($previousReport, $currentReport)
+$comparer = [SoftwareReportDifferenceCalculator]::new($previousReport, $currentReport)
 $comparer.CompareReports()
 $diff = $comparer.GetMarkdownReport()
 

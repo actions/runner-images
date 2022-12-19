@@ -1,5 +1,7 @@
-# TO-DO: Revisit naming
 # TO-DO: Case when table headers are updated
+# TO-DO: Add workflow
+# TO-DO: Revisit comments
+# TO-DO: Revisit tests
 
 function Should-BeArray([Array] $ActualValue, [Array]$ExpectedValue, [Switch] $Negate, [String] $Because) {
     if ($Negate) {
