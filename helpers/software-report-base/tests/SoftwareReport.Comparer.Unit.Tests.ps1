@@ -1,6 +1,10 @@
 using module ../SoftwareReport.Nodes.psm1
 using module ../SoftwareReport.Comparer.psm1
 
+BeforeDiscovery {
+    Import-Module $(Join-Path $PSScriptRoot "TestHelpers.psm1") -DisableNameChecking
+}
+
 Describe "Comparer.UnitTests" {
     Describe "Headers Tree" {
         It "Add Node to existing header" {
@@ -21,8 +25,7 @@ Describe "Comparer.UnitTests" {
             $comparer.AddedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionNode])
             $comparer.AddedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
             $comparer.AddedItems[0].CurrentReportNode.Version | Should -Be "2.1.3"
-            $comparer.AddedItems[0].Headers | Should -HaveCount 1
-            $comparer.AddedItems[0].Headers[0] | Should -Be "MyHeader"
+            $comparer.AddedItems[0].Headers | Should -BeArray @("MyHeader")
         }
 
         It "Add new header with Node" {
@@ -42,9 +45,7 @@ Describe "Comparer.UnitTests" {
             $comparer.AddedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionNode])
             $comparer.AddedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
             $comparer.AddedItems[0].CurrentReportNode.Version | Should -Be "2.1.3"
-            $comparer.AddedItems[0].Headers | Should -HaveCount 2
-            $comparer.AddedItems[0].Headers[0] | Should -Be "MyHeader"
-            $comparer.AddedItems[0].Headers[1] | Should -Be "MySubHeader"
+            $comparer.AddedItems[0].Headers | Should -BeArray @("MyHeader", "MySubHeader")
         }
 
         It "Remove Node from existing header" {
@@ -65,8 +66,7 @@ Describe "Comparer.UnitTests" {
             $comparer.DeletedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
             $comparer.DeletedItems[0].PreviousReportNode.Version | Should -Be "2.1.3"
             $comparer.DeletedItems[0].CurrentReportNode | Should -BeNullOrEmpty
-            $comparer.DeletedItems[0].Headers | Should -HaveCount 1
-            $comparer.DeletedItems[0].Headers[0] | Should -Be "MyHeader"
+            $comparer.DeletedItems[0].Headers | Should -BeArray @("MyHeader")
         }
 
         It "Remove header with Node" {
@@ -86,9 +86,7 @@ Describe "Comparer.UnitTests" {
             $comparer.DeletedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
             $comparer.DeletedItems[0].PreviousReportNode.Version | Should -Be "2.1.3"
             $comparer.DeletedItems[0].CurrentReportNode | Should -BeNullOrEmpty
-            $comparer.DeletedItems[0].Headers | Should -HaveCount 2
-            $comparer.DeletedItems[0].Headers[0] | Should -Be "MyHeader"
-            $comparer.DeletedItems[0].Headers[1] | Should -Be "MySubHeader"
+            $comparer.DeletedItems[0].Headers | Should -BeArray @("MyHeader", "MySubheader")
         }
 
         It "Node with minor changes" {
@@ -111,9 +109,7 @@ Describe "Comparer.UnitTests" {
             $comparer.ChangedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionNode])
             $comparer.ChangedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
             $comparer.ChangedItems[0].CurrentReportNode.Version | Should -Be "2.1.4"
-            $comparer.ChangedItems[0].Headers | Should -HaveCount 2
-            $comparer.ChangedItems[0].Headers[0] | Should -Be "MyHeader"
-            $comparer.ChangedItems[0].Headers[1] | Should -Be "MySubHeader"
+            $comparer.ChangedItems[0].Headers | Should -BeArray @("MyHeader", "MySubHeader")
         }
 
         It "Node without changes" {
@@ -149,17 +145,13 @@ Describe "Comparer.UnitTests" {
             $comparer.AddedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionNode])
             $comparer.AddedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
             $comparer.AddedItems[0].CurrentReportNode.Version | Should -Be "2.1.3"
-            $comparer.AddedItems[0].Headers | Should -HaveCount 2
-            $comparer.AddedItems[0].Headers[0] | Should -Be "MyHeader"
-            $comparer.AddedItems[0].Headers[1] | Should -Be "MySubheader2"
+            $comparer.AddedItems[0].Headers | Should -BeArray @("MyHeader", "MySubheader2")
 
             $comparer.DeletedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionNode])
             $comparer.DeletedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
             $comparer.DeletedItems[0].PreviousReportNode.Version | Should -Be "2.1.3"
             $comparer.DeletedItems[0].CurrentReportNode | Should -BeNullOrEmpty
-            $comparer.DeletedItems[0].Headers | Should -HaveCount 2
-            $comparer.DeletedItems[0].Headers[0] | Should -Be "MyHeader"
-            $comparer.DeletedItems[0].Headers[1] | Should -Be "MySubheader"
+            $comparer.DeletedItems[0].Headers | Should -BeArray @("MyHeader", "MySubheader")
         }
 
         It "Complex structure" {
@@ -190,10 +182,7 @@ Describe "Comparer.UnitTests" {
             $comparer.AddedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionNode])
             $comparer.AddedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool4"
             $comparer.AddedItems[0].CurrentReportNode.Version | Should -Be "2.7.6"
-            $comparer.AddedItems[0].Headers | Should -HaveCount 3
-            $comparer.AddedItems[0].Headers[0] | Should -Be "MyHeader"
-            $comparer.AddedItems[0].Headers[1] | Should -Be "MySubheader"
-            $comparer.AddedItems[0].Headers[2] | Should -Be "MySubSubheader"
+            $comparer.AddedItems[0].Headers | Should -BeArray @("MyHeader", "MySubheader", "MySubSubheader")
 
             $comparer.ChangedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionNode])
             $comparer.ChangedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
@@ -201,17 +190,13 @@ Describe "Comparer.UnitTests" {
             $comparer.ChangedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionNode])
             $comparer.ChangedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
             $comparer.ChangedItems[0].CurrentReportNode.Version | Should -Be "2.1.4"
-            $comparer.ChangedItems[0].Headers | Should -HaveCount 2
-            $comparer.ChangedItems[0].Headers[0] | Should -Be "MyHeader"
-            $comparer.ChangedItems[0].Headers[1] | Should -Be "MySubheader"
+            $comparer.ChangedItems[0].Headers | Should -BeArray @("MyHeader", "MySubheader")
 
             $comparer.DeletedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionNode])
             $comparer.DeletedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool3"
             $comparer.DeletedItems[0].PreviousReportNode.Version | Should -Be "14.2.1"
             $comparer.DeletedItems[0].CurrentReportNode | Should -BeNullOrEmpty
-            $comparer.DeletedItems[0].Headers | Should -HaveCount 2
-            $comparer.DeletedItems[0].Headers[0] | Should -Be "MyHeader3"
-            $comparer.DeletedItems[0].Headers[1] | Should -Be "MySubheader3"
+            $comparer.DeletedItems[0].Headers | Should -BeArray @("MyHeader3", "MySubheader3")
         }
     }
 
@@ -236,8 +221,7 @@ Describe "Comparer.UnitTests" {
             $comparer.ChangedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionNode])
             $comparer.ChangedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
             $comparer.ChangedItems[0].CurrentReportNode.Version | Should -Be "2.1.4"
-            $comparer.ChangedItems[0].Headers | Should -HaveCount 1
-            $comparer.ChangedItems[0].Headers[0] | Should -Be "MyHeader"
+            $comparer.ChangedItems[0].Headers | Should -BeArray @("MyHeader")
         }
     }
 
@@ -273,10 +257,10 @@ Describe "Comparer.UnitTests" {
 
             $comparer.ChangedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.ChangedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.ChangedItems[0].PreviousReportNode.Versions | Should -Be "2.1.3"
+            $comparer.ChangedItems[0].PreviousReportNode.Versions | Should -BeArray @("2.1.3")
             $comparer.ChangedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.ChangedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.ChangedItems[0].CurrentReportNode.Versions | Should -Be "2.1.4"
+            $comparer.ChangedItems[0].CurrentReportNode.Versions | Should -BeArray @("2.1.4")
         }
 
         It "Major version is added" {
@@ -296,7 +280,7 @@ Describe "Comparer.UnitTests" {
             $comparer.AddedItems[0].PreviousReportNode | Should -BeNullOrEmpty
             $comparer.AddedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.AddedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.AddedItems[0].CurrentReportNode.Versions | Should -Be "3.1.4"
+            $comparer.AddedItems[0].CurrentReportNode.Versions | Should -BeArray @("3.1.4")
         }
 
         It "Major version is removed" {
@@ -315,7 +299,7 @@ Describe "Comparer.UnitTests" {
 
             $comparer.DeletedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.DeletedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.DeletedItems[0].PreviousReportNode.Versions | Should -Be "2.1.3"
+            $comparer.DeletedItems[0].PreviousReportNode.Versions | Should -BeArray @("2.1.3")
             $comparer.DeletedItems[0].CurrentReportNode | Should -BeNullOrEmpty
         }
 
@@ -335,10 +319,10 @@ Describe "Comparer.UnitTests" {
 
             $comparer.ChangedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.ChangedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.ChangedItems[0].PreviousReportNode.Versions | Should -Be "3.1.4"
+            $comparer.ChangedItems[0].PreviousReportNode.Versions | Should -BeArray @("3.1.4")
             $comparer.ChangedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.ChangedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.ChangedItems[0].CurrentReportNode.Versions | Should -Be "3.2.0"
+            $comparer.ChangedItems[0].CurrentReportNode.Versions | Should -BeArray @("3.2.0")
         }
 
         It "Major version is added, removed and updated at the same time" {
@@ -358,18 +342,18 @@ Describe "Comparer.UnitTests" {
             $comparer.AddedItems[0].PreviousReportNode | Should -BeNullOrEmpty
             $comparer.AddedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.AddedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.AddedItems[0].CurrentReportNode.Versions | Should -Be "5.1.0"
+            $comparer.AddedItems[0].CurrentReportNode.Versions | Should -BeArray @("5.1.0")
 
             $comparer.ChangedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.ChangedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.ChangedItems[0].PreviousReportNode.Versions | Should -Be "3.1.4"
+            $comparer.ChangedItems[0].PreviousReportNode.Versions | Should -BeArray @("3.1.4")
             $comparer.ChangedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.ChangedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.ChangedItems[0].CurrentReportNode.Versions | Should -Be "3.2.0"
+            $comparer.ChangedItems[0].CurrentReportNode.Versions | Should -BeArray @("3.2.0")
 
             $comparer.DeletedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.DeletedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.DeletedItems[0].PreviousReportNode.Versions | Should -Be "1.0.0"
+            $comparer.DeletedItems[0].PreviousReportNode.Versions | Should -BeArray @("1.0.0")
             $comparer.DeletedItems[0].CurrentReportNode | Should -BeNullOrEmpty
         }
 
@@ -390,26 +374,18 @@ Describe "Comparer.UnitTests" {
             $comparer.AddedItems[0].PreviousReportNode | Should -BeNullOrEmpty
             $comparer.AddedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.AddedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.AddedItems[0].CurrentReportNode.Versions | Should -HaveCount 2
-            $comparer.AddedItems[0].CurrentReportNode.Versions[0] | Should -Be "2.9.2"
-            $comparer.AddedItems[0].CurrentReportNode.Versions[1] | Should -Be "2.10.3"
+            $comparer.AddedItems[0].CurrentReportNode.Versions | Should -BeArray @("2.9.2", "2.10.3")
 
             $comparer.ChangedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.ChangedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.ChangedItems[0].PreviousReportNode.Versions | Should -HaveCount 2
-            $comparer.ChangedItems[0].PreviousReportNode.Versions[0] | Should -Be "2.6.0"
-            $comparer.ChangedItems[0].PreviousReportNode.Versions[1] | Should -Be "2.7.4"
+            $comparer.ChangedItems[0].PreviousReportNode.Versions | Should -BeArray @("2.6.0", "2.7.4")
             $comparer.ChangedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.ChangedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.ChangedItems[0].CurrentReportNode.Versions | Should -HaveCount 2
-            $comparer.ChangedItems[0].CurrentReportNode.Versions[0] | Should -Be "2.6.2"
-            $comparer.ChangedItems[0].CurrentReportNode.Versions[1] | Should -Be "2.7.5"
+            $comparer.ChangedItems[0].CurrentReportNode.Versions | Should -BeArray @("2.6.2", "2.7.5")
 
             $comparer.DeletedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.DeletedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.DeletedItems[0].PreviousReportNode.Versions | Should -HaveCount 2
-            $comparer.DeletedItems[0].PreviousReportNode.Versions[0] | Should -Be "2.3.8"
-            $comparer.DeletedItems[0].PreviousReportNode.Versions[1] | Should -Be "2.4.9"
+            $comparer.DeletedItems[0].PreviousReportNode.Versions | Should -BeArray @("2.3.8", "2.4.9")
             $comparer.DeletedItems[0].CurrentReportNode | Should -BeNullOrEmpty
         }
 
@@ -430,17 +406,11 @@ Describe "Comparer.UnitTests" {
             $comparer.AddedItems[0].PreviousReportNode | Should -BeNullOrEmpty
             $comparer.AddedItems[0].CurrentReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.AddedItems[0].CurrentReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.AddedItems[0].CurrentReportNode.Versions | Should -HaveCount 3
-            $comparer.AddedItems[0].CurrentReportNode.Versions[0] | Should -Be "2.5.4"
-            $comparer.AddedItems[0].CurrentReportNode.Versions[1] | Should -Be "2.7.5"
-            $comparer.AddedItems[0].CurrentReportNode.Versions[2] | Should -Be "2.8.2"
+            $comparer.AddedItems[0].CurrentReportNode.Versions | Should -BeArray @("2.5.4", "2.7.5", "2.8.2")
 
             $comparer.DeletedItems[0].PreviousReportNode | Should -BeOfType ([ToolVersionsListNode])
             $comparer.DeletedItems[0].PreviousReportNode.ToolName | Should -Be "MyTool1"
-            $comparer.DeletedItems[0].PreviousReportNode.Versions | Should -HaveCount 3
-            $comparer.DeletedItems[0].PreviousReportNode.Versions[0] | Should -Be "2.3.8"
-            $comparer.DeletedItems[0].PreviousReportNode.Versions[1] | Should -Be "2.5.3"
-            $comparer.DeletedItems[0].PreviousReportNode.Versions[2] | Should -Be "2.7.4"
+            $comparer.DeletedItems[0].PreviousReportNode.Versions | Should -BeArray @("2.3.8", "2.5.3", "2.7.4")
             $comparer.DeletedItems[0].CurrentReportNode | Should -BeNullOrEmpty
         }
     }
@@ -462,16 +432,10 @@ Describe "Comparer.UnitTests" {
 
             $comparer.AddedItems[0].PreviousReportNode | Should -BeOfType ([TableNode])
             $comparer.AddedItems[0].PreviousReportNode.Headers | Should -Be "Name|Value"
-            $comparer.AddedItems[0].PreviousReportNode.Rows | Should -HaveCount 2
-            $comparer.AddedItems[0].PreviousReportNode.Rows[0] | Should -Be "A1|A2"
-            $comparer.AddedItems[0].PreviousReportNode.Rows[1] | Should -Be "B1|B2"
+            $comparer.AddedItems[0].PreviousReportNode.Rows | Should -BeArray @("A1|A2", "B1|B2")
             $comparer.AddedItems[0].CurrentReportNode | Should -BeOfType ([TableNode])
             $comparer.AddedItems[0].CurrentReportNode.Headers | Should -Be "Name|Value"
-            $comparer.AddedItems[0].CurrentReportNode.Rows | Should -HaveCount 4
-            $comparer.AddedItems[0].CurrentReportNode.Rows[0] | Should -Be "A1|A2"
-            $comparer.AddedItems[0].CurrentReportNode.Rows[1] | Should -Be "B1|B2"
-            $comparer.AddedItems[0].CurrentReportNode.Rows[2] | Should -Be "C1|C2"
-            $comparer.AddedItems[0].CurrentReportNode.Rows[3] | Should -Be "D1|D2"
+            $comparer.AddedItems[0].CurrentReportNode.Rows | Should -BeArray @("A1|A2", "B1|B2", "C1|C2", "D1|D2")
         }
 
         It "Rows are deleted" {
@@ -490,16 +454,10 @@ Describe "Comparer.UnitTests" {
 
             $comparer.DeletedItems[0].PreviousReportNode | Should -BeOfType ([TableNode])
             $comparer.DeletedItems[0].PreviousReportNode.Headers | Should -Be "Name|Value"
-            $comparer.DeletedItems[0].PreviousReportNode.Rows | Should -HaveCount 4
-            $comparer.DeletedItems[0].PreviousReportNode.Rows[0] | Should -Be "A1|A2"
-            $comparer.DeletedItems[0].PreviousReportNode.Rows[1] | Should -Be "B1|B2"
-            $comparer.DeletedItems[0].PreviousReportNode.Rows[2] | Should -Be "C1|C2"
-            $comparer.DeletedItems[0].PreviousReportNode.Rows[3] | Should -Be "D1|D2"
+            $comparer.DeletedItems[0].PreviousReportNode.Rows | Should -BeArray @("A1|A2", "B1|B2", "C1|C2", "D1|D2")
             $comparer.DeletedItems[0].CurrentReportNode | Should -BeOfType ([TableNode])
             $comparer.DeletedItems[0].CurrentReportNode.Headers | Should -Be "Name|Value"
-            $comparer.DeletedItems[0].CurrentReportNode.Rows | Should -HaveCount 2
-            $comparer.DeletedItems[0].CurrentReportNode.Rows[0] | Should -Be "C1|C2"
-            $comparer.DeletedItems[0].CurrentReportNode.Rows[1] | Should -Be "D1|D2"
+            $comparer.DeletedItems[0].CurrentReportNode.Rows | Should -BeArray @("C1|C2", "D1|D2")
         }
 
         It "Rows are changed" {
@@ -518,14 +476,10 @@ Describe "Comparer.UnitTests" {
 
             $comparer.ChangedItems[0].PreviousReportNode | Should -BeOfType ([TableNode])
             $comparer.ChangedItems[0].PreviousReportNode.Headers | Should -Be "Name|Value"
-            $comparer.ChangedItems[0].PreviousReportNode.Rows | Should -HaveCount 2
-            $comparer.ChangedItems[0].PreviousReportNode.Rows[0] | Should -Be "A1|A2"
-            $comparer.ChangedItems[0].PreviousReportNode.Rows[1] | Should -Be "B1|B2"
+            $comparer.ChangedItems[0].PreviousReportNode.Rows | Should -BeArray @("A1|A2", "B1|B2")
             $comparer.ChangedItems[0].CurrentReportNode | Should -BeOfType ([TableNode])
             $comparer.ChangedItems[0].CurrentReportNode.Headers | Should -Be "Name|Value"
-            $comparer.ChangedItems[0].CurrentReportNode.Rows | Should -HaveCount 2
-            $comparer.ChangedItems[0].CurrentReportNode.Rows[0] | Should -Be "A1|A2"
-            $comparer.ChangedItems[0].CurrentReportNode.Rows[1] | Should -Be "B3|B4"
+            $comparer.ChangedItems[0].CurrentReportNode.Rows | Should -BeArray @("A1|A2", "B3|B4")
         }
 
         It "Rows are changed and updated at the same time" {
@@ -544,15 +498,10 @@ Describe "Comparer.UnitTests" {
 
             $comparer.ChangedItems[0].PreviousReportNode | Should -BeOfType ([TableNode])
             $comparer.ChangedItems[0].PreviousReportNode.Headers | Should -Be "Name|Value"
-            $comparer.ChangedItems[0].PreviousReportNode.Rows | Should -HaveCount 2
-            $comparer.ChangedItems[0].PreviousReportNode.Rows[0] | Should -Be "A1|A2"
-            $comparer.ChangedItems[0].PreviousReportNode.Rows[1] | Should -Be "B1|B2"
+            $comparer.ChangedItems[0].PreviousReportNode.Rows | Should -BeArray @("A1|A2", "B1|B2")
             $comparer.ChangedItems[0].CurrentReportNode | Should -BeOfType ([TableNode])
             $comparer.ChangedItems[0].CurrentReportNode.Headers | Should -Be "Name|Value"
-            $comparer.ChangedItems[0].CurrentReportNode.Rows | Should -HaveCount 3
-            $comparer.ChangedItems[0].CurrentReportNode.Rows[0] | Should -Be "A1|A2"
-            $comparer.ChangedItems[0].CurrentReportNode.Rows[1] | Should -Be "B3|B4"
-            $comparer.ChangedItems[0].CurrentReportNode.Rows[2] | Should -Be "C1|C2"
+            $comparer.ChangedItems[0].CurrentReportNode.Rows | Should -BeArray @("A1|A2", "B3|B4", "C1|C2")
         }
 
         It "Rows are changed and removed at the same time" {
@@ -571,15 +520,10 @@ Describe "Comparer.UnitTests" {
 
             $comparer.ChangedItems[0].PreviousReportNode | Should -BeOfType ([TableNode])
             $comparer.ChangedItems[0].PreviousReportNode.Headers | Should -Be "Name|Value"
-            $comparer.ChangedItems[0].PreviousReportNode.Rows | Should -HaveCount 3
-            $comparer.ChangedItems[0].PreviousReportNode.Rows[0] | Should -Be "A1|A2"
-            $comparer.ChangedItems[0].PreviousReportNode.Rows[1] | Should -Be "B1|B2"
-            $comparer.ChangedItems[0].PreviousReportNode.Rows[2] | Should -Be "C1|C2"
+            $comparer.ChangedItems[0].PreviousReportNode.Rows | Should -BeArray @("A1|A2", "B1|B2", "C1|C2")
             $comparer.ChangedItems[0].CurrentReportNode | Should -BeOfType ([TableNode])
             $comparer.ChangedItems[0].CurrentReportNode.Headers | Should -Be "Name|Value"
-            $comparer.ChangedItems[0].CurrentReportNode.Rows | Should -HaveCount 2
-            $comparer.ChangedItems[0].CurrentReportNode.Rows[0] | Should -Be "A1|A2"
-            $comparer.ChangedItems[0].CurrentReportNode.Rows[1] | Should -Be "B3|B4"
+            $comparer.ChangedItems[0].CurrentReportNode.Rows | Should -BeArray @("A1|A2", "B3|B4")
         }
     }
 

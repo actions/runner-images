@@ -6,6 +6,10 @@ BeforeDiscovery {
 }
 
 Describe "ComparerReport.UnitTests" {
+    BeforeAll {
+        $script:report = [SoftwareReportComparerReport]::new()
+    }
+
     Context "CalculateHtmlTableRowSpan" {
         It "Without the equal cells" {
             $table = @(
@@ -14,7 +18,6 @@ Describe "ComparerReport.UnitTests" {
                 [PSCustomObject]@{ Key = "C"; Value = "3" }
             )
             
-            $report = [SoftwareReportComparerReport]::new()
             $actual = $report.CalculateHtmlTableRowSpan($table, "Key")
             $actual | Should -BeArray @(1, 1, 1)
         }
@@ -26,7 +29,6 @@ Describe "ComparerReport.UnitTests" {
                 [PSCustomObject]@{ Key = "C"; Value = "D" }
             )
             
-            $report = [SoftwareReportComparerReport]::new()
             $actual = $report.CalculateHtmlTableRowSpan($table, "Value")
             $actual | Should -BeArray @(3, 0, 0)
         }
@@ -36,7 +38,6 @@ Describe "ComparerReport.UnitTests" {
                 [PSCustomObject]@{ Key = "A"; Value = "1" }
             )
             
-            $report = [SoftwareReportComparerReport]::new()
             $actual = $report.CalculateHtmlTableRowSpan($table, "Key")
             $actual | Should -BeArray @(1)
         }
@@ -55,7 +56,6 @@ Describe "ComparerReport.UnitTests" {
                 [PSCustomObject]@{ Key = "F"; Value = "10" }
             )
             
-            $report = [SoftwareReportComparerReport]::new()
             $actual = $report.CalculateHtmlTableRowSpan($table, "Key")
             $actual | Should -BeArray @(1, 2, 0, 3, 0, 0, 1, 2, 0, 1)
         }
@@ -63,28 +63,21 @@ Describe "ComparerReport.UnitTests" {
 
     Context "RenderCategory" {
         It "With line separator" {
-            $headers = @("Header 1", "Header 2", "Header 3")
-            $report = [SoftwareReportComparerReport]::new()
-            $actual = $report.RenderCategory($headers, $true)
+            $actual = $report.RenderCategory(@("Header 1", "Header 2", "Header 3"), $true)
             $actual | Should -Be "Header 2 ><br> Header 3"
         }
 
         It "Without line separator" {
-            $headers = @("Header 1", "Header 2", "Header 3")
-            $report = [SoftwareReportComparerReport]::new()
-            $actual = $report.RenderCategory($headers, $false)
+            $actual = $report.RenderCategory(@("Header 1", "Header 2", "Header 3"), $false)
             $actual | Should -Be "Header 2 > Header 3"
         }
 
         It "One header" {
-            $headers = @("Header 1")
-            $report = [SoftwareReportComparerReport]::new()
-            $actual = $report.RenderCategory($headers, $false)
+            $actual = $report.RenderCategory(@("Header 1"), $false)
             $actual | Should -Be ""
         }
 
         It "Empty headers" {
-            $report = [SoftwareReportComparerReport]::new()
             $actual = $report.RenderCategory(@(), $false)
             $actual | Should -Be ""
         }
@@ -92,13 +85,11 @@ Describe "ComparerReport.UnitTests" {
 
     Context "RenderToolName" {
         It "Clear tool name" {
-            $report = [SoftwareReportComparerReport]::new()
             $actual = $report.RenderToolName("My Tool 1")
             $actual | Should -Be "My Tool 1"
         }
 
         It "Name with colon symbol" {
-            $report = [SoftwareReportComparerReport]::new()
             $actual = $report.RenderToolName("My Tool 1:")
             $actual | Should -Be "My Tool 1"
         }
@@ -106,13 +97,11 @@ Describe "ComparerReport.UnitTests" {
 
     Context "StrikeTableRow" {
         It "Simple row" {
-            $report = [SoftwareReportComparerReport]::new()
             $actual = $report.StrikeTableRow("Test1|Test2|Test3")
             $actual | Should -Be "~~Test1~~|~~Test2~~|~~Test3~~"
         }
 
         It "Row with spaces" {
-            $report = [SoftwareReportComparerReport]::new()
             $actual = $report.StrikeTableRow("Test 1|Test 2|Test 3")
             $actual | Should -Be "~~Test 1~~|~~Test 2~~|~~Test 3~~"
         }
@@ -120,14 +109,12 @@ Describe "ComparerReport.UnitTests" {
 
     Context "GetImageVersion" {
         It "Image version exists" {
-            $report = [SoftwareReportComparerReport]::new()
             $reportNode = [HeaderNode]::new("MyReport")
             $reportNode.AddToolVersion("Image Version:", "123.4")
             $report.GetImageVersion($reportNode) | Should -Be "123.4"
         }
 
         It "Empty report" {
-            $report = [SoftwareReportComparerReport]::new()
             $reportNode = [HeaderNode]::new("MyReport")
             $report.GetImageVersion($reportNode) | Should -Be "Unknown version"
         }
@@ -135,7 +122,6 @@ Describe "ComparerReport.UnitTests" {
 
     Context "RenderHtmlTable" {
         It "Simple table" {
-            $report = [SoftwareReportComparerReport]::new()
             $table = @(
                 [PSCustomObject]@{ "Category" = "A"; "Tool name" = "My Tool 1"; "Version" = "1.0" },
                 [PSCustomObject]@{ "Category" = "B"; "Tool name" = "My Tool 2"; "Version" = "2.0" },
@@ -174,7 +160,6 @@ Describe "ComparerReport.UnitTests" {
         }
 
         It "Table with the same category" {
-            $report = [SoftwareReportComparerReport]::new()
             $table = @(
                 [PSCustomObject]@{ "Category" = "A"; "Tool name" = "My Tool 1"; "Version" = "1.0" },
                 [PSCustomObject]@{ "Category" = "A"; "Tool name" = "My Tool 2"; "Version" = "2.0" },
@@ -219,8 +204,6 @@ Describe "ComparerReport.UnitTests" {
 
     Context "RenderTableNodesDiff" {
         It "Add new table" {
-            $report = [SoftwareReportComparerReport]::new()
-
             $previousNode = $null
             $currentNode = [TableNode]::new("Name|Value", @("A|1", "B|2"))
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
@@ -237,8 +220,6 @@ Describe "ComparerReport.UnitTests" {
         }
 
         It "Remove existing table" {
-            $report = [SoftwareReportComparerReport]::new()
-
             $previousNode = [TableNode]::new("Name|Value", @("A|1", "B|2"))
             $currentNode = $null
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
@@ -255,8 +236,6 @@ Describe "ComparerReport.UnitTests" {
         }
 
         It "Add new rows to existing table" {
-            $report = [SoftwareReportComparerReport]::new()
-
             $previousNode = [TableNode]::new("Name|Value", @("A|1", "B|2"))
             $currentNode = [TableNode]::new("Name|Value", @("A|1", "B|2", "C|3", "D|4"))
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
@@ -273,8 +252,6 @@ Describe "ComparerReport.UnitTests" {
         }
 
         It "Remove rows from existing table" {
-            $report = [SoftwareReportComparerReport]::new()
-
             $previousNode = [TableNode]::new("Name|Value", @("A|1", "B|2", "C|3", "D|4"))
             $currentNode = [TableNode]::new("Name|Value", @("C|3", "D|4"))
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
@@ -291,8 +268,6 @@ Describe "ComparerReport.UnitTests" {
         }
 
         It "Row is changed in existing table" {
-            $report = [SoftwareReportComparerReport]::new()
-
             $previousNode = [TableNode]::new("Name|Value", @("A|1", "B|2"))
             $currentNode = [TableNode]::new("Name|Value", @("A|1", "B|3"))
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
@@ -309,8 +284,6 @@ Describe "ComparerReport.UnitTests" {
         }
 
         It "Row is changed, added and removed at the same time in existing table" {
-            $report = [SoftwareReportComparerReport]::new()
-
             $previousNode = [TableNode]::new("Name|Value", @("A|1", "B|2", "C|3", "D|4"))
             $currentNode = [TableNode]::new("Name|Value", @("B|2", "C|4", "D|4", "E|5"))
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
