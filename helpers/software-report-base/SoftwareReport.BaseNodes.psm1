@@ -19,6 +19,7 @@ class BaseNode {
 
 # Abstract base class for all nodes that describe a tool and should be rendered inside diff table
 class BaseToolNode: BaseNode {
+    [ValidateNotNullOrEmpty()]
     [String] $ToolName
 
     BaseToolNode([String] $ToolName) {

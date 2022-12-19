@@ -2,6 +2,7 @@ using module ./SoftwareReport.BaseNodes.psm1
 using module ./SoftwareReport.Nodes.psm1
 
 class SoftwareReport {
+    [ValidateNotNullOrEmpty()]
     [HeaderNode] $Root
 
     SoftwareReport([String] $Title) {

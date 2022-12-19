@@ -11,12 +11,12 @@ Describe "SoftwareReport.E2E" {
 
             $languagesAndRuntimes = $installedSoftware.AddHeader("Language and Runtime")
             $languagesAndRuntimes.AddToolVersion("Bash", "5.1.16(1)-release")
-            $languagesAndRuntimes.AddToolVersionsList(".NET Core SDK", @("1.2.100", "1.2.200", "3.1.414"), "^\d+\.\d+\.\d", $true)
+            $languagesAndRuntimes.AddToolVersionsInlineList(".NET Core SDK", @("1.2.100", "1.2.200", "3.1.414"), "^\d+\.\d+\.\d")
             $languagesAndRuntimes.AddNode([ToolVersionNode]::new("Perl", "5.34.0"))
 
             $cachedTools = $installedSoftware.AddHeader("Cached Tools")
-            $cachedTools.AddToolVersionsList("Ruby", @("2.7.3", "2.8.1", "3.1.2"), "^\d+\.\d+", $false)
-            $cachedTools.AddToolVersionsList("Node.js", @("14.8.0", "15.1.0", "16.4.2"), "^\d+", $false)
+            $cachedTools.AddToolVersionsList("Ruby", @("2.7.3", "2.8.1", "3.1.2"), "^\d+\.\d+")
+            $cachedTools.AddToolVersionsList("Node.js", @("14.8.0", "15.1.0", "16.4.2"), "^\d+")
 
             $javaSection = $installedSoftware.AddHeader("Java")
             $javaSection.AddTable(@(

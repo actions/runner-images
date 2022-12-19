@@ -244,10 +244,10 @@ Describe "Comparer.UnitTests" {
     Describe "ToolVersionsListNode" {
         It "Single version is not changed" {
             $prevReport = [HeaderNode]::new("Version 1")
-            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3"), "^.+", $false)
+            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3"), "^.+")
 
             $nextReport = [HeaderNode]::new("Version 2")
-            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3"), "^.+", $false)
+            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3"), "^.+")
             
             $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
             $comparer.CompareReports()
@@ -259,10 +259,10 @@ Describe "Comparer.UnitTests" {
 
         It "Single version is changed" {
             $prevReport = [HeaderNode]::new("Version 1")
-            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3"), "^\d+", $false)
+            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3"), "^\d+")
 
             $nextReport = [HeaderNode]::new("Version 2")
-            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.4"), "^\d+", $false)
+            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.4"), "^\d+")
             
             $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
             $comparer.CompareReports()
@@ -281,10 +281,10 @@ Describe "Comparer.UnitTests" {
 
         It "Major version is added" {
             $prevReport = [HeaderNode]::new("Version 1")
-            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3"), "^\d+", $false)
+            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3"), "^\d+")
 
             $nextReport = [HeaderNode]::new("Version 2")
-            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3", "3.1.4"), "^\d+", $false)
+            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3", "3.1.4"), "^\d+")
             
             $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
             $comparer.CompareReports()
@@ -301,10 +301,10 @@ Describe "Comparer.UnitTests" {
 
         It "Major version is removed" {
             $prevReport = [HeaderNode]::new("Version 1")
-            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3", "3.1.4"), "^\d+", $false)
+            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3", "3.1.4"), "^\d+")
 
             $nextReport = [HeaderNode]::new("Version 2")
-            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("3.1.4"), "^\d+", $false)
+            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("3.1.4"), "^\d+")
             
             $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
             $comparer.CompareReports()
@@ -321,10 +321,10 @@ Describe "Comparer.UnitTests" {
 
         It "Major version is changed" {
             $prevReport = [HeaderNode]::new("Version 1")
-            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("3.1.4"), "^\d+", $false)
+            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("3.1.4"), "^\d+")
 
             $nextReport = [HeaderNode]::new("Version 2")
-            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("3.2.0"), "^\d+", $false)
+            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("3.2.0"), "^\d+")
             
             $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
             $comparer.CompareReports()
@@ -343,10 +343,10 @@ Describe "Comparer.UnitTests" {
 
         It "Major version is added, removed and updated at the same time" {
             $prevReport = [HeaderNode]::new("Version 1")
-            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("1.0.0", "2.1.3", "3.1.4", "4.0.2"), "^\d+", $false)
+            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("1.0.0", "2.1.3", "3.1.4", "4.0.2"), "^\d+")
 
             $nextReport = [HeaderNode]::new("Version 2")
-            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3", "3.2.0", "4.0.2", "5.1.0"), "^\d+", $false)
+            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.1.3", "3.2.0", "4.0.2", "5.1.0"), "^\d+")
             
             $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
             $comparer.CompareReports()
@@ -375,10 +375,10 @@ Describe "Comparer.UnitTests" {
 
         It "Minor version is added, removed and updated at the same time" {
             $prevReport = [HeaderNode]::new("Version 1")
-            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.3.8", "2.4.9", "2.5.3", "2.6.0", "2.7.4", "2.8.0"), "^\d+\.\d+", $false)
+            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.3.8", "2.4.9", "2.5.3", "2.6.0", "2.7.4", "2.8.0"), "^\d+\.\d+")
 
             $nextReport = [HeaderNode]::new("Version 2")
-            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.5.3", "2.6.2", "2.7.5", "2.8.0", "2.9.2", "2.10.3"), "^\d+\.\d+", $false)
+            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.5.3", "2.6.2", "2.7.5", "2.8.0", "2.9.2", "2.10.3"), "^\d+\.\d+")
             
             $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
             $comparer.CompareReports()
@@ -415,10 +415,10 @@ Describe "Comparer.UnitTests" {
 
         It "Patch version is added, removed and updated at the same time" {
             $prevReport = [HeaderNode]::new("Version 1")
-            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.3.8", "2.4.9", "2.5.3", "2.6.0", "2.7.4"), "^\d+\.\d+\.\d+", $false)
+            $prevReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.3.8", "2.4.9", "2.5.3", "2.6.0", "2.7.4"), "^\d+\.\d+\.\d+")
 
             $nextReport = [HeaderNode]::new("Version 2")
-            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.4.9", "2.5.4", "2.6.0", "2.7.5", "2.8.2"), "^\d+\.\d+\.\d+", $false)
+            $nextReport.AddHeader("MyHeader").AddToolVersionsList("MyTool1", @("2.4.9", "2.5.4", "2.6.0", "2.7.5", "2.8.2"), "^\d+\.\d+\.\d+")
             
             $comparer = [SoftwareReportComparer]::new($prevReport, $nextReport)
             $comparer.CompareReports()

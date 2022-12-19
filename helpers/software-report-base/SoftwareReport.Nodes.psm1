@@ -26,6 +26,7 @@ class NodesFactory {
 
 # Node type to describe headers: "## Installed software"
 class HeaderNode: BaseNode {
+    [ValidateNotNullOrEmpty()]
     [String] $Title
     [System.Collections.ArrayList] $Children
 
@@ -63,8 +64,12 @@ class HeaderNode: BaseNode {
         $this.AddNode([ToolVersionNode]::new($ToolName, $Version))
     }
 
-    [void] AddToolVersionsList([String] $ToolName, [Array] $Version, [String] $MajorVersionRegex, [Boolean] $InlineList) {
-        $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, $InlineList))
+    [void] AddToolVersionsList([String] $ToolName, [Array] $Version, [String] $MajorVersionRegex) {
+        $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, "List"))
+    }
+
+    [void] AddToolVersionsInlineList([String] $ToolName, [Array] $Version, [String] $MajorVersionRegex) {
+        $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, "Inline"))
     }
      
     [void] AddTable([Array] $Table) {
@@ -125,6 +130,7 @@ class HeaderNode: BaseNode {
 
 # Node type to describe the tool with single version: "Bash 5.1.16"
 class ToolVersionNode: BaseToolNode {
+    [ValidateNotNullOrEmpty()]
     [String] $Version
 
     ToolVersionNode([String] $ToolName, [String] $Version): base($ToolName) {
@@ -154,14 +160,18 @@ class ToolVersionNode: BaseToolNode {
 
 # Node type to describe the tool with multiple versions "Toolcache Node.js 14.17.6 16.2.0 18.2.3"
 class ToolVersionsListNode: BaseToolNode {
+    [ValidateNotNullOrEmpty()]
     [Array] $Versions
+
     [Regex] $MajorVersionRegex
+
+    [ValidateSet("List", "Inline")]
     [String] $ListType
 
-    ToolVersionsListNode([String] $ToolName, [Array] $Versions, [String] $MajorVersionRegex, [Boolean] $InlineList): base($ToolName) {
+    ToolVersionsListNode([String] $ToolName, [Array] $Versions, [String] $MajorVersionRegex, [String] $ListType): base($ToolName) {
         $this.Versions = $Versions
         $this.MajorVersionRegex = [Regex]::new($MajorVersionRegex)
-        $this.ListType = $InlineList ? "Inline" : "List"
+        $this.ListType = $ListType
         $this.ValidateMajorVersionRegex()
     }
 
@@ -186,7 +196,7 @@ class ToolVersionsListNode: BaseToolNode {
 
     [String] ExtractMajorVersion([String] $Version) {
         $match = $this.MajorVersionRegex.Match($Version)
-        if ($match.Success -ne $true) {
+        if (($match.Success -ne $true) -or [String]::IsNullOrEmpty($match.Groups[0].Value)) {
             throw "Version '$Version' doesn't match regex '$($this.PrimaryVersionRegex)'"
         }
 
@@ -204,7 +214,7 @@ class ToolVersionsListNode: BaseToolNode {
     }
 
     static [ToolVersionsListNode] FromJsonObject($jsonObj) {
-        return [ToolVersionsListNode]::new($jsonObj.ToolName, $jsonObj.Versions, $jsonObj.MajorVersionRegex, $jsonObj.ListType -eq "Inline")
+        return [ToolVersionsListNode]::new($jsonObj.ToolName, $jsonObj.Versions, $jsonObj.MajorVersionRegex, $jsonObj.ListType)
     }
 
     hidden [void] ValidateMajorVersionRegex() {
@@ -219,12 +229,21 @@ class ToolVersionsListNode: BaseToolNode {
 # Node type to describe tables
 class TableNode: BaseNode {
     # It is easier to store the table as rendered lines because it will simplify finding differences in rows later
+    [ValidateNotNullOrEmpty()]
     [String] $Headers
+    [ValidateNotNullOrEmpty()]
     [System.Collections.ArrayList] $Rows
 
     TableNode($Headers, $Rows) {
         $this.Headers = $Headers
         $this.Rows = $Rows
+        
+        $columnsCount = $this.Headers.Split("|").Count
+        $this.Rows | ForEach-Object {
+            if ($_.Split("|").Count -ne $columnsCount) {
+                throw "Table has different number of columns in different rows"
+            }
+        }
     }
 
     [Boolean] ShouldBeIncludedToDiff() {
@@ -346,6 +365,7 @@ class TableNode: BaseNode {
 }
 
 class NoteNode: BaseNode {
+    [ValidateNotNullOrEmpty()]
     [String] $Content
 
     NoteNode([String] $Content) {

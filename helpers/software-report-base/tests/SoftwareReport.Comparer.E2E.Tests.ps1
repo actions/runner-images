@@ -11,7 +11,7 @@ Describe "Comparer.E2E" {
       $prevTools = $prevInstalledSoftware.AddHeader("Tools")
       $prevTools.AddToolVersion("ToolWillBeUpdated1", "1.0.0")
       $prevTools.AddToolVersion("ToolWillBeUpdated2", "3.0.1")
-      $prevTools.AddToolVersionsList("ToolWillBeUpdated3", @("14.0.0", "15.5.1"), "^\d+", $false)
+      $prevTools.AddToolVersionsList("ToolWillBeUpdated3", @("14.0.0", "15.5.1"), "^\d+")
 
       # Next report
       $nextSoftwareReport = [SoftwareReport]::new("macOS 11")
@@ -21,7 +21,7 @@ Describe "Comparer.E2E" {
       $nextTools = $nextInstalledSoftware.AddHeader("Tools")
       $nextTools.AddToolVersion("ToolWillBeUpdated1", "2.5.0")
       $nextTools.AddToolVersion("ToolWillBeUpdated2", "3.0.2")
-      $nextTools.AddToolVersionsList("ToolWillBeUpdated3", @("14.2.0", "15.5.1"), "^\d+", $false)
+      $nextTools.AddToolVersionsList("ToolWillBeUpdated3", @("14.2.0", "15.5.1"), "^\d+")
 
       # Compare reports
       $comparer = [SoftwareReportComparer]::new($prevSoftwareReport, $nextSoftwareReport)
@@ -75,13 +75,13 @@ Describe "Comparer.E2E" {
 
         $prevLanguagesAndRuntimes = $prevInstalledSoftware.AddHeader("Language and Runtime")
         $prevLanguagesAndRuntimes.AddToolVersion("ToolWillBeRemoved", "5.1.16(1)-release")
-        $prevLanguagesAndRuntimes.AddToolVersionsList("ToolWithMultipleVersions3", @("1.2.100", "1.2.200", "1.3.500", "1.4.100", "1.4.200"), "^\d+\.\d+\.\d", $true)
+        $prevLanguagesAndRuntimes.AddToolVersionsInlineList("ToolWithMultipleVersions3", @("1.2.100", "1.2.200", "1.3.500", "1.4.100", "1.4.200"), "^\d+\.\d+\.\d")
         $prevLanguagesAndRuntimes.AddToolVersion("ToolWithoutChanges", "5.34.0")
         $prevLanguagesAndRuntimes.AddToolVersion("ToolWillBeUpdated", "8.1.0")
 
         $prevCachedTools = $prevInstalledSoftware.AddHeader("Cached Tools")
-        $prevCachedTools.AddToolVersionsList("ToolWithMultipleVersions1", @("2.7.3", "2.8.1", "3.1.2"), "^\d+\.\d+", $false)
-        $prevCachedTools.AddToolVersionsList("ToolWithMultipleVersions2", @("14.8.0", "15.1.0", "16.4.2"), "^\d+", $false)
+        $prevCachedTools.AddToolVersionsList("ToolWithMultipleVersions1", @("2.7.3", "2.8.1", "3.1.2"), "^\d+\.\d+")
+        $prevCachedTools.AddToolVersionsList("ToolWithMultipleVersions2", @("14.8.0", "15.1.0", "16.4.2"), "^\d+")
 
         $prevSQLSection = $prevInstalledSoftware.AddHeader("Databases")
         $prevSQLSection.AddToolVersion("MineSQL", "6.1.0")
@@ -95,13 +95,13 @@ Describe "Comparer.E2E" {
 
         $nextLanguagesAndRuntimes = $nextInstalledSoftware.AddHeader("Language and Runtime")
         $nextLanguagesAndRuntimes.AddToolVersion("ToolWillBeAdded", "16.18.0")
-        $nextLanguagesAndRuntimes.AddToolVersionsList("ToolWithMultipleVersions3", @("1.2.200", "1.3.515", "1.4.100", "1.4.200", "1.5.800"), "^\d+\.\d+\.\d", $true)
+        $nextLanguagesAndRuntimes.AddToolVersionsInlineList("ToolWithMultipleVersions3", @("1.2.200", "1.3.515", "1.4.100", "1.4.200", "1.5.800"), "^\d+\.\d+\.\d")
         $nextLanguagesAndRuntimes.AddToolVersion("ToolWithoutChanges", "5.34.0")
         $nextLanguagesAndRuntimes.AddToolVersion("ToolWillBeUpdated", "8.3.0")
 
         $nextCachedTools = $nextInstalledSoftware.AddHeader("Cached Tools")
-        $nextCachedTools.AddToolVersionsList("ToolWithMultipleVersions1", @("2.7.3", "2.8.1", "3.1.2"), "^\d+\.\d+", $false)
-        $nextCachedTools.AddToolVersionsList("ToolWithMultipleVersions2", @("15.1.0", "16.4.2", "17.0.1"), "^\d+", $false)
+        $nextCachedTools.AddToolVersionsList("ToolWithMultipleVersions1", @("2.7.3", "2.8.1", "3.1.2"), "^\d+\.\d+")
+        $nextCachedTools.AddToolVersionsList("ToolWithMultipleVersions2", @("15.1.0", "16.4.2", "17.0.1"), "^\d+")
 
         $nextSQLSection = $nextInstalledSoftware.AddHeader("Databases")
         $nextSQLSection.AddToolVersion("MineSQL", "6.1.1")

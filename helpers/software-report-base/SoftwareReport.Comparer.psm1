@@ -5,7 +5,9 @@ using module ./SoftwareReport.ComparerReport.psm1
 
 # SoftwareReportComparer is used to calculate differences between two SoftwareReport objects
 class SoftwareReportComparer {
+    [ValidateNotNullOrEmpty()]
     hidden [SoftwareReport] $PreviousReport
+    [ValidateNotNullOrEmpty()]
     hidden [SoftwareReport] $CurrentReport
 
     hidden [Collections.Generic.List[ReportDifferenceItem]] $AddedItems
@@ -89,15 +91,15 @@ class SoftwareReportComparer {
         $changedCurrentVersions = $CurrentReportNode.Versions | Where-Object { ($CurrentReportNode.ExtractMajorVersion($_) -in $previousReportMajorVersions) -and ($_ -notin $PreviousReportNode.Versions) }
 
         if ($addedVersions.Count -gt 0) {
-            $this.AddedItems.Add([ReportDifferenceItem]::new($null, [ToolVersionsListNode]::new($CurrentReportNode.ToolName, $addedVersions, $CurrentReportNode.MajorVersionRegex, $true), $Headers))
+            $this.AddedItems.Add([ReportDifferenceItem]::new($null, [ToolVersionsListNode]::new($CurrentReportNode.ToolName, $addedVersions, $CurrentReportNode.MajorVersionRegex, "List"), $Headers))
         }
 
         if ($deletedVersions.Count -gt 0) {
-            $this.DeletedItems.Add([ReportDifferenceItem]::new([ToolVersionsListNode]::new($PreviousReportNode.ToolName, $deletedVersions, $PreviousReportNode.MajorVersionRegex, $true), $null, $Headers))
+            $this.DeletedItems.Add([ReportDifferenceItem]::new([ToolVersionsListNode]::new($PreviousReportNode.ToolName, $deletedVersions, $PreviousReportNode.MajorVersionRegex, "List"), $null, $Headers))
         }
 
-        $previousChangedNode = ($changedPreviousVersions.Count -gt 0) ? [ToolVersionsListNode]::new($PreviousReportNode.ToolName, $changedPreviousVersions, $PreviousReportNode.MajorVersionRegex, $true) : $null
-        $currentChangedNode = ($changedCurrentVersions.Count -gt 0) ? [ToolVersionsListNode]::new($CurrentReportNode.ToolName, $changedCurrentVersions, $CurrentReportNode.MajorVersionRegex, $true) : $null
+        $previousChangedNode = ($changedPreviousVersions.Count -gt 0) ? [ToolVersionsListNode]::new($PreviousReportNode.ToolName, $changedPreviousVersions, $PreviousReportNode.MajorVersionRegex, "List") : $null
+        $currentChangedNode = ($changedCurrentVersions.Count -gt 0) ? [ToolVersionsListNode]::new($CurrentReportNode.ToolName, $changedCurrentVersions, $CurrentReportNode.MajorVersionRegex, "List") : $null
         if ($previousChangedNode -and $currentChangedNode) {
             $this.ChangedItems.Add([ReportDifferenceItem]::new($previousChangedNode, $currentChangedNode, $Headers))
         }

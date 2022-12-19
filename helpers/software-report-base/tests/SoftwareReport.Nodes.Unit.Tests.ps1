@@ -24,6 +24,12 @@ Describe "Nodes.UnitTests" {
             $json.Version | Should -Be "2.1.3"
         }
 
+        It "Deserialization" {
+            { [ToolVersionNode]::FromJsonObject(@{ NodeType = "ToolVersionNode"; ToolName = ""; Version = "2.1.3" }) } | Should -Throw '*Exception setting "ToolName": "The argument is null or empty.*'
+            { [ToolVersionNode]::FromJsonObject(@{ NodeType = "ToolVersionNode"; ToolName = "MyTool"; Version = "" }) } | Should -Throw '*Exception setting "Version": "The argument is null or empty.*'
+            { [ToolVersionNode]::FromJsonObject(@{ NodeType = "ToolVersionNode"; ToolName = "MyTool"; Version = "2.1.3" }) } | Should -Not -Throw
+        }
+
         It "Serialization + Deserialization" {
             $node = [ToolVersionNode]::new("MyTool", "2.1.3")
             $json = $node.ToJsonObject()
@@ -47,7 +53,7 @@ Describe "Nodes.UnitTests" {
 
     Context "ToolVersionsListNode" {
         It "ToMarkdown - List" {
-            $node = [ToolVersionsListNode]::new("MyTool", @("2.7.7", "3.0.5", "3.1.3"), "^.+", $false)
+            $node = [ToolVersionsListNode]::new("MyTool", @("2.7.7", "3.0.5", "3.1.3"), "^.+", "List")
             $expected = @(
                 "",
                 "# MyTool"
@@ -59,17 +65,17 @@ Describe "Nodes.UnitTests" {
         }
 
         It "ToMarkdown - Inline" {
-            $node = [ToolVersionsListNode]::new("MyTool", @("2.7.7", "3.0.5", "3.1.3"), "^.+", $true)
+            $node = [ToolVersionsListNode]::new("MyTool", @("2.7.7", "3.0.5", "3.1.3"), "^.+", "Inline")
             $node.ToMarkdown(1) | Should -Be "- MyTool: 2.7.7, 3.0.5, 3.1.3"
         }
 
         It "GetValue" {
-            $node = [ToolVersionsListNode]::new("MyTool", @("2.7.7", "3.0.5", "3.1.3"), "^.+", $false)
+            $node = [ToolVersionsListNode]::new("MyTool", @("2.7.7", "3.0.5", "3.1.3"), "^.+", "List")
             $node.GetValue() | Should -Be "2.7.7, 3.0.5, 3.1.3"
         }
 
         It "Serialization - List" {
-            $node = [ToolVersionsListNode]::new("Ruby", @("2.7.7", "3.0.5", "3.1.3"), "^.+", $false)
+            $node = [ToolVersionsListNode]::new("Ruby", @("2.7.7", "3.0.5", "3.1.3"), "^.+", "List")
             $json = $node.ToJsonObject()
             $json.NodeType | Should -Be "ToolVersionsListNode"
             $json.ToolName | Should -Be "Ruby"
@@ -79,7 +85,7 @@ Describe "Nodes.UnitTests" {
         }
 
         It "Serialization - Inline" {
-            $node = [ToolVersionsListNode]::new("Ruby", @("2.7.7", "3.0.5", "3.1.3"), "^.+", $true)
+            $node = [ToolVersionsListNode]::new("Ruby", @("2.7.7", "3.0.5", "3.1.3"), "^.+", "Inline")
             $json = $node.ToJsonObject()
             $json.NodeType | Should -Be "ToolVersionsListNode"
             $json.ToolName | Should -Be "Ruby"
@@ -88,8 +94,19 @@ Describe "Nodes.UnitTests" {
             $json.ListType | Should -Be "Inline"
         }
 
+        It "Deserialization" {
+            { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = ""; Versions = @("2.1.3", "3.1.4"); MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Throw '*Exception setting "ToolName": "The argument is null or empty.*'
+            { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Throw '*Exception setting "Versions": "The argument is null or empty.*'
+            { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @(); MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Throw '*Exception setting "Versions": "The argument is null, empty,*'
+            { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @("2.1.3", '2.2.4'); MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Throw 'Multiple versions from list * return the same result from regex *'
+            { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @("2.1.3", "3.1.4"); MajorVersionRegex = ""; ListType = "List" }) } | Should -Throw 'Version * doesn''t match regex *'
+            { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @("2.1.3", "3.1.4"); MajorVersionRegex = "^\d+"; ListType = "Fake" }) } | Should -Throw '*Exception setting "ListType": "The argument * does not belong to the set*'
+            { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @("2.1.3", "3.1.4"); MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Not -Throw
+            { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @("2.1.3", "3.1.4"); MajorVersionRegex = "^\d+"; ListType = "Inline" }) } | Should -Not -Throw
+        }
+
         It "Serialization + Deserialization" {
-            $node = [ToolVersionsListNode]::new("Ruby", @("2.7.7", "3.0.5", "3.1.3"), "^.+", $false)
+            $node = [ToolVersionsListNode]::new("Ruby", @("2.7.7", "3.0.5", "3.1.3"), "^.+", "List")
             $json = $node.ToJsonObject()
             $node2 = [ToolVersionsListNode]::FromJsonObject($json)
             $json2 = $node2.ToJsonObject()
@@ -97,31 +114,31 @@ Describe "Nodes.UnitTests" {
         }
 
         It "IsSimilarTo" {
-            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", $false).IsSimilarTo(
-                [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", $false)
+            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", "List").IsSimilarTo(
+                [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", "List")
             ) | Should -BeTrue
-            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", $false).IsSimilarTo(
-                [ToolVersionsListNode]::new("MyTool", @("2.1.5", "5.0.0"), "^.+", $false)
+            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", "List").IsSimilarTo(
+                [ToolVersionsListNode]::new("MyTool", @("2.1.5", "5.0.0"), "^.+", "List")
             ) | Should -BeTrue
-            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", $false).IsSimilarTo(
-                [ToolVersionsListNode]::new("MyTool2", @("2.1.3", "3.1.5", "4.0.0"), "^.+", $false)
+            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", "List").IsSimilarTo(
+                [ToolVersionsListNode]::new("MyTool2", @("2.1.3", "3.1.5", "4.0.0"), "^.+", "List")
             ) | Should -BeFalse
         }
 
         It "IsIdenticalTo" {
-            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", $false).IsIdenticalTo(
-                [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", $false)
+            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", "List").IsIdenticalTo(
+                [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", "List")
             ) | Should -BeTrue
-            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", $false).IsIdenticalTo(
-                [ToolVersionsListNode]::new("MyTool", @("2.1.5", "5.0.0"), "^.+", $false)
+            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", "List").IsIdenticalTo(
+                [ToolVersionsListNode]::new("MyTool", @("2.1.5", "5.0.0"), "^.+", "List")
             ) | Should -BeFalse
-            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", $false).IsIdenticalTo(
-                [ToolVersionsListNode]::new("MyTool2", @("2.1.3", "3.1.5", "4.0.0"), "^.+", $false)
+            [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^.+", "List").IsIdenticalTo(
+                [ToolVersionsListNode]::new("MyTool2", @("2.1.3", "3.1.5", "4.0.0"), "^.+", "List")
             ) | Should -BeFalse
         }
 
         It "ExtractMajorVersion" {
-            $node = [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^\d+\.\d+", $false)
+            $node = [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^\d+\.\d+", "List")
             $node.ExtractMajorVersion("2.1.3") | Should -Be "2.1"
             $node.ExtractMajorVersion("3.1.5") | Should -Be "3.1"
             $node.ExtractMajorVersion("4.0.0") | Should -Be "4.0"
@@ -129,39 +146,39 @@ Describe "Nodes.UnitTests" {
 
         Context "ValidateMajorVersionRegex" {
             It "Major version regex - unique versions" {
-                $node = [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^\d+", $false)
+                $node = [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "4.0.0"), "^\d+", "List")
                 $node.Versions | Should -BeArray @("2.1.3", "3.1.5", "4.0.0")
             }
 
             It "Major version regex - non-unique versions" {
-                { [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "3.2.0", "4.0.0"), "^\d+", $false) } | Should -Throw "Multiple versions from list * return the same result from regex *"
+                { [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "3.2.0", "4.0.0"), "^\d+", "List") } | Should -Throw "Multiple versions from list * return the same result from regex *"
             }
 
             It "Minor version regex - unique versions" {
-                $node = [ToolVersionsListNode]::new("MyTool", @("2.1.3", "2.4.0", "3.1.2"), "^\d+\.\d+", $false)
+                $node = [ToolVersionsListNode]::new("MyTool", @("2.1.3", "2.4.0", "3.1.2"), "^\d+\.\d+", "List")
                 $node.Versions | Should -BeArray @("2.1.3", "2.4.0", "3.1.2")
             }
 
             It "Minor version regex - non-unique versions" {
-                { [ToolVersionsListNode]::new("MyTool", @("2.1.3", "2.1.4", "3.1.2"), "^\d+\.\d+", $false) } | Should -Throw "Multiple versions from list * return the same result from regex *"
+                { [ToolVersionsListNode]::new("MyTool", @("2.1.3", "2.1.4", "3.1.2"), "^\d+\.\d+", "List") } | Should -Throw "Multiple versions from list * return the same result from regex *"
             }
 
             It "Patch version regex - unique versions" {
-                $node = [ToolVersionsListNode]::new("MyTool", @("2.1.3", "2.1.4", "2.1.5"), "^\d+\.\d+\.\d+", $false)
+                $node = [ToolVersionsListNode]::new("MyTool", @("2.1.3", "2.1.4", "2.1.5"), "^\d+\.\d+\.\d+", "List")
                 $node.Versions | Should -BeArray @("2.1.3", "2.1.4", "2.1.5")
             }
 
             It "Patch version regex - non-unique versions" {
-                { [ToolVersionsListNode]::new("MyTool", @("2.1.3", "2.1.4", "2.1.4"), "^\d+\.\d+\.\d+", $false) } | Should -Throw "Multiple versions from list * return the same result from regex *"
+                { [ToolVersionsListNode]::new("MyTool", @("2.1.3", "2.1.4", "2.1.4"), "^\d+\.\d+\.\d+", "List") } | Should -Throw "Multiple versions from list * return the same result from regex *"
             }
 
             It ".NET Core version regex - unique versions" {
-                $node = [ToolVersionsListNode]::new("MyTool", @("2.1.100", "2.1.205", "2.1.303"), "^\d+\.\d+\.\d", $false)
+                $node = [ToolVersionsListNode]::new("MyTool", @("2.1.100", "2.1.205", "2.1.303"), "^\d+\.\d+\.\d", "List")
                 $node.Versions | Should -BeArray @("2.1.100", "2.1.205", "2.1.303")
             }
 
             It ".NET Core version regex - non-unique versions" {
-                { [ToolVersionsListNode]::new("MyTool", @("2.1.100", "2.1.205", "2.1.230", "3.1.0"), "^\d+\.\d+\.\d", $false) } | Should -Throw "Multiple versions from list * return the same result from regex *"
+                { [ToolVersionsListNode]::new("MyTool", @("2.1.100", "2.1.205", "2.1.230", "3.1.0"), "^\d+\.\d+\.\d", "List") } | Should -Throw "Multiple versions from list * return the same result from regex *"
             }
         }
     }
@@ -200,6 +217,13 @@ Describe "Nodes.UnitTests" {
             $json.NodeType | Should -Be "TableNode"
             $json.Headers | Should -Be "Name|Value"
             $json.Rows | Should -BeArray @("A|B", "C|D")
+        }
+
+        It "Deserialization" {
+            { [TableNode]::FromJsonObject(@{ NodeType = "TableNode"; Headers = ""; Rows = @("A|1", "B|2") }) } | Should -Throw 'Exception setting "Headers": "The argument is null or empty. *'
+            { [TableNode]::FromJsonObject(@{ NodeType = "TableNode"; Headers = "Name|Value"; Rows = @() }) } | Should -Throw 'Exception setting "Rows": "The argument is null, empty, *'
+            { [TableNode]::FromJsonObject(@{ NodeType = "TableNode"; Headers = "Name|Value"; Rows = @("A|1", "B|2|T", "C|3") }) } | Should -Throw 'Table has different number of columns in different rows'
+            { [TableNode]::FromJsonObject(@{ NodeType = "TableNode"; Headers = "Name|Value"; Rows = @("A|1", "B|2") }) } | Should -Not -Throw
         }
 
         It "Serialization + Deserialization" {
@@ -308,6 +332,12 @@ Good Bye world
             $json.Content | Should -Be "MyContent`nMyContent2"
         }
 
+        It "Deserialization" {
+            { [NoteNode]::FromJsonObject(@{ NodeType = "NoteNode" }) } | Should -Throw '*Exception setting "Content": "The argument is null or empty.*'
+            { [NoteNode]::FromJsonObject(@{ NodeType = "NoteNode"; Content = "" }) } | Should -Throw '*Exception setting "Content": "The argument is null or empty.*'
+            { [NoteNode]::FromJsonObject(@{ NodeType = "NoteNode"; Content = "MyTool" }) } | Should -Not -Throw
+        }
+
         It "Serialization + Deserialization" {
             $node = [NoteNode]::new("MyContent`nMyContent2")
             $json = $node.ToJsonObject()
@@ -373,6 +403,12 @@ Good Bye world
             $json.Children | Should -HaveCount 1
         }
 
+        It "Deserialization" {
+            { [HeaderNode]::FromJsonObject(@{ NodeType = "HeaderNode" }) } | Should -Throw '*Exception setting "Title": "The argument is null or empty.*'
+            { [HeaderNode]::FromJsonObject(@{ NodeType = "HeaderNode"; Title = "" }) } | Should -Throw '*Exception setting "Title": "The argument is null or empty.*'
+            { [HeaderNode]::FromJsonObject(@{ NodeType = "HeaderNode"; Title = "MyHeader" }) } | Should -Not -Throw
+        }
+
         It "Serialization + Deserialization" {
             $node = [HeaderNode]::new("MyHeader")
             $node.AddToolVersion("MyTool", "2.1.3")
@@ -417,9 +453,9 @@ Good Bye world
 
             It "Similar ToolVersionsListNode on the same header" {
                 $node = [HeaderNode]::new("MyHeader")
-                $node.AddToolVersionsList("MyTool", @("2.1.3", "3.0.0"), "^\d+", $false)
-                $node.AddToolVersionsList("MyTool2", @("2.1.3", "3.0.0"), "^\d+", $true)
-                { $node.AddToolVersionsList("MyTool", @("2.1.3", "3.0.0"), "^\d+", $false) } | Should -Throw "This HeaderNode already contains the similar child node. It is not allowed to add the same node twice.*"
+                $node.AddToolVersionsList("MyTool", @("2.1.3", "3.0.0"), "^\d+")
+                $node.AddToolVersionsInlineList("MyTool2", @("2.1.3", "3.0.0"), "^\d+")
+                { $node.AddToolVersionsList("MyTool", @("2.1.3", "3.0.0"), "^\d+") } | Should -Throw "This HeaderNode already contains the similar child node. It is not allowed to add the same node twice.*"
             }
 
             It "Similar TableNode on the same header" {
