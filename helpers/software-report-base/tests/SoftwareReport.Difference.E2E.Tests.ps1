@@ -439,7 +439,6 @@ Describe "Comparer.E2E" {
       # Compare reports
       $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
       $comparer.CompareReports()
-      # throw $comparer.GetMarkdownReport()
       $comparer.GetMarkdownReport() | Should -BeExactly @'
 # :desktop_computer: Actions Runner Image: macOS 11
 - Image Version: 20220922.1

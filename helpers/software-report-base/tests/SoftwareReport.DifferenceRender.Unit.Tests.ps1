@@ -7,7 +7,7 @@ BeforeDiscovery {
 
 Describe "ComparerReport.UnitTests" {
     BeforeAll {
-        $script:report = [SoftwareReportDifferenceRender]::new()
+        $script:DifferenceRender = [SoftwareReportDifferenceRender]::new()
     }
 
     Context "CalculateHtmlTableRowSpan" {
@@ -18,7 +18,7 @@ Describe "ComparerReport.UnitTests" {
                 [PSCustomObject]@{ Key = "C"; Value = "3" }
             )
             
-            $actual = $report.CalculateHtmlTableRowSpan($table, "Key")
+            $actual = $DifferenceRender.CalculateHtmlTableRowSpan($table, "Key")
             $actual | Should -BeArray @(1, 1, 1)
         }
 
@@ -29,7 +29,7 @@ Describe "ComparerReport.UnitTests" {
                 [PSCustomObject]@{ Key = "C"; Value = "D" }
             )
             
-            $actual = $report.CalculateHtmlTableRowSpan($table, "Value")
+            $actual = $DifferenceRender.CalculateHtmlTableRowSpan($table, "Value")
             $actual | Should -BeArray @(3, 0, 0)
         }
 
@@ -38,7 +38,7 @@ Describe "ComparerReport.UnitTests" {
                 [PSCustomObject]@{ Key = "A"; Value = "1" }
             )
             
-            $actual = $report.CalculateHtmlTableRowSpan($table, "Key")
+            $actual = $DifferenceRender.CalculateHtmlTableRowSpan($table, "Key")
             $actual | Should -BeArray @(1)
         }
 
@@ -56,67 +56,54 @@ Describe "ComparerReport.UnitTests" {
                 [PSCustomObject]@{ Key = "F"; Value = "10" }
             )
             
-            $actual = $report.CalculateHtmlTableRowSpan($table, "Key")
+            $actual = $DifferenceRender.CalculateHtmlTableRowSpan($table, "Key")
             $actual | Should -BeArray @(1, 2, 0, 3, 0, 0, 1, 2, 0, 1)
         }
     }
 
     Context "RenderCategory" {
         It "With line separator" {
-            $actual = $report.RenderCategory(@("Header 1", "Header 2", "Header 3"), $true)
+            $actual = $DifferenceRender.RenderCategory(@("Header 1", "Header 2", "Header 3"), $true)
             $actual | Should -Be "Header 2 ><br> Header 3"
         }
 
         It "Without line separator" {
-            $actual = $report.RenderCategory(@("Header 1", "Header 2", "Header 3"), $false)
+            $actual = $DifferenceRender.RenderCategory(@("Header 1", "Header 2", "Header 3"), $false)
             $actual | Should -Be "Header 2 > Header 3"
         }
 
         It "One header" {
-            $actual = $report.RenderCategory(@("Header 1"), $false)
+            $actual = $DifferenceRender.RenderCategory(@("Header 1"), $false)
             $actual | Should -Be ""
         }
 
         It "Empty headers" {
-            $actual = $report.RenderCategory(@(), $false)
+            $actual = $DifferenceRender.RenderCategory(@(), $false)
             $actual | Should -Be ""
         }
     }
 
     Context "RenderToolName" {
         It "Clear tool name" {
-            $actual = $report.RenderToolName("My Tool 1")
+            $actual = $DifferenceRender.RenderToolName("My Tool 1")
             $actual | Should -Be "My Tool 1"
         }
 
         It "Name with colon symbol" {
-            $actual = $report.RenderToolName("My Tool 1:")
+            $actual = $DifferenceRender.RenderToolName("My Tool 1:")
             $actual | Should -Be "My Tool 1"
         }
     }
 
     Context "StrikeTableRow" {
         It "Simple row" {
-            $actual = $report.StrikeTableRow("Test1|Test2|Test3")
+            $actual = $DifferenceRender.StrikeTableRow("Test1|Test2|Test3")
             $actual | Should -Be "~~Test1~~|~~Test2~~|~~Test3~~"
         }
 
         It "Row with spaces" {
-            $actual = $report.StrikeTableRow("Test 1|Test 2|Test 3")
+            $actual = $DifferenceRender.StrikeTableRow("Test 1|Test 2|Test 3")
             $actual | Should -Be "~~Test 1~~|~~Test 2~~|~~Test 3~~"
-        }
-    }
-
-    Context "GetImageVersion" {
-        It "Image version exists" {
-            $reportNode = [HeaderNode]::new("MyReport")
-            $reportNode.AddToolVersion("Image Version:", "123.4")
-            $report.GetImageVersion($reportNode) | Should -Be "123.4"
-        }
-
-        It "Empty report" {
-            $reportNode = [HeaderNode]::new("MyReport")
-            $report.GetImageVersion($reportNode) | Should -Be "Unknown version"
         }
     }
 
@@ -128,7 +115,7 @@ Describe "ComparerReport.UnitTests" {
                 [PSCustomObject]@{ "Category" = "C"; "Tool name" = "My Tool 3"; "Version" = "3.0" }
             )
 
-            $renderedTable = $report.RenderHtmlTable($table, "Category")
+            $renderedTable = $DifferenceRender.RenderHtmlTable($table, "Category")
             $renderedTable | Should -Be @'
 <table>
   <thead>
@@ -167,7 +154,7 @@ Describe "ComparerReport.UnitTests" {
                 [PSCustomObject]@{ "Category" = "B"; "Tool name" = "My Tool 4"; "Version" = "4.0" }
             )
 
-            $renderedTable = $report.RenderHtmlTable($table, "Category")
+            $renderedTable = $DifferenceRender.RenderHtmlTable($table, "Category")
             $renderedTable | Should -Be @'
 <table>
   <thead>
@@ -208,7 +195,7 @@ Describe "ComparerReport.UnitTests" {
             $currentNode = [TableNode]::new("Name|Value", @("A|1", "B|2"))
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
 
-            $actual = $report.RenderTableNodesDiff($reportItem)
+            $actual = $DifferenceRender.RenderTableNodesDiff($reportItem)
             $actual | Should -Be @'
 #### Header 2 > Header 3
 | Name | Value |
@@ -224,7 +211,7 @@ Describe "ComparerReport.UnitTests" {
             $currentNode = $null
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
 
-            $actual = $report.RenderTableNodesDiff($reportItem)
+            $actual = $DifferenceRender.RenderTableNodesDiff($reportItem)
             $actual | Should -Be @'
 #### Header 2 > Header 3
 | Name  | Value |
@@ -240,7 +227,7 @@ Describe "ComparerReport.UnitTests" {
             $currentNode = [TableNode]::new("Name|Value", @("A|1", "B|2", "C|3", "D|4"))
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
 
-            $actual = $report.RenderTableNodesDiff($reportItem)
+            $actual = $DifferenceRender.RenderTableNodesDiff($reportItem)
             $actual | Should -Be @'
 #### Header 2 > Header 3
 | Name | Value |
@@ -256,7 +243,7 @@ Describe "ComparerReport.UnitTests" {
             $currentNode = [TableNode]::new("Name|Value", @("C|3", "D|4"))
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
 
-            $actual = $report.RenderTableNodesDiff($reportItem)
+            $actual = $DifferenceRender.RenderTableNodesDiff($reportItem)
             $actual | Should -Be @'
 #### Header 2 > Header 3
 | Name  | Value |
@@ -272,7 +259,7 @@ Describe "ComparerReport.UnitTests" {
             $currentNode = [TableNode]::new("Name|Value", @("A|1", "B|3"))
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
 
-            $actual = $report.RenderTableNodesDiff($reportItem)
+            $actual = $DifferenceRender.RenderTableNodesDiff($reportItem)
             $actual | Should -Be @'
 #### Header 2 > Header 3
 | Name  | Value |
@@ -288,7 +275,7 @@ Describe "ComparerReport.UnitTests" {
             $currentNode = [TableNode]::new("Name|Value", @("B|2", "C|4", "D|4", "E|5"))
             $reportItem = [ReportDifferenceItem]::new($previousNode, $currentNode, @("Header 1", "Header 2", "Header 3"))
 
-            $actual = $report.RenderTableNodesDiff($reportItem)
+            $actual = $DifferenceRender.RenderTableNodesDiff($reportItem)
             $actual | Should -Be @'
 #### Header 2 > Header 3
 | Name  | Value |

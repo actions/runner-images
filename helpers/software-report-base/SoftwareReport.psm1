@@ -26,4 +26,9 @@ class SoftwareReport {
     [String] ToMarkdown() {
         return $this.Root.ToMarkdown().Trim()
     }
+
+    [String] GetImageVersion() {
+        $imageVersionNode = $this.Root.Children ?? @() | Where-Object { ($_ -is [ToolVersionNode]) -and ($_.ToolName -eq "Image Version:") } | Select-Object -First 1
+        return $imageVersionNode.Version ?? "Unknown version"
+    }
 }

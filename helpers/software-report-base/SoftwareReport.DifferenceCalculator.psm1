@@ -26,18 +26,25 @@ class SoftwareReportDifferenceCalculator {
         $this.CompareInternal($this.PreviousReport.Root, $this.CurrentReport.Root, @())
     }
 
+    [String] GetMarkdownReport() {
+        $reporter = [SoftwareReportDifferenceRender]::new()
+        $report = $reporter.GenerateMarkdownReport($this.CurrentReport, $this.PreviousReport, $this.AddedItems, $this.ChangedItems, $this.DeletedItems)
+        return $report
+    }
+
     hidden [void] CompareInternal([HeaderNode] $previousReportPointer, [HeaderNode] $currentReportPointer, [String[]] $Headers) {
         $currentReportPointer.Children ?? @() | Where-Object { $_.ShouldBeIncludedToDiff() -and $this.FilterExcludedNodes($_) } | ForEach-Object {
             $currentReportNode = $_
             $sameNodeInPreviousReport = $previousReportPointer ? $previousReportPointer.FindSimilarChildNode($currentReportNode) : $null
 
             if ($currentReportNode -is [HeaderNode]) {
+                # Compare HeaderNode recursively
                 $this.CompareInternal($sameNodeInPreviousReport, $currentReportNode, $Headers + $currentReportNode.Title)
             } else {
                 if ($sameNodeInPreviousReport -and ($currentReportNode.IsIdenticalTo($sameNodeInPreviousReport))) {
                     # Nodes are identical, nothing changed, just ignore it
                 } elseif ($sameNodeInPreviousReport) {
-                    # Nodes are equal but not identical, so something was changed
+                    # Nodes are equal but not identical, something was changed
                     if ($currentReportNode -is [TableNode]) {
                         $this.CompareSimilarTableNodes($sameNodeInPreviousReport, $currentReportNode, $Headers)
                     } elseif ($currentReportNode -is [ToolVersionsListNode]) {
@@ -59,8 +66,10 @@ class SoftwareReportDifferenceCalculator {
 
             if (-not $sameNodeInCurrentReport) {
                 if ($previousReportNode -is [HeaderNode]) {
+                    # Compare removed HeaderNode recursively
                     $this.CompareInternal($previousReportNode, $null, $Headers + $previousReportNode.Title)
                 } else {
+                    # Node was not found in current report, node was removed
                     $this.DeletedItems.Add([ReportDifferenceItem]::new($previousReportNode, $null, $Headers))
                 }
             }
@@ -71,6 +80,9 @@ class SoftwareReportDifferenceCalculator {
         $addedRows = $CurrentReportNode.Rows | Where-Object { $_ -notin $PreviousReportNode.Rows }
         $deletedRows = $PreviousReportNode.Rows | Where-Object { $_ -notin $CurrentReportNode.Rows }
 
+        # If new rows were added and no rows were deleted, then it is AddedItem
+        # If no rows were added and some rows were deleted, then it is DeletedItem
+        # Otherwise it's a UpdatedItem 
         if (($addedRows.Count -gt 0) -and ($deletedRows.Count -eq 0)) {
             $this.AddedItems.Add([ReportDifferenceItem]::new($PreviousReportNode, $CurrentReportNode, $Headers))
         } elseif (($deletedRows.Count -gt 0) -and ($addedRows.Count -eq 0)) {
@@ -102,12 +114,6 @@ class SoftwareReportDifferenceCalculator {
         if ($previousChangedNode -and $currentChangedNode) {
             $this.ChangedItems.Add([ReportDifferenceItem]::new($previousChangedNode, $currentChangedNode, $Headers))
         }
-    }
-
-    [String] GetMarkdownReport() {
-        $reporter = [SoftwareReportDifferenceRender]::new()
-        $report = $reporter.GenerateMarkdownReport($this.CurrentReport, $this.PreviousReport, $this.AddedItems, $this.ChangedItems, $this.DeletedItems)
-        return $report
     }
 
     hidden [Boolean] FilterExcludedNodes([BaseNode] $Node) {

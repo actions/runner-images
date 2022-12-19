@@ -2,7 +2,7 @@ using module ../SoftwareReport.psm1
 using module ../SoftwareReport.Nodes.psm1
 
 Describe "SoftwareReport.E2E" {
-    Context "Test case 1" {
+    Context "Report example 1" {
         BeforeEach {
             $softwareReport = [SoftwareReport]::new("macOS 11")
             $softwareReport.Root.AddToolVersion("OS Version:", "macOS 11.7 (20G817)")
@@ -76,5 +76,18 @@ Use the following command as a part of your job to start the service: 'sudo syst
             $deserializedReport = [SoftwareReport]::FromJson($json)
             $deserializedReport.ToMarkdown() | Should -Be $expectedMarkdown
         }
-    }   
+    }
+
+    Context "GetImageVersion" {
+        It "Image version exists" {
+            $softwareReport = [SoftwareReport]::new("MyReport")
+            $softwareReport.Root.AddToolVersion("Image Version:", "123.4")
+            $softwareReport.GetImageVersion() | Should -Be "123.4"
+        }
+
+        It "Empty report" {
+            $softwareReport = [SoftwareReport]::new("MyReport")
+            $softwareReport.GetImageVersion() | Should -Be "Unknown version"
+        }
+    }
 }

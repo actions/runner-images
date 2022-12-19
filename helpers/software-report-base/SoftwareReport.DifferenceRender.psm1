@@ -7,8 +7,8 @@ class SoftwareReportDifferenceRender {
         $sb = [System.Text.StringBuilder]::new()
 
         $rootNode = $CurrentReport.Root
-        $imageVersion = $this.GetImageVersion($CurrentReport)
-        $previousImageVersion = $this.GetImageVersion($PreviousReport)
+        $imageVersion = $CurrentReport.GetImageVersion()
+        $previousImageVersion = $PreviousReport.GetImageVersion()
 
         #############################
         ### Render report header ####
@@ -16,7 +16,7 @@ class SoftwareReportDifferenceRender {
 
         $sb.AppendLine("# :desktop_computer: Actions Runner Image: $($rootNode.Title)")
 
-        # ToolNodes on root level contains main image description so just copy-paste them to final report
+        # ToolVersionNodes on root level contains main image description so just copy-paste them to final report
         $rootNode.Children | Where-Object { $_ -is [ToolVersionNode] } | ForEach-Object {
             $sb.AppendLine($_.ToMarkdown())
         }
@@ -198,11 +198,6 @@ class SoftwareReportDifferenceRender {
         $cells = $Row.Split("|")
         $strikedCells = $cells | ForEach-Object { "~~$($_)~~"}
         return [String]::Join("|", $strikedCells)
-    }
-
-    [String] GetImageVersion([SoftwareReport] $Report) {
-        $imageVersionNode = $Report.Root.Children ?? @() | Where-Object { ($_ -is [ToolVersionNode]) -and ($_.ToolName -eq "Image Version:") } | Select-Object -First 1
-        return $imageVersionNode.Version ?? "Unknown version"
     }
 }
 

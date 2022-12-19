@@ -1,8 +1,7 @@
 # TO-DO: Case when table headers are updated
-# TO-DO: Revisit comments
 # TO-DO: Revisit tests
 
-function Should-BeArray([Array] $ActualValue, [Array]$ExpectedValue, [Switch] $Negate, [String] $Because) {
+function ShouldBeArray([Array] $ActualValue, [Array]$ExpectedValue, [Switch] $Negate, [String] $Because) {
     if ($Negate) {
         throw "Negation is not supported for Should-BeArray"
     }
@@ -33,6 +32,6 @@ function Should-BeArray([Array] $ActualValue, [Array]$ExpectedValue, [Switch] $N
 }
 
 Add-ShouldOperator -Name BeArray `
-    -InternalName 'Should-BeArray' `
-    -Test ${function:Should-BeArray} `
+    -InternalName 'ShouldBeArray' `
+    -Test ${function:ShouldBeArray} `
     -SupportsArrayInput
