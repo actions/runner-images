@@ -27,7 +27,7 @@ class SoftwareReportComparer {
         $this.CompareInternal($this.PreviousReport.Root, $this.CurrentReport.Root, @())
     }
 
-    hidden [void] CompareInternal([HeaderNode] $previousReportPointer, [HeaderNode] $currentReportPointer, [Array] $Headers) {
+    hidden [void] CompareInternal([HeaderNode] $previousReportPointer, [HeaderNode] $currentReportPointer, [String[]] $Headers) {
         $currentReportPointer.Children ?? @() | Where-Object { $_.ShouldBeIncludedToDiff() -and $this.FilterExcludedNodes($_) } | ForEach-Object {
             $currentReportNode = $_
             $sameNodeInPreviousReport = $previousReportPointer ? $previousReportPointer.FindSimilarChildNode($currentReportNode) : $null
@@ -68,7 +68,7 @@ class SoftwareReportComparer {
         }
     }
 
-    hidden [void] CompareSimilarTableNodes([TableNode] $PreviousReportNode, [TableNode] $CurrentReportNode, [Array] $Headers) {
+    hidden [void] CompareSimilarTableNodes([TableNode] $PreviousReportNode, [TableNode] $CurrentReportNode, [String[]] $Headers) {
         $addedRows = $CurrentReportNode.Rows | Where-Object { $_ -notin $PreviousReportNode.Rows }
         $deletedRows = $PreviousReportNode.Rows | Where-Object { $_ -notin $CurrentReportNode.Rows }
 
@@ -81,7 +81,7 @@ class SoftwareReportComparer {
         }
     }
 
-    hidden [void] CompareSimilarToolVersionsListNodes([ToolVersionsListNode] $PreviousReportNode, [ToolVersionsListNode] $CurrentReportNode, [Array] $Headers) {
+    hidden [void] CompareSimilarToolVersionsListNodes([ToolVersionsListNode] $PreviousReportNode, [ToolVersionsListNode] $CurrentReportNode, [String[]] $Headers) {
         $previousReportMajorVersions = $PreviousReportNode.Versions | ForEach-Object { $PreviousReportNode.ExtractMajorVersion($_) }
         $currentReportMajorVersion = $CurrentReportNode.Versions | ForEach-Object { $CurrentReportNode.ExtractMajorVersion($_) }
 

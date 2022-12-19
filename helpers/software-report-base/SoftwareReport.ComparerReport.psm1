@@ -105,7 +105,7 @@ class SoftwareReportComparerReport {
         return $sb.ToString()
     }
 
-    [String] RenderHtmlTable([PSCustomObject[]] $Table, $RowSpanColumnName) {
+    [String] RenderHtmlTable([PSCustomObject[]] $Table, [String] $RowSpanColumnName) {
         $headers = $Table[0].PSObject.Properties.Name
 
         $sb = [System.Text.StringBuilder]::new()
@@ -166,7 +166,7 @@ class SoftwareReportComparerReport {
         # Let's see how it works in practice and improve it later if needed
 
         [String] $tableHeaders = ($DiffItem.CurrentReportNode ?? $DiffItem.PreviousReportNode).Headers
-        [System.Collections.ArrayList] $tableRows = @()
+        [Collections.Generic.List[String]] $tableRows = @()
         $DiffItem.PreviousReportNode.Rows ?? @() | Where-Object { $_ -notin $DiffItem.CurrentReportNode.Rows } | ForEach-Object {
             $tableRows.Add($this.StrikeTableRow($_))
         }
@@ -180,9 +180,9 @@ class SoftwareReportComparerReport {
         return $sb.ToString()
     }
 
-    [String] RenderCategory([Array] $Headers, [Boolean] $AddLineSeparator) {
+    [String] RenderCategory([String[]] $Headers, [Boolean] $AddLineSeparator) {
         # Always skip the first header because it is "Installed Software"
-        [Array] $takeHeaders = $Headers | Select-Object -Skip 1
+        [String[]] $takeHeaders = $Headers | Select-Object -Skip 1
         if ($takeHeaders.Count -eq 0) {
             return ""
         }
@@ -212,9 +212,9 @@ class SoftwareReportComparerReport {
 class ReportDifferenceItem {
     [BaseNode] $PreviousReportNode
     [BaseNode] $CurrentReportNode
-    [Array] $Headers
+    [String[]] $Headers
 
-    ReportDifferenceItem([BaseNode] $PreviousReportNode, [BaseNode] $CurrentReportNode, [Array] $Headers) {
+    ReportDifferenceItem([BaseNode] $PreviousReportNode, [BaseNode] $CurrentReportNode, [String[]] $Headers) {
         $this.PreviousReportNode = $PreviousReportNode
         $this.CurrentReportNode = $CurrentReportNode
         $this.Headers = $Headers

@@ -1,4 +1,3 @@
-# TO-DO: Get rid of arrays
 # TO-DO: Revisit naming
 # TO-DO: Case when table headers are updated
 # TO-DO: Add validation, no new nodes after header

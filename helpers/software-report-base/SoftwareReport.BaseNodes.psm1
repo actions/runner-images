@@ -12,7 +12,7 @@ class BaseNode {
         return $this.ToMarkdown(1)
     }
 
-    [String] ToMarkdown($level) {
+    [String] ToMarkdown([Int32] $Level) {
         throw "Abtract method 'ToMarkdown(level)' is not implemented for '$($this.GetType().Name)'"
     }
 

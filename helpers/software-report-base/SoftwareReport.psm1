@@ -17,8 +17,8 @@ class SoftwareReport {
         return $this.Root.ToJsonObject() | ConvertTo-Json -Depth 10
     }
 
-    static [SoftwareReport] FromJson($jsonString) {
-        $jsonObj = $jsonString | ConvertFrom-Json
+    static [SoftwareReport] FromJson([String] $JsonString) {
+        $jsonObj = $JsonString | ConvertFrom-Json
         $rootNode = [NodesFactory]::ParseNodeFromObject($jsonObj)
         return [SoftwareReport]::new($rootNode)
     }

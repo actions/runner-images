@@ -7,20 +7,20 @@ using module ./SoftwareReport.BaseNodes.psm1
 # NodesFactory is used to simplify parsing different types of notes
 # Every node has own logic of parsing and this method just invokes "FromJsonObject" of correct node type
 class NodesFactory {
-    static [BaseNode] ParseNodeFromObject($jsonObj) {
-        if ($jsonObj.NodeType -eq [HeaderNode].Name) {
-            return [HeaderNode]::FromJsonObject($jsonObj)
-        } elseif ($jsonObj.NodeType -eq [ToolVersionNode].Name) {
-            return [ToolVersionNode]::FromJsonObject($jsonObj)
-        } elseif ($jsonObj.NodeType -eq [ToolVersionsListNode].Name) {
-            return [ToolVersionsListNode]::FromJsonObject($jsonObj)
-        } elseif ($jsonObj.NodeType -eq [TableNode].Name) {
-            return [TableNode]::FromJsonObject($jsonObj)
-        } elseif ($jsonObj.NodeType -eq [NoteNode].Name) {
-            return [NoteNode]::FromJsonObject($jsonObj)
+    static [BaseNode] ParseNodeFromObject([object] $JsonObj) {
+        if ($JsonObj.NodeType -eq [HeaderNode].Name) {
+            return [HeaderNode]::FromJsonObject($JsonObj)
+        } elseif ($JsonObj.NodeType -eq [ToolVersionNode].Name) {
+            return [ToolVersionNode]::FromJsonObject($JsonObj)
+        } elseif ($JsonObj.NodeType -eq [ToolVersionsListNode].Name) {
+            return [ToolVersionsListNode]::FromJsonObject($JsonObj)
+        } elseif ($JsonObj.NodeType -eq [TableNode].Name) {
+            return [TableNode]::FromJsonObject($JsonObj)
+        } elseif ($JsonObj.NodeType -eq [NoteNode].Name) {
+            return [NoteNode]::FromJsonObject($JsonObj)
         }
 
-        throw "Unknown node type in ParseNodeFromObject '$($jsonObj.NodeType)'"
+        throw "Unknown node type in ParseNodeFromObject '$($JsonObj.NodeType)'"
     }
 }
 
@@ -28,7 +28,7 @@ class NodesFactory {
 class HeaderNode: BaseNode {
     [ValidateNotNullOrEmpty()]
     [String] $Title
-    [System.Collections.ArrayList] $Children
+    [Collections.Generic.List[BaseNode]] $Children
 
     HeaderNode([String] $Title) {
         $this.Title = $Title
@@ -48,7 +48,7 @@ class HeaderNode: BaseNode {
         $this.Children.Add($node)
     }
 
-    [void] AddNodes([Array] $nodes) {
+    [void] AddNodes([BaseNode[]] $nodes) {
         $nodes | ForEach-Object {
             $this.AddNode($_)
         }
@@ -64,15 +64,15 @@ class HeaderNode: BaseNode {
         $this.AddNode([ToolVersionNode]::new($ToolName, $Version))
     }
 
-    [void] AddToolVersionsList([String] $ToolName, [Array] $Version, [String] $MajorVersionRegex) {
+    [void] AddToolVersionsList([String] $ToolName, [String[]] $Version, [String] $MajorVersionRegex) {
         $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, "List"))
     }
 
-    [void] AddToolVersionsInlineList([String] $ToolName, [Array] $Version, [String] $MajorVersionRegex) {
+    [void] AddToolVersionsInlineList([String] $ToolName, [String[]] $Version, [String] $MajorVersionRegex) {
         $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, "Inline"))
     }
      
-    [void] AddTable([Array] $Table) {
+    [void] AddTable([PSCustomObject[]] $Table) {
        $this.AddNode([TableNode]::FromObjectsArray($Table))
     }
 
@@ -80,12 +80,12 @@ class HeaderNode: BaseNode {
         $this.AddNode([NoteNode]::new($Content))
     }
 
-    [String] ToMarkdown($level) {
+    [String] ToMarkdown([Int32] $Level) {
         $sb = [System.Text.StringBuilder]::new()
         $sb.AppendLine()
-        $sb.AppendLine("$("#" * $level) $($this.Title)")
+        $sb.AppendLine("$("#" * $Level) $($this.Title)")
         $this.Children  | ForEach-Object {
-            $sb.AppendLine($_.ToMarkdown($level + 1))
+            $sb.AppendLine($_.ToMarkdown($Level + 1))
         }
 
         return $sb.ToString().TrimEnd()
@@ -99,9 +99,9 @@ class HeaderNode: BaseNode {
         }
     }
 
-    static [HeaderNode] FromJsonObject($jsonObj) {
-        $node = [HeaderNode]::new($jsonObj.Title)
-        $jsonObj.Children | Where-Object { $_ } | ForEach-Object { $node.AddNode([NodesFactory]::ParseNodeFromObject($_)) }
+    static [HeaderNode] FromJsonObject([Object] $JsonObj) {
+        $node = [HeaderNode]::new($JsonObj.Title)
+        $JsonObj.Children | Where-Object { $_ } | ForEach-Object { $node.AddNode([NodesFactory]::ParseNodeFromObject($_)) }
         return $node
     }
 
@@ -137,7 +137,7 @@ class ToolVersionNode: BaseToolNode {
         $this.Version = $Version
     }
 
-    [String] ToMarkdown($level) {
+    [String] ToMarkdown([Int32] $Level) {
         return "- $($this.ToolName) $($this.Version)"
     }
 
@@ -153,36 +153,36 @@ class ToolVersionNode: BaseToolNode {
         }
     }
 
-    static [BaseNode] FromJsonObject($jsonObj) {
-        return [ToolVersionNode]::new($jsonObj.ToolName, $jsonObj.Version)
+    static [BaseNode] FromJsonObject([Object] $JsonObj) {
+        return [ToolVersionNode]::new($JsonObj.ToolName, $JsonObj.Version)
     }
 }
 
 # Node type to describe the tool with multiple versions "Toolcache Node.js 14.17.6 16.2.0 18.2.3"
 class ToolVersionsListNode: BaseToolNode {
     [ValidateNotNullOrEmpty()]
-    [Array] $Versions
+    [String[]] $Versions
 
     [Regex] $MajorVersionRegex
 
     [ValidateSet("List", "Inline")]
     [String] $ListType
 
-    ToolVersionsListNode([String] $ToolName, [Array] $Versions, [String] $MajorVersionRegex, [String] $ListType): base($ToolName) {
+    ToolVersionsListNode([String] $ToolName, [String[]] $Versions, [String] $MajorVersionRegex, [String] $ListType): base($ToolName) {
         $this.Versions = $Versions
         $this.MajorVersionRegex = [Regex]::new($MajorVersionRegex)
         $this.ListType = $ListType
         $this.ValidateMajorVersionRegex()
     }
 
-    [String] ToMarkdown($level) {
+    [String] ToMarkdown([Int32] $Level) {
         if ($this.ListType -eq "Inline") {
             return "- $($this.ToolName): $($this.Versions -join ', ')"
         }
 
         $sb = [System.Text.StringBuilder]::new()
         $sb.AppendLine()
-        $sb.AppendLine("$("#" * $level) $($this.ToolName)")
+        $sb.AppendLine("$("#" * $Level) $($this.ToolName)")
         $this.Versions | ForEach-Object {
             $sb.AppendLine("- $_")
         }
@@ -213,8 +213,8 @@ class ToolVersionsListNode: BaseToolNode {
         }
     }
 
-    static [ToolVersionsListNode] FromJsonObject($jsonObj) {
-        return [ToolVersionsListNode]::new($jsonObj.ToolName, $jsonObj.Versions, $jsonObj.MajorVersionRegex, $jsonObj.ListType)
+    static [ToolVersionsListNode] FromJsonObject([Object] $JsonObj) {
+        return [ToolVersionsListNode]::new($JsonObj.ToolName, $JsonObj.Versions, $JsonObj.MajorVersionRegex, $JsonObj.ListType)
     }
 
     hidden [void] ValidateMajorVersionRegex() {
@@ -232,9 +232,9 @@ class TableNode: BaseNode {
     [ValidateNotNullOrEmpty()]
     [String] $Headers
     [ValidateNotNullOrEmpty()]
-    [System.Collections.ArrayList] $Rows
+    [String[]] $Rows
 
-    TableNode($Headers, $Rows) {
+    TableNode([String] $Headers, [String[]] $Rows) {
         $this.Headers = $Headers
         $this.Rows = $Rows
         
@@ -250,7 +250,7 @@ class TableNode: BaseNode {
         return $true
     }
 
-    [String] ToMarkdown($level) {
+    [String] ToMarkdown([Int32] $Level) {
         $maxColumnWidths = $this.CalculateColumnsWidth()
         $columnsCount = $maxColumnWidths.Count
 
@@ -273,7 +273,7 @@ class TableNode: BaseNode {
         return $sb.ToString().TrimEnd()
     }
 
-    hidden [Array] CalculateColumnsWidth() {
+    hidden [Int32[]] CalculateColumnsWidth() {
         $maxColumnWidths = $this.Headers.Split("|") | ForEach-Object { $_.Length }
         $columnsCount = $maxColumnWidths.Count
 
@@ -295,8 +295,8 @@ class TableNode: BaseNode {
         }
     }
 
-    static [TableNode] FromJsonObject($jsonObj) {
-        return [TableNode]::new($jsonObj.Headers, $jsonObj.Rows)
+    static [TableNode] FromJsonObject([Object] $JsonObj) {
+        return [TableNode]::new($JsonObj.Headers, $JsonObj.Rows)
     }
 
     [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
@@ -330,13 +330,13 @@ class TableNode: BaseNode {
         return $true
     }
 
-    static [TableNode] FromObjectsArray([Array] $Table) {
+    static [TableNode] FromObjectsArray([PSCustomObject[]] $Table) {
         if ($Table.Count -eq 0) {
             throw "Failed to create TableNode from empty objects array"
         }
 
         [String] $tableHeaders = [TableNode]::ArrayToTableRow($Table[0].PSObject.Properties.Name)
-        [System.Collections.ArrayList] $tableRows = @()
+        [Collections.Generic.List[String]] $tableRows = @()
 
         $Table | ForEach-Object {
             $rowHeaders = [TableNode]::ArrayToTableRow($_.PSObject.Properties.Name)
@@ -350,7 +350,7 @@ class TableNode: BaseNode {
         return [TableNode]::new($tableHeaders, $tableRows)
     }
 
-    hidden static [String] ArrayToTableRow([Array] $Values) {
+    hidden static [String] ArrayToTableRow([String[]] $Values) {
         if ($Values.Count -eq 0) {
             throw "Failed to create TableNode because some objects are empty"
         }
@@ -372,7 +372,7 @@ class NoteNode: BaseNode {
         $this.Content = $Content
     }
 
-    [String] ToMarkdown($level) {
+    [String] ToMarkdown([Int32] $Level) {
         return @(
             '```',
             $this.Content,
@@ -387,8 +387,8 @@ class NoteNode: BaseNode {
         }
     }
 
-    static [NoteNode] FromJsonObject($jsonObj) {
-        return [NoteNode]::new($jsonObj.Content)
+    static [NoteNode] FromJsonObject([Object] $JsonObj) {
+        return [NoteNode]::new($JsonObj.Content)
     }
 
     [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
