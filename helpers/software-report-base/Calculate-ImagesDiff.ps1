@@ -10,6 +10,10 @@ using module ./SoftwareReport.Comparer.psm1
     Path to the current software report.
 .PARAMETER OutputFile
     Path to the file where the difference will be saved.
+.PARAMETER ReleaseBranchName
+    Name of the release branch to build image docs URL.
+.PARAMETER ReadmePath
+    Path to the README file in repository to build image docs URL.
 #>
 
 Param (
@@ -20,7 +24,9 @@ Param (
     [Parameter(Mandatory=$true)]
     [string] $OutputFile,
     [Parameter(Mandatory=$false)]
-    [string] $ImageDocsUrl
+    [string] $ReleaseBranchName,
+    [Parameter(Mandatory=$false)]
+    [string] $ReadmePath
 )
 
 $ErrorActionPreference = "Stop"
@@ -48,8 +54,10 @@ $comparer = [SoftwareReportComparer]::new($previousReport, $currentReport)
 $comparer.CompareReports()
 $diff = $comparer.GetMarkdownReport()
 
-if ($ImageDocsUrl) {
-    $diff += "`n`n`n For comprehensive list of software installed on this image please click [here]($ImageDocsUrl)."
+if ($ReleaseBranch -and $ReadmePath) {
+    # https://github.com/actions/runner-images/blob/releases/macOS-12/20221215/images/macos/macos-12-Readme.md
+    $ImageDocsUrl = "https://github.com/actions/runner-images/blob/${ReleaseBranchName}/${ReadmePath}"
+    $diff += "`n`n`nFor comprehensive list of software installed on this image please click [here]($ImageDocsUrl)."
 }
 
 $diff | Out-File -Path $OutputFile -Encoding utf8NoBOM

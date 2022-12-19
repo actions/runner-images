@@ -210,7 +210,7 @@ class ToolVersionsListNode: BaseToolNode {
     hidden [void] ValidateMajorVersionRegex() {
         $this.Versions | Group-Object { $this.ExtractMajorVersion($_) } | ForEach-Object {
             if ($_.Count -gt 1) {
-                throw "Multiple versions from list $($this.GetValue()) return the same result from regex '$($this.MajorVersionRegex)': $($_.Name)"
+                throw "Multiple versions from list '$($this.GetValue())' return the same result from regex '$($this.MajorVersionRegex)': $($_.Name)"
             }
         }
     }
@@ -231,28 +231,9 @@ class TableNode: BaseNode {
         return $true
     }
 
-    static [TableNode] FromObjectsArray([Array] $Table) {
-        # take column names from the first row in table because we expect all rows to have the same columns
-        [String] $tableHeaders = [TableNode]::ArrayToTableRow($Table[0].PSObject.Properties.Name)
-        [System.Collections.ArrayList] $tableRows = @()
-
-        $Table | ForEach-Object {
-            $tableRows.Add([TableNode]::ArrayToTableRow($_.PSObject.Properties.Value))
-        }
-
-        return [TableNode]::new($tableHeaders, $tableRows)
-    }
-
     [String] ToMarkdown($level) {
-        $maxColumnWidths = $this.Headers.Split("|") | ForEach-Object { $_.Length }
+        $maxColumnWidths = $this.CalculateColumnsWidth()
         $columnsCount = $maxColumnWidths.Count
-
-        $this.Rows | ForEach-Object {
-            $columnWidths = $_.Split("|") | ForEach-Object { $_.Length }
-            for ($colIndex = 0; $colIndex -lt $columnsCount; $colIndex++) {
-                $maxColumnWidths[$colIndex] = [Math]::Max($maxColumnWidths[$colIndex], $columnWidths[$colIndex])
-            }
-        }
 
         $delimeterLine = [String]::Join("|", @("-") * $columnsCount)
 
@@ -271,6 +252,20 @@ class TableNode: BaseNode {
         }
 
         return $sb.ToString().TrimEnd()
+    }
+
+    hidden [Array] CalculateColumnsWidth() {
+        $maxColumnWidths = $this.Headers.Split("|") | ForEach-Object { $_.Length }
+        $columnsCount = $maxColumnWidths.Count
+
+        $this.Rows | ForEach-Object {
+            $columnWidths = $_.Split("|") | ForEach-Object { $_.Length }
+            for ($colIndex = 0; $colIndex -lt $columnsCount; $colIndex++) {
+                $maxColumnWidths[$colIndex] = [Math]::Max($maxColumnWidths[$colIndex], $columnWidths[$colIndex])
+            }
+        }
+
+        return $maxColumnWidths
     }
 
     [PSCustomObject] ToJsonObject() {
@@ -316,8 +311,36 @@ class TableNode: BaseNode {
         return $true
     }
 
+    static [TableNode] FromObjectsArray([Array] $Table) {
+        if ($Table.Count -eq 0) {
+            throw "Failed to create TableNode from empty objects array"
+        }
+
+        [String] $tableHeaders = [TableNode]::ArrayToTableRow($Table[0].PSObject.Properties.Name)
+        [System.Collections.ArrayList] $tableRows = @()
+
+        $Table | ForEach-Object {
+            $rowHeaders = [TableNode]::ArrayToTableRow($_.PSObject.Properties.Name)
+            if (($rowHeaders -ne $tableHeaders)) {
+                throw "Failed to create TableNode from objects array because objects have different properties"
+            }
+
+            $tableRows.Add([TableNode]::ArrayToTableRow($_.PSObject.Properties.Value))
+        }
+
+        return [TableNode]::new($tableHeaders, $tableRows)
+    }
+
     hidden static [String] ArrayToTableRow([Array] $Values) {
-        # TO-DO: Add validation for the case when $Values contains "|"
+        if ($Values.Count -eq 0) {
+            throw "Failed to create TableNode because some objects are empty"
+        }
+        $Values | ForEach-Object {
+            if ($_.Contains("|")) {
+                throw "Failed to create TableNode because some cells '$_' contains forbidden symbol '|'"
+            }
+        }
+
         return [String]::Join("|", $Values)
     }
 }
