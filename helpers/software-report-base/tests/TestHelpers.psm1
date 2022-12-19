@@ -1,7 +1,6 @@
 # TO-DO: Get rid of arrays
 # TO-DO: Revisit naming
 # TO-DO: Use Before-All
-# TO-DO: ToMarkdown(1)
 # TO-DO: Case when table headers are updated
 # TO-DO: Add validation, no new nodes after header
 

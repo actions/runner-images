@@ -8,7 +8,7 @@ Describe "Nodes.UnitTests" {
     Context "ToolVersionNode" {
         It "ToMarkdown" {
             $node = [ToolVersionNode]::new("MyTool", "2.1.3")
-            $node.ToMarkdown(1) | Should -Be "- MyTool 2.1.3"
+            $node.ToMarkdown() | Should -Be "- MyTool 2.1.3"
         }
 
         It "GetValue" {
@@ -61,12 +61,12 @@ Describe "Nodes.UnitTests" {
                 "- 3.0.5"
                 "- 3.1.3"
             ) -join "`n"
-            $node.ToMarkdown(1) | Should -Be $expected
+            $node.ToMarkdown() | Should -Be $expected
         }
 
         It "ToMarkdown - Inline" {
             $node = [ToolVersionsListNode]::new("MyTool", @("2.7.7", "3.0.5", "3.1.3"), "^.+", "Inline")
-            $node.ToMarkdown(1) | Should -Be "- MyTool: 2.7.7, 3.0.5, 3.1.3"
+            $node.ToMarkdown() | Should -Be "- MyTool: 2.7.7, 3.0.5, 3.1.3"
         }
 
         It "GetValue" {
@@ -187,7 +187,7 @@ Describe "Nodes.UnitTests" {
         Context "ToMarkdown" {
             It "Simple table" {
                 $node = [TableNode]::new("Name|Value", @("A|B", "C|D"))
-                $node.ToMarkdown(1) | Should -Be @'
+                $node.ToMarkdown() | Should -Be @'
 | Name | Value |
 | ---- | ----- |
 | A    | B     |
@@ -197,7 +197,7 @@ Describe "Nodes.UnitTests" {
 
             It "Wide cells" {
                 $node = [TableNode]::new("Name|Value", @("Very long value here|B", "C|And very long value here too"))
-                $node.ToMarkdown(1) | Should -Be @'
+                $node.ToMarkdown() | Should -Be @'
 | Name                 | Value                        |
 | -------------------- | ---------------------------- |
 | Very long value here | B                            |
@@ -317,7 +317,7 @@ Describe "Nodes.UnitTests" {
     Context "NoteNode" {
         It "ToMarkdown" {
             $node = [NoteNode]::new("Hello world`nGood Bye world")
-            $node.ToMarkdown(1) | Should -Be @'
+            $node.ToMarkdown() | Should -Be @'
 ```
 hello world
 Good Bye world

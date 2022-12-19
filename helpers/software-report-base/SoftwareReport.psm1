@@ -24,6 +24,6 @@ class SoftwareReport {
     }
 
     [String] ToMarkdown() {
-        return $this.Root.ToMarkdown(1).Trim()
+        return $this.Root.ToMarkdown().Trim()
     }
 }

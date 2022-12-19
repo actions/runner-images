@@ -19,8 +19,8 @@ class SoftwareReportComparerReport {
         $sb.AppendLine("# :desktop_computer: Actions Runner Image: $($rootNode.Title)")
 
         # ToolNodes on root level contains main image description so just copy-paste them to final report
-        $rootNode.Children | Where-Object { $_ -is [BaseToolNode] } | ForEach-Object {
-            $sb.AppendLine($_.ToMarkdown(0))
+        $rootNode.Children | Where-Object { $_ -is [ToolVersionNode] } | ForEach-Object {
+            $sb.AppendLine($_.ToMarkdown())
         }
         $sb.AppendLine()
 
@@ -176,7 +176,7 @@ class SoftwareReportComparerReport {
 
         $sb = [System.Text.StringBuilder]::new()
         $sb.AppendLine("#### $($this.RenderCategory($DiffItem.Headers, $false))")
-        $sb.AppendLine([TableNode]::new($tableHeaders, $tableRows).ToMarkdown(0))
+        $sb.AppendLine([TableNode]::new($tableHeaders, $tableRows).ToMarkdown())
         return $sb.ToString()
     }
 

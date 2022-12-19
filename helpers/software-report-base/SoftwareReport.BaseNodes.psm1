@@ -8,6 +8,14 @@ class BaseNode {
         return $false
     }
 
+    [String] ToMarkdown() {
+        return $this.ToMarkdown(1)
+    }
+
+    [String] ToMarkdown($level) {
+        throw "Abtract method 'ToMarkdown(level)' is not implemented for '$($this.GetType().Name)'"
+    }
+
     [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
         throw "Abtract method 'IsSimilarTo' is not implemented for '$($this.GetType().Name)'"
     }
