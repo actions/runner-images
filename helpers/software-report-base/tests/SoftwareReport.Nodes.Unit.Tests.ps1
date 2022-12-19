@@ -479,13 +479,13 @@ Good Bye world
                 { $node.AddNote("MyContent") } | Should -Throw "This HeaderNode already contains the similar child node. It is not allowed to add the same node twice.*"
             }
 
-            It "AddNode" {
+            It "AddNode detects duplicates" {
                 $node = [HeaderNode]::new("MyHeader")
                 $node.AddNode([ToolVersionNode]::new("MyTool", "2.1.3"))
                 { $node.AddNode([ToolVersionNode]::new("MyTool", "2.1.3")) } | Should -Throw "This HeaderNode already contains the similar child node. It is not allowed to add the same node twice.*"
             }
 
-            It "AddNodes" {
+            It "AddNodes detects duplicates" {
                 $node = [HeaderNode]::new("MyHeader")
                 $node.AddNodes(@(
                     [ToolVersionNode]::new("MyTool", "2.1.3"),
@@ -497,6 +497,14 @@ Good Bye world
                         [ToolVersionNode]::new("MyTool", "2.1.3")
                     ))
                 } | Should -Throw "This HeaderNode already contains the similar child node. It is not allowed to add the same node twice.*"
+            }
+
+            It "Doesn't allow adding non-header nodes after header node" {
+                $node = [HeaderNode]::new("MyHeader")
+                $node.AddToolVersion("MyTool", "2.1.3")
+                $node.AddHeader("MySubHeader")
+                { $node.AddToolVersion("MyTool2", "2.1.4") } | Should -Throw "It is not allowed to add the node of type * to the HeaderNode that already contains the HeaderNode children."
+                { $node.AddHeader("MySubHeader2") } | Should -Not -Throw
             }
         }
     }

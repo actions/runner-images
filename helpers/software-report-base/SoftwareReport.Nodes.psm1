@@ -45,6 +45,11 @@ class HeaderNode: BaseNode {
             throw "This HeaderNode already contains the similar child node. It is not allowed to add the same node twice.`nFound node: $($similarNode.ToJsonObject() | ConvertTo-Json)`nNew node: $($node.ToJsonObject() | ConvertTo-Json)"
         }
 
+        [Array] $existingHeaderNodes = $this.Children | Where-Object { $_ -is [HeaderNode] }
+        if (($existingHeaderNodes.Count -gt 0) -and ($node -isnot [HeaderNode])) {
+            throw "It is not allowed to add the node of type '$($node.GetType().Name)' to the HeaderNode that already contains the HeaderNode children."
+        }
+
         $this.Children.Add($node)
     }
 

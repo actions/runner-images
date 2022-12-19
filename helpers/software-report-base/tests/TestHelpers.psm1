@@ -1,6 +1,5 @@
 # TO-DO: Revisit naming
 # TO-DO: Case when table headers are updated
-# TO-DO: Add validation, no new nodes after header
 
 function Should-BeArray([Array] $ActualValue, [Array]$ExpectedValue, [Switch] $Negate, [String] $Because) {
     if ($Negate) {
