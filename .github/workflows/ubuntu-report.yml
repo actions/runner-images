@@ -1,0 +1,22 @@
+on:
+  push:
+    branches: [ mlobanov/ubuntu-software-report ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - run: |
+          mkdir -p /tmp/report
+
+      - pwsh: |
+          Set-Location "images/linux/scripts/SoftwareReport"
+          SoftwareReport.Generator.ps1 -OutputDirectory "/tmp/report"
+          
+      - run: |
+            ls -la /tmp/report
