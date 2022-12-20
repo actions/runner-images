@@ -25,51 +25,43 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -Disabl
 # Restore file owner in user profile
 Restore-UserOwner
 
+# Software report
 $softwareReport = [SoftwareReport]::new("Ubuntu $(Get-OSVersionShort)")
 $softwareReport.Root.AddToolVersion("OS Version:", $(Get-OSVersionFull))
 $softwareReport.Root.AddToolVersion("Kernel Version:", $(Get-KernelVersion))
-$softwareReport.Root.AddToolVersion("Image Version:", $env:IMAGE_VERSION)
+$softwareReport.Root.AddToolVersion("Image Version:", "20221212.2") # $env:IMAGE_VERSION)
 
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
+# Language and Runtime
 $languageAndRuntime = $installedSoftware.AddHeader("Language and Runtime")
+$languageAndRuntime.AddToolVersion("Bash", $(Get-BashVersion))
+$languageAndRuntime.AddToolVersionsList("Clang", $(Get-ClangToolVersions -ToolName "clang"), "^\d+", $true)
+$languageAndRuntime.AddToolVersionsList("Clang-format", $(Get-ClangToolVersions -ToolName "clang-format"), "^\d+", $true)
+$languageAndRuntime.AddToolVersionsList("Clang-tidy", $(Get-ClangTidyVersions), "^\d+", $true)
+$languageAndRuntime.AddToolVersion("Dash", $(Get-DashVersion))
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $languageAndRuntime.AddToolVersion("Erlang", $(Get-ErlangVersion))
+    $languageAndRuntime.AddToolVersion("Erlang rebar3", $(Get-ErlangRebar3Version))
+}
+$languageAndRuntime.AddToolVersionsList("GNU C++", $(Get-CPPVersions), "^\d+", $true)
+$languageAndRuntime.AddToolVersionsList("GNU Fortran", $(Get-FortranVersions), "^\d+", $true)
+$languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
+$languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
+$languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
+$languageAndRuntime.AddToolVersion("MSBuild", $(Get-MsbuildVersion))
+$languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
+$languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
+$languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
+$languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
+$languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
+$languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
 
 
 $softwareReport.ToJson() | Out-File -FilePath "${OutputDirectory}/systeminfo.json" -Encoding UTF8NoBOM
 $softwareReport.ToMarkdown() | Out-File -FilePath "${OutputDirectory}/systeminfo.md" -Encoding UTF8NoBOM
 
 <#
-$markdown += New-MDHeader "Installed Software" -Level 2
-$markdown += New-MDHeader "Language and Runtime" -Level 3
-
-$runtimesList = @(
-    (Get-BashVersion),
-    (Get-DashVersion),
-    (Get-CPPVersions),
-    (Get-FortranVersions),
-    (Get-MsbuildVersion),
-    (Get-MonoVersion),
-    (Get-NodeVersion),
-    (Get-PerlVersion),
-    (Get-PythonVersion),
-    (Get-Python3Version),
-    (Get-RubyVersion),
-    (Get-JuliaVersion),
-    (Get-ClangVersions),
-    (Get-ClangFormatVersions),
-    (Get-ClangTidyVersions),
-    (Get-KotlinVersion),
-    (Get-SwiftVersion)
-)
-
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $runtimesList += @(
-        (Get-ErlangVersion),
-        (Get-ErlangRebar3Version)
-    )
-}
-
-$markdown += New-MDList -Style Unordered -Lines ($runtimesList | Sort-Object)
 
 $markdown += New-MDHeader "Package Management" -Level 3
 

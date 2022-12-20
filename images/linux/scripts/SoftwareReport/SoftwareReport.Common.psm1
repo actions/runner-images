@@ -1,11 +1,11 @@
 function Get-BashVersion {
     $version = bash -c 'echo ${BASH_VERSION}'
-    return "Bash $version"
+    return $version
 }
 
 function Get-DashVersion {
     $version = dpkg-query -W -f '${Version}' dash
-    return "Dash $version"
+    return $version
 }
 
 function Get-CPPVersions {
@@ -13,7 +13,7 @@ function Get-CPPVersions {
     $cppVersions = $result.Output | Where-Object { $_ -match "g\+\+-\d+"} | ForEach-Object {
         & $_.Split("/")[0] --version | Select-Object -First 1 | Take-OutputPart -Part 3
     } | Sort-Object {[Version]$_}
-    return "GNU C++ " + ($cppVersions -Join ", ")
+    return $cppVersions
 }
 
 function Get-FortranVersions {
@@ -22,7 +22,7 @@ function Get-FortranVersions {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
     } | Sort-Object {[Version]$_}
-    return "GNU Fortran " + ($fortranVersions -Join ", ")
+    return $fortranVersions
 }
 
 function Get-ClangToolVersions {
@@ -42,47 +42,36 @@ function Get-ClangToolVersions {
             }
         } | Sort-Object {[Version]$_}
 
-    return $toolVersions -Join ", "
+    return $toolVersions
 }
 
-function Get-ClangVersions {
-    $clangVersions = Get-ClangToolVersions -ToolName "clang"
-    return "Clang $clangVersions"
-}
-
-function Get-ClangFormatVersions {
-    $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
-    return "Clang-format $clangFormatVersions"
-}
 
 function Get-ClangTidyVersions {
-    $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-tidy" -VersionLineMatcher "LLVM version" -VersionPattern "\d+\.\d+\.\d+)"
-    return "Clang-tidy $clangFormatVersions"
+    return Get-ClangToolVersions -ToolName "clang-tidy" -VersionLineMatcher "LLVM version" -VersionPattern "\d+\.\d+\.\d+)"
 }
 
 
 function Get-ErlangVersion {
     $erlangVersion = (erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), ''OTP_VERSION''])), io:fwrite(Version), halt().' -noshell)
     $shellVersion = (erl -eval 'erlang:display(erlang:system_info(version)), halt().' -noshell).Trim('"')
-    return "Erlang $erlangVersion (Eshell $shellVersion)"
+    return "$erlangVersion (Eshell $shellVersion)"
 }
 
 function Get-ErlangRebar3Version {
     $result = Get-CommandResult "rebar3 --version"
     $result.Output -match "rebar (?<version>(\d+.){2}\d+)" | Out-Null
-    $rebarVersion = $Matches.version
-    return "Erlang rebar3 $rebarVersion"
+    return $Matches.version
 }
 
 function Get-MonoVersion {
     $monoVersion = mono --version | Out-String | Take-OutputPart -Part 4
-    return "Mono $monoVersion"
+    return $monoVersion
 }
 
 function Get-MsbuildVersion {
     $msbuildVersion = msbuild -version | Select-Object -Last 1
     $monoVersion = Get-MonoVersion
-    return "MSBuild $msbuildVersion ($monoVersion)"
+    return "$msbuildVersion (Mono $monoVersion)"
 }
 
 function Get-NuGetVersion {
@@ -92,7 +81,7 @@ function Get-NuGetVersion {
 
 function Get-NodeVersion {
     $nodeVersion = $(node --version).Substring(1)
-    return "Node $nodeVersion"
+    return $nodeVersion
 }
 
 function Get-OpensslVersion {
@@ -101,19 +90,19 @@ function Get-OpensslVersion {
 
 function Get-PerlVersion {
     $version = $(perl -e 'print substr($^V,1)')
-    return "Perl $version"
+    return $version
 }
 
 function Get-PythonVersion {
     $result = Get-CommandResult "python --version"
     $version = $result.Output | Take-OutputPart -Part 1
-    return "Python $version"
+    return $version
 }
 
 function Get-Python3Version {
     $result = Get-CommandResult "python3 --version"
     $version = $result.Output | Take-OutputPart -Part 1
-    return "Python3 $version"
+    return $version
 }
 
 function Get-PowershellVersion {
@@ -122,22 +111,22 @@ function Get-PowershellVersion {
 
 function Get-RubyVersion {
     $rubyVersion = ruby --version | Out-String | Take-OutputPart -Part 1
-    return "Ruby $rubyVersion"
+    return $rubyVersion
 }
 
 function Get-SwiftVersion {
     $swiftVersion = swift --version | Out-String | Take-OutputPart -Part 2
-    return "Swift $swiftVersion"
+    return $swiftVersion
 }
 
 function Get-KotlinVersion {
     $kotlinVersion = kotlin -version | Out-String | Take-OutputPart -Part 2
-    return "Kotlin $kotlinVersion"
+    return $kotlinVersion
 }
 
 function Get-JuliaVersion {
     $juliaVersion = julia --version | Take-OutputPart -Part 2
-    return "Julia $juliaVersion"
+    return $juliaVersion
 }
 
 function Get-LernaVersion {
