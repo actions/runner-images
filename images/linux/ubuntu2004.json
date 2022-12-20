@@ -122,6 +122,11 @@
         },
         {
             "type": "file",
+            "source": "{{ template_dir }}/../../helpers/software-report-base",
+            "destination": "{{user `image_folder`}}/SoftwareReport/"
+        },
+        {
+            "type": "file",
             "source": "{{template_dir}}/toolsets/toolset-2004.json",
             "destination": "{{user `installer_script_folder`}}/toolset.json"
         },
@@ -336,8 +341,14 @@
         },
         {
             "type": "file",
-            "source": "{{user `image_folder`}}/Ubuntu-Readme.md",
+            "source": "{{user `image_folder`}}/software-report.md",
             "destination": "{{template_dir}}/Ubuntu2004-Readme.md",
+            "direction": "download"
+        },
+        {
+            "type": "file",
+            "source": "{{user `image_folder`}}/software-report.json",
+            "destination": "{{template_dir}}/software-report.json",
             "direction": "download"
         },
         {
