@@ -211,54 +211,34 @@ $netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
 $netCoreTools.AddToolVersionsList(".NET Core SDK", $(Get-DotNetCoreSdkVersions), "^\d+\.\d+\.\d", $true)
 $netCoreTools.AddNodes($(Get-DotnetTools))
 
+$databasesTools = $installedSoftware.AddHeader("Databases")
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $databasesTools.AddToolVersion("MongoDB", $(Get-MongoDbVersion))
+}
+$databasesTools.AddToolVersion("sqlite3", $(Get-SqliteVersion))
+$databasesTools.AddNode($(Build-PostgreSqlSection))
+$databasesTools.AddNode($(Build-MySQLSection))
+$databasesTools.AddNode($(Build-MSSQLToolsSection))
+
+$cachedTools = $installedSoftware.AddHeader("Cached Tools")
+$cachedTools.AddToolVersionsList("Go", $(Get-ToolcacheGoVersions), "^\d+\.\d+", $false)
+$cachedTools.AddToolVersionsList("Node.js", $(Get-ToolcacheNodeVersions), "^\d+", $false)
+$cachedTools.AddToolVersionsList("Python", $(Get-ToolcachePythonVersions), "^\d+\.\d+", $false)
+$cachedTools.AddToolVersionsList("PyPy", $(Get-ToolcachePyPyVersions), "^\d+\.\d+", $false)
+$cachedTools.AddToolVersionsList("Ruby", $(Get-ToolcacheRubyVersions), "^\d+\.\d+", $false)
+
+$powerShellTools = $installedSoftware.AddHeader("PowerShell Tools")
+$powerShellTools.AddToolVersion("PowerShell", $(Get-PowershellVersion))
+$powerShellTools.AddHeader("PowerShell Modules").AddNodes($(Get-PowerShellModules))
+
+$installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersTable))
+
+$androidTools = $installedSoftware.AddHeader("Android")
+$androidTools.AddTable($(Build-AndroidTable))
+$androidTools.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
+
+$installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
+$installedSoftware.AddHeader("Installed apt packages").AddTable($(Get-AptPackages))
 
 $softwareReport.ToJson() | Out-File -FilePath "${OutputDirectory}/systeminfo.json" -Encoding UTF8NoBOM
 $softwareReport.ToMarkdown() | Out-File -FilePath "${OutputDirectory}/systeminfo.md" -Encoding UTF8NoBOM
-
-<#
-
-$markdown += New-MDHeader "Databases" -Level 3
-$databaseLists = @(
-    (Get-SqliteVersion)
-)
-
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $databaseLists += @(
-        (Get-MongoDbVersion)
-    )
-}
-
-$markdown += New-MDList -Style Unordered -Lines ( $databaseLists | Sort-Object )
-
-$markdown += Build-PostgreSqlSection
-$markdown += Build-MySQLSection
-$markdown += Build-MSSQLToolsSection
-
-$markdown += New-MDHeader "Cached Tools" -Level 3
-$markdown += Build-CachedToolsSection
-
-$markdown += New-MDHeader "PowerShell Tools" -Level 3
-$markdown += New-MDList -Lines (Get-PowershellVersion) -Style Unordered
-
-$markdown += New-MDHeader "PowerShell Modules" -Level 4
-$markdown += New-MDList -Lines $(Get-PowerShellModules) -Style Unordered
-
-$markdown += Build-WebServersSection
-
-$markdown += New-MDHeader "Android" -Level 3
-$markdown += Build-AndroidTable | New-MDTable
-$markdown += New-MDNewLine
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-AndroidEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Cached Docker images" -Level 3
-$markdown += Get-CachedDockerImagesTableData | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Installed apt packages" -Level 3
-$markdown += Get-AptPackages | New-MDTable
-
-Test-BlankElement
-$markdown | Out-File -FilePath "${OutputDirectory}/Ubuntu-Readme.md"
-#>

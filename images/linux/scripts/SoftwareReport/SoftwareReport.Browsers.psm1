@@ -9,7 +9,7 @@ function Get-ChromeDriverVersion {
 }
 
 function Get-FirefoxVersion {
-    $firefoxVersion = firefox --version
+    $firefoxVersion = $(firefox --version) | Take-OutputPart -Part 2
     return $firefoxVersion
 }
 
@@ -24,12 +24,12 @@ function Get-ChromiumVersion {
 }
 
 function Get-EdgeVersion {
-    $edgeVersion = (microsoft-edge --version).Trim()
+    $edgeVersion = (microsoft-edge --version).Trim() | Take-OutputPart -Part 2
     return $edgeVersion
 }
 
 function Get-EdgeDriverVersion {
-    $edgeDriverVersion = msedgedriver --version | Take-OutputPart -Part 0,1,2,3
+    $edgeDriverVersion = msedgedriver --version | Take-OutputPart -Part 3
     return $edgeDriverVersion
 }
 

@@ -43,7 +43,7 @@ function Get-Xsp4Version {
     }
 }
 
-function Build-WebServersSection {
+function Build-WebServersTable {
     $servers = @(
         (Get-ApacheVersion),
         (Get-NginxVersion)
@@ -52,10 +52,5 @@ function Build-WebServersSection {
         $servers += (Get-Xsp4Version)
     }
 
-    $output = ""
-    $output += New-MDHeader "Web Servers" -Level 3
-    $output += $servers | Sort-Object Name | New-MDTable
-    $output += New-MDNewLine
-
-    return $output
+    return $servers
 }

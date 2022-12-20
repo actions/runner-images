@@ -269,18 +269,18 @@ function Get-PowerShellModules {
 
     [Array] $azureInstalledModules = Get-ChildItem -Path "/usr/share/az_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azureInstalledModules.Count -gt 0) {
-        $result += "Az: $($azureInstalledModules -join ', ')"
+        $result += [ToolVersionsListNode]::new("Az", $azureInstalledModules, "^\d+\.\d+", $true)
     }
 
     [Array] $azureCachedModules = Get-ChildItem /usr/share/az_*.zip -File | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azureCachedModules.Count -gt 0) {
-        $result += "Az (Cached): $($azureCachedModules -join ', ')"
+        $result += [ToolVersionsListNode]::new("Az (Cached)", $azureCachedModules, "^\d+\.\d+", $true)
     }
 
-    $result += (Get-ToolsetContent).powershellModules.name | ForEach-Object {
+    (Get-ToolsetContent).powershellModules.name | ForEach-Object {
         $moduleName = $_
         $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
-        return "$($moduleName): $($moduleVersions -join ', ')"
+        $result += [ToolVersionNode]::new($moduleName, $moduleVersions, "^\d+", $true)"
     }
 
     return $result
