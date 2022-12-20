@@ -280,7 +280,7 @@ function Get-PowerShellModules {
     (Get-ToolsetContent).powershellModules.name | ForEach-Object {
         $moduleName = $_
         $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
-        $result += [ToolVersionNode]::new($moduleName, $moduleVersions, "^\d+", $true)
+        $result += [ToolVersionsListNode]::new($moduleName, $moduleVersions, "^\d+", $true)
     }
 
     return $result
