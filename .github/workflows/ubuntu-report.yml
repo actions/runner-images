@@ -15,8 +15,9 @@ jobs:
           mkdir -p /tmp/report
           
       - run: |
-          cp helpers/software-report-base/* images/linux/scripts/SoftwareReport
-          ls -la images/linux/scripts/SoftwareReport
+          mkdir -p  images/linux/scripts/SoftwareReport/software-report-base
+          cp helpers/software-report-base/* images/linux/scripts/SoftwareReport/software-report-base
+          ls -la images/linux/scripts/SoftwareReport/software-report-base
 
       - run: |
           images/linux/scripts/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory "/tmp/report"
