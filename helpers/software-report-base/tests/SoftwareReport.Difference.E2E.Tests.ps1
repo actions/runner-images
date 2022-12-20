@@ -39,30 +39,30 @@ Describe "Comparer.E2E" {
 ### Updated
 
 <table>
-  <thead>
-    <th>Category</th>
-    <th>Tool name</th>
-    <th>Previous (20220918.1)</th>
-    <th>Current (20220922.1)</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="3">Tools</td>
-      <td>ToolWillBeUpdated1</td>
-      <td>1.0.0</td>
-      <td>2.5.0</td>
-    </tr>
-    <tr>
-      <td>ToolWillBeUpdated2</td>
-      <td>3.0.1</td>
-      <td>3.0.2</td>
-    </tr>
-    <tr>
-      <td>ToolWillBeUpdated3</td>
-      <td>14.0.0</td>
-      <td>14.2.0</td>
-    </tr>
-  </tbody>
+    <thead>
+        <th>Category</th>
+        <th>Tool name</th>
+        <th>Previous (20220918.1)</th>
+        <th>Current (20220922.1)</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="3">Tools</td>
+            <td>ToolWillBeUpdated1</td>
+            <td>1.0.0</td>
+            <td>2.5.0</td>
+        </tr>
+        <tr>
+            <td>ToolWillBeUpdated2</td>
+            <td>3.0.1</td>
+            <td>3.0.2</td>
+        </tr>
+        <tr>
+            <td>ToolWillBeUpdated3</td>
+            <td>14.0.0</td>
+            <td>14.2.0</td>
+        </tr>
+    </tbody>
 </table>
 
 
@@ -123,89 +123,89 @@ Describe "Comparer.E2E" {
 ### Added :heavy_plus_sign:
 
 <table>
-  <thead>
-    <th>Category</th>
-    <th>Tool name</th>
-    <th>Current (20220922.0)</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="2">Language and Runtime</td>
-      <td>ToolWillBeAdded</td>
-      <td>16.18.0</td>
-    </tr>
-    <tr>
-      <td>ToolWithMultipleVersions3</td>
-      <td>1.5.800</td>
-    </tr>
-    <tr>
-      <td rowspan="1">Cached Tools</td>
-      <td>ToolWithMultipleVersions2</td>
-      <td>17.0.1</td>
-    </tr>
-  </tbody>
+    <thead>
+        <th>Category</th>
+        <th>Tool name</th>
+        <th>Current (20220922.0)</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="2">Language and Runtime</td>
+            <td>ToolWillBeAdded</td>
+            <td>16.18.0</td>
+        </tr>
+        <tr>
+            <td>ToolWithMultipleVersions3</td>
+            <td>1.5.800</td>
+        </tr>
+        <tr>
+            <td rowspan="1">Cached Tools</td>
+            <td>ToolWithMultipleVersions2</td>
+            <td>17.0.1</td>
+        </tr>
+    </tbody>
 </table>
 
 ### Deleted :heavy_minus_sign:
 
 <table>
-  <thead>
-    <th>Category</th>
-    <th>Tool name</th>
-    <th>Previous (20220918.1)</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="2">Language and Runtime</td>
-      <td>ToolWithMultipleVersions3</td>
-      <td>1.2.100</td>
-    </tr>
-    <tr>
-      <td>ToolWillBeRemoved</td>
-      <td>5.1.16(1)-release</td>
-    </tr>
-    <tr>
-      <td rowspan="1">Cached Tools</td>
-      <td>ToolWithMultipleVersions2</td>
-      <td>14.8.0</td>
-    </tr>
-  </tbody>
+    <thead>
+        <th>Category</th>
+        <th>Tool name</th>
+        <th>Previous (20220918.1)</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="2">Language and Runtime</td>
+            <td>ToolWithMultipleVersions3</td>
+            <td>1.2.100</td>
+        </tr>
+        <tr>
+            <td>ToolWillBeRemoved</td>
+            <td>5.1.16(1)-release</td>
+        </tr>
+        <tr>
+            <td rowspan="1">Cached Tools</td>
+            <td>ToolWithMultipleVersions2</td>
+            <td>14.8.0</td>
+        </tr>
+    </tbody>
 </table>
 
 ### Updated
 
 <table>
-  <thead>
-    <th>Category</th>
-    <th>Tool name</th>
-    <th>Previous (20220918.1)</th>
-    <th>Current (20220922.0)</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="1"></td>
-      <td>OS Version</td>
-      <td>macOS 11.7.1 (20G817)</td>
-      <td>macOS 11.7.2 (20G922)</td>
-    </tr>
-    <tr>
-      <td rowspan="2">Language and Runtime</td>
-      <td>ToolWithMultipleVersions3</td>
-      <td>1.3.500</td>
-      <td>1.3.515</td>
-    </tr>
-    <tr>
-      <td>ToolWillBeUpdated</td>
-      <td>8.1.0</td>
-      <td>8.3.0</td>
-    </tr>
-    <tr>
-      <td rowspan="1">Databases</td>
-      <td>MineSQL</td>
-      <td>6.1.0</td>
-      <td>6.1.1</td>
-    </tr>
-  </tbody>
+    <thead>
+        <th>Category</th>
+        <th>Tool name</th>
+        <th>Previous (20220918.1)</th>
+        <th>Current (20220922.0)</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="1"></td>
+            <td>OS Version</td>
+            <td>macOS 11.7.1 (20G817)</td>
+            <td>macOS 11.7.2 (20G922)</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Language and Runtime</td>
+            <td>ToolWithMultipleVersions3</td>
+            <td>1.3.500</td>
+            <td>1.3.515</td>
+        </tr>
+        <tr>
+            <td>ToolWillBeUpdated</td>
+            <td>8.1.0</td>
+            <td>8.3.0</td>
+        </tr>
+        <tr>
+            <td rowspan="1">Databases</td>
+            <td>MineSQL</td>
+            <td>6.1.0</td>
+            <td>6.1.1</td>
+        </tr>
+    </tbody>
 </table>
 
 
@@ -241,45 +241,45 @@ Describe "Comparer.E2E" {
 ### Added :heavy_plus_sign:
 
 <table>
-  <thead>
-    <th>Category</th>
-    <th>Tool name</th>
-    <th>Current (20220922.0)</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="1">HeaderWillBeAdded ><br> SubheaderWillBeAdded</td>
-      <td>ToolWillBeAdded</td>
-      <td>5.0.0</td>
-    </tr>
-    <tr>
-      <td rowspan="1">Header2</td>
-      <td>ToolWillBeMovedToAnotherHeader</td>
-      <td>3.0.0</td>
-    </tr>
-  </tbody>
+    <thead>
+        <th>Category</th>
+        <th>Tool name</th>
+        <th>Current (20220922.0)</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="1">HeaderWillBeAdded ><br> SubheaderWillBeAdded</td>
+            <td>ToolWillBeAdded</td>
+            <td>5.0.0</td>
+        </tr>
+        <tr>
+            <td rowspan="1">Header2</td>
+            <td>ToolWillBeMovedToAnotherHeader</td>
+            <td>3.0.0</td>
+        </tr>
+    </tbody>
 </table>
 
 ### Deleted :heavy_minus_sign:
 
 <table>
-  <thead>
-    <th>Category</th>
-    <th>Tool name</th>
-    <th>Previous (20220918.1)</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="1">HeaderWillBeRemoved ><br> SubheaderWillBeRemoved</td>
-      <td>ToolWillBeRemoved</td>
-      <td>1.0.0</td>
-    </tr>
-    <tr>
-      <td rowspan="1">Header1</td>
-      <td>ToolWillBeMovedToAnotherHeader</td>
-      <td>3.0.0</td>
-    </tr>
-  </tbody>
+    <thead>
+        <th>Category</th>
+        <th>Tool name</th>
+        <th>Previous (20220918.1)</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="1">HeaderWillBeRemoved ><br> SubheaderWillBeRemoved</td>
+            <td>ToolWillBeRemoved</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td rowspan="1">Header1</td>
+            <td>ToolWillBeMovedToAnotherHeader</td>
+            <td>3.0.0</td>
+        </tr>
+    </tbody>
 </table>
 
 
@@ -330,18 +330,18 @@ Describe "Comparer.E2E" {
 ### Added :heavy_plus_sign:
 
 <table>
-  <thead>
-    <th>Category</th>
-    <th>Tool name</th>
-    <th>Current (20220922.1)</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="1">Tools</td>
-      <td>ToolWillBeAdded</td>
-      <td>3.0.1</td>
-    </tr>
-  </tbody>
+    <thead>
+        <th>Category</th>
+        <th>Tool name</th>
+        <th>Current (20220922.1)</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="1">Tools</td>
+            <td>ToolWillBeAdded</td>
+            <td>3.0.1</td>
+        </tr>
+    </tbody>
 </table>
 
 #### Tools

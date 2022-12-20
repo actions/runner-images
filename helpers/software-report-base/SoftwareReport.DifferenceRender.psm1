@@ -108,32 +108,32 @@ class SoftwareReportDifferenceRender {
 
         $sb = [System.Text.StringBuilder]::new()
         $sb.AppendLine("<table>")
-        $sb.AppendLine("  <thead>")
+        $sb.AppendLine("    <thead>")
         $headers | ForEach-Object {
-            $sb.AppendLine("    <th>$_</th>")
+            $sb.AppendLine("        <th>$_</th>")
         }
-        $sb.AppendLine("  </thead>")
-        $sb.AppendLine("  <tbody>")
+        $sb.AppendLine("    </thead>")
+        $sb.AppendLine("    <tbody>")
 
         $tableRowSpans = $this.CalculateHtmlTableRowSpan($Table, $RowSpanColumnName)
         for ($rowIndex = 0; $rowIndex -lt $Table.Count; $rowIndex++) {
             $row = $Table[$rowIndex]
 
-            $sb.AppendLine("    <tr>")
+            $sb.AppendLine("        <tr>")
             $headers | ForEach-Object {
                 if ($_ -eq $RowSpanColumnName) {
                     if ($tableRowSpans[$rowIndex] -gt 0) {
-                        $sb.AppendLine("      <td rowspan=`"$($tableRowSpans[$rowIndex])`">$($row.$_)</td>")
+                        $sb.AppendLine("            <td rowspan=`"$($tableRowSpans[$rowIndex])`">$($row.$_)</td>")
                     } else {
                         # Skip rendering this cell at all
                     }
                 } else {
-                    $sb.AppendLine("      <td>$($row.$_)</td>")
+                    $sb.AppendLine("            <td>$($row.$_)</td>")
                 }
             }
-            $sb.AppendLine("    </tr>")
+            $sb.AppendLine("        </tr>")
         }
-        $sb.AppendLine("  </tbody>")
+        $sb.AppendLine("    </tbody>")
         $sb.AppendLine("</table>")
 
         return $sb.ToString()

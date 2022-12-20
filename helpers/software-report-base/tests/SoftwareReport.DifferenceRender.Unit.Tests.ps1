@@ -118,28 +118,28 @@ Describe "ComparerReport.UnitTests" {
             $renderedTable = $DifferenceRender.RenderHtmlTable($table, "Category")
             $renderedTable | Should -Be @'
 <table>
-  <thead>
-    <th>Category</th>
-    <th>Tool name</th>
-    <th>Version</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="1">A</td>
-      <td>My Tool 1</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <td rowspan="1">B</td>
-      <td>My Tool 2</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <td rowspan="1">C</td>
-      <td>My Tool 3</td>
-      <td>3.0</td>
-    </tr>
-  </tbody>
+    <thead>
+        <th>Category</th>
+        <th>Tool name</th>
+        <th>Version</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="1">A</td>
+            <td>My Tool 1</td>
+            <td>1.0</td>
+        </tr>
+        <tr>
+            <td rowspan="1">B</td>
+            <td>My Tool 2</td>
+            <td>2.0</td>
+        </tr>
+        <tr>
+            <td rowspan="1">C</td>
+            <td>My Tool 3</td>
+            <td>3.0</td>
+        </tr>
+    </tbody>
 </table>
 
 '@
@@ -157,31 +157,31 @@ Describe "ComparerReport.UnitTests" {
             $renderedTable = $DifferenceRender.RenderHtmlTable($table, "Category")
             $renderedTable | Should -Be @'
 <table>
-  <thead>
-    <th>Category</th>
-    <th>Tool name</th>
-    <th>Version</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="3">A</td>
-      <td>My Tool 1</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <td>My Tool 2</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <td>My Tool 3</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <td rowspan="1">B</td>
-      <td>My Tool 4</td>
-      <td>4.0</td>
-    </tr>
-  </tbody>
+    <thead>
+        <th>Category</th>
+        <th>Tool name</th>
+        <th>Version</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="3">A</td>
+            <td>My Tool 1</td>
+            <td>1.0</td>
+        </tr>
+        <tr>
+            <td>My Tool 2</td>
+            <td>2.0</td>
+        </tr>
+        <tr>
+            <td>My Tool 3</td>
+            <td>3.0</td>
+        </tr>
+        <tr>
+            <td rowspan="1">B</td>
+            <td>My Tool 4</td>
+            <td>4.0</td>
+        </tr>
+    </tbody>
 </table>
 
 '@
