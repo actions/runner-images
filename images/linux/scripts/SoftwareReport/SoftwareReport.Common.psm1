@@ -235,43 +235,24 @@ function Get-PHPUnitVersion {
     return $Matches.version
 }
 
-function Build-PHPSection {
-    $output = ""
-    $output += New-MDHeader "PHP Tools" -Level 3
-    $output += New-MDList -Style Unordered -Lines @(
-        "PHP: $((Get-PHPVersions) -join ', ')",
-        "Composer $(Get-ComposerVersion)",
-        "PHPUnit $(Get-PHPUnitVersion)"
-    )
-    $output += New-MDCode -Lines @(
-        "Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled."
-    )
-
-    return $output
-}
-
 function Get-GHCVersion {
     $(ghc --version) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $ghcVersion = $Matches.version
-    return "GHC $ghcVersion"
+    return $Matches.version
 }
 
 function Get-GHCupVersion {
     $(ghcup --version) -match "version v(?<version>\d+(\.\d+){2,})" | Out-Null
-    $ghcVersion = $Matches.version
-    return "GHCup $ghcVersion"
+    return $Matches.version
 }
 
 function Get-CabalVersion {
     $(cabal --version | Out-String) -match "cabal-install version (?<version>\d+\.\d+\.\d+\.\d+)" | Out-Null
-    $cabalVersion = $Matches.version
-    return "Cabal $cabalVersion"
+    return $Matches.version
 }
 
 function Get-StackVersion {
     $(stack --version | Out-String) -match "Version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $stackVersion = $Matches.version
-    return "Stack $stackVersion"
+    return $Matches.version
 }
 
 function Get-AzModuleVersions {
@@ -306,23 +287,18 @@ function Get-PowerShellModules {
 }
 
 function Get-DotNetCoreSdkVersions {
-    $unsortedDotNetCoreSdkVersion = dotnet --list-sdks list | ForEach-Object { $_ | Take-OutputPart -Part 0 }
-    $dotNetCoreSdkVersion = $unsortedDotNetCoreSdkVersion -join ", "
+    $dotNetCoreSdkVersion = dotnet --list-sdks list | ForEach-Object { $_ | Take-OutputPart -Part 0 }
     return $dotNetCoreSdkVersion
 }
 
 function Get-DotnetTools {
     $env:PATH = "/etc/skel/.dotnet/tools:$($env:PATH)"
-
     $dotnetTools = (Get-ToolsetContent).dotnet.tools
 
-    $toolsList = @()
-
-    ForEach ($dotnetTool in $dotnetTools) {
-        $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
+    return $dotnetTools | ForEach-Object {
+        $version = Invoke-Expression $_.getversion
+        return [ToolVersionNode]::new($_.name, $version)
     }
-
-    return $toolsList
 }
 
 function Get-CachedDockerImages {

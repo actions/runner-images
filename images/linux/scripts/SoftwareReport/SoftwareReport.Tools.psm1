@@ -198,31 +198,31 @@ function Get-JqVersion {
 
 function Get-AzureCliVersion {
     $azcliVersion = (az version | ConvertFrom-Json).'azure-cli'
-    return "Azure CLI $azcliVersion"
+    return $azcliVersion
 }
 
 function Get-AzureDevopsVersion {
     $azdevopsVersion = (az version | ConvertFrom-Json).extensions.'azure-devops'
-    return "Azure CLI (azure-devops) $azdevopsVersion"
+    return $azdevopsVersion
 }
 
 function Get-AlibabaCloudCliVersion {
-    return "Alibaba Cloud CLI $(aliyun version)"
+    return $(aliyun version)
 }
 
 function Get-AWSCliVersion {
     $result = Get-CommandResult "aws --version"
     $awsVersion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
-    return "AWS CLI $awsVersion"
+    return $awsVersion
 }
 
 function Get-AWSCliSessionManagerPluginVersion {
     $result = (Get-CommandResult "session-manager-plugin --version").Output
-    return "AWS CLI Session manager plugin $result"
+    return $result
 }
 
 function Get-AWSSAMVersion {
-    return "AWS SAM CLI $(sam --version | Take-OutputPart -Part -1)"
+    return $(sam --version | Take-OutputPart -Part -1)
 }
 
 function Get-FastlaneVersion {
@@ -232,27 +232,27 @@ function Get-FastlaneVersion {
 
 function Get-HubCliVersion {
     $hubVersion = hub --version | Select-String "hub version" | Take-OutputPart -Part 2
-    return "Hub CLI $hubVersion"
+    return $hubVersion
 }
 
 function Get-GitHubCliVersion {
     $ghVersion = gh --version | Select-String "gh version" | Take-OutputPart -Part 2
-    return "GitHub CLI $ghVersion"
+    return $ghVersion
 }
 
 function Get-NetlifyCliVersion {
     $netlifyVersion = netlify --version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
-    return "Netlify CLI $netlifyVersion"
+    return $netlifyVersion
 }
 
 function Get-OCCliVersion {
     $ocVersion = oc version  -o=json | jq -r '.releaseClientVersion'
-    return "OpenShift CLI $ocVersion"
+    return $ocVersion
 }
 
 function Get-ORASCliVersion {
     $orasVersion = oras version | Select-String "^Version:" | Take-OutputPart -Part 1
-    return "ORAS CLI $orasVersion"
+    return $orasVersion
 }
 
 function Get-VerselCliversion {

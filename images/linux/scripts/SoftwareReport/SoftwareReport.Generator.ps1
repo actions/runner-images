@@ -149,94 +149,73 @@ $tools.AddToolVersion("yamllint", $(Get-YamllintVersion))
 $tools.AddToolVersion("yq", $(Get-YqVersion))
 $tools.AddToolVersion("zstd", $(Get-ZstdVersion))
 
+# CLI Tools
+$cliTools = $installedSoftware.AddHeader("CLI Tools")
+$cliTools.AddToolVersion("Alibaba Cloud CLI", $(Get-AlibabaCloudCliVersion))
+$cliTools.AddToolVersion("AWS CLI", $(Get-AWSCliVersion))
+$cliTools.AddToolVersion("AWS CLI Session Manager Plugin", $(Get-AWSCliSessionManagerPluginVersion))
+$cliTools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMVersion))
+$cliTools.AddToolVersion("Azure CLI", $(Get-AzureCliVersion))
+$cliTools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
+$cliTools.AddToolVersion("GitHub CLI", $(Get-GitHubCliVersion))
+$cliTools.AddToolVersion("Google Cloud SDK", $(Get-GoogleCloudSDKVersion))
+$cliTools.AddToolVersion("Hub CLI", $(Get-HubCliVersion))
+$cliTools.AddToolVersion("Netlify CLI", $(Get-NetlifyCliVersion))
+$cliTools.AddToolVersion("OpenShift CLI", $(Get-OCCliVersion))
+$cliTools.AddToolVersion("ORAS CLI", $(Get-ORASCliVersion))
+$cliTools.AddToolVersion("Vercel CLI", $(Get-VerselCliversion))
+
+
+$installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
+if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+    $installedSoftware.AddHeader("GraalVM").AddTable($(Build-GraalVMTable))
+}
+
+$phpTools = $installedSoftware.AddHeader("PHP Tools")
+$phpTools.AddToolVersionList("PHP", $(Get-PHPVersions), "^\d+\.\d+", $true)
+$phpTools.AddToolVersion("Composer", $(Get-ComposerVersion))
+$phpTools.AddToolVersion("PHPUnit", $(Get-PHPUnitVersion))
+$phpTools.AddNote("Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.")
+
+$haskellTools = $installedSoftware.AddHeader("Haskell Tools")
+$haskellTools.AddToolVersion("GHC", $(Get-GHCVersion))
+$haskellTools.AddToolVersion("GHCup", $(Get-GHCupVersion))
+$haskellTools.AddToolVersion("Cabal", $(Get-CabalVersion))
+$haskellTools.AddToolVersion("Stack", $(Get-StackVersion))
+
+$rustTools = $installedSoftware.AddHeader("Rust Tools")
+$rustTools.AddToolVersion("Cargo", $(Get-CargoVersion))
+$rustTools.AddToolVersion("Rust", $(Get-RustVersion))
+$rustTools.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
+$rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
+$rustToolsPackages = $rustTools.AddHeader("Packages")
+$rustToolsPackages.AddToolVersion("Bindgen", $(Get-BindgenVersion))
+$rustToolsPackages.AddToolVersion("Cargo audit", $(Get-CargoAuditVersion))
+$rustToolsPackages.AddToolVersion("Cargo clippy", $(Get-CargoClippyVersion))
+$rustToolsPackages.AddToolVersion("Cargo outdated", $(Get-CargoOutdatedVersion))
+$rustToolsPackages.AddToolVersion("Cbindgen", $(Get-CbindgenVersion))
+$rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
+
+$browsersTools = $installedSoftware.AddHeader("Browsers and Drivers")
+$browsersTools.AddToolVersion("Google Chrome", $(Get-ChromeVersion))
+$browsersTools.AddToolVersion("GoogleDriver", $(Get-ChromeDriverVersion))
+$browsersTools.AddToolVersion("Chromium", $(Get-ChromiumVersion))
+$browsersTools.AddToolVersion("Microsoft Edge", $(Get-EdgeVersion))
+$browsersTools.AddToolVersion("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
+$browsersTools.AddToolVersion("Selenium server", $(Get-SeleniumVersion))
+$browsersTools.AddToolVersion("Mozilla Firefox", $(Get-FirefoxVersion))
+$browsersTools.AddToolVersion("Geckodriver", $(Get-GeckodriverVersion))
+$browsersTools.AddHeader("Environment variables").AddTable($(Build-BrowserWebdriversEnvironmentTable))
+
+$netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
+$netCoreTools.AddToolVersionList(".NET Core SDK", $(Get-DotNetCoreSdkVersions), "^\d+\.\d+\.\d", $true)
+$netCoreTools.AddNodes($(Get-DotnetTools))
+
+
 $softwareReport.ToJson() | Out-File -FilePath "${OutputDirectory}/systeminfo.json" -Encoding UTF8NoBOM
 $softwareReport.ToMarkdown() | Out-File -FilePath "${OutputDirectory}/systeminfo.md" -Encoding UTF8NoBOM
 
 <#
-
-$markdown += New-MDHeader "CLI Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-AlibabaCloudCliVersion),
-    (Get-AWSCliVersion),
-    (Get-AWSCliSessionManagerPluginVersion),
-    (Get-AWSSAMVersion),
-    (Get-AzureCliVersion),
-    (Get-AzureDevopsVersion),
-    (Get-GitHubCliVersion),
-    (Get-GoogleCloudSDKVersion),
-    (Get-HubCliVersion),
-    (Get-NetlifyCliVersion),
-    (Get-OCCliVersion),
-    (Get-ORASCliVersion),
-    (Get-VerselCliversion)
-    )
-)
-
-$markdown += New-MDHeader "Java" -Level 3
-$markdown += Get-JavaVersions | New-MDTable
-$markdown += New-MDNewLine
-
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $markdown += New-MDHeader "GraalVM" -Level 3
-    $markdown += Build-GraalVMTable | New-MDTable
-    $markdown += New-MDNewLine
-}
-
-$markdown += Build-PHPSection
-
-$markdown += New-MDHeader "Haskell" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-GHCVersion),
-    (Get-GHCupVersion),
-    (Get-CabalVersion),
-    (Get-StackVersion)
-    ) | Sort-Object
-)
-
-$markdown += New-MDHeader "Rust Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-RustVersion),
-    (Get-RustupVersion),
-    (Get-RustdocVersion),
-    (Get-CargoVersion)
-    ) | Sort-Object
-)
-
-$markdown += New-MDHeader "Packages" -Level 4
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-BindgenVersion),
-    (Get-CargoAuditVersion),
-    (Get-CargoOutdatedVersion),
-    (Get-CargoClippyVersion),
-    (Get-CbindgenVersion),
-    (Get-RustfmtVersion)
-    ) | Sort-Object
-)
-
-$markdown += New-MDHeader "Browsers and Drivers" -Level 3
-
-$browsersAndDriversList = @(
-    (Get-ChromeVersion),
-    (Get-ChromeDriverVersion),
-    (Get-ChromiumVersion),
-    (Get-EdgeVersion),
-    (Get-EdgeDriverVersion),
-    (Get-SeleniumVersion),
-    (Get-FirefoxVersion),
-    (Get-GeckodriverVersion)
-)
-
-$markdown += New-MDList -Style Unordered -Lines $browsersAndDriversList
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader ".NET Core Tools" -Level 3
-$netCoreTools = @(
-    ".NET Core SDK: $(Get-DotNetCoreSdkVersions)"
-)
-$netCoreTools += Get-DotnetTools
-$markdown += New-MDList -Style Unordered -Lines $netCoreTools
 
 $markdown += New-MDHeader "Databases" -Level 3
 $databaseLists = @(
