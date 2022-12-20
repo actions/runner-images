@@ -85,7 +85,7 @@ function Get-NodeVersion {
 }
 
 function Get-OpensslVersion {
-    return "OpenSSL $(dpkg-query -W -f '${Version}' openssl)"
+    return $(dpkg-query -W -f '${Version}' openssl)
 }
 
 function Get-PerlVersion {
@@ -131,7 +131,7 @@ function Get-JuliaVersion {
 
 function Get-LernaVersion {
     $version = lerna -v
-    return "Lerna $version"
+    return $version
 }
 
 function Get-HomebrewVersion {
@@ -174,7 +174,7 @@ function Get-YarnVersion {
 
 function Get-ParcelVersion {
     $parcelVersion = parcel --version
-    return "Parcel $parcelVersion"
+    return $parcelVersion
 }
 
 function Get-PipVersion {
@@ -197,27 +197,24 @@ function Get-VcpkgVersion {
 function Get-AntVersion {
     $result = ant -version | Out-String
     $result -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $antVersion = $Matches.version
-    return "Ant $antVersion"
+    return $Matches.version
 }
 
 function Get-GradleVersion {
     $gradleVersion = (gradle -v) -match "^Gradle \d" | Take-OutputPart -Part 1
-    return "Gradle $gradleVersion"
+    return $gradleVersion
 }
 
 function Get-MavenVersion {
     $result = mvn -version | Out-String
     $result -match "Apache Maven (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $mavenVersion = $Matches.version
-    return "Maven $mavenVersion"
+    return $Matches.version
 }
 
 function Get-SbtVersion {
     $result = Get-CommandResult "sbt -version"
     $result.Output -match "sbt script version: (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $sbtVersion = $Matches.version
-    return "Sbt $sbtVersion"
+    return $Matches.version
 }
 
 function Get-PHPVersions {

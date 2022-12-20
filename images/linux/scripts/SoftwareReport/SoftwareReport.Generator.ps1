@@ -72,108 +72,87 @@ $packageManagement.AddToolVersion("RubyGems", $(Get-GemVersion))
 $packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
 $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
 $packageManagement.AddHeader("Environment variables").AddTable($(Build-PackageManagementEnvironmentTable))
-
 $packageManagement.AddHeader("Homebrew note").AddNote(@'
-```
 Location: /home/linuxbrew
 Note: Homebrew is pre-installed on image but not added to PATH.
 run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" command
 to accomplish this.
-```
 '@)
 
+# Project Management
+$projectManagement = $installedSoftware.AddHeader("Project Management")
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $projectManagement.AddToolVersion("Ant", $(Get-AntVersion))
+    $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
+}
+if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+    $projectManagement.AddToolVersion("Lerna", $(Get-LernaVersion))
+}
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $projectManagement.AddToolVersion("Maven", $(Get-MavenVersion))
+    $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
+}
+
+# Tools
+$tools = $installedSoftware.AddHeader("Tools")
+$tools.AddToolVersion("Ansible", $(Get-AnsibleVersion))
+$tools.AddToolVersion("apt-fast", $(Get-AptFastVersion))
+$tools.AddToolVersion("AzCopy", $(Get-AzCopyVersion))
+$tools.AddToolVersion("Bazel", $(Get-BazelVersion))
+$tools.AddToolVersion("Bazelisk", $(Get-BazeliskVersion))
+$tools.AddToolVersion("Bicep", $(Get-BicepVersion))
+$tools.AddToolVersion("Buildah", $(Get-BuildahVersion))
+$tools.AddToolVersion("CMake", $(Get-CMakeVersion))
+$tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
+$tools.AddToolVersion("Docker Amazon ECR Credential Helper", $(Get-DockerAmazonECRCredHelperVersion))
+$tools.AddToolVersion("Docker Compose v1", $(Get-DockerComposeV1Version))
+$tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeV2Version))
+$tools.AddToolVersion("Docker-Buildx", $(Get-DockerBuildxVersion))
+$tools.AddToolVersion("Docker-Moby Client", $(Get-DockerMobyClientVersion))
+$tools.AddToolVersion("Docker-Moby Server", $(Get-DockerMobyServerVersion))
+if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+    $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
+}
+$tools.AddToolVersion("Git", $(Get-GitVersion))
+$tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
+$tools.AddToolVersion("Git-ftp", $(Get-GitFTPVersion))
+$tools.AddToolVersion("Haveged", $(Get-HavegedVersion))
+$tools.AddToolVersion("Heroku", $(Get-HerokuVersion))
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $tools.AddToolVersion("HHVM (HipHop VM)", $(Get-HHVMVersion))
+}
+$tools.AddToolVersion("jq", $(Get-JqVersion))
+$tools.AddToolVersion("Kind", $(Get-KindVersion))
+$tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))
+$tools.AddToolVersion("Kustomize", $(Get-KustomizeVersion))
+$tools.AddToolVersion("Leiningen", $(Get-LeiningenVersion))
+$tools.AddToolVersion("MediaInfo", $(Get-MediainfoVersion))
+$tools.AddToolVersion("Mercurial", $(Get-HGVersion))
+$tools.AddToolVersion("Minikube", $(Get-MinikubeVersion))
+$tools.AddToolVersion("n", $(Get-NVersion))
+$tools.AddToolVersion("Newman", $(Get-NewmanVersion))
+$tools.AddToolVersion("nvm", $(Get-NvmVersion))
+$tools.AddToolVersion("OpenSSL", $(Get-OpensslVersion))
+$tools.AddToolVersion("Packer", $(Get-PackerVersion))
+$tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+    $tools.AddToolVersion("PhantomJS", $(Get-PhantomJSVersion))
+}
+$tools.AddToolVersion("Podman", $(Get-PodManVersion))
+$tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
+$tools.AddToolVersion("R", $(Get-RVersion))
+$tools.AddToolVersion("Skopeo", $(Get-SkopeoVersion))
+$tools.AddToolVersion("Sphinx Open Source Search Server", $(Get-SphinxVersion))
+$tools.AddToolVersion("SVN", $(Get-SVNVersion))
+$tools.AddToolVersion("Terraform", $(Get-TerraformVersion))
+$tools.AddToolVersion("yamllint", $(Get-YamllintVersion))
+$tools.AddToolVersion("yq", $(Get-YqVersion))
+$tools.AddToolVersion("zstd", $(Get-ZstdVersion))
 
 $softwareReport.ToJson() | Out-File -FilePath "${OutputDirectory}/systeminfo.json" -Encoding UTF8NoBOM
 $softwareReport.ToMarkdown() | Out-File -FilePath "${OutputDirectory}/systeminfo.md" -Encoding UTF8NoBOM
 
 <#
-
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Homebrew note" -Level 4
-
-$markdown += New-MDParagraph -Lines $reportHomebrew
-
-$markdown += New-MDHeader "Project Management" -Level 3
-$projectManagementList = @()
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $projectManagementList += @(
-        (Get-AntVersion),
-        (Get-GradleVersion),
-        (Get-MavenVersion),
-        (Get-SbtVersion)
-    )
-}
-
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $projectManagementList += @(
-        (Get-LernaVersion)
-    )
-}
-$markdown += New-MDList -Style Unordered -Lines ($projectManagementList | Sort-Object)
-
-$markdown += New-MDHeader "Tools" -Level 3
-$toolsList = @(
-    (Get-AnsibleVersion),
-    (Get-AptFastVersion),
-    (Get-AzCopyVersion),
-    (Get-BazelVersion),
-    (Get-BazeliskVersion),
-    (Get-BicepVersion),
-    (Get-CodeQLBundleVersion),
-    (Get-CMakeVersion),
-    (Get-DockerMobyClientVersion),
-    (Get-DockerMobyServerVersion),
-    (Get-DockerComposeV1Version),
-    (Get-DockerComposeV2Version),
-    (Get-DockerBuildxVersion),
-    (Get-DockerAmazonECRCredHelperVersion),
-    (Get-BuildahVersion),
-    (Get-PodManVersion),
-    (Get-SkopeoVersion),
-    (Get-GitVersion),
-    (Get-GitLFSVersion),
-    (Get-GitFTPVersion),
-    (Get-HavegedVersion),
-    (Get-HerokuVersion),
-    (Get-LeiningenVersion),
-    (Get-SVNVersion),
-    (Get-JqVersion),
-    (Get-YqVersion),
-    (Get-KindVersion),
-    (Get-KubectlVersion),
-    (Get-KustomizeVersion),
-    (Get-MediainfoVersion),
-    (Get-HGVersion),
-    (Get-MinikubeVersion),
-    (Get-NewmanVersion),
-    (Get-NVersion),
-    (Get-NvmVersion),
-    (Get-OpensslVersion),
-    (Get-PackerVersion),
-    (Get-ParcelVersion),
-    (Get-PulumiVersion),
-    (Get-RVersion),
-    (Get-SphinxVersion),
-    (Get-TerraformVersion),
-    (Get-YamllintVersion),
-    (Get-ZstdVersion)
-)
-
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $toolsList += @(
-        (Get-PhantomJSVersion),
-        (Get-HHVMVersion)
-    )
-}
-
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $toolsList += (Get-FastlaneVersion)
-}
-
-$markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
 
 $markdown += New-MDHeader "CLI Tools" -Level 3
 $markdown += New-MDList -Style Unordered -Lines (@(

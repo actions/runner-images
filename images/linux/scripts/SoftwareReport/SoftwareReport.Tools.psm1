@@ -1,35 +1,33 @@
 function Get-AnsibleVersion {
     $ansibleVersion = (ansible --version)[0] -replace "[^\d.]"
-    return "Ansible $ansibleVersion"
+    return $ansibleVersion
 }
 
 function Get-AptFastVersion {
     $versionFileContent = Get-Content (which apt-fast) -Raw
     $match = [Regex]::Match($versionFileContent, '# apt-fast v(.+)\n')
-    $aptFastVersion = $match.Groups[1].Value
-    return "apt-fast $aptFastVersion"
+    return $match.Groups[1].Value
 }
 
 function Get-AzCopyVersion {
     $azcopyVersion = azcopy --version | Take-OutputPart -Part 2
-    return "AzCopy $azcopyVersion - available by ``azcopy`` and ``azcopy10`` aliases"
+    return "$azcopyVersion - available by ``azcopy`` and ``azcopy10`` aliases"
 }
 
 function Get-BazelVersion {
     $bazelVersion = bazel --version | Select-String "bazel" | Take-OutputPart -Part 1
-    return "Bazel $bazelVersion"
+    return $bazelVersion
 }
 
 function Get-BazeliskVersion {
     $result = Get-CommandResult "bazelisk version" -Multiline
     $bazeliskVersion = $result.Output | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
-    return "Bazelisk $bazeliskVersion"
+    return $bazeliskVersion
 }
 
 function Get-BicepVersion {
     (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $bicepVersion = $Matches.Version
-    return "Bicep $bicepVersion"
+    return $Matches.Version
 }
 
 function Get-CodeQLBundleVersion {
@@ -37,73 +35,73 @@ function Get-CodeQLBundleVersion {
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
     $CodeQLVersion = & $CodeQLPath version --quiet
-    return "CodeQL Action Bundle $CodeQLVersion"
+    return $CodeQLVersion
 }
 
 function Get-PodManVersion {
     $podmanVersion = podman --version | Take-OutputPart -Part 2
-    return "Podman $podmanVersion"
+    return $podmanVersion
 }
 
 function Get-BuildahVersion {
     $buildahVersion = buildah --version | Take-OutputPart -Part 2
-    return "Buildah $buildahVersion"
+    return $buildahVersion
 }
 
 function Get-SkopeoVersion {
     $skopeoVersion = skopeo --version | Take-OutputPart -Part 2
-    return "Skopeo $skopeoVersion"
+    return $skopeoVersion
 }
 
 function Get-CMakeVersion {
     $cmakeVersion = cmake --version | Select-Object -First 1 | Take-OutputPart -Part 2
-    return "CMake $cmakeVersion"
+    return $cmakeVersion
 }
 
 function Get-DockerComposeV1Version {
     $composeVersion = docker-compose -v | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter ","
-    return "Docker Compose v1 $composeVersion"
+    return $composeVersion
 }
 
 function Get-DockerComposeV2Version {
     $composeVersion = docker compose version | Take-OutputPart -Part 3
-    return "Docker Compose v2 $composeVersion"
+    return $composeVersion
 }
 
 function Get-DockerMobyClientVersion {
     $dockerClientVersion = sudo docker version --format '{{.Client.Version}}'
-    return "Docker-Moby Client $dockerClientVersion"
+    return $dockerClientVersion
 }
 
 function Get-DockerMobyServerVersion {
     $dockerServerVersion = sudo docker version --format '{{.Server.Version}}'
-    return "Docker-Moby Server $dockerServerVersion"
+    return $dockerServerVersion
 }
 
 function Get-DockerBuildxVersion {
     $buildxVersion = docker buildx version  | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "+"
-    return "Docker-Buildx $buildxVersion"
+    return $buildxVersion
 }
 
 function Get-DockerAmazonECRCredHelperVersion {
     $ecrVersion = docker-credential-ecr-login -v | Select-String "Version:" | Take-OutputPart -Part 1
-    return "Docker Amazon ECR Credential Helper $ecrVersion"
+    return $ecrVersion
 }
 
 function Get-GitVersion {
     $gitVersion = git --version | Take-OutputPart -Part -1
-    return "Git $gitVersion"
+    return $gitVersion
 }
 
 function Get-GitLFSVersion {
     $result = Get-CommandResult "git-lfs --version"
     $gitlfsversion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
-    return "Git LFS $gitlfsversion"
+    return $gitlfsversion
 }
 
 function Get-GitFTPVersion {
     $gitftpVersion = git-ftp --version | Take-OutputPart -Part 2
-    return "Git-ftp $gitftpVersion"
+    return $gitftpVersion
 }
 
 function Get-GoogleCloudSDKVersion {
@@ -112,47 +110,47 @@ function Get-GoogleCloudSDKVersion {
 
 function Get-HavegedVersion {
     $havegedVersion = dpkg-query --showformat='${Version}' --show haveged | Take-OutputPart -Part 0 -Delimiter "-"
-    return "Haveged $havegedVersion"
+    return $havegedVersion
 }
 
 function Get-HerokuVersion {
     $herokuVersion = heroku version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
-    return "Heroku $herokuVersion"
+    return $herokuVersion
 }
 
 function Get-HHVMVersion {
     $hhvmVersion = hhvm --version | Select-Object -First 1 | Take-OutputPart -Part 2
-    return "HHVM (HipHop VM) $hhvmVersion"
+    return $hhvmVersion
 }
 
 function Get-SVNVersion {
     $svnVersion = svn --version | Select-Object -First 1 | Take-OutputPart -Part 2
-    return "SVN $svnVersion"
+    return $svnVersion
 }
 
 function Get-KustomizeVersion {
     $kustomizeVersion = kustomize version --short | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "v"
-    return "Kustomize $kustomizeVersion"
+    return $kustomizeVersion
 }
 
 function Get-KindVersion {
     $kindVersion = kind version | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "v"
-    return "Kind $kindVersion"
+    return $kindVersion
 }
 
 function Get-KubectlVersion {
     $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v','')
-    return "Kubectl $kubectlVersion"
+    return $kubectlVersion
 }
 
 function Get-MinikubeVersion {
     $minikubeVersion = minikube version --short | Take-OutputPart -Part 0 -Delimiter "v"
-    return "Minikube $minikubeVersion"
+    return $minikubeVersion
 }
 
 function Get-HGVersion {
     $hgVersion = hg --version | Select-Object -First 1 | Take-OutputPart -Part -1 | Take-OutputPart -Part 0 -Delimiter ")"
-    return "Mercurial $hgVersion"
+    return $hgVersion
 }
 
 function Get-LeiningenVersion {
@@ -161,32 +159,32 @@ function Get-LeiningenVersion {
 
 function Get-MediainfoVersion {
     $mediainfoVersion = (mediainfo --version | Select-Object -Index 1 | Take-OutputPart -Part 2).Replace('v', '')
-    return "MediaInfo $mediainfoVersion"
+    return $mediainfoVersion
 }
 
 function Get-NewmanVersion {
-    return "Newman $(newman --version)"
+    return $(newman --version)
 }
 
 function Get-NVersion {
     $nVersion = (n --version).Replace('v', '')
-    return "n $nVersion"
+    return $nVersion
 }
 
 function Get-NvmVersion {
     $nvmVersion = bash -c "source /etc/skel/.nvm/nvm.sh && nvm --version"
-    return "nvm $nvmVersion"
+    return $nvmVersion
 }
 
 function Get-PackerVersion {
     # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
     $result = (Get-CommandResult "packer --version").Output
     $packerVersion = [regex]::matches($result, "(\d+.){2}\d+").Value
-    return "Packer $packerVersion"
+    return $packerVersion
 }
 
 function Get-PhantomJSVersion {
-    return "PhantomJS $(phantomjs --version)"
+    return $(phantomjs --version)
 }
 
 function Get-TerraformVersion {
@@ -195,7 +193,7 @@ function Get-TerraformVersion {
 
 function Get-JqVersion {
     $jqVersion = jq --version | Take-OutputPart -Part 1 -Delimiter "-"
-    return "jq $jqVersion"
+    return $jqVersion
 }
 
 function Get-AzureCliVersion {
@@ -229,7 +227,7 @@ function Get-AWSSAMVersion {
 
 function Get-FastlaneVersion {
     $fastlaneVersion = fastlane --version | Select-String "^fastlane [0-9]" | Take-OutputPart -Part 1
-    return "Fastlane $fastlaneVersion"
+    return $fastlaneVersion
 }
 
 function Get-HubCliVersion {
@@ -264,17 +262,17 @@ function Get-VerselCliversion {
 
 function Get-PulumiVersion {
     $pulumiVersion = pulumi version | Take-OutputPart -Part 0 -Delimiter "v"
-    return "Pulumi $pulumiVersion"
+    return $pulumiVersion
 }
 
 function Get-RVersion {
     $rVersion = (Get-CommandResult "R --version | grep 'R version'").Output |  Take-OutputPart -Part 2
-    return "R $rVersion"
+    return $rVersion
 }
 
 function Get-SphinxVersion {
     $sphinxVersion = searchd -h | Select-Object -First 1 | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
-    return "Sphinx Open Source Search Server $sphinxVersion"
+    return $sphinxVersion
 }
 
 function Get-YamllintVersion {
@@ -283,10 +281,10 @@ function Get-YamllintVersion {
 
 function Get-ZstdVersion {
     $zstdVersion = zstd --version | Take-OutputPart -Part 1 -Delimiter "v" | Take-OutputPart -Part 0 -Delimiter ","
-    return "zstd $zstdVersion (Homebrew)"
+    return "$zstdVersion (Homebrew)"
 }
 
 function Get-YqVersion {
     $yqVersion = ($(yq -V) -Split " ")[-1]
-    return "yq $yqVersion"
+    return $yqVersion
 }
