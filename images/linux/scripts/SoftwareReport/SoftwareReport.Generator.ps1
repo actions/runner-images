@@ -172,7 +172,7 @@ if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
 }
 
 $phpTools = $installedSoftware.AddHeader("PHP Tools")
-$phpTools.AddToolVersionList("PHP", $(Get-PHPVersions), "^\d+\.\d+", $true)
+$phpTools.AddToolVersionsList("PHP", $(Get-PHPVersions), "^\d+\.\d+", $true)
 $phpTools.AddToolVersion("Composer", $(Get-ComposerVersion))
 $phpTools.AddToolVersion("PHPUnit", $(Get-PHPUnitVersion))
 $phpTools.AddNote("Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.")
@@ -208,7 +208,7 @@ $browsersTools.AddToolVersion("Geckodriver", $(Get-GeckodriverVersion))
 $browsersTools.AddHeader("Environment variables").AddTable($(Build-BrowserWebdriversEnvironmentTable))
 
 $netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
-$netCoreTools.AddToolVersionList(".NET Core SDK", $(Get-DotNetCoreSdkVersions), "^\d+\.\d+\.\d", $true)
+$netCoreTools.AddToolVersionsList(".NET Core SDK", $(Get-DotNetCoreSdkVersions), "^\d+\.\d+\.\d", $true)
 $netCoreTools.AddNodes($(Get-DotnetTools))
 
 
