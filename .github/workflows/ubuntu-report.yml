@@ -14,9 +14,10 @@ jobs:
       - run: |
           mkdir -p /tmp/report
 
-      - pwsh: |
+      - run: |
           Set-Location "images/linux/scripts/SoftwareReport"
           SoftwareReport.Generator.ps1 -OutputDirectory "/tmp/report"
+        shell: pwsh
           
       - run: |
             ls -la /tmp/report
