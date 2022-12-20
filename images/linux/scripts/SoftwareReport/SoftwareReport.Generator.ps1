@@ -1,3 +1,6 @@
+using module ./software-report-base/SoftwareReport.psm1
+using module ./software-report-base/SoftwareReport.Nodes.psm1
+
 param (
     [Parameter(Mandatory)][string]
     $OutputDirectory
@@ -7,7 +10,6 @@ $global:ErrorActionPreference = "Stop"
 $global:ErrorView = "NormalView"
 Set-StrictMode -Version Latest
 
-Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.CachedTools.psm1") -DisableNameChecking
@@ -23,15 +25,20 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -Disabl
 # Restore file owner in user profile
 Restore-UserOwner
 
-$markdown = ""
-$markdown += New-MDHeader "Ubuntu $(Get-OSVersionShort)" -Level 1
+$softwareReport = [SoftwareReport]::new("Ubuntu $(Get-OSVersionShort)")
+$softwareReport.Root.AddToolVersion("OS Version:", $(Get-OSVersionFull))
+$softwareReport.Root.AddToolVersion("Kernel Version:", $(Get-KernelVersion))
+$softwareReport.Root.AddToolVersion("Image Version:", $env:IMAGE_VERSION)
 
-$markdown += New-MDList -Style Unordered -Lines @(
-    "OS Version: $(Get-OSVersionFull)"
-    "Kernel Version: $(Get-KernelVersion)"
-    "Image Version: $env:IMAGE_VERSION"
-)
+$installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
+$languageAndRuntime = $installedSoftware.AddHeader("Language and Runtime")
+
+
+$softwareReport.ToJson() | Out-File -FilePath "${OutputDirectory}/systeminfo.json" -Encoding UTF8NoBOM
+$softwareReport.ToMarkdown() | Out-File -FilePath "${OutputDirectory}/systeminfo.md" -Encoding UTF8NoBOM
+
+<#
 $markdown += New-MDHeader "Installed Software" -Level 2
 $markdown += New-MDHeader "Language and Runtime" -Level 3
 
@@ -305,3 +312,4 @@ $markdown += Get-AptPackages | New-MDTable
 
 Test-BlankElement
 $markdown | Out-File -FilePath "${OutputDirectory}/Ubuntu-Readme.md"
+#>
