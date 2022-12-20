@@ -1,9 +1,6 @@
 using module ../SoftwareReport.psm1
 using module ../SoftwareReport.DifferenceCalculator.psm1
 
-# TO-DO: Add use-case when only header is changed in the table
-# TO-DO: Add use-case when header and rows are changed in table
-
 Describe "Comparer.E2E" {
     It "Some tools are updated" {
         # Previous report
