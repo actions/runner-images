@@ -57,44 +57,43 @@ $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
 $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
 $languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
 
+# Package Management
+$packageManagement = $installedSoftware.AddHeader("Package Management")
+$packageManagement.AddToolVersion("cpan", $(Get-CpanVersion))
+$packageManagement.AddToolVersion("Helm", $(Get-HelmVersion))
+$packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
+$packageManagement.AddToolVersion("Miniconda", $(Get-MinicondaVersion))
+$packageManagement.AddToolVersion("Npm", $(Get-NpmVersion))
+$packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
+$packageManagement.AddToolVersion("Pip", $(Get-PipVersion))
+$packageManagement.AddToolVersion("Pip3", $(Get-Pip3Version))
+$packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
+$packageManagement.AddToolVersion("RubyGems", $(Get-GemVersion))
+$packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
+$packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
+$packageManagement.AddHeader("Environment variables").AddTable($(Build-PackageManagementEnvironmentTable))
 
-$softwareReport.ToJson() | Out-File -FilePath "${OutputDirectory}/systeminfo.json" -Encoding UTF8NoBOM
-$softwareReport.ToMarkdown() | Out-File -FilePath "${OutputDirectory}/systeminfo.md" -Encoding UTF8NoBOM
-
-<#
-
-$markdown += New-MDHeader "Package Management" -Level 3
-
-$packageManagementList = @(
-    (Get-HomebrewVersion),
-    (Get-CpanVersion),
-    (Get-GemVersion),
-    (Get-MinicondaVersion),
-    (Get-NuGetVersion),
-    (Get-HelmVersion),
-    (Get-NpmVersion),
-    (Get-YarnVersion),
-    (Get-PipxVersion),
-    (Get-PipVersion),
-    (Get-Pip3Version),
-    (Get-VcpkgVersion)
-)
-
-$markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
-
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Homebrew note" -Level 4
-$reportHomebrew = @'
+$packageManagement.AddHeader("Homebrew note").AddNote(@'
 ```
 Location: /home/linuxbrew
 Note: Homebrew is pre-installed on image but not added to PATH.
 run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" command
 to accomplish this.
 ```
-'@
+'@)
+
+
+$softwareReport.ToJson() | Out-File -FilePath "${OutputDirectory}/systeminfo.json" -Encoding UTF8NoBOM
+$softwareReport.ToMarkdown() | Out-File -FilePath "${OutputDirectory}/systeminfo.md" -Encoding UTF8NoBOM
+
+<#
+
+$markdown += New-MDHeader "Environment variables" -Level 4
+$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
+$markdown += New-MDNewLine
+
+$markdown += New-MDHeader "Homebrew note" -Level 4
+
 $markdown += New-MDParagraph -Lines $reportHomebrew
 
 $markdown += New-MDHeader "Project Management" -Level 3

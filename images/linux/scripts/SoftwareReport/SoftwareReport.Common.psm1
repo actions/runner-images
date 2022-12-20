@@ -76,7 +76,7 @@ function Get-MsbuildVersion {
 
 function Get-NuGetVersion {
     $nugetVersion = nuget help | Select-Object -First 1 | Take-OutputPart -Part 2
-    return "NuGet $nugetVersion"
+    return $nugetVersion
 }
 
 function Get-NodeVersion {
@@ -137,43 +137,39 @@ function Get-LernaVersion {
 function Get-HomebrewVersion {
     $result = Get-CommandResult "/home/linuxbrew/.linuxbrew/bin/brew -v"
     $result.Output -match "Homebrew (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $version = $Matches.version
-    return "Homebrew $version"
+    $return $Matches.version
 }
 
 function Get-CpanVersion {
     $result = Get-CommandResult "cpan --version" -ExpectExitCode @(25, 255)
     $result.Output -match "version (?<version>\d+\.\d+) " | Out-Null
-    $cpanVersion = $Matches.version
-    return "cpan $cpanVersion"
+    return $Matches.version
 }
 
 function Get-GemVersion {
     $result = Get-CommandResult "gem --version"
     $result.Output -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $gemVersion = $Matches.version
-    return "RubyGems $gemVersion"
+    return $Matches.version
 }
 
 function Get-MinicondaVersion {
-    $condaVersion = conda --version
-    return "Mini$condaVersion"
+    $condaVersion = conda --version | Take-OutputPart -Part 1
+    return $condaVersion
 }
 
 function Get-HelmVersion {
     $(helm version) -match 'Version:"v(?<version>\d+\.\d+\.\d+)"' | Out-Null
-    $helmVersion = $Matches.version
-    return "Helm $helmVersion"
+    return $Matches.version
 }
 
 function Get-NpmVersion {
     $npmVersion = npm --version
-    return "Npm $npmVersion"
+    return $npmVersion
 }
 
 function Get-YarnVersion {
     $yarnVersion = yarn --version
-    return "Yarn $yarnVersion"
+    return $yarnVersion
 }
 
 function Get-ParcelVersion {
@@ -184,20 +180,18 @@ function Get-ParcelVersion {
 function Get-PipVersion {
     $result = Get-CommandResult "pip --version"
     $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $pipVersion = $Matches.version
-    return "Pip $pipVersion"
+    $return $Matches.version
 }
 
 function Get-Pip3Version {
     $result = Get-CommandResult "pip3 --version"
     $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $pipVersion = $Matches.version
-    return "Pip3 $pipVersion"
+    return $Matches.version
 }
 
 function Get-VcpkgVersion {
     $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
-    return "Vcpkg (build from commit $commitId)"
+    return "(build from commit $commitId)"
 }
 
 function Get-AntVersion {
@@ -374,8 +368,7 @@ function Get-AptPackages {
 function Get-PipxVersion {
     $result = (Get-CommandResult "pipx --version").Output
     $result -match "(?<version>\d+\.\d+\.\d+\.?\d*)" | Out-Null
-    $pipxVersion = $Matches.Version
-    return "Pipx $pipxVersion"
+    return $Matches.Version
 }
 
 function Get-GraalVMVersion {
@@ -395,18 +388,13 @@ function Build-GraalVMTable {
 
 function Build-PackageManagementEnvironmentTable {
     return @(
-        @{
+        [PSCustomObject] @{
             "Name" = "CONDA"
             "Value" = $env:CONDA
         },
-        @{
+        [PSCustomObject] @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
         }
-    ) | ForEach-Object {
-        [PSCustomObject] @{
-            "Name" = $_.Name
-            "Value" = $_.Value
-        }
-    }
+    )
 }
