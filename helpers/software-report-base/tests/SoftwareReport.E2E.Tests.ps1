@@ -61,7 +61,7 @@ Describe "SoftwareReport.E2E" {
 ### MySQL
 - MySQL 6.1.0
 ```
-MySQL service is disabl by default.
+MySQL service is disabled by default.
 Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
 ```
 '@
