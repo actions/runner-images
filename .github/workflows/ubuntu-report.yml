@@ -23,4 +23,6 @@ jobs:
         shell: pwsh
           
       - run: |
-            ls -la /tmp/report
+            cat /tmp/report/systeminfo.md
+      - run: |
+            cat /tmp/report/systeminfo.json
