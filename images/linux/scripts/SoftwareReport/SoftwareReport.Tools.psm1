@@ -154,7 +154,7 @@ function Get-HGVersion {
 }
 
 function Get-LeiningenVersion {
-    return "$(lein -v | Take-OutputPart -Part 0,1)"
+    return "$(lein -v | Take-OutputPart -Part 1)"
 }
 
 function Get-MediainfoVersion {
@@ -188,7 +188,7 @@ function Get-PhantomJSVersion {
 }
 
 function Get-TerraformVersion {
-    return (terraform version | Select-String "^Terraform").Line.Replace('v','')
+    return (terraform version | Select-String "^Terraform").Line.Replace('v','') | Take-OutputPart -Part 1
 }
 
 function Get-JqVersion {
@@ -276,7 +276,7 @@ function Get-SphinxVersion {
 }
 
 function Get-YamllintVersion {
-    return "$(yamllint --version)"
+    return $(yamllint --version) | Take-OutputPart -Part 1
 }
 
 function Get-ZstdVersion {
