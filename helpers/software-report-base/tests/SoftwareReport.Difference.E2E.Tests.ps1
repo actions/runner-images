@@ -1,32 +1,35 @@
 using module ../SoftwareReport.psm1
 using module ../SoftwareReport.DifferenceCalculator.psm1
 
+# TO-DO: Add use-case when only header is changed in the table
+# TO-DO: Add use-case when header and rows are changed in table
+
 Describe "Comparer.E2E" {
     It "Some tools are updated" {
-      # Previous report
-      $prevSoftwareReport = [SoftwareReport]::new("macOS 11")
-      $prevSoftwareReport.Root.AddToolVersion("OS Version:", "macOS 11.7.1 (20G817)")
-      $prevSoftwareReport.Root.AddToolVersion("Image Version:", "20220918.1")
-      $prevInstalledSoftware = $prevSoftwareReport.Root.AddHeader("Installed Software")
-      $prevTools = $prevInstalledSoftware.AddHeader("Tools")
-      $prevTools.AddToolVersion("ToolWillBeUpdated1", "1.0.0")
-      $prevTools.AddToolVersion("ToolWillBeUpdated2", "3.0.1")
-      $prevTools.AddToolVersionsList("ToolWillBeUpdated3", @("14.0.0", "15.5.1"), "^\d+")
+        # Previous report
+        $prevSoftwareReport = [SoftwareReport]::new("macOS 11")
+        $prevSoftwareReport.Root.AddToolVersion("OS Version:", "macOS 11.7.1 (20G817)")
+        $prevSoftwareReport.Root.AddToolVersion("Image Version:", "20220918.1")
+        $prevInstalledSoftware = $prevSoftwareReport.Root.AddHeader("Installed Software")
+        $prevTools = $prevInstalledSoftware.AddHeader("Tools")
+        $prevTools.AddToolVersion("ToolWillBeUpdated1", "1.0.0")
+        $prevTools.AddToolVersion("ToolWillBeUpdated2", "3.0.1")
+        $prevTools.AddToolVersionsList("ToolWillBeUpdated3", @("14.0.0", "15.5.1"), "^\d+")
 
-      # Next report
-      $nextSoftwareReport = [SoftwareReport]::new("macOS 11")
-      $nextSoftwareReport.Root.AddToolVersion("OS Version:", "macOS 11.7.1 (20G817)")
-      $nextSoftwareReport.Root.AddToolVersion("Image Version:", "20220922.1")
-      $nextInstalledSoftware = $nextSoftwareReport.Root.AddHeader("Installed Software")
-      $nextTools = $nextInstalledSoftware.AddHeader("Tools")
-      $nextTools.AddToolVersion("ToolWillBeUpdated1", "2.5.0")
-      $nextTools.AddToolVersion("ToolWillBeUpdated2", "3.0.2")
-      $nextTools.AddToolVersionsList("ToolWillBeUpdated3", @("14.2.0", "15.5.1"), "^\d+")
+        # Next report
+        $nextSoftwareReport = [SoftwareReport]::new("macOS 11")
+        $nextSoftwareReport.Root.AddToolVersion("OS Version:", "macOS 11.7.1 (20G817)")
+        $nextSoftwareReport.Root.AddToolVersion("Image Version:", "20220922.1")
+        $nextInstalledSoftware = $nextSoftwareReport.Root.AddHeader("Installed Software")
+        $nextTools = $nextInstalledSoftware.AddHeader("Tools")
+        $nextTools.AddToolVersion("ToolWillBeUpdated1", "2.5.0")
+        $nextTools.AddToolVersion("ToolWillBeUpdated2", "3.0.2")
+        $nextTools.AddToolVersionsList("ToolWillBeUpdated3", @("14.2.0", "15.5.1"), "^\d+")
 
-      # Compare reports
-      $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
-      $comparer.CompareReports()
-      $comparer.GetMarkdownReport() | Should -BeExactly @'
+        # Compare reports
+        $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
+        $comparer.CompareReports()
+        $comparer.GetMarkdownReport() | Should -BeExactly @'
 # :desktop_computer: Actions Runner Image: macOS 11
 - OS Version: macOS 11.7.1 (20G817)
 - Image Version: 20220922.1
@@ -210,26 +213,26 @@ Describe "Comparer.E2E" {
     }
 
     It "Header tree changes" {
-      # Previous report
-      $prevSoftwareReport = [SoftwareReport]::new("macOS 11")
-      $prevSoftwareReport.Root.AddToolVersion("Image Version:", "20220918.1")
-      $prevInstalledSoftware = $prevSoftwareReport.Root.AddHeader("Installed Software")
-      $prevInstalledSoftware.AddToolVersion("ToolWithoutChanges", "5.34.0")
-      $prevInstalledSoftware.AddHeader("HeaderWillBeRemoved").AddHeader("SubheaderWillBeRemoved").AddToolVersion("ToolWillBeRemoved", "1.0.0")
-      $prevInstalledSoftware.AddHeader("Header1").AddToolVersion("ToolWillBeMovedToAnotherHeader", "3.0.0")
+        # Previous report
+        $prevSoftwareReport = [SoftwareReport]::new("macOS 11")
+        $prevSoftwareReport.Root.AddToolVersion("Image Version:", "20220918.1")
+        $prevInstalledSoftware = $prevSoftwareReport.Root.AddHeader("Installed Software")
+        $prevInstalledSoftware.AddToolVersion("ToolWithoutChanges", "5.34.0")
+        $prevInstalledSoftware.AddHeader("HeaderWillBeRemoved").AddHeader("SubheaderWillBeRemoved").AddToolVersion("ToolWillBeRemoved", "1.0.0")
+        $prevInstalledSoftware.AddHeader("Header1").AddToolVersion("ToolWillBeMovedToAnotherHeader", "3.0.0")
 
-      # Next report
-      $nextSoftwareReport = [SoftwareReport]::new("macOS 11")
-      $nextSoftwareReport.Root.AddToolVersion("Image Version:", "20220922.0")
-      $nextInstalledSoftware = $nextSoftwareReport.Root.AddHeader("Installed Software")
-      $nextInstalledSoftware.AddToolVersion("ToolWithoutChanges", "5.34.0")
-      $nextInstalledSoftware.AddHeader("HeaderWillBeAdded").AddHeader("SubheaderWillBeAdded").AddToolVersion("ToolWillBeAdded", "5.0.0")
-      $nextInstalledSoftware.AddHeader("Header2").AddToolVersion("ToolWillBeMovedToAnotherHeader", "3.0.0")
+        # Next report
+        $nextSoftwareReport = [SoftwareReport]::new("macOS 11")
+        $nextSoftwareReport.Root.AddToolVersion("Image Version:", "20220922.0")
+        $nextInstalledSoftware = $nextSoftwareReport.Root.AddHeader("Installed Software")
+        $nextInstalledSoftware.AddToolVersion("ToolWithoutChanges", "5.34.0")
+        $nextInstalledSoftware.AddHeader("HeaderWillBeAdded").AddHeader("SubheaderWillBeAdded").AddToolVersion("ToolWillBeAdded", "5.0.0")
+        $nextInstalledSoftware.AddHeader("Header2").AddToolVersion("ToolWillBeMovedToAnotherHeader", "3.0.0")
 
-      # Compare reports
-      $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
-      $comparer.CompareReports()
-      $comparer.GetMarkdownReport() | Should -BeExactly @'
+        # Compare reports
+        $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
+        $comparer.CompareReports()
+        $comparer.GetMarkdownReport() | Should -BeExactly @'
 # :desktop_computer: Actions Runner Image: macOS 11
 - Image Version: 20220922.0
 
@@ -284,41 +287,41 @@ Describe "Comparer.E2E" {
     }
 
     It "Tables are added and removed" {
-      # Previous report
-      $prevSoftwareReport = [SoftwareReport]::new("macOS 11")
-      $prevSoftwareReport.Root.AddToolVersion("Image Version:", "20220918.1")
-      $prevInstalledSoftware = $prevSoftwareReport.Root.AddHeader("Installed Software")
-      $prevInstalledSoftware.AddHeader("HeaderWillExist").AddTable(@(
-        [PSCustomObject]@{TableInExistingHeaderWillBeRemoved = "Q"; Value = "25"},
-        [PSCustomObject]@{TableInExistingHeaderWillBeRemoved = "O"; Value = "24"}
-      ))
-        
-      $prevTools = $prevInstalledSoftware.AddHeader("Tools")
-      $prevTools.AddHeader("HeaderWillBeRemoved").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "Z"; Value = "30"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "W"; Value = "29"}
-      ))
+        # Previous report
+        $prevSoftwareReport = [SoftwareReport]::new("macOS 11")
+        $prevSoftwareReport.Root.AddToolVersion("Image Version:", "20220918.1")
+        $prevInstalledSoftware = $prevSoftwareReport.Root.AddHeader("Installed Software")
+        $prevInstalledSoftware.AddHeader("HeaderWillExist").AddTable(@(
+            [PSCustomObject]@{TableInExistingHeaderWillBeRemoved = "Q"; Value = "25"},
+            [PSCustomObject]@{TableInExistingHeaderWillBeRemoved = "O"; Value = "24"}
+        ))
+            
+        $prevTools = $prevInstalledSoftware.AddHeader("Tools")
+        $prevTools.AddHeader("HeaderWillBeRemoved").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "Z"; Value = "30"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "W"; Value = "29"}
+        ))
 
-      # Next report
-      $nextSoftwareReport = [SoftwareReport]::new("macOS 11")
-      $nextSoftwareReport.Root.AddToolVersion("Image Version:", "20220922.1")
-      $nextInstalledSoftware = $nextSoftwareReport.Root.AddHeader("Installed Software")
-      $nextInstalledSoftware.AddHeader("HeaderWillExist")
-      $nextTools = $nextInstalledSoftware.AddHeader("Tools")
-      $nextTools.AddToolVersion("ToolWillBeAdded", "3.0.1")
-      $nextTools.AddTable(@(
-        [PSCustomObject]@{NewTableInExistingHeader = "A"; Value = "1"},
-        [PSCustomObject]@{NewTableInExistingHeader = "B"; Value = "2"}
-      ))
-      $nextTools.AddHeader("NewHeaderWithTable").AddTable(@(
-        [PSCustomObject]@{NewTableInNewHeader = "C"; Value = "3"},
-        [PSCustomObject]@{NewTableInNewHeader = "D"; Value = "4"}
-      ))
+        # Next report
+        $nextSoftwareReport = [SoftwareReport]::new("macOS 11")
+        $nextSoftwareReport.Root.AddToolVersion("Image Version:", "20220922.1")
+        $nextInstalledSoftware = $nextSoftwareReport.Root.AddHeader("Installed Software")
+        $nextInstalledSoftware.AddHeader("HeaderWillExist")
+        $nextTools = $nextInstalledSoftware.AddHeader("Tools")
+        $nextTools.AddToolVersion("ToolWillBeAdded", "3.0.1")
+        $nextTools.AddTable(@(
+            [PSCustomObject]@{NewTableInExistingHeader = "A"; Value = "1"},
+            [PSCustomObject]@{NewTableInExistingHeader = "B"; Value = "2"}
+        ))
+        $nextTools.AddHeader("NewHeaderWithTable").AddTable(@(
+            [PSCustomObject]@{NewTableInNewHeader = "C"; Value = "3"},
+            [PSCustomObject]@{NewTableInNewHeader = "D"; Value = "4"}
+        ))
 
-      # Compare reports
-      $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
-      $comparer.CompareReports()
-      $comparer.GetMarkdownReport() | Should -BeExactly @'
+        # Compare reports
+        $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
+        $comparer.CompareReports()
+        $comparer.GetMarkdownReport() | Should -BeExactly @'
 # :desktop_computer: Actions Runner Image: macOS 11
 - Image Version: 20220922.1
 
@@ -372,74 +375,96 @@ Describe "Comparer.E2E" {
     }
 
     It "Tables are changed" {
-      # Previous report
-      $prevSoftwareReport = [SoftwareReport]::new("macOS 11")
-      $prevSoftwareReport.Root.AddToolVersion("Image Version:", "20220918.1")
-      $prevInstalledSoftware = $prevSoftwareReport.Root.AddHeader("Installed Software")
-      $prevTools = $prevInstalledSoftware.AddHeader("Tools")
-      $prevTools.AddHeader("TableWithAddedRows").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "AA"; Value = "10"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "AB"; Value = "11"}
-      ))
-      $prevTools.AddHeader("TableWithRemovedRows").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "BA"; Value = "32"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "BB"; Value = "33"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "BC"; Value = "34"}
-      ))
-      $prevTools.AddHeader("TableWithUpdatedRow").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "CA"; Value = "42"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "CB"; Value = "43"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "CC"; Value = "44"}
-      ))
-      $prevTools.AddHeader("TableWithUpdatedRows").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "DA"; Value = "50"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "DB"; Value = "51"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "DC"; Value = "52"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "DD"; Value = "53"}
-      ))
-      $prevTools.AddHeader("TableWithComplexChanges").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "EA"; Value = "62"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "EB"; Value = "63"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "EC"; Value = "64"}
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "ED"; Value = "65"}
-      ))
+        # Previous report
+        $prevSoftwareReport = [SoftwareReport]::new("macOS 11")
+        $prevSoftwareReport.Root.AddToolVersion("Image Version:", "20220918.1")
+        $prevInstalledSoftware = $prevSoftwareReport.Root.AddHeader("Installed Software")
+        $prevTools = $prevInstalledSoftware.AddHeader("Tools")
+        $prevTools.AddHeader("TableWithAddedRows").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "AA"; Value = "10"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "AB"; Value = "11"}
+        ))
+        $prevTools.AddHeader("TableWithRemovedRows").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "BA"; Value = "32"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "BB"; Value = "33"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "BC"; Value = "34"}
+        ))
+        $prevTools.AddHeader("TableWithUpdatedRow").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "CA"; Value = "42"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "CB"; Value = "43"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "CC"; Value = "44"}
+        ))
+        $prevTools.AddHeader("TableWithUpdatedRows").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "DA"; Value = "50"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "DB"; Value = "51"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "DC"; Value = "52"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "DD"; Value = "53"}
+        ))
+        $prevTools.AddHeader("TableWithComplexChanges").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "EA"; Value = "62"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "EB"; Value = "63"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "EC"; Value = "64"}
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "ED"; Value = "65"}
+        ))
 
-      # Next report
-      $nextSoftwareReport = [SoftwareReport]::new("macOS 11")
-      $nextSoftwareReport.Root.AddToolVersion("Image Version:", "20220922.1")
-      $nextInstalledSoftware = $nextSoftwareReport.Root.AddHeader("Installed Software")
-      $nextTools = $nextInstalledSoftware.AddHeader("Tools")
-      $nextTools.AddHeader("TableWithAddedRows").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "AA"; Value = "10"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "AB"; Value = "11"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "AC"; Value = "12"}
-      ))
-      $nextTools.AddHeader("TableWithRemovedRows").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "BB"; Value = "33"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "BC"; Value = "34"}
-      ))
-      $nextTools.AddHeader("TableWithUpdatedRow").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "CA"; Value = "42"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "CB"; Value = "500"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "CC"; Value = "44"}
-      ))
-      $nextTools.AddHeader("TableWithUpdatedRows").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "DA"; Value = "50"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "DB"; Value = "5100"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "DC"; Value = "5200"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "DD"; Value = "53"}
-      ))
-      $nextTools.AddHeader("TableWithComplexChanges").AddTable(@(
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "EB"; Value = "63"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "EC"; Value = "640"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "ED"; Value = "65"},
-        [PSCustomObject]@{TableWillBeRemovedWithHeader = "EE"; Value = "66"}
-      ))
+        $prevTools.AddHeader("TableWithOnlyHeaderChanged").AddTable(@(
+            [PSCustomObject]@{TableWithOnlyHeaderChanged = "FA"; Value = "72"},
+            [PSCustomObject]@{TableWithOnlyHeaderChanged = "FB"; Value = "73"}
+        ))
 
-      # Compare reports
-      $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
-      $comparer.CompareReports()
-      $comparer.GetMarkdownReport() | Should -BeExactly @'
+        $prevTools.AddHeader("TableWithHeaderAndRowsChanges").AddTable(@(
+            [PSCustomObject]@{TableWithHeaderAndRowsChanges = "GA"; Value = "82"},
+            [PSCustomObject]@{TableWithHeaderAndRowsChanges = "GB"; Value = "83"},
+            [PSCustomObject]@{TableWithHeaderAndRowsChanges = "GC"; Value = "84"}
+        ))
+
+        # Next report
+        $nextSoftwareReport = [SoftwareReport]::new("macOS 11")
+        $nextSoftwareReport.Root.AddToolVersion("Image Version:", "20220922.1")
+        $nextInstalledSoftware = $nextSoftwareReport.Root.AddHeader("Installed Software")
+        $nextTools = $nextInstalledSoftware.AddHeader("Tools")
+        $nextTools.AddHeader("TableWithAddedRows").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "AA"; Value = "10"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "AB"; Value = "11"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "AC"; Value = "12"}
+        ))
+        $nextTools.AddHeader("TableWithRemovedRows").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "BB"; Value = "33"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "BC"; Value = "34"}
+        ))
+        $nextTools.AddHeader("TableWithUpdatedRow").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "CA"; Value = "42"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "CB"; Value = "500"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "CC"; Value = "44"}
+        ))
+        $nextTools.AddHeader("TableWithUpdatedRows").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "DA"; Value = "50"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "DB"; Value = "5100"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "DC"; Value = "5200"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "DD"; Value = "53"}
+        ))
+        $nextTools.AddHeader("TableWithComplexChanges").AddTable(@(
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "EB"; Value = "63"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "EC"; Value = "640"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "ED"; Value = "65"},
+            [PSCustomObject]@{TableWillBeRemovedWithHeader = "EE"; Value = "66"}
+        ))
+
+        $nextTools.AddHeader("TableWithOnlyHeaderChanged").AddTable(@(
+            [PSCustomObject]@{TableWithOnlyHeaderChanged2 = "FA"; Value = "72"},
+            [PSCustomObject]@{TableWithOnlyHeaderChanged2 = "FB"; Value = "73"}
+        ))
+
+        $nextTools.AddHeader("TableWithHeaderAndRowsChanges").AddTable(@(
+            [PSCustomObject]@{TableWithHeaderAndRowsChanges2 = "GA"; Value = "82"},
+            [PSCustomObject]@{TableWithHeaderAndRowsChanges2 = "GE"; Value = "850"},
+            [PSCustomObject]@{TableWithHeaderAndRowsChanges2 = "GC"; Value = "840"}
+        ))
+
+        # Compare reports
+        $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
+        $comparer.CompareReports()
+        $comparer.GetMarkdownReport() | Should -BeExactly @'
 # :desktop_computer: Actions Runner Image: macOS 11
 - Image Version: 20220922.1
 
@@ -452,12 +477,26 @@ Describe "Comparer.E2E" {
 | ---------------------------- | ----- |
 | AC                           | 12    |
 
+#### Tools > TableWithHeaderAndRowsChanges
+| TableWithHeaderAndRowsChanges2 | Value |
+| ------------------------------ | ----- |
+| GA                             | 82    |
+| GE                             | 850   |
+| GC                             | 840   |
+
 ### Deleted :heavy_minus_sign:
 
 #### Tools > TableWithRemovedRows
 | TableWillBeRemovedWithHeader | Value  |
 | ---------------------------- | ------ |
 | ~~BA~~                       | ~~32~~ |
+
+#### Tools > TableWithHeaderAndRowsChanges
+| TableWithHeaderAndRowsChanges | Value  |
+| ----------------------------- | ------ |
+| ~~GA~~                        | ~~82~~ |
+| ~~GB~~                        | ~~83~~ |
+| ~~GC~~                        | ~~84~~ |
 
 ### Updated
 

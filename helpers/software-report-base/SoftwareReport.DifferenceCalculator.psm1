@@ -80,14 +80,23 @@ class SoftwareReportDifferenceCalculator {
         $addedRows = $CurrentReportNode.Rows | Where-Object { $_ -notin $PreviousReportNode.Rows }
         $deletedRows = $PreviousReportNode.Rows | Where-Object { $_ -notin $CurrentReportNode.Rows }
 
-        # If new rows were added and no rows were deleted, then it is AddedItem
-        # If no rows were added and some rows were deleted, then it is DeletedItem
-        # Otherwise it's a UpdatedItem 
-        if (($addedRows.Count -gt 0) -and ($deletedRows.Count -eq 0)) {
+        if (($addedRows.Count -eq 0) -and ($deletedRows.Count -eq 0)) {
+            # Unexpected state: TableNodes are identical
+            return
+        }
+
+        if ($PreviousReportNode.Headers -ne $CurrentReportNode.Headers) {
+            # If headers are changed and rows are changed at the same time, we should track it as removing table and adding new one
+            $this.DeletedItems.Add([ReportDifferenceItem]::new($PreviousReportNode, $null, $Headers))
+            $this.AddedItems.Add([ReportDifferenceItem]::new($null, $CurrentReportNode, $Headers))
+        } elseif (($addedRows.Count -gt 0) -and ($deletedRows.Count -eq 0)) {
+            # If new rows were added and no rows were deleted, then it is AddedItem
             $this.AddedItems.Add([ReportDifferenceItem]::new($PreviousReportNode, $CurrentReportNode, $Headers))
         } elseif (($deletedRows.Count -gt 0) -and ($addedRows.Count -eq 0)) {
+            # If no rows were added and some rows were deleted, then it is DeletedItem
             $this.DeletedItems.Add([ReportDifferenceItem]::new($PreviousReportNode, $CurrentReportNode, $Headers))
         } else {
+            # If some rows were added and some rows were removed, then it is UpdatedItem 
             $this.ChangedItems.Add([ReportDifferenceItem]::new($PreviousReportNode, $CurrentReportNode, $Headers))
         }
     }

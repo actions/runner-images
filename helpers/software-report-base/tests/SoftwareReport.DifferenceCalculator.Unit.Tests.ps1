@@ -525,6 +525,61 @@ Describe "Comparer.UnitTests" {
             $comparer.ChangedItems[0].CurrentReportNode.Headers | Should -Be "Name|Value"
             $comparer.ChangedItems[0].CurrentReportNode.Rows | Should -BeArray @("A1|A2", "B3|B4")
         }
+
+        It "Rows are not changed" {
+            $prevReport = [HeaderNode]::new("Version 1")
+            $prevReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value", @("A1|A2", "B1|B2")))
+
+            $nextReport = [HeaderNode]::new("Version 2")
+            $nextReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value", @("A1|A2", "B1|B2")))
+            
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
+            $comparer.CompareReports()
+
+            $comparer.AddedItems | Should -HaveCount 0
+            $comparer.ChangedItems | Should -HaveCount 0
+            $comparer.DeletedItems | Should -HaveCount 0
+        }
+
+        It "Rows are not changed but header is changed" {
+            $prevReport = [HeaderNode]::new("Version 1")
+            $prevReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value", @("A1|A2", "B1|B2")))
+
+            $nextReport = [HeaderNode]::new("Version 2")
+            $nextReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value2", @("A1|A2", "B1|B2")))
+            
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
+            $comparer.CompareReports()
+
+            $comparer.AddedItems | Should -HaveCount 0
+            $comparer.ChangedItems | Should -HaveCount 0
+            $comparer.DeletedItems | Should -HaveCount 0
+        }
+
+        It "Rows are changed and header is changed at the same time" {
+            $prevReport = [HeaderNode]::new("Version 1")
+            $prevReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value", @("A1|A2", "B1|B2")))
+
+            $nextReport = [HeaderNode]::new("Version 2")
+            $nextReport.AddHeader("MyHeader").AddNode([TableNode]::new("Name|Value2", @("A1|A2", "B1|B2", "C1|C2")))
+            
+            $comparer = [SoftwareReportDifferenceCalculator]::new($prevReport, $nextReport)
+            $comparer.CompareReports()
+
+            $comparer.AddedItems | Should -HaveCount 1
+            $comparer.ChangedItems | Should -HaveCount 0
+            $comparer.DeletedItems | Should -HaveCount 1
+
+            $comparer.AddedItems[0].PreviousReportNode | Should -BeNullOrEmpty
+            $comparer.AddedItems[0].CurrentReportNode | Should -BeOfType ([TableNode])
+            $comparer.AddedItems[0].CurrentReportNode.Headers | Should -Be "Name|Value2"
+            $comparer.AddedItems[0].CurrentReportNode.Rows | Should -BeArray @("A1|A2", "B1|B2", "C1|C2")
+
+            $comparer.DeletedItems[0].PreviousReportNode | Should -BeOfType ([TableNode])
+            $comparer.DeletedItems[0].PreviousReportNode.Headers | Should -Be "Name|Value"
+            $comparer.DeletedItems[0].PreviousReportNode.Rows | Should -BeArray @("A1|A2", "B1|B2")
+            $comparer.DeletedItems[0].CurrentReportNode | Should -BeNullOrEmpty
+        }
     }
 
     Describe "NoteNode" {

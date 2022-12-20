@@ -24,7 +24,6 @@ class NodesFactory {
     }
 }
 
-# Node type to describe headers: "## Installed software"
 class HeaderNode: BaseNode {
     [ValidateNotNullOrEmpty()]
     [String] $Title
@@ -133,7 +132,6 @@ class HeaderNode: BaseNode {
     }
 }
 
-# Node type to describe the tool with single version: "Bash 5.1.16"
 class ToolVersionNode: BaseToolNode {
     [ValidateNotNullOrEmpty()]
     [String] $Version
@@ -163,7 +161,6 @@ class ToolVersionNode: BaseToolNode {
     }
 }
 
-# Node type to describe the tool with multiple versions "Toolcache Node.js 14.17.6 16.2.0 18.2.3"
 class ToolVersionsListNode: BaseToolNode {
     [ValidateNotNullOrEmpty()]
     [String[]] $Versions
@@ -231,7 +228,6 @@ class ToolVersionsListNode: BaseToolNode {
     }
 }
 
-# Node type to describe tables
 class TableNode: BaseNode {
     # It is easier to store the table as rendered lines because it will simplify finding differences in rows later
     [ValidateNotNullOrEmpty()]
@@ -318,9 +314,8 @@ class TableNode: BaseNode {
             return $false
         }
 
-        if ($this.Headers -ne $OtherNode.Headers) {
-            return $false
-        }
+        # We don't compare $this.Headers intentionally
+        # It is fine to ignore the tables where headers are changed but rows are not changed
 
         if ($this.Rows.Count -ne $OtherNode.Rows.Count) {
             return $false

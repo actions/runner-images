@@ -243,9 +243,9 @@ Describe "Nodes.UnitTests" {
 
         It "IsIdenticalTo" {
             [TableNode]::new("Name|Value", @("A|B", "C|D")).IsIdenticalTo([TableNode]::new("Name|Value", @("A|B", "C|D"))) | Should -BeTrue
+            [TableNode]::new("Name|Value", @("A|B", "C|D")).IsIdenticalTo([TableNode]::new("Name|Key", @("A|B", "C|D"))) | Should -BeTrue
             [TableNode]::new("Name|Value", @("A|B", "C|D")).IsIdenticalTo([TableNode]::new("Name|Value", @("A|B", "C|D", "F|W"))) | Should -BeFalse
             [TableNode]::new("Name|Value", @("A|B", "C|D")).IsIdenticalTo([TableNode]::new("Name|Value", @("A|B", "C|E"))) | Should -BeFalse
-            [TableNode]::new("Name|Value", @("A|B", "C|D")).IsIdenticalTo([TableNode]::new("Name|Key", @("A|B", "C|D"))) | Should -BeFalse
         }
 
         Context "FromObjectsArray" {

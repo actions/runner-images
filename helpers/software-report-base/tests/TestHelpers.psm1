@@ -1,5 +1,4 @@
-# TO-DO: Case when table headers are updated
-# TO-DO: Revisit tests
+# TO-DO: Rename `ChangedItems` to `UpdatedItems`?
 
 function ShouldBeArray([Array] $ActualValue, [Array]$ExpectedValue, [Switch] $Negate, [String] $Because) {
     if ($Negate) {
