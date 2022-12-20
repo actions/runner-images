@@ -1,5 +1,3 @@
-# TO-DO: Rename `ChangedItems` to `UpdatedItems`?
-
 function ShouldBeArray([Array] $ActualValue, [Array]$ExpectedValue, [Switch] $Negate, [String] $Because) {
     if ($Negate) {
         throw "Negation is not supported for Should-BeArray"
