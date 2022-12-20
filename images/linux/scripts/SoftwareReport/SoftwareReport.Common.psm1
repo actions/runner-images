@@ -180,7 +180,7 @@ function Get-ParcelVersion {
 function Get-PipVersion {
     $result = Get-CommandResult "pip --version"
     $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $return $Matches.version
+    return $Matches.version
 }
 
 function Get-Pip3Version {
