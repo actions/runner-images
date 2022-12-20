@@ -137,7 +137,7 @@ function Get-LernaVersion {
 function Get-HomebrewVersion {
     $result = Get-CommandResult "/home/linuxbrew/.linuxbrew/bin/brew -v"
     $result.Output -match "Homebrew (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $return $Matches.version
+    return $Matches.version
 }
 
 function Get-CpanVersion {
