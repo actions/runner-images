@@ -105,7 +105,7 @@ function Get-GitFTPVersion {
 }
 
 function Get-GoogleCloudSDKVersion {
-    return (gcloud --version | Select-Object -First 1) | Take-OutputPart 3
+    return (gcloud --version | Select-Object -First 1) | Take-OutputPart -Part 3
 }
 
 function Get-HavegedVersion {
