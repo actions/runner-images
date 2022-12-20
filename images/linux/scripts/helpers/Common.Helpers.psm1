@@ -55,7 +55,11 @@ function Test-IsUbuntu22 {
 }
 
 function Get-ToolsetContent {
-    $toolset = "/home/runner/work/runner-images/runner-images/images/linux/toolsets/toolset-2004.json"
+    $toolset = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
+    if (-not (Test-Path $toolset)) {
+        $toolset = "/home/runner/work/runner-images/runner-images/images/linux/toolsets/toolset-2004.json"
+    }
+    
     Get-Content $toolset -Raw | ConvertFrom-Json
 }
 
