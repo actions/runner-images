@@ -89,13 +89,41 @@ jobs:
     env:
       PACKER_LOG: 1
       PACKER_LOG_PATH: $(Build.ArtifactStagingDirectory)/packer-log.txt
-
+  
   - task: PowerShell@2
-    displayName: 'Output Readme file content'
+    displayName: 'Copy image artifacts to the separate directory'
     inputs:
       targetType: 'inline'
       script: |
-        Get-Content -Path (Join-Path "$(TemplateDirectoryPath)" "${{ parameters.image_readme_name }}")
+        $readmePath = Join-Path "$(TemplateDirectoryPath)" "${{ parameters.image_readme_name }}"
+        $softwareReportPath = Join-Path "$(TemplateDirectoryPath)" "software-report.json"
+
+        Copy-Item -Path $readmePath -Destination "$(Build.ArtifactStagingDirectory)/"
+        if (Test-Path $softwareReportPath) {
+            Copy-Item -Path $softwareReportPath -Destination "$(Build.ArtifactStagingDirectory)/"
+        }
+
+  - task: PowerShell@2
+    displayName: 'Print markdown software report'
+    inputs:
+      targetType: 'inline'
+      script: |
+        Get-Content -Path "$(Build.ArtifactStagingDirectory)/${{ parameters.image_readme_name }}"
+
+  - task: PowerShell@2
+    displayName: 'Print json software report'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $softwareReportPath = "$(Build.ArtifactStagingDirectory)/software-report.json"
+        if (Test-Path $softwareReportPath) {
+            Get-Content -Path $softwareReportPath
+        }
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      ArtifactName: 'Built_VM_Artifacts'
+    displayName: Publish Artifacts
 
   - task: PowerShell@2
     displayName: 'Print provisioners duration'
