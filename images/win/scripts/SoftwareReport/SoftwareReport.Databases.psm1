@@ -38,7 +38,7 @@ function Get-MongoDBMarkdown
 function Build-DatabasesMarkdown
 {
     $markdown = ""
-    $markdown += Get-PostgreSQLMarkdown
+    #$markdown += Get-PostgreSQLMarkdown
     $markdown += Get-MongoDBMarkdown
     $markdown
 }
