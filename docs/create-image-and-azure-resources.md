@@ -9,7 +9,7 @@ After successful image generation, a snapshot of the temporary VM will be conver
 ## Prerequisites and Image-generation
 ### Build Agent requirements
 - `OS` - Windows/Linux
-- `packer` - Can be downloaded from https://www.packer.io/downloads
+- `packer 1.8.2 or higher` - Can be downloaded from https://www.packer.io/downloads
 - `PowerShell 5.0 or higher` or `PSCore` for linux distributes.
 - `Azure CLI ` - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 - `Azure Az Powershell module` - https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
