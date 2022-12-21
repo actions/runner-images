@@ -239,7 +239,7 @@ $installedSdks.AddTable($(Build-XcodeSDKTable $xcodeInfo))
 $installedSimulators = $xcode.AddHeader("Installed Simulators")
 $installedSimulators.AddTable($(Build-XcodeSimulatorsTable $xcodeInfo))
 
-Write-Info "[DEBUG] Xcode simulators"
+Write-Host "[DEBUG] Xcode simulators"
 $xcodeInfo.Values | ForEach-Object {
     $xcode = $_
     Write-Host "Xcode version: $($xcode.VersionInfo.Version)"
