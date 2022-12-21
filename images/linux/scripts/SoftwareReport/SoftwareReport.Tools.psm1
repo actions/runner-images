@@ -257,7 +257,7 @@ function Get-ORASCliVersion {
 
 function Get-VerselCliversion {
     $result = Get-CommandResult "vercel --version" -Multiline
-    return $result.Output | Select-Object -First 1
+    return $result.Output | Select-Object -Skip 1 -First 1
 }
 
 function Get-PulumiVersion {

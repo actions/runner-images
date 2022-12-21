@@ -5,7 +5,6 @@ function Initialize-RustEnvironment {
 }
 
 function Get-RustVersion {
-    Initialize-RustEnvironment
     $rustVersion = $(rustc --version) | Take-OutputPart -Part 1
     return $rustVersion
 }

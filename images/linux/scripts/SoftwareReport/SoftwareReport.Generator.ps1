@@ -29,7 +29,7 @@ Restore-UserOwner
 $softwareReport = [SoftwareReport]::new("Ubuntu $(Get-OSVersionShort)")
 $softwareReport.Root.AddToolVersion("OS Version:", $(Get-OSVersionFull))
 $softwareReport.Root.AddToolVersion("Kernel Version:", $(Get-KernelVersion))
-$softwareReport.Root.AddToolVersion("Image Version:", "20221212.2") # $env:IMAGE_VERSION)
+$softwareReport.Root.AddToolVersion("Image Version:", $env:IMAGE_VERSION)
 
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
@@ -178,16 +178,17 @@ $phpTools.AddToolVersion("PHPUnit", $(Get-PHPUnitVersion))
 $phpTools.AddNote("Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.")
 
 $haskellTools = $installedSoftware.AddHeader("Haskell Tools")
+$haskellTools.AddToolVersion("Cabal", $(Get-CabalVersion))
 $haskellTools.AddToolVersion("GHC", $(Get-GHCVersion))
 $haskellTools.AddToolVersion("GHCup", $(Get-GHCupVersion))
-$haskellTools.AddToolVersion("Cabal", $(Get-CabalVersion))
 $haskellTools.AddToolVersion("Stack", $(Get-StackVersion))
 
+Initialize-RustEnvironment
 $rustTools = $installedSoftware.AddHeader("Rust Tools")
+$rustTools.AddToolVersion("Cargo", $(Get-CargoVersion))
 $rustTools.AddToolVersion("Rust", $(Get-RustVersion))
 $rustTools.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
 $rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
-$rustTools.AddToolVersion("Cargo", $(Get-CargoVersion))
 $rustToolsPackages = $rustTools.AddHeader("Packages")
 $rustToolsPackages.AddToolVersion("Bindgen", $(Get-BindgenVersion))
 $rustToolsPackages.AddToolVersion("Cargo audit", $(Get-CargoAuditVersion))
@@ -198,7 +199,7 @@ $rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 
 $browsersTools = $installedSoftware.AddHeader("Browsers and Drivers")
 $browsersTools.AddToolVersion("Google Chrome", $(Get-ChromeVersion))
-$browsersTools.AddToolVersion("GoogleDriver", $(Get-ChromeDriverVersion))
+$browsersTools.AddToolVersion("ChromeDriver", $(Get-ChromeDriverVersion))
 $browsersTools.AddToolVersion("Chromium", $(Get-ChromiumVersion))
 $browsersTools.AddToolVersion("Microsoft Edge", $(Get-EdgeVersion))
 $browsersTools.AddToolVersion("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))

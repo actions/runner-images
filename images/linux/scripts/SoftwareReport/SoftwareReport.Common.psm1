@@ -106,7 +106,7 @@ function Get-Python3Version {
 }
 
 function Get-PowershellVersion {
-    return $(pwsh --version)
+    return $(pwsh --version) | Take-OutputPart -Part 1
 }
 
 function Get-RubyVersion {
