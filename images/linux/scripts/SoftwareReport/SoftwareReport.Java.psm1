@@ -1,4 +1,4 @@
-function Get-JavaVersions {
+function Get-JavaVersionsTable {
     $javaToolcacheVersions = Get-ChildItem $env:AGENT_TOOLSDIRECTORY/Java*/* -Directory | Sort-Object { [int]$_.Name.Split(".")[0] }
 
     $existingVersions = $javaToolcacheVersions | ForEach-Object {

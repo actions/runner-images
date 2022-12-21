@@ -235,6 +235,11 @@ build {
   }
 
   provisioner "file" {
+    destination = "${var.image_folder}/SoftwareReport/"
+    source      = "${path.root}/../../helpers/software-report-base"
+  }
+
+  provisioner "file" {
     destination = "${var.installer_script_folder}/toolset.json"
     source      = "${path.root}/toolsets/toolset-2204.json"
   }
@@ -382,7 +387,13 @@ build {
   provisioner "file" {
     destination = "${path.root}/Ubuntu2204-Readme.md"
     direction   = "download"
-    source      = "${var.image_folder}/Ubuntu-Readme.md"
+    source      = "${var.image_folder}/software-report.md"
+  }
+
+  provisioner "file" {
+    destination = "${path.root}/software-report.json"
+    direction   = "download"
+    source      = "${var.image_folder}/software-report.json"
   }
 
   provisioner "shell" {
