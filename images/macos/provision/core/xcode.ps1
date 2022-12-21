@@ -17,7 +17,7 @@ $env:SPACESHIP_SKIP_2FA_UPGRADE = 1
 $os = Get-OSVersion
 [Array]$xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
-[Array]::Reverse($xcodeVersions)
+# [Array]::Reverse($xcodeVersions)
 
 Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object {

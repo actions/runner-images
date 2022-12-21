@@ -32,6 +32,7 @@ $softwareReport = [SoftwareReport]::new($osInfo)
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
 # Language and Runtime
+<#
 $languageAndRuntime = $installedSoftware.AddHeader("Language and Runtime")
 $languageAndRuntime.AddToolVersionsList(".NET Core SDK", $(Get-DotnetVersionList), '^\d+\.\d+\.\d', $true)
 $languageAndRuntime.AddToolVersion("Bash", $(Get-BashVersion))
@@ -220,7 +221,7 @@ $xamarinBundles.AddTable($(Build-XamarinTable))
 
 $unitTestFramework = $xamarin.AddHeader("Unit Test Framework")
 $unitTestFramework.AddToolVersion("NUnit", $(Get-NUnitVersion))
-
+#>
 # Xcode section
 $xcode = $installedSoftware.AddHeader("Xcode")
 # First run doesn't provide full data about devices and runtimes
@@ -238,6 +239,20 @@ $installedSdks.AddTable($(Build-XcodeSDKTable $xcodeInfo))
 $installedSimulators = $xcode.AddHeader("Installed Simulators")
 $installedSimulators.AddTable($(Build-XcodeSimulatorsTable $xcodeInfo))
 
+Write-Info "[DEBUG] Xcode simulators"
+$xcodeInfo.Values | ForEach-Object {
+    $xcode = $_
+    Write-Host "Xcode version: $($xcode.VersionInfo.Version)"
+    Write-Host "Runtimes:"
+    Write-Host $($xcode.SimulatorsInfo.runtimes.identifier | ConvertTo-Json)
+    Write-Host "Devices:"
+    $xcode.SimulatorsInfo.runtimes.identifier | ForEach-Object {
+        $devices = $xcode.SimulatorsInfo.devices.$_ | ForEach-Object { $_.name }
+        Write-Host "$($_): $($devices | ConvertTo-Json)"
+    }
+}
+
+<#
 # Android section
 $android = $installedSoftware.AddHeader("Android")
 $androidTable = Build-AndroidTable
@@ -266,6 +281,7 @@ PARALLELS_DMG_URL environment variable. A system extension is allowed for this v
     $miscellaneousEnvNotes = $miscellaneousEnv.AddHeader("Notes")
     $miscellaneousEnvNotes.AddNote($notes)
 }
+#>
 
 #
 # Generate systeminfo.txt with information about image (for debug purpose)
