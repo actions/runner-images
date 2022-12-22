@@ -1,5 +1,5 @@
 using module ./SoftwareReport.psm1
-using module ./SoftwareReport.Comparer.psm1
+using module ./SoftwareReport.DifferenceCalculator.psm1
 
 <#
 .SYNOPSIS
@@ -10,6 +10,10 @@ using module ./SoftwareReport.Comparer.psm1
     Path to the current software report.
 .PARAMETER OutputFile
     Path to the file where the difference will be saved.
+.PARAMETER ReleaseBranchName
+    Name of the release branch to build image docs URL.
+.PARAMETER ReadmePath
+    Path to the README file in repository to build image docs URL.
 #>
 
 Param (
@@ -20,7 +24,9 @@ Param (
     [Parameter(Mandatory=$true)]
     [string] $OutputFile,
     [Parameter(Mandatory=$false)]
-    [string] $ImageDocsUrl
+    [string] $ReleaseBranchName,
+    [Parameter(Mandatory=$false)]
+    [string] $ReadmePath
 )
 
 $ErrorActionPreference = "Stop"
@@ -44,12 +50,17 @@ function Read-SoftwareReport {
 $previousReport = Read-SoftwareReport -JsonReportPath $PreviousJsonReportPath
 $currentReport = Read-SoftwareReport -JsonReportPath $CurrentJsonReportPath
 
-$comparer = [SoftwareReportComparer]::new($previousReport, $currentReport)
+$comparer = [SoftwareReportDifferenceCalculator]::new($previousReport, $currentReport)
 $comparer.CompareReports()
 $diff = $comparer.GetMarkdownReport()
 
-if ($ImageDocsUrl) {
-    $diff += "`n`n`n For comprehensive list of software installed on this image please click [here]($ImageDocsUrl)."
+if ($ReleaseBranchName -and $ReadmePath) {
+    # https://github.com/actions/runner-images/blob/releases/macOS-12/20221215/images/macos/macos-12-Readme.md
+    $ImageDocsUrl = "https://github.com/actions/runner-images/blob/${ReleaseBranchName}/${ReadmePath}"
+    $diff += "`n`n`nFor comprehensive list of software installed on this image please click [here]($ImageDocsUrl)."
 }
+
+$parentDirectory = Split-Path $OutputFile -Parent
+if (-not (Test-Path $parentDirectory)) { New-Item -Path $parentDirectory -ItemType Directory | Out-Null }
 
 $diff | Out-File -Path $OutputFile -Encoding utf8NoBOM
