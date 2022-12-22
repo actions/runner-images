@@ -7,7 +7,7 @@
 # macOS 11
 - OS Version: macOS 11.7.2 (20G1020)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20221215.1
+- Image Version: 20221221.1
 
 ## Installed Software
 
@@ -41,8 +41,8 @@
 - Bundler 2.3.26
 - Carthage 0.38.0
 - CocoaPods 1.11.3
-- Composer 2.4.4
-- Homebrew 3.6.15
+- Composer 2.5.0
+- Homebrew 3.6.16
 - Miniconda 4.12.0
 - NPM 8.19.3
 - NuGet 6.3.1.1
@@ -50,7 +50,7 @@
 - Pip3 22.3.1 (python 3.11)
 - Pipx 1.1.0
 - RubyGems 3.3.26
-- Vcpkg 2022 (build from commit 4b6bce313)
+- Vcpkg 2022 (build from commit e9d35a26f)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -69,10 +69,10 @@
 - 7-Zip 17.04
 - aria2 1.36.0
 - azcopy 10.16.2
-- bazel 5.4.0
+- bazel 6.0.0
 - bazelisk 1.15.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.86.0
+- Curl 7.87.0
 - Git 2.39.0
 - Git LFS 3.3.0
 - GitHub CLI 2.20.2
@@ -81,10 +81,10 @@
 - gpg (GnuPG) 2.3.8
 - helm v3.10.3+g835b733
 - Hub CLI 2.14.2
-- ImageMagick 7.1.0-54
+- ImageMagick 7.1.0-55
 - jq 1.6
-- mongo v5.0.11
-- mongod v5.0.11
+- mongo v5.0.14
+- mongod v5.0.14
 - Newman 5.3.2
 - OpenSSL 1.1.1s  1 Nov 2022
 - Packer 1.8.5
@@ -93,14 +93,14 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- yq 4.30.5
+- yq 4.30.6
 - zstd 1.5.2
 
 ### Tools
-- Aliyun CLI 3.0.140
+- Aliyun CLI 3.0.141
 - App Center CLI 2.12.0
-- AWS CLI 2.9.7
-- AWS SAM CLI 1.66.0
+- AWS CLI 2.9.9
+- AWS SAM CLI 1.67.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.43.0
 - Azure CLI (azure-devops) 0.25.0
@@ -108,7 +108,7 @@
 - Cabal 3.6.2.0
 - Cmake 3.25.1
 - CodeQL Action Bundle 2.11.6
-- Colima 0.5.0
+- Colima 0.5.1
 - Fastlane 2.211.0
 - GHC 9.4.3
 - GHCup 0.1.18.0
@@ -127,9 +127,9 @@
 - SafariDriver 16.2 (16614.3.7.1.7)
 - Google Chrome 108.0.5359.124
 - ChromeDriver 108.0.5359.71
-- Microsoft Edge 108.0.1462.46
-- Microsoft Edge WebDriver 108.0.1462.46
-- Mozilla Firefox 108.0
+- Microsoft Edge 108.0.1462.54
+- Microsoft Edge WebDriver 108.0.1462.54
+- Mozilla Firefox 108.0.1
 - geckodriver 0.32.0
 - Selenium server 4.5.0
 
