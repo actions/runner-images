@@ -60,4 +60,7 @@ if ($ReleaseBranch -and $ReadmePath) {
     $diff += "`n`n`nFor comprehensive list of software installed on this image please click [here]($ImageDocsUrl)."
 }
 
+$parentDirectory = Split-Path $OutputFile -Parent
+if (-not (Test-Path $parentDirectory)) { New-Item -Path $parentDirectory -ItemType Directory | Out-Null }
+
 $diff | Out-File -Path $OutputFile -Encoding utf8NoBOM
