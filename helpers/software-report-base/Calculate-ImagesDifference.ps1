@@ -54,10 +54,13 @@ $comparer = [SoftwareReportDifferenceCalculator]::new($previousReport, $currentR
 $comparer.CompareReports()
 $diff = $comparer.GetMarkdownReport()
 
-if ($ReleaseBranch -and $ReadmePath) {
+if ($ReleaseBranchName -and $ReadmePath) {
     # https://github.com/actions/runner-images/blob/releases/macOS-12/20221215/images/macos/macos-12-Readme.md
     $ImageDocsUrl = "https://github.com/actions/runner-images/blob/${ReleaseBranchName}/${ReadmePath}"
     $diff += "`n`n`nFor comprehensive list of software installed on this image please click [here]($ImageDocsUrl)."
 }
+
+$parentDirectory = Split-Path $OutputFile -Parent
+if (-not (Test-Path $parentDirectory)) { New-Item -Path $parentDirectory -ItemType Directory | Out-Null }
 
 $diff | Out-File -Path $OutputFile -Encoding utf8NoBOM
