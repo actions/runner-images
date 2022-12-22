@@ -208,7 +208,7 @@ $browsersTools.AddToolVersion("Mozilla Firefox", $(Get-FirefoxVersion))
 $browsersTools.AddToolVersion("Geckodriver", $(Get-GeckodriverVersion))
 $browsersTools.AddHeader("Environment variables").AddTable($(Build-BrowserWebdriversEnvironmentTable))
 
-$netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
+$netCoreTools = $installedSoftware.AddHeader(".NET Tools")
 $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotNetCoreSdkVersions), "^\d+\.\d+\.\d")
 $netCoreTools.AddNodes($(Get-DotnetTools))
 
