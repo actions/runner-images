@@ -385,12 +385,12 @@ function Get-HelmVersion {
 
 function Get-MongoVersion {
     $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
-    return $mongo
+    return $mongo.TrimStart("v").Trim()
 }
 
 function Get-MongodVersion {
     $mongod = Run-Command "mongod --version" | Select-String "db version " | Take-Part -Part 2
-    return $mongod
+    return $mongod.TrimStart("v").Trim()
 }
 
 function Get-7zipVersion {
