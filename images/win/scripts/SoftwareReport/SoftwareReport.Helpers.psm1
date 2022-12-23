@@ -1,31 +1,3 @@
-function Build-MarkdownElement
-{
-    <#
-    .SYNOPSIS
-    Build markdown element for cached tool.
-
-    .DESCRIPTION
-    Build markdown element that contains name of tool, set of versions and additional notes.
-
-    .PARAMETER Head
-    Header of cached tool markdown element
-
-    .PARAMETER Content
-    Array of lines that contains required information about installed tool instances.
-    #>
-
-    param
-    (
-        [String] $Head,
-        [Object[]] $Content
-    )
-
-    $markdown = New-MDHeader $Head -Level 4
-    $markdown += New-MDParagraph -Lines $Content -NoNewLine
-
-    return $markdown
-}
-
 function Get-CachedToolInstances
 {
     <#
@@ -88,14 +60,6 @@ function Get-CachedToolInstances
     return $toolInstances
 }
 
-function New-MDNewLine {
-    param (
-        [int] $Count = 1
-    )
-    $newLineSymbol = [System.Environment]::NewLine
-    return $newLineSymbol * $Count
-}
-
 function Get-LinkTarget {
     param (
         [string] $inputPath
@@ -113,53 +77,6 @@ function Get-PathWithLink {
     )
     $link = Get-LinkTarget($inputPath)
     return "${inputPath}${link}"
-}
-
-function Test-BlankElement {
-    param(
-        [string] $Markdown
-    )
-
-    $splitByLines = $Markdown.Split("`n")
-    # Validate entry without version
-    $blankVersions = $splitByLines -match "^-" -notmatch "(OS|Image) Version|WSL|Vcpkg|Docker|\d\." | Out-String
-
-    # Validate tables with blank rows
-    $blankRows = ""
-    for($i = 0; $i -lt $splitByLines.Length; $i++) {
-        $addRows= $false
-        $table = @()
-        if ($splitByLines[$i].StartsWith("#") -and $splitByLines[$i+1].StartsWith("|")) {
-            $table += $splitByLines[$i,($i+1),($i+2)]
-            $i += 3
-            $current = $splitByLines[$i]
-            while ($current.StartsWith("|")) {
-                $isBlankRow = $current.Substring(1, $current.LastIndexOf("|") - 2).Split("|").Trim() -contains ""
-                if ($isBlankRow) {
-                    $table += $current
-                    $addRows = $true
-                }
-                $current = $splitByLines[++$i]
-            }
-            if ($addRows) {
-                $blankRows += $table | Out-String
-            }
-        }
-    }
-
-    # Display report
-    $isReport = $false
-    if ($blankVersions) {
-        Write-Host "Software list with blank version:`n${blankVersions}"
-        $isReport = $true
-    }
-    if ($blankRows) {
-        Write-Host "Tables with blank rows:`n${blankRows}"
-        $isReport = $true
-    }
-    if ($isReport) {
-        exit 1
-    }
 }
 
 function Take-Part {

@@ -84,6 +84,11 @@
         },
         {
             "type": "file",
+            "source": "{{ template_dir }}/../../helpers/software-report-base",
+            "destination": "{{user `image_folder`}}/SoftwareReport/"
+        },
+        {
+            "type": "file",
             "source": "{{ template_dir }}/post-generation",
             "destination": "C:/"
         },
@@ -304,8 +309,14 @@
         },
         {
             "type": "file",
-            "source": "C:\\InstalledSoftware.md",
+            "source": "C:\\software-report.md",
             "destination": "{{ template_dir }}/Windows2019-Readme.md",
+            "direction": "download"
+        },
+        {
+            "type": "file",
+            "source": "C:\\software-report.json",
+            "destination": "{{ template_dir }}/software-report.json",
             "direction": "download"
         },
         {

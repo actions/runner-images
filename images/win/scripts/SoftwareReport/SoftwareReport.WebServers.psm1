@@ -18,7 +18,7 @@ function Get-NginxVersion {
     return $Matches.Version
 }
 
-function Get-ApacheMarkdown
+function Get-ApacheSection
 {
     $name = "Apache"
     $apachePort = "80"
@@ -35,7 +35,7 @@ function Get-ApacheMarkdown
     }
 }
 
-function Get-NginxMarkdown
+function Get-NginxSection
 {
     $name = "Nginx"
     $nginxPort = "80"
@@ -53,13 +53,8 @@ function Get-NginxMarkdown
 }
 
 function Build-WebServersSection {
-    $output = ""
-    $output += New-MDHeader "Web Servers" -Level 3
-    $output += @(
-    (Get-ApacheMarkdown),
-    (Get-NginxMarkdown)
-    ) | Sort-Object Name | New-MDTable
-
-    $output += New-MDNewLine
-    return $output
+    return @(
+        (Get-ApacheSection),
+        (Get-NginxSection)
+    )
 }

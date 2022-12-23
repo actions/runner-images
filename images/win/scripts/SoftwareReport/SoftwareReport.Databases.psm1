@@ -1,6 +1,7 @@
-function Get-PostgreSQLMarkdown
+function Get-PostgreSQLSection
 {
     $name = "PostgreSQL"
+    $headerNode = [HeaderNode]::new($name)
     $pgService = Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'"
     $pgPath = $pgService.PathName
     $pgRoot = $pgPath.split('"')[1].replace("\bin\pg_ctl.exe", "")
@@ -16,14 +17,17 @@ function Get-PostgreSQLMarkdown
         [PSCustomObject]@{ Property = "Path"; Value = $pgRoot },
         [PSCustomObject]@{ Property = "UserName"; Value = $env:PGUSER },
         [PSCustomObject]@{ Property = "Password"; Value = $env:PGPASSWORD }
-    ) | New-MDTable
+    )
 
-    Build-MarkdownElement -Head $name -Content $content
+    $headerNode.AddTable($content)
+
+    return $headerNode
 }
 
-function Get-MongoDBMarkdown
+function Get-MongoDBSection
 {
     $name = "MongoDB"
+    $headerNode = [HeaderNode]::new($name)
     $mongoService = Get-Service -Name $name
     $mongoVersion = (Get-Command -Name 'mongo').Version.ToString()
     $content = [PSCustomObject]@{
@@ -31,14 +35,16 @@ function Get-MongoDBMarkdown
         ServiceName = $name
         ServiceStatus = $mongoService.Status
         ServiceStartType = $mongoService.StartType
-    } | New-MDTable
-    Build-MarkdownElement -Head $name -Content $content
+    }
+
+    $headerNode.AddTable($content)
+
+    return $headerNode
 }
 
-function Build-DatabasesMarkdown
-{
-    $markdown = ""
-    $markdown += Get-PostgreSQLMarkdown
-    $markdown += Get-MongoDBMarkdown
-    $markdown
+function Build-DatabasesSection {
+    return @(
+        ($(Get-PostgreSQLSection)),
+        ($(Get-MongoDBSection))
+    )
 }
