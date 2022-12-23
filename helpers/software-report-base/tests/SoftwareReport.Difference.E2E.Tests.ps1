@@ -522,4 +522,37 @@ Describe "Comparer.E2E" {
 
 '@
     }
+
+    It "Reports are identical" {
+        # Previous report
+        $prevSoftwareReport = [SoftwareReport]::new("macOS 11")
+        $prevSoftwareReport.Root.AddToolVersion("OS Version:", "macOS 11.7.1 (20G817)")
+        $prevSoftwareReport.Root.AddToolVersion("Image Version:", "20220918.1")
+        $prevInstalledSoftware = $prevSoftwareReport.Root.AddHeader("Installed Software")
+        $prevTools = $prevInstalledSoftware.AddHeader("Tools")
+        $prevTools.AddToolVersion("ToolA", "1.0.0")
+        $prevTools.AddToolVersion("ToolB", "3.0.1")
+
+        # Next report
+        $nextSoftwareReport = [SoftwareReport]::new("macOS 11")
+        $nextSoftwareReport.Root.AddToolVersion("OS Version:", "macOS 11.7.1 (20G817)")
+        $nextSoftwareReport.Root.AddToolVersion("Image Version:", "20220922.1")
+        $nextInstalledSoftware = $nextSoftwareReport.Root.AddHeader("Installed Software")
+        $nextTools = $nextInstalledSoftware.AddHeader("Tools")
+        $nextTools.AddToolVersion("ToolA", "1.0.0")
+        $nextTools.AddToolVersion("ToolB", "3.0.1")
+
+        # Compare reports
+        $comparer = [SoftwareReportDifferenceCalculator]::new($prevSoftwareReport, $nextSoftwareReport)
+        $comparer.CompareReports()
+        $comparer.GetMarkdownReport() | Should -BeExactly @'
+# :desktop_computer: Actions Runner Image: macOS 11
+- OS Version: macOS 11.7.1 (20G817)
+- Image Version: 20220922.1
+
+## :mega: What's changed?
+
+
+'@
+    }
 }
