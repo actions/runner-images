@@ -285,6 +285,6 @@ function Get-ZstdVersion {
 }
 
 function Get-YqVersion {
-    $yqVersion = ($(yq -V) -Split " ")[-1]
-    return $yqVersion
+    $yqVersion = $(yq -V) | Take-OutputPart -Part 3
+    return $yqVersion.TrimStart("v").Trim()
 }
