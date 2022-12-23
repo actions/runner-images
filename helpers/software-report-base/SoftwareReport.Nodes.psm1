@@ -44,9 +44,21 @@ class HeaderNode: BaseNode {
             throw "This HeaderNode already contains the similar child node. It is not allowed to add the same node twice.`nFound node: $($similarNode.ToJsonObject() | ConvertTo-Json)`nNew node: $($node.ToJsonObject() | ConvertTo-Json)"
         }
 
-        [Array] $existingHeaderNodes = $this.Children | Where-Object { $_ -is [HeaderNode] }
-        if (($existingHeaderNodes.Count -gt 0) -and ($node -isnot [HeaderNode])) {
-            throw "It is not allowed to add the node of type '$($node.GetType().Name)' to the HeaderNode that already contains the HeaderNode children."
+        if (-not $this.IsNodeHasMarkdownHeader($node)) {
+            # If the node doesn't print own header to markdown, we should check that there is no other nodes that print header to markdown before it.
+            # It is done to avoid unexpected situation like this:
+            #
+            # HeaderNode A                 -> # A
+            #   HeaderNode B               -> ## B
+            #   ToolVersionNode C          -> - C
+            # ToolVersionNode D            -> - D
+            # 
+            # In this example, we add 'HeaderNode B" to 'HeaderNode A' and add 'ToolVersionNode C' to 'HeaderNode B'.
+            # Then we add 'ToolVersionNode D' to 'HeaderNode A'.
+            # But the result markdown will look like 'ToolVersionNode D' belongs to 'HeaderNode B' instead of 'HeaderNode A'.
+            $this.Children | Where-Object { $this.IsNodeHasMarkdownHeader($_) } | ForEach-Object {
+                throw "It is not allowed to add the non-header node after the header node. Consider adding the separate HeaderNode for this node"
+            }
         }
 
         $this.Children.Add($node)
@@ -129,6 +141,18 @@ class HeaderNode: BaseNode {
         }
 
         return $null
+    }
+
+    hidden [Boolean] IsNodeHasMarkdownHeader([BaseNode] $node) {
+        if ($node -is [HeaderNode]) {
+            return $true
+        }
+
+        if (($node -is [ToolVersionsListNode]) -and ($node.ListType -eq "List")) {
+            return $true
+        }
+
+        return $false
     }
 }
 
