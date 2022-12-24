@@ -42,6 +42,7 @@ $xcodeVersions | ForEach-Object {
     }
 }
 
+<#
 $xcodeVersions | ForEach-Object {
     if ($_.link.StartsWith("14.")) {
         Write-Host "Installing Simulator Runtimes..."
@@ -51,6 +52,7 @@ $xcodeVersions | ForEach-Object {
         Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
     }
 }
+#>
 
 Write-Host "Rebuilding Launch Services database ..."
 $xcodeVersions | ForEach-Object {
