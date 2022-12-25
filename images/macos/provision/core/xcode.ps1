@@ -42,7 +42,7 @@ $xcodeVersions | ForEach-Object {
     }
 }
 
-@("14.2", "14.1") | ForEach-Object {
+@("14.2", "14.1", "14.0.1") | ForEach-Object {
     Write-Host "Installing Simulator Runtimes for Xcode $($_) ..."
 
     # tvOS and watchOS simulators are not included by default
