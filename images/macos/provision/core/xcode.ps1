@@ -25,6 +25,9 @@ $xcodeVersions | ForEach-Object {
     Confirm-XcodeIntegrity -Version $_.link
     Approve-XcodeLicense -Version $_.link
 
+    Write-Host "Configuring Xcode $($_.link) ..."
+    Invoke-XcodeRunFirstLaunch -Version $_.link
+
     if ($_.link -in @("14.2", "14.1", "14.0.1")) {
         Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
 
@@ -35,9 +38,9 @@ $xcodeVersions | ForEach-Object {
 }
 
 Write-Host "Configuring Xcode versions..."
-$xcodeVersions | ForEach-Object {
-    Invoke-XcodeRunFirstLaunch -Version $_.link
-}
+#$xcodeVersions | ForEach-Object {
+#    Invoke-XcodeRunFirstLaunch -Version $_.link
+#}
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
 Write-Host "Configuring Xcode symlinks..."
