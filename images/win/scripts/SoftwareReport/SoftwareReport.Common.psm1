@@ -16,7 +16,7 @@ function Get-OSVersion {
 
 function Build-OSInfoSection {
     $osInfoNode = [HeaderNode]::new($(Get-OSName))
-    $osInfoNode.AddToolVersion("OS Version:", ($(Get-OSVersion)))
+    $osInfoNode.AddToolVersion("OS Version:", $(Get-OSVersion))
     $osInfoNode.AddToolVersion("Image Version:", $env:IMAGE_VERSION)
     return $osInfoNode
 }
@@ -131,7 +131,7 @@ function Get-ChocoVersion {
 
 function Get-VcpkgVersion {
     $commitId = git -C "C:\vcpkg" rev-parse --short HEAD
-    return "(build from commit <$commitId>)"
+    return "(build from commit $commitId)"
 }
 
 function Get-NPMVersion {
@@ -196,7 +196,7 @@ function Get-SbtVersion {
 
 function Get-DotnetSdks {
     $sdksRawList = dotnet --list-sdks
-    $sdkVersions = ($sdksRawList | Foreach-Object {$_.Split()[0]}) -join ' '
+    $sdkVersions = $sdksRawList | Foreach-Object {$_.Split()[0]}
     $sdkPath = $sdksRawList[0].Split(' ', 2)[1] -replace '\[|]'
     [PSCustomObject]@{
         Versions = $sdkVersions
@@ -211,7 +211,8 @@ function Get-DotnetTools {
     $toolsList = @()
 
     foreach  ($dotnetTool in $dotnetTools) {
-        $toolsList += [ToolVersionNode]::new($dotnetTool.name, (Invoke-Expression $dotnetTool.getversion))
+        $version = Invoke-Expression $dotnetTool.getversion
+        $toolsList += [ToolVersionNode]::new($dotnetTool.name, $version)
     }
     return $toolsList
 }
@@ -220,7 +221,7 @@ function Get-DotnetRuntimes {
     $runtimesRawList = dotnet --list-runtimes
     $runtimesRawList | Group-Object {$_.Split()[0]} | ForEach-Object {
         $runtimeName = $_.Name
-        $runtimeVersions = ($_.Group | Foreach-Object {$_.split()[1]}) -join ' '
+        $runtimeVersions = $_.Group | Foreach-Object {$_.split()[1]}
         $runtimePath = $_.Group[0].Split(' ', 3)[2] -replace '\[|]'
         [PSCustomObject]@{
             "Runtime" = $runtimeName
@@ -232,8 +233,7 @@ function Get-DotnetRuntimes {
 
 function Get-DotnetFrameworkVersions {
     $path = "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\*\*\NETFX * Tools"
-    $versions = Get-ChildItem -Path $path -Directory | ForEach-Object { $_.Name | Take-Part -Part 1 }
-    $versions -join ', '
+    return Get-ChildItem -Path $path -Directory | ForEach-Object { $_.Name | Take-Part -Part 1 }
 }
 
 function Get-PowerShellAzureModules {
@@ -242,32 +242,32 @@ function Get-PowerShellAzureModules {
 
     [Array] $azInstalledModules = Get-ChildItem -Path "C:\Modules\az_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azInstalledModules.Count -gt 0) {
-        $result += [ToolVersionsListNode]::new("Az", $($azInstalledModules), '^\d+', "Inline")
+        $result += [ToolVersionsListNode]::new("Az", $($azInstalledModules), '^\d+\.\d+', "Inline")
     }
 
     [Array] $azureInstalledModules = Get-ChildItem -Path "C:\Modules\azure_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { if ($_ -eq $defaultAzureModuleVersion) { "$($_) (Default)" } else { $_ } }
     if ($azureInstalledModules.Count -gt 0) {
-        $result += [ToolVersionsListNode]::new("Azure", $($azureInstalledModules), '^\d+', "Inline")
+        $result += [ToolVersionsListNode]::new("Azure", $($azureInstalledModules), '^\d+\.\d+', "Inline")
     }
 
     [Array] $azurermInstalledModules = Get-ChildItem -Path "C:\Modules\azurerm_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { if ($_ -eq $defaultAzureModuleVersion) { "$($_) (Default)" } else { $_ } }
     if ($azurermInstalledModules.Count -gt 0) {
-        $result += [ToolVersionsListNode]::new("AzureRM", $($azurermInstalledModules), '^\d+', "Inline")
+        $result += [ToolVersionsListNode]::new("AzureRM", $($azurermInstalledModules), '^\d+\.\d+', "Inline")
     }
 
     [Array] $azCachedModules = Get-ChildItem -Path "C:\Modules\az_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azCachedModules.Count -gt 0) {
-        $result += [ToolVersionsListNode]::new("Az (Cached)", $($azCachedModules), '^\d+', "Inline")
+        $result += [ToolVersionsListNode]::new("Az (Cached)", $($azCachedModules), '^\d+\.\d+', "Inline")
     }
 
     [Array] $azureCachedModules = Get-ChildItem -Path "C:\Modules\azure_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azureCachedModules.Count -gt 0) {
-        $result += [ToolVersionsListNode]::new("Azure (Cached)", $($azureCachedModules), '^\d+', "Inline")
+        $result += [ToolVersionsListNode]::new("Azure (Cached)", $($azureCachedModules), '^\d+\.\d+', "Inline")
     }
 
     [Array] $azurermCachedModules = Get-ChildItem -Path "C:\Modules\azurerm_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azurermCachedModules.Count -gt 0) {
-        $result += [ToolVersionsListNode]::new("AzureRM (Cached)", $($azurermCachedModules), '^\d+', "Inline")
+        $result += [ToolVersionsListNode]::new("AzureRM (Cached)", $($azurermCachedModules), '^\d+\.\d+', "Inline")
     }
 
     return $result
@@ -281,7 +281,7 @@ function Get-PowerShellModules {
     $result += (Get-ToolsetContent).powershellModules.name | Sort-Object | ForEach-Object {
         $moduleName = $_
         $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
-        return [ToolVersionsListNode]::new($($moduleName), $($moduleVersions), '^.+', "Inline")
+        return [ToolVersionsListNode]::new($($moduleName), $($moduleVersions), '^\d+', "Inline")
     }
 
     return $result
@@ -332,7 +332,7 @@ function Get-YAMLLintVersion {
 
 function Get-BizTalkVersion {
     $bizTalkReg = Get-ItemProperty "HKLM:\SOFTWARE\WOW6432Node\Microsoft\BizTalk Server\3.0"
-    return [ToolVersionNode]::new($($bizTalkReg.ProductName), $($bizTalkReg.ProductVersion))
+    return [ToolVersionNode]::new(($bizTalkReg.ProductName), ($bizTalkReg.ProductVersion))
 }
 
 function Get-PipxVersion {
@@ -343,27 +343,17 @@ function Get-PipxVersion {
 function Build-PackageManagementEnvironmentTable {
     $node = [HeaderNode]::new("Environment variables")
     $envVariables = @(
-        @{
+        [PSCustomObject] @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
+        },
+        [PSCustomObject] @{
+            "Name" = "CONDA"
+            "Value" = $env:CONDA
         }
     )
-    if (Test-IsWin19) {
-        $envVariables += @(
-            @{
-                "Name" = "CONDA"
-                "Value" = $env:CONDA
-            }
-        )
-    }
-    $table = $envVariables | ForEach-Object {
-        [PSCustomObject] @{
-            "Name" = $_.Name
-            "Value" = $_.Value
-        }
-    }
 
-    $node.AddTable($table)
+    $node.AddTable($envVariables)
 
     return $node
 }

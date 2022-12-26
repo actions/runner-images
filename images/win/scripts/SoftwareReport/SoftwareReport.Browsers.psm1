@@ -34,14 +34,14 @@ $webDrivers = @{
 
 function Build-BrowserSection {
     return @(
-        ($(Get-BrowserVersion -Browser "chrome")),
-        ($(Get-SeleniumWebDriverVersion -Driver "chrome")),
-        ($(Get-BrowserVersion -Browser "edge")),
-        ($(Get-SeleniumWebDriverVersion -Driver "edge")),
-        ($(Get-BrowserVersion -Browser "firefox")),
-        ($(Get-SeleniumWebDriverVersion -Driver "firefox")),
-        ($(Get-SeleniumWebDriverVersion -Driver "iexplorer")),
-        ($(Get-SeleniumVersion))
+        $(Get-BrowserVersion -Browser "chrome"),
+        $(Get-SeleniumWebDriverVersion -Driver "chrome"),
+        $(Get-BrowserVersion -Browser "edge"),
+        $(Get-SeleniumWebDriverVersion -Driver "edge"),
+        $(Get-BrowserVersion -Browser "firefox"),
+        $(Get-SeleniumWebDriverVersion -Driver "firefox"),
+        $(Get-SeleniumWebDriverVersion -Driver "iexplorer"),
+        $(Get-SeleniumVersion)
     )
 }
 

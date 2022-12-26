@@ -17,11 +17,9 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Java.psm1") -DisableNameC
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -DisableNameChecking
 
-$osInfo = Build-OSInfoSection
-
 # Software report
-$softwareReport = [SoftwareReport]::new($osInfo)
-$optionalFeatures = $softwareReport.Root.AddHeader("Enabled windows optional features")
+$softwareReport = [SoftwareReport]::new($(Build-OSInfoSection))
+$optionalFeatures = $softwareReport.Root.AddHeader("Windows features")
 $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (WSLv1):", "Enabled")
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
@@ -96,7 +94,7 @@ $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 if (Test-IsWin19) {
     $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
 }
-$tools.AddToolVersion("Pulimi", $(Get-PulumiVersion))
+$tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
 $tools.AddToolVersion("R", $(Get-RVersion))
 $tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
 $tools.AddToolVersion("Stack", $(Get-StackVersion))
@@ -137,18 +135,16 @@ $rustToolsPackages.AddToolVersion("cbindgen", $(Get-CbindgenVersion))
 $rustToolsPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
 $rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 
-# Browsers and webdrivers
-$browsersAndWebdrivers = $installedSoftware.AddHeader("Browsers and webdrivers")
+# Browsers and Drivers
+$browsersAndWebdrivers = $installedSoftware.AddHeader("Browsers and Drivers")
 $browsersAndWebdrivers.AddNodes($(Build-BrowserSection))
 $browsersAndWebdrivers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
 
 # Java
-$java = $installedSoftware.AddHeader("Java")
-$java.AddTable($(Get-JavaVersions))
+$installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersions))
 
 # Shells
-$java = $installedSoftware.AddHeader("Shells")
-$java.AddTable($(Get-ShellTarget))
+$installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
 
 # MSYS2
 $msys2 = $installedSoftware.AddHeader("MSYS2")
@@ -159,41 +155,37 @@ Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
 '@
-$msys2Notes = $msys2.AddHeader("Notes")
-$msys2Notes.AddNote($notes)
+$msys2.AddHeader("Notes").AddNote($notes)
 
 # BizTalk Server
 if (Test-IsWin19)
 {
-    $bizTalkServer = $installedSoftware.AddHeader("BizTalk Server")
-    $bizTalkServer.AddNode($(Get-BizTalkVersion))
+    $installedSoftware.AddHeader("BizTalk Server").AddNode($(Get-BizTalkVersion))
 }
 
 # Cached Tools
-$cachedTools = $installedSoftware.AddHeader("Cached Tools")
-$cachedTools.AddNodes($(Build-CachedToolsSection))
+$installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection))
 
 # Databases
 $databases = $installedSoftware.AddHeader("Databases")
-$databases.AddNodes($(Build-DatabasesSection))
+$databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))
+$databases.AddHeader("MongoDB").AddTable($(Get-MongoDBTable))
 
 # Database tools
 $databaseTools = $installedSoftware.AddHeader("Database tools")
 $databaseTools.AddToolVersion("Azure CosmosDb Emulator", $(Get-AzCosmosDBEmulatorVersion))
+$databaseTools.AddToolVersion("DacFx", $(Get-DacFxVersion))
 $databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
 $databaseTools.AddToolVersion("SQL OLEDB Driver", $(Get-SQLOLEDBDriverVersion))
 $databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
 
 # Web Servers
-$webServers = $installedSoftware.AddHeader("Web Servers")
-$webServers.AddTable($(Build-WebServersSection))
+$installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersSection))
 
 # Visual Studio
 $vsTable = Get-VisualStudioVersion
 $visualStudio = $installedSoftware.AddHeader($vsTable.Name)
 $visualStudio.AddTable($vsTable)
-
-$visualStudio.AddToolVersionsList("Installed Windows SDKs", $(Get-WindowsSDKs).Versions, '^.+')
 
 $workloads = $visualStudio.AddHeader("Workloads, components and extensions")
 $workloads.AddTable((Get-VisualStudioComponents) + (Get-VisualStudioExtensions))
@@ -201,7 +193,7 @@ $workloads.AddTable((Get-VisualStudioComponents) + (Get-VisualStudioExtensions))
 $msVisualCpp = $visualStudio.AddHeader("Microsoft Visual C++")
 $msVisualCpp.AddTable($(Get-VisualCPPComponents))
 
-# $visualStudio.AddToolVersionsList("Installed Windows SDKs", $(Get-WindowsSDKs).Versions, '^.+')
+$visualStudio.AddToolVersionsList("Installed Windows SDKs", $(Get-WindowsSDKs).Versions, '^.+')
 
 # .NET Core Tools
 $netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
@@ -216,7 +208,7 @@ $netCoreTools.AddNodes($(Get-DotnetTools))
 $psTools = $installedSoftware.AddHeader("PowerShell Tools")
 $psTools.AddToolVersion("PowerShell", $(Get-PowershellCoreVersion))
 
-$psModules = $psTools.AddHeader("Poweshell Modules")
+$psModules = $psTools.AddHeader("Powershell Modules")
 $psModules.AddNodes($(Get-PowerShellModules))
 
 $azPsNotes = @'
@@ -230,13 +222,11 @@ $psModules.AddNote($azPsNotes)
 $android = $installedSoftware.AddHeader("Android")
 $android.AddTable($(Build-AndroidTable))
 
-$androidEnv = $installedSoftware.AddHeader("Environment variables")
-$androidEnv.AddTable($(Build-AndroidEnvironmentTable))
+$android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
 
 # Cached Docker images
-$docker = $android.AddHeader("Cached Docker images")
-$docker.AddTable($(Get-CachedDockerImagesTableData))
+$installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
 
 # Generate reports
-$softwareReport.ToJson() | Out-File -FilePath "C:\software-report.json" -Encoding UTF8NoBOM
-$softwareReport.ToMarkdown() | Out-File -FilePath "C:\software-report.md" -Encoding UTF8NoBOM
+$softwareReport.ToJson() | Out-File -FilePath "C:\software-report3.json" -Encoding UTF8NoBOM
+$softwareReport.ToMarkdown() | Out-File -FilePath "C:\software-report3.md" -Encoding UTF8NoBOM

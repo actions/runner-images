@@ -1,14 +1,12 @@
-function Get-PostgreSQLSection
+function Get-PostgreSQLTable
 {
-    $name = "PostgreSQL"
-    $headerNode = [HeaderNode]::new($name)
     $pgService = Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'"
     $pgPath = $pgService.PathName
     $pgRoot = $pgPath.split('"')[1].replace("\bin\pg_ctl.exe", "")
     $env:Path += ";${env:PGBIN}"
     $pgVersion = (postgres --version).split()[2].Trim()
 
-    $content = @(
+    return @(
         [PSCustomObject]@{ Property = "ServiceName"; Value = $pgService.Name },
         [PSCustomObject]@{ Property = "Version"; Value = $pgVersion },
         [PSCustomObject]@{ Property = "ServiceStatus"; Value = $pgService.State },
@@ -18,33 +16,17 @@ function Get-PostgreSQLSection
         [PSCustomObject]@{ Property = "UserName"; Value = $env:PGUSER },
         [PSCustomObject]@{ Property = "Password"; Value = $env:PGPASSWORD }
     )
-
-    $headerNode.AddTable($content)
-
-    return $headerNode
 }
 
-function Get-MongoDBSection
+function Get-MongoDBTable
 {
     $name = "MongoDB"
-    $headerNode = [HeaderNode]::new($name)
     $mongoService = Get-Service -Name $name
     $mongoVersion = (Get-Command -Name 'mongo').Version.ToString()
-    $content = [PSCustomObject]@{
+    return [PSCustomObject]@{
         Version = $mongoVersion
         ServiceName = $name
         ServiceStatus = $mongoService.Status
         ServiceStartType = $mongoService.StartType
     }
-
-    $headerNode.AddTable($content)
-
-    return $headerNode
-}
-
-function Build-DatabasesSection {
-    return @(
-        ($(Get-PostgreSQLSection)),
-        ($(Get-MongoDBSection))
-    )
 }
