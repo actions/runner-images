@@ -24,6 +24,14 @@ $xcodeVersions | ForEach-Object {
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
     Confirm-XcodeIntegrity -Version $_.link
     Approve-XcodeLicense -Version $_.link
+
+    if ($_.link -in @("14.2", "14.1", "14.0.1")) {
+        Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
+
+        # tvOS and watchOS simulators are not included by default
+        $xcodebuildPath = Get-XcodeToolPath -Version $_.link -ToolName "xcodebuild"
+        Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+    }
 }
 
 Write-Host "Configuring Xcode versions..."
@@ -42,6 +50,7 @@ $xcodeVersions | ForEach-Object {
     }
 }
 
+<#
 @("14.2", "14.1", "14.0.1") | ForEach-Object {
     Write-Host "Installing Simulator Runtimes for Xcode $($_) ..."
 
@@ -49,6 +58,8 @@ $xcodeVersions | ForEach-Object {
     $xcodebuildPath = Get-XcodeToolPath -Version $_ -ToolName "xcodebuild"
     Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
 }
+
+#>
 
 Write-Host "Rebuilding Launch Services database ..."
 $xcodeVersions | ForEach-Object {
