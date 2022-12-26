@@ -184,26 +184,24 @@ Describe "Nodes.UnitTests" {
     }
 
     Context "TableNode" {
-        Context "ToMarkdown" {
-            It "Simple table" {
-                $node = [TableNode]::new("Name|Value", @("A|B", "C|D"))
-                $node.ToMarkdown() | Should -Be @'
+        It "ToMarkdown (Simple table)" {
+            $node = [TableNode]::new("Name|Value", @("A|B", "C|D"))
+            $node.ToMarkdown() | Should -Be @'
 | Name | Value |
 | ---- | ----- |
 | A    | B     |
 | C    | D     |
 '@
-            }
+        }
 
-            It "Wide cells" {
-                $node = [TableNode]::new("Name|Value", @("Very long value here|B", "C|And very long value here too"))
-                $node.ToMarkdown() | Should -Be @'
+        It "ToMarkdown (Wide cells)" {
+            $node = [TableNode]::new("Name|Value", @("Very long value here|B", "C|And very long value here too"))
+            $node.ToMarkdown() | Should -Be @'
 | Name                 | Value                        |
 | -------------------- | ---------------------------- |
 | Very long value here | B                            |
 | C                    | And very long value here too |
 '@
-            }
         }
 
         It "CalculateColumnsWidth" {
@@ -453,7 +451,7 @@ Good Bye world
 
             It "Similar ToolVersionsListNode on the same header" {
                 $node = [HeaderNode]::new("MyHeader")
-                $node.AddToolVersionsList("MyTool", @("2.1.3", "3.0.0"), "^\d+")
+                $node.AddToolVersionsListInline("MyTool", @("2.1.3", "3.0.0"), "^\d+")
                 $node.AddToolVersionsListInline("MyTool2", @("2.1.3", "3.0.0"), "^\d+")
                 { $node.AddToolVersionsList("MyTool", @("2.1.3", "3.0.0"), "^\d+") } | Should -Throw "This HeaderNode already contains the similar child node. It is not allowed to add the same node twice.*"
             }
@@ -501,10 +499,12 @@ Good Bye world
 
             It "Doesn't allow adding non-header nodes after header node" {
                 $node = [HeaderNode]::new("MyHeader")
-                $node.AddToolVersion("MyTool", "2.1.3")
-                $node.AddHeader("MySubHeader")
-                { $node.AddToolVersion("MyTool2", "2.1.4") } | Should -Throw "It is not allowed to add the node of type * to the HeaderNode that already contains the HeaderNode children."
+                { $node.AddToolVersion("MyTool", "2.1.3") } | Should -Not -Throw
+                { $node.AddHeader("MySubHeader") } | Should -Not -Throw
+                { $node.AddToolVersion("MyTool2", "2.1.4") } | Should -Throw "It is not allowed to add the non-header node after the header node. Consider adding the separate HeaderNode for this node"
                 { $node.AddHeader("MySubHeader2") } | Should -Not -Throw
+                { $node.AddToolVersionsListInline("MyTool3", @("2.1.4", "2.1.5"), "^.+") } | Should -Throw "It is not allowed to add the non-header node after the header node. Consider adding the separate HeaderNode for this node"
+                { $node.AddToolVersionsList("MyTool4", @("2.1.4", "2.1.5"), "^.+") } | Should -Not -Throw
             }
         }
     }
