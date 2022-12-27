@@ -50,7 +50,7 @@ $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
 $packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
 $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
 
-$packageManagement.AddNode($(Build-PackageManagementEnvironmentTable))
+$packageManagement.AddHeader("Environment variables").AddTable($(Build-PackageManagementEnvironmentTable))
 
 # Project Management
 $projectManagement = $installedSoftware.AddHeader("Project Management")
@@ -139,7 +139,7 @@ $rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 # Browsers and Drivers
 $browsersAndWebdrivers = $installedSoftware.AddHeader("Browsers and Drivers")
 $browsersAndWebdrivers.AddNodes($(Build-BrowserSection))
-$browsersAndWebdrivers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
+$browsersAndWebdrivers.AddHeader("Environment variables").AddTable($(Build-BrowserWebdriversEnvironmentTable))
 
 # Java
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersions))
@@ -201,7 +201,7 @@ $netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
 $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d')
 $netCoreTools.AddToolVersionsListInline(".NET Framework", $(Get-DotnetFrameworkVersions), '^.+')
 Get-DotnetRuntimes | ForEach-Object {
-    $netCoreTools.AddToolVersionsListInline($($_.Runtime), $($_.Versions), '^.+')
+    $netCoreTools.AddToolVersionsListInline($_.Runtime, $_.Versions, '^.+')
 }
 $netCoreTools.AddNodes($(Get-DotnetTools))
 

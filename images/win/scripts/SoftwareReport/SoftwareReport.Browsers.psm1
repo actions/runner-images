@@ -74,9 +74,7 @@ function Get-SeleniumVersion {
 }
 
 function Build-BrowserWebdriversEnvironmentTable {
-    $node = [HeaderNode]::new("Environment variables")
-
-    $table = @(
+    return @(
         @{
             "Name" = "CHROMEWEBDRIVER"
             "Value" = $env:CHROMEWEBDRIVER
@@ -99,8 +97,4 @@ function Build-BrowserWebdriversEnvironmentTable {
             "Value" = $_.Value
         }
     }
-
-    $node.AddTable($table)
-
-    return $node
 }

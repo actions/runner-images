@@ -280,7 +280,7 @@ function Get-PowerShellModules {
     $result += (Get-ToolsetContent).powershellModules.name | Sort-Object | ForEach-Object {
         $moduleName = $_
         $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
-        return [ToolVersionsListNode]::new($($moduleName), $($moduleVersions), '^\d+', "Inline")
+        return [ToolVersionsListNode]::new($moduleName, $moduleVersions, '^\d+', "Inline")
     }
 
     return $result
@@ -331,7 +331,7 @@ function Get-YAMLLintVersion {
 
 function Get-BizTalkVersion {
     $bizTalkReg = Get-ItemProperty "HKLM:\SOFTWARE\WOW6432Node\Microsoft\BizTalk Server\3.0"
-    return [ToolVersionNode]::new(($bizTalkReg.ProductName), ($bizTalkReg.ProductVersion))
+    return [ToolVersionNode]::new($bizTalkReg.ProductName, $bizTalkReg.ProductVersion)
 }
 
 function Get-PipxVersion {
@@ -340,8 +340,7 @@ function Get-PipxVersion {
 }
 
 function Build-PackageManagementEnvironmentTable {
-    $node = [HeaderNode]::new("Environment variables")
-    $envVariables = @(
+    return @(
         [PSCustomObject] @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
@@ -351,8 +350,4 @@ function Build-PackageManagementEnvironmentTable {
             "Value" = $env:CONDA
         }
     )
-
-    $node.AddTable($envVariables)
-
-    return $node
 }
