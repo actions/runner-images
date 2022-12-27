@@ -27,7 +27,6 @@ function Get-BashVersion {
 }
 
 function Get-RustVersion {
-    Initialize-RustEnvironment
     $rustVersion = [regex]::matches($(rustc --version), "\d+\.\d+\.\d+").Value
     return $rustVersion
 }
