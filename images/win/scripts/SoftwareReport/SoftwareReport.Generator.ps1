@@ -229,5 +229,5 @@ $android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentT
 $installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
 
 # Generate reports
-$softwareReport.ToJson() | Out-File -FilePath "C:\software-report3.json" -Encoding UTF8NoBOM
-$softwareReport.ToMarkdown() | Out-File -FilePath "C:\software-report3.md" -Encoding UTF8NoBOM
+$softwareReport.ToJson() | Out-File -FilePath "C:\software-report.json" -Encoding UTF8NoBOM
+$softwareReport.ToMarkdown() | Out-File -FilePath "C:\software-report.md" -Encoding UTF8NoBOM
