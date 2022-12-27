@@ -307,7 +307,8 @@
         {
             "type": "powershell",
             "inline": [
-                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\InstalledSoftware.md not found' }"
+                "if (-not (Test-Path C:\\software-report.md)) { throw 'C:\\software-report.md not found' }",
+                "if (-not (Test-Path C:\\software-report.json)) { throw 'C:\\software-report.json not found' }"
             ]
         },
         {
