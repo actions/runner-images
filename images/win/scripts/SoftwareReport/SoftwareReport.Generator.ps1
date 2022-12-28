@@ -198,7 +198,7 @@ $visualStudio.AddToolVersionsList("Installed Windows SDKs", $(Get-WindowsSDKs).V
 
 # .NET Core Tools
 $netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
-$netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d')
+$netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d{2}')
 $netCoreTools.AddToolVersionsListInline(".NET Framework", $(Get-DotnetFrameworkVersions), '^.+')
 Get-DotnetRuntimes | ForEach-Object {
     $netCoreTools.AddToolVersionsListInline($_.Runtime, $_.Versions, '^.+')
