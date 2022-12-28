@@ -73,11 +73,11 @@ $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
 $packageManagement.AddNode($(Build-PackageManagementEnvironmentTable))
 
 # Project Management
-$projectanagement = $installedSoftware.AddHeader("Project Management")
-$projectanagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
-$projectanagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
-$projectanagement.AddToolVersion("Gradle", $(Get-GradleVersion))
-$projectanagement.AddToolVersion("Sbt", $(Get-SbtVersion))
+$projectManagement = $installedSoftware.AddHeader("Project Management")
+$projectManagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
+$projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
+$projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
+$projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 
 # Utilities
 $utilities = $installedSoftware.AddHeader("Utilities")
