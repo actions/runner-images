@@ -281,7 +281,7 @@ function Get-YamllintVersion {
 
 function Get-ZstdVersion {
     $zstdVersion = zstd --version | Take-OutputPart -Part 1 -Delimiter "v" | Take-OutputPart -Part 0 -Delimiter ","
-    return "$zstdVersion (Homebrew)"
+    return "$zstdVersion"
 }
 
 function Get-YqVersion {
