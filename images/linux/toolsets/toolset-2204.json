@@ -206,10 +206,6 @@
         ]
     },
     "brew": [
-        {
-            "name": "zstd",
-            "command": "zstd"
-        }
     ],
     "docker": {
         "images": [
