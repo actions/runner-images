@@ -416,10 +416,6 @@ Describe "Kotlin" {
         "kotlinc -version"| Should -ReturnZeroExitCode
     }
 
-    It "kotlinc-js" {
-        "kotlinc-js -version"| Should -ReturnZeroExitCode
-    }
-
     It "kotlinc-jvm" {
         "kotlinc-jvm -version"| Should -ReturnZeroExitCode
     }
