@@ -198,7 +198,12 @@ $visualStudio.AddToolVersionsList("Installed Windows SDKs", $(Get-WindowsSDKs).V
 
 # .NET Core Tools
 $netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
-$netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d{2}')
+if (Test-IsWin19) {
+    # Visual Studio 2019 brings own version of .NET Core which is different from latest official version
+    $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d{2}')
+} else {
+    $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d')
+}
 $netCoreTools.AddToolVersionsListInline(".NET Framework", $(Get-DotnetFrameworkVersions), '^.+')
 Get-DotnetRuntimes | ForEach-Object {
     $netCoreTools.AddToolVersionsListInline($_.Runtime, $_.Versions, '^.+')
