@@ -30,22 +30,11 @@ function Get-ToolcachePyPyVersions {
 
 function Build-CachedToolsSection
 {
-    $output = ""
-
-    $output += New-MDHeader "Go" -Level 4
-    $output += New-MDList -Lines (Get-ToolcacheGoVersions) -Style Unordered
-
-    $output += New-MDHeader "Node.js" -Level 4
-    $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
-
-    $output += New-MDHeader "Python" -Level 4
-    $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
-
-    $output += New-MDHeader "PyPy" -Level 4
-    $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
-
-    $output += New-MDHeader "Ruby" -Level 4
-    $output += New-MDList -Lines (Get-ToolcacheRubyVersions) -Style Unordered
-
-    return $output
+    return @(
+        [ToolVersionsListNode]::new("Go", $(Get-ToolcacheGoVersions), '^\d+\.\d+', 'List'),
+        [ToolVersionsListNode]::new("Node.js", $(Get-ToolcacheNodeVersions), '^\d+', 'List'),
+        [ToolVersionsListNode]::new("Python", $(Get-ToolcachePythonVersions), '^\d+\.\d+', 'List'), 
+        [ToolVersionsListNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', 'List'),
+        [ToolVersionsListNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', 'List')
+    )
 }
