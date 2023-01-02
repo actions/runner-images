@@ -272,7 +272,8 @@
     },
     "clang": {
         "versions": [
-            "9"
+            "9",
+            "15"
         ],
         "default_version": "9"
     },
