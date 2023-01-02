@@ -7,6 +7,20 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
+function InstallLLVMApt {
+    echo "Installing apt.llvm.org repo..."
+
+    curl -f -L --retry 5 https://apt.llvm.org/llvm-snapshot.gpg.key | gpg --dearmor -o /usr/share/keyrings/llvm-snapshot.gpg
+    LSB_CODENAME=$(lsb_release -cs)
+    {
+        echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] https://apt.llvm.org/$LSB_CODENAME llvm-toolchain-$LSB_CODENAME main" 
+        echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] https://apt.llvm.org/$LSB_CODENAME llvm-toolchain-$LSB_CODENAME-15 main" 
+        echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] https://apt.llvm.org/$LSB_CODENAME llvm-toolchain-$LSB_CODENAME-14 main" 
+        echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] https://apt.llvm.org/$LSB_CODENAME llvm-toolchain-$LSB_CODENAME-13 main"
+    } >> /etc/apt/sources.list.d/llvm-toolchain.list
+    apt update
+}
+
 function InstallClang {
     local version=$1
 
@@ -24,6 +38,8 @@ function SetDefaultClang {
     update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${version} 100
     update-alternatives --install /usr/bin/run-clang-tidy run-clang-tidy /usr/bin/run-clang-tidy-${version} 100
 }
+
+InstallLLVMApt
 
 versions=$(get_toolset_value '.clang.versions[]')
 default_clang_version=$(get_toolset_value '.clang.default_version')
