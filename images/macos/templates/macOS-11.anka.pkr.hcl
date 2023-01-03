@@ -138,7 +138,8 @@ build {
     scripts = [
       "./provision/configuration/preimagedata.sh",
       "./provision/configuration/configure-ssh.sh",
-      "./provision/configuration/configure-machine.sh"
+      "./provision/configuration/configure-machine.sh",
+      "./provision/core/powershell.sh"
     ]
     environment_vars = [
       "IMAGE_VERSION=${var.build_id}",
@@ -152,10 +153,16 @@ build {
     expect_disconnect = true
   }
   provisioner "shell" {
+    scripts = [
+      "./provision/core/toolset.ps1",
+      "./provision/core/configure-toolset.ps1"
+    ]
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
+  }
+  provisioner "shell" {
     pause_before = "30s"
     scripts = [
       "./provision/core/open_windows_check.sh",
-      "./provision/core/powershell.sh",
       "./provision/core/dotnet.sh",
       "./provision/core/python.sh",
       "./provision/core/azcopy.sh",
@@ -223,13 +230,6 @@ build {
       "API_PAT=${var.github_api_pat}"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
-  }
-  provisioner "shell" {
-    scripts = [
-      "./provision/core/toolset.ps1",
-      "./provision/core/configure-toolset.ps1"
-    ]
-    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
   provisioner "shell" {
     script = "./provision/core/delete-duplicate-sims.rb"

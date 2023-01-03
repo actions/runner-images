@@ -129,7 +129,8 @@
             "scripts": [
                 "./provision/configuration/preimagedata.sh",
                 "./provision/configuration/configure-ssh.sh",
-                "./provision/configuration/configure-machine.sh"
+                "./provision/configuration/configure-machine.sh",
+                "./provision/core/powershell.sh"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `build_id`}}",
@@ -145,11 +146,18 @@
         },
         {
             "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
+            "scripts": [
+                "./provision/core/toolset.ps1",
+                "./provision/core/configure-toolset.ps1"
+            ]
+        },
+        {
+            "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "pause_before": "30s",
             "scripts": [
                 "./provision/core/open_windows_check.sh",
-                "./provision/core/powershell.sh",
                 "./provision/core/dotnet.sh",
                 "./provision/core/python.sh",
                 "./provision/core/azcopy.sh",
@@ -218,14 +226,6 @@
             ],
             "environment_vars": [
                 "API_PAT={{user `github_api_pat`}}"
-            ]
-        },
-        {
-            "type": "shell",
-            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
-            "scripts": [
-                "./provision/core/toolset.ps1",
-                "./provision/core/configure-toolset.ps1"
             ]
         },
         {
