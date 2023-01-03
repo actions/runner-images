@@ -5,7 +5,15 @@
 # Abstract base class for all nodes
 class BaseNode {
     [Boolean] ShouldBeIncludedToDiff() {
-        return $False
+        return $false
+    }
+
+    [String] ToMarkdown() {
+        return $this.ToMarkdown(1)
+    }
+
+    [String] ToMarkdown([Int32] $Level) {
+        throw "Abtract method 'ToMarkdown(level)' is not implemented for '$($this.GetType().Name)'"
     }
 
     [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
@@ -19,6 +27,7 @@ class BaseNode {
 
 # Abstract base class for all nodes that describe a tool and should be rendered inside diff table
 class BaseToolNode: BaseNode {
+    [ValidateNotNullOrEmpty()]
     [String] $ToolName
 
     BaseToolNode([String] $ToolName) {
@@ -26,7 +35,7 @@ class BaseToolNode: BaseNode {
     }
 
     [Boolean] ShouldBeIncludedToDiff() {
-        return $True
+        return $true
     }
 
     [String] GetValue() {
@@ -35,7 +44,7 @@ class BaseToolNode: BaseNode {
 
     [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
         if ($this.GetType() -ne $OtherNode.GetType()) {
-            return $False
+            return $false
         }
 
         return $this.ToolName -eq $OtherNode.ToolName

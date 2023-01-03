@@ -1,7 +1,7 @@
 function Get-Aria2Version {
     (aria2c -v | Out-String) -match "(?<version>(\d+\.){1,}\d+)" | Out-Null
     $aria2Version = $Matches.Version
-    return "aria2 $aria2Version"
+    return $aria2Version
 }
 
 function Get-AzCosmosDBEmulatorVersion {
@@ -9,37 +9,37 @@ function Get-AzCosmosDBEmulatorVersion {
     $installDir = $regKey.InstallLocation
     $exeFilePath = Join-Path $installDir 'CosmosDB.Emulator.exe'
     $version = (Get-Item $exeFilePath).VersionInfo.FileVersion
-    return "Azure CosmosDb Emulator $version"
+    return $version
 }
 
 function Get-BazelVersion {
     ((cmd /c "bazel --version 2>&1") | Out-String) -match "bazel (?<version>\d+\.\d+\.\d+)" | Out-Null
     $bazelVersion = $Matches.Version
-    return "Bazel $bazelVersion"
+    return $bazelVersion
 }
 
 function Get-BazeliskVersion {
     ((cmd /c "bazelisk version 2>&1") | Out-String) -match "Bazelisk version: v(?<version>\d+\.\d+\.\d+)" | Out-Null
     $bazeliskVersion = $Matches.Version
-    return "Bazelisk $bazeliskVersion"
+    return $bazeliskVersion
 }
 
 function Get-BicepVersion {
     (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $bicepVersion = $Matches.Version
-    return "Bicep $bicepVersion"
+    return $bicepVersion
 }
 
 function Get-RVersion {
     ($(cmd /c "Rscript --version 2>&1") | Out-String) -match "Rscript .* version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $rVersion = $Matches.Version
-    return "R $rVersion"
+    return $rVersion
 }
 
 function Get-CMakeVersion {
     ($(cmake -version) | Out-String) -match  "cmake version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $cmakeVersion = $Matches.Version
-    return "CMake $cmakeVersion"
+    return $cmakeVersion
 }
 
 function Get-CodeQLBundleVersion {
@@ -47,99 +47,100 @@ function Get-CodeQLBundleVersion {
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
     $CodeQLVersion = & $CodeQLPath version --quiet
-    return "CodeQL Action Bundle $CodeQLVersion"
+    return $CodeQLVersion
 }
 
 function Get-DockerVersion {
     $dockerVersion = $(docker version --format "{{.Server.Version}}")
-    return "Docker $dockerVersion"
+    return $dockerVersion
 }
 
 function Get-DockerComposeVersion {
     $dockerComposeVersion = docker-compose version --short
-    return "Docker Compose v1 $dockerComposeVersion"
+    return $dockerComposeVersion
 }
 
 function Get-DockerComposeVersionV2 {
     $dockerComposeVersion = docker compose version --short
-    return "Docker Compose v2 $dockerComposeVersion"
+    return $dockerComposeVersion
 }
 
 function Get-DockerWincredVersion {
     $dockerCredVersion = docker-credential-wincred version | Take-Part -Part 2 | Take-Part -Part 0 -Delimiter "v"
-    return "Docker-wincred $dockerCredVersion"
+    return $dockerCredVersion
 }
 
 function Get-GitVersion {
     $gitVersion = git --version | Take-Part -Part -1
-    return "Git $gitVersion"
+    return $gitVersion
 }
 
 function Get-GitLFSVersion {
     $(git-lfs version) -match "git-lfs\/(?<version>\d+\.\d+\.\d+)" | Out-Null
     $gitLfsVersion = $Matches.Version
-    return "Git LFS $gitLfsVersion"
+    return $gitLfsVersion
 }
 
 function Get-InnoSetupVersion {
-    return $(choco list --local-only innosetup) | Select-String -Pattern "InnoSetup"
+    $innoSetupVersion = $(choco list --local-only innosetup) | Select-String -Pattern "InnoSetup"
+    return ($innoSetupVersion -replace "^InnoSetup").Trim()
 }
 
 function Get-JQVersion {
     $jqVersion = ($(jq --version) -Split "jq-")[1]
-    return "jq $jqVersion"
+    return $jqVersion
 }
 
 function Get-KubectlVersion {
     $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v','')
-    return "Kubectl $kubectlVersion"
+    return $kubectlVersion
 }
 
 function Get-KindVersion {
     $(kind version) -match "kind v(?<version>\d+\.\d+\.\d+)" | Out-Null
     $kindVersion = $Matches.Version
-    return "Kind $kindVersion"
+    return $kindVersion
 }
 
 function Get-MinGWVersion {
     (gcc --version | Select-String -Pattern "MinGW-W64") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $mingwVersion = $Matches.Version
-    return "Mingw-w64 $mingwVersion"
+    return $mingwVersion
 }
 
 function Get-MySQLVersion {
     $mysqlCommand = Get-Command -Name "mysql"
     $mysqlVersion = $mysqlCommand.Version.ToString()
-    return "MySQL $mysqlVersion"
+    return $mysqlVersion
 }
 
 function Get-SQLOLEDBDriverVersion {
     $SQLOLEDBDriverVersion = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSOLEDBSQL' InstalledVersion).InstalledVersion
-    return "SQL OLEDB Driver $SQLOLEDBDriverVersion"
+    return $SQLOLEDBDriverVersion
 }
 
 function Get-MercurialVersion {
     ($(hg --version) | Out-String) -match "version (?<version>\d+\.\d+\.?\d*)" | Out-Null
     $mercurialVersion = $Matches.Version
-    return "Mercurial $mercurialVersion"
+    return $mercurialVersion
 }
 
 function Get-NSISVersion {
     $nsisVersion =  &"c:\Program Files (x86)\NSIS\makensis.exe" "/Version"
-    return "NSIS $nsisVersion"
+    return $nsisVersion.TrimStart("v")
 }
 
 function Get-OpenSSLVersion {
     $(openssl version) -match "OpenSSL (?<version>\d+\.\d+\.\d+\w?) " | Out-Null
     $opensslVersion = $Matches.Version
-    return "OpenSSL $opensslVersion"
+    return $opensslVersion
 }
 
 function Get-PackerVersion {
     # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
     ($(cmd /c "packer --version 2>&1") | Out-String) -match "(?<version>(\d+.){2}\d+)" | Out-Null
     $packerVersion = $Matches.Version
-    return "Packer $packerVersion"
+    return $packerVersion
 }
 
 function Get-ParcelVersion {
@@ -148,132 +149,133 @@ function Get-ParcelVersion {
 }
 
 function Get-PulumiVersion {
-    return "Pulumi $(pulumi version)"
+    return (pulumi version).TrimStart("v")
 }
 
 function Get-SQLPSVersion {
     $module = Get-Module -Name SQLPS -ListAvailable
     $version = $module.Version
-    return "SQLPS $version"
+    return $version
 }
 
 function Get-SVNVersion {
     $svnVersion = $(svn --version --quiet)
-    return "Subversion (SVN) $svnVersion"
+    return $svnVersion
 }
 
 function Get-VSWhereVersion {
     ($(Get-Command -Name vswhere).FileVersionInfo.ProductVersion) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $vswhereVersion = $Matches.Version
-    return "VSWhere $vswhereVersion"
+    return $vswhereVersion
 }
 
 function Get-WinAppDriver {
     $winAppDriverVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe").FileVersion
-    return "WinAppDriver $winAppDriverVersion"
+    return $winAppDriverVersion
 }
 
 function Get-WixVersion {
     $regKey = "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
     $installedApplications = Get-ItemProperty -Path $regKey
-    return ($installedApplications | Where-Object { $_.BundleCachePath -imatch ".*\\WiX\d*\.exe$" } | Select-Object -First 1).DisplayName
+    $wixToolsetVersion = ($installedApplications | Where-Object { $_.BundleCachePath -imatch ".*\\WiX\d*\.exe$" } | Select-Object -First 1).DisplayName
+    return ($wixToolsetVersion -replace "^WiX Toolset v").Trim()
 }
 
 function Get-ZstdVersion {
     $(zstd --version) -match "v(?<version>\d+\.\d+\.\d+)" | Out-Null
     $zstdVersion = $Matches.Version
-    return "zstd $zstdVersion"
+    return $zstdVersion
 }
 
 function Get-AzureCLIVersion {
     $azureCLIVersion = $(az version) | ConvertFrom-Json | Foreach{ $_."azure-cli" }
-    return "Azure CLI $azureCLIVersion"
+    return $azureCLIVersion
 }
 
 function Get-AzCopyVersion {
-    return ($(azcopy --version) -replace "version ")
+    return ($(azcopy --version) -replace "^azcopy version").Trim()
 }
 
 function Get-AzureDevopsExtVersion {
     $azureDevExtVersion = (az version | ConvertFrom-Json | ForEach-Object { $_."extensions" })."azure-devops"
-    return "Azure DevOps CLI extension $azureDevExtVersion"
+    return $azureDevExtVersion
 }
 
 function Get-AWSCLIVersion {
     $(aws --version) -match "aws-cli\/(?<version>\d+\.\d+\.\d+)" | Out-Null
     $awscliVersion = $Matches.Version
-    return "AWS CLI $awscliVersion"
+    return $awscliVersion
 }
 
 function Get-AWSSAMVersion {
     $(sam --version) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $awssamVersion = $Matches.Version
-    return "AWS SAM CLI $awssamVersion"
+    return $awssamVersion
 }
 
 function Get-AWSSessionManagerVersion {
     $awsSessionManagerVersion = $(session-manager-plugin --version)
-    return "AWS Session Manager CLI $awsSessionManagerVersion"
+    return $awsSessionManagerVersion
 }
 
 function Get-AlibabaCLIVersion {
     $alicliVersion = $(aliyun version)
-    return "Alibaba Cloud CLI $alicliVersion"
+    return $alicliVersion
 }
 
 function Get-CloudFoundryVersion {
     $(cf version) -match  "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $cfVersion = $Matches.Version
-    return "Cloud Foundry CLI $cfVersion"
+    return $cfVersion
 }
 
 function Get-HubVersion {
     ($(hub version) | Select-String -Pattern "hub version") -match "hub version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $hubVersion = $Matches.Version
-    return "Hub CLI $hubVersion"
+    return $hubVersion
 }
 
 function Get-7zipVersion {
     (7z | Out-String) -match "7-Zip (?<version>\d+\.\d+\.?\d*)" | Out-Null
     $version = $Matches.Version
-    return "7zip $version"
+    return $version
 }
 
 function Get-GHCVersion {
     ((ghc --version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $ghcVersion = $Matches.Version
-    return "ghc $ghcVersion"
+    return $ghcVersion
 }
 
 function Get-CabalVersion {
     ((cabal --version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+\.\d+)" | Out-Null
     $cabalVersion = $Matches.Version
-    return "Cabal $cabalVersion"
+    return $cabalVersion
 }
 
 function Get-StackVersion {
     ((stack --version --quiet) | Out-String) -match "Version (?<version>\d+\.\d+\.\d+)," | Out-Null
     $stackVersion = $Matches.Version
-    return "Stack $stackVersion"
+    return $stackVersion
 }
 
 function Get-GoogleCloudSDKVersion {
-    (cmd /c "gcloud --version") -match "Google Cloud SDK"
+    return (((cmd /c "gcloud --version") -match "Google Cloud SDK") -replace "Google Cloud SDK").Trim()
 }
 
 function Get-ServiceFabricSDKVersion {
     $serviceFabricSDKVersion = Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion
-    return "Service Fabric SDK $serviceFabricSDKVersion"
+    return $serviceFabricSDKVersion
 }
 
 function Get-NewmanVersion {
-    return "Newman $(newman --version)"
+    return $(newman --version)
 }
 
 function Get-GHVersion {
     ($(gh --version) | Select-String -Pattern "gh version") -match "gh version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $ghVersion = $Matches.Version
-    return "GitHub CLI $ghVersion"
+    return $ghVersion
 }
 
 function Get-VisualCPPComponents {
@@ -299,17 +301,17 @@ function Get-VisualCPPComponents {
 
 function Get-DacFxVersion {
     $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\160\DAC\bin\sqlpackage.exe" /version
-    return "DacFx $dacfxversion"
+    return $dacfxversion
 }
 
 function Get-SwigVersion {
     (swig -version | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $swigVersion = $Matches.Version
-    return "Swig $swigVersion"
+    return $swigVersion
 }
 
 function Get-ImageMagickVersion {
     (magick -version | Select-String -Pattern "Version") -match "(?<version>\d+\.\d+\.\d+-\d+)" | Out-Null
     $magickVersion = $Matches.Version
-    return "ImageMagick $magickVersion"
+    return $magickVersion
 }

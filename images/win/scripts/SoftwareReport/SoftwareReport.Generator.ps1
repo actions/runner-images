@@ -1,9 +1,11 @@
+using module ./software-report-base/SoftwareReport.psm1
+using module ./software-report-base/SoftwareReport.Nodes.psm1
+
 $global:ErrorActionPreference = "Stop"
 $global:ProgressPreference = "SilentlyContinue"
 $ErrorView = "NormalView"
 Set-StrictMode -Version Latest
 
-Import-Module MarkdownPS
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.CachedTools.psm1") -DisableNameChecking
@@ -15,299 +17,222 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Java.psm1") -DisableNameC
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -DisableNameChecking
 
-$markdown = ""
+# Software report
+$softwareReport = [SoftwareReport]::new($(Build-OSInfoSection))
+$optionalFeatures = $softwareReport.Root.AddHeader("Windows features")
+$optionalFeatures.AddToolVersion("Windows Subsystem for Linux (WSLv1):", "Enabled")
+$installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
-$OSName = Get-OSName
-$markdown += New-MDHeader "$OSName" -Level 1
+# Language and Runtime
+$languageAndRuntime = $installedSoftware.AddHeader("Language and Runtime")
+$languageAndRuntime.AddToolVersion("Bash", $(Get-BashVersion))
+$languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
+$languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
+$languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
+$languageAndRuntime.AddToolVersion("LLVM", $(Get-LLVMVersion))
+$languageAndRuntime.AddToolVersion("Node", $(Get-NodeVersion))
+$languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
+$languageAndRuntime.AddToolVersion("PHP", $(Get-PHPVersion))
+$languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
+$languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
 
-$OSVersion = Get-OSVersion
-$markdown += New-MDList -Style Unordered -Lines @(
-    "$OSVersion"
-    "Image Version: $env:IMAGE_VERSION"
-)
+# Package Management
+$packageManagement = $installedSoftware.AddHeader("Package Management")
+$packageManagement.AddToolVersion("Chocolatey", $(Get-ChocoVersion))
+$packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
+$packageManagement.AddToolVersion("Helm", $(Get-HelmVersion))
+$packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
+$packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
+$packageManagement.AddToolVersion("NuGet", $(Get-NugetVersion))
+$packageManagement.AddToolVersion("pip", $(Get-PipVersion))
+$packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
+$packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
+$packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
+$packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
 
-$markdown += New-MDHeader "Enabled windows optional features" -Level 2
-$markdown += New-MDList -Style Unordered -Lines @(
-    "Windows Subsystem for Linux [WSLv1]"
-)
+$packageManagement.AddHeader("Environment variables").AddTable($(Build-PackageManagementEnvironmentTable))
 
-$markdown += New-MDHeader "Installed Software" -Level 2
-$markdown += New-MDHeader "Language and Runtime" -Level 3
-$languageTools = @(
-    (Get-BashVersion),
-    (Get-GoVersion),
-    (Get-JuliaVersion),
-    (Get-LLVMVersion),
-    (Get-NodeVersion),
-    (Get-PerlVersion)
-    (Get-PHPVersion),
-    (Get-PythonVersion),
-    (Get-RubyVersion),
-    (Get-KotlinVersion)
-)
-$markdown += New-MDList -Style Unordered -Lines ($languageTools | Sort-Object)
+# Project Management
+$projectManagement = $installedSoftware.AddHeader("Project Management")
+$projectManagement.AddToolVersion("Ant", $(Get-AntVersion))
+$projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
+$projectManagement.AddToolVersion("Maven", $(Get-MavenVersion))
+$projectManagement.AddToolVersion("sbt", $(Get-SbtVersion))
 
-$packageManagementList = @(
-    (Get-ChocoVersion),
-    (Get-CondaVersion),
-    (Get-ComposerVersion),
-    (Get-HelmVersion),
-    (Get-NPMVersion),
-    (Get-NugetVersion),
-    (Get-PipxVersion),
-    (Get-PipVersion),
-    (Get-RubyGemsVersion),
-    (Get-VcpkgVersion),
-    (Get-YarnVersion)
-)
-
-$markdown += New-MDHeader "Package Management" -Level 3
-$markdown += New-MDList -Style Unordered -Lines ($packageManagementList | Sort-Object)
-
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-PackageManagementEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
-
-$markdown += New-MDHeader "Project Management" -Level 3
-$projectManagementTools = @(
-    (Get-AntVersion),
-    (Get-GradleVersion),
-    (Get-MavenVersion),
-    (Get-SbtVersion)
-)
-
-$markdown += New-MDList -Style Unordered -Lines ($projectManagementTools | Sort-Object)
-
-$markdown += New-MDHeader "Tools" -Level 3
-$toolsList = @(
-    (Get-7zipVersion),
-    (Get-Aria2Version),
-    (Get-AzCopyVersion),
-    (Get-BazelVersion),
-    (Get-BazeliskVersion),
-    (Get-BicepVersion),
-    (Get-CabalVersion),
-    (Get-CMakeVersion),
-    (Get-CodeQLBundleVersion),
-    (Get-DockerVersion),
-    (Get-DockerComposeVersion),
-    (Get-DockerComposeVersionV2),
-    (Get-DockerWincredVersion),
-    (Get-GHCVersion),
-    (Get-GitVersion),
-    (Get-GitLFSVersion),
-    (Get-InnoSetupVersion),
-    (Get-JQVersion),
-    (Get-KindVersion),
-    (Get-KubectlVersion),
-    (Get-MercurialVersion),
-    (Get-MinGWVersion),
-    (Get-NewmanVersion),
-    (Get-NSISVersion),
-    (Get-OpenSSLVersion),
-    (Get-PackerVersion),
-    (Get-PulumiVersion),
-    (Get-RVersion),
-    (Get-ServiceFabricSDKVersion),
-    (Get-StackVersion),
-    (Get-SVNVersion),
-    (Get-VSWhereVersion),
-    (Get-SwigVersion),
-    (Get-WinAppDriver),
-    (Get-WixVersion),
-    (Get-ZstdVersion),
-    (Get-YAMLLintVersion),
-    (Get-ImageMagickVersion)
-)
+# Tools
+$tools = $installedSoftware.AddHeader("Tools")
+$tools.AddToolVersion("7zip", $(Get-7zipVersion))
+$tools.AddToolVersion("aria2", $(Get-Aria2Version))
+$tools.AddToolVersion("azcopy", $(Get-AzCopyVersion))
+$tools.AddToolVersion("Bazel", $(Get-BazelVersion))
+$tools.AddToolVersion("Bazelisk", $(Get-BazeliskVersion))
+$tools.AddToolVersion("Bicep", $(Get-BicepVersion))
+$tools.AddToolVersion("Cabal", $(Get-CabalVersion))
+$tools.AddToolVersion("CMake", $(Get-CMakeVersion))
+$tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
+$tools.AddToolVersion("Docker", $(Get-DockerVersion))
+$tools.AddToolVersion("Docker Compose v1", $(Get-DockerComposeVersion))
+$tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeVersionV2))
+$tools.AddToolVersion("Docker-wincred", $(Get-DockerWincredVersion))
+$tools.AddToolVersion("ghc", $(Get-GHCVersion))
+$tools.AddToolVersion("Git", $(Get-GitVersion))
+$tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 if (Test-IsWin19) {
-    $toolsList += @(
-        (Get-GoogleCloudSDKVersion),
-        (Get-ParcelVersion)
-    )
+    $tools.AddToolVersion("Google Cloud SDK", $(Get-GoogleCloudSDKVersion))
 }
-$markdown += New-MDList -Style Unordered -Lines ($toolsList | Sort-Object)
-
-$markdown += New-MDHeader "CLI Tools" -Level 3
-$cliTools = @(
-    (Get-AlibabaCLIVersion),
-    (Get-AWSCLIVersion),
-    (Get-AWSSAMVersion),
-    (Get-AWSSessionManagerVersion),
-    (Get-AzureCLIVersion),
-    (Get-AzureDevopsExtVersion),
-    (Get-GHVersion),
-    (Get-HubVersion)
-)
+$tools.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
+$tools.AddToolVersion("InnoSetup", $(Get-InnoSetupVersion))
+$tools.AddToolVersion("jq", $(Get-JQVersion))
+$tools.AddToolVersion("Kind", $(Get-KindVersion))
+$tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))
+$tools.AddToolVersion("Mercurial", $(Get-MercurialVersion))
+$tools.AddToolVersion("Mingw-w64", $(Get-MinGWVersion))
+$tools.AddToolVersion("Newman", $(Get-NewmanVersion))
+$tools.AddToolVersion("NSIS", $(Get-NSISVersion))
+$tools.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
+$tools.AddToolVersion("Packer", $(Get-PackerVersion))
 if (Test-IsWin19) {
-    $cliTools += @(
-        (Get-CloudFoundryVersion)
-    )
+    $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
 }
-$markdown += New-MDList -Style Unordered -Lines ($cliTools | Sort-Object)
+$tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
+$tools.AddToolVersion("R", $(Get-RVersion))
+$tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
+$tools.AddToolVersion("Stack", $(Get-StackVersion))
+$tools.AddToolVersion("Subversion (SVN)", $(Get-SVNVersion))
+$tools.AddToolVersion("Swig", $(Get-SwigVersion))
+$tools.AddToolVersion("VSWhere", $(Get-VSWhereVersion))
+$tools.AddToolVersion("WinAppDriver", $(Get-WinAppDriver))
+$tools.AddToolVersion("WiX Toolset", $(Get-WixVersion))
+$tools.AddToolVersion("yamllint", $(Get-YAMLLintVersion))
+$tools.AddToolVersion("zstd", $(Get-ZstdVersion))
 
-$markdown += New-MDHeader "Rust Tools" -Level 3
-$markdown += New-MDList -Style Unordered -Lines (@(
-    "Rust $(Get-RustVersion)",
-    "Rustup $(Get-RustupVersion)",
-    "Cargo $(Get-RustCargoVersion)",
-    "Rustdoc $(Get-RustdocVersion)"
-    ) | Sort-Object
-)
+# CLI Tools
+$cliTools = $installedSoftware.AddHeader("CLI Tools")
+$cliTools.AddToolVersion("Alibaba Cloud CLI", $(Get-AlibabaCLIVersion))
+$cliTools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
+$cliTools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMVersion))
+$cliTools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerVersion))
+$cliTools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
+$cliTools.AddToolVersion("Azure DevOps CLI extension", $(Get-AzureDevopsExtVersion))
+if (Test-IsWin19) {
+    $cliTools.AddToolVersion("Cloud Foundry CLI", $(Get-CloudFoundryVersion))
+}
+$cliTools.AddToolVersion("GitHub CLI", $(Get-GHVersion))
+$cliTools.AddToolVersion("Hub CLI", $(Get-HubVersion))
 
-$markdown += New-MDHeader "Packages" -Level 4
-$markdown += New-MDList -Style Unordered -Lines (@(
-    (Get-BindgenVersion),
-    (Get-CargoAuditVersion),
-    (Get-CargoOutdatedVersion),
-    (Get-CbindgenVersion),
-    "Rustfmt $(Get-RustfmtVersion)",
-    "Clippy $(Get-RustClippyVersion)"
-    ) | Sort-Object
-)
+# Rust Tools
+Initialize-RustEnvironment
+$rustTools = $installedSoftware.AddHeader("Rust Tools")
+$rustTools.AddToolVersion("Cargo", $(Get-RustCargoVersion))
+$rustTools.AddToolVersion("Rust", $(Get-RustVersion))
+$rustTools.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
+$rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
 
-$markdown += New-MDHeader "Browsers and webdrivers" -Level 3
-$markdown += New-MDList -Style Unordered -Lines @(
-    (Get-BrowserVersion -Browser "chrome"),
-    (Get-SeleniumWebDriverVersion -Driver "chrome"),
-    (Get-BrowserVersion -Browser "edge"),
-    (Get-SeleniumWebDriverVersion -Driver "edge"),
-    (Get-BrowserVersion -Browser "firefox"),
-    (Get-SeleniumWebDriverVersion -Driver "firefox"),
-    (Get-SeleniumWebDriverVersion -Driver "iexplorer"),
-    (Get-SeleniumVersion)
-)
+$rustToolsPackages = $rustTools.AddHeader("Packages")
+$rustToolsPackages.AddToolVersion("bindgen", $(Get-BindgenVersion))
+$rustToolsPackages.AddToolVersion("cargo-audit", $(Get-CargoAuditVersion))
+$rustToolsPackages.AddToolVersion("cargo-outdated", $(Get-CargoOutdatedVersion))
+$rustToolsPackages.AddToolVersion("cbindgen", $(Get-CbindgenVersion))
+$rustToolsPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
+$rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-BrowserWebdriversEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
+# Browsers and Drivers
+$browsersAndWebdrivers = $installedSoftware.AddHeader("Browsers and Drivers")
+$browsersAndWebdrivers.AddNodes($(Build-BrowserSection))
+$browsersAndWebdrivers.AddHeader("Environment variables").AddTable($(Build-BrowserWebdriversEnvironmentTable))
 
-$markdown += New-MDHeader "Java" -Level 3
-$markdown += Get-JavaVersions | New-MDTable
-$markdown += New-MDNewLine
+# Java
+$installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersions))
 
-$markdown += New-MDHeader "Shells" -Level 3
-$markdown += Get-ShellTarget
-$markdown += New-MDNewLine
+# Shells
+$installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
 
-$markdown += New-MDHeader "MSYS2" -Level 3
-$markdown += "$(Get-PacmanVersion)" | New-MDList -Style Unordered
-$markdown += New-MDHeader "Notes:" -Level 5
-$reportMsys64 = @'
-```
+# MSYS2
+$msys2 = $installedSoftware.AddHeader("MSYS2")
+$msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
+
+$notes = @'
 Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
-```
 '@
-$markdown += New-MDParagraph -Lines $reportMsys64
+$msys2.AddHeader("Notes").AddNote($notes)
 
+# BizTalk Server
 if (Test-IsWin19)
 {
-    $markdown += New-MDHeader "BizTalk Server" -Level 3
-    $markdown += "$(Get-BizTalkVersion)" | New-MDList -Style Unordered
+    $installedSoftware.AddHeader("BizTalk Server").AddNode($(Get-BizTalkVersion))
 }
 
-$markdown += New-MDHeader "Cached Tools" -Level 3
-$markdown += (Build-CachedToolsMarkdown)
+# Cached Tools
+$installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection))
 
-$markdown += New-MDHeader "Databases" -Level 3
-$markdown += Build-DatabasesMarkdown
+# Databases
+$databases = $installedSoftware.AddHeader("Databases")
+$databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))
+$databases.AddHeader("MongoDB").AddTable($(Get-MongoDBTable))
 
-$markdown += New-MDHeader "Database tools" -Level 3
-$databaseTools = @(
-    (Get-AzCosmosDBEmulatorVersion),
-    (Get-DacFxVersion),
-    (Get-MySQLVersion),
-    (Get-SQLPSVersion),
-    (Get-SQLOLEDBDriverVersion)
-)
+# Database tools
+$databaseTools = $installedSoftware.AddHeader("Database tools")
+$databaseTools.AddToolVersion("Azure CosmosDb Emulator", $(Get-AzCosmosDBEmulatorVersion))
+$databaseTools.AddToolVersion("DacFx", $(Get-DacFxVersion))
+$databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
+$databaseTools.AddToolVersion("SQL OLEDB Driver", $(Get-SQLOLEDBDriverVersion))
+$databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
 
-$markdown += New-MDList -Style Unordered -Lines ($databaseTools | Sort-Object)
+# Web Servers
+$installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersSection))
 
-$markdown += Build-WebServersSection
+# Visual Studio
+$vsTable = Get-VisualStudioVersion
+$visualStudio = $installedSoftware.AddHeader($vsTable.Name)
+$visualStudio.AddTable($vsTable)
 
-$vs = Get-VisualStudioVersion
-$markdown += New-MDHeader "$($vs.Name)" -Level 3
-$markdown += $vs | New-MDTable
-$markdown += New-MDNewLine
+$workloads = $visualStudio.AddHeader("Workloads, components and extensions")
+$workloads.AddTable((Get-VisualStudioComponents) + (Get-VisualStudioExtensions))
 
-$markdown += New-MDHeader "Workloads, components and extensions:" -Level 4
-$markdown += ((Get-VisualStudioComponents) + (Get-VisualStudioExtensions)) | New-MDTable
-$markdown += New-MDNewLine
+$msVisualCpp = $visualStudio.AddHeader("Microsoft Visual C++")
+$msVisualCpp.AddTable($(Get-VisualCPPComponents))
 
-$markdown += New-MDHeader "Microsoft Visual C++:" -Level 4
-$markdown += Get-VisualCPPComponents | New-MDTable
-$markdown += New-MDNewLine
+$visualStudio.AddToolVersionsList("Installed Windows SDKs", $(Get-WindowsSDKs).Versions, '^.+')
 
-$markdown += New-MDHeader "Installed Windows SDKs" -Level 4
-$sdk = Get-WindowsSDKs
-$markdown += "``Location $($sdk.Path)``"
-$markdown += New-MDNewLine
-$markdown += New-MDList -Lines $sdk.Versions -Style Unordered
-
-$markdown += New-MDHeader ".NET Core SDK" -Level 3
-$sdk = Get-DotnetSdks
-$markdown += "``Location $($sdk.Path)``"
-$markdown += New-MDNewLine
-$markdown += New-MDList -Lines $sdk.Versions -Style Unordered
-
-$markdown += New-MDHeader ".NET Core Runtime" -Level 3
-Get-DotnetRuntimes | Foreach-Object {
-    $path = $_.Path
-    $versions = $_.Versions
-    $markdown += "``Location: $path``"
-    $markdown += New-MDNewLine
-    $markdown += New-MDList -Lines $versions -Style Unordered
+# .NET Core Tools
+$netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
+if (Test-IsWin19) {
+    # Visual Studio 2019 brings own version of .NET Core which is different from latest official version
+    $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d{2}')
+} else {
+    $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d')
 }
-
-$markdown += New-MDHeader ".NET Framework" -Level 3
-$markdown += "``Type: Developer Pack``"
-$markdown += New-MDNewLine
-Get-DotnetFrameworkTools | Foreach-Object {
-    $path = $_.Path
-    $versions = $_.Versions
-    $markdown += "``Location: $path``"
-    $markdown += New-MDNewLine
-    $markdown += New-MDList -Lines $versions -Style Unordered
+$netCoreTools.AddToolVersionsListInline(".NET Framework", $(Get-DotnetFrameworkVersions), '^.+')
+Get-DotnetRuntimes | ForEach-Object {
+    $netCoreTools.AddToolVersionsListInline($_.Runtime, $_.Versions, '^.+')
 }
-
-$markdown += New-MDHeader ".NET tools" -Level 3
-$tools = Get-DotnetTools
-$markdown += New-MDList -Lines $tools -Style Unordered
+$netCoreTools.AddNodes($(Get-DotnetTools))
 
 # PowerShell Tools
-$markdown += New-MDHeader "PowerShell Tools" -Level 3
-$markdown += New-MDList -Lines (Get-PowershellCoreVersion) -Style Unordered
+$psTools = $installedSoftware.AddHeader("PowerShell Tools")
+$psTools.AddToolVersion("PowerShell", $(Get-PowershellCoreVersion))
 
-$markdown += New-MDHeader "Azure Powershell Modules" -Level 4
-$markdown += Get-PowerShellAzureModules | New-MDTable
-$reportAzPwsh = @'
-```
+$psModules = $psTools.AddHeader("Powershell Modules")
+$psModules.AddNodes($(Get-PowerShellModules))
+
+$azPsNotes = @'
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
-```
 '@
-$markdown += New-MDParagraph -Lines $reportAzPwsh
+$psModules.AddNote($azPsNotes)
 
-$markdown += New-MDHeader "Powershell Modules" -Level 4
-$markdown += Get-PowerShellModules | New-MDTable
-$markdown += New-MDNewLine
+# Android
+$android = $installedSoftware.AddHeader("Android")
+$android.AddTable($(Build-AndroidTable))
 
-# Android section
-$markdown += New-MDHeader "Android" -Level 3
-$markdown += Build-AndroidTable | New-MDTable
-$markdown += New-MDNewLine
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-AndroidEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
+$android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
 
-# Docker images section
-$cachedImages = Get-CachedDockerImagesTableData
-if ($cachedImages) {
-    $markdown += New-MDHeader "Cached Docker images" -Level 3
-    $markdown += $cachedImages | New-MDTable
-}
+# Cached Docker images
+$installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
 
-Test-BlankElement -Markdown $markdown
-$markdown | Out-File -FilePath "C:\InstalledSoftware.md"
+# Generate reports
+$softwareReport.ToJson() | Out-File -FilePath "C:\software-report.json" -Encoding UTF8NoBOM
+$softwareReport.ToMarkdown() | Out-File -FilePath "C:\software-report.md" -Encoding UTF8NoBOM

@@ -84,7 +84,7 @@
                 "versions": [ "8", "11", "12" ]
             }
         ],
-        "maven": "3.8.6"
+        "maven": "3.8.7"
     },
     "android": {
         "cmdline-tools": "latest",
@@ -123,7 +123,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "9.0.1"
+                "9.2.0"
             ],
             "zip_versions": [
                 "3.1.0",
@@ -160,6 +160,7 @@
             "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
+            "libyaml-dev",
             "libtool",
             "libunwind8",
             "libxkbfile-dev",
@@ -220,14 +221,6 @@
         ]
     },
     "brew": [
-        {
-            "name": "gcc@12",
-            "command": "gcc-12"
-        },
-        {
-            "name": "zstd",
-            "command": "zstd"
-        }
     ],
     "docker": {
         "images": [
@@ -301,7 +294,8 @@
             "7.3",
             "7.4",
             "8.0",
-            "8.1"
+            "8.1",
+            "8.2"
         ]
     },
     "selenium": {
