@@ -482,7 +482,7 @@
         "version": "8.2"
     },
     "llvm": {
-        "version": "14"
+        "version": "15"
     },
     "postgresql": {
         "version": "14"
