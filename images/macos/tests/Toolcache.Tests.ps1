@@ -52,6 +52,20 @@ Describe "Toolcache" {
 
                     "$PythonBinPath -c 'import sys;print(sys.version)'" | Should -ReturnZeroExitCode
                 }
+
+                It "Python 3 is installed under /usr/local/bin" {
+                    Get-WhichTool "python3" | Should -BeLike "/usr/local/bin*"
+                }
+
+                It "Pip 3 and Python 3 came from the same package" {
+                    $pip3Path = Split-Path (readlink (which pip3))
+                    $python3Path = Split-Path (readlink (which python3))
+                    $pip3Path | Should -BeExactly $python3Path
+                }
+
+                It "Python 3 is available" {
+                    "python3 --version" | Should -ReturnZeroExitCode
+                }
             }
         }
     }
