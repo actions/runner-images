@@ -217,7 +217,7 @@ $markdown += New-MDHeader "Database tools" -Level 3
 $databaseTools = @(
     (Get-AzCosmosDBEmulatorVersion),
     (Get-DacFxVersion),
-    (Get-MySQLVersion),
+    #(Get-MySQLVersion),
     (Get-SQLPSVersion),
     (Get-SQLOLEDBDriverVersion)
 )
@@ -294,13 +294,13 @@ $markdown += New-MDHeader "Powershell Modules" -Level 4
 $markdown += Get-PowerShellModules | New-MDTable
 $markdown += New-MDNewLine
 
-# Android section
-$markdown += New-MDHeader "Android" -Level 3
-$markdown += Build-AndroidTable | New-MDTable
-$markdown += New-MDNewLine
-$markdown += New-MDHeader "Environment variables" -Level 4
-$markdown += Build-AndroidEnvironmentTable | New-MDTable
-$markdown += New-MDNewLine
+# # Android section is commented as we are not installing Android for etn image
+# $markdown += New-MDHeader "Android" -Level 3
+# $markdown += Build-AndroidTable | New-MDTable
+# $markdown += New-MDNewLine
+# $markdown += New-MDHeader "Environment variables" -Level 4
+# $markdown += Build-AndroidEnvironmentTable | New-MDTable
+# $markdown += New-MDNewLine
 
 # Docker images section
 $cachedImages = Get-CachedDockerImagesTableData
