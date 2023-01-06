@@ -337,6 +337,14 @@
             { "name": "grunt-cli", "test": "grunt --version" }
         ]
     },
+    "serviceFabric": {
+        "runtime": {
+            "version": "9.1.1436.9590"
+        },
+        "sdk": {
+            "version": "6.1.1436"
+        }
+    },
     "dotnet": {
         "versions": [
             "3.1",
