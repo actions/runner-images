@@ -42,6 +42,14 @@ function Get-CMakeVersion {
     return $cmakeVersion
 }
 
+function Get-PriorCodeQLBundleVersion {
+    $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "*"
+    $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -Last 1 -Expand FullName
+    $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
+    $CodeQLVersion = & $CodeQLPath version --quiet
+    return $CodeQLVersion
+}
+
 function Get-CodeQLBundleVersion {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
