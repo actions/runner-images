@@ -159,6 +159,20 @@ Describe "CodeQL" -Skip:($os.IsCatalina) {
         $PriorCodeQLPacksPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
         $PriorCodeQLPacksPath | Should -Exist
     }
+
+    It "two codeql versions are unique" {
+        $CodeQLVersionWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $CodeQLVersionPath = Get-ChildItem $CodeQLVersionWildcard | Select-Object -First 1 -Expand FullName
+        $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+        $CodeQLVersion = "$CodeQLPath version --quiet"
+
+        $PriorCodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $PriorCodeQLVersionPath = Get-ChildItem $PriorCodeQLVersionsWildcard | Select-Object -Last 1 -Expand FullName
+        $PriorCodeQLPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+        $PriorCodeQLVersion = "$PriorCodeQLPath version --quiet"
+
+        $CodeQLVersion | Should -Not -Match $PriorCodeQLVersion
+    }
 }
 
 Describe "Colima" -Skip:($os.IsCatalina) {
