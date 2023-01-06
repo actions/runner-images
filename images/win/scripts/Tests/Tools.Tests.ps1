@@ -21,13 +21,41 @@ Describe "Bazel" {
     }
 }
 
-Describe "CodeQLBundle" {
-    It "CodeQLBundle" {
+Describe "CodeQLBundles" {
+    It "Latest CodeQLBundle" {
         $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "codeql" | Join-Path -ChildPath "*"
         $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
         $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
         "$CodeQLPath version" | Should -ReturnZeroExitCode
+
+        $CodeQLPacksPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
+        $CodeQLPacksPath | Should -Exist
     }
+
+    It "Prior CodeQL Bundle" {
+        $PriorCodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $PriorCodeQLVersionPath = Get-ChildItem $PriorCodeQLVersionsWildcard | Select-Object -Last 1 -Expand FullName
+        $PriorCodeQLPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+        "$PriorCodeQLPath version --quiet" | Should -ReturnZeroExitCode
+
+        $PriorCodeQLPacksPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
+        $PriorCodeQLPacksPath | Should -Exist
+    }
+
+    It "Latest and Prior CodeQL Bundles are unique" {
+        $CodeQLVersionWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $CodeQLVersionPath = Get-ChildItem $CodeQLVersionWildcard | Select-Object -First 1 -Expand FullName
+        $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+        $CodeQLVersion = "$CodeQLPath version --quiet"
+
+        $PriorCodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $PriorCodeQLVersionPath = Get-ChildItem $PriorCodeQLVersionsWildcard | Select-Object -Last 1 -Expand FullName
+        $PriorCodeQLPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+        $PriorCodeQLVersion = "$PriorCodeQLPath version --quiet"
+
+        $CodeQLVersion | Should -Not -Match $PriorCodeQLVersion
+    }
+
 }
 
 Describe "R" {
