@@ -2,24 +2,36 @@
 source ~/utils/utils.sh
 
 # Retrieve the name of the CodeQL bundle preferred by the Action (in the format codeql-bundle-YYYYMMDD).
-codeql_bundle_name="$(curl -sSL https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json | jq -r .bundleVersion)"
-# Convert the bundle name to a version number (0.0.0-YYYYMMDD).
-codeql_bundle_version="0.0.0-${codeql_bundle_name##*-}"
+defaults="$(curl -sSL https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json)"
+codeql_bundle_name="$(${defaults} | jq -r .bundleVersion)"
+codeql_cli_version="$(${defaults} | jq -r .cliVersion)"
+prior_codeql_bundle_name="$(${defaults} | jq -r .priorBundleVersion)"
+prior_codeql_cli_version="$(${defaults} | jq -r .priorCliVersion)"
 
-echo "Downloading CodeQL bundle $codeql_bundle_version..."
-download_with_retries "https://github.com/github/codeql-action/releases/download/$codeql_bundle_name/codeql-bundle.tar.gz" "/tmp" "codeql-bundle.tar.gz"
-codeqlArchive="/tmp/codeql-bundle.tar.gz"
+# Convert the bundle names to bundles with a version number (x.y.z-YYYYMMDD).
+codeql_bundle_version="${codeql_cli_version}-${codeql_bundle_name##*-}"
+prior_codeql_bundle_version="${prior_codeql_cli_version}-${prior_codeql_bundle_name##*-}"
 
-codeqlToolcachePath="$AGENT_TOOLSDIRECTORY/codeql/$codeql_bundle_version/x64"
-mkdir -p $codeqlToolcachePath
+# For both of the bundle versions, download and name appropriately.
+for bundle in "${codeql_bundle_version} ${codeql_bundle_name}" "${prior_codeql_bundle_version} ${prior_codeql_bundle_name}"
+do
+    set -- "$bundle"
 
-echo "Unpacking the downloaded CodeQL bundle archive..."
-tar -xzf $codeqlArchive -C $codeqlToolcachePath
+    echo "Downloading CodeQL bundle $1..."
+    download_with_retries "https://github.com/github/codeql-action/releases/download/$2/codeql-bundle.tar.gz" "/tmp" "codeql-bundle.tar.gz"
+    codeqlArchive="/tmp/codeql-bundle.tar.gz"
 
-# Touch a special file that indicates to the CodeQL Action that this bundle was baked-in to the hosted runner images.
-touch "$codeqlToolcachePath/pinned-version"
+    codeqlToolcachePath="$AGENT_TOOLSDIRECTORY/codeql/$1/x64"
+    mkdir -p "$codeqlToolcachePath"
 
-# Touch a file to indicate to the toolcache that setting up CodeQL is complete.
-touch "$codeqlToolcachePath.complete"
+    echo "Unpacking the downloaded CodeQL bundle archive..."
+    tar -xzf "$codeqlArchive" -C "$codeqlToolcachePath"
+
+    # Touch a special file that indicates to the CodeQL Action that this bundle was baked-in to the hosted runner images.
+    touch "$codeqlToolcachePath/pinned-version"
+
+    # Touch a file to indicate to the toolcache that setting up CodeQL is complete.
+    touch "$codeqlToolcachePath.complete"
+done
 
 invoke_tests "Common" "CodeQL"
