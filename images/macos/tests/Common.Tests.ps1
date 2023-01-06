@@ -149,6 +149,16 @@ Describe "CodeQL" -Skip:($os.IsCatalina) {
         $CodeQLPacksPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
         $CodeQLPacksPath | Should -Exist
     }
+
+    It "prior codeql" {
+        $PriorCodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $PriorCodeQLVersionPath = Get-ChildItem $PriorCodeQLVersionsWildcard | Select-Object -Last 1 -Expand FullName
+        $PriorCodeQLPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+        "$PriorCodeQLPath version --quiet" | Should -ReturnZeroExitCode
+
+        $PriorCodeQLPacksPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
+        $PriorCodeQLPacksPath | Should -Exist
+    }
 }
 
 Describe "Colima" -Skip:($os.IsCatalina) {

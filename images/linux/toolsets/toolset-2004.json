@@ -68,6 +68,7 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
+                "*",
                 "*"
             ]
         }
