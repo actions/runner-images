@@ -30,6 +30,14 @@ function Get-BicepVersion {
     return $Matches.Version
 }
 
+function Get-PriorCodeQLBundleVersion {
+    $PriorCodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+    $PriorCodeQLVersionPath = Get-ChildItem $PriorCodeQLVersionsWildcard | Select-Object -Last 1 -Expand FullName
+    $PriorCodeQLPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+    $PriorCodeQLVersion = & $PriorCodeQLPath version --quiet
+    return $PriorCodeQLVersion
+}
+
 function Get-CodeQLBundleVersion {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
