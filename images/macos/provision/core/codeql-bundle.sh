@@ -19,21 +19,21 @@ do
 
     echo "Downloading CodeQL bundle $1..."
     download_with_retries "https://github.com/github/codeql-action/releases/download/$2/codeql-bundle.tar.gz" "/tmp" "codeql-bundle.tar.gz"
-    codeqlArchive="/tmp/codeql-bundle.tar.gz"
+    codeql_archive="/tmp/codeql-bundle.tar.gz"
 
-    codeqlToolcachePath="$AGENT_TOOLSDIRECTORY/codeql/$1/x64"
-    mkdir -p "$codeqlToolcachePath"
+    codeql_toolcache_path="$AGENT_TOOLSDIRECTORY/codeql/$1/x64"
+    mkdir -p "$codeql_toolcache_path"
 
     echo "Unpacking the downloaded CodeQL bundle archive..."
-    tar -xzf "$codeqlArchive" -C "$codeqlToolcachePath"
+    tar -xzf "$codeql_archive" -C "$codeql_toolcache_path"
 
     # We only pin the version in the toolcache, to support overriding the CodeQL version specified in defaults.json on GitHub Enterprise.
     if [ "$1" = "$codeql_bundle_version" ]; then
-        touch "$codeqlToolcachePath/pinned-version"
+        touch "$codeql_toolcache_path/pinned-version"
     fi
 
     # Touch a file to indicate to the toolcache that setting up CodeQL is complete.
-    touch "$codeqlToolcachePath.complete"
+    touch "$codeql_toolcache_path.complete"
 done
 
 invoke_tests "Common" "CodeQL"
