@@ -2,11 +2,11 @@
 source ~/utils/utils.sh
 
 # Retrieve the name of the CodeQL bundle preferred by the Action (in the format codeql-bundle-YYYYMMDD).
-defaults="$(curl -sSL https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json)"
-codeql_tag_name="$(jq -r '.bundleVersion' <<< "${defaults}")"
-codeql_cli_version="$(jq -r '.cliVersion' <<< "${defaults}")"
-prior_codeql_tag_name="$(jq -r '.priorBundleVersion' <<< "${defaults}")"
-prior_codeql_cli_version="$(jq -r '.priorCliVersion' <<< "${defaults}")"
+base_url="$(curl -sSL https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json)"
+codeql_tag_name="$(echo $base_url | jq -r '.bundleVersion')"
+codeql_cli_version="$(echo $base_url | jq -r '.cliVersion')"
+prior_codeql_tag_name="$(echo $base_url | jq -r '.priorBundleVersion')"
+prior_codeql_cli_version="$(echo $base_url | jq -r '.priorCliVersion')"
 
 # Convert the tag names to bundles with a version number (x.y.z-YYYYMMDD).
 codeql_bundle_version="${codeql_cli_version}-${codeql_tag_name##*-}"
