@@ -32,6 +32,11 @@ do
     echo "Unpacking the downloaded CodeQL bundle archive..."
     tar -xzf "$codeqlArchive" -C "$codeqlToolcachePath"
 
+    # We only pin the version in the toolcache, to support overriding the CodeQL version specified in defaults.json on GitHub Enterprise.
+    if [ "$1" = "$codeql_bundle_version" ]; then
+        touch "$codeqlToolcachePath/pinned-version"
+    fi
+
     # Touch a file to indicate to the toolcache that setting up CodeQL is complete.
     touch "$codeqlToolcachePath.complete"
 done
