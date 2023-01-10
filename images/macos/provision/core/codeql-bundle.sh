@@ -12,23 +12,26 @@ prior_codeql_cli_version="$(echo $base_url | jq -r '.priorCliVersion')"
 codeql_bundle_version="${codeql_cli_version}-${codeql_tag_name##*-}"
 prior_codeql_bundle_version="${prior_codeql_cli_version}-${prior_codeql_tag_name##*-}"
 
-# For both of the bundle versions, download and name appropriately.
-for bundle in "${codeql_bundle_version} ${codeql_tag_name}" "${prior_codeql_bundle_version} ${prior_codeql_tag_name}"
-do
-    set -- "$bundle"
+# Download and name both CodeQL bundles.
+codeql_bundle_versions=("${codeql_bundle_version}" "${prior_codeql_bundle_version}")
+codeql_tag_names=("${codeql_tag_name}" "${prior_codeql_tag_name}")
 
-    echo "Downloading CodeQL bundle $1..."
-    download_with_retries "https://github.com/github/codeql-action/releases/download/$2/codeql-bundle.tar.gz" "/tmp" "codeql-bundle.tar.gz"
+for ((i=0;i<=1;i++)); do
+  bundle_version="${codeql_bundle_versions[$i]}"
+  bundle_tag_name="${codeql_tag_names[$i]}"
+  
+  echo "Downloading CodeQL bundle $bundle_version..."
+    download_with_retries "https://github.com/github/codeql-action/releases/download/$bundle_tag_name/codeql-bundle.tar.gz" "/tmp" "codeql-bundle.tar.gz"
     codeql_archive="/tmp/codeql-bundle.tar.gz"
 
-    codeql_toolcache_path="$AGENT_TOOLSDIRECTORY/codeql/$1/x64"
+    codeql_toolcache_path="$AGENT_TOOLSDIRECTORY/codeql/$bundle_version/x64"
     mkdir -p "$codeql_toolcache_path"
 
     echo "Unpacking the downloaded CodeQL bundle archive..."
     tar -xzf "$codeql_archive" -C "$codeql_toolcache_path"
 
     # We only pin the version in the toolcache, to support overriding the CodeQL version specified in defaults.json on GitHub Enterprise.
-    if [ "$1" = "$codeql_bundle_version" ]; then
+    if [[ "$bundle_version" == "$codeql_bundle_version" ]]; then
         touch "$codeql_toolcache_path/pinned-version"
     fi
 
