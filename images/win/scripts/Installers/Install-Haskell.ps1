@@ -16,6 +16,8 @@ Set-SystemVariable "CABAL_DIR" $cabalDir
 Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
 Add-MachinePathItem "$cabalDir\bin"
 
+Update-SessionEnvironment
+
 # Get 3 latest versions of GHC
 $Versions = ghcup list -t ghc -r | Where-Object {$_ -notlike "prerelease"}
 $VersionsOutput = [Version[]]($Versions | %{ $_.Split(' ')[1]; })
