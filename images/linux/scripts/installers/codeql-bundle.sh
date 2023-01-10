@@ -35,7 +35,7 @@ for ((i=0;i<=1;i++)); do
     echo "Unpacking the downloaded CodeQL bundle archive..."
     tar -xzf "$codeql_archive" -C "$codeql_toolcache_path"
 
-    # We only pin the version in the toolcache, to support overriding the CodeQL version specified in defaults.json on GitHub Enterprise.
+    # We only pin the latest version in the toolcache, to support overriding the CodeQL version specified in defaults.json on GitHub Enterprise.
     if [[ "$bundle_version" == "$codeql_bundle_version" ]]; then
         touch "$codeql_toolcache_path/pinned-version"
     fi
