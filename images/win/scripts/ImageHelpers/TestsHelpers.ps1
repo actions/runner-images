@@ -173,3 +173,28 @@ If (Get-Command -Name Add-ShouldOperator -ErrorAction SilentlyContinue) {
     Add-ShouldOperator -Name ReturnZeroExitCodeWithParam -InternalName ShouldReturnZeroExitCodeWithParam -Test ${function:ShouldReturnZeroExitCodeWithParam}
     Add-ShouldOperator -Name MatchCommandOutput -InternalName ShouldMatchCommandOutput -Test ${function:ShouldMatchCommandOutput}
 }
+
+Function Get-ModuleVersionAsJob {
+    Param (
+        [Parameter(Mandatory)]
+        [String] $modulePath,
+        [Parameter(Mandatory)]
+        [String] $moduleName
+    )
+    # Script block to run commands in separate PowerShell environment
+    $testJob = Start-Job -ScriptBlock {
+        param (
+            $modulePath,
+            $moduleName
+        )
+        # Disable warning messages to prevent additional warnings about Az and Azurerm modules in the same session
+        $WarningPreference = "SilentlyContinue"
+        $env:PsModulePath = "$modulePath;$env:PsModulePath"
+        Import-Module -Name $moduleName
+        (Get-Module -Name $moduleName).Version.ToString()
+
+    } -ArgumentList $modulePath, $moduleName
+
+    $testJob | Wait-Job | Receive-Job | Out-File -FilePath "${env:TEMP}\module-version.txt"
+    Remove-Job $testJob
+}

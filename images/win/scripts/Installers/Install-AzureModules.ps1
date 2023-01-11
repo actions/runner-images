@@ -44,7 +44,7 @@ foreach ($module in $modules)
     foreach ($version in $module.zip_versions)
     {
         # Install modules from GH Release
-        if($null -ne $assets) 
+        if($null -ne $assets)
         {
             $asset = $assets | Where-Object version -eq $version `
                          | Select-Object -ExpandProperty files `
@@ -58,8 +58,8 @@ foreach ($module in $modules)
                 exit 1
             }
         }
-        # Install modules from vsts blob 
-        else 
+        # Install modules from vsts blob
+        else
         {
             $modulePath = Join-Path -Path $installPSModulePath -ChildPath "${moduleName}_${version}"
             $filename = "${moduleName}_${version}.zip"
@@ -90,4 +90,4 @@ foreach ($module in $modules)
 $psModuleMachinePath += $env:PSModulePath
 [Environment]::SetEnvironmentVariable("PSModulePath", $psModuleMachinePath, "Machine")
 
-Invoke-PesterTests -TestFile "PowerShellModules" -TestName "AzureModules"
+Invoke-PesterTests -TestFile "PowerShellAzModules" -TestName "AzureModules"
