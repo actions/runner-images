@@ -47,10 +47,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 ## Ongoing migrations
 
-There are currently two migrations in progress:
-
-* `macos-latest` is currently transitioning to `macos-12`.  During this time, you may experience some jobs running on either a macos-11 or macos-12 runner. You can specify `runs-on: macos-11` in your workflow if you need the previous version. Details can be found in this [announcement](https://github.com/actions/runner-images/issues/6384).
-
+There are no migrations in progress.
 
 ## Image Definitions
 
