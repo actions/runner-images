@@ -21,9 +21,9 @@ prior_codeql_bundle_version="${prior_codeql_cli_version}-${prior_codeql_tag_name
 codeql_bundle_versions=("${codeql_bundle_version}" "${prior_codeql_bundle_version}")
 codeql_tag_names=("${codeql_tag_name}" "${prior_codeql_tag_name}")
 
-for ((i=0;i<=1;i++)); do
-  bundle_version="${codeql_bundle_versions[$i]}"
-  bundle_tag_name="${codeql_tag_names[$i]}"
+for $index in $codeql_bundle_versions[@]; do
+  bundle_version="${codeql_bundle_versions[$index]}"
+  bundle_tag_name="${codeql_tag_names[$index]}"
   
   echo "Downloading CodeQL bundle $bundle_version..."
     download_with_retries "https://github.com/github/codeql-action/releases/download/$bundle_tag_name/codeql-bundle.tar.gz" "/tmp" "codeql-bundle.tar.gz"
