@@ -615,3 +615,4 @@ function Get-GitHubPackageDownloadUrl {
 
     return $downloadUrl
 }
+
