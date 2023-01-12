@@ -5,6 +5,7 @@
 
 - [About](#about)
 - [Available Images](#available-images)
+- [Ongoing migrations](#ongoing-migrations)
 - [Image Definitions](#image-definitions)
 - [Image Releases](#image-releases)
 - [Software and Image Support](#software-and-image-support)
@@ -44,6 +45,9 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [macOS-10.15]: https://github.com/actions/runner-images/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
+## Ongoing migrations
+
+There are no migrations in progress.
 
 ## Image Definitions
 
