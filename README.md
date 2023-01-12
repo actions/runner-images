@@ -5,7 +5,6 @@
 
 - [About](#about)
 - [Available Images](#available-images)
-- [Ongoing migrations](#ongoing-migrations)
 - [Image Definitions](#image-definitions)
 - [Image Releases](#image-releases)
 - [Software and Image Support](#software-and-image-support)
@@ -44,12 +43,6 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [macOS-12]: https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
 [macOS-10.15]: https://github.com/actions/runner-images/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
-
-## Ongoing migrations
-
-There are currently two migrations in progress:
-
-* `macos-latest` is currently transitioning to `macos-12`.  During this time, you may experience some jobs running on either a macos-11 or macos-12 runner. You can specify `runs-on: macos-11` in your workflow if you need the previous version. Details can be found in this [announcement](https://github.com/actions/runner-images/issues/6384).
 
 
 ## Image Definitions
