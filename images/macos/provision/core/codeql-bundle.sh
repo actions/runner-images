@@ -16,7 +16,7 @@ prior_codeql_bundle_version="${prior_codeql_cli_version}-${prior_codeql_tag_name
 codeql_bundle_versions=("${codeql_bundle_version}" "${prior_codeql_bundle_version}")
 codeql_tag_names=("${codeql_tag_name}" "${prior_codeql_tag_name}")
 
-for $index in $codeql_bundle_versions[@]; do
+for index in $codeql_bundle_versions[@]; do
   bundle_version="${codeql_bundle_versions[$index]}"
   bundle_tag_name="${codeql_tag_names[$index]}"
   
