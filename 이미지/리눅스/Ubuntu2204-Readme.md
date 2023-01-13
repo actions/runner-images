@@ -1,3 +1,5 @@
+Ubuntu2204-Readme.md
+곧2849
 | Announcements |
 |-|
 | [[All OSs] .NET 5.x will be removed from the images on January, 29](https://github.com/actions/runner-images/issues/6840) |
@@ -56,6 +58,7 @@ Note: Homebrew is pre-installed on image but not added to PATH.
 run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" command
 to accomplish this.
 ```
+https://github.com/actions/runner-images/tree/actions:main
 
 ### Project Management
 - Lerna 6.4.0
@@ -385,4 +388,5 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.2.5-2ubuntu1                    |
 | zip                    | 3.0-12build2                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
+https://github.com/soon2849/-2849/blob/main/README.md
 
