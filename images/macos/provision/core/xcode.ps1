@@ -24,6 +24,11 @@ $xcodeVersions | ForEach-Object {
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
     Confirm-XcodeIntegrity -Version $_.link
     Approve-XcodeLicense -Version $_.link
+}
+
+Write-Host "Configuring Xcode versions..."
+$xcodeVersions | ForEach-Object {
+    Switch-Xcode -Version $_.link
 
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
@@ -36,11 +41,6 @@ $xcodeVersions | ForEach-Object {
         Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
     }
 }
-
-Write-Host "Configuring Xcode versions..."
-#$xcodeVersions | ForEach-Object {
-#    Invoke-XcodeRunFirstLaunch -Version $_.link
-#}
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
 Write-Host "Configuring Xcode symlinks..."
