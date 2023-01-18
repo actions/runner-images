@@ -77,7 +77,7 @@
 - NSIS 3.08
 - OpenSSL 1.1.1
 - Packer 1.8.4
-- Parcel Parcel 2.8.2
+- Parcel 2.8.2
 - Pulumi 3.51.1
 - R 4.2.2
 - Service Fabric SDK 9.1.1436.9590
