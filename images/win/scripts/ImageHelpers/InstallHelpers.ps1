@@ -274,7 +274,7 @@ function Install-VsixExtension
         [string] $FilePath,
         [Parameter(Mandatory = $true)]
         [string] $VSversion,
-        [int] $retries = 20,
+        [int] $Retries = 20,
         [switch] $InstallOnly
     )
 
@@ -285,45 +285,54 @@ function Install-VsixExtension
 
     $argumentList = ('/quiet', "`"$FilePath`"")
 
-    Write-Host "Starting Install $Name..."
-    $vsEdition = (Get-ToolsetContent).visualStudio.edition
-    try
+    do
     {
-        $installPath = ${env:ProgramFiles(x86)}
-
-        if (Test-IsWin22)
+        Write-Host "Starting Install $Name..."
+        $vsEdition = (Get-ToolsetContent).visualStudio.edition
+        try
         {
-            $installPath = ${env:ProgramFiles}
+            $installPath = ${env:ProgramFiles(x86)}
+
+            if (Test-IsWin22)
+            {
+                $installPath = ${env:ProgramFiles}
+            }
+
+            #There are 2 types of packages at the moment - exe and vsix
+            if ($Name -match "vsix")
+            {
+                $process = Start-Process -FilePath "${installPath}\Microsoft Visual Studio\${VSversion}\${vsEdition}\Common7\IDE\VSIXInstaller.exe" -ArgumentList $argumentList -Wait -PassThru
+            }
+            else
+            {
+                $process = Start-Process -FilePath ${env:Temp}\$Name /Q -Wait -PassThru
+            }
+        }
+        catch
+        {
+            Write-Host "There is an error during $Name installation"
+            $_
+            exit 1
         }
 
-        #There are 2 types of packages at the moment - exe and vsix
-        if ($Name -match "vsix")
+        $exitCode = $process.ExitCode
+
+        if ($exitCode -eq 0 -or $exitCode -eq 1001) # 1001 means the extension is already installed
         {
-            $process = Start-Process -FilePath "${installPath}\Microsoft Visual Studio\${VSversion}\${vsEdition}\Common7\IDE\VSIXInstaller.exe" -ArgumentList $argumentList -Wait -PassThru
+            Write-Host "$Name installed successfully"
         }
         else
         {
-            $process = Start-Process -FilePath ${env:Temp}\$Name /Q -Wait -PassThru
+            Write-Host "Unsuccessful exit code returned by the installation process: $exitCode."
+            $Retries--
+            if ($Retries -eq 0) {
+                Write-Host "The $Name couldn't be installed after 20 attempts."
+            }else {
+                Write-Host "Waiting 10 seconds before retrying. Retries left: $Retries"
+                Start-Sleep -Seconds 10
+            }
         }
-    }
-    catch
-    {
-        Write-Host "There is an error during $Name installation"
-        $_
-        exit 1
-    }
-
-    $exitCode = $process.ExitCode
-
-    if ($exitCode -eq 0 -or $exitCode -eq 1001) # 1001 means the extension is already installed
-    {
-        Write-Host "$Name installed successfully"
-    }
-    else
-    {
-        Write-Host "Unsuccessful exit code returned by the installation process: $exitCode."
-        exit 1
-    }
+    } until ($exitCode -eq 0 -or $exitCode -eq 1001 -or $Retries -eq 0 )
 
     #Cleanup downloaded installation files
     if (-not $InstallOnly)
