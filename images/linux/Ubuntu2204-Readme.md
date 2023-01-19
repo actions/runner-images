@@ -5,8 +5,8 @@
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.1 LTS
-- Kernel Version: 5.15.0-1030-azure
-- Image Version: 20230109.1
+- Kernel Version: 5.15.0-1031-azure
+- Image Version: 20230118.2
 
 ## Installed Software
 
@@ -18,7 +18,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 9.5.0, 10.4.0, 11.3.0, 12.1.0
 - GNU Fortran: 9.5.0, 10.4.0, 11.3.0, 12.1.0
-- Julia 1.8.4
+- Julia 1.8.5
 - Kotlin 1.8.0-release-345
 - Mono 6.12.0.182
 - MSBuild 16.10.1.31701 (Mono 6.12.0.182)
@@ -31,8 +31,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.10.3
-- Homebrew 3.6.18
+- Helm 3.11.0
+- Homebrew 3.6.19
 - Miniconda 22.11.1
 - Npm 8.19.3
 - NuGet 6.3.1.1
@@ -40,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 85c4f11f8)
+- Vcpkg (build from commit 89e381729)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -58,7 +58,7 @@ to accomplish this.
 ```
 
 ### Project Management
-- Lerna 6.4.0
+- Lerna 6.4.1
 
 ### Tools
 - Ansible 2.14.1
@@ -69,22 +69,22 @@ to accomplish this.
 - Bicep 0.13.1
 - Buildah 1.23.1
 - CMake 3.25.1
-- CodeQL Action Bundle 2.11.6
+- CodeQL Action Bundle 2.12.0
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.15.1+azure-1
-- Docker-Buildx 0.9.1
+- Docker-Buildx 0.10.0
 - Docker-Moby Client 20.10.22+azure-1
 - Docker-Moby Server 20.10.22+azure-1
 - Fastlane 2.211.0
-- Git 2.39.0
+- Git 2.39.1
 - Git LFS 3.3.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - Heroku 7.67.1
 - jq 1.6
 - Kind 0.17.0
-- Kubectl 1.26.0
+- Kubectl 1.26.1
 - Kustomize 4.5.7
 - Leiningen 2.10.0
 - MediaInfo 21.09
@@ -95,32 +95,32 @@ to accomplish this.
 - nvm 0.39.3
 - OpenSSL 3.0.2-0ubuntu1.7
 - Packer 1.8.5
-- Parcel 2.8.2
+- Parcel 2.8.3
 - Podman 3.4.4
-- Pulumi 3.51.0
+- Pulumi 3.51.1
 - R 4.2.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
 - Terraform 1.3.7
-- yamllint 1.28.0
-- yq 4.30.6
+- yamllint 1.29.0
+- yq 4.30.8
 - zstd 1.5.2
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.144
-- AWS CLI 2.9.13
+- AWS CLI 2.9.15
 - AWS CLI Session Manager Plugin 1.2.398.0
-- AWS SAM CLI 1.68.0
-- Azure CLI 2.43.0
+- AWS SAM CLI 1.70.0
+- Azure CLI 2.44.1
 - Azure CLI (azure-devops) 0.25.0
 - GitHub CLI 2.21.2
-- Google Cloud SDK 412.0.0
+- Google Cloud SDK 414.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 12.6.0
-- OpenShift CLI 4.11.22
+- Netlify CLI 12.7.2
+- OpenShift CLI 4.12.0
 - ORAS CLI 0.16.0
-- Vercel CLI 28.10.3
+- Vercel CLI 28.12.7
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -145,13 +145,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.6.2.0
 - GHC 9.4.4
-- GHCup 0.1.18.0
+- GHCup 0.1.19.0
 - Stack 2.9.3
 
 ### Rust Tools
-- Cargo 1.66.0
-- Rust 1.66.0
-- Rustdoc 1.66.0
+- Cargo 1.66.1
+- Rust 1.66.1
+- Rustdoc 1.66.1
 - Rustup 1.25.1
 
 #### Packages
@@ -163,13 +163,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 108.0.5359.124
-- ChromeDriver 108.0.5359.71
-- Chromium 108.0.5341.0
-- Microsoft Edge 108.0.1462.76
-- Microsoft Edge WebDriver 108.0.1462.76
+- Google Chrome 109.0.5414.74
+- ChromeDriver 109.0.5414.74
+- Chromium 109.0.5414.0
+- Microsoft Edge 109.0.1518.52
+- Microsoft Edge WebDriver 109.0.1518.52
 - Selenium server 4.7.0
-- Mozilla Firefox 108.0.2
+- Mozilla Firefox 109.0
 - Geckodriver 0.32.0
 
 #### Environment variables
@@ -181,7 +181,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.404, 7.0.101
+- .NET Core SDK: 6.0.405, 7.0.102
 - nbgv 3.5.119+5d25f54fec
 
 ### Databases
@@ -212,8 +212,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.17.13
-- 1.18.9
-- 1.19.4
+- 1.18.10
+- 1.19.5
 
 #### Node.js
 - 14.21.2
@@ -222,7 +222,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Python
 - 3.7.15
-- 3.8.15
+- 3.8.16
 - 3.9.16
 - 3.10.9
 - 3.11.1
@@ -241,8 +241,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 9.2.0
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.19.0
-- Pester: 5.3.3
+- Microsoft.Graph: 1.20.0
+- Pester: 5.4.0
 - PSScriptAnalyzer: 1.21.0
 
 ### Web Servers
@@ -283,17 +283,17 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.14             | sha256:4c869a63e1b7c0722fed1e402a6466610327c3b83bdddb94bd94fb71da7f638a  | 2022-08-09 |
 | alpine:3.15             | sha256:cf34c62ee8eb3fe8aa24c1fab45d7e9d12768d945c3f5a6fd6a63d901e898479  | 2022-08-09 |
 | alpine:3.16             | sha256:b95359c2505145f16c6aa384f9cc74eeff78eb36d308ca4fd902eeeb0a0b161b  | 2022-11-12 |
-| buildpack-deps:bullseye | sha256:0207e7da5bf153f41b59f13a373e62ba24687f71caf90d383c07912e0e31aad3  | 2022-12-21 |
-| buildpack-deps:buster   | sha256:cbf9915fc2c12f95de45033fd6c1131cdbfbc35ce12bf6a6b1dc76a55d9f011a  | 2022-12-21 |
-| debian:10               | sha256:a3b7e971fef3e488479afd0a8387b35bed4c55891a1597d64a8fc6494d61d798  | 2022-12-21 |
-| debian:11               | sha256:c66c0e5dc607baefefda1d9e64a3b3a317e4189c540c8eac0c1a06186fe353a1  | 2022-12-21 |
-| moby/buildkit:latest    | sha256:77abd86c9422aaff294bfde1029f03a6ab18ece0105003637cfda1d7fc22299f  | 2022-11-10 |
-| node:14                 | sha256:b6ab85c15f1c372bca3bde8585fbf5739b679aa9119f46e7d2bd41c1dcc05959  | 2022-12-21 |
-| node:14-alpine          | sha256:4b06eb151378d0634eaeca8de025a216de79e268590b9f20584d3fa708d8a547  | 2023-01-09 |
-| node:16                 | sha256:64e8bcdfdad6718050801a2639f7e6645fdaf85ec37a98cdb61f6a5331217618  | 2022-12-21 |
-| node:16-alpine          | sha256:4f4ffee59a017b8881026d23336f37cc13221ec3dea219ebf7b8e55d876b9380  | 2023-01-09 |
-| node:18                 | sha256:a403ff0ffe7a6a8fe90fdc70289ba398ab3a281bb3fa64b4efed45f45ac17bcd  | 2023-01-06 |
-| node:18-alpine          | sha256:c7bd8f1cdb3c6d7333cbbe63a86ad149759cbea52c18466c00848058ecfeee4d  | 2023-01-09 |
+| buildpack-deps:bullseye | sha256:c1a2475ac14e13582cf8a44fc071439132928ada47c57e80af372fdcd1690751  | 2023-01-11 |
+| buildpack-deps:buster   | sha256:c343da4a0b85a4d25ce30529e836a10d46cd4f682fb5326400e4ba274a2f9866  | 2023-01-11 |
+| debian:10               | sha256:bb8c62f9f540a5f5f49f7ed5caae0e2889f999cd14553f2aaccaf1fa4fcb998d  | 2023-01-11 |
+| debian:11               | sha256:534da5794e770279c889daa891f46f5a530b0c5de8bfbc5e40394a0164d9fa87  | 2023-01-11 |
+| moby/buildkit:latest    | sha256:86ffcc648dbd2215941cbaabbd0564bd8bc67e2aefd32d4feb26e4fb8080f8c6  | 2023-01-17 |
+| node:14                 | sha256:0c888dc647d36f5a895edb6b1b1c96ae81064455e0cdeee0792e14927604ca99  | 2023-01-11 |
+| node:14-alpine          | sha256:2c6a909495ef3761328c10945cbe84c06d079f7ca49dc24271e73be8cab85ad7  | 2023-01-09 |
+| node:16                 | sha256:27fab5920246070cf13449cf44c25bc4f5adef18ca7482b2bda90b7cf9e64481  | 2023-01-11 |
+| node:16-alpine          | sha256:1298fd170c45954fec3d4d063437750f89802d72743816663664cfe9aa152b4b  | 2023-01-09 |
+| node:18                 | sha256:d871edd5b68105ebcbfcde3fe8c79d24cbdbb30430d9bd6251c57c56c7bd7646  | 2023-01-11 |
+| node:18-alpine          | sha256:fda98168118e5a8f4269efca4101ee51dd5c75c0fe56d8eb6fad80455c2f5827  | 2023-01-09 |
 | ubuntu:18.04            | sha256:c1d0baf2425ecef88a2f0c3543ec43690dc16cc80d3c4e593bb95e4f45390e45  | 2023-01-02 |
 | ubuntu:20.04            | sha256:0e0402cd13f68137edb0266e1d2c682f217814420f2d43d300ed8f65479b14fb  | 2022-12-09 |
 | ubuntu:22.04            | sha256:27cb6e6ccef575a4698b66f5de06c7ecd61589132d5a91d098f7f3f9285415a9  | 2022-12-09 |
@@ -330,7 +330,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++-dev             | 1:14.0-55\~exp2                   |
 | libc++abi-dev          | 1:14.0-55\~exp2                   |
 | libcurl4               | 7.81.0-1ubuntu1.7                 |
-| libgbm-dev             | 22.0.5-0ubuntu0.1                 |
+| libgbm-dev             | 22.0.5-0ubuntu0.3                 |
 | libgconf-2-4           | 3.2.6-7ubuntu2                    |
 | libgsl-dev             | 2.7.1+dfsg-3                      |
 | libgtk-3-0             | 3.24.33-1ubuntu2                  |
@@ -352,7 +352,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | mercurial              | 6.1.1-1ubuntu1                    |
 | net-tools              | 1.60+git20181103.0eebece-1ubuntu5 |
 | netcat                 | 1.218-4ubuntu1                    |
-| openssh-client         | 1:8.9p1-3                         |
+| openssh-client         | 1:8.9p1-3ubuntu0.1                |
 | p7zip-full             | 16.02+dfsg-8                      |
 | p7zip-rar              | 16.02-3build1                     |
 | parallel               | 20210822+ds-2                     |
@@ -366,10 +366,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | shellcheck             | 0.8.0-2                           |
 | sphinxsearch           | 2.2.11-8                          |
 | sqlite3                | 3.37.2-2ubuntu0.1                 |
-| ssh                    | 1:8.9p1-3                         |
+| ssh                    | 1:8.9p1-3ubuntu0.1                |
 | sshpass                | 1.09-1                            |
 | subversion             | 1.14.1-3ubuntu0.22.04.1           |
-| sudo                   | 1.9.9-1ubuntu2.1                  |
+| sudo                   | 1.9.9-1ubuntu2.2                  |
 | swig                   | 4.0.2-1ubuntu1                    |
 | tar                    | 1.34+dfsg-1build3                 |
 | telnet                 | 0.17-44build1                     |
