@@ -10,7 +10,8 @@ param(
     [String] [Parameter (Mandatory=$true)] $TenantId,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
-    [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet,
+    [String] [Parameter (Mandatory=$false)] $BuildResourceGroupName
 )
 
 if (-not (Test-Path $TemplatePath))
@@ -21,6 +22,13 @@ if (-not (Test-Path $TemplatePath))
 
 $Image = [io.path]::GetFileName($TemplatePath).Split(".")[0]
 $TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
+
+if (-not [string]::IsNullOrEmpty($BuildResourceGroupName))
+{
+    $TempResourceGroupName = [string]::Empty
+    $Location = [string]::Empty
+}
+
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 
 packer validate -syntax-only $TemplatePath
@@ -48,6 +56,7 @@ packer build    -var "capture_name_prefix=$ResourcesNamePrefix" `
                 -var "storage_account=$StorageAccount" `
                 -var "subscription_id=$SubscriptionId" `
                 -var "temp_resource_group_name=$TempResourceGroupName" `
+                -var "build_resource_group_name=$BuildResourceGroupName" `
                 -var "tenant_id=$TenantId" `
                 -var "virtual_network_name=$VirtualNetworkName" `
                 -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
