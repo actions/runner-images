@@ -32,6 +32,19 @@ $webDrivers = @{
     }
 }
 
+function Build-BrowserSection {
+    return @(
+        $(Get-BrowserVersion -Browser "chrome"),
+        $(Get-SeleniumWebDriverVersion -Driver "chrome"),
+        $(Get-BrowserVersion -Browser "edge"),
+        $(Get-SeleniumWebDriverVersion -Driver "edge"),
+        $(Get-BrowserVersion -Browser "firefox"),
+        $(Get-SeleniumWebDriverVersion -Driver "firefox"),
+        $(Get-SeleniumWebDriverVersion -Driver "iexplorer"),
+        $(Get-SeleniumVersion)
+    )
+}
+
 function Get-BrowserVersion {
     param(
         [string] $Browser
@@ -40,7 +53,7 @@ function Get-BrowserVersion {
     $browserFile = $browsers.$Browser.File
     $registryKey = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\$browserFile"
     $browserVersion = (Get-Item (Get-ItemProperty $registryKey)."(Default)").VersionInfo.FileVersion
-    return "$browserName $browserVersion"
+    return [ToolVersionNode]::new($browserName, $browserVersion)
 }
 
 function Get-SeleniumWebDriverVersion {
@@ -51,13 +64,13 @@ function Get-SeleniumWebDriverVersion {
     $driverPath = $webDrivers.$Driver.Path
     $versionFileName = "versioninfo.txt";
 	$webDriverVersion = Get-Content -Path "$driverPath\$versionFileName"
-    return "$driverName $webDriverVersion"
+    return [ToolVersionNode]::new($driverName, $webDriverVersion)
 }
 
 function Get-SeleniumVersion {
     $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
     $fullSeleniumVersion = (Get-ChildItem "C:\selenium\${seleniumBinaryName}-*").Name -replace "${seleniumBinaryName}-"
-    return "Selenium server $fullSeleniumVersion"
+    return [ToolVersionNode]::new("Selenium server", $fullSeleniumVersion)
 }
 
 function Build-BrowserWebdriversEnvironmentTable {

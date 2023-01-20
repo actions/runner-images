@@ -73,7 +73,7 @@
                 "versions": [ "8", "11", "17" ]
             }
         ],
-        "maven": "3.8.6"
+        "maven": "3.8.7"
     },
     "android": {
         "cmdline-tools": "latest",
@@ -109,7 +109,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "9.0.1"
+                "9.3.0"
             ],
             "zip_versions": [
             ]
@@ -206,10 +206,6 @@
         ]
     },
     "brew": [
-        {
-            "name": "zstd",
-            "command": "zstd"
-        }
     ],
     "docker": {
         "images": [

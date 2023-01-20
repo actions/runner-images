@@ -43,19 +43,13 @@ function Get-Xsp4Version {
     }
 }
 
-function Build-WebServersSection {
-    $servers = @(
-        (Get-ApacheVersion),
-        (Get-NginxVersion)
-    )
+function Build-WebServersTable {
+    $servers = @()
+    $servers += (Get-ApacheVersion)
     if (Test-IsUbuntu20) {
         $servers += (Get-Xsp4Version)
     }
+    $servers += (Get-NginxVersion)
 
-    $output = ""
-    $output += New-MDHeader "Web Servers" -Level 3
-    $output += $servers | Sort-Object Name | New-MDTable
-    $output += New-MDNewLine
-
-    return $output
+    return $servers
 }

@@ -5,52 +5,51 @@ function Initialize-RustEnvironment {
 }
 
 function Get-RustVersion {
-    Initialize-RustEnvironment
     $rustVersion = $(rustc --version) | Take-OutputPart -Part 1
-    return "Rust $rustVersion"
+    return $rustVersion
 }
 
 function Get-BindgenVersion {
     $bindgenVersion = $(bindgen --version) | Take-OutputPart -Part 1
-    return "Bindgen $bindgenVersion"
+    return $bindgenVersion
 }
 
 function Get-CargoVersion {
     $cargoVersion = $(cargo --version) | Take-OutputPart -Part 1
-    return "Cargo $cargoVersion"
+    return $cargoVersion
 }
 
 function Get-CargoAuditVersion {
     $cargoAuditVersion = $(cargo-audit --version) | Take-OutputPart -Part 1
-    return "Cargo audit $cargoAuditVersion"
+    return $cargoAuditVersion
 }
 
 function Get-CargoOutdatedVersion {
     $cargoOutdatedVersion = cargo outdated --version | Take-OutputPart -Part 1
-    return "Cargo outdated $cargoOutdatedVersion"
+    return $cargoOutdatedVersion
 }
 
 function Get-CargoClippyVersion {
     $cargoClippyVersion = $(cargo-clippy --version) | Take-OutputPart -Part 1
-    return "Cargo clippy $cargoClippyVersion"
+    return $cargoClippyVersion
 }
 
 function Get-CbindgenVersion {
     $cbindgenVersion = $(cbindgen --version) | Take-OutputPart -Part 1
-    return "Cbindgen $cbindgenVersion"
+    return $cbindgenVersion
 }
 
 function Get-RustupVersion {
     $rustupVersion = $(rustup --version) | Take-OutputPart -Part 1
-    return "Rustup $rustupVersion"
+    return $rustupVersion
 }
 
 function Get-RustdocVersion {
     $rustdocVersion = $(rustdoc --version) | Take-OutputPart -Part 1
-    return "Rustdoc $rustdocVersion"
+    return $rustdocVersion
 }
 
 function Get-RustfmtVersion {
     $rustfmtVersion = $(rustfmt --version) | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
-    return "Rustfmt $rustfmtVersion"
+    return $rustfmtVersion
 }
