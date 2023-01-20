@@ -17,10 +17,18 @@ $env:SPACESHIP_SKIP_2FA_UPGRADE = 1
 $os = Get-OSVersion
 [Array]$xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
-# [Array]::Reverse($xcodeVersions)
+$threadCount = "5"
+
+if ($os.IsLessThanMonterey) {
+    [Array]::Reverse($xcodeVersions)
+}
 
 Write-Host "Installing Xcode versions..."
-$xcodeVersions | ForEach-Object {
+$xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
+    $ErrorActionPreference = "Stop"
+    Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
+    Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
+
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
     Confirm-XcodeIntegrity -Version $_.link
     Approve-XcodeLicense -Version $_.link
@@ -28,12 +36,10 @@ $xcodeVersions | ForEach-Object {
 
 Write-Host "Configuring Xcode versions..."
 $xcodeVersions | ForEach-Object {
-    Switch-Xcode -Version $_.link
-
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
 
-    if ($_.link -in @("14.0")) {
+    if ($_.link.StartsWith("14.")) {
         Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
 
         # tvOS and watchOS simulators are not included by default
