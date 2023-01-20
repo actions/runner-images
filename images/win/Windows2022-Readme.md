@@ -537,7 +537,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - PowerShell 7.2.8
 
 #### Powershell Modules
-- Az: 9.3.0
+- Az: 9.2.0
 - Azure: 2.1.0 (Default), 5.3.0
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Az (Cached): 7.5.0.zip
