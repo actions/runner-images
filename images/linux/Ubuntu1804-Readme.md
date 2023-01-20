@@ -6,7 +6,7 @@
 # Ubuntu 18.04
 - OS Version: 18.04.6 LTS
 - Kernel Version: 5.4.0-1100-azure
-- Image Version: 20230118.2
+- Image Version: 20230119.1
 
 ## Installed Software
 
@@ -29,12 +29,12 @@
 - Python 2.7.17
 - Python3 3.6.9
 - Ruby 2.5.1p57
-- Swift 5.7.2
+- Swift 5.7.3
 
 ### Package Management
 - cpan 1.64
 - Helm 3.11.0
-- Homebrew 3.6.19
+- Homebrew 3.6.20
 - Miniconda 22.11.1
 - Npm 8.19.3
 - NuGet 6.3.1.1
@@ -42,7 +42,7 @@
 - Pip3 9.0.1
 - Pipx 1.0.0
 - RubyGems 2.7.6
-- Vcpkg (build from commit f1c943159)
+- Vcpkg (build from commit 257804087)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -73,7 +73,7 @@ to accomplish this.
 - Bazelisk 1.13.2
 - Bicep 0.13.1
 - Buildah 1.22.3
-- CMake 3.25.1
+- CMake 3.25.2
 - CodeQL Action Bundle 2.12.0
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
@@ -103,7 +103,7 @@ to accomplish this.
 - Parcel 2.8.3
 - PhantomJS 2.1.1
 - Podman 3.4.2
-- Pulumi 3.51.1
+- Pulumi 3.52.0
 - R 4.2.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -115,7 +115,7 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.144
-- AWS CLI 2.9.15
+- AWS CLI 2.9.16
 - AWS CLI Session Manager Plugin 1.2.398.0
 - AWS SAM CLI 1.70.0
 - Azure CLI 2.44.1
@@ -126,7 +126,7 @@ to accomplish this.
 - Netlify CLI 12.7.2
 - OpenShift CLI 4.12.0
 - ORAS CLI 0.16.0
-- Vercel CLI 28.12.7
+- Vercel CLI 28.12.8
 
 ### Java
 | Version             | Vendor          | Environment Variable |
