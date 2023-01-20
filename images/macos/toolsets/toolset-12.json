@@ -164,12 +164,40 @@
     },
     "brew": {
         "common_packages": [
+            "ant",
+            "aria2",
+            "azure-cli",
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "colima",
             "gh",
+            "gnupg",
             "gnu-tar",
-            "zstd"
+            "kotlin",
+            "libpq",
+            "p7zip",
+            "packer",
+            "perl",
+            "sbt",
+            "subversion",
+            "swiftformat",
+            "swig",
+            "zstd",
+            "gmp",
+            "zlib",
+            "libxext",
+            "libxft",
+            "tcl-tk",
+            "r",
+            "yq",
+            "imagemagick"
         ],
         "cask_packages": [
-            "julia"
+            "julia",
+            "vagrant",
+            "virtualbox",
+            "parallels"
         ]
     },
     "gcc": {
