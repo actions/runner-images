@@ -145,7 +145,7 @@ function Get-PackerVersion {
 
 function Get-ParcelVersion {
     $parcelVersion = parcel --version
-    return "Parcel $parcelVersion"
+    return "$parcelVersion"
 }
 
 function Get-PulumiVersion {
