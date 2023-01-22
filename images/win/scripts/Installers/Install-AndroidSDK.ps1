@@ -3,6 +3,28 @@
 ##  Desc:  Install and update Android SDK and tools
 ################################################################################
 
+# Temporary use Java 11 as it is a hard requirement now
+
+ # Clean up any other Java folders from PATH to make sure that they won't conflict with each other
+
+ $java11Path = $env:JAVA_HOME_11_X64
+ $currentPath = Get-MachinePath
+
+ $pathSegments = $currentPath.Split(';')
+ $newPathSegments = @()
+
+ foreach ($pathSegment in $pathSegments)
+ {
+     if ($pathSegment -notlike '*java*')
+     {
+         $newPathSegments += $pathSegment
+     }
+ }
+
+$env:PATH = [string]::Join(';', $newPathSegments)
+
+$env:JAVA_HOME = $java11Path
+
 # get packages to install from the toolset
 $androidToolset = (Get-ToolsetContent).android
 
