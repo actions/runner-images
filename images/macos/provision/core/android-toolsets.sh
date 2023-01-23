@@ -35,23 +35,9 @@ ANDROID_NDK_MAJOR_VERSIONS=($(get_toolset_value '.android.ndk."versions"[]'))
 ANDROID_NDK_MAJOR_DEFAULT=$(get_toolset_value '.android.ndk.default')
 ANDROID_NDK_MAJOR_LATEST=$(get_toolset_value '.android.ndk."versions"[-1]')
 # Get the latest command line tools from https://developer.android.com/studio#cmdline-tools
-cmdlineToolsVersion=$(get_toolset_value '.android."cmdline-tools"')
-if [[ $cmdlineToolsVersion == "latest" ]]; then
-    repositoryXmlUrl="https://dl.google.com/android/repository/repository2-1.xml"
-    download_with_retries $repositoryXmlUrl "/tmp" "repository2-1.xml"
-    cmdlineToolsVersion=$(
-      yq -p=xml \
-      '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest").archives.archive[].complete.url | select(contains("commandlinetools-mac"))' \
-      /tmp/repository2-1.xml
-    )
-
-    if [[ -z $cmdlineToolsVersion ]]; then
-        echo "Failed to parse latest command-line tools version"
-        exit 1
-    fi
-fi
-
-ANDROID_OSX_SDK_URL="https://dl.google.com/android/repository/${cmdlineToolsVersion}"
+# Newer version(s) require Java 11 by default
+# See https://github.com/actions/runner-images/issues/6960
+ANDROID_OSX_SDK_URL="https://dl.google.com/android/repository/commandlinetools-mac-9123335_latest.zip"
 ANDROID_HOME=$HOME/Library/Android/sdk
 ANDROID_OSX_SDK_FILE=tools-macosx.zip
 
