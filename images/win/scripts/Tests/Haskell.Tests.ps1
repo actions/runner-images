@@ -57,6 +57,6 @@ Describe "Haskell" {
     }
 
     It "ghcup can access msys2" {
-        "ghcup run -- pacman --version" | Should -ReturnZeroExitCode
+        "ghcup run --mingw-path -- pacman --version" | Should -ReturnZeroExitCode
     }
 }
