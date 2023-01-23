@@ -58,20 +58,21 @@
             "managed_image_resource_group_name": "{{user `managed_image_resource_group_name`}}",
             "shared_image_gallery": {
                 "subscription": "{{user `subscription_id`}}",
-                 "resource_group":"{{user `gallery_resource_group`}}",
-                 "gallery_name": "{{user `gallery_name`}}",
-                 "image_name": "{{user `gallery_source_image_name`}}",
-                 "image_version": "{{user `gallery_source_image_version`}}"
-         },
+                "resource_group": "{{user `gallery_resource_group`}}",
+                "gallery_name": "{{user `gallery_name`}}",
+                "image_name": "{{user `gallery_source_image_name`}}",
+                "image_version": "{{user `gallery_source_image_version`}}"
+            },
             "shared_image_gallery_destination": {
                 "subscription": "{{user `subscription_id`}}",
-                 "resource_group": "{{user `gallery_resource_group`}}",
-                 "gallery_name": "{{user `gallery_name`}}",
-                 "image_name": "{{user `gallery_dest_image_name`}}",
-                 "image_version": "{{user `gallery_dest_image_version`}}",
-                 "replication_regions": ["{{user `location`}}"]
+                "resource_group": "{{user `gallery_resource_group`}}",
+                "gallery_name": "{{user `gallery_name`}}",
+                "image_name": "{{user `gallery_dest_image_name`}}",
+                "image_version": "{{user `gallery_dest_image_version`}}",
+                "replication_regions": [
+                    "{{user `location`}}"
+                ]
             },
-
             "virtual_network_name": "{{user `virtual_network_name`}}",
             "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",
             "virtual_network_subnet_name": "{{user `virtual_network_subnet_name`}}",
