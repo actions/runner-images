@@ -162,7 +162,6 @@
         ]
     },
     "android": {
-        "cmdline-tools": "latest",
         "platform_min_version": "19",
         "build_tools_min_version": "19.1.0",
         "extra_list": [

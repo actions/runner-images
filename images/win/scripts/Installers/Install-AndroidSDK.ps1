@@ -5,22 +5,9 @@
 
 # get packages to install from the toolset
 $androidToolset = (Get-ToolsetContent).android
-
-# install latest command-line tools
-$cmdlineToolsVersion = $androidToolset."cmdline-tools"
-if ($cmdlineToolsVersion -eq "latest") {
-    $googlePkgs = Invoke-RestMethod "https://dl.google.com/android/repository/repository2-1.xml"
-    $cmdlineToolsVersion = $googlePkgs.SelectSingleNode(
-        "//remotePackage[@path='cmdline-tools;latest']/archives/archive/complete/url[starts-with(text(), 'commandlinetools-win-')]"
-    ).'#text'
-
-    if (-not $cmdlineToolsVersion) {
-        Write-Host "Failed to parse latest command-line tools version"
-        exit 1
-    }
-}
-
-$cmdlineToolsUrl = "https://dl.google.com/android/repository/${cmdlineToolsVersion}"
+# Newer version(s) require Java 11 by default
+# See https://github.com/actions/runner-images/issues/6960
+$cmdlineToolsUrl = "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip"
 $cmdlineToolsArchPath = Start-DownloadWithRetry -Url $cmdlineToolsUrl -Name "cmdline-tools.zip"
 $sdkInstallRoot = "C:\Program Files (x86)\Android\android-sdk"
 $sdkRoot = "C:\Android\android-sdk"
