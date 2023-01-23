@@ -78,7 +78,7 @@ function Get-XcodePlatformOrder {
 
 function Get-XcodeCommandLineToolsVersion {
     $xcodeCommandLineToolsVersion = Run-Command "pkgutil --pkg-info com.apple.pkg.CLTools_Executables" | Select -Index 1 | Take-Part -Part 1
-    return "Xcode Command Line Tools $xcodeCommandLineToolsVersion"
+    return $xcodeCommandLineToolsVersion
 }
 
 function Build-XcodeTable {
@@ -166,8 +166,14 @@ function Build-XcodeSDKTable {
 }
 
 function Format-XcodeSimulatorName {
-    param([Parameter(Mandatory)][string] $Device)
-    return $Device.Replace("ʀ", "R")
+    param(
+        [Parameter(Mandatory)][string] $Device
+    )
+
+    $formattedDeviceName = $Device.Replace("ʀ", "R")
+    # Convert "Apple Watch Series 5 (44mm)" -> "Apple Watch Series 5 - 44mm" to make all Xcode versions consistent
+    $formattedDeviceName = $formattedDeviceName -replace '\((\d+mm)\)', '- $1'
+    return $formattedDeviceName
 }
 
 function Build-XcodeSimulatorsTable {
@@ -226,13 +232,13 @@ function Build-XcodeSimulatorsTable {
 }
 
 function Build-XcodeSupportToolsSection {
+    $toolNodes = @()
+
     $xcpretty = Run-Command "xcpretty --version"
     $xcversion = Run-Command "xcversion --version" | Select-String "^[0-9]"
 
-    $toolList = @(
-        "xcpretty $xcpretty",
-        "xcversion $xcversion"
-    )
+    $toolNodes += [ToolVersionNode]::new("xcpretty", $xcpretty)
+    $toolNodes += [ToolVersionNode]::new("xcversion", $xcversion)
 
     $nomadOutput = Run-Command "gem list nomad-cli"
     $nomadCLI = [regex]::matches($nomadOutput, "(\d+.){2}\d+").Value
@@ -240,14 +246,9 @@ function Build-XcodeSupportToolsSection {
     $nomadShenzhen = [regex]::matches($nomadShenzhenOutput, "(\d+.){2}\d+").Value
 
     if ($os.IsLessThanMonterey) {
-        $toolList += @(
-            "Nomad CLI $nomadCLI",
-            "Nomad shenzhen CLI $nomadShenzhen"
-        )
+        $toolNodes += [ToolVersionNode]::new("Nomad CLI", $nomadCLI)
+        $toolNodes += [ToolVersionNode]::new("Nomad shenzhen CLI", $nomadShenzhen)
     }
 
-    $output = ""
-    $output += New-MDHeader "Xcode Support Tools" -Level 4
-    $output += New-MDList -Style Unordered -Lines $toolList
-    return $output
+    return $toolNodes
 }

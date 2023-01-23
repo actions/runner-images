@@ -14,6 +14,7 @@ export GHCUP_INSTALL_BASE_PREFIX=/usr/local
 export BOOTSTRAP_HASKELL_GHC_VERSION=0
 ghcup_bin=$GHCUP_INSTALL_BASE_PREFIX/.ghcup/bin
 setEtcEnvironmentVariable "BOOTSTRAP_HASKELL_NONINTERACTIVE" $BOOTSTRAP_HASKELL_NONINTERACTIVE
+setEtcEnvironmentVariable "GHCUP_INSTALL_BASE_PREFIX" $GHCUP_INSTALL_BASE_PREFIX
 
 # Install GHCup
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh > /dev/null 2>&1 || true

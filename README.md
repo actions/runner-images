@@ -21,11 +21,11 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 | Image | YAML Label | Included Software | Rollout Progress of Latest Image Release |
 | --------------------|---------------------|--------------------|---------------------|
-| Ubuntu 22.04 | `ubuntu-22.04` | [ubuntu-22.04] | [![status22](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
-| Ubuntu 20.04 | `ubuntu-latest` or `ubuntu-20.04` | [ubuntu-20.04] | [![status20](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
+| Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] | [![status22](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
+| Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | [![status20](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
 | Ubuntu 18.04 <sup>deprecated</sup>  | `ubuntu-18.04` | [ubuntu-18.04] | [![status18](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu18&redirect=1)
-| macOS 12 | `macos-12`| [macOS-12] | [![statusumac12](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&redirect=1)
-| macOS 11 | `macos-latest` or `macos-11`| [macOS-11] | [![statusmac11](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
+| macOS 12 | `macos-latest` or `macos-12`| [macOS-12] | [![statusumac12](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&redirect=1)
+| macOS 11 | `macos-11`| [macOS-11] | [![statusmac11](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
 | macOS 10.15 <sup>deprecated</sup> | `macos-10.15` | [macOS-10.15] | [![statusmac10](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | [![statuswin22](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&redirect=1) |
 | Windows Server 2019 | `windows-2019` | [windows-2019] | [![statuswin19](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
@@ -47,11 +47,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 ## Ongoing migrations
 
-There are currently two migrations in progress:
-
-* `ubuntu-latest` is currently transitioning to `ubuntu-22.04`. During this time, you may experience some jobs running on either an ubuntu-20.04 or ubuntu-22.04 runner. You can specify `runs-on: ubuntu-20.04` in your workflow if you need the previous version. Details can be found in this [announcement](https://github.com/actions/runner-images/issues/6399).
-* `macos-latest` is currently transitioning to `macos-12`.  During this time, you may experience some jobs running on either a macos-11 or macos-12 runner. You can specify `runs-on: macos-11` in your workflow if you need the previous version. Details can be found in this [announcement](https://github.com/actions/runner-images/issues/6384).
-
+There are no migrations in progress.
 
 ## Image Definitions
 

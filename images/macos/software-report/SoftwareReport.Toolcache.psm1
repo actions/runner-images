@@ -28,50 +28,26 @@ function Get-ToolcacheNodeVersions {
     return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
 }
 
-function Get-ToolcacheGoTable {
-    $ToolInstances = Get-CachedToolInstances -Name "Go" -VersionCommand "version"
-    foreach ($Instance in $ToolInstances) {
-        $Version = [System.Version]($Instance.Version -Split(" "))[0]
-        $Instance."Environment Variable" = "GOROOT_$($Version.major)_$($Version.minor)_X64"
-    }
-
-    $Content = $ToolInstances | New-MDTable -Columns ([ordered]@{
-        Version = "left";
-        Architecture = "left";
-        "Environment Variable" = "left"
-    })
-
-    return $Content
+function Get-ToolcacheGoVersions {
+    $toolcachePath = Join-Path $env:HOME "hostedtoolcache" "Go"
+    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
 }
 
 function Build-ToolcacheSection { 
-    $output = ""
-    $output += New-MDHeader "Cached Tools" -Level 3
-    $output += New-MDHeader "Ruby" -Level 4
-    $output += New-MDList -Lines (Get-ToolcacheRubyVersions) -Style Unordered
-    $output += New-MDHeader "Python" -Level 4
-    $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
-    $output += New-MDHeader "PyPy" -Level 4
-    $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
-    $output += New-MDHeader "Node.js" -Level 4
-    $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
-    $output += New-MDHeader "Go" -Level 4
-    $output += Get-ToolcacheGoTable
-
-    return $output
+    return @(
+        [ToolVersionsListNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', "List"),
+        [ToolVersionsListNode]::new("Python", $(Get-ToolcachePythonVersions), '^\d+\.\d+', "List"), 
+        [ToolVersionsListNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', "List"),
+        [ToolVersionsListNode]::new("Node.js", $(Get-ToolcacheNodeVersions), '^\d+', "List"),
+        [ToolVersionsListNode]::new("Go", $(Get-ToolcacheGoVersions), '^\d+\.\d+', "List")
+    )
 }
 
 function Get-PowerShellModules {
     $modules = (Get-ToolsetValue powershellModules).name
-
-    $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
-    $psModules | ForEach-Object {
-        $moduleName = $_.Name
-        $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
-
-        [PSCustomObject]@{
-            Module = $moduleName
-            Version = $moduleVersions
-        }
+    $modules | ForEach-Object {
+        $moduleName = $_
+        $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
+        return [ToolVersionsListNode]::new($moduleName, $moduleVersions, '^\d+', "Inline")
     }
 }

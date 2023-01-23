@@ -29,13 +29,8 @@ function Get-NginxVersion {
 }
 
 function Build-WebServersSection {
-    $output = ""
-    $output += New-MDHeader "Web Servers" -Level 3
-    $output += @(
+    return @(
         (Get-ApacheVersion),
         (Get-NginxVersion)
-    ) | Sort-Object Name | New-MDTable
-
-    $output += New-MDNewLine
-    return $output
+    )
 }

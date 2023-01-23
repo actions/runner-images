@@ -1,11 +1,11 @@
 function Get-BashVersion {
     $version = bash -c 'echo ${BASH_VERSION}'
-    return "Bash $version"
+    return $version
 }
 
 function Get-DashVersion {
     $version = dpkg-query -W -f '${Version}' dash
-    return "Dash $version"
+    return $version
 }
 
 function Get-CPPVersions {
@@ -13,7 +13,7 @@ function Get-CPPVersions {
     $cppVersions = $result.Output | Where-Object { $_ -match "g\+\+-\d+"} | ForEach-Object {
         & $_.Split("/")[0] --version | Select-Object -First 1 | Take-OutputPart -Part 3
     } | Sort-Object {[Version]$_}
-    return "GNU C++ " + ($cppVersions -Join ", ")
+    return $cppVersions
 }
 
 function Get-FortranVersions {
@@ -22,7 +22,7 @@ function Get-FortranVersions {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
     } | Sort-Object {[Version]$_}
-    return "GNU Fortran " + ($fortranVersions -Join ", ")
+    return $fortranVersions
 }
 
 function Get-ClangToolVersions {
@@ -42,205 +42,179 @@ function Get-ClangToolVersions {
             }
         } | Sort-Object {[Version]$_}
 
-    return $toolVersions -Join ", "
+    return $toolVersions
 }
 
-function Get-ClangVersions {
-    $clangVersions = Get-ClangToolVersions -ToolName "clang"
-    return "Clang $clangVersions"
-}
-
-function Get-ClangFormatVersions {
-    $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-format"
-    return "Clang-format $clangFormatVersions"
-}
 
 function Get-ClangTidyVersions {
-    $clangFormatVersions = Get-ClangToolVersions -ToolName "clang-tidy" -VersionLineMatcher "LLVM version" -VersionPattern "\d+\.\d+\.\d+)"
-    return "Clang-tidy $clangFormatVersions"
+    return Get-ClangToolVersions -ToolName "clang-tidy" -VersionLineMatcher "LLVM version" -VersionPattern "\d+\.\d+\.\d+)"
 }
 
 
 function Get-ErlangVersion {
     $erlangVersion = (erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), ''OTP_VERSION''])), io:fwrite(Version), halt().' -noshell)
     $shellVersion = (erl -eval 'erlang:display(erlang:system_info(version)), halt().' -noshell).Trim('"')
-    return "Erlang $erlangVersion (Eshell $shellVersion)"
+    return "$erlangVersion (Eshell $shellVersion)"
 }
 
 function Get-ErlangRebar3Version {
     $result = Get-CommandResult "rebar3 --version"
     $result.Output -match "rebar (?<version>(\d+.){2}\d+)" | Out-Null
-    $rebarVersion = $Matches.version
-    return "Erlang rebar3 $rebarVersion"
+    return $Matches.version
 }
 
 function Get-MonoVersion {
     $monoVersion = mono --version | Out-String | Take-OutputPart -Part 4
-    $aptSourceRepo = Get-AptSourceRepository -PackageName "mono"
-    return "Mono $monoVersion (apt source repository: $aptSourceRepo)"
+    return $monoVersion
 }
 
 function Get-MsbuildVersion {
     $msbuildVersion = msbuild -version | Select-Object -Last 1
-    $result = Select-String -Path (Get-Command msbuild).Source -Pattern "msbuild"
-    $result -match "(?<path>\/\S*\.dll)" | Out-Null
-    $msbuildPath = $Matches.path
-    return "MSBuild $msbuildVersion (from $msbuildPath)"
+    $monoVersion = Get-MonoVersion
+    return "$msbuildVersion (Mono $monoVersion)"
 }
 
 function Get-NuGetVersion {
     $nugetVersion = nuget help | Select-Object -First 1 | Take-OutputPart -Part 2
-    return "NuGet $nugetVersion"
+    return $nugetVersion
 }
 
 function Get-NodeVersion {
     $nodeVersion = $(node --version).Substring(1)
-    return "Node $nodeVersion"
+    return $nodeVersion
 }
 
 function Get-OpensslVersion {
-    return "OpenSSL $(dpkg-query -W -f '${Version}' openssl)"
+    return $(dpkg-query -W -f '${Version}' openssl)
 }
 
 function Get-PerlVersion {
     $version = $(perl -e 'print substr($^V,1)')
-    return "Perl $version"
+    return $version
 }
 
 function Get-PythonVersion {
     $result = Get-CommandResult "python --version"
     $version = $result.Output | Take-OutputPart -Part 1
-    return "Python $version"
+    return $version
 }
 
 function Get-Python3Version {
     $result = Get-CommandResult "python3 --version"
     $version = $result.Output | Take-OutputPart -Part 1
-    return "Python3 $version"
+    return $version
 }
 
 function Get-PowershellVersion {
-    return $(pwsh --version)
+    return $(pwsh --version) | Take-OutputPart -Part 1
 }
 
 function Get-RubyVersion {
     $rubyVersion = ruby --version | Out-String | Take-OutputPart -Part 1
-    return "Ruby $rubyVersion"
+    return $rubyVersion
 }
 
 function Get-SwiftVersion {
     $swiftVersion = swift --version | Out-String | Take-OutputPart -Part 2
-    return "Swift $swiftVersion"
+    return $swiftVersion
 }
 
 function Get-KotlinVersion {
     $kotlinVersion = kotlin -version | Out-String | Take-OutputPart -Part 2
-    return "Kotlin $kotlinVersion"
+    return $kotlinVersion
 }
 
 function Get-JuliaVersion {
     $juliaVersion = julia --version | Take-OutputPart -Part 2
-    return "Julia $juliaVersion"
+    return $juliaVersion
 }
 
 function Get-LernaVersion {
     $version = lerna -v
-    return "Lerna $version"
+    return $version
 }
 
 function Get-HomebrewVersion {
     $result = Get-CommandResult "/home/linuxbrew/.linuxbrew/bin/brew -v"
     $result.Output -match "Homebrew (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $version = $Matches.version
-    return "Homebrew $version"
+    return $Matches.version
 }
 
 function Get-CpanVersion {
     $result = Get-CommandResult "cpan --version" -ExpectExitCode @(25, 255)
     $result.Output -match "version (?<version>\d+\.\d+) " | Out-Null
-    $cpanVersion = $Matches.version
-    return "cpan $cpanVersion"
+    return $Matches.version
 }
 
 function Get-GemVersion {
     $result = Get-CommandResult "gem --version"
     $result.Output -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $gemVersion = $Matches.version
-    return "RubyGems $gemVersion"
+    return $Matches.version
 }
 
 function Get-MinicondaVersion {
-    $condaVersion = conda --version
-    return "Mini$condaVersion"
+    $condaVersion = conda --version | Take-OutputPart -Part 1
+    return $condaVersion
 }
 
 function Get-HelmVersion {
     $(helm version) -match 'Version:"v(?<version>\d+\.\d+\.\d+)"' | Out-Null
-    $helmVersion = $Matches.version
-    return "Helm $helmVersion"
+    return $Matches.version
 }
 
 function Get-NpmVersion {
     $npmVersion = npm --version
-    return "Npm $npmVersion"
+    return $npmVersion
 }
 
 function Get-YarnVersion {
     $yarnVersion = yarn --version
-    return "Yarn $yarnVersion"
+    return $yarnVersion
 }
 
 function Get-ParcelVersion {
     $parcelVersion = parcel --version
-    return "Parcel $parcelVersion"
+    return $parcelVersion
 }
 
 function Get-PipVersion {
     $result = Get-CommandResult "pip --version"
     $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $pipVersion = $Matches.version
-    return "Pip $pipVersion"
+    return $Matches.version
 }
 
 function Get-Pip3Version {
     $result = Get-CommandResult "pip3 --version"
     $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $pipVersion = $Matches.version
-    return "Pip3 $pipVersion"
+    return $Matches.version
 }
 
 function Get-VcpkgVersion {
-    $result = Get-CommandResult "vcpkg version"
-    $result.Output -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $vcpkgVersion = $Matches.version
     $commitId = git -C "/usr/local/share/vcpkg" rev-parse --short HEAD
-    return "Vcpkg $vcpkgVersion (build from master \<$commitId>)"
+    return "(build from commit $commitId)"
 }
 
 function Get-AntVersion {
     $result = ant -version | Out-String
     $result -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $antVersion = $Matches.version
-    return "Ant $antVersion"
+    return $Matches.version
 }
 
 function Get-GradleVersion {
     $gradleVersion = (gradle -v) -match "^Gradle \d" | Take-OutputPart -Part 1
-    return "Gradle $gradleVersion"
+    return $gradleVersion
 }
 
 function Get-MavenVersion {
     $result = mvn -version | Out-String
     $result -match "Apache Maven (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $mavenVersion = $Matches.version
-    return "Maven $mavenVersion"
+    return $Matches.version
 }
 
 function Get-SbtVersion {
     $result = Get-CommandResult "sbt -version"
     $result.Output -match "sbt script version: (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $sbtVersion = $Matches.version
-    return "Sbt $sbtVersion"
+    return $Matches.version
 }
 
 function Get-PHPVersions {
@@ -261,60 +235,24 @@ function Get-PHPUnitVersion {
     return $Matches.version
 }
 
-function Build-PHPTable {
-    $php = @{
-        "Tool" = "PHP"
-        "Version" = "$(Get-PHPVersions -Join '<br>')"
-    }
-    $composer = @{
-        "Tool" = "Composer"
-        "Version" = Get-ComposerVersion
-    }
-    $phpunit = @{
-        "Tool" = "PHPUnit"
-        "Version" = Get-PHPUnitVersion
-    }
-    return @($php, $composer, $phpunit) | ForEach-Object {
-        [PSCustomObject] @{
-            "Tool" = $_.Tool
-            "Version" = $_.Version
-        }
-    }
-}
-
-function Build-PHPSection {
-    $output = ""
-    $output += New-MDHeader "PHP" -Level 3
-    $output += Build-PHPTable | New-MDTable
-    $output += New-MDCode -Lines @(
-        "Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled."
-    )
-
-    return $output
-}
-
 function Get-GHCVersion {
     $(ghc --version) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $ghcVersion = $Matches.version
-    return "GHC $ghcVersion"
+    return $Matches.version
 }
 
 function Get-GHCupVersion {
-    $(ghcup --version) -match "version v(?<version>\d+(\.\d+){2,})" | Out-Null
-    $ghcVersion = $Matches.version
-    return "GHCup $ghcVersion"
+    $(ghcup --version) -match "version (?<version>\d+(\.\d+){2,})" | Out-Null
+    return $Matches.version
 }
 
 function Get-CabalVersion {
     $(cabal --version | Out-String) -match "cabal-install version (?<version>\d+\.\d+\.\d+\.\d+)" | Out-Null
-    $cabalVersion = $Matches.version
-    return "Cabal $cabalVersion"
+    return $Matches.version
 }
 
 function Get-StackVersion {
     $(stack --version | Out-String) -match "Version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $stackVersion = $Matches.version
-    return "Stack $stackVersion"
+    return $Matches.version
 }
 
 function Get-AzModuleVersions {
@@ -327,38 +265,40 @@ function Get-AzModuleVersions {
 }
 
 function Get-PowerShellModules {
-    $modules = (Get-ToolsetContent).powershellModules.name
+    [Array] $result = @()
 
-    $psModules = Get-Module -Name $modules -ListAvailable | Sort-Object Name | Group-Object Name
-    $psModules | ForEach-Object {
-        $moduleName = $_.Name
-        $moduleVersions = ($_.group.Version | Sort-Object -Unique) -join '<br>'
-
-        [PSCustomObject]@{
-            Module = $moduleName
-            Version = $moduleVersions
-        }
+    [Array] $azureInstalledModules = Get-ChildItem -Path "/usr/share/az_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] }
+    if ($azureInstalledModules.Count -gt 0) {
+        $result += [ToolVersionsListNode]::new("Az", $azureInstalledModules, "^\d+\.\d+", "Inline")
     }
+
+    [Array] $azureCachedModules = Get-ChildItem /usr/share/az_*.zip -File | ForEach-Object { $_.Name.Split("_")[1] }
+    if ($azureCachedModules.Count -gt 0) {
+        $result += [ToolVersionsListNode]::new("Az (Cached)", $azureCachedModules, "^\d+\.\d+", "Inline")
+    }
+
+    (Get-ToolsetContent).powershellModules.name | ForEach-Object {
+        $moduleName = $_
+        $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
+        $result += [ToolVersionsListNode]::new($moduleName, $moduleVersions, "^\d+", "Inline")
+    }
+
+    return $result
 }
 
 function Get-DotNetCoreSdkVersions {
-    $unsortedDotNetCoreSdkVersion = dotnet --list-sdks list | ForEach-Object { $_ | Take-OutputPart -Part 0 }
-    $dotNetCoreSdkVersion = $unsortedDotNetCoreSdkVersion -join " "
+    $dotNetCoreSdkVersion = dotnet --list-sdks list | ForEach-Object { $_ | Take-OutputPart -Part 0 }
     return $dotNetCoreSdkVersion
 }
 
 function Get-DotnetTools {
     $env:PATH = "/etc/skel/.dotnet/tools:$($env:PATH)"
-
     $dotnetTools = (Get-ToolsetContent).dotnet.tools
 
-    $toolsList = @()
-
-    ForEach ($dotnetTool in $dotnetTools) {
-        $toolsList += $dotnetTool.name + " " + (Invoke-Expression $dotnetTool.getversion)
+    return $dotnetTools | ForEach-Object {
+        $version = Invoke-Expression $_.getversion
+        return [ToolVersionNode]::new($_.name, $version)
     }
-
-    return $toolsList
 }
 
 function Get-CachedDockerImages {
@@ -401,8 +341,7 @@ function Get-AptPackages {
 function Get-PipxVersion {
     $result = (Get-CommandResult "pipx --version").Output
     $result -match "(?<version>\d+\.\d+\.\d+\.?\d*)" | Out-Null
-    $pipxVersion = $Matches.Version
-    return "Pipx $pipxVersion"
+    return $Matches.Version
 }
 
 function Get-GraalVMVersion {
@@ -422,18 +361,13 @@ function Build-GraalVMTable {
 
 function Build-PackageManagementEnvironmentTable {
     return @(
-        @{
+        [PSCustomObject] @{
             "Name" = "CONDA"
             "Value" = $env:CONDA
         },
-        @{
+        [PSCustomObject] @{
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
         }
-    ) | ForEach-Object {
-        [PSCustomObject] @{
-            "Name" = $_.Name
-            "Value" = $_.Value
-        }
-    }
+    )
 }

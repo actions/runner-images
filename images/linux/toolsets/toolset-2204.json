@@ -73,7 +73,7 @@
                 "versions": [ "8", "11", "17" ]
             }
         ],
-        "maven": "3.8.6"
+        "maven": "3.8.7"
     },
     "android": {
         "cmdline-tools": "latest",
@@ -109,7 +109,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "9.0.1"
+                "9.3.0"
             ],
             "zip_versions": [
             ]
@@ -142,6 +142,7 @@
             "libmagickwand-dev",
             "libsecret-1-dev",
             "libsqlite3-dev",
+            "libyaml-dev",
             "libtool",
             "libunwind8",
             "libxkbfile-dev",
@@ -178,6 +179,7 @@
             "ftp",
             "haveged",
             "jq",
+            "lz4",
             "m4",
             "mediainfo",
             "netcat",
@@ -204,10 +206,6 @@
         ]
     },
     "brew": [
-        {
-            "name": "zstd",
-            "command": "zstd"
-        }
     ],
     "docker": {
         "images": [
@@ -271,7 +269,8 @@
     "gfortran": {
         "versions": [
             "gfortran-9",
-            "gfortran-10"
+            "gfortran-10",
+            "gfortran-12"
         ]
     },
     "php": {

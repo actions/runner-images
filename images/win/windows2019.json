@@ -84,6 +84,11 @@
         },
         {
             "type": "file",
+            "source": "{{ template_dir }}/../../helpers/software-report-base",
+            "destination": "{{user `image_folder`}}/SoftwareReport/"
+        },
+        {
+            "type": "file",
             "source": "{{ template_dir }}/post-generation",
             "destination": "C:/"
         },
@@ -299,13 +304,20 @@
         {
             "type": "powershell",
             "inline": [
-                "if (-not (Test-Path C:\\InstalledSoftware.md)) { throw 'C:\\InstalledSoftware.md not found' }"
+                "if (-not (Test-Path C:\\software-report.md)) { throw 'C:\\software-report.md not found' }",
+                "if (-not (Test-Path C:\\software-report.json)) { throw 'C:\\software-report.json not found' }"
             ]
         },
         {
             "type": "file",
-            "source": "C:\\InstalledSoftware.md",
+            "source": "C:\\software-report.md",
             "destination": "{{ template_dir }}/Windows2019-Readme.md",
+            "direction": "download"
+        },
+        {
+            "type": "file",
+            "source": "C:\\software-report.json",
+            "destination": "{{ template_dir }}/software-report.json",
             "direction": "download"
         },
         {

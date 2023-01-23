@@ -1,5 +1,3 @@
-Import-Module (Join-Path $PSScriptRoot "..\SoftwareReport\SoftwareReport.Common.psm1") -DisableNameChecking
-
 Describe "Azure Cosmos DB Emulator" {
     $cosmosDbEmulatorRegKey = Get-ChildItem "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | Get-ItemProperty | Where-Object { $_.DisplayName -eq 'Azure Cosmos DB Emulator' }
     $installDir = $cosmosDbEmulatorRegKey.InstallLocation
@@ -103,7 +101,7 @@ Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
 
 Describe "NET48" {
     It "NET48" {
-        (Get-DotnetFrameworkTools).Versions | Should -Contain "4.8"
+        Get-ChildItem -Path "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\*\*\NETFX 4.8 Tools" -Directory | Should -HaveCount 1
     }
 }
 
@@ -185,7 +183,7 @@ Describe "Pipx" {
 }
 
 Describe "Kotlin" {
-    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlin-dce-js", "kotlinc-js", "kotlinc-jvm")
+    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlin-dce-js", "kotlinc-jvm")
 
     It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  {
         "$toolName -version" | Should -ReturnZeroExitCode

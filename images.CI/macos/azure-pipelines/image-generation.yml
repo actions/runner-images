@@ -107,7 +107,11 @@ jobs:
 
   - bash: |
       cat "$(Build.ArtifactStagingDirectory)/systeminfo.md"
-    displayName: Print software report
+    displayName: Print markdown software report
+
+  - bash: |
+      cat "$(Build.ArtifactStagingDirectory)/systeminfo.json"
+    displayName: Print json software report
 
   - task: PublishBuildArtifacts@1
     inputs:
