@@ -144,21 +144,6 @@
                 "INSTALLER_ACCOUNT_NAME={{user `installer_account_name`}}",
                 "INSTALLER_CONTAINER_NAME={{user `installer_container_name`}}",
                 "INSTALLER_SAS_TOKEN={{user `installer_sas_token`}}",
-                "DEVEXPRESS_VERSION=20.2.6",
-                "DEVEXPRESS_USER={{user `devexpress_user`}}",
-                "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
-            ],
-            "scripts": [
-                "{{ template_dir }}/scripts/Installers/origo/Install-DevExpress.ps1"
-            ],
-            "execution_policy": "unrestricted"
-        },
-        {
-            "type": "powershell",
-            "environment_vars": [
-                "INSTALLER_ACCOUNT_NAME={{user `installer_account_name`}}",
-                "INSTALLER_CONTAINER_NAME={{user `installer_container_name`}}",
-                "INSTALLER_SAS_TOKEN={{user `installer_sas_token`}}",
                 "DEVEXPRESS_VERSION=17.2.11",
                 "DEVEXPRESS_USER={{user `devexpress_user`}}",
                 "DEVEXPRESS_PASS={{user `devexpress_pass`}}"
