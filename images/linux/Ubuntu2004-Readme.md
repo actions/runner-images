@@ -6,7 +6,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.5 LTS
 - Kernel Version: 5.15.0-1031-azure
-- Image Version: 20230118.1
+- Image Version: 20230122.1
 
 ## Installed Software
 
@@ -29,12 +29,12 @@
 - Python 3.8.10
 - Python3 3.8.10
 - Ruby 2.7.0p0
-- Swift 5.7.2
+- Swift 5.7.3
 
 ### Package Management
 - cpan 1.64
-- Helm 3.10.3
-- Homebrew 3.6.19
+- Helm 3.11.0
+- Homebrew 3.6.20
 - Miniconda 22.11.1
 - Npm 8.19.3
 - NuGet 6.3.1.1
@@ -42,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit 5908d702d)
+- Vcpkg (build from commit e69dd972b)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -74,7 +74,7 @@ to accomplish this.
 - Bazelisk 1.13.2
 - Bicep 0.13.1
 - Buildah 1.22.3
-- CMake 3.25.1
+- CMake 3.25.2
 - CodeQL Action Bundle 2.12.0
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
@@ -88,10 +88,10 @@ to accomplish this.
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 7.67.1
-- HHVM (HipHop VM) 4.172.0
+- HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.17.0
-- Kubectl 1.26.0
+- Kubectl 1.26.1
 - Kustomize 4.5.7
 - Leiningen 2.10.0
 - MediaInfo 19.09
@@ -105,7 +105,7 @@ to accomplish this.
 - Parcel 2.8.3
 - PhantomJS 2.1.1
 - Podman 3.4.2
-- Pulumi 3.51.1
+- Pulumi 3.52.1
 - R 4.2.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -117,7 +117,7 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.144
-- AWS CLI 2.9.15
+- AWS CLI 2.9.17
 - AWS CLI Session Manager Plugin 1.2.398.0
 - AWS SAM CLI 1.70.0
 - Azure CLI 2.44.1
@@ -125,10 +125,10 @@ to accomplish this.
 - GitHub CLI 2.21.2
 - Google Cloud SDK 414.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 12.7.2
+- Netlify CLI 12.9.1
 - OpenShift CLI 4.12.0
 - ORAS CLI 0.16.0
-- Vercel CLI 28.12.7
+- Vercel CLI 28.13.0
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -166,7 +166,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Bindgen 0.63.0
 - Cargo audit 0.17.4
 - Cargo clippy 0.1.66
-- Cargo outdated 0.11.1
+- Cargo outdated 0.11.2
 - Cbindgen 0.24.3
 - Rustfmt 1.5.1
 
@@ -174,8 +174,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 109.0.5414.74
 - ChromeDriver 109.0.5414.74
 - Chromium 109.0.5414.0
-- Microsoft Edge 109.0.1518.52
-- Microsoft Edge WebDriver 109.0.1518.52
+- Microsoft Edge 109.0.1518.61
+- Microsoft Edge WebDriver 109.0.1518.61
 - Selenium server 4.7.0
 - Mozilla Firefox 109.0
 - Geckodriver 0.32.0
@@ -256,7 +256,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - PowerShell 7.2.8
 
 #### PowerShell Modules
-- Az: 9.2.0
+- Az: 9.3.0
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.20.0
@@ -273,7 +273,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Android
 | Package Name               | Version                                                                                                                                                                           |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 8.0                                                                                                                                                                               |
+| Android Command Line Tools | 9.0                                                                                                                                                                               |
 | Android Emulator           | 31.3.14                                                                                                                                                                           |
 | Android SDK Build-tools    | 33.0.0 33.0.1<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                     |
 | Android SDK Platform-Tools | 33.0.3                                                                                                                                                                            |
@@ -388,7 +388,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ssh                    | 1:8.2p1-4ubuntu0.5                |
 | sshpass                | 1.06-1                            |
 | subversion             | 1.13.0-3ubuntu0.2                 |
-| sudo                   | 1.8.31-1ubuntu1.2                 |
+| sudo                   | 1.8.31-1ubuntu1.4                 |
 | swig                   | 4.0.1-5build1                     |
 | tar                    | 1.30+dfsg-7ubuntu0.20.04.2        |
 | telnet                 | 0.17-41.2build1                   |
