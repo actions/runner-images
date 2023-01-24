@@ -1,13 +1,12 @@
 | Announcements |
 |-|
 | [[All OSs] .NET 5.x will be removed from the images on January, 29](https://github.com/actions/runner-images/issues/6840) |
-| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.2 on January, 16](https://github.com/actions/runner-images/issues/6746) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 11
 - OS Version: macOS 11.7.2 (20G1020)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20230117.2
+- Image Version: 20230120.1
 
 ## Installed Software
 
@@ -42,7 +41,7 @@
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.5.1
-- Homebrew 3.6.19
+- Homebrew 3.6.20
 - Miniconda 22.11.1
 - NPM 8.19.3
 - NuGet 6.3.1.1
@@ -50,7 +49,7 @@
 - Pip3 22.3.1 (python 3.11)
 - Pipx 1.1.0
 - RubyGems 3.4.4
-- Vcpkg 2022 (build from commit 5908d702d)
+- Vcpkg 2022 (build from commit 12b7cfe61)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -79,7 +78,7 @@
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.4.0
-- helm v3.10.3+g835b733
+- helm v3.11.0+g472c573
 - Hub CLI 2.14.2
 - ImageMagick 7.1.0-57
 - jq 1.6
@@ -99,14 +98,14 @@
 ### Tools
 - Aliyun CLI 3.0.141
 - App Center CLI 2.13.0
-- AWS CLI 2.9.15
+- AWS CLI 2.9.17
 - AWS SAM CLI 1.70.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.44.1
 - Azure CLI (azure-devops) 0.25.0
 - Bicep CLI 0.13.1
 - Cabal 3.6.2.0
-- Cmake 3.25.1
+- Cmake 3.25.2
 - CodeQL Action Bundle 2.12.0
 - Colima 0.5.2
 - Fastlane 2.211.0
@@ -127,9 +126,9 @@
 - SafariDriver 16.2 (16614.3.7.1.7)
 - Google Chrome 109.0.5414.87
 - ChromeDriver 109.0.5414.74
-- Microsoft Edge 109.0.1518.52
-- Microsoft Edge WebDriver 109.0.1518.52
-- Mozilla Firefox 108.0.2
+- Microsoft Edge 109.0.1518.61
+- Microsoft Edge WebDriver 109.0.1518.61
+- Mozilla Firefox 109.0
 - geckodriver 0.32.0
 - Selenium server 4.5.0
 
@@ -143,8 +142,8 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.352+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.17+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 8.0.362+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.18+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.5+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
@@ -209,10 +208,10 @@
 - PSScriptAnalyzer: 1.21.0
 
 ### Web Servers
-| Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
-| ----- | -------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.54_1 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.23.3   | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
+| ----- | ------- | ------------------------------- | ------------- | ---------- |
+| httpd | 2.4.55  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| nginx | 1.23.3  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 
@@ -220,7 +219,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.4.2.17 | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.4.3.21 | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
