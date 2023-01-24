@@ -4,7 +4,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1487
-- Image Version: 20230118.1
+- Image Version: 20230123.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -33,7 +33,7 @@
 - pip 22.3.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 5908d702d)
+- Vcpkg (build from commit e69dd972b)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -56,9 +56,9 @@
 - Bazelisk 1.13.2
 - Bicep 0.13.1
 - Cabal 3.8.1.0
-- CMake 3.25.1
+- CMake 3.25.2
 - CodeQL Action Bundle 2.12.0
-- Docker 20.10.22
+- Docker 20.10.23
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.15.1
 - Docker-wincred 0.7.0
@@ -69,14 +69,14 @@
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.17.0
-- Kubectl 1.26.0
+- Kubectl 1.26.1
 - Mercurial 5.0
 - Mingw-w64 11.2.0
 - Newman 5.3.2
 - NSIS 3.08
 - OpenSSL 1.1.1
 - Packer 1.8.4
-- Pulumi 3.51.1
+- Pulumi 3.52.1
 - R 4.2.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.9.3
@@ -90,7 +90,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.144
-- AWS CLI 2.9.15
+- AWS CLI 2.9.17
 - AWS SAM CLI 1.70.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.44.1
@@ -107,7 +107,7 @@
 #### Packages
 - bindgen 0.63.0
 - cargo-audit 0.17.4
-- cargo-outdated 0.11.1
+- cargo-outdated 0.11.2
 - cbindgen 0.24.3
 - Clippy 0.1.66
 - Rustfmt 1.5.1
@@ -115,12 +115,12 @@
 ### Browsers and Drivers
 - Google Chrome 109.0.5414.75
 - Chrome Driver 109.0.5414.74
-- Microsoft Edge 109.0.1518.55
-- Microsoft Edge Driver 109.0.1518.55
+- Microsoft Edge 109.0.1518.61
+- Microsoft Edge Driver 109.0.1518.61
 - Mozilla Firefox 109.0
 - Gecko Driver 0.32.0
-- IE Driver 4.7.0.0
-- Selenium server 4.7.0
+- IE Driver 4.8.0.0
+- Selenium server 4.8.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -134,8 +134,8 @@
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
 | 8.0.352+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.17+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.5+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 11.0.18+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.6+10           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -537,13 +537,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - PowerShell 7.2.8
 
 #### Powershell Modules
-- Az: 9.2.0
+- Az: 9.3.0
 - Azure: 2.1.0 (Default), 5.3.0
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.251
+- AWSPowershell: 4.1.254
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.20.0
