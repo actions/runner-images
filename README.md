@@ -112,7 +112,8 @@ latest 2 versions of an OS.
 
 ### Package managers usage
 
-We use a number of third-party package managers during image generation process for software installation.
+We use third-party package managers to install software during the image generation process.
+
 
 The table below reflects the list of these package managers and the software installed.
 
