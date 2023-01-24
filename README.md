@@ -120,7 +120,8 @@ The table below reflects the list of these package managers and the software ins
 | Operating system | Package manager | Third-party repos and packages |
 | :---        |     :---:      |          ---: |
 | Ubuntu      | [APT](https://wiki.debian.org/Apt) <br/> [pipx](https://pypa.github.io/pipx)        | firefox - `mozillateam/ppa` <br> git - `git-core/ppa` <br/> php - `ondrej/php` (`ubuntu-18.04` and `ubuntu-20.04` only) <br/> gcc, gfortran -  `ubuntu-toolchain-r/test` <br/><br/>ansible-core, yamllint - `pipx` <br/><br/> APT repositories: <br/><br/> [Eclipse-Timurin (Adoptium)](https://packages.adoptium.net/artifactory/deb) <br/> [Erlang](https://packages.erlang-solutions.com/ubuntu) <br/> [HHvm](https://dl.hhvm.com/ubuntu) <br/> [Mono](https://download.mono-project.com/repo/ubuntu) <br/> [PostgreSQL](https://apt.postgresql.org/pub/repos/apt) </br> [R](https://cloud.r-project.org/bin/linux/ubuntu)|
-| Windows     | [Chocolatey](https://chocolatey.org)  | No third party reposetories used     |
+| Windows     | [Chocolatey](https://chocolatey.org)  | No third party repositories used     |
+
 | macOS       | [Homebrew](https://homebrew.sh)  <br/> [pipx](https://pypa.github.io/pipx/)          | aws-cli v2 - `aws/tap` tap <br/> mongodb - `mongodb/brew` tap </br> bicep - `azure/bicep` tap </br> graalvm - `graalvm/tap/graalvm-ce-java11` tap <br/><br/> yamllint - `pipx`|                      
 
 
