@@ -114,16 +114,15 @@ latest 2 versions of an OS.
 
 We use third-party package managers to install software during the image generation process.
 
-
 The table below reflects the list of these package managers and the software installed.
 
-
-| Operating system | Package manager | Third-party repos and packages |
-| :---        |     :---:      |          ---: |
-| Ubuntu      | [APT](https://wiki.debian.org/Apt) <br/> [pipx](https://pypa.github.io/pipx)        | firefox - `mozillateam/ppa` <br> git - `git-core/ppa` <br/> php - `ondrej/php` (`ubuntu-18.04` and `ubuntu-20.04` only) <br/> gcc, gfortran -  `ubuntu-toolchain-r/test` <br/><br/>ansible-core, yamllint - `pipx` <br/><br/> APT repositories: <br/><br/> [Eclipse-Timurin (Adoptium)](https://packages.adoptium.net/artifactory/deb) <br/> [Erlang](https://packages.erlang-solutions.com/ubuntu) <br/> [HHvm](https://dl.hhvm.com/ubuntu) <br/> [Mono](https://download.mono-project.com/repo/ubuntu) <br/> [PostgreSQL](https://apt.postgresql.org/pub/repos/apt) </br> [R](https://cloud.r-project.org/bin/linux/ubuntu)|
-| Windows     | [Chocolatey](https://chocolatey.org)  | No third party repositories used     |
-
-| macOS       | [Homebrew](https://homebrew.sh)  <br/> [pipx](https://pypa.github.io/pipx/)          | aws-cli v2 - `aws/tap` tap <br/> mongodb - `mongodb/brew` tap </br> bicep - `azure/bicep` tap </br> graalvm - `graalvm/tap/graalvm-ce-java11` tap <br/><br/> yamllint - `pipx`|                      
+| Operating system | Package manager                       | Third-party repos and packages |
+| :---             |        :---:                          |                           ---: |
+| Ubuntu           | [APT](https://wiki.debian.org/Apt)    | [Eclipse-Timurin (Adoptium)](https://packages.adoptium.net/artifactory/deb) </br> [Erlang](https://packages.erlang-solutions.com/ubuntu) </br>[Firefox](https://launchpad.net/~mozillateam/+archive/ubuntu/ppa) </br> [gcc, gfortran](https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test)  </br> [git](https://launchpad.net/~git-core/+archive/ubuntu/ppa) </br> [HHvm](https://dl.hhvm.com/ubuntu) </br> [PHP](https://launchpad.net/~ondrej/+archive/ubuntu/php) (Ubuntu 18 & 20 only) </br> [Mono](https://download.mono-project.com/repo/ubuntu) </br> [PostgreSQL](https://apt.postgresql.org/pub/repos/apt) </br> [R](https://cloud.r-project.org/bin/linux/ubuntu)                                     |
+|                  | [pipx](https://pypa.github.io/pipx)   | ansible-core </br>yamllint     |
+| Windows          | [Chocolatey](https://chocolatey.org)  | No third-party repos installed |
+| macOS            | [Homebrew](https://homebrew.sh)       | [aws-cli v2](https://github.com/aws/homebrew-tap) </br> [azure/bicep](https://github.com/Azure/homebrew-bicep) </br>  [graalvm-ce-java11](https://github.com/graalvm/homebrew-tap) </br> [mongodb/brew](https://github.com/mongodb/homebrew-brew)                                                  |
+|                  | [pipx](https://pypa.github.io/pipx/)  | yamllint                       |
 
 
 ### Image Deprecation Policy
