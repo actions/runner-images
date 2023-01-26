@@ -38,6 +38,6 @@ $DefaultGhcVersion = $VersionsList | Select-Object -Last 1
 ghcup set ghc $DefaultGhcVersion
 
 Write-Host 'Installing cabal...'
-ghcup install cabal
+ghcup install cabal 3.8.1.0
 
 Invoke-PesterTests -TestFile 'Haskell'
