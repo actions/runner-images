@@ -193,7 +193,17 @@
                 "./provision/core/rust.sh",
                 "./provision/core/gcc.sh",
                 "./provision/core/haskell.sh",
-                "./provision/core/stack.sh"
+                "./provision/core/stack.sh",
+                "./provision/core/cocoapods.sh",
+                "./provision/core/android-toolsets.sh",
+                "./provision/core/xamarin.sh",
+                "./provision/core/vsmac.sh",
+                "./provision/core/nvm.sh",
+                "./provision/core/apache.sh",
+                "./provision/core/nginx.sh",
+                "./provision/core/postgresql.sh",
+                "./provision/core/mongodb.sh",
+                "./provision/core/audiodevice.sh"
             ],
             "environment_vars": [
                 "API_PAT={{user `github_api_pat`}}"
