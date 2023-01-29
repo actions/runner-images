@@ -137,7 +137,7 @@ $tools.AddToolVersion("Bicep CLI", $(Get-BicepVersion))
 $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
 $tools.AddToolVersion("Cmake", $(Get-CmakeVersion))
 if (-not $os.IsCatalina) {
-    $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
+    $tools.AddToolVersion("CodeQL Action Bundles", $(Get-CodeQLBundleVersions))
 }
 if (-not $os.IsCatalina) {
     $tools.AddToolVersion("Colima", $(Get-ColimaVersion))
