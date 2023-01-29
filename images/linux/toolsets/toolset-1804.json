@@ -87,7 +87,6 @@
         "maven": "3.8.7"
     },
     "android": {
-        "cmdline-tools": "latest",
         "platform_min_version": "23",
         "build_tools_min_version": "23.0.1",
         "extra_list": [
