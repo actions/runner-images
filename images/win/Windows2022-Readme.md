@@ -1,6 +1,6 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 5.x will be removed from the images on January, 29](https://github.com/actions/runner-images/issues/6840) |
+| [[All OSs] .NET 5.x will be removed from the images on February, 6](https://github.com/actions/runner-images/issues/6840) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1487

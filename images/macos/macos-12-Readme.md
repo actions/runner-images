@@ -1,6 +1,6 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 5.x will be removed from the images on January, 29](https://github.com/actions/runner-images/issues/6840) |
+| [[All OSs] .NET 5.x will be removed from the images on February, 6](https://github.com/actions/runner-images/issues/6840) |
 | [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.2 on January, 16](https://github.com/actions/runner-images/issues/6746) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
