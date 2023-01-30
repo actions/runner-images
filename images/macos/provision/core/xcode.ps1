@@ -40,7 +40,7 @@ $xcodeVersions | ForEach-Object {
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
 
-    if ($_.link.StartsWith("14")) {
+    if ($_.link.StartsWith("14.")) {
         Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
 
         # tvOS and watchOS simulators are not included by default
