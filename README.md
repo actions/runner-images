@@ -116,7 +116,7 @@ We use third-party package managers to install software during the image generat
 
 The table below reflects the list of these package managers and the software installed.
 
-The list of the repositories will be re-evauluted once a year to identify its usefulness and security state.
+The list of the repositories will be re-evaluated once a year to identify its usefulness and security state.
 
 | Operating system | Package manager                       | Third-party repos and packages |
 | :---             |        :---:                          |                           ---: |
