@@ -24,11 +24,10 @@ if ($os.IsLessThanMonterey) {
 }
 
 Write-Host "Installing Xcode versions..."
-# $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
-$xcodeVersions | ForEach-Object {
-    #$ErrorActionPreference = "Stop"
-    #Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
-    #Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
+$xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
+    $ErrorActionPreference = "Stop"
+    Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
+    Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
 
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
     Confirm-XcodeIntegrity -Version $_.link
