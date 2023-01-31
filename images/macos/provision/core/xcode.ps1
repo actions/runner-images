@@ -45,8 +45,14 @@ $xcodeVersions | ForEach-Object {
         # tvOS and watchOS simulators are not included by default
         $xcodebuildPath = Get-XcodeToolPath -Version $_.link -ToolName "xcodebuild"
         Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
-        Write-Host "Invoke one more time"
-        Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+
+        if ($_.link -eq "14.0.1") {
+            Write-Host "Invoke one more time"
+            Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+            Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+            Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+        }
+        
     }
 }
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
