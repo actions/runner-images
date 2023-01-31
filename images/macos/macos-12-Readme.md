@@ -1,13 +1,13 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 5.x will be removed from the images on January, 29](https://github.com/actions/runner-images/issues/6840) |
-| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.2 on January, 16](https://github.com/actions/runner-images/issues/6746) |
+| [[all OSs] Default Nodejs version will be set to 18 on February, 13](https://github.com/actions/runner-images/issues/7002) |
+| [[All OSs] .NET 5.x will be removed from the images on February, 6](https://github.com/actions/runner-images/issues/6840) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 12
-- OS Version: macOS 12.6.2 (21G320)
+- OS Version: macOS 12.6.3 (21G419)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20230117.3
+- Image Version: 20230125.4
 
 ## Installed Software
 
@@ -17,7 +17,9 @@
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
 - GCC 11 (Homebrew GCC 11.3.0) - available by `gcc-11` alias
+- GCC 12 (Homebrew GCC 12.2.0) - available by `gcc-12` alias
 - GNU Fortran 11 (Homebrew GCC 11.3.0) - available by `gfortran-11` alias
+- GNU Fortran 12 (Homebrew GCC 12.2.0) - available by `gfortran-12` alias
 - Go 1.17.13
 - Julia 1.8.5
 - Kotlin 1.8.0-release-345
@@ -34,19 +36,19 @@
 - Ruby 3.0.5p211
 
 ### Package Management
-- Bundler 2.4.4
+- Bundler 2.4.5
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.5.1
-- Homebrew 3.6.19
+- Homebrew 3.6.20
 - Miniconda 22.11.1
 - NPM 8.19.3
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 22.3.1 (python 3.11)
 - Pipx 1.1.0
-- RubyGems 3.4.4
-- Vcpkg 2022 (build from commit 5908d702d)
+- RubyGems 3.4.5
+- Vcpkg 2023 (build from commit 4efb7ed62)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -64,19 +66,19 @@
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
-- azcopy 10.16.2
+- azcopy 10.17.0
 - bazel 6.0.0
 - bazelisk 1.15.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 7.87.0
 - Git 2.39.1
 - Git LFS 3.3.0
-- GitHub CLI 2.21.2
+- GitHub CLI 2.22.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.4.0
 - Hub CLI 2.14.2
-- ImageMagick 7.1.0-57
+- ImageMagick 7.1.0-58
 - jq 1.6
 - mongo 5.0.14
 - mongod 5.0.14
@@ -94,14 +96,14 @@
 
 ### Tools
 - App Center CLI 2.13.0
-- AWS CLI 2.9.15
-- AWS SAM CLI 1.70.0
+- AWS CLI 2.9.18
+- AWS SAM CLI 1.71.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.44.1
 - Azure CLI (azure-devops) 0.25.0
 - Bicep CLI 0.13.1
 - Cabal 3.6.2.0
-- Cmake 3.25.1
+- Cmake 3.25.2
 - CodeQL Action Bundle 2.12.0
 - Colima 0.5.2
 - Fastlane 2.211.0
@@ -118,15 +120,15 @@
 - Yamllint 1.29.0
 
 ### Browsers
-- Safari 16.2 (17614.3.7.1.7)
-- SafariDriver 16.2 (17614.3.7.1.7)
-- Google Chrome 109.0.5414.87
+- Safari 16.3 (17614.4.6.11.4)
+- SafariDriver 16.3 (17614.4.6.11.4)
+- Google Chrome 109.0.5414.119
 - ChromeDriver 109.0.5414.74
-- Microsoft Edge 109.0.1518.52
-- Microsoft Edge WebDriver 109.0.1518.52
-- Mozilla Firefox 108.0.2
+- Microsoft Edge 109.0.1518.61
+- Microsoft Edge WebDriver 109.0.1518.61
+- Mozilla Firefox 109.0
 - geckodriver 0.32.0
-- Selenium server 4.5.0
+- Selenium server 4.7.2
 
 #### Environment variables
 | Name            | Value                                          |
@@ -138,14 +140,14 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.352+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.17+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.5+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 8.0.362+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.18+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.6+10           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version   | Environment variables |
 | --------- | --------------------- |
-| CE 22.3.0 | GRAALVM_11_ROOT       |
+| CE 22.3.1 | GRAALVM_11_ROOT       |
 
 ### Cached Tools
 
@@ -186,13 +188,13 @@
 #### Packages
 - Bindgen 0.63.0
 - Cargo-audit 0.17.4
-- Cargo-outdated 0.11.1
+- Cargo-outdated 0.11.2
 - Cbindgen 0.24.3
 - Clippy 0.1.66
 - Rustfmt 1.5.1-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.8
+- PowerShell 7.2.9
 
 #### PowerShell Modules
 - Az: 9.3.0
@@ -212,7 +214,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.4.2.17 | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.4.3.21 | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
@@ -314,7 +316,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | iOS 16.0    | 14.0.1                                                               | iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (9.7-inch)                                                                                                                                          |
 | iOS 16.1    | 14.1                                                                 | iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (12.9-inch) (6th generation)<br>iPad Pro (9.7-inch)                                |
 | iOS 16.2    | 14.2                                                                 | iPod touch (7th generation)<br>iPhone 11<br>iPhone 11 Pro<br>iPhone 11 Pro Max<br>iPhone 12<br>iPhone 12 mini<br>iPhone 12 Pro<br>iPhone 12 Pro Max<br>iPhone 13<br>iPhone 13 mini<br>iPhone 13 Pro<br>iPhone 13 Pro Max<br>iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone 8<br>iPhone 8 Plus<br>iPhone SE (2nd generation)<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (9th generation)<br>iPad Air (4th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (3rd generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (5th generation)<br>iPad Pro (12.9-inch) (6th generation)<br>iPad Pro (9.7-inch) |
-| tvOS 15.0   | 13.1                                                                 | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (2nd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| tvOS 15.0   | 13.1                                                                 | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | tvOS 15.2   | 13.2.1                                                               | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | tvOS 15.4   | 13.3.1<br>13.4<br>13.4.1                                             | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | tvOS 16.0   | 13.1<br>13.2.1<br>13.3.1<br>13.4<br>13.4.1<br>14.0.1<br>14.1<br>14.2 | Apple TV<br>Apple TV 4K (2nd generation)<br>Apple TV 4K (at 1080p) (2nd generation)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -322,7 +324,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | watchOS 8.0 | 13.1                                                                 | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | watchOS 8.3 | 13.2.1                                                               | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | watchOS 8.5 | 13.3.1<br>13.4<br>13.4.1                                             | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| watchOS 9.0 | 13.1<br>13.2.1<br>13.3.1<br>13.4<br>13.4.1<br>14.0.1<br>14.1<br>14.2 | Apple Watch SE - 40mm (2nd generation)<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm<br>Apple Watch Series 8 - 41mm<br>Apple Watch Series 8 - 45mm<br>Apple Watch Ultra - 49mm                                                                                                                                                                                                                                                                                                                                                                                               |
+| watchOS 9.0 | 13.1<br>13.2.1<br>13.3.1<br>13.4<br>13.4.1<br>14.0.1<br>14.1<br>14.2 | Apple Watch SE - 40mm (2nd generation)<br>Apple Watch SE - 44mm (2nd generation)<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm<br>Apple Watch Series 8 - 41mm<br>Apple Watch Series 8 - 45mm<br>Apple Watch Ultra - 49mm                                                                                                                                                                                                                                                                                                                                                     |
 | watchOS 9.1 | 13.1<br>13.2.1<br>13.3.1<br>13.4<br>13.4.1<br>14.0.1<br>14.1<br>14.2 | Apple Watch SE - 40mm (2nd generation)<br>Apple Watch SE - 44mm (2nd generation)<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm<br>Apple Watch Series 8 - 41mm<br>Apple Watch Series 8 - 45mm<br>Apple Watch Ultra - 49mm                                                                                                                                                                                                                                                                                                                                                     |
 
 ### Android
