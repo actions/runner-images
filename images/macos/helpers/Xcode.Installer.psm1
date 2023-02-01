@@ -175,30 +175,53 @@ function Install-AdditionalSimulatorRuntimes {
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
     Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
 
+    $simctlPath = Get-XcodeToolPath -Version $Version -ToolName "simctl"
+    Write-Host "[DEBUG] $($Version)"
+    Invoke-Expression "$simctlPath list"
+    Invoke-Expression "$simctlPath list --json"
+
     if ($Version -eq "14.0.1") {
+        <#
         # https://github.com/actions/runner-images/issues/6773
         Write-Host "Validating Xcode $Version simulators (there is a known issue with some simulators on this version)..."
         $simctlPath = Get-XcodeToolPath -Version $Version -ToolName "simctl"
         [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
         $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
 
-        $missedAppleWatchDeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-44mm-2nd-generation"
-        $missedAppleWatchRuntime = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0"
-        $missedAppleWatchName = "Apple Watch SE (44mm) (2nd generation)"
-        $missedAppleWatch = $jsonDevicesInfo.$missedAppleWatchRuntime | Where-Object { $_.deviceTypeIdentifier -eq  $missedAppleWatchDeviceId } | Select-Object -First 1
-        if ($null -eq $missedAppleWatch) {
-            Write-Host "Simulator '$missedAppleWatchName' is missed. Creating it..."
-            Invoke-Expression "$simctlPath create '$missedAppleWatchName' '$missedAppleWatchDeviceId' '$missedAppleWatchRuntime'"
+        
+        @(
+            @{
+                SimulatorName = "Apple TV 4K (at 1080p) (2nd generation)"
+                DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-2nd-generation-1080p";
+                RuntimeId = "com.apple.CoreSimulator.SimRuntime.tvOS-16-0";
+            },
+            @{
+                SimulatorName = "Apple Watch SE (44mm) (2nd generation)"
+                DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-44mm-2nd-generation";
+                RuntimeId = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0";
+            },
+            @{
+                SimulatorName = "Apple Watch SE (40mm) (2nd generation)"
+                DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-40mm-2nd-generation";
+                RuntimeId = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0";
+            }
+        ) | ForEach-Object {
+            $simulatorName = $_.SimulatorName
+            $runtimeId = $_.RuntimeId
+            $deviceId = $_.DeviceId
+            
+            $existingSimulator = $jsonDevicesInfo.$runtimeId | Where-Object { $_.deviceTypeIdentifier -eq  $deviceId } | Select-Object -First 1
+            if ($null -eq $existingSimulator) {
+                Write-Host "Simulator '$simulatorName' is missed. Creating it..."
+                Invoke-Expression "$simctlPath create '$simulatorName' '$deviceId' '$runtimeId'"
+            } elseif ($existingSimulator.name -ne $_.SimulatorName) {
+                Write-Host "Simulator '$simulatorName' is named incorrectly. Renaming it..."
+                Invoke-Expression "$simctlPath rename '$($existingSimulator.udid)' '$simulatorName'"
+            } else {
+                Write-Host "Simulator '$simulatorName' is installed correctly."
+            }
         }
-
-        $missedTvOsDeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-2nd-generation-1080p"
-        $misseTvOsRuntime = "com.apple.CoreSimulator.SimRuntime.tvOS-16-0"
-        $missedTvOsName = "Apple TV 4K (at 1080p) (2nd generation)"
-        $missedTvOS = $jsonDevicesInfo.$misseTvOsRuntime | Where-Object { $_.deviceTypeIdentifier -eq  $missedTvOsDeviceId } | Select-Object -First 1
-        if ($missedTvOS.name -ne $missedTvOsName) {
-            Write-Host "Simulator '$missedTvOsName' has incorrect name. Renaming it..."
-            Invoke-Expression "$simctlPath rename '$($missedTvOS.udid)' '$missedTvOsName'"
-        }
+        #>
     }
 
     # TO-DO: Add test
