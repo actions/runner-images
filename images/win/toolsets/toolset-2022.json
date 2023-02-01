@@ -1,4 +1,4 @@
-{
+
     "toolcache": [
         {
             "name": "Ruby",
@@ -348,7 +348,6 @@
     "dotnet": {
         "versions": [
             "3.1",
-            "5.0",
             "6.0"
         ],
         "tools": [
