@@ -160,6 +160,50 @@ function Invoke-XcodeRunFirstLaunch {
     Invoke-ValidateCommand "sudo $xcodeRootPath -runFirstLaunch"
 }
 
+function Install-AdditionalSimulatorRuntimes {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Version
+    )
+
+    if (-not $Version.StartsWith("14.")) {
+        # Additional simulator runtimes are included by default for Xcode < 14
+        return
+    }
+
+    Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
+    $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
+    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+
+    if ($Version -eq "14.0.1") {
+        # https://github.com/actions/runner-images/issues/6773
+        Write-Host "Validating Xcode $Version simulators (there is a known issue with some simulators on this version)..."
+        $simctlPath = Get-XcodeToolPath -Version $Version -ToolName "simctl"
+        [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
+        $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
+
+        $missedAppleWatchDeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-44mm-2nd-generation"
+        $missedAppleWatchRuntime = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0"
+        $missedAppleWatchName = "Apple Watch SE (44mm) (2nd generation)"
+        $missedAppleWatch = $jsonDevicesInfo.$missedAppleWatchRuntime | Where-Object { $_.deviceTypeIdentifier -eq  $missedAppleWatchDeviceId } | Select-Object -First 1
+        if ($null -eq $missedAppleWatch) {
+            Write-Host "Simulator '$missedAppleWatchName' is missed. Creating it..."
+            Invoke-Expression "$simctlPath create '$missedAppleWatchName' '$missedAppleWatchDeviceId' '$missedAppleWatchRuntime'"
+        }
+
+        $missedTvOsDeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-2nd-generation-1080p"
+        $misseTvOsRuntime = "com.apple.CoreSimulator.SimRuntime.tvOS-16-0"
+        $missedTvOsName = "Apple TV 4K (at 1080p) (2nd generation)"
+        $missedTvOS = $jsonDevicesInfo.$misseTvOsRuntime | Where-Object { $_.deviceTypeIdentifier -eq  $missedTvOsDeviceId } | Select-Object -First 1
+        if ($missedTvOS.name -ne $missedTvOsName) {
+            Write-Host "Simulator '$missedTvOsName' has incorrect name. Renaming it..."
+            Invoke-Expression "$simctlPath rename '$($missedTvOS.udid)' '$missedTvOsName'"
+        }
+    }
+
+    # TO-DO: Add test
+}
+
 function Build-XcodeSymlinks {
     param(
         [Parameter(Mandatory)]
