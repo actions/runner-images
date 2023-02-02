@@ -197,8 +197,6 @@ function Install-AdditionalSimulatorRuntimes {
             }
         }
     }
-
-    # TO-DO: Add test
 }
 
 function Build-XcodeSymlinks {

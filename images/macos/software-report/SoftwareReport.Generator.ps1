@@ -53,7 +53,7 @@ $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
 $languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
 $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
 
-# # Package Management
+# Package Management
 $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Bundler", $(Get-BundlerVersion))
 $packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
@@ -72,14 +72,14 @@ $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
 
 $packageManagement.AddNode($(Build-PackageManagementEnvironmentTable))
 
-# # Project Management
+# Project Management
 $projectManagement = $installedSoftware.AddHeader("Project Management")
 $projectManagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
 $projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
 $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
 $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 
-# # Utilities
+# Utilities
 $utilities = $installedSoftware.AddHeader("Utilities")
 $utilities.AddToolVersion("7-Zip", $(Get-7zipVersion))
 $utilities.AddToolVersion("aria2", $(Get-Aria2Version))
@@ -122,7 +122,7 @@ if (-not $os.IsBigSur) {
 $utilities.AddToolVersion("yq", $(Get-YqVersion))
 $utilities.AddToolVersion("zstd", $(Get-ZstdVersion))
 
-# # Tools
+# Tools
 $tools = $installedSoftware.AddHeader("Tools")
 if ($os.IsLessThanMonterey) {
     $tools.AddToolVersion("Aliyun CLI", $(Get-AliyunCLIVersion))
@@ -267,8 +267,9 @@ PARALLELS_DMG_URL environment variable. A system extension is allowed for this v
     $miscellaneousEnvNotes.AddNote($notes)
 }
 
-
-Generate systeminfo.txt with information about image (for debug purpose)
+#
+# Generate systeminfo.txt with information about image (for debug purpose)
+#
 
 $dateTime = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 $systemInfo = [string]::Join([System.Environment]::NewLine, @(
@@ -277,7 +278,6 @@ $systemInfo = [string]::Join([System.Environment]::NewLine, @(
     ))
 
 if (-not (Test-Path $OutputDirectory)) { New-Item -Path $OutputDirectory -ItemType Directory | Out-Null }
-
 
 # Write final reports
 $systemInfo | Out-File -FilePath "${OutputDirectory}/systeminfo.txt" -Encoding UTF8NoBOM
