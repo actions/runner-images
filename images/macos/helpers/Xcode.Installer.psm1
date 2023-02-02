@@ -184,21 +184,16 @@ function Install-AdditionalSimulatorRuntimes {
         [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
         $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
 
-        
-        Get-BrokenSimulatorsListXcode1401 | ForEach-Object {
-            $simulatorName = $_.SimulatorName
-            $runtimeId = $_.RuntimeId
-            $deviceId = $_.DeviceId
-            
-            $existingSimulator = $jsonDevicesInfo.$runtimeId | Where-Object { $_.deviceTypeIdentifier -eq  $deviceId } | Select-Object -First 1
+        foreach ($simulator in Get-BrokenSimulatorsListXcode1401) {
+            $existingSimulator = $jsonDevicesInfo.$($simulator.RuntimeId) | Where-Object { $_.deviceTypeIdentifier -eq  $simulator.DeviceId } | Select-Object -First 1
             if ($null -eq $existingSimulator) {
-                Write-Host "Simulator '$simulatorName' is missed. Creating it..."
-                Invoke-Expression "$simctlPath create '$simulatorName' '$deviceId' '$runtimeId'"
-            } elseif ($existingSimulator.name -ne $_.SimulatorName) {
-                Write-Host "Simulator '$simulatorName' is named incorrectly. Renaming it..."
-                Invoke-Expression "$simctlPath rename '$($existingSimulator.udid)' '$simulatorName'"
+                Write-Host "Simulator '$($simulator.Name)' is missed. Creating it..."
+                Invoke-Expression "$simctlPath create '$($simulator.Name)' '$($simulator.DeviceId)' '$($simulator.RuntimeId)'"
+            } elseif ($existingSimulator.name -ne $simulator.Name) {
+                Write-Host "Simulator '$($simulator.Name)' is named incorrectly. Renaming it..."
+                Invoke-Expression "$simctlPath rename '$($existingSimulator.udid)' '$($simulator.Name)'"
             } else {
-                Write-Host "Simulator '$simulatorName' is installed correctly."
+                Write-Host "Simulator '$($simulator.Name)' is installed correctly."
             }
         }
     }
