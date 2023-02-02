@@ -1,13 +1,13 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 5.x will be removed from the images on January, 29](https://github.com/actions/runner-images/issues/6840) |
-| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.2 on January, 16](https://github.com/actions/runner-images/issues/6746) |
+| [[all OSs] Default Nodejs version will be set to 18 on February, 13](https://github.com/actions/runner-images/issues/7002) |
+| [[All OSs] .NET 5.x will be removed from the images on February, 6](https://github.com/actions/runner-images/issues/6840) |
 | [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 11
-- OS Version: macOS 11.7.2 (20G1020)
+- OS Version: macOS 11.7.3 (20G1116)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20230117.2
+- Image Version: 20230125.1
 
 ## Installed Software
 
@@ -38,19 +38,19 @@
 - Ruby 2.7.7p221
 
 ### Package Management
-- Bundler 2.4.4
+- Bundler 2.4.5
 - Carthage 0.38.0
 - CocoaPods 1.11.3
 - Composer 2.5.1
-- Homebrew 3.6.19
+- Homebrew 3.6.20
 - Miniconda 22.11.1
 - NPM 8.19.3
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 22.3.1 (python 3.11)
 - Pipx 1.1.0
-- RubyGems 3.4.4
-- Vcpkg 2022 (build from commit 5908d702d)
+- RubyGems 3.4.5
+- Vcpkg 2023 (build from commit d558a1b4a)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -68,7 +68,7 @@
 ### Utilities
 - 7-Zip 17.04
 - aria2 1.36.0
-- azcopy 10.16.2
+- azcopy 10.17.0
 - bazel 6.0.0
 - bazelisk 1.15.0
 - bsdtar 3.3.2 - available by 'tar' alias
@@ -79,9 +79,9 @@
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.4.0
-- helm v3.10.3+g835b733
+- helm v3.11.0+g472c573
 - Hub CLI 2.14.2
-- ImageMagick 7.1.0-57
+- ImageMagick 7.1.0-58
 - jq 1.6
 - mongo 5.0.14
 - mongod 5.0.14
@@ -99,14 +99,14 @@
 ### Tools
 - Aliyun CLI 3.0.141
 - App Center CLI 2.13.0
-- AWS CLI 2.9.15
-- AWS SAM CLI 1.70.0
+- AWS CLI 2.9.17
+- AWS SAM CLI 1.71.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.44.1
 - Azure CLI (azure-devops) 0.25.0
 - Bicep CLI 0.13.1
 - Cabal 3.6.2.0
-- Cmake 3.25.1
+- Cmake 3.25.2
 - CodeQL Action Bundle 2.12.0
 - Colima 0.5.2
 - Fastlane 2.211.0
@@ -123,15 +123,15 @@
 - Yamllint 1.29.0
 
 ### Browsers
-- Safari 16.2 (16614.3.7.1.7)
-- SafariDriver 16.2 (16614.3.7.1.7)
-- Google Chrome 109.0.5414.87
+- Safari 16.3 (16614.4.6.11.4)
+- SafariDriver 16.3 (16614.4.6.11.4)
+- Google Chrome 109.0.5414.119
 - ChromeDriver 109.0.5414.74
-- Microsoft Edge 109.0.1518.52
-- Microsoft Edge WebDriver 109.0.1518.52
-- Mozilla Firefox 108.0.2
+- Microsoft Edge 109.0.1518.61
+- Microsoft Edge WebDriver 109.0.1518.61
+- Mozilla Firefox 109.0
 - geckodriver 0.32.0
-- Selenium server 4.5.0
+- Selenium server 4.7.2
 
 #### Environment variables
 | Name            | Value                                          |
@@ -143,14 +143,14 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.352+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.17+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.5+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 8.0.362+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.18+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.6+10           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version   | Environment variables |
 | --------- | --------------------- |
-| CE 22.3.0 | GRAALVM_11_ROOT       |
+| CE 22.3.1 | GRAALVM_11_ROOT       |
 
 ### Cached Tools
 
@@ -194,13 +194,13 @@
 #### Packages
 - Bindgen 0.63.0
 - Cargo-audit 0.17.4
-- Cargo-outdated 0.11.1
+- Cargo-outdated 0.11.2
 - Cbindgen 0.24.3
 - Clippy 0.1.66
 - Rustfmt 1.5.1-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.8
+- PowerShell 7.2.9
 
 #### PowerShell Modules
 - Az: 9.3.0
@@ -209,10 +209,10 @@
 - PSScriptAnalyzer: 1.21.0
 
 ### Web Servers
-| Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
-| ----- | -------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.54_1 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.23.3   | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
+| ----- | ------- | ------------------------------- | ------------- | ---------- |
+| httpd | 2.4.55  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| nginx | 1.23.3  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 
@@ -220,7 +220,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.4.2.17 | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.4.3.21 | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
