@@ -1,10 +1,11 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 5.x will be removed from the images on January, 29](https://github.com/actions/runner-images/issues/6840) |
+| [[all OSs] Default Nodejs version will be set to 18 on February, 13](https://github.com/actions/runner-images/issues/7002) |
+| [[All OSs] .NET 5.x will be removed from the images on February, 6](https://github.com/actions/runner-images/issues/6840) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1487
-- Image Version: 20230123.1
+- Image Version: 20230129.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -26,14 +27,14 @@
 ### Package Management
 - Chocolatey 1.2.1
 - Composer 2.5.1
-- Helm 3.10.3
+- Helm 3.11.0
 - Miniconda 22.11.1 (pre-installed on the image but not added to PATH)
 - NPM 8.19.3
 - NuGet 6.4.0.123
 - pip 22.3.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit e69dd972b)
+- Vcpkg (build from commit 91dd61bd4)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -51,13 +52,13 @@
 ### Tools
 - 7zip 22.01
 - aria2 1.36.0
-- azcopy 10.16.2
+- azcopy 10.17.0
 - Bazel 6.0.0
 - Bazelisk 1.13.2
 - Bicep 0.13.1
 - Cabal 3.8.1.0
 - CMake 3.25.2
-- CodeQL Action Bundle 2.12.0
+- CodeQL Action Bundle 2.12.0 2.12.1
 - Docker 20.10.23
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.15.1
@@ -65,7 +66,7 @@
 - ghc 9.4.4
 - Git 2.39.1.windows.1
 - Git LFS 3.3.0
-- ImageMagick 7.1.0-57
+- ImageMagick 7.1.0-59
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.17.0
@@ -75,8 +76,8 @@
 - Newman 5.3.2
 - NSIS 3.08
 - OpenSSL 1.1.1
-- Packer 1.8.4
-- Pulumi 3.52.1
+- Packer 1.8.5
+- Pulumi 3.53.1
 - R 4.2.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.9.3
@@ -90,18 +91,18 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.144
-- AWS CLI 2.9.17
-- AWS SAM CLI 1.70.0
+- AWS CLI 2.9.18
+- AWS SAM CLI 1.71.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.44.1
-- Azure DevOps CLI extension 0.25.0
-- GitHub CLI 2.21.2
+- Azure DevOps CLI extension 0.26.0
+- GitHub CLI 2.22.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.66.1
-- Rust 1.66.1
-- Rustdoc 1.66.1
+- Cargo 1.67.0
+- Rust 1.67.0
+- Rustdoc 1.67.0
 - Rustup 1.25.1
 
 #### Packages
@@ -109,14 +110,14 @@
 - cargo-audit 0.17.4
 - cargo-outdated 0.11.2
 - cbindgen 0.24.3
-- Clippy 0.1.66
+- Clippy 0.1.67
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 109.0.5414.75
+- Google Chrome 109.0.5414.120
 - Chrome Driver 109.0.5414.74
-- Microsoft Edge 109.0.1518.61
-- Microsoft Edge Driver 109.0.1518.61
+- Microsoft Edge 109.0.1518.70
+- Microsoft Edge Driver 109.0.1518.70
 - Mozilla Firefox 109.0
 - Gecko Driver 0.32.0
 - IE Driver 4.8.0.0
@@ -133,7 +134,7 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.352+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 8.0.362+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.18+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.6+10           | Eclipse Temurin | JAVA_HOME_17_X64     |
 
@@ -204,7 +205,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 5.0.14.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.9.0
+- Azure CosmosDb Emulator 2.14.11.0
 - DacFx 16.1.6374.0
 - MySQL 8.0.31.0
 - SQL OLEDB Driver 18.6.3.0
@@ -534,7 +535,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.5.119+5d25f54fec
 
 ### PowerShell Tools
-- PowerShell 7.2.8
+- PowerShell 7.2.9
 
 #### Powershell Modules
 - Az: 9.3.0
@@ -543,7 +544,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.254
+- AWSPowershell: 4.1.259
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.20.0

@@ -1,12 +1,13 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 5.x will be removed from the images on January, 29](https://github.com/actions/runner-images/issues/6840) |
+| [[all OSs] Default Nodejs version will be set to 18 on February, 13](https://github.com/actions/runner-images/issues/7002) |
+| [[All OSs] .NET 5.x will be removed from the images on February, 6](https://github.com/actions/runner-images/issues/6840) |
 | [The Ubuntu 18.04 Actions runner image will begin deprecation on 2022/08/08 and will be fully unsupported by 2023/04/01](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.1 LTS
 - Kernel Version: 5.15.0-1031-azure
-- Image Version: 20230122.1
+- Image Version: 20230129.2
 
 ## Installed Software
 
@@ -40,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit e69dd972b)
+- Vcpkg (build from commit 91dd61bd4)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -63,13 +64,13 @@ to accomplish this.
 ### Tools
 - Ansible 2.14.1
 - apt-fast 1.9.12
-- AzCopy 10.16.2 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.17.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.0.0
 - Bazelisk 1.13.2
 - Bicep 0.13.1
 - Buildah 1.23.1
 - CMake 3.25.2
-- CodeQL Action Bundle 2.12.0
+- CodeQL Action Bundles 2.12.0 2.12.1
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.15.1+azure-1
@@ -81,7 +82,7 @@ to accomplish this.
 - Git LFS 3.3.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 7.67.1
+- Heroku 7.67.2
 - jq 1.6
 - Kind 0.17.0
 - Kubectl 1.26.1
@@ -89,7 +90,7 @@ to accomplish this.
 - Leiningen 2.10.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.28.0
+- Minikube 1.29.0
 - n 9.0.1
 - Newman 5.3.2
 - nvm 0.39.3
@@ -97,7 +98,7 @@ to accomplish this.
 - Packer 1.8.5
 - Parcel 2.8.3
 - Podman 3.4.4
-- Pulumi 3.52.1
+- Pulumi 3.53.1
 - R 4.2.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -109,35 +110,35 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.144
-- AWS CLI 2.9.17
+- AWS CLI 2.9.19
 - AWS CLI Session Manager Plugin 1.2.398.0
-- AWS SAM CLI 1.70.0
+- AWS SAM CLI 1.71.0
 - Azure CLI 2.44.1
-- Azure CLI (azure-devops) 0.25.0
-- GitHub CLI 2.21.2
-- Google Cloud SDK 414.0.0
+- Azure CLI (azure-devops) 0.26.0
+- GitHub CLI 2.22.1
+- Google Cloud SDK 415.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 12.9.1
+- Netlify CLI 12.10.0
 - OpenShift CLI 4.12.0
 - ORAS CLI 0.16.0
-- Vercel CLI 28.13.0
+- Vercel CLI 28.14.0
 
 ### Java
-| Version             | Vendor          | Environment Variable |
-| ------------------- | --------------- | -------------------- |
-| 8.0.352+8           | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.17+8 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.5+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| Version              | Vendor          | Environment Variable |
+| -------------------- | --------------- | -------------------- |
+| 8.0.362+9            | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.18+10 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.6+10            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### GraalVM
 | Version   | Environment variables |
 | --------- | --------------------- |
-| CE 22.3.0 | GRAALVM_11_ROOT       |
+| CE 22.3.1 | GRAALVM_11_ROOT       |
 
 ### PHP Tools
 - PHP: 8.1.2
 - Composer 2.5.1
-- PHPUnit 8.5.31
+- PHPUnit 8.5.32
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -149,27 +150,27 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.9.3
 
 ### Rust Tools
-- Cargo 1.66.1
-- Rust 1.66.1
-- Rustdoc 1.66.1
+- Cargo 1.67.0
+- Rust 1.67.0
+- Rustdoc 1.67.0
 - Rustup 1.25.1
 
 #### Packages
 - Bindgen 0.63.0
 - Cargo audit 0.17.4
-- Cargo clippy 0.1.66
+- Cargo clippy 0.1.67
 - Cargo outdated 0.11.2
 - Cbindgen 0.24.3
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 109.0.5414.74
+- Google Chrome 109.0.5414.119
 - ChromeDriver 109.0.5414.74
 - Chromium 109.0.5414.0
-- Microsoft Edge 109.0.1518.61
-- Microsoft Edge WebDriver 109.0.1518.61
-- Selenium server 4.7.0
-- Mozilla Firefox 109.0
+- Microsoft Edge 109.0.1518.70
+- Microsoft Edge WebDriver 109.0.1518.70
+- Selenium server 4.8.0
+- Mozilla Firefox 109.0.1
 - Geckodriver 0.32.0
 
 #### Environment variables
@@ -196,7 +197,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.31-0ubuntu0.22.04.1
+- MySQL 8.0.32-0ubuntu0.22.04.2
 ```
 User: root
 Password: root
@@ -236,7 +237,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.1.3
 
 ### PowerShell Tools
-- PowerShell 7.2.8
+- PowerShell 7.2.9
 
 #### PowerShell Modules
 - Az: 9.3.0
@@ -287,7 +288,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | buildpack-deps:buster   | sha256:c343da4a0b85a4d25ce30529e836a10d46cd4f682fb5326400e4ba274a2f9866  | 2023-01-11 |
 | debian:10               | sha256:bb8c62f9f540a5f5f49f7ed5caae0e2889f999cd14553f2aaccaf1fa4fcb998d  | 2023-01-11 |
 | debian:11               | sha256:534da5794e770279c889daa891f46f5a530b0c5de8bfbc5e40394a0164d9fa87  | 2023-01-11 |
-| moby/buildkit:latest    | sha256:86ffcc648dbd2215941cbaabbd0564bd8bc67e2aefd32d4feb26e4fb8080f8c6  | 2023-01-17 |
+| moby/buildkit:latest    | sha256:f092403997f04742b549811ca2402d88207afbf33656eb1cf34aa7fe8a8511ac  | 2023-01-26 |
 | node:14                 | sha256:0c888dc647d36f5a895edb6b1b1c96ae81064455e0cdeee0792e14927604ca99  | 2023-01-11 |
 | node:14-alpine          | sha256:2c6a909495ef3761328c10945cbe84c06d079f7ca49dc24271e73be8cab85ad7  | 2023-01-09 |
 | node:16                 | sha256:27fab5920246070cf13449cf44c25bc4f5adef18ca7482b2bda90b7cf9e64481  | 2023-01-11 |
@@ -313,7 +314,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 8.32-4.1ubuntu1                   |
 | curl                   | 7.81.0-1ubuntu1.7                 |
 | dbus                   | 1.12.20-2ubuntu4.1                |
-| dnsutils               | 1:9.18.1-1ubuntu1.2               |
+| dnsutils               | 1:9.18.1-1ubuntu1.3               |
 | dpkg                   | 1.21.1ubuntu2.1                   |
 | fakeroot               | 1.28-1ubuntu1                     |
 | file                   | 1:5.41-3                          |
