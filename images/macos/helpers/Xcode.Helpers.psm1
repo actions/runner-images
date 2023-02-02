@@ -152,3 +152,23 @@ function Invoke-XCVersion {
         throw "Command [$Command] has finished with non-zero exit code."
     } 
 }
+
+function Get-BrokenSimulatorsListXcode1401 {
+    return @(
+        @{
+            SimulatorName = "Apple TV 4K (at 1080p) (2nd generation)"
+            DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-2nd-generation-1080p";
+            RuntimeId = "com.apple.CoreSimulator.SimRuntime.tvOS-16-0";
+        },
+        @{
+            SimulatorName = "Apple Watch SE (44mm) (2nd generation)"
+            DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-44mm-2nd-generation";
+            RuntimeId = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0";
+        },
+        @{
+            SimulatorName = "Apple Watch SE (40mm) (2nd generation)"
+            DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-40mm-2nd-generation";
+            RuntimeId = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0";
+        }
+    )
+}

@@ -175,37 +175,17 @@ function Install-AdditionalSimulatorRuntimes {
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
     Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
 
-    $simctlPath = Get-XcodeToolPath -Version $Version -ToolName "simctl"
-    Write-Host "[DEBUG] $($Version)"
-    Invoke-Expression "$simctlPath list"
-    Invoke-Expression "$simctlPath list --json"
 
     if ($Version -eq "14.0.1") {
-        <#
         # https://github.com/actions/runner-images/issues/6773
         Write-Host "Validating Xcode $Version simulators (there is a known issue with some simulators on this version)..."
-        $simctlPath = Get-XcodeToolPath -Version $Version -ToolName "simctl"
+        # Use simctl from Xcode 14.1 to create simulators properly
+        $simctlPath = Get-XcodeToolPath -Version "14.1" -ToolName "simctl"
         [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
         $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
 
         
-        @(
-            @{
-                SimulatorName = "Apple TV 4K (at 1080p) (2nd generation)"
-                DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-2nd-generation-1080p";
-                RuntimeId = "com.apple.CoreSimulator.SimRuntime.tvOS-16-0";
-            },
-            @{
-                SimulatorName = "Apple Watch SE (44mm) (2nd generation)"
-                DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-44mm-2nd-generation";
-                RuntimeId = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0";
-            },
-            @{
-                SimulatorName = "Apple Watch SE (40mm) (2nd generation)"
-                DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-40mm-2nd-generation";
-                RuntimeId = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0";
-            }
-        ) | ForEach-Object {
+        Get-BrokenSimulatorsListXcode1401 | ForEach-Object {
             $simulatorName = $_.SimulatorName
             $runtimeId = $_.RuntimeId
             $deviceId = $_.DeviceId
@@ -221,7 +201,6 @@ function Install-AdditionalSimulatorRuntimes {
                 Write-Host "Simulator '$simulatorName' is installed correctly."
             }
         }
-        #>
     }
 
     # TO-DO: Add test
