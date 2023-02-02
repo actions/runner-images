@@ -4,6 +4,8 @@
 ##  Desc:  Install toolset
 ################################################################################
 
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 -bor [Net.SecurityProtocolType]::Tls13
+
 Function Install-Asset {
     param(
         [Parameter(Mandatory=$true)]
@@ -30,13 +32,13 @@ Function Install-Asset {
 }
 
 # Get toolcache content from toolset
-$ToolsToInstall = @("Python", "Node", "Boost", "Go")
+$ToolsToInstall = @("Python", "Node", "Go")
 
-$tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where {$ToolsToInstall -contains $_.Name}
+$tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Object { $ToolsToInstall -contains $_.Name }
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
-    $assets = Invoke-RestMethod $tool.url
+    $assets = Invoke-SBWithRetry -Command { Invoke-RestMethod $tool.url }
 
     # Get github release asset for each version
     foreach ($toolVersion in $tool.versions) {

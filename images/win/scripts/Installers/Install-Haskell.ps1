@@ -2,35 +2,7 @@
 ##  File:  Install-Haskell.ps1
 ##  Desc:  Install Haskell for Windows
 ################################################################################
-
-# Get 3 latest versions of GHC, use OData query for that since choco search has issues https://github.com/chocolatey/choco/issues/2271
-$ODataQuery = '$filter=(Title eq ''ghc'') and (IsPrerelease eq false)&$orderby=Version desc'
-$Url = "https://community.chocolatey.org/api/v2/Packages()?$ODataQuery"
-$ChocoVersionsOutput = [Version[]](Invoke-RestMethod -Uri $Url).properties.Version
-$LatestMajorMinor = $ChocoVersionsOutput | Group-Object { $_.ToString(2) } | Sort-Object { [Version]$_.Name } | Select-Object -last 3
-$VersionsList = $LatestMajorMinor | ForEach-Object { $_.Group | Select-Object -First 1 } | Sort-Object
-
-# The latest version will be installed as a default
-ForEach ($version in $VersionsList)
-{
-    Write-Host "Installing ghc $version..."
-    Choco-Install -PackageName ghc -ArgumentList '--version', $version, '-m'
-}
-
-# Add default version of GHC to path, because choco formula updates path on user level
-$DefaultGhcVersion = $VersionsList | Select-Object -Last 1
-$DefaultGhcShortVersion = ([version]$DefaultGhcVersion).ToString(3)
-$DefaultGhcPath = Join-Path $env:ChocolateyInstall "lib\ghc.$DefaultGhcVersion\tools\ghc-$DefaultGhcShortVersion\bin"
-# Starting from version 9 haskell installation directory is $env:ChocolateyToolsLocation instead of $env:ChocolateyInstall\lib
-if ($DefaultGhcShortVersion -notmatch '^[0-8]\.\d+.*')
-{
-    $DefaultGhcPath = Join-Path $env:ChocolateyToolsLocation "ghc-$DefaultGhcShortVersion\bin"
-}
-
-Add-MachinePathItem -PathItem $DefaultGhcPath
-
-Write-Host 'Installing cabal...'
-Choco-Install -PackageName cabal
+Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 
 # install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
 Write-Host 'Installing ghcup...'
@@ -44,5 +16,28 @@ Set-SystemVariable "GHCUP_MSYS2" $msysPath
 Set-SystemVariable "CABAL_DIR" $cabalDir
 Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
 Add-MachinePathItem "$cabalDir\bin"
+
+Update-SessionEnvironment
+
+# Get 3 latest versions of GHC
+$Versions = ghcup list -t ghc -r | Where-Object {$_ -notlike "prerelease"}
+$VersionsOutput = [Version[]]($Versions | ForEach-Object{ $_.Split(' ')[1]; })
+$LatestMajorMinor = $VersionsOutput | Group-Object { $_.ToString(2) } | Sort-Object { [Version]$_.Name } | Select-Object -last 3
+$VersionsList = $LatestMajorMinor | ForEach-Object { $_.Group | Select-Object -Last 1 } | Sort-Object
+
+# The latest version will be installed as a default
+ForEach ($version in $VersionsList)
+{
+    Write-Host "Installing ghc $version..."
+    ghcup install ghc $version
+    ghcup set ghc $version
+}
+
+# Add default version of GHC to path
+$DefaultGhcVersion = $VersionsList | Select-Object -Last 1
+ghcup set ghc $DefaultGhcVersion
+
+Write-Host 'Installing cabal...'
+ghcup install cabal latest
 
 Invoke-PesterTests -TestFile 'Haskell'

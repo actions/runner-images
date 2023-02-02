@@ -110,6 +110,21 @@ latest 2 versions of an OS.
 | Android NDK | 1 latest non-LTS, 2 latest LTS versions |
 | Xcode     | - all OS compatible versions side-by-side <br/> - for beta, GM versions - latest beta only <br/> - old patch versions are deprecated in 3 months |
 
+### Package managers usage
+
+We use third-party package managers to install software during the image generation process. The table below lists the package managers and the software installed.
+> **Note**: third-party repositories are re-evaluated every year to identify if they are still useful and secure.
+
+
+| Operating system | Package manager                       | Third-party repos and packages |
+| :---             |        :---:                          |                           ---: |
+| Ubuntu           | [APT](https://wiki.debian.org/Apt)    | [Eclipse-Timurin (Adoptium)](https://packages.adoptium.net/artifactory/deb) </br> [Erlang](https://packages.erlang-solutions.com/ubuntu) </br>[Firefox](https://launchpad.net/~mozillateam/+archive/ubuntu/ppa) </br> [gcc, gfortran](https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test)  </br> [git](https://launchpad.net/~git-core/+archive/ubuntu/ppa) </br> [HHvm](https://dl.hhvm.com/ubuntu) </br> [PHP](https://launchpad.net/~ondrej/+archive/ubuntu/php) (Ubuntu 18 & 20 only) </br> [Mono](https://download.mono-project.com/repo/ubuntu) </br> [PostgreSQL](https://apt.postgresql.org/pub/repos/apt) </br> [R](https://cloud.r-project.org/bin/linux/ubuntu)                                     |
+|                  | [pipx](https://pypa.github.io/pipx)   | ansible-core </br>yamllint     |
+| Windows          | [Chocolatey](https://chocolatey.org)  | No third-party repos installed |
+| macOS            | [Homebrew](https://homebrew.sh)       | [aws-cli v2](https://github.com/aws/homebrew-tap) </br> [azure/bicep](https://github.com/Azure/homebrew-bicep) </br>  [graalvm-ce-java11](https://github.com/graalvm/homebrew-tap) </br> [mongodb/brew](https://github.com/mongodb/homebrew-brew)                                                  |
+|                  | [pipx](https://pypa.github.io/pipx/)  | yamllint                       |
+
+
 ### Image Deprecation Policy
 
 - Images begin the deprecation process of the oldest image label once a new GA OS version has been released.
