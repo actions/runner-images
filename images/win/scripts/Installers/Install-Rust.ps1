@@ -9,7 +9,7 @@ $env:CARGO_HOME = "C:\Users\Default\.cargo"
 
 # Download the latest rustup-init.exe for Windows x64
 # See https://rustup.rs/#
-$rustupPath = Start-DownloadWithRetry -Url "https://win.rustup.rs/x86_64" -Name "rustup-init.exe"
+$rustupPath = Start-DownloadWithRetry -Url "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe" -Name "rustup-init.exe"
 
 # Install Rust by running rustup-init.exe (disabling the confirmation prompt with -y)
 & $rustupPath -y --default-toolchain=stable --profile=minimal
