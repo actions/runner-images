@@ -112,11 +112,8 @@ latest 2 versions of an OS.
 
 ### Package managers usage
 
-We use third-party package managers to install software during the image generation process.
-
-The table below reflects the list of these package managers and the software installed.
-
-The list of third party repositories is re-evaluated once a year to identify its usefulness and security state.
+We use third-party package managers to install software during the image generation process. The table below lists the package managers and the software installed.
+> **Note**: third-party repositories are re-evaluated every year to identify if they are still useful and secure.
 
 
 | Operating system | Package manager                       | Third-party repos and packages |
