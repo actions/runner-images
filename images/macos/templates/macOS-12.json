@@ -230,6 +230,13 @@
         },
         {
             "type": "shell",
+            "execute_command": "ruby {{ .Path }}",
+            "scripts": [
+                "./provision/core/delete-duplicate-sims.rb"
+            ]
+        },
+        {
+            "type": "shell",
             "inline": [
                 "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName {{user `build_id`}}"
             ]
