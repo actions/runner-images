@@ -34,7 +34,7 @@
     "builders": [
         {
             "name": "vhd",
-            "type": "azure-arm",
+            "type": "azure-arm","azure_tags": { "ExcludeMdeAutoProvisioning": "True" },
             "client_id": "{{user `client_id`}}",
             "client_secret": "{{user `client_secret`}}",
             "client_cert_path": "{{user `client_cert_path`}}",
@@ -345,3 +345,4 @@
         }
     ]
 }
+
