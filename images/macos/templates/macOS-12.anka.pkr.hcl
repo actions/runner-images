@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    veertu-anka = {
+      version = "= v3.1.0"
+      source = "github.com/veertuinc/veertu-anka"
+    }
+  }
+}
+
 variable "source_vm_name" {
   type = string
 }
