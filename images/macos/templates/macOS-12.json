@@ -242,6 +242,21 @@
             ]
         },
         {
+            "type": "shell",
+            "inline": [
+                "echo '[DEBUG]'",
+                "echo '/Applications/Xcode_14.0.1.app/Contents/Developer/usr/bin/simctl list'",
+                "/Applications/Xcode_14.0.1.app/Contents/Developer/usr/bin/simctl list",
+                "------------------------------",
+                "echo '/Applications/Xcode_14.1.app/Contents/Developer/usr/bin/simctl list'",
+                "/Applications/Xcode_14.1.app/Contents/Developer/usr/bin/simctl list",
+                "------------------------------",
+                "echo '/Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list'",
+                "/Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list",
+                "------------------------------"
+            ]
+        },
+        {
             "type": "file",
             "direction": "download",
             "source": "~/image-generation/output/*",
