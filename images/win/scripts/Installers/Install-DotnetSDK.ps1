@@ -18,8 +18,9 @@ function Get-SDKVersionsToInstall (
     $releaseJson = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
     $releasesJsonPath = Start-DownloadWithRetry -Url $releaseJson -Name "releases-${DotnetVersion}.json"
     $currentReleases = Get-Content -Path $releasesJsonPath | ConvertFrom-Json
-    # filtering out the preview/rc releases
-    $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') }
+    # filtering the latest patch
+    $latestReleaseVersion = $currentReleases.'latest-release'
+    $currentReleases = $currentReleases.'releases' | Where-Object { $_.'release-version' -eq  $latestReleaseVersion}
 
     $sdks = @()
     ForEach ($release in $currentReleases)
