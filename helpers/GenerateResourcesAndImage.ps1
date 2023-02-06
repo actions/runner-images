@@ -275,11 +275,16 @@ Function GenerateResourcesAndImage {
         }
 
         if ($Tags) {
-            $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
-            $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
-            $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
-            $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
-            $builderScriptPath = $builderScriptPath_temp
+            if ($builderScriptPath.Contains(".json")) {
+                $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
+                $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
+                $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
+                $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
+                $builderScriptPath = $builderScriptPath_temp
+            } else {
+                $Tags.GetEnumerator().foreach({ $tempTags = $tempTags + "$($_.Name) = \`"$($_.Value)\`", "})
+                $Tags = "{ $tempTags }"
+            }
         }
 
         & $packerBinary build -on-error="$($OnError)" `
@@ -292,6 +297,7 @@ Function GenerateResourcesAndImage {
             -var "storage_account=$($storageAccountName)" `
             -var "install_password=$($InstallPassword)" `
             -var "allowed_inbound_ip_addresses=$($AgentIp)" `
+            -var "azure_tag=$($Tags)" `
             $builderScriptPath
     }
     catch {
