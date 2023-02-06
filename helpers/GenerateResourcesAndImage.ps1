@@ -285,6 +285,8 @@ Function GenerateResourcesAndImage {
                 $Tags.GetEnumerator().foreach({ $tempTags = $tempTags + "$($_.Name) = \`"$($_.Value)\`", "})
                 $Tags = "{ $tempTags }"
             }
+        } else {
+            $Tags = '{}'
         }
 
         & $packerBinary build -on-error="$($OnError)" `
