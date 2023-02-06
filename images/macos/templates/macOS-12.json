@@ -256,13 +256,6 @@
         },
         {
             "type": "shell",
-            "execute_command": "ruby {{ .Path }}",
-            "scripts": [
-                "./provision/core/delete-duplicate-sims.rb"
-            ]
-        },
-        {
-            "type": "shell",
             "inline": [
                 "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 1 /Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list'",
                 "/Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list || true",
