@@ -1,4 +1,5 @@
 Describe "Haskell" {
+    $GHCupCommonPath = "/usr/local/.ghcup"
     $GHCCommonPath = "/usr/local/.ghcup/ghc"
     $GHCVersions = Get-ChildItem -Path $GHCCommonPath | Where-Object { $_.Name -match "\d+\.\d+" }
 
@@ -30,6 +31,10 @@ Describe "Haskell" {
 
     It "Stack" {
         "stack --version" | Should -ReturnZeroExitCode
+    }
+
+    It "GHCup dir has correct user permissions" {
+        "stat --format '%U' $GHCupCommonPath" | Should -Be "runner"
     }
 
     It "Stack hook is not installed" {

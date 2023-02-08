@@ -43,6 +43,7 @@ echo "install cabal..."
 ghcup install cabal
 
 chmod -R 777 $GHCUP_INSTALL_BASE_PREFIX/.ghcup
+chown -R runner $GHCUP_INSTALL_BASE_PREFIX/.ghcup
 ln -s $GHCUP_INSTALL_BASE_PREFIX/.ghcup /etc/skel/.ghcup
 
 # Install the latest stable release of haskell stack
