@@ -5,7 +5,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1487
-- Image Version: 20230129.1
+- Image Version: 20230206.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -16,25 +16,25 @@
 - Bash 5.2.12(1)-release
 - Go 1.17.13
 - Julia 1.8.5
-- Kotlin 1.8.0
+- Kotlin 1.8.10
 - LLVM 15.0.5
 - Node 16.19.0
 - Perl 5.32.1
-- PHP 8.2.1
+- PHP 8.2.2
 - Python 3.9.13
 - Ruby 3.0.5p211
 
 ### Package Management
 - Chocolatey 1.2.1
-- Composer 2.5.1
+- Composer 2.5.2
 - Helm 3.11.0
 - Miniconda 22.11.1 (pre-installed on the image but not added to PATH)
 - NPM 8.19.3
 - NuGet 6.4.0.123
-- pip 22.3.1 (python 3.9)
+- pip 23.0 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 91dd61bd4)
+- Vcpkg (build from commit 185a7aa23)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -46,7 +46,7 @@
 ### Project Management
 - Ant 1.10.13
 - Gradle 7.6
-- Maven 3.8.7
+- Maven 3.9.0
 - sbt 1.8.2
 
 ### Tools
@@ -55,18 +55,18 @@
 - azcopy 10.17.0
 - Bazel 6.0.0
 - Bazelisk 1.13.2
-- Bicep 0.13.1
+- Bicep 0.14.6
 - Cabal 3.8.1.0
 - CMake 3.25.2
-- CodeQL Action Bundle 2.12.0 2.12.1
-- Docker 20.10.23
+- CodeQL Action Bundles 2.12.0 2.12.1
+- Docker 23.0.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.15.1
 - Docker-wincred 0.7.0
 - ghc 9.4.4
 - Git 2.39.1.windows.1
 - Git LFS 3.3.0
-- ImageMagick 7.1.0-59
+- ImageMagick 7.1.0-60
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.17.0
@@ -90,9 +90,9 @@
 - zstd 1.5.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.144
-- AWS CLI 2.9.18
-- AWS SAM CLI 1.71.0
+- Alibaba Cloud CLI 3.0.145
+- AWS CLI 2.9.21
+- AWS SAM CLI 1.72.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.44.1
 - Azure DevOps CLI extension 0.26.0
@@ -103,7 +103,7 @@
 - Cargo 1.67.0
 - Rust 1.67.0
 - Rustdoc 1.67.0
-- Rustup 1.25.1
+- Rustup 1.25.2
 
 #### Packages
 - bindgen 0.63.0
@@ -116,10 +116,10 @@
 ### Browsers and Drivers
 - Google Chrome 109.0.5414.120
 - Chrome Driver 109.0.5414.74
-- Microsoft Edge 109.0.1518.70
-- Microsoft Edge Driver 109.0.1518.70
-- Mozilla Firefox 109.0
-- Gecko Driver 0.32.0
+- Microsoft Edge 109.0.1518.78
+- Microsoft Edge Driver 109.0.1518.78
+- Mozilla Firefox 109.0.1
+- Gecko Driver 0.32.1
 - IE Driver 4.8.0.0
 - Selenium server 4.8.0
 
@@ -165,7 +165,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 14.21.2
 - 16.19.0
-- 18.13.0
+- 18.14.0
 
 #### Python
 - 3.7.9
@@ -527,11 +527,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.22621.0
 
 ### .NET Core Tools
-- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 5.0.104, 5.0.214, 5.0.303, 5.0.408, 6.0.113, 6.0.203, 6.0.308, 6.0.405, 7.0.102
+- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.113, 6.0.203, 6.0.308, 6.0.405, 7.0.102
 - .NET Framework: 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 5.0.4, 5.0.9, 5.0.17, 6.0.5, 6.0.13, 7.0.2
-- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 5.0.4, 5.0.9, 5.0.17, 6.0.5, 6.0.13, 7.0.2
-- Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 5.0.4, 5.0.9, 5.0.17, 6.0.5, 6.0.13, 7.0.2
+- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.13, 7.0.2
+- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.13, 7.0.2
+- Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.13, 7.0.2
 - nbgv 3.5.119+5d25f54fec
 
 ### PowerShell Tools
@@ -544,10 +544,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.259
+- AWSPowershell: 4.1.264
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.20.0
+- Microsoft.Graph: 1.21.0
 - Pester: 3.4.0, 5.4.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
@@ -572,17 +572,17 @@ All other versions are saved but not installed.
 | CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                  |
 | Google Play services       | 49                                                                                                                                                                                |
 | Google Repository          | 58                                                                                                                                                                                |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.1.8937393                                                                                                                                      |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653                                                                                                                                      |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                 |
 
 #### Environment variables
 | Name                    | Value                                   |
 | ----------------------- | --------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                  |
-| ANDROID_NDK             | C:\Android\android-sdk\ndk\25.1.8937393 |
-| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\25.1.8937393 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\25.1.8937393 |
-| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\25.1.8937393 |
+| ANDROID_NDK             | C:\Android\android-sdk\ndk\25.2.9519653 |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\25.2.9519653 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\25.2.9519653 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\25.2.9519653 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                  |
 
 ### Cached Docker images
