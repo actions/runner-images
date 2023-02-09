@@ -28,16 +28,22 @@ $TargetMinorVersions = ($MinorVersions | Sort-Object)[-1]
 $ErrorActionOldValue = $ErrorActionPreference
 $ErrorActionPreference = 'SilentlyContinue'
 # Starting from number 9 and going down, check if the installer is available. If yes, break the loop.
-foreach ($increment in 9..0) {
+# If an installer with $TargetMinorVersions is not to be found, the $TargetMinorVersions will be decreased by 1
+$increment = 9
+do {
     $url = "https://get.enterprisedb.com/postgresql/postgresql-$toolsetVersion.$TargetMinorVersions-$increment-windows-x64.exe"
     $checkaccess = [System.Net.WebRequest]::Create($url)
     $response = $null
     $response = $checkaccess.GetResponse()
     if ($response) {
         $InstallerUrl = $response.ResponseUri.OriginalString
-        break
+    } elseif (!$response -and ($increment -eq 0)) {
+        $increment = 9
+        $TargetMinorVersions--
+    } else {
+        $increment--
     }
-}
+} while (!$response)
 # Return the previous value of ErrorAction and invoke Install-Binary function
 $ErrorActionPreference = $ErrorActionOldValue
 $InstallerName = $InstallerUrl.Split('/')[-1]
