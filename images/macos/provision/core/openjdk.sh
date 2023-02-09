@@ -77,14 +77,6 @@ for jdkVendor in ${jdkVendors[@]}; do
     done
 done
 
-# Big Sur or newer does not have these versions of Adopt.
-# Also hardcode these versions as they only exist for Adopt
-if is_Catalina; then
-    for adoptVersionToInstall in 12 13 14; do
-        createEnvironmentVariable ${adoptVersionToInstall} "Adopt"
-    done
-fi
-
 echo Installing Maven...
 brew_smart_install "maven"
 

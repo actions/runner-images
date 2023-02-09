@@ -36,9 +36,9 @@ defaults write com.apple.VoiceOver4/default SCREnableAppleScript -bool YES
 # Confirm that the correct intermediate certificate is installed by verifying the expiration date is set to 2030.
 # sudo security delete-certificate -Z FF6797793A3CD798DC5B2ABEF56F73EDC9F83A64 /Library/Keychains/System.keychain
 # Big Sur requires user interaction to add a cert https://developer.apple.com/forums/thread/671582, we need to use a workaround with SecItemAdd swift method
-if ! is_Catalina; then
-    swiftc "${HOME}/image-generation/add-certificate.swift"
-fi
+
+swiftc "${HOME}/image-generation/add-certificate.swift"
+
 
 certs=(
     AppleWWDRCAG3.cer
@@ -49,11 +49,7 @@ for cert in ${certs[@]}; do
     cert_path="${HOME}/${cert}"
     curl "https://www.apple.com/certificateauthority/${cert}" --output ${cert_path} --silent
 
-    if is_Catalina; then
-        sudo security add-trusted-cert -d -r unspecified -k /Library/Keychains/System.keychain ${cert_path}
-    else
-        sudo ./add-certificate ${cert_path}
-    fi
+    sudo ./add-certificate ${cert_path}
 
     rm ${cert_path}
 done
