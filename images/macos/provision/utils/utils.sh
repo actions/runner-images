@@ -100,7 +100,7 @@ brew_cask_install_ignoring_sha256() {
 }
 
 get_brew_os_keyword() {
-    elif is_BigSur; then
+    if is_BigSur; then
         echo "big_sur"
     elif is_Monterey; then
         echo "monterey"
