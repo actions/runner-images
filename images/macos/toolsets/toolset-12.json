@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "14.1",
+        "default": "14.2",
         "versions": [
             {"link": "14.2", "version": "14.2.0"},
             { "link": "14.1", "version": "14.1.0"},
@@ -132,7 +132,6 @@
         ]
     },
     "android": {
-        "cmdline-tools": "latest",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra-list": [

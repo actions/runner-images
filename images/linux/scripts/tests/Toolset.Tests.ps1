@@ -60,6 +60,19 @@ Describe "Toolset" {
                         }
                     }
                 }
+
+                # Validate that there are two versions of CodeQL included. 
+                if ($toolName -eq "CodeQL") {
+                    $foundPriorVersion = Get-Item $expectedVersionPath `
+                        | Sort-Object -Property {[SemVer]$_.name} -Descending `
+                        | Select-Object -Last 1
+                    $foundPriorVersionPath = Join-Path $foundPriorVersion $tool.arch
+
+                    $priorExecutablePath = Join-Path $foundPriorVersionPath "codeql/codeql"   
+                    It "Validate prior version of codeql/codeql" -TestCases @{PriorExecutablePath = $priorExecutablePath} {
+                        $PriorExecutablePath | Should -Exist
+                    }
+                }
             }
         }
     }

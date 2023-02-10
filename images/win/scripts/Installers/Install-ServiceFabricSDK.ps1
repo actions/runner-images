@@ -4,12 +4,22 @@
 ##         must be install after Visual Studio
 ################################################################################
 
-#Creating 'Installer' cache folder if it doesn't exist
-$temp_install_dir = 'C:\Windows\Installer'
-New-Item -Path $temp_install_dir -ItemType Directory -Force
+# Creating 'Installer' cache folder if it doesn't exist
+New-Item -Path 'C:\Windows\Installer' -ItemType Directory -Force
 
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+# Get Service Fabric components versions
+$serviceFabricRuntimeVersion = (Get-ToolsetContent).serviceFabric.runtime.version
+$serviceFabricSDKVersion = (Get-ToolsetContent).serviceFabric.sdk.version
 
-WebpiCmd.exe /Install /Products:MicrosoftAzure-ServiceFabric-CoreSDK /AcceptEula /XML:https://webpifeed.blob.core.windows.net/webpifeed/5.1/WebProductList.xml
+# Install Service Fabric Runtime for Windows
+$InstallerName = "MicrosoftServiceFabric.${serviceFabricRuntimeVersion}.exe"
+$InstallerUrl = "https://download.microsoft.com/download/b/8/a/b8a2fb98-0ec1-41e5-be98-9d8b5abf7856/${InstallerName}"
+$ArgumentList = ("/accepteula ","/quiet","/force")
+Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList
+
+# Install Service Fabric SDK
+$InstallerName = "MicrosoftServiceFabricSDK.${serviceFabricSDKVersion}.msi"
+$InstallerUrl = "https://download.microsoft.com/download/b/8/a/b8a2fb98-0ec1-41e5-be98-9d8b5abf7856/${InstallerName}"
+Install-Binary -Url $InstallerUrl -Name $InstallerName
 
 Invoke-PesterTests -TestFile "Tools" -TestName "ServiceFabricSDK"
