@@ -1,9 +1,11 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
+METADATA_URL="https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json"
+
 echo Installing PowerShell...
-psmetadata=$(curl "https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json" -s)
-psver=$(echo $psmetadata | jq -r '.LTSReleaseTag[0]')
+download_with_retries $METADATA_URL "/tmp" "metadata.json"
+psver=$(jq -r '.LTSReleaseTag | .[]' /tmp/metadata.json)
 psDownloadUrl=$(get_github_package_download_url "PowerShell/PowerShell" "contains(\"osx-x64.pkg\")" "$psver" "$API_PAT")
 download_with_retries $psDownloadUrl "/tmp" "powershell.pkg"
 
