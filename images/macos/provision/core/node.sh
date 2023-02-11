@@ -5,7 +5,7 @@ defaultVersion=$(get_toolset_value '.node.default')
 
 echo "Installing Node.js $defaultVersion"
 brew_smart_install "node@$defaultVersion"
-brew link node@$defaultVersion --force
+brew link node@$defaultVersion --force --overwrite
 
 echo Installing yarn...
 curl -o- -L https://yarnpkg.com/install.sh | bash
