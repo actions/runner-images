@@ -297,7 +297,7 @@
         "default": "1.17"
     },
     "node": {
-        "default": "16",
+        "default": "18",
         "nvm_versions": [
             "14",
             "16",
