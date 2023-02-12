@@ -386,7 +386,7 @@
         ]
     },
     "node": {
-        "default": "16"
+        "default": "18"
     },
     "mysql": {
         "version": "8.0"
