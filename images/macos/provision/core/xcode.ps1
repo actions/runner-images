@@ -36,11 +36,28 @@ $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
 
 Write-Host "Configuring Xcode versions..."
 $xcodeVersions | ForEach-Object {
+    # TODO: Try switch Xcode?
+    $simctlPath = Get-XcodeToolPath -Version $_.link -ToolName "simctl"
+
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
 
+    Write-Host "[DEBUG] AFTER XCODE $($_.link) FIRST LAUNCH"
+    & $simctlPath list devices
+
     Install-AdditionalSimulatorRuntimes -Version $_.link
+
+    Write-Host "[DEBUG] AFTER XCODE $($_.link) FIRST LAUNCH"
+    & $simctlPath list devices
 }
+
+$xcodeVersions | ForEach-Object {
+    # TODO: Try switch Xcode?
+    $simctlPath = Get-XcodeToolPath -Version $_.link -ToolName "simctl"
+    Write-Host "[DEBUG] AFTER ALL XCODES: $($_.link)"
+    & $simctlPath list devices
+}
+
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
 Write-Host "Configuring Xcode symlinks..."
