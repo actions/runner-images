@@ -42,12 +42,15 @@ $xcodeVersions | ForEach-Object {
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
 
+    Start-Sleep -Seconds $(60 * 15)
+
     Write-Host "[DEBUG] AFTER XCODE $($_.link) FIRST LAUNCH"
     & $simctlPath list devices
 
     Install-AdditionalSimulatorRuntimes -Version $_.link
+    Start-Sleep -Seconds $(60 * 15)
 
-    Write-Host "[DEBUG] AFTER XCODE $($_.link) FIRST LAUNCH"
+    Write-Host "[DEBUG] AFTER XCODE $($_.link) INSTALLING SUMULATORS"
     & $simctlPath list devices
 }
 
