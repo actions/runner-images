@@ -5,14 +5,6 @@ source ~/utils/utils.sh
 # Close all finder windows because they can interfere with UI tests
 close_finder_window
 
-if is_Catalina; then
-    # Ignore available updates to prevent system pop-ups
-    updateName=$(softwareupdate -l | grep "Title: " | awk -F[:,] '{print $2}' | awk '{$1=$1};1') || true
-    if [ ! -z "$updateName" ]; then
-        sudo softwareupdate --ignore "$updateName"
-    fi
-fi
-
 # Remove Parallels Desktop
 # https://github.com/actions/runner-images/issues/6105
 if is_Monterey; then

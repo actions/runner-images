@@ -63,22 +63,6 @@ is_BigSur() {
     fi
 }
 
-is_Catalina() {
-    if [ "$OSTYPE" = "darwin19" ]; then
-        true
-    else
-        false
-    fi
-}
-
-is_Less_Monterey() {
-    if is_Catalina || is_BigSur; then
-        true
-    else
-        false
-    fi
-}
-
 is_Veertu() {
     if [ -d "/Library/Application Support/Veertu" ]; then
         true
@@ -116,9 +100,7 @@ brew_cask_install_ignoring_sha256() {
 }
 
 get_brew_os_keyword() {
-    if is_Catalina; then
-        echo "catalina"
-    elif is_BigSur; then
+    if is_BigSur; then
         echo "big_sur"
     elif is_Monterey; then
         echo "monterey"

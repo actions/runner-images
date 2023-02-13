@@ -75,8 +75,4 @@ Describe "Android" {
             Validate-AndroidPackage $PackageName
         }
     }
-
-    It "HAXM is installed" -Skip:($os.IsHigherThanCatalina) {
-        "kextstat | grep 'com.intel.kext.intelhaxm'" | Should -ReturnZeroExitCode
-    }
 }

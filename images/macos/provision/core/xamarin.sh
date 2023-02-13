@@ -64,11 +64,6 @@ createBundleLink $CURRENT_SDK_SYMLINK "Current"
 # Fix nuget in some mono versions because of known bugs
 #
 
-if is_Catalina; then
-  # Fix Mono issue with default nuget: https://github.com/mono/mono/issues/17637
-  installNuget "6.4.0" "5.3.1"
-fi
-
 # Creating UWP Shim to hack UWP build failure
 createUWPShim
 

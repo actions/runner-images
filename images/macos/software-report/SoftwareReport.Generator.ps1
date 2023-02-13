@@ -91,13 +91,10 @@ $utilities.AddToolVersion("Curl", $(Get-CurlVersion))
 $utilities.AddToolVersion("Git", $(Get-GitVersion))
 $utilities.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 $utilities.AddToolVersion("GitHub CLI", $(Get-GitHubCLIVersion))
-if ($os.IsCatalina) {
-    $utilities.AddToolVersion("GNU parallel", $(Get-ParallelVersion))
-}
 $utilities.AddToolVersion("GNU Tar", $(Get-GnuTarVersion))
 $utilities.AddToolVersion("GNU Wget", $(Get-WgetVersion))
 $utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
-if ($os.IsLessThanMonterey) {
+if ($os.IsBigSur) {
     $utilities.AddToolVersion("helm", $(Get-HelmVersion))
 }
 $utilities.AddToolVersion("Hub CLI", $(Get-HubVersion))
@@ -105,7 +102,7 @@ $utilities.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
 $utilities.AddToolVersion("mongo", $(Get-MongoVersion))
 $utilities.AddToolVersion("mongod", $(Get-MongodVersion))
-if ($os.IsLessThanMonterey) {
+if ($os.IsBigSur) {
     $utilities.AddToolVersion("Newman", $(Get-NewmanVersion))
 }
 $utilities.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
@@ -124,7 +121,7 @@ $utilities.AddToolVersion("zstd", $(Get-ZstdVersion))
 
 # Tools
 $tools = $installedSoftware.AddHeader("Tools")
-if ($os.IsLessThanMonterey) {
+if ($os.IsBigSur) {
     $tools.AddToolVersion("Aliyun CLI", $(Get-AliyunCLIVersion))
 }
 $tools.AddToolVersion("App Center CLI", $(Get-AppCenterCLIVersion))
@@ -136,12 +133,8 @@ $tools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
 $tools.AddToolVersion("Bicep CLI", $(Get-BicepVersion))
 $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
 $tools.AddToolVersion("Cmake", $(Get-CmakeVersion))
-if (-not $os.IsCatalina) {
-    $tools.AddToolVersion("CodeQL Action Bundles", $(Get-CodeQLBundleVersions))
-}
-if (-not $os.IsCatalina) {
-    $tools.AddToolVersion("Colima", $(Get-ColimaVersion))
-}
+$tools.AddToolVersion("CodeQL Action Bundles", $(Get-CodeQLBundleVersions))
+$tools.AddToolVersion("Colima", $(Get-ColimaVersion))
 $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
 $tools.AddToolVersion("GHC", $(Get-GHCVersion))
 $tools.AddToolVersion("GHCup", $(Get-GHCupVersion))
@@ -203,17 +196,15 @@ $webServers.AddTable($(Build-WebServersSection))
 $xamarin = $installedSoftware.AddHeader("Xamarin")
 $vsForMac = $xamarin.AddHeader("Visual Studio for Mac")
 $vsForMac.AddTable($(Build-VSMacTable))
-
-if (-not $os.IsCatalina) {
-    $note = 
+$note = 
     @'
 To use Visual Studio 2019 by default rename the app:
 mv "/Applications/Visual Studio.app" "/Applications/Visual Studio 2022.app"
 mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 '@
-    $vsForMacNotes = $vsForMac.AddHeader("Notes")
-    $vsForMacNotes.AddNote($note)
-}
+$vsForMacNotes = $vsForMac.AddHeader("Notes")
+$vsForMacNotes.AddNote($note)
+
 
 $xamarinBundles = $xamarin.AddHeader("Xamarin bundles")
 $xamarinBundles.AddTable($(Build-XamarinTable))
@@ -241,9 +232,6 @@ $installedSimulators.AddTable($(Build-XcodeSimulatorsTable $xcodeInfo))
 # Android section
 $android = $installedSoftware.AddHeader("Android")
 $androidTable = Build-AndroidTable
-if ($os.IsCatalina) {
-    $androidTable += Get-IntelHaxmVersion
-}
 $android.AddTable($androidTable)
 
 $androidEnv = $android.AddHeader("Environment variables")
