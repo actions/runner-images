@@ -176,6 +176,8 @@ function Install-AdditionalSimulatorRuntimes {
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
     Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
 
+    Start-Sleep -Seconds $(60 * 30) # 30 minutes
+
 
     if ($Version -eq "14.0.1") {
         # https://github.com/actions/runner-images/issues/6773
