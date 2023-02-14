@@ -19,9 +19,9 @@ $os = Get-OSVersion
 $defaultXcode = Get-ToolsetValue "xcode.default"
 $threadCount = "5"
 
-if ($os.IsLessThanMonterey) {
+#if ($os.IsLessThanMonterey) {
     [Array]::Reverse($xcodeVersions)
-}
+#}
 
 Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
