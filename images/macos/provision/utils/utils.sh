@@ -39,6 +39,14 @@ download_with_retries() {
     return 1
 }
 
+is_Ventura() {
+    if [ "$OSTYPE" = "darwin22" ]; then
+        true
+    else
+        false
+    fi
+}
+
 is_Monterey() {
     if [ "$OSTYPE" = "darwin21" ]; then
         true
@@ -49,22 +57,6 @@ is_Monterey() {
 
 is_BigSur() {
     if [ "$OSTYPE" = "darwin20" ]; then
-        true
-    else
-        false
-    fi
-}
-
-is_Catalina() {
-    if [ "$OSTYPE" = "darwin19" ]; then
-        true
-    else
-        false
-    fi
-}
-
-is_Less_Monterey() {
-    if is_Catalina || is_BigSur; then
         true
     else
         false
@@ -108,12 +100,12 @@ brew_cask_install_ignoring_sha256() {
 }
 
 get_brew_os_keyword() {
-    if is_Catalina; then
-        echo "catalina"
-    elif is_BigSur; then
+    if is_BigSur; then
         echo "big_sur"
     elif is_Monterey; then
         echo "monterey"
+    elif is_Ventura; then
+        echo "ventura"
     else
         echo "null"
     fi
@@ -147,7 +139,7 @@ should_build_from_source() {
 # Use the '--build-from-source' option to build from source in this case
 brew_smart_install() {
     local tool_name=$1
-    
+
     local os_name=$(get_brew_os_keyword)
     if [[ "$os_name" == "null" ]]; then
         echo "$OSTYPE is unknown operating system"

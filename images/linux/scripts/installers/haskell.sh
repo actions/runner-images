@@ -30,13 +30,6 @@ for majorMinorVersion in $minorMajorVersions; do
     echo "install ghc version $fullVersion..."
     ghcup install ghc $fullVersion
     ghcup set ghc $fullVersion
-
-    # remove docs and profiling libs
-    ghc_dir="$(ghcup whereis basedir)/ghc/$fullVersion"
-    [ -e "${ghc_dir}" ] || exit 1
-    find "${ghc_dir}" \( -name "*_p.a" -o -name "*.p_hi" \) -type f -delete
-    rm -r "${ghc_dir}"/share/*
-    unset ghc_bin_dir ghc_dir
 done
 
 echo "install cabal..."

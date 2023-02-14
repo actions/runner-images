@@ -157,6 +157,7 @@
                 "./provision/core/ruby.sh",
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
+                "./provision/core/mongodb.sh",
                 "./provision/core/node.sh",
                 "./provision/core/commonutils.sh"
             ],
