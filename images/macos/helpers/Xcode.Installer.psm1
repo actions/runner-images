@@ -176,6 +176,7 @@ function Install-AdditionalSimulatorRuntimes {
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
     Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
 
+    <#
     if ($Version -eq "14.0.1") {
         # https://github.com/actions/runner-images/issues/6773
         Write-Host "Validating Xcode $Version simulators (there is a known issue with some simulators on this version)..."
@@ -196,7 +197,7 @@ function Install-AdditionalSimulatorRuntimes {
                 Write-Host "Simulator '$($simulator.Name)' is installed correctly."
             }
         }
-    }
+    }#>
 }
 
 function Build-XcodeSymlinks {
