@@ -7,7 +7,9 @@
 export ACCEPT_EULA=Y
 
 apt-get update
-apt-get install -y mssql-tools unixodbc-dev
+# both libodbc1 nd libodbc2 install libodbc.so.2.0.0, temporary workaround
+# https://github.com/microsoft/linux-package-repositories/issues/39
+apt-get install -o Dpkg::Options::="--force-overwrite" -y mssql-tools unixodbc-dev
 apt-get -f install
 ln -s /opt/mssql-tools/bin/* /usr/local/bin/
 
