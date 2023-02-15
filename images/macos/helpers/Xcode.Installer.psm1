@@ -167,7 +167,7 @@ function Install-AdditionalSimulatorRuntimes {
     )
 
     # if (-not $Version.StartsWith("14.")) {
-    if ($Version -notin @("14.2", "14.1")) {
+    if ($Version -notin @("14.2", "14.1", "14.0.1")) {
         # Additional simulator runtimes are included by default for Xcode < 14
         return
     }
