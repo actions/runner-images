@@ -1,11 +1,10 @@
 | Announcements |
 |-|
 | [[all OSs] Default Nodejs version will be set to 18 on February, 13](https://github.com/actions/runner-images/issues/7002) |
-| [[All OSs] .NET 5.x will be removed from the images on February, 6](https://github.com/actions/runner-images/issues/6840) |
 ***
 # Windows Server 2022
-- OS Version: 10.0.20348 Build 1487
-- Image Version: 20230206.1
+- OS Version: 10.0.20348 Build 1547
+- Image Version: 20230214.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -17,24 +16,24 @@
 - Go 1.17.13
 - Julia 1.8.5
 - Kotlin 1.8.10
-- LLVM 15.0.5
-- Node 16.19.0
+- LLVM 15.0.7
+- Node 18.14.0
 - Perl 5.32.1
-- PHP 8.2.2
+- PHP 8.2.3
 - Python 3.9.13
 - Ruby 3.0.5p211
 
 ### Package Management
 - Chocolatey 1.2.1
-- Composer 2.5.2
-- Helm 3.11.0
-- Miniconda 22.11.1 (pre-installed on the image but not added to PATH)
-- NPM 8.19.3
+- Composer 2.5.3
+- Helm 3.11.1
+- Miniconda 23.1.0 (pre-installed on the image but not added to PATH)
+- NPM 9.3.1
 - NuGet 6.4.0.123
 - pip 23.0 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 185a7aa23)
+- Vcpkg (build from commit 93895b28e)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -55,18 +54,18 @@
 - azcopy 10.17.0
 - Bazel 6.0.0
 - Bazelisk 1.13.2
-- Bicep 0.14.6
+- Bicep 0.14.46
 - Cabal 3.8.1.0
 - CMake 3.25.2
-- CodeQL Action Bundles 2.12.0 2.12.1
-- Docker 23.0.0
+- CodeQL Action Bundles 2.12.1 2.12.2
+- Docker 23.0.1
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.15.1
+- Docker Compose v2 2.16.0
 - Docker-wincred 0.7.0
 - ghc 9.4.4
-- Git 2.39.1.windows.1
+- Git 2.39.2.windows.1
 - Git LFS 3.3.0
-- ImageMagick 7.1.0-60
+- ImageMagick 7.1.0-61
 - InnoSetup 6.2.1
 - jq 1.6
 - Kind 0.17.0
@@ -77,7 +76,7 @@
 - NSIS 3.08
 - OpenSSL 1.1.1
 - Packer 1.8.5
-- Pulumi 3.53.1
+- Pulumi 3.55.0
 - R 4.2.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.9.3
@@ -87,26 +86,26 @@
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.11.2.4516
 - yamllint 1.29.0
-- zstd 1.5.2
+- zstd 1.5.4
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.145
-- AWS CLI 2.9.21
-- AWS SAM CLI 1.72.0
+- Alibaba Cloud CLI 3.0.149
+- AWS CLI 2.9.23
+- AWS SAM CLI 1.73.0
 - AWS Session Manager CLI 1.2.398.0
-- Azure CLI 2.44.1
+- Azure CLI 2.45.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.22.1
+- GitHub CLI 2.23.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.67.0
-- Rust 1.67.0
-- Rustdoc 1.67.0
+- Cargo 1.67.1
+- Rust 1.67.1
+- Rustdoc 1.67.1
 - Rustup 1.25.2
 
 #### Packages
-- bindgen 0.63.0
+- bindgen 0.64.0
 - cargo-audit 0.17.4
 - cargo-outdated 0.11.2
 - cbindgen 0.24.3
@@ -114,12 +113,12 @@
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 109.0.5414.120
-- Chrome Driver 109.0.5414.74
-- Microsoft Edge 109.0.1518.78
-- Microsoft Edge Driver 109.0.1518.78
-- Mozilla Firefox 109.0.1
-- Gecko Driver 0.32.1
+- Google Chrome 110.0.5481.100
+- Chrome Driver 110.0.5481.77
+- Microsoft Edge 110.0.1587.41
+- Microsoft Edge Driver 110.0.1587.41
+- Mozilla Firefox 110.0
+- Gecko Driver 0.32.2
 - IE Driver 4.8.0.0
 - Selenium server 4.8.0
 
@@ -171,8 +170,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.7.9
 - 3.8.10
 - 3.9.13
-- 3.10.9
-- 3.11.1
+- 3.10.10
+- 3.11.2
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.11]
@@ -191,7 +190,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-14                                                                                                                    |
-| Version              | 14.6                                                                                                                                 |
+| Version              | 14.7                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -206,7 +205,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.11.0
-- DacFx 16.1.6374.0
+- DacFx 16.1.8089.0
 - MySQL 8.0.31.0
 - SQL OLEDB Driver 18.6.3.0
 - SQLPS 1.0
@@ -220,7 +219,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
 | ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.4.33213.308 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.4.33403.182 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version        |
@@ -229,14 +228,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Android.Emulator.MDD                                            | 17.4.33006.217 |
 | Component.Android.NDK.R23C                                                | 17.4.33006.217 |
 | Component.Android.SDK.MAUI                                                | 17.4.33118.351 |
-| Component.CPython39.x64                                                   | 3.9.7          |
+| Component.CPython39.x64                                                   | 3.9.13         |
 | Component.Dotfuscator                                                     | 17.4.33006.217 |
 | Component.HAXM.Private                                                    | 17.4.33006.217 |
 | Component.Linux.CMake                                                     | 17.4.33006.217 |
 | Component.MDD.Android                                                     | 17.4.33006.217 |
 | Component.MDD.Linux                                                       | 17.4.33006.217 |
 | Component.MDD.Linux.GCC.arm                                               | 17.4.33006.217 |
-| Component.Microsoft.VisualStudio.LiveShare.2022                           | 1.0.5716       |
+| Component.Microsoft.VisualStudio.LiveShare.2022                           | 1.0.5717       |
 | Component.Microsoft.VisualStudio.RazorExtension                           | 17.4.33006.217 |
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 17.4.33006.217 |
 | Component.Microsoft.Web.LibraryManager                                    | 17.4.33006.217 |
@@ -252,14 +251,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22       |
 | Component.Xamarin                                                         | 17.4.33006.217 |
 | Component.Xamarin.RemotedSimulator                                        | 17.4.33006.217 |
-| ios                                                                       | 16.1.17.0      |
-| maccatalyst                                                               | 16.1.17.0      |
-| maui.android                                                              | 7.0.52.0       |
-| maui.blazor                                                               | 7.0.52.0       |
-| maui.core                                                                 | 7.0.52.0       |
-| maui.ios                                                                  | 7.0.52.0       |
-| maui.maccatalyst                                                          | 7.0.52.0       |
-| maui.windows                                                              | 7.0.52.0       |
+| ios                                                                       | 16.2.36.0      |
+| maccatalyst                                                               | 16.2.36.0      |
+| maui.android                                                              | 7.0.59.0       |
+| maui.blazor                                                               | 7.0.59.0       |
+| maui.core                                                                 | 7.0.59.0       |
+| maui.ios                                                                  | 7.0.59.0       |
+| maui.maccatalyst                                                          | 7.0.59.0       |
+| maui.windows                                                              | 7.0.59.0       |
 | Microsoft.Component.Azure.DataLake.Tools                                  | 17.4.33006.217 |
 | Microsoft.Component.ClickOnce                                             | 17.4.33006.217 |
 | Microsoft.Component.CodeAnalysis.SDK                                      | 17.4.33006.217 |
@@ -283,21 +282,21 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.4.8.DeveloperTools                           | 17.4.33006.217 |
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 17.4.33006.217 |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 17.4.33006.217 |
-| microsoft.net.runtime.android                                             | 7.0.222.60605  |
-| microsoft.net.runtime.android.aot                                         | 7.0.222.60605  |
-| microsoft.net.runtime.android.aot.net6                                    | 7.0.222.60605  |
-| microsoft.net.runtime.android.net6                                        | 7.0.222.60605  |
-| microsoft.net.runtime.ios                                                 | 7.0.222.60605  |
-| microsoft.net.runtime.ios.net6                                            | 7.0.222.60605  |
-| microsoft.net.runtime.maccatalyst                                         | 7.0.222.60605  |
-| microsoft.net.runtime.maccatalyst.net6                                    | 7.0.222.60605  |
-| microsoft.net.runtime.mono.tooling                                        | 7.0.222.60605  |
-| microsoft.net.runtime.mono.tooling.net6                                   | 7.0.222.60605  |
-| microsoft.net.sdk.emscripten.net7                                         | 7.0.7.7902     |
+| microsoft.net.runtime.android                                             | 7.0.323.6910   |
+| microsoft.net.runtime.android.aot                                         | 7.0.323.6910   |
+| microsoft.net.runtime.android.aot.net6                                    | 7.0.323.6910   |
+| microsoft.net.runtime.android.net6                                        | 7.0.323.6910   |
+| microsoft.net.runtime.ios                                                 | 7.0.323.6910   |
+| microsoft.net.runtime.ios.net6                                            | 7.0.323.6910   |
+| microsoft.net.runtime.maccatalyst                                         | 7.0.323.6910   |
+| microsoft.net.runtime.maccatalyst.net6                                    | 7.0.323.6910   |
+| microsoft.net.runtime.mono.tooling                                        | 7.0.323.6910   |
+| microsoft.net.runtime.mono.tooling.net6                                   | 7.0.323.6910   |
+| microsoft.net.sdk.emscripten.net7                                         | 7.0.8.6204     |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 17.4.33006.217 |
-| Microsoft.NetCore.Component.Runtime.6.0                                   | 17.4.33213.308 |
-| Microsoft.NetCore.Component.Runtime.7.0                                   | 17.4.33213.308 |
-| Microsoft.NetCore.Component.SDK                                           | 17.4.33213.308 |
+| Microsoft.NetCore.Component.Runtime.6.0                                   | 17.4.33402.68  |
+| Microsoft.NetCore.Component.Runtime.7.0                                   | 17.4.33402.68  |
+| Microsoft.NetCore.Component.SDK                                           | 17.4.33402.68  |
 | Microsoft.NetCore.Component.Web                                           | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.AspNet                                   | 17.4.33006.217 |
@@ -329,13 +328,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Graphics                                 | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.Graphics.Tools                           | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.IISExpress                               | 17.4.33006.217 |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 17.4.33213.308 |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 17.4.33402.68  |
 | Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.LinqToSql                                | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.LiveUnitTesting                          | 17.4.33006.217 |
-| Microsoft.VisualStudio.Component.ManagedDesktop.Core                      | 17.4.33006.217 |
+| Microsoft.VisualStudio.Component.ManagedDesktop.Core                      | 17.4.33402.68  |
 | Microsoft.VisualStudio.Component.ManagedDesktop.Prerequisites             | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.Merq                                     | 17.4.33006.217 |
 | Microsoft.VisualStudio.Component.MonoDebugger                             | 17.4.33006.217 |
@@ -465,12 +464,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core                  | 17.4.33006.217 |
 | Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang            | 17.4.33015.44  |
 | Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard              | 17.4.33006.217 |
-| Microsoft.VisualStudio.ComponentGroup.UWP.Support                         | 17.4.33006.217 |
+| Microsoft.VisualStudio.ComponentGroup.UWP.Support                         | 17.4.33402.68  |
 | Microsoft.VisualStudio.ComponentGroup.UWP.VC.v142                         | 17.4.33006.217 |
 | Microsoft.VisualStudio.ComponentGroup.UWP.Xamarin                         | 17.4.33006.217 |
 | Microsoft.VisualStudio.ComponentGroup.VC.Tools.142.x86.x64                | 17.4.33006.217 |
-| Microsoft.VisualStudio.ComponentGroup.VisualStudioExtension.Prerequisites | 17.4.33006.217 |
-| Microsoft.VisualStudio.ComponentGroup.Web                                 | 17.4.33006.217 |
+| Microsoft.VisualStudio.ComponentGroup.VisualStudioExtension.Prerequisites | 17.4.33402.68  |
+| Microsoft.VisualStudio.ComponentGroup.Web                                 | 17.4.33402.68  |
 | Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 17.4.33006.217 |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions                  | 17.4.33006.217 |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.CMake            | 17.4.33006.217 |
@@ -485,18 +484,18 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.NativeDesktop                             | 17.4.33006.217 |
 | Microsoft.VisualStudio.Workload.NativeGame                                | 17.4.33006.217 |
 | Microsoft.VisualStudio.Workload.NativeMobile                              | 17.4.33006.217 |
-| Microsoft.VisualStudio.Workload.NetCrossPlat                              | 17.4.33006.217 |
+| Microsoft.VisualStudio.Workload.NetCrossPlat                              | 17.4.33402.68  |
 | Microsoft.VisualStudio.Workload.NetWeb                                    | 17.4.33006.217 |
 | Microsoft.VisualStudio.Workload.Node                                      | 17.4.33006.217 |
 | Microsoft.VisualStudio.Workload.Office                                    | 17.4.33006.217 |
 | Microsoft.VisualStudio.Workload.Python                                    | 17.4.33006.217 |
 | Microsoft.VisualStudio.Workload.Universal                                 | 17.4.33006.217 |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 17.4.33006.217 |
-| runtimes.ios                                                              | 7.0.222.60605  |
-| runtimes.ios.net6                                                         | 7.0.222.60605  |
-| runtimes.maccatalyst                                                      | 7.0.222.60605  |
-| runtimes.maccatalyst.net6                                                 | 7.0.222.60605  |
-| wasm.tools                                                                | 7.0.222.60605  |
+| runtimes.ios                                                              | 7.0.323.6910   |
+| runtimes.ios.net6                                                         | 7.0.323.6910   |
+| runtimes.maccatalyst                                                      | 7.0.323.6910   |
+| runtimes.maccatalyst.net6                                                 | 7.0.323.6910   |
+| wasm.tools                                                                | 7.0.323.6910   |
 | ProBITools.MicrosoftAnalysisServicesModelingProjects2022                  | 3.0.4          |
 | ProBITools.MicrosoftReportProjectsforVisualStudio2022                     | 3.0.1          |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 2.0.0          |
@@ -512,12 +511,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2010 Redistributable    | x86          | 10.0.40219  |
 | Microsoft Visual C++ 2013 Additional Runtime | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
-| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.34.31931 |
-| Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.34.31931 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.34.31931 |
-| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.34.31931 |
-| Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.34.31931 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.34.31931 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.34.31938 |
+| Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.34.31938 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.34.31938 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.34.31938 |
+| Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.34.31938 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.34.31938 |
 
 #### Installed Windows SDKs
 - 10.0.17763.0
@@ -527,11 +526,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.22621.0
 
 ### .NET Core Tools
-- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.113, 6.0.203, 6.0.308, 6.0.405, 7.0.102
+- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.114, 6.0.203, 6.0.309, 6.0.406, 7.0.103
 - .NET Framework: 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.13, 7.0.2
-- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.13, 7.0.2
-- Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.13, 7.0.2
+- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.13, 6.0.14, 7.0.3
+- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.13, 6.0.14, 7.0.3
+- Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.14, 7.0.3
 - nbgv 3.5.119+5d25f54fec
 
 ### PowerShell Tools
@@ -544,7 +543,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.264
+- AWSPowershell: 4.1.270
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.21.0
@@ -565,9 +564,9 @@ All other versions are saved but not installed.
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                               |
 | Android Emulator           | 31.2.9                                                                                                                                                                            |
-| Android SDK Build-tools    | 33.0.0 33.0.1<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                     |
+| Android SDK Build-tools    | 33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3              |
 | Android SDK Platforms      | android-33-ext4 (rev 1)<br>android-33 (rev 1)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Platform-Tools | 33.0.3                                                                                                                                                                            |
+| Android SDK Platform-Tools | 34.0.0                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                            |
 | CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                  |
 | Google Play services       | 49                                                                                                                                                                                |
@@ -591,6 +590,6 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:3fed696d6f08740a9e1d46f30f1162765b2e1109476761ce93e8fbeef5f54caf  | 2023-01-10 |
 | mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:623206b7da179ddb4d4e5e3695889d03f72b368bdde4e05d70f8fde75371bdac  | 2023-01-10 |
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:d8e9237fba3770319c899b8a87e54fb3427a3fa8617d2de78cec6e3465d71cfc  | 2023-01-10 |
-| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:b4248836dea118c48481b821d9fbb40daf7e207b48f5e6edc9da6837050b0f65  | 2023-01-06 |
-| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:dfd3ce22e4b6e987ff2bfb3efe5e4912512fce35660be2ae5faa91e6f4da9748  | 2023-01-06 |
+| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:786a24be2bd1945bee9701f95a71d8573ace8641c112dc27206f826bef0229c1  | 2023-02-07 |
+| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:5662262ca25622f4f8ad593481dd58dea47713bce5e6c9fdef9089a92e7c75b1  | 2023-02-07 |
 
