@@ -175,29 +175,37 @@ function Install-AdditionalSimulatorRuntimes {
     Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
     Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+}
 
-    <#
-    if ($Version -eq "14.0.1") {
-        # https://github.com/actions/runner-images/issues/6773
-        Write-Host "Validating Xcode $Version simulators (there is a known issue with some simulators on this version)..."
-        # Use simctl from Xcode 14.1 to create simulators properly
-        $simctlPath = Get-XcodeToolPath -Version "14.1" -ToolName "simctl"
-        [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
-        $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
+function Fix-BrokenSimulatorsXcode1401 {
+    # Xcode 14.0.1 breaks WatchOS and tvOS simulators sometimes
+    # https://github.com/actions/runner-images/issues/6773
 
-        foreach ($simulator in Get-BrokenSimulatorsListXcode1401) {
-            $existingSimulator = $jsonDevicesInfo.$($simulator.RuntimeId) | Where-Object { $_.deviceTypeIdentifier -eq  $simulator.DeviceId } | Select-Object -First 1
-            if ($null -eq $existingSimulator) {
-                Write-Host "Simulator '$($simulator.Name)' is missed. Creating it..."
-                Invoke-Expression "$simctlPath create '$($simulator.Name)' '$($simulator.DeviceId)' '$($simulator.RuntimeId)'"
-            } elseif ($existingSimulator.name -ne $simulator.Name) {
-                Write-Host "Simulator '$($simulator.Name)' is named incorrectly. Renaming it..."
-                Invoke-Expression "$simctlPath rename '$($existingSimulator.udid)' '$($simulator.Name)'"
-            } else {
-                Write-Host "Simulator '$($simulator.Name)' is installed correctly."
-            }
+    # Use any other Xcode 14.x version except broken version to fix simulators
+    $XcodeVersionToFixSimulators = "14.1"
+
+    Write-Host "Validating Xcode 14.0.1 simulators (there is a known issue with some simulators on this version)..."
+    $simctlPath = Get-XcodeToolPath -Version $XcodeVersionToFixSimulators -ToolName "simctl"
+
+    if (-not (Test-Path $simctlPath)) {
+        throw "Xcode $XcodeVersionToFixSimulators is not installed. You should change Xcode version to be used to fix simulators"
+    }
+    
+    [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
+    $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
+
+    foreach ($simulator in Get-BrokenSimulatorsListXcode1401) {
+        $existingSimulator = $jsonDevicesInfo.$($simulator.RuntimeId) | Where-Object { $_.deviceTypeIdentifier -eq  $simulator.DeviceId } | Select-Object -First 1
+        if ($null -eq $existingSimulator) {
+            Write-Host "Simulator '$($simulator.Name)' is missed. Creating it..."
+            Invoke-Expression "$simctlPath create '$($simulator.Name)' '$($simulator.DeviceId)' '$($simulator.RuntimeId)'"
+        } elseif ($existingSimulator.name -ne $simulator.Name) {
+            Write-Host "Simulator '$($simulator.Name)' is named incorrectly. Renaming it..."
+            Invoke-Expression "$simctlPath rename '$($existingSimulator.udid)' '$($simulator.Name)'"
+        } else {
+            Write-Host "Simulator '$($simulator.Name)' is installed correctly."
         }
-    }#>
+    }
 }
 
 function Build-XcodeSymlinks {

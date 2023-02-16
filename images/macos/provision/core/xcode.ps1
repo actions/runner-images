@@ -17,9 +17,10 @@ $env:SPACESHIP_SKIP_2FA_UPGRADE = 1
 $os = Get-OSVersion
 [Array]$xcodeVersions = Get-ToolsetValue "xcode.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
+[Array]::Reverse($xcodeVersions)
 $threadCount = "5"
 
-[Array]::Reverse($xcodeVersions)
+
 
 Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
@@ -34,29 +35,14 @@ $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
 
 Write-Host "Configuring Xcode versions..."
 $xcodeVersions | ForEach-Object {
-    # TODO: Try switch Xcode?
-    $simctlPath = Get-XcodeToolPath -Version $_.link -ToolName "simctl"
-
     Write-Host "Configuring Xcode $($_.link) ..."
+
     Invoke-XcodeRunFirstLaunch -Version $_.link
-
-    Start-Sleep -Seconds $(60 * 15)
-
-    Write-Host "[DEBUG] AFTER XCODE $($_.link) FIRST LAUNCH"
-    & $simctlPath list devices
-
     Install-AdditionalSimulatorRuntimes -Version $_.link
-    Start-Sleep -Seconds $(60 * 15)
-
-    Write-Host "[DEBUG] AFTER XCODE $($_.link) INSTALLING SUMULATORS"
-    & $simctlPath list devices
 }
 
-$xcodeVersions | ForEach-Object {
-    # TODO: Try switch Xcode?
-    $simctlPath = Get-XcodeToolPath -Version $_.link -ToolName "simctl"
-    Write-Host "[DEBUG] AFTER ALL XCODES: $($_.link)"
-    & $simctlPath list devices
+if ($xcodeVersions.link -contains "14.0.1") {
+    Fix-BrokenSimulatorsXcode1401
 }
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
