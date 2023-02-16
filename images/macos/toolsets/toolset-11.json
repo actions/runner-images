@@ -214,6 +214,7 @@
             "p7zip",
             "packer",
             "perl",
+            "pkg-config",
             "sbt",
             "subversion",
             "swiftformat",
