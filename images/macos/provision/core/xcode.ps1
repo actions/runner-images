@@ -20,8 +20,6 @@ $defaultXcode = Get-ToolsetValue "xcode.default"
 [Array]::Reverse($xcodeVersions)
 $threadCount = "5"
 
-
-
 Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
     $ErrorActionPreference = "Stop"
