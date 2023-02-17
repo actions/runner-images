@@ -1,18 +1,16 @@
 | Announcements |
 |-|
 | [[all OSs] Default Nodejs version will be set to 18 on February, 13](https://github.com/actions/runner-images/issues/7002) |
-| [[All OSs] .NET 5.x will be removed from the images on February, 6](https://github.com/actions/runner-images/issues/6840) |
-| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
 ***
 # macOS 11
 - OS Version: macOS 11.7.3 (20G1116)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20230205.1
+- Image Version: 20230214.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.405, 7.0.102
+- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.406, 7.0.102, 7.0.200
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -29,13 +27,13 @@
 - Kotlin 1.8.10-release-430
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
-- Node.js 16.19.0
+- Node.js 18.14.0
 - NVM 0.39.3
 - NVM - Cached node versions: 14.21.2, 16.19.0, 18.14.0
 - Perl 5.36.0
 - PHP 8.2.2
 - Python 2.7.18
-- Python3 3.11.1
+- Python3 3.11.2
 - R 4.2.2
 - Ruby 2.7.7p221
 
@@ -43,16 +41,16 @@
 - Bundler 2.4.6
 - Carthage 0.39.0
 - CocoaPods 1.11.3
-- Composer 2.5.2
-- Homebrew 3.6.20
-- Miniconda 22.11.1
-- NPM 8.19.3
+- Composer 2.5.3
+- Homebrew 3.6.21
+- Miniconda 23.1.0
+- NPM 9.3.1
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 23.0 (python 3.11)
 - Pipx 1.1.0
 - RubyGems 3.4.6
-- Vcpkg 2023 (build from commit 0ba60bfef)
+- Vcpkg 2023 (build from commit 93895b28e)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -63,8 +61,8 @@
 
 ### Project Management
 - Apache Ant 1.10.13
-- Apache Maven 3.8.7
-- Gradle 7.6
+- Apache Maven 3.9.0
+- Gradle 8.0
 - Sbt 1.8.2
 
 ### Utilities
@@ -75,41 +73,41 @@
 - bazelisk 1.16.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 7.87.0
-- Git 2.39.1
+- Git 2.39.2
 - Git LFS 3.3.0
-- GitHub CLI 2.22.1
+- GitHub CLI 2.23.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.4.0
-- helm v3.11.0+g472c573
+- helm v3.11.1+g293b50c
 - Hub CLI 2.14.2
-- ImageMagick 7.1.0-60
+- ImageMagick 7.1.0-62
 - jq 1.6
 - mongo 5.0.14
 - mongod 5.0.14
 - Newman 5.3.2
-- OpenSSL 1.1.1s  1 Nov 2022
+- OpenSSL 1.1.1t  7 Feb 2023
 - Packer 1.8.5
-- PostgreSQL 14.6 (Homebrew)
-- psql (PostgreSQL) 14.6 (Homebrew)
+- PostgreSQL 14.7 (Homebrew)
+- psql (PostgreSQL) 14.7 (Homebrew)
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
 - yq 4.30.8
-- zstd 1.5.2
+- zstd 1.5.4
 
 ### Tools
-- Aliyun CLI 3.0.141
-- App Center CLI 2.13.1
-- AWS CLI 2.9.21
-- AWS SAM CLI 1.72.0
+- Aliyun CLI 3.0.149
+- App Center CLI 2.13.2
+- AWS CLI 2.9.23
+- AWS SAM CLI 1.73.0
 - AWS Session Manager CLI 1.2.398.0
-- Azure CLI 2.44.1
+- Azure CLI 2.45.0
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.14.6
+- Bicep CLI 0.14.46
 - Cabal 3.6.2.0
 - Cmake 3.25.2
-- CodeQL Action Bundles 2.12.0 2.12.1
+- CodeQL Action Bundles 2.12.1 2.12.2
 - Colima 0.5.2
 - Fastlane 2.211.0
 - GHC 9.4.4
@@ -125,20 +123,20 @@
 - Yamllint 1.29.0
 
 ### Browsers
-- Safari 16.3 (16614.4.6.11.4)
-- SafariDriver 16.3 (16614.4.6.11.4)
-- Google Chrome 109.0.5414.119
-- ChromeDriver 109.0.5414.74
-- Microsoft Edge 109.0.1518.78
-- Microsoft Edge WebDriver 109.0.1518.78
+- Safari 16.3 (16614.4.6.11.6)
+- SafariDriver 16.3 (16614.4.6.11.6)
+- Google Chrome 110.0.5481.100
+- ChromeDriver 110.0.5481.77
+- Microsoft Edge 110.0.1587.41
+- Microsoft Edge WebDriver 110.0.1587.41
 - Mozilla Firefox 109.0.1
-- geckodriver 0.32.1
+- geckodriver 0.32.2
 - Selenium server 4.8.0
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/109.0.5414.74 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/110.0.5481.77 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -168,8 +166,8 @@
 - 3.7.15
 - 3.8.16
 - 3.9.16
-- 3.10.9
-- 3.11.1
+- 3.10.10
+- 3.11.2
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.11]
@@ -188,13 +186,13 @@
 - 1.19.5
 
 ### Rust Tools
-- Cargo 1.67.0
-- Rust 1.67.0
-- Rustdoc 1.67.0
+- Cargo 1.67.1
+- Rust 1.67.1
+- Rustdoc 1.67.1
 - Rustup 1.25.2
 
 #### Packages
-- Bindgen 0.63.0
+- Bindgen 0.64.0
 - Cargo-audit 0.17.4
 - Cargo-outdated 0.11.2
 - Cbindgen 0.24.3
@@ -205,7 +203,7 @@
 - PowerShell 7.2.9
 
 #### PowerShell Modules
-- Az: 9.3.0
+- Az: 9.4.0
 - MarkdownPS: 1.9
 - Pester: 5.4.0
 - PSScriptAnalyzer: 1.21.0
@@ -222,7 +220,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.4.4.12 | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.4.5.8  | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
@@ -338,10 +336,10 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                                           |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                               |
-| Android Emulator           | 31.3.15                                                                                                                                                                           |
-| Android SDK Build-tools    | 33.0.0 33.0.1<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                     |
+| Android Emulator           | 32.1.11                                                                                                                                                                           |
+| Android SDK Build-tools    | 33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3              |
 | Android SDK Platforms      | android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Platform-Tools | 33.0.3                                                                                                                                                                            |
+| Android SDK Platform-Tools | 34.0.0                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                            |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                        |
 | Google Play services       | 49                                                                                                                                                                                |
