@@ -34,6 +34,7 @@ $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
 Write-Host "Configuring Xcode versions..."
 $xcodeVersions | ForEach-Object {
     Write-Host "Configuring Xcode $($_.link) ..."
+    Switch-Xcode -Version $_.link
 
     Invoke-XcodeRunFirstLaunch -Version $_.link
     Install-AdditionalSimulatorRuntimes -Version $_.link
@@ -43,7 +44,7 @@ if ($xcodeVersions.link -contains "14.0.1") {
     Fix-BrokenSimulatorsXcode1401
 }
 
-Invoke-XcodeRunFirstLaunch -Version $defaultXcode
+# Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
 Write-Host "Configuring Xcode symlinks..."
 $xcodeVersions | ForEach-Object {
