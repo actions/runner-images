@@ -41,7 +41,7 @@ $xcodeVersions | ForEach-Object {
 }
 
 if ($xcodeVersions.link -contains "14.0.1") {
-    Fix-BrokenSimulatorsXcode1401
+    # Fix-BrokenSimulatorsXcode1401
 }
 
 # Invoke-XcodeRunFirstLaunch -Version $defaultXcode

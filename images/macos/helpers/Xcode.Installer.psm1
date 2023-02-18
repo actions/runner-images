@@ -156,8 +156,8 @@ function Invoke-XcodeRunFirstLaunch {
     }
 
     Write-Host "Running 'runFirstLaunch' for Xcode $Version..."
-    $xcodeRootPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "sudo $xcodeRootPath -runFirstLaunch"
+    # $xcodeRootPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
+    Invoke-ValidateCommand "sudo xcodebuild -runFirstLaunch"
 }
 
 function Install-AdditionalSimulatorRuntimes {
@@ -173,8 +173,8 @@ function Install-AdditionalSimulatorRuntimes {
     }
 
     Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
-    $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+    # $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
+    Invoke-ValidateCommand "sudo xcodebuild -downloadAllPlatforms"
 }
 
 function Fix-BrokenSimulatorsXcode1401 {
