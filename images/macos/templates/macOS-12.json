@@ -236,32 +236,6 @@
             ]
         },
         {
-            "type": "shell",
-            "inline": [
-                "echo '[DEBUG] SIMULATORS AT THE END OF THE BUILD /Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AT THE END OF THE BUILD /Applications/Xcode_14.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AT THE END OF THE BUILD /Applications/Xcode_14.0.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.0.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AT THE END OF THE BUILD /Applications/Xcode_13.4.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.4.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AT THE END OF THE BUILD /Applications/Xcode_13.3.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.3.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AT THE END OF THE BUILD /Applications/Xcode_13.2.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.2.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AT THE END OF THE BUILD /Applications/Xcode_13.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'"
-            ]
-        },
-        {
             "type": "file",
             "direction": "download",
             "source": "~/image-generation/output/*",

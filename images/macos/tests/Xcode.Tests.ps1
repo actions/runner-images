@@ -113,14 +113,15 @@ Describe "Xcode simulators" {
     }
 }
 
-Describe "Xcode 14.0.1 Simulators" {
-    $testCases = Get-BrokenSimulatorsListXcode1401
-    It "Simulator '<Name>'" -TestCases $testCases {
-        $simctlPath = Get-XcodeToolPath -Version "14.0.1" -ToolName "simctl"
+Describe "Xcode Simulators Naming" {
+    $testCases = Get-BrokenXcodeSimulatorsList
+    It "Simulator '<SimulatorName> [<RuntimeId>]'" -TestCases $testCases {
+        $simctlPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "simctl"
         [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
         $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
 
-        $foundSimulators = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.name -eq  $Name }
+        $foundSimulators = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.name -eq $SimulatorName }
         $foundSimulators | Should -HaveCount 1
+        $foundSimulators[0].deviceTypeIdentifier | Should -Be $DeviceId
     }
 }

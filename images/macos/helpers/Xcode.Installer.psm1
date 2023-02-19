@@ -157,7 +157,7 @@ function Invoke-XcodeRunFirstLaunch {
 
     Write-Host "Running 'runFirstLaunch' for Xcode $Version..."
     $xcodeRootPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "$xcodeRootPath -runFirstLaunch"
+    Invoke-ValidateCommand "sudo $xcodeRootPath -runFirstLaunch"
 }
 
 function Install-AdditionalSimulatorRuntimes {
@@ -166,8 +166,7 @@ function Install-AdditionalSimulatorRuntimes {
         [string]$Version
     )
 
-    # if (-not $Version.StartsWith("14.")) {
-    if ($Version -notin @("14.2", "14.1", "14.0.1")) {
+    if (-not $Version.StartsWith("14.")) {
         # Additional simulator runtimes are included by default for Xcode < 14
         return
     }

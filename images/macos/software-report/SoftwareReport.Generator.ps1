@@ -258,7 +258,6 @@ PARALLELS_DMG_URL environment variable. A system extension is allowed for this v
 #
 # Generate systeminfo.txt with information about image (for debug purpose)
 #
-
 $dateTime = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 $systemInfo = [string]::Join([System.Environment]::NewLine, @(
         "Date: ${dateTime}",
