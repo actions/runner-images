@@ -231,85 +231,8 @@
         {
             "type": "shell",
             "inline": [
-                "echo '[DEBUG] SIMULATORS BEFORE DELETE DUPLICATES /Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS BEFORE DELETE DUPLICATES /Applications/Xcode_14.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS BEFORE DELETE DUPLICATES /Applications/Xcode_14.0.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.0.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS BEFORE DELETE DUPLICATES /Applications/Xcode_13.4.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.4.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS BEFORE DELETE DUPLICATES /Applications/Xcode_13.3.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.3.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS BEFORE DELETE DUPLICATES /Applications/Xcode_13.2.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.2.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS BEFORE DELETE DUPLICATES /Applications/Xcode_13.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'"
-            ]
-        },
-        {
-            "type": "shell",
-            "inline": [
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 1 /Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 1 /Applications/Xcode_14.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 1 /Applications/Xcode_14.0.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.0.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 1 /Applications/Xcode_13.4.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.4.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 1 /Applications/Xcode_13.3.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.3.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 1 /Applications/Xcode_13.2.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.2.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 1 /Applications/Xcode_13.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'"
-            ]
-        },
-        {
-            "type": "shell",
-            "inline": [
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 2 /Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.2.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 2 /Applications/Xcode_14.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 2 /Applications/Xcode_14.0.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_14.0.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 2 /Applications/Xcode_13.4.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.4.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 2 /Applications/Xcode_13.3.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.3.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 2 /Applications/Xcode_13.2.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.2.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'",
-                "echo '[DEBUG] SIMULATORS AFTER DUPLICATES 2 /Applications/Xcode_13.1.app/Contents/Developer/usr/bin/simctl list'",
-                "/Applications/Xcode_13.1.app/Contents/Developer/usr/bin/simctl list || true",
-                "echo '------------------------------'"
-            ]
-        },
-        {
-            "type": "shell",
-            "inline": [
-                "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName {{user `build_id`}}"
+                "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName {{user `build_id`}}",
+                "pwsh -File \"$HOME/image-generation/tests/RunAll-Tests.ps1\""
             ]
         },
         {

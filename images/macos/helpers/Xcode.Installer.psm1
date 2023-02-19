@@ -156,8 +156,8 @@ function Invoke-XcodeRunFirstLaunch {
     }
 
     Write-Host "Running 'runFirstLaunch' for Xcode $Version..."
-    # $xcodeRootPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "sudo xcodebuild -runFirstLaunch"
+    $xcodeRootPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
+    Invoke-ValidateCommand "$xcodeRootPath -runFirstLaunch"
 }
 
 function Install-AdditionalSimulatorRuntimes {
@@ -173,8 +173,46 @@ function Install-AdditionalSimulatorRuntimes {
     }
 
     Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
-    # $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "sudo xcodebuild -downloadAllPlatforms"
+    $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
+    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+}
+
+function Ensure-SimulatorInstalled {
+    param(
+        [Parameter(Mandatory)]
+        [string]$RuntimeId,
+        [Parameter(Mandatory)]
+        [string]$DeviceId,
+        [Parameter(Mandatory)]
+        [string]$SimulatorName,
+        [Parameter(Mandatory)]
+        [string]$XcodeVersion
+    )
+
+    $simctlPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "simctl"
+    if (-not (Test-Path $simctlPath)) {
+        Write-Host "Skip validating simulator '$SimulatorName [$RuntimeId]' because Xcode $XcodeVersion is not installed"
+        return
+    }
+
+    # Get all available devices
+    [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
+    $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
+
+    # Checking if simulator already exists
+    $existingSimulator = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.deviceTypeIdentifier -eq  $DeviceId } | Select-Object -First 1
+
+    $simulatorFullNameDebug = "$SimulatorName [$RuntimeId]"
+
+    if ($null -eq $existingSimulator) {
+        Write-Host "Simulator '$simulatorFullNameDebug' is missed. Creating it..."
+        Invoke-Expression "$simctlPath create '$SimulatorName' '$DeviceId' '$RuntimeId'"
+    } elseif ($existingSimulator.name -ne $SimulatorName) {
+        Write-Host "Simulator '$simulatorFullNameDebug' is named incorrectly. Renaming it..."
+        Invoke-Expression "$simctlPath rename '$($existingSimulator.udid)' '$SimulatorName'"
+    } else {
+        Write-Host "Simulator '$simulatorFullNameDebug' is installed correctly."
+    }
 }
 
 function Fix-BrokenSimulatorsXcode1401 {
