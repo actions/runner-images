@@ -28,8 +28,9 @@ rm -rf ~/.fastlane
 npm cache clean --force
 
 # Clean yarn cache
-yarn cache clean
-
+if ! is_Ventura; then
+    yarn cache clean
+fi
 # Clean up temporary directories
 sudo rm -rf ~/utils ~/image-generation /tmp/*
 
