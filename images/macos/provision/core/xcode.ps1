@@ -40,8 +40,6 @@ $xcodeVersions | ForEach-Object {
 }
 
 if ($os.IsMonterey) {
-    # First run doesn't provide full data about devices and runtimes
-    Get-XcodeInfoList | Out-Null
     Get-BrokenXcodeSimulatorsList | ForEach-Object {
         Ensure-SimulatorInstalled -RuntimeId $_.RuntimeId -DeviceId $_.DeviceId -SimulatorName $_.SimulatorName -XcodeVersion $_.XcodeVersion
     }

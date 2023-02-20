@@ -194,6 +194,7 @@ function Ensure-SimulatorInstalled {
         return
     }
 
+    Invoke-Expression "$simctlPath list devices --json" | Out-Null
     # Get all available devices
     [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
     $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
