@@ -207,7 +207,7 @@ function Ensure-SimulatorInstalled {
         Write-Host "Simulator '$simulatorFullNameDebug' is missed. Creating it..."
         Invoke-Expression "$simctlPath create '$SimulatorName' '$DeviceId' '$RuntimeId'"
     } elseif ($existingSimulator.name -ne $SimulatorName) {
-        Write-Host "Simulator '$simulatorFullNameDebug' is named incorrectly. Renaming it..."
+        Write-Host "Simulator '$simulatorFullNameDebug' is named incorrectly. Renaming it from '$($existingSimulator.name)' to '$SimulatorName'..."
         Invoke-Expression "$simctlPath rename '$($existingSimulator.udid)' '$SimulatorName'"
     } else {
         Write-Host "Simulator '$simulatorFullNameDebug' is installed correctly."
