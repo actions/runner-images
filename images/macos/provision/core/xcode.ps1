@@ -39,12 +39,6 @@ $xcodeVersions | ForEach-Object {
     Install-AdditionalSimulatorRuntimes -Version $_.link
 }
 
-if ($os.IsMonterey) {
-    Get-BrokenXcodeSimulatorsList | ForEach-Object {
-        Ensure-SimulatorInstalled -RuntimeId $_.RuntimeId -DeviceId $_.DeviceId -SimulatorName $_.SimulatorName -XcodeVersion $_.XcodeVersion
-    }
-}
-
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
 Write-Host "Configuring Xcode symlinks..."
