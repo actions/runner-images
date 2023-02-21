@@ -303,6 +303,6 @@ function Get-BrokenXcodeSimulatorsList {
             DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-44mm-2nd-generation";
             RuntimeId = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0";
             XcodeVersion = "14.2"
-        },
+        }
     )
 }
