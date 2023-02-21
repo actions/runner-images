@@ -18,15 +18,23 @@ function Ensure-SimulatorInstalled {
         return
     }
 
+    $simulatorFullNameDebug = "$SimulatorName [$RuntimeId]"
+    Write-Host "Checking Xcode simulator '$simulatorFullNameDebug'..."
+
     Invoke-Expression "$simctlPath list --json" | Out-Null
+    Invoke-Expression "$simctlPath list --json" | Out-Null
+    & $simctlPath list --json
+
     # Get all available devices
     [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
     $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
 
+    Write-Host "[DEBUG] Looking for existing simulator '$simulatorFullNameDebug'..."
+
     # Checking if simulator already exists
     $existingSimulator = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.deviceTypeIdentifier -eq  $DeviceId } | Select-Object -First 1
 
-    $simulatorFullNameDebug = "$SimulatorName [$RuntimeId]"
+    
 
     if ($null -eq $existingSimulator) {
         Write-Host "Simulator '$simulatorFullNameDebug' is missed. Creating it..."
@@ -39,6 +47,7 @@ function Ensure-SimulatorInstalled {
     }
 }
 
+Write-Host "Validating and fixing Xcode simulators..."
 Get-BrokenXcodeSimulatorsList | ForEach-Object {
     Ensure-SimulatorInstalled -RuntimeId $_.RuntimeId -DeviceId $_.DeviceId -SimulatorName $_.SimulatorName -XcodeVersion $_.XcodeVersion
 }
