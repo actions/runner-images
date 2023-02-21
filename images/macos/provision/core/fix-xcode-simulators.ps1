@@ -1,4 +1,5 @@
 Import-Module "$env:HOME/image-generation/helpers/Xcode.Helpers.psm1"
+Import-Module "$env:HOME/image-generation/software-report/SoftwareReport.Xcode.psm1" -DisableNameChecking
 
 function Ensure-SimulatorInstalled {
     param(
@@ -23,7 +24,6 @@ function Ensure-SimulatorInstalled {
 
     Invoke-Expression "$simctlPath list --json" | Out-Null
     Invoke-Expression "$simctlPath list --json" | Out-Null
-    & $simctlPath list --json
 
     # Get all available devices
     [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
@@ -34,10 +34,9 @@ function Ensure-SimulatorInstalled {
     # Checking if simulator already exists
     $existingSimulator = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.deviceTypeIdentifier -eq  $DeviceId } | Select-Object -First 1
 
-    
-
     if ($null -eq $existingSimulator) {
         Write-Host "Simulator '$simulatorFullNameDebug' is missed. Creating it..."
+        & $simctlPath list --json
         Invoke-Expression "$simctlPath create '$SimulatorName' '$DeviceId' '$RuntimeId'"
     } elseif ($existingSimulator.name -ne $SimulatorName) {
         Write-Host "Simulator '$simulatorFullNameDebug' is named incorrectly. Renaming it from '$($existingSimulator.name)' to '$SimulatorName'..."
@@ -46,6 +45,11 @@ function Ensure-SimulatorInstalled {
         Write-Host "Simulator '$simulatorFullNameDebug' is installed correctly."
     }
 }
+
+Write-Info "First run"
+# First run doesn't provide full data about devices and runtimes
+Get-XcodeInfoList | Out-Null
+
 
 Write-Host "Validating and fixing Xcode simulators..."
 Get-BrokenXcodeSimulatorsList | ForEach-Object {
