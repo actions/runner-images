@@ -114,26 +114,29 @@ get_brew_os_keyword() {
 should_build_from_source() {
     local tool_name=$1
     local os_name=$2
+    # If one of the parsers aborts with an error, 
+    # we will get an empty variable notification in the logs
+    set -u
 
     # Geting tool info from brew to find available install methods except build from source
-    brew info --json=v1 $tool_name > /tmp/brew_$tool_name
+    local tool_info=$(brew info --json=v1 $tool_name)
     
     # No need to build from source if a bottle is disabled
-    local bottle_disabled=$(jq -r ".[0].bottle_disabled" /tmp/brew_$tool_name)
+    local bottle_disabled=$(echo -E $tool_info | jq ".[0].bottle_disabled")
     if [[ $bottle_disabled == "true" ]]; then
         echo "false"
         return
     fi
 
     # No need to build from source if a universal bottle is available    
-    local all_bottle=$(jq -r ".[0].bottle.stable.files.all" /tmp/brew_$tool_name)
+    local all_bottle=$(echo -E $tool_info | jq ".[0].bottle.stable.files.all")
     if [[ "$all_bottle" != "null" ]]; then
         echo "false"
         return
     fi
 
     # No need to build from source if a bottle for current OS is available
-    local os_bottle=$(jq -r ".[0].bottle.stable.files.$os_name" /tmp/brew_$tool_name)
+    local os_bottle=$(echo -E $tool_info | jq ".[0].bottle.stable.files.$os_name")
     if [[ "$os_bottle" != "null" ]]; then
         echo "false"
         return
