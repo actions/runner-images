@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+
 Import-Module "$env:HOME/image-generation/helpers/Xcode.Helpers.psm1"
 Import-Module "$env:HOME/image-generation/software-report/SoftwareReport.Xcode.psm1" -DisableNameChecking
 
@@ -20,10 +22,7 @@ function Ensure-SimulatorInstalled {
     }
 
     $simulatorFullNameDebug = "$SimulatorName [$RuntimeId]"
-    Write-Host "Checking Xcode simulator '$simulatorFullNameDebug'..."
-
-    Invoke-Expression "$simctlPath list --json" | Out-Null
-    Invoke-Expression "$simctlPath list --json" | Out-Null
+    Write-Host "Checking Xcode $XcodeVersion simulator '$simulatorFullNameDebug'..."
 
     # Get all available devices
     [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
@@ -46,10 +45,8 @@ function Ensure-SimulatorInstalled {
     }
 }
 
-Write-Info "First run"
 # First run doesn't provide full data about devices and runtimes
 Get-XcodeInfoList | Out-Null
-
 
 Write-Host "Validating and fixing Xcode simulators..."
 Get-BrokenXcodeSimulatorsList | ForEach-Object {

@@ -174,6 +174,12 @@ function Get-BrokenXcodeSimulatorsList {
             RuntimeId = "com.apple.CoreSimulator.SimRuntime.tvOS-15-4";
             XcodeVersion = "13.4.1"
         },
+        @{
+            SimulatorName = "Apple TV 4K (at 1080p) (2nd generation)"
+            DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-TV-4K-2nd-generation-1080p";
+            RuntimeId = "com.apple.CoreSimulator.SimRuntime.tvOS-16-0";
+            XcodeVersion = "14.2"
+        },
         # watchOS-8-0 Simulators
         @{
             SimulatorName = "Apple Watch Series 5 - 40mm"
@@ -284,6 +290,19 @@ function Get-BrokenXcodeSimulatorsList {
             DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-Series-7-45mm";
             RuntimeId = "com.apple.CoreSimulator.SimRuntime.watchOS-8-5";
             XcodeVersion = "13.4.1"
-        }
+        },
+        # watchOS-9-0 Simulators
+        @{
+            SimulatorName = "Apple Watch SE (40mm) (2nd generation)"
+            DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-40mm-2nd-generation";
+            RuntimeId = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0";
+            XcodeVersion = "14.2"
+        },
+        @{
+            SimulatorName = "Apple Watch SE (44mm) (2nd generation)"
+            DeviceId = "com.apple.CoreSimulator.SimDeviceType.Apple-Watch-SE-44mm-2nd-generation";
+            RuntimeId = "com.apple.CoreSimulator.SimRuntime.watchOS-9-0";
+            XcodeVersion = "14.2"
+        },
     )
 }
