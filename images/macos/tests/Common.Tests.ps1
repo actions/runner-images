@@ -139,7 +139,7 @@ Describe "VirtualBox" -Skip:($os.IsBigSur) {
     }
 }
 
-Describe "CodeQLBundles" -Skip:($os.IsCatalina) {
+Describe "CodeQLBundles" {
     It "Latest CodeQL Bundle" {
         $CodeQLVersionWildcards = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
         $LatestCodeQLVersionPath = Get-ChildItem $CodeQLVersionWildcards | Sort-Object -Property { [SemVer]$_.name } -Descending | Select-Object -First 1 -Expand FullName
@@ -175,7 +175,7 @@ Describe "CodeQLBundles" -Skip:($os.IsCatalina) {
     }
 }
 
-Describe "Colima" -Skip:($os.IsCatalina) {
+Describe "Colima" {
     It "Colima" {
         "colima version" | Should -ReturnZeroExitCode
     }

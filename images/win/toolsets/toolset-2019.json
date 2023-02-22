@@ -476,7 +476,7 @@
         ]
     },
     "node": {
-        "default": "16"
+        "default": "18"
     },
     "mysql": {
         "version": "5.7"

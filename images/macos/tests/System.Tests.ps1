@@ -32,11 +32,7 @@ Describe "Audio device" {
         "SwitchAudioSource -c" | Should -ReturnZeroExitCode
     }
 
-    It "Audio channel Soundflower (2ch)" -Skip:($os.IsHigherThanCatalina) {
-        SwitchAudioSource -c | Should -BeLikeExactly "Soundflower (2ch)"
-    }
-
-    It "Audio channel BlackHole 2ch" -Skip:($os.IsCatalina) {
+    It "Audio channel BlackHole 2ch" {
         SwitchAudioSource -c | Should -BeLikeExactly "BlackHole 2ch"
     }
 }

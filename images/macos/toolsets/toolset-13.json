@@ -1,0 +1,142 @@
+{
+    "xcode": {
+        "default": "14.2",
+        "versions": [
+            {"link": "14.3", "version": "14.3.0"},
+            {"link": "14.2", "version": "14.2.0"},
+            { "link": "14.1", "version": "14.1.0"},
+            { "link": "14.0.1", "version": "14.0.1", "symlinks": ["14.0"] }
+        ]
+    },
+    "xamarin": {
+        "vsmac": {
+            "default": "2022",
+            "versions": [ "2022" ]
+        }
+    },
+    "java": {
+        "default": "8",
+        "default_vendor": "Temurin-Hotspot",
+        "vendors": [
+            {
+                "name": "Temurin-Hotspot",
+                "versions": [ "8", "11", "17" ]
+            }
+        ]
+    },
+    "android": {
+        "platform_min_version": "27",
+        "build_tools_min_version": "27.0.0",
+        "extra-list": [
+            "android;m2repository", "google;m2repository", "google;google_play_services", "intel;Hardware_Accelerated_Execution_Manager"
+        ],
+        "addon-list": [],
+        "additional-tools": [
+            "cmake;3.18.1",
+            "cmake;3.22.1"
+        ],
+        "ndk": {
+            "default": "25",
+            "versions": [
+                "23", "24", "25"
+            ]
+        }
+    },
+    "powershellModules": [
+        { "name": "Az" },
+        { "name": "MarkdownPS" },
+        { "name": "Pester" },
+        { "name": "PSScriptAnalyzer" }
+    ],
+    "brew": {
+        "common_packages": [
+            "ant",
+            "aria2",
+            "azure-cli",
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "colima",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "kotlin",
+            "libpq",
+            "p7zip",
+            "packer",
+            "perl",
+            "sbt",
+            "subversion",
+            "swiftformat",
+            "swig",
+            "zstd",
+            "gmp",
+            "zlib",
+            "libxext",
+            "libxft",
+            "tcl-tk",
+            "r",
+            "yq",
+            "imagemagick"
+        ],
+        "cask_packages": [
+            "julia",
+            "vagrant",
+            "virtualbox",
+            "parallels"
+        ]
+    },
+    "gcc": {
+        "versions": [
+            "11",
+            "12"
+        ]
+    },
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint --version"
+        }
+    ],
+    "dotnet": {
+        "versions": [
+            "3.1",
+            "6.0",
+            "7.0"
+        ]
+    },
+    "ruby": {
+        "default": "3.0",
+        "rubygems": [
+            "xcode-install",
+            "cocoapods",
+            "xcpretty",
+            "bundler",
+            "fastlane",
+            "jazzy"
+        ]
+    },
+    "go": {
+        "default": "1.17"
+    },
+    "node": {
+        "default": "16",
+        "nvm_versions": [
+            "14",
+            "16",
+            "18"
+        ]
+    },
+    "llvm": {
+        "version": "15"
+    },
+    "php": {
+        "version": "8.2"
+    },
+    "mongodb": {
+        "version": "5.0"
+    },
+    "postgresql": {
+        "version": "14"
+    }
+}

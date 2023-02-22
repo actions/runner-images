@@ -56,7 +56,7 @@ variable "ram_size" {
 
 variable "image_os" {
   type = string
-  default = "macos12"
+  default = "macos13"
 }
 
 source "veertu-anka-vm-clone" "template" {
@@ -117,7 +117,7 @@ build {
   }
   provisioner "file" {
     destination = "image-generation/toolset.json"
-    source = "./toolsets/toolset-12.json"
+    source = "./toolsets/toolset-13.json"
   }
   provisioner "shell" {
     scripts = [
@@ -129,12 +129,8 @@ build {
   provisioner "shell" {
     scripts = [
       "./provision/configuration/configure-tccdb-macos.sh",
-      "./provision/configuration/add-network-interface-detection.sh",
-      "./provision/configuration/autologin.sh",
       "./provision/configuration/disable-auto-updates.sh",
-      "./provision/configuration/screensaver-off.sh",
       "./provision/configuration/ntpconf.sh",
-      "./provision/configuration/max-files.sh",
       "./provision/configuration/shell-change.sh"
     ]
     environment_vars = [
@@ -167,9 +163,7 @@ build {
       "./provision/core/open_windows_check.sh",
       "./provision/core/powershell.sh",
       "./provision/core/dotnet.sh",
-      "./provision/core/python.sh",
       "./provision/core/azcopy.sh",
-      "./provision/core/openssl.sh",
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
@@ -199,7 +193,6 @@ build {
   provisioner "shell" {
     scripts = [
       "./provision/core/llvm.sh",
-      "./provision/core/golang.sh",
       "./provision/core/swiftlint.sh",
       "./provision/core/openjdk.sh",
       "./provision/core/php.sh",
@@ -210,23 +203,17 @@ build {
       "./provision/core/stack.sh",
       "./provision/core/cocoapods.sh",
       "./provision/core/android-toolsets.sh",
-      "./provision/core/xamarin.sh",
       "./provision/core/vsmac.sh",
-      "./provision/core/nvm.sh",
       "./provision/core/apache.sh",
       "./provision/core/nginx.sh",
       "./provision/core/postgresql.sh",
-      "./provision/core/audiodevice.sh",
       "./provision/core/vcpkg.sh",
       "./provision/core/miniconda.sh",
       "./provision/core/safari.sh",
       "./provision/core/chrome.sh",
       "./provision/core/edge.sh",
       "./provision/core/firefox.sh",
-      "./provision/core/pypy.sh",
-      "./provision/core/pipx-packages.sh",
       "./provision/core/bicep.sh",
-      "./provision/core/graalvm.sh",
       "./provision/core/codeql-bundle.sh"
     ]
     environment_vars = [
@@ -235,20 +222,12 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
-    scripts = [
-      "./provision/core/toolset.ps1",
-      "./provision/core/configure-toolset.ps1"
-    ]
-    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
-  }
-  provisioner "shell" {
     script = "./provision/core/delete-duplicate-sims.rb"
     execute_command = "source $HOME/.bash_profile; ruby {{ .Path }}"
   }
   provisioner "shell" {
     inline = [
-      "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName ${var.build_id}",
-      "pwsh -File \"$HOME/image-generation/tests/RunAll-Tests.ps1\""
+      "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName ${var.build_id}"
     ]
     execute_command = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }

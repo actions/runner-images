@@ -245,7 +245,7 @@ function Build-XcodeSupportToolsSection {
     $nomadShenzhenOutput = Run-Command "ipa -version"
     $nomadShenzhen = [regex]::matches($nomadShenzhenOutput, "(\d+.){2}\d+").Value
 
-    if ($os.IsLessThanMonterey) {
+    if ($os.IsBigSur) {
         $toolNodes += [ToolVersionNode]::new("Nomad CLI", $nomadCLI)
         $toolNodes += [ToolVersionNode]::new("Nomad shenzhen CLI", $nomadShenzhen)
     }
