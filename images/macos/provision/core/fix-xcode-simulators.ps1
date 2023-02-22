@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-Import-Module "$env:HOME/image-generation/helpers/Xcode.Helpers.psm1"
+Import-Module "$env:HOME/image-generation/helpers/Xcode.Helpers.psm1" -DisableNameChecking
 Import-Module "$env:HOME/image-generation/software-report/SoftwareReport.Xcode.psm1" -DisableNameChecking
 
 function Ensure-SimulatorInstalled {
@@ -22,20 +22,17 @@ function Ensure-SimulatorInstalled {
     }
 
     $simulatorFullNameDebug = "$SimulatorName [$RuntimeId]"
-    Write-Host "Checking Xcode $XcodeVersion simulator '$simulatorFullNameDebug'..."
+    Write-Host "Checking Xcode simulator '$simulatorFullNameDebug' (Xcode $XcodeVersion)..."
 
     # Get all available devices
     [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
     $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
-
-    Write-Host "[DEBUG] Looking for existing simulator '$simulatorFullNameDebug'..."
 
     # Checking if simulator already exists
     $existingSimulator = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.deviceTypeIdentifier -eq  $DeviceId } | Select-Object -First 1
 
     if ($null -eq $existingSimulator) {
         Write-Host "Simulator '$simulatorFullNameDebug' is missed. Creating it..."
-        & $simctlPath list --json
         Invoke-Expression "$simctlPath create '$SimulatorName' '$DeviceId' '$RuntimeId'"
     } elseif ($existingSimulator.name -ne $SimulatorName) {
         Write-Host "Simulator '$simulatorFullNameDebug' is named incorrectly. Renaming it from '$($existingSimulator.name)' to '$SimulatorName'..."
@@ -45,7 +42,7 @@ function Ensure-SimulatorInstalled {
     }
 }
 
-# First run doesn't provide full data about devices and runtimes
+# First run doesn't provide full data about devices
 Get-XcodeInfoList | Out-Null
 
 Write-Host "Validating and fixing Xcode simulators..."

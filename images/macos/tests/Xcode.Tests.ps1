@@ -120,6 +120,10 @@ Describe "Xcode Simulators Naming" {
         [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
         $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
 
+        $foundSimulators = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.deviceTypeIdentifier -eq $DeviceId }
+        $foundSimulators | Should -HaveCount 1
+        $foundSimulators[0].name | Should -Be $SimulatorName
+
         $foundSimulators = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.name -eq $SimulatorName }
         $foundSimulators | Should -HaveCount 1
         $foundSimulators[0].deviceTypeIdentifier | Should -Be $DeviceId
