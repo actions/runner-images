@@ -645,3 +645,8 @@ function Get-ColimaVersion {
     $colimaVersion = Run-Command "colima version" | Select-String "colima version" | Take-Part -Part 2
     return $colimaVersion
 }
+
+function Get-PKGConfigVersion {
+    $pkgconfigVersion = Run-Command "pkg-config --version"
+    return $pkgconfigVersion
+}
