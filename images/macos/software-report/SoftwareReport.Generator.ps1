@@ -107,6 +107,7 @@ if ($os.IsBigSur) {
 }
 $utilities.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $utilities.AddToolVersion("Packer", $(Get-PackerVersion))
+$utilities.AddToolVersion("pkg-config", $(Get-PKGConfigVersion))
 $utilities.AddToolVersion("PostgreSQL", $(Get-PostgresServerVersion))
 $utilities.AddToolVersion("psql (PostgreSQL)", $(Get-PostgresClientVersion))
 $utilities.AddToolVersion("Sox", $(Get-SoxVersion))
