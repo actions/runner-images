@@ -1,10 +1,6 @@
-| Announcements |
-|-|
-| [[all OSs] Default Nodejs version will be set to 18 on February, 13](https://github.com/actions/runner-images/issues/7002) |
-***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1547
-- Image Version: 20230214.1
+- Image Version: 20230219.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -17,23 +13,23 @@
 - Julia 1.8.5
 - Kotlin 1.8.10
 - LLVM 15.0.7
-- Node 18.14.0
+- Node 18.14.1
 - Perl 5.32.1
 - PHP 8.2.3
 - Python 3.9.13
 - Ruby 3.0.5p211
 
 ### Package Management
-- Chocolatey 1.2.1
-- Composer 2.5.3
+- Chocolatey 1.3.0
+- Composer 2.5.4
 - Helm 3.11.1
 - Miniconda 23.1.0 (pre-installed on the image but not added to PATH)
 - NPM 9.3.1
 - NuGet 6.4.0.123
-- pip 23.0 (python 3.9)
+- pip 23.0.1 (python 3.9)
 - Pipx 1.1.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 93895b28e)
+- Vcpkg (build from commit a32522820)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -66,7 +62,7 @@
 - Git 2.39.2.windows.1
 - Git LFS 3.3.0
 - ImageMagick 7.1.0-61
-- InnoSetup 6.2.1
+- InnoSetup 6.2.2
 - jq 1.6
 - Kind 0.17.0
 - Kubectl 1.26.1
@@ -90,7 +86,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.149
-- AWS CLI 2.9.23
+- AWS CLI 2.10.1
 - AWS SAM CLI 1.73.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.45.0
@@ -113,10 +109,10 @@
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 110.0.5481.100
+- Google Chrome 110.0.5481.104
 - Chrome Driver 110.0.5481.77
-- Microsoft Edge 110.0.1587.41
-- Microsoft Edge Driver 110.0.1587.41
+- Microsoft Edge 110.0.1587.50
+- Microsoft Edge Driver 110.0.1587.50
 - Mozilla Firefox 110.0
 - Gecko Driver 0.32.2
 - IE Driver 4.8.0.0
@@ -159,12 +155,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.17.13
 - 1.18.10
-- 1.19.5
+- 1.19.6
 
 #### Node.js
-- 14.21.2
-- 16.19.0
-- 18.14.0
+- 14.21.3
+- 16.19.1
+- 18.14.1
 
 #### Python
 - 3.7.9
@@ -528,8 +524,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### .NET Core Tools
 - .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.114, 6.0.203, 6.0.309, 6.0.406, 7.0.103
 - .NET Framework: 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.13, 6.0.14, 7.0.3
-- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.13, 6.0.14, 7.0.3
+- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.14, 7.0.3
+- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.14, 7.0.3
 - Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.14, 7.0.3
 - nbgv 3.5.119+5d25f54fec
 
@@ -543,10 +539,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.270
+- AWSPowershell: 4.1.274
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.21.0
+- Microsoft.Graph: 1.22.0
 - Pester: 3.4.0, 5.4.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
@@ -587,9 +583,8 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:3fed696d6f08740a9e1d46f30f1162765b2e1109476761ce93e8fbeef5f54caf  | 2023-01-10 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:623206b7da179ddb4d4e5e3695889d03f72b368bdde4e05d70f8fde75371bdac  | 2023-01-10 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:d8e9237fba3770319c899b8a87e54fb3427a3fa8617d2de78cec6e3465d71cfc  | 2023-01-10 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:5f068dbfbe1aa441ea4295fbe9fe36e1ee0915cb65f8a3d76126a318a4a48200  | 2023-02-14 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:b4dca605425b7411b347b91e0dc30cfabbfb80e79c66e4a350f2057f7fe391b8  | 2023-02-14 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:aa13c40eb160f60649c6ea873289a48277c3cc54cf538a27bb1ae08b040f8ad4  | 2023-02-14 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:786a24be2bd1945bee9701f95a71d8573ace8641c112dc27206f826bef0229c1  | 2023-02-07 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:5662262ca25622f4f8ad593481dd58dea47713bce5e6c9fdef9089a92e7c75b1  | 2023-02-07 |
-
