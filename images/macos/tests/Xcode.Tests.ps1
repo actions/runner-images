@@ -113,7 +113,7 @@ Describe "Xcode simulators" {
     }
 }
 
-Describe "Xcode Simulators Naming" {
+Describe "Xcode Simulators Naming" -Skip:(-not $os.IsMonterey) {
     $testCases = Get-BrokenXcodeSimulatorsList
     It "Simulator '<SimulatorName> [<RuntimeId>]'" -TestCases $testCases {
         $simctlPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "simctl"
