@@ -2,10 +2,9 @@
     "xcode": {
         "default": "14.2",
         "versions": [
-            {"link": "14.3", "version": "14.3.0"},
-            {"link": "14.2", "version": "14.2.0"},
-            { "link": "14.1", "version": "14.1.0"},
-            { "link": "14.0.1", "version": "14.0.1", "symlinks": ["14.0"] }
+            { "link": "14.3", "version": "14.3.0" },
+            { "link": "14.2", "version": "14.2.0" },
+            { "link": "14.1", "version": "14.1.0" }
         ]
     },
     "xamarin": {
@@ -15,7 +14,7 @@
         }
     },
     "java": {
-        "default": "8",
+        "default": "17",
         "default_vendor": "Temurin-Hotspot",
         "vendors": [
             {
@@ -44,7 +43,6 @@
     },
     "powershellModules": [
         { "name": "Az" },
-        { "name": "MarkdownPS" },
         { "name": "Pester" },
         { "name": "PSScriptAnalyzer" }
     ],
@@ -56,7 +54,6 @@
             "bazelisk",
             "carthage",
             "cmake",
-            "colima",
             "gh",
             "gnupg",
             "gnu-tar",
@@ -65,25 +62,15 @@
             "p7zip",
             "packer",
             "perl",
-            "sbt",
-            "subversion",
             "swiftformat",
-            "swig",
             "zstd",
             "gmp",
-            "zlib",
-            "libxext",
-            "libxft",
-            "tcl-tk",
             "r",
-            "yq",
-            "imagemagick"
+            "yq"
         ],
         "cask_packages": [
             "julia",
-            "vagrant",
-            "virtualbox",
-            "parallels"
+            "vagrant"
         ]
     },
     "gcc": {
@@ -92,16 +79,8 @@
             "12"
         ]
     },
-    "pipx": [
-        {
-            "package": "yamllint",
-            "cmd": "yamllint --version"
-        }
-    ],
     "dotnet": {
         "versions": [
-            "3.1",
-            "6.0",
             "7.0"
         ]
     },
@@ -112,31 +91,19 @@
             "cocoapods",
             "xcpretty",
             "bundler",
-            "fastlane",
-            "jazzy"
+            "fastlane"
         ]
     },
     "go": {
-        "default": "1.17"
+        "default": "1.18"
     },
     "node": {
-        "default": "16",
-        "nvm_versions": [
-            "14",
-            "16",
-            "18"
-        ]
+        "default": "18"
     },
     "llvm": {
         "version": "15"
     },
     "php": {
         "version": "8.2"
-    },
-    "mongodb": {
-        "version": "5.0"
-    },
-    "postgresql": {
-        "version": "14"
     }
 }

@@ -167,7 +167,6 @@ build {
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
-      "./provision/core/mongodb.sh",
       "./provision/core/node.sh",
       "./provision/core/commonutils.sh"
     ]
@@ -205,10 +204,7 @@ build {
       "./provision/core/android-toolsets.sh",
       "./provision/core/vsmac.sh",
       "./provision/core/apache.sh",
-      "./provision/core/nginx.sh",
-      "./provision/core/postgresql.sh",
       "./provision/core/vcpkg.sh",
-      "./provision/core/miniconda.sh",
       "./provision/core/safari.sh",
       "./provision/core/chrome.sh",
       "./provision/core/edge.sh",
