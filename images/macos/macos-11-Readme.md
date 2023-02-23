@@ -1,11 +1,12 @@
 | Announcements |
 |-|
-| [[all OSs] Default Nodejs version will be set to 18 on February, 13](https://github.com/actions/runner-images/issues/7002) |
+| [GCC-9 will be removed from macOS 11 on March, 6](https://github.com/actions/runner-images/issues/7136) |
+| [Xcode 13.4 will be pointing to 13.4.1 on February, 28](https://github.com/actions/runner-images/issues/7127) |
 ***
 # macOS 11
-- OS Version: macOS 11.7.3 (20G1116)
+- OS Version: macOS 11.7.4 (20G1120)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20230214.1
+- Image Version: 20230219.1
 
 ## Installed Software
 
@@ -27,30 +28,30 @@
 - Kotlin 1.8.10-release-430
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
-- Node.js 18.14.0
+- Node.js 18.14.1
 - NVM 0.39.3
-- NVM - Cached node versions: 14.21.2, 16.19.0, 18.14.0
+- NVM - Cached node versions: 14.21.3, 16.19.1, 18.14.1
 - Perl 5.36.0
-- PHP 8.2.2
+- PHP 8.2.3
 - Python 2.7.18
 - Python3 3.11.2
 - R 4.2.2
 - Ruby 2.7.7p221
 
 ### Package Management
-- Bundler 2.4.6
+- Bundler 2.4.7
 - Carthage 0.39.0
 - CocoaPods 1.11.3
-- Composer 2.5.3
-- Homebrew 3.6.21
+- Composer 2.5.4
+- Homebrew 4.0.1
 - Miniconda 23.1.0
 - NPM 9.3.1
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip3 23.0 (python 3.11)
+- Pip3 23.0.1 (python 3.11)
 - Pipx 1.1.0
-- RubyGems 3.4.6
-- Vcpkg 2023 (build from commit 93895b28e)
+- RubyGems 3.4.7
+- Vcpkg 2023 (build from commit a32522820)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -72,7 +73,7 @@
 - bazel 6.0.0
 - bazelisk 1.16.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.87.0
+- Curl 7.88.0
 - Git 2.39.2
 - Git LFS 3.3.0
 - GitHub CLI 2.23.0
@@ -87,7 +88,7 @@
 - mongod 5.0.14
 - Newman 5.3.2
 - OpenSSL 1.1.1t  7 Feb 2023
-- Packer 1.8.5
+- Packer 1.8.6
 - PostgreSQL 14.7 (Homebrew)
 - psql (PostgreSQL) 14.7 (Homebrew)
 - Sox 14.4.2
@@ -99,7 +100,7 @@
 ### Tools
 - Aliyun CLI 3.0.149
 - App Center CLI 2.13.2
-- AWS CLI 2.9.23
+- AWS CLI 2.10.1
 - AWS SAM CLI 1.73.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.45.0
@@ -111,10 +112,10 @@
 - Colima 0.5.2
 - Fastlane 2.211.0
 - GHC 9.4.4
-- GHCup 0.1.19.0
+- GHCup 0.1.19.1
 - Jazzy 0.14.3
 - Stack 2.9.1
-- SwiftFormat 0.50.8
+- SwiftFormat 0.50.9
 - Swig 4.1.1
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -123,13 +124,13 @@
 - Yamllint 1.29.0
 
 ### Browsers
-- Safari 16.3 (16614.4.6.11.6)
-- SafariDriver 16.3 (16614.4.6.11.6)
+- Safari 16.3.1 (16614.4.6.11.7)
+- SafariDriver 16.3.1 (16614.4.6.11.7)
 - Google Chrome 110.0.5481.100
 - ChromeDriver 110.0.5481.77
-- Microsoft Edge 110.0.1587.41
-- Microsoft Edge WebDriver 110.0.1587.41
-- Mozilla Firefox 109.0.1
+- Microsoft Edge 110.0.1587.50
+- Microsoft Edge WebDriver 110.0.1587.50
+- Mozilla Firefox 110.0
 - geckodriver 0.32.2
 - Selenium server 4.8.0
 
@@ -176,14 +177,14 @@
 - 3.9.16 [PyPy 7.3.11]
 
 #### Node.js
-- 14.21.2
-- 16.19.0
-- 18.14.0
+- 14.21.3
+- 16.19.1
+- 18.14.1
 
 #### Go
 - 1.17.13
 - 1.18.10
-- 1.19.5
+- 1.19.6
 
 ### Rust Tools
 - Cargo 1.67.1
