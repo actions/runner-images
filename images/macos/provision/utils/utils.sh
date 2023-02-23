@@ -114,24 +114,36 @@ get_brew_os_keyword() {
 should_build_from_source() {
     local tool_name=$1
     local os_name=$2
-    local tool_info=$(brew info --json=v1 $tool_name)
-    local bottle_disabled=$(echo "$tool_info" | jq ".[0].bottle_disabled")
+    # If one of the parsers aborts with an error, 
+    # we will get an empty variable notification in the logs
+    set -u
 
+    # Geting tool info from brew to find available install methods except build from source
+    local tool_info=$(brew info --json=v1 $tool_name)
+    
     # No need to build from source if a bottle is disabled
-    # Use the simple 'brew install' command to download a package
+    local bottle_disabled=$(echo -E $tool_info | jq ".[0].bottle_disabled")
     if [[ $bottle_disabled == "true" ]]; then
         echo "false"
         return
     fi
 
-    local tool_bottle=$(echo "$tool_info" | jq ".[0].bottle.stable.files.$os_name")
-    if [[ "$tool_bottle" == "null" ]]; then
-        echo "true"
-        return
-    else
+    # No need to build from source if a universal bottle is available    
+    local all_bottle=$(echo -E $tool_info | jq ".[0].bottle.stable.files.all")
+    if [[ "$all_bottle" != "null" ]]; then
         echo "false"
         return
     fi
+
+    # No need to build from source if a bottle for current OS is available
+    local os_bottle=$(echo -E $tool_info | jq ".[0].bottle.stable.files.$os_name")
+    if [[ "$os_bottle" != "null" ]]; then
+        echo "false"
+        return
+    fi
+
+    # Available method wasn't found - should build from source
+    echo "true"
 }
 
 # brew provides package bottles for different macOS versions

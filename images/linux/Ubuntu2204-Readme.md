@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[all OSs] Default Nodejs version will be set to 18 on February, 13](https://github.com/actions/runner-images/issues/7002) |
 | [The Ubuntu 18.04 Actions runner image will begin deprecation on 2022/08/08 and will be fully unsupported by 2023/04/01](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 22.04
-- OS Version: 22.04.1 LTS
+- OS Version: 22.04.2 LTS
 - Kernel Version: 5.15.0-1033-azure
-- Image Version: 20230217.1
+- Image Version: 20230219.1
 
 ## Installed Software
 
@@ -40,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.1.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 31a159c1c)
+- Vcpkg (build from commit a32522820)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -76,7 +75,7 @@ to accomplish this.
 - Docker-Buildx 0.10.3
 - Docker-Moby Client 20.10.23+azure-2
 - Docker-Moby Server 20.10.22+azure-1
-- Fastlane 2.211.0
+- Fastlane 2.212.0
 - Git 2.39.2
 - Git LFS 3.3.0
 - Git-ftp 1.6.0
@@ -109,7 +108,7 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.149
-- AWS CLI 2.10.0
+- AWS CLI 2.10.1
 - AWS CLI Session Manager Plugin 1.2.398.0
 - AWS SAM CLI 1.73.0
 - Azure CLI 2.45.0
@@ -117,7 +116,7 @@ to accomplish this.
 - GitHub CLI 2.23.0
 - Google Cloud SDK 418.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 12.12.1
+- Netlify CLI 12.13.1
 - OpenShift CLI 4.12.3
 - ORAS CLI 0.16.0
 - Vercel CLI 28.16.2
@@ -145,7 +144,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.6.2.0
 - GHC 9.4.4
-- GHCup 0.1.19.0
+- GHCup 0.1.19.1
 - Stack 2.9.3
 
 ### Rust Tools
@@ -166,8 +165,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 110.0.5481.100
 - ChromeDriver 110.0.5481.77
 - Chromium 110.0.5481.0
-- Microsoft Edge 110.0.1587.49
-- Microsoft Edge WebDriver 110.0.1587.49
+- Microsoft Edge 110.0.1587.50
+- Microsoft Edge WebDriver 110.0.1587.50
 - Selenium server 4.8.0
 - Mozilla Firefox 110.0
 - Geckodriver 0.32.2
@@ -213,12 +212,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.17.13
 - 1.18.10
-- 1.19.5
+- 1.19.6
 
 #### Node.js
-- 14.21.2
-- 16.19.0
-- 18.14.0
+- 14.21.3
+- 16.19.1
+- 18.14.1
 
 #### Python
 - 3.7.15
@@ -288,12 +287,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | debian:10               | sha256:233c3bbc892229c82da7231980d50adceba4db56a08c0b7053a4852782703459  | 2023-02-09 |
 | debian:11               | sha256:43ef0c6c3585d5b406caa7a0f232ff5a19c1402aeb415f68bcd1cf9d10180af8  | 2023-02-09 |
 | moby/buildkit:latest    | sha256:751921dc37d2f842de38c9387f891fe6ae7d80f03d050ea98f780d7e0874ba00  | 2023-02-13 |
-| node:14                 | sha256:0443d511c77586fbeff8e32ea55565acbcf666fafa14e995eddbbbba5ff352b0  | 2023-02-11 |
-| node:14-alpine          | sha256:e389e6411b9951c74289fd51834f59b2b45655ba7aecd3df96e62d1741f4f902  | 2023-02-11 |
-| node:16                 | sha256:ce3d204ff857d48fbf2cdd16649b5a0b57cc1fd1a3cb2ff0d8727532f5211cf1  | 2023-02-11 |
-| node:16-alpine          | sha256:1621ddffc775ccf10dc8710660e70d5bfb8e4ee349b926f133698e6512144b73  | 2023-02-11 |
-| node:18                 | sha256:5ab5e06df2c58dabb18b963636c2fab16b10b7150d13434a12024f599aa645bc  | 2023-02-11 |
-| node:18-alpine          | sha256:45748c3443410b052e2123dcffbd67838727394f9aacfd23e0b47afd95434ff5  | 2023-02-11 |
+| node:14                 | sha256:1b5300317e95ed8bb2a1c25003f57e52400ce7af1e2e1efd9f52407293f88317  | 2023-02-17 |
+| node:14-alpine          | sha256:86c59eb57b10df3d55e460b28799f60121f950ad018ff0989ea01ab61a1d9ab2  | 2023-02-17 |
+| node:16                 | sha256:a4baed9809deba446900d6e2bc6b92c3fe6ccff9ca2873f8d54e263595b02533  | 2023-02-17 |
+| node:16-alpine          | sha256:0fcf4fb718a763fa53ac8d60073a7cd7dc1520076e08ea0180591174122e52f3  | 2023-02-17 |
+| node:18                 | sha256:671b86a524e12beac53f6679d791dc8b73bff3a46edf4878343e82503cb33938  | 2023-02-17 |
+| node:18-alpine          | sha256:045b1a1c90bdfd8fcaad0769922aa16c401e31867d8bf5833365b0874884bbae  | 2023-02-17 |
 | ubuntu:18.04            | sha256:a3765b4d74747b5e9bdd03205b3fbc4fa19a02781c185f97f24c8f4f84ed7bbf  | 2023-01-26 |
 | ubuntu:20.04            | sha256:4a45212e9518f35983a976eead0de5eecc555a2f047134e9dd2cfc589076a00d  | 2023-02-01 |
 | ubuntu:22.04            | sha256:9a0bdde4188b896a372804be2384015e90e3f84906b750c1a53539b585fbbe7f  | 2023-01-26 |
