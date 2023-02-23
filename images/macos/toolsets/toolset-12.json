@@ -5,8 +5,7 @@
             {"link": "14.2", "version": "14.2.0"},
             { "link": "14.1", "version": "14.1.0"},
             { "link": "14.0.1", "version": "14.0.1", "symlinks": ["14.0"] },
-            { "link": "13.4.1", "version": "13.4.1" },
-            { "link": "13.4", "version": "13.4.0" },
+            { "link": "13.4.1", "version": "13.4.1", "symlinks": ["13.4"] },
             { "link": "13.3.1", "version": "13.3.1", "symlinks": ["13.3"] },
             { "link": "13.2.1", "version": "13.2.1", "symlinks": ["13.2"] },
             { "link": "13.1", "version": "13.1.0" }

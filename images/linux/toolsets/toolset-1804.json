@@ -84,7 +84,7 @@
                 "versions": [ "8", "11", "12" ]
             }
         ],
-        "maven": "3.8.7"
+        "maven": "3.9.0"
     },
     "android": {
         "platform_min_version": "23",

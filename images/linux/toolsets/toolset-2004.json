@@ -85,7 +85,7 @@
                 "versions": [ "8", "11" ]
             }
         ],
-        "maven": "3.8.7"
+        "maven": "3.9.0"
     },
     "android": {
         "cmdline-tools": "latest",
