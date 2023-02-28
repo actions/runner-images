@@ -14,12 +14,14 @@ cask_packages=$(get_toolset_value '.brew.cask_packages[]')
 for package in $cask_packages; do
     echo "Installing $package..."
     if [[ $package == "virtualbox" ]]; then
-        # VirtualBox 7 crashes
-        # macOS host: Dropped all kernel extensions. VirtualBox relies fully on the hypervisor and vmnet frameworks provided by Apple now.
-        vbcask_url="https://raw.githubusercontent.com/Homebrew/homebrew-cask/aa3c55951fc9d687acce43e5c0338f42c1ddff7b/Casks/virtualbox.rb"
-        download_with_retries $vbcask_url
-        brew install ./virtualbox.rb
-        rm ./virtualbox.rb
+        if ! is_Ventura; then
+            # VirtualBox 7 crashes
+            # macOS host: Dropped all kernel extensions. VirtualBox relies fully on the hypervisor and vmnet frameworks provided by Apple now.
+            vbcask_url="https://raw.githubusercontent.com/Homebrew/homebrew-cask/aa3c55951fc9d687acce43e5c0338f42c1ddff7b/Casks/virtualbox.rb"
+            download_with_retries $vbcask_url
+            brew install ./virtualbox.rb
+            rm ./virtualbox.rb
+        fi
     else
         brew install --cask $package
     fi
@@ -34,22 +36,18 @@ fi
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
 if is_Monterey; then
     if is_Veertu; then
-        retry=10
+        retry=5
         while [ $retry -gt 0 ]; do
             {
                 osascript -e 'tell application "System Events" to get application processes where visible is true'
-            } && break
-
-            retry=$((retry-1))
-            if [ $retry -eq 0 ]; then
-                echo "No retry attempts left"
-                exit 1
-            fi
+            }
+            osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
+            echo "retries left "$retry
             sleep 10
         done
+    else
+        osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
     fi
-
-    osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
 fi
 
 # Validate "Parallels International GmbH" kext
