@@ -33,7 +33,7 @@ download_with_retries() {
             return 0
         else
             echo "Error — Either HTTP response code for '$URL' is wrong - '$http_code' or exit code is not 0 - '$exit_code'. Waiting $interval seconds before the next attempt, $retries attempts left"
-            sleep 30
+            sleep $interval
         fi
         # Enable exit on error back
         set -e
