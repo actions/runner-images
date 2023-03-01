@@ -206,7 +206,6 @@
                 "{{template_dir}}/scripts/installers/codeql-bundle.sh",
                 "{{template_dir}}/scripts/installers/containers.sh",
                 "{{template_dir}}/scripts/installers/dotnetcore-sdk.sh",
-                "{{template_dir}}/scripts/installers/erlang.sh",
                 "{{template_dir}}/scripts/installers/firefox.sh",
                 "{{template_dir}}/scripts/installers/microsoft-edge.sh",
                 "{{template_dir}}/scripts/installers/gcc.sh",
