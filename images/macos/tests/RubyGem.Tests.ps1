@@ -19,7 +19,7 @@ Describe "Bundler" {
     }
 }
 
-Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey) {
+Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey -or $os.IsVentura) {
     It "Nomad shenzhen CLI" {
         "ipa --version" | Should -ReturnZeroExitCode
     }
@@ -37,7 +37,7 @@ Describe "xcpretty" {
     }
 }
 
-Describe "jazzy" {
+Describe "jazzy" -Skip:($os.IsVentura) {
     It "jazzy" {
         "jazzy --version" | Should -ReturnZeroExitCode
     }

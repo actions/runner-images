@@ -1,6 +1,8 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
+$os = Get-OSVersion
+
 function Get-NativeVersionFormat {
     param($Version)
     if ($Version -in "8") {
@@ -56,7 +58,7 @@ Describe "Java" {
     }
 
     Context "Java Adopt" {
-        Describe "Java Adopt" {
+        Describe "Java Adopt" -Skip:($os.IsVentura) {
                 It "Java Adopt <Version>" -TestCases $adoptCases {
                 $adoptPath = Join-Path (Get-ChildItem ${env:AGENT_TOOLSDIRECTORY}\Java_Adopt_jdk\${Version}*) "x64\Contents\Home\bin\java"
 

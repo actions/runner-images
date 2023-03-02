@@ -160,6 +160,22 @@ function Invoke-XcodeRunFirstLaunch {
     Invoke-ValidateCommand "sudo $xcodeRootPath -runFirstLaunch"
 }
 
+function Install-AdditionalSimulatorRuntimes {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Version
+    )
+
+    if (-not $Version.StartsWith("14.")) {
+        # Additional simulator runtimes are included by default for Xcode < 14
+        return
+    }
+
+    Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
+    $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
+    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+}
+
 function Build-XcodeSymlinks {
     param(
         [Parameter(Mandatory)]
