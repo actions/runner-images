@@ -1,0 +1,30 @@
+run-name: macOS-11_unstable.${{ github.run_id }}.${{ github.run_attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      CUSTOM_REPOSITORY:
+        description: 'Custom repository (owner/repo)'
+        required: false
+      CUSTOM_REPOSITORY_COMMIT_HASH:
+        description: 'Commit hash'
+        required: false
+  pull_request_target:
+    types: labeled
+    paths:
+    - 'images/macos/**'
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  macOS_11:
+    if: ${{ (github.event.label.name == 'macos-all') || (github.event.label.name == 'macos-11') || (inputs.CUSTOM_REPOSITORY != '' && inputs.CUSTOM_REPOSITORY_COMMIT_HASH != '') || (github.event_name == 'schedule') }}
+    name: macOS-11_unstable.${{ github.run_id }}.${{ github.run_attempt }}
+    uses: ./.github/workflows/macos-generation.yml
+    with:
+      image_label: 'macOS Big Sur'
+      base_image_name: 'clean-macOS-11-380Gb-runner'
+      template_path: 'templates/macOS-11.json'
+      target_datastore: 'ds-image'
+      custom_repo: ${{ github.event.inputs.CUSTOM_REPOSITORY }}
+      custom_repo_hash: ${{ github.event.inputs.CUSTOM_REPOSITORY_COMMIT_HASH }}
+    secrets: inherit
