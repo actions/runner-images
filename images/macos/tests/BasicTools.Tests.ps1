@@ -24,7 +24,7 @@ Describe "cmake" {
     }
 }
 
-Describe "Subversion" {
+Describe "Subversion" -Skip:($os.IsVentura) {
     It "Subversion" {
         "svn --version" | Should -ReturnZeroExitCode
     }
@@ -60,7 +60,7 @@ Describe "Perl" {
     }
 }
 
-Describe "Helm" -Skip:($os.IsMonterey) {
+Describe "Helm" -Skip:($os.IsMonterey -or $os.IsVentura) {
     It "Helm" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
@@ -108,7 +108,7 @@ Describe "bazel" {
     }
 }
 
-Describe "Aliyun CLI" -Skip:($os.IsMonterey) {
+Describe "Aliyun CLI" -Skip:($os.IsMonterey -or $os.IsVentura) {
     It "Aliyun CLI" {
         "aliyun --version" | Should -ReturnZeroExitCode
     }
@@ -144,7 +144,7 @@ Describe "vagrant" -Skip:($os.IsBigSur) {
     }
 }
 
-Describe "virtualbox" -Skip:($os.IsBigSur) {
+Describe "virtualbox" -Skip:($os.IsBigSur -or $os.IsVentura) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
@@ -170,7 +170,7 @@ Describe "Kotlin" {
     }
 }
 
-Describe "sbt" {
+Describe "sbt" -Skip:($os.IsVentura) {
     It "sbt" {
         "sbt -version" | Should -ReturnZeroExitCode
     }
@@ -182,7 +182,7 @@ Describe "yq" {
     }
 }
 
-Describe "imagemagick" {
+Describe "imagemagick" -Skip:($os.IsVentura) {
     It "imagemagick" {
         "magick -version" | Should -ReturnZeroExitCode
     }

@@ -33,8 +33,12 @@ $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
 
 Write-Host "Configuring Xcode versions..."
 $xcodeVersions | ForEach-Object {
+    Write-Host "Configuring Xcode $($_.link) ..."
+
     Invoke-XcodeRunFirstLaunch -Version $_.link
+    Install-AdditionalSimulatorRuntimes -Version $_.link
 }
+
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
 Write-Host "Configuring Xcode symlinks..."
@@ -44,16 +48,6 @@ $xcodeVersions | ForEach-Object {
     # Skip creating symlink to install multiple releases of the same Xcode version side-by-side
     if ($_."skip-symlink" -ne "true") {
         Build-ProvisionatorSymlink -Version $_.link
-    }
-}
-
-$xcodeVersions | ForEach-Object {
-    if ($_.link.StartsWith("14.")) {
-        Write-Host "Installing Simulator Runtimes..."
-
-        # tvOS and watchOS simulators are not included by default
-        $xcodebuildPath = Get-XcodeToolPath -Version $_.link -ToolName "xcodebuild"
-        Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
     }
 }
 
