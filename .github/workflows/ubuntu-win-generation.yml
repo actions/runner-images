@@ -1,0 +1,128 @@
+name: MMS image generation
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        type: string
+        description: An OS image to build
+        required: true
+      image_readme_name:
+        type: string
+        description: README file path
+        required: true
+      custom_repo:
+        type: string
+        description: Custom repo to checkout
+        required: false
+      custom_repo_commit_hash:
+        type: string
+        description: Custom repo commit hash
+        required: false
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  build:
+    runs-on: azure-builds
+    timeout-minutes: 1200
+    steps:
+      - name: Determine checkout type
+        run: |
+          if ("${{ inputs.custom_repo }}" -and "${{ inputs.custom_repo_commit_hash }}") {
+              $checkoutType = "custom_repo"
+          } elseif (("${{ github.event_name }}" -eq "pull_request_target") -and ("${{ github.event.action }}" -eq "labeled" )) {
+              $checkoutType = "pull_request"
+          } else {
+              $checkoutType = "main"
+          }
+          "CHECKOUT_TYPE=$checkoutType" | Out-File -Append $env:GITHUB_ENV
+
+      - name: Checkout repository
+        if: ${{ env.CHECKOUT_TYPE == 'main' }}
+        uses: actions/checkout@v3
+        with:
+          repository: actions/runner-images
+
+      - name: Checkout PR
+        if: ${{ env.CHECKOUT_TYPE == 'pull_request' }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Checkout custom repository
+        if: ${{ env.CHECKOUT_TYPE == 'custom_repo' }}
+        uses: actions/checkout@v3
+        with:
+          repository: '${{ inputs.custom_repo }}'
+          ref: '${{ inputs.custom_repo_commit_hash }}'
+
+      - name: Set image varibles
+        run: |
+          $ImageType = "${{ inputs.image_name }}"
+
+          if ($ImageType.StartsWith("ubuntu")) { $TemplateDirectoryName = "linux" } else { $TemplateDirectoryName = "win" }
+
+          $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
+          $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.pkr.hcl"
+
+          if ( -not (Test-Path $TemplatePath) ) {
+            $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
+          }
+
+          "TemplatePath=$TemplatePath" | Out-File -Append -FilePath $env:GITHUB_ENV
+          "TemplateDirectoryPath=$TemplateDirectoryPath" | Out-File -Append -FilePath $env:GITHUB_ENV
+          "ImageType=$ImageType" | Out-File -Append -FilePath $env:GITHUB_ENV
+
+      - name: Build image
+        run: |
+            ./images.CI/linux-and-win/build-image.ps1 `
+              -TemplatePath ${{ env.TemplatePath }} `
+              -ClientId ${{ secrets.CLIENT_ID }} `
+              -ClientSecret ${{ secrets.CLIENT_SECRET }} `
+              -Location ${{ secrets.AZURE_LOCATION }} `
+              -ResourcesNamePrefix ${{ github.run_number }} `
+              -ResourceGroup ${{ secrets.AZURE_RESOURCE_GROUP }} `
+              -StorageAccount ${{ secrets.AZURE_STORAGE_ACCOUNT }} `
+              -SubscriptionId ${{ secrets.AZURE_SUBSCRIPTION }} `
+              -TenantId ${{ secrets.AZURE_TENANT }} `
+              -VirtualNetworkName ${{ secrets.BUILD_AGENT_VNET_NAME }} `
+              -VirtualNetworkSubnet ${{ secrets.BUILD_AGENT_SUBNET_NAME }} `
+              -VirtualNetworkRG ${{ secrets.BUILD_AGENT_VNET_RESOURCE_GROUP }} `
+        env:
+          PACKER_LOG: 1
+          PACKER_LOG_PATH: ${{ runner.temp }}/packer-log.txt
+          RUN_VALIDATION_FLAG: true
+
+      - name: Output Readme file content
+        run: |
+          Get-Content -Path (Join-Path "$env:TemplateDirectoryPath" "${{ inputs.image_readme_name }}")
+
+      - name: Print provisioners duration
+        run: |
+          ./images.CI/measure-provisioners-duration.ps1 `
+            -PackerLogPath "${{ runner.temp }}/packer-log.txt" `
+            -PrefixToPathTrim ${{ env.TemplateDirectoryPath }} `
+            -PrintTopNLongest 25
+
+      - name: Create release for VM deployment
+        run: |
+          ./images.CI/linux-and-win/create-release.ps1 `
+            -BuildId ${{ github.run_number }} `
+            -Organization ${{ secrets.RELEASE_TARGET_ORGANIZATION }} `
+            -DefinitionId ${{ secrets.RELEASE_TARGET_DEFINITION_ID }} `
+            -Project ${{ secrets.RELEASE_TARGET_PROJECT }} `
+            -ImageName ${{ env.ImageType }} `
+            -AccessToken ${{ secrets.RELEASE_TARGET_TOKEN }}
+
+      - name: Clean up resources
+        if: ${{ always() }}
+        run: |
+          ./images.CI/linux-and-win/cleanup.ps1 `
+            -ResourcesNamePrefix ${{ github.run_number }} `
+            -Image ${{ env.ImageType }} `
+            -StorageAccount ${{ secrets.AZURE_STORAGE_ACCOUNT }} `
+            -SubscriptionId ${{ secrets.AZURE_SUBSCRIPTION }} `
+            -ClientId ${{ secrets.CLIENT_ID }} `
+            -ClientSecret ${{ secrets.CLIENT_SECRET }} `
+            -TenantId ${{ secrets.AZURE_TENANT }}

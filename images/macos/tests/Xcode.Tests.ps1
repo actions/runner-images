@@ -112,3 +112,20 @@ Describe "Xcode simulators" {
         Switch-Xcode -Version $defaultXcode
     }
 }
+
+Describe "Xcode Simulators Naming" -Skip:(-not $os.IsMonterey) {
+    $testCases = Get-BrokenXcodeSimulatorsList
+    It "Simulator '<SimulatorName> [<RuntimeId>]'" -TestCases $testCases {
+        $simctlPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "simctl"
+        [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
+        $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
+
+        $foundSimulators = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.deviceTypeIdentifier -eq $DeviceId }
+        $foundSimulators | Should -HaveCount 1
+        $foundSimulators[0].name | Should -Be $SimulatorName
+
+        $foundSimulators = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.name -eq $SimulatorName }
+        $foundSimulators | Should -HaveCount 1
+        $foundSimulators[0].deviceTypeIdentifier | Should -Be $DeviceId
+    }
+}

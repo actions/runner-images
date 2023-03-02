@@ -237,6 +237,11 @@
         },
         {
             "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
+            "script": "./provision/core/fix-xcode-simulators.ps1"
+        },
+        {
+            "type": "shell",
             "inline": [
                 "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName {{user `build_id`}}",
                 "pwsh -File \"$HOME/image-generation/tests/RunAll-Tests.ps1\""
