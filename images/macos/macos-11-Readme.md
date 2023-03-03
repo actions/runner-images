@@ -1,12 +1,12 @@
 | Announcements |
 |-|
 | [GCC-9 will be removed from macOS 11 on March, 6](https://github.com/actions/runner-images/issues/7136) |
-| [Xcode 13.4 will be pointing to 13.4.1 on February, 28](https://github.com/actions/runner-images/issues/7127) |
+| [Xcode 13.4 will be pointing to 13.4.1 on February, 27](https://github.com/actions/runner-images/issues/7127) |
 ***
 # macOS 11
 - OS Version: macOS 11.7.4 (20G1120)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20230219.1
+- Image Version: 20230223.3
 
 ## Installed Software
 
@@ -28,9 +28,9 @@
 - Kotlin 1.8.10-release-430
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
-- Node.js 18.14.1
+- Node.js 18.14.2
 - NVM 0.39.3
-- NVM - Cached node versions: 14.21.3, 16.19.1, 18.14.1
+- NVM - Cached node versions: 14.21.3, 16.19.1, 18.14.2
 - Perl 5.36.0
 - PHP 8.2.3
 - Python 2.7.18
@@ -43,15 +43,15 @@
 - Carthage 0.39.0
 - CocoaPods 1.11.3
 - Composer 2.5.4
-- Homebrew 4.0.1
+- Homebrew 4.0.3
 - Miniconda 23.1.0
-- NPM 9.3.1
+- NPM 9.5.0
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 23.0.1 (python 3.11)
 - Pipx 1.1.0
 - RubyGems 3.4.7
-- Vcpkg 2023 (build from commit a32522820)
+- Vcpkg 2023 (build from commit 82e03905f)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -63,7 +63,7 @@
 ### Project Management
 - Apache Ant 1.10.13
 - Apache Maven 3.9.0
-- Gradle 8.0
+- Gradle 8.0.1
 - Sbt 1.8.2
 
 ### Utilities
@@ -73,7 +73,7 @@
 - bazel 6.0.0
 - bazelisk 1.16.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.88.0
+- Curl 7.88.1
 - Git 2.39.2
 - Git LFS 3.3.0
 - GitHub CLI 2.23.0
@@ -94,23 +94,23 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.1.0
-- yq 4.30.8
+- yq 4.31.1
 - zstd 1.5.4
 
 ### Tools
-- Aliyun CLI 3.0.149
+- Aliyun CLI 3.0.150
 - App Center CLI 2.13.2
-- AWS CLI 2.10.1
+- AWS CLI 2.10.2
 - AWS SAM CLI 1.73.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.45.0
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.14.46
+- Bicep CLI 0.14.85
 - Cabal 3.6.2.0
 - Cmake 3.25.2
 - CodeQL Action Bundles 2.12.1 2.12.2
 - Colima 0.5.2
-- Fastlane 2.211.0
+- Fastlane 2.212.0
 - GHC 9.4.4
 - GHCup 0.1.19.1
 - Jazzy 0.14.3
@@ -126,7 +126,7 @@
 ### Browsers
 - Safari 16.3.1 (16614.4.6.11.7)
 - SafariDriver 16.3.1 (16614.4.6.11.7)
-- Google Chrome 110.0.5481.100
+- Google Chrome 110.0.5481.177
 - ChromeDriver 110.0.5481.77
 - Microsoft Edge 110.0.1587.50
 - Microsoft Edge WebDriver 110.0.1587.50
@@ -179,7 +179,7 @@
 #### Node.js
 - 14.21.3
 - 16.19.1
-- 18.14.1
+- 18.14.2
 
 #### Go
 - 1.17.13
@@ -218,10 +218,10 @@
 ### Xamarin
 
 #### Visual Studio for Mac
-| Version        | Build     | Path                                 |
-| -------------- | --------- | ------------------------------------ |
-| 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.4.5.8  | /Applications/Visual Studio.app      |
+| Version        | Build       | Path                                 |
+| -------------- | ----------- | ------------------------------------ |
+| 2019           | 8.10.25.2   | /Applications/Visual Studio 2019.app |
+| 2022 (default) | 17.5.0.1802 | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
