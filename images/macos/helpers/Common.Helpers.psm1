@@ -131,7 +131,7 @@ function Start-DownloadWithRetry {
                 exit 1
             }
 
-            Write-Host "Waiting '$Interval' seconds before retrying. Retries left: $Retries"
+            Write-Host "Waiting $Interval seconds before retrying. Retries left: $Retries"
             Start-Sleep -Seconds $Interval
         }
     }
