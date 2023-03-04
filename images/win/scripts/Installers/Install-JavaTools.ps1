@@ -138,8 +138,6 @@ $toolsetMavenVersion = (Get-ToolsetContent).maven.version
 $versionToInstall = Get-LatestChocoPackageVersion -TargetVersion $toolsetMavenVersion -PackageName "maven"
 
 Choco-Install -PackageName maven -ArgumentList "--version=$versionToInstall"
-
-Choco-Install -PackageName maven -ArgumentList "-i"
 Choco-Install -PackageName gradle
 
 # Add maven env variables to Machine
