@@ -4,8 +4,8 @@
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.5 LTS
-- Kernel Version: 5.15.0-1033-azure
-- Image Version: 20230224.2
+- Kernel Version: 5.15.0-1034-azure
+- Image Version: 20230305.1
 
 ## Installed Software
 
@@ -33,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.11.1
-- Homebrew 4.0.3
+- Homebrew 4.0.4
 - Miniconda 23.1.0
 - Npm 9.5.0
 - NuGet 6.3.1.1
@@ -41,7 +41,7 @@
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit a7b6122f6)
+- Vcpkg (build from commit 8daf70c56)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -60,13 +60,13 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.0.1
+- Gradle 8.0.2
 - Lerna 6.5.1
-- Maven 3.9.0
+- Maven 3.8.7
 - Sbt 1.8.2
 
 ### Tools
-- Ansible 2.13.7
+- Ansible 2.13.8
 - apt-fast 1.9.12
 - AzCopy 10.17.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.0.0
@@ -80,7 +80,7 @@ to accomplish this.
 - Docker Compose v2 2.16.0+azure-2
 - Docker-Buildx 0.10.3
 - Docker-Moby Client 20.10.23+azure-2
-- Docker-Moby Server 20.10.22+azure-1
+- Docker-Moby Server 20.10.23+azure-2
 - Fastlane 2.212.1
 - Git 2.39.2
 - Git LFS 3.3.0
@@ -90,7 +90,7 @@ to accomplish this.
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.17.0
-- Kubectl 1.26.1
+- Kubectl 1.26.2
 - Kustomize 5.0.0
 - Leiningen 2.10.0
 - MediaInfo 19.09
@@ -111,23 +111,23 @@ to accomplish this.
 - SVN 1.13.0
 - Terraform 1.3.9
 - yamllint 1.29.0
-- yq 4.31.1
+- yq 4.31.2
 - zstd 1.5.4
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.150
-- AWS CLI 2.10.3
+- Alibaba Cloud CLI 3.0.152
+- AWS CLI 2.11.0
 - AWS CLI Session Manager Plugin 1.2.398.0
-- AWS SAM CLI 1.74.0
+- AWS SAM CLI 1.76.0
 - Azure CLI 2.45.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.23.0
-- Google Cloud SDK 419.0.0
+- Google Cloud SDK 420.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 13.0.0
-- OpenShift CLI 4.12.4
+- Netlify CLI 13.0.1
+- OpenShift CLI 4.12.5
 - ORAS CLI 0.16.0
-- Vercel CLI 28.16.7
+- Vercel CLI 28.16.12
 
 ### Java
 | Version              | Vendor          | Environment Variable |
@@ -144,7 +144,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 7.4.33, 8.0.28, 8.1.16, 8.2.3
 - Composer 2.5.4
-- PHPUnit 8.5.32
+- PHPUnit 8.5.33
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -173,10 +173,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 110.0.5481.177
 - ChromeDriver 110.0.5481.77
 - Chromium 110.0.5481.0
-- Microsoft Edge 110.0.1587.50
-- Microsoft Edge WebDriver 110.0.1587.50
+- Microsoft Edge 110.0.1587.63
+- Microsoft Edge WebDriver 110.0.1587.63
 - Selenium server 4.8.0
-- Mozilla Firefox 110.0
+- Mozilla Firefox 110.0.1
 - Geckodriver 0.32.2
 
 #### Environment variables
@@ -188,7 +188,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.406, 7.0.103, 7.0.200
+- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.406, 7.0.103, 7.0.201
 - nbgv 3.5.119+5d25f54fec
 
 ### Databases
@@ -259,7 +259,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 9.3.0
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.22.0
+- Microsoft.Graph: 1.23.0
 - Pester: 5.4.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -302,22 +302,22 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.14             | sha256:560e7a4fa5c891d1830f5591c80b8e472fa6cd386b7254cdf65ccc3249292a34  | 2023-02-11 |
 | alpine:3.15             | sha256:689659b1f08e9fdfb85190144098c378beb5a53b328f7ced7883a74a1157c709  | 2023-02-11 |
 | alpine:3.16             | sha256:1bd67c81e4ad4b8f4a5c1c914d7985336f130e5cefb3e323654fd09d6bcdbbe2  | 2023-02-11 |
-| buildpack-deps:bullseye | sha256:40b14eb195795a586ac132c9b506253bc3e4ee7f48a63b685e5bf37e80b774cf  | 2023-02-09 |
-| buildpack-deps:buster   | sha256:a3e4aaa53bf83302adfb9d8b9ba3996948e4605baac297921d3a173c14603748  | 2023-02-09 |
+| buildpack-deps:bullseye | sha256:6f2703639d3d17f70288d4ba212d55e159b682a990c20fc2a6562b098f01a1e7  | 2023-03-01 |
+| buildpack-deps:buster   | sha256:63be0fe0bfb9d06b8747dcd87683787ef6d82c6f05b8a2ae213c38d56dc2bf53  | 2023-03-01 |
 | buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
-| debian:10               | sha256:233c3bbc892229c82da7231980d50adceba4db56a08c0b7053a4852782703459  | 2023-02-09 |
-| debian:11               | sha256:43ef0c6c3585d5b406caa7a0f232ff5a19c1402aeb415f68bcd1cf9d10180af8  | 2023-02-09 |
+| debian:10               | sha256:2d356e1e22c0902f88ef65cb7159ecd5a96feb62345747edfd4324b0d83a2923  | 2023-03-01 |
+| debian:11               | sha256:f81bf5a8b57d6aa1824e4edb9aea6bd5ef6240bcc7d86f303f197a2eb77c430f  | 2023-03-01 |
 | debian:9                | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest    | sha256:751921dc37d2f842de38c9387f891fe6ae7d80f03d050ea98f780d7e0874ba00  | 2023-02-13 |
-| node:14                 | sha256:1b5300317e95ed8bb2a1c25003f57e52400ce7af1e2e1efd9f52407293f88317  | 2023-02-17 |
-| node:14-alpine          | sha256:86c59eb57b10df3d55e460b28799f60121f950ad018ff0989ea01ab61a1d9ab2  | 2023-02-17 |
-| node:16                 | sha256:a4baed9809deba446900d6e2bc6b92c3fe6ccff9ca2873f8d54e263595b02533  | 2023-02-17 |
-| node:16-alpine          | sha256:029a85552a270cd6dfae0ec222465f1deacfaf7cee030981b7ff6acd6a0eaf33  | 2023-02-21 |
-| node:18                 | sha256:586cdef48f920dea2f47a954b8717601933aa1daa0a08264abf9144789abf8ae  | 2023-02-22 |
-| node:18-alpine          | sha256:0d2712ac2b2c1149391173de670406f6e3dbdb1b2ba44e8530647e623e0e1b17  | 2023-02-22 |
+| node:14                 | sha256:481a78885f7a83f86fcb3ac48dab9bede651851d1b250650c17645a988902728  | 2023-03-01 |
+| node:14-alpine          | sha256:49d052af1616dbf5f2bd8b71fca9a4b7c688955e72bbe3e0126c4b28d7675577  | 2023-02-17 |
+| node:16                 | sha256:8ef06c513538040a988ac7731afa8ad8b1135cfe5d8b6ad78489d80c6f6c0137  | 2023-03-01 |
+| node:16-alpine          | sha256:95a849eafc573ad0d972fd67c569369e7aa94d55a21ede3b972e3137e5f8e43a  | 2023-02-21 |
+| node:18                 | sha256:8b2c008211854f4ee9ca328910d1c6bff8f30fc9fdf834b48f7ea40992a2079a  | 2023-03-01 |
+| node:18-alpine          | sha256:f8a51c36b0be7434bbf867d4a08decf0100e656203d893b9b0f8b1fe9e40daea  | 2023-02-22 |
 | ubuntu:16.04            | sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6  | 2021-08-31 |
-| ubuntu:18.04            | sha256:a3765b4d74747b5e9bdd03205b3fbc4fa19a02781c185f97f24c8f4f84ed7bbf  | 2023-01-26 |
-| ubuntu:20.04            | sha256:4a45212e9518f35983a976eead0de5eecc555a2f047134e9dd2cfc589076a00d  | 2023-02-01 |
+| ubuntu:18.04            | sha256:1e32b9c52e8f22769df41e8f61066c77b2b35b0a423c4161c0e48eca2fd24f75  | 2023-03-01 |
+| ubuntu:20.04            | sha256:9fa30fcef427e5e88c76bc41ad37b7cc573e1d79cecb23035e413c4be6e476ab  | 2023-03-01 |
 
 ### Installed apt packages
 | Name                   | Version                           |
@@ -332,7 +332,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | build-essential        | 12.8ubuntu1.1                     |
 | bzip2                  | 1.0.8-2                           |
 | coreutils              | 8.30-3ubuntu2                     |
-| curl                   | 7.68.0-1ubuntu2.15                |
+| curl                   | 7.68.0-1ubuntu2.16                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
 | dnsutils               | 1:9.16.1-0ubuntu2.12              |
 | dpkg                   | 1.19.7ubuntu3.2                   |
@@ -343,21 +343,21 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ftp                    | 0.17-34.1                         |
 | gnupg2                 | 2.2.19-3ubuntu2.2                 |
 | haveged                | 1.9.1-6ubuntu1                    |
-| imagemagick            | 8:6.9.10.23+dfsg-2.1ubuntu11.4    |
+| imagemagick            | 8:6.9.10.23+dfsg-2.1ubuntu11.5    |
 | iproute2               | 5.5.0-1ubuntu1                    |
 | iputils-ping           | 3:20190709-3                      |
 | jq                     | 1.6-1ubuntu0.20.04.1              |
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu1.5          |
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
-| libcurl4               | 7.68.0-1ubuntu2.15                |
+| libcurl4               | 7.68.0-1ubuntu2.16                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6build1                  |
 | libgtk-3-0             | 3.24.20-0ubuntu1.1                |
 | libmagic-dev           | 1:5.38-4                          |
-| libmagickcore-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.4    |
-| libmagickwand-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.4    |
+| libmagickcore-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.5    |
+| libmagickwand-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.5    |
 | libsecret-1-dev        | 0.20.4-0ubuntu1                   |
 | libsqlite3-dev         | 3.31.1-4ubuntu0.5                 |
 | libtool                | 2.4.6-14                          |
@@ -390,7 +390,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | subversion             | 1.13.0-3ubuntu0.2                 |
 | sudo                   | 1.8.31-1ubuntu1.4                 |
 | swig                   | 4.0.1-5build1                     |
-| tar                    | 1.30+dfsg-7ubuntu0.20.04.2        |
+| tar                    | 1.30+dfsg-7ubuntu0.20.04.3        |
 | telnet                 | 0.17-41.2build1                   |
 | texinfo                | 6.7.0.dfsg.2-5                    |
 | time                   | 1.7-25.1build1                    |
