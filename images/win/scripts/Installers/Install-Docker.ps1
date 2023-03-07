@@ -35,7 +35,8 @@ $instScriptPath = Start-DownloadWithRetry -Url $instScriptUrl -Name "install-doc
 New-Item -ItemType SymbolicLink -Path "C:\Windows\SysWOW64\docker.exe" -Target "C:\Windows\System32\docker.exe"
 
 Write-Host "Install-Package Docker-Compose v1"
-Choco-Install -PackageName docker-compose
+$versionToInstall = Get-LatestChocoPackageVersion -TargetVersion "1.29" -PackageName "docker-compose"
+Choco-Install -PackageName docker-compose -ArgumentList "--version=$versionToInstall"
 
 Write-Host "Install-Package Docker-Compose v2"
 $dockerComposev2Url = "https://github.com/docker/compose/releases/latest/download/docker-compose-windows-x86_64.exe"
