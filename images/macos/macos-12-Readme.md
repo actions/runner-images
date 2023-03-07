@@ -1,17 +1,16 @@
 | Announcements |
 |-|
-| [GCC-9 will be removed from macOS 11 on March, 6](https://github.com/actions/runner-images/issues/7136) |
-| [Xcode 13.4 will be pointing to 13.4.1 on February, 27](https://github.com/actions/runner-images/issues/7127) |
+| [GCC-9 will be removed from macOS 11 on March, 13](https://github.com/actions/runner-images/issues/7136) |
 ***
 # macOS 12
 - OS Version: macOS 12.6.3 (21G419)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20230224.1
+- Image Version: 20230304.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.406, 7.0.102, 7.0.200
+- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.406, 7.0.102, 7.0.201
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -37,9 +36,9 @@
 ### Package Management
 - Bundler 2.4.7
 - Carthage 0.39.0
-- CocoaPods 1.11.3
+- CocoaPods 1.12.0
 - Composer 2.5.4
-- Homebrew 4.0.3
+- Homebrew 4.0.4
 - Miniconda 23.1.0
 - NPM 9.5.0
 - NuGet 6.3.1.1
@@ -47,7 +46,7 @@
 - Pip3 23.0.1 (python 3.11)
 - Pipx 1.1.0
 - RubyGems 3.4.7
-- Vcpkg 2023 (build from commit 54cc53c43)
+- Vcpkg 2023 (build from commit 8daf70c56)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -59,7 +58,7 @@
 ### Project Management
 - Apache Ant 1.10.13
 - Apache Maven 3.9.0
-- Gradle 8.0.1
+- Gradle 8.0.2
 - Sbt 1.8.2
 
 ### Utilities
@@ -83,7 +82,6 @@
 - mongod 5.0.14
 - OpenSSL 1.1.1t  7 Feb 2023
 - Packer 1.8.6
-- pkg-config 0.29.2
 - PostgreSQL 14.7 (Homebrew)
 - psql (PostgreSQL) 14.7 (Homebrew)
 - Sox 14.4.2
@@ -91,27 +89,27 @@
 - Switchaudio-osx 1.1.0
 - Vagrant 2.3.4
 - VirtualBox 6.1.38r153438
-- yq 4.31.1
+- yq 4.31.2
 - zstd 1.5.4
 
 ### Tools
 - App Center CLI 2.13.2
-- AWS CLI 2.10.2
-- AWS SAM CLI 1.74.0
+- AWS CLI 2.11.0
+- AWS SAM CLI 1.76.0
 - AWS Session Manager CLI 1.2.398.0
 - Azure CLI 2.45.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.14.85
 - Cabal 3.6.2.0
 - Cmake 3.25.2
-- CodeQL Action Bundles 2.12.1 2.12.2
+- CodeQL Action Bundles 2.12.2 2.12.3
 - Colima 0.5.2
-- Fastlane 2.212.0
+- Fastlane 2.212.1
 - GHC 9.4.4
 - GHCup 0.1.19.2
 - Jazzy 0.14.3
-- Stack 2.9.1
-- SwiftFormat 0.50.9
+- Stack 2.9.3
+- SwiftFormat 0.51.1
 - Swig 4.1.1
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
 
@@ -124,9 +122,9 @@
 - SafariDriver 16.3 (17614.4.6.11.6)
 - Google Chrome 110.0.5481.177
 - ChromeDriver 110.0.5481.77
-- Microsoft Edge 110.0.1587.50
-- Microsoft Edge WebDriver 110.0.1587.50
-- Mozilla Firefox 110.0
+- Microsoft Edge 110.0.1587.63
+- Microsoft Edge WebDriver 110.0.1587.63
+- Mozilla Firefox 110.0.1
 - geckodriver 0.32.2
 - Selenium server 4.8.0
 
@@ -195,7 +193,7 @@
 - Rustfmt 1.5.1-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.9
+- PowerShell 7.2.10
 
 #### PowerShell Modules
 - Az: 9.4.0
@@ -327,8 +325,8 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | watchOS 8.0 | 13.1                                                         | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | watchOS 8.3 | 13.2.1                                                       | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | watchOS 8.5 | 13.3.1<br>13.4.1                                             | Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| watchOS 9.0 | 13.1<br>13.2.1<br>13.3.1<br>13.4.1<br>14.0.1<br>14.1<br>14.2 | Apple Watch SE - 40mm (2nd generation)<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm<br>Apple Watch Series 8 - 41mm<br>Apple Watch Series 8 - 45mm<br>Apple Watch Ultra - 49mm                                                                                                                                                                                                                                                                                                                                                                                               |
-| watchOS 9.1 | 13.1<br>13.2.1<br>13.3.1<br>13.4.1<br>14.0.1<br>14.1<br>14.2 | Apple Watch SE - 40mm (2nd generation)<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm<br>Apple Watch Series 8 - 41mm<br>Apple Watch Series 8 - 45mm<br>Apple Watch Ultra - 49mm                                                                                                                                                                                                                                                                                                                                                                                               |
+| watchOS 9.0 | 13.1<br>13.2.1<br>13.3.1<br>13.4.1<br>14.0.1<br>14.1<br>14.2 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                                                                                                                                                                                                                                                                                     |
+| watchOS 9.1 | 13.1<br>13.2.1<br>13.3.1<br>13.4.1<br>14.0.1<br>14.1<br>14.2 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                                                                                                                                                                                                                                                                                     |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                           |
