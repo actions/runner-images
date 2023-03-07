@@ -5,7 +5,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.5 LTS
 - Kernel Version: 5.15.0-1033-azure
-- Image Version: 20230219.1
+- Image Version: 20230224.2
 
 ## Installed Software
 
@@ -15,7 +15,7 @@
 - Clang-format: 10.0.0, 11.0.0, 12.0.0
 - Clang-tidy: 10.0.0, 11.0.0, 12.0.0
 - Dash 0.5.10.2-6
-- Erlang 25.0.4 (Eshell 13.0.4)
+- Erlang 25.2.3 (Eshell 13.1.5)
 - Erlang rebar3 3.20.0
 - GNU C++: 9.4.0, 10.3.0
 - GNU Fortran: 9.4.0, 10.3.0
@@ -23,7 +23,7 @@
 - Kotlin 1.8.10-release-430
 - Mono 6.12.0.182
 - MSBuild 16.10.1.31701 (Mono 6.12.0.182)
-- Node.js 18.14.1
+- Node.js 18.14.2
 - Perl 5.30.0
 - Python 3.8.10
 - Python3 3.8.10
@@ -33,15 +33,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.11.1
-- Homebrew 4.0.1
+- Homebrew 4.0.3
 - Miniconda 23.1.0
-- Npm 9.3.1
+- Npm 9.5.0
 - NuGet 6.3.1.1
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.1.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit a32522820)
+- Vcpkg (build from commit a7b6122f6)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -62,7 +62,7 @@ to accomplish this.
 - Ant 1.10.7
 - Gradle 8.0.1
 - Lerna 6.5.1
-- Maven 3.8.7
+- Maven 3.9.0
 - Sbt 1.8.2
 
 ### Tools
@@ -71,22 +71,22 @@ to accomplish this.
 - AzCopy 10.17.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.0.0
 - Bazelisk 1.13.2
-- Bicep 0.14.46
+- Bicep 0.14.85
 - Buildah 1.22.3
 - CMake 3.25.2
-- CodeQL Action Bundles 2.12.1 2.12.2
+- CodeQL Action Bundles 2.12.2 2.12.3
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.16.0+azure-2
 - Docker-Buildx 0.10.3
 - Docker-Moby Client 20.10.23+azure-2
 - Docker-Moby Server 20.10.22+azure-1
-- Fastlane 2.212.0
+- Fastlane 2.212.1
 - Git 2.39.2
 - Git LFS 3.3.0
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 7.68.1
+- Heroku 7.68.2
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.17.0
@@ -111,23 +111,23 @@ to accomplish this.
 - SVN 1.13.0
 - Terraform 1.3.9
 - yamllint 1.29.0
-- yq 4.30.8
+- yq 4.31.1
 - zstd 1.5.4
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.149
-- AWS CLI 2.10.1
+- Alibaba Cloud CLI 3.0.150
+- AWS CLI 2.10.3
 - AWS CLI Session Manager Plugin 1.2.398.0
-- AWS SAM CLI 1.73.0
+- AWS SAM CLI 1.74.0
 - Azure CLI 2.45.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.23.0
-- Google Cloud SDK 418.0.0
+- Google Cloud SDK 419.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 12.13.1
-- OpenShift CLI 4.12.3
+- Netlify CLI 13.0.0
+- OpenShift CLI 4.12.4
 - ORAS CLI 0.16.0
-- Vercel CLI 28.16.2
+- Vercel CLI 28.16.7
 
 ### Java
 | Version              | Vendor          | Environment Variable |
@@ -152,7 +152,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.6.2.0
 - GHC 9.4.4
-- GHCup 0.1.19.1
+- GHCup 0.1.19.2
 - Stack 2.9.3
 
 ### Rust Tools
@@ -170,7 +170,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 110.0.5481.100
+- Google Chrome 110.0.5481.177
 - ChromeDriver 110.0.5481.77
 - Chromium 110.0.5481.0
 - Microsoft Edge 110.0.1587.50
@@ -192,7 +192,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - nbgv 3.5.119+5d25f54fec
 
 ### Databases
-- MongoDB 5.0.14
+- MongoDB 5.0.15
 - sqlite3 3.31.1
 
 #### PostgreSQL
@@ -222,11 +222,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.17.13
 - 1.18.10
 - 1.19.6
+- 1.20.1
 
 #### Node.js
 - 14.21.3
 - 16.19.1
-- 18.14.1
+- 18.14.2
 
 #### Python
 - 2.7.18
@@ -252,7 +253,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.1.3
 
 ### PowerShell Tools
-- PowerShell 7.2.9
+- PowerShell 7.2.10
 
 #### PowerShell Modules
 - Az: 9.3.0
@@ -311,9 +312,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:14                 | sha256:1b5300317e95ed8bb2a1c25003f57e52400ce7af1e2e1efd9f52407293f88317  | 2023-02-17 |
 | node:14-alpine          | sha256:86c59eb57b10df3d55e460b28799f60121f950ad018ff0989ea01ab61a1d9ab2  | 2023-02-17 |
 | node:16                 | sha256:a4baed9809deba446900d6e2bc6b92c3fe6ccff9ca2873f8d54e263595b02533  | 2023-02-17 |
-| node:16-alpine          | sha256:0fcf4fb718a763fa53ac8d60073a7cd7dc1520076e08ea0180591174122e52f3  | 2023-02-17 |
-| node:18                 | sha256:671b86a524e12beac53f6679d791dc8b73bff3a46edf4878343e82503cb33938  | 2023-02-17 |
-| node:18-alpine          | sha256:045b1a1c90bdfd8fcaad0769922aa16c401e31867d8bf5833365b0874884bbae  | 2023-02-17 |
+| node:16-alpine          | sha256:029a85552a270cd6dfae0ec222465f1deacfaf7cee030981b7ff6acd6a0eaf33  | 2023-02-21 |
+| node:18                 | sha256:586cdef48f920dea2f47a954b8717601933aa1daa0a08264abf9144789abf8ae  | 2023-02-22 |
+| node:18-alpine          | sha256:0d2712ac2b2c1149391173de670406f6e3dbdb1b2ba44e8530647e623e0e1b17  | 2023-02-22 |
 | ubuntu:16.04            | sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6  | 2021-08-31 |
 | ubuntu:18.04            | sha256:a3765b4d74747b5e9bdd03205b3fbc4fa19a02781c185f97f24c8f4f84ed7bbf  | 2023-01-26 |
 | ubuntu:20.04            | sha256:4a45212e9518f35983a976eead0de5eecc555a2f047134e9dd2cfc589076a00d  | 2023-02-01 |

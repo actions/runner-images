@@ -42,6 +42,8 @@ if is_Monterey; then
                 osascript -e 'tell application "System Events" to get application processes where visible is true'
             }
             osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
+
+            retry=$((retry-1))
             echo "retries left "$retry
             sleep 10
         done

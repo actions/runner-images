@@ -106,7 +106,7 @@ $defaultVersion = $toolsetJava.default
 foreach ($jdkVendor in $jdkVendors) {
     $jdkVendorName = $jdkVendor.name
     $jdkVersionsToInstall = $jdkVendor.versions
-    
+
     $isDefaultVendor = $jdkVendorName -eq $defaultVendor
 
     foreach ($jdkVersionToInstall in $jdkVersionsToInstall) {
@@ -133,7 +133,11 @@ if (-not (Test-IsWin22)) {
 # Install Java tools
 # Force chocolatey to ignore dependencies on Ant and Maven or else they will download the Oracle JDK
 Choco-Install -PackageName ant -ArgumentList "-i"
-Choco-Install -PackageName maven -ArgumentList "-i"
+# Maven 3.9.x has multiple compatibilities problems
+$toolsetMavenVersion = (Get-ToolsetContent).maven.version
+$versionToInstall = Get-LatestChocoPackageVersion -TargetVersion $toolsetMavenVersion -PackageName "maven"
+
+Choco-Install -PackageName maven -ArgumentList "--version=$versionToInstall"
 Choco-Install -PackageName gradle
 
 # Add maven env variables to Machine

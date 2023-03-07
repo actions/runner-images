@@ -176,7 +176,8 @@
         { "name": "NET-Framework-45-Features", "includeAllSubFeatures": true },
         { "name": "Client-ProjFS", "optionalFeature": true },
         { "name": "NET-Framework-Features", "includeAllSubFeatures": true },
-        { "name": "Hyper-V", "includeAllSubFeatures": true }
+        { "name": "Hyper-V", "includeAllSubFeatures": true },
+        { "name": "HypervisorPlatform", "optionalFeature": true }
     ],
     "visualStudio": {
         "version" : "2022",
@@ -388,6 +389,9 @@
     },
     "node": {
         "default": "18"
+    },
+    "maven": {
+        "version": "3.8"
     },
     "mysql": {
         "version": "8.0"
