@@ -1,6 +1,6 @@
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4010
-- Image Version: 20230226.1
+- Image Version: 20230307.2
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -25,11 +25,11 @@
 - Helm 3.11.1
 - Miniconda 23.1.0 (pre-installed on the image but not added to PATH)
 - NPM 9.5.0
-- NuGet 6.4.0.123
+- NuGet 6.5.0.154
 - pip 23.0.1 (python 3.7)
 - Pipx 1.1.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit 223d33be7)
+- Vcpkg (build from commit e69c9817d)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -41,14 +41,14 @@
 ### Project Management
 - Ant 1.10.13
 - Gradle 7.6
-- Maven 3.9.0
+- Maven 3.8.7
 - sbt 1.8.2
 
 ### Tools
 - 7zip 22.01
 - aria2 1.36.0
 - azcopy 10.17.0
-- Bazel 6.0.0
+- Bazel 6.1.0
 - Bazelisk 1.13.2
 - Bicep 0.14.85
 - Cabal 3.8.1.0
@@ -61,12 +61,12 @@
 - ghc 9.4.4
 - Git 2.39.2.windows.1
 - Git LFS 3.3.0
-- Google Cloud SDK 419.0.0
+- Google Cloud SDK 421.0.0
 - ImageMagick 7.1.0-61
 - InnoSetup 6.2.2
 - jq 1.6
 - Kind 0.17.0
-- Kubectl 1.26.1
+- Kubectl 1.26.2
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.2
@@ -74,7 +74,7 @@
 - OpenSSL 1.1.1
 - Packer 1.8.5
 - Parcel 2.8.3
-- Pulumi 3.55.0
+- Pulumi 3.56.0
 - R 4.2.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.9.3
@@ -87,11 +87,11 @@
 - zstd 1.5.4
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.150
-- AWS CLI 2.10.3
-- AWS SAM CLI 1.74.0
+- Alibaba Cloud CLI 3.0.152
+- AWS CLI 2.11.0
+- AWS SAM CLI 1.76.0
 - AWS Session Manager CLI 1.2.398.0
-- Azure CLI 2.45.0
+- Azure CLI 2.46.0
 - Azure DevOps CLI extension 0.26.0
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 2.23.0
@@ -114,9 +114,9 @@
 ### Browsers and Drivers
 - Google Chrome 110.0.5481.178
 - Chrome Driver 110.0.5481.77
-- Microsoft Edge 110.0.1587.57
-- Microsoft Edge Driver 110.0.1587.57
-- Mozilla Firefox 110.0
+- Microsoft Edge 110.0.1587.63
+- Microsoft Edge Driver 110.0.1587.63
+- Mozilla Firefox 110.0.1
 - Gecko Driver 0.32.2
 - IE Driver 4.8.0.0
 - Selenium server 4.8.0
@@ -145,7 +145,7 @@
 | wslbash.exe   | C:\Windows\System32\bash.exe      |
 
 ### MSYS2
-- Pacman 6.0.1
+- Pacman 6.0.2
 
 #### Notes
 ```
@@ -509,10 +509,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.279
+- AWSPowershell: 4.1.285
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.22.0
+- Microsoft.Graph: 1.23.0
 - Pester: 3.4.0, 5.4.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0

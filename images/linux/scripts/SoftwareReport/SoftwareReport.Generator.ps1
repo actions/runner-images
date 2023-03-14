@@ -88,8 +88,8 @@ if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $projectManagement.AddToolVersion("Lerna", $(Get-LernaVersion))
 }
+$projectManagement.AddToolVersion("Maven", $(Get-MavenVersion))
 if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
-    $projectManagement.AddToolVersion("Maven", $(Get-MavenVersion))
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 }
 
