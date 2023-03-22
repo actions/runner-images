@@ -34,11 +34,18 @@ fi
 # Clean up temporary directories
 sudo rm -rf ~/utils ~/image-generation /tmp/*
 
-# Erase all indexes and wait until the rebuilding process ends,
-# for now there is no way to get status of indexing process, it takes around 3 minutes to accomplish
-sudo mdutil -E /
-sudo log stream | grep -q -E 'mds.*Released.*BackgroundTask' || true
-echo "Indexing completed"
+# Disable indexing volumes/Spotlight
+sudo defaults write ~/.Spotlight-V100/VolumeConfiguration.plist Exclusions -array "/Volumes" || true
+sudo defaults write ~/.Spotlight-V100/VolumeConfiguration.plist Exclusions -array "/Network" || true
+sudo killall mds || true
+sleep 60 # needed or else subsequent commands may fail
+sudo mdutil -a -i off / || true
+sudo mdutil -a -i off || true
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist || true
+sudo rm -rf /.Spotlight-V100/*
+# disable coreduetd due to unnecessary CPU/RAM usage
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.coreduetd.osx.plist || true
+
 
 # delete symlink for tests running
 sudo rm -f /usr/local/bin/invoke_tests
