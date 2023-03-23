@@ -4,9 +4,9 @@
 | [The Ubuntu 18.04 Actions runner image will begin deprecation on 2022/08/08 and will be fully unsupported by 2023/04/01](https://github.com/actions/runner-images/issues/6002) |
 ***
 # Ubuntu 20.04
-- OS Version: 20.04.5 LTS
+- OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1034-azure
-- Image Version: 20230313.1
+- Image Version: 20230317.1
 
 ## Installed Software
 
@@ -42,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.2.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit cfdeb75bb)
+- Vcpkg (build from commit ffe7360e0)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -63,18 +63,18 @@ to accomplish this.
 - Ant 1.10.7
 - Gradle 8.0.2
 - Lerna 6.5.1
-- Maven 3.8.7
+- Maven 3.8.8
 - Sbt 1.8.2
 
 ### Tools
 - Ansible 2.13.8
 - apt-fast 1.9.12
 - AzCopy 10.17.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 6.1.0
+- Bazel 6.1.1
 - Bazelisk 1.13.2
 - Bicep 0.15.31
 - Buildah 1.22.3
-- CMake 3.25.3
+- CMake 3.26.0
 - CodeQL Action Bundles 2.12.3 2.12.4
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
@@ -83,7 +83,7 @@ to accomplish this.
 - Docker-Moby Client 20.10.23+azure-2
 - Docker-Moby Server 20.10.23+azure-2
 - Fastlane 2.212.1
-- Git 2.39.2
+- Git 2.40.0
 - Git LFS 3.3.0
 - Git-ftp 1.6.0
 - Haveged 1.9.1
@@ -91,8 +91,8 @@ to accomplish this.
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.17.0
-- Kubectl 1.26.2
-- Kustomize 5.0.0
+- Kubectl 1.26.3
+- Kustomize 5.0.1
 - Leiningen 2.10.0
 - MediaInfo 19.09
 - Mercurial 5.3.1
@@ -105,30 +105,30 @@ to accomplish this.
 - Parcel 2.8.3
 - PhantomJS 2.1.1
 - Podman 3.4.2
-- Pulumi 3.57.1
+- Pulumi 3.58.0
 - R 4.2.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.4.0
+- Terraform 1.4.2
 - yamllint 1.29.0
 - yq 4.31.2
 - zstd 1.5.4
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.156
-- AWS CLI 2.11.2
-- AWS CLI Session Manager Plugin 1.2.398.0
+- Alibaba Cloud CLI 3.0.157
+- AWS CLI 2.11.4
+- AWS CLI Session Manager Plugin 1.2.463.0
 - AWS SAM CLI 1.76.0
 - Azure CLI 2.46.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.24.3
-- Google Cloud SDK 421.0.0
+- Google Cloud SDK 422.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 13.1.3
+- Netlify CLI 13.1.6
 - OpenShift CLI 4.12.7
 - ORAS CLI 0.16.0
-- Vercel CLI 28.16.15
+- Vercel CLI 28.17.0
 
 ### Java
 | Version              | Vendor          | Environment Variable |
@@ -143,7 +143,7 @@ to accomplish this.
 | CE 22.3.1 | GRAALVM_11_ROOT       |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.28, 8.1.16, 8.2.3
+- PHP: 7.4.33, 8.0.28, 8.1.17, 8.2.4
 - Composer 2.5.4
 - PHPUnit 8.5.33
 ```
@@ -174,8 +174,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 111.0.5563.64
 - ChromeDriver 111.0.5563.64
 - Chromium 111.0.5547.0
-- Microsoft Edge 111.0.1661.41
-- Microsoft Edge WebDriver 111.0.1661.41
+- Microsoft Edge 111.0.1661.44
+- Microsoft Edge WebDriver 111.0.1661.44
 - Selenium server 4.8.0
 - Mozilla Firefox 111.0
 - Geckodriver 0.32.2
@@ -189,7 +189,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.406, 7.0.103, 7.0.201
+- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.407, 7.0.104, 7.0.202
 - nbgv 3.5.119+5d25f54fec
 
 ### Databases
@@ -303,6 +303,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.14             | sha256:fa26727c28837d1471c2f1524d297a0255c153b5d023d7badd1412be7e6e12a2  | 2023-02-11 |
 | alpine:3.15             | sha256:59b00c6f1614a599aa83d946d2a276c9257d2d29461c86c6a114d9932f2ddcd4  | 2023-02-11 |
 | alpine:3.16             | sha256:2cf17aa35fbcb6ece81692a64bfbadaf096590241ed9f95dd5f94f0e9f674784  | 2023-02-11 |
+| alpine:3.17             | sha256:ff6bdca1701f3a8a67e328815ff2346b0e4067d32ec36b7992c1fdc001dc8517  | 2023-02-11 |
 | buildpack-deps:bullseye | sha256:6f2703639d3d17f70288d4ba212d55e159b682a990c20fc2a6562b098f01a1e7  | 2023-03-01 |
 | buildpack-deps:buster   | sha256:63be0fe0bfb9d06b8747dcd87683787ef6d82c6f05b8a2ae213c38d56dc2bf53  | 2023-03-01 |
 | buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
@@ -317,8 +318,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:18                 | sha256:8d9a875ee427897ef245302e31e2319385b092f1c3368b497e89790f240368f5  | 2023-03-08 |
 | node:18-alpine          | sha256:ffc770cdc09c9e83cccd99d663bb6ed56cfaa1bab94baf1b12b626aebeca9c10  | 2023-03-08 |
 | ubuntu:16.04            | sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6  | 2021-08-31 |
-| ubuntu:18.04            | sha256:1e32b9c52e8f22769df41e8f61066c77b2b35b0a423c4161c0e48eca2fd24f75  | 2023-03-01 |
-| ubuntu:20.04            | sha256:9fa30fcef427e5e88c76bc41ad37b7cc573e1d79cecb23035e413c4be6e476ab  | 2023-03-01 |
+| ubuntu:18.04            | sha256:8aa9c2798215f99544d1ce7439ea9c3a6dfd82de607da1cec3a8a2fae005931b  | 2023-03-08 |
+| ubuntu:20.04            | sha256:24a0df437301598d1a4b62ddf59fa0ed2969150d70d748c84225e6501e9c36b9  | 2023-03-08 |
 
 ### Installed apt packages
 | Name                   | Version                           |
