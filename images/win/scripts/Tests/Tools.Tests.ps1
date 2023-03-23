@@ -2,11 +2,11 @@ Describe "Azure Cosmos DB Emulator" {
     $cosmosDbEmulatorRegKey = Get-ChildItem "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | Get-ItemProperty | Where-Object { $_.DisplayName -eq 'Azure Cosmos DB Emulator' }
     $installDir = $cosmosDbEmulatorRegKey.InstallLocation
 
-    It "Azure Cosmos DB Emulator install location registry key exists" -TestCases @{installDir = $installDir} {
+    It "Azure Cosmos DB Emulator install location registry key exists" -TestCases @{installDir = $installDir } {
         $installDir | Should -Not -BeNullOrEmpty
     }
 
-    It "Azure Cosmos DB Emulator exe file exists" -TestCases @{installDir = $installDir} {
+    It "Azure Cosmos DB Emulator exe file exists" -TestCases @{installDir = $installDir } {
         $exeFilePath = Join-Path $installDir 'CosmosDB.Emulator.exe'
         $exeFilePath | Should -Exist
     }
@@ -17,7 +17,7 @@ Describe "Bazel" {
         @{ ToolName = "bazel" }
         @{ ToolName = "bazelisk" }
     ) {
-        "$ToolName --version"| Should -ReturnZeroExitCode
+        "$ToolName --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -135,7 +135,7 @@ Describe "NET48" {
 
 Describe "NSIS" {
     It "NSIS" {
-       "makensis /VERSION" | Should -ReturnZeroExitCode
+        "makensis /VERSION" | Should -ReturnZeroExitCode
     }
 }
 
@@ -211,9 +211,9 @@ Describe "Pipx" {
 }
 
 Describe "Kotlin" {
-    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlin-dce-js", "kotlinc-jvm")
+    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlin-dce-js", "kotlinc-jvm")
 
-    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  {
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
         "$toolName -version" | Should -ReturnZeroExitCode
     }
 }
@@ -221,5 +221,11 @@ Describe "Kotlin" {
 Describe "SQL OLEDB Driver" {
     It "SQL OLEDB Driver" {
         "HKLM:\SOFTWARE\Microsoft\MSOLEDBSQL" | Should -Exist
+    }
+}
+
+Describe "OpenSSL" {
+    It "OpenSSL" {
+        "openssl version" | Should -ReturnZeroExitCode
     }
 }
