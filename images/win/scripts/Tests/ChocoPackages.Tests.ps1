@@ -42,25 +42,25 @@ Describe "Jq" {
 
 Describe "Nuget" {
     It "Nuget" {
-        "nuget" | Should -ReturnZeroExitCode
+       "nuget" | Should -ReturnZeroExitCode
     }
 }
 
 Describe "Packer" {
     It "Packer" {
-        "packer --version" | Should -ReturnZeroExitCode
+       "packer --version" | Should -ReturnZeroExitCode
     }
 }
 
 Describe "Perl" {
     It "Perl" {
-        "perl --version" | Should -ReturnZeroExitCode
+       "perl --version" | Should -ReturnZeroExitCode
     }
 }
 
 Describe "Pulumi" {
     It "pulumi" {
-        "pulumi version" | Should -ReturnZeroExitCode
+       "pulumi version" | Should -ReturnZeroExitCode
     }
 }
 
