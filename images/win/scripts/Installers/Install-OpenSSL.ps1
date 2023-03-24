@@ -5,14 +5,17 @@
 
 $arch = "INTEL"
 $bits = "64"
-$light = "False"
+$light = $false
 $installer = "exe"
 $version = (Get-ToolsetContent).openssl.version
 $installDir = "$Env:ProgramFiles\OpenSSL"
 
 # Fetch available installers list
 $jsonUrl = 'https://raw.githubusercontent.com/slproweb/opensslhashes/master/win32_openssl_hashes.json'
-$installersAvailable = (Invoke-WebRequest $jsonUrl | ConvertFrom-Json -AsHashtable).files.values
+$installersAvailable = @()
+(Invoke-RestMethod $jsonUrl).files.PSObject.Properties |
+Where-Object MemberType -Eq NoteProperty |
+ForEach-Object { $installersAvailable += $_.Value }
 
 # Select appropriate installers
 $installersMatching = $installersAvailable | Where-Object {
