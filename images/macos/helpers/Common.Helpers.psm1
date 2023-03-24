@@ -101,7 +101,8 @@ function Start-DownloadWithRetry {
         [string] $Url,
         [string] $Name,
         [string] $DownloadPath = "${env:Temp}",
-        [int] $Retries = 20
+        [int] $Retries = 20,
+        [int] $Interval = 30
     )
 
     if ([String]::IsNullOrEmpty($Name)) {
@@ -130,8 +131,8 @@ function Start-DownloadWithRetry {
                 exit 1
             }
 
-            Write-Host "Waiting 30 seconds before retrying. Retries left: $Retries"
-            Start-Sleep -Seconds 30
+            Write-Host "Waiting $Interval seconds before retrying. Retries left: $Retries"
+            Start-Sleep -Seconds $Interval
         }
     }
 
