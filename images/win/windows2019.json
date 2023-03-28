@@ -185,7 +185,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-AzureDevOpsCli.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-CommonUtils.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-JavaTools.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Kotlin.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-Kotlin.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-OpenSSL.ps1"
             ]
         },
         {
