@@ -74,12 +74,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.17.*",
                 "1.18.*",
                 "1.19.*",
                 "1.20.*"
             ],
-            "default": "1.17.*"
+            "default": "1.20.*"
         }
     ],
     "powershellModules": [
