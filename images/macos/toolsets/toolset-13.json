@@ -95,7 +95,7 @@
         ]
     },
     "go": {
-        "default": "1.18"
+        "default": "1.20"
     },
     "node": {
         "default": "18"
