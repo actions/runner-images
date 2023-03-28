@@ -324,7 +324,7 @@ Describe "Pulumi" {
     }
 }
 
-Describe "Phantomjs" -Skip:(Test-IsUbuntu22) {
+Describe "Phantomjs" -Skip:((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     It "phantomjs" {
         "phantomjs --version" | Should -ReturnZeroExitCode
     }

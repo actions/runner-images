@@ -135,7 +135,7 @@ $tools.AddToolVersion("nvm", $(Get-NvmVersion))
 $tools.AddToolVersion("OpenSSL", $(Get-OpensslVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+if (Test-IsUbuntu18) {
     $tools.AddToolVersion("PhantomJS", $(Get-PhantomJSVersion))
 }
 $tools.AddToolVersion("Podman", $(Get-PodManVersion))
