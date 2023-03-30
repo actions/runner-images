@@ -189,6 +189,7 @@ function Get-PackerVersion {
 }
 
 function Get-PhantomJSVersion {
+    $env:OPENSSL_CONF="/etc/ssl"; phantomjs --version
     return $(phantomjs --version)
 }
 

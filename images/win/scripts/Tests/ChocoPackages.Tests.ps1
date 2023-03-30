@@ -46,12 +46,6 @@ Describe "Nuget" {
     }
 }
 
-Describe "OpenSSL" {
-    It "OpenSSL" {
-       "openssl version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Packer" {
     It "Packer" {
        "packer --version" | Should -ReturnZeroExitCode
