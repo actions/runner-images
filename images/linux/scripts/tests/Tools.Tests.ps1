@@ -326,6 +326,7 @@ Describe "Pulumi" {
 
 Describe "Phantomjs" -Skip:(Test-IsUbuntu22) {
     It "phantomjs" {
+        $env:OPENSSL_CONF="/etc/ssl"; phantomjs --version
         "phantomjs --version" | Should -ReturnZeroExitCode
     }
 }
