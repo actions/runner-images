@@ -223,3 +223,9 @@ Describe "SQL OLEDB Driver" {
         "HKLM:\SOFTWARE\Microsoft\MSOLEDBSQL" | Should -Exist
     }
 }
+
+Describe "OpenSSL" {
+    It "OpenSSL" {
+        "openssl version" | Should -ReturnZeroExitCode
+    }
+}

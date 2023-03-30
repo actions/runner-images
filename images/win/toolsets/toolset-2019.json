@@ -74,12 +74,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.17.*",
                 "1.18.*",
                 "1.19.*",
                 "1.20.*"
             ],
-            "default": "1.17.*"
+            "default": "1.20.*"
         }
     ],
     "powershellModules": [
@@ -455,10 +454,6 @@
             { "name": "innosetup" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
-            {
-                "name": "openssl.light",
-                "args": [ "--version=1.1.1.20181020" ]
-            },
             { "name": "packer" },
             { "name": "strawberryperl" },
             { "name": "pulumi" },
@@ -503,5 +498,8 @@
     "kotlin": {
         "version": "latest",
         "binary_name": "kotlin-compiler"
+    },
+    "openssl": {
+        "version": "1.1.1"
     }
 }
