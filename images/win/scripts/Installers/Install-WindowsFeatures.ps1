@@ -24,3 +24,6 @@ foreach ($feature in $windowsFeatures) {
         throw "Failed to activate Windows Feature '$($feature.name)'"
     }
 }
+
+# 
+bcdedit /set hypervisorschedulertype root
