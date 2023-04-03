@@ -36,7 +36,6 @@ body:
     attributes:
       label: Runner images affected
       options:
-        - label: Ubuntu 18.04
         - label: Ubuntu 20.04
         - label: Ubuntu 22.04
         - label: macOS 11

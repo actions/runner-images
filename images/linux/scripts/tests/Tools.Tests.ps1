@@ -331,7 +331,7 @@ Describe "Phantomjs" -Skip:(Test-IsUbuntu22) {
     }
 }
 
-Describe "GraalVM" -Skip:(Test-IsUbuntu18) {
+Describe "GraalVM" {
     It "graalvm" {
         '$GRAALVM_11_ROOT/bin/java -version' | Should -ReturnZeroExitCode
     }
