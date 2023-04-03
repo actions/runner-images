@@ -1,12 +1,12 @@
 | Announcements |
 |-|
+| [GraalVM JDK11 will be removed from agents on April 10, 2023](https://github.com/actions/runner-images/issues/7338) |
 | [[All OSes] Go 1.17.x will be removed and 1.20.x set as default on April, 3](https://github.com/actions/runner-images/issues/7276) |
-| [GCC-9 will be removed from macOS 11 on March, 20](https://github.com/actions/runner-images/issues/7136) |
 ***
 # macOS 12
-- OS Version: macOS 12.6.3 (21G419)
+- OS Version: macOS 12.6.4 (21G526)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20230318.1
+- Image Version: 20230328.1
 
 ## Installed Software
 
@@ -19,7 +19,7 @@
 - GCC 12 (Homebrew GCC 12.2.0) - available by `gcc-12` alias
 - GNU Fortran 11 (Homebrew GCC 11.3.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.2.0) - available by `gfortran-12` alias
-- Go 1.17.13
+- Go 1.20.2
 - Julia 1.8.5
 - Kotlin 1.8.10-release-430
 - Mono 6.12.0.188
@@ -35,19 +35,19 @@
 - Ruby 3.0.5p211
 
 ### Package Management
-- Bundler 2.4.8
+- Bundler 2.4.10
 - Carthage 0.39.0
 - CocoaPods 1.12.0
-- Composer 2.5.4
-- Homebrew 4.0.6
+- Composer 2.5.5
+- Homebrew 4.0.10
 - Miniconda 23.1.0
 - NPM 9.5.0
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 23.0.1 (python 3.11)
 - Pipx 1.2.0
-- RubyGems 3.4.8
-- Vcpkg 2023 (build from commit ffe7360e0)
+- RubyGems 3.4.10
+- Vcpkg 2023 (build from commit d13e3a060)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -58,7 +58,7 @@
 
 ### Project Management
 - Apache Ant 1.10.13
-- Apache Maven 3.9.0
+- Apache Maven 3.9.1
 - Gradle 8.0.2
 - Sbt 1.8.2
 
@@ -69,15 +69,15 @@
 - bazel 6.1.1
 - bazelisk 1.16.0
 - bsdtar 3.5.1 - available by 'tar' alias
-- Curl 7.88.1
+- Curl 8.0.1
 - Git 2.40.0
 - Git LFS 3.3.0
-- GitHub CLI 2.24.3
+- GitHub CLI 2.25.1
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.4.0
 - Hub CLI 2.14.2
-- ImageMagick 7.1.1-3
+- ImageMagick 7.1.1-5
 - jq 1.6
 - mongo 5.0.15
 - mongod 5.0.15
@@ -87,45 +87,45 @@
 - psql (PostgreSQL) 14.7 (Homebrew)
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
-- Switchaudio-osx 1.1.0
+- Switchaudio-osx 1.2.0
 - Vagrant 2.3.4
 - VirtualBox 6.1.38r153438
-- yq 4.32.1
+- yq 4.33.1
 - zstd 1.5.4
 
 ### Tools
 - App Center CLI 2.13.3
-- AWS CLI 2.11.4
-- AWS SAM CLI 1.76.0
-- AWS Session Manager CLI 1.2.398.0
+- AWS CLI 2.11.6
+- AWS SAM CLI 1.78.0
+- AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.46.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.15.31
 - Cabal 3.6.2.0
-- Cmake 3.26.0
-- CodeQL Action Bundles 2.12.3 2.12.4
+- Cmake 3.26.1
+- CodeQL Action Bundles 2.12.4 2.12.5
 - Colima 0.5.4
 - Fastlane 2.212.1
 - GHC 9.6.1
 - GHCup 0.1.19.2
 - Jazzy 0.14.3
 - Stack 2.9.3
-- SwiftFormat 0.51.2
+- SwiftFormat 0.51.3
 - Swig 4.1.1
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
 
 ### Linters
-- SwiftLint 0.50.3
-- Yamllint 1.29.0
+- SwiftLint 0.51.0
+- Yamllint 1.30.0
 
 ### Browsers
-- Safari 16.3 (17614.4.6.11.6)
-- SafariDriver 16.3 (17614.4.6.11.6)
-- Google Chrome 111.0.5563.64
+- Safari 16.4 (17615.1.26.101.9)
+- SafariDriver 16.4 (17615.1.26.101.9)
+- Google Chrome 111.0.5563.146
 - ChromeDriver 111.0.5563.64
-- Microsoft Edge 111.0.1661.44
-- Microsoft Edge WebDriver 111.0.1661.44
-- Mozilla Firefox 111.0
+- Microsoft Edge 111.0.1661.54
+- Microsoft Edge WebDriver 111.0.1661.54
+- Mozilla Firefox 111.0.1
 - geckodriver 0.32.2
 - Selenium server 4.8.0
 
@@ -174,20 +174,19 @@
 - 18.15.0
 
 #### Go
-- 1.17.13
 - 1.18.10
 - 1.19.7
 - 1.20.2
 
 ### Rust Tools
-- Cargo 1.68.0
-- Rust 1.68.0
-- Rustdoc 1.68.0
+- Cargo 1.68.2
+- Rust 1.68.2
+- Rustdoc 1.68.2
 - Rustup 1.25.2
 
 #### Packages
 - Bindgen 0.64.0
-- Cargo-audit 0.17.4
+- Cargo-audit 0.17.5
 - Cargo-outdated 0.11.2
 - Cbindgen 0.24.3
 - Clippy 0.1.68
@@ -211,10 +210,10 @@
 ### Xamarin
 
 #### Visual Studio for Mac
-| Version        | Build       | Path                                 |
-| -------------- | ----------- | ------------------------------------ |
-| 2019           | 8.10.25.2   | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.5.0.1802 | /Applications/Visual Studio.app      |
+| Version        | Build     | Path                                 |
+| -------------- | --------- | ------------------------------------ |
+| 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
+| 2022 (default) | 17.5.3.15 | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
@@ -333,7 +332,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                                                                      |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                          |
-| Android Emulator           | 32.1.11                                                                                                                                                                                                      |
+| Android Emulator           | 32.1.12                                                                                                                                                                                                      |
 | Android SDK Build-tools    | 33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                         |
 | Android SDK Platforms      | android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 34.0.1                                                                                                                                                                                                       |
@@ -357,7 +356,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 ### Miscellaneous
 - libXext 1.3.5
 - libXft 2.3.7
-- Tcl/Tk 8.6.13_1
+- Tcl/Tk 8.6.13_2
 - Zlib 1.2.13
 
 #### Environment variables
