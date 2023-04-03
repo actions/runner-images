@@ -30,6 +30,7 @@ $softwareReport = [SoftwareReport]::new("Ubuntu $(Get-OSVersionShort)")
 $softwareReport.Root.AddToolVersion("OS Version:", $(Get-OSVersionFull))
 $softwareReport.Root.AddToolVersion("Kernel Version:", $(Get-KernelVersion))
 $softwareReport.Root.AddToolVersion("Image Version:", $env:IMAGE_VERSION)
+$softwareReport.Root.AddToolVersion("Systemd version:", "$(Get-SystemdVersion))
 
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 

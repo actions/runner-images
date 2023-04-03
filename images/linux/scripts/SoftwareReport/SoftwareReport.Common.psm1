@@ -371,3 +371,9 @@ function Build-PackageManagementEnvironmentTable {
         }
     )
 }
+
+function Get-SystemdVersion {
+    $version = systemctl --version | head -n 1
+    $result = [regex]::Matches($version, "((.*))").Value
+    return $result
+}
