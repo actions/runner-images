@@ -20,15 +20,9 @@ apt-get update
 apt-get install --no-install-recommends esl-erlang || true
 
 # Downoloading and installing a deb file manually, ignore deptree errors
-if isUbuntu18; then
-    esl_url="https://packages.erlang-solutions.com/ubuntu/pool/esl-erlang_25.2.3-1~ubuntu~bionic_amd64.deb"
-    download_with_retries $esl_url  "/tmp"
-    dpkg -i /tmp/esl-erlang_25.2.3-1~ubuntu~bionic_amd64.deb || true
-else
-    esl_url="https://packages.erlang-solutions.com/ubuntu/pool/esl-erlang_25.2.3-2~ubuntu~focal_amd64.deb"
-    download_with_retries $esl_url  "/tmp"
-    dpkg -i /tmp/esl-erlang_25.2.3-2~ubuntu~focal_amd64.deb || true
-fi
+esl_url="https://packages.erlang-solutions.com/ubuntu/pool/esl-erlang_25.2.3-2~ubuntu~focal_amd64.deb"
+download_with_retries $esl_url  "/tmp"
+dpkg -i /tmp/esl-erlang_25.2.3-2~ubuntu~focal_amd64.deb || true
 
 # Restore a proper deptree which brings esl-erlang back in the loop
 # but eleminate unwanted X.org dependencies
