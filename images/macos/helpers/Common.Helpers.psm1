@@ -28,12 +28,14 @@ function Get-EnvironmentVariable($variable) {
 function Get-OSVersion {
     $osVersion = [Environment]::OSVersion
     $osVersionMajorMinor = $osVersion.Version.ToString(2)
+    $processorArchitecture = arch
     return [PSCustomObject]@{
         Version = $osVersion.Version
         Platform = $osVersion.Platform
         IsBigSur = $osVersion.Version.Major -eq "11"
         IsMonterey = $osVersion.Version.Major -eq "12"
-        IsVentura = $osVersion.Version.Major -eq "13"
+        IsVentura = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -ne "arm64")
+        IsVenturaArm64 = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -eq "arm64")
     }
 }
 
@@ -149,4 +151,8 @@ function Add-EnvironmentVariable {
 
     $envVar = "export {0}={1}" -f $Name, $Value
     Add-Content -Path $FilePath -Value $envVar
+}
+
+function isVeertu {
+    return (Test-Path -Path "/Library/Application Support/Veertu")
 }

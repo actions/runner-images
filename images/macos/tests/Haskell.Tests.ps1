@@ -1,6 +1,7 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 $os = Get-OSVersion
 
-Describe "Haskell" {
+Describe "Haskell" -Skip:($os.IsVenturaArm64) {
     Context "GHCup" {
         It "GHCup" {
             "ghcup --version" | Should -ReturnZeroExitCode

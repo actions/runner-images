@@ -1,4 +1,7 @@
-Describe "Chrome" {
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+$os = Get-OSVersion
+
+Describe "Chrome" -Skip:($os.IsVenturaArm64) {
     BeforeAll {
         $chromeLocation = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     }
@@ -19,13 +22,13 @@ Describe "Chrome" {
     }
 }
 
-Describe "Selenium server" {
+Describe "Selenium server" -Skip:($os.IsVenturaArm64) {
     It "Selenium server" {
         (Get-ChildItem -Path "/usr/local/Cellar/selenium-server*/*").Name | Should -BeLike "4.*"
     }
 }
 
-Describe "Edge" {
+Describe "Edge" -Skip:($os.IsVenturaArm64) {
     It "Microsoft Edge" {
         $edgeLocation = "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
         $edgeLocation | Should -Exist
@@ -37,7 +40,7 @@ Describe "Edge" {
     }
 }
 
-Describe "Firefox" {
+Describe "Firefox" -Skip:($os.IsVenturaArm64) {
     It "Firefox" {
         $firefoxLocation = "/Applications/Firefox.app/Contents/MacOS/firefox"
         $firefoxLocation | Should -Exist

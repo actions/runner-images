@@ -25,7 +25,7 @@ Describe "Certificate" {
     }
 }
 
-Describe "Audio device" -Skip:($os.IsVentura) {
+Describe "Audio device" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Sox is installed" {
         "sox --version" | Should -ReturnZeroExitCode
     }
@@ -39,13 +39,13 @@ Describe "Audio device" -Skip:($os.IsVentura) {
     }
 }
 
-Describe "Screen Resolution" {
+Describe "Screen Resolution" -Skip:(isVeertu) {
     It "Screen Resolution" {
         system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885|1920 x 1080"
     }
 }
 
-Describe "Open windows" {
+Describe "Open windows" -Skip:(isVeertu) {
     It "Opened windows not found" {
         'tell application id "com.apple.systemevents" to get every window of (every process whose class of windows contains window)' | Tee-Object /tmp/windows.osascript
         $cmd = "osascript /tmp/windows.osascript"

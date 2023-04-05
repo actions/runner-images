@@ -18,7 +18,7 @@ BeforeAll {
     }
 }
 
-Describe "Mono" -Skip:($os.IsVentura) {
+Describe "Mono" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     $MONO_VERSIONS | ForEach-Object {
         Context "$_" {
             $MONO_VERSIONS_PATH = "/Library/Frameworks/Mono.framework/Versions"
@@ -82,7 +82,7 @@ Describe "Mono" -Skip:($os.IsVentura) {
     }
 }
 
-Describe "Xamarin.iOS" -Skip:($os.IsVentura) {
+Describe "Xamarin.iOS" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     $XAMARIN_IOS_VERSIONS | ForEach-Object {
         Context "$_" {
             $XAMARIN_IOS_VERSIONS_PATH = "/Library/Frameworks/Xamarin.iOS.framework/Versions"
@@ -115,7 +115,7 @@ Describe "Xamarin.iOS" -Skip:($os.IsVentura) {
     }
 }
 
-Describe "Xamarin.Mac" -Skip:($os.IsVentura) {
+Describe "Xamarin.Mac" -Skip:($os.IsVentura-or $os.IsVenturaArm64) {
     $XAMARIN_MAC_VERSIONS | ForEach-Object {
         Context "$_" {
             $XAMARIN_MAC_VERSIONS_PATH = "/Library/Frameworks/Xamarin.Mac.framework/Versions"
@@ -148,7 +148,7 @@ Describe "Xamarin.Mac" -Skip:($os.IsVentura) {
     }
 }
 
-Describe "Xamarin.Android" -Skip:($os.IsVentura) {
+Describe "Xamarin.Android" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     $XAMARIN_ANDROID_VERSIONS | ForEach-Object {
         Context "$_" {
             $XAMARIN_ANDROID_VERSIONS_PATH = "/Library/Frameworks/Xamarin.Android.framework/Versions"
@@ -188,7 +188,7 @@ Describe "Xamarin.Android" -Skip:($os.IsVentura) {
     }
 }
 
-Describe "Xamarin Bundles" -Skip:($os.IsVentura) {
+Describe "Xamarin Bundles" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     BeforeAll {
         $MONO_VERSIONS_PATH = "/Library/Frameworks/Mono.framework/Versions"
         $XAMARIN_IOS_VERSIONS_PATH = "/Library/Frameworks/Xamarin.iOS.framework/Versions"
@@ -293,7 +293,7 @@ Describe "Xamarin Bundles" -Skip:($os.IsVentura) {
     }
 }
 
-Describe "Nuget" -Skip:($os.IsVentura) {
+Describe "Nuget" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Nuget config contains nuget.org feed" {
         Get-Content $env:HOME/.config/NuGet/NuGet.Config | Out-String | Should -Match "nuget.org"
     }

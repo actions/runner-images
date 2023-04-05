@@ -2,7 +2,7 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 $os = Get-OSVersion
 
-Describe "Apache" {
+Describe "Apache" -Skip:($os.IsVenturaArm64) {
     It "Apache CLI" {
         "httpd -v" | Should -ReturnZeroExitCode
     }
@@ -12,7 +12,7 @@ Describe "Apache" {
     }
 }
 
-Describe "Nginx" -Skip:($os.IsVentura) {
+Describe "Nginx" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Nginx CLI" {
         "nginx -v" | Should -ReturnZeroExitCode
     }
