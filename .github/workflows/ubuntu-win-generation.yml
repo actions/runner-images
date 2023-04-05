@@ -24,7 +24,12 @@ defaults:
 
 jobs:
   build:
+    #
+    # "azure-builds" is dedicated runner not available in forks.
+    # to reduce undesired run attempts in forks, stick jobs to "actions" organization only
+    #
     runs-on: azure-builds
+    if: ${{ github.repository_owner == 'actions' }}
     timeout-minutes: 1200
     steps:
       - name: Determine checkout type
