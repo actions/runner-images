@@ -171,8 +171,6 @@ function Format-XcodeSimulatorName {
     )
 
     $formattedDeviceName = $Device.Replace("ʀ", "R")
-    # Convert "Apple Watch Series 5 (44mm)" -> "Apple Watch Series 5 - 44mm" to make all Xcode versions consistent
-    $formattedDeviceName = $formattedDeviceName -replace '\((\d+mm)\)', '- $1'
     return $formattedDeviceName
 }
 
@@ -245,7 +243,7 @@ function Build-XcodeSupportToolsSection {
     $nomadShenzhenOutput = Run-Command "ipa -version"
     $nomadShenzhen = [regex]::matches($nomadShenzhenOutput, "(\d+.){2}\d+").Value
 
-    if ($os.IsLessThanMonterey) {
+    if ($os.IsBigSur) {
         $toolNodes += [ToolVersionNode]::new("Nomad CLI", $nomadCLI)
         $toolNodes += [ToolVersionNode]::new("Nomad shenzhen CLI", $nomadShenzhen)
     }

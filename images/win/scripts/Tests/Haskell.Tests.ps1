@@ -1,6 +1,6 @@
 Describe "Haskell" {
-    $chocoPackagesPath = Join-Path $env:ChocolateyInstall "lib"
-    [array]$ghcVersionList = Get-ChildItem -Path $chocoPackagesPath -Filter "ghc.*" | ForEach-Object { $_.Name.TrimStart("ghc.") }
+    $ghcPackagesPath = "c:\ghcup\ghc"
+    [array]$ghcVersionList = Get-ChildItem -Path $ghcPackagesPath -Filter "*" | ForEach-Object { $_.Name.Trim() }
     $ghcCount = $ghcVersionList.Count
     $defaultGhcVersion = $ghcVersionList | Sort-Object {[Version]$_} | Select-Object -Last 1
     $ghcDefaultCases = @{
@@ -11,12 +11,7 @@ Describe "Haskell" {
     $ghcTestCases = $ghcVersionList | ForEach-Object {
         $ghcVersion = $_
         $ghcShortVersion = ([version]$ghcVersion).ToString(3)
-        $binGhcPath = Join-Path $chocoPackagesPath "ghc.$ghcVersion\tools\ghc-$ghcShortVersion\bin\ghc.exe"
-        # The most recent GHC versions installation directory is $env:ChocolateyToolsLocation instead of $env:ChocolateyInstall\lib
-        if (-not (Test-Path $binGhcPath))
-        {
-            $binGhcPath = Join-Path $env:ChocolateyToolsLocation "ghc-$ghcShortVersion\bin\ghc.exe"
-        }
+        $binGhcPath = Join-Path $ghcPackagesPath "$ghcShortVersion\bin\ghc.exe"
         @{
             ghcVersion = $ghcVersion
             ghcShortVersion = $ghcShortVersion
@@ -59,5 +54,9 @@ Describe "Haskell" {
 
     It "ghcup is installed" {
         "ghcup --version" | Should -ReturnZeroExitCode
+    }
+
+    It "ghcup can access msys2" {
+        "ghcup run --mingw-path -- pacman --version" | Should -ReturnZeroExitCode
     }
 }

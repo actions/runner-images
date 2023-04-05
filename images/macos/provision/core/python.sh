@@ -20,7 +20,7 @@ fi
 # Explicitly overwrite symlinks created by Python2 such as /usr/local/bin/2to3 since they conflict with symlinks from Python3
 # https://github.com/actions/runner-images/issues/2322
 echo "Brew Installing Python 3"
-brew_smart_install "python@3.10" || brew link --overwrite python@3.10
+brew_smart_install "python@3.11" || brew link --overwrite python@3.11
 
 echo "Installing pipx"
 export PIPX_BIN_DIR=/usr/local/opt/pipx_bin

@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    veertu-anka = {
+      version = "= v3.1.0"
+      source = "github.com/veertuinc/veertu-anka"
+    }
+  }
+}
+
 variable "source_vm_name" {
   type = string
 }
@@ -164,6 +173,7 @@ build {
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
+      "./provision/core/mongodb.sh",
       "./provision/core/node.sh",
       "./provision/core/commonutils.sh"
     ]
@@ -206,7 +216,6 @@ build {
       "./provision/core/apache.sh",
       "./provision/core/nginx.sh",
       "./provision/core/postgresql.sh",
-      "./provision/core/mongodb.sh",
       "./provision/core/audiodevice.sh",
       "./provision/core/vcpkg.sh",
       "./provision/core/miniconda.sh",
@@ -235,6 +244,10 @@ build {
   provisioner "shell" {
     script = "./provision/core/delete-duplicate-sims.rb"
     execute_command = "source $HOME/.bash_profile; ruby {{ .Path }}"
+  }
+  provisioner "shell" {
+      script = "./provision/core/fix-xcode-simulators.ps1"
+      execute_command = "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}"
   }
   provisioner "shell" {
     inline = [

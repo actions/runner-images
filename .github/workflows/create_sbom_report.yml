@@ -46,6 +46,7 @@ jobs:
       - name: Run SYFT on macOS
         if: ${{ runner.os == 'macOS' }}
         run: syft dir:/ -vv -o spdx-json=sbom.json --exclude ./Users --exclude ./System/Volumes --exclude ./private
+        shell: bash
       #Preparing artifact (raw SBOM.json is too big)
       - name: Compress SBOM file
         run: Compress-Archive sbom.json sbom.json.zip

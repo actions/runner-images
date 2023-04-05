@@ -517,7 +517,7 @@ function Get-AndroidPackagesByVersion {
     $Type = $MinimumVersion.GetType()
     $packagesByName = Get-AndroidPackagesByName -AndroidPackages $AndroidPackages -PrefixPackageName $PrefixPackageName
     $packagesByVersion = $packagesByName | Where-Object { ($_.Split($Delimiter)[$Index] -as $Type) -ge $MinimumVersion }
-    return $packagesByVersion | Sort-Object { $_.Split($Delimiter)[$Index] -as $Type} -Unique
+    return $packagesByVersion | Sort-Object -Unique
 }
 
 function Get-WindowsUpdatesHistory {

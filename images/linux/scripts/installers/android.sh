@@ -43,6 +43,8 @@ echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
 # Create android sdk directory
 mkdir -p ${ANDROID_SDK_ROOT}
 
+cmdlineTools="android-cmdline-tools.zip"
+
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
 cmdlineToolsVersion=$(get_toolset_value '.android."cmdline-tools"')
@@ -50,9 +52,9 @@ if [[ $cmdlineToolsVersion == "latest" ]]; then
     repositoryXmlUrl="https://dl.google.com/android/repository/repository2-1.xml"
     download_with_retries $repositoryXmlUrl "/tmp" "repository2-1.xml"
     cmdlineToolsVersion=$(
-      yq -p=xml \
-      '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest").archives.archive[].complete.url | select(contains("commandlinetools-linux"))' \
-      /tmp/repository2-1.xml
+    yq -p=xml \
+    '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest" and .channelRef."+@ref" == "channel-0").archives.archive[].complete.url | select(contains("commandlinetools-linux"))' \
+    /tmp/repository2-1.xml
     )
 
     if [[ -z $cmdlineToolsVersion ]]; then
@@ -61,8 +63,8 @@ if [[ $cmdlineToolsVersion == "latest" ]]; then
     fi
 fi
 
-cmdlineTools="android-cmdline-tools.zip"
 download_with_retries "https://dl.google.com/android/repository/${cmdlineToolsVersion}" "." $cmdlineTools
+
 unzip -qq $cmdlineTools -d ${ANDROID_SDK_ROOT}/cmdline-tools
 # Command line tools need to be placed in ${ANDROID_SDK_ROOT}/sdk/cmdline-tools/latest to determine SDK root
 mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/latest

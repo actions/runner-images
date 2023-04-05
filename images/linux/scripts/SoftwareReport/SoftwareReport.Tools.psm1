@@ -30,12 +30,17 @@ function Get-BicepVersion {
     return $Matches.Version
 }
 
-function Get-CodeQLBundleVersion {
+function Get-CodeQLBundleVersions {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-    $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
-    $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
-    $CodeQLVersion = & $CodeQLPath version --quiet
-    return $CodeQLVersion
+    $CodeQLVersionPaths = Get-ChildItem $CodeQLVersionsWildcard 
+    $CodeQlVersions=@()
+    foreach ($CodeQLVersionPath in $CodeQLVersionPaths) {
+        $FullCodeQLVersionPath = $CodeQLVersionPath | Select-Object -Expand FullName
+        $CodeQLPath = Join-Path $FullCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+        $CodeQLVersion = & $CodeQLPath version --quiet
+        $CodeQLVersions += $CodeQLVersion
+    }
+    return $CodeQLVersions
 }
 
 function Get-PodManVersion {
@@ -184,6 +189,7 @@ function Get-PackerVersion {
 }
 
 function Get-PhantomJSVersion {
+    $env:OPENSSL_CONF="/etc/ssl"; phantomjs --version
     return $(phantomjs --version)
 }
 
