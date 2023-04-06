@@ -123,16 +123,6 @@ Describe "Go" {
     }
 }
 
-Describe "GraalVM" {
-    It "graalvm" {
-        '$GRAALVM_11_ROOT/java -version' | Should -ReturnZeroExitCode
-    }
-
-    It "native-image" {
-        '$GRAALVM_11_ROOT/native-image --version' | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "VirtualBox" -Skip:($os.IsBigSur) {
     It "Check kext kernel modules" {
         kextstat | Out-String | Should -Match "org.virtualbox.kext"
