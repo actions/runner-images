@@ -168,9 +168,6 @@ $cliTools.AddToolVersion("Vercel CLI", $(Get-VerselCliversion))
 
 
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $installedSoftware.AddHeader("GraalVM").AddTable($(Build-GraalVMTable))
-}
 
 $phpTools = $installedSoftware.AddHeader("PHP Tools")
 $phpTools.AddToolVersionsListInline("PHP", $(Get-PHPVersions), "^\d+\.\d+")

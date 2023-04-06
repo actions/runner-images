@@ -253,7 +253,6 @@
                 "{{template_dir}}/scripts/installers/android.sh",
                 "{{template_dir}}/scripts/installers/pypy.sh",
                 "{{template_dir}}/scripts/installers/python.sh",
-                "{{template_dir}}/scripts/installers/graalvm.sh",
                 "{{template_dir}}/scripts/installers/zstd.sh"
             ],
             "environment_vars": [
