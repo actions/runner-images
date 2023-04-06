@@ -41,7 +41,7 @@ enableRepositories() {
 
 osLabel=$(getOSVersionLabel)
 
-    if isUbuntu18 || isUbuntu20; then
+    if isUbuntu20; then
         # Add Adopt PPA
         wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adopt.gpg
         echo "deb [signed-by=/usr/share/keyrings/adopt.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ $osLabel main" > /etc/apt/sources.list.d/adopt.list
@@ -52,11 +52,6 @@ osLabel=$(getOSVersionLabel)
     wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adoptium.gpg
     echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ $osLabel main" > /etc/apt/sources.list.d/adoptium.list
 
-    if isUbuntu18 ; then
-        # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
-        wget -qO - https://www.azul.com/wp-content/uploads/2021/05/0xB1998361219BD9C9.txt | gpg --dearmor > /usr/share/keyrings/zulu.gpg
-        echo "deb [signed-by=/usr/share/keyrings/zulu.gpg] https://repos.azul.com/azure-only/zulu/apt stable main" > /etc/apt/sources.list.d/zulu.list
-    fi
 }
 
 installOpenJDK() {
@@ -126,11 +121,6 @@ for jdkVendor in ${jdkVendors[@]}; do
 
     done
 done
-
-# Adopt 12 is only available for Ubuntu 18.04
-if isUbuntu18; then
-    createJavaEnvironmentalVariable "12" "Adopt"
-fi
 
 # Install Ant
 apt-get install -y --no-install-recommends ant ant-optional

@@ -42,10 +42,6 @@ function Get-KernelVersion {
     return $kernelVersion
 }
 
-function Test-IsUbuntu18 {
-    return (lsb_release -rs) -eq "18.04"
-}
-
 function Test-IsUbuntu20 {
     return (lsb_release -rs) -eq "20.04"
 }

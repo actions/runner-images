@@ -45,30 +45,25 @@ mkdir -p ${ANDROID_SDK_ROOT}
 
 cmdlineTools="android-cmdline-tools.zip"
 
-if isUbuntu18; then
-    # Newer command-line-tools require Java 11 which is not default on ubuntu-18.04
-    download_with_retries "https://dl.google.com/android/repository/commandlinetools-linux-9123335_latest.zip" "." $cmdlineTools
-else
-    # Download the latest command line tools so that we can accept all of the licenses.
-    # See https://developer.android.com/studio/#command-tools
-    cmdlineToolsVersion=$(get_toolset_value '.android."cmdline-tools"')
-    if [[ $cmdlineToolsVersion == "latest" ]]; then
-        repositoryXmlUrl="https://dl.google.com/android/repository/repository2-1.xml"
-        download_with_retries $repositoryXmlUrl "/tmp" "repository2-1.xml"
-        cmdlineToolsVersion=$(
-        yq -p=xml \
-        '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest" and .channelRef."+@ref" == "channel-0").archives.archive[].complete.url | select(contains("commandlinetools-linux"))' \
-        /tmp/repository2-1.xml
-        )
+# Download the latest command line tools so that we can accept all of the licenses.
+# See https://developer.android.com/studio/#command-tools
+cmdlineToolsVersion=$(get_toolset_value '.android."cmdline-tools"')
+if [[ $cmdlineToolsVersion == "latest" ]]; then
+    repositoryXmlUrl="https://dl.google.com/android/repository/repository2-1.xml"
+    download_with_retries $repositoryXmlUrl "/tmp" "repository2-1.xml"
+    cmdlineToolsVersion=$(
+    yq -p=xml \
+    '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest" and .channelRef."+@ref" == "channel-0").archives.archive[].complete.url | select(contains("commandlinetools-linux"))' \
+    /tmp/repository2-1.xml
+    )
 
-        if [[ -z $cmdlineToolsVersion ]]; then
-            echo "Failed to parse latest command-line tools version"
-            exit 1
-        fi
+    if [[ -z $cmdlineToolsVersion ]]; then
+        echo "Failed to parse latest command-line tools version"
+        exit 1
+    fi
 fi
 
 download_with_retries "https://dl.google.com/android/repository/${cmdlineToolsVersion}" "." $cmdlineTools
-fi
 
 unzip -qq $cmdlineTools -d ${ANDROID_SDK_ROOT}/cmdline-tools
 # Command line tools need to be placed in ${ANDROID_SDK_ROOT}/sdk/cmdline-tools/latest to determine SDK root

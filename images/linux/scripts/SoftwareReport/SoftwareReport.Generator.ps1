@@ -30,6 +30,7 @@ $softwareReport = [SoftwareReport]::new("Ubuntu $(Get-OSVersionShort)")
 $softwareReport.Root.AddToolVersion("OS Version:", $(Get-OSVersionFull))
 $softwareReport.Root.AddToolVersion("Kernel Version:", $(Get-KernelVersion))
 $softwareReport.Root.AddToolVersion("Image Version:", $env:IMAGE_VERSION)
+$softwareReport.Root.AddToolVersion("Systemd version:", $(Get-SystemdVersion))
 
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
@@ -40,7 +41,7 @@ $languageAndRuntime.AddToolVersionsListInline("Clang", $(Get-ClangToolVersions -
 $languageAndRuntime.AddToolVersionsListInline("Clang-format", $(Get-ClangToolVersions -ToolName "clang-format"), "^\d+")
 $languageAndRuntime.AddToolVersionsListInline("Clang-tidy", $(Get-ClangTidyVersions), "^\d+")
 $languageAndRuntime.AddToolVersion("Dash", $(Get-DashVersion))
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+if (Test-IsUbuntu20) {
     $languageAndRuntime.AddToolVersion("Erlang", $(Get-ErlangVersion))
     $languageAndRuntime.AddToolVersion("Erlang rebar3", $(Get-ErlangRebar3Version))
 }
@@ -81,7 +82,7 @@ to accomplish this.
 
 # Project Management
 $projectManagement = $installedSoftware.AddHeader("Project Management")
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+if (Test-IsUbuntu20) {
     $projectManagement.AddToolVersion("Ant", $(Get-AntVersion))
     $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
 }
@@ -89,7 +90,7 @@ if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $projectManagement.AddToolVersion("Lerna", $(Get-LernaVersion))
 }
 $projectManagement.AddToolVersion("Maven", $(Get-MavenVersion))
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+if (Test-IsUbuntu20) {
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 }
 
@@ -118,7 +119,7 @@ $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 $tools.AddToolVersion("Git-ftp", $(Get-GitFTPVersion))
 $tools.AddToolVersion("Haveged", $(Get-HavegedVersion))
 $tools.AddToolVersion("Heroku", $(Get-HerokuVersion))
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+if (Test-IsUbuntu20) {
     $tools.AddToolVersion("HHVM (HipHop VM)", $(Get-HHVMVersion))
 }
 $tools.AddToolVersion("jq", $(Get-JqVersion))
@@ -135,7 +136,7 @@ $tools.AddToolVersion("nvm", $(Get-NvmVersion))
 $tools.AddToolVersion("OpenSSL", $(Get-OpensslVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+if (Test-IsUbuntu20) {
     $tools.AddToolVersion("PhantomJS", $(Get-PhantomJSVersion))
 }
 $tools.AddToolVersion("Podman", $(Get-PodManVersion))
@@ -167,9 +168,6 @@ $cliTools.AddToolVersion("Vercel CLI", $(Get-VerselCliversion))
 
 
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $installedSoftware.AddHeader("GraalVM").AddTable($(Build-GraalVMTable))
-}
 
 $phpTools = $installedSoftware.AddHeader("PHP Tools")
 $phpTools.AddToolVersionsListInline("PHP", $(Get-PHPVersions), "^\d+\.\d+")
@@ -213,7 +211,7 @@ $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotNetCoreSdkVers
 $netCoreTools.AddNodes($(Get-DotnetTools))
 
 $databasesTools = $installedSoftware.AddHeader("Databases")
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+if (Test-IsUbuntu20) {
     $databasesTools.AddToolVersion("MongoDB", $(Get-MongoDbVersion))
 }
 $databasesTools.AddToolVersion("sqlite3", $(Get-SqliteVersion))

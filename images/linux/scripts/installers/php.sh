@@ -11,7 +11,7 @@ source $HELPER_SCRIPTS/install.sh
 
 # add repository for old Ubuntu images
 # details in thread: https://github.com/actions/runner-images/issues/6331
-if isUbuntu18 || isUbuntu20; then
+if isUbuntu20; then
     apt-add-repository ppa:ondrej/php -y
     apt-get update
 fi

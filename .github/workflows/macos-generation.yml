@@ -40,7 +40,12 @@ defaults:
 
 jobs:
   build:
+    #
+    # "macos-vmware" is dedicated runner not available in forks.
+    # to reduce undesired run attempts in forks, stick jobs to "actions" organization only
+    #
     runs-on: macos-vmware
+    if: ${{ github.repository_owner == 'actions' }}
     timeout-minutes: 1200
     steps:
     - uses: azure/login@v1
@@ -187,6 +192,7 @@ jobs:
           -PrintTopNLongest 25
 
     - name: Move vm to cold storage and clear datastore tag
+      if: ${{ always() }}
       run: |
         $cpuCount = 3
         $coresPerSocketCount = 3
@@ -198,6 +204,7 @@ jobs:
           -VIServer "${{ secrets.VISERVER_V2 }}" `
           -VIUserName "${{ env.VI_USER_NAME }}" `
           -VIPassword "${{ env.VI_PASSWORD }}" `
+          -JobStatus "${{ job.status }}" `
           -CpuCount "$cpuCount" `
           -CoresPerSocketCount "$coresPerSocketCount" `
           -Memory "$memory"

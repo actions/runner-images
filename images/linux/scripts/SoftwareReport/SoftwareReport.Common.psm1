@@ -344,21 +344,6 @@ function Get-PipxVersion {
     return $Matches.Version
 }
 
-function Get-GraalVMVersion {
-    $version = & "$env:GRAALVM_11_ROOT\bin\java" --version | Select-String -Pattern "GraalVM" | Take-OutputPart -Part 5,6
-    return $version
-}
-
-function Build-GraalVMTable {
-    $version = Get-GraalVMVersion
-    $envVariables = "GRAALVM_11_ROOT"
-
-    return [PSCustomObject] @{
-        "Version" = $version
-        "Environment variables" = $envVariables
-    }
-}
-
 function Build-PackageManagementEnvironmentTable {
     return @(
         [PSCustomObject] @{
@@ -370,4 +355,10 @@ function Build-PackageManagementEnvironmentTable {
             "Value" = $env:VCPKG_INSTALLATION_ROOT
         }
     )
+}
+
+function Get-SystemdVersion {
+    $matches = [regex]::Matches((systemctl --version | head -n 1), "\((.*?)\)")
+    $result = foreach ($match in $matches) {$match.Groups[1].Value}
+    return $result
 }
