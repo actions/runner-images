@@ -7,10 +7,11 @@ function Get-RubyVersions
 {
     param (
         [System.String] $Arch = "x64",
-        [System.String] $Extension = "7z"
+        [System.String] $Extension = "7z",
+        [System.String] $ReleasesAmount = "50"
     )
 
-    $uri = "https://api.github.com/repos/oneclick/rubyinstaller2/releases"
+    $uri = "https://api.github.com/repos/oneclick/rubyinstaller2/releases?per_page=$ReleasesAmount"
     try
     {
         $versionLists = @{}
