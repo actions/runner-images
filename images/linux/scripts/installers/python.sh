@@ -10,10 +10,6 @@ source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/os.sh
 
 # Install Python, Python 3, pip, pip3
-if isUbuntu18; then
-    apt-get install -y --no-install-recommends python python-dev python-pip
-fi
-
 apt-get install -y --no-install-recommends python3 python3-dev python3-pip python3-venv
 
 # Install pipx
