@@ -17,7 +17,7 @@ on:
 
 jobs:
   macOS_12:
-    if: ${{ (github.event.label.name == 'macos-all') || (github.event.label.name == 'macos-12') || (inputs.CUSTOM_REPOSITORY != '' && inputs.CUSTOM_REPOSITORY_COMMIT_HASH != '') || (github.event_name == 'schedule') }}
+    if: ${{ (github.event.label.name == 'macos-all') || (github.event.label.name == 'macos-12') || (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule') }}
     name: macOS-12_unstable.${{ github.run_id }}.${{ github.run_attempt }}
     uses: ./.github/workflows/macos-generation.yml
     with:
