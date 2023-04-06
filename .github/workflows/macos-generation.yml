@@ -40,7 +40,12 @@ defaults:
 
 jobs:
   build:
+    #
+    # "macos-vmware" is dedicated runner not available in forks.
+    # to reduce undesired run attempts in forks, stick jobs to "actions" organization only
+    #
     runs-on: macos-vmware
+    if: ${{ github.repository_owner == 'actions' }}
     timeout-minutes: 1200
     steps:
     - uses: azure/login@v1
