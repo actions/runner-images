@@ -4,7 +4,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1607
-- Image Version: 20230326.1
+- Image Version: 20230402.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,7 +13,7 @@
 
 ### Language and Runtime
 - Bash 5.2.15(1)-release
-- Go 1.17.13
+- Go 1.20.2
 - Julia 1.8.5
 - Kotlin 1.8.10
 - LLVM 15.0.7
@@ -21,7 +21,7 @@
 - Perl 5.32.1
 - PHP 8.2.4
 - Python 3.9.13
-- Ruby 3.0.5p211
+- Ruby 3.0.6p216
 
 ### Package Management
 - Chocolatey 1.3.1
@@ -33,7 +33,7 @@
 - pip 23.0.1 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit b81bc3a83)
+- Vcpkg (build from commit 69efe9cc2)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -51,32 +51,32 @@
 ### Tools
 - 7zip 22.01
 - aria2 1.36.0
-- azcopy 10.17.0
+- azcopy 10.18.0
 - Bazel 6.1.1
 - Bazelisk 1.13.2
 - Bicep 0.15.31
 - Cabal 3.10.1.0
-- CMake 3.26.1
+- CMake 3.26.2
 - CodeQL Action Bundles 2.12.4 2.12.5
-- Docker 23.0.1
+- Docker 23.0.2
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.17.2
 - Docker-wincred 0.7.0
 - ghc 9.6.1
 - Git 2.40.0.windows.1
 - Git LFS 3.3.0
-- ImageMagick 7.1.1-4
+- ImageMagick 7.1.1-5
 - InnoSetup 6.2.2
 - jq 1.6
-- Kind 0.17.0
+- Kind 0.18.0
 - Kubectl 1.26.3
 - Mercurial 5.0
 - Mingw-w64 11.2.0
 - Newman 5.3.2
 - NSIS 3.08
-- OpenSSL 1.1.1
+- OpenSSL 1.1.1t
 - Packer 1.8.5
-- Pulumi 3.59.1
+- Pulumi 3.60.1
 - R 4.2.3
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.9.3
@@ -89,8 +89,8 @@
 - zstd 1.5.4
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.158
-- AWS CLI 2.11.6
+- Alibaba Cloud CLI 3.0.161
+- AWS CLI 2.11.8
 - AWS SAM CLI 1.78.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.46.0
@@ -99,9 +99,9 @@
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.68.1
-- Rust 1.68.1
-- Rustdoc 1.68.1
+- Cargo 1.68.2
+- Rust 1.68.2
+- Rustdoc 1.68.2
 - Rustup 1.25.2
 
 #### Packages
@@ -113,10 +113,10 @@
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 111.0.5563.111
+- Google Chrome 111.0.5563.147
 - Chrome Driver 111.0.5563.64
-- Microsoft Edge 111.0.1661.54
-- Microsoft Edge Driver 111.0.1661.54
+- Microsoft Edge 111.0.1661.62
+- Microsoft Edge Driver 111.0.1661.62
 - Mozilla Firefox 111.0.1
 - Gecko Driver 0.32.2
 - IE Driver 4.8.0.0
@@ -157,14 +157,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Tools
 
 #### Go
-- 1.17.13
 - 1.18.10
 - 1.19.7
 - 1.20.2
 
 #### Node.js
 - 14.21.3
-- 16.19.1
+- 16.20.0
 - 18.15.0
 
 #### Python
@@ -181,9 +180,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.9.16 [PyPy 7.3.11]
 
 #### Ruby
-- 2.7.7
-- 3.0.5
-- 3.1.3
+- 2.7.8
+- 3.0.6
+- 3.1.4
 
 ### Databases
 
@@ -215,7 +214,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.23.3  | C:\tools\nginx-1.23.3\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.23.4  | C:\tools\nginx-1.23.4\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
@@ -544,10 +543,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.299
+- AWSPowershell: 4.1.304
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.24.0
+- Microsoft.Graph: 1.25.0
 - Pester: 3.4.0, 5.4.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
