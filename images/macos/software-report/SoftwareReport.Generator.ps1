@@ -187,10 +187,6 @@ $java = $installedSoftware.AddHeader("Java")
 $java.AddTable($(Get-JavaVersions))
 
 if (-not $os.IsVentura) {
-    # Graal
-    $graalvm = $installedSoftware.AddHeader("GraalVM")
-    $graalvm.AddTable($(Build-GraalVMTable))
-
     # Toolcache
     $toolcache = $installedSoftware.AddHeader("Cached Tools")
     $toolcache.AddNodes($(Build-ToolcacheSection))
