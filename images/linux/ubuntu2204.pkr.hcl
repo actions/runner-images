@@ -14,6 +14,11 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
+variable "capture_container_name" {
+  type    = string
+  default = "images"
+}
+
 variable "capture_name_prefix" {
   type    = string
   default = "packer"
@@ -81,7 +86,7 @@ variable "installer_script_folder" {
 }
 
 variable "install_password" {
-  type  = string
+  type    = string
   default = ""
 }
 
@@ -108,6 +113,16 @@ variable "run_validation_diskspace" {
 variable "storage_account" {
   type    = string
   default = "${env("ARM_STORAGE_ACCOUNT")}"
+}
+
+variable "managed_image_resource_group_name" {
+  type    = string
+  default = ""
+}
+
+variable "managed_image_name" {
+  type    = string
+  default = ""
 }
 
 variable "subscription_id" {
@@ -148,7 +163,7 @@ variable "vm_size" {
 source "azure-arm" "build_vhd" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
-  capture_container_name                 = "images"
+  capture_container_name                 = "${var.capture_container_name}"
   capture_name_prefix                    = "${var.capture_name_prefix}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
@@ -162,6 +177,8 @@ source "azure-arm" "build_vhd" {
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   resource_group_name                    = "${var.resource_group}"
   storage_account                        = "${var.storage_account}"
+  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
+  managed_image_name                     = "${var.managed_image_name}"
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
   tenant_id                              = "${var.tenant_id}"
@@ -173,7 +190,7 @@ source "azure-arm" "build_vhd" {
   dynamic "azure_tag" {
     for_each = var.azure_tag
     content {
-      name = azure_tag.key
+      name  = azure_tag.key
       value = azure_tag.value
     }
   }
