@@ -264,7 +264,7 @@ Function GenerateResourcesAndImage {
         
         if ($builderScriptPath.Contains("pkr.hcl")) {
             if ($AgentIp) {
-                $AgentIp = '[ \"{0}\" ]' -f $AgentIp
+                $AgentIp = '[ "{0}" ]' -f $AgentIp
             } else {
                 $AgentIp = "[]"
             }
