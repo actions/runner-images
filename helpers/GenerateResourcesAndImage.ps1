@@ -268,6 +268,9 @@ Function GenerateResourcesAndImage {
             } else {
                 $AgentIp = "[]"
             }
+            if (-not $Tags) {
+                $Tags = @{}
+            }
         }
 
         if ($builderScriptPath.Contains(".json")) {
