@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| [[All OSes] Go 1.17.x will be removed and 1.20.x set as default on April, 3](https://github.com/actions/runner-images/issues/7276) |
+| [python2.7 will be removed from the images on May 15, 2023](https://github.com/actions/runner-images/issues/7401) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4131
-- Image Version: 20230331.1
+- Image Version: 20230407.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,9 +13,9 @@
 
 ### Language and Runtime
 - Bash 5.2.15(1)-release
-- Go 1.20.2
+- Go 1.20.3
 - Julia 1.8.5
-- Kotlin 1.8.10
+- Kotlin 1.8.20
 - LLVM 15.0.7
 - Node 18.15.0
 - Perl 5.32.1
@@ -33,7 +33,7 @@
 - pip 23.0.1 (python 3.7)
 - Pipx 1.2.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit c9f906558)
+- Vcpkg (build from commit cd5a39fc6)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -51,22 +51,22 @@
 ### Tools
 - 7zip 22.01
 - aria2 1.36.0
-- azcopy 10.17.0
+- azcopy 10.18.0
 - Bazel 6.1.1
 - Bazelisk 1.13.2
-- Bicep 0.15.31
+- Bicep 0.16.1
 - Cabal 3.10.1.0
-- CMake 3.26.2
-- CodeQL Action Bundles 2.12.4 2.12.5
-- Docker 23.0.2
+- CMake 3.26.3
+- CodeQL Action Bundles 2.12.5 2.12.6
+- Docker 23.0.3
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.17.2
 - Docker-wincred 0.7.0
 - ghc 9.6.1
 - Git 2.40.0.windows.1
 - Git LFS 3.3.0
-- Google Cloud SDK 424.0.0
-- ImageMagick 7.1.1-5
+- Google Cloud SDK 425.0.0
+- ImageMagick 7.1.1-6
 - InnoSetup 6.2.2
 - jq 1.6
 - Kind 0.18.0
@@ -78,7 +78,7 @@
 - OpenSSL 1.1.1t
 - Packer 1.8.5
 - Parcel 2.8.3
-- Pulumi 3.60.1
+- Pulumi 3.62.0
 - R 4.2.3
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.9.3
@@ -88,17 +88,17 @@
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.11.2.4516
 - yamllint 1.30.0
-- zstd 1.5.4
+- zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.161
-- AWS CLI 2.11.6
-- AWS SAM CLI 1.78.0
+- AWS CLI 2.11.10
+- AWS SAM CLI 1.79.0
 - AWS Session Manager CLI 1.2.463.0
-- Azure CLI 2.46.0
+- Azure CLI 2.47.0
 - Azure DevOps CLI extension 0.26.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.25.1
+- GitHub CLI 2.27.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -116,12 +116,12 @@
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 111.0.5563.147
-- Chrome Driver 111.0.5563.64
-- Microsoft Edge 111.0.1661.62
-- Microsoft Edge Driver 111.0.1661.54
+- Google Chrome 112.0.5615.50
+- Chrome Driver 112.0.5615.49
+- Microsoft Edge 112.0.1722.34
+- Microsoft Edge Driver 112.0.1722.34
 - Mozilla Firefox 111.0.1
-- Gecko Driver 0.32.2
+- Gecko Driver 0.33.0
 - IE Driver 4.8.0.0
 - Selenium server 4.8.0
 
@@ -165,8 +165,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.18.10
-- 1.19.7
-- 1.20.2
+- 1.19.8
+- 1.20.3
 
 #### Node.js
 - 14.21.3
@@ -179,8 +179,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.7.9
 - 3.8.10
 - 3.9.13
-- 3.10.10
-- 3.11.2
+- 3.10.11
+- 3.11.3
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.11]
@@ -193,9 +193,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 2.4.10
 - 2.5.9
 - 2.6.10
-- 2.7.7
-- 3.0.5
-- 3.1.3
+- 2.7.8
+- 3.0.6
+- 3.1.4
 
 ### Databases
 
@@ -512,15 +512,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.303
+- AWSPowershell: 4.1.308
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.25.0
-- Pester: 3.4.0, 5.4.0
+- Pester: 3.4.0, 5.4.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
 - PSWindowsUpdate: 2.2.0.3
-- SqlServer: 21.1.18256
+- SqlServer: 22.0.59
 - VSSetup: 2.2.16
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
