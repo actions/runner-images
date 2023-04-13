@@ -4,7 +4,7 @@ variable "allowed_inbound_ip_addresses" {
   default = []
 }
 
-variable "azure_tag" {
+variable "azure_tags" {
   type    = map(string)
   default = {}
 }
@@ -171,7 +171,7 @@ source "azure-arm" "build_vhd" {
   vm_size                                = "${var.vm_size}"
 
   dynamic "azure_tag" {
-    for_each = var.azure_tag
+    for_each = var.azure_tags
     content {
       name = azure_tag.key
       value = azure_tag.value

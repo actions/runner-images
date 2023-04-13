@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [python2.7 will be removed from the images on May 15, 2023](https://github.com/actions/runner-images/issues/7401) |
 | [GraalVM JDK11 will be removed from agents on April 10, 2023](https://github.com/actions/runner-images/issues/7338) |
-| [[All OSes] Go 1.17.x will be removed and 1.20.x set as default on April, 3](https://github.com/actions/runner-images/issues/7276) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1035-azure
-- Image Version: 20230402.1
+- Image Version: 20230409.1
+- Systemd version: 245.4-4ubuntu3.20
 
 ## Installed Software
 
@@ -21,7 +22,7 @@
 - GNU C++: 9.4.0, 10.3.0
 - GNU Fortran: 9.4.0, 10.3.0
 - Julia 1.8.5
-- Kotlin 1.8.10-release-430
+- Kotlin 1.8.20-release-327
 - Mono 6.12.0.182
 - MSBuild 16.10.1.31701 (Mono 6.12.0.182)
 - Node.js 18.15.0
@@ -34,7 +35,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.11.2
-- Homebrew 4.0.10
+- Homebrew 4.0.11
 - Miniconda 23.1.0
 - Npm 9.5.0
 - NuGet 6.3.1.1
@@ -42,7 +43,7 @@
 - Pip3 20.0.2
 - Pipx 1.2.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit 69efe9cc2)
+- Vcpkg (build from commit 217194cea)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -72,16 +73,16 @@ to accomplish this.
 - AzCopy 10.18.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.1.1
 - Bazelisk 1.13.2
-- Bicep 0.15.31
+- Bicep 0.16.1
 - Buildah 1.22.3
-- CMake 3.26.2
-- CodeQL Action Bundles 2.12.4 2.12.5
+- CMake 3.26.3
+- CodeQL Action Bundles 2.12.5 2.12.6
 - Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.17.2+azure-1
 - Docker-Buildx 0.10.4
 - Docker-Moby Client 20.10.23+azure-2
-- Docker-Moby Server 20.10.23+azure-2
+- Docker-Moby Server 20.10.23+azure-3
 - Fastlane 2.212.1
 - Git 2.40.0
 - Git LFS 3.3.0
@@ -96,7 +97,7 @@ to accomplish this.
 - Leiningen 2.10.0
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.29.0
+- Minikube 1.30.1
 - n 9.0.1
 - Newman 5.3.2
 - nvm 0.39.3
@@ -105,7 +106,7 @@ to accomplish this.
 - Parcel 2.8.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.60.1
+- Pulumi 3.62.0
 - R 4.2.3
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -113,22 +114,22 @@ to accomplish this.
 - Terraform 1.4.4
 - yamllint 1.30.0
 - yq 4.33.2
-- zstd 1.5.4
+- zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.161
-- AWS CLI 2.11.8
+- AWS CLI 2.11.11
 - AWS CLI Session Manager Plugin 1.2.463.0
-- AWS SAM CLI 1.78.0
-- Azure CLI 2.46.0
+- AWS SAM CLI 1.79.0
+- Azure CLI 2.47.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.25.1
-- Google Cloud SDK 424.0.0
+- GitHub CLI 2.27.0
+- Google Cloud SDK 425.0.0
 - Hub CLI 2.14.2
 - Netlify CLI 13.2.2
-- OpenShift CLI 4.12.9
+- OpenShift CLI 4.12.10
 - ORAS CLI 1.0.0
-- Vercel CLI 28.18.3
+- Vercel CLI 28.18.4
 
 ### Java
 | Version              | Vendor          | Environment Variable |
@@ -136,11 +137,6 @@ to accomplish this.
 | 8.0.362+9            | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.18+10 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.6+10            | Eclipse Temurin | JAVA_HOME_17_X64     |
-
-### GraalVM
-| Version   | Environment variables |
-| --------- | --------------------- |
-| CE 22.3.1 | GRAALVM_11_ROOT       |
 
 ### PHP Tools
 - PHP: 7.4.33, 8.0.28, 8.1.17, 8.2.4
@@ -171,14 +167,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 111.0.5563.146
-- ChromeDriver 111.0.5563.64
-- Chromium 111.0.5547.0
-- Microsoft Edge 111.0.1661.62
-- Microsoft Edge WebDriver 111.0.1661.62
+- Google Chrome 112.0.5615.49
+- ChromeDriver 112.0.5615.49
+- Chromium 112.0.5593.0
+- Microsoft Edge 112.0.1722.34
+- Microsoft Edge WebDriver 112.0.1722.34
 - Selenium server 4.8.0
-- Mozilla Firefox 111.0.1
-- Geckodriver 0.32.2
+- Mozilla Firefox 112.0
+- Geckodriver 0.33.0
 
 #### Environment variables
 | Name              | Value                               |
@@ -221,8 +217,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.18.10
-- 1.19.7
-- 1.20.2
+- 1.19.8
+- 1.20.3
 
 #### Node.js
 - 14.21.3
@@ -235,8 +231,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.7.16
 - 3.8.16
 - 3.9.16
-- 3.10.10
-- 3.11.2
+- 3.10.11
+- 3.11.3
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.11]
@@ -260,7 +256,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.25.0
-- Pester: 5.4.0
+- Pester: 5.4.1
 - PSScriptAnalyzer: 1.21.0
 
 ### Web Servers
@@ -304,15 +300,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.16             | sha256:c2b622f6e510a0d25bccaffa9e67b75a6860cb09b74bb58cfc36a9ef4331109f  | 2023-03-29 |
 | alpine:3.17             | sha256:124c7d2707904eea7431fffe91522a01e5a861a624ee31d03372cc1d138a3126  | 2023-03-29 |
 | buildpack-deps:bullseye | sha256:d2e6d0b6233d9da4534d22e96ea4338fbf36a7657b6d60aae20260140ce43148  | 2023-03-23 |
-| buildpack-deps:buster   | sha256:56e11e205661d628368fbcd0edee38d666d507351e5c74f2795128cd71c6f52b  | 2023-03-23 |
+| buildpack-deps:buster   | sha256:99144e49732c842c74ab0fd2fbd24301ee490ec841fbb9c4fa3a99354e29fbec  | 2023-03-23 |
 | buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
 | debian:10               | sha256:235f2a778fbc0d668c66afa9fd5f1efabab94c1d6588779ea4e221e1496f89da  | 2023-03-23 |
 | debian:11               | sha256:7b991788987ad860810df60927e1adbaf8e156520177bd4db82409f81dd3b721  | 2023-03-23 |
 | debian:9                | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest    | sha256:ca34989052fc2467dcd283d2000c2ad8c7cd6213c5ff0fcabef1a9cfb0651b3a  | 2023-03-23 |
-| node:14                 | sha256:a97048059988c65f974b37dfe25a44327069a0f4f81133624871de0063b98075  | 2023-03-23 |
+| node:14                 | sha256:cc66d3cff89973711adc900892ed37f74da3c46182992b5ac5c41c3df1ddb712  | 2023-03-23 |
 | node:14-alpine          | sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33  | 2023-03-29 |
-| node:16                 | sha256:051b68ed341fee26f4c08b15815ac4bff6a5351c68e7b33c66912677cc4be7ac  | 2023-03-29 |
+| node:16                 | sha256:d70de5be007866473408af5cc39f6039d990d8d4f72ae13438b0b4f83b904b31  | 2023-03-29 |
 | node:16-alpine          | sha256:b4a72f83f52bbe3970bb74a15e44ec4cf6e873ad4787473dfc8a26f5b4e29dd2  | 2023-03-29 |
 | node:18                 | sha256:c21209748c829660e0b49cbd14d2f9d81ea82ffb02a8a7932ebacf70d01573a3  | 2023-03-23 |
 | node:18-alpine          | sha256:47d97b93629d9461d64197773966cc49081cf4463b1b07de5a38b6bd5acfbe9d  | 2023-03-29 |
