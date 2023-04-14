@@ -252,7 +252,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - PowerShell 7.2.10
 
 #### PowerShell Modules
-- Az: 9.3.0
+- Az: 9.6.0
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.25.0
