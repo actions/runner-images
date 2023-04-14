@@ -392,7 +392,7 @@
         "version": "8.0"
     },
     "mongodb": {
-        "version": "5.0"
+        "version": "5.0.15"
     },
     "nsis": {
         "version": "3.08"
