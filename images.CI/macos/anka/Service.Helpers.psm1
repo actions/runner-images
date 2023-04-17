@@ -233,8 +233,10 @@ function Install-SoftwareUpdate {
     )
     $osVersion = [Environment]::OSVersion
     $osVersionMajorMinor = $osVersion.Version.ToString(2)
+    # If an update is happening on macOS 12 we will use the prepared list of updates, otherwise, we will install all updates.
     if ($osVersion.Version.Major -eq "12") {
         foreach ($update in $listOfUpdates){
+            # Filtering updates that contain "Ventura" word
             if ($update -notmatch "Ventura") {
                 $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install $update"
                 Invoke-SSHPassCommand -HostName $HostName -Command $command
