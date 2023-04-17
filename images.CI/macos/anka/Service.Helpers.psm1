@@ -78,7 +78,7 @@ function Get-MacOSIPSWInstaller {
         $MacOSName = "macOS Monterey"
     } elseif ($MacOSVersion -eq [version] "13.0") {
         $MacOSName = "macOS Ventura"
-    }else {
+    } else {
         $MacOSName = $MacOSVersion.ToString()
     }
 
