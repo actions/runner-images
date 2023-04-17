@@ -90,7 +90,7 @@ function Get-MacOSIPSWInstaller {
     } elseif ($BetaSearch -eq $true) {
         $targetVersion = Get-AvailableIPSWVersions -IsBeta $true -MacOSCodeNameOrVersion $MacOSName
         Write-host "`t[*] The 'BetaSearch' flag is set to true. Latestbeta macOS version is '$MacOSName' - '$targetVersion' now"
-    }else {
+    } else {
         $targetVersion = Get-AvailableIPSWVersions -MacOSCodeNameOrVersion $MacOSName
         Write-host "`t[*] The exact version was specified - '$MacOSName' "
     }
