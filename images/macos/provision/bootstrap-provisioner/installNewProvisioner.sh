@@ -6,11 +6,11 @@ ScriptName="$4"
 ScriptParam="$5"
 Username="$6"
 
-export PATH=/usr/bin:/usr/sbin:/usr/local/bin:/bin:/sbin
+export PATH=/usr/bin:/usr/sbin:/usr/local/bin:/bin:/sbin:/opt/homebrew/bin
 
 PROVISIONER_ROOT=/usr/local/opt/${Username}
-mkdir -p ${PROVISIONER_ROOT}
-chown ${Username} ${PROVISIONER_ROOT}
+sudo mkdir -p ${PROVISIONER_ROOT}
+sudo chown ${Username} ${PROVISIONER_ROOT}
 
 tee -a ${PROVISIONER_ROOT}/runprovisioner.sh > /dev/null <<\EOF
 #!/bin/bash
