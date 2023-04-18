@@ -57,3 +57,6 @@ download_with_retries "$aws_helper_url" "/usr/bin" docker-credential-ecr-login
 chmod +x /usr/bin/docker-credential-ecr-login
 
 invoke_tests "Tools" "Docker"
+if [ "${DOCKERHUB_PULL_IMAGES:-yes}" -eq "yes" ]; then
+    invoke_tests "Tools" "Docker images"
+fi
