@@ -75,7 +75,7 @@
 - Newman 5.3.2
 - NSIS 3.08
 - OpenSSL 1.1.1t
-- Packer Packer 1.8.5
+- Packer 1.8.5
 - Pulumi 3.63.0
 - R 4.2.3
 - Service Fabric SDK 9.1.1436.9590
