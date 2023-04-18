@@ -319,23 +319,6 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["IMAGE_VERSION=${var.image_version}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
-    inline           = ["pwsh -File ${local.image_folder}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory ${local.image_folder}", "pwsh -File ${local.image_folder}/tests/RunAll-Tests.ps1 -OutputDirectory ${local.image_folder}"]
-  }
-
-  provisioner "file" {
-    destination = "${path.root}/${local.report_file_name}-Readme.md"
-    direction   = "download"
-    source      = "${local.image_folder}/software-report.md"
-  }
-
-  provisioner "file" {
-    destination = "${path.root}/software-report.json"
-    direction   = "download"
-    source      = "${local.image_folder}/software-report.json"
-  }
-
-  provisioner "shell" {
     environment_vars = ["HELPER_SCRIPT_FOLDER=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/scripts/installers/post-deployment.sh"]
