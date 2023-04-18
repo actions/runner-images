@@ -1,9 +1,7 @@
 locals {
   image_os = "ubuntu22"
 
-  config_file_name  = "ubuntu2204.conf"
   toolset_file_name = "toolset-2204.json"
-  report_file_name  = "Ubuntu2204-Readme.md"
 
   image_folder            = "/imagegeneration"
   helper_script_folder    = "/imagegeneration/helpers"
@@ -327,16 +325,6 @@ build {
   provisioner "shell" {
     environment_vars = ["RUN_VALIDATION=${var.run_validation_diskspace}"]
     scripts          = ["${path.root}/scripts/installers/validate-disk-space.sh"]
-  }
-
-  provisioner "file" {
-    destination = "/tmp/"
-    source      = "${path.root}/config/${local.config_file_name}"
-  }
-
-  provisioner "shell" {
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["mkdir -p /etc/vsts", "cp /tmp/${local.config_file_name} /etc/vsts/machine_instance.conf"]
   }
 
   provisioner "shell" {
