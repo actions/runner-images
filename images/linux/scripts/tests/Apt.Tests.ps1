@@ -1,6 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
-$cmd = (Get-ToolsetContent).apt.cmd_packages
+$cmd = (Get-ToolsetContent).apt.cmd_packages + (Get-ToolsetContent).apt.vital_packages
 
 Describe "Apt" {
 

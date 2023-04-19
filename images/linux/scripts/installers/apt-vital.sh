@@ -1,9 +1,12 @@
 #!/bin/bash -e
 ################################################################################
-##  File:  vital-commands.sh
+##  File:  apt-vital.sh
 ##  Desc:  Installs vital command line utilities
 ################################################################################
 source $HELPER_SCRIPTS/install.sh
 
-apt-get install -y --no-install-recommends \
-  build-essential bzip2 curl jq tar unzip wget
+vital_packages=$(get_toolset_value .apt.vital_packages[])
+for package in $vital_packages; do
+    echo "Install $package"
+    apt-get install -y --no-install-recommends $package
+done
