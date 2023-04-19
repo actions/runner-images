@@ -2,20 +2,17 @@
 
 The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for  Windows 2019/2022 and Ubuntu 20.04/22.04. 
 
-Each image is configured through a JSON or HCL2 Packer template and specifies where to build the image (Azure in this case) and what steps to run to install software and prepare the disk.
+Each image is configured by a JSON or HCL2 Packer template that specifies where to build the image (Azure in this case) and what steps to run to install software and prepare the disk.
 
-The Packer process initializes a connection to Azure subscription via Azure CLI, and automatically creates all the temporary Azure resources required to build the source VM (resource group, network interfaces and VM from the "clean" image specified in the template).
+The Packer process initializes a connection to Azure subscription using Azure CLI and creates temporary resources required for the build process: resource group, network interfaces and virtual machine from the "clean" image specified in the template.
 
-If the VM deployment succeeds, the build agent connects to the VM and starts executing installation steps from the template. If any step fails, image generation is aborted and the temporary VM is terminated. Packer also attempts to cleanup all the temporary resources it created (unless otherwise configured).
+If the VM deployment succeeds, Packer connects it using ssh or WinRM and begins executing installation steps from the template one-by-one. If any step fails, image generation is aborted and the temporary VM is terminated. Packer also attempts to cleanup all the temporary resources it created (unless otherwise configured).
 
-After successful image generation, a snapshot of the temporary VM is converted to VHD image which is uploaded to the specified Azure Storage Account.
+After successful completion of all installation steps Packer converts snapshot of the temporary VM to VHD image and uploads it to the specified Azure Storage Account.
 
-## Prerequisites
-### Build agent
+## Build agent preparation
 
-You can use local or virtual machine running OS Windows or Linux as a build agent.
-You may use [Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli) as well.
-In any case you will need these software:
+Build agent is a machine where Packer process will be started. You can use any physical or virtual machine running OS Windows or Linux. Of course you may also use [Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli). In any case you will need these software installed:
 
 - Packer 1.8.2 or higher.
 
@@ -27,18 +24,18 @@ In any case you will need these software:
 
   For Linux - install the latest version from your distro's package repo.
 
-  For Windows - download and install it from [here](https://github.com/git-for-windows/git/releases) of use [Chocolatey](https://chocolatey.org/):
+  For Windows - download and install it from [here](https://gitforwindows.org/) of use [Chocolatey](https://chocolatey.org/):
   ```
   choco install git -params '"/GitAndUnixToolsOnPath"'
   ```
 - Powershell 5.0 or higher.
 
-  In Windows you already has it.
+  In Windows you already have it.
 
   For Linux follow instructions [here](https://learn.microsoft.com/en-us/windows-server/administration/linux-package-repository-for-microsoft-software) to add Microsoft's Linux Software Repository and then install package `powershell`.
 - Azure CLI.
 
-  Follow instructions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) or run this command in Powershell:
+  Follow instructions [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli). Or if you use Windows you may run this command in Powershell instead:
   ```
   Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
   ```
@@ -49,18 +46,61 @@ In any case you will need these software:
   Install-Module -Name Az -Repository PSGallery -Force
   ```
 
-### Network security considerations
+## Automated image generation
 
-To connect to a temporary VM packer uses WinRM or SSH connection on public IP interface.
+This repo bundles script that automates image generation process. You only need a build agent configured as described above and active Azure subsctiption. We suggest to start with UbuntuMinimal image because it includes only a minimal set of required software and builds in less then half an hour.
 
-If you use a build agent located in an Azure subscription, please make sure that HTTPS/SSH ports are allowed for incoming/outgoing connections.
+All steps here are supposed to run in Powershell.
 
-In case of firewall restrictions, prohibiting connections from public addresses, private virtual network resources can be deployed and passed as arguments to the packer (use environment variables `VNET_NAME`, `VNET_RESOURCE_GROUP` and `VNET_SUBNET`). This approach allows virtual machines to use private connections inside the VLAN.
+First, clone runner-images repository and change directory:
+
+```
+git clone https://github.com/actions/runner-images.git
+Set-Location runner-images
+```
+
+Then import [GenerateResourcesAndImage](../helpers/GenerateResourcesAndImage.ps1) script from `helpers` subdirectory:
+
+```powershell
+Import-Module .\helpers\GenerateResourcesAndImage.ps1
+```
+
+Finally, run `GenerateResourcesAndImage` function setting mandatory arguments: image type and where to create resources:
+
+- `SubscriptionId` - your Azure Subscription ID
+- `ResourceGroupName` - name of the resource group that will be created within your subscription (e.g. "imagegen-test")
+- `AzureLocation` - location where resources will be created (e.g. "East US")
+- `ImageType` - what image to build (we suggest choosing "UbuntuMinimal" here, other valid options are "Windows2019", "Windows2022", "Ubuntu2004", "Ubuntu2204")
+
+This function automatically creates all required Azure resources and kicks off packer image generation for the selected image type.
+
+When image is ready you may proceed to [deployment](#generated-machine-deployment)
+
+## Image generation customization
+
+Function `GenerateResourcesAndImage` accepts a bunch of arguments that may help you generating image in your specific environment.
+
+For example, you may want that all the resources involved in image generation process are tagged. In this case pass a HashTable of tags as a value for `Tags` parameter.
+
+If you don't want function to authenticate interactively, you should create Service Principal and invoke the function with parameters `AzureClientId`, `AzureClientSecret` and `AzureTenantId`. You can find more details [in corresponding section below](#azure-subscription-authentication).
+
+Use `get-help GenerateResourcesAndImage -Detailed` for the complete list of parameters available.
+
+### Network security
+
+To connect to a temporary virtual machine Packer uses WinRM or SSH.
+
+If your build agent is located outside of the Azure subscription where temporary VM is created, the public network interface and public IP address is used. Make sure that firewalls are configured properly and WinRM (tcp port 5986) and ssh (tcp port 22) connections are allowed both outgoing for build agent and incoming for temporary VM. Also if you don't want temporary VM to be accessible from everywhere, set `RestrictToAgentIpAddress` parameter value to `$true` to setup firewall rules allowing access only from your build agent public IP address.
+
+If your build agent and temporary VM are in the same subscription you can configure Packer to connect using private virtual network. To achieve that set proper values for environment variables `VNET_RESOURCE_GROUP`, `VNET_NAME` and `VNET_SUBNET`.
 
 ### Azure subscription authentication
-Packer uses Service Principal to authenticate in Azure infrastructure. For more information about Service Principals refer to [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
 
-This repository contains script that automates creation of resources for Packer in Azure subscription including SP. You may rely on it (it'll open web browser to perform authentication) or create SP manually using Az PS module:
+Packer uses Service Principal to authenticate in Azure infrastructure. For more information about Service Principals refer to [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal).
+
+Function `GenerateResourcesAndImage` is able to create Service Principle to be used by Packer. It uses Connect-AzAccount cmdlet that invokes interactive authentication process by default. If you don't want to use interactive authentication you should create Service Principal with full read-write permissions for selected Azure subscription on your own and provide proper values for parameters `AzureClientId`, `AzureClientSecret` and `AzureTenantId`.
+
+Here is an example of how to create Service Principle using Az Powershell module:
 
 ```powershell
 $credentials = [Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential]@{
@@ -76,48 +116,13 @@ New-AzRoleAssignment -RoleDefinitionName "Contributor" -PrincipalId $sp.Id
 Start-Sleep -Seconds 30
 
 @{
-  clientId = $sp.AppId
-  clientSecret = $appCred.SecretText
-  tenantId = (Get-AzSubscription -SubscriptionId $SubscriptionId).TenantId
+  ClientId = $sp.AppId
+  ClientSecret = $appCred.SecretText
+  TenantId = (Get-AzSubscription -SubscriptionId $SubscriptionId).TenantId
 }
 ```
 
-Note that to setup image generation CI or use packer manually you need proper SP with full read-write permissions for selected Azure subscription.
-
-### Run image generation
-
-All further steps are supposed to run in Powershell.
-
-Clone runner-images repository and change directory:
-```
-git clone https://github.com/actions/runner-images.git
-Set-Location runner-images
-```
-
-Import [GenerateResourcesAndImage](../helpers/GenerateResourcesAndImage.ps1) script from `/helpers` folder:
-
-```powershell
-Import-Module .\helpers\GenerateResourcesAndImage.ps1
-```
-
-Run `GenerateResourcesAndImage` function with appropriate arguments. Only four of them are mandatory:
-
-- `SubscriptionId` - Azure Subscription Id where resources will be created
-- `ResourceGroupName` - resource group name where resources will be created (e.g. "imagegen-test")
-- `AzureLocation` - location where resources will be created (e.g. "East US")
-- `ImageType` - what image to build (e.g. "UbuntuMinimal", other valid options are "Windows2019", "Windows2022", "Ubuntu2004", "Ubuntu2204")
-
-This function automatically creates all required Azure resources and kicks off packer image generation for the selected image type.
-
-To authenticate with existing service principal make sure to provide optional parameters `AzureClientId`, `AzureClientSecret` and `AzureTenantId`.
-
-If you want specific tags to be set on all resources involved in image generation process then pass a HashTable of tags as a value for `Tags` parameter.
-
-Other useful parameters may be `EnableHttpsTrafficOnly` (Boolean, to enable https for Storage Account) and `RestrictToAgentIpAddress` (Boolean, to limit access to temporary VM to your IP address only)
-
-Use `get-help GenerateResourcesAndImage -Detailed` for the complete list of parameters available.
-
-### Generated VM Deployment
+## Generated machine deployment
 
 After the successful image generation, Virtual Machine can be created from the generated VHD using [CreateAzureVMFromPackerTemplate](../helpers/CreateAzureVMFromPackerTemplate.ps1) script.
 
@@ -139,20 +144,27 @@ Where:
 
 The function creates an Azure VM from a template and generates network resources in Azure to make the VM accessible.
 
-## Additional
-### User variables
-The Packer template includes `variables` section containing user variables used in image generation. Each variable is defined as a key/value strings. User variables can be passed to packer via predefined environment variables, or as direct arguments, in case if packer started manually.
+## Manual image generation
+
+If you want more control over image generation process you may run Packer directly. This section describes variables defined in Packer template. Some of them may be set using environment variabes.
+
+### Required variables
+
+| Template var | Env var | Description
+| ------------ | ------- | -----------
+| `subscription_id` | `ARM_SUBSCRIPTION_ID` | Subscription under which the build will be performed.
+| `client_id` | `ARM_CLIENT_ID` | The Active Directory service principal associated with your builder.
+| `client_secret` | `ARM_CLIENT_SECRET` | The password or secret for your service principal; may be omitted if `client_cert_path` is set.
+| `client_cert_path` | `ARM_CLIENT_CERT_PATH` | The location of a PEM file containing a certificate and private key for service principal; may be omitted if `client_secret` is set.
+| `location` | `ARM_RESOURCE_LOCATION` | Azure datacenter in which your VM will build.
+| `resource_group` | `ARM_RESOURCE_GROUP` | Resource group under which the final artifact will be stored.
+| `storage_account` | `ARM_STORAGE_ACCOUNT` | Storage account under which the final artifact will be stored.
+
+### Optional variables
 
 - `build_resource_group_name` - Specify an existing resource group to run the build in it. By default, a temporary resource group will be created and destroyed as part of the build. If you do not have permission to do so, use build_resource_group_name to specify an existing resource group to run the build in it.
-- `client_id` - The application ID of the AAD Service Principal. Requires `client_secret`.
 - `object_id` - The object ID for the AAD SP. Will be derived from the oAuth token if empty.
-- `client_secret` - The password or secret for your service principal.
-- `client_cert_path` - The location of a PEM file containing a certificate and private key for service principal.
-- `subscription_id` - The subscription to use.
 - `tenant_id` - The Active Directory tenant identifier with which your `client_id` and `subscription_id` are associated. If not specified, `tenant_id` will be looked up using `subscription_id`.
-- `resource_group` - Resource group under which the final artifact will be stored.
-- `storage_account` - Storage account under which the final artifact will be stored.
-- `location` - Azure datacenter in which your VM will be built.
 - `temp_resource_group_name` - Name assigned to the temporary resource group created during the build. If this value is not set, a random value will be assigned. This resource group is deleted at the end of the build.
 - `private_virtual_network_with_public_ip` - This value allows you to set a `virtual_network_name` and obtain a public IP. If this value is not set and `virtual_network_name` is defined Packer is only allowed to be executed from a host on the same subnet / virtual network.
 - `virtual_network_name` - Use a pre-existing virtual network for the VM. This option enables private communication with the VM, no public IP address is used or provisioned (unless you set `private_virtual_network_with_public_ip`).
