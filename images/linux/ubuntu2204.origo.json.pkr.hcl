@@ -231,7 +231,7 @@ source "azure-arm" "build_vhd" {
 #     image_version  = "${var.gallery_image_version}"
 #     replication_regions = ["${var.location}"]
 #     #storage_account_type = "Standard_LRS"
-# }
+}
   dynamic "azure_tag" {
     for_each = var.azure_tag
     content {
