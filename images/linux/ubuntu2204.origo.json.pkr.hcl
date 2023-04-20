@@ -225,7 +225,7 @@ source "azure-arm" "build_vhd" {
   #shared_gallery_image_version_exclude_from_latest = false
   shared_image_gallery_destination {
     subscription   = "${var.subscription_id}"
-    resource_group = "${var.resource_group}"
+    resource_group = "${var.gallery_resource_group}"
     gallery_name   = "${var.gallery_name}"
     image_name     = "${var.gallery_image_name}"
     image_version  = "${var.gallery_image_version}"
