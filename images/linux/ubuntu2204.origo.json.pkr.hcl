@@ -1,4 +1,3 @@
-
 variable "allowed_inbound_ip_addresses" {
   type    = list(string)
   default = []
@@ -183,16 +182,6 @@ variable "gallery_image_version" {
 variable "github_feed_token" {
   type    = string
   default = "${env("github_feed_token")}"
-}
-
-variable "ssh_password" {
-  type    = string
-  default = "${env("ssh_password")}"
-}
-
-variable "ssh_username" {
-  type    = string
-  default = "azureuser"
 }
 
 source "azure-arm" "build_vhd" {
