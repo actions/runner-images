@@ -196,7 +196,7 @@ variable "ssh_username" {
 }
 
 source "azure-arm" "build_vhd" {
-  allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
+  #allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
   #capture_container_name                 = "images"
   #capture_name_prefix                    = "${var.capture_name_prefix}"
@@ -223,15 +223,15 @@ source "azure-arm" "build_vhd" {
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   #managed_image_storage_account_type     = "Standard_LRS"
   #shared_gallery_image_version_exclude_from_latest = false
-  shared_image_gallery_destination {
-    subscription   = "${var.subscription_id}"
-    resource_group = "${var.gallery_resource_group}"
-    gallery_name   = "${var.gallery_name}"
-    image_name     = "${var.gallery_image_name}"
-    image_version  = "${var.gallery_image_version}"
-    replication_regions = ["${var.location}"]
-    #storage_account_type = "Standard_LRS"
-}
+#   shared_image_gallery_destination {
+#     subscription   = "${var.subscription_id}"
+#     resource_group = "${var.gallery_resource_group}"
+#     gallery_name   = "${var.gallery_name}"
+#     image_name     = "${var.gallery_image_name}"
+#     image_version  = "${var.gallery_image_version}"
+#     replication_regions = ["${var.location}"]
+#     #storage_account_type = "Standard_LRS"
+# }
   dynamic "azure_tag" {
     for_each = var.azure_tag
     content {
