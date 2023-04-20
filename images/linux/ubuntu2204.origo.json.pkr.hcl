@@ -196,7 +196,7 @@ variable "ssh_username" {
 }
 
 source "azure-arm" "build_vhd" {
-  #allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
+  allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
   #capture_container_name                 = "images"
   #capture_name_prefix                    = "${var.capture_name_prefix}"
