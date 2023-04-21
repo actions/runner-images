@@ -28,6 +28,7 @@ download_with_retries() {
         set +e
         http_code=$(eval $COMMAND)
         exit_code=$?
+        set -e
         if [ $http_code -eq 200 ] && [ $exit_code -eq 0 ]; then
             echo "Download completed"
             return 0
@@ -35,8 +36,6 @@ download_with_retries() {
             echo "Error — Either HTTP response code for '$URL' is wrong - '$http_code' or exit code is not 0 - '$exit_code'. Waiting $interval seconds before the next attempt, $retries attempts left"
             sleep $interval
         fi
-        # Enable exit on error back
-        set -e
     done
 
     echo "Could not download $URL"
