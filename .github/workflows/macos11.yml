@@ -26,5 +26,5 @@ jobs:
       template_path: 'templates/macOS-11.json'
       target_datastore: 'ds-image'
       custom_repo: ${{ github.event.inputs.CUSTOM_REPOSITORY }}
-      custom_repo_hash: ${{ github.event.inputs.CUSTOM_REPOSITORY_COMMIT_HASH }}
+      custom_repo_commit_hash: ${{ github.event.inputs.CUSTOM_REPOSITORY_COMMIT_HASH }}
     secrets: inherit
