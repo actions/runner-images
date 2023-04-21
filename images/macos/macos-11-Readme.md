@@ -1,16 +1,12 @@
-| Announcements |
-|-|
-| [GraalVM JDK11 will be removed from agents on April 10, 2023](https://github.com/actions/runner-images/issues/7338) |
-***
 # macOS 11
 - OS Version: macOS 11.7.6 (20G1231)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20230411.1
+- Image Version: 20230416.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.407, 7.0.102, 7.0.202
+- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.408, 7.0.102, 7.0.203
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -25,30 +21,30 @@
 - Kotlin 1.8.20-release-327
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
-- Node.js 18.15.0
+- Node.js 18.16.0
 - NVM 0.39.3
-- NVM - Cached node versions: 14.21.3, 16.20.0, 18.15.0
+- NVM - Cached node versions: 14.21.3, 16.20.0, 18.16.0
 - Perl 5.36.0
-- PHP 8.2.4
+- PHP 8.2.5
 - Python 2.7.18
 - Python3 3.11.3
 - R 4.2.3
 - Ruby 2.7.8p225
 
 ### Package Management
-- Bundler 2.4.11
+- Bundler 2.4.12
 - Carthage 0.39.0
 - CocoaPods 1.12.0
 - Composer 2.5.5
-- Homebrew 4.0.12
+- Homebrew 4.0.13
 - Miniconda 23.1.0
-- NPM 9.5.0
+- NPM 9.5.1
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip3 23.0.1 (python 3.11)
+- Pip3 23.1 (python 3.11)
 - Pipx 1.2.0
-- RubyGems 3.4.11
-- Vcpkg 2023 (build from commit dafff8267)
+- RubyGems 3.4.12
+- Vcpkg 2023 (build from commit 501db0f17)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -60,7 +56,7 @@
 ### Project Management
 - Apache Ant 1.10.13
 - Apache Maven 3.9.1
-- Gradle 8.0.2
+- Gradle 8.1
 - Sbt 1.8.2
 
 ### Utilities
@@ -77,7 +73,7 @@
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.4.0
-- helm v3.11.2+g912ebc1
+- helm v3.11.3+g66a969e
 - Hub CLI 2.14.2
 - ImageMagick 7.1.1-6
 - jq 1.6
@@ -95,23 +91,23 @@
 - zstd 1.5.5
 
 ### Tools
-- Aliyun CLI 3.0.160
+- Aliyun CLI 3.0.161
 - App Center CLI 2.13.4
-- AWS CLI 2.11.11
+- AWS CLI 2.11.13
 - AWS SAM CLI 1.79.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.47.0
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.16.1
+- Bicep CLI 0.16.2
 - Cabal 3.6.2.0
 - Cmake 3.26.3
 - CodeQL Action Bundles 2.12.5 2.12.6
-- Fastlane 2.212.1
+- Fastlane 2.212.2
 - GHC 9.6.1
 - GHCup 0.1.19.2
 - Jazzy 0.14.3
 - Stack 2.9.3
-- SwiftFormat 0.51.5
+- SwiftFormat 0.51.6
 - Swig 4.1.1
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -122,10 +118,10 @@
 ### Browsers
 - Safari 16.4.1 (16615.1.26.101.10)
 - SafariDriver 16.4.1 (16615.1.26.101.10)
-- Google Chrome 112.0.5615.49
+- Google Chrome 112.0.5615.121
 - ChromeDriver 112.0.5615.49
-- Microsoft Edge 112.0.1722.39
-- Microsoft Edge WebDriver 112.0.1722.39
+- Microsoft Edge 112.0.1722.48
+- Microsoft Edge WebDriver 112.0.1722.48
 - Mozilla Firefox 112.0
 - geckodriver 0.33.0
 - Selenium server 4.8.0
@@ -170,7 +166,7 @@
 #### Node.js
 - 14.21.3
 - 16.20.0
-- 18.15.0
+- 18.16.0
 
 #### Go
 - 1.18.10
@@ -192,7 +188,7 @@
 - Rustfmt 1.5.1-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.10
+- PowerShell 7.2.11
 
 #### PowerShell Modules
 - Az: 9.6.0

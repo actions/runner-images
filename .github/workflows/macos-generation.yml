@@ -48,31 +48,12 @@ jobs:
     if: ${{ github.repository_owner == 'actions' }}
     timeout-minutes: 1200
     steps:
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
     - name: Set image variables
       run: |
         $currentDate = Get-Date -Format "yyyyMMdd"
         $templatePath = "${{ inputs.template_path }}"
         $osName = $(($templatePath.Split("/")[-1]).Split(".")[0])
         $virtualMachineName = "${osName}_${currentDate}_unstable.${{ github.run_id }}.${{ github.run_attempt }}"
-        $GitHubFeed = az keyvault secret show -n "github-feed-token" --vault-name "${{ env.KEYVAULT }}" --query value -o tsv
-        $VIUserName = az keyvault secret show -n "vcenter-username-v2" --vault-name "${{ env.KEYVAULT }}" --query value -o tsv
-        $VIPassword = az keyvault secret show -n "vcenter-password-v2" --vault-name "${{ env.KEYVAULT }}" --query value -o tsv
-        $XcodeUser = az keyvault secret show -n "xcode-installation-user" --vault-name "${{ env.KEYVAULT }}" --query value -o tsv
-        $XcodePassword =  az keyvault secret show -n "xcode-installation-password" --vault-name "${{ env.KEYVAULT }}" --query value -o tsv
-        echo "::add-mask::$GitHubFeed"
-        echo "::add-mask::$VIUserName"
-        echo "::add-mask::$VIPassword"
-        echo "::add-mask::$XcodeUser"
-        echo "::add-mask::$XcodePassword"
-        "GH_FEED=$GitHubFeed" | Out-File -Append -FilePath $env:GITHUB_ENV
-        "VI_USER_NAME=$VIUserName" | Out-File -Append -FilePath $env:GITHUB_ENV
-        "VI_PASSWORD=$VIPassword" | Out-File -Append -FilePath $env:GITHUB_ENV
-        "XCODE_USER=$XcodeUser" | Out-File -Append -FilePath $env:GITHUB_ENV
-        "XCODE_PASSWORD=$XcodePassword" | Out-File -Append -FilePath $env:GITHUB_ENV
         "VM_NAME=$virtualMachineName" | Out-File -Append -FilePath $env:GITHUB_ENV
 
     - name: Determine checkout type
@@ -108,11 +89,10 @@ jobs:
     - name: Validate contributor permissions
       if: ${{ github.event_name == 'pull_request_target' }}
       run: |
-        
         [string]$contributorAllowList = "${{ vars.CONTRIBUTOR_ALLOWLIST }}"
         ./images.CI/macos/validate-contributor.ps1 `
           -RepositoryName ${{ github.repository }} `
-          -AccessToken ${{ env.GH_FEED }} `
+          -AccessToken ${{ secrets.GH_FEED }} `
           -SourceBranch "refs/pull/${{ github.event.pull_request.number }}/merge" `
           -ContributorAllowList $contributorAllowList
 
@@ -121,8 +101,8 @@ jobs:
         ./images.CI/macos/select-datastore.ps1 `
           -VMName "${{ env.VM_NAME }}" `
           -VIServer ${{ secrets.VISERVER_V2 }} `
-          -VIUserName ${{ env.VI_USER_NAME }} `
-          -VIPassword ${{ env.VI_PASSWORD }} `
+          -VIUserName ${{ secrets.VI_USER_NAME }} `
+          -VIPassword ${{ secrets.VI_PASSWORD }} `
           -Cluster ${{ env.ESXI_CLUSTER }}
 
     - name: Build VM
@@ -133,8 +113,8 @@ jobs:
         )
          packer build -on-error=abort `
         -var="vcenter_server=${{ secrets.VISERVER_V2 }}" `
-        -var="vcenter_username=${{ env.VI_USER_NAME }}" `
-        -var="vcenter_password=${{ env.VI_PASSWORD }}" `
+        -var="vcenter_username=${{ secrets.VI_USER_NAME }}" `
+        -var="vcenter_password=${{ secrets.VI_PASSWORD }}" `
         -var="vcenter_datacenter=${{ env.VCENTER_DATACENTER }}" `
         -var="cluster_or_esxi_host=${{ env.ESXI_CLUSTER }}" `
         -var="esxi_datastore=${{ env.BUILD_DATASTORE }}" `
@@ -144,8 +124,8 @@ jobs:
         -var="github_api_pat=${{ secrets.GH_FEED_TOKEN }}" `
         -var="build_id=${{ env.VM_NAME }}" `
         -var="baseimage_name=${{ inputs.base_image_name }}" `
-        -var="xcode_install_user=${{ env.XCODE_USER }}" `
-        -var="xcode_install_password=${{ env.XCODE_PASSWORD }}" `
+        -var="xcode_install_user=${{ secrets.XCODE_USER }}" `
+        -var="xcode_install_password=${{ secrets.XCODE_PASSWORD }}" `
         -color=false `
         ${{ inputs.template_path }} `
         | Where-Object {
@@ -202,8 +182,8 @@ jobs:
           -VMName "${{ env.VM_NAME }}" `
           -TargetDataStore "${{ inputs.target_datastore }}" `
           -VIServer "${{ secrets.VISERVER_V2 }}" `
-          -VIUserName "${{ env.VI_USER_NAME }}" `
-          -VIPassword "${{ env.VI_PASSWORD }}" `
+          -VIUserName "${{ secrets.VI_USER_NAME }}" `
+          -VIPassword "${{ secrets.VI_PASSWORD }}" `
           -JobStatus "${{ job.status }}" `
           -CpuCount "$cpuCount" `
           -CoresPerSocketCount "$coresPerSocketCount" `
@@ -215,5 +195,5 @@ jobs:
         ./images.CI/macos/destroy-vm.ps1 `
           -VMName "${{ env.VM_NAME }}" `
           -VIServer "${{ secrets.VISERVER_V2 }}" `
-          -VIUserName "${{ env.VI_USER_NAME }}" `
-          -VIPassword "${{ env.VI_PASSWORD }}"
+          -VIUserName "${{ secrets.VI_USER_NAME }}" `
+          -VIPassword "${{ secrets.VI_PASSWORD }}"
