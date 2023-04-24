@@ -1,6 +1,6 @@
 variable "allowed_inbound_ip_addresses" {
   type    = list(string)
-  default = ["${env("AGENT_IP")}"]
+  default = []
 }
 
 variable "azure_tag" {
@@ -18,11 +18,6 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
-variable "capture_name_prefix" {
-  type    = string
-  default = "packer"
-}
-
 variable "client_id" {
   type    = string
   default = "${env("ARM_CLIENT_ID")}"
@@ -32,26 +27,6 @@ variable "client_secret" {
   type      = string
   default   = "${env("ARM_CLIENT_SECRET")}"
   sensitive = true
-}
-
-variable "client_cert_path" {
-  type      = string
-  default   = "${env("ARM_CLIENT_CERT_PATH")}"
-}
-
-variable "commit_url" {
-  type      = string
-  default   = ""
-}
-
-variable "dockerhub_login" {
-  type    = string
-  default = "${env("DOCKERHUB_LOGIN")}"
-}
-
-variable "dockerhub_password" {
-  type    = string
-  default = "${env("DOCKERHUB_PASSWORD")}"
 }
 
 variable "helper_script_folder" {
@@ -99,19 +74,9 @@ variable "private_virtual_network_with_public_ip" {
   default = false
 }
 
-variable "resource_group" {
-  type    = string
-  default = "${env("ARM_RESOURCE_GROUP")}"
-}
-
 variable "run_validation_diskspace" {
   type    = bool
   default = false
-}
-
-variable "storage_account" {
-  type    = string
-  default = "${env("ARM_STORAGE_ACCOUNT")}"
 }
 
 variable "subscription_id" {
@@ -191,7 +156,7 @@ source "azure-arm" "build_vhd" {
   #capture_name_prefix                    = "${var.capture_name_prefix}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
-  client_cert_path                       = "${var.client_cert_path}"
+  #client_cert_path                       = "${var.client_cert_path}"
   image_offer                            = "0001-com-ubuntu-server-jammy"
   image_publisher                        = "canonical"
   image_sku                              = "22_04-lts"
@@ -219,7 +184,6 @@ source "azure-arm" "build_vhd" {
     image_name     = "${var.gallery_image_name}"
     image_version  = "${var.gallery_image_version}"
     replication_regions = ["${var.location}"]
-    #storage_account_type = "Standard_LRS"
   }
   dynamic "azure_tag" {
     for_each = var.azure_tag
