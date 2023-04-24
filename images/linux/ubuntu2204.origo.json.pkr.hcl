@@ -1,6 +1,6 @@
 variable "allowed_inbound_ip_addresses" {
-  type    = list(string)
-  default = []
+  type    = string
+  default = "${env("AGENT_IP")}"
 }
 
 variable "azure_tag" {
