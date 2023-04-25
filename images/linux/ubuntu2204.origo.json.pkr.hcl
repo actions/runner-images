@@ -159,32 +159,33 @@ source "azure-arm" "build_vhd" {
   build_resource_group_name              = "${var.build_resource_group_name}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
+  communicator                           = "ssh"
   image_offer                            = "0001-com-ubuntu-server-jammy"
   image_publisher                        = "canonical"
   image_sku                              = "22_04-lts"
   location                               = "${var.location}"
-  os_disk_size_gb                        = "86"
-  os_type                                = "Linux"
-  subscription_id                        = "${var.subscription_id}"
-  temp_resource_group_name               = "${var.temp_resource_group_name}"
-  tenant_id                              = "${var.tenant_id}"
-  /* virtual_network_name                   = "${var.virtual_network_name}"
-  virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
-  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}" */
-  vm_size                                = "${var.vm_size}"
   managed_image_name                     = "${var.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
-  object_id                              = "${var.object_id}"
+  object_id                              = "${var.object_id}"   
+  os_disk_size_gb                        = "86"
+  os_type                                = "Linux"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
-  ssh_timeout  = "5m"
   shared_image_gallery_destination {
-    subscription   = "${var.subscription_id}"
-    resource_group = "${var.gallery_resource_group}"
-    gallery_name   = "${var.gallery_name}"
-    image_name     = "${var.gallery_image_name}"
-    image_version  = "${var.gallery_image_version}"
+    gallery_name        = "${var.gallery_name}"
+    image_name          = "${var.gallery_image_name}"
+    image_version       = "${var.gallery_image_version}"
     replication_regions = ["${var.location}"]
-}
+    resource_group      = "${var.gallery_resource_group}"
+    subscription        = "${var.subscription_id}"
+  }
+  subscription_id                     = "${var.subscription_id}"
+  temp_resource_group_name            = "${var.temp_resource_group_name}"
+  tenant_id                           = "${var.tenant_id}"
+  virtual_network_name                = "${var.virtual_network_name}"
+  virtual_network_resource_group_name = "${var.virtual_network_resource_group_name}"
+  virtual_network_subnet_name         = "${var.virtual_network_subnet_name}"
+  vm_size                             = "${var.vm_size}"
+  
   dynamic "azure_tag" {
     for_each = var.azure_tag
     content {
@@ -193,7 +194,6 @@ source "azure-arm" "build_vhd" {
     }
   }
 }
-
 build {
   sources = ["source.azure-arm.build_vhd"]
 
