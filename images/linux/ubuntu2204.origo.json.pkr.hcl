@@ -191,7 +191,6 @@ source "azure-arm" "build_vhd" {
       value = azure_tag.value
     }
   }
-  communicator = "ssh"
 }
 
 build {
