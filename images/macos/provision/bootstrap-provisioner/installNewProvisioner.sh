@@ -5,8 +5,13 @@ ProvisionerScriptUri="$3"
 ScriptName="$4"
 ScriptParam="$5"
 Username="$6"
+arch=$(arch)
 
-export PATH=/usr/bin:/usr/sbin:/usr/local/bin:/bin:/sbin:/opt/homebrew/bin
+if [[ $arch == "arm64" ]]; then
+  export PATH=/usr/bin:/usr/sbin:/usr/local/bin:/bin:/sbin:/opt/homebrew/bin
+else
+  export PATH=/usr/bin:/usr/sbin:/usr/local/bin:/bin:/sbin
+fi
 
 PROVISIONER_ROOT=/usr/local/opt/${Username}
 sudo mkdir -p ${PROVISIONER_ROOT}
