@@ -22,7 +22,9 @@ function Push-AnkaTemplateToRegistry {
         Invoke-WebRequest -Uri $uri -Method Delete | Out-Null
     }
 
-    $command = "anka registry --registry-path $RegistryUrl push --force --tag $TagName $TemplateName"
+    $AnkaConfigPath="/Users/maccloud/.config/anka/certs"
+    $AnkaCaCrtPath="$AnkaConfigPath/anka-ca-crt.pem"
+    $command = "anka registry --cacert $AnkaCaCrtPath --registry-path $RegistryUrl push --force --tag $TagName $TemplateName"
     Invoke-AnkaCommand -Command $command
 }
 
