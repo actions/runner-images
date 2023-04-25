@@ -1,7 +1,7 @@
-/* variable "allowed_inbound_ip_addresses" {
+variable "allowed_inbound_ip_addresses" {
   type    = list(string)
   default = []
-} */
+}
 
 variable "azure_tag" {
   type    = map(string)
