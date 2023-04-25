@@ -1,6 +1,6 @@
 variable "allowed_inbound_ip_addresses" {
   type    = list(string)
-  default = []
+  default = ["${env("AGENT_IP")}"]
 }
 
 variable "azure_tag" {
@@ -164,18 +164,17 @@ source "azure-arm" "build_vhd" {
   location                               = "${var.location}"
   os_disk_size_gb                        = "86"
   os_type                                = "Linux"
-  private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
   tenant_id                              = "${var.tenant_id}"
-  /* virtual_network_name                   = "${var.virtual_network_name}"
+  virtual_network_name                   = "${var.virtual_network_name}"
   virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
-  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}" */
+  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
   vm_size                                = "${var.vm_size}"
   managed_image_name                     = "${var.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   object_id                              = "${var.object_id}"
-  #shared_gallery_image_version_exclude_from_latest = false
+  private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   shared_image_gallery_destination {
     subscription   = "${var.subscription_id}"
     resource_group = "${var.gallery_resource_group}"
