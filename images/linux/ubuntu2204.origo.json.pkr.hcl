@@ -176,6 +176,7 @@ source "azure-arm" "build_vhd" {
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   object_id                              = "${var.object_id}"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
+  ssh_port                               = "22" 
   shared_image_gallery_destination {
     subscription   = "${var.subscription_id}"
     resource_group = "${var.gallery_resource_group}"
