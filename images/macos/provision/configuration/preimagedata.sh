@@ -8,11 +8,8 @@ os_name=$(sw_vers -productName)
 os_version=$(sw_vers -productVersion)
 os_build=$(sw_vers -buildVersion)
 label_version=$(echo $os_version | cut -d. -f1,2)
-if is_Catalina; then
-    label_version=$(echo $os_version | cut -d. -f1,2)
-else
-    label_version=$(echo $os_version | cut -d. -f1)
-fi
+label_version=$(echo $os_version | cut -d. -f1)
+
 image_label="macos-${label_version}"
 release_label="macOS-${label_version}"
 software_url="https://github.com/actions/runner-images/blob/${release_label}/${image_version}/images/macos/${image_label}-Readme.md"

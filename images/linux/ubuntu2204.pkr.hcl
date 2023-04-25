@@ -4,7 +4,7 @@ variable "allowed_inbound_ip_addresses" {
   default = []
 }
 
-variable "azure_tag" {
+variable "azure_tags" {
   type    = map(string)
   default = {}
 }
@@ -171,7 +171,7 @@ source "azure-arm" "build_vhd" {
   vm_size                                = "${var.vm_size}"
 
   dynamic "azure_tag" {
-    for_each = var.azure_tag
+    for_each = var.azure_tags
     content {
       name = azure_tag.key
       value = azure_tag.value
@@ -232,6 +232,11 @@ build {
   provisioner "file" {
     destination = "${var.image_folder}"
     source      = "${path.root}/scripts/SoftwareReport"
+  }
+
+  provisioner "file" {
+    destination = "${var.image_folder}/SoftwareReport/"
+    source      = "${path.root}/../../helpers/software-report-base"
   }
 
   provisioner "file" {
@@ -329,7 +334,7 @@ build {
                         "${path.root}/scripts/installers/android.sh",
                         "${path.root}/scripts/installers/pypy.sh",
                         "${path.root}/scripts/installers/python.sh",
-                        "${path.root}/scripts/installers/graalvm.sh"
+                        "${path.root}/scripts/installers/zstd.sh"
                         ]
   }
 
@@ -382,7 +387,13 @@ build {
   provisioner "file" {
     destination = "${path.root}/Ubuntu2204-Readme.md"
     direction   = "download"
-    source      = "${var.image_folder}/Ubuntu-Readme.md"
+    source      = "${var.image_folder}/software-report.md"
+  }
+
+  provisioner "file" {
+    destination = "${path.root}/software-report.json"
+    direction   = "download"
+    source      = "${var.image_folder}/software-report.json"
   }
 
   provisioner "shell" {

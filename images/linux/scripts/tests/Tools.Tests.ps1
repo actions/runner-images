@@ -220,6 +220,16 @@ Describe "Terraform" {
     }
 }
 
+Describe "Zstd" {
+    It "zstd" {
+        "zstd --version" | Should -ReturnZeroExitCode
+    }
+
+    It "pzstd" {
+        "pzstd --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Vcpkg" {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
@@ -257,22 +267,8 @@ Describe "HHVM" -Skip:(Test-IsUbuntu22) {
 }
 
 Describe "Homebrew" {
-    $brewToolset = (Get-ToolsetContent).brew
-    $testCases = $brewToolset | ForEach-Object { @{brewName = $_.name; brewCommand = $_.command} }
-
     It "homebrew" {
         "/home/linuxbrew/.linuxbrew/bin/brew --version" | Should -ReturnZeroExitCode
-    }
-
-    It "zstd has /usr/local/bin symlink" {
-        "/usr/local/bin/zstd" | Should -Exist
-    }
-
-    It "homebrew package <brewName>" -TestCases $testCases {
-        $brewPrefix = /home/linuxbrew/.linuxbrew/bin/brew --prefix $brewName
-        $brewPackage = Join-Path $brewPrefix "bin" $brewCommand
-
-        "$brewPackage --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -330,17 +326,8 @@ Describe "Pulumi" {
 
 Describe "Phantomjs" -Skip:(Test-IsUbuntu22) {
     It "phantomjs" {
+        $env:OPENSSL_CONF="/etc/ssl"; phantomjs --version
         "phantomjs --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "GraalVM" -Skip:(Test-IsUbuntu18) {
-    It "graalvm" {
-        '$GRAALVM_11_ROOT/bin/java -version' | Should -ReturnZeroExitCode
-    }
-
-    It "native-image" {
-        '$GRAALVM_11_ROOT/bin/native-image --version' | Should -ReturnZeroExitCode
     }
 }
 
@@ -414,10 +401,6 @@ Describe "Kotlin" {
 
     It "kotlinc" {
         "kotlinc -version"| Should -ReturnZeroExitCode
-    }
-
-    It "kotlinc-js" {
-        "kotlinc-js -version"| Should -ReturnZeroExitCode
     }
 
     It "kotlinc-jvm" {

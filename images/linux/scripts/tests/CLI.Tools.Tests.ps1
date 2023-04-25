@@ -23,7 +23,7 @@ Describe "AWS" {
     }
 
     It "Session Manager Plugin for the AWS CLI" {
-        session-manager-plugin | Out-String | Should -Match "plugin was installed successfully"
+        session-manager-plugin 2>&1 | Out-String | Should -Match "plugin was installed successfully"
     }
 
     It "AWS SAM CLI" {

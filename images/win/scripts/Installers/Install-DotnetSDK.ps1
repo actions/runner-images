@@ -9,6 +9,8 @@ New-Item -Path C:\Temp -Force -ItemType Directory
 
 # Set environment variables
 Set-SystemVariable -SystemVariable DOTNET_MULTILEVEL_LOOKUP -Value "0"
+Set-SystemVariable -SystemVariable DOTNET_NOLOGO -Value "1"
+Set-SystemVariable -SystemVariable DOTNET_SKIP_FIRST_TIME_EXPERIENCE -Value "1"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 

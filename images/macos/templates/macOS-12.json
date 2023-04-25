@@ -60,6 +60,11 @@
         },
         {
             "type": "file",
+            "source": "../../helpers/software-report-base",
+            "destination": "~/image-generation/software-report/"
+        },
+        {
+            "type": "file",
             "source": "./helpers",
             "destination": "~/image-generation/"
         },
@@ -152,6 +157,7 @@
                 "./provision/core/ruby.sh",
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
+                "./provision/core/mongodb.sh",
                 "./provision/core/node.sh",
                 "./provision/core/commonutils.sh"
             ],
@@ -197,7 +203,6 @@
                 "./provision/core/apache.sh",
                 "./provision/core/nginx.sh",
                 "./provision/core/postgresql.sh",
-                "./provision/core/mongodb.sh",
                 "./provision/core/audiodevice.sh",
                 "./provision/core/vcpkg.sh",
                 "./provision/core/miniconda.sh",
@@ -208,7 +213,6 @@
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
                 "./provision/core/bicep.sh",
-                "./provision/core/graalvm.sh",
                 "./provision/core/codeql-bundle.sh"
             ],
             "environment_vars": [
@@ -229,6 +233,11 @@
             "scripts": [
                 "./provision/core/delete-duplicate-sims.rb"
             ]
+        },
+        {
+            "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
+            "script": "./provision/core/fix-xcode-simulators.ps1"
         },
         {
             "type": "shell",

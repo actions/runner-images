@@ -41,11 +41,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.17.*",
                 "1.18.*",
-                "1.19.*"
+                "1.19.*",
+                "1.20.*"
             ],
-            "default": "1.18.*"
+            "default": "1.20.*"
         },
         {
             "name": "Ruby",
@@ -73,7 +73,7 @@
                 "versions": [ "8", "11", "17" ]
             }
         ],
-        "maven": "3.8.6"
+        "maven": "3.8.8"
     },
     "android": {
         "cmdline-tools": "latest",
@@ -109,7 +109,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "9.0.1"
+                "9.3.0"
             ],
             "zip_versions": [
             ]
@@ -206,16 +206,13 @@
         ]
     },
     "brew": [
-        {
-            "name": "zstd",
-            "command": "zstd"
-        }
     ],
     "docker": {
         "images": [
             "alpine:3.14",
             "alpine:3.15",
             "alpine:3.16",
+            "alpine:3.17",
             "buildpack-deps:buster",
             "buildpack-deps:bullseye",
             "debian:10",
@@ -290,7 +287,7 @@
         "binary_name": "selenium-server"
     },
     "node": {
-        "default": "16"
+        "default": "18"
     },
     "node_modules": [
         {

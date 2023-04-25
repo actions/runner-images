@@ -3,9 +3,8 @@ $ErrorActionPreference = 'Stop'
 enum ImageType {
     Windows2019 = 1
     Windows2022 = 2
-    Ubuntu1804 = 3
-    Ubuntu2004 = 4
-    Ubuntu2204 = 5
+    Ubuntu2004 = 3
+    Ubuntu2204 = 4
 }
 
 Function Get-PackerTemplatePath {
@@ -22,9 +21,6 @@ Function Get-PackerTemplatePath {
         }
         ([ImageType]::Windows2022) {
             $relativeTemplatePath = Join-Path "win" "windows2022.json"
-        }
-        ([ImageType]::Ubuntu1804) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu1804.json"
         }
         ([ImageType]::Ubuntu2004) {
             $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
@@ -67,7 +63,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER ImageGenerationRepositoryRoot
             The root path of the image generation repository source.
         .PARAMETER ImageType
-            The type of the image being generated. Valid options are: {"Windows2019", "Windows2022", "Ubuntu1804", "Ubuntu2004", "Ubuntu2204"}.
+            The type of the image being generated. Valid options are: {"Windows2019", "Windows2022", "Ubuntu2004", "Ubuntu2204"}.
         .PARAMETER AzureLocation
             The location of the resources being created in Azure. For example "East US".
         .PARAMETER Force
@@ -87,7 +83,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER OnError
             Specify how packer handles an error during image creation.
         .EXAMPLE
-            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu1804 -AzureLocation "East US"
+            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2004 -AzureLocation "East US"
     #>
     param (
         [Parameter(Mandatory = $True)]
@@ -268,18 +264,23 @@ Function GenerateResourcesAndImage {
         
         if ($builderScriptPath.Contains("pkr.hcl")) {
             if ($AgentIp) {
-                $AgentIp = '[ \"{0}\" ]' -f $AgentIp
+                $AgentIp = '[ "{0}" ]' -f $AgentIp
             } else {
                 $AgentIp = "[]"
             }
+            if (-not $Tags) {
+                $Tags = @{}
+            }
         }
 
-        if ($Tags) {
-            $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
-            $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
-            $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
-            $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
-            $builderScriptPath = $builderScriptPath_temp
+        if ($builderScriptPath.Contains(".json")) {
+            if ($Tags) {
+                $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
+                $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
+                $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
+                $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
+                $builderScriptPath = $builderScriptPath_temp
+            }
         }
 
         & $packerBinary build -on-error="$($OnError)" `
@@ -292,6 +293,7 @@ Function GenerateResourcesAndImage {
             -var "storage_account=$($storageAccountName)" `
             -var "install_password=$($InstallPassword)" `
             -var "allowed_inbound_ip_addresses=$($AgentIp)" `
+            -var "azure_tags=$($Tags | ConvertTo-Json -Compress)" `
             $builderScriptPath
     }
     catch {

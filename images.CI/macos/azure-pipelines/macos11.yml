@@ -1,6 +1,6 @@
 name: macOS-11_$(date:yyyyMMdd)$(rev:.r)_unstable
 schedules:
-- cron: "0 0 * * *"
+- cron: '45 0 * * *'
   displayName: Daily
   branches:
     include:

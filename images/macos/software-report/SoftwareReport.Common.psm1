@@ -9,8 +9,7 @@ function Get-BashVersion {
 
 function Get-DotnetVersionList {
     $sdkRawList = Run-Command "dotnet --list-sdks"
-    $sdkVersionList = $sdkRawList | ForEach-Object { Take-Part $_ -Part 0 }
-    return [string]::Join(" ", $sdkVersionList)
+    return $sdkRawList | ForEach-Object { Take-Part $_ -Part 0 }
 }
 
 function Get-GoVersion {
@@ -88,7 +87,7 @@ function Get-GccVersions {
     $versionList | Foreach-Object {
         $nameVersion = Run-Command "gcc-${_} --version" | Select-Object -First 1
         $version = ($nameVersion -replace "^gcc-${_}").Trim() -replace '\).*$', ')'
-        return [ToolNode]::new("GCC ${_}", "$version - available by ``gcc-${_}`` alias")
+        return [ToolVersionNode]::new("GCC ${_}", "$version - available by ``gcc-${_}`` alias")
     }
 }
 
@@ -97,7 +96,7 @@ function Get-FortranVersions {
     $versionList | Foreach-Object {
         $nameVersion = Run-Command "gfortran-${_} --version" | Select-Object -First 1
         $version = ($nameVersion -replace "^GNU Fortran").Trim() -replace '\).*$', ')'
-        return [ToolNode]::new("GNU Fortran ${_}", "$version - available by ``gfortran-${_}`` alias")
+        return [ToolVersionNode]::new("GNU Fortran ${_}", "$version - available by ``gfortran-${_}`` alias")
     }
 }
 
@@ -112,8 +111,8 @@ function Get-ClangLLVMVersions {
     $homebrewClangVersion = $clangVersionRegex.Match($homebrewClangOutput).Groups['version'].Value
 
     return @(
-        [ToolNode]::new("Clang/LLVM", $defaultClangVersion)
-        [ToolNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ``$homebrewClangPath``")
+        [ToolVersionNode]::new("Clang/LLVM", $defaultClangVersion)
+        [ToolVersionNode]::new("Clang/LLVM (Homebrew)", "$homebrewClangVersion - available on ``$homebrewClangPath``")
     )
 }
 
@@ -148,8 +147,7 @@ function Get-NVMNodeVersionList {
     $nvmInitCommand = ". ${nvmPath} > /dev/null 2>&1 || true"
     $nodejsVersionsRaw = Run-Command "${nvmInitCommand} && nvm ls"
     $nodeVersions = $nodejsVersionsRaw | ForEach-Object { $_.TrimStart(" ").TrimEnd(" *") } | Where-Object { $_.StartsWith("v") }
-    $formattedNodeVersions = $nodeVersions | ForEach-Object { $_.TrimStart("v") }
-    return [string]::Join(" ", $formattedNodeVersions)
+    return $nodeVersions | ForEach-Object { $_.TrimStart("v") }
 }
 
 function Build-OSInfoSection {
@@ -160,19 +158,15 @@ function Build-OSInfoSection {
     $fieldsToInclude = @("System Version:", "Kernel Version:")
     $rawSystemInfo = Invoke-Expression "system_profiler SPSoftwareDataType"
     $parsedSystemInfo = $rawSystemInfo | Where-Object { -not ($_ | Select-String -NotMatch $fieldsToInclude) } | ForEach-Object { $_.Trim() }
-    if ($os.IsCatalina) {
-        $parsedSystemInfo[0] -match "System Version: macOS (?<version>\d+\.\d+)" | Out-Null
-    } else {
-        $parsedSystemInfo[0] -match "System Version: macOS (?<version>\d+)" | Out-Null
-    }
+    $parsedSystemInfo[0] -match "System Version: macOS (?<version>\d+)" | Out-Null
     $version = $Matches.Version
     $systemVersion = $parsedSystemInfo[0].Replace($fieldsToInclude[0],"").Trim()
     $kernelVersion = $parsedSystemInfo[1].Replace($fieldsToInclude[1],"").Trim()
 
     $osInfoNode = [HeaderNode]::new("macOS $version")
-    $osInfoNode.AddToolNode("System Version:", $systemVersion)
-    $osInfoNode.AddToolNode("Kernel Version:", $kernelVersion)
-    $osInfoNode.AddToolNode("Image Version:", $ImageName.Split('_')[1])
+    $osInfoNode.AddToolVersion("OS Version:", $systemVersion)
+    $osInfoNode.AddToolVersion("Kernel Version:", $kernelVersion)
+    $osInfoNode.AddToolVersion("Image Version:", $ImageName.Split('_')[1])
     return $osInfoNode
 }
 
@@ -331,7 +325,7 @@ function Get-PackerVersion {
 }
 
 function Get-OpenSSLVersion {
-    $opensslVersion = Get-Item /usr/local/opt/openssl@1.1 | ForEach-Object {"{0} ``({1} -> {2})``" -f (Run-Command "openssl version"), $_.FullName, $_.Target}
+    $opensslVersion = Run-Command "openssl version"
     return ($opensslVersion -replace "^OpenSSL").Trim()
 }
 
@@ -387,12 +381,12 @@ function Get-HelmVersion {
 
 function Get-MongoVersion {
     $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
-    return $mongo
+    return $mongo.TrimStart("v").Trim()
 }
 
 function Get-MongodVersion {
     $mongod = Run-Command "mongod --version" | Select-String "db version " | Take-Part -Part 2
-    return $mongod
+    return $mongod.TrimStart("v").Trim()
 }
 
 function Get-7zipVersion {
@@ -600,7 +594,7 @@ function Build-PackageManagementEnvironmentTable {
         }
     }
 
-    $node.AddTableNode($table)
+    $node.AddTable($table)
 
     return $node
 }
@@ -619,30 +613,25 @@ function Build-MiscellaneousEnvironmentTable {
     }
 }
 
-function Get-GraalVMVersion {
-    $version = & "$env:GRAALVM_11_ROOT\java" --version | Select-String -Pattern "GraalVM" | Take-Part -Part 5,6
-    return $version
-}
-
-function Build-GraalVMTable {
-    $version = Get-GraalVMVersion
-    $envVariables = "GRAALVM_11_ROOT"
-
-    return [PSCustomObject] @{
-        "Version" = $version
-        "Environment variables" = $envVariables
+function Get-CodeQLBundleVersions {
+    $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+    $CodeQLVersionPaths = Get-ChildItem $CodeQLVersionsWildcard 
+    $CodeQlVersions=@()
+    foreach ($CodeQLVersionPath in $CodeQLVersionPaths) {
+        $FullCodeQLVersionPath = $CodeQLVersionPath | Select-Object -Expand FullName
+        $CodeQLPath = Join-Path $FullCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+        $CodeQLVersion = & $CodeQLPath version --quiet
+        $CodeQLVersions += $CodeQLVersion
     }
-}
-
-function Get-CodeQLBundleVersion {
-    $CodeQLVersionWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-    $CodeQLVersionPath = Get-ChildItem $CodeQLVersionWildcard | Select-Object -First 1 -Expand FullName
-    $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
-    $CodeQLVersion = & $CodeQLPath version --quiet
-    return $CodeQLVersion
+    return $CodeQLVersions
 }
 
 function Get-ColimaVersion {
     $colimaVersion = Run-Command "colima version" | Select-String "colima version" | Take-Part -Part 2
     return $colimaVersion
+}
+
+function Get-PKGConfigVersion {
+    $pkgconfigVersion = Run-Command "pkg-config --version"
+    return $pkgconfigVersion
 }

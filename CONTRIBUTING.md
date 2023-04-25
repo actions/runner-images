@@ -49,7 +49,7 @@ Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at 
 Use existing scripts such as [github-cli.sh](images/linux/scripts/installers/github-cli.sh) as a starting point.
   - Use [helpers](images/linux/scripts/helpers/install.sh) to simplify installation process.
   - Validation part should `exit 1` if any issue with installation.
-- Add changes to the software report generator `images/linux/scripts/SoftwareReport/SoftwareReport.Generator.ps1`. The software report generator is used to generate an image's README file, e.g. [Ubuntu1804-Readme.md](images/linux/Ubuntu1804-README.md) and it uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS). 
+- Add changes to the software report generator `images/linux/scripts/SoftwareReport/SoftwareReport.Generator.ps1`. The software report generator is used to generate an image's README file, e.g. [Ubuntu2004-Readme.md](images/linux/Ubuntu2004-README.md) and it uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS). 
 
 ### macOS
 macOS source lives in this repository and available for everyone. However, macOS image-generation CI doesn't support external contributions yet so we are not able to accept pull-requests for now.
