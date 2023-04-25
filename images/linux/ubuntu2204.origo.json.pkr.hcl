@@ -78,6 +78,10 @@ variable "run_validation_diskspace" {
   type    = bool
   default = false
 }
+variable "object_id" {
+  type    = string
+  default = "${env("ARM_OBJECT_ID")}"
+}
 
 variable "subscription_id" {
   type    = string
@@ -170,6 +174,7 @@ source "azure-arm" "build_vhd" {
   vm_size                                = "${var.vm_size}"
   managed_image_name                     = "${var.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
+  object_id                              = "${var.object_id}"
   #shared_gallery_image_version_exclude_from_latest = false
   shared_image_gallery_destination {
     subscription   = "${var.subscription_id}"
