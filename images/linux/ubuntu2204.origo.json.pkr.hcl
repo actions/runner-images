@@ -71,13 +71,14 @@ variable "location" {
 
 variable "private_virtual_network_with_public_ip" {
   type    = bool
-  default = false
+  default = true
 }
 
 variable "run_validation_diskspace" {
   type    = bool
   default = false
 }
+
 variable "object_id" {
   type    = string
   default = "${env("ARM_OBJECT_ID")}"
@@ -191,7 +192,6 @@ source "azure-arm" "build_vhd" {
     }
   }
   communicator = "ssh"
-  ssh_port     = 22
 }
 
 build {
