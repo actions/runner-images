@@ -13,10 +13,10 @@ variable "azure_tag" {
   }
 }
 
-variable "build_resource_group_name" {
+/* variable "build_resource_group_name" {
   type    = string
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
-}
+} */
 
 variable "client_id" {
   type    = string
@@ -156,7 +156,7 @@ variable "github_feed_token" {
 
 source "azure-arm" "build_vhd" {
   #allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
-  build_resource_group_name              = "${var.build_resource_group_name}"
+  #build_resource_group_name              = "${var.build_resource_group_name}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
   image_offer                            = "0001-com-ubuntu-server-jammy"
