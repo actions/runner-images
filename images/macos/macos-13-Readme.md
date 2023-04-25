@@ -115,7 +115,7 @@
 - Rustdoc 1.68.2
 - Rustup 1.25.2
 
-2023-04-19T23:30:37.7926170Z #### Packages
+#### Packages
 - Bindgen 0.65.1
 - Cargo-audit 0.17.5
 - Cargo-outdated 0.11.2
@@ -131,7 +131,7 @@
 - Pester: 5.4.1
 - PSScriptAnalyzer: 1.21.0
 
-2023-04-19T23:30:37.7929160Z ### Xcode
+### Xcode
 | Version        | Build   | Path                         |
 | -------------- | ------- | ---------------------------- |
 | 14.3           | 14E222b | /Applications/Xcode_14.3.app |
