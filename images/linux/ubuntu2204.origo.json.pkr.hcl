@@ -1,6 +1,6 @@
 variable "allowed_inbound_ip_addresses" {
   type    = list(string)
-  default = ["${env("AGENT_IP")}"]
+  default = []
 }
 
 variable "azure_tag" {
@@ -191,6 +191,7 @@ source "azure-arm" "build_vhd" {
     }
   }
   communicator = "ssh"
+  ssh_port     = 22
 }
 
 build {
