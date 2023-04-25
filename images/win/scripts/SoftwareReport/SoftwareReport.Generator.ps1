@@ -222,6 +222,7 @@ Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
 '@
+
 $psModules.AddNote($azPsNotes)
 
 # Android
