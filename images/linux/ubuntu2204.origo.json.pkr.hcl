@@ -1,7 +1,7 @@
-/* variable "allowed_inbound_ip_addresses" {
+variable "allowed_inbound_ip_addresses" {
   type    = list(string)
-  default = []
-} */
+  default = ["0.0.0.0/0"]
+}
 
 variable "azure_tag" {
   type    = map(string)
@@ -155,7 +155,7 @@ variable "github_feed_token" {
 }
 
 source "azure-arm" "build_vhd" {
-  #allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
+  allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   #build_resource_group_name              = "${var.build_resource_group_name}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
@@ -168,9 +168,9 @@ source "azure-arm" "build_vhd" {
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
   tenant_id                              = "${var.tenant_id}"
-  virtual_network_name                   = "devops-shared-vmss-linux-vnet"
-  virtual_network_resource_group_name    = "devops-shared-vmss-linux"
-  virtual_network_subnet_name            = "devops-shared-vmss-linux-subnet"
+  /* virtual_network_name                   = "${var.virtual_network_name}"
+  virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
+  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}" */
   vm_size                                = "${var.vm_size}"
   managed_image_name                     = "${var.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
