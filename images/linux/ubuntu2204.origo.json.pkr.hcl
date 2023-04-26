@@ -60,8 +60,8 @@ variable "installer_script_folder" {
 }
 
 variable "install_password" {
-  type  = string
-  default = ""
+  type      = string
+  sensitive = true
 }
 
 variable "location" {
