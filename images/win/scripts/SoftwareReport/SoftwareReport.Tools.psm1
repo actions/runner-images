@@ -142,7 +142,8 @@ function Get-OpenSSLVersion {
 }
 
 function Get-PackerVersion {
-    return "Packer $(packer --version)"
+    $packerVersion = packer --version
+    return $packerVersion
 }
 
 function Get-ParcelVersion {
