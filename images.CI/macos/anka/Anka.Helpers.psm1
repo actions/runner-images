@@ -18,8 +18,8 @@ function Push-AnkaTemplateToRegistry {
     $images | Where-Object name -eq $TemplateName | ForEach-Object {
         $id = $_.uuid
         Show-StringWithFormat "Deleting '$TemplateName[$id]' VM and '$TagName' tag"
-        $uri = '{0}/registry/vm?id={1}' -f $RegistryUrl, $id
-        Invoke-WebRequest -Uri $uri -Method Delete | Out-Null
+        $curlCommand='curl -X DELETE -k "{0}/registry/vm?id={1}"' -f $RegistryUrl, $id
+        Invoke-AnkaCommand -Command $curlCommand
     }
 
     $AnkaCaCrtPath="$HOME/.config/anka/certs/anka-ca-crt.pem"
