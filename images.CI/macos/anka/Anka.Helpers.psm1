@@ -14,7 +14,8 @@ function Push-AnkaTemplateToRegistry {
     )
 
     # if registry uuid doesn't match than delete an image in registry
-    $images = anka --machine-readable registry --registry-path $RegistryUrl list | ConvertFrom-Json | ForEach-Object body
+    $AnkaCaCrtPath="$HOME/.config/anka/certs/anka-ca-crt.pem"
+    $images = anka --machine-readable registry --cacert $AnkaCaCrtPath --registry-path $RegistryUrl list | ConvertFrom-Json | ForEach-Object body
     $images | Where-Object name -eq $TemplateName | ForEach-Object {
         $id = $_.uuid
         Show-StringWithFormat "Deleting '$TemplateName[$id]' VM and '$TagName' tag"
@@ -22,7 +23,6 @@ function Push-AnkaTemplateToRegistry {
         Invoke-AnkaCommand -Command $curlCommand
     }
 
-    $AnkaCaCrtPath="$HOME/.config/anka/certs/anka-ca-crt.pem"
     $command = "anka registry --cacert $AnkaCaCrtPath --registry-path $RegistryUrl push --force --tag $TagName $TemplateName"
     Invoke-AnkaCommand -Command $command
 }
