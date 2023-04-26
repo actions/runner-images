@@ -160,6 +160,7 @@ source "azure-arm" "build_vhd" {
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
   communicator                           = "ssh"
+  ssh_handshake_attempts                 = "25"
   image_offer                            = "0001-com-ubuntu-server-jammy"
   image_publisher                        = "canonical"
   image_sku                              = "22_04-lts"
