@@ -1,7 +1,7 @@
 # macOS 12
 - OS Version: macOS 12.6.5 (21G531)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20230416.1
+- Image Version: 20230425.1
 
 ## Installed Software
 
@@ -16,7 +16,7 @@
 - GNU Fortran 12 (Homebrew GCC 12.2.0) - available by `gfortran-12` alias
 - Go 1.20.3
 - Julia 1.8.5
-- Kotlin 1.8.20-release-327
+- Kotlin 1.8.21-release-380
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - Node.js 18.16.0
@@ -26,23 +26,23 @@
 - PHP 8.2.5
 - Python 2.7.18
 - Python3 3.11.3
-- R 4.2.3
+- R 4.3.0
 - Ruby 3.0.6p216
 
 ### Package Management
 - Bundler 2.4.12
 - Carthage 0.39.0
-- CocoaPods 1.12.0
+- CocoaPods 1.12.1
 - Composer 2.5.5
-- Homebrew 4.0.13
-- Miniconda 23.1.0
+- Homebrew 4.0.15
+- Miniconda 23.3.1
 - NPM 9.5.1
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip3 23.1 (python 3.11)
+- Pip3 23.1.1 (python 3.11)
 - Pipx 1.2.0
 - RubyGems 3.4.12
-- Vcpkg 2023 (build from commit 501db0f17)
+- Vcpkg 2023 (build from commit b66959587)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -54,25 +54,25 @@
 ### Project Management
 - Apache Ant 1.10.13
 - Apache Maven 3.9.1
-- Gradle 8.1
+- Gradle 8.1.1
 - Sbt 1.8.2
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.36.0
-- azcopy 10.18.0
-- bazel 6.1.1
+- azcopy 10.18.1
+- bazel 6.1.2
 - bazelisk 1.16.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 8.0.1
-- Git 2.40.0
+- Git 2.40.1
 - Git LFS 3.3.0
-- GitHub CLI 2.27.0
+- GitHub CLI 2.28.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
 - gpg (GnuPG) 2.4.0
 - Hub CLI 2.14.2
-- ImageMagick 7.1.1-6
+- ImageMagick 7.1.1-8
 - jq 1.6
 - mongo 5.0.15
 - mongod 5.0.15
@@ -82,47 +82,47 @@
 - psql (PostgreSQL) 14.7 (Homebrew)
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
-- Switchaudio-osx 1.2.1
+- Switchaudio-osx 1.2.2
 - Vagrant 2.3.4
 - VirtualBox 6.1.38r153438
 - yq 4.33.3
 - zstd 1.5.5
 
 ### Tools
-- App Center CLI 2.13.4
-- AWS CLI 2.11.13
-- AWS SAM CLI 1.79.0
+- App Center CLI 2.13.6
+- AWS CLI 2.11.15
+- AWS SAM CLI 1.81.0
 - AWS Session Manager CLI 1.2.463.0
-- Azure CLI 2.47.0
+- Azure CLI 2.48.1
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.16.2
 - Cabal 3.6.2.0
 - Cmake 3.26.3
-- CodeQL Action Bundles 2.12.5 2.12.6
+- CodeQL Action Bundles 2.12.6 2.13.0
 - Colima 0.5.4
 - Fastlane 2.212.2
 - GHC 9.6.1
 - GHCup 0.1.19.2
 - Jazzy 0.14.3
 - Stack 2.9.3
-- SwiftFormat 0.51.6
+- SwiftFormat 0.51.7
 - Swig 4.1.1
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
 
 ### Linters
 - SwiftLint 0.51.0
-- Yamllint 1.30.0
+- Yamllint 1.31.0
 
 ### Browsers
 - Safari 16.4.1 (17615.1.26.101.10)
 - SafariDriver 16.4.1 (17615.1.26.101.10)
-- Google Chrome 112.0.5615.121
+- Google Chrome 112.0.5615.137
 - ChromeDriver 112.0.5615.49
-- Microsoft Edge 112.0.1722.48
-- Microsoft Edge WebDriver 112.0.1722.48
-- Mozilla Firefox 112.0
+- Microsoft Edge 112.0.1722.58
+- Microsoft Edge WebDriver 112.0.1722.58
+- Mozilla Firefox 112.0.2
 - geckodriver 0.33.0
-- Selenium server 4.8.0
+- Selenium server 4.9.0
 
 #### Environment variables
 | Name            | Value                                          |
@@ -134,9 +134,9 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.362+9 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.18+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.6+10           | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 8.0.372+7 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.19+7           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.7+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Cached Tools
 
@@ -169,24 +169,24 @@
 - 1.20.3
 
 ### Rust Tools
-- Cargo 1.68.2
-- Rust 1.68.2
-- Rustdoc 1.68.2
-- Rustup 1.25.2
+- Cargo 1.69.0
+- Rust 1.69.0
+- Rustdoc 1.69.0
+- Rustup 1.26.0
 
 #### Packages
 - Bindgen 0.65.1
 - Cargo-audit 0.17.5
 - Cargo-outdated 0.11.2
 - Cbindgen 0.24.3
-- Clippy 0.1.68
-- Rustfmt 1.5.1-stable
+- Clippy 0.1.69
+- Rustfmt 1.5.2-stable
 
 ### PowerShell Tools
 - PowerShell 7.2.11
 
 #### PowerShell Modules
-- Az: 9.6.0
+- Az: 9.7.0
 - MarkdownPS: 1.9
 - Pester: 5.4.1
 - PSScriptAnalyzer: 1.21.0
@@ -345,7 +345,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 
 ### Miscellaneous
 - libXext 1.3.5
-- libXft 2.3.7
+- libXft 2.3.8
 - Tcl/Tk 8.6.13_2
 - Zlib 1.2.13
 
