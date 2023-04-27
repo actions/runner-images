@@ -114,6 +114,16 @@ variable "virtual_network_subnet_name" {
   default = "${env("VNET_SUBNET")}"
 }
 
+variable "dockerhub_login" {
+  type    = string
+  default = "${env("DOCKERHUB_LOGIN")}"
+}
+
+variable "dockerhub_password" {
+  type    = string
+  default = "${env("DOCKERHUB_PASSWORD")}"
+}
+
 variable "vm_size" {
   type    = string
   default = "Standard_D4s_v4"
