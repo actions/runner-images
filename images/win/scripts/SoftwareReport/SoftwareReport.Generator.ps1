@@ -169,7 +169,7 @@ $installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection
 
 # Databases
 $databases = $installedSoftware.AddHeader("Databases")
-$databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))
+# $databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))
 $databases.AddHeader("MongoDB").AddTable($(Get-MongoDBTable))
 
 # Database tools
