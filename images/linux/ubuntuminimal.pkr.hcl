@@ -264,21 +264,12 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}", "DOCKERHUB_PULL_IMAGES=no"]
-    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/scripts/installers/docker-compose.sh",
-                        "${path.root}/scripts/installers/docker-moby.sh"]
-  }
-
-  provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
                         "${path.root}/scripts/installers/codeql-bundle.sh",
-                        "${path.root}/scripts/installers/dotnetcore-sdk.sh",
                         "${path.root}/scripts/installers/git.sh",
                         "${path.root}/scripts/installers/github-cli.sh",
-                        "${path.root}/scripts/installers/mono.sh",
                         "${path.root}/scripts/installers/ruby.sh",
                         "${path.root}/scripts/installers/pypy.sh",
                         "${path.root}/scripts/installers/zstd.sh"
