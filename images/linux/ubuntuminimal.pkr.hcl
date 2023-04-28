@@ -216,14 +216,8 @@ build {
     destination = "${local.image_folder}"
     sources     = [
       "${path.root}/post-generation",
-      "${path.root}/scripts/tests",
-      "${path.root}/scripts/SoftwareReport"
+      "${path.root}/scripts/tests"
     ]
-  }
-
-  provisioner "file" {
-    destination = "${local.image_folder}/SoftwareReport/"
-    source      = "${path.root}/../../helpers/software-report-base"
   }
 
   provisioner "file" {
