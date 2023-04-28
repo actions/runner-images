@@ -258,6 +258,12 @@ build {
   }
 
   provisioner "shell" {
+    environment_vars = ["HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
+    execute_command  = "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+    scripts          = ["${path.root}/scripts/installers/Install-PowerShellModules.ps1"]
+  }
+
+  provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
