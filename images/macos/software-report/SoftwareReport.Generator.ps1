@@ -38,10 +38,10 @@ $languageAndRuntime.AddToolVersion("Bash", $(Get-BashVersion))
 $languageAndRuntime.AddNodes($(Get-ClangLLVMVersions))
 $languageAndRuntime.AddNodes($(Get-GccVersions))
 $languageAndRuntime.AddNodes($(Get-FortranVersions))
-$languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
 $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
 if (-not $os.IsVentura) {
+    $languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
     $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MSBuildVersion))
     $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
@@ -68,8 +68,8 @@ if (-not $os.IsVentura) {
     $packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
 }
 $packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
-$packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
 if (-not $os.IsVentura) {
+    $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
     $packageManagement.AddToolVersion("Pip", $(Get-PipVersion -Version 2))
     $packageManagement.AddToolVersion("Pip3", $(Get-PipVersion -Version 3))
     $packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
@@ -78,8 +78,9 @@ $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
 $packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
 $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
 
-$packageManagement.AddNode($(Build-PackageManagementEnvironmentTable))
-
+if (-not $os.IsVentura) {
+    $packageManagement.AddNode($(Build-PackageManagementEnvironmentTable))
+}
 # Project Management
 $projectManagement = $installedSoftware.AddHeader("Project Management")
 $projectManagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
