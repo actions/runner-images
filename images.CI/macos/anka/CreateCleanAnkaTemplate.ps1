@@ -86,22 +86,27 @@ function Invoke-SoftwareUpdate {
     Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates | Show-StringWithFormat
 
     # Check if Action: restart
-    if ($newUpdates.Contains("Action: restart")) {
-        Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
-        Start-Sleep -Seconds 60
+    # Make an array of updates
+    $listOfNewUpdates = $newUpdates.split('*').Trim('')
+    foreach ($newupdate in $listOfNewUpdates) {
+        # Will be True if the value is not Venture, not empty, and contains "Action: restart" words
+        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("macOS Ventura") -and (-not [String]::IsNullOrEmpty($newupdate))) {
+            Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
+            Start-Sleep -Seconds 60
 
-        Write-Host "`t[*] Waiting for loginwindow process"
-        Wait-LoginWindow -HostName $ipAddress | Show-StringWithFormat
+            Write-Host "`t[*] Waiting for loginwindow process"
+            Wait-LoginWindow -HostName $ipAddress | Show-StringWithFormat
 
-        # Re-enable AutoLogon after installing a new security software update
-        Invoke-EnableAutoLogon
+            # Re-enable AutoLogon after installing a new security software update
+            Invoke-EnableAutoLogon
 
-        # Check software updates have been installed
-        $updates = Get-SoftwareUpdate -HostName $ipAddress
-        if ($updates.Contains("Action: restart")) {
-            Write-Host "`t[x] Software updates failed to install: $updates"
-            Show-StringWithFormat $updates
-            exit 1
+            # Check software updates have been installed
+            $updates = Get-SoftwareUpdate -HostName $ipAddress
+            if ($updates.Contains("Action: restart")) {
+                Write-Host "`t[x] Software updates failed to install: "
+                Show-StringWithFormat $updates
+                exit 1
+            }
         }
     }
 
