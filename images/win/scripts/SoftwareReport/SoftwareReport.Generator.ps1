@@ -176,7 +176,7 @@ $databases.AddHeader("MongoDB").AddTable($(Get-MongoDBTable))
 $databaseTools = $installedSoftware.AddHeader("Database tools")
 $databaseTools.AddToolVersion("Azure CosmosDb Emulator", $(Get-AzCosmosDBEmulatorVersion))
 $databaseTools.AddToolVersion("DacFx", $(Get-DacFxVersion))
-$databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
+# $databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
 $databaseTools.AddToolVersion("SQL OLEDB Driver", $(Get-SQLOLEDBDriverVersion))
 $databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
 
