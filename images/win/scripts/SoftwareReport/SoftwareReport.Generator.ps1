@@ -6,7 +6,7 @@ $global:ProgressPreference = "SilentlyContinue"
 $ErrorView = "NormalView"
 Set-StrictMode -Version Latest
 
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
+# Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.CachedTools.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNameChecking
@@ -226,10 +226,10 @@ All other versions are saved but not installed.
 $psModules.AddNote($azPsNotes)
 
 # Android
-$android = $installedSoftware.AddHeader("Android")
-$android.AddTable($(Build-AndroidTable))
+# $android = $installedSoftware.AddHeader("Android")
+# $android.AddTable($(Build-AndroidTable))
 
-$android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
+# $android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
 
 # Cached Docker images
 $installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
