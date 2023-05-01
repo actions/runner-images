@@ -113,6 +113,7 @@ function Get-MinGWVersion {
     return $mingwVersion
 }
 
+#comment "function Get-MySQLVersion" as we are not installing MySQL
 # function Get-MySQLVersion {
 #     $mysqlCommand = Get-Command -Name "mysql"
 #     $mysqlVersion = $mysqlCommand.Version.ToString()

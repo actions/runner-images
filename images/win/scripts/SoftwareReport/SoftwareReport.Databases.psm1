@@ -1,3 +1,4 @@
+#Comment PostgreSQL service as it's giving error during installation
 # function Get-PostgreSQLTable
 # {
 #     $pgService = Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'"
