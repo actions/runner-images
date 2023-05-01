@@ -19,7 +19,7 @@ jobs:
   version-check:
     runs-on: ${{ github.event.client_payload.agentSpec }}
     steps:
-      - name: Available image version check
+      - name: Available image version check for ${{ github.event.client_payload.ReleaseBranchName }}
         run: |
           if ($env:ImageVersion -ne '${{ github.event.client_payload.imageVersion }}') {
             throw "Current runner $env:ImageVersion image version don't match ${{ github.event.client_payload.imageVersion }}."
@@ -46,9 +46,16 @@ jobs:
       - name: Run SYFT on macOS
         if: ${{ runner.os == 'macOS' }}
         run: syft dir:/ -vv -o spdx-json=sbom.json --exclude ./Users --exclude ./System/Volumes --exclude ./private
+        shell: bash
       #Preparing artifact (raw SBOM.json is too big)
       - name: Compress SBOM file
         run: Compress-Archive sbom.json sbom.json.zip
+      #Upload artifact action
+      - uses: actions/upload-artifact@v3
+        with:
+          name: sbom-${{ github.event.client_payload.agentSpec }}-${{ github.event.client_payload.imageVersion }}
+          path: sbom.json.zip
+          if-no-files-found: warn
       #Upload release asset action
       #Might be changed to softprops/action-gh-release after additional check
       - name: Upload release asset

@@ -27,37 +27,3 @@ function Get-ToolcacheGoVersions {
     $toolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "go"
     return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
 }
-
-function Build-GoEnvironmentTable {
-    return Get-CachedToolInstances -Name "go" -VersionCommand "version" | ForEach-Object {
-        $Version = [System.Version]($_.Version -Split(" "))[0]
-        $Name = "GOROOT_$($Version.major)_$($Version.minor)_X64"
-        $Value = (Get-Item env:\$Name).Value
-        [PSCustomObject] @{
-            "Name" = $Name
-            "Value" = (Get-Item env:\$Name).Value
-            "Architecture" = $_. Architecture
-        }
-    }
-}
-
-function Build-CachedToolsSection {
-    $output = ""
-
-    $output += New-MDHeader "Go" -Level 4
-    $output += New-MDList -Lines (Get-ToolcacheGoVersions) -Style Unordered
-
-    $output += New-MDHeader "Node.js" -Level 4
-    $output += New-MDList -Lines (Get-ToolcacheNodeVersions) -Style Unordered
-
-    $output += New-MDHeader "PyPy" -Level 4
-    $output += New-MDList -Lines (Get-ToolcachePyPyVersions) -Style Unordered
-
-    $output += New-MDHeader "Python" -Level 4
-    $output += New-MDList -Lines (Get-ToolcachePythonVersions) -Style Unordered
-
-    $output += New-MDHeader "Ruby" -Level 4
-    $output += New-MDList -Lines (Get-ToolcacheRubyVersions) -Style Unordered
-
-    return $output
-}

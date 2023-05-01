@@ -14,7 +14,8 @@ source_key=/usr/share/keyrings/eslerlang.gpg
 wget -q -O - https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | gpg --dearmor > $source_key
 echo "deb [signed-by=$source_key]  https://packages.erlang-solutions.com/ubuntu $(lsb_release -cs) contrib" > $source_list
 apt-get update
-apt-get install -y --no-install-recommends esl-erlang
+
+apt-get install --no-install-recommends esl-erlang
 
 # Install rebar3
 rebar3_url="https://github.com/erlang/rebar3/releases/latest/download/rebar3"

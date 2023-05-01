@@ -16,7 +16,7 @@ $seleniumDownloadUrl = $json.Where{-not $_.prerelease}.assets.browser_download_u
 
 Start-DownloadWithRetry -Url $seleniumDownloadUrl -Name $seleniumFileName -DownloadPath $seleniumDirectory
 
-# Create an epmty file to retrive selenium version
+# Create an empty file to retrive Selenium version
 $seleniumFullVersion = $seleniumDownloadUrl.Split("-")[1].Split("/")[0]
 New-Item -Path $seleniumDirectory -Name "$seleniumBinaryName-$seleniumFullVersion"
 

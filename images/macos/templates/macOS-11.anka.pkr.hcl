@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    veertu-anka = {
+      version = "= v3.1.0"
+      source = "github.com/veertuinc/veertu-anka"
+    }
+  }
+}
+
 variable "source_vm_name" {
   type = string
 }
@@ -76,6 +85,10 @@ build {
       "./software-report",
       "./helpers"
     ]
+  }
+  provisioner "file" {
+    destination = "image-generation/software-report/"
+    source = "../../helpers/software-report-base"
   }
   provisioner "file" {
     destination = "image-generation/add-certificate.swift"
@@ -159,6 +172,7 @@ build {
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
+      "./provision/core/mongodb.sh",
       "./provision/core/node.sh",
       "./provision/core/commonutils.sh",
     ]
@@ -201,7 +215,6 @@ build {
       "./provision/core/apache.sh",
       "./provision/core/nginx.sh",
       "./provision/core/postgresql.sh",
-      "./provision/core/mongodb.sh",
       "./provision/core/audiodevice.sh",
       "./provision/core/vcpkg.sh",
       "./provision/core/miniconda.sh",
@@ -212,7 +225,6 @@ build {
       "./provision/core/pypy.sh",
       "./provision/core/pipx-packages.sh",
       "./provision/core/bicep.sh",
-      "./provision/core/graalvm.sh",
       "./provision/core/codeql-bundle.sh"
     ]
     environment_vars = [

@@ -29,17 +29,17 @@ function Get-CommandResult {
     }
 }
 
-function Get-OSName {
-    lsb_release -ds
+function Get-OSVersionShort {
+    $(Get-OSVersionFull) | Take-OutputPart -Delimiter '.' -Part 0,1
+}
+
+function Get-OSVersionFull {
+    lsb_release -ds | Take-OutputPart -Part 1, 2
 }
 
 function Get-KernelVersion {
     $kernelVersion = uname -r
-    return "Linux kernel version: $kernelVersion"
-}
-
-function Test-IsUbuntu18 {
-    return (lsb_release -rs) -eq "18.04"
+    return $kernelVersion
 }
 
 function Test-IsUbuntu20 {

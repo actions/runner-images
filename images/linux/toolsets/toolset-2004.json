@@ -45,11 +45,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.17.*",
                 "1.18.*",
-                "1.19.*"
+                "1.19.*",
+                "1.20.*"
             ],
-            "default": "1.17.*"
+            "default": "1.20.*"
         },
         {
             "name": "Ruby",
@@ -85,7 +85,7 @@
                 "versions": [ "8", "11" ]
             }
         ],
-        "maven": "3.8.6"
+        "maven": "3.8.8"
     },
     "android": {
         "cmdline-tools": "latest",
@@ -121,7 +121,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "9.0.1"
+                "9.3.0"
             ],
             "zip_versions": [
                 "3.1.0",
@@ -221,20 +221,13 @@
         ]
     },
     "brew": [
-        {
-            "name": "gcc@12",
-            "command": "gcc-12"
-        },
-        {
-            "name": "zstd",
-            "command": "zstd"
-        }
     ],
     "docker": {
         "images": [
             "alpine:3.14",
             "alpine:3.15",
             "alpine:3.16",
+            "alpine:3.17",
             "buildpack-deps:stretch",
             "buildpack-deps:buster",
             "buildpack-deps:bullseye",
@@ -266,13 +259,11 @@
     "dotnet": {
         "aptPackages": [
             "dotnet-sdk-3.1",
-            "dotnet-sdk-5.0",
             "dotnet-sdk-6.0",
             "dotnet-sdk-7.0"
         ],
         "versions": [
             "3.1",
-            "5.0",
             "6.0",
             "7.0"
         ],
@@ -316,7 +307,7 @@
         "binary_name": "selenium-server"
     },
     "node": {
-        "default": "16"
+        "default": "18"
     },
     "node_modules": [
         {

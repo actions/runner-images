@@ -165,7 +165,6 @@
         ]
     },
     "android": {
-        "cmdline-tools": "latest",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra-list": [
@@ -215,6 +214,7 @@
             "p7zip",
             "packer",
             "perl",
+            "pkg-config",
             "sbt",
             "subversion",
             "swiftformat",
@@ -234,9 +234,9 @@
     },
     "gcc": {
         "versions": [
-            "9",
             "10",
-            "11"
+            "11",
+            "12"
         ]
     },
     "toolcache": [
@@ -282,9 +282,9 @@
             "platform" : "darwin",
             "variable_template" : "GOROOT_{0}_{1}_X64",
             "versions": [
-                "1.17.*",
                 "1.18.*",
-                "1.19.*"
+                "1.19.*",
+                "1.20.*"
             ]
         },
         {
@@ -309,7 +309,6 @@
     "dotnet": {
         "versions": [
             "3.1",
-            "5.0",
             "6.0",
             "7.0"
         ]
@@ -327,10 +326,10 @@
         ]
     },
     "go": {
-        "default": "1.17"
+        "default": "1.20"
     },
     "node": {
-        "default": "16",
+        "default": "18",
         "nvm_versions": [
             "14",
             "16",
@@ -338,7 +337,7 @@
         ]
     },
     "llvm": {
-        "version": "14"
+        "version": "15"
     },
     "php": {
         "version": "8.2"
