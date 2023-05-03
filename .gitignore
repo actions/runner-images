@@ -267,6 +267,9 @@ paket-files/
 .idea/
 *.sln.iml
 
+# VSCode settings
+.vscode/settings.json
+
 # CodeRush
 .cr/
 

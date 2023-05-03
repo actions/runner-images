@@ -331,16 +331,6 @@ Describe "Phantomjs" -Skip:(Test-IsUbuntu22) {
     }
 }
 
-Describe "GraalVM" {
-    It "graalvm" {
-        '$GRAALVM_11_ROOT/bin/java -version' | Should -ReturnZeroExitCode
-    }
-
-    It "native-image" {
-        '$GRAALVM_11_ROOT/bin/native-image --version' | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Containers" {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 

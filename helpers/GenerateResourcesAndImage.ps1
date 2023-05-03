@@ -264,18 +264,23 @@ Function GenerateResourcesAndImage {
         
         if ($builderScriptPath.Contains("pkr.hcl")) {
             if ($AgentIp) {
-                $AgentIp = '[ \"{0}\" ]' -f $AgentIp
+                $AgentIp = '[ "{0}" ]' -f $AgentIp
             } else {
                 $AgentIp = "[]"
             }
+            if (-not $Tags) {
+                $Tags = @{}
+            }
         }
 
-        if ($Tags) {
-            $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
-            $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
-            $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
-            $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
-            $builderScriptPath = $builderScriptPath_temp
+        if ($builderScriptPath.Contains(".json")) {
+            if ($Tags) {
+                $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
+                $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
+                $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
+                $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
+                $builderScriptPath = $builderScriptPath_temp
+            }
         }
 
         & $packerBinary build -on-error="$($OnError)" `
@@ -288,6 +293,7 @@ Function GenerateResourcesAndImage {
             -var "storage_account=$($storageAccountName)" `
             -var "install_password=$($InstallPassword)" `
             -var "allowed_inbound_ip_addresses=$($AgentIp)" `
+            -var "azure_tags=$($Tags | ConvertTo-Json -Compress)" `
             $builderScriptPath
     }
     catch {
