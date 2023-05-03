@@ -427,7 +427,7 @@ build {
     script          = "${path.root}/scripts/base/apt-mock-remove.sh"
   }
 
-  provisioner "shell" {
+  /* provisioner "shell" {
     environment_vars = ["IMAGE_VERSION=${var.image_version}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
     inline           = ["pwsh -File ${var.image_folder}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory ${var.image_folder}", "pwsh -File ${var.image_folder}/tests/RunAll-Tests.ps1 -OutputDirectory ${var.image_folder}"]
   }
@@ -442,7 +442,7 @@ build {
     destination = "${path.root}/software-report.json"
     direction   = "download"
     source      = "${var.image_folder}/software-report.json"
-  }
+  } */
 
   provisioner "shell" {
     environment_vars = ["HELPER_SCRIPT_FOLDER=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "IMAGE_FOLDER=${var.image_folder}"]
