@@ -1,6 +1,5 @@
 | Announcements |
 |-|
-| [GraalVM JDK11 will be removed from agents on April 10, 2023](https://github.com/actions/runner-images/issues/7338) |
 | [[All OSes] Go 1.17.x will be removed and 1.20.x set as default on April, 3](https://github.com/actions/runner-images/issues/7276) |
 | [The Ubuntu 18.04 Actions runner image will begin deprecation on 2022/08/08 and will be fully unsupported by 2023/04/01](https://github.com/actions/runner-images/issues/6002) |
 ***
@@ -130,11 +129,6 @@ to accomplish this.
 | 8.0.362+9            | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.18+10 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.6+10            | Eclipse Temurin | JAVA_HOME_17_X64     |
-
-### GraalVM
-| Version   | Environment variables |
-| --------- | --------------------- |
-| CE 22.3.1 | GRAALVM_11_ROOT       |
 
 ### PHP Tools
 - PHP: 8.1.2

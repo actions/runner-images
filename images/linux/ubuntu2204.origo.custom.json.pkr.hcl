@@ -1,7 +1,6 @@
-
 variable "allowed_inbound_ip_addresses" {
   type    = list(string)
-  default = []
+  default = ["0.0.0.0/0"]
 }
 
 variable "azure_tag" {
@@ -19,11 +18,6 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
-variable "capture_name_prefix" {
-  type    = string
-  default = "packer"
-}
-
 variable "client_id" {
   type    = string
   default = "${env("ARM_CLIENT_ID")}"
@@ -33,26 +27,6 @@ variable "client_secret" {
   type      = string
   default   = "${env("ARM_CLIENT_SECRET")}"
   sensitive = true
-}
-
-variable "client_cert_path" {
-  type      = string
-  default   = "${env("ARM_CLIENT_CERT_PATH")}"
-}
-
-variable "commit_url" {
-  type      = string
-  default   = ""
-}
-
-variable "dockerhub_login" {
-  type    = string
-  default = "${env("DOCKERHUB_LOGIN")}"
-}
-
-variable "dockerhub_password" {
-  type    = string
-  default = "${env("DOCKERHUB_PASSWORD")}"
 }
 
 variable "helper_script_folder" {
@@ -72,7 +46,7 @@ variable "image_os" {
 
 variable "image_version" {
   type    = string
-  default = "dev"
+  default = "latest"
 }
 
 variable "imagedata_file" {
@@ -86,8 +60,8 @@ variable "installer_script_folder" {
 }
 
 variable "install_password" {
-  type  = string
-  default = ""
+  type      = string
+  sensitive = true
 }
 
 variable "location" {
@@ -97,12 +71,7 @@ variable "location" {
 
 variable "private_virtual_network_with_public_ip" {
   type    = bool
-  default = false
-}
-
-variable "resource_group" {
-  type    = string
-  default = "${env("ARM_RESOURCE_GROUP")}"
+  default = true
 }
 
 variable "run_validation_diskspace" {
@@ -110,9 +79,9 @@ variable "run_validation_diskspace" {
   default = false
 }
 
-variable "storage_account" {
+variable "object_id" {
   type    = string
-  default = "${env("ARM_STORAGE_ACCOUNT")}"
+  default = "${env("ARM_OBJECT_ID")}"
 }
 
 variable "subscription_id" {
@@ -145,6 +114,16 @@ variable "virtual_network_subnet_name" {
   default = "${env("VNET_SUBNET")}"
 }
 
+variable "dockerhub_login" {
+  type    = string
+  default = "${env("DOCKERHUB_LOGIN")}"
+}
+
+variable "dockerhub_password" {
+  type    = string
+  default = "${env("DOCKERHUB_PASSWORD")}"
+}
+
 variable "vm_size" {
   type    = string
   default = "Standard_D4s_v4"
@@ -163,21 +142,31 @@ variable "managed_image_resource_group_name" {
 variable "gallery_resource_group" {
   type    = string
   default = "${env("gallery_resource_group")}"
-}  ##### could be different then resource group ???
+}
 
 variable "gallery_name" {
   type    = string
   default = "${env("gallery_name")}"
 }
 
-variable "gallery_image_name" {
+variable "gallery_source_image_name" {
   type    = string
-  default = "${env("gallery_image_name")}"
+  default = "${env("gallery_source_image_name")}"
 }
 
-variable "gallery_image_version" {
+variable "gallery_source_image_version" {
   type    = string
-  default = "${env("gallery_image_version")}"
+  default = "${env("gallery_source_image_version")}"
+}
+
+variable "gallery_dest_image_name" {
+  type    = string
+  default = "${env("gallery_dest_image_name")}"
+}
+
+variable "gallery_dest_image_version" {
+  type    = string
+  default = "${env("gallery_dest_image_version")}"
 }
 
 variable "github_feed_token" {
@@ -188,54 +177,46 @@ variable "github_feed_token" {
 source "azure-arm" "build_vhd" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
-  #capture_container_name                 = "images"
-  #capture_name_prefix                    = "${var.capture_name_prefix}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
-  client_cert_path                       = "${var.client_cert_path}"
-  #image_offer                            = "0001-com-ubuntu-server-jammy"
-  #image_publisher                        = "canonical"
-  #image_sku                              = "22_04-lts"
+  communicator                           = "ssh"
+  image_offer                            = "0001-com-ubuntu-server-jammy"
+  image_publisher                        = "canonical"
+  image_sku                              = "22_04-lts"
   location                               = "${var.location}"
+  managed_image_name                     = "${var.managed_image_name}"
+  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
+  object_id                              = "${var.object_id}"   
   os_disk_size_gb                        = "86"
   os_type                                = "Linux"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
-  #resource_group_name                    = "${var.resource_group}"
-  storage_account                        = "${var.storage_account}"
-  subscription_id                        = "${var.subscription_id}"
-  temp_resource_group_name               = "${var.temp_resource_group_name}"
-  tenant_id                              = "${var.tenant_id}"
-  virtual_network_name                   = "${var.virtual_network_name}"
-  virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
-  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
-  vm_size                                = "${var.vm_size}"
-  managed_image_name                     = "${var.managed_image_name}"
-  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
-  managed_image_storage_account_type     = "Standard_LRS"
-  shared_gallery_image_version_exclude_from_latest = false
-
-#   shared_image_gallery {
-#     subscription   = "${var.subscription_id}"
-#     resource_group = "${var.resource_group}"
-#     gallery_name   = "${var.gallery_name}"
-#     image_name     = "${var.gallery_image_name}"
-#     image_version  = "${var.gallery_image_version}"
-# }
-
-  shared_image_gallery_destination {
-    subscription   = "${var.subscription_id}"
-    resource_group = "${var.resource_group}"
+  shared_image_gallery {
     gallery_name   = "${var.gallery_name}"
-    image_name     = "${var.gallery_image_name}"
-    image_version  = "${var.gallery_image_version}"
+    image_name     = "${var.gallery_source_image_name}"
+    image_version  = "${var.gallery_source_image_version}"
+    resource_group = "${var.gallery_resource_group}"
+    subscription   = "${var.subscription_id}"
+  }
+  shared_image_gallery_destination {
+    gallery_name        = "${var.gallery_name}"
+    image_name          = "${var.gallery_dest_image_name}"
+    image_version       = "${var.gallery_dest_image_version}"
     replication_regions = ["${var.location}"]
-    storage_account_type = "Standard_LRS"
-}
-
+    resource_group      = "${var.gallery_resource_group}"
+    subscription        = "${var.subscription_id}"
+  }
+  subscription_id                     = "${var.subscription_id}"
+  temp_resource_group_name            = "${var.temp_resource_group_name}"
+  tenant_id                           = "${var.tenant_id}"
+  virtual_network_name                = "${var.virtual_network_name}"
+  virtual_network_resource_group_name = "${var.virtual_network_resource_group_name}"
+  virtual_network_subnet_name         = "${var.virtual_network_subnet_name}"
+  vm_size                             = "${var.vm_size}"
+  
   dynamic "azure_tag" {
     for_each = var.azure_tag
     content {
-      name = azure_tag.key
+      name  = azure_tag.key
       value = azure_tag.value
     }
   }
@@ -401,7 +382,6 @@ build {
                         "${path.root}/scripts/installers/android.sh",
                         "${path.root}/scripts/installers/pypy.sh",
                         "${path.root}/scripts/installers/python.sh",
-                        "${path.root}/scripts/installers/graalvm.sh",
                         "${path.root}/scripts/installers/zstd.sh"
                         ]
   }
