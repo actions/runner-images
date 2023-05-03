@@ -204,6 +204,7 @@ source "azure-arm" "build_vhd" {
     }
   }
 }
+
 build {
   sources = ["source.azure-arm.build_vhd"]
 
@@ -359,7 +360,6 @@ build {
                         "${path.root}/scripts/installers/android.sh",
                         "${path.root}/scripts/installers/pypy.sh",
                         "${path.root}/scripts/installers/python.sh",
-                        "${path.root}/scripts/installers/graalvm.sh",
                         "${path.root}/scripts/installers/zstd.sh"
                         ]
   }
