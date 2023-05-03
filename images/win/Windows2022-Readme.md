@@ -4,7 +4,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1668
-- Image Version: 20230425.1
+- Image Version: 20230502.2
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -26,14 +26,14 @@
 ### Package Management
 - Chocolatey 1.3.1
 - Composer 2.5.5
-- Helm 3.11.2
+- Helm 3.11.3
 - Miniconda 23.3.1 (pre-installed on the image but not added to PATH)
 - NPM 9.5.1
 - NuGet 6.5.0.154
-- pip 23.1.1 (python 3.9)
+- pip 23.1.2 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit b66959587)
+- Vcpkg (build from commit 6d69bbacd)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -58,7 +58,7 @@
 - Cabal 3.10.1.0
 - CMake 3.26.3
 - CodeQL Action Bundles 2.12.6 2.13.0
-- Docker 23.0.4
+- Docker 23.0.5
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.17.3
 - Docker-wincred 0.7.0
@@ -76,7 +76,7 @@
 - NSIS 3.08
 - OpenSSL 1.1.1t
 - Packer 1.8.5
-- Pulumi 3.64.0
+- Pulumi 3.65.1
 - R 4.3.0
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.9.3
@@ -90,8 +90,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.162
-- AWS CLI 2.11.13
-- AWS SAM CLI 1.81.0
+- AWS CLI 2.11.16
+- AWS SAM CLI 1.82.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.48.1
 - Azure DevOps CLI extension 0.26.0
@@ -113,10 +113,10 @@
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 112.0.5615.138
-- Chrome Driver 112.0.5615.49
-- Microsoft Edge 112.0.1722.58
-- Microsoft Edge Driver 112.0.1722.58
+- Google Chrome 113.0.5672.64
+- Chrome Driver 113.0.5672.24
+- Microsoft Edge 112.0.1722.64
+- Microsoft Edge Driver 112.0.1722.68
 - Mozilla Firefox 112.0.2
 - Gecko Driver 0.33.0
 - IE Driver 4.8.0.0
@@ -219,7 +219,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
 | ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.5.33530.505 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.5.33627.172 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version        |
@@ -531,7 +531,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.16, 7.0.5
 - Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.16, 7.0.5
 - Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.16, 7.0.5
-- nbgv 3.5.119+5d25f54fec
+- nbgv 3.6.128+518ee610d6
 
 ### PowerShell Tools
 - PowerShell 7.2.11
@@ -543,10 +543,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.319
+- AWSPowershell: 4.1.324
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.26.0
+- Microsoft.Graph: 1.27.0
 - Pester: 3.4.0, 5.4.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
