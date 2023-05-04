@@ -62,6 +62,7 @@ variable "installer_script_folder" {
 variable "install_password" {
   type      = string
   sensitive = true
+  default   = "1234567"
 }
 
 variable "location" {
@@ -188,7 +189,7 @@ source "azure-arm" "build_vhd" {
     subscription        = "${var.subscription_id}"
   }
   subscription_id                     = "${var.subscription_id}"
-  temp_resource_group_name            = "${var.temp_resource_group_name}"
+  #temp_resource_group_name            = "${var.temp_resource_group_name}"
   tenant_id                           = "${var.tenant_id}"
   virtual_network_name                = "${var.virtual_network_name}"
   virtual_network_resource_group_name = "${var.virtual_network_resource_group_name}"
