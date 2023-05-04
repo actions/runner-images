@@ -94,6 +94,28 @@
             "fastlane"
         ]
     },
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "darwin",
+            "versions": [
+                "3.8.*",
+                "3.9.*",
+                "3.10.*",
+                "3.11.*"
+            ]
+        },
+        {
+            "name": "Ruby",
+            "arch": "x64",
+            "versions": [
+                "3.0.*",
+                "3.1.*"
+            ]
+        }
+    ],
     "go": {
         "default": "1.20"
     },
