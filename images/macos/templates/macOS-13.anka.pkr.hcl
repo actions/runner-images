@@ -209,6 +209,7 @@ build {
       "./provision/core/chrome.sh",
       "./provision/core/edge.sh",
       "./provision/core/firefox.sh",
+      "./provision/core/pypy.sh",
       "./provision/core/bicep.sh",
       "./provision/core/codeql-bundle.sh"
     ]
