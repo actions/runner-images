@@ -20,6 +20,24 @@ function Enable-AutoLogon {
     Invoke-SSHPassCommand -HostName $HostName -Command $command
 }
 
+function Invoke-SoftwareUpdateArm64 {
+    param (
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $HostName,
+
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $Password
+    )
+
+    $url = "https://raw.githubusercontent.com/actions/runner-images/main/images/macos/provision/configuration/auto-software-update-arm64.exp"
+    $script = Invoke-RestMethod -Uri $url
+    $base64 = [Convert]::ToBase64String($script.ToCharArray())
+    $command = "echo $base64 | base64 --decode > ./auto-software-update-arm64.exp;chmod +x ./auto-software-update-arm64.exp; ./auto-software-update-arm64.exp ${Password};rm ./auto-software-update-arm64.exp"
+    Invoke-SSHPassCommand -HostName $HostName -Command $command
+}
+
 function Get-AvailableVersions {
     param (
         [bool] $IsBeta = $false
@@ -229,22 +247,27 @@ function Install-SoftwareUpdate {
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [string] $HostName,
-        [array] $listOfUpdates
+        [array] $listOfUpdates,
+        [string] $Password
     )
     $osVersion = [Environment]::OSVersion
-    $osVersionMajorMinor = $osVersion.Version.ToString(2)
     # If an update is happening on macOS 12 we will use the prepared list of updates, otherwise, we will install all updates.
     if ($osVersion.Version.Major -eq "12") {
         foreach ($update in $listOfUpdates){
             # Filtering updates that contain "Ventura" word
             if ($update -notmatch "Ventura") {
-                $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install $update"
+                $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
                 Invoke-SSHPassCommand -HostName $HostName -Command $command
             }
         }
     } else {
-        $command = "sudo /usr/sbin/softwareupdate --all --install --restart --verbose"
-        Invoke-SSHPassCommand -HostName $HostName -Command $command
+        $osArch = $(arch)
+        if ($osArch -eq "arm64") {
+            Invoke-SoftwareUpdateArm64 -HostName $HostName -Password $Password
+        } else {
+            $command = "sudo /usr/sbin/softwareupdate --all --install --restart --verbose"
+            Invoke-SSHPassCommand -HostName $HostName -Command $command
+        }
     }
 }
 
