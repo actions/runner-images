@@ -209,6 +209,6 @@ build {
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["apt install sshpass", "wget https://downloads.mongodb.com/compass/mongodb-mongosh_1.8.0_amd64.deb", "apt install ./mongodb-mongosh_1.8.0_amd64.deb", "wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-100.7.0.deb", "apt install ./mongodb-database-tools-ubuntu2204-x86_64-100.7.0.deb"]
+    inline          = ["apt-get install -y sshpass", "wget https://downloads.mongodb.com/compass/mongodb-mongosh_1.8.0_amd64.deb", "apt-get install ./mongodb-mongosh_1.8.0_amd64.deb", "wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-100.7.0.deb", "apt-get install ./mongodb-database-tools-ubuntu2204-x86_64-100.7.0.deb"]
   }
 }
