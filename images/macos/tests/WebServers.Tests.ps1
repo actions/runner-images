@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
 $os = Get-OSVersion
 
 Describe "Apache" {
@@ -10,7 +12,7 @@ Describe "Apache" {
     }
 }
 
-Describe "Nginx" {
+Describe "Nginx" -Skip:($os.IsVentura) {
     It "Nginx CLI" {
         "nginx -v" | Should -ReturnZeroExitCode
     }
