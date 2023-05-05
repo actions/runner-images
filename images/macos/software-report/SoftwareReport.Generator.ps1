@@ -187,11 +187,9 @@ $browsers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
 $java = $installedSoftware.AddHeader("Java")
 $java.AddTable($(Get-JavaVersions))
 
-if (-not $os.IsVentura) {
-    # Toolcache
-    $toolcache = $installedSoftware.AddHeader("Cached Tools")
-    $toolcache.AddNodes($(Build-ToolcacheSection))
-}
+# Toolcache
+$toolcache = $installedSoftware.AddHeader("Cached Tools")
+$toolcache.AddNodes($(Build-ToolcacheSection))
 
 # Rust
 $rust = $installedSoftware.AddHeader("Rust Tools")
