@@ -169,7 +169,7 @@ source "azure-arm" "build_vhd" {
   managed_image_name                     = "${var.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   object_id                              = "${var.object_id}"   
-  os_disk_size_gb                        = "86"
+  os_disk_size_gb                        = "200"
   os_type                                = "Linux"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   shared_image_gallery {
