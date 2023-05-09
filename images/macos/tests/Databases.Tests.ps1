@@ -1,4 +1,9 @@
-Describe "MongoDB" {
+
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
+$os = Get-OSVersion
+
+Describe "MongoDB" -Skip:($os.IsVentura) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "mongo" }
         @{ ToolName = "mongod" }
@@ -8,7 +13,7 @@ Describe "MongoDB" {
     }
 }
 
-Describe "PostgreSQL" {
+Describe "PostgreSQL" -Skip:($os.IsVentura) {
     It "PostgreSQL version should correspond to the version in the toolset" {
         $toolsetVersion = Get-ToolsetValue 'postgresql.version'
         # Client version

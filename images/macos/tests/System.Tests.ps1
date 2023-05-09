@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
 $os = Get-OSVersion
 
 Describe "Disk free space" {
@@ -23,7 +25,7 @@ Describe "Certificate" {
     }
 }
 
-Describe "Audio device" {
+Describe "Audio device" -Skip:($os.IsVentura) {
     It "Sox is installed" {
         "sox --version" | Should -ReturnZeroExitCode
     }

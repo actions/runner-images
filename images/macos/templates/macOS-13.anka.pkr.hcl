@@ -209,6 +209,7 @@ build {
       "./provision/core/chrome.sh",
       "./provision/core/edge.sh",
       "./provision/core/firefox.sh",
+      "./provision/core/pypy.sh",
       "./provision/core/bicep.sh",
       "./provision/core/codeql-bundle.sh"
     ]
@@ -218,12 +219,20 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
+    scripts = [
+      "./provision/core/toolset.ps1",
+      "./provision/core/configure-toolset.ps1"
+    ]
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
+  }
+  provisioner "shell" {
     script = "./provision/core/delete-duplicate-sims.rb"
     execute_command = "source $HOME/.bash_profile; ruby {{ .Path }}"
   }
   provisioner "shell" {
     inline = [
-      "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName ${var.build_id}"
+      "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName ${var.build_id}",
+      "pwsh -File \"$HOME/image-generation/tests/RunAll-Tests.ps1\""
     ]
     execute_command = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
