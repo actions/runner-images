@@ -1,7 +1,7 @@
 # macOS 12
 - OS Version: macOS 12.6.5 (21G531)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20230430.1
+- Image Version: 20230505.1
 
 ## Installed Software
 
@@ -16,7 +16,7 @@
 - GNU Fortran 12 (Homebrew GCC 12.2.0) - available by `gfortran-12` alias
 - Julia 1.8.5
 - Kotlin 1.8.21-release-380
-- Go 1.20.3
+- Go 1.20.4
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - Node.js 18.16.0
@@ -34,7 +34,7 @@
 - Carthage 0.39.0
 - CocoaPods 1.12.1
 - Composer 2.5.5
-- Homebrew 4.0.15
+- Homebrew 4.0.16
 - Miniconda 23.3.1
 - NPM 9.5.1
 - NuGet 6.3.1.1
@@ -42,7 +42,7 @@
 - Pip3 23.1.2 (python 3.11)
 - Pipx 1.2.0
 - RubyGems 3.4.12
-- Vcpkg 2023 (build from commit cb1301e99)
+- Vcpkg 2023 (build from commit 6a3dd0874)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -90,22 +90,22 @@
 
 ### Tools
 - App Center CLI 2.13.7
-- AWS CLI 2.11.16
+- AWS CLI 2.11.18
 - AWS SAM CLI 1.82.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.48.1
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.16.2
+- Bicep CLI 0.17.1
 - Cabal 3.6.2.0
 - Cmake 3.26.3
-- CodeQL Action Bundles 2.12.6 2.13.0
+- CodeQL Action Bundles 2.13.0 2.13.1
 - Colima 0.5.4
 - Fastlane 2.212.2
 - GHC 9.6.1
 - GHCup 0.1.19.2
 - Jazzy 0.14.3
 - Stack 2.9.3
-- SwiftFormat 0.51.7
+- SwiftFormat 0.51.9
 - Swig 4.1.1
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
 
@@ -116,10 +116,10 @@
 ### Browsers
 - Safari 16.4.1 (17615.1.26.101.10)
 - SafariDriver 16.4.1 (17615.1.26.101.10)
-- Google Chrome 112.0.5615.137
-- ChromeDriver 112.0.5615.49
-- Microsoft Edge 112.0.1722.64
-- Microsoft Edge WebDriver 112.0.1722.64
+- Google Chrome 113.0.5672.63
+- ChromeDriver 113.0.5672.63
+- Microsoft Edge 112.0.1722.68
+- Microsoft Edge WebDriver 112.0.1722.68
 - Mozilla Firefox 112.0.2
 - geckodriver 0.33.0
 - Selenium server 4.9.0
@@ -127,7 +127,7 @@
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/112.0.5615.49 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/113.0.5672.63 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
@@ -165,8 +165,8 @@
 
 #### Go
 - 1.18.10
-- 1.19.8
-- 1.20.3
+- 1.19.9
+- 1.20.4
 
 ### Rust Tools
 - Cargo 1.69.0
