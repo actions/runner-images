@@ -50,7 +50,8 @@ There are no migrations in progress.
 
 ## Announcements
 
-You can also view notable upcoming changes by viewing the [Announcement](https://github.com/actions/runner-images/labels/Announcement) label.
+See notable upcoming changes by viewing issues with the [Announcement](https://github.com/actions/runner-images/labels/Announcement) label.
+
 
 ## Image Definitions
 
