@@ -1,7 +1,7 @@
 # macOS 12
 - OS Version: macOS 12.6.5 (21G531)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20230425.1
+- Image Version: 20230430.1
 
 ## Installed Software
 
@@ -14,9 +14,9 @@
 - GCC 12 (Homebrew GCC 12.2.0) - available by `gcc-12` alias
 - GNU Fortran 11 (Homebrew GCC 11.3.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.2.0) - available by `gfortran-12` alias
-- Go 1.20.3
 - Julia 1.8.5
 - Kotlin 1.8.21-release-380
+- Go 1.20.3
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - Node.js 18.16.0
@@ -39,10 +39,10 @@
 - NPM 9.5.1
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip3 23.1.1 (python 3.11)
+- Pip3 23.1.2 (python 3.11)
 - Pipx 1.2.0
 - RubyGems 3.4.12
-- Vcpkg 2023 (build from commit b66959587)
+- Vcpkg 2023 (build from commit cb1301e99)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -70,7 +70,7 @@
 - GitHub CLI 2.28.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
-- gpg (GnuPG) 2.4.0
+- gpg (GnuPG) 2.4.1
 - Hub CLI 2.14.2
 - ImageMagick 7.1.1-8
 - jq 1.6
@@ -89,9 +89,9 @@
 - zstd 1.5.5
 
 ### Tools
-- App Center CLI 2.13.6
-- AWS CLI 2.11.15
-- AWS SAM CLI 1.81.0
+- App Center CLI 2.13.7
+- AWS CLI 2.11.16
+- AWS SAM CLI 1.82.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.48.1
 - Azure CLI (azure-devops) 0.26.0
@@ -118,8 +118,8 @@
 - SafariDriver 16.4.1 (17615.1.26.101.10)
 - Google Chrome 112.0.5615.137
 - ChromeDriver 112.0.5615.49
-- Microsoft Edge 112.0.1722.58
-- Microsoft Edge WebDriver 112.0.1722.58
+- Microsoft Edge 112.0.1722.64
+- Microsoft Edge WebDriver 112.0.1722.64
 - Mozilla Firefox 112.0.2
 - geckodriver 0.33.0
 - Selenium server 4.9.0
@@ -186,7 +186,7 @@
 - PowerShell 7.2.11
 
 #### PowerShell Modules
-- Az: 9.7.0
+- Az: 9.7.1
 - MarkdownPS: 1.9
 - Pester: 5.4.1
 - PSScriptAnalyzer: 1.21.0
