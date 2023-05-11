@@ -32,7 +32,7 @@ if ! is_Ventura; then
     yarn cache clean
 fi
 # Clean up temporary directories
-sudo rm -rf ~/utils ~/image-generation /tmp/*
+sudo rm -rf ~/utils /tmp/*
 
 # Erase all indexes and wait until the rebuilding process ends,
 # for now there is no way to get status of indexing process, it takes around 3 minutes to accomplish
