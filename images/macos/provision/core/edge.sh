@@ -35,27 +35,28 @@ ln -s "$EDGEDRIVER_BIN" $APPLICATION
 echo "export EDGEWEBDRIVER=${EDGEDRIVER_DIR}" >> "${HOME}/.bashrc"
 popd > /dev/null
 
-#Delete Microsoft autoupdate service to prevent autoupdates popup
-AUTOUPDATE_START="$HOME/Library/Preferences/com.microsoft.autoupdate2.plist"
-while [ ! -f "$AUTOUPDATE_START" ]
-do
-    echo "Wait for MS update automatic installation"
-    sleep 30
-done
+# Configure Edge Updater to prevent auto update
+# https://learn.microsoft.com/en-us/deployedge/edge-learnmore-edgeupdater-for-macos
 
-echo "kill autoupdate process"
-pgrep [M]icrosoft | sudo xargs kill -9 || true
-echo "remove autupdate service"
-sudo launchctl remove com.microsoft.autoupdate.helper
+mkdir "Library/Managed Preferences"
 
-echo "delete autoupdate files"
-sudo rm -rf "$HOME/Library/Application Support/Microsoft AU Daemon/"
-sudo rm -rf "$HOME/Library/Application Support/Microsoft AutoUpdate/"
-sudo rm -rf "$HOME/Library/Preferences/com.microsoft.autoupdate2.plist"
-sudo rm -rf "$HOME/Library/Preferences/com.microsoft.autoupdate.fba.plist"
-sudo rm -rf "$HOME/Library/Caches/com.microsoft.autoupdate2"
-sudo rm -rf "/Library/Application Support/Microsoft/MAU2.0/"
-sudo rm -rf "/Library/LaunchAgents/com.microsoft.update.agent.plist"
-sudo rm -rf "/Library/PrivelegedHelperTools/com.microsoft.autoupdate.helper"
+cat <<EOF > "Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>updatePolicies</key>
+    <dict>
+        <key>global</key>
+        <dict>
+            <key>UpdateDefault</key>
+            <integer>3</integer>
+        </dict>
+    </dict>
+</dict>
+</plist>
+EOF
+
+chown root:wheel "/Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
 
 invoke_tests "Browsers" "Edge"

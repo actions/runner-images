@@ -278,7 +278,7 @@ Function GenerateResourcesAndImage {
                 $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
                 $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
                 $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
-                $packer_script | ConvertTo-Json -Depth 3 | Out-File $builderScriptPath_temp
+                $packer_script | ConvertTo-Json -Depth 3 | Out-File -Encoding Ascii $builderScriptPath_temp
                 $builderScriptPath = $builderScriptPath_temp
             }
         }
