@@ -1,6 +1,6 @@
 #!/bin/bash -e
 ################################################################################
-##  File:  basic.sh
+##  File:  apt-common.sh
 ##  Desc:  Installs basic command line utilities and dev packages
 ################################################################################
 source $HELPER_SCRIPTS/install.sh
