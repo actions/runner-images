@@ -4,7 +4,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1668
-- Image Version: 20230502.2
+- Image Version: 20230508.3
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,7 +13,7 @@
 
 ### Language and Runtime
 - Bash 5.2.15(1)-release
-- Go 1.20.3
+- Go 1.20.4
 - Julia 1.8.5
 - Kotlin 1.8.21
 - LLVM 15.0.7
@@ -33,7 +33,7 @@
 - pip 23.1.2 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 6d69bbacd)
+- Vcpkg (build from commit ea222747b)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -54,11 +54,11 @@
 - azcopy 10.18.1
 - Bazel 6.1.2
 - Bazelisk 1.13.2
-- Bicep 0.16.2
+- Bicep 0.17.1
 - Cabal 3.10.1.0
 - CMake 3.26.3
-- CodeQL Action Bundles 2.12.6 2.13.0
-- Docker 23.0.5
+- CodeQL Action Bundles 2.13.0 2.13.1
+- Docker 23.0.6
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.17.3
 - Docker-wincred 0.7.0
@@ -75,8 +75,8 @@
 - Newman 5.3.2
 - NSIS 3.08
 - OpenSSL 1.1.1t
-- Packer 1.8.5
-- Pulumi 3.65.1
+- Packer 1.8.7
+- Pulumi 3.66.0
 - R 4.3.0
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.9.3
@@ -89,8 +89,8 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.162
-- AWS CLI 2.11.16
+- Alibaba Cloud CLI 3.0.163
+- AWS CLI 2.11.17
 - AWS SAM CLI 1.82.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.48.1
@@ -113,10 +113,10 @@
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 113.0.5672.64
-- Chrome Driver 113.0.5672.24
-- Microsoft Edge 112.0.1722.64
-- Microsoft Edge Driver 112.0.1722.68
+- Google Chrome 113.0.5672.93
+- Chrome Driver 113.0.5672.63
+- Microsoft Edge 113.0.1774.35
+- Microsoft Edge Driver 113.0.1774.35
 - Mozilla Firefox 112.0.2
 - Gecko Driver 0.33.0
 - IE Driver 4.8.0.0
@@ -158,8 +158,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.18.10
-- 1.19.8
-- 1.20.3
+- 1.19.9
+- 1.20.4
 
 #### Node.js
 - 14.21.3
@@ -543,7 +543,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.324
+- AWSPowershell: 4.1.328
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.27.0
