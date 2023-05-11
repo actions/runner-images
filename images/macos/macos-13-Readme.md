@@ -1,11 +1,11 @@
-
 # macOS 13
-- OS Version: macOS 13.3.1 (22E261)
+- OS Version: macOS 13.3.1 (a) (22E772610a)
 - Kernel Version: Darwin 22.4.0
-- Image Version: 20230419.1
+- Image Version: 20230509.4
+
 ## Installed Software
 
- ### Language and Runtime
+### Language and Runtime
 - .NET Core SDK: 7.0.102, 7.0.203
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
@@ -14,12 +14,11 @@
 - GCC 12 (Homebrew GCC 12.2.0) - available by `gcc-12` alias
 - GNU Fortran 11 (Homebrew GCC 11.3.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.2.0) - available by `gfortran-12` alias
-- Go command
 - Julia 1.8.5
-- Kotlin 1.8.20-release-327
-- Perl 5.36.0
+- Kotlin 1.8.21-release-380
+- Perl 5.36.1
 - PHP 8.2.5
-- R 4.2.3
+- R 4.3.0
 - Ruby 3.0.6p216
 
 ### Package Management
@@ -27,36 +26,29 @@
 - Carthage 0.39.0
 - CocoaPods 1.12.1
 - Composer 2.5.5
-- Homebrew 4.0.14
+- Homebrew 4.0.17
 - NPM 9.5.1
-- NuGet command
 - RubyGems 3.4.12
-- Vcpkg 2023 (build from commit 48483c4fc)
+- Vcpkg 2023 (build from commit ff311f676)
 - Yarn 1.22.19
 
-#### Environment variables
-| Name                    | Value                  |
-| ----------------------- | ---------------------- |
-| CONDA                   |                        |
-| VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
-
 ### Project Management
- - Apache Ant 1.10.13
+- Apache Ant 1.10.13
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.36.0
-- azcopy 10.18.0
-- bazel 6.1.2
+- azcopy 10.18.1
+- bazel 6.2.0
 - bazelisk 1.16.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.0.1
-- Git 2.40.0
+- Git 2.40.1
 - Git LFS 3.3.0
-- GitHub CLI 2.27.0
+- GitHub CLI 2.28.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.3
-- gpg (GnuPG) 2.4.0
+- gpg (GnuPG) 2.4.1
 - jq 1.6
 - OpenSSL LibreSSL 3.3.6
 - Packer 1.8.6
@@ -65,69 +57,95 @@
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.11.13
-- AWS SAM CLI 1.80.0
+- AWS CLI 2.11.18
+- AWS SAM CLI 1.82.0
 - AWS Session Manager CLI 1.2.463.0
-- Azure CLI 2.47.0
+- Azure CLI 2.48.1
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.16.2
+- Bicep CLI 0.17.1
 - Cabal 3.6.2.0
 - Cmake 3.26.3
-- CodeQL Action Bundles 2.12.5 2.12.6
+- CodeQL Action Bundles 2.13.0 2.13.1
 - Fastlane 2.212.2
 - GHC 9.6.1
 - GHCup 0.1.19.2
 - Stack 2.9.3
-- SwiftFormat 0.51.7
+- SwiftFormat 0.51.9
 - Xcode Command Line Tools 14.3.0.0.1.1679647830
 
 ### Linters
 - SwiftLint 0.51.0
 
 ### Browsers
-- Safari 16.4 (18615.1.26.11.23)
-- SafariDriver 16.4 (18615.1.26.11.23)
-- Google Chrome 112.0.5615.137
-- ChromeDriver 112.0.5615.49
-- Microsoft Edge 112.0.1722.48
-- Microsoft Edge WebDriver 112.0.1722.48
-- Mozilla Firefox 112.0.1
+- Safari 16.4 (18615.1.26.110.1)
+- SafariDriver 16.4 (18615.1.26.110.1)
+- Google Chrome 113.0.5672.92
+- ChromeDriver 113.0.5672.63
+- Microsoft Edge 113.0.1774.35
+- Microsoft Edge WebDriver 113.0.1774.35
+- Mozilla Firefox 113.0
 - geckodriver 0.33.0
-- Selenium server 4.8.0
+- Selenium server 4.9.0
 
 #### Environment variables
 | Name            | Value                                          |
 | --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/112.0.5615.49 |
+| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/113.0.5672.63 |
 | EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
 
 ### Java
-| Version             | Vendor          | Environment Variable |
-| ------------------- | --------------- | -------------------- |
-| 8.0.362+9           | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.18+10          | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.6+10 (default) | Eclipse Temurin | JAVA_HOME_17_X64     |
+| Version            | Vendor          | Environment Variable |
+| ------------------ | --------------- | -------------------- |
+| 8.0.372+7          | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.19+7          | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.7+7 (default) | Eclipse Temurin | JAVA_HOME_17_X64     |
 
- ### Rust Tools
-- Cargo 1.68.2
-- Rust 1.68.2
-- Rustdoc 1.68.2
-- Rustup 1.25.2
+### Cached Tools
+
+#### Ruby
+- 3.0.6
+- 3.1.4
+
+#### Python
+- 3.8.16
+- 3.9.16
+- 3.10.11
+- 3.11.3
+
+#### PyPy
+- 2.7.18 [PyPy 7.3.11]
+- 3.7.13 [PyPy 7.3.9]
+- 3.8.16 [PyPy 7.3.11]
+- 3.9.16 [PyPy 7.3.11]
+
+#### Node.js
+- 16.20.0
+- 18.16.0
+
+#### Go
+- 1.19.9
+- 1.20.4
+
+### Rust Tools
+- Cargo 1.69.0
+- Rust 1.69.0
+- Rustdoc 1.69.0
+- Rustup 1.26.0
 
 #### Packages
 - Bindgen 0.65.1
 - Cargo-audit 0.17.5
 - Cargo-outdated 0.11.2
 - Cbindgen 0.24.3
-- Clippy 0.1.68
-- Rustfmt 1.5.1-stable
+- Clippy 0.1.69
+- Rustfmt 1.5.2-stable
 
 ### PowerShell Tools
 - PowerShell 7.2.11
- 
+
 #### PowerShell Modules
-- Az: 9.6.0
+- Az: 9.7.1
 - Pester: 5.4.1
 - PSScriptAnalyzer: 1.21.0
 
@@ -139,9 +157,9 @@
 | 14.1           | 14B47b  | /Applications/Xcode_14.1.app |
 
 #### Xcode Support Tools
- - xcpretty 0.3.0
+- xcpretty 0.3.0
 - xcversion 2.8.1
-- 
+
 #### Installed SDKs
 | SDK                                                     | SDK Name                                      | Xcode Version |
 | ------------------------------------------------------- | --------------------------------------------- | ------------- |
@@ -163,8 +181,8 @@
 | Simulator - watchOS 9.1                                 | watchsimulator9.1                             | 14.1, 14.2    |
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3          |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3          |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3          |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3          |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3          |
