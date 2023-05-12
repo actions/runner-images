@@ -11,9 +11,6 @@ chmod -R 777 /opt
 echo "chmod -R 777 /usr/share"
 chmod -R 777 /usr/share
 
-# remove installer and helper folders
-rm -rf $HELPER_SCRIPT_FOLDER
-rm -rf $INSTALLER_SCRIPT_FOLDER
 chmod 755 $IMAGE_FOLDER
 
 # Remove quotes around PATH
