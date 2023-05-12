@@ -11,7 +11,7 @@ function Get-NativeVersionFormat {
     return $Version
 }
 
-Describe "Java" {
+Describe "Java" -Skip:($os.IsVenturaArm64) {
     BeforeAll {
         function Validate-JavaVersion {
             param($JavaCommand, $ExpectedVersion)
@@ -58,7 +58,7 @@ Describe "Java" {
     }
 
     Context "Java Adopt" {
-        Describe "Java Adopt" -Skip:($os.IsVentura) {
+        Describe "Java Adopt" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
                 It "Java Adopt <Version>" -TestCases $adoptCases {
                 $adoptPath = Join-Path (Get-ChildItem ${env:AGENT_TOOLSDIRECTORY}\Java_Adopt_jdk\${Version}*) "x64\Contents\Home\bin\java"
 

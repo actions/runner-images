@@ -39,6 +39,15 @@ download_with_retries() {
     return 1
 }
 
+is_VenturaArm64() {
+    arch=$(get_arch)
+    if [ "$OSTYPE" = "darwin22" ] && [ $arch = "arm64" ]; then
+       true
+    else
+       false
+    fi
+}
+
 is_Ventura() {
     if [ "$OSTYPE" = "darwin22" ]; then
         true
@@ -212,4 +221,13 @@ get_github_package_download_url() {
 # Close all finder windows because they can interfere with UI tests
 close_finder_window() {
     osascript -e 'tell application "Finder" to close windows'
+}
+
+get_arch() {
+    arch=$(arch)
+    if [[ $arch == "arm64" ]]; then
+        echo "arm64"
+    else
+        echo "x64"
+    fi
 }

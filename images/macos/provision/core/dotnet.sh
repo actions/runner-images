@@ -10,6 +10,8 @@ source ~/utils/utils.sh
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+arch=$(get_arch)
+
 # Download installer from dot.net and keep it locally
 DOTNET_INSTALL_SCRIPT="https://dot.net/v1/dotnet-install.sh"
 curl -L -o "dotnet-install.sh" "$DOTNET_INSTALL_SCRIPT"
@@ -18,7 +20,7 @@ chmod +x ./dotnet-install.sh
 ARGS_LIST=()
 echo "Parsing dotnet SDK (except rc and preview versions) from .json..."
 
-DOTNET_VERSIONS=($(get_toolset_value '.dotnet.versions | .[]'))
+DOTNET_VERSIONS=($(get_toolset_value ".dotnet.arch[\"$arch\"].versions | .[]"))
 
 for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
     RELEASE_URL="https://raw.githubusercontent.com/dotnet/core/master/release-notes/${DOTNET_VERSION}/releases.json"
@@ -37,7 +39,7 @@ for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
 done
 
 for ARGS in "${ARGS_LIST[@]}"; do
-    ./dotnet-install.sh --version $ARGS -NoPath
+    ./dotnet-install.sh --version $ARGS -NoPath --arch $arch
 done
 
 rm ./dotnet-install.sh

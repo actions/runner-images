@@ -14,8 +14,10 @@ if ([string]::IsNullOrEmpty($env:XCODE_INSTALL_USER) -or [string]::IsNullOrEmpty
 # https://github.com/fastlane/fastlane/pull/18116
 $env:SPACESHIP_SKIP_2FA_UPGRADE = 1
 
-$os = Get-OSVersion
-[Array]$xcodeVersions = Get-ToolsetValue "xcode.versions"
+$ARCH = arch
+if ($ARCH -ne "arm64") { $ARCH = "x64" }
+[Array]$xcodeVersions = Get-ToolsetValue "xcode.$ARCH.versions"
+write-host $xcodeVersions
 $defaultXcode = Get-ToolsetValue "xcode.default"
 [Array]::Reverse($xcodeVersions)
 $threadCount = "5"
@@ -62,4 +64,3 @@ New-Item -Path "/Applications/Xcode.app" -ItemType SymbolicLink -Value (Get-Xcod
 
 Write-Host "Setting environment variables 'XCODE_<VERSION>_DEVELOPER_DIR'"
 Set-XcodeDeveloperDirEnvironmentVariables -XcodeList $xcodeVersions.link
-
