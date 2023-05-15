@@ -113,7 +113,6 @@ latest 2 versions of an OS.
 We use third-party package managers to install software during the image generation process. The table below lists the package managers and the software installed.
 > **Note**: third-party repositories are re-evaluated every year to identify if they are still useful and secure.
 
-
 | Operating system | Package manager                       | Third-party repos and packages |
 | :---             |        :---:                          |                           ---: |
 | Ubuntu           | [APT](https://wiki.debian.org/Apt)    | [Eclipse-Temurin (Adoptium)](https://packages.adoptium.net/artifactory/deb) </br> [Erlang](https://packages.erlang-solutions.com/ubuntu) </br>[Firefox](https://launchpad.net/~mozillateam/+archive/ubuntu/ppa) </br> [gcc, gfortran](https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test)  </br> [git](https://launchpad.net/~git-core/+archive/ubuntu/ppa) </br> [HHvm](https://dl.hhvm.com/ubuntu) </br> [PHP](https://launchpad.net/~ondrej/+archive/ubuntu/php) (Ubuntu 20 only) </br> [Mono](https://download.mono-project.com/repo/ubuntu) </br> [PostgreSQL](https://apt.postgresql.org/pub/repos/apt) </br> [R](https://cloud.r-project.org/bin/linux/ubuntu)                                     |
@@ -121,7 +120,6 @@ We use third-party package managers to install software during the image generat
 | Windows          | [Chocolatey](https://chocolatey.org)  | No third-party repos installed |
 | macOS            | [Homebrew](https://brew.sh)           | [aws-cli v2](https://github.com/aws/homebrew-tap) </br> [azure/bicep](https://github.com/Azure/homebrew-bicep) </br> [mongodb/brew](https://github.com/mongodb/homebrew-brew)                                                  |
 |                  | [pipx](https://pypa.github.io/pipx/)  | yamllint                       |
-
 
 ### Image Deprecation Policy
 
