@@ -29,6 +29,10 @@ $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
     Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
 
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
+}
+
+Write-Host "Validating Xcode integrity..."
+$xcodeVersions | ForEach-Object {
     Confirm-XcodeIntegrity -Version $_.link
     Approve-XcodeLicense -Version $_.link
 }
