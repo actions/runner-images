@@ -12,7 +12,7 @@ label_version=$(echo $os_version | cut -d. -f1)
 image_label="macos-${label_version}"
 release_label="macOS-${label_version}"
 
-if isVentura; then
+if is_Ventura; then
   software_url="https://github.com/actions/runner-images/blob/${image_label}/${image_version}/images/macos/${image_label}-Readme.md"
   releaseUrl="https://github.com/actions/runner-images/releases/tag/${image_label}%2F${image_version}"
 else
