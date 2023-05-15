@@ -29,7 +29,7 @@ systemctl is-enabled --quiet docker.service || systemctl enable docker.service
 sleep 10
 docker info
 
-if [ "${DOCKERHUB_PULL_IMAGES:-yes}" -eq "yes" ]; then
+if [ "${DOCKERHUB_PULL_IMAGES:-yes}" == "yes" ]; then
     # If credentials are provided, attempt to log into Docker Hub
     # with a paid account to avoid Docker Hub's rate limit.
     if [ "${DOCKERHUB_LOGIN}" ] && [ "${DOCKERHUB_PASSWORD}" ]; then
