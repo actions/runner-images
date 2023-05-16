@@ -184,10 +184,16 @@ jobs:
           -VIServer "${{ secrets.VISERVER_V2 }}" `
           -VIUserName "${{ secrets.VI_USER_NAME }}" `
           -VIPassword "${{ secrets.VI_PASSWORD }}" `
-          -JobStatus "${{ job.status }}" `
+          -JobStatus "${{ job.status }}"
+
+        ./images.CI/macos/set-vm-size.ps1 `
+          -VMName "${{ env.VM_NAME }}" `
           -CpuCount "$cpuCount" `
           -CoresPerSocketCount "$coresPerSocketCount" `
-          -Memory "$memory"
+          -Memory "$memory" `
+          -VIServer "${{ secrets.VISERVER_V2 }}" `
+          -VIUserName "${{ secrets.VI_USER_NAME }}" `
+          -VIPassword "${{ secrets.VI_PASSWORD }}"
 
     - name: Destroy VM (if build canceled only)
       if: ${{ cancelled() }}
