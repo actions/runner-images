@@ -3,7 +3,7 @@ Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
-Describe "Python" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "Python" -Skip:($os.IsVenturaArm64) {
     It "Python 2 is available" {
         "python --version" | Should -ReturnZeroExitCode
     }
