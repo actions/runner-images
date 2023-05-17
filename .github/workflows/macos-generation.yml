@@ -174,20 +174,28 @@ jobs:
     - name: Move vm to cold storage and clear datastore tag
       if: ${{ always() }}
       run: |
-        $cpuCount = 3
-        $coresPerSocketCount = 3
-        $memory = 14336
-
         ./images.CI/macos/move-vm.ps1 `
           -VMName "${{ env.VM_NAME }}" `
           -TargetDataStore "${{ inputs.target_datastore }}" `
           -VIServer "${{ secrets.VISERVER_V2 }}" `
           -VIUserName "${{ secrets.VI_USER_NAME }}" `
           -VIPassword "${{ secrets.VI_PASSWORD }}" `
-          -JobStatus "${{ job.status }}" `
+          -JobStatus "${{ job.status }}"
+
+    - name: Set VM size
+      run: |
+        $cpuCount = 3
+        $coresPerSocketCount = 3
+        $memory = 14336
+
+        ./images.CI/macos/set-vm-size.ps1 `
+          -VMName "${{ env.VM_NAME }}" `
           -CpuCount "$cpuCount" `
           -CoresPerSocketCount "$coresPerSocketCount" `
-          -Memory "$memory"
+          -Memory "$memory" `
+          -VIServer "${{ secrets.VISERVER_V2 }}" `
+          -VIUserName "${{ secrets.VI_USER_NAME }}" `
+          -VIPassword "${{ secrets.VI_PASSWORD }}"
 
     - name: Destroy VM (if build canceled only)
       if: ${{ cancelled() }}
