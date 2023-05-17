@@ -58,6 +58,12 @@ function Invoke-EnableAutoLogon {
 }
 
 function Invoke-SoftwareUpdate {
+    param (
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $Password
+    )
+
     if (-not $InstallSoftwareUpdate) {
         Write-Host "`t[*] Skip installing software updates"
         return
@@ -83,7 +89,7 @@ function Invoke-SoftwareUpdate {
     Show-StringWithFormat $newUpdates
     $listOfNewUpdates = $($($newUpdates.Split("*")).Split("Title") | Where-Object {$_ -match "Label:"}).Replace("Label: ", '')
     Write-Host "`t[*] Installing Software Updates on '$TemplateName' VM:"
-    Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates | Show-StringWithFormat
+    Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates -Password $Password | Show-StringWithFormat
 
     # Check if Action: restart
     # Make an array of updates
@@ -116,6 +122,11 @@ function Invoke-SoftwareUpdate {
 }
 
 function Invoke-UpdateSettings {
+    param (
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $Password
+    )
     $isConfRequired = $InstallSoftwareUpdate -or $EnableAutoLogon
     if (-not $isConfRequired) {
         Write-Host "`t[*] Skip additional configuration"
@@ -132,7 +143,7 @@ function Invoke-UpdateSettings {
     Invoke-EnableAutoLogon
 
     # Install software updates
-    Invoke-SoftwareUpdate
+    Invoke-SoftwareUpdate -Password $Password
 
     Write-Host "`t[*] Stopping '$TemplateName' VM"
     Stop-AnkaVM -VMName $TemplateName
@@ -154,7 +165,7 @@ Write-Host "`n[#1] Download macOS application installer:"
 $shortMacOSVersion = Get-ShortMacOSVersion -MacOSVersion $MacOSVersion
 if ([string]::IsNullOrEmpty($TemplateName)) {
     $osArch = $(arch)
-    if ($osArch -eq "arm64"){
+    if ($osArch -eq "arm64") {
         $macOSInstaller = Get-MacOSIPSWInstaller -MacOSVersion $MacOSVersion -DownloadLatestVersion $DownloadLatestVersion -BetaSearch $BetaSearch
         $TemplateName = "clean_macos_${shortMacOSVersion}_${osArch}_${DiskSizeGb}gb"
     } else {
@@ -178,7 +189,7 @@ New-AnkaVMTemplate -InstallerPath $macOSInstaller `
                    -DiskSizeGb $DiskSizeGb | Show-StringWithFormat
 
 Write-Host "`n[#3] Configure AutoLogon and/or install software updates:"
-Invoke-UpdateSettings
+Invoke-UpdateSettings -Password $TemplatePassword
 
 Write-Host "`n[#4] Finalization '$TemplateName' configuration and push to the registry:"
 Write-Host "`t[*] The '$TemplateName' VM status is stopped"
