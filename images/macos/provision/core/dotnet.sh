@@ -24,14 +24,15 @@ DOTNET_VERSIONS=($(get_toolset_value ".dotnet.arch[\"$arch\"].versions | .[]"))
 
 for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
     RELEASE_URL="https://raw.githubusercontent.com/dotnet/core/master/release-notes/${DOTNET_VERSION}/releases.json"
+    download_with_retries "$RELEASE_URL" "/tmp" "dotnet_${DOTNET_VERSION}.json"
 
     if [[ $DOTNET_VERSION == "6.0" ]]; then
         ARGS_LIST+=(
-            $(curl -s "$RELEASE_URL" | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))')
+            $(cat /tmp/dotnet_${DOTNET_VERSION}.json | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))')
         )
     else
         ARGS_LIST+=(
-            $(curl -s "$RELEASE_URL" | \
+            $(cat /tmp/dotnet_${DOTNET_VERSION}.json | \
             jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*' | \
             sort -r | rev | uniq -s 2 | rev)
         )
