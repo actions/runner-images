@@ -163,6 +163,7 @@ build {
       "./provision/core/open_windows_check.sh",
       "./provision/core/powershell.sh",
       "./provision/core/dotnet.sh",
+      "./provision/core/python.sh",
       "./provision/core/azcopy.sh",
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",

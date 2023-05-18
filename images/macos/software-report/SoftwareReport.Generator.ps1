@@ -52,8 +52,12 @@ $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
 if (-not $os.IsVenturaArm64) {
     $languageAndRuntime.AddToolVersion("PHP", $(Get-PHPVersion))
 }
+
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
+}
+
+if (-not $os.IsVenturaArm64) {
     $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
 }
 $languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
@@ -73,9 +77,13 @@ $packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
     $packageManagement.AddToolVersion("Pip", $(Get-PipVersion -Version 2))
+}
+
+if (-not $os.IsVenturaArm64) {
     $packageManagement.AddToolVersion("Pip3", $(Get-PipVersion -Version 3))
     $packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
 }
+
 $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
 if (-not $os.IsVenturaArm64) {
     $packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
