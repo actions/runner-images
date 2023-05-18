@@ -57,7 +57,7 @@ In any case you will need these software installed:
   ```
 
 - [Az Powershell module](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps).
-  
+
   Run this command in Powershell:
 
   ```powershell
@@ -91,6 +91,11 @@ Finally, run `GenerateResourcesAndImage` function setting mandatory arguments: i
 - `ResourceGroupName` - name of the resource group that will be created within your subscription (e.g. "imagegen-test")
 - `AzureLocation` - location where resources will be created (e.g. "East US")
 - `ImageType` - what image to build (we suggest choosing "UbuntuMinimal" here, other valid options are "Windows2019", "Windows2022", "Ubuntu2004", "Ubuntu2204")
+
+> :warning: When running `GenerateResourcesAndImage` in PowerShell 7.3, following command should be executed first:
+> ```powershell
+> $PSNativeCommandArgumentPassing = 'Legacy'
+> ```
 
 This function automatically creates all required Azure resources and kicks off packer image generation for the selected image type.
 
