@@ -285,6 +285,7 @@ build {
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
                         "${path.root}/scripts/installers/apt-common.sh",
+                        "${path.root}/scripts/installers/apt-add-repo.sh",
                         "${path.root}/scripts/installers/azcopy.sh",
                         "${path.root}/scripts/installers/azure-cli.sh",
                         "${path.root}/scripts/installers/azure-devops-cli.sh",
