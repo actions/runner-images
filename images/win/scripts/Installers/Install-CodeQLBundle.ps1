@@ -16,22 +16,28 @@ if ($CodeQLTagName.split("-")[-1].StartsWith("v")) {
     # We don't need to include the tag name in the toolcache version number because it's derivable
     # from the CLI version.
     $CodeQLBundleVersion = $CodeQLCliVersion
-} else {
+} elseif ($CodeQLTagName.split("-")[-1] -match "^\d+$") {
     # Tag name of the format `codeql-bundle-YYYYMMDD`.
     # We need to include the tag name in the toolcache version number because it can't be derived
     # from the CLI version.
     $CodeQLBundleVersion = $CodeQLCliVersion + "-" + $CodeQLTagName.split("-")[-1]
+} else {
+    Write-Error "Unrecognised current CodeQL bundle tag name: $CodeQLTagName. Could not compute toolcache version number."
+    exit 1
 }
 if ($PriorCodeQLTagName.split("-")[-1].StartsWith("v")) {
     # Tag name of the format `codeql-bundle-vx.y.z`, where x.y.z is the CLI version.
     # We don't need to include the tag name in the toolcache version number because it's derivable
     # from the CLI version.
     $PriorCodeQLBundleVersion = $PriorCodeQLCliVersion
-} else {
+} elseif ($PriorCodeQLTagName.split("-")[-1] -match "^\d+$")) {
     # Tag name of the format `codeql-bundle-YYYYMMDD`.
     # We need to include the tag name in the toolcache version number because it can't be derived
     # from the CLI version.
     $PriorCodeQLBundleVersion = $PriorCodeQLCliVersion + "-" + $PriorCodeQLTagName.split("-")[-1]
+} else {
+    Write-Error "Unrecognised prior CodeQL bundle tag name: $PriorCodeQLTagName. Could not compute toolcache version number."
+    exit 1
 }
 
 $Bundles = @(
