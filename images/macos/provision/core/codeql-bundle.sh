@@ -14,22 +14,30 @@ if [[ "${codeql_tag_name##*-}" == "v"* ]]; then
   # We don't need to include the tag name in the toolcache version number because it's derivable
   # from the CLI version.
   codeql_bundle_version="$codeql_cli_version"
-else
+elif [[ "${codeql_tag_name##*-}" ~= ^[0-9]+$ ]]; then
   # Tag name of the format `codeql-bundle-YYYYMMDD`.
   # We need to include the tag name in the toolcache version number because it can't be derived
   # from the CLI version.
   codeql_bundle_version="$codeql_cli_version-${codeql_tag_name##*-}"
+else
+  echo "Unrecognised current CodeQL bundle tag name: $codeql_tag_name." \
+    "Could not compute toolcache version number."
+  exit 1
 fi
 if [[ "${prior_codeql_tag_name##*-}" == "v"* ]]; then
   # Tag name of the format `codeql-bundle-vx.y.z`, where x.y.z is the CLI version.
   # We don't need to include the tag name in the toolcache version number because it's derivable
   # from the CLI version.
   prior_codeql_bundle_version="$prior_codeql_cli_version"
-else
+elif [[ "${prior_codeql_tag_name##*-}" ~= ^[0-9]+$ ]]; then
   # Tag name of the format `codeql-bundle-YYYYMMDD`.
   # We need to include the tag name in the toolcache version number because it can't be derived
   # from the CLI version.
   prior_codeql_bundle_version="$prior_codeql_cli_version-${prior_codeql_tag_name##*-}"
+else
+  echo "Unrecognised prior CodeQL bundle tag name: $prior_codeql_tag_name." \
+    "Could not compute toolcache version number."
+  exit 1
 fi
 
 # Download and name both CodeQL bundles.
