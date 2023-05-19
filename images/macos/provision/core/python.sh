@@ -3,7 +3,7 @@ source ~/utils/utils.sh
 
 echo "Installing Python Tooling"
 
-if ! is_Veertu; then
+if is_Monterey || is_BigSur; then
     echo "Install latest Python 2"
     Python2Url="https://www.python.org/ftp/python/2.7.18/python-2.7.18-macosx10.9.pkg"
     download_with_retries $Python2Url "/tmp" "python2.pkg"
