@@ -14,7 +14,7 @@ if [[ "${codeql_tag_name##*-}" == "v"* ]]; then
   # We don't need to include the tag name in the toolcache version number because it's derivable
   # from the CLI version.
   codeql_bundle_version="$codeql_cli_version"
-elif [[ "${codeql_tag_name##*-}" ~= ^[0-9]+$ ]]; then
+elif [[ "${codeql_tag_name##*-}" =~ ^[0-9]+$ ]]; then
   # Tag name of the format `codeql-bundle-YYYYMMDD`.
   # We need to include the tag name in the toolcache version number because it can't be derived
   # from the CLI version.
@@ -29,7 +29,7 @@ if [[ "${prior_codeql_tag_name##*-}" == "v"* ]]; then
   # We don't need to include the tag name in the toolcache version number because it's derivable
   # from the CLI version.
   prior_codeql_bundle_version="$prior_codeql_cli_version"
-elif [[ "${prior_codeql_tag_name##*-}" ~= ^[0-9]+$ ]]; then
+elif [[ "${prior_codeql_tag_name##*-}" =~ ^[0-9]+$ ]]; then
   # Tag name of the format `codeql-bundle-YYYYMMDD`.
   # We need to include the tag name in the toolcache version number because it can't be derived
   # from the CLI version.
