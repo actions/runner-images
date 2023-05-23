@@ -30,7 +30,7 @@ if ($PriorCodeQLTagName.split("-")[-1].StartsWith("v")) {
     # We don't need to include the tag name in the toolcache version number because it's derivable
     # from the CLI version.
     $PriorCodeQLBundleVersion = $PriorCodeQLCliVersion
-} elseif ($PriorCodeQLTagName.split("-")[-1] -match "^\d+$")) {
+} elseif ($PriorCodeQLTagName.split("-")[-1] -match "^\d+$") {
     # Tag name of the format `codeql-bundle-YYYYMMDD`.
     # We need to include the tag name in the toolcache version number because it can't be derived
     # from the CLI version.
