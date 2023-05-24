@@ -70,7 +70,8 @@ latest 2 versions of an OS.
 
 #### Latest Migration Process
 
-GitHub Actions and Azure DevOps use the `-latest` YAML label (ex: ubuntu-latest, windows-latest, and macos-latest). These labels point towards the newest stable OS version available.
+GitHub Actions and Azure DevOps use the `-latest` YAML label (ex: `ubuntu-latest`, `windows-latest`, and `macos-latest`). These labels point towards the newest stable OS version available.
+
 
 The `-latest` migration process is gradual and happens over 1-2 months in order to allow customers to adapt their workflows to the newest OS version. During this process, any workflow using the `-latest` label, may see changes in the OS version in their workflows or pipelines. To avoid unwanted migration, users can specify a specific OS version in the yaml file (ex: macos-12, windows-2022, ubuntu-22.04).
 
