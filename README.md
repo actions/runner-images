@@ -68,7 +68,7 @@ version for the underlying OS and
 This image type falls under the customer [SLA](https://github.com/customer-terms/github-online-services-sla) for actions. GA images are eventually deprecated according to our guidelines as we only support the
 latest 2 versions of an OS.
 
-#### Migration Process
+#### Latest Migration Process
 
 GitHub Actions and Azure DevOps use the `-latest` YAML label (ex: ubuntu-latest, windows-latest, and macos-latest). These labels point towards the newest stable OS version available.
 
