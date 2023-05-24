@@ -55,7 +55,7 @@ Describe "Open windows" -Skip:(isVeertu) {
 }
 
 Describe "AutomationModeTool" {
-    It "Does not require user authentication" -Skip:(-not $os.IsMonterey) {
+    It "Does not require user authentication" -Skip:($os.IsBigSur) {
         automationmodetool | Out-String | Should -Match "DOES NOT REQUIRE"
     }
 }
