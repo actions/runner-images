@@ -26,7 +26,7 @@ There are some other files that have also been modified to support our process. 
 * Note: in virtual-environments/images/win/scripts/SoftwareReport/SoftwareReport.Tools.psm1 file comment the section "function Get-MySQLVersion" since it causing during the image creation
 * The virtual-environments\images\win\scripts\Android.Tests.ps1, test file needs to be removed as we are not installing android SDK in -etn image, and android tests are not required to be running
 
-5. After you merge the new images into eaton branch, then an update images will be generated with eaton branch. Copy those images and update our MS_LINUX_SOURCE_IMAGE for ubuntu image and MS_WIN_SOURCE_IMAGE for windows in Generation Variables located in DevOps/Pipelines/library: https://dev.azure.com/etn-ccis/DevOps/_library?itemType=VariableGroups 
+5. After you merge the new images into eaton branch, then an update images will be generated with eaton branch. Copy those images and update our MS_LINUX_SOURCE_IMAGE for ubuntu image and MS_WIN_SOURCE_IMAGE for windows in Image Generation Variables located in DevOps/Pipelines/library: https://dev.azure.com/etn-ccis/DevOps/_library?itemType=VariableGroups 
 
 It would be great to eliminate the need for our modified process, but the process MS is using doesn't create images, it just create VM disk.  Hopefully MS will eventually update their process to use images someday.  It is worth taking some time to see if there is a better way to do this that doesn't have any manual steps.
 
