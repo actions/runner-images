@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| [python2.7 will be removed from the images on May 15, 2023](https://github.com/actions/runner-images/issues/7401) |
+| [python2.7 will be removed from the images on May 22, 2023](https://github.com/actions/runner-images/issues/7401) |
 ***
 # Windows Server 2019
-- OS Version: 10.0.17763 Build 4252
-- Image Version: 20230508.1
+- OS Version: 10.0.17763 Build 4377
+- Image Version: 20230517.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -14,17 +14,17 @@
 ### Language and Runtime
 - Bash 5.2.15(1)-release
 - Go 1.20.4
-- Julia 1.8.5
+- Julia 1.9.0
 - Kotlin 1.8.21
 - LLVM 15.0.7
 - Node 18.16.0
 - Perl 5.32.1
-- PHP 8.2.5
+- PHP 8.2.6
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 1.3.1
+- Chocolatey 1.4.0
 - Composer 2.5.5
 - Helm 3.11.3
 - Miniconda 23.3.1 (pre-installed on the image but not added to PATH)
@@ -33,7 +33,7 @@
 - pip 23.1.2 (python 3.7)
 - Pipx 1.2.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit ea222747b)
+- Vcpkg (build from commit 7b30311f0)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -46,30 +46,30 @@
 - Ant 1.10.13
 - Gradle 8.1
 - Maven 3.8.7
-- sbt 1.8.2
+- sbt 1.8.3
 
 ### Tools
 - 7zip 22.01
 - aria2 1.36.0
 - azcopy 10.18.1
-- Bazel 6.1.2
+- Bazel 6.2.0
 - Bazelisk 1.13.2
 - Bicep 0.17.1
 - Cabal 3.10.1.0
 - CMake 3.26.3
 - CodeQL Action Bundles 2.13.0 2.13.1
-- Docker 23.0.6
+- Docker 24.0.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.17.3
+- Docker Compose v2 2.18.1
 - Docker-wincred 0.7.0
 - ghc 9.6.1
 - Git 2.40.1.windows.1
 - Git LFS 3.3.0
-- Google Cloud SDK 429.0.0
-- ImageMagick 7.1.1-8
+- Google Cloud SDK 431.0.0
+- ImageMagick 7.1.1-9
 - InnoSetup 6.2.2
 - jq 1.6
-- Kind 0.18.0
+- Kind 0.19.0
 - Kubectl 1.27.1
 - Mercurial 5.0
 - Mingw-w64 8.1.0
@@ -78,7 +78,7 @@
 - OpenSSL 1.1.1t
 - Packer 1.8.7
 - Parcel 2.8.3
-- Pulumi 3.66.0
+- Pulumi 3.67.1
 - R 4.3.0
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.9.3
@@ -91,14 +91,14 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.163
-- AWS CLI 2.11.17
-- AWS SAM CLI 1.82.0
+- Alibaba Cloud CLI 3.0.164
+- AWS CLI 2.11.20
+- AWS SAM CLI 1.84.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.48.1
 - Azure DevOps CLI extension 0.26.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.28.0
+- GitHub CLI 2.29.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -109,18 +109,18 @@
 
 #### Packages
 - bindgen 0.65.1
-- cargo-audit 0.17.5
+- cargo-audit 0.17.6
 - cargo-outdated 0.11.2
 - cbindgen 0.24.3
 - Clippy 0.1.69
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 113.0.5672.93
+- Google Chrome 113.0.5672.127
 - Chrome Driver 113.0.5672.63
-- Microsoft Edge 113.0.1774.35
-- Microsoft Edge Driver 113.0.1774.35
-- Mozilla Firefox 112.0.2
+- Microsoft Edge 113.0.1774.42
+- Microsoft Edge Driver 113.0.1774.42
+- Mozilla Firefox 113.0.1
 - Gecko Driver 0.33.0
 - IE Driver 4.8.0.0
 - Selenium server 4.9.0
@@ -174,7 +174,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 18.16.0
 
 #### Python
-- 2.7.18
 - 3.6.8
 - 3.7.9
 - 3.8.10
@@ -203,7 +202,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-14                                                                                                                    |
-| Version              | 14.7                                                                                                                                 |
+| Version              | 14.8                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -218,7 +217,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.12.0
-- DacFx 16.1.8089.0
+- DacFx 162.0.52.1
 - MySQL 5.7.40.0
 - SQL OLEDB Driver 18.6.3.0
 - SQLPS 1.0
@@ -478,10 +477,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.29.30139 |
 | Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.29.30139 |
-| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.34.31938 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.34.31938 |
-| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.34.31938 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.34.31938 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.36.32532 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.36.32532 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.36.32532 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.36.32532 |
 
 #### Installed Windows SDKs
 - 10.0.14393.0
@@ -500,7 +499,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.16
 - Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.16
 - Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.16
-- nbgv 3.6.128+518ee610d6
+- nbgv 3.6.132+bc56096f69
 
 ### PowerShell Tools
 - PowerShell 7.2.11
@@ -512,7 +511,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.328
+- AWSPowershell: 4.1.334
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.27.0
@@ -557,9 +556,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:d9ba6a514a6cadf503d94de9207721cc65bd11836de200c794df7e3ab37f512e  | 2023-04-11 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:0626ed35c8a7a502b6403822bdeb17d413efaab100ccb9de9b50d9f3cba6dfb5  | 2023-04-11 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:6c68d8666f50716e127ac7376699ae770e6a908d8857f491cb100a143754a805  | 2023-04-11 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:eea54849888c8070ea35f8df39b3a5e126bc9a5bd30afdcad6f430408b2c786d  | 2023-04-05 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:b65dbde86b756beb973029c88e545457aa469a7e082c2d99bf984ba17d0a898c  | 2023-04-05 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:e9d17b5d038480f88e2d2f8da53861e16700b04e102ce4501a93bbae67d4c913  | 2023-05-09 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:e62875919158e904fff9d25d72636b0f74c734e2e9c3ded10a401c35c242c4a9  | 2023-05-09 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:9db623acbde3fa385a4d246bd77c628bef8ece107d53307f378d45838a817dc5  | 2023-05-16 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:fb78bd84ac937f6b1453e19015ccce41636bbeca5fe5bc6dc5c7d55adb4a2bc5  | 2023-05-05 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:12c61b7da616ca0065030ada32e78ba5bea0a1721affd994f40736b9b48620ae  | 2023-05-05 |
 
