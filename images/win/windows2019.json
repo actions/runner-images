@@ -127,6 +127,22 @@
         },
         {
             "type": "powershell",
+            "valid_exit_codes": [
+                0,
+                3010
+            ],
+            "scripts": [
+                "{{ template_dir }}/scripts/Installers/Install-NET48.ps1"
+            ],
+            "elevated_user": "{{user `install_user`}}",
+            "elevated_password": "{{user `install_password`}}"
+        },
+        {
+            "type": "windows-restart",
+            "restart_timeout": "10m"
+        },
+        {
+            "type": "powershell",
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
                 "IMAGE_OS={{user `image_os`}}",
@@ -170,7 +186,7 @@
             "scripts": [
                 "{{ template_dir }}/scripts/Installers/Install-VS.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-KubernetesTools.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-NET48.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-NET48-devpack.ps1"
             ],
             "elevated_user": "{{user `install_user`}}",
             "elevated_password": "{{user `install_password`}}"
