@@ -87,7 +87,7 @@ function Get-GitLFSVersion {
 }
 
 function Get-InnoSetupVersion {
-    $innoSetupVersion = $(choco list --local-only innosetup) | Select-String -Pattern "InnoSetup"
+    $innoSetupVersion = $(choco list innosetup) | Select-String -Pattern "InnoSetup"
     return ($innoSetupVersion -replace "^InnoSetup").Trim()
 }
 
