@@ -201,6 +201,12 @@ build {
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    scripts          = ["${path.root}/scripts/base/apt-ubuntu-archive.sh"]
+  }
+
+  provisioner "shell" {
+    environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
+    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     script           = "${path.root}/scripts/base/apt.sh"
   }
 

@@ -7,13 +7,18 @@ image_version=$(echo $IMAGE_VERSION | cut -d _ -f 2)
 os_name=$(sw_vers -productName)
 os_version=$(sw_vers -productVersion)
 os_build=$(sw_vers -buildVersion)
-label_version=$(echo $os_version | cut -d. -f1,2)
 label_version=$(echo $os_version | cut -d. -f1)
 
 image_label="macos-${label_version}"
 release_label="macOS-${label_version}"
-software_url="https://github.com/actions/runner-images/blob/${release_label}/${image_version}/images/macos/${image_label}-Readme.md"
-releaseUrl="https://github.com/actions/runner-images/releases/tag/${release_label}%2F${image_version}"
+
+if is_Ventura; then
+  software_url="https://github.com/actions/runner-images/blob/${image_label}/${image_version}/images/macos/${image_label}-Readme.md"
+  releaseUrl="https://github.com/actions/runner-images/releases/tag/${image_label}%2F${image_version}"
+else
+  software_url="https://github.com/actions/runner-images/blob/${release_label}/${image_version}/images/macos/${image_label}-Readme.md"
+  releaseUrl="https://github.com/actions/runner-images/releases/tag/${release_label}%2F${image_version}"
+fi
 
 cat <<EOF > $imagedata_file
     [
