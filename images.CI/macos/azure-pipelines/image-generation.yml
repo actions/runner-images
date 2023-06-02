@@ -7,6 +7,7 @@ jobs:
   variables:
   - group: Mac-Cloud Image Generation
   - group: Mac-Cloud Image Generation Key Vault
+  - group: XCode Installation
 
   steps:
   - pwsh: |
@@ -77,8 +78,9 @@ jobs:
         -var="github_api_pat=$(github_api_pat)" `
         -var="build_id=$(VirtualMachineName)" `
         -var="baseimage_name=${{ parameters.base_image_name }}" `
-        -var="xcode_install_user=$(xcode-installation-user)" `
-        -var="xcode_install_password=$(xcode-installation-password)" `
+        -var="xcode_install_user=$(xcode-installation-dummy-user)" `
+        -var="xcode_install_password=$(xcode-installation-dummy-password)" `
+        -var="xcversion_auth_cookie=$(xcversion_auth_cookie)" `
         -color=false `
         ${{ parameters.template_path }} `
         | Where-Object {

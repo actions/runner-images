@@ -14,6 +14,7 @@
         "github_api_pat": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
+        "xcversion_auth_cookie": null,
         "image_os": "macos12"
     },
     "builders": [
@@ -172,7 +173,8 @@
             "script": "./provision/core/xcode.ps1",
             "environment_vars": [
                 "XCODE_INSTALL_USER={{user `xcode_install_user`}}",
-                "XCODE_INSTALL_PASSWORD={{user `xcode_install_password`}}"
+                "XCODE_INSTALL_PASSWORD={{user `xcode_install_password`}}",
+                "XCVERSION_AUTH_COOKIE={{user `xcversion_auth_cookie`}}"
             ]
         },
         {
