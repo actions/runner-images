@@ -59,6 +59,12 @@ jobs:
                  -VIPassword '$(vcenter-password-v2)' `
                  -Cluster "$(esxi-cluster-v2)"
 
+  - task: DownloadSecureFile@1
+    name: xcVersionCookie
+    displayName: 'Download CA certificate'
+    inputs:
+      secureFile: 'cookie'
+
   - pwsh: |
       $SensitiveData = @(
           'IP address:',
@@ -80,7 +86,7 @@ jobs:
         -var="baseimage_name=${{ parameters.base_image_name }}" `
         -var="xcode_install_user=$(xcode-installation-dummy-user)" `
         -var="xcode_install_password=$(xcode-installation-dummy-password)" `
-        -var="xcversion_auth_cookie=$(xcversion_auth_cookie)" `
+        -var="xcversion_auth_cookie=$(xcVersionCookie.secureFilePath)" `
         -color=false `
         ${{ parameters.template_path }} `
         | Where-Object {

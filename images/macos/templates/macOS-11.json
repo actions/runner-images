@@ -167,12 +167,20 @@
         },
         {
             "type": "shell",
+            "inline": "mkdir -p ~/.fastlane/spaceship/{{user `xcode_install_user`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{user `xcversion_auth_cookie`}}",
+            "destination": "~/.fastlane/spaceship/{{user `xcode_install_user`}}/cookie"
+        },
+        {
+            "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
             "script": "./provision/core/xcode.ps1",
             "environment_vars": [
                 "XCODE_INSTALL_USER={{user `xcode_install_user`}}",
-                "XCODE_INSTALL_PASSWORD={{user `xcode_install_password`}}",
-                "XCVERSION_AUTH_COOKIE={{user `xcversion_auth_cookie`}}"
+                "XCODE_INSTALL_PASSWORD={{user `xcode_install_password`}}"
             ]
         },
         {
