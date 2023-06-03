@@ -7,7 +7,6 @@ jobs:
   variables:
   - group: Mac-Cloud Image Generation
   - group: Mac-Cloud Image Generation Key Vault
-  - group: XCode Installation
 
   steps:
   - pwsh: |
@@ -61,7 +60,7 @@ jobs:
 
   - task: DownloadSecureFile@1
     name: xcVersionCookie
-    displayName: 'Download CA certificate'
+    displayName: 'Download xcversion session cookie'
     inputs:
       secureFile: 'cookie'
 
@@ -84,8 +83,8 @@ jobs:
         -var="github_api_pat=$(github_api_pat)" `
         -var="build_id=$(VirtualMachineName)" `
         -var="baseimage_name=${{ parameters.base_image_name }}" `
-        -var="xcode_install_user=$(xcode-installation-dummy-user)" `
-        -var="xcode_install_password=$(xcode-installation-dummy-password)" `
+        -var="xcode_install_user=$(xcode-installation-user)" `
+        -var="xcode_install_password=$(xcode-installation-password)" `
         -var="xcversion_auth_cookie=$(xcVersionCookie.secureFilePath)" `
         -color=false `
         ${{ parameters.template_path }} `
