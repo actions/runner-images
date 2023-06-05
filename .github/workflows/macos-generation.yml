@@ -105,6 +105,13 @@ jobs:
           -VIPassword ${{ secrets.VI_PASSWORD }} `
           -Cluster ${{ env.ESXI_CLUSTER }}
 
+    - name: Create xcversion session cookie file
+      shell: bash
+      run: |
+        mkdir -p ${{ runner.temp }}/xcversion-cookie
+        cookie='${{ secrets.XCVERSION_AUTH_COOKIE }}'
+        echo "$cookie" > ${{ runner.temp }}/xcversion-cookie/cookie
+
     - name: Build VM
       run: |
         $SensitiveData = @(
@@ -126,6 +133,7 @@ jobs:
         -var="baseimage_name=${{ inputs.base_image_name }}" `
         -var="xcode_install_user=${{ secrets.XCODE_USER }}" `
         -var="xcode_install_password=${{ secrets.XCODE_PASSWORD }}" `
+        -var="xcversion_auth_cookie=${{ env.XCVERSION_COOKIE_PATH }}" `
         -color=false `
         ${{ inputs.template_path }} `
         | Where-Object {
@@ -138,6 +146,7 @@ jobs:
       env:
         PACKER_LOG: 1
         PACKER_LOG_PATH: ${{ runner.temp }}/packer-log.txt
+        XCVERSION_COOKIE_PATH: ${{ runner.temp }}/xcversion-cookie/cookie
 
     - name: Prepare artifact
       shell: bash

@@ -1,11 +1,11 @@
 | Announcements |
 |-|
-| [python2.7 will be removed from the images on May 15, 2023](https://github.com/actions/runner-images/issues/7401) |
+| [python2.7 will be removed from the images on May 22, 2023](https://github.com/actions/runner-images/issues/7401) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
-- Kernel Version: 5.15.0-1037-azure
-- Image Version: 20230507.1
+- Kernel Version: 5.15.0-1038-azure
+- Image Version: 20230517.1
 - Systemd version: 245.4-4ubuntu3.21
 
 ## Installed Software
@@ -20,7 +20,7 @@
 - Erlang rebar3 3.20.0
 - GNU C++: 9.4.0, 10.3.0
 - GNU Fortran: 9.4.0, 10.3.0
-- Julia 1.8.5
+- Julia 1.9.0
 - Kotlin 1.8.21-release-380
 - Mono 6.12.0.182
 - MSBuild 16.10.1.31701 (Mono 6.12.0.182)
@@ -33,8 +33,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.11.3
-- Homebrew 4.0.16
+- Helm 3.12.0
+- Homebrew 4.0.18
 - Miniconda 23.3.1
 - Npm 9.5.1
 - NuGet 6.3.1.1
@@ -42,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.2.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit 6a3dd0874)
+- Vcpkg (build from commit 7b30311f0)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -64,13 +64,13 @@ to accomplish this.
 - Gradle 8.1.1
 - Lerna 6.6.2
 - Maven 3.8.8
-- Sbt 1.8.2
+- Sbt 1.8.3
 
 ### Tools
 - Ansible 2.13.9
 - apt-fast 1.9.12
 - AzCopy 10.18.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 6.1.2
+- Bazel 6.2.0
 - Bazelisk 1.13.2
 - Bicep 0.17.1
 - Buildah 1.22.3
@@ -90,9 +90,9 @@ to accomplish this.
 - Heroku 8.1.3
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
-- Kind 0.18.0
-- Kubectl 1.27.1
-- Kustomize 5.0.2
+- Kind 0.19.0
+- Kubectl 1.27.2
+- Kustomize 5.0.3
 - Leiningen 2.10.0
 - MediaInfo 19.09
 - Mercurial 5.3.1
@@ -105,7 +105,7 @@ to accomplish this.
 - Parcel 2.8.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.66.0
+- Pulumi 3.67.1
 - R 4.3.0
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -116,29 +116,29 @@ to accomplish this.
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.163
-- AWS CLI 2.11.18
+- Alibaba Cloud CLI 3.0.164
+- AWS CLI 2.11.20
 - AWS CLI Session Manager Plugin 1.2.463.0
-- AWS SAM CLI 1.82.0
+- AWS SAM CLI 1.84.0
 - Azure CLI 2.48.1
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.28.0
-- Google Cloud SDK 429.0.0
+- GitHub CLI 2.29.0
+- Google Cloud SDK 431.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 15.0.0
-- OpenShift CLI 4.12.15
+- Netlify CLI 15.1.1
+- OpenShift CLI 4.12.16
 - ORAS CLI 1.0.0
-- Vercel CLI 29.1.1
+- Vercel CLI 29.3.3
 
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.362+9           | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 8.0.372+7           | Eclipse Temurin | JAVA_HOME_8_X64      |
 | 11.0.19+7 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 17.0.7+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.28, 8.1.18, 8.2.5
+- PHP: 7.4.33, 8.0.28, 8.1.18, 8.2.6
 - Composer 2.5.5
 - PHPUnit 8.5.33
 ```
@@ -159,20 +159,20 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 #### Packages
 - Bindgen 0.65.1
-- Cargo audit 0.17.5
+- Cargo audit 0.17.6
 - Cargo clippy 0.1.69
 - Cargo outdated 0.11.2
 - Cbindgen 0.24.3
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 113.0.5672.63
+- Google Chrome 113.0.5672.126
 - ChromeDriver 113.0.5672.63
 - Chromium 113.0.5672.0
-- Microsoft Edge 113.0.1774.35
-- Microsoft Edge WebDriver 113.0.1774.35
+- Microsoft Edge 113.0.1774.42
+- Microsoft Edge WebDriver 113.0.1774.42
 - Selenium server 4.9.0
-- Mozilla Firefox 113.0
+- Mozilla Firefox 113.0.1
 - Geckodriver 0.33.0
 
 #### Environment variables
@@ -184,15 +184,15 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.408, 7.0.105, 7.0.203
-- nbgv 3.6.128+518ee610d6
+- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.408, 7.0.105, 7.0.203, 7.0.302
+- nbgv 3.6.132+bc56096f69
 
 ### Databases
 - MongoDB 5.0.17
 - sqlite3 3.31.1
 
 #### PostgreSQL
-- PostgreSQL 14.7
+- PostgreSQL 14.8
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -200,7 +200,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.32-0ubuntu0.20.04.2
+- MySQL 8.0.33-0ubuntu0.20.04.2
 ```
 User: root
 Password: root
@@ -210,7 +210,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 16.1.8089.0
+- SqlPackage 162.0.52.1
 
 ### Cached Tools
 
@@ -225,7 +225,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 18.16.0
 
 #### Python
-- 2.7.18
 - 3.6.15
 - 3.7.16
 - 3.8.16
@@ -312,7 +311,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:18                 | sha256:3f567a26b6b6d601fb2b168d4f987b50697617ead15bfc0e0152e600ac48d0fe  | 2023-05-04 |
 | node:18-alpine          | sha256:1ccc70acda680aa4ba47f53e7c40b2d4d6892de74817128e0662d32647dd7f4d  | 2023-04-13 |
 | ubuntu:16.04            | sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6  | 2021-08-31 |
-| ubuntu:18.04            | sha256:8aa9c2798215f99544d1ce7439ea9c3a6dfd82de607da1cec3a8a2fae005931b  | 2023-03-08 |
+| ubuntu:18.04            | sha256:14f1045816502e16fcbfc0b2a76747e9f5e40bc3899f8cfe20745abaafeaeab3  | 2023-05-12 |
 | ubuntu:20.04            | sha256:db8bf6f4fb351aa7a26e27ba2686cf35a6a409f65603e59d4c203e58387dc6b3  | 2023-04-13 |
 
 ### Installed apt packages
@@ -325,13 +324,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | binutils               | 2.34-6ubuntu1.4                   |
 | bison                  | 2:3.5.1+dfsg-1                    |
 | brotli                 | 1.0.7-6ubuntu0.1                  |
-| build-essential        | 12.8ubuntu1.1                     |
-| bzip2                  | 1.0.8-2                           |
 | coreutils              | 8.30-3ubuntu2                     |
-| curl                   | 7.68.0-1ubuntu2.18                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
 | dnsutils               | 1:9.16.1-0ubuntu2.14              |
 | dpkg                   | 1.19.7ubuntu3.2                   |
+| dpkg-dev               | 1.19.7ubuntu3.2                   |
 | fakeroot               | 1.24-1                            |
 | file                   | 1:5.38-4                          |
 | flex                   | 2.6.4-6.2                         |
@@ -342,10 +339,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | imagemagick            | 8:6.9.10.23+dfsg-2.1ubuntu11.7    |
 | iproute2               | 5.5.0-1ubuntu1                    |
 | iputils-ping           | 3:20190709-3                      |
-| jq                     | 1.6-1ubuntu0.20.04.1              |
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu1.5          |
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
+| libc6-dev              | 2.31-0ubuntu9.9                   |
 | libcurl4               | 7.68.0-1ubuntu2.18                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
@@ -367,7 +364,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | mercurial              | 5.3.1-1ubuntu1                    |
 | net-tools              | 1.60+git20180626.aebd88e-1ubuntu1 |
 | netcat                 | 1.206-1ubuntu1                    |
-| openssh-client         | 1:8.2p1-4ubuntu0.5                |
+| openssh-client         | 1:8.2p1-4ubuntu0.7                |
 | p7zip-full             | 16.02+dfsg-7build1                |
 | p7zip-rar              | 16.02-3build1                     |
 | parallel               | 20161222-1.1                      |
@@ -381,20 +378,17 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | shellcheck             | 0.7.0-2build2                     |
 | sphinxsearch           | 2.2.11-2ubuntu2                   |
 | sqlite3                | 3.31.1-4ubuntu0.5                 |
-| ssh                    | 1:8.2p1-4ubuntu0.5                |
+| ssh                    | 1:8.2p1-4ubuntu0.7                |
 | sshpass                | 1.06-1                            |
 | subversion             | 1.13.0-3ubuntu0.2                 |
 | sudo                   | 1.8.31-1ubuntu1.5                 |
 | swig                   | 4.0.1-5build1                     |
-| tar                    | 1.30+dfsg-7ubuntu0.20.04.3        |
 | telnet                 | 0.17-41.2build1                   |
 | texinfo                | 6.7.0.dfsg.2-5                    |
 | time                   | 1.7-25.1build1                    |
 | tk                     | 8.6.9+1                           |
 | tzdata                 | 2023c-0ubuntu0.20.04.1            |
-| unzip                  | 6.0-25ubuntu1.1                   |
 | upx                    | 3.95-2build1                      |
-| wget                   | 1.20.3-1ubuntu2                   |
 | xorriso                | 1.5.2-1                           |
 | xvfb                   | 2:1.20.13-1ubuntu1\~20.04.8       |
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
