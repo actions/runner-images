@@ -14,6 +14,7 @@
         "github_api_pat": null,
         "xcode_install_user": null,
         "xcode_install_password": null,
+        "xcversion_auth_cookie": null,
         "image_os": "macos12"
     },
     "builders": [
@@ -165,6 +166,15 @@
                 "API_PAT={{user `github_api_pat`}}",
                 "USER_PASSWORD={{user `vm_password`}}"
             ]
+        },
+        {
+            "type": "shell",
+            "inline": "mkdir -p ~/.fastlane/spaceship/{{user `xcode_install_user`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{user `xcversion_auth_cookie`}}",
+            "destination": "~/.fastlane/spaceship/{{user `xcode_install_user`}}/cookie"
         },
         {
             "type": "shell",
