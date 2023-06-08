@@ -1,7 +1,7 @@
 | Announcements |
 |-|
 | [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
-| [Actions runner image scheduled maintenance (June 2 2023 through June 12 20223)](https://github.com/actions/runner-images/issues/7660) |
+| [Actions runner image scheduled maintenance (June 2 2023 through June 12 2023)](https://github.com/actions/runner-images/issues/7660) |
 | [python2.7 will be removed from the images on June 12, 2023](https://github.com/actions/runner-images/issues/7401) |
 ***
 # Ubuntu 20.04
