@@ -1,10 +1,12 @@
 | Announcements |
 |-|
-| [python2.7 will be removed from the images on May 22, 2023](https://github.com/actions/runner-images/issues/7401) |
+| [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
+| [Actions runner image scheduled maintenance (June 2 2023 through June 12 20223)](https://github.com/actions/runner-images/issues/7660) |
+| [python2.7 will be removed from the images on June 12, 2023](https://github.com/actions/runner-images/issues/7401) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4377
-- Image Version: 20230517.1
+- Image Version: 20230606.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -24,16 +26,16 @@
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 1.4.0
-- Composer 2.5.5
+- Chocolatey 2.0.0
+- Composer 2.5.7
 - Helm 3.11.3
 - Miniconda 23.3.1 (pre-installed on the image but not added to PATH)
 - NPM 9.5.1
-- NuGet 6.5.0.154
+- NuGet 6.6.0.61
 - pip 23.1.2 (python 3.7)
 - Pipx 1.2.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit 7b30311f0)
+- Vcpkg (build from commit 750591668)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -46,81 +48,81 @@
 - Ant 1.10.13
 - Gradle 8.1
 - Maven 3.8.7
-- sbt 1.8.3
+- sbt 1.9.0
 
 ### Tools
 - 7zip 22.01
 - aria2 1.36.0
-- azcopy 10.18.1
-- Bazel 6.2.0
+- azcopy 10.19.0
+- Bazel 6.2.1
 - Bazelisk 1.13.2
 - Bicep 0.17.1
 - Cabal 3.10.1.0
-- CMake 3.26.3
-- CodeQL Action Bundles 2.13.0 2.13.1
-- Docker 24.0.0
+- CMake 3.26.4
+- CodeQL Action Bundles 2.13.1 2.13.3
+- Docker 24.0.2
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.18.1
 - Docker-wincred 0.7.0
-- ghc 9.6.1
-- Git 2.40.1.windows.1
+- ghc 9.6.2
+- Git 2.41.0.windows.1
 - Git LFS 3.3.0
-- Google Cloud SDK 431.0.0
-- ImageMagick 7.1.1-9
+- Google Cloud SDK 434.0.0
+- ImageMagick 7.1.1-11
 - InnoSetup 6.2.2
 - jq 1.6
 - Kind 0.19.0
-- Kubectl 1.27.1
+- Kubectl 1.27.2
 - Mercurial 5.0
 - Mingw-w64 8.1.0
 - Newman 5.3.2
 - NSIS 3.08
-- OpenSSL 1.1.1t
+- OpenSSL 1.1.1u
 - Packer 1.8.7
-- Parcel 2.8.3
-- Pulumi 3.67.1
+- Parcel 2.9.1
+- Pulumi 3.69.0
 - R 4.3.0
 - Service Fabric SDK 9.1.1436.9590
-- Stack 2.9.3
+- Stack 2.11.1
 - Subversion (SVN) 1.14.2
 - Swig 4.1.1
 - VSWhere 3.1.4
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.11.2.4516
-- yamllint 1.31.0
+- yamllint 1.32.0
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.164
-- AWS CLI 2.11.20
-- AWS SAM CLI 1.84.0
+- Alibaba Cloud CLI 3.0.165
+- AWS CLI 2.11.25
+- AWS SAM CLI 1.86.0
 - AWS Session Manager CLI 1.2.463.0
-- Azure CLI 2.48.1
+- Azure CLI 2.49.0
 - Azure DevOps CLI extension 0.26.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.29.0
+- GitHub CLI 2.30.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.69.0
-- Rust 1.69.0
-- Rustdoc 1.69.0
+- Cargo 1.70.0
+- Rust 1.70.0
+- Rustdoc 1.70.0
 - Rustup 1.26.0
 
 #### Packages
 - bindgen 0.65.1
 - cargo-audit 0.17.6
 - cargo-outdated 0.11.2
-- cbindgen 0.24.3
-- Clippy 0.1.69
+- cbindgen 0.24.5
+- Clippy 0.1.70
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 113.0.5672.127
-- Chrome Driver 113.0.5672.63
-- Microsoft Edge 113.0.1774.42
-- Microsoft Edge Driver 113.0.1774.42
-- Mozilla Firefox 113.0.1
+- Google Chrome 114.0.5735.110
+- Chrome Driver 114.0.5735.90
+- Microsoft Edge 114.0.1823.37
+- Microsoft Edge Driver 114.0.1823.37
+- Mozilla Firefox 114.0
 - Gecko Driver 0.33.0
 - IE Driver 4.8.0.0
 - Selenium server 4.9.0
@@ -226,7 +228,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.23.4  | C:\tools\nginx-1.23.4\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.25.0  | C:\tools\nginx-1.25.0\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
@@ -499,7 +501,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.16
 - Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.16
 - Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.16
-- nbgv 3.6.132+bc56096f69
+- nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
 - PowerShell 7.2.11
@@ -511,7 +513,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.334
+- AWSPowershell: 4.1.346
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.27.0
@@ -519,7 +521,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
 - PSWindowsUpdate: 2.2.0.3
-- SqlServer: 22.0.59
+- SqlServer: 22.1.1
 - VSSetup: 2.2.16
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
@@ -533,7 +535,7 @@ All other versions are saved but not installed.
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                                                                                                          |
 | Android SDK Build-tools    | 33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0                                                            |
 | Android SDK Platforms      | android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
-| Android SDK Platform-Tools | 34.0.1                                                                                                                                                                                                                                                                                                                                                                                       |
+| Android SDK Platform-Tools | 34.0.3                                                                                                                                                                                                                                                                                                                                                                                       |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                                                                       |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                       |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                                                                                                                                   |
