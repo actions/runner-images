@@ -184,12 +184,9 @@ build {
   }
   provisioner "shell" {
     inline = [
-      "mkdir -p ~/.fastlane/spaceship/${var.xcode_install_user}"
+      "mkdir -p ~/.fastlane/spaceship/${var.xcode_install_user}",
+      "echo ${var.xcversion_auth_cookie} | base64 --decode > ~/.fastlane/spaceship/${var.xcode_install_user}/cookie"
     ]
-  }
-  provisioner "file" {
-    destination = "~/.fastlane/spaceship/${var.xcode_install_user}/cookie"
-    source = "${var.xcversion_auth_cookie}"
   }
   provisioner "shell" {
     script = "./provision/core/xcode.ps1"
