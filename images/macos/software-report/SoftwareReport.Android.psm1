@@ -24,10 +24,13 @@ function Get-AndroidInstalledPackages {
 }
 
 function Get-AndroidPackages {
+    $androidSDKDir = Get-AndroidSDKRoot
+    $androidSDKManagerPath = Get-AndroidSDKManagerPath
+
     $packagesListFile = Join-Path $androidSDKDir "packages-list.txt"
 
     if (-Not (Test-Path -Path $packagesListFile -PathType Leaf)) {
-        (/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --list --verbose) |
+        (& $androidSDKManagerPath --list --verbose) |
         Where-Object { $_ -Match "^[^\s]" } |
         Where-Object { $_ -NotMatch "^(Loading |Info: Parsing |---|\[=+|Installed |Available )" } |
         Where-Object { $_ -NotMatch "^[^;]*$" } |
