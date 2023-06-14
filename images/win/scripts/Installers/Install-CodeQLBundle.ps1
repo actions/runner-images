@@ -3,16 +3,42 @@
 ##  Desc:  Install the CodeQL CLI Bundle to the toolcache.
 ################################################################################
 
-# Retrieve the name of the CodeQL bundle preferred by the Action (in the format codeql-bundle-YYYYMMDD).
+# Retrieve the CLI versions and bundle tags of the latest two CodeQL bundles.
 $Defaults = (Invoke-RestMethod "https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json")
 $CodeQLTagName = $Defaults.bundleVersion
 $CodeQLCliVersion = $Defaults.cliVersion
 $PriorCodeQLTagName = $Defaults.priorBundleVersion
 $PriorCodeQLCliVersion = $Defaults.priorCliVersion
 
-# Convert the tag names to bundles with a version number (x.y.z-YYYYMMDD).
-$CodeQLBundleVersion = $CodeQLCliVersion + "-" + $CodeQLTagName.split("-")[-1]
-$PriorCodeQLBundleVersion = $PriorCodeQLCliVersion + "-" + $PriorCodeQLTagName.split("-")[-1]
+# Compute the toolcache version number for each bundle. This is either `x.y.z` or `x.y.z-YYYYMMDD`.
+if ($CodeQLTagName.split("-")[-1].StartsWith("v")) {
+    # Tag name of the format `codeql-bundle-vx.y.z`, where x.y.z is the CLI version.
+    # We don't need to include the tag name in the toolcache version number because it's derivable
+    # from the CLI version.
+    $CodeQLBundleVersion = $CodeQLCliVersion
+} elseif ($CodeQLTagName.split("-")[-1] -match "^\d+$") {
+    # Tag name of the format `codeql-bundle-YYYYMMDD`.
+    # We need to include the tag name in the toolcache version number because it can't be derived
+    # from the CLI version.
+    $CodeQLBundleVersion = $CodeQLCliVersion + "-" + $CodeQLTagName.split("-")[-1]
+} else {
+    Write-Error "Unrecognised current CodeQL bundle tag name: $CodeQLTagName. Could not compute toolcache version number."
+    exit 1
+}
+if ($PriorCodeQLTagName.split("-")[-1].StartsWith("v")) {
+    # Tag name of the format `codeql-bundle-vx.y.z`, where x.y.z is the CLI version.
+    # We don't need to include the tag name in the toolcache version number because it's derivable
+    # from the CLI version.
+    $PriorCodeQLBundleVersion = $PriorCodeQLCliVersion
+} elseif ($PriorCodeQLTagName.split("-")[-1] -match "^\d+$") {
+    # Tag name of the format `codeql-bundle-YYYYMMDD`.
+    # We need to include the tag name in the toolcache version number because it can't be derived
+    # from the CLI version.
+    $PriorCodeQLBundleVersion = $PriorCodeQLCliVersion + "-" + $PriorCodeQLTagName.split("-")[-1]
+} else {
+    Write-Error "Unrecognised prior CodeQL bundle tag name: $PriorCodeQLTagName. Could not compute toolcache version number."
+    exit 1
+}
 
 $Bundles = @(
     [PSCustomObject]@{
