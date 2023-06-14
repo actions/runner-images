@@ -17,7 +17,7 @@ on:
 
 jobs:
   Ubuntu_2204:
-    if: ${{ (github.event.label.name == 'CI ubuntu-all') || (github.event.label.name == 'CI ubuntu-2204') || (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule') }}
+    if: contains(github.event.pull_request.labels.*.name, 'CI ubuntu-all') || contains(github.event.pull_request.labels.*.name, 'CI ubuntu-2204') || (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule')
     uses: ./.github/workflows/ubuntu-win-generation.yml
     with:
       image_name: 'ubuntu2204'
