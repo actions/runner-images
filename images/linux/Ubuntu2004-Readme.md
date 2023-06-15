@@ -1,13 +1,13 @@
 | Announcements |
 |-|
 | [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
-| [Actions runner image scheduled maintenance (June 2 2023 through June 12 2023)](https://github.com/actions/runner-images/issues/7660) |
+| [Actions runner image scheduled maintenance (June 2 2023 through June 16 2023)](https://github.com/actions/runner-images/issues/7660) |
 | [python2.7 will be removed from the images on June 12, 2023](https://github.com/actions/runner-images/issues/7401) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1039-azure
-- Image Version: 20230604.1
+- Image Version: 20230611.1
 - Systemd version: 245.4-4ubuntu3.21
 
 ## Installed Software
@@ -22,8 +22,8 @@
 - Erlang rebar3 3.22.0
 - GNU C++: 9.4.0, 10.3.0
 - GNU Fortran: 9.4.0, 10.3.0
-- Julia 1.9.0
-- Kotlin 1.8.21-release-380
+- Julia 1.9.1
+- Kotlin 1.8.22-release-407
 - Mono 6.12.0.182
 - MSBuild 16.10.1.31701 (Mono 6.12.0.182)
 - Node.js 18.16.0
@@ -36,7 +36,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.12.0
-- Homebrew 4.0.20
+- Homebrew 4.0.21
 - Miniconda 23.3.1
 - Npm 9.5.1
 - NuGet 6.3.1.1
@@ -44,7 +44,7 @@
 - Pip3 20.0.2
 - Pipx 1.2.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit 662dbb50e)
+- Vcpkg (build from commit 633664434)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -64,7 +64,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.7
 - Gradle 8.1.1
-- Lerna 6.6.2
+- Lerna 7.0.0
 - Maven 3.8.8
 - Sbt 1.9.0
 
@@ -80,7 +80,7 @@ to accomplish this.
 - CodeQL Action Bundles 2.13.1 2.13.3
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.18.0+azure-1
+- Docker Compose v2 2.18.1+azure-1
 - Docker-Buildx 0.10.4
 - Docker-Moby Client 20.10.25+azure-1
 - Docker-Moby Server 20.10.25+azure-1
@@ -104,10 +104,10 @@ to accomplish this.
 - nvm 0.39.3
 - OpenSSL 1.1.1f-1ubuntu2.19
 - Packer 1.9.1
-- Parcel 2.9.1
+- Parcel 2.9.2
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.69.0
+- Pulumi 3.70.0
 - R 4.3.0
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -118,19 +118,19 @@ to accomplish this.
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.165
-- AWS CLI 2.11.25
+- Alibaba Cloud CLI 3.0.166
+- AWS CLI 2.11.27
 - AWS CLI Session Manager Plugin 1.2.463.0
-- AWS SAM CLI 1.85.0
+- AWS SAM CLI 1.86.1
 - Azure CLI 2.49.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.30.0
-- Google Cloud SDK 433.0.1
+- Google Cloud SDK 434.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 15.3.1
-- OpenShift CLI 4.13.1
+- Netlify CLI 15.4.1
+- OpenShift CLI 4.13.2
 - ORAS CLI 1.0.0
-- Vercel CLI 30.1.2
+- Vercel CLI 30.2.1
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -140,8 +140,8 @@ to accomplish this.
 | 17.0.7+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.28, 8.1.18, 8.2.6
-- Composer 2.5.7
+- PHP: 7.4.33, 8.0.29, 8.1.20, 8.2.7
+- Composer 2.5.8
 - PHPUnit 8.5.33
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -168,13 +168,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 114.0.5735.90
+- Google Chrome 114.0.5735.106
 - ChromeDriver 114.0.5735.90
 - Chromium 114.0.5733.0
-- Microsoft Edge 114.0.1823.37
-- Microsoft Edge WebDriver 114.0.1823.37
-- Selenium server 4.9.0
-- Mozilla Firefox 114.0
+- Microsoft Edge 114.0.1823.43
+- Microsoft Edge WebDriver 114.0.1823.43
+- Selenium server 4.10.0
+- Mozilla Firefox 114.0.1
 - Geckodriver 0.33.0
 
 #### Environment variables
@@ -218,8 +218,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.18.10
-- 1.19.9
-- 1.20.4
+- 1.19.10
+- 1.20.5
 
 #### Node.js
 - 14.21.3
@@ -228,11 +228,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Python
 - 3.6.15
-- 3.7.16
-- 3.8.16
-- 3.9.16
-- 3.10.11
-- 3.11.3
+- 3.7.17
+- 3.8.17
+- 3.9.17
+- 3.10.12
+- 3.11.4
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.11]
@@ -255,7 +255,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 9.3.0
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.27.0
+- Microsoft.Graph: 1.28.0
 - Pester: 5.4.1
 - PSScriptAnalyzer: 1.21.0
 
@@ -267,20 +267,20 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | nginx     | 1.18.0  | /etc/nginx/nginx.conf     | inactive      | 80         |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                      |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Android Command Line Tools | 9.0                                                                                                                                                                                                          |
-| Android Emulator           | 32.1.13                                                                                                                                                                                                      |
-| Android SDK Build-tools    | 33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                         |
-| Android SDK Platform-Tools | 34.0.3                                                                                                                                                                                                       |
-| Android SDK Platforms      | android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Tools          | 26.1.1                                                                                                                                                                                                       |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                       |
-| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                   |
-| Google Play services       | 49                                                                                                                                                                                                           |
-| Google Repository          | 58                                                                                                                                                                                                           |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653 (default)                                                                                                                                                       |
-| SDK Patch Applier v4       | 1                                                                                                                                                                                                            |
+| Package Name               | Version                                                                                                                                                                                                                            |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 9.0                                                                                                                                                                                                                                |
+| Android Emulator           | 32.1.13                                                                                                                                                                                                                            |
+| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
+| Android SDK Platform-Tools | 34.0.3                                                                                                                                                                                                                             |
+| Android SDK Platforms      | android-34 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
+| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                             |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                             |
+| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                         |
+| Google Play services       | 49                                                                                                                                                                                                                                 |
+| Google Repository          | 58                                                                                                                                                                                                                                 |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653 (default)                                                                                                                                                                             |
+| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                  |
 
 #### Environment variables
 | Name                    | Value                                       |
