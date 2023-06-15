@@ -17,7 +17,7 @@ on:
 
 jobs:
   Windows_2022:
-    if: ${{ (github.event.label.name == 'CI windows-all') || (github.event.label.name == 'CI windows-2022') || (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule') }}
+    if: contains(github.event.pull_request.labels.*.name, 'CI windows-all') || contains(github.event.pull_request.labels.*.name, 'CI windows-2022') || (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule')
     uses: ./.github/workflows/ubuntu-win-generation.yml
     with:
       image_name: 'windows2022'
