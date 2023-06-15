@@ -1,12 +1,11 @@
 | Announcements |
 |-|
 | [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
-| [Actions runner image scheduled maintenance (June 2 2023 through June 12 20223)](https://github.com/actions/runner-images/issues/7660) |
-| [python2.7 will be removed from the images on June 12, 2023](https://github.com/actions/runner-images/issues/7401) |
+| [Actions runner image scheduled maintenance (June 2 2023 through June 16 2023)](https://github.com/actions/runner-images/issues/7660) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1726
-- Image Version: 20230606.1
+- Image Version: 20230612.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -15,19 +14,19 @@
 
 ### Language and Runtime
 - Bash 5.2.15(1)-release
-- Go 1.20.4
-- Julia 1.9.0
-- Kotlin 1.8.21
+- Go 1.20.5
+- Julia 1.9.1
+- Kotlin 1.8.22
 - LLVM 15.0.7
 - Node 18.16.0
 - Perl 5.32.1
-- PHP 8.2.6
+- PHP 8.2.7
 - Python 3.9.13
 - Ruby 3.0.6p216
 
 ### Package Management
 - Chocolatey 2.0.0
-- Composer 2.5.7
+- Composer 2.5.8
 - Helm 3.11.3
 - Miniconda 23.3.1 (pre-installed on the image but not added to PATH)
 - NPM 9.5.1
@@ -35,7 +34,7 @@
 - pip 23.1.2 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 750591668)
+- Vcpkg (build from commit 1ba9a2591)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -56,7 +55,7 @@
 - azcopy 10.19.0
 - Bazel 6.2.1
 - Bazelisk 1.13.2
-- Bicep 0.17.1
+- Bicep 0.18.4
 - Cabal 3.10.1.0
 - CMake 3.26.4
 - CodeQL Action Bundles 2.13.1 2.13.3
@@ -77,8 +76,8 @@
 - Newman 5.3.2
 - NSIS 3.08
 - OpenSSL 1.1.1u
-- Packer 1.8.7
-- Pulumi 3.69.0
+- Packer 1.9.0
+- Pulumi 3.70.0
 - R 4.3.0
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -91,9 +90,9 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.165
-- AWS CLI 2.11.25
-- AWS SAM CLI 1.86.0
+- Alibaba Cloud CLI 3.0.167
+- AWS CLI 2.11.27
+- AWS SAM CLI 1.84.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.49.0
 - Azure DevOps CLI extension 0.26.0
@@ -117,12 +116,12 @@
 ### Browsers and Drivers
 - Google Chrome 114.0.5735.110
 - Chrome Driver 114.0.5735.90
-- Microsoft Edge 114.0.1823.37
-- Microsoft Edge Driver 114.0.1823.37
-- Mozilla Firefox 114.0
+- Microsoft Edge 114.0.1823.43
+- Microsoft Edge Driver 114.0.1823.43
+- Mozilla Firefox 114.0.1
 - Gecko Driver 0.33.0
-- IE Driver 4.8.0.0
-- Selenium server 4.9.0
+- IE Driver 4.10.0.0
+- Selenium server 4.10.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -160,8 +159,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.18.10
-- 1.19.9
-- 1.20.4
+- 1.19.10
+- 1.20.5
 
 #### Node.js
 - 14.21.3
@@ -173,7 +172,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.8.10
 - 3.9.13
 - 3.10.11
-- 3.11.3
+- 3.11.4
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.11]
@@ -382,24 +381,24 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.Spectre               | 17.6.33605.316 |
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64                   | 17.6.33605.316 |
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64.Spectre           | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM                        | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM.Spectre                | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM64                      | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM64.Spectre              | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL                        | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM                    | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM.Spectre            | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM64                  | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM64.Spectre          | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.Spectre                | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC                        | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM                    | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM.Spectre            | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM64                  | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM64.Spectre          | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.Spectre                | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.x86.x64                    | 17.6.33605.316 |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.x86.x64.Spectre            | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM                        | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM.Spectre                | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM64                      | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM64.Spectre              | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL                        | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL.ARM                    | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL.ARM.Spectre            | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL.ARM64                  | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL.ARM64.Spectre          | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL.Spectre                | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC                        | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC.ARM                    | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC.ARM.Spectre            | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC.ARM64                  | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC.ARM64.Spectre          | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC.Spectre                | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.x86.x64                    | 17.6.33605.316 |
+| Microsoft.VisualStudio.Component.VC.14.36.17.6.x86.x64.Spectre            | 17.6.33605.316 |
 | Microsoft.VisualStudio.Component.VC.ASAN                                  | 17.6.33605.316 |
 | Microsoft.VisualStudio.Component.VC.ATL                                   | 17.6.33605.316 |
 | Microsoft.VisualStudio.Component.VC.ATL.ARM                               | 17.6.33605.316 |
@@ -547,10 +546,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.346
+- AWSPowershell: 4.1.350
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.27.0
+- Microsoft.Graph: 1.28.0
 - Pester: 3.4.0, 5.4.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
@@ -564,19 +563,19 @@ All other versions are saved but not installed.
 ```
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                      |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Android Command Line Tools | 8.0                                                                                                                                                                                                          |
-| Android Emulator           | 31.2.9                                                                                                                                                                                                       |
-| Android SDK Build-tools    | 33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                         |
-| Android SDK Platforms      | android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Platform-Tools | 34.0.3                                                                                                                                                                                                       |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                       |
-| CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                             |
-| Google Play services       | 49                                                                                                                                                                                                           |
-| Google Repository          | 58                                                                                                                                                                                                           |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653                                                                                                                                                                 |
-| SDK Patch Applier v4       | 1                                                                                                                                                                                                            |
+| Package Name               | Version                                                                                                                                                                                                                            |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 8.0                                                                                                                                                                                                                                |
+| Android Emulator           | 31.2.9                                                                                                                                                                                                                             |
+| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
+| Android SDK Platforms      | android-34 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
+| Android SDK Platform-Tools | 34.0.3                                                                                                                                                                                                                             |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                             |
+| CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                                                   |
+| Google Play services       | 49                                                                                                                                                                                                                                 |
+| Google Repository          | 58                                                                                                                                                                                                                                 |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653                                                                                                                                                                                       |
+| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                  |
 
 #### Environment variables
 | Name                    | Value                                   |
