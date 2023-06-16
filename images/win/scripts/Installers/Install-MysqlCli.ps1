@@ -20,7 +20,7 @@ if ($MysqlVersion.Build -lt 0) {
 }
 
 $MysqlVersionFull = $MysqlVersion.ToString()
-$MysqlVersionUrl = "https://dev.mysql.com/get/Downloads/MySQL-${MysqlVersionMajorMinor}/mysql-${MysqlVersionFull}-winx64.zip"
+$MysqlVersionUrl = "https://cdn.mysql.com/Downloads/MySQL-${MysqlVersionMajorMinor}/mysql-${MysqlVersionFull}-winx64.zip"
 
 $MysqlArchPath = Start-DownloadWithRetry -Url $MysqlVersionUrl -Name "mysql.zip"
 
