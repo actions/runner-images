@@ -72,9 +72,20 @@ function Get-ToolsetValue {
 }
 
 function Get-AndroidPackages {
-    $androidSDKManagerPath = "/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager"
-    $androidPackages = & $androidSDKManagerPath --list --verbose 2>&1
-    return $androidPackages
+    $packagesListFile = "/usr/local/lib/android/sdk/packages-list.txt"
+
+    if (-Not (Test-Path -Path $packagesListFile -PathType Leaf)) {
+        (/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --list --verbose 2>&1) |
+        Where-Object { $_ -Match "^[^\s]" } |
+        Where-Object { $_ -NotMatch "^(Loading |Info: Parsing |---|\[=+|Installed |Available )" } |
+        Where-Object { $_ -NotMatch "^[^;]*$" } |
+        Out-File -FilePath $packagesListFile
+
+        Write-Host Android packages list:
+        Get-Content $packagesListFile
+    }
+
+    return Get-Content $packagesListFile
 }
 
 function Get-EnvironmentVariable($variable) {

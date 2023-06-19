@@ -44,6 +44,11 @@ variable "xcode_install_password" {
   sensitive = true
 }
 
+variable "xcversion_auth_cookie" {
+  type = string
+  default = ""
+}
+
 variable "vcpu_count" {
   type = string
   default = "6"
@@ -182,6 +187,12 @@ build {
       "USER_PASSWORD=${var.vm_password}"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+  }
+  provisioner "shell" {
+    inline = [
+      "mkdir -p ~/.fastlane/spaceship/${var.xcode_install_user}",
+      "echo ${var.xcversion_auth_cookie} | base64 --decode > ~/.fastlane/spaceship/${var.xcode_install_user}/cookie"
+    ]
   }
   provisioner "shell" {
     script = "./provision/core/xcode.ps1"
