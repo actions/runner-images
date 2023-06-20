@@ -14,14 +14,14 @@ Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentLi
 [version]$MysqlVersion = (Get-ToolsetContent).mysql.version
 $MysqlVersionMajorMinor = $MysqlVersion.ToString(2)
 
-# Temporary move to SA as Oracle's site is unavailable
-if (Test-IsWin19) {
-    $MysqlVersionUrl = "https://githubpackercipoolmysql.blob.core.windows.net/mysql/mysql-5.7.40-winx64.zip"
-    $MysqlVersionFull = "5.7.40"
-} elseif (Test-IsWin22) {
-    $MysqlVersionUrl = "https://githubpackercipoolmysql.blob.core.windows.net/mysql/mysql-8.0.31-winx64.zip"
-    $MysqlVersionFull = "8.0.31"
+if ($MysqlVersion.Build -lt 0) {
+    $MysqlVersion = (Invoke-RestMethod -Uri "https://dev.mysql.com/downloads/mysql/${MysqlVersionMajorMinor}.html" |
+        Select-String -Pattern "${MysqlVersionMajorMinor}\.\d+").Matches.Value
 }
+
+$MysqlVersionFull = $MysqlVersion.ToString()
+$MysqlVersionUrl = "https://cdn.mysql.com/Downloads/MySQL-${MysqlVersionMajorMinor}/mysql-${MysqlVersionFull}-winx64.zip"
+
 $MysqlArchPath = Start-DownloadWithRetry -Url $MysqlVersionUrl -Name "mysql.zip"
 
 # Expand the zip

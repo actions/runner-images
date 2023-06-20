@@ -24,9 +24,23 @@ function Get-AndroidInstalledPackages {
 }
 
 function Get-AndroidPackages {
+    $androidSDKDir = Get-AndroidSDKRoot
     $androidSDKManagerPath = Get-AndroidSDKManagerPath
-    $androidPackages = & $androidSDKManagerPath --list --verbose
-    return $androidPackages
+
+    $packagesListFile = Join-Path $androidSDKDir "packages-list.txt"
+
+    if (-Not (Test-Path -Path $packagesListFile -PathType Leaf)) {
+        (& $androidSDKManagerPath --list --verbose) |
+        Where-Object { $_ -Match "^[^\s]" } |
+        Where-Object { $_ -NotMatch "^(Loading |Info: Parsing |---|\[=+|Installed |Available )" } |
+        Where-Object { $_ -NotMatch "^[^;]*$" } |
+        Out-File -FilePath $packagesListFile
+
+        Write-Host Android packages list:
+        Get-Content $packagesListFile
+    }
+
+    return Get-Content $packagesListFile
 }
 
 function Build-AndroidTable {

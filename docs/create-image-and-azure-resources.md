@@ -85,17 +85,17 @@ Then import [GenerateResourcesAndImage](../helpers/GenerateResourcesAndImage.ps1
 Import-Module .\helpers\GenerateResourcesAndImage.ps1
 ```
 
+> :warning: When running `GenerateResourcesAndImage` in PowerShell 7.3, following command should be executed first:
+> ```powershell
+> $PSNativeCommandArgumentPassing = 'Legacy'
+> ```
+
 Finally, run `GenerateResourcesAndImage` function setting mandatory arguments: image type and where to create resources:
 
 - `SubscriptionId` - your Azure Subscription ID
 - `ResourceGroupName` - name of the resource group that will be created within your subscription (e.g. "imagegen-test")
 - `AzureLocation` - location where resources will be created (e.g. "East US")
 - `ImageType` - what image to build (we suggest choosing "UbuntuMinimal" here, other valid options are "Windows2019", "Windows2022", "Ubuntu2004", "Ubuntu2204")
-
-> :warning: When running `GenerateResourcesAndImage` in PowerShell 7.3, following command should be executed first:
-> ```powershell
-> $PSNativeCommandArgumentPassing = 'Legacy'
-> ```
 
 This function automatically creates all required Azure resources and kicks off packer image generation for the selected image type.
 
