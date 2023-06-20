@@ -489,7 +489,17 @@ function Get-AndroidPackages {
         [string]$AndroidSDKManagerPath
     )
 
-    return (cmd /c "$AndroidSDKManagerPath --list --verbose 2>&1").Trim() | Foreach-Object { $_.Split()[0] } | Where-Object {$_}
+    $packagesListFile = "C:\Android\android-sdk\packages-list.txt"
+
+    if (-Not (Test-Path -Path $packagesListFile -PathType Leaf)) {
+        (cmd /c "$AndroidSDKManagerPath --list --verbose 2>&1") |
+        Where-Object { $_ -Match "^[^\s]" } |
+        Where-Object { $_ -NotMatch "^(Loading |Info: Parsing |---|\[=+|Installed |Available )" } |
+        Where-Object { $_ -NotMatch "^[^;]*$" } |
+        Out-File -FilePath $packagesListFile
+    }
+
+    return Get-Content $packagesListFile
 }
 
 function Get-AndroidPackagesByName {
