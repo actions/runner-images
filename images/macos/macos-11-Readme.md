@@ -6,12 +6,12 @@
 # macOS 11
 - OS Version: macOS 11.7.7 (20G1345)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20230612.1
+- Image Version: 20230618.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.408, 7.0.102, 7.0.202, 7.0.302
+- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.410, 7.0.102, 7.0.202, 7.0.304
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -33,7 +33,7 @@
 - PHP 8.2.7
 - Python 2.7.18
 - Python3 3.11.4
-- R 4.3.0
+- R 4.3.1
 - Ruby 2.7.8p225
 
 ### Package Management
@@ -41,7 +41,7 @@
 - Carthage 0.39.0
 - CocoaPods 1.12.1
 - Composer 2.5.8
-- Homebrew 4.0.22
+- Homebrew 4.0.23
 - Miniconda 23.3.1
 - NPM 9.5.1
 - NuGet 6.3.1.1
@@ -49,7 +49,7 @@
 - Pip3 23.1.2 (python 3.11)
 - Pipx 1.2.0
 - RubyGems 3.4.14
-- Vcpkg 2023 (build from commit 1ba9a2591)
+- Vcpkg 2023 (build from commit 80ecf3249)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -78,7 +78,7 @@
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.2
-- helm v3.12.0+gc9f554d
+- helm v3.12.1+gf32a527
 - Hub CLI 2.14.2
 - ImageMagick 7.1.1-11
 - jq 1.6
@@ -98,7 +98,7 @@
 ### Tools
 - Aliyun CLI 3.0.165
 - App Center CLI 2.13.8
-- AWS CLI 2.11.27
+- AWS CLI 2.12.1
 - AWS SAM CLI 1.86.1
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.49.0
@@ -112,7 +112,7 @@
 - GHCup 0.1.19.2
 - Jazzy 0.14.3
 - Stack 2.9.3
-- SwiftFormat 0.51.11
+- SwiftFormat 0.51.12
 - Swig 4.1.1
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -123,10 +123,10 @@
 ### Browsers
 - Safari 16.5 (16615.2.9.11.6)
 - SafariDriver 16.5 (16615.2.9.11.6)
-- Google Chrome 114.0.5735.106
+- Google Chrome 114.0.5735.133
 - ChromeDriver 114.0.5735.90
-- Microsoft Edge 114.0.1823.43
-- Microsoft Edge WebDriver 114.0.1823.43
+- Microsoft Edge 114.0.1823.51
+- Microsoft Edge WebDriver 114.0.1823.51
 - Mozilla Firefox 114.0.1
 - geckodriver 0.33.0
 - Selenium server 4.10.0
@@ -163,10 +163,10 @@
 - 3.11.4
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.11]
+- 2.7.18 [PyPy 7.3.12]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
-- 3.9.16 [PyPy 7.3.11]
+- 3.9.17 [PyPy 7.3.12]
 
 #### Node.js
 - 14.21.3
@@ -185,9 +185,9 @@
 - Rustup 1.26.0
 
 #### Packages
-- Bindgen 0.65.1
+- Bindgen 0.66.0
 - Cargo-audit 0.17.6
-- Cargo-outdated 0.11.2
+- Cargo-outdated 0.12.0
 - Cbindgen 0.24.5
 - Clippy 0.1.70
 - Rustfmt 1.5.2-stable
@@ -205,7 +205,7 @@
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.57  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.25.0  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| nginx | 1.25.1  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 
@@ -213,7 +213,7 @@
 | Version        | Build     | Path                                 |
 | -------------- | --------- | ------------------------------------ |
 | 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.5.6.3  | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.5.7.6  | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
