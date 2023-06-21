@@ -108,7 +108,7 @@
 #### Packages
 - bindgen 0.66.1
 - cargo-audit 0.17.6
-- cargo-outdated -outdated 0.13.1
+- cargo-outdated 0.13.1
 - cbindgen 0.24.5
 - Clippy 0.1.70
 - Rustfmt 1.5.2
