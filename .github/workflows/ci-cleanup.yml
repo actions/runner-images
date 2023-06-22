@@ -1,0 +1,46 @@
+run-name: Cleanup ${{ github.head_ref }}
+on:
+  pull_request_target:
+    types: labeled
+    paths:
+      - 'images/**'
+
+jobs:
+  clean_ci:
+    name: Clean CI runs
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          start_date=$(date +%s)
+          while true; do
+            continue="false"
+            for wf in macos11 macos12 ubuntu2004 ubuntu2204 windows2019 windows2022; do
+              gh run list --workflow ${wf}.yml --branch ${{ github.event.pull_request.head.ref }} --repo ${{ github.repository }} --status skipped --json databaseId \
+              | jq '.[] | .databaseId' \
+              | xargs -trn 1 gh run delete --repo ${{ github.repository }} || true
+
+              pending=$(gh run list --workflow ${wf}.yml --branch ${{ github.event.pull_request.head.ref }} --repo ${{ github.repository }} --status requested --json databaseId --template '{{ . | len }}')
+              if [[ "${pending}" -gt 0 ]]; then
+                echo "Pending for ${wf}.yml: ${pending} run(s)"
+                continue="true"
+              fi
+            done
+
+            if [[ $continue == "false" ]]; then
+              echo "All done, exitting"
+              break
+            fi
+
+            cur_date=$(date +%s)
+            if (( cur_date - start_date > 60 )); then
+              echo "Reached timeout, exitting"
+              break
+            fi
+
+            echo "Waiting 5 seconds..."
+            sleep 5
+          done
