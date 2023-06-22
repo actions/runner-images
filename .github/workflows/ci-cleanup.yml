@@ -14,33 +14,42 @@ jobs:
     steps:
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: pwsh
         run: |
-          start_date=$(date +%s)
-          while true; do
-            continue="false"
-            for wf in macos11 macos12 ubuntu2004 ubuntu2204 windows2019 windows2022; do
-              gh run list --workflow ${wf}.yml --branch ${{ github.event.pull_request.head.ref }} --repo ${{ github.repository }} --status skipped --json databaseId \
-              | jq '.[] | .databaseId' \
-              | xargs -trn 1 gh run delete --repo ${{ github.repository }} || true
+          $startDate = Get-Date -UFormat %s
+          $workflows = @("macos11", "macos12", "ubuntu2004", "ubuntu2204", "windows2019", "windows2022")
 
-              pending=$(gh run list --workflow ${wf}.yml --branch ${{ github.event.pull_request.head.ref }} --repo ${{ github.repository }} --status requested --json databaseId --template '{{ . | len }}')
-              if [[ "${pending}" -gt 0 ]]; then
-                echo "Pending for ${wf}.yml: ${pending} run(s)"
-                continue="true"
-              fi
-            done
+          while ($true) {
+            $continue = $false
+            foreach ($wf in $workflows) {
+              $skippedCommand = "gh run list --workflow ${wf}.yml --branch ${{ github.event.pull_request.head.ref }} --repo ${{ github.repository }} --status skipped --json databaseId"
+              $skippedIds = Invoke-Expression -Command $skippedCommand | ConvertFrom-Json | ForEach-Object { $_.databaseId }
 
-            if [[ $continue == "false" ]]; then
-              echo "All done, exitting"
+              $skippedIds | ForEach-Object {
+                $deleteCommand = "gh run delete --repo ${{ github.repository }} $_"
+                Invoke-Expression -Command $deleteCommand
+              }
+
+              $pendingCommand = "gh run list --workflow ${wf}.yml --branch ${{ github.event.pull_request.head.ref }} --repo ${{ github.repository }} --status requested --json databaseId --template '{{ . | len }}'"
+              $pending = Invoke-Expression -Command $pendingCommand
+
+              if ($pending -gt 0) {
+                Write-Host "Pending for ${wf}.yml: $pending run(s)"
+                $continue = $true
+              }
+            }
+
+            if ($continue -eq $false) {
+              Write-Host "All done, exiting"
               break
-            fi
+            }
 
-            cur_date=$(date +%s)
-            if (( cur_date - start_date > 60 )); then
-              echo "Reached timeout, exitting"
+            $curDate = Get-Date -UFormat %s
+            if (($curDate - $startDate) -gt 60) {
+              Write-Host "Reached timeout, exiting"
               break
-            fi
+            }
 
-            echo "Waiting 5 seconds..."
-            sleep 5
-          done
+            Write-Host "Waiting 5 seconds..."
+            Start-Sleep -Seconds 5
+          }
