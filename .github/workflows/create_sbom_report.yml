@@ -4,9 +4,8 @@ name: Create and upload a SBOM to release assets
 # github.event.client_payload.ReleaseID - Current release ID
 # github.event.client_payload.imageVersion - AzDO image version "major.minor"
 # github.event.client_payload.ReleaseBranchName - Necessary to identify workflow run
-# 
+#
 # Current SYFT tool issues:
-# macOS (minor): very long cataloging process (more than 6 hours) (https://github.com/anchore/syft/issues/1328), 
 # macOS (major): prompt privilegies that blocking process indefinetely (https://github.com/anchore/syft/issues/1367)
 on:
   repository_dispatch:
@@ -36,7 +35,7 @@ jobs:
       - name: Install SYFT tool on Ubuntu or macOS
         if: ${{ runner.os != 'Windows' }}
         run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
-      #Running section. 
+      #Running section.
       - name: Run SYFT on Windows
         if: ${{ runner.os == 'Windows' }}
         run: D:/syft/syft dir:C:/ -vv -o spdx-json=sbom.json
@@ -45,7 +44,7 @@ jobs:
         run: syft dir:/ -vv -o spdx-json=sbom.json
       - name: Run SYFT on macOS
         if: ${{ runner.os == 'macOS' }}
-        run: syft dir:/ -vv -o spdx-json=sbom.json --exclude ./Users --exclude ./System/Volumes --exclude ./private
+        run: sudo syft dir:/ -vv -o spdx-json=sbom.json --exclude ./Users --exclude ./System/Volumes --exclude ./private
         shell: bash
       #Preparing artifact (raw SBOM.json is too big)
       - name: Compress SBOM file
