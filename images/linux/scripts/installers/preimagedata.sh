@@ -3,7 +3,7 @@
 imagedata_file=$IMAGEDATA_FILE
 image_version=$IMAGE_VERSION
 image_version_major=${image_version/.*/}
-image_version_minor=$(echo $image_version | sed 's/^[^.]*\.\([^.]*\)\..*/\1/')
+image_version_minor=$(echo $image_version | cut -d "." -f 2)
 os_name=$(lsb_release -ds | sed "s/ /\\\n/g")
 os_version=$(lsb_release -rs)
 image_label="ubuntu-${os_version}"

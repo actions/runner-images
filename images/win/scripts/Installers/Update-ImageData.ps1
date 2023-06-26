@@ -4,8 +4,9 @@ $osName = $caption.Substring(0, $caption.LastIndexOf(" "))
 $osEdition = $caption.Substring($caption.LastIndexOf(" ")+1)
 $osVersion = $os.Version
 $imageVersion = $env:IMAGE_VERSION
-$imageMajorVersion = $imageVersion[0]
-$imageMinorVersion = $imageVersion[1]
+$imageVersionComponents = $imageVersion.Split('.')
+$imageMajorVersion = $imageVersionComponents[0]
+$imageMinorVersion = $imageVersionComponents[1]
 $imageDataFile = $env:IMAGEDATA_FILE
 $githubUrl="https://github.com/actions/runner-images/blob"
 
