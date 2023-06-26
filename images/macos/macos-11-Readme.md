@@ -1,17 +1,16 @@
 | Announcements |
 |-|
 | [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
-| [Actions runner image scheduled maintenance (June 2 2023 through June 16 2023)](https://github.com/actions/runner-images/issues/7660) |
 ***
 # macOS 11
-- OS Version: macOS 11.7.7 (20G1345)
+- OS Version: macOS 11.7.8 (20G1351)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20230618.1
+- Image Version: 20230623.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.410, 7.0.102, 7.0.202, 7.0.304
+- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.411, 7.0.102, 7.0.202, 7.0.305
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -26,9 +25,9 @@
 - Go 1.20.5
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
-- Node.js 18.16.0
+- Node.js 18.16.1
 - NVM 0.39.3
-- NVM - Cached node versions: 14.21.3, 16.20.0, 18.16.0
+- NVM - Cached node versions: 14.21.3, 16.20.1, 18.16.1
 - Perl 5.36.1
 - PHP 8.2.7
 - Python 2.7.18
@@ -41,7 +40,7 @@
 - Carthage 0.39.0
 - CocoaPods 1.12.1
 - Composer 2.5.8
-- Homebrew 4.0.23
+- Homebrew 4.0.24
 - Miniconda 23.3.1
 - NPM 9.5.1
 - NuGet 6.3.1.1
@@ -49,7 +48,7 @@
 - Pip3 23.1.2 (python 3.11)
 - Pipx 1.2.0
 - RubyGems 3.4.14
-- Vcpkg 2023 (build from commit 80ecf3249)
+- Vcpkg 2023 (build from commit 1286cac87)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -74,7 +73,7 @@
 - Curl 8.1.2
 - Git 2.41.0
 - Git LFS 3.3.0
-- GitHub CLI 2.30.0
+- GitHub CLI 2.31.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.2
@@ -87,6 +86,7 @@
 - Newman 5.3.2
 - OpenSSL 1.1.1u  30 May 2023
 - Packer 1.9.1
+- pkg-config 0.29.2
 - PostgreSQL 14.8 (Homebrew)
 - psql (PostgreSQL) 14.8 (Homebrew)
 - Sox 14.4.2
@@ -96,17 +96,17 @@
 - zstd 1.5.5
 
 ### Tools
-- Aliyun CLI 3.0.165
+- Aliyun CLI 3.0.167
 - App Center CLI 2.13.8
-- AWS CLI 2.12.1
-- AWS SAM CLI 1.86.1
+- AWS CLI 2.12.2
+- AWS SAM CLI 1.88.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.49.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.18.4
 - Cabal 3.6.2.0
 - Cmake 3.26.4
-- CodeQL Action Bundles 2.13.1 2.13.3
+- CodeQL Action Bundles 2.13.3 2.13.4
 - Fastlane 2.213.0
 - GHC 9.6.2
 - GHCup 0.1.19.2
@@ -121,13 +121,13 @@
 - Yamllint 1.32.0
 
 ### Browsers
-- Safari 16.5 (16615.2.9.11.6)
-- SafariDriver 16.5 (16615.2.9.11.6)
+- Safari 16.5.1 (16615.2.9.11.7)
+- SafariDriver 16.5.1 (16615.2.9.11.7)
 - Google Chrome 114.0.5735.133
 - ChromeDriver 114.0.5735.90
-- Microsoft Edge 114.0.1823.51
-- Microsoft Edge WebDriver 114.0.1823.51
-- Mozilla Firefox 114.0.1
+- Microsoft Edge 114.0.1823.58
+- Microsoft Edge WebDriver 114.0.1823.58
+- Mozilla Firefox 114.0.2
 - geckodriver 0.33.0
 - Selenium server 4.10.0
 
@@ -170,8 +170,8 @@
 
 #### Node.js
 - 14.21.3
-- 16.20.0
-- 18.16.0
+- 16.20.1
+- 18.16.1
 
 #### Go
 - 1.18.10
@@ -185,9 +185,9 @@
 - Rustup 1.26.0
 
 #### Packages
-- Bindgen 0.66.0
+- Bindgen 0.66.1
 - Cargo-audit 0.17.6
-- Cargo-outdated 0.12.0
+- Cargo-outdated 0.13.1
 - Cbindgen 0.24.5
 - Clippy 0.1.70
 - Rustfmt 1.5.2-stable
@@ -210,10 +210,10 @@
 ### Xamarin
 
 #### Visual Studio for Mac
-| Version        | Build     | Path                                 |
-| -------------- | --------- | ------------------------------------ |
-| 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.5.7.6  | /Applications/Visual Studio.app      |
+| Version        | Build       | Path                                 |
+| -------------- | ----------- | ------------------------------------ |
+| 2019           | 8.10.25.2   | /Applications/Visual Studio 2019.app |
+| 2022 (default) | 17.6.0.1575 | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
