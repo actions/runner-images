@@ -20,8 +20,11 @@ jobs:
     steps:
       - name: Available image version check for ${{ github.event.client_payload.ReleaseBranchName }}
         run: |
-          if ($env:ImageVersion -ne '${{ github.event.client_payload.imageVersion }}') {
-            throw "Current runner $env:ImageVersion image version don't match ${{ github.event.client_payload.imageVersion }}."
+          $imageVersionComponents = $env:ImageVersion.Split('.')
+          $imageMajorVersion = $imageVersionComponents[0]
+          $imageMinorVersion = $imageVersionComponents[1]
+          if ("$imageMajorVersion.$imageMinorVersion" -ne '${{ github.event.client_payload.imageVersion }}') {
+            throw "Current runner $imageMajorVersion.$imageMinorVersion image version doesn't match ${{ github.event.client_payload.imageVersion }}."
           }
   #Install and run SYFT, compress SBOM, upload it to release assets
   create-sbom:
