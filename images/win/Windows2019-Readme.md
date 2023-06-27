@@ -1,11 +1,10 @@
 | Announcements |
 |-|
 | [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
-| [Actions runner image scheduled maintenance (June 2 2023 through June 16 2023)](https://github.com/actions/runner-images/issues/7660) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4499
-- Image Version: 20230620.1.0
+- Image Version: 20230625.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -34,7 +33,7 @@
 - pip 23.1.2 (python 3.7)
 - Pipx 1.2.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit f6a5d4e8e)
+- Vcpkg (build from commit 288e8bebf)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -50,7 +49,7 @@
 - sbt 1.9.0
 
 ### Tools
-- 7zip 22.01
+- 7zip 23.01
 - aria2 1.36.0
 - azcopy 10.19.0
 - Bazel 6.2.1
@@ -58,15 +57,15 @@
 - Bicep 0.18.4
 - Cabal 3.10.1.0
 - CMake 3.26.4
-- CodeQL Action Bundles 2.13.1 2.13.3
+- CodeQL Action Bundles 2.13.3 2.13.4
 - Docker 24.0.2
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.18.1
+- Docker Compose v2 2.19.0
 - Docker-wincred 0.7.0
 - ghc 9.6.2
 - Git 2.41.0.windows.1
 - Git LFS 3.3.0
-- Google Cloud SDK 435.0.1
+- Google Cloud SDK 436.0.0
 - ImageMagick 7.1.1-11
 - InnoSetup 6.2.2
 - jq 1.6
@@ -78,8 +77,8 @@
 - NSIS 3.08
 - OpenSSL 1.1.1u
 - Packer 1.9.1
-- Parcel 2.9.2
-- Pulumi 3.72.2
+- Parcel 2.9.3
+- Pulumi 3.73.0
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -93,8 +92,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.167
-- AWS CLI 2.12.1
-- AWS SAM CLI 1.87.0
+- AWS CLI 2.12.3
+- AWS SAM CLI 1.88.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.49.0
 - Azure DevOps CLI extension 0.26.0
@@ -111,7 +110,7 @@
 #### Packages
 - bindgen 0.66.1
 - cargo-audit 0.17.6
-- cargo-outdated 0.13.1
+- cargo-outdated -outdated 0.13.1
 - cbindgen 0.24.5
 - Clippy 0.1.70
 - Rustfmt 1.5.2
@@ -119,8 +118,8 @@
 ### Browsers and Drivers
 - Google Chrome 114.0.5735.134
 - Chrome Driver 114.0.5735.90
-- Microsoft Edge 114.0.1823.55
-- Microsoft Edge Driver 114.0.1823.55
+- Microsoft Edge 114.0.1823.58
+- Microsoft Edge Driver 114.0.1823.58
 - Mozilla Firefox 114.0.2
 - Gecko Driver 0.33.0
 - IE Driver 4.10.0.0
@@ -171,8 +170,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 14.21.3
-- 16.20.0
-- 18.16.0
+- 16.20.1
+- 18.16.1
 
 #### Python
 - 3.6.8
@@ -495,11 +494,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.22621.0
 
 ### .NET Core Tools
-- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.118, 6.0.203, 6.0.313, 6.0.410
+- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.119, 6.0.203, 6.0.314, 6.0.411
 - .NET Framework: 4.7.2, 4.8
-- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.18
-- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.18
-- Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.18
+- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.19
+- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.19
+- Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.19
 - nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
@@ -512,7 +511,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.355
+- AWSPowershell: 4.1.359
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.28.0
@@ -557,9 +556,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:fb6293d0c7618d01d0ea827668ff01d91464616e8f6ac91da886a231b1cfb816  | 2023-06-13 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:b6e98a2e7cb7fd70ede47790d2e36e5132c5bb6339ab8ddfbf7fe30515883f1b  | 2023-06-13 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:9026d56e290d7f794153afc31e1d3d3481a735e8fbcf639adb9eb134766ef8f9  | 2023-06-13 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:7b080e83b75a078efd2c9fef7bdb9735355ceb4f01bc4cbbfa86bf1692df5d30  | 2023-06-08 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:1130a3b7afb9b8f52b1ff99539b665e8e524a5d66829f480688fa14ee0370ef9  | 2023-06-08 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:1c8e6d213d957497d12eb3ea2e462c64ba6b8ae88cc6c828bd5a0a9494274858  | 2023-06-23 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:49aad131a4250da60e604cdeaac75c7b39fdb7665cfe5d7f45ac288e5e6861b1  | 2023-06-23 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:7f3424f6c04d174c4e6c5e96f437b00e42ed5af958a73ea915d96ccf4d26c89e  | 2023-06-23 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:81ab2c2f7ac2edf154915667f33ef9e2e77fdbe092c7cc562fff1fcf1762de22  | 2023-06-21 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:341ab68cf115626b5181a9621c2054f71ea6637d05f9d312c2b45a4204c0b94d  | 2023-06-21 |
 
