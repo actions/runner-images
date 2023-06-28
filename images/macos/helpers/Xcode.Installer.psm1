@@ -173,7 +173,7 @@ function Install-AdditionalSimulatorRuntimes {
 
     Write-Host "Installing Simulator Runtimes for Xcode $Version ..."
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms | xcpretty"
 }
 
 function Build-XcodeSymlinks {
