@@ -78,7 +78,7 @@ function Get-RubyVersion {
 }
 
 function Get-GoVersion {
-    go version | Take-Part -Part 1 | Take-Part -Part 1 -Delimiter ('o')
+    go version | Take-Part -Part 2 | Take-Part -Part 1 -Delimiter ('o')
 }
 
 function Get-KotlinVersion {
@@ -94,7 +94,7 @@ function Get-JuliaVersion {
 }
 
 function Get-LLVMVersion {
-    clang --version | Out-String | Take-Part -Part 2
+    (clang --version) -match "clang" | Take-Part -Part 2
 }
 
 function Get-PerlVersion {
@@ -104,7 +104,7 @@ function Get-PerlVersion {
 }
 
 function Get-NodeVersion {
-    node --version | Take-Part -Part 1 -Delimiter ('v')
+    node --version | Take-Part -Part 0 -Delimiter ('v')
 }
 
 function Get-ChocoVersion {
@@ -135,7 +135,7 @@ function Get-HelmVersion {
 }
 
 function Get-PipVersion {
-    pip --version | Out-String | Take-Part -Part 1,4,5
+    (pip --version) -match "pip" | Take-Part -Part 1,4,5
 }
 
 function Get-CondaVersion {
