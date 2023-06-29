@@ -264,12 +264,10 @@
     ],
     "dotnet": {
         "aptPackages": [
-            "dotnet-sdk-3.1",
             "dotnet-sdk-6.0",
             "dotnet-sdk-7.0"
         ],
         "versions": [
-            "3.1",
             "6.0",
             "7.0"
         ],
