@@ -1,11 +1,10 @@
 | Announcements |
 |-|
 | [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
-| [Actions runner image scheduled maintenance (June 2 2023 through June 16 2023)](https://github.com/actions/runner-images/issues/7660) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1787
-- Image Version: 20230620.1.0
+- Image Version: 20230625.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -34,7 +33,7 @@
 - pip 23.1.2 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit f6a5d4e8e)
+- Vcpkg (build from commit 288e8bebf)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -50,7 +49,7 @@
 - sbt 1.9.0
 
 ### Tools
-- 7zip 22.01
+- 7zip 23.01
 - aria2 1.36.0
 - azcopy 10.19.0
 - Bazel 6.2.1
@@ -58,10 +57,10 @@
 - Bicep 0.18.4
 - Cabal 3.10.1.0
 - CMake 3.26.4
-- CodeQL Action Bundles 2.13.1 2.13.3
+- CodeQL Action Bundles 2.13.3 2.13.4
 - Docker 24.0.2
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.18.1
+- Docker Compose v2 2.19.0
 - Docker-wincred 0.7.0
 - ghc 9.6.2
 - Git 2.41.0.windows.1
@@ -77,7 +76,7 @@
 - NSIS 3.08
 - OpenSSL 1.1.1u
 - Packer 1.9.1
-- Pulumi 3.72.2
+- Pulumi 3.73.0
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -91,8 +90,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.167
-- AWS CLI 2.12.1
-- AWS SAM CLI 1.87.0
+- AWS CLI 2.12.3
+- AWS SAM CLI 1.88.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.49.0
 - Azure DevOps CLI extension 0.26.0
@@ -116,8 +115,8 @@
 ### Browsers and Drivers
 - Google Chrome 114.0.5735.134
 - Chrome Driver 114.0.5735.90
-- Microsoft Edge 114.0.1823.51
-- Microsoft Edge Driver 114.0.1823.55
+- Microsoft Edge 114.0.1823.58
+- Microsoft Edge Driver 114.0.1823.58
 - Mozilla Firefox 114.0.2
 - Gecko Driver 0.33.0
 - IE Driver 4.10.0.0
@@ -164,8 +163,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 14.21.3
-- 16.20.0
-- 18.16.0
+- 16.20.1
+- 18.16.1
 
 #### Python
 - 3.7.9
@@ -381,6 +380,24 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.Spectre               | 17.6.33605.316  |
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64                   | 17.6.33605.316  |
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64.Spectre           | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM                        | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM.Spectre                | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM64                      | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM64.Spectre              | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL                        | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM                    | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM.Spectre            | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM64                  | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM64.Spectre          | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.Spectre                | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC                        | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM                    | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM.Spectre            | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM64                  | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM64.Spectre          | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.Spectre                | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.x86.x64                    | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.VC.14.35.17.5.x86.x64.Spectre            | 17.6.33605.316  |
 | Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM                        | 17.6.33605.316  |
 | Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM.Spectre                | 17.6.33605.316  |
 | Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM64                      | 17.6.33605.316  |
@@ -529,11 +546,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.22621.0
 
 ### .NET Core Tools
-- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.118, 6.0.203, 6.0.313, 6.0.410, 7.0.304
+- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.119, 6.0.203, 6.0.314, 6.0.411, 7.0.304
 - .NET Framework: 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.18, 7.0.7
-- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.18, 7.0.7
-- Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.18, 7.0.7
+- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.18, 6.0.19, 7.0.7
+- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.18, 6.0.19, 7.0.7
+- Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.18, 6.0.19, 7.0.7
 - nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
@@ -546,7 +563,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.355
+- AWSPowershell: 4.1.359
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.28.0
@@ -590,9 +607,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:a23d696a3fa02f481768af1abcab54057c5442b57a0e3ac54933aff3b9319d92  | 2023-06-13 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:101d49c1c328b47aebbd45c05c33286aaa5db2930cf5089e62f23ba8dd21e363  | 2023-06-13 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:1c040db3ce19fecc2c1ddac3f44f0b9d593c45e2e18a4cd13111bd675d915ea0  | 2023-06-13 |
-| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:cde6d90e1f745f1eba0ab4669e2c57bd773a4216e04416a26f8a55a31509b752  | 2023-06-08 |
-| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:6f792e5bc39b7bc96ef4048a8f17d425b106941e71d550e6f9ba3a37043a161a  | 2023-06-08 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:7c75a9896911634a3d63c5f38096e54f94958ac4c5b31d79bed311cae8d2169c  | 2023-06-23 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:d426990d3e3b03dbc3b03e1eeafbf3bddc5da7d1a091e0d15f6bfa1e6057feee  | 2023-06-23 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:bf06038f0298f5444b6fb4f10708fa42acb33bbb5ea4581d634983746609e262  | 2023-06-23 |
+| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:c1426561e854da32f5e8bed3ce41e9eb5c8cb693b5d992323bcc47ed48acd99c  | 2023-06-21 |
+| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:bc3ec9f19112d40ff23f14a806afd7de7c28ce8a4b69ae1e7e7725bbdeba8964  | 2023-06-21 |
 
