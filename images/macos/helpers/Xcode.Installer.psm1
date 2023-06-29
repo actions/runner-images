@@ -88,6 +88,7 @@ function Expand-XcodeXipArchive {
 
     $xcodeXipPath = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_*.xip" | Select-Object -First 1
 
+    Get-Item $xcodeXipPath
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
     Push-Location $DownloadDirectory
     Invoke-ValidateCommand "xip -x $xcodeXipPath"
