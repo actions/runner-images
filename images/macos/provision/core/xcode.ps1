@@ -36,10 +36,12 @@ $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
 Write-Host "Configuring Xcode versions..."
 $xcodeVersions | ForEach-Object {
     Write-Host "Configuring Xcode $($_.link) ..."
-
     Invoke-XcodeRunFirstLaunch -Version $_.link
-    Install-AdditionalSimulatorRuntimes -Version $_.link
 }
+
+$latestVersion = $xcodeVersions | Sort-Object -Property link -Descending | Select-Object -First 1 -ExpandProperty link
+Write-Host "Installing simulators for version $latestVersion..."
+Install-AdditionalSimulatorRuntimes -Version $latestVersion
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 

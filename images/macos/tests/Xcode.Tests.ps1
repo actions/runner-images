@@ -98,12 +98,16 @@ Describe "Xcode simulators" {
             It "No duplicates in devices" -TestCases $testCase {
                 Switch-Xcode -Version $XcodeVersion
                 [array]$devicesList = @(Get-XcodeDevicesList | Where-Object { $_ })
+                Write-Host "Devices for $XcodeVersion"
+                Write-Host ($devicesList -join "`n")
                 Validate-ArrayWithoutDuplicates $devicesList -Because "Found duplicate device simulators"
             }
 
             It "No duplicates in pairs" -TestCases $testCase {
                 Switch-Xcode -Version $XcodeVersion
                 [array]$pairsList = @(Get-XcodePairsList | Where-Object { $_ })
+                Write-Host "Pairs for $XcodeVersion"
+                Write-Host ($pairsList -join "`n")
                 Validate-ArrayWithoutDuplicates $pairsList -Because "Found duplicate pairs simulators"
             }
         }

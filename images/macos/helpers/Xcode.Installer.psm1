@@ -166,14 +166,14 @@ function Install-AdditionalSimulatorRuntimes {
         [string]$Version
     )
 
-    if (-not $Version.StartsWith("14.")) {
+    if ($Version.Split(".")[0] -lt 14) {
         # Additional simulator runtimes are included by default for Xcode < 14
         return
     }
 
-    Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
+    Write-Host "Installing Simulator Runtimes for Xcode $Version ..."
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms | xcpretty"
 }
 
 function Build-XcodeSymlinks {
