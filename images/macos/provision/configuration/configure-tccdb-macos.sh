@@ -21,6 +21,7 @@ systemValuesArray=(
     "'kTCCServiceAccessibility','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,4,1,X'fade0c00000000ac0000000100000006000000020000001e636f6d2e7665657274752e616e6b612e6164646f6e732e616e6b6172756e0000000000060000000f000000060000000e000000010000000a2a864886f76364060206000000000000000000060000000e000000000000000a2a864886f7636406010d0000000000000000000b000000000000000a7375626a6563742e4f550000000000010000000a545439464157503656340000',NULL,0,'UNUSED',NULL,0,1644565949"
     "'kTCCServiceScreenCapture','/usr/local/opt/runner/provisioner/provisioner',0,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
     "'kTCCServiceAppleEvents','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1592919552"
+    "'kTCCServiceAccessibility','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,NULL,1592919552"
     # Allow Full Disk Access for "Microsoft Defender for macOS" to bypass installation on-flight
     "'kTCCServiceSystemPolicyAllFiles','com.microsoft.wdav',0,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,0,1643970979"
     "'kTCCServiceSystemPolicyAllFiles','com.microsoft.wdav.epsext',0,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,0,1643970979"
@@ -54,6 +55,7 @@ userValuesArray=(
     "'kTCCServicePostEvent','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
     "'kTCCServiceAppleEvents','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1592919552"
     "'kTCCServiceScreenCapture','/usr/local/opt/runner/provisioner/provisioner',0,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
+    "'kTCCServiceAppleEvents','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,0,'com.apple.systemevents',X'fade0c000000003400000001000000060000000200000016636f6d2e6170706c652e73797374656d6576656e7473000000000003',NULL,1592919552"
 )
 for values in "${userValuesArray[@]}"; do
     configure_user_tccdb "$values"
