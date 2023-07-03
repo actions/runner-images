@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Ubuntu] Alpine 3.14 & 3.15 docker image will be removed on July, 17](https://github.com/actions/runner-images/issues/7824) |
 | [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.2 LTS
-- Kernel Version: 5.15.0-1040-azure
-- Image Version: 20230625.1.0
+- Kernel Version: 5.15.0-1041-azure
+- Image Version: 20230702.1.0
 - Systemd version: 249.11-0ubuntu3.9
 
 ## Installed Software
@@ -32,15 +33,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.12.1
-- Homebrew 4.0.24
+- Homebrew 4.0.26
 - Miniconda 23.3.1
 - Npm 9.5.1
-- NuGet 6.3.1.1
+- NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.2.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 288e8bebf)
+- Vcpkg (build from commit 64adda19c)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -58,7 +59,7 @@ to accomplish this.
 ```
 
 ### Project Management
-- Lerna 7.0.2
+- Lerna 7.1.1
 - Maven 3.8.8
 
 ### Tools
@@ -98,30 +99,30 @@ to accomplish this.
 - Packer 1.9.1
 - Parcel 2.9.3
 - Podman 3.4.4
-- Pulumi 3.73.0
-- R 4.3.0
+- Pulumi 3.74.0
+- R 4.3.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.5.1
+- Terraform 1.5.2
 - yamllint 1.32.0
 - yq 4.34.1
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.167
-- AWS CLI 2.12.3
+- AWS CLI 2.12.6
 - AWS CLI Session Manager Plugin 1.2.463.0
-- AWS SAM CLI 1.88.0
+- AWS SAM CLI 1.89.0
 - Azure CLI 2.49.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.31.0
-- Google Cloud SDK 436.0.0
+- Google Cloud SDK 437.0.1
 - Hub CLI 2.14.2
-- Netlify CLI 15.6.0
+- Netlify CLI 15.8.0
 - OpenShift CLI 4.13.4
 - ORAS CLI 1.0.0
-- Vercel CLI 30.2.3
+- Vercel CLI 31.0.1
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -141,7 +142,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.10.1.0
 - GHC 9.6.2
-- GHCup 0.1.19.2
+- GHCup 0.1.19.4
 - Stack 2.11.1
 
 ### Rust Tools
@@ -159,13 +160,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 114.0.5735.133
+- Google Chrome 114.0.5735.198
 - ChromeDriver 114.0.5735.90
 - Chromium 114.0.5733.0
-- Microsoft Edge 114.0.1823.58
-- Microsoft Edge WebDriver 114.0.1823.58
+- Microsoft Edge 114.0.1823.67
+- Microsoft Edge WebDriver 114.0.1823.67
 - Selenium server 4.10.0
-- Mozilla Firefox 114.0.2
+- Mozilla Firefox 115.0
 - Geckodriver 0.33.0
 
 #### Environment variables
@@ -232,13 +233,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.1.4
 
 ### PowerShell Tools
-- PowerShell 7.2.11
+- PowerShell 7.2.12
 
 #### PowerShell Modules
 - Az: 9.3.0
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.28.0
-- Pester: 5.4.1
+- Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
 ### Web Servers
@@ -251,7 +252,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | Package Name               | Version                                                                                                                                                                                                                            |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 9.0                                                                                                                                                                                                                                |
-| Android Emulator           | 32.1.13                                                                                                                                                                                                                            |
+| Android Emulator           | 32.1.14                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
 | Android SDK Platform-Tools | 34.0.3                                                                                                                                                                                                                             |
 | Android SDK Platforms      | android-34 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
@@ -280,6 +281,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.15             | sha256:3362f865019db5f14ac5154cb0db2c3741ad1cce0416045be422ad4de441b081  | 2023-06-14 |
 | alpine:3.16             | sha256:cbe5d5973103a2d03408d1689a6efde4ea4920bde9f4b51fe7872e60ce2d8e56  | 2023-06-14 |
 | alpine:3.17             | sha256:e95676db9e4a4f16f6cc01a8915368f82b018cc07aba951c1bd1db586c081388  | 2023-06-14 |
+| alpine:3.18             | sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1  | 2023-06-14 |
 | buildpack-deps:bullseye | sha256:2987a7a81a0eb17086c6498afedb19002689587038fdef7f5880c2cca973bf13  | 2023-06-13 |
 | buildpack-deps:buster   | sha256:0da9fe74d5f9bac9754a912b61cf81c62af1247ff3eed0b4f6df00da924f7f21  | 2023-06-13 |
 | debian:10               | sha256:28842e4895d36e67c49015c0b41089fa3248e865c76994b19f706ab91e800b95  | 2023-06-12 |
