@@ -1,0 +1,25 @@
+.github
+ghcr.io/NAMESPACE/IMAGE_NAME
+https://www.google.com/search?q=owner_key++%3D++Eth+%3A%3A+%E0%B8%84%E0%B8%B5%E0%B8%A2%E0%B9%8C_+%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88++%3A+%27b0f1974b7ac16b84be3e1489775ccd76779c9a063121dc5cf6c742cc51fbbf93&client=ms-android-oppo-rvo2&sourceid=chrome-mobile&ie=UTF-8&ctxs=2&ctxsl_trans=1&tlitetl=th&tlitetxt=owner_key%20%20%3D%20%20Eth%20%3A%3A%20%E0%B8%84%E0%B8%B5%E0%B8%A2%E0%B9%8C_%20%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%20%20%3A%20%27b0f1974b7ac16b84be3e1489775ccd76779c9a063121dc5cf6c742cc51fbbf93
+$ docker pull ghcr.io/NAMESPACE/IMAGE_NAME:1.14.1
+  > 5e35bd43cf78: Pull complete
+  > 0c48c2209aab: Pull complete
+  > fd45dd1aad5a: Pull complete
+  > db6eb50c2d36: Pull complete
+  > Digest: sha256:ae3b135f133155b3824d8b1f62959ff8a72e9cf9e884d88db7895d8544010d8e
+  > Status: Downloaded newer image for ghcr.io/NAMESPACE/IMAGE_NAME/release:1.14.1
+  > ghcr.io/NAMESPACE/IMAGE_NAME/release:
+$ docker inspect ghcr.io/NAMESPACE/IMAGE_NAME
+    pulsar:
+        client:
+            serviceUrl: pulsar+ssl://your.service.url:6651
+            tls:
+                tlsAllowInsecureConnection: true
+                tlsHostnameVerificationEnable: false
+            auth:
+                username: UserName
+                password: Password
+
+
+
+
