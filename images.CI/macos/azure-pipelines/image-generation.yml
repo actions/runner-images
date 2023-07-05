@@ -86,6 +86,8 @@ jobs:
         -var="xcode_install_user=$(xcode-installation-user)" `
         -var="xcode_install_password=$(xcode-installation-password)" `
         -var="xcversion_auth_cookie=$(xcVersionCookie.secureFilePath)" `
+        -var="xcode_install_storage=$(xcode_install_storage)" `
+        -var="xcode_install_sas=$(xcode_install_sas)" `
         -color=false `
         ${{ parameters.template_path }} `
         | Where-Object {

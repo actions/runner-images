@@ -49,6 +49,16 @@ variable "xcversion_auth_cookie" {
   default = ""
 }
 
+variable "xcode_install_storage" {
+  type = string
+  default = ""
+}
+
+variable "xcode_install_sas" {
+  type = string
+  default = ""
+}
+
 variable "vcpu_count" {
   type = string
   default = "6"
@@ -192,7 +202,9 @@ build {
     script = "./provision/core/xcode.ps1"
     environment_vars = [
       "XCODE_INSTALL_USER=${var.xcode_install_user}",
-      "XCODE_INSTALL_PASSWORD=${var.xcode_install_password}"
+      "XCODE_INSTALL_PASSWORD=${var.xcode_install_password}",
+      "XCODE_INSTALL_STORAGE=${var.xcode_install_storage}",
+      "XCODE_INSTALL_SAS=${var.xcode_install_sas}"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
