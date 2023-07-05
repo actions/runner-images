@@ -168,10 +168,6 @@
         },
         {
             "type": "shell",
-            "inline": "mkdir -p ~/.fastlane/spaceship/{{user `xcode_install_user`}}"
-        },
-        {
-            "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
             "script": "./provision/core/xcode.ps1",
             "environment_vars": [
