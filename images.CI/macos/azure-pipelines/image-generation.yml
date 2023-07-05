@@ -84,7 +84,7 @@ jobs:
         -var="build_id=$(VirtualMachineName)" `
         -var="baseimage_name=${{ parameters.base_image_name }}" `
         -var="xcversion_auth_cookie=$(xcVersionCookie.secureFilePath)" `
-        -var="xcode_install_storage=$(xcode_install_storage)" `
+        -var="xcode_install_storage_url=$(xcode_install_storage_url)" `
         -var="xcode_install_sas=$(xcode_install_sas)" `
         -color=false `
         ${{ parameters.template_path }} `

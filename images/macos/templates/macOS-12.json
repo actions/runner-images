@@ -181,7 +181,7 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
             "script": "./provision/core/xcode.ps1",
             "environment_vars": [
-                "XCODE_INSTALL_STORAGE={{user `xcode_install_storage`}}",
+                "XCODE_INSTALL_STORAGE_URL={{user `xcode_install_storage_url`}}",
                 "XCODE_INSTALL_SAS={{user `xcode_install_sas`}}"
             ]
         },

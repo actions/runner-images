@@ -29,7 +29,7 @@ function Invoke-DownloadXcodeArchive {
     $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$Version" -ItemType "Directory"
 
     $xcodeFileName = 'Xcode-{0}.xip' -f $Version
-    $xcodeUri = '{0}{1}{2}'-f ${env:XCODE_INSTALL_STORAGE}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
+    $xcodeUri = '{0}{1}{2}'-f ${env:XCODE_INSTALL_STORAGE_URL}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
 
     Invoke-WebRequest -Uri $xcodeUri -OutFile (Join-Path $tempXipDirectory $xcodeFileName)
 

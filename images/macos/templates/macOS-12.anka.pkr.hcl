@@ -197,7 +197,7 @@ build {
   provisioner "shell" {
     script = "./provision/core/xcode.ps1"
     environment_vars = [
-      "XCODE_INSTALL_STORAGE=${var.xcode_install_storage}",
+      "XCODE_INSTALL_STORAGE_URL=${var.xcode_install_storage_url}",
       "XCODE_INSTALL_SAS=${var.xcode_install_sas}"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
