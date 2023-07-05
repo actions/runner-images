@@ -41,12 +41,12 @@ variable "xcversion_auth_cookie" {
 
 variable "xcode_install_storage" {
   type = string
-  default = ""
+  sensitive = true
 }
 
 variable "xcode_install_sas" {
   type = string
-  default = ""
+  sensitive = true
 }
 
 variable "vcpu_count" {
