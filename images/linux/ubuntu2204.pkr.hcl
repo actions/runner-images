@@ -434,4 +434,9 @@ build {
     inline          = ["sleep 30", "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"]
   }
 
+  provisioner "shell" {
+    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    inline          = ["echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal"]
+  }
+
 }
