@@ -34,7 +34,7 @@ variable "github_api_pat" {
   default = ""
 }
 
-variable "xcode_install_storage" {
+variable "xcode_install_storage_url" {
   type = string
   sensitive = true
 }
