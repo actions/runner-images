@@ -34,16 +34,6 @@ variable "github_api_pat" {
   default = ""
 }
 
-variable "xcode_install_user" {
-  type = string
-  sensitive = true
-}
-
-variable "xcode_install_password" {
-  type = string
-  sensitive = true
-}
-
 variable "xcversion_auth_cookie" {
   type = string
   default = ""
@@ -201,8 +191,6 @@ build {
   provisioner "shell" {
     script = "./provision/core/xcode.ps1"
     environment_vars = [
-      "XCODE_INSTALL_USER=${var.xcode_install_user}",
-      "XCODE_INSTALL_PASSWORD=${var.xcode_install_password}",
       "XCODE_INSTALL_STORAGE=${var.xcode_install_storage}",
       "XCODE_INSTALL_SAS=${var.xcode_install_sas}"
     ]
