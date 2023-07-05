@@ -12,7 +12,6 @@
         "vm_username": null,
         "vm_password": null,
         "github_api_pat": null,
-        "xcversion_auth_cookie": null,
         "xcode_install_storage": null,
         "xcode_install_sas": null,
         "image_os": "macos12"
@@ -170,11 +169,6 @@
         {
             "type": "shell",
             "inline": "mkdir -p ~/.fastlane/spaceship/{{user `xcode_install_user`}}"
-        },
-        {
-            "type": "file",
-            "source": "{{user `xcversion_auth_cookie`}}",
-            "destination": "~/.fastlane/spaceship/{{user `xcode_install_user`}}/cookie"
         },
         {
             "type": "shell",

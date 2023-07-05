@@ -105,13 +105,6 @@ jobs:
           -VIPassword ${{ secrets.VI_PASSWORD }} `
           -Cluster ${{ env.ESXI_CLUSTER }}
 
-    - name: Create xcversion session cookie file
-      shell: bash
-      run: |
-        mkdir -p ${{ runner.temp }}/xcversion-cookie
-        cookie='${{ secrets.XCVERSION_AUTH_COOKIE }}'
-        echo "$cookie" > ${{ runner.temp }}/xcversion-cookie/cookie
-
     - name: Build VM
       run: |
         $SensitiveData = @(
@@ -131,7 +124,6 @@ jobs:
         -var="github_api_pat=${{ secrets.GH_FEED_TOKEN }}" `
         -var="build_id=${{ env.VM_NAME }}" `
         -var="baseimage_name=${{ inputs.base_image_name }}" `
-        -var="xcversion_auth_cookie=${{ env.XCVERSION_COOKIE_PATH }}" `
         -color=false `
         ${{ inputs.template_path }} `
         | Where-Object {

@@ -83,7 +83,6 @@ jobs:
         -var="github_api_pat=$(github_api_pat)" `
         -var="build_id=$(VirtualMachineName)" `
         -var="baseimage_name=${{ parameters.base_image_name }}" `
-        -var="xcversion_auth_cookie=$(xcVersionCookie.secureFilePath)" `
         -var="xcode_install_storage_url=$(xcode_install_storage_url)" `
         -var="xcode_install_sas=$(xcode_install_sas)" `
         -color=false `
