@@ -31,13 +31,13 @@ variable "client_secret" {
 }
 
 variable "client_cert_path" {
-  type      = string
-  default   = "${env("ARM_CLIENT_CERT_PATH")}"
+  type    = string
+  default = "${env("ARM_CLIENT_CERT_PATH")}"
 }
 
 variable "commit_url" {
-  type      = string
-  default   = ""
+  type    = string
+  default = ""
 }
 
 variable "dockerhub_login" {
@@ -81,7 +81,7 @@ variable "installer_script_folder" {
 }
 
 variable "install_password" {
-  type  = string
+  type    = string
   default = ""
 }
 
@@ -173,7 +173,7 @@ source "azure-arm" "build_vhd" {
   dynamic "azure_tag" {
     for_each = var.azure_tags
     content {
-      name = azure_tag.key
+      name  = azure_tag.key
       value = azure_tag.value
     }
   }
@@ -289,65 +289,65 @@ build {
   provisioner "shell" {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = [
-                        "${path.root}/scripts/installers/apt-common.sh",
-                        "${path.root}/scripts/installers/azcopy.sh",
-                        "${path.root}/scripts/installers/azure-cli.sh",
-                        "${path.root}/scripts/installers/azure-devops-cli.sh",
-                        "${path.root}/scripts/installers/bicep.sh",
-                        "${path.root}/scripts/installers/aliyun-cli.sh",
-                        "${path.root}/scripts/installers/apache.sh",
-                        "${path.root}/scripts/installers/aws.sh",
-                        "${path.root}/scripts/installers/clang.sh",
-                        "${path.root}/scripts/installers/swift.sh",
-                        "${path.root}/scripts/installers/cmake.sh",
-                        "${path.root}/scripts/installers/codeql-bundle.sh",
-                        "${path.root}/scripts/installers/containers.sh",
-                        "${path.root}/scripts/installers/dotnetcore-sdk.sh",
-                        "${path.root}/scripts/installers/firefox.sh",
-                        "${path.root}/scripts/installers/microsoft-edge.sh",
-                        "${path.root}/scripts/installers/gcc.sh",
-                        "${path.root}/scripts/installers/gfortran.sh",
-                        "${path.root}/scripts/installers/git.sh",
-                        "${path.root}/scripts/installers/github-cli.sh",
-                        "${path.root}/scripts/installers/google-chrome.sh",
-                        "${path.root}/scripts/installers/google-cloud-sdk.sh",
-                        "${path.root}/scripts/installers/haskell.sh",
-                        "${path.root}/scripts/installers/heroku.sh",
-                        "${path.root}/scripts/installers/java-tools.sh",
-                        "${path.root}/scripts/installers/kubernetes-tools.sh",
-                        "${path.root}/scripts/installers/oc.sh",
-                        "${path.root}/scripts/installers/leiningen.sh",
-                        "${path.root}/scripts/installers/miniconda.sh",
-                        "${path.root}/scripts/installers/mono.sh",
-                        "${path.root}/scripts/installers/kotlin.sh",
-                        "${path.root}/scripts/installers/mysql.sh",
-                        "${path.root}/scripts/installers/mssql-cmd-tools.sh",
-                        "${path.root}/scripts/installers/sqlpackage.sh",
-                        "${path.root}/scripts/installers/nginx.sh",
-                        "${path.root}/scripts/installers/nvm.sh",
-                        "${path.root}/scripts/installers/nodejs.sh",
-                        "${path.root}/scripts/installers/bazel.sh",
-                        "${path.root}/scripts/installers/oras-cli.sh",
-                        "${path.root}/scripts/installers/php.sh",
-                        "${path.root}/scripts/installers/postgresql.sh",
-                        "${path.root}/scripts/installers/pulumi.sh",
-                        "${path.root}/scripts/installers/ruby.sh",
-                        "${path.root}/scripts/installers/r.sh",
-                        "${path.root}/scripts/installers/rust.sh",
-                        "${path.root}/scripts/installers/julia.sh",
-                        "${path.root}/scripts/installers/sbt.sh",
-                        "${path.root}/scripts/installers/selenium.sh",
-                        "${path.root}/scripts/installers/terraform.sh",
-                        "${path.root}/scripts/installers/packer.sh",
-                        "${path.root}/scripts/installers/vcpkg.sh",
-                        "${path.root}/scripts/installers/dpkg-config.sh",
-                        "${path.root}/scripts/installers/yq.sh",
-                        "${path.root}/scripts/installers/android.sh",
-                        "${path.root}/scripts/installers/pypy.sh",
-                        "${path.root}/scripts/installers/python.sh",
-                        "${path.root}/scripts/installers/zstd.sh"
-                        ]
+    scripts = [
+      "${path.root}/scripts/installers/apt-common.sh",
+      "${path.root}/scripts/installers/azcopy.sh",
+      "${path.root}/scripts/installers/azure-cli.sh",
+      "${path.root}/scripts/installers/azure-devops-cli.sh",
+      "${path.root}/scripts/installers/bicep.sh",
+      "${path.root}/scripts/installers/aliyun-cli.sh",
+      "${path.root}/scripts/installers/apache.sh",
+      "${path.root}/scripts/installers/aws.sh",
+      "${path.root}/scripts/installers/clang.sh",
+      "${path.root}/scripts/installers/swift.sh",
+      "${path.root}/scripts/installers/cmake.sh",
+      "${path.root}/scripts/installers/codeql-bundle.sh",
+      "${path.root}/scripts/installers/containers.sh",
+      "${path.root}/scripts/installers/dotnetcore-sdk.sh",
+      "${path.root}/scripts/installers/firefox.sh",
+      "${path.root}/scripts/installers/microsoft-edge.sh",
+      "${path.root}/scripts/installers/gcc.sh",
+      "${path.root}/scripts/installers/gfortran.sh",
+      "${path.root}/scripts/installers/git.sh",
+      "${path.root}/scripts/installers/github-cli.sh",
+      "${path.root}/scripts/installers/google-chrome.sh",
+      "${path.root}/scripts/installers/google-cloud-sdk.sh",
+      "${path.root}/scripts/installers/haskell.sh",
+      "${path.root}/scripts/installers/heroku.sh",
+      "${path.root}/scripts/installers/java-tools.sh",
+      "${path.root}/scripts/installers/kubernetes-tools.sh",
+      "${path.root}/scripts/installers/oc.sh",
+      "${path.root}/scripts/installers/leiningen.sh",
+      "${path.root}/scripts/installers/miniconda.sh",
+      "${path.root}/scripts/installers/mono.sh",
+      "${path.root}/scripts/installers/kotlin.sh",
+      "${path.root}/scripts/installers/mysql.sh",
+      "${path.root}/scripts/installers/mssql-cmd-tools.sh",
+      "${path.root}/scripts/installers/sqlpackage.sh",
+      "${path.root}/scripts/installers/nginx.sh",
+      "${path.root}/scripts/installers/nvm.sh",
+      "${path.root}/scripts/installers/nodejs.sh",
+      "${path.root}/scripts/installers/bazel.sh",
+      "${path.root}/scripts/installers/oras-cli.sh",
+      "${path.root}/scripts/installers/php.sh",
+      "${path.root}/scripts/installers/postgresql.sh",
+      "${path.root}/scripts/installers/pulumi.sh",
+      "${path.root}/scripts/installers/ruby.sh",
+      "${path.root}/scripts/installers/r.sh",
+      "${path.root}/scripts/installers/rust.sh",
+      "${path.root}/scripts/installers/julia.sh",
+      "${path.root}/scripts/installers/sbt.sh",
+      "${path.root}/scripts/installers/selenium.sh",
+      "${path.root}/scripts/installers/terraform.sh",
+      "${path.root}/scripts/installers/packer.sh",
+      "${path.root}/scripts/installers/vcpkg.sh",
+      "${path.root}/scripts/installers/dpkg-config.sh",
+      "${path.root}/scripts/installers/yq.sh",
+      "${path.root}/scripts/installers/android.sh",
+      "${path.root}/scripts/installers/pypy.sh",
+      "${path.root}/scripts/installers/python.sh",
+      "${path.root}/scripts/installers/zstd.sh"
+    ]
   }
 
   provisioner "shell" {

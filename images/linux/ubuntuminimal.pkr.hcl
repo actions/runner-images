@@ -41,13 +41,13 @@ variable "client_secret" {
 }
 
 variable "client_cert_path" {
-  type      = string
-  default   = "${env("ARM_CLIENT_CERT_PATH")}"
+  type    = string
+  default = "${env("ARM_CLIENT_CERT_PATH")}"
 }
 
 variable "commit_url" {
-  type      = string
-  default   = ""
+  type    = string
+  default = ""
 }
 
 variable "image_version" {
@@ -56,7 +56,7 @@ variable "image_version" {
 }
 
 variable "install_password" {
-  type  = string
+  type    = string
   default = ""
 }
 
@@ -151,16 +151,16 @@ source "azure-arm" "build_vhd" {
   virtual_network_name                   = "${var.virtual_network_name}"
   virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
-  
+
   // VM Configuration
   vm_size         = "${var.vm_size}"
   os_disk_size_gb = "86"
   os_type         = "Linux"
-  
+
   dynamic "azure_tag" {
     for_each = var.azure_tags
     content {
-      name = azure_tag.key
+      name  = azure_tag.key
       value = azure_tag.value
     }
   }
@@ -172,8 +172,8 @@ build {
   // Create folder to store temporary data
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["mkdir ${local.image_folder}",
-                       "chmod 777 ${local.image_folder}"]
+    inline = ["mkdir ${local.image_folder}",
+    "chmod 777 ${local.image_folder}"]
   }
 
   // Add apt wrapper to implement retries
@@ -214,7 +214,7 @@ build {
 
   provisioner "file" {
     destination = "${local.image_folder}"
-    sources     = [
+    sources = [
       "${path.root}/post-generation",
       "${path.root}/scripts/tests"
     ]
@@ -260,10 +260,10 @@ build {
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = [
-                        "${path.root}/scripts/installers/git.sh",
-                        "${path.root}/scripts/installers/github-cli.sh",
-                        "${path.root}/scripts/installers/zstd.sh"
+    scripts = [
+      "${path.root}/scripts/installers/git.sh",
+      "${path.root}/scripts/installers/github-cli.sh",
+      "${path.root}/scripts/installers/zstd.sh"
     ]
   }
 
