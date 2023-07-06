@@ -12,9 +12,8 @@
         "vm_username": null,
         "vm_password": null,
         "github_api_pat": null,
-        "xcode_install_user": null,
-        "xcode_install_password": null,
-        "xcversion_auth_cookie": null,
+        "xcode_install_storage_url": null,
+        "xcode_install_sas": null,
         "image_os": "macos12"
     },
     "builders": [
@@ -169,20 +168,11 @@
         },
         {
             "type": "shell",
-            "inline": "mkdir -p ~/.fastlane/spaceship/{{user `xcode_install_user`}}"
-        },
-        {
-            "type": "file",
-            "source": "{{user `xcversion_auth_cookie`}}",
-            "destination": "~/.fastlane/spaceship/{{user `xcode_install_user`}}/cookie"
-        },
-        {
-            "type": "shell",
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} pwsh -f {{ .Path }}",
             "script": "./provision/core/xcode.ps1",
             "environment_vars": [
-                "XCODE_INSTALL_USER={{user `xcode_install_user`}}",
-                "XCODE_INSTALL_PASSWORD={{user `xcode_install_password`}}"
+                "XCODE_INSTALL_STORAGE_URL={{user `xcode_install_storage_url`}}",
+                "XCODE_INSTALL_SAS={{user `xcode_install_sas`}}"
             ]
         },
         {
