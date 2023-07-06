@@ -30,4 +30,6 @@ echo "Installing wget..."
 brew_smart_install "wget"
 
 # init brew bundle feature
+brew tap homebrew/core
+brew tap homebrew/cask
 brew tap Homebrew/bundle
