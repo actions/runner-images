@@ -42,7 +42,7 @@ function Get-RustdocVersion {
 }
 
 function Get-RustfmtVersion {
-    rustfmt --version | Take-Part -Part 1
+    rustfmt --version | Take-Part -Part 1 | Take-Part -Part 0 -Delimiter ('-')
 }
 
 function Get-RustClippyVersion {
