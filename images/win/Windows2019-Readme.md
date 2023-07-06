@@ -4,7 +4,7 @@
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4499
-- Image Version: 20230625.1.0
+- Image Version: 20230630.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -17,14 +17,14 @@
 - Julia 1.9.1
 - Kotlin 1.8.22
 - LLVM 15.0.7
-- Node 18.16.0
+- Node 18.16.1
 - Perl 5.32.1
 - PHP 8.2.7
 - Python 3.7.9
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 2.0.0
+- Chocolatey 2.1.0
 - Composer 2.5.8
 - Helm 3.12.0
 - Miniconda 23.3.1 (pre-installed on the image but not added to PATH)
@@ -33,7 +33,7 @@
 - pip 23.1.2 (python 3.7)
 - Pipx 1.2.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit 288e8bebf)
+- Vcpkg (build from commit 4a3c366f2)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -60,13 +60,13 @@
 - CodeQL Action Bundles 2.13.3 2.13.4
 - Docker 24.0.2
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.19.0
+- Docker Compose v2 2.19.1
 - Docker-wincred 0.7.0
 - ghc 9.6.2
 - Git 2.41.0.windows.1
 - Git LFS 3.3.0
-- Google Cloud SDK 436.0.0
-- ImageMagick 7.1.1-11
+- Google Cloud SDK 437.0.1
+- ImageMagick 7.1.1-12
 - InnoSetup 6.2.2
 - jq 1.6
 - Kind 0.20.0
@@ -78,7 +78,7 @@
 - OpenSSL 1.1.1u
 - Packer 1.9.1
 - Parcel 2.9.3
-- Pulumi 3.73.0
+- Pulumi 3.74.0
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -92,8 +92,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.167
-- AWS CLI 2.12.3
-- AWS SAM CLI 1.88.0
+- AWS CLI 2.12.5
+- AWS SAM CLI 1.89.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.49.0
 - Azure DevOps CLI extension 0.26.0
@@ -113,13 +113,13 @@
 - cargo-outdated 0.13.1
 - cbindgen 0.24.5
 - Clippy 0.1.70
-- Rustfmt 1.5.2
+- Rustfmt 1.5.2-stable
 
 ### Browsers and Drivers
-- Google Chrome 114.0.5735.134
+- Google Chrome 114.0.5735.199
 - Chrome Driver 114.0.5735.90
-- Microsoft Edge 114.0.1823.58
-- Microsoft Edge Driver 114.0.1823.58
+- Microsoft Edge 114.0.1823.67
+- Microsoft Edge Driver 114.0.1823.67
 - Mozilla Firefox 114.0.2
 - Gecko Driver 0.33.0
 - IE Driver 4.10.0.0
@@ -494,15 +494,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.22621.0
 
 ### .NET Core Tools
-- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.119, 6.0.203, 6.0.314, 6.0.411
+- .NET Core SDK: 6.0.119, 6.0.203, 6.0.314, 6.0.411
 - .NET Framework: 4.7.2, 4.8
-- Microsoft.AspNetCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.19
-- Microsoft.NETCore.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.19
-- Microsoft.WindowsDesktop.App: 3.1.4, 3.1.6, 3.1.20, 3.1.32, 6.0.5, 6.0.19
+- Microsoft.AspNetCore.App: 6.0.5, 6.0.19
+- Microsoft.NETCore.App: 6.0.5, 6.0.19
+- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.19
 - nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
-- PowerShell 7.2.11
+- PowerShell 7.2.12
 
 #### Powershell Modules
 - Az: 9.3.0
@@ -511,11 +511,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.359
+- AWSPowershell: 4.1.363
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 1.28.0
-- Pester: 3.4.0, 5.4.1
+- Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
 - PSWindowsUpdate: 2.2.0.3
