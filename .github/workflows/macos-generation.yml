@@ -121,6 +121,8 @@ jobs:
         -var="output_folder=${{ env.OUTPUT_FOLDER }}" `
         -var="vm_username=${{ secrets.VM_USERNAME }}" `
         -var="vm_password=${{ secrets.VM_PASSWORD }}" `
+        -var="xcode_install_storage_url=${{ secrets.xcode_install_storage_url }}" `
+        -var="xcode_install_sas=${{ secrets.xcode_install_sas }}" `
         -var="github_api_pat=${{ secrets.GH_FEED_TOKEN }}" `
         -var="build_id=${{ env.VM_NAME }}" `
         -var="baseimage_name=${{ inputs.base_image_name }}" `
