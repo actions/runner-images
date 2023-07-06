@@ -1,14 +1,7 @@
-# The script currently requires 2 external variables to be set: XCODE_INSTALL_USER
-# and XCODE_INSTALL_PASSWORD, in order to access the Apple Developer Center
-
 $ErrorActionPreference = "Stop"
 
 Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
 Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
-
-if ([string]::IsNullOrEmpty($env:XCODE_INSTALL_USER) -or [string]::IsNullOrEmpty($env:XCODE_INSTALL_PASSWORD)) {
-    throw "Required environment variables XCODE_INSTALL_USER and XCODE_INSTALL_PASSWORD are not set"
-}
 
 # Spaceship Apple ID login fails due to Apple ID prompting to be upgraded to 2FA.
 # https://github.com/fastlane/fastlane/pull/18116
