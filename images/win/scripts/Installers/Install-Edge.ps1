@@ -9,7 +9,7 @@ if (-not (Test-IsWin22)) {
 }
 
 # Disable Edge auto-updates
-Rename-Item -Path "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction SilentlyContinue
+Rename-Item -Path "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction Stop
 
 # Install Microsoft Edge WebDriver
 Write-Host "Install Edge WebDriver..."
