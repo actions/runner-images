@@ -4,7 +4,7 @@
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4499
-- Image Version: 20230630.1.0
+- Image Version: 20230707.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -14,12 +14,12 @@
 ### Language and Runtime
 - Bash 5.2.15(1)-release
 - Go 1.20.5
-- Julia 1.9.1
-- Kotlin 1.8.22
+- Julia 1.9.2
+- Kotlin 1.9.0
 - LLVM 15.0.7
 - Node 18.16.1
 - Perl 5.32.1
-- PHP 8.2.7
+- PHP 8.2.8
 - Python 3.7.9
 - Ruby 2.5.9p229
 
@@ -33,7 +33,7 @@
 - pip 23.1.2 (python 3.7)
 - Pipx 1.2.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit 4a3c366f2)
+- Vcpkg (build from commit dafef74af)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,13 +57,13 @@
 - Bicep 0.18.4
 - Cabal 3.10.1.0
 - CMake 3.26.4
-- CodeQL Action Bundles 2.13.3 2.13.4
-- Docker 24.0.2
+- CodeQL Action Bundles 2.13.4 2.13.5
+- Docker 24.0.4
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.19.1
 - Docker-wincred 0.7.0
 - ghc 9.6.2
-- Git 2.41.0.windows.1
+- Git 2.41.0.windows.2
 - Git LFS 3.3.0
 - Google Cloud SDK 437.0.1
 - ImageMagick 7.1.1-12
@@ -84,18 +84,18 @@
 - Stack 2.11.1
 - Subversion (SVN) 1.14.2
 - Swig 4.1.1
-- VSWhere 3.1.4
+- VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.11.2.4516
 - yamllint 1.32.0
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.167
-- AWS CLI 2.12.5
-- AWS SAM CLI 1.89.0
+- Alibaba Cloud CLI 3.0.169
+- AWS CLI 2.12.7
+- AWS SAM CLI 1.90.0
 - AWS Session Manager CLI 1.2.463.0
-- Azure CLI 2.49.0
+- Azure CLI 2.50.0
 - Azure DevOps CLI extension 0.26.0
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 2.31.0
@@ -113,14 +113,14 @@
 - cargo-outdated 0.13.1
 - cbindgen 0.24.5
 - Clippy 0.1.70
-- Rustfmt 1.5.2-stable
+- Rustfmt 1.5.2
 
 ### Browsers and Drivers
 - Google Chrome 114.0.5735.199
 - Chrome Driver 114.0.5735.90
 - Microsoft Edge 114.0.1823.67
 - Microsoft Edge Driver 114.0.1823.67
-- Mozilla Firefox 114.0.2
+- Mozilla Firefox 115.0.1
 - Gecko Driver 0.33.0
 - IE Driver 4.10.0.0
 - Selenium server 4.10.0
@@ -511,10 +511,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.363
+- AWSPowershell: 4.1.367
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.28.0
+- Microsoft.Graph: 2.0.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
@@ -556,9 +556,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:1c8e6d213d957497d12eb3ea2e462c64ba6b8ae88cc6c828bd5a0a9494274858  | 2023-06-23 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:49aad131a4250da60e604cdeaac75c7b39fdb7665cfe5d7f45ac288e5e6861b1  | 2023-06-23 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:7f3424f6c04d174c4e6c5e96f437b00e42ed5af958a73ea915d96ccf4d26c89e  | 2023-06-23 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:919c9c2fa5d9decd934157a82e4c037cb383f16182b5f21f705ba195c109c9bc  | 2023-07-06 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:1307429f86090e12b8bd3041d4e2283cab766a5c9d8e33d6ab01d022114e4104  | 2023-07-06 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:b97a9c0d1ef553da2d6a512b340d33f69ed0bafd9017cf99d13d7c4b7f11d1a0  | 2023-07-06 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:81ab2c2f7ac2edf154915667f33ef9e2e77fdbe092c7cc562fff1fcf1762de22  | 2023-06-21 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:341ab68cf115626b5181a9621c2054f71ea6637d05f9d312c2b45a4204c0b94d  | 2023-06-21 |
 
