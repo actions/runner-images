@@ -42,7 +42,7 @@ for module in ${psModules[@]}; do
 done
 
 if [[ $arch == "arm64" ]]; then
-    sudo chown -R $USER ~/.local
+    sudo chown -R $USER ~/.local ~/.cache ~/.config
 fi
 
 # A dummy call to initialize .IdentityService directory
