@@ -4,7 +4,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1787
-- Image Version: 20230630.1.0
+- Image Version: 20230706.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -14,12 +14,12 @@
 ### Language and Runtime
 - Bash 5.2.15(1)-release
 - Go 1.20.5
-- Julia 1.9.1
-- Kotlin 1.8.22
+- Julia 1.9.2
+- Kotlin 1.9.0
 - LLVM 15.0.7
 - Node 18.16.1
 - Perl 5.32.1
-- PHP 8.2.7
+- PHP 8.2.8
 - Python 3.9.13
 - Ruby 3.0.6p216
 
@@ -33,7 +33,7 @@
 - pip 23.1.2 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 4a3c366f2)
+- Vcpkg (build from commit d1e11918f)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,8 +57,8 @@
 - Bicep 0.18.4
 - Cabal 3.10.1.0
 - CMake 3.26.4
-- CodeQL Action Bundles 2.13.3 2.13.4
-- Docker 24.0.2
+- CodeQL Action Bundles 2.13.4 2.13.5
+- Docker 24.0.3
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.19.1
 - Docker-wincred 0.7.0
@@ -82,18 +82,18 @@
 - Stack 2.11.1
 - Subversion (SVN) 1.14.2
 - Swig 4.1.1
-- VSWhere 3.1.4
+- VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.11.2.4516
 - yamllint 1.32.0
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.167
-- AWS CLI 2.12.5
-- AWS SAM CLI 1.89.0
+- Alibaba Cloud CLI 3.0.169
+- AWS CLI 2.12.7
+- AWS SAM CLI 1.90.0
 - AWS Session Manager CLI 1.2.463.0
-- Azure CLI 2.49.0
+- Azure CLI 2.50.0
 - Azure DevOps CLI extension 0.26.0
 - GitHub CLI 2.31.0
 - Hub CLI 2.14.2
@@ -110,14 +110,14 @@
 - cargo-outdated 0.13.1
 - cbindgen 0.24.5
 - Clippy 0.1.70
-- Rustfmt 1.5.2-stable
+- Rustfmt 1.5.2
 
 ### Browsers and Drivers
 - Google Chrome 114.0.5735.199
 - Chrome Driver 114.0.5735.90
-- Microsoft Edge 114.0.1823.58
+- Microsoft Edge 114.0.1823.67
 - Microsoft Edge Driver 114.0.1823.67
-- Mozilla Firefox 114.0.2
+- Mozilla Firefox 115.0
 - Gecko Driver 0.33.0
 - IE Driver 4.10.0.0
 - Selenium server 4.10.0
@@ -563,10 +563,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.363
+- AWSPowershell: 4.1.366
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 1.28.0
+- Microsoft.Graph: 2.0.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
@@ -607,9 +607,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:7c75a9896911634a3d63c5f38096e54f94958ac4c5b31d79bed311cae8d2169c  | 2023-06-23 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:8c956c715b4d006228dec3c581871d5ccef4afc72ecd88a2df8f0bac1b5c2c94  | 2023-07-06 |
 | mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:d426990d3e3b03dbc3b03e1eeafbf3bddc5da7d1a091e0d15f6bfa1e6057feee  | 2023-06-23 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:bf06038f0298f5444b6fb4f10708fa42acb33bbb5ea4581d634983746609e262  | 2023-06-23 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:d1a454a7c53f7e2e89c8c143b25cd3cdc05b4f1c219008f2274290291549a640  | 2023-07-06 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:c1426561e854da32f5e8bed3ce41e9eb5c8cb693b5d992323bcc47ed48acd99c  | 2023-06-21 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:bc3ec9f19112d40ff23f14a806afd7de7c28ce8a4b69ae1e7e7725bbdeba8964  | 2023-06-21 |
 
