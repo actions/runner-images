@@ -41,6 +41,7 @@ for module in ${psModules[@]}; do
     fi
 done
 
+# Fix permission root => runner after installing powershell for arm64 arch
 if [[ $arch == "arm64" ]]; then
     sudo chown -R $USER ~/.local ~/.cache ~/.config
 fi
