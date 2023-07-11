@@ -100,12 +100,8 @@ jobs:
       PACKER_LOG_PATH: $(Agent.TempDirectory)/packer-log.txt
 
   - bash: |
-      echo "Copy image output files"
-      cp -R "images/image-output/software-report/." "$(Build.ArtifactStagingDirectory)/"
-
-      echo "Copy test results"
-      cp -R "images/image-output/tests/." "$(Common.TestResultsDirectory)/"
-      ls $(Common.TestResultsDirectory)
+      echo "Copy software report files"
+      cp -vR "images/image-output/software-report/." "$(Build.ArtifactStagingDirectory)/"
 
       echo "Put VM name to 'VM_Done_Name' file"
       echo "$(VirtualMachineName)" > "$(Build.ArtifactStagingDirectory)/VM_Done_Name"
