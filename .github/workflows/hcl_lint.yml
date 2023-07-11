@@ -1,0 +1,20 @@
+
+name: Packer .hcl lint
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '**.hcl'
+
+
+jobs:
+  build:
+    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a multi-line script
+        run: |           
+           chmod +x ./images.CI/hcl-linter.sh && ./images.CI/hcl-linter.sh
