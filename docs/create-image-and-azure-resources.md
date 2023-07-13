@@ -67,7 +67,7 @@ In any case you will need these software installed:
 ## Automated image generation
 
 This repo bundles script that automates image generation process.
-You only need a build agent configured as described above and active Azure subsctiption.
+You only need a build agent configured as described above and active Azure subscription.
 We suggest to start with UbuntuMinimal image because it includes only a minimal set of required software and builds in less then half an hour.
 
 All steps here are supposed to run in Powershell.

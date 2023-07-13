@@ -8,6 +8,9 @@ if (-not (Test-IsWin22)) {
     Choco-Install -PackageName microsoft-edge
 }
 
+# Disable Edge auto-updates
+Rename-Item -Path "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction Stop
+
 # Install Microsoft Edge WebDriver
 Write-Host "Install Edge WebDriver..."
 $EdgeDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\EdgeDriver"
