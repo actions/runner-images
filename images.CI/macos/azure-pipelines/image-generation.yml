@@ -58,12 +58,6 @@ jobs:
                  -VIPassword '$(vcenter-password-v2)' `
                  -Cluster "$(esxi-cluster-v2)"
 
-  - task: DownloadSecureFile@1
-    name: xcVersionCookie
-    displayName: 'Download xcversion session cookie'
-    inputs:
-      secureFile: 'cookie'
-
   - pwsh: |
       $SensitiveData = @(
           'IP address:',
