@@ -36,6 +36,9 @@ echo 'vm.max_map_count=262144' | tee -a /etc/sysctl.conf
 echo 'fs.inotify.max_user_watches=655360' | tee -a /etc/sysctl.conf
 echo 'fs.inotify.max_user_instances=1280' | tee -a /etc/sysctl.conf
 
+# https://github.com/actions/runner-images/pull/7860
+echo 'net.netfilter.nf_conntrack_tcp_be_liberal=1' | tee -a /etc/sysctl.conf
+
 # Create symlink for tests running
 chmod +x $HELPER_SCRIPTS/invoke-tests.sh
 ln -s $HELPER_SCRIPTS/invoke-tests.sh /usr/local/bin/invoke_tests

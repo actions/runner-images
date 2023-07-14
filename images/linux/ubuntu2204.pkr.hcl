@@ -380,6 +380,11 @@ build {
   }
 
   provisioner "shell" {
+    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    inline          = ["cat /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal", "sysctl -a | grep nf_conntrack_tcp_be_liberal"]
+  }
+
+  provisioner "shell" {
     execute_command     = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     pause_before        = "1m0s"
     scripts             = ["${path.root}/scripts/installers/cleanup.sh"]
@@ -432,11 +437,6 @@ build {
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     inline          = ["sleep 30", "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"]
-  }
-
-  provisioner "shell" {
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal"]
   }
 
 }
