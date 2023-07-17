@@ -8,7 +8,7 @@ if is_BigSur; then
   FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/swiftlint.rb"
 
   curl "$FORMULA_URL" > $(find $(brew --repository) -name swiftlint.rb)
-  HOMEBREW_NO_AUTO_UPDATE=1 brew_smart_install swiftlint
+  HOMEBREW_NO_AUTO_UPDATE=1 brew install swiftlint
 else
   brew_smart_install "swiftlint"
 fi
