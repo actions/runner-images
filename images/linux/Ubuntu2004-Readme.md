@@ -6,7 +6,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1041-azure
-- Image Version: 20230710.1.0
+- Image Version: 20230716.1.0
 - Systemd version: 245.4-4ubuntu3.22
 
 ## Installed Software
@@ -23,8 +23,8 @@
 - GNU Fortran: 9.4.0, 10.3.0
 - Julia 1.9.2
 - Kotlin 1.9.0-release-358
-- Mono 6.12.0.199
-- MSBuild 16.10.1.31701 (Mono 6.12.0.199)
+- Mono 6.12.0.200
+- MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.16.1
 - Perl 5.30.0
 - Python 3.8.10
@@ -34,16 +34,16 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.12.1
+- Helm 3.12.2
 - Homebrew 4.0.28
-- Miniconda 23.3.1
+- Miniconda 23.5.2
 - Npm 9.5.1
 - NuGet 6.6.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.2.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit dafef74af)
+- Vcpkg (build from commit fba81a6a5)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -62,8 +62,8 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.2
-- Lerna 7.1.1
+- Gradle 8.2.1
+- Lerna 7.1.4
 - Maven 3.8.8
 - Sbt 1.9.2
 
@@ -73,17 +73,17 @@ to accomplish this.
 - AzCopy 10.19.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.2.1
 - Bazelisk 1.13.2
-- Bicep 0.18.4
+- Bicep 0.19.5
 - Buildah 1.22.3
 - CMake 3.26.4
-- CodeQL Action Bundles 2.13.4 2.13.5
+- CodeQL Action Bundles 2.13.5 2.14.0
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.19.1+azure-1
+- Docker Compose v2 2.20.0+azure-1
 - Docker-Buildx 0.11.1
 - Docker-Moby Client 20.10.25+azure-2
 - Docker-Moby Server 20.10.25+azure-2
-- Fastlane 2.213.0
+- Fastlane 2.214.0
 - Git 2.41.0
 - Git LFS 3.3.0
 - Git-ftp 1.6.0
@@ -106,30 +106,30 @@ to accomplish this.
 - Parcel 2.9.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.74.0
+- Pulumi 3.75.0
 - R 4.3.1
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.5.2
+- Terraform 1.5.3
 - yamllint 1.32.0
-- yq 4.34.1
+- yq 4.34.2
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.169
-- AWS CLI 2.13.0
+- AWS CLI 2.13.1
 - AWS CLI Session Manager Plugin 1.2.463.0
 - AWS SAM CLI 1.90.0
 - Azure CLI 2.50.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.31.0
-- Google Cloud SDK 437.0.1
+- GitHub CLI 2.32.0
+- Google Cloud SDK 438.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 15.8.1
+- Netlify CLI 15.9.0
 - OpenShift CLI 4.13.4
 - ORAS CLI 1.0.0
-- Vercel CLI 31.0.1
+- Vercel CLI 31.0.3
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -153,15 +153,15 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.11.1
 
 ### Rust Tools
-- Cargo 1.70.0
-- Rust 1.70.0
-- Rustdoc 1.70.0
+- Cargo 1.71.0
+- Rust 1.71.0
+- Rustdoc 1.71.0
 - Rustup 1.26.0
 
 #### Packages
 - Bindgen 0.66.1
 - Cargo audit 0.17.6
-- Cargo clippy 0.1.70
+- Cargo clippy 0.1.71
 - Cargo outdated 0.13.1
 - Cbindgen 0.24.5
 - Rustfmt 1.5.2
@@ -170,10 +170,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 114.0.5735.198
 - ChromeDriver 114.0.5735.90
 - Chromium 114.0.5733.0
-- Microsoft Edge 114.0.1823.67
-- Microsoft Edge WebDriver 114.0.1823.67
+- Microsoft Edge 114.0.1823.82
+- Microsoft Edge WebDriver 114.0.1823.82
 - Selenium server 4.10.0
-- Mozilla Firefox 115.0.1
+- Mozilla Firefox 115.0.2
 - Geckodriver 0.33.0
 
 #### Environment variables
@@ -185,11 +185,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.411, 7.0.108, 7.0.203, 7.0.305
+- .NET Core SDK: 6.0.412, 7.0.109, 7.0.203, 7.0.306
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
-- MongoDB 5.0.18
+- MongoDB 5.0.19
 - sqlite3 3.31.1
 
 #### PostgreSQL
@@ -217,8 +217,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.18.10
-- 1.19.10
-- 1.20.5
+- 1.19.11
+- 1.20.6
 
 #### Node.js
 - 14.21.3
@@ -248,13 +248,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.1.4
 
 ### PowerShell Tools
-- PowerShell 7.2.12
+- PowerShell 7.2.13
 
 #### PowerShell Modules
 - Az: 9.3.0
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.0.0
+- Microsoft.Graph: 2.1.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -271,7 +271,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | Android Command Line Tools | 9.0                                                                                                                                                                                                                                |
 | Android Emulator           | 32.1.14                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
-| Android SDK Platform-Tools | 34.0.3                                                                                                                                                                                                                             |
+| Android SDK Platform-Tools | 34.0.4                                                                                                                                                                                                                             |
 | Android SDK Platforms      | android-34 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                             |
@@ -305,7 +305,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | debian:10               | sha256:c21dbb23d41cb3f1c1a7f841e8642bf713934fb4dc5187979bd46f0b4b488616  | 2023-07-04 |
 | debian:11               | sha256:a648e10e02af129706b1fb89e1ac9694ae3db7f2b8439aa906321e68cc281bc0  | 2023-07-04 |
 | debian:9                | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest    | sha256:d6fa89830c26919acba23c5cafa09df0c3ec1fbde20bb2a15ff349e0795241f4  | 2023-04-20 |
+| moby/buildkit:latest    | sha256:e70e7a9bfaeafd2cb101b050ca78e1f73032473fc0aac5b10f35c5d26df1e2c6  | 2023-07-12 |
 | node:14                 | sha256:a158d3b9b4e3fa813fa6c8c590b8f0a860e015ad4e59bbce5744d2f6fd8461aa  | 2023-04-12 |
 | node:14-alpine          | sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33  | 2023-03-29 |
 | node:16                 | sha256:466d0a05ecb1e5b9890960592311fa10c2bc6012fc27dbfdcc74abf10fc324fc  | 2023-07-04 |
@@ -326,7 +326,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | binutils               | 2.34-6ubuntu1.6                   |
 | bison                  | 2:3.5.1+dfsg-1                    |
 | brotli                 | 1.0.7-6ubuntu0.1                  |
+| bzip2                  | 1.0.8-2                           |
 | coreutils              | 8.30-3ubuntu2                     |
+| curl                   | 7.68.0-1ubuntu2.18                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
 | dnsutils               | 1:9.16.1-0ubuntu2.15              |
 | dpkg                   | 1.19.7ubuntu3.2                   |
@@ -336,11 +338,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | flex                   | 2.6.4-6.2                         |
 | fonts-noto-color-emoji | 0\~20200916-1\~ubuntu20.04.1      |
 | ftp                    | 0.17-34.1                         |
+| g++                    | 4:9.3.0-1ubuntu2                  |
+| gcc                    | 4:9.3.0-1ubuntu2                  |
 | gnupg2                 | 2.2.19-3ubuntu2.2                 |
 | haveged                | 1.9.1-6ubuntu1                    |
 | imagemagick            | 8:6.9.10.23+dfsg-2.1ubuntu11.9    |
 | iproute2               | 5.5.0-1ubuntu1                    |
 | iputils-ping           | 3:20190709-3                      |
+| jq                     | 1.6-1ubuntu0.20.04.1              |
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu1.5          |
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
@@ -362,6 +367,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libyaml-dev            | 0.2.2-1                           |
 | locales                | 2.31-0ubuntu9.9                   |
 | m4                     | 1.4.18-4                          |
+| make                   | 4.2.1-1.2                         |
 | mediainfo              | 19.09-1build1                     |
 | mercurial              | 5.3.1-1ubuntu1                    |
 | net-tools              | 1.60+git20180626.aebd88e-1ubuntu1 |
@@ -385,12 +391,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | subversion             | 1.13.0-3ubuntu0.2                 |
 | sudo                   | 1.8.31-1ubuntu1.5                 |
 | swig                   | 4.0.1-5build1                     |
+| tar                    | 1.30+dfsg-7ubuntu0.20.04.3        |
 | telnet                 | 0.17-41.2build1                   |
 | texinfo                | 6.7.0.dfsg.2-5                    |
 | time                   | 1.7-25.1build1                    |
 | tk                     | 8.6.9+1                           |
 | tzdata                 | 2023c-0ubuntu0.20.04.2            |
+| unzip                  | 6.0-25ubuntu1.1                   |
 | upx                    | 3.95-2build1                      |
+| wget                   | 1.20.3-1ubuntu2                   |
 | xorriso                | 1.5.2-1                           |
 | xvfb                   | 2:1.20.13-1ubuntu1\~20.04.8       |
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
