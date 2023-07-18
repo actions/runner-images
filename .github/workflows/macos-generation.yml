@@ -138,7 +138,6 @@ jobs:
       env:
         PACKER_LOG: 1
         PACKER_LOG_PATH: ${{ runner.temp }}/packer-log.txt
-        XCVERSION_COOKIE_PATH: ${{ runner.temp }}/xcversion-cookie/cookie
 
     - name: Prepare artifact
       shell: bash
