@@ -5,12 +5,12 @@
 # macOS 11
 - OS Version: macOS 11.7.8 (20G1351)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20230623.1
+- Image Version: 20230709.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 6.0.411, 7.0.102, 7.0.202, 7.0.305
+- .NET Core SDK: 6.0.411, 7.0.102, 7.0.202, 7.0.305
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -20,8 +20,8 @@
 - GNU Fortran 10 (Homebrew GCC 10.4.0) - available by `gfortran-10` alias
 - GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
-- Julia 1.9.1
-- Kotlin 1.8.22-release-407
+- Julia 1.9.2
+- Kotlin 1.9.0-release-358
 - Go 1.20.5
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
@@ -29,26 +29,26 @@
 - NVM 0.39.3
 - NVM - Cached node versions: 14.21.3, 16.20.1, 18.16.1
 - Perl 5.36.1
-- PHP 8.2.7
+- PHP 8.2.8
 - Python 2.7.18
 - Python3 3.11.4
 - R 4.3.1
 - Ruby 2.7.8p225
 
 ### Package Management
-- Bundler 2.4.14
+- Bundler 2.4.15
 - Carthage 0.39.0
 - CocoaPods 1.12.1
 - Composer 2.5.8
-- Homebrew 4.0.24
+- Homebrew 4.0.28
 - Miniconda 23.3.1
 - NPM 9.5.1
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 23.1.2 (python 3.11)
 - Pipx 1.2.0
-- RubyGems 3.4.14
-- Vcpkg 2023 (build from commit 1286cac87)
+- RubyGems 3.4.15
+- Vcpkg 2023 (build from commit dafef74af)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -59,9 +59,9 @@
 
 ### Project Management
 - Apache Ant 1.10.13
-- Apache Maven 3.9.2
-- Gradle 8.1.1
-- Sbt 1.9.0
+- Apache Maven 3.9.3
+- Gradle 8.2
+- Sbt 1.9.1
 
 ### Utilities
 - 7-Zip 17.05
@@ -76,10 +76,10 @@
 - GitHub CLI 2.31.0
 - GNU Tar 1.34 - available by 'gtar' alias
 - GNU Wget 1.21.4
-- gpg (GnuPG) 2.4.2
+- gpg (GnuPG) 2.4.3
 - helm v3.12.1+gf32a527
 - Hub CLI 2.14.2
-- ImageMagick 7.1.1-11
+- ImageMagick 7.1.1-12
 - jq 1.6
 - mongo 5.0.17
 - mongod 5.0.17
@@ -96,20 +96,20 @@
 - zstd 1.5.5
 
 ### Tools
-- Aliyun CLI 3.0.167
-- App Center CLI 2.13.8
-- AWS CLI 2.12.2
-- AWS SAM CLI 1.88.0
+- Aliyun CLI 3.0.169
+- App Center CLI 2.13.9
+- AWS CLI 2.13.0
+- AWS SAM CLI 1.90.0
 - AWS Session Manager CLI 1.2.463.0
-- Azure CLI 2.49.0
+- Azure CLI 2.50.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.18.4
 - Cabal 3.6.2.0
 - Cmake 3.26.4
-- CodeQL Action Bundles 2.13.3 2.13.4
+- CodeQL Action Bundles 2.13.4 2.13.5
 - Fastlane 2.213.0
 - GHC 9.6.2
-- GHCup 0.1.19.2
+- GHCup 0.1.19.4
 - Jazzy 0.14.3
 - Stack 2.9.3
 - SwiftFormat 0.51.12
@@ -123,11 +123,11 @@
 ### Browsers
 - Safari 16.5.1 (16615.2.9.11.7)
 - SafariDriver 16.5.1 (16615.2.9.11.7)
-- Google Chrome 114.0.5735.133
+- Google Chrome 114.0.5735.198
 - ChromeDriver 114.0.5735.90
-- Microsoft Edge 114.0.1823.58
-- Microsoft Edge WebDriver 114.0.1823.58
-- Mozilla Firefox 114.0.2
+- Microsoft Edge 114.0.1823.67
+- Microsoft Edge WebDriver 114.0.1823.67
+- Mozilla Firefox 115.0.1
 - geckodriver 0.33.0
 - Selenium server 4.10.0
 
@@ -193,19 +193,19 @@
 - Rustfmt 1.5.2-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.11
+- PowerShell 7.2.12
 
 #### PowerShell Modules
-- Az: 10.0.0
+- Az: 10.1.0
 - MarkdownPS: 1.9
-- Pester: 5.4.1
+- Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
 ### Web Servers
-| Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
-| ----- | ------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.57  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.25.1  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
+| ----- | -------- | ------------------------------- | ------------- | ---------- |
+| httpd | 2.4.57_1 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| nginx | 1.25.1_1 | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 
@@ -329,7 +329,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                                                                                            |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                |
-| Android Emulator           | 32.1.13                                                                                                                                                                                                                            |
+| Android Emulator           | 32.1.14                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
 | Android SDK Platforms      | android-34 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 34.0.3                                                                                                                                                                                                                             |
@@ -353,6 +353,6 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 ### Miscellaneous
 - libXext 1.3.5
 - libXft 2.3.8
-- Tcl/Tk 8.6.13_3
+- Tcl/Tk 8.6.13_4
 - Zlib 1.2.13
 
