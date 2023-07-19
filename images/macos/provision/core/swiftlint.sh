@@ -7,7 +7,7 @@ if is_BigSur; then
   COMMIT=d1d5743344227fe6e3c37cfba19f0cfe15a9448a
   FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/swiftlint.rb"
 
-  curl "$FORMULA_URL" > $(find $(brew --repository) -name swiftlint.rb)
+  curl -fsSL -H "Authorization: token ${API_PAT}" "$FORMULA_URL" > $(find $(brew --repository) -name swiftlint.rb)
   HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install swiftlint
 else
   brew_smart_install "swiftlint"
