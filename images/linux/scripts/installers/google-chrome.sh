@@ -47,7 +47,13 @@ function GetChromiumRevision {
 }
 
 # Download and install Google Chrome
-CHROME_DEB_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+chromeVersion=$(get_toolset_value '.chrome.version')
+if [[ ${chromeVersion} == "latest" ]]; then
+    CHROME_DEB_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+else
+    CHROME_DEB_URL="https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${chromeVersion}_amd64.deb"
+fi
+
 CHROME_DEB_NAME="google-chrome-stable_current_amd64.deb"
 download_with_retries $CHROME_DEB_URL "/tmp" "${CHROME_DEB_NAME}"
 apt install "/tmp/${CHROME_DEB_NAME}" -f
