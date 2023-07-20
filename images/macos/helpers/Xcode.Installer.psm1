@@ -11,7 +11,7 @@ function Install-XcodeVersion {
     $xcodeDownloadDirectory = "$env:HOME/Library/Caches/XcodeInstall"
     $xcodeTargetPath = Get-XcodeRootPath -Version $LinkTo
     $xcodeXipDirectory = Invoke-DownloadXcodeArchive -DownloadDirectory $xcodeDownloadDirectory -Version $Version
-    Expand-XcodeXipArchive -DownloadDirectory $xcodeXipDirectory -TargetPath $xcodeTargetPath
+    Expand-XcodeXipArchive -DownloadDirectory $xcodeXipDirectory.FullName -TargetPath $xcodeTargetPath
 
     Remove-Item -Path $xcodeXipDirectory -Force -Recurse
 }
@@ -31,8 +31,7 @@ function Invoke-DownloadXcodeArchive {
     $xcodeFileName = 'Xcode-{0}.xip' -f $Version
     $xcodeUri = '{0}{1}{2}'-f ${env:XCODE_INSTALL_STORAGE_URL}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
 
-    Invoke-WebRequest -Uri $xcodeUri -OutFile (Join-Path $tempXipDirectory $xcodeFileName)
-
+    Start-DownloadWithRetry -Url $xcodeUri -DownloadPath $tempXipDirectory.FullName -Name $xcodeFileName
     return $tempXipDirectory
 
 }
