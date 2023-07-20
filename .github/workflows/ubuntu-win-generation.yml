@@ -62,7 +62,7 @@ jobs:
           repository: '${{ inputs.custom_repo }}'
           ref: '${{ inputs.custom_repo_commit_hash }}'
 
-      - name: Set image varibles
+      - name: Set image variables
         run: |
           $ImageType = "${{ inputs.image_name }}"
 
