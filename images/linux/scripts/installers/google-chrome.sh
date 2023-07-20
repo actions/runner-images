@@ -58,21 +58,17 @@ rm -f /etc/cron.daily/google-chrome /etc/apt/sources.list.d/google-chrome.list /
 
 # Parse Google Chrome version
 FULL_CHROME_VERSION=$(google-chrome --product-version)
-CHROME_VERSION=${FULL_CHROME_VERSION%.*}
 
-# Determine the latest release of chromedriver
-# Compatibility of Google Chrome and Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/downloads/version-selection
-LATEST_CHROMEDRIVER_VERSION=$(curl -sL "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+# Determine the download url for chromedriver
+CHROME_VERSIONS_JSON=$(curl -fsSL https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)
+CHROMEDRIVER_URL=$(echo $CHROME_VERSIONS_JSON | jq -r '.versions[] | select(.version=="'"$FULL_CHROME_VERSION"'").downloads.chromedriver[] | select(.platform=="linux64").url')
 
 # Download and unpack the latest release of chromedriver
-echo "Downloading chromedriver v$LATEST_CHROMEDRIVER_VERSION..."
-CHROMEDRIVER_DIR="/usr/local/share/chrome_driver"
-CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
-CHROMEDRIVER_URL="https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
 download_with_retries $CHROMEDRIVER_URL "/tmp" "chromedriver_linux64.zip"
+unzip -qq /tmp/chromedriver_linux64.zip -d /usr/local/share
 
-mkdir -p $CHROMEDRIVER_DIR
-unzip -qq /tmp/chromedriver_linux64.zip -d $CHROMEDRIVER_DIR
+CHROMEDRIVER_DIR="/usr/local/share/chromedriver-linux64"
+CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
 chmod +x $CHROMEDRIVER_BIN
 ln -s "$CHROMEDRIVER_BIN" /usr/bin/
 echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment
