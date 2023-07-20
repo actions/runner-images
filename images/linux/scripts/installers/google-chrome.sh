@@ -58,17 +58,18 @@ rm -f /etc/cron.daily/google-chrome /etc/apt/sources.list.d/google-chrome.list /
 
 # Parse Google Chrome version
 FULL_CHROME_VERSION=$(google-chrome --product-version)
-
-# Determine the download url for chromedriver
-CHROME_VERSIONS_JSON=$(curl -fsSL https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)
-CHROMEDRIVER_URL=$(echo $CHROME_VERSIONS_JSON | jq -r '.versions[] | select(.version=="'"$FULL_CHROME_VERSION"'").downloads.chromedriver[] | select(.platform=="linux64").url')
+CHROME_VERSION=${FULL_CHROME_VERSION%.*}
 
 # Download and unpack the latest release of chromedriver
-download_with_retries $CHROMEDRIVER_URL "/tmp" "chromedriver_linux64.zip"
-unzip -qq /tmp/chromedriver_linux64.zip -d /usr/local/share
-
-CHROMEDRIVER_DIR="/usr/local/share/chromedriver-linux64"
+echo "Downloading chromedriver v$FULL_CHROME_VERSION..."
+CHROMEDRIVER_DIR="/usr/local/share/chrome_driver"
 CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
+CHROMEDRIVER_URL=$(curl -sL "https://googlechromelabs.github.io/chrome-for-testing/latest-patch-versions-per-build-with-downloads.json" | jq --arg jq_chrome_version "$CHROME_VERSION" '.builds | .[$jq_chrome_version].downloads.chromedriver | .[] | select(.platform=="linux64").url')
+
+download_with_retries $CHROMEDRIVER_URL "/tmp" "chromedriver_linux64.zip"
+
+mkdir -p $CHROMEDRIVER_DIR
+unzip -j -qq /tmp/chromedriver_linux64.zip -d $CHROMEDRIVER_DIR
 chmod +x $CHROMEDRIVER_BIN
 ln -s "$CHROMEDRIVER_BIN" /usr/bin/
 echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment

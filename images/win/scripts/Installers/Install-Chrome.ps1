@@ -51,17 +51,14 @@ if (-not (Test-Path -Path $ChromeDriverPath))
 Write-Host "Get the Chrome WebDriver version..."
 $RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
 $ChromePath = (Get-ItemProperty "$RegistryPath\chrome.exe").'(default)'
+$ChromeVersionUri = "https://googlechromelabs.github.io/chrome-for-testing/latest-patch-versions-per-build-with-downloads.json"
+$ChromePlatform = 'win64'
 [version]$ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion
-$ChromeDriverVersionUrl = "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$($ChromeVersion.Major).$($ChromeVersion.Minor).$($ChromeVersion.Build)"
-
-$ChromeDriverVersionFile = Start-DownloadWithRetry -Url $ChromeDriverVersionUrl -Name "versioninfo.txt" -DownloadPath $ChromeDriverPath
+$ChromeDriverVersions = Invoke-RestMethod -Method GET -Uri $ChromeVersionUri
+$ChromeDriverZipDownloadUrl = ($ChromeDriverVersions.Builds."$($ChromeVersion.Major).$($ChromeVersion.Minor).$($ChromeVersion.Build)".downloads.chromedriver | Where-Object { $_.platform -eq $ChromePlatform }).url
 
 Write-Host "Download Chrome WebDriver..."
-$ChromeDriverVersion = Get-Content -Path $ChromeDriverVersionFile
-$ChromeDriverArchName = "chromedriver_win32.zip"
-$ChromeDriverZipDownloadUrl = "https://chromedriver.storage.googleapis.com/${ChromeDriverVersion}/${ChromeDriverArchName}"
-
-$ChromeDriverArchPath = Start-DownloadWithRetry -Url $ChromeDriverZipDownloadUrl -Name $ChromeDriverArchName
+$ChromeDriverArchPath = Start-DownloadWithRetry -Url $ChromeDriverZipDownloadUrl
 
 Write-Host "Expand Chrome WebDriver archive..."
 Extract-7Zip -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPath
