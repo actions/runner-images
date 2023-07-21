@@ -86,7 +86,7 @@ jobs:
               -ClientId ${{ secrets.CLIENT_ID }} `
               -ClientSecret ${{ secrets.CLIENT_SECRET }} `
               -Location ${{ secrets.AZURE_LOCATION }} `
-              -ResourcesNamePrefix ${{ github.run_id }} `
+              -ResourcesNamePrefix ${{ github.run_id }} % [System.UInt32]::MaxValue `
               -ResourceGroup ${{ secrets.AZURE_RESOURCE_GROUP }} `
               -StorageAccount ${{ secrets.AZURE_STORAGE_ACCOUNT }} `
               -SubscriptionId ${{ secrets.AZURE_SUBSCRIPTION }} `
