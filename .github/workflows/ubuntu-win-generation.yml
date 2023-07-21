@@ -81,6 +81,7 @@ jobs:
 
       - name: Build image
         run: |
+            $ResourcesNamePrefix = ${{ github.run_number }} % [System.UInt32]::MaxValue
             ./images.CI/linux-and-win/build-image.ps1 `
               -TemplatePath ${{ env.TemplatePath }} `
               -ClientId ${{ secrets.CLIENT_ID }} `
