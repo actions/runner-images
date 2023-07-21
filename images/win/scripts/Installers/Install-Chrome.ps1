@@ -51,15 +51,25 @@ if (-not (Test-Path -Path $ChromeDriverPath))
 Write-Host "Get the Chrome WebDriver download URL..."
 $RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
 $ChromePath = (Get-ItemProperty "$RegistryPath\chrome.exe").'(default)'
-$ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion
-$ChromeDriverVersionsUrl = "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json"
+[version]$ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion
+$ChromeBuild = "$($ChromeVersion.Major).$($ChromeVersion.Minor).$($ChromeVersion.Build)"
+$ChromeDriverVersionsUrl = "https://googlechromelabs.github.io/chrome-for-testing/latest-patch-versions-per-build-with-downloads.json"
 
 Write-Host "Chrome version is $ChromeVersion"
 $ChromeDriverVersions = Invoke-RestMethod -Uri $ChromeDriverVersionsUrl
-$ChromeDriverVersion = $ChromeDriverVersions.versions | Where-Object version -eq $ChromeVersion
+$ChromeDriverVersion = $ChromeDriverVersions.builds.$ChromeBuild
+
+if (-not ($ChromeDriverVersion)) {
+    $availableVersions = $ChromeDriverVersions.builds | Get-Member | Select-Object -ExpandProperty Name
+    Write-Host "Available chromedriver builds are $availableVersions"
+    Throw "Can't determine chromedriver version that matches chrome build $ChromeBuild"
+    exit 1
+}
+
+Write-Host "Chrome WebDriver version to install is $($ChromeDriverVersion.version)"
 $ChromeDriverZipDownloadUrl = ($ChromeDriverVersion.downloads.chromedriver | Where-Object platform -eq "win64").url
 
-Write-Host "Download Chrome WebDriver..."
+Write-Host "Download Chrome WebDriver from $ChromeDriverZipDownloadUrl..."
 $ChromeDriverArchPath = Start-DownloadWithRetry -Url $ChromeDriverZipDownloadUrl
 
 Write-Host "Expand Chrome WebDriver archive (without using directory names)..."
