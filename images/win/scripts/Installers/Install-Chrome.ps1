@@ -63,8 +63,9 @@ if (-not ($ChromeDriverVersion)) {
     $availableVersions = $ChromeDriverVersions.builds | Get-Member | Select-Object -ExpandProperty Name
     Write-Host "Available chromedriver builds are $availableVersions"
     Throw "Can't determine chromedriver version that matches chrome build $ChromeBuild"
-    exit 1
 }
+
+$ChromeDriverVersion.version | Out-File -FilePath "$ChromeDriverPath\versioninfo.txt" -Force;
 
 Write-Host "Chrome WebDriver version to install is $($ChromeDriverVersion.version)"
 $ChromeDriverZipDownloadUrl = ($ChromeDriverVersion.downloads.chromedriver | Where-Object platform -eq "win64").url
