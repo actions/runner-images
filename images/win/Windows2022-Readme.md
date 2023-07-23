@@ -469,6 +469,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Windows11SDK.22000                       | 17.6.33605.316  |
 | Microsoft.VisualStudio.Component.Windows11SDK.22621                       | 17.6.33605.316  |
 | Microsoft.VisualStudio.Component.Workflow                                 | 17.6.33605.316  |
+| Microsoft.VisualStudio.Component.WinXP                                    | 17.6.33605.316  |
 | Microsoft.VisualStudio.Component.WslDebugging                             | 17.6.33605.316  |
 | Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Native            | 17.6.33605.316  |
 | Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices                 | 17.6.33605.316  |
