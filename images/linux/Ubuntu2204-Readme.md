@@ -332,6 +332,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
 | libc6-dev              | 2.35-0ubuntu3.1                     |
 | libcurl4               | 7.81.0-1ubuntu1.10                  |
+| libcurl4-openssl-dev   | 7.81.0-1ubuntu1.10                  |
 | libgbm-dev             | 22.2.5-0ubuntu0.1\~22.04.3          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |

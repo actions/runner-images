@@ -351,6 +351,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
 | libc6-dev              | 2.31-0ubuntu9.9                   |
 | libcurl4               | 7.68.0-1ubuntu2.18                |
+| libcurl4-openssl-dev   | 7.68.0-1ubuntu2.18                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6build1                  |

@@ -161,6 +161,7 @@
             "libc++-dev",
             "libc6-dev",
             "libcurl4",
+            "libcurl4-openssl-dev",
             "libgbm-dev",
             "libgconf-2-4",
             "libgsl-dev",
