@@ -28,8 +28,9 @@ jobs:
     # "azure-builds" is dedicated runner not available in forks.
     # to reduce undesired run attempts in forks, stick jobs to "actions" organization only
     #
-    runs-on: azure-builds
-    if: ${{ github.repository_owner == 'actions' }}
+#    runs-on: azure-builds
+    runs-on: windows-latest
+#    if: ${{ github.repository_owner == 'actions' }}
     timeout-minutes: 1200
     steps:
       - name: Determine checkout type
@@ -80,24 +81,24 @@ jobs:
           "ImageType=$ImageType" | Out-File -Append -FilePath $env:GITHUB_ENV
 
       - name: Build image
-        run: | xxx
+        run: |
             $ResourcesNamePrefix = ${{ github.run_number }} % [System.UInt32]::MaxValue
             Write-Host '-=-=-=-=-=-=-=-=-=-='
             Write-Host $ResourcesNamePrefix
             Write-Host '=-=-=-=-=-=-=-=-=-=-'
-            ./images.CI/linux-and-win/build-image.ps1 `
-              -TemplatePath ${{ env.TemplatePath }} `
-              -ClientId ${{ secrets.CLIENT_ID }} `
-              -ClientSecret ${{ secrets.CLIENT_SECRET }} `
-              -Location ${{ secrets.AZURE_LOCATION }} `
-              -ResourcesNamePrefix ${{ github.run_number }} `
-              -ResourceGroup ${{ secrets.AZURE_RESOURCE_GROUP }} `
-              -StorageAccount ${{ secrets.AZURE_STORAGE_ACCOUNT }} `
-              -SubscriptionId ${{ secrets.AZURE_SUBSCRIPTION }} `
-              -TenantId ${{ secrets.AZURE_TENANT }} `
-              -VirtualNetworkName ${{ secrets.BUILD_AGENT_VNET_NAME }} `
-              -VirtualNetworkSubnet ${{ secrets.BUILD_AGENT_SUBNET_NAME }} `
-              -VirtualNetworkRG ${{ secrets.BUILD_AGENT_VNET_RESOURCE_GROUP }} `
+#            ./images.CI/linux-and-win/build-image.ps1 `
+#              -TemplatePath ${{ env.TemplatePath }} `
+#              -ClientId ${{ secrets.CLIENT_ID }} `
+#              -ClientSecret ${{ secrets.CLIENT_SECRET }} `
+#              -Location ${{ secrets.AZURE_LOCATION }} `
+#              -ResourcesNamePrefix `
+#              -ResourceGroup ${{ secrets.AZURE_RESOURCE_GROUP }} `
+#              -StorageAccount ${{ secrets.AZURE_STORAGE_ACCOUNT }} `
+#              -SubscriptionId ${{ secrets.AZURE_SUBSCRIPTION }} `
+#              -TenantId ${{ secrets.AZURE_TENANT }} `
+#              -VirtualNetworkName ${{ secrets.BUILD_AGENT_VNET_NAME }} `
+#              -VirtualNetworkSubnet ${{ secrets.BUILD_AGENT_SUBNET_NAME }} `
+#              -VirtualNetworkRG ${{ secrets.BUILD_AGENT_VNET_RESOURCE_GROUP }} `
         env:
           PACKER_LOG: 1
           PACKER_LOG_PATH: ${{ runner.temp }}/packer-log.txt
