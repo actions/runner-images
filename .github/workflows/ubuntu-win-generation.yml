@@ -80,7 +80,7 @@ jobs:
           "ImageType=$ImageType" | Out-File -Append -FilePath $env:GITHUB_ENV
 
       - name: Build image
-        run: |
+        run: | xxx
             $ResourcesNamePrefix = ${{ github.run_number }} % [System.UInt32]::MaxValue
             Write-Host '-=-=-=-=-=-=-=-=-=-='
             Write-Host $ResourcesNamePrefix
