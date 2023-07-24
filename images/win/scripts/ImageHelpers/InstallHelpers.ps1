@@ -451,11 +451,13 @@ function Extract-7Zip {
         [Parameter(Mandatory=$true)]
         [string]$Path,
         [Parameter(Mandatory=$true)]
-        [string]$DestinationPath
+        [string]$DestinationPath,
+        [ValidateSet("x", "e")]
+        [char]$ExtractMethod = "x"
     )
 
     Write-Host "Expand archive '$PATH' to '$DestinationPath' directory"
-    7z.exe x "$Path" -o"$DestinationPath" -y | Out-Null
+    7z.exe $ExtractMethod "$Path" -o"$DestinationPath" -y | Out-Null
 
     if ($LASTEXITCODE -ne 0)
     {
