@@ -86,6 +86,7 @@ jobs:
             Write-Host '-=-=-=-=-=-=-=-=-=-='
             Write-Host $ResourcesNamePrefix
             Write-Host '=-=-=-=-=-=-=-=-=-=-'
+            ./test.ps1
 #            ./images.CI/linux-and-win/build-image.ps1 `
 #              -TemplatePath ${{ env.TemplatePath }} `
 #              -ClientId ${{ secrets.CLIENT_ID }} `
