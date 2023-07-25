@@ -28,6 +28,8 @@ Function Install-Asset {
     Pop-Location
 }
 
+$arch = Get-Architecture
+
 # Get toolcache content from toolset
 $toolsToInstall = @("Python", "Node", "Go")
 $tools = Get-ToolsetValue "toolcache" | Where-Object {$toolsToInstall -contains $_.Name}
@@ -37,10 +39,10 @@ foreach ($tool in $tools) {
     $assets = Invoke-RestMethodWithRetry -Url $tool.url
 
     # Get github release asset for each version
-    foreach ($version in $tool.versions) {
+    foreach ($version in $tool.arch.$arch.versions) {
         $asset = $assets | Where-Object version -like $version `
                          | Select-Object -ExpandProperty files `
-                         | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) -and ($_.platform_version -eq $tool.platform_version)} `
+                         | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $arch)} `
                          | Select-Object -First 1
 
         Write-Host "Installing $($tool.name) $version..."
