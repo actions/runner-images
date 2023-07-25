@@ -12,8 +12,6 @@ on:
     types: labeled
     paths:
     - 'images/win/**'
-  schedule:
-    - cron: '0 0 * * *'
 
 jobs:
   Windows_2022:
