@@ -17,7 +17,7 @@ function GetChromiumRevision {
     # Temporarily hardcode revision as both requests
     # for 115.0.5790.102 and 115.0.5790.98 return old incorrect revision
     if [ $REVISION -eq "1583" ]; then
-       REVISION="1134878"
+       REVISION="1148114"
     fi
 
     # Some Google Chrome versions are based on Chromium revisions for which a (usually very old) Chromium release with the same number exist. So far this has heppened with 4 digits long Chromium revisions (1060, 1086).
