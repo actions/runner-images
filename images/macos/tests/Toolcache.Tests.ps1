@@ -10,7 +10,7 @@ Describe "Toolcache" {
         return [PSCustomObject] @{
             ToolName = ($_.name).ToLower()
             Arch = $arch
-            Versions = $_.arch.$arch.versions | ForEach-Object { $_.Replace(".*", "") }
+            Versions = $_.arch.$arch | Where-Object{ $_ } | ForEach-Object { $_.versions.Replace(".*", "") }
         }
     }
 
