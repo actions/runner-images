@@ -12,8 +12,6 @@ on:
     types: labeled
     paths:
     - 'images/linux/**'
-  schedule:
-    - cron: '0 0 * * *'
 
 jobs:
   Ubuntu_2004:
