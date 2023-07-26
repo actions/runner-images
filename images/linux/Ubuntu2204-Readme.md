@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[Ubuntu] Alpine 3.14 & 3.15 docker image will be removed on July, 17](https://github.com/actions/runner-images/issues/7824) |
-| [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
+| [[Ubuntu] Alpine 3.14 & 3.15 docker image will be removed on July, 24](https://github.com/actions/runner-images/issues/7824) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.2 LTS
 - Kernel Version: 5.15.0-1041-azure
-- Image Version: 20230716.1.0
+- Image Version: 20230724.1.0
 - Systemd version: 249.11-0ubuntu3.9
 
 ## Installed Software
@@ -23,7 +22,7 @@
 - Kotlin 1.9.0-release-358
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 18.16.1
+- Node.js 18.17.0
 - Perl 5.34.0
 - Python 3.10.6
 - Python3 3.10.6
@@ -33,15 +32,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.12.2
-- Homebrew 4.0.28
+- Homebrew 4.1.0
 - Miniconda 23.5.2
-- Npm 9.5.1
+- Npm 9.6.7
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.2.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit fba81a6a5)
+- Vcpkg (build from commit d765306b0)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -63,19 +62,19 @@ to accomplish this.
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.15.1
+- Ansible 2.15.2
 - apt-fast 1.9.12
 - AzCopy 10.19.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.2.1
 - Bazelisk 1.13.2
 - Bicep 0.19.5
 - Buildah 1.23.1
-- CMake 3.26.4
+- CMake 3.27.0
 - CodeQL Action Bundles 2.13.5 2.14.0
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.20.0+azure-1
-- Docker-Buildx 0.11.1
+- Docker Compose v2 2.20.2+azure-1
+- Docker-Buildx 0.11.2
 - Docker-Moby Client 20.10.25+azure-2
 - Docker-Moby Server 20.10.25+azure-2
 - Fastlane 2.214.0
@@ -86,20 +85,20 @@ to accomplish this.
 - Heroku 8.1.9
 - jq 1.6
 - Kind 0.20.0
-- Kubectl 1.27.3
+- Kubectl 1.27.4
 - Kustomize 5.1.0
 - Leiningen 2.10.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.30.1
+- Minikube 1.31.1
 - n 9.1.0
 - Newman 5.3.2
 - nvm 0.39.3
 - OpenSSL 3.0.2-0ubuntu1.10
-- Packer 1.9.1
+- Packer 1.9.2
 - Parcel 2.9.3
 - Podman 3.4.4
-- Pulumi 3.75.0
+- Pulumi 3.76.0
 - R 4.3.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -110,19 +109,19 @@ to accomplish this.
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.169
-- AWS CLI 2.13.1
+- Alibaba Cloud CLI 3.0.170
+- AWS CLI 2.13.3
 - AWS CLI Session Manager Plugin 1.2.463.0
-- AWS SAM CLI 1.90.0
+- AWS SAM CLI 1.93.0
 - Azure CLI 2.50.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.32.0
-- Google Cloud SDK 438.0.0
+- Google Cloud SDK 439.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 15.9.0
-- OpenShift CLI 4.13.4
+- Netlify CLI 15.9.1
+- OpenShift CLI 4.13.5
 - ORAS CLI 1.0.0
-- Vercel CLI 31.0.3
+- Vercel CLI 31.0.4
 
 ### Java
 | Version             | Vendor          | Environment Variable |
@@ -160,22 +159,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 114.0.5735.198
-- ChromeDriver 114.0.5735.90
+- Google Chrome 115.0.5790.102
+- ChromeDriver 115.0.5790.102
 - Chromium 114.0.5733.0
-- Microsoft Edge 114.0.1823.82
-- Microsoft Edge WebDriver 114.0.1823.82
+- Microsoft Edge 115.0.1901.183
+- Microsoft Edge WebDriver 115.0.1901.183
 - Selenium server 4.10.0
 - Mozilla Firefox 115.0.2
 - Geckodriver 0.33.0
 
 #### Environment variables
-| Name              | Value                               |
-| ----------------- | ----------------------------------- |
-| CHROMEWEBDRIVER   | /usr/local/share/chrome_driver      |
-| EDGEWEBDRIVER     | /usr/local/share/edge_driver        |
-| GECKOWEBDRIVER    | /usr/local/share/gecko_driver       |
-| SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
+| Name              | Value                                 |
+| ----------------- | ------------------------------------- |
+| CHROMEWEBDRIVER   | /usr/local/share/chromedriver-linux64 |
+| EDGEWEBDRIVER     | /usr/local/share/edge_driver          |
+| GECKOWEBDRIVER    | /usr/local/share/gecko_driver         |
+| SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
 - .NET Core SDK: 6.0.412, 7.0.109, 7.0.203, 7.0.306
@@ -215,7 +214,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 14.21.3
 - 16.20.1
-- 18.16.1
+- 18.17.0
 
 #### Python
 - 3.7.17
@@ -277,8 +276,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Docker images
 | Repository:Tag          | Digest                                                                   | Created    |
 | ----------------------- | ------------------------------------------------------------------------ | ---------- |
-| alpine:3.14             | sha256:0f2d5c38dd7a4f4f733e688e3a6733cb5ab1ac6e3cb4603a5dd564e5bfb80eed  | 2023-03-29 |
-| alpine:3.15             | sha256:3362f865019db5f14ac5154cb0db2c3741ad1cce0416045be422ad4de441b081  | 2023-06-14 |
 | alpine:3.16             | sha256:cbe5d5973103a2d03408d1689a6efde4ea4920bde9f4b51fe7872e60ce2d8e56  | 2023-06-14 |
 | alpine:3.17             | sha256:e95676db9e4a4f16f6cc01a8915368f82b018cc07aba951c1bd1db586c081388  | 2023-06-14 |
 | alpine:3.18             | sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1  | 2023-06-14 |
@@ -291,8 +288,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:14-alpine          | sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33  | 2023-03-29 |
 | node:16                 | sha256:466d0a05ecb1e5b9890960592311fa10c2bc6012fc27dbfdcc74abf10fc324fc  | 2023-07-04 |
 | node:16-alpine          | sha256:6c381d5dc2a11dcdb693f0301e8587e43f440c90cdb8933eaaaabb905d44cdb9  | 2023-06-21 |
-| node:18                 | sha256:f4698d49371c8a9fa7dd78b97fb2a532213903066e47966542b3b1d403449da4  | 2023-07-04 |
-| node:18-alpine          | sha256:d5b2a7869a4016b1847986ea52098fa404421e44281bb7615a9e3615e07f37fb  | 2023-06-21 |
+| node:18                 | sha256:e7e0921e352fc579d4d1807ecb2a91f42548cb5097e8bd2742e13bd672b7dc4a  | 2023-07-19 |
+| node:18-alpine          | sha256:93d91deea65c9a0475507e8bc8b1917d6278522322f00c00b3ab09cab6830060  | 2023-07-19 |
 | ubuntu:18.04            | sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98  | 2023-05-30 |
 | ubuntu:20.04            | sha256:c9820a44b950956a790c354700c1166a7ec648bc0d215fa438d3a339812f1d01  | 2023-06-28 |
 | ubuntu:22.04            | sha256:0bced47fffa3361afa981854fcabcd4577cd43cebbb808cea2b1f33a3dd7f508  | 2023-06-28 |
@@ -309,7 +306,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.0.9-2build6                       |
 | bzip2                  | 1.0.8-5build1                       |
 | coreutils              | 8.32-4.1ubuntu1                     |
-| curl                   | 7.81.0-1ubuntu1.10                  |
+| curl                   | 7.81.0-1ubuntu1.13                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
 | dnsutils               | 1:9.18.12-0ubuntu0.22.04.2          |
 | dpkg                   | 1.21.1ubuntu2.2                     |
@@ -331,7 +328,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
 | libc6-dev              | 2.35-0ubuntu3.1                     |
-| libcurl4               | 7.81.0-1ubuntu1.10                  |
+| libcurl4               | 7.81.0-1ubuntu1.13                  |
 | libgbm-dev             | 22.2.5-0ubuntu0.1\~22.04.3          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
