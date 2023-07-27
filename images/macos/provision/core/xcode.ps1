@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
-Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
+Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1" -DisableNameChecking
 
 # Spaceship Apple ID login fails due to Apple ID prompting to be upgraded to 2FA.
 # https://github.com/fastlane/fastlane/pull/18116
@@ -19,7 +19,7 @@ Write-Host "Installing Xcode versions..."
 $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
     $ErrorActionPreference = "Stop"
     Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
-    Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1"
+    Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1" -DisableNameChecking
 
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
     Confirm-XcodeIntegrity -Version $_.link

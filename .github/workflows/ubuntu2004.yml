@@ -8,16 +8,10 @@ on:
       CUSTOM_REPOSITORY_COMMIT_HASH:
         description: 'Commit hash'
         required: false
-  pull_request_target:
-    types: labeled
-    paths:
-    - 'images/linux/**'
-  schedule:
-    - cron: '0 0 * * *'
 
 jobs:
   Ubuntu_2004:
-    if: contains(github.event.pull_request.labels.*.name, 'CI ubuntu-all') || contains(github.event.pull_request.labels.*.name, 'CI ubuntu-2004') || (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule')
+    if: (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule')
     uses: ./.github/workflows/ubuntu-win-generation.yml
     with:
       image_name: 'ubuntu2004'
