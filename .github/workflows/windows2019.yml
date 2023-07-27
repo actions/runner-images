@@ -8,16 +8,10 @@ on:
       CUSTOM_REPOSITORY_COMMIT_HASH:
         description: 'Commit hash'
         required: false
-  pull_request_target:
-    types: labeled
-    paths:
-    - 'images/win/**'
-  schedule:
-    - cron: '0 0 * * *'
 
 jobs:
   Windows_2019:
-    if: contains(github.event.pull_request.labels.*.name, 'CI windows-all') || contains(github.event.pull_request.labels.*.name, 'CI windows-2019') || (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule')
+    if: (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule')
     uses: ./.github/workflows/ubuntu-win-generation.yml
     with:
       image_name: 'windows2019'
