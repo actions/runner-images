@@ -1,10 +1,6 @@
-| Announcements |
-|-|
-| [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
-***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4645
-- Image Version: 20230716.1.0
+- Image Version: 20230724.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -17,7 +13,7 @@
 - Julia 1.9.2
 - Kotlin 1.9.0
 - LLVM 15.0.7
-- Node 18.16.1
+- Node 18.17.0
 - Perl 5.32.1
 - PHP 8.2.8
 - Python 3.7.9
@@ -28,12 +24,12 @@
 - Composer 2.5.8
 - Helm 3.12.1
 - Miniconda 23.5.2 (pre-installed on the image but not added to PATH)
-- NPM 9.5.1
+- NPM 9.6.7
 - NuGet 6.6.1.2
-- pip 23.2 (python 3.7)
+- pip 23.2.1 (python 3.7)
 - Pipx 1.2.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit fba81a6a5)
+- Vcpkg (build from commit d765306b0)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -56,17 +52,17 @@
 - Bazelisk 1.13.2
 - Bicep 0.19.5
 - Cabal 3.10.1.0
-- CMake 3.26.4
+- CMake 3.27.0
 - CodeQL Action Bundles 2.13.5 2.14.0
 - Docker 24.0.4
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.20.0
-- Docker-wincred 0.7.0
+- Docker Compose v2 2.20.2
+- Docker-wincred 0.8.0
 - ghc 9.6.2
-- Git 2.41.0.windows.1
+- Git 2.41.0.windows.3
 - Git LFS 3.3.0
-- Google Cloud SDK 438.0.0
-- ImageMagick 7.1.1-12
+- Google Cloud SDK 439.0.0
+- ImageMagick 7.1.1-14
 - InnoSetup 6.2.2
 - jq 1.6
 - Kind 0.20.0
@@ -78,7 +74,7 @@
 - OpenSSL 1.1.1u
 - Packer 1.9.1
 - Parcel 2.9.3
-- Pulumi 3.75.0
+- Pulumi 3.76.0
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -91,9 +87,9 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.169
-- AWS CLI 2.13.1
-- AWS SAM CLI 1.90.0
+- Alibaba Cloud CLI 3.0.170
+- AWS CLI 2.13.3
+- AWS SAM CLI 1.93.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.50.0
 - Azure DevOps CLI extension 0.26.0
@@ -116,10 +112,10 @@
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 114.0.5735.199
-- Chrome Driver 114.0.5735.90
-- Microsoft Edge 114.0.1823.82
-- Microsoft Edge Driver 114.0.1823.82
+- Google Chrome 115.0.5790.102
+- Chrome Driver 115.0.5790.102
+- Microsoft Edge 115.0.1901.183
+- Microsoft Edge Driver 115.0.1901.183
 - Mozilla Firefox 115.0.2
 - Gecko Driver 0.33.0
 - IE Driver 4.10.0.0
@@ -136,10 +132,10 @@
 ### Java
 | Version             | Vendor          | Environment Variable |
 | ------------------- | --------------- | -------------------- |
-| 8.0.372+7 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.19+7           | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 8.0.382+5 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.20+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
 | 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
-| 17.0.7+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| 17.0.8+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -171,7 +167,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 14.21.3
 - 16.20.1
-- 18.16.1
+- 18.17.0
 
 #### Python
 - 3.6.8
@@ -218,7 +214,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Database tools
 - Azure CosmosDb Emulator 2.14.12.0
 - DacFx 162.0.52.1
-- MySQL 5.7.42.0
+- MySQL 5.7.43.0
 - SQL OLEDB Driver 18.6.3.0
 - SQLPS 1.0
 
@@ -459,7 +455,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ms-biztalk.BizTalk                                                        | 3.13.2.0        |
 | ProBITools.MicrosoftAnalysisServicesModelingProjects                      | 2.9.18          |
 | ProBITools.MicrosoftReportProjectsforVisualStudio                         | 2.6.11          |
-| SSIS.SqlServerIntegrationServicesProjects                                 | 4.4             |
+| SSIS.SqlServerIntegrationServicesProjects                                 | 4.5             |
 | VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects             | 1.0.2           |
 | Windows Driver Kit                                                        | 10.1.22000.1    |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.21381.0    |
@@ -511,7 +507,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.370
+- AWSPowershell: 4.1.376
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.1.0
@@ -561,4 +557,3 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:5ff317aa3f2f0e19610c95bae5b9ba66cbe151fdf96765399ef552fb29e03b2d  | 2023-07-11 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:184914b6008b14ddaf1f9f8944a38c0b2f5ef7e9b13c694a5913528370eed73e  | 2023-07-07 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:31c6e1eb571ced8af4a543204ec1e410161677de56a6f76ce0983928b02af07c  | 2023-07-07 |
-
