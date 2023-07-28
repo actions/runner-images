@@ -4,6 +4,7 @@ $os = Get-OSVersion
 Describe "Chrome" -Skip:($os.IsVenturaArm64) {
     BeforeAll {
         $chromeLocation = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        $chromeForTestingLocation = "/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
     }
 
     It "Chrome" {
@@ -11,12 +12,17 @@ Describe "Chrome" -Skip:($os.IsVenturaArm64) {
         "'$chromeLocation' --version" | Should -ReturnZeroExitCode
     }
 
+    It "Chrome for Testing" {
+        $chromeForTestingLocation | Should -Exist
+        "'$chromeForTestingLocation' --version" | Should -ReturnZeroExitCode
+    }
+
     It "Chrome Driver" {
         "chromedriver --version" | Should -ReturnZeroExitCode
     }
 
-    It "Chrome and Chrome Driver major versions are the same" {
-        $chromeMajor = (& $chromeLocation --version).Trim("Google Chrome ").Split(".")[0]
+    It "Chrome for Testing and Chrome Driver major versions are the same" {
+        $chromeMajor = (& $chromeForTestingLocation --version).Trim("Google Chrome for Testing ").Split(".")[0]
         $chromeDriverMajor = (chromedriver --version).Trim("ChromeDriver ").Split(".")[0]
         $chromeMajor | Should -BeExactly $chromeDriverMajor
     }
