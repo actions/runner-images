@@ -1,6 +1,7 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
+$arch = Get-Architecture
 $os = Get-OSVersion
 
 Describe "Toolcache" {
@@ -8,12 +9,12 @@ Describe "Toolcache" {
     [array]$packages += Get-ToolsetValue -KeyPath "toolcache" | ForEach-Object {
         return [PSCustomObject] @{
             ToolName = ($_.name).ToLower()
-            Arch = $_.arch
-            Versions = $_.versions | ForEach-Object { $_.Replace(".*", "") }
+            Arch = $arch
+            Versions = $_.arch.$arch | Where-Object{ $_ } | ForEach-Object { $_.versions.Replace(".*", "") }
         }
     }
 
-    Context "Python" -Skip:($os.IsVenturaArm64) {
+    Context "Python" {
         $pythonDirectory = Join-Path $toolcacheDirectory "Python"
         $pythonPackage = $packages | Where-Object { $_.ToolName -eq "python" } | Select-Object -First 1
         $testCase = @{ PythonDirectory = $pythonDirectory }
@@ -142,7 +143,7 @@ Describe "Toolcache" {
         }
     }
 
-    Context "Node" -Skip:($os.IsVenturaArm64) {
+    Context "Node" {
         $nodeDirectory = Join-Path $toolcacheDirectory "node"
         $nodePackage = $packages | Where-Object { $_.ToolName -eq "node" } | Select-Object -First 1
         $testCase = @{ NodeDirectory = $nodeDirectory }
@@ -192,7 +193,7 @@ Describe "Toolcache" {
         }
     }
 
-    Context "Go" -Skip:($os.IsVenturaArm64) {
+    Context "Go" {
         $goDirectory = Join-Path $toolcacheDirectory "go"
         $goPackage = $packages | Where-Object { $_.ToolName -eq "go" } | Select-Object -First 1
         $testCase = @{ GoDirectory = $goDirectory }
