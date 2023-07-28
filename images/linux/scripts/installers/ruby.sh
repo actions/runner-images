@@ -22,7 +22,7 @@ fi
 apt-get install -y libz-dev openssl libssl-dev
 
 echo "Install Ruby from toolset..."
-PACKAGE_TAR_NAMES=$(curl -s "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
+PACKAGE_TAR_NAMES=$(curl -fsSL "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
 TOOLSET_VERSIONS=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .versions[]')
 PLATFORM_VERSION=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .platform_version')
 RUBY_PATH="$AGENT_TOOLSDIRECTORY/Ruby"

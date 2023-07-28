@@ -74,7 +74,7 @@ function InstallPyPy
 }
 
 # Installation PyPy
-pypyVersions=$(curl https://downloads.python.org/pypy/versions.json)
+pypyVersions=$(curl -fsSL https://downloads.python.org/pypy/versions.json)
 toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
 
 for toolsetVersion in $toolsetVersions; do

@@ -7,7 +7,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Retrieve the CLI versions and bundle tags of the latest two CodeQL bundles.
-base_url="$(curl -sSL https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json)"
+base_url="$(curl -fsSL https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json)"
 codeql_tag_name="$(echo "$base_url" | jq -r '.bundleVersion')"
 codeql_cli_version="$(echo "$base_url" | jq -r '.cliVersion')"
 prior_codeql_tag_name="$(echo "$base_url" | jq -r '.priorBundleVersion')"
