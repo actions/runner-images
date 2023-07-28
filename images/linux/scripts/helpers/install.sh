@@ -72,7 +72,7 @@ get_github_package_download_url() {
     local VERSION=$3
     local SEARCH_IN_COUNT="100"
 
-    json=$(curl -sSL "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
+    json=$(curl -fsSL "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
 
     if [ -n "$VERSION" ]; then
         tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "\w*${VERSION}" | tail -1)

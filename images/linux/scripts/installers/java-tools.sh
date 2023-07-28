@@ -136,7 +136,7 @@ ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
 # Install Gradle
 # This script founds the latest gradle release from https://services.gradle.org/versions/all
 # The release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
-gradleJson=$(curl -s https://services.gradle.org/versions/all)
+gradleJson=$(curl -fsSL https://services.gradle.org/versions/all)
 gradleLatestVersion=$(echo ${gradleJson} | jq -r '.[] | select(.version | contains("-") | not).version' | sort -V | tail -n1)
 gradleDownloadUrl=$(echo ${gradleJson} | jq -r ".[] | select(.version==\"$gradleLatestVersion\") | .downloadUrl")
 echo "gradleUrl=${gradleDownloadUrl}"
