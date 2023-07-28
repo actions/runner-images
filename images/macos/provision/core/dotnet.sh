@@ -23,7 +23,7 @@ echo "Parsing dotnet SDK (except rc and preview versions) from .json..."
 DOTNET_VERSIONS=($(get_toolset_value ".dotnet.arch[\"$arch\"].versions | .[]"))
 
 for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
-    RELEASE_URL="https://raw.githubusercontent.com/dotnet/core/master/release-notes/${DOTNET_VERSION}/releases.json"
+    RELEASE_URL="https://raw.githubusercontent.com/dotnet/core/main/release-notes/${DOTNET_VERSION}/releases.json"
     download_with_retries "$RELEASE_URL" "/tmp" "dotnet_${DOTNET_VERSION}.json"
 
     if [[ $DOTNET_VERSION == "6.0" ]]; then
