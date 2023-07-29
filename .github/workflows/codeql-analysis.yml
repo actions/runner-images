@@ -70,3 +70,18 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
+      
+      - ad: Planlanmış Kilometre Taşları
+  # Kesin taahhüde veya sürüme sabitleyebilirsiniz.
+  # kullanımlar: readmeio/scheduled-milestones@0e87deaf0083675156111def24b8a29a97aa6fb1
+  kullanır: readmeio/scheduled-milestones@v1.0.0
+  ile:
+    # GitHub kimlik doğrulama belirteci
+    jeton:
+    # Planlanan kilometre taşı başlığınız için bir önek.
+    başlık: # varsayılan, İnceleme İçin Hazır
+    # Önümüzdeki haftanın kilometre taşlarını istediğiniz günlerinin virgülle ayrılmış listesi.
+    günler:
+    # "Date.toLocaleDateString()" için seçenekler. Ayrıntılar için https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString'e bakın.
+    tarih_seçenekleri: # isteğe bağlı
+      
