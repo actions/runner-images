@@ -166,3 +166,16 @@ function Get-Architecture {
 
     return $arch
 }
+
+Function Test-CommandExists {
+    param
+    (
+        $command
+    )
+
+    try {
+        if(Get-Command $command -ErrorAction 'Stop' ){ $true }
+    } Catch {
+        $false
+    }
+}
