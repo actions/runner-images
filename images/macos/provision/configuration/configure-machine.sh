@@ -37,7 +37,7 @@ defaults write com.apple.VoiceOver4/default SCREnableAppleScript -bool YES
 # sudo security delete-certificate -Z FF6797793A3CD798DC5B2ABEF56F73EDC9F83A64 /Library/Keychains/System.keychain
 # Big Sur requires user interaction to add a cert https://developer.apple.com/forums/thread/671582, we need to use a workaround with SecItemAdd swift method
 
-swiftc "${HOME}/image-generation/add-certificate.swift"
+swiftc -suppress-warnings "${HOME}/image-generation/add-certificate.swift"
 
 
 certs=(
