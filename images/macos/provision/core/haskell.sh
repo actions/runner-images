@@ -1,6 +1,6 @@
 #!/bin/bash -e -o pipefail
 
-curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://get-ghcup.haskell.org | sh
 export PATH="$HOME/.ghcup/bin:$PATH"
 echo 'export PATH="$PATH:$HOME/.ghcup/bin"' >> "$HOME/.bashrc"
 

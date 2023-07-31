@@ -22,7 +22,7 @@ fi
 if ! is_VenturaArm64; then
     echo "Install Ruby from toolset..."
     [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
-    PACKAGE_TAR_NAMES=$(curl "${authString[@]}" -s "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
+    PACKAGE_TAR_NAMES=$(curl "${authString[@]}" -fsSL "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
     TOOLSET_VERSIONS=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .arch.'$arch'.versions[]')
     RUBY_PATH="$AGENT_TOOLSDIRECTORY/Ruby"
 
