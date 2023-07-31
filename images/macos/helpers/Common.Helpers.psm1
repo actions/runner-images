@@ -173,9 +173,5 @@ Function Test-CommandExists {
         $command
     )
 
-    try {
-        if(Get-Command $command -ErrorAction 'Stop' ){ $true }
-    } Catch {
-        $false
-    }
+    [boolean] (Get-Command $command  -ErrorAction 'SilentlyContinue')
 }
