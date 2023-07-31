@@ -1,5 +1,5 @@
 
-# GitHub Actions Runner Images
+# GitHub Actions Runner 
 
 **Table of Contents**
 
