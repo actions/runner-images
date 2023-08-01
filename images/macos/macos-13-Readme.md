@@ -1,7 +1,7 @@
 # macOS 13
 - OS Version: macOS 13.5 (22G74)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20230731.2
+- Image Version: 20230801.2
 
 ## Installed Software
 
@@ -32,7 +32,7 @@
 - Pip3 23.2.1 (python 3.11)
 - Pipx 1.2.0
 - RubyGems 3.4.17
-- Vcpkg 2023 (build from commit b43873aa8)
+- Vcpkg 2023 (build from commit 0895a8130)
 - Yarn 1.22.19
 
 ### Project Management
@@ -53,7 +53,7 @@
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
 - jq 1.6
-- OpenSSL 3.1.1 30 May 2023 (Library: OpenSSL 3.1.1 30 May 2023)
+- OpenSSL 1.1.1u  30 May 2023
 - Packer 1.9.2
 - pkg-config 0.29.2
 - Vagrant 2.3.7
@@ -88,7 +88,7 @@
 - ChromeDriver 115.0.5790.102
 - Microsoft Edge 115.0.1901.188
 - Microsoft Edge WebDriver 115.0.1901.188
-- Mozilla Firefox 115.0.3
+- Mozilla Firefox 116.0
 - geckodriver 0.33.0
 - Selenium server 4.10.0
 
@@ -150,7 +150,7 @@
 - PowerShell 7.2.13
 
 #### PowerShell Modules
-- Az: 10.1.0
+- Az: 10.2.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
