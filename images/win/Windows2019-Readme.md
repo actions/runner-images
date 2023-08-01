@@ -1,6 +1,6 @@
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4645
-- Image Version: 20230724.1.0
+- Image Version: 20230731.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -20,7 +20,7 @@
 - Ruby 2.5.9p229
 
 ### Package Management
-- Chocolatey 2.1.0
+- Chocolatey 2.2.0
 - Composer 2.5.8
 - Helm 3.12.1
 - Miniconda 23.5.2 (pre-installed on the image but not added to PATH)
@@ -29,7 +29,7 @@
 - pip 23.2.1 (python 3.7)
 - Pipx 1.2.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit d765306b0)
+- Vcpkg (build from commit 8b04a7bd9)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -47,21 +47,21 @@
 ### Tools
 - 7zip 23.01
 - aria2 1.36.0
-- azcopy 10.19.0
-- Bazel 6.2.1
+- azcopy 10.20.0
+- Bazel 6.3.1
 - Bazelisk 1.13.2
 - Bicep 0.19.5
 - Cabal 3.10.1.0
-- CMake 3.27.0
-- CodeQL Action Bundles 2.13.5 2.14.0
-- Docker 24.0.4
+- CMake 3.27.1
+- CodeQL Action Bundles 2.14.0 2.14.1
+- Docker 24.0.5
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.20.2
 - Docker-wincred 0.8.0
 - ghc 9.6.2
 - Git 2.41.0.windows.3
 - Git LFS 3.3.0
-- Google Cloud SDK 439.0.0
+- Google Cloud SDK 440.0.0
 - ImageMagick 7.1.1-14
 - InnoSetup 6.2.2
 - jq 1.6
@@ -72,9 +72,9 @@
 - Newman 5.3.2
 - NSIS 3.08
 - OpenSSL 1.1.1u
-- Packer 1.9.1
+- Packer 1.9.2
 - Parcel 2.9.3
-- Pulumi 3.76.0
+- Pulumi 3.76.1
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -88,13 +88,13 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.170
-- AWS CLI 2.13.3
-- AWS SAM CLI 1.93.0
+- AWS CLI 2.13.4
+- AWS SAM CLI 1.94.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.50.0
 - Azure DevOps CLI extension 0.26.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.32.0
+- GitHub CLI 2.32.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -112,11 +112,11 @@
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 115.0.5790.102
+- Google Chrome 115.0.5790.110
 - Chrome Driver 115.0.5790.102
-- Microsoft Edge 115.0.1901.183
-- Microsoft Edge Driver 115.0.1901.183
-- Mozilla Firefox 115.0.2
+- Microsoft Edge 115.0.1901.188
+- Microsoft Edge Driver 115.0.1901.188
+- Mozilla Firefox 115.0.3
 - Gecko Driver 0.33.0
 - IE Driver 4.10.0.0
 - Selenium server 4.10.0
@@ -227,12 +227,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
 | ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.11.33801.447 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Visual Studio Enterprise 2019 | 16.11.33920.266 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.11.33801.199 |
+| Component.Android.NDK.R16B                                                | 16.11.33919.289 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -507,10 +507,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.376
+- AWSPowershell: 4.1.382
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.1.0
+- Microsoft.Graph: 2.2.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
