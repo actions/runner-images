@@ -31,8 +31,7 @@ $xcodeVersions | ForEach-Object {
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
 
-    ##if ($_.link.Split(".")[0] -ge 14) {
-    if ($_.link.Split(".")[0] -eq 14) {
+    if ($_.link.Split(".")[0] -ge 14) {
         # Additional simulator runtimes are included by default for Xcode < 14
         Install-AdditionalSimulatorRuntimes -Version $_.link
     }
