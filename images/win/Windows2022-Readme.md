@@ -1,6 +1,6 @@
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1850
-- Image Version: 20230724.1.0
+- Image Version: 20230730.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -20,7 +20,7 @@
 - Ruby 3.0.6p216
 
 ### Package Management
-- Chocolatey 2.1.0
+- Chocolatey 2.2.0
 - Composer 2.5.8
 - Helm 3.12.1
 - Miniconda 23.5.2 (pre-installed on the image but not added to PATH)
@@ -29,7 +29,7 @@
 - pip 23.2.1 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit d765306b0)
+- Vcpkg (build from commit 8b04a7bd9)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -47,14 +47,14 @@
 ### Tools
 - 7zip 23.01
 - aria2 1.36.0
-- azcopy 10.19.0
-- Bazel 6.2.1
+- azcopy 10.20.0
+- Bazel 6.3.0
 - Bazelisk 1.13.2
 - Bicep 0.19.5
 - Cabal 3.10.1.0
-- CMake 3.27.0
-- CodeQL Action Bundles 2.13.5 2.14.0
-- Docker 24.0.4
+- CMake 3.27.1
+- CodeQL Action Bundles 2.14.0 2.14.1
+- Docker 24.0.5
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.20.2
 - Docker-wincred 0.8.0
@@ -71,8 +71,8 @@
 - Newman 5.3.2
 - NSIS 3.08
 - OpenSSL 1.1.1u
-- Packer 1.9.1
-- Pulumi 3.76.0
+- Packer 1.9.2
+- Pulumi 3.76.1
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -86,12 +86,12 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.170
-- AWS CLI 2.13.3
-- AWS SAM CLI 1.93.0
+- AWS CLI 2.13.4
+- AWS SAM CLI 1.94.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.50.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.32.0
+- GitHub CLI 2.32.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -109,11 +109,11 @@
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 115.0.5790.102
+- Google Chrome 115.0.5790.110
 - Chrome Driver 115.0.5790.102
-- Microsoft Edge 115.0.1901.183
-- Microsoft Edge Driver 115.0.1901.183
-- Mozilla Firefox 115.0.2
+- Microsoft Edge 115.0.1901.188
+- Microsoft Edge Driver 115.0.1901.188
+- Mozilla Firefox 115.0.3
 - Gecko Driver 0.33.0
 - IE Driver 4.10.0.0
 - Selenium server 4.10.0
@@ -561,10 +561,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.376
+- AWSPowershell: 4.1.382
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.1.0
+- Microsoft.Graph: 2.2.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
