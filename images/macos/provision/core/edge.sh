@@ -13,7 +13,7 @@ echo "Version of Microsoft Edge: ${EDGE_VERSION}"
 echo "Installing Microsoft Edge WebDriver..."
 
 EDGE_DRIVER_VERSION_URL="https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDGE_VERSION_MAJOR}_MACOS"
-EDGE_DRIVER_LATEST_VERSION=$(curl -s "$EDGE_DRIVER_VERSION_URL" | iconv -f utf-16 -t utf-8 | tr -d '\r')
+EDGE_DRIVER_LATEST_VERSION=$(curl -fsSL "$EDGE_DRIVER_VERSION_URL" | iconv -f utf-16 -t utf-8 | tr -d '\r')
 EDGE_DRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_DRIVER_LATEST_VERSION}/edgedriver_mac64.zip"
 
 echo "Compatible version of WebDriver: ${EDGE_DRIVER_LATEST_VERSION}"
