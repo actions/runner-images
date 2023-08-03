@@ -6,7 +6,13 @@
 # Install mongodb package
 $toolsetVersion = (Get-ToolsetContent).mongodb.version
 $latestChocoPackage = Get-LatestChocoPackageVersion -TargetVersion $toolsetVersion -PackageName "mongodb"
-Choco-Install -PackageName mongodb -ArgumentList "--version=$latestChocoPackage"
+
+$installDir = "c:\PROGRA~1\MongoDB"
+$downloadURL = "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$latestChocoPackage-signed.msi"
+$downloadPath = "C:\temp\mongodb.msi"
+Invoke-Webrequest -URI $downloadURL -OutFile ( New-Item -Path $downloadPath -Force )
+cmd /c start /wait msiexec /q /i $downloadPath INSTALLLOCATION=$installDir ADDLOCAL="all"
+Remove-Item $downloadPath
 
 # Add mongodb to the PATH
 $mongodbService = "mongodb"
