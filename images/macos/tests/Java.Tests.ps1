@@ -27,13 +27,8 @@ Describe "Java" -Skip:($os.IsVenturaArm64) {
 
     $toolsetJava = Get-ToolsetValue "java"
     $defaultVersion = $toolsetJava.default
-    $defaultVendor = $toolsetJava.default_vendor
-    $javaVendors = $toolsetJava.vendors
+    $jdkVersions = $toolsetJava.versions
 
-    [array]$jdkVersions = ($javaVendors | Where-Object {$_.name -eq $defaultVendor}).versions
-    [array]$adoptJdkVersions = ($javaVendors | Where-Object {$_.name -eq "Adopt"}).versions
-
-    $adoptCases = $adoptJdkVersions | ForEach-Object { @{Version = $_} }
     $testCases = $jdkVersions | ForEach-Object { @{ Title = $_; Version = (Get-NativeVersionFormat $_); EnvVariable = "JAVA_HOME_${_}_X64" } }
     $testCases += @{ Title = "Default"; Version = (Get-NativeVersionFormat $defaultVersion); EnvVariable = "JAVA_HOME" }
 
@@ -53,17 +48,6 @@ Describe "Java" -Skip:($os.IsVenturaArm64) {
                 It "Version is default" -TestCases $_ {
                     Validate-JavaVersion -JavaCommand "java -version" -ExpectedVersion $Version
                 }
-            }
-        }
-    }
-
-    Context "Java Adopt" {
-        Describe "Java Adopt" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
-                It "Java Adopt <Version>" -TestCases $adoptCases {
-                $adoptPath = Join-Path (Get-ChildItem ${env:AGENT_TOOLSDIRECTORY}\Java_Adopt_jdk\${Version}*) "x64\Contents\Home\bin\java"
-
-                $result = Get-CommandResult "`"$adoptPath`" -version"
-                $result.ExitCode | Should -Be 0
             }
         }
     }

@@ -14,7 +14,7 @@ arch=$(get_arch)
 
 # Download installer from dot.net and keep it locally
 DOTNET_INSTALL_SCRIPT="https://dot.net/v1/dotnet-install.sh"
-curl -L -o "dotnet-install.sh" "$DOTNET_INSTALL_SCRIPT"
+curl -fsSL -o "dotnet-install.sh" "$DOTNET_INSTALL_SCRIPT"
 chmod +x ./dotnet-install.sh
 
 ARGS_LIST=()

@@ -3,10 +3,9 @@ source ~/utils/utils.sh
 
 createEnvironmentVariable() {
     local JAVA_VERSION=$1
-    local VENDOR_NAME=$2
-    local DEFAULT=$3
+    local DEFAULT=$2
 
-    INSTALL_PATH_PATTERN=$(echo ${AGENT_TOOLSDIRECTORY}/Java_${VENDOR_NAME}_jdk/${JAVA_VERSION}*/x64/Contents/Home/)
+    INSTALL_PATH_PATTERN=$(echo ${AGENT_TOOLSDIRECTORY}/Java_Temurin-Hotspot_jdk/${JAVA_VERSION}*/x64/Contents/Home/)
 
     if [[ ${DEFAULT} == "True" ]]; then
         echo "Setting up JAVA_HOME variable to ${INSTALL_PATH_PATTERN}"
@@ -19,62 +18,46 @@ createEnvironmentVariable() {
 
 installOpenJDK() {
     local JAVA_VERSION=$1
-    local VENDOR_NAME=$2
 
     # Get link for Java binaries and Java version
-    if [[ ${VENDOR_NAME} == "Temurin-Hotspot" ]]; then
-        assetUrl=$(curl -s "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
-    elif [[ ${VENDOR_NAME} == "Adopt" ]]; then
-        assetUrl=$(curl -s "https://api.adoptopenjdk.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
-    else
-        echo "${VENDOR_NAME} is invalid, valid names are: Temurin-Hotspot and Adopt"
-        exit 1
-    fi
+    assetUrl=$(curl -fsSL "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
 
     asset=$(echo ${assetUrl} | jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="x64")')
     archivePath=$(echo ${asset} | jq -r '.binary.package.link')
     fullVersion=$(echo ${asset} | jq -r '.version.semver' | tr '+' '-')
 
-    JAVA_TOOLCACHE_PATH=${AGENT_TOOLSDIRECTORY}/Java_${VENDOR_NAME}_jdk
+    JAVA_TOOLCACHE_PATH=${AGENT_TOOLSDIRECTORY}/Java_Temurin-Hotspot_jdk
 
     javaToolcacheVersionPath=$JAVA_TOOLCACHE_PATH/${fullVersion}
     javaToolcacheVersionArchPath=${javaToolcacheVersionPath}/x64
 
     # Download and extract Java binaries
-    download_with_retries ${archivePath} /tmp OpenJDK-${VENDOR_NAME}-${fullVersion}.tar.gz
+    download_with_retries ${archivePath} /tmp OpenJDK-${fullVersion}.tar.gz
     
     echo "Creating ${javaToolcacheVersionArchPath} directory"
     mkdir -p ${javaToolcacheVersionArchPath}
 
-    tar -xf /tmp/OpenJDK-${VENDOR_NAME}-${fullVersion}.tar.gz -C ${javaToolcacheVersionArchPath} --strip-components=1
+    tar -xf /tmp/OpenJDK-${fullVersion}.tar.gz -C ${javaToolcacheVersionArchPath} --strip-components=1
     # Create complete file
     touch ${javaToolcacheVersionPath}/x64.complete
 
     # Create a symlink to '/Library/Java/JavaVirtualMachines'
     # so '/usr/libexec/java_home' will be able to find Java
-    sudo ln -sf ${javaToolcacheVersionArchPath} /Library/Java/JavaVirtualMachines/${VENDOR_NAME}-${JAVA_VERSION}.jdk
+    sudo ln -sf ${javaToolcacheVersionArchPath} /Library/Java/JavaVirtualMachines/Temurin-Hotspot-${JAVA_VERSION}.jdk
 }
 
 defaultVersion=$(get_toolset_value '.java.default')
-defaultVendor=$(get_toolset_value '.java.default_vendor')
-jdkVendors=($(get_toolset_value '.java.vendors[].name'))
+jdkVersionsToInstall=($(get_toolset_value ".java.versions[]"))
 
-for jdkVendor in ${jdkVendors[@]}; do
-
-     # get vendor-specific versions
-     jdkVersionsToInstall=($(get_toolset_value ".java.vendors[] | select (.name==\"${jdkVendor}\") | .versions[]"))
-
-     for jdkVersionToInstall in ${jdkVersionsToInstall[@]}; do
-
-        installOpenJDK ${jdkVersionToInstall} ${jdkVendor}
-
-        isDefaultVersion=False; [[ ${jdkVersionToInstall} == ${defaultVersion} ]] && isDefaultVersion=True
-
-        if [[ ${jdkVendor} == ${defaultVendor} ]]; then
-            createEnvironmentVariable ${jdkVersionToInstall} ${jdkVendor} ${isDefaultVersion}
-        fi
-
-    done
+for jdkVersionToInstall in ${jdkVersionsToInstall[@]}; do
+    installOpenJDK ${jdkVersionToInstall}
+    
+    if [[ ${jdkVersionToInstall} == ${defaultVersion} ]]
+    then
+        createEnvironmentVariable ${jdkVersionToInstall} True
+    else
+        createEnvironmentVariable ${jdkVersionToInstall} False
+    fi
 done
 
 echo Installing Maven...

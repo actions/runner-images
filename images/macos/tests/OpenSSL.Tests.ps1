@@ -1,7 +1,7 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 $os = Get-OSVersion
 
-Describe "OpenSSL" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "OpenSSL" -Skip:($os.IsVenturaArm64) {
     Context "OpenSSL Version" {
         It "OpenSSL is available" {
             "openssl version" | Should -ReturnZeroExitCode
