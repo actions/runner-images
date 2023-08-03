@@ -165,6 +165,7 @@ build {
       "./provision/core/dotnet.sh",
       "./provision/core/python.sh",
       "./provision/core/azcopy.sh",
+      "./provision/core/openssl.sh",
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",

@@ -202,7 +202,7 @@ get_github_package_download_url() {
 
     [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
 
-    json=$(curl "${authString[@]}" -sSf "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
+    json=$(curl "${authString[@]}" -fsSL "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
 
     if [[ "$VERSION" == "latest" ]]; then
         tagName=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0)).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | tail -1)

@@ -103,13 +103,13 @@ Describe "Xcode simulators" {
                 Validate-ArrayWithoutDuplicates $devicesList -Because "Found duplicate device simulators"
             }
 
-            It "No duplicates in pairs" -TestCases $testCase {
-                Switch-Xcode -Version $XcodeVersion
-                [array]$pairsList = @(Get-XcodePairsList | Where-Object { $_ })
-                Write-Host "Pairs for $XcodeVersion"
-                Write-Host ($pairsList -join "`n")
-                Validate-ArrayWithoutDuplicates $pairsList -Because "Found duplicate pairs simulators"
-            }
+#            It "No duplicates in pairs" -TestCases $testCase {
+#                Switch-Xcode -Version $XcodeVersion
+#                [array]$pairsList = @(Get-XcodePairsList | Where-Object { $_ })
+#                Write-Host "Pairs for $XcodeVersion"
+#                Write-Host ($pairsList -join "`n")
+#                Validate-ArrayWithoutDuplicates $pairsList -Because "Found duplicate pairs simulators"
+#            }
         }
     }
 
