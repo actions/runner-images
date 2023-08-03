@@ -28,13 +28,7 @@
     },
     "java": {
         "default": "17",
-        "default_vendor": "Temurin-Hotspot",
-        "vendors": [
-            {
-                "name": "Temurin-Hotspot",
-                "versions": [ "8", "11", "17" ]
-            }
-        ]
+        "versions": [ "8", "11", "17" ]
     },
     "android": {
         "platform_min_version": "27",
