@@ -15,7 +15,7 @@ Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentLi
 $MysqlVersionMajorMinor = $MysqlVersion.ToString(2)
 
 if ($MysqlVersion.Build -lt 0) {
-    $MysqlVersion = (Invoke-RestMethod -Uri "https://dev.mysql.com/downloads/mysql/${MysqlVersionMajorMinor}.html" |
+    $MysqlVersion = (Invoke-RestMethod -Uri "https://dev.mysql.com/downloads/mysql/${MysqlVersionMajorMinor}.html" -Headers @{'Accept'='text/html'} |
         Select-String -Pattern "${MysqlVersionMajorMinor}\.\d+").Matches.Value
 }
 
