@@ -7,8 +7,7 @@ Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1" -Disable
 # https://github.com/fastlane/fastlane/pull/18116
 $env:SPACESHIP_SKIP_2FA_UPGRADE = 1
 
-$ARCH = arch
-if ($ARCH -ne "arm64") { $ARCH = "x64" }
+$ARCH = Get-Architecture
 [Array]$xcodeVersions = Get-ToolsetValue "xcode.$ARCH.versions"
 write-host $xcodeVersions
 $defaultXcode = Get-ToolsetValue "xcode.default"

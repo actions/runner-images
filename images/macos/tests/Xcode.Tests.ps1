@@ -2,8 +2,7 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Xcode.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
-$ARCH = arch
-if ($ARCH -ne "arm64") { $ARCH = "x64" }
+$ARCH = Get-Architecture
 $xcodeVersions = Get-ToolsetValue "xcode.$ARCH.versions"
 $defaultXcode = Get-ToolsetValue "xcode.default"
 $latestXcodeVersion = $xcodeVersions | Select-Object -First 1
