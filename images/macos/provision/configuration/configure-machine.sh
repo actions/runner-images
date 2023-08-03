@@ -47,7 +47,7 @@ certs=(
 for cert in ${certs[@]}; do
     echo "Adding ${cert} certificate"
     cert_path="${HOME}/${cert}"
-    curl "https://www.apple.com/certificateauthority/${cert}" --output ${cert_path} --silent
+    curl -fsSL "https://www.apple.com/certificateauthority/${cert}" --output ${cert_path}
 
     sudo ./add-certificate ${cert_path}
 

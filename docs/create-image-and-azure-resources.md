@@ -275,3 +275,4 @@ The scripts are copied to the VHD during the image generation process to the fol
 - **InternetExplorerConfiguration** - turns off the Internet Explorer Enhanced Security feature
 - **Msys2FirstLaunch.ps1** - initializes bash user profile in MSYS2
 - **VSConfiguration.ps1** - performs initial Visual Studio configuration
+

@@ -6,8 +6,8 @@
 source ~/utils/utils.sh
 
 [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
-VERSION=$(curl "${authString[@]}" -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$VERSION/install.sh | bash
+VERSION=$(curl "${authString[@]}" -fsSL https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/$VERSION/install.sh | bash
 
 if [ $? -eq 0 ]; then
         . ~/.bashrc
