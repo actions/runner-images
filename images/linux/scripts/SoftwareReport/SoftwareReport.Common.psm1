@@ -99,12 +99,6 @@ function Get-PythonVersion {
     return $version
 }
 
-function Get-Python3Version {
-    $result = Get-CommandResult "python3 --version"
-    $version = $result.Output | Take-OutputPart -Part 1
-    return $version
-}
-
 function Get-PowershellVersion {
     return $(pwsh --version) | Take-OutputPart -Part 1
 }
