@@ -1,3 +1,4 @@
+Import-Module "$PSScriptRoot/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/Xcode.Helpers.psm1"
 
 function Install-XcodeVersion {
@@ -86,7 +87,11 @@ function Expand-XcodeXipArchive {
 
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
     Push-Location $DownloadDirectory
-    Invoke-ValidateCommand "xip -x $xcodeXipPath"
+    if(Test-CommandExists 'unxip') {
+        Invoke-ValidateCommand "unxip $xcodeXipPath"
+    } else {
+        Invoke-ValidateCommand "xip -x $xcodeXipPath"
+    }
     Pop-Location
 
     if (Test-Path "$DownloadDirectory/Xcode-beta.app") {

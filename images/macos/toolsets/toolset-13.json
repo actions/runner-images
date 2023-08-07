@@ -74,7 +74,8 @@
             "zstd",
             "gmp",
             "r",
-            "yq"
+            "yq",
+            "unxip"
         ],
         "cask_packages": [
             "julia",
