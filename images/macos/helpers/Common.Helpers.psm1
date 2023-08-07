@@ -167,11 +167,11 @@ function Get-Architecture {
     return $arch
 }
 
-Function Test-CommandExists {
+function Test-CommandExists {
     param
     (
-        $command
+        [Parameter(Mandatory)] [string] $Command
     )
 
-    [boolean] (Get-Command $command  -ErrorAction 'SilentlyContinue')
+    [boolean] (Get-Command $Command  -ErrorAction 'SilentlyContinue')
 }
