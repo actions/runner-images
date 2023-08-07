@@ -1,16 +1,16 @@
 | Announcements |
 |-|
-| [[All OSs] .NET 3.1 will be removed from the images on July, 3](https://github.com/actions/runner-images/issues/7667) |
+| [[All OSes] Adopt OpenJDK will be removed from images on August, 7](https://github.com/actions/runner-images/issues/8030) |
 ***
 # macOS 12
 - OS Version: macOS 12.6.7 (21G651)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20230709.1
+- Image Version: 20230803.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 6.0.411, 7.0.102, 7.0.202, 7.0.305
+- .NET Core SDK: 6.0.412, 7.0.102, 7.0.202, 7.0.306
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -20,12 +20,12 @@
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
 - Julia 1.9.2
 - Kotlin 1.9.0-release-358
-- Go 1.20.5
+- Go 1.20.7
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
-- Node.js 18.16.1
-- NVM 0.39.3
-- NVM - Cached node versions: 14.21.3, 16.20.1, 18.16.1
+- Node.js 18.17.0
+- NVM 0.39.4
+- NVM - Cached node versions: 14.21.3, 16.20.1, 18.17.0
 - Perl 5.36.1
 - PHP 8.2.8
 - Python 2.7.18
@@ -34,19 +34,19 @@
 - Ruby 3.0.6p216
 
 ### Package Management
-- Bundler 2.4.15
+- Bundler 2.4.18
 - Carthage 0.39.0
 - CocoaPods 1.12.1
 - Composer 2.5.8
-- Homebrew 4.0.28
-- Miniconda 23.3.1
-- NPM 9.5.1
+- Homebrew 4.1.3
+- Miniconda 23.5.2
+- NPM 9.6.7
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip3 23.1.2 (python 3.11)
+- Pip3 23.2.1 (python 3.11)
 - Pipx 1.2.0
-- RubyGems 3.4.15
-- Vcpkg 2023 (build from commit dafef74af)
+- RubyGems 3.4.18
+- Vcpkg 2023 (build from commit 1e9cf6939)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -58,30 +58,30 @@
 ### Project Management
 - Apache Ant 1.10.13
 - Apache Maven 3.9.3
-- Gradle 8.2
-- Sbt 1.9.1
+- Gradle 8.2.1
+- Sbt 1.9.3
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.36.0
-- azcopy 10.19.0
-- bazel 6.2.1
+- azcopy 10.20.0
+- bazel 6.3.1
 - bazelisk 1.17.0
 - bsdtar 3.5.1 - available by 'tar' alias
-- Curl 8.1.2
+- Curl 8.2.1
 - Git 2.41.0
-- Git LFS 3.3.0
-- GitHub CLI 2.31.0
-- GNU Tar 1.34 - available by 'gtar' alias
+- Git LFS 3.4.0
+- GitHub CLI 2.32.1
+- GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
 - Hub CLI 2.14.2
-- ImageMagick 7.1.1-12
+- ImageMagick 7.1.1-15
 - jq 1.6
 - mongo 5.0.17
 - mongod 5.0.17
-- OpenSSL 1.1.1u  30 May 2023
-- Packer 1.9.1
+- OpenSSL 1.1.1v  1 Aug 2023
+- Packer 1.9.2
 - pkg-config 0.29.2
 - PostgreSQL 14.8 (Homebrew)
 - psql (PostgreSQL) 14.8 (Homebrew)
@@ -90,27 +90,27 @@
 - Switchaudio-osx 1.2.2
 - Vagrant 2.3.7
 - VirtualBox 6.1.38r153438
-- yq 4.34.1
+- yq 4.34.2
 - zstd 1.5.5
 
 ### Tools
-- App Center CLI 2.13.9
-- AWS CLI 2.13.0
-- AWS SAM CLI 1.90.0
+- App Center CLI 2.14.0
+- AWS CLI 2.13.6
+- AWS SAM CLI 1.94.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.50.0
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.18.4
+- Bicep CLI 0.20.4
 - Cabal 3.6.2.0
-- Cmake 3.26.4
-- CodeQL Action Bundles 2.13.4 2.13.5
+- Cmake 3.27.1
+- CodeQL Action Bundles 2.14.0 2.14.1
 - Colima 0.5.5
-- Fastlane 2.213.0
+- Fastlane 2.214.0
 - GHC 9.6.2
 - GHCup 0.1.19.4
 - Jazzy 0.14.3
 - Stack 2.9.3
-- SwiftFormat 0.51.12
+- SwiftFormat 0.51.13
 - Swig 4.1.1
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
 
@@ -119,29 +119,30 @@
 - Yamllint 1.32.0
 
 ### Browsers
-- Safari 16.5.1 (17615.2.9.11.7)
-- SafariDriver 16.5.1 (17615.2.9.11.7)
-- Google Chrome 114.0.5735.198
-- ChromeDriver 114.0.5735.90
-- Microsoft Edge 114.0.1823.67
-- Microsoft Edge WebDriver 114.0.1823.67
-- Mozilla Firefox 115.0.1
+- Safari 16.5.2 (17615.2.9.101.1)
+- SafariDriver 16.5.2 (17615.2.9.101.1)
+- Google Chrome 115.0.5790.170
+- Google Chrome for Testing 115.0.5790.170
+- ChromeDriver 115.0.5790.170
+- Microsoft Edge 115.0.1901.188
+- Microsoft Edge WebDriver 115.0.1901.188
+- Mozilla Firefox 116.0
 - geckodriver 0.33.0
 - Selenium server 4.10.0
 
 #### Environment variables
-| Name            | Value                                          |
-| --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/114.0.5735.90 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
-| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
+| Name            | Value                                 |
+| --------------- | ------------------------------------- |
+| CHROMEWEBDRIVER | /usr/local/share/chromedriver-mac-x64 |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver          |
+| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin        |
 
 ### Java
-| Version             | Vendor          | Environment Variable |
-| ------------------- | --------------- | -------------------- |
-| 8.0.372+7 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.19+7           | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.7+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 8.0.382+5 (default) | JAVA_HOME_8_X64      |
+| 11.0.20+8           | JAVA_HOME_11_X64     |
+| 17.0.8+7            | JAVA_HOME_17_X64     |
 
 ### Cached Tools
 
@@ -166,17 +167,17 @@
 #### Node.js
 - 14.21.3
 - 16.20.1
-- 18.16.1
+- 18.17.0
 
 #### Go
 - 1.18.10
-- 1.19.10
-- 1.20.5
+- 1.19.12
+- 1.20.7
 
 ### Rust Tools
-- Cargo 1.70.0
-- Rust 1.70.0
-- Rustdoc 1.70.0
+- Cargo 1.71.1
+- Rust 1.71.1
+- Rustdoc 1.71.1
 - Rustup 1.26.0
 
 #### Packages
@@ -184,14 +185,14 @@
 - Cargo-audit 0.17.6
 - Cargo-outdated 0.13.1
 - Cbindgen 0.24.5
-- Clippy 0.1.70
+- Clippy 0.1.71
 - Rustfmt 1.5.2-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.12
+- PowerShell 7.2.13
 
 #### PowerShell Modules
-- Az: 10.1.0
+- Az: 10.2.0
 - MarkdownPS: 1.9
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
@@ -205,10 +206,10 @@
 ### Xamarin
 
 #### Visual Studio for Mac
-| Version        | Build       | Path                                 |
-| -------------- | ----------- | ------------------------------------ |
-| 2019           | 8.10.25.2   | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.6.0.1575 | /Applications/Visual Studio.app      |
+| Version        | Build      | Path                                 |
+| -------------- | ---------- | ------------------------------------ |
+| 2019           | 8.10.25.2  | /Applications/Visual Studio 2019.app |
+| 2022 (default) | 17.6.2.405 | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
@@ -330,7 +331,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Android Emulator           | 32.1.14                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
 | Android SDK Platforms      | android-34 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Platform-Tools | 34.0.3                                                                                                                                                                                                                             |
+| Android SDK Platform-Tools | 34.0.4                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                             |
 | CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                                                   |
 | Google Play services       | 49                                                                                                                                                                                                                                 |
