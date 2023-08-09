@@ -322,8 +322,12 @@ Function GenerateResourcesAndImage {
             $StorageAccountName = $StorageAccountName.Substring(0, 24)
         }
         
-        $StorageAccountId = (az storage account show --name $StorageAccountName --resource-group $ResourceGroupName --query id 2>$null)
-        $StorageAccountExists = "$StorageAccountId" -ne ""
+        try {
+            $StorageAccountId = (az storage account show --name $StorageAccountName --resource-group $ResourceGroupName --query id 2>$null)
+            $StorageAccountExists = "$StorageAccountId" -ne ""
+        } catch {
+            $StorageAccountExists = $false
+        }
 
         # Create storage account
         if ($StorageAccountExists) {
