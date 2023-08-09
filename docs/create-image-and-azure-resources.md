@@ -56,14 +56,6 @@ In any case you will need these software installed:
   Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
   ```
 
-- [Az Powershell module](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps).
-
-  Run this command in Powershell:
-
-  ```powershell
-  Install-Module -Name Az -Repository PSGallery -Force
-  ```
-
 ## Automated image generation
 
 This repo bundles script that automates image generation process.
