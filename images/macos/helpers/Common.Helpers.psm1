@@ -100,19 +100,19 @@ function Invoke-ValidateCommand {
     }
     else
     {
-        $j = $command | Start-Job -ScriptBlock {
+        $job = $command | Start-Job -ScriptBlock {
             $output = Invoke-Expression -Command $input
             if ($LASTEXITCODE -ne 0) {
                   throw 'Command failed'
             }
             return $output
         }
-        $w = $j | Wait-Job -Timeout $Timeout
-        if ($w.State -eq 'Failed')
+        $waitObject = $job | Wait-Job -Timeout $Timeout
+        if((-not $waitObject) -or ($waitObject.State -eq 'Failed'))
         {
              throw "Command '$Command' has failed"
         }
-        Receive-Job -Job $j
+        Receive-Job -Job $job
     }
 }
 
