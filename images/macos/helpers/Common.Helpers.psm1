@@ -86,14 +86,34 @@ function Invoke-RestMethodWithRetry {
 function Invoke-ValidateCommand {
     param(
         [Parameter(Mandatory)]
-        [string]$Command
+        [string]$Command,
+        [Uint] $Timeout = 0
     )
 
-    $output = Invoke-Expression -Command $Command
-    if ($LASTEXITCODE -ne 0) {
-        throw "Command '$Command' has finished with exit code $LASTEXITCODE"
+    if ($Timeout -eq 0)
+    {
+        $output = Invoke-Expression -Command $Command
+        if ($LASTEXITCODE -ne 0) {
+            throw "Command '$Command' has finished with exit code $LASTEXITCODE"
+        }
+        return $output
     }
-    return $output
+    else
+    {
+        $j = $command | Start-Job -Name ccc -ScriptBlock {
+            $output = Invoke-Expression -Command $input
+            if ($LASTEXITCODE -ne 0) {
+                  throw 'Command failed'
+            }
+            return $output
+        }
+        $w = $j | Wait-Job -Timeout $Timeout
+        if ($w.State -eq 'Failed')
+        {
+             throw "Command '$Command' has failed"
+        }
+        Receive-Job -Job $j
+    }
 }
 
 function Start-DownloadWithRetry {

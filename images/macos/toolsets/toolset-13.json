@@ -3,7 +3,7 @@
         "default": "14.2",
         "x64": {
             "versions": [
-                { "link": "15.0", "version": "15.0.0-Beta.5+15A5209g" },
+                { "link": "15.0", "version": "15.0.0-Beta.6+15A5219j" },
                 { "link": "14.3.1", "version": "14.3.1+14E300c" },
                 { "link": "14.3", "version": "14.3.0+14E222b" },
                 { "link": "14.2", "version": "14.2.0+14C18" },
@@ -12,7 +12,7 @@
         },
         "arm64":{
             "versions": [
-                { "link": "15.0", "version": "15.0.0-Beta.5+15A5209g" },
+                { "link": "15.0", "version": "15.0.0-Beta.6+15A5219j" },
                 { "link": "14.3.1", "version": "14.3.1+14E300c" },
                 { "link": "14.3", "version": "14.3.0+14E222b" },
                 { "link": "14.2", "version": "14.2.0+14C18" },
