@@ -202,7 +202,8 @@
             "tcl-tk",
             "r",
             "yq",
-            "imagemagick"
+            "imagemagick",
+            "unxip"
         ],
         "cask_packages": [
             "julia",
@@ -243,7 +244,8 @@
                         "2.7",
                         "3.7",
                         "3.8",
-                        "3.9"
+                        "3.9",
+                        "3.10"
                     ]
                 }
             }

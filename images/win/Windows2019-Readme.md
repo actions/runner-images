@@ -1,6 +1,10 @@
+| Announcements |
+|-|
+| [[All OSes] Adopt OpenJDK will be removed from images on August, 7](https://github.com/actions/runner-images/issues/8030) |
+***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4645
-- Image Version: 20230731.1.0
+- Image Version: 20230806.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -9,13 +13,13 @@
 
 ### Language and Runtime
 - Bash 5.2.15(1)-release
-- Go 1.20.6
+- Go 1.20.7
 - Julia 1.9.2
 - Kotlin 1.9.0
 - LLVM 15.0.7
 - Node 18.17.0
 - Perl 5.32.1
-- PHP 8.2.8
+- PHP 8.2.9
 - Python 3.7.9
 - Ruby 2.5.9p229
 
@@ -29,7 +33,7 @@
 - pip 23.2.1 (python 3.7)
 - Pipx 1.2.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit 8b04a7bd9)
+- Vcpkg (build from commit 78b61582c)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -50,7 +54,7 @@
 - azcopy 10.20.0
 - Bazel 6.3.1
 - Bazelisk 1.13.2
-- Bicep 0.19.5
+- Bicep 0.20.4
 - Cabal 3.10.1.0
 - CMake 3.27.1
 - CodeQL Action Bundles 2.14.0 2.14.1
@@ -61,8 +65,8 @@
 - ghc 9.6.2
 - Git 2.41.0.windows.3
 - Git LFS 3.3.0
-- Google Cloud SDK 440.0.0
-- ImageMagick 7.1.1-14
+- Google Cloud SDK 441.0.0
+- ImageMagick 7.1.1-15
 - InnoSetup 6.2.2
 - jq 1.6
 - Kind 0.20.0
@@ -71,10 +75,10 @@
 - Mingw-w64 8.1.0
 - Newman 5.3.2
 - NSIS 3.08
-- OpenSSL 1.1.1u
+- OpenSSL 1.1.1v
 - Packer 1.9.2
 - Parcel 2.9.3
-- Pulumi 3.76.1
+- Pulumi 3.77.1
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -87,20 +91,20 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.170
-- AWS CLI 2.13.4
+- Alibaba Cloud CLI 3.0.172
+- AWS CLI 2.13.7
 - AWS SAM CLI 1.94.0
-- AWS Session Manager CLI 1.2.463.0
-- Azure CLI 2.50.0
+- AWS Session Manager CLI 1.2.497.0
+- Azure CLI 2.51.0
 - Azure DevOps CLI extension 0.26.0
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 2.32.1
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.71.0
-- Rust 1.71.0
-- Rustdoc 1.71.0
+- Cargo 1.71.1
+- Rust 1.71.1
+- Rustdoc 1.71.1
 - Rustup 1.26.0
 
 #### Packages
@@ -112,14 +116,14 @@
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 115.0.5790.110
-- Chrome Driver 115.0.5790.102
+- Google Chrome 115.0.5790.171
+- Chrome Driver 115.0.5790.170
 - Microsoft Edge 115.0.1901.188
 - Microsoft Edge Driver 115.0.1901.188
-- Mozilla Firefox 115.0.3
+- Mozilla Firefox 116.0.1
 - Gecko Driver 0.33.0
-- IE Driver 4.10.0.0
-- Selenium server 4.10.0
+- IE Driver 4.11.0.0
+- Selenium server 4.11.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -130,12 +134,11 @@
 | SELENIUM_JAR_PATH | C:\selenium\selenium-server.jar    |
 
 ### Java
-| Version             | Vendor          | Environment Variable |
-| ------------------- | --------------- | -------------------- |
-| 8.0.382+5 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.20+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 13.0.2+8.1          | Adopt OpenJDK   | JAVA_HOME_13_X64     |
-| 17.0.8+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 8.0.382+5 (default) | JAVA_HOME_8_X64      |
+| 11.0.20+8           | JAVA_HOME_11_X64     |
+| 17.0.8+7            | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -161,8 +164,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.18.10
-- 1.19.11
-- 1.20.6
+- 1.19.12
+- 1.20.7
 
 #### Node.js
 - 14.21.3
@@ -507,7 +510,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.382
+- AWSPowershell: 4.1.387
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.2.0
@@ -557,3 +560,4 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:5ff317aa3f2f0e19610c95bae5b9ba66cbe151fdf96765399ef552fb29e03b2d  | 2023-07-11 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:184914b6008b14ddaf1f9f8944a38c0b2f5ef7e9b13c694a5913528370eed73e  | 2023-07-07 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:31c6e1eb571ced8af4a543204ec1e410161677de56a6f76ce0983928b02af07c  | 2023-07-07 |
+
