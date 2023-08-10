@@ -108,7 +108,11 @@ function Invoke-ValidateCommand {
             return $output
         }
         $waitObject = $job | Wait-Job -Timeout $Timeout
-        if((-not $waitObject) -or ($waitObject.State -eq 'Failed'))
+        if(-not $waitObject)
+        {
+             throw "Command '$Command' has timed out"
+        }
+        if($waitObject.State -eq 'Failed')
         {
              throw "Command '$Command' has failed"
         }
