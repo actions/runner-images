@@ -247,7 +247,7 @@ Function GenerateResourcesAndImage {
         }
 
         # Check resource group
-        $ResourceGroupExists = [System.Convert]::ToBoolean((az group exists --name 'vpolikarpov-imagegen-test'));
+        $ResourceGroupExists = [System.Convert]::ToBoolean((az group exists --name $ResourceGroupName));
         if ($ResourceGroupExists) {
             Write-Verbose "Resource group '$ResourceGroupName' already exists."
         }
