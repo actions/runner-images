@@ -84,7 +84,7 @@
         },
         {
             "type": "shell",
-            "script": "{{template_dir}}/scripts/base/apt.sh",
+            "script": "{{template_dir}}/scripts/base/apt-ubuntu-archive.sh",
             "environment_vars": [
                 "DEBIAN_FRONTEND=noninteractive"
             ],
@@ -92,7 +92,7 @@
         },
         {
             "type": "shell",
-            "script": "{{template_dir}}/scripts/base/apt-ubuntu-archive.sh",
+            "script": "{{template_dir}}/scripts/base/apt.sh",
             "environment_vars": [
                 "DEBIAN_FRONTEND=noninteractive"
             ],
