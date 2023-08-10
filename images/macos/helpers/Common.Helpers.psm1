@@ -100,7 +100,7 @@ function Invoke-ValidateCommand {
     }
     else
     {
-        $j = $command | Start-Job -Name ccc -ScriptBlock {
+        $j = $command | Start-Job -ScriptBlock {
             $output = Invoke-Expression -Command $input
             if ($LASTEXITCODE -ne 0) {
                   throw 'Command failed'
