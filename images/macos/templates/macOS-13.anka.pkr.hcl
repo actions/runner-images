@@ -1,7 +1,7 @@
 packer {
   required_plugins {
     veertu-anka = {
-      version = "= v3.1.0"
+      version = ">= v3.2.0"
       source = "github.com/veertuinc/veertu-anka"
     }
   }
