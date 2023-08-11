@@ -129,10 +129,7 @@ function Approve-XcodeLicense {
     $XcodeRootPath = Get-XcodeRootPath -Version $Version
     Write-Host "Approving Xcode license for '$XcodeRootPath'..."
     $xcodeBuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
-    try {
-        Invoke-Expression -Command "sudo $xcodeBuildPath -license accept" 2>&1 | Out-Null
-    } catch { }
-
+    Invoke-ValidateCommand -Command "sudo $xcodeBuildPath -license accept" -Timeout 15
 }
 
 function Install-XcodeAdditionalPackages {
