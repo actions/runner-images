@@ -1,12 +1,15 @@
 #!/bin/bash -e
 ################################################################################
 ##  File:  apt-ubuntu-archive.sh
-##  Desc:  Script for adding additional apt repo to /etc/apt/sources.list and /etc/cloud/templates/sources.list.ubuntu.tmpl
+##  Desc:  Script for configuring apt sources. https://manpages.ubuntu.com/manpages/jammy/en/man1/apt-transport-mirror.1.html
 ################################################################################
 
-echo "deb http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs) main restricted" | tee -a /etc/apt/sources.list /etc/cloud/templates/sources.list.ubuntu.tmpl
-echo "deb http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs)-updates main restricted" | tee -a /etc/apt/sources.list /etc/cloud/templates/sources.list.ubuntu.tmpl
+touch /etc/apt/apt-mirrors.txt
 
-echo "deb http://security.ubuntu.com/ubuntu/ $(lsb_release -cs)-security main restricted" | tee -a /etc/apt/sources.list /etc/cloud/templates/sources.list.ubuntu.tmpl
-echo "deb http://security.ubuntu.com/ubuntu/ $(lsb_release -cs)-security universe" | tee -a /etc/apt/sources.list /etc/cloud/templates/sources.list.ubuntu.tmpl
-echo "deb http://security.ubuntu.com/ubuntu/ $(lsb_release -cs)-security multiverse" | tee -a /etc/apt/sources.list /etc/cloud/templates/sources.list.ubuntu.tmpl
+printf "http://azure.archive.ubuntu.com/ubuntu/\tpriority:1\n" | tee -a /etc/apt/apt-mirrors.txt
+printf "http://archive.ubuntu.com/ubuntu/\tpriority:2\n" | tee -a /etc/apt/apt-mirrors.txt
+printf "http://security.ubuntu.com/ubuntu/\tpriority:3\n" | tee -a /etc/apt/apt-mirrors.txt
+
+sed -i 's/http:\/\/azure.archive.ubuntu.com\/ubuntu\//mirror+file:\/etc\/apt\/apt-mirrors.txt/' /etc/apt/sources.list
+
+cp -f /etc/apt/sources.list /etc/cloud/templates/sources.list.ubuntu.tmpl

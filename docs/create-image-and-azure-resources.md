@@ -56,14 +56,6 @@ In any case you will need these software installed:
   Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
   ```
 
-- [Az Powershell module](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps).
-
-  Run this command in Powershell:
-
-  ```powershell
-  Install-Module -Name Az -Repository PSGallery -Force
-  ```
-
 ## Automated image generation
 
 This repo bundles script that automates image generation process.
@@ -84,11 +76,6 @@ Then import [GenerateResourcesAndImage](../helpers/GenerateResourcesAndImage.ps1
 ```powershell
 Import-Module .\helpers\GenerateResourcesAndImage.ps1
 ```
-
-> :warning: When running `GenerateResourcesAndImage` in PowerShell 7.3, following command should be executed first:
-> ```powershell
-> $PSNativeCommandArgumentPassing = 'Legacy'
-> ```
 
 Finally, run `GenerateResourcesAndImage` function setting mandatory arguments: image type and where to create resources:
 
@@ -275,4 +262,3 @@ The scripts are copied to the VHD during the image generation process to the fol
 - **InternetExplorerConfiguration** - turns off the Internet Explorer Enhanced Security feature
 - **Msys2FirstLaunch.ps1** - initializes bash user profile in MSYS2
 - **VSConfiguration.ps1** - performs initial Visual Studio configuration
-

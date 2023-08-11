@@ -1,7 +1,11 @@
+| Announcements |
+|-|
+| [[All OSes] Adopt OpenJDK will be removed from images on August, 7](https://github.com/actions/runner-images/issues/8030) |
+***
 # Ubuntu 22.04
-- OS Version: 22.04.2 LTS
+- OS Version: 22.04.3 LTS
 - Kernel Version: 5.15.0-1042-azure
-- Image Version: 20230728.3.0
+- Image Version: 20230806.1.0
 - Systemd version: 249.11-0ubuntu3.9
 
 ## Installed Software
@@ -12,23 +16,22 @@
 - Clang-format: 12.0.1, 13.0.1, 14.0.0
 - Clang-tidy: 12.0.1, 13.0.1, 14.0.0
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
-- GNU C++: 9.5.0, 10.4.0, 11.3.0, 12.1.0
-- GNU Fortran: 9.5.0, 10.4.0, 11.3.0, 12.1.0
+- GNU C++: 9.5.0, 10.5.0, 11.4.0, 12.3.0
+- GNU Fortran: 9.5.0, 10.5.0, 11.4.0, 12.3.0
 - Julia 1.9.2
 - Kotlin 1.9.0-release-358
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.17.0
 - Perl 5.34.0
-- Python 3.10.6
-- Python3 3.10.6
+- Python 3.10.12
 - Ruby 3.0.2p107
 - Swift 5.8.1
 
 ### Package Management
 - cpan 1.64
 - Helm 3.12.2
-- Homebrew 4.1.2
+- Homebrew 4.1.3
 - Miniconda 23.5.2
 - Npm 9.6.7
 - NuGet 6.6.1.2
@@ -36,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.2.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 8b04a7bd9)
+- Vcpkg (build from commit 78b61582c)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -61,9 +64,9 @@ to accomplish this.
 - Ansible 2.15.2
 - apt-fast 1.9.12
 - AzCopy 10.20.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 6.3.0
+- Bazel 6.3.1
 - Bazelisk 1.13.2
-- Bicep 0.19.5
+- Bicep 0.20.4
 - Buildah 1.23.1
 - CMake 3.27.1
 - CodeQL Action Bundles 2.14.0 2.14.1
@@ -82,7 +85,7 @@ to accomplish this.
 - jq 1.6
 - Kind 0.20.0
 - Kubectl 1.27.4
-- Kustomize 5.1.0
+- Kustomize 5.1.1
 - Leiningen 2.10.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
@@ -94,7 +97,7 @@ to accomplish this.
 - Packer 1.9.2
 - Parcel 2.9.3
 - Podman 3.4.4
-- Pulumi 3.76.1
+- Pulumi 3.77.1
 - R 4.3.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -105,26 +108,26 @@ to accomplish this.
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.170
-- AWS CLI 2.13.5
-- AWS CLI Session Manager Plugin 1.2.463.0
+- Alibaba Cloud CLI 3.0.172
+- AWS CLI 2.13.7
+- AWS CLI Session Manager Plugin 1.2.497.0
 - AWS SAM CLI 1.94.0
-- Azure CLI 2.50.0
+- Azure CLI 2.51.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.32.1
-- Google Cloud SDK 440.0.0
+- Google Cloud SDK 441.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 15.9.1
+- Netlify CLI 15.10.0
 - OpenShift CLI 4.13.6
 - ORAS CLI 1.0.0
-- Vercel CLI 31.1.1
+- Vercel CLI 31.2.2
 
 ### Java
-| Version             | Vendor          | Environment Variable |
-| ------------------- | --------------- | -------------------- |
-| 8.0.372+7           | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.19+7 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.7+7            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 8.0.382+5           | JAVA_HOME_8_X64      |
+| 11.0.20+8 (default) | JAVA_HOME_11_X64     |
+| 17.0.8+7            | JAVA_HOME_17_X64     |
 
 ### PHP Tools
 - PHP: 8.1.2
@@ -141,9 +144,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.11.1
 
 ### Rust Tools
-- Cargo 1.71.0
-- Rust 1.71.0
-- Rustdoc 1.71.0
+- Cargo 1.71.1
+- Rust 1.71.1
+- Rustdoc 1.71.1
 - Rustup 1.26.0
 
 #### Packages
@@ -155,13 +158,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 115.0.5790.110
-- ChromeDriver 115.0.5790.102
+- Google Chrome 115.0.5790.170
+- ChromeDriver 115.0.5790.170
 - Chromium 115.0.5790.0
 - Microsoft Edge 115.0.1901.188
 - Microsoft Edge WebDriver 115.0.1901.188
-- Selenium server 4.10.0
-- Mozilla Firefox 116.0
+- Selenium server 4.11.0
+- Mozilla Firefox 116.0.1
 - Geckodriver 0.33.0
 
 #### Environment variables
@@ -204,8 +207,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.18.10
-- 1.19.11
-- 1.20.6
+- 1.19.12
+- 1.20.7
 
 #### Node.js
 - 14.21.3
@@ -279,15 +282,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | buildpack-deps:buster   | sha256:b2c2267e1944a42dcdd448b66e8c8c889a3f5d1ab9705421326077a40a8aa0bc  | 2023-07-28 |
 | debian:10               | sha256:7cd85d3d51a435062010581f14c5e3f9428388ac7234cc9a1e23dd14d7e4e914  | 2023-07-27 |
 | debian:11               | sha256:630454da4c59041a2bca987a0d54c68962f1d6ea37a3641bd61db42b753234f2  | 2023-07-27 |
-| moby/buildkit:latest    | sha256:e70e7a9bfaeafd2cb101b050ca78e1f73032473fc0aac5b10f35c5d26df1e2c6  | 2023-07-12 |
+| moby/buildkit:latest    | sha256:d91fe5e6dad11f2c2cee6d268d5843ad64bf2e9852365d56b12d02f2315edce5  | 2023-08-02 |
 | node:14                 | sha256:a158d3b9b4e3fa813fa6c8c590b8f0a860e015ad4e59bbce5744d2f6fd8461aa  | 2023-04-12 |
 | node:14-alpine          | sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33  | 2023-03-29 |
-| node:16                 | sha256:c83c7fa87b7449675b422877f547233f3d05ac75a4363ed030fc3635dd9cc395  | 2023-07-04 |
+| node:16                 | sha256:6cd6581a9ae814ebbc8077afd63ecbf4d37f9b59ac9d9304a1b5a9e743ac13e0  | 2023-07-28 |
 | node:16-alpine          | sha256:6c381d5dc2a11dcdb693f0301e8587e43f440c90cdb8933eaaaabb905d44cdb9  | 2023-06-21 |
-| node:18                 | sha256:5b0596963c8653bac197457d0da388ac603658011f13cb15d303a54bb83679fa  | 2023-07-19 |
+| node:18                 | sha256:c85dc4392f44f5de1d0d72dd20a088a542734445f99bed7aa8ac895c706d370d  | 2023-07-28 |
 | node:18-alpine          | sha256:93d91deea65c9a0475507e8bc8b1917d6278522322f00c00b3ab09cab6830060  | 2023-07-19 |
 | ubuntu:18.04            | sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98  | 2023-05-30 |
-| ubuntu:20.04            | sha256:c9820a44b950956a790c354700c1166a7ec648bc0d215fa438d3a339812f1d01  | 2023-06-28 |
+| ubuntu:20.04            | sha256:33a5cc25d22c45900796a1aca487ad7a7cb09f09ea00b779e3b2026b4fc2faba  | 2023-08-01 |
 | ubuntu:22.04            | sha256:0bced47fffa3361afa981854fcabcd4577cd43cebbb808cea2b1f33a3dd7f508  | 2023-06-28 |
 
 ### Installed apt packages
@@ -297,7 +300,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.36.0-1                            |
 | autoconf               | 2.71-2                              |
 | automake               | 1:1.16.5-1.3                        |
-| binutils               | 2.38-4ubuntu2.2                     |
+| binutils               | 2.38-4ubuntu2.3                     |
 | bison                  | 2:3.8.2+dfsg-1build1                |
 | brotli                 | 1.0.9-2build6                       |
 | bzip2                  | 1.0.8-5build1                       |
@@ -325,7 +328,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
 | libc6-dev              | 2.35-0ubuntu3.1                     |
 | libcurl4               | 7.81.0-1ubuntu1.13                  |
-| libgbm-dev             | 22.2.5-0ubuntu0.1\~22.04.3          |
+| libgbm-dev             | 23.0.4-0ubuntu1\~22.04.1            |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
 | libgtk-3-0             | 3.24.33-1ubuntu2                    |
@@ -336,7 +339,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libsqlite3-dev         | 3.37.2-2ubuntu0.1                   |
 | libssl-dev             | 3.0.2-0ubuntu1.10                   |
 | libtool                | 2.4.6-15build2                      |
-| libunwind8             | 1.3.2-2build2                       |
+| libunwind8             | 1.3.2-2build2.1                     |
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
@@ -381,3 +384,4 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.2.5-2ubuntu1                      |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
+

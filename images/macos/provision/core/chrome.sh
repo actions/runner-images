@@ -3,7 +3,7 @@ source ~/utils/utils.sh
 arch=$(get_arch)
 
 echo "Installing Google Chrome..."
-brew_cask_install_ignoring_sha256 "google-chrome"
+brew install --cask google-chrome
 
 # Parse Google Chrome version
 FULL_CHROME_VERSION=$("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --version)
