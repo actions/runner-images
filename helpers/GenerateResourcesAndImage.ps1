@@ -1,10 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
 enum ImageType {
-    Windows2019 = 1
-    Windows2022 = 2
-    Ubuntu2004 = 3
-    Ubuntu2204 = 4
+    Windows2019   = 1
+    Windows2022   = 2
+    Ubuntu2004    = 3
+    Ubuntu2204    = 4
     UbuntuMinimal = 5
 }
 
@@ -38,20 +38,31 @@ Function Get-PackerTemplatePath {
     $imageTemplatePath = [IO.Path]::Combine($RepositoryRoot, "images", $relativeTemplatePath)
 
     if (-not (Test-Path $imageTemplatePath)) {
-        throw "Template for image '$ImageType' doesn't exist on path '$imageTemplatePath'"
+        throw "Template for image '$ImageType' doesn't exist on path '$imageTemplatePath'."
     }
 
     return $imageTemplatePath;
 }
 
-Function Get-LatestCommit {
+Function Show-LatestCommit {
     [CmdletBinding()]
     param()
 
     process {
-        Write-Host "Latest commit:"
-        git --no-pager log --pretty=format:"Date: %cd; Commit: %H - %s; Author: %an <%ae>" -1
+        $latestCommit = (git --no-pager log --pretty=format:"Date: %cd; Commit: %H - %s; Author: %an <%ae>" -1)
+        Write-Host "Latest commit: $latestCommit."
     }
+}
+
+function Start-Sleep($seconds) {
+    $doneDT = (Get-Date).AddSeconds($seconds)
+    while ($doneDT -gt (Get-Date)) {
+        $secondsLeft = $doneDT.Subtract((Get-Date)).TotalSeconds
+        $percent = ($seconds - $secondsLeft) / $seconds * 100
+        Write-Progress -Activity "Sleeping" -Status "Sleeping..." -SecondsRemaining $secondsLeft -PercentComplete $percent
+        [System.Threading.Thread]::Sleep(500)
+    }
+    Write-Progress -Activity "Sleeping" -Status "Sleeping..." -SecondsRemaining 0 -Completed
 }
 
 Function GenerateResourcesAndImage {
@@ -59,34 +70,46 @@ Function GenerateResourcesAndImage {
         .SYNOPSIS
             A helper function to help generate an image.
         .DESCRIPTION
-            Creates Azure resources and kicks off a packer image generation for the selected image type.
+            This function will generate the Azure resources and image for the specified image type.
         .PARAMETER SubscriptionId
-            The Azure subscription Id where resources will be created.
+            The Azure subscription id where the Azure resources will be created.
         .PARAMETER ResourceGroupName
-            The Azure resource group name where the Azure resources will be created.
-        .PARAMETER ImageGenerationRepositoryRoot
-            The root path of the image generation repository source.
+            The name of the resource group to create the Azure resources in.
         .PARAMETER ImageType
-            The type of the image being generated. Valid options are: {"Windows2019", "Windows2022", "Ubuntu2004", "Ubuntu2204", "UbuntuMinimal"}.
+            The type of image to generate. Valid values are: Windows2019, Windows2022, Ubuntu2004, Ubuntu2204, UbuntuMinimal.
         .PARAMETER AzureLocation
-            The location of the resources being created in Azure. For example "East US".
-        .PARAMETER Force
-            Delete the resource group if it exists without user confirmation.
+            The Azure location where the Azure resources will be created. For example: "East US"
+        .PARAMETER ImageGenerationRepositoryRoot
+            The root directory of the image generation repository. This is used to locate the packer template.
+        .PARAMETER SecondsToWaitForServicePrincipalSetup
+            The number of seconds to wait for the service principal to be setup. The default is 120 seconds.
         .PARAMETER AzureClientId
-            Client id needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
+            The Azure client id to use to authenticate with Azure. If not specified, the current user's credentials will be used.
         .PARAMETER AzureClientSecret
-            Client secret needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
+            The Azure client secret to use to authenticate with Azure. If not specified, the current user's credentials will be used.
         .PARAMETER AzureTenantId
-            Tenant needs to be provided for optional authentication via service principal. Example: "11111111-1111-1111-1111-111111111111"
+            The Azure tenant id to use to authenticate with Azure. If not specified, the current user's credentials will be used.
         .PARAMETER RestrictToAgentIpAddress
             If set, access to the VM used by packer to generate the image is restricted to the public IP address this script is run from. 
             This parameter cannot be used in combination with the virtual_network_name packer parameter.
+        .PARAMETER Force
+            Delete the resource group if it exists without user confirmation.
+        .PARAMETER ReuseResourceGroup
+            Reuse the resource group if it exists without user confirmation.
         .PARAMETER AllowBlobPublicAccess
-            The Azure storage account will be created with this option.
+            Allow public access to the generated image blob.
         .PARAMETER EnableHttpsTrafficOnly
-            The Azure storage account will be created with this option.
+            Enable https traffic only for the generated image blob.
         .PARAMETER OnError
             Specify how packer handles an error during image creation.
+            Options:
+                abort - abort immediately
+                ask - ask user for input
+                cleanup - attempt to cleanup and then abort
+                run-cleanup-provisioner - run the cleanup provisioner and then abort
+            The default is 'ask'.
+        .PARAMETER Tags
+            Tags to be applied to the Azure resources created.
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2004 -AzureLocation "East US"
     #>
@@ -102,7 +125,7 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [string] $ImageGenerationRepositoryRoot = $pwd,
         [Parameter(Mandatory = $False)]
-        [int] $SecondsToWaitForServicePrincipalSetup = 30,
+        [int] $SecondsToWaitForServicePrincipalSetup = 120,
         [Parameter(Mandatory = $False)]
         [string] $AzureClientId,
         [Parameter(Mandatory = $False)]
@@ -110,219 +133,276 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [string] $AzureTenantId,
         [Parameter(Mandatory = $False)]
-        [Switch] $RestrictToAgentIpAddress,
+        [switch] $RestrictToAgentIpAddress,
         [Parameter(Mandatory = $False)]
-        [Switch] $Force,
+        [switch] $Force,
+        [Parameter(Mandatory = $False)]
+        [switch] $ReuseResourceGroup,
         [Parameter(Mandatory = $False)]
         [bool] $AllowBlobPublicAccess = $False,
         [Parameter(Mandatory = $False)]
         [bool] $EnableHttpsTrafficOnly = $False,
         [Parameter(Mandatory = $False)]
-        [ValidateSet("abort","ask","cleanup","run-cleanup-provisioner")]
+        [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
         [string] $OnError = "ask",
         [Parameter(Mandatory = $False)]
-        [hashtable] $Tags
+        [hashtable] $Tags = @{}
     )
 
+    if ($Force -and $ReuseResourceGroup) {
+        throw "Force and ReuseResourceGroup cannot be used together."
+    }
+    
+    Show-LatestCommit -ErrorAction SilentlyContinue
+
+    # Validate packer is installed
+    $PackerBinary = Get-Command "packer"
+    if (-not ($PackerBinary)) {
+        throw "'packer' binary is not found on PATH."
+    }
+
+    # Get template path
+    $TemplatePath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
+    Write-Debug "Template path: $TemplatePath."
+
+    # Prepare list of allowed inbound IP addresses
+    if ($RestrictToAgentIpAddress) {
+        $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
+        if (-not $AgentIp) {
+            throw "Unable to determine agent IP address."
+        }
+
+        Write-Host "Access to packer generated VM will be restricted to agent IP Address: $AgentIp."
+        if ($TemplatePath.Contains("pkr.hcl")) {
+            if ($PSVersionTable.PSVersion.Major -eq 5) {
+                Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
+                $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
+            } else {
+                $AllowedInboundIpAddresses = '["{0}"]' -f $AgentIp
+            }
+        } else {
+            $AllowedInboundIpAddresses = $AgentIp
+        }
+    } else {
+        if ($TemplatePath.Contains("pkr.hcl")) {
+            $AllowedInboundIpAddresses = "[]"
+        } else {
+            $AllowedInboundIpAddresses = ""
+        }
+    }
+    Write-Debug "Allowed inbound IP addresses: $AllowedInboundIpAddresses."
+
+    # Prepare tags
+    $TagsList = $Tags.GetEnumerator() | ForEach-Object { "$($_.Key)=$($_.Value)" }
+    Write-Debug "Tags list: $TagsList."
+    $TagsJson = $Tags | ConvertTo-Json -Compress
+    if ($PSVersionTable.PSVersion.Major -eq 5) {
+        Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in tags JSON."
+        $TagsJson = $TagsJson -replace '"', '\"'
+    }
+    Write-Debug "Tags JSON: $TagsJson."
+    if ($TemplatePath.Contains(".json")) {
+        Write-Verbose "Injecting tags into packer template."
+        if ($Tags) {
+            $BuilderScriptPathInjected = $TemplatePath.Replace(".json", "-temp.json")
+            $PackerTemplateContent = Get-Content -Path $TemplatePath | ConvertFrom-Json
+            $PackerTemplateContent.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
+            $PackerTemplateContent | ConvertTo-Json -Depth 3 | Out-File -Encoding Ascii $BuilderScriptPathInjected
+            $TemplatePath = $BuilderScriptPathInjected
+        }
+    }
+
+    $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
+
+    Write-Host "Validating packer template..."
+    & $PackerBinary validate `
+        "-var=client_id=fake" `
+        "-var=client_secret=fake" `
+        "-var=subscription_id=$($SubscriptionId)" `
+        "-var=tenant_id=fake" `
+        "-var=location=$($AzureLocation)" `
+        "-var=resource_group=$($ResourceGroupName)" `
+        "-var=storage_account=fake" `
+        "-var=install_password=$($InstallPassword)" `
+        "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+        "-var=azure_tags=$($TagsJson)" `
+        $TemplatePath
+    
+    if ($LastExitCode -ne 0) {
+        throw "Packer template validation failed."
+    }
+
     try {
-        $builderScriptPath = Get-PackerTemplatePath -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
-        $ServicePrincipalClientSecret = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
-        $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
-
-        if ([string]::IsNullOrEmpty($AzureClientId))
-        {
-            Connect-AzAccount
-        } else {
-            $AzSecureSecret = ConvertTo-SecureString $AzureClientSecret -AsPlainText -Force
-            $AzureAppCred = New-Object System.Management.Automation.PSCredential($AzureClientId, $AzSecureSecret)
-            Connect-AzAccount -ServicePrincipal -Credential $AzureAppCred -Tenant $AzureTenantId
-        }
-        Set-AzContext -SubscriptionId $SubscriptionId
-
-        $alreadyExists = $true;
-        try {
-            Get-AzResourceGroup -Name $ResourceGroupName
-            Write-Verbose "Resource group was found, will delete and recreate it."
-        }
-        catch {
-            Write-Verbose "Resource group was not found, will create it."
-            $alreadyExists = $false;
-        }
-
-        if ($alreadyExists) {
-            if($Force -eq $true) {
-                # Cleanup the resource group if it already exitsted before
-                Remove-AzResourceGroup -Name $ResourceGroupName -Force
-                New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation -Tag $tags
-
-            } else {
-                $title = "Delete Resource Group"
-                $message = "The resource group you specified already exists. Do you want to clean it up?"
-
-                $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", `
-                    "Delete the resource group including all resources."
-
-                $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", `
-                    "Keep the resource group and continue."
-
-                $stop = New-Object System.Management.Automation.Host.ChoiceDescription "&Stop", `
-                    "Stop the current action."
-
-                $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no, $stop)
-                $result = $host.ui.PromptForChoice($title, $message, $options, 0)
-
-                switch ($result)
-                {
-                    0 { Remove-AzResourceGroup -Name $ResourceGroupName -Force; New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation  -Tag $tags }
-                    1 { <# Do nothing #> }
-                    2 { exit }
-                }
-            }
-        } else {
-            New-AzResourceGroup -Name $ResourceGroupName -Location $AzureLocation -Tag $tags
-        }
-
-        # This script should follow the recommended naming conventions for azure resources
-        $storageAccountName = if($ResourceGroupName.EndsWith("-rg")) {
-            $ResourceGroupName.Substring(0, $ResourceGroupName.Length -3)
-        } else { $ResourceGroupName }
-
-        # Resource group names may contain special characters, that are not allowed in the storage account name
-        $storageAccountName = $storageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
-        $storageAccountName += "001"
-
-
-        # Storage Account Name can only be 24 characters long
-        if ($storageAccountName.Length -gt 24){
-            $storageAccountName = $storageAccountName.Substring(0, 24)
-        }
-
-        if ($tags) {
-            New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly -MinimumTlsVersion "TLS1_2" -Tag $tags
-        } else {
-            New-AzStorageAccount -ResourceGroupName $ResourceGroupName -AccountName $storageAccountName -Location $AzureLocation -SkuName "Standard_LRS" -AllowBlobPublicAccess $AllowBlobPublicAccess -EnableHttpsTrafficOnly $EnableHttpsTrafficOnly -MinimumTlsVersion "TLS1_2"
-        }
-
+        # Login to Azure subscription
         if ([string]::IsNullOrEmpty($AzureClientId)) {
-            # Interactive authentication: A service principal is created during runtime.
-            $spDisplayName = [System.GUID]::NewGuid().ToString().ToUpper()
-            $startDate = Get-Date
-            $endDate = $startDate.AddYears(1)
-
-            if ('Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential' -as [type]) {
-                $credentials = [Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential]@{
-                    StartDate = $startDate
-                    EndDate = $endDate
-                    Password = $ServicePrincipalClientSecret
-                }
-                $sp = New-AzADServicePrincipal -DisplayName $spDisplayName -PasswordCredential $credentials
-                $spClientId = $sp.ApplicationId
-                $azRoleParam = @{
-                    RoleDefinitionName = "Contributor"
-                    ServicePrincipalName = $spClientId
-                }
-            }
-
-            if ('Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential' -as [type]) {
-                $credentials = [Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphPasswordCredential]@{
-                    StartDateTime = $startDate
-                    EndDateTime = $endDate
-                }
-                $sp = New-AzADServicePrincipal -DisplayName $spDisplayName
-                $appCred = New-AzADAppCredential -ApplicationId $sp.AppId -PasswordCredentials $credentials
-                $spClientId = $sp.AppId
-                $azRoleParam = @{
-                    RoleDefinitionName = "Contributor"
-                    PrincipalId = $sp.Id
-                }
-                $ServicePrincipalClientSecret = $appCred.SecretText
-            }
-
-            Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-            New-AzRoleAssignment @azRoleParam
-            Start-Sleep -Seconds $SecondsToWaitForServicePrincipalSetup
-            $sub = Get-AzSubscription -SubscriptionId $SubscriptionId
-            $tenantId = $sub.TenantId
-
-            # Remove ADPrincipal after the script completed
-            $isCleanupADPrincipal = $true
+            Write-Verbose "No AzureClientId was provided, will use interactive login."
+            az login --output none
         } else {
-            # Parametrized Authentication via given service principal: The service principal with the data provided via the command line
-            # is used for all authentication purposes.
-            $spClientId = $AzureClientId
-            $credentials = $AzureAppCred
-            $ServicePrincipalClientSecret = $AzureClientSecret
-            $tenantId = $AzureTenantId
+            Write-Verbose "AzureClientId was provided, will use service principal login."
+            az login --service-principal --username $AzureClientId --password $AzureClientSecret --tenant $AzureTenantId --output none
+        }
+        az account set --subscription $SubscriptionId
+        if ($LastExitCode -ne 0) {
+            throw "Failed to login to Azure subscription '$SubscriptionId'."
         }
 
-        Get-LatestCommit -ErrorAction SilentlyContinue
-
-        $packerBinary = Get-Command "packer"
-        if (-not ($packerBinary)) {
-            throw "'packer' binary is not found on PATH"
+        # Check resource group
+        $ResourceGroupExists = [System.Convert]::ToBoolean((az group exists --name $ResourceGroupName));
+        if ($ResourceGroupExists) {
+            Write-Verbose "Resource group '$ResourceGroupName' already exists."
         }
 
-        if ($RestrictToAgentIpAddress) {
-            $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
-            Write-Host "Restricting access to packer generated VM to agent IP Address: $AgentIp"
-        }
-
-        if ($builderScriptPath.Contains("pkr.hcl")) {
-            if ($AgentIp) {
-                $AgentIp = '[ \"{0}\" ]' -f $AgentIp
+        # Remove resource group if it exists and we are not reusing it
+        if ($ResourceGroupExists -and -not $ReuseResourceGroup) {
+            if ($Force) {
+                # Delete and recreate the resource group
+                Write-Host "Deleting resource group '$ResourceGroupName'..."
+                az group delete --name $ResourceGroupName --yes --output none
+                if ($LastExitCode -ne 0) {
+                    throw "Failed to delete resource group '$ResourceGroupName'."
+                }
+                Write-Host "Resource group '$ResourceGroupName' was deleted."
+                $ResourceGroupExists = $false
             } else {
-                $AgentIp = "[]"
-            }
-            if (-not $Tags) {
-                $Tags = @{}
+                # Resource group already exists, ask the user what to do
+                $title = "Resource group '$ResourceGroupName' already exists"
+                $message = "Do you want to delete the resource group and all resources in it?"
+                
+                $options = @(
+                    [System.Management.Automation.Host.ChoiceDescription]::new("&Yes", "Delete the resource group and all resources in it."),
+                    [System.Management.Automation.Host.ChoiceDescription]::new("&No", "Keep the resource group and continue."),
+                    [System.Management.Automation.Host.ChoiceDescription]::new("&Abort", "Abort execution.")
+                )
+                $result = $Host.UI.PromptForChoice($title, $message, $options, 0)
+
+                switch ($result) {
+                    0 {
+                        # Delete and recreate the resource group
+                        Write-Host "Deleting resource group '$ResourceGroupName'..."
+                        az group delete --name $ResourceGroupName --yes
+                        if ($LastExitCode -ne 0) {
+                            throw "Failed to delete resource group '$ResourceGroupName'."
+                        }
+                        Write-Host "Resource group '$ResourceGroupName' was deleted."
+                        $ResourceGroupExists = $false
+                    }
+                    1 {
+                        # Keep the resource group and continue
+                    }
+                    2 {
+                        # Stop the current action
+                        Write-Error "User stopped the action."
+                        exit 1
+                    }
+                }
             }
         }
 
-        if ($builderScriptPath.Contains(".json")) {
-            if ($Tags) {
-                $builderScriptPath_temp = $builderScriptPath.Replace(".json", "-temp.json")
-                $packer_script = Get-Content -Path $builderScriptPath | ConvertFrom-Json
-                $packer_script.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
-                $packer_script | ConvertTo-Json -Depth 3 | Out-File -Encoding Ascii $builderScriptPath_temp
-                $builderScriptPath = $builderScriptPath_temp
+        # Create resource group
+        if (-not $ResourceGroupExists) {
+            Write-Host "Creating resource group '$ResourceGroupName' in location '$AzureLocation'..."
+            if ($TagsList) {
+                az group create --name $ResourceGroupName --location $AzureLocation --tags $TagsList --query id
+            } else {
+                az group create --name $ResourceGroupName --location $AzureLocation --query id
+            }
+            if ($LastExitCode -ne 0) {
+                throw "Failed to create resource group '$ResourceGroupName'."
             }
         }
 
-        $TagsJson = $Tags | ConvertTo-Json -Compress
-        if ($PSVersionTable.PSVersion.Major -eq 5) {
-            Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in tags JSON."
-            $TagsJson = $TagsJson -replace '"', '\"'
+        # Generate proper name for the storage account that follows the recommended naming conventions for azure resources
+        $StorageAccountName = $ResourceGroupName
+        if ($ResourceGroupName.EndsWith("-rg")) {
+            $StorageAccountName = $ResourceGroupName.Substring(0, $ResourceGroupName.Length - 3)
+        }
+        $StorageAccountName = $StorageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
+        $StorageAccountName += "001"
+        if ($StorageAccountName.Length -gt 24) {
+            $StorageAccountName = $StorageAccountName.Substring(0, 24)
+        }
+        
+        try {
+            $StorageAccountId = (az storage account show --name $StorageAccountName --resource-group $ResourceGroupName --query id 2>$null)
+            $StorageAccountExists = "$StorageAccountId" -ne ""
+        } catch {
+            $StorageAccountExists = $false
         }
 
-        & $packerBinary build -on-error="$($OnError)" `
-            -var "client_id=$($spClientId)" `
-            -var "client_secret=$($ServicePrincipalClientSecret)" `
+        # Create storage account
+        if ($StorageAccountExists) {
+            Write-Verbose "Storage account '$StorageAccountName' already exists."
+        } else {
+            Write-Host "Creating storage account..."
+            if ($TagsList) {
+                az storage account create --name $StorageAccountName --resource-group $ResourceGroupName --location $AzureLocation --sku Standard_LRS --allow-blob-public-access $AllowBlobPublicAccess --https-only $EnableHttpsTrafficOnly --min-tls-version TLS1_2 --tags $TagsList --query id
+            } else {
+                az storage account create --name $StorageAccountName --resource-group $ResourceGroupName --location $AzureLocation --sku Standard_LRS --allow-blob-public-access $AllowBlobPublicAccess --https-only $EnableHttpsTrafficOnly --min-tls-version TLS1_2 --query id
+            }
+            if ($LastExitCode -ne 0) {
+                throw "Failed to create storage account '$StorageAccountName'."
+            }
+        }
+
+        # Create service principal
+        if ([string]::IsNullOrEmpty($AzureClientId)) {
+            Write-Host "Creating service principal for packer..."
+            $ADCleanupRequired = $true
+
+            $ServicePrincipalName = "packer-" + [System.GUID]::NewGuid().ToString().ToUpper()
+            $ServicePrincipal = az ad sp create-for-rbac --name $ServicePrincipalName --role Contributor --scopes /subscriptions/$SubscriptionId --only-show-errors | ConvertFrom-Json
+            if ($LastExitCode -ne 0) {
+                throw "Failed to create service principal '$ServicePrincipalName'."
+            }
+            
+            $ServicePrincipalAppId = $ServicePrincipal.appId
+            $ServicePrincipalPassword = $ServicePrincipal.password
+            $TenantId = $ServicePrincipal.tenant
+
+            Write-Verbose "Waiting for service principal to propagate..."
+            Start-Sleep $SecondsToWaitForServicePrincipalSetup
+            Write-Host "Service principal created with id '$ServicePrincipalAppId'. It will be deleted after the build."
+        } else {
+            $ServicePrincipalAppId = $AzureClientId
+            $ServicePrincipalPassword = $AzureClientSecret
+            $TenantId = $AzureTenantId
+        }
+        Write-Debug "Service principal app id: $ServicePrincipalAppId."
+        Write-Debug "Tenant id: $TenantId."
+
+        & $PackerBinary build -on-error="$($OnError)" `
+            -var "client_id=$($ServicePrincipalAppId)" `
+            -var "client_secret=$($ServicePrincipalPassword)" `
             -var "subscription_id=$($SubscriptionId)" `
-            -var "tenant_id=$($tenantId)" `
+            -var "tenant_id=$($TenantId)" `
             -var "location=$($AzureLocation)" `
             -var "resource_group=$($ResourceGroupName)" `
-            -var "storage_account=$($storageAccountName)" `
+            -var "storage_account=$($StorageAccountName)" `
             -var "install_password=$($InstallPassword)" `
-            -var "allowed_inbound_ip_addresses=$($AgentIp)" `
+            -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
             -var "azure_tags=$($TagsJson)" `
-            $builderScriptPath
-    }
-    catch {
+            $TemplatePath
+
+        if ($LastExitCode -ne 0) {
+            throw "Failed to build image."
+        }
+    } catch {
         Write-Error $_
-    }
-    finally {
+    } finally {
+        Write-Verbose "`nCleaning up..."
+        
         # Remove ADServicePrincipal and ADApplication
-        if ($isCleanupADPrincipal) {
-            Write-Host "`nRemoving ${spDisplayName}/${spClientId}:"
-            if (Get-AzADServicePrincipal -DisplayName $spDisplayName) {
-                Write-Host "  [+] ADServicePrincipal"
-                Remove-AzADServicePrincipal -DisplayName $spDisplayName -Confirm:$false
+        if ($ADCleanupRequired) {
+            Write-Host "Removing ADServicePrincipal..."
+            if (az ad sp show --id $ServicePrincipalAppId --query id) {
+                az ad sp delete --id $ServicePrincipalAppId
             }
 
-            if (Get-AzADApplication -DisplayName $spDisplayName) {
-                Write-Host "  [+] ADApplication"
-                Remove-AzADApplication -DisplayName $spDisplayName -Confirm:$false
+            Write-Host "Removing ADApplication..."
+            if (az ad app show --id $ServicePrincipalAppId --query id) {
+                az ad app delete --id $ServicePrincipalAppId
             }
         }
+        Write-Verbose "Cleanup completed."
     }
 }
