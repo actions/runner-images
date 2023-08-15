@@ -94,6 +94,10 @@ variable "location" {
   default = "${env("ARM_RESOURCE_LOCATION")}"
 }
 
+variable "replication_regions" {
+  type    = string
+}
+
 variable "private_virtual_network_with_public_ip" {
   type    = bool
   default = false
@@ -203,7 +207,7 @@ source "azure-arm" "build_vhd" {
     gallery_name        = "${var.gallery_name}"
     image_name          = "${var.gallery_image_name}"
     image_version       = "${var.gallery_image_version}"
-    replication_regions = ["${var.location}"]
+    replication_regions = ["${var.replication_regions}"]
     resource_group      = "${var.gallery_resource_group}"
     subscription        = "${var.subscription_id}"
   }
