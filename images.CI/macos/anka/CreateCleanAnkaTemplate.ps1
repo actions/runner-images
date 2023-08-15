@@ -81,26 +81,32 @@ function Invoke-SoftwareUpdate {
 
     Write-Host "`t[*] Fetching Software Updates ready to install on '$TemplateName' VM:"
     Show-StringWithFormat $newUpdates
+    $listOfNewUpdates = $($($newUpdates.Split("*")).Split("Title") | Where-Object {$_ -match "Label:"}).Replace("Label: ", '')
     Write-Host "`t[*] Installing Software Updates on '$TemplateName' VM:"
-    Install-SoftwareUpdate -HostName $ipAddress | Show-StringWithFormat
+    Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates | Show-StringWithFormat
 
     # Check if Action: restart
-    if ($newUpdates.Contains("Action: restart")) {
-        Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
-        Start-Sleep -Seconds 60
+    # Make an array of updates
+    $listOfNewUpdates = $newUpdates.split('*').Trim('')
+    foreach ($newupdate in $listOfNewUpdates) {
+        # Will be True if the value is not Venture, not empty, and contains "Action: restart" words
+        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("macOS Ventura") -and (-not [String]::IsNullOrEmpty($newupdate))) {
+            Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
+            Start-Sleep -Seconds 60
 
-        Write-Host "`t[*] Waiting for loginwindow process"
-        Wait-LoginWindow -HostName $ipAddress | Show-StringWithFormat
+            Write-Host "`t[*] Waiting for loginwindow process"
+            Wait-LoginWindow -HostName $ipAddress | Show-StringWithFormat
 
-        # Re-enable AutoLogon after installing a new security software update
-        Invoke-EnableAutoLogon
+            # Re-enable AutoLogon after installing a new security software update
+            Invoke-EnableAutoLogon
 
-        # Check software updates have been installed
-        $updates = Get-SoftwareUpdate -HostName $ipAddress
-        if ($updates.Contains("Action: restart")) {
-            Write-Host "`t[x] Software updates failed to install: $updates"
-            Show-StringWithFormat $updates
-            exit 1
+            # Check software updates have been installed
+            $updates = Get-SoftwareUpdate -HostName $ipAddress
+            if ($updates.Contains("Action: restart")) {
+                Write-Host "`t[x] Software updates failed to install: "
+                Show-StringWithFormat $updates
+                exit 1
+            }
         }
     }
 
@@ -145,10 +151,16 @@ $env:SSHUSER = $TemplateUsername
 $env:SSHPASS = $TemplatePassword
 
 Write-Host "`n[#1] Download macOS application installer:"
-$macOSInstaller = Get-MacOSInstaller -MacOSVersion $MacOSVersion -DownloadLatestVersion $DownloadLatestVersion -BetaSearch $BetaSearch
 $shortMacOSVersion = Get-ShortMacOSVersion -MacOSVersion $MacOSVersion
 if ([string]::IsNullOrEmpty($TemplateName)) {
-    $TemplateName = "clean_macos_${shortMacOSVersion}_${DiskSizeGb}gb"
+    $osArch = $(arch)
+    if ($osArch -eq "arm64"){
+        $macOSInstaller = Get-MacOSIPSWInstaller -MacOSVersion $MacOSVersion -DownloadLatestVersion $DownloadLatestVersion -BetaSearch $BetaSearch
+        $TemplateName = "clean_macos_${shortMacOSVersion}_${osArch}_${DiskSizeGb}gb"
+    } else {
+        $macOSInstaller = Get-MacOSInstaller -MacOSVersion $MacOSVersion -DownloadLatestVersion $DownloadLatestVersion -BetaSearch $BetaSearch
+        $TemplateName = "clean_macos_${shortMacOSVersion}_${DiskSizeGb}gb"
+    }
 }
 
 Write-Host "`n[#2] Create a VM template:"

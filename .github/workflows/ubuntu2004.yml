@@ -17,7 +17,7 @@ on:
 
 jobs:
   Ubuntu_2004:
-    if: ${{ (github.event.label.name == 'ubuntu-all') || (github.event.label.name == 'ubuntu-2004') || (inputs.CUSTOM_REPOSITORY != '' && inputs.CUSTOM_REPOSITORY_COMMIT_HASH != '') || (github.event_name == 'schedule') }}
+    if: ${{ (github.event.label.name == 'ubuntu-all') || (github.event.label.name == 'ubuntu-2004') || (github.event_name == 'workflow_dispatch') || (github.event_name == 'schedule') }}
     uses: ./.github/workflows/ubuntu-win-generation.yml
     with:
       image_name: 'ubuntu2004'
