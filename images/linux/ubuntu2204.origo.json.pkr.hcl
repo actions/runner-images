@@ -18,6 +18,11 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
+variable "capture_name_prefix" {
+  type    = string
+  default = "packer"
+}
+
 variable "client_id" {
   type    = string
   default = "${env("ARM_CLIENT_ID")}"
@@ -27,6 +32,26 @@ variable "client_secret" {
   type      = string
   default   = "${env("ARM_CLIENT_SECRET")}"
   sensitive = true
+}
+
+variable "client_cert_path" {
+  type      = string
+  default   = "${env("ARM_CLIENT_CERT_PATH")}"
+}
+
+variable "commit_url" {
+  type      = string
+  default   = ""
+}
+
+variable "dockerhub_login" {
+  type    = string
+  default = "${env("DOCKERHUB_LOGIN")}"
+}
+
+variable "dockerhub_password" {
+  type    = string
+  default = "${env("DOCKERHUB_PASSWORD")}"
 }
 
 variable "helper_script_folder" {
@@ -46,7 +71,7 @@ variable "image_os" {
 
 variable "image_version" {
   type    = string
-  default = "latest"
+  default = "dev"
 }
 
 variable "imagedata_file" {
@@ -60,8 +85,8 @@ variable "installer_script_folder" {
 }
 
 variable "install_password" {
-  type      = string
-  sensitive = true
+  type  = string
+  default = ""
 }
 
 variable "location" {
@@ -71,7 +96,12 @@ variable "location" {
 
 variable "private_virtual_network_with_public_ip" {
   type    = bool
-  default = true
+  default = false
+}
+
+variable "resource_group" {
+  type    = string
+  default = "${env("ARM_RESOURCE_GROUP")}"
 }
 
 variable "run_validation_diskspace" {
@@ -79,9 +109,9 @@ variable "run_validation_diskspace" {
   default = false
 }
 
-variable "object_id" {
+variable "storage_account" {
   type    = string
-  default = "${env("ARM_OBJECT_ID")}"
+  default = "${env("ARM_STORAGE_ACCOUNT")}"
 }
 
 variable "subscription_id" {
@@ -227,6 +257,12 @@ build {
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    scripts          = ["${path.root}/scripts/base/apt-ubuntu-archive.sh"]
+  }
+
+  provisioner "shell" {
+    environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
+    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     script           = "${path.root}/scripts/base/apt.sh"
   }
 
@@ -281,6 +317,12 @@ build {
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/scripts/installers/configure-environment.sh"]
   }
+  
+  provisioner "shell" {
+    environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
+    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    scripts          = ["${path.root}/scripts/installers/apt-vital.sh"]
+  }
 
   provisioner "shell" {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}"]
@@ -304,10 +346,10 @@ build {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
+                        "${path.root}/scripts/installers/apt-common.sh",
                         "${path.root}/scripts/installers/azcopy.sh",
                         "${path.root}/scripts/installers/azure-cli.sh",
                         "${path.root}/scripts/installers/azure-devops-cli.sh",
-                        "${path.root}/scripts/installers/basic.sh",
                         "${path.root}/scripts/installers/bicep.sh",
                         "${path.root}/scripts/installers/aliyun-cli.sh",
                         "${path.root}/scripts/installers/apache.sh",
