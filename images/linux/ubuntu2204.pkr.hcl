@@ -201,6 +201,12 @@ build {
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    scripts          = ["${path.root}/scripts/base/apt-ubuntu-archive.sh"]
+  }
+
+  provisioner "shell" {
+    environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
+    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     script           = "${path.root}/scripts/base/apt.sh"
   }
 
@@ -257,6 +263,12 @@ build {
   }
 
   provisioner "shell" {
+    environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
+    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    scripts          = ["${path.root}/scripts/installers/apt-vital.sh"]
+  }
+
+  provisioner "shell" {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/scripts/installers/complete-snap-setup.sh", "${path.root}/scripts/installers/powershellcore.sh"]
@@ -278,10 +290,10 @@ build {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
+                        "${path.root}/scripts/installers/apt-common.sh",
                         "${path.root}/scripts/installers/azcopy.sh",
                         "${path.root}/scripts/installers/azure-cli.sh",
                         "${path.root}/scripts/installers/azure-devops-cli.sh",
-                        "${path.root}/scripts/installers/basic.sh",
                         "${path.root}/scripts/installers/bicep.sh",
                         "${path.root}/scripts/installers/aliyun-cli.sh",
                         "${path.root}/scripts/installers/apache.sh",

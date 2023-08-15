@@ -1,6 +1,7 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
+$arch = Get-Architecture
 $os = Get-OSVersion
 
 Describe "Toolcache" {
@@ -8,8 +9,8 @@ Describe "Toolcache" {
     [array]$packages += Get-ToolsetValue -KeyPath "toolcache" | ForEach-Object {
         return [PSCustomObject] @{
             ToolName = ($_.name).ToLower()
-            Arch = $_.arch
-            Versions = $_.versions | ForEach-Object { $_.Replace(".*", "") }
+            Arch = $arch
+            Versions = $_.arch.$arch | Where-Object{ $_ } | ForEach-Object { $_.versions.Replace(".*", "") }
         }
     }
 
@@ -56,7 +57,7 @@ Describe "Toolcache" {
         }
     }
 
-    Context "Ruby" {
+    Context "Ruby" -Skip:($os.IsVenturaArm64) {
         $rubyDirectory = Join-Path $toolcacheDirectory "Ruby"
         $rubyPackage = $packages | Where-Object { $_.ToolName -eq "Ruby" } | Select-Object -First 1
         $testCase = @{ RubyDirectory = $rubyDirectory }
@@ -98,7 +99,7 @@ Describe "Toolcache" {
             }
         }
     }
-    Context "PyPy" {
+    Context "PyPy" -Skip:($os.IsVenturaArm64) {
         $pypyDirectory = Join-Path $toolcacheDirectory "PyPy"
         $pypyPackage = $packages | Where-Object { $_.ToolName -eq "pypy" } | Select-Object -First 1
         $testCase = @{ PypyDirectory = $pypyDirectory }

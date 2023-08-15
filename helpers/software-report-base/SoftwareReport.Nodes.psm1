@@ -279,10 +279,10 @@ class TableNode: BaseNode {
         $maxColumnWidths = $this.CalculateColumnsWidth()
         $columnsCount = $maxColumnWidths.Count
 
-        $delimeterLine = [String]::Join("|", @("-") * $columnsCount)
+        $delimiterLine = [String]::Join("|", @("-") * $columnsCount)
 
         $sb = [System.Text.StringBuilder]::new()
-        @($this.Headers) + @($delimeterLine) + $this.Rows | ForEach-Object {
+        @($this.Headers) + @($delimiterLine) + $this.Rows | ForEach-Object {
             $sb.Append("|")
             $row = $_.Split("|")
 

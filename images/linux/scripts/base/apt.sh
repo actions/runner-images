@@ -40,4 +40,4 @@ apt-get install jq
 
 # Install apt-fast using quick-install.sh
 # https://github.com/ilikenwf/apt-fast
-bash -c "$(curl -sL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"

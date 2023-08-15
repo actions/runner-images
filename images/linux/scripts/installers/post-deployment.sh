@@ -11,9 +11,6 @@ chmod -R 777 /opt
 echo "chmod -R 777 /usr/share"
 chmod -R 777 /usr/share
 
-# remove installer and helper folders
-rm -rf $HELPER_SCRIPT_FOLDER
-rm -rf $INSTALLER_SCRIPT_FOLDER
 chmod 755 $IMAGE_FOLDER
 
 # Remove quotes around PATH
@@ -24,5 +21,11 @@ echo "PATH=$ENVPATH" | sudo tee -a /etc/environment
 echo "Updated /etc/environment: $(cat /etc/environment)"
 
 # Clean yarn and npm cache
-yarn cache clean
-npm cache clean --force
+if yarn --version > /dev/null
+then
+  yarn cache clean
+fi
+if npm --version
+then
+  npm cache clean --force
+fi

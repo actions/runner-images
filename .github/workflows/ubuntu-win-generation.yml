@@ -62,7 +62,7 @@ jobs:
           repository: '${{ inputs.custom_repo }}'
           ref: '${{ inputs.custom_repo_commit_hash }}'
 
-      - name: Set image varibles
+      - name: Set image variables
         run: |
           $ImageType = "${{ inputs.image_name }}"
 
@@ -81,12 +81,13 @@ jobs:
 
       - name: Build image
         run: |
+            $ResourcesNamePrefix = ${{ github.run_id }} % [System.UInt32]::MaxValue
             ./images.CI/linux-and-win/build-image.ps1 `
               -TemplatePath ${{ env.TemplatePath }} `
               -ClientId ${{ secrets.CLIENT_ID }} `
               -ClientSecret ${{ secrets.CLIENT_SECRET }} `
               -Location ${{ secrets.AZURE_LOCATION }} `
-              -ResourcesNamePrefix ${{ github.run_number }} `
+              -ResourcesNamePrefix $ResourcesNamePrefix `
               -ResourceGroup ${{ secrets.AZURE_RESOURCE_GROUP }} `
               -StorageAccount ${{ secrets.AZURE_STORAGE_ACCOUNT }} `
               -SubscriptionId ${{ secrets.AZURE_SUBSCRIPTION }} `
@@ -112,8 +113,9 @@ jobs:
 
       - name: Create release for VM deployment
         run: |
+          $BuildId = ${{ github.run_id }} % [System.UInt32]::MaxValue
           ./images.CI/linux-and-win/create-release.ps1 `
-            -BuildId ${{ github.run_number }} `
+            -BuildId $BuildId `
             -Organization ${{ secrets.RELEASE_TARGET_ORGANIZATION }} `
             -DefinitionId ${{ secrets.RELEASE_TARGET_DEFINITION_ID }} `
             -Project ${{ secrets.RELEASE_TARGET_PROJECT }} `

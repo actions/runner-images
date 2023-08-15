@@ -1,5 +1,3 @@
-$os = Get-OSVersion
-
 Describe "Rust" {
     Context "Rust" {
         It "Rustup is installed" {
@@ -10,7 +8,7 @@ Describe "Rust" {
             "rustc --version" | Should -ReturnZeroExitCode
         }
     }
-    
+
     Context "Cargo" {
         It "Cargo is installed" {
             "cargo --version" | Should -ReturnZeroExitCode

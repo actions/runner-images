@@ -35,7 +35,7 @@ EDGE_VERSION_MAJOR=$(echo $EDGE_VERSION | cut -d'.' -f 1)
 
 EDGE_DRIVER_VERSION_URL="https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDGE_VERSION_MAJOR}_LINUX"
 # Convert a resulting file to normal UTF-8
-EDGE_DRIVER_LATEST_VERSION=$(curl -s "$EDGE_DRIVER_VERSION_URL" | iconv -f utf-16 -t utf-8 | tr -d '\r')
+EDGE_DRIVER_LATEST_VERSION=$(curl -fsSL "$EDGE_DRIVER_VERSION_URL" | iconv -f utf-16 -t utf-8 | tr -d '\r')
 
 EDGEDRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_DRIVER_LATEST_VERSION}/edgedriver_linux64.zip"
 download_with_retries $EDGEDRIVER_URL "/tmp" "edgedriver_linux64.zip"

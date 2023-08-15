@@ -43,6 +43,9 @@ jobs:
 
   steps:
   - checkout: ${{ parameters.repository_ref }}
+    clean: true
+    fetchDepth: 0
+    fetchTags: false
 
   - task: PowerShell@2
     displayName: 'Download custom repository'

@@ -21,7 +21,8 @@
             "versions": [
                 "3.7",
                 "3.8",
-                "3.9"
+                "3.9",
+                "3.10"
             ]
         },
         {
@@ -43,7 +44,8 @@
             "versions": [
                 "1.18.*",
                 "1.19.*",
-                "1.20.*"
+                "1.20.*",
+                "1.21.*"
             ],
             "default": "1.20.*"
         },
@@ -66,17 +68,11 @@
     ],
     "java": {
         "default": "11",
-        "default_vendor": "Temurin-Hotspot",
-        "vendors": [
-            {
-                "name": "Temurin-Hotspot",
-                "versions": [ "8", "11", "17" ]
-            }
-        ],
+        "versions": [ "8", "11", "17" ],
         "maven": "3.8.8"
     },
     "android": {
-        "cmdline-tools": "latest",
+        "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra_list": [
@@ -116,13 +112,24 @@
         }
     ],
     "apt": {
+        "vital_packages": [
+            "bzip2",
+            "curl",
+            "g++",
+            "gcc",
+            "make",
+            "jq",
+            "tar",
+            "unzip",
+            "wget"
+        ],
         "common_packages": [
             "autoconf",
             "automake",
-            "build-essential",
             "dbus",
             "dnsutils",
             "dpkg",
+            "dpkg-dev",
             "fakeroot",
             "fonts-noto-color-emoji",
             "gnupg2",
@@ -132,6 +139,7 @@
             "lib32z1",
             "libc++abi-dev",
             "libc++-dev",
+            "libc6-dev",
             "libcurl4",
             "libgbm-dev",
             "libgconf-2-4",
@@ -155,7 +163,6 @@
             "pkg-config",
             "python-is-python3",
             "rpm",
-            "tar",
             "texinfo",
             "tk",
             "tzdata",
@@ -171,14 +178,11 @@
             "binutils",
             "bison",
             "brotli",
-            "bzip2",
             "coreutils",
-            "curl",
             "file",
             "flex",
             "ftp",
             "haveged",
-            "jq",
             "lz4",
             "m4",
             "mediainfo",
@@ -200,8 +204,6 @@
             "swig",
             "telnet",
             "time",
-            "unzip",
-            "wget",
             "zip"
         ]
     },
@@ -209,10 +211,9 @@
     ],
     "docker": {
         "images": [
-            "alpine:3.14",
-            "alpine:3.15",
             "alpine:3.16",
             "alpine:3.17",
+            "alpine:3.18",
             "buildpack-deps:buster",
             "buildpack-deps:bullseye",
             "debian:10",
