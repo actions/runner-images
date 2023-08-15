@@ -54,7 +54,6 @@ $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MsbuildVersion))
 $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
 $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
-$languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
 $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
 $languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
 

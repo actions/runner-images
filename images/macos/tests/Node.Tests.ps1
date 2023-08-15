@@ -21,7 +21,7 @@ Describe "Node.js" {
     }
 }
 
-Describe "nvm" {
+Describe "nvm" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     BeforeAll {
         $nvmPath = Join-Path $env:HOME ".nvm" "nvm.sh"
         $nvmInitCommand = ". $nvmPath > /dev/null 2>&1 || true"

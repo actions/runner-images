@@ -33,13 +33,13 @@ Describe "GCC" {
     }
 }
 
-Describe "vcpkg" {
+Describe "vcpkg" -Skip:($os.IsVenturaArm64) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "AWS" {
+Describe "AWS" -Skip:($os.IsVenturaArm64) {
     It "AWS CLI" {
         "aws --version" | Should -ReturnZeroExitCode
     }
@@ -58,7 +58,7 @@ Describe "AzCopy" {
     }
 }
 
-Describe "Miniconda" {
+Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Conda" {
         Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
         $condaBinPath = Join-Path $env:CONDA "bin" "conda"
@@ -66,7 +66,7 @@ Describe "Miniconda" {
     }
 }
 
-Describe "Stack" {
+Describe "Stack" -Skip:($os.IsVenturaArm64) {
     It "Stack" {
         "stack --version" | Should -ReturnZeroExitCode
     }
@@ -105,7 +105,7 @@ Describe "VSMac" {
     }
 }
 
-Describe "Swig" {
+Describe "Swig" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Swig" {
         "swig -version" | Should -ReturnZeroExitCode
     }
@@ -117,13 +117,13 @@ Describe "Bicep" {
     }
 }
 
-Describe "Go" {
+Describe "Go" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Go" {
         "go version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "VirtualBox" -Skip:($os.IsBigSur) {
+Describe "VirtualBox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64) {
     It "Check kext kernel modules" {
         kextstat | Out-String | Should -Match "org.virtualbox.kext"
     }
@@ -165,7 +165,7 @@ Describe "CodeQLBundles" {
     }
 }
 
-Describe "Colima" {
+Describe "Colima" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Colima" {
         "colima version" | Should -ReturnZeroExitCode
     }

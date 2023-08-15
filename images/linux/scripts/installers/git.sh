@@ -22,7 +22,7 @@ cat <<EOF >> /etc/gitconfig
 EOF
 
 # Install git-lfs
-curl -s $GIT_LFS_REPO/script.deb.sh | bash
+curl -fsSL $GIT_LFS_REPO/script.deb.sh | bash
 apt-get install -y git-lfs
 
 # Install git-ftp

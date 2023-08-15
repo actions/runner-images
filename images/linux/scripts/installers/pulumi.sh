@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Install Pulumi
-VERSION=$(curl --fail --silent -L "https://www.pulumi.com/latest-version")
+VERSION=$(curl -fsSL "https://www.pulumi.com/latest-version")
 TARBALL_URL="https://get.pulumi.com/releases/sdk/pulumi-v${VERSION}-linux-x64.tar.gz"
 download_with_retries ${TARBALL_URL} "/tmp" pulumi-v${VERSION}.tar.gz
 tar --strip=1 -xf /tmp/pulumi-v${VERSION}.tar.gz -C /usr/local/bin

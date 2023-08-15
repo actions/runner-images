@@ -37,7 +37,7 @@ defaults write com.apple.VoiceOver4/default SCREnableAppleScript -bool YES
 # sudo security delete-certificate -Z FF6797793A3CD798DC5B2ABEF56F73EDC9F83A64 /Library/Keychains/System.keychain
 # Big Sur requires user interaction to add a cert https://developer.apple.com/forums/thread/671582, we need to use a workaround with SecItemAdd swift method
 
-swiftc "${HOME}/image-generation/add-certificate.swift"
+swiftc -suppress-warnings "${HOME}/image-generation/add-certificate.swift"
 
 
 certs=(
@@ -47,7 +47,7 @@ certs=(
 for cert in ${certs[@]}; do
     echo "Adding ${cert} certificate"
     cert_path="${HOME}/${cert}"
-    curl "https://www.apple.com/certificateauthority/${cert}" --output ${cert_path} --silent
+    curl -fsSL "https://www.apple.com/certificateauthority/${cert}" --output ${cert_path}
 
     sudo ./add-certificate ${cert_path}
 
@@ -57,7 +57,7 @@ done
 rm -f ./add-certificate
 
 # enable-automationmode-without-authentication
-if is_Monterey; then
+if ! is_BigSur; then
 retry=10
 while [ $retry -gt 0 ]; do
 {

@@ -75,8 +75,9 @@ function InstallPyPy
     rm -f $PACKAGE_TAR_TEMP_PATH
 }
 
-pypyVersions=$(curl https://downloads.python.org/pypy/versions.json)
-toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
+arch=$(get_arch)
+pypyVersions=$(curl -fsSL https://downloads.python.org/pypy/versions.json)
+toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .arch.'$arch'.versions[]')
 
 for toolsetVersion in $toolsetVersions; do
     latestMajorPyPyVersion=$(echo $pypyVersions |

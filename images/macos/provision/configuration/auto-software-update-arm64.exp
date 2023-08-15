@@ -1,0 +1,7 @@
+#! /usr/bin/expect -f
+
+set timeout -1
+spawn sudo /usr/sbin/softwareupdate --all --install --restart --verbose
+expect "Password*"
+send "[lindex $argv 0]\r"
+expect eof

@@ -79,13 +79,13 @@ Describe "Docker" {
     It "docker-credential-ecr-login" {
         "docker-credential-ecr-login -v" | Should -ReturnZeroExitCode
     }
+}
 
-    Context "docker images" {
-        $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
+Describe "Docker images" {
+    $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 
-        It "<ImageName>" -TestCases $testCases {
-           sudo docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
-        }
+    It "<ImageName>" -TestCases $testCases {
+       sudo docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
     }
 }
 

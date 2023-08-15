@@ -1,6 +1,10 @@
-Describe "Chrome" {
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+$os = Get-OSVersion
+
+Describe "Chrome" -Skip:($os.IsVenturaArm64) {
     BeforeAll {
         $chromeLocation = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        $chromeForTestingLocation = "/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
     }
 
     It "Chrome" {
@@ -8,24 +12,29 @@ Describe "Chrome" {
         "'$chromeLocation' --version" | Should -ReturnZeroExitCode
     }
 
+    It "Chrome for Testing" {
+        $chromeForTestingLocation | Should -Exist
+        "'$chromeForTestingLocation' --version" | Should -ReturnZeroExitCode
+    }
+
     It "Chrome Driver" {
         "chromedriver --version" | Should -ReturnZeroExitCode
     }
 
-    It "Chrome and Chrome Driver major versions are the same" {
-        $chromeMajor = (& $chromeLocation --version).Trim("Google Chrome ").Split(".")[0]
+    It "Chrome for Testing and Chrome Driver major versions are the same" {
+        $chromeMajor = (& $chromeForTestingLocation --version).Trim("Google Chrome for Testing ").Split(".")[0]
         $chromeDriverMajor = (chromedriver --version).Trim("ChromeDriver ").Split(".")[0]
         $chromeMajor | Should -BeExactly $chromeDriverMajor
     }
 }
 
-Describe "Selenium server" {
+Describe "Selenium server" -Skip:($os.IsVenturaArm64) {
     It "Selenium server" {
         (Get-ChildItem -Path "/usr/local/Cellar/selenium-server*/*").Name | Should -BeLike "4.*"
     }
 }
 
-Describe "Edge" {
+Describe "Edge" -Skip:($os.IsVenturaArm64) {
     It "Microsoft Edge" {
         $edgeLocation = "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
         $edgeLocation | Should -Exist
@@ -37,7 +46,7 @@ Describe "Edge" {
     }
 }
 
-Describe "Firefox" {
+Describe "Firefox" -Skip:($os.IsVenturaArm64) {
     It "Firefox" {
         $firefoxLocation = "/Applications/Firefox.app/Contents/MacOS/firefox"
         $firefoxLocation | Should -Exist
