@@ -1,12 +1,10 @@
 ################################################################################
 ##  File:  Install-Edge.ps1
-##  Desc:  Install latest stable version of Microsoft Edge browser
+##  Desc:  Configure Edge browser and install Edge WebDriver
 ################################################################################
 
-# Installed by default on Windows Server 2022
-if (-not (Test-IsWin22)) {
-    Choco-Install -PackageName microsoft-edge
-}
+# Disable Edge auto-updates
+Rename-Item -Path "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction Stop
 
 # Install Microsoft Edge WebDriver
 Write-Host "Install Edge WebDriver..."

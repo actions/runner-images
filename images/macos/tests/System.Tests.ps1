@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
 $os = Get-OSVersion
 
 Describe "Disk free space" {
@@ -23,7 +25,7 @@ Describe "Certificate" {
     }
 }
 
-Describe "Audio device" {
+Describe "Audio device" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Sox is installed" {
         "sox --version" | Should -ReturnZeroExitCode
     }
@@ -37,13 +39,13 @@ Describe "Audio device" {
     }
 }
 
-Describe "Screen Resolution" {
+Describe "Screen Resolution" -Skip:(isVeertu) {
     It "Screen Resolution" {
         system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885|1920 x 1080"
     }
 }
 
-Describe "Open windows" {
+Describe "Open windows" -Skip:(isVeertu) {
     It "Opened windows not found" {
         'tell application id "com.apple.systemevents" to get every window of (every process whose class of windows contains window)' | Tee-Object /tmp/windows.osascript
         $cmd = "osascript /tmp/windows.osascript"
@@ -53,7 +55,7 @@ Describe "Open windows" {
 }
 
 Describe "AutomationModeTool" {
-    It "Does not require user authentication" -Skip:(-not $os.IsMonterey) {
+    It "Does not require user authentication" -Skip:($os.IsBigSur) {
         automationmodetool | Out-String | Should -Match "DOES NOT REQUIRE"
     }
 }

@@ -1,3 +1,4 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 $os = Get-OSVersion
 
 Describe "Azure CLI" {
@@ -24,7 +25,7 @@ Describe "cmake" {
     }
 }
 
-Describe "Subversion" -Skip:($os.IsVentura) {
+Describe "Subversion" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Subversion" {
         "svn --version" | Should -ReturnZeroExitCode
     }
@@ -60,7 +61,7 @@ Describe "Perl" {
     }
 }
 
-Describe "Helm" -Skip:($os.IsMonterey -or $os.IsVentura) {
+Describe "Helm" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsVenturaArm64) {
     It "Helm" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
@@ -108,7 +109,7 @@ Describe "bazel" {
     }
 }
 
-Describe "Aliyun CLI" -Skip:($os.IsMonterey -or $os.IsVentura) {
+Describe "Aliyun CLI" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsVenturaArm64) {
     It "Aliyun CLI" {
         "aliyun --version" | Should -ReturnZeroExitCode
     }
@@ -144,7 +145,7 @@ Describe "vagrant" -Skip:($os.IsBigSur) {
     }
 }
 
-Describe "virtualbox" -Skip:($os.IsBigSur -or $os.IsVentura) {
+Describe "virtualbox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
@@ -170,7 +171,7 @@ Describe "Kotlin" {
     }
 }
 
-Describe "sbt" -Skip:($os.IsVentura) {
+Describe "sbt" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "sbt" {
         "sbt -version" | Should -ReturnZeroExitCode
     }
@@ -182,7 +183,7 @@ Describe "yq" {
     }
 }
 
-Describe "imagemagick" -Skip:($os.IsVentura) {
+Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "imagemagick" {
         "magick -version" | Should -ReturnZeroExitCode
     }

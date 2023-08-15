@@ -99,12 +99,6 @@ function Get-PythonVersion {
     return $version
 }
 
-function Get-Python3Version {
-    $result = Get-CommandResult "python3 --version"
-    $version = $result.Output | Take-OutputPart -Part 1
-    return $version
-}
-
 function Get-PowershellVersion {
     return $(pwsh --version) | Take-OutputPart -Part 1
 }
@@ -322,7 +316,7 @@ function Get-CachedDockerImagesTableData {
 function Get-AptPackages {
     $apt = (Get-ToolsetContent).Apt
     $output = @()
-    ForEach ($pkg in ($apt.common_packages + $apt.cmd_packages)) {
+    ForEach ($pkg in ($apt.vital_packages + $apt.common_packages + $apt.cmd_packages)) {
         $version = $(dpkg-query -W -f '${Version}' $pkg)
         if ($Null -eq $version) {
             $version = $(dpkg-query -W -f '${Version}' "$pkg*")

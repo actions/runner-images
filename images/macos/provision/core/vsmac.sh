@@ -6,11 +6,11 @@ install_vsmac() {
     local VSMAC_VERSION=$1
     local VSMAC_DEFAULT=$2
     if [ $VSMAC_VERSION == "2019" ]; then
-        VSMAC_DOWNLOAD_URL=$(curl -sL "https://aka.ms/manifest/stable" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
+        VSMAC_DOWNLOAD_URL=$(curl -fsSL "https://aka.ms/manifest/stable" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
     elif [ $VSMAC_VERSION == "2022" ]; then
-        VSMAC_DOWNLOAD_URL=$(curl -sL "https://aka.ms/manifest/stable-2022" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
+        VSMAC_DOWNLOAD_URL=$(curl -fsSL "https://aka.ms/manifest/stable-2022" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
     elif [ $VSMAC_VERSION == "preview" ]; then
-        VSMAC_DOWNLOAD_URL=$(curl -sL "https://aka.ms/manifest/preview" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
+        VSMAC_DOWNLOAD_URL=$(curl -fsSL "https://aka.ms/manifest/preview" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
     else
         VSMAC_DOWNLOAD_URL=$(buildVSMacDownloadUrl $VSMAC_VERSION)
     fi

@@ -5,7 +5,7 @@
 
 - [About](#about)
 - [Available Images](#available-images)
-- [Ongoing migrations](#ongoing-migrations)
+- [Announcements](#announcements)
 - [Image Definitions](#image-definitions)
 - [Image Releases](#image-releases)
 - [Software and Image Support](#software-and-image-support)
@@ -21,13 +21,13 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 | Image | YAML Label | Included Software | Rollout Progress of Latest Image Release |
 | --------------------|---------------------|--------------------|---------------------|
-| Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] | [![status22](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
-| Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | [![status20](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
-| macOS 12 | `macos-latest` or `macos-12`| [macOS-12] | [![statusumac12](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-12&redirect=1)
-| macOS 11 | `macos-11`| [macOS-11] | [![statusmac11](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
-| macOS 10.15 <sup>deprecated</sup> | `macos-10.15` | [macOS-10.15] | [![statusmac10](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=macos-10.15&redirect=1)
-| Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | [![statuswin22](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2022&redirect=1) |
-| Windows Server 2019 | `windows-2019` | [windows-2019] | [![statuswin19](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://actionvirtualenvironmentsstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
+| Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] | [![status22](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
+| Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | [![status20](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
+| macOS 13 [beta] | `macos-13` or `macos-13-xl`| [macOS-13] | [![statusumac13](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-13&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-13&redirect=1)
+| macOS 12 | `macos-latest`, `macos-latest-xl`, `macos-12`, or `macos-12-xl`| [macOS-12] | [![statusumac12](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-12&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-12&redirect=1)
+| macOS 11 | `macos-11`| [macOS-11] | [![statusmac11](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
+| Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | [![statuswin22](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2022&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2022&redirect=1) |
+| Windows Server 2019 | `windows-2019` | [windows-2019] | [![statuswin19](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 
 ### Label scheme
 
@@ -40,12 +40,13 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [windows-2019]: https://github.com/actions/runner-images/blob/main/images/win/Windows2019-Readme.md
 [macOS-11]: https://github.com/actions/runner-images/blob/main/images/macos/macos-11-Readme.md
 [macOS-12]: https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
+[macOS-13]: https://github.com/actions/runner-images/blob/main/images/macos/macos-13-Readme.md
 [macOS-10.15]: https://github.com/actions/runner-images/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
-## Ongoing migrations
+## Announcements
 
-There are no migrations in progress.
+See notable upcoming changes by viewing issues with the [Announcement](https://github.com/actions/runner-images/labels/Announcement) label.
 
 ## Image Definitions
 
@@ -68,6 +69,14 @@ version for the underlying OS and
 This image type falls under the customer [SLA](https://github.com/customer-terms/github-online-services-sla) for actions. GA images are eventually deprecated according to our guidelines as we only support the
 latest 2 versions of an OS.
 
+#### Latest Migration Process
+
+GitHub Actions and Azure DevOps use the `-latest` YAML label (ex: `ubuntu-latest`, `windows-latest`, and `macos-latest`). These labels point towards the newest stable OS version available.
+
+
+The `-latest` migration process is gradual and happens over 1-2 months in order to allow customers to adapt their workflows to the newest OS version. During this process, any workflow using the `-latest` label, may see changes in the OS version in their workflows or pipelines. To avoid unwanted migration, users can specify a specific OS version in the yaml file (ex: macos-12, windows-2022, ubuntu-22.04).
+
+
 ## Image Releases
 
 *How to best follow along with changes*
@@ -79,7 +88,6 @@ latest 2 versions of an OS.
    - You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/runner-images/labels/awaiting-deployment) label.
 4. For high impact changes, we will post these in advance to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).
    - Ex: breaking changes, GA or deprecation of images
-5. You can also view notable upcoming changes by viewing the [Announcement](https://github.com/actions/runner-images/labels/Announcement) label.
 
 *Cadence*
 
@@ -113,15 +121,13 @@ latest 2 versions of an OS.
 We use third-party package managers to install software during the image generation process. The table below lists the package managers and the software installed.
 > **Note**: third-party repositories are re-evaluated every year to identify if they are still useful and secure.
 
-
 | Operating system | Package manager                       | Third-party repos and packages |
 | :---             |        :---:                          |                           ---: |
 | Ubuntu           | [APT](https://wiki.debian.org/Apt)    | [Eclipse-Temurin (Adoptium)](https://packages.adoptium.net/artifactory/deb) </br> [Erlang](https://packages.erlang-solutions.com/ubuntu) </br>[Firefox](https://launchpad.net/~mozillateam/+archive/ubuntu/ppa) </br> [gcc, gfortran](https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test)  </br> [git](https://launchpad.net/~git-core/+archive/ubuntu/ppa) </br> [HHvm](https://dl.hhvm.com/ubuntu) </br> [PHP](https://launchpad.net/~ondrej/+archive/ubuntu/php) (Ubuntu 20 only) </br> [Mono](https://download.mono-project.com/repo/ubuntu) </br> [PostgreSQL](https://apt.postgresql.org/pub/repos/apt) </br> [R](https://cloud.r-project.org/bin/linux/ubuntu)                                     |
 |                  | [pipx](https://pypa.github.io/pipx)   | ansible-core </br>yamllint     |
 | Windows          | [Chocolatey](https://chocolatey.org)  | No third-party repos installed |
-| macOS            | [Homebrew](https://homebrew.sh)       | [aws-cli v2](https://github.com/aws/homebrew-tap) </br> [azure/bicep](https://github.com/Azure/homebrew-bicep) </br> [mongodb/brew](https://github.com/mongodb/homebrew-brew)                                                  |
+| macOS            | [Homebrew](https://brew.sh)           | [aws-cli v2](https://github.com/aws/homebrew-tap) </br> [azure/bicep](https://github.com/Azure/homebrew-bicep) </br> [mongodb/brew](https://github.com/mongodb/homebrew-brew)                                                  |
 |                  | [pipx](https://pypa.github.io/pipx/)  | yamllint                       |
-
 
 ### Image Deprecation Policy
 

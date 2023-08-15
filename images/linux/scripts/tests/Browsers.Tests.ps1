@@ -1,6 +1,6 @@
 Describe "Firefox" {
     It "Firefox" {
-        "sudo -i firefox --version" | Should -ReturnZeroExitCode
+        "firefox --version" | Should -ReturnZeroExitCode
     }
 
     It "Geckodriver" {

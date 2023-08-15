@@ -1,3 +1,4 @@
+Import-Module "$PSScriptRoot/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/Xcode.Helpers.psm1"
 
 function Install-XcodeVersion {
@@ -11,7 +12,7 @@ function Install-XcodeVersion {
     $xcodeDownloadDirectory = "$env:HOME/Library/Caches/XcodeInstall"
     $xcodeTargetPath = Get-XcodeRootPath -Version $LinkTo
     $xcodeXipDirectory = Invoke-DownloadXcodeArchive -DownloadDirectory $xcodeDownloadDirectory -Version $Version
-    Expand-XcodeXipArchive -DownloadDirectory $xcodeXipDirectory -TargetPath $xcodeTargetPath
+    Expand-XcodeXipArchive -DownloadDirectory $xcodeXipDirectory.FullName -TargetPath $xcodeTargetPath
 
     Remove-Item -Path $xcodeXipDirectory -Force -Recurse
 }
@@ -24,18 +25,14 @@ function Invoke-DownloadXcodeArchive {
         [string]$Version
     )
 
-    $resolvedVersion = Resolve-ExactXcodeVersion -Version $Version
-    if (-not $resolvedVersion) {
-        throw "Version '$Version' can't be matched to any available version"
-    }
-    Write-Host "Downloading Xcode $resolvedVersion"
-    Invoke-XCVersion -Arguments "install '$resolvedVersion' --no-install" | Out-Host    
+    Write-Host "Downloading Xcode $Version"
 
-    $xcodeXipName = "$resolvedVersion" -replace " ", "_"
-    $xcodeXipFile = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_$xcodeXipName.xip" | Select-Object -First 1
-    $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$xcodeXipName" -ItemType "Directory"
-    Move-Item -Path "$xcodeXipFile" -Destination $tempXipDirectory
+    $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$Version" -ItemType "Directory"
 
+    $xcodeFileName = 'Xcode-{0}.xip' -f $Version
+    $xcodeUri = '{0}{1}{2}'-f ${env:XCODE_INSTALL_STORAGE_URL}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
+
+    Start-DownloadWithRetry -Url $xcodeUri -DownloadPath $tempXipDirectory.FullName -Name $xcodeFileName
     return $tempXipDirectory
 
 }
@@ -86,11 +83,15 @@ function Expand-XcodeXipArchive {
         [string]$TargetPath
     )
 
-    $xcodeXipPath = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode_*.xip" | Select-Object -First 1
+    $xcodeXipPath = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode-*.xip" | Select-Object -First 1
 
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
     Push-Location $DownloadDirectory
-    Invoke-ValidateCommand "xip -x $xcodeXipPath"
+    if(Test-CommandExists 'unxip') {
+        Invoke-ValidateCommand "unxip $xcodeXipPath"
+    } else {
+        Invoke-ValidateCommand "xip -x $xcodeXipPath"
+    }
     Pop-Location
 
     if (Test-Path "$DownloadDirectory/Xcode-beta.app") {
@@ -128,7 +129,7 @@ function Approve-XcodeLicense {
     $XcodeRootPath = Get-XcodeRootPath -Version $Version
     Write-Host "Approving Xcode license for '$XcodeRootPath'..."
     $xcodeBuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
-    Invoke-ValidateCommand "sudo $xcodeBuildPath -license accept"
+    Invoke-ValidateCommand -Command "sudo $xcodeBuildPath -license accept" -Timeout 15
 }
 
 function Install-XcodeAdditionalPackages {
@@ -166,14 +167,9 @@ function Install-AdditionalSimulatorRuntimes {
         [string]$Version
     )
 
-    if (-not $Version.StartsWith("14.")) {
-        # Additional simulator runtimes are included by default for Xcode < 14
-        return
-    }
-
-    Write-Host "Installing Simulator Runtimes for Xcode $($_.link) ..."
+    Write-Host "Installing Simulator Runtimes for Xcode $Version ..."
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms"
+    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms | xcpretty"
 }
 
 function Build-XcodeSymlinks {

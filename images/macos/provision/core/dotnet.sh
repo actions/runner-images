@@ -10,26 +10,29 @@ source ~/utils/utils.sh
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+arch=$(get_arch)
+
 # Download installer from dot.net and keep it locally
 DOTNET_INSTALL_SCRIPT="https://dot.net/v1/dotnet-install.sh"
-curl -L -o "dotnet-install.sh" "$DOTNET_INSTALL_SCRIPT"
+curl -fsSL -o "dotnet-install.sh" "$DOTNET_INSTALL_SCRIPT"
 chmod +x ./dotnet-install.sh
 
 ARGS_LIST=()
 echo "Parsing dotnet SDK (except rc and preview versions) from .json..."
 
-DOTNET_VERSIONS=($(get_toolset_value '.dotnet.versions | .[]'))
+DOTNET_VERSIONS=($(get_toolset_value ".dotnet.arch[\"$arch\"].versions | .[]"))
 
 for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
-    RELEASE_URL="https://raw.githubusercontent.com/dotnet/core/master/release-notes/${DOTNET_VERSION}/releases.json"
+    RELEASE_URL="https://raw.githubusercontent.com/dotnet/core/main/release-notes/${DOTNET_VERSION}/releases.json"
+    download_with_retries "$RELEASE_URL" "/tmp" "dotnet_${DOTNET_VERSION}.json"
 
     if [[ $DOTNET_VERSION == "6.0" ]]; then
         ARGS_LIST+=(
-            $(curl -s "$RELEASE_URL" | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))')
+            $(cat /tmp/dotnet_${DOTNET_VERSION}.json | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))')
         )
     else
         ARGS_LIST+=(
-            $(curl -s "$RELEASE_URL" | \
+            $(cat /tmp/dotnet_${DOTNET_VERSION}.json | \
             jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*' | \
             sort -r | rev | uniq -s 2 | rev)
         )
@@ -37,7 +40,7 @@ for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
 done
 
 for ARGS in "${ARGS_LIST[@]}"; do
-    ./dotnet-install.sh --version $ARGS -NoPath
+    ./dotnet-install.sh --version $ARGS -NoPath --arch $arch
 done
 
 rm ./dotnet-install.sh

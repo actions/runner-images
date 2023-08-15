@@ -451,11 +451,13 @@ function Extract-7Zip {
         [Parameter(Mandatory=$true)]
         [string]$Path,
         [Parameter(Mandatory=$true)]
-        [string]$DestinationPath
+        [string]$DestinationPath,
+        [ValidateSet("x", "e")]
+        [char]$ExtractMethod = "x"
     )
 
     Write-Host "Expand archive '$PATH' to '$DestinationPath' directory"
-    7z.exe x "$Path" -o"$DestinationPath" -y | Out-Null
+    7z.exe $ExtractMethod "$Path" -o"$DestinationPath" -y | Out-Null
 
     if ($LASTEXITCODE -ne 0)
     {
@@ -489,7 +491,17 @@ function Get-AndroidPackages {
         [string]$AndroidSDKManagerPath
     )
 
-    return (cmd /c "$AndroidSDKManagerPath --list --verbose 2>&1").Trim() | Foreach-Object { $_.Split()[0] } | Where-Object {$_}
+    $packagesListFile = "C:\Android\android-sdk\packages-list.txt"
+
+    if (-Not (Test-Path -Path $packagesListFile -PathType Leaf)) {
+        (cmd /c "$AndroidSDKManagerPath --list --verbose 2>&1") |
+        Where-Object { $_ -Match "^[^\s]" } |
+        Where-Object { $_ -NotMatch "^(Loading |Info: Parsing |---|\[=+|Installed |Available )" } |
+        Where-Object { $_ -NotMatch "^[^;]*$" } |
+        Out-File -FilePath $packagesListFile
+    }
+
+    return Get-Content $packagesListFile
 }
 
 function Get-AndroidPackagesByName {

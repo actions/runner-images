@@ -17,7 +17,7 @@ setEtcEnvironmentVariable "BOOTSTRAP_HASKELL_NONINTERACTIVE" $BOOTSTRAP_HASKELL_
 setEtcEnvironmentVariable "GHCUP_INSTALL_BASE_PREFIX" $GHCUP_INSTALL_BASE_PREFIX
 
 # Install GHCup
-curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh > /dev/null 2>&1 || true
+curl --proto '=https' --tlsv1.2 -fsSL https://get-ghcup.haskell.org | sh > /dev/null 2>&1 || true
 export PATH="$ghcup_bin:$PATH"
 prependEtcEnvironmentPath $ghcup_bin
 
@@ -39,6 +39,6 @@ chmod -R 777 $GHCUP_INSTALL_BASE_PREFIX/.ghcup
 ln -s $GHCUP_INSTALL_BASE_PREFIX/.ghcup /etc/skel/.ghcup
 
 # Install the latest stable release of haskell stack
-curl -sSL https://get.haskellstack.org/ | sh
+curl -fsSL https://get.haskellstack.org/ | sh
 
 invoke_tests "Haskell"

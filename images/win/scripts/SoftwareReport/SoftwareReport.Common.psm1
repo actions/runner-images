@@ -22,95 +22,79 @@ function Build-OSInfoSection {
 }
 
 function Get-BashVersion {
-    $version = bash --% -c 'echo ${BASH_VERSION}'
-    return $version
+    bash --% -c 'echo ${BASH_VERSION}'
 }
 
 function Get-RustVersion {
-    $rustVersion = [regex]::matches($(rustc --version), "\d+\.\d+\.\d+").Value
-    return $rustVersion
+    rustc --version | Take-Part -Part 1
 }
 
 function Get-RustupVersion {
-    $rustupInfo = cmd /c "rustup --version 2>NUL"
-    $version = [regex]::matches($rustupInfo, "\d+\.\d+\.\d+").Value
-    return $version
+    cmd /c "rustup --version 2>NUL" | Take-Part -Part 1
 }
 
 function Get-RustCargoVersion {
-    $version = [regex]::matches($(cargo --version), "\d+\.\d+\.\d+").Value
-    return $version
+    cargo --version | Take-Part -Part 1
 }
 
 function Get-RustdocVersion {
-    $version = [regex]::matches($(rustdoc --version), "\d+\.\d+\.\d+").Value
-    return $version
+    rustdoc --version | Take-Part -Part 1
 }
 
 function Get-RustfmtVersion {
-    $version = [regex]::matches($(rustfmt --version), "\d+\.\d+\.\d+").Value
-    return $version
+    rustfmt --version | Take-Part -Part 1 | Take-Part -Part 0 -Delimiter ('-')
 }
 
 function Get-RustClippyVersion {
-    $version = [regex]::matches($(cargo clippy  --version), "\d+\.\d+\.\d+").Value
-    return $version
+    cargo clippy --version | Take-Part -Part 1
 }
 
 function Get-BindgenVersion {
-    return ((bindgen --version) -replace "^bindgen").Trim()
+    bindgen --version | Take-Part -Part 1
 }
 
 function Get-CbindgenVersion {
-    return ((cbindgen --version) -replace "^cbindgen").Trim()
+    cbindgen --version | Take-Part -Part 1
 }
 
 function Get-CargoAuditVersion {
-    return ((cargo-audit --version) -replace "^cargo-audit").Trim()
+    cargo-audit --version | Take-Part -Part 1
 }
 
 function Get-CargoOutdatedVersion {
-    return ((cargo outdated --version) -replace "^cargo-outdated").Trim()
+    cargo outdated --version | Take-Part -Part 1
 }
 
 function Get-PythonVersion {
-    return ((python --version) -replace "^Python").Trim()
+    python --version | Take-Part -Part 1
 }
 
 function Get-PowershellCoreVersion {
-    return ((pwsh --version) -replace "^PowerShell").Trim()
+    pwsh --version | Take-Part -Part 1
 }
 
 function Get-RubyVersion {
-    $rubyVersion = $(ruby --version).split(" ")[1]
-    return $rubyVersion
+    ruby --version | Take-Part -Part 1
 }
 
 function Get-GoVersion {
-    $(go version) -match "go(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $goVersion = $Matches.Version
-    return $goVersion
+    go version | Take-Part -Part 2 | Take-Part -Part 1 -Delimiter ('o')
 }
 
 function Get-KotlinVersion {
-    $kotlinVersion = $((cmd /c "kotlinc  -version 2>&1") | Out-String).split(" ")[2]
-    return $kotlinVersion
+    cmd /c "kotlinc -version 2>&1" | Take-Part -Part 2
 }
 
 function Get-PHPVersion {
-    ($(php --version) | Out-String) -match "PHP (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $phpVersion = $Matches.Version
-    return $phpVersion
+    php --version | Out-String | Take-Part -Part 1
 }
 
 function Get-JuliaVersion {
-    $juliaVersion = [regex]::matches($(julia --version), "\d+\.\d+\.\d+").Value
-    return $juliaVersion
+    julia --version | Take-Part -Part 2
 }
 
 function Get-LLVMVersion {
-    $llvmVersion = [regex]::matches($(clang --version), "\d+\.\d+\.\d+").Value
-    return $llvmVersion
+    (clang --version) -match "clang" | Take-Part -Part 2
 }
 
 function Get-PerlVersion {
@@ -120,12 +104,11 @@ function Get-PerlVersion {
 }
 
 function Get-NodeVersion {
-    $nodeVersion = $(node --version).split("v")[1]
-    return $nodeVersion
+    node --version | Take-Part -Part 0 -Delimiter ('v')
 }
 
 function Get-ChocoVersion {
-    return $(choco --version)
+    choco --version
 }
 
 function Get-VcpkgVersion {
@@ -134,15 +117,15 @@ function Get-VcpkgVersion {
 }
 
 function Get-NPMVersion {
-    return $(npm -version)
+    npm -version
 }
 
 function Get-YarnVersion {
-    return $(yarn -version)
+    yarn -version
 }
 
 function Get-RubyGemsVersion {
-    return $(gem --version)
+    gem --version
 }
 
 function Get-HelmVersion {
@@ -152,10 +135,7 @@ function Get-HelmVersion {
 }
 
 function Get-PipVersion {
-    ($(pip --version) | Out-String) -match "(?<version>pip [\d\.]+) .+ (?<python>\(python [\d\.]+\))" | Out-Null
-    $pipVersion = $Matches.Version
-    $pythonVersion = $Matches.Python
-    return ("$pipVersion $pythonVersion" -replace "^pip").Trim()
+    (pip --version) -match "pip" | Take-Part -Part 1,4,5
 }
 
 function Get-CondaVersion {
@@ -168,19 +148,15 @@ function Get-ComposerVersion {
 }
 
 function Get-NugetVersion {
-    return (((nuget help) -match "NuGet Version") -replace "NuGet Version:").Trim()
+    (nuget help) -match "Nuget Version" | Take-Part -Part 2
 }
 
 function Get-AntVersion {
-    ($(ant -version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $antVersion = $Matches.Version
-    return $antVersion
+    (ant -version) -match "version" | Take-Part -Part 3
 }
 
 function Get-MavenVersion {
-    ($(mvn -version) | Out-String) -match "Apache Maven (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $mavenVersion = $Matches.Version
-    return $mavenVersion
+    (mvn -version) -match "Apache Maven" | Take-Part -Part 2
 }
 
 function Get-GradleVersion {
@@ -190,7 +166,7 @@ function Get-GradleVersion {
 }
 
 function Get-SbtVersion {
-    return ((sbt -version) -match "sbt script version:" -replace "sbt script version:").Trim()
+    (sbt -version) -match "sbt script" | Take-Part -Part 3
 }
 
 function Get-DotnetSdks {
@@ -326,7 +302,7 @@ function Get-PacmanVersion {
 }
 
 function Get-YAMLLintVersion {
-    return ((yamllint --version) -replace "^yamllint").Trim()
+    yamllint --version | Take-Part -Part 1
 }
 
 function Get-BizTalkVersion {
@@ -335,8 +311,7 @@ function Get-BizTalkVersion {
 }
 
 function Get-PipxVersion {
-    $pipxVersion = pipx --version
-    return $pipxVersion
+    pipx --version
 }
 
 function Build-PackageManagementEnvironmentTable {

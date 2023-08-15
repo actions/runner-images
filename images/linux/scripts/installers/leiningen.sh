@@ -5,7 +5,7 @@
 ################################################################################
 
 LEIN_BIN=/usr/local/bin/lein
-curl -s https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > $LEIN_BIN
+curl -fsSL https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > $LEIN_BIN
 chmod 0755 $LEIN_BIN
 
 # Run lein to trigger self-install
