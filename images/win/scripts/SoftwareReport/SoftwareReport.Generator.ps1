@@ -6,7 +6,7 @@ $global:ProgressPreference = "SilentlyContinue"
 $ErrorView = "NormalView"
 Set-StrictMode -Version Latest
 
-Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking
+# Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Android.psm1") -DisableNameChecking        #comment as we are not installing android
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Browsers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.CachedTools.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Common.psm1") -DisableNameChecking
@@ -169,14 +169,14 @@ $installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection
 
 # Databases
 $databases = $installedSoftware.AddHeader("Databases")
-$databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))
+# $databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))  #comment as we are not installing MySQL in etn image
 $databases.AddHeader("MongoDB").AddTable($(Get-MongoDBTable))
 
 # Database tools
 $databaseTools = $installedSoftware.AddHeader("Database tools")
 $databaseTools.AddToolVersion("Azure CosmosDb Emulator", $(Get-AzCosmosDBEmulatorVersion))
 $databaseTools.AddToolVersion("DacFx", $(Get-DacFxVersion))
-$databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
+# $databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))          #comment as we are not installing MySQL in etn image
 $databaseTools.AddToolVersion("SQL OLEDB Driver", $(Get-SQLOLEDBDriverVersion))
 $databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
 
@@ -222,13 +222,15 @@ Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
 '@
+
 $psModules.AddNote($azPsNotes)
 
+#comment theses as we are not installing android in etn image
 # Android
-$android = $installedSoftware.AddHeader("Android")
-$android.AddTable($(Build-AndroidTable))
+# $android = $installedSoftware.AddHeader("Android")
+# $android.AddTable($(Build-AndroidTable))
 
-$android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
+# $android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
 
 # Cached Docker images
 $installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))

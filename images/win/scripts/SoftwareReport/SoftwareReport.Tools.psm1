@@ -113,11 +113,12 @@ function Get-MinGWVersion {
     return $mingwVersion
 }
 
-function Get-MySQLVersion {
-    $mysqlCommand = Get-Command -Name "mysql"
-    $mysqlVersion = $mysqlCommand.Version.ToString()
-    return $mysqlVersion
-}
+#comment "function Get-MySQLVersion" as we are not installing MySQL
+# function Get-MySQLVersion {
+#     $mysqlCommand = Get-Command -Name "mysql"
+#     $mysqlVersion = $mysqlCommand.Version.ToString()
+#     return $mysqlVersion
+# }
 
 function Get-SQLOLEDBDriverVersion {
     $SQLOLEDBDriverVersion = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSOLEDBSQL' InstalledVersion).InstalledVersion
