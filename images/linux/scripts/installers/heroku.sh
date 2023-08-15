@@ -5,6 +5,6 @@
 ################################################################################
 
 # Install Heroku CLI
-curl https://cli-assets.heroku.com/install.sh | sh
+curl -fsSL https://cli-assets.heroku.com/install.sh | sh
 
 invoke_tests "Tools" "Heroku"

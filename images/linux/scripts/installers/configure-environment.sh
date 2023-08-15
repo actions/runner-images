@@ -36,6 +36,13 @@ echo 'vm.max_map_count=262144' | tee -a /etc/sysctl.conf
 echo 'fs.inotify.max_user_watches=655360' | tee -a /etc/sysctl.conf
 echo 'fs.inotify.max_user_instances=1280' | tee -a /etc/sysctl.conf
 
+# https://github.com/actions/runner-images/pull/7860
+netfilter_rule='/etc/udev/rules.d/50-netfilter.rules'
+rulesd="$(dirname "${netfilter_rule}")"
+mkdir -p $rulesd
+touch $netfilter_rule
+echo 'ACTION=="add", SUBSYSTEM=="module", KERNEL=="nf_conntrack", RUN+="/usr/sbin/sysctl net.netfilter.nf_conntrack_tcp_be_liberal=1"' | tee -a $netfilter_rule
+
 # Create symlink for tests running
 chmod +x $HELPER_SCRIPTS/invoke-tests.sh
 ln -s $HELPER_SCRIPTS/invoke-tests.sh /usr/local/bin/invoke_tests

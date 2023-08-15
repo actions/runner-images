@@ -1,3 +1,4 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 $os = Get-OSVersion
 
 Describe "RubyGems" {
@@ -19,7 +20,7 @@ Describe "Bundler" {
     }
 }
 
-Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey -or $os.IsVentura) {
+Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsVenturaArm64) {
     It "Nomad shenzhen CLI" {
         "ipa --version" | Should -ReturnZeroExitCode
     }
@@ -37,7 +38,7 @@ Describe "xcpretty" {
     }
 }
 
-Describe "jazzy" -Skip:($os.IsVentura) {
+Describe "jazzy" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "jazzy" {
         "jazzy --version" | Should -ReturnZeroExitCode
     }

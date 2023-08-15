@@ -3,6 +3,7 @@ function Build-BrowserSection {
         [ToolVersionNode]::new("Safari", $(Get-SafariVersion))
         [ToolVersionNode]::new("SafariDriver", $(Get-SafariDriverVersion))
         [ToolVersionNode]::new("Google Chrome", $(Get-ChromeVersion))
+        [ToolVersionNode]::new("Google Chrome for Testing", $(Get-ChromeForTestingVersion))
         [ToolVersionNode]::new("ChromeDriver", $(Get-ChromeDriverVersion))
         [ToolVersionNode]::new("Microsoft Edge", $(Get-EdgeVersion))
         [ToolVersionNode]::new("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
@@ -19,7 +20,7 @@ function Get-SafariVersion {
 }
 
 function Get-SafariDriverVersion {
-    $version = Run-Command "safaridriver --version" | Take-Part -Part 3,4
+    $version = Run-Command "safaridriver --version" | Take-Part -Part 3, 4
     return $version
 }
 
@@ -27,6 +28,12 @@ function Get-ChromeVersion {
     $chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     $version = Run-Command "'${chromePath}' --version"
     return ($version -replace ("^Google Chrome")).Trim()
+}
+
+function Get-ChromeForTestingVersion {
+    $chromePath = "/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+    $version = Run-Command "'${chromePath}' --version"
+    return ($version -replace ("^Google Chrome for Testing")).Trim()
 }
 
 function Get-ChromeDriverVersion {

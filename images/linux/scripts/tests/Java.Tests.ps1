@@ -3,11 +3,9 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameCheckin
 Describe "Java" {
     $toolsetJava = (Get-ToolsetContent).java
     $defaultVersion = $toolsetJava.default
-    $defaultVendor = $toolsetJava.default_vendor
-    $javaVendors = $toolsetJava.vendors
+    $jdkVersions = $toolsetJava.versions
 
-    [array]$jdkVersions = ($javaVendors | Where-Object {$_.name -eq $defaultVendor}).versions | ForEach-Object { @{Version = $_} }
-    [array]$adoptJdkVersions = ($javaVendors | Where-Object {$_.name -eq "Adopt"}).versions | ForEach-Object { @{Version = $_} }
+    [array]$testCases = $jdkVersions | ForEach-Object { @{Version = $_ } }
 
     It "Java <DefaultJavaVersion> is default" -TestCases @{ DefaultJavaVersion = $defaultVersion } {
         $actualJavaPath = Get-EnvironmentVariable "JAVA_HOME"
@@ -37,7 +35,7 @@ Describe "Java" {
         "`"$GradlePath`" -version" | Should -ReturnZeroExitCode
     }
 
-    It "Java <Version>" -TestCases $jdkVersions {
+    It "Java <Version>" -TestCases $testCases {
         $javaVariableValue = Get-EnvironmentVariable "JAVA_HOME_${Version}_X64"
         $javaVariableValue | Should -Not -BeNullOrEmpty
         $javaPath = Join-Path $javaVariableValue "bin/java"
@@ -47,16 +45,6 @@ Describe "Java" {
         if ($Version -eq 8) {
             $Version = "1.${Version}"
         }
-      "`"$javaPath`" -version" | Should -MatchCommandOutput ([regex]::Escape("openjdk version `"${Version}."))
-    }
-
-    It "Java Adopt <Version>" -TestCases $adoptJdkVersions -Skip:(Test-IsUbuntu22) {
-        $javaPath = Join-Path (Get-ChildItem ${env:AGENT_TOOLSDIRECTORY}\Java_Adopt_jdk\${Version}*) "x64\bin\java"
-        "`"$javaPath`" -version" | Should -ReturnZeroExitCode
-
-        if ($Version -eq 8) {
-            $Version = "1.${Version}"
-        }
-       "`"$javaPath`" -version" | Should -MatchCommandOutput ([regex]::Escape("openjdk version `"${Version}."))
+        "`"$javaPath`" -version" | Should -MatchCommandOutput ([regex]::Escape("openjdk version `"${Version}."))
     }
 }

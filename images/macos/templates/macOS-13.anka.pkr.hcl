@@ -1,7 +1,7 @@
 packer {
   required_plugins {
     veertu-anka = {
-      version = "= v3.1.0"
+      version = ">= v3.2.0"
       source = "github.com/veertuinc/veertu-anka"
     }
   }
@@ -34,12 +34,12 @@ variable "github_api_pat" {
   default = ""
 }
 
-variable "xcode_install_user" {
+variable "xcode_install_storage_url" {
   type = string
   sensitive = true
 }
 
-variable "xcode_install_password" {
+variable "xcode_install_sas" {
   type = string
   sensitive = true
 }
@@ -163,7 +163,9 @@ build {
       "./provision/core/open_windows_check.sh",
       "./provision/core/powershell.sh",
       "./provision/core/dotnet.sh",
+      "./provision/core/python.sh",
       "./provision/core/azcopy.sh",
+      "./provision/core/openssl.sh",
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
@@ -179,8 +181,8 @@ build {
   provisioner "shell" {
     script = "./provision/core/xcode.ps1"
     environment_vars = [
-      "XCODE_INSTALL_USER=${var.xcode_install_user}",
-      "XCODE_INSTALL_PASSWORD=${var.xcode_install_password}"
+      "XCODE_INSTALL_STORAGE_URL=${var.xcode_install_storage_url}",
+      "XCODE_INSTALL_SAS=${var.xcode_install_sas}"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
@@ -209,6 +211,7 @@ build {
       "./provision/core/chrome.sh",
       "./provision/core/edge.sh",
       "./provision/core/firefox.sh",
+      "./provision/core/pypy.sh",
       "./provision/core/bicep.sh",
       "./provision/core/codeql-bundle.sh"
     ]
@@ -218,12 +221,20 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
+    scripts = [
+      "./provision/core/toolset.ps1",
+      "./provision/core/configure-toolset.ps1"
+    ]
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
+  }
+  provisioner "shell" {
     script = "./provision/core/delete-duplicate-sims.rb"
     execute_command = "source $HOME/.bash_profile; ruby {{ .Path }}"
   }
   provisioner "shell" {
     inline = [
-      "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName ${var.build_id}"
+      "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName ${var.build_id}",
+      "pwsh -File \"$HOME/image-generation/tests/RunAll-Tests.ps1\""
     ]
     execute_command = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }

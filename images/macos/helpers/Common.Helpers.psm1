@@ -28,12 +28,14 @@ function Get-EnvironmentVariable($variable) {
 function Get-OSVersion {
     $osVersion = [Environment]::OSVersion
     $osVersionMajorMinor = $osVersion.Version.ToString(2)
+    $processorArchitecture = arch
     return [PSCustomObject]@{
         Version = $osVersion.Version
         Platform = $osVersion.Platform
         IsBigSur = $osVersion.Version.Major -eq "11"
         IsMonterey = $osVersion.Version.Major -eq "12"
-        IsVentura = $osVersion.Version.Major -eq "13"
+        IsVentura = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -ne "arm64")
+        IsVenturaArm64 = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -eq "arm64")
     }
 }
 
@@ -84,14 +86,38 @@ function Invoke-RestMethodWithRetry {
 function Invoke-ValidateCommand {
     param(
         [Parameter(Mandatory)]
-        [string]$Command
+        [string]$Command,
+        [Uint] $Timeout = 0
     )
 
-    $output = Invoke-Expression -Command $Command
-    if ($LASTEXITCODE -ne 0) {
-        throw "Command '$Command' has finished with exit code $LASTEXITCODE"
+    if ($Timeout -eq 0)
+    {
+        $output = Invoke-Expression -Command $Command
+        if ($LASTEXITCODE -ne 0) {
+            throw "Command '$Command' has finished with exit code $LASTEXITCODE"
+        }
+        return $output
     }
-    return $output
+    else
+    {
+        $job = $command | Start-Job -ScriptBlock {
+            $output = Invoke-Expression -Command $input
+            if ($LASTEXITCODE -ne 0) {
+                  throw 'Command failed'
+            }
+            return $output
+        }
+        $waitObject = $job | Wait-Job -Timeout $Timeout
+        if(-not $waitObject)
+        {
+             throw "Command '$Command' has timed out"
+        }
+        if($waitObject.State -eq 'Failed')
+        {
+             throw "Command '$Command' has failed"
+        }
+        Receive-Job -Job $job
+    }
 }
 
 function Start-DownloadWithRetry {
@@ -149,4 +175,27 @@ function Add-EnvironmentVariable {
 
     $envVar = "export {0}={1}" -f $Name, $Value
     Add-Content -Path $FilePath -Value $envVar
+}
+
+function isVeertu {
+    return (Test-Path -Path "/Library/Application Support/Veertu")
+}
+
+function Get-Architecture {
+    $arch = arch
+    if ($arch -ne "arm64")
+    {
+        $arch = "x64"
+    }
+
+    return $arch
+}
+
+function Test-CommandExists {
+    param
+    (
+        [Parameter(Mandatory)] [string] $Command
+    )
+
+    [boolean] (Get-Command $Command  -ErrorAction 'SilentlyContinue')
 }

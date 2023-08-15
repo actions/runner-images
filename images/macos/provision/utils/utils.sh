@@ -39,6 +39,15 @@ download_with_retries() {
     return 1
 }
 
+is_VenturaArm64() {
+    arch=$(get_arch)
+    if [ "$OSTYPE" = "darwin22" ] && [ $arch = "arm64" ]; then
+       true
+    else
+       false
+    fi
+}
+
 is_Ventura() {
     if [ "$OSTYPE" = "darwin22" ]; then
         true
@@ -193,7 +202,7 @@ get_github_package_download_url() {
 
     [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
 
-    json=$(curl "${authString[@]}" -s "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
+    json=$(curl "${authString[@]}" -fsSL "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
 
     if [[ "$VERSION" == "latest" ]]; then
         tagName=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0)).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | tail -1)
@@ -212,4 +221,13 @@ get_github_package_download_url() {
 # Close all finder windows because they can interfere with UI tests
 close_finder_window() {
     osascript -e 'tell application "Finder" to close windows'
+}
+
+get_arch() {
+    arch=$(arch)
+    if [[ $arch == "arm64" ]]; then
+        echo "arm64"
+    else
+        echo "x64"
+    fi
 }

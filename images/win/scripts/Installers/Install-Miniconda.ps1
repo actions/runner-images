@@ -7,7 +7,7 @@ $CondaDestination = "C:\Miniconda"
 
 # Install the latest Miniconda
 $InstallerName = "Miniconda3-latest-Windows-x86_64.exe"
-$InstallerUrl = "https://repo.continuum.io/miniconda/${InstallerName}"
+$InstallerUrl = "https://repo.anaconda.com/miniconda/${InstallerName}"
 $ArgumentList = ("/S", "/AddToPath=0", "/RegisterPython=0", "/D=$CondaDestination")
 
 Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList

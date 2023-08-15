@@ -10,21 +10,9 @@ source $HELPER_SCRIPTS/etc-environment.sh
 
 createJavaEnvironmentalVariable() {
     local JAVA_VERSION=$1
-    local VENDOR_NAME=$2
-    local DEFAULT=$3
+    local DEFAULT=$2
 
-    case ${VENDOR_NAME} in
-
-        "Adopt" )
-            INSTALL_PATH_PATTERN="/usr/lib/jvm/adoptopenjdk-${JAVA_VERSION}-hotspot-amd64" ;;
-
-        "Temurin-Hotspot" )
-            INSTALL_PATH_PATTERN="/usr/lib/jvm/temurin-${JAVA_VERSION}-jdk-amd64" ;;
-        *)
-            echo "Unknown vendor"
-            exit 1
-
-    esac
+    local INSTALL_PATH_PATTERN="/usr/lib/jvm/temurin-${JAVA_VERSION}-jdk-amd64"
 
     if [[ ${DEFAULT} == "True" ]]; then
         echo "Setting up JAVA_HOME variable to ${INSTALL_PATH_PATTERN}"
@@ -38,14 +26,7 @@ createJavaEnvironmentalVariable() {
 }
 
 enableRepositories() {
-
-osLabel=$(getOSVersionLabel)
-
-    if isUbuntu20; then
-        # Add Adopt PPA
-        wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adopt.gpg
-        echo "deb [signed-by=/usr/share/keyrings/adopt.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ $osLabel main" > /etc/apt/sources.list.d/adopt.list
-    fi
+    osLabel=$(getOSVersionLabel)
 
     # Add Addoptium PPA
     # apt-key is deprecated, dearmor and add manually
@@ -56,21 +37,12 @@ osLabel=$(getOSVersionLabel)
 
 installOpenJDK() {
     local JAVA_VERSION=$1
-    local VENDOR_NAME=$2
 
     # Install Java from PPA repositories.
-    if [[ ${VENDOR_NAME} == "Temurin-Hotspot" ]]; then
-        apt-get -y install temurin-${JAVA_VERSION}-jdk=\*
-        javaVersionPath="/usr/lib/jvm/temurin-${JAVA_VERSION}-jdk-amd64"
-    elif [[ ${VENDOR_NAME} == "Adopt" ]]; then
-        apt-get -y install adoptopenjdk-${JAVA_VERSION}-hotspot=\*
-        javaVersionPath="/usr/lib/jvm/adoptopenjdk-${JAVA_VERSION}-hotspot-amd64"
-    else
-        echo "${VENDOR_NAME} is invalid, valid names are: Temurin-Hotspot and Adopt"
-        exit 1
-    fi
+    apt-get -y install temurin-${JAVA_VERSION}-jdk=\*
+    javaVersionPath="/usr/lib/jvm/temurin-${JAVA_VERSION}-jdk-amd64"
 
-    JAVA_TOOLCACHE_PATH="${AGENT_TOOLSDIRECTORY}/Java_${VENDOR_NAME}_jdk"
+    JAVA_TOOLCACHE_PATH="${AGENT_TOOLSDIRECTORY}/Java_Temurin-Hotspot_jdk"
 
     fullJavaVersion=$(cat "${javaVersionPath}/release" | grep "^SEMANTIC" | cut -d "=" -f 2 | tr -d "\"" | tr "+" "-")
 
@@ -101,25 +73,17 @@ enableRepositories
 apt-get update
 
 defaultVersion=$(get_toolset_value '.java.default')
-defaultVendor=$(get_toolset_value '.java.default_vendor')
-jdkVendors=($(get_toolset_value '.java.vendors[].name'))
+jdkVersionsToInstall=($(get_toolset_value ".java.versions[]"))
 
-for jdkVendor in ${jdkVendors[@]}; do
+for jdkVersionToInstall in ${jdkVersionsToInstall[@]}; do
+    installOpenJDK ${jdkVersionToInstall}
 
-     # get vendor-specific versions
-     jdkVersionsToInstall=($(get_toolset_value ".java.vendors[] | select (.name==\"${jdkVendor}\") | .versions[]"))
-
-     for jdkVersionToInstall in ${jdkVersionsToInstall[@]}; do
-
-        installOpenJDK ${jdkVersionToInstall} ${jdkVendor}
-
-        isDefaultVersion=False; [[ ${jdkVersionToInstall} == ${defaultVersion} ]] && isDefaultVersion=True
-
-        if [[ ${jdkVendor} == ${defaultVendor} ]]; then
-            createJavaEnvironmentalVariable ${jdkVersionToInstall} ${jdkVendor} ${isDefaultVersion}
-        fi
-
-    done
+    if [[ ${jdkVersionToInstall} == ${defaultVersion} ]]
+    then
+        createJavaEnvironmentalVariable ${jdkVersionToInstall} True
+    else
+        createJavaEnvironmentalVariable ${jdkVersionToInstall} False
+    fi
 done
 
 # Install Ant
@@ -136,7 +100,7 @@ ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
 # Install Gradle
 # This script founds the latest gradle release from https://services.gradle.org/versions/all
 # The release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
-gradleJson=$(curl -s https://services.gradle.org/versions/all)
+gradleJson=$(curl -fsSL https://services.gradle.org/versions/all)
 gradleLatestVersion=$(echo ${gradleJson} | jq -r '.[] | select(.version | contains("-") | not).version' | sort -V | tail -n1)
 gradleDownloadUrl=$(echo ${gradleJson} | jq -r ".[] | select(.version==\"$gradleLatestVersion\") | .downloadUrl")
 echo "gradleUrl=${gradleDownloadUrl}"
@@ -147,10 +111,8 @@ ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=$(find /usr/share -depth -maxdepth 1 -name "gradle*")" | tee -a /etc/environment
 
 # Delete java repositories and keys
-rm -f /etc/apt/sources.list.d/adopt.list
 rm -f /etc/apt/sources.list.d/adoptium.list
 rm -f /etc/apt/sources.list.d/zulu.list
-rm -f /usr/share/keyrings/adopt.gpg
 rm -f /usr/share/keyrings/adoptium.gpg
 rm -f /usr/share/keyrings/zulu.gpg
 

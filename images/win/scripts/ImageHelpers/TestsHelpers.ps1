@@ -113,8 +113,8 @@ function ShouldReturnZeroExitCodeWithParam {
 
     while ($delimiterCharacter.Length -le 2)
     {
-        $callParameterWithDelimeter = $delimiterCharacter + $CallParameter
-        $commandToCheck = "$ActualValue $callParameterWithDelimeter"
+        $callParameterWithDelimiter = $delimiterCharacter + $CallParameter
+        $commandToCheck = "$ActualValue $callParameterWithDelimiter"
         [bool]$succeeded = (ShouldReturnZeroExitCode -ActualValue $commandToCheck).Succeeded
         
         if ($succeeded)

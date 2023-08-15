@@ -38,10 +38,10 @@ $languageAndRuntime.AddToolVersion("Bash", $(Get-BashVersion))
 $languageAndRuntime.AddNodes($(Get-ClangLLVMVersions))
 $languageAndRuntime.AddNodes($(Get-GccVersions))
 $languageAndRuntime.AddNodes($(Get-FortranVersions))
-$languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
 $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
-if (-not $os.IsVentura) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
+    $languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
     $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MSBuildVersion))
     $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
@@ -49,9 +49,15 @@ if (-not $os.IsVentura) {
     $languageAndRuntime.AddToolVersionsListInline("NVM - Cached node versions", $(Get-NVMNodeVersionList), '^\d+')
 }
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
-$languageAndRuntime.AddToolVersion("PHP", $(Get-PHPVersion))
-if (-not $os.IsVentura) {
+if (-not $os.IsVenturaArm64) {
+    $languageAndRuntime.AddToolVersion("PHP", $(Get-PHPVersion))
+}
+
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
+}
+
+if (-not $os.IsVenturaArm64) {
     $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
 }
 $languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
@@ -64,26 +70,33 @@ $packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
 $packageManagement.AddToolVersion("CocoaPods", $(Get-CocoaPodsVersion))
 $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
-if (-not $os.IsVentura) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
 }
 $packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
-$packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
-if (-not $os.IsVentura) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
+    $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
     $packageManagement.AddToolVersion("Pip", $(Get-PipVersion -Version 2))
+}
+
+if (-not $os.IsVenturaArm64) {
     $packageManagement.AddToolVersion("Pip3", $(Get-PipVersion -Version 3))
     $packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
 }
+
 $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
-$packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
+if (-not $os.IsVenturaArm64) {
+    $packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
+}
 $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
 
-$packageManagement.AddNode($(Build-PackageManagementEnvironmentTable))
-
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
+    $packageManagement.AddNode($(Build-PackageManagementEnvironmentTable))
+}
 # Project Management
 $projectManagement = $installedSoftware.AddHeader("Project Management")
 $projectManagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
-if (-not $os.IsVentura) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
     $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
@@ -107,12 +120,12 @@ $utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
 if ($os.IsBigSur) {
     $utilities.AddToolVersion("helm", $(Get-HelmVersion))
 }
-if (-not $os.IsVentura) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $utilities.AddToolVersion("Hub CLI", $(Get-HubVersion))
     $utilities.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 }
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
-if (-not $os.IsVentura) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $utilities.AddToolVersion("mongo", $(Get-MongoVersion))
     $utilities.AddToolVersion("mongod", $(Get-MongodVersion))
 }
@@ -121,7 +134,8 @@ if ($os.IsBigSur) {
 }
 $utilities.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $utilities.AddToolVersion("Packer", $(Get-PackerVersion))
-if (-not $os.IsVentura) {
+$utilities.AddToolVersion("pkg-config", $(Get-PKGConfigVersion))
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $utilities.AddToolVersion("PostgreSQL", $(Get-PostgresServerVersion))
     $utilities.AddToolVersion("psql (PostgreSQL)", $(Get-PostgresClientVersion))
     $utilities.AddToolVersion("Sox", $(Get-SoxVersion))
@@ -130,7 +144,7 @@ if (-not $os.IsVentura) {
 }
 if (-not $os.IsBigSur) {
     $utilities.AddToolVersion("Vagrant", $(Get-VagrantVersion))
-    if (-not $os.IsVentura) {
+    if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
         $utilities.AddToolVersion("VirtualBox", $(Get-VirtualBoxVersion))
     }
 }
@@ -142,51 +156,62 @@ $tools = $installedSoftware.AddHeader("Tools")
 if ($os.IsBigSur) {
     $tools.AddToolVersion("Aliyun CLI", $(Get-AliyunCLIVersion))
 }
-if (-not $os.IsVentura) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $tools.AddToolVersion("App Center CLI", $(Get-AppCenterCLIVersion))
 }
-$tools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
-$tools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
-$tools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersion))
+if (-not $os.IsVenturaArm64) {
+    $tools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
+    $tools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
+    $tools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersion))
+}
 $tools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
 $tools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
 $tools.AddToolVersion("Bicep CLI", $(Get-BicepVersion))
-$tools.AddToolVersion("Cabal", $(Get-CabalVersion))
+if (-not $os.IsVenturaArm64) {
+    $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
+}
 $tools.AddToolVersion("Cmake", $(Get-CmakeVersion))
 $tools.AddToolVersion("CodeQL Action Bundles", $(Get-CodeQLBundleVersions))
 if ($os.IsMonterey) {
     $tools.AddToolVersion("Colima", $(Get-ColimaVersion))
 }
 $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
-$tools.AddToolVersion("GHC", $(Get-GHCVersion))
-$tools.AddToolVersion("GHCup", $(Get-GHCupVersion))
-if (-not $os.IsVentura) {
+if (-not $os.IsVenturaArm64) {
+    $tools.AddToolVersion("GHC", $(Get-GHCVersion))
+    $tools.AddToolVersion("GHCup", $(Get-GHCupVersion))
+}
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $tools.AddToolVersion("Jazzy", $(Get-JazzyVersion))
 }
-$tools.AddToolVersion("Stack", $(Get-StackVersion))
+if (-not $os.IsVenturaArm64) {
+    $tools.AddToolVersion("Stack", $(Get-StackVersion))
+}
 $tools.AddToolVersion("SwiftFormat", $(Get-SwiftFormatVersion))
-if (-not $os.IsVentura) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $tools.AddToolVersion("Swig", $(Get-SwigVersion))
 }
 $tools.AddToolVersion("Xcode Command Line Tools", $(Get-XcodeCommandLineToolsVersion))
 
 # Linters
 $linters = $installedSoftware.AddHeader("Linters")
-$linters.AddToolVersion("SwiftLint", $(Get-SwiftLintVersion))
-if (-not $os.IsVentura) {
+if (-not $os.IsVenturaArm64) {
+    $linters.AddToolVersion("SwiftLint", $(Get-SwiftLintVersion))
+}
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $linters.AddToolVersion("Yamllint", $(Get-YamllintVersion))
 }
 
-# Browsers
-$browsers = $installedSoftware.AddHeader("Browsers")
-$browsers.AddNodes($(Build-BrowserSection))
-$browsers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
+if (-not $os.IsVenturaArm64) {
+    # Browsers
+    $browsers = $installedSoftware.AddHeader("Browsers")
+    $browsers.AddNodes($(Build-BrowserSection))
+    $browsers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
 
-# Java
-$java = $installedSoftware.AddHeader("Java")
-$java.AddTable($(Get-JavaVersions))
-
-if (-not $os.IsVentura) {
+    # Java
+    $java = $installedSoftware.AddHeader("Java")
+    $java.AddTable($(Get-JavaVersions))
+}
+if (-not $os.IsVenturaArm64) {
     # Toolcache
     $toolcache = $installedSoftware.AddHeader("Cached Tools")
     $toolcache.AddNodes($(Build-ToolcacheSection))
@@ -215,13 +240,13 @@ $powerShellModules = $powerShell.AddHeader("PowerShell Modules")
 $powerShellModules.AddNodes($(Get-PowerShellModules))
 
 # Web Servers
-if (-not $os.IsVentura) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $webServers = $installedSoftware.AddHeader("Web Servers")
     $webServers.AddTable($(Build-WebServersSection))
 }
 
 # Xamarin section
-if (-not $os.IsVentura) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
 $xamarin = $installedSoftware.AddHeader("Xamarin")
 $vsForMac = $xamarin.AddHeader("Visual Studio for Mac")
 $vsForMac.AddTable($(Build-VSMacTable))
@@ -257,16 +282,16 @@ $installedSdks.AddTable($(Build-XcodeSDKTable $xcodeInfo))
 
 $installedSimulators = $xcode.AddHeader("Installed Simulators")
 $installedSimulators.AddTable($(Build-XcodeSimulatorsTable $xcodeInfo))
-
+if (-not $os.IsVenturaArm64) {
 # Android section
-$android = $installedSoftware.AddHeader("Android")
-$androidTable = Build-AndroidTable
-$android.AddTable($androidTable)
+    $android = $installedSoftware.AddHeader("Android")
+    $androidTable = Build-AndroidTable
+    $android.AddTable($androidTable)
 
-$androidEnv = $android.AddHeader("Environment variables")
-$androidEnv.AddTable($(Build-AndroidEnvironmentTable))
-
-if (-not $os.IsVentura) {
+    $androidEnv = $android.AddHeader("Environment variables")
+    $androidEnv.AddTable($(Build-AndroidEnvironmentTable))
+}
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
     $miscellaneous.AddToolVersion("libXext", $(Get-LibXextVersion))
     $miscellaneous.AddToolVersion("libXft", $(Get-LibXftVersion))
@@ -286,22 +311,11 @@ PARALLELS_DMG_URL environment variable. A system extension is allowed for this v
     $miscellaneousEnvNotes.AddNote($notes)
 }
 
-#
-# Generate systeminfo.txt with information about image (for debug purpose)
-#
-$dateTime = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
-$systemInfo = [string]::Join([System.Environment]::NewLine, @(
-        "Date: ${dateTime}",
-        "Image name: ${ImageName}"
-    ))
-
 if (-not (Test-Path $OutputDirectory)) { New-Item -Path $OutputDirectory -ItemType Directory | Out-Null }
 
 #
 # Write final reports
 #
 Write-Host $markdownExtended
-$systemInfo | Out-File -FilePath "${OutputDirectory}/systeminfo.txt" -Encoding UTF8NoBOM
 $softwareReport.ToJson() | Out-File -FilePath "${OutputDirectory}/systeminfo.json" -Encoding UTF8NoBOM
 $softwareReport.ToMarkdown() | Out-File -FilePath "${OutputDirectory}/systeminfo.md" -Encoding UTF8NoBOM
-

@@ -5,12 +5,17 @@ ProvisionerScriptUri="$3"
 ScriptName="$4"
 ScriptParam="$5"
 Username="$6"
+arch=$(arch)
 
-export PATH=/usr/bin:/usr/sbin:/usr/local/bin:/bin:/sbin
+if [[ $arch == "arm64" ]]; then
+  export PATH=/usr/bin:/usr/sbin:/usr/local/bin:/bin:/sbin:/opt/homebrew/bin
+else
+  export PATH=/usr/bin:/usr/sbin:/usr/local/bin:/bin:/sbin
+fi
 
 PROVISIONER_ROOT=/usr/local/opt/${Username}
-mkdir -p ${PROVISIONER_ROOT}
-chown ${Username} ${PROVISIONER_ROOT}
+sudo mkdir -p ${PROVISIONER_ROOT}
+sudo chown ${Username} ${PROVISIONER_ROOT}
 
 tee -a ${PROVISIONER_ROOT}/runprovisioner.sh > /dev/null <<\EOF
 #!/bin/bash
@@ -31,6 +36,10 @@ aria2c \
   --enable-color=false \
   --file-allocation=none \
   -d ${BOOTSTRAP_PATH} "${ProvisionerScriptUri}" >> ${BOOTSTRAP_PATH}/download.log
+
+# Remove sensitive data from logs
+sed -i '' 's/'${ProvisionerPackageUri}'/ProvisionerPackageUri/' ${BOOTSTRAP_PATH}/download.log
+sed -i '' 's/'${ProvisionerScriptUri}'/ProvisionerScriptUri/' ${BOOTSTRAP_PATH}/download.log
 
 chmod +x ${BOOTSTRAP_PATH}/${ScriptName}
 
