@@ -284,7 +284,7 @@ Describe "Kubernetes tools" {
     }
 
     It "kubectl" {
-        "kubectl version" | Should -MatchCommandOutput "Client Version: version.Info"
+        "kubectl version" | Should -MatchCommandOutput "Client Version: v"
     }
 
     It "helm" {
