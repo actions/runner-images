@@ -162,8 +162,8 @@ build {
   provisioner "shell" {
     pause_before = "30s"
     scripts = [
-      "./provision/core/sudoers.sh",
       "./provision/core/powershell.sh",
+      "./provision/core/sudoers.sh",
       "./provision/core/dotnet.sh",
       "./provision/core/azcopy.sh",
       "./provision/core/ruby.sh",
