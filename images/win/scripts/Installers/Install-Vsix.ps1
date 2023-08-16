@@ -10,12 +10,11 @@ if (-not $vsixPackagesList) {
     exit 0
 }
 
-$vsVersion = $toolset.visualStudio.Version
 $vsixPackagesList | ForEach-Object {
     # Retrieve cdn endpoint to avoid HTTP error 429 https://github.com/actions/runner-images/issues/3074
     $vsixPackage = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
     if ($vsixPackage.FileName.EndsWith(".vsix")) {
-        Install-VsixExtension -Url $vsixPackage.DownloadUri -Name $vsixPackage.FileName -VSversion $vsVersion
+        Install-VsixExtension -Url $vsixPackage.DownloadUri -Name $vsixPackage.FileName
     } else {
         $argumentList = ('/install', '/quiet', '/norestart')
         Install-Binary -Url $vsixPackage.DownloadUri -Name $vsixPackage.FileName -ArgumentList $argumentList
