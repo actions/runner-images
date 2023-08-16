@@ -207,7 +207,7 @@
         ],
         "cask_packages": [
             "julia",
-            "vagrant",
+            "https://github.com/Homebrew/homebrew-cask/blob/bf586d4d627d7a41ef0da18adc696c315747168b/Casks/v/vagrant.rb",
             "virtualbox",
             "parallels"
         ]

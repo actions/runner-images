@@ -7,7 +7,9 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Install Packer
-URL=$(curl -fsSL https://api.releases.hashicorp.com/v1/releases/packer/latest | jq -r '.builds[] | select((.arch=="amd64") and (.os=="linux")).url')
+# use 1.9.2 due to https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license
+URL=$(curl -fsSL https://api.releases.hashicorp.com/v1/releases/packer/1.9.2 | jq -r '.builds[] | select((.arch=="amd64") and (.os=="linux")).url')
+
 ZIP_NAME="packer_linux_amd64.zip"
 download_with_retries "${URL}" "/tmp" "${ZIP_NAME}"
 unzip -qq "/tmp/${ZIP_NAME}" -d /usr/local/bin
