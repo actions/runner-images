@@ -212,6 +212,7 @@ build {
       "./provision/core/android-toolsets.sh",
       "./provision/core/xamarin.sh",
       "./provision/core/vsmac.sh",
+      "./provision/core/vagrant.sh",
       "./provision/core/nvm.sh",
       "./provision/core/apache.sh",
       "./provision/core/nginx.sh",

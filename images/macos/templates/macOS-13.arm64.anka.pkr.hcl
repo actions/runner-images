@@ -197,6 +197,7 @@ build {
       "./provision/core/gcc.sh",
       "./provision/core/cocoapods.sh",
       "./provision/core/vsmac.sh",
+      "./provision/core/vagrant.sh",
       "./provision/core/safari.sh",
       "./provision/core/bicep.sh",
       "./provision/core/codeql-bundle.sh"
