@@ -361,5 +361,8 @@
     },
     "pwsh": {
         "version": "7.2"
+    },
+    "aliyunCli": {
+        "version": "3.0.174"
     }
 }
