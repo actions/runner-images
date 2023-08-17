@@ -73,12 +73,12 @@ function Get-DockerComposeV2Version {
     return $composeVersion
 }
 
-function Get-DockerMobyClientVersion {
+function Get-DockerClientVersion {
     $dockerClientVersion = sudo docker version --format '{{.Client.Version}}'
     return $dockerClientVersion
 }
 
-function Get-DockerMobyServerVersion {
+function Get-DockerServerVersion {
     $dockerServerVersion = sudo docker version --format '{{.Server.Version}}'
     return $dockerServerVersion
 }

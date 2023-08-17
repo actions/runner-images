@@ -108,8 +108,8 @@ $tools.AddToolVersion("Docker Amazon ECR Credential Helper", $(Get-DockerAmazonE
 $tools.AddToolVersion("Docker Compose v1", $(Get-DockerComposeV1Version))
 $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeV2Version))
 $tools.AddToolVersion("Docker-Buildx", $(Get-DockerBuildxVersion))
-$tools.AddToolVersion("Docker-Moby Client", $(Get-DockerMobyClientVersion))
-$tools.AddToolVersion("Docker-Moby Server", $(Get-DockerMobyServerVersion))
+$tools.AddToolVersion("Docker Client", $(Get-DockerClientVersion))
+$tools.AddToolVersion("Docker Server", $(Get-DockerServerVersion))
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
 }
