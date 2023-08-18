@@ -4,7 +4,6 @@
 ##  Desc:  Installs MySQL Client
 ################################################################################
 
-source /etc/os-release
 source $HELPER_SCRIPTS/os.sh
 
 # Mysql setting up root password
