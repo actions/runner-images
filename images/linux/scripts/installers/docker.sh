@@ -12,8 +12,6 @@ repo_url="https://download.docker.com/linux/ubuntu"
 gpg_key="/usr/share/keyrings/docker.gpg"
 repo_path="/etc/apt/sources.list.d/docker.list"
 
-apt-get update
-apt-get install ca-certificates curl gnupg2
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o $gpg_key
 echo "deb [arch=amd64 signed-by=$gpg_key] $repo_url $(getOSVersionLabel) stable" > $repo_path
 apt-get update
