@@ -169,6 +169,7 @@ build {
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
       "./provision/core/node.sh",
+      "./provision/core/vagrant.sh",
       "./provision/core/commonutils.sh"
     ]
     environment_vars = [
@@ -197,7 +198,6 @@ build {
       "./provision/core/gcc.sh",
       "./provision/core/cocoapods.sh",
       "./provision/core/vsmac.sh",
-      "./provision/core/vagrant.sh",
       "./provision/core/safari.sh",
       "./provision/core/bicep.sh",
       "./provision/core/codeql-bundle.sh"
