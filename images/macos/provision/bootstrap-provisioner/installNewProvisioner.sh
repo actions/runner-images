@@ -40,6 +40,8 @@ aria2c \
 # Remove sensitive data from logs
 sed -i '' 's/'${ProvisionerPackageUri}'/ProvisionerPackageUri/' ${BOOTSTRAP_PATH}/download.log
 sed -i '' 's/'${ProvisionerScriptUri}'/ProvisionerScriptUri/' ${BOOTSTRAP_PATH}/download.log
+sed -i '' 's/&sr=b&sig=//' ${BOOTSTRAP_PATH}/download.log
+sed -i '' 's/&se=2023-0//' ${BOOTSTRAP_PATH}/download.log
 
 chmod +x ${BOOTSTRAP_PATH}/${ScriptName}
 
