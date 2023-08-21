@@ -1,7 +1,7 @@
 # macOS 11
 - OS Version: macOS 11.7.8 (20G1351)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20230812.3
+- Image Version: 20230818.1
 
 ## Installed Software
 
@@ -25,26 +25,26 @@
 - NVM 0.39.4
 - NVM - Cached node versions: 14.21.3, 16.20.2, 18.17.1
 - Perl 5.36.1
-- PHP 8.2.8
+- PHP 8.2.9
 - Python 2.7.18
 - Python3 3.11.4
 - R 4.3.1
 - Ruby 2.7.8p225
 
 ### Package Management
-- Bundler 2.4.18
+- Bundler 2.4.19
 - Carthage 0.39.0
 - CocoaPods 1.12.1
 - Composer 2.5.8
-- Homebrew 4.1.4
+- Homebrew 4.1.5
 - Miniconda 23.5.2
 - NPM 9.6.7
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 23.2.1 (python 3.11)
 - Pipx 1.2.0
-- RubyGems 3.4.18
-- Vcpkg 2023 (build from commit 0fa8459cf)
+- RubyGems 3.4.19
+- Vcpkg 2023 (build from commit c7fc29984)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -56,7 +56,7 @@
 ### Project Management
 - Apache Ant 1.10.13
 - Apache Maven 3.9.4
-- Gradle 8.2.1
+- Gradle 8.3
 - Sbt 1.9.3
 
 ### Utilities
@@ -81,7 +81,7 @@
 - mongod 5.0.17
 - Newman 5.3.2
 - OpenSSL 1.1.1v  1 Aug 2023
-- Packer 1.9.2
+- Packer 1.9.3
 - pkg-config 0.29.2
 - PostgreSQL 14.9 (Homebrew)
 - psql (PostgreSQL) 14.9 (Homebrew)
@@ -92,23 +92,23 @@
 - zstd 1.5.5
 
 ### Tools
-- Aliyun CLI 3.0.170
+- Aliyun CLI 3.0.176
 - App Center CLI 2.14.0
-- AWS CLI 2.13.9
+- AWS CLI 2.13.10
 - AWS SAM CLI 1.95.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.50.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.20.4
 - Cabal 3.6.2.0
-- Cmake 3.27.2
-- CodeQL Action Bundles 2.14.0 2.14.1
+- Cmake 3.27.3
+- CodeQL Action Bundles 2.14.1 2.14.2
 - Fastlane 2.214.0
 - GHC 9.6.2
 - GHCup 0.1.19.4
 - Jazzy 0.14.3
 - Stack 2.9.3
-- SwiftFormat 0.51.15
+- SwiftFormat 0.52.1
 - Swig 4.1.1
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -119,12 +119,12 @@
 ### Browsers
 - Safari 16.6 (16615.3.12.11.3)
 - SafariDriver 16.6 (16615.3.12.11.3)
-- Google Chrome 115.0.5790.170
-- Google Chrome for Testing 115.0.5790.170
-- ChromeDriver 115.0.5790.170
+- Google Chrome 116.0.5845.96
+- Google Chrome for Testing 116.0.5845.96
+- ChromeDriver 116.0.5845.96
 - Microsoft Edge 115.0.1901.203
 - Microsoft Edge WebDriver 115.0.1901.203
-- Mozilla Firefox 116.0.2
+- Mozilla Firefox 116.0.3
 - geckodriver 0.33.0
 - Selenium server 4.10.0
 
@@ -204,7 +204,7 @@
 | Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | -------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.57_1 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.25.1_1 | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| nginx | 1.25.2   | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 
@@ -330,7 +330,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                |
 | Android Emulator           | 32.1.14                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
-| Android SDK Platforms      | android-34 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
+| Android SDK Platforms      | android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 34.0.4                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                             |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                         |
