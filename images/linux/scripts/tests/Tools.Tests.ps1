@@ -280,19 +280,19 @@ Describe "Julia" {
 
 Describe "Kubernetes tools" {
     It "kind" {
-        "kind --version" | Should -ReturnZeroExitCode
+        "kind version" | Should -ReturnZeroExitCode
     }
 
     It "kubectl" {
-        "kubectl version" | Should -MatchCommandOutput "Client Version: version.Info"
+        "kubectl version --client=true" | Should -MatchCommandOutput "Client Version: v"
     }
 
     It "helm" {
-        "helm version" | Should -ReturnZeroExitCode
+        "helm version --short" | Should -ReturnZeroExitCode
     }
 
     It "minikube" {
-        "minikube version" | Should -ReturnZeroExitCode
+        "minikube version --short" | Should -ReturnZeroExitCode
     }
 
     It "kustomize" {
