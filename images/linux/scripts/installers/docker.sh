@@ -1,25 +1,26 @@
 #!/bin/bash -e
 ################################################################################
-##  File:  docker-moby.sh
+##  File:  docker.sh
 ##  Desc:  Installs docker onto the image
 ################################################################################
 
 # Source the helpers for use with the script
+source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
-# Check to see if docker is already installed
-docker_package=moby
-echo "Determing if Docker ($docker_package) is installed"
-if ! IsPackageInstalled $docker_package; then
-    echo "Docker ($docker_package) was not found. Installing..."
-    apt-get remove -y moby-engine moby-cli
-    apt-get update
-    apt-get install -y moby-engine moby-cli
-    apt-get install --no-install-recommends -y moby-buildx
-    apt-get install -y moby-compose
-else
-    echo "Docker ($docker_package) is already installed"
-fi
+repo_url="https://download.docker.com/linux/ubuntu"
+gpg_key="/usr/share/keyrings/docker.gpg"
+repo_path="/etc/apt/sources.list.d/docker.list"
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o $gpg_key
+echo "deb [arch=amd64 signed-by=$gpg_key] $repo_url $(getOSVersionLabel) stable" > $repo_path
+apt-get update
+apt-get install --no-install-recommends docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+
+# Install docker compose v2 from releases
+URL=$(get_github_package_download_url "docker/compose" "contains(\"compose-linux-x86_64\")")
+curl -fsSL $URL -o /usr/libexec/docker/cli-plugins/docker-compose
+chmod +x /usr/libexec/docker/cli-plugins/docker-compose
 
 # Enable docker.service
 systemctl is-active --quiet docker.service || systemctl start docker.service
@@ -55,6 +56,10 @@ aws_latest_release_url="https://api.github.com/repos/awslabs/amazon-ecr-credenti
 aws_helper_url=$(curl "${authString[@]}" -fsSL $aws_latest_release_url | jq -r '.body' | awk -F'[()]' '/linux-amd64/ {print $2}')
 download_with_retries "$aws_helper_url" "/usr/bin" docker-credential-ecr-login
 chmod +x /usr/bin/docker-credential-ecr-login
+
+# Cleanup custom repositories
+rm $gpg_key
+rm $repo_path
 
 invoke_tests "Tools" "Docker"
 if [ "${DOCKERHUB_PULL_IMAGES:-yes}" -eq "yes" ]; then
