@@ -1,16 +1,13 @@
 param(
-    [String] [Parameter (Mandatory=$true)] $Image,
-    [String] [Parameter (Mandatory=$true)] $ResourcesNamePrefix,
+    [String] [Parameter (Mandatory=$true)] $TempResourceGroupName,
     [String] [Parameter (Mandatory=$true)] $StorageAccount,
+    [String] [Parameter (Mandatory=$true)] $SubscriptionId,
     [String] [Parameter (Mandatory=$true)] $ClientId,
     [String] [Parameter (Mandatory=$true)] $ClientSecret,
-    [String] [Parameter (Mandatory=$true)] $SubscriptionId,
     [String] [Parameter (Mandatory=$true)] $TenantId
 )
 
 az login --service-principal --username $ClientId --password $ClientSecret --tenant $TenantId | Out-Null
-
-$TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
 
 $groupExist = az group exists --name $TempResourceGroupName --subscription $SubscriptionId
 if ($groupExist -eq "true") {
