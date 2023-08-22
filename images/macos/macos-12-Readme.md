@@ -1,16 +1,12 @@
-| Announcements |
-|-|
-| [[All OSes] Adopt OpenJDK will be removed from images on August, 7](https://github.com/actions/runner-images/issues/8030) |
-***
 # macOS 12
 - OS Version: macOS 12.6.7 (21G651)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20230803.1
+- Image Version: 20230812.3
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 6.0.412, 7.0.102, 7.0.202, 7.0.306
+- .NET Core SDK: 6.0.413, 7.0.102, 7.0.202, 7.0.306, 7.0.400
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -23,9 +19,9 @@
 - Go 1.20.7
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
-- Node.js 18.17.0
+- Node.js 18.17.1
 - NVM 0.39.4
-- NVM - Cached node versions: 14.21.3, 16.20.1, 18.17.0
+- NVM - Cached node versions: 14.21.3, 16.20.2, 18.17.1
 - Perl 5.36.1
 - PHP 8.2.8
 - Python 2.7.18
@@ -38,7 +34,7 @@
 - Carthage 0.39.0
 - CocoaPods 1.12.1
 - Composer 2.5.8
-- Homebrew 4.1.3
+- Homebrew 4.1.4
 - Miniconda 23.5.2
 - NPM 9.6.7
 - NuGet 6.3.1.1
@@ -46,7 +42,7 @@
 - Pip3 23.2.1 (python 3.11)
 - Pipx 1.2.0
 - RubyGems 3.4.18
-- Vcpkg 2023 (build from commit 1e9cf6939)
+- Vcpkg 2023 (build from commit 0fa8459cf)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,15 +53,15 @@
 
 ### Project Management
 - Apache Ant 1.10.13
-- Apache Maven 3.9.3
+- Apache Maven 3.9.4
 - Gradle 8.2.1
 - Sbt 1.9.3
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.36.0
-- azcopy 10.20.0
-- bazel 6.3.1
+- azcopy 10.20.1
+- bazel 6.3.2
 - bazelisk 1.17.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 8.2.1
@@ -83,26 +79,26 @@
 - OpenSSL 1.1.1v  1 Aug 2023
 - Packer 1.9.2
 - pkg-config 0.29.2
-- PostgreSQL 14.8 (Homebrew)
-- psql (PostgreSQL) 14.8 (Homebrew)
+- PostgreSQL 14.9 (Homebrew)
+- psql (PostgreSQL) 14.9 (Homebrew)
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.2.2
 - Vagrant 2.3.7
 - VirtualBox 6.1.38r153438
-- yq 4.34.2
+- yq 4.35.1
 - zstd 1.5.5
 
 ### Tools
 - App Center CLI 2.14.0
-- AWS CLI 2.13.6
-- AWS SAM CLI 1.94.0
+- AWS CLI 2.13.9
+- AWS SAM CLI 1.95.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.50.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.20.4
 - Cabal 3.6.2.0
-- Cmake 3.27.1
+- Cmake 3.27.2
 - CodeQL Action Bundles 2.14.0 2.14.1
 - Colima 0.5.5
 - Fastlane 2.214.0
@@ -110,7 +106,7 @@
 - GHCup 0.1.19.4
 - Jazzy 0.14.3
 - Stack 2.9.3
-- SwiftFormat 0.51.13
+- SwiftFormat 0.51.15
 - Swig 4.1.1
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
 
@@ -119,14 +115,14 @@
 - Yamllint 1.32.0
 
 ### Browsers
-- Safari 16.5.2 (17615.2.9.101.1)
-- SafariDriver 16.5.2 (17615.2.9.101.1)
+- Safari 16.6 (17615.3.12.11.3)
+- SafariDriver 16.6 (17615.3.12.11.3)
 - Google Chrome 115.0.5790.170
 - Google Chrome for Testing 115.0.5790.170
 - ChromeDriver 115.0.5790.170
-- Microsoft Edge 115.0.1901.188
-- Microsoft Edge WebDriver 115.0.1901.188
-- Mozilla Firefox 116.0
+- Microsoft Edge 115.0.1901.203
+- Microsoft Edge WebDriver 115.0.1901.203
+- Mozilla Firefox 116.0.2
 - geckodriver 0.33.0
 - Selenium server 4.10.0
 
@@ -163,16 +159,18 @@
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.17 [PyPy 7.3.12]
+- 3.10.12 [PyPy 7.3.12]
 
 #### Node.js
 - 14.21.3
-- 16.20.1
-- 18.17.0
+- 16.20.2
+- 18.17.1
 
 #### Go
 - 1.18.10
 - 1.19.12
 - 1.20.7
+- 1.21.0
 
 ### Rust Tools
 - Cargo 1.71.1
@@ -209,7 +207,7 @@
 | Version        | Build      | Path                                 |
 | -------------- | ---------- | ------------------------------------ |
 | 2019           | 8.10.25.2  | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.6.2.405 | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.6.3.421 | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
