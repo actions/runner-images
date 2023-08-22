@@ -32,7 +32,7 @@
     ],
     "builders": [
         {
-            "name": "vhd",
+            "name": "image",
             "type": "azure-arm",
             "client_id": "{{user `client_id`}}",
             "client_secret": "{{user `client_secret`}}",
