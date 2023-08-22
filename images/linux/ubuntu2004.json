@@ -199,20 +199,6 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/scripts/installers/docker-compose.sh",
-                "{{template_dir}}/scripts/installers/docker-moby.sh"
-            ],
-            "environment_vars": [
-                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
-                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
-                "DOCKERHUB_LOGIN={{user `dockerhub_login`}}",
-                "DOCKERHUB_PASSWORD={{user `dockerhub_password`}}"
-            ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "scripts": [
                 "{{template_dir}}/scripts/installers/apt-common.sh",
                 "{{template_dir}}/scripts/installers/azcopy.sh",
                 "{{template_dir}}/scripts/installers/azure-cli.sh",
@@ -279,6 +265,20 @@
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
                 "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/docker-compose.sh",
+                "{{template_dir}}/scripts/installers/docker.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "DOCKERHUB_LOGIN={{user `dockerhub_login`}}",
+                "DOCKERHUB_PASSWORD={{user `dockerhub_password`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },

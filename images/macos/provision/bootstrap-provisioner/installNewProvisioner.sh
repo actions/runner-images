@@ -37,10 +37,6 @@ aria2c \
   --file-allocation=none \
   -d ${BOOTSTRAP_PATH} "${ProvisionerScriptUri}" >> ${BOOTSTRAP_PATH}/download.log
 
-# Remove sensitive data from logs
-sed -i '' 's/'${ProvisionerPackageUri}'/ProvisionerPackageUri/' ${BOOTSTRAP_PATH}/download.log
-sed -i '' 's/'${ProvisionerScriptUri}'/ProvisionerScriptUri/' ${BOOTSTRAP_PATH}/download.log
-
 chmod +x ${BOOTSTRAP_PATH}/${ScriptName}
 
 # Install Provisioner with provided scripts
