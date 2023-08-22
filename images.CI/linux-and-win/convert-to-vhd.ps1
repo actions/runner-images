@@ -18,45 +18,7 @@ param (
   [String] [Parameter (Mandatory = $true)] $TenantId
 )
 
-function Get-DestinationBlobUri {
-  param (
-    [string] [Parameter(Mandatory = $true)] $SubscriptionId,
-
-    [string] [Parameter(Mandatory = $true)] $ResourceGroupName,
-    [string] [Parameter(Mandatory = $true)] $StorageAccountName,
-    [string] [Parameter(Mandatory = $true)] $ContainerName,
-    [string] [Parameter(Mandatory = $true)] $ImageBlobName,
-    
-    [string] [Parameter(Mandatory = $true)] $TenantId
-  )
-
-  Write-Host "List the access keys or Kerberos keys for a $StorageAccountName storage account."
-  $targetKey = az storage account keys list --resource-group $ResourceGroupName --account-name $StorageAccountName --query "[0].value" -o tsv
-  if ($LastExitCode -ne 0) {
-    throw "Failed to get storage account key for $StorageAccountName"
-  }
-  $isHasKey = -not [System.String]::IsNullOrEmpty($targetKey)
-  Write-Host "Successfully got Target Key? $isHasKey"
-
-  Write-Host "Creating SAS Token for destination storage account $StorageAccountName in subscription $SubscriptionId."
-  $expirySasTime = (Get-Date).AddDays(2).ToString("yyyy-MM-dTH:mZ")
-  $targetSasToken = az storage account generate-sas --account-key $targetKey --account-name $StorageAccountName --expiry $expirySasTime --services b --resource-types co --permissions rwdlac -o tsv
-  if ($LastExitCode -ne 0) {
-    throw "Failed to generate SAS token for $StorageAccountName"
-  }
-
-  $targetBlobUri = 'https://{0}.blob.core.windows.net/{1}/{2}?{3}' -f $StorageAccountName, $ContainerName, $ImageBlobName, $targetSasToken
-  return $targetBlobUri
-}
-
 $ErrorActionPreference = "Stop"
-
-# Check if azcopy is installed
-if (-not $env:AZCOPYPATH) {
-  Write-Error "AZCOPYPATH is not set"
-  exit 1
-}
-Write-Host "azcopy path is set"
 
 # Login to Azure
 az login --service-principal --username $ClientId --password $ClientSecret --tenant $TenantId | Out-Null
@@ -121,55 +83,58 @@ $sourceDiskUri = az disk grant-access `
   --access-level Read `
   --query [accessSas] -o tsv
 
-Write-Host "Generating SAS URL for the destination storage account '$StorageAccountName'..."
-$destinationVHDBlobUri = Get-DestinationBlobUri `
-  -ContainerName $StorageAccountContainerName `
-  -SubscriptionId $SubscriptionId `
-  -ResourceGroupName $ResourceGroupName `
-  -StorageAccountName $StorageAccountName `
-  -TenantId $TenantId `
-  -ImageBlobName $VhdName
+Write-Host "Querying key for the storage account '$StorageAccountName'..."
+$targetKey = az storage account keys list `
+  --resource-group $ResourceGroupName `
+  --account-name $StorageAccountName `
+  --query "[0].value" -o tsv
 
-Write-Host "Copying VHD blob from '$($sourceDiskUri.Split('?')[0])' to '$($destinationVHDBlobUri.Split('?')[0])'..."
+Write-Host ("Copying VHD blob from '{0}' to 'https://{1}.blob.core.windows.net/{2}/{3}'..." `
+    -f $sourceDiskUri.Split('?')[0], $StorageAccountName, $ContainerName, $ImageBlobName)
 
-$jobLog = New-Object 'System.Collections.Generic.List[PSCustomObject]'
-Write-Host 'Starting azcopy'
+az storage blob copy start `
+  --subscription $SubscriptionId `
+  --source-uri $sourceDiskUri `
+  --destination-blob $VhdName `
+  --destination-container $StorageAccountContainerName `
+  --account-name $StorageAccountName `
+  --account-key $targetKey `
+  --only-show-errors
 
-& $env:AZCOPYPATH copy $sourceDiskUri $DestinationVHDBlobUri --s2s-preserve-access-tier=false --output-type json | Foreach-Object {
-  # Parse Json
-  $json = ConvertFrom-Json -InputObject $_
-  if ($json.MessageContent.StartsWith('{')) {
-    $json.MessageContent = ConvertFrom-Json -InputObject $json.MessageContent
+Write-Host "Waiting for the copy to complete..."
+while ($true) {
+  $status = az storage blob show `
+    --subscription $SubscriptionId `
+    --container-name $StorageAccountContainerName `
+    --name $VhdName `
+    --account-name $StorageAccountName `
+    --account-key $targetKey `
+    --query properties.copy.status -o tsv
+
+  if ($status -eq "success") {
+    Write-Host "Copy completed successfully."
+    break
+  } elseif ($status -ne "pending") {
+    Write-Host "Copy failed with status '$status', see blob information below:"
+    az storage blob show `
+      --subscription $SubscriptionId `
+      --container-name $StorageAccountContainerName `
+      --name $VhdName `
+      --account-name $StorageAccountName `
+      --account-key $targetKey
+    throw "Copy failed with status '$status'"
   }
-  $jobLog.Add($json)
 
-  # Output current status
-  if ($json.MessageType -in @('Progress', 'EndOfJob')) {
-    $mc = $json.MessageContent
-    $status = $mc.JobStatus
-    $bytesCopied = [int]($mc.TotalBytesTransferred / 1MB)
-    $totalBytes = [int]($mc.TotalBytesExpected / 1MB)
-    $percentComplete = [Math]::Round($mc.PercentComplete, 2)
-    # Write-Host "$env:imageBlobName -> $targetAccountName : $status [$percentComplete %]: $bytesCopied/$totalBytes MB Copied..."
-    Write-Host " $status [$percentComplete %]: $bytesCopied/$totalBytes MB Copied..."
-  }
-}
+  $progress = az storage blob show `
+    --subscription $SubscriptionId `
+    --container-name $StorageAccountContainerName `
+    --name $VhdName `
+    --account-name $StorageAccountName `
+    --account-key $targetKey `
+    --query properties.copy.progress -o tsv
 
-Write-Host 'azcopy finished'
-
-# Check last exit code
-if ($LastExitCode) {
-  Write-Host $LastExitCode
-
-  $failedJob = $jobLog | Where-Object { $_.MessageType -eq 'EndOfJob' -and $_.MessageContent.JobStatus -eq 'Failed' }
-
-  if ($failedJob) {
-    $errorContent = $failedJob.MessageContent.FailedTransfers.ErrorCode
-  } else {
-    $errorContent = ($jobLog | Where-Object MessageType -eq 'Error').MessageContent
-  }
-  #throw "Copy [$env:imageBlobName] failed with error: $errorContent"
-  throw "Blob Copy failed with error: $errorContent"
+  Write-Host "Progress: $(($progress.Split("/")[0] / $progress.Split("/")[1]).ToString("P")))"
+  Start-Sleep -Seconds 15
 }
 
 Write-Host "Successfully converted '$ManagedImageName' to '$VhdName' in '$StorageAccountName' storage account."

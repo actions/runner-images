@@ -48,12 +48,6 @@ jobs:
     fetchTags: false
 
   - task: PowerShell@2
-    displayName: 'Install AzCopy'
-    inputs:
-      targetType: filePath
-      filePath: ./images.CI/linux-and-win/InstallAzCopy.ps1
-
-  - task: PowerShell@2
     displayName: 'Download custom repository'
     condition: and(ne(variables['CUSTOM_REPOSITORY_URL'], ''), ne(variables['CUSTOM_REPOSITORY_BRANCH'], ''))
     inputs:
