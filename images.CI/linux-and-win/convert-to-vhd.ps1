@@ -22,6 +22,7 @@ $ErrorActionPreference = "Stop"
 
 # Login to Azure
 az login --service-principal --username $ClientId --password $ClientSecret --tenant $TenantId | Out-Null
+az account set --subscription $SubscriptionId | Out-Null
 
 # Create Compute Image Gallery if it doesn't exist
 Write-Host "Creating Compute Image Gallery '$GalleryName'..."
@@ -90,11 +91,10 @@ $targetKey = az storage account keys list `
   --query "[0].value" -o tsv
 
 Write-Host ("Copying VHD blob from '{0}' to 'https://{1}.blob.core.windows.net/{2}/{3}'..." `
-    -f $sourceDiskUri.Split('?')[0], $StorageAccountName, $ContainerName, $ImageBlobName)
+    -f $sourceDiskUri.Split('?')[0], $StorageAccountName, $StorageAccountContainerName, $VhdName)
 
 az storage blob copy start `
-  --subscription $SubscriptionId `
-  --source-uri $sourceDiskUri `
+  --source-uri """$sourceDiskUri""" `
   --destination-blob $VhdName `
   --destination-container $StorageAccountContainerName `
   --account-name $StorageAccountName `
@@ -104,12 +104,11 @@ az storage blob copy start `
 Write-Host "Waiting for the copy to complete..."
 while ($true) {
   $status = az storage blob show `
-    --subscription $SubscriptionId `
     --container-name $StorageAccountContainerName `
     --name $VhdName `
     --account-name $StorageAccountName `
     --account-key $targetKey `
-    --query properties.copy.status -o tsv
+    --query "properties.copy.status" -o tsv
 
   if ($status -eq "success") {
     Write-Host "Copy completed successfully."
@@ -117,7 +116,6 @@ while ($true) {
   } elseif ($status -ne "pending") {
     Write-Host "Copy failed with status '$status', see blob information below:"
     az storage blob show `
-      --subscription $SubscriptionId `
       --container-name $StorageAccountContainerName `
       --name $VhdName `
       --account-name $StorageAccountName `
@@ -126,12 +124,11 @@ while ($true) {
   }
 
   $progress = az storage blob show `
-    --subscription $SubscriptionId `
     --container-name $StorageAccountContainerName `
     --name $VhdName `
     --account-name $StorageAccountName `
     --account-key $targetKey `
-    --query properties.copy.progress -o tsv
+    --query "properties.copy.progress" -o tsv
 
   Write-Host "Progress: $(($progress.Split("/")[0] / $progress.Split("/")[1]).ToString("P")))"
   Start-Sleep -Seconds 15
