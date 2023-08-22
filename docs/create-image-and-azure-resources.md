@@ -151,7 +151,7 @@ After the successful image generation, Virtual Machine can be created from the g
 ```powershell
 Import-Module .\helpers\CreateAzureVMFromPackerTemplate.ps1
 
-CreateAzureVMFromPackerTemplate -SubscriptionId {YourSubscriptionId}  -ResourceGroupName {ResourceGroupName} -ManagedImageName "runner-image-ubuntu2204" -VirtualMachineName "testvm1" -AdminUsername "shady1" -AdminPassword "SomeSecurePassword1" -AzureLocation "eastus"
+CreateAzureVMFromPackerTemplate -SubscriptionId {YourSubscriptionId} -ResourceGroupName {ResourceGroupName} -ManagedImageName "Runner-Image-Ubuntu2204" -VirtualMachineName "testvm1" -AdminUsername "shady1" -AdminPassword "SomeSecurePassword1" -AzureLocation "eastus"
 ```
 
 Where:
@@ -183,7 +183,7 @@ If you want more control over image generation process you may run Packer direct
 
 ### Optional variables
 
-- `managed_image_name` - Name of the managed image to create. If not specified, "runner-image-{{ImageType}}" will be used.
+- `managed_image_name` - Name of the managed image to create. If not specified, "Runner-Image-{{ImageType}}" will be used.
 - `build_resource_group_name` - Specify an existing resource group to run the build in it. By default, a temporary resource group will be created and destroyed as part of the build. If you do not have permission to do so, use build_resource_group_name to specify an existing resource group to run the build in it.
 - `object_id` - The object ID for the AAD SP. Will be derived from the oAuth token if empty.
 - `tenant_id` - The Active Directory tenant identifier with which your `client_id` and `subscription_id` are associated. If not specified, `tenant_id` will be looked up using `subscription_id`.
