@@ -142,7 +142,7 @@ Write-Host "Successfully converted '$ManagedImageName' to '$VhdName' in '$Storag
 if ($RemoveManagedImage) {
   Write-Host "Removing Managed Image '$ManagedImageName'..."
   az image delete `
-    --resource-group "$(AZURE_RESOURCE_GROUP)" `
+    --resource-group $ResourceGroupName `
     --name $ManagedImageName `
     --only-show-errors
   if ($LastExitCode) {
