@@ -130,7 +130,7 @@ while ($true) {
     --account-key $targetKey `
     --query "properties.copy.progress" -o tsv
 
-  Write-Host "Progress: $(($progress.Split("/")[0] / $progress.Split("/")[1]).ToString("P")))"
+  Write-Host "Progress: $(($progress.Split("/")[0] / $progress.Split("/")[1]).ToString("P"))"
   Start-Sleep -Seconds 15
 }
 
