@@ -182,7 +182,4 @@ if ($LastExitCode) {
   Write-Host "Warning: Failed to delete the Image Version '$GalleryImageVersion'."
 }
 
-# Logout from Azure
-az logout
-
 Write-Host "Done."
