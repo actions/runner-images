@@ -152,7 +152,7 @@ function Get-NugetVersion {
 }
 
 function Get-AntVersion {
-    (ant -version) -match "version" | Take-Part -Part 3
+    ant -version | Take-Part -Part 3
 }
 
 function Get-MavenVersion {
