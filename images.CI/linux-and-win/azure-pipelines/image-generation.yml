@@ -119,22 +119,8 @@ jobs:
                  -VhdName "$(VhdName)" `
                  -ClientId $(CLIENT_ID) `
                  -ClientSecret $(CLIENT_SECRET) `
-                 -TenantId $(AZURE_TENANT)
-
-  - task: PowerShell@2
-    displayName: 'Remove managed image'
-    inputs:
-      targetType: 'inline'
-      script: |
-        az login --service-principal `
-          --username "$(CLIENT_ID)" `
-          --password "$(CLIENT_SECRET)" `
-          --tenant "$(AZURE_TENANT)" | Out-Null
-
-        az image delete `
-          --resource-group "$(AZURE_RESOURCE_GROUP)" `
-          --name "$(ManagedImageName)" `
-          --only-show-errors
+                 -TenantId $(AZURE_TENANT) `
+                 -RemoveManagedImage
 
   - task: PowerShell@2
     displayName: 'Copy image artifacts to the separate directory'

@@ -12,6 +12,8 @@ param (
   [String] [Parameter (Mandatory = $true)] $StorageAccountName,
   [String] [Parameter (Mandatory = $true)] $StorageAccountContainerName,
   [String] [Parameter (Mandatory = $true)] $VhdName,
+
+  [Switch] [Parameter (Mandatory = $false)] $RemoveManagedImage,
   
   [String] [Parameter (Mandatory = $true)] $ClientId,
   [String] [Parameter (Mandatory = $true)] $ClientSecret,
@@ -135,6 +137,19 @@ while ($true) {
 }
 
 Write-Host "Successfully converted '$ManagedImageName' to '$VhdName' in '$StorageAccountName' storage account."
+
+# Remove Managed Image if requested
+if ($RemoveManagedImage) {
+  Write-Host "Removing Managed Image '$ManagedImageName'..."
+  az image delete `
+    --resource-group "$(AZURE_RESOURCE_GROUP)" `
+    --name $ManagedImageName `
+    --only-show-errors
+  if ($LastExitCode) {
+    Write-Host "Warning: Failed to delete the Managed Image '$ManagedImageName'."
+  }
+}
+
 Write-Host "Cleaning up..."
 
 # Revoke SAS URL for the Managed Disk
