@@ -397,3 +397,6 @@ launch.json
 
 # Ignore dynamic template
 images/*/*-temp.json
+
+infra/*.tfstate
+infra/*.tfplan
