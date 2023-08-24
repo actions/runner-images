@@ -39,24 +39,49 @@ Function Install-VisualStudio
 
         Write-Host "Starting Install ..."
         $bootstrapperArgumentList = ('/c', $bootstrapperFilePath, $WorkLoads, '--quiet', '--norestart', '--wait', '--nocache' )
+        Write-Host "Bootstrapper arguments: $bootstrapperArgumentList"
         $process = Start-Process -FilePath cmd.exe -ArgumentList $bootstrapperArgumentList -Wait -PassThru
 
         $exitCode = $process.ExitCode
-        if ($exitCode -eq 0 -or $exitCode -eq 3010)
-        {
+        if ($exitCode -eq 0 -or $exitCode -eq 3010) {
             Write-Host "Installation successful"
             return $exitCode
         }
-        else
-        {
+        else {
             $setupErrorLogPath = "$env:TEMP\dd_setup_*_errors.log"
-            if (Test-Path -Path $setupErrorLogPath)
-            {
+            if (Test-Path -Path $setupErrorLogPath) {
                 $logErrors = Get-Content -Path $setupErrorLogPath -Raw
                 Write-Host "$logErrors"
             }
 
             Write-Host "Non zero exit code returned by the installation process : $exitCode"
+
+            # Try to download tool to collect logs
+            $collectExeUrl = "https://aka.ms/vscollect.exe"
+            $collectExeName = [IO.Path]::GetFileName($collectExeUrl)
+            $collectExePath = Start-DownloadWithRetry -Url $collectExeUrl -Name $collectExeName
+
+            # Collect installation logs using the collect.exe tool and check if it is successful
+            & "$collectExePath"
+            if ($LastExitCode -ne 0) {
+                Write-Host "Failed to collect logs using collect.exe tool. Exit code : $LastExitCode"
+                exit $exitCode
+            }
+
+            # Expand the zip file
+            Expand-Archive -Path "$env:TEMP\vslogs.zip" -DestinationPath "$env:TEMP\vslogs"
+
+            # Print logs
+            $vsLogsPath = "$env:TEMP\vslogs"
+            $vsLogs = Get-ChildItem -Path $vsLogsPath -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object -ExpandProperty FullName
+            foreach ($log in $vsLogs) {
+                Write-Host "============================"
+                Write-Host "== Log file : $log "
+                Write-Host "============================"
+                $logContent = Get-Content -Path $log -ErrorAction Continue
+                Write-Host "$logContent"
+            }
+            
             exit $exitCode
         }
     }
