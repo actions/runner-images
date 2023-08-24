@@ -45,6 +45,8 @@ function Invoke-EnableAutoLogon {
 
     $ipAddress = Get-AnkaVMIPAddress -VMName $TemplateName
 
+    Wait-AnkaVMSSHService -VMName $TemplateName -Seconds 30
+
     Write-Host "`t[*] Enable AutoLogon"
     Enable-AutoLogon -HostName $ipAddress -UserName $TemplateUsername -Password $TemplatePassword
 
