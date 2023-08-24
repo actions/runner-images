@@ -22,6 +22,9 @@ $xcodeVersions | ForEach-Object -ThrottleLimit $threadCount -Parallel {
 
     Install-XcodeVersion -Version $_.version -LinkTo $_.link
     Confirm-XcodeIntegrity -Version $_.link
+}
+
+$xcodeVersions | ForEach-Object {
     Approve-XcodeLicense -Version $_.link
 }
 

@@ -1,7 +1,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1042-azure
-- Image Version: 20230814.1.0
+- Image Version: 20230821.1.0
 - Systemd version: 245.4-4ubuntu3.22
 
 ## Installed Software
@@ -37,7 +37,7 @@
 - Pip3 20.0.2
 - Pipx 1.2.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit 5fa92f467)
+- Vcpkg (build from commit c95000e1b)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -56,7 +56,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.2.1
+- Gradle 8.3
 - Lerna 7.1.5
 - Maven 3.8.8
 - Sbt 1.9.3
@@ -69,34 +69,34 @@ to accomplish this.
 - Bazelisk 1.13.2
 - Bicep 0.20.4
 - Buildah 1.22.3
-- CMake 3.27.2
+- CMake 3.27.3
 - CodeQL Action Bundles 2.14.1 2.14.2
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.20.2+azure-1
+- Docker Compose v2 2.20.3
 - Docker-Buildx 0.11.2
-- Docker-Moby Client 23.0.6+azure-2
-- Docker-Moby Server 23.0.6+azure-2
+- Docker Client 24.0.5
+- Docker Server 24.0.5
 - Fastlane 2.214.0
 - Git 2.41.0
 - Git LFS 3.4.0
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 8.1.9
+- Heroku 8.3.1
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.20.0
-- Kubectl 1.27.4
+- Kubectl 1.28.0
 - Kustomize 5.1.1
 - Leiningen 2.10.0
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.31.1
+- Minikube 1.31.2
 - n 9.1.0
 - Newman 5.3.2
 - nvm 0.39.4
 - OpenSSL 1.1.1f-1ubuntu2.19
-- Packer 1.9.2
+- Packer 1.9.4
 - Parcel 2.9.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
@@ -111,19 +111,19 @@ to accomplish this.
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.172
-- AWS CLI 2.13.9
+- Alibaba Cloud CLI 3.0.174
+- AWS CLI 2.13.11
 - AWS CLI Session Manager Plugin 1.2.497.0
 - AWS SAM CLI 1.95.0
 - Azure CLI 2.51.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.32.1
-- Google Cloud SDK 442.0.0
+- Google Cloud SDK 443.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 16.0.3
-- OpenShift CLI 4.13.8
+- Netlify CLI 16.1.0
+- OpenShift CLI 4.13.9
 - ORAS CLI 1.0.1
-- Vercel CLI 31.3.0
+- Vercel CLI 31.4.0
 
 ### Java
 | Version             | Environment Variable |
@@ -133,7 +133,7 @@ to accomplish this.
 | 17.0.8+7            | JAVA_HOME_17_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.22, 8.2.8
+- PHP: 7.4.33, 8.0.30, 8.1.22, 8.2.9
 - Composer 2.5.8
 - PHPUnit 8.5.33
 ```
@@ -161,9 +161,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 115.0.5790.170
-- ChromeDriver 115.0.5790.170
-- Chromium 115.0.5790.0
+- Google Chrome 116.0.5845.96
+- ChromeDriver 116.0.5845.96
+- Chromium 116.0.5845.0
 - Microsoft Edge 115.0.1901.203
 - Microsoft Edge WebDriver 115.0.1901.203
 - Selenium server 4.11.0
@@ -195,7 +195,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.33-0ubuntu0.20.04.4
+- MySQL 8.0.34-0ubuntu0.20.04.1
 ```
 User: root
 Password: root
@@ -268,7 +268,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | Android Emulator           | 32.1.14                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
 | Android SDK Platform-Tools | 34.0.4                                                                                                                                                                                                                             |
-| Android SDK Platforms      | android-34 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
+| Android SDK Platforms      | android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                             |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                         |
@@ -293,18 +293,18 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.16             | sha256:a8cbb8c69ee71561f4b69c066bad07f7e510caaa523da26fbfc606b10bd7934b  | 2023-08-07 |
 | alpine:3.17             | sha256:f71a5f071694a785e064f05fed657bf8277f1b2113a8ed70c90ad486d6ee54dc  | 2023-08-07 |
 | alpine:3.18             | sha256:7144f7bab3d4c2648d7e59409f15ec52a18006a128c733fcff20d3a4a54ba44a  | 2023-08-07 |
-| buildpack-deps:bullseye | sha256:593db75ce93184b16d45021566ed2d77f5009a8ce88da8254919a2e9e6ec14bf  | 2023-07-28 |
-| buildpack-deps:buster   | sha256:b2c2267e1944a42dcdd448b66e8c8c889a3f5d1ab9705421326077a40a8aa0bc  | 2023-07-28 |
+| buildpack-deps:bullseye | sha256:930a1ea53e70457cde2c9d449b531979475330c50366fef8d22520d676c2bb0d  | 2023-08-16 |
+| buildpack-deps:buster   | sha256:c6cfa5c691f91c0760341abf073efe1c4b0437ad05375290b3298b8e1219de5b  | 2023-08-16 |
 | buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
-| debian:10               | sha256:7cd85d3d51a435062010581f14c5e3f9428388ac7234cc9a1e23dd14d7e4e914  | 2023-07-27 |
-| debian:11               | sha256:630454da4c59041a2bca987a0d54c68962f1d6ea37a3641bd61db42b753234f2  | 2023-07-27 |
+| debian:10               | sha256:b86bfc1dd2fb1820fea6c1e0b6e23d155198b518b3a506f6edad71bf6e9a8cef  | 2023-08-16 |
+| debian:11               | sha256:1beb7cf458bdfe71b5220cb2069eb45e3fc7eb77a1ccfb169eaebf5f6c4809ab  | 2023-08-16 |
 | debian:9                | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest    | sha256:d91fe5e6dad11f2c2cee6d268d5843ad64bf2e9852365d56b12d02f2315edce5  | 2023-08-02 |
 | node:14                 | sha256:a158d3b9b4e3fa813fa6c8c590b8f0a860e015ad4e59bbce5744d2f6fd8461aa  | 2023-04-12 |
 | node:14-alpine          | sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33  | 2023-03-29 |
-| node:16                 | sha256:8c3c7e253d9484a35ed9db3e6ba296d859a382f48602d0321e4734a91311ac95  | 2023-08-10 |
+| node:16                 | sha256:818b5adc1ee4a04e8ad5efeb70871571efe414315ad7f16844f24f9962ffdc7e  | 2023-08-17 |
 | node:16-alpine          | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18                 | sha256:87b15e8e40a6b088012ca65d6685b89948ec722c1955bc0f6bbf9ad20855781a  | 2023-08-10 |
+| node:18                 | sha256:11e9c297fc51f6f65f7d0c7c8a8581e5721f2f16de43ceff1a199fd3ef609f95  | 2023-08-17 |
 | node:18-alpine          | sha256:3482a20c97e401b56ac50ba8920cc7b5b2022bfc6aa7d4e4c231755770cf892f  | 2023-08-10 |
 | ubuntu:16.04            | sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6  | 2021-08-31 |
 | ubuntu:18.04            | sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98  | 2023-05-30 |
