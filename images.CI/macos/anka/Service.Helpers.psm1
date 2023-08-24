@@ -292,7 +292,12 @@ function Invoke-SSHPassCommand {
         "${env:SSHUSER}@${HostName}"
     )
     $sshPassOptions = $sshArg -join " "
-    bash -c "$sshPassOptions \""$Command\"" 2>&1"
+    $result = bash -c "$sshPassOptions \""$Command\"" 2>&1"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "There is an error during command execution:`n$result"
+        exit 1
+    }
+    $result
 }
 
 function Invoke-WithRetry {
@@ -330,7 +335,10 @@ function Restart-VMSSH {
         [string] $HostName
     )
 
-    $command = "sudo reboot"
+    #
+    # https://unix.stackexchange.com/questions/58271/closing-connection-after-executing-reboot-using-ssh-command
+    #
+    $command = '(sleep 1 && sudo reboot &) && exit'
     Invoke-SSHPassCommand -HostName $HostName -Command $command
 }
 
