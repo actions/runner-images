@@ -26,7 +26,7 @@ function Get-BazeliskVersion {
 }
 
 function Get-BicepVersion {
-    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    (bicep --version | Out-String) -match  "terpulumi" | Out-Null
     return $Matches.Version
 }
 
