@@ -78,8 +78,7 @@ Function Install-VisualStudio
                 Write-Host "============================"
                 Write-Host "== Log file : $log "
                 Write-Host "============================"
-                $logContent = Get-Content -Path $log -ErrorAction Continue
-                Write-Host "$logContent"
+                Get-Content -Path $log -ErrorAction Continue
             }
             
             exit $exitCode
