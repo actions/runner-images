@@ -1,3 +1,6 @@
+locals {
+  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
+}
 
 variable "allowed_inbound_ip_addresses" {
   type    = list(string)
@@ -14,9 +17,9 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
-variable "capture_name_prefix" {
+variable "managed_image_name" {
   type    = string
-  default = "packer"
+  default = ""
 }
 
 variable "client_id" {
@@ -95,7 +98,7 @@ variable "private_virtual_network_with_public_ip" {
   default = false
 }
 
-variable "resource_group" {
+variable "managed_image_resource_group_name" {
   type    = string
   default = "${env("ARM_RESOURCE_GROUP")}"
 }
@@ -103,11 +106,6 @@ variable "resource_group" {
 variable "run_validation_diskspace" {
   type    = bool
   default = false
-}
-
-variable "storage_account" {
-  type    = string
-  default = "${env("ARM_STORAGE_ACCOUNT")}"
 }
 
 variable "subscription_id" {
@@ -145,11 +143,9 @@ variable "vm_size" {
   default = "Standard_D4s_v4"
 }
 
-source "azure-arm" "build_vhd" {
+source "azure-arm" "build_image" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
-  capture_container_name                 = "images"
-  capture_name_prefix                    = "${var.capture_name_prefix}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
   client_cert_path                       = "${var.client_cert_path}"
@@ -160,8 +156,8 @@ source "azure-arm" "build_vhd" {
   os_disk_size_gb                        = "86"
   os_type                                = "Linux"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
-  resource_group_name                    = "${var.resource_group}"
-  storage_account                        = "${var.storage_account}"
+  managed_image_name                     = "${local.managed_image_name}"
+  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
   tenant_id                              = "${var.tenant_id}"
@@ -180,7 +176,7 @@ source "azure-arm" "build_vhd" {
 }
 
 build {
-  sources = ["source.azure-arm.build_vhd"]
+  sources = ["source.azure-arm.build_image"]
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
