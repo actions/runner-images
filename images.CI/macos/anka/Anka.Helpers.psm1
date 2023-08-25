@@ -67,7 +67,7 @@ function Invoke-AnkaCommand {
         [string] $Command
     )
 
-    $result = bash -c "$Command 2>&1" | Out-String
+    $result = bash -c "$Command 2>&1"
     if ($LASTEXITCODE -ne 0) {
         Write-Error "There is an error during command execution:`n$result"
         exit 1
