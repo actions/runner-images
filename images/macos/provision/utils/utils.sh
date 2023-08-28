@@ -127,7 +127,7 @@ should_build_from_source() {
     # we will get an empty variable notification in the logs
     set -u
 
-    # Geting tool info from brew to find available install methods except build from source
+    # Getting tool info from brew to find available install methods except build from source
     local tool_info=$(brew info --json=v1 $tool_name)
     
     # No need to build from source if a bottle is disabled

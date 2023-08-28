@@ -171,7 +171,7 @@ The function creates an Azure VM from a template and generates network resources
 
 ## Manual image generation
 
-If you want more control over image generation process you may run Packer directly. This section describes variables defined in Packer template. Some of them may be set using environment variabes.
+If you want more control over image generation process you may run Packer directly. This section describes variables defined in Packer template. Some of them may be set using environment variables.
 
 ### Required variables
 

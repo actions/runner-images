@@ -8,5 +8,5 @@
 # Source the helpers
 source $HELPER_SCRIPTS/etc-environment.sh
 
-# Update /etc/environemnt
+# Update /etc/environment
 prependEtcEnvironmentPath "/snap/bin"

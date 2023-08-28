@@ -117,7 +117,7 @@ function Stop-SvcWithErrHandling
             {
                 Stop-Service -Name $ServiceName -Force
                 $service.WaitForStatus("Stopped", "00:01:00")
-                Write-Host "Service [$ServiceName] has been stopped successfuly"
+                Write-Host "Service [$ServiceName] has been stopped successfully"
             }
             catch
             {
@@ -201,7 +201,7 @@ function Start-DownloadWithRetry
         {
             $failTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
             $attemptTime = [math]::Round(($(Get-Date) - $downloadAttemptStartTime).TotalSeconds, 2)
-            Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n $_"
+            Write-Host "There is an error encountered after $attemptTime seconds during package downloading:`n $_"
             $Retries--
 
             if ($Retries -eq 0)

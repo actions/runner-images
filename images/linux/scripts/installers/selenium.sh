@@ -15,7 +15,7 @@ SELENIUM_JAR_NAME="$SELENIUM_BINARY_NAME.jar"
 SELENIUM_DOWNLOAD_URL=$(get_github_package_download_url "SeleniumHQ/selenium" "contains(\"${SELENIUM_BINARY_NAME}-${SELENIUM_MAJOR_VERSION}\") and endswith(\".jar\")")
 download_with_retries $SELENIUM_DOWNLOAD_URL $SELENIUM_JAR_PATH $SELENIUM_JAR_NAME
 
-# Create an epmty file to retrive selenium version 
+# Create an empty file to retrieve selenium version 
 SELENIUM_FULL_VERSION=$(echo $SELENIUM_DOWNLOAD_URL | awk -F"${SELENIUM_BINARY_NAME}-|.jar" '{print $2}')
 touch "$SELENIUM_JAR_PATH/$SELENIUM_BINARY_NAME-$SELENIUM_FULL_VERSION"
 

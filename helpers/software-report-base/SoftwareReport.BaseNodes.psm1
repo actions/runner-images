@@ -13,15 +13,15 @@ class BaseNode {
     }
 
     [String] ToMarkdown([Int32] $Level) {
-        throw "Abtract method 'ToMarkdown(level)' is not implemented for '$($this.GetType().Name)'"
+        throw "Abstract method 'ToMarkdown(level)' is not implemented for '$($this.GetType().Name)'"
     }
 
     [Boolean] IsSimilarTo([BaseNode] $OtherNode) {
-        throw "Abtract method 'IsSimilarTo' is not implemented for '$($this.GetType().Name)'"
+        throw "Abstract method 'IsSimilarTo' is not implemented for '$($this.GetType().Name)'"
     }
 
     [Boolean] IsIdenticalTo([BaseNode] $OtherNode) {
-        throw "Abtract method 'IsIdenticalTo' is not implemented for '$($this.GetType().Name)'"
+        throw "Abstract method 'IsIdenticalTo' is not implemented for '$($this.GetType().Name)'"
     }
 }
 
@@ -39,7 +39,7 @@ class BaseToolNode: BaseNode {
     }
 
     [String] GetValue() {
-        throw "Abtract method 'GetValue' is not implemented for '$($this.GetType().Name)'"
+        throw "Abstract method 'GetValue' is not implemented for '$($this.GetType().Name)'"
     }
 
     [Boolean] IsSimilarTo([BaseNode] $OtherNode) {

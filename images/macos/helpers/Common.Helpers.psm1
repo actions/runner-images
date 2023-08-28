@@ -62,7 +62,7 @@ function Get-ToolsetValue {
     $jsonNode = Get-Content -Raw $toolsetPath | ConvertFrom-Json
 
     $pathParts = $KeyPath.Split(".")
-    # try to walk through all arguments consequentially to resolve specific json node
+    # try to walk through all arguments consequently to resolve specific json node
     $pathParts | ForEach-Object {
         $jsonNode = $jsonNode.$_
     }

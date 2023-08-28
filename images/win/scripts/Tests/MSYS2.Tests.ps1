@@ -27,7 +27,7 @@ Describe "MSYS2 packages" {
         (Get-Command "$ToolName").Source | Should -BeLike "$msys2Dir*"
     }
 
-    It "<ToolName> is avaialable" -TestCases $TestCases {
+    It "<ToolName> is available" -TestCases $TestCases {
         "$ToolName" | Should -ReturnZeroExitCodeWithParam
     }
 

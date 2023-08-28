@@ -1,4 +1,4 @@
-#   Set custom directorys for pipx
+#   Set custom directories for pipx
 $env:PIPX_BIN_DIR = "${env:ProgramFiles(x86)}\pipx_bin"
 $env:PIPX_HOME = "${env:ProgramFiles(x86)}\pipx"
 

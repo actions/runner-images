@@ -33,7 +33,7 @@ Function Install-VisualStudio
         $shortNameEnableExitCode = $shortNameEnableProcess.ExitCode
         if ($shortNameEnableExitCode -ne 0)
         {
-            Write-Host "Enabling short name support on Windows failed. This needs to be enabled prior to VS 2017 install for Xamarin Andriod AOT to work."
+            Write-Host "Enabling short name support on Windows failed. This needs to be enabled prior to VS 2017 install for Xamarin Android AOT to work."
             exit $shortNameEnableExitCode
         }
 

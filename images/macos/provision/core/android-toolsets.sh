@@ -8,7 +8,7 @@ function filter_components_by_version {
 
     for item in ${toolsArr[@]}
     do
-        # take the last argument after spliting string by ';'' and '-''
+        # take the last argument after splitting string by ';'' and '-''
         version=$(echo "${item##*[-;]}")
         if verlte $minimumVersion $version
         then
@@ -96,7 +96,7 @@ done
 # Intel x86 Emulator Accelerator (HAXM installer)
 # The Android Emulator uses the built-in Hypervisor.Framework by default, and falls back to using Intel HAXM if Hypervisor.Framework fails to initialize
 # https://developer.android.com/studio/run/emulator-acceleration#vm-mac
-# The installation doesn't work properly on macOS Big Sur, /dev/HAX is not created
+# The installation doesn't work properly on macOS Big Sur, /dev/HEX is not created
 
 for addon_name in "${ANDROID_ADDON_LIST[@]}"
 do
