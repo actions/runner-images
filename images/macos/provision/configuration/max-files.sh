@@ -30,6 +30,9 @@ sudo launchctl limit maxfiles 256 unlimited
 sudo launchctl limit maxfiles 128000 524288
 EOF
 
+echo "limit.maxfiles.sh permissions changing"
+chmod +x "/Users/runner/limit-maxfiles.sh"
+
 echo "limit.maxfiles.plist permissions changing"
 chown root:wheel "${Launch_Daemons}/limit.maxfiles.plist"
 chmod 0644 "${Launch_Daemons}/limit.maxfiles.plist"
