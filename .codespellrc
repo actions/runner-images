@@ -1,4 +1,4 @@
 [codespell]
 skip = .git,*.pdf,*.svg
-#
-# ignore-words-list =
+ignore-regex = \</dev/HAX\>
+ignore-words-list = searchd
