@@ -27,7 +27,7 @@ EOF
 cat > "/Users/runner/limit-maxfiles.sh" << EOF
 #!/bin/bash
 sudo launchctl limit maxfiles 256 unlimited
-sudo launchctl limit maxfiles 128000 524288
+sudo launchctl limit maxfiles 65536 524288
 EOF
 
 echo "limit.maxfiles.sh permissions changing"
