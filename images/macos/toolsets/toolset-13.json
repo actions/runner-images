@@ -3,7 +3,7 @@
         "default": "14.3.1",
         "x64": {
             "versions": [
-                { "link": "15.0", "version": "15.0.0-Beta.7+15A5229h" },
+                { "link": "15.0", "version": "15.0.0-Beta.7+15A5229h", "runtimes": [ "visionOS 1.0-beta2" ] },
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"] },
                 { "link": "14.2", "version": "14.2.0+14C18" },
                 { "link": "14.1", "version": "14.1.0+14B47b" }
@@ -11,7 +11,7 @@
         },
         "arm64":{
             "versions": [
-                { "link": "15.0", "version": "15.0.0-Beta.7+15A5229h" },
+                { "link": "15.0", "version": "15.0.0-Beta.7+15A5229h", "runtimes": [ "visionOS 1.0-beta2" ] },
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"] },
                 { "link": "14.2", "version": "14.2.0+14C18" },
                 { "link": "14.1", "version": "14.1.0+14B47b" }
@@ -73,7 +73,8 @@
             "gmp",
             "r",
             "yq",
-            "unxip"
+            "unxip",
+            "xcodesorg/made/xcodes"
         ],
         "cask_packages": [
             "julia",

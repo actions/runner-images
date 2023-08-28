@@ -38,6 +38,12 @@ $xcodeVersions | ForEach-Object {
         Install-AdditionalSimulatorRuntimes -Version $_.link
     }
 
+    ForEach($runtime in $_.runtimes) {
+        Write-Host "Installing Additional runtimes for Xcode '$runtime' ..."
+        Switch-Xcode -Version $_.link
+        Invoke-ValidateCommand "xcodes runtimes install '$runtime'"
+    }
+
 }
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
