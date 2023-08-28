@@ -12,20 +12,22 @@ cat > "${Launch_Daemons}/limit.maxfiles.plist" << EOF
   <dict>
     <key>Label</key>
     <string>limit.maxfiles</string>
-    <key>ProgramArguments</key>
-    <array>
-      <string>launchctl</string>
-      <string>limit</string>
-      <string>maxfiles</string>
-      <string>65536</string>
-      <string>524288</string>
-    </array>
+    <key>Program</key>
+    <string>/Users/runner/limit-maxfiles.sh</string>
     <key>RunAtLoad</key>
     <true/>
     <key>ServiceIPC</key>
     <false/>
   </dict>
 </plist>
+EOF
+
+# Creating script for applying workaround https://developer.apple.com/forums/thread/735798
+
+cat > "/Users/runner/limit-maxfiles.sh" << EOF
+#!/bin/bash
+sudo launchctl limit maxfiles 256 unlimited
+sudo launchctl limit maxfiles 128000 524288
 EOF
 
 echo "limit.maxfiles.plist permissions changing"
