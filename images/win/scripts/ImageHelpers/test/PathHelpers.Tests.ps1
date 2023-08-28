@@ -5,7 +5,7 @@ Describe 'Test-MachinePath Tests' {
     It 'Path contains item' {
         Test-MachinePath -PathItem "C:\foo" | Should Be $true
     }
-    It 'Path does not containe item' {
+    It 'Path does not contain item' {
         Test-MachinePath -PathItem "C:\baz" | Should Be $false
     }
 }

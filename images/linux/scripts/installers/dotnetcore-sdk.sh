@@ -30,7 +30,7 @@ EOF
 apt-get update
 
 for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
-    echo "Determing if .NET Core ($latest_package) is installed"
+    echo "Determine if .NET Core ($latest_package) is installed"
     if ! IsPackageInstalled $latest_package; then
         echo "Could not find .NET Core ($latest_package), installing..."
         apt-get install $latest_package -y
