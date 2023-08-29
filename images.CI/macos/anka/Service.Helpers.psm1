@@ -180,26 +180,19 @@ function Get-MacOSInstaller {
         exit 1
     }
 
-    $installerPathPattern = "/Applications/Install macOS ${macOSName}*.app"
-    if (Test-Path $installerPathPattern) {
-        $previousInstallerPath = Get-Item -Path $installerPathPattern
-        Write-Host "`t[*] Removing '$previousInstallerPath' installation app before downloading the new one"
-        sudo rm -rf "$previousInstallerPath"
-    }
-
     # Clear LastRecommendedMajorOSBundleIdentifier to prevent error during fetching updates
     # Install failed with error: Update not found
     Update-SoftwareBundle
 
     # Download macOS installer
     Write-Host "`t[*] Requested macOS '$MacOSVersion' version installer found, fetching it from Apple Software Update"
-    $result = Invoke-WithRetry { /usr/sbin/softwareupdate --fetch-full-installer --full-installer-version $MacOSVersion } {$LASTEXITCODE -eq 0} | Out-String
-    if (-not $result.Contains("Install finished successfully")) {
-        Write-Host "`t[x] Failed to fetch $MacOSVersion macOS `n$result"
+    Invoke-WithRetry -Command { sudo /usr/local/bin/mist download installer $MacOSVersion application --force --export installer.json --output-directory /Applications } -BreakCondition { $LASTEXITCODE -eq 0 } | Out-Null
+    if (-not(Test-Path installer.json -PathType leaf)) {
+        Write-Host "`t[x] Failed to fetch $MacOSVersion macOS"
         exit 1
     }
 
-    $installerPath = (Get-Item -Path $installerPathPattern).FullName
+    $installerPath = (Get-Content installer.json | Out-String | ConvertFrom-Json).options.applicationPath
     if (-not $installerPath) {
         Write-Host "`t[x] Path not found using '$installerPathPattern'"
         exit 1
@@ -299,7 +292,12 @@ function Invoke-SSHPassCommand {
         "${env:SSHUSER}@${HostName}"
     )
     $sshPassOptions = $sshArg -join " "
-    bash -c "$sshPassOptions \""$Command\"" 2>&1"
+    $result = bash -c "$sshPassOptions \""$Command\"" 2>&1"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "There is an error during command execution:`n$result"
+        exit 1
+    }
+    $result
 }
 
 function Invoke-WithRetry {
@@ -337,7 +335,10 @@ function Restart-VMSSH {
         [string] $HostName
     )
 
-    $command = "sudo reboot"
+    #
+    # https://unix.stackexchange.com/questions/58271/closing-connection-after-executing-reboot-using-ssh-command
+    #
+    $command = '(sleep 1 && sudo reboot &) && exit'
     Invoke-SSHPassCommand -HostName $HostName -Command $command
 }
 

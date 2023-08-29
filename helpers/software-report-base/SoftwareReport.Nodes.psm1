@@ -161,6 +161,11 @@ class ToolVersionNode: BaseToolNode {
     [String] $Version
 
     ToolVersionNode([String] $ToolName, [String] $Version): base($ToolName) {
+
+        if ([String]::IsNullOrEmpty($Version)) {
+            throw "ToolVersionNode '$($this.ToolName)' has empty version"
+        }
+
         $this.Version = $Version
     }
 
@@ -196,6 +201,11 @@ class ToolVersionsListNode: BaseToolNode {
 
     ToolVersionsListNode([String] $ToolName, [String[]] $Versions, [String] $MajorVersionRegex, [String] $ListType): base($ToolName) {
         $this.Versions = $Versions
+
+         if ([String]::IsNullOrEmpty($Versions)) {
+            throw "ToolVersionsListNode '$($this.ToolName)' has empty versions list"
+        }
+
         $this.MajorVersionRegex = [Regex]::new($MajorVersionRegex)
         $this.ListType = $ListType
         $this.ValidateMajorVersionRegex()

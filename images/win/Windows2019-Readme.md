@@ -1,6 +1,6 @@
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4737
-- Image Version: 20230814.1.0
+- Image Version: 20230820.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -29,7 +29,7 @@
 - pip 23.2.1 (python 3.7)
 - Pipx 1.2.0
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit 576f3f1ad)
+- Vcpkg (build from commit c95000e1b)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -52,7 +52,7 @@
 - Bazelisk 1.13.2
 - Bicep 0.20.4
 - Cabal 3.10.1.0
-- CMake 3.27.2
+- CMake 3.27.3
 - CodeQL Action Bundles 2.14.1 2.14.2
 - Docker 24.0.5
 - Docker Compose v1 1.29.2
@@ -61,7 +61,7 @@
 - ghc 9.6.2
 - Git 2.41.0.windows.3
 - Git LFS 3.3.0
-- Google Cloud SDK 442.0.0
+- Google Cloud SDK 443.0.0
 - ImageMagick 7.1.1-15
 - InnoSetup 6.2.2
 - jq 1.6
@@ -87,7 +87,7 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.172
+- Alibaba Cloud CLI 3.0.177
 - AWS CLI 2.13.9
 - AWS SAM CLI 1.95.0
 - AWS Session Manager CLI 1.2.497.0
@@ -112,11 +112,11 @@
 - Rustfmt 1.5.2
 
 ### Browsers and Drivers
-- Google Chrome 115.0.5790.171
-- Chrome Driver 115.0.5790.170
+- Google Chrome 116.0.5845.96
+- Chrome Driver 116.0.5845.96
 - Microsoft Edge 115.0.1901.203
 - Microsoft Edge Driver 115.0.1901.203
-- Mozilla Firefox 116.0.2
+- Mozilla Firefox 116.0.3
 - Gecko Driver 0.33.0
 - IE Driver 4.11.0.0
 - Selenium server 4.11.0
@@ -223,7 +223,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.25.1  | C:\tools\nginx-1.25.1\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.25.2  | C:\tools\nginx-1.25.2\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
@@ -508,7 +508,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.392
+- AWSPowershell: 4.1.397
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.3.0
@@ -529,7 +529,7 @@ All other versions are saved but not installed.
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                                                                                                                                |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3<br>26.0.0 26.0.1 26.0.2 26.0.3<br>25.0.0 25.0.1 25.0.2 25.0.3<br>24.0.0 24.0.1 24.0.2 24.0.3<br>23.0.1 23.0.2 23.0.3<br>22.0.1<br>21.1.2<br>20.0.0<br>19.1.0                                                                        |
-| Android SDK Platforms      | android-34 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
+| Android SDK Platforms      | android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)<br>android-26 (rev 2)<br>android-25 (rev 3)<br>android-24 (rev 2)<br>android-23 (rev 3)<br>android-22 (rev 2)<br>android-21 (rev 2)<br>android-20 (rev 2)<br>android-19 (rev 4) |
 | Android SDK Platform-Tools | 34.0.4                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                                             |
