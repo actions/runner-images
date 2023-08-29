@@ -28,9 +28,18 @@ Describe "Chrome" {
             $versionInfo | Should -Not -BeNullOrEmpty
         }
 
-        It "Chrome Product Name should be 'Google Chrome for Testing'" -TestCases @{chromePath = $chromePath } {
-            $productName = (Get-Item $chromePath).VersionInfo.ProductName
-            $productName | Should -BeExactly "Google Chrome for Testing"
+        It "gupdate service is stopped" {
+            $svc = Get-Service -Name gupdate
+            $svc.Status | Should -BeExactly Stopped
+        }
+
+        It "gupdatem service is stopped" {
+            $svc = Get-Service -Name gupdatem
+            $svc.Status | Should -BeExactly Stopped
+        }
+
+        It "BlockGoogleUpdate firewall rule exists" {
+            Get-NetFirewallRule -DisplayName BlockGoogleUpdate | Should -Not -BeNullOrEmpty
         }
 
         It "<chromePath> is installed" -TestCases @{chromePath = $chromePath} {
