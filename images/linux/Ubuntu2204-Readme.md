@@ -1,7 +1,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
 - Kernel Version: 5.15.0-1041-azure
-- Image Version: 20230821.1.0
+- Image Version: 20230830.3.0
 - Systemd version: 249.11-0ubuntu3.9
 
 ## Installed Software
@@ -14,8 +14,8 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 9.5.0, 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 9.5.0, 10.5.0, 11.4.0, 12.3.0
-- Julia 1.9.2
-- Kotlin 1.9.0-release-358
+- Julia 1.9.3
+- Kotlin 1.9.10-release-459
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.17.1
@@ -27,7 +27,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.12.3
-- Homebrew 4.1.5
+- Homebrew 4.1.7
 - Miniconda 23.5.2
 - Npm 9.6.7
 - NuGet 6.6.1.2
@@ -35,7 +35,7 @@
 - Pip3 22.0.2
 - Pipx 1.2.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit c95000e1b)
+- Vcpkg (build from commit e21c41446)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -53,7 +53,7 @@ to accomplish this.
 ```
 
 ### Project Management
-- Lerna 7.1.5
+- Lerna 7.2.0
 - Maven 3.8.8
 
 ### Tools
@@ -61,11 +61,11 @@ to accomplish this.
 - apt-fast 1.9.12
 - AzCopy 10.20.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.3.2
-- Bazelisk 1.13.2
+- Bazelisk 1.18.0
 - Bicep 0.20.4
 - Buildah 1.23.1
-- CMake 3.27.3
-- CodeQL Action Bundles 2.14.1 2.14.2
+- CMake 3.27.4
+- CodeQL Action Bundles 2.14.2 2.14.3
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.20.3
@@ -73,14 +73,14 @@ to accomplish this.
 - Docker Client 24.0.5
 - Docker Server 24.0.5
 - Fastlane 2.214.0
-- Git 2.41.0
+- Git 2.42.0
 - Git LFS 3.4.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 8.3.1
+- Heroku 8.4.1
 - jq 1.6
 - Kind 0.20.0
-- Kubectl 1.28.0
+- Kubectl 1.28.1
 - Kustomize 5.1.1
 - Leiningen 2.10.0
 - MediaInfo 21.09
@@ -88,35 +88,35 @@ to accomplish this.
 - Minikube 1.31.2
 - n 9.1.0
 - Newman 5.3.2
-- nvm 0.39.4
+- nvm 0.39.5
 - OpenSSL 3.0.2-0ubuntu1.10
 - Packer 1.9.4
 - Parcel 2.9.3
 - Podman 3.4.4
-- Pulumi 3.78.1
+- Pulumi 3.79.0
 - R 4.3.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.5.5
+- Terraform 1.5.6
 - yamllint 1.32.0
 - yq 4.35.1
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.177
-- AWS CLI 2.13.11
+- Alibaba Cloud CLI 3.0.179
+- AWS CLI 2.13.13
 - AWS CLI Session Manager Plugin 1.2.497.0
-- AWS SAM CLI 1.95.0
+- AWS SAM CLI 1.96.0
 - Azure CLI 2.51.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.32.1
-- Google Cloud SDK 443.0.0
+- GitHub CLI 2.33.0
+- Google Cloud SDK 444.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 16.1.0
+- Netlify CLI 16.2.0
 - OpenShift CLI 4.13.9
 - ORAS CLI 1.0.1
-- Vercel CLI 31.4.0
+- Vercel CLI 32.1.0
 
 ### Java
 | Version             | Environment Variable |
@@ -140,27 +140,27 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.11.1
 
 ### Rust Tools
-- Cargo 1.71.1
-- Rust 1.71.1
-- Rustdoc 1.71.1
+- Cargo 1.72.0
+- Rust 1.72.0
+- Rustdoc 1.72.0
 - Rustup 1.26.0
 
 #### Packages
 - Bindgen 0.66.1
 - Cargo audit 0.17.6
-- Cargo clippy 0.1.71
+- Cargo clippy 0.1.72
 - Cargo outdated 0.13.1
-- Cbindgen 0.24.5
-- Rustfmt 1.5.2
+- Cbindgen 0.25.0
+- Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 116.0.5845.96
+- Google Chrome 116.0.5845.140
 - ChromeDriver 116.0.5845.96
 - Chromium 116.0.5845.0
-- Microsoft Edge 115.0.1901.203
-- Microsoft Edge WebDriver 115.0.1901.203
+- Microsoft Edge 116.0.1938.62
+- Microsoft Edge WebDriver 116.0.1938.62
 - Selenium server 4.11.0
-- Mozilla Firefox 116.0.3
+- Mozilla Firefox 117.0
 - Geckodriver 0.33.0
 
 #### Environment variables
@@ -214,10 +214,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Python
 - 3.7.17
-- 3.8.17
-- 3.9.17
-- 3.10.12
-- 3.11.4
+- 3.8.18
+- 3.9.18
+- 3.10.13
+- 3.11.5
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -234,7 +234,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 9.3.0
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.3.0
+- Microsoft.Graph: 2.4.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -280,7 +280,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | buildpack-deps:buster   | sha256:c6cfa5c691f91c0760341abf073efe1c4b0437ad05375290b3298b8e1219de5b  | 2023-08-16 |
 | debian:10               | sha256:b86bfc1dd2fb1820fea6c1e0b6e23d155198b518b3a506f6edad71bf6e9a8cef  | 2023-08-16 |
 | debian:11               | sha256:1beb7cf458bdfe71b5220cb2069eb45e3fc7eb77a1ccfb169eaebf5f6c4809ab  | 2023-08-16 |
-| moby/buildkit:latest    | sha256:d91fe5e6dad11f2c2cee6d268d5843ad64bf2e9852365d56b12d02f2315edce5  | 2023-08-02 |
+| moby/buildkit:latest    | sha256:890dcae054e3039f6c6b76bf0da80a130fa6e6bb1f3624063ef0210ac2c57b06  | 2023-08-24 |
 | node:14                 | sha256:a158d3b9b4e3fa813fa6c8c590b8f0a860e015ad4e59bbce5744d2f6fd8461aa  | 2023-04-12 |
 | node:14-alpine          | sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33  | 2023-03-29 |
 | node:16                 | sha256:818b5adc1ee4a04e8ad5efeb70871571efe414315ad7f16844f24f9962ffdc7e  | 2023-08-17 |
