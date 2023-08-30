@@ -10,35 +10,51 @@ Function Install-VisualStudio
     .PARAMETER BootstrapperUrl
         The URL from which the bootstrapper will be downloaded. Required parameter.
 
-    .PARAMETER WorkLoads
-        The string that contain workloads that will be passed to the installer.
+    .PARAMETER RequiredComponents
+        The list of required components. Required parameter.
+    
+    .PARAMETER ExtraArgs
+        The extra arguments to pass to the bootstrapper. Optional parameter.
     #>
 
     Param
     (
-        [Parameter(Mandatory)]
-        [String] $BootstrapperUrl,
-        [String] $WorkLoads
+        [Parameter(Mandatory)] [String] $BootstrapperUrl,
+        [Parameter(Mandatory)] [String[]] $RequiredComponents,
+        [String] $ExtraArgs = ""
     )
 
     Write-Host "Downloading Bootstrapper ..."
     $BootstrapperName = [IO.Path]::GetFileName($BootstrapperUrl)
     $bootstrapperFilePath = Start-DownloadWithRetry -Url $BootstrapperUrl -Name $BootstrapperName
 
-    try
-    {
+    try {
         Write-Host "Enable short name support on Windows needed for Xamarin Android AOT, defaults appear to have been changed in Azure VMs"
         $shortNameEnableProcess = Start-Process -FilePath fsutil.exe -ArgumentList ('8dot3name', 'set', '0') -Wait -PassThru
 
         $shortNameEnableExitCode = $shortNameEnableProcess.ExitCode
-        if ($shortNameEnableExitCode -ne 0)
-        {
+        if ($shortNameEnableExitCode -ne 0) {
             Write-Host "Enabling short name support on Windows failed. This needs to be enabled prior to VS 2017 install for Xamarin Andriod AOT to work."
             exit $shortNameEnableExitCode
         }
 
+        $responseData = @{
+            "channelUri" = "https://aka.ms/vs/17/release/channel";
+            "channelId"  = "VisualStudio.17.Release";
+            "productId"  = "Microsoft.VisualStudio.Product.Enterprise";
+            "arch"       = "x64";
+            "add"        = $RequiredComponents | ForEach-Object { "$_;includeRecommended" }
+        }
+
+        # Create json file with response data
+        $responseDataPath = "$env:TEMP\vs_install_response.json"
+        $responseData | ConvertTo-Json | Out-File -FilePath $responseDataPath
+
+        # Print the content of the response file
+        Get-Content -Path $responseDataPath
+
         Write-Host "Starting Install ..."
-        $bootstrapperArgumentList = ('/c', $bootstrapperFilePath, $WorkLoads, '--quiet', '--norestart', '--wait', '--nocache' )
+        $bootstrapperArgumentList = ('/c', $bootstrapperFilePath, '--in', $responseDataPath, $ExtraArgs, '--quiet', '--norestart', '--wait', '--nocache' )
         Write-Host "Bootstrapper arguments: $bootstrapperArgumentList"
         $process = Start-Process -FilePath cmd.exe -ArgumentList $bootstrapperArgumentList -Wait -PassThru
 

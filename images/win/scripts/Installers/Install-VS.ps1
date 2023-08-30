@@ -4,13 +4,12 @@
 ################################################################################
 
 $toolset = Get-ToolsetContent
-$requiredComponents = $toolset.visualStudio.workloads | ForEach-Object { "--add $_" }
-$workLoads = @(
-	"--allWorkloads --includeRecommended"
-	$requiredComponents
-	"--remove Component.CPython3.x64"
-)
-$workLoadsArgument = [String]::Join(" ", $workLoads)
+$requiredComponents = $toolset.visualStudio.workloads
+$extraArgs = [String]::Join(" ", @(
+    "--allWorkloads"
+    "--includeRecommended"
+    "--remove Component.CPython3.x64"
+  ))
 
 $releaseInPath = $toolset.visualStudio.edition
 $subVersion = $toolset.visualStudio.subversion
@@ -18,7 +17,7 @@ $channel = $toolset.visualStudio.channel
 $bootstrapperUrl = "https://aka.ms/vs/${subVersion}/${channel}/vs_${releaseInPath}.exe"
 
 # Install VS
-Install-VisualStudio -BootstrapperUrl $bootstrapperUrl -WorkLoads $workLoadsArgument
+Install-VisualStudio -BootstrapperUrl $bootstrapperUrl -RequiredComponents $requiredComponents -ExtraArgs $extraArgs
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
