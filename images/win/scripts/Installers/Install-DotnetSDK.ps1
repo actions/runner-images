@@ -58,7 +58,7 @@ function InstallSDKVersion (
     if (!(Test-Path -Path "C:\Program Files\dotnet\sdk\$sdkVersion"))
     {
         Write-Host "Installing dotnet $sdkVersion"
-        .\dotnet-install.ps1 -Architecture x64 -Version $sdkVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet')
+        .\dotnet-install.ps1 -Version $sdkVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet')
     }
     else
     {
