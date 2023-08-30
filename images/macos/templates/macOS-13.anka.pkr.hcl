@@ -246,6 +246,7 @@ build {
   provisioner "shell" {
     scripts = [
       "./provision/configuration/configure-hostname.sh",
+      "./provision/configuration/cleanup-brew.sh",
       "./provision/configuration/finalize-vm.sh"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"

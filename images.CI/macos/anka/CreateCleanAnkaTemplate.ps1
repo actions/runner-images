@@ -45,6 +45,8 @@ function Invoke-EnableAutoLogon {
 
     $ipAddress = Get-AnkaVMIPAddress -VMName $TemplateName
 
+    Wait-AnkaVMSSHService -VMName $TemplateName -Seconds 30
+
     Write-Host "`t[*] Enable AutoLogon"
     Enable-AutoLogon -HostName $ipAddress -UserName $TemplateUsername -Password $TemplatePassword
 
@@ -180,7 +182,7 @@ Remove-AnkaVM -VMName $TemplateName
 
 Write-Host "`t[*] Creating Anka VM template with name '$TemplateName' and '$TemplateUsername' user"
 Write-Host "`t[*] CPU Count: $CPUCount, RamSize: ${RamSizeGb}G, DiskSizeGb: ${DiskSizeGb}G, InstallerPath: $macOSInstaller, TemplateName: $TemplateName"
-New-AnkaVMTemplate -InstallerPath $macOSInstaller `
+New-AnkaVMTemplate -InstallerPath "$macOSInstaller" `
                    -TemplateName $TemplateName `
                    -TemplateUsername $TemplateUsername `
                    -TemplatePassword $TemplatePassword `
