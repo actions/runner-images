@@ -192,6 +192,7 @@
             "parallel",
             "pass",
             "patchelf",
+            "pigz",
             "pollinate",
             "rsync",
             "shellcheck",
