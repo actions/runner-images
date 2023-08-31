@@ -3,6 +3,8 @@ param(
     [String] [Parameter (Mandatory)] $Organization,
     [String] [Parameter (Mandatory)] $Project,
     [String] [Parameter (Mandatory)] $ImageName,
+    [String] [Parameter (Mandatory)] $StorageAccountContainerName,
+    [String] [Parameter (Mandatory)] $VhdName,
     [String] [Parameter (Mandatory)] $DefinitionId,
     [String] [Parameter (Mandatory)] $AccessToken
 )
@@ -15,6 +17,12 @@ $Body = @{
       }
       ImageName = @{
         value = $ImageName
+      }
+      ImageStorageContainerName = @{
+        value = $StorageAccountContainerName
+      }
+      ImageBlobPath = @{
+        value = $VhdName
       }
     }
     isDraft = "false"

@@ -57,7 +57,7 @@ jobs:
                  -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
 
   - task: PowerShell@2
-    displayName: 'Set image template variables'
+    displayName: 'Set variables'
     inputs:
       targetType: 'inline'
       script: |
@@ -71,28 +71,57 @@ jobs:
         Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
 
+        $ManagedImageName = "${{ parameters.image_type }}-$(Build.BuildId)"
+        Write-Host "##vso[task.setvariable variable=ManagedImageName;]$ManagedImageName"
+
+        $VhdName = "$ManagedImageName.vhd"
+        Write-Host "##vso[task.setvariable variable=VhdName;]$VhdName"
+
+        $TempResourceGroupName = "packer-temp-$ManagedImageName"
+        Write-Host "##vso[task.setvariable variable=TempResourceGroupName;]$TempResourceGroupName"
+
   - task: PowerShell@2
     displayName: 'Build VM'
     inputs:
       targetType: filePath
       filePath: ./images.CI/linux-and-win/build-image.ps1
-      arguments: -ResourcesNamePrefix $(Build.BuildId) `
-                        -ClientId $(CLIENT_ID) `
-                        -ClientSecret $(CLIENT_SECRET) `
-                        -TemplatePath $(TemplatePath) `
-                        -ResourceGroup $(AZURE_RESOURCE_GROUP) `
-                        -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
-                        -SubscriptionId $(AZURE_SUBSCRIPTION) `
-                        -TenantId $(AZURE_TENANT) `
-                        -Location $(AZURE_LOCATION) `
-                        -VirtualNetworkName $(BUILD_AGENT_VNET_NAME) `
-                        -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
-                        -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME)
+      arguments: -ClientId $(CLIENT_ID) `
+                 -ClientSecret $(CLIENT_SECRET) `
+                 -TemplatePath $(TemplatePath) `
+                 -ImageName "$(ManagedImageName)" `
+                 -ImageResourceGroupName $(AZURE_RESOURCE_GROUP) `
+                 -TempResourceGroupName "$(TempResourceGroupName)" `
+                 -SubscriptionId $(AZURE_SUBSCRIPTION) `
+                 -TenantId $(AZURE_TENANT) `
+                 -Location $(AZURE_LOCATION) `
+                 -VirtualNetworkName $(BUILD_AGENT_VNET_NAME) `
+                 -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
+                 -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME)
 
     env:
       PACKER_LOG: 1
       PACKER_LOG_PATH: "$(Agent.TempDirectory)/packer-log.txt"
-  
+
+  - task: PowerShell@2
+    displayName: 'Convert managed image to VHD'
+    inputs:
+      targetType: filePath
+      filePath: ./images.CI/linux-and-win/convert-to-vhd.ps1
+      arguments: -SubscriptionId $(AZURE_SUBSCRIPTION) `
+                 -Location $(AZURE_LOCATION) `
+                 -ResourceGroupName $(AZURE_RESOURCE_GROUP) `
+                 -ManagedImageName "$(ManagedImageName)" `
+                 -GalleryName "github_imagegeneration_convert_to_vhd" `
+                 -GalleryImageSku "${{ parameters.image_type }}" `
+                 -GalleryImageVersion "0.0.$(Build.BuildId)" `
+                 -StorageAccountName $(AZURE_STORAGE_ACCOUNT) `
+                 -StorageAccountContainerName "images" `
+                 -VhdName "$(VhdName)" `
+                 -ClientId $(CLIENT_ID) `
+                 -ClientSecret $(CLIENT_SECRET) `
+                 -TenantId $(AZURE_TENANT) `
+                 -RemoveManagedImage
+
   - task: PowerShell@2
     displayName: 'Copy image artifacts to the separate directory'
     inputs:
@@ -144,11 +173,13 @@ jobs:
         targetType: filePath
         filePath: ./images.CI/linux-and-win/create-release.ps1
         arguments: -BuildId $(Build.BuildId) `
-                          -Organization $(RELEASE_TARGET_ORGANIZATION) `
-                          -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
-                          -Project $(RELEASE_TARGET_PROJECT) `
-                          -ImageName ${{ parameters.image_type }} `
-                          -AccessToken $(RELEASE_TARGET_TOKEN)
+                   -Organization $(RELEASE_TARGET_ORGANIZATION) `
+                   -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
+                   -Project $(RELEASE_TARGET_PROJECT) `
+                   -ImageName "${{ parameters.image_type }}" `
+                   -StorageAccountContainerName "images" `
+                   -VhdName "$(VhdName)" `
+                   -AccessToken $(RELEASE_TARGET_TOKEN)
 
   - task: PowerShell@2
     displayName: 'Clean up resources'
@@ -156,10 +187,9 @@ jobs:
     inputs:
       targetType: filePath
       filePath: ./images.CI/linux-and-win/cleanup.ps1
-      arguments: -ResourcesNamePrefix $(Build.BuildId) `
-                     -Image ${{ parameters.image_type }} `
-                     -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
-                     -SubscriptionId $(AZURE_SUBSCRIPTION) `
-                     -ClientId $(CLIENT_ID) `
-                     -ClientSecret $(CLIENT_SECRET) `
-                     -TenantId $(AZURE_TENANT)
+      arguments: -TempResourceGroupName "$(TempResourceGroupName)" `
+                 -StorageAccount $(AZURE_STORAGE_ACCOUNT) `
+                 -SubscriptionId $(AZURE_SUBSCRIPTION) `
+                 -ClientId $(CLIENT_ID) `
+                 -ClientSecret $(CLIENT_SECRET) `
+                 -TenantId $(AZURE_TENANT)
