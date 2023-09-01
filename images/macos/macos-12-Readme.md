@@ -1,7 +1,7 @@
 # macOS 12
-- OS Version: macOS 12.6.7 (21G651)
+- OS Version: macOS 12.6.8 (21G725)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20230818.2
+- Image Version: 20230829.1
 
 ## Installed Software
 
@@ -14,18 +14,18 @@
 - GCC 12 (Homebrew GCC 12.3.0) - available by `gcc-12` alias
 - GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
-- Julia 1.9.2
-- Kotlin 1.9.0-release-358
+- Julia 1.9.3
+- Kotlin 1.9.10-release-459
 - Go 1.20.7
 - Mono 6.12.0.188
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - Node.js 18.17.1
-- NVM 0.39.4
+- NVM 0.39.5
 - NVM - Cached node versions: 14.21.3, 16.20.2, 18.17.1
 - Perl 5.36.1
 - PHP 8.2.9
 - Python 2.7.18
-- Python3 3.11.4
+- Python3 3.11.5
 - R 4.3.1
 - Ruby 3.0.6p216
 
@@ -34,7 +34,7 @@
 - Carthage 0.39.0
 - CocoaPods 1.12.1
 - Composer 2.5.8
-- Homebrew 4.1.5
+- Homebrew 4.1.7
 - Miniconda 23.5.2
 - NPM 9.6.7
 - NuGet 6.3.1.1
@@ -42,7 +42,7 @@
 - Pip3 23.2.1 (python 3.11)
 - Pipx 1.2.0
 - RubyGems 3.4.19
-- Vcpkg 2023 (build from commit c95000e1b)
+- Vcpkg 2023 (build from commit e21c41446)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -52,22 +52,22 @@
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
-- Apache Ant 1.10.13
+- Apache Ant 1.10.14
 - Apache Maven 3.9.4
 - Gradle 8.3
-- Sbt 1.9.3
+- Sbt 1.9.4
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.36.0
 - azcopy 10.20.1
 - bazel 6.3.2
-- bazelisk 1.17.0
+- bazelisk 1.18.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 8.2.1
-- Git 2.41.0
+- Git 2.42.0
 - Git LFS 3.4.0
-- GitHub CLI 2.32.1
+- GitHub CLI 2.33.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
@@ -91,22 +91,22 @@
 
 ### Tools
 - App Center CLI 2.14.0
-- AWS CLI 2.13.11
+- AWS CLI 2.13.13
 - AWS SAM CLI 1.95.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.50.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.20.4
 - Cabal 3.6.2.0
-- Cmake 3.27.3
-- CodeQL Action Bundles 2.14.1 2.14.2
+- Cmake 3.27.4
+- CodeQL Action Bundles 2.14.2 2.14.3
 - Colima 0.5.5
 - Fastlane 2.214.0
 - GHC 9.6.2
 - GHCup 0.1.19.4
 - Jazzy 0.14.3
 - Stack 2.9.3
-- SwiftFormat 0.52.1
+- SwiftFormat 0.52.2
 - Swig 4.1.1
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
 
@@ -117,12 +117,12 @@
 ### Browsers
 - Safari 16.6 (17615.3.12.11.3)
 - SafariDriver 16.6 (17615.3.12.11.3)
-- Google Chrome 116.0.5845.96
+- Google Chrome 116.0.5845.140
 - Google Chrome for Testing 116.0.5845.96
 - ChromeDriver 116.0.5845.96
-- Microsoft Edge 115.0.1901.203
-- Microsoft Edge WebDriver 115.0.1901.203
-- Mozilla Firefox 116.0.3
+- Microsoft Edge 116.0.1938.62
+- Microsoft Edge WebDriver 116.0.1938.62
+- Mozilla Firefox 117.0
 - geckodriver 0.33.0
 - Selenium server 4.10.0
 
@@ -138,7 +138,7 @@
 | ------------------- | -------------------- |
 | 8.0.382+5 (default) | JAVA_HOME_8_X64      |
 | 11.0.20+8           | JAVA_HOME_11_X64     |
-| 17.0.8+7            | JAVA_HOME_17_X64     |
+| 17.0.8+101          | JAVA_HOME_17_X64     |
 
 ### Cached Tools
 
@@ -149,10 +149,10 @@
 
 #### Python
 - 3.7.17
-- 3.8.17
-- 3.9.17
-- 3.10.12
-- 3.11.4
+- 3.8.18
+- 3.9.18
+- 3.10.13
+- 3.11.5
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.12]
@@ -173,18 +173,18 @@
 - 1.21.0
 
 ### Rust Tools
-- Cargo 1.71.1
-- Rust 1.71.1
-- Rustdoc 1.71.1
+- Cargo 1.72.0
+- Rust 1.72.0
+- Rustdoc 1.72.0
 - Rustup 1.26.0
 
 #### Packages
 - Bindgen 0.66.1
 - Cargo-audit 0.17.6
 - Cargo-outdated 0.13.1
-- Cbindgen 0.24.5
-- Clippy 0.1.71
-- Rustfmt 1.5.2-stable
+- Cbindgen 0.25.0
+- Clippy 0.1.72
+- Rustfmt 1.6.0-stable
 
 ### PowerShell Tools
 - PowerShell 7.2.13
@@ -351,12 +351,12 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 - libXext 1.3.5
 - libXft 2.3.8
 - Tcl/Tk 8.6.13_4
-- Zlib 1.2.13
+- Zlib 1.3
 
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v18/18.3.2-53621/ParallelsDesktop-18.3.2-53621.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v19/19.0.0-54570/ParallelsDesktop-19.0.0-54570.dmg |
 
 ##### Notes
 ```
