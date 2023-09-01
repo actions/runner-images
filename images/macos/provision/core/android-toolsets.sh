@@ -93,11 +93,6 @@ do
     echo y | $SDKMANAGER "extras;$extra_name"
 done
 
-# Intel x86 Emulator Accelerator (HAXM installer)
-# The Android Emulator uses the built-in Hypervisor.Framework by default, and falls back to using Intel HAXM if Hypervisor.Framework fails to initialize
-# https://developer.android.com/studio/run/emulator-acceleration#vm-mac
-# The installation doesn't work properly on macOS Big Sur, /dev/HAX is not created
-
 for addon_name in "${ANDROID_ADDON_LIST[@]}"
 do
     echo "Installing add-on $addon_name ..."

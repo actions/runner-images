@@ -160,7 +160,7 @@
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra-list": [
-            "android;m2repository", "google;m2repository", "google;google_play_services", "intel;Hardware_Accelerated_Execution_Manager"
+            "android;m2repository", "google;m2repository", "google;google_play_services"
         ],
         "addon-list": [],
         "additional-tools": [
