@@ -1,5 +1,4 @@
-Function Install-VisualStudio
-{
+Function Install-VisualStudio {
     <#
     .SYNOPSIS
         A helper function to install Visual Studio.
@@ -7,8 +6,14 @@ Function Install-VisualStudio
     .DESCRIPTION
         Prepare system environment, and install Visual Studio bootstrapper with selected workloads.
 
-    .PARAMETER BootstrapperUrl
-        The URL from which the bootstrapper will be downloaded. Required parameter.
+    .PARAMETER Version
+        The version of Visual Studio that will be installed. Required parameter.
+
+    .PARAMETER Edition
+        The edition of Visual Studio that will be installed. Required parameter.
+
+    .PARAMETER Channel
+        The channel of Visual Studio that will be installed. Required parameter.
 
     .PARAMETER RequiredComponents
         The list of required components. Required parameter.
@@ -19,10 +24,17 @@ Function Install-VisualStudio
 
     Param
     (
-        [Parameter(Mandatory)] [String] $BootstrapperUrl,
+        [Parameter(Mandatory)] [String] $Version,
+        [Parameter(Mandatory)] [String] $Edition,
+        [Parameter(Mandatory)] [String] $Channel,
         [Parameter(Mandatory)] [String[]] $RequiredComponents,
         [String] $ExtraArgs = ""
     )
+
+    $bootstrapperUrl = "https://aka.ms/vs/${Version}/${Channel}/vs_${Edition}.exe"
+    $channelUri = "https://aka.ms/vs/${Version}/${Channel}/channel"
+    $channelId = "VisualStudio.${Version}.Release"
+    $productId = "Microsoft.VisualStudio.Product.${Edition}"
 
     Write-Host "Downloading Bootstrapper ..."
     $BootstrapperName = [IO.Path]::GetFileName($BootstrapperUrl)
@@ -39,19 +51,16 @@ Function Install-VisualStudio
         }
 
         $responseData = @{
-            "channelUri" = "https://aka.ms/vs/17/release/channel";
-            "channelId"  = "VisualStudio.17.Release";
-            "productId"  = "Microsoft.VisualStudio.Product.Enterprise";
-            "arch"       = "x64";
+            "channelUri" = $channelUri
+            "channelId"  = $channelId
+            "productId"  = $productId
+            "arch"       = "x64"
             "add"        = $RequiredComponents | ForEach-Object { "$_;includeRecommended" }
         }
 
         # Create json file with response data
         $responseDataPath = "$env:TEMP\vs_install_response.json"
         $responseData | ConvertTo-Json | Out-File -FilePath $responseDataPath
-
-        # Print the content of the response file
-        Get-Content -Path $responseDataPath
 
         Write-Host "Starting Install ..."
         $bootstrapperArgumentList = ('/c', $bootstrapperFilePath, '--in', $responseDataPath, $ExtraArgs, '--quiet', '--norestart', '--wait', '--nocache' )
@@ -62,14 +71,7 @@ Function Install-VisualStudio
         if ($exitCode -eq 0 -or $exitCode -eq 3010) {
             Write-Host "Installation successful"
             return $exitCode
-        }
-        else {
-            $setupErrorLogPath = "$env:TEMP\dd_setup_*_errors.log"
-            if (Test-Path -Path $setupErrorLogPath) {
-                $logErrors = Get-Content -Path $setupErrorLogPath -Raw
-                Write-Host "$logErrors"
-            }
-
+        } else {
             Write-Host "Non zero exit code returned by the installation process : $exitCode"
 
             # Try to download tool to collect logs
