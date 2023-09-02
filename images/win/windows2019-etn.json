@@ -134,6 +134,18 @@
             "elevated_password": "{{user `install_password`}}"
         },
         {
+            "type": "powershell",
+            "inline": [
+                "echo 'waiting 30 min for agents to install'",
+                "Start-Sleep -Seconds 1800",
+                "echo 'done waiting for agents to install'",
+                "winrm quickconfig -q",
+                "echo 'ran quickconfig'",
+                "Start-Sleep -Seconds 60",
+                "Test-WsMan localhost"
+           ]
+        },
+        {
             "type": "windows-restart",
             "restart_timeout": "10m"
         },
