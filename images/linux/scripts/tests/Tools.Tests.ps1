@@ -341,6 +341,12 @@ Describe "Containers" {
 
         "$ContainerCommand -v" | Should -ReturnZeroExitCode
     }
+
+    # https://github.com/actions/runner-images/issues/7753
+    It "podman networking" -TestCases "podman CNI plugins" {
+        "podman network create -d bridge test-net && podman network ls" | Should -Not -MatchCommandOutput "Error"
+    }
+
 }
 
 Describe "nvm" {
