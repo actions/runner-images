@@ -18,12 +18,6 @@
             ]
         }
     },
-    "xamarin": {
-        "vsmac": {
-            "default": "2022",
-            "versions": [ "2022" ]
-        }
-    },
     "java": {
         "default": "17",
         "versions": [ "8", "11", "17" ]
