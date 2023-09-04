@@ -4,9 +4,6 @@
 ##         cache.  Should run after VS and Node
 ################################################################################
 
-# ensure temp
-New-Item -Path C:\Temp -Force -ItemType Directory
-
 # Set environment variables
 Set-SystemVariable -SystemVariable DOTNET_MULTILEVEL_LOOKUP -Value "0"
 Set-SystemVariable -SystemVariable DOTNET_NOLOGO -Value "1"
@@ -14,6 +11,7 @@ Set-SystemVariable -SystemVariable DOTNET_SKIP_FIRST_TIME_EXPERIENCE -Value "1"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
+#region "Functions"
 function Get-SDKVersionsToInstall (
     $DotnetVersion
 ) {
@@ -52,18 +50,6 @@ function Invoke-Warmup (
     }
 }
 
-function Fix-ImportPublishProfile (
-    $SdkVersion
-) {
-    if (Test-IsWin19) {
-        # Fix for issue https://github.com/dotnet/sdk/issues/1276.  This will be fixed in 3.1.
-        $sdkTargetsName = "Microsoft.NET.Sdk.ImportPublishProfile.targets"
-        $sdkTargetsUrl = "https://raw.githubusercontent.com/dotnet/sdk/82bc30c99f1325dfaa7ad450be96857a4fca2845/src/Tasks/Microsoft.NET.Build.Tasks/targets/${sdkTargetsName}"
-        $sdkTargetsPath = "C:\Program Files\dotnet\sdk\$sdkVersion\Sdks\Microsoft.NET.Sdk\targets"
-        Start-DownloadWithRetry -Url $sdkTargetsUrl -DownloadPath $sdkTargetsPath -Name $sdkTargetsName
-    }
-}
-
 function InstallSDKVersion (
     $SdkVersion,
     $Warmup
@@ -72,14 +58,12 @@ function InstallSDKVersion (
     if (!(Test-Path -Path "C:\Program Files\dotnet\sdk\$sdkVersion"))
     {
         Write-Host "Installing dotnet $sdkVersion"
-        .\dotnet-install.ps1 -Architecture x64 -Version $sdkVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet')
+        .\dotnet-install.ps1 -Version $sdkVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet')
     }
     else
     {
         Write-Host "Sdk version $sdkVersion already installed"
     }
-
-    Fix-ImportPublishProfile -SdkVersion $SdkVersion
 
     if ($Warmup) {
         Invoke-Warmup -SdkVersion $SdkVersion
@@ -138,6 +122,7 @@ function RunPostInstallationSteps()
     # Add %USERPROFILE%\.dotnet\tools to USER PATH
     Add-DefaultPathItem "%USERPROFILE%\.dotnet\tools"
 }
+#endregion
 
 InstallAllValidSdks
 RunPostInstallationSteps

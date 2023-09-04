@@ -7,6 +7,8 @@ locals {
   helper_script_folder    = "/imagegeneration/helpers"
   installer_script_folder = "/imagegeneration/installers"
   imagedata_file          = "/imagegeneration/imagedata.json"
+
+  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
 }
 
 variable "allowed_inbound_ip_addresses" {
@@ -24,9 +26,9 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
-variable "capture_name_prefix" {
+variable "managed_image_name" {
   type    = string
-  default = "packer"
+  default = ""
 }
 
 variable "client_id" {
@@ -70,7 +72,7 @@ variable "private_virtual_network_with_public_ip" {
   default = false
 }
 
-variable "resource_group" {
+variable "managed_image_resource_group_name" {
   type    = string
   default = "${env("ARM_RESOURCE_GROUP")}"
 }
@@ -78,11 +80,6 @@ variable "resource_group" {
 variable "run_validation_diskspace" {
   type    = bool
   default = false
-}
-
-variable "storage_account" {
-  type    = string
-  default = "${env("ARM_STORAGE_ACCOUNT")}"
 }
 
 variable "subscription_id" {
@@ -120,7 +117,7 @@ variable "vm_size" {
   default = "Standard_D4s_v4"
 }
 
-source "azure-arm" "build_vhd" {
+source "azure-arm" "build_image" {
   location = "${var.location}"
 
   // Auth
@@ -136,10 +133,8 @@ source "azure-arm" "build_vhd" {
   image_sku       = "22_04-lts"
 
   // Target location
-  storage_account        = "${var.storage_account}"
-  resource_group_name    = "${var.resource_group}"
-  capture_container_name = "images"
-  capture_name_prefix    = "${var.capture_name_prefix}"
+  managed_image_name = "${local.managed_image_name}"
+  managed_image_resource_group_name = "${var.managed_image_resource_group_name}"
 
   // Resource group for VM
   build_resource_group_name = "${var.build_resource_group_name}"
@@ -167,7 +162,7 @@ source "azure-arm" "build_vhd" {
 }
 
 build {
-  sources = ["source.azure-arm.build_vhd"]
+  sources = ["source.azure-arm.build_image"]
 
   // Create folder to store temporary data
   provisioner "shell" {

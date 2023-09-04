@@ -77,6 +77,8 @@ Function GenerateResourcesAndImage {
             The name of the resource group to create the Azure resources in.
         .PARAMETER ImageType
             The type of image to generate. Valid values are: Windows2019, Windows2022, Ubuntu2004, Ubuntu2204, UbuntuMinimal.
+        .PARAMETER ManagedImageName
+            The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER AzureLocation
             The Azure location where the Azure resources will be created. For example: "East US"
         .PARAMETER ImageGenerationRepositoryRoot
@@ -96,10 +98,6 @@ Function GenerateResourcesAndImage {
             Delete the resource group if it exists without user confirmation.
         .PARAMETER ReuseResourceGroup
             Reuse the resource group if it exists without user confirmation.
-        .PARAMETER AllowBlobPublicAccess
-            Allow public access to the generated image blob.
-        .PARAMETER EnableHttpsTrafficOnly
-            Enable https traffic only for the generated image blob.
         .PARAMETER OnError
             Specify how packer handles an error during image creation.
             Options:
@@ -120,6 +118,8 @@ Function GenerateResourcesAndImage {
         [string] $ResourceGroupName,
         [Parameter(Mandatory = $True)]
         [ImageType] $ImageType,
+        [Parameter(Mandatory = $False)]
+        [string] $ManagedImageName = "Runner-Image-$($ImageType)",
         [Parameter(Mandatory = $True)]
         [string] $AzureLocation,
         [Parameter(Mandatory = $False)]
@@ -138,10 +138,6 @@ Function GenerateResourcesAndImage {
         [switch] $Force,
         [Parameter(Mandatory = $False)]
         [switch] $ReuseResourceGroup,
-        [Parameter(Mandatory = $False)]
-        [bool] $AllowBlobPublicAccess = $False,
-        [Parameter(Mandatory = $False)]
-        [bool] $EnableHttpsTrafficOnly = $False,
         [Parameter(Mandatory = $False)]
         [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
         [string] $OnError = "ask",
@@ -177,16 +173,20 @@ Function GenerateResourcesAndImage {
             if ($PSVersionTable.PSVersion.Major -eq 5) {
                 Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
                 $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
-            } else {
+            }
+            else {
                 $AllowedInboundIpAddresses = '["{0}"]' -f $AgentIp
             }
-        } else {
+        }
+        else {
             $AllowedInboundIpAddresses = $AgentIp
         }
-    } else {
+    }
+    else {
         if ($TemplatePath.Contains("pkr.hcl")) {
             $AllowedInboundIpAddresses = "[]"
-        } else {
+        }
+        else {
             $AllowedInboundIpAddresses = ""
         }
     }
@@ -221,8 +221,8 @@ Function GenerateResourcesAndImage {
         "-var=subscription_id=$($SubscriptionId)" `
         "-var=tenant_id=fake" `
         "-var=location=$($AzureLocation)" `
-        "-var=resource_group=$($ResourceGroupName)" `
-        "-var=storage_account=fake" `
+        "-var=managed_image_name=$($ManagedImageName)" `
+        "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
         "-var=install_password=$($InstallPassword)" `
         "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
         "-var=azure_tags=$($TagsJson)" `
@@ -237,7 +237,8 @@ Function GenerateResourcesAndImage {
         if ([string]::IsNullOrEmpty($AzureClientId)) {
             Write-Verbose "No AzureClientId was provided, will use interactive login."
             az login --output none
-        } else {
+        }
+        else {
             Write-Verbose "AzureClientId was provided, will use service principal login."
             az login --service-principal --username $AzureClientId --password $AzureClientSecret --tenant $AzureTenantId --output none
         }
@@ -263,7 +264,8 @@ Function GenerateResourcesAndImage {
                 }
                 Write-Host "Resource group '$ResourceGroupName' was deleted."
                 $ResourceGroupExists = $false
-            } else {
+            }
+            else {
                 # Resource group already exists, ask the user what to do
                 $title = "Resource group '$ResourceGroupName' already exists"
                 $message = "Do you want to delete the resource group and all resources in it?"
@@ -303,44 +305,12 @@ Function GenerateResourcesAndImage {
             Write-Host "Creating resource group '$ResourceGroupName' in location '$AzureLocation'..."
             if ($TagsList) {
                 az group create --name $ResourceGroupName --location $AzureLocation --tags $TagsList --query id
-            } else {
+            }
+            else {
                 az group create --name $ResourceGroupName --location $AzureLocation --query id
             }
             if ($LastExitCode -ne 0) {
                 throw "Failed to create resource group '$ResourceGroupName'."
-            }
-        }
-
-        # Generate proper name for the storage account that follows the recommended naming conventions for azure resources
-        $StorageAccountName = $ResourceGroupName
-        if ($ResourceGroupName.EndsWith("-rg")) {
-            $StorageAccountName = $ResourceGroupName.Substring(0, $ResourceGroupName.Length - 3)
-        }
-        $StorageAccountName = $StorageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
-        $StorageAccountName += "001"
-        if ($StorageAccountName.Length -gt 24) {
-            $StorageAccountName = $StorageAccountName.Substring(0, 24)
-        }
-        
-        try {
-            $StorageAccountId = (az storage account show --name $StorageAccountName --resource-group $ResourceGroupName --query id 2>$null)
-            $StorageAccountExists = "$StorageAccountId" -ne ""
-        } catch {
-            $StorageAccountExists = $false
-        }
-
-        # Create storage account
-        if ($StorageAccountExists) {
-            Write-Verbose "Storage account '$StorageAccountName' already exists."
-        } else {
-            Write-Host "Creating storage account..."
-            if ($TagsList) {
-                az storage account create --name $StorageAccountName --resource-group $ResourceGroupName --location $AzureLocation --sku Standard_LRS --allow-blob-public-access $AllowBlobPublicAccess --https-only $EnableHttpsTrafficOnly --min-tls-version TLS1_2 --tags $TagsList --query id
-            } else {
-                az storage account create --name $StorageAccountName --resource-group $ResourceGroupName --location $AzureLocation --sku Standard_LRS --allow-blob-public-access $AllowBlobPublicAccess --https-only $EnableHttpsTrafficOnly --min-tls-version TLS1_2 --query id
-            }
-            if ($LastExitCode -ne 0) {
-                throw "Failed to create storage account '$StorageAccountName'."
             }
         }
 
@@ -362,7 +332,8 @@ Function GenerateResourcesAndImage {
             Write-Verbose "Waiting for service principal to propagate..."
             Start-Sleep $SecondsToWaitForServicePrincipalSetup
             Write-Host "Service principal created with id '$ServicePrincipalAppId'. It will be deleted after the build."
-        } else {
+        }
+        else {
             $ServicePrincipalAppId = $AzureClientId
             $ServicePrincipalPassword = $AzureClientSecret
             $TenantId = $AzureTenantId
@@ -376,8 +347,8 @@ Function GenerateResourcesAndImage {
             -var "subscription_id=$($SubscriptionId)" `
             -var "tenant_id=$($TenantId)" `
             -var "location=$($AzureLocation)" `
-            -var "resource_group=$($ResourceGroupName)" `
-            -var "storage_account=$($StorageAccountName)" `
+            -var "managed_image_name=$($ManagedImageName)" `
+            -var "managed_image_resource_group_name=$($ResourceGroupName)" `
             -var "install_password=$($InstallPassword)" `
             -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
             -var "azure_tags=$($TagsJson)" `

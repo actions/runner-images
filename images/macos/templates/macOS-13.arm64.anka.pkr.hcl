@@ -196,7 +196,6 @@ build {
       "./provision/core/rust.sh",
       "./provision/core/gcc.sh",
       "./provision/core/cocoapods.sh",
-      "./provision/core/vsmac.sh",
       "./provision/core/safari.sh",
       "./provision/core/bicep.sh",
       "./provision/core/codeql-bundle.sh"

@@ -3,7 +3,7 @@
         "default": "14.3.1",
         "x64": {
             "versions": [
-                { "link": "15.0", "version": "15.0.0-Beta.7+15A5229h" },
+                { "link": "15.0", "version": "15.0.0-Beta.8+15A5229m" },
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"] },
                 { "link": "14.2", "version": "14.2.0+14C18" },
                 { "link": "14.1", "version": "14.1.0+14B47b" }
@@ -11,17 +11,11 @@
         },
         "arm64":{
             "versions": [
-                { "link": "15.0", "version": "15.0.0-Beta.7+15A5229h" },
+                { "link": "15.0", "version": "15.0.0-Beta.8+15A5229m" },
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"] },
                 { "link": "14.2", "version": "14.2.0+14C18" },
                 { "link": "14.1", "version": "14.1.0+14B47b" }
             ]
-        }
-    },
-    "xamarin": {
-        "vsmac": {
-            "default": "2022",
-            "versions": [ "2022" ]
         }
     },
     "java": {
@@ -32,7 +26,7 @@
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra-list": [
-            "android;m2repository", "google;m2repository", "google;google_play_services", "intel;Hardware_Accelerated_Execution_Manager"
+            "android;m2repository", "google;m2repository", "google;google_play_services"
         ],
         "addon-list": [],
         "additional-tools": [

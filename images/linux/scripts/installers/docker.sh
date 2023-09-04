@@ -22,6 +22,11 @@ URL=$(get_github_package_download_url "docker/compose" "contains(\"compose-linux
 curl -fsSL $URL -o /usr/libexec/docker/cli-plugins/docker-compose
 chmod +x /usr/libexec/docker/cli-plugins/docker-compose
 
+# docker from official repo introduced different GID generation: https://github.com/actions/runner-images/issues/8157
+gid=$(cut -d ":" -f 3 /etc/group | grep "^1..$" | sort -n | tail -n 1 | awk '{ print $1+1 }')
+groupmod -g $gid docker
+chgrp -hR docker /run/docker.sock
+
 # Enable docker.service
 systemctl is-active --quiet docker.service || systemctl start docker.service
 systemctl is-enabled --quiet docker.service || systemctl enable docker.service
