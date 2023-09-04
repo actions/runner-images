@@ -47,7 +47,7 @@ rm ./dotnet-install.sh
 
 # dotnet installer doesn't create symlink to executable in /user/local/bin
 # Moreover at that moment /user/local/bin doesn't exist (though already added to $PATH)
-ln -s ~/.dotnet/dotnet /usr/local/bin/dotnet
+sudo ln -s ~/.dotnet/dotnet /usr/local/bin/dotnet
 
 # Validate installation
 if [ $(dotnet --list-sdks | wc -l) -lt "1" ]; then

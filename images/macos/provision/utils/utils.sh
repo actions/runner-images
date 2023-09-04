@@ -123,13 +123,13 @@ get_brew_os_keyword() {
 should_build_from_source() {
     local tool_name=$1
     local os_name=$2
-    # If one of the parsers aborts with an error, 
+    # If one of the parsers aborts with an error,
     # we will get an empty variable notification in the logs
     set -u
 
     # Geting tool info from brew to find available install methods except build from source
     local tool_info=$(brew info --json=v1 $tool_name)
-    
+
     # No need to build from source if a bottle is disabled
     local bottle_disabled=$(echo -E $tool_info | jq ".[0].bottle_disabled")
     if [[ $bottle_disabled == "true" ]]; then
@@ -137,7 +137,7 @@ should_build_from_source() {
         return
     fi
 
-    # No need to build from source if a universal bottle is available    
+    # No need to build from source if a universal bottle is available
     local all_bottle=$(echo -E $tool_info | jq ".[0].bottle.stable.files.all")
     if [[ "$all_bottle" != "null" ]]; then
         echo "false"
@@ -221,6 +221,15 @@ get_github_package_download_url() {
 # Close all finder windows because they can interfere with UI tests
 close_finder_window() {
     osascript -e 'tell application "Finder" to close windows'
+}
+
+close_terminal_window() {
+    osascript <<EOF
+    tell application "Terminal"
+        close windows
+        quit
+    end tell
+EOF
 }
 
 get_arch() {
