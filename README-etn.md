@@ -1,3 +1,5 @@
+# Eaton Custom Image Base
+
 This repo is the first repo used to create our custom build images, second repo is [edge-build-virtual-environments](https://github.com/etn-ccis/edge-build-virtual-environments).  This repo is a fork from [actions/virtual-environments](https://github.com/actions/virtual-environments) MS repo.  This is the main repo for the images that MS uses for Azure DevOps and GitHub MS hosted agents and runners.  This repo is maintained and updated to support new tool versions on regular cadence.  It would be very time consuming to create and maintain these scripts ourselves, so it is much easier to use this work from MS.  Unfortunately in order to use this we had to make some changes, and syncing in new updates has some manual steps layed out below.
 
 To get the latest updates from MS there are some manual steps that will need to be automated in the future.  This file will lay out the process of for updating for our needs.

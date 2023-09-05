@@ -4,7 +4,8 @@
 ################################################################################
 
 # Install AWS CLI
-Choco-Install -PackageName awscli
+# Choco-Install -PackageName awscli
+choco install awscli
 
 # Install Session Manager Plugin for the AWS CLI
 $sessionManagerName = "SessionManagerPluginSetup.exe"

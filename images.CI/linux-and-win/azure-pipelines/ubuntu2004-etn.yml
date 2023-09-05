@@ -5,4 +5,4 @@ jobs:
 - template: image-generation-etn.yml
   parameters:
     image_type: ubuntu2004
-    image_readme_name: Ubuntu2004-Readme.md
+    image_readme_name: Ubuntu2004-README.md

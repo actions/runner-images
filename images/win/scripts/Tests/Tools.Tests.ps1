@@ -95,7 +95,7 @@ Describe "KubernetesTools" {
     }
 
     It "kubectl" {
-        "kubectl version --client=true --short=true" | Should -ReturnZeroExitCode
+        "kubectl version --client=true" | Should -ReturnZeroExitCode
     }
 
     It "Helm" {
