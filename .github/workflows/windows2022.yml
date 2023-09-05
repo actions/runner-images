@@ -5,7 +5,7 @@ on:
   pull_request_target:
     types: labeled
     paths:
-    - 'images/windows/**'
+    - 'images/win/**'
 
 defaults:
   run:
