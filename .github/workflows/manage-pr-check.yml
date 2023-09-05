@@ -1,0 +1,55 @@
+run-name: ${{ github.event.client_payload.action_type }} PR Check for Image Build - ${{ github.event.client_payload.pr_title }}
+name: Manage Pull Request check
+
+on:
+  repository_dispatch:
+    types: [manage-pr-check]
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  manage-pr-check:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+    steps:
+      - name: Create Check Run with Octokit action
+        if: github.event.client_payload.action_type == 'Create'
+        id: create-status-check
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const response = await github.rest.checks.create({
+              owner: "${{ github.repository_owner }}",
+              repo: "${{ github.event.repository.name }}",
+              head_sha: "${{ github.event.client_payload.head_sha }}",
+              name: "${{ github.event.client_payload.check_name }}",
+              status: "in_progress",
+              output: {
+                title: "${{ github.event.client_payload.output_title }}",
+                summary: "${{ github.event.client_payload.output_summary }}",
+                text: "${{ github.event.client_payload.output_text }}"
+              }
+            });
+
+      - name: Complete Check Run with Octokit action
+        if: github.event.client_payload.action_type == 'Complete'
+        id: complete-status-check
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const response = await github.rest.checks.update({
+              owner: "${{ github.repository_owner }}",
+              repo: "${{ github.event.repository.name }}",
+              check_run_id: "${{ github.event.client_payload.check_run_id }}",
+              conclusion: "${{ github.event.client_payload.conclusion }}",
+              output: {
+                title: "${{ github.event.client_payload.output_title }}",
+                summary: "${{ github.event.client_payload.output_summary }}",
+                text: "${{ github.event.client_payload.output_text }}"
+              }
+            });
