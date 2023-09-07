@@ -8,9 +8,9 @@ if is_Monterey || is_BigSur; then
     Python2Url="https://www.python.org/ftp/python/2.7.18/python-2.7.18-macosx10.9.pkg"
     download_with_retries $Python2Url "/tmp" "python2.pkg"
 
-    sudo installer -showChoiceChangesXML -verbose -pkg /tmp/python2.pkg -target / > python2_choices.xml
-    sed -i '' -e '71s/<integer>1<\/integer>/<integer>0<\/integer>/' python2_choices.xml
-    sudo installer -applyChoiceChangesXML python2_choices.xml -verbose -pkg /tmp/python2.pkg -target /
+    sudo installer -showChoiceChangesXML -pkg /tmp/python2.pkg -target / > /tmp/python2_choices.xml
+    sed -i '' -e '71s/<integer>1<\/integer>/<integer>0<\/integer>/' /tmp/python2_choices.xml
+    sudo installer -applyChoiceChangesXML /tmp/python2_choices.xml -pkg /tmp/python2.pkg -target /
 
     pip install --upgrade pip
 
@@ -23,10 +23,7 @@ if is_Veertu; then
     close_finder_window
 fi
 
-# Explicitly overwrite symlinks created by Python2 such as /usr/local/bin/2to3 since they conflict with symlinks from Python3
-# https://github.com/actions/runner-images/issues/2322
 echo "Brew Installing Python 3"
-# brew_smart_install "python@3.11" || brew link --overwrite python@3.11
 brew_smart_install "python@3.11"
 
 echo "Installing pipx"

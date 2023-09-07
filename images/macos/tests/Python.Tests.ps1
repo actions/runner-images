@@ -37,10 +37,6 @@ Describe "Python2" -Skip:($os.IsVenturaArm64 -or $os.IsVentura) {
         (Get-CommandResult "python --version").Output | Should -BeLike "Python 2.*"
     }
 
-    It "Python 2 is installed under /usr/local/bin" {
-        Get-WhichTool "python" | Should -BeLike "/usr/local/bin*"
-    }
-
     It "Pip 2 is available" {
         "pip --version" | Should -ReturnZeroExitCode
     }
