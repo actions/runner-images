@@ -28,9 +28,8 @@ rm -rf ~/.fastlane
 npm cache clean --force
 
 # Clean yarn cache
-if ! is_Ventura; then
-    yarn cache clean
-fi
+yarn cache clean
+
 # Clean up temporary directories
 sudo rm -rf ~/utils /tmp/*
 
