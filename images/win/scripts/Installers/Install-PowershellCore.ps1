@@ -14,8 +14,8 @@ Function Get-PowerShellCoreHash
     [string] $Release
 )
 
- $hashURL = "https://github.com/PowerShell/PowerShell/releases/download/v${release}/hashes.sha256"
- (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*PowerShell-${release}-win-x64.msi*" }).Split(' ')[0]
+ $hashURL = "https://github.com/PowerShell/PowerShell/releases/download/v${Release}/hashes.sha256"
+ (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*PowerShell-${Release}-win-x64.msi*" }).Split(' ')[0]
 
 }
 #endregion
