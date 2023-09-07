@@ -78,7 +78,7 @@ Describe "CocoaPods" {
     }
 }
 
-Describe "VSMac" {
+Describe "VSMac" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     $vsMacVersions = Get-ToolsetValue "xamarin.vsmac.versions"
     $defaultVSMacVersion = Get-ToolsetValue "xamarin.vsmac.default"
 
