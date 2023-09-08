@@ -15,7 +15,7 @@ Function Get-DockerWincredHash
 )
 
  $hashURL = "https://github.com/docker/docker-credential-helpers/releases/download/${Release}/checksums.txt "
- (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*docker-credential-wincred-v${Release}.windows-amd64.exe*" }).Split(' ')[0]
+ (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*docker-credential-wincred-${Release}.windows-amd64.exe*" }).Split(' ')[0]
 
 }
 #endregion
