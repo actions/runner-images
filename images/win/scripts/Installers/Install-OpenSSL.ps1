@@ -26,6 +26,7 @@ $installersAvailable | Get-Member -MemberType NoteProperty | ForEach-Object {
     $installerUrl = $installersAvailable.$key.url
     $installerName = $key
     $distributor_file_hash = $installersAvailable.$key.sha512
+    Break;
   }
 }
 
