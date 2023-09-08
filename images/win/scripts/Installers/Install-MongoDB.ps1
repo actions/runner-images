@@ -6,8 +6,8 @@
 # Install mongodb package
 $toolsetVersion = (Get-ToolsetContent).mongodb.version
 
-$getMongoReleases =  Invoke-WebRequest -Uri "https://www.mongodb.com/docs/upcoming/release-notes/$toolsetVersion" -UseBasicParsing
-$TargetReleases = $getMongoReleases.Links.href | Where-Object {$_ -like "*std-label-$toolsetVersion*"}
+$getMongoReleases =  Invoke-WebRequest -Uri "https://www.mongodb.com/docs/v$toolsetVersion/release-notes/$toolsetVersion-changelog/" -UseBasicParsing
+$TargetReleases = $getMongoReleases.Links.href | Where-Object {$_ -like "#$toolsetVersion*-changelog"}
 
 $MinorVersions = @()
 foreach ($release in $TargetReleases) {
