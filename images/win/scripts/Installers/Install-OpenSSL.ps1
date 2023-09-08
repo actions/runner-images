@@ -36,10 +36,7 @@ Install-Binary -Url "$installerUrl" -Name "$installerName" -ArgumentList $instal
 
 #region Supply chain security
 Write-Verbose "Performing checksum verification"
-$distributor_file_hash = $installersAvailable_sha512
 $local_file_hash = (Get-FileHash -Path (Join-Path ${env:TEMP} $installerName) -Algorithm SHA512).Hash
-
-$distributor_file_hash = Get-PowerShellCoreHash -Release $release
 
 if ($local_file_hash -ne $distributor_file_hash) {
         Write-Host "hash must be equal to: ${distributor_file_hash}"
