@@ -90,7 +90,6 @@
     "azureModules": [
         {
             "name": "azurerm",
-            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
                 "6.13.1"
@@ -105,7 +104,6 @@
         },
         {
             "name": "azure",
-            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
                 "5.3.0"
@@ -119,7 +117,6 @@
         },
         {
             "name": "az",
-            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
                 "9.3.0"
             ],
