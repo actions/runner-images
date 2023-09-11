@@ -1,7 +1,7 @@
 # macOS 12
-- OS Version: macOS 12.6.7 (21G651)
+- OS Version: macOS 12.6.8 (21G725)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20230825.1
+- Image Version: 20230901.1
 
 ## Installed Software
 
@@ -23,9 +23,9 @@
 - NVM 0.39.5
 - NVM - Cached node versions: 14.21.3, 16.20.2, 18.17.1
 - Perl 5.36.1
-- PHP 8.2.9
+- PHP 8.2.10
 - Python 2.7.18
-- Python3 3.11.4
+- Python3 3.11.5
 - R 4.3.1
 - Ruby 3.0.6p216
 
@@ -33,8 +33,8 @@
 - Bundler 2.4.19
 - Carthage 0.39.0
 - CocoaPods 1.12.1
-- Composer 2.5.8
-- Homebrew 4.1.6
+- Composer 2.6.1
+- Homebrew 4.1.7
 - Miniconda 23.5.2
 - NPM 9.6.7
 - NuGet 6.3.1.1
@@ -42,7 +42,7 @@
 - Pip3 23.2.1 (python 3.11)
 - Pipx 1.2.0
 - RubyGems 3.4.19
-- Vcpkg 2023 (build from commit 436a061a5)
+- Vcpkg 2023 (build from commit 4a600e9fe)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -91,15 +91,15 @@
 
 ### Tools
 - App Center CLI 2.14.0
-- AWS CLI 2.13.13
-- AWS SAM CLI 1.95.0
+- AWS CLI 2.13.15
+- AWS SAM CLI 1.96.0
 - AWS Session Manager CLI 1.2.463.0
 - Azure CLI 2.50.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.20.4
 - Cabal 3.6.2.0
 - Cmake 3.27.4
-- CodeQL Action Bundles 2.14.1 2.14.2
+- CodeQL Action Bundles 2.14.2 2.14.3
 - Colima 0.5.5
 - Fastlane 2.214.0
 - GHC 9.6.2
@@ -117,12 +117,12 @@
 ### Browsers
 - Safari 16.6 (17615.3.12.11.3)
 - SafariDriver 16.6 (17615.3.12.11.3)
-- Google Chrome 116.0.5845.110
+- Google Chrome 116.0.5845.140
 - Google Chrome for Testing 116.0.5845.96
 - ChromeDriver 116.0.5845.96
-- Microsoft Edge 116.0.1938.54
-- Microsoft Edge WebDriver 116.0.1938.62
-- Mozilla Firefox 116.0.3
+- Microsoft Edge 116.0.1938.69
+- Microsoft Edge WebDriver 116.0.1938.69
+- Mozilla Firefox 117.0
 - geckodriver 0.33.0
 - Selenium server 4.10.0
 
@@ -137,8 +137,8 @@
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
 | 8.0.382+5 (default) | JAVA_HOME_8_X64      |
-| 11.0.20+8           | JAVA_HOME_11_X64     |
-| 17.0.8+7            | JAVA_HOME_17_X64     |
+| 11.0.20+101         | JAVA_HOME_11_X64     |
+| 17.0.8+101          | JAVA_HOME_17_X64     |
 
 ### Cached Tools
 
@@ -149,10 +149,10 @@
 
 #### Python
 - 3.7.17
-- 3.8.17
-- 3.9.17
-- 3.10.12
-- 3.11.4
+- 3.8.18
+- 3.9.18
+- 3.10.13
+- 3.11.5
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.12]
@@ -180,7 +180,7 @@
 
 #### Packages
 - Bindgen 0.66.1
-- Cargo-audit 0.17.6
+- Cargo-audit 0.18.1
 - Cargo-outdated 0.13.1
 - Cbindgen 0.25.0
 - Clippy 0.1.72
@@ -326,7 +326,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                                                                                            |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                |
-| Android Emulator           | 32.1.14                                                                                                                                                                                                                            |
+| Android Emulator           | 32.1.15                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
 | Android SDK Platforms      | android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 34.0.4                                                                                                                                                                                                                             |
