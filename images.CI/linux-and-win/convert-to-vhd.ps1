@@ -95,8 +95,12 @@ $targetKey = az storage account keys list `
 Write-Host ("Copying VHD blob from '{0}' to 'https://{1}.blob.core.windows.net/{2}/{3}'..." `
     -f $sourceDiskUri.Split('?')[0], $StorageAccountName, $StorageAccountContainerName, $VhdName)
 
+if ($env:OS) {
+  $sourceDiskUri = """{0}""" -f $sourceDiskUri
+}
+
 az storage blob copy start `
-  --source-uri """$sourceDiskUri""" `
+  --source-uri $sourceDiskUri `
   --destination-blob $VhdName `
   --destination-container $StorageAccountContainerName `
   --account-name $StorageAccountName `

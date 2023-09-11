@@ -38,6 +38,12 @@ $xcodeVersions | ForEach-Object {
         Install-AdditionalSimulatorRuntimes -Version $_.link
     }
 
+    ForEach($runtime in $_.runtimes) {
+        Write-Host "Installing Additional runtimes for Xcode '$runtime' ..."
+        $xcodebuildPath = Get-XcodeToolPath -Version $_.link -ToolName 'xcodebuild'
+        Invoke-ValidateCommand "sudo $xcodebuildPath -downloadPlatform $runtime"
+    }
+
 }
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode

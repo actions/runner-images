@@ -1,6 +1,6 @@
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1906
-- Image Version: 20230820.1.0
+- Image Version: 20230903.2.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -10,26 +10,26 @@
 ### Language and Runtime
 - Bash 5.2.15(1)-release
 - Go 1.20.7
-- Julia 1.9.2
-- Kotlin 1.9.0
-- LLVM 15.0.7
+- Julia 1.9.3
+- Kotlin 1.9.10
+- LLVM 16.0.6
 - Node 18.17.1
 - Perl 5.32.1
-- PHP 8.2.9
+- PHP 8.2.10
 - Python 3.9.13
 - Ruby 3.0.6p216
 
 ### Package Management
 - Chocolatey 2.2.2
-- Composer 2.5.8
-- Helm 3.12.2
+- Composer 2.6.2
+- Helm 3.12.3
 - Miniconda 23.5.2 (pre-installed on the image but not added to PATH)
 - NPM 9.6.7
 - NuGet 6.7.0.127
 - pip 23.2.1 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit c95000e1b)
+- Vcpkg (build from commit 4a600e9fe)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -39,28 +39,28 @@
 | CONDA                   | C:\Miniconda |
 
 ### Project Management
-- Ant 1.10.13
-- Gradle 8.1
+- Ant 1.10.14
+- Gradle 8.3
 - Maven 3.8.7
-- sbt 1.9.2
+- sbt 1.9.4
 
 ### Tools
 - 7zip 23.01
 - aria2 1.36.0
 - azcopy 10.20.1
 - Bazel 6.3.2
-- Bazelisk 1.13.2
+- Bazelisk 1.18.0
 - Bicep 0.20.4
 - Cabal 3.10.1.0
-- CMake 3.27.3
-- CodeQL Action Bundles 2.14.1 2.14.2
+- CMake 3.27.4
+- CodeQL Action Bundles 2.14.2 2.14.3
 - Docker 24.0.5
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.20.3
+- Docker Compose v2 2.21.0
 - Docker-wincred 0.8.0
 - ghc 9.6.2
-- Git 2.41.0.windows.3
-- Git LFS 3.3.0
+- Git 2.42.0.windows.2
+- Git LFS 3.4.0
 - ImageMagick 7.1.1-15
 - InnoSetup 6.2.2
 - jq 1.6
@@ -72,7 +72,7 @@
 - NSIS 3.08
 - OpenSSL 1.1.1v
 - Packer 1.9.2
-- Pulumi 3.78.1
+- Pulumi 3.80.0
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -85,38 +85,38 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.177
-- AWS CLI 2.13.9
-- AWS SAM CLI 1.95.0
+- Alibaba Cloud CLI 3.0.180
+- AWS CLI 2.13.15
+- AWS SAM CLI 1.96.0
 - AWS Session Manager CLI 1.2.497.0
 - Azure CLI 2.51.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.32.1
+- GitHub CLI 2.33.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.71.1
-- Rust 1.71.1
-- Rustdoc 1.71.1
+- Cargo 1.72.0
+- Rust 1.72.0
+- Rustdoc 1.72.0
 - Rustup 1.26.0
 
 #### Packages
 - bindgen 0.66.1
-- cargo-audit 0.17.6
+- cargo-audit 0.18.1
 - cargo-outdated 0.13.1
-- cbindgen 0.24.5
-- Clippy 0.1.71
-- Rustfmt 1.5.2
+- cbindgen 0.25.0
+- Clippy 0.1.72
+- Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 116.0.5845.96
+- Google Chrome 116.0.5845.141
 - Chrome Driver 116.0.5845.96
-- Microsoft Edge 115.0.1901.203
-- Microsoft Edge Driver 115.0.1901.203
-- Mozilla Firefox 116.0.3
+- Microsoft Edge 116.0.1938.69
+- Microsoft Edge Driver 116.0.1938.69
+- Mozilla Firefox 117.0
 - Gecko Driver 0.33.0
 - IE Driver 4.11.0.0
-- Selenium server 4.11.0
+- Selenium server 4.12.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -130,8 +130,8 @@
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
 | 8.0.382+5 (default) | JAVA_HOME_8_X64      |
-| 11.0.20+8           | JAVA_HOME_11_X64     |
-| 17.0.8+7            | JAVA_HOME_17_X64     |
+| 11.0.20+101         | JAVA_HOME_11_X64     |
+| 17.0.8+101          | JAVA_HOME_17_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -168,7 +168,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.8.10
 - 3.9.13
 - 3.10.11
-- 3.11.4
+- 3.11.5
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.12]
@@ -199,7 +199,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.19.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.20.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.12.0
@@ -217,7 +217,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
 | ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.7.34009.444 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.7.34024.191 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -251,8 +251,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
 | Component.Xamarin                                                         | 17.7.33905.399  |
 | Component.Xamarin.RemotedSimulator                                        | 17.7.33905.399  |
-| ios                                                                       | 16.4.7089.0     |
-| maccatalyst                                                               | 16.4.7089.0     |
+| ios                                                                       | 16.4.7098.0     |
+| maccatalyst                                                               | 16.4.7098.0     |
 | maui.android                                                              | 7.0.92.0        |
 | maui.blazor                                                               | 7.0.92.0        |
 | maui.core                                                                 | 7.0.92.0        |
@@ -330,7 +330,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Graphics.Tools                           | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.HLSL                                     | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.IISExpress                               | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 17.7.34024.25   |
 | Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 17.7.33905.399  |
@@ -398,24 +398,24 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.Spectre                | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.VC.14.35.17.5.x86.x64                    | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.VC.14.35.17.5.x86.x64.Spectre            | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM                        | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM.Spectre                | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM64                      | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.ARM64.Spectre              | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL                        | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL.ARM                    | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL.ARM.Spectre            | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL.ARM64                  | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL.ARM64.Spectre          | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.ATL.Spectre                | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC                        | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC.ARM                    | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC.ARM.Spectre            | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC.ARM64                  | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC.ARM64.Spectre          | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.MFC.Spectre                | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.x86.x64                    | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.36.17.6.x86.x64.Spectre            | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM                        | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM.Spectre                | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM64                      | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM64.Spectre              | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL                        | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL.ARM                    | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL.ARM.Spectre            | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL.ARM64                  | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL.ARM64.Spectre          | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL.Spectre                | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC                        | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC.ARM                    | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC.ARM.Spectre            | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC.ARM64                  | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC.ARM64.Spectre          | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC.Spectre                | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.x86.x64                    | 17.7.33905.399  |
+| Microsoft.VisualStudio.Component.VC.14.37.17.7.x86.x64.Spectre            | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.VC.ASAN                                  | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.VC.ATL                                   | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.VC.ATL.ARM                               | 17.7.33905.399  |
@@ -565,10 +565,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.397
+- AWSPowershell: 4.1.407
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.3.0
+- Microsoft.Graph: 2.4.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0

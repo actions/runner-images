@@ -1,9 +1,24 @@
 ################################################################################
 ##  File:  Install-PowershellCore.ps1
 ##  Desc:  Install PowerShell Core
+##  Supply chain security: checksum validation
 ################################################################################
 
 $ErrorActionPreference = "Stop"
+
+#region functions
+Function Get-PowerShellCoreHash
+{
+ Param (
+    [Parameter(Mandatory = $True)]
+    [string] $Release
+)
+
+ $hashURL = "https://github.com/PowerShell/PowerShell/releases/download/v${Release}/hashes.sha256"
+ (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*PowerShell-${Release}-win-x64.msi*" }).Split(' ')[0]
+
+}
+#endregion
 
 $tempDir = Join-Path ([System.IO.Path]::GetTempPath()) ([System.IO.Path]::GetRandomFileName())
 $null = New-Item -ItemType Directory -Path $tempDir -Force -ErrorAction SilentlyContinue
@@ -20,6 +35,19 @@ try {
 
     $packagePath = Join-Path -Path $tempDir -ChildPath $packageName
     Invoke-WebRequest -Uri $downloadURL -OutFile $packagePath
+
+    #region Supply chain security
+    Write-Verbose "Performing checksum verification"
+
+    $distributor_file_hash = Get-PowerShellCoreHash -Release $release
+    $local_file_hash = (Get-FileHash -Path $packagePath -Algorithm SHA256).Hash
+
+    if ($local_file_hash -ne $distributor_file_hash) {
+            Write-Host "hash must be equal to: ${distributor_file_hash}"
+            Write-Host "actual hash is: ${local_file_hash}"
+            throw 'Checksum verification failed, please rerun install'
+    }
+    #endregion
 
     Write-Verbose "Performing quiet install"
     $ArgumentList=@("/i", $packagePath, "/quiet")
