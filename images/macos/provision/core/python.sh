@@ -9,7 +9,13 @@ if is_Monterey || is_BigSur; then
     download_with_retries $Python2Url "/tmp" "python2.pkg"
 
     sudo installer -showChoiceChangesXML -pkg /tmp/python2.pkg -target / > /tmp/python2_choices.xml
-    sed -i '' -e '71s/<integer>1<\/integer>/<integer>0<\/integer>/' /tmp/python2_choices.xml
+
+    xmllint --shell /tmp/python2_choices.xml <<EOF
+    cd //array/dict[string[text()='org.python.Python.PythonUnixTools-2.7']]/integer
+    set 0
+    save
+EOF
+
     sudo installer -applyChoiceChangesXML /tmp/python2_choices.xml -pkg /tmp/python2.pkg -target /
 
     pip install --upgrade pip
