@@ -1,7 +1,13 @@
 ################################################################################
 ##  File:  Install-AzureModules.ps1
 ##  Desc:  Install Azure PowerShell modules
+##  Supply chain security: package manager
 ################################################################################
+
+#
+# prepares the environment for the Azure PowerShell modules
+# used by AzureFileCopy@4, AzureFileCopy@5, AzurePowerShell@4, AzurePowerShell@5 tasks
+#
 
 # The correct Modules need to be saved in C:\Modules
 $installPSModulePath = "C:\\Modules"
@@ -25,56 +31,15 @@ foreach ($module in $modules)
     {
         $modulePath = Join-Path -Path $installPSModulePath -ChildPath "${moduleName}_${version}"
         Write-Host " - $version [$modulePath]"
-        try
-        {
-            Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force -ErrorAction Stop
-        }
-        catch
-        {
-            Write-Host "Error: $_"
-            exit 1
-        }
-    }
-
-    if($null -ne $module.url)
-    {
-        $assets = Invoke-RestMethod $module.url
+        Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force -ErrorAction Stop
     }
 
     foreach ($version in $module.zip_versions)
     {
-        # Install modules from GH Release
-        if($null -ne $assets)
-        {
-            $asset = $assets | Where-Object version -eq $version `
-                         | Select-Object -ExpandProperty files `
-                         | Select-Object -First 1
-
-            Write-Host "Installing $($module.name) $version ..."
-            if ($null -ne $asset) {
-                Start-DownloadWithRetry -Url $asset.download_url -Name $asset.filename -DownloadPath $installPSModulePath
-            } else {
-                Write-Host "Asset was not found in versions manifest"
-                exit 1
-            }
-        }
-        # Install modules from vsts blob
-        else
-        {
-            $modulePath = Join-Path -Path $installPSModulePath -ChildPath "${moduleName}_${version}"
-            $filename = "${moduleName}_${version}.zip"
-            $download_url = [System.String]::Concat($module.blob_url,$filename)
-            Write-Host " - $version [$modulePath]"
-            try
-            {
-                Start-DownloadWithRetry -Url $download_url -Name $filename -DownloadPath $installPSModulePath
-            }
-            catch
-            {
-                Write-Host "Error: $_"
-                exit 1
-            }
-        }
+        $modulePath = Join-Path -Path $installPSModulePath -ChildPath "${moduleName}_${version}"
+        Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force -ErrorAction Stop
+        Compress-Archive -Path $modulePath -DestinationPath "${modulePath}.zip"
+        Remove-Item $modulePath -Recurse -Force
     }
     # Append default tool version to machine path
     if ($null -ne $module.default)
