@@ -139,7 +139,7 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsBigSur) {
+Describe "vagrant" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64) {
     It "vagrant" {
         "vagrant --version" | Should -ReturnZeroExitCode
     }

@@ -142,11 +142,9 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $utilities.AddToolVersion("Subversion (SVN)", $(Get-SVNVersion))
     $utilities.AddToolVersion("Switchaudio-osx", $(Get-SwitchAudioOsxVersion))
 }
-if (-not $os.IsBigSur) {
+if ((-not $os.IsBigSur) -and (-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $utilities.AddToolVersion("Vagrant", $(Get-VagrantVersion))
-    if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
-        $utilities.AddToolVersion("VirtualBox", $(Get-VirtualBoxVersion))
-    }
+    $utilities.AddToolVersion("VirtualBox", $(Get-VirtualBoxVersion))
 }
 $utilities.AddToolVersion("yq", $(Get-YqVersion))
 $utilities.AddToolVersion("zstd", $(Get-ZstdVersion))
