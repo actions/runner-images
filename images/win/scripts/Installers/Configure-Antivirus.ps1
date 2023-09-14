@@ -17,6 +17,7 @@ $avPreference = @(
     @{SubmitSamplesConsent = 2}
     @{ScanAvgCPULoadFactor = 5; ExclusionPath = @("D:\", "C:\")}
     @{DisableRealtimeMonitoring = $true}
+    @{ScanScheduleDay = 8}
 )
 
 $avPreference += @(
@@ -28,9 +29,6 @@ $avPreference | Foreach-Object {
     $avParams = $_
     Set-MpPreference @avParams
 }
-
-Write-Host "Disable Windows Defender scheduled tasks"
-Get-ScheduledTask -TaskPath '\Microsoft\Windows\Windows Defender\' | Disable-ScheduledTask | Out-Null
 
 # https://github.com/actions/runner-images/issues/4277
 # https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/microsoft-defender-antivirus-compatibility?view=o365-worldwide
