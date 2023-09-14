@@ -70,8 +70,7 @@
             "unxip"
         ],
         "cask_packages": [
-            "julia",
-            "vagrant"
+            "julia"
         ]
     },
     "gcc": {

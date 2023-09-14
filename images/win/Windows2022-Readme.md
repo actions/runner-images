@@ -1,6 +1,12 @@
+| Announcements |
+|-|
+| [Ruby 2.4.x will be removed from the macOS 11 and Windows 2019 images on September 18](https://github.com/actions/runner-images/issues/8239) |
+| [Python 3.6.x will be removed from Ubuntu 20.04 and Windows 2019 images on September 18](https://github.com/actions/runner-images/issues/8238) |
+| [[All OSes] Go 1.18.x will be removed on September, 18](https://github.com/actions/runner-images/issues/8237) |
+***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1906
-- Image Version: 20230903.2.0
+- Image Version: 20230910.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -9,7 +15,7 @@
 
 ### Language and Runtime
 - Bash 5.2.15(1)-release
-- Go 1.20.7
+- Go 1.20.8
 - Julia 1.9.3
 - Kotlin 1.9.10
 - LLVM 16.0.6
@@ -29,7 +35,7 @@
 - pip 23.2.1 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 4a600e9fe)
+- Vcpkg (build from commit 962e5e39f)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -50,11 +56,11 @@
 - azcopy 10.20.1
 - Bazel 6.3.2
 - Bazelisk 1.18.0
-- Bicep 0.20.4
+- Bicep 0.21.1
 - Cabal 3.10.1.0
 - CMake 3.27.4
 - CodeQL Action Bundles 2.14.2 2.14.3
-- Docker 24.0.5
+- Docker 24.0.6
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.21.0
 - Docker-wincred 0.8.0
@@ -65,14 +71,14 @@
 - InnoSetup 6.2.2
 - jq 1.6
 - Kind 0.20.0
-- Kubectl 1.27.3
+- Kubectl 1.28.1
 - Mercurial 5.0
 - Mingw-w64 11.2.0
 - Newman 5.3.2
 - NSIS 3.08
 - OpenSSL 1.1.1v
 - Packer 1.9.2
-- Pulumi 3.80.0
+- Pulumi 3.81.0
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -85,13 +91,13 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.180
-- AWS CLI 2.13.15
-- AWS SAM CLI 1.96.0
+- Alibaba Cloud CLI 3.0.181
+- AWS CLI 2.13.16
+- AWS SAM CLI 1.97.0
 - AWS Session Manager CLI 1.2.497.0
-- Azure CLI 2.51.0
+- Azure CLI 2.52.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.33.0
+- GitHub CLI 2.34.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
@@ -101,7 +107,7 @@
 - Rustup 1.26.0
 
 #### Packages
-- bindgen 0.66.1
+- bindgen 0.68.1
 - cargo-audit 0.18.1
 - cargo-outdated 0.13.1
 - cbindgen 0.25.0
@@ -109,10 +115,10 @@
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 116.0.5845.141
+- Google Chrome 116.0.5845.180
 - Chrome Driver 116.0.5845.96
-- Microsoft Edge 116.0.1938.69
-- Microsoft Edge Driver 116.0.1938.69
+- Microsoft Edge 116.0.1938.76
+- Microsoft Edge Driver 116.0.1938.76
 - Mozilla Firefox 117.0
 - Gecko Driver 0.33.0
 - IE Driver 4.11.0.0
@@ -154,9 +160,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.18.10
-- 1.19.12
-- 1.20.7
-- 1.21.0
+- 1.19.13
+- 1.20.8
+- 1.21.1
 
 #### Node.js
 - 14.21.3
@@ -199,7 +205,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.20.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.21.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.12.0
@@ -565,10 +571,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.407
+- AWSPowershell: 4.1.411
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.4.0
+- Microsoft.Graph: 2.5.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
@@ -614,3 +620,4 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:ed059488bf55bdb47598574ce042dceee5f8c4923a332618ceddcdcce7d2a7f7  | 2023-08-08 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:385844aa0840c876ffd207643c709355ad68e906013961dac4b347e37bccb98a  | 2023-08-03 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:f1974546e8a73746e6c60781895341dd7a6760e28534d3d0cc5f3c88c1f5825a  | 2023-08-03 |
+
