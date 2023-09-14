@@ -21,5 +21,15 @@ reg.exe load HKLM\DEFAULT c:\users\default\ntuser.dat
 reg.exe copy HKCU\Software\Microsoft\VisualStudio HKLM\DEFAULT\Software\Microsoft\VisualStudio /s
 reg.exe unload HKLM\DEFAULT
 
+# speed up the azure CLI by keeping the cache after loading the extensions
+
+Write-Host "Warmup 'az'"
+az --help | out-null
+Write-Host "Warmup 'az-devops'"
+az devops --help | out-null
+az pipelines --help | out-null
+az boards --help | out-null
+az repos --help | out-null
+az artifacts --help | out-null
 
 Write-Host "Warmup-User.ps1 - completed"
