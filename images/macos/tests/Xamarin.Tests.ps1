@@ -2,10 +2,11 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
-$MONO_VERSIONS = Get-ToolsetValue "xamarin.mono-versions"
-$XAMARIN_IOS_VERSIONS = Get-ToolsetValue "xamarin.ios-versions"
-$XAMARIN_MAC_VERSIONS = Get-ToolsetValue "xamarin.mac-versions"
-$XAMARIN_ANDROID_VERSIONS = Get-ToolsetValue "xamarin.android-versions"
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
+    $MONO_VERSIONS = Get-ToolsetValue "xamarin.mono-versions"
+    $XAMARIN_IOS_VERSIONS = Get-ToolsetValue "xamarin.ios-versions"
+    $XAMARIN_MAC_VERSIONS = Get-ToolsetValue "xamarin.mac-versions"
+    $XAMARIN_ANDROID_VERSIONS = Get-ToolsetValue "xamarin.android-versions"
 
 BeforeAll {
     function Get-ShortSymlink {
@@ -297,4 +298,6 @@ Describe "Nuget" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Nuget config contains nuget.org feed" {
         Get-Content $env:HOME/.config/NuGet/NuGet.Config | Out-String | Should -Match "nuget.org"
     }
+}
+
 }

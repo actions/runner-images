@@ -1,7 +1,13 @@
+| Announcements |
+|-|
+| [Clang 12 will be removed from Ubuntu 22.04 image on September 25](https://github.com/actions/runner-images/issues/8263) |
+| [Python 3.6.x will be removed from Ubuntu 20.04 and Windows 2019 images on September 18](https://github.com/actions/runner-images/issues/8238) |
+| [[All OSes] Go 1.18.x will be removed on September, 18](https://github.com/actions/runner-images/issues/8237) |
+***
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
-- Kernel Version: 5.15.0-1041-azure
-- Image Version: 20230903.1.0
+- Kernel Version: 6.2.0-1011-azure
+- Image Version: 20230911.1.0
 - Systemd version: 249.11-0ubuntu3.9
 
 ## Installed Software
@@ -10,7 +16,7 @@
 - Bash 5.1.16(1)-release
 - Clang: 12.0.1, 13.0.1, 14.0.0
 - Clang-format: 12.0.1, 13.0.1, 14.0.0
-- Clang-tidy: 12.0.1, 13.0.1, 14.0.0
+- Clang-tidy: 12.0.1, 13.0.1, 14.0.0, 15.0.7
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 9.5.0, 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 9.5.0, 10.5.0, 11.4.0, 12.3.0
@@ -27,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.12.3
-- Homebrew 4.1.7
+- Homebrew 4.1.11
 - Miniconda 23.5.2
 - Npm 9.6.7
 - NuGet 6.6.1.2
@@ -35,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.2.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 4a600e9fe)
+- Vcpkg (build from commit 962e5e39f)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -57,12 +63,12 @@ to accomplish this.
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.15.3
+- Ansible 2.15.4
 - apt-fast 1.9.12
 - AzCopy 10.20.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.3.2
 - Bazelisk 1.18.0
-- Bicep 0.20.4
+- Bicep 0.21.1
 - Buildah 1.23.1
 - CMake 3.27.4
 - CodeQL Action Bundles 2.14.2 2.14.3
@@ -70,8 +76,8 @@ to accomplish this.
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.21.0
 - Docker-Buildx 0.11.2
-- Docker Client 24.0.5
-- Docker Server 24.0.5
+- Docker Client 24.0.6
+- Docker Server 24.0.6
 - Fastlane 2.214.0
 - Git 2.42.0
 - Git LFS 3.4.0
@@ -93,30 +99,30 @@ to accomplish this.
 - Packer 1.9.4
 - Parcel 2.9.3
 - Podman 3.4.4
-- Pulumi 3.80.0
+- Pulumi 3.81.0
 - R 4.3.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.5.6
+- Terraform 1.5.7
 - yamllint 1.32.0
 - yq 4.35.1
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.180
-- AWS CLI 2.13.15
+- Alibaba Cloud CLI 3.0.181
+- AWS CLI 2.13.17
 - AWS CLI Session Manager Plugin 1.2.497.0
-- AWS SAM CLI 1.96.0
-- Azure CLI 2.51.0
+- AWS SAM CLI 1.97.0
+- Azure CLI 2.52.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.33.0
-- Google Cloud SDK 444.0.0
+- GitHub CLI 2.34.0
+- Google Cloud SDK 445.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 16.2.0
-- OpenShift CLI 4.13.10
-- ORAS CLI 1.0.1
-- Vercel CLI 32.1.0
+- Netlify CLI 16.3.1
+- OpenShift CLI 4.13.11
+- ORAS CLI 1.1.0
+- Vercel CLI 32.2.1
 
 ### Java
 | Version             | Environment Variable |
@@ -146,7 +152,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustup 1.26.0
 
 #### Packages
-- Bindgen 0.66.1
+- Bindgen 0.68.1
 - Cargo audit 0.18.1
 - Cargo clippy 0.1.72
 - Cargo outdated 0.13.1
@@ -154,11 +160,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 116.0.5845.140
+- Google Chrome 116.0.5845.187
 - ChromeDriver 116.0.5845.96
 - Chromium 116.0.5845.0
-- Microsoft Edge 116.0.1938.69
-- Microsoft Edge WebDriver 116.0.1938.69
+- Microsoft Edge 116.0.1938.76
+- Microsoft Edge WebDriver 116.0.1938.76
 - Selenium server 4.12.0
 - Mozilla Firefox 117.0
 - Geckodriver 0.33.0
@@ -203,9 +209,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.18.10
-- 1.19.12
-- 1.20.7
-- 1.21.0
+- 1.19.13
+- 1.20.8
+- 1.21.1
 
 #### Node.js
 - 14.21.3
@@ -234,7 +240,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 9.3.0
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.4.0
+- Microsoft.Graph: 2.5.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -276,16 +282,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.16             | sha256:a8cbb8c69ee71561f4b69c066bad07f7e510caaa523da26fbfc606b10bd7934b  | 2023-08-07 |
 | alpine:3.17             | sha256:f71a5f071694a785e064f05fed657bf8277f1b2113a8ed70c90ad486d6ee54dc  | 2023-08-07 |
 | alpine:3.18             | sha256:7144f7bab3d4c2648d7e59409f15ec52a18006a128c733fcff20d3a4a54ba44a  | 2023-08-07 |
-| buildpack-deps:bullseye | sha256:930a1ea53e70457cde2c9d449b531979475330c50366fef8d22520d676c2bb0d  | 2023-08-16 |
-| buildpack-deps:buster   | sha256:c6cfa5c691f91c0760341abf073efe1c4b0437ad05375290b3298b8e1219de5b  | 2023-08-16 |
-| debian:10               | sha256:b86bfc1dd2fb1820fea6c1e0b6e23d155198b518b3a506f6edad71bf6e9a8cef  | 2023-08-16 |
-| debian:11               | sha256:1beb7cf458bdfe71b5220cb2069eb45e3fc7eb77a1ccfb169eaebf5f6c4809ab  | 2023-08-16 |
+| buildpack-deps:bullseye | sha256:ccd2a733ab835437d0d52753724b4f860a70cfd79a2bc8dcfa90c469cd0a67b5  | 2023-09-07 |
+| buildpack-deps:buster   | sha256:ff4e70591f2e117f3b751bf55e9102cec6f1d728159a0daaac0ceaebd7742e26  | 2023-09-07 |
+| debian:10               | sha256:972a285e4630b87e839bdcc09cb6fad08956524397b4d3878a5b65a8e6c3fdee  | 2023-09-07 |
+| debian:11               | sha256:f33900927c0a8bcf3f0e2281fd0237f4780cc6bc59729bb3a10e75b0703c5ca7  | 2023-09-07 |
 | moby/buildkit:latest    | sha256:890dcae054e3039f6c6b76bf0da80a130fa6e6bb1f3624063ef0210ac2c57b06  | 2023-08-24 |
 | node:14                 | sha256:a158d3b9b4e3fa813fa6c8c590b8f0a860e015ad4e59bbce5744d2f6fd8461aa  | 2023-04-12 |
 | node:14-alpine          | sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33  | 2023-03-29 |
-| node:16                 | sha256:818b5adc1ee4a04e8ad5efeb70871571efe414315ad7f16844f24f9962ffdc7e  | 2023-08-17 |
+| node:16                 | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine          | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18                 | sha256:11e9c297fc51f6f65f7d0c7c8a8581e5721f2f16de43ceff1a199fd3ef609f95  | 2023-08-17 |
+| node:18                 | sha256:933bcfad91e9052a02bc29eb5aa29033e542afac4174f9524b79066d97b23c24  | 2023-09-07 |
 | node:18-alpine          | sha256:3482a20c97e401b56ac50ba8920cc7b5b2022bfc6aa7d4e4c231755770cf892f  | 2023-08-10 |
 | ubuntu:18.04            | sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98  | 2023-05-30 |
 | ubuntu:20.04            | sha256:33a5cc25d22c45900796a1aca487ad7a7cb09f09ea00b779e3b2026b4fc2faba  | 2023-08-01 |
@@ -383,3 +389,4 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.2.5-2ubuntu1                      |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
+
