@@ -30,6 +30,8 @@ $installersAvailable | Get-Member -MemberType NoteProperty | ForEach-Object {
   }
 }
 
+Write-Host "tttttttttttttaken: ${installerUrl}"
+
 # Invoke installation
 
 $installerArgs = '/silent', '/sp-', '/suppressmsgboxes', "/DIR=`"$installDir`""
