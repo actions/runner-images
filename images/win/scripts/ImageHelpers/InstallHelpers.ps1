@@ -15,9 +15,12 @@ function Install-Binary
 
     .PARAMETER ArgumentList
         The list of arguments that will be passed to the installer. Required for .exe binaries.
+    
+    .PARAMETER ExpectedSignature
+        The expected signature of the binary. If set, the binary will be validated against this signature.
 
     .EXAMPLE
-        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet")
+        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet") -ExpectedSignature "XXXXXXXXXXXXXXXXXXXXXXXXXX"
     #>
 
     Param
@@ -28,7 +31,8 @@ function Install-Binary
         [String] $Name,
         [Parameter(Mandatory, ParameterSetName="LocalPath")]
         [String] $FilePath,
-        [String[]] $ArgumentList
+        [String[]] $ArgumentList,
+        [String] $ExpectedSignature
     )
 
     if ($PSCmdlet.ParameterSetName -eq "LocalPath")
@@ -39,6 +43,11 @@ function Install-Binary
     {
         Write-Host "Downloading $Name..."
         $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    }
+
+    if ($ExpectedSignature)
+    {
+        Test-File-Signature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
     }
 
     # MSI binaries should be installed via msiexec.exe
@@ -630,3 +639,19 @@ function Get-GitHubPackageDownloadUrl {
     return $downloadUrl
 }
 
+function Test-File-Signature {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$FilePath,
+        [Parameter(Mandatory=$true)]
+        [string]$ExpectedThumbprint
+    )
+    $signature = Get-AuthenticodeSignature $FilePath
+    if ($signature.Status -ne "Valid") {
+        throw "Signature status is not valid"
+    }
+    if ($signature.SignerCertificate.Thumbprint.Contains($ExpectedThumbprint) -ne $true) {
+        throw "Signature thumbprint do not match expected"
+    }
+    Write-Output "Signature is valid"
+}
