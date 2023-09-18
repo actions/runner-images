@@ -1,15 +1,24 @@
 ################################################################################
 ##  File:  Install-Git.ps1
 ##  Desc:  Install Git for Windows
+## Supply chain security: Git - checksum validation, Hub CLI - managed by package manager
 ################################################################################
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 
 # Install the latest version of Git for Windows
-$gitReleases = Invoke-RestMethod "https://api.github.com/repos/git-for-windows/git/releases/latest"
+$repoURL = "https://api.github.com/repos/git-for-windows/git/releases/latest"
+$gitReleases = Invoke-RestMethod $repoURL
 [string]$downloadUrl = $gitReleases.assets.browser_download_url -match "Git-.+-64-bit.exe"
-
 $installerFile = Split-Path $downloadUrl -Leaf
-Install-Binary  -Url $downloadUrl `
+$packagePath = Start-DownloadWithRetry -Url $downloadUrl -Name $installerFile
+
+#region Supply chain security - Git
+$fileHash = (Get-FileHash -Path $packagePath -Algorithm SHA256).Hash
+$externalHash = Get-HashFromGitHubReleaseBody -Url $RepoURL -FileName $installerFile
+Use-ChecksumСomparison $fileHash $externalHash
+#endregion
+
+Install-Binary  -FilePath $packagePath`
                 -Name $installerFile `
                 -ArgumentList (
                     "/VERYSILENT", `
