@@ -44,10 +44,18 @@ function Install-Binary
         Write-Host "Downloading $Name..."
         $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
     }
-
-    if ($ExpectedSignature)
+    
+    if ($PSBoundParameters.ContainsKey('ExpectedSignature'))
     {
-        Test-File-Signature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
+        if ($ExpectedSignature)
+        {
+            Test-File-Signature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
+
+        }
+        else
+        {
+            throw "ExpectedSignature parameter is specified, but no signature is provided."
+        }
     }
 
     # MSI binaries should be installed via msiexec.exe
@@ -646,12 +654,16 @@ function Test-File-Signature {
         [Parameter(Mandatory=$true)]
         [string]$ExpectedThumbprint
     )
+ 
     $signature = Get-AuthenticodeSignature $FilePath
+ 
     if ($signature.Status -ne "Valid") {
         throw "Signature status is not valid"
     }
+
     if ($signature.SignerCertificate.Thumbprint.Contains($ExpectedThumbprint) -ne $true) {
         throw "Signature thumbprint do not match expected"
     }
+
     Write-Output "Signature is valid"
 }
