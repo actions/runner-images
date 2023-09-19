@@ -644,6 +644,43 @@ function Get-GitHubPackageDownloadUrl {
     return $downloadUrl
 }
 
+function Invoke-ValidateCommand {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Command,
+        [int] $Timeout = 0
+    )
+
+    if ($Timeout -eq 0)
+    {
+        $output = Invoke-Expression -Command $Command
+        if ($LASTEXITCODE -ne 0) {
+            throw "Command '$Command' has finished with exit code $LASTEXITCODE"
+        }
+        return $output
+    }
+    else
+    {
+        $job = $command | Start-Job -ScriptBlock {
+            $output = Invoke-Expression -Command $input
+            if ($LASTEXITCODE -ne 0) {
+                  throw 'Command failed'
+            }
+            return $output
+        }
+        $waitObject = $job | Wait-Job -Timeout $Timeout
+        if(-not $waitObject)
+        {
+             throw "Command '$Command' has timed out"
+        }
+        if($waitObject.State -eq 'Failed')
+        {
+             throw "Command '$Command' has failed"
+        }
+        Receive-Job -Job $job
+    }
+}
+
 function Use-ChecksumComparison {
     param (
         [Parameter(Mandatory=$true)]
