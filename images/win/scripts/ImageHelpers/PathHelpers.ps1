@@ -33,6 +33,14 @@ function Disconnect-Hive {
     }
 }
 
+function Get-UserVariable {
+    param(
+        [string]$UserVariable
+    )
+    
+    [System.Environment]::GetEnvironmentVariable($SystemVariable, "User")
+}
+
 function Get-SystemVariable {
     param(
         [string]$SystemVariable
@@ -80,8 +88,16 @@ function Set-DefaultVariable {
     [System.GC]::Collect()
 }
 
+function Update-Path {
+    $env:Path = (Get-MachinePath) + ";" + (Get-UserPath)
+}
+
 function Get-MachinePath {
     Get-SystemVariable PATH
+}
+
+function Get-UserPath {
+    Get-UserVariable PATH
 }
 
 function Get-DefaultPath {
