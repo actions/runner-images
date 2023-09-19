@@ -6,16 +6,17 @@
 Write-Host "Install the latest Azure CLI release"
 $azCliUrl = "https://aka.ms/installazurecliwindowsx64"
 Install-Binary -Url $azCliUrl -Name "azure-cli.msi"
+Update-Path
 
 # Store cli extensions outside of the provisioning user's profile
 $azureCliExtensionPath = Join-Path $Env:CommonProgramFiles 'AzureCliExtensionDirectory'
 $null = New-Item -ItemType "Directory" -Path $azureCliExtensionPath
-[Environment]::SetEnvironmentVariable("AZURE_EXTENSION_DIR", $azureCliExtensionPath, [System.EnvironmentVariableTarget]::Machine)
+Set-SystemVariable -SystemVariable "AZURE_EXTENSION_DIR" -value $azureCliExtensionPath
 
 # Store cli config outside of the provisioning user's profile
 $azureCliConfigPath = Join-Path $Env:CommonProgramFiles 'AzureCliDirectory'
 $null = New-Item -ItemType "Directory" -Path $azureCliConfigPath
-[Environment]::SetEnvironmentVariable("AZURE_CONFIG_DIR", $azureCliConfigPath, [System.EnvironmentVariableTarget]::Machine)
+Set-SystemVariable -SystemVariable "AZURE_CONFIG_DIR" -value $azureCliConfigPath
 
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
 
