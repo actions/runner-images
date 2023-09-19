@@ -27,6 +27,7 @@ Export-ModuleMember -Function @(
     'Set-DefaultVariable'
     'Install-Binary'
     'Install-VisualStudio'
+    'Invoke-ValidateCommand'
     'Get-ToolsetContent'
     'Get-ToolsetToolFullPath'
     'Stop-SvcWithErrHandling'
