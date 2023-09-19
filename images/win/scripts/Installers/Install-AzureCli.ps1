@@ -18,15 +18,17 @@ $azureCliConfigPath = Join-Path $Env:CommonProgramFiles 'AzureCliDirectory'
 $null = New-Item -ItemType "Directory" -Path $azureCliConfigPath
 Set-SystemVariable -SystemVariable "AZURE_CONFIG_DIR" -value $azureCliConfigPath
 
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
-
 # Turn use automation recommended settings to speed up first-call on the hosted runner images.
-az config set auto-upgrade.enable=false
-az config set core.error_recommendation=off
-az config set core.disable_progress_bar=true
-az config set core.only_show_errors=true
-az config set core.no_color=true
-az config set logging.enable_log_file=no
-az config set output.show_survey_link=no
+Write-Host "Setting automation defaults for 'az'"
+Invoke-ValidateCommand -Command "az config set auto-upgrade.enable=false"
+Invoke-ValidateCommand -Command "az config set core.error_recommendation=off"
+Invoke-ValidateCommand -Command "az config set core.disable_progress_bar=true"
+Invoke-ValidateCommand -Command "az config set core.no_color=true"
+Invoke-ValidateCommand -Command "az config set logging.enable_log_file=no"
+Invoke-ValidateCommand -Command "az config set output.show_survey_link=no"
+
+# Warm-up Azure CLI
+Write-Host "Warmup 'az'"
+Invoke-ValidateCommand -Command "az --help"
     
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "Azure CLI"
