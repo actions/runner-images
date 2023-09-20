@@ -33,7 +33,7 @@ NUNIT_VERSION_PATH="$NUNIT_PATH/$NUNIT_VERSION"
 download_with_retries "$NUNIT_ARCHIVE_URL" "$TMP_DIR"
 echo "Installing $NUNIT_ARCHIVE_NAME..."
 sudo mkdir -p "$NUNIT_VERSION_PATH"
-sudo unzip "$NUNIT_ARCHIVE_NAME" -d "$NUNIT_VERSION_PATH"
+sudo unzip "$TMP_DIR/$NUNIT_ARCHIVE_NAME" -d "$NUNIT_VERSION_PATH"
 
 # Create a wrapper script for nunit3-console
 echo "Creating nunit3-console wrapper..."
