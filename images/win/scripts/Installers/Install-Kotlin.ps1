@@ -1,7 +1,7 @@
 ################################################################################
 ##  File:  Install-Kotlin.ps1
 ##  Desc:  Install Kotlin
-## Supply chain security: Kotlin - checksum validation
+##  Supply chain security: Kotlin - checksum validation
 ################################################################################
 
 # Install Kotlin
@@ -14,7 +14,7 @@ $kotlinInstallerPath = Start-DownloadWithRetry -Url $kotlinDownloadUrl -Name "$k
 #region Supply chain security
 $fileHash = (Get-FileHash -Path $kotlinInstallerPath -Algorithm SHA256).Hash
 $externalHash = Get-HashFromGitHubReleaseBody -RepoOwner "JetBrains" -RepoName "kotlin" -FileName "$kotlinBinaryName" -Version $kotlinVersion -WordNumber 2
-Use-ChecksumСomparison $fileHash $externalHash
+Use-ChecksumComparison $fileHash $externalHash
 #endregion
 
 Write-Host "Expand Kotlin archive"
