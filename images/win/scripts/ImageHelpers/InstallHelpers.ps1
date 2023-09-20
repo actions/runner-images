@@ -15,9 +15,6 @@ function Install-Binary
 
     .PARAMETER ArgumentList
         The list of arguments that will be passed to the installer. Required for .exe binaries.
-    
-    .PARAMETER ExpectedSignature
-        The expected signature of the binary. If set, the binary will be validated against this signature.
 
     .EXAMPLE
         Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet") -ExpectedSignature "XXXXXXXXXXXXXXXXXXXXXXXXXX"
@@ -44,7 +41,7 @@ function Install-Binary
         Write-Host "Downloading $Name..."
         $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
     }
-    
+
     if ($PSBoundParameters.ContainsKey('ExpectedSignature'))
     {
         if ($ExpectedSignature)
@@ -645,64 +642,6 @@ function Get-GitHubPackageDownloadUrl {
     $downloadUrl = $json.assets.browser_download_url -like $UrlFilter
 
     return $downloadUrl
-}
-
-function Use-ChecksumСomparison {
-    param (
-        [Parameter(Mandatory=$true)]
-        [string]$LocalFileHash,
-        [Parameter(Mandatory=$true)]
-        [string]$DistributorFileHash
-    )
-
-    Write-Verbose "Performing checksum verification"
-
-    if ($LocalFileHash -ne $DistributorFileHash) {
-        throw "Checksum verification failed. Expected hash: $DistributorFileHash; Actual hash: $LocalFileHash."
-    } else {
-        Write-Verbose "Checksum verification passed"
-    }
-}
-
-function Get-HashFromGitHubReleaseBody {
-    param (
-        [string]$RepoOwner,
-        [string]$RepoName,
-        [Parameter(Mandatory=$true)]
-        [string]$FileName,
-        [string]$Url,
-        [string]$Version = "latest",
-        [boolean]$IsPrerelease = $false,
-        [int]$SearchInCount = 100,
-        [string]$Delimiter = '|',
-        [int]$WordNumber = 1
-    )
-
-    if ($Url) {
-        $releaseUrl = $Url
-    } else {
-        if ($Version -eq "latest") {
-            $releaseUrl = "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases/latest"
-        } else {
-            $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
-            $tags = $json.Where{ $_.prerelease -eq $IsPrerelease }.tag_name
-            $tag = $tags -match $Version
-            if (-not $tag) {
-                throw "Failed to get a tag name for version $Version."
-            }
-            $releaseUrl = "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases/tag/$tag"
-        }
-    }
-    $body = (Invoke-RestMethod -Uri $releaseUrl).body -replace('`', "") -join "`n"
-    $matchingLine = $body.Split("`n") | Where-Object { $_ -like "*$FileName*" }    
-    if ([string]::IsNullOrEmpty($matchingLine)) {
-        throw "File name '$FileName' not found in release body."
-    }
-    $result = $matchingLine.Split($Delimiter)[$WordNumber] -replace "[^a-zA-Z0-9]", ""
-    if ([string]::IsNullOrEmpty($result)) {
-        throw "Empty result. Check Split method parameters (delimiter and/or word number) for the matching line."
-    }
-    return $result
 }
 
 function Use-ChecksumСomparison {
