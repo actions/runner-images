@@ -203,6 +203,8 @@ Describe "Xamarin Bundles" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
         $XAMARIN_ANDROID_VERSIONS_PATH = "/Library/Frameworks/Xamarin.Android.framework/Versions"
     }
 
+    If ($XAMARIN_BUNDLES.Count -eq 0) { return } # Skip this test if there are no bundles
+
     [array]$XAMARIN_BUNDLES = Get-ToolsetValue "xamarin.bundles"
     $XAMARIN_DEFAULT_BUNDLE = Get-ToolsetValue "xamarin.bundle-default"
     If ($XAMARIN_DEFAULT_BUNDLE -eq "latest") { $XAMARIN_DEFAULT_BUNDLE = $XAMARIN_BUNDLES[0].symlink }
