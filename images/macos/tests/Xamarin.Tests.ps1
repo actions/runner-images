@@ -4,6 +4,9 @@ Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 $os = Get-OSVersion
 if ($os.IsVentura -or $os.IsVenturaArm64) { 
     $MONO_VERSIONS = @(Get-ToolsetValue "mono.framework.version")
+    $XAMARIN_IOS_VERSIONS = @()
+    $XAMARIN_MAC_VERSIONS = @()
+    $XAMARIN_ANDROID_VERSIONS = @()
 } elseif ($os.IsBigSur -or $os.IsMonterey) {
     $MONO_VERSIONS = Get-ToolsetValue "xamarin.mono-versions"
     $XAMARIN_IOS_VERSIONS = Get-ToolsetValue "xamarin.ios-versions"
