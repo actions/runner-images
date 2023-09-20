@@ -2,11 +2,14 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
+if ($os.IsVentura -or $os.IsVenturaArm64) { 
+    $MONO_VERSIONS = @(Get-ToolsetValue "mono.framework.version")
+} elseif ($os.IsBigSur -or $os.IsMonterey) {
     $MONO_VERSIONS = Get-ToolsetValue "xamarin.mono-versions"
     $XAMARIN_IOS_VERSIONS = Get-ToolsetValue "xamarin.ios-versions"
     $XAMARIN_MAC_VERSIONS = Get-ToolsetValue "xamarin.mac-versions"
     $XAMARIN_ANDROID_VERSIONS = Get-ToolsetValue "xamarin.android-versions"
+}
 
 BeforeAll {
     function Get-ShortSymlink {
@@ -19,7 +22,7 @@ BeforeAll {
     }
 }
 
-Describe "Mono" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "Mono" {
     $MONO_VERSIONS | ForEach-Object {
         Context "$_" {
             $MONO_VERSIONS_PATH = "/Library/Frameworks/Mono.framework/Versions"
@@ -116,12 +119,12 @@ Describe "Xamarin.iOS" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     }
 }
 
-Describe "Xamarin.Mac" -Skip:($os.IsVentura-or $os.IsVenturaArm64) {
+Describe "Xamarin.Mac" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     $XAMARIN_MAC_VERSIONS | ForEach-Object {
         Context "$_" {
             $XAMARIN_MAC_VERSIONS_PATH = "/Library/Frameworks/Xamarin.Mac.framework/Versions"
             $versionFolderPath = Join-Path $XAMARIN_MAC_VERSIONS_PATH $_
-            $testCase = @{ XamarinMacVersion = $_; VersionFolderPath = $versionFolderPath; MacVersionsPath = $XAMARIN_MAC_VERSIONS_PATH  }
+            $testCase = @{ XamarinMacVersion = $_; VersionFolderPath = $versionFolderPath; MacVersionsPath = $XAMARIN_MAC_VERSIONS_PATH }
 
             It "is installed" -TestCases $testCase {
                 param ( [string] $VersionFolderPath )
@@ -203,22 +206,22 @@ Describe "Xamarin Bundles" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
 
     $currentBundle = [PSCustomObject] @{
         symlink = "Current"
-        mono = $XAMARIN_DEFAULT_BUNDLE
-        ios = $XAMARIN_DEFAULT_BUNDLE
-        mac = $XAMARIN_DEFAULT_BUNDLE
+        mono    = $XAMARIN_DEFAULT_BUNDLE
+        ios     = $XAMARIN_DEFAULT_BUNDLE
+        mac     = $XAMARIN_DEFAULT_BUNDLE
         android = $XAMARIN_DEFAULT_BUNDLE
     }
 
     $latestBundle = [PSCustomObject] @{
         symlink = "Latest"
-        mono = $XAMARIN_BUNDLES[0].mono
-        ios = $XAMARIN_BUNDLES[0].ios
-        mac = $XAMARIN_BUNDLES[0].mac
+        mono    = $XAMARIN_BUNDLES[0].mono
+        ios     = $XAMARIN_BUNDLES[0].ios
+        mac     = $XAMARIN_BUNDLES[0].mac
         android = $XAMARIN_BUNDLES[0].android
     }
 
     $bundles = $XAMARIN_BUNDLES + $currentBundle + $latestBundle
-    $allBundles = $bundles | ForEach-Object { @{BundleSymlink = $_.symlink; BundleMono = $_.mono; BundleIos = $_.ios; BundleMac = $_.mac; BundleAndroid = $_.android} }
+    $allBundles = $bundles | ForEach-Object { @{BundleSymlink = $_.symlink; BundleMono = $_.mono; BundleIos = $_.ios; BundleMac = $_.mac; BundleAndroid = $_.android } }
 
     It "Mono symlink <BundleSymlink> exists" -TestCases $allBundles {
         param ( [string] $BundleSymlink )
@@ -298,6 +301,4 @@ Describe "Nuget" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     It "Nuget config contains nuget.org feed" {
         Get-Content $env:HOME/.config/NuGet/NuGet.Config | Out-String | Should -Match "nuget.org"
     }
-}
-
 }
