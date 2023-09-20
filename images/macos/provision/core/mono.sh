@@ -33,17 +33,18 @@ NUNIT_VERSION_PATH="$NUNIT_PATH/$NUNIT_VERSION"
 download_with_retries "$NUNIT_ARCHIVE_URL" "$TMP_DIR"
 echo "Installing $NUNIT_ARCHIVE_NAME..."
 sudo mkdir -p "$NUNIT_VERSION_PATH"
-sudo unzip "$TMP_DIR/$NUNIT_ARCHIVE_NAME" -d "$NUNIT_VERSION_PATH"
+sudo unzip -q "$TMP_DIR/$NUNIT_ARCHIVE_NAME" -d "$NUNIT_VERSION_PATH"
 
 # Create a wrapper script for nunit3-console
 echo "Creating nunit3-console wrapper..."
 NUNIT3_CONSOLE_WRAPPER=nunit3-console
 cat <<EOF > "${TMP_DIR}/${NUNIT3_CONSOLE_WRAPPER}"
 #!/bin/bash -e -o pipefail
-exec /Library/Frameworks/Mono.framework/Versions/${MONO_VERSION_FULL}/bin/mono --debug \$MONO_OPTIONS $NUNIT_VERSION_PATH/nunit3-console.exe "\$@"
+exec ${MONO_VERSIONS_PATH}/${MONO_VERSION}/bin/mono --debug \$MONO_OPTIONS $NUNIT_VERSION_PATH/nunit3-console.exe "\$@"
 EOF
+cat "${TMP_DIR}/${NUNIT3_CONSOLE_WRAPPER}"
 sudo chmod +x "${TMP_DIR}/${NUNIT3_CONSOLE_WRAPPER}"
-sudo mv "${TMP_DIR}/${NUNIT3_CONSOLE_WRAPPER}" "${MONO_VERSIONS_PATH}/${MONO_VERSION_FULL}/Commands/${NUNIT3_CONSOLE_WRAPPER}"
+sudo mv "${TMP_DIR}/${NUNIT3_CONSOLE_WRAPPER}" "${MONO_VERSIONS_PATH}/${MONO_VERSION}/Commands/${NUNIT3_CONSOLE_WRAPPER}"
 
 # Create a symlink for the short version of Mono (e.g., 6.12)
 echo "Creating short symlink '${MONO_VERSION_SHORT}'..."
