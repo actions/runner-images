@@ -19,6 +19,8 @@ $null = New-Item -ItemType "Directory" -Path $azureCliConfigPath
 Set-SystemVariable -SystemVariable "AZURE_CONFIG_DIR" -value $azureCliConfigPath
 
 # Turn use automation recommended settings to speed up first-call on the hosted runner images.
+# See: https://techcommunity.microsoft.com/t5/azure-tools-blog/streamline-configuring-azure-cli-with-az-init/ba-p/3051810
+
 Write-Host "Setting automation defaults for 'az'"
 Invoke-ValidateCommand -Command "az config set auto-upgrade.enable=false --only-show-errors"
 Invoke-ValidateCommand -Command "az config set core.error_recommendation=off --only-show-errors"
