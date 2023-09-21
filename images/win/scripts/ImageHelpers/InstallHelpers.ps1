@@ -46,7 +46,7 @@ function Install-Binary
     {
         if ($ExpectedSignature)
         {
-            Test-File-Signature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
+            Test-FileSignature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
 
         }
         else
@@ -701,7 +701,7 @@ function Get-HashFromGitHubReleaseBody {
     }
     return $result
 }
-function Test-File-Signature {
+function Test-FileSignature {
     param(
         [Parameter(Mandatory=$true)]
         [string]$FilePath,
@@ -712,12 +712,12 @@ function Test-File-Signature {
     $signature = Get-AuthenticodeSignature $FilePath
  
     if ($signature.Status -ne "Valid") {
-        throw "Signature status is not valid"
+        throw "Signature status is not valid. Status: $($signature.Status)"
     }
 
     if ($signature.SignerCertificate.Thumbprint.Contains($ExpectedThumbprint) -ne $true) {
         throw "Signature thumbprint do not match expected"
     }
 
-    Write-Output "Signature is valid"
+    Write-Output "Signature for $FilePath is valid"
 }
