@@ -6,7 +6,7 @@
 
 $arch = 'INTEL'
 $bits = '64'
-$light = 'false'
+$light = $false
 $installer = "exe"
 $version = (Get-ToolsetContent).openssl.version
 $installDir = "$Env:ProgramFiles\OpenSSL"

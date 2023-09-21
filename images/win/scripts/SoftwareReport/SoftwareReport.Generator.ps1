@@ -78,7 +78,7 @@ $tools.AddToolVersion("ghc", $(Get-GHCVersion))
 $tools.AddToolVersion("Git", $(Get-GitVersion))
 $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 if (Test-IsWin19) {
-    $tools.AddToolVersion("Google Cloud SDK", $(Get-GoogleCloudSDKVersion))
+    $tools.AddToolVersion("Google Cloud CLI", $(Get-GoogleCloudCLIVersion))
 }
 $tools.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 $tools.AddToolVersion("InnoSetup", $(Get-InnoSetupVersion))

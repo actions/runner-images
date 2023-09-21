@@ -630,7 +630,7 @@ function Get-GitHubPackageDownloadUrl {
     return $downloadUrl
 }
 
-function Use-ChecksumСomparison {
+function Use-ChecksumComparison {
     param (
         [Parameter(Mandatory=$true)]
         [string]$LocalFileHash,
