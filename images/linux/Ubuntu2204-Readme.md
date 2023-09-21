@@ -7,8 +7,8 @@
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
 - Kernel Version: 6.2.0-1011-azure
-- Image Version: 20230911.1.0
-- Systemd version: 249.11-0ubuntu3.9
+- Image Version: 20230917.1.0
+- Systemd version: 249.11-0ubuntu3.10
 
 ## Installed Software
 
@@ -41,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.2.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 962e5e39f)
+- Vcpkg (build from commit e8c2a04eb)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -59,7 +59,7 @@ to accomplish this.
 ```
 
 ### Project Management
-- Lerna 7.2.0
+- Lerna 7.3.0
 - Maven 3.8.8
 
 ### Tools
@@ -70,15 +70,15 @@ to accomplish this.
 - Bazelisk 1.18.0
 - Bicep 0.21.1
 - Buildah 1.23.1
-- CMake 3.27.4
-- CodeQL Action Bundles 2.14.2 2.14.3
+- CMake 3.27.5
+- CodeQL Action Bundles 2.14.4 2.14.5
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.21.0
 - Docker-Buildx 0.11.2
 - Docker Client 24.0.6
 - Docker Server 24.0.6
-- Fastlane 2.214.0
+- Fastlane 2.215.1
 - Git 2.42.0
 - Git LFS 3.4.0
 - Git-ftp 1.6.0
@@ -86,20 +86,20 @@ to accomplish this.
 - Heroku 8.4.2
 - jq 1.6
 - Kind 0.20.0
-- Kubectl 1.28.1
+- Kubectl 1.28.2
 - Kustomize 5.1.1
 - Leiningen 2.10.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.31.2
 - n 9.1.0
-- Newman 5.3.2
+- Newman 6.0.0
 - nvm 0.39.5
 - OpenSSL 3.0.2-0ubuntu1.10
 - Packer 1.9.4
 - Parcel 2.9.3
 - Podman 3.4.4
-- Pulumi 3.81.0
+- Pulumi 3.83.0
 - R 4.3.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -111,18 +111,18 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.181
-- AWS CLI 2.13.17
+- AWS CLI 2.13.19
 - AWS CLI Session Manager Plugin 1.2.497.0
 - AWS SAM CLI 1.97.0
 - Azure CLI 2.52.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.34.0
-- Google Cloud SDK 445.0.0
+- Google Cloud SDK 446.0.1
 - Hub CLI 2.14.2
-- Netlify CLI 16.3.1
-- OpenShift CLI 4.13.11
+- Netlify CLI 16.3.3
+- OpenShift CLI 4.13.12
 - ORAS CLI 1.1.0
-- Vercel CLI 32.2.1
+- Vercel CLI 32.2.4
 
 ### Java
 | Version             | Environment Variable |
@@ -133,7 +133,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.6.2
+- Composer 2.6.3
 - PHPUnit 8.5.33
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -156,17 +156,17 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cargo audit 0.18.1
 - Cargo clippy 0.1.72
 - Cargo outdated 0.13.1
-- Cbindgen 0.25.0
+- Cbindgen 0.26.0
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 116.0.5845.187
-- ChromeDriver 116.0.5845.96
-- Chromium 116.0.5845.0
-- Microsoft Edge 116.0.1938.76
-- Microsoft Edge WebDriver 116.0.1938.76
+- Google Chrome 117.0.5938.88
+- ChromeDriver 117.0.5938.88
+- Chromium 117.0.5938.0
+- Microsoft Edge 117.0.2045.31
+- Microsoft Edge WebDriver 117.0.2045.31
 - Selenium server 4.12.0
-- Mozilla Firefox 117.0
+- Mozilla Firefox 117.0.1
 - Geckodriver 0.33.0
 
 #### Environment variables
@@ -178,7 +178,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.413, 7.0.110, 7.0.203, 7.0.307, 7.0.400
+- .NET Core SDK: 6.0.414, 7.0.111, 7.0.203, 7.0.308, 7.0.401
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
@@ -208,7 +208,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.18.10
 - 1.19.13
 - 1.20.8
 - 1.21.1
@@ -315,7 +314,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | dpkg                   | 1.21.1ubuntu2.2                     |
 | dpkg-dev               | 1.21.1ubuntu2.2                     |
 | fakeroot               | 1.28-1ubuntu1                       |
-| file                   | 1:5.41-3                            |
+| file                   | 1:5.41-3ubuntu0.1                   |
 | flex                   | 2.6.4-8build2                       |
 | fonts-noto-color-emoji | 2.038-0ubuntu1                      |
 | ftp                    | 20210827-4build1                    |
@@ -330,13 +329,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.1                     |
+| libc6-dev              | 2.35-0ubuntu3.3                     |
 | libcurl4               | 7.81.0-1ubuntu1.13                  |
 | libgbm-dev             | 23.0.4-0ubuntu1\~22.04.1            |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
 | libgtk-3-0             | 3.24.33-1ubuntu2                    |
-| libmagic-dev           | 1:5.41-3                            |
+| libmagic-dev           | 1:5.41-3ubuntu0.1                   |
 | libmagickcore-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 |
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 |
 | libsecret-1-dev        | 0.20.5-2                            |
@@ -347,7 +346,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.1                     |
+| locales                | 2.35-0ubuntu3.3                     |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
@@ -355,7 +354,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | mercurial              | 6.1.1-1ubuntu1                      |
 | net-tools              | 1.60+git20181103.0eebece-1ubuntu5   |
 | netcat                 | 1.218-4ubuntu1                      |
-| openssh-client         | 1:8.9p1-3ubuntu0.3                  |
+| openssh-client         | 1:8.9p1-3ubuntu0.4                  |
 | p7zip-full             | 16.02+dfsg-8                        |
 | p7zip-rar              | 16.02-3build1                       |
 | parallel               | 20210822+ds-2                       |
@@ -370,7 +369,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
 | sqlite3                | 3.37.2-2ubuntu0.1                   |
-| ssh                    | 1:8.9p1-3ubuntu0.3                  |
+| ssh                    | 1:8.9p1-3ubuntu0.4                  |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.4                    |
