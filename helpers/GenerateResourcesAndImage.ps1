@@ -269,7 +269,7 @@ Function GenerateResourcesAndImage {
                 # are we running in a non-interactive session?
                 # https://stackoverflow.com/questions/9738535/powershell-test-for-noninteractive-mode
                 if ([System.Console]::IsOutputRedirected -or ![Environment]::UserInteractive -or !!([Environment]::GetCommandLineArgs() | Where-Object { $_ -ilike '-noni*' })) {
-                    throw "Non-interactive mode, resource group '$ResourceGroupName' already exists, specify -Force to delete it."
+                    throw "Non-interactive mode, resource group '$ResourceGroupName' already exists, either specify -Force to delete it, or -ReuseResourceGroup to reuse."
                 }
                 else {
                     # Resource group already exists, ask the user what to do
