@@ -109,7 +109,7 @@ foreach($toolsetVersion in $toolsetVersions.versions)
 
         ForEach($node in $checksums) {
             if($node.InnerText -ilike "*${filename}*") {
-                $distributor_file_hash = $node.InnerText.ToString().Split("`n").Where({ $_ -ilike "*${filename}*" }).Split(' ')[0]
+                $distributorFileHash = $node.InnerText.ToString().Split("`n").Where({ $_ -ilike "*${filename}*" }).Split(' ')[0]
             }
         }
 
