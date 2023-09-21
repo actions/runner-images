@@ -117,7 +117,7 @@ Describe "Mingw64" {
     }
 }
 
-Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
+Describe "GoogleCloudCLI" -Skip:(Test-IsWin22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
