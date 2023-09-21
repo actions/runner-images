@@ -26,7 +26,7 @@ Invoke-ValidateCommand -Command "az config set auto-upgrade.enable=false --only-
 Invoke-ValidateCommand -Command "az config set core.error_recommendation=off --only-show-errors"
 Invoke-ValidateCommand -Command "az config set core.disable_progress_bar=true --only-show-errors"
 Invoke-ValidateCommand -Command "az config set core.no_color=true --only-show-errors"
-Invoke-ValidateCommand -Command "az config set output.show_survey_link=no --only-show-errors"
+Invoke-ValidateCommand -Command "az config set core.survey_message=false --only-show-errors"
 
 # Though recommended by az init, this may be a breaking change.
 # Invoke-ValidateCommand -Command "az config set logging.enable_log_file=no --only-show-errors"
