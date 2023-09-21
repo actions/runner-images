@@ -1,13 +1,8 @@
 ################################################################################
 ##  File:  Install-AzureModules.ps1
-##  Desc:  Install Azure PowerShell modules
+##  Desc:  PowerShell modules used by AzureFileCopy@4, AzureFileCopy@5, AzurePowerShell@4, AzurePowerShell@5 tasks
 ##  Supply chain security: package manager
 ################################################################################
-
-#
-# prepares the environment for the Azure PowerShell modules
-# used by AzureFileCopy@4, AzureFileCopy@5, AzurePowerShell@4, AzurePowerShell@5 tasks
-#
 
 # The correct Modules need to be saved in C:\Modules
 $installPSModulePath = "C:\\Modules"
