@@ -7,7 +7,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1046-azure
-- Image Version: 20230911.1.0
+- Image Version: 20230917.1.0
 - Systemd version: 245.4-4ubuntu3.22
 
 ## Installed Software
@@ -43,7 +43,7 @@
 - Pip3 20.0.2
 - Pipx 1.2.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit 962e5e39f)
+- Vcpkg (build from commit e8c2a04eb)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -63,9 +63,9 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.7
 - Gradle 8.3
-- Lerna 7.2.0
+- Lerna 7.3.0
 - Maven 3.8.8
-- Sbt 1.9.4
+- Sbt 1.9.6
 
 ### Tools
 - Ansible 2.13.12
@@ -75,15 +75,15 @@ to accomplish this.
 - Bazelisk 1.18.0
 - Bicep 0.21.1
 - Buildah 1.22.3
-- CMake 3.27.4
-- CodeQL Action Bundles 2.14.2 2.14.3
+- CMake 3.27.5
+- CodeQL Action Bundles 2.14.4 2.14.5
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.21.0
 - Docker-Buildx 0.11.2
 - Docker Client 24.0.6
 - Docker Server 24.0.6
-- Fastlane 2.214.0
+- Fastlane 2.215.1
 - Git 2.42.0
 - Git LFS 3.4.0
 - Git-ftp 1.6.0
@@ -92,21 +92,21 @@ to accomplish this.
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.20.0
-- Kubectl 1.28.1
+- Kubectl 1.28.2
 - Kustomize 5.1.1
 - Leiningen 2.10.0
 - MediaInfo 19.09
 - Mercurial 5.3.1
 - Minikube 1.31.2
 - n 9.1.0
-- Newman 5.3.2
+- Newman 6.0.0
 - nvm 0.39.5
 - OpenSSL 1.1.1f-1ubuntu2.19
 - Packer 1.9.4
 - Parcel 2.9.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.81.0
+- Pulumi 3.83.0
 - R 4.3.1
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -118,18 +118,18 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.13.17
+- AWS CLI 2.13.19
 - AWS CLI Session Manager Plugin 1.2.497.0
 - AWS SAM CLI 1.97.0
 - Azure CLI 2.52.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.34.0
-- Google Cloud SDK 445.0.0
+- Google Cloud SDK 446.0.1
 - Hub CLI 2.14.2
-- Netlify CLI 16.3.1
-- OpenShift CLI 4.13.11
+- Netlify CLI 16.3.3
+- OpenShift CLI 4.13.12
 - ORAS CLI 1.1.0
-- Vercel CLI 32.2.1
+- Vercel CLI 32.2.4
 
 ### Java
 | Version             | Environment Variable |
@@ -140,7 +140,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 7.4.33, 8.0.30, 8.1.23, 8.2.10
-- Composer 2.6.2
+- Composer 2.6.3
 - PHPUnit 8.5.33
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -163,17 +163,17 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cargo audit 0.18.1
 - Cargo clippy 0.1.72
 - Cargo outdated 0.13.1
-- Cbindgen 0.25.0
+- Cbindgen 0.26.0
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 116.0.5845.187
-- ChromeDriver 116.0.5845.96
-- Chromium 116.0.5845.0
-- Microsoft Edge 116.0.1938.76
-- Microsoft Edge WebDriver 116.0.1938.76
+- Google Chrome 117.0.5938.88
+- ChromeDriver 117.0.5938.88
+- Chromium 117.0.5938.0
+- Microsoft Edge 117.0.2045.31
+- Microsoft Edge WebDriver 117.0.2045.31
 - Selenium server 4.12.0
-- Mozilla Firefox 117.0
+- Mozilla Firefox 117.0.1
 - Geckodriver 0.33.0
 
 #### Environment variables
@@ -185,7 +185,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.413, 7.0.110, 7.0.203, 7.0.307, 7.0.400
+- .NET Core SDK: 6.0.414, 7.0.111, 7.0.203, 7.0.308, 7.0.401
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
@@ -216,7 +216,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.18.10
 - 1.19.13
 - 1.20.8
 - 1.21.1
@@ -227,7 +226,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 18.17.1
 
 #### Python
-- 3.6.15
 - 3.7.17
 - 3.8.18
 - 3.9.18

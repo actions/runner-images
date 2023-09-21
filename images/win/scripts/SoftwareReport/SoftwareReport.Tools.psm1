@@ -262,7 +262,7 @@ function Get-StackVersion {
     return $stackVersion
 }
 
-function Get-GoogleCloudSDKVersion {
+function Get-GoogleCloudCLIVersion {
     return (((cmd /c "gcloud --version") -match "Google Cloud SDK") -replace "Google Cloud SDK").Trim()
 }
 

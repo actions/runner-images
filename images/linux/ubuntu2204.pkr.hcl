@@ -301,7 +301,7 @@ build {
                         "${path.root}/scripts/installers/git.sh",
                         "${path.root}/scripts/installers/github-cli.sh",
                         "${path.root}/scripts/installers/google-chrome.sh",
-                        "${path.root}/scripts/installers/google-cloud-sdk.sh",
+                        "${path.root}/scripts/installers/google-cloud-cli.sh",
                         "${path.root}/scripts/installers/haskell.sh",
                         "${path.root}/scripts/installers/heroku.sh",
                         "${path.root}/scripts/installers/java-tools.sh",

@@ -41,8 +41,8 @@ Describe "GitHub CLI" {
     }
 }
 
-Describe "Google Cloud SDK" {
-    It "Google Cloud SDK" {
+Describe "Google Cloud CLI" {
+    It "Google Cloud CLI" {
         "gcloud --version" | Should -ReturnZeroExitCode
     }
 }

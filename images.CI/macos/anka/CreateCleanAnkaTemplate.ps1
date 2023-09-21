@@ -19,6 +19,7 @@ param(
     [string] $TemplateName,
 
     [bool] $DownloadLatestVersion = $true,
+    [bool] $PushToRegistry = $true,
     [bool] $BetaSearch = $false,
     [bool] $InstallSoftwareUpdate = $true,
     [bool] $EnableAutoLogon = $true,
@@ -204,6 +205,8 @@ Set-AnkaVMVideoController -VMName $TemplateName -ShortMacOSVersion $ShortMacOSVe
 Write-Host "`t[*] Setting screen resolution to $DisplayResolution for $TemplateName"
 Set-AnkaVMDisplayResolution -VMName $TemplateName -DisplayResolution $DisplayResolution
 
-# Push a VM template (and tag) to the Cloud
-Write-Host "`t[*] Pushing '$TemplateName' image with '$TagName' tag to the '$RegistryUrl' registry..."
-Push-AnkaTemplateToRegistry -RegistryUrl $registryUrl -TagName $TagName -TemplateName $TemplateName
+if ($PushToRegistry) {
+    # Push a VM template (and tag) to the Cloud
+    Write-Host "`t[*] Pushing '$TemplateName' image with '$TagName' tag to the '$RegistryUrl' registry..."
+    Push-AnkaTemplateToRegistry -RegistryUrl $registryUrl -TagName $TagName -TemplateName $TemplateName
+}
