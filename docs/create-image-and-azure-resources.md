@@ -55,15 +55,15 @@ In any case you will need these software installed:
   Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
   ```
 
-## Automated image generation
+## Manual image generation
 
-This repo bundles script that automates image generation process.
-You only need a build agent configured as described above and active Azure subscription.
-We suggest to start with UbuntuMinimal image because it includes only a minimal set of required software and builds in less then half an hour.
+This repo bundles script that helps generating images in Azure.
+All you need are Azure subscription and build agent configured as described above.
+We suggest starting with building UbuntuMinimal image because it includes only basic software and build in less than 30 minutes.
 
-All steps here are supposed to run in Powershell.
+All the commands below should be executed in Powershell.
 
-First, clone runner-images repository and change directory:
+First clone runner-images repository and set current directory to it:
 
 ```powershell
 git clone https://github.com/actions/runner-images.git
@@ -87,7 +87,7 @@ This function automatically creates all required Azure resources and kicks off p
 
 When image is ready you may proceed to [deployment](#generated-machine-deployment)
 
-## Image generation customization
+## Manual image generation customization
 
 Function `GenerateResourcesAndImage` accepts a bunch of arguments that may help you generating image in your specific environment.
 
@@ -166,11 +166,45 @@ Where:
 
 The function creates an Azure VM and generates network resources in Azure to make the VM accessible.
 
-## Manual image generation
+## Automated image generation
 
-If you want more control over image generation process you may run Packer directly. This section describes variables defined in Packer template. Some of them may be set using environment variables.
+If you want to generate images automatically (e.g. as a part of CI/CD pipeline)
+you can use Packer directly. To do that you will need:
+
+- A build agent configured as described in
+  [Build agent preparation](#build-agent-preparation) section.
+- Azure subscription and Service Principal configured as described in
+  [Azure subscription authentication](#azure-subscription-authentication) section.
+- Resource group created in your Azure subscription where managed image will be stored.
+- String to be used as password for the user used to install software (Windows only).
+
+Then you can invoke Packer in you CI/CD pipeline using the following command:
+
+```powershell
+packer build -var "subscription_id=$SubscriptionId" `
+             -var "client_id=$ClientId" `
+             -var "client_secret=$ClientSecret" `
+             -var "install_password=$InstallPassword" `
+             -var "location=$Location" `
+             -var "managed_image_name=$ImageName" `
+             -var "managed_image_resource_group_name=$ImageResourceGroupName" `
+             -var "tenant_id=$TenantId" `
+             $TemplatePath
+```
+
+Where:
+
+- `SubscriptionId` - your Azure Subscription ID
+- `ClientId` and `ClientSecret` - Service Principal credentials
+- `TenantId` - Azure Tenant ID
+- `InstallPassword` - password for the user used to install software (Windows only)
+- `Location` - location where resources will be created (e.g. "East US")
+- `ImageName` and `ImageResourceGroupName` - name of the resource group where managed image will be stored
+- `TemplatePath` - path to the Packer template file (e.g. "images/win/windows2022.json")
 
 ### Required variables
+
+The following variables are required to be passed to Packer process:
 
 | Template var | Env var | Description
 | ------------ | ------- | -----------
@@ -182,6 +216,8 @@ If you want more control over image generation process you may run Packer direct
 | `managed_image_resource_group_name` | `ARM_RESOURCE_GROUP` | Resource group under which the final artifact will be stored.
 
 ### Optional variables
+
+The following variables are optional:
 
 - `managed_image_name` - Name of the managed image to create. If not specified, "Runner-Image-{{ImageType}}" will be used.
 - `build_resource_group_name` - Specify an existing resource group to run the build in it. By default, a temporary resource group will be created and destroyed as part of the build. If you do not have permission to do so, use build_resource_group_name to specify an existing resource group to run the build in it.
