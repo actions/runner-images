@@ -9,7 +9,7 @@ if ! is_VenturaArm64; then
   ln -sf $(brew --prefix openssl@1.1)/bin/openssl /usr/local/bin/openssl
 else
   # arm64 has a different installation prefix for brew
-  ln -sf ln -sf $(brew --prefix openssl@1.1)/bin/openssl /opt/homebrew/bin/openssl
+  ln -sf $(brew --prefix openssl@1.1)/bin/openssl /opt/homebrew/bin/openssl
 fi
 
 if ! is_VenturaArm64; then
