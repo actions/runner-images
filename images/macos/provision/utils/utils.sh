@@ -29,10 +29,10 @@ download_with_retries() {
     interval=30
     while [ $retries -gt 0 ]; do
         ((retries--))
-        test $ERR_EXIT_ENABLED -eq true && set +e
+        test "$ERR_EXIT_ENABLED" = true && set +e
         http_code=$(eval $COMMAND)
         exit_code=$?
-        test $ERR_EXIT_ENABLED -eq true && set -e
+        test "$ERR_EXIT_ENABLED" = true && set -e
         if [ $http_code -eq 200 ] && [ $exit_code -eq 0 ]; then
             echo "Download completed"
             return 0
