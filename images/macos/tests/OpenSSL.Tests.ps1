@@ -1,7 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-$os = Get-OSVersion
 
-Describe "OpenSSL" -Skip:($os.IsVenturaArm64) {
+Describe "OpenSSL" {
     Context "OpenSSL Version" {
         It "OpenSSL is available" {
             "openssl version" | Should -ReturnZeroExitCode
@@ -10,7 +9,7 @@ Describe "OpenSSL" -Skip:($os.IsVenturaArm64) {
 
     Context "OpenSSL 1.1 Path Check" {
         It "OpenSSL 1.1 path exists" {
-            $openSSLpath = "/usr/local/opt/openssl@1.1"
+            $openSSLpath = brew --prefix openssl@1.1
             $openSSLpath | Should -Exist
         }
     }

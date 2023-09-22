@@ -21,13 +21,13 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 | Image | YAML Label | Included Software | Rollout Progress of Latest Image Release |
 | --------------------|---------------------|--------------------|---------------------|
-| Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] | [![status22](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
-| Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | [![status20](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
-| macOS 13 [beta] | `macos-13` or `macos-13-xl`| [macOS-13] | [![statusumac13](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-13&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-13&redirect=1)
-| macOS 12 | `macos-latest`, `macos-latest-xl`, `macos-12`, or `macos-12-xl`| [macOS-12] | [![statusumac12](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-12&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-12&redirect=1)
-| macOS 11 | `macos-11`| [macOS-11] | [![statusmac11](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
-| Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | [![statuswin22](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2022&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2022&redirect=1) |
-| Windows Server 2019 | `windows-2019` | [windows-2019] | [![statuswin19](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
+| Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] | [![status22](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu22&badge=1)](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu22&redirect=1)
+| Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | [![status20](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu20&badge=1)](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=ubuntu20&redirect=1)
+| macOS 13 [beta] | `macos-13` or `macos-13-xl`| [macOS-13] | [![statusumac13](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-13&badge=1)](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-13&redirect=1)
+| macOS 12 | `macos-latest`, `macos-latest-xl`, `macos-12`, or `macos-12-xl`| [macOS-12] | [![statusumac12](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-12&badge=1)](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-12&redirect=1)
+| macOS 11 | `macos-11`| [macOS-11] | [![statusmac11](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-11&badge=1)](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=macos-11&redirect=1)
+| Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | [![statuswin22](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2022&badge=1)](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2022&redirect=1) |
+| Windows Server 2019 | `windows-2019` | [windows-2019] | [![statuswin19](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2019&badge=1)](https://gh-runnerimagesdeploymentstatus.azurewebsites.net/api/status?imageName=windows-2019&redirect=1)
 
 ### Label scheme
 

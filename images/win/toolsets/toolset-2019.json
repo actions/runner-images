@@ -171,7 +171,7 @@
         "ndk": {
             "default": "25",
             "versions": [
-                "23", "24", "25"
+                "23", "24", "25", "26"
             ]
         }
     },
@@ -463,7 +463,8 @@
         "version": "5.7"
     },
     "mongodb": {
-        "version": "5.0"
+        "version": "5.0",
+        "signature": "F2D7C28591847BB2CB2B1C2A0C59459FDC728A38"
     },
     "nsis": {
         "version": "3.08"

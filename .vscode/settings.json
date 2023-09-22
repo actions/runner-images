@@ -1,4 +1,6 @@
 {
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
   "powershell.codeFormatting.addWhitespaceAroundPipe": true,
   "powershell.codeFormatting.alignPropertyValuePairs": true,
   "powershell.codeFormatting.autoCorrectAliases": true,
@@ -15,6 +17,9 @@
   "powershell.codeFormatting.whitespaceBetweenParameters": true,
   "powershell.codeFormatting.whitespaceInsideBrace": true,
   "shellcheck.exclude": [
-    "SC1091"
+    "SC1090","SC2096"
+  ],
+  "shellcheck.customArgs": [
+    "-x"
   ]
 }
