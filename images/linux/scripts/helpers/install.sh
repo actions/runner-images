@@ -20,7 +20,7 @@ download_with_retries() {
     fi
 
     # Save current errexit state and disable it to prevent unexpected exit on error
-    if echo $SHELLOPTS | grep '\(^\|:\)errexit\(:\|$\)'
+    if echo $SHELLOPTS | grep '\(^\|:\)errexit\(:\|$\)' > /dev/null;
     then
         local ERR_EXIT_ENABLED=true
     else
