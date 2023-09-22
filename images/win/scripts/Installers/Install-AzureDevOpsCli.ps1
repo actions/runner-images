@@ -21,7 +21,7 @@ Write-Host "Warmup 'az-devops'"
     Invoke-ValidateCommand -Command "az $_ --help"
 }
 
-# Run logout command to force installation of the python credential handlers
+# Run login/logout command to force installation of the python credential handlers
 Invoke-ValidateCommand -Command "echo 'dummy' | az devops login"
 Invoke-ValidateCommand -Command "az devops logout"
 
