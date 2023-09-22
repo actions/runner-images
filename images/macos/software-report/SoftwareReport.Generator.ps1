@@ -42,7 +42,9 @@ $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
-    $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
+}
+$languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MSBuildVersion))
     $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
     $languageAndRuntime.AddToolVersion("NVM", $(Get-NVMVersion))
@@ -74,8 +76,8 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
 }
 $packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
+$packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
-    $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
     $packageManagement.AddToolVersion("Pip", $(Get-PipVersion -Version 2))
 }
 
