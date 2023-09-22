@@ -21,9 +21,9 @@ Write-Host "Warmup 'az-devops'"
     Invoke-ValidateCommand -Command "az $_ --help"
 }
 
-# az devops login requires python package 'keyring~=17.1.1' unfortunately it won't install
-# when az devops is running in a non-interactive session by calling `az devops login`
-echo "dummy" | az devops login --debug
-az devops logout --debug
+# calling az devops login to force it to install `keyring`. Login will actually fail, redirecting error to null
+echo "dummy" | az devops login | out-null
+# calling az devops logout to be sure no credentials remain.
+az devops logout | out-null
 
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "Azure DevOps CLI"
