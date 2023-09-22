@@ -23,7 +23,7 @@ Write-Host "Warmup 'az-devops'"
 
 # az devops login requires python package 'keyring~=17.1.1' unfortunately it won't install
 # when az devops is running in a non-interactive session by calling `az devops login`
-$pythonPath = resolve-path (join-path ([System.IO.Path]::GetDirectoryName((Get-Command az).Path)) "..\python.exe")
-Invoke-ValidateCommand -Command "& '$pythonPath' -m pip install keyring~=17.1.1 --target '$env:AZURE_EXTENSION_DIR\azure-devops' -vv --disable-pip-version-check --no-cache-dir" 
+echo "dummy" | az devops login --debug
+az devops logout --debug
 
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "Azure DevOps CLI"
