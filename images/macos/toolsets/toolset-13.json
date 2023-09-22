@@ -96,7 +96,6 @@
     "ruby": {
         "default": "3.0",
         "rubygems": [
-            "xcode-install",
             "cocoapods",
             "xcpretty",
             "bundler",
