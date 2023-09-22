@@ -19,7 +19,7 @@ $externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({
 Use-ChecksumComparison $fileHash $externalHash
 #endregion
 
-Install-Binary -FilePath $packagePath -Name $installerFile
+Install-Binary -FilePath $packagePath
 
 Add-MachinePathItem "C:\Program Files (x86)\GitHub CLI"
 
