@@ -22,7 +22,7 @@ Write-Host "Warmup 'az-devops'"
 }
 
 # Run logout command to force installation of the python credential handlers
-Invoke-ValidateCommand -Command "echo "dummy" | az devops login"
+Invoke-ValidateCommand -Command "echo 'dummy' | az devops login"
 Invoke-ValidateCommand -Command "az devops logout"
 
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "Azure DevOps CLI"
