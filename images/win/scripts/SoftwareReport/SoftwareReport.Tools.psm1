@@ -232,12 +232,6 @@ function Get-CloudFoundryVersion {
     return $cfVersion
 }
 
-function Get-HubVersion {
-    ($(hub version) | Select-String -Pattern "hub version") -match "hub version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $hubVersion = $Matches.Version
-    return $hubVersion
-}
-
 function Get-7zipVersion {
     (7z | Out-String) -match "7-Zip (?<version>\d+\.\d+\.?\d*)" | Out-Null
     $version = $Matches.Version
