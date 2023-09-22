@@ -728,7 +728,7 @@ function Get-HashFromGitHubReleaseBody {
         }
     }
     $body = (Invoke-RestMethod -Uri $releaseUrl).body -replace('`', "") -join "`n"
-    $matchingLine = $body.Split("`n") | Where-Object { $_ -like "*$FileName*" }    
+    $matchingLine = $body.Split("`n") | Where-Object { $_ -like "*$FileName*" }
     if ([string]::IsNullOrEmpty($matchingLine)) {
         throw "File name '$FileName' not found in release body."
     }
@@ -745,9 +745,9 @@ function Test-FileSignature {
         [Parameter(Mandatory=$true)]
         [string]$ExpectedThumbprint
     )
- 
+
     $signature = Get-AuthenticodeSignature $FilePath
- 
+
     if ($signature.Status -ne "Valid") {
         throw "Signature status is not valid. Status: $($signature.Status)"
     }
@@ -763,7 +763,7 @@ function Invoke-ValidateCommand {
     param(
         [Parameter(Mandatory)]
         [string]$Command,
-        [Uint] $Timeout = 0
+        [int] $Timeout = 0
     )
 
     if ($Timeout -eq 0)
