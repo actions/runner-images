@@ -19,7 +19,6 @@ Use-ChecksumComparison $fileHash $externalHash
 #endregion
 
 Install-Binary  -FilePath $packagePath `
-                -Name $installerFile `
                 -ArgumentList (
                     "/VERYSILENT", `
                     "/NORESTART", `
