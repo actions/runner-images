@@ -55,6 +55,6 @@ Export-ModuleMember -Function @(
     'Get-WindowsUpdatesHistory'
     'New-ItemPath'
     'Get-ModuleVersionAsJob'
-    'Use-ChecksumСomparison'
+    'Use-ChecksumComparison'
     'Get-HashFromGitHubReleaseBody'
 )

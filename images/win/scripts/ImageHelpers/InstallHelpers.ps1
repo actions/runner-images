@@ -17,7 +17,7 @@ function Install-Binary
         The list of arguments that will be passed to the installer. Required for .exe binaries.
 
     .EXAMPLE
-        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet")
+        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet") -ExpectedSignature "XXXXXXXXXXXXXXXXXXXXXXXXXX"
     #>
 
     Param
@@ -28,7 +28,8 @@ function Install-Binary
         [String] $Name,
         [Parameter(Mandatory, ParameterSetName="LocalPath")]
         [String] $FilePath,
-        [String[]] $ArgumentList
+        [String[]] $ArgumentList,
+        [String] $ExpectedSignature
     )
 
     if ($PSCmdlet.ParameterSetName -eq "LocalPath")
@@ -39,6 +40,19 @@ function Install-Binary
     {
         Write-Host "Downloading $Name..."
         $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    }
+
+    if ($PSBoundParameters.ContainsKey('ExpectedSignature'))
+    {
+        if ($ExpectedSignature)
+        {
+            Test-FileSignature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
+
+        }
+        else
+        {
+            throw "ExpectedSignature parameter is specified, but no signature is provided."
+        }
     }
 
     # MSI binaries should be installed via msiexec.exe
@@ -630,7 +644,7 @@ function Get-GitHubPackageDownloadUrl {
     return $downloadUrl
 }
 
-function Use-ChecksumСomparison {
+function Use-ChecksumComparison {
     param (
         [Parameter(Mandatory=$true)]
         [string]$LocalFileHash,
@@ -686,4 +700,24 @@ function Get-HashFromGitHubReleaseBody {
         throw "Empty result. Check Split method parameters (delimiter and/or word number) for the matching line."
     }
     return $result
+}
+function Test-FileSignature {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$FilePath,
+        [Parameter(Mandatory=$true)]
+        [string]$ExpectedThumbprint
+    )
+ 
+    $signature = Get-AuthenticodeSignature $FilePath
+ 
+    if ($signature.Status -ne "Valid") {
+        throw "Signature status is not valid. Status: $($signature.Status)"
+    }
+
+    if ($signature.SignerCertificate.Thumbprint.Contains($ExpectedThumbprint) -ne $true) {
+        throw "Signature thumbprint do not match expected"
+    }
+
+    Write-Output "Signature for $FilePath is valid"
 }

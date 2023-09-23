@@ -109,7 +109,7 @@ function Get-GitFTPVersion {
     return $gitftpVersion
 }
 
-function Get-GoogleCloudSDKVersion {
+function Get-GoogleCloudCLIVersion {
     return (gcloud --version | Select-Object -First 1) | Take-OutputPart -Part 3
 }
 
