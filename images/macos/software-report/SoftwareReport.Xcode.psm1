@@ -236,7 +236,9 @@ function Build-XcodeSupportToolsSection {
     $xcversion = Run-Command "xcversion --version" | Select-String "^[0-9]"
 
     $toolNodes += [ToolVersionNode]::new("xcpretty", $xcpretty)
-    $toolNodes += [ToolVersionNode]::new("xcversion", $xcversion)
+    if ($os.IsBigSur -or $os.IsMonterey) {
+        $toolNodes += [ToolVersionNode]::new("xcversion", $xcversion)
+    }
 
     $nomadOutput = Run-Command "gem list nomad-cli"
     $nomadCLI = [regex]::matches($nomadOutput, "(\d+.){2}\d+").Value
