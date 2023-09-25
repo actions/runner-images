@@ -1,12 +1,16 @@
+| Announcements |
+|-|
+| [[All OS] Mislav's hub utility will be removed on October 2](https://github.com/actions/runner-images/issues/8362) |
+***
 # macOS 13
-- OS Version: macOS 13.5.1 (22G90)
+- OS Version: macOS 13.6 (22G120)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20230903.1
+- Image Version: 20230924.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.400
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.401
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.3
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -16,6 +20,7 @@
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
 - Julia 1.9.3
 - Kotlin 1.9.10-release-459
+- Mono 6.12.0.188
 - Perl 5.36.1
 - PHP 8.2.10
 - Python3 3.11.5
@@ -24,15 +29,16 @@
 
 ### Package Management
 - Bundler 2.4.19
-- Carthage 0.39.0
-- CocoaPods 1.12.1
-- Composer 2.6.2
-- Homebrew 4.1.7
-- NPM 9.6.7
+- Carthage 0.39.1
+- CocoaPods 1.13.0
+- Composer 2.6.3
+- Homebrew 4.1.12
+- NPM 9.8.1
+- NuGet 6.3.1.1
 - Pip3 23.2.1 (python 3.11)
 - Pipx 1.2.0
 - RubyGems 3.4.19
-- Vcpkg 2023 (build from commit 4a600e9fe)
+- Vcpkg 2023 (build from commit 5a38b5ec0)
 - Yarn 1.22.19
 
 ### Project Management
@@ -45,37 +51,36 @@
 - bazel 6.3.2
 - bazelisk 1.18.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.2.1
+- Curl 8.3.0
 - Git 2.42.0
 - Git LFS 3.4.0
-- GitHub CLI 2.33.0
+- GitHub CLI 2.35.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
-- jq 1.6
-- OpenSSL 1.1.1v  1 Aug 2023
+- jq 1.7
+- OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.9.4
 - pkg-config 0.29.2
-- Vagrant 2.3.7
 - yq 4.35.1
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.13.15
-- AWS SAM CLI 1.96.0
-- AWS Session Manager CLI 1.2.463.0
-- Azure CLI 2.50.0
+- AWS CLI 2.13.21
+- AWS SAM CLI 1.97.0
+- AWS Session Manager CLI 1.2.497.0
+- Azure CLI 2.52.0
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.20.4
+- Bicep CLI 0.21.1
 - Cabal 3.6.2.0
-- Cmake 3.27.4
-- CodeQL Action Bundles 2.14.2 2.14.3
-- Fastlane 2.214.0
+- Cmake 3.27.6
+- CodeQL Action Bundles 2.14.4 2.14.5
+- Fastlane 2.216.0
 - GHC 9.6.2
 - GHCup 0.1.19.4
 - Stack 2.9.3
-- SwiftFormat 0.52.3
-- Xcode Command Line Tools 14.3.1.0.1.1683849156
+- SwiftFormat 0.52.4
+- Xcode Command Line Tools 15.0.0.0.1.1694021235
 
 ### Linters
 - SwiftLint 0.52.4
@@ -83,14 +88,14 @@
 ### Browsers
 - Safari 16.6 (18615.3.12.11.2)
 - SafariDriver 16.6 (18615.3.12.11.2)
-- Google Chrome 116.0.5845.140
-- Google Chrome for Testing 116.0.5845.96
-- ChromeDriver 116.0.5845.96
-- Microsoft Edge 116.0.1938.69
-- Microsoft Edge WebDriver 116.0.1938.69
-- Mozilla Firefox 117.0
+- Google Chrome 117.0.5938.92
+- Google Chrome for Testing 117.0.5938.92
+- ChromeDriver 117.0.5938.92
+- Microsoft Edge 117.0.2045.40
+- Microsoft Edge WebDriver 117.0.2045.40
+- Mozilla Firefox 117.0.1
 - geckodriver 0.33.0
-- Selenium server 4.12.0
+- Selenium server 4.12.1
 
 #### Environment variables
 | Name            | Value                                 |
@@ -127,46 +132,45 @@
 
 #### Node.js
 - 16.20.2
-- 18.17.1
+- 18.18.0
 
 #### Go
-- 1.19.12
-- 1.20.7
-- 1.21.0
+- 1.19.13
+- 1.20.8
+- 1.21.1
 
 ### Rust Tools
-- Cargo 1.72.0
-- Rust 1.72.0
-- Rustdoc 1.72.0
+- Cargo 1.72.1
+- Rust 1.72.1
+- Rustdoc 1.72.1
 - Rustup 1.26.0
 
 #### Packages
-- Bindgen 0.66.1
+- Bindgen 0.68.1
 - Cargo-audit 0.18.1
 - Cargo-outdated 0.13.1
-- Cbindgen 0.25.0
+- Cbindgen 0.26.0
 - Clippy 0.1.72
 - Rustfmt 1.6.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.13
+- PowerShell 7.2.14
 
 #### PowerShell Modules
-- Az: 10.2.0
+- Az: 10.3.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
 ### Xcode
-| Version          | Build    | Path                           |
-| ---------------- | -------- | ------------------------------ |
-| 15.0 (beta)      | 15A5229m | /Applications/Xcode_15.0.app   |
-| 14.3.1 (default) | 14E300c  | /Applications/Xcode_14.3.1.app |
-| 14.2             | 14C18    | /Applications/Xcode_14.2.app   |
-| 14.1             | 14B47b   | /Applications/Xcode_14.1.app   |
+| Version          | Build   | Path                           |
+| ---------------- | ------- | ------------------------------ |
+| 15.0             | 15A240d | /Applications/Xcode_15.0.app   |
+| 14.3.1 (default) | 14E300c | /Applications/Xcode_14.3.1.app |
+| 14.2             | 14C18   | /Applications/Xcode_14.2.app   |
+| 14.1             | 14B47b  | /Applications/Xcode_14.1.app   |
 
 #### Xcode Support Tools
 - xcpretty 0.3.0
-- xcversion 2.8.1
 
 #### Installed SDKs
 | SDK                                                     | SDK Name                                      | Xcode Version |
@@ -195,8 +199,6 @@
 | Simulator - watchOS 9.1                                 | watchsimulator9.1                             | 14.1, 14.2    |
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0          |
-| visionOS 1.0                                            | xros1.0                                       | 15.0          |
-| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.0          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
@@ -206,18 +208,18 @@
 | DriverKit 23.0                                          | driverkit23.0                                 | 15.0          |
 
 #### Installed Simulators
-| OS           | Xcode Version                  | Simulators                                                                                                                                                                                                                                                                                                                                                           |
-| ------------ | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS 16.1     | 14.1                           | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                 |
-| iOS 16.2     | 14.2                           | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                 |
-| iOS 16.4     | 14.3.1                         | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                 |
-| iOS 17.0     | 14.1<br>14.2<br>14.3.1<br>15.0 | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                 |
-| tvOS 16.1    | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                  |
-| tvOS 16.4    | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                  |
-| tvOS 17.0    | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                  |
-| watchOS 9.1  | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm) |
-| watchOS 9.4  | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm) |
-| watchOS 10.0 | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm) |
+| OS           | Xcode Version                  | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------ | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iOS 16.1     | 14.1                           | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                                                                                                             |
+| iOS 16.2     | 14.2                           | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                                                                                                             |
+| iOS 16.4     | 14.3.1                         | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                                                                                                             |
+| iOS 17.0     | 14.1<br>14.2<br>14.3.1<br>15.0 | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                                        |
+| tvOS 16.1    | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                              |
+| tvOS 16.4    | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                              |
+| tvOS 17.0    | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                              |
+| watchOS 9.1  | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                             |
+| watchOS 9.4  | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                             |
+| watchOS 10.0 | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm) |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                            |
@@ -231,15 +233,16 @@
 | CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                                                   |
 | Google Play services       | 49                                                                                                                                                                                                                                 |
 | Google Repository          | 58                                                                                                                                                                                                                                 |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653 (default)                                                                                                                                                                             |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653 (default)<br>26.0.10792818                                                                                                                                                            |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                  |
 
 #### Environment variables
-| Name                    | Value                                              |
-| ----------------------- | -------------------------------------------------- |
-| ANDROID_HOME            | /Users/runner/Library/Android/sdk                  |
-| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/25.2.9519653 |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/25.2.9519653 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/25.2.9519653 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/25.2.9519653 |
-| ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                  |
+| Name                    | Value                                               |
+| ----------------------- | --------------------------------------------------- |
+| ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
+| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.0.10792818 |
+| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
+| ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
+
