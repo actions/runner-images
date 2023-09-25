@@ -4,11 +4,11 @@
 ################################################################################
 
 # Installing visual c++ redistibutable package.
-$InstallerName = "vcredist_x64.exe"
-$InstallerURI = "https://download.microsoft.com/download/0/5/6/056dcda9-d667-4e27-8001-8a0c6971d6b1/${InstallerName}"
-$ArgumentList = ("/install", "/quiet", "/norestart")
+#$InstallerName = "vcredist_x64.exe"
+#$InstallerURI = "https://download.microsoft.com/download/0/5/6/056dcda9-d667-4e27-8001-8a0c6971d6b1/${InstallerName}"
+#$ArgumentList = ("/install", "/quiet", "/norestart")
 
-Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
+#Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList
 
 ## Downloading mysql
 [version]$MysqlVersion = (Get-ToolsetContent).mysql.version

@@ -172,6 +172,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
+        "signature": "72105B6D5F370B62FD5C82F1512F7AD7DEE5F2C0",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -348,10 +349,12 @@
     },
     "serviceFabric": {
         "runtime": {
-            "version": "9.1.1436.9590"
+            "version": "9.1.1436.9590",
+            "signature": "AFBF0B8B6A18F7E23CCA1DDCD0AC1A55B4035173"
         },
         "sdk": {
-            "version": "6.1.1436"
+            "version": "6.1.1436",
+            "signature": "AFBF0B8B6A18F7E23CCA1DDCD0AC1A55B4035173"
         }
     },
     "dotnet": {
@@ -412,7 +415,8 @@
         "version": "8.2"
     },
     "postgresql": {
-        "version": "14"
+        "version": "14",
+        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
         "version": "latest",

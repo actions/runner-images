@@ -45,6 +45,10 @@ $GeckoDriverArchPath = Start-DownloadWithRetry -Url $GeckoDriverDownloadUrl -Nam
 Write-Host "Expand Gecko WebDriver archive..."
 Extract-7Zip -Path $GeckoDriverArchPath -DestinationPath $GeckoDriverPath
 
+# Validate Gecko WebDriver signature
+$GeckoDriverSignatureThumbprint = "1326B39C3D5D2CA012F66FB439026F7B59CB1974"
+Test-FileSignature -FilePath "$GeckoDriverPath/geckodriver.exe" -ExpectedThumbprint $GeckoDriverSignatureThumbprint
+
 Write-Host "Setting the environment variables..."
 Add-MachinePathItem -PathItem $GeckoDriverPath
 setx GeckoWebDriver "$GeckoDriverPath" /M

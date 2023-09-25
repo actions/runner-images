@@ -48,7 +48,7 @@ do {
 $ErrorActionPreference = $ErrorActionOldValue
 $InstallerName = $InstallerUrl.Split('/')[-1]
 $ArgumentList = ("--install_runtimes 0","--superpassword root","--enable_acledit 1","--unattendedmodeui none","--mode unattended")
-Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList
+Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList -ExpectedSignature (Get-ToolsetContent).postgresql.signature
 
 # Get Path to pg_ctl.exe
 $pgPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
