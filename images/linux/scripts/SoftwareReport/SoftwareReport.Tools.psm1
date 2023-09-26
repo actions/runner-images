@@ -234,11 +234,6 @@ function Get-FastlaneVersion {
     return $fastlaneVersion
 }
 
-function Get-HubCliVersion {
-    $hubVersion = hub --version | Select-String "hub version" | Take-OutputPart -Part 2
-    return $hubVersion
-}
-
 function Get-GitHubCliVersion {
     $ghVersion = gh --version | Select-String "gh version" | Take-OutputPart -Part 2
     return $ghVersion
