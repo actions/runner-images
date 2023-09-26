@@ -57,4 +57,5 @@ Export-ModuleMember -Function @(
     'Get-ModuleVersionAsJob'
     'Use-ChecksumComparison'
     'Get-HashFromGitHubReleaseBody'
+    'Test-FileSignature'
 )
