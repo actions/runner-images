@@ -107,8 +107,20 @@ function Get-KindVersion {
     return $kindVersion
 }
 
-function Get-MinGWVersion {
-    (gcc --version | Select-String -Pattern "MinGW-W64") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+function Get-GCCVersion {
+    (gcc --version | Select-String -Pattern "gcc.exe") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    $mingwVersion = $Matches.Version
+    return $mingwVersion
+}
+
+function Get-GDBVersion {
+    (gdb --version | Select-String -Pattern "GNU gdb") -match "(?<version>\d+\.\d+)" | Out-Null
+    $mingwVersion = $Matches.Version
+    return $mingwVersion
+}
+
+function Get-GNUBinutilsVersion {
+    (ld --version | Select-String -Pattern "GNU Binutils") -match "(?<version>\d+\.\d+)" | Out-Null
     $mingwVersion = $Matches.Version
     return $mingwVersion
 }
