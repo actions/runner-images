@@ -20,7 +20,7 @@ if ($userPath) {
 # Verify and run choco installer
 $signatureThumbprint = "83AC7D88C66CB8680BCE802E0F0F5C179722764B"
 $InstallScriptPath = Start-DownloadWithRetry -Url 'https://chocolatey.org/install.ps1'
-Test-FileSignature -FilePath $InstallScript -ExpectedThumbprint $signatureThumbprint
+Test-FileSignature -FilePath $InstallScriptPath -ExpectedThumbprint $signatureThumbprint
 Invoke-Expression $InstallScriptPath
 
 # Turn off confirmation
