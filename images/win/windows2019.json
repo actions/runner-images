@@ -25,7 +25,8 @@
         "install_password": null,
         "managed_image_name": "packer-win19-dev",
         "image_version": "dev",
-        "image_os": "win19"
+        "image_os": "win19",
+        "image_sku": "2019-Datacenter"
     },
     "sensitive-variables": [
         "install_password",
@@ -57,7 +58,7 @@
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
-            "image_sku": "2019-Datacenter",
+            "image_sku": "{{user `image_sku`}}",
             "communicator": "winrm",
             "winrm_use_ssl": "true",
             "winrm_insecure": "true",
