@@ -3,6 +3,7 @@
 ##  Desc:  Install Azure DevOps CLI
 ################################################################################
 
+$azureDevOpsCliConfigPath = 'C:\azureDevOpsCli'
 # Store azure-devops-cli cache outside of the provisioning user's profile
 [Environment]::SetEnvironmentVariable('AZURE_DEVOPS_EXT_CONFIG_DIR', $azureDevOpsCliConfigPath, [System.EnvironmentVariableTarget]::Machine)
 # make variable to be available in the current session
