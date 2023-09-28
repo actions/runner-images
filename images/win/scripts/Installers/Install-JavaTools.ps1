@@ -1,6 +1,7 @@
 ################################################################################
 ##  File:  Install-JavaTools.ps1
 ##  Desc:  Install various JDKs and java tools
+##  Supply chain security: JDK - checksum validation
 ################################################################################
 
 function Set-JavaPath {
@@ -63,6 +64,12 @@ function Install-JavaJDK {
     # Download and extract java binaries to temporary folder
     $downloadUrl = $asset.binary.package.link
     $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))
+
+    #region Supply chain security - JDK
+    $fileHash = (Get-FileHash -Path $archivePath -Algorithm SHA256).Hash
+    $externalHash = $asset.binary.package.checksum
+    Use-ChecksumComparison $fileHash $externalHash
+    #endregion
 
     # We have to replace '+' sign in the version to '-' due to the issue with incorrect path in Android builds https://github.com/actions/runner-images/issues/3014
     $fullJavaVersion = $asset.version.semver -replace '\+', '-'
