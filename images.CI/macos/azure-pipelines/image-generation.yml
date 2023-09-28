@@ -6,7 +6,6 @@ jobs:
     name: Mac-Cloud Image Generation
   variables:
   - group: Mac-Cloud Image Generation
-  - group: Mac-Cloud Image Generation Key Vault
 
   steps:
   - pwsh: |
