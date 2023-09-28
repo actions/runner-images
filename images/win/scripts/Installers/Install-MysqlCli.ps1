@@ -7,9 +7,9 @@
 $InstallerName = "vcredist_x64.exe"
 $InstallerURI = "https://download.microsoft.com/download/0/5/6/056dcda9-d667-4e27-8001-8a0c6971d6b1/${InstallerName}"
 $ArgumentList = ("/install", "/quiet", "/norestart")
-$InstallerSignatureTheumbrint = "3BDA323E552DB1FDE5F4FBEE75D6D5B2B187EEDC"
+$InstallerSignatureThumbrint = "3BDA323E552DB1FDE5F4FBEE75D6D5B2B187EEDC"
 
-Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList -ExpectedSignature $InstallerSignatureTheumbrint
+Install-Binary -Url $InstallerURI -Name $InstallerName -ArgumentList $ArgumentList -ExpectedSignature $InstallerSignatureThumbrint
 
 # Downloading mysql
 [version]$MysqlVersion = (Get-ToolsetContent).mysql.version
