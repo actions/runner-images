@@ -118,7 +118,6 @@ if (Test-IsWin19) {
     $cliTools.AddToolVersion("Cloud Foundry CLI", $(Get-CloudFoundryVersion))
 }
 $cliTools.AddToolVersion("GitHub CLI", $(Get-GHVersion))
-$cliTools.AddToolVersion("Hub CLI", $(Get-HubVersion))
 
 # Rust Tools
 Initialize-RustEnvironment

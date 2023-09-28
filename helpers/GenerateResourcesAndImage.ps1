@@ -266,16 +266,23 @@ Function GenerateResourcesAndImage {
                 $ResourceGroupExists = $false
             }
             else {
-                # Resource group already exists, ask the user what to do
-                $title = "Resource group '$ResourceGroupName' already exists"
-                $message = "Do you want to delete the resource group and all resources in it?"
+                # are we running in a non-interactive session?
+                # https://stackoverflow.com/questions/9738535/powershell-test-for-noninteractive-mode
+                if ([System.Console]::IsOutputRedirected -or ![Environment]::UserInteractive -or !!([Environment]::GetCommandLineArgs() | Where-Object { $_ -ilike '-noni*' })) {
+                    throw "Non-interactive mode, resource group '$ResourceGroupName' already exists, either specify -Force to delete it, or -ReuseResourceGroup to reuse."
+                }
+                else {
+                    # Resource group already exists, ask the user what to do
+                    $title = "Resource group '$ResourceGroupName' already exists"
+                    $message = "Do you want to delete the resource group and all resources in it?"
                 
-                $options = @(
-                    [System.Management.Automation.Host.ChoiceDescription]::new("&Yes", "Delete the resource group and all resources in it."),
-                    [System.Management.Automation.Host.ChoiceDescription]::new("&No", "Keep the resource group and continue."),
-                    [System.Management.Automation.Host.ChoiceDescription]::new("&Abort", "Abort execution.")
-                )
-                $result = $Host.UI.PromptForChoice($title, $message, $options, 0)
+                    $options = @(
+                        [System.Management.Automation.Host.ChoiceDescription]::new("&Yes", "Delete the resource group and all resources in it."),
+                        [System.Management.Automation.Host.ChoiceDescription]::new("&No", "Keep the resource group and continue."),
+                        [System.Management.Automation.Host.ChoiceDescription]::new("&Abort", "Abort execution.")
+                    )
+                    $result = $Host.UI.PromptForChoice($title, $message, $options, 0)
+                }
 
                 switch ($result) {
                     0 {

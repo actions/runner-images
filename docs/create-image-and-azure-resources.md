@@ -14,6 +14,22 @@ Packer also attempts to cleanup all the temporary resources it created (unless o
 
 After successful completion of all installation steps Packer creates managed image from the temporary VM's disk and deletes the VM.
 
+- [Build agent preparation](#build-agent-preparation)
+- [Manual image generation](#manual-image-generation)
+- [Manual image generation customization](#manual-image-generation-customization)
+  - [Network security](#network-security)
+  - [Azure subscription authentication](#azure-subscription-authentication)
+- [Generated machine deployment](#generated-machine-deployment)
+- [Automated image generation](#automated-image-generation)
+  - [Required variables](#required-variables)
+  - [Optional variables](#optional-variables)
+- [Builder variables](#builder-variables)
+- [Toolset](#toolset)
+- [Post-generation scripts](#post-generation-scripts)
+  - [Running scripts](#running-scripts)
+  - [Script details: Ubuntu](#script-details-ubuntu)
+  - [Script details: Windows](#script-details-windows)
+
 ## Build agent preparation
 
 Build agent is a machine where Packer process will be started.
@@ -55,15 +71,15 @@ In any case you will need these software installed:
   Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
   ```
 
-## Automated image generation
+## Manual image generation
 
-This repo bundles script that automates image generation process.
-You only need a build agent configured as described above and active Azure subscription.
-We suggest to start with UbuntuMinimal image because it includes only a minimal set of required software and builds in less then half an hour.
+This repo bundles script that helps generating images in Azure.
+All you need are Azure subscription and build agent configured as described above.
+We suggest starting with building UbuntuMinimal image because it includes only basic software and build in less than 30 minutes.
 
-All steps here are supposed to run in Powershell.
+All the commands below should be executed in Powershell.
 
-First, clone runner-images repository and change directory:
+First clone runner-images repository and set current directory to it:
 
 ```powershell
 git clone https://github.com/actions/runner-images.git
@@ -87,7 +103,7 @@ This function automatically creates all required Azure resources and kicks off p
 
 When image is ready you may proceed to [deployment](#generated-machine-deployment)
 
-## Image generation customization
+## Manual image generation customization
 
 Function `GenerateResourcesAndImage` accepts a bunch of arguments that may help you generating image in your specific environment.
 
@@ -166,11 +182,45 @@ Where:
 
 The function creates an Azure VM and generates network resources in Azure to make the VM accessible.
 
-## Manual image generation
+## Automated image generation
 
-If you want more control over image generation process you may run Packer directly. This section describes variables defined in Packer template. Some of them may be set using environment variables.
+If you want to generate images automatically (e.g. as a part of CI/CD pipeline)
+you can use Packer directly. To do that you will need:
+
+- A build agent configured as described in
+  [Build agent preparation](#build-agent-preparation) section.
+- Azure subscription and Service Principal configured as described in
+  [Azure subscription authentication](#azure-subscription-authentication) section.
+- Resource group created in your Azure subscription where managed image will be stored.
+- String to be used as password for the user used to install software (Windows only).
+
+Then you can invoke Packer in you CI/CD pipeline using the following command:
+
+```powershell
+packer build -var "subscription_id=$SubscriptionId" `
+             -var "client_id=$ClientId" `
+             -var "client_secret=$ClientSecret" `
+             -var "install_password=$InstallPassword" `
+             -var "location=$Location" `
+             -var "managed_image_name=$ImageName" `
+             -var "managed_image_resource_group_name=$ImageResourceGroupName" `
+             -var "tenant_id=$TenantId" `
+             $TemplatePath
+```
+
+Where:
+
+- `SubscriptionId` - your Azure Subscription ID
+- `ClientId` and `ClientSecret` - Service Principal credentials
+- `TenantId` - Azure Tenant ID
+- `InstallPassword` - password for the user used to install software (Windows only)
+- `Location` - location where resources will be created (e.g. "East US")
+- `ImageName` and `ImageResourceGroupName` - name of the resource group where managed image will be stored
+- `TemplatePath` - path to the Packer template file (e.g. "images/win/windows2022.json")
 
 ### Required variables
+
+The following variables are required to be passed to Packer process:
 
 | Template var | Env var | Description
 | ------------ | ------- | -----------
@@ -183,6 +233,8 @@ If you want more control over image generation process you may run Packer direct
 
 ### Optional variables
 
+The following variables are optional:
+
 - `managed_image_name` - Name of the managed image to create. If not specified, "Runner-Image-{{ImageType}}" will be used.
 - `build_resource_group_name` - Specify an existing resource group to run the build in it. By default, a temporary resource group will be created and destroyed as part of the build. If you do not have permission to do so, use build_resource_group_name to specify an existing resource group to run the build in it.
 - `object_id` - The object ID for the AAD SP. Will be derived from the oAuth token if empty.
@@ -193,7 +245,7 @@ If you want more control over image generation process you may run Packer direct
 - `virtual_network_resource_group_name` - If `virtual_network_name` is set, this value may also be set. If `virtual_network_name` is set, and this value is not set the builder attempts to determine the resource group containing the virtual network. If the resource group cannot be found, or it cannot be disambiguated, this value should be set.
 - `virtual_network_subnet_name` - If `virtual_network_name` is set, this value may also be set. If `virtual_network_name` is set, and this value is not set the builder attempts to determine the subnet to use with the virtual network. If the subnet cannot be found, or it cannot be disambiguated, this value should be set.
 
-### Builder variables
+## Builder variables
 
 The `builders` section contains variables for the `azure-arm` builder used in the project. Most of the builder variables are inherited from the `user variables` section, however, the variables can be overwritten to adjust image-generation performance.
 
@@ -203,7 +255,7 @@ The `builders` section contains variables for the `azure-arm` builder used in th
 
 **Detailed Azure builders documentation can be found in [packer documentation](https://www.packer.io/docs/builders/azure).**
 
-### Toolset
+## Toolset
 
 Configuration for some installed software is located in `toolset.json` files. These files define the list of Ruby, Python, Go versions, the list of PowerShell modules and VS components that will be installed to image. They can be changed if these tools are not required to reduce image generation time or image size.
 
@@ -213,7 +265,7 @@ Generated tool versions and details can be found in related projects:
 - [Go](https://github.com/actions/go-versions)
 - [Node](https://github.com/actions/node-versions)
 
-### Post-generation scripts
+## Post-generation scripts
 
 > :warning: These scripts are intended to run on a VM deployed in Azure
 
@@ -229,7 +281,7 @@ The scripts are copied to the image during the generation process to the followi
 - Windows: `C:\post-generation`
 - Linux:  `/opt/post-generation`
 
-#### Running scripts
+### Running scripts
 
 - Ubuntu
 
@@ -243,16 +295,14 @@ The scripts are copied to the image during the generation process to the followi
   Get-ChildItem C:\post-generation -Filter *.ps1 | ForEach-Object { & $_.FullName }
   ```
 
-#### Script details
-
-##### Ubuntu
+### Script details: Ubuntu
 
 - **cleanup-logs.sh** - removes all build process logs from the machine
 - **environment-variables.sh** - replaces `$HOME` with the default user's home directory for environmental variables related to the default user home directory
 - **homebrew-permissions.sh** - Resets homebrew repository directory by running `git reset --hard` to make the working tree clean after chmoding /home and changes the repository directory owner to the current user
 - **rust-permissions.sh** - fixes permissions for the Rust folder. Detailed issue explanation is provided in [runner-images/issues/572](https://github.com/actions/runner-images/issues/572).
 
-##### Windows
+### Script details: Windows
 
 - **GenerateIISExpressCertificate.ps1** - generates and imports a certificate to run applications with IIS Express through HTTPS
 - **InternetExplorerConfiguration** - turns off the Internet Explorer Enhanced Security feature
