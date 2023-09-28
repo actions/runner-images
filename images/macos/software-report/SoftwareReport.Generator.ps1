@@ -123,7 +123,6 @@ if ($os.IsBigSur) {
     $utilities.AddToolVersion("helm", $(Get-HelmVersion))
 }
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
-    $utilities.AddToolVersion("Hub CLI", $(Get-HubVersion))
     $utilities.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 }
 $utilities.AddToolVersion("jq", $(Get-JqVersion))

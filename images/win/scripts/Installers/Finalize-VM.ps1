@@ -91,13 +91,14 @@ $regUserServicesToDisables | ForEach-Object {
 
 # Disabled services
 $servicesToDisable = @(
-    "wuauserv"
-    "DiagTrack"
-    "dmwappushservice"
-    "PcaSvc"
-    "SysMain"
-    "gupdate"
-    "gupdatem"
+    'wuauserv'
+    'DiagTrack'
+    'dmwappushservice'
+    'PcaSvc'
+    'SysMain'
+    'gupdate'
+    'gupdatem'
+    'StorSvc'
 )
 
 $servicesToDisable | ForEach-Object {

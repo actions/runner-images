@@ -1,12 +1,10 @@
 | Announcements |
 |-|
-| [Ruby 2.4.x will be removed from the macOS 11 and Windows 2019 images on September 18](https://github.com/actions/runner-images/issues/8239) |
-| [Python 3.6.x will be removed from Ubuntu 20.04 and Windows 2019 images on September 18](https://github.com/actions/runner-images/issues/8238) |
-| [[All OSes] Go 1.18.x will be removed on September, 18](https://github.com/actions/runner-images/issues/8237) |
+| [[All OS] hub utility will be removed on October 2](https://github.com/actions/runner-images/issues/8362) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1970
-- Image Version: 20230918.1.0
+- Image Version: 20230924.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -19,7 +17,7 @@
 - Julia 1.9.3
 - Kotlin 1.9.10
 - LLVM 16.0.6
-- Node 18.17.1
+- Node 18.18.0
 - Perl 5.32.1
 - PHP 8.2.10
 - Python 3.9.13
@@ -30,12 +28,12 @@
 - Composer 2.6.3
 - Helm 3.12.3
 - Miniconda 23.5.2 (pre-installed on the image but not added to PATH)
-- NPM 9.6.7
+- NPM 9.8.1
 - NuGet 6.7.0.127
 - pip 23.2.1 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 0a50c9623)
+- Vcpkg (build from commit 5a38b5ec0)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -58,16 +56,16 @@
 - Bazelisk 1.18.0
 - Bicep 0.21.1
 - Cabal 3.10.1.0
-- CMake 3.27.5
+- CMake 3.27.6
 - CodeQL Action Bundles 2.14.4 2.14.5
 - Docker 24.0.6
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.21.0
+- Docker Compose v2 2.22.0
 - Docker-wincred 0.8.0
 - ghc 9.6.2
 - Git 2.42.0.windows.2
 - Git LFS 3.4.0
-- ImageMagick 7.1.1-15
+- ImageMagick 7.1.1-18
 - InnoSetup 6.2.2
 - jq 1.7-dirty
 - Kind 0.20.0
@@ -78,7 +76,7 @@
 - NSIS 3.08
 - OpenSSL 1.1.1v
 - Packer 1.9.4
-- Pulumi 3.83.0
+- Pulumi 3.85.0
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.11.1
@@ -92,18 +90,18 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.181
-- AWS CLI 2.13.19
+- AWS CLI 2.13.20
 - AWS SAM CLI 1.97.0
 - AWS Session Manager CLI 1.2.497.0
 - Azure CLI 2.52.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.34.0
+- GitHub CLI 2.35.0
 - Hub CLI 2.14.2
 
 ### Rust Tools
-- Cargo 1.72.0
-- Rust 1.72.0
-- Rustdoc 1.72.0
+- Cargo 1.72.1
+- Rust 1.72.1
+- Rustdoc 1.72.1
 - Rustup 1.26.0
 
 #### Packages
@@ -115,10 +113,10 @@
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 117.0.5938.89
-- Chrome Driver 117.0.5938.88
-- Microsoft Edge 117.0.2045.31
-- Microsoft Edge Driver 117.0.2045.31
+- Google Chrome 117.0.5938.92
+- Chrome Driver 117.0.5938.92
+- Microsoft Edge 117.0.2045.36
+- Microsoft Edge Driver 117.0.2045.41
 - Mozilla Firefox 117.0.1
 - Gecko Driver 0.33.0
 - IE Driver 4.11.0.0
@@ -166,7 +164,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 14.21.3
 - 16.20.2
-- 18.17.1
+- 18.18.0
 
 #### Python
 - 3.7.9
@@ -561,7 +559,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
-- PowerShell 7.2.13
+- PowerShell 7.2.14
 
 #### Powershell Modules
 - Az: 9.3.0
@@ -570,10 +568,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.416
+- AWSPowershell: 4.1.420
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.5.0
+- Microsoft.Graph: 2.6.1
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
@@ -598,18 +596,18 @@ All other versions are saved but not installed.
 | CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                                                   |
 | Google Play services       | 49                                                                                                                                                                                                                                 |
 | Google Repository          | 58                                                                                                                                                                                                                                 |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653                                                                                                                                                                                       |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653<br>26.0.10792818                                                                                                                                                                      |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                  |
 
 #### Environment variables
-| Name                    | Value                                   |
-| ----------------------- | --------------------------------------- |
-| ANDROID_HOME            | C:\Android\android-sdk                  |
-| ANDROID_NDK             | C:\Android\android-sdk\ndk\25.2.9519653 |
-| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\25.2.9519653 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\25.2.9519653 |
-| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\25.2.9519653 |
-| ANDROID_SDK_ROOT        | C:\Android\android-sdk                  |
+| Name                    | Value                                    |
+| ----------------------- | ---------------------------------------- |
+| ANDROID_HOME            | C:\Android\android-sdk                   |
+| ANDROID_NDK             | C:\Android\android-sdk\ndk\25.2.9519653  |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\25.2.9519653  |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\26.0.10792818 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\25.2.9519653  |
+| ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
 
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |

@@ -48,9 +48,3 @@ Describe "CloudFoundry CLI" -Skip:(Test-IsWin22) {
         "cf --version" | Should -ReturnZeroExitCode
     }
 }
-
-Describe "Hub CLI" {
-    It "hub is installed" {
-        "hub --version" | Should -ReturnZeroExitCode
-    }
-}

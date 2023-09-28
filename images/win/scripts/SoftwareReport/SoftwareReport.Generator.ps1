@@ -86,7 +86,9 @@ $tools.AddToolVersion("jq", $(Get-JQVersion))
 $tools.AddToolVersion("Kind", $(Get-KindVersion))
 $tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))
 $tools.AddToolVersion("Mercurial", $(Get-MercurialVersion))
-$tools.AddToolVersion("Mingw-w64", $(Get-MinGWVersion))
+$tools.AddToolVersion("gcc", $(Get-GCCVersion))
+$tools.AddToolVersion("gdb", $(Get-GDBVersion))
+$tools.AddToolVersion("GNU Binutils", $(Get-GNUBinutilsVersion))
 $tools.AddToolVersion("Newman", $(Get-NewmanVersion))
 $tools.AddToolVersion("NSIS", $(Get-NSISVersion))
 $tools.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
@@ -118,7 +120,6 @@ if (Test-IsWin19) {
     $cliTools.AddToolVersion("Cloud Foundry CLI", $(Get-CloudFoundryVersion))
 }
 $cliTools.AddToolVersion("GitHub CLI", $(Get-GHVersion))
-$cliTools.AddToolVersion("Hub CLI", $(Get-HubVersion))
 
 # Rust Tools
 Initialize-RustEnvironment
