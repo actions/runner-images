@@ -12,13 +12,20 @@ $origPath = $env:PATH
 
 function Install-Msys2 {
   $msys2_release = "https://api.github.com/repos/msys2/msys2-installer/releases/latest"
-  $msys2Uri = ((Invoke-RestMethod $msys2_release).assets | Where-Object {
-    $_.name -match "^msys2-x86_64" -and $_.name.EndsWith(".exe") }).browser_download_url
-
+  $assets = (Invoke-RestMethod -Uri $msys2_release).assets
+  $msys2Uri = ($assets | Where-Object { $_.name -match "^msys2-x86_64" -and $_.name.EndsWith(".exe") }).browser_download_url
+  
   # Download the latest msys2 x86_64, filename includes release date
   Write-Host "Starting msys2 download using $($msys2Uri.split('/')[-1])"
   $msys2File = Start-DownloadWithRetry -Url $msys2Uri
   Write-Host "Finished download"
+
+  #region Supply chain security - Kind
+  $fileHash = (Get-FileHash -Path $msys2File -Algorithm SHA256).Hash
+  $hashUrl = ($assets.browser_download_url -match "msys2-checksums.txt") | Select-Object -First 1
+  $externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*msys2-x86_64*" }).Split(' ')[0]
+  Use-ChecksumComparison $fileHash $externalHash
+  #endregion
 
   # extract tar.xz to C:\
   Write-Host "Starting msys2 installation"
