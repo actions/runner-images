@@ -19,7 +19,15 @@ Copy-Item ${env:USERPROFILE}\AppData\Local\Microsoft\VisualStudio -Destination c
 
 reg.exe load HKLM\DEFAULT c:\users\default\ntuser.dat
 reg.exe copy HKCU\Software\Microsoft\VisualStudio HKLM\DEFAULT\Software\Microsoft\VisualStudio /s
+
+# disable TSVNCache.exe
+$registryKeyPath = 'HKCU:\Software\TortoiseSVN'
+if (-not(Test-Path -Path $registryKeyPath)) {
+    New-Item -Path $registryKeyPath -ItemType Directory -Force
+}
+
+New-ItemProperty -Path $RegistryKeyPath -Name CacheType -PropertyType DWORD -Value 0
+reg.exe copy HKCU\Software\TortoiseSVN HKLM\DEFAULT\Software\TortoiseSVN /s
+
 reg.exe unload HKLM\DEFAULT
-
-
 Write-Host "Warmup-User.ps1 - completed"

@@ -1,16 +1,24 @@
 ################################################################################
 ##  File:  Install-Git.ps1
 ##  Desc:  Install Git for Windows
+##  Supply chain security: Git - checksum validation, Hub CLI - managed by package manager
 ################################################################################
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 
 # Install the latest version of Git for Windows
-$gitReleases = Invoke-RestMethod "https://api.github.com/repos/git-for-windows/git/releases/latest"
+$repoURL = "https://api.github.com/repos/git-for-windows/git/releases/latest"
+$gitReleases = Invoke-RestMethod $repoURL
 [string]$downloadUrl = $gitReleases.assets.browser_download_url -match "Git-.+-64-bit.exe"
-
 $installerFile = Split-Path $downloadUrl -Leaf
-Install-Binary  -Url $downloadUrl `
-                -Name $installerFile `
+$packagePath = Start-DownloadWithRetry -Url $downloadUrl -Name $installerFile
+
+#region Supply chain security - Git
+$fileHash = (Get-FileHash -Path $packagePath -Algorithm SHA256).Hash
+$externalHash = Get-HashFromGitHubReleaseBody -Url $RepoURL -FileName $installerFile
+Use-ChecksumComparison $fileHash $externalHash
+#endregion
+
+Install-Binary  -FilePath $packagePath `
                 -ArgumentList (
                     "/VERYSILENT", `
                     "/NORESTART", `
@@ -27,10 +35,6 @@ Update-SessionEnvironment
 
 git config --system --add safe.directory "*"
 
-# Install hub with --ignore-dependencies option to prevent the installation of the git package. 
-# See details in https://github.com/actions/runner-images/issues/2375
-Choco-Install -PackageName hub -ArgumentList "--ignore-dependencies"
-
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
 
@@ -42,4 +46,3 @@ ssh-keyscan -t rsa,ecdsa,ed25519 github.com >> "C:\Program Files\Git\etc\ssh\ssh
 ssh-keyscan -t rsa ssh.dev.azure.com >> "C:\Program Files\Git\etc\ssh\ssh_known_hosts"
 
 Invoke-PesterTests -TestFile "Git"
-Invoke-PesterTests -TestFile "CLI.Tools" -TestName "Hub CLI"
