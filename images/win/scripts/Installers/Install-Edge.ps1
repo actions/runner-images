@@ -36,7 +36,7 @@ Extract-7Zip -Path $EdgeDriverArchPath -DestinationPath $EdgeDriverPath
 
 #Validate the EdgeDriver signature
 $EdgeDriverSignatureThumbprint = "72105B6D5F370B62FD5C82F1512F7AD7DEE5F2C0"
-Test-FileSignature -FilePath "$EdgeDriverPath\msedgedriver.exe" -ExpectedSignature $EdgeDriverSignatureThumbprint
+Test-FileSignature -FilePath "$EdgeDriverPath\msedgedriver.exe" -ExpectedThumbprint $EdgeDriverSignatureThumbprint
 
 Write-Host "Setting the environment variables..."
 setx EdgeWebDriver "$EdgeDriverPath" /M
