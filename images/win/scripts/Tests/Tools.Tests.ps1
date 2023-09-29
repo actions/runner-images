@@ -21,41 +21,16 @@ Describe "Bazel" {
     }
 }
 
-Describe "CodeQLBundles" {
-    It "Latest CodeQL Bundle" {
+Describe "CodeQL Bundle" {
+    It "Is installed" {
         $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-        $LatestCodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
-        $LatestCodeQLPath = Join-Path $LatestCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
-        "$LatestCodeQLPath version --quiet" | Should -ReturnZeroExitCode
+        $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
+        $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
+        "$CodeQLPath version --quiet" | Should -ReturnZeroExitCode
 
-        $LatestCodeQLPacksPath = Join-Path $LatestCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
-        $LatestCodeQLPacksPath | Should -Exist
+        $CodeQLPacksPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
+        $CodeQLPacksPath | Should -Exist
     }
-
-    It "Prior CodeQL Bundle" {
-        $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-        $PriorCodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -Last 1 -Expand FullName
-        $PriorCodeQLPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
-        "$PriorCodeQLPath version --quiet" | Should -ReturnZeroExitCode
-
-        $PriorCodeQLPacksPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
-        $PriorCodeQLPacksPath | Should -Exist
-    }
-
-    It "Latest and Prior CodeQL Bundles are unique" {
-        $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-
-        $LatestCodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
-        $LatestCodeQLPath = Join-Path $LatestCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
-        $LatestCodeQLVersion = & $LatestCodeQLPath version --quiet
-
-        $PriorCodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -Last 1 -Expand FullName
-        $PriorCodeQLPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
-        $PriorCodeQLVersion = & $PriorCodeQLPath version --quiet
-
-        $LatestCodeQLVersion | Should -Not -Match $PriorCodeQLVersion
-    }
-
 }
 
 Describe "R" {
