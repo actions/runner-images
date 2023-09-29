@@ -2,6 +2,7 @@
 ##  File:  Install-PyPy.ps1
 ##  Team:  CI-Build
 ##  Desc:  Install PyPy
+##  Supply chain security: checksum validation
 ################################################################################
 function Install-PyPy
 {
@@ -82,6 +83,11 @@ $toolsetVersions = Get-ToolsetContent | Select-Object -ExpandProperty toolcache 
 # Get PyPy releases
 $pypyVersions = Invoke-RestMethod https://downloads.python.org/pypy/versions.json
 
+# required for html parsing
+Install-Module PowerHTML -Scope CurrentUser 
+Import-Module PowerHTML
+$checksums = (Invoke-RestMethod -Uri 'https://www.pypy.org/checksums.html' | ConvertFrom-HTML).SelectNodes('//*[@id="content"]/article/div/pre')
+
 Write-Host "Starting installation PyPy..."
 foreach($toolsetVersion in $toolsetVersions.versions)
 {
@@ -93,8 +99,23 @@ foreach($toolsetVersion in $toolsetVersions.versions)
     
     if ($latestMajorPyPyVersion)
     {
-        Write-Host "Found PyPy '$($latestMajorPyPyVersion.filename)' package"
-        $tempPyPyPackagePath = Start-DownloadWithRetry -Url $latestMajorPyPyVersion.download_url -Name $latestMajorPyPyVersion.filename
+        $filename = $latestMajorPyPyVersion.filename
+        Write-Host "Found PyPy '$filename' package"
+        $tempPyPyPackagePath = Start-DownloadWithRetry -Url $latestMajorPyPyVersion.download_url -Name $filename
+
+        #region Supply chain security
+        $localFileHash = (Get-FileHash -Path $tempPyPyPackagePath -Algorithm SHA256).Hash
+        $distributorFileHash = $null
+
+        ForEach($node in $checksums) {
+            if($node.InnerText -ilike "*${filename}*") {
+                $distributorFileHash = $node.InnerText.ToString().Split("`n").Where({ $_ -ilike "*${filename}*" }).Split(' ')[0]
+            }
+        }
+
+        Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $distributorFileHash
+        #endregion
+
         Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $toolsetVersions.arch
     }
     else
