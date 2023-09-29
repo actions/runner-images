@@ -33,7 +33,8 @@
             "versions": [
                 "14.*",
                 "16.*",
-                "18.*"
+                "18.*",
+                "20.*"
             ]
         },
         {
@@ -222,9 +223,11 @@
             "node:14",
             "node:16",
             "node:18",
+            "node:20",
             "node:14-alpine",
             "node:16-alpine",
             "node:18-alpine",
+            "node:20-alpine",
             "ubuntu:18.04",
             "ubuntu:20.04",
             "ubuntu:22.04"
