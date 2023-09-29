@@ -38,7 +38,7 @@ function Get-UserVariable {
         [string]$UserVariable
     )
     
-    [System.Environment]::GetEnvironmentVariable($SystemVariable, "User")
+    [System.Environment]::GetEnvironmentVariable($UserVariable, "User")
 }
 
 function Get-SystemVariable {
