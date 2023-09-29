@@ -396,7 +396,8 @@
         "version": "3.8"
     },
     "mysql": {
-        "version": "8.0"
+        "version": "8.0",
+        "signature": "DD34D7C71F160972DE0CE25B695A0D6A9C95BD91"
     },
     "mongodb": {
         "version": "5.0",
