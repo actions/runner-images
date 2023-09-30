@@ -1,5 +1,12 @@
 #!/bin/bash -e -o pipefail
 
+################################################################################
+##  File:       action-archive-cache.sh
+##  Desc:       Download latest release from https://github.com/actions/action-verions
+##              and un-tar to $HOME/actionarchivecache
+##  Maintainer: #actions-runtime and @TingluoHuang
+################################################################################
+
 source ~/utils/utils.sh
 
 echo "Check if ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE folder exist..."
