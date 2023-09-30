@@ -1,7 +1,8 @@
 ################################################################################
-##  File:  Install-ActionArchiveCache.ps1
-##  Desc:  Install Action Archive Cache
-##         from https://github.com/actions/action-versions
+##  File:       Install-ActionArchiveCache.ps1
+##  Desc:       Download latest release from https://github.com/actions/action-versions
+##              and un-zip to C:\actionarchivecache
+##  Maintainer: #actions-runtime and @TingluoHuang
 ################################################################################
 
 if (-not (Test-Path $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE))
