@@ -1,8 +1,9 @@
 #!/bin/bash -e
 ################################################################################
-##  File:  action-archive-cache.sh
-##  Desc:  Download latest release from https://github.com/actions/action_verions
-##         and un-tar to /opt/actionarchivecache
+##  File:       action-archive-cache.sh
+##  Desc:       Download latest release from https://github.com/actions/action-verions
+##              and un-tar to /opt/actionarchivecache
+##  Maintainer: #actions-runtime and @TingluoHuang
 ################################################################################
 
 # Source the helpers for use with the script
