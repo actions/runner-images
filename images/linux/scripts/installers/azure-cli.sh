@@ -19,6 +19,10 @@ rm -f /etc/apt/sources.list.d/azure-cli.list
 rm -f /etc/apt/sources.list.d/azure-cli.list.save
 
 # Warm-up CLI
-az --help
+
+# az --version performs an update check and caches the results
+az --version >> /dev/null
+# az --help forces a command cache rebuild
+az --help >> /dev/null
 
 invoke_tests "CLI.Tools" "Azure CLI"
