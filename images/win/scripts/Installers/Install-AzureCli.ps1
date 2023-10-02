@@ -18,6 +18,8 @@ $azureCliExtensionPath = Join-Path $Env:CommonProgramFiles 'AzureCliExtensionDir
 $null = New-Item -ItemType 'Directory' -Path $azureCliExtensionPath
 
 [Environment]::SetEnvironmentVariable('AZURE_EXTENSION_DIR', $azureCliExtensionPath, [System.EnvironmentVariableTarget]::Machine)
+# make variable to be available in the current session
+${env:AZURE_EXTENSION_DIR} = $azureCliExtensionPath
 
 # Warm-up Azure CLI
 
