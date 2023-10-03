@@ -8,7 +8,7 @@ if is_Monterey || is_BigSur; then
     Python2Url="https://www.python.org/ftp/python/2.7.18/python-2.7.18-macosx10.9.pkg"
     download_with_retries $Python2Url "/tmp" "python2.pkg"
 
-    installer -showChoiceChangesXML -pkg /tmp/python2.pkg -target / > /tmp/python2_choices.xml
+    sudo installer -showChoiceChangesXML -pkg /tmp/python2.pkg -target / > /tmp/python2_choices.xml
 
     # To avoid symlink conflicts, remove tools installation in /usr/local/bin using installer choices
     xmllint --shell /tmp/python2_choices.xml <<EOF
@@ -17,7 +17,7 @@ if is_Monterey || is_BigSur; then
     save
 EOF
 
-    installer -applyChoiceChangesXML /tmp/python2_choices.xml -pkg /tmp/python2.pkg -target /
+    sudo installer -applyChoiceChangesXML /tmp/python2_choices.xml -pkg /tmp/python2.pkg -target /
 
     pip install --upgrade pip
 
