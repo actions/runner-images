@@ -22,12 +22,21 @@ Describe "Bazel" {
 }
 
 Describe "CodeQL Bundle" {
-    It "Is installed" {
+    It "Single distribution installed" {
+        $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Should -HaveCount 1
+    }
+
+    It "Contains CodeQL executable" {
         $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
         $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
         $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
         "$CodeQLPath version --quiet" | Should -ReturnZeroExitCode
+    }
 
+    It "Contains CodeQL packs" {
+        $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
         $CodeQLPacksPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
         $CodeQLPacksPath | Should -Exist
     }
