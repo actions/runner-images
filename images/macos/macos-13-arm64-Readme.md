@@ -1,11 +1,7 @@
-| Announcements |
-|-|
-| [[All OS] hub utility will be removed on October 2](https://github.com/actions/runner-images/issues/8362) |
-***
 # macOS 13
 - OS Version: macOS 13.6 (22G120)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20230924.1
+- Image Version: 20230924.3
 
 ## Installed Software
 
@@ -22,8 +18,6 @@
 - Kotlin 1.9.10-release-459
 - Mono 6.12.0.188
 - Perl 5.36.1
-- PHP 8.2.10
-- Python3 3.11.5
 - R 4.3.1
 - Ruby 3.0.6p216
 
@@ -31,14 +25,11 @@
 - Bundler 2.4.19
 - Carthage 0.39.1
 - CocoaPods 1.13.0
-- Composer 2.6.3
+- Composer command
 - Homebrew 4.1.12
 - NPM 9.8.1
 - NuGet 6.3.1.1
-- Pip3 23.2.1 (python 3.11)
-- Pipx 1.2.0
 - RubyGems 3.4.19
-- Vcpkg 2023 (build from commit 5a38b5ec0)
 - Yarn 1.22.19
 
 ### Project Management
@@ -51,7 +42,7 @@
 - bazel 6.3.2
 - bazelisk 1.18.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.3.0
+- Curl 8.1.2
 - Git 2.42.0
 - Git LFS 3.4.0
 - GitHub CLI 2.35.0
@@ -66,78 +57,16 @@
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.13.21
-- AWS SAM CLI 1.97.0
-- AWS Session Manager CLI 1.2.497.0
 - Azure CLI 2.52.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.21.1
-- Cabal 3.6.2.0
 - Cmake 3.27.6
 - CodeQL Action Bundles 2.14.4 2.14.5
 - Fastlane 2.216.0
-- GHC 9.6.2
-- GHCup 0.1.19.4
-- Stack 2.9.3
 - SwiftFormat 0.52.4
 - Xcode Command Line Tools 15.0.0.0.1.1694021235
 
 ### Linters
-- SwiftLint 0.52.4
-
-### Browsers
-- Safari 16.6 (18615.3.12.11.2)
-- SafariDriver 16.6 (18615.3.12.11.2)
-- Google Chrome 117.0.5938.92
-- Google Chrome for Testing 117.0.5938.92
-- ChromeDriver 117.0.5938.92
-- Microsoft Edge 117.0.2045.40
-- Microsoft Edge WebDriver 117.0.2045.40
-- Mozilla Firefox 117.0.1
-- geckodriver 0.33.0
-- Selenium server 4.12.1
-
-#### Environment variables
-| Name            | Value                                 |
-| --------------- | ------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/share/chromedriver-mac-x64 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver          |
-| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin        |
-
-### Java
-| Version              | Environment Variable |
-| -------------------- | -------------------- |
-| 8.0.382+5            | JAVA_HOME_8_X64      |
-| 11.0.20+101          | JAVA_HOME_11_X64     |
-| 17.0.8+101 (default) | JAVA_HOME_17_X64     |
-
-### Cached Tools
-
-#### Ruby
-- 3.0.6
-- 3.1.4
-
-#### Python
-- 3.8.18
-- 3.9.18
-- 3.10.13
-- 3.11.5
-
-#### PyPy
-- 2.7.18 [PyPy 7.3.12]
-- 3.7.13 [PyPy 7.3.9]
-- 3.8.16 [PyPy 7.3.11]
-- 3.9.17 [PyPy 7.3.12]
-- 3.10.12 [PyPy 7.3.12]
-
-#### Node.js
-- 16.20.2
-- 18.18.0
-
-#### Go
-- 1.19.13
-- 1.20.8
-- 1.21.1
 
 ### Rust Tools
 - Cargo 1.72.1
@@ -220,29 +149,3 @@
 | watchOS 9.1  | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                             |
 | watchOS 9.4  | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                             |
 | watchOS 10.0 | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm) |
-
-### Android
-| Package Name               | Version                                                                                                                                                                                                                            |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 8.0                                                                                                                                                                                                                                |
-| Android Emulator           | 32.1.15                                                                                                                                                                                                                            |
-| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
-| Android SDK Platforms      | android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Platform-Tools | 34.0.4                                                                                                                                                                                                                             |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                             |
-| CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                                                   |
-| Google Play services       | 49                                                                                                                                                                                                                                 |
-| Google Repository          | 58                                                                                                                                                                                                                                 |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653 (default)<br>26.0.10792818                                                                                                                                                            |
-| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                  |
-
-#### Environment variables
-| Name                    | Value                                               |
-| ----------------------- | --------------------------------------------------- |
-| ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
-| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.0.10792818 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
-| ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
-

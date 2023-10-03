@@ -302,11 +302,6 @@ function Get-GitHubCLIVersion {
     return $ghVersion
 }
 
-function Get-HubVersion {
-    $hubVersion = Run-Command "brew list --versions hub" | Take-Part -Part 1
-    return $hubVersion
-}
-
 function Get-WgetVersion {
     $wgetVersion = Run-Command "wget --version" | Select-String "GNU Wget" | Take-Part -Part 2
     return $wgetVersion

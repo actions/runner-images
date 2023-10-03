@@ -58,7 +58,8 @@
             "versions": [
                 "14.*",
                 "16.*",
-                "18.*"
+                "18.*",
+                "20.*"
             ]
         },
         {
@@ -150,7 +151,8 @@
         }
     },
     "mingw": {
-	"version": "12.2.0.03042023"
+        "version": "12.2.0",
+        "runtime": "ucrt"
     },
     "MsysPackages": {
         "msys2": [],
@@ -396,7 +398,8 @@
         "version": "3.8"
     },
     "mysql": {
-        "version": "8.0"
+        "version": "8.0",
+        "signature": "DD34D7C71F160972DE0CE25B695A0D6A9C95BD91"
     },
     "mongodb": {
         "version": "5.0",
