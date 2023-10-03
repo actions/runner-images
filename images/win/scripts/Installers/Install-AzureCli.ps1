@@ -25,7 +25,7 @@ ${env:AZURE_EXTENSION_DIR} = $azureCliExtensionPath
 
 Write-Host "Warmup 'az'"
 
-az --help
+az --help | Out-Null
 if ($LASTEXITCODE -ne 0)
 {
    throw "Command 'az --help' failed"
