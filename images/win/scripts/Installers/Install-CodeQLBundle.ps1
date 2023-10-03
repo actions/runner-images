@@ -22,6 +22,9 @@ Extract-7Zip -Path $CodeQLBundlePath -DestinationPath $DownloadDirectoryPath
 $UnGzipedCodeQLBundlePath = Join-Path $DownloadDirectoryPath "codeql-bundle.tar"
 Extract-7Zip -Path $UnGzipedCodeQLBundlePath -DestinationPath $CodeQLToolcachePath
 
+Write-Host "CodeQL bundle at $($CodeQLToolcachePath) contains the following directories:"
+Get-ChildItem -Path $CodeQLToolcachePath -Depth 2
+
 # Touch a file to indicate to the CodeQL Action that this bundle shipped with the toolcache. This is
 # to support overriding the CodeQL version specified in defaults.json on GitHub Enterprise.
 New-Item -ItemType file (Join-Path $CodeQLToolcachePath -ChildPath "pinned-version")
