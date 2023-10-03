@@ -126,9 +126,12 @@ setx MAVEN_OPTS $maven_opts /M
 
 # Download cobertura jars
 $uri = 'https://repo1.maven.org/maven2/net/sourceforge/cobertura/cobertura/2.1.1/cobertura-2.1.1-bin.zip'
+$sha256sum = '79479DDE416B082F38ECD1F2F7C6DEBD4D0C2249AF80FD046D1CE05D628F2EC6'
 $coberturaPath = "C:\cobertura-2.1.1"
 
 $archivePath = Start-DownloadWithRetry -Url $uri -Name "cobertura.zip"
+$fileHash = (Get-FileHash -Path $archivePath -Algorithm SHA256).Hash
+Use-ChecksumComparison $fileHash $sha256sum
 Extract-7Zip -Path $archivePath -DestinationPath "C:\"
 
 setx COBERTURA_HOME $coberturaPath /M
