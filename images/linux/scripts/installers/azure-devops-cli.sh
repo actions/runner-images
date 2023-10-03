@@ -4,6 +4,7 @@
 ##  Desc:  Installed Azure DevOps CLI (az devops)
 ################################################################################
 
+source $HELPER_SCRIPTS/etc-environment.sh
 export AZURE_DEVOPS_EXT_CONFIG_DIR=/opt/az-devops/config
 setEtcEnvironmentVariable "AZURE_DEVOPS_EXT_CONFIG_DIR" "$AZURE_DEVOPS_EXT_CONFIG_DIR"
 
