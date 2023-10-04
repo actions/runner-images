@@ -8,6 +8,8 @@ function Install-WindowsUpdates {
     Write-Host "Starting wuauserv"
     Start-Service -Name wuauserv -PassThru | Out-Host
 
+    # Temporarily exclude Windows update KB5001148 since it throws an error.
+    # The KB5001148 itself is quite old and looks like not needed (https://support.microsoft.com/en-us/topic/kb5001148-visual-studio-client-detector-utility-for-administrator-updates-ad593454-547c-43c3-b5a3-6f201ae63f03)
     Write-Host "Getting list of available windows updates"
     Get-WindowsUpdate -MicrosoftUpdate -NotKBArticleID "KB5001148" -OutVariable updates | Out-Host
 
