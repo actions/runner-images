@@ -16,6 +16,5 @@ jobs:
     if: contains(github.event.pull_request.labels.*.name, 'CI ubuntu-all') || contains(github.event.pull_request.labels.*.name, 'CI ubuntu-2204')
     uses: ./.github/workflows/trigger-ubuntu-win-build.yml
     with:
-      repository: '${{ secrets.CI_REPO }}'
       image_type: 'ubuntu2204'
     secrets: inherit

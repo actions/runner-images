@@ -16,6 +16,5 @@ jobs:
     if: contains(github.event.pull_request.labels.*.name, 'CI windows-all') || contains(github.event.pull_request.labels.*.name, 'CI windows-2022')
     uses: ./.github/workflows/trigger-ubuntu-win-build.yml
     with:
-      repository: '${{ secrets.CI_REPO }}'
       image_type: 'windows2022'
     secrets: inherit
