@@ -70,7 +70,9 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Bundler", $(Get-BundlerVersion))
 $packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
 $packageManagement.AddToolVersion("CocoaPods", $(Get-CocoaPodsVersion))
-$packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
+if (-not $os.IsVenturaArm64) {
+    $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
+}
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
