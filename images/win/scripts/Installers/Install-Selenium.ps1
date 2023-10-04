@@ -17,7 +17,7 @@ $seleniumDownloadUrl = Get-GitHubPackageDownloadUrl `
   -RepoName "selenium" `
   -BinaryName "$seleniumBinaryName" `
   -Version $seleniumMajorVersion `
-  -UrlFilter "*{BinaryName}_{Version}.jar"
+  -UrlFilter "*{BinaryName}-{Version}.jar"
 
 Start-DownloadWithRetry -Url $seleniumDownloadUrl -Name $seleniumFileName -DownloadPath $seleniumDirectory
 
