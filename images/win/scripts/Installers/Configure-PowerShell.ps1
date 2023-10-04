@@ -12,7 +12,7 @@ Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
 #endregion
 
 #region User (current user, image generation only)
-if( -not(Test-Path $profile)) {
+if (-not (Test-Path $profile)) {
     New-Item $profile -ItemType File -Force
 }
   
