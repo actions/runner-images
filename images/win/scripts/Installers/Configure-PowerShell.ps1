@@ -14,7 +14,7 @@ Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
 #region User (current user, image generation only)
 if( -not(Test-Path $profile)) {
     New-Item $profile -ItemType File -Force
-  }
+}
   
 @" 
   if ( -not(Get-Module -ListAvailable -Name PowerHTML)) {
