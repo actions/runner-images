@@ -30,17 +30,12 @@ function Get-BicepVersion {
     return $Matches.Version
 }
 
-function Get-CodeQLBundleVersions {
+function Get-CodeQLBundleVersion {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-    $CodeQLVersionPaths = Get-ChildItem $CodeQLVersionsWildcard 
-    $CodeQlVersions=@()
-    foreach ($CodeQLVersionPath in $CodeQLVersionPaths) {
-        $FullCodeQLVersionPath = $CodeQLVersionPath | Select-Object -Expand FullName
-        $CodeQLPath = Join-Path $FullCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
-        $CodeQLVersion = & $CodeQLPath version --quiet
-        $CodeQLVersions += $CodeQLVersion
-    }
-    return $CodeQLVersions
+    $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
+    $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+    $CodeQLVersion = & $CodeQLPath version --quiet
+    return $CodeQLVersion
 }
 
 function Get-PodManVersion {
@@ -232,11 +227,6 @@ function Get-AWSSAMVersion {
 function Get-FastlaneVersion {
     $fastlaneVersion = fastlane --version | Select-String "^fastlane [0-9]" | Take-OutputPart -Part 1
     return $fastlaneVersion
-}
-
-function Get-HubCliVersion {
-    $hubVersion = hub --version | Select-String "hub version" | Take-OutputPart -Part 2
-    return $hubVersion
 }
 
 function Get-GitHubCliVersion {

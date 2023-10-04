@@ -8,8 +8,3 @@ Describe "Git" {
         "git lfs version" | Should -ReturnZeroExitCode
     }
 }
-Describe "hub CLI" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
-    It "hub CLI is installed" {
-        "hub --version" | Should -ReturnZeroExitCode
-    }
-}

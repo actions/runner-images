@@ -96,7 +96,6 @@
     "ruby": {
         "default": "3.0",
         "rubygems": [
-            "xcode-install",
             "cocoapods",
             "xcpretty",
             "bundler",
@@ -119,7 +118,6 @@
                 },
                 "arm64": {
                     "versions": [
-                        "3.10.*",
                         "3.11.*"
                     ]
                 }
@@ -148,7 +146,8 @@
                 "x64": {
                     "versions": [
                         "16.*",
-                        "18.*"
+                        "18.*",
+                        "20.*"
                     ]
                 },
                 "arm64": {
@@ -204,5 +203,13 @@
     },
     "php": {
         "version": "8.2"
+    },
+    "mono": {
+        "framework":{
+            "version": "6.12.0.188"
+        },
+        "nunit": {
+            "version": "3.15.4"
+        }
     }
 }

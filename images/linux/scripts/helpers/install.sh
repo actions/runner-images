@@ -19,16 +19,24 @@ download_with_retries() {
         local COMMAND="curl $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
     fi
 
+    # Save current errexit state and disable it to prevent unexpected exit on error
+    if echo $SHELLOPTS | grep '\(^\|:\)errexit\(:\|$\)' > /dev/null;
+    then
+        local ERR_EXIT_ENABLED=true
+    else
+        local ERR_EXIT_ENABLED=false
+    fi
+    set +e
+
     echo "Downloading '$URL' to '${DEST}/${NAME}'..."
     retries=20
     interval=30
     while [ $retries -gt 0 ]; do
         ((retries--))
-        # Temporary disable exit on error to retry on non-zero exit code
-        set +e
+        test "$ERR_EXIT_ENABLED" = true && set +e
         http_code=$(eval $COMMAND)
         exit_code=$?
-        set -e
+        test "$ERR_EXIT_ENABLED" = true && set -e
         if [ $http_code -eq 200 ] && [ $exit_code -eq 0 ]; then
             echo "Download completed"
             return 0

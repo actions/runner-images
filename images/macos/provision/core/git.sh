@@ -14,9 +14,6 @@ git lfs install
 # Update system git config
 sudo git lfs install --system
 
-echo Installing Hub
-brew_smart_install "hub"
-
 echo Disable all the Git help messages...
 git config --global advice.pushUpdateRejected false
 git config --global advice.pushNonFFCurrent false
