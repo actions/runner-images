@@ -8,8 +8,10 @@ function Install-WindowsUpdates {
     Write-Host "Starting wuauserv"
     Start-Service -Name wuauserv -PassThru | Out-Host
 
+    # Temporarily exclude Windows update KB5001148 since it throws an error.
+    # The KB5001148 itself is quite old and looks like not needed (https://support.microsoft.com/en-us/topic/kb5001148-visual-studio-client-detector-utility-for-administrator-updates-ad593454-547c-43c3-b5a3-6f201ae63f03)
     Write-Host "Getting list of available windows updates"
-    Get-WindowsUpdate -MicrosoftUpdate -OutVariable updates | Out-Host
+    Get-WindowsUpdate -MicrosoftUpdate -NotKBArticleID "KB5001148" -OutVariable updates | Out-Host
 
     if ( -not $updates ) {
         Write-Host "There are no windows updates to install"
@@ -17,7 +19,7 @@ function Install-WindowsUpdates {
     }
 
     Write-Host "Installing windows updates"
-    Get-WindowsUpdate -MicrosoftUpdate -AcceptAll -Install -IgnoreUserInput -IgnoreReboot | Out-Host
+    Get-WindowsUpdate -MicrosoftUpdate -NotKBArticleID "KB5001148" -AcceptAll -Install -IgnoreUserInput -IgnoreReboot | Out-Host
 
     Write-Host "Validating windows updates installation and skip Microsoft Defender Antivirus"
     # Azure service can automatic updates AV engine(Microsoft.Azure.Security.AntimalwareSignature.AntimalwareConfiguration)
