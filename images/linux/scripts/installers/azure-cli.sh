@@ -13,6 +13,9 @@ setEtcEnvironmentVariable "AZURE_EXTENSION_DIR" "$AZURE_EXTENSION_DIR"
 export AZURE_CONFIG_DIR=/opt/az/config
 setEtcEnvironmentVariable "AZURE_CONFIG_DIR" "$AZURE_CONFIG_DIR"
 
+sudo mkdir /opt/az
+sudo chmod 777 -R /opt/az
+
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 curl -fsSL https://aka.ms/InstallAzureCLIDeb | sudo bash
 echo "azure-cli https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt" >> $HELPER_SCRIPTS/apt-sources.txt
