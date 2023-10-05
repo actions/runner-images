@@ -21,7 +21,8 @@
                 "3.8.*",
                 "3.9.*",
                 "3.10.*",
-                "3.11.*"
+                "3.11.*",
+                "3.12.*"
             ],
             "default": "3.9.*"
         },
@@ -35,7 +36,8 @@
                 "3.8.*",
                 "3.9.*",
                 "3.10.*",
-                "3.11.*"
+                "3.11.*",
+                "3.12.*"
             ]
         },
         {
@@ -58,7 +60,8 @@
             "versions": [
                 "14.*",
                 "16.*",
-                "18.*"
+                "18.*",
+                "20.*"
             ]
         },
         {
@@ -129,6 +132,8 @@
         "versions": [ "8", "11", "17" ]
     },
     "android": {
+        "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip",
+        "hash": "8A90E6A3DEB2FA13229B2E335EFD07687DCC8A55A3C544DA9F40B41404993E7D",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra_list": [
@@ -150,7 +155,8 @@
         }
     },
     "mingw": {
-	"version": "12.2.0.03042023"
+        "version": "12.2.0",
+        "runtime": "ucrt"
     },
     "MsysPackages": {
         "msys2": [],
@@ -399,7 +405,8 @@
         "version": "3.8"
     },
     "mysql": {
-        "version": "8.0"
+        "version": "8.0",
+        "signature": "DD34D7C71F160972DE0CE25B695A0D6A9C95BD91"
     },
     "mongodb": {
         "version": "5.0",

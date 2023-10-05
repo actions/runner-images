@@ -2,6 +2,7 @@
 ##  File:  Install-DotnetSDK.ps1
 ##  Desc:  Install all released versions of the dotnet sdk and populate package
 ##         cache.  Should run after VS and Node
+##  Supply chain security: checksum validation
 ################################################################################
 
 # Set environment variables
@@ -52,13 +53,22 @@ function Invoke-Warmup (
 
 function InstallSDKVersion (
     $SdkVersion,
+    $dotnetVersion,
     $Warmup
 )
 {
     if (!(Test-Path -Path "C:\Program Files\dotnet\sdk\$sdkVersion"))
     {
         Write-Host "Installing dotnet $sdkVersion"
-        .\dotnet-install.ps1 -Version $sdkVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet')
+        $ZipPath = [System.IO.Path]::combine([System.IO.Path]::GetTempPath(), [System.IO.Path]::GetRandomFileName())
+        .\dotnet-install.ps1 -Version $sdkVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet') -ZipPath $ZipPath -KeepZip
+
+        #region Supply chain security
+        $distributorFileHash = (Invoke-RestMethod -Uri "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$dotnetVersion/releases.json").releases.sdks.Where({$_.version -eq $SdkVersion}).files.Where({ $_.name -eq 'dotnet-sdk-win-x64.zip'}).hash
+        $localFileHash = (Get-FileHash -Path $ZipPath -Algorithm 'SHA512').Hash
+
+        Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $distributorFileHash
+        #endregion
     }
     else
     {
@@ -89,7 +99,7 @@ function InstallAllValidSdks()
         
         ForEach ($sdkVersion in $sdkVersionsToInstall)
         {
-            InstallSDKVersion -SdkVersion $sdkVersion -Warmup $warmup
+            InstallSDKVersion -SdkVersion $sdkVersion -DotnetVersion $dotnetVersion -Warmup $warmup
         }
     }
 }

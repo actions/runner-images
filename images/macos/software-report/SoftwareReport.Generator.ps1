@@ -70,7 +70,9 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Bundler", $(Get-BundlerVersion))
 $packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
 $packageManagement.AddToolVersion("CocoaPods", $(Get-CocoaPodsVersion))
-$packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
+if (-not $os.IsVenturaArm64) {
+    $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
+}
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
@@ -98,9 +100,9 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
 # Project Management
 $projectManagement = $installedSoftware.AddHeader("Project Management")
 $projectManagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
+$projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
+$projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
-    $projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
-    $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 }
 
