@@ -20,20 +20,22 @@ Function Get-DockerWincredHash
 }
 #endregion
 
-Write-Host "Get latest release of Docker CE"
+Write-Host "Get latest Moby release"
 $mobyLatestReleaseVersion = (Invoke-RestMethod -Uri "https://api.github.com/repos/moby/moby/releases/latest").tag_name.Trim("v")
 $dockerceUrl = "https://download.docker.com/win/static/stable/x86_64/"
 $dockerceBinaries = Invoke-WebRequest -Uri $dockerceUrl -UseBasicParsing
 
-Write-Host "Checking $mobyLatestReleaseVersion version"
+Write-Host "Check Moby version $mobyLatestReleaseVersion"
 $mobyRelease = $dockerceBinaries.Links.href -match "${mobyLatestReleaseVersion}\.zip" | Select-Object -Last 1
 if (-not $mobyRelease) {
     Write-Host "Release not found for $mobyLatestRelease version"
-    $versions = [regex]::Matches($dockerceBinaries.Links.href, "docker-(\d+\.\d+\.\d+)\.zip") | Sort-Object {[version]$_.Groups[1].Value}
+    $versions = [regex]::Matches($dockerceBinaries.Links.href, "docker-(\d+\.\d+\.\d+)\.zip") | Sort-Object { [version]$_.Groups[1].Value }
     $mobyRelease = $versions | Select-Object -ExpandProperty Value -Last 1
     Write-Host "Found $mobyRelease"
 }
 $mobyReleaseUrl = $dockerceUrl + $mobyRelease
+
+Write-Host "Install Moby $mobyRelease..."
 $mobyArchivePath = Start-DownloadWithRetry -Url $mobyReleaseUrl -Name $mobyRelease
 Expand-Archive -Path $mobyArchivePath -DestinationPath $env:TEMP
 $dockerPath = "$env:TEMP\docker\docker.exe"
