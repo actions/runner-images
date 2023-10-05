@@ -43,6 +43,10 @@ Write-Host "Install Docker CE"
 $instScriptUrl = "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1"
 $instScriptPath = Start-DownloadWithRetry -Url $instScriptUrl -Name "install-docker-ce.ps1"
 & $instScriptPath -DockerPath $dockerPath -DockerDPath $dockerdPath
+if ($LastExitCode -ne 0) {
+    Write-Host "Docker installation failed with exit code $LastExitCode"
+    exit $exitCode
+}
 
 # Fix AZ CLI DOCKER_COMMAND_ERROR
 # cli.azure.cli.command_modules.acr.custom: Could not run 'docker.exe' command.
@@ -69,9 +73,9 @@ $distributor_file_hash = Get-DockerWincredHash -Release $dockerCredLatestRelease
 $local_file_hash = (Get-FileHash -Path 'C:\Windows\System32\docker-credential-wincred.exe' -Algorithm SHA256).Hash
 
 if ($local_file_hash -ne $distributor_file_hash) {
-        Write-Host "hash must be equal to: ${distributor_file_hash}"
-        Write-Host "actual hash is: ${local_file_hash}"
-        throw 'Checksum verification failed, please rerun install'
+    Write-Host "hash must be equal to: ${distributor_file_hash}"
+    Write-Host "actual hash is: ${local_file_hash}"
+    throw 'Checksum verification failed, please rerun install'
 }
 #endregion
 
