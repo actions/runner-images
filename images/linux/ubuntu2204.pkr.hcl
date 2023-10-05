@@ -337,6 +337,7 @@ build {
                         "${path.root}/scripts/installers/pypy.sh",
                         "${path.root}/scripts/installers/python.sh",
                         "${path.root}/scripts/installers/zstd.sh"
+                        "${path.root}/scripts/installers/runner-package.sh"
                         ]
   }
 
