@@ -195,6 +195,7 @@ build {
   provisioner "shell" {
     scripts = [
       "./provision/core/llvm.sh",
+      "./provision/core/openjdk.sh",
       "./provision/core/rust.sh",
       "./provision/core/gcc.sh",
       "./provision/core/cocoapods.sh",
