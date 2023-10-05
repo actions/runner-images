@@ -25,6 +25,7 @@ ${env:AZURE_EXTENSION_DIR} = $azureCliExtensionPath
 
 Write-Host "Warmup 'az'"
 
+$env:PATH = [Environment]::GetEnvironmentVariable('PATH', 'Machine')
 az --help | Out-Null
 if ($LASTEXITCODE -ne 0)
 {
