@@ -1,14 +1,22 @@
 ################################################################################
 ##  File:  Install-AndroidSDK.ps1
 ##  Desc:  Install and update Android SDK and tools
+##  Supply chain security: checksum validation
 ################################################################################
 
 # get packages to install from the toolset
 $androidToolset = (Get-ToolsetContent).android
 # Newer version(s) require Java 11 by default
 # See https://github.com/actions/runner-images/issues/6960
-$cmdlineToolsUrl = "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip"
+$cmdlineToolsUrl = $androidToolset.commandline_tools_url
 $cmdlineToolsArchPath = Start-DownloadWithRetry -Url $cmdlineToolsUrl -Name "cmdline-tools.zip"
+
+#region Supply chain security
+$localFileHash = (Get-FileHash -Path $cmdlineToolsArchPath -Algorithm SHA256).Hash
+
+Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $androidToolset.hash
+#endregion
+
 $sdkInstallRoot = "C:\Program Files (x86)\Android\android-sdk"
 $sdkRoot = "C:\Android\android-sdk"
 Extract-7Zip -Path $cmdlineToolsArchPath -DestinationPath "${sdkInstallRoot}\cmdline-tools"
