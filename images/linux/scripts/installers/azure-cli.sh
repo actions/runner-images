@@ -30,4 +30,4 @@ az --help > /dev/null
 
 invoke_tests "CLI.Tools" "Azure CLI"
 
-chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" "/opt/az"
+chown -R "$SUDO_USER:$SUDO_USER" "/opt/az"
