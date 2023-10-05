@@ -1,11 +1,13 @@
 | Announcements |
 |-|
+| [[macOS] Apple Silicon (M1) powered macOS runners are now available in public beta!](https://github.com/actions/runner-images/issues/8439) |
+| [[All OS] Android NDK r23 will be removed from images on October 9](https://github.com/actions/runner-images/issues/8383) |
 | [[All OS] hub utility will be removed on October 2](https://github.com/actions/runner-images/issues/8362) |
 ***
 # macOS 13
 - OS Version: macOS 13.6 (22G120)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20230924.1
+- Image Version: 20231002.1
 
 ## Installed Software
 
@@ -21,24 +23,24 @@
 - Julia 1.9.3
 - Kotlin 1.9.10-release-459
 - Mono 6.12.0.188
-- Perl 5.36.1
-- PHP 8.2.10
+- Perl 5.38.0
+- PHP 8.2.11
 - Python3 3.11.5
 - R 4.3.1
 - Ruby 3.0.6p216
 
 ### Package Management
-- Bundler 2.4.19
+- Bundler 2.4.20
 - Carthage 0.39.1
 - CocoaPods 1.13.0
-- Composer 2.6.3
-- Homebrew 4.1.12
+- Composer 2.6.4
+- Homebrew 4.1.14
 - NPM 9.8.1
 - NuGet 6.3.1.1
 - Pip3 23.2.1 (python 3.11)
 - Pipx 1.2.0
-- RubyGems 3.4.19
-- Vcpkg 2023 (build from commit 5a38b5ec0)
+- RubyGems 3.4.20
+- Vcpkg 2023 (build from commit 38dd6b15a)
 - Yarn 1.22.19
 
 ### Project Management
@@ -47,7 +49,7 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.36.0
-- azcopy 10.20.1
+- azcopy 10.21.0
 - bazel 6.3.2
 - bazelisk 1.18.0
 - bsdtar 3.5.3 - available by 'tar' alias
@@ -62,40 +64,40 @@
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.9.4
 - pkg-config 0.29.2
-- yq 4.35.1
+- yq 4.35.2
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.13.21
+- AWS CLI 2.13.22
 - AWS SAM CLI 1.97.0
 - AWS Session Manager CLI 1.2.497.0
-- Azure CLI 2.52.0
+- Azure CLI 2.53.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.21.1
 - Cabal 3.6.2.0
 - Cmake 3.27.6
-- CodeQL Action Bundles 2.14.4 2.14.5
+- CodeQL Action Bundles 2.14.5 2.14.6
 - Fastlane 2.216.0
-- GHC 9.6.2
+- GHC 9.6.3
 - GHCup 0.1.19.4
-- Stack 2.9.3
-- SwiftFormat 0.52.4
+- Stack 2.11.1
+- SwiftFormat 0.52.6
 - Xcode Command Line Tools 15.0.0.0.1.1694021235
 
 ### Linters
-- SwiftLint 0.52.4
+- SwiftLint 0.53.0
 
 ### Browsers
 - Safari 16.6 (18615.3.12.11.2)
 - SafariDriver 16.6 (18615.3.12.11.2)
-- Google Chrome 117.0.5938.92
+- Google Chrome 117.0.5938.132
 - Google Chrome for Testing 117.0.5938.92
 - ChromeDriver 117.0.5938.92
-- Microsoft Edge 117.0.2045.40
-- Microsoft Edge WebDriver 117.0.2045.40
-- Mozilla Firefox 117.0.1
+- Microsoft Edge 117.0.2045.47
+- Microsoft Edge WebDriver 117.0.2045.47
+- Mozilla Firefox 118.0.1
 - geckodriver 0.33.0
-- Selenium server 4.12.1
+- Selenium server 4.13.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -124,15 +126,16 @@
 - 3.11.5
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.12]
+- 2.7.18 [PyPy 7.3.13]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
-- 3.9.17 [PyPy 7.3.12]
-- 3.10.12 [PyPy 7.3.12]
+- 3.9.18 [PyPy 7.3.13]
+- 3.10.13 [PyPy 7.3.13]
 
 #### Node.js
 - 16.20.2
 - 18.18.0
+- 20.8.0
 
 #### Go
 - 1.19.13
@@ -147,7 +150,7 @@
 
 #### Packages
 - Bindgen 0.68.1
-- Cargo-audit 0.18.1
+- Cargo-audit 0.18.2
 - Cargo-outdated 0.13.1
 - Cbindgen 0.26.0
 - Clippy 0.1.72
@@ -157,7 +160,7 @@
 - PowerShell 7.2.14
 
 #### PowerShell Modules
-- Az: 10.3.0
+- Az: 10.4.1
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
