@@ -1,12 +1,12 @@
 | Announcements |
 |-|
+| [[All OS] Android NDK r23 will be removed from images on October 9](https://github.com/actions/runner-images/issues/8383) |
 | [[All OS] hub utility will be removed on October 2](https://github.com/actions/runner-images/issues/8362) |
-| [Clang 12 will be removed from Ubuntu 22.04 image on September 25](https://github.com/actions/runner-images/issues/8263) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
 - Kernel Version: 6.2.0-1012-azure
-- Image Version: 20230924.1.0
+- Image Version: 20231001.1.0
 - Systemd version: 249.11-0ubuntu3.10
 
 ## Installed Software
@@ -31,8 +31,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.12.3
-- Homebrew 4.1.12
+- Helm 3.13.0
+- Homebrew 4.1.13
 - Miniconda 23.5.2
 - Npm 9.8.1
 - NuGet 6.6.1.2
@@ -40,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.2.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 5a38b5ec0)
+- Vcpkg (build from commit c6d6efed3)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -64,13 +64,13 @@ to accomplish this.
 ### Tools
 - Ansible 2.15.4
 - apt-fast 1.9.12
-- AzCopy 10.20.1 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.21.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.3.2
 - Bazelisk 1.18.0
 - Bicep 0.21.1
 - Buildah 1.23.1
 - CMake 3.27.6
-- CodeQL Action Bundles 2.14.4 2.14.5
+- CodeQL Action Bundles 2.14.5 2.14.6
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.22.0
@@ -82,7 +82,7 @@ to accomplish this.
 - Git LFS 3.4.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 8.4.3
+- Heroku 8.5.0
 - jq 1.6
 - Kind 0.20.0
 - Kubectl 1.28.2
@@ -98,26 +98,25 @@ to accomplish this.
 - Packer 1.9.4
 - Parcel 2.9.3
 - Podman 3.4.4
-- Pulumi 3.85.0
+- Pulumi 3.86.0
 - R 4.3.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
 - Terraform 1.5.7
 - yamllint 1.32.0
-- yq 4.35.1
+- yq 4.35.2
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.181
-- AWS CLI 2.13.21
+- AWS CLI 2.13.22
 - AWS CLI Session Manager Plugin 1.2.497.0
 - AWS SAM CLI 1.97.0
-- Azure CLI 2.52.0
+- Azure CLI 2.53.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.35.0
-- Google Cloud CLI 447.0.0
-- Hub CLI 2.14.2
+- Google Cloud CLI 448.0.0
 - Netlify CLI 16.4.2
 - OpenShift CLI 4.13.13
 - ORAS CLI 1.1.0
@@ -132,7 +131,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.6.3
+- Composer 2.6.4
 - PHPUnit 8.5.34
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -140,9 +139,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Haskell Tools
 - Cabal 3.10.1.0
-- GHC 9.6.2
+- GHC 9.6.3
 - GHCup 0.1.19.4
-- Stack 2.11.1
+- Stack 2.13.1
 
 ### Rust Tools
 - Cargo 1.72.1
@@ -152,20 +151,20 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 #### Packages
 - Bindgen 0.68.1
-- Cargo audit 0.18.1
+- Cargo audit 0.18.2
 - Cargo clippy 0.1.72
 - Cargo outdated 0.13.1
 - Cbindgen 0.26.0
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 117.0.5938.92
+- Google Chrome 117.0.5938.132
 - ChromeDriver 117.0.5938.92
 - Chromium 117.0.5938.0
-- Microsoft Edge 117.0.2045.40
-- Microsoft Edge WebDriver 117.0.2045.40
-- Selenium server 4.12.0
-- Mozilla Firefox 118.0
+- Microsoft Edge 117.0.2045.47
+- Microsoft Edge WebDriver 117.0.2045.47
+- Selenium server 4.13.0
+- Mozilla Firefox 118.0.1
 - Geckodriver 0.33.0
 
 #### Environment variables
@@ -215,6 +214,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 14.21.3
 - 16.20.2
 - 18.18.0
+- 20.8.0
 
 #### Python
 - 3.7.17
@@ -226,8 +226,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
-- 3.9.17 [PyPy 7.3.12]
-- 3.10.12 [PyPy 7.3.12]
+- 3.9.18 [PyPy 7.3.13]
+- 3.10.13 [PyPy 7.3.13]
 
 #### Ruby
 - 3.1.4
@@ -279,7 +279,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ----------------------- | ------------------------------------------------------------------------ | ---------- |
 | alpine:3.16             | sha256:a8cbb8c69ee71561f4b69c066bad07f7e510caaa523da26fbfc606b10bd7934b  | 2023-08-07 |
 | alpine:3.17             | sha256:f71a5f071694a785e064f05fed657bf8277f1b2113a8ed70c90ad486d6ee54dc  | 2023-08-07 |
-| alpine:3.18             | sha256:7144f7bab3d4c2648d7e59409f15ec52a18006a128c733fcff20d3a4a54ba44a  | 2023-08-07 |
+| alpine:3.18             | sha256:eece025e432126ce23f223450a0326fbebde39cdf496a85d8c016293fc851978  | 2023-09-28 |
 | buildpack-deps:bullseye | sha256:8ee57204a7af0468a61a3e47fbf8412d6ad1d479050bb702d99fd1d3664d7173  | 2023-09-20 |
 | buildpack-deps:buster   | sha256:0bc568b581ed3e9a13f818fd20258edb623cf67e6d354afadf77fb9095d798a2  | 2023-09-20 |
 | debian:10               | sha256:484cc8ab0d73f513e3f9bacd03424eb081bd90f594d7ebde42587843fdc242f3  | 2023-09-20 |
@@ -290,7 +290,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:16                 | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine          | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
 | node:18                 | sha256:ee0a21d64211d92d4340b225c556e9ef1a8bce1d5b03b49f5f07bf1dbbaa5626  | 2023-09-21 |
-| node:18-alpine          | sha256:619ce27eb37c7c0476bd518085bf1ba892e2148fc1ab5dbaff2f20c56e50444d  | 2023-09-20 |
+| node:18-alpine          | sha256:a315556d82ef54561e54fca7d8ee333382de183d4e56841dcefcd05b55310f46  | 2023-09-29 |
+| node:20                 | sha256:6b3f9aa7eefa8d4c93d43914e78aa2bfea9a12808b0059e5da78854dfa8b8768  | 2023-09-29 |
+| node:20-alpine          | sha256:37750e51d61bef92165b2e29a77da4277ba0777258446b7a9c99511f119db096  | 2023-09-29 |
 | ubuntu:18.04            | sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98  | 2023-05-30 |
 | ubuntu:20.04            | sha256:33a5cc25d22c45900796a1aca487ad7a7cb09f09ea00b779e3b2026b4fc2faba  | 2023-08-01 |
 | ubuntu:22.04            | sha256:aabed3296a3d45cede1dc866a24476c4d7e093aa806263c27ddaadbdce3c1054  | 2023-08-16 |
