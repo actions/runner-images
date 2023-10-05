@@ -6,6 +6,7 @@
 
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 # temporary pin v2.25.0
+sudo mkdir -p /etc/apt/keyrings
 curl -sLS https://packages.microsoft.com/keys/microsoft.asc |
 gpg --dearmor |
 sudo tee /etc/apt/keyrings/microsoft.gpg > /dev/null
