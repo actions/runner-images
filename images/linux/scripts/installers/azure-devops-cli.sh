@@ -12,7 +12,7 @@ export AZURE_DEVOPS_CACHE_DIR=/opt/az-devops/config/cache
 setEtcEnvironmentVariable "AZURE_DEVOPS_CACHE_DIR" "$AZURE_DEVOPS_CACHE_DIR"
 
 sudo mkdir /opt/az-devops
-sudo chmod 777 -R /opt/az-devops
+chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" "/opt/az-devops"
 
 # install azure devops Cli extension
 az extension add -n azure-devops
