@@ -4,7 +4,6 @@
 ################################################################################
 
 $toolset = Get-ToolsetContent
-Write-Host $toolset.visualStudio.signature "111"
 
 # Install VS
 Install-VisualStudio `
