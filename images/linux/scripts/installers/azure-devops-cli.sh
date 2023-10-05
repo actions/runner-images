@@ -12,7 +12,7 @@ export AZURE_DEVOPS_CACHE_DIR=/opt/az-devops/config/cache
 setEtcEnvironmentVariable "AZURE_DEVOPS_CACHE_DIR" "$AZURE_DEVOPS_CACHE_DIR"
 
 sudo mkdir /opt/az-devops
-chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" "/opt/az-devops"
+
 
 # install azure devops Cli extension
 az extension add -n azure-devops
@@ -30,3 +30,5 @@ az repos --help > /dev/null
 az artifacts --help > /dev/null
 
 invoke_tests "CLI.Tools" "Azure DevOps CLI"
+
+chown -R "$($env:SUDO_USER):$($env:SUDO_USER)" "/opt/az-devops"
