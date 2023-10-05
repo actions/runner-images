@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [[All OS] Android NDK r23 will be removed from images on October 9](https://github.com/actions/runner-images/issues/8383) |
 | [[All OS] hub utility will be removed on October 2](https://github.com/actions/runner-images/issues/8362) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1970
-- Image Version: 20230924.1.0
+- Image Version: 20231002.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -19,13 +20,13 @@
 - LLVM 16.0.6
 - Node 18.18.0
 - Perl 5.32.1
-- PHP 8.2.10
+- PHP 8.2.11
 - Python 3.9.13
 - Ruby 3.0.6p216
 
 ### Package Management
 - Chocolatey 2.2.2
-- Composer 2.6.3
+- Composer 2.6.4
 - Helm 3.12.3
 - Miniconda 23.5.2 (pre-installed on the image but not added to PATH)
 - NPM 9.8.1
@@ -33,7 +34,7 @@
 - pip 23.2.1 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 5a38b5ec0)
+- Vcpkg (build from commit c6d6efed3)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -51,35 +52,37 @@
 ### Tools
 - 7zip 23.01
 - aria2 1.36.0
-- azcopy 10.20.1
+- azcopy 10.21.0
 - Bazel 6.3.2
 - Bazelisk 1.18.0
 - Bicep 0.21.1
 - Cabal 3.10.1.0
 - CMake 3.27.6
-- CodeQL Action Bundles 2.14.4 2.14.5
+- CodeQL Action Bundles 2.14.5 2.14.6
 - Docker 24.0.6
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.22.0
 - Docker-wincred 0.8.0
-- ghc 9.6.2
+- ghc 9.6.3
 - Git 2.42.0.windows.2
 - Git LFS 3.4.0
-- ImageMagick 7.1.1-18
+- ImageMagick 7.1.1-19
 - InnoSetup 6.2.2
 - jq 1.7-dirty
 - Kind 0.20.0
 - Kubectl 1.28.2
 - Mercurial 5.0
-- Mingw-w64 12.2.0
+- gcc 12.2.0
+- gdb 11.2
+- GNU Binutils 2.39
 - Newman 6.0.0
 - NSIS 3.08
-- OpenSSL 1.1.1v
+- OpenSSL 1.1.1w
 - Packer 1.9.4
-- Pulumi 3.85.0
+- Pulumi 3.86.0
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
-- Stack 2.11.1
+- Stack 2.13.1
 - Subversion (SVN) 1.14.2
 - Swig 4.1.1
 - VSWhere 3.1.7
@@ -93,10 +96,9 @@
 - AWS CLI 2.13.20
 - AWS SAM CLI 1.97.0
 - AWS Session Manager CLI 1.2.497.0
-- Azure CLI 2.52.0
+- Azure CLI 2.53.0
 - Azure DevOps CLI extension 0.26.0
 - GitHub CLI 2.35.0
-- Hub CLI 2.14.2
 
 ### Rust Tools
 - Cargo 1.72.1
@@ -106,21 +108,21 @@
 
 #### Packages
 - bindgen 0.68.1
-- cargo-audit 0.18.1
+- cargo-audit 0.18.2
 - cargo-outdated 0.13.1
 - cbindgen 0.26.0
 - Clippy 0.1.72
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 117.0.5938.92
+- Google Chrome 117.0.5938.132
 - Chrome Driver 117.0.5938.92
-- Microsoft Edge 117.0.2045.36
-- Microsoft Edge Driver 117.0.2045.41
-- Mozilla Firefox 117.0.1
+- Microsoft Edge 117.0.2045.47
+- Microsoft Edge Driver 117.0.2045.47
+- Mozilla Firefox 118.0.1
 - Gecko Driver 0.33.0
 - IE Driver 4.11.0.0
-- Selenium server 4.12.0
+- Selenium server 4.13.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -165,6 +167,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 14.21.3
 - 16.20.2
 - 18.18.0
+- 20.8.0
 
 #### Python
 - 3.7.9
@@ -174,11 +177,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.11.5
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.12]
+- 2.7.18 [PyPy 7.3.13]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
-- 3.9.17 [PyPy 7.3.12]
-- 3.10.12 [PyPy 7.3.12]
+- 3.9.18 [PyPy 7.3.13]
+- 3.10.13 [PyPy 7.3.13]
 
 #### Ruby
 - 2.7.8
@@ -249,7 +252,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Unreal                                                          | 17.7.33905.399  |
 | Component.Unreal.Android                                                  | 17.7.33905.399  |
 | Component.Unreal.Ide                                                      | 17.7.33913.275  |
-| Component.VSInstallerProjects2022                                         | 2.0.0           |
+| Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
 | Component.Xamarin                                                         | 17.7.33905.399  |
@@ -525,7 +528,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ProBITools.MicrosoftAnalysisServicesModelingProjects2022                  | 3.0.4           |
 | ProBITools.MicrosoftReportProjectsforVisualStudio2022                     | 3.0.1           |
 | SSIS.MicrosoftDataToolsIntegrationServices                                | 1.2             |
-| VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 2.0.0           |
+| VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 2.0.1           |
 | Windows Driver Kit                                                        | 10.1.22621.382  |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.22621.0    |
 | Windows Software Development Kit                                          | 10.1.22621.1778 |
@@ -568,7 +571,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.420
+- AWSPowershell: 4.1.424
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.6.1
