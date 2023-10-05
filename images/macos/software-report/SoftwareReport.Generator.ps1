@@ -100,9 +100,9 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
 # Project Management
 $projectManagement = $installedSoftware.AddHeader("Project Management")
 $projectManagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
+$projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
+$projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
-    $projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
-    $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 }
 
