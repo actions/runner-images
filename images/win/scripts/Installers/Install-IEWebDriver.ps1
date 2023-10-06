@@ -1,6 +1,6 @@
 ################################################################################
-##  File:  Install-SeleniumWebDrivers.ps1
-##  Desc:  Install Selenium Web Drivers
+##  File:  Install-IEWebDriver.ps1
+##  Desc:  Install IE Web Driver
 ################################################################################
 
 $seleniumMajorVersion = (Get-ToolsetContent).selenium.version
@@ -9,7 +9,8 @@ $ieDriverUrl = Get-GitHubPackageDownloadUrl `
     -RepoName "selenium" `
     -BinaryName "IEDriverServer_x64" `
     -Version $seleniumMajorVersion `
-    -UrlFilter "*{BinaryName}_{Version}.zip"
+    -UrlFilter "*{BinaryName}_{Version}.zip" `
+    -LatestReleaseOnly $false
 
 # Download IE selenium driver
 try {
