@@ -11,7 +11,8 @@ $azureCliConfigPath = 'C:\azureCli'
 # make variable to be available in the current session
 ${env:AZURE_CONFIG_DIR} = $azureCliConfigPath
 
-$azCliUrl = 'https://aka.ms/installazurecliwindowsx64'
+#temporary pin 2.52.0 version
+$azCliUrl = 'https://azcliprod.blob.core.windows.net/msi/azure-cli-2.52.0-x64.msi'
 Install-Binary -Url $azCliUrl -Name 'azure-cli.msi'
 
 $azureCliExtensionPath = Join-Path $Env:CommonProgramFiles 'AzureCliExtensionDirectory'
