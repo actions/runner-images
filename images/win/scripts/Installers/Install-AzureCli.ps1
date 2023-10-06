@@ -28,8 +28,7 @@ Write-Host "Warmup 'az'"
 
 $env:PATH = [Environment]::GetEnvironmentVariable('PATH', 'Machine')
 az --help | Out-Null
-if ($LASTEXITCODE -ne 0)
-{
+if ($LASTEXITCODE -ne 0) {
    throw "Command 'az --help' failed"
 }
 
