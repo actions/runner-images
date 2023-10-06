@@ -10,9 +10,10 @@ $azureCliConfigPath = 'C:\azureCli'
 [Environment]::SetEnvironmentVariable('AZURE_CONFIG_DIR', $azureCliConfigPath, [System.EnvironmentVariableTarget]::Machine)
 # make variable to be available in the current session
 ${env:AZURE_CONFIG_DIR} = $azureCliConfigPath
-$azCliSignatureThumbprint = "72105B6D5F370B62FD5C82F1512F7AD7DEE5F2C0"
-$azCliUrl = 'https://aka.ms/installazurecliwindowsx64'
-Install-Binary -Url $azCliUrl -Name 'azure-cli.msi' -ExpectedSignature $azCliSignatureThumbprint
+
+#temporary pin 2.52.0 version
+$azCliUrl = 'https://azcliprod.blob.core.windows.net/msi/azure-cli-2.52.0-x64.msi'
+Install-Binary -Url $azCliUrl -Name 'azure-cli.msi'
 
 $azureCliExtensionPath = Join-Path $Env:CommonProgramFiles 'AzureCliExtensionDirectory'
 $null = New-Item -ItemType 'Directory' -Path $azureCliExtensionPath
@@ -27,8 +28,7 @@ Write-Host "Warmup 'az'"
 
 $env:PATH = [Environment]::GetEnvironmentVariable('PATH', 'Machine')
 az --help | Out-Null
-if ($LASTEXITCODE -ne 0)
-{
+if ($LASTEXITCODE -ne 0) {
    throw "Command 'az --help' failed"
 }
 

@@ -29,5 +29,22 @@ if (-not(Test-Path -Path $registryKeyPath)) {
 New-ItemProperty -Path $RegistryKeyPath -Name CacheType -PropertyType DWORD -Value 0
 reg.exe copy HKCU\Software\TortoiseSVN HKLM\DEFAULT\Software\TortoiseSVN /s
 
+
+# warmup SQL LocalDB
+# https://github.com/actions/runner-images/issues/8164
+
+sqllocaldb create MSSQLLocalDB
+
+$localDBInstance = Get-ChildItem -Path 'HKCU:\Software\Microsoft\Microsoft SQL Server\UserInstances'
+$instanceName = ($localDBInstance.Name).Split('\').where({ $true },'Last')
+$instancePath = 'HKCU:\Software\Microsoft\Microsoft SQL Server\UserInstances\' + $instanceName
+$dataDirectory = (Get-ItemProperty -Path $instancePath -Name 'DataDirectory').DataDirectory
+$localDBPath = 'C:\LocalDB'
+New-Item -ItemType 'Directory' -Path $localDBPath
+Move-Item -Path "$dataDirectory\*" -Destination $localDBPath
+Set-ItemProperty -Path $instancePath -Name 'DataDirectory' -Value $localDBPath
+
+reg.exe copy 'HKCU\Software\Microsoft\Microsoft SQL Server' 'HKLM\DEFAULT\Software\Microsoft\Microsoft SQL Server' /s
+
 reg.exe unload HKLM\DEFAULT
 Write-Host "Warmup-User.ps1 - completed"
