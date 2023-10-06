@@ -5,8 +5,8 @@
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
-- Kernel Version: 5.15.0-1047-azure
-- Image Version: 20231002.1.0
+- Kernel Version: 5.15.0-1049-azure
+- Image Version: 20231005.3.0
 - Systemd version: 245.4-4ubuntu3.22
 
 ## Installed Software
@@ -34,7 +34,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.13.0
-- Homebrew 4.1.13
+- Homebrew 4.1.14
 - Miniconda 23.5.2
 - Npm 9.8.1
 - NuGet 6.6.1.2
@@ -42,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.2.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit c6d6efed3)
+- Vcpkg (build from commit 4664eb1fb)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -61,7 +61,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.3
+- Gradle 8.4
 - Lerna 7.3.0
 - Maven 3.8.8
 - Sbt 1.9.6
@@ -72,7 +72,7 @@ to accomplish this.
 - AzCopy 10.21.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.3.2
 - Bazelisk 1.18.0
-- Bicep 0.21.1
+- Bicep 0.22.6
 - Buildah 1.22.3
 - CMake 3.27.6
 - CodeQL Action Bundle 2.14.6
@@ -110,24 +110,24 @@ to accomplish this.
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.5.7
+- Terraform 1.6.0
 - yamllint 1.32.0
 - yq 4.35.2
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.13.22
+- AWS CLI 2.13.24
 - AWS CLI Session Manager Plugin 1.2.497.0
-- AWS SAM CLI 1.97.0
-- Azure CLI 2.53.0
+- AWS SAM CLI 1.98.0
+- Azure CLI 2.52.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.35.0
-- Google Cloud CLI 448.0.0
-- Netlify CLI 16.4.2
-- OpenShift CLI 4.13.13
+- GitHub CLI 2.36.0
+- Google Cloud CLI 449.0.0
+- Netlify CLI 16.5.1
+- OpenShift CLI 4.13.14
 - ORAS CLI 1.1.0
-- Vercel CLI 32.3.1
+- Vercel CLI 32.4.1
 
 ### Java
 | Version             | Environment Variable |
@@ -151,25 +151,25 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.13.1
 
 ### Rust Tools
-- Cargo 1.72.1
-- Rust 1.72.1
-- Rustdoc 1.72.1
+- Cargo 1.73.0
+- Rust 1.73.0
+- Rustdoc 1.73.0
 - Rustup 1.26.0
 
 #### Packages
 - Bindgen 0.68.1
 - Cargo audit 0.18.2
-- Cargo clippy 0.1.72
+- Cargo clippy 0.1.73
 - Cargo outdated 0.13.1
 - Cbindgen 0.26.0
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 117.0.5938.132
-- ChromeDriver 117.0.5938.92
+- Google Chrome 117.0.5938.149
+- ChromeDriver 117.0.5938.149
 - Chromium 117.0.5938.0
-- Microsoft Edge 117.0.2045.47
-- Microsoft Edge WebDriver 117.0.2045.47
+- Microsoft Edge 117.0.2045.55
+- Microsoft Edge WebDriver 117.0.2045.55
 - Selenium server 4.13.0
 - Mozilla Firefox 118.0.1
 - Geckodriver 0.33.0
@@ -229,7 +229,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.8.18
 - 3.9.18
 - 3.10.13
-- 3.11.5
+- 3.11.6
+- 3.12.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.13]
@@ -253,7 +254,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 9.3.0
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.6.1
+- Microsoft.Graph: 2.7.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -348,7 +349,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu1.5          |
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
-| libc6-dev              | 2.31-0ubuntu9.9                   |
+| libc6-dev              | 2.31-0ubuntu9.12                  |
 | libcurl4               | 7.68.0-1ubuntu2.19                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
@@ -364,7 +365,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1                         |
 | libxss1                | 1:1.2.3-1                         |
 | libyaml-dev            | 0.2.2-1                           |
-| locales                | 2.31-0ubuntu9.9                   |
+| locales                | 2.31-0ubuntu9.12                  |
 | m4                     | 1.4.18-4                          |
 | make                   | 4.2.1-1.2                         |
 | mediainfo              | 19.09-1build1                     |
