@@ -127,7 +127,7 @@ function Get-MySQLVersion {
 }
 
 function Get-SQLOLEDBDriverVersion {
-    $SQLOLEDBDriverVersion = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSOLEDBSQL' InstalledVersion).InstalledVersion
+    $SQLOLEDBDriverVersion = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSOLEDBSQL19' InstalledVersion).InstalledVersion
     return $SQLOLEDBDriverVersion
 }
 
