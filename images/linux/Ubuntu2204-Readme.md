@@ -5,8 +5,8 @@
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
-- Kernel Version: 6.2.0-1012-azure
-- Image Version: 20231001.1.0
+- Kernel Version: 6.2.0-1014-azure
+- Image Version: 20231005.3.0
 - Systemd version: 249.11-0ubuntu3.10
 
 ## Installed Software
@@ -32,7 +32,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.13.0
-- Homebrew 4.1.13
+- Homebrew 4.1.14
 - Miniconda 23.5.2
 - Npm 9.8.1
 - NuGet 6.6.1.2
@@ -40,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.2.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit c6d6efed3)
+- Vcpkg (build from commit 4664eb1fb)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -67,10 +67,10 @@ to accomplish this.
 - AzCopy 10.21.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.3.2
 - Bazelisk 1.18.0
-- Bicep 0.21.1
+- Bicep 0.22.6
 - Buildah 1.23.1
 - CMake 3.27.6
-- CodeQL Action Bundles 2.14.5 2.14.6
+- CodeQL Action Bundle 2.14.6
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.22.0
@@ -103,24 +103,24 @@ to accomplish this.
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.5.7
+- Terraform 1.6.0
 - yamllint 1.32.0
 - yq 4.35.2
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.181
-- AWS CLI 2.13.22
+- AWS CLI 2.13.24
 - AWS CLI Session Manager Plugin 1.2.497.0
-- AWS SAM CLI 1.97.0
-- Azure CLI 2.53.0
+- AWS SAM CLI 1.98.0
+- Azure CLI 2.52.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.35.0
-- Google Cloud CLI 448.0.0
-- Netlify CLI 16.4.2
-- OpenShift CLI 4.13.13
+- GitHub CLI 2.36.0
+- Google Cloud CLI 449.0.0
+- Netlify CLI 16.5.1
+- OpenShift CLI 4.13.14
 - ORAS CLI 1.1.0
-- Vercel CLI 32.3.1
+- Vercel CLI 32.4.1
 
 ### Java
 | Version             | Environment Variable |
@@ -144,25 +144,25 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.13.1
 
 ### Rust Tools
-- Cargo 1.72.1
-- Rust 1.72.1
-- Rustdoc 1.72.1
+- Cargo 1.73.0
+- Rust 1.73.0
+- Rustdoc 1.73.0
 - Rustup 1.26.0
 
 #### Packages
 - Bindgen 0.68.1
 - Cargo audit 0.18.2
-- Cargo clippy 0.1.72
+- Cargo clippy 0.1.73
 - Cargo outdated 0.13.1
 - Cbindgen 0.26.0
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 117.0.5938.132
-- ChromeDriver 117.0.5938.92
+- Google Chrome 117.0.5938.149
+- ChromeDriver 117.0.5938.149
 - Chromium 117.0.5938.0
-- Microsoft Edge 117.0.2045.47
-- Microsoft Edge WebDriver 117.0.2045.47
+- Microsoft Edge 117.0.2045.55
+- Microsoft Edge WebDriver 117.0.2045.55
 - Selenium server 4.13.0
 - Mozilla Firefox 118.0.1
 - Geckodriver 0.33.0
@@ -221,7 +221,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.8.18
 - 3.9.18
 - 3.10.13
-- 3.11.5
+- 3.11.6
+- 3.12.0
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -238,7 +239,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 9.3.0
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.6.1
+- Microsoft.Graph: 2.7.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -295,7 +296,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:20-alpine          | sha256:37750e51d61bef92165b2e29a77da4277ba0777258446b7a9c99511f119db096  | 2023-09-29 |
 | ubuntu:18.04            | sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98  | 2023-05-30 |
 | ubuntu:20.04            | sha256:33a5cc25d22c45900796a1aca487ad7a7cb09f09ea00b779e3b2026b4fc2faba  | 2023-08-01 |
-| ubuntu:22.04            | sha256:aabed3296a3d45cede1dc866a24476c4d7e093aa806263c27ddaadbdce3c1054  | 2023-08-16 |
+| ubuntu:22.04            | sha256:9b8dec3bf938bc80fbe758d856e96fdfab5f56c39d44b0cff351e847bb1b01ea  | 2023-09-25 |
 
 ### Installed apt packages
 | Name                   | Version                             |
@@ -330,7 +331,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.3                     |
+| libc6-dev              | 2.35-0ubuntu3.4                     |
 | libcurl4               | 7.81.0-1ubuntu1.13                  |
 | libgbm-dev             | 23.0.4-0ubuntu1\~22.04.1            |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
@@ -347,7 +348,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.3                     |
+| locales                | 2.35-0ubuntu3.4                     |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
