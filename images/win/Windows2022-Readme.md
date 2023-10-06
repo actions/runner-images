@@ -5,7 +5,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 1970
-- Image Version: 20231002.1.0
+- Image Version: 20231005.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -34,7 +34,7 @@
 - pip 23.2.1 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit c6d6efed3)
+- Vcpkg (build from commit 4664eb1fb)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -55,10 +55,10 @@
 - azcopy 10.21.0
 - Bazel 6.3.2
 - Bazelisk 1.18.0
-- Bicep 0.21.1
+- Bicep 0.22.6
 - Cabal 3.10.1.0
 - CMake 3.27.6
-- CodeQL Action Bundles 2.14.5 2.14.6
+- CodeQL Action Bundle 2.14.6
 - Docker 24.0.6
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.22.0
@@ -93,17 +93,17 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.181
-- AWS CLI 2.13.20
-- AWS SAM CLI 1.97.0
+- AWS CLI 2.13.24
+- AWS SAM CLI 1.98.0
 - AWS Session Manager CLI 1.2.497.0
-- Azure CLI 2.53.0
+- Azure CLI 2.52.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.35.0
+- GitHub CLI 2.36.0
 
 ### Rust Tools
-- Cargo 1.72.1
-- Rust 1.72.1
-- Rustdoc 1.72.1
+- Cargo 1.73.0
+- Rust 1.73.0
+- Rustdoc 1.73.0
 - Rustup 1.26.0
 
 #### Packages
@@ -111,14 +111,14 @@
 - cargo-audit 0.18.2
 - cargo-outdated 0.13.1
 - cbindgen 0.26.0
-- Clippy 0.1.72
+- Clippy 0.1.73
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 117.0.5938.132
-- Chrome Driver 117.0.5938.92
+- Google Chrome 117.0.5938.150
+- Chrome Driver 117.0.5938.149
 - Microsoft Edge 117.0.2045.47
-- Microsoft Edge Driver 117.0.2045.47
+- Microsoft Edge Driver 117.0.2045.55
 - Mozilla Firefox 118.0.1
 - Gecko Driver 0.33.0
 - IE Driver 4.11.0.0
@@ -174,7 +174,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.8.10
 - 3.9.13
 - 3.10.11
-- 3.11.5
+- 3.11.6
+- 3.12.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.13]
@@ -571,10 +572,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.424
+- AWSPowershell: 4.1.427
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.6.1
+- Microsoft.Graph: 2.7.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
