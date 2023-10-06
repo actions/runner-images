@@ -15,7 +15,8 @@ $devEnvPath = "$vsInstallRoot\Common7\IDE\devenv.exe"
 
 cmd.exe /c "`"$devEnvPath`" /updateconfiguration"
 
-Copy-Item ${env:USERPROFILE}\AppData\Local\Microsoft\VisualStudio -Destination c:\users\default\AppData\Local\Microsoft\VisualStudio -Recurse
+# we are fine if some file is locked and cannot be copied
+Copy-Item ${env:USERPROFILE}\AppData\Local\Microsoft\VisualStudio -Destination c:\users\default\AppData\Local\Microsoft\VisualStudio -Recurse -ErrorAction SilentlyContinue
 
 reg.exe load HKLM\DEFAULT c:\users\default\ntuser.dat
 reg.exe copy HKCU\Software\Microsoft\VisualStudio HKLM\DEFAULT\Software\Microsoft\VisualStudio /s
