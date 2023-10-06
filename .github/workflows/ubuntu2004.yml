@@ -1,0 +1,20 @@
+name: Trigger Ubuntu20.04 CI
+run-name: Ubuntu20.04 - ${{ github.event.pull_request.title }}
+
+on:
+  pull_request_target:
+    types: labeled
+    paths:
+    - 'images/linux/**'
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  Ubuntu_2004:
+    if: contains(github.event.pull_request.labels.*.name, 'CI ubuntu-all') || contains(github.event.pull_request.labels.*.name, 'CI ubuntu-2004')
+    uses: ./.github/workflows/trigger-ubuntu-win-build.yml
+    with:
+      image_type: 'ubuntu2004'
+    secrets: inherit
