@@ -29,7 +29,7 @@ function Install-Binary
         [Parameter(Mandatory, ParameterSetName="LocalPath")]
         [String] $FilePath,
         [String[]] $ArgumentList,
-        [String] $ExpectedSignature
+        [String[]] $ExpectedSignature
     )
 
     if ($PSCmdlet.ParameterSetName -eq "LocalPath")
@@ -47,14 +47,13 @@ function Install-Binary
         if ($ExpectedSignature)
         {
             Test-FileSignature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
-
         }
         else
         {
             throw "ExpectedSignature parameter is specified, but no signature is provided."
         }
     }
-
+ 
     # MSI binaries should be installed via msiexec.exe
     $fileExtension = ([System.IO.Path]::GetExtension($Name)).Replace(".", "")
     if ($fileExtension -eq "msi")
@@ -706,18 +705,27 @@ function Test-FileSignature {
         [Parameter(Mandatory=$true)]
         [string]$FilePath,
         [Parameter(Mandatory=$true)]
-        [string]$ExpectedThumbprint
+        [string[]]$ExpectedThumbprint
     )
- 
+
     $signature = Get-AuthenticodeSignature $FilePath
- 
+
     if ($signature.Status -ne "Valid") {
         throw "Signature status is not valid. Status: $($signature.Status)"
     }
-
-    if ($signature.SignerCertificate.Thumbprint.Contains($ExpectedThumbprint) -ne $true) {
-        throw "Signature thumbprint do not match expected"
+    
+    foreach ($thumbprint in $ExpectedThumbprint) {
+        if ($signature.SignerCertificate.Thumbprint.Contains($thumbprint)) {
+            Write-Output "Signature for $FilePath is valid"
+            $signatureMatched = $true
+            return
+        }
     }
 
-    Write-Output "Signature for $FilePath is valid"
+    if ($signatureMatched) {
+        Write-Output "Signature for $FilePath is valid"
+    }
+    else {
+        throw "Signature thumbprint do not match expected."
+    }
 }
