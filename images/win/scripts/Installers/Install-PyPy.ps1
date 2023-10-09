@@ -84,8 +84,6 @@ $toolsetVersions = Get-ToolsetContent | Select-Object -ExpandProperty toolcache 
 $pypyVersions = Invoke-RestMethod https://downloads.python.org/pypy/versions.json
 
 # required for html parsing
-Install-Module PowerHTML -Scope CurrentUser 
-Import-Module PowerHTML
 $checksums = (Invoke-RestMethod -Uri 'https://www.pypy.org/checksums.html' | ConvertFrom-HTML).SelectNodes('//*[@id="content"]/article/div/pre')
 
 Write-Host "Starting installation PyPy..."
