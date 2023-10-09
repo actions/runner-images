@@ -11,8 +11,13 @@ New-Item -ItemType directory -Path $seleniumDirectory
 $seleniumMajorVersion = (Get-ToolsetContent).selenium.version
 $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
 $seleniumFileName = "$seleniumBinaryName.jar"
-$json = Invoke-RestMethod -Uri "https://api.github.com/repos/SeleniumHQ/selenium/releases?per_page=100"
-$seleniumDownloadUrl = $json.Where{-not $_.prerelease}.assets.browser_download_url | Where-Object { $_ -like "*${seleniumBinaryName}-${seleniumMajorVersion}.*jar" } | Select-Object -First 1
+
+$seleniumDownloadUrl = Get-GitHubPackageDownloadUrl `
+  -RepoOwner "SeleniumHQ" `
+  -RepoName "selenium" `
+  -BinaryName "$seleniumBinaryName" `
+  -Version $seleniumMajorVersion `
+  -UrlFilter "*{BinaryName}-{Version}.jar"
 
 Start-DownloadWithRetry -Url $seleniumDownloadUrl -Name $seleniumFileName -DownloadPath $seleniumDirectory
 
