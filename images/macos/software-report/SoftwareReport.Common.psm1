@@ -129,7 +129,7 @@ function Get-PipVersion {
         [int] $Version
     )
 
-    $command = If ($Version -eq 2) { "pip --version" } Else { "pip3 --version" }
+    $command = If ($Version -eq 2) { "/Library/Frameworks/Python.framework/Versions/2.7/bin/pip --version" } Else { "pip3 --version" }
     $commandOutput = Run-Command $command
     $versionPart1 = $commandOutput | Take-Part -Part 1
     $versionPart2 = $commandOutput | Take-Part -Part 4
@@ -192,7 +192,7 @@ function Get-PerlVersion {
 }
 
 function Get-PythonVersion {
-    $pythonVersion = Run-Command "python --version"
+    $pythonVersion = Run-Command "/Library/Frameworks/Python.framework/Versions/2.7/bin/python --version"
     return ($pythonVersion -replace "^Python").Trim()
 }
 

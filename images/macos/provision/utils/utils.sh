@@ -173,7 +173,19 @@ brew_smart_install() {
         brew install --build-from-source $tool_name
     else
         echo "Downloading $tool_name..."
-        brew install $tool_name
+        failed=true
+        for i in {1..10};
+        do
+            echo "taking attempt $i"
+            brew install $tool_name && failed=false || sleep 60
+            if [ "$failed" = false ]; then
+                break
+            fi
+        done
+
+        if [ "$failed" = true ]; then
+           exit 1;
+        fi
     fi
 }
 
