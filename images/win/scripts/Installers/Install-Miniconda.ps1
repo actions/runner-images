@@ -15,7 +15,7 @@ Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentLi
 Set-SystemVariable -SystemVariable "CONDA" -Value $CondaDestination
 
 #region Supply chain security
-$localFileHash = (Get-FileHash -Path (Join-Path ${env:TEMP} $installerName) -Algorithm SHA512).Hash
+$localFileHash = (Get-FileHash -Path (Join-Path ${env:TEMP} $installerName) -Algorithm SHA256).Hash
 $distributorFileHash = $null
 
 $checksums = (Invoke-RestMethod -Uri 'https://repo.anaconda.com/miniconda/' | ConvertFrom-HTML).SelectNodes('//html/body/table/tr')
