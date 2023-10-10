@@ -8,8 +8,7 @@
 Write-Host "Install latest Firefox browser..."
 $VersionsManifest = Invoke-RestMethod "https://product-details.mozilla.org/1.0/firefox_versions.json"
 $InstallerUrl = "https://download.mozilla.org/?product=firefox-$($VersionsManifest.LATEST_FIREFOX_VERSION)&os=win64&lang=en-US"
-$ArgumentList = ("/silent", "/install")
-$packagePath = Start-DownloadWithRetry -Url $InstallerUrl
+$packagePath = Start-DownloadWithRetry -Url $InstallerUrl -Name "FirefoxSetup.exe"
 
 #region Supply chain security - Stack
 $fileHash = (Get-FileHash -Path $packagePath -Algorithm SHA256).Hash
@@ -18,7 +17,7 @@ $externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({
 Use-ChecksumComparison $fileHash $externalHash
 #endregion
 
-Install-Binary -FilePath $packagePath -ArgumentList $ArgumentList
+Install-Binary -FilePath $packagePath -ArgumentList "/silent", "/install"
 
 Write-Host "Disable autoupdate..."
 $FirefoxDirectoryPath = Join-Path $env:ProgramFiles "Mozilla Firefox"
