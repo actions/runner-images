@@ -11,7 +11,7 @@ if (-not (Test-Path $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE))
     New-Item -ItemType Directory -Path $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE | Out-Null
 }
 
-$downloadUrl = Get-GitHubPackageDownloadUrl -RepoOwner "actions" -RepoName "action-versions" -Version "latest" -UrlFilter "*action-versions.zip"
+$downloadUrl = Get-GitHubPackageDownloadUrl -RepoOwner "actions" -RepoName "action-versions" -Version "latest" -UrlFilter "*/v{Version}/action-versions.zip"
 Write-Host "Download Latest action-versions archive from $downloadUrl"
 $actionVersionsArchivePath = Start-DownloadWithRetry -Url $downloadUrl -Name "action-versions.zip"
 
