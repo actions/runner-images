@@ -146,25 +146,26 @@ jobs:
                         -PrefixToPathTrim "$(TemplateDirectoryPath)" `
                         -PrintTopNLongest 25
 
-  - task: PowerShell@2
-    displayName: 'Convert managed image to VHD'
-    inputs:
-      targetType: filePath
-      filePath: ./images.CI/linux-and-win/convert-to-vhd.ps1
-      arguments: -SubscriptionId $(AZURE_SUBSCRIPTION) `
-                 -Location $(AZURE_LOCATION) `
-                 -ResourceGroupName $(AZURE_RESOURCE_GROUP) `
-                 -ManagedImageName "$(ManagedImageName)" `
-                 -GalleryName "github_imagegeneration_convert_to_vhd" `
-                 -GalleryImageSku "${{ parameters.image_type }}" `
-                 -GalleryImageVersion "0.0.$(Build.BuildId)" `
-                 -StorageAccountName $(AZURE_STORAGE_ACCOUNT) `
-                 -StorageAccountContainerName "images" `
-                 -VhdName "$(VhdName)" `
-                 -ClientId $(CLIENT_ID) `
-                 -ClientSecret $(CLIENT_SECRET) `
-                 -TenantId $(AZURE_TENANT) `
-                 -RemoveManagedImage
+  - ${{ if eq(parameters.create_release, true) }}:
+    - task: PowerShell@2
+      displayName: 'Convert managed image to VHD'
+      inputs:
+        targetType: filePath
+        filePath: ./images.CI/linux-and-win/convert-to-vhd.ps1
+        arguments: -SubscriptionId $(AZURE_SUBSCRIPTION) `
+                   -Location $(AZURE_LOCATION) `
+                   -ResourceGroupName $(AZURE_RESOURCE_GROUP) `
+                   -ManagedImageName "$(ManagedImageName)" `
+                   -GalleryName "github_imagegeneration_convert_to_vhd" `
+                   -GalleryImageSku "${{ parameters.image_type }}" `
+                   -GalleryImageVersion "0.0.$(Build.BuildId)" `
+                   -StorageAccountName $(AZURE_STORAGE_ACCOUNT) `
+                   -StorageAccountContainerName "images" `
+                   -VhdName "$(VhdName)" `
+                   -ClientId $(CLIENT_ID) `
+                   -ClientSecret $(CLIENT_SECRET) `
+                   -TenantId $(AZURE_TENANT) `
+                   -RemoveManagedImage
 
   - ${{ if eq(parameters.create_release, true) }}:
     - task: PowerShell@2

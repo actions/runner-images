@@ -18,3 +18,4 @@ jobs:
   parameters:
     image_type: ubuntu2204
     image_readme_name: Ubuntu2204-Readme.md
+    create_release: ${{ eq(variables['Build.Reason'], 'Schedule') }}
