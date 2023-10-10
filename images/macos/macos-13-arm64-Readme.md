@@ -1,7 +1,13 @@
+| Announcements |
+|-|
+| [[macOS] Apple Silicon (M1) powered macOS runners are now available in public beta!](https://github.com/actions/runner-images/issues/8439) |
+| [[All OS] Android NDK r23 will be removed from images on October 9](https://github.com/actions/runner-images/issues/8383) |
+| [[All OS] hub utility will be removed on October 2](https://github.com/actions/runner-images/issues/8362) |
+***
 # macOS 13
 - OS Version: macOS 13.6 (22G120)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20230924.3
+- Image Version: 20231010.1
 
 ## Installed Software
 
@@ -17,35 +23,36 @@
 - Julia 1.9.3
 - Kotlin 1.9.10-release-459
 - Mono 6.12.0.188
-- Perl 5.36.1
+- Perl 5.38.0
 - R 4.3.1
 - Ruby 3.0.6p216
 
 ### Package Management
-- Bundler 2.4.19
+- Bundler 2.4.20
 - Carthage 0.39.1
 - CocoaPods 1.13.0
-- Composer command
-- Homebrew 4.1.12
+- Homebrew 4.1.15
 - NPM 9.8.1
 - NuGet 6.3.1.1
-- RubyGems 3.4.19
+- RubyGems 3.4.20
 - Yarn 1.22.19
 
 ### Project Management
 - Apache Ant 1.10.14
+- Apache Maven 3.9.5
+- Gradle 8.4
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.36.0
-- azcopy 10.20.1
+- azcopy 10.21.0
 - bazel 6.3.2
 - bazelisk 1.18.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.1.2
 - Git 2.42.0
 - Git LFS 3.4.0
-- GitHub CLI 2.35.0
+- GitHub CLI 2.36.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
@@ -53,40 +60,40 @@
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.9.4
 - pkg-config 0.29.2
-- yq 4.35.1
+- yq 4.35.2
 - zstd 1.5.5
 
 ### Tools
-- Azure CLI 2.52.0
+- Azure CLI 2.53.0
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.21.1
-- Cmake 3.27.6
-- CodeQL Action Bundles 2.14.4 2.14.5
+- Bicep CLI 0.22.6
+- Cmake 3.27.7
+- CodeQL Action Bundles 2.14.5 2.14.6
 - Fastlane 2.216.0
-- SwiftFormat 0.52.4
+- SwiftFormat 0.52.7
 - Xcode Command Line Tools 15.0.0.0.1.1694021235
 
 ### Linters
 
 ### Rust Tools
-- Cargo 1.72.1
-- Rust 1.72.1
-- Rustdoc 1.72.1
+- Cargo 1.73.0
+- Rust 1.73.0
+- Rustdoc 1.73.0
 - Rustup 1.26.0
 
 #### Packages
 - Bindgen 0.68.1
-- Cargo-audit 0.18.1
+- Cargo-audit 0.18.2
 - Cargo-outdated 0.13.1
 - Cbindgen 0.26.0
-- Clippy 0.1.72
+- Clippy 0.1.73
 - Rustfmt 1.6.0-stable
 
 ### PowerShell Tools
 - PowerShell 7.2.14
 
 #### PowerShell Modules
-- Az: 10.3.0
+- Az: 10.4.1
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -149,3 +156,4 @@
 | watchOS 9.1  | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                             |
 | watchOS 9.4  | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                             |
 | watchOS 10.0 | 14.1<br>14.2<br>14.3.1<br>15.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm) |
+
