@@ -7,7 +7,7 @@
 # macOS 13
 - OS Version: macOS 13.6 (22G120)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20231002.1
+- Image Version: 20231009.6
 
 ## Installed Software
 
@@ -25,7 +25,7 @@
 - Mono 6.12.0.188
 - Perl 5.38.0
 - PHP 8.2.11
-- Python3 3.11.5
+- Python3 3.12.0
 - R 4.3.1
 - Ruby 3.0.6p216
 
@@ -33,18 +33,20 @@
 - Bundler 2.4.20
 - Carthage 0.39.1
 - CocoaPods 1.13.0
-- Composer 2.6.4
-- Homebrew 4.1.14
+- Composer 2.6.5
+- Homebrew 4.1.15
 - NPM 9.8.1
 - NuGet 6.3.1.1
-- Pip3 23.2.1 (python 3.11)
+- Pip3 23.2.1 (python 3.12)
 - Pipx 1.2.0
 - RubyGems 3.4.20
-- Vcpkg 2023 (build from commit 38dd6b15a)
+- Vcpkg 2023 (build from commit 848006ded)
 - Yarn 1.22.19
 
 ### Project Management
 - Apache Ant 1.10.14
+- Apache Maven 3.9.5
+- Gradle 8.4
 
 ### Utilities
 - 7-Zip 17.05
@@ -56,7 +58,7 @@
 - Curl 8.3.0
 - Git 2.42.0
 - Git LFS 3.4.0
-- GitHub CLI 2.35.0
+- GitHub CLI 2.36.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
@@ -68,20 +70,20 @@
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.13.22
-- AWS SAM CLI 1.97.0
+- AWS CLI 2.13.25
+- AWS SAM CLI 1.98.0
 - AWS Session Manager CLI 1.2.497.0
 - Azure CLI 2.53.0
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.21.1
+- Bicep CLI 0.22.6
 - Cabal 3.6.2.0
-- Cmake 3.27.6
+- Cmake 3.27.7
 - CodeQL Action Bundles 2.14.5 2.14.6
 - Fastlane 2.216.0
-- GHC 9.6.3
+- GHC 9.8.1
 - GHCup 0.1.19.4
 - Stack 2.11.1
-- SwiftFormat 0.52.6
+- SwiftFormat 0.52.7
 - Xcode Command Line Tools 15.0.0.0.1.1694021235
 
 ### Linters
@@ -90,11 +92,11 @@
 ### Browsers
 - Safari 16.6 (18615.3.12.11.2)
 - SafariDriver 16.6 (18615.3.12.11.2)
-- Google Chrome 117.0.5938.132
-- Google Chrome for Testing 117.0.5938.92
-- ChromeDriver 117.0.5938.92
-- Microsoft Edge 117.0.2045.47
-- Microsoft Edge WebDriver 117.0.2045.47
+- Google Chrome 117.0.5938.149
+- Google Chrome for Testing 117.0.5938.149
+- ChromeDriver 117.0.5938.149
+- Microsoft Edge 117.0.2045.55
+- Microsoft Edge WebDriver 117.0.2045.55
 - Mozilla Firefox 118.0.1
 - geckodriver 0.33.0
 - Selenium server 4.13.0
@@ -123,7 +125,8 @@
 - 3.8.18
 - 3.9.18
 - 3.10.13
-- 3.11.5
+- 3.11.6
+- 3.12.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.13]
@@ -143,9 +146,9 @@
 - 1.21.1
 
 ### Rust Tools
-- Cargo 1.72.1
-- Rust 1.72.1
-- Rustdoc 1.72.1
+- Cargo 1.73.0
+- Rust 1.73.0
+- Rustdoc 1.73.0
 - Rustup 1.26.0
 
 #### Packages
@@ -153,7 +156,7 @@
 - Cargo-audit 0.18.2
 - Cargo-outdated 0.13.1
 - Cbindgen 0.26.0
-- Clippy 0.1.72
+- Clippy 0.1.73
 - Rustfmt 1.6.0-stable
 
 ### PowerShell Tools
