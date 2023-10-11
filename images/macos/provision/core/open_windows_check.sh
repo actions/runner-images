@@ -1,5 +1,6 @@
 #!/bin/bash -e -o pipefail
 
+source ~/utils/utils.sh
 
 # Close System Preferences window because in Ventura arm64 it is opened by default on Apperance tab
 if is_VenturaArm64; then
