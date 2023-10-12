@@ -3,6 +3,7 @@
         "default": "14.3.1",
         "x64": {
             "versions": [
+                { "link": "15.0.1", "version": "15.0.1-Release.Candidate+15A507"},
                 { "link": "15.0", "version": "15.0.0+15A240d"},
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"] },
                 { "link": "14.2", "version": "14.2.0+14C18" },
@@ -11,6 +12,7 @@
         },
         "arm64":{
             "versions": [
+                { "link": "15.0.1", "version": "15.0.1-Release.Candidate+15A507"},
                 { "link": "15.0", "version": "15.0.0+15A240d"},
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"] },
                 { "link": "14.2", "version": "14.2.0+14C18" },
