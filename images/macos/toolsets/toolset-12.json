@@ -140,8 +140,10 @@
         ]
     },
     "java": {
-        "default": "8",
-        "versions": [ "8", "11", "17" ]
+        "x64": {
+            "default": "8",
+            "versions": [ "8", "11", "17" ]
+        }
     },
     "android": {
         "platform_min_version": "27",
