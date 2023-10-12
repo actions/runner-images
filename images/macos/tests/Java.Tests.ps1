@@ -75,7 +75,7 @@ Describe "Java" {
                 (Get-Command "gradle").Path | Should -BeExactly "/usr/local/bin/gradle"
             }
 
-            It "Gradle is installed to /opt/homebrew/bin/gradle" -Skip:($os.IsVentura)  {
+            It "Gradle is installed to /opt/homebrew/bin/gradle" -Skip:(-not $os.IsVenturaArm64)  {
                 (Get-Command "gradle").Path | Should -BeExactly "/opt/homebrew/bin/gradle"
             }
         }
