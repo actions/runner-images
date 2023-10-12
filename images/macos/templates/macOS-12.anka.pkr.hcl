@@ -198,6 +198,7 @@ build {
   }
   provisioner "shell" {
     scripts = [
+      "./provision/core/action-archive-cache.sh",
       "./provision/core/llvm.sh",
       "./provision/core/golang.sh",
       "./provision/core/swiftlint.sh",

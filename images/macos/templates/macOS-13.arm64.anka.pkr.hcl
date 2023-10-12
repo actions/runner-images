@@ -162,6 +162,7 @@ build {
   provisioner "shell" {
     pause_before = "30s"
     scripts = [
+      "./provision/core/open_windows_check.sh",
       "./provision/core/powershell.sh",
       "./provision/core/mono.sh",
       "./provision/core/dotnet.sh",
@@ -194,6 +195,7 @@ build {
   }
   provisioner "shell" {
     scripts = [
+      "./provision/core/action-archive-cache.sh",
       "./provision/core/llvm.sh",
       "./provision/core/openjdk.sh",
       "./provision/core/rust.sh",
