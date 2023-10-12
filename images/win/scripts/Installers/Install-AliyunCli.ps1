@@ -13,7 +13,7 @@ $packagePath = Start-DownloadWithRetry -Url $downloadUrl -Name "$installerFileNa
 
 #region Supply chain security - Alibaba Cloud CLI
 $fileHash = (Get-FileHash -Path $packagePath -Algorithm SHA256).Hash
-$hashUrl = ($assets.browser_download_url -match "*SHASUMS256.txt*") | Select-Object -First 1
+$hashUrl = ($assets.browser_download_url -ilike "*SHASUMS256.txt*") | Select-Object -First 1
 $externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*$installerFileName*" }).Split(' ')[0]
 Use-ChecksumComparison $fileHash $externalHash
 #endregion
