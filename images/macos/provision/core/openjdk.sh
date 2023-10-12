@@ -70,7 +70,6 @@ installOpenJDK() {
 }
 
 arch=$(get_arch)
-echo $arch
 defaultVersion=$(get_toolset_value '.java.'$arch'.default')
 jdkVersionsToInstall=($(get_toolset_value ".java.${arch}.versions[]"))
 
