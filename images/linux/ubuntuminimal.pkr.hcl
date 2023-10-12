@@ -47,6 +47,11 @@ variable "client_cert_path" {
   default   = "${env("ARM_CLIENT_CERT_PATH")}"
 }
 
+variable "client_jwt" {
+  type      = string
+  default   = "${env("ARM_OIDC_TOKEN")}"
+}
+
 variable "commit_url" {
   type      = string
   default   = ""
@@ -126,6 +131,7 @@ source "azure-arm" "build_image" {
   client_id        = "${var.client_id}"
   client_secret    = "${var.client_secret}"
   client_cert_path = "${var.client_cert_path}"
+  client_jwt       = "${var.client_jwt}"
 
   // Base image
   image_offer     = "0001-com-ubuntu-server-jammy"
