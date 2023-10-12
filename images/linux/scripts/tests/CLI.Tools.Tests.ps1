@@ -35,14 +35,10 @@ Describe "GitHub CLI" {
     It "gh cli" {
         "gh --version" | Should -ReturnZeroExitCode
     }
-
-    It "hub is installed" {
-        "hub --version" | Should -ReturnZeroExitCode
-    }
 }
 
-Describe "Google Cloud SDK" {
-    It "Google Cloud SDK" {
+Describe "Google Cloud CLI" {
+    It "Google Cloud CLI" {
         "gcloud --version" | Should -ReturnZeroExitCode
     }
 }

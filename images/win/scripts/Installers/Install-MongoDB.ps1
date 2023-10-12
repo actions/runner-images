@@ -6,8 +6,8 @@
 # Install mongodb package
 $toolsetVersion = (Get-ToolsetContent).mongodb.version
 
-$getMongoReleases =  Invoke-WebRequest -Uri "https://www.mongodb.com/docs/upcoming/release-notes/$toolsetVersion" -UseBasicParsing
-$TargetReleases = $getMongoReleases.Links.href | Where-Object {$_ -like "*std-label-$toolsetVersion*"}
+$getMongoReleases =  Invoke-WebRequest -Uri "https://www.mongodb.com/docs/v$toolsetVersion/release-notes/$toolsetVersion-changelog/" -UseBasicParsing
+$TargetReleases = $getMongoReleases.Links.href | Where-Object {$_ -like "#$toolsetVersion*-changelog"}
 
 $MinorVersions = @()
 foreach ($release in $TargetReleases) {
@@ -22,7 +22,7 @@ $installDir = "c:\PROGRA~1\MongoDB"
 $binaryName = "mongodb-windows-x86_64-$LatestVersion-signed.msi"
 $downloadURL = "https://fastdl.mongodb.org/windows/$BinaryName"
 $installArg = "INSTALLLOCATION=$installDir ADDLOCAL=all"
-Install-Binary -Url $downloadURL -Name $binaryName -ArgumentList ("/q","/i","${env:Temp}\$binaryName", $installArg)
+Install-Binary -Url $downloadURL -Name $binaryName -ArgumentList ("/q","/i","${env:Temp}\$binaryName", $installArg) -ExpectedSignature (Get-ToolsetContent).mongodb.signature
 
 
 # Add mongodb to the PATH

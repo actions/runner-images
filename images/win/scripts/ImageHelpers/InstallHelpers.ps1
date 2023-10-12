@@ -17,7 +17,7 @@ function Install-Binary
         The list of arguments that will be passed to the installer. Required for .exe binaries.
 
     .EXAMPLE
-        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet")
+        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet") -ExpectedSignature "XXXXXXXXXXXXXXXXXXXXXXXXXX"
     #>
 
     Param
@@ -28,7 +28,8 @@ function Install-Binary
         [String] $Name,
         [Parameter(Mandatory, ParameterSetName="LocalPath")]
         [String] $FilePath,
-        [String[]] $ArgumentList
+        [String[]] $ArgumentList,
+        [String[]] $ExpectedSignature
     )
 
     if ($PSCmdlet.ParameterSetName -eq "LocalPath")
@@ -41,6 +42,18 @@ function Install-Binary
         $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
     }
 
+    if ($PSBoundParameters.ContainsKey('ExpectedSignature'))
+    {
+        if ($ExpectedSignature)
+        {
+            Test-FileSignature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
+        }
+        else
+        {
+            throw "ExpectedSignature parameter is specified, but no signature is provided."
+        }
+    }
+ 
     # MSI binaries should be installed via msiexec.exe
     $fileExtension = ([System.IO.Path]::GetExtension($Name)).Replace(".", "")
     if ($fileExtension -eq "msi")
@@ -603,6 +616,7 @@ function Get-GitHubPackageDownloadUrl {
         [string]$Version,
         [string]$UrlFilter,
         [boolean]$IsPrerelease = $false,
+        [boolean]$LatestReleaseOnly = $true,
         [int]$SearchInCount = 100
     )
 
@@ -612,21 +626,122 @@ function Get-GitHubPackageDownloadUrl {
 
     $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
     $tags = $json.Where{ $_.prerelease -eq $IsPrerelease -and $_.assets }.tag_name
-    $versionToDownload = $tags |
-            Select-String -Pattern "\d+.\d+.\d+" |
-            ForEach-Object { $_.Matches.Value } |
-            Where-Object { $_ -like "$Version.*" -or $_ -eq $Version } |
-            Sort-Object { [version]$_ } |
-            Select-Object -Last 1
+    $availableVersions = $tags |
+        Select-String -Pattern "\d+.\d+.\d+" |
+        ForEach-Object { $_.Matches.Value } |
+        Where-Object { $_ -like "$Version.*" -or $_ -eq $Version } |
+        Sort-Object -Descending { [version]$_ }
 
-    if (-not $versionToDownload) {
-        Write-Host "Failed to get a tag name from ${RepoOwner}/${RepoName} releases"
-        exit 1
+    if (-not $availableVersions) {
+        throw "Failed to get available versions from ${RepoOwner}/${RepoName} releases"
     }
 
-    $UrlFilter = $UrlFilter -replace "{BinaryName}",$BinaryName -replace "{Version}",$versionToDownload
-    $downloadUrl = $json.assets.browser_download_url -like $UrlFilter
+    if ($LatestReleaseOnly) {
+        $latestVersion = $availableVersions | Select-Object -First 1
+        $urlFilterReplaced = $UrlFilter -replace "{BinaryName}", $BinaryName -replace "{Version}", $latestVersion
+        $downloadUrl = $json.assets.browser_download_url -like $urlFilterReplaced
+    } else {
+        foreach ($version in $availableVersions) {
+            $urlFilterReplaced = $UrlFilter -replace "{BinaryName}", $BinaryName -replace "{Version}", $version
+            $downloadUrl = $json.assets.browser_download_url -like $urlFilterReplaced
+
+            if ($downloadUrl) {
+                Write-Host "Found download url for ${RepoOwner}/${RepoName} ${BinaryName} ${version}"
+                break
+            }
+        }
+    }
+
+    if (-not $downloadUrl) {
+        throw "Failed to get download url for ${RepoOwner}/${RepoName} ${BinaryName}"
+    }
 
     return $downloadUrl
 }
 
+function Use-ChecksumComparison {
+    param (
+        [Parameter(Mandatory=$true)]
+        [string]$LocalFileHash,
+        [Parameter(Mandatory=$true)]
+        [string]$DistributorFileHash
+    )
+
+    Write-Verbose "Performing checksum verification"
+
+    if ($LocalFileHash -ne $DistributorFileHash) {
+        throw "Checksum verification failed. Expected hash: $DistributorFileHash; Actual hash: $LocalFileHash."
+    } else {
+        Write-Verbose "Checksum verification passed"
+    }
+}
+
+function Get-HashFromGitHubReleaseBody {
+    param (
+        [string]$RepoOwner,
+        [string]$RepoName,
+        [Parameter(Mandatory=$true)]
+        [string]$FileName,
+        [string]$Url,
+        [string]$Version = "latest",
+        [boolean]$IsPrerelease = $false,
+        [int]$SearchInCount = 100,
+        [string]$Delimiter = '|',
+        [int]$WordNumber = 1
+    )
+
+    if ($Url) {
+        $releaseUrl = $Url
+    } else {
+        if ($Version -eq "latest") {
+            $releaseUrl = "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases/latest"
+        } else {
+            $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
+            $tags = $json.Where{ $_.prerelease -eq $IsPrerelease }.tag_name
+            $tag = $tags -match $Version
+            if (-not $tag) {
+                throw "Failed to get a tag name for version $Version."
+            }
+            $releaseUrl = "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases/tag/$tag"
+        }
+    }
+    $body = (Invoke-RestMethod -Uri $releaseUrl).body -replace('`', "") -join "`n"
+    $matchingLine = $body.Split("`n") | Where-Object { $_ -like "*$FileName*" }    
+    if ([string]::IsNullOrEmpty($matchingLine)) {
+        throw "File name '$FileName' not found in release body."
+    }
+    $result = $matchingLine.Split($Delimiter)[$WordNumber] -replace "[^a-zA-Z0-9]", ""
+    if ([string]::IsNullOrEmpty($result)) {
+        throw "Empty result. Check Split method parameters (delimiter and/or word number) for the matching line."
+    }
+    return $result
+}
+function Test-FileSignature {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$FilePath,
+        [Parameter(Mandatory=$true)]
+        [string[]]$ExpectedThumbprint
+    )
+
+    $signature = Get-AuthenticodeSignature $FilePath
+
+    if ($signature.Status -ne "Valid") {
+        throw "Signature status is not valid. Status: $($signature.Status)"
+    }
+    
+    foreach ($thumbprint in $ExpectedThumbprint) {
+        if ($signature.SignerCertificate.Thumbprint.Contains($thumbprint)) {
+            Write-Output "Signature for $FilePath is valid"
+            $signatureMatched = $true
+            return
+        }
+    }
+
+    if ($signatureMatched) {
+        Write-Output "Signature for $FilePath is valid"
+    }
+    else {
+        throw "Signature thumbprint do not match expected."
+    }
+}

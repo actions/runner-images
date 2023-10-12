@@ -162,6 +162,7 @@ build {
     scripts = [
       "./provision/core/open_windows_check.sh",
       "./provision/core/powershell.sh",
+      "./provision/core/mono.sh",
       "./provision/core/dotnet.sh",
       "./provision/core/python.sh",
       "./provision/core/azcopy.sh",
@@ -193,6 +194,7 @@ build {
   }
   provisioner "shell" {
     scripts = [
+      "./provision/core/action-archive-cache.sh",
       "./provision/core/llvm.sh",
       "./provision/core/swiftlint.sh",
       "./provision/core/openjdk.sh",

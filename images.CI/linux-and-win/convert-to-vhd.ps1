@@ -96,7 +96,7 @@ Write-Host ("Copying VHD blob from '{0}' to 'https://{1}.blob.core.windows.net/{
     -f $sourceDiskUri.Split('?')[0], $StorageAccountName, $StorageAccountContainerName, $VhdName)
 
 az storage blob copy start `
-  --source-uri """$sourceDiskUri""" `
+  --source-uri $sourceDiskUri `
   --destination-blob $VhdName `
   --destination-container $StorageAccountContainerName `
   --account-name $StorageAccountName `

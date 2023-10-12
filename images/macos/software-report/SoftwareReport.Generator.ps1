@@ -42,7 +42,9 @@ $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
-    $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
+}
+$languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MSBuildVersion))
     $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
     $languageAndRuntime.AddToolVersion("NVM", $(Get-NVMVersion))
@@ -68,14 +70,16 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Bundler", $(Get-BundlerVersion))
 $packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
 $packageManagement.AddToolVersion("CocoaPods", $(Get-CocoaPodsVersion))
-$packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
+if (-not $os.IsVenturaArm64) {
+    $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
+}
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
 }
 $packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
+$packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
-    $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
     $packageManagement.AddToolVersion("Pip", $(Get-PipVersion -Version 2))
 }
 
@@ -96,9 +100,9 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
 # Project Management
 $projectManagement = $installedSoftware.AddHeader("Project Management")
 $projectManagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
+$projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
+$projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
-    $projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
-    $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 }
 
@@ -121,7 +125,6 @@ if ($os.IsBigSur) {
     $utilities.AddToolVersion("helm", $(Get-HelmVersion))
 }
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
-    $utilities.AddToolVersion("Hub CLI", $(Get-HubVersion))
     $utilities.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 }
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
@@ -142,11 +145,9 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $utilities.AddToolVersion("Subversion (SVN)", $(Get-SVNVersion))
     $utilities.AddToolVersion("Switchaudio-osx", $(Get-SwitchAudioOsxVersion))
 }
-if (-not $os.IsBigSur) {
+if ((-not $os.IsBigSur) -and (-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $utilities.AddToolVersion("Vagrant", $(Get-VagrantVersion))
-    if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
-        $utilities.AddToolVersion("VirtualBox", $(Get-VirtualBoxVersion))
-    }
+    $utilities.AddToolVersion("VirtualBox", $(Get-VirtualBoxVersion))
 }
 $utilities.AddToolVersion("yq", $(Get-YqVersion))
 $utilities.AddToolVersion("zstd", $(Get-ZstdVersion))

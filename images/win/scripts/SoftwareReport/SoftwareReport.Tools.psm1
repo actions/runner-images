@@ -42,17 +42,12 @@ function Get-CMakeVersion {
     return $cmakeVersion
 }
 
-function Get-CodeQLBundleVersions {
+function Get-CodeQLBundleVersion {
     $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-    $CodeQLVersionPaths = Get-ChildItem $CodeQLVersionsWildcard 
-    $CodeQlVersions=@()
-    foreach ($CodeQLVersionPath in $CodeQLVersionPaths) {
-        $FullCodeQLVersionPath = $CodeQLVersionPath | Select-Object -Expand FullName
-        $CodeQLPath = Join-Path $FullCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
-        $CodeQLVersion = & $CodeQLPath version --quiet
-        $CodeQLVersions += $CodeQLVersion
-    }
-    return $CodeQLVersions
+    $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
+    $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
+    $CodeQLVersion = & $CodeQLPath version --quiet
+    return $CodeQLVersion
 }
 
 function Get-DockerVersion {
@@ -107,8 +102,20 @@ function Get-KindVersion {
     return $kindVersion
 }
 
-function Get-MinGWVersion {
-    (gcc --version | Select-String -Pattern "MinGW-W64") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+function Get-GCCVersion {
+    (gcc --version | Select-String -Pattern "gcc.exe") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    $mingwVersion = $Matches.Version
+    return $mingwVersion
+}
+
+function Get-GDBVersion {
+    (gdb --version | Select-String -Pattern "GNU gdb") -match "(?<version>\d+\.\d+)" | Out-Null
+    $mingwVersion = $Matches.Version
+    return $mingwVersion
+}
+
+function Get-GNUBinutilsVersion {
+    (ld --version | Select-String -Pattern "GNU Binutils") -match "(?<version>\d+\.\d+)" | Out-Null
     $mingwVersion = $Matches.Version
     return $mingwVersion
 }
@@ -232,12 +239,6 @@ function Get-CloudFoundryVersion {
     return $cfVersion
 }
 
-function Get-HubVersion {
-    ($(hub version) | Select-String -Pattern "hub version") -match "hub version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $hubVersion = $Matches.Version
-    return $hubVersion
-}
-
 function Get-7zipVersion {
     (7z | Out-String) -match "7-Zip (?<version>\d+\.\d+\.?\d*)" | Out-Null
     $version = $Matches.Version
@@ -262,7 +263,7 @@ function Get-StackVersion {
     return $stackVersion
 }
 
-function Get-GoogleCloudSDKVersion {
+function Get-GoogleCloudCLIVersion {
     return (((cmd /c "gcloud --version") -match "Google Cloud SDK") -replace "Google Cloud SDK").Trim()
 }
 

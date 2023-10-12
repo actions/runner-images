@@ -3,10 +3,6 @@ $ErrorActionPreference = "Stop"
 Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
 Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1" -DisableNameChecking
 
-# Spaceship Apple ID login fails due to Apple ID prompting to be upgraded to 2FA.
-# https://github.com/fastlane/fastlane/pull/18116
-$env:SPACESHIP_SKIP_2FA_UPGRADE = 1
-
 $ARCH = Get-Architecture
 [Array]$xcodeVersions = Get-ToolsetValue "xcode.$ARCH.versions"
 write-host $xcodeVersions
@@ -36,6 +32,12 @@ $xcodeVersions | ForEach-Object {
     if ($_.link.Split(".")[0] -ge 14) {
         # Additional simulator runtimes are included by default for Xcode < 14
         Install-AdditionalSimulatorRuntimes -Version $_.link
+    }
+
+    ForEach($runtime in $_.runtimes) {
+        Write-Host "Installing Additional runtimes for Xcode '$runtime' ..."
+        $xcodebuildPath = Get-XcodeToolPath -Version $_.link -ToolName 'xcodebuild'
+        Invoke-ValidateCommand "sudo $xcodebuildPath -downloadPlatform $runtime" | Out-Null
     }
 
 }

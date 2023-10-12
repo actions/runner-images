@@ -63,11 +63,11 @@ function Get-AvailableIPSWVersions {
     )
 
     if ($IsBeta) {
-        $command = { mist list installer "$MacOSCodeNameOrVersion" --include-betas --latest --export "/Applications/export.json"}
+        $command = { mist list firmware "$MacOSCodeNameOrVersion" --include-betas --latest --export "/Applications/export.json"}
     } elseif ($IsLatest) {
-        $command = { mist list installer "$MacOSCodeNameOrVersion" --latest  --export "/Applications/export.json" }
+        $command = { mist list firmware "$MacOSCodeNameOrVersion" --latest  --export "/Applications/export.json" }
     } else {
-        $command = { mist list installer "$MacOSCodeNameOrVersion"  --export "/Applications/export.json" }
+        $command = { mist list firmware "$MacOSCodeNameOrVersion"  --export "/Applications/export.json" }
     }
 
     $condition = { $LASTEXITCODE -eq 0 }
@@ -76,7 +76,7 @@ function Get-AvailableIPSWVersions {
     $turgetVersion = ($softwareList | ConvertFrom-Json).version
     if ($null -eq $turgetVersion) {
         Write-Host "Requested macOS '$MacOSCodeNameOrVersion' version not found in the list of available installers."
-        $command = { mist list installer "$($MacOSCodeNameOrVersion.split('.')[0])" }
+        $command = { mist list firmware "$($MacOSCodeNameOrVersion.split('.')[0])" }
         Invoke-WithRetry -Command $command -BreakCondition $condition
         exit 1
     }
@@ -133,6 +133,7 @@ function Get-MacOSIPSWInstaller {
     }
     return $result
 }
+
 function Get-MacOSInstaller {
     param (
         [Parameter(Mandatory)]

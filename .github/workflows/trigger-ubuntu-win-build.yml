@@ -1,0 +1,47 @@
+name: Trigger Build workflow
+
+on:
+  workflow_call:
+    inputs:
+      image_type:
+        required: true
+        type: string
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  trigger-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Build workflow
+        env:
+          CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          CI_PR: ${{ secrets.CI_REPO }}
+        run: |
+          $headers = @{
+            Authorization="Bearer $env:CI_PR_TOKEN"
+          }
+
+          # Private repository for builds
+          $apiRepoUrl = "https://api.github.com/repos/$env:CI_PR"
+
+          $eventType = "trigger-${{ inputs.image_type }}-build"
+          $body = @{
+            event_type = $eventType;
+            client_payload = @{
+              pr_title = "$env:PR_TITLE"
+              custom_repo = "${{ github.event.pull_request.head.repo.full_name }}"
+              custom_repo_commit_hash = "${{ github.event.pull_request.head.sha }}"
+            }
+          }
+
+          $bodyString = $body | ConvertTo-Json
+
+          try {
+            Invoke-WebRequest -Uri "$apiRepoUrl/dispatches" -Method Post -Headers $headers -Body $bodyString | Out-Null
+          } catch {
+            throw "$($_.exception[0].message)"
+          }

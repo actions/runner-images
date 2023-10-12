@@ -3,7 +3,8 @@
         "default": "14.3.1",
         "x64": {
             "versions": [
-                { "link": "15.0", "version": "15.0.0-Beta.8+15A5229m" },
+                { "link": "15.0.1", "version": "15.0.1-Release.Candidate+15A507"},
+                { "link": "15.0", "version": "15.0.0+15A240d"},
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"] },
                 { "link": "14.2", "version": "14.2.0+14C18" },
                 { "link": "14.1", "version": "14.1.0+14B47b" }
@@ -11,7 +12,8 @@
         },
         "arm64":{
             "versions": [
-                { "link": "15.0", "version": "15.0.0-Beta.8+15A5229m" },
+                { "link": "15.0.1", "version": "15.0.1-Release.Candidate+15A507"},
+                { "link": "15.0", "version": "15.0.0+15A240d"},
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"] },
                 { "link": "14.2", "version": "14.2.0+14C18" },
                 { "link": "14.1", "version": "14.1.0+14B47b" }
@@ -19,8 +21,14 @@
         }
     },
     "java": {
-        "default": "17",
-        "versions": [ "8", "11", "17" ]
+        "x64": {
+            "default": "17",
+            "versions": [ "8", "11", "17" ]
+        },
+        "arm64": {
+            "default": "17",
+            "versions": [ "11", "17" ]
+        }
     },
     "android": {
         "platform_min_version": "27",
@@ -36,7 +44,7 @@
         "ndk": {
             "default": "25",
             "versions": [
-                "23", "24", "25"
+                "23", "24", "25", "26"
             ]
         }
     },
@@ -70,8 +78,7 @@
             "unxip"
         ],
         "cask_packages": [
-            "julia",
-            "vagrant"
+            "julia"
         ]
     },
     "gcc": {
@@ -97,7 +104,6 @@
     "ruby": {
         "default": "3.0",
         "rubygems": [
-            "xcode-install",
             "cocoapods",
             "xcpretty",
             "bundler",
@@ -120,7 +126,6 @@
                 },
                 "arm64": {
                     "versions": [
-                        "3.10.*",
                         "3.11.*"
                     ]
                 }
@@ -149,7 +154,8 @@
                 "x64": {
                     "versions": [
                         "16.*",
-                        "18.*"
+                        "18.*",
+                        "20.*"
                     ]
                 },
                 "arm64": {
@@ -205,5 +211,13 @@
     },
     "php": {
         "version": "8.2"
+    },
+    "mono": {
+        "framework":{
+            "version": "6.12.0.188"
+        },
+        "nunit": {
+            "version": "3.15.4"
+        }
     }
 }

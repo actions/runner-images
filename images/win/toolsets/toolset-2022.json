@@ -21,7 +21,8 @@
                 "3.8.*",
                 "3.9.*",
                 "3.10.*",
-                "3.11.*"
+                "3.11.*",
+                "3.12.*"
             ],
             "default": "3.9.*"
         },
@@ -58,7 +59,8 @@
             "versions": [
                 "14.*",
                 "16.*",
-                "18.*"
+                "18.*",
+                "20.*"
             ]
         },
         {
@@ -67,7 +69,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.18.*",
                 "1.19.*",
                 "1.20.*",
                 "1.21.*"
@@ -90,7 +91,6 @@
     "azureModules": [
         {
             "name": "azurerm",
-            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
                 "6.13.1"
@@ -105,7 +105,6 @@
         },
         {
             "name": "azure",
-            "blob_url": "https://vstsagenttools.blob.core.windows.net/tools/azurepowershellmodules/",
             "versions": [
                 "2.1.0",
                 "5.3.0"
@@ -119,7 +118,6 @@
         },
         {
             "name": "az",
-            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
                 "9.3.0"
             ],
@@ -133,6 +131,8 @@
         "versions": [ "8", "11", "17" ]
     },
     "android": {
+        "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip",
+        "hash": "8A90E6A3DEB2FA13229B2E335EFD07687DCC8A55A3C544DA9F40B41404993E7D",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra_list": [
@@ -149,12 +149,13 @@
         "ndk": {
             "default": "25",
             "versions": [
-                "23", "24", "25"
+                "23", "24", "25", "26"
             ]
         }
     },
     "mingw": {
-	"version": "11.2.0.07112021"
+        "version": "12.2.0",
+        "runtime": "ucrt"
     },
     "MsysPackages": {
         "msys2": [],
@@ -176,6 +177,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
+        "signature": "6E78B3DCE2998F6C2457C3E54DA90A01034916AE",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -352,10 +354,12 @@
     },
     "serviceFabric": {
         "runtime": {
-            "version": "9.1.1436.9590"
+            "version": "9.1.1436.9590",
+            "signature": "AFBF0B8B6A18F7E23CCA1DDCD0AC1A55B4035173"
         },
         "sdk": {
-            "version": "6.1.1436"
+            "version": "6.1.1436",
+            "signature": "AFBF0B8B6A18F7E23CCA1DDCD0AC1A55B4035173"
         }
     },
     "dotnet": {
@@ -400,10 +404,12 @@
         "version": "3.8"
     },
     "mysql": {
-        "version": "8.0"
+        "version": "8.0",
+        "signature": "DD34D7C71F160972DE0CE25B695A0D6A9C95BD91"
     },
     "mongodb": {
-        "version": "5.0"
+        "version": "5.0",
+        "signature": "F2D7C28591847BB2CB2B1C2A0C59459FDC728A38"
     },
     "nsis": {
         "version": "3.08"
@@ -415,7 +421,8 @@
         "version": "8.2"
     },
     "postgresql": {
-        "version": "14"
+        "version": "14",
+        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
         "version": "latest",

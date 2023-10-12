@@ -69,7 +69,7 @@ $tools.AddToolVersion("Bazelisk", $(Get-BazeliskVersion))
 $tools.AddToolVersion("Bicep", $(Get-BicepVersion))
 $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
 $tools.AddToolVersion("CMake", $(Get-CMakeVersion))
-$tools.AddToolVersion("CodeQL Action Bundles", $(Get-CodeQLBundleVersions))
+$tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
 $tools.AddToolVersion("Docker", $(Get-DockerVersion))
 $tools.AddToolVersion("Docker Compose v1", $(Get-DockerComposeVersion))
 $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeVersionV2))
@@ -78,7 +78,7 @@ $tools.AddToolVersion("ghc", $(Get-GHCVersion))
 $tools.AddToolVersion("Git", $(Get-GitVersion))
 $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 if (Test-IsWin19) {
-    $tools.AddToolVersion("Google Cloud SDK", $(Get-GoogleCloudSDKVersion))
+    $tools.AddToolVersion("Google Cloud CLI", $(Get-GoogleCloudCLIVersion))
 }
 $tools.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 $tools.AddToolVersion("InnoSetup", $(Get-InnoSetupVersion))
@@ -86,7 +86,9 @@ $tools.AddToolVersion("jq", $(Get-JQVersion))
 $tools.AddToolVersion("Kind", $(Get-KindVersion))
 $tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))
 $tools.AddToolVersion("Mercurial", $(Get-MercurialVersion))
-$tools.AddToolVersion("Mingw-w64", $(Get-MinGWVersion))
+$tools.AddToolVersion("gcc", $(Get-GCCVersion))
+$tools.AddToolVersion("gdb", $(Get-GDBVersion))
+$tools.AddToolVersion("GNU Binutils", $(Get-GNUBinutilsVersion))
 $tools.AddToolVersion("Newman", $(Get-NewmanVersion))
 $tools.AddToolVersion("NSIS", $(Get-NSISVersion))
 $tools.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
@@ -118,7 +120,6 @@ if (Test-IsWin19) {
     $cliTools.AddToolVersion("Cloud Foundry CLI", $(Get-CloudFoundryVersion))
 }
 $cliTools.AddToolVersion("GitHub CLI", $(Get-GHVersion))
-$cliTools.AddToolVersion("Hub CLI", $(Get-HubVersion))
 
 # Rust Tools
 Initialize-RustEnvironment

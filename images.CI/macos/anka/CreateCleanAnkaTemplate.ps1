@@ -19,6 +19,7 @@ param(
     [string] $TemplateName,
 
     [bool] $DownloadLatestVersion = $true,
+    [bool] $PushToRegistry = $true,
     [bool] $BetaSearch = $false,
     [bool] $InstallSoftwareUpdate = $true,
     [bool] $EnableAutoLogon = $true,
@@ -89,7 +90,7 @@ function Invoke-SoftwareUpdate {
 
     Write-Host "`t[*] Fetching Software Updates ready to install on '$TemplateName' VM:"
     Show-StringWithFormat $newUpdates
-    $listOfNewUpdates = $($($newUpdates.Split("*")).Split("Title") | Where-Object {$_ -match "Label:"}).Replace("Label: ", '')
+    $listOfNewUpdates = $($($newUpdates.Split("*")).Split("Title") | Where-Object {$_ -match "Label:"}).Replace("Label: ", '') | Where-Object {$_ -notmatch "macOS Sonoma"}
     Write-Host "`t[*] Installing Software Updates on '$TemplateName' VM:"
     Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates -Password $Password | Show-StringWithFormat
 
@@ -98,7 +99,7 @@ function Invoke-SoftwareUpdate {
     $listOfNewUpdates = $newUpdates.split('*').Trim('')
     foreach ($newupdate in $listOfNewUpdates) {
         # Will be True if the value is not Venture, not empty, and contains "Action: restart" words
-        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("macOS Ventura") -and (-not [String]::IsNullOrEmpty($newupdate))) {
+        if ($newupdate.Contains("Action: restart") -and (!$newupdate.Contains("macOS Ventura")  -or !$newupdate.Contains("macOS Sonoma")) -and (-not [String]::IsNullOrEmpty($newupdate))) {
             Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
             Start-Sleep -Seconds 60
 
@@ -204,6 +205,8 @@ Set-AnkaVMVideoController -VMName $TemplateName -ShortMacOSVersion $ShortMacOSVe
 Write-Host "`t[*] Setting screen resolution to $DisplayResolution for $TemplateName"
 Set-AnkaVMDisplayResolution -VMName $TemplateName -DisplayResolution $DisplayResolution
 
-# Push a VM template (and tag) to the Cloud
-Write-Host "`t[*] Pushing '$TemplateName' image with '$TagName' tag to the '$RegistryUrl' registry..."
-Push-AnkaTemplateToRegistry -RegistryUrl $registryUrl -TagName $TagName -TemplateName $TemplateName
+if ($PushToRegistry) {
+    # Push a VM template (and tag) to the Cloud
+    Write-Host "`t[*] Pushing '$TemplateName' image with '$TagName' tag to the '$RegistryUrl' registry..."
+    Push-AnkaTemplateToRegistry -RegistryUrl $registryUrl -TagName $TagName -TemplateName $TemplateName
+}

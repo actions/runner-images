@@ -162,9 +162,12 @@ build {
   provisioner "shell" {
     pause_before = "30s"
     scripts = [
+      "./provision/core/open_windows_check.sh",
       "./provision/core/powershell.sh",
+      "./provision/core/mono.sh",
       "./provision/core/dotnet.sh",
       "./provision/core/azcopy.sh",
+      "./provision/core/openssl.sh",
       "./provision/core/ruby.sh",
       "./provision/core/rubygem.sh",
       "./provision/core/git.sh",
@@ -192,7 +195,9 @@ build {
   }
   provisioner "shell" {
     scripts = [
+      "./provision/core/action-archive-cache.sh",
       "./provision/core/llvm.sh",
+      "./provision/core/openjdk.sh",
       "./provision/core/rust.sh",
       "./provision/core/gcc.sh",
       "./provision/core/cocoapods.sh",

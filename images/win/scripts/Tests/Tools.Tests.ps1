@@ -21,41 +21,25 @@ Describe "Bazel" {
     }
 }
 
-Describe "CodeQLBundles" {
-    It "Latest CodeQL Bundle" {
+Describe "CodeQL Bundle" {
+    It "Single distribution installed" {
         $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-        $LatestCodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
-        $LatestCodeQLPath = Join-Path $LatestCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
-        "$LatestCodeQLPath version --quiet" | Should -ReturnZeroExitCode
-
-        $LatestCodeQLPacksPath = Join-Path $LatestCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
-        $LatestCodeQLPacksPath | Should -Exist
+        $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Should -HaveCount 1
     }
 
-    It "Prior CodeQL Bundle" {
+    It "Contains CodeQL executable" {
         $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-        $PriorCodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -Last 1 -Expand FullName
-        $PriorCodeQLPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
-        "$PriorCodeQLPath version --quiet" | Should -ReturnZeroExitCode
-
-        $PriorCodeQLPacksPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
-        $PriorCodeQLPacksPath | Should -Exist
+        $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
+        $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
+        "$CodeQLPath version --quiet" | Should -ReturnZeroExitCode
     }
 
-    It "Latest and Prior CodeQL Bundles are unique" {
+    It "Contains CodeQL packs" {
         $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-
-        $LatestCodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
-        $LatestCodeQLPath = Join-Path $LatestCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
-        $LatestCodeQLVersion = & $LatestCodeQLPath version --quiet
-
-        $PriorCodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -Last 1 -Expand FullName
-        $PriorCodeQLPath = Join-Path $PriorCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
-        $PriorCodeQLVersion = & $PriorCodeQLPath version --quiet
-
-        $LatestCodeQLVersion | Should -Not -Match $PriorCodeQLVersion
+        $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
+        $CodeQLPacksPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
+        $CodeQLPacksPath | Should -Exist
     }
-
 }
 
 Describe "R" {
@@ -117,7 +101,7 @@ Describe "Mingw64" {
     }
 }
 
-Describe "GoogleCloudSDK" -Skip:(Test-IsWin22) {
+Describe "GoogleCloudCLI" -Skip:(Test-IsWin22) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
@@ -225,8 +209,16 @@ Describe "SQL OLEDB Driver" {
 }
 
 Describe "OpenSSL" {
-    It "OpenSSL" {
+    It "OpenSSL Version" {
         $OpenSSLVersion = (Get-ToolsetContent).openssl.version
         openssl version | Should -BeLike "* ${OpenSSLVersion}*"
+    }
+
+    It "OpenSSL Path" {
+        (Get-Command openssl).Source -eq (Join-Path ${env:ProgramFiles} 'OpenSSL\bin\openssl.exe') | Should -Be $true
+    }
+
+    It "OpenSSL Full package" {
+        Join-Path ${env:ProgramFiles} 'OpenSSL\include' | Should -Exist
     }
 }

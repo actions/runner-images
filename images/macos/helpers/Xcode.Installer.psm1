@@ -30,7 +30,7 @@ function Invoke-DownloadXcodeArchive {
     $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$Version" -ItemType "Directory"
 
     $xcodeFileName = 'Xcode-{0}.xip' -f $Version
-    $xcodeUri = '{0}{1}{2}'-f ${env:XCODE_INSTALL_STORAGE_URL}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
+    $xcodeUri = '{0}{1}?{2}'-f ${env:XCODE_INSTALL_STORAGE_URL}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
 
     Start-DownloadWithRetry -Url $xcodeUri -DownloadPath $tempXipDirectory.FullName -Name $xcodeFileName
     return $tempXipDirectory
@@ -176,7 +176,7 @@ function Install-AdditionalSimulatorRuntimes {
 
     Write-Host "Installing Simulator Runtimes for Xcode $Version ..."
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms | xcpretty"
+    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms" | Out-Null
 }
 
 function Build-XcodeSymlinks {
