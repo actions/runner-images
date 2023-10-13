@@ -90,7 +90,7 @@ function Invoke-SoftwareUpdate {
 
     Write-Host "`t[*] Fetching Software Updates ready to install on '$TemplateName' VM:"
     Show-StringWithFormat $newUpdates
-    $listOfNewUpdates = $($($newUpdates.Split("*")).Split("Title") | Where-Object {$_ -match "Label:"}).Replace("Label: ", '') | Where-Object {$_ -notmatch "macOS Sonoma"}
+    $listOfNewUpdates = $($($newUpdates.Split("*")).Split("Title") | Where-Object {$_ -match "Label:"}).Replace("Label: ", '')
     Write-Host "`t[*] Installing Software Updates on '$TemplateName' VM:"
     Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates -Password $Password | Show-StringWithFormat
 
@@ -99,7 +99,7 @@ function Invoke-SoftwareUpdate {
     $listOfNewUpdates = $newUpdates.split('*').Trim('')
     foreach ($newupdate in $listOfNewUpdates) {
         # Will be True if the value is not Venture, not empty, and contains "Action: restart" words
-        if ($newupdate.Contains("Action: restart") -and (!$newupdate.Contains("macOS Ventura")  -or !$newupdate.Contains("macOS Sonoma")) -and (-not [String]::IsNullOrEmpty($newupdate))) {
+        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("macOS Ventura") -and !$newupdate.Contains("macOS Sonoma") -and (-not [String]::IsNullOrEmpty($newupdate))) {
             Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
             Start-Sleep -Seconds 60
 
