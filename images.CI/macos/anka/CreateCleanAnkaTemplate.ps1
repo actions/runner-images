@@ -99,7 +99,7 @@ function Invoke-SoftwareUpdate {
     $listOfNewUpdates = $newUpdates.split('*').Trim('')
     foreach ($newupdate in $listOfNewUpdates) {
         # Will be True if the value is not Venture, not empty, and contains "Action: restart" words
-        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("macOS Ventura") -and (-not [String]::IsNullOrEmpty($newupdate))) {
+        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("macOS Ventura") -and !$newupdate.Contains("macOS Sonoma") -and (-not [String]::IsNullOrEmpty($newupdate))) {
             Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
             Start-Sleep -Seconds 60
 
