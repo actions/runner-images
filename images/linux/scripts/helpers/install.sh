@@ -103,8 +103,13 @@ get_github_package_hash() {
     local url=$4
     local version=${5:-"latest"}
     local prerelease=${6:-false}
-    local delimiter=${8:-'|'}
-    local word_number=${9:-2}
+    local delimiter=${7:-'|'}
+    local word_number=${8:-2}
+
+    if [ -z "$file_name" ]; then
+        echo "File name is not specified."
+        exit 1
+    fi
 
     if [ -n "$url" ]; then
         release_url="$url"
@@ -112,9 +117,13 @@ get_github_package_hash() {
         if [ "$version" == "latest" ]; then
             release_url="https://api.github.com/repos/${repo_owner}/${repo_name}/releases/latest"
         else
-            json=$(curl -s "https://api.github.com/repos/${repo_owner}/${repo_name}/releases?per_page=100")
+            json=$(curl -fsSL "https://api.github.com/repos/${repo_owner}/${repo_name}/releases?per_page=100")
             tags=$(echo "$json" | jq -r --arg prerelease "$prerelease" '.[] | select(.prerelease == ($prerelease | test("true"; "i"))) | .tag_name')
             tag=$(echo "$tags" | grep -o "$version")
+            if [[ "$(echo "$tag" | wc -l)" -gt 1 ]]; then
+                echo "Multiple tags found matching the version $version. Please specify a more specific version."
+                exit 1
+            fi
             if [ -z "$tag" ]; then
                 echo "Failed to get a tag name for version $version."
                 exit 1
@@ -123,8 +132,12 @@ get_github_package_hash() {
         fi
     fi
 
-    body=$(curl -s "$release_url" | jq -r '.body' | tr -d '`')
+    body=$(curl -fsSL "$release_url" | jq -r '.body' | tr -d '`')
     matching_line=$(echo "$body" | grep "$file_name")
+    if [[ "$(echo "$matching_line" | wc -l)" -gt 1 ]]; then
+        echo "Multiple lines found included the file $file_name. Please specify a more specific file name."
+        exit 1
+    fi
     if [ -z "$matching_line" ]; then
         echo "File name '$file_name' not found in release body."
         exit 1
@@ -132,7 +145,7 @@ get_github_package_hash() {
 
     result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
     if [ -z "$result" ]; then
-        echo "Empty result. Check parameters Delimiter and/or WordNumber for the matching line."
+        echo "Empty result. Check parameters delimiter and/or word_number for the matching line."
         exit 1
     fi
 
@@ -142,7 +155,7 @@ get_github_package_hash() {
 use_checksum_comparison() {
     local file_path=$1
     local checksum=$2
-    local sha_type=${3-"256"}
+    local sha_type=${3:-"256"}
 
     echo "Performing checksum verification"
 
