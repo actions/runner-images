@@ -202,6 +202,7 @@ build {
       "./provision/core/gcc.sh",
       "./provision/core/cocoapods.sh",
       "./provision/core/safari.sh",
+      "./provision/core/chrome.sh",
       "./provision/core/bicep.sh",
       "./provision/core/codeql-bundle.sh"
     ]

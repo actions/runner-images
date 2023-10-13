@@ -1,7 +1,7 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 $os = Get-OSVersion
 
-Describe "Chrome" -Skip:($os.IsVenturaArm64) {
+Describe "Chrome" {
     BeforeAll {
         $chromeLocation = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
         $chromeForTestingLocation = "/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
@@ -28,9 +28,15 @@ Describe "Chrome" -Skip:($os.IsVenturaArm64) {
     }
 }
 
-Describe "Selenium server" -Skip:($os.IsVenturaArm64) {
+Describe "Selenium server" {
     It "Selenium server" {
-        (Get-ChildItem -Path "/usr/local/Cellar/selenium-server*/*").Name | Should -BeLike "4.*"
+        $os = Get-OSVersion
+        if ($os.IsVenturaArm64) {
+            $cellarPath = "/opt/homebrew/Cellar"
+        } else {
+            $cellarPath = "/usr/local/Cellar"
+        }
+        (Get-ChildItem -Path "$cellarPath/selenium-server*/*").Name | Should -BeLike "4.*"
     }
 }
 

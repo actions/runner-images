@@ -202,12 +202,11 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $linters.AddToolVersion("Yamllint", $(Get-YamllintVersion))
 }
 
-if (-not $os.IsVenturaArm64) {
-    # Browsers
-    $browsers = $installedSoftware.AddHeader("Browsers")
-    $browsers.AddNodes($(Build-BrowserSection))
-    $browsers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
-}
+# Browsers
+$browsers = $installedSoftware.AddHeader("Browsers")
+$browsers.AddNodes($(Build-BrowserSection))
+$browsers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
+
 # Java
 $java = $installedSoftware.AddHeader("Java")
 $java.AddTable($(Get-JavaVersions))
