@@ -207,11 +207,11 @@ if (-not $os.IsVenturaArm64) {
     $browsers = $installedSoftware.AddHeader("Browsers")
     $browsers.AddNodes($(Build-BrowserSection))
     $browsers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
-
-    # Java
-    $java = $installedSoftware.AddHeader("Java")
-    $java.AddTable($(Get-JavaVersions))
 }
+# Java
+$java = $installedSoftware.AddHeader("Java")
+$java.AddTable($(Get-JavaVersions))
+
 if (-not $os.IsVenturaArm64) {
     # Toolcache
     $toolcache = $installedSoftware.AddHeader("Cached Tools")
