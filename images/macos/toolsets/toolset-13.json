@@ -27,7 +27,7 @@
         },
         "arm64": {
             "default": "17",
-            "versions": [ "11", "17" ]
+            "versions": [ "11", "17", "21"]
         }
     },
     "android": {
