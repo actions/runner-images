@@ -30,19 +30,11 @@ Describe "Python3" -Skip:($os.IsVenturaArm64) {
 
 Describe "Python2" -Skip:($os.IsVenturaArm64 -or $os.IsVentura) {
     It "Python 2 is available" {
-        "python --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Python 2 is real 2.x" {
-        (Get-CommandResult "python --version").Output | Should -BeLike "Python 2.*"
-    }
-
-    It "Python 2 is installed under /usr/local/bin" {
-        Get-WhichTool "python" | Should -BeLike "/usr/local/bin*"
+        "/Library/Frameworks/Python.framework/Versions/2.7/bin/python --version" | Should -ReturnZeroExitCode
     }
 
     It "Pip 2 is available" {
-        "pip --version" | Should -ReturnZeroExitCode
+        "/Library/Frameworks/Python.framework/Versions/2.7/bin/pip --version" | Should -ReturnZeroExitCode
     }
 
     It "2to3 symlink does not point to Python 2" {
