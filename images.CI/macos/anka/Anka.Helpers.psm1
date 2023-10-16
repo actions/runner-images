@@ -233,3 +233,19 @@ function Wait-AnkaVMSSHService {
         exit 1
     }
 }
+
+function Set-AnkaVMUuid {
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $VMName,
+
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $Uuid
+    )
+
+    $command = "anka modify $VMName set custom-variable hw.uuid $Uuid"
+    Write-Host "`t[*] Setting $VMName uuid to $Uuid"
+    Invoke-AnkaCommand -Command $command
+}
