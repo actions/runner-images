@@ -49,7 +49,7 @@ if [[ $cmdlineToolsVersion == "latest" ]]; then
     download_with_retries $repositoryXmlUrl "/tmp" "repository2-1.xml"
     cmdlineToolsVersion=$(
     yq -p=xml \
-    '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest" and .channelRef."+@ref" == "channel-0").archives.archive[].complete.url | select(contains("commandlinetools-linux"))' \
+    '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest" and .channelRef."+@ref" == "channel-0").archives.archive[].complete.url | select(contains("commandlinetools-mac"))' \
     /tmp/repository2-1.xml
     )
 
