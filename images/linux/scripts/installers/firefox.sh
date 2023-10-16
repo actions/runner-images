@@ -5,20 +5,29 @@
 ################################################################################
 
 # Source the helpers for use with the script
-source $HELPER_SCRIPTS/install.sh
+# shellcheck source=../helpers/install.sh
+source "$HELPER_SCRIPTS/install.sh"
+# shellcheck source=../helpers/os.sh
+source "$HELPER_SCRIPTS/os.sh"
 
-FIREFOX_REPO="ppa:mozillateam/ppa"
+# Mozillateam PPA is added manually because sometimes
+# lanuchad portal sends empty answer when trying to add it automatically
+
+repo_url="http://ppa.launchpad.net/mozillateam/ppa/ubuntu"
+gpg_fingerprint="0ab215679c571d1c8325275b9bdb3d89ce49ec21"
+gpg_key="/etc/apt/trusted.gpg.d/mozillateam_ubuntu_ppa.gpg"
+repo_path="/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-focal.list"
 
 # Install Firefox
-add-apt-repository $FIREFOX_REPO -y
+curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x${gpg_fingerprint}" | sudo gpg --dearmor -o $gpg_key
+echo "deb $repo_url $(getOSVersionLabel) main" > $repo_path
+
 apt-get update
 apt-get install --target-release 'o=LP-PPA-mozillateam' -y firefox
-
-# Remove source repo's
-add-apt-repository --remove $FIREFOX_REPO
+rm $repo_path
 
 # Document apt source repo's
-echo "mozillateam $FIREFOX_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
+echo "mozillateam $repo_url" >> $HELPER_SCRIPTS/apt-sources.txt
 
 # add to gloabl system preferences for firefox locale en_US, because other browsers have en_US local.
 # Default firefox local is en_GB
