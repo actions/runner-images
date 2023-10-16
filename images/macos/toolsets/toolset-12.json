@@ -146,6 +146,7 @@
         }
     },
     "android": {
+        "cmdline-tools": "commandlinetools-mac-9123335_latest.zip",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra-list": [
