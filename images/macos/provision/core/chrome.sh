@@ -26,8 +26,8 @@ CHROMEDRIVER_DIR="/usr/local/share/chromedriver-${CHROME_PLATFORM}"
 CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
 
 download_with_retries "$CHROMEDRIVER_URL" "/tmp" "$CHROMEDRIVER_ARCHIVE"
-unzip -qq /tmp/$CHROMEDRIVER_ARCHIVE -d /usr/local/share
-chmod +x $CHROMEDRIVER_BIN
+unzip -qq /tmp/$CHROMEDRIVER_ARCHIVE -d /tmp/
+sudo mv "/tmp/chromedriver-${CHROME_PLATFORM}" "$CHROMEDRIVER_DIR"
 ln -s "$CHROMEDRIVER_BIN" /usr/local/bin/chromedriver
 echo "export CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" >> "${HOME}/.bashrc"
 
