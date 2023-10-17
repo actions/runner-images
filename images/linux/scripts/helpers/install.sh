@@ -106,12 +106,12 @@ get_github_package_hash() {
     local delimiter=${7:-'|'}
     local word_number=${8:-2}
 
-    if [ -z "$file_name" ]; then
+    if [[ -z "$file_name" ]]; then
         echo "File name is not specified."
         exit 1
     fi
 
-    if [ -n "$url" ]; then
+    if [[ -n "$url" ]]; then
         release_url="$url"
     else
         if [ "$version" == "latest" ]; then
@@ -124,7 +124,7 @@ get_github_package_hash() {
                 echo "Multiple tags found matching the version $version. Please specify a more specific version."
                 exit 1
             fi
-            if [ -z "$tag" ]; then
+            if [[ -z "$tag" ]]; then
                 echo "Failed to get a tag name for version $version."
                 exit 1
             fi
@@ -138,13 +138,13 @@ get_github_package_hash() {
         echo "Multiple lines found included the file $file_name. Please specify a more specific file name."
         exit 1
     fi
-    if [ -z "$matching_line" ]; then
+    if [[ -z "$matching_line" ]]; then
         echo "File name '$file_name' not found in release body."
         exit 1
     fi
 
     result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
-    if [ -z "$result" ]; then
+    if [[ -z "$result" ]]; then
         echo "Empty result. Check parameters delimiter and/or word_number for the matching line."
         exit 1
     fi
@@ -159,14 +159,14 @@ use_checksum_comparison() {
 
     echo "Performing checksum verification"
 
-    if [ ! -f "$file_path" ]; then
+    if [[ ! -f "$file_path" ]]; then
         echo "File not found: $file_path"
         exit 1
     fi
 
     local_file_hash=$(shasum --algorithm "$sha_type" "$file_path" | awk '{print $1}')
 
-    if [ "$local_file_hash" != "$checksum" ]; then
+    if [[ "$local_file_hash" != "$checksum" ]]; then
         echo "Checksum verification failed. Expected hash: $checksum; Actual hash: $local_file_hash."
         exit 1
     else
