@@ -54,6 +54,7 @@ installOpenJDK() {
     [[ ${fullJavaVersion} =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ ]] && fullJavaVersion=$(echo $fullJavaVersion | sed -E 's/\.[0-9]+-/-/')
 
     javaToolcacheVersionPath="${JAVA_TOOLCACHE_PATH}/${fullJavaVersion}"
+    echo "Java ${JAVA_VERSION} Toolcache Version Path: ${javaToolcacheVersionPath}"
     mkdir -p "${javaToolcacheVersionPath}"
 
     # Create a complete file
