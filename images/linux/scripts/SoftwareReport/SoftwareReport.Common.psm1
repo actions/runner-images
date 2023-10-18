@@ -30,7 +30,7 @@ function Get-ClangToolVersions {
         [Parameter(Mandatory = $true)]
         [string] $ToolName,
         [string] $VersionLineMatcher = "${ToolName} version",
-        [string] $VersionPattern = "\d+\.\d+\.\d+)-"
+        [string] $VersionPattern = "\d+\.\d+\.\d+)"
     )
 
     $result = Get-CommandResult "apt list --installed" -Multiline
