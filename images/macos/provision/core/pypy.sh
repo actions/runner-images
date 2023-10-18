@@ -76,11 +76,11 @@ function InstallPyPy
 }
 
 arch=$(get_arch)
-pypyVersions=$(curl -fsSL https://downloads.python.org/pypy/versions.json)
+download_with_retries "https://downloads.python.org/pypy/versions.json" "/tmp" "pypy-versions.json"
 toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .arch.'$arch'.versions[]')
 
 for toolsetVersion in $toolsetVersions; do
-    latestMajorPyPyVersion=$(echo $pypyVersions |
+    latestMajorPyPyVersion=$(cat /tmp/pypy-versions.json |
         jq -r --arg toolsetVersion $toolsetVersion '.[]
         | select((.python_version | startswith($toolsetVersion)) and .stable == true).files[]
         | select(.platform == "darwin").download_url' | head -1)

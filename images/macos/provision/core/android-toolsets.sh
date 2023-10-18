@@ -121,4 +121,13 @@ do
     echo y | $SDKMANAGER "$tool_name"
 done
 
+# Download SDK tools to preserve backward compatibility
+sdkTools="android-sdk-tools.zip"
+sdkToolsVersion=$(get_toolset_value '.android."sdk-tools"')
+if [ "$sdkToolsVersion" != "null" ]; then
+    download_with_retries "https://dl.google.com/android/repository/${sdkToolsVersion}" "." $sdkTools
+    unzip -qq $sdkTools -d ${ANDROID_SDK_ROOT}
+    rm -f $sdkTools
+fi
+
 invoke_tests "Android"
