@@ -4,8 +4,8 @@ source ~/utils/utils.sh
 echo Installing PowerShell...
 arch=$(get_arch)
 
-psmetadata=$(curl -fsSL "https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json")
-psver=$(echo $psmetadata | jq -r '.LTSReleaseTag[0]')
+download_with_retries "https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json" "/tmp" "powershell-metadata.json"
+psver=$(cat /tmp/powershell-metadata.json | jq -r '.LTSReleaseTag[0]')
 psDownloadUrl=$(get_github_package_download_url "PowerShell/PowerShell" "contains(\"osx-$arch.pkg\")" "$psver" "$API_PAT")
 download_with_retries $psDownloadUrl "/tmp" "powershell.pkg"
 
