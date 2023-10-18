@@ -172,7 +172,7 @@ if (-not $os.IsVenturaArm64) {
     $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
 }
 $tools.AddToolVersion("Cmake", $(Get-CmakeVersion))
-$tools.AddToolVersion("CodeQL Action Bundles", $(Get-CodeQLBundleVersions))
+$tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
 if ($os.IsMonterey) {
     $tools.AddToolVersion("Colima", $(Get-ColimaVersion))
 }
