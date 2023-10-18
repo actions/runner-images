@@ -1,11 +1,10 @@
 | Announcements |
 |-|
 | [[All OS] Android NDK r23 will be removed from images on October 9](https://github.com/actions/runner-images/issues/8383) |
-| [[All OS] hub utility will be removed on October 2](https://github.com/actions/runner-images/issues/8362) |
 ***
 # Windows Server 2022
-- OS Version: 10.0.20348 Build 1970
-- Image Version: 20231002.1.0
+- OS Version: 10.0.20348 Build 2031
+- Image Version: 20231016.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -14,27 +13,27 @@
 
 ### Language and Runtime
 - Bash 5.2.15(1)-release
-- Go 1.20.8
+- Go 1.20.10
 - Julia 1.9.3
 - Kotlin 1.9.10
 - LLVM 16.0.6
-- Node 18.18.0
-- Perl 5.32.1
+- Node 18.18.2
+- Perl 5.38.0
 - PHP 8.2.11
 - Python 3.9.13
 - Ruby 3.0.6p216
 
 ### Package Management
 - Chocolatey 2.2.2
-- Composer 2.6.4
-- Helm 3.12.3
+- Composer 2.6.5
+- Helm 3.13.0
 - Miniconda 23.5.2 (pre-installed on the image but not added to PATH)
 - NPM 9.8.1
 - NuGet 6.7.0.127
-- pip 23.2.1 (python 3.9)
+- pip 23.3 (python 3.9)
 - Pipx 1.2.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit c6d6efed3)
+- Vcpkg (build from commit e57b2167e)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -45,7 +44,7 @@
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.3
+- Gradle 8.4
 - Maven 3.8.7
 - sbt 1.9.6
 
@@ -55,18 +54,18 @@
 - azcopy 10.21.0
 - Bazel 6.3.2
 - Bazelisk 1.18.0
-- Bicep 0.21.1
+- Bicep 0.22.6
 - Cabal 3.10.1.0
-- CMake 3.27.6
-- CodeQL Action Bundles 2.14.5 2.14.6
+- CMake 3.26.4
+- CodeQL Action Bundle 2.15.0
 - Docker 24.0.6
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.22.0
 - Docker-wincred 0.8.0
-- ghc 9.6.3
+- ghc 9.8.1
 - Git 2.42.0.windows.2
 - Git LFS 3.4.0
-- ImageMagick 7.1.1-19
+- ImageMagick 7.1.1-20
 - InnoSetup 6.2.2
 - jq 1.7-dirty
 - Kind 0.20.0
@@ -79,7 +78,7 @@
 - NSIS 3.08
 - OpenSSL 1.1.1w
 - Packer 1.9.4
-- Pulumi 3.86.0
+- Pulumi 3.88.1
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.13.1
@@ -92,18 +91,18 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.181
-- AWS CLI 2.13.20
-- AWS SAM CLI 1.97.0
+- Alibaba Cloud CLI 3.0.183
+- AWS CLI 2.13.26
+- AWS SAM CLI 1.98.0
 - AWS Session Manager CLI 1.2.497.0
 - Azure CLI 2.53.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.35.0
+- GitHub CLI 2.36.0
 
 ### Rust Tools
-- Cargo 1.72.1
-- Rust 1.72.1
-- Rustdoc 1.72.1
+- Cargo 1.73.0
+- Rust 1.73.0
+- Rustdoc 1.73.0
 - Rustup 1.26.0
 
 #### Packages
@@ -111,18 +110,18 @@
 - cargo-audit 0.18.2
 - cargo-outdated 0.13.1
 - cbindgen 0.26.0
-- Clippy 0.1.72
+- Clippy 0.1.73
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 117.0.5938.132
-- Chrome Driver 117.0.5938.92
-- Microsoft Edge 117.0.2045.47
-- Microsoft Edge Driver 117.0.2045.47
-- Mozilla Firefox 118.0.1
+- Google Chrome 118.0.5993.71
+- Chrome Driver 118.0.5993.70
+- Microsoft Edge 118.0.2088.46
+- Microsoft Edge Driver 118.0.2088.46
+- Mozilla Firefox 118.0.2
 - Gecko Driver 0.33.0
-- IE Driver 4.11.0.0
-- Selenium server 4.13.0
+- IE Driver 4.14.0.0
+- Selenium server 4.14.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -138,6 +137,7 @@
 | 8.0.382+5 (default) | JAVA_HOME_8_X64      |
 | 11.0.20+101         | JAVA_HOME_11_X64     |
 | 17.0.8+101          | JAVA_HOME_17_X64     |
+| 21.0.0+35.0.LTS     | JAVA_HOME_21_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -160,21 +160,22 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.19.13
-- 1.20.8
-- 1.21.1
+- 1.20.10
+- 1.21.3
 
 #### Node.js
 - 14.21.3
 - 16.20.2
-- 18.18.0
-- 20.8.0
+- 18.18.2
+- 20.8.1
 
 #### Python
 - 3.7.9
 - 3.8.10
 - 3.9.13
 - 3.10.11
-- 3.11.5
+- 3.11.6
+- 3.12.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.13]
@@ -211,7 +212,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Azure CosmosDb Emulator 2.14.12.0
 - DacFx 162.0.52.1
 - MySQL 8.0.34.0
-- SQL OLEDB Driver 18.6.4.0
+- SQL OLEDB Driver 18.6.7.0
 - SQLPS 1.0
 
 ### Web Servers
@@ -223,7 +224,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
 | ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.7.34031.279 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.7.34202.233 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -257,14 +258,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
 | Component.Xamarin                                                         | 17.7.33905.399  |
 | Component.Xamarin.RemotedSimulator                                        | 17.7.33905.399  |
-| ios                                                                       | 16.4.7098.0     |
-| maccatalyst                                                               | 16.4.7098.0     |
-| maui.android                                                              | 7.0.92.0        |
-| maui.blazor                                                               | 7.0.92.0        |
-| maui.core                                                                 | 7.0.92.0        |
-| maui.ios                                                                  | 7.0.92.0        |
-| maui.maccatalyst                                                          | 7.0.92.0        |
-| maui.windows                                                              | 7.0.92.0        |
+| ios                                                                       | 16.4.7107.0     |
+| maccatalyst                                                               | 16.4.7107.0     |
+| maui.android                                                              | 7.0.96.0        |
+| maui.blazor                                                               | 7.0.96.0        |
+| maui.core                                                                 | 7.0.96.0        |
+| maui.ios                                                                  | 7.0.96.0        |
+| maui.maccatalyst                                                          | 7.0.96.0        |
+| maui.windows                                                              | 7.0.96.0        |
 | Microsoft.Component.Azure.DataLake.Tools                                  | 17.7.33905.399  |
 | Microsoft.Component.ClickOnce                                             | 17.7.33905.399  |
 | Microsoft.Component.CodeAnalysis.SDK                                      | 17.7.33905.399  |
@@ -288,21 +289,21 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.4.8.DeveloperTools                           | 17.7.33905.399  |
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 17.7.33905.399  |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 17.7.33905.399  |
-| microsoft.net.runtime.android                                             | 7.0.1123.42427  |
-| microsoft.net.runtime.android.aot                                         | 7.0.1123.42427  |
-| microsoft.net.runtime.android.aot.net6                                    | 7.0.1123.42427  |
-| microsoft.net.runtime.android.net6                                        | 7.0.1123.42427  |
-| microsoft.net.runtime.ios                                                 | 7.0.1123.42427  |
-| microsoft.net.runtime.ios.net6                                            | 7.0.1123.42427  |
-| microsoft.net.runtime.maccatalyst                                         | 7.0.1123.42427  |
-| microsoft.net.runtime.maccatalyst.net6                                    | 7.0.1123.42427  |
-| microsoft.net.runtime.mono.tooling                                        | 7.0.1123.42427  |
-| microsoft.net.runtime.mono.tooling.net6                                   | 7.0.1123.42427  |
-| microsoft.net.sdk.emscripten.net7                                         | 7.0.8.42402     |
+| microsoft.net.runtime.android                                             | 7.0.1223.47720  |
+| microsoft.net.runtime.android.aot                                         | 7.0.1223.47720  |
+| microsoft.net.runtime.android.aot.net6                                    | 7.0.1223.47720  |
+| microsoft.net.runtime.android.net6                                        | 7.0.1223.47720  |
+| microsoft.net.runtime.ios                                                 | 7.0.1223.47720  |
+| microsoft.net.runtime.ios.net6                                            | 7.0.1223.47720  |
+| microsoft.net.runtime.maccatalyst                                         | 7.0.1223.47720  |
+| microsoft.net.runtime.maccatalyst.net6                                    | 7.0.1223.47720  |
+| microsoft.net.runtime.mono.tooling                                        | 7.0.1223.47720  |
+| microsoft.net.runtime.mono.tooling.net6                                   | 7.0.1223.47720  |
+| microsoft.net.sdk.emscripten.net7                                         | 7.0.8.43102     |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 17.7.33905.399  |
-| Microsoft.NetCore.Component.Runtime.6.0                                   | 17.7.34031.279  |
-| Microsoft.NetCore.Component.Runtime.7.0                                   | 17.7.34031.279  |
-| Microsoft.NetCore.Component.SDK                                           | 17.7.34031.279  |
+| Microsoft.NetCore.Component.Runtime.6.0                                   | 17.7.34202.233  |
+| Microsoft.NetCore.Component.Runtime.7.0                                   | 17.7.34202.233  |
+| Microsoft.NetCore.Component.SDK                                           | 17.7.34202.233  |
 | Microsoft.NetCore.Component.Web                                           | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.AspNet                                   | 17.7.33905.399  |
@@ -520,11 +521,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Python                                    | 17.7.33905.399  |
 | Microsoft.VisualStudio.Workload.Universal                                 | 17.7.33905.399  |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 17.7.33905.399  |
-| runtimes.ios                                                              | 7.0.1123.42427  |
-| runtimes.ios.net6                                                         | 7.0.1123.42427  |
-| runtimes.maccatalyst                                                      | 7.0.1123.42427  |
-| runtimes.maccatalyst.net6                                                 | 7.0.1123.42427  |
-| wasm.tools                                                                | 7.0.1123.42427  |
+| runtimes.ios                                                              | 7.0.1223.47720  |
+| runtimes.ios.net6                                                         | 7.0.1223.47720  |
+| runtimes.maccatalyst                                                      | 7.0.1223.47720  |
+| runtimes.maccatalyst.net6                                                 | 7.0.1223.47720  |
+| wasm.tools                                                                | 7.0.1223.47720  |
 | ProBITools.MicrosoftAnalysisServicesModelingProjects2022                  | 3.0.4           |
 | ProBITools.MicrosoftReportProjectsforVisualStudio2022                     | 3.0.1           |
 | SSIS.MicrosoftDataToolsIntegrationServices                                | 1.2             |
@@ -554,15 +555,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.22621.0
 
 ### .NET Core Tools
-- .NET Core SDK: 6.0.122, 6.0.203, 6.0.317, 6.0.414, 7.0.401
+- .NET Core SDK: 6.0.123, 6.0.203, 6.0.318, 6.0.415, 7.0.402
 - .NET Framework: 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 6.0.5, 6.0.22, 7.0.11
-- Microsoft.NETCore.App: 6.0.5, 6.0.22, 7.0.11
-- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.22, 7.0.11
+- Microsoft.AspNetCore.App: 6.0.5, 6.0.23, 7.0.12
+- Microsoft.NETCore.App: 6.0.5, 6.0.23, 7.0.12
+- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.23, 7.0.12
 - nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
-- PowerShell 7.2.14
+- PowerShell 7.2.15
 
 #### Powershell Modules
 - Az: 9.3.0
@@ -571,7 +572,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.424
+- AWSPowershell: 4.1.430
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.6.1
@@ -594,12 +595,12 @@ All other versions are saved but not installed.
 | Android Emulator           | 31.2.9                                                                                                                                                                                                                             |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                     |
 | Android SDK Platforms      | android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Platform-Tools | 34.0.4                                                                                                                                                                                                                             |
+| Android SDK Platform-Tools | 34.0.5                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                             |
 | CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                                                   |
 | Google Play services       | 49                                                                                                                                                                                                                                 |
 | Google Repository          | 58                                                                                                                                                                                                                                 |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653<br>26.0.10792818                                                                                                                                                                      |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653<br>26.1.10909125                                                                                                                                                                      |
 | SDK Patch Applier v4       | 1                                                                                                                                                                                                                                  |
 
 #### Environment variables
@@ -608,16 +609,16 @@ All other versions are saved but not installed.
 | ANDROID_HOME            | C:\Android\android-sdk                   |
 | ANDROID_NDK             | C:\Android\android-sdk\ndk\25.2.9519653  |
 | ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\25.2.9519653  |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\26.0.10792818 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\26.1.10909125 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\25.2.9519653  |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
 
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:5aa61257ffbd2dbc534f2591d70dbc56fad6e8ca363d48f5aa4f2c2b2ab64821  | 2023-09-12 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:49bb37677c8d61281f15a49d3291baff4f5583e6cf5846fc4cee7527e59ff1c5  | 2023-09-12 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:1477b5cc53a36a8a5e8b865a5e11a32e836ba6061c120e4e5b0a1eea1fdf6c98  | 2023-09-12 |
-| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:6562c9a2580260e4f2e3a081cc2cf1d960899cbce7c4568fb851e4848ca50e07  | 2023-09-01 |
-| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:d227d7ab11f4aa0da7779adc31616924cf0b15846a10313d83a644541208f80b  | 2023-09-01 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:019daa2ef10618362e2c8cb79408b048d604813aaf39f5c3e248b4c1132e92fd  | 2023-10-10 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:8786c438d878b03be3abd125665d51ff9bb9c6429ea0802978f07b60dd910745  | 2023-10-10 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:180b44ab71dfd238ab4428baf047fee08663de4c317de0bce0887f12e4c7734c  | 2023-10-10 |
+| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:0e6791612f9448aa2e6713d95ffabdefa26122b58a0b341aace6b5a2d65aee8c  | 2023-10-06 |
+| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:40525c24f8e0a1cd4feca7330cf0bcdf125c0f7f2158852f4701dbe7ded2dd7f  | 2023-10-06 |
 
