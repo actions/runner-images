@@ -152,6 +152,41 @@ get_github_package_hash() {
     echo "$result"
 }
 
+download_hash_from_file() {
+    local url=$1
+    local keyword=$2
+    local optional_keyword=$3
+    local delimiter=${4:-' '}
+    local word_number=${5:-1}
+
+    if [[ -z "$keyword" || -z "$url" ]]; then
+        echo "File name and/or URL is not specified."
+        exit 1
+    fi
+
+    matching_line=$(curl -fsSL "$url" | tr -d '`' | grep "$keyword")
+    if [[ -n "$optional_keyword" ]]; then
+        matching_line=$(echo "$matching_line" | grep "$optional_keyword")
+        keyword="$keyword, $optional_keyword"
+    fi
+    if [[ "$(echo "$matching_line" | wc -l)" -gt 1 ]]; then
+        echo "Multiple lines found included the words: $keyword. Please specify a more specific filter."
+        exit 1
+    fi
+    if [[ -z "$matching_line" ]]; then
+        echo "Keywords ($keyword) not found in file with hashes."
+        exit 1
+    fi
+
+    result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
+    if [[ -z "$result" ]]; then
+        echo "Empty result. Check parameters delimiter and/or word_number for the matching line."
+        exit 1
+    fi
+
+    echo "$result"
+}
+
 use_checksum_comparison() {
     local file_path=$1
     local checksum=$2

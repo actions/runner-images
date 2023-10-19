@@ -2,6 +2,7 @@
 ################################################################################
 ##  File:  docker.sh
 ##  Desc:  Installs docker onto the image
+##  Supply chain security: Docker Compose v2 - checksum validation
 ################################################################################
 
 # Source the helpers for use with the script
@@ -19,7 +20,13 @@ apt-get install --no-install-recommends docker-ce docker-ce-cli containerd.io do
 
 # Install docker compose v2 from releases
 URL=$(get_github_package_download_url "docker/compose" "contains(\"compose-linux-x86_64\")")
-curl -fsSL $URL -o /usr/libexec/docker/cli-plugins/docker-compose
+curl -fsSL $URL -o /tmp/docker-compose
+# Supply chain security - CMake
+hash_url=$(get_github_package_download_url "docker/compose" "contains(\"checksums.txt\")")
+external_hash=$(download_hash_from_file "$hash_url" "compose-linux-x86_64")
+use_checksum_comparison "/tmp/docker-compose" "$external_hash"
+# Move and make docker compose v2 executable
+mv /tmp/docker-compose /usr/libexec/docker/cli-plugins/docker-compose
 chmod +x /usr/libexec/docker/cli-plugins/docker-compose
 
 # docker from official repo introduced different GID generation: https://github.com/actions/runner-images/issues/8157
