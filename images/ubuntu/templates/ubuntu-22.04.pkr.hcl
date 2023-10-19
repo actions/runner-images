@@ -185,27 +185,27 @@ build {
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/base/apt-mock.sh"
+    script          = "${path.root}/../scripts/build/apt-mock.sh"
   }
 
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/base/repos.sh",
-                        "${path.root}/../scripts/base/apt-ubuntu-archive.sh",
-                        "${path.root}/../scripts/base/apt.sh"
+                        "${path.root}/../scripts/build/repos.sh",
+                        "${path.root}/../scripts/build/apt-ubuntu-archive.sh",
+                        "${path.root}/../scripts/build/apt.sh"
     ]
   }
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/scripts/base/limits.sh"
+    script          = "${path.root}/../scripts/build/limits.sh"
   }
 
   provisioner "file" {
     destination = "${var.helper_script_folder}"
-    sources     = "${path.root}/../scripts/helpers"
+    source      = "${path.root}/../scripts/helpers"
   }
 
   provisioner "file" {
@@ -216,7 +216,7 @@ build {
   provisioner "file" {
     destination = "${var.image_folder}"
     sources     = [
-      "${path.root}/../post-gen",
+      "${path.root}/../assets/post-gen",
       "${path.root}/../scripts/tests",
       "${path.root}/../scripts/docs-gen"
     ]
@@ -247,8 +247,8 @@ build {
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     inline          = [
-      "mv ${local.image_folder}/docs-gen ${local.image_folder}/SoftwareReport",
-      "mv ${local.image_folder}/post-gen ${local.image_folder}/post-generation"
+      "mv ${var.image_folder}/docs-gen ${var.image_folder}/SoftwareReport",
+      "mv ${var.image_folder}/post-gen ${var.image_folder}/post-generation"
     ]
   }
 
@@ -352,7 +352,7 @@ build {
   provisioner "shell" {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DOCKERHUB_LOGIN=${var.dockerhub_login}", "DOCKERHUB_PASSWORD=${var.dockerhub_password}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/docker-compose.sh", "${path.root}/../scripts/instalbuildlers/docker.sh"]
+    scripts          = ["${path.root}/../scripts/build/docker-compose.sh", "${path.root}/../scripts/build/docker.sh"]
   }
 
   provisioner "shell" {
