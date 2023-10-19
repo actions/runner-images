@@ -152,35 +152,36 @@ get_github_package_hash() {
     echo "$result"
 }
 
-download_hash_from_file() {
+get_hash_from_remote_file() {
     local url=$1
-    local keyword=$2
-    local optional_keyword=$3
+    local keywords=("$2" "$3")
     local delimiter=${4:-' '}
     local word_number=${5:-1}
 
-    if [[ -z "$keyword" || -z "$url" ]]; then
+    if [[ -z "${keywords[0]}" || -z "$url" ]]; then
         echo "File name and/or URL is not specified."
         exit 1
     fi
 
-    matching_line=$(curl -fsSL "$url" | tr -d '`' | grep "$keyword")
-    if [[ -n "$optional_keyword" ]]; then
-        matching_line=$(echo "$matching_line" | grep "$optional_keyword")
-        keyword="$keyword, $optional_keyword"
-    fi
+    matching_line=$(curl -fsSL "$url" | tr -d '`')
+    for keyword in "${keywords[@]}"; do
+        matching_line=$(echo "$matching_line" | grep "$keyword")
+    done
+
     if [[ "$(echo "$matching_line" | wc -l)" -gt 1 ]]; then
-        echo "Multiple lines found included the words: $keyword. Please specify a more specific filter."
+        echo "Multiple lines found including the words: ${keywords[*]}. Please use a more specific filter."
         exit 1
     fi
+
     if [[ -z "$matching_line" ]]; then
-        echo "Keywords ($keyword) not found in file with hashes."
+        echo "Keywords (${keywords[*]}) not found in the file with hashes."
         exit 1
     fi
 
     result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
-    if [[ -z "$result" ]]; then
-        echo "Empty result. Check parameters delimiter and/or word_number for the matching line."
+    if [[ ${#result} -ne 64 && ${#result} -ne 128 ]]; then
+        echo "Invalid result length. Expected 64 or 128 characters. Please check delimiter and/or word_number parameters."
+        echo "Result: $result"
         exit 1
     fi
 

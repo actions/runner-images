@@ -23,7 +23,7 @@ fi
 download_with_retries "$download_url" "/tmp" "aliyun-cli-linux-amd64.tgz"
 
 # Supply chain security - Alibaba Cloud CLI
-external_hash=$(download_hash_from_file "$hash_url" "aliyun-cli-linux" "amd64.tgz")
+external_hash=$(get_hash_from_remote_file "$hash_url" "aliyun-cli-linux" "amd64.tgz")
 use_checksum_comparison "/tmp/aliyun-cli-linux-amd64.tgz" "$external_hash"
 
 tar xzf /tmp/aliyun-cli-linux-amd64.tgz
