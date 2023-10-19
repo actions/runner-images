@@ -38,9 +38,9 @@ popd > /dev/null
 # Configure Edge Updater to prevent auto update
 # https://learn.microsoft.com/en-us/deployedge/edge-learnmore-edgeupdater-for-macos
 
-mkdir "Library/Managed Preferences"
+sudo mkdir "/Library/Managed Preferences"
 
-cat <<EOF > "Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
+cat <<EOF | sudo tee "/Library/Managed Preferences/com.microsoft.EdgeUpdater.plist" > /dev/null
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -57,6 +57,6 @@ cat <<EOF > "Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
 </plist>
 EOF
 
-chown root:wheel "/Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
+sudo chown root:wheel "/Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
 
 invoke_tests "Browsers" "Edge"
